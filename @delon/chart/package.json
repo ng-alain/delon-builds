@@ -1,0 +1,44 @@
+{
+  "name": "@delon/chart",
+  "version": "2.0.0-beta.3-ed90aa6",
+  "author": "cipchk<cipchk@qq.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ng-alain/delon.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ng-alain/delon/issues"
+  },
+  "homepage": "https://github.com/ng-alain/delon#readme",
+  "keywords": [
+    "delon",
+    "ng-alain",
+    "alain",
+    "chart",
+    "angular chart",
+    "ng chart",
+    "ngx chart",
+    "antd",
+    "ng-zorro-antd",
+    "angular",
+    "component"
+  ],
+  "peerDependencies": {
+    "@delon/util": "^2.0.0-beta.3-ed90aa6",
+    "@delon/theme": "^2.0.0-beta.3-ed90aa6"
+  },
+  "sideEffects": false,
+  "main": "bundles/chart.umd.js",
+  "module": "fesm5/chart.js",
+  "es2015": "fesm2015/chart.js",
+  "esm5": "esm5/chart.js",
+  "esm2015": "esm2015/chart.js",
+  "fesm5": "fesm5/chart.js",
+  "fesm2015": "fesm2015/chart.js",
+  "typings": "chart.d.ts",
+  "metadata": "chart.metadata.json",
+  "dependencies": {
+    "tslib": "^1.9.0"
+  }
+}

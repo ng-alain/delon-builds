@@ -1,0 +1,13 @@
+{
+  "main": "../bundles/pie.umd.js",
+  "module": "../fesm5/pie.js",
+  "es2015": "../fesm2015/pie.js",
+  "esm5": "../esm5/pie/pie.js",
+  "esm2015": "../esm2015/pie/pie.js",
+  "fesm5": "../fesm5/pie.js",
+  "fesm2015": "../fesm2015/pie.js",
+  "typings": "pie.d.ts",
+  "metadata": "pie.metadata.json",
+  "sideEffects": false,
+  "name": "@delon/chart/pie"
+}

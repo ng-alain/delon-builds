@@ -1,0 +1,9 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ */
+export { RangePickerComponent } from './range.component';
+export { DateRangePickerConfig, DatePickerConfig } from './date-picker.config';
+export { DatePickerModule } from './date-picker.module';
+
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicHVibGljX2FwaS5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0BkZWxvbi9hYmMvZGF0ZS1waWNrZXIvIiwic291cmNlcyI6WyJwdWJsaWNfYXBpLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7QUFBQSxPQUFPLEVBQUUsb0JBQW9CLEVBQUUsTUFBTSxtQkFBbUIsQ0FBQztBQUN6RCx3REFBYyxzQkFBc0IsQ0FBQztBQUNyQyxPQUFPLEVBQUUsZ0JBQWdCLEVBQUUsTUFBTSxzQkFBc0IsQ0FBQyIsInNvdXJjZXNDb250ZW50IjpbImV4cG9ydCB7IFJhbmdlUGlja2VyQ29tcG9uZW50IH0gZnJvbSAnLi9yYW5nZS5jb21wb25lbnQnO1xyXG5leHBvcnQgKiBmcm9tICcuL2RhdGUtcGlja2VyLmNvbmZpZyc7XHJcbmV4cG9ydCB7IERhdGVQaWNrZXJNb2R1bGUgfSBmcm9tICcuL2RhdGUtcGlja2VyLm1vZHVsZSc7XHJcbiJdfQ==

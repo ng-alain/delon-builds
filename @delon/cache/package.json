@@ -1,0 +1,40 @@
+{
+  "name": "@delon/cache",
+  "version": "2.0.0-beta.3-ed90aa6",
+  "author": "cipchk<cipchk@qq.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ng-alain/delon.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ng-alain/delon/issues"
+  },
+  "homepage": "https://github.com/ng-alain/delon#readme",
+  "keywords": [
+    "delon",
+    "ng-alain",
+    "alain",
+    "cache",
+    "angular cache",
+    "ng cache",
+    "ngx cache",
+    "antd",
+    "ng-zorro-antd",
+    "angular",
+    "component"
+  ],
+  "sideEffects": false,
+  "main": "bundles/cache.umd.js",
+  "module": "fesm5/cache.js",
+  "es2015": "fesm2015/cache.js",
+  "esm5": "esm5/cache.js",
+  "esm2015": "esm2015/cache.js",
+  "fesm5": "fesm5/cache.js",
+  "fesm2015": "fesm2015/cache.js",
+  "typings": "cache.d.ts",
+  "metadata": "cache.metadata.json",
+  "dependencies": {
+    "tslib": "^1.9.0"
+  }
+}

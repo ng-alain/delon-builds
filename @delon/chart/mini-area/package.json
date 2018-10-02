@@ -1,0 +1,13 @@
+{
+  "main": "../bundles/mini-area.umd.js",
+  "module": "../fesm5/mini-area.js",
+  "es2015": "../fesm2015/mini-area.js",
+  "esm5": "../esm5/mini-area/mini-area.js",
+  "esm2015": "../esm2015/mini-area/mini-area.js",
+  "fesm5": "../fesm5/mini-area.js",
+  "fesm2015": "../fesm2015/mini-area.js",
+  "typings": "mini-area.d.ts",
+  "metadata": "mini-area.metadata.json",
+  "sideEffects": false,
+  "name": "@delon/chart/mini-area"
+}

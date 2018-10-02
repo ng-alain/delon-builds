@@ -1,0 +1,40 @@
+{
+  "name": "@delon/theme",
+  "version": "2.0.0-beta.3-ed90aa6",
+  "author": "cipchk<cipchk@qq.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ng-alain/delon.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ng-alain/delon/issues"
+  },
+  "homepage": "https://github.com/ng-alain/delon#readme",
+  "keywords": [
+    "delon",
+    "ng-alain",
+    "alain",
+    "antd",
+    "ng-zorro-antd",
+    "angular",
+    "component"
+  ],
+  "peerDependencies": {
+    "ng-zorro-antd": "^1.6.0",
+    "@delon/acl": "^2.0.0-beta.3-ed90aa6"
+  },
+  "sideEffects": false,
+  "main": "bundles/theme.umd.js",
+  "module": "fesm5/theme.js",
+  "es2015": "fesm2015/theme.js",
+  "esm5": "esm5/theme.js",
+  "esm2015": "esm2015/theme.js",
+  "fesm5": "fesm5/theme.js",
+  "fesm2015": "fesm2015/theme.js",
+  "typings": "theme.d.ts",
+  "metadata": "theme.metadata.json",
+  "dependencies": {
+    "tslib": "^1.9.0"
+  }
+}

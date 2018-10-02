@@ -1,0 +1,8 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ */
+export { SidebarNavComponent } from './sidebar-nav.component';
+export { SidebarNavModule } from './sidebar-nav.module';
+
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicHVibGljX2FwaS5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0BkZWxvbi9hYmMvc2lkZWJhci1uYXYvIiwic291cmNlcyI6WyJwdWJsaWNfYXBpLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7QUFBQSxPQUFPLEVBQUUsbUJBQW1CLEVBQUUsTUFBTSx5QkFBeUIsQ0FBQztBQUM5RCxPQUFPLEVBQUUsZ0JBQWdCLEVBQUUsTUFBTSxzQkFBc0IsQ0FBQyIsInNvdXJjZXNDb250ZW50IjpbImV4cG9ydCB7IFNpZGViYXJOYXZDb21wb25lbnQgfSBmcm9tICcuL3NpZGViYXItbmF2LmNvbXBvbmVudCc7XHJcbmV4cG9ydCB7IFNpZGViYXJOYXZNb2R1bGUgfSBmcm9tICcuL3NpZGViYXItbmF2Lm1vZHVsZSc7XHJcbiJdfQ==

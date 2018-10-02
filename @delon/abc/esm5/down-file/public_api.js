@@ -1,0 +1,8 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ */
+export { DownFileDirective } from './down-file.directive';
+export { DownFileModule } from './down-file.module';
+
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicHVibGljX2FwaS5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0BkZWxvbi9hYmMvZG93bi1maWxlLyIsInNvdXJjZXMiOlsicHVibGljX2FwaS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7O0FBQUEsT0FBTyxFQUFFLGlCQUFpQixFQUFFLE1BQU0sdUJBQXVCLENBQUM7QUFDMUQsT0FBTyxFQUFFLGNBQWMsRUFBRSxNQUFNLG9CQUFvQixDQUFDIiwic291cmNlc0NvbnRlbnQiOlsiZXhwb3J0IHsgRG93bkZpbGVEaXJlY3RpdmUgfSBmcm9tICcuL2Rvd24tZmlsZS5kaXJlY3RpdmUnO1xyXG5leHBvcnQgeyBEb3duRmlsZU1vZHVsZSB9IGZyb20gJy4vZG93bi1maWxlLm1vZHVsZSc7XHJcbiJdfQ==

@@ -1,0 +1,13 @@
+{
+  "main": "../bundles/water-wave.umd.js",
+  "module": "../fesm5/water-wave.js",
+  "es2015": "../fesm2015/water-wave.js",
+  "esm5": "../esm5/water-wave/water-wave.js",
+  "esm2015": "../esm2015/water-wave/water-wave.js",
+  "fesm5": "../fesm5/water-wave.js",
+  "fesm2015": "../fesm2015/water-wave.js",
+  "typings": "water-wave.d.ts",
+  "metadata": "water-wave.metadata.json",
+  "sideEffects": false,
+  "name": "@delon/chart/water-wave"
+}

@@ -1,0 +1,9 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ */
+export { numberToChinese } from './number-to-chinese';
+export { NaNumberToChinesePipe } from './number-to-chinese.pipe';
+export { NumberToChineseModule } from './number-to-chinese.module';
+
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicHVibGljX2FwaS5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0BkZWxvbi9hYmMvbnVtYmVyLXRvLWNoaW5lc2UvIiwic291cmNlcyI6WyJwdWJsaWNfYXBpLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7QUFDQSxnQ0FBYyxxQkFBcUIsQ0FBQztBQUNwQyxzQ0FBYywwQkFBMEIsQ0FBQztBQUN6QyxzQ0FBYyw0QkFBNEIsQ0FBQyIsInNvdXJjZXNDb250ZW50IjpbImV4cG9ydCAqIGZyb20gJy4vbnVtYmVyLXRvLWNoaW5lc2UuaW50ZXJmYWNlcyc7XHJcbmV4cG9ydCAqIGZyb20gJy4vbnVtYmVyLXRvLWNoaW5lc2UnO1xyXG5leHBvcnQgKiBmcm9tICcuL251bWJlci10by1jaGluZXNlLnBpcGUnO1xyXG5leHBvcnQgKiBmcm9tICcuL251bWJlci10by1jaGluZXNlLm1vZHVsZSc7XHJcbiJdfQ==

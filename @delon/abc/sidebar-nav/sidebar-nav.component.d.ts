@@ -1,0 +1,41 @@
+import { Renderer2, OnInit, OnDestroy, ChangeDetectorRef, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
+import { LocationStrategy } from '@angular/common';
+import { MenuService, SettingsService, Menu } from '@delon/theme';
+import { Nav } from './sidebar-nav.types';
+export declare class SidebarNavComponent implements OnInit, OnDestroy {
+    private menuSrv;
+    private settings;
+    private router;
+    private locationStrategy;
+    private render;
+    private cd;
+    private doc;
+    private bodyEl;
+    private change$;
+    /** @inner */
+    floatingEl: HTMLDivElement;
+    list: Nav[];
+    autoCloseUnderPad: boolean;
+    select: EventEmitter<Menu>;
+    constructor(menuSrv: MenuService, settings: SettingsService, router: Router, locationStrategy: LocationStrategy, render: Renderer2, cd: ChangeDetectorRef, doc: any);
+    readonly collapsed: boolean;
+    ngOnInit(): void;
+    private floatingAreaClickHandle;
+    private clearFloatingContainer;
+    private genFloatingContainer;
+    private genSubNode;
+    private hideAll;
+    private calPos;
+    showSubMenu(e: MouseEvent, item: Nav): void;
+    onSelect(item: Menu): void;
+    toggleOpen(item: Nav): void;
+    _click(): void;
+    _docClick(): void;
+    ngOnDestroy(): void;
+    private readonly isPad;
+    private route$;
+    private installUnderPad;
+    private underPad;
+    private openAside;
+}

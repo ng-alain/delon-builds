@@ -1,0 +1,12 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ */
+export { DELON_LOCALE } from './locale.tokens';
+export { DELON_LOCALE_SERVICE_PROVIDER_FACTORY, DelonLocaleService, DELON_LOCALE_SERVICE_PROVIDER } from './locale.service';
+export { DelonLocaleModule } from './locale.module';
+export { default as en_US } from './languages/en-US';
+export { default as zh_CN } from './languages/zh-CN';
+export { default as zh_TW } from './languages/zh-TW';
+
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicHVibGljX2FwaS5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0BkZWxvbi90aGVtZS8iLCJzb3VyY2VzIjpbInNyYy9sb2NhbGUvcHVibGljX2FwaS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7O0FBQUEsNkJBQWMsaUJBQWlCLENBQUM7QUFFaEMseUdBQWMsa0JBQWtCLENBQUM7QUFDakMsa0NBQWMsaUJBQWlCLENBQUM7QUFFaEMsT0FBTyxFQUFFLE9BQU8sSUFBSSxLQUFLLEVBQUUsTUFBTSxtQkFBbUIsQ0FBQztBQUNyRCxPQUFPLEVBQUUsT0FBTyxJQUFJLEtBQUssRUFBRSxNQUFNLG1CQUFtQixDQUFDO0FBQ3JELE9BQU8sRUFBRSxPQUFPLElBQUksS0FBSyxFQUFFLE1BQU0sbUJBQW1CLENBQUMiLCJzb3VyY2VzQ29udGVudCI6WyJleHBvcnQgKiBmcm9tICcuL2xvY2FsZS50b2tlbnMnO1xyXG5leHBvcnQgKiBmcm9tICcuL2xvY2FsZS50eXBlcyc7XHJcbmV4cG9ydCAqIGZyb20gJy4vbG9jYWxlLnNlcnZpY2UnO1xyXG5leHBvcnQgKiBmcm9tICcuL2xvY2FsZS5tb2R1bGUnO1xyXG5cclxuZXhwb3J0IHsgZGVmYXVsdCBhcyBlbl9VUyB9IGZyb20gJy4vbGFuZ3VhZ2VzL2VuLVVTJztcclxuZXhwb3J0IHsgZGVmYXVsdCBhcyB6aF9DTiB9IGZyb20gJy4vbGFuZ3VhZ2VzL3poLUNOJztcclxuZXhwb3J0IHsgZGVmYXVsdCBhcyB6aF9UVyB9IGZyb20gJy4vbGFuZ3VhZ2VzL3poLVRXJztcclxuIl19

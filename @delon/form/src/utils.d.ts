@@ -1,0 +1,60 @@
+import { Observable } from 'rxjs';
+import { SFUISchemaItem, SFUISchemaItemRun } from './schema/ui';
+import { SFSchema, SFSchemaDefinition, SFSchemaEnum } from './schema';
+export declare const FORMATMAPS: {
+    'date-time': {
+        widget: string;
+        showTime: boolean;
+        format: string;
+    };
+    date: {
+        widget: string;
+        format: string;
+    };
+    'full-date': {
+        widget: string;
+        format: string;
+    };
+    time: {
+        widget: string;
+    };
+    'full-time': {
+        widget: string;
+    };
+    week: {
+        widget: string;
+        mode: string;
+        format: string;
+    };
+    month: {
+        widget: string;
+        mode: string;
+        format: string;
+    };
+    uri: {
+        widget: string;
+    };
+    email: {
+        widget: string;
+        type: string;
+    };
+    color: {
+        widget: string;
+        type: string;
+    };
+    '': {
+        widget: string;
+    };
+};
+export declare function isBlank(o: any): boolean;
+export declare function toBool(value: any, defaultValue: boolean): boolean;
+export declare function di(...args: any[]): void;
+/**
+ * 取回Schema，并处理 `$ref` 的关系
+ */
+export declare function retrieveSchema(schema: SFSchema, definitions?: SFSchemaDefinition): SFSchema;
+export declare function resolveIf(schema: SFSchema, ui: SFUISchemaItemRun): SFSchema;
+export declare function orderProperties(properties: string[], order: string[]): string[];
+export declare function getEnum(list: any[], formData: any, readOnly: boolean): SFSchemaEnum[];
+export declare function getCopyEnum(list: any[], formData: any, readOnly: boolean): SFSchemaEnum[];
+export declare function getData(schema: SFSchema, ui: SFUISchemaItem, formData: any, asyncArgs?: any): Observable<SFSchemaEnum[]>;

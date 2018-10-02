@@ -1,0 +1,48 @@
+{
+  "name": "@delon/form",
+  "version": "2.0.0-beta.3-ed90aa6",
+  "author": "cipchk<cipchk@qq.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ng-alain/delon.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ng-alain/delon/issues"
+  },
+  "homepage": "https://github.com/ng-alain/delon#readme",
+  "keywords": [
+    "schema form",
+    "angular schema form",
+    "nz-form",
+    "delon",
+    "ng-alain",
+    "alain",
+    "form",
+    "angular form",
+    "ng form",
+    "ngx form",
+    "antd",
+    "ng-zorro-antd",
+    "angular",
+    "component"
+  ],
+  "peerDependencies": {
+    "ng-zorro-antd": "^1.6.0",
+    "@delon/theme": "^2.0.0-beta.3-ed90aa6",
+    "@delon/util": "^2.0.0-beta.3-ed90aa6"
+  },
+  "sideEffects": false,
+  "main": "bundles/form.umd.js",
+  "module": "fesm5/form.js",
+  "es2015": "fesm2015/form.js",
+  "esm5": "esm5/form.js",
+  "esm2015": "esm2015/form.js",
+  "fesm5": "fesm5/form.js",
+  "fesm2015": "fesm2015/form.js",
+  "typings": "form.d.ts",
+  "metadata": "form.metadata.json",
+  "dependencies": {
+    "tslib": "^1.9.0"
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "name": "@delon/acl",
+  "version": "2.0.0-beta.3-ed90aa6",
+  "author": "cipchk<cipchk@qq.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ng-alain/delon.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ng-alain/delon/issues"
+  },
+  "homepage": "https://github.com/ng-alain/delon#readme",
+  "keywords": [
+    "@delon/acl",
+    "angular acl",
+    "ng acl",
+    "ngx acl",
+    "delon",
+    "ng-alain",
+    "alain",
+    "antd",
+    "ng-zorro-antd",
+    "acl",
+    "angular",
+    "component"
+  ],
+  "sideEffects": false,
+  "main": "bundles/acl.umd.js",
+  "module": "fesm5/acl.js",
+  "es2015": "fesm2015/acl.js",
+  "esm5": "esm5/acl.js",
+  "esm2015": "esm2015/acl.js",
+  "fesm5": "fesm5/acl.js",
+  "fesm2015": "fesm2015/acl.js",
+  "typings": "acl.d.ts",
+  "metadata": "acl.metadata.json",
+  "dependencies": {
+    "tslib": "^1.9.0"
+  }
+}

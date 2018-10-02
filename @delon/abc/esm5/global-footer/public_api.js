@@ -1,0 +1,9 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ */
+export { GlobalFooterComponent } from './global-footer.component';
+export { GlobalFooterItemComponent } from './global-footer-item.component';
+export { GlobalFooterModule } from './global-footer.module';
+
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicHVibGljX2FwaS5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0BkZWxvbi9hYmMvZ2xvYmFsLWZvb3Rlci8iLCJzb3VyY2VzIjpbInB1YmxpY19hcGkudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7OztBQUNBLHNDQUFjLDJCQUEyQixDQUFDO0FBQzFDLDBDQUFjLGdDQUFnQyxDQUFDO0FBQy9DLG1DQUFjLHdCQUF3QixDQUFDIiwic291cmNlc0NvbnRlbnQiOlsiZXhwb3J0ICogZnJvbSAnLi9nbG9iYWwtZm9vdGVyLnR5cGVzJztcclxuZXhwb3J0ICogZnJvbSAnLi9nbG9iYWwtZm9vdGVyLmNvbXBvbmVudCc7XHJcbmV4cG9ydCAqIGZyb20gJy4vZ2xvYmFsLWZvb3Rlci1pdGVtLmNvbXBvbmVudCc7XHJcbmV4cG9ydCAqIGZyb20gJy4vZ2xvYmFsLWZvb3Rlci5tb2R1bGUnO1xyXG4iXX0=

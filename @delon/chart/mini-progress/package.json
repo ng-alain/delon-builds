@@ -1,0 +1,13 @@
+{
+  "main": "../bundles/mini-progress.umd.js",
+  "module": "../fesm5/mini-progress.js",
+  "es2015": "../fesm2015/mini-progress.js",
+  "esm5": "../esm5/mini-progress/mini-progress.js",
+  "esm2015": "../esm2015/mini-progress/mini-progress.js",
+  "fesm5": "../fesm5/mini-progress.js",
+  "fesm2015": "../fesm2015/mini-progress.js",
+  "typings": "mini-progress.d.ts",
+  "metadata": "mini-progress.metadata.json",
+  "sideEffects": false,
+  "name": "@delon/chart/mini-progress"
+}

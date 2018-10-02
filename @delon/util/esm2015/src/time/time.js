@@ -1,0 +1,48 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ */
+import parse from 'date-fns/parse';
+import startOfWeek from 'date-fns/start_of_week';
+import endOfWeek from 'date-fns/end_of_week';
+import subWeeks from 'date-fns/sub_weeks';
+import startOfMonth from 'date-fns/start_of_month';
+import endOfMonth from 'date-fns/end_of_month';
+import subMonths from 'date-fns/sub_months';
+import startOfYear from 'date-fns/start_of_year';
+import endOfYear from 'date-fns/end_of_year';
+import subYears from 'date-fns/sub_years';
+import addDays from 'date-fns/add_days';
+/**
+ * 获取时间范围
+ * @param {?} type 类型，带 `-` 表示过去一个时间，若指定 `number` 表示天数
+ * @param {?=} time 开始时间
+ * @return {?}
+ */
+export function getTimeDistance(type, time) {
+    time = parse(time || new Date());
+    switch (type) {
+        case 'today':
+            return [time, time];
+        case '-today':
+            return [addDays(time, -1), time];
+        case 'week':
+            return [startOfWeek(time), endOfWeek(time)];
+        case '-week':
+            return [startOfWeek(subWeeks(time, 1)), endOfWeek(subWeeks(time, 1))];
+        case 'month':
+            return [startOfMonth(time), endOfMonth(time)];
+        case '-month':
+            return [startOfMonth(subMonths(time, 1)), endOfMonth(subMonths(time, 1))];
+        case 'year':
+            return [startOfYear(time), endOfYear(time)];
+        case '-year':
+            return [startOfYear(subYears(time, 1)), endOfYear(subYears(time, 1))];
+        default:
+            return type > 0
+                ? [time, addDays(time, type)]
+                : [addDays(time, type), time];
+    }
+}
+
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoidGltZS5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0BkZWxvbi91dGlsLyIsInNvdXJjZXMiOlsic3JjL3RpbWUvdGltZS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7O0FBQUEsT0FBTyxLQUFLLE1BQU0sZ0JBQWdCLENBQUM7QUFDbkMsT0FBTyxXQUFXLE1BQU0sd0JBQXdCLENBQUM7QUFDakQsT0FBTyxTQUFTLE1BQU0sc0JBQXNCLENBQUM7QUFDN0MsT0FBTyxRQUFRLE1BQU0sb0JBQW9CLENBQUM7QUFDMUMsT0FBTyxZQUFZLE1BQU0seUJBQXlCLENBQUM7QUFDbkQsT0FBTyxVQUFVLE1BQU0sdUJBQXVCLENBQUM7QUFDL0MsT0FBTyxTQUFTLE1BQU0scUJBQXFCLENBQUM7QUFDNUMsT0FBTyxXQUFXLE1BQU0sd0JBQXdCLENBQUM7QUFDakQsT0FBTyxTQUFTLE1BQU0sc0JBQXNCLENBQUM7QUFDN0MsT0FBTyxRQUFRLE1BQU0sb0JBQW9CLENBQUM7QUFDMUMsT0FBTyxPQUFPLE1BQU0sbUJBQW1CLENBQUM7Ozs7Ozs7QUFPeEMsTUFBTSwwQkFDSixJQVNVLEVBQ1YsSUFBNkI7SUFFN0IsSUFBSSxHQUFHLEtBQUssQ0FBQyxJQUFJLElBQUksSUFBSSxJQUFJLEVBQUUsQ0FBQyxDQUFDO0lBRWpDLFFBQVEsSUFBSSxFQUFFO1FBQ1osS0FBSyxPQUFPO1lBQ1YsT0FBTyxDQUFDLElBQUksRUFBRSxJQUFJLENBQUMsQ0FBQztRQUN0QixLQUFLLFFBQVE7WUFDWCxPQUFPLENBQUMsT0FBTyxDQUFDLElBQUksRUFBRSxDQUFDLENBQUMsQ0FBQyxFQUFFLElBQUksQ0FBQyxDQUFDO1FBQ25DLEtBQUssTUFBTTtZQUNULE9BQU8sQ0FBQyxXQUFXLENBQUMsSUFBSSxDQUFDLEVBQUUsU0FBUyxDQUFDLElBQUksQ0FBQyxDQUFDLENBQUM7UUFDOUMsS0FBSyxPQUFPO1lBQ1YsT0FBTyxDQUFDLFdBQVcsQ0FBQyxRQUFRLENBQUMsSUFBSSxFQUFFLENBQUMsQ0FBQyxDQUFDLEVBQUUsU0FBUyxDQUFDLFFBQVEsQ0FBQyxJQUFJLEVBQUUsQ0FBQyxDQUFDLENBQUMsQ0FBQyxDQUFDO1FBQ3hFLEtBQUssT0FBTztZQUNWLE9BQU8sQ0FBQyxZQUFZLENBQUMsSUFBSSxDQUFDLEVBQUUsVUFBVSxDQUFDLElBQUksQ0FBQyxDQUFDLENBQUM7UUFDaEQsS0FBSyxRQUFRO1lBQ1gsT0FBTyxDQUFDLFlBQVksQ0FBQyxTQUFTLENBQUMsSUFBSSxFQUFFLENBQUMsQ0FBQyxDQUFDLEVBQUUsVUFBVSxDQUFDLFNBQVMsQ0FBQyxJQUFJLEVBQUUsQ0FBQyxDQUFDLENBQUMsQ0FBQyxDQUFDO1FBQzVFLEtBQUssTUFBTTtZQUNULE9BQU8sQ0FBQyxXQUFXLENBQUMsSUFBSSxDQUFDLEVBQUUsU0FBUyxDQUFDLElBQUksQ0FBQyxDQUFDLENBQUM7UUFDOUMsS0FBSyxPQUFPO1lBQ1YsT0FBTyxDQUFDLFdBQVcsQ0FBQyxRQUFRLENBQUMsSUFBSSxFQUFFLENBQUMsQ0FBQyxDQUFDLEVBQUUsU0FBUyxDQUFDLFFBQVEsQ0FBQyxJQUFJLEVBQUUsQ0FBQyxDQUFDLENBQUMsQ0FBQyxDQUFDO1FBQ3hFO1lBQ0UsT0FBTyxJQUFJLEdBQUcsQ0FBQztnQkFDYixDQUFDLENBQUMsQ0FBQyxJQUFJLEVBQUUsT0FBTyxDQUFDLElBQUksRUFBRSxJQUFJLENBQUMsQ0FBQztnQkFDN0IsQ0FBQyxDQUFDLENBQUMsT0FBTyxDQUFDLElBQUksRUFBRSxJQUFJLENBQUMsRUFBRSxJQUFJLENBQUMsQ0FBQztLQUNuQztDQUNGIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHBhcnNlIGZyb20gJ2RhdGUtZm5zL3BhcnNlJztcclxuaW1wb3J0IHN0YXJ0T2ZXZWVrIGZyb20gJ2RhdGUtZm5zL3N0YXJ0X29mX3dlZWsnO1xyXG5pbXBvcnQgZW5kT2ZXZWVrIGZyb20gJ2RhdGUtZm5zL2VuZF9vZl93ZWVrJztcclxuaW1wb3J0IHN1YldlZWtzIGZyb20gJ2RhdGUtZm5zL3N1Yl93ZWVrcyc7XHJcbmltcG9ydCBzdGFydE9mTW9udGggZnJvbSAnZGF0ZS1mbnMvc3RhcnRfb2ZfbW9udGgnO1xyXG5pbXBvcnQgZW5kT2ZNb250aCBmcm9tICdkYXRlLWZucy9lbmRfb2ZfbW9udGgnO1xyXG5pbXBvcnQgc3ViTW9udGhzIGZyb20gJ2RhdGUtZm5zL3N1Yl9tb250aHMnO1xyXG5pbXBvcnQgc3RhcnRPZlllYXIgZnJvbSAnZGF0ZS1mbnMvc3RhcnRfb2ZfeWVhcic7XHJcbmltcG9ydCBlbmRPZlllYXIgZnJvbSAnZGF0ZS1mbnMvZW5kX29mX3llYXInO1xyXG5pbXBvcnQgc3ViWWVhcnMgZnJvbSAnZGF0ZS1mbnMvc3ViX3llYXJzJztcclxuaW1wb3J0IGFkZERheXMgZnJvbSAnZGF0ZS1mbnMvYWRkX2RheXMnO1xyXG5cclxuLyoqXHJcbiAqIOiOt+WPluaXtumXtOiMg+WbtFxyXG4gKiBAcGFyYW0gdHlwZSDnsbvlnovvvIzluKYgYC1gIOihqOekuui/h+WOu+S4gOS4quaXtumXtO+8jOiLpeaMh+WumiBgbnVtYmVyYCDooajnpLrlpKnmlbBcclxuICogQHBhcmFtIHRpbWUg5byA5aeL5pe26Ze0XHJcbiAqL1xyXG5leHBvcnQgZnVuY3Rpb24gZ2V0VGltZURpc3RhbmNlKFxyXG4gIHR5cGU6XHJcbiAgICB8ICd0b2RheSdcclxuICAgIHwgJy10b2RheSdcclxuICAgIHwgJ3dlZWsnXHJcbiAgICB8ICctd2VlaydcclxuICAgIHwgJ21vbnRoJ1xyXG4gICAgfCAnLW1vbnRoJ1xyXG4gICAgfCAneWVhcidcclxuICAgIHwgJy15ZWFyJ1xyXG4gICAgfCBudW1iZXIsXHJcbiAgdGltZT86IERhdGUgfCBzdHJpbmcgfCBudW1iZXIsXHJcbik6IFtEYXRlLCBEYXRlXSB7XHJcbiAgdGltZSA9IHBhcnNlKHRpbWUgfHwgbmV3IERhdGUoKSk7XHJcblxyXG4gIHN3aXRjaCAodHlwZSkge1xyXG4gICAgY2FzZSAndG9kYXknOlxyXG4gICAgICByZXR1cm4gW3RpbWUsIHRpbWVdO1xyXG4gICAgY2FzZSAnLXRvZGF5JzpcclxuICAgICAgcmV0dXJuIFthZGREYXlzKHRpbWUsIC0xKSwgdGltZV07XHJcbiAgICBjYXNlICd3ZWVrJzpcclxuICAgICAgcmV0dXJuIFtzdGFydE9mV2Vlayh0aW1lKSwgZW5kT2ZXZWVrKHRpbWUpXTtcclxuICAgIGNhc2UgJy13ZWVrJzpcclxuICAgICAgcmV0dXJuIFtzdGFydE9mV2VlayhzdWJXZWVrcyh0aW1lLCAxKSksIGVuZE9mV2VlayhzdWJXZWVrcyh0aW1lLCAxKSldO1xyXG4gICAgY2FzZSAnbW9udGgnOlxyXG4gICAgICByZXR1cm4gW3N0YXJ0T2ZNb250aCh0aW1lKSwgZW5kT2ZNb250aCh0aW1lKV07XHJcbiAgICBjYXNlICctbW9udGgnOlxyXG4gICAgICByZXR1cm4gW3N0YXJ0T2ZNb250aChzdWJNb250aHModGltZSwgMSkpLCBlbmRPZk1vbnRoKHN1Yk1vbnRocyh0aW1lLCAxKSldO1xyXG4gICAgY2FzZSAneWVhcic6XHJcbiAgICAgIHJldHVybiBbc3RhcnRPZlllYXIodGltZSksIGVuZE9mWWVhcih0aW1lKV07XHJcbiAgICBjYXNlICcteWVhcic6XHJcbiAgICAgIHJldHVybiBbc3RhcnRPZlllYXIoc3ViWWVhcnModGltZSwgMSkpLCBlbmRPZlllYXIoc3ViWWVhcnModGltZSwgMSkpXTtcclxuICAgIGRlZmF1bHQ6XHJcbiAgICAgIHJldHVybiB0eXBlID4gMFxyXG4gICAgICAgID8gW3RpbWUsIGFkZERheXModGltZSwgdHlwZSldXHJcbiAgICAgICAgOiBbYWRkRGF5cyh0aW1lLCB0eXBlKSwgdGltZV07XHJcbiAgfVxyXG59XHJcbiJdfQ==

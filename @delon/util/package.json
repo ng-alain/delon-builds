@@ -1,0 +1,38 @@
+{
+  "name": "@delon/util",
+  "version": "2.0.0-beta.3-ed90aa6",
+  "author": "cipchk<cipchk@qq.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ng-alain/delon.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ng-alain/delon/issues"
+  },
+  "homepage": "https://github.com/ng-alain/delon#readme",
+  "keywords": [
+    "delon",
+    "ng-alain",
+    "alain",
+    "utility",
+    "utils",
+    "angular"
+  ],
+  "peerDependencies": {
+    "extend": "^3.0.1"
+  },
+  "sideEffects": false,
+  "main": "bundles/util.umd.js",
+  "module": "fesm5/util.js",
+  "es2015": "fesm2015/util.js",
+  "esm5": "esm5/util.js",
+  "esm2015": "esm2015/util.js",
+  "fesm5": "fesm5/util.js",
+  "fesm2015": "fesm2015/util.js",
+  "typings": "util.d.ts",
+  "metadata": "util.metadata.json",
+  "dependencies": {
+    "tslib": "^1.9.0"
+  }
+}
