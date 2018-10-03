@@ -20,6 +20,8 @@ export declare class PageHeaderComponent implements OnInit, OnChanges, AfterView
     _title: string;
     _titleTpl: TemplateRef<any>;
     title: string | TemplateRef<any>;
+    loading: boolean;
+    wide: boolean;
     home: string;
     homeLink: string;
     homeI18n: string;

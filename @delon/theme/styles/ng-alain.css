@@ -24648,6 +24648,10 @@ body {
   padding: 16px 32px 0 32px;
   border-bottom: 1px solid #e8e8e8;
 }
+.page-header__wide {
+  max-width: 1200px;
+  margin: auto;
+}
 .page-header .ant-breadcrumb {
   margin-bottom: 16px;
 }
