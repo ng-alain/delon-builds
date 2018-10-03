@@ -2192,7 +2192,7 @@ var AlainThemeModule = /** @class */ (function () {
  * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 /** @type {?} */
-var VERSION = new Version('2.0.0-beta.3-299e877');
+var VERSION = new Version('2.0.0-beta.3-d7f7da6');
 
 /**
  * @fileoverview added by tsickle

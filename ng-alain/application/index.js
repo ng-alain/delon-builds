@@ -56,7 +56,11 @@ function addDependenciesToPackageJson(options) {
         // @delon/*
         json_1.addPackageToPackageJson(host, ['abc', 'acl', 'auth', 'cache', 'form', 'mock', 'theme', 'util', 'chart'].map(pkg => `@delon/${pkg}@${lib_versions_1.VERSION}`));
         // ng-alain
-        json_1.addPackageToPackageJson(host, `ng-alain@${lib_versions_1.VERSION}`, 'devDependencies');
+        json_1.addPackageToPackageJson(host, [
+            `ng-alain@${lib_versions_1.VERSION}`,
+            // color-less
+            `less-bundle-promise@^1.0.7`,
+        ], 'devDependencies');
         // i18n
         if (options.i18n) {
             json_1.addPackageToPackageJson(host, [
@@ -76,6 +80,7 @@ function addRunScriptToPackageJson() {
         json.scripts['build'] = `ng build --prod --build-optimizer`;
         json.scripts['analyze'] = `ng build --prod --build-optimizer --stats-json`;
         json.scripts['test-coverage'] = `ng test --code-coverage --watch=false`;
+        json.scripts['color-less'] = `node scripts/color-less.js`;
         json_1.overwritePackage(host, json);
         return host;
     };
@@ -135,6 +140,7 @@ function addCodeStylesToPackageJson() {
             ],
             '*.ts': ['npm run lint:ts', 'prettier --write', 'git add'],
             '*.less': ['npm run lint:style', 'prettier --write', 'git add'],
+            'ignore': ['src/assets/*'],
         };
         json_1.overwritePackage(host, json);
         // tslint
