@@ -19787,7 +19787,9 @@ sf + st {
 .ant-btn + .ant-btn,
 .ant-btn + nz-popconfirm,
 nz-popconfirm + .ant-btn,
-nz-popconfirm + nz-popconfirm {
+nz-popconfirm + nz-popconfirm,
+.ant-btn + nz-button-group,
+nz-popconfirm + nz-button-group {
   margin-left: 8px;
 }
 .ant-btn-group .ant-btn + .ant-btn {
@@ -24692,14 +24694,6 @@ body {
 .page-header__action {
   margin-left: 56px;
   min-width: 266px;
-}
-.page-header__action nz-popconfirm:not(:last-child),
-.page-header__action .ant-btn-group:not(:last-child),
-.page-header__action .ant-btn:not(:last-child) {
-  margin-right: 8px;
-}
-.page-header__action .ant-btn-group > .ant-btn {
-  margin-right: 0;
 }
 .page-header__title,
 .page-header__desc {
