@@ -23628,10 +23628,10 @@ body {
   .alain-default__content {
     margin-left: 224px;
   }
-  .aside-collapsed .alain-default__sidebar {
+  .alain-default__collapsed .alain-default__sidebar {
     width: 64px;
   }
-  .aside-collapsed .alain-default__content {
+  .alain-default__collapsed .alain-default__content {
     margin-left: 88px;
   }
 }
@@ -23773,13 +23773,13 @@ body {
     transform: translate3d(0, -105%, 0);
   }
 }
-.aside-collapsed .alain-default__header-logo {
+.alain-default__collapsed .alain-default__header-logo {
   width: 64px;
 }
-.aside-collapsed .alain-default__header-logo-collapsed {
+.alain-default__collapsed .alain-default__header-logo-collapsed {
   display: inline;
 }
-.aside-collapsed .alain-default__header-logo-expanded {
+.alain-default__collapsed .alain-default__header-logo-expanded {
   display: none;
 }
 @media (max-width: 768px) {
@@ -23840,7 +23840,7 @@ body {
   background-color: transparent;
 }
 @media (min-width: 768px) {
-  .aside-collapsed .alain-default__aside {
+  .alain-default__collapsed .alain-default__aside {
     width: 64px;
   }
 }
@@ -23852,10 +23852,10 @@ body {
   .alain-default__content {
     transform: translate3d(200px, 0, 0);
   }
-  .aside-collapsed .alain-default__aside {
+  .alain-default__collapsed .alain-default__aside {
     transform: translate3d(-100%, 0, 0);
   }
-  .aside-collapsed .alain-default__content {
+  .alain-default__collapsed .alain-default__content {
     transform: translateZ(0);
   }
 }
@@ -23943,13 +23943,13 @@ body {
   margin-right: 8px;
 }
 @media (min-width: 768px) {
-  .aside-collapsed .alain-default__aside-user {
+  .alain-default__collapsed .alain-default__aside-user {
     width: 64px;
   }
-  .aside-collapsed .alain-default__aside-user-info {
+  .alain-default__collapsed .alain-default__aside-user-info {
     display: none;
   }
-  .aside-collapsed .alain-default__aside-user-avatar {
+  .alain-default__collapsed .alain-default__aside-user-avatar {
     margin: 0 auto;
   }
 }
@@ -24086,36 +24086,36 @@ body {
   padding-left: 40px;
 }
 @media (min-width: 768px) {
-  .aside-collapsed .sidebar-nav:not(.sidebar-nav__sub) .sidebar-nav__item {
+  .alain-default__collapsed .sidebar-nav:not(.sidebar-nav__sub) .sidebar-nav__item {
     border: none;
   }
-  .aside-collapsed .sidebar-nav:not(.sidebar-nav__sub) .sidebar-nav__item > a {
+  .alain-default__collapsed .sidebar-nav:not(.sidebar-nav__sub) .sidebar-nav__item > a {
     text-align: center;
     padding: 24px 0;
   }
-  .aside-collapsed .sidebar-nav:not(.sidebar-nav__sub) .sidebar-nav__item > a i {
+  .alain-default__collapsed .sidebar-nav:not(.sidebar-nav__sub) .sidebar-nav__item > a i {
     margin-right: 0;
     font-size: 24px;
   }
-  .aside-collapsed .sidebar-nav:not(.sidebar-nav__sub) .sidebar-nav__item > a > span {
+  .alain-default__collapsed .sidebar-nav:not(.sidebar-nav__sub) .sidebar-nav__item > a > span {
     max-width: 0;
     display: inline-block;
     opacity: 0;
   }
-  .aside-collapsed .sidebar-nav:not(.sidebar-nav__sub) .sidebar-nav__group-title {
+  .alain-default__collapsed .sidebar-nav:not(.sidebar-nav__sub) .sidebar-nav__group-title {
     display: none;
   }
-  .aside-collapsed .sidebar-nav__sub {
+  .alain-default__collapsed .sidebar-nav__sub {
     display: none !important;
   }
-  .aside-collapsed .sidebar-nav__sub-title:after {
+  .alain-default__collapsed .sidebar-nav__sub-title:after {
     display: none;
   }
 }
 .footer-toolbar__left {
   margin-left: 200px;
 }
-.aside-collapsed .footer-toolbar__left {
+.alain-default__collapsed .footer-toolbar__left {
   margin-left: 64px;
 }
 .footer-toolbar__body .alain-default__content {
@@ -24156,37 +24156,37 @@ body {
 .reuse-tab {
   margin: 0 -24px 0 -24px;
 }
-.layout-fixed .reuse-tab {
+.alain-default__fixed .reuse-tab {
   position: fixed;
   top: 64px;
   width: 100%;
   z-index: 10;
 }
 @media (min-width: 768px) {
-  .layout-fixed .reuse-tab + router-outlet {
+  .alain-default__fixed .reuse-tab + router-outlet {
     display: block;
     height: 52px;
   }
 }
 @media (max-width: 768px) {
-  .layout-fixed .reuse-tab {
+  .alain-default__fixed .reuse-tab {
     position: unset;
     margin-top: 52px;
     width: initial;
   }
-  .layout-fixed .reuse-tab .ant-tabs {
+  .alain-default__fixed .reuse-tab .ant-tabs {
     margin: 0 16px;
   }
 }
-.layout-fixed .alain-default__header {
+.alain-default__fixed .alain-default__header {
   position: fixed;
   top: 0;
   left: 0;
 }
-.layout-fixed .alain-default__aside {
+.alain-default__fixed .alain-default__aside {
   position: fixed;
 }
-.layout-fixed .alain-default__content {
+.alain-default__fixed .alain-default__content {
   margin-top: 64px;
 }
 .alain-fullscreen {
