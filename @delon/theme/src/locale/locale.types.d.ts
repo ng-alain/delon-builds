@@ -21,6 +21,9 @@ export interface TagSelectLocaleData {
 export interface MiniProgressLocaleData {
     target: string;
 }
+export interface STLocaleData {
+    total: string;
+}
 export interface SFLocaleData {
     submit: string;
     reset: string;
@@ -34,5 +37,6 @@ export interface LocaleData {
     reuseTab: ReuseTabLocaleData;
     tagSelect: TagSelectLocaleData;
     miniProgress: MiniProgressLocaleData;
+    st: STLocaleData;
     sf: SFLocaleData;
 }
