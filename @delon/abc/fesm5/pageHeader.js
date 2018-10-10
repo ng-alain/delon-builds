@@ -1,4 +1,4 @@
-import { __decorate, __metadata, __spread } from 'tslib';
+import { __spread, __decorate, __metadata } from 'tslib';
 import { Component, Input, TemplateRef, Inject, Optional, ViewChild, Renderer2, NgModule } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { NgZorroAntdModule } from 'ng-zorro-antd';

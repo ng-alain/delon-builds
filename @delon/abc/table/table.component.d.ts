@@ -1,7 +1,7 @@
 import { OnDestroy, OnChanges, SimpleChanges, EventEmitter, Renderer2, ElementRef, TemplateRef, SimpleChange, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { ModalHelper, AlainI18NService, DrawerHelper, DelonLocaleService } from '@delon/theme';
+import { ModalHelper, AlainI18NService, DrawerHelper } from '@delon/theme';
 import { STColumn, STChange, STColumnSelection, STColumnFilterMenu, STData, STColumnButton, STExportOptions, STReq, STError, STChangeRowClick, STRes, STPage, STLoadOptions } from './table.interfaces';
 import { STConfig } from './table.config';
 import { STExport } from './table-export';
@@ -19,12 +19,8 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     private doc;
     private columnSource;
     private dataSource;
-    private delonI18n;
     private i18n$;
-    private delonI18n$;
     private totalTpl;
-    private locale;
-    private clonePage;
     _data: STData[];
     _isPagination: boolean;
     _allChecked: boolean;
@@ -123,7 +119,7 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
      * @deprecated as of v3
      */
     readonly rowDblClick: EventEmitter<STChangeRowClick>;
-    constructor(cd: ChangeDetectorRef, cog: STConfig, router: Router, el: ElementRef, renderer: Renderer2, exportSrv: STExport, i18nSrv: AlainI18NService, modalHelper: ModalHelper, drawerHelper: DrawerHelper, doc: any, columnSource: STColumnSource, dataSource: STDataSource, delonI18n: DelonLocaleService);
+    constructor(cd: ChangeDetectorRef, cog: STConfig, router: Router, el: ElementRef, renderer: Renderer2, exportSrv: STExport, i18nSrv: AlainI18NService, modalHelper: ModalHelper, drawerHelper: DrawerHelper, doc: any, columnSource: STColumnSource, dataSource: STDataSource);
     renderTotal(total: string, range: string[]): string;
     private changeEmit;
     private _load;
