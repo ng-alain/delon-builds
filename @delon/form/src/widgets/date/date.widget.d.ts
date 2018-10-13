@@ -14,4 +14,5 @@ export declare class DateWidget extends ControlWidget implements OnInit {
     _ok(value: any): void;
     private readonly endProperty;
     private setEnd;
+    private toDate;
 }
