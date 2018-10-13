@@ -1,6 +1,6 @@
 {
   "name": "@delon/auth",
-  "version": "2.0.0-beta.4-ae5554a",
+  "version": "2.0.0-beta.4-6a68def",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -25,7 +25,7 @@
     "ng-zorro-antd"
   ],
   "peerDependencies": {
-    "@delon/theme": "^2.0.0-beta.4-ae5554a"
+    "@delon/theme": "^2.0.0-beta.4-6a68def"
   },
   "sideEffects": false,
   "main": "bundles/auth.umd.js",
