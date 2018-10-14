@@ -2,29 +2,50 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const chalk_1 = require("chalk");
 const tslint_1 = require("tslint");
-class Rule extends tslint_1.Rules.TypedRule {
-    applyWithProgram(sourceFile, program) {
-        return this.applyWithWalker(new Walker(sourceFile, this.getOptions(), program));
+const component_walker_1 = require("../../tslint/component-walker");
+const elements_1 = require("../../html-parsing/elements");
+class Rule extends tslint_1.Rules.AbstractRule {
+    apply(sourceFile) {
+        return this.applyWithWalker(new Walker(sourceFile, this.getOptions()));
     }
 }
 exports.Rule = Rule;
-class Walker extends tslint_1.ProgramAwareRuleWalker {
-    visitPropertyAccessExpression(node) {
-        const hostType = this.getTypeChecker().getTypeAtLocation(node.expression);
-        const typeName = hostType && hostType.symbol && hostType.symbol.getName();
-        if (typeName === 'st' &&
-            [
-                'checkboxChange',
-                'radioChange',
-                'sortChange',
-                'filterChange',
-                'rowClick',
-                'rowDblClick',
-            ].includes(node.name.text)) {
-            this.addFailureAtNode(node, `Found deprecated output property "${chalk_1.red(node.name.text)}" of "${chalk_1.bold('simple-table')}" component.` +
-                `Use the "${chalk_1.green('change')}" output property instead.`);
-        }
-        super.visitPropertyAccessExpression(node);
+class Walker extends component_walker_1.ComponentWalker {
+    visitInlineTemplate(node) {
+        this._createFailuresForContent(node, node.getText()).forEach(data => {
+            this.addFailureFromStartToEnd(data.start, data.end, data.message);
+        });
+    }
+    visitExternalTemplate(node) {
+        this._createFailuresForContent(node, node.getText()).forEach(data => {
+            this.addExternalFailureFromStartToEnd(node, data.start, data.end, data.message);
+        });
+    }
+    _createFailuresForContent(node, content) {
+        const failures = [];
+        elements_1.findElementHasAttributes(content, 'st', [
+            '(checkboxChange)',
+            '(radioChange)',
+            '(sortChange)',
+            '(filterChange)',
+            '(rowClick)',
+            '(rowDblClick)',
+        ]).forEach(list => {
+            failures.push({
+                start: node.getStart() + list.offset,
+                end: node.getStart() + list.offset + list.attr.length,
+                message: `Found deprecated output property "${chalk_1.red(list.attr)}" of "${chalk_1.bold('simple-table (st)')}" component. ` +
+                    `Use the "${chalk_1.green('(change)')}" output property instead. Document: https://ng-alain.com/components/table#STChange`,
+            });
+        });
+        elements_1.findElementHasAttribute(content, 'st', '[sortReName]').forEach(offset => {
+            failures.push({
+                start: node.getStart() + offset,
+                end: node.getStart() + offset + '[sortReName]'.length,
+                message: `Found deprecated property "${chalk_1.red('[sortReName]')}" which has been removed, Just only via "STColumn.sort.reName"`,
+            });
+        });
+        return failures;
     }
 }
 exports.Walker = Walker;
