@@ -15,9 +15,9 @@ export interface ConvertAction {
     type: 'tag' | 'attr';
     name: string;
     custom?: (dom: VDom) => void;
-    rules: ConvertRule[];
+    rules?: ConvertRule[];
 }
-export declare type ConvertRuleType = 'name' | 'attr-name' | 'remove-child' | 'remove-child-template-attr' | 'change-tag-to-text' | 'name-to-attr' | 'attr-to-name' | 'add-template-atrr' | 'add-content-to-template' | 'add-prefix-name-template' | 'extra';
+export declare type ConvertRuleType = 'name' | 'attr-name' | 'remove-child' | 'remove-wrap-element-by-class' | 'remove-child-template-attr' | 'change-tag-to-text' | 'name-to-attr' | 'attr-to-name' | 'add-template-atrr' | 'add-content-to-template' | 'add-prefix-name-template' | 'class-name' | 'extra';
 export interface ConvertRule {
     /** 操作类型 */
     type: ConvertRuleType;

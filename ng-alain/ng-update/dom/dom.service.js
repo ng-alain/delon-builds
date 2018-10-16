@@ -16,7 +16,7 @@ class DomService {
             }
             this.dom = dom;
             this.parseRule();
-            callback(dom);
+            callback(this.dom);
         });
         const parser = new htmlparser2.Parser(handler, {
             lowerCaseTags: false,
@@ -47,8 +47,10 @@ class DomService {
         const action = this.rules.find(w => w.type === 'tag' && w.name === dom.name);
         if (!action)
             return;
-        for (const rule of action.rules) {
-            this.resolveRule(dom, rule, action);
+        if (action.rules && action.rules.length > 0) {
+            for (const rule of action.rules) {
+                this.resolveRule(dom, rule, action);
+            }
         }
         if (action.custom)
             action.custom(dom);
@@ -77,6 +79,9 @@ class DomService {
             case 'remove-child':
                 this.resolveRemoveChild(dom, rule.value);
                 break;
+            case 'remove-wrap-element-by-class':
+                this.resolveRemoveWrapElementByClass(dom, rule.value);
+                break;
             case 'remove-child-template-attr':
                 this.resolveRemoveChildTemplateAttr(dom, rule.value);
                 break;
@@ -97,6 +102,9 @@ class DomService {
                 break;
             case 'add-prefix-name-template':
                 this.resolveAddPrefixToTemplate(dom, action.name, rule);
+                break;
+            case 'class-name':
+                this.resolveClassName(dom, rule);
                 break;
             case 'extra':
                 this.resolveExtra(dom, rule);
@@ -128,6 +136,12 @@ class DomService {
         const has = dom.children.find(w => w.name === name);
         if (has)
             dom.children = has.children;
+    }
+    resolveRemoveWrapElementByClass(dom, name) {
+        const classes = (dom.attribs['class'] || '').split(' ');
+        if (!classes.includes(name))
+            return;
+        this.dom = dom.children;
     }
     resolveRemoveChildTemplateAttr(dom, attrName) {
         if (!dom.children || dom.children.length === 0)
@@ -208,6 +222,20 @@ class DomService {
             dom.attribs[k] = newName;
         });
     }
+    resolveClassName(dom, rule) {
+        let classes = (dom.attribs['class'] || '').split(' ');
+        const idx = classes.indexOf(rule.value);
+        if (idx !== -1) {
+            classes.splice(idx, 1, rule.newValue);
+        }
+        classes = classes.filter(w => !!w);
+        if (classes.length === 0) {
+            delete dom.attribs['class'];
+        }
+        else {
+            dom.attribs['class'] = classes.join(' ');
+        }
+    }
     resolveExtra(dom, rule) {
         if (rule.extra_insert_attrs) {
             dom.attribs = Object.assign(dom.attribs, rule.extra_insert_attrs);
@@ -240,6 +268,12 @@ class DomService {
                     if (item.data.trim().length === 0)
                         continue;
                     result.push(`${this.genTab(deep)}${item.data.trim()}`);
+                    continue;
+                }
+                if (item.type === 'comment') {
+                    if (item.data.trim().length === 0)
+                        continue;
+                    result.push(`${this.genTab(deep)}<!--${item.data.trim()}-->`);
                     continue;
                 }
                 if (!item.children || item.children.length === 0) {

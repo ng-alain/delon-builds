@@ -11,6 +11,7 @@ export declare class DomService {
     private resolveName;
     private resolveAttrName;
     private resolveRemoveChild;
+    private resolveRemoveWrapElementByClass;
     private resolveRemoveChildTemplateAttr;
     private resolveChangeTagToText;
     private resolveNameToAttr;
@@ -22,6 +23,7 @@ export declare class DomService {
     private resolveAddContentToTemplate;
     /** 为所有 ng-template 名称增加一个前缀 */
     private resolveAddPrefixToTemplate;
+    private resolveClassName;
     private resolveExtra;
     prettify(dom: VDom[]): string;
     private genAttr;
