@@ -46,6 +46,7 @@ exports.v2Element = {
             pr: '',
             changes: [
                 {
+                    type: 'tag',
                     name: 'simple-table',
                     rules: [
                         { type: 'name', value: 'st' },
@@ -128,10 +129,25 @@ exports.v2Element = {
                     },
                 },
                 {
+                    type: 'tag',
                     name: 'footer-toolbar',
                     rules: [{ type: 'add-template-atrr', value: 'extra' }],
                 },
                 {
+                    type: 'tag',
+                    name: 'desc-list-item',
+                    rules: [
+                        { type: 'name', value: 'sv' },
+                        { type: 'attr-name', value: 'term', newValue: 'label' },
+                    ],
+                },
+                {
+                    type: 'tag',
+                    name: 'desc-list',
+                    rules: [{ type: 'name', value: 'sv-container' }],
+                },
+                {
+                    type: 'tag',
                     name: 'page-header',
                     rules: [
                         { type: 'attr-name', value: 'home_link', newValue: 'homeLink' },
@@ -145,6 +161,19 @@ exports.v2Element = {
                     ],
                 },
                 {
+                    type: 'attr',
+                    name: '',
+                    rules: [
+                        { type: 'attr-name', value: 'shf-wrap', newValue: 'se-container' },
+                    ],
+                },
+                {
+                    type: 'tag',
+                    name: 'shf-item',
+                    rules: [{ type: 'name', value: 'se' }],
+                },
+                {
+                    type: 'tag',
                     name: 'g2-chart',
                     rules: [{ type: 'name', value: 'g2-custom' }],
                 },

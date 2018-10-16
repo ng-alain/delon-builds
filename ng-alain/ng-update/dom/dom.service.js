@@ -33,6 +33,7 @@ class DomService {
                     continue;
                 }
                 this.resolveTagName(item);
+                this.resolveTagAttr(item);
                 if (item && item.children && item.children.length > 0) {
                     inFn(item.children);
                 }
@@ -43,7 +44,7 @@ class DomService {
     resolveTagName(dom) {
         if (!dom.name)
             return;
-        const action = this.rules.find(w => w.name === dom.name);
+        const action = this.rules.find(w => w.type === 'tag' && w.name === dom.name);
         if (!action)
             return;
         for (const rule of action.rules) {
@@ -51,6 +52,19 @@ class DomService {
         }
         if (action.custom)
             action.custom(dom);
+    }
+    resolveTagAttr(dom) {
+        if (!dom.attribs)
+            return;
+        const keys = Object.keys(dom.attribs);
+        if (keys.length === 0)
+            return;
+        const action = this.rules.find(w => w.type === 'attr' && keys.indexOf(w.name) !== -1);
+        if (!action)
+            return;
+        for (const rule of action.rules) {
+            this.resolveRule(dom, rule, action);
+        }
     }
     resolveRule(dom, rule, action) {
         switch (rule.type) {

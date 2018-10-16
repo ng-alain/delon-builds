@@ -12,6 +12,7 @@ export interface VDom {
     children?: VDom[];
 }
 export interface ConvertAction {
+    type: 'tag' | 'attr';
     name: string;
     custom?: (dom: VDom) => void;
     rules: ConvertRule[];

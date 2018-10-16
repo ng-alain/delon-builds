@@ -72,6 +72,12 @@ function findAttributeOnElementWithAttrs(html, name, attrs) {
 }
 exports.findAttributeOnElementWithAttrs = findAttributeOnElementWithAttrs;
 /** 查找元素是否包含属性，返回开始位置集合 */
+function findElements(html, tagName) {
+    return findElementsWithTagName(html, tagName)
+        .map(element => element.sourceCodeLocation.startOffset);
+}
+exports.findElements = findElements;
+/** 查找元素是否包含属性，返回开始位置集合 */
 function findElementHasAttribute(html, tagName, attr) {
     return findElementsWithTagName(html, tagName)
         .filter(element => hasElementAttribute(element, attr))

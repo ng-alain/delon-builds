@@ -6,6 +6,7 @@ export declare class DomService {
     replace(html: string, rules: ConvertAction[], callback: (dom: VDom[]) => void): void;
     private parseRule;
     private resolveTagName;
+    private resolveTagAttr;
     private resolveRule;
     private resolveName;
     private resolveAttrName;
