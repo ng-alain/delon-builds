@@ -1,6 +1,6 @@
 {
   "name": "@delon/util",
-  "version": "2.0.0-beta.5-21b47af",
+  "version": "2.0.0-beta.5-d161d55",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -20,7 +20,7 @@
     "angular"
   ],
   "peerDependencies": {
-    "extend": "^3.0.1"
+    "extend": "^3.0.0"
   },
   "sideEffects": false,
   "main": "bundles/util.umd.js",

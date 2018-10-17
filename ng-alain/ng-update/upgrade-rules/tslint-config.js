@@ -17,14 +17,8 @@ const glob_1 = require("glob");
  * update schematic using these base rules.
  */
 const baseUpgradeRules = [
-    // // Attribute selector update rules.
-    // 'attribute-selectors-string-literal',
-    // 'attribute-selectors-stylesheet',
-    // 'attribute-selectors-template',
-    // // Class inheritance
-    // 'class-inheritance-check',
-    // // Class name update rules
-    // 'class-names-identifier',
+    // Class name update rules
+    'class-names-identifier',
     // CSS selectors update rules
     'css-selectors-string-literal',
     'css-selectors-stylesheet',

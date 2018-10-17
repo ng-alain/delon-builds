@@ -38,6 +38,7 @@ function createUpgradeRule(targetVersion, upgradeConfig) {
         }
         // Delete the temporary schematics directory.
         context.addTask(new tasks_1.RunSchematicTask('ng-post-update', {}), tslintFixTasks);
+        context.addTask(new tasks_1.NodePackageInstallTask());
     };
 }
 exports.createUpgradeRule = createUpgradeRule;

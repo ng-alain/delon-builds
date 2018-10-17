@@ -1,5 +1,5 @@
 import { RuleWalker } from 'tslint';
-import { CssSelectorUpgradeData, V2ElementUpgradeData } from './data';
+import { CssSelectorUpgradeData, ClassNameUpgradeData, V2ElementUpgradeData } from './data';
 import { TargetVersion } from './target-version';
 export declare type VersionChanges<T> = {
     [target in TargetVersion]?: ReadableChange<T>[];
@@ -15,6 +15,7 @@ declare type ValueOfChanges<T> = T extends VersionChanges<infer X> ? X : null;
  * upgrade rules.
  */
 export interface RuleUpgradeData {
+    classNames: VersionChanges<ClassNameUpgradeData>;
     cssSelectors: VersionChanges<CssSelectorUpgradeData>;
     v2Element: VersionChanges<V2ElementUpgradeData>;
 }

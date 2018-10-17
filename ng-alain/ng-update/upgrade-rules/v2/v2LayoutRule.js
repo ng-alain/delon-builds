@@ -3,14 +3,56 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const dom_service_1 = require("../../dom/dom.service");
 const ast_1 = require("../../../utils/ast");
 const change_1 = require("../../../utils/devkit-utils/change");
+const json_1 = require("../../../utils/json");
+const lib_versions_1 = require("../../../utils/lib-versions");
 const DOM = new dom_service_1.DomService();
-function fixDefaultHtml(tree, context) {
+function fixVersion(host, context) {
+    json_1.addPackageToPackageJson(host, [
+        'abc',
+        'acl',
+        'auth',
+        'cache',
+        'form',
+        'mock',
+        'theme',
+        'util',
+        'chart',
+    ].map(pkg => `@delon/${pkg}@${lib_versions_1.VERSION}`));
+}
+function fixStyles(host, context) {
+    const filePath = 'src/styles.less';
+    if (!host.exists(filePath)) {
+        console.log(`Not found in [${filePath}]`);
+        return;
+    }
+    let content = host.read(filePath).toString();
+    [
+        {
+            key: `theme/styles/index';`,
+            insert: `
+@import '~@delon/theme/styles/layout/default/index';
+@import '~@delon/theme/styles/layout/fullscreen/index';`,
+        },
+        {
+            key: `abc/index';`,
+            insert: `
+@import '~@delon/chart/index';`,
+        },
+    ].forEach(item => {
+        const pos = content.indexOf(item.key);
+        if (pos === -1)
+            return;
+        content = content.replace(item.key, item.key + item.insert);
+    });
+    host.overwrite(filePath, content);
+}
+function fixDefaultHtml(host, context) {
     const filePath = 'src/app/layout/default/default.component.html';
-    if (!tree.exists(filePath)) {
+    if (!host.exists(filePath)) {
         console.log(`Default layout not found in [${filePath}]`);
         return;
     }
-    DOM.replace(tree.read(filePath).toString(), [
+    DOM.replace(host.read(filePath).toString(), [
         {
             type: 'attr',
             name: 'class',
@@ -42,16 +84,16 @@ function fixDefaultHtml(tree, context) {
             ],
         },
     ], dom => {
-        tree.overwrite(filePath, DOM.prettify(dom));
+        host.overwrite(filePath, DOM.prettify(dom));
     });
 }
-function fixDefaultTs(tree, context) {
+function fixDefaultTs(host, context) {
     const filePath = 'src/app/layout/default/default.component.ts';
-    if (!tree.exists(filePath)) {
+    if (!host.exists(filePath)) {
         console.log(`Default layout not found in [${filePath}]`);
         return;
     }
-    ast_1.updateComponentMetadata(tree, filePath, nodes => {
+    ast_1.updateComponentMetadata(host, filePath, nodes => {
         let children = nodes[0].properties;
         const end = children[children.length - 1].end;
         const toInsert = `,
@@ -62,13 +104,13 @@ function fixDefaultTs(tree, context) {
         return [new change_1.InsertChange(filePath, end, toInsert)];
     });
 }
-function fixFullScreenTs(tree, context) {
+function fixFullScreenTs(host, context) {
     const filePath = 'src/app/layout/fullscreen/fullscreen.component.ts';
-    if (!tree.exists(filePath)) {
+    if (!host.exists(filePath)) {
         console.log(`FullScreen layout not found in [${filePath}]`);
         return;
     }
-    ast_1.updateComponentMetadata(tree, filePath, nodes => {
+    ast_1.updateComponentMetadata(host, filePath, nodes => {
         let children = nodes[0].properties;
         const end = children[children.length - 1].end;
         const toInsert = `,
@@ -78,13 +120,13 @@ function fixFullScreenTs(tree, context) {
         return [new change_1.InsertChange(filePath, end, toInsert)];
     });
 }
-function fixHeaderHtml(tree, context) {
+function fixHeaderHtml(host, context) {
     const filePath = 'src/app/layout/default/header/header.component.html';
-    if (!tree.exists(filePath)) {
+    if (!host.exists(filePath)) {
         console.log(`Default layout not found in [${filePath}]`);
         return;
     }
-    DOM.replace(tree.read(filePath).toString(), [
+    DOM.replace(host.read(filePath).toString(), [
         {
             type: 'attr',
             name: 'class',
@@ -140,16 +182,16 @@ function fixHeaderHtml(tree, context) {
             },
         },
     ], dom => {
-        tree.overwrite(filePath, DOM.prettify(dom));
+        host.overwrite(filePath, DOM.prettify(dom));
     });
 }
-function fixSidebarHtml(tree, context) {
+function fixSidebarHtml(host, context) {
     const filePath = 'src/app/layout/default/sidebar/sidebar.component.html';
-    if (!tree.exists(filePath)) {
+    if (!host.exists(filePath)) {
         console.log(`Default layout not found in [${filePath}]`);
         return;
     }
-    DOM.replace(tree.read(filePath).toString(), [
+    DOM.replace(host.read(filePath).toString(), [
         {
             type: 'attr',
             name: 'class',
@@ -182,16 +224,18 @@ function fixSidebarHtml(tree, context) {
             ],
         },
     ], dom => {
-        tree.overwrite(filePath, DOM.prettify(dom));
+        host.overwrite(filePath, DOM.prettify(dom));
     });
 }
 function v2LayoutRule() {
-    return (tree, context) => {
-        fixDefaultHtml(tree, context);
-        fixDefaultTs(tree, context);
-        fixHeaderHtml(tree, context);
-        fixSidebarHtml(tree, context);
-        fixFullScreenTs(tree, context);
+    return (host, context) => {
+        fixVersion(host, context);
+        fixStyles(host, context);
+        fixDefaultHtml(host, context);
+        fixDefaultTs(host, context);
+        fixHeaderHtml(host, context);
+        fixSidebarHtml(host, context);
+        fixFullScreenTs(host, context);
     };
 }
 exports.v2LayoutRule = v2LayoutRule;

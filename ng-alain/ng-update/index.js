@@ -26,7 +26,7 @@ const tslintUpgradeConfig = {
 function updateToV2() {
     return schematics_1.chain([
         v2LayoutRule_1.v2LayoutRule,
-        upgrade_rules_1.createUpgradeRule(target_version_1.TargetVersion.V2, tslintUpgradeConfig),
+        upgrade_rules_1.createUpgradeRule(target_version_1.TargetVersion.V2, tslintUpgradeConfig)
     ]);
 }
 exports.updateToV2 = updateToV2;

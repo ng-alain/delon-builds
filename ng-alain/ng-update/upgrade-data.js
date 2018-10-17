@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const data_1 = require("./data");
 const target_version_1 = require("./target-version");
 exports.delonUpgradeData = {
+    classNames: data_1.classNames,
     cssSelectors: data_1.cssSelectors,
     v2Element: data_1.v2Element
 };
