@@ -2201,7 +2201,7 @@ var AlainThemeModule = /** @class */ (function () {
  * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 /** @type {?} */
-var VERSION = new Version('2.0.0-beta.5-fe16ba5');
+var VERSION = new Version('2.0.0-beta.5-5fd6a6a');
 
 /**
  * @fileoverview added by tsickle
