@@ -6,12 +6,11 @@ const target_version_1 = require("./target-version");
 const upgrade_rules_1 = require("./upgrade-rules");
 const upgrade_data_1 = require("./upgrade-data");
 const v2LayoutRule_1 = require("./upgrade-rules/v2/v2LayoutRule");
+const v2DomRule_1 = require("./upgrade-rules/v2/v2DomRule");
 /** List of additional upgrade rules which are specifically for the CDK. */
 const extraUpgradeRules = [
     // Misc check rules
     'check-property-names-misc',
-    // v2
-    ['v2-element-template', target_version_1.TargetVersion.V2],
 ];
 const ruleDirectories = glob_1.sync('upgrade-rules/**/', {
     cwd: __dirname,
@@ -26,6 +25,7 @@ const tslintUpgradeConfig = {
 function updateToV2() {
     return schematics_1.chain([
         v2LayoutRule_1.v2LayoutRule,
+        v2DomRule_1.v2DomRule,
         upgrade_rules_1.createUpgradeRule(target_version_1.TargetVersion.V2, tslintUpgradeConfig)
     ]);
 }

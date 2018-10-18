@@ -6,6 +6,7 @@
  * found in the LICENSE file at https://angular.io/license
  */
 import { DefaultTreeElement } from 'parse5';
+export declare function parseDocument(html: string): any;
 export declare function findElementsWithTagName(html: string, tagName: string): DefaultTreeElement[];
 /**
  * Parses a HTML fragment and traverses all AST nodes in order find elements that

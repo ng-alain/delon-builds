@@ -5,7 +5,6 @@ const target_version_1 = require("./target-version");
 exports.delonUpgradeData = {
     classNames: data_1.classNames,
     cssSelectors: data_1.cssSelectors,
-    v2Element: data_1.v2Element
 };
 /**
  * Gets the changes for a given target version from the specified version changes object.

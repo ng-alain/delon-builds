@@ -3,7 +3,8 @@ export declare class DomService {
     private dom;
     private rules;
     private ingoreClosedTag;
-    replace(html: string, rules: ConvertAction[], callback: (dom: VDom[]) => void): void;
+    private count;
+    replace(html: string, rules: ConvertAction[], callback: (dom: VDom[], count: number) => void): void;
     private parseRule;
     private resolveTagName;
     private resolveTagAttr;

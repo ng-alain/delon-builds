@@ -6,6 +6,17 @@ const change_1 = require("../../../utils/devkit-utils/change");
 const json_1 = require("../../../utils/json");
 const lib_versions_1 = require("../../../utils/lib-versions");
 const DOM = new dom_service_1.DomService();
+function fixClass(host, src, classes) {
+    if (!host.exists(src)) {
+        console.log(`Not found in [${src}]`);
+        return;
+    }
+    let content = host.read(src).toString();
+    Object.keys(classes).forEach(key => {
+        content = content.replace(key, classes[key]);
+    });
+    host.overwrite(src, content);
+}
 function fixVersion(host, context) {
     json_1.addPackageToPackageJson(host, [
         'abc',
@@ -93,9 +104,8 @@ function fixDefaultTs(host, context) {
         console.log(`Default layout not found in [${filePath}]`);
         return;
     }
-    ast_1.updateComponentMetadata(host, filePath, nodes => {
-        let children = nodes[0].properties;
-        const end = children[children.length - 1].end;
+    ast_1.updateComponentMetadata(host, filePath, (node) => {
+        const end = node.properties[node.properties.length - 1].end;
         const toInsert = `,
   preserveWhitespaces: false,
   host: {
@@ -110,9 +120,8 @@ function fixFullScreenTs(host, context) {
         console.log(`FullScreen layout not found in [${filePath}]`);
         return;
     }
-    ast_1.updateComponentMetadata(host, filePath, nodes => {
-        let children = nodes[0].properties;
-        const end = children[children.length - 1].end;
+    ast_1.updateComponentMetadata(host, filePath, (node) => {
+        const end = node.properties[node.properties.length - 1].end;
         const toInsert = `,
   host: {
     '[class.alain-fullscreen]': 'true',
@@ -165,6 +174,11 @@ function fixHeaderHtml(host, context) {
                     type: 'class-name',
                     value: 'hidden-xs',
                     newValue: 'hidden-mobile',
+                },
+                {
+                    type: 'class-name',
+                    value: 'header-search',
+                    newValue: 'alain-default__search',
                 },
             ],
         },
@@ -234,6 +248,10 @@ function v2LayoutRule() {
         fixDefaultHtml(host, context);
         fixDefaultTs(host, context);
         fixHeaderHtml(host, context);
+        fixClass(host, `src/app/layout/default/header/components/search.component.ts`, {
+            'header-search__focus': 'alain-default__search-focus',
+            'header-search__toggled': 'alain-default__search-toggled',
+        });
         fixSidebarHtml(host, context);
         fixFullScreenTs(host, context);
     };

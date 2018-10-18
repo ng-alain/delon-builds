@@ -5,5 +5,4 @@ function __export(m) {
 Object.defineProperty(exports, "__esModule", { value: true });
 __export(require("./class-names"));
 __export(require("./css-selectors"));
-__export(require("./v2-element"));
 //# sourceMappingURL=index.js.map

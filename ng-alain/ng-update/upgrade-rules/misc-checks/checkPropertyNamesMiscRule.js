@@ -34,15 +34,15 @@ class Walker extends component_walker_1.ComponentWalker {
             failures.push({
                 start: node.getStart() + list.offset,
                 end: node.getStart() + list.offset + list.attr.length,
-                message: `Found deprecated output property "${chalk_1.red(list.attr)}" of "${chalk_1.bold('simple-table (st)')}" component. ` +
-                    `Use the "${chalk_1.green('(change)')}" output property instead, Document: https://ng-alain.com/components/table#STChange`,
+                message: `Found deprecated @Output() "${chalk_1.red(list.attr)}" on "${chalk_1.bold('st(simple-table)')}". ` +
+                    `Use "${chalk_1.green('(change)')}" instead, Document: https://ng-alain.com/components/table#STChange`,
             });
         });
         elements_1.findElementHasAttribute(content, 'st', '[sortReName]').forEach(offset => {
             failures.push({
                 start: node.getStart() + offset,
                 end: node.getStart() + offset + '[sortReName]'.length,
-                message: `Found deprecated property "${chalk_1.red('[sortReName]')}" which has been removed, Just only via "STColumn.sort.reName"`,
+                message: `Found deprecated @Input() "${chalk_1.red('[sortReName]')}" which has been removed, Use "${chalk_1.green('STColumn.sort.reName')}" instead.`,
             });
         });
         elements_1.findElementHasAttributes(content, 'sv', [
@@ -52,8 +52,8 @@ class Walker extends component_walker_1.ComponentWalker {
             failures.push({
                 start: node.getStart() + list.offset,
                 end: node.getStart() + list.offset + list.attr.length,
-                message: `Found deprecated output property "${chalk_1.red(list.attr)}" of "${chalk_1.bold('desc-list-item (sv)')}" component. ` +
-                    `Use the "${chalk_1.green('[type]')}" output property instead, Document: https://ng-alain.com/components/view#sv`,
+                message: `Found deprecated @Input() "${chalk_1.red(list.attr)}" on "${chalk_1.bold('sv(desc-list-item)')}". ` +
+                    `Use "${chalk_1.green('[type]')}" instead, Document: https://ng-alain.com/components/view#sv`,
             });
         });
         elements_1.findElements(content, 'standard-form-row').forEach(offset => {

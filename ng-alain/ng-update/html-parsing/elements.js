@@ -8,10 +8,14 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 const parse5_1 = require("parse5");
-function findElementsWithTagName(html, tagName) {
-    const document = parse5_1.parseFragment(html, {
+function parseDocument(html) {
+    return parse5_1.parseFragment(html, {
         sourceCodeLocationInfo: true,
     });
+}
+exports.parseDocument = parseDocument;
+function findElementsWithTagName(html, tagName) {
+    const document = parseDocument(html);
     const elements = [];
     const visitNodes = nodes => {
         nodes.forEach(node => {
@@ -32,9 +36,7 @@ exports.findElementsWithTagName = findElementsWithTagName;
  * include the specified attribute.
  */
 function findElementsWithAttribute(html, attributeName) {
-    const document = parse5_1.parseFragment(html, {
-        sourceCodeLocationInfo: true,
-    });
+    const document = parseDocument(html);
     const elements = [];
     const visitNodes = nodes => {
         nodes.forEach(node => {
@@ -73,8 +75,7 @@ function findAttributeOnElementWithAttrs(html, name, attrs) {
 exports.findAttributeOnElementWithAttrs = findAttributeOnElementWithAttrs;
 /** 查找元素是否包含属性，返回开始位置集合 */
 function findElements(html, tagName) {
-    return findElementsWithTagName(html, tagName)
-        .map(element => element.sourceCodeLocation.startOffset);
+    return findElementsWithTagName(html, tagName).map(element => element.sourceCodeLocation.startOffset);
 }
 exports.findElements = findElements;
 /** 查找元素是否包含属性，返回开始位置集合 */

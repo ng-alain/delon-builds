@@ -6,17 +6,19 @@ class DomService {
     constructor() {
         this.rules = [];
         this.ingoreClosedTag = ['input', 'img', 'br', 'hr', 'col'];
+        this.count = 0;
     }
     replace(html, rules, callback) {
         this.rules = rules;
+        this.count = 0;
         const handler = new DOMHandler((error, dom) => {
             if (error) {
-                callback(null);
+                callback(null, 0);
                 return;
             }
             this.dom = dom;
             this.parseRule();
-            callback(this.dom);
+            callback(this.dom, this.count);
         });
         const parser = new htmlparser2.Parser(handler, {
             lowerCaseTags: false,
@@ -49,11 +51,14 @@ class DomService {
             return;
         if (action.rules && action.rules.length > 0) {
             for (const rule of action.rules) {
+                ++this.count;
                 this.resolveRule(dom, rule, action);
             }
         }
-        if (action.custom)
+        if (action.custom) {
+            ++this.count;
             action.custom(dom);
+        }
     }
     resolveTagAttr(dom) {
         if (!dom.attribs)
@@ -65,6 +70,7 @@ class DomService {
         if (!action)
             return;
         for (const rule of action.rules) {
+            ++this.count;
             this.resolveRule(dom, rule, action);
         }
     }
