@@ -29,6 +29,9 @@ export interface SFLocaleData {
     reset: string;
     search: string;
     edit: string;
+    addText: string;
+    removeText: string;
+    checkAllText: string;
 }
 export interface LocaleData {
     abbr: string;
