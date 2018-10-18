@@ -20514,14 +20514,17 @@ body::-webkit-scrollbar-thumb {
 .sf sf-array .add {
   margin-right: 16px;
 }
-.sf__checkbox-list {
+.sf .checkbox-grid-list {
   width: 100%;
   display: block;
 }
 @media (min-width: 768px) {
-  .sf__checkbox-list nz-col {
+  .sf .checkbox-grid-list nz-col {
     margin-top: 8px;
   }
+}
+.sf .checkbox-grid-list .ant-checkbox-group {
+  display: block;
 }
 .sf .ant-upload-select-picture-card i {
   font-size: 32px;

@@ -16,7 +16,7 @@ export declare class SFComponent implements OnInit, OnChanges, OnDestroy {
     private cd;
     private i18n;
     private i18n$;
-    locale: any;
+    private locale;
     private _renders;
     private _item;
     private _valid;
