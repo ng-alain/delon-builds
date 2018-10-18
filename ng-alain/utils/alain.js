@@ -9,7 +9,6 @@ const validation_1 = require("./devkit-utils/validation");
 const change_1 = require("./devkit-utils/change");
 const ast_utils_1 = require("./devkit-utils/ast-utils");
 const project_1 = require("./project");
-const ast_1 = require("./ast");
 function buildSelector(schema, projectPrefix) {
     const ret = [];
     if (!schema.withoutPrefix) {
@@ -69,15 +68,23 @@ function resolveSchema(host, project, schema) {
     validation_1.validateName(schema.name);
     validation_1.validateHtmlSelector(schema.selector);
 }
+function getTsSource(host, path) {
+    const text = host.read(path);
+    if (text === null) {
+        throw new schematics_1.SchematicsException(`File ${path} does not exist.`);
+    }
+    const sourceText = text.toString('utf-8');
+    return ts.createSourceFile(path, sourceText, ts.ScriptTarget.Latest, true);
+}
 function addImportToModule(host, path, symbolName, fileName) {
-    const source = ast_1.getSourceFile(host, path);
+    const source = getTsSource(host, path);
     const change = ast_utils_1.insertImport(source, path, symbolName, fileName);
     const declarationRecorder = host.beginUpdate(path);
     declarationRecorder.insertLeft(change.pos, change.toAdd);
     host.commitUpdate(declarationRecorder);
 }
 function addValueToVariable(host, path, variableName, text) {
-    const source = ast_1.getSourceFile(host, path);
+    const source = getTsSource(host, path);
     const node = ast_utils_1.findNode(source, ts.SyntaxKind.Identifier, variableName);
     if (!node) {
         throw new schematics_1.SchematicsException(`Could not find any [${variableName}] variable.`);
