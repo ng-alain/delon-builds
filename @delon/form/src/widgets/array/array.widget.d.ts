@@ -6,6 +6,7 @@ export declare class ArrayWidget extends ArrayLayoutWidget implements OnInit {
     removeTitle: string;
     arraySpan: number;
     readonly addDisabled: boolean;
+    readonly l: any;
     ngOnInit(): void;
     addItem(): void;
     removeItem(index: number): void;
