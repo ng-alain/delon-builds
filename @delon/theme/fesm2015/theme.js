@@ -1654,7 +1654,7 @@ AlainThemeModule.decorators = [
  * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 /** @type {?} */
-const VERSION = new Version('2.0.0-beta.5-42b985b');
+const VERSION = new Version('2.0.0-beta.5-fe16ba5');
 
 /**
  * @fileoverview added by tsickle
