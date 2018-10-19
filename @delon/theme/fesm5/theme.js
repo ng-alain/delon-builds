@@ -2210,7 +2210,7 @@ var AlainThemeModule = /** @class */ (function () {
  * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 /** @type {?} */
-var VERSION = new Version('2.0.0-beta.5-0fd3b4c');
+var VERSION = new Version('2.0.0-beta.5-4686ff8');
 
 /**
  * @fileoverview added by tsickle
