@@ -23049,9 +23049,10 @@ body {
   color: #fff;
   background-color: rgba(255, 255, 255, 0.2) !important;
 }
-.alain-default__nav-item i {
-  font-size: 18px;
-  line-height: 100%;
+.alain-default__nav-item > i,
+.alain-default__nav-item-icon {
+  font-size: 18px !important;
+  transform: none !important;
 }
 .alain-default__search {
   flex: 1;

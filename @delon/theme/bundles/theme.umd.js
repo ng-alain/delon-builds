@@ -1,5 +1,5 @@
 /**
- * @license ng-alain(cipchk@qq.com) v2.0.0-beta.5-e4b00ca
+ * @license ng-alain(cipchk@qq.com) v2.0.0-beta.5-324d9ae
  * (c) 2018 Cipchk https://ng-alain.com/
  * License: MIT
  */
@@ -2308,7 +2308,7 @@
      * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
     /** @type {?} */
-    var VERSION = new i0.Version('2.0.0-beta.5-e4b00ca');
+    var VERSION = new i0.Version('2.0.0-beta.5-324d9ae');
 
     /**
      * @fileoverview added by tsickle
