@@ -24221,7 +24221,7 @@ body {
   display: inline-block;
   padding: 8px 20px;
 }
-.reuse-tab .ant-tabs-nav .ant-tabs-tab .op {
+.reuse-tab .ant-tabs-nav .ant-tabs-tab .reuse-tab__op {
   display: none;
   position: absolute;
   top: 14px;
@@ -24229,7 +24229,7 @@ body {
   margin: 0;
   font-size: 12px;
 }
-.reuse-tab .ant-tabs-nav .ant-tabs-tab:hover .op {
+.reuse-tab .ant-tabs-nav .ant-tabs-tab:hover .reuse-tab__op {
   display: block;
 }
 .reuse-tab__cm .ant-menu {
