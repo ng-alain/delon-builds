@@ -279,7 +279,7 @@ export interface STColumnFilter {
      */
     default?: boolean;
     /**
-     * 自定义 filter 图标，默认 `anticon anticon-filter`
+     * 自定义 filter 图标，默认 `filter`
      */
     icon?: string;
     /**
