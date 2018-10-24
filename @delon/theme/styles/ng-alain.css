@@ -23562,10 +23562,6 @@ body {
 .st {
   display: block;
 }
-.st__selection {
-  cursor: pointer;
-  padding-left: 2px;
-}
 .st__p-left .ant-table-pagination {
   float: none;
   display: block;
@@ -24239,7 +24235,7 @@ body {
   top: 14px;
   right: 2px;
   margin: 0;
-  font-size: 10px;
+  font-size: 12px;
 }
 .reuse-tab .ant-tabs-nav .ant-tabs-tab:hover .reuse-tab__op {
   display: block;
