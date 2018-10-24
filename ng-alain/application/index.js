@@ -43,6 +43,7 @@ function fixedNg6() {
         });
         pkg.devDependencies['@angular-devkit/build-angular'] = '~0.10.2';
         pkg.devDependencies['typescript'] = '~2.9.2';
+        json_1.overwritePackage(host, pkg);
     };
 }
 function fixMain() {
