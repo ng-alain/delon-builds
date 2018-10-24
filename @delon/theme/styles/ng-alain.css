@@ -23562,6 +23562,10 @@ body {
 .st {
   display: block;
 }
+.st__selection {
+  cursor: pointer;
+  padding-left: 2px;
+}
 .st__p-left .ant-table-pagination {
   float: none;
   display: block;
