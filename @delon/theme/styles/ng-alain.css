@@ -19889,9 +19889,6 @@ body::-webkit-scrollbar-thumb {
 .acl__hide {
   display: none !important;
 }
-.search__form {
-  margin-bottom: 24px;
-}
 .search__form.ant-form-inline .ant-form-item-label,
 .search__form.ant-form-inline .ant-form-item-control-wrapper {
   padding: 0 !important;
