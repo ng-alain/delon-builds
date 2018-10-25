@@ -207,6 +207,8 @@ function fixTs(host, path) {
 function v2DomRule() {
     return (host, context) => {
         host.visit(path => {
+            if (~path.indexOf(`/node_modules/`))
+                return;
             if (path.endsWith('.ts')) {
                 fixTs(host, path);
             }
