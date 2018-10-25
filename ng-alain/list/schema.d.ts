@@ -1,11 +1,70 @@
-import { Schema as ComponentSchema } from '@schematics/angular/component/schema';
-export interface Schema extends ComponentSchema {
-    /**
-     * 指定目标路径，支持 `bus/list` 写法 (Specifies relative path, could be set like `bus/list`.)
-     */
-    target?: string;
-    /**
-     * 指定组件名不加前缀 (Without prefix to selectors)
-     */
-    withoutPrefix?: boolean;
+export interface Schema {
+  /**
+   * The path to create the component.
+   */
+  path?: string;
+  /**
+   * The name of the project.
+   */
+  project?: string;
+  /**
+   * The name of the component.
+   */
+  name: string;
+  /**
+   * Specifies if the style will be in the ts file.
+   */
+  inlineStyle?: boolean;
+  /**
+   * Specifies if the template will be in the ts file.
+   */
+  inlineTemplate?: boolean;
+  /**
+   * Specifies the view encapsulation strategy.
+   */
+  viewEncapsulation?: 'Emulated' | 'Native' | 'None';
+  /**
+   * Specifies the change detection strategy.
+   */
+  changeDetection?: 'Default' | 'OnPush';
+  /**
+   * The prefix to apply to generated selectors.
+   */
+  prefix?: string;
+  /**
+   * The file extension to be used for style files.
+   */
+  styleext?: string;
+  /**
+   * Specifies if a spec file is generated.
+   */
+  spec?: boolean;
+  /**
+   * Flag to indicate if a dir is created.
+   */
+  flat?: boolean;
+  /**
+   * Flag to skip the module import.
+   */
+  skipImport?: boolean;
+  /**
+   * The selector to use for the component.
+   */
+  selector?: string;
+  /**
+   * Allows specification of the declaring module.
+   */
+  module?: string;
+  /**
+   * Specifies if declaring module exports the component.
+   */
+  export?: boolean;
+  /**
+   * Specifies relative path.
+   */
+  target?: string;
+  /**
+   * Without prefix to selectors
+   */
+  withoutPrefix?: boolean;
 }

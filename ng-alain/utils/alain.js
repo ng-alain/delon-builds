@@ -26,7 +26,7 @@ function buildSelector(schema, projectPrefix) {
     }
     // target name
     if (schema.target) {
-        ret.push(...schema.target.split('/'));
+        ret.push(schema.target);
     }
     // name
     ret.push(core_1.strings.dasherize(schema.name));
@@ -34,9 +34,8 @@ function buildSelector(schema, projectPrefix) {
 }
 function buildComponentName(schema, projectPrefix) {
     const ret = [schema.module];
-    if (schema.target && schema.target.length > 0) {
-        ret.push(...schema.target.split('/'));
-    }
+    if (schema.target && schema.target.length > 0)
+        ret.push(schema.target);
     ret.push(schema.name);
     ret.push(`Component`);
     return core_1.strings.classify(ret.join('-'));

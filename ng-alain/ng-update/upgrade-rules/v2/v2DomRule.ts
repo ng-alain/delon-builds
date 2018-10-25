@@ -251,8 +251,6 @@ function fixTs(host: Tree, path: string) {
 export function v2DomRule(): Rule {
   return (host: Tree, context: SchematicContext) => {
     host.visit(path => {
-      if (~path.indexOf(`/node_modules/`)) return ;
-
       if (path.endsWith('.ts')) {
         fixTs(host, path);
       }
