@@ -37,8 +37,10 @@ function fixedNg6() {
         const pkg = json_1.getPackage(host);
         // all @angular/*
         ['dependencies', 'devDependencies'].forEach(type => {
-            Object.keys(pkg[type]).filter(key => key.startsWith('@angular/')).forEach(key => {
-                pkg[type][key] = "^6.1.10";
+            Object.keys(pkg[type])
+                .filter(key => key.startsWith('@angular/'))
+                .forEach(key => {
+                pkg[type][key] = '^6.1.10';
             });
         });
         pkg.devDependencies['@angular-devkit/build-angular'] = '~0.10.2';
@@ -68,7 +70,17 @@ function addDependenciesToPackageJson(options) {
             'test',
         ]);
         // @delon/*
-        json_1.addPackageToPackageJson(host, ['abc', 'acl', 'auth', 'cache', 'form', 'mock', 'theme', 'util', 'chart'].map(pkg => `@delon/${pkg}@${lib_versions_1.VERSION}`));
+        json_1.addPackageToPackageJson(host, [
+            'abc',
+            'acl',
+            'auth',
+            'cache',
+            'form',
+            'mock',
+            'theme',
+            'util',
+            'chart',
+        ].map(pkg => `@delon/${pkg}@${lib_versions_1.VERSION}`));
         // ng-alain
         json_1.addPackageToPackageJson(host, [
             `ng-alain@${lib_versions_1.VERSION}`,
@@ -154,7 +166,7 @@ function addCodeStylesToPackageJson() {
             ],
             '*.ts': ['npm run lint:ts', 'prettier --write', 'git add'],
             '*.less': ['npm run lint:style', 'prettier --write', 'git add'],
-            'ignore': ['src/assets/*'],
+            ignore: ['src/assets/*'],
         };
         json_1.overwritePackage(host, json);
         // tslint
@@ -276,6 +288,67 @@ function mergeFiles(options, from, to) {
         schematics_1.move(to),
     ]));
 }
+function addCliTpl(options) {
+    const TPLS = {
+        '__name@dasherize__.component.html': `<page-header></page-header>`,
+        '__name@dasherize__.component.ts': `import { Component, OnInit<% if(!!viewEncapsulation) { %>, ViewEncapsulation<% }%><% if(changeDetection !== 'Default') { %>, ChangeDetectionStrategy<% }%> } from '@angular/core';
+import { _HttpClient } from '@delon/theme';
+import { NzMessageService } from 'ng-zorro-antd';
+
+@Component({
+  selector: '<%= selector %>',
+  templateUrl: './<%= dasherize(name) %>.component.html',<% if(!inlineStyle) { %><% } else { %>
+  styleUrls: ['./<%= dasherize(name) %>.component.<%= styleext %>']<% } %><% if(!!viewEncapsulation) { %>,
+  encapsulation: ViewEncapsulation.<%= viewEncapsulation %><% } if (changeDetection !== 'Default') { %>,
+  changeDetection: ChangeDetectionStrategy.<%= changeDetection %><% } %>
+})
+export class <%= componentName %> implements OnInit {
+
+  constructor(private http: _HttpClient, private msg: NzMessageService) { }
+
+  ngOnInit() { }
+
+}
+`,
+        '__name@dasherize__.component.spec.ts': `import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+  import { <%= componentName %> } from './<%= dasherize(name) %>.component';
+
+  describe('<%= componentName %>', () => {
+    let component: <%= componentName %>;
+    let fixture: ComponentFixture<<%= componentName %>>;
+
+    beforeEach(async(() => {
+      TestBed.configureTestingModule({
+        declarations: [ <%= componentName %> ]
+      })
+      .compileComponents();
+    }));
+
+    beforeEach(() => {
+      fixture = TestBed.createComponent(<%= componentName %>);
+      component = fixture.componentInstance;
+      fixture.detectChanges();
+    });
+
+    it('should create', () => {
+      expect(component).toBeTruthy();
+    });
+  });
+  `
+    };
+    return (host) => {
+        const prefix = `${project.root}/_cli-tpl/test/__path__/__name@dasherize@if-flat__/`;
+        Object.keys(TPLS).forEach(name => {
+            const realPath = prefix + name;
+            if (host.exists(realPath)) {
+                host.overwrite(realPath, TPLS[name]);
+            }
+            else {
+                host.create(realPath, TPLS[name]);
+            }
+        });
+    };
+}
 function addFilesToRoot(options) {
     return schematics_1.chain([
         schematics_1.mergeWith(schematics_1.apply(schematics_1.url('./files/src'), [
@@ -313,6 +386,7 @@ function default_1(options) {
             // files
             removeOrginalFiles(),
             addFilesToRoot(options),
+            addCliTpl(options),
             fixMain(),
             fixedNg6(),
             forceLess(),
