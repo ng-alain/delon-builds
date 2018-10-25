@@ -10,6 +10,7 @@ const plugin_network_env_1 = require("./plugin.network-env");
 const plugin_hmr_1 = require("./plugin.hmr");
 const plugin_docker_1 = require("./plugin.docker");
 const plugin_asdf_1 = require("./plugin.asdf");
+const plugin_icon_1 = require("./plugin.icon");
 function installPackages() {
     return (host, context) => {
         context.addTask(new tasks_1.NodePackageInstallTask());
@@ -49,6 +50,9 @@ function default_1(options) {
                 rules.push(plugin_default_language_1.pluginDefaultLanguage(Object.assign(pluginOptions, {
                     defaultLanguage: options.defaultLanguage,
                 })));
+                break;
+            case 'icon':
+                rules.push(plugin_icon_1.pluginIcon(pluginOptions));
                 break;
             case 'asdf':
                 rules.push(plugin_asdf_1.pluginAsdf(pluginOptions));
