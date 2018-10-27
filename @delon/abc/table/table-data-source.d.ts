@@ -1,4 +1,5 @@
 import { DecimalPipe } from '@angular/common';
+import { DomSanitizer } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
 import { CNCurrencyPipe, DatePipe, YNPipe, _HttpClient } from '@delon/theme';
 import { STData, STPage, STReq, STRes, STColumn, STMultiSort } from './table.interfaces';
@@ -29,7 +30,8 @@ export declare class STDataSource {
     private date;
     private yn;
     private number;
-    constructor(http: _HttpClient, currenty: CNCurrencyPipe, date: DatePipe, yn: YNPipe, number: DecimalPipe);
+    private dom;
+    constructor(http: _HttpClient, currenty: CNCurrencyPipe, date: DatePipe, yn: YNPipe, number: DecimalPipe, dom: DomSanitizer);
     process(options: STDataSourceOptions): Promise<STDataSourceResult>;
     private get;
     private getByHttp;
