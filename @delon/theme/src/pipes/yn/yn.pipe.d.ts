@@ -1,7 +1,7 @@
 import { PipeTransform } from '@angular/core';
-/**
- * @see https://ng-alain.com/docs/service-pipe#%E5%BE%BD%E7%AB%A0-yn
- */
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 export declare class YNPipe implements PipeTransform {
-    transform(value: boolean, yes: string, no: string): string;
+    private dom;
+    constructor(dom: DomSanitizer);
+    transform(value: boolean, yes: string, no: string): SafeHtml;
 }

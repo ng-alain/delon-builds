@@ -1,4 +1,4 @@
-import { STMultiSort, STReq, STRes, STPage, STColumnButtonModalConfig, STColumnButtonDrawerConfig, STIcon } from './table.interfaces';
+import { STMultiSort, STReq, STRes, STPage, STColumnButtonModalConfig, STColumnButtonDrawerConfig } from './table.interfaces';
 export declare class STConfig {
     /**
      * 起始页码，默认为：`1`
@@ -61,8 +61,4 @@ export declare class STConfig {
      * 过滤按钮重置文本，默认：`重置`
      */
     filterClearText?: string;
-    /**
-     * 按钮图标
-     */
-    btnIcon?: STIcon;
 }
