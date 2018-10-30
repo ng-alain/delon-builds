@@ -1,4 +1,4 @@
-import { InjectionToken, Injectable, Pipe, Inject, NgModule, Version, Optional, Injector, SkipSelf, defineInjectable, inject, INJECTOR } from '@angular/core';
+import { InjectionToken, Injectable, Pipe, Inject, NgModule, Optional, Injector, Version, SkipSelf, defineInjectable, inject, INJECTOR } from '@angular/core';
 import { BehaviorSubject, Subject, Observable, throwError } from 'rxjs';
 import { filter, share, tap, catchError } from 'rxjs/operators';
 import { ACLService } from '@delon/acl';
@@ -1692,7 +1692,7 @@ AlainThemeModule.ctorParameters = () => [
  * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 /** @type {?} */
-const VERSION = new Version('2.0.0-rc.1-5ece446');
+const VERSION = new Version('2.0.0-rc.1-1c4bb2a');
 
 /**
  * @fileoverview added by tsickle
