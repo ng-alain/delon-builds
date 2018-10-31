@@ -30,15 +30,18 @@ export declare class MenuService implements OnDestroy {
      * 清空菜单
      */
     clear(): void;
+    private getHit;
     /**
      * 根据URL设置菜单 `_open` 属性
-     * @param url URL地址
+     * - 若 `recursive: true` 则会自动向上递归查找
+     *  - 菜单数据源包含 `/ware`，则 `/ware/1` 也视为 `/ware` 项
      */
-    openedByUrl(url: string): void;
+    openedByUrl(url: string, recursive?: boolean): void;
     /**
      * 根据url获取菜单列表
-     * @param url
+     * - 若 `recursive: true` 则会自动向上递归查找
+     *  - 菜单数据源包含 `/ware`，则 `/ware/1` 也视为 `/ware` 项
      */
-    getPathByUrl(url: string): Menu[];
+    getPathByUrl(url: string, recursive?: boolean): Menu[];
     ngOnDestroy(): void;
 }
