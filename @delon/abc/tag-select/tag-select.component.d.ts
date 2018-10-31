@@ -7,7 +7,7 @@ export declare class TagSelectComponent implements OnDestroy {
     /** 是否启用 `展开与收进` */
     expandable: boolean;
     expand: boolean;
-    readonly change: EventEmitter<boolean>;
+    change: EventEmitter<boolean>;
     constructor(i18n: DelonLocaleService);
     trigger(): void;
     ngOnDestroy(): void;

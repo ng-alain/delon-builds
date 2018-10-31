@@ -21,9 +21,9 @@ export declare class DownFileDirective {
     /** 指定文件名，若为空从服务端返回的 `header` 中获取 `filename`、`x-filename` */
     fileName: string;
     /** 成功回调 */
-    readonly success: EventEmitter<HttpResponse<Blob>>;
+    success: EventEmitter<HttpResponse<Blob>>;
     /** 错误回调 */
-    readonly error: EventEmitter<any>;
+    error: EventEmitter<any>;
     private getDisposition;
     constructor(el: ElementRef, http: HttpClient, _http: _HttpClient);
     _click(): void;

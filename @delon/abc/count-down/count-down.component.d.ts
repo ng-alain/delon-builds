@@ -5,9 +5,9 @@ export declare class CountDownComponent {
      * 目标时间
      */
     target: number | Date;
-    readonly begin: EventEmitter<{}>;
-    readonly notify: EventEmitter<number>;
-    readonly end: EventEmitter<{}>;
+    begin: EventEmitter<{}>;
+    notify: EventEmitter<number>;
+    end: EventEmitter<{}>;
     _start(): void;
     _notify(time: number): void;
     _finished(): void;

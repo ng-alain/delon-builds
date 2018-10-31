@@ -7,7 +7,7 @@ export declare class ReuseTabContextMenuComponent implements OnInit {
     i18n: ReuseContextI18n;
     item: ReuseItem;
     event: MouseEvent;
-    readonly close: EventEmitter<ReuseContextCloseEvent>;
+    close: EventEmitter<ReuseContextCloseEvent>;
     readonly includeNonCloseable: boolean;
     constructor(i18nSrv: DelonLocaleService);
     private notify;

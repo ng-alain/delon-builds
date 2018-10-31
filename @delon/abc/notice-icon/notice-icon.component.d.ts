@@ -10,11 +10,11 @@ export declare class NoticeIconComponent implements OnDestroy {
     count: number;
     /** 弹出卡片加载状态 */
     loading: boolean;
-    readonly select: EventEmitter<NoticeIconSelect>;
-    readonly clear: EventEmitter<string>;
+    select: EventEmitter<NoticeIconSelect>;
+    clear: EventEmitter<string>;
     /** 手动控制Popover显示 */
     popoverVisible: boolean;
-    readonly popoverVisibleChange: EventEmitter<boolean>;
+    popoverVisibleChange: EventEmitter<boolean>;
     constructor(i18n: DelonLocaleService);
     onVisibleChange(result: boolean): void;
     onSelect(i: any): void;

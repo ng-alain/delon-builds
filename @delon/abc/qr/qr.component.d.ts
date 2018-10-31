@@ -24,7 +24,7 @@ export declare class QRComponent implements OnChanges {
     /** 值 */
     value: string;
     /** 变更时回调 */
-    readonly change: EventEmitter<string>;
+    change: EventEmitter<string>;
     constructor(cog: QRConfig, srv: QRService, cd: ChangeDetectorRef);
     ngOnChanges(): void;
 }
