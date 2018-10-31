@@ -23586,7 +23586,7 @@ body {
   margin-top: 16px;
 }
 .sv__container {
-  display: inline-block;
+  display: block;
 }
 .sv__container .ant-row {
   margin-bottom: -16px;

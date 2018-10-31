@@ -41,7 +41,6 @@ export declare class PageHeaderComponent implements OnInit, OnChanges, AfterView
     fixedOffsetTop: number;
     paths: any[];
     breadcrumb: TemplateRef<any>;
-    recursiveBreadcrumb: boolean;
     logo: TemplateRef<any>;
     action: TemplateRef<any>;
     content: TemplateRef<any>;
