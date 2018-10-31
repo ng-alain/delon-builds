@@ -17,7 +17,7 @@ export declare class FullContentComponent implements AfterViewInit, OnInit, OnCh
     fullscreen: boolean;
     hideTitle: boolean;
     padding: number;
-    fullscreenChange: EventEmitter<boolean>;
+    readonly fullscreenChange: EventEmitter<boolean>;
     constructor(el: ElementRef, cd: ChangeDetectorRef, srv: FullContentService, router: Router, doc: any);
     private updateCls;
     private update;

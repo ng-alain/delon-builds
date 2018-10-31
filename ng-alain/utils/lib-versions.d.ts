@@ -1,2 +1,2 @@
-export declare const VERSION = "^2.0.0-rc.1-7ef0c85";
+export declare const VERSION = "^2.0.0-rc.1-3717cba";
 export declare const ZORROVERSION = "^1.8.0";

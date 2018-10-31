@@ -4,7 +4,7 @@ import { DatePickerConfig } from './date-picker.config';
 export declare class RangePickerComponent implements ControlValueAccessor {
     value: Date[];
     ngModelEnd: Date;
-    ngModelEndChange: EventEmitter<Date>;
+    readonly ngModelEndChange: EventEmitter<Date>;
     nzAllowClear: boolean;
     nzAutoFocus: boolean;
     nzClassName: string;
@@ -16,7 +16,7 @@ export declare class RangePickerComponent implements ControlValueAccessor {
     nzPopupStyle: any;
     nzDropdownClassName: any;
     nzPlaceHolder: any;
-    nzOnOpenChange: EventEmitter<boolean>;
+    readonly nzOnOpenChange: EventEmitter<boolean>;
     nzDateRender: any;
     nzFormat: any;
     nzDisabledTime: any;
@@ -25,8 +25,8 @@ export declare class RangePickerComponent implements ControlValueAccessor {
     nzShowToday: boolean;
     nzMode: any;
     nzRanges: any;
-    nzOnPanelChange: EventEmitter<any>;
-    nzOnOk: EventEmitter<any>;
+    readonly nzOnPanelChange: EventEmitter<any>;
+    readonly nzOnOk: EventEmitter<any>;
     constructor(cog: DatePickerConfig);
     _nzOnOpenChange(e: any): void;
     _nzOnPanelChange(e: any): void;

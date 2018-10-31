@@ -31,9 +31,9 @@ export declare class ReuseTabComponent implements OnInit, OnChanges, OnDestroy {
     /** 总是显示当前页 */
     showCurrent: boolean;
     /** 切换时回调 */
-    change: EventEmitter<ReuseItem>;
+    readonly change: EventEmitter<ReuseItem>;
     /** 关闭回调 */
-    close: EventEmitter<ReuseItem>;
+    readonly close: EventEmitter<ReuseItem>;
     constructor(el: ElementRef, srv: ReuseTabService, cd: ChangeDetectorRef, router: Router, route: ActivatedRoute, render: Renderer2, i18nSrv: AlainI18NService);
     private genTit;
     private genList;
