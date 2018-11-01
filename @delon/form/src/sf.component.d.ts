@@ -56,13 +56,13 @@ export declare class SFComponent implements OnInit, OnChanges, OnDestroy {
     mode: 'default' | 'search' | 'edit';
     private _mode;
     /** 数据变更时回调 */
-    formChange: EventEmitter<{}>;
+    readonly formChange: EventEmitter<{}>;
     /** 提交表单时回调 */
-    formSubmit: EventEmitter<{}>;
+    readonly formSubmit: EventEmitter<{}>;
     /** 重置表单时回调 */
-    formReset: EventEmitter<{}>;
+    readonly formReset: EventEmitter<{}>;
     /** 表单校验结果回调 */
-    formError: EventEmitter<ErrorData[]>;
+    readonly formError: EventEmitter<ErrorData[]>;
     /** 表单校验状态 */
     readonly valid: boolean;
     /** 表单值 */

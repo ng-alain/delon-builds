@@ -1,4 +1,4 @@
-import { __decorate, __metadata, __spread } from 'tslib';
+import { __spread, __decorate, __metadata } from 'tslib';
 import { Directive, Input, ElementRef, Renderer2, NgModule } from '@angular/core';
 import { deepCopy, InputNumber, DelonUtilModule } from '@delon/util';
 import { CommonModule } from '@angular/common';
