@@ -48,8 +48,8 @@ class Walker extends component_walker_1.ComponentWalker {
             if (data.whitelist && !data.whitelist.html) {
                 return;
             }
-            const failureMessage = `Found deprecated CSS selector "${chalk_1.red(data.replace)}"` +
-                ` which has been renamed to "${chalk_1.green(data.replaceWith)}"`;
+            const failureMessage = `Found deprecated CSS selector "${chalk_1.default.red(data.replace)}"` +
+                ` which has been renamed to "${chalk_1.default.green(data.replaceWith)}"`;
             literal_1.findAllSubstringIndices(templateContent, data.replace)
                 .map(offset => node.getStart() + offset)
                 .map(start => new tslint_1.Replacement(start, data.replace.length, data.replaceWith))

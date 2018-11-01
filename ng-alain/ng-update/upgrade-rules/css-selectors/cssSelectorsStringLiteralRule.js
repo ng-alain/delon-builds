@@ -45,8 +45,8 @@ class Walker extends tslint_1.RuleWalker {
     }
     /** Adds a css selector failure with the given replacement at the specified node. */
     _addFailureWithReplacement(node, replacement, data) {
-        this.addFailureAtNode(node, `Found deprecated CSS selector "${chalk_1.red(data.replace)}" which has ` +
-            `been renamed to "${chalk_1.green(data.replaceWith)}"`, replacement);
+        this.addFailureAtNode(node, `Found deprecated CSS selector "${chalk_1.default.red(data.replace)}" which has ` +
+            `been renamed to "${chalk_1.default.green(data.replaceWith)}"`, replacement);
     }
 }
 exports.Walker = Walker;
