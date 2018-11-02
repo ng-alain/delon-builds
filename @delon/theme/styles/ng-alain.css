@@ -22791,6 +22791,9 @@ code {
 .font-italic {
   font-style: italic;
 }
+.text-tiny {
+  font-size: 12px !important;
+}
 .text-sm {
   font-size: 14px !important;
 }
