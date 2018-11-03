@@ -20118,6 +20118,9 @@ code {
 .bg-white {
   background-color: #fff !important;
 }
+.bg-transparent {
+  background-color: transparent !important;
+}
 .text-white {
   color: #fff !important;
 }
@@ -22488,6 +22491,12 @@ code {
   left: 0;
   z-index: 9;
 }
+.overflow-auto {
+  overflow: auto !important;
+}
+.overflow-hidden {
+  overflow: hidden !important;
+}
 @media (max-width: 575px) {
   .hidden-xs {
     display: none !important;
@@ -22635,6 +22644,52 @@ code {
 .py0 {
   padding-top: 0 !important;
   padding-bottom: 0 !important;
+}
+.m-xs {
+  margin: 4px !important;
+}
+.mt-xs {
+  margin-top: 4px !important;
+}
+.mr-xs {
+  margin-right: 4px !important;
+}
+.mb-xs {
+  margin-bottom: 4px !important;
+}
+.ml-xs {
+  margin-left: 4px !important;
+}
+.mx-xs {
+  margin-right: 4px !important;
+  margin-left: 4px !important;
+}
+.my-xs {
+  margin-top: 4px !important;
+  margin-bottom: 4px !important;
+}
+.p-xs {
+  padding: 4px !important;
+}
+.pt-xs {
+  padding-top: 4px !important;
+}
+.pr-xs {
+  padding-right: 4px !important;
+}
+.pb-xs {
+  padding-bottom: 4px !important;
+}
+.pl-xs {
+  padding-left: 4px !important;
+}
+.px-xs {
+  padding-right: 4px !important;
+  padding-left: 4px !important;
+}
+.py-xs {
+  padding-top: 4px !important;
+  padding-bottom: 4px !important;
 }
 .m-sm {
   margin: 8px !important;
