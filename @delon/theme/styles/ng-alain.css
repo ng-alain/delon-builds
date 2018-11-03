@@ -22815,7 +22815,7 @@ code {
 .font-italic {
   font-style: italic;
 }
-.text-tiny {
+.text-xs {
   font-size: 12px !important;
 }
 .text-sm {
@@ -22826,6 +22826,9 @@ code {
 }
 .text-lg {
   font-size: 18px !important;
+}
+.text-xl {
+  font-size: 22px !important;
 }
 .width-sm {
   width: 160px !important;
