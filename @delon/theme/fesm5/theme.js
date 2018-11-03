@@ -2239,7 +2239,7 @@ var AlainThemeModule = /** @class */ (function () {
  * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 /** @type {?} */
-var VERSION = new Version('2.0.0-rc.2-6707b75');
+var VERSION = new Version('2.0.0-rc.2-145e4a9');
 
 /**
  * @fileoverview added by tsickle
