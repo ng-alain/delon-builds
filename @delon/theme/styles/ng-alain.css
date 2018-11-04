@@ -22477,6 +22477,21 @@ code {
   padding-top: 200px;
   text-align: center;
 }
+.position-static {
+  position: static !important;
+}
+.position-relative {
+  position: relative !important;
+}
+.position-absolute {
+  position: absolute !important;
+}
+.position-fixed {
+  position: fixed !important;
+}
+.position-sticky {
+  position: sticky !important;
+}
 .fixed-top {
   position: fixed;
   top: 0;
