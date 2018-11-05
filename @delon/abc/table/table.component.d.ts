@@ -156,7 +156,7 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     private rowClickCount;
     _rowClick(e: Event, item: any, index: number): void;
     /** 移除某行数据 */
-    remove(item: STData): boolean;
+    removeRow(data: STData | STData[]): void;
     sort(col: STColumn, idx: number, value: any): void;
     clearSort(): void;
     private handleFilter;
