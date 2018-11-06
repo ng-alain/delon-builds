@@ -131,6 +131,7 @@ export interface STColumn {
     index?: string | string[];
     /**
      * 类型
+     * - `no` 行号，计算规则：`index + noIndex`
      * - `checkbox` 多选
      * - `radio` 单选
      * - `link` 链接，务必指定 `click`
@@ -142,7 +143,7 @@ export interface STColumn {
      * - `date` 日期格式且居中(若 `className` 存在则优先)，使用 `dateFormat` 自定义格式
      * - `yn` 将`boolean`类型徽章化 [document](https://ng-alain.com/docs/data-render#yn)
      */
-    type?: 'checkbox' | 'link' | 'badge' | 'tag' | 'radio' | 'img' | 'currency' | 'number' | 'date' | 'yn';
+    type?: 'checkbox' | 'link' | 'badge' | 'tag' | 'radio' | 'img' | 'currency' | 'number' | 'date' | 'yn' | 'no';
     /**
      * 链接回调，若返回一个字符串表示导航URL会自动触发 `router.navigateByUrl`
      */
@@ -238,6 +239,11 @@ export interface STColumn {
      * 标签配置项
      */
     tag?: STColumnTag;
+    /**
+     * 行号索引，默认：`1`
+     * - 计算规则为：`index + noIndex`
+     */
+    noIndex?: number;
     [key: string]: any;
 }
 export interface STColumnSort {
