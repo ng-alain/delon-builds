@@ -23424,13 +23424,14 @@ body {
 }
 .sidebar-nav__item-link {
   color: rgba(0, 0, 0, 0.65);
-  text-decoration: none;
+  text-decoration: none !important;
   padding: 8px 16px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   position: relative;
-  display: block;
+  display: flex;
+  align-items: center;
   user-select: none;
 }
 .sidebar-nav__item-link:hover {
@@ -23441,6 +23442,10 @@ body {
   display: inline-block;
   margin-right: 8px;
   transition: font-size 0.15s cubic-bezier(0.215, 0.61, 0.355, 1), margin 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+.sidebar-nav__item-img {
+  height: 14px;
+  width: 14px;
 }
 .sidebar-nav__item-text {
   transition: opacity 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), width 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
