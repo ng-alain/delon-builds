@@ -130,7 +130,6 @@
   },
   "required": [
     "name",
-    "module",
-    "modal"
+    "module"
   ]
 }

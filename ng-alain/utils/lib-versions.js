@@ -1,5 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.VERSION = '^2.0.0-rc.2-b66d50e';
+exports.VERSION = '^2.0.0-rc.2-f728b65';
 exports.ZORROVERSION = '^1.9.0-rc.0';
 //# sourceMappingURL=lib-versions.js.map
