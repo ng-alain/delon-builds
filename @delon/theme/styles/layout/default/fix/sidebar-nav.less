@@ -188,13 +188,17 @@
       .@{sidebar-nav-prefix-cls}__item {
         border: none;
         &-link {
-          text-align: center;
+          justify-content: center;
           padding: (@layout-gutter * 3) 0;
-          i {
+          .@{sidebar-nav-prefix-cls}__item-icon {
             margin-right: 0;
             font-size: @alain-default-aside-collapsed-nav-fs;
           }
-          > span {
+          .@{sidebar-nav-prefix-cls}__item-img {
+            width: @alain-default-aside-collapsed-nav-img-wh;
+            height: @alain-default-aside-collapsed-nav-img-wh;
+          }
+          .@{sidebar-nav-prefix-cls}__item-text {
             opacity: 0;
             display: none;
           }

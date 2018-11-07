@@ -35,6 +35,7 @@ The default layout all parameters are prefixed with `@alain-default-`.
 | `@alain-default-aside-nav-selected-bg` | `#fcfcfc` | Nav selected background color |
 | `@alain-default-aside-collapsed-wd` | `@layout-gutter * 8` |  Width of aside collapsed |
 | `@alain-default-aside-collapsed-nav-fs` | `24px` | Font size of aside collapsed |
+| `@alain-default-aside-collapsed-nav-img-wh` | `24px` | Width & height nav image of aside collapsed |
 | `@alain-default-content-heading-bg` | `#fafbfc` |  Heading background color of content area |
 | `@alain-default-content-heading-border` | `#efe3e5` | Heading bottom border color of content area |
 | `@alain-default-content-padding` | `@layout-gutter * 3` | Padding of content area |

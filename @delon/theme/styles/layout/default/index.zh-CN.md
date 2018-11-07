@@ -35,6 +35,7 @@ title: 默认布局
 | `@alain-default-aside-nav-selected-bg`         | `#fcfcfc`                      | 侧边栏菜单激活时背景颜色 |
 | `@alain-default-aside-collapsed-wd`            | `@layout-gutter * 8`           | 侧边栏收缩后宽度         |
 | `@alain-default-aside-collapsed-nav-fs`        | `24px`                         | 侧边栏收缩后文本字号     |
+| `@alain-default-aside-collapsed-nav-img-wh`    | `24px`                         | 侧边栏收缩后图像宽高     |
 | `@alain-default-content-heading-bg`            | `#fafbfc`                      | 内容区域标题背景色       |
 | `@alain-default-content-heading-border`        | `#efe3e5`                      | 内容区域标题底部边框色   |
 | `@alain-default-content-padding`               | `@layout-gutter * 3`           | 内容区域内边距           |
