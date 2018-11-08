@@ -2,7 +2,7 @@ import { OnDestroy, OnChanges, SimpleChanges, EventEmitter, Renderer2, ElementRe
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ModalHelper, AlainI18NService, DrawerHelper, DelonLocaleService } from '@delon/theme';
-import { STColumn, STChange, STColumnSelection, STColumnFilterMenu, STData, STColumnButton, STExportOptions, STReq, STError, STChangeRowClick, STRes, STPage, STLoadOptions } from './table.interfaces';
+import { STColumn, STChange, STColumnSelection, STColumnFilterMenu, STData, STColumnButton, STExportOptions, STReq, STError, STChangeRowClick, STRes, STPage, STLoadOptions, STRowClassName } from './table.interfaces';
 import { STConfig } from './table.config';
 import { STExport } from './table-export';
 import { STColumnSource } from './table-column-source';
@@ -65,6 +65,7 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     /** 是否多排序，当 `sort` 多个相同值时自动合并，建议后端支持时使用 */
     multiSort: any;
     private _multiSort;
+    rowClassName: STRowClassName;
     /** `header` 标题 */
     header: string | TemplateRef<void>;
     /** `footer` 底部 */
@@ -152,9 +153,9 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     reset(extraParams?: any, options?: STLoadOptions): void;
     private _toTop;
     _change(type: 'pi' | 'ps'): void;
-    _click(e: Event, item: any, col: STColumn): boolean;
+    _click(e: Event, item: STData, col: STColumn): boolean;
     private rowClickCount;
-    _rowClick(e: Event, item: any, index: number): void;
+    _rowClick(e: Event, item: STData, index: number): void;
     /** 移除某行数据 */
     removeRow(data: STData | STData[]): void;
     sort(col: STColumn, idx: number, value: any): void;
@@ -174,7 +175,7 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     /** 清除所有 `radio` */
     clearRadio(): this;
     _refRadio(checked: boolean, item: STData): this;
-    _btnClick(e: Event, record: any, btn: STColumnButton): void;
+    _btnClick(e: Event, record: STData, btn: STColumnButton): void;
     private btnCallback;
     _btnText(record: any, btn: STColumnButton): string;
     _validBtns(item: STData, col: STColumn): STColumnButton[];

@@ -2,7 +2,7 @@ import { DecimalPipe } from '@angular/common';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
 import { CNCurrencyPipe, DatePipe, YNPipe, _HttpClient } from '@delon/theme';
-import { STData, STPage, STReq, STRes, STColumn, STMultiSort } from './table.interfaces';
+import { STData, STPage, STReq, STRes, STColumn, STMultiSort, STRowClassName } from './table.interfaces';
 export interface STDataSourceOptions {
     pi?: number;
     ps?: number;
@@ -13,6 +13,7 @@ export interface STDataSourceOptions {
     page?: STPage;
     columns?: STColumn[];
     multiSort?: STMultiSort;
+    rowClassName?: STRowClassName;
 }
 export interface STDataSourceResult {
     /** 是否需要显示分页器 */
