@@ -71,7 +71,7 @@ export declare abstract class PropertyGroup extends FormProperty {
         [key: string]: FormProperty;
     } | FormProperty[];
     getProperty(path: string): any;
-    forEachChild(fn: (formProperty: FormProperty, str: string) => void): void;
+    forEachChild(fn: (formProperty: FormProperty, str: String) => void): void;
     forEachChildRecursive(fn: (formProperty: FormProperty) => void): void;
     _bindVisibility(): void;
     private _bindVisibilityRecursive;

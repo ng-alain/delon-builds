@@ -8,4 +8,8 @@ export interface Schema extends ComponentSchema {
      * 指定组件名不加前缀 (Without prefix to selectors)
      */
     withoutPrefix?: boolean;
+    /**
+     * 指定是否使用模态框 (Specifies using modal mode)
+     */
+    modal?: boolean;
 }
