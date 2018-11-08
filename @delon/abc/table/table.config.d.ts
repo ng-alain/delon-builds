@@ -1,4 +1,4 @@
-import { STMultiSort, STReq, STRes, STPage, STColumnButtonModalConfig, STColumnButtonDrawerConfig, STIcon } from './table.interfaces';
+import { STMultiSort, STReq, STRes, STPage, STColumnButtonModalConfig, STColumnButtonDrawerConfig, STIcon, STRowClassName } from './table.interfaces';
 export declare class STConfig {
     /**
      * 起始页码，默认为：`1`
@@ -70,4 +70,8 @@ export declare class STConfig {
      * - 计算规则为：`index + noIndex`
      */
     noIndex?: number;
+    /**
+     * 表格行的类名
+     */
+    rowClassName?: STRowClassName;
 }
