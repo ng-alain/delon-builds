@@ -23,8 +23,7 @@
       "$default": {
         "$source": "argv",
         "index": 0
-      },
-      "x-prompt": "What template name would you like to use for the component:"
+      }
     },
     "name": {
       "type": "string",
@@ -32,23 +31,20 @@
       "$default": {
         "$source": "argv",
         "index": 1
-      },
-      "x-prompt": "What name would you like to use for the component:"
+      }
     },
     "inlineStyle": {
       "description": "Specifies if the style will be in the ts file.",
       "type": "boolean",
-      "default": false,
       "alias": "s"
     },
     "inlineTemplate": {
       "description": "Specifies if the template will be in the ts file.",
-      "type": "boolean",
-      "default": false
+      "type": "boolean"
     },
     "viewEncapsulation": {
       "description": "Specifies the view encapsulation strategy.",
-      "enum": ["Emulated", "Native", "None", "ShadowDom"],
+      "enum": ["Emulated", "None"],
       "type": "string",
       "alias": "v"
     },
@@ -61,31 +57,21 @@
     },
     "prefix": {
       "type": "string",
+      "format": "html-selector",
       "description": "The prefix to apply to generated selectors.",
-      "alias": "p",
-      "oneOf": [
-        {
-          "maxLength": 0
-        },
-        {
-          "minLength": 1,
-          "format": "html-selector"
-        }
-      ]
+      "alias": "p"
     },
     "styleext": {
       "description": "The file extension to be used for style files.",
-      "type": "string",
-      "default": "css"
+      "type": "string"
     },
     "spec": {
       "type": "boolean",
-      "description": "Specifies if a spec file is generated.",
-      "default": true
+      "description": "Specifies if a spec file is generated."
     },
     "flat": {
       "type": "boolean",
-      "description": "Flag to indicate if a directory is created.",
+      "description": "Flag to indicate if a dir is created.",
       "default": false
     },
     "skipImport": {
@@ -108,39 +94,26 @@
       "default": false,
       "description": "Specifies if the component is an entry component of declaring module."
     },
-    "lintFix": {
-      "type": "boolean",
-      "default": false,
-      "description": "Specifies whether to apply lint fixes after generating the component."
+    "module":  {
+      "type": "string",
+      "description": "Allows specification of the declaring module.",
+      "alias": "m"
+    },
+    "target": {
+      "type": "string",
+      "description": "指定目标路径，支持 `bus/list` 写法 (Specifies relative path, could be set like `bus/list`.)",
+      "alias": "t"
     },
     "withoutPrefix": {
       "type": "boolean",
       "description": "组件名不加前缀 (Without prefix to selectors)",
       "default": false
     },
-    "module":  {
-      "type": "string",
-      "description": "Allows specification of the declaring module.",
-      "alias": "m",
-      "x-prompt": "Specify which module name:"
-    },
-    "target": {
-      "type": "string",
-      "description": "指定目标路径，支持 `bus/list` 写法 (Specifies relative path, could be set like `bus/list`.)",
-      "alias": "t",
-      "x-prompt": "Specifies relative path(could be set like `bus/list`):"
-    },
     "modal": {
       "type": "boolean",
       "default": true,
-      "description": "指定是否使用模态框 (Specifies using modal mode)",
-      "x-prompt": "Would you like to modal mode?"
+      "description": "指定是否使用模态框 (Specifies using modal mode)"
     }
   },
-  "required": [
-    "tplName",
-    "name",
-    "module",
-    "modal"
-  ]
+  "required": [  ]
 }
