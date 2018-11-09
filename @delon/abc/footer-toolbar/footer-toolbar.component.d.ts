@@ -8,7 +8,6 @@ export declare class FooterToolbarComponent implements OnInit, OnDestroy {
     _extraTpl: TemplateRef<any>;
     extra: string | TemplateRef<any>;
     constructor(el: ElementRef, renderer: Renderer2, doc: any);
-    private readonly bodyCls;
     ngOnInit(): void;
     ngOnDestroy(): void;
 }
