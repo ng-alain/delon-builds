@@ -19306,6 +19306,7 @@ nz-popconfirm + nz-button-group {
   .ant-table-tbody > tr > td {
     width: 100%;
     display: flex;
+    align-items: center;
     text-align: left !important;
     border-bottom: none;
     padding: 8px 8px;
