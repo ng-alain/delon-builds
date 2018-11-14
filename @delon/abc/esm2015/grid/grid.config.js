@@ -1,6 +1,6 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 export class SGConfig {
     constructor() {
@@ -26,4 +26,5 @@ if (false) {
      */
     SGConfig.prototype.col;
 }
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZ3JpZC5jb25maWcuanMiLCJzb3VyY2VSb290Ijoibmc6Ly9AZGVsb24vYWJjL2dyaWQvIiwic291cmNlcyI6WyJncmlkLmNvbmZpZy50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7O0FBQUEsTUFBTSxPQUFPLFFBQVE7SUFBckI7Ozs7UUFJRSxXQUFNLEdBQUksRUFBRSxDQUFDOzs7O1FBSWIsUUFBRyxHQUFJLENBQUMsQ0FBQztJQUNYLENBQUM7Q0FBQTs7Ozs7O0lBTEMsMEJBQWE7Ozs7O0lBSWIsdUJBQVMiLCJzb3VyY2VzQ29udGVudCI6WyJleHBvcnQgY2xhc3MgU0dDb25maWcge1xuICAvKipcbiAgICog6Ze06Led77yM6buY6K6k77yaYDMyYFxuICAgKi9cbiAgZ3V0dGVyPyA9IDMyO1xuICAvKipcbiAgICog5YiX5pWw77yM6buY6K6k77yaYDJgXG4gICAqL1xuICBjb2w/ID0gMjtcbn1cbiJdfQ==
+
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZ3JpZC5jb25maWcuanMiLCJzb3VyY2VSb290Ijoibmc6Ly9AZGVsb24vYWJjL2dyaWQvIiwic291cmNlcyI6WyJncmlkLmNvbmZpZy50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7O0FBQUEsTUFBTTs7Ozs7c0JBSU0sRUFBRTs7OzttQkFJTCxDQUFDOztDQUNUIiwic291cmNlc0NvbnRlbnQiOlsiZXhwb3J0IGNsYXNzIFNHQ29uZmlnIHtcbiAgLyoqXG4gICAqIOmXtOi3ne+8jOm7mOiupO+8mmAzMmBcbiAgICovXG4gIGd1dHRlcj8gPSAzMjtcbiAgLyoqXG4gICAqIOWIl+aVsO+8jOm7mOiupO+8mmAyYFxuICAgKi9cbiAgY29sPyA9IDI7XG59XG4iXX0=
