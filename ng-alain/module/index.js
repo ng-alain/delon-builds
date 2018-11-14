@@ -66,7 +66,6 @@ function default_1(schema) {
         schema.routing = true;
         schema.flat = false;
         const templateSource = schematics_1.apply(schematics_1.url('./files'), [
-            schema.spec ? schematics_1.noop() : schematics_1.filter(path => !path.endsWith('.spec.ts')),
             schema.routing
                 ? schematics_1.noop()
                 : schematics_1.filter(path => !path.endsWith('-routing.module.ts')),
