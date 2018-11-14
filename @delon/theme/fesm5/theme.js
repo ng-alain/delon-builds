@@ -2274,7 +2274,7 @@ var AlainThemeModule = /** @class */ (function () {
  * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 /** @type {?} */
-var VERSION = new Version('2.0.0-rc.3-a4177a6');
+var VERSION = new Version('2.0.0-rc.3-e8e9a1b');
 
 /**
  * @fileoverview added by tsickle
