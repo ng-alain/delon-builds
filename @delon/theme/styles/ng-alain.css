@@ -19281,7 +19281,7 @@ nz-popconfirm + nz-button-group {
 .ant-table-rep__hide-header-footer .ant-table-footer {
   display: none;
 }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 768px) {
   .ant-table-rep__title {
     display: inline-block;
     width: 100px;
@@ -19306,7 +19306,6 @@ nz-popconfirm + nz-button-group {
   .ant-table-tbody > tr > td {
     width: 100%;
     display: flex;
-    align-items: center;
     text-align: left !important;
     border-bottom: none;
     padding: 8px 8px;
@@ -19318,10 +19317,6 @@ nz-popconfirm + nz-button-group {
 .ant-tag__plus .ant-tag {
   background: #ffffff;
   border-style: dashed;
-}
-.ant-dropdown-trigger .anticon:not(.anticon-ellipsis),
-.ant-dropdown-link .anticon:not(.anticon-ellipsis) {
-  font-size: inherit !important;
 }
 app-layout router-outlet + * {
   display: block;
@@ -19413,7 +19408,7 @@ fieldset {
     padding: 0 10px;
   }
 }
-@media (max-height: 767px) {
+@media (max-height: 768px) {
   .abs-center {
     position: relative;
   }
@@ -22564,7 +22559,7 @@ code {
     display: none !important;
   }
 }
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .hidden-mobile {
     display: none !important;
   }
@@ -23044,7 +23039,7 @@ code {
 .min-width-100 {
   min-width: 100% !important;
 }
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .width-sm,
   .max-width-sm,
   .min-width-sm {
@@ -23077,7 +23072,7 @@ body {
   margin-right: -24px;
   margin-left: -24px;
 }
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .alain-default__unwrap {
     margin-right: 0;
     margin-left: 0;
@@ -23237,7 +23232,7 @@ body {
   transform: rotate(90deg);
   color: #595959;
 }
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .alain-default__search {
     align-items: center;
     transition: transform 300ms;
@@ -23267,7 +23262,7 @@ body {
 .alain-default__collapsed .alain-default__header-logo-expanded {
   display: none;
 }
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .alain-default__header-logo {
     width: 64px;
   }
@@ -23329,7 +23324,7 @@ body {
     width: 64px;
   }
 }
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .alain-default__aside,
   .alain-default__content {
     transition: transform 0.3s ease;
@@ -23657,7 +23652,7 @@ body {
   margin-bottom: 24px;
   border-bottom: 1px solid #efe3e5;
 }
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .quick-menu {
     right: -25px !important;
   }
@@ -23668,12 +23663,8 @@ body {
 .alain-default__fixed .reuse-tab {
   position: fixed;
   top: 64px;
-  left: 224px;
-  right: 24px;
+  width: 100%;
   z-index: 10;
-}
-.alain-default__collapsed .reuse-tab {
-  left: 88px;
 }
 @media (min-width: 768px) {
   .alain-default__fixed .reuse-tab + router-outlet {
@@ -23681,7 +23672,7 @@ body {
     height: 52px;
   }
 }
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .alain-default__fixed .reuse-tab {
     position: unset;
     margin-top: 52px;
@@ -23884,7 +23875,7 @@ body {
 .se__inline .se__item:last-child {
   margin-right: 0;
 }
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .se__horizontal .se__item {
     display: block;
   }
