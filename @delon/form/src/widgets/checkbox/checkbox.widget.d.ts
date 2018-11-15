@@ -6,6 +6,7 @@ export declare class CheckboxWidget extends ControlWidget {
     indeterminate: boolean;
     grid_span: number;
     labelTitle: string;
+    inited: boolean;
     readonly l: any;
     reset(value: any): void;
     _setValue(value: any): void;
