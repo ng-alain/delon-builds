@@ -84,5 +84,6 @@ export declare class SFComponent implements OnInit, OnChanges, OnDestroy {
      * @param [emit] 是否触发 `formReset` 事件，默认：`false`
      */
     reset(emit?: boolean): void;
+    private cleanRootSub;
     ngOnDestroy(): void;
 }
