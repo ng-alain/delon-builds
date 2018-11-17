@@ -34,7 +34,7 @@ class Walker extends component_walker_1.ComponentWalker {
             failures.push({
                 start: node.getStart() + list.offset,
                 end: node.getStart() + list.offset + list.attr.length,
-                message: `Found removed @Output() "${chalk_1.default.red(list.attr)}" on "${chalk_1.default.bold('st(simple-table)')}". ` +
+                message: `Found deprecated @Output() "${chalk_1.default.red(list.attr)}" on "${chalk_1.default.bold('st(simple-table)')}". ` +
                     `Use "${chalk_1.default.green('(change)')}" instead, Document: https://ng-alain.com/components/table#STChange`,
             });
         });
