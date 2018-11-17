@@ -5,7 +5,7 @@ import { ReuseTabService } from '@delon/abc/reuse-tab';
 import { PageHeaderConfig } from './page-header.config';
 export declare class PageHeaderComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy {
     private renderer;
-    private route;
+    private router;
     private menuSrv;
     private i18nSrv;
     private titleSrv;
@@ -13,6 +13,7 @@ export declare class PageHeaderComponent implements OnInit, OnChanges, AfterView
     private inited;
     private i18n$;
     private set$;
+    private routerEvent$;
     private conTpl;
     private affix;
     private _menus;
@@ -47,7 +48,7 @@ export declare class PageHeaderComponent implements OnInit, OnChanges, AfterView
     content: TemplateRef<any>;
     extra: TemplateRef<any>;
     tab: TemplateRef<any>;
-    constructor(cog: PageHeaderConfig, settings: SettingsService, renderer: Renderer2, route: Router, menuSrv: MenuService, i18nSrv: AlainI18NService, titleSrv: TitleService, reuseSrv: ReuseTabService);
+    constructor(cog: PageHeaderConfig, settings: SettingsService, renderer: Renderer2, router: Router, menuSrv: MenuService, i18nSrv: AlainI18NService, titleSrv: TitleService, reuseSrv: ReuseTabService);
     refresh(): void;
     private genBreadcrumb;
     private setTitle;
