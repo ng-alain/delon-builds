@@ -2,7 +2,7 @@ import { OnDestroy, OnChanges, SimpleChanges, EventEmitter, Renderer2, ElementRe
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ModalHelper, AlainI18NService, DrawerHelper, DelonLocaleService } from '@delon/theme';
-import { STColumn, STChange, STColumnSelection, STColumnFilterMenu, STData, STColumnButton, STExportOptions, STReq, STError, STRes, STPage, STLoadOptions, STRowClassName } from './table.interfaces';
+import { STColumn, STChange, STColumnSelection, STColumnFilterMenu, STData, STColumnButton, STExportOptions, STReq, STError, STRes, STPage, STLoadOptions, STRowClassName, STSingleSort } from './table.interfaces';
 import { STConfig } from './table.config';
 import { STExport } from './table-export';
 import { STColumnSource } from './table-column-source';
@@ -62,9 +62,15 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
         y?: string;
         x?: string;
     };
+    /**
+     * 单排序规则
+     * - 若不指定，则返回：`columnName=ascend|descend`
+     * - 若指定，则返回：`sort=columnName.(ascend|descend)`
+     */
+    singleSort: STSingleSort;
+    private _multiSort;
     /** 是否多排序，当 `sort` 多个相同值时自动合并，建议后端支持时使用 */
     multiSort: any;
-    private _multiSort;
     rowClassName: STRowClassName;
     /** `header` 标题 */
     header: string | TemplateRef<void>;

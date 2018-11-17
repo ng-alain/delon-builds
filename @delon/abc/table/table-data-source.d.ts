@@ -2,7 +2,7 @@ import { DecimalPipe } from '@angular/common';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
 import { CNCurrencyPipe, DatePipe, YNPipe, _HttpClient } from '@delon/theme';
-import { STData, STPage, STReq, STRes, STColumn, STMultiSort, STRowClassName } from './table.interfaces';
+import { STData, STPage, STReq, STRes, STColumn, STMultiSort, STRowClassName, STSingleSort } from './table.interfaces';
 export interface STDataSourceOptions {
     pi?: number;
     ps?: number;
@@ -12,6 +12,7 @@ export interface STDataSourceOptions {
     res?: STRes;
     page?: STPage;
     columns?: STColumn[];
+    singleSort?: STSingleSort;
     multiSort?: STMultiSort;
     rowClassName?: STRowClassName;
 }
@@ -38,7 +39,7 @@ export declare class STDataSource {
     private getByHttp;
     private getValidSort;
     private getSorterFn;
-    getReqSortMap(multiSort: STMultiSort, columns: STColumn[]): {
+    getReqSortMap(singleSort: STSingleSort, multiSort: STMultiSort, columns: STColumn[]): {
         [key: string]: string;
     };
     private getReqFilterMap;

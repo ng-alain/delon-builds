@@ -1,6 +1,6 @@
 ---
 type: Theme
-order: 110
+order: 11
 title: 全屏布局
 ---
 

@@ -1,4 +1,4 @@
-import { STMultiSort, STReq, STRes, STPage, STColumnButtonModalConfig, STColumnButtonDrawerConfig, STIcon, STRowClassName } from './table.interfaces';
+import { STMultiSort, STReq, STRes, STPage, STColumnButtonModalConfig, STColumnButtonDrawerConfig, STIcon, STRowClassName, STSingleSort } from './table.interfaces';
 export declare class STConfig {
     /**
      * 起始页码，默认为：`1`
@@ -33,6 +33,12 @@ export declare class STConfig {
         ascend?: string;
         descend?: string;
     };
+    /**
+     * 单排序规则
+     * - 若不指定，则返回：`columnName=ascend|descend`
+     * - 若指定，则返回：`sort=columnName.(ascend|descend)`
+     */
+    singleSort?: STSingleSort;
     /**
      * 是否多排序，当 `sort` 多个相同值时自动合并，建议后端支持时使用
      */
