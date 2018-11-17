@@ -2,7 +2,7 @@ import { OnDestroy, OnChanges, SimpleChanges, EventEmitter, Renderer2, ElementRe
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ModalHelper, AlainI18NService, DrawerHelper, DelonLocaleService } from '@delon/theme';
-import { STColumn, STChange, STColumnSelection, STColumnFilterMenu, STData, STColumnButton, STExportOptions, STReq, STError, STChangeRowClick, STRes, STPage, STLoadOptions, STRowClassName } from './table.interfaces';
+import { STColumn, STChange, STColumnSelection, STColumnFilterMenu, STData, STColumnButton, STExportOptions, STReq, STError, STRes, STPage, STLoadOptions, STRowClassName } from './table.interfaces';
 import { STConfig } from './table.config';
 import { STExport } from './table-export';
 import { STColumnSource } from './table-column-source';
@@ -88,42 +88,6 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     /** 行单击多少时长之类为双击（单位：毫秒），默认：`200` */
     rowClickTime: number;
     responsiveHideHeaderFooter: boolean;
-    /**
-     * checkbox变化时回调，参数为当前所选清单
-     * @deprecated 使用 `change` 替代
-     * @deprecated as of v3
-     */
-    readonly checkboxChange: EventEmitter<STData[]>;
-    /**
-     * radio变化时回调，参数为当前所选
-     * @deprecated 使用 `change` 替代
-     * @deprecated as of v3
-     */
-    readonly radioChange: EventEmitter<STData>;
-    /**
-     * 排序回调
-     * @deprecated 使用 `change` 替代
-     * @deprecated as of v3
-     */
-    readonly sortChange: EventEmitter<any>;
-    /**
-     * 过滤变化时回调
-     * @deprecated 使用 `change` 替代
-     * @deprecated as of v3
-     */
-    readonly filterChange: EventEmitter<STColumn>;
-    /**
-     * 行单击回调
-     * @deprecated 使用 `change` 替代
-     * @deprecated as of v3
-     */
-    readonly rowClick: EventEmitter<STChangeRowClick>;
-    /**
-     * 行双击回调
-     * @deprecated 使用 `change` 替代
-     * @deprecated as of v3
-     */
-    readonly rowDblClick: EventEmitter<STChangeRowClick>;
     constructor(cdRef: ChangeDetectorRef, cog: STConfig, router: Router, el: ElementRef, renderer: Renderer2, exportSrv: STExport, i18nSrv: AlainI18NService, modalHelper: ModalHelper, drawerHelper: DrawerHelper, doc: any, columnSource: STColumnSource, dataSource: STDataSource, delonI18n: DelonLocaleService);
     cd(): void;
     renderTotal(total: string, range: string[]): string;
