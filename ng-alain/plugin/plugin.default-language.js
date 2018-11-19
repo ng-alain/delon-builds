@@ -2,18 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const schematics_1 = require("@angular-devkit/schematics");
 const project_1 = require("../utils/project");
-const CONFIG = [
-    {
-        langs: ['zh-Hans', 'zh-cn', 'zh-Hans-CN', 'zh'],
-        zorro: 'zh_CN',
-        delon: 'zh_CN',
-    },
-    { langs: ['zh-Hant', 'zh-tw', 'zh-Hant-TW'], zorro: 'zh_TW', delon: 'zh_TW' },
-    { langs: ['en'], zorro: 'en_US', delon: 'en_US' },
-];
-function getTarget(lang) {
-    return CONFIG.find(w => w.langs.includes(lang));
-}
+const lang_config_1 = require("../core/lang.config");
 function pluginDefaultLanguage(options) {
     return (host, context) => {
         if (options.type !== 'add') {
@@ -38,7 +27,7 @@ function pluginDefaultLanguage(options) {
         if (oldLang === options.defaultLanguage) {
             return;
         }
-        const targetLang = getTarget(options.defaultLanguage);
+        const targetLang = lang_config_1.getLangConfig(options.defaultLanguage);
         if (targetLang == null) {
             console.warn(`Target language not supported, refer to https://ng-alain.com/cli/plugin#defaultLanguage`);
             return;

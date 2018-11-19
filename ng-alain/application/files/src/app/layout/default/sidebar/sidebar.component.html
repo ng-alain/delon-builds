@@ -8,8 +8,8 @@
       </div>
     </div>
     <ul nz-menu>
-      <li nz-menu-item routerLink="/pro/account/center"><% if (!i18n) { %>个人中心<% } %><% if (i18n) { %>{{ 'menu.account.center' | translate }}<% } %></li>
-      <li nz-menu-item routerLink="/pro/account/settings"><% if (!i18n) { %>个人设置<% } %><% if (i18n) { %>{{ 'menu.account.settings' | translate }}<% } %></li>
+      <li nz-menu-item routerLink="/pro/account/center">{{ 'menu.account.center' | translate }}</li>
+      <li nz-menu-item routerLink="/pro/account/settings">{{ 'menu.account.settings' | translate }}</li>
     </ul>
   </nz-dropdown>
   <sidebar-nav class="d-block py-lg"></sidebar-nav>

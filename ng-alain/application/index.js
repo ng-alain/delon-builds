@@ -4,6 +4,7 @@ const schematics_1 = require("@angular-devkit/schematics");
 const core_1 = require("@angular-devkit/core");
 const tasks_1 = require("@angular-devkit/schematics/tasks");
 const path = require("path");
+const fs = require("fs");
 const json_1 = require("../utils/json");
 const lib_versions_1 = require("../utils/lib-versions");
 const file_1 = require("../utils/file");
@@ -11,6 +12,7 @@ const project_1 = require("../utils/project");
 const html_1 = require("../utils/html");
 const alain_1 = require("../utils/alain");
 const contents_1 = require("../utils/contents");
+const lang_config_1 = require("../core/lang.config");
 const overwriteDataFileRoot = path.join(__dirname, 'overwrites');
 let project;
 /** Remove files to be overwrite */
@@ -366,6 +368,67 @@ function addFilesToRoot(options) {
         ]), schematics_1.MergeStrategy.Overwrite),
     ]);
 }
+function fixLang(options) {
+    return (host) => {
+        if (options.i18n)
+            return;
+        let langCog = lang_config_1.getLangConfig(options.defaultLanguage);
+        if (!langCog || !langCog.fileName) {
+            langCog = lang_config_1.getLangConfig('zh');
+        }
+        const langFilePath = path.join(__dirname, `files/i18n/${langCog.fileName}`);
+        if (!fs.existsSync(langFilePath)) {
+            console.log(`未找到任何语言文件`);
+            return;
+        }
+        const langs = JSON.parse(fs.readFileSync(langFilePath).toString('utf8'));
+        if (!langs)
+            return;
+        host.visit(p => {
+            if (~p.indexOf(`/node_modules/`))
+                return;
+            fixLangInHtml(host, p, langs);
+        });
+    };
+}
+function fixLangInHtml(host, p, langs) {
+    let html = host.get(p).content.toString('utf8');
+    let matchCount = 0;
+    // {{(status ? 'menu.fullscreen.exit' : 'menu.fullscreen') | translate }}
+    html = html.replace(/\{\{\(status \? '([^']+)' : '([^']+)'\) \| translate \}\}/g, (word, key1, key2) => {
+        ++matchCount;
+        return `{{ status ? '${langs[key1] || key1}' : '${langs[key2] || key2}' }}`;
+    });
+    // {{ 'app.register-result.msg' | translate:params }}
+    html = html.replace(/\{\{[ ]?'([^']+)'[ ]? \| translate:[^ ]+ \}\}/g, (word, key) => {
+        ++matchCount;
+        return langs[key] || key;
+    });
+    // {{ 'Please enter mobile number!' | translate }}
+    html = html.replace(/\{\{[ ]?'([^']+)' \| translate[ ]?\}\}/g, (word, key) => {
+        ++matchCount;
+        return langs[key] || key;
+    });
+    // [nzTitle]="'app.login.tab-login-credentials' | translate"
+    html = html.replace(/'([^']+)' \| translate[ ]?/g, (word, key) => {
+        ++matchCount;
+        const value = langs[key] || key;
+        return `'${value}'`;
+    });
+    // 'app.register.get-verification-code' | translate
+    html = html.replace(/'([^']+)' \| translate/g, (word, key) => {
+        ++matchCount;
+        return langs[key] || key;
+    });
+    // removed `header-i18n`
+    if (~html.indexOf(`<header-i18n [showLang]="false" class="langs"></header-i18n>`)) {
+        ++matchCount;
+        html = html.replace(`<header-i18n [showLang]="false" class="langs"></header-i18n>`, ``);
+    }
+    if (matchCount > 0) {
+        host.overwrite(p, html);
+    }
+}
 function installPackages() {
     return (host, context) => {
         context.addTask(new tasks_1.NodePackageInstallTask());
@@ -391,6 +454,7 @@ function default_1(options) {
             fixedNg6(),
             forceLess(),
             addStyle(options),
+            fixLang(options),
             installPackages(),
         ])(host, context);
     };
