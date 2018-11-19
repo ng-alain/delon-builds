@@ -4,7 +4,6 @@ const schematics_1 = require("@angular-devkit/schematics");
 const core_1 = require("@angular-devkit/core");
 const tasks_1 = require("@angular-devkit/schematics/tasks");
 const path = require("path");
-const fs = require("fs");
 const json_1 = require("../utils/json");
 const lib_versions_1 = require("../utils/lib-versions");
 const file_1 = require("../utils/file");
@@ -372,16 +371,7 @@ function fixLang(options) {
     return (host) => {
         if (options.i18n)
             return;
-        let langCog = lang_config_1.getLangConfig(options.defaultLanguage);
-        if (!langCog || !langCog.fileName) {
-            langCog = lang_config_1.getLangConfig('zh');
-        }
-        const langFilePath = path.join(__dirname, `files/i18n/${langCog.fileName}`);
-        if (!fs.existsSync(langFilePath)) {
-            console.log(`未找到任何语言文件`);
-            return;
-        }
-        const langs = JSON.parse(fs.readFileSync(langFilePath).toString('utf8'));
+        const langs = lang_config_1.getLangData(options.defaultLanguage);
         if (!langs)
             return;
         host.visit(p => {

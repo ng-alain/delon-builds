@@ -5,3 +5,4 @@ export declare const LANGS_CONFIG: {
     fileName: string;
 }[];
 export declare function getLangConfig(lang: string): any;
+export declare function getLangData(lang: string): any;
