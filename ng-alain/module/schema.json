@@ -10,13 +10,12 @@
       "$default": {
         "$source": "argv",
         "index": 0
-      },
-      "x-prompt": "What name would you like to use for the module?"
+      }
     },
     "path": {
       "type": "string",
       "format": "path",
-      "description": "The path to create the module.",
+      "description": "The path to create the pipe.",
       "visible": false
     },
     "project": {
@@ -37,9 +36,14 @@
       "description": "The scope for the generated routing.",
       "default": "Child"
     },
+    "spec": {
+      "type": "boolean",
+      "description": "Specifies if a spec file is generated.",
+      "default": true
+    },
     "flat": {
       "type": "boolean",
-      "description": "Flag to indicate if a directory is created.",
+      "description": "Flag to indicate if a dir is created.",
       "default": false
     },
     "commonModule": {
@@ -54,7 +58,5 @@
       "alias": "m"
     }
   },
-  "required": [
-    "name"
-  ]
+  "required": []
 }

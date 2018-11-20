@@ -1,7 +1,8 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 export { G2TagCloudComponent } from './tag-cloud.component';
 export { G2TagCloudModule } from './tag-cloud.module';
+
 //# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicHVibGljX2FwaS5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0BkZWxvbi9jaGFydC90YWctY2xvdWQvIiwic291cmNlcyI6WyJwdWJsaWNfYXBpLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7QUFBQSxPQUFPLEVBQUUsbUJBQW1CLEVBQUUsTUFBTSx1QkFBdUIsQ0FBQztBQUM1RCxPQUFPLEVBQUUsZ0JBQWdCLEVBQUUsTUFBTSxvQkFBb0IsQ0FBQyIsInNvdXJjZXNDb250ZW50IjpbImV4cG9ydCB7IEcyVGFnQ2xvdWRDb21wb25lbnQgfSBmcm9tICcuL3RhZy1jbG91ZC5jb21wb25lbnQnO1xuZXhwb3J0IHsgRzJUYWdDbG91ZE1vZHVsZSB9IGZyb20gJy4vdGFnLWNsb3VkLm1vZHVsZSc7XG4iXX0=

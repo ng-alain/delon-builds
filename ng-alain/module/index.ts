@@ -113,6 +113,7 @@ export default function(schema: ModuleSchema): Rule {
     schema.flat = false;
 
     const templateSource = apply(url('./files'), [
+      schema.spec ? noop() : filter(path => !path.endsWith('.spec.ts')),
       schema.routing
         ? noop()
         : filter(path => !path.endsWith('-routing.module.ts')),
