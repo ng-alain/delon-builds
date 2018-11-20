@@ -37,8 +37,6 @@ ng g ng-alain:plugin g2
 ng g ng-alain:plugin g2 -t=remove
 ```
 
-> For more details, please refer to G2 [Development Documentation](/chart).
-
 ### codeStyle
 
 Code style rules:
