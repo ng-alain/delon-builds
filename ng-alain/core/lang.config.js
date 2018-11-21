@@ -16,7 +16,6 @@ exports.LANGS_CONFIG = [
         fileName: 'zh-TW.json',
     },
     { langs: ['en'], zorro: 'en_US', delon: 'en_US', fileName: 'en-US.json' },
-    { langs: ['tr'], zorro: 'tr_TR', delon: 'tr_TR' },
 ];
 function getLangConfig(lang) {
     return exports.LANGS_CONFIG.find(w => w.langs.includes(lang));
