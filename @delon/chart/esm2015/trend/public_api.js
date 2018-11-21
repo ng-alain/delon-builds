@@ -1,7 +1,8 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 export { TrendComponent } from './trend.component';
 export { TrendModule } from './trend.module';
+
 //# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicHVibGljX2FwaS5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0BkZWxvbi9jaGFydC90cmVuZC8iLCJzb3VyY2VzIjpbInB1YmxpY19hcGkudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7OztBQUFBLE9BQU8sRUFBRSxjQUFjLEVBQUUsTUFBTSxtQkFBbUIsQ0FBQztBQUNuRCxPQUFPLEVBQUUsV0FBVyxFQUFFLE1BQU0sZ0JBQWdCLENBQUMiLCJzb3VyY2VzQ29udGVudCI6WyJleHBvcnQgeyBUcmVuZENvbXBvbmVudCB9IGZyb20gJy4vdHJlbmQuY29tcG9uZW50JztcbmV4cG9ydCB7IFRyZW5kTW9kdWxlIH0gZnJvbSAnLi90cmVuZC5tb2R1bGUnO1xuIl19
