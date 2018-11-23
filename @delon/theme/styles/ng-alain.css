@@ -19135,11 +19135,7 @@ sf + st {
 nz-popconfirm + .ant-btn,
 nz-popconfirm + nz-popconfirm,
 .ant-btn + nz-button-group,
-nz-button-group + .ant-btn,
-.ant-btn + nz-dropdown,
-nz-dropdown + .ant-btn,
-nz-popconfirm + nz-button-group,
-nz-button-group + nz-popconfirm {
+nz-popconfirm + nz-button-group {
   margin-left: 8px;
 }
 .ant-btn-group .ant-btn + .ant-btn {
