@@ -16,7 +16,6 @@ export declare class TitleService implements OnDestroy {
     private _suffix;
     private _separator;
     private _reverse;
-    private _default;
     private i18n$;
     constructor(injector: Injector, title: Title, menuSrv: MenuService, i18nSrv: AlainI18NService, doc: any);
     /** 设置分隔符 */
