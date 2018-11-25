@@ -19135,7 +19135,11 @@ sf + st {
 nz-popconfirm + .ant-btn,
 nz-popconfirm + nz-popconfirm,
 .ant-btn + nz-button-group,
-nz-popconfirm + nz-button-group {
+nz-button-group + .ant-btn,
+.ant-btn + nz-dropdown,
+nz-dropdown + .ant-btn,
+nz-popconfirm + nz-button-group,
+nz-button-group + nz-popconfirm {
   margin-left: 8px;
 }
 .ant-btn-group .ant-btn + .ant-btn {
@@ -20123,6 +20127,9 @@ code {
 }
 .text-white {
   color: #fff !important;
+}
+.text-hover {
+  cursor: pointer;
 }
 .text-hover:hover {
   color: #1890ff !important;
