@@ -11,13 +11,13 @@ export declare class PageHeaderComponent implements OnInit, OnChanges, AfterView
     private titleSrv;
     private reuseSrv;
     private inited;
-    private ref$;
+    private i18n$;
     private set$;
+    private routerEvent$;
     private conTpl;
     private affix;
     private _menus;
     private readonly menus;
-    _titleVal: string;
     _title: string;
     _titleTpl: TemplateRef<any>;
     title: string | TemplateRef<any>;
