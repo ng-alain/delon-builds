@@ -1,6 +1,6 @@
 {
   "name": "@delon/form",
-  "version": "2.0.1",
+  "version": "2.0.1-b77428b",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -29,8 +29,8 @@
   ],
   "peerDependencies": {
     "ng-zorro-antd": "^1.8.0",
-    "@delon/theme": "^2.0.1",
-    "@delon/util": "^2.0.1"
+    "@delon/theme": "^2.0.1-b77428b",
+    "@delon/util": "^2.0.1-b77428b"
   },
   "sideEffects": false,
   "main": "bundles/form.umd.js",
