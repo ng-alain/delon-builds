@@ -35,5 +35,9 @@ export declare class TitleService implements OnDestroy {
      * 设置标题
      */
     setTitle(title?: string | string[]): void;
+    /**
+     * 设置国际化标题
+     */
+    setTitleByI18n(key: string, params?: Object): void;
     ngOnDestroy(): void;
 }
