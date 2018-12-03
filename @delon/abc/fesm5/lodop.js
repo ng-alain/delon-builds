@@ -298,10 +298,7 @@ var LodopService = /** @class */ (function () {
             if (tid !== taskID)
                 return;
             _this._lodop.On_Return = null;
-            _this._events.next(__assign({}, (/** @type {?} */ ({
-                ok: value === true,
-                error: value === true ? null : value,
-            })), data));
+            _this._events.next(__assign({ ok: value === true, error: value === true ? null : value }, data));
             _this.printDo();
         };
     };

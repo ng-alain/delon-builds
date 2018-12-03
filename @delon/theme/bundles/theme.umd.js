@@ -207,8 +207,9 @@
             this.aclService = aclService;
             this._change$ = new rxjs.BehaviorSubject([]);
             this.data = [];
-            if (this.i18nSrv)
+            if (this.i18nSrv) {
                 this.i18n$ = this.i18nSrv.change.subscribe(function () { return _this.resume(); });
+            }
         }
         Object.defineProperty(MenuService.prototype, "change", {
             get: /**
@@ -405,7 +406,14 @@
                 var _data = this.data[0].children[pos];
                 if (_data.i18n && this.i18nSrv)
                     _data.text = this.i18nSrv.fanyi(_data.i18n);
-                _data = __assign({}, _data, { shortcutRoot: true, _type: 3, __id: -1, _depth: 1, __parent: null });
+                // tslint:disable-next-line:prefer-object-spread
+                _data = Object.assign(_data, {
+                    shortcutRoot: true,
+                    _type: 3,
+                    __id: -1,
+                    _depth: 1,
+                    __parent: null,
+                });
                 _data.children = shortcuts.map(function (i) {
                     i._depth = 2;
                     i.__parent = _data;
@@ -699,12 +707,7 @@
              * @return {?}
              */ function () {
                 if (!this._layout) {
-                    this._layout = __assign({}, ( /** @type {?} */({
-                        fixed: true,
-                        collapsed: false,
-                        boxed: false,
-                        lang: null,
-                    })), this.get(LAYOUT_KEY));
+                    this._layout = __assign({ fixed: true, collapsed: false, boxed: false, lang: null }, this.get(LAYOUT_KEY));
                     this.set(LAYOUT_KEY, this._layout);
                 }
                 return this._layout;
@@ -732,7 +735,7 @@
              * @return {?}
              */ function () {
                 if (!this._user) {
-                    this._user = __assign({}, ( /** @type {?} */({})), this.get(USER_KEY));
+                    this._user = __assign({}, this.get(USER_KEY));
                     this.set(USER_KEY, this._user);
                 }
                 return this._user;
@@ -832,16 +835,14 @@
     var REP_MAX = 6;
     var ResponsiveService = /** @class */ (function () {
         function ResponsiveService(cog) {
-            this.cog = __assign({}, ( /** @type {?} */({
-                rules: {
+            this.cog = __assign({ rules: {
                     1: { xs: 24 },
                     2: { xs: 24, sm: 12 },
                     3: { xs: 24, sm: 12, md: 8 },
                     4: { xs: 24, sm: 12, md: 8, lg: 6 },
                     5: { xs: 24, sm: 12, md: 8, lg: 6, xl: 4 },
                     6: { xs: 24, sm: 12, md: 8, lg: 6, xl: 4, xxl: 2 },
-                },
-            })), ( /** @type {?} */(cog)).responsive);
+                } }, ( /** @type {?} */(cog)).responsive);
             if (Object.keys(this.cog.rules)
                 .map(function (i) { return +i; })
                 .some(function (i) { return i < 1 || i > REP_MAX; })) {
@@ -1748,15 +1749,10 @@
          */
             function (title, comp, params, options) {
                 var _this = this;
-                options = __assign({}, ( /** @type {?} */({
-                    size: 'md',
-                    footer: true,
-                    footerHeight: 55,
-                    drawerOptions: {
+                options = __assign({ size: 'md', footer: true, footerHeight: 55, drawerOptions: {
                         nzPlacement: 'right',
                         nzWrapClassName: '',
-                    },
-                })), options);
+                    } }, options);
                 return new rxjs.Observable(function (observer) {
                     var size = options.size, footer = options.footer, footerHeight = options.footerHeight, drawerOptions = options.drawerOptions;
                     /** @type {?} */
@@ -1843,10 +1839,7 @@
         function _HttpClient(http, cog) {
             this.http = http;
             this._loading = false;
-            this.cog = __assign({}, ( /** @type {?} */({
-                nullValueHandling: 'include',
-                dateValueHandling: 'timestamp',
-            })), ( /** @type {?} */(cog)).http);
+            this.cog = __assign({ nullValueHandling: 'include', dateValueHandling: 'timestamp' }, ( /** @type {?} */(cog)).http);
         }
         Object.defineProperty(_HttpClient.prototype, "loading", {
             /** 是否正在加载中 */

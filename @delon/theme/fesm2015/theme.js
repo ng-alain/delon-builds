@@ -115,8 +115,9 @@ class MenuService {
         this.aclService = aclService;
         this._change$ = new BehaviorSubject([]);
         this.data = [];
-        if (this.i18nSrv)
+        if (this.i18nSrv) {
             this.i18n$ = this.i18nSrv.change.subscribe(() => this.resume());
+        }
     }
     /**
      * @return {?}
@@ -260,7 +261,14 @@ class MenuService {
         let _data = this.data[0].children[pos];
         if (_data.i18n && this.i18nSrv)
             _data.text = this.i18nSrv.fanyi(_data.i18n);
-        _data = Object.assign({}, _data, { shortcutRoot: true, _type: 3, __id: -1, _depth: 1, __parent: null });
+        // tslint:disable-next-line:prefer-object-spread
+        _data = Object.assign(_data, {
+            shortcutRoot: true,
+            _type: 3,
+            __id: -1,
+            _depth: 1,
+            __parent: null,
+        });
         _data.children = shortcuts.map(i => {
             i._depth = 2;
             i.__parent = _data;
@@ -462,12 +470,7 @@ class SettingsService {
      */
     get layout() {
         if (!this._layout) {
-            this._layout = Object.assign({}, (/** @type {?} */ ({
-                fixed: true,
-                collapsed: false,
-                boxed: false,
-                lang: null,
-            })), this.get(LAYOUT_KEY));
+            this._layout = Object.assign({ fixed: true, collapsed: false, boxed: false, lang: null }, this.get(LAYOUT_KEY));
             this.set(LAYOUT_KEY, this._layout);
         }
         return this._layout;
@@ -489,7 +492,7 @@ class SettingsService {
      */
     get user() {
         if (!this._user) {
-            this._user = Object.assign({}, (/** @type {?} */ ({})), this.get(USER_KEY));
+            this._user = Object.assign({}, this.get(USER_KEY));
             this.set(USER_KEY, this._user);
         }
         return this._user;
@@ -571,16 +574,14 @@ class ResponsiveService {
      * @param {?} cog
      */
     constructor(cog) {
-        this.cog = Object.assign({}, (/** @type {?} */ ({
-            rules: {
+        this.cog = Object.assign({ rules: {
                 1: { xs: 24 },
                 2: { xs: 24, sm: 12 },
                 3: { xs: 24, sm: 12, md: 8 },
                 4: { xs: 24, sm: 12, md: 8, lg: 6 },
                 5: { xs: 24, sm: 12, md: 8, lg: 6, xl: 4 },
                 6: { xs: 24, sm: 12, md: 8, lg: 6, xl: 4, xxl: 2 },
-            },
-        })), (/** @type {?} */ (cog)).responsive);
+            } }, (/** @type {?} */ (cog)).responsive);
         if (Object.keys(this.cog.rules)
             .map(i => +i)
             .some((i) => i < 1 || i > REP_MAX)) {
@@ -1262,15 +1263,10 @@ class DrawerHelper {
      * @return {?}
      */
     create(title, comp, params, options) {
-        options = Object.assign({}, (/** @type {?} */ ({
-            size: 'md',
-            footer: true,
-            footerHeight: 55,
-            drawerOptions: {
+        options = Object.assign({ size: 'md', footer: true, footerHeight: 55, drawerOptions: {
                 nzPlacement: 'right',
                 nzWrapClassName: '',
-            },
-        })), options);
+            } }, options);
         return new Observable((observer) => {
             const { size, footer, footerHeight, drawerOptions } = options;
             /** @type {?} */
@@ -1348,10 +1344,7 @@ class _HttpClient {
     constructor(http, cog) {
         this.http = http;
         this._loading = false;
-        this.cog = Object.assign({}, (/** @type {?} */ ({
-            nullValueHandling: 'include',
-            dateValueHandling: 'timestamp',
-        })), (/** @type {?} */ (cog)).http);
+        this.cog = Object.assign({ nullValueHandling: 'include', dateValueHandling: 'timestamp' }, (/** @type {?} */ (cog)).http);
     }
     /**
      * 是否正在加载中
@@ -2001,7 +1994,7 @@ AlainThemeModule.ctorParameters = () => [
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 /** @type {?} */
-const VERSION = new Version('2.0.1-804fa0c');
+const VERSION = new Version('2.0.1-1f20436');
 
 /**
  * @fileoverview added by tsickle

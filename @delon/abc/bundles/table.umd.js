@@ -1348,11 +1348,7 @@
                     this._multiSort = null;
                     return;
                 }
-                this._multiSort = __assign({}, ( /** @type {?} */({
-                    key: 'sort',
-                    separator: '-',
-                    nameSeparator: '.',
-                })), (typeof value === 'object' ? value : {}));
+                this._multiSort = __assign({ key: 'sort', separator: '-', nameSeparator: '.' }, (typeof value === 'object' ? value : {}));
             },
             enumerable: true,
             configurable: true
@@ -2133,10 +2129,10 @@
             function (newData, opt) {
                 var _this = this;
                 (newData ? rxjs.of(newData) : rxjs.of(this._data)).subscribe(function (res) {
-                    return _this.exportSrv.export(__assign({}, opt, ( /** @type {?} */({
+                    return _this.exportSrv.export(__assign({}, opt, {
                         _d: res,
                         _c: _this._columns,
-                    }))));
+                    }));
                 });
             };
         //#endregion

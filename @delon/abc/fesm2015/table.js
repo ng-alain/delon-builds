@@ -1107,11 +1107,7 @@ class STComponent {
             this._multiSort = null;
             return;
         }
-        this._multiSort = Object.assign({}, (/** @type {?} */ ({
-            key: 'sort',
-            separator: '-',
-            nameSeparator: '.',
-        })), (typeof value === 'object' ? value : {}));
+        this._multiSort = Object.assign({ key: 'sort', separator: '-', nameSeparator: '.' }, (typeof value === 'object' ? value : {}));
     }
     /**
      * @return {?}
@@ -1619,10 +1615,10 @@ class STComponent {
      * @return {?}
      */
     export(newData, opt) {
-        (newData ? of(newData) : of(this._data)).subscribe((res) => this.exportSrv.export(Object.assign({}, opt, (/** @type {?} */ ({
+        (newData ? of(newData) : of(this._data)).subscribe((res) => this.exportSrv.export(Object.assign({}, opt, {
             _d: res,
             _c: this._columns,
-        })))));
+        })));
     }
     //#endregion
     /**

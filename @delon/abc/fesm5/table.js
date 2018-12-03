@@ -1255,11 +1255,7 @@ var STComponent = /** @class */ (function () {
                 this._multiSort = null;
                 return;
             }
-            this._multiSort = __assign({}, (/** @type {?} */ ({
-                key: 'sort',
-                separator: '-',
-                nameSeparator: '.',
-            })), (typeof value === 'object' ? value : {}));
+            this._multiSort = __assign({ key: 'sort', separator: '-', nameSeparator: '.' }, (typeof value === 'object' ? value : {}));
         },
         enumerable: true,
         configurable: true
@@ -2036,10 +2032,10 @@ var STComponent = /** @class */ (function () {
     function (newData, opt) {
         var _this = this;
         (newData ? of(newData) : of(this._data)).subscribe(function (res) {
-            return _this.exportSrv.export(__assign({}, opt, (/** @type {?} */ ({
+            return _this.exportSrv.export(__assign({}, opt, {
                 _d: res,
                 _c: _this._columns,
-            }))));
+            }));
         });
     };
     //#endregion

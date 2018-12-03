@@ -6,7 +6,6 @@ export declare class TokenService implements ITokenService {
     private options;
     private store;
     private change$;
-    private data;
     private _redirect;
     constructor(options: DelonAuthConfig, store: IStore);
     readonly login_url: string;

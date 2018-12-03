@@ -1897,11 +1897,7 @@ var SFComponent = /** @class */ (function () {
                 /** @type {?} */
                 var property = retrieveSchema((/** @type {?} */ (schema.properties[key])), definitions);
                 /** @type {?} */
-                var ui = (/** @type {?} */ (__assign({ widget: property.type }, (property.format && FORMATMAPS[property.format]), (typeof property.ui === 'string' ? { widget: property.ui } : null), (!property.ui &&
-                    Array.isArray(property.enum) &&
-                    property.enum.length > 0
-                    ? { widget: 'select' }
-                    : null), _this._defUi, ((/** @type {?} */ (property.ui))), uiSchema[uiKey])));
+                var ui = (/** @type {?} */ (__assign({ widget: property.type }, (property.format && FORMATMAPS[property.format]), (typeof property.ui === 'string' ? { widget: property.ui } : null), (!property.ui && Array.isArray(property.enum) && property.enum.length > 0 ? { widget: 'select' } : null), _this._defUi, ((/** @type {?} */ (property.ui))), uiSchema[uiKey])));
                 // 继承父节点布局属性
                 if (isHorizontal) {
                     if (parentUiSchema.spanLabelFixed) {
@@ -1972,12 +1968,7 @@ var SFComponent = /** @class */ (function () {
         };
         if (this.ui == null)
             this.ui = {};
-        this._defUi = __assign({}, (/** @type {?} */ ({
-            onlyVisual: this.options.onlyVisual,
-            size: this.options.size,
-            liveValidate: this.liveValidate,
-            firstVisual: this.firstVisual,
-        })), this.options.ui, _schema.ui, this.ui['*']);
+        this._defUi = __assign({ onlyVisual: this.options.onlyVisual, size: this.options.size, liveValidate: this.liveValidate, firstVisual: this.firstVisual }, this.options.ui, _schema.ui, this.ui['*']);
         // root
         this._ui = __assign({}, this._defUi);
         inFn(_schema, _schema, this.ui, this.ui, this._ui);
@@ -1996,7 +1987,7 @@ var SFComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        this._btn = __assign({}, (/** @type {?} */ ({ render: { size: 'default' } })), this.locale, this.options.button, ((/** @type {?} */ (this.button))));
+        this._btn = __assign({ render: { size: 'default' } }, this.locale, this.options.button, ((/** @type {?} */ (this.button))));
         /** @type {?} */
         var firstKey = Object.keys(this._ui).find(function (w) { return w.startsWith('$'); });
         if (this.layout === 'horizontal') {

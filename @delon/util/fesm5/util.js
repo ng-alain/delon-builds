@@ -250,8 +250,7 @@ var LazyService = /** @class */ (function () {
             if (node.readyState) {
                 // IE
                 node.onreadystatechange = function () {
-                    if (node.readyState === 'loaded' ||
-                        node.readyState === 'complete') {
+                    if (node.readyState === 'loaded' || node.readyState === 'complete') {
                         node.onreadystatechange = null;
                         onSuccess({
                             path: path,
@@ -262,22 +261,18 @@ var LazyService = /** @class */ (function () {
                 };
             }
             else {
-                node.onload = function () {
-                    onSuccess({
-                        path: path,
-                        loaded: true,
-                        status: 'ok',
-                    });
-                };
-            }
-            node.onerror = function (error) {
-                return onSuccess({
+                node.onload = function () { return onSuccess({
                     path: path,
-                    loaded: false,
-                    status: 'error',
-                    error: error,
-                });
-            };
+                    loaded: true,
+                    status: 'ok',
+                }); };
+            }
+            node.onerror = function (error) { return onSuccess({
+                path: path,
+                loaded: false,
+                status: 'error',
+                error: error,
+            }); };
             _this.doc.getElementsByTagName('head')[0].appendChild(node);
         });
     };
@@ -681,18 +676,7 @@ var DelonUtilConfig = /** @class */ (function () {
  */
 var ArrayService = /** @class */ (function () {
     function ArrayService(cog) {
-        this.c = __assign({}, (/** @type {?} */ ({
-            deepMapName: 'deep',
-            parentMapName: 'parent',
-            idMapName: 'id',
-            parentIdMapName: 'parent_id',
-            childrenMapName: 'children',
-            titleMapName: 'title',
-            checkedMapname: 'checked',
-            selectedMapname: 'selected',
-            expandedMapname: 'expanded',
-            disabledMapname: 'disabled',
-        })), (cog && cog.array));
+        this.c = __assign({ deepMapName: 'deep', parentMapName: 'parent', idMapName: 'id', parentIdMapName: 'parent_id', childrenMapName: 'children', titleMapName: 'title', checkedMapname: 'checked', selectedMapname: 'selected', expandedMapname: 'expanded', disabledMapname: 'disabled' }, (cog && cog.array));
     }
     /**
      * 将树结构转换成数组结构
@@ -905,13 +889,10 @@ var ArrayService = /** @class */ (function () {
         /** @type {?} */
         var keys = [];
         this.visitTree(tree, function (item, parent, deep) {
-            if (item.isChecked ||
-                (options.includeHalfChecked && item.isHalfChecked)) {
-                keys.push(options.cb
-                    ? options.cb(item, parent, deep)
-                    : options.keyMapName
-                        ? item.origin[options.keyMapName]
-                        : item.key);
+            if (item.isChecked || (options.includeHalfChecked && item.isHalfChecked)) {
+                keys.push(options.cb ?
+                    options.cb(item, parent, deep) :
+                    options.keyMapName ? item.origin[options.keyMapName] : item.key);
             }
         });
         return keys;

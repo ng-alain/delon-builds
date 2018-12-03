@@ -258,8 +258,7 @@
                     if (node.readyState) {
                         // IE
                         node.onreadystatechange = function () {
-                            if (node.readyState === 'loaded' ||
-                                node.readyState === 'complete') {
+                            if (node.readyState === 'loaded' || node.readyState === 'complete') {
                                 node.onreadystatechange = null;
                                 onSuccess({
                                     path: path,
@@ -271,7 +270,7 @@
                     }
                     else {
                         node.onload = function () {
-                            onSuccess({
+                            return onSuccess({
                                 path: path,
                                 loaded: true,
                                 status: 'ok',
@@ -733,18 +732,7 @@
      */
     var ArrayService = /** @class */ (function () {
         function ArrayService(cog) {
-            this.c = __assign({}, ( /** @type {?} */({
-                deepMapName: 'deep',
-                parentMapName: 'parent',
-                idMapName: 'id',
-                parentIdMapName: 'parent_id',
-                childrenMapName: 'children',
-                titleMapName: 'title',
-                checkedMapname: 'checked',
-                selectedMapname: 'selected',
-                expandedMapname: 'expanded',
-                disabledMapname: 'disabled',
-            })), (cog && cog.array));
+            this.c = __assign({ deepMapName: 'deep', parentMapName: 'parent', idMapName: 'id', parentIdMapName: 'parent_id', childrenMapName: 'children', titleMapName: 'title', checkedMapname: 'checked', selectedMapname: 'selected', expandedMapname: 'expanded', disabledMapname: 'disabled' }, (cog && cog.array));
         }
         /**
          * 将树结构转换成数组结构
@@ -975,13 +963,10 @@
                 /** @type {?} */
                 var keys = [];
                 this.visitTree(tree, function (item, parent, deep) {
-                    if (item.isChecked ||
-                        (options.includeHalfChecked && item.isHalfChecked)) {
-                        keys.push(options.cb
-                            ? options.cb(item, parent, deep)
-                            : options.keyMapName
-                                ? item.origin[options.keyMapName]
-                                : item.key);
+                    if (item.isChecked || (options.includeHalfChecked && item.isHalfChecked)) {
+                        keys.push(options.cb ?
+                            options.cb(item, parent, deep) :
+                            options.keyMapName ? item.origin[options.keyMapName] : item.key);
                     }
                 });
                 return keys;

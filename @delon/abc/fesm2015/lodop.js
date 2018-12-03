@@ -226,10 +226,7 @@ class LodopService {
             if (tid !== taskID)
                 return;
             this._lodop.On_Return = null;
-            this._events.next(Object.assign({}, (/** @type {?} */ ({
-                ok: value === true,
-                error: value === true ? null : value,
-            })), data));
+            this._events.next(Object.assign({ ok: value === true, error: value === true ? null : value }, data));
             this.printDo();
         };
     }

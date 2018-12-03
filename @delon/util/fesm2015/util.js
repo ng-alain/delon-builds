@@ -230,8 +230,7 @@ class LazyService {
             if (node.readyState) {
                 // IE
                 node.onreadystatechange = () => {
-                    if (node.readyState === 'loaded' ||
-                        node.readyState === 'complete') {
+                    if (node.readyState === 'loaded' || node.readyState === 'complete') {
                         node.onreadystatechange = null;
                         onSuccess({
                             path,
@@ -242,13 +241,11 @@ class LazyService {
                 };
             }
             else {
-                node.onload = () => {
-                    onSuccess({
-                        path,
-                        loaded: true,
-                        status: 'ok',
-                    });
-                };
+                node.onload = () => onSuccess({
+                    path,
+                    loaded: true,
+                    status: 'ok',
+                });
             }
             node.onerror = (error) => onSuccess({
                 path,
@@ -608,18 +605,7 @@ class ArrayService {
      * @param {?} cog
      */
     constructor(cog) {
-        this.c = Object.assign({}, (/** @type {?} */ ({
-            deepMapName: 'deep',
-            parentMapName: 'parent',
-            idMapName: 'id',
-            parentIdMapName: 'parent_id',
-            childrenMapName: 'children',
-            titleMapName: 'title',
-            checkedMapname: 'checked',
-            selectedMapname: 'selected',
-            expandedMapname: 'expanded',
-            disabledMapname: 'disabled',
-        })), (cog && cog.array));
+        this.c = Object.assign({ deepMapName: 'deep', parentMapName: 'parent', idMapName: 'id', parentIdMapName: 'parent_id', childrenMapName: 'children', titleMapName: 'title', checkedMapname: 'checked', selectedMapname: 'selected', expandedMapname: 'expanded', disabledMapname: 'disabled' }, (cog && cog.array));
     }
     /**
      * 将树结构转换成数组结构
@@ -753,13 +739,10 @@ class ArrayService {
         /** @type {?} */
         const keys = [];
         this.visitTree(tree, (item, parent, deep) => {
-            if (item.isChecked ||
-                (options.includeHalfChecked && item.isHalfChecked)) {
-                keys.push(options.cb
-                    ? options.cb(item, parent, deep)
-                    : options.keyMapName
-                        ? item.origin[options.keyMapName]
-                        : item.key);
+            if (item.isChecked || (options.includeHalfChecked && item.isHalfChecked)) {
+                keys.push(options.cb ?
+                    options.cb(item, parent, deep) :
+                    options.keyMapName ? item.origin[options.keyMapName] : item.key);
             }
         });
         return keys;
