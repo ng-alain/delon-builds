@@ -72,9 +72,9 @@
      * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
     var TagSelectComponent = /** @class */ (function () {
-        function TagSelectComponent(i18n) {
-            var _this = this;
+        function TagSelectComponent(i18n, cdr) {
             this.i18n = i18n;
+            this.cdr = cdr;
             this.locale = {};
             /**
              * 是否启用 `展开与收进`
@@ -82,8 +82,20 @@
             this.expandable = true;
             this.expand = false;
             this.change = new core.EventEmitter();
-            this.i18n$ = this.i18n.change.subscribe(function () { return (_this.locale = _this.i18n.getData('tagSelect')); });
         }
+        /**
+         * @return {?}
+         */
+        TagSelectComponent.prototype.ngOnInit = /**
+         * @return {?}
+         */
+            function () {
+                var _this = this;
+                this.i18n$ = this.i18n.change.subscribe(function () {
+                    _this.locale = _this.i18n.getData('tagSelect');
+                    _this.cdr.detectChanges();
+                });
+            };
         /**
          * @return {?}
          */
@@ -107,13 +119,15 @@
             { type: core.Component, args: [{
                         selector: 'tag-select',
                         template: "<ng-content></ng-content>\n<a *ngIf=\"expandable\" class=\"tag-select__trigger\" (click)=\"trigger()\">\n  {{expand ? locale.collapse : locale.expand}}<i nz-icon [type]=\"expand ? 'up' : 'down'\" class=\"tag-select__trigger-icon\"></i>\n</a>\n",
-                        host: { '[class.tag-select]': 'true' }
+                        host: { '[class.tag-select]': 'true' },
+                        changeDetection: core.ChangeDetectionStrategy.OnPush
                     }] }
         ];
         /** @nocollapse */
         TagSelectComponent.ctorParameters = function () {
             return [
-                { type: theme.DelonLocaleService }
+                { type: theme.DelonLocaleService },
+                { type: core.ChangeDetectorRef }
             ];
         };
         TagSelectComponent.propDecorators = {

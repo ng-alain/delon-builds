@@ -1,6 +1,6 @@
 import { ResponsiveService } from '@delon/theme';
 import { __decorate, __metadata, __spread } from 'tslib';
-import { Component, Input, HostBinding, ElementRef, Renderer2, Host, Optional, NgModule } from '@angular/core';
+import { Component, Input, HostBinding, ChangeDetectionStrategy, ElementRef, Renderer2, Host, Optional, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { toNumber, InputNumber, DelonUtilModule } from '@delon/util';
 
@@ -77,11 +77,12 @@ var SGContainerComponent = /** @class */ (function () {
     SGContainerComponent.decorators = [
         { type: Component, args: [{
                     selector: 'sg-container, [sg-container]',
-                    template: "<ng-content></ng-content>",
+                    template: "\n    <ng-content></ng-content>\n  ",
                     host: {
                         '[class.ant-row]': 'true',
                         '[class.sg__wrap]': 'true',
-                    }
+                    },
+                    changeDetection: ChangeDetectionStrategy.OnPush
                 }] }
     ];
     /** @nocollapse */
@@ -180,7 +181,8 @@ var SGComponent = /** @class */ (function () {
     SGComponent.decorators = [
         { type: Component, args: [{
                     selector: 'sg',
-                    template: "<ng-content></ng-content>"
+                    template: "\n    <ng-content></ng-content>\n  ",
+                    changeDetection: ChangeDetectionStrategy.OnPush
                 }] }
     ];
     /** @nocollapse */

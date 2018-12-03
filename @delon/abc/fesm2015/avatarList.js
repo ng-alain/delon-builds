@@ -1,4 +1,4 @@
-import { Component, Input, ChangeDetectionStrategy, ChangeDetectorRef, ViewEncapsulation, NgModule } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy, ChangeDetectorRef, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 
@@ -39,7 +39,6 @@ AvatarListComponent.decorators = [
                 selector: 'avatar-list',
                 template: "<div class=\"avatar-list__wrap{{_size ? ' avatar-list__' + _size : ''}}\">\n  <ng-content></ng-content>\n</div>\n",
                 host: { '[class.avatar-list]': 'true' },
-                encapsulation: ViewEncapsulation.None,
                 changeDetection: ChangeDetectionStrategy.OnPush
             }] }
 ];

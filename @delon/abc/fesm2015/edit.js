@@ -2,7 +2,7 @@ import { animate, style, transition, trigger } from '@angular/animations';
 import { __decorate, __metadata } from 'tslib';
 import { NgModel, FormControlName } from '@angular/forms';
 import { ResponsiveService } from '@delon/theme';
-import { Component, Input, TemplateRef, Host, ElementRef, Renderer2, Optional, ContentChild, ChangeDetectorRef, ChangeDetectionStrategy, HostBinding, NgModule } from '@angular/core';
+import { Component, Input, TemplateRef, ChangeDetectionStrategy, Host, ElementRef, Renderer2, Optional, ContentChild, ChangeDetectorRef, HostBinding, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { toNumber, InputNumber, InputBoolean, deepGet, DelonUtilModule } from '@delon/util';
@@ -120,7 +120,8 @@ class SEContainerComponent {
 SEContainerComponent.decorators = [
     { type: Component, args: [{
                 selector: 'se-container, [se-container]',
-                template: "<div class=\"ant-row se__container se__{{nzLayout}} se__{{size}}\" [ngStyle]=\"{'margin-left.px': -(gutter / 2), 'margin-right.px': -(gutter / 2)}\">\n  <se-title *ngIf=\"_title || _titleTpl\">\n    <ng-container *ngIf=\"_title; else _titleTpl\">{{_title}}</ng-container>\n  </se-title>\n  <ng-content></ng-content>\n</div>\n"
+                template: "<div class=\"ant-row se__container se__{{nzLayout}} se__{{size}}\" [ngStyle]=\"{'margin-left.px': -(gutter / 2), 'margin-right.px': -(gutter / 2)}\">\n  <se-title *ngIf=\"_title || _titleTpl\">\n    <ng-container *ngIf=\"_title; else _titleTpl\">{{_title}}</ng-container>\n  </se-title>\n  <ng-content></ng-content>\n</div>\n",
+                changeDetection: ChangeDetectionStrategy.OnPush
             }] }
 ];
 /** @nocollapse */
@@ -184,17 +185,12 @@ SEErrorComponent.decorators = [
                     ]),
                 ],
                 template: `
-  <div [@errorAnt]>
-    <ng-content></ng-content>
-  </div>`,
+    <div [@errorAnt]><ng-content></ng-content></div>
+  `,
                 host: {
                     '[class.ant-form-explain]': 'true',
                 },
-                styles: [`
-      :host {
-        display: block;
-      }
-    `]
+                changeDetection: ChangeDetectionStrategy.OnPush
             }] }
 ];
 
@@ -238,7 +234,8 @@ SETitleComponent.decorators = [
                 template: '<ng-content></ng-content>',
                 host: {
                     '[class.se__title]': 'true',
-                }
+                },
+                changeDetection: ChangeDetectionStrategy.OnPush
             }] }
 ];
 /** @nocollapse */

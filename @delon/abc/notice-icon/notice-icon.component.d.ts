@@ -1,8 +1,9 @@
-import { EventEmitter, OnDestroy } from '@angular/core';
+import { EventEmitter, OnDestroy, ChangeDetectorRef, OnInit } from '@angular/core';
 import { DelonLocaleService } from '@delon/theme';
 import { NoticeItem, NoticeIconSelect } from './notice-icon.types';
-export declare class NoticeIconComponent implements OnDestroy {
+export declare class NoticeIconComponent implements OnInit, OnDestroy {
     private i18n;
+    private cdr;
     private i18n$;
     locale: any;
     data: NoticeItem[];
@@ -15,9 +16,10 @@ export declare class NoticeIconComponent implements OnDestroy {
     /** 手动控制Popover显示 */
     popoverVisible: boolean;
     readonly popoverVisibleChange: EventEmitter<boolean>;
-    constructor(i18n: DelonLocaleService);
+    constructor(i18n: DelonLocaleService, cdr: ChangeDetectorRef);
     onVisibleChange(result: boolean): void;
     onSelect(i: any): void;
     onClear(title: string): void;
+    ngOnInit(): void;
     ngOnDestroy(): void;
 }

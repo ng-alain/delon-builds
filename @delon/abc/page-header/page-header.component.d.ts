@@ -1,4 +1,4 @@
-import { TemplateRef, OnInit, OnChanges, AfterViewInit, Renderer2, OnDestroy } from '@angular/core';
+import { TemplateRef, OnInit, OnChanges, AfterViewInit, Renderer2, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuService, AlainI18NService, TitleService, SettingsService } from '@delon/theme';
 import { ReuseTabService } from '@delon/abc/reuse-tab';
@@ -10,6 +10,7 @@ export declare class PageHeaderComponent implements OnInit, OnChanges, AfterView
     private i18nSrv;
     private titleSrv;
     private reuseSrv;
+    private cdr;
     private inited;
     private ref$;
     private set$;
@@ -48,7 +49,7 @@ export declare class PageHeaderComponent implements OnInit, OnChanges, AfterView
     content: TemplateRef<any>;
     extra: TemplateRef<any>;
     tab: TemplateRef<any>;
-    constructor(cog: PageHeaderConfig, settings: SettingsService, renderer: Renderer2, router: Router, menuSrv: MenuService, i18nSrv: AlainI18NService, titleSrv: TitleService, reuseSrv: ReuseTabService);
+    constructor(cog: PageHeaderConfig, settings: SettingsService, renderer: Renderer2, router: Router, menuSrv: MenuService, i18nSrv: AlainI18NService, titleSrv: TitleService, reuseSrv: ReuseTabService, cdr: ChangeDetectorRef);
     refresh(): void;
     private genBreadcrumb;
     private setTitle;

@@ -23882,6 +23882,9 @@ body {
 .se__inline .se__item:last-child {
   margin-right: 0;
 }
+.se .ant-form-explain {
+  display: block;
+}
 @media (max-width: 767px) {
   .se__horizontal .se__item {
     display: block;

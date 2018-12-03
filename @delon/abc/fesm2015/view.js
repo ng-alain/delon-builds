@@ -1,7 +1,7 @@
 import { __decorate, __metadata } from 'tslib';
 import { ResponsiveService } from '@delon/theme';
 import { updateHostClass, InputNumber, isEmpty, InputBoolean } from '@delon/util';
-import { Component, Input, ElementRef, Renderer2, TemplateRef, Host, Optional, ViewChild, HostBinding, NgModule } from '@angular/core';
+import { Component, Input, ElementRef, Renderer2, TemplateRef, ChangeDetectionStrategy, Host, Optional, ViewChild, HostBinding, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ObserversModule } from '@angular/cdk/observers';
 
@@ -95,7 +95,8 @@ class SVContainerComponent {
 SVContainerComponent.decorators = [
     { type: Component, args: [{
                 selector: 'sv-container, [sv-container]',
-                template: "<div class=\"ant-row\" [ngStyle]=\"{'margin-left.px': -(gutter / 2), 'margin-right.px': -(gutter / 2)}\">\n  <sv-title *ngIf=\"_title || _titleTpl\">\n    <ng-container *ngIf=\"_title; else _titleTpl\">{{_title}}</ng-container>\n  </sv-title>\n  <ng-content></ng-content>\n</div>\n"
+                template: "<div class=\"ant-row\" [ngStyle]=\"{'margin-left.px': -(gutter / 2), 'margin-right.px': -(gutter / 2)}\">\n  <sv-title *ngIf=\"_title || _titleTpl\">\n    <ng-container *ngIf=\"_title; else _titleTpl\">{{_title}}</ng-container>\n  </sv-title>\n  <ng-content></ng-content>\n</div>\n",
+                changeDetection: ChangeDetectionStrategy.OnPush
             }] }
 ];
 /** @nocollapse */
@@ -166,7 +167,8 @@ SVTitleComponent.decorators = [
                 template: '<ng-content></ng-content>',
                 host: {
                     '[class.sv__title]': 'true',
-                }
+                },
+                changeDetection: ChangeDetectionStrategy.OnPush
             }] }
 ];
 /** @nocollapse */
@@ -279,7 +281,8 @@ class SVComponent {
 SVComponent.decorators = [
     { type: Component, args: [{
                 selector: 'sv, [sv]',
-                template: "<div class=\"sv__label\" [class.sv__label-empty]=\"!_label && !_labelTpl\"\n  [style.width.px]=\"parent.labelWidth\">\n  <ng-container *ngIf=\"_label; else _labelTpl\">{{_label}}</ng-container>\n</div>\n<div class=\"sv__detail\" (cdkObserveContent)=\"checkContent()\" #conEl>\n  <ng-content></ng-content>\n</div>\n"
+                template: "<div class=\"sv__label\" [class.sv__label-empty]=\"!_label && !_labelTpl\"\n  [style.width.px]=\"parent.labelWidth\">\n  <ng-container *ngIf=\"_label; else _labelTpl\">{{_label}}</ng-container>\n</div>\n<div class=\"sv__detail\" (cdkObserveContent)=\"checkContent()\" #conEl>\n  <ng-content></ng-content>\n</div>\n",
+                changeDetection: ChangeDetectionStrategy.OnPush
             }] }
 ];
 /** @nocollapse */

@@ -45,7 +45,6 @@
                         selector: 'avatar-list',
                         template: "<div class=\"avatar-list__wrap{{_size ? ' avatar-list__' + _size : ''}}\">\n  <ng-content></ng-content>\n</div>\n",
                         host: { '[class.avatar-list]': 'true' },
-                        encapsulation: core.ViewEncapsulation.None,
                         changeDetection: core.ChangeDetectionStrategy.OnPush
                     }] }
         ];

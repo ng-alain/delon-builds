@@ -2582,7 +2582,7 @@ var AlainThemeModule = /** @class */ (function () {
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 /** @type {?} */
-var VERSION = new Version('2.0.1-f810ef5');
+var VERSION = new Version('2.0.1-b538f3e');
 
 /**
  * @fileoverview added by tsickle

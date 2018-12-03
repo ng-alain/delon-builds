@@ -82,8 +82,9 @@
         EllipsisComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'ellipsis',
-                        template: "<ng-content></ng-content>",
-                        host: { '[class.ellipsis]': 'true' }
+                        template: "\n    <ng-content></ng-content>\n  ",
+                        host: { '[class.ellipsis]': 'true' },
+                        changeDetection: core.ChangeDetectionStrategy.OnPush
                     }] }
         ];
         /** @nocollapse */

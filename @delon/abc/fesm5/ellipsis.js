@@ -1,5 +1,5 @@
 import { __decorate, __metadata, __spread } from 'tslib';
-import { Component, Input, HostBinding, Renderer2, ElementRef, NgModule } from '@angular/core';
+import { Component, Input, HostBinding, Renderer2, ElementRef, ChangeDetectionStrategy, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { InputNumber, DelonUtilModule } from '@delon/util';
 
@@ -18,8 +18,9 @@ var EllipsisComponent = /** @class */ (function () {
     EllipsisComponent.decorators = [
         { type: Component, args: [{
                     selector: 'ellipsis',
-                    template: "<ng-content></ng-content>",
-                    host: { '[class.ellipsis]': 'true' }
+                    template: "\n    <ng-content></ng-content>\n  ",
+                    host: { '[class.ellipsis]': 'true' },
+                    changeDetection: ChangeDetectionStrategy.OnPush
                 }] }
     ];
     /** @nocollapse */

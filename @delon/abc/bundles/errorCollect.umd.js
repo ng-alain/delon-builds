@@ -208,7 +208,7 @@
         ErrorCollectComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'error-collect, [error-collect]',
-                        template: "\n  <i nz-icon type=\"exclamation-circle\"></i>\n  <span class=\"pl-sm\">{{count}}</span>",
+                        template: "\n    <i nz-icon type=\"exclamation-circle\"></i>\n    <span class=\"pl-sm\">{{ count }}</span>\n  ",
                         host: { '[class.error-collect]': 'true' },
                         changeDetection: core.ChangeDetectionStrategy.OnPush
                     }] }

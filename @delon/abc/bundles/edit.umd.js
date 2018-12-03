@@ -186,7 +186,8 @@
         SEContainerComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'se-container, [se-container]',
-                        template: "<div class=\"ant-row se__container se__{{nzLayout}} se__{{size}}\" [ngStyle]=\"{'margin-left.px': -(gutter / 2), 'margin-right.px': -(gutter / 2)}\">\n  <se-title *ngIf=\"_title || _titleTpl\">\n    <ng-container *ngIf=\"_title; else _titleTpl\">{{_title}}</ng-container>\n  </se-title>\n  <ng-content></ng-content>\n</div>\n"
+                        template: "<div class=\"ant-row se__container se__{{nzLayout}} se__{{size}}\" [ngStyle]=\"{'margin-left.px': -(gutter / 2), 'margin-right.px': -(gutter / 2)}\">\n  <se-title *ngIf=\"_title || _titleTpl\">\n    <ng-container *ngIf=\"_title; else _titleTpl\">{{_title}}</ng-container>\n  </se-title>\n  <ng-content></ng-content>\n</div>\n",
+                        changeDetection: core.ChangeDetectionStrategy.OnPush
                     }] }
         ];
         /** @nocollapse */
@@ -254,11 +255,11 @@
                                 ]),
                             ]),
                         ],
-                        template: "\n  <div [@errorAnt]>\n    <ng-content></ng-content>\n  </div>",
+                        template: "\n    <div [@errorAnt]><ng-content></ng-content></div>\n  ",
                         host: {
                             '[class.ant-form-explain]': 'true',
                         },
-                        styles: ["\n      :host {\n        display: block;\n      }\n    "]
+                        changeDetection: core.ChangeDetectionStrategy.OnPush
                     }] }
         ];
         return SEErrorComponent;
@@ -304,7 +305,8 @@
                         template: '<ng-content></ng-content>',
                         host: {
                             '[class.se__title]': 'true',
-                        }
+                        },
+                        changeDetection: core.ChangeDetectionStrategy.OnPush
                     }] }
         ];
         /** @nocollapse */

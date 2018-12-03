@@ -1,5 +1,5 @@
 import { __decorate, __metadata } from 'tslib';
-import { Component, Input, Inject, TemplateRef, ElementRef, Renderer2, NgModule } from '@angular/core';
+import { Component, Input, Inject, TemplateRef, ElementRef, Renderer2, ChangeDetectionStrategy, NgModule } from '@angular/core';
 import { DOCUMENT, CommonModule } from '@angular/common';
 import { ErrorCollectModule } from '@delon/abc/error-collect';
 import { InputBoolean, DelonUtilModule } from '@delon/util';
@@ -59,7 +59,8 @@ class FooterToolbarComponent {
 FooterToolbarComponent.decorators = [
     { type: Component, args: [{
                 selector: 'footer-toolbar',
-                template: "<div class=\"footer-toolbar__left\">\n  <ng-container *ngIf=\"_extra; else _extraTpl\">{{_extra}}</ng-container>\n</div>\n<div class=\"footer-toolbar__right\">\n  <error-collect *ngIf=\"errorCollect\"></error-collect>\n  <ng-content></ng-content>\n</div>\n"
+                template: "<div class=\"footer-toolbar__left\">\n  <ng-container *ngIf=\"_extra; else _extraTpl\">{{_extra}}</ng-container>\n</div>\n<div class=\"footer-toolbar__right\">\n  <error-collect *ngIf=\"errorCollect\"></error-collect>\n  <ng-content></ng-content>\n</div>\n",
+                changeDetection: ChangeDetectionStrategy.OnPush
             }] }
 ];
 /** @nocollapse */
