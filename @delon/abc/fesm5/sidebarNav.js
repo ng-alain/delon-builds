@@ -1,11 +1,11 @@
 import { __decorate, __metadata } from 'tslib';
 import { filter } from 'rxjs/operators';
 import { MenuService, SettingsService } from '@delon/theme';
-import { Component, Renderer2, Inject, HostListener, ChangeDetectionStrategy, ChangeDetectorRef, Input, Output, EventEmitter, NgModule } from '@angular/core';
 import { DOCUMENT, LocationStrategy, CommonModule } from '@angular/common';
-import { Router, NavigationEnd, RouterModule } from '@angular/router';
-import { NgZorroAntdModule } from 'ng-zorro-antd';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, HostListener, Inject, Input, Output, Renderer2, NgModule } from '@angular/core';
+import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { InputBoolean, DelonUtilModule } from '@delon/util';
+import { NgZorroAntdModule } from 'ng-zorro-antd';
 
 /**
  * @fileoverview added by tsickle
@@ -49,10 +49,10 @@ var SidebarNavComponent = /** @class */ (function () {
         this.bodyEl = this.doc.querySelector('body');
         this.menuSrv.openedByUrl(this.router.url);
         this.genFloatingContainer();
-        this.change$ = (/** @type {?} */ (this.menuSrv.change.subscribe(function (res) {
+        this.change$ = this.menuSrv.change.subscribe(function (res) {
             _this.list = res;
             _this.cd.detectChanges();
-        })));
+        });
         this.installUnderPad();
     };
     /**
@@ -153,6 +153,7 @@ var SidebarNavComponent = /** @class */ (function () {
     function () {
         /** @type {?} */
         var allNode = this.floatingEl.querySelectorAll('.' + FLOATINGCLS);
+        // tslint:disable-next-line:prefer-for-of
         for (var i = 0; i < allNode.length; i++) {
             allNode[i].classList.remove(SHOWCLS);
         }
@@ -300,9 +301,9 @@ var SidebarNavComponent = /** @class */ (function () {
         var _this = this;
         if (!this.autoCloseUnderPad)
             return;
-        this.route$ = (/** @type {?} */ ((this.router.events
+        this.route$ = this.router.events
             .pipe(filter(function (e) { return e instanceof NavigationEnd; }))
-            .subscribe(function (s) { return _this.underPad(); }))));
+            .subscribe(function (s) { return _this.underPad(); });
         this.underPad();
     };
     /**

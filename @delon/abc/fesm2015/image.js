@@ -1,6 +1,6 @@
 import { __decorate, __metadata } from 'tslib';
-import { Directive, Input, ElementRef, Renderer2, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Directive, ElementRef, Input, Renderer2, NgModule } from '@angular/core';
 import { deepCopy, InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
@@ -77,8 +77,7 @@ class ImageDirective {
             const arr = newSrc.split('/');
             /** @type {?} */
             const size = arr[arr.length - 1];
-            arr[arr.length - 1] =
-                size === '0' || +size !== this.size ? this.size.toString() : size;
+            arr[arr.length - 1] = size === '0' || +size !== this.size ? this.size.toString() : size;
             newSrc = arr.join('/');
         }
         /** @type {?} */

@@ -1,8 +1,8 @@
 import { ACLService } from '@delon/acl';
 import { AlainI18NService } from '@delon/theme';
-import { STColumn, STColumnSort } from './table.interfaces';
 import { STRowSource } from './table-row.directive';
 import { STConfig } from './table.config';
+import { STColumn, STColumnSort } from './table.interfaces';
 export interface STSortMap extends STColumnSort {
     /** 是否启用排序 */
     enabled?: boolean;

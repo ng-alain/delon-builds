@@ -1,7 +1,8 @@
-import { Component, TemplateRef, Input, NgModule } from '@angular/core';
+import { __decorate, __metadata } from 'tslib';
 import { CommonModule } from '@angular/common';
+import { Component, Input, TemplateRef, NgModule } from '@angular/core';
+import { InputBoolean, DelonUtilModule } from '@delon/util';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
-import { toBoolean, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
@@ -9,28 +10,20 @@ import { toBoolean, DelonUtilModule } from '@delon/util';
  */
 class G2CardComponent {
     constructor() {
-        this._bordered = false;
+        /**
+         * 是否显示边框
+         */
+        this.bordered = false;
         this._avatar = '';
         this._title = '';
         this._action = '';
         this.total = '';
         this._height = 'auto';
         this._footer = '';
-        this._loading = false;
-    }
-    /**
-     * 是否显示边框
-     * @return {?}
-     */
-    get bordered() {
-        return this._bordered;
-    }
-    /**
-     * @param {?} value
-     * @return {?}
-     */
-    set bordered(value) {
-        this._bordered = toBoolean(value);
+        /**
+         * 是否显示Loading
+         */
+        this.loading = false;
     }
     /**
      * @param {?} value
@@ -89,20 +82,6 @@ class G2CardComponent {
         else
             this._footer = value;
     }
-    /**
-     * 是否显示Loading
-     * @return {?}
-     */
-    get loading() {
-        return this._loading;
-    }
-    /**
-     * @param {?} value
-     * @return {?}
-     */
-    set loading(value) {
-        this._loading = toBoolean(value);
-    }
 }
 G2CardComponent.decorators = [
     { type: Component, args: [{
@@ -121,6 +100,14 @@ G2CardComponent.propDecorators = {
     footer: [{ type: Input }],
     loading: [{ type: Input }]
 };
+__decorate([
+    InputBoolean(),
+    __metadata("design:type", Object)
+], G2CardComponent.prototype, "bordered", void 0);
+__decorate([
+    InputBoolean(),
+    __metadata("design:type", Object)
+], G2CardComponent.prototype, "loading", void 0);
 
 /**
  * @fileoverview added by tsickle

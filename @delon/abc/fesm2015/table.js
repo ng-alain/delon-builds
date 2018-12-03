@@ -2,15 +2,15 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { XlsxService } from '@delon/abc/xlsx';
 import { __decorate, __metadata } from 'tslib';
 import { Router } from '@angular/router';
+import { ALAIN_I18N_TOKEN, _HttpClient, CNCurrencyPipe, DatePipe, YNPipe, DelonLocaleService, DrawerHelper, ModalHelper } from '@delon/theme';
 import { of } from 'rxjs';
-import { map, catchError, filter } from 'rxjs/operators';
-import { ALAIN_I18N_TOKEN, CNCurrencyPipe, DatePipe, YNPipe, _HttpClient, ModalHelper, DrawerHelper, DelonLocaleService } from '@delon/theme';
-import { Directive, Input, TemplateRef, Injectable, Host, Optional, Inject, Component, Output, EventEmitter, Renderer2, ElementRef, ChangeDetectionStrategy, ChangeDetectorRef, NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
+import { catchError, map, filter } from 'rxjs/operators';
 import { DecimalPipe, DOCUMENT, CommonModule } from '@angular/common';
+import { Directive, Host, Injectable, Input, TemplateRef, Inject, Optional, ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter, Output, Renderer2, NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
-import { deepCopy, deepGet, toBoolean, updateHostClass, InputBoolean, InputNumber, DelonUtilModule } from '@delon/util';
 import { ACLService, DelonACLModule } from '@delon/acl';
+import { deepCopy, deepGet, toBoolean, updateHostClass, InputBoolean, InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
@@ -254,7 +254,7 @@ class STColumnSource {
                 item.pop = false;
             }
             if (item.icon) {
-                item.icon = Object.assign({}, btnIcon, typeof item.icon === 'string' ? { type: item.icon } : item.icon);
+                item.icon = Object.assign({}, btnIcon, (typeof item.icon === 'string' ? { type: item.icon } : item.icon));
             }
             item.children = item.children && item.children.length > 0 ? this.btnCoerce(item.children) : [];
             // i18n
@@ -309,6 +309,7 @@ class STColumnSource {
         if (item.sorter && typeof item.sorter === 'function') {
             return {
                 enabled: true,
+                // tslint:disable-next-line:no-any
                 default: (/** @type {?} */ (item.sort)),
                 compare: item.sorter,
                 key: item.sortKey || item.indexKey,
@@ -345,6 +346,7 @@ class STColumnSource {
                 confirmText: item.filterConfirmText,
                 clearText: item.filterClearText,
                 default: item.filtered,
+                // tslint:disable-next-line:no-any
                 fn: (/** @type {?} */ (item.filter)),
                 icon: item.filterIcon,
                 key: item.filterKey || item.indexKey,
@@ -465,6 +467,7 @@ class STColumnSource {
             if ((item.type === 'link' && typeof item.click !== 'function') ||
                 (item.type === 'badge' && item.badge == null) ||
                 (item.type === 'tag' && item.tag == null)) {
+                // tslint:disable-next-line:no-any
                 ((/** @type {?} */ (item))).type = '';
             }
             // className
@@ -520,18 +523,18 @@ STColumnSource.ctorParameters = () => [
 class STDataSource {
     /**
      * @param {?} http
-     * @param {?} currenty
-     * @param {?} date
-     * @param {?} yn
-     * @param {?} number
+     * @param {?} currentyPipe
+     * @param {?} datePipe
+     * @param {?} ynPipe
+     * @param {?} numberPipe
      * @param {?} dom
      */
-    constructor(http, currenty, date, yn, number, dom) {
+    constructor(http, currentyPipe, datePipe, ynPipe, numberPipe, dom) {
         this.http = http;
-        this.currenty = currenty;
-        this.date = date;
-        this.yn = yn;
-        this.number = number;
+        this.currentyPipe = currentyPipe;
+        this.datePipe = datePipe;
+        this.ynPipe = ynPipe;
+        this.numberPipe = numberPipe;
         this.dom = dom;
     }
     /**
@@ -657,7 +660,7 @@ class STDataSource {
     get(item, col, idx) {
         if (col.format) {
             /** @type {?} */
-            const formatRes = (/** @type {?} */ (col.format(item, col)));
+            const formatRes = col.format(item, col);
             if (~formatRes.indexOf('<')) {
                 return this.dom.bypassSecurityTrustHtml(formatRes);
             }
@@ -675,16 +678,16 @@ class STDataSource {
                 ret = value ? `<img src="${value}" class="img">` : '';
                 break;
             case 'number':
-                ret = this.number.transform(value, col.numberDigits);
+                ret = this.numberPipe.transform(value, col.numberDigits);
                 break;
             case 'currency':
-                ret = this.currenty.transform(value);
+                ret = this.currentyPipe.transform(value);
                 break;
             case 'date':
-                ret = this.date.transform(value, col.dateFormat);
+                ret = this.datePipe.transform(value, col.dateFormat);
                 break;
             case 'yn':
-                ret = this.yn.transform(value === col.yn.truth, col.yn.yes, col.yn.no);
+                ret = this.ynPipe.transform(value === col.yn.truth, col.yn.yes, col.yn.no);
                 break;
         }
         return ret == null ? '' : ret;
@@ -699,10 +702,8 @@ class STDataSource {
         /** @type {?} */
         const method = (req.method || 'GET').toUpperCase();
         /** @type {?} */
-        const params = Object.assign({
-            [req.reName.pi]: page.zeroIndexed ? pi - 1 : pi,
-            [req.reName.ps]: ps,
-        }, req.params, this.getReqSortMap(singleSort, multiSort, columns), this.getReqFilterMap(columns));
+        const params = Object.assign({ [req.reName.pi]: page.zeroIndexed ? pi - 1 : pi, [req.reName.ps]: ps }, req.params, this.getReqSortMap(singleSort, multiSort, columns), this.getReqFilterMap(columns));
+        // tslint:disable-next-line:no-any
         /** @type {?} */
         let reqOptions = {
             params,
@@ -809,7 +810,7 @@ class STDataSource {
             else {
                 obj[col.filter.key] = values.map(i => i.value).join(',');
             }
-            ret = Object.assign(ret, obj);
+            ret = Object.assign({}, ret, obj);
         });
         return ret;
     }
@@ -838,12 +839,14 @@ class STExport {
     constructor(xlsxSrv) {
         this.xlsxSrv = xlsxSrv;
     }
+    // tslint:disable-next-line:no-any
     /**
      * @param {?} item
      * @param {?} col
      * @return {?}
      */
     _stGet(item, col) {
+        // tslint:disable-next-line:no-any
         /** @type {?} */
         const ret = { t: 's', v: '' };
         if (col.format) {
@@ -886,7 +889,7 @@ class STExport {
         const dc = opt._d.length;
         // column
         for (let i = 0; i < cc; i++) {
-            sheet[`${String.fromCharCode(65 + i)}1`] = {
+            sheet[`${String.fromCharCode(i + 65)}1`] = {
                 t: 's',
                 v: colData[i].title,
             };
@@ -894,11 +897,11 @@ class STExport {
         // content
         for (let i = 0; i < dc; i++) {
             for (let j = 0; j < cc; j++) {
-                sheet[`${String.fromCharCode(65 + j)}${i + 2}`] = this._stGet(opt._d[i], colData[j]);
+                sheet[`${String.fromCharCode(j + 65)}${i + 2}`] = this._stGet(opt._d[i], colData[j]);
             }
         }
         if (cc > 0 && dc > 0) {
-            sheet['!ref'] = `A1:${String.fromCharCode(65 + cc - 1)}${dc + 1}`;
+            sheet['!ref'] = `A1:${String.fromCharCode(cc + 65 - 1)}${dc + 1}`;
         }
         return sheets;
     }
@@ -961,27 +964,16 @@ class STComponent {
         this.dataSource = dataSource;
         this.delonI18n = delonI18n;
         this.totalTpl = ``;
+        // tslint:disable-next-line:no-any
         this.locale = {};
         this._data = [];
         this._isPagination = true;
         this._allChecked = false;
         this._indeterminate = false;
         this._columns = [];
-        /**
-         * 列描述
-         */
         this.columns = [];
-        /**
-         * 每页数量，当设置为 `0` 表示不分页，默认：`10`
-         */
         this.ps = 10;
-        /**
-         * 当前页码
-         */
         this.pi = 1;
-        /**
-         * 数据总量
-         */
         this.total = 0;
         /**
          * 是否显示Loading
@@ -1002,6 +994,10 @@ class STComponent {
          */
         this.singleSort = null;
         /**
+         * 行单击多少时长之类为双击（单位：毫秒），默认：`200`
+         */
+        this.rowClickTime = 200;
+        /**
          * 请求异常时回调
          */
         this.error = new EventEmitter();
@@ -1009,10 +1005,6 @@ class STComponent {
          * 变化时回调，包括：`pi`、`ps`、`checkbox`、`radio`、`sort`、`filter`、`click`、`dblClick` 变动
          */
         this.change = new EventEmitter();
-        /**
-         * 行单击多少时长之类为双击（单位：毫秒），默认：`200`
-         */
-        this.rowClickTime = 200;
         this.rowClickCount = 0;
         this.delonI18n$ = this.delonI18n.change.subscribe(() => {
             this.locale = this.delonI18n.getData('st');
@@ -1105,6 +1097,7 @@ class STComponent {
     get multiSort() {
         return this._multiSort;
     }
+    // tslint:disable-next-line:no-any
     /**
      * @param {?} value
      * @return {?}
@@ -1114,11 +1107,11 @@ class STComponent {
             this._multiSort = null;
             return;
         }
-        this._multiSort = Object.assign((/** @type {?} */ ({
+        this._multiSort = Object.assign({}, (/** @type {?} */ ({
             key: 'sort',
             separator: '-',
             nameSeparator: '.',
-        })), typeof value === 'object' ? value : {});
+        })), (typeof value === 'object' ? value : {}));
     }
     /**
      * @return {?}
@@ -1139,6 +1132,7 @@ class STComponent {
                 .replace('{{range[1]}}', range[1])
             : '';
     }
+    // tslint:disable-next-line:no-any
     /**
      * @param {?} type
      * @param {?=} data
@@ -1176,7 +1170,7 @@ class STComponent {
             columns: this._columns,
             singleSort,
             multiSort,
-            rowClassName
+            rowClassName,
         })
             .then(result => {
             this.loading = false;
@@ -1236,8 +1230,7 @@ class STComponent {
         if (typeof extraParams !== 'undefined') {
             this._req.params =
                 options && options.merge
-                    ? Object.assign(this._req.params, extraParams)
-                    : extraParams;
+                    ? Object.assign({}, this._req.params, extraParams) : extraParams;
         }
         this._change('pi');
     }
@@ -1346,6 +1339,7 @@ class STComponent {
     }
     //#endregion
     //#region sort
+    // tslint:disable-next-line:no-any
     /**
      * @param {?} col
      * @param {?} idx
@@ -1546,7 +1540,9 @@ class STComponent {
             obj[modal.paramsName] = record;
             /** @type {?} */
             const options = Object.assign({}, modal);
-            ((/** @type {?} */ (this.modalHelper[btn.type === 'modal' ? 'create' : 'createStatic'])))(modal.component, Object.assign(obj, modal.params && modal.params(record)), options)
+            ((/** @type {?} */ (this.modalHelper[btn.type === 'modal' ? 'create' : 'createStatic'
+            // tslint:disable-next-line:no-any
+            ])))(modal.component, Object.assign({}, obj, (modal.params && modal.params(record))), options)
                 .pipe(filter(w => typeof w !== 'undefined'))
                 .subscribe(res => this.btnCallback(record, btn, res));
             return;
@@ -1557,7 +1553,7 @@ class STComponent {
             const { drawer } = btn;
             obj[drawer.paramsName] = record;
             this.drawerHelper
-                .create(drawer.title, drawer.component, Object.assign(obj, drawer.params && drawer.params(record)), Object.assign({}, drawer))
+                .create(drawer.title, drawer.component, Object.assign({}, obj, (drawer.params && drawer.params(record))), Object.assign({}, drawer))
                 .pipe(filter(w => typeof w !== 'undefined'))
                 .subscribe(res => this.btnCallback(record, btn, res));
             return;
@@ -1572,6 +1568,7 @@ class STComponent {
         }
         this.btnCallback(record, btn);
     }
+    // tslint:disable-next-line:no-any
     /**
      * @param {?} record
      * @param {?} btn
@@ -1728,10 +1725,10 @@ STComponent.propDecorators = {
     expand: [{ type: Input }],
     noResult: [{ type: Input }],
     widthConfig: [{ type: Input }],
-    error: [{ type: Output }],
-    change: [{ type: Output }],
     rowClickTime: [{ type: Input }],
-    responsiveHideHeaderFooter: [{ type: Input }]
+    responsiveHideHeaderFooter: [{ type: Input }],
+    error: [{ type: Output }],
+    change: [{ type: Output }]
 };
 __decorate([
     InputNumber(),

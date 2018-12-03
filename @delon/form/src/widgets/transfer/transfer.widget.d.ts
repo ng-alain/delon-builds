@@ -1,15 +1,18 @@
 import { OnInit } from '@angular/core';
+import { TransferCanMove, TransferChange, TransferItem, TransferSearchChange, TransferSelectChange } from 'ng-zorro-antd';
 import { Observable } from 'rxjs';
+import { SFValue } from '../../interface';
+import { SFSchemaEnum } from '../../schema';
 import { ControlWidget } from '../../widget';
 export declare class TransferWidget extends ControlWidget implements OnInit {
-    list: any[];
+    list: SFSchemaEnum[];
     i: any;
     private _data;
     ngOnInit(): void;
-    reset(value: any): void;
+    reset(value: SFValue): void;
     private notify;
-    _canMove: (arg: any) => Observable<any[]>;
-    _change(options: any): void;
-    _searchChange(options: any): void;
-    _selectChange(options: any): void;
+    _canMove: (arg: TransferCanMove) => Observable<TransferItem[]>;
+    _change(options: TransferChange): void;
+    _searchChange(options: TransferSearchChange): void;
+    _selectChange(options: TransferSelectChange): void;
 }

@@ -1,8 +1,8 @@
 import { fromEvent } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { __decorate, __metadata, __spread } from 'tslib';
-import { Component, ElementRef, Input, EventEmitter, Output, HostBinding, ChangeDetectionStrategy, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, HostBinding, Input, Output, NgModule } from '@angular/core';
 import { InputNumber, DelonUtilModule } from '@delon/util';
 
 /**

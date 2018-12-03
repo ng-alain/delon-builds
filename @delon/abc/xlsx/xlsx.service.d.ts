@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { LazyService } from '@delon/util';
-import { XlsxExportOptions } from './xlsx.types';
 import { XlsxConfig } from './xlsx.config';
+import { XlsxExportOptions } from './xlsx.types';
 export declare class XlsxService {
     private cog;
     private http;

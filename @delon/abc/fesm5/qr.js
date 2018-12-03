@@ -1,6 +1,6 @@
 import { __decorate, __metadata, __spread } from 'tslib';
-import { Injectable, Component, Input, ChangeDetectionStrategy, ChangeDetectorRef, HostBinding, Output, EventEmitter, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Injectable, ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, HostBinding, Input, Output, NgModule } from '@angular/core';
 import { InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
@@ -16,7 +16,7 @@ var QRConfig = /** @class */ (function () {
         /**
          * 背景透明级别，范围：`0-1` 之间，默认：`1.0`
          */
-        this.backgroundAlpha = 1.0;
+        this.backgroundAlpha = 1;
         /**
          * 前景，默认：`black`
          */
@@ -24,7 +24,7 @@ var QRConfig = /** @class */ (function () {
         /**
          * 前景透明级别，范围：`0-1` 之间，默认：`1.0`
          */
-        this.foregroundAlpha = 1.0;
+        this.foregroundAlpha = 1;
         /**
          * 误差校正级别，默认：`L`
          */
@@ -54,7 +54,7 @@ var QRService = /** @class */ (function () {
         /**
          * 背景透明级别，范围：`0-1` 之间
          */
-        this.backgroundAlpha = 1.0;
+        this.backgroundAlpha = 1;
         Object.assign(this, cog);
         this.qr = new QRious();
     }
@@ -121,9 +121,6 @@ var QRComponent = /** @class */ (function () {
     function QRComponent(cog, srv, cd) {
         this.srv = srv;
         this.cd = cd;
-        /**
-         * 变更时回调
-         */
         this.change = new EventEmitter();
         Object.assign(this, cog);
     }

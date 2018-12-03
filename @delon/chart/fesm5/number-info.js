@@ -1,8 +1,8 @@
-import { __spread } from 'tslib';
-import { Component, TemplateRef, Input, ElementRef, Renderer2, ChangeDetectorRef, ChangeDetectionStrategy, NgModule } from '@angular/core';
+import { __decorate, __metadata, __spread } from 'tslib';
 import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Input, Renderer2, TemplateRef, NgModule } from '@angular/core';
+import { updateHostClass, InputNumber, DelonUtilModule } from '@delon/util';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
-import { toNumber, updateHostClass, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
@@ -22,7 +22,10 @@ var NumberInfoComponent = /** @class */ (function () {
          * 状态样式
          */
         this.theme = 'light';
-        this._gap = 8;
+        /**
+         * 设置数字和描述直接的间距（像素）
+         */
+        this.gap = 8;
         this._classMap = [];
     }
     Object.defineProperty(NumberInfoComponent.prototype, "title", {
@@ -98,25 +101,6 @@ var NumberInfoComponent = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(NumberInfoComponent.prototype, "gap", {
-        /** 设置数字和描述直接的间距（像素） */
-        get: /**
-         * 设置数字和描述直接的间距（像素）
-         * @return {?}
-         */
-        function () {
-            return this._gap;
-        },
-        set: /**
-         * @param {?} value
-         * @return {?}
-         */
-        function (value) {
-            this._gap = toNumber(value);
-        },
-        enumerable: true,
-        configurable: true
-    });
     /**
      * @return {?}
      */
@@ -164,6 +148,10 @@ var NumberInfoComponent = /** @class */ (function () {
         theme: [{ type: Input }],
         gap: [{ type: Input }]
     };
+    __decorate([
+        InputNumber(),
+        __metadata("design:type", Object)
+    ], NumberInfoComponent.prototype, "gap", void 0);
     return NumberInfoComponent;
 }());
 

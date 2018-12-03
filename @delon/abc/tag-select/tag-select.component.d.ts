@@ -1,4 +1,4 @@
-import { EventEmitter, OnDestroy, OnInit, ChangeDetectorRef } from '@angular/core';
+import { ChangeDetectorRef, EventEmitter, OnDestroy, OnInit } from '@angular/core';
 import { DelonLocaleService } from '@delon/theme';
 export declare class TagSelectComponent implements OnInit, OnDestroy {
     private i18n;

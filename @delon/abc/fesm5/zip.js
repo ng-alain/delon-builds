@@ -1,7 +1,8 @@
+import { __assign } from 'tslib';
 import { HttpClient } from '@angular/common/http';
 import { saveAs } from 'file-saver';
-import { Injectable, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Injectable, NgModule } from '@angular/core';
 import { LazyService, DelonUtilModule } from '@delon/util';
 
 /**
@@ -170,10 +171,10 @@ var ZipService = /** @class */ (function () {
     function (zip, options) {
         this.check(zip);
         /** @type {?} */
-        var opt = Object.assign({}, options);
+        var opt = __assign({}, options);
         return new Promise(function (resolve, reject) {
             zip
-                .generateAsync(Object.assign({ type: 'blob' }, opt.options), opt.update)
+                .generateAsync(__assign({ type: 'blob' }, opt.options), opt.update)
                 .then(function (data) {
                 if (opt.callback)
                     opt.callback(data);

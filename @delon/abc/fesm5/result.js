@@ -1,6 +1,7 @@
 import { __spread } from 'tslib';
-import { Component, Input, TemplateRef, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component, Input, NgModule } from '@angular/core';
+import { DelonUtilModule } from '@delon/util';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 
 /**
@@ -11,9 +12,6 @@ var ResultComponent = /** @class */ (function () {
     function ResultComponent() {
         this._type = '';
         this._icon = '';
-        this._title = '';
-        this._description = '';
-        this._extra = '';
     }
     Object.defineProperty(ResultComponent.prototype, "type", {
         set: /**
@@ -37,58 +35,10 @@ var ResultComponent = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(ResultComponent.prototype, "title", {
-        set: /**
-         * @param {?} value
-         * @return {?}
-         */
-        function (value) {
-            if (value instanceof TemplateRef) {
-                this._title = null;
-                this._titleTpl = value;
-            }
-            else
-                this._title = value;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(ResultComponent.prototype, "description", {
-        set: /**
-         * @param {?} value
-         * @return {?}
-         */
-        function (value) {
-            if (value instanceof TemplateRef) {
-                this._description = null;
-                this._descriptionTpl = value;
-            }
-            else
-                this._description = value;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(ResultComponent.prototype, "extra", {
-        set: /**
-         * @param {?} value
-         * @return {?}
-         */
-        function (value) {
-            if (value instanceof TemplateRef) {
-                this._extra = null;
-                this._extraTpl = value;
-            }
-            else
-                this._extra = value;
-        },
-        enumerable: true,
-        configurable: true
-    });
     ResultComponent.decorators = [
         { type: Component, args: [{
                     selector: 'result',
-                    template: "<div class=\"result__icon\"><i nz-icon class=\"anticon anticon-{{_icon}} result__icon-{{_type}}\"></i></div>\n<div class=\"result__title\">\n  <ng-container *ngIf=\"_title; else _titleTpl\">{{_title}}</ng-container>\n</div>\n<div *ngIf=\"_description || _descriptionTpl\" class=\"result__desc\">\n  <ng-container *ngIf=\"_description; else _descriptionTpl\">{{_description}}</ng-container>\n</div>\n<div *ngIf=\"_extra || _extraTpl\" class=\"result__extra\">\n  <ng-container *ngIf=\"_extra; else _extraTpl\">{{_extra}}</ng-container>\n</div>\n<div class=\"result__actions\">\n  <ng-content></ng-content>\n</div>\n",
+                    template: "<div class=\"result__icon\"><i nz-icon class=\"anticon anticon-{{_icon}} result__icon-{{_type}}\"></i></div>\n<div class=\"result__title\">\n  <ng-container *stringTemplateOutlet=\"title\">{{title}}</ng-container>\n</div>\n<div *ngIf=\"description\" class=\"result__desc\">\n  <ng-container *stringTemplateOutlet=\"description\">{{description}}</ng-container>\n</div>\n<div *ngIf=\"extra\" class=\"result__extra\">\n  <ng-container *stringTemplateOutlet=\"extra\">{{extra}}</ng-container>\n</div>\n<div class=\"result__actions\">\n  <ng-content></ng-content>\n</div>",
                     host: { '[class.result]': 'true' }
                 }] }
     ];
@@ -121,7 +71,7 @@ var ResultModule = /** @class */ (function () {
     };
     ResultModule.decorators = [
         { type: NgModule, args: [{
-                    imports: [CommonModule, NgZorroAntdModule],
+                    imports: [CommonModule, NgZorroAntdModule, DelonUtilModule],
                     declarations: __spread(COMPONENTS),
                     exports: __spread(COMPONENTS),
                 },] }

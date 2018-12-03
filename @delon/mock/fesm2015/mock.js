@@ -1,8 +1,8 @@
-import { Observable, of } from 'rxjs';
+import { of, Observable } from 'rxjs';
 import { delay, tap } from 'rxjs/operators';
 import { _HttpClient } from '@delon/theme';
+import { HttpErrorResponse, HttpResponse, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Injectable, Injector, NgModule } from '@angular/core';
-import { HttpResponse, HttpErrorResponse, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 /**
  * @fileoverview added by tsickle
@@ -14,6 +14,7 @@ import { HttpResponse, HttpErrorResponse, HTTP_INTERCEPTORS } from '@angular/com
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 class MockStatusError {
+    // tslint:disable-next-line:no-any
     /**
      * @param {?} status
      * @param {?=} error
@@ -112,6 +113,7 @@ class MockService {
         this.cached.sort((a, b) => (b.martcher || '').toString().length -
             (a.martcher || '').toString().length);
     }
+    // tslint:disable-next-line:no-any
     /**
      * @param {?} key
      * @param {?} callback
@@ -153,6 +155,7 @@ class MockService {
             method: method.toUpperCase(),
         };
     }
+    // tslint:disable-next-line:no-any
     /**
      * @param {?} error
      * @return {?}
@@ -250,11 +253,7 @@ class MockInterceptor {
         /** @type {?} */
         const src = this.injector.get(MockService);
         /** @type {?} */
-        const config = Object.assign({
-            delay: 300,
-            force: false,
-            log: true,
-        }, this.injector.get(DelonMockConfig, null));
+        const config = Object.assign({ delay: 300, force: false, log: true }, this.injector.get(DelonMockConfig, null));
         /** @type {?} */
         const rule = src.getRule(req.method, req.url.split('?')[0]);
         if (!rule && !config.force) {

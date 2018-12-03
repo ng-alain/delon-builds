@@ -11,7 +11,7 @@ export interface XlsxExportOptions {
     filename?: string;
     opts?: any;
     /** triggers when saveas */
-    callback?: (wb: any) => void;
+    callback?(wb: any): void;
 }
 export interface XlsxExportSheet {
     /** arrays to a worksheet */

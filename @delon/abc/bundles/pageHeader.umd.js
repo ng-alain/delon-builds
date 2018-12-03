@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('rxjs'), require('rxjs/operators'), require('@delon/theme'), require('@delon/abc/reuse-tab'), require('@angular/core'), require('@angular/common'), require('@angular/router'), require('ng-zorro-antd'), require('@delon/util')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/page-header', ['exports', 'rxjs', 'rxjs/operators', '@delon/theme', '@delon/abc/reuse-tab', '@angular/core', '@angular/common', '@angular/router', 'ng-zorro-antd', '@delon/util'], factory) :
-    (factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['page-header'] = {}),global.rxjs,global.rxjs.operators,global.delon.theme,global.delon.abc['reuse-tab'],global.ng.core,global.ng.common,global.ng.router,global.ngZorro.antd,global.delon.util));
-}(this, (function (exports,rxjs,operators,theme,reuseTab,core,common,router,ngZorroAntd,util) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('rxjs'), require('rxjs/operators'), require('@delon/abc/reuse-tab'), require('@delon/theme'), require('@angular/common'), require('@angular/core'), require('@angular/router'), require('@delon/util'), require('ng-zorro-antd')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/page-header', ['exports', 'rxjs', 'rxjs/operators', '@delon/abc/reuse-tab', '@delon/theme', '@angular/common', '@angular/core', '@angular/router', '@delon/util', 'ng-zorro-antd'], factory) :
+    (factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['page-header'] = {}),global.rxjs,global.rxjs.operators,global.delon.abc['reuse-tab'],global.delon.theme,global.ng.common,global.ng.core,global.ng.router,global.delon.util,global.ngZorro.antd));
+}(this, (function (exports,rxjs,operators,reuseTab,theme,common,core,router,util,ngZorroAntd) { 'use strict';
 
     /**
      * @fileoverview added by tsickle
@@ -126,13 +126,14 @@
             this.reuseSrv = reuseSrv;
             this.cdr = cdr;
             this.inited = false;
+            this.paths = [];
             this.loading = false;
             this.wide = false;
-            this.paths = [];
             Object.assign(this, cog);
             this.set$ = settings.notify
                 .pipe(operators.filter(function (w) { return _this.affix && w.type === 'layout' && w.name === 'collapsed'; }))
                 .subscribe(function () { return _this.affix.updatePosition({}); });
+            // tslint:disable-next-line:no-any
             /** @type {?} */
             var data$ = [
                 this.router.events.pipe(operators.filter(function (event) { return event instanceof router.NavigationEnd; })),
@@ -215,10 +216,7 @@
                 // add home
                 if (( /** @type {?} */(this)).home) {
                     paths.splice(0, 0, {
-                        title: (( /** @type {?} */(this)).homeI18n &&
-                            ( /** @type {?} */(this)).i18nSrv &&
-                            ( /** @type {?} */(this)).i18nSrv.fanyi(( /** @type {?} */(this)).homeI18n)) ||
-                            ( /** @type {?} */(this)).home,
+                        title: (( /** @type {?} */(this)).homeI18n && ( /** @type {?} */(this)).i18nSrv && ( /** @type {?} */(this)).i18nSrv.fanyi(( /** @type {?} */(this)).homeI18n)) || ( /** @type {?} */(this)).home,
                         link: [( /** @type {?} */(this)).homeLink],
                     });
                 }

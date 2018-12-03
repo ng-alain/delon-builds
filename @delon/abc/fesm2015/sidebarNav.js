@@ -1,11 +1,11 @@
 import { __decorate, __metadata } from 'tslib';
 import { filter } from 'rxjs/operators';
 import { MenuService, SettingsService } from '@delon/theme';
-import { Component, Renderer2, Inject, HostListener, ChangeDetectionStrategy, ChangeDetectorRef, Input, Output, EventEmitter, NgModule } from '@angular/core';
 import { DOCUMENT, LocationStrategy, CommonModule } from '@angular/common';
-import { Router, NavigationEnd, RouterModule } from '@angular/router';
-import { NgZorroAntdModule } from 'ng-zorro-antd';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, HostListener, Inject, Input, Output, Renderer2, NgModule } from '@angular/core';
+import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { InputBoolean, DelonUtilModule } from '@delon/util';
+import { NgZorroAntdModule } from 'ng-zorro-antd';
 
 /**
  * @fileoverview added by tsickle
@@ -50,10 +50,10 @@ class SidebarNavComponent {
         this.bodyEl = this.doc.querySelector('body');
         this.menuSrv.openedByUrl(this.router.url);
         this.genFloatingContainer();
-        this.change$ = (/** @type {?} */ (this.menuSrv.change.subscribe(res => {
+        this.change$ = this.menuSrv.change.subscribe(res => {
             this.list = res;
             this.cd.detectChanges();
-        })));
+        });
         this.installUnderPad();
     }
     /**
@@ -136,6 +136,7 @@ class SidebarNavComponent {
     hideAll() {
         /** @type {?} */
         const allNode = this.floatingEl.querySelectorAll('.' + FLOATINGCLS);
+        // tslint:disable-next-line:prefer-for-of
         for (let i = 0; i < allNode.length; i++) {
             allNode[i].classList.remove(SHOWCLS);
         }
@@ -243,9 +244,9 @@ class SidebarNavComponent {
     installUnderPad() {
         if (!this.autoCloseUnderPad)
             return;
-        this.route$ = (/** @type {?} */ ((this.router.events
+        this.route$ = this.router.events
             .pipe(filter(e => e instanceof NavigationEnd))
-            .subscribe(s => this.underPad()))));
+            .subscribe(s => this.underPad());
         this.underPad();
     }
     /**

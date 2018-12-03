@@ -1,16 +1,16 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { filter, share, tap, catchError } from 'rxjs/operators';
-import { BehaviorSubject, Subject, Observable, throwError } from 'rxjs';
+import { filter, share, catchError, tap } from 'rxjs/operators';
 import { ACLService } from '@delon/acl';
-import format from 'date-fns/format';
+import { BehaviorSubject, Subject, Observable, throwError } from 'rxjs';
 import distanceInWordsToNow from 'date-fns/distance_in_words_to_now';
+import format from 'date-fns/format';
 import { Title, DomSanitizer } from '@angular/platform-browser';
-import { DOCUMENT, CommonModule, CurrencyPipe } from '@angular/common';
-import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { OverlayModule } from '@angular/cdk/overlay';
+import { DOCUMENT, CurrencyPipe, CommonModule } from '@angular/common';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { BellOutline, CaretDownOutline, CaretUpOutline, DeleteOutline, FilterFill, InboxOutline, PlusOutline } from '@ant-design/icons-angular/icons';
 import { NzModalService, NzIconService, NzDrawerService } from 'ng-zorro-antd';
-import { BellOutline, FilterFill, CaretUpOutline, CaretDownOutline, DeleteOutline, PlusOutline, InboxOutline } from '@ant-design/icons-angular/icons';
-import { InjectionToken, Injectable, Pipe, Inject, NgModule, Version, Optional, Injector, SkipSelf, defineInjectable, inject, INJECTOR } from '@angular/core';
+import { InjectionToken, Injectable, Inject, Pipe, Version, Optional, Injector, NgModule, SkipSelf, defineInjectable, inject, INJECTOR } from '@angular/core';
 
 /**
  * @fileoverview added by tsickle
@@ -44,6 +44,7 @@ function preloaderFinished() {
         });
         preloader.className += ' preloader-hidden-add preloader-hidden-add-active';
     }
+    // tslint:disable-next-line:no-any
     ((/** @type {?} */ (window))).appBootstrap = () => {
         setTimeout(() => {
             remove();
@@ -80,6 +81,7 @@ class AlainI18NServiceFake {
     use(lang) {
         this.change$.next(lang);
     }
+    // tslint:disable-next-line:no-any
     /**
      * @return {?}
      */
@@ -199,10 +201,11 @@ class MenuService {
                 else if (/^https?:\/\//.test(item.icon)) {
                     type = 'img';
                 }
+                // tslint:disable-next-line:no-any
                 item.icon = (/** @type {?} */ ({ type, value }));
             }
             if (item.icon != null) {
-                item.icon = Object.assign({ theme: 'outline', spin: false }, item.icon);
+                item.icon = Object.assign({ theme: 'outline', spin: false }, ((/** @type {?} */ (item.icon))));
             }
             item.text =
                 item.i18n && this.i18nSrv ? this.i18nSrv.fanyi(item.i18n) : item.text;
@@ -257,13 +260,7 @@ class MenuService {
         let _data = this.data[0].children[pos];
         if (_data.i18n && this.i18nSrv)
             _data.text = this.i18nSrv.fanyi(_data.i18n);
-        _data = Object.assign(_data, {
-            shortcutRoot: true,
-            _type: 3,
-            __id: -1,
-            _depth: 1,
-            __parent: null
-        });
+        _data = Object.assign({}, _data, { shortcutRoot: true, _type: 3, __id: -1, _depth: 1, __parent: null });
         _data.children = shortcuts.map(i => {
             i._depth = 2;
             i.__parent = _data;
@@ -451,6 +448,7 @@ class SettingsService {
     get(key) {
         return JSON.parse(localStorage.getItem(key) || 'null') || null;
     }
+    // tslint:disable-next-line:no-any
     /**
      * @param {?} key
      * @param {?} value
@@ -464,7 +462,7 @@ class SettingsService {
      */
     get layout() {
         if (!this._layout) {
-            this._layout = Object.assign((/** @type {?} */ ({
+            this._layout = Object.assign({}, (/** @type {?} */ ({
                 fixed: true,
                 collapsed: false,
                 boxed: false,
@@ -491,7 +489,7 @@ class SettingsService {
      */
     get user() {
         if (!this._user) {
-            this._user = Object.assign((/** @type {?} */ ({})), this.get(USER_KEY));
+            this._user = Object.assign({}, (/** @type {?} */ ({})), this.get(USER_KEY));
             this.set(USER_KEY, this._user);
         }
         return this._user;
@@ -502,6 +500,7 @@ class SettingsService {
     get notify() {
         return this.notify$.asObservable();
     }
+    // tslint:disable-next-line:no-any
     /**
      * @param {?} name
      * @param {?=} value
@@ -515,6 +514,7 @@ class SettingsService {
             this._layout = name;
         }
         this.set(LAYOUT_KEY, this._layout);
+        // tslint:disable-next-line:no-any
         this.notify$.next((/** @type {?} */ ({ type: 'layout', name, value })));
         return true;
     }
@@ -571,7 +571,7 @@ class ResponsiveService {
      * @param {?} cog
      */
     constructor(cog) {
-        this.cog = Object.assign((/** @type {?} */ ({
+        this.cog = Object.assign({}, (/** @type {?} */ ({
             rules: {
                 1: { xs: 24 },
                 2: { xs: 24, sm: 12 },
@@ -905,7 +905,7 @@ function DELON_LOCALE_SERVICE_PROVIDER_FACTORY(exist, locale) {
 const DELON_LOCALE_SERVICE_PROVIDER = {
     provide: DelonLocaleService,
     useFactory: DELON_LOCALE_SERVICE_PROVIDER_FACTORY,
-    deps: [[new Optional(), new SkipSelf(), DelonLocaleService], DELON_LOCALE]
+    deps: [[new Optional(), new SkipSelf(), DelonLocaleService], DELON_LOCALE],
 };
 
 /**
@@ -1098,11 +1098,7 @@ class ModalHelper {
      * @return {?}
      */
     create(comp, params, options) {
-        options = Object.assign({
-            size: 'lg',
-            exact: true,
-            includeTabs: false,
-        }, options);
+        options = Object.assign({ size: 'lg', exact: true, includeTabs: false }, options);
         return new Observable((observer) => {
             /** @type {?} */
             let cls = '';
@@ -1129,7 +1125,7 @@ class ModalHelper {
                 nzZIndex: ++this.zIndex,
             };
             /** @type {?} */
-            const subject = this.srv.create(Object.assign(defaultOptions, options.modalOptions));
+            const subject = this.srv.create(Object.assign({}, defaultOptions, options.modalOptions));
             /** @type {?} */
             const afterClose$ = subject.afterClose.subscribe((res) => {
                 if (options.exact === true) {
@@ -1166,7 +1162,7 @@ class ModalHelper {
      */
     createStatic(comp, params, options) {
         /** @type {?} */
-        const modalOptions = Object.assign({ nzMaskClosable: false }, options && options.modalOptions);
+        const modalOptions = Object.assign({ nzMaskClosable: false }, (options && options.modalOptions));
         return this.create(comp, params, Object.assign({}, options, { modalOptions }));
     }
     /**
@@ -1215,9 +1211,7 @@ class ModalHelper {
      * @return {?}
      */
     static(comp, params, size = 'lg', options) {
-        return this.open(comp, params, size, Object.assign({
-            nzMaskClosable: false,
-        }, options));
+        return this.open(comp, params, size, Object.assign({ nzMaskClosable: false }, options));
     }
 }
 ModalHelper.decorators = [
@@ -1268,14 +1262,14 @@ class DrawerHelper {
      * @return {?}
      */
     create(title, comp, params, options) {
-        options = Object.assign((/** @type {?} */ ({
+        options = Object.assign({}, (/** @type {?} */ ({
             size: 'md',
             footer: true,
             footerHeight: 55,
             drawerOptions: {
                 nzPlacement: 'right',
-                nzWrapClassName: ''
-            }
+                nzWrapClassName: '',
+            },
         })), options);
         return new Observable((observer) => {
             const { size, footer, footerHeight, drawerOptions } = options;
@@ -1284,13 +1278,13 @@ class DrawerHelper {
                 nzContent: comp,
                 nzContentParams: params,
                 nzZIndex: ++this.zIndex,
-                nzTitle: title
+                nzTitle: title,
             };
             if (footer) {
                 defaultOptions.nzBodyStyle = {
-                    height: `calc(100% - ${footerHeight}px)`,
-                    overflow: 'auto',
-                    'padding-bottom': `${footerHeight - 2}px`
+                    'height': `calc(100% - ${footerHeight}px)`,
+                    'overflow': 'auto',
+                    'padding-bottom': `${footerHeight - 2}px`,
                 };
             }
             if (typeof size === 'number') {
@@ -1301,7 +1295,7 @@ class DrawerHelper {
                 delete drawerOptions.nzWrapClassName;
             }
             /** @type {?} */
-            const subject = this.srv.create(Object.assign(defaultOptions, drawerOptions));
+            const subject = this.srv.create(Object.assign({}, defaultOptions, drawerOptions));
             /** @type {?} */
             const afterClose$ = subject.afterClose.subscribe((res) => {
                 if (res != null && res !== false) {
@@ -1322,7 +1316,7 @@ class DrawerHelper {
      */
     static(title, comp, params, options) {
         /** @type {?} */
-        const drawerOptions = Object.assign({ nzMaskClosable: false }, options && options.drawerOptions);
+        const drawerOptions = Object.assign({ nzMaskClosable: false }, (options && options.drawerOptions));
         return this.create(title, comp, params, Object.assign({}, options, { drawerOptions }));
     }
 }
@@ -1354,7 +1348,7 @@ class _HttpClient {
     constructor(http, cog) {
         this.http = http;
         this._loading = false;
-        this.cog = Object.assign((/** @type {?} */ ({
+        this.cog = Object.assign({}, (/** @type {?} */ ({
             nullValueHandling: 'include',
             dateValueHandling: 'timestamp',
         })), (/** @type {?} */ (cog)).http);
@@ -1426,9 +1420,7 @@ class _HttpClient {
      * @return {?}
      */
     get(url, params, options) {
-        return this.request('GET', url, Object.assign({
-            params,
-        }, options));
+        return this.request('GET', url, Object.assign({ params }, options));
     }
     /**
      * POST 请求
@@ -1439,10 +1431,8 @@ class _HttpClient {
      * @return {?}
      */
     post(url, body, params, options) {
-        return this.request('POST', url, Object.assign({
-            body,
-            params,
-        }, options));
+        return this.request('POST', url, Object.assign({ body,
+            params }, options));
     }
     /**
      * DELETE 请求
@@ -1452,9 +1442,7 @@ class _HttpClient {
      * @return {?}
      */
     delete(url, params, options) {
-        return this.request('DELETE', url, Object.assign({
-            params,
-        }, options));
+        return this.request('DELETE', url, Object.assign({ params }, options));
     }
     // #endregion
     /**
@@ -1482,10 +1470,8 @@ class _HttpClient {
      * @return {?}
      */
     patch(url, body, params, options) {
-        return this.request('PATCH', url, Object.assign({
-            body,
-            params,
-        }, options));
+        return this.request('PATCH', url, Object.assign({ body,
+            params }, options));
     }
     /**
      * PUT 请求
@@ -1496,10 +1482,8 @@ class _HttpClient {
      * @return {?}
      */
     put(url, body, params, options) {
-        return this.request('PUT', url, Object.assign({
-            body,
-            params,
-        }, options));
+        return this.request('PUT', url, Object.assign({ body,
+            params }, options));
     }
     /**
      * `request` 请求
@@ -1761,6 +1745,7 @@ class DatePipe {
         if (value) {
             if (formatString === 'fn') {
                 return distanceInWordsToNow(value, {
+                    // tslint:disable-next-line:no-any
                     locale: ((/** @type {?} */ (window))).__locale__,
                 });
             }
@@ -1794,7 +1779,10 @@ class CNCurrencyPipe extends CurrencyPipe {
      * @param {?=} digits
      * @return {?}
      */
-    transform(value, currencyCode = '￥', display = 'code', digits) {
+    transform(
+    // tslint:disable-next-line:no-any
+    value, currencyCode = '￥', display = 'code', digits) {
+        // tslint:disable-next-line:no-any
         return super.transform(value, currencyCode, (/** @type {?} */ (display)), digits);
     }
 }
@@ -1810,6 +1798,7 @@ CNCurrencyPipe.decorators = [
  * @see https://ng-alain.com/docs/common#%E5%8F%AF%E8%BF%AD%E4%BB%A3-keys
  */
 class KeysPipe {
+    // tslint:disable-next-line:no-any
     /**
      * @param {?} value
      * @param {?=} keyIsNumber
@@ -1876,7 +1865,7 @@ class HTMLPipe {
      * @return {?}
      */
     transform(html) {
-        return html ? (/** @type {?} */ (this.dom.bypassSecurityTrustHtml(html))) : '';
+        return html ? this.dom.bypassSecurityTrustHtml(html) : '';
     }
 }
 HTMLPipe.decorators = [
@@ -1903,7 +1892,7 @@ class URLPipe {
      * @return {?}
      */
     transform(url) {
-        return url ? (/** @type {?} */ (this.dom.bypassSecurityTrustUrl(url))) : '';
+        return url ? this.dom.bypassSecurityTrustUrl(url) : '';
     }
 }
 URLPipe.decorators = [
@@ -2012,7 +2001,7 @@ AlainThemeModule.ctorParameters = () => [
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 /** @type {?} */
-const VERSION = new Version('2.0.1-b538f3e');
+const VERSION = new Version('2.0.1-d17e504');
 
 /**
  * @fileoverview added by tsickle

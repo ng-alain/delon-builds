@@ -1,8 +1,8 @@
-import { __spread } from 'tslib';
-import { Component, TemplateRef, Input, NgModule } from '@angular/core';
+import { __decorate, __metadata, __spread } from 'tslib';
 import { CommonModule } from '@angular/common';
+import { Component, Input, TemplateRef, NgModule } from '@angular/core';
+import { InputBoolean, DelonUtilModule } from '@delon/util';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
-import { toBoolean, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
@@ -10,34 +10,21 @@ import { toBoolean, DelonUtilModule } from '@delon/util';
  */
 var G2CardComponent = /** @class */ (function () {
     function G2CardComponent() {
-        this._bordered = false;
+        /**
+         * 是否显示边框
+         */
+        this.bordered = false;
         this._avatar = '';
         this._title = '';
         this._action = '';
         this.total = '';
         this._height = 'auto';
         this._footer = '';
-        this._loading = false;
+        /**
+         * 是否显示Loading
+         */
+        this.loading = false;
     }
-    Object.defineProperty(G2CardComponent.prototype, "bordered", {
-        /** 是否显示边框 */
-        get: /**
-         * 是否显示边框
-         * @return {?}
-         */
-        function () {
-            return this._bordered;
-        },
-        set: /**
-         * @param {?} value
-         * @return {?}
-         */
-        function (value) {
-            this._bordered = toBoolean(value);
-        },
-        enumerable: true,
-        configurable: true
-    });
     Object.defineProperty(G2CardComponent.prototype, "avatar", {
         set: /**
          * @param {?} value
@@ -115,25 +102,6 @@ var G2CardComponent = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(G2CardComponent.prototype, "loading", {
-        /** 是否显示Loading */
-        get: /**
-         * 是否显示Loading
-         * @return {?}
-         */
-        function () {
-            return this._loading;
-        },
-        set: /**
-         * @param {?} value
-         * @return {?}
-         */
-        function (value) {
-            this._loading = toBoolean(value);
-        },
-        enumerable: true,
-        configurable: true
-    });
     G2CardComponent.decorators = [
         { type: Component, args: [{
                     selector: 'g2-card',
@@ -151,6 +119,14 @@ var G2CardComponent = /** @class */ (function () {
         footer: [{ type: Input }],
         loading: [{ type: Input }]
     };
+    __decorate([
+        InputBoolean(),
+        __metadata("design:type", Object)
+    ], G2CardComponent.prototype, "bordered", void 0);
+    __decorate([
+        InputBoolean(),
+        __metadata("design:type", Object)
+    ], G2CardComponent.prototype, "loading", void 0);
     return G2CardComponent;
 }());
 

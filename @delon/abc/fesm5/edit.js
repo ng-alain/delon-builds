@@ -1,11 +1,11 @@
 import { animate, style, transition, trigger } from '@angular/animations';
-import { NgModel, FormControlName } from '@angular/forms';
+import { FormControlName, NgModel } from '@angular/forms';
 import { ResponsiveService } from '@delon/theme';
 import { __decorate, __metadata, __spread } from 'tslib';
-import { Component, Input, TemplateRef, ChangeDetectionStrategy, Host, ElementRef, Renderer2, Optional, ContentChild, ChangeDetectorRef, HostBinding, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component, Input, ElementRef, Host, Optional, Renderer2, ChangeDetectorRef, ContentChild, HostBinding, NgModule } from '@angular/core';
+import { toNumber, InputBoolean, InputNumber, deepGet, DelonUtilModule } from '@delon/util';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
-import { toNumber, InputNumber, InputBoolean, deepGet, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
@@ -50,28 +50,9 @@ var SEConfig = /** @class */ (function () {
 var SEContainerComponent = /** @class */ (function () {
     //#endregion
     function SEContainerComponent(cog) {
-        //#region fields
-        this._title = '';
         this.line = false;
         Object.assign(this, cog);
     }
-    Object.defineProperty(SEContainerComponent.prototype, "title", {
-        set: /**
-         * @param {?} value
-         * @return {?}
-         */
-        function (value) {
-            if (value instanceof TemplateRef) {
-                this._title = null;
-                this._titleTpl = value;
-            }
-            else {
-                this._title = value;
-            }
-        },
-        enumerable: true,
-        configurable: true
-    });
     Object.defineProperty(SEContainerComponent.prototype, "gutter", {
         get: /**
          * @return {?}
@@ -133,7 +114,7 @@ var SEContainerComponent = /** @class */ (function () {
     SEContainerComponent.decorators = [
         { type: Component, args: [{
                     selector: 'se-container, [se-container]',
-                    template: "<div class=\"ant-row se__container se__{{nzLayout}} se__{{size}}\" [ngStyle]=\"{'margin-left.px': -(gutter / 2), 'margin-right.px': -(gutter / 2)}\">\n  <se-title *ngIf=\"_title || _titleTpl\">\n    <ng-container *ngIf=\"_title; else _titleTpl\">{{_title}}</ng-container>\n  </se-title>\n  <ng-content></ng-content>\n</div>\n",
+                    template: "<div class=\"ant-row se__container se__{{nzLayout}} se__{{size}}\" [ngStyle]=\"{'margin-left.px': -(gutter / 2), 'margin-right.px': -(gutter / 2)}\">\n  <se-title *ngIf=\"title\">\n    <ng-container *stringTemplateOutlet=\"title\">{{ title }}</ng-container>\n  </se-title>\n  <ng-content></ng-content>\n</div>",
                     changeDetection: ChangeDetectionStrategy.OnPush
                 }] }
     ];
@@ -282,7 +263,6 @@ var SEComponent = /** @class */ (function () {
         this.onceFlag = false;
         this.invalid = false;
         this.labelWidth = null;
-        this._label = '';
         this.required = false;
         this.controlClass = '';
         this._id = "_se-" + nextUniqueId++;
@@ -292,23 +272,6 @@ var SEComponent = /** @class */ (function () {
         }
         this.el = el.nativeElement;
     }
-    Object.defineProperty(SEComponent.prototype, "label", {
-        set: /**
-         * @param {?} value
-         * @return {?}
-         */
-        function (value) {
-            if (value instanceof TemplateRef) {
-                this._label = null;
-                this._labelTpl = value;
-            }
-            else {
-                this._label = value;
-            }
-        },
-        enumerable: true,
-        configurable: true
-    });
     Object.defineProperty(SEComponent.prototype, "id", {
         set: /**
          * @param {?} value
@@ -454,7 +417,7 @@ var SEComponent = /** @class */ (function () {
     SEComponent.decorators = [
         { type: Component, args: [{
                     selector: 'se',
-                    template: "<div class=\"ant-form-item-label se__label\"\n  [class.se__nolabel]=\"!_label && !_labelTpl\" [style.width.px]=\"labelWidth\">\n  <label *ngIf=\"_label; else _labelTpl\" [attr.for]=\"_id\" [ngClass]=\"{'ant-form-item-required': required}\">\n    {{_label}}\n    <span class=\"se__label-optional\">\n      {{ optional }}\n      <nz-tooltip *ngIf=\"optionalHelp\" [nzTitle]=\"optionalHelp\">\n        <i nz-tooltip nz-icon type=\"question-circle\"></i>\n      </nz-tooltip>\n    </span>\n  </label>\n</div>\n<div class=\"ant-form-item-control-wrapper se__control\">\n  <div class=\"ant-form-item-control {{controlClass}}\" [class.has-error]=\"invalid\">\n    <ng-content></ng-content>\n    <se-error *ngIf=\"showErr\">{{error}}</se-error>\n    <div *ngIf=\"extra\" class=\"ant-form-extra\">{{extra}}</div>\n  </div>\n</div>\n",
+                    template: "<div class=\"ant-form-item-label se__label\" [class.se__nolabel]=\"!label\" [style.width.px]=\"labelWidth\">\n  <label *ngIf=\"label\" [attr.for]=\"_id\" [ngClass]=\"{'ant-form-item-required': required}\">\n    <ng-container *stringTemplateOutlet=\"label\">{{ label }}</ng-container>\n    <span class=\"se__label-optional\">\n      {{ optional }}\n      <nz-tooltip *ngIf=\"optionalHelp\" [nzTitle]=\"optionalHelp\">\n        <i nz-tooltip nz-icon type=\"question-circle\"></i>\n      </nz-tooltip>\n    </span>\n  </label>\n</div>\n<div class=\"ant-form-item-control-wrapper se__control\">\n  <div class=\"ant-form-item-control {{controlClass}}\" [class.has-error]=\"invalid\">\n    <ng-content></ng-content>\n    <se-error *ngIf=\"showErr\">{{error}}</se-error>\n    <div *ngIf=\"extra\" class=\"ant-form-extra\">{{extra}}</div>\n  </div>\n</div>",
                     changeDetection: ChangeDetectionStrategy.OnPush
                 }] }
     ];
@@ -477,8 +440,8 @@ var SEComponent = /** @class */ (function () {
         col: [{ type: Input }],
         required: [{ type: Input }],
         controlClass: [{ type: Input }],
-        id: [{ type: Input }],
         line: [{ type: Input }],
+        id: [{ type: Input }],
         paddingLeft: [{ type: HostBinding, args: ['style.padding-left.px',] }],
         paddingRight: [{ type: HostBinding, args: ['style.padding-right.px',] }],
         showErr: [{ type: HostBinding, args: ['class.ant-form-item-with-help',] }]

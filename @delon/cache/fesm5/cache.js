@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import addSeconds from 'date-fns/add_seconds';
-import { Observable, of, BehaviorSubject } from 'rxjs';
-import { tap, map } from 'rxjs/operators';
-import { InjectionToken, Injectable, Inject, NgModule } from '@angular/core';
+import { of, BehaviorSubject, Observable } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
+import { InjectionToken, Inject, Injectable, NgModule } from '@angular/core';
 
 /**
  * @fileoverview added by tsickle
@@ -54,7 +54,7 @@ var CacheService = /** @class */ (function () {
         this.memory = new Map();
         this.notifyBuffer = new Map();
         this.meta = new Set();
-        this.freq_tick = 3000;
+        this.freqTick = 3000;
         this.loadMeta();
         this.startExpireNotify();
     }
@@ -226,9 +226,9 @@ var CacheService = /** @class */ (function () {
             if (isPromise) {
                 return this.http
                     .get(key)
-                    .pipe(map(function (ret) {
-                    return _this._deepGet(ret, (/** @type {?} */ (_this.options.reName)), null);
-                }), tap(function (v) { return _this.set(key, v); }));
+                    .pipe(
+                // tslint:disable-next-line:no-any
+                map(function (ret) { return _this._deepGet(ret, (/** @type {?} */ (_this.options.reName)), null); }), tap(function (v) { return _this.set(key, v); }));
             }
             return null;
         }
@@ -370,7 +370,7 @@ var CacheService = /** @class */ (function () {
          * @return {?}
          */
         function (value) {
-            this.freq_tick = Math.max(20, value);
+            this.freqTick = Math.max(20, value);
             this.abortExpireNotify();
             this.startExpireNotify();
         },
@@ -395,10 +395,10 @@ var CacheService = /** @class */ (function () {
      */
     function () {
         var _this = this;
-        this.freq_time = setTimeout(function () {
+        this.freqTime = setTimeout(function () {
             _this.checkExpireNotify();
             _this.runExpireNotify();
-        }, this.freq_tick);
+        }, this.freqTick);
     };
     /**
      * @return {?}
@@ -426,7 +426,7 @@ var CacheService = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        clearTimeout(this.freq_time);
+        clearTimeout(this.freqTime);
     };
     /**
      * @param {?} key

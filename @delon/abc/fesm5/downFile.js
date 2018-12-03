@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { saveAs } from 'file-saver';
 import { __spread } from 'tslib';
-import { Directive, ElementRef, Input, HostListener, EventEmitter, Output, Optional, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Directive, ElementRef, EventEmitter, HostListener, Input, Optional, Output, NgModule } from '@angular/core';
 import { _HttpClient, AlainThemeModule } from '@delon/theme';
 
 /**
@@ -43,6 +43,7 @@ var DownFileDirective = /** @class */ (function () {
      * @return {?}
      */
     function (data) {
+        // tslint:disable-next-line:no-any
         /** @type {?} */
         var arr = (data || '')
             .split(';')
@@ -59,6 +60,7 @@ var DownFileDirective = /** @class */ (function () {
                 value = value.substr(utfId.length);
             return _a = {}, _a[strArr[0].trim()] = value, _a;
         });
+        // tslint:disable-next-line:no-any
         return arr.reduce(function (o, item) { return item; }, {});
     };
     /**
@@ -70,6 +72,7 @@ var DownFileDirective = /** @class */ (function () {
     function () {
         var _this = this;
         this.el.nativeElement.disabled = true;
+        // tslint:disable-next-line:no-any
         ((/** @type {?} */ ((this._http || this.http))))
             .request(this.httpMethod, this.httpUrl, {
             params: this.httpData || {},

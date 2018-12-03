@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/common'), require('@angular/router'), require('ng-zorro-antd'), require('@delon/theme'), require('@delon/util')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/exception', ['exports', '@angular/core', '@angular/common', '@angular/router', 'ng-zorro-antd', '@delon/theme', '@delon/util'], factory) :
-    (factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.exception = {}),global.ng.core,global.ng.common,global.ng.router,global.ngZorro.antd,global.delon.theme,global.delon.util));
-}(this, (function (exports,core,common,router,ngZorroAntd,theme,util) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common'), require('@angular/core'), require('@angular/router'), require('@delon/theme'), require('@delon/util'), require('ng-zorro-antd')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/exception', ['exports', '@angular/common', '@angular/core', '@angular/router', '@delon/theme', '@delon/util', 'ng-zorro-antd'], factory) :
+    (factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.exception = {}),global.ng.common,global.ng.core,global.ng.router,global.delon.theme,global.delon.util,global.ngZorro.antd));
+}(this, (function (exports,common,core,router,theme,util,ngZorroAntd) { 'use strict';
 
     /**
      * @fileoverview added by tsickle
@@ -16,6 +16,7 @@
     var ExceptionComponent = /** @class */ (function () {
         function ExceptionComponent(i18n) {
             this.i18n = i18n;
+            // tslint:disable-next-line:no-any
             this.locale = {};
             this.hasCon = false;
             this._img = '';

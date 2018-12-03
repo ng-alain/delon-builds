@@ -1,6 +1,6 @@
 import { __decorate, __metadata, __spread } from 'tslib';
-import { Component, Input, HostBinding, Renderer2, ElementRef, ChangeDetectionStrategy, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component, ElementRef, HostBinding, Input, Renderer2, NgModule } from '@angular/core';
 import { InputNumber, DelonUtilModule } from '@delon/util';
 
 /**

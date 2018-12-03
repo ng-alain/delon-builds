@@ -1,9 +1,9 @@
 import { fromEvent } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
-import { __spread } from 'tslib';
-import { Component, Input, ViewChild, ElementRef, NgZone, TemplateRef, Renderer2, ChangeDetectionStrategy, ChangeDetectorRef, NgModule } from '@angular/core';
+import { __decorate, __metadata, __spread } from 'tslib';
 import { CommonModule } from '@angular/common';
-import { toNumber, DelonUtilModule } from '@delon/util';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Input, NgZone, Renderer2, TemplateRef, ViewChild, NgModule } from '@angular/core';
+import { InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
@@ -18,7 +18,7 @@ var G2WaterWaveComponent = /** @class */ (function () {
         // #region fields
         this._title = '';
         this.color = '#1890FF';
-        this._height = 160;
+        this.height = 160;
         // #endregion
         this.resize$ = null;
         this.initFlag = false;
@@ -36,40 +36,6 @@ var G2WaterWaveComponent = /** @class */ (function () {
             else {
                 this._title = value;
             }
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(G2WaterWaveComponent.prototype, "height", {
-        get: /**
-         * @return {?}
-         */
-        function () {
-            return this._height;
-        },
-        set: /**
-         * @param {?} value
-         * @return {?}
-         */
-        function (value) {
-            this._height = toNumber(value);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(G2WaterWaveComponent.prototype, "percent", {
-        get: /**
-         * @return {?}
-         */
-        function () {
-            return this._percent;
-        },
-        set: /**
-         * @param {?} value
-         * @return {?}
-         */
-        function (value) {
-            this._percent = toNumber(value);
         },
         enumerable: true,
         configurable: true
@@ -131,7 +97,7 @@ var G2WaterWaveComponent = /** @class */ (function () {
         var circleOffset = -(Math.PI / 2);
         /** @type {?} */
         var circleLock = true;
-        for (var i = circleOffset; i < circleOffset + 2 * Math.PI; i += 1 / (8 * Math.PI)) {
+        for (var i = circleOffset; i < circleOffset + (Math.PI * 2); i += 1 / (Math.PI * 8)) {
             arcStack.push([radius + bR * Math.cos(i), radius + bR * Math.sin(i)]);
         }
         /** @type {?} */
@@ -154,7 +120,7 @@ var G2WaterWaveComponent = /** @class */ (function () {
                 /** @type {?} */
                 var dx = i;
                 /** @type {?} */
-                var dy = 2 * cR * (1 - currData) + (radius - cR) - unit * y;
+                var dy = cR * 2 * (1 - currData) + (radius - cR) - unit * y;
                 ctx.lineTo(dx, dy);
                 sinStack.push([dx, dy]);
             }
@@ -191,10 +157,10 @@ var G2WaterWaveComponent = /** @class */ (function () {
                     ctx.globalCompositeOperation = 'destination-over';
                     ctx.beginPath();
                     ctx.lineWidth = lineWidth;
-                    ctx.arc(radius, radius, bR, 0, 2 * Math.PI, true);
+                    ctx.arc(radius, radius, bR, 0, Math.PI * 2, true);
                     ctx.beginPath();
                     ctx.save();
-                    ctx.arc(radius, radius, radius - 3 * lineWidth, 0, 2 * Math.PI, true);
+                    ctx.arc(radius, radius, (radius - lineWidth) * 3, 0, Math.PI * 2, true);
                     ctx.restore();
                     ctx.clip();
                     ctx.fillStyle = '#1890FF';
@@ -339,6 +305,14 @@ var G2WaterWaveComponent = /** @class */ (function () {
         percent: [{ type: Input }],
         node: [{ type: ViewChild, args: ['container',] }]
     };
+    __decorate([
+        InputNumber(),
+        __metadata("design:type", Object)
+    ], G2WaterWaveComponent.prototype, "height", void 0);
+    __decorate([
+        InputNumber(),
+        __metadata("design:type", Number)
+    ], G2WaterWaveComponent.prototype, "percent", void 0);
     return G2WaterWaveComponent;
 }());
 

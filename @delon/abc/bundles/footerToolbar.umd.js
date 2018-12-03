@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/common'), require('@delon/abc/error-collect'), require('@delon/util')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/footer-toolbar', ['exports', '@angular/core', '@angular/common', '@delon/abc/error-collect', '@delon/util'], factory) :
-    (factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['footer-toolbar'] = {}),global.ng.core,global.ng.common,global.delon.abc['error-collect'],global.delon.util));
-}(this, (function (exports,core,common,errorCollect,util) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common'), require('@angular/core'), require('@delon/abc/error-collect'), require('@delon/util')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/footer-toolbar', ['exports', '@angular/common', '@angular/core', '@delon/abc/error-collect', '@delon/util'], factory) :
+    (factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['footer-toolbar'] = {}),global.ng.common,global.ng.core,global.delon.abc['error-collect'],global.delon.util));
+}(this, (function (exports,common,core,errorCollect,util) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -79,24 +79,7 @@
             this.renderer = renderer;
             this.doc = doc;
             this.errorCollect = false;
-            this._extra = '';
         }
-        Object.defineProperty(FooterToolbarComponent.prototype, "extra", {
-            set: /**
-             * @param {?} value
-             * @return {?}
-             */ function (value) {
-                if (value instanceof core.TemplateRef) {
-                    this._extra = null;
-                    this._extraTpl = value;
-                }
-                else {
-                    this._extra = value;
-                }
-            },
-            enumerable: true,
-            configurable: true
-        });
         Object.defineProperty(FooterToolbarComponent.prototype, "bodyCls", {
             get: /**
              * @return {?}
@@ -128,7 +111,7 @@
         FooterToolbarComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'footer-toolbar',
-                        template: "<div class=\"footer-toolbar__left\">\n  <ng-container *ngIf=\"_extra; else _extraTpl\">{{_extra}}</ng-container>\n</div>\n<div class=\"footer-toolbar__right\">\n  <error-collect *ngIf=\"errorCollect\"></error-collect>\n  <ng-content></ng-content>\n</div>\n",
+                        template: "<div class=\"footer-toolbar__left\">\n  <ng-container *stringTemplateOutlet=\"extra\">{{ extra }}</ng-container>\n</div>\n<div class=\"footer-toolbar__right\">\n  <error-collect *ngIf=\"errorCollect\"></error-collect>\n  <ng-content></ng-content>\n</div>",
                         changeDetection: core.ChangeDetectionStrategy.OnPush
                     }] }
         ];

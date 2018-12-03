@@ -1,6 +1,6 @@
 import { __decorate, __metadata, __spread } from 'tslib';
-import { Component, Input, Inject, TemplateRef, ElementRef, Renderer2, ChangeDetectionStrategy, NgModule } from '@angular/core';
 import { DOCUMENT, CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component, ElementRef, Inject, Input, Renderer2, NgModule } from '@angular/core';
 import { ErrorCollectModule } from '@delon/abc/error-collect';
 import { InputBoolean, DelonUtilModule } from '@delon/util';
 
@@ -16,25 +16,7 @@ var FooterToolbarComponent = /** @class */ (function () {
         this.renderer = renderer;
         this.doc = doc;
         this.errorCollect = false;
-        this._extra = '';
     }
-    Object.defineProperty(FooterToolbarComponent.prototype, "extra", {
-        set: /**
-         * @param {?} value
-         * @return {?}
-         */
-        function (value) {
-            if (value instanceof TemplateRef) {
-                this._extra = null;
-                this._extraTpl = value;
-            }
-            else {
-                this._extra = value;
-            }
-        },
-        enumerable: true,
-        configurable: true
-    });
     Object.defineProperty(FooterToolbarComponent.prototype, "bodyCls", {
         get: /**
          * @return {?}
@@ -67,7 +49,7 @@ var FooterToolbarComponent = /** @class */ (function () {
     FooterToolbarComponent.decorators = [
         { type: Component, args: [{
                     selector: 'footer-toolbar',
-                    template: "<div class=\"footer-toolbar__left\">\n  <ng-container *ngIf=\"_extra; else _extraTpl\">{{_extra}}</ng-container>\n</div>\n<div class=\"footer-toolbar__right\">\n  <error-collect *ngIf=\"errorCollect\"></error-collect>\n  <ng-content></ng-content>\n</div>\n",
+                    template: "<div class=\"footer-toolbar__left\">\n  <ng-container *stringTemplateOutlet=\"extra\">{{ extra }}</ng-container>\n</div>\n<div class=\"footer-toolbar__right\">\n  <error-collect *ngIf=\"errorCollect\"></error-collect>\n  <ng-content></ng-content>\n</div>",
                     changeDetection: ChangeDetectionStrategy.OnPush
                 }] }
     ];

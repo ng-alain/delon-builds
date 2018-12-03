@@ -61,7 +61,7 @@
             this.memory = new Map();
             this.notifyBuffer = new Map();
             this.meta = new Set();
-            this.freq_tick = 3000;
+            this.freqTick = 3000;
             this.loadMeta();
             this.startExpireNotify();
         }
@@ -237,9 +237,9 @@
                     if (isPromise) {
                         return this.http
                             .get(key)
-                            .pipe(operators.map(function (ret) {
-                            return _this._deepGet(ret, ( /** @type {?} */(_this.options.reName)), null);
-                        }), operators.tap(function (v) { return _this.set(key, v); }));
+                            .pipe(
+                        // tslint:disable-next-line:no-any
+                        operators.map(function (ret) { return _this._deepGet(ret, ( /** @type {?} */(_this.options.reName)), null); }), operators.tap(function (v) { return _this.set(key, v); }));
                     }
                     return null;
                 }
@@ -383,7 +383,7 @@
              * @return {?}
              */
             function (value) {
-                this.freq_tick = Math.max(20, value);
+                this.freqTick = Math.max(20, value);
                 this.abortExpireNotify();
                 this.startExpireNotify();
             },
@@ -408,10 +408,10 @@
          */
             function () {
                 var _this = this;
-                this.freq_time = setTimeout(function () {
+                this.freqTime = setTimeout(function () {
                     _this.checkExpireNotify();
                     _this.runExpireNotify();
-                }, this.freq_tick);
+                }, this.freqTick);
             };
         /**
          * @return {?}
@@ -439,7 +439,7 @@
          * @return {?}
          */
             function () {
-                clearTimeout(this.freq_time);
+                clearTimeout(this.freqTime);
             };
         /**
          * @param {?} key

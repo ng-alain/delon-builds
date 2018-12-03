@@ -1,9 +1,9 @@
 import { __decorate, __metadata } from 'tslib';
-import { InputNumber, InputBoolean } from '@delon/util';
-import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy, ChangeDetectorRef, NgModule } from '@angular/core';
+import { InputBoolean, InputNumber } from '@delon/util';
 import { CommonModule } from '@angular/common';
-import { NgZorroAntdModule } from 'ng-zorro-antd';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ChangeDetectorRef, NgModule } from '@angular/core';
 import { DelonLocaleService, DelonLocaleModule } from '@delon/theme';
+import { NgZorroAntdModule } from 'ng-zorro-antd';
 
 /**
  * @fileoverview added by tsickle
@@ -16,6 +16,7 @@ import { DelonLocaleService, DelonLocaleModule } from '@delon/theme';
  */
 class NoticeIconTabComponent {
     constructor() {
+        // tslint:disable-next-line:no-any
         this.locale = {};
         this.select = new EventEmitter();
         this.clear = new EventEmitter();
@@ -63,18 +64,13 @@ class NoticeIconComponent {
     constructor(i18n, cdr) {
         this.i18n = i18n;
         this.cdr = cdr;
+        // tslint:disable-next-line:no-any
         this.locale = {};
         this.data = [];
-        /**
-         * 弹出卡片加载状态
-         */
         this.loading = false;
+        this.popoverVisible = false;
         this.select = new EventEmitter();
         this.clear = new EventEmitter();
-        /**
-         * 手动控制Popover显示
-         */
-        this.popoverVisible = false;
         this.popoverVisibleChange = new EventEmitter();
     }
     /**
@@ -130,9 +126,9 @@ NoticeIconComponent.propDecorators = {
     data: [{ type: Input }],
     count: [{ type: Input }],
     loading: [{ type: Input }],
+    popoverVisible: [{ type: Input }],
     select: [{ type: Output }],
     clear: [{ type: Output }],
-    popoverVisible: [{ type: Input }],
     popoverVisibleChange: [{ type: Output }]
 };
 __decorate([

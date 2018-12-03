@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('rxjs/operators'), require('@delon/theme'), require('@angular/core'), require('@angular/common'), require('@angular/router'), require('ng-zorro-antd'), require('@delon/util')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/sidebar-nav', ['exports', 'rxjs/operators', '@delon/theme', '@angular/core', '@angular/common', '@angular/router', 'ng-zorro-antd', '@delon/util'], factory) :
-    (factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['sidebar-nav'] = {}),global.rxjs.operators,global.delon.theme,global.ng.core,global.ng.common,global.ng.router,global.ngZorro.antd,global.delon.util));
-}(this, (function (exports,operators,theme,core,common,router,ngZorroAntd,util) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('rxjs/operators'), require('@delon/theme'), require('@angular/common'), require('@angular/core'), require('@angular/router'), require('@delon/util'), require('ng-zorro-antd')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/sidebar-nav', ['exports', 'rxjs/operators', '@delon/theme', '@angular/common', '@angular/core', '@angular/router', '@delon/util', 'ng-zorro-antd'], factory) :
+    (factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['sidebar-nav'] = {}),global.rxjs.operators,global.delon.theme,global.ng.common,global.ng.core,global.ng.router,global.delon.util,global.ngZorro.antd));
+}(this, (function (exports,operators,theme,common,core,router,util,ngZorroAntd) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -79,10 +79,10 @@
                 this.bodyEl = this.doc.querySelector('body');
                 this.menuSrv.openedByUrl(this.router.url);
                 this.genFloatingContainer();
-                this.change$ = ( /** @type {?} */(this.menuSrv.change.subscribe(function (res) {
+                this.change$ = this.menuSrv.change.subscribe(function (res) {
                     _this.list = res;
                     _this.cd.detectChanges();
-                })));
+                });
                 this.installUnderPad();
             };
         /**
@@ -183,6 +183,7 @@
             function () {
                 /** @type {?} */
                 var allNode = this.floatingEl.querySelectorAll('.' + FLOATINGCLS);
+                // tslint:disable-next-line:prefer-for-of
                 for (var i = 0; i < allNode.length; i++) {
                     allNode[i].classList.remove(SHOWCLS);
                 }
@@ -330,9 +331,9 @@
                 var _this = this;
                 if (!this.autoCloseUnderPad)
                     return;
-                this.route$ = ( /** @type {?} */((this.router.events
+                this.route$ = this.router.events
                     .pipe(operators.filter(function (e) { return e instanceof router.NavigationEnd; }))
-                    .subscribe(function (s) { return _this.underPad(); }))));
+                    .subscribe(function (s) { return _this.underPad(); });
                 this.underPad();
             };
         /**

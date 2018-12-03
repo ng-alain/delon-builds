@@ -1,5 +1,5 @@
+import { NzDrawerOptions, NzDrawerService } from 'ng-zorro-antd';
 import { Observable } from 'rxjs';
-import { NzDrawerService, NzDrawerOptions } from 'ng-zorro-antd';
 export interface DrawerHelperOptions {
     /**
      * 大小；例如：lg、600，默认：`md`

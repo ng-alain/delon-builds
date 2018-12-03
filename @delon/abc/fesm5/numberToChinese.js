@@ -1,6 +1,6 @@
-import { __read } from 'tslib';
-import { Pipe, NgModule } from '@angular/core';
+import { __assign, __read } from 'tslib';
 import { CommonModule } from '@angular/common';
+import { Pipe, NgModule } from '@angular/core';
 
 /**
  * @fileoverview added by tsickle
@@ -20,10 +20,7 @@ import { CommonModule } from '@angular/common';
 function numberToChinese(value, rmb, options) {
     if (rmb === void 0) { rmb = true; }
     var _a;
-    options = Object.assign({
-        minusSymbol: '负',
-        validThrow: false,
-    }, options);
+    options = __assign({ minusSymbol: '负', validThrow: false }, options);
     if (typeof value === 'number')
         value = value.toString();
     if (!/^-?\d+(\.\d+)?$/.test(value) && options.validThrow)

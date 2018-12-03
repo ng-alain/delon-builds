@@ -4,13 +4,13 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('date-fns/format'), require('date-fns/add_seconds'), require('@angular/core'), require('@angular/common'), require('ngx-countdown')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/count-down', ['exports', 'date-fns/format', 'date-fns/add_seconds', '@angular/core', '@angular/common', 'ngx-countdown'], factory) :
-    (factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['count-down'] = {}),global.format,global.addSeconds,global.ng.core,global.ng.common,global.ngxCountDown));
-}(this, (function (exports,format,addSeconds,core,common,ngxCountdown) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('date-fns/add_seconds'), require('date-fns/format'), require('@angular/common'), require('@angular/core'), require('ngx-countdown')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/count-down', ['exports', 'date-fns/add_seconds', 'date-fns/format', '@angular/common', '@angular/core', 'ngx-countdown'], factory) :
+    (factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['count-down'] = {}),global.addSeconds,global.format,global.ng.common,global.ng.core,global.ngxCountDown));
+}(this, (function (exports,addSeconds,format,common,core,ngxCountdown) { 'use strict';
 
-    format = format && format.hasOwnProperty('default') ? format['default'] : format;
     addSeconds = addSeconds && addSeconds.hasOwnProperty('default') ? addSeconds['default'] : addSeconds;
+    format = format && format.hasOwnProperty('default') ? format['default'] : format;
 
     /**
      * @fileoverview added by tsickle

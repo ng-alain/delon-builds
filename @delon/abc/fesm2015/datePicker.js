@@ -1,7 +1,7 @@
 import { __decorate, __metadata } from 'tslib';
 import { InputBoolean } from '@delon/util';
-import { forwardRef, Component, Input, Output, EventEmitter, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { forwardRef, Component, EventEmitter, Input, Output, NgModule } from '@angular/core';
 import { NG_VALUE_ACCESSOR, FormsModule } from '@angular/forms';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 
@@ -9,6 +9,7 @@ import { NgZorroAntdModule } from 'ng-zorro-antd';
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
+// tslint:disable:no-any
 class DateRangePickerConfig {
     constructor() {
         this.nzFormat = 'yyyy-MM-dd';

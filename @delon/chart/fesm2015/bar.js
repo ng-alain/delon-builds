@@ -1,7 +1,7 @@
 import { fromEvent } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
-import { Component, Input, HostBinding, ViewChild, ElementRef, NgZone, TemplateRef, ChangeDetectionStrategy, ChangeDetectorRef, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, HostBinding, Input, NgZone, TemplateRef, ViewChild, NgModule } from '@angular/core';
 import { toBoolean, toNumber, DelonUtilModule } from '@delon/util';
 
 /**

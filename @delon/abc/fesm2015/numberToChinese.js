@@ -1,5 +1,5 @@
-import { Pipe, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Pipe, NgModule } from '@angular/core';
 
 /**
  * @fileoverview added by tsickle
@@ -17,10 +17,7 @@ import { CommonModule } from '@angular/common';
  * @return {?}
  */
 function numberToChinese(value, rmb = true, options) {
-    options = Object.assign({
-        minusSymbol: '负',
-        validThrow: false,
-    }, options);
+    options = Object.assign({ minusSymbol: '负', validThrow: false }, options);
     if (typeof value === 'number')
         value = value.toString();
     if (!/^-?\d+(\.\d+)?$/.test(value) && options.validThrow)

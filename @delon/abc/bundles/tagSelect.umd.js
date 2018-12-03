@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/common'), require('ng-zorro-antd'), require('@delon/theme'), require('@delon/util')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/tag-select', ['exports', '@angular/core', '@angular/common', 'ng-zorro-antd', '@delon/theme', '@delon/util'], factory) :
-    (factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['tag-select'] = {}),global.ng.core,global.ng.common,global.ngZorroAntd,global.delon.theme,global.delon.util));
-}(this, (function (exports,core,common,ngZorroAntd,theme,util) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common'), require('@angular/core'), require('@delon/theme'), require('@delon/util'), require('ng-zorro-antd')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/tag-select', ['exports', '@angular/common', '@angular/core', '@delon/theme', '@delon/util', 'ng-zorro-antd'], factory) :
+    (factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['tag-select'] = {}),global.ng.common,global.ng.core,global.delon.theme,global.delon.util,global.ngZorroAntd));
+}(this, (function (exports,common,core,theme,util,ngZorroAntd) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -75,6 +75,7 @@
         function TagSelectComponent(i18n, cdr) {
             this.i18n = i18n;
             this.cdr = cdr;
+            // tslint:disable-next-line:no-any
             this.locale = {};
             /**
              * 是否启用 `展开与收进`

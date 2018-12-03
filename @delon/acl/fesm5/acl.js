@@ -1,9 +1,9 @@
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable, of } from 'rxjs';
+import { BehaviorSubject, of, Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { __spread, __values } from 'tslib';
-import { Injectable, Directive, Input, ElementRef, Renderer2, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Injectable, Directive, ElementRef, Input, Renderer2, NgModule } from '@angular/core';
 
 /**
  * @fileoverview added by tsickle
@@ -335,10 +335,14 @@ var ACLService = /** @class */ (function () {
                 return t.role.some(function (v) { return _this.roles.includes(v); });
         }
         if (t.ability) {
-            if (t.mode === 'allOf')
+            if (t.mode === 'allOf') {
+                // tslint:disable-next-line:no-any
                 return ((/** @type {?} */ (t.ability))).every(function (v) { return _this.abilities.includes(v); });
-            else
+            }
+            else {
+                // tslint:disable-next-line:no-any
                 return ((/** @type {?} */ (t.ability))).some(function (v) { return _this.abilities.includes(v); });
+            }
         }
         return false;
     };
@@ -394,7 +398,7 @@ var ACLDirective = /** @class */ (function () {
         this.el = el;
         this.renderer = renderer;
         this.srv = srv;
-        this.change$ = (/** @type {?} */ (this.srv.change.subscribe(function () { return _this.set(_this._value); })));
+        this.change$ = this.srv.change.subscribe(function () { return _this.set(_this._value); });
     }
     Object.defineProperty(ACLDirective.prototype, "acl", {
         set: /**

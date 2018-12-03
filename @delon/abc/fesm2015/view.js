@@ -1,9 +1,9 @@
 import { __decorate, __metadata } from 'tslib';
 import { ResponsiveService } from '@delon/theme';
-import { updateHostClass, InputNumber, isEmpty, InputBoolean } from '@delon/util';
-import { Component, Input, ElementRef, Renderer2, TemplateRef, ChangeDetectionStrategy, Host, Optional, ViewChild, HostBinding, NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { ObserversModule } from '@angular/cdk/observers';
+import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component, ElementRef, Input, Renderer2, Host, Optional, HostBinding, ViewChild, NgModule } from '@angular/core';
+import { updateHostClass, InputNumber, isEmpty, InputBoolean, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
@@ -49,23 +49,8 @@ class SVContainerComponent {
      */
     constructor(el, ren, cog) {
         this.ren = ren;
-        //#region fields
-        this._title = '';
         this.el = el.nativeElement;
         Object.assign(this, cog);
-    }
-    /**
-     * @param {?} value
-     * @return {?}
-     */
-    set title(value) {
-        if (value instanceof TemplateRef) {
-            this._title = null;
-            this._titleTpl = value;
-        }
-        else {
-            this._title = value;
-        }
     }
     /**
      * @return {?}
@@ -95,7 +80,7 @@ class SVContainerComponent {
 SVContainerComponent.decorators = [
     { type: Component, args: [{
                 selector: 'sv-container, [sv-container]',
-                template: "<div class=\"ant-row\" [ngStyle]=\"{'margin-left.px': -(gutter / 2), 'margin-right.px': -(gutter / 2)}\">\n  <sv-title *ngIf=\"_title || _titleTpl\">\n    <ng-container *ngIf=\"_title; else _titleTpl\">{{_title}}</ng-container>\n  </sv-title>\n  <ng-content></ng-content>\n</div>\n",
+                template: "<div class=\"ant-row\" [ngStyle]=\"{'margin-left.px': -(gutter / 2), 'margin-right.px': -(gutter / 2)}\">\n  <sv-title *ngIf=\"title\">\n    <ng-container *stringTemplateOutlet=\"title\">{{title}}</ng-container>\n  </sv-title>\n  <ng-content></ng-content>\n</div>",
                 changeDetection: ChangeDetectionStrategy.OnPush
             }] }
 ];
@@ -196,25 +181,10 @@ class SVComponent {
         this.rep = rep;
         this.ren = ren;
         this.clsMap = [];
-        //#region fields
-        this._label = '';
         if (parent == null) {
             throw new Error(`[sv] must include 'sv-container' component`);
         }
         this.el = el.nativeElement;
-    }
-    /**
-     * @param {?} value
-     * @return {?}
-     */
-    set label(value) {
-        if (value instanceof TemplateRef) {
-            this._label = null;
-            this._labelTpl = value;
-        }
-        else {
-            this._label = value;
-        }
     }
     //#endregion
     /**
@@ -281,7 +251,7 @@ class SVComponent {
 SVComponent.decorators = [
     { type: Component, args: [{
                 selector: 'sv, [sv]',
-                template: "<div class=\"sv__label\" [class.sv__label-empty]=\"!_label && !_labelTpl\"\n  [style.width.px]=\"parent.labelWidth\">\n  <ng-container *ngIf=\"_label; else _labelTpl\">{{_label}}</ng-container>\n</div>\n<div class=\"sv__detail\" (cdkObserveContent)=\"checkContent()\" #conEl>\n  <ng-content></ng-content>\n</div>\n",
+                template: "<div class=\"sv__label\" [class.sv__label-empty]=\"!label\" [style.width.px]=\"parent.labelWidth\">\n  <ng-container *stringTemplateOutlet=\"label\">{{label}}</ng-container>\n</div>\n<div class=\"sv__detail\" (cdkObserveContent)=\"checkContent()\" #conEl>\n  <ng-content></ng-content>\n</div>",
                 changeDetection: ChangeDetectionStrategy.OnPush
             }] }
 ];
@@ -326,7 +296,7 @@ class SVModule {
 }
 SVModule.decorators = [
     { type: NgModule, args: [{
-                imports: [CommonModule, ObserversModule],
+                imports: [CommonModule, ObserversModule, DelonUtilModule],
                 declarations: [...COMPONENTS],
                 exports: [...COMPONENTS],
             },] }

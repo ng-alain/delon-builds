@@ -1,13 +1,13 @@
 import { __decorate, __metadata } from 'tslib';
 import { merge } from 'rxjs';
 import { filter } from 'rxjs/operators';
-import { MenuService, ALAIN_I18N_TOKEN, TitleService, SettingsService } from '@delon/theme';
 import { ReuseTabService } from '@delon/abc/reuse-tab';
-import { Component, Input, TemplateRef, Inject, Optional, ViewChild, Renderer2, ChangeDetectionStrategy, ChangeDetectorRef, NgModule } from '@angular/core';
+import { ALAIN_I18N_TOKEN, MenuService, SettingsService, TitleService } from '@delon/theme';
 import { CommonModule } from '@angular/common';
-import { Router, NavigationEnd, RouterModule } from '@angular/router';
-import { NgZorroAntdModule } from 'ng-zorro-antd';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, Input, Optional, Renderer2, TemplateRef, ViewChild, NgModule } from '@angular/core';
+import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { isEmpty, InputBoolean, InputNumber, DelonUtilModule } from '@delon/util';
+import { NgZorroAntdModule } from 'ng-zorro-antd';
 
 /**
  * @fileoverview added by tsickle
@@ -77,13 +77,14 @@ class PageHeaderComponent {
         this.reuseSrv = reuseSrv;
         this.cdr = cdr;
         this.inited = false;
+        this.paths = [];
         this.loading = false;
         this.wide = false;
-        this.paths = [];
         Object.assign(this, cog);
         this.set$ = settings.notify
             .pipe(filter(w => this.affix && w.type === 'layout' && w.name === 'collapsed'))
             .subscribe(() => this.affix.updatePosition({}));
+        // tslint:disable-next-line:no-any
         /** @type {?} */
         const data$ = [
             this.router.events.pipe(filter((event) => event instanceof NavigationEnd)),
@@ -151,10 +152,7 @@ class PageHeaderComponent {
         // add home
         if ((/** @type {?} */ (this)).home) {
             paths.splice(0, 0, {
-                title: ((/** @type {?} */ (this)).homeI18n &&
-                    (/** @type {?} */ (this)).i18nSrv &&
-                    (/** @type {?} */ (this)).i18nSrv.fanyi((/** @type {?} */ (this)).homeI18n)) ||
-                    (/** @type {?} */ (this)).home,
+                title: ((/** @type {?} */ (this)).homeI18n && (/** @type {?} */ (this)).i18nSrv && (/** @type {?} */ (this)).i18nSrv.fanyi((/** @type {?} */ (this)).homeI18n)) || (/** @type {?} */ (this)).home,
                 link: [(/** @type {?} */ (this)).homeLink],
             });
         }

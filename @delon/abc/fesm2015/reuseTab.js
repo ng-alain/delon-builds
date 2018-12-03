@@ -1,14 +1,14 @@
 import { ComponentPortal } from '@angular/cdk/portal';
 import { __decorate, __metadata } from 'tslib';
-import { filter, debounceTime } from 'rxjs/operators';
-import { InputNumber, InputBoolean } from '@delon/util';
-import { Subscription, Subject, BehaviorSubject, combineLatest } from 'rxjs';
-import { Component, Input, EventEmitter, Output, HostListener, Injectable, ElementRef, Directive, Injector, NgModule, ChangeDetectionStrategy, ChangeDetectorRef, Renderer2, Optional, Inject, defineInjectable, inject, INJECTOR } from '@angular/core';
+import { InputBoolean, InputNumber } from '@delon/util';
+import { debounceTime, filter } from 'rxjs/operators';
+import { Subject, Subscription, BehaviorSubject, combineLatest } from 'rxjs';
+import { ConnectionPositionPair, Overlay, OverlayModule } from '@angular/cdk/overlay';
 import { CommonModule } from '@angular/common';
+import { Component, EventEmitter, HostListener, Input, Output, ElementRef, Injectable, Directive, Injector, ChangeDetectionStrategy, ChangeDetectorRef, Renderer2, Optional, Inject, defineInjectable, inject, INJECTOR, NgModule } from '@angular/core';
 import { ActivatedRoute, Router, NavigationEnd, RouterModule } from '@angular/router';
-import { Overlay, ConnectionPositionPair, OverlayModule } from '@angular/cdk/overlay';
-import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { DelonLocaleService, MenuService, ALAIN_I18N_TOKEN, DelonLocaleModule } from '@delon/theme';
+import { NgZorroAntdModule } from 'ng-zorro-antd';
 
 /**
  * @fileoverview added by tsickle
@@ -711,11 +711,13 @@ class ReuseTabService {
      * @param {?=} data
      * @return {?}
      */
+    // tslint:disable-next-line:no-any
     refresh(data) {
         this._cachedChange.next({ active: 'refresh', data });
     }
     // #endregion
     // #region privates
+    // tslint:disable-next-line:no-any
     /**
      * @param {?} _handle
      * @return {?}
@@ -745,6 +747,7 @@ class ReuseTabService {
             return null;
         return menus.pop();
     }
+    // tslint:disable-next-line:no-any
     /**
      * @param {?} method
      * @param {?} url
@@ -781,6 +784,7 @@ class ReuseTabService {
      * @param {?} _handle
      * @return {?}
      */
+    // tslint:disable-next-line:no-any
     store(_snapshot, _handle) {
         /** @type {?} */
         const url = this.getUrl(_snapshot);
@@ -914,34 +918,16 @@ class ReuseTabComponent {
         this.list = [];
         this.pos = 0;
         // #region fields
-        /**
-         * 设置匹配模式
-         */
         this.mode = ReuseTabMatchMode.Menu;
-        /**
-         * 是否Debug模式
-         */
         this.debug = false;
-        /**
-         * 允许关闭
-         */
         this.allowClose = true;
-        /**
-         * 总是显示当前页
-         */
         this.showCurrent = true;
-        /**
-         * 切换时回调
-         */
         this.change = new EventEmitter();
-        /**
-         * 关闭回调
-         */
         this.close = new EventEmitter();
         this.el = el.nativeElement;
         /** @type {?} */
         const route$ = this.router.events.pipe(filter(evt => evt instanceof NavigationEnd));
-        this.sub$ = combineLatest(this.srv.change, route$).subscribe(([res, e]) => this.genList((/** @type {?} */ (res))));
+        this.sub$ = combineLatest(this.srv.change, route$).subscribe(([res, e]) => this.genList(res));
         if (this.i18nSrv) {
             this.i18n$ = this.i18nSrv.change
                 .pipe(debounceTime(100))
@@ -989,11 +975,7 @@ class ReuseTabComponent {
             // jump directly when the current exists in the list
             // or create a new current item and jump
             if (idx !== -1 || (isClosed && notify.url === url)) {
-                this.pos = isClosed
-                    ? idx >= beforeClosePos
-                        ? this.pos - 1
-                        : this.pos
-                    : idx;
+                this.pos = isClosed ? idx >= beforeClosePos ? this.pos - 1 : this.pos : idx;
             }
             else {
                 /** @type {?} */

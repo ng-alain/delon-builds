@@ -4,10 +4,80 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/portal'), require('rxjs/operators'), require('@delon/util'), require('rxjs'), require('@angular/core'), require('@angular/common'), require('@angular/router'), require('@angular/cdk/overlay'), require('ng-zorro-antd'), require('@delon/theme')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/reuse-tab', ['exports', '@angular/cdk/portal', 'rxjs/operators', '@delon/util', 'rxjs', '@angular/core', '@angular/common', '@angular/router', '@angular/cdk/overlay', 'ng-zorro-antd', '@delon/theme'], factory) :
-    (factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['reuse-tab'] = {}),global.ng.cdk.portal,global.rxjs.operators,global.delon.util,global.rxjs,global.ng.core,global.ng.common,global.ng.router,global.ng.cdk.overlay,global.ngZorro.antd,global.delon.theme));
-}(this, (function (exports,portal,operators,util,rxjs,i0,common,router,overlay,ngZorroAntd,i1) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/portal'), require('@delon/util'), require('rxjs/operators'), require('rxjs'), require('@angular/cdk/overlay'), require('@angular/common'), require('@angular/core'), require('@angular/router'), require('@delon/theme'), require('ng-zorro-antd')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/reuse-tab', ['exports', '@angular/cdk/portal', '@delon/util', 'rxjs/operators', 'rxjs', '@angular/cdk/overlay', '@angular/common', '@angular/core', '@angular/router', '@delon/theme', 'ng-zorro-antd'], factory) :
+    (factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['reuse-tab'] = {}),global.ng.cdk.portal,global.delon.util,global.rxjs.operators,global.rxjs,global.ng.cdk.overlay,global.ng.common,global.ng.core,global.ng.router,global.delon.theme,global.ngZorro.antd));
+}(this, (function (exports,portal,util,operators,rxjs,overlay,common,i0,router,i1,ngZorroAntd) { 'use strict';
+
+    /*! *****************************************************************************
+    Copyright (c) Microsoft Corporation. All rights reserved.
+    Licensed under the Apache License, Version 2.0 (the "License"); you may not use
+    this file except in compliance with the License. You may obtain a copy of the
+    License at http://www.apache.org/licenses/LICENSE-2.0
+
+    THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+    KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
+    WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
+    MERCHANTABLITY OR NON-INFRINGEMENT.
+
+    See the Apache Version 2.0 License for specific language governing permissions
+    and limitations under the License.
+    ***************************************************************************** */
+    var __assign = function () {
+        __assign = Object.assign || function __assign(t) {
+            for (var s, i = 1, n = arguments.length; i < n; i++) {
+                s = arguments[i];
+                for (var p in s)
+                    if (Object.prototype.hasOwnProperty.call(s, p))
+                        t[p] = s[p];
+            }
+            return t;
+        };
+        return __assign.apply(this, arguments);
+    };
+    function __decorate(decorators, target, key, desc) {
+        var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+        if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
+            r = Reflect.decorate(decorators, target, key, desc);
+        else
+            for (var i = decorators.length - 1; i >= 0; i--)
+                if (d = decorators[i])
+                    r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+        return c > 3 && r && Object.defineProperty(target, key, r), r;
+    }
+    function __metadata(metadataKey, metadataValue) {
+        if (typeof Reflect === "object" && typeof Reflect.metadata === "function")
+            return Reflect.metadata(metadataKey, metadataValue);
+    }
+    function __read(o, n) {
+        var m = typeof Symbol === "function" && o[Symbol.iterator];
+        if (!m)
+            return o;
+        var i = m.call(o), r, ar = [], e;
+        try {
+            while ((n === void 0 || n-- > 0) && !(r = i.next()).done)
+                ar.push(r.value);
+        }
+        catch (error) {
+            e = { error: error };
+        }
+        finally {
+            try {
+                if (r && !r.done && (m = i["return"]))
+                    m.call(i);
+            }
+            finally {
+                if (e)
+                    throw e.error;
+            }
+        }
+        return ar;
+    }
+    function __spread() {
+        for (var ar = [], i = 0; i < arguments.length; i++)
+            ar = ar.concat(__read(arguments[i]));
+        return ar;
+    }
 
     /**
      * @fileoverview added by tsickle
@@ -28,7 +98,7 @@
              * @param {?} value
              * @return {?}
              */ function (value) {
-                this._i18n = Object.assign({}, this.i18nSrv.getData('reuseTab'), value);
+                this._i18n = __assign({}, this.i18nSrv.getData('reuseTab'), value);
             },
             enumerable: true,
             configurable: true
@@ -122,76 +192,6 @@
         };
         return ReuseTabContextMenuComponent;
     }());
-
-    /*! *****************************************************************************
-    Copyright (c) Microsoft Corporation. All rights reserved.
-    Licensed under the Apache License, Version 2.0 (the "License"); you may not use
-    this file except in compliance with the License. You may obtain a copy of the
-    License at http://www.apache.org/licenses/LICENSE-2.0
-
-    THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-    KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
-    WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
-    MERCHANTABLITY OR NON-INFRINGEMENT.
-
-    See the Apache Version 2.0 License for specific language governing permissions
-    and limitations under the License.
-    ***************************************************************************** */
-    var __assign = function () {
-        __assign = Object.assign || function __assign(t) {
-            for (var s, i = 1, n = arguments.length; i < n; i++) {
-                s = arguments[i];
-                for (var p in s)
-                    if (Object.prototype.hasOwnProperty.call(s, p))
-                        t[p] = s[p];
-            }
-            return t;
-        };
-        return __assign.apply(this, arguments);
-    };
-    function __decorate(decorators, target, key, desc) {
-        var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-        if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
-            r = Reflect.decorate(decorators, target, key, desc);
-        else
-            for (var i = decorators.length - 1; i >= 0; i--)
-                if (d = decorators[i])
-                    r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-        return c > 3 && r && Object.defineProperty(target, key, r), r;
-    }
-    function __metadata(metadataKey, metadataValue) {
-        if (typeof Reflect === "object" && typeof Reflect.metadata === "function")
-            return Reflect.metadata(metadataKey, metadataValue);
-    }
-    function __read(o, n) {
-        var m = typeof Symbol === "function" && o[Symbol.iterator];
-        if (!m)
-            return o;
-        var i = m.call(o), r, ar = [], e;
-        try {
-            while ((n === void 0 || n-- > 0) && !(r = i.next()).done)
-                ar.push(r.value);
-        }
-        catch (error) {
-            e = { error: error };
-        }
-        finally {
-            try {
-                if (r && !r.done && (m = i["return"]))
-                    m.call(i);
-            }
-            finally {
-                if (e)
-                    throw e.error;
-            }
-        }
-        return ar;
-    }
-    function __spread() {
-        for (var ar = [], i = 0; i < arguments.length; i++)
-            ar = ar.concat(__read(arguments[i]));
-        return ar;
-    }
 
     /**
      * @fileoverview added by tsickle
@@ -1044,23 +1044,28 @@
         /**
          * 刷新，触发一个 refresh 类型事件
          */
+        // tslint:disable-next-line:no-any
         /**
          * 刷新，触发一个 refresh 类型事件
          * @param {?=} data
          * @return {?}
          */
+        // tslint:disable-next-line:no-any
         ReuseTabService.prototype.refresh = /**
          * 刷新，触发一个 refresh 类型事件
          * @param {?=} data
          * @return {?}
          */
+            // tslint:disable-next-line:no-any
             function (data) {
                 this._cachedChange.next({ active: 'refresh', data: data });
             };
         // #endregion
         // #region privates
+        // tslint:disable-next-line:no-any
         // #endregion
         // #region privates
+        // tslint:disable-next-line:no-any
         /**
          * @param {?} _handle
          * @return {?}
@@ -1068,6 +1073,7 @@
         ReuseTabService.prototype.destroy =
             // #endregion
             // #region privates
+            // tslint:disable-next-line:no-any
             /**
              * @param {?} _handle
              * @return {?}
@@ -1109,18 +1115,22 @@
                     return null;
                 return menus.pop();
             };
+        // tslint:disable-next-line:no-any
+        // tslint:disable-next-line:no-any
         /**
          * @param {?} method
          * @param {?} url
          * @param {?} comp
          * @return {?}
          */
-        ReuseTabService.prototype.runHook = /**
-         * @param {?} method
-         * @param {?} url
-         * @param {?} comp
-         * @return {?}
-         */
+        ReuseTabService.prototype.runHook =
+            // tslint:disable-next-line:no-any
+            /**
+             * @param {?} method
+             * @param {?} url
+             * @param {?} comp
+             * @return {?}
+             */
             function (method, url, comp) {
                 if (comp.instance && typeof comp.instance[method] === 'function')
                     comp.instance[method]();
@@ -1160,18 +1170,21 @@
         /**
          * 存储
          */
+        // tslint:disable-next-line:no-any
         /**
          * 存储
          * @param {?} _snapshot
          * @param {?} _handle
          * @return {?}
          */
+        // tslint:disable-next-line:no-any
         ReuseTabService.prototype.store = /**
          * 存储
          * @param {?} _snapshot
          * @param {?} _handle
          * @return {?}
          */
+            // tslint:disable-next-line:no-any
             function (_snapshot, _handle) {
                 /** @type {?} */
                 var url = this.getUrl(_snapshot);
@@ -1328,36 +1341,18 @@
             this.list = [];
             this.pos = 0;
             // #region fields
-            /**
-             * 设置匹配模式
-             */
             this.mode = ReuseTabMatchMode.Menu;
-            /**
-             * 是否Debug模式
-             */
             this.debug = false;
-            /**
-             * 允许关闭
-             */
             this.allowClose = true;
-            /**
-             * 总是显示当前页
-             */
             this.showCurrent = true;
-            /**
-             * 切换时回调
-             */
             this.change = new i0.EventEmitter();
-            /**
-             * 关闭回调
-             */
             this.close = new i0.EventEmitter();
             this.el = el.nativeElement;
             /** @type {?} */
             var route$ = this.router.events.pipe(operators.filter(function (evt) { return evt instanceof router.NavigationEnd; }));
             this.sub$ = rxjs.combineLatest(this.srv.change, route$).subscribe(function (_a) {
                 var _b = __read(_a, 2), res = _b[0], e = _b[1];
-                return _this.genList(( /** @type {?} */(res)));
+                return _this.genList(res);
             });
             if (this.i18nSrv) {
                 this.i18n$ = this.i18nSrv.change
@@ -1415,11 +1410,7 @@
                     // jump directly when the current exists in the list
                     // or create a new current item and jump
                     if (idx !== -1 || (isClosed && notify.url === url_1)) {
-                        this.pos = isClosed
-                            ? idx >= beforeClosePos
-                                ? this.pos - 1
-                                : this.pos
-                            : idx;
+                        this.pos = isClosed ? idx >= beforeClosePos ? this.pos - 1 : this.pos : idx;
                     }
                     else {
                         /** @type {?} */

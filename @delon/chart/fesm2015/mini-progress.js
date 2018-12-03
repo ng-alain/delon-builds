@@ -1,8 +1,9 @@
-import { Component, Input, NgModule } from '@angular/core';
+import { __decorate, __metadata } from 'tslib';
 import { CommonModule } from '@angular/common';
-import { NgZorroAntdModule } from 'ng-zorro-antd';
-import { toNumber, DelonUtilModule } from '@delon/util';
+import { Component, Input, NgModule } from '@angular/core';
 import { DelonLocaleService, DelonLocaleModule } from '@delon/theme';
+import { toNumber, InputNumber, DelonUtilModule } from '@delon/util';
+import { NgZorroAntdModule } from 'ng-zorro-antd';
 
 /**
  * @fileoverview added by tsickle
@@ -22,6 +23,7 @@ class G2ProgressComponent {
     get target() {
         return this._target;
     }
+    // tslint:disable-next-line:no-any
     /**
      * @param {?} value
      * @return {?}
@@ -32,22 +34,10 @@ class G2ProgressComponent {
     /**
      * @return {?}
      */
-    get strokeWidth() {
-        return this._strokeWidth;
-    }
-    /**
-     * @param {?} value
-     * @return {?}
-     */
-    set strokeWidth(value) {
-        this._strokeWidth = toNumber(value);
-    }
-    /**
-     * @return {?}
-     */
     get percent() {
         return this._percent;
     }
+    // tslint:disable-next-line:no-any
     /**
      * @param {?} value
      * @return {?}
@@ -73,6 +63,10 @@ G2ProgressComponent.propDecorators = {
     strokeWidth: [{ type: Input }],
     percent: [{ type: Input }]
 };
+__decorate([
+    InputNumber(),
+    __metadata("design:type", Number)
+], G2ProgressComponent.prototype, "strokeWidth", void 0);
 
 /**
  * @fileoverview added by tsickle

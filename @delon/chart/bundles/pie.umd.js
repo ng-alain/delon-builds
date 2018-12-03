@@ -4,10 +4,68 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('rxjs'), require('rxjs/operators'), require('@angular/core'), require('@angular/common'), require('ng-zorro-antd'), require('@delon/util')) :
-    typeof define === 'function' && define.amd ? define('@delon/chart/pie', ['exports', 'rxjs', 'rxjs/operators', '@angular/core', '@angular/common', 'ng-zorro-antd', '@delon/util'], factory) :
-    (factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.pie = {}),global.rxjs,global.rxjs.operators,global.ng.core,global.ng.common,global.ngZorro.antd,global.delon.util));
-}(this, (function (exports,rxjs,operators,core,common,ngZorroAntd,util) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('rxjs'), require('rxjs/operators'), require('@angular/common'), require('@angular/core'), require('@delon/util'), require('ng-zorro-antd')) :
+    typeof define === 'function' && define.amd ? define('@delon/chart/pie', ['exports', 'rxjs', 'rxjs/operators', '@angular/common', '@angular/core', '@delon/util', 'ng-zorro-antd'], factory) :
+    (factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.pie = {}),global.rxjs,global.rxjs.operators,global.ng.common,global.ng.core,global.delon.util,global.ngZorro.antd));
+}(this, (function (exports,rxjs,operators,common,core,util,ngZorroAntd) { 'use strict';
+
+    /*! *****************************************************************************
+    Copyright (c) Microsoft Corporation. All rights reserved.
+    Licensed under the Apache License, Version 2.0 (the "License"); you may not use
+    this file except in compliance with the License. You may obtain a copy of the
+    License at http://www.apache.org/licenses/LICENSE-2.0
+
+    THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+    KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
+    WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
+    MERCHANTABLITY OR NON-INFRINGEMENT.
+
+    See the Apache Version 2.0 License for specific language governing permissions
+    and limitations under the License.
+    ***************************************************************************** */
+    function __decorate(decorators, target, key, desc) {
+        var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+        if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
+            r = Reflect.decorate(decorators, target, key, desc);
+        else
+            for (var i = decorators.length - 1; i >= 0; i--)
+                if (d = decorators[i])
+                    r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+        return c > 3 && r && Object.defineProperty(target, key, r), r;
+    }
+    function __metadata(metadataKey, metadataValue) {
+        if (typeof Reflect === "object" && typeof Reflect.metadata === "function")
+            return Reflect.metadata(metadataKey, metadataValue);
+    }
+    function __read(o, n) {
+        var m = typeof Symbol === "function" && o[Symbol.iterator];
+        if (!m)
+            return o;
+        var i = m.call(o), r, ar = [], e;
+        try {
+            while ((n === void 0 || n-- > 0) && !(r = i.next()).done)
+                ar.push(r.value);
+        }
+        catch (error) {
+            e = { error: error };
+        }
+        finally {
+            try {
+                if (r && !r.done && (m = i["return"]))
+                    m.call(i);
+            }
+            finally {
+                if (e)
+                    throw e.error;
+            }
+        }
+        return ar;
+    }
+    function __spread() {
+        for (var ar = [], i = 0; i < arguments.length; i++)
+            ar = ar.concat(__read(arguments[i]));
+        return ar;
+    }
 
     /**
      * @fileoverview added by tsickle
@@ -23,131 +81,18 @@
             this.scroll$ = null;
             this.initFlag = false;
             this.legendData = [];
-            this._animate = true;
+            // #region fields
+            this.animate = true;
             this.color = 'rgba(24, 144, 255, 0.85)';
-            this._height = 0;
-            this._hasLegend = false;
-            this._legendBlock = false;
+            this.height = 0;
+            this.hasLegend = false;
+            this.legendBlock = false;
             this.inner = 0.75;
             this.padding = [12, 0, 12, 0];
-            this._tooltip = true;
-            this._lineWidth = 0;
-            this._select = true;
+            this.tooltip = true;
+            this.lineWidth = 0;
+            this.select = true;
         }
-        Object.defineProperty(G2PieComponent.prototype, "animate", {
-            // #region fields
-            set: 
-            // #region fields
-            /**
-             * @param {?} value
-             * @return {?}
-             */
-            function (value) {
-                this._animate = util.toBoolean(value);
-            },
-            enumerable: true,
-            configurable: true
-        });
-        Object.defineProperty(G2PieComponent.prototype, "height", {
-            get: /**
-             * @return {?}
-             */ function () {
-                return this._height;
-            },
-            set: /**
-             * @param {?} value
-             * @return {?}
-             */ function (value) {
-                this._height = util.toNumber(value);
-            },
-            enumerable: true,
-            configurable: true
-        });
-        Object.defineProperty(G2PieComponent.prototype, "hasLegend", {
-            get: /**
-             * @return {?}
-             */ function () {
-                return this._hasLegend;
-            },
-            set: /**
-             * @param {?} value
-             * @return {?}
-             */ function (value) {
-                this._hasLegend = util.toBoolean(value);
-            },
-            enumerable: true,
-            configurable: true
-        });
-        Object.defineProperty(G2PieComponent.prototype, "legendBlock", {
-            set: /**
-             * @param {?} value
-             * @return {?}
-             */ function (value) {
-                this._legendBlock = util.toBoolean(value);
-            },
-            enumerable: true,
-            configurable: true
-        });
-        Object.defineProperty(G2PieComponent.prototype, "percent", {
-            get: /**
-             * @return {?}
-             */ function () {
-                return this._percent;
-            },
-            set: /**
-             * @param {?} value
-             * @return {?}
-             */ function (value) {
-                this._percent = util.toNumber(value);
-            },
-            enumerable: true,
-            configurable: true
-        });
-        Object.defineProperty(G2PieComponent.prototype, "tooltip", {
-            get: /**
-             * @return {?}
-             */ function () {
-                return this._tooltip;
-            },
-            set: /**
-             * @param {?} value
-             * @return {?}
-             */ function (value) {
-                this._tooltip = util.toBoolean(value);
-            },
-            enumerable: true,
-            configurable: true
-        });
-        Object.defineProperty(G2PieComponent.prototype, "lineWidth", {
-            get: /**
-             * @return {?}
-             */ function () {
-                return this._lineWidth;
-            },
-            set: /**
-             * @param {?} value
-             * @return {?}
-             */ function (value) {
-                this._lineWidth = util.toNumber(value);
-            },
-            enumerable: true,
-            configurable: true
-        });
-        Object.defineProperty(G2PieComponent.prototype, "select", {
-            get: /**
-             * @return {?}
-             */ function () {
-                return this._select;
-            },
-            set: /**
-             * @param {?} value
-             * @return {?}
-             */ function (value) {
-                this._select = util.toBoolean(value);
-            },
-            enumerable: true,
-            configurable: true
-        });
         /**
          * @return {?}
          */
@@ -158,7 +103,7 @@
                 util.updateHostClass(this.el.nativeElement, this.rend, {
                     'g2-pie': true,
                     'g2-pie__legend-has': this.hasLegend,
-                    'g2-pie__legend-block': this._legendBlock,
+                    'g2-pie__legend-block': this.legendBlock,
                     'g2-pie__mini': typeof this.percent !== 'undefined',
                 }, true);
             };
@@ -214,7 +159,7 @@
                     forceFit: true,
                     height: this.height,
                     padding: this.padding,
-                    animate: this._animate,
+                    animate: this.animate,
                 });
                 if (!this.tooltip) {
                     chart.tooltip(false);
@@ -374,52 +319,40 @@
             valueFormat: [{ type: core.Input }],
             colors: [{ type: core.Input }]
         };
+        __decorate([
+            util.InputBoolean(),
+            __metadata("design:type", Object)
+        ], G2PieComponent.prototype, "animate", void 0);
+        __decorate([
+            util.InputNumber(),
+            __metadata("design:type", Object)
+        ], G2PieComponent.prototype, "height", void 0);
+        __decorate([
+            util.InputBoolean(),
+            __metadata("design:type", Object)
+        ], G2PieComponent.prototype, "hasLegend", void 0);
+        __decorate([
+            util.InputBoolean(),
+            __metadata("design:type", Object)
+        ], G2PieComponent.prototype, "legendBlock", void 0);
+        __decorate([
+            util.InputNumber(),
+            __metadata("design:type", Number)
+        ], G2PieComponent.prototype, "percent", void 0);
+        __decorate([
+            util.InputBoolean(),
+            __metadata("design:type", Object)
+        ], G2PieComponent.prototype, "tooltip", void 0);
+        __decorate([
+            util.InputNumber(),
+            __metadata("design:type", Object)
+        ], G2PieComponent.prototype, "lineWidth", void 0);
+        __decorate([
+            util.InputBoolean(),
+            __metadata("design:type", Object)
+        ], G2PieComponent.prototype, "select", void 0);
         return G2PieComponent;
     }());
-
-    /*! *****************************************************************************
-    Copyright (c) Microsoft Corporation. All rights reserved.
-    Licensed under the Apache License, Version 2.0 (the "License"); you may not use
-    this file except in compliance with the License. You may obtain a copy of the
-    License at http://www.apache.org/licenses/LICENSE-2.0
-
-    THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-    KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
-    WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
-    MERCHANTABLITY OR NON-INFRINGEMENT.
-
-    See the Apache Version 2.0 License for specific language governing permissions
-    and limitations under the License.
-    ***************************************************************************** */
-    function __read(o, n) {
-        var m = typeof Symbol === "function" && o[Symbol.iterator];
-        if (!m)
-            return o;
-        var i = m.call(o), r, ar = [], e;
-        try {
-            while ((n === void 0 || n-- > 0) && !(r = i.next()).done)
-                ar.push(r.value);
-        }
-        catch (error) {
-            e = { error: error };
-        }
-        finally {
-            try {
-                if (r && !r.done && (m = i["return"]))
-                    m.call(i);
-            }
-            finally {
-                if (e)
-                    throw e.error;
-            }
-        }
-        return ar;
-    }
-    function __spread() {
-        for (var ar = [], i = 0; i < arguments.length; i++)
-            ar = ar.concat(__read(arguments[i]));
-        return ar;
-    }
 
     /**
      * @fileoverview added by tsickle

@@ -4,8 +4,8 @@ import { _HttpClient } from '@delon/theme';
 import { Router } from '@angular/router';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { share } from 'rxjs/operators';
-import { __values, __extends } from 'tslib';
-import { InjectionToken, Injectable, Inject, Injector, Optional, NgModule } from '@angular/core';
+import { __assign, __values, __extends } from 'tslib';
+import { InjectionToken, Inject, Injectable, Injector, Optional, NgModule } from '@angular/core';
 
 /**
  * @fileoverview added by tsickle
@@ -53,10 +53,7 @@ var SocialService = /** @class */ (function () {
         var _this = this;
         if (callback === void 0) { callback = '/'; }
         if (options === void 0) { options = {}; }
-        options = Object.assign({
-            type: 'window',
-            windowFeatures: 'location=yes,height=570,width=520,scrollbars=yes,status=yes',
-        }, options);
+        options = __assign({ type: 'window', windowFeatures: 'location=yes,height=570,width=520,scrollbars=yes,status=yes' }, options);
         localStorage.setItem(OPENTYPE, options.type);
         localStorage.setItem(HREFCALLBACK, callback);
         if (options.type === 'href') {
@@ -64,7 +61,7 @@ var SocialService = /** @class */ (function () {
             return;
         }
         this._win = window.open(url, '_blank', options.windowFeatures);
-        this._win$ = setInterval(function () {
+        this._winTime = setInterval(function () {
             if (_this._win && _this._win.closed) {
                 _this.ngOnDestroy();
                 /** @type {?} */
@@ -140,8 +137,8 @@ var SocialService = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        clearInterval(this._win$);
-        this._win$ = null;
+        clearInterval(this._winTime);
+        this._winTime = null;
     };
     SocialService.decorators = [
         { type: Injectable }
@@ -330,6 +327,7 @@ var DelonAuthConfig = /** @class */ (function () {
          *
          * - `Bearer ${token}`
          */
+        // tslint:disable-next-line:no-invalid-template-strings
         this.token_send_template = '${token}';
         /**
          * 发送token参数位置，默认：header
@@ -355,6 +353,7 @@ var DelonAuthConfig = /** @class */ (function () {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
+// tslint:disable-next-line:no-any
 /** @type {?} */
 var WINDOW = new InjectionToken('Window');
 
@@ -611,6 +610,7 @@ function b64decode(str) {
     str = String(str).replace(/=+$/, '');
     for (
     // initialize result and counters
+    // tslint:disable:no-any no-conditional-assignment binary-expression-operand-order
     var bc = 0, bs = void 0, buffer = void 0, idx = 0; 
     // get next character
     (buffer = str.charAt(idx++)); 
@@ -651,10 +651,12 @@ var JWTTokenModel = /** @class */ (function () {
         /**
          * 获取载荷信息
          */
+        // tslint:disable-next-line:no-any
         get: /**
          * 获取载荷信息
          * @return {?}
          */
+        // tslint:disable-next-line:no-any
         function () {
             /** @type {?} */
             var parts = (this.token || '').split('.');
@@ -850,12 +852,16 @@ var SimpleInterceptor = /** @class */ (function (_super) {
         this.model = (/** @type {?} */ (this.injector.get(DA_SERVICE_TOKEN).get()));
         return CheckSimple((/** @type {?} */ (this.model)));
     };
+    // tslint:disable-next-line:no-any
+    // tslint:disable-next-line:no-any
     /**
      * @param {?} req
      * @param {?} options
      * @return {?}
      */
-    SimpleInterceptor.prototype.setReq = /**
+    SimpleInterceptor.prototype.setReq = 
+    // tslint:disable-next-line:no-any
+    /**
      * @param {?} req
      * @param {?} options
      * @return {?}

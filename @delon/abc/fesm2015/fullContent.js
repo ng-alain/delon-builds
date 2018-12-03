@@ -1,9 +1,9 @@
 import { __decorate, __metadata } from 'tslib';
-import { Router, ActivationStart, ActivationEnd } from '@angular/router';
+import { ActivationEnd, ActivationStart, Router } from '@angular/router';
 import { BehaviorSubject, fromEvent } from 'rxjs';
 import { share, debounceTime, filter } from 'rxjs/operators';
-import { Injectable, Component, ElementRef, ChangeDetectionStrategy, ChangeDetectorRef, Input, Output, EventEmitter, Inject, HostBinding, Directive, HostListener, NgModule } from '@angular/core';
 import { DOCUMENT, CommonModule } from '@angular/common';
+import { Injectable, ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter, HostBinding, Inject, Input, Output, Directive, HostListener, NgModule } from '@angular/core';
 import { InputBoolean, InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
@@ -130,7 +130,7 @@ class FullContentComponent {
         // when router changed
         this.route$ = this.router.events
             .pipe(filter((e) => e instanceof ActivationStart || e instanceof ActivationEnd), debounceTime(200))
-            .subscribe(e => {
+            .subscribe(() => {
             if (!!this.doc.querySelector('#' + this.id)) {
                 this.bodyEl.classList.add(wrapCls);
                 this.updateCls();

@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/common'), require('@delon/util')) :
-    typeof define === 'function' && define.amd ? define('@delon/chart/gauge', ['exports', '@angular/core', '@angular/common', '@delon/util'], factory) :
-    (factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.gauge = {}),global.ng.core,global.ng.common,global.delon.util));
-}(this, (function (exports,core,common,util) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common'), require('@angular/core'), require('@delon/util')) :
+    typeof define === 'function' && define.amd ? define('@delon/chart/gauge', ['exports', '@angular/common', '@angular/core', '@delon/util'], factory) :
+    (factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.gauge = {}),global.ng.common,global.ng.core,global.delon.util));
+}(this, (function (exports,common,core,util) { 'use strict';
 
     /**
      * @fileoverview added by tsickle
@@ -91,7 +91,7 @@
                 // 绘制数字
                 this.chart.guide().html({
                     position: ['50%', '95%'],
-                    html: "\n      <div style=\"width: 300px;text-align: center;font-size: 12px!important;\">\n        <p style=\"font-size: 14px; color: rgba(0,0,0,0.43);margin: 0;\">" + this.title + "</p>\n        <p style=\"font-size: 24px;color: rgba(0,0,0,0.85);margin: 0;\">\n          " + data[0].value + "%\n        </p>\n      </div>"
+                    html: "\n      <div style=\"width: 300px;text-align: center;font-size: 12px!important;\">\n        <p style=\"font-size: 14px; color: rgba(0,0,0,0.43);margin: 0;\">" + this.title + "</p>\n        <p style=\"font-size: 24px;color: rgba(0,0,0,0.85);margin: 0;\">\n          " + data[0].value + "%\n        </p>\n      </div>",
                 });
                 this.chart.changeData(data);
             };
@@ -177,8 +177,8 @@
                 });
                 chart.source(data);
                 chart.coord('polar', {
-                    startAngle: -1.2 * Math.PI,
-                    endAngle: 0.2 * Math.PI,
+                    startAngle: Math.PI * -1.2,
+                    endAngle: Math.PI * 0.2,
                 });
                 chart.scale('value', {
                     min: 0,

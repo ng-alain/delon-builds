@@ -1,7 +1,7 @@
-import { __spread } from 'tslib';
-import { Component, Input, ViewChild, NgZone, TemplateRef, ChangeDetectionStrategy, ChangeDetectorRef, NgModule } from '@angular/core';
+import { __assign, __decorate, __metadata, __spread } from 'tslib';
 import { CommonModule } from '@angular/common';
-import { toNumber, DelonUtilModule } from '@delon/util';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, NgZone, TemplateRef, ViewChild, NgModule } from '@angular/core';
+import { InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
@@ -16,9 +16,9 @@ var G2TimelineComponent = /** @class */ (function () {
         this.colorMap = { y1: '#1890FF', y2: '#2FC25B' };
         this.mask = 'HH:mm';
         this.position = 'top';
-        this._height = 400;
+        this.height = 400;
         this.padding = [60, 20, 40, 40];
-        this._borderWidth = 2;
+        this.borderWidth = 2;
         this.initFlag = false;
     }
     Object.defineProperty(G2TimelineComponent.prototype, "title", {
@@ -35,34 +35,6 @@ var G2TimelineComponent = /** @class */ (function () {
                 this._title = value;
             }
             this.cd.detectChanges();
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(G2TimelineComponent.prototype, "height", {
-        get: /**
-         * @return {?}
-         */
-        function () {
-            return this._height;
-        },
-        set: /**
-         * @param {?} value
-         * @return {?}
-         */
-        function (value) {
-            this._height = toNumber(value);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(G2TimelineComponent.prototype, "borderWidth", {
-        set: /**
-         * @param {?} value
-         * @return {?}
-         */
-        function (value) {
-            this._borderWidth = toNumber(value);
         },
         enumerable: true,
         configurable: true
@@ -173,15 +145,15 @@ var G2TimelineComponent = /** @class */ (function () {
             .line()
             .position('x*y1')
             .color(this.colorMap.y1)
-            .size(this._borderWidth);
+            .size(this.borderWidth);
         chart
             .line()
             .position('x*y2')
             .color(this.colorMap.y2)
-            .size(this._borderWidth);
+            .size(this.borderWidth);
         chart.render();
         /** @type {?} */
-        var sliderPadding = Object.assign([], this.padding);
+        var sliderPadding = __assign({}, [], this.padding);
         sliderPadding[0] = 0;
         /** @type {?} */
         var slider = new Slider({
@@ -273,6 +245,14 @@ var G2TimelineComponent = /** @class */ (function () {
         node: [{ type: ViewChild, args: ['container',] }],
         sliderNode: [{ type: ViewChild, args: ['slider',] }]
     };
+    __decorate([
+        InputNumber(),
+        __metadata("design:type", Object)
+    ], G2TimelineComponent.prototype, "height", void 0);
+    __decorate([
+        InputNumber(),
+        __metadata("design:type", Object)
+    ], G2TimelineComponent.prototype, "borderWidth", void 0);
     return G2TimelineComponent;
 }());
 

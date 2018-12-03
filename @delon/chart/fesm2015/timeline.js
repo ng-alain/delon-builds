@@ -1,6 +1,7 @@
-import { Component, Input, ViewChild, NgZone, TemplateRef, ChangeDetectionStrategy, ChangeDetectorRef, NgModule } from '@angular/core';
+import { __decorate, __metadata } from 'tslib';
 import { CommonModule } from '@angular/common';
-import { toNumber, DelonUtilModule } from '@delon/util';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, NgZone, TemplateRef, ViewChild, NgModule } from '@angular/core';
+import { InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
@@ -19,9 +20,9 @@ class G2TimelineComponent {
         this.colorMap = { y1: '#1890FF', y2: '#2FC25B' };
         this.mask = 'HH:mm';
         this.position = 'top';
-        this._height = 400;
+        this.height = 400;
         this.padding = [60, 20, 40, 40];
-        this._borderWidth = 2;
+        this.borderWidth = 2;
         this.initFlag = false;
     }
     /**
@@ -37,26 +38,6 @@ class G2TimelineComponent {
             this._title = value;
         }
         this.cd.detectChanges();
-    }
-    /**
-     * @return {?}
-     */
-    get height() {
-        return this._height;
-    }
-    /**
-     * @param {?} value
-     * @return {?}
-     */
-    set height(value) {
-        this._height = toNumber(value);
-    }
-    /**
-     * @param {?} value
-     * @return {?}
-     */
-    set borderWidth(value) {
-        this._borderWidth = toNumber(value);
     }
     /**
      * @return {?}
@@ -154,15 +135,15 @@ class G2TimelineComponent {
             .line()
             .position('x*y1')
             .color(this.colorMap.y1)
-            .size(this._borderWidth);
+            .size(this.borderWidth);
         chart
             .line()
             .position('x*y2')
             .color(this.colorMap.y2)
-            .size(this._borderWidth);
+            .size(this.borderWidth);
         chart.render();
         /** @type {?} */
-        const sliderPadding = Object.assign([], this.padding);
+        const sliderPadding = Object.assign({}, [], this.padding);
         sliderPadding[0] = 0;
         /** @type {?} */
         const slider = new Slider({
@@ -245,6 +226,14 @@ G2TimelineComponent.propDecorators = {
     node: [{ type: ViewChild, args: ['container',] }],
     sliderNode: [{ type: ViewChild, args: ['slider',] }]
 };
+__decorate([
+    InputNumber(),
+    __metadata("design:type", Object)
+], G2TimelineComponent.prototype, "height", void 0);
+__decorate([
+    InputNumber(),
+    __metadata("design:type", Object)
+], G2TimelineComponent.prototype, "borderWidth", void 0);
 
 /**
  * @fileoverview added by tsickle

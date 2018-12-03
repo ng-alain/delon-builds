@@ -1,8 +1,8 @@
-import { __spread } from 'tslib';
-import { Component, Input, NgModule } from '@angular/core';
-import { NgZorroAntdModule } from 'ng-zorro-antd';
+import { __decorate, __metadata, __spread } from 'tslib';
 import { CommonModule } from '@angular/common';
-import { toBoolean, DelonUtilModule } from '@delon/util';
+import { Component, Input, NgModule } from '@angular/core';
+import { InputBoolean, DelonUtilModule } from '@delon/util';
+import { NgZorroAntdModule } from 'ng-zorro-antd';
 
 /**
  * @fileoverview added by tsickle
@@ -10,47 +10,15 @@ import { toBoolean, DelonUtilModule } from '@delon/util';
  */
 var TrendComponent = /** @class */ (function () {
     function TrendComponent() {
-        this._colorful = true;
-        this._reverseColor = false;
-    }
-    Object.defineProperty(TrendComponent.prototype, "colorful", {
-        /** 是否彩色标记 */
-        get: /**
+        /**
          * 是否彩色标记
-         * @return {?}
          */
-        function () {
-            return this._colorful;
-        },
-        set: /**
-         * @param {?} value
-         * @return {?}
-         */
-        function (value) {
-            this._colorful = toBoolean(value);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(TrendComponent.prototype, "reverseColor", {
-        /** 颜色反转 */
-        get: /**
+        this.colorful = true;
+        /**
          * 颜色反转
-         * @return {?}
          */
-        function () {
-            return this._reverseColor;
-        },
-        set: /**
-         * @param {?} value
-         * @return {?}
-         */
-        function (value) {
-            this._reverseColor = toBoolean(value);
-        },
-        enumerable: true,
-        configurable: true
-    });
+        this.reverseColor = false;
+    }
     TrendComponent.decorators = [
         { type: Component, args: [{
                     selector: 'trend',
@@ -67,6 +35,14 @@ var TrendComponent = /** @class */ (function () {
         colorful: [{ type: Input }],
         reverseColor: [{ type: Input }]
     };
+    __decorate([
+        InputBoolean(),
+        __metadata("design:type", Object)
+    ], TrendComponent.prototype, "colorful", void 0);
+    __decorate([
+        InputBoolean(),
+        __metadata("design:type", Object)
+    ], TrendComponent.prototype, "reverseColor", void 0);
     return TrendComponent;
 }());
 

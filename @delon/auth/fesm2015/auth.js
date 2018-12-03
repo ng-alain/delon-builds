@@ -4,7 +4,7 @@ import { _HttpClient } from '@delon/theme';
 import { Router } from '@angular/router';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { share } from 'rxjs/operators';
-import { InjectionToken, Injectable, Inject, Injector, Optional, NgModule } from '@angular/core';
+import { InjectionToken, Inject, Injectable, Injector, Optional, NgModule } from '@angular/core';
 
 /**
  * @fileoverview added by tsickle
@@ -40,10 +40,7 @@ class SocialService {
      * @return {?}
      */
     login(url, callback = '/', options = {}) {
-        options = Object.assign({
-            type: 'window',
-            windowFeatures: 'location=yes,height=570,width=520,scrollbars=yes,status=yes',
-        }, options);
+        options = Object.assign({ type: 'window', windowFeatures: 'location=yes,height=570,width=520,scrollbars=yes,status=yes' }, options);
         localStorage.setItem(OPENTYPE, options.type);
         localStorage.setItem(HREFCALLBACK, callback);
         if (options.type === 'href') {
@@ -51,7 +48,7 @@ class SocialService {
             return;
         }
         this._win = window.open(url, '_blank', options.windowFeatures);
-        this._win$ = setInterval(() => {
+        this._winTime = setInterval(() => {
             if (this._win && this._win.closed) {
                 this.ngOnDestroy();
                 /** @type {?} */
@@ -113,8 +110,8 @@ class SocialService {
      * @return {?}
      */
     ngOnDestroy() {
-        clearInterval(this._win$);
-        this._win$ = null;
+        clearInterval(this._winTime);
+        this._winTime = null;
     }
 }
 SocialService.decorators = [
@@ -256,6 +253,7 @@ class DelonAuthConfig {
          *
          * - `Bearer ${token}`
          */
+        // tslint:disable-next-line:no-invalid-template-strings
         this.token_send_template = '${token}';
         /**
          * 发送token参数位置，默认：header
@@ -280,6 +278,7 @@ class DelonAuthConfig {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
+// tslint:disable-next-line:no-any
 /** @type {?} */
 const WINDOW = new InjectionToken('Window');
 
@@ -502,6 +501,7 @@ function b64decode(str) {
     str = String(str).replace(/=+$/, '');
     for (
     // initialize result and counters
+    // tslint:disable:no-any no-conditional-assignment binary-expression-operand-order
     let bc = 0, bs, buffer, idx = 0; 
     // get next character
     (buffer = str.charAt(idx++)); 
@@ -540,6 +540,7 @@ class JWTTokenModel {
      * 获取载荷信息
      * @return {?}
      */
+    // tslint:disable-next-line:no-any
     get payload() {
         /** @type {?} */
         const parts = (this.token || '').split('.');
@@ -677,6 +678,7 @@ class SimpleInterceptor extends BaseInterceptor {
         this.model = (/** @type {?} */ (this.injector.get(DA_SERVICE_TOKEN).get()));
         return CheckSimple((/** @type {?} */ (this.model)));
     }
+    // tslint:disable-next-line:no-any
     /**
      * @param {?} req
      * @param {?} options
@@ -699,7 +701,7 @@ class SimpleInterceptor extends BaseInterceptor {
                 const body = req.body || {};
                 body[options.token_send_key] = token;
                 req = req.clone({
-                    body: body,
+                    body,
                 });
                 break;
             case 'url':

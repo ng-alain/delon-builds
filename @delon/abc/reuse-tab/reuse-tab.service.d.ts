@@ -1,7 +1,7 @@
-import { OnDestroy, Injector } from '@angular/core';
+import { Injector, OnDestroy } from '@angular/core';
 import { ActivatedRouteSnapshot } from '@angular/router';
-import { Observable } from 'rxjs';
 import { MenuService } from '@delon/theme';
+import { Observable } from 'rxjs';
 import { ReuseTabCached, ReuseTabMatchMode, ReuseTabNotify, ReuseTitle } from './reuse-tab.interfaces';
 /**
  * 路由复用类，提供复用所需要一些基本接口

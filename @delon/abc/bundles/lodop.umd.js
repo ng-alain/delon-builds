@@ -23,6 +23,18 @@
     See the Apache Version 2.0 License for specific language governing permissions
     and limitations under the License.
     ***************************************************************************** */
+    var __assign = function () {
+        __assign = Object.assign || function __assign(t) {
+            for (var s, i = 1, n = arguments.length; i < n; i++) {
+                s = arguments[i];
+                for (var p in s)
+                    if (Object.prototype.hasOwnProperty.call(s, p))
+                        t[p] = s[p];
+            }
+            return t;
+        };
+        return __assign.apply(this, arguments);
+    };
     function __read(o, n) {
         var m = typeof Symbol === "function" && o[Symbol.iterator];
         if (!m)
@@ -76,6 +88,7 @@
             this._lodop = null;
             this._init = new rxjs.Subject();
             this._events = new rxjs.Subject();
+            // tslint:disable-next-line:no-any
             this.printBuffer = [];
             this.cog = defCog;
         }
@@ -97,12 +110,7 @@
              * @param {?} value
              * @return {?}
              */ function (value) {
-                this._cog = Object.assign({
-                    url: 'https://localhost:8443/CLodopfuncs.js',
-                    name: 'CLODOP',
-                    companyName: '',
-                    checkMaxCount: 100,
-                }, this.defCog, value);
+                this._cog = __assign({ url: 'https://localhost:8443/CLodopfuncs.js', name: 'CLODOP', companyName: '', checkMaxCount: 100 }, this.defCog, value);
             },
             enumerable: true,
             configurable: true
@@ -272,12 +280,13 @@
                     /** @type {?} */
                     var fn = _this._lodop[res[1]];
                     if (fn) {
+                        // tslint:disable-next-line:no-any
                         /** @type {?} */
                         var arr = void 0;
                         try {
                             /** @type {?} */
                             var fakeFn = new Function("return [" + res[2] + "]");
-                            arr = ( /** @type {?} */(fakeFn()));
+                            arr = fakeFn();
                         }
                         catch (_a) { }
                         if (Array.isArray(arr) && contextObj) {
@@ -341,7 +350,7 @@
                     if (tid !== taskID)
                         return;
                     _this._lodop.On_Return = null;
-                    _this._events.next(Object.assign(( /** @type {?} */({
+                    _this._events.next(__assign({}, ( /** @type {?} */({
                         ok: value === true,
                         error: value === true ? null : value,
                     })), data));

@@ -1,4 +1,4 @@
-import { ElementRef, Renderer2, OnDestroy } from '@angular/core';
+import { ElementRef, OnDestroy, Renderer2 } from '@angular/core';
 import { ACLService } from './acl.service';
 import { ACLCanType } from './acl.type';
 export declare class ACLDirective implements OnDestroy {

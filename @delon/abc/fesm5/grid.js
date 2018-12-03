@@ -1,7 +1,7 @@
 import { ResponsiveService } from '@delon/theme';
 import { __decorate, __metadata, __spread } from 'tslib';
-import { Component, Input, HostBinding, ChangeDetectionStrategy, ElementRef, Renderer2, Host, Optional, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component, HostBinding, Input, ElementRef, Host, Optional, Renderer2, NgModule } from '@angular/core';
 import { toNumber, InputNumber, DelonUtilModule } from '@delon/util';
 
 /**

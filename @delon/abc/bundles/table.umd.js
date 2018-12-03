@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/platform-browser'), require('@delon/abc/xlsx'), require('@angular/router'), require('rxjs'), require('rxjs/operators'), require('@delon/theme'), require('@angular/core'), require('@angular/common'), require('@angular/forms'), require('ng-zorro-antd'), require('@delon/util'), require('@delon/acl')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/table', ['exports', '@angular/platform-browser', '@delon/abc/xlsx', '@angular/router', 'rxjs', 'rxjs/operators', '@delon/theme', '@angular/core', '@angular/common', '@angular/forms', 'ng-zorro-antd', '@delon/util', '@delon/acl'], factory) :
-    (factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.table = {}),global.ng.platformBrowser,global.delon.abc.xlsx,global.ng.router,global.rxjs,global.rxjs.operators,global.delon.theme,global.ng.core,global.ng.common,global.ng.forms,global.ngZorro.antd,global.delon.util,global.delon.acl));
-}(this, (function (exports,platformBrowser,xlsx,router,rxjs,operators,theme,core,common,forms,ngZorroAntd,util,acl) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/platform-browser'), require('@delon/abc/xlsx'), require('@angular/router'), require('@delon/theme'), require('rxjs'), require('rxjs/operators'), require('@angular/common'), require('@angular/core'), require('@angular/forms'), require('ng-zorro-antd'), require('@delon/acl'), require('@delon/util')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/table', ['exports', '@angular/platform-browser', '@delon/abc/xlsx', '@angular/router', '@delon/theme', 'rxjs', 'rxjs/operators', '@angular/common', '@angular/core', '@angular/forms', 'ng-zorro-antd', '@delon/acl', '@delon/util'], factory) :
+    (factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.table = {}),global.ng.platformBrowser,global.delon.abc.xlsx,global.ng.router,global.delon.theme,global.rxjs,global.rxjs.operators,global.ng.common,global.ng.core,global.ng.forms,global.ngZorro.antd,global.delon.acl,global.delon.util));
+}(this, (function (exports,platformBrowser,xlsx,router,theme,rxjs,operators,common,core,forms,ngZorroAntd,acl,util) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -23,6 +23,18 @@
     See the Apache Version 2.0 License for specific language governing permissions
     and limitations under the License.
     ***************************************************************************** */
+    var __assign = function () {
+        __assign = Object.assign || function __assign(t) {
+            for (var s, i = 1, n = arguments.length; i < n; i++) {
+                s = arguments[i];
+                for (var p in s)
+                    if (Object.prototype.hasOwnProperty.call(s, p))
+                        t[p] = s[p];
+            }
+            return t;
+        };
+        return __assign.apply(this, arguments);
+    };
     function __decorate(decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
@@ -313,7 +325,7 @@
                                 item.type = 'none';
                             }
                             else {
-                                item.modal = Object.assign({}, modal, item.modal);
+                                item.modal = __assign({}, modal, item.modal);
                             }
                         }
                         if (item.type === 'drawer') {
@@ -322,7 +334,7 @@
                                 item.type = 'none';
                             }
                             else {
-                                item.drawer = Object.assign({}, drawer, item.drawer);
+                                item.drawer = __assign({}, drawer, item.drawer);
                             }
                         }
                         if (item.type === 'del' && typeof item.pop === 'undefined') {
@@ -335,7 +347,7 @@
                             item.pop = false;
                         }
                         if (item.icon) {
-                            item.icon = Object.assign({}, btnIcon, typeof item.icon === 'string' ? { type: item.icon } : item.icon);
+                            item.icon = __assign({}, btnIcon, (typeof item.icon === 'string' ? { type: item.icon } : item.icon));
                         }
                         item.children = item.children && item.children.length > 0 ? this.btnCoerce(item.children) : [];
                         // i18n
@@ -439,6 +451,7 @@
                 if (item.sorter && typeof item.sorter === 'function') {
                     return {
                         enabled: true,
+                        // tslint:disable-next-line:no-any
                         default: ( /** @type {?} */(item.sort)),
                         compare: item.sorter,
                         key: item.sortKey || item.indexKey,
@@ -480,6 +493,7 @@
                         confirmText: item.filterConfirmText,
                         clearText: item.filterClearText,
                         default: item.filtered,
+                        // tslint:disable-next-line:no-any
                         fn: ( /** @type {?} */(item.filter)),
                         icon: item.filterIcon,
                         key: item.filterKey || item.indexKey,
@@ -600,7 +614,7 @@
                         }
                         // types
                         if (item.type === 'yn') {
-                            item.yn = Object.assign({ truth: true }, item.yn);
+                            item.yn = __assign({ truth: true }, item.yn);
                             // compatible
                             if (item.ynTruth != null)
                                 item.yn.truth = item.ynTruth;
@@ -612,6 +626,7 @@
                         if ((item.type === 'link' && typeof item.click !== 'function') ||
                             (item.type === 'badge' && item.badge == null) ||
                             (item.type === 'tag' && item.tag == null)) {
+                            // tslint:disable-next-line:no-any
                             (( /** @type {?} */(item))).type = '';
                         }
                         // className
@@ -687,12 +702,12 @@
      * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
     var STDataSource = /** @class */ (function () {
-        function STDataSource(http, currenty, date, yn, number, dom) {
+        function STDataSource(http, currentyPipe, datePipe, ynPipe, numberPipe, dom) {
             this.http = http;
-            this.currenty = currenty;
-            this.date = date;
-            this.yn = yn;
-            this.number = number;
+            this.currentyPipe = currentyPipe;
+            this.datePipe = datePipe;
+            this.ynPipe = ynPipe;
+            this.numberPipe = numberPipe;
             this.dom = dom;
         }
         /**
@@ -834,7 +849,7 @@
             function (item, col, idx) {
                 if (col.format) {
                     /** @type {?} */
-                    var formatRes = ( /** @type {?} */(col.format(item, col)));
+                    var formatRes = col.format(item, col);
                     if (~formatRes.indexOf('<')) {
                         return this.dom.bypassSecurityTrustHtml(formatRes);
                     }
@@ -852,16 +867,16 @@
                         ret = value ? "<img src=\"" + value + "\" class=\"img\">" : '';
                         break;
                     case 'number':
-                        ret = this.number.transform(value, col.numberDigits);
+                        ret = this.numberPipe.transform(value, col.numberDigits);
                         break;
                     case 'currency':
-                        ret = this.currenty.transform(value);
+                        ret = this.currentyPipe.transform(value);
                         break;
                     case 'date':
-                        ret = this.date.transform(value, col.dateFormat);
+                        ret = this.datePipe.transform(value, col.dateFormat);
                         break;
                     case 'yn':
-                        ret = this.yn.transform(value === col.yn.truth, col.yn.yes, col.yn.no);
+                        ret = this.ynPipe.transform(value === col.yn.truth, col.yn.yes, col.yn.no);
                         break;
                 }
                 return ret == null ? '' : ret;
@@ -882,10 +897,8 @@
                 /** @type {?} */
                 var method = (req.method || 'GET').toUpperCase();
                 /** @type {?} */
-                var params = Object.assign((_a = {},
-                    _a[req.reName.pi] = page.zeroIndexed ? pi - 1 : pi,
-                    _a[req.reName.ps] = ps,
-                    _a), req.params, this.getReqSortMap(singleSort, multiSort, columns), this.getReqFilterMap(columns));
+                var params = __assign((_a = {}, _a[req.reName.pi] = page.zeroIndexed ? pi - 1 : pi, _a[req.reName.ps] = ps, _a), req.params, this.getReqSortMap(singleSort, multiSort, columns), this.getReqFilterMap(columns));
+                // tslint:disable-next-line:no-any
                 /** @type {?} */
                 var reqOptions = {
                     params: params,
@@ -894,7 +907,7 @@
                 };
                 if (method === 'POST' && req.allInBody === true) {
                     reqOptions = {
-                        body: Object.assign({}, req.body, params),
+                        body: __assign({}, req.body, params),
                         headers: req.headers,
                     };
                 }
@@ -1019,7 +1032,7 @@
                     else {
                         obj[col.filter.key] = values.map(function (i) { return i.value; }).join(',');
                     }
-                    ret = Object.assign(ret, obj);
+                    ret = __assign({}, ret, obj);
                 });
                 return ret;
             };
@@ -1048,17 +1061,22 @@
         function STExport(xlsxSrv) {
             this.xlsxSrv = xlsxSrv;
         }
+        // tslint:disable-next-line:no-any
+        // tslint:disable-next-line:no-any
         /**
          * @param {?} item
          * @param {?} col
          * @return {?}
          */
-        STExport.prototype._stGet = /**
-         * @param {?} item
-         * @param {?} col
-         * @return {?}
-         */
+        STExport.prototype._stGet =
+            // tslint:disable-next-line:no-any
+            /**
+             * @param {?} item
+             * @param {?} col
+             * @return {?}
+             */
             function (item, col) {
+                // tslint:disable-next-line:no-any
                 /** @type {?} */
                 var ret = { t: 's', v: '' };
                 if (col.format) {
@@ -1107,7 +1125,7 @@
                 var dc = opt._d.length;
                 // column
                 for (var i = 0; i < cc; i++) {
-                    sheet[String.fromCharCode(65 + i) + "1"] = {
+                    sheet[String.fromCharCode(i + 65) + "1"] = {
                         t: 's',
                         v: colData[i].title,
                     };
@@ -1115,11 +1133,11 @@
                 // content
                 for (var i = 0; i < dc; i++) {
                     for (var j = 0; j < cc; j++) {
-                        sheet["" + String.fromCharCode(65 + j) + (i + 2)] = this._stGet(opt._d[i], colData[j]);
+                        sheet["" + String.fromCharCode(j + 65) + (i + 2)] = this._stGet(opt._d[i], colData[j]);
                     }
                 }
                 if (cc > 0 && dc > 0) {
-                    sheet['!ref'] = "A1:" + String.fromCharCode(65 + cc - 1) + (dc + 1);
+                    sheet['!ref'] = "A1:" + String.fromCharCode(cc + 65 - 1) + (dc + 1);
                 }
                 return sheets;
             };
@@ -1175,27 +1193,16 @@
             this.dataSource = dataSource;
             this.delonI18n = delonI18n;
             this.totalTpl = "";
+            // tslint:disable-next-line:no-any
             this.locale = {};
             this._data = [];
             this._isPagination = true;
             this._allChecked = false;
             this._indeterminate = false;
             this._columns = [];
-            /**
-             * 列描述
-             */
             this.columns = [];
-            /**
-             * 每页数量，当设置为 `0` 表示不分页，默认：`10`
-             */
             this.ps = 10;
-            /**
-             * 当前页码
-             */
             this.pi = 1;
-            /**
-             * 数据总量
-             */
             this.total = 0;
             /**
              * 是否显示Loading
@@ -1216,6 +1223,10 @@
              */
             this.singleSort = null;
             /**
+             * 行单击多少时长之类为双击（单位：毫秒），默认：`200`
+             */
+            this.rowClickTime = 200;
+            /**
              * 请求异常时回调
              */
             this.error = new core.EventEmitter();
@@ -1223,10 +1234,6 @@
              * 变化时回调，包括：`pi`、`ps`、`checkbox`、`radio`、`sort`、`filter`、`click`、`dblClick` 变动
              */
             this.change = new core.EventEmitter();
-            /**
-             * 行单击多少时长之类为双击（单位：毫秒），默认：`200`
-             */
-            this.rowClickTime = 200;
             this.rowClickCount = 0;
             this.delonI18n$ = this.delonI18n.change.subscribe(function () {
                 _this.locale = _this.delonI18n.getData('st');
@@ -1256,7 +1263,7 @@
              */ function (value) {
                 var req = this.cog.req;
                 /** @type {?} */
-                var item = Object.assign({}, req, value);
+                var item = __assign({}, req, value);
                 if (item.reName == null) {
                     item.reName = util.deepCopy(req.reName);
                 }
@@ -1279,8 +1286,8 @@
              */ function (value) {
                 var res = this.cog.res;
                 /** @type {?} */
-                var item = Object.assign({}, res, value);
-                item.reName = Object.assign({}, res.reName, item.reName);
+                var item = __assign({}, res, value);
+                item.reName = __assign({}, res.reName, item.reName);
                 if (!Array.isArray(item.reName.list))
                     item.reName.list = item.reName.list.split('.');
                 if (!Array.isArray(item.reName.total))
@@ -1305,7 +1312,7 @@
                 this.clonePage = value;
                 var page = this.cog.page;
                 /** @type {?} */
-                var item = Object.assign({}, util.deepCopy(page), value);
+                var item = __assign({}, util.deepCopy(page), value);
                 var total = item.total;
                 if (typeof total === 'string' && total.length) {
                     this.totalTpl = total;
@@ -1329,19 +1336,23 @@
              */ function () {
                 return this._multiSort;
             },
-            set: /**
+            // tslint:disable-next-line:no-any
+            set: 
+            // tslint:disable-next-line:no-any
+            /**
              * @param {?} value
              * @return {?}
-             */ function (value) {
+             */
+            function (value) {
                 if (typeof value === 'boolean' && !util.toBoolean(value)) {
                     this._multiSort = null;
                     return;
                 }
-                this._multiSort = Object.assign(( /** @type {?} */({
+                this._multiSort = __assign({}, ( /** @type {?} */({
                     key: 'sort',
                     separator: '-',
                     nameSeparator: '.',
-                })), typeof value === 'object' ? value : {});
+                })), (typeof value === 'object' ? value : {}));
             },
             enumerable: true,
             configurable: true
@@ -1373,16 +1384,20 @@
                         .replace('{{range[1]}}', range[1])
                     : '';
             };
+        // tslint:disable-next-line:no-any
+        // tslint:disable-next-line:no-any
         /**
          * @param {?} type
          * @param {?=} data
          * @return {?}
          */
-        STComponent.prototype.changeEmit = /**
-         * @param {?} type
-         * @param {?=} data
-         * @return {?}
-         */
+        STComponent.prototype.changeEmit =
+            // tslint:disable-next-line:no-any
+            /**
+             * @param {?} type
+             * @param {?=} data
+             * @return {?}
+             */
             function (type, data) {
                 /** @type {?} */
                 var res = {
@@ -1422,7 +1437,7 @@
                     columns: this._columns,
                     singleSort: singleSort,
                     multiSort: multiSort,
-                    rowClassName: rowClassName
+                    rowClassName: rowClassName,
                 })
                     .then(function (result) {
                     _this.loading = false;
@@ -1516,8 +1531,7 @@
                 if (typeof extraParams !== 'undefined') {
                     this._req.params =
                         options && options.merge
-                            ? Object.assign(this._req.params, extraParams)
-                            : extraParams;
+                            ? __assign({}, this._req.params, extraParams) : extraParams;
                 }
                 this._change('pi');
             };
@@ -1684,8 +1698,10 @@
             };
         //#endregion
         //#region sort
+        // tslint:disable-next-line:no-any
         //#endregion
         //#region sort
+        // tslint:disable-next-line:no-any
         /**
          * @param {?} col
          * @param {?} idx
@@ -1695,6 +1711,7 @@
         STComponent.prototype.sort =
             //#endregion
             //#region sort
+            // tslint:disable-next-line:no-any
             /**
              * @param {?} col
              * @param {?} idx
@@ -1999,8 +2016,10 @@
                     var modal = btn.modal;
                     obj[modal.paramsName] = record;
                     /** @type {?} */
-                    var options = Object.assign({}, modal);
-                    (( /** @type {?} */(this.modalHelper[btn.type === 'modal' ? 'create' : 'createStatic'])))(modal.component, Object.assign(obj, modal.params && modal.params(record)), options)
+                    var options = __assign({}, modal);
+                    (( /** @type {?} */(this.modalHelper[btn.type === 'modal' ? 'create' : 'createStatic'
+                    // tslint:disable-next-line:no-any
+                    ])))(modal.component, __assign({}, obj, (modal.params && modal.params(record))), options)
                         .pipe(operators.filter(function (w) { return typeof w !== 'undefined'; }))
                         .subscribe(function (res) { return _this.btnCallback(record, btn, res); });
                     return;
@@ -2011,7 +2030,7 @@
                     var drawer = btn.drawer;
                     obj[drawer.paramsName] = record;
                     this.drawerHelper
-                        .create(drawer.title, drawer.component, Object.assign(obj, drawer.params && drawer.params(record)), Object.assign({}, drawer))
+                        .create(drawer.title, drawer.component, __assign({}, obj, (drawer.params && drawer.params(record))), __assign({}, drawer))
                         .pipe(operators.filter(function (w) { return typeof w !== 'undefined'; }))
                         .subscribe(function (res) { return _this.btnCallback(record, btn, res); });
                     return;
@@ -2026,18 +2045,22 @@
                 }
                 this.btnCallback(record, btn);
             };
+        // tslint:disable-next-line:no-any
+        // tslint:disable-next-line:no-any
         /**
          * @param {?} record
          * @param {?} btn
          * @param {?=} modal
          * @return {?}
          */
-        STComponent.prototype.btnCallback = /**
-         * @param {?} record
-         * @param {?} btn
-         * @param {?=} modal
-         * @return {?}
-         */
+        STComponent.prototype.btnCallback =
+            // tslint:disable-next-line:no-any
+            /**
+             * @param {?} record
+             * @param {?} btn
+             * @param {?=} modal
+             * @return {?}
+             */
             function (record, btn, modal) {
                 if (!btn.click)
                     return;
@@ -2110,7 +2133,7 @@
             function (newData, opt) {
                 var _this = this;
                 (newData ? rxjs.of(newData) : rxjs.of(this._data)).subscribe(function (res) {
-                    return _this.exportSrv.export(Object.assign({}, opt, ( /** @type {?} */({
+                    return _this.exportSrv.export(__assign({}, opt, ( /** @type {?} */({
                         _d: res,
                         _c: _this._columns,
                     }))));
@@ -2238,10 +2261,10 @@
             expand: [{ type: core.Input }],
             noResult: [{ type: core.Input }],
             widthConfig: [{ type: core.Input }],
-            error: [{ type: core.Output }],
-            change: [{ type: core.Output }],
             rowClickTime: [{ type: core.Input }],
-            responsiveHideHeaderFooter: [{ type: core.Input }]
+            responsiveHideHeaderFooter: [{ type: core.Input }],
+            error: [{ type: core.Output }],
+            change: [{ type: core.Output }]
         };
         __decorate([
             util.InputNumber(),

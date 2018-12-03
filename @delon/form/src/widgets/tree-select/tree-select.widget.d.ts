@@ -1,14 +1,15 @@
 import { OnInit } from '@angular/core';
-import { ControlWidget } from '../../widget';
-import { SFSchemaEnum } from '../../schema';
 import { NzFormatEmitEvent } from 'ng-zorro-antd';
+import { SFValue } from '../../interface';
+import { SFSchemaEnum } from '../../schema';
+import { ControlWidget } from '../../widget';
 export declare class TreeSelectWidget extends ControlWidget implements OnInit {
     i: any;
     data: SFSchemaEnum[];
     private dc;
     private tranData;
     ngOnInit(): void;
-    reset(value: any): void;
-    change(value: any): void;
+    reset(value: SFValue): void;
+    change(value: string[] | string): void;
     expandChange(e: NzFormatEmitEvent): void;
 }

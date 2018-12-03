@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs';
-import { ITokenService, ITokenModel } from './interface';
-import { IStore } from '../store/interface';
 import { DelonAuthConfig } from '../auth.config';
+import { IStore } from '../store/interface';
+import { ITokenModel, ITokenService } from './interface';
 export declare class TokenService implements ITokenService {
     private options;
     private store;

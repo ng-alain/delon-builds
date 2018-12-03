@@ -1,8 +1,8 @@
-import { __spread } from 'tslib';
-import { Component, Input, HostBinding, ViewChild, NgZone, TemplateRef, ChangeDetectionStrategy, ChangeDetectorRef, NgModule } from '@angular/core';
+import { __decorate, __metadata, __spread } from 'tslib';
 import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostBinding, Input, NgZone, TemplateRef, ViewChild, NgModule } from '@angular/core';
+import { InputBoolean, InputNumber, DelonUtilModule } from '@delon/util';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
-import { toNumber, toBoolean, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
@@ -14,10 +14,10 @@ var G2RadarComponent = /** @class */ (function () {
         this.zone = zone;
         // #region fields
         this._title = '';
-        this._height = 0;
+        this.height = 0;
         this.padding = [44, 30, 16, 30];
-        this._hasLegend = true;
-        this._tickCount = 4;
+        this.hasLegend = true;
+        this.tickCount = 4;
         this.data = [];
         this.colors = [
             '#1890FF',
@@ -43,51 +43,6 @@ var G2RadarComponent = /** @class */ (function () {
             }
             else
                 this._title = value;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(G2RadarComponent.prototype, "height", {
-        get: /**
-         * @return {?}
-         */
-        function () {
-            return this._height;
-        },
-        set: /**
-         * @param {?} value
-         * @return {?}
-         */
-        function (value) {
-            this._height = toNumber(value);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(G2RadarComponent.prototype, "hasLegend", {
-        get: /**
-         * @return {?}
-         */
-        function () {
-            return this._hasLegend;
-        },
-        set: /**
-         * @param {?} value
-         * @return {?}
-         */
-        function (value) {
-            this._hasLegend = toBoolean(value);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(G2RadarComponent.prototype, "tickCount", {
-        set: /**
-         * @param {?} value
-         * @return {?}
-         */
-        function (value) {
-            this._tickCount = toNumber(value);
         },
         enumerable: true,
         configurable: true
@@ -141,7 +96,7 @@ var G2RadarComponent = /** @class */ (function () {
         chart.source(this.data, {
             value: {
                 min: 0,
-                tickCount: this._tickCount,
+                tickCount: this.tickCount,
             },
         });
         chart.coord('polar');
@@ -262,6 +217,18 @@ var G2RadarComponent = /** @class */ (function () {
         colors: [{ type: Input }],
         node: [{ type: ViewChild, args: ['container',] }]
     };
+    __decorate([
+        InputNumber(),
+        __metadata("design:type", Object)
+    ], G2RadarComponent.prototype, "height", void 0);
+    __decorate([
+        InputBoolean(),
+        __metadata("design:type", Object)
+    ], G2RadarComponent.prototype, "hasLegend", void 0);
+    __decorate([
+        InputNumber(),
+        __metadata("design:type", Object)
+    ], G2RadarComponent.prototype, "tickCount", void 0);
     return G2RadarComponent;
 }());
 

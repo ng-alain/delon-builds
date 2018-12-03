@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/router'), require('rxjs'), require('rxjs/operators'), require('@angular/core'), require('@angular/common'), require('@delon/util')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/full-content', ['exports', '@angular/router', 'rxjs', 'rxjs/operators', '@angular/core', '@angular/common', '@delon/util'], factory) :
-    (factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['full-content'] = {}),global.ng.router,global.rxjs,global.rxjs.operators,global.ng.core,global.ng.common,global.delon.util));
-}(this, (function (exports,router,rxjs,operators,core,common,util) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/router'), require('rxjs'), require('rxjs/operators'), require('@angular/common'), require('@angular/core'), require('@delon/util')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/full-content', ['exports', '@angular/router', 'rxjs', 'rxjs/operators', '@angular/common', '@angular/core', '@delon/util'], factory) :
+    (factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['full-content'] = {}),global.ng.router,global.rxjs,global.rxjs.operators,global.ng.common,global.ng.core,global.delon.util));
+}(this, (function (exports,router,rxjs,operators,common,core,util) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -208,10 +208,8 @@
                     .subscribe(function () { return _this.toggle(); });
                 // when router changed
                 this.route$ = this.router.events
-                    .pipe(operators.filter(function (e) {
-                    return e instanceof router.ActivationStart || e instanceof router.ActivationEnd;
-                }), operators.debounceTime(200))
-                    .subscribe(function (e) {
+                    .pipe(operators.filter(function (e) { return e instanceof router.ActivationStart || e instanceof router.ActivationEnd; }), operators.debounceTime(200))
+                    .subscribe(function () {
                     if (!!_this.doc.querySelector('#' + _this.id)) {
                         _this.bodyEl.classList.add(wrapCls);
                         _this.updateCls();

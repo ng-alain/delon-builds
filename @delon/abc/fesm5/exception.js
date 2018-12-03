@@ -1,10 +1,10 @@
 import { __spread } from 'tslib';
-import { Component, Input, ViewChild, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component, Input, ViewChild, NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { DelonLocaleService, DelonLocaleModule } from '@delon/theme';
 import { isEmpty, DelonUtilModule } from '@delon/util';
+import { NgZorroAntdModule } from 'ng-zorro-antd';
 
 /**
  * @fileoverview added by tsickle
@@ -13,6 +13,7 @@ import { isEmpty, DelonUtilModule } from '@delon/util';
 var ExceptionComponent = /** @class */ (function () {
     function ExceptionComponent(i18n) {
         this.i18n = i18n;
+        // tslint:disable-next-line:no-any
         this.locale = {};
         this.hasCon = false;
         this._img = '';

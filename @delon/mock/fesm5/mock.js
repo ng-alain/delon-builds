@@ -1,8 +1,9 @@
-import { Observable, of } from 'rxjs';
+import { __assign } from 'tslib';
+import { of, Observable } from 'rxjs';
 import { delay, tap } from 'rxjs/operators';
 import { _HttpClient } from '@delon/theme';
+import { HttpErrorResponse, HttpResponse, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Injectable, Injector, NgModule } from '@angular/core';
-import { HttpResponse, HttpErrorResponse, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 /**
  * @fileoverview added by tsickle
@@ -14,6 +15,7 @@ import { HttpResponse, HttpErrorResponse, HTTP_INTERCEPTORS } from '@angular/com
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 var MockStatusError = /** @class */ (function () {
+    // tslint:disable-next-line:no-any
     function MockStatusError(status, error) {
         this.status = status;
         this.error = error;
@@ -119,12 +121,16 @@ var MockService = /** @class */ (function () {
                 (a.martcher || '').toString().length;
         });
     };
+    // tslint:disable-next-line:no-any
+    // tslint:disable-next-line:no-any
     /**
      * @param {?} key
      * @param {?} callback
      * @return {?}
      */
-    MockService.prototype.genRule = /**
+    MockService.prototype.genRule = 
+    // tslint:disable-next-line:no-any
+    /**
      * @param {?} key
      * @param {?} callback
      * @return {?}
@@ -165,11 +171,15 @@ var MockService = /** @class */ (function () {
             method: method.toUpperCase(),
         };
     };
+    // tslint:disable-next-line:no-any
+    // tslint:disable-next-line:no-any
     /**
      * @param {?} error
      * @return {?}
      */
-    MockService.prototype.outputError = /**
+    MockService.prototype.outputError = 
+    // tslint:disable-next-line:no-any
+    /**
      * @param {?} error
      * @return {?}
      */
@@ -289,11 +299,7 @@ var MockInterceptor = /** @class */ (function () {
         /** @type {?} */
         var src = this.injector.get(MockService);
         /** @type {?} */
-        var config = Object.assign({
-            delay: 300,
-            force: false,
-            log: true,
-        }, this.injector.get(DelonMockConfig, null));
+        var config = __assign({ delay: 300, force: false, log: true }, this.injector.get(DelonMockConfig, null));
         /** @type {?} */
         var rule = src.getRule(req.method, req.url.split('?')[0]);
         if (!rule && !config.force) {

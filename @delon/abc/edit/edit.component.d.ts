@@ -1,4 +1,4 @@
-import { TemplateRef, OnChanges, ElementRef, Renderer2, AfterViewInit, ChangeDetectorRef, OnDestroy } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, ElementRef, OnChanges, OnDestroy, Renderer2, TemplateRef } from '@angular/core';
 import { ResponsiveService } from '@delon/theme';
 import { SEContainerComponent } from './edit-container.component';
 export declare class SEComponent implements OnChanges, AfterViewInit, OnDestroy {
@@ -19,16 +19,14 @@ export declare class SEComponent implements OnChanges, AfterViewInit, OnDestroy 
     optionalHelp: string;
     error: string;
     extra: string;
-    _label: string;
-    _labelTpl: TemplateRef<any>;
-    label: string | TemplateRef<any>;
+    label: string | TemplateRef<void>;
     col: number;
     required: boolean;
     controlClass: string;
+    line: boolean;
     id: string;
     _id: string;
     _autoId: boolean;
-    line: boolean;
     readonly paddingLeft: number;
     readonly paddingRight: number;
     readonly showErr: boolean;

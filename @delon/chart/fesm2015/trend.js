@@ -1,7 +1,8 @@
-import { Component, Input, NgModule } from '@angular/core';
-import { NgZorroAntdModule } from 'ng-zorro-antd';
+import { __decorate, __metadata } from 'tslib';
 import { CommonModule } from '@angular/common';
-import { toBoolean, DelonUtilModule } from '@delon/util';
+import { Component, Input, NgModule } from '@angular/core';
+import { InputBoolean, DelonUtilModule } from '@delon/util';
+import { NgZorroAntdModule } from 'ng-zorro-antd';
 
 /**
  * @fileoverview added by tsickle
@@ -9,36 +10,14 @@ import { toBoolean, DelonUtilModule } from '@delon/util';
  */
 class TrendComponent {
     constructor() {
-        this._colorful = true;
-        this._reverseColor = false;
-    }
-    /**
-     * 是否彩色标记
-     * @return {?}
-     */
-    get colorful() {
-        return this._colorful;
-    }
-    /**
-     * @param {?} value
-     * @return {?}
-     */
-    set colorful(value) {
-        this._colorful = toBoolean(value);
-    }
-    /**
-     * 颜色反转
-     * @return {?}
-     */
-    get reverseColor() {
-        return this._reverseColor;
-    }
-    /**
-     * @param {?} value
-     * @return {?}
-     */
-    set reverseColor(value) {
-        this._reverseColor = toBoolean(value);
+        /**
+         * 是否彩色标记
+         */
+        this.colorful = true;
+        /**
+         * 颜色反转
+         */
+        this.reverseColor = false;
     }
 }
 TrendComponent.decorators = [
@@ -57,6 +36,14 @@ TrendComponent.propDecorators = {
     colorful: [{ type: Input }],
     reverseColor: [{ type: Input }]
 };
+__decorate([
+    InputBoolean(),
+    __metadata("design:type", Object)
+], TrendComponent.prototype, "colorful", void 0);
+__decorate([
+    InputBoolean(),
+    __metadata("design:type", Object)
+], TrendComponent.prototype, "reverseColor", void 0);
 
 /**
  * @fileoverview added by tsickle

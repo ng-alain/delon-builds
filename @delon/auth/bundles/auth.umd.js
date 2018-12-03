@@ -9,6 +9,59 @@
     (factory((global.delon = global.delon || {}, global.delon.auth = {}),global.ng.common,global.ng.common.http,global.delon.theme,global.ng.router,global.rxjs,global.rxjs.operators,global.ng.core));
 }(this, (function (exports,common,http,theme,router,rxjs,operators,core) { 'use strict';
 
+    /*! *****************************************************************************
+    Copyright (c) Microsoft Corporation. All rights reserved.
+    Licensed under the Apache License, Version 2.0 (the "License"); you may not use
+    this file except in compliance with the License. You may obtain a copy of the
+    License at http://www.apache.org/licenses/LICENSE-2.0
+
+    THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+    KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
+    WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
+    MERCHANTABLITY OR NON-INFRINGEMENT.
+
+    See the Apache Version 2.0 License for specific language governing permissions
+    and limitations under the License.
+    ***************************************************************************** */
+    /* global Reflect, Promise */
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b)
+                if (b.hasOwnProperty(p))
+                    d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    function __extends(d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    }
+    var __assign = function () {
+        __assign = Object.assign || function __assign(t) {
+            for (var s, i = 1, n = arguments.length; i < n; i++) {
+                s = arguments[i];
+                for (var p in s)
+                    if (Object.prototype.hasOwnProperty.call(s, p))
+                        t[p] = s[p];
+            }
+            return t;
+        };
+        return __assign.apply(this, arguments);
+    };
+    function __values(o) {
+        var m = typeof Symbol === "function" && o[Symbol.iterator], i = 0;
+        if (m)
+            return m.call(o);
+        return {
+            next: function () {
+                if (o && i >= o.length)
+                    o = void 0;
+                return { value: o && o[i++], done: !o };
+            }
+        };
+    }
+
     /**
      * @fileoverview added by tsickle
      * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
@@ -59,10 +112,7 @@
                 if (options === void 0) {
                     options = {};
                 }
-                options = Object.assign({
-                    type: 'window',
-                    windowFeatures: 'location=yes,height=570,width=520,scrollbars=yes,status=yes',
-                }, options);
+                options = __assign({ type: 'window', windowFeatures: 'location=yes,height=570,width=520,scrollbars=yes,status=yes' }, options);
                 localStorage.setItem(OPENTYPE, options.type);
                 localStorage.setItem(HREFCALLBACK, callback);
                 if (options.type === 'href') {
@@ -70,7 +120,7 @@
                     return;
                 }
                 this._win = window.open(url, '_blank', options.windowFeatures);
-                this._win$ = setInterval(function () {
+                this._winTime = setInterval(function () {
                     if (_this._win && _this._win.closed) {
                         _this.ngOnDestroy();
                         /** @type {?} */
@@ -146,8 +196,8 @@
          * @return {?}
          */
             function () {
-                clearInterval(this._win$);
-                this._win$ = null;
+                clearInterval(this._winTime);
+                this._winTime = null;
             };
         SocialService.decorators = [
             { type: core.Injectable }
@@ -309,47 +359,6 @@
         return SessionStorageStore;
     }());
 
-    /*! *****************************************************************************
-    Copyright (c) Microsoft Corporation. All rights reserved.
-    Licensed under the Apache License, Version 2.0 (the "License"); you may not use
-    this file except in compliance with the License. You may obtain a copy of the
-    License at http://www.apache.org/licenses/LICENSE-2.0
-
-    THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-    KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
-    WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
-    MERCHANTABLITY OR NON-INFRINGEMENT.
-
-    See the Apache Version 2.0 License for specific language governing permissions
-    and limitations under the License.
-    ***************************************************************************** */
-    /* global Reflect, Promise */
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b)
-                if (b.hasOwnProperty(p))
-                    d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    function __extends(d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    }
-    function __values(o) {
-        var m = typeof Symbol === "function" && o[Symbol.iterator], i = 0;
-        if (m)
-            return m.call(o);
-        return {
-            next: function () {
-                if (o && i >= o.length)
-                    o = void 0;
-                return { value: o && o[i++], done: !o };
-            }
-        };
-    }
-
     /**
      * @fileoverview added by tsickle
      * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
@@ -379,6 +388,7 @@
              *
              * - `Bearer ${token}`
              */
+            // tslint:disable-next-line:no-invalid-template-strings
             this.token_send_template = '${token}';
             /**
              * 发送token参数位置，默认：header
@@ -404,6 +414,7 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
+    // tslint:disable-next-line:no-any
     /** @type {?} */
     var WINDOW = new core.InjectionToken('Window');
 
@@ -667,6 +678,7 @@
         str = String(str).replace(/=+$/, '');
         for (
         // initialize result and counters
+        // tslint:disable:no-any no-conditional-assignment binary-expression-operand-order
         var bc = 0, bs = void 0, buffer = void 0, idx = 0; 
         // get next character
         (buffer = str.charAt(idx++)); 
@@ -707,10 +719,13 @@
             /**
              * 获取载荷信息
              */
+            // tslint:disable-next-line:no-any
             get: /**
              * 获取载荷信息
              * @return {?}
-             */ function () {
+             */ 
+            // tslint:disable-next-line:no-any
+            function () {
                 /** @type {?} */
                 var parts = (this.token || '').split('.');
                 if (parts.length !== 3)
@@ -909,16 +924,20 @@
                 this.model = ( /** @type {?} */(this.injector.get(DA_SERVICE_TOKEN).get()));
                 return CheckSimple(( /** @type {?} */(this.model)));
             };
+        // tslint:disable-next-line:no-any
+        // tslint:disable-next-line:no-any
         /**
          * @param {?} req
          * @param {?} options
          * @return {?}
          */
-        SimpleInterceptor.prototype.setReq = /**
-         * @param {?} req
-         * @param {?} options
-         * @return {?}
-         */
+        SimpleInterceptor.prototype.setReq =
+            // tslint:disable-next-line:no-any
+            /**
+             * @param {?} req
+             * @param {?} options
+             * @return {?}
+             */
             function (req, options) {
                 var _this = this;
                 /** @type {?} */

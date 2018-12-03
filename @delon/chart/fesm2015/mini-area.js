@@ -1,6 +1,6 @@
-import { Component, Input, HostBinding, ViewChild, ChangeDetectionStrategy, NgZone, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { toNumber, toBoolean, DelonUtilModule } from '@delon/util';
+import { ChangeDetectionStrategy, Component, HostBinding, Input, NgZone, ViewChild, NgModule } from '@angular/core';
+import { toBoolean, toNumber, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
@@ -113,8 +113,8 @@ class G2MiniAreaComponent {
             },
         };
         chart.tooltip({
-            showTitle: false,
-            hideMarkders: false,
+            'showTitle': false,
+            'hideMarkders': false,
             'g2-tooltip': { padding: 4 },
             'g2-tooltip-list-item': { margin: `0px 4px` },
         });

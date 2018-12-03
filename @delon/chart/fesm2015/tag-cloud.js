@@ -1,6 +1,7 @@
-import { Component, Input, ViewChild, ElementRef, NgZone, ChangeDetectionStrategy, ChangeDetectorRef, NgModule } from '@angular/core';
+import { __decorate, __metadata } from 'tslib';
 import { CommonModule } from '@angular/common';
-import { toNumber, DelonUtilModule } from '@delon/util';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Input, NgZone, ViewChild, NgModule } from '@angular/core';
+import { InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
@@ -16,24 +17,10 @@ class G2TagCloudComponent {
         this.el = el;
         this.cd = cd;
         this.zone = zone;
-        this._height = 0;
+        // #region fields
+        this.height = 0;
         this.padding = 0;
         this.initFlag = false;
-    }
-    // #region fields
-    /**
-     * @return {?}
-     */
-    get height() {
-        return this._height;
-    }
-    /**
-     * @param {?} value
-     * @return {?}
-     */
-    set height(value) {
-        this._height = toNumber(value);
-        this.cd.detectChanges();
     }
     /**
      * @return {?}
@@ -48,21 +35,9 @@ class G2TagCloudComponent {
              */
             drawShape(cfg, container) {
                 /** @type {?} */
-                const attrs = Object.assign({}, {
-                    fillOpacity: cfg.opacity,
-                    fontSize: cfg.origin._origin.size,
-                    rotate: cfg.origin._origin.rotate,
-                    text: cfg.origin._origin.text,
-                    textAlign: 'center',
-                    fontFamily: cfg.origin._origin.font,
-                    fill: cfg.color,
-                    textBaseline: 'Alphabetic',
-                }, cfg.style);
+                const attrs = Object.assign({ fillOpacity: cfg.opacity, fontSize: cfg.origin._origin.size, rotate: cfg.origin._origin.rotate, text: cfg.origin._origin.text, textAlign: 'center', fontFamily: cfg.origin._origin.font, fill: cfg.color, textBaseline: 'Alphabetic' }, cfg.style);
                 return container.addShape('text', {
-                    attrs: Object.assign(attrs, {
-                        x: cfg.x,
-                        y: cfg.y,
-                    }),
+                    attrs: Object.assign({}, attrs, { x: cfg.x, y: cfg.y }),
                 });
             },
         });
@@ -119,8 +94,8 @@ class G2TagCloudComponent {
         /** @type {?} */
         const chart = new G2.Chart({
             container: this.node.nativeElement,
-            width: width,
-            height: height,
+            width,
+            height,
             padding: this.padding,
             forceFit: true,
         });
@@ -174,6 +149,7 @@ class G2TagCloudComponent {
     ngOnChanges() {
         if (this.initFlag) {
             this.runInstall();
+            this.cd.detectChanges();
         }
     }
     /**
@@ -202,6 +178,10 @@ G2TagCloudComponent.propDecorators = {
     data: [{ type: Input }],
     node: [{ type: ViewChild, args: ['container',] }]
 };
+__decorate([
+    InputNumber(),
+    __metadata("design:type", Object)
+], G2TagCloudComponent.prototype, "height", void 0);
 
 /**
  * @fileoverview added by tsickle

@@ -31,6 +31,7 @@ class LodopService {
         this._lodop = null;
         this._init = new Subject();
         this._events = new Subject();
+        // tslint:disable-next-line:no-any
         this.printBuffer = [];
         this.cog = defCog;
     }
@@ -48,12 +49,7 @@ class LodopService {
      * @return {?}
      */
     set cog(value) {
-        this._cog = Object.assign({
-            url: 'https://localhost:8443/CLodopfuncs.js',
-            name: 'CLODOP',
-            companyName: '',
-            checkMaxCount: 100,
-        }, this.defCog, value);
+        this._cog = Object.assign({ url: 'https://localhost:8443/CLodopfuncs.js', name: 'CLODOP', companyName: '', checkMaxCount: 100 }, this.defCog, value);
     }
     /**
      * 事件变更通知
@@ -176,12 +172,13 @@ class LodopService {
             /** @type {?} */
             const fn = this._lodop[res[1]];
             if (fn) {
+                // tslint:disable-next-line:no-any
                 /** @type {?} */
                 let arr;
                 try {
                     /** @type {?} */
                     const fakeFn = new Function(`return [${res[2]}]`);
-                    arr = (/** @type {?} */ (fakeFn()));
+                    arr = fakeFn();
                 }
                 catch (_a) { }
                 if (Array.isArray(arr) && contextObj) {
@@ -229,7 +226,7 @@ class LodopService {
             if (tid !== taskID)
                 return;
             this._lodop.On_Return = null;
-            this._events.next(Object.assign((/** @type {?} */ ({
+            this._events.next(Object.assign({}, (/** @type {?} */ ({
                 ok: value === true,
                 error: value === true ? null : value,
             })), data));

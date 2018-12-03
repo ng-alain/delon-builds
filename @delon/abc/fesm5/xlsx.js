@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { saveAs } from 'file-saver';
-import { __spread } from 'tslib';
-import { Injectable, Directive, HostListener, Input, NgModule } from '@angular/core';
+import { __assign, __spread } from 'tslib';
 import { CommonModule } from '@angular/common';
+import { Injectable, Directive, HostListener, Input, NgModule } from '@angular/core';
 import { LazyService, DelonUtilModule } from '@delon/util';
 
 /**
@@ -142,11 +142,7 @@ var XlsxService = /** @class */ (function () {
             if (options.callback)
                 options.callback(wb);
             /** @type {?} */
-            var wbout = XLSX.write(wb, Object.assign({
-                bookType: 'xlsx',
-                bookSST: false,
-                type: 'array',
-            }, options.opts));
+            var wbout = XLSX.write(wb, __assign({ bookType: 'xlsx', bookSST: false, type: 'array' }, options.opts));
             saveAs(new Blob([wbout], { type: 'application/octet-stream' }), options.filename || 'export.xlsx');
         });
     };

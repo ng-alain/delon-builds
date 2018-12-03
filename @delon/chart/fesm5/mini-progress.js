@@ -1,9 +1,9 @@
-import { __spread } from 'tslib';
-import { Component, Input, NgModule } from '@angular/core';
+import { __decorate, __metadata, __spread } from 'tslib';
 import { CommonModule } from '@angular/common';
-import { NgZorroAntdModule } from 'ng-zorro-antd';
-import { toNumber, DelonUtilModule } from '@delon/util';
+import { Component, Input, NgModule } from '@angular/core';
 import { DelonLocaleService, DelonLocaleModule } from '@delon/theme';
+import { toNumber, InputNumber, DelonUtilModule } from '@delon/util';
+import { NgZorroAntdModule } from 'ng-zorro-antd';
 
 /**
  * @fileoverview added by tsickle
@@ -21,29 +21,15 @@ var G2ProgressComponent = /** @class */ (function () {
         function () {
             return this._target;
         },
-        set: /**
+        // tslint:disable-next-line:no-any
+        set: 
+        // tslint:disable-next-line:no-any
+        /**
          * @param {?} value
          * @return {?}
          */
         function (value) {
             this._target = Math.min(Math.max(toNumber(value), 0), 100);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(G2ProgressComponent.prototype, "strokeWidth", {
-        get: /**
-         * @return {?}
-         */
-        function () {
-            return this._strokeWidth;
-        },
-        set: /**
-         * @param {?} value
-         * @return {?}
-         */
-        function (value) {
-            this._strokeWidth = toNumber(value);
         },
         enumerable: true,
         configurable: true
@@ -55,7 +41,10 @@ var G2ProgressComponent = /** @class */ (function () {
         function () {
             return this._percent;
         },
-        set: /**
+        // tslint:disable-next-line:no-any
+        set: 
+        // tslint:disable-next-line:no-any
+        /**
          * @param {?} value
          * @return {?}
          */
@@ -82,6 +71,10 @@ var G2ProgressComponent = /** @class */ (function () {
         strokeWidth: [{ type: Input }],
         percent: [{ type: Input }]
     };
+    __decorate([
+        InputNumber(),
+        __metadata("design:type", Number)
+    ], G2ProgressComponent.prototype, "strokeWidth", void 0);
     return G2ProgressComponent;
 }());
 

@@ -1,4 +1,5 @@
-import { SFRenderSchema, SFHorizontalLayoutSchema } from './schema/ui';
+import { SFHorizontalLayoutSchema, SFRenderSchema } from './schema/ui';
+export declare type SFValue = any;
 export interface SFButton {
     /** 提交按钮文本，默认：`提交` */
     submit?: string;

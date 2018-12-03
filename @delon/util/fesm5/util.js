@@ -1,21 +1,21 @@
 import extend from 'extend';
-import parse from 'date-fns/parse';
-import startOfWeek from 'date-fns/start_of_week';
-import endOfWeek from 'date-fns/end_of_week';
-import subWeeks from 'date-fns/sub_weeks';
-import startOfMonth from 'date-fns/start_of_month';
-import endOfMonth from 'date-fns/end_of_month';
-import subMonths from 'date-fns/sub_months';
-import startOfYear from 'date-fns/start_of_year';
-import endOfYear from 'date-fns/end_of_year';
-import subYears from 'date-fns/sub_years';
 import addDays from 'date-fns/add_days';
+import endOfMonth from 'date-fns/end_of_month';
+import endOfWeek from 'date-fns/end_of_week';
+import endOfYear from 'date-fns/end_of_year';
+import parse from 'date-fns/parse';
+import startOfMonth from 'date-fns/start_of_month';
+import startOfWeek from 'date-fns/start_of_week';
+import startOfYear from 'date-fns/start_of_year';
+import subMonths from 'date-fns/sub_months';
+import subWeeks from 'date-fns/sub_weeks';
+import subYears from 'date-fns/sub_years';
 import { BehaviorSubject } from 'rxjs';
-import { share, filter } from 'rxjs/operators';
+import { filter, share } from 'rxjs/operators';
 import { __assign, __values } from 'tslib';
 import { NzTreeNode } from 'ng-zorro-antd';
-import { Injectable, Inject, NgModule, defineInjectable, inject } from '@angular/core';
 import { DOCUMENT, CommonModule } from '@angular/common';
+import { Inject, Injectable, Directive, Input, TemplateRef, ViewContainerRef, defineInjectable, NgModule, inject } from '@angular/core';
 
 /**
  * @fileoverview added by tsickle
@@ -111,6 +111,7 @@ function format(str, obj, needDeepGet) {
  * @param {?=} digits 当数字类型时，允许指定小数点后数字的个数，默认2位小数
  * @return {?}
  */
+// tslint:disable-next-line:no-any
 function yuan(value, digits) {
     if (digits === void 0) { digits = 2; }
     if (typeof value === 'number')
@@ -159,6 +160,7 @@ function getTimeDistance(type, time) {
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 var LazyService = /** @class */ (function () {
+    // tslint:disable-next-line:no-any
     function LazyService(doc) {
         this.doc = doc;
         this.list = {};
@@ -195,8 +197,9 @@ var LazyService = /** @class */ (function () {
      */
     function (paths) {
         var _this = this;
-        if (!Array.isArray(paths))
+        if (!Array.isArray(paths)) {
             paths = [paths];
+        }
         /** @type {?} */
         var promises = [];
         paths.forEach(function (path) {
@@ -235,6 +238,7 @@ var LazyService = /** @class */ (function () {
                 _this.cached[path] = item;
                 resolve(item);
             };
+            // tslint:disable-next-line:no-any
             /** @type {?} */
             var node = (/** @type {?} */ (_this.doc.createElement('script')));
             node.type = 'text/javascript';
@@ -243,12 +247,12 @@ var LazyService = /** @class */ (function () {
             if (innerContent) {
                 node.innerHTML = innerContent;
             }
-            if (((/** @type {?} */ (node))).readyState) {
+            if (node.readyState) {
                 // IE
-                ((/** @type {?} */ (node))).onreadystatechange = function () {
-                    if (((/** @type {?} */ (node))).readyState === 'loaded' ||
-                        ((/** @type {?} */ (node))).readyState === 'complete') {
-                        ((/** @type {?} */ (node))).onreadystatechange = null;
+                node.onreadystatechange = function () {
+                    if (node.readyState === 'loaded' ||
+                        node.readyState === 'complete') {
+                        node.onreadystatechange = null;
                         onSuccess({
                             path: path,
                             loaded: true,
@@ -271,6 +275,7 @@ var LazyService = /** @class */ (function () {
                     path: path,
                     loaded: false,
                     status: 'error',
+                    error: error,
                 });
             };
             _this.doc.getElementsByTagName('head')[0].appendChild(node);
@@ -466,6 +471,7 @@ _Validators = /** @class */ (function () {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
+// tslint:disable:no-any
 /**
  * @param {?} element
  * @return {?}
@@ -518,7 +524,7 @@ function InputBoolean(allowUndefined) {
         }
         Object.defineProperty(target, privatePropName, {
             configurable: true,
-            writable: true
+            writable: true,
         });
         Object.defineProperty(target, name, {
             get: /**
@@ -533,7 +539,7 @@ function InputBoolean(allowUndefined) {
              */
             function (value) {
                 this[privatePropName] = toBoolean(value, allowUndefined); // tslint:disable-line:no-invalid-this
-            }
+            },
         });
     };
 }
@@ -568,7 +574,7 @@ function InputNumber(fallback) {
         }
         Object.defineProperty(target, privatePropName, {
             configurable: true,
-            writable: true
+            writable: true,
         });
         Object.defineProperty(target, name, {
             get: /**
@@ -583,7 +589,7 @@ function InputNumber(fallback) {
              */
             function (value) {
                 this[privatePropName] = toNumber(value, fallback); // tslint:disable-line:no-invalid-this
-            }
+            },
         });
     };
 }
@@ -675,7 +681,7 @@ var DelonUtilConfig = /** @class */ (function () {
  */
 var ArrayService = /** @class */ (function () {
     function ArrayService(cog) {
-        this.c = Object.assign((/** @type {?} */ ({
+        this.c = __assign({}, (/** @type {?} */ ({
             deepMapName: 'deep',
             parentMapName: 'parent',
             idMapName: 'id',
@@ -686,7 +692,7 @@ var ArrayService = /** @class */ (function () {
             selectedMapname: 'selected',
             expandedMapname: 'expanded',
             disabledMapname: 'disabled',
-        })), cog && cog.array);
+        })), (cog && cog.array));
     }
     /**
      * 将树结构转换成数组结构
@@ -704,13 +710,7 @@ var ArrayService = /** @class */ (function () {
      * @return {?}
      */
     function (tree, options) {
-        options = Object.assign({
-            deepMapName: this.c.deepMapName,
-            parentMapName: this.c.parentMapName,
-            childrenMapName: this.c.childrenMapName,
-            clearChildren: true,
-            cb: null,
-        }, options);
+        options = __assign({ deepMapName: this.c.deepMapName, parentMapName: this.c.parentMapName, childrenMapName: this.c.childrenMapName, clearChildren: true, cb: null }, options);
         /** @type {?} */
         var result = [];
         /** @type {?} */
@@ -721,8 +721,9 @@ var ArrayService = /** @class */ (function () {
                     var i = list_1_1.value;
                     i[options.deepMapName] = deep;
                     i[options.parentMapName] = parent;
-                    if (options.cb)
+                    if (options.cb) {
                         options.cb(i, parent, deep);
+                    }
                     result.push(i);
                     /** @type {?} */
                     var children = i[options.childrenMapName];
@@ -731,8 +732,9 @@ var ArrayService = /** @class */ (function () {
                         children.length > 0) {
                         inFn(children, i, deep + 1);
                     }
-                    if (options.clearChildren)
+                    if (options.clearChildren) {
                         delete i[options.childrenMapName];
+                    }
                 }
             }
             catch (e_1_1) { e_1 = { error: e_1_1 }; }
@@ -763,12 +765,7 @@ var ArrayService = /** @class */ (function () {
      */
     function (arr, options) {
         var e_2, _a;
-        options = Object.assign({
-            idMapName: this.c.idMapName,
-            parentIdMapName: this.c.parentIdMapName,
-            childrenMapName: this.c.childrenMapName,
-            cb: null,
-        }, options);
+        options = __assign({ idMapName: this.c.idMapName, parentIdMapName: this.c.parentIdMapName, childrenMapName: this.c.childrenMapName, cb: null }, options);
         /** @type {?} */
         var tree = [];
         /** @type {?} */
@@ -782,8 +779,9 @@ var ArrayService = /** @class */ (function () {
                 var pid = item[options.parentIdMapName];
                 childrenOf[id] = childrenOf[id] || [];
                 item[options.childrenMapName] = childrenOf[id];
-                if (options.cb)
+                if (options.cb) {
                     options.cb(item);
+                }
                 if (pid) {
                     childrenOf[pid] = childrenOf[pid] || [];
                     childrenOf[pid].push(item);
@@ -818,18 +816,7 @@ var ArrayService = /** @class */ (function () {
      * @return {?}
      */
     function (arr, options) {
-        options = Object.assign({
-            expanded: false,
-            idMapName: this.c.idMapName,
-            parentIdMapName: this.c.parentIdMapName,
-            titleMapName: this.c.titleMapName,
-            isLeafMapName: 'isLeaf',
-            checkedMapname: this.c.checkedMapname,
-            selectedMapname: this.c.selectedMapname,
-            expandedMapname: this.c.expandedMapname,
-            disabledMapname: this.c.disabledMapname,
-            cb: null,
-        }, options);
+        options = __assign({ idMapName: this.c.idMapName, parentIdMapName: this.c.parentIdMapName, titleMapName: this.c.titleMapName, isLeafMapName: 'isLeaf', checkedMapname: this.c.checkedMapname, selectedMapname: this.c.selectedMapname, expandedMapname: this.c.expandedMapname, disabledMapname: this.c.disabledMapname, cb: null }, options);
         /** @type {?} */
         var tree = this.arrToTree(arr, {
             idMapName: options.idMapName,
@@ -849,8 +836,9 @@ var ArrayService = /** @class */ (function () {
             else {
                 item.isLeaf = item[options.isLeafMapName];
             }
-            if (options.cb)
+            if (options.cb) {
                 options.cb(item, parent, deep);
+            }
         });
         return tree.map(function (node) { return new NzTreeNode(node); });
     };
@@ -872,9 +860,7 @@ var ArrayService = /** @class */ (function () {
      * @return {?}
      */
     function (tree, cb, options) {
-        options = Object.assign({
-            childrenMapName: this.c.childrenMapName,
-        }, options);
+        options = __assign({ childrenMapName: this.c.childrenMapName }, options);
         /** @type {?} */
         var inFn = function (data, parent, deep) {
             var e_3, _a;
@@ -915,9 +901,7 @@ var ArrayService = /** @class */ (function () {
      * @return {?}
      */
     function (tree, options) {
-        options = Object.assign({
-            includeHalfChecked: true,
-        }, options);
+        options = __assign({ includeHalfChecked: true }, options);
         /** @type {?} */
         var keys = [];
         this.visitTree(tree, function (item, parent, deep) {
@@ -947,6 +931,76 @@ var ArrayService = /** @class */ (function () {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
+var StringTemplateOutletDirective = /** @class */ (function () {
+    function StringTemplateOutletDirective(viewContainer, defaultTemplate) {
+        this.viewContainer = viewContainer;
+        this.defaultTemplate = defaultTemplate;
+        this.inputTemplate = null;
+        this.inputViewRef = null;
+        this.defaultViewRef = null;
+    }
+    Object.defineProperty(StringTemplateOutletDirective.prototype, "stringTemplateOutlet", {
+        set: /**
+         * @param {?} value
+         * @return {?}
+         */
+        function (value) {
+            if (value instanceof TemplateRef) {
+                this.isTemplate = true;
+                this.inputTemplate = value;
+            }
+            else {
+                this.isTemplate = false;
+            }
+            this.updateView();
+        },
+        enumerable: true,
+        configurable: true
+    });
+    /**
+     * @return {?}
+     */
+    StringTemplateOutletDirective.prototype.updateView = /**
+     * @return {?}
+     */
+    function () {
+        if (!this.isTemplate) {
+            /** use default template when input is string **/
+            if (!this.defaultViewRef) {
+                this.viewContainer.clear();
+                this.inputViewRef = null;
+                this.defaultViewRef = this.viewContainer.createEmbeddedView(this.defaultTemplate);
+            }
+        }
+        else {
+            /** use input template when input is templateRef **/
+            if (!this.inputViewRef) {
+                this.viewContainer.clear();
+                this.defaultViewRef = null;
+                this.inputViewRef = this.viewContainer.createEmbeddedView(this.inputTemplate);
+            }
+        }
+    };
+    StringTemplateOutletDirective.decorators = [
+        { type: Directive, args: [{
+                    selector: '[stringTemplateOutlet]',
+                },] }
+    ];
+    /** @nocollapse */
+    StringTemplateOutletDirective.ctorParameters = function () { return [
+        { type: ViewContainerRef },
+        { type: TemplateRef }
+    ]; };
+    StringTemplateOutletDirective.propDecorators = {
+        stringTemplateOutlet: [{ type: Input }]
+    };
+    return StringTemplateOutletDirective;
+}());
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ */
 var DelonUtilModule = /** @class */ (function () {
     function DelonUtilModule() {
     }
@@ -964,6 +1018,8 @@ var DelonUtilModule = /** @class */ (function () {
     DelonUtilModule.decorators = [
         { type: NgModule, args: [{
                     imports: [CommonModule],
+                    declarations: [StringTemplateOutletDirective],
+                    exports: [StringTemplateOutletDirective],
                 },] }
     ];
     return DelonUtilModule;
@@ -979,6 +1035,6 @@ var DelonUtilModule = /** @class */ (function () {
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 
-export { _Validators, format, yuan, getTimeDistance, LazyService, isNum, isInt, isDecimal, isIdCard, isMobile, isEmpty, toBoolean, InputBoolean, toNumber, InputNumber, deepGet, deepCopy, copy, updateHostClass, ArrayService, DelonUtilConfig, DelonUtilModule };
+export { _Validators, format, yuan, getTimeDistance, LazyService, isNum, isInt, isDecimal, isIdCard, isMobile, isEmpty, toBoolean, InputBoolean, toNumber, InputNumber, deepGet, deepCopy, copy, updateHostClass, ArrayService, DelonUtilConfig, DelonUtilModule, StringTemplateOutletDirective as ɵa };
 
 //# sourceMappingURL=util.js.map

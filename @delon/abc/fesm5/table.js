@@ -1,16 +1,16 @@
 import { DomSanitizer } from '@angular/platform-browser';
 import { XlsxService } from '@delon/abc/xlsx';
 import { Router } from '@angular/router';
+import { ALAIN_I18N_TOKEN, _HttpClient, CNCurrencyPipe, DatePipe, YNPipe, DelonLocaleService, DrawerHelper, ModalHelper } from '@delon/theme';
 import { of } from 'rxjs';
-import { map, catchError, filter } from 'rxjs/operators';
-import { ALAIN_I18N_TOKEN, CNCurrencyPipe, DatePipe, YNPipe, _HttpClient, ModalHelper, DrawerHelper, DelonLocaleService } from '@delon/theme';
-import { __values, __decorate, __metadata, __spread } from 'tslib';
-import { Directive, Input, TemplateRef, Injectable, Host, Optional, Inject, Component, Output, EventEmitter, Renderer2, ElementRef, ChangeDetectionStrategy, ChangeDetectorRef, NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
+import { catchError, map, filter } from 'rxjs/operators';
+import { __values, __assign, __decorate, __metadata, __spread } from 'tslib';
 import { DecimalPipe, DOCUMENT, CommonModule } from '@angular/common';
+import { Directive, Host, Injectable, Input, TemplateRef, Inject, Optional, ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter, Output, Renderer2, NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
-import { deepCopy, deepGet, toBoolean, updateHostClass, InputBoolean, InputNumber, DelonUtilModule } from '@delon/util';
 import { ACLService, DelonACLModule } from '@delon/acl';
+import { deepCopy, deepGet, toBoolean, updateHostClass, InputBoolean, InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
@@ -249,7 +249,7 @@ var STColumnSource = /** @class */ (function () {
                         item.type = 'none';
                     }
                     else {
-                        item.modal = Object.assign({}, modal, item.modal);
+                        item.modal = __assign({}, modal, item.modal);
                     }
                 }
                 if (item.type === 'drawer') {
@@ -258,7 +258,7 @@ var STColumnSource = /** @class */ (function () {
                         item.type = 'none';
                     }
                     else {
-                        item.drawer = Object.assign({}, drawer, item.drawer);
+                        item.drawer = __assign({}, drawer, item.drawer);
                     }
                 }
                 if (item.type === 'del' && typeof item.pop === 'undefined') {
@@ -271,7 +271,7 @@ var STColumnSource = /** @class */ (function () {
                     item.pop = false;
                 }
                 if (item.icon) {
-                    item.icon = Object.assign({}, btnIcon, typeof item.icon === 'string' ? { type: item.icon } : item.icon);
+                    item.icon = __assign({}, btnIcon, (typeof item.icon === 'string' ? { type: item.icon } : item.icon));
                 }
                 item.children = item.children && item.children.length > 0 ? this.btnCoerce(item.children) : [];
                 // i18n
@@ -363,6 +363,7 @@ var STColumnSource = /** @class */ (function () {
         if (item.sorter && typeof item.sorter === 'function') {
             return {
                 enabled: true,
+                // tslint:disable-next-line:no-any
                 default: (/** @type {?} */ (item.sort)),
                 compare: item.sorter,
                 key: item.sortKey || item.indexKey,
@@ -404,6 +405,7 @@ var STColumnSource = /** @class */ (function () {
                 confirmText: item.filterConfirmText,
                 clearText: item.filterClearText,
                 default: item.filtered,
+                // tslint:disable-next-line:no-any
                 fn: (/** @type {?} */ (item.filter)),
                 icon: item.filterIcon,
                 key: item.filterKey || item.indexKey,
@@ -524,7 +526,7 @@ var STColumnSource = /** @class */ (function () {
                 }
                 // types
                 if (item.type === 'yn') {
-                    item.yn = Object.assign({ truth: true }, item.yn);
+                    item.yn = __assign({ truth: true }, item.yn);
                     // compatible
                     if (item.ynTruth != null)
                         item.yn.truth = item.ynTruth;
@@ -536,6 +538,7 @@ var STColumnSource = /** @class */ (function () {
                 if ((item.type === 'link' && typeof item.click !== 'function') ||
                     (item.type === 'badge' && item.badge == null) ||
                     (item.type === 'tag' && item.tag == null)) {
+                    // tslint:disable-next-line:no-any
                     ((/** @type {?} */ (item))).type = '';
                 }
                 // className
@@ -603,12 +606,12 @@ var STColumnSource = /** @class */ (function () {
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 var STDataSource = /** @class */ (function () {
-    function STDataSource(http, currenty, date, yn, number, dom) {
+    function STDataSource(http, currentyPipe, datePipe, ynPipe, numberPipe, dom) {
         this.http = http;
-        this.currenty = currenty;
-        this.date = date;
-        this.yn = yn;
-        this.number = number;
+        this.currentyPipe = currentyPipe;
+        this.datePipe = datePipe;
+        this.ynPipe = ynPipe;
+        this.numberPipe = numberPipe;
         this.dom = dom;
     }
     /**
@@ -750,7 +753,7 @@ var STDataSource = /** @class */ (function () {
     function (item, col, idx) {
         if (col.format) {
             /** @type {?} */
-            var formatRes = (/** @type {?} */ (col.format(item, col)));
+            var formatRes = col.format(item, col);
             if (~formatRes.indexOf('<')) {
                 return this.dom.bypassSecurityTrustHtml(formatRes);
             }
@@ -768,16 +771,16 @@ var STDataSource = /** @class */ (function () {
                 ret = value ? "<img src=\"" + value + "\" class=\"img\">" : '';
                 break;
             case 'number':
-                ret = this.number.transform(value, col.numberDigits);
+                ret = this.numberPipe.transform(value, col.numberDigits);
                 break;
             case 'currency':
-                ret = this.currenty.transform(value);
+                ret = this.currentyPipe.transform(value);
                 break;
             case 'date':
-                ret = this.date.transform(value, col.dateFormat);
+                ret = this.datePipe.transform(value, col.dateFormat);
                 break;
             case 'yn':
-                ret = this.yn.transform(value === col.yn.truth, col.yn.yes, col.yn.no);
+                ret = this.ynPipe.transform(value === col.yn.truth, col.yn.yes, col.yn.no);
                 break;
         }
         return ret == null ? '' : ret;
@@ -798,10 +801,8 @@ var STDataSource = /** @class */ (function () {
         /** @type {?} */
         var method = (req.method || 'GET').toUpperCase();
         /** @type {?} */
-        var params = Object.assign((_a = {},
-            _a[req.reName.pi] = page.zeroIndexed ? pi - 1 : pi,
-            _a[req.reName.ps] = ps,
-            _a), req.params, this.getReqSortMap(singleSort, multiSort, columns), this.getReqFilterMap(columns));
+        var params = __assign((_a = {}, _a[req.reName.pi] = page.zeroIndexed ? pi - 1 : pi, _a[req.reName.ps] = ps, _a), req.params, this.getReqSortMap(singleSort, multiSort, columns), this.getReqFilterMap(columns));
+        // tslint:disable-next-line:no-any
         /** @type {?} */
         var reqOptions = {
             params: params,
@@ -810,7 +811,7 @@ var STDataSource = /** @class */ (function () {
         };
         if (method === 'POST' && req.allInBody === true) {
             reqOptions = {
-                body: Object.assign({}, req.body, params),
+                body: __assign({}, req.body, params),
                 headers: req.headers,
             };
         }
@@ -935,7 +936,7 @@ var STDataSource = /** @class */ (function () {
             else {
                 obj[col.filter.key] = values.map(function (i) { return i.value; }).join(',');
             }
-            ret = Object.assign(ret, obj);
+            ret = __assign({}, ret, obj);
         });
         return ret;
     };
@@ -962,17 +963,22 @@ var STExport = /** @class */ (function () {
     function STExport(xlsxSrv) {
         this.xlsxSrv = xlsxSrv;
     }
+    // tslint:disable-next-line:no-any
+    // tslint:disable-next-line:no-any
     /**
      * @param {?} item
      * @param {?} col
      * @return {?}
      */
-    STExport.prototype._stGet = /**
+    STExport.prototype._stGet = 
+    // tslint:disable-next-line:no-any
+    /**
      * @param {?} item
      * @param {?} col
      * @return {?}
      */
     function (item, col) {
+        // tslint:disable-next-line:no-any
         /** @type {?} */
         var ret = { t: 's', v: '' };
         if (col.format) {
@@ -1021,7 +1027,7 @@ var STExport = /** @class */ (function () {
         var dc = opt._d.length;
         // column
         for (var i = 0; i < cc; i++) {
-            sheet[String.fromCharCode(65 + i) + "1"] = {
+            sheet[String.fromCharCode(i + 65) + "1"] = {
                 t: 's',
                 v: colData[i].title,
             };
@@ -1029,11 +1035,11 @@ var STExport = /** @class */ (function () {
         // content
         for (var i = 0; i < dc; i++) {
             for (var j = 0; j < cc; j++) {
-                sheet["" + String.fromCharCode(65 + j) + (i + 2)] = this._stGet(opt._d[i], colData[j]);
+                sheet["" + String.fromCharCode(j + 65) + (i + 2)] = this._stGet(opt._d[i], colData[j]);
             }
         }
         if (cc > 0 && dc > 0) {
-            sheet['!ref'] = "A1:" + String.fromCharCode(65 + cc - 1) + (dc + 1);
+            sheet['!ref'] = "A1:" + String.fromCharCode(cc + 65 - 1) + (dc + 1);
         }
         return sheets;
     };
@@ -1087,27 +1093,16 @@ var STComponent = /** @class */ (function () {
         this.dataSource = dataSource;
         this.delonI18n = delonI18n;
         this.totalTpl = "";
+        // tslint:disable-next-line:no-any
         this.locale = {};
         this._data = [];
         this._isPagination = true;
         this._allChecked = false;
         this._indeterminate = false;
         this._columns = [];
-        /**
-         * 列描述
-         */
         this.columns = [];
-        /**
-         * 每页数量，当设置为 `0` 表示不分页，默认：`10`
-         */
         this.ps = 10;
-        /**
-         * 当前页码
-         */
         this.pi = 1;
-        /**
-         * 数据总量
-         */
         this.total = 0;
         /**
          * 是否显示Loading
@@ -1128,6 +1123,10 @@ var STComponent = /** @class */ (function () {
          */
         this.singleSort = null;
         /**
+         * 行单击多少时长之类为双击（单位：毫秒），默认：`200`
+         */
+        this.rowClickTime = 200;
+        /**
          * 请求异常时回调
          */
         this.error = new EventEmitter();
@@ -1135,10 +1134,6 @@ var STComponent = /** @class */ (function () {
          * 变化时回调，包括：`pi`、`ps`、`checkbox`、`radio`、`sort`、`filter`、`click`、`dblClick` 变动
          */
         this.change = new EventEmitter();
-        /**
-         * 行单击多少时长之类为双击（单位：毫秒），默认：`200`
-         */
-        this.rowClickTime = 200;
         this.rowClickCount = 0;
         this.delonI18n$ = this.delonI18n.change.subscribe(function () {
             _this.locale = _this.delonI18n.getData('st');
@@ -1170,7 +1165,7 @@ var STComponent = /** @class */ (function () {
         function (value) {
             var req = this.cog.req;
             /** @type {?} */
-            var item = Object.assign({}, req, value);
+            var item = __assign({}, req, value);
             if (item.reName == null) {
                 item.reName = deepCopy(req.reName);
             }
@@ -1195,8 +1190,8 @@ var STComponent = /** @class */ (function () {
         function (value) {
             var res = this.cog.res;
             /** @type {?} */
-            var item = Object.assign({}, res, value);
-            item.reName = Object.assign({}, res.reName, item.reName);
+            var item = __assign({}, res, value);
+            item.reName = __assign({}, res.reName, item.reName);
             if (!Array.isArray(item.reName.list))
                 item.reName.list = item.reName.list.split('.');
             if (!Array.isArray(item.reName.total))
@@ -1223,7 +1218,7 @@ var STComponent = /** @class */ (function () {
             this.clonePage = value;
             var page = this.cog.page;
             /** @type {?} */
-            var item = Object.assign({}, deepCopy(page), value);
+            var item = __assign({}, deepCopy(page), value);
             var total = item.total;
             if (typeof total === 'string' && total.length) {
                 this.totalTpl = total;
@@ -1248,7 +1243,10 @@ var STComponent = /** @class */ (function () {
         function () {
             return this._multiSort;
         },
-        set: /**
+        // tslint:disable-next-line:no-any
+        set: 
+        // tslint:disable-next-line:no-any
+        /**
          * @param {?} value
          * @return {?}
          */
@@ -1257,11 +1255,11 @@ var STComponent = /** @class */ (function () {
                 this._multiSort = null;
                 return;
             }
-            this._multiSort = Object.assign((/** @type {?} */ ({
+            this._multiSort = __assign({}, (/** @type {?} */ ({
                 key: 'sort',
                 separator: '-',
                 nameSeparator: '.',
-            })), typeof value === 'object' ? value : {});
+            })), (typeof value === 'object' ? value : {}));
         },
         enumerable: true,
         configurable: true
@@ -1293,12 +1291,16 @@ var STComponent = /** @class */ (function () {
                 .replace('{{range[1]}}', range[1])
             : '';
     };
+    // tslint:disable-next-line:no-any
+    // tslint:disable-next-line:no-any
     /**
      * @param {?} type
      * @param {?=} data
      * @return {?}
      */
-    STComponent.prototype.changeEmit = /**
+    STComponent.prototype.changeEmit = 
+    // tslint:disable-next-line:no-any
+    /**
      * @param {?} type
      * @param {?=} data
      * @return {?}
@@ -1342,7 +1344,7 @@ var STComponent = /** @class */ (function () {
             columns: this._columns,
             singleSort: singleSort,
             multiSort: multiSort,
-            rowClassName: rowClassName
+            rowClassName: rowClassName,
         })
             .then(function (result) {
             _this.loading = false;
@@ -1432,8 +1434,7 @@ var STComponent = /** @class */ (function () {
         if (typeof extraParams !== 'undefined') {
             this._req.params =
                 options && options.merge
-                    ? Object.assign(this._req.params, extraParams)
-                    : extraParams;
+                    ? __assign({}, this._req.params, extraParams) : extraParams;
         }
         this._change('pi');
     };
@@ -1600,8 +1601,10 @@ var STComponent = /** @class */ (function () {
     };
     //#endregion
     //#region sort
+    // tslint:disable-next-line:no-any
     //#endregion
     //#region sort
+    // tslint:disable-next-line:no-any
     /**
      * @param {?} col
      * @param {?} idx
@@ -1611,6 +1614,7 @@ var STComponent = /** @class */ (function () {
     STComponent.prototype.sort = 
     //#endregion
     //#region sort
+    // tslint:disable-next-line:no-any
     /**
      * @param {?} col
      * @param {?} idx
@@ -1915,8 +1919,10 @@ var STComponent = /** @class */ (function () {
             var modal = btn.modal;
             obj[modal.paramsName] = record;
             /** @type {?} */
-            var options = Object.assign({}, modal);
-            ((/** @type {?} */ (this.modalHelper[btn.type === 'modal' ? 'create' : 'createStatic'])))(modal.component, Object.assign(obj, modal.params && modal.params(record)), options)
+            var options = __assign({}, modal);
+            ((/** @type {?} */ (this.modalHelper[btn.type === 'modal' ? 'create' : 'createStatic'
+            // tslint:disable-next-line:no-any
+            ])))(modal.component, __assign({}, obj, (modal.params && modal.params(record))), options)
                 .pipe(filter(function (w) { return typeof w !== 'undefined'; }))
                 .subscribe(function (res) { return _this.btnCallback(record, btn, res); });
             return;
@@ -1927,7 +1933,7 @@ var STComponent = /** @class */ (function () {
             var drawer = btn.drawer;
             obj[drawer.paramsName] = record;
             this.drawerHelper
-                .create(drawer.title, drawer.component, Object.assign(obj, drawer.params && drawer.params(record)), Object.assign({}, drawer))
+                .create(drawer.title, drawer.component, __assign({}, obj, (drawer.params && drawer.params(record))), __assign({}, drawer))
                 .pipe(filter(function (w) { return typeof w !== 'undefined'; }))
                 .subscribe(function (res) { return _this.btnCallback(record, btn, res); });
             return;
@@ -1942,13 +1948,17 @@ var STComponent = /** @class */ (function () {
         }
         this.btnCallback(record, btn);
     };
+    // tslint:disable-next-line:no-any
+    // tslint:disable-next-line:no-any
     /**
      * @param {?} record
      * @param {?} btn
      * @param {?=} modal
      * @return {?}
      */
-    STComponent.prototype.btnCallback = /**
+    STComponent.prototype.btnCallback = 
+    // tslint:disable-next-line:no-any
+    /**
      * @param {?} record
      * @param {?} btn
      * @param {?=} modal
@@ -2026,7 +2036,7 @@ var STComponent = /** @class */ (function () {
     function (newData, opt) {
         var _this = this;
         (newData ? of(newData) : of(this._data)).subscribe(function (res) {
-            return _this.exportSrv.export(Object.assign({}, opt, (/** @type {?} */ ({
+            return _this.exportSrv.export(__assign({}, opt, (/** @type {?} */ ({
                 _d: res,
                 _c: _this._columns,
             }))));
@@ -2152,10 +2162,10 @@ var STComponent = /** @class */ (function () {
         expand: [{ type: Input }],
         noResult: [{ type: Input }],
         widthConfig: [{ type: Input }],
-        error: [{ type: Output }],
-        change: [{ type: Output }],
         rowClickTime: [{ type: Input }],
-        responsiveHideHeaderFooter: [{ type: Input }]
+        responsiveHideHeaderFooter: [{ type: Input }],
+        error: [{ type: Output }],
+        change: [{ type: Output }]
     };
     __decorate([
         InputNumber(),

@@ -1,7 +1,7 @@
-import { __spread } from 'tslib';
-import { Component, Input, ViewChild, ElementRef, NgZone, ChangeDetectionStrategy, ChangeDetectorRef, NgModule } from '@angular/core';
+import { __assign, __decorate, __metadata, __spread } from 'tslib';
 import { CommonModule } from '@angular/common';
-import { toNumber, DelonUtilModule } from '@delon/util';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Input, NgZone, ViewChild, NgModule } from '@angular/core';
+import { InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
@@ -12,31 +12,11 @@ var G2TagCloudComponent = /** @class */ (function () {
         this.el = el;
         this.cd = cd;
         this.zone = zone;
-        this._height = 0;
+        // #region fields
+        this.height = 0;
         this.padding = 0;
         this.initFlag = false;
     }
-    Object.defineProperty(G2TagCloudComponent.prototype, "height", {
-        // #region fields
-        get: 
-        // #region fields
-        /**
-         * @return {?}
-         */
-        function () {
-            return this._height;
-        },
-        set: /**
-         * @param {?} value
-         * @return {?}
-         */
-        function (value) {
-            this._height = toNumber(value);
-            this.cd.detectChanges();
-        },
-        enumerable: true,
-        configurable: true
-    });
     /**
      * @return {?}
      */
@@ -53,21 +33,9 @@ var G2TagCloudComponent = /** @class */ (function () {
              */
             function (cfg, container) {
                 /** @type {?} */
-                var attrs = Object.assign({}, {
-                    fillOpacity: cfg.opacity,
-                    fontSize: cfg.origin._origin.size,
-                    rotate: cfg.origin._origin.rotate,
-                    text: cfg.origin._origin.text,
-                    textAlign: 'center',
-                    fontFamily: cfg.origin._origin.font,
-                    fill: cfg.color,
-                    textBaseline: 'Alphabetic',
-                }, cfg.style);
+                var attrs = __assign({ fillOpacity: cfg.opacity, fontSize: cfg.origin._origin.size, rotate: cfg.origin._origin.rotate, text: cfg.origin._origin.text, textAlign: 'center', fontFamily: cfg.origin._origin.font, fill: cfg.color, textBaseline: 'Alphabetic' }, cfg.style);
                 return container.addShape('text', {
-                    attrs: Object.assign(attrs, {
-                        x: cfg.x,
-                        y: cfg.y,
-                    }),
+                    attrs: __assign({}, attrs, { x: cfg.x, y: cfg.y }),
                 });
             },
         });
@@ -199,6 +167,7 @@ var G2TagCloudComponent = /** @class */ (function () {
     function () {
         if (this.initFlag) {
             this.runInstall();
+            this.cd.detectChanges();
         }
     };
     /**
@@ -229,6 +198,10 @@ var G2TagCloudComponent = /** @class */ (function () {
         data: [{ type: Input }],
         node: [{ type: ViewChild, args: ['container',] }]
     };
+    __decorate([
+        InputNumber(),
+        __metadata("design:type", Object)
+    ], G2TagCloudComponent.prototype, "height", void 0);
     return G2TagCloudComponent;
 }());
 

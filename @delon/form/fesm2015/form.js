@@ -3,11 +3,11 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DelonLocaleService, DelonLocaleModule } from '@delon/theme';
 import format from 'date-fns/format';
+import { of, combineLatest, BehaviorSubject, Observable, Subject } from 'rxjs';
+import { map, takeWhile, distinctUntilChanged, filter, debounceTime, flatMap, startWith, tap } from 'rxjs/operators';
+import { Inject, Optional, ComponentFactoryResolver, Injectable, ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, Output, ViewChild, ViewContainerRef, Directive, ElementRef, Renderer2, TemplateRef, HostBinding, NgModule } from '@angular/core';
 import { deepCopy, InputBoolean, InputNumber, deepGet, DelonUtilModule } from '@delon/util';
-import { of, Subject, Observable, BehaviorSubject, combineLatest } from 'rxjs';
-import { map, takeWhile, distinctUntilChanged, filter, startWith, flatMap, debounceTime, tap } from 'rxjs/operators';
 import { NzTreeNode, NzModalService, NgZorroAntdModule } from 'ng-zorro-antd';
-import { Inject, Optional, Injectable, ComponentFactoryResolver, Component, Input, Output, EventEmitter, ChangeDetectionStrategy, ChangeDetectorRef, ViewChild, ViewContainerRef, Directive, ElementRef, Renderer2, TemplateRef, HostBinding, NgModule } from '@angular/core';
 
 /**
  * @fileoverview added by tsickle
@@ -17,39 +17,39 @@ import { Inject, Optional, Injectable, ComponentFactoryResolver, Component, Inpu
 const ERRORSDEFAULT = {
     'false schema': `布尔模式出错`,
     '$ref': `无法找到引用{ref}`,
-    additionalItems: `不允许超过{ref}`,
-    additionalProperties: `不允许有额外的属性`,
-    anyOf: `数据应为 anyOf 所指定的其中一个`,
-    dependencies: `应当拥有属性{property}的依赖属性{deps}`,
-    enum: `应当是预设定的枚举值之一`,
-    format: `格式不正确`,
+    'additionalItems': `不允许超过{ref}`,
+    'additionalProperties': `不允许有额外的属性`,
+    'anyOf': `数据应为 anyOf 所指定的其中一个`,
+    'dependencies': `应当拥有属性{property}的依赖属性{deps}`,
+    'enum': `应当是预设定的枚举值之一`,
+    'format': `格式不正确`,
     // `应当匹配格式 "{format}"`,
-    type: `类型应当是 {type}`,
-    required: `必填项`,
-    maxLength: `至多 {limit} 个字符`,
-    minLength: `至少 {limit} 个字符以上`,
-    minimum: `必须 {comparison}{limit}`,
-    formatMinimum: `必须 {comparison}{limit}`,
-    maximum: `必须 {comparison}{limit}`,
-    formatMaximum: `必须 {comparison}{limit}`,
-    maxItems: `不应多于 {limit} 个项`,
-    minItems: `不应少于 {limit} 个项`,
-    maxProperties: `不应多于 {limit} 个属性`,
-    minProperties: `不应少于 {limit} 个属性`,
-    multipleOf: `应当是 {multipleOf} 的整数倍`,
-    not: `不应当匹配 "not" schema`,
-    oneOf: `只能匹配一个 "oneOf" 中的 schema`,
-    pattern: `数据格式不正确`,
-    uniqueItems: `不应当含有重复项 (第 {j} 项与第 {i} 项是重复的)`,
-    custom: `格式不正确`,
-    propertyNames: `属性名 "{propertyName}" 无效`,
-    patternRequired: `应当有属性匹配模式 {missingPattern}`,
-    switch: `由于 {caseIndex} 失败，未通过 "switch" 校验`,
-    const: `应当等于常量`,
-    contains: `应当包含一个有效项`,
-    formatExclusiveMaximum: `formatExclusiveMaximum 应当是布尔值`,
-    formatExclusiveMinimum: `formatExclusiveMinimum 应当是布尔值`,
-    if: `应当匹配模式 "{failingKeyword}"`,
+    'type': `类型应当是 {type}`,
+    'required': `必填项`,
+    'maxLength': `至多 {limit} 个字符`,
+    'minLength': `至少 {limit} 个字符以上`,
+    'minimum': `必须 {comparison}{limit}`,
+    'formatMinimum': `必须 {comparison}{limit}`,
+    'maximum': `必须 {comparison}{limit}`,
+    'formatMaximum': `必须 {comparison}{limit}`,
+    'maxItems': `不应多于 {limit} 个项`,
+    'minItems': `不应少于 {limit} 个项`,
+    'maxProperties': `不应多于 {limit} 个属性`,
+    'minProperties': `不应少于 {limit} 个属性`,
+    'multipleOf': `应当是 {multipleOf} 的整数倍`,
+    'not': `不应当匹配 "not" schema`,
+    'oneOf': `只能匹配一个 "oneOf" 中的 schema`,
+    'pattern': `数据格式不正确`,
+    'uniqueItems': `不应当含有重复项 (第 {j} 项与第 {i} 项是重复的)`,
+    'custom': `格式不正确`,
+    'propertyNames': `属性名 "{propertyName}" 无效`,
+    'patternRequired': `应当有属性匹配模式 {missingPattern}`,
+    'switch': `由于 {caseIndex} 失败，未通过 "switch" 校验`,
+    'const': `应当等于常量`,
+    'contains': `应当包含一个有效项`,
+    'formatExclusiveMaximum': `formatExclusiveMaximum 应当是布尔值`,
+    'formatExclusiveMinimum': `formatExclusiveMinimum 应当是布尔值`,
+    'if': `应当匹配模式 "{failingKeyword}"`,
 };
 
 /**
@@ -124,15 +124,15 @@ const FORMATMAPS = {
         showTime: true,
         format: 'YYYY-MM-DDTHH:mm:ssZ',
     },
-    date: { widget: 'date', format: 'YYYY-MM-DD' },
+    'date': { widget: 'date', format: 'YYYY-MM-DD' },
     'full-date': { widget: 'date', format: 'YYYY-MM-DD' },
-    time: { widget: 'time' },
+    'time': { widget: 'time' },
     'full-time': { widget: 'time' },
-    week: { widget: 'date', mode: 'week', format: 'YYYY-WW' },
-    month: { widget: 'date', mode: 'month', format: 'YYYY-MM' },
-    uri: { widget: 'upload' },
-    email: { widget: 'autocomplete', type: 'email' },
-    color: { widget: 'string', type: 'color' },
+    'week': { widget: 'date', mode: 'week', format: 'YYYY-WW' },
+    'month': { widget: 'date', mode: 'month', format: 'YYYY-MM' },
+    'uri': { widget: 'upload' },
+    'email': { widget: 'autocomplete', type: 'email' },
+    'color': { widget: 'string', type: 'color' },
     '': { widget: 'string' },
 };
 /**
@@ -352,22 +352,6 @@ function getData(schema, ui, formData, asyncArgs) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
-class TerminatorService {
-    constructor() {
-        this.onDestroy = new Subject();
-    }
-    /**
-     * @return {?}
-     */
-    destroy() {
-        this.onDestroy.next(true);
-    }
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
- */
 /**
  * @abstract
  */
@@ -401,7 +385,7 @@ class FormProperty {
             this._root = parent.root;
         }
         else if (this instanceof PropertyGroup) {
-            this._root = (/** @type {?} */ (((/** @type {?} */ (this)))));
+            this._root = (/** @type {?} */ (this));
         }
         this._path = path;
     }
@@ -433,6 +417,7 @@ class FormProperty {
      * @return {?}
      */
     get root() {
+        // tslint:disable-next-line:no-any
         return this._root || (/** @type {?} */ (((/** @type {?} */ (this)))));
     }
     /**
@@ -800,120 +785,6 @@ class PropertyGroup extends FormProperty {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
-/**
- * @abstract
- */
-class AtomicProperty extends FormProperty {
-    /**
-     * @param {?} value
-     * @param {?} onlySelf
-     * @return {?}
-     */
-    setValue(value, onlySelf) {
-        this._value = value;
-        this.updateValueAndValidity(onlySelf, true);
-    }
-    /**
-     * @param {?} value
-     * @param {?} onlySelf
-     * @return {?}
-     */
-    resetValue(value, onlySelf) {
-        if (value == null) {
-            if (this.schema.default !== undefined) {
-                value = this.schema.default;
-            }
-            else {
-                value = this.fallbackValue();
-            }
-        }
-        this._value = value;
-        this.updateValueAndValidity(onlySelf, true);
-        if (this.widget)
-            this.widget.reset(value);
-    }
-    /**
-     * @return {?}
-     */
-    _hasValue() {
-        return this.fallbackValue() !== this.value;
-    }
-    /**
-     * @return {?}
-     */
-    _updateValue() { }
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
- */
-class NumberProperty extends AtomicProperty {
-    /**
-     * @return {?}
-     */
-    fallbackValue() {
-        return null;
-    }
-    /**
-     * @param {?} value
-     * @param {?} onlySelf
-     * @return {?}
-     */
-    setValue(value, onlySelf) {
-        if (typeof value === 'string') {
-            if (value.length) {
-                value =
-                    value.indexOf('.') > -1 ? parseFloat(value) : parseInt(value, 10);
-            }
-            else {
-                value = undefined;
-            }
-        }
-        this._value = value;
-        this.updateValueAndValidity(onlySelf, true);
-    }
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
- */
-class StringProperty extends AtomicProperty {
-    /**
-     * @return {?}
-     */
-    fallbackValue() {
-        return null;
-    }
-    /**
-     * @param {?} value
-     * @param {?} onlySelf
-     * @return {?}
-     */
-    setValue(value, onlySelf) {
-        this._value = value == null ? '' : value;
-        this.updateValueAndValidity(onlySelf, true);
-    }
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
- */
-class BooleanProperty extends AtomicProperty {
-    /**
-     * @return {?}
-     */
-    fallbackValue() {
-        return null;
-    }
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
- */
 class ArrayProperty extends PropertyGroup {
     /**
      * @param {?} formPropertyFactory
@@ -981,6 +852,7 @@ class ArrayProperty extends PropertyGroup {
      * @return {?}
      */
     _updateValue() {
+        // tslint:disable-next-line:no-any
         /** @type {?} */
         const value = [];
         this.forEachChild((property) => {
@@ -991,21 +863,21 @@ class ArrayProperty extends PropertyGroup {
         this._value = value;
     }
     /**
-     * @param {?} value
+     * @param {?} formData
      * @return {?}
      */
-    addProperty(value) {
+    addProperty(formData) {
         /** @type {?} */
-        const newProperty = (/** @type {?} */ (this.formPropertyFactory.createProperty(this.schema.items, this.ui.$items, value, this)));
+        const newProperty = (/** @type {?} */ (this.formPropertyFactory.createProperty(this.schema.items, this.ui.$items, formData, this)));
         ((/** @type {?} */ (this.properties))).push(newProperty);
         return newProperty;
     }
     /**
-     * @param {?} value
+     * @param {?} formDatas
      * @return {?}
      */
-    resetProperties(value) {
-        for (const item of value) {
+    resetProperties(formDatas) {
+        for (const item of formDatas) {
             /** @type {?} */
             const property = this.addProperty(item);
             property.resetValue(item, true);
@@ -1023,13 +895,13 @@ class ArrayProperty extends PropertyGroup {
     }
     // #region actions
     /**
-     * @param {?} value
+     * @param {?} formData
      * @return {?}
      */
-    add(value) {
+    add(formData) {
         /** @type {?} */
-        const newProperty = this.addProperty(value);
-        newProperty.resetValue(value, false);
+        const newProperty = this.addProperty(formData);
+        newProperty.resetValue(formData, false);
         return newProperty;
     }
     /**
@@ -1042,6 +914,97 @@ class ArrayProperty extends PropertyGroup {
         this.clearErrors(list[index].path);
         list.splice(index, 1);
         this.updateValueAndValidity(false, true);
+    }
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ */
+/**
+ * @abstract
+ */
+class AtomicProperty extends FormProperty {
+    /**
+     * @param {?} value
+     * @param {?} onlySelf
+     * @return {?}
+     */
+    setValue(value, onlySelf) {
+        this._value = value;
+        this.updateValueAndValidity(onlySelf, true);
+    }
+    /**
+     * @param {?} value
+     * @param {?} onlySelf
+     * @return {?}
+     */
+    resetValue(value, onlySelf) {
+        if (value == null) {
+            if (this.schema.default !== undefined) {
+                value = this.schema.default;
+            }
+            else {
+                value = this.fallbackValue();
+            }
+        }
+        this._value = value;
+        this.updateValueAndValidity(onlySelf, true);
+        if (this.widget)
+            this.widget.reset(value);
+    }
+    /**
+     * @return {?}
+     */
+    _hasValue() {
+        return this.fallbackValue() !== this.value;
+    }
+    /**
+     * @return {?}
+     */
+    _updateValue() { }
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ */
+class BooleanProperty extends AtomicProperty {
+    /**
+     * @return {?}
+     */
+    fallbackValue() {
+        return null;
+    }
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ */
+class NumberProperty extends AtomicProperty {
+    /**
+     * @return {?}
+     */
+    fallbackValue() {
+        return null;
+    }
+    /**
+     * @param {?} value
+     * @param {?} onlySelf
+     * @return {?}
+     */
+    setValue(value, onlySelf) {
+        if (typeof value === 'string') {
+            if (value.length) {
+                value = value.indexOf('.') > -1 ? parseFloat(value) : parseInt(value, 10);
+            }
+            else {
+                value = undefined;
+            }
+        }
+        this._value = value;
+        this.updateValueAndValidity(onlySelf, true);
     }
 }
 
@@ -1135,6 +1098,28 @@ class ObjectProperty extends PropertyGroup {
             }
         });
         this._value = value;
+    }
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ */
+class StringProperty extends AtomicProperty {
+    /**
+     * @return {?}
+     */
+    fallbackValue() {
+        return null;
+    }
+    /**
+     * @param {?} value
+     * @param {?} onlySelf
+     * @return {?}
+     */
+    setValue(value, onlySelf) {
+        this._value = value == null ? '' : value;
+        this.updateValueAndValidity(onlySelf, true);
     }
 }
 
@@ -1252,6 +1237,22 @@ class FormPropertyFactory {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
+class TerminatorService {
+    constructor() {
+        this.onDestroy = new Subject();
+    }
+    /**
+     * @return {?}
+     */
+    destroy() {
+        this.onDestroy.next(true);
+    }
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ */
 /**
  * @abstract
  */
@@ -1264,11 +1265,7 @@ class AjvSchemaValidatorFactory extends SchemaValidatorFactory {
     constructor(options) {
         super();
         this.options = options;
-        this.ajv = new Ajv(Object.assign({}, options.ajv, {
-            errorDataPath: 'property',
-            allErrors: true,
-            jsonPointers: true,
-        }));
+        this.ajv = new Ajv(Object.assign({}, options.ajv, { errorDataPath: 'property', allErrors: true, jsonPointers: true }));
         this.ajv.addFormat('data-url', /^data:([a-z]+\/[a-z0-9-+.]+)?;name=(.*);base64,(.*)$/);
         this.ajv.addFormat('color', /^(#?([0-9A-Fa-f]{3}){1,2}\b|aqua|black|blue|fuchsia|gray|green|lime|maroon|navy|olive|orange|purple|red|silver|teal|white|yellow|(rgb\(\s*\b([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\b\s*,\s*\b([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\b\s*,\s*\b([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\b\s*\))|(rgb\(\s*(\d?\d%|100%)+\s*,\s*(\d?\d%|100%)+\s*,\s*(\d?\d%|100%)+\s*\)))$/);
         this.ajv.addFormat('mobile', /^(0|\+?86|17951)?1[0-9]{10}$/);
@@ -1314,6 +1311,7 @@ class WidgetRegistry {
     constructor() {
         this.widgets = {};
     }
+    // tslint:disable-next-line:no-any
     /**
      * @param {?} widget
      * @return {?}
@@ -1321,6 +1319,7 @@ class WidgetRegistry {
     setDefault(widget) {
         this.defaultWidget = widget;
     }
+    // tslint:disable-next-line:no-any
     /**
      * @param {?} type
      * @param {?} widget
@@ -1365,8 +1364,9 @@ class WidgetFactory {
         if (!this.registry.has(type)) {
             console.warn(`No widget for type "${type}"`);
         }
+        // tslint:disable-next-line:no-any
         /** @type {?} */
-        const componentClass = this.registry.getType(type);
+        const componentClass = (/** @type {?} */ (this.registry.getType(type)));
         /** @type {?} */
         const componentFactory = this.resolver.resolveComponentFactory(componentClass);
         return container.createComponent(componentFactory);
@@ -1407,6 +1407,7 @@ class SFComponent {
         this.options = options;
         this.cd = cd;
         this.i18n = i18n;
+        // tslint:disable-next-line:no-any
         this.locale = {};
         this._renders = new Map();
         this._valid = true;
@@ -1536,11 +1537,11 @@ class SFComponent {
                 /** @type {?} */
                 const property = retrieveSchema((/** @type {?} */ (schema.properties[key])), definitions);
                 /** @type {?} */
-                const ui = (/** @type {?} */ (Object.assign({ widget: property.type }, property.format && FORMATMAPS[property.format], typeof property.ui === 'string' ? { widget: property.ui } : null, !property.ui &&
+                const ui = (/** @type {?} */ (Object.assign({ widget: property.type }, (property.format && FORMATMAPS[property.format]), (typeof property.ui === 'string' ? { widget: property.ui } : null), (!property.ui &&
                     Array.isArray(property.enum) &&
                     property.enum.length > 0
                     ? { widget: 'select' }
-                    : null, this._defUi, property.ui, uiSchema[uiKey])));
+                    : null), this._defUi, ((/** @type {?} */ (property.ui))), uiSchema[uiKey])));
                 // 继承父节点布局属性
                 if (isHorizontal) {
                     if (parentUiSchema.spanLabelFixed) {
@@ -1575,9 +1576,7 @@ class SFComponent {
                     /** @type {?} */
                     const dateEndProperty = parentSchema.properties[ui.end];
                     if (dateEndProperty) {
-                        dateEndProperty.ui = Object.assign({}, dateEndProperty.ui, {
-                            hidden: true,
-                        });
+                        dateEndProperty.ui = Object.assign({}, ((/** @type {?} */ (dateEndProperty.ui))), { hidden: true });
                     }
                     else {
                         ui.end = '';
@@ -1587,8 +1586,8 @@ class SFComponent {
                 uiRes[uiKey] = ui;
                 delete property.ui;
                 if (property.items) {
-                    uiRes[uiKey]['$items'] = uiRes[uiKey]['$items'] || {};
-                    inFn(property.items, property.items, (uiSchema[uiKey] || {})['$items'] || {}, ui, uiRes[uiKey]['$items']);
+                    uiRes[uiKey].$items = uiRes[uiKey].$items || {};
+                    inFn(property.items, property.items, (uiSchema[uiKey] || {}).$items || {}, ui, uiRes[uiKey].$items);
                 }
                 if (property.properties && Object.keys(property.properties).length) {
                     inFn(property, schema, uiSchema[uiKey] || {}, ui, uiRes[uiKey]);
@@ -1613,7 +1612,7 @@ class SFComponent {
         };
         if (this.ui == null)
             this.ui = {};
-        this._defUi = Object.assign((/** @type {?} */ ({
+        this._defUi = Object.assign({}, (/** @type {?} */ ({
             onlyVisual: this.options.onlyVisual,
             size: this.options.size,
             liveValidate: this.liveValidate,
@@ -1634,7 +1633,7 @@ class SFComponent {
      * @return {?}
      */
     coverButtonProperty() {
-        this._btn = Object.assign((/** @type {?} */ ({ render: { size: 'default' } })), this.locale, this.options.button, this.button);
+        this._btn = Object.assign({}, (/** @type {?} */ ({ render: { size: 'default' } })), this.locale, this.options.button, ((/** @type {?} */ (this.button))));
         /** @type {?} */
         const firstKey = Object.keys(this._ui).find(w => w.startsWith('$'));
         if (this.layout === 'horizontal') {
@@ -1796,7 +1795,7 @@ SFComponent.decorators = [
                     WidgetFactory,
                     {
                         provide: FormPropertyFactory,
-                        useFactory: useFactory,
+                        useFactory,
                         deps: [SchemaValidatorFactory, DelonFormConfig],
                     },
                     TerminatorService,
@@ -2172,65 +2171,6 @@ class ObjectLayoutWidget extends Widget {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
-class ObjectWidget extends ObjectLayoutWidget {
-    constructor() {
-        super(...arguments);
-        this.list = [];
-    }
-    /**
-     * @return {?}
-     */
-    ngOnInit() {
-        this.grid = this.ui.grid;
-        /** @type {?} */
-        const list = [];
-        for (const key of this.formProperty.propertiesId) {
-            /** @type {?} */
-            const property = (/** @type {?} */ (this.formProperty.properties[key]));
-            /** @type {?} */
-            const item = {
-                property,
-                grid: property.ui.grid || this.grid || {},
-                spanLabelFixed: property.ui.spanLabelFixed,
-                show: property.ui.hidden === false
-            };
-            list.push(item);
-        }
-        this.list = list;
-    }
-}
-ObjectWidget.decorators = [
-    { type: Component, args: [{
-                selector: 'sf-object',
-                template: `
-  <ng-container *ngIf="grid; else noGrid">
-    <div nz-row [nzGutter]="grid.gutter">
-      <ng-container *ngFor="let i of list">
-        <ng-container *ngIf="i.property.visible && i.show">
-          <div nz-col
-            [nzSpan]="i.grid.span" [nzOffset]="i.grid.offset"
-            [nzXs]="i.grid.xs" [nzSm]="i.grid.sm" [nzMd]="i.grid.md"
-            [nzLg]="i.grid.lg" [nzXl]="i.grid.xl" [nzXXl]="i.grid.xxl">
-            <sf-item [formProperty]="i.property" [fixed-label]="i.spanLabelFixed"></sf-item>
-          </div>
-        </ng-container>
-      </ng-container>
-    </div>
-  </ng-container>
-  <ng-template #noGrid>
-    <ng-container *ngFor="let i of list">
-      <ng-container *ngIf="i.property.visible && i.show">
-        <sf-item [formProperty]="i.property" [fixed-label]="i.spanLabelFixed"></sf-item>
-      </ng-container>
-    </ng-container>
-  </ng-template>`
-            }] }
-];
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
- */
 class ArrayWidget extends ArrayLayoutWidget {
     constructor() {
         super(...arguments);
@@ -2243,6 +2183,7 @@ class ArrayWidget extends ArrayLayoutWidget {
         return (this.schema.maxItems &&
             ((/** @type {?} */ (this.formProperty.properties))).length >= this.schema.maxItems);
     }
+    // tslint:disable-next-line:no-any
     /**
      * @return {?}
      */
@@ -2255,10 +2196,10 @@ class ArrayWidget extends ArrayLayoutWidget {
     ngOnInit() {
         if (this.ui.grid && this.ui.grid.arraySpan)
             this.arraySpan = this.ui.grid.arraySpan;
-        this.addTitle = this.ui.addTitle || this.l['addText'];
+        this.addTitle = this.ui.addTitle || this.l.addText;
         this.addType = this.ui.addType || 'dashed';
         this.removeTitle =
-            this.ui.removable === false ? null : this.ui.removeTitle || this.l['removeText'];
+            this.ui.removable === false ? null : this.ui.removeTitle || this.l.removeText;
     }
     /**
      * @return {?}
@@ -2285,40 +2226,84 @@ ArrayWidget.decorators = [
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
-class StringWidget extends ControlWidget {
+/** @type {?} */
+const EMAILSUFFIX = [
+    'qq.com',
+    '163.com',
+    'gmail.com',
+    '126.com',
+    'aliyun.com',
+];
+class AutoCompleteWidget extends ControlWidget {
+    constructor() {
+        super(...arguments);
+        this.fixData = [];
+        this.isAsync = false;
+    }
     /**
      * @return {?}
      */
     ngOnInit() {
-        this.type = !!(this.ui.addOnAfter ||
-            this.ui.addOnBefore ||
-            this.ui.addOnAfterIcon ||
-            this.ui.addOnBeforeIcon ||
-            this.ui.prefix ||
-            this.ui.prefixIcon ||
-            this.ui.suffix ||
-            this.ui.suffixIcon)
-            ? 'addon'
-            : '';
+        this.i = {
+            backfill: toBool(this.ui.backfill, false),
+            defaultActiveFirstOption: toBool(this.ui.defaultActiveFirstOption, true),
+            width: this.ui.width || undefined,
+        };
+        this.filterOption = this.ui.filterOption == null ? true : this.ui.filterOption;
+        if (typeof this.filterOption === 'boolean') {
+            this.filterOption = (input, option) => option.label.toLowerCase().indexOf((input || '').toLowerCase()) > -1;
+        }
+        this.isAsync = !!this.ui.asyncData;
+        /** @type {?} */
+        const orgTime = +(this.ui.debounceTime || 0);
+        /** @type {?} */
+        const time = Math.max(0, this.isAsync ? Math.max(50, orgTime) : orgTime);
+        this.list = this.formProperty.valueChanges.pipe(debounceTime(time), startWith(''), flatMap(input => this.isAsync ? this.ui.asyncData(input) : this.filterData(input)), map(res => getEnum(res, null, this.schema.readOnly)));
     }
     /**
      * @param {?} value
      * @return {?}
      */
     reset(value) {
-        if (this.schema.format === 'color' && !value) {
-            this.setValue('#000000');
+        if (this.isAsync)
+            return;
+        switch (this.ui.type) {
+            case 'email':
+                this.fixData = getCopyEnum(EMAILSUFFIX, null, this.schema.readOnly);
+                break;
+            default:
+                this.fixData = getCopyEnum(this.schema.enum, this.formProperty.formData, this.schema.readOnly);
+                break;
         }
     }
+    /**
+     * @param {?} input
+     * @return {?}
+     */
+    filterData(input) {
+        switch (this.ui.type) {
+            case 'email':
+                return this.addEmailSuffix(input);
+            default:
+                return of(this.fixData.filter(option => this.filterOption(input, option)));
+        }
+    }
+    /**
+     * @param {?} value
+     * @return {?}
+     */
+    addEmailSuffix(value) {
+        return of(!value || ~value.indexOf('@')
+            ? []
+            : this.fixData.map(domain => `${value}@${domain.label}`));
+    }
 }
-StringWidget.decorators = [
+AutoCompleteWidget.decorators = [
     { type: Component, args: [{
-                selector: 'sf-string',
+                selector: 'sf-autocomplete',
                 template: `
-  <sf-item-wrap [id]="id" [schema]="schema" [ui]="ui" [showError]="showError" [error]="error" [showTitle]="schema.title">
-
-    <ng-template #ipt>
-      <input nz-input
+    <sf-item-wrap [id]="id" [schema]="schema" [ui]="ui" [showError]="showError" [error]="error" [showTitle]="schema.title">
+      <input nz-input [nzAutocomplete]="auto"
         [attr.id]="id"
         [disabled]="disabled"
         [attr.disabled]="disabled"
@@ -2326,21 +2311,153 @@ StringWidget.decorators = [
         [ngModel]="value"
         (ngModelChange)="setValue($event)"
         [attr.maxLength]="schema.maxLength || null"
-        [attr.type]="ui.type || 'text'"
         [attr.placeholder]="ui.placeholder"
-        [attr.autocomplete]="ui.autocomplete"
-        [attr.autoFocus]="ui.autofocus">
-    </ng-template>
+        autocomplete="off">
+      <nz-autocomplete #auto
+        [nzBackfill]="i.backfill"
+        [nzDefaultActiveFirstOption]="i.defaultActiveFirstOption"
+        [nzWidth]="i.width"
+        (selectionChange)="setValue($event?.nzValue)">
+        <nz-auto-option *ngFor="let i of list | async" [nzValue]="i.value">{{i.label}}</nz-auto-option>
+      </nz-autocomplete>
+    </sf-item-wrap>
+    `
+            }] }
+];
 
-    <ng-container *ngIf="type === 'addon'; else ipt">
-      <nz-input-group
-        [nzAddOnBefore]="ui.addOnBefore" [nzAddOnAfter]="ui.addOnAfter"
-        [nzAddOnBeforeIcon]="ui.addOnBeforeIcon" [nzAddOnAfterIcon]="ui.addOnAfterIcon"
-        [nzPrefix]="ui.prefix" [nzPrefixIcon]="ui.prefixIcon"
-        [nzSuffix]="ui.suffix" [nzSuffixIcon]="ui.suffixIcon">
-        <ng-template [ngTemplateOutlet]="ipt"></ng-template>
-      </nz-input-group>
-    </ng-container>
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ */
+class BooleanWidget extends ControlWidget {
+}
+BooleanWidget.decorators = [
+    { type: Component, args: [{
+                selector: 'sf-boolean',
+                template: `
+  <sf-item-wrap [id]="id" [schema]="schema" [ui]="ui" [showError]="showError" [error]="error" [showTitle]="schema.title">
+    <nz-switch
+      [ngModel]="value"
+      (ngModelChange)="setValue($event)"
+      [nzDisabled]="disabled"
+      [nzSize]="ui.size"
+      [nzCheckedChildren]="ui.checkedChildren"
+      [nzUnCheckedChildren]="ui.unCheckedChildren">
+    </nz-switch>
+  </sf-item-wrap>`
+            }] }
+];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ */
+class CascaderWidget extends ControlWidget {
+    constructor() {
+        super(...arguments);
+        this.data = [];
+    }
+    /**
+     * @return {?}
+     */
+    ngOnInit() {
+        this.clearText = this.ui.clearText || '清除';
+        this.showArrow = toBool(this.ui.showArrow, true);
+        this.showInput = toBool(this.ui.showInput, true);
+        this.triggerAction = this.ui.triggerAction || ['click'];
+        if (!!this.ui.asyncData) {
+            // tslint:disable-next-line:no-any
+            this.loadData = (node, index) => ((/** @type {?} */ (this.ui.asyncData)))(node, index, this);
+        }
+    }
+    /**
+     * @param {?} value
+     * @return {?}
+     */
+    reset(value) {
+        getData(this.schema, this.ui, this.formProperty.formData).subscribe(list => {
+            this.data = list;
+            this.detectChanges();
+        });
+    }
+    /**
+     * @param {?} status
+     * @return {?}
+     */
+    _visibleChange(status) {
+        if (this.ui.visibleChange)
+            this.ui.visibleChange(status);
+    }
+    /**
+     * @param {?} value
+     * @return {?}
+     */
+    _change(value) {
+        this.setValue(value);
+        if (this.ui.change)
+            this.ui.change(value);
+    }
+    // tslint:disable-next-line:no-any
+    /**
+     * @param {?} options
+     * @return {?}
+     */
+    _selectionChange(options) {
+        if (this.ui.selectionChange)
+            this.ui.selectionChange(options);
+    }
+    // tslint:disable-next-line:no-any
+    /**
+     * @param {?} options
+     * @return {?}
+     */
+    _select(options) {
+        if (this.ui.select)
+            this.ui.select(options);
+    }
+    // tslint:disable-next-line:no-any
+    /**
+     * @param {?} options
+     * @return {?}
+     */
+    _clear(options) {
+        if (this.ui.clear)
+            this.ui.clear(options);
+    }
+}
+CascaderWidget.decorators = [
+    { type: Component, args: [{
+                selector: 'sf-cascader',
+                template: `
+  <sf-item-wrap [id]="id" [schema]="schema" [ui]="ui" [showError]="showError" [error]="error" [showTitle]="schema.title">
+
+    <nz-cascader
+      [nzDisabled]="disabled"
+      [nzSize]="ui.size"
+      [ngModel]="value"
+      (ngModelChange)="_change($event)"
+      [nzOptions]="data"
+      [nzAllowClear]="ui.allowClear"
+      [nzAutoFocus]="ui.autoFocus"
+      [nzChangeOn]="ui.changeOn"
+      [nzChangeOnSelect]="ui.changeOnSelect"
+      [nzColumnClassName]="ui.columnClassName"
+      [nzExpandTrigger]="ui.expandTrigger"
+      [nzMenuClassName]="ui.menuClassName"
+      [nzMenuStyle]="ui.menuStyle"
+      [nzLabelProperty]="ui.labelProperty"
+      [nzValueProperty]="ui.valueProperty"
+      [nzLoadData]="loadData"
+      [nzPlaceHolder]="ui.placeholder"
+      [nzShowArrow]="showArrow"
+      [nzShowInput]="showInput"
+      [nzShowSearch]="ui.showSearch"
+      (nzClear)="_clear($event)"
+      (nzVisibleChange)="_visibleChange($event)"
+      (nzSelect)="_select($event)"
+      (nzSelectionChange)="_selectionChange($event)">
+    </nz-cascader>
+
   </sf-item-wrap>
   `
             }] }
@@ -2350,62 +2467,128 @@ StringWidget.decorators = [
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
-class NumberWidget extends ControlWidget {
+class CheckboxWidget extends ControlWidget {
     constructor() {
         super(...arguments);
-        this.formatter = value => value;
-        this.parser = value => value;
+        this.data = [];
+        this.allChecked = false;
+        this.indeterminate = false;
+        this.labelTitle = ``;
+        this.inited = false;
     }
     /**
      * @return {?}
      */
-    ngOnInit() {
-        const { schema, ui } = this;
-        if (typeof schema.minimum !== 'undefined') {
-            this.min = schema.exclusiveMinimum ? schema.minimum + 1 : schema.minimum;
+    get l() {
+        return this.formProperty.root.widget.sfComp.locale;
+    }
+    /**
+     * @param {?} value
+     * @return {?}
+     */
+    reset(value) {
+        this.inited = false;
+        getData(this.schema, this.ui, this.formProperty.formData).subscribe(list => {
+            this.data = list;
+            this.allChecked = false;
+            this.indeterminate = false;
+            this.labelTitle = list.length === 0 ? '' : this.schema.title;
+            this.grid_span = this.ui.span && this.ui.span > 0 ? this.ui.span : 0;
+            this.updateAllChecked();
+            this.inited = true;
+            this.cd.detectChanges();
+        });
+    }
+    /**
+     * @param {?} value
+     * @return {?}
+     */
+    _setValue(value) {
+        this.setValue(value);
+        this.detectChanges();
+        this.notifyChange(value);
+    }
+    /**
+     * @return {?}
+     */
+    notifySet() {
+        /** @type {?} */
+        const checkList = this.data.filter(w => w.checked);
+        this.updateAllChecked().setValue(checkList.map(item => item.value));
+        this.notifyChange(checkList);
+    }
+    /**
+     * @param {?} values
+     * @return {?}
+     */
+    groupInGridChange(values) {
+        this.data.forEach(item => (item.checked = values.indexOf(item.value) !== -1));
+        this.notifySet();
+    }
+    /**
+     * @param {?} e
+     * @return {?}
+     */
+    onAllChecked(e) {
+        e.stopPropagation();
+        this.data.forEach(item => (item.checked = this.allChecked));
+        this.notifySet();
+    }
+    /**
+     * @template THIS
+     * @this {THIS}
+     * @return {THIS}
+     */
+    updateAllChecked() {
+        if ((/** @type {?} */ (this)).data.every(item => item.checked === false)) {
+            (/** @type {?} */ (this)).allChecked = false;
+            (/** @type {?} */ (this)).indeterminate = false;
         }
-        if (typeof schema.maximum !== 'undefined') {
-            this.max = schema.exclusiveMaximum ? schema.maximum - 1 : schema.maximum;
+        else if ((/** @type {?} */ (this)).data.every(item => item.checked === true)) {
+            (/** @type {?} */ (this)).allChecked = true;
+            (/** @type {?} */ (this)).indeterminate = false;
         }
-        this.step = schema.multipleOf || 1;
-        if (schema.type === 'integer') {
-            this.min = Math.trunc(this.min);
-            this.max = Math.trunc(this.max);
-            this.step = Math.trunc(this.step);
+        else {
+            (/** @type {?} */ (this)).indeterminate = true;
         }
-        if (ui.prefix != null) {
-            ui.formatter = value => `${ui.prefix} ${value}`;
-            ui.parser = value => value.replace(`${ui.prefix} `, '');
-        }
-        if (ui.unit != null) {
-            ui.formatter = value => `${value} ${ui.unit}`;
-            ui.parser = value => value.replace(` ${ui.unit}`, '');
-        }
-        if (ui.formatter)
-            this.formatter = ui.formatter;
-        if (ui.parser)
-            this.parser = ui.parser;
+        // issues: https://github.com/NG-ZORRO/ng-zorro-antd/issues/2025
+        setTimeout(() => (/** @type {?} */ (this)).detectChanges());
+        return (/** @type {?} */ (this));
+    }
+    /**
+     * @param {?} res
+     * @return {?}
+     */
+    notifyChange(res) {
+        if (this.ui.change)
+            this.ui.change(res);
     }
 }
-NumberWidget.decorators = [
+CheckboxWidget.decorators = [
     { type: Component, args: [{
-                selector: 'sf-number',
+                selector: 'sf-checkbox',
+                template: "<ng-template #all>\n  <label *ngIf=\"ui.checkAll\" nz-checkbox class=\"mr-sm\" [(ngModel)]=\"allChecked\" [nzIndeterminate]=\"indeterminate\"\n    (click)=\"onAllChecked($event)\">{{ ui.checkAllText || l.checkAllText }}</label>\n</ng-template>\n<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\"\n  [error]=\"error\" [showTitle]=\"true\" [title]=\"labelTitle\">\n  <ng-container *ngIf=\"inited && data.length === 0\">\n    <label nz-checkbox [nzDisabled]=\"disabled\" [ngModel]=\"value\" (ngModelChange)=\"_setValue($event)\">\n      {{schema.title}}\n      <span class=\"optional\">\n        {{ ui.optional }}\n        <nz-tooltip *ngIf=\"ui.optionalHelp\" [nzTitle]=\"ui.optionalHelp\">\n          <i nz-tooltip nz-icon type=\"question-circle\"></i>\n        </nz-tooltip>\n      </span>\n    </label>\n  </ng-container>\n  <ng-container *ngIf=\"inited && data.length > 0\">\n    <ng-container *ngIf=\"grid_span === 0\">\n      <ng-template [ngTemplateOutlet]=\"all\"></ng-template>\n      <nz-checkbox-group [ngModel]=\"data\" (ngModelChange)=\"notifySet()\"></nz-checkbox-group>\n    </ng-container>\n    <ng-container *ngIf=\"grid_span !== 0\">\n      <nz-checkbox-wrapper class=\"sf__checkbox-list\" (nzOnChange)=\"groupInGridChange($event)\">\n        <nz-row>\n          <nz-col [nzSpan]=\"grid_span\" *ngIf=\"ui.checkAll\">\n            <ng-template [ngTemplateOutlet]=\"all\"></ng-template>\n          </nz-col>\n          <nz-col [nzSpan]=\"grid_span\" *ngFor=\"let i of data\">\n            <label nz-checkbox [nzValue]=\"i.value\" [ngModel]=\"i.checked\" [nzDisabled]=\"i.disabled\">{{i.label}}</label>\n          </nz-col>\n        </nz-row>\n      </nz-checkbox-wrapper>\n    </ng-container>\n  </ng-container>\n</sf-item-wrap>\n"
+            }] }
+];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ */
+class CustomWidget extends ControlWidget {
+}
+CustomWidget.decorators = [
+    { type: Component, args: [{
+                selector: 'sf-custom',
                 template: `
   <sf-item-wrap [id]="id" [schema]="schema" [ui]="ui" [showError]="showError" [error]="error" [showTitle]="schema.title">
-    <nz-input-number
-      [ngModel]="value"
-      (ngModelChange)="setValue($event)"
-      [nzDisabled]="disabled"
-      [nzSize]="ui.size"
-      [nzMin]="min"
-      [nzMax]="max"
-      [nzStep]="step"
-      [nzFormatter]="formatter"
-      [nzParser]="parser"
-      [nzPrecision]="ui.precision"
-      [nzPlaceHolder]="ui.placeholder || ''">
-    </nz-input-number>
-  </sf-item-wrap>`
+
+    <ng-template
+      [ngTemplateOutlet]="$any(ui)._render"
+      [ngTemplateOutletContext]="{$implicit: this, schema: schema, ui: ui }"></ng-template>
+
+  </sf-item-wrap>
+  `
             }] }
 ];
 
@@ -2479,9 +2662,7 @@ class DateWidget extends ControlWidget {
             return;
         }
         /** @type {?} */
-        const res = Array.isArray(value)
-            ? value.map(d => format(d, this.format))
-            : format(value, this.format);
+        const res = Array.isArray(value) ? value.map(d => format(d, this.format)) : format(value, this.format);
         if (this.flatRange) {
             this.setEnd(res[1]);
             this.setValue(res[0]);
@@ -2498,6 +2679,7 @@ class DateWidget extends ControlWidget {
         if (this.ui.onOpenChange)
             this.ui.onOpenChange(status);
     }
+    // tslint:disable-next-line:no-any
     /**
      * @param {?} value
      * @return {?}
@@ -2622,6 +2804,739 @@ DateWidget.decorators = [
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
+class MentionWidget extends ControlWidget {
+    constructor() {
+        super(...arguments);
+        this.data = [];
+        this.loading = false;
+    }
+    /**
+     * @return {?}
+     */
+    ngOnInit() {
+        this.i = {
+            valueWith: this.ui.valueWith || (item => item.label),
+            notFoundContent: this.ui.notFoundContent || '无匹配结果，轻敲空格完成输入',
+            placement: this.ui.placement || 'bottom',
+            prefix: this.ui.prefix || '@',
+        };
+        /** @type {?} */
+        const min = typeof this.schema.minimum !== 'undefined' ? this.schema.minimum : -1;
+        /** @type {?} */
+        const max = typeof this.schema.maximum !== 'undefined' ? this.schema.maximum : -1;
+        if (!this.ui.validator && (min !== -1 || max !== -1)) {
+            this.ui.validator = () => {
+                /** @type {?} */
+                const count = this.mentionChild.getMentions().length;
+                if (min !== -1 && count < min) {
+                    return [{ keyword: 'mention', message: `最少提及 ${min} 次` }];
+                }
+                if (max !== -1 && count > max) {
+                    return [{ keyword: 'mention', message: `最多提及 ${max} 次` }];
+                }
+                return null;
+            };
+        }
+    }
+    /**
+     * @param {?} value
+     * @return {?}
+     */
+    reset(value) {
+        getData(this.schema, this.ui, null).subscribe(list => {
+            this.data = list;
+            this.detectChanges();
+        });
+    }
+    // tslint:disable-next-line:no-any
+    /**
+     * @param {?} options
+     * @return {?}
+     */
+    _select(options) {
+        if (this.ui.select)
+            this.ui.select(options);
+    }
+    // tslint:disable-next-line:no-any
+    /**
+     * @param {?} option
+     * @return {?}
+     */
+    _search(option) {
+        if (typeof this.ui.loadData !== 'function')
+            return;
+        this.loading = true;
+        ((/** @type {?} */ (this.ui.loadData(option))))
+            .pipe(tap(() => (this.loading = false)), map(res => getEnum(res, null, this.schema.readOnly)))
+            .subscribe(res => {
+            this.data = res;
+            this.cd.detectChanges();
+        });
+    }
+}
+MentionWidget.decorators = [
+    { type: Component, args: [{
+                selector: 'sf-mention',
+                template: `
+    <sf-item-wrap [id]="id" [schema]="schema" [ui]="ui" [showError]="showError" [error]="error" [showTitle]="schema.title">
+
+      <nz-mention #mentions
+        [nzSuggestions]="data"
+        [nzValueWith]="i.valueWith"
+        [nzLoading]="loading"
+        [nzNotFoundContent]="i.notFoundContent"
+        [nzPlacement]="i.placement"
+        [nzPrefix]="i.prefix"
+        (nzOnSelect)="_select($event)"
+        (nzOnSearchChange)="_search($event)">
+
+        <ng-container *ngIf="ui.inputStyle !== 'textarea'">
+          <input nzMentionTrigger nz-input
+            [attr.id]="id"
+            [disabled]="disabled"
+            [attr.disabled]="disabled"
+            [nzSize]="ui.size"
+            [ngModel]="value"
+            (ngModelChange)="setValue($event)"
+            [attr.maxLength]="schema.maxLength || null"
+            [attr.placeholder]="ui.placeholder"
+            autocomplete="off">
+        </ng-container>
+
+        <ng-container *ngIf="ui.inputStyle === 'textarea'">
+          <textarea nzMentionTrigger nz-input
+            [attr.id]="id"
+            [disabled]="disabled"
+            [attr.disabled]="disabled"
+            [nzSize]="ui.size"
+            [ngModel]="value"
+            (ngModelChange)="setValue($event)"
+            [attr.maxLength]="schema.maxLength || null"
+            [attr.placeholder]="ui.placeholder"
+            [nzAutosize]="ui.autosize">
+          </textarea>
+        </ng-container>
+
+      </nz-mention>
+
+    </sf-item-wrap>
+    `
+            }] }
+];
+MentionWidget.propDecorators = {
+    mentionChild: [{ type: ViewChild, args: ['mentions',] }]
+};
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ */
+class NumberWidget extends ControlWidget {
+    constructor() {
+        super(...arguments);
+        this.formatter = value => value;
+        this.parser = value => value;
+    }
+    /**
+     * @return {?}
+     */
+    ngOnInit() {
+        const { schema, ui } = this;
+        if (typeof schema.minimum !== 'undefined') {
+            this.min = schema.exclusiveMinimum ? schema.minimum + 1 : schema.minimum;
+        }
+        if (typeof schema.maximum !== 'undefined') {
+            this.max = schema.exclusiveMaximum ? schema.maximum - 1 : schema.maximum;
+        }
+        this.step = schema.multipleOf || 1;
+        if (schema.type === 'integer') {
+            this.min = Math.trunc(this.min);
+            this.max = Math.trunc(this.max);
+            this.step = Math.trunc(this.step);
+        }
+        if (ui.prefix != null) {
+            ui.formatter = value => `${ui.prefix} ${value}`;
+            ui.parser = value => value.replace(`${ui.prefix} `, '');
+        }
+        if (ui.unit != null) {
+            ui.formatter = value => `${value} ${ui.unit}`;
+            ui.parser = value => value.replace(` ${ui.unit}`, '');
+        }
+        if (ui.formatter)
+            this.formatter = ui.formatter;
+        if (ui.parser)
+            this.parser = ui.parser;
+    }
+}
+NumberWidget.decorators = [
+    { type: Component, args: [{
+                selector: 'sf-number',
+                template: `
+  <sf-item-wrap [id]="id" [schema]="schema" [ui]="ui" [showError]="showError" [error]="error" [showTitle]="schema.title">
+    <nz-input-number
+      [ngModel]="value"
+      (ngModelChange)="setValue($event)"
+      [nzDisabled]="disabled"
+      [nzSize]="ui.size"
+      [nzMin]="min"
+      [nzMax]="max"
+      [nzStep]="step"
+      [nzFormatter]="formatter"
+      [nzParser]="parser"
+      [nzPrecision]="ui.precision"
+      [nzPlaceHolder]="ui.placeholder || ''">
+    </nz-input-number>
+  </sf-item-wrap>`
+            }] }
+];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ */
+class ObjectWidget extends ObjectLayoutWidget {
+    constructor() {
+        super(...arguments);
+        this.list = [];
+    }
+    /**
+     * @return {?}
+     */
+    ngOnInit() {
+        this.grid = this.ui.grid;
+        /** @type {?} */
+        const list = [];
+        for (const key of this.formProperty.propertiesId) {
+            /** @type {?} */
+            const property = (/** @type {?} */ (this.formProperty.properties[key]));
+            /** @type {?} */
+            const item = {
+                property,
+                grid: property.ui.grid || this.grid || {},
+                spanLabelFixed: property.ui.spanLabelFixed,
+                show: property.ui.hidden === false,
+            };
+            list.push(item);
+        }
+        this.list = list;
+    }
+}
+ObjectWidget.decorators = [
+    { type: Component, args: [{
+                selector: 'sf-object',
+                template: `
+  <ng-container *ngIf="grid; else noGrid">
+    <div nz-row [nzGutter]="grid.gutter">
+      <ng-container *ngFor="let i of list">
+        <ng-container *ngIf="i.property.visible && i.show">
+          <div nz-col
+            [nzSpan]="i.grid.span" [nzOffset]="i.grid.offset"
+            [nzXs]="i.grid.xs" [nzSm]="i.grid.sm" [nzMd]="i.grid.md"
+            [nzLg]="i.grid.lg" [nzXl]="i.grid.xl" [nzXXl]="i.grid.xxl">
+            <sf-item [formProperty]="i.property" [fixed-label]="i.spanLabelFixed"></sf-item>
+          </div>
+        </ng-container>
+      </ng-container>
+    </div>
+  </ng-container>
+  <ng-template #noGrid>
+    <ng-container *ngFor="let i of list">
+      <ng-container *ngIf="i.property.visible && i.show">
+        <sf-item [formProperty]="i.property" [fixed-label]="i.spanLabelFixed"></sf-item>
+      </ng-container>
+    </ng-container>
+  </ng-template>`
+            }] }
+];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ */
+class RadioWidget extends ControlWidget {
+    constructor() {
+        super(...arguments);
+        this.data = [];
+    }
+    /**
+     * @param {?} value
+     * @return {?}
+     */
+    reset(value) {
+        this.styleType = (this.ui.styleType || 'default') === 'default';
+        getData(this.schema, this.ui, this.formProperty.formData).subscribe(list => (this.data = list));
+    }
+}
+RadioWidget.decorators = [
+    { type: Component, args: [{
+                selector: 'sf-radio',
+                template: `
+  <sf-item-wrap [id]="id" [schema]="schema" [ui]="ui" [showError]="showError" [error]="error" [showTitle]="schema.title">
+
+    <nz-radio-group
+      [nzDisabled]="disabled"
+      [nzSize]="ui.size"
+      [nzName]="id"
+      [ngModel]="value"
+      (ngModelChange)="setValue($event)">
+      <ng-container *ngIf="styleType">
+        <label *ngFor="let option of data"
+          nz-radio
+          [nzValue]="option.value"
+          [nzDisabled]="option.disabled">
+          <span [innerHTML]="option.label"></span>
+        </label>
+      </ng-container>
+      <ng-container *ngIf="!styleType">
+        <label *ngFor="let option of data"
+          nz-radio-button
+          [nzValue]="option.value"
+          [nzDisabled]="option.disabled">
+          <span [innerHTML]="option.label"></span>
+        </label>
+      </ng-container>
+    </nz-radio-group>
+
+  </sf-item-wrap>
+  `
+            }] }
+];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ */
+class RateWidget extends ControlWidget {
+    constructor() {
+        super(...arguments);
+        this.hasText = false;
+    }
+    /**
+     * @return {?}
+     */
+    ngOnInit() {
+        this.count = this.schema.maximum || 5;
+        this.allowHalf = (this.schema.multipleOf || 0.5) === 0.5;
+        this.allowClear = toBool(this.ui.allowClear, true);
+        this.autoFocus = toBool(this.ui.autoFocus, false);
+        this.hasText = !!this.ui.text;
+    }
+    /**
+     * @return {?}
+     */
+    genText() {
+        return this.hasText
+            ? ((/** @type {?} */ (this.ui.text))).replace('{{value}}', this.formProperty.value)
+            : '';
+    }
+}
+RateWidget.decorators = [
+    { type: Component, args: [{
+                selector: 'sf-rate',
+                template: `
+  <sf-item-wrap [id]="id" [schema]="schema" [ui]="ui" [showError]="showError" [error]="error" [showTitle]="schema.title">
+
+    <nz-rate
+      [nzDisabled]="disabled"
+      [ngModel]="value"
+      (ngModelChange)="setValue($event)"
+      [nzAllowClear]="allowClear"
+      [nzAllowHalf]="allowHalf"
+      [nzAutoFocus]="autoFocus"
+      [nzCount]="count"></nz-rate>
+    <span *ngIf="hasText && formProperty.value" class="ant-rate-text">{{ genText() }}</span>
+
+  </sf-item-wrap>
+  `
+            }] }
+];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ */
+class SelectWidget extends ControlWidget {
+    constructor() {
+        super(...arguments);
+        this.hasGroup = false;
+    }
+    /**
+     * @return {?}
+     */
+    ngOnInit() {
+        this.i = {
+            allowClear: this.ui.allowClear,
+            autoFocus: toBool(this.ui.autoFocus, false),
+            dropdownClassName: this.ui.dropdownClassName || null,
+            dropdownMatchSelectWidth: toBool(this.ui.dropdownMatchSelectWidth, true),
+            serverSearch: toBool(this.ui.serverSearch, false),
+            maxMultipleCount: this.ui.maxMultipleCount || Infinity,
+            mode: this.ui.mode || 'default',
+            notFoundContent: this.ui.notFoundContent || '无法找到',
+            showSearch: toBool(this.ui.showSearch, true),
+        };
+    }
+    /**
+     * @param {?} value
+     * @return {?}
+     */
+    reset(value) {
+        getData(this.schema, this.ui, this.formProperty.formData).subscribe(list => {
+            this.data = list;
+            this.hasGroup = list.filter(w => w.group === true).length > 0;
+            this.detectChanges();
+        });
+    }
+    /**
+     * @param {?} values
+     * @return {?}
+     */
+    change(values) {
+        if (this.ui.change)
+            this.ui.change(values);
+        this.setValue(values);
+    }
+    /**
+     * @param {?} value
+     * @return {?}
+     */
+    openChange(value) {
+        if (this.ui.openChange)
+            this.ui.openChange(value);
+    }
+    /**
+     * @param {?} text
+     * @return {?}
+     */
+    searchChange(text) {
+        if (this.ui.onSearch) {
+            this.ui.onSearch(text).then((res) => {
+                this.data = res;
+                this.detectChanges();
+            });
+            return;
+        }
+        this.detectChanges();
+    }
+    /**
+     * @return {?}
+     */
+    scrollToBottom() {
+        if (this.ui.scrollToBottom)
+            this.ui.scrollToBottom();
+    }
+}
+SelectWidget.decorators = [
+    { type: Component, args: [{
+                selector: 'sf-select',
+                template: `
+  <sf-item-wrap [id]="id" [schema]="schema" [ui]="ui" [showError]="showError" [error]="error" [showTitle]="schema.title">
+
+    <nz-select
+      [nzDisabled]="disabled"
+      [nzSize]="ui.size"
+      [ngModel]="value"
+      (ngModelChange)="change($event)"
+      [nzPlaceHolder]="ui.placeholder"
+      [nzAllowClear]="i.allowClear"
+      [nzAutoFocus]="i.autoFocus"
+      [nzDropdownClassName]="i.dropdownClassName"
+      [nzDropdownMatchSelectWidth]="i.dropdownMatchSelectWidth"
+      [nzServerSearch]="i.serverSearch"
+      [nzMaxMultipleCount]="i.maxMultipleCount"
+      [nzMode]="i.mode"
+      [nzNotFoundContent]="i.notFoundContent"
+      [nzShowSearch]="i.showSearch"
+      (nzOpenChange)="openChange($event)"
+      (nzOnSearch)="searchChange($event)"
+      (nzScrollToBottom)="scrollToBottom()">
+      <ng-container *ngIf="!hasGroup">
+        <nz-option
+          *ngFor="let o of data"
+          [nzLabel]="o.label"
+          [nzValue]="o.value"
+          [nzDisabled]="o.disabled">
+        </nz-option>
+      </ng-container>
+      <ng-container *ngIf="hasGroup">
+        <nz-option-group *ngFor="let i of data" [nzLabel]="i.label">
+          <nz-option
+            *ngFor="let o of i.children"
+            [nzLabel]="o.label"
+            [nzValue]="o.value"
+            [nzDisabled]="o.disabled">
+          </nz-option>
+        </nz-option-group>
+      </ng-container>
+    </nz-select>
+
+  </sf-item-wrap>
+  `
+            }] }
+];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ */
+class SliderWidget extends ControlWidget {
+    constructor() {
+        super(...arguments);
+        this._formatter = (value) => {
+            if (this.ui.formatter)
+                return this.ui.formatter(value);
+            return value;
+        };
+    }
+    /**
+     * @return {?}
+     */
+    ngOnInit() {
+        this.min = this.schema.minimum || 0;
+        this.max = this.schema.maximum || 100;
+        this.step = this.schema.multipleOf || 1;
+        this.marks = this.ui.marks || null;
+        /** @type {?} */
+        const included = this.ui.included;
+        this.included = typeof included === 'undefined' ? true : included;
+    }
+    /**
+     * @param {?} value
+     * @return {?}
+     */
+    _afterChange(value) {
+        if (this.ui.afterChange)
+            this.ui.afterChange(value);
+    }
+}
+SliderWidget.decorators = [
+    { type: Component, args: [{
+                selector: 'sf-slider',
+                template: `
+  <sf-item-wrap [id]="id" [schema]="schema" [ui]="ui" [showError]="showError" [error]="error" [showTitle]="schema.title">
+
+    <nz-slider
+      [ngModel]="value"
+      (ngModelChange)="setValue($event)"
+      [nzDisabled]="disabled"
+      [nzRange]="ui.range"
+      [nzMin]="min"
+      [nzMax]="max"
+      [nzStep]="step"
+      [nzMarks]="marks"
+      [nzDots]="ui.dots"
+      [nzIncluded]="included"
+      [nzVertical]="ui.vertical"
+      [nzTipFormatter]="_formatter"
+      (nzOnAfterChange)="_afterChange($event)">
+    </nz-slider>
+
+  </sf-item-wrap>
+  `
+            }] }
+];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ */
+class StringWidget extends ControlWidget {
+    /**
+     * @return {?}
+     */
+    ngOnInit() {
+        this.type = !!(this.ui.addOnAfter ||
+            this.ui.addOnBefore ||
+            this.ui.addOnAfterIcon ||
+            this.ui.addOnBeforeIcon ||
+            this.ui.prefix ||
+            this.ui.prefixIcon ||
+            this.ui.suffix ||
+            this.ui.suffixIcon)
+            ? 'addon'
+            : '';
+    }
+    /**
+     * @param {?} value
+     * @return {?}
+     */
+    reset(value) {
+        if (this.schema.format === 'color' && !value) {
+            this.setValue('#000000');
+        }
+    }
+}
+StringWidget.decorators = [
+    { type: Component, args: [{
+                selector: 'sf-string',
+                template: `
+  <sf-item-wrap [id]="id" [schema]="schema" [ui]="ui" [showError]="showError" [error]="error" [showTitle]="schema.title">
+
+    <ng-template #ipt>
+      <input nz-input
+        [attr.id]="id"
+        [disabled]="disabled"
+        [attr.disabled]="disabled"
+        [nzSize]="ui.size"
+        [ngModel]="value"
+        (ngModelChange)="setValue($event)"
+        [attr.maxLength]="schema.maxLength || null"
+        [attr.type]="ui.type || 'text'"
+        [attr.placeholder]="ui.placeholder"
+        [attr.autocomplete]="ui.autocomplete"
+        [attr.autoFocus]="ui.autofocus">
+    </ng-template>
+
+    <ng-container *ngIf="type === 'addon'; else ipt">
+      <nz-input-group
+        [nzAddOnBefore]="ui.addOnBefore" [nzAddOnAfter]="ui.addOnAfter"
+        [nzAddOnBeforeIcon]="ui.addOnBeforeIcon" [nzAddOnAfterIcon]="ui.addOnAfterIcon"
+        [nzPrefix]="ui.prefix" [nzPrefixIcon]="ui.prefixIcon"
+        [nzSuffix]="ui.suffix" [nzSuffixIcon]="ui.suffixIcon">
+        <ng-template [ngTemplateOutlet]="ipt"></ng-template>
+      </nz-input-group>
+    </ng-container>
+  </sf-item-wrap>
+  `
+            }] }
+];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ */
+class TagWidget extends ControlWidget {
+    /**
+     * @param {?} value
+     * @return {?}
+     */
+    reset(value) {
+        getData(this.schema, this.ui, this.formProperty.formData).subscribe(list => {
+            this.data = list;
+            this.detectChanges();
+        });
+    }
+    /**
+     * @param {?} item
+     * @return {?}
+     */
+    onChange(item) {
+        item.checked = !item.checked;
+        this.updateValue();
+        if (this.ui.checkedChange)
+            this.ui.checkedChange(item.checked);
+    }
+    /**
+     * @return {?}
+     */
+    _afterClose() {
+        if (this.ui.afterClose)
+            this.ui.afterClose();
+    }
+    /**
+     * @param {?} e
+     * @return {?}
+     */
+    _close(e) {
+        if (this.ui.onClose)
+            this.ui.onClose(e);
+    }
+    /**
+     * @return {?}
+     */
+    updateValue() {
+        this.formProperty.setValue(this.data.filter(w => w.checked).map(i => i.value), false);
+    }
+}
+TagWidget.decorators = [
+    { type: Component, args: [{
+                selector: 'sf-tag',
+                template: `
+  <sf-item-wrap [id]="id" [schema]="schema" [ui]="ui" [showError]="showError" [error]="error" [showTitle]="schema.title">
+
+    <nz-tag
+      *ngFor="let i of data"
+      nzMode="checkable"
+      [nzChecked]="i.checked"
+      (nzAfterClose)="_afterClose()"
+      (nzOnClose)="_close($event)"
+      (nzCheckedChange)="onChange(i)">
+      {{i.label}}
+    </nz-tag>
+
+  </sf-item-wrap>
+  `
+            }] }
+];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ */
+class TextWidget extends ControlWidget {
+    /**
+     * @return {?}
+     */
+    ngOnInit() {
+        this.ui._required = false;
+    }
+}
+TextWidget.decorators = [
+    { type: Component, args: [{
+                selector: 'sf-text',
+                template: `
+  <sf-item-wrap [id]="id" [schema]="schema" [ui]="ui" [showError]="showError" [error]="error" [showTitle]="schema.title">
+    {{ value || ui.defaultText || '-' }}
+  </sf-item-wrap>
+  `
+            }] }
+];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ */
+class TextareaWidget extends ControlWidget {
+    constructor() {
+        super(...arguments);
+        // tslint:disable-next-line:no-any
+        this.autosize = true;
+    }
+    /**
+     * @return {?}
+     */
+    ngOnInit() {
+        if (this.ui.autosize != null) {
+            this.autosize = this.ui.autosize;
+        }
+    }
+}
+TextareaWidget.decorators = [
+    { type: Component, args: [{
+                selector: 'sf-textarea',
+                template: `
+  <sf-item-wrap [id]="id" [schema]="schema" [ui]="ui" [showError]="showError" [error]="error" [showTitle]="schema.title">
+
+    <textarea nz-input
+      [attr.id]="id"
+      [disabled]="disabled"
+      [attr.disabled]="disabled"
+      [nzSize]="ui.size"
+      [ngModel]="value"
+      (ngModelChange)="setValue($event)"
+      [attr.maxLength]="schema.maxLength || null"
+      [attr.placeholder]="ui.placeholder"
+      [nzAutosize]="autosize">
+    </textarea>
+
+  </sf-item-wrap>`
+            }] }
+];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ */
 class TimeWidget extends ControlWidget {
     constructor() {
         super(...arguments);
@@ -2719,249 +3634,24 @@ TimeWidget.decorators = [
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
-class RadioWidget extends ControlWidget {
+class TransferWidget extends ControlWidget {
     constructor() {
         super(...arguments);
-        this.data = [];
-    }
-    /**
-     * @param {?} value
-     * @return {?}
-     */
-    reset(value) {
-        this.styleType = (this.ui.styleType || 'default') === 'default';
-        getData(this.schema, this.ui, this.formProperty.formData).subscribe(list => (this.data = list));
-    }
-}
-RadioWidget.decorators = [
-    { type: Component, args: [{
-                selector: 'sf-radio',
-                template: `
-  <sf-item-wrap [id]="id" [schema]="schema" [ui]="ui" [showError]="showError" [error]="error" [showTitle]="schema.title">
-
-    <nz-radio-group
-      [nzDisabled]="disabled"
-      [nzSize]="ui.size"
-      [nzName]="id"
-      [ngModel]="value"
-      (ngModelChange)="setValue($event)">
-      <ng-container *ngIf="styleType">
-        <label *ngFor="let option of data"
-          nz-radio
-          [nzValue]="option.value"
-          [nzDisabled]="option.disabled">
-          <span [innerHTML]="option.label"></span>
-        </label>
-      </ng-container>
-      <ng-container *ngIf="!styleType">
-        <label *ngFor="let option of data"
-          nz-radio-button
-          [nzValue]="option.value"
-          [nzDisabled]="option.disabled">
-          <span [innerHTML]="option.label"></span>
-        </label>
-      </ng-container>
-    </nz-radio-group>
-
-  </sf-item-wrap>
-  `
-            }] }
-];
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
- */
-class CheckboxWidget extends ControlWidget {
-    constructor() {
-        super(...arguments);
-        this.data = [];
-        this.allChecked = false;
-        this.indeterminate = false;
-        this.labelTitle = ``;
-        this.inited = false;
-    }
-    /**
-     * @return {?}
-     */
-    get l() {
-        return this.formProperty.root.widget.sfComp.locale;
-    }
-    /**
-     * @param {?} value
-     * @return {?}
-     */
-    reset(value) {
-        this.inited = false;
-        getData(this.schema, this.ui, this.formProperty.formData).subscribe(list => {
-            this.data = list;
-            this.allChecked = false;
-            this.indeterminate = false;
-            this.labelTitle = list.length === 0 ? '' : this.schema.title;
-            this.grid_span = this.ui.span && this.ui.span > 0 ? this.ui.span : 0;
-            this.updateAllChecked();
-            this.inited = true;
-            this.cd.detectChanges();
-        });
-    }
-    /**
-     * @param {?} value
-     * @return {?}
-     */
-    _setValue(value) {
-        this.setValue(value);
-        this.detectChanges();
-        this.notifyChange(value);
-    }
-    /**
-     * @return {?}
-     */
-    notifySet() {
-        /** @type {?} */
-        const checkList = this.data.filter(w => w.checked);
-        this.updateAllChecked().setValue(checkList.map(item => item.value));
-        this.notifyChange(checkList);
-    }
-    /**
-     * @param {?} values
-     * @return {?}
-     */
-    groupInGridChange(values) {
-        this.data.forEach(item => (item.checked = values.indexOf(item.value) !== -1));
-        this.notifySet();
-    }
-    /**
-     * @param {?} e
-     * @return {?}
-     */
-    onAllChecked(e) {
-        e.stopPropagation();
-        this.data.forEach(item => (item.checked = this.allChecked));
-        this.notifySet();
-    }
-    /**
-     * @template THIS
-     * @this {THIS}
-     * @return {THIS}
-     */
-    updateAllChecked() {
-        if ((/** @type {?} */ (this)).data.every(item => item.checked === false)) {
-            (/** @type {?} */ (this)).allChecked = false;
-            (/** @type {?} */ (this)).indeterminate = false;
-        }
-        else if ((/** @type {?} */ (this)).data.every(item => item.checked === true)) {
-            (/** @type {?} */ (this)).allChecked = true;
-            (/** @type {?} */ (this)).indeterminate = false;
-        }
-        else {
-            (/** @type {?} */ (this)).indeterminate = true;
-        }
-        // issues: https://github.com/NG-ZORRO/ng-zorro-antd/issues/2025
-        setTimeout(() => (/** @type {?} */ (this)).detectChanges());
-        return (/** @type {?} */ (this));
-    }
-    /**
-     * @param {?} res
-     * @return {?}
-     */
-    notifyChange(res) {
-        if (this.ui.change)
-            this.ui.change(res);
-    }
-}
-CheckboxWidget.decorators = [
-    { type: Component, args: [{
-                selector: 'sf-checkbox',
-                template: "<ng-template #all>\n  <label *ngIf=\"ui.checkAll\" nz-checkbox class=\"mr-sm\" [(ngModel)]=\"allChecked\" [nzIndeterminate]=\"indeterminate\"\n    (click)=\"onAllChecked($event)\">{{ ui.checkAllText || l.checkAllText }}</label>\n</ng-template>\n<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\"\n  [error]=\"error\" [showTitle]=\"true\" [title]=\"labelTitle\">\n  <ng-container *ngIf=\"inited && data.length === 0\">\n    <label nz-checkbox [nzDisabled]=\"disabled\" [ngModel]=\"value\" (ngModelChange)=\"_setValue($event)\">\n      {{schema.title}}\n      <span class=\"optional\">\n        {{ ui.optional }}\n        <nz-tooltip *ngIf=\"ui.optionalHelp\" [nzTitle]=\"ui.optionalHelp\">\n          <i nz-tooltip nz-icon type=\"question-circle\"></i>\n        </nz-tooltip>\n      </span>\n    </label>\n  </ng-container>\n  <ng-container *ngIf=\"inited && data.length > 0\">\n    <ng-container *ngIf=\"grid_span === 0\">\n      <ng-template [ngTemplateOutlet]=\"all\"></ng-template>\n      <nz-checkbox-group [ngModel]=\"data\" (ngModelChange)=\"notifySet()\"></nz-checkbox-group>\n    </ng-container>\n    <ng-container *ngIf=\"grid_span !== 0\">\n      <nz-checkbox-wrapper class=\"sf__checkbox-list\" (nzOnChange)=\"groupInGridChange($event)\">\n        <nz-row>\n          <nz-col [nzSpan]=\"grid_span\" *ngIf=\"ui.checkAll\">\n            <ng-template [ngTemplateOutlet]=\"all\"></ng-template>\n          </nz-col>\n          <nz-col [nzSpan]=\"grid_span\" *ngFor=\"let i of data\">\n            <label nz-checkbox [nzValue]=\"i.value\" [ngModel]=\"i.checked\" [nzDisabled]=\"i.disabled\">{{i.label}}</label>\n          </nz-col>\n        </nz-row>\n      </nz-checkbox-wrapper>\n    </ng-container>\n  </ng-container>\n</sf-item-wrap>\n"
-            }] }
-];
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
- */
-class BooleanWidget extends ControlWidget {
-}
-BooleanWidget.decorators = [
-    { type: Component, args: [{
-                selector: 'sf-boolean',
-                template: `
-  <sf-item-wrap [id]="id" [schema]="schema" [ui]="ui" [showError]="showError" [error]="error" [showTitle]="schema.title">
-    <nz-switch
-      [ngModel]="value"
-      (ngModelChange)="setValue($event)"
-      [nzDisabled]="disabled"
-      [nzSize]="ui.size"
-      [nzCheckedChildren]="ui.checkedChildren"
-      [nzUnCheckedChildren]="ui.unCheckedChildren">
-    </nz-switch>
-  </sf-item-wrap>`
-            }] }
-];
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
- */
-class TextareaWidget extends ControlWidget {
-    constructor() {
-        super(...arguments);
-        this.autosize = true;
-    }
-    /**
-     * @return {?}
-     */
-    ngOnInit() {
-        if (this.ui.autosize != null) {
-            this.autosize = this.ui.autosize;
-        }
-    }
-}
-TextareaWidget.decorators = [
-    { type: Component, args: [{
-                selector: 'sf-textarea',
-                template: `
-  <sf-item-wrap [id]="id" [schema]="schema" [ui]="ui" [showError]="showError" [error]="error" [showTitle]="schema.title">
-
-    <textarea nz-input
-      [attr.id]="id"
-      [disabled]="disabled"
-      [attr.disabled]="disabled"
-      [nzSize]="ui.size"
-      [ngModel]="value"
-      (ngModelChange)="setValue($event)"
-      [attr.maxLength]="schema.maxLength || null"
-      [attr.placeholder]="ui.placeholder"
-      [nzAutosize]="autosize">
-    </textarea>
-
-  </sf-item-wrap>`
-            }] }
-];
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
- */
-class SelectWidget extends ControlWidget {
-    constructor() {
-        super(...arguments);
-        this.hasGroup = false;
+        this.list = [];
+        this._data = [];
+        this._canMove = (arg) => {
+            return this.ui.canMove ? this.ui.canMove(arg) : of(arg.list);
+        };
     }
     /**
      * @return {?}
      */
     ngOnInit() {
         this.i = {
-            allowClear: this.ui.allowClear,
-            autoFocus: toBool(this.ui.autoFocus, false),
-            dropdownClassName: this.ui.dropdownClassName || null,
-            dropdownMatchSelectWidth: toBool(this.ui.dropdownMatchSelectWidth, true),
-            serverSearch: toBool(this.ui.serverSearch, false),
-            maxMultipleCount: this.ui.maxMultipleCount || Infinity,
-            mode: this.ui.mode || 'default',
-            notFoundContent: this.ui.notFoundContent || '无法找到',
-            showSearch: toBool(this.ui.showSearch, true),
+            titles: this.ui.titles || ['', ''],
+            operations: this.ui.operations || ['', ''],
+            itemUnit: this.ui.itemUnit || '项',
+            itemsUnit: this.ui.itemsUnit || '项',
         };
     }
     /**
@@ -2969,95 +3659,84 @@ class SelectWidget extends ControlWidget {
      * @return {?}
      */
     reset(value) {
-        getData(this.schema, this.ui, this.formProperty.formData).subscribe(list => {
-            this.data = list;
-            this.hasGroup = list.filter(w => w.group === true).length > 0;
+        getData(this.schema, this.ui, null).subscribe(list => {
+            /** @type {?} */
+            let formData = this.formProperty.formData;
+            if (!Array.isArray(formData))
+                formData = [formData];
+            list.forEach((item) => {
+                // tslint:disable-next-line:no-any
+                if (~((/** @type {?} */ (formData))).indexOf(item.value))
+                    item.direction = 'right';
+            });
+            this.list = list;
+            this._data = list.filter(w => w.direction === 'right');
+            this.notify();
             this.detectChanges();
         });
     }
     /**
-     * @param {?} values
      * @return {?}
      */
-    change(values) {
-        if (this.ui.change)
-            this.ui.change(values);
-        this.setValue(values);
+    notify() {
+        this.formProperty.setValue(this._data.map(i => i.value), false);
     }
     /**
-     * @param {?} value
+     * @param {?} options
      * @return {?}
      */
-    openChange(value) {
-        if (this.ui.openChange)
-            this.ui.openChange(value);
-    }
-    /**
-     * @param {?} text
-     * @return {?}
-     */
-    searchChange(text) {
-        if (this.ui.onSearch) {
-            this.ui.onSearch(text).then((res) => {
-                this.data = res;
-                this.detectChanges();
-            });
-            return;
+    _change(options) {
+        if (options.to === 'right') {
+            this._data = this._data.concat(...options.list);
         }
-        this.detectChanges();
+        else {
+            // tslint:disable-next-line:no-any
+            this._data = this._data.filter((w) => options.list.indexOf(w) === -1);
+        }
+        if (this.ui.change)
+            this.ui.change(options);
+        this.notify();
     }
     /**
-     * @param {?} value
+     * @param {?} options
      * @return {?}
      */
-    scrollToBottom(value) {
-        if (this.ui.scrollToBottom)
-            this.ui.scrollToBottom(value);
+    _searchChange(options) {
+        if (this.ui.searchChange)
+            this.ui.searchChange(options);
+    }
+    /**
+     * @param {?} options
+     * @return {?}
+     */
+    _selectChange(options) {
+        if (this.ui.selectChange)
+            this.ui.selectChange(options);
+        this.cd.detectChanges();
     }
 }
-SelectWidget.decorators = [
+TransferWidget.decorators = [
     { type: Component, args: [{
-                selector: 'sf-select',
+                selector: 'sf-transfer',
                 template: `
   <sf-item-wrap [id]="id" [schema]="schema" [ui]="ui" [showError]="showError" [error]="error" [showTitle]="schema.title">
 
-    <nz-select
-      [nzDisabled]="disabled"
-      [nzSize]="ui.size"
-      [ngModel]="value"
-      (ngModelChange)="change($event)"
-      [nzPlaceHolder]="ui.placeholder"
-      [nzAllowClear]="i.allowClear"
-      [nzAutoFocus]="i.autoFocus"
-      [nzDropdownClassName]="i.dropdownClassName"
-      [nzDropdownMatchSelectWidth]="i.dropdownMatchSelectWidth"
-      [nzServerSearch]="i.serverSearch"
-      [nzMaxMultipleCount]="i.maxMultipleCount"
-      [nzMode]="i.mode"
-      [nzNotFoundContent]="i.notFoundContent"
-      [nzShowSearch]="i.showSearch"
-      (nzOpenChange)="openChange($event)"
-      (nzOnSearch)="searchChange($event)"
-      (nzScrollToBottom)="scrollToBottom($event)">
-      <ng-container *ngIf="!hasGroup">
-        <nz-option
-          *ngFor="let o of data"
-          [nzLabel]="o.label"
-          [nzValue]="o.value"
-          [nzDisabled]="o.disabled">
-        </nz-option>
-      </ng-container>
-      <ng-container *ngIf="hasGroup">
-        <nz-option-group *ngFor="let i of data" [nzLabel]="i.label">
-          <nz-option
-            *ngFor="let o of i.children"
-            [nzLabel]="o.label"
-            [nzValue]="o.value"
-            [nzDisabled]="o.disabled">
-          </nz-option>
-        </nz-option-group>
-      </ng-container>
-    </nz-select>
+    <nz-transfer
+      [nzDataSource]="list"
+      [nzTitles]="i.titles"
+      [nzOperations]="i.operations"
+      [nzListStyle]="ui.listStyle"
+      [nzItemUnit]="i.itemUnit"
+      [nzItemsUnit]="i.itemsUnit"
+      [nzShowSearch]="ui.showSearch"
+      [nzFilterOption]="ui.filterOption"
+      [nzSearchPlaceholder]="ui.searchPlaceholder"
+      [nzNotFoundContent]="ui.notFoundContent"
+      [nzCanMove]="_canMove"
+      (nzChange)="_change($event)"
+      (nzSearchChange)="_searchChange($event)"
+      (nzSelectChange)="_selectChange($event)">
+    </nz-transfer>
 
   </sf-item-wrap>
   `
@@ -3086,6 +3765,7 @@ class TreeSelectWidget extends ControlWidget {
      * @return {?}
      */
     tranData(list) {
+        // tslint:disable-next-line:no-any
         return list.map(node => new NzTreeNode((/** @type {?} */ (deepCopy(node)))));
     }
     /**
@@ -3171,74 +3851,6 @@ TreeSelectWidget.decorators = [
       (ngModelChange)="change($event)"
       (nzExpandChange)="expandChange($event)">
     </nz-tree-select>
-
-  </sf-item-wrap>
-  `
-            }] }
-];
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
- */
-class TagWidget extends ControlWidget {
-    /**
-     * @param {?} value
-     * @return {?}
-     */
-    reset(value) {
-        getData(this.schema, this.ui, this.formProperty.formData).subscribe(list => {
-            this.data = list;
-            this.detectChanges();
-        });
-    }
-    /**
-     * @param {?} item
-     * @return {?}
-     */
-    onChange(item) {
-        item.checked = !item.checked;
-        this.updateValue();
-        if (this.ui.checkedChange)
-            this.ui.checkedChange(item.checked);
-    }
-    /**
-     * @return {?}
-     */
-    _afterClose() {
-        if (this.ui.afterClose)
-            this.ui.afterClose();
-    }
-    /**
-     * @param {?} e
-     * @return {?}
-     */
-    _close(e) {
-        if (this.ui.onClose)
-            this.ui.onClose(e);
-    }
-    /**
-     * @return {?}
-     */
-    updateValue() {
-        this.formProperty.setValue(this.data.filter(w => w.checked).map(i => i.value), false);
-    }
-}
-TagWidget.decorators = [
-    { type: Component, args: [{
-                selector: 'sf-tag',
-                template: `
-  <sf-item-wrap [id]="id" [schema]="schema" [ui]="ui" [showError]="showError" [error]="error" [showTitle]="schema.title">
-
-    <nz-tag
-      *ngFor="let i of data"
-      nzMode="checkable"
-      [nzChecked]="i.checked"
-      (nzAfterClose)="_afterClose()"
-      (nzOnClose)="_close($event)"
-      (nzCheckedChange)="onChange(i)">
-      {{i.label}}
-    </nz-tag>
 
   </sf-item-wrap>
   `
@@ -3381,605 +3993,6 @@ UploadWidget.decorators = [
 UploadWidget.ctorParameters = () => [
     { type: ChangeDetectorRef },
     { type: NzModalService }
-];
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
- */
-class TransferWidget extends ControlWidget {
-    constructor() {
-        super(...arguments);
-        this.list = [];
-        this._data = [];
-        this._canMove = (arg) => {
-            return this.ui.canMove ? this.ui.canMove(arg) : of(arg.list);
-        };
-    }
-    /**
-     * @return {?}
-     */
-    ngOnInit() {
-        this.i = {
-            titles: this.ui.titles || ['', ''],
-            operations: this.ui.operations || ['', ''],
-            itemUnit: this.ui.itemUnit || '项',
-            itemsUnit: this.ui.itemsUnit || '项',
-        };
-    }
-    /**
-     * @param {?} value
-     * @return {?}
-     */
-    reset(value) {
-        getData(this.schema, this.ui, null).subscribe(list => {
-            /** @type {?} */
-            let formData = this.formProperty.formData;
-            if (!Array.isArray(formData))
-                formData = [formData];
-            list.forEach((item) => {
-                if (~((/** @type {?} */ (formData))).indexOf(item.value))
-                    item.direction = 'right';
-            });
-            this.list = list;
-            this._data = list.filter(w => w.direction === 'right');
-            this.notify();
-            this.detectChanges();
-        });
-    }
-    /**
-     * @return {?}
-     */
-    notify() {
-        this.formProperty.setValue(this._data.map(i => i.value), false);
-    }
-    /**
-     * @param {?} options
-     * @return {?}
-     */
-    _change(options) {
-        if (options.to === 'right') {
-            this._data = this._data.concat(...options.list);
-        }
-        else {
-            this._data = this._data.filter(w => options.list.indexOf(w) === -1);
-        }
-        if (this.ui.change)
-            this.ui.change(options);
-        this.notify();
-    }
-    /**
-     * @param {?} options
-     * @return {?}
-     */
-    _searchChange(options) {
-        if (this.ui.searchChange)
-            this.ui.searchChange(options);
-    }
-    /**
-     * @param {?} options
-     * @return {?}
-     */
-    _selectChange(options) {
-        if (this.ui.selectChange)
-            this.ui.selectChange(options);
-        this.cd.detectChanges();
-    }
-}
-TransferWidget.decorators = [
-    { type: Component, args: [{
-                selector: 'sf-transfer',
-                template: `
-  <sf-item-wrap [id]="id" [schema]="schema" [ui]="ui" [showError]="showError" [error]="error" [showTitle]="schema.title">
-
-    <nz-transfer
-      [nzDataSource]="list"
-      [nzTitles]="i.titles"
-      [nzOperations]="i.operations"
-      [nzListStyle]="ui.listStyle"
-      [nzItemUnit]="i.itemUnit"
-      [nzItemsUnit]="i.itemsUnit"
-      [nzShowSearch]="ui.showSearch"
-      [nzFilterOption]="ui.filterOption"
-      [nzSearchPlaceholder]="ui.searchPlaceholder"
-      [nzNotFoundContent]="ui.notFoundContent"
-      [nzCanMove]="_canMove"
-      (nzChange)="_change($event)"
-      (nzSearchChange)="_searchChange($event)"
-      (nzSelectChange)="_selectChange($event)">
-    </nz-transfer>
-
-  </sf-item-wrap>
-  `
-            }] }
-];
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
- */
-class SliderWidget extends ControlWidget {
-    constructor() {
-        super(...arguments);
-        this._formatter = (value) => {
-            if (this.ui.formatter)
-                return this.ui.formatter(value);
-            return value;
-        };
-    }
-    /**
-     * @return {?}
-     */
-    ngOnInit() {
-        this.min = this.schema.minimum || 0;
-        this.max = this.schema.maximum || 100;
-        this.step = this.schema.multipleOf || 1;
-        this.marks = this.ui.marks || null;
-        /** @type {?} */
-        const included = this.ui.included;
-        this.included = typeof included === 'undefined' ? true : included;
-    }
-    /**
-     * @param {?} value
-     * @return {?}
-     */
-    _afterChange(value) {
-        if (this.ui.afterChange)
-            this.ui.afterChange(value);
-    }
-}
-SliderWidget.decorators = [
-    { type: Component, args: [{
-                selector: 'sf-slider',
-                template: `
-  <sf-item-wrap [id]="id" [schema]="schema" [ui]="ui" [showError]="showError" [error]="error" [showTitle]="schema.title">
-
-    <nz-slider
-      [ngModel]="value"
-      (ngModelChange)="setValue($event)"
-      [nzDisabled]="disabled"
-      [nzRange]="ui.range"
-      [nzMin]="min"
-      [nzMax]="max"
-      [nzStep]="step"
-      [nzMarks]="marks"
-      [nzDots]="ui.dots"
-      [nzIncluded]="included"
-      [nzVertical]="ui.vertical"
-      [nzTipFormatter]="_formatter"
-      (nzOnAfterChange)="_afterChange($event)">
-    </nz-slider>
-
-  </sf-item-wrap>
-  `
-            }] }
-];
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
- */
-class CustomWidget extends ControlWidget {
-}
-CustomWidget.decorators = [
-    { type: Component, args: [{
-                selector: 'sf-custom',
-                template: `
-  <sf-item-wrap [id]="id" [schema]="schema" [ui]="ui" [showError]="showError" [error]="error" [showTitle]="schema.title">
-
-    <ng-template
-      [ngTemplateOutlet]="$any(ui)._render"
-      [ngTemplateOutletContext]="{$implicit: this, schema: schema, ui: ui }"></ng-template>
-
-  </sf-item-wrap>
-  `
-            }] }
-];
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
- */
-class RateWidget extends ControlWidget {
-    constructor() {
-        super(...arguments);
-        this.hasText = false;
-    }
-    /**
-     * @return {?}
-     */
-    ngOnInit() {
-        this.count = this.schema.maximum || 5;
-        this.allowHalf = (this.schema.multipleOf || 0.5) === 0.5;
-        this.allowClear = toBool(this.ui.allowClear, true);
-        this.autoFocus = toBool(this.ui.autoFocus, false);
-        this.hasText = !!this.ui.text;
-    }
-    /**
-     * @return {?}
-     */
-    genText() {
-        return this.hasText
-            ? ((/** @type {?} */ (this.ui.text))).replace('{{value}}', this.formProperty.value)
-            : '';
-    }
-}
-RateWidget.decorators = [
-    { type: Component, args: [{
-                selector: 'sf-rate',
-                template: `
-  <sf-item-wrap [id]="id" [schema]="schema" [ui]="ui" [showError]="showError" [error]="error" [showTitle]="schema.title">
-
-    <nz-rate
-      [nzDisabled]="disabled"
-      [ngModel]="value"
-      (ngModelChange)="setValue($event)"
-      [nzAllowClear]="allowClear"
-      [nzAllowHalf]="allowHalf"
-      [nzAutoFocus]="autoFocus"
-      [nzCount]="count"></nz-rate>
-    <span *ngIf="hasText && formProperty.value" class="ant-rate-text">{{ genText() }}</span>
-
-  </sf-item-wrap>
-  `
-            }] }
-];
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
- */
-/** @type {?} */
-const EMAILSUFFIX = [
-    'qq.com',
-    '163.com',
-    'gmail.com',
-    '126.com',
-    'aliyun.com',
-];
-class AutoCompleteWidget extends ControlWidget {
-    constructor() {
-        super(...arguments);
-        this.fixData = [];
-        this.isAsync = false;
-    }
-    /**
-     * @return {?}
-     */
-    ngOnInit() {
-        this.i = {
-            backfill: toBool(this.ui.backfill, false),
-            defaultActiveFirstOption: toBool(this.ui.defaultActiveFirstOption, true),
-            width: this.ui.width || undefined,
-        };
-        this.filterOption = this.ui.filterOption == null ? true : this.ui.filterOption;
-        if (typeof this.filterOption === 'boolean') {
-            this.filterOption = (input, option) => option.label.toLowerCase().indexOf((input || '').toLowerCase()) > -1;
-        }
-        this.isAsync = !!this.ui.asyncData;
-        /** @type {?} */
-        const orgTime = +(this.ui.debounceTime || 0);
-        /** @type {?} */
-        const time = Math.max(0, this.isAsync ? Math.max(50, orgTime) : orgTime);
-        this.list = this.formProperty.valueChanges.pipe(debounceTime(time), startWith(''), flatMap(input => this.isAsync ? this.ui.asyncData(input) : this.filterData(input)), map(res => getEnum(res, null, this.schema.readOnly)));
-    }
-    /**
-     * @param {?} value
-     * @return {?}
-     */
-    reset(value) {
-        if (this.isAsync)
-            return;
-        switch (this.ui.type) {
-            case 'email':
-                this.fixData = getCopyEnum(EMAILSUFFIX, null, this.schema.readOnly);
-                break;
-            default:
-                this.fixData = getCopyEnum(this.schema.enum, this.formProperty.formData, this.schema.readOnly);
-                break;
-        }
-    }
-    /**
-     * @param {?} input
-     * @return {?}
-     */
-    filterData(input) {
-        switch (this.ui.type) {
-            case 'email':
-                return this.addEmailSuffix(input);
-            default:
-                return of(this.fixData.filter(option => this.filterOption(input, option)));
-        }
-    }
-    /**
-     * @param {?} value
-     * @return {?}
-     */
-    addEmailSuffix(value) {
-        return of(!value || ~value.indexOf('@')
-            ? []
-            : this.fixData.map(domain => `${value}@${domain.label}`));
-    }
-}
-AutoCompleteWidget.decorators = [
-    { type: Component, args: [{
-                selector: 'sf-autocomplete',
-                template: `
-    <sf-item-wrap [id]="id" [schema]="schema" [ui]="ui" [showError]="showError" [error]="error" [showTitle]="schema.title">
-      <input nz-input [nzAutocomplete]="auto"
-        [attr.id]="id"
-        [disabled]="disabled"
-        [attr.disabled]="disabled"
-        [nzSize]="ui.size"
-        [ngModel]="value"
-        (ngModelChange)="setValue($event)"
-        [attr.maxLength]="schema.maxLength || null"
-        [attr.placeholder]="ui.placeholder"
-        autocomplete="off">
-      <nz-autocomplete #auto
-        [nzBackfill]="i.backfill"
-        [nzDefaultActiveFirstOption]="i.defaultActiveFirstOption"
-        [nzWidth]="i.width"
-        (selectionChange)="setValue($event?.nzValue)">
-        <nz-auto-option *ngFor="let i of list | async" [nzValue]="i.value">{{i.label}}</nz-auto-option>
-      </nz-autocomplete>
-    </sf-item-wrap>
-    `
-            }] }
-];
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
- */
-class CascaderWidget extends ControlWidget {
-    constructor() {
-        super(...arguments);
-        this.data = [];
-    }
-    /**
-     * @return {?}
-     */
-    ngOnInit() {
-        this.clearText = this.ui.clearText || '清除';
-        this.showArrow = toBool(this.ui.showArrow, true);
-        this.showInput = toBool(this.ui.showInput, true);
-        this.triggerAction = this.ui.triggerAction || ['click'];
-        if (!!this.ui.asyncData) {
-            this.loadData = (node, index) => ((/** @type {?} */ (this.ui.asyncData)))(node, index, this);
-        }
-    }
-    /**
-     * @param {?} value
-     * @return {?}
-     */
-    reset(value) {
-        getData(this.schema, this.ui, this.formProperty.formData).subscribe(list => {
-            this.data = list;
-            this.detectChanges();
-        });
-    }
-    /**
-     * @param {?} status
-     * @return {?}
-     */
-    _visibleChange(status) {
-        this.ui.visibleChange && this.ui.visibleChange(status);
-    }
-    /**
-     * @param {?} value
-     * @return {?}
-     */
-    _change(value) {
-        this.setValue(value);
-        this.ui.change && this.ui.change(value);
-    }
-    /**
-     * @param {?} options
-     * @return {?}
-     */
-    _selectionChange(options) {
-        this.ui.selectionChange && this.ui.selectionChange(options);
-    }
-    /**
-     * @param {?} options
-     * @return {?}
-     */
-    _select(options) {
-        this.ui.select && this.ui.select(options);
-    }
-    /**
-     * @param {?} options
-     * @return {?}
-     */
-    _clear(options) {
-        this.ui.clear && this.ui.clear(options);
-    }
-}
-CascaderWidget.decorators = [
-    { type: Component, args: [{
-                selector: 'sf-cascader',
-                template: `
-  <sf-item-wrap [id]="id" [schema]="schema" [ui]="ui" [showError]="showError" [error]="error" [showTitle]="schema.title">
-
-    <nz-cascader
-      [nzDisabled]="disabled"
-      [nzSize]="ui.size"
-      [ngModel]="value"
-      (ngModelChange)="_change($event)"
-      [nzOptions]="data"
-      [nzAllowClear]="ui.allowClear"
-      [nzAutoFocus]="ui.autoFocus"
-      [nzChangeOn]="ui.changeOn"
-      [nzChangeOnSelect]="ui.changeOnSelect"
-      [nzColumnClassName]="ui.columnClassName"
-      [nzExpandTrigger]="ui.expandTrigger"
-      [nzMenuClassName]="ui.menuClassName"
-      [nzMenuStyle]="ui.menuStyle"
-      [nzLabelProperty]="ui.labelProperty"
-      [nzValueProperty]="ui.valueProperty"
-      [nzLoadData]="loadData"
-      [nzPlaceHolder]="ui.placeholder"
-      [nzShowArrow]="showArrow"
-      [nzShowInput]="showInput"
-      [nzShowSearch]="ui.showSearch"
-      (nzClear)="_clear($event)"
-      (nzVisibleChange)="_visibleChange($event)"
-      (nzSelect)="_select($event)"
-      (nzSelectionChange)="_selectionChange($event)">
-    </nz-cascader>
-
-  </sf-item-wrap>
-  `
-            }] }
-];
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
- */
-class MentionWidget extends ControlWidget {
-    constructor() {
-        super(...arguments);
-        this.data = [];
-        this.loading = false;
-    }
-    /**
-     * @return {?}
-     */
-    ngOnInit() {
-        this.i = {
-            valueWith: this.ui.valueWith || (item => item.label),
-            notFoundContent: this.ui.notFoundContent || '无匹配结果，轻敲空格完成输入',
-            placement: this.ui.placement || 'bottom',
-            prefix: this.ui.prefix || '@',
-        };
-        /** @type {?} */
-        const min = typeof this.schema.minimum !== 'undefined' ? this.schema.minimum : -1;
-        /** @type {?} */
-        const max = typeof this.schema.maximum !== 'undefined' ? this.schema.maximum : -1;
-        if (!this.ui.validator && (min !== -1 || max !== -1)) {
-            this.ui.validator = (value, formProperty, form) => {
-                /** @type {?} */
-                const count = this.mentionChild.getMentions().length;
-                if (min !== -1 && count < min) {
-                    return [{ keyword: 'mention', message: `最少提及 ${min} 次` }];
-                }
-                if (max !== -1 && count > max) {
-                    return [{ keyword: 'mention', message: `最多提及 ${max} 次` }];
-                }
-                return null;
-            };
-        }
-    }
-    /**
-     * @param {?} value
-     * @return {?}
-     */
-    reset(value) {
-        getData(this.schema, this.ui, null).subscribe(list => {
-            this.data = list;
-            this.detectChanges();
-        });
-    }
-    /**
-     * @param {?} options
-     * @return {?}
-     */
-    _select(options) {
-        if (this.ui.select)
-            this.ui.select(options);
-    }
-    /**
-     * @param {?} option
-     * @return {?}
-     */
-    _search(option) {
-        if (typeof this.ui.loadData !== 'function')
-            return;
-        this.loading = true;
-        ((/** @type {?} */ (this.ui.loadData(option))))
-            .pipe(tap(() => (this.loading = false)), map(res => getEnum(res, null, this.schema.readOnly)))
-            .subscribe(res => {
-            this.data = res;
-            this.cd.detectChanges();
-        });
-    }
-}
-MentionWidget.decorators = [
-    { type: Component, args: [{
-                selector: 'sf-mention',
-                template: `
-    <sf-item-wrap [id]="id" [schema]="schema" [ui]="ui" [showError]="showError" [error]="error" [showTitle]="schema.title">
-
-      <nz-mention #mentions
-        [nzSuggestions]="data"
-        [nzValueWith]="i.valueWith"
-        [nzLoading]="loading"
-        [nzNotFoundContent]="i.notFoundContent"
-        [nzPlacement]="i.placement"
-        [nzPrefix]="i.prefix"
-        (nzOnSelect)="_select($event)"
-        (nzOnSearchChange)="_search($event)">
-
-        <ng-container *ngIf="ui.inputStyle !== 'textarea'">
-          <input nzMentionTrigger nz-input
-            [attr.id]="id"
-            [disabled]="disabled"
-            [attr.disabled]="disabled"
-            [nzSize]="ui.size"
-            [ngModel]="value"
-            (ngModelChange)="setValue($event)"
-            [attr.maxLength]="schema.maxLength || null"
-            [attr.placeholder]="ui.placeholder"
-            autocomplete="off">
-        </ng-container>
-
-        <ng-container *ngIf="ui.inputStyle === 'textarea'">
-          <textarea nzMentionTrigger nz-input
-            [attr.id]="id"
-            [disabled]="disabled"
-            [attr.disabled]="disabled"
-            [nzSize]="ui.size"
-            [ngModel]="value"
-            (ngModelChange)="setValue($event)"
-            [attr.maxLength]="schema.maxLength || null"
-            [attr.placeholder]="ui.placeholder"
-            [nzAutosize]="ui.autosize">
-          </textarea>
-        </ng-container>
-
-      </nz-mention>
-
-    </sf-item-wrap>
-    `
-            }] }
-];
-MentionWidget.propDecorators = {
-    mentionChild: [{ type: ViewChild, args: ['mentions',] }]
-};
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
- */
-class TextWidget extends ControlWidget {
-    /**
-     * @return {?}
-     */
-    ngOnInit() {
-        this.ui._required = false;
-    }
-}
-TextWidget.decorators = [
-    { type: Component, args: [{
-                selector: 'sf-text',
-                template: `
-  <sf-item-wrap [id]="id" [schema]="schema" [ui]="ui" [showError]="showError" [error]="error" [showTitle]="schema.title">
-    {{ value || ui.defaultText || '-' }}
-  </sf-item-wrap>
-  `
-            }] }
 ];
 
 /**

@@ -1,9 +1,9 @@
-import { TemplateRef, OnInit } from '@angular/core';
+import { OnInit, TemplateRef } from '@angular/core';
 import { SFComponent } from '../../sf.component';
 export declare class SFTemplateDirective implements OnInit {
     private templateRef;
     private table;
     path: string;
-    constructor(templateRef: TemplateRef<any>, table: SFComponent);
+    constructor(templateRef: TemplateRef<void>, table: SFComponent);
     ngOnInit(): void;
 }

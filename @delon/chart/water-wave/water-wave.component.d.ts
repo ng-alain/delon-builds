@@ -1,17 +1,15 @@
-import { ElementRef, OnDestroy, OnChanges, NgZone, TemplateRef, OnInit, Renderer2, ChangeDetectorRef } from '@angular/core';
+import { ChangeDetectorRef, ElementRef, NgZone, OnChanges, OnDestroy, OnInit, Renderer2, TemplateRef } from '@angular/core';
 export declare class G2WaterWaveComponent implements OnDestroy, OnChanges, OnInit {
     private el;
     private renderer;
     private cd;
     private zone;
     _title: string;
-    _titleTpl: TemplateRef<any>;
-    title: string | TemplateRef<any>;
+    _titleTpl: TemplateRef<void>;
+    title: string | TemplateRef<void>;
     color: string;
-    height: any;
-    private _height;
-    percent: any;
-    private _percent;
+    height: number;
+    percent: number;
     private resize$;
     private node;
     private initFlag;

@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import addSeconds from 'date-fns/add_seconds';
-import { Observable, of, BehaviorSubject } from 'rxjs';
-import { tap, map } from 'rxjs/operators';
-import { InjectionToken, Injectable, Inject, NgModule } from '@angular/core';
+import { of, BehaviorSubject, Observable } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
+import { InjectionToken, Inject, Injectable, NgModule } from '@angular/core';
 
 /**
  * @fileoverview added by tsickle
@@ -58,7 +58,7 @@ class CacheService {
         this.memory = new Map();
         this.notifyBuffer = new Map();
         this.meta = new Set();
-        this.freq_tick = 3000;
+        this.freqTick = 3000;
         this.loadMeta();
         this.startExpireNotify();
     }
@@ -178,7 +178,9 @@ class CacheService {
             if (isPromise) {
                 return this.http
                     .get(key)
-                    .pipe(map((ret) => this._deepGet(ret, (/** @type {?} */ (this.options.reName)), null)), tap(v => this.set(key, v)));
+                    .pipe(
+                // tslint:disable-next-line:no-any
+                map((ret) => this._deepGet(ret, (/** @type {?} */ (this.options.reName)), null)), tap(v => this.set(key, v)));
             }
             return null;
         }
@@ -263,7 +265,7 @@ class CacheService {
      * @return {?}
      */
     set freq(value) {
-        this.freq_tick = Math.max(20, value);
+        this.freqTick = Math.max(20, value);
         this.abortExpireNotify();
         this.startExpireNotify();
     }
@@ -278,10 +280,10 @@ class CacheService {
      * @return {?}
      */
     runExpireNotify() {
-        this.freq_time = setTimeout(() => {
+        this.freqTime = setTimeout(() => {
             this.checkExpireNotify();
             this.runExpireNotify();
-        }, this.freq_tick);
+        }, this.freqTick);
     }
     /**
      * @return {?}
@@ -302,7 +304,7 @@ class CacheService {
      * @return {?}
      */
     abortExpireNotify() {
-        clearTimeout(this.freq_time);
+        clearTimeout(this.freqTime);
     }
     /**
      * @param {?} key

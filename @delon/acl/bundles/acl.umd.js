@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/router'), require('rxjs'), require('rxjs/operators'), require('@angular/core'), require('@angular/common')) :
-    typeof define === 'function' && define.amd ? define('@delon/acl', ['exports', '@angular/router', 'rxjs', 'rxjs/operators', '@angular/core', '@angular/common'], factory) :
-    (factory((global.delon = global.delon || {}, global.delon.acl = {}),global.ng.router,global.rxjs,global.rxjs.operators,global.ng.core,global.ng.common));
-}(this, (function (exports,router,rxjs,operators,core,common) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/router'), require('rxjs'), require('rxjs/operators'), require('@angular/common'), require('@angular/core')) :
+    typeof define === 'function' && define.amd ? define('@delon/acl', ['exports', '@angular/router', 'rxjs', 'rxjs/operators', '@angular/common', '@angular/core'], factory) :
+    (factory((global.delon = global.delon || {}, global.delon.acl = {}),global.ng.router,global.rxjs,global.rxjs.operators,global.ng.common,global.ng.core));
+}(this, (function (exports,router,rxjs,operators,common,core) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -417,10 +417,14 @@
                         return t.role.some(function (v) { return _this.roles.includes(v); });
                 }
                 if (t.ability) {
-                    if (t.mode === 'allOf')
+                    if (t.mode === 'allOf') {
+                        // tslint:disable-next-line:no-any
                         return (( /** @type {?} */(t.ability))).every(function (v) { return _this.abilities.includes(v); });
-                    else
+                    }
+                    else {
+                        // tslint:disable-next-line:no-any
                         return (( /** @type {?} */(t.ability))).some(function (v) { return _this.abilities.includes(v); });
+                    }
                 }
                 return false;
             };
@@ -476,7 +480,7 @@
             this.el = el;
             this.renderer = renderer;
             this.srv = srv;
-            this.change$ = ( /** @type {?} */(this.srv.change.subscribe(function () { return _this.set(_this._value); })));
+            this.change$ = this.srv.change.subscribe(function () { return _this.set(_this._value); });
         }
         Object.defineProperty(ACLDirective.prototype, "acl", {
             set: /**

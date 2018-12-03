@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@delon/theme'), require('@angular/core'), require('@angular/common'), require('@angular/router'), require('@delon/util')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/global-footer', ['exports', '@delon/theme', '@angular/core', '@angular/common', '@angular/router', '@delon/util'], factory) :
-    (factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['global-footer'] = {}),global.delon.theme,global.ng.core,global.ng.common,global.ng.router,global.delon.util));
-}(this, (function (exports,theme,core,common,router,util) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@delon/theme'), require('@angular/common'), require('@angular/core'), require('@angular/router'), require('@delon/util')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/global-footer', ['exports', '@delon/theme', '@angular/common', '@angular/core', '@angular/router', '@delon/util'], factory) :
+    (factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['global-footer'] = {}),global.delon.theme,global.ng.common,global.ng.core,global.ng.router,global.delon.util));
+}(this, (function (exports,theme,common,core,router,util) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.

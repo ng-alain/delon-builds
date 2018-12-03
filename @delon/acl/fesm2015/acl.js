@@ -1,8 +1,8 @@
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable, of } from 'rxjs';
+import { BehaviorSubject, of, Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
-import { Injectable, Directive, Input, ElementRef, Renderer2, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Injectable, Directive, ElementRef, Input, Renderer2, NgModule } from '@angular/core';
 
 /**
  * @fileoverview added by tsickle
@@ -188,10 +188,14 @@ class ACLService {
                 return t.role.some(v => this.roles.includes(v));
         }
         if (t.ability) {
-            if (t.mode === 'allOf')
+            if (t.mode === 'allOf') {
+                // tslint:disable-next-line:no-any
                 return ((/** @type {?} */ (t.ability))).every(v => this.abilities.includes(v));
-            else
+            }
+            else {
+                // tslint:disable-next-line:no-any
                 return ((/** @type {?} */ (t.ability))).some(v => this.abilities.includes(v));
+            }
         }
         return false;
     }
@@ -236,7 +240,7 @@ class ACLDirective {
         this.el = el;
         this.renderer = renderer;
         this.srv = srv;
-        this.change$ = (/** @type {?} */ (this.srv.change.subscribe(() => this.set(this._value))));
+        this.change$ = this.srv.change.subscribe(() => this.set(this._value));
     }
     /**
      * @param {?} value

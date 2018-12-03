@@ -1,4 +1,4 @@
-import { OnInit, OnDestroy, ElementRef, ChangeDetectorRef } from '@angular/core';
+import { ChangeDetectorRef, ElementRef, OnDestroy, OnInit } from '@angular/core';
 import { ErrorCollectConfig } from './error-collect.config';
 export declare class ErrorCollectComponent implements OnInit, OnDestroy {
     private el;

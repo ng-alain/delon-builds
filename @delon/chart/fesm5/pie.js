@@ -1,10 +1,10 @@
 import { fromEvent } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
-import { __spread } from 'tslib';
-import { Component, Input, ViewChild, ElementRef, NgZone, ChangeDetectionStrategy, ChangeDetectorRef, Renderer2, NgModule } from '@angular/core';
+import { __decorate, __metadata, __spread } from 'tslib';
 import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Input, NgZone, Renderer2, ViewChild, NgModule } from '@angular/core';
+import { updateHostClass, InputBoolean, InputNumber, DelonUtilModule } from '@delon/util';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
-import { toNumber, toBoolean, updateHostClass, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
@@ -20,144 +20,18 @@ var G2PieComponent = /** @class */ (function () {
         this.scroll$ = null;
         this.initFlag = false;
         this.legendData = [];
-        this._animate = true;
+        // #region fields
+        this.animate = true;
         this.color = 'rgba(24, 144, 255, 0.85)';
-        this._height = 0;
-        this._hasLegend = false;
-        this._legendBlock = false;
+        this.height = 0;
+        this.hasLegend = false;
+        this.legendBlock = false;
         this.inner = 0.75;
         this.padding = [12, 0, 12, 0];
-        this._tooltip = true;
-        this._lineWidth = 0;
-        this._select = true;
+        this.tooltip = true;
+        this.lineWidth = 0;
+        this.select = true;
     }
-    Object.defineProperty(G2PieComponent.prototype, "animate", {
-        // #region fields
-        set: 
-        // #region fields
-        /**
-         * @param {?} value
-         * @return {?}
-         */
-        function (value) {
-            this._animate = toBoolean(value);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(G2PieComponent.prototype, "height", {
-        get: /**
-         * @return {?}
-         */
-        function () {
-            return this._height;
-        },
-        set: /**
-         * @param {?} value
-         * @return {?}
-         */
-        function (value) {
-            this._height = toNumber(value);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(G2PieComponent.prototype, "hasLegend", {
-        get: /**
-         * @return {?}
-         */
-        function () {
-            return this._hasLegend;
-        },
-        set: /**
-         * @param {?} value
-         * @return {?}
-         */
-        function (value) {
-            this._hasLegend = toBoolean(value);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(G2PieComponent.prototype, "legendBlock", {
-        set: /**
-         * @param {?} value
-         * @return {?}
-         */
-        function (value) {
-            this._legendBlock = toBoolean(value);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(G2PieComponent.prototype, "percent", {
-        get: /**
-         * @return {?}
-         */
-        function () {
-            return this._percent;
-        },
-        set: /**
-         * @param {?} value
-         * @return {?}
-         */
-        function (value) {
-            this._percent = toNumber(value);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(G2PieComponent.prototype, "tooltip", {
-        get: /**
-         * @return {?}
-         */
-        function () {
-            return this._tooltip;
-        },
-        set: /**
-         * @param {?} value
-         * @return {?}
-         */
-        function (value) {
-            this._tooltip = toBoolean(value);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(G2PieComponent.prototype, "lineWidth", {
-        get: /**
-         * @return {?}
-         */
-        function () {
-            return this._lineWidth;
-        },
-        set: /**
-         * @param {?} value
-         * @return {?}
-         */
-        function (value) {
-            this._lineWidth = toNumber(value);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(G2PieComponent.prototype, "select", {
-        get: /**
-         * @return {?}
-         */
-        function () {
-            return this._select;
-        },
-        set: /**
-         * @param {?} value
-         * @return {?}
-         */
-        function (value) {
-            this._select = toBoolean(value);
-        },
-        enumerable: true,
-        configurable: true
-    });
     /**
      * @return {?}
      */
@@ -168,7 +42,7 @@ var G2PieComponent = /** @class */ (function () {
         updateHostClass(this.el.nativeElement, this.rend, {
             'g2-pie': true,
             'g2-pie__legend-has': this.hasLegend,
-            'g2-pie__legend-block': this._legendBlock,
+            'g2-pie__legend-block': this.legendBlock,
             'g2-pie__mini': typeof this.percent !== 'undefined',
         }, true);
     };
@@ -224,7 +98,7 @@ var G2PieComponent = /** @class */ (function () {
             forceFit: true,
             height: this.height,
             padding: this.padding,
-            animate: this._animate,
+            animate: this.animate,
         });
         if (!this.tooltip) {
             chart.tooltip(false);
@@ -382,6 +256,38 @@ var G2PieComponent = /** @class */ (function () {
         valueFormat: [{ type: Input }],
         colors: [{ type: Input }]
     };
+    __decorate([
+        InputBoolean(),
+        __metadata("design:type", Object)
+    ], G2PieComponent.prototype, "animate", void 0);
+    __decorate([
+        InputNumber(),
+        __metadata("design:type", Object)
+    ], G2PieComponent.prototype, "height", void 0);
+    __decorate([
+        InputBoolean(),
+        __metadata("design:type", Object)
+    ], G2PieComponent.prototype, "hasLegend", void 0);
+    __decorate([
+        InputBoolean(),
+        __metadata("design:type", Object)
+    ], G2PieComponent.prototype, "legendBlock", void 0);
+    __decorate([
+        InputNumber(),
+        __metadata("design:type", Number)
+    ], G2PieComponent.prototype, "percent", void 0);
+    __decorate([
+        InputBoolean(),
+        __metadata("design:type", Object)
+    ], G2PieComponent.prototype, "tooltip", void 0);
+    __decorate([
+        InputNumber(),
+        __metadata("design:type", Object)
+    ], G2PieComponent.prototype, "lineWidth", void 0);
+    __decorate([
+        InputBoolean(),
+        __metadata("design:type", Object)
+    ], G2PieComponent.prototype, "select", void 0);
     return G2PieComponent;
 }());
 

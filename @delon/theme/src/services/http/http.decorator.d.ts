@@ -1,5 +1,5 @@
-import { Injector } from '@angular/core';
 import { HttpHeaders } from '@angular/common/http';
+import { Injector } from '@angular/core';
 export declare abstract class BaseApi {
     protected injector: Injector;
     constructor(injector: Injector);

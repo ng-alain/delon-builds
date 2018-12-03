@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@delon/util'), require('@angular/core'), require('@angular/common'), require('ng-zorro-antd'), require('@delon/theme')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/notice-icon', ['exports', '@delon/util', '@angular/core', '@angular/common', 'ng-zorro-antd', '@delon/theme'], factory) :
-    (factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['notice-icon'] = {}),global.delon.util,global.ng.core,global.ng.common,global.ngZorro.antd,global.delon.theme));
-}(this, (function (exports,util,core,common,ngZorroAntd,theme) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@delon/util'), require('@angular/common'), require('@angular/core'), require('@delon/theme'), require('ng-zorro-antd')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/notice-icon', ['exports', '@delon/util', '@angular/common', '@angular/core', '@delon/theme', 'ng-zorro-antd'], factory) :
+    (factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['notice-icon'] = {}),global.delon.util,global.ng.common,global.ng.core,global.delon.theme,global.ngZorro.antd));
+}(this, (function (exports,util,common,core,theme,ngZorroAntd) { 'use strict';
 
     /**
      * @fileoverview added by tsickle
@@ -15,6 +15,7 @@
      */
     var NoticeIconTabComponent = /** @class */ (function () {
         function NoticeIconTabComponent() {
+            // tslint:disable-next-line:no-any
             this.locale = {};
             this.select = new core.EventEmitter();
             this.clear = new core.EventEmitter();
@@ -124,18 +125,13 @@
         function NoticeIconComponent(i18n, cdr) {
             this.i18n = i18n;
             this.cdr = cdr;
+            // tslint:disable-next-line:no-any
             this.locale = {};
             this.data = [];
-            /**
-             * 弹出卡片加载状态
-             */
             this.loading = false;
+            this.popoverVisible = false;
             this.select = new core.EventEmitter();
             this.clear = new core.EventEmitter();
-            /**
-             * 手动控制Popover显示
-             */
-            this.popoverVisible = false;
             this.popoverVisibleChange = new core.EventEmitter();
         }
         /**
@@ -211,9 +207,9 @@
             data: [{ type: core.Input }],
             count: [{ type: core.Input }],
             loading: [{ type: core.Input }],
+            popoverVisible: [{ type: core.Input }],
             select: [{ type: core.Output }],
             clear: [{ type: core.Output }],
-            popoverVisible: [{ type: core.Input }],
             popoverVisibleChange: [{ type: core.Output }]
         };
         __decorate([

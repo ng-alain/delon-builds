@@ -1,4 +1,4 @@
-import { ElementRef, Renderer2, OnChanges, TemplateRef, AfterViewInit } from '@angular/core';
+import { AfterViewInit, ElementRef, OnChanges, Renderer2, TemplateRef } from '@angular/core';
 import { ResponsiveService } from '@delon/theme';
 import { SVContainerComponent } from './view-container.component';
 export declare class SVComponent implements AfterViewInit, OnChanges {
@@ -8,9 +8,7 @@ export declare class SVComponent implements AfterViewInit, OnChanges {
     private conEl;
     private el;
     private clsMap;
-    _label: string;
-    _labelTpl: TemplateRef<any>;
-    label: string | TemplateRef<any>;
+    label: string | TemplateRef<void>;
     col: number;
     default: boolean;
     type: 'primary' | 'success' | 'danger' | 'warning';

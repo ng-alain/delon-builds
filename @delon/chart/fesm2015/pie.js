@@ -1,9 +1,10 @@
+import { __decorate, __metadata } from 'tslib';
 import { fromEvent } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
-import { Component, Input, ViewChild, ElementRef, NgZone, ChangeDetectionStrategy, ChangeDetectorRef, Renderer2, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Input, NgZone, Renderer2, ViewChild, NgModule } from '@angular/core';
+import { updateHostClass, InputBoolean, InputNumber, DelonUtilModule } from '@delon/util';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
-import { toNumber, toBoolean, updateHostClass, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
@@ -25,109 +26,17 @@ class G2PieComponent {
         this.scroll$ = null;
         this.initFlag = false;
         this.legendData = [];
-        this._animate = true;
+        // #region fields
+        this.animate = true;
         this.color = 'rgba(24, 144, 255, 0.85)';
-        this._height = 0;
-        this._hasLegend = false;
-        this._legendBlock = false;
+        this.height = 0;
+        this.hasLegend = false;
+        this.legendBlock = false;
         this.inner = 0.75;
         this.padding = [12, 0, 12, 0];
-        this._tooltip = true;
-        this._lineWidth = 0;
-        this._select = true;
-    }
-    // #region fields
-    /**
-     * @param {?} value
-     * @return {?}
-     */
-    set animate(value) {
-        this._animate = toBoolean(value);
-    }
-    /**
-     * @return {?}
-     */
-    get height() {
-        return this._height;
-    }
-    /**
-     * @param {?} value
-     * @return {?}
-     */
-    set height(value) {
-        this._height = toNumber(value);
-    }
-    /**
-     * @return {?}
-     */
-    get hasLegend() {
-        return this._hasLegend;
-    }
-    /**
-     * @param {?} value
-     * @return {?}
-     */
-    set hasLegend(value) {
-        this._hasLegend = toBoolean(value);
-    }
-    /**
-     * @param {?} value
-     * @return {?}
-     */
-    set legendBlock(value) {
-        this._legendBlock = toBoolean(value);
-    }
-    /**
-     * @return {?}
-     */
-    get percent() {
-        return this._percent;
-    }
-    /**
-     * @param {?} value
-     * @return {?}
-     */
-    set percent(value) {
-        this._percent = toNumber(value);
-    }
-    /**
-     * @return {?}
-     */
-    get tooltip() {
-        return this._tooltip;
-    }
-    /**
-     * @param {?} value
-     * @return {?}
-     */
-    set tooltip(value) {
-        this._tooltip = toBoolean(value);
-    }
-    /**
-     * @return {?}
-     */
-    get lineWidth() {
-        return this._lineWidth;
-    }
-    /**
-     * @param {?} value
-     * @return {?}
-     */
-    set lineWidth(value) {
-        this._lineWidth = toNumber(value);
-    }
-    /**
-     * @return {?}
-     */
-    get select() {
-        return this._select;
-    }
-    /**
-     * @param {?} value
-     * @return {?}
-     */
-    set select(value) {
-        this._select = toBoolean(value);
+        this.tooltip = true;
+        this.lineWidth = 0;
+        this.select = true;
     }
     /**
      * @return {?}
@@ -136,7 +45,7 @@ class G2PieComponent {
         updateHostClass(this.el.nativeElement, this.rend, {
             'g2-pie': true,
             'g2-pie__legend-has': this.hasLegend,
-            'g2-pie__legend-block': this._legendBlock,
+            'g2-pie__legend-block': this.legendBlock,
             'g2-pie__mini': typeof this.percent !== 'undefined',
         }, true);
     }
@@ -182,7 +91,7 @@ class G2PieComponent {
             forceFit: true,
             height: this.height,
             padding: this.padding,
-            animate: this._animate,
+            animate: this.animate,
         });
         if (!this.tooltip) {
             chart.tooltip(false);
@@ -324,6 +233,38 @@ G2PieComponent.propDecorators = {
     valueFormat: [{ type: Input }],
     colors: [{ type: Input }]
 };
+__decorate([
+    InputBoolean(),
+    __metadata("design:type", Object)
+], G2PieComponent.prototype, "animate", void 0);
+__decorate([
+    InputNumber(),
+    __metadata("design:type", Object)
+], G2PieComponent.prototype, "height", void 0);
+__decorate([
+    InputBoolean(),
+    __metadata("design:type", Object)
+], G2PieComponent.prototype, "hasLegend", void 0);
+__decorate([
+    InputBoolean(),
+    __metadata("design:type", Object)
+], G2PieComponent.prototype, "legendBlock", void 0);
+__decorate([
+    InputNumber(),
+    __metadata("design:type", Number)
+], G2PieComponent.prototype, "percent", void 0);
+__decorate([
+    InputBoolean(),
+    __metadata("design:type", Object)
+], G2PieComponent.prototype, "tooltip", void 0);
+__decorate([
+    InputNumber(),
+    __metadata("design:type", Object)
+], G2PieComponent.prototype, "lineWidth", void 0);
+__decorate([
+    InputBoolean(),
+    __metadata("design:type", Object)
+], G2PieComponent.prototype, "select", void 0);
 
 /**
  * @fileoverview added by tsickle

@@ -1,14 +1,14 @@
 import { ComponentPortal } from '@angular/cdk/portal';
-import { filter, debounceTime } from 'rxjs/operators';
-import { InputNumber, InputBoolean } from '@delon/util';
-import { Subscription, Subject, BehaviorSubject, combineLatest } from 'rxjs';
+import { InputBoolean, InputNumber } from '@delon/util';
+import { debounceTime, filter } from 'rxjs/operators';
+import { Subject, Subscription, BehaviorSubject, combineLatest } from 'rxjs';
 import { __assign, __read, __decorate, __metadata, __spread } from 'tslib';
-import { Component, Input, EventEmitter, Output, HostListener, Injectable, ElementRef, Directive, Injector, ChangeDetectionStrategy, ChangeDetectorRef, Renderer2, Optional, Inject, defineInjectable, inject, INJECTOR, NgModule } from '@angular/core';
+import { ConnectionPositionPair, Overlay, OverlayModule } from '@angular/cdk/overlay';
 import { CommonModule } from '@angular/common';
+import { Component, EventEmitter, HostListener, Input, Output, ElementRef, Injectable, Directive, Injector, ChangeDetectionStrategy, ChangeDetectorRef, Renderer2, Optional, Inject, defineInjectable, inject, INJECTOR, NgModule } from '@angular/core';
 import { ActivatedRoute, Router, NavigationEnd, RouterModule } from '@angular/router';
-import { Overlay, ConnectionPositionPair, OverlayModule } from '@angular/cdk/overlay';
-import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { DelonLocaleService, MenuService, ALAIN_I18N_TOKEN, DelonLocaleModule } from '@delon/theme';
+import { NgZorroAntdModule } from 'ng-zorro-antd';
 
 /**
  * @fileoverview added by tsickle
@@ -31,7 +31,7 @@ var ReuseTabContextMenuComponent = /** @class */ (function () {
          * @return {?}
          */
         function (value) {
-            this._i18n = Object.assign({}, this.i18nSrv.getData('reuseTab'), value);
+            this._i18n = __assign({}, this.i18nSrv.getData('reuseTab'), value);
         },
         enumerable: true,
         configurable: true
@@ -975,23 +975,28 @@ var ReuseTabService = /** @class */ (function () {
     /**
      * 刷新，触发一个 refresh 类型事件
      */
+    // tslint:disable-next-line:no-any
     /**
      * 刷新，触发一个 refresh 类型事件
      * @param {?=} data
      * @return {?}
      */
+    // tslint:disable-next-line:no-any
     ReuseTabService.prototype.refresh = /**
      * 刷新，触发一个 refresh 类型事件
      * @param {?=} data
      * @return {?}
      */
+    // tslint:disable-next-line:no-any
     function (data) {
         this._cachedChange.next({ active: 'refresh', data: data });
     };
     // #endregion
     // #region privates
+    // tslint:disable-next-line:no-any
     // #endregion
     // #region privates
+    // tslint:disable-next-line:no-any
     /**
      * @param {?} _handle
      * @return {?}
@@ -999,6 +1004,7 @@ var ReuseTabService = /** @class */ (function () {
     ReuseTabService.prototype.destroy = 
     // #endregion
     // #region privates
+    // tslint:disable-next-line:no-any
     /**
      * @param {?} _handle
      * @return {?}
@@ -1040,13 +1046,17 @@ var ReuseTabService = /** @class */ (function () {
             return null;
         return menus.pop();
     };
+    // tslint:disable-next-line:no-any
+    // tslint:disable-next-line:no-any
     /**
      * @param {?} method
      * @param {?} url
      * @param {?} comp
      * @return {?}
      */
-    ReuseTabService.prototype.runHook = /**
+    ReuseTabService.prototype.runHook = 
+    // tslint:disable-next-line:no-any
+    /**
      * @param {?} method
      * @param {?} url
      * @param {?} comp
@@ -1091,18 +1101,21 @@ var ReuseTabService = /** @class */ (function () {
     /**
      * 存储
      */
+    // tslint:disable-next-line:no-any
     /**
      * 存储
      * @param {?} _snapshot
      * @param {?} _handle
      * @return {?}
      */
+    // tslint:disable-next-line:no-any
     ReuseTabService.prototype.store = /**
      * 存储
      * @param {?} _snapshot
      * @param {?} _handle
      * @return {?}
      */
+    // tslint:disable-next-line:no-any
     function (_snapshot, _handle) {
         /** @type {?} */
         var url = this.getUrl(_snapshot);
@@ -1257,36 +1270,18 @@ var ReuseTabComponent = /** @class */ (function () {
         this.list = [];
         this.pos = 0;
         // #region fields
-        /**
-         * 设置匹配模式
-         */
         this.mode = ReuseTabMatchMode.Menu;
-        /**
-         * 是否Debug模式
-         */
         this.debug = false;
-        /**
-         * 允许关闭
-         */
         this.allowClose = true;
-        /**
-         * 总是显示当前页
-         */
         this.showCurrent = true;
-        /**
-         * 切换时回调
-         */
         this.change = new EventEmitter();
-        /**
-         * 关闭回调
-         */
         this.close = new EventEmitter();
         this.el = el.nativeElement;
         /** @type {?} */
         var route$ = this.router.events.pipe(filter(function (evt) { return evt instanceof NavigationEnd; }));
         this.sub$ = combineLatest(this.srv.change, route$).subscribe(function (_a) {
             var _b = __read(_a, 2), res = _b[0], e = _b[1];
-            return _this.genList((/** @type {?} */ (res)));
+            return _this.genList(res);
         });
         if (this.i18nSrv) {
             this.i18n$ = this.i18nSrv.change
@@ -1344,11 +1339,7 @@ var ReuseTabComponent = /** @class */ (function () {
             // jump directly when the current exists in the list
             // or create a new current item and jump
             if (idx !== -1 || (isClosed && notify.url === url_1)) {
-                this.pos = isClosed
-                    ? idx >= beforeClosePos
-                        ? this.pos - 1
-                        : this.pos
-                    : idx;
+                this.pos = isClosed ? idx >= beforeClosePos ? this.pos - 1 : this.pos : idx;
             }
             else {
                 /** @type {?} */

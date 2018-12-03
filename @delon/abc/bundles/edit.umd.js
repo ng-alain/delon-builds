@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/animations'), require('@angular/forms'), require('@delon/theme'), require('@angular/core'), require('@angular/common'), require('ng-zorro-antd'), require('@delon/util')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/edit', ['exports', '@angular/animations', '@angular/forms', '@delon/theme', '@angular/core', '@angular/common', 'ng-zorro-antd', '@delon/util'], factory) :
-    (factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.edit = {}),global.ng.animations,global.ng.forms,global.delon.theme,global.ng.core,global.ng.common,global.ngZorro.antd,global.delon.util));
-}(this, (function (exports,animations,forms,theme,core,common,ngZorroAntd,util) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/animations'), require('@angular/forms'), require('@delon/theme'), require('@angular/common'), require('@angular/core'), require('@delon/util'), require('ng-zorro-antd')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/edit', ['exports', '@angular/animations', '@angular/forms', '@delon/theme', '@angular/common', '@angular/core', '@delon/util', 'ng-zorro-antd'], factory) :
+    (factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.edit = {}),global.ng.animations,global.ng.forms,global.delon.theme,global.ng.common,global.ng.core,global.delon.util,global.ngZorro.antd));
+}(this, (function (exports,animations,forms,theme,common,core,util,ngZorroAntd) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -110,27 +110,9 @@
     var SEContainerComponent = /** @class */ (function () {
         //#endregion
         function SEContainerComponent(cog) {
-            //#region fields
-            this._title = '';
             this.line = false;
             Object.assign(this, cog);
         }
-        Object.defineProperty(SEContainerComponent.prototype, "title", {
-            set: /**
-             * @param {?} value
-             * @return {?}
-             */ function (value) {
-                if (value instanceof core.TemplateRef) {
-                    this._title = null;
-                    this._titleTpl = value;
-                }
-                else {
-                    this._title = value;
-                }
-            },
-            enumerable: true,
-            configurable: true
-        });
         Object.defineProperty(SEContainerComponent.prototype, "gutter", {
             get: /**
              * @return {?}
@@ -186,7 +168,7 @@
         SEContainerComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'se-container, [se-container]',
-                        template: "<div class=\"ant-row se__container se__{{nzLayout}} se__{{size}}\" [ngStyle]=\"{'margin-left.px': -(gutter / 2), 'margin-right.px': -(gutter / 2)}\">\n  <se-title *ngIf=\"_title || _titleTpl\">\n    <ng-container *ngIf=\"_title; else _titleTpl\">{{_title}}</ng-container>\n  </se-title>\n  <ng-content></ng-content>\n</div>\n",
+                        template: "<div class=\"ant-row se__container se__{{nzLayout}} se__{{size}}\" [ngStyle]=\"{'margin-left.px': -(gutter / 2), 'margin-right.px': -(gutter / 2)}\">\n  <se-title *ngIf=\"title\">\n    <ng-container *stringTemplateOutlet=\"title\">{{ title }}</ng-container>\n  </se-title>\n  <ng-content></ng-content>\n</div>",
                         changeDetection: core.ChangeDetectionStrategy.OnPush
                     }] }
         ];
@@ -339,7 +321,6 @@
             this.onceFlag = false;
             this.invalid = false;
             this.labelWidth = null;
-            this._label = '';
             this.required = false;
             this.controlClass = '';
             this._id = "_se-" + nextUniqueId++;
@@ -349,22 +330,6 @@
             }
             this.el = el.nativeElement;
         }
-        Object.defineProperty(SEComponent.prototype, "label", {
-            set: /**
-             * @param {?} value
-             * @return {?}
-             */ function (value) {
-                if (value instanceof core.TemplateRef) {
-                    this._label = null;
-                    this._labelTpl = value;
-                }
-                else {
-                    this._label = value;
-                }
-            },
-            enumerable: true,
-            configurable: true
-        });
         Object.defineProperty(SEComponent.prototype, "id", {
             set: /**
              * @param {?} value
@@ -506,7 +471,7 @@
         SEComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'se',
-                        template: "<div class=\"ant-form-item-label se__label\"\n  [class.se__nolabel]=\"!_label && !_labelTpl\" [style.width.px]=\"labelWidth\">\n  <label *ngIf=\"_label; else _labelTpl\" [attr.for]=\"_id\" [ngClass]=\"{'ant-form-item-required': required}\">\n    {{_label}}\n    <span class=\"se__label-optional\">\n      {{ optional }}\n      <nz-tooltip *ngIf=\"optionalHelp\" [nzTitle]=\"optionalHelp\">\n        <i nz-tooltip nz-icon type=\"question-circle\"></i>\n      </nz-tooltip>\n    </span>\n  </label>\n</div>\n<div class=\"ant-form-item-control-wrapper se__control\">\n  <div class=\"ant-form-item-control {{controlClass}}\" [class.has-error]=\"invalid\">\n    <ng-content></ng-content>\n    <se-error *ngIf=\"showErr\">{{error}}</se-error>\n    <div *ngIf=\"extra\" class=\"ant-form-extra\">{{extra}}</div>\n  </div>\n</div>\n",
+                        template: "<div class=\"ant-form-item-label se__label\" [class.se__nolabel]=\"!label\" [style.width.px]=\"labelWidth\">\n  <label *ngIf=\"label\" [attr.for]=\"_id\" [ngClass]=\"{'ant-form-item-required': required}\">\n    <ng-container *stringTemplateOutlet=\"label\">{{ label }}</ng-container>\n    <span class=\"se__label-optional\">\n      {{ optional }}\n      <nz-tooltip *ngIf=\"optionalHelp\" [nzTitle]=\"optionalHelp\">\n        <i nz-tooltip nz-icon type=\"question-circle\"></i>\n      </nz-tooltip>\n    </span>\n  </label>\n</div>\n<div class=\"ant-form-item-control-wrapper se__control\">\n  <div class=\"ant-form-item-control {{controlClass}}\" [class.has-error]=\"invalid\">\n    <ng-content></ng-content>\n    <se-error *ngIf=\"showErr\">{{error}}</se-error>\n    <div *ngIf=\"extra\" class=\"ant-form-extra\">{{extra}}</div>\n  </div>\n</div>",
                         changeDetection: core.ChangeDetectionStrategy.OnPush
                     }] }
         ];
@@ -531,8 +496,8 @@
             col: [{ type: core.Input }],
             required: [{ type: core.Input }],
             controlClass: [{ type: core.Input }],
-            id: [{ type: core.Input }],
             line: [{ type: core.Input }],
+            id: [{ type: core.Input }],
             paddingLeft: [{ type: core.HostBinding, args: ['style.padding-left.px',] }],
             paddingRight: [{ type: core.HostBinding, args: ['style.padding-right.px',] }],
             showErr: [{ type: core.HostBinding, args: ['class.ant-form-item-with-help',] }]

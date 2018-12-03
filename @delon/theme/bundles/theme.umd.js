@@ -4,13 +4,13 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common/http'), require('rxjs/operators'), require('rxjs'), require('@delon/acl'), require('date-fns/format'), require('date-fns/distance_in_words_to_now'), require('@angular/platform-browser'), require('@angular/common'), require('@angular/router'), require('@angular/cdk/overlay'), require('ng-zorro-antd'), require('@ant-design/icons-angular/icons'), require('@angular/core')) :
-    typeof define === 'function' && define.amd ? define('@delon/theme', ['exports', '@angular/common/http', 'rxjs/operators', 'rxjs', '@delon/acl', 'date-fns/format', 'date-fns/distance_in_words_to_now', '@angular/platform-browser', '@angular/common', '@angular/router', '@angular/cdk/overlay', 'ng-zorro-antd', '@ant-design/icons-angular/icons', '@angular/core'], factory) :
-    (factory((global.delon = global.delon || {}, global.delon.theme = {}),global.ng.common.http,global.rxjs.operators,global.rxjs,global.delon.acl,global.format,global.distanceInWordsToNow,global.ng.platformBrowser,global.ng.common,global.ng.router,global.ng.cdk.overlay,global.ngZorro.antd,global.icons,global.ng.core));
-}(this, (function (exports,i1,operators,rxjs,i2,format,distanceInWordsToNow,i1$1,i2$1,router,overlay,i1$2,icons,i0) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common/http'), require('rxjs/operators'), require('@delon/acl'), require('rxjs'), require('date-fns/distance_in_words_to_now'), require('date-fns/format'), require('@angular/platform-browser'), require('@angular/cdk/overlay'), require('@angular/common'), require('@angular/router'), require('@ant-design/icons-angular/icons'), require('ng-zorro-antd'), require('@angular/core')) :
+    typeof define === 'function' && define.amd ? define('@delon/theme', ['exports', '@angular/common/http', 'rxjs/operators', '@delon/acl', 'rxjs', 'date-fns/distance_in_words_to_now', 'date-fns/format', '@angular/platform-browser', '@angular/cdk/overlay', '@angular/common', '@angular/router', '@ant-design/icons-angular/icons', 'ng-zorro-antd', '@angular/core'], factory) :
+    (factory((global.delon = global.delon || {}, global.delon.theme = {}),global.ng.common.http,global.rxjs.operators,global.delon.acl,global.rxjs,global.distanceInWordsToNow,global.format,global.ng.platformBrowser,global.ng.cdk.overlay,global.ng.common,global.ng.router,global.icons,global.ngZorro.antd,global.ng.core));
+}(this, (function (exports,i1,operators,i2,rxjs,distanceInWordsToNow,format,i1$1,overlay,i2$1,router,icons,i1$2,i0) { 'use strict';
 
-    format = format && format.hasOwnProperty('default') ? format['default'] : format;
     distanceInWordsToNow = distanceInWordsToNow && distanceInWordsToNow.hasOwnProperty('default') ? distanceInWordsToNow['default'] : distanceInWordsToNow;
+    format = format && format.hasOwnProperty('default') ? format['default'] : format;
 
     /**
      * @fileoverview added by tsickle
@@ -44,6 +44,7 @@
             });
             preloader.className += ' preloader-hidden-add preloader-hidden-add-active';
         }
+        // tslint:disable-next-line:no-any
         (( /** @type {?} */(window))).appBootstrap = function () {
             setTimeout(function () {
                 remove();
@@ -164,12 +165,16 @@
             function (lang) {
                 this.change$.next(lang);
             };
+        // tslint:disable-next-line:no-any
+        // tslint:disable-next-line:no-any
         /**
          * @return {?}
          */
-        AlainI18NServiceFake.prototype.getLangs = /**
-         * @return {?}
-         */
+        AlainI18NServiceFake.prototype.getLangs =
+            // tslint:disable-next-line:no-any
+            /**
+             * @return {?}
+             */
             function () {
                 return [];
             };
@@ -325,10 +330,11 @@
                         else if (/^https?:\/\//.test(item.icon)) {
                             type = 'img';
                         }
+                        // tslint:disable-next-line:no-any
                         item.icon = ( /** @type {?} */({ type: type, value: value }));
                     }
                     if (item.icon != null) {
-                        item.icon = Object.assign({ theme: 'outline', spin: false }, item.icon);
+                        item.icon = __assign({ theme: 'outline', spin: false }, (( /** @type {?} */(item.icon))));
                     }
                     item.text =
                         item.i18n && _this.i18nSrv ? _this.i18nSrv.fanyi(item.i18n) : item.text;
@@ -399,13 +405,7 @@
                 var _data = this.data[0].children[pos];
                 if (_data.i18n && this.i18nSrv)
                     _data.text = this.i18nSrv.fanyi(_data.i18n);
-                _data = Object.assign(_data, {
-                    shortcutRoot: true,
-                    _type: 3,
-                    __id: -1,
-                    _depth: 1,
-                    __parent: null
-                });
+                _data = __assign({}, _data, { shortcutRoot: true, _type: 3, __id: -1, _depth: 1, __parent: null });
                 _data.children = shortcuts.map(function (i) {
                     i._depth = 2;
                     i.__parent = _data;
@@ -677,16 +677,20 @@
             function (key) {
                 return JSON.parse(localStorage.getItem(key) || 'null') || null;
             };
+        // tslint:disable-next-line:no-any
+        // tslint:disable-next-line:no-any
         /**
          * @param {?} key
          * @param {?} value
          * @return {?}
          */
-        SettingsService.prototype.set = /**
-         * @param {?} key
-         * @param {?} value
-         * @return {?}
-         */
+        SettingsService.prototype.set =
+            // tslint:disable-next-line:no-any
+            /**
+             * @param {?} key
+             * @param {?} value
+             * @return {?}
+             */
             function (key, value) {
                 localStorage.setItem(key, JSON.stringify(value));
             };
@@ -695,7 +699,7 @@
              * @return {?}
              */ function () {
                 if (!this._layout) {
-                    this._layout = Object.assign(( /** @type {?} */({
+                    this._layout = __assign({}, ( /** @type {?} */({
                         fixed: true,
                         collapsed: false,
                         boxed: false,
@@ -728,7 +732,7 @@
              * @return {?}
              */ function () {
                 if (!this._user) {
-                    this._user = Object.assign(( /** @type {?} */({})), this.get(USER_KEY));
+                    this._user = __assign({}, ( /** @type {?} */({})), this.get(USER_KEY));
                     this.set(USER_KEY, this._user);
                 }
                 return this._user;
@@ -745,16 +749,20 @@
             enumerable: true,
             configurable: true
         });
+        // tslint:disable-next-line:no-any
+        // tslint:disable-next-line:no-any
         /**
          * @param {?} name
          * @param {?=} value
          * @return {?}
          */
-        SettingsService.prototype.setLayout = /**
-         * @param {?} name
-         * @param {?=} value
-         * @return {?}
-         */
+        SettingsService.prototype.setLayout =
+            // tslint:disable-next-line:no-any
+            /**
+             * @param {?} name
+             * @param {?=} value
+             * @return {?}
+             */
             function (name, value) {
                 if (typeof name === 'string') {
                     this.layout[name] = value;
@@ -763,6 +771,7 @@
                     this._layout = name;
                 }
                 this.set(LAYOUT_KEY, this._layout);
+                // tslint:disable-next-line:no-any
                 this.notify$.next(( /** @type {?} */({ type: 'layout', name: name, value: value })));
                 return true;
             };
@@ -823,7 +832,7 @@
     var REP_MAX = 6;
     var ResponsiveService = /** @class */ (function () {
         function ResponsiveService(cog) {
-            this.cog = Object.assign(( /** @type {?} */({
+            this.cog = __assign({}, ( /** @type {?} */({
                 rules: {
                     1: { xs: 24 },
                     2: { xs: 24, sm: 12 },
@@ -1215,7 +1224,7 @@
     var DELON_LOCALE_SERVICE_PROVIDER = {
         provide: DelonLocaleService,
         useFactory: DELON_LOCALE_SERVICE_PROVIDER_FACTORY,
-        deps: [[new i0.Optional(), new i0.SkipSelf(), DelonLocaleService], DELON_LOCALE]
+        deps: [[new i0.Optional(), new i0.SkipSelf(), DelonLocaleService], DELON_LOCALE],
     };
 
     /**
@@ -1446,11 +1455,7 @@
          */
             function (comp, params, options) {
                 var _this = this;
-                options = Object.assign({
-                    size: 'lg',
-                    exact: true,
-                    includeTabs: false,
-                }, options);
+                options = __assign({ size: 'lg', exact: true, includeTabs: false }, options);
                 return new rxjs.Observable(function (observer) {
                     /** @type {?} */
                     var cls = '';
@@ -1477,7 +1482,7 @@
                         nzZIndex: ++_this.zIndex,
                     };
                     /** @type {?} */
-                    var subject = _this.srv.create(Object.assign(defaultOptions, options.modalOptions));
+                    var subject = _this.srv.create(__assign({}, defaultOptions, options.modalOptions));
                     /** @type {?} */
                     var afterClose$ = subject.afterClose.subscribe(function (res) {
                         if (options.exact === true) {
@@ -1551,8 +1556,8 @@
          */
             function (comp, params, options) {
                 /** @type {?} */
-                var modalOptions = Object.assign({ nzMaskClosable: false }, options && options.modalOptions);
-                return this.create(comp, params, Object.assign({}, options, { modalOptions: modalOptions }));
+                var modalOptions = __assign({ nzMaskClosable: false }, (options && options.modalOptions));
+                return this.create(comp, params, __assign({}, options, { modalOptions: modalOptions }));
             };
         /**
          * 打开对话框
@@ -1680,9 +1685,7 @@
                 if (size === void 0) {
                     size = 'lg';
                 }
-                return this.open(comp, params, size, Object.assign({
-                    nzMaskClosable: false,
-                }, options));
+                return this.open(comp, params, size, __assign({ nzMaskClosable: false }, options));
             };
         ModalHelper.decorators = [
             { type: i0.Injectable, args: [{ providedIn: 'root' },] }
@@ -1745,14 +1748,14 @@
          */
             function (title, comp, params, options) {
                 var _this = this;
-                options = Object.assign(( /** @type {?} */({
+                options = __assign({}, ( /** @type {?} */({
                     size: 'md',
                     footer: true,
                     footerHeight: 55,
                     drawerOptions: {
                         nzPlacement: 'right',
-                        nzWrapClassName: ''
-                    }
+                        nzWrapClassName: '',
+                    },
                 })), options);
                 return new rxjs.Observable(function (observer) {
                     var size = options.size, footer = options.footer, footerHeight = options.footerHeight, drawerOptions = options.drawerOptions;
@@ -1761,13 +1764,13 @@
                         nzContent: comp,
                         nzContentParams: params,
                         nzZIndex: ++_this.zIndex,
-                        nzTitle: title
+                        nzTitle: title,
                     };
                     if (footer) {
                         defaultOptions.nzBodyStyle = {
-                            height: "calc(100% - " + footerHeight + "px)",
-                            overflow: 'auto',
-                            'padding-bottom': footerHeight - 2 + "px"
+                            'height': "calc(100% - " + footerHeight + "px)",
+                            'overflow': 'auto',
+                            'padding-bottom': footerHeight - 2 + "px",
                         };
                     }
                     if (typeof size === 'number') {
@@ -1778,7 +1781,7 @@
                         delete drawerOptions.nzWrapClassName;
                     }
                     /** @type {?} */
-                    var subject = _this.srv.create(Object.assign(defaultOptions, drawerOptions));
+                    var subject = _this.srv.create(__assign({}, defaultOptions, drawerOptions));
                     /** @type {?} */
                     var afterClose$ = subject.afterClose.subscribe(function (res) {
                         if (res != null && res !== false) {
@@ -1810,8 +1813,8 @@
          */
             function (title, comp, params, options) {
                 /** @type {?} */
-                var drawerOptions = Object.assign({ nzMaskClosable: false }, options && options.drawerOptions);
-                return this.create(title, comp, params, Object.assign({}, options, { drawerOptions: drawerOptions }));
+                var drawerOptions = __assign({ nzMaskClosable: false }, (options && options.drawerOptions));
+                return this.create(title, comp, params, __assign({}, options, { drawerOptions: drawerOptions }));
             };
         DrawerHelper.decorators = [
             { type: i0.Injectable, args: [{ providedIn: 'root' },] }
@@ -1840,7 +1843,7 @@
         function _HttpClient(http, cog) {
             this.http = http;
             this._loading = false;
-            this.cog = Object.assign(( /** @type {?} */({
+            this.cog = __assign({}, ( /** @type {?} */({
                 nullValueHandling: 'include',
                 dateValueHandling: 'timestamp',
             })), ( /** @type {?} */(cog)).http);
@@ -1944,9 +1947,7 @@
          * @return {?}
          */
             function (url, params, options) {
-                return this.request('GET', url, Object.assign({
-                    params: params,
-                }, options));
+                return this.request('GET', url, __assign({ params: params }, options));
             };
         /**
          * POST 请求
@@ -1968,10 +1969,8 @@
          * @return {?}
          */
             function (url, body, params, options) {
-                return this.request('POST', url, Object.assign({
-                    body: body,
-                    params: params,
-                }, options));
+                return this.request('POST', url, __assign({ body: body,
+                    params: params }, options));
             };
         /**
          * DELETE 请求
@@ -1991,9 +1990,7 @@
          * @return {?}
          */
             function (url, params, options) {
-                return this.request('DELETE', url, Object.assign({
-                    params: params,
-                }, options));
+                return this.request('DELETE', url, __assign({ params: params }, options));
             };
         // #endregion
         /**
@@ -2054,10 +2051,8 @@
          * @return {?}
          */
             function (url, body, params, options) {
-                return this.request('PATCH', url, Object.assign({
-                    body: body,
-                    params: params,
-                }, options));
+                return this.request('PATCH', url, __assign({ body: body,
+                    params: params }, options));
             };
         /**
          * PUT 请求
@@ -2079,10 +2074,8 @@
          * @return {?}
          */
             function (url, body, params, options) {
-                return this.request('PUT', url, Object.assign({
-                    body: body,
-                    params: params,
-                }, options));
+                return this.request('PUT', url, __assign({ body: body,
+                    params: params }, options));
             };
         /**
          * `request` 请求
@@ -2308,7 +2301,7 @@
                         p[i.key] = args[i.index];
                         return p;
                     }, {});
-                    return http.request(method, requestUrl, __assign({ body: data.body && data.body.length > 0 ? args[data.body[0].index] : null, params: params, headers: Object.assign({}, baseData.baseHeaders, headers) }, options));
+                    return http.request(method, requestUrl, __assign({ body: data.body && data.body.length > 0 ? args[data.body[0].index] : null, params: params, headers: __assign({}, baseData.baseHeaders, headers) }, options));
                 };
                 return descriptor;
             };
@@ -2387,6 +2380,7 @@
                 if (value) {
                     if (formatString === 'fn') {
                         return distanceInWordsToNow(value, {
+                            // tslint:disable-next-line:no-any
                             locale: (( /** @type {?} */(window))).__locale__,
                         });
                     }
@@ -2432,13 +2426,16 @@
          * @param {?=} digits
          * @return {?}
          */
-            function (value, currencyCode, display, digits) {
+            function (
+            // tslint:disable-next-line:no-any
+            value, currencyCode, display, digits) {
                 if (currencyCode === void 0) {
                     currencyCode = '￥';
                 }
                 if (display === void 0) {
                     display = 'code';
                 }
+                // tslint:disable-next-line:no-any
                 return _super.prototype.transform.call(this, value, currencyCode, ( /** @type {?} */(display)), digits);
             };
         CNCurrencyPipe.decorators = [
@@ -2457,16 +2454,20 @@
     var KeysPipe = /** @class */ (function () {
         function KeysPipe() {
         }
+        // tslint:disable-next-line:no-any
+        // tslint:disable-next-line:no-any
         /**
          * @param {?} value
          * @param {?=} keyIsNumber
          * @return {?}
          */
-        KeysPipe.prototype.transform = /**
-         * @param {?} value
-         * @param {?=} keyIsNumber
-         * @return {?}
-         */
+        KeysPipe.prototype.transform =
+            // tslint:disable-next-line:no-any
+            /**
+             * @param {?} value
+             * @param {?=} keyIsNumber
+             * @return {?}
+             */
             function (value, keyIsNumber) {
                 if (keyIsNumber === void 0) {
                     keyIsNumber = false;
@@ -2539,7 +2540,7 @@
          * @return {?}
          */
             function (html) {
-                return html ? ( /** @type {?} */(this.dom.bypassSecurityTrustHtml(html))) : '';
+                return html ? this.dom.bypassSecurityTrustHtml(html) : '';
             };
         HTMLPipe.decorators = [
             { type: i0.Pipe, args: [{ name: 'html' },] }
@@ -2570,7 +2571,7 @@
          * @return {?}
          */
             function (url) {
-                return url ? ( /** @type {?} */(this.dom.bypassSecurityTrustUrl(url))) : '';
+                return url ? this.dom.bypassSecurityTrustUrl(url) : '';
             };
         URLPipe.decorators = [
             { type: i0.Pipe, args: [{ name: 'url' },] }

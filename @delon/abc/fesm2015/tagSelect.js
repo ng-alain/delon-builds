@@ -1,9 +1,9 @@
 import { __decorate, __metadata } from 'tslib';
-import { Component, HostBinding, Input, Output, EventEmitter, ChangeDetectorRef, ChangeDetectionStrategy, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NgZorroAntdModule } from 'ng-zorro-antd';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, HostBinding, Input, Output, NgModule } from '@angular/core';
 import { DelonLocaleService, DelonLocaleModule } from '@delon/theme';
 import { InputBoolean, DelonUtilModule } from '@delon/util';
+import { NgZorroAntdModule } from 'ng-zorro-antd';
 
 /**
  * @fileoverview added by tsickle
@@ -17,6 +17,7 @@ class TagSelectComponent {
     constructor(i18n, cdr) {
         this.i18n = i18n;
         this.cdr = cdr;
+        // tslint:disable-next-line:no-any
         this.locale = {};
         /**
          * 是否启用 `展开与收进`

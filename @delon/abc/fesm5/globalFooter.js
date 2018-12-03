@@ -1,7 +1,7 @@
 import { WINDOW } from '@delon/theme';
 import { __decorate, __metadata, __spread } from 'tslib';
-import { Component, Input, ViewChild, ContentChildren, ChangeDetectionStrategy, Inject, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component, Input, ViewChild, ChangeDetectionStrategy, ContentChildren, Inject, NgModule } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { InputBoolean, DelonUtilModule } from '@delon/util';
 

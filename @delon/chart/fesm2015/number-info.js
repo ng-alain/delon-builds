@@ -1,7 +1,8 @@
-import { Component, TemplateRef, Input, ElementRef, Renderer2, ChangeDetectorRef, ChangeDetectionStrategy, NgModule } from '@angular/core';
+import { __decorate, __metadata } from 'tslib';
 import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Input, Renderer2, TemplateRef, NgModule } from '@angular/core';
+import { updateHostClass, InputNumber, DelonUtilModule } from '@delon/util';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
-import { toNumber, updateHostClass, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
@@ -26,7 +27,10 @@ class NumberInfoComponent {
          * 状态样式
          */
         this.theme = 'light';
-        this._gap = 8;
+        /**
+         * 设置数字和描述直接的间距（像素）
+         */
+        this.gap = 8;
         this._classMap = [];
     }
     /**
@@ -83,26 +87,12 @@ class NumberInfoComponent {
         this._isSubTotal = !!value;
     }
     /**
-     * 设置数字和描述直接的间距（像素）
-     * @return {?}
-     */
-    get gap() {
-        return this._gap;
-    }
-    /**
-     * @param {?} value
-     * @return {?}
-     */
-    set gap(value) {
-        this._gap = toNumber(value);
-    }
-    /**
      * @return {?}
      */
     setClass() {
         updateHostClass(this.el.nativeElement, this.renderer, {
             'number-info': true,
-            [`number-info__${this.theme}`]: true
+            [`number-info__${this.theme}`]: true,
         }, true);
         this.cd.detectChanges();
     }
@@ -136,6 +126,10 @@ NumberInfoComponent.propDecorators = {
     theme: [{ type: Input }],
     gap: [{ type: Input }]
 };
+__decorate([
+    InputNumber(),
+    __metadata("design:type", Object)
+], NumberInfoComponent.prototype, "gap", void 0);
 
 /**
  * @fileoverview added by tsickle

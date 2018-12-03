@@ -1,6 +1,6 @@
 import { __spread } from 'tslib';
-import { Component, Input, ViewChild, NgZone, ChangeDetectionStrategy, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component, Input, NgZone, ViewChild, NgModule } from '@angular/core';
 import { toNumber, DelonUtilModule } from '@delon/util';
 
 /**
@@ -88,7 +88,7 @@ var G2GaugeComponent = /** @class */ (function () {
         // 绘制数字
         this.chart.guide().html({
             position: ['50%', '95%'],
-            html: "\n      <div style=\"width: 300px;text-align: center;font-size: 12px!important;\">\n        <p style=\"font-size: 14px; color: rgba(0,0,0,0.43);margin: 0;\">" + this.title + "</p>\n        <p style=\"font-size: 24px;color: rgba(0,0,0,0.85);margin: 0;\">\n          " + data[0].value + "%\n        </p>\n      </div>"
+            html: "\n      <div style=\"width: 300px;text-align: center;font-size: 12px!important;\">\n        <p style=\"font-size: 14px; color: rgba(0,0,0,0.43);margin: 0;\">" + this.title + "</p>\n        <p style=\"font-size: 24px;color: rgba(0,0,0,0.85);margin: 0;\">\n          " + data[0].value + "%\n        </p>\n      </div>",
         });
         this.chart.changeData(data);
     };
@@ -175,8 +175,8 @@ var G2GaugeComponent = /** @class */ (function () {
         });
         chart.source(data);
         chart.coord('polar', {
-            startAngle: -1.2 * Math.PI,
-            endAngle: 0.2 * Math.PI,
+            startAngle: Math.PI * -1.2,
+            endAngle: Math.PI * 0.2,
         });
         chart.scale('value', {
             min: 0,

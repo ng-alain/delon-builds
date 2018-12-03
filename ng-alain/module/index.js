@@ -27,14 +27,11 @@ function addDeclarationToNgModule(options) {
         }
         const sourceText = text.toString('utf-8');
         const source = ts.createSourceFile(modulePath, sourceText, ts.ScriptTarget.Latest, true);
-        const importModulePath = core_1.normalize(`/${options.path}/` +
-            (options.flat ? '' : core_1.strings.dasherize(options.name) + '/') +
-            core_1.strings.dasherize(options.name) +
-            '.module');
+        // tslint:disable-next-line:prefer-template
+        const importModulePath = core_1.normalize(`/${options.path}/` + (options.flat ? '' : core_1.strings.dasherize(options.name) + '/') + core_1.strings.dasherize(options.name) + '.module');
         const relativeDir = core_1.relative(core_1.dirname(modulePath), core_1.dirname(importModulePath));
-        const relativePath = (relativeDir.startsWith('.') ? relativeDir : './' + relativeDir) +
-            '/' +
-            core_1.basename(importModulePath);
+        // tslint:disable-next-line:prefer-template
+        const relativePath = (relativeDir.startsWith('.') ? relativeDir : './' + relativeDir) + '/' + core_1.basename(importModulePath);
         const changes = ast_utils_1.addImportToModule(source, modulePath, core_1.strings.classify(`${options.name}Module`), relativePath);
         const recorder = host.beginUpdate(modulePath);
         for (const change of changes) {
@@ -55,6 +52,7 @@ function default_1(schema) {
         const project = workspace.projects[schema.project];
         if (schema.path === undefined) {
             const projectDirName = project.projectType === 'application' ? 'app' : 'lib';
+            // tslint:disable-next-line:no-any
             schema.path = `/${project.sourceRoot}/${projectDirName}/routes`;
         }
         if (schema.module) {
@@ -66,9 +64,7 @@ function default_1(schema) {
         schema.routing = true;
         schema.flat = false;
         const templateSource = schematics_1.apply(schematics_1.url('./files'), [
-            schema.routing
-                ? schematics_1.noop()
-                : schematics_1.filter(path => !path.endsWith('-routing.module.ts')),
+            schema.routing ? schematics_1.noop() : schematics_1.filter(path => !path.endsWith('-routing.module.ts')),
             schematics_1.template(Object.assign({}, core_1.strings, { 'if-flat': (s) => (schema.flat ? '' : s) }, schema)),
             schematics_1.move(parsedPath.path),
         ]);

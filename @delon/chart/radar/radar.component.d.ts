@@ -1,17 +1,14 @@
-import { OnDestroy, OnChanges, NgZone, TemplateRef, ChangeDetectorRef } from '@angular/core';
+import { ChangeDetectorRef, NgZone, OnChanges, OnDestroy, TemplateRef } from '@angular/core';
 export declare class G2RadarComponent implements OnDestroy, OnChanges {
     private cd;
     private zone;
     _title: string;
-    _titleTpl: TemplateRef<any>;
-    title: string | TemplateRef<any>;
-    height: any;
-    private _height;
+    _titleTpl: TemplateRef<void>;
+    title: string | TemplateRef<void>;
+    height: number;
     padding: number[];
-    hasLegend: any;
-    private _hasLegend;
-    tickCount: any;
-    private _tickCount;
+    hasLegend: boolean;
+    tickCount: number;
     data: Array<{
         name: string;
         label: string;

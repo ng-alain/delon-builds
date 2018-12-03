@@ -1,7 +1,7 @@
-import format from 'date-fns/format';
 import addSeconds from 'date-fns/add_seconds';
-import { Component, Input, Output, EventEmitter, NgModule } from '@angular/core';
+import format from 'date-fns/format';
 import { CommonModule } from '@angular/common';
+import { Component, EventEmitter, Input, Output, NgModule } from '@angular/core';
 import { CountdownModule } from 'ngx-countdown';
 
 /**
