@@ -58,9 +58,7 @@ class FullContentComponent {
         this.router = router;
         this.doc = doc;
         this.inited = false;
-        this.id = `_full-content-${Math.random()
-            .toString(36)
-            .substring(2)}`;
+        this.id = `_full-content-${Math.random().toString(36).substring(2)}`;
         this.scroll$ = null;
         this._height = 0;
         this.hideTitle = true;
@@ -98,10 +96,7 @@ class FullContentComponent {
      * @return {?}
      */
     updateHeight() {
-        this._height =
-            this.bodyEl.getBoundingClientRect().height -
-                ((/** @type {?} */ (this.el.nativeElement))).getBoundingClientRect().top -
-                this.padding;
+        this._height = this.bodyEl.getBoundingClientRect().height - ((/** @type {?} */ (this.el.nativeElement))).getBoundingClientRect().top - this.padding;
         this.cd.detectChanges();
     }
     /**

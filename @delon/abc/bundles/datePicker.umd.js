@@ -107,8 +107,6 @@
             this.nzShowToday = true;
             this.nzOnPanelChange = new core.EventEmitter();
             this.nzOnOk = new core.EventEmitter();
-            this.onChangeFn = function () { return void 0; };
-            this.onTouchedFn = function () { return void 0; };
             Object.assign(this, new DateRangePickerConfig(), cog && cog.range);
         }
         /**

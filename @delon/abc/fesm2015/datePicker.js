@@ -42,8 +42,6 @@ class RangePickerComponent {
         this.nzShowToday = true;
         this.nzOnPanelChange = new EventEmitter();
         this.nzOnOk = new EventEmitter();
-        this.onChangeFn = () => void 0;
-        this.onTouchedFn = () => void 0;
         Object.assign(this, new DateRangePickerConfig(), cog && cog.range);
     }
     /**
