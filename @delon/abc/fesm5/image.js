@@ -90,8 +90,9 @@ var ImageDirective = /** @class */ (function () {
         var isHttp = newSrc.startsWith('http:');
         /** @type {?} */
         var isHttps = newSrc.startsWith('https:');
-        if (isHttp || isHttps)
+        if (isHttp || isHttps) {
             newSrc = newSrc.substr(isHttp ? 5 : 6);
+        }
         this.render.setAttribute(this.el.nativeElement, 'src', newSrc);
     };
     /**
@@ -101,7 +102,7 @@ var ImageDirective = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        this.render.setAttribute(this.el.nativeElement, 'onerror', "this.src='" + this.error + "';");
+        this.render.setAttribute(this.el.nativeElement, 'onerror', "this.src='" + this.error + "'");
     };
     ImageDirective.decorators = [
         { type: Directive, args: [{ selector: '[_src]' },] }

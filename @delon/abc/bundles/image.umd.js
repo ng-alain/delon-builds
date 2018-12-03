@@ -154,8 +154,9 @@
                 var isHttp = newSrc.startsWith('http:');
                 /** @type {?} */
                 var isHttps = newSrc.startsWith('https:');
-                if (isHttp || isHttps)
+                if (isHttp || isHttps) {
                     newSrc = newSrc.substr(isHttp ? 5 : 6);
+                }
                 this.render.setAttribute(this.el.nativeElement, 'src', newSrc);
             };
         /**
@@ -165,7 +166,7 @@
          * @return {?}
          */
             function () {
-                this.render.setAttribute(this.el.nativeElement, 'onerror', "this.src='" + this.error + "';");
+                this.render.setAttribute(this.el.nativeElement, 'onerror', "this.src='" + this.error + "'");
             };
         ImageDirective.decorators = [
             { type: core.Directive, args: [{ selector: '[_src]' },] }
