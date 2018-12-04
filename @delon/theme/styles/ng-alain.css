@@ -7193,6 +7193,12 @@ a.ant-btn-sm {
 .ant-carousel .slick-list.dragging {
   cursor: pointer;
 }
+.ant-carousel .slick-list .slick-slide {
+  pointer-events: none;
+}
+.ant-carousel .slick-list .slick-slide.slick-active {
+  pointer-events: auto;
+}
 .ant-carousel .slick-slider .slick-track,
 .ant-carousel .slick-slider .slick-list {
   transform: translate3d(0, 0, 0);
@@ -14156,8 +14162,12 @@ span.ant-radio + * {
 }
 .ant-switch-loading,
 .ant-switch-disabled {
-  pointer-events: none;
+  cursor: not-allowed;
   opacity: 0.4;
+}
+.ant-switch-loading *,
+.ant-switch-disabled * {
+  cursor: not-allowed;
 }
 @keyframes AntSwitchSmallLoadingCircle {
   0% {
@@ -15691,6 +15701,7 @@ tr.ant-table-expanded-row td > .ant-table-wrapper {
   left: -2px;
 }
 .ant-time-picker-panel-input {
+  width: 100%;
   margin: 0;
   padding: 0;
   border: 0;
@@ -23934,6 +23945,9 @@ body {
 .se__inline .se__item:last-child {
   margin-right: 0;
 }
+.se .ant-form-explain {
+  display: block;
+}
 @media (max-width: 767px) {
   .se__horizontal .se__item {
     display: block;
@@ -23964,19 +23978,19 @@ body {
 .avatar-list__item .ant-avatar {
   border: 1px solid #fff;
 }
-.avatar-list__item-large {
+.avatar-list__large .avatar-list {
   width: 40px;
   height: 40px;
 }
-.avatar-list__item-small {
+.avatar-list__small .avatar-list {
   width: 24px;
   height: 24px;
 }
-.avatar-list__item-mini {
+.avatar-list__mini .avatar-list {
   width: 20px;
   height: 20px;
 }
-.avatar-list__item-mini .ant-avatar {
+.avatar-list__mini .ant-avatar {
   width: 20px;
   height: 20px;
   line-height: 20px;

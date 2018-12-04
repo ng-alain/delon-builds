@@ -1,8 +1,8 @@
 import { OnDestroy } from '@angular/core';
 import { Observable } from 'rxjs';
 import { LazyService } from '@delon/util';
-import { LodopResult, LodopPrintResult } from './lodop.types';
 import { LodopConfig } from './lodop.config';
+import { LodopPrintResult, LodopResult } from './lodop.types';
 export declare class LodopService implements OnDestroy {
     private defCog;
     private scriptSrv;
@@ -37,7 +37,7 @@ export declare class LodopService implements OnDestroy {
      * @param contextObj 动态参数上下文对象
      * @param parser 自定义解析表达式，默认：`/LODOP\.([^(]+)\(([^\n]+)\);/i`
      */
-    attachCode(code: string, contextObj?: Object, parser?: RegExp): void;
+    attachCode(code: string, contextObj?: {}, parser?: RegExp): void;
     /**
      * 打开打印设计关闭后自动返回代码
      *
@@ -53,6 +53,6 @@ export declare class LodopService implements OnDestroy {
      * @param contextObj 动态参数上下文对象
      * @param parser 自定义解析表达式，默认：`/LODOP\.([^(]+)\(([^\n]+)\);/i`
      */
-    print(code: string, contextObj: Object | Object[], parser?: RegExp): void;
+    print(code: string, contextObj: {} | Array<{}>, parser?: RegExp): void;
     ngOnDestroy(): void;
 }

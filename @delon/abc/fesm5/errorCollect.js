@@ -1,11 +1,11 @@
 import { __decorate, __metadata, __spread } from 'tslib';
-import { Component, Input, HostBinding, ElementRef, HostListener, Inject, ChangeDetectionStrategy, ChangeDetectorRef, NgModule } from '@angular/core';
 import { DOCUMENT, CommonModule } from '@angular/common';
+import { Injectable, Component, ChangeDetectionStrategy, ElementRef, ChangeDetectorRef, Inject, Input, HostBinding, HostListener, defineInjectable, NgModule } from '@angular/core';
 import { InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 var ErrorCollectConfig = /** @class */ (function () {
     function ErrorCollectConfig() {
@@ -18,16 +18,16 @@ var ErrorCollectConfig = /** @class */ (function () {
          */
         this.offsetTop = 65 + 64 + 8 * 2;
     }
+    ErrorCollectConfig.decorators = [
+        { type: Injectable, args: [{ providedIn: 'root' },] }
+    ];
+    /** @nocollapse */ ErrorCollectConfig.ngInjectableDef = defineInjectable({ factory: function ErrorCollectConfig_Factory() { return new ErrorCollectConfig(); }, token: ErrorCollectConfig, providedIn: "root" });
     return ErrorCollectConfig;
 }());
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
- */
-/**
- * 错误消息采集器
- * PS：虽然此法并不好看，但对响应式表单&模板表单有很好的效果。
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 var ErrorCollectComponent = /** @class */ (function () {
     function ErrorCollectComponent(cog, el, cd, doc) {
@@ -73,6 +73,7 @@ var ErrorCollectComponent = /** @class */ (function () {
     function () {
         if (this.count === 0)
             return false;
+        // nz-form-control
         /** @type {?} */
         var els = this.errEls;
         /** @type {?} */
@@ -148,10 +149,9 @@ var ErrorCollectComponent = /** @class */ (function () {
     ErrorCollectComponent.decorators = [
         { type: Component, args: [{
                     selector: 'error-collect, [error-collect]',
-                    template: "\n  <i nz-icon type=\"exclamation-circle\"></i>\n  <span class=\"pl-sm\">{{count}}</span>",
+                    template: "\n    <i nz-icon type=\"exclamation-circle\"></i>\n    <span class=\"pl-sm\">{{ count }}</span>\n  ",
                     host: { '[class.error-collect]': 'true' },
-                    changeDetection: ChangeDetectionStrategy.OnPush,
-                    preserveWhitespaces: false
+                    changeDetection: ChangeDetectionStrategy.OnPush
                 }] }
     ];
     /** @nocollapse */
@@ -180,25 +180,13 @@ var ErrorCollectComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 /** @type {?} */
 var COMPONENTS = [ErrorCollectComponent];
 var ErrorCollectModule = /** @class */ (function () {
     function ErrorCollectModule() {
     }
-    /**
-     * @return {?}
-     */
-    ErrorCollectModule.forRoot = /**
-     * @return {?}
-     */
-    function () {
-        return {
-            ngModule: ErrorCollectModule,
-            providers: [ErrorCollectConfig],
-        };
-    };
     ErrorCollectModule.decorators = [
         { type: NgModule, args: [{
                     imports: [CommonModule, DelonUtilModule],
@@ -211,12 +199,12 @@ var ErrorCollectModule = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 
 export { ErrorCollectComponent, ErrorCollectConfig, ErrorCollectModule };

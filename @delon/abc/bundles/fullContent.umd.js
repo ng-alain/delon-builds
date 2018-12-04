@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/router'), require('rxjs'), require('rxjs/operators'), require('@angular/core'), require('@angular/common'), require('@delon/util')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/full-content', ['exports', '@angular/router', 'rxjs', 'rxjs/operators', '@angular/core', '@angular/common', '@delon/util'], factory) :
-    (factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['full-content'] = {}),global.ng.router,global.rxjs,global.rxjs.operators,global.ng.core,global.ng.common,global.delon.util));
-}(this, (function (exports,router,rxjs,operators,core,common,util) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/router'), require('rxjs'), require('rxjs/operators'), require('@angular/common'), require('@angular/core'), require('@delon/util')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/full-content', ['exports', '@angular/router', 'rxjs', 'rxjs/operators', '@angular/common', '@angular/core', '@delon/util'], factory) :
+    (factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['full-content'] = {}),global.ng.router,global.rxjs,global.rxjs.operators,global.ng.common,global.ng.core,global.delon.util));
+}(this, (function (exports,router,rxjs,operators,common,i0,util) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -69,7 +69,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
     var FullContentService = /** @class */ (function () {
         function FullContentService() {
@@ -97,14 +97,15 @@
             configurable: true
         });
         FullContentService.decorators = [
-            { type: core.Injectable }
+            { type: i0.Injectable, args: [{ providedIn: 'root' },] }
         ];
+        /** @nocollapse */ FullContentService.ngInjectableDef = i0.defineInjectable({ factory: function FullContentService_Factory() { return new FullContentService(); }, token: FullContentService, providedIn: "root" });
         return FullContentService;
     }());
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
     /** @type {?} */
     var wrapCls = "full-content__body";
@@ -121,14 +122,12 @@
             this.router = router$$1;
             this.doc = doc;
             this.inited = false;
-            this.id = "_full-content-" + Math.random()
-                .toString(36)
-                .substring(2);
+            this.id = "_full-content-" + Math.random().toString(36).substring(2);
             this.scroll$ = null;
             this._height = 0;
             this.hideTitle = true;
             this.padding = 24;
-            this.fullscreenChange = new core.EventEmitter();
+            this.fullscreenChange = new i0.EventEmitter();
         }
         /**
          * @return {?}
@@ -170,10 +169,7 @@
          * @return {?}
          */
             function () {
-                this._height =
-                    this.bodyEl.getBoundingClientRect().height -
-                        ( /** @type {?} */(this.el.nativeElement)).getBoundingClientRect().top -
-                        this.padding;
+                this._height = this.bodyEl.getBoundingClientRect().height - (( /** @type {?} */(this.el.nativeElement))).getBoundingClientRect().top - this.padding;
                 this.cd.detectChanges();
             };
         /**
@@ -196,7 +192,7 @@
                 this.inited = true;
                 this.bodyEl = this.doc.querySelector('body');
                 this.bodyEl.classList.add(wrapCls);
-                ( /** @type {?} */(this.el.nativeElement)).id = this.id;
+                (( /** @type {?} */(this.el.nativeElement))).id = this.id;
                 this.updateCls();
                 // when window resize
                 this.scroll$ = rxjs.fromEvent(window, 'resize')
@@ -208,10 +204,8 @@
                     .subscribe(function () { return _this.toggle(); });
                 // when router changed
                 this.route$ = this.router.events
-                    .pipe(operators.filter(function (e) {
-                    return e instanceof router.ActivationStart || e instanceof router.ActivationEnd;
-                }), operators.debounceTime(200))
-                    .subscribe(function (e) {
+                    .pipe(operators.filter(function (e) { return e instanceof router.ActivationStart || e instanceof router.ActivationEnd; }), operators.debounceTime(200))
+                    .subscribe(function () {
                     if (!!_this.doc.querySelector('#' + _this.id)) {
                         _this.bodyEl.classList.add(wrapCls);
                         _this.updateCls();
@@ -265,29 +259,29 @@
                 this.route$.unsubscribe();
             };
         FullContentComponent.decorators = [
-            { type: core.Component, args: [{
+            { type: i0.Component, args: [{
                         selector: 'full-content',
                         template: "<ng-content></ng-content>",
                         host: { '[class.full-content]': 'true' },
-                        changeDetection: core.ChangeDetectionStrategy.OnPush
+                        changeDetection: i0.ChangeDetectionStrategy.OnPush
                     }] }
         ];
         /** @nocollapse */
         FullContentComponent.ctorParameters = function () {
             return [
-                { type: core.ElementRef },
-                { type: core.ChangeDetectorRef },
+                { type: i0.ElementRef },
+                { type: i0.ChangeDetectorRef },
                 { type: FullContentService },
                 { type: router.Router },
-                { type: undefined, decorators: [{ type: core.Inject, args: [common.DOCUMENT,] }] }
+                { type: undefined, decorators: [{ type: i0.Inject, args: [common.DOCUMENT,] }] }
             ];
         };
         FullContentComponent.propDecorators = {
-            _height: [{ type: core.HostBinding, args: ['style.height.px',] }],
-            fullscreen: [{ type: core.Input }],
-            hideTitle: [{ type: core.Input }],
-            padding: [{ type: core.Input }],
-            fullscreenChange: [{ type: core.Output }]
+            _height: [{ type: i0.HostBinding, args: ['style.height.px',] }],
+            fullscreen: [{ type: i0.Input }],
+            hideTitle: [{ type: i0.Input }],
+            padding: [{ type: i0.Input }],
+            fullscreenChange: [{ type: i0.Output }]
         };
         __decorate([
             util.InputBoolean(),
@@ -306,7 +300,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
     var FullContentToggleDirective = /** @class */ (function () {
         function FullContentToggleDirective(parent) {
@@ -322,7 +316,7 @@
                 this.parent.toggle();
             };
         FullContentToggleDirective.decorators = [
-            { type: core.Directive, args: [{
+            { type: i0.Directive, args: [{
                         selector: '[full-toggle]',
                     },] }
         ];
@@ -333,34 +327,22 @@
             ];
         };
         FullContentToggleDirective.propDecorators = {
-            _click: [{ type: core.HostListener, args: ['click',] }]
+            _click: [{ type: i0.HostListener, args: ['click',] }]
         };
         return FullContentToggleDirective;
     }());
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
     /** @type {?} */
     var COMPONENTS = [FullContentComponent, FullContentToggleDirective];
     var FullContentModule = /** @class */ (function () {
         function FullContentModule() {
         }
-        /**
-         * @return {?}
-         */
-        FullContentModule.forRoot = /**
-         * @return {?}
-         */
-            function () {
-                return {
-                    ngModule: FullContentModule,
-                    providers: [FullContentService],
-                };
-            };
         FullContentModule.decorators = [
-            { type: core.NgModule, args: [{
+            { type: i0.NgModule, args: [{
                         imports: [common.CommonModule, util.DelonUtilModule],
                         declarations: __spread(COMPONENTS),
                         exports: __spread(COMPONENTS),
@@ -371,12 +353,12 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
 
     exports.FullContentComponent = FullContentComponent;

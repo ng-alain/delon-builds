@@ -1,5 +1,5 @@
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { ElementRef, EventEmitter } from '@angular/core';
-import { HttpResponse, HttpClient } from '@angular/common/http';
 import { _HttpClient } from '@delon/theme';
 /**
  * 文件下载
@@ -13,7 +13,7 @@ export declare class DownFileDirective {
     private http;
     private _http;
     /** URL请求参数 */
-    httpData: any;
+    httpData: {};
     /** 请求类型 */
     httpMethod: string;
     /** 下载地址 */
@@ -23,7 +23,7 @@ export declare class DownFileDirective {
     /** 成功回调 */
     readonly success: EventEmitter<HttpResponse<Blob>>;
     /** 错误回调 */
-    readonly error: EventEmitter<any>;
+    readonly error: EventEmitter<{}>;
     private getDisposition;
     constructor(el: ElementRef, http: HttpClient, _http: _HttpClient);
     _click(): void;

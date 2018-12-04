@@ -1,4 +1,4 @@
-import { OnInit, OnDestroy } from '@angular/core';
+import { OnDestroy, OnInit } from '@angular/core';
 import { DelonLocaleService } from '@delon/theme';
 export declare class ExceptionComponent implements OnInit, OnDestroy {
     private i18n;

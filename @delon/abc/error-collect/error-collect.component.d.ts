@@ -1,9 +1,5 @@
-import { OnInit, OnDestroy, ElementRef, ChangeDetectorRef } from '@angular/core';
+import { ChangeDetectorRef, ElementRef, OnDestroy, OnInit } from '@angular/core';
 import { ErrorCollectConfig } from './error-collect.config';
-/**
- * 错误消息采集器
- * PS：虽然此法并不好看，但对响应式表单&模板表单有很好的效果。
- */
 export declare class ErrorCollectComponent implements OnInit, OnDestroy {
     private el;
     private cd;

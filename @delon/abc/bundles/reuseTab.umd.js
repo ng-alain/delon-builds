@@ -4,14 +4,84 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/portal'), require('rxjs/operators'), require('@delon/util'), require('rxjs'), require('@angular/core'), require('@angular/common'), require('@angular/router'), require('@angular/cdk/overlay'), require('ng-zorro-antd'), require('@delon/theme')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/reuse-tab', ['exports', '@angular/cdk/portal', 'rxjs/operators', '@delon/util', 'rxjs', '@angular/core', '@angular/common', '@angular/router', '@angular/cdk/overlay', 'ng-zorro-antd', '@delon/theme'], factory) :
-    (factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['reuse-tab'] = {}),global.ng.cdk.portal,global.rxjs.operators,global.delon.util,global.rxjs,global.ng.core,global.ng.common,global.ng.router,global.ng.cdk.overlay,global.ngZorro.antd,global.delon.theme));
-}(this, (function (exports,portal,operators,util,rxjs,i0,common,router,overlay,ngZorroAntd,i1) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/portal'), require('@delon/util'), require('rxjs/operators'), require('rxjs'), require('@angular/cdk/overlay'), require('@angular/common'), require('@angular/core'), require('@angular/router'), require('@delon/theme'), require('ng-zorro-antd')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/reuse-tab', ['exports', '@angular/cdk/portal', '@delon/util', 'rxjs/operators', 'rxjs', '@angular/cdk/overlay', '@angular/common', '@angular/core', '@angular/router', '@delon/theme', 'ng-zorro-antd'], factory) :
+    (factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['reuse-tab'] = {}),global.ng.cdk.portal,global.delon.util,global.rxjs.operators,global.rxjs,global.ng.cdk.overlay,global.ng.common,global.ng.core,global.ng.router,global.delon.theme,global.ngZorro.antd));
+}(this, (function (exports,portal,util,operators,rxjs,overlay,common,i0,router,i1,ngZorroAntd) { 'use strict';
+
+    /*! *****************************************************************************
+    Copyright (c) Microsoft Corporation. All rights reserved.
+    Licensed under the Apache License, Version 2.0 (the "License"); you may not use
+    this file except in compliance with the License. You may obtain a copy of the
+    License at http://www.apache.org/licenses/LICENSE-2.0
+
+    THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+    KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
+    WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
+    MERCHANTABLITY OR NON-INFRINGEMENT.
+
+    See the Apache Version 2.0 License for specific language governing permissions
+    and limitations under the License.
+    ***************************************************************************** */
+    var __assign = function () {
+        __assign = Object.assign || function __assign(t) {
+            for (var s, i = 1, n = arguments.length; i < n; i++) {
+                s = arguments[i];
+                for (var p in s)
+                    if (Object.prototype.hasOwnProperty.call(s, p))
+                        t[p] = s[p];
+            }
+            return t;
+        };
+        return __assign.apply(this, arguments);
+    };
+    function __decorate(decorators, target, key, desc) {
+        var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+        if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
+            r = Reflect.decorate(decorators, target, key, desc);
+        else
+            for (var i = decorators.length - 1; i >= 0; i--)
+                if (d = decorators[i])
+                    r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+        return c > 3 && r && Object.defineProperty(target, key, r), r;
+    }
+    function __metadata(metadataKey, metadataValue) {
+        if (typeof Reflect === "object" && typeof Reflect.metadata === "function")
+            return Reflect.metadata(metadataKey, metadataValue);
+    }
+    function __read(o, n) {
+        var m = typeof Symbol === "function" && o[Symbol.iterator];
+        if (!m)
+            return o;
+        var i = m.call(o), r, ar = [], e;
+        try {
+            while ((n === void 0 || n-- > 0) && !(r = i.next()).done)
+                ar.push(r.value);
+        }
+        catch (error) {
+            e = { error: error };
+        }
+        finally {
+            try {
+                if (r && !r.done && (m = i["return"]))
+                    m.call(i);
+            }
+            finally {
+                if (e)
+                    throw e.error;
+            }
+        }
+        return ar;
+    }
+    function __spread() {
+        for (var ar = [], i = 0; i < arguments.length; i++)
+            ar = ar.concat(__read(arguments[i]));
+        return ar;
+    }
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
     var ReuseTabContextMenuComponent = /** @class */ (function () {
         function ReuseTabContextMenuComponent(i18nSrv) {
@@ -28,7 +98,7 @@
              * @param {?} value
              * @return {?}
              */ function (value) {
-                this._i18n = Object.assign({}, this.i18nSrv.getData('reuseTab'), value);
+                this._i18n = __assign({}, this.i18nSrv.getData('reuseTab'), value);
             },
             enumerable: true,
             configurable: true
@@ -104,8 +174,7 @@
         ReuseTabContextMenuComponent.decorators = [
             { type: i0.Component, args: [{
                         selector: 'reuse-tab-context-menu',
-                        template: "\n  <ul nz-menu>\n      <li nz-menu-item (click)=\"click($event, 'close')\" data-type=\"close\" [nzDisabled]=\"!item.closable\" [innerHTML]=\"i18n.close\"></li>\n      <li nz-menu-item (click)=\"click($event, 'closeOther')\" data-type=\"closeOther\" [innerHTML]=\"i18n.closeOther\"></li>\n      <li nz-menu-item (click)=\"click($event, 'closeRight')\" data-type=\"closeRight\" [nzDisabled]=\"item.last\" [innerHTML]=\"i18n.closeRight\"></li>\n      <li nz-menu-item (click)=\"click($event, 'clear')\" data-type=\"clear\" [innerHTML]=\"i18n.clear\"></li>\n  </ul>",
-                        preserveWhitespaces: false
+                        template: "<ul nz-menu>\n  <li nz-menu-item (click)=\"click($event, 'close')\" data-type=\"close\" [nzDisabled]=\"!item.closable\" [innerHTML]=\"i18n.close\"></li>\n  <li nz-menu-item (click)=\"click($event, 'closeOther')\" data-type=\"closeOther\" [innerHTML]=\"i18n.closeOther\"></li>\n  <li nz-menu-item (click)=\"click($event, 'closeRight')\" data-type=\"closeRight\" [nzDisabled]=\"item.last\" [innerHTML]=\"i18n.closeRight\"></li>\n  <li nz-menu-item (click)=\"click($event, 'clear')\" data-type=\"clear\" [innerHTML]=\"i18n.clear\"></li>\n</ul>\n"
                     }] }
         ];
         /** @nocollapse */
@@ -124,79 +193,9 @@
         return ReuseTabContextMenuComponent;
     }());
 
-    /*! *****************************************************************************
-    Copyright (c) Microsoft Corporation. All rights reserved.
-    Licensed under the Apache License, Version 2.0 (the "License"); you may not use
-    this file except in compliance with the License. You may obtain a copy of the
-    License at http://www.apache.org/licenses/LICENSE-2.0
-
-    THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-    KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
-    WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
-    MERCHANTABLITY OR NON-INFRINGEMENT.
-
-    See the Apache Version 2.0 License for specific language governing permissions
-    and limitations under the License.
-    ***************************************************************************** */
-    var __assign = function () {
-        __assign = Object.assign || function __assign(t) {
-            for (var s, i = 1, n = arguments.length; i < n; i++) {
-                s = arguments[i];
-                for (var p in s)
-                    if (Object.prototype.hasOwnProperty.call(s, p))
-                        t[p] = s[p];
-            }
-            return t;
-        };
-        return __assign.apply(this, arguments);
-    };
-    function __decorate(decorators, target, key, desc) {
-        var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-        if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
-            r = Reflect.decorate(decorators, target, key, desc);
-        else
-            for (var i = decorators.length - 1; i >= 0; i--)
-                if (d = decorators[i])
-                    r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-        return c > 3 && r && Object.defineProperty(target, key, r), r;
-    }
-    function __metadata(metadataKey, metadataValue) {
-        if (typeof Reflect === "object" && typeof Reflect.metadata === "function")
-            return Reflect.metadata(metadataKey, metadataValue);
-    }
-    function __read(o, n) {
-        var m = typeof Symbol === "function" && o[Symbol.iterator];
-        if (!m)
-            return o;
-        var i = m.call(o), r, ar = [], e;
-        try {
-            while ((n === void 0 || n-- > 0) && !(r = i.next()).done)
-                ar.push(r.value);
-        }
-        catch (error) {
-            e = { error: error };
-        }
-        finally {
-            try {
-                if (r && !r.done && (m = i["return"]))
-                    m.call(i);
-            }
-            finally {
-                if (e)
-                    throw e.error;
-            }
-        }
-        return ar;
-    }
-    function __spread() {
-        for (var ar = [], i = 0; i < arguments.length; i++)
-            ar = ar.concat(__read(arguments[i]));
-        return ar;
-    }
-
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
     var ReuseTabContextService = /** @class */ (function () {
         function ReuseTabContextService(overlay$$1) {
@@ -286,7 +285,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
     var ReuseTabContextComponent = /** @class */ (function () {
         function ReuseTabContextComponent(srv) {
@@ -319,8 +318,7 @@
         ReuseTabContextComponent.decorators = [
             { type: i0.Component, args: [{
                         selector: 'reuse-tab-context',
-                        template: "",
-                        preserveWhitespaces: false
+                        template: ""
                     }] }
         ];
         /** @nocollapse */
@@ -338,7 +336,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
     var ReuseTabContextDirective = /** @class */ (function () {
         function ReuseTabContextDirective(srv) {
@@ -380,35 +378,35 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
     /** @enum {number} */
     var ReuseTabMatchMode = {
         /**
-           * （推荐）按菜单 `Menu` 配置
-           *
-           * 可复用：
-           * - `{ text:'Dashboard' }`
-           * - `{ text:'Dashboard', reuse: true }`
-           *
-           * 不可复用：
-           * - `{ text:'Dashboard', reuse: false }`
-           */
+         * （推荐）按菜单 `Menu` 配置
+         *
+         * 可复用：
+         * - `{ text:'Dashboard' }`
+         * - `{ text:'Dashboard', reuse: true }`
+         *
+         * 不可复用：
+         * - `{ text:'Dashboard', reuse: false }`
+         */
         Menu: 0,
         /**
-           * 按菜单 `Menu` 强制配置
-           *
-           * 可复用：
-           * - `{ text:'Dashboard', reuse: true }`
-           *
-           * 不可复用：
-           * - `{ text:'Dashboard' }`
-           * - `{ text:'Dashboard', reuse: false }`
-           */
+         * 按菜单 `Menu` 强制配置
+         *
+         * 可复用：
+         * - `{ text:'Dashboard', reuse: true }`
+         *
+         * 不可复用：
+         * - `{ text:'Dashboard' }`
+         * - `{ text:'Dashboard', reuse: false }`
+         */
         MenuForce: 1,
         /**
-           * 对所有路由有效，可以配合 `excludes` 过滤无须复用路由
-           */
+         * 对所有路由有效，可以配合 `excludes` 过滤无须复用路由
+         */
         URL: 2,
     };
     ReuseTabMatchMode[ReuseTabMatchMode.Menu] = 'Menu';
@@ -417,7 +415,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
     /**
      * 路由复用类，提供复用所需要一些基本接口
@@ -441,10 +439,13 @@
         Object.defineProperty(ReuseTabService.prototype, "curUrl", {
             // #region public
             /** 当前路由地址 */
-            get: /**
+            get: 
+            // #region public
+            /**
              * 当前路由地址
              * @return {?}
-             */ function () {
+             */
+            function () {
                 return this.getUrl(this.injector.get(router.ActivatedRoute).snapshot);
             },
             enumerable: true,
@@ -858,11 +859,11 @@
             function (url, route) {
                 if (this._titleCached[url])
                     return this._titleCached[url];
-                if (route && route.data && (route.data["titleI18n"] || route.data["title"]))
-                    return /** @type {?} */ ({
-                        text: route.data["title"],
-                        i18n: route.data["titleI18n"],
-                    });
+                if (route && route.data && (route.data.titleI18n || route.data.title))
+                    return ( /** @type {?} */({
+                        text: route.data.title,
+                        i18n: route.data.titleI18n,
+                    }));
                 /** @type {?} */
                 var menu = this.mode !== ReuseTabMatchMode.URL ? this.getMenu(url) : null;
                 return menu ? { text: menu.text, i18n: menu.i18n } : { text: url };
@@ -936,12 +937,12 @@
             function (url, route) {
                 if (typeof this._closableCached[url] !== 'undefined')
                     return this._closableCached[url];
-                if (route && route.data && typeof route.data["reuseClosable"] === 'boolean')
-                    return route.data["reuseClosable"];
+                if (route && route.data && typeof route.data.reuseClosable === 'boolean')
+                    return route.data.reuseClosable;
                 /** @type {?} */
                 var menu = this.mode !== ReuseTabMatchMode.URL ? this.getMenu(url) : null;
-                if (menu && typeof menu["reuseClosable"] === 'boolean')
-                    return menu["reuseClosable"];
+                if (menu && typeof menu.reuseClosable === 'boolean')
+                    return menu.reuseClosable;
                 return true;
             };
         /**
@@ -1021,8 +1022,8 @@
                 var url = this.getUrl(route);
                 if (url === this.removeUrlBuffer)
                     return false;
-                if (route.data && typeof route.data["reuse"] === 'boolean')
-                    return route.data["reuse"];
+                if (route.data && typeof route.data.reuse === 'boolean')
+                    return route.data.reuse;
                 if (this.mode !== ReuseTabMatchMode.URL) {
                     /** @type {?} */
                     var menu = this.getMenu(url);
@@ -1043,27 +1044,40 @@
         /**
          * 刷新，触发一个 refresh 类型事件
          */
+        // tslint:disable-next-line:no-any
         /**
          * 刷新，触发一个 refresh 类型事件
          * @param {?=} data
          * @return {?}
          */
+        // tslint:disable-next-line:no-any
         ReuseTabService.prototype.refresh = /**
          * 刷新，触发一个 refresh 类型事件
          * @param {?=} data
          * @return {?}
          */
+            // tslint:disable-next-line:no-any
             function (data) {
                 this._cachedChange.next({ active: 'refresh', data: data });
             };
+        // #endregion
+        // #region privates
+        // tslint:disable-next-line:no-any
+        // #endregion
+        // #region privates
+        // tslint:disable-next-line:no-any
         /**
          * @param {?} _handle
          * @return {?}
          */
-        ReuseTabService.prototype.destroy = /**
-         * @param {?} _handle
-         * @return {?}
-         */
+        ReuseTabService.prototype.destroy =
+            // #endregion
+            // #region privates
+            // tslint:disable-next-line:no-any
+            /**
+             * @param {?} _handle
+             * @return {?}
+             */
             function (_handle) {
                 if (_handle && _handle.componentRef && _handle.componentRef.destroy)
                     _handle.componentRef.destroy();
@@ -1101,18 +1115,22 @@
                     return null;
                 return menus.pop();
             };
+        // tslint:disable-next-line:no-any
+        // tslint:disable-next-line:no-any
         /**
          * @param {?} method
          * @param {?} url
          * @param {?} comp
          * @return {?}
          */
-        ReuseTabService.prototype.runHook = /**
-         * @param {?} method
-         * @param {?} url
-         * @param {?} comp
-         * @return {?}
-         */
+        ReuseTabService.prototype.runHook =
+            // tslint:disable-next-line:no-any
+            /**
+             * @param {?} method
+             * @param {?} url
+             * @param {?} comp
+             * @return {?}
+             */
             function (method, url, comp) {
                 if (comp.instance && typeof comp.instance[method] === 'function')
                     comp.instance[method]();
@@ -1152,18 +1170,21 @@
         /**
          * 存储
          */
+        // tslint:disable-next-line:no-any
         /**
          * 存储
          * @param {?} _snapshot
          * @param {?} _handle
          * @return {?}
          */
+        // tslint:disable-next-line:no-any
         ReuseTabService.prototype.store = /**
          * 存储
          * @param {?} _snapshot
          * @param {?} _handle
          * @return {?}
          */
+            // tslint:disable-next-line:no-any
             function (_snapshot, _handle) {
                 /** @type {?} */
                 var url = this.getUrl(_snapshot);
@@ -1266,8 +1287,8 @@
                 if (!ret)
                     return false;
                 /** @type {?} */
-                var path = /** @type {?} */ (((future.routeConfig && future.routeConfig.path) ||
-                    ''));
+                var path = ( /** @type {?} */(((future.routeConfig && future.routeConfig.path) ||
+                    '')));
                 if (path.length > 0 && ~path.indexOf(':')) {
                     /** @type {?} */
                     var futureUrl = this.getUrl(future);
@@ -1305,7 +1326,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
     var ReuseTabComponent = /** @class */ (function () {
         // #endregion
@@ -1319,36 +1340,19 @@
             this.i18nSrv = i18nSrv;
             this.list = [];
             this.pos = 0;
-            /**
-             * 设置匹配模式
-             */
+            // #region fields
             this.mode = ReuseTabMatchMode.Menu;
-            /**
-             * 是否Debug模式
-             */
             this.debug = false;
-            /**
-             * 允许关闭
-             */
             this.allowClose = true;
-            /**
-             * 总是显示当前页
-             */
             this.showCurrent = true;
-            /**
-             * 切换时回调
-             */
             this.change = new i0.EventEmitter();
-            /**
-             * 关闭回调
-             */
             this.close = new i0.EventEmitter();
             this.el = el.nativeElement;
             /** @type {?} */
             var route$ = this.router.events.pipe(operators.filter(function (evt) { return evt instanceof router.NavigationEnd; }));
             this.sub$ = rxjs.combineLatest(this.srv.change, route$).subscribe(function (_a) {
                 var _b = __read(_a, 2), res = _b[0], e = _b[1];
-                return _this.genList(/** @type {?} */ (res));
+                return _this.genList(res);
             });
             if (this.i18nSrv) {
                 this.i18n$ = this.i18nSrv.change
@@ -1383,18 +1387,18 @@
                 var isClosed = notify && notify.active === 'close';
                 /** @type {?} */
                 var beforeClosePos = isClosed
-                    ? this.list.findIndex(function (w) { return w.url === notify["url"]; })
+                    ? this.list.findIndex(function (w) { return w.url === notify.url; })
                     : -1;
                 /** @type {?} */
                 var ls = this.srv.items.map(function (item, index) {
-                    return /** @type {?} */ ({
+                    return ( /** @type {?} */({
                         url: item.url,
                         title: _this.genTit(item.title),
                         closable: _this.allowClose && item.closable && _this.srv.count > 0,
                         index: index,
                         active: false,
                         last: false,
-                    });
+                    }));
                 });
                 if (this.showCurrent) {
                     /** @type {?} */
@@ -1405,17 +1409,13 @@
                     var idx = ls.findIndex(function (w) { return w.url === url_1; });
                     // jump directly when the current exists in the list
                     // or create a new current item and jump
-                    if (idx !== -1 || (isClosed && notify["url"] === url_1)) {
-                        this.pos = isClosed
-                            ? idx >= beforeClosePos
-                                ? this.pos - 1
-                                : this.pos
-                            : idx;
+                    if (idx !== -1 || (isClosed && notify.url === url_1)) {
+                        this.pos = isClosed ? idx >= beforeClosePos ? this.pos - 1 : this.pos : idx;
                     }
                     else {
                         /** @type {?} */
                         var snapshotTrue = this.srv.getTruthRoute(snapshot);
-                        ls.push(/** @type {?} */ ({
+                        ls.push(( /** @type {?} */({
                             url: url_1,
                             title: this.genTit(this.srv.getTitle(url_1, snapshotTrue)),
                             closable: this.allowClose &&
@@ -1424,7 +1424,7 @@
                             index: ls.length,
                             active: false,
                             last: false,
-                        }));
+                        })));
                         this.pos = ls.length - 1;
                     }
                     // fix unabled close last item
@@ -1451,14 +1451,17 @@
                 this.render.setStyle(this.el, 'display', this.list.length === 0 ? 'none' : 'block');
             };
         // #region UI
+        // #region UI
         /**
          * @param {?} res
          * @return {?}
          */
-        ReuseTabComponent.prototype.cmChange = /**
-         * @param {?} res
-         * @return {?}
-         */
+        ReuseTabComponent.prototype.cmChange =
+            // #region UI
+            /**
+             * @param {?} res
+             * @return {?}
+             */
             function (res) {
                 switch (res.type) {
                     case 'close':
@@ -1548,12 +1551,15 @@
                 return false;
             };
         // #endregion
+        // #endregion
         /**
          * @return {?}
          */
-        ReuseTabComponent.prototype.ngOnInit = /**
-         * @return {?}
-         */
+        ReuseTabComponent.prototype.ngOnInit =
+            // #endregion
+            /**
+             * @return {?}
+             */
             function () {
                 this.genList();
             };
@@ -1592,7 +1598,6 @@
                         selector: 'reuse-tab',
                         template: "<nz-tabset [nzSelectedIndex]=\"pos\" [nzAnimated]=\"false\" nzType=\"line\">\n  <nz-tab *ngFor=\"let i of list; let index = index\" [nzTitle]=\"titleTemplate\">\n    <ng-template #titleTemplate>\n      <span [reuse-tab-context-menu]=\"i\" (click)=\"to($event, index)\" class=\"name\">{{i.title}}</span>\n      <i *ngIf=\"i.closable\" nz-icon type=\"close\" class=\"reuse-tab__op\" (click)=\"_close($event, index, false)\"></i>\n    </ng-template>\n  </nz-tab>\n</nz-tabset>\n<reuse-tab-context [i18n]=\"i18n\" (change)=\"cmChange($event)\"></reuse-tab-context>\n",
                         changeDetection: i0.ChangeDetectionStrategy.OnPush,
-                        preserveWhitespaces: false,
                         providers: [ReuseTabContextService],
                         host: {
                             '[class.reuse-tab]': 'true',
@@ -1643,7 +1648,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
     var ReuseTabStrategy = /** @class */ (function () {
         function ReuseTabStrategy(srv) {
@@ -1713,7 +1718,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
     /** @type {?} */
     var COMPONENTS = [ReuseTabComponent];
@@ -1726,17 +1731,6 @@
     var ReuseTabModule = /** @class */ (function () {
         function ReuseTabModule() {
         }
-        /**
-         * @return {?}
-         */
-        ReuseTabModule.forRoot = /**
-         * @return {?}
-         */
-            function () {
-                return {
-                    ngModule: ReuseTabModule,
-                };
-            };
         ReuseTabModule.decorators = [
             { type: i0.NgModule, args: [{
                         imports: [
@@ -1756,12 +1750,12 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
 
     exports.ReuseTabContextMenuComponent = ReuseTabContextMenuComponent;

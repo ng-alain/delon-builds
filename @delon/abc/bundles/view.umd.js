@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@delon/theme'), require('@delon/util'), require('@angular/core'), require('@angular/common'), require('@angular/cdk/observers')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/view', ['exports', '@delon/theme', '@delon/util', '@angular/core', '@angular/common', '@angular/cdk/observers'], factory) :
-    (factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.view = {}),global.delon.theme,global.delon.util,global.ng.core,global.ng.common,global.ng.cdk.observers));
-}(this, (function (exports,theme,util,core,common,observers) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@delon/theme'), require('@angular/cdk/observers'), require('@angular/common'), require('@angular/core'), require('@delon/util')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/view', ['exports', '@delon/theme', '@angular/cdk/observers', '@angular/common', '@angular/core', '@delon/util'], factory) :
+    (factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.view = {}),global.delon.theme,global.ng.cdk.observers,global.ng.common,global.ng.core,global.delon.util));
+}(this, (function (exports,theme,observers,common,i0,util) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -69,7 +69,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
     var SVConfig = /** @class */ (function () {
         function SVConfig() {
@@ -94,12 +94,16 @@
              */
             this.labelWidth = null;
         }
+        SVConfig.decorators = [
+            { type: i0.Injectable, args: [{ providedIn: 'root' },] }
+        ];
+        /** @nocollapse */ SVConfig.ngInjectableDef = i0.defineInjectable({ factory: function SVConfig_Factory() { return new SVConfig(); }, token: SVConfig, providedIn: "root" });
         return SVConfig;
     }());
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
     /** @type {?} */
     var prefixCls = "sv";
@@ -107,27 +111,9 @@
         //#endregion
         function SVContainerComponent(el, ren, cog) {
             this.ren = ren;
-            //#region fields
-            this._title = '';
             this.el = el.nativeElement;
             Object.assign(this, cog);
         }
-        Object.defineProperty(SVContainerComponent.prototype, "title", {
-            set: /**
-             * @param {?} value
-             * @return {?}
-             */ function (value) {
-                if (value instanceof core.TemplateRef) {
-                    this._title = null;
-                    this._titleTpl = value;
-                }
-                else {
-                    this._title = value;
-                }
-            },
-            enumerable: true,
-            configurable: true
-        });
         /**
          * @return {?}
          */
@@ -163,28 +149,28 @@
                 this.setClass();
             };
         SVContainerComponent.decorators = [
-            { type: core.Component, args: [{
+            { type: i0.Component, args: [{
                         selector: 'sv-container, [sv-container]',
-                        template: "<div class=\"ant-row\" [ngStyle]=\"{'margin-left.px': -(gutter / 2), 'margin-right.px': -(gutter / 2)}\">\n  <sv-title *ngIf=\"_title || _titleTpl\">\n    <ng-container *ngIf=\"_title; else _titleTpl\">{{_title}}</ng-container>\n  </sv-title>\n  <ng-content></ng-content>\n</div>\n",
-                        preserveWhitespaces: false
+                        template: "<div class=\"ant-row\" [ngStyle]=\"{'margin-left.px': -(gutter / 2), 'margin-right.px': -(gutter / 2)}\">\n  <sv-title *ngIf=\"title\">\n    <ng-container *stringTemplateOutlet=\"title\">{{title}}</ng-container>\n  </sv-title>\n  <ng-content></ng-content>\n</div>",
+                        changeDetection: i0.ChangeDetectionStrategy.OnPush
                     }] }
         ];
         /** @nocollapse */
         SVContainerComponent.ctorParameters = function () {
             return [
-                { type: core.ElementRef },
-                { type: core.Renderer2 },
+                { type: i0.ElementRef },
+                { type: i0.Renderer2 },
                 { type: SVConfig }
             ];
         };
         SVContainerComponent.propDecorators = {
-            title: [{ type: core.Input }],
-            size: [{ type: core.Input }],
-            gutter: [{ type: core.Input }],
-            layout: [{ type: core.Input }],
-            labelWidth: [{ type: core.Input }],
-            col: [{ type: core.Input }],
-            default: [{ type: core.Input }]
+            title: [{ type: i0.Input }],
+            size: [{ type: i0.Input }],
+            gutter: [{ type: i0.Input }],
+            layout: [{ type: i0.Input }],
+            labelWidth: [{ type: i0.Input }],
+            col: [{ type: i0.Input }],
+            default: [{ type: i0.Input }]
         };
         __decorate([
             util.InputNumber(),
@@ -203,7 +189,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
     var SVTitleComponent = /** @class */ (function () {
         function SVTitleComponent(parent, el, ren) {
@@ -236,20 +222,21 @@
                 this.setClass();
             };
         SVTitleComponent.decorators = [
-            { type: core.Component, args: [{
+            { type: i0.Component, args: [{
                         selector: 'sv-title, [sv-title]',
                         template: '<ng-content></ng-content>',
                         host: {
                             '[class.sv__title]': 'true',
-                        }
+                        },
+                        changeDetection: i0.ChangeDetectionStrategy.OnPush
                     }] }
         ];
         /** @nocollapse */
         SVTitleComponent.ctorParameters = function () {
             return [
-                { type: SVContainerComponent, decorators: [{ type: core.Host }, { type: core.Optional }] },
-                { type: core.ElementRef },
-                { type: core.Renderer2 }
+                { type: SVContainerComponent, decorators: [{ type: i0.Host }, { type: i0.Optional }] },
+                { type: i0.ElementRef },
+                { type: i0.Renderer2 }
             ];
         };
         return SVTitleComponent;
@@ -257,7 +244,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
     /** @type {?} */
     var prefixCls$1 = "sv";
@@ -267,34 +254,19 @@
             this.rep = rep;
             this.ren = ren;
             this.clsMap = [];
-            //#region fields
-            this._label = '';
             if (parent == null) {
                 throw new Error("[sv] must include 'sv-container' component");
             }
             this.el = el.nativeElement;
         }
-        Object.defineProperty(SVComponent.prototype, "label", {
-            set: /**
-             * @param {?} value
-             * @return {?}
-             */ function (value) {
-                if (value instanceof core.TemplateRef) {
-                    this._label = null;
-                    this._labelTpl = value;
-                }
-                else {
-                    this._label = value;
-                }
-            },
-            enumerable: true,
-            configurable: true
-        });
         Object.defineProperty(SVComponent.prototype, "paddingLeft", {
             //#endregion
-            get: /**
+            get: 
+            //#endregion
+            /**
              * @return {?}
-             */ function () {
+             */
+            function () {
                 return this.parent && this.parent.gutter / 2;
             },
             enumerable: true,
@@ -359,7 +331,7 @@
                 if (!(def != null ? def : this.parent.default))
                     return;
                 /** @type {?} */
-                var el = /** @type {?} */ (conEl.nativeElement);
+                var el = ( /** @type {?} */(conEl.nativeElement));
                 /** @type {?} */
                 var cls = "sv__default";
                 if (el.classList.contains(cls)) {
@@ -370,29 +342,29 @@
                 }
             };
         SVComponent.decorators = [
-            { type: core.Component, args: [{
+            { type: i0.Component, args: [{
                         selector: 'sv, [sv]',
-                        template: "<div class=\"sv__label\" [class.sv__label-empty]=\"!_label && !_labelTpl\"\n  [style.width.px]=\"parent.labelWidth\">\n  <ng-container *ngIf=\"_label; else _labelTpl\">{{_label}}</ng-container>\n</div>\n<div class=\"sv__detail\" (cdkObserveContent)=\"checkContent()\" #conEl>\n  <ng-content></ng-content>\n</div>\n",
-                        preserveWhitespaces: false
+                        template: "<div class=\"sv__label\" [class.sv__label-empty]=\"!label\" [style.width.px]=\"parent.labelWidth\">\n  <ng-container *stringTemplateOutlet=\"label\">{{label}}</ng-container>\n</div>\n<div class=\"sv__detail\" (cdkObserveContent)=\"checkContent()\" #conEl>\n  <ng-content></ng-content>\n</div>",
+                        changeDetection: i0.ChangeDetectionStrategy.OnPush
                     }] }
         ];
         /** @nocollapse */
         SVComponent.ctorParameters = function () {
             return [
-                { type: SVContainerComponent, decorators: [{ type: core.Host }, { type: core.Optional }] },
+                { type: SVContainerComponent, decorators: [{ type: i0.Host }, { type: i0.Optional }] },
                 { type: theme.ResponsiveService },
-                { type: core.ElementRef },
-                { type: core.Renderer2 }
+                { type: i0.ElementRef },
+                { type: i0.Renderer2 }
             ];
         };
         SVComponent.propDecorators = {
-            conEl: [{ type: core.ViewChild, args: ['conEl',] }],
-            label: [{ type: core.Input }],
-            col: [{ type: core.Input }],
-            default: [{ type: core.Input }],
-            type: [{ type: core.Input }],
-            paddingLeft: [{ type: core.HostBinding, args: ['style.padding-left.px',] }],
-            paddingRight: [{ type: core.HostBinding, args: ['style.padding-right.px',] }]
+            conEl: [{ type: i0.ViewChild, args: ['conEl',] }],
+            label: [{ type: i0.Input }],
+            col: [{ type: i0.Input }],
+            default: [{ type: i0.Input }],
+            type: [{ type: i0.Input }],
+            paddingLeft: [{ type: i0.HostBinding, args: ['style.padding-left.px',] }],
+            paddingRight: [{ type: i0.HostBinding, args: ['style.padding-right.px',] }]
         };
         __decorate([
             util.InputNumber(null),
@@ -407,25 +379,16 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
     /** @type {?} */
     var COMPONENTS = [SVContainerComponent, SVComponent, SVTitleComponent];
     var SVModule = /** @class */ (function () {
         function SVModule() {
         }
-        /**
-         * @return {?}
-         */
-        SVModule.forRoot = /**
-         * @return {?}
-         */
-            function () {
-                return { ngModule: SVModule, providers: [SVConfig] };
-            };
         SVModule.decorators = [
-            { type: core.NgModule, args: [{
-                        imports: [common.CommonModule, observers.ObserversModule],
+            { type: i0.NgModule, args: [{
+                        imports: [common.CommonModule, observers.ObserversModule, util.DelonUtilModule],
                         declarations: __spread(COMPONENTS),
                         exports: __spread(COMPONENTS),
                     },] }
@@ -435,12 +398,12 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
 
     exports.SVContainerComponent = SVContainerComponent;

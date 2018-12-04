@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import { App, Layout, User, SettingsNotify } from './interface';
+import { App, Layout, SettingsNotify, User } from './interface';
 export declare class SettingsService {
     private notify$;
     private _app;

@@ -1,11 +1,9 @@
-import { OnInit, OnChanges, ChangeDetectorRef, Renderer2, ElementRef, TemplateRef } from '@angular/core';
+import { ChangeDetectorRef, ElementRef, OnChanges, OnInit, Renderer2, TemplateRef } from '@angular/core';
 export declare class QuickMenuComponent implements OnInit, OnChanges {
     private cd;
     private el;
     private render;
-    _icon: string;
-    _iconTpl: TemplateRef<any>;
-    icon: string | TemplateRef<any>;
+    icon: string | TemplateRef<void>;
     top: number;
     width: number;
     bgColor: string;

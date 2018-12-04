@@ -1,4 +1,4 @@
-import { OnChanges, ElementRef, Renderer2, AfterViewInit } from '@angular/core';
+import { AfterViewInit, ElementRef, OnChanges, Renderer2 } from '@angular/core';
 import { ResponsiveService } from '@delon/theme';
 import { SGContainerComponent } from './grid-container.component';
 export declare class SGComponent implements OnChanges, AfterViewInit {

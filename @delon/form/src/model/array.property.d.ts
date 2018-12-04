@@ -1,20 +1,22 @@
-import { PropertyGroup, FormProperty } from './form.property';
-import { SchemaValidatorFactory } from '../validator.factory';
-import { SFUISchema, SFUISchemaItem } from '../schema/ui';
 import { DelonFormConfig } from '../config';
+import { SFValue } from '../interface';
+import { SFSchema } from '../schema/index';
+import { SFUISchema, SFUISchemaItem } from '../schema/ui';
+import { SchemaValidatorFactory } from '../validator.factory';
+import { FormProperty, PropertyGroup } from './form.property';
 import { FormPropertyFactory } from './form.property.factory';
 export declare class ArrayProperty extends PropertyGroup {
     private formPropertyFactory;
     tick: number;
-    constructor(formPropertyFactory: FormPropertyFactory, schemaValidatorFactory: SchemaValidatorFactory, schema: any, ui: SFUISchema | SFUISchemaItem, formData: {}, parent: PropertyGroup, path: string, options: DelonFormConfig);
+    constructor(formPropertyFactory: FormPropertyFactory, schemaValidatorFactory: SchemaValidatorFactory, schema: SFSchema, ui: SFUISchema | SFUISchemaItem, formData: {}, parent: PropertyGroup, path: string, options: DelonFormConfig);
     getProperty(path: string): any;
-    setValue(value: any, onlySelf: boolean): void;
-    resetValue(value: any, onlySelf: boolean): void;
+    setValue(value: SFValue, onlySelf: boolean): void;
+    resetValue(value: SFValue, onlySelf: boolean): void;
     _hasValue(): boolean;
     _updateValue(): void;
     private addProperty;
     private resetProperties;
     private clearErrors;
-    add(value: any): FormProperty;
+    add(formData: {}): FormProperty;
     remove(index: number): void;
 }

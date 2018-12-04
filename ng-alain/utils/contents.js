@@ -40,7 +40,6 @@ if (environment.production) {
 const bootstrap = () => {
   return platformBrowserDynamic().bootstrapModule(AppModule, {
     defaultEncapsulation: ViewEncapsulation.Emulated,
-    preserveWhitespaces: false,
   }).then((res) => {
     if ((<any>window).appBootstrap) {
       (<any>window).appBootstrap();
@@ -75,7 +74,6 @@ if (environment.production) {
 const bootstrap = () => {
   return platformBrowserDynamic().bootstrapModule(AppModule, {
     defaultEncapsulation: ViewEncapsulation.Emulated,
-    preserveWhitespaces: false,
   });
 };
 

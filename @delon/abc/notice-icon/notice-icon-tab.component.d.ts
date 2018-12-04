@@ -1,5 +1,5 @@
 import { EventEmitter } from '@angular/core';
-import { NoticeItem, NoticeIconSelect } from './notice-icon.types';
+import { NoticeIconSelect, NoticeItem } from './notice-icon.types';
 export declare class NoticeIconTabComponent {
     locale: any;
     data: NoticeItem;

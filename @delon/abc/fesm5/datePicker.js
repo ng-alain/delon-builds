@@ -1,15 +1,18 @@
 import { InputBoolean } from '@delon/util';
 import { __decorate, __metadata, __spread } from 'tslib';
-import { forwardRef, Component, Input, Output, EventEmitter, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Injectable, EventEmitter, Component, forwardRef, Input, Output, defineInjectable, NgModule } from '@angular/core';
 import { NG_VALUE_ACCESSOR, FormsModule } from '@angular/forms';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
-var DateRangePickerConfig = /** @class */ (function () {
+// tslint:disable:no-any
+var  
+// tslint:disable:no-any
+DateRangePickerConfig = /** @class */ (function () {
     function DateRangePickerConfig() {
         this.nzFormat = 'yyyy-MM-dd';
         this.nzAllowClear = true;
@@ -23,12 +26,16 @@ var DateRangePickerConfig = /** @class */ (function () {
 var DatePickerConfig = /** @class */ (function () {
     function DatePickerConfig() {
     }
+    DatePickerConfig.decorators = [
+        { type: Injectable, args: [{ providedIn: 'root' },] }
+    ];
+    /** @nocollapse */ DatePickerConfig.ngInjectableDef = defineInjectable({ factory: function DatePickerConfig_Factory() { return new DatePickerConfig(); }, token: DatePickerConfig, providedIn: "root" });
     return DatePickerConfig;
 }());
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 var RangePickerComponent = /** @class */ (function () {
     // #endregion
@@ -42,8 +49,6 @@ var RangePickerComponent = /** @class */ (function () {
         this.nzShowToday = true;
         this.nzOnPanelChange = new EventEmitter();
         this.nzOnOk = new EventEmitter();
-        this.onChangeFn = function () { return void 0; };
-        this.onTouchedFn = function () { return void 0; };
         Object.assign(this, new DateRangePickerConfig(), cog && cog.range);
     }
     /**
@@ -188,25 +193,13 @@ var RangePickerComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 /** @type {?} */
 var COMPONENTS = [RangePickerComponent];
 var DatePickerModule = /** @class */ (function () {
     function DatePickerModule() {
     }
-    /**
-     * @return {?}
-     */
-    DatePickerModule.forRoot = /**
-     * @return {?}
-     */
-    function () {
-        return {
-            ngModule: DatePickerModule,
-            providers: [DatePickerConfig],
-        };
-    };
     DatePickerModule.decorators = [
         { type: NgModule, args: [{
                     imports: [CommonModule, FormsModule, NgZorroAntdModule],
@@ -219,12 +212,12 @@ var DatePickerModule = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 
 export { RangePickerComponent, DatePickerModule, DateRangePickerConfig, DatePickerConfig };

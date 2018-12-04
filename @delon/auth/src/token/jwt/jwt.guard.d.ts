@@ -1,7 +1,7 @@
 import { Injector } from '@angular/core';
 import { CanActivate, CanActivateChild, CanLoad } from '@angular/router';
-import { ITokenService } from '../interface';
 import { DelonAuthConfig } from '../../auth.config';
+import { ITokenService } from '../interface';
 export declare class JWTGuard implements CanActivate, CanActivateChild, CanLoad {
     private srv;
     private injector;

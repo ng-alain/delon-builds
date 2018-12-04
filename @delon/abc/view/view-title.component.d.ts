@@ -1,4 +1,4 @@
-import { ElementRef, Renderer2, OnInit } from '@angular/core';
+import { ElementRef, OnInit, Renderer2 } from '@angular/core';
 import { SVContainerComponent } from './view-container.component';
 export declare class SVTitleComponent implements OnInit {
     private parent;

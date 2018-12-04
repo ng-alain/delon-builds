@@ -1,6 +1,6 @@
 import { OnDestroy } from '@angular/core';
-import { DelonMockConfig } from './mock.config';
 import { MockCachedRule, MockRule } from './interface';
+import { DelonMockConfig } from './mock.config';
 export declare class MockService implements OnDestroy {
     private config;
     private cached;

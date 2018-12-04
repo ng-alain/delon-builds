@@ -1,18 +1,19 @@
 import { __decorate, __metadata, __spread } from 'tslib';
-import { Component, HostBinding, Input, Output, EventEmitter, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NgZorroAntdModule } from 'ng-zorro-antd';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, HostBinding, Input, Output, NgModule } from '@angular/core';
 import { DelonLocaleService, DelonLocaleModule } from '@delon/theme';
 import { InputBoolean, DelonUtilModule } from '@delon/util';
+import { NgZorroAntdModule } from 'ng-zorro-antd';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 var TagSelectComponent = /** @class */ (function () {
-    function TagSelectComponent(i18n) {
-        var _this = this;
+    function TagSelectComponent(i18n, cdr) {
         this.i18n = i18n;
+        this.cdr = cdr;
+        // tslint:disable-next-line:no-any
         this.locale = {};
         /**
          * 是否启用 `展开与收进`
@@ -20,8 +21,20 @@ var TagSelectComponent = /** @class */ (function () {
         this.expandable = true;
         this.expand = false;
         this.change = new EventEmitter();
-        this.i18n$ = this.i18n.change.subscribe(function () { return (_this.locale = _this.i18n.getData('tagSelect')); });
     }
+    /**
+     * @return {?}
+     */
+    TagSelectComponent.prototype.ngOnInit = /**
+     * @return {?}
+     */
+    function () {
+        var _this = this;
+        this.i18n$ = this.i18n.change.subscribe(function () {
+            _this.locale = _this.i18n.getData('tagSelect');
+            _this.cdr.detectChanges();
+        });
+    };
     /**
      * @return {?}
      */
@@ -44,14 +57,15 @@ var TagSelectComponent = /** @class */ (function () {
     TagSelectComponent.decorators = [
         { type: Component, args: [{
                     selector: 'tag-select',
-                    template: "\n  <ng-content></ng-content>\n  <a *ngIf=\"expandable\" class=\"tag-select__trigger\" (click)=\"trigger()\">\n    {{expand ? locale.collapse : locale.expand}}<i nz-icon [type]=\"expand ? 'up' : 'down'\" class=\"tag-select__trigger-icon\"></i>\n  </a>",
+                    template: "<ng-content></ng-content>\n<a *ngIf=\"expandable\" class=\"tag-select__trigger\" (click)=\"trigger()\">\n  {{expand ? locale.collapse : locale.expand}}<i nz-icon [type]=\"expand ? 'up' : 'down'\" class=\"tag-select__trigger-icon\"></i>\n</a>\n",
                     host: { '[class.tag-select]': 'true' },
-                    preserveWhitespaces: false
+                    changeDetection: ChangeDetectionStrategy.OnPush
                 }] }
     ];
     /** @nocollapse */
     TagSelectComponent.ctorParameters = function () { return [
-        { type: DelonLocaleService }
+        { type: DelonLocaleService },
+        { type: ChangeDetectorRef }
     ]; };
     TagSelectComponent.propDecorators = {
         expandable: [{ type: Input }, { type: HostBinding, args: ['class.tag-select__has-expand',] }],
@@ -67,22 +81,13 @@ var TagSelectComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 /** @type {?} */
 var COMPONENTS = [TagSelectComponent];
 var TagSelectModule = /** @class */ (function () {
     function TagSelectModule() {
     }
-    /**
-     * @return {?}
-     */
-    TagSelectModule.forRoot = /**
-     * @return {?}
-     */
-    function () {
-        return { ngModule: TagSelectModule, providers: [] };
-    };
     TagSelectModule.decorators = [
         { type: NgModule, args: [{
                     imports: [CommonModule, NgZorroAntdModule, DelonLocaleModule, DelonUtilModule],
@@ -95,12 +100,12 @@ var TagSelectModule = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 
 export { TagSelectComponent, TagSelectModule };

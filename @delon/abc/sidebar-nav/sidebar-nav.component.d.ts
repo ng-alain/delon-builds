@@ -1,7 +1,7 @@
-import { Renderer2, OnInit, OnDestroy, ChangeDetectorRef, EventEmitter } from '@angular/core';
-import { Router } from '@angular/router';
 import { LocationStrategy } from '@angular/common';
-import { MenuService, SettingsService, Menu } from '@delon/theme';
+import { ChangeDetectorRef, EventEmitter, OnDestroy, OnInit, Renderer2 } from '@angular/core';
+import { Router } from '@angular/router';
+import { Menu, MenuService, SettingsService } from '@delon/theme';
 import { Nav } from './sidebar-nav.types';
 export declare class SidebarNavComponent implements OnInit, OnDestroy {
     private menuSrv;

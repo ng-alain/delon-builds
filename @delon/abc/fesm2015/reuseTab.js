@@ -1,18 +1,18 @@
 import { ComponentPortal } from '@angular/cdk/portal';
 import { __decorate, __metadata } from 'tslib';
-import { filter, debounceTime } from 'rxjs/operators';
-import { InputNumber, InputBoolean } from '@delon/util';
-import { Subscription, Subject, BehaviorSubject, combineLatest } from 'rxjs';
-import { Component, Input, EventEmitter, Output, HostListener, Injectable, ElementRef, Directive, Injector, NgModule, ChangeDetectionStrategy, ChangeDetectorRef, Renderer2, Optional, Inject, defineInjectable, inject, INJECTOR } from '@angular/core';
+import { InputBoolean, InputNumber } from '@delon/util';
+import { debounceTime, filter } from 'rxjs/operators';
+import { Subject, Subscription, BehaviorSubject, combineLatest } from 'rxjs';
+import { ConnectionPositionPair, Overlay, OverlayModule } from '@angular/cdk/overlay';
 import { CommonModule } from '@angular/common';
+import { Component, EventEmitter, HostListener, Input, Output, ElementRef, Injectable, Directive, Injector, ChangeDetectionStrategy, ChangeDetectorRef, Renderer2, Optional, Inject, defineInjectable, inject, INJECTOR, NgModule } from '@angular/core';
 import { ActivatedRoute, Router, NavigationEnd, RouterModule } from '@angular/router';
-import { Overlay, ConnectionPositionPair, OverlayModule } from '@angular/cdk/overlay';
-import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { DelonLocaleService, MenuService, ALAIN_I18N_TOKEN, DelonLocaleModule } from '@delon/theme';
+import { NgZorroAntdModule } from 'ng-zorro-antd';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 class ReuseTabContextMenuComponent {
     /**
@@ -87,14 +87,7 @@ class ReuseTabContextMenuComponent {
 ReuseTabContextMenuComponent.decorators = [
     { type: Component, args: [{
                 selector: 'reuse-tab-context-menu',
-                template: `
-  <ul nz-menu>
-      <li nz-menu-item (click)="click($event, 'close')" data-type="close" [nzDisabled]="!item.closable" [innerHTML]="i18n.close"></li>
-      <li nz-menu-item (click)="click($event, 'closeOther')" data-type="closeOther" [innerHTML]="i18n.closeOther"></li>
-      <li nz-menu-item (click)="click($event, 'closeRight')" data-type="closeRight" [nzDisabled]="item.last" [innerHTML]="i18n.closeRight"></li>
-      <li nz-menu-item (click)="click($event, 'clear')" data-type="clear" [innerHTML]="i18n.clear"></li>
-  </ul>`,
-                preserveWhitespaces: false
+                template: "<ul nz-menu>\n  <li nz-menu-item (click)=\"click($event, 'close')\" data-type=\"close\" [nzDisabled]=\"!item.closable\" [innerHTML]=\"i18n.close\"></li>\n  <li nz-menu-item (click)=\"click($event, 'closeOther')\" data-type=\"closeOther\" [innerHTML]=\"i18n.closeOther\"></li>\n  <li nz-menu-item (click)=\"click($event, 'closeRight')\" data-type=\"closeRight\" [nzDisabled]=\"item.last\" [innerHTML]=\"i18n.closeRight\"></li>\n  <li nz-menu-item (click)=\"click($event, 'clear')\" data-type=\"clear\" [innerHTML]=\"i18n.clear\"></li>\n</ul>\n"
             }] }
 ];
 /** @nocollapse */
@@ -111,7 +104,7 @@ ReuseTabContextMenuComponent.propDecorators = {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 class ReuseTabContextService {
     /**
@@ -191,7 +184,7 @@ ReuseTabContextService.ctorParameters = () => [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 class ReuseTabContextComponent {
     /**
@@ -221,8 +214,7 @@ class ReuseTabContextComponent {
 ReuseTabContextComponent.decorators = [
     { type: Component, args: [{
                 selector: 'reuse-tab-context',
-                template: ``,
-                preserveWhitespaces: false
+                template: ``
             }] }
 ];
 /** @nocollapse */
@@ -236,7 +228,7 @@ ReuseTabContextComponent.propDecorators = {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 class ReuseTabContextDirective {
     /**
@@ -274,35 +266,35 @@ ReuseTabContextDirective.propDecorators = {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 /** @enum {number} */
 const ReuseTabMatchMode = {
     /**
-       * （推荐）按菜单 `Menu` 配置
-       *
-       * 可复用：
-       * - `{ text:'Dashboard' }`
-       * - `{ text:'Dashboard', reuse: true }`
-       *
-       * 不可复用：
-       * - `{ text:'Dashboard', reuse: false }`
-       */
+     * （推荐）按菜单 `Menu` 配置
+     *
+     * 可复用：
+     * - `{ text:'Dashboard' }`
+     * - `{ text:'Dashboard', reuse: true }`
+     *
+     * 不可复用：
+     * - `{ text:'Dashboard', reuse: false }`
+     */
     Menu: 0,
     /**
-       * 按菜单 `Menu` 强制配置
-       *
-       * 可复用：
-       * - `{ text:'Dashboard', reuse: true }`
-       *
-       * 不可复用：
-       * - `{ text:'Dashboard' }`
-       * - `{ text:'Dashboard', reuse: false }`
-       */
+     * 按菜单 `Menu` 强制配置
+     *
+     * 可复用：
+     * - `{ text:'Dashboard', reuse: true }`
+     *
+     * 不可复用：
+     * - `{ text:'Dashboard' }`
+     * - `{ text:'Dashboard', reuse: false }`
+     */
     MenuForce: 1,
     /**
-       * 对所有路由有效，可以配合 `excludes` 过滤无须复用路由
-       */
+     * 对所有路由有效，可以配合 `excludes` 过滤无须复用路由
+     */
     URL: 2,
 };
 ReuseTabMatchMode[ReuseTabMatchMode.Menu] = 'Menu';
@@ -311,7 +303,7 @@ ReuseTabMatchMode[ReuseTabMatchMode.URL] = 'URL';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 /**
  * 路由复用类，提供复用所需要一些基本接口
@@ -319,6 +311,7 @@ ReuseTabMatchMode[ReuseTabMatchMode.URL] = 'URL';
  * **注：** 所有缓存数据来源于路由离开后才会产生
  */
 class ReuseTabService {
+    // #endregion
     /**
      * @param {?} injector
      * @param {?} menuService
@@ -335,6 +328,7 @@ class ReuseTabService {
         this._titleCached = {};
         this._closableCached = {};
     }
+    // #region public
     /**
      * 当前路由地址
      * @return {?}
@@ -589,11 +583,11 @@ class ReuseTabService {
     getTitle(url, route) {
         if (this._titleCached[url])
             return this._titleCached[url];
-        if (route && route.data && (route.data["titleI18n"] || route.data["title"]))
-            return /** @type {?} */ ({
-                text: route.data["title"],
-                i18n: route.data["titleI18n"],
-            });
+        if (route && route.data && (route.data.titleI18n || route.data.title))
+            return (/** @type {?} */ ({
+                text: route.data.title,
+                i18n: route.data.titleI18n,
+            }));
         /** @type {?} */
         const menu = this.mode !== ReuseTabMatchMode.URL ? this.getMenu(url) : null;
         return menu ? { text: menu.text, i18n: menu.i18n } : { text: url };
@@ -635,12 +629,12 @@ class ReuseTabService {
     getClosable(url, route) {
         if (typeof this._closableCached[url] !== 'undefined')
             return this._closableCached[url];
-        if (route && route.data && typeof route.data["reuseClosable"] === 'boolean')
-            return route.data["reuseClosable"];
+        if (route && route.data && typeof route.data.reuseClosable === 'boolean')
+            return route.data.reuseClosable;
         /** @type {?} */
         const menu = this.mode !== ReuseTabMatchMode.URL ? this.getMenu(url) : null;
-        if (menu && typeof menu["reuseClosable"] === 'boolean')
-            return menu["reuseClosable"];
+        if (menu && typeof menu.reuseClosable === 'boolean')
+            return menu.reuseClosable;
         return true;
     }
     /**
@@ -693,8 +687,8 @@ class ReuseTabService {
         const url = this.getUrl(route);
         if (url === this.removeUrlBuffer)
             return false;
-        if (route.data && typeof route.data["reuse"] === 'boolean')
-            return route.data["reuse"];
+        if (route.data && typeof route.data.reuse === 'boolean')
+            return route.data.reuse;
         if (this.mode !== ReuseTabMatchMode.URL) {
             /** @type {?} */
             const menu = this.getMenu(url);
@@ -717,9 +711,13 @@ class ReuseTabService {
      * @param {?=} data
      * @return {?}
      */
+    // tslint:disable-next-line:no-any
     refresh(data) {
         this._cachedChange.next({ active: 'refresh', data });
     }
+    // #endregion
+    // #region privates
+    // tslint:disable-next-line:no-any
     /**
      * @param {?} _handle
      * @return {?}
@@ -749,6 +747,7 @@ class ReuseTabService {
             return null;
         return menus.pop();
     }
+    // tslint:disable-next-line:no-any
     /**
      * @param {?} method
      * @param {?} url
@@ -785,6 +784,7 @@ class ReuseTabService {
      * @param {?} _handle
      * @return {?}
      */
+    // tslint:disable-next-line:no-any
     store(_snapshot, _handle) {
         /** @type {?} */
         const url = this.getUrl(_snapshot);
@@ -862,8 +862,8 @@ class ReuseTabService {
         if (!ret)
             return false;
         /** @type {?} */
-        const path = /** @type {?} */ (((future.routeConfig && future.routeConfig.path) ||
-            ''));
+        const path = (/** @type {?} */ (((future.routeConfig && future.routeConfig.path) ||
+            '')));
         if (path.length > 0 && ~path.indexOf(':')) {
             /** @type {?} */
             const futureUrl = this.getUrl(future);
@@ -895,9 +895,10 @@ ReuseTabService.ctorParameters = () => [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 class ReuseTabComponent {
+    // #endregion
     /**
      * @param {?} el
      * @param {?} srv
@@ -916,34 +917,17 @@ class ReuseTabComponent {
         this.i18nSrv = i18nSrv;
         this.list = [];
         this.pos = 0;
-        /**
-         * 设置匹配模式
-         */
+        // #region fields
         this.mode = ReuseTabMatchMode.Menu;
-        /**
-         * 是否Debug模式
-         */
         this.debug = false;
-        /**
-         * 允许关闭
-         */
         this.allowClose = true;
-        /**
-         * 总是显示当前页
-         */
         this.showCurrent = true;
-        /**
-         * 切换时回调
-         */
         this.change = new EventEmitter();
-        /**
-         * 关闭回调
-         */
         this.close = new EventEmitter();
         this.el = el.nativeElement;
         /** @type {?} */
         const route$ = this.router.events.pipe(filter(evt => evt instanceof NavigationEnd));
-        this.sub$ = combineLatest(this.srv.change, route$).subscribe(([res, e]) => this.genList(/** @type {?} */ (res)));
+        this.sub$ = combineLatest(this.srv.change, route$).subscribe(([res, e]) => this.genList(res));
         if (this.i18nSrv) {
             this.i18n$ = this.i18nSrv.change
                 .pipe(debounceTime(100))
@@ -968,18 +952,18 @@ class ReuseTabComponent {
         const isClosed = notify && notify.active === 'close';
         /** @type {?} */
         const beforeClosePos = isClosed
-            ? this.list.findIndex(w => w.url === notify["url"])
+            ? this.list.findIndex(w => w.url === notify.url)
             : -1;
         /** @type {?} */
         const ls = this.srv.items.map((item, index) => {
-            return /** @type {?} */ ({
+            return (/** @type {?} */ ({
                 url: item.url,
                 title: this.genTit(item.title),
                 closable: this.allowClose && item.closable && this.srv.count > 0,
                 index,
                 active: false,
                 last: false,
-            });
+            }));
         });
         if (this.showCurrent) {
             /** @type {?} */
@@ -990,17 +974,13 @@ class ReuseTabComponent {
             const idx = ls.findIndex(w => w.url === url);
             // jump directly when the current exists in the list
             // or create a new current item and jump
-            if (idx !== -1 || (isClosed && notify["url"] === url)) {
-                this.pos = isClosed
-                    ? idx >= beforeClosePos
-                        ? this.pos - 1
-                        : this.pos
-                    : idx;
+            if (idx !== -1 || (isClosed && notify.url === url)) {
+                this.pos = isClosed ? idx >= beforeClosePos ? this.pos - 1 : this.pos : idx;
             }
             else {
                 /** @type {?} */
                 const snapshotTrue = this.srv.getTruthRoute(snapshot);
-                ls.push(/** @type {?} */ ({
+                ls.push((/** @type {?} */ ({
                     url,
                     title: this.genTit(this.srv.getTitle(url, snapshotTrue)),
                     closable: this.allowClose &&
@@ -1009,7 +989,7 @@ class ReuseTabComponent {
                     index: ls.length,
                     active: false,
                     last: false,
-                }));
+                })));
                 this.pos = ls.length - 1;
             }
             // fix unabled close last item
@@ -1032,6 +1012,7 @@ class ReuseTabComponent {
             return;
         this.render.setStyle(this.el, 'display', this.list.length === 0 ? 'none' : 'block');
     }
+    // #region UI
     /**
      * @param {?} res
      * @return {?}
@@ -1104,6 +1085,7 @@ class ReuseTabComponent {
         this.cd.detectChanges();
         return false;
     }
+    // #endregion
     /**
      * @return {?}
      */
@@ -1139,7 +1121,6 @@ ReuseTabComponent.decorators = [
                 selector: 'reuse-tab',
                 template: "<nz-tabset [nzSelectedIndex]=\"pos\" [nzAnimated]=\"false\" nzType=\"line\">\n  <nz-tab *ngFor=\"let i of list; let index = index\" [nzTitle]=\"titleTemplate\">\n    <ng-template #titleTemplate>\n      <span [reuse-tab-context-menu]=\"i\" (click)=\"to($event, index)\" class=\"name\">{{i.title}}</span>\n      <i *ngIf=\"i.closable\" nz-icon type=\"close\" class=\"reuse-tab__op\" (click)=\"_close($event, index, false)\"></i>\n    </ng-template>\n  </nz-tab>\n</nz-tabset>\n<reuse-tab-context [i18n]=\"i18n\" (change)=\"cmChange($event)\"></reuse-tab-context>\n",
                 changeDetection: ChangeDetectionStrategy.OnPush,
-                preserveWhitespaces: false,
                 providers: [ReuseTabContextService],
                 host: {
                     '[class.reuse-tab]': 'true',
@@ -1186,7 +1167,7 @@ __decorate([
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 class ReuseTabStrategy {
     /**
@@ -1236,7 +1217,7 @@ class ReuseTabStrategy {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 /** @type {?} */
 const COMPONENTS = [ReuseTabComponent];
@@ -1247,14 +1228,6 @@ const NOEXPORTS = [
     ReuseTabContextDirective,
 ];
 class ReuseTabModule {
-    /**
-     * @return {?}
-     */
-    static forRoot() {
-        return {
-            ngModule: ReuseTabModule,
-        };
-    }
 }
 ReuseTabModule.decorators = [
     { type: NgModule, args: [{
@@ -1273,12 +1246,12 @@ ReuseTabModule.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 
 export { ReuseTabContextMenuComponent, ReuseTabContextComponent, ReuseTabContextDirective, ReuseTabContextService, ReuseTabComponent, ReuseTabService, ReuseTabStrategy, ReuseTabModule, ReuseTabMatchMode };

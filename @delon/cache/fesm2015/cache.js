@@ -1,19 +1,17 @@
 import { HttpClient } from '@angular/common/http';
 import addSeconds from 'date-fns/add_seconds';
-import { Observable, of, BehaviorSubject } from 'rxjs';
-import { tap, map } from 'rxjs/operators';
-import { InjectionToken, Injectable, Inject, NgModule } from '@angular/core';
+import { of, BehaviorSubject, Observable } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
+import { Injectable, InjectionToken, NgModule, Inject, defineInjectable, inject } from '@angular/core';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
-/** @type {?} */
-const DC_STORE_STORAGE_TOKEN = new InjectionToken('DC_STORE_STORAGE_TOKEN');
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 class DelonCacheConfig {
     constructor() {
@@ -40,10 +38,55 @@ class DelonCacheConfig {
         this.meta_key = '__cache_meta';
     }
 }
+DelonCacheConfig.decorators = [
+    { type: Injectable, args: [{ providedIn: 'root' },] }
+];
+/** @nocollapse */ DelonCacheConfig.ngInjectableDef = defineInjectable({ factory: function DelonCacheConfig_Factory() { return new DelonCacheConfig(); }, token: DelonCacheConfig, providedIn: "root" });
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ */
+/** @type {?} */
+const DC_STORE_STORAGE_TOKEN = new InjectionToken('DC_STORE_STORAGE_TOKEN', {
+    providedIn: 'root',
+    factory: DC_STORE_STORAGE_TOKEN_FACTORY,
+});
+/**
+ * @return {?}
+ */
+function DC_STORE_STORAGE_TOKEN_FACTORY() {
+    return new LocalStorageCacheService();
+}
+class LocalStorageCacheService {
+    /**
+     * @param {?} key
+     * @return {?}
+     */
+    get(key) {
+        return JSON.parse(localStorage.getItem(key) || 'null') || null;
+    }
+    /**
+     * @param {?} key
+     * @param {?} value
+     * @return {?}
+     */
+    set(key, value) {
+        localStorage.setItem(key, JSON.stringify(value));
+        return true;
+    }
+    /**
+     * @param {?} key
+     * @return {?}
+     */
+    remove(key) {
+        localStorage.removeItem(key);
+    }
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 class CacheService {
     /**
@@ -58,7 +101,7 @@ class CacheService {
         this.memory = new Map();
         this.notifyBuffer = new Map();
         this.meta = new Set();
-        this.freq_tick = 3000;
+        this.freqTick = 3000;
         this.loadMeta();
         this.startExpireNotify();
     }
@@ -78,6 +121,7 @@ class CacheService {
         }
         return path.reduce((o, k) => o[k], obj) || defaultValue;
     }
+    // #region meta
     /**
      * @param {?} key
      * @return {?}
@@ -105,7 +149,7 @@ class CacheService {
         /** @type {?} */
         const ret = this.store.get(this.options.meta_key);
         if (ret && ret.v) {
-            (/** @type {?} */ (ret.v)).forEach(key => this.meta.add(key));
+            ((/** @type {?} */ (ret.v))).forEach(key => this.meta.add(key));
         }
     }
     /**
@@ -131,6 +175,7 @@ class CacheService {
      * @return {?}
      */
     set(key, data, options = {}) {
+        // expire
         /** @type {?} */
         let e = 0;
         if (options.expire) {
@@ -176,7 +221,9 @@ class CacheService {
             if (isPromise) {
                 return this.http
                     .get(key)
-                    .pipe(map((ret) => this._deepGet(ret, /** @type {?} */ (this.options.reName), null)), tap(v => this.set(key, v)));
+                    .pipe(
+                // tslint:disable-next-line:no-any
+                map((ret) => this._deepGet(ret, (/** @type {?} */ (this.options.reName)), null)), tap(v => this.set(key, v)));
             }
             return null;
         }
@@ -202,13 +249,15 @@ class CacheService {
         const ret = this.getNone(key);
         if (ret === null) {
             if (!(data instanceof Observable)) {
-                this.set(key, data, /** @type {?} */ (options));
+                this.set(key, data, (/** @type {?} */ (options)));
                 return data;
             }
-            return this.set(key, /** @type {?} */ (data), /** @type {?} */ (options));
+            return this.set(key, (/** @type {?} */ (data)), (/** @type {?} */ (options)));
         }
         return of(ret);
     }
+    // #endregion
+    // #region has
     /**
      * 是否缓存 `key`
      * @param {?} key
@@ -217,6 +266,8 @@ class CacheService {
     has(key) {
         return this.memory.has(key) || this.meta.has(key);
     }
+    // #endregion
+    // #region remove
     /**
      * @param {?} key
      * @param {?} needNotify
@@ -249,13 +300,15 @@ class CacheService {
         this.memory.clear();
         this.meta.forEach(key => this.store.remove(this.options.prefix + key));
     }
+    // #endregion
+    // #region notify
     /**
      * 设置监听频率，单位：毫秒且最低 `20ms`，默认：`3000ms`
      * @param {?} value
      * @return {?}
      */
     set freq(value) {
-        this.freq_tick = Math.max(20, value);
+        this.freqTick = Math.max(20, value);
         this.abortExpireNotify();
         this.startExpireNotify();
     }
@@ -270,10 +323,10 @@ class CacheService {
      * @return {?}
      */
     runExpireNotify() {
-        this.freq_time = setTimeout(() => {
+        this.freqTime = setTimeout(() => {
             this.checkExpireNotify();
             this.runExpireNotify();
-        }, this.freq_tick);
+        }, this.freqTick);
     }
     /**
      * @return {?}
@@ -294,7 +347,7 @@ class CacheService {
      * @return {?}
      */
     abortExpireNotify() {
-        clearTimeout(this.freq_time);
+        clearTimeout(this.freqTime);
     }
     /**
      * @param {?} key
@@ -349,6 +402,7 @@ class CacheService {
         this.notifyBuffer.forEach(v => v.unsubscribe());
         this.notifyBuffer.clear();
     }
+    // #endregion
     /**
      * @return {?}
      */
@@ -359,7 +413,7 @@ class CacheService {
     }
 }
 CacheService.decorators = [
-    { type: Injectable }
+    { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
 /** @nocollapse */
 CacheService.ctorParameters = () => [
@@ -367,55 +421,13 @@ CacheService.ctorParameters = () => [
     { type: undefined, decorators: [{ type: Inject, args: [DC_STORE_STORAGE_TOKEN,] }] },
     { type: HttpClient }
 ];
+/** @nocollapse */ CacheService.ngInjectableDef = defineInjectable({ factory: function CacheService_Factory() { return new CacheService(inject(DelonCacheConfig), inject(DC_STORE_STORAGE_TOKEN), inject(HttpClient)); }, token: CacheService, providedIn: "root" });
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
- */
-class LocalStorageCacheService {
-    /**
-     * @param {?} key
-     * @return {?}
-     */
-    get(key) {
-        return JSON.parse(localStorage.getItem(key) || 'null') || null;
-    }
-    /**
-     * @param {?} key
-     * @param {?} value
-     * @return {?}
-     */
-    set(key, value) {
-        localStorage.setItem(key, JSON.stringify(value));
-        return true;
-    }
-    /**
-     * @param {?} key
-     * @return {?}
-     */
-    remove(key) {
-        localStorage.removeItem(key);
-    }
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 class DelonCacheModule {
-    /**
-     * @return {?}
-     */
-    static forRoot() {
-        return {
-            ngModule: DelonCacheModule,
-            providers: [
-                DelonCacheConfig,
-                CacheService,
-                { provide: DC_STORE_STORAGE_TOKEN, useClass: LocalStorageCacheService },
-            ],
-        };
-    }
 }
 DelonCacheModule.decorators = [
     { type: NgModule, args: [{},] }
@@ -423,14 +435,14 @@ DelonCacheModule.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 
-export { DC_STORE_STORAGE_TOKEN, CacheService, DelonCacheConfig, DelonCacheModule, LocalStorageCacheService as ɵa };
+export { CacheService, DelonCacheConfig, DelonCacheModule, DC_STORE_STORAGE_TOKEN as ɵa, DC_STORE_STORAGE_TOKEN_FACTORY as ɵb, LocalStorageCacheService as ɵc };
 
 //# sourceMappingURL=cache.js.map

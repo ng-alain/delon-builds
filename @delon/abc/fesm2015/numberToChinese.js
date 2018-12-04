@@ -1,9 +1,14 @@
-import { Pipe, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Pipe, NgModule } from '@angular/core';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 /**
  * @param {?} value
@@ -12,10 +17,7 @@ import { CommonModule } from '@angular/common';
  * @return {?}
  */
 function numberToChinese(value, rmb = true, options) {
-    options = Object.assign({
-        minusSymbol: '负',
-        validThrow: false,
-    }, options);
+    options = Object.assign({ minusSymbol: '负', validThrow: false }, options);
     if (typeof value === 'number')
         value = value.toString();
     if (!/^-?\d+(\.\d+)?$/.test(value) && options.validThrow)
@@ -120,15 +122,14 @@ function numberToChinese(value, rmb = true, options) {
             /** @type {?} */
             const isChangeEr = n > 1 &&
                 cnNum === '二' && // 去除首位
-                // 去除首位
                 ['', '十', '百'].indexOf(cnDesc) === -1 && // 不读两\两十\两百
-                // 不读两\两十\两百
-                descMark !== '十'; // 不读十两
+                descMark !== '十';
             if (isChangeEr)
                 cnNum = '两';
             integerRes += cnZero + cnNum + cnDesc;
         }
     }
+    // 小数部分拼接
     /** @type {?} */
     let decimalRes = '';
     /** @type {?} */
@@ -164,7 +165,7 @@ function numberToChinese(value, rmb = true, options) {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 class NaNumberToChinesePipe {
     /**
@@ -183,17 +184,11 @@ NaNumberToChinesePipe.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 /** @type {?} */
 const PIPES = [NaNumberToChinesePipe];
 class NumberToChineseModule {
-    /**
-     * @return {?}
-     */
-    static forRoot() {
-        return { ngModule: NumberToChineseModule, providers: [] };
-    }
 }
 NumberToChineseModule.decorators = [
     { type: NgModule, args: [{
@@ -205,12 +200,12 @@ NumberToChineseModule.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 
 export { numberToChinese, NaNumberToChinesePipe, NumberToChineseModule };

@@ -1,32 +1,17 @@
-import { Component, Input, ContentChildren, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, NgModule } from '@angular/core';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
- */
-class AvatarListItemComponent {
-}
-AvatarListItemComponent.decorators = [
-    { type: Component, args: [{
-                selector: 'avatar-list-item, [avatar-list-item]',
-                template: `<ng-content></ng-content>`
-            }] }
-];
-AvatarListItemComponent.propDecorators = {
-    src: [{ type: Input }],
-    text: [{ type: Input }],
-    icon: [{ type: Input }],
-    tips: [{ type: Input }]
-};
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 class AvatarListComponent {
-    constructor() {
+    /**
+     * @param {?} cdr
+     */
+    constructor(cdr) {
+        this.cdr = cdr;
         this._size = '';
         this._avatarSize = '';
     }
@@ -46,43 +31,70 @@ class AvatarListComponent {
                 this._avatarSize = 'small';
                 break;
         }
+        this.cdr.markForCheck();
     }
 }
 AvatarListComponent.decorators = [
     { type: Component, args: [{
                 selector: 'avatar-list',
-                template: `
-  <ul class="avatar-list__wrap">
-    <li *ngFor="let i of _items" class="avatar-list__item{{_size ? ' avatar-list__item-' + _size : ''}}">
-      <nz-tooltip *ngIf="i.tips" [nzTitle]="i.tips">
-        <nz-avatar nz-tooltip [nzSrc]="i.src" [nzText]="i.text" [nzIcon]="i.icon" [nzSize]="_avatarSize"></nz-avatar>
-      </nz-tooltip>
-      <nz-avatar *ngIf="!i.tips" [nzSrc]="i.src" [nzText]="i.text" [nzIcon]="i.icon" [nzSize]="_avatarSize"></nz-avatar>
-    </li>
-  </ul>
-  `,
+                template: "<div class=\"avatar-list__wrap{{_size ? ' avatar-list__' + _size : ''}}\">\n  <ng-content></ng-content>\n</div>\n",
                 host: { '[class.avatar-list]': 'true' },
-                preserveWhitespaces: false
+                changeDetection: ChangeDetectionStrategy.OnPush
             }] }
 ];
+/** @nocollapse */
+AvatarListComponent.ctorParameters = () => [
+    { type: ChangeDetectorRef }
+];
 AvatarListComponent.propDecorators = {
-    size: [{ type: Input }],
-    _items: [{ type: ContentChildren, args: [AvatarListItemComponent,] }]
+    size: [{ type: Input }]
 };
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ */
+class AvatarListItemComponent {
+    /**
+     * @param {?} p
+     */
+    constructor(p) {
+        this.p = p;
+    }
+    /**
+     * @return {?}
+     */
+    get size() {
+        return this.p._avatarSize;
+    }
+}
+AvatarListItemComponent.decorators = [
+    { type: Component, args: [{
+                selector: 'avatar-list-item, [avatar-list-item]',
+                template: "<nz-tooltip *ngIf=\"tips\" [nzTitle]=\"tips\">\n  <nz-avatar nz-tooltip [nzSrc]=\"src\" [nzText]=\"text\" [nzIcon]=\"icon\" [nzSize]=\"size\"></nz-avatar>\n</nz-tooltip>\n<nz-avatar *ngIf=\"!tips\" [nzSrc]=\"src\" [nzText]=\"text\" [nzIcon]=\"icon\" [nzSize]=\"size\"></nz-avatar>\n<ng-content></ng-content>\n",
+                host: {
+                    '[class.avatar-list__item]': 'true',
+                }
+            }] }
+];
+/** @nocollapse */
+AvatarListItemComponent.ctorParameters = () => [
+    { type: AvatarListComponent }
+];
+AvatarListItemComponent.propDecorators = {
+    src: [{ type: Input }],
+    text: [{ type: Input }],
+    icon: [{ type: Input }],
+    tips: [{ type: Input }]
+};
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 /** @type {?} */
 const COMPONENTS = [AvatarListComponent, AvatarListItemComponent];
 class AvatarListModule {
-    /**
-     * @return {?}
-     */
-    static forRoot() {
-        return { ngModule: AvatarListModule, providers: [] };
-    }
 }
 AvatarListModule.decorators = [
     { type: NgModule, args: [{
@@ -94,12 +106,12 @@ AvatarListModule.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 
 export { AvatarListItemComponent, AvatarListComponent, AvatarListModule };

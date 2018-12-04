@@ -1,12 +1,13 @@
-import { Component, Input, NgModule } from '@angular/core';
+import { __decorate, __metadata } from 'tslib';
 import { CommonModule } from '@angular/common';
-import { NgZorroAntdModule } from 'ng-zorro-antd';
-import { toNumber, DelonUtilModule } from '@delon/util';
+import { Component, Input, NgModule } from '@angular/core';
 import { DelonLocaleService, DelonLocaleModule } from '@delon/theme';
+import { toNumber, InputNumber, DelonUtilModule } from '@delon/util';
+import { NgZorroAntdModule } from 'ng-zorro-antd';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 class G2ProgressComponent {
     /**
@@ -22,6 +23,7 @@ class G2ProgressComponent {
     get target() {
         return this._target;
     }
+    // tslint:disable-next-line:no-any
     /**
      * @param {?} value
      * @return {?}
@@ -32,22 +34,10 @@ class G2ProgressComponent {
     /**
      * @return {?}
      */
-    get strokeWidth() {
-        return this._strokeWidth;
-    }
-    /**
-     * @param {?} value
-     * @return {?}
-     */
-    set strokeWidth(value) {
-        this._strokeWidth = toNumber(value);
-    }
-    /**
-     * @return {?}
-     */
     get percent() {
         return this._percent;
     }
+    // tslint:disable-next-line:no-any
     /**
      * @param {?} value
      * @return {?}
@@ -59,19 +49,8 @@ class G2ProgressComponent {
 G2ProgressComponent.decorators = [
     { type: Component, args: [{
                 selector: 'g2-mini-progress',
-                template: `
-  <nz-tooltip [nzTitle]="i18n.getData('miniProgress').target + target + '%'">
-    <div nz-tooltip class="g2-mini-progress__target" [ngStyle]="{'left.%': target}">
-      <span class="g2-mini-progress__target-item" [ngStyle]="{'background-color': color}"></span>
-      <span class="g2-mini-progress__target-item" [ngStyle]="{'background-color': color}"></span>
-    </div>
-  </nz-tooltip>
-  <div class="g2-mini-progress__wrap">
-    <div class="g2-mini-progress__value" [ngStyle]="{'background-color': color, 'width.%': percent, 'height.px':strokeWidth}"></div>
-  </div>
-  `,
-                host: { '[class.g2-mini-progress]': 'true' },
-                preserveWhitespaces: false
+                template: "<nz-tooltip [nzTitle]=\"i18n.getData('miniProgress').target + target + '%'\">\n  <div nz-tooltip class=\"g2-mini-progress__target\" [ngStyle]=\"{'left.%': target}\">\n    <span class=\"g2-mini-progress__target-item\" [ngStyle]=\"{'background-color': color}\"></span>\n    <span class=\"g2-mini-progress__target-item\" [ngStyle]=\"{'background-color': color}\"></span>\n  </div>\n</nz-tooltip>\n<div class=\"g2-mini-progress__wrap\">\n  <div class=\"g2-mini-progress__value\" [ngStyle]=\"{'background-color': color, 'width.%': percent, 'height.px':strokeWidth}\"></div>\n</div>\n",
+                host: { '[class.g2-mini-progress]': 'true' }
             }] }
 ];
 /** @nocollapse */
@@ -84,20 +63,18 @@ G2ProgressComponent.propDecorators = {
     strokeWidth: [{ type: Input }],
     percent: [{ type: Input }]
 };
+__decorate([
+    InputNumber(),
+    __metadata("design:type", Number)
+], G2ProgressComponent.prototype, "strokeWidth", void 0);
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 /** @type {?} */
 const COMPONENTS = [G2ProgressComponent];
 class G2MiniProgressModule {
-    /**
-     * @return {?}
-     */
-    static forRoot() {
-        return { ngModule: G2MiniProgressModule, providers: [] };
-    }
 }
 G2MiniProgressModule.decorators = [
     { type: NgModule, args: [{
@@ -109,12 +86,12 @@ G2MiniProgressModule.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 
 export { G2ProgressComponent, G2MiniProgressModule };

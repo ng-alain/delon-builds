@@ -1,14 +1,14 @@
 import { __decorate, __metadata } from 'tslib';
-import { Router, ActivationStart, ActivationEnd } from '@angular/router';
+import { ActivationEnd, ActivationStart, Router } from '@angular/router';
 import { BehaviorSubject, fromEvent } from 'rxjs';
 import { share, debounceTime, filter } from 'rxjs/operators';
-import { Injectable, Component, ElementRef, ChangeDetectionStrategy, ChangeDetectorRef, Input, Output, EventEmitter, Inject, HostBinding, Directive, HostListener, NgModule } from '@angular/core';
 import { DOCUMENT, CommonModule } from '@angular/common';
+import { Injectable, Directive, HostListener, EventEmitter, Component, ChangeDetectionStrategy, ElementRef, ChangeDetectorRef, Inject, HostBinding, Input, Output, defineInjectable, NgModule } from '@angular/core';
 import { InputBoolean, InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 class FullContentService {
     constructor() {
@@ -29,12 +29,13 @@ class FullContentService {
     }
 }
 FullContentService.decorators = [
-    { type: Injectable }
+    { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
+/** @nocollapse */ FullContentService.ngInjectableDef = defineInjectable({ factory: function FullContentService_Factory() { return new FullContentService(); }, token: FullContentService, providedIn: "root" });
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 /** @type {?} */
 const wrapCls = `full-content__body`;
@@ -43,6 +44,7 @@ const openedCls = `full-content__opened`;
 /** @type {?} */
 const hideTitleCls = `full-content__hidden-title`;
 class FullContentComponent {
+    // #endregion
     /**
      * @param {?} el
      * @param {?} cd
@@ -57,9 +59,7 @@ class FullContentComponent {
         this.router = router;
         this.doc = doc;
         this.inited = false;
-        this.id = `_full-content-${Math.random()
-            .toString(36)
-            .substring(2)}`;
+        this.id = `_full-content-${Math.random().toString(36).substring(2)}`;
         this.scroll$ = null;
         this._height = 0;
         this.hideTitle = true;
@@ -97,10 +97,7 @@ class FullContentComponent {
      * @return {?}
      */
     updateHeight() {
-        this._height =
-            this.bodyEl.getBoundingClientRect().height -
-                (/** @type {?} */ (this.el.nativeElement)).getBoundingClientRect().top -
-                this.padding;
+        this._height = this.bodyEl.getBoundingClientRect().height - ((/** @type {?} */ (this.el.nativeElement))).getBoundingClientRect().top - this.padding;
         this.cd.detectChanges();
     }
     /**
@@ -116,7 +113,7 @@ class FullContentComponent {
         this.inited = true;
         this.bodyEl = this.doc.querySelector('body');
         this.bodyEl.classList.add(wrapCls);
-        (/** @type {?} */ (this.el.nativeElement)).id = this.id;
+        ((/** @type {?} */ (this.el.nativeElement))).id = this.id;
         this.updateCls();
         // when window resize
         this.scroll$ = fromEvent(window, 'resize')
@@ -129,7 +126,7 @@ class FullContentComponent {
         // when router changed
         this.route$ = this.router.events
             .pipe(filter((e) => e instanceof ActivationStart || e instanceof ActivationEnd), debounceTime(200))
-            .subscribe(e => {
+            .subscribe(() => {
             if (!!this.doc.querySelector('#' + this.id)) {
                 this.bodyEl.classList.add(wrapCls);
                 this.updateCls();
@@ -208,7 +205,7 @@ __decorate([
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 class FullContentToggleDirective {
     /**
@@ -239,20 +236,11 @@ FullContentToggleDirective.propDecorators = {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 /** @type {?} */
 const COMPONENTS = [FullContentComponent, FullContentToggleDirective];
 class FullContentModule {
-    /**
-     * @return {?}
-     */
-    static forRoot() {
-        return {
-            ngModule: FullContentModule,
-            providers: [FullContentService],
-        };
-    }
 }
 FullContentModule.decorators = [
     { type: NgModule, args: [{
@@ -264,12 +252,12 @@ FullContentModule.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 
 export { FullContentComponent, FullContentService, FullContentToggleDirective, FullContentModule };

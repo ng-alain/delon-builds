@@ -5,7 +5,7 @@ export interface MockCachedRule {
     url: string;
     martcher: RegExp;
     segments: string[];
-    callback: (req: MockRequest) => any;
+    callback(req: MockRequest): any;
 }
 export interface MockRule {
     [key: string]: any;
@@ -13,7 +13,7 @@ export interface MockRule {
     url: string;
     /** 路由参数 */
     params?: any;
-    callback: (req: MockRequest) => any;
+    callback(req: MockRequest): any;
 }
 export interface MockRequest {
     /** 路由参数 */

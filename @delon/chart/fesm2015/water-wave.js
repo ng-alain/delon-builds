@@ -1,12 +1,13 @@
+import { __decorate, __metadata } from 'tslib';
 import { fromEvent } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
-import { Component, Input, ViewChild, ElementRef, NgZone, TemplateRef, Renderer2, ChangeDetectionStrategy, ChangeDetectorRef, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { toNumber, DelonUtilModule } from '@delon/util';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Input, NgZone, Renderer2, TemplateRef, ViewChild, NgModule } from '@angular/core';
+import { InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 class G2WaterWaveComponent {
     /**
@@ -23,7 +24,8 @@ class G2WaterWaveComponent {
         // #region fields
         this._title = '';
         this.color = '#1890FF';
-        this._height = 160;
+        this.height = 160;
+        // #endregion
         this.resize$ = null;
         this.initFlag = false;
     }
@@ -43,32 +45,6 @@ class G2WaterWaveComponent {
     /**
      * @return {?}
      */
-    get height() {
-        return this._height;
-    }
-    /**
-     * @param {?} value
-     * @return {?}
-     */
-    set height(value) {
-        this._height = toNumber(value);
-    }
-    /**
-     * @return {?}
-     */
-    get percent() {
-        return this._percent;
-    }
-    /**
-     * @param {?} value
-     * @return {?}
-     */
-    set percent(value) {
-        this._percent = toNumber(value);
-    }
-    /**
-     * @return {?}
-     */
     renderChart() {
         /** @type {?} */
         const data = this.percent / 100;
@@ -78,7 +54,7 @@ class G2WaterWaveComponent {
         /** @type {?} */
         const self = this;
         /** @type {?} */
-        const canvas = /** @type {?} */ (this.node.nativeElement);
+        const canvas = (/** @type {?} */ (this.node.nativeElement));
         /** @type {?} */
         const ctx = canvas.getContext('2d');
         /** @type {?} */
@@ -99,16 +75,19 @@ class G2WaterWaveComponent {
         const unit = axisLength / 8;
         /** @type {?} */
         const range = 0.2;
+        // 振幅
         /** @type {?} */
         let currRange = range;
         /** @type {?} */
         const xOffset = lineWidth;
         /** @type {?} */
         let sp = 0;
+        // 周期偏移量
         /** @type {?} */
         let currData = 0;
         /** @type {?} */
         const waveupsp = 0.005;
+        // 水波上涨速度
         /** @type {?} */
         let arcStack = [];
         /** @type {?} */
@@ -117,7 +96,7 @@ class G2WaterWaveComponent {
         const circleOffset = -(Math.PI / 2);
         /** @type {?} */
         let circleLock = true;
-        for (let i = circleOffset; i < circleOffset + 2 * Math.PI; i += 1 / (8 * Math.PI)) {
+        for (let i = circleOffset; i < circleOffset + (Math.PI * 2); i += 1 / (Math.PI * 8)) {
             arcStack.push([radius + bR * Math.cos(i), radius + bR * Math.sin(i)]);
         }
         /** @type {?} */
@@ -140,7 +119,7 @@ class G2WaterWaveComponent {
                 /** @type {?} */
                 const dx = i;
                 /** @type {?} */
-                const dy = 2 * cR * (1 - currData) + (radius - cR) - unit * y;
+                const dy = cR * 2 * (1 - currData) + (radius - cR) - unit * y;
                 ctx.lineTo(dx, dy);
                 sinStack.push([dx, dy]);
             }
@@ -177,10 +156,10 @@ class G2WaterWaveComponent {
                     ctx.globalCompositeOperation = 'destination-over';
                     ctx.beginPath();
                     ctx.lineWidth = lineWidth;
-                    ctx.arc(radius, radius, bR, 0, 2 * Math.PI, true);
+                    ctx.arc(radius, radius, bR, 0, Math.PI * 2, true);
                     ctx.beginPath();
                     ctx.save();
-                    ctx.arc(radius, radius, radius - 3 * lineWidth, 0, 2 * Math.PI, true);
+                    ctx.arc(radius, radius, (radius - lineWidth) * 3, 0, Math.PI * 2, true);
                     ctx.restore();
                     ctx.clip();
                     ctx.fillStyle = '#1890FF';
@@ -285,17 +264,9 @@ class G2WaterWaveComponent {
 G2WaterWaveComponent.decorators = [
     { type: Component, args: [{
                 selector: 'g2-water-wave',
-                template: `
-  <div [ngStyle]="{'height.px': height, 'width.px': height, 'overflow': 'hidden'}">
-    <canvas #container class="g2-water-wave__canvas" width="{{height*2}}" height="{{height*2}}"></canvas>
-  </div>
-  <div class="g2-water-wave__desc" [ngStyle]="{'width.px': height}">
-    <ng-container *ngIf="_title; else _titleTpl"><span class="g2-water-wave__desc-title">{{_title}}</span></ng-container>
-    <h4 class="g2-water-wave__desc-percent">{{percent}}%</h4>
-  </div>`,
+                template: "<div [ngStyle]=\"{'height.px': height, 'width.px': height, 'overflow': 'hidden'}\">\n  <canvas #container class=\"g2-water-wave__canvas\" width=\"{{height*2}}\" height=\"{{height*2}}\"></canvas>\n</div>\n<div class=\"g2-water-wave__desc\" [ngStyle]=\"{'width.px': height}\">\n  <ng-container *ngIf=\"_title; else _titleTpl\"><span class=\"g2-water-wave__desc-title\">{{_title}}</span></ng-container>\n  <h4 class=\"g2-water-wave__desc-percent\">{{percent}}%</h4>\n</div>\n",
                 host: { '[class.g2-water-wave]': 'true' },
-                changeDetection: ChangeDetectionStrategy.OnPush,
-                preserveWhitespaces: false
+                changeDetection: ChangeDetectionStrategy.OnPush
             }] }
 ];
 /** @nocollapse */
@@ -312,20 +283,22 @@ G2WaterWaveComponent.propDecorators = {
     percent: [{ type: Input }],
     node: [{ type: ViewChild, args: ['container',] }]
 };
+__decorate([
+    InputNumber(),
+    __metadata("design:type", Object)
+], G2WaterWaveComponent.prototype, "height", void 0);
+__decorate([
+    InputNumber(),
+    __metadata("design:type", Number)
+], G2WaterWaveComponent.prototype, "percent", void 0);
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 /** @type {?} */
 const COMPONENTS = [G2WaterWaveComponent];
 class G2WaterWaveModule {
-    /**
-     * @return {?}
-     */
-    static forRoot() {
-        return { ngModule: G2WaterWaveModule, providers: [] };
-    }
 }
 G2WaterWaveModule.decorators = [
     { type: NgModule, args: [{
@@ -337,12 +310,12 @@ G2WaterWaveModule.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 
 export { G2WaterWaveComponent, G2WaterWaveModule };

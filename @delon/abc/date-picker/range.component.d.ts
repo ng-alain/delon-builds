@@ -11,11 +11,11 @@ export declare class RangePickerComponent implements ControlValueAccessor {
     nzDisabled: boolean;
     nzSize: string;
     nzStyle: string;
-    nzDisabledDate: any;
-    nzLocale: any;
-    nzPopupStyle: any;
-    nzDropdownClassName: any;
-    nzPlaceHolder: any;
+    nzDisabledDate: (d: Date) => boolean;
+    nzLocale: object;
+    nzPopupStyle: object;
+    nzDropdownClassName: string;
+    nzPlaceHolder: string | string[];
     readonly nzOnOpenChange: EventEmitter<boolean>;
     nzDateRender: any;
     nzFormat: any;
@@ -32,10 +32,10 @@ export declare class RangePickerComponent implements ControlValueAccessor {
     _nzOnPanelChange(e: any): void;
     _nzOnOk(e: any): void;
     valueChange(e: Date[]): void;
-    onChangeFn: (val: Date) => void;
-    onTouchedFn: () => void;
+    private onChangeFn;
+    private onTouchedFn;
     writeValue(value: Date): void;
-    registerOnChange(fn: any): void;
-    registerOnTouched(fn: any): void;
+    registerOnChange(fn: (val: Date) => void): void;
+    registerOnTouched(fn: () => void): void;
     setDisabledState(disabled: boolean): void;
 }

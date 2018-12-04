@@ -1,20 +1,25 @@
 import { DomSanitizer } from '@angular/platform-browser';
 import { XlsxService } from '@delon/abc/xlsx';
 import { Router } from '@angular/router';
+import { ALAIN_I18N_TOKEN, _HttpClient, CNCurrencyPipe, DatePipe, YNPipe, DelonLocaleService, DrawerHelper, ModalHelper } from '@delon/theme';
 import { of } from 'rxjs';
-import { map, catchError, filter } from 'rxjs/operators';
-import { ALAIN_I18N_TOKEN, CNCurrencyPipe, DatePipe, YNPipe, _HttpClient, ModalHelper, DrawerHelper, DelonLocaleService } from '@delon/theme';
-import { __values, __decorate, __metadata, __spread } from 'tslib';
-import { Directive, Input, TemplateRef, Injectable, Host, Optional, Inject, Component, Output, EventEmitter, Renderer2, ElementRef, ChangeDetectionStrategy, ChangeDetectorRef, NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
+import { catchError, map, filter } from 'rxjs/operators';
+import { __values, __assign, __decorate, __metadata, __spread } from 'tslib';
 import { DecimalPipe, DOCUMENT, CommonModule } from '@angular/common';
+import { Directive, Host, Injectable, Input, TemplateRef, Optional, Inject, EventEmitter, Component, ChangeDetectionStrategy, ChangeDetectorRef, ElementRef, Renderer2, Output, defineInjectable, NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
-import { deepCopy, deepGet, toBoolean, updateHostClass, InputBoolean, InputNumber, DelonUtilModule } from '@delon/util';
 import { ACLService, DelonACLModule } from '@delon/acl';
+import { deepCopy, deepGet, toBoolean, updateHostClass, InputBoolean, InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 var STRowSource = /** @class */ (function () {
     function STRowSource() {
@@ -94,7 +99,7 @@ var STRowDirective = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 var STConfig = /** @class */ (function () {
     function STConfig() {
@@ -145,7 +150,7 @@ var STConfig = /** @class */ (function () {
         /**
          * 是否多排序，当 `sort` 多个相同值时自动合并，建议后端支持时使用
          */
-        this.multiSort = false;
+        this.multiSort = null;
         /**
          * 按钮模态框配置
          */
@@ -193,12 +198,16 @@ var STConfig = /** @class */ (function () {
          */
         this.noIndex = 1;
     }
+    STConfig.decorators = [
+        { type: Injectable, args: [{ providedIn: 'root' },] }
+    ];
+    /** @nocollapse */ STConfig.ngInjectableDef = defineInjectable({ factory: function STConfig_Factory() { return new STConfig(); }, token: STConfig, providedIn: "root" });
     return STConfig;
 }());
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 var STColumnSource = /** @class */ (function () {
     function STColumnSource(rowSource, acl, i18nSrv, cog) {
@@ -230,13 +239,13 @@ var STColumnSource = /** @class */ (function () {
                 }
                 if (item.type === 'modal' || item.type === 'static') {
                     // compatible
-                    if (item["component"] != null) {
+                    if (item.component != null) {
                         item.modal = {
-                            component: item["component"],
-                            params: item["params"],
-                            paramsName: item["paramName"] || modal.paramsName,
-                            size: item["size"] || modal.size,
-                            modalOptions: item["modalOptions"] || modal.modalOptions,
+                            component: item.component,
+                            params: item.params,
+                            paramsName: item.paramName || modal.paramsName,
+                            size: item.size || modal.size,
+                            modalOptions: item.modalOptions || modal.modalOptions,
                         };
                     }
                     if (item.modal == null || item.modal.component == null) {
@@ -244,7 +253,7 @@ var STColumnSource = /** @class */ (function () {
                         item.type = 'none';
                     }
                     else {
-                        item.modal = Object.assign({}, modal, item.modal);
+                        item.modal = __assign({}, modal, item.modal);
                     }
                 }
                 if (item.type === 'drawer') {
@@ -253,7 +262,7 @@ var STColumnSource = /** @class */ (function () {
                         item.type = 'none';
                     }
                     else {
-                        item.drawer = Object.assign({}, drawer, item.drawer);
+                        item.drawer = __assign({}, drawer, item.drawer);
                     }
                 }
                 if (item.type === 'del' && typeof item.pop === 'undefined') {
@@ -266,7 +275,7 @@ var STColumnSource = /** @class */ (function () {
                     item.pop = false;
                 }
                 if (item.icon) {
-                    item.icon = Object.assign({}, btnIcon, typeof item.icon === 'string' ? { type: item.icon } : item.icon);
+                    item.icon = __assign({}, btnIcon, (typeof item.icon === 'string' ? { type: item.icon } : item.icon));
                 }
                 item.children = item.children && item.children.length > 0 ? this.btnCoerce(item.children) : [];
                 // i18n
@@ -334,14 +343,14 @@ var STColumnSource = /** @class */ (function () {
         list
             .filter(function (w) { return w.fixed && w.fixed === 'left' && w.width; })
             .forEach(function (item, idx) {
-            return (item["_left"] = list.slice(0, idx).reduce(countReduce, 0) + 'px');
+            return (item._left = list.slice(0, idx).reduce(countReduce, 0) + 'px');
         });
         // right width
         list
             .filter(function (w) { return w.fixed && w.fixed === 'right' && w.width; })
             .reverse()
             .forEach(function (item, idx) {
-            return (item["_right"] =
+            return (item._right =
                 (idx > 0 ? list.slice(-idx).reduce(countReduce, 0) : 0) + 'px');
         });
     };
@@ -355,13 +364,14 @@ var STColumnSource = /** @class */ (function () {
      */
     function (item) {
         // compatible
-        if (item["sorter"] && typeof item["sorter"] === 'function') {
+        if (item.sorter && typeof item.sorter === 'function') {
             return {
                 enabled: true,
-                default: /** @type {?} */ (item.sort),
-                compare: item["sorter"],
-                key: item["sortKey"] || item["indexKey"],
-                reName: item["sortReName"],
+                // tslint:disable-next-line:no-any
+                default: (/** @type {?} */ (item.sort)),
+                compare: item.sorter,
+                key: item.sortKey || item.indexKey,
+                reName: item.sortReName,
             };
         }
         if (typeof item.sort === 'undefined') {
@@ -376,7 +386,7 @@ var STColumnSource = /** @class */ (function () {
             res = item.sort;
         }
         if (!res.key) {
-            res.key = item["indexKey"];
+            res.key = item.indexKey;
         }
         res.enabled = true;
         return res;
@@ -394,17 +404,18 @@ var STColumnSource = /** @class */ (function () {
         /** @type {?} */
         var res = null;
         // compatible
-        if (item["filters"] && item["filters"].length > 0) {
+        if (item.filters && item.filters.length > 0) {
             res = {
-                confirmText: item["filterConfirmText"],
-                clearText: item["filterClearText"],
-                default: item["filtered"],
-                fn: /** @type {?} */ (item.filter),
-                icon: item["filterIcon"],
-                key: item["filterKey"] || item["indexKey"],
-                menus: item["filters"],
-                multiple: item["filterMultiple"],
-                reName: item["filterReName"],
+                confirmText: item.filterConfirmText,
+                clearText: item.filterClearText,
+                default: item.filtered,
+                // tslint:disable-next-line:no-any
+                fn: (/** @type {?} */ (item.filter)),
+                icon: item.filterIcon,
+                key: item.filterKey || item.indexKey,
+                menus: item.filters,
+                multiple: item.filterMultiple,
+                reName: item.filterReName,
             };
         }
         else {
@@ -426,7 +437,7 @@ var STColumnSource = /** @class */ (function () {
             res.icon = "filter";
         }
         if (!res.key) {
-            res.key = item["indexKey"];
+            res.key = item.indexKey;
         }
         res.default = res.menus.findIndex(function (w) { return w.checked; }) !== -1;
         if (this.acl) {
@@ -447,10 +458,10 @@ var STColumnSource = /** @class */ (function () {
      */
     function (item) {
         if (item.renderTitle) {
-            item["__renderTitle"] = this.rowSource.getTitle(item.renderTitle);
+            item.__renderTitle = this.rowSource.getTitle(item.renderTitle);
         }
         if (item.render) {
-            item["__render"] = this.rowSource.getRow(item.render);
+            item.__render = this.rowSource.getRow(item.render);
         }
     };
     /**
@@ -474,7 +485,7 @@ var STColumnSource = /** @class */ (function () {
         /** @type {?} */
         var columns = [];
         /** @type {?} */
-        var copyColumens = /** @type {?} */ (deepCopy(list));
+        var copyColumens = (/** @type {?} */ (deepCopy(list)));
         try {
             for (var copyColumens_1 = __values(copyColumens), copyColumens_1_1 = copyColumens_1.next(); !copyColumens_1_1.done; copyColumens_1_1 = copyColumens_1.next()) {
                 var item = copyColumens_1_1.value;
@@ -486,7 +497,7 @@ var STColumnSource = /** @class */ (function () {
                     if (!Array.isArray(item.index)) {
                         item.index = item.index.split('.');
                     }
-                    item["indexKey"] = item.index.join('.');
+                    item.indexKey = item.index.join('.');
                 }
                 // title
                 if (item.i18n && this.i18nSrv) {
@@ -519,19 +530,20 @@ var STColumnSource = /** @class */ (function () {
                 }
                 // types
                 if (item.type === 'yn') {
-                    item.yn = Object.assign({ truth: true }, item.yn);
+                    item.yn = __assign({ truth: true }, item.yn);
                     // compatible
-                    if (item["ynTruth"] != null)
-                        item.yn.truth = item["ynTruth"];
-                    if (item["ynYes"] != null)
-                        item.yn.yes = item["ynYes"];
-                    if (item["ynNo"] != null)
-                        item.yn.no = item["ynNo"];
+                    if (item.ynTruth != null)
+                        item.yn.truth = item.ynTruth;
+                    if (item.ynYes != null)
+                        item.yn.yes = item.ynYes;
+                    if (item.ynNo != null)
+                        item.yn.no = item.ynNo;
                 }
                 if ((item.type === 'link' && typeof item.click !== 'function') ||
                     (item.type === 'badge' && item.badge == null) ||
                     (item.type === 'tag' && item.tag == null)) {
-                    (/** @type {?} */ (item)).type = '';
+                    // tslint:disable-next-line:no-any
+                    ((/** @type {?} */ (item))).type = '';
                 }
                 // className
                 if (!item.className) {
@@ -542,7 +554,7 @@ var STColumnSource = /** @class */ (function () {
                     }[item.type];
                 }
                 // sorter
-                item["_sort"] = this.sortCoerce(item);
+                item._sort = this.sortCoerce(item);
                 // filter
                 item.filter = this.filterCoerce(item);
                 // buttons
@@ -595,15 +607,15 @@ var STColumnSource = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 var STDataSource = /** @class */ (function () {
-    function STDataSource(http, currenty, date, yn, number, dom) {
+    function STDataSource(http, currentyPipe, datePipe, ynPipe, numberPipe, dom) {
         this.http = http;
-        this.currenty = currenty;
-        this.date = date;
-        this.yn = yn;
-        this.number = number;
+        this.currentyPipe = currentyPipe;
+        this.datePipe = datePipe;
+        this.ynPipe = ynPipe;
+        this.numberPipe = numberPipe;
         this.dom = dom;
     }
     /**
@@ -631,16 +643,18 @@ var STDataSource = /** @class */ (function () {
             if (typeof data === 'string') {
                 isRemote = true;
                 data$ = _this.getByHttp(data, options).pipe(map(function (result) {
+                    // list
                     /** @type {?} */
-                    var ret = deepGet(result, /** @type {?} */ (res.reName.list), []);
+                    var ret = deepGet(result, (/** @type {?} */ (res.reName.list)), []);
                     if (ret == null || !Array.isArray(ret)) {
                         ret = [];
                     }
+                    // total
                     /** @type {?} */
                     var resultTotal = res.reName.total &&
-                        deepGet(result, /** @type {?} */ (res.reName.total), null);
+                        deepGet(result, (/** @type {?} */ (res.reName.total)), null);
                     retTotal = resultTotal == null ? total || 0 : +resultTotal;
-                    return /** @type {?} */ (ret);
+                    return (/** @type {?} */ (ret));
                 }), catchError(function (err) {
                     rejectPromise(err);
                     return [];
@@ -706,9 +720,9 @@ var STDataSource = /** @class */ (function () {
             // data accelerator
             data$ = data$.pipe(map(function (result) {
                 var _loop_1 = function (i, len) {
-                    result[i]["_values"] = columns.map(function (c) { return _this.get(result[i], c, i); });
+                    result[i]._values = columns.map(function (c) { return _this.get(result[i], c, i); });
                     if (options.rowClassName) {
-                        result[i]["_rowClassName"] = options.rowClassName(result[i], i);
+                        result[i]._rowClassName = options.rowClassName(result[i], i);
                     }
                 };
                 for (var i = 0, len = result.length; i < len; i++) {
@@ -743,14 +757,14 @@ var STDataSource = /** @class */ (function () {
     function (item, col, idx) {
         if (col.format) {
             /** @type {?} */
-            var formatRes = /** @type {?} */ (col.format(item, col));
+            var formatRes = col.format(item, col);
             if (~formatRes.indexOf('<')) {
                 return this.dom.bypassSecurityTrustHtml(formatRes);
             }
             return formatRes;
         }
         /** @type {?} */
-        var value = deepGet(item, /** @type {?} */ (col.index), col.default);
+        var value = deepGet(item, (/** @type {?} */ (col.index)), col.default);
         /** @type {?} */
         var ret = value;
         switch (col.type) {
@@ -761,16 +775,16 @@ var STDataSource = /** @class */ (function () {
                 ret = value ? "<img src=\"" + value + "\" class=\"img\">" : '';
                 break;
             case 'number':
-                ret = this.number.transform(value, col.numberDigits);
+                ret = this.numberPipe.transform(value, col.numberDigits);
                 break;
             case 'currency':
-                ret = this.currenty.transform(value);
+                ret = this.currentyPipe.transform(value);
                 break;
             case 'date':
-                ret = this.date.transform(value, col.dateFormat);
+                ret = this.datePipe.transform(value, col.dateFormat);
                 break;
             case 'yn':
-                ret = this.yn.transform(value === col.yn.truth, col.yn.yes, col.yn.no);
+                ret = this.ynPipe.transform(value === col.yn.truth, col.yn.yes, col.yn.no);
                 break;
         }
         return ret == null ? '' : ret;
@@ -791,10 +805,8 @@ var STDataSource = /** @class */ (function () {
         /** @type {?} */
         var method = (req.method || 'GET').toUpperCase();
         /** @type {?} */
-        var params = Object.assign((_a = {},
-            _a[req.reName.pi] = page.zeroIndexed ? pi - 1 : pi,
-            _a[req.reName.ps] = ps,
-            _a), req.params, this.getReqSortMap(singleSort, multiSort, columns), this.getReqFilterMap(columns));
+        var params = __assign((_a = {}, _a[req.reName.pi] = page.zeroIndexed ? pi - 1 : pi, _a[req.reName.ps] = ps, _a), req.params, this.getReqSortMap(singleSort, multiSort, columns), this.getReqFilterMap(columns));
+        // tslint:disable-next-line:no-any
         /** @type {?} */
         var reqOptions = {
             params: params,
@@ -803,24 +815,28 @@ var STDataSource = /** @class */ (function () {
         };
         if (method === 'POST' && req.allInBody === true) {
             reqOptions = {
-                body: Object.assign({}, req.body, params),
+                body: __assign({}, req.body, params),
                 headers: req.headers,
             };
         }
         return this.http.request(method, url, reqOptions);
     };
+    //#region sort
+    //#region sort
     /**
      * @param {?} columns
      * @return {?}
      */
-    STDataSource.prototype.getValidSort = /**
+    STDataSource.prototype.getValidSort = 
+    //#region sort
+    /**
      * @param {?} columns
      * @return {?}
      */
     function (columns) {
         return columns
-            .filter(function (item) { return item["_sort"] && item["_sort"].enabled && item["_sort"].default; })
-            .map(function (item) { return item["_sort"]; });
+            .filter(function (item) { return item._sort && item._sort.enabled && item._sort.default; })
+            .map(function (item) { return item._sort; });
     };
     /**
      * @param {?} columns
@@ -870,14 +886,16 @@ var STDataSource = /** @class */ (function () {
         if (!multiSort && sortList.length === 0)
             return ret;
         if (multiSort) {
+            /** @type {?} */
+            var ms_1 = __assign({ key: 'sort', separator: '-', nameSeparator: '.' }, multiSort);
             sortList.forEach(function (item) {
                 ret[item.key] = (item.reName || {})[item.default] || item.default;
             });
             // 合并处理
             ret = (_a = {},
-                _a[multiSort.key] = Object.keys(ret)
-                    .map(function (key) { return key + multiSort.nameSeparator + ret[key]; })
-                    .join(multiSort.separator),
+                _a[ms_1.key] = Object.keys(ret)
+                    .map(function (key) { return key + ms_1.nameSeparator + ret[key]; })
+                    .join(ms_1.separator),
                 _a);
         }
         else {
@@ -895,11 +913,18 @@ var STDataSource = /** @class */ (function () {
         }
         return ret;
     };
+    //#endregion
+    //#region filter
+    //#endregion
+    //#region filter
     /**
      * @param {?} columns
      * @return {?}
      */
-    STDataSource.prototype.getReqFilterMap = /**
+    STDataSource.prototype.getReqFilterMap = 
+    //#endregion
+    //#region filter
+    /**
      * @param {?} columns
      * @return {?}
      */
@@ -917,7 +942,7 @@ var STDataSource = /** @class */ (function () {
             else {
                 obj[col.filter.key] = values.map(function (i) { return i.value; }).join(',');
             }
-            ret = Object.assign(ret, obj);
+            ret = __assign({}, ret, obj);
         });
         return ret;
     };
@@ -938,23 +963,28 @@ var STDataSource = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 var STExport = /** @class */ (function () {
     function STExport(xlsxSrv) {
         this.xlsxSrv = xlsxSrv;
     }
+    // tslint:disable-next-line:no-any
+    // tslint:disable-next-line:no-any
     /**
      * @param {?} item
      * @param {?} col
      * @return {?}
      */
-    STExport.prototype._stGet = /**
+    STExport.prototype._stGet = 
+    // tslint:disable-next-line:no-any
+    /**
      * @param {?} item
      * @param {?} col
      * @return {?}
      */
     function (item, col) {
+        // tslint:disable-next-line:no-any
         /** @type {?} */
         var ret = { t: 's', v: '' };
         if (col.format) {
@@ -962,7 +992,7 @@ var STExport = /** @class */ (function () {
         }
         else {
             /** @type {?} */
-            var val = deepGet(item, /** @type {?} */ (col.index), '');
+            var val = deepGet(item, (/** @type {?} */ (col.index)), '');
             ret.v = val;
             switch (col.type) {
                 case 'currency':
@@ -972,7 +1002,7 @@ var STExport = /** @class */ (function () {
                     ret.t = 'd';
                     break;
                 case 'yn':
-                    ret.v = ret.v === col["ynTruth"] ? col["ynYes"] || '是' : col["ynNo"] || '否';
+                    ret.v = ret.v === col.ynTruth ? col.ynYes || '是' : col.ynNo || '否';
                     break;
             }
         }
@@ -1003,7 +1033,7 @@ var STExport = /** @class */ (function () {
         var dc = opt._d.length;
         // column
         for (var i = 0; i < cc; i++) {
-            sheet[String.fromCharCode(65 + i) + "1"] = {
+            sheet[String.fromCharCode(i + 65) + "1"] = {
                 t: 's',
                 v: colData[i].title,
             };
@@ -1011,11 +1041,11 @@ var STExport = /** @class */ (function () {
         // content
         for (var i = 0; i < dc; i++) {
             for (var j = 0; j < cc; j++) {
-                sheet["" + String.fromCharCode(65 + j) + (i + 2)] = this._stGet(opt._d[i], colData[j]);
+                sheet["" + String.fromCharCode(j + 65) + (i + 2)] = this._stGet(opt._d[i], colData[j]);
             }
         }
         if (cc > 0 && dc > 0) {
-            sheet['!ref'] = "A1:" + String.fromCharCode(65 + cc - 1) + (dc + 1);
+            sheet['!ref'] = "A1:" + String.fromCharCode(cc + 65 - 1) + (dc + 1);
         }
         return sheets;
     };
@@ -1028,8 +1058,6 @@ var STExport = /** @class */ (function () {
      * @return {?}
      */
     function (opt) {
-        if (!this.xlsxSrv)
-            throw new Error("muse be import 'XlsxModule' module, but got null");
         /** @type {?} */
         var sheets = this.genSheet(opt);
         return this.xlsxSrv.export({
@@ -1050,13 +1078,13 @@ var STExport = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 var STComponent = /** @class */ (function () {
     // #endregion
-    function STComponent(cdRef, cog, router, el, renderer, exportSrv, i18nSrv, modalHelper, drawerHelper, doc, columnSource, dataSource, delonI18n) {
+    function STComponent(i18nSrv, cdr, cog, router, el, renderer, exportSrv, modalHelper, drawerHelper, doc, columnSource, dataSource, delonI18n) {
         var _this = this;
-        this.cdRef = cdRef;
+        this.cdr = cdr;
         this.cog = cog;
         this.router = router;
         this.el = el;
@@ -1069,27 +1097,16 @@ var STComponent = /** @class */ (function () {
         this.dataSource = dataSource;
         this.delonI18n = delonI18n;
         this.totalTpl = "";
+        // tslint:disable-next-line:no-any
         this.locale = {};
         this._data = [];
         this._isPagination = true;
         this._allChecked = false;
         this._indeterminate = false;
         this._columns = [];
-        /**
-         * 列描述
-         */
         this.columns = [];
-        /**
-         * 每页数量，当设置为 `0` 表示不分页，默认：`10`
-         */
         this.ps = 10;
-        /**
-         * 当前页码
-         */
         this.pi = 1;
-        /**
-         * 数据总量
-         */
         this.total = 0;
         /**
          * 是否显示Loading
@@ -1110,6 +1127,10 @@ var STComponent = /** @class */ (function () {
          */
         this.singleSort = null;
         /**
+         * 行单击多少时长之类为双击（单位：毫秒），默认：`200`
+         */
+        this.rowClickTime = 200;
+        /**
          * 请求异常时回调
          */
         this.error = new EventEmitter();
@@ -1117,11 +1138,15 @@ var STComponent = /** @class */ (function () {
          * 变化时回调，包括：`pi`、`ps`、`checkbox`、`radio`、`sort`、`filter`、`click`、`dblClick` 变动
          */
         this.change = new EventEmitter();
-        /**
-         * 行单击多少时长之类为双击（单位：毫秒），默认：`200`
-         */
-        this.rowClickTime = 200;
         this.rowClickCount = 0;
+        /** @type {?} */
+        var copyCog = (/** @type {?} */ (deepCopy(cog)));
+        Object.keys(copyCog)
+            .filter(function (key) { return !['multiSort'].includes(key); })
+            .forEach(function (key) { return _this[key] = copyCog[key]; });
+        if (copyCog.multiSort && copyCog.multiSort.global !== false) {
+            this.multiSort = copyCog.multiSort;
+        }
         this.delonI18n$ = this.delonI18n.change.subscribe(function () {
             _this.locale = _this.delonI18n.getData('st');
             if (_this._columns.length > 0) {
@@ -1129,7 +1154,6 @@ var STComponent = /** @class */ (function () {
                 _this.cd();
             }
         });
-        Object.assign(this, deepCopy(cog));
         if (i18nSrv) {
             this.i18n$ = i18nSrv.change
                 .pipe(filter(function () { return _this._columns.length > 0; }))
@@ -1152,7 +1176,7 @@ var STComponent = /** @class */ (function () {
         function (value) {
             var req = this.cog.req;
             /** @type {?} */
-            var item = Object.assign({}, req, value);
+            var item = __assign({}, req, value);
             if (item.reName == null) {
                 item.reName = deepCopy(req.reName);
             }
@@ -1177,8 +1201,8 @@ var STComponent = /** @class */ (function () {
         function (value) {
             var res = this.cog.res;
             /** @type {?} */
-            var item = Object.assign({}, res, value);
-            item.reName = Object.assign({}, res.reName, item.reName);
+            var item = __assign({}, res, value);
+            item.reName = __assign({}, res.reName, item.reName);
             if (!Array.isArray(item.reName.list))
                 item.reName.list = item.reName.list.split('.');
             if (!Array.isArray(item.reName.total))
@@ -1205,7 +1229,7 @@ var STComponent = /** @class */ (function () {
             this.clonePage = value;
             var page = this.cog.page;
             /** @type {?} */
-            var item = Object.assign({}, deepCopy(page), value);
+            var item = __assign({}, deepCopy(page), value);
             var total = item.total;
             if (typeof total === 'string' && total.length) {
                 this.totalTpl = total;
@@ -1230,7 +1254,10 @@ var STComponent = /** @class */ (function () {
         function () {
             return this._multiSort;
         },
-        set: /**
+        // tslint:disable-next-line:no-any
+        set: 
+        // tslint:disable-next-line:no-any
+        /**
          * @param {?} value
          * @return {?}
          */
@@ -1239,11 +1266,7 @@ var STComponent = /** @class */ (function () {
                 this._multiSort = null;
                 return;
             }
-            this._multiSort = Object.assign(/** @type {?} */ ({
-                key: 'sort',
-                separator: '-',
-                nameSeparator: '.',
-            }), typeof value === 'object' ? value : {});
+            this._multiSort = __assign({}, (typeof value === 'object' ? value : {}));
         },
         enumerable: true,
         configurable: true
@@ -1255,7 +1278,7 @@ var STComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        this.cdRef.detectChanges();
+        this.cdr.detectChanges();
     };
     /**
      * @param {?} total
@@ -1275,12 +1298,16 @@ var STComponent = /** @class */ (function () {
                 .replace('{{range[1]}}', range[1])
             : '';
     };
+    // tslint:disable-next-line:no-any
+    // tslint:disable-next-line:no-any
     /**
      * @param {?} type
      * @param {?=} data
      * @return {?}
      */
-    STComponent.prototype.changeEmit = /**
+    STComponent.prototype.changeEmit = 
+    // tslint:disable-next-line:no-any
+    /**
      * @param {?} type
      * @param {?=} data
      * @return {?}
@@ -1298,10 +1325,14 @@ var STComponent = /** @class */ (function () {
         }
         this.change.emit(res);
     };
+    //#region data
+    //#region data
     /**
      * @return {?}
      */
-    STComponent.prototype._load = /**
+    STComponent.prototype._load = 
+    //#region data
+    /**
      * @return {?}
      */
     function () {
@@ -1320,7 +1351,7 @@ var STComponent = /** @class */ (function () {
             columns: this._columns,
             singleSort: singleSort,
             multiSort: multiSort,
-            rowClassName: rowClassName
+            rowClassName: rowClassName,
         })
             .then(function (result) {
             _this.loading = false;
@@ -1364,14 +1395,18 @@ var STComponent = /** @class */ (function () {
     /** 清空所有状态 */
     /**
      * 清空所有状态
-     * @return {?}
+     * @template THIS
+     * @this {THIS}
+     * @return {THIS}
      */
     STComponent.prototype.clearStatus = /**
      * 清空所有状态
-     * @return {?}
+     * @template THIS
+     * @this {THIS}
+     * @return {THIS}
      */
     function () {
-        return this.clearCheck()
+        return (/** @type {?} */ (this)).clearCheck()
             .clearRadio()
             .clearFilter()
             .clearSort();
@@ -1406,8 +1441,7 @@ var STComponent = /** @class */ (function () {
         if (typeof extraParams !== 'undefined') {
             this._req.params =
                 options && options.merge
-                    ? Object.assign(this._req.params, extraParams)
-                    : extraParams;
+                    ? __assign({}, this._req.params, extraParams) : extraParams;
         }
         this._change('pi');
     };
@@ -1474,7 +1508,7 @@ var STComponent = /** @class */ (function () {
         if (!this.page.toTop)
             return;
         /** @type {?} */
-        var el = /** @type {?} */ (this.el.nativeElement);
+        var el = (/** @type {?} */ (this.el.nativeElement));
         if (this.scroll) {
             el.querySelector('.ant-table-body').scrollTo(0, 0);
             return;
@@ -1534,7 +1568,7 @@ var STComponent = /** @class */ (function () {
      */
     function (e, item, index) {
         var _this = this;
-        if ((/** @type {?} */ (e.target)).nodeName === 'INPUT')
+        if (((/** @type {?} */ (e.target))).nodeName === 'INPUT')
             return;
         ++this.rowClickCount;
         if (this.rowClickCount !== 1)
@@ -1567,20 +1601,28 @@ var STComponent = /** @class */ (function () {
         if (!Array.isArray(data)) {
             data = [data];
         }
-        (/** @type {?} */ (data)).map(function (item) { return _this._data.indexOf(item); })
+        ((/** @type {?} */ (data))).map(function (item) { return _this._data.indexOf(item); })
             .filter(function (pos) { return pos !== -1; })
             .forEach(function (pos) { return _this._data.splice(pos, 1); });
         this.cd();
     };
     //#endregion
     //#region sort
+    // tslint:disable-next-line:no-any
+    //#endregion
+    //#region sort
+    // tslint:disable-next-line:no-any
     /**
      * @param {?} col
      * @param {?} idx
      * @param {?} value
      * @return {?}
      */
-    STComponent.prototype.sort = /**
+    STComponent.prototype.sort = 
+    //#endregion
+    //#region sort
+    // tslint:disable-next-line:no-any
+    /**
      * @param {?} col
      * @param {?} idx
      * @param {?} value
@@ -1588,10 +1630,10 @@ var STComponent = /** @class */ (function () {
      */
     function (col, idx, value) {
         if (this.multiSort) {
-            col["_sort"].default = value;
+            col._sort.default = value;
         }
         else {
-            this._columns.forEach(function (item, index) { return (item["_sort"].default = index === idx ? value : null); });
+            this._columns.forEach(function (item, index) { return (item._sort.default = index === idx ? value : null); });
         }
         this._load();
         /** @type {?} */
@@ -1603,20 +1645,31 @@ var STComponent = /** @class */ (function () {
         this.changeEmit('sort', res);
     };
     /**
-     * @return {?}
+     * @template THIS
+     * @this {THIS}
+     * @return {THIS}
      */
     STComponent.prototype.clearSort = /**
-     * @return {?}
+     * @template THIS
+     * @this {THIS}
+     * @return {THIS}
      */
     function () {
-        this._columns.forEach(function (item) { return (item["_sort"].default = null); });
-        return this;
+        (/** @type {?} */ (this))._columns.forEach(function (item) { return (item._sort.default = null); });
+        return (/** @type {?} */ (this));
     };
+    //#endregion
+    //#region filter
+    //#endregion
+    //#region filter
     /**
      * @param {?} col
      * @return {?}
      */
-    STComponent.prototype.handleFilter = /**
+    STComponent.prototype.handleFilter = 
+    //#endregion
+    //#region filter
+    /**
      * @param {?} col
      * @return {?}
      */
@@ -1665,137 +1718,185 @@ var STComponent = /** @class */ (function () {
         item.checked = checked;
     };
     /**
-     * @return {?}
+     * @template THIS
+     * @this {THIS}
+     * @return {THIS}
      */
     STComponent.prototype.clearFilter = /**
-     * @return {?}
+     * @template THIS
+     * @this {THIS}
+     * @return {THIS}
      */
     function () {
-        this._columns
+        (/** @type {?} */ (this))._columns
             .filter(function (w) { return w.filter && w.filter.default === true; })
             .forEach(function (col) {
             col.filter.default = false;
             col.filter.menus.forEach(function (f) { return (f.checked = false); });
         });
-        return this;
+        return (/** @type {?} */ (this));
     };
     //#endregion
     //#region checkbox
     /** 清除所有 `checkbox` */
+    //#endregion
+    //#region checkbox
     /**
      * 清除所有 `checkbox`
-     * @return {?}
+     * @template THIS
+     * @this {THIS}
+     * @return {THIS}
      */
-    STComponent.prototype.clearCheck = /**
+    STComponent.prototype.clearCheck = 
+    //#endregion
+    //#region checkbox
+    /**
      * 清除所有 `checkbox`
-     * @return {?}
+     * @template THIS
+     * @this {THIS}
+     * @return {THIS}
      */
     function () {
-        return this._checkAll(false);
+        return (/** @type {?} */ (this))._checkAll(false);
     };
     /**
-     * @return {?}
+     * @template THIS
+     * @this {THIS}
+     * @return {THIS}
      */
     STComponent.prototype._refCheck = /**
-     * @return {?}
+     * @template THIS
+     * @this {THIS}
+     * @return {THIS}
      */
     function () {
         /** @type {?} */
-        var validData = this._data.filter(function (w) { return !w.disabled; });
+        var validData = (/** @type {?} */ (this))._data.filter(function (w) { return !w.disabled; });
         /** @type {?} */
         var checkedList = validData.filter(function (w) { return w.checked === true; });
-        this._allChecked =
+        (/** @type {?} */ (this))._allChecked =
             checkedList.length > 0 && checkedList.length === validData.length;
         /** @type {?} */
         var allUnChecked = validData.every(function (value) { return !value.checked; });
-        this._indeterminate = !this._allChecked && !allUnChecked;
-        this.cd();
-        return this;
+        (/** @type {?} */ (this))._indeterminate = !(/** @type {?} */ (this))._allChecked && !allUnChecked;
+        (/** @type {?} */ (this)).cd();
+        return (/** @type {?} */ (this));
     };
     /**
+     * @template THIS
+     * @this {THIS}
      * @param {?=} checked
-     * @return {?}
+     * @return {THIS}
      */
     STComponent.prototype._checkAll = /**
+     * @template THIS
+     * @this {THIS}
      * @param {?=} checked
-     * @return {?}
+     * @return {THIS}
      */
     function (checked) {
-        checked = typeof checked === 'undefined' ? this._allChecked : checked;
-        this._data.filter(function (w) { return !w.disabled; }).forEach(function (i) { return (i.checked = checked); });
-        return this._refCheck()._checkNotify();
+        checked = typeof checked === 'undefined' ? (/** @type {?} */ (this))._allChecked : checked;
+        (/** @type {?} */ (this))._data.filter(function (w) { return !w.disabled; }).forEach(function (i) { return (i.checked = checked); });
+        return (/** @type {?} */ (this))._refCheck()._checkNotify();
     };
     /**
+     * @template THIS
+     * @this {THIS}
      * @param {?} i
      * @param {?} value
-     * @return {?}
+     * @return {THIS}
      */
     STComponent.prototype._checkSelection = /**
+     * @template THIS
+     * @this {THIS}
      * @param {?} i
      * @param {?} value
-     * @return {?}
+     * @return {THIS}
      */
     function (i, value) {
         i.checked = value;
-        return this._refCheck()._checkNotify();
+        return (/** @type {?} */ (this))._refCheck()._checkNotify();
     };
     /**
+     * @template THIS
+     * @this {THIS}
      * @param {?} row
-     * @return {?}
+     * @return {THIS}
      */
     STComponent.prototype._rowSelection = /**
+     * @template THIS
+     * @this {THIS}
      * @param {?} row
-     * @return {?}
+     * @return {THIS}
      */
     function (row) {
-        row.select(this._data);
-        return this._refCheck()._checkNotify();
+        row.select((/** @type {?} */ (this))._data);
+        return (/** @type {?} */ (this))._refCheck()._checkNotify();
     };
     /**
-     * @return {?}
+     * @template THIS
+     * @this {THIS}
+     * @return {THIS}
      */
     STComponent.prototype._checkNotify = /**
-     * @return {?}
+     * @template THIS
+     * @this {THIS}
+     * @return {THIS}
      */
     function () {
         /** @type {?} */
-        var res = this._data.filter(function (w) { return !w.disabled && w.checked === true; });
-        this.changeEmit('checkbox', res);
-        return this;
+        var res = (/** @type {?} */ (this))._data.filter(function (w) { return !w.disabled && w.checked === true; });
+        (/** @type {?} */ (this)).changeEmit('checkbox', res);
+        return (/** @type {?} */ (this));
     };
     //#endregion
     //#region radio
     /** 清除所有 `radio` */
+    //#endregion
+    //#region radio
     /**
      * 清除所有 `radio`
-     * @return {?}
+     * @template THIS
+     * @this {THIS}
+     * @return {THIS}
      */
-    STComponent.prototype.clearRadio = /**
+    STComponent.prototype.clearRadio = 
+    //#endregion
+    //#region radio
+    /**
      * 清除所有 `radio`
-     * @return {?}
+     * @template THIS
+     * @this {THIS}
+     * @return {THIS}
      */
     function () {
-        this._data.filter(function (w) { return w.checked; }).forEach(function (item) { return (item.checked = false); });
-        this.changeEmit('radio', null);
-        return this;
+        (/** @type {?} */ (this))._data.filter(function (w) { return w.checked; }).forEach(function (item) { return (item.checked = false); });
+        (/** @type {?} */ (this)).changeEmit('radio', null);
+        return (/** @type {?} */ (this));
     };
     /**
+     * @template THIS
+     * @this {THIS}
      * @param {?} checked
      * @param {?} item
-     * @return {?}
+     * @return {THIS}
      */
     STComponent.prototype._refRadio = /**
+     * @template THIS
+     * @this {THIS}
      * @param {?} checked
      * @param {?} item
-     * @return {?}
+     * @return {THIS}
      */
     function (checked, item) {
         // if (item.disabled === true) return;
-        this._data.filter(function (w) { return !w.disabled; }).forEach(function (i) { return (i.checked = false); });
+        (/** @type {?} */ (this))._data.filter(function (w) { return !w.disabled; }).forEach(function (i) { return (i.checked = false); });
         item.checked = checked;
-        this.changeEmit('radio', item);
-        return this;
+        (/** @type {?} */ (this)).changeEmit('radio', item);
+        return (/** @type {?} */ (this));
     };
+    //#endregion
+    //#region buttons
     //#endregion
     //#region buttons
     /**
@@ -1804,7 +1905,10 @@ var STComponent = /** @class */ (function () {
      * @param {?} btn
      * @return {?}
      */
-    STComponent.prototype._btnClick = /**
+    STComponent.prototype._btnClick = 
+    //#endregion
+    //#region buttons
+    /**
      * @param {?} e
      * @param {?} record
      * @param {?} btn
@@ -1822,8 +1926,10 @@ var STComponent = /** @class */ (function () {
             var modal = btn.modal;
             obj[modal.paramsName] = record;
             /** @type {?} */
-            var options = Object.assign({}, modal);
-            (/** @type {?} */ (this.modalHelper[btn.type === 'modal' ? 'create' : 'createStatic']))(modal.component, Object.assign(obj, modal.params && modal.params(record)), options)
+            var options = __assign({}, modal);
+            ((/** @type {?} */ (this.modalHelper[btn.type === 'modal' ? 'create' : 'createStatic'
+            // tslint:disable-next-line:no-any
+            ])))(modal.component, __assign({}, obj, (modal.params && modal.params(record))), options)
                 .pipe(filter(function (w) { return typeof w !== 'undefined'; }))
                 .subscribe(function (res) { return _this.btnCallback(record, btn, res); });
             return;
@@ -1834,7 +1940,7 @@ var STComponent = /** @class */ (function () {
             var drawer = btn.drawer;
             obj[drawer.paramsName] = record;
             this.drawerHelper
-                .create(drawer.title, drawer.component, Object.assign(obj, drawer.params && drawer.params(record)), Object.assign({}, drawer))
+                .create(drawer.title, drawer.component, __assign({}, obj, (drawer.params && drawer.params(record))), __assign({}, drawer))
                 .pipe(filter(function (w) { return typeof w !== 'undefined'; }))
                 .subscribe(function (res) { return _this.btnCallback(record, btn, res); });
             return;
@@ -1849,13 +1955,17 @@ var STComponent = /** @class */ (function () {
         }
         this.btnCallback(record, btn);
     };
+    // tslint:disable-next-line:no-any
+    // tslint:disable-next-line:no-any
     /**
      * @param {?} record
      * @param {?} btn
      * @param {?=} modal
      * @return {?}
      */
-    STComponent.prototype.btnCallback = /**
+    STComponent.prototype.btnCallback = 
+    // tslint:disable-next-line:no-any
+    /**
      * @param {?} record
      * @param {?} btn
      * @param {?=} modal
@@ -1913,13 +2023,18 @@ var STComponent = /** @class */ (function () {
      * @param newData 重新指定数据，例如希望导出所有数据非常有用
      * @param opt 额外参数
      */
+    //#endregion
+    //#region export
     /**
      * 导出当前页，确保已经注册 `XlsxModule`
      * @param {?=} newData 重新指定数据，例如希望导出所有数据非常有用
      * @param {?=} opt 额外参数
      * @return {?}
      */
-    STComponent.prototype.export = /**
+    STComponent.prototype.export = 
+    //#endregion
+    //#region export
+    /**
      * 导出当前页，确保已经注册 `XlsxModule`
      * @param {?=} newData 重新指定数据，例如希望导出所有数据非常有用
      * @param {?=} opt 额外参数
@@ -1928,16 +2043,20 @@ var STComponent = /** @class */ (function () {
     function (newData, opt) {
         var _this = this;
         (newData ? of(newData) : of(this._data)).subscribe(function (res) {
-            return _this.exportSrv.export(Object.assign({}, opt, /** @type {?} */ ({
+            return _this.exportSrv.export(__assign({}, opt, {
                 _d: res,
                 _c: _this._columns,
-            })));
+            }));
         });
     };
+    //#endregion
+    //#endregion
     /**
      * @return {?}
      */
-    STComponent.prototype.updateColumns = /**
+    STComponent.prototype.updateColumns = 
+    //#endregion
+    /**
      * @return {?}
      */
     function () {
@@ -2008,19 +2127,18 @@ var STComponent = /** @class */ (function () {
                         YNPipe,
                         DecimalPipe,
                     ],
-                    preserveWhitespaces: false,
                     changeDetection: ChangeDetectionStrategy.OnPush
                 }] }
     ];
     /** @nocollapse */
     STComponent.ctorParameters = function () { return [
+        { type: undefined, decorators: [{ type: Optional }, { type: Inject, args: [ALAIN_I18N_TOKEN,] }] },
         { type: ChangeDetectorRef },
         { type: STConfig },
         { type: Router },
         { type: ElementRef },
         { type: Renderer2 },
         { type: STExport },
-        { type: undefined, decorators: [{ type: Optional }, { type: Inject, args: [ALAIN_I18N_TOKEN,] }] },
         { type: ModalHelper },
         { type: DrawerHelper },
         { type: undefined, decorators: [{ type: Inject, args: [DOCUMENT,] }] },
@@ -2051,10 +2169,10 @@ var STComponent = /** @class */ (function () {
         expand: [{ type: Input }],
         noResult: [{ type: Input }],
         widthConfig: [{ type: Input }],
-        error: [{ type: Output }],
-        change: [{ type: Output }],
         rowClickTime: [{ type: Input }],
-        responsiveHideHeaderFooter: [{ type: Input }]
+        responsiveHideHeaderFooter: [{ type: Input }],
+        error: [{ type: Output }],
+        change: [{ type: Output }]
     };
     __decorate([
         InputNumber(),
@@ -2093,22 +2211,13 @@ var STComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 /** @type {?} */
 var COMPONENTS = [STComponent, STRowDirective];
 var STModule = /** @class */ (function () {
     function STModule() {
     }
-    /**
-     * @return {?}
-     */
-    STModule.forRoot = /**
-     * @return {?}
-     */
-    function () {
-        return { ngModule: STModule, providers: [STConfig] };
-    };
     STModule.decorators = [
         { type: NgModule, args: [{
                     schemas: [NO_ERRORS_SCHEMA],
@@ -2128,12 +2237,12 @@ var STModule = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 
 export { STComponent, STRowDirective, STConfig, STModule, STColumnSource, STDataSource, STExport, STRowSource as ɵa };

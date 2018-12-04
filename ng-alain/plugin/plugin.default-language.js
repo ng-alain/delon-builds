@@ -1,8 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const schematics_1 = require("@angular-devkit/schematics");
-const project_1 = require("../utils/project");
 const lang_config_1 = require("../core/lang.config");
+const project_1 = require("../utils/project");
+// tslint:disable-next-line:no-any
 function pluginDefaultLanguage(options) {
     return (host, context) => {
         if (options.type !== 'add') {

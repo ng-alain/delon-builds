@@ -1,12 +1,12 @@
 import { Observable } from 'rxjs';
-import { ITokenService, ITokenModel } from './interface';
-import { IStore } from '../store/interface';
 import { DelonAuthConfig } from '../auth.config';
+import { IStore } from '../store/interface';
+import { ITokenModel, ITokenService } from './interface';
+export declare function DA_SERVICE_TOKEN_FACTORY(): ITokenService;
 export declare class TokenService implements ITokenService {
     private options;
     private store;
     private change$;
-    private data;
     private _redirect;
     constructor(options: DelonAuthConfig, store: IStore);
     readonly login_url: string;

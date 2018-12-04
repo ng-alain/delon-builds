@@ -1,4 +1,4 @@
-import { STMultiSort, STReq, STRes, STPage, STColumnButtonModalConfig, STColumnButtonDrawerConfig, STIcon, STRowClassName, STSingleSort } from './table.interfaces';
+import { STColumnButtonDrawerConfig, STColumnButtonModalConfig, STIcon, STMultiSort, STPage, STReq, STRes, STRowClassName, STSingleSort } from './table.interfaces';
 export declare class STConfig {
     /**
      * 起始页码，默认为：`1`
@@ -42,7 +42,7 @@ export declare class STConfig {
     /**
      * 是否多排序，当 `sort` 多个相同值时自动合并，建议后端支持时使用
      */
-    multiSort?: boolean | STMultiSort;
+    multiSort?: STMultiSort;
     /**
      * 按钮模态框配置
      */

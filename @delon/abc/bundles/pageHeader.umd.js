@@ -4,14 +4,14 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('rxjs'), require('rxjs/operators'), require('@delon/theme'), require('@delon/abc/reuse-tab'), require('@angular/core'), require('@angular/common'), require('@angular/router'), require('ng-zorro-antd'), require('@delon/util')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/page-header', ['exports', 'rxjs', 'rxjs/operators', '@delon/theme', '@delon/abc/reuse-tab', '@angular/core', '@angular/common', '@angular/router', 'ng-zorro-antd', '@delon/util'], factory) :
-    (factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['page-header'] = {}),global.rxjs,global.rxjs.operators,global.delon.theme,global.delon.abc['reuse-tab'],global.ng.core,global.ng.common,global.ng.router,global.ngZorro.antd,global.delon.util));
-}(this, (function (exports,rxjs,operators,theme,reuseTab,core,common,router,ngZorroAntd,util) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('rxjs'), require('rxjs/operators'), require('@delon/abc/reuse-tab'), require('@delon/theme'), require('@angular/common'), require('@angular/core'), require('@angular/router'), require('@delon/util'), require('ng-zorro-antd')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/page-header', ['exports', 'rxjs', 'rxjs/operators', '@delon/abc/reuse-tab', '@delon/theme', '@angular/common', '@angular/core', '@angular/router', '@delon/util', 'ng-zorro-antd'], factory) :
+    (factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['page-header'] = {}),global.rxjs,global.rxjs.operators,global.delon.abc['reuse-tab'],global.delon.theme,global.ng.common,global.ng.core,global.ng.router,global.delon.util,global.ngZorro.antd));
+}(this, (function (exports,rxjs,operators,reuseTab,theme,common,i0,router,util,ngZorroAntd) { 'use strict';
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
     var PageHeaderConfig = /** @class */ (function () {
         function PageHeaderConfig() {
@@ -49,6 +49,10 @@
              */
             this.fixedOffsetTop = 64;
         }
+        PageHeaderConfig.decorators = [
+            { type: i0.Injectable, args: [{ providedIn: 'root' },] }
+        ];
+        /** @nocollapse */ PageHeaderConfig.ngInjectableDef = i0.defineInjectable({ factory: function PageHeaderConfig_Factory() { return new PageHeaderConfig(); }, token: PageHeaderConfig, providedIn: "root" });
         return PageHeaderConfig;
     }());
 
@@ -112,11 +116,11 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
     var PageHeaderComponent = /** @class */ (function () {
         // #endregion
-        function PageHeaderComponent(cog, settings, renderer, router$$1, menuSrv, i18nSrv, titleSrv, reuseSrv) {
+        function PageHeaderComponent(cog, settings, renderer, router$$1, menuSrv, i18nSrv, titleSrv, reuseSrv, cdr) {
             var _this = this;
             this.renderer = renderer;
             this.router = router$$1;
@@ -124,14 +128,16 @@
             this.i18nSrv = i18nSrv;
             this.titleSrv = titleSrv;
             this.reuseSrv = reuseSrv;
+            this.cdr = cdr;
             this.inited = false;
+            this.paths = [];
             this.loading = false;
             this.wide = false;
-            this.paths = [];
             Object.assign(this, cog);
             this.set$ = settings.notify
                 .pipe(operators.filter(function (w) { return _this.affix && w.type === 'layout' && w.name === 'collapsed'; }))
                 .subscribe(function () { return _this.affix.updatePosition({}); });
+            // tslint:disable-next-line:no-any
             /** @type {?} */
             var data$ = [
                 this.router.events.pipe(operators.filter(function (event) { return event instanceof router.NavigationEnd; })),
@@ -162,7 +168,7 @@
              * @param {?} value
              * @return {?}
              */ function (value) {
-                if (value instanceof core.TemplateRef) {
+                if (value instanceof i0.TemplateRef) {
                     this._title = null;
                     this._titleTpl = value;
                 }
@@ -182,71 +188,77 @@
          */
             function () {
                 this.setTitle().genBreadcrumb();
+                this.cdr.detectChanges();
             };
         /**
-         * @return {?}
+         * @template THIS
+         * @this {THIS}
+         * @return {THIS}
          */
         PageHeaderComponent.prototype.genBreadcrumb = /**
-         * @return {?}
+         * @template THIS
+         * @this {THIS}
+         * @return {THIS}
          */
             function () {
                 var _this = this;
-                if (this.breadcrumb || !this.autoBreadcrumb || this.menus.length <= 0) {
-                    this.paths = [];
+                if (( /** @type {?} */(this)).breadcrumb || !( /** @type {?} */(this)).autoBreadcrumb || ( /** @type {?} */(this)).menus.length <= 0) {
+                    ( /** @type {?} */(this)).paths = [];
                     return;
                 }
                 /** @type {?} */
                 var paths = [];
-                this.menus.forEach(function (item) {
+                ( /** @type {?} */(this)).menus.forEach(function (item) {
                     if (typeof item.hideInBreadcrumb !== 'undefined' && item.hideInBreadcrumb)
                         return;
                     /** @type {?} */
                     var title = item.text;
-                    if (item.i18n && _this.i18nSrv)
-                        title = _this.i18nSrv.fanyi(item.i18n);
+                    if (item.i18n && ( /** @type {?} */(_this)).i18nSrv)
+                        title = ( /** @type {?} */(_this)).i18nSrv.fanyi(item.i18n);
                     paths.push({ title: title, link: item.link && [item.link] });
                 });
                 // add home
-                if (this.home) {
+                if (( /** @type {?} */(this)).home) {
                     paths.splice(0, 0, {
-                        title: (this.homeI18n &&
-                            this.i18nSrv &&
-                            this.i18nSrv.fanyi(this.homeI18n)) ||
-                            this.home,
-                        link: [this.homeLink],
+                        title: (( /** @type {?} */(this)).homeI18n && ( /** @type {?} */(this)).i18nSrv && ( /** @type {?} */(this)).i18nSrv.fanyi(( /** @type {?} */(this)).homeI18n)) || ( /** @type {?} */(this)).home,
+                        link: [( /** @type {?} */(this)).homeLink],
                     });
                 }
-                this.paths = paths;
-                return this;
+                ( /** @type {?} */(this)).paths = paths;
+                return ( /** @type {?} */(this));
             };
         /**
-         * @return {?}
+         * @template THIS
+         * @this {THIS}
+         * @return {THIS}
          */
         PageHeaderComponent.prototype.setTitle = /**
-         * @return {?}
+         * @template THIS
+         * @this {THIS}
+         * @return {THIS}
          */
             function () {
-                if (typeof this._title === 'undefined' &&
-                    typeof this._titleTpl === 'undefined' &&
-                    this.autoTitle &&
-                    this.menus.length > 0) {
+                if (typeof ( /** @type {?} */(this))._title === 'undefined' &&
+                    typeof ( /** @type {?} */(this))._titleTpl === 'undefined' &&
+                    ( /** @type {?} */(this)).autoTitle &&
+                    ( /** @type {?} */(this)).menus.length > 0) {
                     /** @type {?} */
-                    var item = this.menus[this.menus.length - 1];
+                    var item = ( /** @type {?} */(this)).menus[( /** @type {?} */(this)).menus.length - 1];
                     /** @type {?} */
                     var title = item.text;
-                    if (item.i18n && this.i18nSrv)
-                        title = this.i18nSrv.fanyi(item.i18n);
-                    this._titleVal = title;
+                    if (item.i18n && ( /** @type {?} */(this)).i18nSrv)
+                        title = ( /** @type {?} */(this)).i18nSrv.fanyi(item.i18n);
+                    ( /** @type {?} */(this))._titleVal = title;
                 }
-                if (this._titleVal && this.syncTitle) {
-                    if (this.titleSrv) {
-                        this.titleSrv.setTitle(this._titleVal);
+                if (( /** @type {?} */(this))._titleVal && ( /** @type {?} */(this)).syncTitle) {
+                    if (( /** @type {?} */(this)).titleSrv) {
+                        ( /** @type {?} */(this)).titleSrv.setTitle(( /** @type {?} */(this))._titleVal);
                     }
-                    if (this.reuseSrv) {
-                        this.reuseSrv.title = this._titleVal;
+                    if (( /** @type {?} */(this)).reuseSrv) {
+                        ( /** @type {?} */(this)).reuseSrv.title = ( /** @type {?} */(this))._titleVal;
                     }
                 }
-                return this;
+                return ( /** @type {?} */(this));
             };
         /**
          * @return {?}
@@ -302,10 +314,10 @@
                 this.ref$.unsubscribe();
             };
         PageHeaderComponent.decorators = [
-            { type: core.Component, args: [{
+            { type: i0.Component, args: [{
                         selector: 'page-header',
                         template: "<nz-affix #affix *ngIf=\"fixed;else phTpl\" [nzOffsetTop]=\"fixedOffsetTop\">\n  <ng-template [ngTemplateOutlet]=\"phTpl\"></ng-template>\n</nz-affix>\n<ng-template #phTpl>\n  <div class=\"page-header\">\n    <div [ngClass]=\"{'page-header__wide': wide}\">\n      <nz-skeleton [nzLoading]=\"loading\" [nzTitle]=\"false\" [nzActive]=\"true\"\n        [nzParagraph]=\"{rows: 3}\" [nzAvatar]=\"{ size: 'large', shape: 'circle' }\">\n        <ng-container *ngIf=\"!breadcrumb; else breadcrumb\">\n          <nz-breadcrumb *ngIf=\"paths && paths.length > 0\">\n            <nz-breadcrumb-item *ngFor=\"let i of paths\">\n              <ng-container *ngIf=\"i.link\">\n                <a [routerLink]=\"i.link\">{{i.title}}</a>\n              </ng-container>\n              <ng-container *ngIf=\"!i.link\">{{i.title}}</ng-container>\n            </nz-breadcrumb-item>\n          </nz-breadcrumb>\n        </ng-container>\n        <div class=\"page-header__detail\">\n          <div *ngIf=\"logo\" class=\"page-header__logo\">\n            <ng-template [ngTemplateOutlet]=\"logo\"></ng-template>\n          </div>\n          <div class=\"page-header__main\">\n            <div class=\"page-header__row\">\n              <h1 *ngIf=\"_titleVal || _titleTpl\" class=\"page-header__title\">\n                <ng-container *ngIf=\"_titleVal; else _titleTpl\">{{_titleVal}}</ng-container>\n              </h1>\n              <div *ngIf=\"action\" class=\"page-header__action\">\n                <ng-template [ngTemplateOutlet]=\"action\"></ng-template>\n              </div>\n            </div>\n            <div class=\"page-header__row\">\n              <div class=\"page-header__desc\" (cdkObserveContent)=\"checkContent()\" #conTpl>\n                <ng-content></ng-content>\n                <ng-template [ngTemplateOutlet]=\"content\"></ng-template>\n              </div>\n              <div *ngIf=\"extra\" class=\"page-header__extra\">\n                <ng-template [ngTemplateOutlet]=\"extra\"></ng-template>\n              </div>\n            </div>\n          </div>\n        </div>\n        <ng-template [ngTemplateOutlet]=\"tab\"></ng-template>\n      </nz-skeleton>\n    </div>\n  </div>\n</ng-template>\n",
-                        preserveWhitespaces: false
+                        changeDetection: i0.ChangeDetectionStrategy.OnPush
                     }] }
         ];
         /** @nocollapse */
@@ -313,35 +325,36 @@
             return [
                 { type: PageHeaderConfig },
                 { type: theme.SettingsService },
-                { type: core.Renderer2 },
+                { type: i0.Renderer2 },
                 { type: router.Router },
                 { type: theme.MenuService },
-                { type: undefined, decorators: [{ type: core.Optional }, { type: core.Inject, args: [theme.ALAIN_I18N_TOKEN,] }] },
-                { type: theme.TitleService, decorators: [{ type: core.Optional }, { type: core.Inject, args: [theme.TitleService,] }] },
-                { type: reuseTab.ReuseTabService, decorators: [{ type: core.Optional }, { type: core.Inject, args: [reuseTab.ReuseTabService,] }] }
+                { type: undefined, decorators: [{ type: i0.Optional }, { type: i0.Inject, args: [theme.ALAIN_I18N_TOKEN,] }] },
+                { type: theme.TitleService, decorators: [{ type: i0.Optional }, { type: i0.Inject, args: [theme.TitleService,] }] },
+                { type: reuseTab.ReuseTabService, decorators: [{ type: i0.Optional }, { type: i0.Inject, args: [reuseTab.ReuseTabService,] }] },
+                { type: i0.ChangeDetectorRef }
             ];
         };
         PageHeaderComponent.propDecorators = {
-            conTpl: [{ type: core.ViewChild, args: ['conTpl',] }],
-            affix: [{ type: core.ViewChild, args: ['affix',] }],
-            title: [{ type: core.Input }],
-            loading: [{ type: core.Input }],
-            wide: [{ type: core.Input }],
-            home: [{ type: core.Input }],
-            homeLink: [{ type: core.Input }],
-            homeI18n: [{ type: core.Input }],
-            autoBreadcrumb: [{ type: core.Input }],
-            autoTitle: [{ type: core.Input }],
-            syncTitle: [{ type: core.Input }],
-            fixed: [{ type: core.Input }],
-            fixedOffsetTop: [{ type: core.Input }],
-            breadcrumb: [{ type: core.Input }],
-            recursiveBreadcrumb: [{ type: core.Input }],
-            logo: [{ type: core.Input }],
-            action: [{ type: core.Input }],
-            content: [{ type: core.Input }],
-            extra: [{ type: core.Input }],
-            tab: [{ type: core.Input }]
+            conTpl: [{ type: i0.ViewChild, args: ['conTpl',] }],
+            affix: [{ type: i0.ViewChild, args: ['affix',] }],
+            title: [{ type: i0.Input }],
+            loading: [{ type: i0.Input }],
+            wide: [{ type: i0.Input }],
+            home: [{ type: i0.Input }],
+            homeLink: [{ type: i0.Input }],
+            homeI18n: [{ type: i0.Input }],
+            autoBreadcrumb: [{ type: i0.Input }],
+            autoTitle: [{ type: i0.Input }],
+            syncTitle: [{ type: i0.Input }],
+            fixed: [{ type: i0.Input }],
+            fixedOffsetTop: [{ type: i0.Input }],
+            breadcrumb: [{ type: i0.Input }],
+            recursiveBreadcrumb: [{ type: i0.Input }],
+            logo: [{ type: i0.Input }],
+            action: [{ type: i0.Input }],
+            content: [{ type: i0.Input }],
+            extra: [{ type: i0.Input }],
+            tab: [{ type: i0.Input }]
         };
         __decorate([
             util.InputBoolean(),
@@ -380,24 +393,15 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
     /** @type {?} */
     var COMPONENTS = [PageHeaderComponent];
     var PageHeaderModule = /** @class */ (function () {
         function PageHeaderModule() {
         }
-        /**
-         * @return {?}
-         */
-        PageHeaderModule.forRoot = /**
-         * @return {?}
-         */
-            function () {
-                return { ngModule: PageHeaderModule, providers: [PageHeaderConfig] };
-            };
         PageHeaderModule.decorators = [
-            { type: core.NgModule, args: [{
+            { type: i0.NgModule, args: [{
                         imports: [common.CommonModule, router.RouterModule, util.DelonUtilModule, ngZorroAntd.NgZorroAntdModule],
                         declarations: __spread(COMPONENTS),
                         exports: __spread(COMPONENTS),
@@ -408,12 +412,12 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
 
     exports.PageHeaderConfig = PageHeaderConfig;

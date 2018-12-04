@@ -5,13 +5,13 @@ import { Renderer2 } from '@angular/core';
  * ```ts
  * updateHostClass(
  *  this.el.nativeElement,
+ *  this.renderer,
  *  {
  *    [ 'classname' ]: true,
  *    [ 'classname' ]: this.type === '1',
  *    [ this.cls ]: true,
  *    [ `a-${this.cls}` ]: true
- *  },
- *  this.renderer)
+ *  })
  * ```
  *
  * @param [cleanAll] 是否先清理所有 `class` 值，默认：`false`

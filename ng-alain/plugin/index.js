@@ -3,14 +3,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const schematics_1 = require("@angular-devkit/schematics");
 const tasks_1 = require("@angular-devkit/schematics/tasks");
 const project_1 = require("../utils/project");
-const plugin_g2_1 = require("./plugin.g2");
+const plugin_asdf_1 = require("./plugin.asdf");
 const plugin_code_style_1 = require("./plugin.code-style");
 const plugin_default_language_1 = require("./plugin.default-language");
-const plugin_network_env_1 = require("./plugin.network-env");
-const plugin_hmr_1 = require("./plugin.hmr");
 const plugin_docker_1 = require("./plugin.docker");
-const plugin_asdf_1 = require("./plugin.asdf");
+const plugin_g2_1 = require("./plugin.g2");
+const plugin_hmr_1 = require("./plugin.hmr");
 const plugin_icon_1 = require("./plugin.icon");
+const plugin_network_env_1 = require("./plugin.network-env");
 function installPackages() {
     return (host, context) => {
         context.addTask(new tasks_1.NodePackageInstallTask());
@@ -36,9 +36,7 @@ function default_1(options) {
                 rules.push(plugin_code_style_1.pluginCodeStyle(pluginOptions));
                 break;
             case 'networkEnv':
-                rules.push(plugin_network_env_1.pluginNetworkEnv(Object.assign(pluginOptions, {
-                    packageManager: options.packageManager,
-                })));
+                rules.push(plugin_network_env_1.pluginNetworkEnv(Object.assign({}, pluginOptions, { packageManager: options.packageManager })));
                 break;
             case 'hmr':
                 rules.push(plugin_hmr_1.pluginHmr(pluginOptions));
@@ -47,9 +45,7 @@ function default_1(options) {
                 rules.push(plugin_docker_1.pluginDocker(pluginOptions));
                 break;
             case 'defaultLanguage':
-                rules.push(plugin_default_language_1.pluginDefaultLanguage(Object.assign(pluginOptions, {
-                    defaultLanguage: options.defaultLanguage,
-                })));
+                rules.push(plugin_default_language_1.pluginDefaultLanguage(Object.assign({}, pluginOptions, { defaultLanguage: options.defaultLanguage })));
                 break;
             case 'icon':
                 rules.push(plugin_icon_1.pluginIcon(pluginOptions));

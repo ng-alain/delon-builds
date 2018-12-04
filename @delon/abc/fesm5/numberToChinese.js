@@ -1,10 +1,15 @@
-import { __read } from 'tslib';
-import { Pipe, NgModule } from '@angular/core';
+import { __assign, __read } from 'tslib';
 import { CommonModule } from '@angular/common';
+import { Pipe, NgModule } from '@angular/core';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 /**
  * @param {?} value
@@ -15,10 +20,7 @@ import { CommonModule } from '@angular/common';
 function numberToChinese(value, rmb, options) {
     if (rmb === void 0) { rmb = true; }
     var _a;
-    options = Object.assign({
-        minusSymbol: '负',
-        validThrow: false,
-    }, options);
+    options = __assign({ minusSymbol: '负', validThrow: false }, options);
     if (typeof value === 'number')
         value = value.toString();
     if (!/^-?\d+(\.\d+)?$/.test(value) && options.validThrow)
@@ -123,15 +125,14 @@ function numberToChinese(value, rmb, options) {
             /** @type {?} */
             var isChangeEr = n > 1 &&
                 cnNum === '二' && // 去除首位
-                // 去除首位
                 ['', '十', '百'].indexOf(cnDesc) === -1 && // 不读两\两十\两百
-                // 不读两\两十\两百
-                descMark !== '十'; // 不读十两
+                descMark !== '十';
             if (isChangeEr)
                 cnNum = '两';
             integerRes += cnZero + cnNum + cnDesc;
         }
     }
+    // 小数部分拼接
     /** @type {?} */
     var decimalRes = '';
     /** @type {?} */
@@ -167,7 +168,7 @@ function numberToChinese(value, rmb, options) {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 var NaNumberToChinesePipe = /** @class */ (function () {
     function NaNumberToChinesePipe() {
@@ -197,22 +198,13 @@ var NaNumberToChinesePipe = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 /** @type {?} */
 var PIPES = [NaNumberToChinesePipe];
 var NumberToChineseModule = /** @class */ (function () {
     function NumberToChineseModule() {
     }
-    /**
-     * @return {?}
-     */
-    NumberToChineseModule.forRoot = /**
-     * @return {?}
-     */
-    function () {
-        return { ngModule: NumberToChineseModule, providers: [] };
-    };
     NumberToChineseModule.decorators = [
         { type: NgModule, args: [{
                     imports: [CommonModule],
@@ -225,12 +217,12 @@ var NumberToChineseModule = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 
 export { numberToChinese, NaNumberToChinesePipe, NumberToChineseModule };

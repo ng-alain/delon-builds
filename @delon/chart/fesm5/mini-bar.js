@@ -1,50 +1,22 @@
-import { __spread } from 'tslib';
-import { Component, Input, HostBinding, ViewChild, ChangeDetectionStrategy, NgZone, NgModule } from '@angular/core';
+import { __decorate, __metadata, __spread } from 'tslib';
 import { CommonModule } from '@angular/common';
-import { toNumber, DelonUtilModule } from '@delon/util';
+import { ChangeDetectionStrategy, Component, HostBinding, Input, NgZone, ViewChild, NgModule } from '@angular/core';
+import { InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 var G2MiniBarComponent = /** @class */ (function () {
     function G2MiniBarComponent(zone) {
         this.zone = zone;
         // #region fields
         this.color = '#1890FF';
-        this._height = 0;
-        this._borderWidth = 5;
+        this.height = 0;
+        this.borderWidth = 5;
         this.padding = [8, 8, 8, 8];
         this.yTooltipSuffix = '';
     }
-    Object.defineProperty(G2MiniBarComponent.prototype, "height", {
-        get: /**
-         * @return {?}
-         */
-        function () {
-            return this._height;
-        },
-        set: /**
-         * @param {?} value
-         * @return {?}
-         */
-        function (value) {
-            this._height = toNumber(value);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(G2MiniBarComponent.prototype, "borderWidth", {
-        set: /**
-         * @param {?} value
-         * @return {?}
-         */
-        function (value) {
-            this._borderWidth = toNumber(value);
-        },
-        enumerable: true,
-        configurable: true
-    });
     /**
      * @return {?}
      */
@@ -74,16 +46,16 @@ var G2MiniBarComponent = /** @class */ (function () {
             },
         });
         chart.tooltip({
-            showTitle: false,
-            hideMarkders: false,
-            crosshairs: false,
+            'showTitle': false,
+            'hideMarkders': false,
+            'crosshairs': false,
             'g2-tooltip': { padding: 4 },
             'g2-tooltip-list-item': { margin: "0px 4px" },
         });
         chart
             .interval()
             .position('x*y')
-            .size(this._borderWidth)
+            .size(this.borderWidth)
             .color(this.color)
             .tooltip('x*y', function (x, y) {
             return {
@@ -136,27 +108,26 @@ var G2MiniBarComponent = /** @class */ (function () {
         yTooltipSuffix: [{ type: Input }],
         node: [{ type: ViewChild, args: ['container',] }]
     };
+    __decorate([
+        InputNumber(),
+        __metadata("design:type", Object)
+    ], G2MiniBarComponent.prototype, "height", void 0);
+    __decorate([
+        InputNumber(),
+        __metadata("design:type", Object)
+    ], G2MiniBarComponent.prototype, "borderWidth", void 0);
     return G2MiniBarComponent;
 }());
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 /** @type {?} */
 var COMPONENTS = [G2MiniBarComponent];
 var G2MiniBarModule = /** @class */ (function () {
     function G2MiniBarModule() {
     }
-    /**
-     * @return {?}
-     */
-    G2MiniBarModule.forRoot = /**
-     * @return {?}
-     */
-    function () {
-        return { ngModule: G2MiniBarModule, providers: [] };
-    };
     G2MiniBarModule.decorators = [
         { type: NgModule, args: [{
                     imports: [CommonModule, DelonUtilModule],
@@ -169,12 +140,12 @@ var G2MiniBarModule = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 
 export { G2MiniBarComponent, G2MiniBarModule };

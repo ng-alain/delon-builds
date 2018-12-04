@@ -1,14 +1,14 @@
-import { OnDestroy, OnChanges, SimpleChanges, EventEmitter, Renderer2, ElementRef, TemplateRef, SimpleChange, AfterViewInit, ChangeDetectorRef } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, ElementRef, EventEmitter, OnChanges, OnDestroy, Renderer2, SimpleChange, SimpleChanges, TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
+import { AlainI18NService, DelonLocaleService, DrawerHelper, ModalHelper } from '@delon/theme';
 import { Observable } from 'rxjs';
-import { ModalHelper, AlainI18NService, DrawerHelper, DelonLocaleService } from '@delon/theme';
-import { STColumn, STChange, STColumnSelection, STColumnFilterMenu, STData, STColumnButton, STExportOptions, STReq, STError, STRes, STPage, STLoadOptions, STRowClassName, STSingleSort } from './table.interfaces';
-import { STConfig } from './table.config';
-import { STExport } from './table-export';
 import { STColumnSource } from './table-column-source';
 import { STDataSource } from './table-data-source';
+import { STExport } from './table-export';
+import { STConfig } from './table.config';
+import { STChange, STColumn, STColumnButton, STColumnFilterMenu, STColumnSelection, STData, STError, STExportOptions, STLoadOptions, STPage, STReq, STRes, STRowClassName, STSingleSort } from './table.interfaces';
 export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy {
-    private cdRef;
+    private cdr;
     private cog;
     private router;
     private el;
@@ -30,7 +30,6 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     _allChecked: boolean;
     _indeterminate: boolean;
     _columns: STColumn[];
-    /** 数据源 */
     data: string | STData[] | Observable<STData[]>;
     /** 请求体配置 */
     req: STReq;
@@ -38,13 +37,9 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     /** 返回体配置 */
     res: STRes;
     private _res;
-    /** 列描述  */
     columns: STColumn[];
-    /** 每页数量，当设置为 `0` 表示不分页，默认：`10` */
     ps: number;
-    /** 当前页码 */
     pi: number;
-    /** 数据总量 */
     total: number;
     /** 分页器配置 */
     page: STPage;
@@ -80,21 +75,21 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     body: TemplateRef<void>;
     /** `expand` 可展开，当数据源中包括 `expand` 表示展开状态 */
     expand: TemplateRef<{
-        $implicit: any;
+        $implicit: {};
         column: STColumn;
     }>;
     noResult: string | TemplateRef<void>;
     widthConfig: string[];
+    /** 行单击多少时长之类为双击（单位：毫秒），默认：`200` */
+    rowClickTime: number;
+    responsiveHideHeaderFooter: boolean;
     /** 请求异常时回调 */
     readonly error: EventEmitter<STError>;
     /**
      * 变化时回调，包括：`pi`、`ps`、`checkbox`、`radio`、`sort`、`filter`、`click`、`dblClick` 变动
      */
     readonly change: EventEmitter<STChange>;
-    /** 行单击多少时长之类为双击（单位：毫秒），默认：`200` */
-    rowClickTime: number;
-    responsiveHideHeaderFooter: boolean;
-    constructor(cdRef: ChangeDetectorRef, cog: STConfig, router: Router, el: ElementRef, renderer: Renderer2, exportSrv: STExport, i18nSrv: AlainI18NService, modalHelper: ModalHelper, drawerHelper: DrawerHelper, doc: any, columnSource: STColumnSource, dataSource: STDataSource, delonI18n: DelonLocaleService);
+    constructor(i18nSrv: AlainI18NService, cdr: ChangeDetectorRef, cog: STConfig, router: Router, el: ElementRef, renderer: Renderer2, exportSrv: STExport, modalHelper: ModalHelper, drawerHelper: DrawerHelper, doc: any, columnSource: STColumnSource, dataSource: STDataSource, delonI18n: DelonLocaleService);
     cd(): void;
     renderTotal(total: string, range: string[]): string;
     private changeEmit;
@@ -110,12 +105,12 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
      * @param extraParams 重新指定 `extraParams` 值
      * @param options 选项
      */
-    load(pi?: number, extraParams?: any, options?: STLoadOptions): void;
+    load(pi?: number, extraParams?: {}, options?: STLoadOptions): void;
     /**
      * 重新刷新当前页
      * @param extraParams 重新指定 `extraParams` 值
      */
-    reload(extraParams?: any, options?: STLoadOptions): void;
+    reload(extraParams?: {}, options?: STLoadOptions): void;
     /**
      * 重置且重新设置 `pi` 为 `1`，包含以下值：
      * - `check` 数据
@@ -125,7 +120,7 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
      *
      * @param extraParams 重新指定 `extraParams` 值
      */
-    reset(extraParams?: any, options?: STLoadOptions): void;
+    reset(extraParams?: {}, options?: STLoadOptions): void;
     private _toTop;
     _change(type: 'pi' | 'ps'): void;
     _click(e: Event, item: STData, col: STColumn): boolean;
@@ -152,14 +147,14 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     _refRadio(checked: boolean, item: STData): this;
     _btnClick(e: Event, record: STData, btn: STColumnButton): void;
     private btnCallback;
-    _btnText(record: any, btn: STColumnButton): string;
+    _btnText(record: STData, btn: STColumnButton): string;
     _validBtns(item: STData, col: STColumn): STColumnButton[];
     /**
      * 导出当前页，确保已经注册 `XlsxModule`
      * @param newData 重新指定数据，例如希望导出所有数据非常有用
      * @param opt 额外参数
      */
-    export(newData?: any[], opt?: STExportOptions): void;
+    export(newData?: STData[], opt?: STExportOptions): void;
     private updateColumns;
     private setClass;
     ngAfterViewInit(): void;

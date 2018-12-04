@@ -1,4 +1,4 @@
-import { OnChanges, ElementRef, Renderer2, SimpleChanges, OnInit, SimpleChange } from '@angular/core';
+import { ElementRef, OnChanges, OnInit, Renderer2, SimpleChange, SimpleChanges } from '@angular/core';
 import { ImageConfig } from './image.config';
 /**
  * img标签

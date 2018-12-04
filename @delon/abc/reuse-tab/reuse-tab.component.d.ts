@@ -1,8 +1,8 @@
-import { OnChanges, ChangeDetectorRef, EventEmitter, OnInit, SimpleChanges, SimpleChange, OnDestroy, ElementRef, Renderer2 } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ChangeDetectorRef, ElementRef, EventEmitter, OnChanges, OnDestroy, OnInit, Renderer2, SimpleChange, SimpleChanges } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AlainI18NService } from '@delon/theme';
+import { ReuseContextCloseEvent, ReuseContextI18n, ReuseItem, ReuseTabMatchMode } from './reuse-tab.interfaces';
 import { ReuseTabService } from './reuse-tab.service';
-import { ReuseTabMatchMode, ReuseItem, ReuseContextI18n, ReuseContextCloseEvent } from './reuse-tab.interfaces';
 export declare class ReuseTabComponent implements OnInit, OnChanges, OnDestroy {
     private srv;
     private cd;
@@ -16,23 +16,14 @@ export declare class ReuseTabComponent implements OnInit, OnChanges, OnDestroy {
     list: ReuseItem[];
     item: ReuseItem;
     pos: number;
-    /** 设置匹配模式 */
     mode: ReuseTabMatchMode;
-    /** 选项文本国际化 */
     i18n: ReuseContextI18n;
-    /** 是否Debug模式 */
     debug: boolean;
-    /** 允许最多复用多少个页面 */
     max: number;
-    /** 排除规则，限 `mode=URL` */
     excludes: RegExp[];
-    /** 允许关闭 */
     allowClose: boolean;
-    /** 总是显示当前页 */
     showCurrent: boolean;
-    /** 切换时回调 */
     readonly change: EventEmitter<ReuseItem>;
-    /** 关闭回调 */
     readonly close: EventEmitter<ReuseItem>;
     constructor(el: ElementRef, srv: ReuseTabService, cd: ChangeDetectorRef, router: Router, route: ActivatedRoute, render: Renderer2, i18nSrv: AlainI18NService);
     private genTit;

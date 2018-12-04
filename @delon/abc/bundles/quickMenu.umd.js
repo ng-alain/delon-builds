@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/common'), require('ng-zorro-antd'), require('@delon/util')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/quick-menu', ['exports', '@angular/core', '@angular/common', 'ng-zorro-antd', '@delon/util'], factory) :
-    (factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['quick-menu'] = {}),global.ng.core,global.ng.common,global.ngZorroAntd,global.delon.util));
-}(this, (function (exports,core,common,ngZorroAntd,util) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common'), require('@angular/core'), require('@delon/util'), require('ng-zorro-antd')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/quick-menu', ['exports', '@angular/common', '@angular/core', '@delon/util', 'ng-zorro-antd'], factory) :
+    (factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['quick-menu'] = {}),global.ng.common,global.ng.core,global.delon.util,global.ngZorroAntd));
+}(this, (function (exports,common,core,util,ngZorroAntd) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -69,7 +69,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
     var QuickMenuComponent = /** @class */ (function () {
         // #endregion
@@ -78,7 +78,7 @@
             this.el = el;
             this.render = render;
             // #region fields
-            this._icon = 'question-circle';
+            this.icon = 'question-circle';
             this.top = 120;
             this.width = 200;
             this.bgColor = '#fff';
@@ -87,22 +87,6 @@
             this.ctrlStyle = {};
             this.initFlag = false;
         }
-        Object.defineProperty(QuickMenuComponent.prototype, "icon", {
-            set: /**
-             * @param {?} value
-             * @return {?}
-             */ function (value) {
-                if (value instanceof core.TemplateRef) {
-                    this._icon = null;
-                    this._iconTpl = value;
-                }
-                else {
-                    this._icon = value;
-                }
-            },
-            enumerable: true,
-            configurable: true
-        });
         /**
          * @return {?}
          */
@@ -158,9 +142,8 @@
         QuickMenuComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'quick-menu',
-                        template: "<div class=\"quick-menu__inner\">\n  <div class=\"quick-menu__ctrl\" [ngStyle]=\"ctrlStyle\">\n    <div class=\"quick-menu__ctrl-icon\">\n      <ng-container *ngIf=\"_icon; else _iconTpl\">\n        <i nz-icon [type]=\"_icon\"></i>\n      </ng-container>\n    </div>\n  </div>\n  <ng-content></ng-content>\n</div>\n",
+                        template: "<div class=\"quick-menu__inner\">\n  <div class=\"quick-menu__ctrl\" [ngStyle]=\"ctrlStyle\">\n    <div class=\"quick-menu__ctrl-icon\">\n      <ng-container *stringTemplateOutlet=\"icon\"><i nz-icon [type]=\"icon\"></i></ng-container>\n    </div>\n  </div>\n  <ng-content></ng-content>\n</div>",
                         host: { '[class.quick-menu]': 'true' },
-                        preserveWhitespaces: false,
                         changeDetection: core.ChangeDetectionStrategy.OnPush
                     }] }
         ];
@@ -193,22 +176,13 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
     /** @type {?} */
     var COMPONENTS = [QuickMenuComponent];
     var QuickMenuModule = /** @class */ (function () {
         function QuickMenuModule() {
         }
-        /**
-         * @return {?}
-         */
-        QuickMenuModule.forRoot = /**
-         * @return {?}
-         */
-            function () {
-                return { ngModule: QuickMenuModule, providers: [] };
-            };
         QuickMenuModule.decorators = [
             { type: core.NgModule, args: [{
                         imports: [common.CommonModule, ngZorroAntd.NgZorroAntdModule, util.DelonUtilModule],
@@ -221,12 +195,12 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
 
     exports.QuickMenuComponent = QuickMenuComponent;

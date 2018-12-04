@@ -4,27 +4,27 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('extend'), require('date-fns/parse'), require('date-fns/start_of_week'), require('date-fns/end_of_week'), require('date-fns/sub_weeks'), require('date-fns/start_of_month'), require('date-fns/end_of_month'), require('date-fns/sub_months'), require('date-fns/start_of_year'), require('date-fns/end_of_year'), require('date-fns/sub_years'), require('date-fns/add_days'), require('rxjs'), require('rxjs/operators'), require('ng-zorro-antd'), require('@angular/core'), require('@angular/common')) :
-    typeof define === 'function' && define.amd ? define('@delon/util', ['exports', 'extend', 'date-fns/parse', 'date-fns/start_of_week', 'date-fns/end_of_week', 'date-fns/sub_weeks', 'date-fns/start_of_month', 'date-fns/end_of_month', 'date-fns/sub_months', 'date-fns/start_of_year', 'date-fns/end_of_year', 'date-fns/sub_years', 'date-fns/add_days', 'rxjs', 'rxjs/operators', 'ng-zorro-antd', '@angular/core', '@angular/common'], factory) :
-    (factory((global.delon = global.delon || {}, global.delon.util = {}),global.Extend,global.parse,global.startOfWeek,global.endOfWeek,global.subWeeks,global.startOfMonth,global.endOfMonth,global.subMonths,global.startOfYear,global.endOfYear,global.subYears,global.addDays,global.rxjs,global.rxjs.operators,global.ngZorro.antd,global.ng.core,global.ng.common));
-}(this, (function (exports,extend,parse,startOfWeek,endOfWeek,subWeeks,startOfMonth,endOfMonth,subMonths,startOfYear,endOfYear,subYears,addDays,rxjs,operators,ngZorroAntd,i0,i1) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('extend'), require('date-fns/add_days'), require('date-fns/end_of_month'), require('date-fns/end_of_week'), require('date-fns/end_of_year'), require('date-fns/parse'), require('date-fns/start_of_month'), require('date-fns/start_of_week'), require('date-fns/start_of_year'), require('date-fns/sub_months'), require('date-fns/sub_weeks'), require('date-fns/sub_years'), require('rxjs'), require('rxjs/operators'), require('ng-zorro-antd'), require('@angular/common'), require('@angular/core')) :
+    typeof define === 'function' && define.amd ? define('@delon/util', ['exports', 'extend', 'date-fns/add_days', 'date-fns/end_of_month', 'date-fns/end_of_week', 'date-fns/end_of_year', 'date-fns/parse', 'date-fns/start_of_month', 'date-fns/start_of_week', 'date-fns/start_of_year', 'date-fns/sub_months', 'date-fns/sub_weeks', 'date-fns/sub_years', 'rxjs', 'rxjs/operators', 'ng-zorro-antd', '@angular/common', '@angular/core'], factory) :
+    (factory((global.delon = global.delon || {}, global.delon.util = {}),global.Extend,global.addDays,global.endOfMonth,global.endOfWeek,global.endOfYear,global.parse,global.startOfMonth,global.startOfWeek,global.startOfYear,global.subMonths,global.subWeeks,global.subYears,global.rxjs,global.rxjs.operators,global.ngZorro.antd,global.ng.common,global.ng.core));
+}(this, (function (exports,extend,addDays,endOfMonth,endOfWeek,endOfYear,parse,startOfMonth,startOfWeek,startOfYear,subMonths,subWeeks,subYears,rxjs,operators,ngZorroAntd,i1,i0) { 'use strict';
 
     extend = extend && extend.hasOwnProperty('default') ? extend['default'] : extend;
-    parse = parse && parse.hasOwnProperty('default') ? parse['default'] : parse;
-    startOfWeek = startOfWeek && startOfWeek.hasOwnProperty('default') ? startOfWeek['default'] : startOfWeek;
-    endOfWeek = endOfWeek && endOfWeek.hasOwnProperty('default') ? endOfWeek['default'] : endOfWeek;
-    subWeeks = subWeeks && subWeeks.hasOwnProperty('default') ? subWeeks['default'] : subWeeks;
-    startOfMonth = startOfMonth && startOfMonth.hasOwnProperty('default') ? startOfMonth['default'] : startOfMonth;
-    endOfMonth = endOfMonth && endOfMonth.hasOwnProperty('default') ? endOfMonth['default'] : endOfMonth;
-    subMonths = subMonths && subMonths.hasOwnProperty('default') ? subMonths['default'] : subMonths;
-    startOfYear = startOfYear && startOfYear.hasOwnProperty('default') ? startOfYear['default'] : startOfYear;
-    endOfYear = endOfYear && endOfYear.hasOwnProperty('default') ? endOfYear['default'] : endOfYear;
-    subYears = subYears && subYears.hasOwnProperty('default') ? subYears['default'] : subYears;
     addDays = addDays && addDays.hasOwnProperty('default') ? addDays['default'] : addDays;
+    endOfMonth = endOfMonth && endOfMonth.hasOwnProperty('default') ? endOfMonth['default'] : endOfMonth;
+    endOfWeek = endOfWeek && endOfWeek.hasOwnProperty('default') ? endOfWeek['default'] : endOfWeek;
+    endOfYear = endOfYear && endOfYear.hasOwnProperty('default') ? endOfYear['default'] : endOfYear;
+    parse = parse && parse.hasOwnProperty('default') ? parse['default'] : parse;
+    startOfMonth = startOfMonth && startOfMonth.hasOwnProperty('default') ? startOfMonth['default'] : startOfMonth;
+    startOfWeek = startOfWeek && startOfWeek.hasOwnProperty('default') ? startOfWeek['default'] : startOfWeek;
+    startOfYear = startOfYear && startOfYear.hasOwnProperty('default') ? startOfYear['default'] : startOfYear;
+    subMonths = subMonths && subMonths.hasOwnProperty('default') ? subMonths['default'] : subMonths;
+    subWeeks = subWeeks && subWeeks.hasOwnProperty('default') ? subWeeks['default'] : subWeeks;
+    subYears = subYears && subYears.hasOwnProperty('default') ? subYears['default'] : subYears;
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
     /**
      * 类似 `_.get`，根据 `path` 获取安全值
@@ -65,7 +65,7 @@
     function copy(value) {
         return new Promise(function (resolve, reject) {
             /** @type {?} */
-            var copyTextArea = /** @type {?} */ (null);
+            var copyTextArea = ( /** @type {?} */(null));
             try {
                 copyTextArea = document.createElement('textarea');
                 copyTextArea.style.height = '0px';
@@ -87,7 +87,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
     /**
      * 字符串格式化
@@ -118,6 +118,7 @@
      * @param {?=} digits 当数字类型时，允许指定小数点后数字的个数，默认2位小数
      * @return {?}
      */
+    // tslint:disable-next-line:no-any
     function yuan(value, digits) {
         if (digits === void 0) {
             digits = 2;
@@ -129,7 +130,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
     /**
      * 获取时间范围
@@ -165,9 +166,10 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
     var LazyService = /** @class */ (function () {
+        // tslint:disable-next-line:no-any
         function LazyService(doc) {
             this.doc = doc;
             this.list = {};
@@ -203,8 +205,9 @@
          */
             function (paths) {
                 var _this = this;
-                if (!Array.isArray(paths))
+                if (!Array.isArray(paths)) {
                     paths = [paths];
+                }
                 /** @type {?} */
                 var promises = [];
                 paths.forEach(function (path) {
@@ -243,20 +246,20 @@
                         _this.cached[path] = item;
                         resolve(item);
                     };
+                    // tslint:disable-next-line:no-any
                     /** @type {?} */
-                    var node = /** @type {?} */ (_this.doc.createElement('script'));
+                    var node = ( /** @type {?} */(_this.doc.createElement('script')));
                     node.type = 'text/javascript';
                     node.src = path;
                     node.charset = 'utf-8';
                     if (innerContent) {
                         node.innerHTML = innerContent;
                     }
-                    if (( /** @type {?} */(node)).readyState) {
+                    if (node.readyState) {
                         // IE
-                        ( /** @type {?} */(node)).onreadystatechange = function () {
-                            if (( /** @type {?} */(node)).readyState === 'loaded' ||
-                                ( /** @type {?} */(node)).readyState === 'complete') {
-                                ( /** @type {?} */(node)).onreadystatechange = null;
+                        node.onreadystatechange = function () {
+                            if (node.readyState === 'loaded' || node.readyState === 'complete') {
+                                node.onreadystatechange = null;
                                 onSuccess({
                                     path: path,
                                     loaded: true,
@@ -267,7 +270,7 @@
                     }
                     else {
                         node.onload = function () {
-                            onSuccess({
+                            return onSuccess({
                                 path: path,
                                 loaded: true,
                                 status: 'ok',
@@ -279,6 +282,7 @@
                             path: path,
                             loaded: false,
                             status: 'error',
+                            error: error,
                         });
                     };
                     _this.doc.getElementsByTagName('head')[0].appendChild(node);
@@ -308,7 +312,7 @@
                     }
                     _this.list[path] = true;
                     /** @type {?} */
-                    var node = /** @type {?} */ (_this.doc.createElement('link'));
+                    var node = ( /** @type {?} */(_this.doc.createElement('link')));
                     node.rel = rel;
                     node.type = 'text/css';
                     node.href = path;
@@ -341,7 +345,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
     /**
      * 是否为数字
@@ -388,14 +392,17 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
     /**
      * 一套日常验证器
      */
-    var /**
+    // tslint:disable-next-line:class-name
+    var  /**
      * 一套日常验证器
-     */ _Validators = /** @class */ (function () {
+     */ 
+    // tslint:disable-next-line:class-name
+    _Validators = /** @class */ (function () {
         function _Validators() {
         }
         /** 是否为数字 */
@@ -473,8 +480,9 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
+    // tslint:disable:no-any
     /**
      * @param {?} element
      * @return {?}
@@ -486,7 +494,7 @@
             /** @type {?} */
             var node = nodes.item(i);
             if (node.nodeType === 1 &&
-                ( /** @type {?} */(node)).outerHTML.toString().trim().length !== 0) {
+                (( /** @type {?} */(node))).outerHTML.toString().trim().length !== 0) {
                 return false;
             }
             else if (node.nodeType === 3 &&
@@ -513,8 +521,7 @@
      * Input decorator that handle a prop to do get/set automatically with toBoolean
      * \@example
      * ```typescript
-     * \@Input() \@InputBoolean() visible: boolean = false;
-     * \@Input() \@InputBoolean(null) visible: boolean = false;
+     * \@Input() \@InputBoolean() visible: boolean = false; / \@InputBoolean(null) visible: boolean = false;
      * ```
      * @param {?=} allowUndefined
      * @return {?}
@@ -523,8 +530,8 @@
         if (allowUndefined === void 0) {
             allowUndefined = false;
         }
-        // tslint:disable-line:no-any
         return function InputBooleanPropDecorator(target, name) {
+            // Add our own private prop
             /** @type {?} */
             var privatePropName = "$$__" + name;
             if (Object.prototype.hasOwnProperty.call(target, privatePropName)) {
@@ -532,7 +539,7 @@
             }
             Object.defineProperty(target, privatePropName, {
                 configurable: true,
-                writable: true
+                writable: true,
             });
             Object.defineProperty(target, name, {
                 get: /**
@@ -545,7 +552,7 @@
                  * @return {?}
                  */ function (value) {
                     this[privatePropName] = toBoolean(value, allowUndefined); // tslint:disable-line:no-invalid-this
-                }
+                },
             });
         };
     }
@@ -558,7 +565,7 @@
         if (fallbackValue === void 0) {
             fallbackValue = 0;
         }
-        return !isNaN(parseFloat(/** @type {?} */ (value))) && !isNaN(Number(value))
+        return !isNaN(parseFloat(( /** @type {?} */(value)))) && !isNaN(Number(value))
             ? Number(value)
             : fallbackValue;
     }
@@ -566,8 +573,7 @@
      * Input decorator that handle a prop to do get/set automatically with toNumber
      * \@example
      * ```typescript
-     * \@Input() \@InputNumber() visible: number = 1;
-     * \@Input() \@InputNumber(null) visible: number = 2;
+     * \@Input() \@InputNumber() visible: number = 1; / \@InputNumber(null) visible: number = 2;
      * ```
      * @param {?=} fallback
      * @return {?}
@@ -576,8 +582,8 @@
         if (fallback === void 0) {
             fallback = 0;
         }
-        // tslint:disable-line:no-any
         return function InputBooleanPropDecorator(target, name) {
+            // Add our own private prop
             /** @type {?} */
             var privatePropName = "$$__" + name;
             if (Object.prototype.hasOwnProperty.call(target, privatePropName)) {
@@ -585,7 +591,7 @@
             }
             Object.defineProperty(target, privatePropName, {
                 configurable: true,
-                writable: true
+                writable: true,
             });
             Object.defineProperty(target, name, {
                 get: /**
@@ -598,7 +604,7 @@
                  * @return {?}
                  */ function (value) {
                     this[privatePropName] = toNumber(value, fallback); // tslint:disable-line:no-invalid-this
-                }
+                },
             });
         };
     }
@@ -644,7 +650,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
     /**
      * @param {?} el
@@ -677,13 +683,13 @@
      * ```ts
      * updateHostClass(
      *  this.el.nativeElement,
+     *  this.renderer,
      *  {
      *    [ 'classname' ]: true,
      *    [ 'classname' ]: this.type === '1',
      *    [ this.cls ]: true,
      *    [ `a-${this.cls}` ]: true
-     *  },
-     *  this.renderer)
+     *  })
      * ```
      *
      * @param {?} el
@@ -708,7 +714,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
     var DelonUtilConfig = /** @class */ (function () {
         function DelonUtilConfig() {
@@ -722,22 +728,11 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
     var ArrayService = /** @class */ (function () {
         function ArrayService(cog) {
-            this.c = Object.assign(/** @type {?} */ ({
-                deepMapName: 'deep',
-                parentMapName: 'parent',
-                idMapName: 'id',
-                parentIdMapName: 'parent_id',
-                childrenMapName: 'children',
-                titleMapName: 'title',
-                checkedMapname: 'checked',
-                selectedMapname: 'selected',
-                expandedMapname: 'expanded',
-                disabledMapname: 'disabled',
-            }), cog && cog.array);
+            this.c = __assign({ deepMapName: 'deep', parentMapName: 'parent', idMapName: 'id', parentIdMapName: 'parent_id', childrenMapName: 'children', titleMapName: 'title', checkedMapname: 'checked', selectedMapname: 'selected', expandedMapname: 'expanded', disabledMapname: 'disabled' }, (cog && cog.array));
         }
         /**
          * 将树结构转换成数组结构
@@ -755,13 +750,7 @@
          * @return {?}
          */
             function (tree, options) {
-                options = Object.assign({
-                    deepMapName: this.c.deepMapName,
-                    parentMapName: this.c.parentMapName,
-                    childrenMapName: this.c.childrenMapName,
-                    clearChildren: true,
-                    cb: null,
-                }, options);
+                options = __assign({ deepMapName: this.c.deepMapName, parentMapName: this.c.parentMapName, childrenMapName: this.c.childrenMapName, clearChildren: true, cb: null }, options);
                 /** @type {?} */
                 var result = [];
                 /** @type {?} */
@@ -772,8 +761,9 @@
                             var i = list_1_1.value;
                             i[options.deepMapName] = deep;
                             i[options.parentMapName] = parent;
-                            if (options.cb)
+                            if (options.cb) {
                                 options.cb(i, parent, deep);
+                            }
                             result.push(i);
                             /** @type {?} */
                             var children = i[options.childrenMapName];
@@ -782,8 +772,9 @@
                                 children.length > 0) {
                                 inFn(children, i, deep + 1);
                             }
-                            if (options.clearChildren)
+                            if (options.clearChildren) {
                                 delete i[options.childrenMapName];
+                            }
                         }
                     }
                     catch (e_1_1) {
@@ -820,12 +811,7 @@
          */
             function (arr, options) {
                 var e_2, _a;
-                options = Object.assign({
-                    idMapName: this.c.idMapName,
-                    parentIdMapName: this.c.parentIdMapName,
-                    childrenMapName: this.c.childrenMapName,
-                    cb: null,
-                }, options);
+                options = __assign({ idMapName: this.c.idMapName, parentIdMapName: this.c.parentIdMapName, childrenMapName: this.c.childrenMapName, cb: null }, options);
                 /** @type {?} */
                 var tree = [];
                 /** @type {?} */
@@ -839,8 +825,9 @@
                         var pid = item[options.parentIdMapName];
                         childrenOf[id] = childrenOf[id] || [];
                         item[options.childrenMapName] = childrenOf[id];
-                        if (options.cb)
+                        if (options.cb) {
                             options.cb(item);
+                        }
                         if (pid) {
                             childrenOf[pid] = childrenOf[pid] || [];
                             childrenOf[pid].push(item);
@@ -881,18 +868,7 @@
          * @return {?}
          */
             function (arr, options) {
-                options = Object.assign({
-                    expanded: false,
-                    idMapName: this.c.idMapName,
-                    parentIdMapName: this.c.parentIdMapName,
-                    titleMapName: this.c.titleMapName,
-                    isLeafMapName: 'isLeaf',
-                    checkedMapname: this.c.checkedMapname,
-                    selectedMapname: this.c.selectedMapname,
-                    expandedMapname: this.c.expandedMapname,
-                    disabledMapname: this.c.disabledMapname,
-                    cb: null,
-                }, options);
+                options = __assign({ idMapName: this.c.idMapName, parentIdMapName: this.c.parentIdMapName, titleMapName: this.c.titleMapName, isLeafMapName: 'isLeaf', checkedMapname: this.c.checkedMapname, selectedMapname: this.c.selectedMapname, expandedMapname: this.c.expandedMapname, disabledMapname: this.c.disabledMapname, cb: null }, options);
                 /** @type {?} */
                 var tree = this.arrToTree(arr, {
                     idMapName: options.idMapName,
@@ -912,8 +888,9 @@
                     else {
                         item.isLeaf = item[options.isLeafMapName];
                     }
-                    if (options.cb)
+                    if (options.cb) {
                         options.cb(item, parent, deep);
+                    }
                 });
                 return tree.map(function (node) { return new ngZorroAntd.NzTreeNode(node); });
             };
@@ -935,9 +912,7 @@
          * @return {?}
          */
             function (tree, cb, options) {
-                options = Object.assign({
-                    childrenMapName: this.c.childrenMapName,
-                }, options);
+                options = __assign({ childrenMapName: this.c.childrenMapName }, options);
                 /** @type {?} */
                 var inFn = function (data, parent, deep) {
                     var e_3, _a;
@@ -984,19 +959,14 @@
          * @return {?}
          */
             function (tree, options) {
-                options = Object.assign({
-                    includeHalfChecked: true,
-                }, options);
+                options = __assign({ includeHalfChecked: true }, options);
                 /** @type {?} */
                 var keys = [];
                 this.visitTree(tree, function (item, parent, deep) {
-                    if (item.isChecked ||
-                        (options.includeHalfChecked && item.isHalfChecked)) {
-                        keys.push(options.cb
-                            ? options.cb(item, parent, deep)
-                            : options.keyMapName
-                                ? item.origin[options.keyMapName]
-                                : item.key);
+                    if (item.isChecked || (options.includeHalfChecked && item.isHalfChecked)) {
+                        keys.push(options.cb ?
+                            options.cb(item, parent, deep) :
+                            options.keyMapName ? item.origin[options.keyMapName] : item.key);
                     }
                 });
                 return keys;
@@ -1016,25 +986,87 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     */
+    var StringTemplateOutletDirective = /** @class */ (function () {
+        function StringTemplateOutletDirective(viewContainer, defaultTemplate) {
+            this.viewContainer = viewContainer;
+            this.defaultTemplate = defaultTemplate;
+            this.inputTemplate = null;
+            this.inputViewRef = null;
+            this.defaultViewRef = null;
+        }
+        Object.defineProperty(StringTemplateOutletDirective.prototype, "stringTemplateOutlet", {
+            set: /**
+             * @param {?} value
+             * @return {?}
+             */ function (value) {
+                if (value instanceof i0.TemplateRef) {
+                    this.isTemplate = true;
+                    this.inputTemplate = value;
+                }
+                else {
+                    this.isTemplate = false;
+                }
+                this.updateView();
+            },
+            enumerable: true,
+            configurable: true
+        });
+        /**
+         * @return {?}
+         */
+        StringTemplateOutletDirective.prototype.updateView = /**
+         * @return {?}
+         */
+            function () {
+                if (!this.isTemplate) {
+                    /** use default template when input is string **/
+                    if (!this.defaultViewRef) {
+                        this.viewContainer.clear();
+                        this.inputViewRef = null;
+                        this.defaultViewRef = this.viewContainer.createEmbeddedView(this.defaultTemplate);
+                    }
+                }
+                else {
+                    /** use input template when input is templateRef **/
+                    if (!this.inputViewRef) {
+                        this.viewContainer.clear();
+                        this.defaultViewRef = null;
+                        this.inputViewRef = this.viewContainer.createEmbeddedView(this.inputTemplate);
+                    }
+                }
+            };
+        StringTemplateOutletDirective.decorators = [
+            { type: i0.Directive, args: [{
+                        selector: '[stringTemplateOutlet]',
+                    },] }
+        ];
+        /** @nocollapse */
+        StringTemplateOutletDirective.ctorParameters = function () {
+            return [
+                { type: i0.ViewContainerRef },
+                { type: i0.TemplateRef }
+            ];
+        };
+        StringTemplateOutletDirective.propDecorators = {
+            stringTemplateOutlet: [{ type: i0.Input }]
+        };
+        return StringTemplateOutletDirective;
+    }());
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
     var DelonUtilModule = /** @class */ (function () {
         function DelonUtilModule() {
         }
-        /**
-         * @return {?}
-         */
-        DelonUtilModule.forRoot = /**
-         * @return {?}
-         */
-            function () {
-                return {
-                    ngModule: DelonUtilModule,
-                };
-            };
         DelonUtilModule.decorators = [
             { type: i0.NgModule, args: [{
                         imports: [i1.CommonModule],
+                        declarations: [StringTemplateOutletDirective],
+                        exports: [StringTemplateOutletDirective],
                     },] }
         ];
         return DelonUtilModule;
@@ -1042,12 +1074,12 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
 
     exports._Validators = _Validators;
@@ -1072,6 +1104,7 @@
     exports.ArrayService = ArrayService;
     exports.DelonUtilConfig = DelonUtilConfig;
     exports.DelonUtilModule = DelonUtilModule;
+    exports.ɵa = StringTemplateOutletDirective;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
