@@ -150,7 +150,7 @@ var STConfig = /** @class */ (function () {
         /**
          * 是否多排序，当 `sort` 多个相同值时自动合并，建议后端支持时使用
          */
-        this.multiSort = false;
+        this.multiSort = null;
         /**
          * 按钮模态框配置
          */
@@ -886,14 +886,16 @@ var STDataSource = /** @class */ (function () {
         if (!multiSort && sortList.length === 0)
             return ret;
         if (multiSort) {
+            /** @type {?} */
+            var ms_1 = __assign({ key: 'sort', separator: '-', nameSeparator: '.' }, multiSort);
             sortList.forEach(function (item) {
                 ret[item.key] = (item.reName || {})[item.default] || item.default;
             });
             // 合并处理
             ret = (_a = {},
-                _a[multiSort.key] = Object.keys(ret)
-                    .map(function (key) { return key + multiSort.nameSeparator + ret[key]; })
-                    .join(multiSort.separator),
+                _a[ms_1.key] = Object.keys(ret)
+                    .map(function (key) { return key + ms_1.nameSeparator + ret[key]; })
+                    .join(ms_1.separator),
                 _a);
         }
         else {
@@ -1137,6 +1139,14 @@ var STComponent = /** @class */ (function () {
          */
         this.change = new EventEmitter();
         this.rowClickCount = 0;
+        /** @type {?} */
+        var copyCog = (/** @type {?} */ (deepCopy(cog)));
+        Object.keys(copyCog)
+            .filter(function (key) { return !['multiSort'].includes(key); })
+            .forEach(function (key) { return _this[key] = copyCog[key]; });
+        if (copyCog.multiSort && copyCog.multiSort.global !== false) {
+            this.multiSort = copyCog.multiSort;
+        }
         this.delonI18n$ = this.delonI18n.change.subscribe(function () {
             _this.locale = _this.delonI18n.getData('st');
             if (_this._columns.length > 0) {
@@ -1144,7 +1154,6 @@ var STComponent = /** @class */ (function () {
                 _this.cd();
             }
         });
-        Object.assign(this, deepCopy(cog));
         if (i18nSrv) {
             this.i18n$ = i18nSrv.change
                 .pipe(filter(function () { return _this._columns.length > 0; }))
@@ -1257,7 +1266,7 @@ var STComponent = /** @class */ (function () {
                 this._multiSort = null;
                 return;
             }
-            this._multiSort = __assign({ key: 'sort', separator: '-', nameSeparator: '.' }, (typeof value === 'object' ? value : {}));
+            this._multiSort = __assign({}, (typeof value === 'object' ? value : {}));
         },
         enumerable: true,
         configurable: true

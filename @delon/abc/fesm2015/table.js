@@ -135,7 +135,7 @@ class STConfig {
         /**
          * 是否多排序，当 `sort` 多个相同值时自动合并，建议后端支持时使用
          */
-        this.multiSort = false;
+        this.multiSort = null;
         /**
          * 按钮模态框配置
          */
@@ -769,14 +769,16 @@ class STDataSource {
         if (!multiSort && sortList.length === 0)
             return ret;
         if (multiSort) {
+            /** @type {?} */
+            const ms = Object.assign({ key: 'sort', separator: '-', nameSeparator: '.' }, multiSort);
             sortList.forEach(item => {
                 ret[item.key] = (item.reName || {})[item.default] || item.default;
             });
             // 合并处理
             ret = {
-                [multiSort.key]: Object.keys(ret)
-                    .map(key => key + multiSort.nameSeparator + ret[key])
-                    .join(multiSort.separator),
+                [ms.key]: Object.keys(ret)
+                    .map(key => key + ms.nameSeparator + ret[key])
+                    .join(ms.separator),
             };
         }
         else {
@@ -1008,6 +1010,14 @@ class STComponent {
          */
         this.change = new EventEmitter();
         this.rowClickCount = 0;
+        /** @type {?} */
+        const copyCog = (/** @type {?} */ (deepCopy(cog)));
+        Object.keys(copyCog)
+            .filter(key => !['multiSort'].includes(key))
+            .forEach(key => this[key] = copyCog[key]);
+        if (copyCog.multiSort && copyCog.multiSort.global !== false) {
+            this.multiSort = copyCog.multiSort;
+        }
         this.delonI18n$ = this.delonI18n.change.subscribe(() => {
             this.locale = this.delonI18n.getData('st');
             if (this._columns.length > 0) {
@@ -1015,7 +1025,6 @@ class STComponent {
                 this.cd();
             }
         });
-        Object.assign(this, deepCopy(cog));
         if (i18nSrv) {
             this.i18n$ = i18nSrv.change
                 .pipe(filter(() => this._columns.length > 0))
@@ -1109,7 +1118,7 @@ class STComponent {
             this._multiSort = null;
             return;
         }
-        this._multiSort = Object.assign({ key: 'sort', separator: '-', nameSeparator: '.' }, (typeof value === 'object' ? value : {}));
+        this._multiSort = Object.assign({}, (typeof value === 'object' ? value : {}));
     }
     /**
      * @return {?}

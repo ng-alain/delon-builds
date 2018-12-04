@@ -42,7 +42,7 @@ export declare class STConfig {
     /**
      * 是否多排序，当 `sort` 多个相同值时自动合并，建议后端支持时使用
      */
-    multiSort?: boolean | STMultiSort;
+    multiSort?: STMultiSort;
     /**
      * 按钮模态框配置
      */
