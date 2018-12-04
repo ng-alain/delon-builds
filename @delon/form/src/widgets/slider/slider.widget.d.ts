@@ -1,12 +1,13 @@
 import { OnInit } from '@angular/core';
+import { Marks, SliderValue } from 'ng-zorro-antd';
 import { ControlWidget } from '../../widget';
 export declare class SliderWidget extends ControlWidget implements OnInit {
     min: number;
     max: number;
     step: number;
-    marks: any;
+    marks: Marks;
     included: boolean;
     ngOnInit(): void;
-    _formatter: (value: any) => any;
-    _afterChange(value: any): void;
+    _formatter: (value: number) => any;
+    _afterChange(value: SliderValue): void;
 }

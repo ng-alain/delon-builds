@@ -1,11 +1,11 @@
 import { __decorate, __metadata } from 'tslib';
-import { Directive, Input, ElementRef, Renderer2, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Injectable, Directive, ElementRef, Renderer2, Input, defineInjectable, NgModule } from '@angular/core';
 import { deepCopy, InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 class ImageConfig {
     constructor() {
@@ -19,10 +19,14 @@ class ImageConfig {
         this.error = './assets/img/logo.svg';
     }
 }
+ImageConfig.decorators = [
+    { type: Injectable, args: [{ providedIn: 'root' },] }
+];
+/** @nocollapse */ ImageConfig.ngInjectableDef = defineInjectable({ factory: function ImageConfig_Factory() { return new ImageConfig(); }, token: ImageConfig, providedIn: "root" });
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 /**
  * img标签
@@ -77,23 +81,23 @@ class ImageDirective {
             const arr = newSrc.split('/');
             /** @type {?} */
             const size = arr[arr.length - 1];
-            arr[arr.length - 1] =
-                size === '0' || +size !== this.size ? this.size.toString() : size;
+            arr[arr.length - 1] = size === '0' || +size !== this.size ? this.size.toString() : size;
             newSrc = arr.join('/');
         }
         /** @type {?} */
         const isHttp = newSrc.startsWith('http:');
         /** @type {?} */
         const isHttps = newSrc.startsWith('https:');
-        if (isHttp || isHttps)
+        if (isHttp || isHttps) {
             newSrc = newSrc.substr(isHttp ? 5 : 6);
+        }
         this.render.setAttribute(this.el.nativeElement, 'src', newSrc);
     }
     /**
      * @return {?}
      */
     updateError() {
-        this.render.setAttribute(this.el.nativeElement, 'onerror', `this.src='${this.error}';`);
+        this.render.setAttribute(this.el.nativeElement, 'onerror', `this.src='${this.error}'`);
     }
 }
 ImageDirective.decorators = [
@@ -117,17 +121,11 @@ __decorate([
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 /** @type {?} */
 const DIRECTIVES = [ImageDirective];
 class ImageModule {
-    /**
-     * @return {?}
-     */
-    static forRoot() {
-        return { ngModule: ImageModule, providers: [ImageConfig] };
-    }
 }
 ImageModule.decorators = [
     { type: NgModule, args: [{
@@ -139,12 +137,12 @@ ImageModule.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 
 export { ImageDirective, ImageConfig, ImageModule };

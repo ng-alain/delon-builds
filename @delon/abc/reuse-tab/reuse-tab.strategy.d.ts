@@ -1,4 +1,4 @@
-import { RouteReuseStrategy, ActivatedRouteSnapshot } from '@angular/router';
+import { ActivatedRouteSnapshot, RouteReuseStrategy } from '@angular/router';
 import { ReuseTabService } from './reuse-tab.service';
 export declare class ReuseTabStrategy implements RouteReuseStrategy {
     private srv;

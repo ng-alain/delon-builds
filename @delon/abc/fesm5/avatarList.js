@@ -1,36 +1,15 @@
 import { __spread } from 'tslib';
-import { Component, Input, ContentChildren, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, NgModule } from '@angular/core';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
- */
-var AvatarListItemComponent = /** @class */ (function () {
-    function AvatarListItemComponent() {
-    }
-    AvatarListItemComponent.decorators = [
-        { type: Component, args: [{
-                    selector: 'avatar-list-item, [avatar-list-item]',
-                    template: "<ng-content></ng-content>"
-                }] }
-    ];
-    AvatarListItemComponent.propDecorators = {
-        src: [{ type: Input }],
-        text: [{ type: Input }],
-        icon: [{ type: Input }],
-        tips: [{ type: Input }]
-    };
-    return AvatarListItemComponent;
-}());
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 var AvatarListComponent = /** @class */ (function () {
-    function AvatarListComponent() {
+    function AvatarListComponent(cdr) {
+        this.cdr = cdr;
         this._size = '';
         this._avatarSize = '';
     }
@@ -51,6 +30,7 @@ var AvatarListComponent = /** @class */ (function () {
                     this._avatarSize = 'small';
                     break;
             }
+            this.cdr.markForCheck();
         },
         enumerable: true,
         configurable: true
@@ -58,36 +38,70 @@ var AvatarListComponent = /** @class */ (function () {
     AvatarListComponent.decorators = [
         { type: Component, args: [{
                     selector: 'avatar-list',
-                    template: "\n  <ul class=\"avatar-list__wrap\">\n    <li *ngFor=\"let i of _items\" class=\"avatar-list__item{{_size ? ' avatar-list__item-' + _size : ''}}\">\n      <nz-tooltip *ngIf=\"i.tips\" [nzTitle]=\"i.tips\">\n        <nz-avatar nz-tooltip [nzSrc]=\"i.src\" [nzText]=\"i.text\" [nzIcon]=\"i.icon\" [nzSize]=\"_avatarSize\"></nz-avatar>\n      </nz-tooltip>\n      <nz-avatar *ngIf=\"!i.tips\" [nzSrc]=\"i.src\" [nzText]=\"i.text\" [nzIcon]=\"i.icon\" [nzSize]=\"_avatarSize\"></nz-avatar>\n    </li>\n  </ul>\n  ",
+                    template: "<div class=\"avatar-list__wrap{{_size ? ' avatar-list__' + _size : ''}}\">\n  <ng-content></ng-content>\n</div>\n",
                     host: { '[class.avatar-list]': 'true' },
-                    preserveWhitespaces: false
+                    changeDetection: ChangeDetectionStrategy.OnPush
                 }] }
     ];
+    /** @nocollapse */
+    AvatarListComponent.ctorParameters = function () { return [
+        { type: ChangeDetectorRef }
+    ]; };
     AvatarListComponent.propDecorators = {
-        size: [{ type: Input }],
-        _items: [{ type: ContentChildren, args: [AvatarListItemComponent,] }]
+        size: [{ type: Input }]
     };
     return AvatarListComponent;
 }());
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ */
+var AvatarListItemComponent = /** @class */ (function () {
+    function AvatarListItemComponent(p) {
+        this.p = p;
+    }
+    Object.defineProperty(AvatarListItemComponent.prototype, "size", {
+        get: /**
+         * @return {?}
+         */
+        function () {
+            return this.p._avatarSize;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    AvatarListItemComponent.decorators = [
+        { type: Component, args: [{
+                    selector: 'avatar-list-item, [avatar-list-item]',
+                    template: "<nz-tooltip *ngIf=\"tips\" [nzTitle]=\"tips\">\n  <nz-avatar nz-tooltip [nzSrc]=\"src\" [nzText]=\"text\" [nzIcon]=\"icon\" [nzSize]=\"size\"></nz-avatar>\n</nz-tooltip>\n<nz-avatar *ngIf=\"!tips\" [nzSrc]=\"src\" [nzText]=\"text\" [nzIcon]=\"icon\" [nzSize]=\"size\"></nz-avatar>\n<ng-content></ng-content>\n",
+                    host: {
+                        '[class.avatar-list__item]': 'true',
+                    }
+                }] }
+    ];
+    /** @nocollapse */
+    AvatarListItemComponent.ctorParameters = function () { return [
+        { type: AvatarListComponent }
+    ]; };
+    AvatarListItemComponent.propDecorators = {
+        src: [{ type: Input }],
+        text: [{ type: Input }],
+        icon: [{ type: Input }],
+        tips: [{ type: Input }]
+    };
+    return AvatarListItemComponent;
+}());
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 /** @type {?} */
 var COMPONENTS = [AvatarListComponent, AvatarListItemComponent];
 var AvatarListModule = /** @class */ (function () {
     function AvatarListModule() {
     }
-    /**
-     * @return {?}
-     */
-    AvatarListModule.forRoot = /**
-     * @return {?}
-     */
-    function () {
-        return { ngModule: AvatarListModule, providers: [] };
-    };
     AvatarListModule.decorators = [
         { type: NgModule, args: [{
                     imports: [CommonModule, NgZorroAntdModule],
@@ -100,12 +114,12 @@ var AvatarListModule = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 
 export { AvatarListItemComponent, AvatarListComponent, AvatarListModule };

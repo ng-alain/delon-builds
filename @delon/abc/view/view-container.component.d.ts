@@ -1,11 +1,9 @@
-import { ElementRef, Renderer2, OnInit, OnChanges, TemplateRef } from '@angular/core';
+import { ElementRef, OnChanges, OnInit, Renderer2, TemplateRef } from '@angular/core';
 import { SVConfig } from './view.config';
 export declare class SVContainerComponent implements OnInit, OnChanges {
     private ren;
     private el;
-    _title: string;
-    _titleTpl: TemplateRef<any>;
-    title: string | TemplateRef<any>;
+    title: string | TemplateRef<void>;
     size: 'small' | 'large';
     /** 列表项间距，单位为 `px` */
     gutter: number;

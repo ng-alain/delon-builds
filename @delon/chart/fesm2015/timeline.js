@@ -1,10 +1,11 @@
-import { Component, Input, ViewChild, NgZone, TemplateRef, ChangeDetectionStrategy, ChangeDetectorRef, NgModule } from '@angular/core';
+import { __decorate, __metadata } from 'tslib';
 import { CommonModule } from '@angular/common';
-import { toNumber, DelonUtilModule } from '@delon/util';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, NgZone, TemplateRef, ViewChild, NgModule } from '@angular/core';
+import { InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 class G2TimelineComponent {
     /**
@@ -19,9 +20,9 @@ class G2TimelineComponent {
         this.colorMap = { y1: '#1890FF', y2: '#2FC25B' };
         this.mask = 'HH:mm';
         this.position = 'top';
-        this._height = 400;
+        this.height = 400;
         this.padding = [60, 20, 40, 40];
-        this._borderWidth = 2;
+        this.borderWidth = 2;
         this.initFlag = false;
     }
     /**
@@ -37,26 +38,6 @@ class G2TimelineComponent {
             this._title = value;
         }
         this.cd.detectChanges();
-    }
-    /**
-     * @return {?}
-     */
-    get height() {
-        return this._height;
-    }
-    /**
-     * @param {?} value
-     * @return {?}
-     */
-    set height(value) {
-        this._height = toNumber(value);
-    }
-    /**
-     * @param {?} value
-     * @return {?}
-     */
-    set borderWidth(value) {
-        this._borderWidth = toNumber(value);
     }
     /**
      * @return {?}
@@ -102,7 +83,7 @@ class G2TimelineComponent {
              */
             callback(obj) {
                 /** @type {?} */
-                const time = new Date(obj.x).getTime(); // !注意：时间格式，建议转换为时间戳进行比较
+                const time = new Date(obj.x).getTime();
                 return time >= ds.state.start && time <= ds.state.end;
             },
         });
@@ -154,15 +135,15 @@ class G2TimelineComponent {
             .line()
             .position('x*y1')
             .color(this.colorMap.y1)
-            .size(this._borderWidth);
+            .size(this.borderWidth);
         chart
             .line()
             .position('x*y2')
             .color(this.colorMap.y2)
-            .size(this._borderWidth);
+            .size(this.borderWidth);
         chart.render();
         /** @type {?} */
-        const sliderPadding = Object.assign([], this.padding);
+        const sliderPadding = Object.assign({}, [], this.padding);
         sliderPadding[0] = 0;
         /** @type {?} */
         const slider = new Slider({
@@ -223,12 +204,8 @@ class G2TimelineComponent {
 G2TimelineComponent.decorators = [
     { type: Component, args: [{
                 selector: 'g2-timeline',
-                template: `
-  <ng-container *ngIf="_title; else _titleTpl"><h4>{{_title}}</h4></ng-container>
-  <div #container></div>
-  <div #slider></div>`,
-                changeDetection: ChangeDetectionStrategy.OnPush,
-                preserveWhitespaces: false
+                template: "<ng-container *ngIf=\"_title; else _titleTpl\">\n  <h4>{{_title}}</h4>\n</ng-container>\n<div #container></div>\n<div #slider></div>\n",
+                changeDetection: ChangeDetectionStrategy.OnPush
             }] }
 ];
 /** @nocollapse */
@@ -249,20 +226,22 @@ G2TimelineComponent.propDecorators = {
     node: [{ type: ViewChild, args: ['container',] }],
     sliderNode: [{ type: ViewChild, args: ['slider',] }]
 };
+__decorate([
+    InputNumber(),
+    __metadata("design:type", Object)
+], G2TimelineComponent.prototype, "height", void 0);
+__decorate([
+    InputNumber(),
+    __metadata("design:type", Object)
+], G2TimelineComponent.prototype, "borderWidth", void 0);
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 /** @type {?} */
 const COMPONENTS = [G2TimelineComponent];
 class G2TimelineModule {
-    /**
-     * @return {?}
-     */
-    static forRoot() {
-        return { ngModule: G2TimelineModule, providers: [] };
-    }
 }
 G2TimelineModule.decorators = [
     { type: NgModule, args: [{
@@ -274,12 +253,12 @@ G2TimelineModule.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 
 export { G2TimelineComponent, G2TimelineModule };

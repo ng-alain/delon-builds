@@ -1,10 +1,10 @@
-import { Component, Input, HostBinding, ViewChild, ChangeDetectionStrategy, NgZone, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { toNumber, toBoolean, DelonUtilModule } from '@delon/util';
+import { ChangeDetectionStrategy, Component, HostBinding, Input, NgZone, ViewChild, NgModule } from '@angular/core';
+import { toBoolean, toNumber, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 class G2MiniAreaComponent {
     /**
@@ -113,8 +113,8 @@ class G2MiniAreaComponent {
             },
         };
         chart.tooltip({
-            showTitle: false,
-            hideMarkders: false,
+            'showTitle': false,
+            'hideMarkders': false,
             'g2-tooltip': { padding: 4 },
             'g2-tooltip-list-item': { margin: `0px 4px` },
         });
@@ -193,17 +193,11 @@ G2MiniAreaComponent.propDecorators = {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 /** @type {?} */
 const COMPONENTS = [G2MiniAreaComponent];
 class G2MiniAreaModule {
-    /**
-     * @return {?}
-     */
-    static forRoot() {
-        return { ngModule: G2MiniAreaModule, providers: [] };
-    }
 }
 G2MiniAreaModule.decorators = [
     { type: NgModule, args: [{
@@ -215,12 +209,12 @@ G2MiniAreaModule.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 
 export { G2MiniAreaComponent, G2MiniAreaModule };

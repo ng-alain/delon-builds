@@ -1,11 +1,11 @@
 import { __decorate, __metadata } from 'tslib';
-import { Component, Input, HostBinding, ElementRef, HostListener, Inject, ChangeDetectionStrategy, ChangeDetectorRef, NgModule } from '@angular/core';
 import { DOCUMENT, CommonModule } from '@angular/common';
+import { Injectable, Component, ChangeDetectionStrategy, ElementRef, ChangeDetectorRef, Inject, Input, HostBinding, HostListener, defineInjectable, NgModule } from '@angular/core';
 import { InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 class ErrorCollectConfig {
     constructor() {
@@ -19,14 +19,14 @@ class ErrorCollectConfig {
         this.offsetTop = 65 + 64 + 8 * 2;
     }
 }
+ErrorCollectConfig.decorators = [
+    { type: Injectable, args: [{ providedIn: 'root' },] }
+];
+/** @nocollapse */ ErrorCollectConfig.ngInjectableDef = defineInjectable({ factory: function ErrorCollectConfig_Factory() { return new ErrorCollectConfig(); }, token: ErrorCollectConfig, providedIn: "root" });
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
- */
-/**
- * 错误消息采集器
- * PS：虽然此法并不好看，但对响应式表单&模板表单有很好的效果。
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 class ErrorCollectComponent {
     /**
@@ -68,6 +68,7 @@ class ErrorCollectComponent {
     _click() {
         if (this.count === 0)
             return false;
+        // nz-form-control
         /** @type {?} */
         const els = this.errEls;
         /** @type {?} */
@@ -127,11 +128,11 @@ ErrorCollectComponent.decorators = [
     { type: Component, args: [{
                 selector: 'error-collect, [error-collect]',
                 template: `
-  <i nz-icon type="exclamation-circle"></i>
-  <span class="pl-sm">{{count}}</span>`,
+    <i nz-icon type="exclamation-circle"></i>
+    <span class="pl-sm">{{ count }}</span>
+  `,
                 host: { '[class.error-collect]': 'true' },
-                changeDetection: ChangeDetectionStrategy.OnPush,
-                preserveWhitespaces: false
+                changeDetection: ChangeDetectionStrategy.OnPush
             }] }
 ];
 /** @nocollapse */
@@ -158,20 +159,11 @@ __decorate([
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 /** @type {?} */
 const COMPONENTS = [ErrorCollectComponent];
 class ErrorCollectModule {
-    /**
-     * @return {?}
-     */
-    static forRoot() {
-        return {
-            ngModule: ErrorCollectModule,
-            providers: [ErrorCollectConfig],
-        };
-    }
 }
 ErrorCollectModule.decorators = [
     { type: NgModule, args: [{
@@ -183,12 +175,12 @@ ErrorCollectModule.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 
 export { ErrorCollectComponent, ErrorCollectConfig, ErrorCollectModule };

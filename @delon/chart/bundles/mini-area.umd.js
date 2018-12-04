@@ -4,14 +4,14 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/common'), require('@delon/util')) :
-    typeof define === 'function' && define.amd ? define('@delon/chart/mini-area', ['exports', '@angular/core', '@angular/common', '@delon/util'], factory) :
-    (factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart['mini-area'] = {}),global.ng.core,global.ng.common,global.delon.util));
-}(this, (function (exports,core,common,util) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common'), require('@angular/core'), require('@delon/util')) :
+    typeof define === 'function' && define.amd ? define('@delon/chart/mini-area', ['exports', '@angular/common', '@angular/core', '@delon/util'], factory) :
+    (factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart['mini-area'] = {}),global.ng.common,global.ng.core,global.delon.util));
+}(this, (function (exports,common,core,util) { 'use strict';
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
     var G2MiniAreaComponent = /** @class */ (function () {
         function G2MiniAreaComponent(zone) {
@@ -134,8 +134,8 @@
                     },
                 };
                 chart.tooltip({
-                    showTitle: false,
-                    hideMarkders: false,
+                    'showTitle': false,
+                    'hideMarkders': false,
                     'g2-tooltip': { padding: 4 },
                     'g2-tooltip-list-item': { margin: "0px 4px" },
                 });
@@ -268,22 +268,13 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
     /** @type {?} */
     var COMPONENTS = [G2MiniAreaComponent];
     var G2MiniAreaModule = /** @class */ (function () {
         function G2MiniAreaModule() {
         }
-        /**
-         * @return {?}
-         */
-        G2MiniAreaModule.forRoot = /**
-         * @return {?}
-         */
-            function () {
-                return { ngModule: G2MiniAreaModule, providers: [] };
-            };
         G2MiniAreaModule.decorators = [
             { type: core.NgModule, args: [{
                         imports: [common.CommonModule, util.DelonUtilModule],
@@ -296,12 +287,12 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
 
     exports.G2MiniAreaComponent = G2MiniAreaComponent;

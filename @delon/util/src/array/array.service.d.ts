@@ -16,7 +16,7 @@ export declare class ArrayService {
         /** 是否移除 `children` 节点，默认：`true` */
         clearChildren?: boolean;
         /** 转换成数组结构时回调 */
-        cb?: (item: any, parent: any, deep: number) => void;
+        cb?(item: any, parent: any, deep: number): void;
     }): any[];
     /**
      * 数组转换成树数据
@@ -29,7 +29,7 @@ export declare class ArrayService {
         /** 子项名，默认：`'children'` */
         childrenMapName?: string;
         /** 转换成树数据时回调 */
-        cb?: (item: any) => void;
+        cb?(item: any): void;
     }): any[];
     /**
      * 数组转换成 `nz-tree` 数据源，通过 `options` 转化项名，也可以使用 `options.cb` 更高级决定数据项
@@ -52,7 +52,7 @@ export declare class ArrayService {
         /** 设置是否禁用节点(不可进行任何操作)项名，默认：`'disabled'` */
         disabledMapname?: string;
         /** 转换成树数据后，执行的递归回调 */
-        cb?: (item: any, parent: any, deep: number) => void;
+        cb?(item: any, parent: any, deep: number): void;
     }): NzTreeNode[];
     /**
      * 递归访问整个树
@@ -70,6 +70,6 @@ export declare class ArrayService {
         /** 是否重新指定 `key` 键名，若不指定表示使用 `NzTreeNode.key` 值 */
         keyMapName?: string;
         /** 回调，返回一个值 `key` 值，优先级高于其他 */
-        cb?: (item: NzTreeNode, parent: NzTreeNode, deep: number) => any;
+        cb?(item: NzTreeNode, parent: NzTreeNode, deep: number): any;
     }): any[];
 }

@@ -4,73 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('ng-zorro-antd'), require('@angular/common'), require('@delon/util')) :
-    typeof define === 'function' && define.amd ? define('@delon/chart/trend', ['exports', '@angular/core', 'ng-zorro-antd', '@angular/common', '@delon/util'], factory) :
-    (factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.trend = {}),global.ng.core,global.ngZorroAntd,global.ng.common,global.delon.util));
-}(this, (function (exports,core,ngZorroAntd,common,util) { 'use strict';
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
-     */
-    var TrendComponent = /** @class */ (function () {
-        function TrendComponent() {
-            this._colorful = true;
-            this._reverseColor = false;
-        }
-        Object.defineProperty(TrendComponent.prototype, "colorful", {
-            /** 是否彩色标记 */
-            get: /**
-             * 是否彩色标记
-             * @return {?}
-             */ function () {
-                return this._colorful;
-            },
-            set: /**
-             * @param {?} value
-             * @return {?}
-             */ function (value) {
-                this._colorful = util.toBoolean(value);
-            },
-            enumerable: true,
-            configurable: true
-        });
-        Object.defineProperty(TrendComponent.prototype, "reverseColor", {
-            /** 颜色反转 */
-            get: /**
-             * 颜色反转
-             * @return {?}
-             */ function () {
-                return this._reverseColor;
-            },
-            set: /**
-             * @param {?} value
-             * @return {?}
-             */ function (value) {
-                this._reverseColor = util.toBoolean(value);
-            },
-            enumerable: true,
-            configurable: true
-        });
-        TrendComponent.decorators = [
-            { type: core.Component, args: [{
-                        selector: 'trend',
-                        template: "\n  <ng-content></ng-content>\n  <span *ngIf=\"flag\" class=\"trend__{{flag}}\"><i nz-icon type=\"caret-{{flag}}\"></i></span>\n  ",
-                        host: {
-                            '[class.trend]': 'true',
-                            '[class.trend__grey]': '!colorful',
-                            '[class.trend__reverse]': 'colorful && reverseColor',
-                        },
-                        preserveWhitespaces: false
-                    }] }
-        ];
-        TrendComponent.propDecorators = {
-            flag: [{ type: core.Input }],
-            colorful: [{ type: core.Input }],
-            reverseColor: [{ type: core.Input }]
-        };
-        return TrendComponent;
-    }());
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common'), require('@angular/core'), require('@delon/util'), require('ng-zorro-antd')) :
+    typeof define === 'function' && define.amd ? define('@delon/chart/trend', ['exports', '@angular/common', '@angular/core', '@delon/util', 'ng-zorro-antd'], factory) :
+    (factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.trend = {}),global.ng.common,global.ng.core,global.delon.util,global.ngZorroAntd));
+}(this, (function (exports,common,core,util,ngZorroAntd) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -86,6 +23,20 @@
     See the Apache Version 2.0 License for specific language governing permissions
     and limitations under the License.
     ***************************************************************************** */
+    function __decorate(decorators, target, key, desc) {
+        var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+        if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
+            r = Reflect.decorate(decorators, target, key, desc);
+        else
+            for (var i = decorators.length - 1; i >= 0; i--)
+                if (d = decorators[i])
+                    r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+        return c > 3 && r && Object.defineProperty(target, key, r), r;
+    }
+    function __metadata(metadataKey, metadataValue) {
+        if (typeof Reflect === "object" && typeof Reflect.metadata === "function")
+            return Reflect.metadata(metadataKey, metadataValue);
+    }
     function __read(o, n) {
         var m = typeof Symbol === "function" && o[Symbol.iterator];
         if (!m)
@@ -118,22 +69,55 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     */
+    var TrendComponent = /** @class */ (function () {
+        function TrendComponent() {
+            /**
+             * 是否彩色标记
+             */
+            this.colorful = true;
+            /**
+             * 颜色反转
+             */
+            this.reverseColor = false;
+        }
+        TrendComponent.decorators = [
+            { type: core.Component, args: [{
+                        selector: 'trend',
+                        template: "<ng-content></ng-content>\n<span *ngIf=\"flag\" class=\"trend__{{flag}}\"><i nz-icon type=\"caret-{{flag}}\"></i></span>\n",
+                        host: {
+                            '[class.trend]': 'true',
+                            '[class.trend__grey]': '!colorful',
+                            '[class.trend__reverse]': 'colorful && reverseColor',
+                        }
+                    }] }
+        ];
+        TrendComponent.propDecorators = {
+            flag: [{ type: core.Input }],
+            colorful: [{ type: core.Input }],
+            reverseColor: [{ type: core.Input }]
+        };
+        __decorate([
+            util.InputBoolean(),
+            __metadata("design:type", Object)
+        ], TrendComponent.prototype, "colorful", void 0);
+        __decorate([
+            util.InputBoolean(),
+            __metadata("design:type", Object)
+        ], TrendComponent.prototype, "reverseColor", void 0);
+        return TrendComponent;
+    }());
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
     /** @type {?} */
     var COMPONENTS = [TrendComponent];
     var TrendModule = /** @class */ (function () {
         function TrendModule() {
         }
-        /**
-         * @return {?}
-         */
-        TrendModule.forRoot = /**
-         * @return {?}
-         */
-            function () {
-                return { ngModule: TrendModule, providers: [] };
-            };
         TrendModule.decorators = [
             { type: core.NgModule, args: [{
                         imports: [common.CommonModule, ngZorroAntd.NgZorroAntdModule, util.DelonUtilModule],
@@ -146,12 +130,12 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
 
     exports.TrendComponent = TrendComponent;

@@ -1,12 +1,12 @@
-import format from 'date-fns/format';
 import addSeconds from 'date-fns/add_seconds';
-import { Component, Input, Output, EventEmitter, NgModule } from '@angular/core';
+import format from 'date-fns/format';
 import { CommonModule } from '@angular/common';
+import { Component, EventEmitter, Input, Output, NgModule } from '@angular/core';
 import { CountdownModule } from 'ngx-countdown';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 class CountDownComponent {
     constructor() {
@@ -55,8 +55,7 @@ CountDownComponent.decorators = [
       (start)="_start()"
       (finished)="_finished()"
       (notify)="_notify($event)"></countdown>
-  `,
-                preserveWhitespaces: false
+  `
             }] }
 ];
 CountDownComponent.propDecorators = {
@@ -69,17 +68,11 @@ CountDownComponent.propDecorators = {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 /** @type {?} */
 const COMPONENTS = [CountDownComponent];
 class CountDownModule {
-    /**
-     * @return {?}
-     */
-    static forRoot() {
-        return { ngModule: CountDownModule, providers: [] };
-    }
 }
 CountDownModule.decorators = [
     { type: NgModule, args: [{
@@ -91,12 +84,12 @@ CountDownModule.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 
 export { CountDownComponent, CountDownModule };

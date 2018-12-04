@@ -1,15 +1,15 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const core_1 = require("@angular-devkit/core");
 const schematics_1 = require("@angular-devkit/schematics");
 const ts = require("typescript");
-const core_1 = require("@angular-devkit/core");
-const parse_name_1 = require("./devkit-utils/parse-name");
-const find_module_1 = require("./devkit-utils/find-module");
-const validation_1 = require("./devkit-utils/validation");
-const change_1 = require("./devkit-utils/change");
-const ast_utils_1 = require("./devkit-utils/ast-utils");
-const project_1 = require("./project");
 const ast_1 = require("./ast");
+const ast_utils_1 = require("./devkit-utils/ast-utils");
+const change_1 = require("./devkit-utils/change");
+const find_module_1 = require("./devkit-utils/find-module");
+const parse_name_1 = require("./devkit-utils/parse-name");
+const validation_1 = require("./devkit-utils/validation");
+const project_1 = require("./project");
 function buildSelector(schema, projectPrefix) {
     const ret = [];
     if (!schema.withoutPrefix) {
@@ -52,12 +52,14 @@ function resolveSchema(host, project, schema) {
     // path
     if (schema.path === undefined) {
         const projectDirName = project.projectType === 'application' ? 'app' : 'lib';
+        // tslint:disable-next-line:no-any
         schema.path = `/${project.sourceRoot}/${projectDirName}/routes`;
     }
     schema.path += `/${schema.module}`;
     const parsedPath = parse_name_1.parseName(schema.path, schema.name);
     schema.name = parsedPath.name;
     schema.path = parsedPath.path;
+    // tslint:disable-next-line:no-any
     schema.importModulePath = find_module_1.findModuleFromOptions(host, schema);
     // fill target
     if (schema.target) {
@@ -66,6 +68,7 @@ function resolveSchema(host, project, schema) {
     schema.routerModulePath = schema.importModulePath.replace('.module.ts', '-routing.module.ts');
     // html selector
     schema.selector =
+        // tslint:disable-next-line:no-any
         schema.selector || buildSelector(schema, project.prefix);
     validation_1.validateName(schema.name);
     validation_1.validateHtmlSelector(schema.selector);
@@ -83,6 +86,7 @@ function addValueToVariable(host, path, variableName, text) {
     if (!node) {
         throw new schematics_1.SchematicsException(`Could not find any [${variableName}] variable.`);
     }
+    // tslint:disable-next-line:no-any
     const arr = node.parent.initializer;
     const change = new change_1.InsertChange(path, arr.end - 1, `${arr.elements && arr.elements.length > 0 ? ',' : ''}\n  ${text}`);
     const declarationRecorder = host.beginUpdate(path);
@@ -91,10 +95,8 @@ function addValueToVariable(host, path, variableName, text) {
 }
 exports.addValueToVariable = addValueToVariable;
 function getRelativePath(path, schema) {
-    const importPath = `/${schema.path}/` +
-        (schema.flat ? '' : core_1.strings.dasherize(schema.name) + '/') +
-        core_1.strings.dasherize(schema.name) +
-        '.component';
+    // tslint:disable-next-line:prefer-template
+    const importPath = `/${schema.path}/` + (schema.flat ? '' : core_1.strings.dasherize(schema.name) + '/') + core_1.strings.dasherize(schema.name) + '.component';
     return find_module_1.buildRelativePath(path, importPath);
 }
 function addDeclaration(schema) {
@@ -121,6 +123,7 @@ function buildAlain(schema) {
     return (host, context) => {
         const project = project_1.getProject(host, schema.project);
         resolveSchema(host, project, schema);
+        // tslint:disable-next-line:no-any
         schema.componentName = buildComponentName(schema, project.prefix);
         // Don't support inline
         schema.inlineTemplate = false;

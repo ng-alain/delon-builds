@@ -1,15 +1,13 @@
 import { __decorate, __metadata } from 'tslib';
-import { Component, Input, Inject, TemplateRef, ElementRef, Renderer2, NgModule } from '@angular/core';
 import { DOCUMENT, CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component, ElementRef, Inject, Input, Renderer2, NgModule } from '@angular/core';
 import { ErrorCollectModule } from '@delon/abc/error-collect';
 import { InputBoolean, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
-/** @type {?} */
-const CLS = 'footer-toolbar';
 /** @type {?} */
 const CLSBODY = 'footer-toolbar__body';
 class FooterToolbarComponent {
@@ -23,40 +21,32 @@ class FooterToolbarComponent {
         this.renderer = renderer;
         this.doc = doc;
         this.errorCollect = false;
-        this._extra = '';
     }
     /**
-     * @param {?} value
      * @return {?}
      */
-    set extra(value) {
-        if (value instanceof TemplateRef) {
-            this._extra = null;
-            this._extraTpl = value;
-        }
-        else {
-            this._extra = value;
-        }
+    get bodyCls() {
+        return this.doc.querySelector('body').classList;
     }
     /**
      * @return {?}
      */
     ngOnInit() {
-        this.renderer.addClass(this.el.nativeElement, CLS);
-        this.doc.querySelector('body').classList.add(CLSBODY);
+        this.renderer.addClass(this.el.nativeElement, 'footer-toolbar');
+        this.bodyCls.add(CLSBODY);
     }
     /**
      * @return {?}
      */
     ngOnDestroy() {
-        this.doc.querySelector('body').classList.remove(CLSBODY);
+        this.bodyCls.remove(CLSBODY);
     }
 }
 FooterToolbarComponent.decorators = [
     { type: Component, args: [{
                 selector: 'footer-toolbar',
-                template: "<div class=\"footer-toolbar__left\">\n  <ng-container *ngIf=\"_extra; else _extraTpl\">{{_extra}}</ng-container>\n</div>\n<div class=\"footer-toolbar__right\">\n  <error-collect *ngIf=\"errorCollect\"></error-collect>\n  <ng-content></ng-content>\n</div>\n",
-                preserveWhitespaces: false
+                template: "<div class=\"footer-toolbar__left\">\n  <ng-container *stringTemplateOutlet=\"extra\">{{ extra }}</ng-container>\n</div>\n<div class=\"footer-toolbar__right\">\n  <error-collect *ngIf=\"errorCollect\"></error-collect>\n  <ng-content></ng-content>\n</div>",
+                changeDetection: ChangeDetectionStrategy.OnPush
             }] }
 ];
 /** @nocollapse */
@@ -76,17 +66,11 @@ __decorate([
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 /** @type {?} */
 const COMPONENTS = [FooterToolbarComponent];
 class FooterToolbarModule {
-    /**
-     * @return {?}
-     */
-    static forRoot() {
-        return { ngModule: FooterToolbarModule, providers: [] };
-    }
 }
 FooterToolbarModule.decorators = [
     { type: NgModule, args: [{
@@ -98,12 +82,12 @@ FooterToolbarModule.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 
 export { FooterToolbarComponent, FooterToolbarModule };

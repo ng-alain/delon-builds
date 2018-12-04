@@ -4,8 +4,7 @@ export declare class G2ProgressComponent {
     color: string;
     target: any;
     private _target;
-    strokeWidth: any;
-    private _strokeWidth;
+    strokeWidth: number;
     percent: any;
     private _percent;
     constructor(i18n: DelonLocaleService);

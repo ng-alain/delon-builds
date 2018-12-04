@@ -1,13 +1,13 @@
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable, of } from 'rxjs';
+import { BehaviorSubject, of, Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { __spread, __values } from 'tslib';
-import { Injectable, Directive, Input, ElementRef, Renderer2, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Injectable, Directive, ElementRef, Input, Renderer2, defineInjectable, inject, NgModule } from '@angular/core';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 /**
  * 访问控制服务
@@ -57,14 +57,14 @@ var ACLService = /** @class */ (function () {
      */
     function (val) {
         if (typeof val !== 'string' && !Array.isArray(val)) {
-            return /** @type {?} */ (val);
+            return (/** @type {?} */ (val));
         }
         if (Array.isArray(val)) {
-            return /** @type {?} */ ({ role: /** @type {?} */ (val) });
+            return (/** @type {?} */ ({ role: (/** @type {?} */ (val)) }));
         }
-        return /** @type {?} */ ({
+        return (/** @type {?} */ ({
             role: [val],
-        });
+        }));
     };
     /**
      * 设置当前用户角色或权限能力（会先清除所有）
@@ -116,7 +116,7 @@ var ACLService = /** @class */ (function () {
      * @return {?}
      */
     function (abilities) {
-        this.set(/** @type {?} */ ({ ability: abilities }));
+        this.set((/** @type {?} */ ({ ability: abilities })));
     };
     /**
      * 设置当前用户角色（会先清除所有）
@@ -132,7 +132,7 @@ var ACLService = /** @class */ (function () {
      * @return {?}
      */
     function (roles) {
-        this.set(/** @type {?} */ ({ role: roles }));
+        this.set((/** @type {?} */ ({ role: roles })));
     };
     /**
      * 为当前用户增加角色或权限能力
@@ -335,10 +335,14 @@ var ACLService = /** @class */ (function () {
                 return t.role.some(function (v) { return _this.roles.includes(v); });
         }
         if (t.ability) {
-            if (t.mode === 'allOf')
-                return (/** @type {?} */ (t.ability)).every(function (v) { return _this.abilities.includes(v); });
-            else
-                return (/** @type {?} */ (t.ability)).some(function (v) { return _this.abilities.includes(v); });
+            if (t.mode === 'allOf') {
+                // tslint:disable-next-line:no-any
+                return ((/** @type {?} */ (t.ability))).every(function (v) { return _this.abilities.includes(v); });
+            }
+            else {
+                // tslint:disable-next-line:no-any
+                return ((/** @type {?} */ (t.ability))).some(function (v) { return _this.abilities.includes(v); });
+            }
         }
         return false;
     };
@@ -357,7 +361,7 @@ var ACLService = /** @class */ (function () {
         if (typeof value === 'number' ||
             typeof value === 'string' ||
             Array.isArray(value)) {
-            value = /** @type {?} */ ({ ability: Array.isArray(value) ? value : [value] });
+            value = (/** @type {?} */ ({ ability: Array.isArray(value) ? value : [value] }));
         }
         delete value.role;
         return value;
@@ -379,14 +383,15 @@ var ACLService = /** @class */ (function () {
         return this.can(this.parseAbility(value));
     };
     ACLService.decorators = [
-        { type: Injectable }
+        { type: Injectable, args: [{ providedIn: 'root' },] }
     ];
+    /** @nocollapse */ ACLService.ngInjectableDef = defineInjectable({ factory: function ACLService_Factory() { return new ACLService(); }, token: ACLService, providedIn: "root" });
     return ACLService;
 }());
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 var ACLDirective = /** @class */ (function () {
     function ACLDirective(el, renderer, srv) {
@@ -394,7 +399,7 @@ var ACLDirective = /** @class */ (function () {
         this.el = el;
         this.renderer = renderer;
         this.srv = srv;
-        this.change$ = /** @type {?} */ (this.srv.change.subscribe(function () { return _this.set(_this._value); }));
+        this.change$ = this.srv.change.subscribe(function () { return _this.set(_this._value); });
     }
     Object.defineProperty(ACLDirective.prototype, "acl", {
         set: /**
@@ -449,9 +454,7 @@ var ACLDirective = /** @class */ (function () {
         this.change$.unsubscribe();
     };
     ACLDirective.decorators = [
-        { type: Directive, args: [{
-                    selector: '[acl]',
-                },] }
+        { type: Directive, args: [{ selector: '[acl]' },] }
     ];
     /** @nocollapse */
     ACLDirective.ctorParameters = function () { return [
@@ -468,7 +471,7 @@ var ACLDirective = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 var DelonACLConfig = /** @class */ (function () {
     function DelonACLConfig() {
@@ -477,12 +480,21 @@ var DelonACLConfig = /** @class */ (function () {
          */
         this.guard_url = '/403';
     }
+    DelonACLConfig.decorators = [
+        { type: Injectable, args: [{ providedIn: 'root' },] }
+    ];
+    /** @nocollapse */ DelonACLConfig.ngInjectableDef = defineInjectable({ factory: function DelonACLConfig_Factory() { return new DelonACLConfig(); }, token: DelonACLConfig, providedIn: "root" });
     return DelonACLConfig;
 }());
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 var ACLGuard = /** @class */ (function () {
     function ACLGuard(srv, router, options) {
@@ -503,7 +515,7 @@ var ACLGuard = /** @class */ (function () {
         return (guard && guard instanceof Observable
             ? guard
             : of(typeof guard !== 'undefined' && guard !== null
-                ? (/** @type {?} */ (guard))
+                ? ((/** @type {?} */ (guard)))
                 : null)).pipe(map(function (v) { return _this.srv.can(v); }), tap(function (v) {
             if (v)
                 return;
@@ -511,24 +523,30 @@ var ACLGuard = /** @class */ (function () {
         }));
     };
     // lazy loading
+    // lazy loading
     /**
      * @param {?} route
      * @return {?}
      */
-    ACLGuard.prototype.canLoad = /**
+    ACLGuard.prototype.canLoad = 
+    // lazy loading
+    /**
      * @param {?} route
      * @return {?}
      */
     function (route) {
-        return this.process((route.data && route.data["guard"]) || null);
+        return this.process((route.data && route.data.guard) || null);
     };
+    // all children route
     // all children route
     /**
      * @param {?} childRoute
      * @param {?} state
      * @return {?}
      */
-    ACLGuard.prototype.canActivateChild = /**
+    ACLGuard.prototype.canActivateChild = 
+    // all children route
+    /**
      * @param {?} childRoute
      * @param {?} state
      * @return {?}
@@ -537,21 +555,24 @@ var ACLGuard = /** @class */ (function () {
         return this.canActivate(childRoute, state);
     };
     // route
+    // route
     /**
      * @param {?} route
      * @param {?} state
      * @return {?}
      */
-    ACLGuard.prototype.canActivate = /**
+    ACLGuard.prototype.canActivate = 
+    // route
+    /**
      * @param {?} route
      * @param {?} state
      * @return {?}
      */
     function (route, state) {
-        return this.process((route.data && route.data["guard"]) || null);
+        return this.process((route.data && route.data.guard) || null);
     };
     ACLGuard.decorators = [
-        { type: Injectable }
+        { type: Injectable, args: [{ providedIn: 'root' },] }
     ];
     /** @nocollapse */
     ACLGuard.ctorParameters = function () { return [
@@ -559,32 +580,19 @@ var ACLGuard = /** @class */ (function () {
         { type: Router },
         { type: DelonACLConfig }
     ]; };
+    /** @nocollapse */ ACLGuard.ngInjectableDef = defineInjectable({ factory: function ACLGuard_Factory() { return new ACLGuard(inject(ACLService), inject(Router), inject(DelonACLConfig)); }, token: ACLGuard, providedIn: "root" });
     return ACLGuard;
 }());
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
-/** @type {?} */
-var SERVICES = [ACLService, ACLGuard];
 /** @type {?} */
 var COMPONENTS = [ACLDirective];
 var DelonACLModule = /** @class */ (function () {
     function DelonACLModule() {
     }
-    /**
-     * @return {?}
-     */
-    DelonACLModule.forRoot = /**
-     * @return {?}
-     */
-    function () {
-        return {
-            ngModule: DelonACLModule,
-            providers: __spread([DelonACLConfig], SERVICES),
-        };
-    };
     DelonACLModule.decorators = [
         { type: NgModule, args: [{
                     imports: [CommonModule],
@@ -597,12 +605,12 @@ var DelonACLModule = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 
 export { ACLService, ACLDirective, DelonACLConfig, ACLGuard, DelonACLModule };

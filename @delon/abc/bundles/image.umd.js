@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/common'), require('@delon/util')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/image', ['exports', '@angular/core', '@angular/common', '@delon/util'], factory) :
-    (factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.image = {}),global.ng.core,global.ng.common,global.delon.util));
-}(this, (function (exports,core,common,util) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common'), require('@angular/core'), require('@delon/util')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/image', ['exports', '@angular/common', '@angular/core', '@delon/util'], factory) :
+    (factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.image = {}),global.ng.common,global.ng.core,global.delon.util));
+}(this, (function (exports,common,i0,util) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -69,7 +69,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
     var ImageConfig = /** @class */ (function () {
         function ImageConfig() {
@@ -82,12 +82,16 @@
              */
             this.error = './assets/img/logo.svg';
         }
+        ImageConfig.decorators = [
+            { type: i0.Injectable, args: [{ providedIn: 'root' },] }
+        ];
+        /** @nocollapse */ ImageConfig.ngInjectableDef = i0.defineInjectable({ factory: function ImageConfig_Factory() { return new ImageConfig(); }, token: ImageConfig, providedIn: "root" });
         return ImageConfig;
     }());
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
     /**
      * img标签
@@ -147,16 +151,16 @@
                     var arr = newSrc.split('/');
                     /** @type {?} */
                     var size = arr[arr.length - 1];
-                    arr[arr.length - 1] =
-                        size === '0' || +size !== this.size ? this.size.toString() : size;
+                    arr[arr.length - 1] = size === '0' || +size !== this.size ? this.size.toString() : size;
                     newSrc = arr.join('/');
                 }
                 /** @type {?} */
                 var isHttp = newSrc.startsWith('http:');
                 /** @type {?} */
                 var isHttps = newSrc.startsWith('https:');
-                if (isHttp || isHttps)
+                if (isHttp || isHttps) {
                     newSrc = newSrc.substr(isHttp ? 5 : 6);
+                }
                 this.render.setAttribute(this.el.nativeElement, 'src', newSrc);
             };
         /**
@@ -166,23 +170,23 @@
          * @return {?}
          */
             function () {
-                this.render.setAttribute(this.el.nativeElement, 'onerror', "this.src='" + this.error + "';");
+                this.render.setAttribute(this.el.nativeElement, 'onerror', "this.src='" + this.error + "'");
             };
         ImageDirective.decorators = [
-            { type: core.Directive, args: [{ selector: '[_src]' },] }
+            { type: i0.Directive, args: [{ selector: '[_src]' },] }
         ];
         /** @nocollapse */
         ImageDirective.ctorParameters = function () {
             return [
-                { type: core.ElementRef },
-                { type: core.Renderer2 },
+                { type: i0.ElementRef },
+                { type: i0.Renderer2 },
                 { type: ImageConfig }
             ];
         };
         ImageDirective.propDecorators = {
-            src: [{ type: core.Input, args: ['_src',] }],
-            size: [{ type: core.Input }],
-            error: [{ type: core.Input }]
+            src: [{ type: i0.Input, args: ['_src',] }],
+            size: [{ type: i0.Input }],
+            error: [{ type: i0.Input }]
         };
         __decorate([
             util.InputNumber(),
@@ -193,24 +197,15 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
     /** @type {?} */
     var DIRECTIVES = [ImageDirective];
     var ImageModule = /** @class */ (function () {
         function ImageModule() {
         }
-        /**
-         * @return {?}
-         */
-        ImageModule.forRoot = /**
-         * @return {?}
-         */
-            function () {
-                return { ngModule: ImageModule, providers: [ImageConfig] };
-            };
         ImageModule.decorators = [
-            { type: core.NgModule, args: [{
+            { type: i0.NgModule, args: [{
                         imports: [common.CommonModule, util.DelonUtilModule],
                         declarations: __spread(DIRECTIVES),
                         exports: __spread(DIRECTIVES),
@@ -221,12 +216,12 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
 
     exports.ImageDirective = ImageDirective;

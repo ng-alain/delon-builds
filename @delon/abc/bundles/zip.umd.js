@@ -4,14 +4,14 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common/http'), require('file-saver'), require('@angular/core'), require('@angular/common'), require('@delon/util')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/zip', ['exports', '@angular/common/http', 'file-saver', '@angular/core', '@angular/common', '@delon/util'], factory) :
-    (factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.zip = {}),global.ng.common.http,global.saveAs,global.ng.core,global.ng.common,global.delon.util));
-}(this, (function (exports,http,fileSaver,core,common,util) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common/http'), require('file-saver'), require('@angular/common'), require('@angular/core'), require('@delon/util')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/zip', ['exports', '@angular/common/http', 'file-saver', '@angular/common', '@angular/core', '@delon/util'], factory) :
+    (factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.zip = {}),global.ng.common.http,global.saveAs,global.ng.common,global.ng.core,global.delon.util));
+}(this, (function (exports,i2,fileSaver,common,i0,i3) { 'use strict';
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
     var ZipConfig = /** @class */ (function () {
         function ZipConfig() {
@@ -24,17 +24,48 @@
              */
             this.utils = [];
         }
+        ZipConfig.decorators = [
+            { type: i0.Injectable, args: [{ providedIn: 'root' },] }
+        ];
+        /** @nocollapse */ ZipConfig.ngInjectableDef = i0.defineInjectable({ factory: function ZipConfig_Factory() { return new ZipConfig(); }, token: ZipConfig, providedIn: "root" });
         return ZipConfig;
     }());
 
+    /*! *****************************************************************************
+    Copyright (c) Microsoft Corporation. All rights reserved.
+    Licensed under the Apache License, Version 2.0 (the "License"); you may not use
+    this file except in compliance with the License. You may obtain a copy of the
+    License at http://www.apache.org/licenses/LICENSE-2.0
+
+    THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+    KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
+    WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
+    MERCHANTABLITY OR NON-INFRINGEMENT.
+
+    See the Apache Version 2.0 License for specific language governing permissions
+    and limitations under the License.
+    ***************************************************************************** */
+    var __assign = function () {
+        __assign = Object.assign || function __assign(t) {
+            for (var s, i = 1, n = arguments.length; i < n; i++) {
+                s = arguments[i];
+                for (var p in s)
+                    if (Object.prototype.hasOwnProperty.call(s, p))
+                        t[p] = s[p];
+            }
+            return t;
+        };
+        return __assign.apply(this, arguments);
+    };
+
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
     var ZipService = /** @class */ (function () {
-        function ZipService(cog, http$$1, lazy) {
+        function ZipService(cog, http, lazy) {
             this.cog = cog;
-            this.http = http$$1;
+            this.http = http;
             this.lazy = lazy;
         }
         /**
@@ -86,12 +117,13 @@
                             });
                             return;
                         }
+                        // from file
                         /** @type {?} */
                         var reader = new FileReader();
                         reader.onload = function (e) {
                             JSZip.loadAsync(e.target.result, options).then(function (ret) { return resolve(ret); });
                         };
-                        reader.readAsBinaryString(/** @type {?} */ (fileOrUrl));
+                        reader.readAsBinaryString(( /** @type {?} */(fileOrUrl)));
                     });
                 });
             };
@@ -169,10 +201,10 @@
             function (zip, options) {
                 this.check(zip);
                 /** @type {?} */
-                var opt = Object.assign({}, options);
+                var opt = __assign({}, options);
                 return new Promise(function (resolve, reject) {
                     zip
-                        .generateAsync(Object.assign({ type: 'blob' }, opt.options), opt.update)
+                        .generateAsync(__assign({ type: 'blob' }, opt.options), opt.update)
                         .then(function (data) {
                         if (opt.callback)
                             opt.callback(data);
@@ -184,41 +216,30 @@
                 });
             };
         ZipService.decorators = [
-            { type: core.Injectable }
+            { type: i0.Injectable, args: [{ providedIn: 'root' },] }
         ];
         /** @nocollapse */
         ZipService.ctorParameters = function () {
             return [
                 { type: ZipConfig },
-                { type: http.HttpClient },
-                { type: util.LazyService }
+                { type: i2.HttpClient },
+                { type: i3.LazyService }
             ];
         };
+        /** @nocollapse */ ZipService.ngInjectableDef = i0.defineInjectable({ factory: function ZipService_Factory() { return new ZipService(i0.inject(ZipConfig), i0.inject(i2.HttpClient), i0.inject(i3.LazyService)); }, token: ZipService, providedIn: "root" });
         return ZipService;
     }());
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
     var ZipModule = /** @class */ (function () {
         function ZipModule() {
         }
-        /**
-         * @return {?}
-         */
-        ZipModule.forRoot = /**
-         * @return {?}
-         */
-            function () {
-                return {
-                    ngModule: ZipModule,
-                    providers: [ZipConfig, ZipService],
-                };
-            };
         ZipModule.decorators = [
-            { type: core.NgModule, args: [{
-                        imports: [common.CommonModule, util.DelonUtilModule],
+            { type: i0.NgModule, args: [{
+                        imports: [common.CommonModule, i3.DelonUtilModule],
                     },] }
         ];
         return ZipModule;
@@ -226,12 +247,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
-     */
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
 
     exports.ZipService = ZipService;

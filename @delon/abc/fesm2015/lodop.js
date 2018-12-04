@@ -1,18 +1,28 @@
 import { of, Subject } from 'rxjs';
-import { Injectable, NgModule } from '@angular/core';
+import { Injectable, NgModule, defineInjectable, inject } from '@angular/core';
 import { LazyService, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
-class LodopConfig {
-}
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
+class LodopConfig {
+}
+LodopConfig.decorators = [
+    { type: Injectable, args: [{ providedIn: 'root' },] }
+];
+/** @nocollapse */ LodopConfig.ngInjectableDef = defineInjectable({ factory: function LodopConfig_Factory() { return new LodopConfig(); }, token: LodopConfig, providedIn: "root" });
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ */
+// TODO: zone
 class LodopService {
     /**
      * @param {?} defCog
@@ -25,6 +35,7 @@ class LodopService {
         this._lodop = null;
         this._init = new Subject();
         this._events = new Subject();
+        // tslint:disable-next-line:no-any
         this.printBuffer = [];
         this.cog = defCog;
     }
@@ -42,12 +53,7 @@ class LodopService {
      * @return {?}
      */
     set cog(value) {
-        this._cog = Object.assign({
-            url: 'https://localhost:8443/CLodopfuncs.js',
-            name: 'CLODOP',
-            companyName: '',
-            checkMaxCount: 100,
-        }, this.defCog, value);
+        this._cog = Object.assign({ url: 'https://localhost:8443/CLodopfuncs.js', name: 'CLODOP', companyName: '', checkMaxCount: 100 }, this.defCog, value);
     }
     /**
      * 事件变更通知
@@ -103,7 +109,7 @@ class LodopService {
             }
             this._lodop =
                 window.hasOwnProperty(this.cog.name) &&
-                    (/** @type {?} */ (window[this.cog.name]));
+                    ((/** @type {?} */ (window[this.cog.name])));
             if (this._lodop === null) {
                 onResolve('load-variable-name-error', { name: this.cog.name });
                 return;
@@ -127,7 +133,7 @@ class LodopService {
      */
     get lodop() {
         if (this._lodop)
-            return of(/** @type {?} */ ({ ok: true, lodop: this._lodop }));
+            return of((/** @type {?} */ ({ ok: true, lodop: this._lodop })));
         if (this.pending)
             return this._init.asObservable();
         this.request();
@@ -170,12 +176,13 @@ class LodopService {
             /** @type {?} */
             const fn = this._lodop[res[1]];
             if (fn) {
+                // tslint:disable-next-line:no-any
                 /** @type {?} */
                 let arr;
                 try {
                     /** @type {?} */
                     const fakeFn = new Function(`return [${res[2]}]`);
-                    arr = /** @type {?} */ (fakeFn());
+                    arr = fakeFn();
                 }
                 catch (_a) { }
                 if (Array.isArray(arr) && contextObj) {
@@ -223,10 +230,7 @@ class LodopService {
             if (tid !== taskID)
                 return;
             this._lodop.On_Return = null;
-            this._events.next(Object.assign(/** @type {?} */ ({
-                ok: value === true,
-                error: value === true ? null : value,
-            }), data));
+            this._events.next(Object.assign({ ok: value === true, error: value === true ? null : value }, data));
             this.printDo();
         };
     }
@@ -256,28 +260,20 @@ class LodopService {
     }
 }
 LodopService.decorators = [
-    { type: Injectable }
+    { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
 /** @nocollapse */
 LodopService.ctorParameters = () => [
     { type: LodopConfig },
     { type: LazyService }
 ];
+/** @nocollapse */ LodopService.ngInjectableDef = defineInjectable({ factory: function LodopService_Factory() { return new LodopService(inject(LodopConfig), inject(LazyService)); }, token: LodopService, providedIn: "root" });
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 class LodopModule {
-    /**
-     * @return {?}
-     */
-    static forRoot() {
-        return {
-            ngModule: LodopModule,
-            providers: [LodopService, LodopConfig],
-        };
-    }
 }
 LodopModule.decorators = [
     { type: NgModule, args: [{
@@ -287,12 +283,12 @@ LodopModule.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 
 export { LodopService, LodopConfig, LodopModule };

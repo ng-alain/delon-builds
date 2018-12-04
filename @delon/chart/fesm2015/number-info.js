@@ -1,11 +1,12 @@
-import { Component, TemplateRef, Input, ElementRef, Renderer2, ChangeDetectorRef, ChangeDetectionStrategy, NgModule } from '@angular/core';
+import { __decorate, __metadata } from 'tslib';
 import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Input, Renderer2, TemplateRef, NgModule } from '@angular/core';
+import { updateHostClass, InputNumber, DelonUtilModule } from '@delon/util';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
-import { toNumber, updateHostClass, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 class NumberInfoComponent {
     /**
@@ -26,7 +27,10 @@ class NumberInfoComponent {
          * 状态样式
          */
         this.theme = 'light';
-        this._gap = 8;
+        /**
+         * 设置数字和描述直接的间距（像素）
+         */
+        this.gap = 8;
         this._classMap = [];
     }
     /**
@@ -83,26 +87,12 @@ class NumberInfoComponent {
         this._isSubTotal = !!value;
     }
     /**
-     * 设置数字和描述直接的间距（像素）
-     * @return {?}
-     */
-    get gap() {
-        return this._gap;
-    }
-    /**
-     * @param {?} value
-     * @return {?}
-     */
-    set gap(value) {
-        this._gap = toNumber(value);
-    }
-    /**
      * @return {?}
      */
     setClass() {
         updateHostClass(this.el.nativeElement, this.renderer, {
             'number-info': true,
-            [`number-info__${this.theme}`]: true
+            [`number-info__${this.theme}`]: true,
         }, true);
         this.cd.detectChanges();
     }
@@ -116,18 +106,7 @@ class NumberInfoComponent {
 NumberInfoComponent.decorators = [
     { type: Component, args: [{
                 selector: 'number-info',
-                template: `
-  <div *ngIf="_title || _titleTpl" class="number-info__title"><ng-container *ngIf="_title; else _titleTpl">{{_title}}</ng-container></div>
-  <div *ngIf="_subTitle || _subTitleTpl" class="number-info__title-sub"><ng-container *ngIf="_subTitle; else _subTitleTpl">{{_subTitle}}</ng-container></div>
-  <div class="number-info__value" [ngStyle]="{'margin-top.px': gap}">
-    <span class="number-info__value-text"><ng-container *ngIf="_total; else _totalTpl">{{_total}}</ng-container><em class="number-info__value-suffix" *ngIf="suffix">{{suffix}}</em></span>
-    <span *ngIf="status || _isSubTotal" class="number-info__value-text number-info__value-sub">
-      <ng-container *ngIf="_subTotal; else _subTotalTpl">{{_subTotal}}</ng-container>
-      <i *ngIf="status" nz-icon type="caret-{{status}}"></i>
-    </span>
-  </div>
-  `,
-                preserveWhitespaces: false,
+                template: "<div *ngIf=\"_title || _titleTpl\" class=\"number-info__title\">\n  <ng-container *ngIf=\"_title; else _titleTpl\">{{_title}}</ng-container>\n</div>\n<div *ngIf=\"_subTitle || _subTitleTpl\" class=\"number-info__title-sub\">\n  <ng-container *ngIf=\"_subTitle; else _subTitleTpl\">{{_subTitle}}</ng-container>\n</div>\n<div class=\"number-info__value\" [ngStyle]=\"{'margin-top.px': gap}\">\n  <span class=\"number-info__value-text\">\n    <ng-container *ngIf=\"_total; else _totalTpl\">{{_total}}</ng-container><em class=\"number-info__value-suffix\" *ngIf=\"suffix\">{{suffix}}</em>\n  </span>\n  <span *ngIf=\"status || _isSubTotal\" class=\"number-info__value-text number-info__value-sub\">\n    <ng-container *ngIf=\"_subTotal; else _subTotalTpl\">{{_subTotal}}</ng-container>\n    <i *ngIf=\"status\" nz-icon type=\"caret-{{status}}\"></i>\n  </span>\n</div>\n",
                 changeDetection: ChangeDetectionStrategy.OnPush
             }] }
 ];
@@ -147,20 +126,18 @@ NumberInfoComponent.propDecorators = {
     theme: [{ type: Input }],
     gap: [{ type: Input }]
 };
+__decorate([
+    InputNumber(),
+    __metadata("design:type", Object)
+], NumberInfoComponent.prototype, "gap", void 0);
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 /** @type {?} */
 const COMPONENTS = [NumberInfoComponent];
 class NumberInfoModule {
-    /**
-     * @return {?}
-     */
-    static forRoot() {
-        return { ngModule: NumberInfoModule, providers: [] };
-    }
 }
 NumberInfoModule.decorators = [
     { type: NgModule, args: [{
@@ -172,12 +149,12 @@ NumberInfoModule.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 
 export { NumberInfoComponent, NumberInfoModule };

@@ -1,8 +1,8 @@
-import { QueryList } from '@angular/core';
-import { AvatarListItemComponent } from './avatar-list-item.component';
+import { ChangeDetectorRef } from '@angular/core';
 export declare class AvatarListComponent {
+    private cdr;
     _size: string;
     _avatarSize: string;
     size: 'large' | 'small' | 'mini' | 'default';
-    _items: QueryList<AvatarListItemComponent>;
+    constructor(cdr: ChangeDetectorRef);
 }

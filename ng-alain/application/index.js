@@ -1,17 +1,17 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const schematics_1 = require("@angular-devkit/schematics");
 const core_1 = require("@angular-devkit/core");
+const schematics_1 = require("@angular-devkit/schematics");
 const tasks_1 = require("@angular-devkit/schematics/tasks");
 const path = require("path");
-const json_1 = require("../utils/json");
-const lib_versions_1 = require("../utils/lib-versions");
-const file_1 = require("../utils/file");
-const project_1 = require("../utils/project");
-const html_1 = require("../utils/html");
+const lang_config_1 = require("../core/lang.config");
 const alain_1 = require("../utils/alain");
 const contents_1 = require("../utils/contents");
-const lang_config_1 = require("../core/lang.config");
+const file_1 = require("../utils/file");
+const html_1 = require("../utils/html");
+const json_1 = require("../utils/json");
+const lib_versions_1 = require("../utils/lib-versions");
+const project_1 = require("../utils/project");
 const overwriteDataFileRoot = path.join(__dirname, 'overwrites');
 let project;
 /** Remove files to be overwrite */
@@ -31,22 +31,6 @@ function removeOrginalFiles() {
         ]
             .filter(p => host.exists(p))
             .forEach(p => host.delete(p));
-    };
-}
-function fixedNg6() {
-    return (host) => {
-        const pkg = json_1.getPackage(host);
-        // all @angular/*
-        ['dependencies', 'devDependencies'].forEach(type => {
-            Object.keys(pkg[type])
-                .filter(key => key.startsWith('@angular/'))
-                .forEach(key => {
-                pkg[type][key] = '^6.1.10';
-            });
-        });
-        pkg.devDependencies['@angular-devkit/build-angular'] = '~0.10.2';
-        pkg.devDependencies['typescript'] = '~2.9.2';
-        json_1.overwritePackage(host, pkg);
     };
 }
 function fixMain() {
@@ -103,9 +87,9 @@ function addRunScriptToPackageJson() {
         const json = json_1.getPackage(host, 'scripts');
         if (json == null)
             return host;
-        json.scripts['start'] = `npm run color-less && ng serve -o`;
-        json.scripts['build'] = `npm run color-less && ng build --prod --build-optimizer`;
-        json.scripts['analyze'] = `npm run color-less && ng build --prod --build-optimizer --stats-json`;
+        json.scripts.start = `npm run color-less && ng serve -o`;
+        json.scripts.build = `npm run color-less && ng build --prod --build-optimizer`;
+        json.scripts.analyze = `npm run color-less && ng build --prod --build-optimizer --stats-json`;
         json.scripts['test-coverage'] = `ng test --code-coverage --watch=false`;
         json.scripts['color-less'] = `node scripts/color-less.js`;
         json_1.overwritePackage(host, json);
@@ -155,7 +139,7 @@ function addCodeStylesToPackageJson() {
         const json = json_1.getPackage(host);
         if (json == null)
             return host;
-        json.scripts['lint'] = `npm run lint:ts && npm run lint:style`;
+        json.scripts.lint = `npm run lint:ts && npm run lint:style`;
         json.scripts['lint:ts'] = `tslint -p src/tsconfig.app.json -c tslint.json 'src/**/*.ts'`;
         json.scripts['lint:style'] = `stylelint \"{src}/**/*.less\" --syntax less`;
         json.scripts['lint-staged'] = `lint-staged`;
@@ -167,12 +151,12 @@ function addCodeStylesToPackageJson() {
             ],
             '*.ts': ['npm run lint:ts', 'prettier --write', 'git add'],
             '*.less': ['npm run lint:style', 'prettier --write', 'git add'],
-            ignore: ['src/assets/*'],
+            'ignore': ['src/assets/*'],
         };
         json_1.overwritePackage(host, json);
         // tslint
         const tsLint = json_1.getJSON(host, 'tslint.json', 'rules');
-        tsLint.rules['curly'] = false;
+        tsLint.rules.curly = false;
         tsLint.rules['use-host-property-decorator'] = false;
         tsLint.rules['directive-selector'] = [
             true,
@@ -335,7 +319,7 @@ export class <%= componentName %> implements OnInit {
       expect(component).toBeTruthy();
     });
   });
-  `
+  `,
     };
     return (host) => {
         const prefix = `${project.root}/_cli-tpl/test/__path__/__name@dasherize@if-flat__/`;
@@ -441,7 +425,6 @@ function default_1(options) {
             addFilesToRoot(options),
             addCliTpl(options),
             fixMain(),
-            fixedNg6(),
             forceLess(),
             addStyle(options),
             fixLang(options),

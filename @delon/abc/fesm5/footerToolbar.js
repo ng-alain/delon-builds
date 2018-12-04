@@ -1,15 +1,13 @@
 import { __decorate, __metadata, __spread } from 'tslib';
-import { Component, Input, Inject, TemplateRef, ElementRef, Renderer2, NgModule } from '@angular/core';
 import { DOCUMENT, CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component, ElementRef, Inject, Input, Renderer2, NgModule } from '@angular/core';
 import { ErrorCollectModule } from '@delon/abc/error-collect';
 import { InputBoolean, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
-/** @type {?} */
-var CLS = 'footer-toolbar';
 /** @type {?} */
 var CLSBODY = 'footer-toolbar__body';
 var FooterToolbarComponent = /** @class */ (function () {
@@ -18,21 +16,13 @@ var FooterToolbarComponent = /** @class */ (function () {
         this.renderer = renderer;
         this.doc = doc;
         this.errorCollect = false;
-        this._extra = '';
     }
-    Object.defineProperty(FooterToolbarComponent.prototype, "extra", {
-        set: /**
-         * @param {?} value
+    Object.defineProperty(FooterToolbarComponent.prototype, "bodyCls", {
+        get: /**
          * @return {?}
          */
-        function (value) {
-            if (value instanceof TemplateRef) {
-                this._extra = null;
-                this._extraTpl = value;
-            }
-            else {
-                this._extra = value;
-            }
+        function () {
+            return this.doc.querySelector('body').classList;
         },
         enumerable: true,
         configurable: true
@@ -44,8 +34,8 @@ var FooterToolbarComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        this.renderer.addClass(this.el.nativeElement, CLS);
-        this.doc.querySelector('body').classList.add(CLSBODY);
+        this.renderer.addClass(this.el.nativeElement, 'footer-toolbar');
+        this.bodyCls.add(CLSBODY);
     };
     /**
      * @return {?}
@@ -54,13 +44,13 @@ var FooterToolbarComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        this.doc.querySelector('body').classList.remove(CLSBODY);
+        this.bodyCls.remove(CLSBODY);
     };
     FooterToolbarComponent.decorators = [
         { type: Component, args: [{
                     selector: 'footer-toolbar',
-                    template: "<div class=\"footer-toolbar__left\">\n  <ng-container *ngIf=\"_extra; else _extraTpl\">{{_extra}}</ng-container>\n</div>\n<div class=\"footer-toolbar__right\">\n  <error-collect *ngIf=\"errorCollect\"></error-collect>\n  <ng-content></ng-content>\n</div>\n",
-                    preserveWhitespaces: false
+                    template: "<div class=\"footer-toolbar__left\">\n  <ng-container *stringTemplateOutlet=\"extra\">{{ extra }}</ng-container>\n</div>\n<div class=\"footer-toolbar__right\">\n  <error-collect *ngIf=\"errorCollect\"></error-collect>\n  <ng-content></ng-content>\n</div>",
+                    changeDetection: ChangeDetectionStrategy.OnPush
                 }] }
     ];
     /** @nocollapse */
@@ -82,22 +72,13 @@ var FooterToolbarComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 /** @type {?} */
 var COMPONENTS = [FooterToolbarComponent];
 var FooterToolbarModule = /** @class */ (function () {
     function FooterToolbarModule() {
     }
-    /**
-     * @return {?}
-     */
-    FooterToolbarModule.forRoot = /**
-     * @return {?}
-     */
-    function () {
-        return { ngModule: FooterToolbarModule, providers: [] };
-    };
     FooterToolbarModule.decorators = [
         { type: NgModule, args: [{
                     imports: [CommonModule, ErrorCollectModule, DelonUtilModule],
@@ -110,12 +91,12 @@ var FooterToolbarModule = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 
 export { FooterToolbarComponent, FooterToolbarModule };

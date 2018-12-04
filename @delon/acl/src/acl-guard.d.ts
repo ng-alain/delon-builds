@@ -1,7 +1,7 @@
-import { CanActivate, CanActivateChild, CanLoad, ActivatedRouteSnapshot, Route, RouterStateSnapshot, Router } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, CanActivateChild, CanLoad, Route, Router, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
-import { ACLService } from './acl.service';
 import { DelonACLConfig } from './acl.config';
+import { ACLService } from './acl.service';
 export declare class ACLGuard implements CanActivate, CanActivateChild, CanLoad {
     private srv;
     private router;

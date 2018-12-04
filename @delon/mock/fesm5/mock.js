@@ -1,14 +1,21 @@
-import { Observable, of } from 'rxjs';
+import { __assign } from 'tslib';
+import { of, Observable } from 'rxjs';
 import { delay, tap } from 'rxjs/operators';
 import { _HttpClient } from '@delon/theme';
+import { HttpErrorResponse, HttpResponse, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Injectable, Injector, NgModule } from '@angular/core';
-import { HttpResponse, HttpErrorResponse, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 var MockStatusError = /** @class */ (function () {
+    // tslint:disable-next-line:no-any
     function MockStatusError(status, error) {
         this.status = status;
         this.error = error;
@@ -18,7 +25,7 @@ var MockStatusError = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 var DelonMockConfig = /** @class */ (function () {
     function DelonMockConfig() {
@@ -40,7 +47,7 @@ var DelonMockConfig = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 var MockService = /** @class */ (function () {
     function MockService(config) {
@@ -49,10 +56,14 @@ var MockService = /** @class */ (function () {
         this.applyMock();
         delete this.config.data;
     }
+    // #region parse rule
+    // #region parse rule
     /**
      * @return {?}
      */
-    MockService.prototype.applyMock = /**
+    MockService.prototype.applyMock = 
+    // #region parse rule
+    /**
      * @return {?}
      */
     function () {
@@ -110,12 +121,16 @@ var MockService = /** @class */ (function () {
                 (a.martcher || '').toString().length;
         });
     };
+    // tslint:disable-next-line:no-any
+    // tslint:disable-next-line:no-any
     /**
      * @param {?} key
      * @param {?} callback
      * @return {?}
      */
-    MockService.prototype.genRule = /**
+    MockService.prototype.genRule = 
+    // tslint:disable-next-line:no-any
+    /**
      * @param {?} key
      * @param {?} callback
      * @return {?}
@@ -136,9 +151,13 @@ var MockService = /** @class */ (function () {
         /** @type {?} */
         var segments = [];
         if (~url.indexOf(':')) {
-            segments = /** @type {?} */ ((url)).split('/').filter(function (segment) { return segment.startsWith(':'); }).map(function (v) { return v.substring(1); });
+            segments = (/** @type {?} */ (url)).split('/')
+                .filter(function (segment) { return segment.startsWith(':'); })
+                .map(function (v) { return v.substring(1); });
             /** @type {?} */
-            var reStr = /** @type {?} */ ((url)).split('/').map(function (segment) { return (segment.startsWith(':') ? "([^/]+)" : segment); }).join('/');
+            var reStr = (/** @type {?} */ (url)).split('/')
+                .map(function (segment) { return (segment.startsWith(':') ? "([^/]+)" : segment); })
+                .join('/');
             martcher = new RegExp(reStr, 'i');
         }
         else if (/(\([^)]+\))/i.test(url)) {
@@ -152,11 +171,15 @@ var MockService = /** @class */ (function () {
             method: method.toUpperCase(),
         };
     };
+    // tslint:disable-next-line:no-any
+    // tslint:disable-next-line:no-any
     /**
      * @param {?} error
      * @return {?}
      */
-    MockService.prototype.outputError = /**
+    MockService.prototype.outputError = 
+    // tslint:disable-next-line:no-any
+    /**
      * @param {?} error
      * @return {?}
      */
@@ -176,12 +199,15 @@ var MockService = /** @class */ (function () {
         throw error;
     };
     // #endregion
+    // #endregion
     /**
      * @param {?} method
      * @param {?} url
      * @return {?}
      */
-    MockService.prototype.getRule = /**
+    MockService.prototype.getRule = 
+    // #endregion
+    /**
      * @param {?} method
      * @param {?} url
      * @return {?}
@@ -253,7 +279,7 @@ var MockService = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 var MockInterceptor = /** @class */ (function () {
     function MockInterceptor(injector) {
@@ -273,11 +299,7 @@ var MockInterceptor = /** @class */ (function () {
         /** @type {?} */
         var src = this.injector.get(MockService);
         /** @type {?} */
-        var config = Object.assign({
-            delay: 300,
-            force: false,
-            log: true,
-        }, this.injector.get(DelonMockConfig, null));
+        var config = __assign({ delay: 300, force: false, log: true }, this.injector.get(DelonMockConfig, null));
         /** @type {?} */
         var rule = src.getRule(req.method, req.url.split('?')[0]);
         if (!rule && !config.force) {
@@ -328,7 +350,7 @@ var MockInterceptor = /** @class */ (function () {
                 }
                 catch (e) {
                     /** @type {?} */
-                    var errRes_1 = void 0;
+                    var errRes_1;
                     if (e instanceof MockStatusError) {
                         errRes_1 = new HttpErrorResponse({
                             url: req.url,
@@ -364,13 +386,11 @@ var MockInterceptor = /** @class */ (function () {
         }
         /** @type {?} */
         var hc = this.injector.get(_HttpClient, null);
-        if (hc) {
+        if (hc)
             hc.begin();
-        }
         return of(response).pipe(delay(config.delay), tap(function () {
-            if (hc) {
+            if (hc)
                 hc.end();
-            }
         }));
     };
     MockInterceptor.decorators = [
@@ -385,7 +405,7 @@ var MockInterceptor = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 var DelonMockModule = /** @class */ (function () {
     function DelonMockModule() {
@@ -430,12 +450,12 @@ var DelonMockModule = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 
 export { MockStatusError, MockService, MockInterceptor, DelonMockConfig, DelonMockModule };

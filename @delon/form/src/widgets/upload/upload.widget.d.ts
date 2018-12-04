@@ -1,5 +1,6 @@
-import { OnInit, ChangeDetectorRef } from '@angular/core';
-import { UploadFile, UploadChangeParam, NzModalService } from 'ng-zorro-antd';
+import { ChangeDetectorRef, OnInit } from '@angular/core';
+import { NzModalService, UploadChangeParam, UploadFile } from 'ng-zorro-antd';
+import { SFValue } from '../../interface';
 import { ControlWidget } from '../../widget';
 export declare class UploadWidget extends ControlWidget implements OnInit {
     private modalSrv;
@@ -9,7 +10,7 @@ export declare class UploadWidget extends ControlWidget implements OnInit {
     constructor(cd: ChangeDetectorRef, modalSrv: NzModalService);
     ngOnInit(): void;
     change(args: UploadChangeParam): void;
-    reset(value: any): void;
+    reset(value: SFValue): void;
     private notify;
     handlePreview: (file: UploadFile) => void;
 }

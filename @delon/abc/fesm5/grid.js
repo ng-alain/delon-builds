@@ -1,12 +1,12 @@
 import { ResponsiveService } from '@delon/theme';
 import { __decorate, __metadata, __spread } from 'tslib';
-import { Component, Input, HostBinding, ElementRef, Renderer2, Host, Optional, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Injectable, Component, ChangeDetectionStrategy, Input, HostBinding, Optional, Host, ElementRef, Renderer2, defineInjectable, NgModule } from '@angular/core';
 import { toNumber, InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 var SGConfig = /** @class */ (function () {
     function SGConfig() {
@@ -19,12 +19,16 @@ var SGConfig = /** @class */ (function () {
          */
         this.col = 2;
     }
+    SGConfig.decorators = [
+        { type: Injectable, args: [{ providedIn: 'root' },] }
+    ];
+    /** @nocollapse */ SGConfig.ngInjectableDef = defineInjectable({ factory: function SGConfig_Factory() { return new SGConfig(); }, token: SGConfig, providedIn: "root" });
     return SGConfig;
 }());
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 var SGContainerComponent = /** @class */ (function () {
     function SGContainerComponent(cog) {
@@ -53,7 +57,9 @@ var SGContainerComponent = /** @class */ (function () {
     });
     Object.defineProperty(SGContainerComponent.prototype, "marginLeft", {
         //#endregion
-        get: /**
+        get: 
+        //#endregion
+        /**
          * @return {?}
          */
         function () {
@@ -75,12 +81,12 @@ var SGContainerComponent = /** @class */ (function () {
     SGContainerComponent.decorators = [
         { type: Component, args: [{
                     selector: 'sg-container, [sg-container]',
-                    template: "<ng-content></ng-content>",
+                    template: "\n    <ng-content></ng-content>\n  ",
                     host: {
                         '[class.ant-row]': 'true',
                         '[class.sg__wrap]': 'true',
                     },
-                    preserveWhitespaces: false
+                    changeDetection: ChangeDetectionStrategy.OnPush
                 }] }
     ];
     /** @nocollapse */
@@ -102,7 +108,7 @@ var SGContainerComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 /** @type {?} */
 var prefixCls = "sg";
@@ -139,18 +145,22 @@ var SGComponent = /** @class */ (function () {
         configurable: true
     });
     /**
-     * @return {?}
+     * @template THIS
+     * @this {THIS}
+     * @return {THIS}
      */
     SGComponent.prototype.setClass = /**
-     * @return {?}
+     * @template THIS
+     * @this {THIS}
+     * @return {THIS}
      */
     function () {
-        var _a = this, el = _a.el, ren = _a.ren, clsMap = _a.clsMap, col = _a.col, parent = _a.parent;
+        var _a = (/** @type {?} */ (this)), el = _a.el, ren = _a.ren, clsMap = _a.clsMap, col = _a.col, parent = _a.parent;
         clsMap.forEach(function (cls) { return ren.removeClass(el, cls); });
         clsMap.length = 0;
-        clsMap.push.apply(clsMap, __spread(this.rep.genCls(col != null ? col : parent.col), [prefixCls + "__item"]));
+        clsMap.push.apply(clsMap, __spread((/** @type {?} */ (this)).rep.genCls(col != null ? col : parent.col), [prefixCls + "__item"]));
         clsMap.forEach(function (cls) { return ren.addClass(el, cls); });
-        return this;
+        return (/** @type {?} */ (this));
     };
     /**
      * @return {?}
@@ -175,8 +185,8 @@ var SGComponent = /** @class */ (function () {
     SGComponent.decorators = [
         { type: Component, args: [{
                     selector: 'sg',
-                    template: "<ng-content></ng-content>",
-                    preserveWhitespaces: false
+                    template: "\n    <ng-content></ng-content>\n  ",
+                    changeDetection: ChangeDetectionStrategy.OnPush
                 }] }
     ];
     /** @nocollapse */
@@ -200,22 +210,13 @@ var SGComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 /** @type {?} */
 var COMPONENTS = [SGContainerComponent, SGComponent];
 var SGModule = /** @class */ (function () {
     function SGModule() {
     }
-    /**
-     * @return {?}
-     */
-    SGModule.forRoot = /**
-     * @return {?}
-     */
-    function () {
-        return { ngModule: SGModule, providers: [SGConfig] };
-    };
     SGModule.decorators = [
         { type: NgModule, args: [{
                     imports: [CommonModule, DelonUtilModule],
@@ -228,12 +229,12 @@ var SGModule = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 
 export { SGContainerComponent, SGComponent, SGConfig, SGModule };

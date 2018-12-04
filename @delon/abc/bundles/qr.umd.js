@@ -4,14 +4,14 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/common'), require('@delon/util')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/qr', ['exports', '@angular/core', '@angular/common', '@delon/util'], factory) :
-    (factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.qr = {}),global.ng.core,global.ng.common,global.delon.util));
-}(this, (function (exports,core,common,util) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common'), require('@angular/core'), require('@delon/util')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/qr', ['exports', '@angular/common', '@angular/core', '@delon/util'], factory) :
+    (factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.qr = {}),global.ng.common,global.ng.core,global.delon.util));
+}(this, (function (exports,common,i0,util) { 'use strict';
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
     var QRConfig = /** @class */ (function () {
         function QRConfig() {
@@ -22,7 +22,7 @@
             /**
              * 背景透明级别，范围：`0-1` 之间，默认：`1.0`
              */
-            this.backgroundAlpha = 1.0;
+            this.backgroundAlpha = 1;
             /**
              * 前景，默认：`black`
              */
@@ -30,7 +30,7 @@
             /**
              * 前景透明级别，范围：`0-1` 之间，默认：`1.0`
              */
-            this.foregroundAlpha = 1.0;
+            this.foregroundAlpha = 1;
             /**
              * 误差校正级别，默认：`L`
              */
@@ -48,19 +48,23 @@
              */
             this.size = 220;
         }
+        QRConfig.decorators = [
+            { type: i0.Injectable, args: [{ providedIn: 'root' },] }
+        ];
+        /** @nocollapse */ QRConfig.ngInjectableDef = i0.defineInjectable({ factory: function QRConfig_Factory() { return new QRConfig(); }, token: QRConfig, providedIn: "root" });
         return QRConfig;
     }());
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
     var QRService = /** @class */ (function () {
         function QRService(cog) {
             /**
              * 背景透明级别，范围：`0-1` 之间
              */
-            this.backgroundAlpha = 1.0;
+            this.backgroundAlpha = 1;
             Object.assign(this, cog);
             this.qr = new QRious();
         }
@@ -108,7 +112,7 @@
             configurable: true
         });
         QRService.decorators = [
-            { type: core.Injectable }
+            { type: i0.Injectable, args: [{ providedIn: 'root' },] }
         ];
         /** @nocollapse */
         QRService.ctorParameters = function () {
@@ -116,6 +120,7 @@
                 { type: QRConfig }
             ];
         };
+        /** @nocollapse */ QRService.ngInjectableDef = i0.defineInjectable({ factory: function QRService_Factory() { return new QRService(i0.inject(QRConfig)); }, token: QRService, providedIn: "root" });
         return QRService;
     }());
 
@@ -179,17 +184,14 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
     var QRComponent = /** @class */ (function () {
         // #endregion
         function QRComponent(cog, srv, cd) {
             this.srv = srv;
             this.cd = cd;
-            /**
-             * 变更时回调
-             */
-            this.change = new core.EventEmitter();
+            this.change = new i0.EventEmitter();
             Object.assign(this, cog);
         }
         /**
@@ -214,12 +216,11 @@
                 this.change.emit(this.dataURL);
             };
         QRComponent.decorators = [
-            { type: core.Component, args: [{
+            { type: i0.Component, args: [{
                         selector: 'qr',
-                        template: "\n  <img class=\"qr__img\" src=\"{{dataURL}}\">\n  ",
-                        preserveWhitespaces: false,
+                        template: "<img class=\"qr__img\" src=\"{{dataURL}}\">",
                         host: { '[class.qr]': 'true' },
-                        changeDetection: core.ChangeDetectionStrategy.OnPush
+                        changeDetection: i0.ChangeDetectionStrategy.OnPush
                     }] }
         ];
         /** @nocollapse */
@@ -227,20 +228,20 @@
             return [
                 { type: QRConfig },
                 { type: QRService },
-                { type: core.ChangeDetectorRef }
+                { type: i0.ChangeDetectorRef }
             ];
         };
         QRComponent.propDecorators = {
-            background: [{ type: core.Input }],
-            backgroundAlpha: [{ type: core.Input }],
-            foreground: [{ type: core.Input }],
-            foregroundAlpha: [{ type: core.Input }],
-            level: [{ type: core.Input }],
-            mime: [{ type: core.Input }],
-            padding: [{ type: core.Input }],
-            size: [{ type: core.HostBinding, args: ['style.height.px',] }, { type: core.HostBinding, args: ['style.width.px',] }, { type: core.Input }],
-            value: [{ type: core.Input }],
-            change: [{ type: core.Output }]
+            background: [{ type: i0.Input }],
+            backgroundAlpha: [{ type: i0.Input }],
+            foreground: [{ type: i0.Input }],
+            foregroundAlpha: [{ type: i0.Input }],
+            level: [{ type: i0.Input }],
+            mime: [{ type: i0.Input }],
+            padding: [{ type: i0.Input }],
+            size: [{ type: i0.HostBinding, args: ['style.height.px',] }, { type: i0.HostBinding, args: ['style.width.px',] }, { type: i0.Input }],
+            value: [{ type: i0.Input }],
+            change: [{ type: i0.Output }]
         };
         __decorate([
             util.InputNumber(),
@@ -255,24 +256,15 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
     /** @type {?} */
     var COMPONENTS = [QRComponent];
     var QRModule = /** @class */ (function () {
         function QRModule() {
         }
-        /**
-         * @return {?}
-         */
-        QRModule.forRoot = /**
-         * @return {?}
-         */
-            function () {
-                return { ngModule: QRModule, providers: [QRConfig, QRService] };
-            };
         QRModule.decorators = [
-            { type: core.NgModule, args: [{
+            { type: i0.NgModule, args: [{
                         imports: [common.CommonModule, util.DelonUtilModule],
                         declarations: __spread(COMPONENTS),
                         exports: __spread(COMPONENTS),
@@ -283,12 +275,12 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
 
     exports.QRService = QRService;
