@@ -914,8 +914,6 @@ class STExport {
      * @return {?}
      */
     export(opt) {
-        if (!this.xlsxSrv)
-            throw new Error(`muse be import 'XlsxModule' module, but got null`);
         /** @type {?} */
         const sheets = this.genSheet(opt);
         return this.xlsxSrv.export({
@@ -940,13 +938,13 @@ STExport.ctorParameters = () => [
 class STComponent {
     // #endregion
     /**
-     * @param {?} cdRef
+     * @param {?} i18nSrv
+     * @param {?} cdr
      * @param {?} cog
      * @param {?} router
      * @param {?} el
      * @param {?} renderer
      * @param {?} exportSrv
-     * @param {?} i18nSrv
      * @param {?} modalHelper
      * @param {?} drawerHelper
      * @param {?} doc
@@ -954,8 +952,8 @@ class STComponent {
      * @param {?} dataSource
      * @param {?} delonI18n
      */
-    constructor(cdRef, cog, router, el, renderer, exportSrv, i18nSrv, modalHelper, drawerHelper, doc, columnSource, dataSource, delonI18n) {
-        this.cdRef = cdRef;
+    constructor(i18nSrv, cdr, cog, router, el, renderer, exportSrv, modalHelper, drawerHelper, doc, columnSource, dataSource, delonI18n) {
+        this.cdr = cdr;
         this.cog = cog;
         this.router = router;
         this.el = el;
@@ -1117,7 +1115,7 @@ class STComponent {
      * @return {?}
      */
     cd() {
-        this.cdRef.detectChanges();
+        this.cdr.detectChanges();
     }
     /**
      * @param {?} total
@@ -1688,13 +1686,13 @@ STComponent.decorators = [
 ];
 /** @nocollapse */
 STComponent.ctorParameters = () => [
+    { type: undefined, decorators: [{ type: Optional }, { type: Inject, args: [ALAIN_I18N_TOKEN,] }] },
     { type: ChangeDetectorRef },
     { type: STConfig },
     { type: Router },
     { type: ElementRef },
     { type: Renderer2 },
     { type: STExport },
-    { type: undefined, decorators: [{ type: Optional }, { type: Inject, args: [ALAIN_I18N_TOKEN,] }] },
     { type: ModalHelper },
     { type: DrawerHelper },
     { type: undefined, decorators: [{ type: Inject, args: [DOCUMENT,] }] },

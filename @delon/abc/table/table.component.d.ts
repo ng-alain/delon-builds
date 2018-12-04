@@ -8,7 +8,7 @@ import { STExport } from './table-export';
 import { STConfig } from './table.config';
 import { STChange, STColumn, STColumnButton, STColumnFilterMenu, STColumnSelection, STData, STError, STExportOptions, STLoadOptions, STPage, STReq, STRes, STRowClassName, STSingleSort } from './table.interfaces';
 export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy {
-    private cdRef;
+    private cdr;
     private cog;
     private router;
     private el;
@@ -89,7 +89,7 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
      * 变化时回调，包括：`pi`、`ps`、`checkbox`、`radio`、`sort`、`filter`、`click`、`dblClick` 变动
      */
     readonly change: EventEmitter<STChange>;
-    constructor(cdRef: ChangeDetectorRef, cog: STConfig, router: Router, el: ElementRef, renderer: Renderer2, exportSrv: STExport, i18nSrv: AlainI18NService, modalHelper: ModalHelper, drawerHelper: DrawerHelper, doc: any, columnSource: STColumnSource, dataSource: STDataSource, delonI18n: DelonLocaleService);
+    constructor(i18nSrv: AlainI18NService, cdr: ChangeDetectorRef, cog: STConfig, router: Router, el: ElementRef, renderer: Renderer2, exportSrv: STExport, modalHelper: ModalHelper, drawerHelper: DrawerHelper, doc: any, columnSource: STColumnSource, dataSource: STDataSource, delonI18n: DelonLocaleService);
     cd(): void;
     renderTotal(total: string, range: string[]): string;
     private changeEmit;

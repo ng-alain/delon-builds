@@ -1056,8 +1056,6 @@ var STExport = /** @class */ (function () {
      * @return {?}
      */
     function (opt) {
-        if (!this.xlsxSrv)
-            throw new Error("muse be import 'XlsxModule' module, but got null");
         /** @type {?} */
         var sheets = this.genSheet(opt);
         return this.xlsxSrv.export({
@@ -1082,9 +1080,9 @@ var STExport = /** @class */ (function () {
  */
 var STComponent = /** @class */ (function () {
     // #endregion
-    function STComponent(cdRef, cog, router, el, renderer, exportSrv, i18nSrv, modalHelper, drawerHelper, doc, columnSource, dataSource, delonI18n) {
+    function STComponent(i18nSrv, cdr, cog, router, el, renderer, exportSrv, modalHelper, drawerHelper, doc, columnSource, dataSource, delonI18n) {
         var _this = this;
-        this.cdRef = cdRef;
+        this.cdr = cdr;
         this.cog = cog;
         this.router = router;
         this.el = el;
@@ -1271,7 +1269,7 @@ var STComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        this.cdRef.detectChanges();
+        this.cdr.detectChanges();
     };
     /**
      * @param {?} total
@@ -2125,13 +2123,13 @@ var STComponent = /** @class */ (function () {
     ];
     /** @nocollapse */
     STComponent.ctorParameters = function () { return [
+        { type: undefined, decorators: [{ type: Optional }, { type: Inject, args: [ALAIN_I18N_TOKEN,] }] },
         { type: ChangeDetectorRef },
         { type: STConfig },
         { type: Router },
         { type: ElementRef },
         { type: Renderer2 },
         { type: STExport },
-        { type: undefined, decorators: [{ type: Optional }, { type: Inject, args: [ALAIN_I18N_TOKEN,] }] },
         { type: ModalHelper },
         { type: DrawerHelper },
         { type: undefined, decorators: [{ type: Inject, args: [DOCUMENT,] }] },
