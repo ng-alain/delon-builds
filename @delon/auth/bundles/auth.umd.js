@@ -9,69 +9,16 @@
     (factory((global.delon = global.delon || {}, global.delon.auth = {}),global.ng.common,global.ng.common.http,global.delon.theme,global.ng.router,global.rxjs,global.rxjs.operators,global.ng.core));
 }(this, (function (exports,common,http,theme,router,rxjs,operators,core) { 'use strict';
 
-    /*! *****************************************************************************
-    Copyright (c) Microsoft Corporation. All rights reserved.
-    Licensed under the Apache License, Version 2.0 (the "License"); you may not use
-    this file except in compliance with the License. You may obtain a copy of the
-    License at http://www.apache.org/licenses/LICENSE-2.0
-
-    THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-    KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
-    WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
-    MERCHANTABLITY OR NON-INFRINGEMENT.
-
-    See the Apache Version 2.0 License for specific language governing permissions
-    and limitations under the License.
-    ***************************************************************************** */
-    /* global Reflect, Promise */
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b)
-                if (b.hasOwnProperty(p))
-                    d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    function __extends(d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    }
-    var __assign = function () {
-        __assign = Object.assign || function __assign(t) {
-            for (var s, i = 1, n = arguments.length; i < n; i++) {
-                s = arguments[i];
-                for (var p in s)
-                    if (Object.prototype.hasOwnProperty.call(s, p))
-                        t[p] = s[p];
-            }
-            return t;
-        };
-        return __assign.apply(this, arguments);
-    };
-    function __values(o) {
-        var m = typeof Symbol === "function" && o[Symbol.iterator], i = 0;
-        if (m)
-            return m.call(o);
-        return {
-            next: function () {
-                if (o && i >= o.length)
-                    o = void 0;
-                return { value: o && o[i++], done: !o };
-            }
-        };
-    }
-
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
     /** @type {?} */
     var DA_SERVICE_TOKEN = new core.InjectionToken('DA_SERVICE_TOKEN');
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
     /** @type {?} */
     var OPENTYPE = '_delonAuthSocialType';
@@ -112,7 +59,10 @@
                 if (options === void 0) {
                     options = {};
                 }
-                options = __assign({ type: 'window', windowFeatures: 'location=yes,height=570,width=520,scrollbars=yes,status=yes' }, options);
+                options = Object.assign({
+                    type: 'window',
+                    windowFeatures: 'location=yes,height=570,width=520,scrollbars=yes,status=yes',
+                }, options);
                 localStorage.setItem(OPENTYPE, options.type);
                 localStorage.setItem(HREFCALLBACK, callback);
                 if (options.type === 'href') {
@@ -120,7 +70,7 @@
                     return;
                 }
                 this._win = window.open(url, '_blank', options.windowFeatures);
-                this._winTime = setInterval(function () {
+                this._win$ = setInterval(function () {
                     if (_this._win && _this._win.closed) {
                         _this.ngOnDestroy();
                         /** @type {?} */
@@ -161,13 +111,12 @@
                 if (!rawData && this.router.url.indexOf('?') === -1) {
                     throw new Error("url muse contain a ?");
                 }
-                // parse
                 /** @type {?} */
                 var data = { token: "" };
                 if (typeof rawData === 'string') {
                     /** @type {?} */
                     var rightUrl = rawData.split('?')[1].split('#')[0];
-                    data = ( /** @type {?} */(this.router.parseUrl('./?' + rightUrl).queryParams));
+                    data = /** @type {?} */ (this.router.parseUrl('./?' + rightUrl).queryParams);
                 }
                 else {
                     data = rawData;
@@ -196,8 +145,8 @@
          * @return {?}
          */
             function () {
-                clearInterval(this._winTime);
-                this._winTime = null;
+                clearInterval(this._win$);
+                this._win$ = null;
             };
         SocialService.decorators = [
             { type: core.Injectable }
@@ -215,14 +164,14 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
     /** @type {?} */
     var DA_STORE_TOKEN = new core.InjectionToken('AUTH_STORE_TOKEN');
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
     var LocalStorageStore = /** @class */ (function () {
         function LocalStorageStore() {
@@ -268,7 +217,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
     var MemoryStore = /** @class */ (function () {
         function MemoryStore() {
@@ -283,7 +232,7 @@
          * @return {?}
          */
             function (key) {
-                return this.cache[key] || ( /** @type {?} */({}));
+                return this.cache[key] || /** @type {?} */ ({});
             };
         /**
          * @param {?} key
@@ -315,7 +264,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
     var SessionStorageStore = /** @class */ (function () {
         function SessionStorageStore() {
@@ -359,9 +308,50 @@
         return SessionStorageStore;
     }());
 
+    /*! *****************************************************************************
+    Copyright (c) Microsoft Corporation. All rights reserved.
+    Licensed under the Apache License, Version 2.0 (the "License"); you may not use
+    this file except in compliance with the License. You may obtain a copy of the
+    License at http://www.apache.org/licenses/LICENSE-2.0
+
+    THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+    KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
+    WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
+    MERCHANTABLITY OR NON-INFRINGEMENT.
+
+    See the Apache Version 2.0 License for specific language governing permissions
+    and limitations under the License.
+    ***************************************************************************** */
+    /* global Reflect, Promise */
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b)
+                if (b.hasOwnProperty(p))
+                    d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    function __extends(d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    }
+    function __values(o) {
+        var m = typeof Symbol === "function" && o[Symbol.iterator], i = 0;
+        if (m)
+            return m.call(o);
+        return {
+            next: function () {
+                if (o && i >= o.length)
+                    o = void 0;
+                return { value: o && o[i++], done: !o };
+            }
+        };
+    }
+
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
     var DelonAuthConfig = /** @class */ (function () {
         function DelonAuthConfig() {
@@ -388,7 +378,6 @@
              *
              * - `Bearer ${token}`
              */
-            // tslint:disable-next-line:no-invalid-template-strings
             this.token_send_template = '${token}';
             /**
              * 发送token参数位置，默认：header
@@ -412,15 +401,14 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
-    // tslint:disable-next-line:no-any
     /** @type {?} */
     var WINDOW = new core.InjectionToken('Window');
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
     /**
      * @param {?} model
@@ -457,7 +445,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
     /**
      * @abstract
@@ -482,7 +470,7 @@
                 var options = Object.assign(new DelonAuthConfig(), this.injector.get(DelonAuthConfig, null));
                 if (options.ignores) {
                     try {
-                        for (var _b = __values(( /** @type {?} */(options.ignores))), _c = _b.next(); !_c.done; _c = _b.next()) {
+                        for (var _b = __values(/** @type {?} */ (options.ignores)), _c = _b.next(); !_c.done; _c = _b.next()) {
                             var item = _c.value;
                             if (item.test(req.url))
                                 return next.handle(req);
@@ -515,8 +503,6 @@
                 }
                 else {
                     ToLogin(options, this.injector);
-                    // Unable to guarantee interceptor execution order
-                    // So cancel the loading state as much as possible
                     /** @type {?} */
                     var hc = this.injector.get(theme._HttpClient, null);
                     if (hc)
@@ -546,7 +532,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
     var TokenService = /** @class */ (function () {
         function TokenService(options, store) {
@@ -603,7 +589,7 @@
             function (type) {
                 /** @type {?} */
                 var data = this.store.get(this.options.store_key);
-                return type ? (( /** @type {?} */(Object.assign(new type(), data)))) : (( /** @type {?} */(data)));
+                return type ? ( /** @type {?} */(Object.assign(new type(), data))) : ( /** @type {?} */(data));
             };
         /**
          * @return {?}
@@ -639,7 +625,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
     /**
      * @param {?} str
@@ -678,7 +664,6 @@
         str = String(str).replace(/=+$/, '');
         for (
         // initialize result and counters
-        // tslint:disable:no-any no-conditional-assignment binary-expression-operand-order
         var bc = 0, bs = void 0, buffer = void 0, idx = 0; 
         // get next character
         (buffer = str.charAt(idx++)); 
@@ -695,7 +680,6 @@
         }
         return output;
     }
-    // https://developer.mozilla.org/en/docs/Web/API/WindowBase64/Base64_encoding_and_decoding#The_Unicode_Problem
     /**
      * @param {?} str
      * @return {?}
@@ -710,7 +694,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
     var JWTTokenModel = /** @class */ (function () {
         function JWTTokenModel() {
@@ -719,13 +703,10 @@
             /**
              * 获取载荷信息
              */
-            // tslint:disable-next-line:no-any
             get: /**
              * 获取载荷信息
              * @return {?}
-             */ 
-            // tslint:disable-next-line:no-any
-            function () {
+             */ function () {
                 /** @type {?} */
                 var parts = (this.token || '').split('.');
                 if (parts.length !== 3)
@@ -772,7 +753,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
     var JWTInterceptor = /** @class */ (function (_super) {
         __extends(JWTInterceptor, _super);
@@ -791,7 +772,7 @@
                 this.model = this.injector
                     .get(DA_SERVICE_TOKEN)
                     .get(JWTTokenModel);
-                return CheckJwt(( /** @type {?} */(this.model)), options.token_exp_offset);
+                return CheckJwt(/** @type {?} */ (this.model), options.token_exp_offset);
             };
         /**
          * @param {?} req
@@ -818,7 +799,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
     var JWTGuard = /** @class */ (function () {
         function JWTGuard(srv, injector, cog) {
@@ -841,41 +822,32 @@
                 return res;
             };
         // lazy loading
-        // lazy loading
         /**
          * @return {?}
          */
-        JWTGuard.prototype.canLoad =
-            // lazy loading
-            /**
-             * @return {?}
-             */
+        JWTGuard.prototype.canLoad = /**
+         * @return {?}
+         */
             function () {
                 return this.process();
             };
         // all children route
-        // all children route
         /**
          * @return {?}
          */
-        JWTGuard.prototype.canActivateChild =
-            // all children route
-            /**
-             * @return {?}
-             */
+        JWTGuard.prototype.canActivateChild = /**
+         * @return {?}
+         */
             function () {
                 return this.process();
             };
         // route
-        // route
         /**
          * @return {?}
          */
-        JWTGuard.prototype.canActivate =
-            // route
-            /**
-             * @return {?}
-             */
+        JWTGuard.prototype.canActivate = /**
+         * @return {?}
+         */
             function () {
                 return this.process();
             };
@@ -895,7 +867,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
     var SimpleTokenModel = /** @class */ (function () {
         function SimpleTokenModel() {
@@ -905,7 +877,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
     var SimpleInterceptor = /** @class */ (function (_super) {
         __extends(SimpleInterceptor, _super);
@@ -921,23 +893,19 @@
          * @return {?}
          */
             function (options) {
-                this.model = ( /** @type {?} */(this.injector.get(DA_SERVICE_TOKEN).get()));
-                return CheckSimple(( /** @type {?} */(this.model)));
+                this.model = /** @type {?} */ (this.injector.get(DA_SERVICE_TOKEN).get());
+                return CheckSimple(/** @type {?} */ (this.model));
             };
-        // tslint:disable-next-line:no-any
-        // tslint:disable-next-line:no-any
         /**
          * @param {?} req
          * @param {?} options
          * @return {?}
          */
-        SimpleInterceptor.prototype.setReq =
-            // tslint:disable-next-line:no-any
-            /**
-             * @param {?} req
-             * @param {?} options
-             * @return {?}
-             */
+        SimpleInterceptor.prototype.setReq = /**
+         * @param {?} req
+         * @param {?} options
+         * @return {?}
+         */
             function (req, options) {
                 var _this = this;
                 /** @type {?} */
@@ -975,7 +943,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
     var SimpleGuard = /** @class */ (function () {
         function SimpleGuard(srv, injector, cog) {
@@ -998,41 +966,32 @@
                 return res;
             };
         // lazy loading
-        // lazy loading
         /**
          * @return {?}
          */
-        SimpleGuard.prototype.canLoad =
-            // lazy loading
-            /**
-             * @return {?}
-             */
+        SimpleGuard.prototype.canLoad = /**
+         * @return {?}
+         */
             function () {
                 return this.process();
             };
         // all children route
-        // all children route
         /**
          * @return {?}
          */
-        SimpleGuard.prototype.canActivateChild =
-            // all children route
-            /**
-             * @return {?}
-             */
+        SimpleGuard.prototype.canActivateChild = /**
+         * @return {?}
+         */
             function () {
                 return this.process();
             };
         // route
-        // route
         /**
          * @return {?}
          */
-        SimpleGuard.prototype.canActivate =
-            // route
-            /**
-             * @return {?}
-             */
+        SimpleGuard.prototype.canActivate = /**
+         * @return {?}
+         */
             function () {
                 return this.process();
             };
@@ -1052,7 +1011,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
     var DelonAuthModule = /** @class */ (function () {
         function DelonAuthModule() {
@@ -1084,12 +1043,12 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
 
     exports.SocialService = SocialService;

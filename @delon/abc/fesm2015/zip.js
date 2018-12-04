@@ -1,17 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { saveAs } from 'file-saver';
-import { CommonModule } from '@angular/common';
 import { Injectable, NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { LazyService, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
- */
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 class ZipConfig {
     constructor() {
@@ -28,7 +23,7 @@ class ZipConfig {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 class ZipService {
     /**
@@ -75,13 +70,12 @@ class ZipService {
                     });
                     return;
                 }
-                // from file
                 /** @type {?} */
                 const reader = new FileReader();
                 reader.onload = (e) => {
                     JSZip.loadAsync(e.target.result, options).then(ret => resolve(ret));
                 };
-                reader.readAsBinaryString((/** @type {?} */ (fileOrUrl)));
+                reader.readAsBinaryString(/** @type {?} */ (fileOrUrl));
             });
         });
     }
@@ -153,7 +147,7 @@ ZipService.ctorParameters = () => [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 class ZipModule {
     /**
@@ -174,12 +168,12 @@ ZipModule.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 
 export { ZipService, ZipModule, ZipConfig };

@@ -1,11 +1,10 @@
-import { __decorate, __metadata } from 'tslib';
+import { Component, Input, HostBinding, ViewChild, ChangeDetectionStrategy, NgZone, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, HostBinding, Input, NgZone, ViewChild, NgModule } from '@angular/core';
-import { InputNumber, DelonUtilModule } from '@delon/util';
+import { toNumber, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 class G2MiniBarComponent {
     /**
@@ -15,10 +14,30 @@ class G2MiniBarComponent {
         this.zone = zone;
         // #region fields
         this.color = '#1890FF';
-        this.height = 0;
-        this.borderWidth = 5;
+        this._height = 0;
+        this._borderWidth = 5;
         this.padding = [8, 8, 8, 8];
         this.yTooltipSuffix = '';
+    }
+    /**
+     * @return {?}
+     */
+    get height() {
+        return this._height;
+    }
+    /**
+     * @param {?} value
+     * @return {?}
+     */
+    set height(value) {
+        this._height = toNumber(value);
+    }
+    /**
+     * @param {?} value
+     * @return {?}
+     */
+    set borderWidth(value) {
+        this._borderWidth = toNumber(value);
     }
     /**
      * @return {?}
@@ -45,16 +64,16 @@ class G2MiniBarComponent {
             },
         });
         chart.tooltip({
-            'showTitle': false,
-            'hideMarkders': false,
-            'crosshairs': false,
+            showTitle: false,
+            hideMarkders: false,
+            crosshairs: false,
             'g2-tooltip': { padding: 4 },
             'g2-tooltip-list-item': { margin: `0px 4px` },
         });
         chart
             .interval()
             .position('x*y')
-            .size(this.borderWidth)
+            .size(this._borderWidth)
             .color(this.color)
             .tooltip('x*y', (x, y) => {
             return {
@@ -101,18 +120,10 @@ G2MiniBarComponent.propDecorators = {
     yTooltipSuffix: [{ type: Input }],
     node: [{ type: ViewChild, args: ['container',] }]
 };
-__decorate([
-    InputNumber(),
-    __metadata("design:type", Object)
-], G2MiniBarComponent.prototype, "height", void 0);
-__decorate([
-    InputNumber(),
-    __metadata("design:type", Object)
-], G2MiniBarComponent.prototype, "borderWidth", void 0);
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 /** @type {?} */
 const COMPONENTS = [G2MiniBarComponent];
@@ -134,12 +145,12 @@ G2MiniBarModule.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 
 export { G2MiniBarComponent, G2MiniBarModule };

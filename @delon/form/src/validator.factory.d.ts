@@ -1,6 +1,5 @@
 import { DelonFormConfig } from './config';
 import { ErrorData } from './errors';
-import { SFValue } from './interface';
 import { SFSchema } from './schema';
 export declare abstract class SchemaValidatorFactory {
     abstract createValidatorFn(schema: SFSchema, extraOptions: {
@@ -13,5 +12,5 @@ export declare class AjvSchemaValidatorFactory extends SchemaValidatorFactory {
     constructor(options: DelonFormConfig);
     createValidatorFn(schema: SFSchema, extraOptions: {
         ingoreKeywords: string[];
-    }): (value: SFValue) => ErrorData[];
+    }): (value: any) => ErrorData[];
 }

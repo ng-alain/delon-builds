@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@delon/theme'), require('@angular/common'), require('@angular/core'), require('@delon/util')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/grid', ['exports', '@delon/theme', '@angular/common', '@angular/core', '@delon/util'], factory) :
-    (factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.grid = {}),global.delon.theme,global.ng.common,global.ng.core,global.delon.util));
-}(this, (function (exports,theme,common,core,util) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@delon/theme'), require('@angular/core'), require('@angular/common'), require('@delon/util')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/grid', ['exports', '@delon/theme', '@angular/core', '@angular/common', '@delon/util'], factory) :
+    (factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.grid = {}),global.delon.theme,global.ng.core,global.ng.common,global.delon.util));
+}(this, (function (exports,theme,core,common,util) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -69,7 +69,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
     var SGConfig = /** @class */ (function () {
         function SGConfig() {
@@ -87,7 +87,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
     var SGContainerComponent = /** @class */ (function () {
         function SGContainerComponent(cog) {
@@ -114,12 +114,9 @@
         });
         Object.defineProperty(SGContainerComponent.prototype, "marginLeft", {
             //#endregion
-            get: 
-            //#endregion
-            /**
+            get: /**
              * @return {?}
-             */
-            function () {
+             */ function () {
                 return -(this.gutter / 2);
             },
             enumerable: true,
@@ -137,12 +134,12 @@
         SGContainerComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'sg-container, [sg-container]',
-                        template: "\n    <ng-content></ng-content>\n  ",
+                        template: "<ng-content></ng-content>",
                         host: {
                             '[class.ant-row]': 'true',
                             '[class.sg__wrap]': 'true',
                         },
-                        changeDetection: core.ChangeDetectionStrategy.OnPush
+                        preserveWhitespaces: false
                     }] }
         ];
         /** @nocollapse */
@@ -166,7 +163,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
     /** @type {?} */
     var prefixCls = "sg";
@@ -201,22 +198,18 @@
             configurable: true
         });
         /**
-         * @template THIS
-         * @this {THIS}
-         * @return {THIS}
+         * @return {?}
          */
         SGComponent.prototype.setClass = /**
-         * @template THIS
-         * @this {THIS}
-         * @return {THIS}
+         * @return {?}
          */
             function () {
-                var _a = ( /** @type {?} */(this)), el = _a.el, ren = _a.ren, clsMap = _a.clsMap, col = _a.col, parent = _a.parent;
+                var _a = this, el = _a.el, ren = _a.ren, clsMap = _a.clsMap, col = _a.col, parent = _a.parent;
                 clsMap.forEach(function (cls) { return ren.removeClass(el, cls); });
                 clsMap.length = 0;
-                clsMap.push.apply(clsMap, __spread(( /** @type {?} */(this)).rep.genCls(col != null ? col : parent.col), [prefixCls + "__item"]));
+                clsMap.push.apply(clsMap, __spread(this.rep.genCls(col != null ? col : parent.col), [prefixCls + "__item"]));
                 clsMap.forEach(function (cls) { return ren.addClass(el, cls); });
-                return ( /** @type {?} */(this));
+                return this;
             };
         /**
          * @return {?}
@@ -241,8 +234,8 @@
         SGComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'sg',
-                        template: "\n    <ng-content></ng-content>\n  ",
-                        changeDetection: core.ChangeDetectionStrategy.OnPush
+                        template: "<ng-content></ng-content>",
+                        preserveWhitespaces: false
                     }] }
         ];
         /** @nocollapse */
@@ -268,7 +261,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
     /** @type {?} */
     var COMPONENTS = [SGContainerComponent, SGComponent];
@@ -296,12 +289,12 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
 
     exports.SGContainerComponent = SGContainerComponent;

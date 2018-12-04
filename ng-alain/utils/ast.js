@@ -24,17 +24,15 @@ function commitChanges(host, src, changes) {
         }
         if (change instanceof change_1.RemoveChange) {
             // TODO: the change properties is private
-            const c = change;
-            const pos = c.pos;
-            const toRemove = c.toRemove;
+            const pos = change['pos'];
+            const toRemove = change['toRemove'];
             recorder.remove(pos, toRemove.length);
         }
         if (change instanceof change_1.ReplaceChange) {
             // TODO: the change properties is private
-            const c = change;
-            const pos = c.pos;
-            const oldText = c.oldText;
-            const newText = c.newText;
+            const pos = change['pos'];
+            const oldText = change['oldText'];
+            const newText = change['newText'];
             recorder.remove(pos, oldText.length);
             recorder.insertLeft(pos, newText);
         }

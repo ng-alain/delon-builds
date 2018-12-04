@@ -1,11 +1,11 @@
 import { __decorate, __metadata } from 'tslib';
+import { Component, Input, HostBinding, Renderer2, ElementRef, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, ElementRef, HostBinding, Input, Renderer2, NgModule } from '@angular/core';
 import { InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 class EllipsisComponent {
     /**
@@ -23,11 +23,8 @@ class EllipsisComponent {
 EllipsisComponent.decorators = [
     { type: Component, args: [{
                 selector: 'ellipsis',
-                template: `
-    <ng-content></ng-content>
-  `,
-                host: { '[class.ellipsis]': 'true' },
-                changeDetection: ChangeDetectionStrategy.OnPush
+                template: `<ng-content></ng-content>`,
+                host: { '[class.ellipsis]': 'true' }
             }] }
 ];
 /** @nocollapse */
@@ -45,7 +42,7 @@ __decorate([
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 /** @type {?} */
 const COMPONENTS = [EllipsisComponent];
@@ -67,12 +64,12 @@ EllipsisModule.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 
 export { EllipsisComponent, EllipsisModule };

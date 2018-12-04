@@ -1,11 +1,11 @@
 import { __decorate, __metadata } from 'tslib';
+import { Injectable, Component, Input, ChangeDetectionStrategy, ChangeDetectorRef, HostBinding, Output, EventEmitter, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Injectable, ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, HostBinding, Input, Output, NgModule } from '@angular/core';
 import { InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 class QRConfig {
     constructor() {
@@ -16,7 +16,7 @@ class QRConfig {
         /**
          * 背景透明级别，范围：`0-1` 之间，默认：`1.0`
          */
-        this.backgroundAlpha = 1;
+        this.backgroundAlpha = 1.0;
         /**
          * 前景，默认：`black`
          */
@@ -24,7 +24,7 @@ class QRConfig {
         /**
          * 前景透明级别，范围：`0-1` 之间，默认：`1.0`
          */
-        this.foregroundAlpha = 1;
+        this.foregroundAlpha = 1.0;
         /**
          * 误差校正级别，默认：`L`
          */
@@ -46,7 +46,7 @@ class QRConfig {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 class QRService {
     /**
@@ -56,7 +56,7 @@ class QRService {
         /**
          * 背景透明级别，范围：`0-1` 之间
          */
-        this.backgroundAlpha = 1;
+        this.backgroundAlpha = 1.0;
         Object.assign(this, cog);
         this.qr = new QRious();
     }
@@ -97,10 +97,9 @@ QRService.ctorParameters = () => [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 class QRComponent {
-    // #endregion
     /**
      * @param {?} cog
      * @param {?} srv
@@ -109,6 +108,9 @@ class QRComponent {
     constructor(cog, srv, cd) {
         this.srv = srv;
         this.cd = cd;
+        /**
+         * 变更时回调
+         */
         this.change = new EventEmitter();
         Object.assign(this, cog);
     }
@@ -134,7 +136,10 @@ class QRComponent {
 QRComponent.decorators = [
     { type: Component, args: [{
                 selector: 'qr',
-                template: `<img class="qr__img" src="{{dataURL}}">`,
+                template: `
+  <img class="qr__img" src="{{dataURL}}">
+  `,
+                preserveWhitespaces: false,
                 host: { '[class.qr]': 'true' },
                 changeDetection: ChangeDetectionStrategy.OnPush
             }] }
@@ -168,7 +173,7 @@ __decorate([
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 /** @type {?} */
 const COMPONENTS = [QRComponent];
@@ -190,12 +195,12 @@ QRModule.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 
 export { QRService, QRComponent, QRConfig, QRModule };

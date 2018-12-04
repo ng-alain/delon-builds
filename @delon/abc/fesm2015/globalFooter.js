@@ -1,18 +1,13 @@
 import { WINDOW } from '@delon/theme';
 import { __decorate, __metadata } from 'tslib';
+import { Component, Input, ViewChild, ContentChildren, ChangeDetectionStrategy, Inject, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Component, Input, ViewChild, ChangeDetectionStrategy, ContentChildren, Inject, NgModule } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { InputBoolean, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
- */
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 class GlobalFooterItemComponent {
 }
@@ -34,7 +29,7 @@ __decorate([
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 class GlobalFooterComponent {
     /**
@@ -71,6 +66,7 @@ GlobalFooterComponent.decorators = [
                 selector: 'global-footer',
                 template: "<div *ngIf=\"links.length > 0 || items.length > 0\" class=\"global-footer__links\">\n  <a *ngFor=\"let i of links\" class=\"global-footer__links-item\" (click)=\"to(i)\" [innerHTML]=\"i.title\"></a>\n  <a *ngFor=\"let i of items\" class=\"global-footer__links-item\" (click)=\"to(i)\">\n    <ng-container *ngTemplateOutlet=\"i.host\"></ng-container>\n  </a>\n</div>\n<div class=\"global-footer__copyright\">\n  <ng-content></ng-content>\n</div>\n",
                 host: { '[class.global-footer]': 'true' },
+                preserveWhitespaces: false,
                 changeDetection: ChangeDetectionStrategy.OnPush
             }] }
 ];
@@ -86,7 +82,7 @@ GlobalFooterComponent.propDecorators = {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 /** @type {?} */
 const COMPONENTS = [GlobalFooterComponent, GlobalFooterItemComponent];
@@ -108,12 +104,12 @@ GlobalFooterModule.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 
 export { GlobalFooterComponent, GlobalFooterItemComponent, GlobalFooterModule };

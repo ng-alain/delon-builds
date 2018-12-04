@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common'), require('@angular/core'), require('@delon/util')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/error-collect', ['exports', '@angular/common', '@angular/core', '@delon/util'], factory) :
-    (factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['error-collect'] = {}),global.ng.common,global.ng.core,global.delon.util));
-}(this, (function (exports,common,core,util) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/common'), require('@delon/util')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/error-collect', ['exports', '@angular/core', '@angular/common', '@delon/util'], factory) :
+    (factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['error-collect'] = {}),global.ng.core,global.ng.common,global.delon.util));
+}(this, (function (exports,core,common,util) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -69,7 +69,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
     var ErrorCollectConfig = /** @class */ (function () {
         function ErrorCollectConfig() {
@@ -87,7 +87,11 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     */
+    /**
+     * 错误消息采集器
+     * PS：虽然此法并不好看，但对响应式表单&模板表单有很好的效果。
      */
     var ErrorCollectComponent = /** @class */ (function () {
         function ErrorCollectComponent(cog, el, cd, doc) {
@@ -132,7 +136,6 @@
             function () {
                 if (this.count === 0)
                     return false;
-                // nz-form-control
                 /** @type {?} */
                 var els = this.errEls;
                 /** @type {?} */
@@ -208,9 +211,10 @@
         ErrorCollectComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'error-collect, [error-collect]',
-                        template: "\n    <i nz-icon type=\"exclamation-circle\"></i>\n    <span class=\"pl-sm\">{{ count }}</span>\n  ",
+                        template: "\n  <i nz-icon type=\"exclamation-circle\"></i>\n  <span class=\"pl-sm\">{{count}}</span>",
                         host: { '[class.error-collect]': 'true' },
-                        changeDetection: core.ChangeDetectionStrategy.OnPush
+                        changeDetection: core.ChangeDetectionStrategy.OnPush,
+                        preserveWhitespaces: false
                     }] }
         ];
         /** @nocollapse */
@@ -241,7 +245,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
     /** @type {?} */
     var COMPONENTS = [ErrorCollectComponent];
@@ -272,12 +276,12 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
 
     exports.ErrorCollectComponent = ErrorCollectComponent;

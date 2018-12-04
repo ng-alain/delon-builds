@@ -1,13 +1,13 @@
 import { fromEvent } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { __spread } from 'tslib';
+import { Component, Input, HostBinding, ViewChild, ElementRef, NgZone, TemplateRef, ChangeDetectionStrategy, ChangeDetectorRef, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, HostBinding, Input, NgZone, TemplateRef, ViewChild, NgModule } from '@angular/core';
 import { toBoolean, toNumber, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 var G2BarComponent = /** @class */ (function () {
     function G2BarComponent(el, cd, zone) {
@@ -179,8 +179,9 @@ var G2BarComponent = /** @class */ (function () {
     G2BarComponent.decorators = [
         { type: Component, args: [{
                     selector: 'g2-bar',
-                    template: "<ng-container *ngIf=\"_title; else _titleTpl\">\n  <h4 style=\"margin-bottom:20px\">{{_title}}</h4>\n</ng-container>\n<div #container></div>\n",
-                    changeDetection: ChangeDetectionStrategy.OnPush
+                    template: "\n  <ng-container *ngIf=\"_title; else _titleTpl\"><h4 style=\"margin-bottom:20px\">{{_title}}</h4></ng-container>\n  <div #container></div>",
+                    changeDetection: ChangeDetectionStrategy.OnPush,
+                    preserveWhitespaces: false
                 }] }
     ];
     /** @nocollapse */
@@ -203,7 +204,7 @@ var G2BarComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 /** @type {?} */
 var COMPONENTS = [G2BarComponent];
@@ -231,12 +232,12 @@ var G2BarModule = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 
 export { G2BarComponent, G2BarModule };

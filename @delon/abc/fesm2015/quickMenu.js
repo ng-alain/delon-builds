@@ -1,15 +1,14 @@
 import { __decorate, __metadata } from 'tslib';
+import { Component, Input, HostListener, ChangeDetectionStrategy, ChangeDetectorRef, Renderer2, ElementRef, TemplateRef, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, HostListener, Input, Renderer2, NgModule } from '@angular/core';
-import { InputNumber, DelonUtilModule } from '@delon/util';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
+import { InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 class QuickMenuComponent {
-    // #endregion
     /**
      * @param {?} cd
      * @param {?} el
@@ -20,7 +19,7 @@ class QuickMenuComponent {
         this.el = el;
         this.render = render;
         // #region fields
-        this.icon = 'question-circle';
+        this._icon = 'question-circle';
         this.top = 120;
         this.width = 200;
         this.bgColor = '#fff';
@@ -28,6 +27,19 @@ class QuickMenuComponent {
         this.show = false;
         this.ctrlStyle = {};
         this.initFlag = false;
+    }
+    /**
+     * @param {?} value
+     * @return {?}
+     */
+    set icon(value) {
+        if (value instanceof TemplateRef) {
+            this._icon = null;
+            this._iconTpl = value;
+        }
+        else {
+            this._icon = value;
+        }
     }
     /**
      * @return {?}
@@ -73,8 +85,9 @@ class QuickMenuComponent {
 QuickMenuComponent.decorators = [
     { type: Component, args: [{
                 selector: 'quick-menu',
-                template: "<div class=\"quick-menu__inner\">\n  <div class=\"quick-menu__ctrl\" [ngStyle]=\"ctrlStyle\">\n    <div class=\"quick-menu__ctrl-icon\">\n      <ng-container *stringTemplateOutlet=\"icon\"><i nz-icon [type]=\"icon\"></i></ng-container>\n    </div>\n  </div>\n  <ng-content></ng-content>\n</div>",
+                template: "<div class=\"quick-menu__inner\">\n  <div class=\"quick-menu__ctrl\" [ngStyle]=\"ctrlStyle\">\n    <div class=\"quick-menu__ctrl-icon\">\n      <ng-container *ngIf=\"_icon; else _iconTpl\">\n        <i nz-icon [type]=\"_icon\"></i>\n      </ng-container>\n    </div>\n  </div>\n  <ng-content></ng-content>\n</div>\n",
                 host: { '[class.quick-menu]': 'true' },
+                preserveWhitespaces: false,
                 changeDetection: ChangeDetectionStrategy.OnPush
             }] }
 ];
@@ -103,7 +116,7 @@ __decorate([
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 /** @type {?} */
 const COMPONENTS = [QuickMenuComponent];
@@ -125,12 +138,12 @@ QuickMenuModule.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 
 export { QuickMenuComponent, QuickMenuModule };

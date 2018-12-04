@@ -1,12 +1,12 @@
-import { __decorate, __metadata, __spread } from 'tslib';
+import { __spread } from 'tslib';
+import { Component, Input, HostBinding, ViewChild, NgZone, TemplateRef, ChangeDetectionStrategy, ChangeDetectorRef, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostBinding, Input, NgZone, TemplateRef, ViewChild, NgModule } from '@angular/core';
-import { InputBoolean, InputNumber, DelonUtilModule } from '@delon/util';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
+import { toNumber, toBoolean, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 var G2RadarComponent = /** @class */ (function () {
     function G2RadarComponent(cd, zone) {
@@ -14,10 +14,10 @@ var G2RadarComponent = /** @class */ (function () {
         this.zone = zone;
         // #region fields
         this._title = '';
-        this.height = 0;
+        this._height = 0;
         this.padding = [44, 30, 16, 30];
-        this.hasLegend = true;
-        this.tickCount = 4;
+        this._hasLegend = true;
+        this._tickCount = 4;
         this.data = [];
         this.colors = [
             '#1890FF',
@@ -43,6 +43,51 @@ var G2RadarComponent = /** @class */ (function () {
             }
             else
                 this._title = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(G2RadarComponent.prototype, "height", {
+        get: /**
+         * @return {?}
+         */
+        function () {
+            return this._height;
+        },
+        set: /**
+         * @param {?} value
+         * @return {?}
+         */
+        function (value) {
+            this._height = toNumber(value);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(G2RadarComponent.prototype, "hasLegend", {
+        get: /**
+         * @return {?}
+         */
+        function () {
+            return this._hasLegend;
+        },
+        set: /**
+         * @param {?} value
+         * @return {?}
+         */
+        function (value) {
+            this._hasLegend = toBoolean(value);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(G2RadarComponent.prototype, "tickCount", {
+        set: /**
+         * @param {?} value
+         * @return {?}
+         */
+        function (value) {
+            this._tickCount = toNumber(value);
         },
         enumerable: true,
         configurable: true
@@ -96,7 +141,7 @@ var G2RadarComponent = /** @class */ (function () {
         chart.source(this.data, {
             value: {
                 min: 0,
-                tickCount: this.tickCount,
+                tickCount: this._tickCount,
             },
         });
         chart.coord('polar');
@@ -199,7 +244,8 @@ var G2RadarComponent = /** @class */ (function () {
                     selector: 'g2-radar',
                     template: "<h4 *ngIf=\"_title; else _titleTpl\">\n  {{ _title }}</h4>\n<div #container></div>\n<div nz-row class=\"g2-radar__legend\" *ngIf=\"hasLegend\">\n  <div nz-col [nzSpan]=\"24 / legendData.length\" *ngFor=\"let i of legendData; let idx = index\" (click)=\"_click(idx)\"\n    class=\"g2-radar__legend-item\">\n    <i class=\"g2-radar__legend-dot\" [ngStyle]=\"{'background-color': !i.checked ? '#aaa' : i.color}\"></i>\n    {{i.name}}\n    <h6 class=\"g2-radar__legend-title\">{{i.value}}</h6>\n  </div>\n</div>\n",
                     host: { '[class.g2-radar]': 'true' },
-                    changeDetection: ChangeDetectionStrategy.OnPush
+                    changeDetection: ChangeDetectionStrategy.OnPush,
+                    preserveWhitespaces: false
                 }] }
     ];
     /** @nocollapse */
@@ -217,24 +263,12 @@ var G2RadarComponent = /** @class */ (function () {
         colors: [{ type: Input }],
         node: [{ type: ViewChild, args: ['container',] }]
     };
-    __decorate([
-        InputNumber(),
-        __metadata("design:type", Object)
-    ], G2RadarComponent.prototype, "height", void 0);
-    __decorate([
-        InputBoolean(),
-        __metadata("design:type", Object)
-    ], G2RadarComponent.prototype, "hasLegend", void 0);
-    __decorate([
-        InputNumber(),
-        __metadata("design:type", Object)
-    ], G2RadarComponent.prototype, "tickCount", void 0);
     return G2RadarComponent;
 }());
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 /** @type {?} */
 var COMPONENTS = [G2RadarComponent];
@@ -262,12 +296,12 @@ var G2RadarModule = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 
 export { G2RadarComponent, G2RadarModule };

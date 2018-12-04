@@ -1,11 +1,11 @@
-import { SchematicsException, Tree } from '@angular-devkit/schematics';
+import { Tree, SchematicsException } from '@angular-devkit/schematics';
 import * as ts from 'typescript';
 import { getDecoratorMetadata } from './devkit-utils/ast-utils';
 import {
   Change,
   InsertChange,
-  RemoveChange,
   ReplaceChange,
+  RemoveChange,
 } from './devkit-utils/change';
 
 /** Reads file given path and returns TypeScript source file. */
@@ -29,17 +29,15 @@ export function commitChanges(host: Tree, src: string, changes: Change[]) {
     }
     if (change instanceof RemoveChange) {
       // TODO: the change properties is private
-      const c = change as any;
-      const pos = c.pos as number;
-      const toRemove = c.toRemove as string;
+      const pos = change['pos'] as number;
+      const toRemove = change['toRemove'] as string;
       recorder.remove(pos, toRemove.length);
     }
     if (change instanceof ReplaceChange) {
       // TODO: the change properties is private
-      const c = change as any;
-      const pos = c.pos as number;
-      const oldText = c.oldText as string;
-      const newText = c.newText as string;
+      const pos = change['pos'] as number;
+      const oldText = change['oldText'] as string;
+      const newText = change['newText'] as string;
 
       recorder.remove(pos, oldText.length);
       recorder.insertLeft(pos, newText);

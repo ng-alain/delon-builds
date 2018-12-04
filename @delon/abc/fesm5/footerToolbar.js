@@ -1,13 +1,15 @@
 import { __decorate, __metadata, __spread } from 'tslib';
+import { Component, Input, Inject, TemplateRef, ElementRef, Renderer2, NgModule } from '@angular/core';
 import { DOCUMENT, CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, ElementRef, Inject, Input, Renderer2, NgModule } from '@angular/core';
 import { ErrorCollectModule } from '@delon/abc/error-collect';
 import { InputBoolean, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
+/** @type {?} */
+var CLS = 'footer-toolbar';
 /** @type {?} */
 var CLSBODY = 'footer-toolbar__body';
 var FooterToolbarComponent = /** @class */ (function () {
@@ -16,13 +18,21 @@ var FooterToolbarComponent = /** @class */ (function () {
         this.renderer = renderer;
         this.doc = doc;
         this.errorCollect = false;
+        this._extra = '';
     }
-    Object.defineProperty(FooterToolbarComponent.prototype, "bodyCls", {
-        get: /**
+    Object.defineProperty(FooterToolbarComponent.prototype, "extra", {
+        set: /**
+         * @param {?} value
          * @return {?}
          */
-        function () {
-            return this.doc.querySelector('body').classList;
+        function (value) {
+            if (value instanceof TemplateRef) {
+                this._extra = null;
+                this._extraTpl = value;
+            }
+            else {
+                this._extra = value;
+            }
         },
         enumerable: true,
         configurable: true
@@ -34,8 +44,8 @@ var FooterToolbarComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        this.renderer.addClass(this.el.nativeElement, 'footer-toolbar');
-        this.bodyCls.add(CLSBODY);
+        this.renderer.addClass(this.el.nativeElement, CLS);
+        this.doc.querySelector('body').classList.add(CLSBODY);
     };
     /**
      * @return {?}
@@ -44,13 +54,13 @@ var FooterToolbarComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        this.bodyCls.remove(CLSBODY);
+        this.doc.querySelector('body').classList.remove(CLSBODY);
     };
     FooterToolbarComponent.decorators = [
         { type: Component, args: [{
                     selector: 'footer-toolbar',
-                    template: "<div class=\"footer-toolbar__left\">\n  <ng-container *stringTemplateOutlet=\"extra\">{{ extra }}</ng-container>\n</div>\n<div class=\"footer-toolbar__right\">\n  <error-collect *ngIf=\"errorCollect\"></error-collect>\n  <ng-content></ng-content>\n</div>",
-                    changeDetection: ChangeDetectionStrategy.OnPush
+                    template: "<div class=\"footer-toolbar__left\">\n  <ng-container *ngIf=\"_extra; else _extraTpl\">{{_extra}}</ng-container>\n</div>\n<div class=\"footer-toolbar__right\">\n  <error-collect *ngIf=\"errorCollect\"></error-collect>\n  <ng-content></ng-content>\n</div>\n",
+                    preserveWhitespaces: false
                 }] }
     ];
     /** @nocollapse */
@@ -72,7 +82,7 @@ var FooterToolbarComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 /** @type {?} */
 var COMPONENTS = [FooterToolbarComponent];
@@ -100,12 +110,12 @@ var FooterToolbarModule = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 
 export { FooterToolbarComponent, FooterToolbarModule };

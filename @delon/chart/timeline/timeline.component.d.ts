@@ -1,10 +1,10 @@
-import { AfterViewInit, ChangeDetectorRef, NgZone, OnChanges, OnDestroy, TemplateRef } from '@angular/core';
+import { OnDestroy, OnChanges, NgZone, TemplateRef, ChangeDetectorRef, AfterViewInit } from '@angular/core';
 export declare class G2TimelineComponent implements OnDestroy, OnChanges, AfterViewInit {
     private cd;
     private zone;
     _title: string;
-    _titleTpl: TemplateRef<void>;
-    title: string | TemplateRef<void>;
+    _titleTpl: TemplateRef<any>;
+    title: string | TemplateRef<any>;
     data: Array<{
         x: Date;
         y1: number;
@@ -21,9 +21,11 @@ export declare class G2TimelineComponent implements OnDestroy, OnChanges, AfterV
     };
     mask: string;
     position: 'top' | 'right' | 'bottom' | 'left';
-    height: number;
+    height: any;
+    private _height;
     padding: number[];
-    borderWidth: number;
+    borderWidth: any;
+    private _borderWidth;
     private node;
     private sliderNode;
     private chart;

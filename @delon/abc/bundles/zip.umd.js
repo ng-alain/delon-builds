@@ -4,14 +4,14 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common/http'), require('file-saver'), require('@angular/common'), require('@angular/core'), require('@delon/util')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/zip', ['exports', '@angular/common/http', 'file-saver', '@angular/common', '@angular/core', '@delon/util'], factory) :
-    (factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.zip = {}),global.ng.common.http,global.saveAs,global.ng.common,global.ng.core,global.delon.util));
-}(this, (function (exports,http,fileSaver,common,core,util) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common/http'), require('file-saver'), require('@angular/core'), require('@angular/common'), require('@delon/util')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/zip', ['exports', '@angular/common/http', 'file-saver', '@angular/core', '@angular/common', '@delon/util'], factory) :
+    (factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.zip = {}),global.ng.common.http,global.saveAs,global.ng.core,global.ng.common,global.delon.util));
+}(this, (function (exports,http,fileSaver,core,common,util) { 'use strict';
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
     var ZipConfig = /** @class */ (function () {
         function ZipConfig() {
@@ -27,36 +27,9 @@
         return ZipConfig;
     }());
 
-    /*! *****************************************************************************
-    Copyright (c) Microsoft Corporation. All rights reserved.
-    Licensed under the Apache License, Version 2.0 (the "License"); you may not use
-    this file except in compliance with the License. You may obtain a copy of the
-    License at http://www.apache.org/licenses/LICENSE-2.0
-
-    THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-    KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
-    WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
-    MERCHANTABLITY OR NON-INFRINGEMENT.
-
-    See the Apache Version 2.0 License for specific language governing permissions
-    and limitations under the License.
-    ***************************************************************************** */
-    var __assign = function () {
-        __assign = Object.assign || function __assign(t) {
-            for (var s, i = 1, n = arguments.length; i < n; i++) {
-                s = arguments[i];
-                for (var p in s)
-                    if (Object.prototype.hasOwnProperty.call(s, p))
-                        t[p] = s[p];
-            }
-            return t;
-        };
-        return __assign.apply(this, arguments);
-    };
-
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
     var ZipService = /** @class */ (function () {
         function ZipService(cog, http$$1, lazy) {
@@ -113,13 +86,12 @@
                             });
                             return;
                         }
-                        // from file
                         /** @type {?} */
                         var reader = new FileReader();
                         reader.onload = function (e) {
                             JSZip.loadAsync(e.target.result, options).then(function (ret) { return resolve(ret); });
                         };
-                        reader.readAsBinaryString(( /** @type {?} */(fileOrUrl)));
+                        reader.readAsBinaryString(/** @type {?} */ (fileOrUrl));
                     });
                 });
             };
@@ -197,10 +169,10 @@
             function (zip, options) {
                 this.check(zip);
                 /** @type {?} */
-                var opt = __assign({}, options);
+                var opt = Object.assign({}, options);
                 return new Promise(function (resolve, reject) {
                     zip
-                        .generateAsync(__assign({ type: 'blob' }, opt.options), opt.update)
+                        .generateAsync(Object.assign({ type: 'blob' }, opt.options), opt.update)
                         .then(function (data) {
                         if (opt.callback)
                             opt.callback(data);
@@ -227,7 +199,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
     var ZipModule = /** @class */ (function () {
         function ZipModule() {
@@ -254,7 +226,12 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     */
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
 
     exports.ZipService = ZipService;

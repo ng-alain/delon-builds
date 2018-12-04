@@ -1,14 +1,14 @@
-import { ActivationEnd, ActivationStart, Router } from '@angular/router';
+import { Router, ActivationStart, ActivationEnd } from '@angular/router';
 import { BehaviorSubject, fromEvent } from 'rxjs';
 import { share, debounceTime, filter } from 'rxjs/operators';
 import { __decorate, __metadata, __spread } from 'tslib';
+import { Injectable, Component, ElementRef, ChangeDetectionStrategy, ChangeDetectorRef, Input, Output, EventEmitter, Inject, HostBinding, Directive, HostListener, NgModule } from '@angular/core';
 import { DOCUMENT, CommonModule } from '@angular/common';
-import { Injectable, ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter, HostBinding, Inject, Input, Output, Directive, HostListener, NgModule } from '@angular/core';
 import { InputBoolean, InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 var FullContentService = /** @class */ (function () {
     function FullContentService() {
@@ -44,7 +44,7 @@ var FullContentService = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 /** @type {?} */
 var wrapCls = "full-content__body";
@@ -61,7 +61,9 @@ var FullContentComponent = /** @class */ (function () {
         this.router = router;
         this.doc = doc;
         this.inited = false;
-        this.id = "_full-content-" + Math.random().toString(36).substring(2);
+        this.id = "_full-content-" + Math.random()
+            .toString(36)
+            .substring(2);
         this.scroll$ = null;
         this._height = 0;
         this.hideTitle = true;
@@ -108,7 +110,10 @@ var FullContentComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        this._height = this.bodyEl.getBoundingClientRect().height - ((/** @type {?} */ (this.el.nativeElement))).getBoundingClientRect().top - this.padding;
+        this._height =
+            this.bodyEl.getBoundingClientRect().height -
+                (/** @type {?} */ (this.el.nativeElement)).getBoundingClientRect().top -
+                this.padding;
         this.cd.detectChanges();
     };
     /**
@@ -131,7 +136,7 @@ var FullContentComponent = /** @class */ (function () {
         this.inited = true;
         this.bodyEl = this.doc.querySelector('body');
         this.bodyEl.classList.add(wrapCls);
-        ((/** @type {?} */ (this.el.nativeElement))).id = this.id;
+        (/** @type {?} */ (this.el.nativeElement)).id = this.id;
         this.updateCls();
         // when window resize
         this.scroll$ = fromEvent(window, 'resize')
@@ -143,8 +148,10 @@ var FullContentComponent = /** @class */ (function () {
             .subscribe(function () { return _this.toggle(); });
         // when router changed
         this.route$ = this.router.events
-            .pipe(filter(function (e) { return e instanceof ActivationStart || e instanceof ActivationEnd; }), debounceTime(200))
-            .subscribe(function () {
+            .pipe(filter(function (e) {
+            return e instanceof ActivationStart || e instanceof ActivationEnd;
+        }), debounceTime(200))
+            .subscribe(function (e) {
             if (!!_this.doc.querySelector('#' + _this.id)) {
                 _this.bodyEl.classList.add(wrapCls);
                 _this.updateCls();
@@ -237,7 +244,7 @@ var FullContentComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 var FullContentToggleDirective = /** @class */ (function () {
     function FullContentToggleDirective(parent) {
@@ -269,7 +276,7 @@ var FullContentToggleDirective = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 /** @type {?} */
 var COMPONENTS = [FullContentComponent, FullContentToggleDirective];
@@ -300,12 +307,12 @@ var FullContentModule = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 
 export { FullContentComponent, FullContentService, FullContentToggleDirective, FullContentModule };

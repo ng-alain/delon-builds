@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common'), require('@angular/core'), require('@delon/util')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/image', ['exports', '@angular/common', '@angular/core', '@delon/util'], factory) :
-    (factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.image = {}),global.ng.common,global.ng.core,global.delon.util));
-}(this, (function (exports,common,core,util) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/common'), require('@delon/util')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/image', ['exports', '@angular/core', '@angular/common', '@delon/util'], factory) :
+    (factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.image = {}),global.ng.core,global.ng.common,global.delon.util));
+}(this, (function (exports,core,common,util) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -69,7 +69,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
     var ImageConfig = /** @class */ (function () {
         function ImageConfig() {
@@ -87,7 +87,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
     /**
      * img标签
@@ -147,16 +147,16 @@
                     var arr = newSrc.split('/');
                     /** @type {?} */
                     var size = arr[arr.length - 1];
-                    arr[arr.length - 1] = size === '0' || +size !== this.size ? this.size.toString() : size;
+                    arr[arr.length - 1] =
+                        size === '0' || +size !== this.size ? this.size.toString() : size;
                     newSrc = arr.join('/');
                 }
                 /** @type {?} */
                 var isHttp = newSrc.startsWith('http:');
                 /** @type {?} */
                 var isHttps = newSrc.startsWith('https:');
-                if (isHttp || isHttps) {
+                if (isHttp || isHttps)
                     newSrc = newSrc.substr(isHttp ? 5 : 6);
-                }
                 this.render.setAttribute(this.el.nativeElement, 'src', newSrc);
             };
         /**
@@ -166,7 +166,7 @@
          * @return {?}
          */
             function () {
-                this.render.setAttribute(this.el.nativeElement, 'onerror', "this.src='" + this.error + "'");
+                this.render.setAttribute(this.el.nativeElement, 'onerror', "this.src='" + this.error + "';");
             };
         ImageDirective.decorators = [
             { type: core.Directive, args: [{ selector: '[_src]' },] }
@@ -193,7 +193,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
     /** @type {?} */
     var DIRECTIVES = [ImageDirective];
@@ -221,12 +221,12 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
 
     exports.ImageDirective = ImageDirective;

@@ -1,12 +1,12 @@
 import { __decorate, __metadata, __spread } from 'tslib';
+import { Component, Input, HostListener, ChangeDetectionStrategy, ChangeDetectorRef, Renderer2, ElementRef, TemplateRef, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, HostListener, Input, Renderer2, NgModule } from '@angular/core';
-import { InputNumber, DelonUtilModule } from '@delon/util';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
+import { InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 var QuickMenuComponent = /** @class */ (function () {
     // #endregion
@@ -15,7 +15,7 @@ var QuickMenuComponent = /** @class */ (function () {
         this.el = el;
         this.render = render;
         // #region fields
-        this.icon = 'question-circle';
+        this._icon = 'question-circle';
         this.top = 120;
         this.width = 200;
         this.bgColor = '#fff';
@@ -24,6 +24,23 @@ var QuickMenuComponent = /** @class */ (function () {
         this.ctrlStyle = {};
         this.initFlag = false;
     }
+    Object.defineProperty(QuickMenuComponent.prototype, "icon", {
+        set: /**
+         * @param {?} value
+         * @return {?}
+         */
+        function (value) {
+            if (value instanceof TemplateRef) {
+                this._icon = null;
+                this._iconTpl = value;
+            }
+            else {
+                this._icon = value;
+            }
+        },
+        enumerable: true,
+        configurable: true
+    });
     /**
      * @return {?}
      */
@@ -79,8 +96,9 @@ var QuickMenuComponent = /** @class */ (function () {
     QuickMenuComponent.decorators = [
         { type: Component, args: [{
                     selector: 'quick-menu',
-                    template: "<div class=\"quick-menu__inner\">\n  <div class=\"quick-menu__ctrl\" [ngStyle]=\"ctrlStyle\">\n    <div class=\"quick-menu__ctrl-icon\">\n      <ng-container *stringTemplateOutlet=\"icon\"><i nz-icon [type]=\"icon\"></i></ng-container>\n    </div>\n  </div>\n  <ng-content></ng-content>\n</div>",
+                    template: "<div class=\"quick-menu__inner\">\n  <div class=\"quick-menu__ctrl\" [ngStyle]=\"ctrlStyle\">\n    <div class=\"quick-menu__ctrl-icon\">\n      <ng-container *ngIf=\"_icon; else _iconTpl\">\n        <i nz-icon [type]=\"_icon\"></i>\n      </ng-container>\n    </div>\n  </div>\n  <ng-content></ng-content>\n</div>\n",
                     host: { '[class.quick-menu]': 'true' },
+                    preserveWhitespaces: false,
                     changeDetection: ChangeDetectionStrategy.OnPush
                 }] }
     ];
@@ -111,7 +129,7 @@ var QuickMenuComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 /** @type {?} */
 var COMPONENTS = [QuickMenuComponent];
@@ -139,12 +157,12 @@ var QuickMenuModule = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 
 export { QuickMenuComponent, QuickMenuModule };

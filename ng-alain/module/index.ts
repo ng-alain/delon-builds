@@ -13,6 +13,10 @@ import {
   strings,
 } from '@angular-devkit/core';
 import {
+  Rule,
+  SchematicContext,
+  SchematicsException,
+  Tree,
   apply,
   branchAndMerge,
   chain,
@@ -22,18 +26,14 @@ import {
   noop,
   template,
   url,
-  Rule,
-  SchematicsException,
-  SchematicContext,
-  Tree,
 } from '@angular-devkit/schematics';
 import * as ts from 'typescript';
+import { Schema as ModuleSchema } from './schema';
 import { addImportToModule } from '../utils/devkit-utils/ast-utils';
 import { InsertChange } from '../utils/devkit-utils/change';
 import { getWorkspace } from '../utils/devkit-utils/config';
 import { findModuleFromOptions } from '../utils/devkit-utils/find-module';
 import { parseName } from '../utils/devkit-utils/parse-name';
-import { Schema as ModuleSchema } from './schema';
 
 function addDeclarationToNgModule(options: ModuleSchema): Rule {
   return (host: Tree) => {
@@ -55,15 +55,20 @@ function addDeclarationToNgModule(options: ModuleSchema): Rule {
       true,
     );
 
-    // tslint:disable-next-line:prefer-template
-    const importModulePath = normalize(`/${options.path}/` + (options.flat ? '' : strings.dasherize(options.name) + '/') + strings.dasherize(options.name) + '.module');
+    const importModulePath = normalize(
+      `/${options.path}/` +
+        (options.flat ? '' : strings.dasherize(options.name) + '/') +
+        strings.dasherize(options.name) +
+        '.module',
+    );
     const relativeDir = relative(
       dirname(modulePath),
       dirname(importModulePath),
     );
-
-    // tslint:disable-next-line:prefer-template
-    const relativePath = (relativeDir.startsWith('.') ? relativeDir : './' + relativeDir) + '/' + basename(importModulePath);
+    const relativePath =
+      (relativeDir.startsWith('.') ? relativeDir : './' + relativeDir) +
+      '/' +
+      basename(importModulePath);
     const changes = addImportToModule(
       source,
       modulePath,
@@ -83,7 +88,7 @@ function addDeclarationToNgModule(options: ModuleSchema): Rule {
   };
 }
 
-export default function (schema: ModuleSchema): Rule {
+export default function(schema: ModuleSchema): Rule {
   return (host: Tree, context: SchematicContext) => {
     const workspace = getWorkspace(host);
     if (!schema.project) {
@@ -92,9 +97,9 @@ export default function (schema: ModuleSchema): Rule {
     const project = workspace.projects[schema.project];
 
     if (schema.path === undefined) {
-      const projectDirName = project.projectType === 'application' ? 'app' : 'lib';
-      // tslint:disable-next-line:no-any
-      schema.path = `/${(project as any).sourceRoot}/${projectDirName}/routes`;
+      const projectDirName =
+        project.projectType === 'application' ? 'app' : 'lib';
+        schema.path = `/${(project as any).sourceRoot}/${projectDirName}/routes`;
     }
     if (schema.module) {
       schema.module = findModuleFromOptions(host, schema);
@@ -108,7 +113,10 @@ export default function (schema: ModuleSchema): Rule {
     schema.flat = false;
 
     const templateSource = apply(url('./files'), [
-      schema.routing ? noop() : filter(path => !path.endsWith('-routing.module.ts')),
+      schema.spec ? noop() : filter(path => !path.endsWith('.spec.ts')),
+      schema.routing
+        ? noop()
+        : filter(path => !path.endsWith('-routing.module.ts')),
       template({
         ...strings,
         'if-flat': (s: string) => (schema.flat ? '' : s),

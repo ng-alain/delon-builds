@@ -1,18 +1,12 @@
-import { __assign } from 'tslib';
 import { HttpClient } from '@angular/common/http';
 import { saveAs } from 'file-saver';
-import { CommonModule } from '@angular/common';
 import { Injectable, NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { LazyService, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
- */
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 var ZipConfig = /** @class */ (function () {
     function ZipConfig() {
@@ -30,7 +24,7 @@ var ZipConfig = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 var ZipService = /** @class */ (function () {
     function ZipService(cog, http, lazy) {
@@ -87,13 +81,12 @@ var ZipService = /** @class */ (function () {
                     });
                     return;
                 }
-                // from file
                 /** @type {?} */
                 var reader = new FileReader();
                 reader.onload = function (e) {
                     JSZip.loadAsync(e.target.result, options).then(function (ret) { return resolve(ret); });
                 };
-                reader.readAsBinaryString((/** @type {?} */ (fileOrUrl)));
+                reader.readAsBinaryString(/** @type {?} */ (fileOrUrl));
             });
         });
     };
@@ -171,10 +164,10 @@ var ZipService = /** @class */ (function () {
     function (zip, options) {
         this.check(zip);
         /** @type {?} */
-        var opt = __assign({}, options);
+        var opt = Object.assign({}, options);
         return new Promise(function (resolve, reject) {
             zip
-                .generateAsync(__assign({ type: 'blob' }, opt.options), opt.update)
+                .generateAsync(Object.assign({ type: 'blob' }, opt.options), opt.update)
                 .then(function (data) {
                 if (opt.callback)
                     opt.callback(data);
@@ -199,7 +192,7 @@ var ZipService = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 var ZipModule = /** @class */ (function () {
     function ZipModule() {
@@ -226,12 +219,12 @@ var ZipModule = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 
 export { ZipService, ZipModule, ZipConfig };

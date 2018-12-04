@@ -1,4 +1,4 @@
-import { AfterViewInit, ElementRef, OnChanges, Renderer2 } from '@angular/core';
+import { ElementRef, Renderer2, AfterViewInit, OnChanges } from '@angular/core';
 export declare class SFFixedDirective implements AfterViewInit, OnChanges {
     private render;
     private el;

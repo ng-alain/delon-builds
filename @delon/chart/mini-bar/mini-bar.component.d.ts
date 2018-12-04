@@ -1,9 +1,11 @@
-import { NgZone, OnChanges, OnDestroy } from '@angular/core';
+import { OnDestroy, OnChanges, NgZone } from '@angular/core';
 export declare class G2MiniBarComponent implements OnDestroy, OnChanges {
     private zone;
     color: string;
-    height: number;
-    borderWidth: number;
+    height: any;
+    private _height;
+    borderWidth: any;
+    private _borderWidth;
     padding: number[];
     data: Array<{
         x: number;

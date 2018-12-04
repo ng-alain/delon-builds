@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const schematics_1 = require("@angular-devkit/schematics");
-const fs = require("fs");
 const path = require("path");
+const fs = require("fs");
 const alain_1 = require("../utils/alain");
 const project_1 = require("../utils/project");
 const REFER = ', please refer to: https://ng-alain.com/cli/generate#%E8%87%AA%E5%AE%9A%E4%B9%89%E9%A1%B5';
@@ -20,7 +20,6 @@ function genFiles(options) {
         if (names.indexOf(options.tplName) === -1) {
             throw new schematics_1.SchematicsException(`Could not find name [${options.tplName}] templates${REFER}`);
         }
-        // tslint:disable-next-line:no-any
         options._filesPath = path.relative(__dirname, path.join(tplDir, options.tplName));
     };
 }

@@ -1,6 +1,6 @@
 import { EventEmitter } from '@angular/core';
 export declare class CountDownComponent {
-    config: {};
+    config: any;
     /**
      * 目标时间
      */

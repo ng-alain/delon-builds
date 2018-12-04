@@ -1,11 +1,11 @@
 import { __decorate, __metadata, __spread } from 'tslib';
+import { Directive, Input, ElementRef, Renderer2, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Directive, ElementRef, Input, Renderer2, NgModule } from '@angular/core';
 import { deepCopy, InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 var ImageConfig = /** @class */ (function () {
     function ImageConfig() {
@@ -23,7 +23,7 @@ var ImageConfig = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 /**
  * img标签
@@ -83,16 +83,16 @@ var ImageDirective = /** @class */ (function () {
             var arr = newSrc.split('/');
             /** @type {?} */
             var size = arr[arr.length - 1];
-            arr[arr.length - 1] = size === '0' || +size !== this.size ? this.size.toString() : size;
+            arr[arr.length - 1] =
+                size === '0' || +size !== this.size ? this.size.toString() : size;
             newSrc = arr.join('/');
         }
         /** @type {?} */
         var isHttp = newSrc.startsWith('http:');
         /** @type {?} */
         var isHttps = newSrc.startsWith('https:');
-        if (isHttp || isHttps) {
+        if (isHttp || isHttps)
             newSrc = newSrc.substr(isHttp ? 5 : 6);
-        }
         this.render.setAttribute(this.el.nativeElement, 'src', newSrc);
     };
     /**
@@ -102,7 +102,7 @@ var ImageDirective = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        this.render.setAttribute(this.el.nativeElement, 'onerror', "this.src='" + this.error + "'");
+        this.render.setAttribute(this.el.nativeElement, 'onerror', "this.src='" + this.error + "';");
     };
     ImageDirective.decorators = [
         { type: Directive, args: [{ selector: '[_src]' },] }
@@ -127,7 +127,7 @@ var ImageDirective = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 /** @type {?} */
 var DIRECTIVES = [ImageDirective];
@@ -155,12 +155,12 @@ var ImageModule = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 
 export { ImageDirective, ImageConfig, ImageModule };

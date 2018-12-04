@@ -4,14 +4,14 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common/http'), require('file-saver'), require('@angular/common'), require('@angular/core'), require('@delon/util')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/xlsx', ['exports', '@angular/common/http', 'file-saver', '@angular/common', '@angular/core', '@delon/util'], factory) :
-    (factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.xlsx = {}),global.ng.common.http,global.saveAs,global.ng.common,global.ng.core,global.delon.util));
-}(this, (function (exports,http,fileSaver,common,core,util) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common/http'), require('file-saver'), require('@angular/core'), require('@angular/common'), require('@delon/util')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/xlsx', ['exports', '@angular/common/http', 'file-saver', '@angular/core', '@angular/common', '@delon/util'], factory) :
+    (factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.xlsx = {}),global.ng.common.http,global.saveAs,global.ng.core,global.ng.common,global.delon.util));
+}(this, (function (exports,http,fileSaver,core,common,util) { 'use strict';
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
     var XlsxConfig = /** @class */ (function () {
         function XlsxConfig() {
@@ -29,65 +29,9 @@
         return XlsxConfig;
     }());
 
-    /*! *****************************************************************************
-    Copyright (c) Microsoft Corporation. All rights reserved.
-    Licensed under the Apache License, Version 2.0 (the "License"); you may not use
-    this file except in compliance with the License. You may obtain a copy of the
-    License at http://www.apache.org/licenses/LICENSE-2.0
-
-    THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-    KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
-    WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
-    MERCHANTABLITY OR NON-INFRINGEMENT.
-
-    See the Apache Version 2.0 License for specific language governing permissions
-    and limitations under the License.
-    ***************************************************************************** */
-    var __assign = function () {
-        __assign = Object.assign || function __assign(t) {
-            for (var s, i = 1, n = arguments.length; i < n; i++) {
-                s = arguments[i];
-                for (var p in s)
-                    if (Object.prototype.hasOwnProperty.call(s, p))
-                        t[p] = s[p];
-            }
-            return t;
-        };
-        return __assign.apply(this, arguments);
-    };
-    function __read(o, n) {
-        var m = typeof Symbol === "function" && o[Symbol.iterator];
-        if (!m)
-            return o;
-        var i = m.call(o), r, ar = [], e;
-        try {
-            while ((n === void 0 || n-- > 0) && !(r = i.next()).done)
-                ar.push(r.value);
-        }
-        catch (error) {
-            e = { error: error };
-        }
-        finally {
-            try {
-                if (r && !r.done && (m = i["return"]))
-                    m.call(i);
-            }
-            finally {
-                if (e)
-                    throw e.error;
-            }
-        }
-        return ar;
-    }
-    function __spread() {
-        for (var ar = [], i = 0; i < arguments.length; i++)
-            ar = ar.concat(__read(arguments[i]));
-        return ar;
-    }
-
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
     var XlsxService = /** @class */ (function () {
         function XlsxService(cog, http$$1, lazy) {
@@ -158,7 +102,6 @@
                             });
                             return;
                         }
-                        // from file
                         /** @type {?} */
                         var reader = new FileReader();
                         reader.onload = function (e) {
@@ -186,7 +129,7 @@
                     /** @type {?} */
                     var wb = XLSX.utils.book_new();
                     if (Array.isArray(options.sheets)) {
-                        (( /** @type {?} */(options.sheets))).forEach(function (value, index) {
+                        ( /** @type {?} */(options.sheets)).forEach(function (value, index) {
                             /** @type {?} */
                             var ws = XLSX.utils.aoa_to_sheet(value.data);
                             XLSX.utils.book_append_sheet(wb, ws, value.name || "Sheet" + (index + 1));
@@ -199,7 +142,11 @@
                     if (options.callback)
                         options.callback(wb);
                     /** @type {?} */
-                    var wbout = XLSX.write(wb, __assign({ bookType: 'xlsx', bookSST: false, type: 'array' }, options.opts));
+                    var wbout = XLSX.write(wb, Object.assign({
+                        bookType: 'xlsx',
+                        bookSST: false,
+                        type: 'array',
+                    }, options.opts));
                     fileSaver.saveAs(new Blob([wbout], { type: 'application/octet-stream' }), options.filename || 'export.xlsx');
                 });
             };
@@ -219,7 +166,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
     var XlsxDirective = /** @class */ (function () {
         function XlsxDirective(srv) {
@@ -250,9 +197,53 @@
         return XlsxDirective;
     }());
 
+    /*! *****************************************************************************
+    Copyright (c) Microsoft Corporation. All rights reserved.
+    Licensed under the Apache License, Version 2.0 (the "License"); you may not use
+    this file except in compliance with the License. You may obtain a copy of the
+    License at http://www.apache.org/licenses/LICENSE-2.0
+
+    THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+    KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
+    WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
+    MERCHANTABLITY OR NON-INFRINGEMENT.
+
+    See the Apache Version 2.0 License for specific language governing permissions
+    and limitations under the License.
+    ***************************************************************************** */
+    function __read(o, n) {
+        var m = typeof Symbol === "function" && o[Symbol.iterator];
+        if (!m)
+            return o;
+        var i = m.call(o), r, ar = [], e;
+        try {
+            while ((n === void 0 || n-- > 0) && !(r = i.next()).done)
+                ar.push(r.value);
+        }
+        catch (error) {
+            e = { error: error };
+        }
+        finally {
+            try {
+                if (r && !r.done && (m = i["return"]))
+                    m.call(i);
+            }
+            finally {
+                if (e)
+                    throw e.error;
+            }
+        }
+        return ar;
+    }
+    function __spread() {
+        for (var ar = [], i = 0; i < arguments.length; i++)
+            ar = ar.concat(__read(arguments[i]));
+        return ar;
+    }
+
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
     /** @type {?} */
     var COMPONENTS = [XlsxDirective];
@@ -283,7 +274,12 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     */
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
 
     exports.XlsxConfig = XlsxConfig;

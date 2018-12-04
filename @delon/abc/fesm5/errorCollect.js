@@ -1,11 +1,11 @@
 import { __decorate, __metadata, __spread } from 'tslib';
+import { Component, Input, HostBinding, ElementRef, HostListener, Inject, ChangeDetectionStrategy, ChangeDetectorRef, NgModule } from '@angular/core';
 import { DOCUMENT, CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, HostBinding, HostListener, Inject, Input, NgModule } from '@angular/core';
 import { InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 var ErrorCollectConfig = /** @class */ (function () {
     function ErrorCollectConfig() {
@@ -23,7 +23,11 @@ var ErrorCollectConfig = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ */
+/**
+ * 错误消息采集器
+ * PS：虽然此法并不好看，但对响应式表单&模板表单有很好的效果。
  */
 var ErrorCollectComponent = /** @class */ (function () {
     function ErrorCollectComponent(cog, el, cd, doc) {
@@ -69,7 +73,6 @@ var ErrorCollectComponent = /** @class */ (function () {
     function () {
         if (this.count === 0)
             return false;
-        // nz-form-control
         /** @type {?} */
         var els = this.errEls;
         /** @type {?} */
@@ -145,9 +148,10 @@ var ErrorCollectComponent = /** @class */ (function () {
     ErrorCollectComponent.decorators = [
         { type: Component, args: [{
                     selector: 'error-collect, [error-collect]',
-                    template: "\n    <i nz-icon type=\"exclamation-circle\"></i>\n    <span class=\"pl-sm\">{{ count }}</span>\n  ",
+                    template: "\n  <i nz-icon type=\"exclamation-circle\"></i>\n  <span class=\"pl-sm\">{{count}}</span>",
                     host: { '[class.error-collect]': 'true' },
-                    changeDetection: ChangeDetectionStrategy.OnPush
+                    changeDetection: ChangeDetectionStrategy.OnPush,
+                    preserveWhitespaces: false
                 }] }
     ];
     /** @nocollapse */
@@ -176,7 +180,7 @@ var ErrorCollectComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 /** @type {?} */
 var COMPONENTS = [ErrorCollectComponent];
@@ -207,12 +211,12 @@ var ErrorCollectModule = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 
 export { ErrorCollectComponent, ErrorCollectConfig, ErrorCollectModule };

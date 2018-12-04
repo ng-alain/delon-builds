@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@delon/theme'), require('@angular/common'), require('@angular/core'), require('@angular/router'), require('@delon/util')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/global-footer', ['exports', '@delon/theme', '@angular/common', '@angular/core', '@angular/router', '@delon/util'], factory) :
-    (factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['global-footer'] = {}),global.delon.theme,global.ng.common,global.ng.core,global.ng.router,global.delon.util));
-}(this, (function (exports,theme,common,core,router,util) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@delon/theme'), require('@angular/core'), require('@angular/common'), require('@angular/router'), require('@delon/util')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/global-footer', ['exports', '@delon/theme', '@angular/core', '@angular/common', '@angular/router', '@delon/util'], factory) :
+    (factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['global-footer'] = {}),global.delon.theme,global.ng.core,global.ng.common,global.ng.router,global.delon.util));
+}(this, (function (exports,theme,core,common,router,util) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -69,7 +69,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
     var GlobalFooterItemComponent = /** @class */ (function () {
         function GlobalFooterItemComponent() {
@@ -94,7 +94,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
     var GlobalFooterComponent = /** @class */ (function () {
         function GlobalFooterComponent(router$$1, win) {
@@ -130,6 +130,7 @@
                         selector: 'global-footer',
                         template: "<div *ngIf=\"links.length > 0 || items.length > 0\" class=\"global-footer__links\">\n  <a *ngFor=\"let i of links\" class=\"global-footer__links-item\" (click)=\"to(i)\" [innerHTML]=\"i.title\"></a>\n  <a *ngFor=\"let i of items\" class=\"global-footer__links-item\" (click)=\"to(i)\">\n    <ng-container *ngTemplateOutlet=\"i.host\"></ng-container>\n  </a>\n</div>\n<div class=\"global-footer__copyright\">\n  <ng-content></ng-content>\n</div>\n",
                         host: { '[class.global-footer]': 'true' },
+                        preserveWhitespaces: false,
                         changeDetection: core.ChangeDetectionStrategy.OnPush
                     }] }
         ];
@@ -149,7 +150,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
     /** @type {?} */
     var COMPONENTS = [GlobalFooterComponent, GlobalFooterItemComponent];
@@ -177,7 +178,12 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     */
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
 
     exports.GlobalFooterComponent = GlobalFooterComponent;

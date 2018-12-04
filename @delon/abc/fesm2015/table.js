@@ -2,24 +2,19 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { XlsxService } from '@delon/abc/xlsx';
 import { __decorate, __metadata } from 'tslib';
 import { Router } from '@angular/router';
-import { ALAIN_I18N_TOKEN, _HttpClient, CNCurrencyPipe, DatePipe, YNPipe, DelonLocaleService, DrawerHelper, ModalHelper } from '@delon/theme';
 import { of } from 'rxjs';
-import { catchError, map, filter } from 'rxjs/operators';
+import { map, catchError, filter } from 'rxjs/operators';
+import { ALAIN_I18N_TOKEN, CNCurrencyPipe, DatePipe, YNPipe, _HttpClient, ModalHelper, DrawerHelper, DelonLocaleService } from '@delon/theme';
+import { Directive, Input, TemplateRef, Injectable, Host, Optional, Inject, Component, Output, EventEmitter, Renderer2, ElementRef, ChangeDetectionStrategy, ChangeDetectorRef, NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { DecimalPipe, DOCUMENT, CommonModule } from '@angular/common';
-import { Directive, Host, Injectable, Input, TemplateRef, Inject, Optional, ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter, Output, Renderer2, NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
-import { ACLService, DelonACLModule } from '@delon/acl';
 import { deepCopy, deepGet, toBoolean, updateHostClass, InputBoolean, InputNumber, DelonUtilModule } from '@delon/util';
+import { ACLService, DelonACLModule } from '@delon/acl';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
- */
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 class STRowSource {
     constructor() {
@@ -84,7 +79,7 @@ STRowDirective.propDecorators = {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 class STConfig {
     constructor() {
@@ -187,7 +182,7 @@ class STConfig {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 class STColumnSource {
     /**
@@ -218,13 +213,13 @@ class STColumnSource {
             }
             if (item.type === 'modal' || item.type === 'static') {
                 // compatible
-                if (item.component != null) {
+                if (item["component"] != null) {
                     item.modal = {
-                        component: item.component,
-                        params: item.params,
-                        paramsName: item.paramName || modal.paramsName,
-                        size: item.size || modal.size,
-                        modalOptions: item.modalOptions || modal.modalOptions,
+                        component: item["component"],
+                        params: item["params"],
+                        paramsName: item["paramName"] || modal.paramsName,
+                        size: item["size"] || modal.size,
+                        modalOptions: item["modalOptions"] || modal.modalOptions,
                     };
                 }
                 if (item.modal == null || item.modal.component == null) {
@@ -254,7 +249,7 @@ class STColumnSource {
                 item.pop = false;
             }
             if (item.icon) {
-                item.icon = Object.assign({}, btnIcon, (typeof item.icon === 'string' ? { type: item.icon } : item.icon));
+                item.icon = Object.assign({}, btnIcon, typeof item.icon === 'string' ? { type: item.icon } : item.icon);
             }
             item.children = item.children && item.children.length > 0 ? this.btnCoerce(item.children) : [];
             // i18n
@@ -292,12 +287,12 @@ class STColumnSource {
         // left width
         list
             .filter(w => w.fixed && w.fixed === 'left' && w.width)
-            .forEach((item, idx) => (item._left = list.slice(0, idx).reduce(countReduce, 0) + 'px'));
+            .forEach((item, idx) => (item["_left"] = list.slice(0, idx).reduce(countReduce, 0) + 'px'));
         // right width
         list
             .filter(w => w.fixed && w.fixed === 'right' && w.width)
             .reverse()
-            .forEach((item, idx) => (item._right =
+            .forEach((item, idx) => (item["_right"] =
             (idx > 0 ? list.slice(-idx).reduce(countReduce, 0) : 0) + 'px'));
     }
     /**
@@ -306,14 +301,13 @@ class STColumnSource {
      */
     sortCoerce(item) {
         // compatible
-        if (item.sorter && typeof item.sorter === 'function') {
+        if (item["sorter"] && typeof item["sorter"] === 'function') {
             return {
                 enabled: true,
-                // tslint:disable-next-line:no-any
-                default: (/** @type {?} */ (item.sort)),
-                compare: item.sorter,
-                key: item.sortKey || item.indexKey,
-                reName: item.sortReName,
+                default: /** @type {?} */ (item.sort),
+                compare: item["sorter"],
+                key: item["sortKey"] || item["indexKey"],
+                reName: item["sortReName"],
             };
         }
         if (typeof item.sort === 'undefined') {
@@ -328,7 +322,7 @@ class STColumnSource {
             res = item.sort;
         }
         if (!res.key) {
-            res.key = item.indexKey;
+            res.key = item["indexKey"];
         }
         res.enabled = true;
         return res;
@@ -341,18 +335,17 @@ class STColumnSource {
         /** @type {?} */
         let res = null;
         // compatible
-        if (item.filters && item.filters.length > 0) {
+        if (item["filters"] && item["filters"].length > 0) {
             res = {
-                confirmText: item.filterConfirmText,
-                clearText: item.filterClearText,
-                default: item.filtered,
-                // tslint:disable-next-line:no-any
-                fn: (/** @type {?} */ (item.filter)),
-                icon: item.filterIcon,
-                key: item.filterKey || item.indexKey,
-                menus: item.filters,
-                multiple: item.filterMultiple,
-                reName: item.filterReName,
+                confirmText: item["filterConfirmText"],
+                clearText: item["filterClearText"],
+                default: item["filtered"],
+                fn: /** @type {?} */ (item.filter),
+                icon: item["filterIcon"],
+                key: item["filterKey"] || item["indexKey"],
+                menus: item["filters"],
+                multiple: item["filterMultiple"],
+                reName: item["filterReName"],
             };
         }
         else {
@@ -374,7 +367,7 @@ class STColumnSource {
             res.icon = `filter`;
         }
         if (!res.key) {
-            res.key = item.indexKey;
+            res.key = item["indexKey"];
         }
         res.default = res.menus.findIndex(w => w.checked) !== -1;
         if (this.acl) {
@@ -391,10 +384,10 @@ class STColumnSource {
      */
     restoreRender(item) {
         if (item.renderTitle) {
-            item.__renderTitle = this.rowSource.getTitle(item.renderTitle);
+            item["__renderTitle"] = this.rowSource.getTitle(item.renderTitle);
         }
         if (item.render) {
-            item.__render = this.rowSource.getRow(item.render);
+            item["__render"] = this.rowSource.getRow(item.render);
         }
     }
     /**
@@ -412,7 +405,7 @@ class STColumnSource {
         /** @type {?} */
         const columns = [];
         /** @type {?} */
-        const copyColumens = (/** @type {?} */ (deepCopy(list)));
+        const copyColumens = /** @type {?} */ (deepCopy(list));
         for (const item of copyColumens) {
             if (this.acl && item.acl && !this.acl.can(item.acl)) {
                 continue;
@@ -422,7 +415,7 @@ class STColumnSource {
                 if (!Array.isArray(item.index)) {
                     item.index = item.index.split('.');
                 }
-                item.indexKey = item.index.join('.');
+                item["indexKey"] = item.index.join('.');
             }
             // title
             if (item.i18n && this.i18nSrv) {
@@ -457,18 +450,17 @@ class STColumnSource {
             if (item.type === 'yn') {
                 item.yn = Object.assign({ truth: true }, item.yn);
                 // compatible
-                if (item.ynTruth != null)
-                    item.yn.truth = item.ynTruth;
-                if (item.ynYes != null)
-                    item.yn.yes = item.ynYes;
-                if (item.ynNo != null)
-                    item.yn.no = item.ynNo;
+                if (item["ynTruth"] != null)
+                    item.yn.truth = item["ynTruth"];
+                if (item["ynYes"] != null)
+                    item.yn.yes = item["ynYes"];
+                if (item["ynNo"] != null)
+                    item.yn.no = item["ynNo"];
             }
             if ((item.type === 'link' && typeof item.click !== 'function') ||
                 (item.type === 'badge' && item.badge == null) ||
                 (item.type === 'tag' && item.tag == null)) {
-                // tslint:disable-next-line:no-any
-                ((/** @type {?} */ (item))).type = '';
+                (/** @type {?} */ (item)).type = '';
             }
             // className
             if (!item.className) {
@@ -479,7 +471,7 @@ class STColumnSource {
                 }[item.type];
             }
             // sorter
-            item._sort = this.sortCoerce(item);
+            item["_sort"] = this.sortCoerce(item);
             // filter
             item.filter = this.filterCoerce(item);
             // buttons
@@ -518,23 +510,23 @@ STColumnSource.ctorParameters = () => [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 class STDataSource {
     /**
      * @param {?} http
-     * @param {?} currentyPipe
-     * @param {?} datePipe
-     * @param {?} ynPipe
-     * @param {?} numberPipe
+     * @param {?} currenty
+     * @param {?} date
+     * @param {?} yn
+     * @param {?} number
      * @param {?} dom
      */
-    constructor(http, currentyPipe, datePipe, ynPipe, numberPipe, dom) {
+    constructor(http, currenty, date, yn, number, dom) {
         this.http = http;
-        this.currentyPipe = currentyPipe;
-        this.datePipe = datePipe;
-        this.ynPipe = ynPipe;
-        this.numberPipe = numberPipe;
+        this.currenty = currenty;
+        this.date = date;
+        this.yn = yn;
+        this.number = number;
         this.dom = dom;
     }
     /**
@@ -557,18 +549,16 @@ class STDataSource {
             if (typeof data === 'string') {
                 isRemote = true;
                 data$ = this.getByHttp(data, options).pipe(map((result) => {
-                    // list
                     /** @type {?} */
-                    let ret = deepGet(result, (/** @type {?} */ (res.reName.list)), []);
+                    let ret = deepGet(result, /** @type {?} */ (res.reName.list), []);
                     if (ret == null || !Array.isArray(ret)) {
                         ret = [];
                     }
-                    // total
                     /** @type {?} */
                     const resultTotal = res.reName.total &&
-                        deepGet(result, (/** @type {?} */ (res.reName.total)), null);
+                        deepGet(result, /** @type {?} */ (res.reName.total), null);
                     retTotal = resultTotal == null ? total || 0 : +resultTotal;
-                    return (/** @type {?} */ (ret));
+                    return /** @type {?} */ (ret);
                 }), catchError(err => {
                     rejectPromise(err);
                     return [];
@@ -632,9 +622,9 @@ class STDataSource {
             // data accelerator
             data$ = data$.pipe(map(result => {
                 for (let i = 0, len = result.length; i < len; i++) {
-                    result[i]._values = columns.map(c => this.get(result[i], c, i));
+                    result[i]["_values"] = columns.map(c => this.get(result[i], c, i));
                     if (options.rowClassName) {
-                        result[i]._rowClassName = options.rowClassName(result[i], i);
+                        result[i]["_rowClassName"] = options.rowClassName(result[i], i);
                     }
                 }
                 return result;
@@ -660,14 +650,14 @@ class STDataSource {
     get(item, col, idx) {
         if (col.format) {
             /** @type {?} */
-            const formatRes = col.format(item, col);
+            const formatRes = /** @type {?} */ (col.format(item, col));
             if (~formatRes.indexOf('<')) {
                 return this.dom.bypassSecurityTrustHtml(formatRes);
             }
             return formatRes;
         }
         /** @type {?} */
-        const value = deepGet(item, (/** @type {?} */ (col.index)), col.default);
+        const value = deepGet(item, /** @type {?} */ (col.index), col.default);
         /** @type {?} */
         let ret = value;
         switch (col.type) {
@@ -678,16 +668,16 @@ class STDataSource {
                 ret = value ? `<img src="${value}" class="img">` : '';
                 break;
             case 'number':
-                ret = this.numberPipe.transform(value, col.numberDigits);
+                ret = this.number.transform(value, col.numberDigits);
                 break;
             case 'currency':
-                ret = this.currentyPipe.transform(value);
+                ret = this.currenty.transform(value);
                 break;
             case 'date':
-                ret = this.datePipe.transform(value, col.dateFormat);
+                ret = this.date.transform(value, col.dateFormat);
                 break;
             case 'yn':
-                ret = this.ynPipe.transform(value === col.yn.truth, col.yn.yes, col.yn.no);
+                ret = this.yn.transform(value === col.yn.truth, col.yn.yes, col.yn.no);
                 break;
         }
         return ret == null ? '' : ret;
@@ -702,8 +692,10 @@ class STDataSource {
         /** @type {?} */
         const method = (req.method || 'GET').toUpperCase();
         /** @type {?} */
-        const params = Object.assign({ [req.reName.pi]: page.zeroIndexed ? pi - 1 : pi, [req.reName.ps]: ps }, req.params, this.getReqSortMap(singleSort, multiSort, columns), this.getReqFilterMap(columns));
-        // tslint:disable-next-line:no-any
+        const params = Object.assign({
+            [req.reName.pi]: page.zeroIndexed ? pi - 1 : pi,
+            [req.reName.ps]: ps,
+        }, req.params, this.getReqSortMap(singleSort, multiSort, columns), this.getReqFilterMap(columns));
         /** @type {?} */
         let reqOptions = {
             params,
@@ -718,15 +710,14 @@ class STDataSource {
         }
         return this.http.request(method, url, reqOptions);
     }
-    //#region sort
     /**
      * @param {?} columns
      * @return {?}
      */
     getValidSort(columns) {
         return columns
-            .filter(item => item._sort && item._sort.enabled && item._sort.default)
-            .map(item => item._sort);
+            .filter(item => item["_sort"] && item["_sort"].enabled && item["_sort"].default)
+            .map(item => item["_sort"]);
     }
     /**
      * @param {?} columns
@@ -790,8 +781,6 @@ class STDataSource {
         }
         return ret;
     }
-    //#endregion
-    //#region filter
     /**
      * @param {?} columns
      * @return {?}
@@ -810,7 +799,7 @@ class STDataSource {
             else {
                 obj[col.filter.key] = values.map(i => i.value).join(',');
             }
-            ret = Object.assign({}, ret, obj);
+            ret = Object.assign(ret, obj);
         });
         return ret;
     }
@@ -830,7 +819,7 @@ STDataSource.ctorParameters = () => [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 class STExport {
     /**
@@ -839,14 +828,12 @@ class STExport {
     constructor(xlsxSrv) {
         this.xlsxSrv = xlsxSrv;
     }
-    // tslint:disable-next-line:no-any
     /**
      * @param {?} item
      * @param {?} col
      * @return {?}
      */
     _stGet(item, col) {
-        // tslint:disable-next-line:no-any
         /** @type {?} */
         const ret = { t: 's', v: '' };
         if (col.format) {
@@ -854,7 +841,7 @@ class STExport {
         }
         else {
             /** @type {?} */
-            const val = deepGet(item, (/** @type {?} */ (col.index)), '');
+            const val = deepGet(item, /** @type {?} */ (col.index), '');
             ret.v = val;
             switch (col.type) {
                 case 'currency':
@@ -864,7 +851,7 @@ class STExport {
                     ret.t = 'd';
                     break;
                 case 'yn':
-                    ret.v = ret.v === col.ynTruth ? col.ynYes || '是' : col.ynNo || '否';
+                    ret.v = ret.v === col["ynTruth"] ? col["ynYes"] || '是' : col["ynNo"] || '否';
                     break;
             }
         }
@@ -889,7 +876,7 @@ class STExport {
         const dc = opt._d.length;
         // column
         for (let i = 0; i < cc; i++) {
-            sheet[`${String.fromCharCode(i + 65)}1`] = {
+            sheet[`${String.fromCharCode(65 + i)}1`] = {
                 t: 's',
                 v: colData[i].title,
             };
@@ -897,11 +884,11 @@ class STExport {
         // content
         for (let i = 0; i < dc; i++) {
             for (let j = 0; j < cc; j++) {
-                sheet[`${String.fromCharCode(j + 65)}${i + 2}`] = this._stGet(opt._d[i], colData[j]);
+                sheet[`${String.fromCharCode(65 + j)}${i + 2}`] = this._stGet(opt._d[i], colData[j]);
             }
         }
         if (cc > 0 && dc > 0) {
-            sheet['!ref'] = `A1:${String.fromCharCode(cc + 65 - 1)}${dc + 1}`;
+            sheet['!ref'] = `A1:${String.fromCharCode(65 + cc - 1)}${dc + 1}`;
         }
         return sheets;
     }
@@ -931,10 +918,9 @@ STExport.ctorParameters = () => [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 class STComponent {
-    // #endregion
     /**
      * @param {?} cdRef
      * @param {?} cog
@@ -964,16 +950,27 @@ class STComponent {
         this.dataSource = dataSource;
         this.delonI18n = delonI18n;
         this.totalTpl = ``;
-        // tslint:disable-next-line:no-any
         this.locale = {};
         this._data = [];
         this._isPagination = true;
         this._allChecked = false;
         this._indeterminate = false;
         this._columns = [];
+        /**
+         * 列描述
+         */
         this.columns = [];
+        /**
+         * 每页数量，当设置为 `0` 表示不分页，默认：`10`
+         */
         this.ps = 10;
+        /**
+         * 当前页码
+         */
         this.pi = 1;
+        /**
+         * 数据总量
+         */
         this.total = 0;
         /**
          * 是否显示Loading
@@ -994,10 +991,6 @@ class STComponent {
          */
         this.singleSort = null;
         /**
-         * 行单击多少时长之类为双击（单位：毫秒），默认：`200`
-         */
-        this.rowClickTime = 200;
-        /**
          * 请求异常时回调
          */
         this.error = new EventEmitter();
@@ -1005,6 +998,10 @@ class STComponent {
          * 变化时回调，包括：`pi`、`ps`、`checkbox`、`radio`、`sort`、`filter`、`click`、`dblClick` 变动
          */
         this.change = new EventEmitter();
+        /**
+         * 行单击多少时长之类为双击（单位：毫秒），默认：`200`
+         */
+        this.rowClickTime = 200;
         this.rowClickCount = 0;
         this.delonI18n$ = this.delonI18n.change.subscribe(() => {
             this.locale = this.delonI18n.getData('st');
@@ -1097,7 +1094,6 @@ class STComponent {
     get multiSort() {
         return this._multiSort;
     }
-    // tslint:disable-next-line:no-any
     /**
      * @param {?} value
      * @return {?}
@@ -1107,7 +1103,11 @@ class STComponent {
             this._multiSort = null;
             return;
         }
-        this._multiSort = Object.assign({ key: 'sort', separator: '-', nameSeparator: '.' }, (typeof value === 'object' ? value : {}));
+        this._multiSort = Object.assign(/** @type {?} */ ({
+            key: 'sort',
+            separator: '-',
+            nameSeparator: '.',
+        }), typeof value === 'object' ? value : {});
     }
     /**
      * @return {?}
@@ -1128,7 +1128,6 @@ class STComponent {
                 .replace('{{range[1]}}', range[1])
             : '';
     }
-    // tslint:disable-next-line:no-any
     /**
      * @param {?} type
      * @param {?=} data
@@ -1147,7 +1146,6 @@ class STComponent {
         }
         this.change.emit(res);
     }
-    //#region data
     /**
      * @return {?}
      */
@@ -1166,7 +1164,7 @@ class STComponent {
             columns: this._columns,
             singleSort,
             multiSort,
-            rowClassName,
+            rowClassName
         })
             .then(result => {
             this.loading = false;
@@ -1202,12 +1200,10 @@ class STComponent {
     }
     /**
      * 清空所有状态
-     * @template THIS
-     * @this {THIS}
-     * @return {THIS}
+     * @return {?}
      */
     clearStatus() {
-        return (/** @type {?} */ (this)).clearCheck()
+        return this.clearCheck()
             .clearRadio()
             .clearFilter()
             .clearSort();
@@ -1226,7 +1222,8 @@ class STComponent {
         if (typeof extraParams !== 'undefined') {
             this._req.params =
                 options && options.merge
-                    ? Object.assign({}, this._req.params, extraParams) : extraParams;
+                    ? Object.assign(this._req.params, extraParams)
+                    : extraParams;
         }
         this._change('pi');
     }
@@ -1260,7 +1257,7 @@ class STComponent {
         if (!this.page.toTop)
             return;
         /** @type {?} */
-        const el = (/** @type {?} */ (this.el.nativeElement));
+        const el = /** @type {?} */ (this.el.nativeElement);
         if (this.scroll) {
             el.querySelector('.ant-table-body').scrollTo(0, 0);
             return;
@@ -1302,7 +1299,7 @@ class STComponent {
      * @return {?}
      */
     _rowClick(e, item, index) {
-        if (((/** @type {?} */ (e.target))).nodeName === 'INPUT')
+        if ((/** @type {?} */ (e.target)).nodeName === 'INPUT')
             return;
         ++this.rowClickCount;
         if (this.rowClickCount !== 1)
@@ -1328,14 +1325,11 @@ class STComponent {
         if (!Array.isArray(data)) {
             data = [data];
         }
-        ((/** @type {?} */ (data))).map(item => this._data.indexOf(item))
+        (/** @type {?} */ (data)).map(item => this._data.indexOf(item))
             .filter(pos => pos !== -1)
             .forEach(pos => this._data.splice(pos, 1));
         this.cd();
     }
-    //#endregion
-    //#region sort
-    // tslint:disable-next-line:no-any
     /**
      * @param {?} col
      * @param {?} idx
@@ -1344,10 +1338,10 @@ class STComponent {
      */
     sort(col, idx, value) {
         if (this.multiSort) {
-            col._sort.default = value;
+            col["_sort"].default = value;
         }
         else {
-            this._columns.forEach((item, index) => (item._sort.default = index === idx ? value : null));
+            this._columns.forEach((item, index) => (item["_sort"].default = index === idx ? value : null));
         }
         this._load();
         /** @type {?} */
@@ -1359,16 +1353,12 @@ class STComponent {
         this.changeEmit('sort', res);
     }
     /**
-     * @template THIS
-     * @this {THIS}
-     * @return {THIS}
+     * @return {?}
      */
     clearSort() {
-        (/** @type {?} */ (this))._columns.forEach(item => (item._sort.default = null));
-        return (/** @type {?} */ (this));
+        this._columns.forEach(item => (item["_sort"].default = null));
+        return this;
     }
-    //#endregion
-    //#region filter
     /**
      * @param {?} col
      * @return {?}
@@ -1404,120 +1394,96 @@ class STComponent {
         item.checked = checked;
     }
     /**
-     * @template THIS
-     * @this {THIS}
-     * @return {THIS}
+     * @return {?}
      */
     clearFilter() {
-        (/** @type {?} */ (this))._columns
+        this._columns
             .filter(w => w.filter && w.filter.default === true)
             .forEach(col => {
             col.filter.default = false;
             col.filter.menus.forEach(f => (f.checked = false));
         });
-        return (/** @type {?} */ (this));
+        return this;
     }
-    //#endregion
-    //#region checkbox
     /**
      * 清除所有 `checkbox`
-     * @template THIS
-     * @this {THIS}
-     * @return {THIS}
+     * @return {?}
      */
     clearCheck() {
-        return (/** @type {?} */ (this))._checkAll(false);
+        return this._checkAll(false);
     }
     /**
-     * @template THIS
-     * @this {THIS}
-     * @return {THIS}
+     * @return {?}
      */
     _refCheck() {
         /** @type {?} */
-        const validData = (/** @type {?} */ (this))._data.filter(w => !w.disabled);
+        const validData = this._data.filter(w => !w.disabled);
         /** @type {?} */
         const checkedList = validData.filter(w => w.checked === true);
-        (/** @type {?} */ (this))._allChecked =
+        this._allChecked =
             checkedList.length > 0 && checkedList.length === validData.length;
         /** @type {?} */
         const allUnChecked = validData.every(value => !value.checked);
-        (/** @type {?} */ (this))._indeterminate = !(/** @type {?} */ (this))._allChecked && !allUnChecked;
-        (/** @type {?} */ (this)).cd();
-        return (/** @type {?} */ (this));
+        this._indeterminate = !this._allChecked && !allUnChecked;
+        this.cd();
+        return this;
     }
     /**
-     * @template THIS
-     * @this {THIS}
      * @param {?=} checked
-     * @return {THIS}
+     * @return {?}
      */
     _checkAll(checked) {
-        checked = typeof checked === 'undefined' ? (/** @type {?} */ (this))._allChecked : checked;
-        (/** @type {?} */ (this))._data.filter(w => !w.disabled).forEach(i => (i.checked = checked));
-        return (/** @type {?} */ (this))._refCheck()._checkNotify();
+        checked = typeof checked === 'undefined' ? this._allChecked : checked;
+        this._data.filter(w => !w.disabled).forEach(i => (i.checked = checked));
+        return this._refCheck()._checkNotify();
     }
     /**
-     * @template THIS
-     * @this {THIS}
      * @param {?} i
      * @param {?} value
-     * @return {THIS}
+     * @return {?}
      */
     _checkSelection(i, value) {
         i.checked = value;
-        return (/** @type {?} */ (this))._refCheck()._checkNotify();
+        return this._refCheck()._checkNotify();
     }
     /**
-     * @template THIS
-     * @this {THIS}
      * @param {?} row
-     * @return {THIS}
+     * @return {?}
      */
     _rowSelection(row) {
-        row.select((/** @type {?} */ (this))._data);
-        return (/** @type {?} */ (this))._refCheck()._checkNotify();
+        row.select(this._data);
+        return this._refCheck()._checkNotify();
     }
     /**
-     * @template THIS
-     * @this {THIS}
-     * @return {THIS}
+     * @return {?}
      */
     _checkNotify() {
         /** @type {?} */
-        const res = (/** @type {?} */ (this))._data.filter(w => !w.disabled && w.checked === true);
-        (/** @type {?} */ (this)).changeEmit('checkbox', res);
-        return (/** @type {?} */ (this));
+        const res = this._data.filter(w => !w.disabled && w.checked === true);
+        this.changeEmit('checkbox', res);
+        return this;
     }
-    //#endregion
-    //#region radio
     /**
      * 清除所有 `radio`
-     * @template THIS
-     * @this {THIS}
-     * @return {THIS}
+     * @return {?}
      */
     clearRadio() {
-        (/** @type {?} */ (this))._data.filter(w => w.checked).forEach(item => (item.checked = false));
-        (/** @type {?} */ (this)).changeEmit('radio', null);
-        return (/** @type {?} */ (this));
+        this._data.filter(w => w.checked).forEach(item => (item.checked = false));
+        this.changeEmit('radio', null);
+        return this;
     }
     /**
-     * @template THIS
-     * @this {THIS}
      * @param {?} checked
      * @param {?} item
-     * @return {THIS}
+     * @return {?}
      */
     _refRadio(checked, item) {
         // if (item.disabled === true) return;
-        (/** @type {?} */ (this))._data.filter(w => !w.disabled).forEach(i => (i.checked = false));
+        this._data.filter(w => !w.disabled).forEach(i => (i.checked = false));
         item.checked = checked;
-        (/** @type {?} */ (this)).changeEmit('radio', item);
-        return (/** @type {?} */ (this));
+        this.changeEmit('radio', item);
+        return this;
     }
-    //#endregion
-    //#region buttons
     /**
      * @param {?} e
      * @param {?} record
@@ -1536,9 +1502,7 @@ class STComponent {
             obj[modal.paramsName] = record;
             /** @type {?} */
             const options = Object.assign({}, modal);
-            ((/** @type {?} */ (this.modalHelper[btn.type === 'modal' ? 'create' : 'createStatic'
-            // tslint:disable-next-line:no-any
-            ])))(modal.component, Object.assign({}, obj, (modal.params && modal.params(record))), options)
+            (/** @type {?} */ (this.modalHelper[btn.type === 'modal' ? 'create' : 'createStatic']))(modal.component, Object.assign(obj, modal.params && modal.params(record)), options)
                 .pipe(filter(w => typeof w !== 'undefined'))
                 .subscribe(res => this.btnCallback(record, btn, res));
             return;
@@ -1549,7 +1513,7 @@ class STComponent {
             const { drawer } = btn;
             obj[drawer.paramsName] = record;
             this.drawerHelper
-                .create(drawer.title, drawer.component, Object.assign({}, obj, (drawer.params && drawer.params(record))), Object.assign({}, drawer))
+                .create(drawer.title, drawer.component, Object.assign(obj, drawer.params && drawer.params(record)), Object.assign({}, drawer))
                 .pipe(filter(w => typeof w !== 'undefined'))
                 .subscribe(res => this.btnCallback(record, btn, res));
             return;
@@ -1564,7 +1528,6 @@ class STComponent {
         }
         this.btnCallback(record, btn);
     }
-    // tslint:disable-next-line:no-any
     /**
      * @param {?} record
      * @param {?} btn
@@ -1606,8 +1569,6 @@ class STComponent {
     _validBtns(item, col) {
         return col.buttons.filter(btn => btn.iif(item, btn, col));
     }
-    //#endregion
-    //#region export
     /**
      * 导出当前页，确保已经注册 `XlsxModule`
      * @param {?=} newData 重新指定数据，例如希望导出所有数据非常有用
@@ -1615,12 +1576,11 @@ class STComponent {
      * @return {?}
      */
     export(newData, opt) {
-        (newData ? of(newData) : of(this._data)).subscribe((res) => this.exportSrv.export(Object.assign({}, opt, {
+        (newData ? of(newData) : of(this._data)).subscribe((res) => this.exportSrv.export(Object.assign({}, opt, /** @type {?} */ ({
             _d: res,
             _c: this._columns,
-        })));
+        }))));
     }
-    //#endregion
     /**
      * @return {?}
      */
@@ -1679,6 +1639,7 @@ STComponent.decorators = [
                     YNPipe,
                     DecimalPipe,
                 ],
+                preserveWhitespaces: false,
                 changeDetection: ChangeDetectionStrategy.OnPush
             }] }
 ];
@@ -1721,10 +1682,10 @@ STComponent.propDecorators = {
     expand: [{ type: Input }],
     noResult: [{ type: Input }],
     widthConfig: [{ type: Input }],
-    rowClickTime: [{ type: Input }],
-    responsiveHideHeaderFooter: [{ type: Input }],
     error: [{ type: Output }],
-    change: [{ type: Output }]
+    change: [{ type: Output }],
+    rowClickTime: [{ type: Input }],
+    responsiveHideHeaderFooter: [{ type: Input }]
 };
 __decorate([
     InputNumber(),
@@ -1761,7 +1722,7 @@ __decorate([
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 /** @type {?} */
 const COMPONENTS = [STComponent, STRowDirective];
@@ -1790,12 +1751,12 @@ STModule.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 
 export { STComponent, STRowDirective, STConfig, STModule, STColumnSource, STDataSource, STExport, STRowSource as ɵa };

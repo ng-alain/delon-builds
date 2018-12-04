@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/router'), require('rxjs'), require('rxjs/operators'), require('@angular/common'), require('@angular/core')) :
-    typeof define === 'function' && define.amd ? define('@delon/acl', ['exports', '@angular/router', 'rxjs', 'rxjs/operators', '@angular/common', '@angular/core'], factory) :
-    (factory((global.delon = global.delon || {}, global.delon.acl = {}),global.ng.router,global.rxjs,global.rxjs.operators,global.ng.common,global.ng.core));
-}(this, (function (exports,router,rxjs,operators,common,core) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/router'), require('rxjs'), require('rxjs/operators'), require('@angular/core'), require('@angular/common')) :
+    typeof define === 'function' && define.amd ? define('@delon/acl', ['exports', '@angular/router', 'rxjs', 'rxjs/operators', '@angular/core', '@angular/common'], factory) :
+    (factory((global.delon = global.delon || {}, global.delon.acl = {}),global.ng.router,global.rxjs,global.rxjs.operators,global.ng.core,global.ng.common));
+}(this, (function (exports,router,rxjs,operators,core,common) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -67,7 +67,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
     /**
      * 访问控制服务
@@ -115,14 +115,14 @@
          */
             function (val) {
                 if (typeof val !== 'string' && !Array.isArray(val)) {
-                    return ( /** @type {?} */(val));
+                    return /** @type {?} */ (val);
                 }
                 if (Array.isArray(val)) {
-                    return ( /** @type {?} */({ role: ( /** @type {?} */(val)) }));
+                    return /** @type {?} */ ({ role: /** @type {?} */ (val) });
                 }
-                return ( /** @type {?} */({
+                return /** @type {?} */ ({
                     role: [val],
-                }));
+                });
             };
         /**
          * 设置当前用户角色或权限能力（会先清除所有）
@@ -174,7 +174,7 @@
          * @return {?}
          */
             function (abilities) {
-                this.set(( /** @type {?} */({ ability: abilities })));
+                this.set(/** @type {?} */ ({ ability: abilities }));
             };
         /**
          * 设置当前用户角色（会先清除所有）
@@ -190,7 +190,7 @@
          * @return {?}
          */
             function (roles) {
-                this.set(( /** @type {?} */({ role: roles })));
+                this.set(/** @type {?} */ ({ role: roles }));
             };
         /**
          * 为当前用户增加角色或权限能力
@@ -417,14 +417,10 @@
                         return t.role.some(function (v) { return _this.roles.includes(v); });
                 }
                 if (t.ability) {
-                    if (t.mode === 'allOf') {
-                        // tslint:disable-next-line:no-any
-                        return (( /** @type {?} */(t.ability))).every(function (v) { return _this.abilities.includes(v); });
-                    }
-                    else {
-                        // tslint:disable-next-line:no-any
-                        return (( /** @type {?} */(t.ability))).some(function (v) { return _this.abilities.includes(v); });
-                    }
+                    if (t.mode === 'allOf')
+                        return ( /** @type {?} */(t.ability)).every(function (v) { return _this.abilities.includes(v); });
+                    else
+                        return ( /** @type {?} */(t.ability)).some(function (v) { return _this.abilities.includes(v); });
                 }
                 return false;
             };
@@ -443,7 +439,7 @@
                 if (typeof value === 'number' ||
                     typeof value === 'string' ||
                     Array.isArray(value)) {
-                    value = ( /** @type {?} */({ ability: Array.isArray(value) ? value : [value] }));
+                    value = /** @type {?} */ ({ ability: Array.isArray(value) ? value : [value] });
                 }
                 delete value.role;
                 return value;
@@ -472,7 +468,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
     var ACLDirective = /** @class */ (function () {
         function ACLDirective(el, renderer, srv) {
@@ -480,7 +476,7 @@
             this.el = el;
             this.renderer = renderer;
             this.srv = srv;
-            this.change$ = this.srv.change.subscribe(function () { return _this.set(_this._value); });
+            this.change$ = /** @type {?} */ (this.srv.change.subscribe(function () { return _this.set(_this._value); }));
         }
         Object.defineProperty(ACLDirective.prototype, "acl", {
             set: /**
@@ -554,7 +550,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
     var DelonACLConfig = /** @class */ (function () {
         function DelonACLConfig() {
@@ -568,7 +564,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
     var ACLGuard = /** @class */ (function () {
         function ACLGuard(srv, router$$1, options) {
@@ -589,7 +585,7 @@
                 return (guard && guard instanceof rxjs.Observable
                     ? guard
                     : rxjs.of(typeof guard !== 'undefined' && guard !== null
-                        ? (( /** @type {?} */(guard)))
+                        ? ( /** @type {?} */(guard))
                         : null)).pipe(operators.map(function (v) { return _this.srv.can(v); }), operators.tap(function (v) {
                     if (v)
                         return;
@@ -597,53 +593,44 @@
                 }));
             };
         // lazy loading
-        // lazy loading
         /**
          * @param {?} route
          * @return {?}
          */
-        ACLGuard.prototype.canLoad =
-            // lazy loading
-            /**
-             * @param {?} route
-             * @return {?}
-             */
+        ACLGuard.prototype.canLoad = /**
+         * @param {?} route
+         * @return {?}
+         */
             function (route) {
-                return this.process((route.data && route.data.guard) || null);
+                return this.process((route.data && route.data["guard"]) || null);
             };
-        // all children route
         // all children route
         /**
          * @param {?} childRoute
          * @param {?} state
          * @return {?}
          */
-        ACLGuard.prototype.canActivateChild =
-            // all children route
-            /**
-             * @param {?} childRoute
-             * @param {?} state
-             * @return {?}
-             */
+        ACLGuard.prototype.canActivateChild = /**
+         * @param {?} childRoute
+         * @param {?} state
+         * @return {?}
+         */
             function (childRoute, state) {
                 return this.canActivate(childRoute, state);
             };
-        // route
         // route
         /**
          * @param {?} route
          * @param {?} state
          * @return {?}
          */
-        ACLGuard.prototype.canActivate =
-            // route
-            /**
-             * @param {?} route
-             * @param {?} state
-             * @return {?}
-             */
+        ACLGuard.prototype.canActivate = /**
+         * @param {?} route
+         * @param {?} state
+         * @return {?}
+         */
             function (route, state) {
-                return this.process((route.data && route.data.guard) || null);
+                return this.process((route.data && route.data["guard"]) || null);
             };
         ACLGuard.decorators = [
             { type: core.Injectable }
@@ -661,7 +648,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
     /** @type {?} */
     var SERVICES = [ACLService, ACLGuard];
@@ -694,12 +681,12 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
 
     exports.ACLService = ACLService;

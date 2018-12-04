@@ -1,6 +1,6 @@
 import { EventEmitter, OnDestroy } from '@angular/core';
+import { ReuseContextI18n, ReuseContextCloseEvent } from './reuse-tab.interfaces';
 import { ReuseTabContextService } from './reuse-tab-context.service';
-import { ReuseContextCloseEvent, ReuseContextI18n } from './reuse-tab.interfaces';
 export declare class ReuseTabContextComponent implements OnDestroy {
     private srv;
     private sub$;

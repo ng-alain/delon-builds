@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@delon/util'), require('@angular/common'), require('@angular/core'), require('@angular/forms'), require('ng-zorro-antd')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/date-picker', ['exports', '@delon/util', '@angular/common', '@angular/core', '@angular/forms', 'ng-zorro-antd'], factory) :
-    (factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['date-picker'] = {}),global.delon.util,global.ng.common,global.ng.core,global.ng.forms,global.ngZorro.antd));
-}(this, (function (exports,util,common,core,forms,ngZorroAntd) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@delon/util'), require('@angular/core'), require('@angular/common'), require('@angular/forms'), require('ng-zorro-antd')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/date-picker', ['exports', '@delon/util', '@angular/core', '@angular/common', '@angular/forms', 'ng-zorro-antd'], factory) :
+    (factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['date-picker'] = {}),global.delon.util,global.ng.core,global.ng.common,global.ng.forms,global.ngZorro.antd));
+}(this, (function (exports,util,core,common,forms,ngZorroAntd) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -69,12 +69,9 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
-    // tslint:disable:no-any
-    var  
-    // tslint:disable:no-any
-    DateRangePickerConfig = /** @class */ (function () {
+    var DateRangePickerConfig = /** @class */ (function () {
         function DateRangePickerConfig() {
             this.nzFormat = 'yyyy-MM-dd';
             this.nzAllowClear = true;
@@ -93,7 +90,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
     var RangePickerComponent = /** @class */ (function () {
         // #endregion
@@ -107,6 +104,8 @@
             this.nzShowToday = true;
             this.nzOnPanelChange = new core.EventEmitter();
             this.nzOnOk = new core.EventEmitter();
+            this.onChangeFn = function () { return void 0; };
+            this.onTouchedFn = function () { return void 0; };
             Object.assign(this, new DateRangePickerConfig(), cog && cog.range);
         }
         /**
@@ -253,7 +252,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
     /** @type {?} */
     var COMPONENTS = [RangePickerComponent];
@@ -284,12 +283,12 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
 
     exports.RangePickerComponent = RangePickerComponent;

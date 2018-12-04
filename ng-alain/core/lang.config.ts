@@ -1,5 +1,5 @@
-import * as fs from 'fs';
 import * as path from 'path';
+import * as fs from 'fs';
 
 export const LANGS_CONFIG = [
   {
@@ -18,7 +18,6 @@ export const LANGS_CONFIG = [
   { langs: ['tr'], zorro: 'tr_TR', delon: 'tr_TR', fileName: 'tr-TR.json' },
 ];
 
-// tslint:disable-next-line:no-any
 export function getLangConfig(lang: string): any {
   return LANGS_CONFIG.find(w => w.langs.includes(lang));
 }

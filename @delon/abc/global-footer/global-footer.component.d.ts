@@ -1,7 +1,7 @@
 import { QueryList } from '@angular/core';
 import { Router } from '@angular/router';
-import { GlobalFooterItemComponent } from './global-footer-item.component';
 import { GlobalFooterLink } from './global-footer.types';
+import { GlobalFooterItemComponent } from './global-footer-item.component';
 export declare class GlobalFooterComponent {
     private router;
     private win;

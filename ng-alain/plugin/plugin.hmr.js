@@ -1,14 +1,14 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const alain_1 = require("../utils/alain");
-const contents_1 = require("../utils/contents");
 const json_1 = require("../utils/json");
 const project_1 = require("../utils/project");
+const contents_1 = require("../utils/contents");
 function configToAngularJson(host, options) {
     const json = json_1.getAngular(host);
     const project = project_1.getProjectFromWorkspace(json, options.project);
     // add build config
-    (project.targets || project.architect).build.configurations.hmr = {
+    (project.targets || project.architect).build.configurations['hmr'] = {
         fileReplacements: [
             {
                 replace: `${options.sourceRoot}/environments/environment.ts`,
@@ -17,7 +17,7 @@ function configToAngularJson(host, options) {
         ],
     };
     // add serve config
-    (project.targets || project.architect).serve.configurations.hmr = {
+    (project.targets || project.architect).serve.configurations['hmr'] = {
         browserTarget: `${project.name}:build:hmr`,
         hmr: true,
     };

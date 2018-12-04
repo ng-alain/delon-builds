@@ -1,11 +1,11 @@
 import { __decorate, __metadata, __spread } from 'tslib';
+import { Injectable, Component, Input, ChangeDetectionStrategy, ChangeDetectorRef, HostBinding, Output, EventEmitter, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Injectable, ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, HostBinding, Input, Output, NgModule } from '@angular/core';
 import { InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 var QRConfig = /** @class */ (function () {
     function QRConfig() {
@@ -16,7 +16,7 @@ var QRConfig = /** @class */ (function () {
         /**
          * 背景透明级别，范围：`0-1` 之间，默认：`1.0`
          */
-        this.backgroundAlpha = 1;
+        this.backgroundAlpha = 1.0;
         /**
          * 前景，默认：`black`
          */
@@ -24,7 +24,7 @@ var QRConfig = /** @class */ (function () {
         /**
          * 前景透明级别，范围：`0-1` 之间，默认：`1.0`
          */
-        this.foregroundAlpha = 1;
+        this.foregroundAlpha = 1.0;
         /**
          * 误差校正级别，默认：`L`
          */
@@ -47,14 +47,14 @@ var QRConfig = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 var QRService = /** @class */ (function () {
     function QRService(cog) {
         /**
          * 背景透明级别，范围：`0-1` 之间
          */
-        this.backgroundAlpha = 1;
+        this.backgroundAlpha = 1.0;
         Object.assign(this, cog);
         this.qr = new QRious();
     }
@@ -114,13 +114,16 @@ var QRService = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 var QRComponent = /** @class */ (function () {
     // #endregion
     function QRComponent(cog, srv, cd) {
         this.srv = srv;
         this.cd = cd;
+        /**
+         * 变更时回调
+         */
         this.change = new EventEmitter();
         Object.assign(this, cog);
     }
@@ -148,7 +151,8 @@ var QRComponent = /** @class */ (function () {
     QRComponent.decorators = [
         { type: Component, args: [{
                     selector: 'qr',
-                    template: "<img class=\"qr__img\" src=\"{{dataURL}}\">",
+                    template: "\n  <img class=\"qr__img\" src=\"{{dataURL}}\">\n  ",
+                    preserveWhitespaces: false,
                     host: { '[class.qr]': 'true' },
                     changeDetection: ChangeDetectionStrategy.OnPush
                 }] }
@@ -184,7 +188,7 @@ var QRComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 /** @type {?} */
 var COMPONENTS = [QRComponent];
@@ -212,12 +216,12 @@ var QRModule = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 
 export { QRService, QRComponent, QRConfig, QRModule };

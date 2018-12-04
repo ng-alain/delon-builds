@@ -4,19 +4,19 @@ import { _HttpClient } from '@delon/theme';
 import { Router } from '@angular/router';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { share } from 'rxjs/operators';
-import { __assign, __values, __extends } from 'tslib';
-import { InjectionToken, Inject, Injectable, Injector, Optional, NgModule } from '@angular/core';
+import { __values, __extends } from 'tslib';
+import { InjectionToken, Injectable, Inject, Injector, Optional, NgModule } from '@angular/core';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 /** @type {?} */
 var DA_SERVICE_TOKEN = new InjectionToken('DA_SERVICE_TOKEN');
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 /** @type {?} */
 var OPENTYPE = '_delonAuthSocialType';
@@ -53,7 +53,10 @@ var SocialService = /** @class */ (function () {
         var _this = this;
         if (callback === void 0) { callback = '/'; }
         if (options === void 0) { options = {}; }
-        options = __assign({ type: 'window', windowFeatures: 'location=yes,height=570,width=520,scrollbars=yes,status=yes' }, options);
+        options = Object.assign({
+            type: 'window',
+            windowFeatures: 'location=yes,height=570,width=520,scrollbars=yes,status=yes',
+        }, options);
         localStorage.setItem(OPENTYPE, options.type);
         localStorage.setItem(HREFCALLBACK, callback);
         if (options.type === 'href') {
@@ -61,7 +64,7 @@ var SocialService = /** @class */ (function () {
             return;
         }
         this._win = window.open(url, '_blank', options.windowFeatures);
-        this._winTime = setInterval(function () {
+        this._win$ = setInterval(function () {
             if (_this._win && _this._win.closed) {
                 _this.ngOnDestroy();
                 /** @type {?} */
@@ -102,13 +105,12 @@ var SocialService = /** @class */ (function () {
         if (!rawData && this.router.url.indexOf('?') === -1) {
             throw new Error("url muse contain a ?");
         }
-        // parse
         /** @type {?} */
         var data = { token: "" };
         if (typeof rawData === 'string') {
             /** @type {?} */
             var rightUrl = rawData.split('?')[1].split('#')[0];
-            data = (/** @type {?} */ (this.router.parseUrl('./?' + rightUrl).queryParams));
+            data = /** @type {?} */ (this.router.parseUrl('./?' + rightUrl).queryParams);
         }
         else {
             data = rawData;
@@ -137,8 +139,8 @@ var SocialService = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        clearInterval(this._winTime);
-        this._winTime = null;
+        clearInterval(this._win$);
+        this._win$ = null;
     };
     SocialService.decorators = [
         { type: Injectable }
@@ -154,14 +156,14 @@ var SocialService = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 /** @type {?} */
 var DA_STORE_TOKEN = new InjectionToken('AUTH_STORE_TOKEN');
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 var LocalStorageStore = /** @class */ (function () {
     function LocalStorageStore() {
@@ -207,7 +209,7 @@ var LocalStorageStore = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 var MemoryStore = /** @class */ (function () {
     function MemoryStore() {
@@ -222,7 +224,7 @@ var MemoryStore = /** @class */ (function () {
      * @return {?}
      */
     function (key) {
-        return this.cache[key] || (/** @type {?} */ ({}));
+        return this.cache[key] || /** @type {?} */ ({});
     };
     /**
      * @param {?} key
@@ -254,7 +256,7 @@ var MemoryStore = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 var SessionStorageStore = /** @class */ (function () {
     function SessionStorageStore() {
@@ -300,7 +302,7 @@ var SessionStorageStore = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 var DelonAuthConfig = /** @class */ (function () {
     function DelonAuthConfig() {
@@ -327,7 +329,6 @@ var DelonAuthConfig = /** @class */ (function () {
          *
          * - `Bearer ${token}`
          */
-        // tslint:disable-next-line:no-invalid-template-strings
         this.token_send_template = '${token}';
         /**
          * 发送token参数位置，默认：header
@@ -351,15 +352,14 @@ var DelonAuthConfig = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
-// tslint:disable-next-line:no-any
 /** @type {?} */
 var WINDOW = new InjectionToken('Window');
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 /**
  * @param {?} model
@@ -396,7 +396,7 @@ function ToLogin(options, injector) {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 /**
  * @abstract
@@ -421,7 +421,7 @@ var BaseInterceptor = /** @class */ (function () {
         var options = Object.assign(new DelonAuthConfig(), this.injector.get(DelonAuthConfig, null));
         if (options.ignores) {
             try {
-                for (var _b = __values((/** @type {?} */ (options.ignores))), _c = _b.next(); !_c.done; _c = _b.next()) {
+                for (var _b = __values(/** @type {?} */ (options.ignores)), _c = _b.next(); !_c.done; _c = _b.next()) {
                     var item = _c.value;
                     if (item.test(req.url))
                         return next.handle(req);
@@ -448,8 +448,6 @@ var BaseInterceptor = /** @class */ (function () {
         }
         else {
             ToLogin(options, this.injector);
-            // Unable to guarantee interceptor execution order
-            // So cancel the loading state as much as possible
             /** @type {?} */
             var hc = this.injector.get(_HttpClient, null);
             if (hc)
@@ -477,7 +475,7 @@ var BaseInterceptor = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 var TokenService = /** @class */ (function () {
     function TokenService(options, store) {
@@ -537,7 +535,7 @@ var TokenService = /** @class */ (function () {
     function (type) {
         /** @type {?} */
         var data = this.store.get(this.options.store_key);
-        return type ? ((/** @type {?} */ (Object.assign(new type(), data)))) : ((/** @type {?} */ (data)));
+        return type ? (/** @type {?} */ (Object.assign(new type(), data))) : (/** @type {?} */ (data));
     };
     /**
      * @return {?}
@@ -571,7 +569,7 @@ var TokenService = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 /**
  * @param {?} str
@@ -610,7 +608,6 @@ function b64decode(str) {
     str = String(str).replace(/=+$/, '');
     for (
     // initialize result and counters
-    // tslint:disable:no-any no-conditional-assignment binary-expression-operand-order
     var bc = 0, bs = void 0, buffer = void 0, idx = 0; 
     // get next character
     (buffer = str.charAt(idx++)); 
@@ -627,7 +624,6 @@ function b64decode(str) {
     }
     return output;
 }
-// https://developer.mozilla.org/en/docs/Web/API/WindowBase64/Base64_encoding_and_decoding#The_Unicode_Problem
 /**
  * @param {?} str
  * @return {?}
@@ -642,7 +638,7 @@ function b64DecodeUnicode(str) {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 var JWTTokenModel = /** @class */ (function () {
     function JWTTokenModel() {
@@ -651,12 +647,10 @@ var JWTTokenModel = /** @class */ (function () {
         /**
          * 获取载荷信息
          */
-        // tslint:disable-next-line:no-any
         get: /**
          * 获取载荷信息
          * @return {?}
          */
-        // tslint:disable-next-line:no-any
         function () {
             /** @type {?} */
             var parts = (this.token || '').split('.');
@@ -702,7 +696,7 @@ var JWTTokenModel = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 var JWTInterceptor = /** @class */ (function (_super) {
     __extends(JWTInterceptor, _super);
@@ -721,7 +715,7 @@ var JWTInterceptor = /** @class */ (function (_super) {
         this.model = this.injector
             .get(DA_SERVICE_TOKEN)
             .get(JWTTokenModel);
-        return CheckJwt((/** @type {?} */ (this.model)), options.token_exp_offset);
+        return CheckJwt(/** @type {?} */ (this.model), options.token_exp_offset);
     };
     /**
      * @param {?} req
@@ -748,7 +742,7 @@ var JWTInterceptor = /** @class */ (function (_super) {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 var JWTGuard = /** @class */ (function () {
     function JWTGuard(srv, injector, cog) {
@@ -771,39 +765,30 @@ var JWTGuard = /** @class */ (function () {
         return res;
     };
     // lazy loading
-    // lazy loading
     /**
      * @return {?}
      */
-    JWTGuard.prototype.canLoad = 
-    // lazy loading
-    /**
+    JWTGuard.prototype.canLoad = /**
      * @return {?}
      */
     function () {
         return this.process();
     };
     // all children route
-    // all children route
     /**
      * @return {?}
      */
-    JWTGuard.prototype.canActivateChild = 
-    // all children route
-    /**
+    JWTGuard.prototype.canActivateChild = /**
      * @return {?}
      */
     function () {
         return this.process();
     };
     // route
-    // route
     /**
      * @return {?}
      */
-    JWTGuard.prototype.canActivate = 
-    // route
-    /**
+    JWTGuard.prototype.canActivate = /**
      * @return {?}
      */
     function () {
@@ -823,7 +808,7 @@ var JWTGuard = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 var SimpleTokenModel = /** @class */ (function () {
     function SimpleTokenModel() {
@@ -833,7 +818,7 @@ var SimpleTokenModel = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 var SimpleInterceptor = /** @class */ (function (_super) {
     __extends(SimpleInterceptor, _super);
@@ -849,19 +834,15 @@ var SimpleInterceptor = /** @class */ (function (_super) {
      * @return {?}
      */
     function (options) {
-        this.model = (/** @type {?} */ (this.injector.get(DA_SERVICE_TOKEN).get()));
-        return CheckSimple((/** @type {?} */ (this.model)));
+        this.model = /** @type {?} */ (this.injector.get(DA_SERVICE_TOKEN).get());
+        return CheckSimple(/** @type {?} */ (this.model));
     };
-    // tslint:disable-next-line:no-any
-    // tslint:disable-next-line:no-any
     /**
      * @param {?} req
      * @param {?} options
      * @return {?}
      */
-    SimpleInterceptor.prototype.setReq = 
-    // tslint:disable-next-line:no-any
-    /**
+    SimpleInterceptor.prototype.setReq = /**
      * @param {?} req
      * @param {?} options
      * @return {?}
@@ -903,7 +884,7 @@ var SimpleInterceptor = /** @class */ (function (_super) {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 var SimpleGuard = /** @class */ (function () {
     function SimpleGuard(srv, injector, cog) {
@@ -926,39 +907,30 @@ var SimpleGuard = /** @class */ (function () {
         return res;
     };
     // lazy loading
-    // lazy loading
     /**
      * @return {?}
      */
-    SimpleGuard.prototype.canLoad = 
-    // lazy loading
-    /**
+    SimpleGuard.prototype.canLoad = /**
      * @return {?}
      */
     function () {
         return this.process();
     };
     // all children route
-    // all children route
     /**
      * @return {?}
      */
-    SimpleGuard.prototype.canActivateChild = 
-    // all children route
-    /**
+    SimpleGuard.prototype.canActivateChild = /**
      * @return {?}
      */
     function () {
         return this.process();
     };
     // route
-    // route
     /**
      * @return {?}
      */
-    SimpleGuard.prototype.canActivate = 
-    // route
-    /**
+    SimpleGuard.prototype.canActivate = /**
      * @return {?}
      */
     function () {
@@ -978,7 +950,7 @@ var SimpleGuard = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 var DelonAuthModule = /** @class */ (function () {
     function DelonAuthModule() {
@@ -1010,12 +982,12 @@ var DelonAuthModule = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 
 export { SocialService, DA_STORE_TOKEN, LocalStorageStore, MemoryStore, SessionStorageStore, BaseInterceptor, DA_SERVICE_TOKEN, TokenService, urlBase64Decode, JWTTokenModel, JWTInterceptor, JWTGuard, SimpleTokenModel, SimpleInterceptor, SimpleGuard, DelonAuthConfig, DelonAuthModule, WINDOW as ɵa };

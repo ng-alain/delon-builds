@@ -14,8 +14,8 @@ export declare class _HttpClient {
     private _loading;
     /** 是否正在加载中 */
     readonly loading: boolean;
-    parseParams(params: {}): HttpParams;
-    appliedUrl(url: string, params?: {}): string;
+    parseParams(params: any): HttpParams;
+    appliedUrl(url: string, params?: any): string;
     begin(): void;
     end(): void;
     /**
@@ -53,7 +53,7 @@ export declare class _HttpClient {
         reportProgress?: boolean;
         responseType?: 'json';
         withCredentials?: boolean;
-    }): Observable<HttpResponse<{}>>;
+    }): Observable<HttpResponse<Object>>;
     /**
      * GET：返回一个 `JSON` 类型
      */
@@ -101,7 +101,7 @@ export declare class _HttpClient {
         reportProgress?: boolean;
         responseType?: 'json';
         withCredentials?: boolean;
-    }): Observable<HttpResponse<{}>>;
+    }): Observable<HttpResponse<Object>>;
     /**
      * POST：返回一个 `JSON` 类型
      */
@@ -149,7 +149,7 @@ export declare class _HttpClient {
         reportProgress?: boolean;
         responseType?: 'json';
         withCredentials?: boolean;
-    }): Observable<HttpResponse<{}>>;
+    }): Observable<HttpResponse<Object>>;
     /**
      * DELETE：返回一个 `any` 类型
      */
@@ -193,7 +193,7 @@ export declare class _HttpClient {
         reportProgress?: boolean;
         responseType?: 'json';
         withCredentials?: boolean;
-    }): Observable<HttpResponse<{}>>;
+    }): Observable<HttpResponse<Object>>;
     /**
      * PATCH：返回一个 `JSON` 类型
      */
@@ -241,7 +241,7 @@ export declare class _HttpClient {
         reportProgress?: boolean;
         responseType?: 'json';
         withCredentials?: boolean;
-    }): Observable<HttpResponse<{}>>;
+    }): Observable<HttpResponse<Object>>;
     /**
      * PUT：返回一个 `JSON` 类型
      */

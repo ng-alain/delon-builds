@@ -1,11 +1,11 @@
 import { __decorate, __metadata, __spread } from 'tslib';
+import { Component, Input, HostBinding, Renderer2, ElementRef, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, ElementRef, HostBinding, Input, Renderer2, NgModule } from '@angular/core';
 import { InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 var EllipsisComponent = /** @class */ (function () {
     function EllipsisComponent(el, render) {
@@ -18,9 +18,8 @@ var EllipsisComponent = /** @class */ (function () {
     EllipsisComponent.decorators = [
         { type: Component, args: [{
                     selector: 'ellipsis',
-                    template: "\n    <ng-content></ng-content>\n  ",
-                    host: { '[class.ellipsis]': 'true' },
-                    changeDetection: ChangeDetectionStrategy.OnPush
+                    template: "<ng-content></ng-content>",
+                    host: { '[class.ellipsis]': 'true' }
                 }] }
     ];
     /** @nocollapse */
@@ -40,7 +39,7 @@ var EllipsisComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 /** @type {?} */
 var COMPONENTS = [EllipsisComponent];
@@ -68,12 +67,12 @@ var EllipsisModule = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 
 export { EllipsisComponent, EllipsisModule };

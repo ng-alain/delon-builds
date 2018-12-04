@@ -1,17 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { saveAs } from 'file-saver';
-import { CommonModule } from '@angular/common';
 import { Injectable, Directive, HostListener, Input, NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { LazyService, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
- */
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 class XlsxConfig {
     constructor() {
@@ -30,7 +25,7 @@ class XlsxConfig {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 class XlsxService {
     /**
@@ -85,7 +80,6 @@ class XlsxService {
                     });
                     return;
                 }
-                // from file
                 /** @type {?} */
                 const reader = new FileReader();
                 reader.onload = (e) => {
@@ -107,7 +101,7 @@ class XlsxService {
             /** @type {?} */
             const wb = XLSX.utils.book_new();
             if (Array.isArray(options.sheets)) {
-                ((/** @type {?} */ (options.sheets))).forEach((value, index) => {
+                (/** @type {?} */ (options.sheets)).forEach((value, index) => {
                     /** @type {?} */
                     const ws = XLSX.utils.aoa_to_sheet(value.data);
                     XLSX.utils.book_append_sheet(wb, ws, value.name || `Sheet${index + 1}`);
@@ -120,7 +114,11 @@ class XlsxService {
             if (options.callback)
                 options.callback(wb);
             /** @type {?} */
-            const wbout = XLSX.write(wb, Object.assign({ bookType: 'xlsx', bookSST: false, type: 'array' }, options.opts));
+            const wbout = XLSX.write(wb, Object.assign({
+                bookType: 'xlsx',
+                bookSST: false,
+                type: 'array',
+            }, options.opts));
             saveAs(new Blob([wbout], { type: 'application/octet-stream' }), options.filename || 'export.xlsx');
         });
     }
@@ -137,7 +135,7 @@ XlsxService.ctorParameters = () => [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 class XlsxDirective {
     /**
@@ -167,7 +165,7 @@ XlsxDirective.propDecorators = {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 /** @type {?} */
 const COMPONENTS = [XlsxDirective];
@@ -192,12 +190,12 @@ XlsxModule.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 
 export { XlsxConfig, XlsxService, XlsxDirective, XlsxModule };

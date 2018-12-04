@@ -1,7 +1,7 @@
 import { Injector, OnDestroy } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { AlainI18NService } from '../i18n/i18n';
 import { MenuService } from '../menu/menu.service';
+import { AlainI18NService } from '../i18n/i18n';
 /**
  * 设置标题
  * @see https://ng-alain.com/docs/service#TitleService
@@ -38,6 +38,6 @@ export declare class TitleService implements OnDestroy {
     /**
      * 设置国际化标题
      */
-    setTitleByI18n(key: string, params?: {}): void;
+    setTitleByI18n(key: string, params?: Object): void;
     ngOnDestroy(): void;
 }

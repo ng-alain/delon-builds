@@ -1,15 +1,14 @@
 import { __decorate, __metadata } from 'tslib';
 import { InputBoolean } from '@delon/util';
+import { forwardRef, Component, Input, Output, EventEmitter, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { forwardRef, Component, EventEmitter, Input, Output, NgModule } from '@angular/core';
 import { NG_VALUE_ACCESSOR, FormsModule } from '@angular/forms';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
-// tslint:disable:no-any
 class DateRangePickerConfig {
     constructor() {
         this.nzFormat = 'yyyy-MM-dd';
@@ -25,10 +24,9 @@ class DatePickerConfig {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 class RangePickerComponent {
-    // #endregion
     /**
      * @param {?} cog
      */
@@ -42,6 +40,8 @@ class RangePickerComponent {
         this.nzShowToday = true;
         this.nzOnPanelChange = new EventEmitter();
         this.nzOnOk = new EventEmitter();
+        this.onChangeFn = () => void 0;
+        this.onTouchedFn = () => void 0;
         Object.assign(this, new DateRangePickerConfig(), cog && cog.range);
     }
     /**
@@ -153,7 +153,7 @@ __decorate([
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 /** @type {?} */
 const COMPONENTS = [RangePickerComponent];
@@ -178,12 +178,12 @@ DatePickerModule.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 
 export { RangePickerComponent, DatePickerModule, DateRangePickerConfig, DatePickerConfig };

@@ -1,18 +1,15 @@
 import { InputBoolean } from '@delon/util';
 import { __decorate, __metadata, __spread } from 'tslib';
+import { forwardRef, Component, Input, Output, EventEmitter, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { forwardRef, Component, EventEmitter, Input, Output, NgModule } from '@angular/core';
 import { NG_VALUE_ACCESSOR, FormsModule } from '@angular/forms';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
-// tslint:disable:no-any
-var  
-// tslint:disable:no-any
-DateRangePickerConfig = /** @class */ (function () {
+var DateRangePickerConfig = /** @class */ (function () {
     function DateRangePickerConfig() {
         this.nzFormat = 'yyyy-MM-dd';
         this.nzAllowClear = true;
@@ -31,7 +28,7 @@ var DatePickerConfig = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 var RangePickerComponent = /** @class */ (function () {
     // #endregion
@@ -45,6 +42,8 @@ var RangePickerComponent = /** @class */ (function () {
         this.nzShowToday = true;
         this.nzOnPanelChange = new EventEmitter();
         this.nzOnOk = new EventEmitter();
+        this.onChangeFn = function () { return void 0; };
+        this.onTouchedFn = function () { return void 0; };
         Object.assign(this, new DateRangePickerConfig(), cog && cog.range);
     }
     /**
@@ -189,7 +188,7 @@ var RangePickerComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 /** @type {?} */
 var COMPONENTS = [RangePickerComponent];
@@ -220,12 +219,12 @@ var DatePickerModule = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 
 export { RangePickerComponent, DatePickerModule, DateRangePickerConfig, DatePickerConfig };

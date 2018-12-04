@@ -4,14 +4,14 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common'), require('@angular/core'), require('@delon/util')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/qr', ['exports', '@angular/common', '@angular/core', '@delon/util'], factory) :
-    (factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.qr = {}),global.ng.common,global.ng.core,global.delon.util));
-}(this, (function (exports,common,core,util) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/common'), require('@delon/util')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/qr', ['exports', '@angular/core', '@angular/common', '@delon/util'], factory) :
+    (factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.qr = {}),global.ng.core,global.ng.common,global.delon.util));
+}(this, (function (exports,core,common,util) { 'use strict';
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
     var QRConfig = /** @class */ (function () {
         function QRConfig() {
@@ -22,7 +22,7 @@
             /**
              * 背景透明级别，范围：`0-1` 之间，默认：`1.0`
              */
-            this.backgroundAlpha = 1;
+            this.backgroundAlpha = 1.0;
             /**
              * 前景，默认：`black`
              */
@@ -30,7 +30,7 @@
             /**
              * 前景透明级别，范围：`0-1` 之间，默认：`1.0`
              */
-            this.foregroundAlpha = 1;
+            this.foregroundAlpha = 1.0;
             /**
              * 误差校正级别，默认：`L`
              */
@@ -53,14 +53,14 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
     var QRService = /** @class */ (function () {
         function QRService(cog) {
             /**
              * 背景透明级别，范围：`0-1` 之间
              */
-            this.backgroundAlpha = 1;
+            this.backgroundAlpha = 1.0;
             Object.assign(this, cog);
             this.qr = new QRious();
         }
@@ -179,13 +179,16 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
     var QRComponent = /** @class */ (function () {
         // #endregion
         function QRComponent(cog, srv, cd) {
             this.srv = srv;
             this.cd = cd;
+            /**
+             * 变更时回调
+             */
             this.change = new core.EventEmitter();
             Object.assign(this, cog);
         }
@@ -213,7 +216,8 @@
         QRComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'qr',
-                        template: "<img class=\"qr__img\" src=\"{{dataURL}}\">",
+                        template: "\n  <img class=\"qr__img\" src=\"{{dataURL}}\">\n  ",
+                        preserveWhitespaces: false,
                         host: { '[class.qr]': 'true' },
                         changeDetection: core.ChangeDetectionStrategy.OnPush
                     }] }
@@ -251,7 +255,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
     /** @type {?} */
     var COMPONENTS = [QRComponent];
@@ -279,12 +283,12 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
 
     exports.QRService = QRService;

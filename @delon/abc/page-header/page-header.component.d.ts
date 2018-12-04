@@ -1,12 +1,8 @@
-import { AfterViewInit, ChangeDetectorRef, OnChanges, OnDestroy, OnInit, Renderer2, TemplateRef } from '@angular/core';
+import { TemplateRef, OnInit, OnChanges, AfterViewInit, Renderer2, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
+import { MenuService, AlainI18NService, TitleService, SettingsService } from '@delon/theme';
 import { ReuseTabService } from '@delon/abc/reuse-tab';
-import { AlainI18NService, MenuService, SettingsService, TitleService } from '@delon/theme';
 import { PageHeaderConfig } from './page-header.config';
-interface PageHeaderPath {
-    title?: string;
-    link?: string[];
-}
 export declare class PageHeaderComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy {
     private renderer;
     private router;
@@ -14,7 +10,6 @@ export declare class PageHeaderComponent implements OnInit, OnChanges, AfterView
     private i18nSrv;
     private titleSrv;
     private reuseSrv;
-    private cdr;
     private inited;
     private ref$;
     private set$;
@@ -23,28 +18,37 @@ export declare class PageHeaderComponent implements OnInit, OnChanges, AfterView
     private _menus;
     private readonly menus;
     _titleVal: string;
-    paths: PageHeaderPath[];
     _title: string;
-    _titleTpl: TemplateRef<void>;
-    title: string | TemplateRef<void>;
+    _titleTpl: TemplateRef<any>;
+    title: string | TemplateRef<any>;
     loading: boolean;
     wide: boolean;
     home: string;
     homeLink: string;
     homeI18n: string;
+    /**
+     * 自动生成导航，以当前路由从主菜单中定位
+     */
     autoBreadcrumb: boolean;
+    /**
+     * 自动生成标题，以当前路由从主菜单中定位
+     */
     autoTitle: boolean;
+    /**
+     * 是否自动将标题同步至 `TitleService`、`ReuseService` 下，仅 `title` 为 `string` 类型时有效
+     */
     syncTitle: boolean;
     fixed: boolean;
     fixedOffsetTop: number;
-    breadcrumb: TemplateRef<void>;
+    paths: any[];
+    breadcrumb: TemplateRef<any>;
     recursiveBreadcrumb: boolean;
-    logo: TemplateRef<void>;
-    action: TemplateRef<void>;
-    content: TemplateRef<void>;
-    extra: TemplateRef<void>;
-    tab: TemplateRef<void>;
-    constructor(cog: PageHeaderConfig, settings: SettingsService, renderer: Renderer2, router: Router, menuSrv: MenuService, i18nSrv: AlainI18NService, titleSrv: TitleService, reuseSrv: ReuseTabService, cdr: ChangeDetectorRef);
+    logo: TemplateRef<any>;
+    action: TemplateRef<any>;
+    content: TemplateRef<any>;
+    extra: TemplateRef<any>;
+    tab: TemplateRef<any>;
+    constructor(cog: PageHeaderConfig, settings: SettingsService, renderer: Renderer2, router: Router, menuSrv: MenuService, i18nSrv: AlainI18NService, titleSrv: TitleService, reuseSrv: ReuseTabService);
     refresh(): void;
     private genBreadcrumb;
     private setTitle;
@@ -54,4 +58,3 @@ export declare class PageHeaderComponent implements OnInit, OnChanges, AfterView
     ngOnChanges(): void;
     ngOnDestroy(): void;
 }
-export {};

@@ -1,6 +1,5 @@
-import { SFValue } from '../../interface';
-import { SFSchemaEnum } from '../../schema';
 import { ControlWidget } from '../../widget';
+import { SFSchemaEnum } from '../../schema';
 export declare class CheckboxWidget extends ControlWidget {
     data: SFSchemaEnum[];
     allChecked: boolean;
@@ -9,10 +8,10 @@ export declare class CheckboxWidget extends ControlWidget {
     labelTitle: string;
     inited: boolean;
     readonly l: any;
-    reset(value: SFValue): void;
-    _setValue(value: SFValue): void;
+    reset(value: any): void;
+    _setValue(value: any): void;
     notifySet(): void;
-    groupInGridChange(values: SFValue[]): void;
+    groupInGridChange(values: any[]): void;
     onAllChecked(e: Event): void;
     updateAllChecked(): this;
     private notifyChange;

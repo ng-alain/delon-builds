@@ -1,11 +1,11 @@
 import { __decorate, __metadata } from 'tslib';
+import { Component, Input, HostBinding, ElementRef, HostListener, Inject, ChangeDetectionStrategy, ChangeDetectorRef, NgModule } from '@angular/core';
 import { DOCUMENT, CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, HostBinding, HostListener, Inject, Input, NgModule } from '@angular/core';
 import { InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 class ErrorCollectConfig {
     constructor() {
@@ -22,7 +22,11 @@ class ErrorCollectConfig {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ */
+/**
+ * 错误消息采集器
+ * PS：虽然此法并不好看，但对响应式表单&模板表单有很好的效果。
  */
 class ErrorCollectComponent {
     /**
@@ -64,7 +68,6 @@ class ErrorCollectComponent {
     _click() {
         if (this.count === 0)
             return false;
-        // nz-form-control
         /** @type {?} */
         const els = this.errEls;
         /** @type {?} */
@@ -124,11 +127,11 @@ ErrorCollectComponent.decorators = [
     { type: Component, args: [{
                 selector: 'error-collect, [error-collect]',
                 template: `
-    <i nz-icon type="exclamation-circle"></i>
-    <span class="pl-sm">{{ count }}</span>
-  `,
+  <i nz-icon type="exclamation-circle"></i>
+  <span class="pl-sm">{{count}}</span>`,
                 host: { '[class.error-collect]': 'true' },
-                changeDetection: ChangeDetectionStrategy.OnPush
+                changeDetection: ChangeDetectionStrategy.OnPush,
+                preserveWhitespaces: false
             }] }
 ];
 /** @nocollapse */
@@ -155,7 +158,7 @@ __decorate([
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 /** @type {?} */
 const COMPONENTS = [ErrorCollectComponent];
@@ -180,12 +183,12 @@ ErrorCollectModule.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 
 export { ErrorCollectComponent, ErrorCollectConfig, ErrorCollectModule };

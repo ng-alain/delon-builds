@@ -1,6 +1,15 @@
-import { Rule, SchematicContext, Tree } from '@angular-devkit/schematics';
-import { tryAddFile, tryDelFile } from '../utils/alain';
+import { Tree, SchematicContext } from '@angular-devkit/schematics';
 import { PluginOptions } from './interface';
+import { tryAddFile, addValueToVariable, tryDelFile } from '../utils/alain';
+import {
+  addPackageToPackageJson,
+  removePackageFromPackageJson,
+  getAngular,
+  overwriteAngular,
+  getJSON,
+  overwriteJSON,
+} from '../utils/json';
+import { getProjectFromWorkspace } from '../utils/project';
 
 function setIgnore(host: Tree, options: PluginOptions) {
   const filePath = `${options.root}/.dockerignore`;
@@ -73,7 +82,7 @@ RUN npm run build
 FROM nginx:alpine
 
 COPY --from=builder /${
-      options.name
+        options.name
       }/_nginx/default.conf /etc/nginx/conf.d/default.conf
 # COPY --from=builder /${options.name}/_nginx/ssl/* /etc/nginx/ssl/
 
@@ -126,7 +135,7 @@ function setNginx(host: Tree, options: PluginOptions) {
   }
 }
 
-export function pluginDocker(options: PluginOptions): Rule {
+export function pluginDocker(options: PluginOptions): any {
   return (host: Tree, context: SchematicContext) => {
     // 1. ignore file
     setIgnore(host, options);

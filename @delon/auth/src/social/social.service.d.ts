@@ -8,7 +8,7 @@ export declare class SocialService implements OnDestroy {
     private doc;
     private router;
     private _win;
-    private _winTime;
+    private _win$;
     private observer;
     constructor(tokenService: ITokenService, doc: any, router: Router);
     /**

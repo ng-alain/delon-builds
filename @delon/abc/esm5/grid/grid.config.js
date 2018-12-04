@@ -1,6 +1,6 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 var SGConfig = /** @class */ (function () {
     function SGConfig() {
@@ -28,4 +28,5 @@ if (false) {
      */
     SGConfig.prototype.col;
 }
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZ3JpZC5jb25maWcuanMiLCJzb3VyY2VSb290Ijoibmc6Ly9AZGVsb24vYWJjL2dyaWQvIiwic291cmNlcyI6WyJncmlkLmNvbmZpZy50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7O0FBQUE7SUFBQTs7OztRQUlFLFdBQU0sR0FBSSxFQUFFLENBQUM7Ozs7UUFJYixRQUFHLEdBQUksQ0FBQyxDQUFDO0lBQ1gsQ0FBQztJQUFELGVBQUM7QUFBRCxDQUFDLEFBVEQsSUFTQzs7Ozs7OztJQUxDLDBCQUFhOzs7OztJQUliLHVCQUFTIiwic291cmNlc0NvbnRlbnQiOlsiZXhwb3J0IGNsYXNzIFNHQ29uZmlnIHtcbiAgLyoqXG4gICAqIOmXtOi3ne+8jOm7mOiupO+8mmAzMmBcbiAgICovXG4gIGd1dHRlciA/PSAzMjtcbiAgLyoqXG4gICAqIOWIl+aVsO+8jOm7mOiupO+8mmAyYFxuICAgKi9cbiAgY29sID89IDI7XG59XG4iXX0=
+
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZ3JpZC5jb25maWcuanMiLCJzb3VyY2VSb290Ijoibmc6Ly9AZGVsb24vYWJjL2dyaWQvIiwic291cmNlcyI6WyJncmlkLmNvbmZpZy50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7O0FBQUEsSUFBQTs7Ozs7c0JBSVksRUFBRTs7OzttQkFJTCxDQUFDOzttQkFSVjtJQVNDLENBQUE7QUFURCxvQkFTQyIsInNvdXJjZXNDb250ZW50IjpbImV4cG9ydCBjbGFzcyBTR0NvbmZpZyB7XG4gIC8qKlxuICAgKiDpl7Tot53vvIzpu5jorqTvvJpgMzJgXG4gICAqL1xuICBndXR0ZXI/ID0gMzI7XG4gIC8qKlxuICAgKiDliJfmlbDvvIzpu5jorqTvvJpgMmBcbiAgICovXG4gIGNvbD8gPSAyO1xufVxuIl19

@@ -1,13 +1,13 @@
-import { CommonModule } from '@angular/common';
 import { Component, Input, ViewChild, NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { DelonLocaleService, DelonLocaleModule } from '@delon/theme';
 import { isEmpty, DelonUtilModule } from '@delon/util';
-import { NgZorroAntdModule } from 'ng-zorro-antd';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 class ExceptionComponent {
     /**
@@ -15,7 +15,6 @@ class ExceptionComponent {
      */
     constructor(i18n) {
         this.i18n = i18n;
-        // tslint:disable-next-line:no-any
         this.locale = {};
         this.hasCon = false;
         this._img = '';
@@ -92,8 +91,21 @@ class ExceptionComponent {
 ExceptionComponent.decorators = [
     { type: Component, args: [{
                 selector: 'exception',
-                template: "<div class=\"exception__img-block\">\n  <div class=\"exception__img\" [ngStyle]=\"{'background-image': 'url(' + _img + ')'}\"></div>\n</div>\n<div class=\"exception__cont\">\n  <h1 class=\"exception__cont-title\" [innerHTML]=\"_title\"></h1>\n  <div class=\"exception__cont-desc\" [innerHTML]=\"_desc || locale[_type]\"></div>\n  <div class=\"exception__cont-actions\">\n    <div (cdkObserveContent)=\"checkContent()\" #conTpl><ng-content></ng-content></div>\n    <button *ngIf=\"!hasCon\" nz-button [routerLink]=\"['/']\" [nzType]=\"'primary'\">{{locale.backToHome}}</button>\n  </div>\n</div>\n",
-                host: { '[class.exception]': 'true' }
+                template: `
+  <div class="exception__img-block">
+    <div class="exception__img" [ngStyle]="{'background-image': 'url(' + _img + ')'}"></div>
+  </div>
+  <div class="exception__cont">
+    <h1 class="exception__cont-title" [innerHTML]="_title"></h1>
+    <div class="exception__cont-desc" [innerHTML]="_desc || locale[_type]"></div>
+    <div class="exception__cont-actions">
+      <div (cdkObserveContent)="checkContent()" #conTpl><ng-content></ng-content></div>
+      <button *ngIf="!hasCon" nz-button [routerLink]="['/']" [nzType]="'primary'">{{locale.backToHome}}</button>
+    </div>
+  </div>
+  `,
+                host: { '[class.exception]': 'true' },
+                preserveWhitespaces: false
             }] }
 ];
 /** @nocollapse */
@@ -110,7 +122,7 @@ ExceptionComponent.propDecorators = {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 /** @type {?} */
 const COMPONENTS = [ExceptionComponent];
@@ -138,12 +150,12 @@ ExceptionModule.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 
 export { ExceptionComponent, ExceptionModule };

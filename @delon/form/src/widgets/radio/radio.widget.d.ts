@@ -1,8 +1,6 @@
-import { SFValue } from '../../interface';
-import { SFSchemaEnum } from '../../schema/index';
 import { ControlWidget } from '../../widget';
 export declare class RadioWidget extends ControlWidget {
-    data: SFSchemaEnum[];
+    data: any[];
     styleType: boolean;
-    reset(value: SFValue): void;
+    reset(value: any): void;
 }

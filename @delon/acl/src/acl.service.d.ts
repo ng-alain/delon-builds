@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import { ACLCanType, ACLType } from './acl.type';
+import { ACLType, ACLCanType } from './acl.type';
 /**
  * 访问控制服务
  */
@@ -28,7 +28,7 @@ export declare class ACLService {
     /**
      * 设置当前用户权限能力（会先清除所有）
      */
-    setAbility(abilities: Array<number | string>): void;
+    setAbility(abilities: (number | string)[]): void;
     /**
      * 设置当前用户角色（会先清除所有）
      */
@@ -44,7 +44,7 @@ export declare class ACLService {
     /**
      * 为当前用户附加权限
      */
-    attachAbility(abilities: Array<number | string>): void;
+    attachAbility(abilities: (number | string)[]): void;
     /**
      * 为当前用户移除角色
      */
@@ -52,7 +52,7 @@ export declare class ACLService {
     /**
      * 为当前用户移除权限
      */
-    removeAbility(abilities: Array<number | string>): void;
+    removeAbility(abilities: (number | string)[]): void;
     /**
      * 当前用户是否有对应角色，其实 `number` 表示Ability
      *

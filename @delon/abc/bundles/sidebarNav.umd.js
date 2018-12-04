@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('rxjs/operators'), require('@delon/theme'), require('@angular/common'), require('@angular/core'), require('@angular/router'), require('@delon/util'), require('ng-zorro-antd')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/sidebar-nav', ['exports', 'rxjs/operators', '@delon/theme', '@angular/common', '@angular/core', '@angular/router', '@delon/util', 'ng-zorro-antd'], factory) :
-    (factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['sidebar-nav'] = {}),global.rxjs.operators,global.delon.theme,global.ng.common,global.ng.core,global.ng.router,global.delon.util,global.ngZorro.antd));
-}(this, (function (exports,operators,theme,common,core,router,util,ngZorroAntd) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('rxjs/operators'), require('@delon/theme'), require('@angular/core'), require('@angular/common'), require('@angular/router'), require('ng-zorro-antd'), require('@delon/util')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/sidebar-nav', ['exports', 'rxjs/operators', '@delon/theme', '@angular/core', '@angular/common', '@angular/router', 'ng-zorro-antd', '@delon/util'], factory) :
+    (factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['sidebar-nav'] = {}),global.rxjs.operators,global.delon.theme,global.ng.core,global.ng.common,global.ng.router,global.ngZorro.antd,global.delon.util));
+}(this, (function (exports,operators,theme,core,common,router,ngZorroAntd,util) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -40,7 +40,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
     /** @type {?} */
     var SHOWCLS = 'sidebar-nav__floating-show';
@@ -79,10 +79,10 @@
                 this.bodyEl = this.doc.querySelector('body');
                 this.menuSrv.openedByUrl(this.router.url);
                 this.genFloatingContainer();
-                this.change$ = this.menuSrv.change.subscribe(function (res) {
+                this.change$ = /** @type {?} */ (this.menuSrv.change.subscribe(function (res) {
                     _this.list = res;
                     _this.cd.detectChanges();
-                });
+                }));
                 this.installUnderPad();
             };
         /**
@@ -96,7 +96,7 @@
             function (e) {
                 e.stopPropagation();
                 /** @type {?} */
-                var linkNode = ( /** @type {?} */(e.target));
+                var linkNode = /** @type {?} */ (e.target);
                 if (linkNode.nodeName !== 'A') {
                     return false;
                 }
@@ -105,10 +105,9 @@
                 if (url && url.startsWith('#')) {
                     url = url.slice(1);
                 }
-                if (( /** @type {?} */(linkNode.dataset)).type === 'external') {
+                if (linkNode.dataset["type"] === 'external') {
                     return true;
                 }
-                // 如果配置了bashHref 则去掉baseHref
                 /** @type {?} */
                 var baseHerf = this.locationStrategy.getBaseHref();
                 if (baseHerf) {
@@ -163,9 +162,9 @@
          */
             function (linkNode, item) {
                 /** @type {?} */
-                var id = "_sidebar-nav-" + item.__id;
+                var id = "_sidebar-nav-" + item["__id"];
                 /** @type {?} */
-                var node = ( /** @type {?} */(linkNode.nextElementSibling.cloneNode(true)));
+                var node = /** @type {?} */ (linkNode.nextElementSibling.cloneNode(true));
                 node.id = id;
                 node.classList.add(FLOATINGCLS);
                 node.addEventListener('mouseleave', function () {
@@ -183,29 +182,23 @@
             function () {
                 /** @type {?} */
                 var allNode = this.floatingEl.querySelectorAll('.' + FLOATINGCLS);
-                // tslint:disable-next-line:prefer-for-of
                 for (var i = 0; i < allNode.length; i++) {
                     allNode[i].classList.remove(SHOWCLS);
                 }
             };
-        // calculate the node position values.
-        // calculate the node position values.
         /**
          * @param {?} linkNode
          * @param {?} node
          * @return {?}
          */
-        SidebarNavComponent.prototype.calPos =
-            // calculate the node position values.
-            /**
-             * @param {?} linkNode
-             * @param {?} node
-             * @return {?}
-             */
+        SidebarNavComponent.prototype.calPos = /**
+         * @param {?} linkNode
+         * @param {?} node
+         * @return {?}
+         */
             function (linkNode, node) {
                 /** @type {?} */
                 var rect = linkNode.getBoundingClientRect();
-                // bug: https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/14721015/
                 /** @type {?} */
                 var scrollTop = Math.max(this.doc.documentElement.scrollTop, this.bodyEl.scrollTop);
                 /** @type {?} */
@@ -234,13 +227,13 @@
                 }
                 e.preventDefault();
                 /** @type {?} */
-                var linkNode = ( /** @type {?} */(e.target));
+                var linkNode = /** @type {?} */ (e.target);
                 this.genFloatingContainer();
                 /** @type {?} */
-                var subNode = this.genSubNode(( /** @type {?} */(linkNode)), item);
+                var subNode = this.genSubNode(/** @type {?} */ (linkNode), item);
                 this.hideAll();
                 subNode.classList.add(SHOWCLS);
-                this.calPos(( /** @type {?} */(linkNode)), subNode);
+                this.calPos(/** @type {?} */ (linkNode), subNode);
             };
         /**
          * @param {?} item
@@ -264,10 +257,10 @@
             function (item) {
                 this.menuSrv.visit(function (i, p) {
                     if (i !== item)
-                        i._open = false;
+                        i["_open"] = false;
                 });
                 /** @type {?} */
-                var pItem = item.__parent;
+                var pItem = item["__parent"];
                 while (pItem) {
                     pItem._open = true;
                     pItem = pItem.__parent;
@@ -309,13 +302,9 @@
                 this.clearFloatingContainer();
             };
         Object.defineProperty(SidebarNavComponent.prototype, "isPad", {
-            // #region Under pad
-            get: 
-            // #region Under pad
-            /**
+            get: /**
              * @return {?}
-             */
-            function () {
+             */ function () {
                 return window.innerWidth < 768;
             },
             enumerable: true,
@@ -331,9 +320,9 @@
                 var _this = this;
                 if (!this.autoCloseUnderPad)
                     return;
-                this.route$ = this.router.events
+                this.route$ = /** @type {?} */ ((this.router.events
                     .pipe(operators.filter(function (e) { return e instanceof router.NavigationEnd; }))
-                    .subscribe(function (s) { return _this.underPad(); });
+                    .subscribe(function (s) { return _this.underPad(); })));
                 this.underPad();
             };
         /**
@@ -363,7 +352,8 @@
             { type: core.Component, args: [{
                         selector: 'sidebar-nav',
                         template: "<ng-template #icon let-i>\n  <ng-container *ngIf=\"i\" [ngSwitch]=\"i.type\">\n    <i *ngSwitchCase=\"'icon'\" class=\"sidebar-nav__item-icon\" nz-icon [type]=\"i.value\" [theme]=\"i.theme\" [spin]=\"i.spin\" [twoToneColor]=\"i.twoToneColor\" [iconfont]=\"i.iconfont\"></i>\n    <img *ngSwitchCase=\"'img'\" src=\"{{ i.value }}\" class=\"sidebar-nav__item-icon sidebar-nav__item-img\">\n    <i *ngSwitchDefault class=\"sidebar-nav__item-icon {{ i.value }}\"></i>\n  </ng-container>\n</ng-template>\n<ul class=\"sidebar-nav\">\n  <ng-container *ngFor=\"let group of list\">\n    <ng-container *ngIf=\"group._hidden !== true\">\n      <li class=\"sidebar-nav__item sidebar-nav__group-title\" *ngIf=\"group.group\">\n        <span>{{ group.text }}</span>\n      </li>\n      <ng-container *ngFor=\"let child1 of group.children\">\n        <li *ngIf=\"child1._hidden !== true\" routerLinkActive=\"sidebar-nav__selected\" [routerLinkActiveOptions]=\"{exact: child1.linkExact}\"\n          class=\"sidebar-nav__item\" [class.sidebar-nav__open]=\"child1._open\">\n          <!-- link -->\n          <a *ngIf=\"child1._type === 1\" (click)=\"onSelect(child1)\" [routerLink]=\"child1.link\" [target]=\"child1.target\"\n            class=\"sidebar-nav__item-link\">\n            <ng-container *ngIf=\"!collapsed\">\n              <ng-template [ngTemplateOutlet]=\"icon\" [ngTemplateOutletContext]=\"{$implicit: child1.icon}\"></ng-template>\n            </ng-container>\n            <nz-tooltip *ngIf=\"collapsed\" nzPlacement=\"right\" [nzTitle]=\"child1.text\">\n              <span nz-tooltip>\n                <ng-template [ngTemplateOutlet]=\"icon\" [ngTemplateOutletContext]=\"{$implicit: child1.icon}\"></ng-template>\n              </span>\n            </nz-tooltip>\n            <span class=\"sidebar-nav__item-text\">{{ child1.text }}</span>\n          </a>\n          <!-- external link -->\n          <a *ngIf=\"child1._type === 2\" href=\"{{ child1.externalLink }}\" target=\"{{child1.target}}\" data-type=\"external\"\n            class=\"sidebar-nav__item-link\">\n            <ng-container *ngIf=\"!collapsed\">\n              <ng-template [ngTemplateOutlet]=\"icon\" [ngTemplateOutletContext]=\"{$implicit: child1.icon}\"></ng-template>\n            </ng-container>\n            <nz-tooltip *ngIf=\"collapsed\" nzPlacement=\"right\" [nzTitle]=\"child1.text\">\n              <span nz-tooltip>\n                <ng-template [ngTemplateOutlet]=\"icon\" [ngTemplateOutletContext]=\"{$implicit: child1.icon}\"></ng-template>\n              </span>\n            </nz-tooltip>\n            <span class=\"sidebar-nav__item-text\">{{ child1.text }}</span>\n          </a>\n          <!-- has children link -->\n          <a *ngIf=\"child1._type === 3\" (click)=\"toggleOpen(child1)\" (mouseenter)=\"showSubMenu($event, child1)\" class=\"sidebar-nav__item-link\">\n            <ng-template [ngTemplateOutlet]=\"icon\" [ngTemplateOutletContext]=\"{$implicit: child1.icon}\"></ng-template>\n            <span class=\"sidebar-nav__item-text\">{{ child1.text }}</span>\n            <i class=\"sidebar-nav__sub-arrow\"></i>\n          </a>\n          <!-- badge -->\n          <div *ngIf=\"child1.badge\" title=\"{{child1.badge}}\" class=\"badge badge-{{child1.badgeStatus}}\"\n            [class.badge-dot]=\"child1.badgeDot\">\n            <em>{{child1.badge}}</em>\n          </div>\n          <!-- Level 2 -->\n          <ul *ngIf=\"child1._type === 3\" class=\"sidebar-nav sidebar-nav__sub sidebar-nav__depth{{child1._depth}}\">\n            <ng-container *ngFor=\"let child2 of child1.children\">\n              <li *ngIf=\"child2._hidden !== true\" routerLinkActive=\"sidebar-nav__selected\" [routerLinkActiveOptions]=\"{exact: child2.linkExact}\"\n                class=\"sidebar-nav__item\" [class.sidebar-nav__open]=\"child2._open\">\n                <!-- link -->\n                <a *ngIf=\"child2._type === 1\" (click)=\"onSelect(child2)\" [routerLink]=\"child2.link\" [target]=\"child2.target\"\n                  class=\"sidebar-nav__item-link\">{{ child2.text }}</a>\n                <!-- external link -->\n                <a *ngIf=\"child2._type === 2\" href=\"{{ child2.externalLink }}\" target=\"{{ child2.target }}\" data-type=\"external\"\n                  class=\"sidebar-nav__item-link\">{{ child2.text }}</a>\n                <!-- has children link -->\n                <a *ngIf=\"child2._type === 3\" (click)=\"toggleOpen(child2)\" class=\"sidebar-nav__item-link\">\n                  {{ child2.text }}\n                  <i class=\"sidebar-nav__sub-arrow\"></i>\n                </a>\n                <!-- badge -->\n                <div *ngIf=\"child2.badge\" title=\"{{child2.badge}}\" class=\"badge badge-{{child2.badgeStatus}}\"\n                  [class.badge-dot]=\"child2.badgeDot\">\n                  <em>{{child2.badge}}</em>\n                </div>\n                <!-- Level 3 -->\n                <ul *ngIf=\"child2._type === 3\" class=\"sidebar-nav sidebar-nav__sub sidebar-nav__depth{{child2._depth}}\">\n                  <ng-container *ngFor=\"let child3 of child2.children\">\n                    <li *ngIf=\"child3._hidden !== true\" routerLinkActive=\"sidebar-nav__selected\"\n                      [routerLinkActiveOptions]=\"{exact: child3.linkExact}\" class=\"sidebar-nav__item\"\n                      [class.sidebar-nav__open]=\"child3._open\">\n                      <!-- link -->\n                      <a *ngIf=\"child3._type === 1\" (click)=\"onSelect(child3)\" [routerLink]=\"child3.link\" [target]=\"child3.target\"\n                        class=\"sidebar-nav__item-link\">{{\n                        child3.text }}</a>\n                      <!-- external link -->\n                      <a *ngIf=\"child3._type === 2\" href=\"{{ child3.externalLink }}\" target=\"{{ child3.target }}\"\n                        data-type=\"external\" class=\"sidebar-nav__item-link\">{{\n                        child3.text }}</a>\n                      <!-- badge -->\n                      <div *ngIf=\"child3.badge\" title=\"{{child3.badge}}\" class=\"badge badge-{{child3.badgeStatus}}\"\n                        [class.badge-dot]=\"child3.badgeDot\">\n                        <em>{{child3.badge}}</em>\n                      </div>\n                    </li>\n                  </ng-container>\n                </ul>\n              </li>\n            </ng-container>\n          </ul>\n        </li>\n      </ng-container>\n    </ng-container>\n  </ng-container>\n</ul>\n",
-                        changeDetection: core.ChangeDetectionStrategy.OnPush
+                        changeDetection: core.ChangeDetectionStrategy.OnPush,
+                        preserveWhitespaces: false
                     }] }
         ];
         /** @nocollapse */
@@ -393,7 +383,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
     var SidebarNavModule = /** @class */ (function () {
         function SidebarNavModule() {
@@ -419,12 +409,12 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
 
     exports.SidebarNavComponent = SidebarNavComponent;

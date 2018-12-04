@@ -1,7 +1,6 @@
 import { OnInit } from '@angular/core';
-import { SFValue } from '../../interface';
-import { SFSchemaEnum } from '../../schema';
 import { ControlWidget } from '../../widget';
+import { SFSchemaEnum } from '../../schema';
 export declare class CascaderWidget extends ControlWidget implements OnInit {
     clearText: string;
     showArrow: boolean;
@@ -10,7 +9,7 @@ export declare class CascaderWidget extends ControlWidget implements OnInit {
     data: SFSchemaEnum[];
     loadData: any;
     ngOnInit(): void;
-    reset(value: SFValue): void;
+    reset(value: any): void;
     _visibleChange(status: boolean): void;
     _change(value: string): void;
     _selectionChange(options: any): void;

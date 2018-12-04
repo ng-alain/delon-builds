@@ -1,20 +1,14 @@
-import { of, Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { delay, tap } from 'rxjs/operators';
 import { _HttpClient } from '@delon/theme';
-import { HttpErrorResponse, HttpResponse, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Injectable, Injector, NgModule } from '@angular/core';
+import { HttpResponse, HttpErrorResponse, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
- */
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 class MockStatusError {
-    // tslint:disable-next-line:no-any
     /**
      * @param {?} status
      * @param {?=} error
@@ -27,7 +21,7 @@ class MockStatusError {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 class DelonMockConfig {
     constructor() {
@@ -48,7 +42,7 @@ class DelonMockConfig {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 class MockService {
     /**
@@ -60,7 +54,6 @@ class MockService {
         this.applyMock();
         delete this.config.data;
     }
-    // #region parse rule
     /**
      * @return {?}
      */
@@ -113,7 +106,6 @@ class MockService {
         this.cached.sort((a, b) => (b.martcher || '').toString().length -
             (a.martcher || '').toString().length);
     }
-    // tslint:disable-next-line:no-any
     /**
      * @param {?} key
      * @param {?} callback
@@ -135,13 +127,9 @@ class MockService {
         /** @type {?} */
         let segments = [];
         if (~url.indexOf(':')) {
-            segments = (/** @type {?} */ (url)).split('/')
-                .filter(segment => segment.startsWith(':'))
-                .map(v => v.substring(1));
+            segments = /** @type {?} */ ((url)).split('/').filter(segment => segment.startsWith(':')).map(v => v.substring(1));
             /** @type {?} */
-            const reStr = (/** @type {?} */ (url)).split('/')
-                .map(segment => (segment.startsWith(':') ? `([^/]+)` : segment))
-                .join('/');
+            const reStr = /** @type {?} */ ((url)).split('/').map(segment => (segment.startsWith(':') ? `([^/]+)` : segment)).join('/');
             martcher = new RegExp(reStr, 'i');
         }
         else if (/(\([^)]+\))/i.test(url)) {
@@ -155,7 +143,6 @@ class MockService {
             method: method.toUpperCase(),
         };
     }
-    // tslint:disable-next-line:no-any
     /**
      * @param {?} error
      * @return {?}
@@ -175,7 +162,6 @@ class MockService {
         console.groupEnd();
         throw error;
     }
-    // #endregion
     /**
      * @param {?} method
      * @param {?} url
@@ -235,7 +221,7 @@ MockService.ctorParameters = () => [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 class MockInterceptor {
     /**
@@ -253,7 +239,11 @@ class MockInterceptor {
         /** @type {?} */
         const src = this.injector.get(MockService);
         /** @type {?} */
-        const config = Object.assign({ delay: 300, force: false, log: true }, this.injector.get(DelonMockConfig, null));
+        const config = Object.assign({
+            delay: 300,
+            force: false,
+            log: true,
+        }, this.injector.get(DelonMockConfig, null));
         /** @type {?} */
         const rule = src.getRule(req.method, req.url.split('?')[0]);
         if (!rule && !config.force) {
@@ -360,7 +350,7 @@ MockInterceptor.ctorParameters = () => [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 class DelonMockModule {
     /**
@@ -395,12 +385,12 @@ DelonMockModule.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 
 export { MockStatusError, MockService, MockInterceptor, DelonMockConfig, DelonMockModule };
