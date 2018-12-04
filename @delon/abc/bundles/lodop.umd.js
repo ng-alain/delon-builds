@@ -7,7 +7,7 @@
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('rxjs'), require('@angular/core'), require('@delon/util')) :
     typeof define === 'function' && define.amd ? define('@delon/abc/lodop', ['exports', 'rxjs', '@angular/core', '@delon/util'], factory) :
     (factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.lodop = {}),global.rxjs,global.ng.core,global.delon.util));
-}(this, (function (exports,rxjs,i0,i2) { 'use strict';
+}(this, (function (exports,rxjs,core,util) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -23,18 +23,6 @@
     See the Apache Version 2.0 License for specific language governing permissions
     and limitations under the License.
     ***************************************************************************** */
-    var __assign = function () {
-        __assign = Object.assign || function __assign(t) {
-            for (var s, i = 1, n = arguments.length; i < n; i++) {
-                s = arguments[i];
-                for (var p in s)
-                    if (Object.prototype.hasOwnProperty.call(s, p))
-                        t[p] = s[p];
-            }
-            return t;
-        };
-        return __assign.apply(this, arguments);
-    };
     function __read(o, n) {
         var m = typeof Symbol === "function" && o[Symbol.iterator];
         if (!m)
@@ -67,23 +55,18 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
     var LodopConfig = /** @class */ (function () {
         function LodopConfig() {
         }
-        LodopConfig.decorators = [
-            { type: i0.Injectable, args: [{ providedIn: 'root' },] }
-        ];
-        /** @nocollapse */ LodopConfig.ngInjectableDef = i0.defineInjectable({ factory: function LodopConfig_Factory() { return new LodopConfig(); }, token: LodopConfig, providedIn: "root" });
         return LodopConfig;
     }());
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
-    // TODO: zone
     var LodopService = /** @class */ (function () {
         function LodopService(defCog, scriptSrv) {
             this.defCog = defCog;
@@ -92,7 +75,6 @@
             this._lodop = null;
             this._init = new rxjs.Subject();
             this._events = new rxjs.Subject();
-            // tslint:disable-next-line:no-any
             this.printBuffer = [];
             this.cog = defCog;
         }
@@ -114,7 +96,12 @@
              * @param {?} value
              * @return {?}
              */ function (value) {
-                this._cog = __assign({ url: 'https://localhost:8443/CLodopfuncs.js', name: 'CLODOP', companyName: '', checkMaxCount: 100 }, this.defCog, value);
+                this._cog = Object.assign({
+                    url: 'https://localhost:8443/CLodopfuncs.js',
+                    name: 'CLODOP',
+                    companyName: '',
+                    checkMaxCount: 100,
+                }, this.defCog, value);
             },
             enumerable: true,
             configurable: true
@@ -184,7 +171,7 @@
                     }
                     _this._lodop =
                         window.hasOwnProperty(_this.cog.name) &&
-                            (( /** @type {?} */(window[_this.cog.name])));
+                            ( /** @type {?} */(window[_this.cog.name]));
                     if (_this._lodop === null) {
                         onResolve('load-variable-name-error', { name: _this.cog.name });
                         return;
@@ -214,7 +201,7 @@
              * @return {?}
              */ function () {
                 if (this._lodop)
-                    return rxjs.of(( /** @type {?} */({ ok: true, lodop: this._lodop })));
+                    return rxjs.of(/** @type {?} */ ({ ok: true, lodop: this._lodop }));
                 if (this.pending)
                     return this._init.asObservable();
                 this.request();
@@ -284,13 +271,12 @@
                     /** @type {?} */
                     var fn = _this._lodop[res[1]];
                     if (fn) {
-                        // tslint:disable-next-line:no-any
                         /** @type {?} */
                         var arr = void 0;
                         try {
                             /** @type {?} */
                             var fakeFn = new Function("return [" + res[2] + "]");
-                            arr = fakeFn();
+                            arr = /** @type {?} */ (fakeFn());
                         }
                         catch (_a) { }
                         if (Array.isArray(arr) && contextObj) {
@@ -354,7 +340,10 @@
                     if (tid !== taskID)
                         return;
                     _this._lodop.On_Return = null;
-                    _this._events.next(__assign({ ok: value === true, error: value === true ? null : value }, data));
+                    _this._events.next(Object.assign(/** @type {?} */ ({
+                        ok: value === true,
+                        error: value === true ? null : value,
+                    }), data));
                     _this.printDo();
                 };
             };
@@ -402,29 +391,40 @@
                 this._events.unsubscribe();
             };
         LodopService.decorators = [
-            { type: i0.Injectable, args: [{ providedIn: 'root' },] }
+            { type: core.Injectable }
         ];
         /** @nocollapse */
         LodopService.ctorParameters = function () {
             return [
                 { type: LodopConfig },
-                { type: i2.LazyService }
+                { type: util.LazyService }
             ];
         };
-        /** @nocollapse */ LodopService.ngInjectableDef = i0.defineInjectable({ factory: function LodopService_Factory() { return new LodopService(i0.inject(LodopConfig), i0.inject(i2.LazyService)); }, token: LodopService, providedIn: "root" });
         return LodopService;
     }());
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
     var LodopModule = /** @class */ (function () {
         function LodopModule() {
         }
+        /**
+         * @return {?}
+         */
+        LodopModule.forRoot = /**
+         * @return {?}
+         */
+            function () {
+                return {
+                    ngModule: LodopModule,
+                    providers: [LodopService, LodopConfig],
+                };
+            };
         LodopModule.decorators = [
-            { type: i0.NgModule, args: [{
-                        imports: [i2.DelonUtilModule],
+            { type: core.NgModule, args: [{
+                        imports: [util.DelonUtilModule],
                     },] }
         ];
         return LodopModule;
@@ -432,7 +432,12 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     */
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
 
     exports.LodopService = LodopService;

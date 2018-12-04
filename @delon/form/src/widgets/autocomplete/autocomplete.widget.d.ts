@@ -1,8 +1,7 @@
 import { OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { SFValue } from '../../interface';
-import { SFSchemaEnum } from '../../schema';
 import { ControlWidget } from '../../widget';
+import { SFSchemaEnum } from '../../schema';
 export declare const EMAILSUFFIX: string[];
 export declare class AutoCompleteWidget extends ControlWidget implements OnInit {
     i: any;
@@ -11,7 +10,7 @@ export declare class AutoCompleteWidget extends ControlWidget implements OnInit 
     private filterOption;
     private isAsync;
     ngOnInit(): void;
-    reset(value: SFValue): void;
+    reset(value: any): void;
     private filterData;
     private addEmailSuffix;
 }

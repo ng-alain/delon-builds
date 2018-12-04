@@ -1,5 +1,5 @@
-import { ModalOptionsForService, NzModalService } from 'ng-zorro-antd';
 import { Observable } from 'rxjs';
+import { NzModalService, ModalOptionsForService } from 'ng-zorro-antd';
 export interface ModalHelperOptions {
     /** 大小；例如：lg、600，默认：`lg` */
     size?: 'sm' | 'md' | 'lg' | 'xl' | '' | number;

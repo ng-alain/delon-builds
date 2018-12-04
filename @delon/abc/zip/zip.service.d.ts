@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { LazyService } from '@delon/util';
-import { ZipConfig } from './zip.config';
 import { ZipSaveOptions } from './zip.types';
+import { ZipConfig } from './zip.config';
 export declare class ZipService {
     private cog;
     private http;

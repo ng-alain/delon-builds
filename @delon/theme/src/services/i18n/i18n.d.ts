@@ -17,14 +17,13 @@ export interface AlainI18NService {
      * - `params` 模板所需要的参数对象
      * - `isSafe` 是否返回安全字符，自动调用 `bypassSecurityTrustHtml`
      */
-    fanyi(key: string, params?: {}, isSafe?: boolean): string;
+    fanyi(key: string, params?: Object, isSafe?: boolean): string;
     /**
      * 调用 `use` 触发变更通知
      */
     readonly change: Observable<string>;
 }
 export declare const ALAIN_I18N_TOKEN: InjectionToken<AlainI18NService>;
-export declare function ALAIN_I18N_TOKEN_FACTORY(): AlainI18NServiceFake;
 export declare class AlainI18NServiceFake implements AlainI18NService {
     private change$;
     readonly change: Observable<string>;

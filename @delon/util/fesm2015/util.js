@@ -1,24 +1,24 @@
 import extend from 'extend';
-import addDays from 'date-fns/add_days';
-import endOfMonth from 'date-fns/end_of_month';
-import endOfWeek from 'date-fns/end_of_week';
-import endOfYear from 'date-fns/end_of_year';
 import parse from 'date-fns/parse';
-import startOfMonth from 'date-fns/start_of_month';
 import startOfWeek from 'date-fns/start_of_week';
-import startOfYear from 'date-fns/start_of_year';
-import subMonths from 'date-fns/sub_months';
+import endOfWeek from 'date-fns/end_of_week';
 import subWeeks from 'date-fns/sub_weeks';
+import startOfMonth from 'date-fns/start_of_month';
+import endOfMonth from 'date-fns/end_of_month';
+import subMonths from 'date-fns/sub_months';
+import startOfYear from 'date-fns/start_of_year';
+import endOfYear from 'date-fns/end_of_year';
 import subYears from 'date-fns/sub_years';
+import addDays from 'date-fns/add_days';
 import { BehaviorSubject } from 'rxjs';
-import { filter, share } from 'rxjs/operators';
+import { share, filter } from 'rxjs/operators';
 import { NzTreeNode } from 'ng-zorro-antd';
+import { Injectable, Inject, NgModule, defineInjectable, inject } from '@angular/core';
 import { DOCUMENT, CommonModule } from '@angular/common';
-import { Inject, Injectable, Directive, Input, TemplateRef, ViewContainerRef, defineInjectable, NgModule, inject } from '@angular/core';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 /**
  * 类似 `_.get`，根据 `path` 获取安全值
@@ -59,7 +59,7 @@ function deepCopy(obj) {
 function copy(value) {
     return new Promise((resolve, reject) => {
         /** @type {?} */
-        let copyTextArea = (/** @type {?} */ (null));
+        let copyTextArea = /** @type {?} */ (null);
         try {
             copyTextArea = document.createElement('textarea');
             copyTextArea.style.height = '0px';
@@ -81,7 +81,7 @@ function copy(value) {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 /**
  * 字符串格式化
@@ -107,7 +107,6 @@ function format(str, obj, needDeepGet = false) {
  * @param {?=} digits 当数字类型时，允许指定小数点后数字的个数，默认2位小数
  * @return {?}
  */
-// tslint:disable-next-line:no-any
 function yuan(value, digits = 2) {
     if (typeof value === 'number')
         value = value.toFixed(digits);
@@ -116,7 +115,7 @@ function yuan(value, digits = 2) {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 /**
  * 获取时间范围
@@ -152,10 +151,9 @@ function getTimeDistance(type, time) {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 class LazyService {
-    // tslint:disable-next-line:no-any
     /**
      * @param {?} doc
      */
@@ -183,9 +181,8 @@ class LazyService {
      * @return {?}
      */
     load(paths) {
-        if (!Array.isArray(paths)) {
+        if (!Array.isArray(paths))
             paths = [paths];
-        }
         /** @type {?} */
         const promises = [];
         paths.forEach(path => {
@@ -218,22 +215,22 @@ class LazyService {
                 this.cached[path] = item;
                 resolve(item);
             };
-            // tslint:disable-next-line:no-any
             /** @type {?} */
-            const node = (/** @type {?} */ (this.doc.createElement('script')));
+            const node = /** @type {?} */ (this.doc.createElement('script'));
             node.type = 'text/javascript';
             node.src = path;
             node.charset = 'utf-8';
             if (innerContent) {
                 node.innerHTML = innerContent;
             }
-            if (node.readyState) {
+            if ((/** @type {?} */ (node)).readyState) {
                 // IE
-                node.onreadystatechange = () => {
-                    if (node.readyState === 'loaded' || node.readyState === 'complete') {
-                        node.onreadystatechange = null;
+                (/** @type {?} */ (node)).onreadystatechange = () => {
+                    if ((/** @type {?} */ (node)).readyState === 'loaded' ||
+                        (/** @type {?} */ (node)).readyState === 'complete') {
+                        (/** @type {?} */ (node)).onreadystatechange = null;
                         onSuccess({
-                            path,
+                            path: path,
                             loaded: true,
                             status: 'ok',
                         });
@@ -241,17 +238,18 @@ class LazyService {
                 };
             }
             else {
-                node.onload = () => onSuccess({
-                    path,
-                    loaded: true,
-                    status: 'ok',
-                });
+                node.onload = () => {
+                    onSuccess({
+                        path: path,
+                        loaded: true,
+                        status: 'ok',
+                    });
+                };
             }
             node.onerror = (error) => onSuccess({
-                path,
+                path: path,
                 loaded: false,
                 status: 'error',
-                error,
             });
             this.doc.getElementsByTagName('head')[0].appendChild(node);
         });
@@ -270,7 +268,7 @@ class LazyService {
             }
             this.list[path] = true;
             /** @type {?} */
-            const node = (/** @type {?} */ (this.doc.createElement('link')));
+            const node = /** @type {?} */ (this.doc.createElement('link'));
             node.rel = rel;
             node.type = 'text/css';
             node.href = path;
@@ -280,7 +278,7 @@ class LazyService {
             this.doc.getElementsByTagName('head')[0].appendChild(node);
             /** @type {?} */
             const item = {
-                path,
+                path: path,
                 loaded: true,
                 status: 'ok',
             };
@@ -300,7 +298,7 @@ LazyService.ctorParameters = () => [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 /**
  * 是否为数字
@@ -347,12 +345,11 @@ function isMobile(value) {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 /**
  * 一套日常验证器
  */
-// tslint:disable-next-line:class-name
 class _Validators {
     /**
      * 是否为数字
@@ -398,9 +395,8 @@ class _Validators {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
-// tslint:disable:no-any
 /**
  * @param {?} element
  * @return {?}
@@ -412,7 +408,7 @@ function isEmpty(element) {
         /** @type {?} */
         const node = nodes.item(i);
         if (node.nodeType === 1 &&
-            ((/** @type {?} */ (node))).outerHTML.toString().trim().length !== 0) {
+            (/** @type {?} */ (node)).outerHTML.toString().trim().length !== 0) {
             return false;
         }
         else if (node.nodeType === 3 &&
@@ -436,14 +432,15 @@ function toBoolean(value, allowUndefined = false) {
  * Input decorator that handle a prop to do get/set automatically with toBoolean
  * \@example
  * ```typescript
- * \@Input() \@InputBoolean() visible: boolean = false; / \@InputBoolean(null) visible: boolean = false;
+ * \@Input() \@InputBoolean() visible: boolean = false;
+ * \@Input() \@InputBoolean(null) visible: boolean = false;
  * ```
  * @param {?=} allowUndefined
  * @return {?}
  */
 function InputBoolean(allowUndefined = false) {
+    // tslint:disable-line:no-any
     return function InputBooleanPropDecorator(target, name) {
-        // Add our own private prop
         /** @type {?} */
         const privatePropName = `$$__${name}`;
         if (Object.prototype.hasOwnProperty.call(target, privatePropName)) {
@@ -451,7 +448,7 @@ function InputBoolean(allowUndefined = false) {
         }
         Object.defineProperty(target, privatePropName, {
             configurable: true,
-            writable: true,
+            writable: true
         });
         Object.defineProperty(target, name, {
             /**
@@ -466,7 +463,7 @@ function InputBoolean(allowUndefined = false) {
              */
             set(value) {
                 this[privatePropName] = toBoolean(value, allowUndefined); // tslint:disable-line:no-invalid-this
-            },
+            }
         });
     };
 }
@@ -476,7 +473,7 @@ function InputBoolean(allowUndefined = false) {
  * @return {?}
  */
 function toNumber(value, fallbackValue = 0) {
-    return !isNaN(parseFloat((/** @type {?} */ (value)))) && !isNaN(Number(value))
+    return !isNaN(parseFloat(/** @type {?} */ (value))) && !isNaN(Number(value))
         ? Number(value)
         : fallbackValue;
 }
@@ -484,14 +481,15 @@ function toNumber(value, fallbackValue = 0) {
  * Input decorator that handle a prop to do get/set automatically with toNumber
  * \@example
  * ```typescript
- * \@Input() \@InputNumber() visible: number = 1; / \@InputNumber(null) visible: number = 2;
+ * \@Input() \@InputNumber() visible: number = 1;
+ * \@Input() \@InputNumber(null) visible: number = 2;
  * ```
  * @param {?=} fallback
  * @return {?}
  */
 function InputNumber(fallback = 0) {
+    // tslint:disable-line:no-any
     return function InputBooleanPropDecorator(target, name) {
-        // Add our own private prop
         /** @type {?} */
         const privatePropName = `$$__${name}`;
         if (Object.prototype.hasOwnProperty.call(target, privatePropName)) {
@@ -499,7 +497,7 @@ function InputNumber(fallback = 0) {
         }
         Object.defineProperty(target, privatePropName, {
             configurable: true,
-            writable: true,
+            writable: true
         });
         Object.defineProperty(target, name, {
             /**
@@ -514,14 +512,14 @@ function InputNumber(fallback = 0) {
              */
             set(value) {
                 this[privatePropName] = toNumber(value, fallback); // tslint:disable-line:no-invalid-this
-            },
+            }
         });
     };
 }
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 /**
  * @param {?} el
@@ -554,13 +552,13 @@ function addClass(el, classMap, renderer) {
  * ```ts
  * updateHostClass(
  *  this.el.nativeElement,
- *  this.renderer,
  *  {
  *    [ 'classname' ]: true,
  *    [ 'classname' ]: this.type === '1',
  *    [ this.cls ]: true,
  *    [ `a-${this.cls}` ]: true
- *  })
+ *  },
+ *  this.renderer)
  * ```
  *
  * @param {?} el
@@ -582,12 +580,7 @@ function updateHostClass(el, renderer, classMap, cleanAll = false) {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
- */
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 class DelonUtilConfig {
 }
@@ -598,14 +591,25 @@ DelonUtilConfig.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 class ArrayService {
     /**
      * @param {?} cog
      */
     constructor(cog) {
-        this.c = Object.assign({ deepMapName: 'deep', parentMapName: 'parent', idMapName: 'id', parentIdMapName: 'parent_id', childrenMapName: 'children', titleMapName: 'title', checkedMapname: 'checked', selectedMapname: 'selected', expandedMapname: 'expanded', disabledMapname: 'disabled' }, (cog && cog.array));
+        this.c = Object.assign(/** @type {?} */ ({
+            deepMapName: 'deep',
+            parentMapName: 'parent',
+            idMapName: 'id',
+            parentIdMapName: 'parent_id',
+            childrenMapName: 'children',
+            titleMapName: 'title',
+            checkedMapname: 'checked',
+            selectedMapname: 'selected',
+            expandedMapname: 'expanded',
+            disabledMapname: 'disabled',
+        }), cog && cog.array);
     }
     /**
      * 将树结构转换成数组结构
@@ -614,7 +618,13 @@ class ArrayService {
      * @return {?}
      */
     treeToArr(tree, options) {
-        options = Object.assign({ deepMapName: this.c.deepMapName, parentMapName: this.c.parentMapName, childrenMapName: this.c.childrenMapName, clearChildren: true, cb: null }, options);
+        options = Object.assign({
+            deepMapName: this.c.deepMapName,
+            parentMapName: this.c.parentMapName,
+            childrenMapName: this.c.childrenMapName,
+            clearChildren: true,
+            cb: null,
+        }, options);
         /** @type {?} */
         const result = [];
         /** @type {?} */
@@ -622,9 +632,8 @@ class ArrayService {
             for (const i of list) {
                 i[options.deepMapName] = deep;
                 i[options.parentMapName] = parent;
-                if (options.cb) {
+                if (options.cb)
                     options.cb(i, parent, deep);
-                }
                 result.push(i);
                 /** @type {?} */
                 const children = i[options.childrenMapName];
@@ -633,9 +642,8 @@ class ArrayService {
                     children.length > 0) {
                     inFn(children, i, deep + 1);
                 }
-                if (options.clearChildren) {
+                if (options.clearChildren)
                     delete i[options.childrenMapName];
-                }
             }
         };
         inFn(tree, 1, null);
@@ -648,7 +656,12 @@ class ArrayService {
      * @return {?}
      */
     arrToTree(arr, options) {
-        options = Object.assign({ idMapName: this.c.idMapName, parentIdMapName: this.c.parentIdMapName, childrenMapName: this.c.childrenMapName, cb: null }, options);
+        options = Object.assign({
+            idMapName: this.c.idMapName,
+            parentIdMapName: this.c.parentIdMapName,
+            childrenMapName: this.c.childrenMapName,
+            cb: null,
+        }, options);
         /** @type {?} */
         const tree = [];
         /** @type {?} */
@@ -660,9 +673,8 @@ class ArrayService {
             const pid = item[options.parentIdMapName];
             childrenOf[id] = childrenOf[id] || [];
             item[options.childrenMapName] = childrenOf[id];
-            if (options.cb) {
+            if (options.cb)
                 options.cb(item);
-            }
             if (pid) {
                 childrenOf[pid] = childrenOf[pid] || [];
                 childrenOf[pid].push(item);
@@ -680,7 +692,18 @@ class ArrayService {
      * @return {?}
      */
     arrToTreeNode(arr, options) {
-        options = Object.assign({ idMapName: this.c.idMapName, parentIdMapName: this.c.parentIdMapName, titleMapName: this.c.titleMapName, isLeafMapName: 'isLeaf', checkedMapname: this.c.checkedMapname, selectedMapname: this.c.selectedMapname, expandedMapname: this.c.expandedMapname, disabledMapname: this.c.disabledMapname, cb: null }, options);
+        options = Object.assign({
+            expanded: false,
+            idMapName: this.c.idMapName,
+            parentIdMapName: this.c.parentIdMapName,
+            titleMapName: this.c.titleMapName,
+            isLeafMapName: 'isLeaf',
+            checkedMapname: this.c.checkedMapname,
+            selectedMapname: this.c.selectedMapname,
+            expandedMapname: this.c.expandedMapname,
+            disabledMapname: this.c.disabledMapname,
+            cb: null,
+        }, options);
         /** @type {?} */
         const tree = this.arrToTree(arr, {
             idMapName: options.idMapName,
@@ -700,9 +723,8 @@ class ArrayService {
             else {
                 item.isLeaf = item[options.isLeafMapName];
             }
-            if (options.cb) {
+            if (options.cb)
                 options.cb(item, parent, deep);
-            }
         });
         return tree.map(node => new NzTreeNode(node));
     }
@@ -714,7 +736,9 @@ class ArrayService {
      * @return {?}
      */
     visitTree(tree, cb, options) {
-        options = Object.assign({ childrenMapName: this.c.childrenMapName }, options);
+        options = Object.assign({
+            childrenMapName: this.c.childrenMapName,
+        }, options);
         /** @type {?} */
         const inFn = (data, parent, deep) => {
             for (const item of data) {
@@ -735,14 +759,19 @@ class ArrayService {
      * @return {?}
      */
     getKeysByTreeNode(tree, options) {
-        options = Object.assign({ includeHalfChecked: true }, options);
+        options = Object.assign({
+            includeHalfChecked: true,
+        }, options);
         /** @type {?} */
         const keys = [];
         this.visitTree(tree, (item, parent, deep) => {
-            if (item.isChecked || (options.includeHalfChecked && item.isHalfChecked)) {
-                keys.push(options.cb ?
-                    options.cb(item, parent, deep) :
-                    options.keyMapName ? item.origin[options.keyMapName] : item.key);
+            if (item.isChecked ||
+                (options.includeHalfChecked && item.isHalfChecked)) {
+                keys.push(options.cb
+                    ? options.cb(item, parent, deep)
+                    : options.keyMapName
+                        ? item.origin[options.keyMapName]
+                        : item.key);
             }
         });
         return keys;
@@ -759,94 +788,34 @@ ArrayService.ctorParameters = () => [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
- */
-class StringTemplateOutletDirective {
-    /**
-     * @param {?} viewContainer
-     * @param {?} defaultTemplate
-     */
-    constructor(viewContainer, defaultTemplate) {
-        this.viewContainer = viewContainer;
-        this.defaultTemplate = defaultTemplate;
-        this.inputTemplate = null;
-        this.inputViewRef = null;
-        this.defaultViewRef = null;
-    }
-    /**
-     * @param {?} value
-     * @return {?}
-     */
-    set stringTemplateOutlet(value) {
-        if (value instanceof TemplateRef) {
-            this.isTemplate = true;
-            this.inputTemplate = value;
-        }
-        else {
-            this.isTemplate = false;
-        }
-        this.updateView();
-    }
-    /**
-     * @return {?}
-     */
-    updateView() {
-        if (!this.isTemplate) {
-            /** use default template when input is string **/
-            if (!this.defaultViewRef) {
-                this.viewContainer.clear();
-                this.inputViewRef = null;
-                this.defaultViewRef = this.viewContainer.createEmbeddedView(this.defaultTemplate);
-            }
-        }
-        else {
-            /** use input template when input is templateRef **/
-            if (!this.inputViewRef) {
-                this.viewContainer.clear();
-                this.defaultViewRef = null;
-                this.inputViewRef = this.viewContainer.createEmbeddedView(this.inputTemplate);
-            }
-        }
-    }
-}
-StringTemplateOutletDirective.decorators = [
-    { type: Directive, args: [{
-                selector: '[stringTemplateOutlet]',
-            },] }
-];
-/** @nocollapse */
-StringTemplateOutletDirective.ctorParameters = () => [
-    { type: ViewContainerRef },
-    { type: TemplateRef }
-];
-StringTemplateOutletDirective.propDecorators = {
-    stringTemplateOutlet: [{ type: Input }]
-};
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 class DelonUtilModule {
+    /**
+     * @return {?}
+     */
+    static forRoot() {
+        return {
+            ngModule: DelonUtilModule,
+        };
+    }
 }
 DelonUtilModule.decorators = [
     { type: NgModule, args: [{
                 imports: [CommonModule],
-                declarations: [StringTemplateOutletDirective],
-                exports: [StringTemplateOutletDirective],
             },] }
 ];
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 
-export { _Validators, format, yuan, getTimeDistance, LazyService, isNum, isInt, isDecimal, isIdCard, isMobile, isEmpty, toBoolean, InputBoolean, toNumber, InputNumber, deepGet, deepCopy, copy, updateHostClass, ArrayService, DelonUtilConfig, DelonUtilModule, StringTemplateOutletDirective as ɵa };
+export { _Validators, format, yuan, getTimeDistance, LazyService, isNum, isInt, isDecimal, isIdCard, isMobile, isEmpty, toBoolean, InputBoolean, toNumber, InputNumber, deepGet, deepCopy, copy, updateHostClass, ArrayService, DelonUtilConfig, DelonUtilModule };
 
 //# sourceMappingURL=util.js.map

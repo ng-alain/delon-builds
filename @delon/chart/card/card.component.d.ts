@@ -1,23 +1,25 @@
 import { TemplateRef } from '@angular/core';
 export declare class G2CardComponent {
     /** 是否显示边框 */
-    bordered: boolean;
+    bordered: any;
+    private _bordered;
     _avatar: string;
-    _avatarTpl: TemplateRef<void>;
-    avatar: string | TemplateRef<void>;
+    _avatarTpl: TemplateRef<any>;
+    avatar: string | TemplateRef<any>;
     _title: string;
-    _titleTpl: TemplateRef<void>;
-    title: string | TemplateRef<void>;
+    _titleTpl: TemplateRef<any>;
+    title: string | TemplateRef<any>;
     _action: string;
-    _actionTpl: TemplateRef<void>;
-    action: string | TemplateRef<void>;
+    _actionTpl: TemplateRef<any>;
+    action: string | TemplateRef<any>;
     total: string;
     _height: string;
-    _orgHeight: number | string;
+    _orgHeight: any;
     contentHeight: number | string;
     _footer: string;
-    _footerTpl: TemplateRef<void>;
-    footer: string | TemplateRef<void>;
+    _footerTpl: TemplateRef<any>;
+    footer: string | TemplateRef<any>;
     /** 是否显示Loading */
-    loading: boolean;
+    loading: any;
+    private _loading;
 }

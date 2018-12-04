@@ -1,12 +1,12 @@
-import { __decorate, __metadata, __spread } from 'tslib';
+import { __spread } from 'tslib';
+import { Component, TemplateRef, Input, ElementRef, Renderer2, ChangeDetectorRef, ChangeDetectionStrategy, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Input, Renderer2, TemplateRef, NgModule } from '@angular/core';
-import { updateHostClass, InputNumber, DelonUtilModule } from '@delon/util';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
+import { toNumber, updateHostClass, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 var NumberInfoComponent = /** @class */ (function () {
     function NumberInfoComponent(el, renderer, cd) {
@@ -22,10 +22,7 @@ var NumberInfoComponent = /** @class */ (function () {
          * 状态样式
          */
         this.theme = 'light';
-        /**
-         * 设置数字和描述直接的间距（像素）
-         */
-        this.gap = 8;
+        this._gap = 8;
         this._classMap = [];
     }
     Object.defineProperty(NumberInfoComponent.prototype, "title", {
@@ -101,6 +98,25 @@ var NumberInfoComponent = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
+    Object.defineProperty(NumberInfoComponent.prototype, "gap", {
+        /** 设置数字和描述直接的间距（像素） */
+        get: /**
+         * 设置数字和描述直接的间距（像素）
+         * @return {?}
+         */
+        function () {
+            return this._gap;
+        },
+        set: /**
+         * @param {?} value
+         * @return {?}
+         */
+        function (value) {
+            this._gap = toNumber(value);
+        },
+        enumerable: true,
+        configurable: true
+    });
     /**
      * @return {?}
      */
@@ -128,7 +144,8 @@ var NumberInfoComponent = /** @class */ (function () {
     NumberInfoComponent.decorators = [
         { type: Component, args: [{
                     selector: 'number-info',
-                    template: "<div *ngIf=\"_title || _titleTpl\" class=\"number-info__title\">\n  <ng-container *ngIf=\"_title; else _titleTpl\">{{_title}}</ng-container>\n</div>\n<div *ngIf=\"_subTitle || _subTitleTpl\" class=\"number-info__title-sub\">\n  <ng-container *ngIf=\"_subTitle; else _subTitleTpl\">{{_subTitle}}</ng-container>\n</div>\n<div class=\"number-info__value\" [ngStyle]=\"{'margin-top.px': gap}\">\n  <span class=\"number-info__value-text\">\n    <ng-container *ngIf=\"_total; else _totalTpl\">{{_total}}</ng-container><em class=\"number-info__value-suffix\" *ngIf=\"suffix\">{{suffix}}</em>\n  </span>\n  <span *ngIf=\"status || _isSubTotal\" class=\"number-info__value-text number-info__value-sub\">\n    <ng-container *ngIf=\"_subTotal; else _subTotalTpl\">{{_subTotal}}</ng-container>\n    <i *ngIf=\"status\" nz-icon type=\"caret-{{status}}\"></i>\n  </span>\n</div>\n",
+                    template: "\n  <div *ngIf=\"_title || _titleTpl\" class=\"number-info__title\"><ng-container *ngIf=\"_title; else _titleTpl\">{{_title}}</ng-container></div>\n  <div *ngIf=\"_subTitle || _subTitleTpl\" class=\"number-info__title-sub\"><ng-container *ngIf=\"_subTitle; else _subTitleTpl\">{{_subTitle}}</ng-container></div>\n  <div class=\"number-info__value\" [ngStyle]=\"{'margin-top.px': gap}\">\n    <span class=\"number-info__value-text\"><ng-container *ngIf=\"_total; else _totalTpl\">{{_total}}</ng-container><em class=\"number-info__value-suffix\" *ngIf=\"suffix\">{{suffix}}</em></span>\n    <span *ngIf=\"status || _isSubTotal\" class=\"number-info__value-text number-info__value-sub\">\n      <ng-container *ngIf=\"_subTotal; else _subTotalTpl\">{{_subTotal}}</ng-container>\n      <i *ngIf=\"status\" nz-icon type=\"caret-{{status}}\"></i>\n    </span>\n  </div>\n  ",
+                    preserveWhitespaces: false,
                     changeDetection: ChangeDetectionStrategy.OnPush
                 }] }
     ];
@@ -148,22 +165,27 @@ var NumberInfoComponent = /** @class */ (function () {
         theme: [{ type: Input }],
         gap: [{ type: Input }]
     };
-    __decorate([
-        InputNumber(),
-        __metadata("design:type", Object)
-    ], NumberInfoComponent.prototype, "gap", void 0);
     return NumberInfoComponent;
 }());
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 /** @type {?} */
 var COMPONENTS = [NumberInfoComponent];
 var NumberInfoModule = /** @class */ (function () {
     function NumberInfoModule() {
     }
+    /**
+     * @return {?}
+     */
+    NumberInfoModule.forRoot = /**
+     * @return {?}
+     */
+    function () {
+        return { ngModule: NumberInfoModule, providers: [] };
+    };
     NumberInfoModule.decorators = [
         { type: NgModule, args: [{
                     imports: [CommonModule, NgZorroAntdModule, DelonUtilModule],
@@ -176,12 +198,12 @@ var NumberInfoModule = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 
 export { NumberInfoComponent, NumberInfoModule };

@@ -1,5 +1,5 @@
-import { SFButton } from './interface';
 import { SFUISchemaItem } from './schema/ui';
+import { SFButton } from './interface';
 export declare class DelonFormConfig {
     /**
      * 是否忽略某些数据类型校验 `ERRORSDEFAULT`，默认：`[ 'type', 'enum' ]`

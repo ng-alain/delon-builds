@@ -1,13 +1,13 @@
-import { __decorate, __metadata, __spread } from 'tslib';
-import { CommonModule } from '@angular/common';
+import { __spread } from 'tslib';
 import { Component, Input, NgModule } from '@angular/core';
-import { DelonLocaleService, DelonLocaleModule } from '@delon/theme';
-import { toNumber, InputNumber, DelonUtilModule } from '@delon/util';
+import { CommonModule } from '@angular/common';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
+import { toNumber, DelonUtilModule } from '@delon/util';
+import { DelonLocaleService, DelonLocaleModule } from '@delon/theme';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 var G2ProgressComponent = /** @class */ (function () {
     function G2ProgressComponent(i18n) {
@@ -21,15 +21,29 @@ var G2ProgressComponent = /** @class */ (function () {
         function () {
             return this._target;
         },
-        // tslint:disable-next-line:no-any
-        set: 
-        // tslint:disable-next-line:no-any
-        /**
+        set: /**
          * @param {?} value
          * @return {?}
          */
         function (value) {
             this._target = Math.min(Math.max(toNumber(value), 0), 100);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(G2ProgressComponent.prototype, "strokeWidth", {
+        get: /**
+         * @return {?}
+         */
+        function () {
+            return this._strokeWidth;
+        },
+        set: /**
+         * @param {?} value
+         * @return {?}
+         */
+        function (value) {
+            this._strokeWidth = toNumber(value);
         },
         enumerable: true,
         configurable: true
@@ -41,10 +55,7 @@ var G2ProgressComponent = /** @class */ (function () {
         function () {
             return this._percent;
         },
-        // tslint:disable-next-line:no-any
-        set: 
-        // tslint:disable-next-line:no-any
-        /**
+        set: /**
          * @param {?} value
          * @return {?}
          */
@@ -57,8 +68,9 @@ var G2ProgressComponent = /** @class */ (function () {
     G2ProgressComponent.decorators = [
         { type: Component, args: [{
                     selector: 'g2-mini-progress',
-                    template: "<nz-tooltip [nzTitle]=\"i18n.getData('miniProgress').target + target + '%'\">\n  <div nz-tooltip class=\"g2-mini-progress__target\" [ngStyle]=\"{'left.%': target}\">\n    <span class=\"g2-mini-progress__target-item\" [ngStyle]=\"{'background-color': color}\"></span>\n    <span class=\"g2-mini-progress__target-item\" [ngStyle]=\"{'background-color': color}\"></span>\n  </div>\n</nz-tooltip>\n<div class=\"g2-mini-progress__wrap\">\n  <div class=\"g2-mini-progress__value\" [ngStyle]=\"{'background-color': color, 'width.%': percent, 'height.px':strokeWidth}\"></div>\n</div>\n",
-                    host: { '[class.g2-mini-progress]': 'true' }
+                    template: "\n  <nz-tooltip [nzTitle]=\"i18n.getData('miniProgress').target + target + '%'\">\n    <div nz-tooltip class=\"g2-mini-progress__target\" [ngStyle]=\"{'left.%': target}\">\n      <span class=\"g2-mini-progress__target-item\" [ngStyle]=\"{'background-color': color}\"></span>\n      <span class=\"g2-mini-progress__target-item\" [ngStyle]=\"{'background-color': color}\"></span>\n    </div>\n  </nz-tooltip>\n  <div class=\"g2-mini-progress__wrap\">\n    <div class=\"g2-mini-progress__value\" [ngStyle]=\"{'background-color': color, 'width.%': percent, 'height.px':strokeWidth}\"></div>\n  </div>\n  ",
+                    host: { '[class.g2-mini-progress]': 'true' },
+                    preserveWhitespaces: false
                 }] }
     ];
     /** @nocollapse */
@@ -71,22 +83,27 @@ var G2ProgressComponent = /** @class */ (function () {
         strokeWidth: [{ type: Input }],
         percent: [{ type: Input }]
     };
-    __decorate([
-        InputNumber(),
-        __metadata("design:type", Number)
-    ], G2ProgressComponent.prototype, "strokeWidth", void 0);
     return G2ProgressComponent;
 }());
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 /** @type {?} */
 var COMPONENTS = [G2ProgressComponent];
 var G2MiniProgressModule = /** @class */ (function () {
     function G2MiniProgressModule() {
     }
+    /**
+     * @return {?}
+     */
+    G2MiniProgressModule.forRoot = /**
+     * @return {?}
+     */
+    function () {
+        return { ngModule: G2MiniProgressModule, providers: [] };
+    };
     G2MiniProgressModule.decorators = [
         { type: NgModule, args: [{
                     imports: [CommonModule, DelonUtilModule, DelonLocaleModule, NgZorroAntdModule],
@@ -99,12 +116,12 @@ var G2MiniProgressModule = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 
 export { G2ProgressComponent, G2MiniProgressModule };

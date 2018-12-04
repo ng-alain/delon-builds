@@ -1,4 +1,4 @@
-import { NgZone, OnChanges, OnDestroy, OnInit } from '@angular/core';
+import { OnInit, OnDestroy, OnChanges, NgZone } from '@angular/core';
 export declare class G2GaugeComponent implements OnInit, OnDestroy, OnChanges {
     private zone;
     title: string;

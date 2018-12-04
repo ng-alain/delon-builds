@@ -1,11 +1,11 @@
-import { __assign, __decorate, __metadata, __spread } from 'tslib';
+import { __spread } from 'tslib';
+import { Component, Input, ViewChild, NgZone, TemplateRef, ChangeDetectionStrategy, ChangeDetectorRef, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, NgZone, TemplateRef, ViewChild, NgModule } from '@angular/core';
-import { InputNumber, DelonUtilModule } from '@delon/util';
+import { toNumber, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 var G2TimelineComponent = /** @class */ (function () {
     function G2TimelineComponent(cd, zone) {
@@ -16,9 +16,9 @@ var G2TimelineComponent = /** @class */ (function () {
         this.colorMap = { y1: '#1890FF', y2: '#2FC25B' };
         this.mask = 'HH:mm';
         this.position = 'top';
-        this.height = 400;
+        this._height = 400;
         this.padding = [60, 20, 40, 40];
-        this.borderWidth = 2;
+        this._borderWidth = 2;
         this.initFlag = false;
     }
     Object.defineProperty(G2TimelineComponent.prototype, "title", {
@@ -35,6 +35,34 @@ var G2TimelineComponent = /** @class */ (function () {
                 this._title = value;
             }
             this.cd.detectChanges();
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(G2TimelineComponent.prototype, "height", {
+        get: /**
+         * @return {?}
+         */
+        function () {
+            return this._height;
+        },
+        set: /**
+         * @param {?} value
+         * @return {?}
+         */
+        function (value) {
+            this._height = toNumber(value);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(G2TimelineComponent.prototype, "borderWidth", {
+        set: /**
+         * @param {?} value
+         * @return {?}
+         */
+        function (value) {
+            this._borderWidth = toNumber(value);
         },
         enumerable: true,
         configurable: true
@@ -93,7 +121,7 @@ var G2TimelineComponent = /** @class */ (function () {
              */
             function (obj) {
                 /** @type {?} */
-                var time = new Date(obj.x).getTime();
+                var time = new Date(obj.x).getTime(); // !注意：时间格式，建议转换为时间戳进行比较
                 return time >= ds.state.start && time <= ds.state.end;
             },
         });
@@ -145,15 +173,15 @@ var G2TimelineComponent = /** @class */ (function () {
             .line()
             .position('x*y1')
             .color(this.colorMap.y1)
-            .size(this.borderWidth);
+            .size(this._borderWidth);
         chart
             .line()
             .position('x*y2')
             .color(this.colorMap.y2)
-            .size(this.borderWidth);
+            .size(this._borderWidth);
         chart.render();
         /** @type {?} */
-        var sliderPadding = __assign({}, [], this.padding);
+        var sliderPadding = Object.assign([], this.padding);
         sliderPadding[0] = 0;
         /** @type {?} */
         var slider = new Slider({
@@ -223,8 +251,9 @@ var G2TimelineComponent = /** @class */ (function () {
     G2TimelineComponent.decorators = [
         { type: Component, args: [{
                     selector: 'g2-timeline',
-                    template: "<ng-container *ngIf=\"_title; else _titleTpl\">\n  <h4>{{_title}}</h4>\n</ng-container>\n<div #container></div>\n<div #slider></div>\n",
-                    changeDetection: ChangeDetectionStrategy.OnPush
+                    template: "\n  <ng-container *ngIf=\"_title; else _titleTpl\"><h4>{{_title}}</h4></ng-container>\n  <div #container></div>\n  <div #slider></div>",
+                    changeDetection: ChangeDetectionStrategy.OnPush,
+                    preserveWhitespaces: false
                 }] }
     ];
     /** @nocollapse */
@@ -245,26 +274,27 @@ var G2TimelineComponent = /** @class */ (function () {
         node: [{ type: ViewChild, args: ['container',] }],
         sliderNode: [{ type: ViewChild, args: ['slider',] }]
     };
-    __decorate([
-        InputNumber(),
-        __metadata("design:type", Object)
-    ], G2TimelineComponent.prototype, "height", void 0);
-    __decorate([
-        InputNumber(),
-        __metadata("design:type", Object)
-    ], G2TimelineComponent.prototype, "borderWidth", void 0);
     return G2TimelineComponent;
 }());
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 /** @type {?} */
 var COMPONENTS = [G2TimelineComponent];
 var G2TimelineModule = /** @class */ (function () {
     function G2TimelineModule() {
     }
+    /**
+     * @return {?}
+     */
+    G2TimelineModule.forRoot = /**
+     * @return {?}
+     */
+    function () {
+        return { ngModule: G2TimelineModule, providers: [] };
+    };
     G2TimelineModule.decorators = [
         { type: NgModule, args: [{
                     imports: [CommonModule, DelonUtilModule],
@@ -277,12 +307,12 @@ var G2TimelineModule = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 
 export { G2TimelineComponent, G2TimelineModule };

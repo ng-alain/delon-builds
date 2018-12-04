@@ -1,19 +1,18 @@
 import { BehaviorSubject } from 'rxjs';
-import { DelonFormConfig } from '../config';
-import { ErrorData } from '../errors';
-import { SFValue } from '../interface';
+import { SchemaValidatorFactory } from '../validator.factory';
 import { SFSchema } from '../schema';
 import { SFUISchema, SFUISchemaItem, SFUISchemaItemRun } from '../schema/ui';
-import { SchemaValidatorFactory } from '../validator.factory';
+import { DelonFormConfig } from '../config';
+import { ErrorData } from '../errors';
 import { Widget } from '../widget';
 export declare abstract class FormProperty {
     private options;
-    schemaValidator: (value: SFValue) => ErrorData[];
+    schemaValidator: (value: any) => ErrorData[];
     schema: SFSchema;
     ui: SFUISchema | SFUISchemaItemRun;
     formData: {};
-    _value: SFValue;
-    widget: Widget<FormProperty>;
+    _value: any;
+    widget: Widget<any>;
     private _errors;
     protected _objErrors: {
         [key: string]: ErrorData[];
@@ -27,12 +26,12 @@ export declare abstract class FormProperty {
     private _path;
     constructor(schemaValidatorFactory: SchemaValidatorFactory, schema: SFSchema, ui: SFUISchema | SFUISchemaItem, formData: {}, parent: PropertyGroup, path: string, options: DelonFormConfig);
     readonly valueChanges: BehaviorSubject<any>;
-    readonly errorsChanges: BehaviorSubject<ErrorData[]>;
+    readonly errorsChanges: BehaviorSubject<any>;
     readonly type: string;
     readonly parent: PropertyGroup;
     readonly root: PropertyGroup;
     readonly path: string;
-    readonly value: SFValue;
+    readonly value: any;
     readonly errors: ErrorData[];
     readonly visible: boolean;
     readonly valid: boolean;
@@ -41,13 +40,13 @@ export declare abstract class FormProperty {
      *
      * @param onlySelf `true` 只对当前字段更新值和校验；`false` 包含上级字段
      */
-    abstract setValue(value: SFValue, onlySelf: boolean): void;
+    abstract setValue(value: any, onlySelf: boolean): any;
     /**
      * 重置值，默认值为 `schema.default`
      *
      * @param onlySelf `true` 只对当前字段更新值和校验；`false` 包含上级字段
      */
-    abstract resetValue(value: SFValue, onlySelf: boolean): void;
+    abstract resetValue(value: any, onlySelf: boolean): any;
     /**
      * 更新值且校验数据
      *
@@ -72,7 +71,7 @@ export declare abstract class PropertyGroup extends FormProperty {
         [key: string]: FormProperty;
     } | FormProperty[];
     getProperty(path: string): any;
-    forEachChild(fn: (formProperty: FormProperty, str: string) => void): void;
+    forEachChild(fn: (formProperty: FormProperty, str: String) => void): void;
     forEachChildRecursive(fn: (formProperty: FormProperty) => void): void;
     _bindVisibility(): void;
     private _bindVisibilityRecursive;

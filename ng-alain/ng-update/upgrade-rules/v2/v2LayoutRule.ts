@@ -124,6 +124,7 @@ function fixDefaultTs(host: Tree, context: SchematicContext) {
   updateComponentMetadata(host, filePath, (node: ts.ObjectLiteralExpression) => {
     const end = node.properties[node.properties.length - 1].end;
     const toInsert = `,
+  preserveWhitespaces: false,
   host: {
     '[class.alain-default]': 'true',
   }`;

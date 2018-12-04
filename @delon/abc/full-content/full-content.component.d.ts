@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectorRef, ElementRef, EventEmitter, OnChanges, OnDestroy, OnInit } from '@angular/core';
+import { ElementRef, ChangeDetectorRef, EventEmitter, OnChanges, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FullContentService } from './full-content.service';
 export declare class FullContentComponent implements AfterViewInit, OnInit, OnChanges, OnDestroy {

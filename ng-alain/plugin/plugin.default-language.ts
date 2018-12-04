@@ -1,15 +1,13 @@
 import {
-  Rule,
-  SchematicsException,
-  SchematicContext,
   Tree,
+  SchematicContext,
+  SchematicsException,
 } from '@angular-devkit/schematics';
-import { getLangConfig } from '../core/lang.config';
 import { getProject } from '../utils/project';
 import { PluginOptions } from './interface';
+import { getLangConfig } from '../core/lang.config';
 
-// tslint:disable-next-line:no-any
-export function pluginDefaultLanguage(options: PluginOptions): Rule {
+export function pluginDefaultLanguage(options: PluginOptions): any {
   return (host: Tree, context: SchematicContext) => {
     if (options.type !== 'add') {
       throw new SchematicsException(

@@ -107,6 +107,7 @@ function fixDefaultTs(host, context) {
     ast_1.updateComponentMetadata(host, filePath, (node) => {
         const end = node.properties[node.properties.length - 1].end;
         const toInsert = `,
+  preserveWhitespaces: false,
   host: {
     '[class.alain-default]': 'true',
   }`;

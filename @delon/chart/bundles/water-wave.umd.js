@@ -4,72 +4,14 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('rxjs'), require('rxjs/operators'), require('@angular/common'), require('@angular/core'), require('@delon/util')) :
-    typeof define === 'function' && define.amd ? define('@delon/chart/water-wave', ['exports', 'rxjs', 'rxjs/operators', '@angular/common', '@angular/core', '@delon/util'], factory) :
-    (factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart['water-wave'] = {}),global.rxjs,global.rxjs.operators,global.ng.common,global.ng.core,global.delon.util));
-}(this, (function (exports,rxjs,operators,common,core,util) { 'use strict';
-
-    /*! *****************************************************************************
-    Copyright (c) Microsoft Corporation. All rights reserved.
-    Licensed under the Apache License, Version 2.0 (the "License"); you may not use
-    this file except in compliance with the License. You may obtain a copy of the
-    License at http://www.apache.org/licenses/LICENSE-2.0
-
-    THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-    KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
-    WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
-    MERCHANTABLITY OR NON-INFRINGEMENT.
-
-    See the Apache Version 2.0 License for specific language governing permissions
-    and limitations under the License.
-    ***************************************************************************** */
-    function __decorate(decorators, target, key, desc) {
-        var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-        if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
-            r = Reflect.decorate(decorators, target, key, desc);
-        else
-            for (var i = decorators.length - 1; i >= 0; i--)
-                if (d = decorators[i])
-                    r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-        return c > 3 && r && Object.defineProperty(target, key, r), r;
-    }
-    function __metadata(metadataKey, metadataValue) {
-        if (typeof Reflect === "object" && typeof Reflect.metadata === "function")
-            return Reflect.metadata(metadataKey, metadataValue);
-    }
-    function __read(o, n) {
-        var m = typeof Symbol === "function" && o[Symbol.iterator];
-        if (!m)
-            return o;
-        var i = m.call(o), r, ar = [], e;
-        try {
-            while ((n === void 0 || n-- > 0) && !(r = i.next()).done)
-                ar.push(r.value);
-        }
-        catch (error) {
-            e = { error: error };
-        }
-        finally {
-            try {
-                if (r && !r.done && (m = i["return"]))
-                    m.call(i);
-            }
-            finally {
-                if (e)
-                    throw e.error;
-            }
-        }
-        return ar;
-    }
-    function __spread() {
-        for (var ar = [], i = 0; i < arguments.length; i++)
-            ar = ar.concat(__read(arguments[i]));
-        return ar;
-    }
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('rxjs'), require('rxjs/operators'), require('@angular/core'), require('@angular/common'), require('@delon/util')) :
+    typeof define === 'function' && define.amd ? define('@delon/chart/water-wave', ['exports', 'rxjs', 'rxjs/operators', '@angular/core', '@angular/common', '@delon/util'], factory) :
+    (factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart['water-wave'] = {}),global.rxjs,global.rxjs.operators,global.ng.core,global.ng.common,global.delon.util));
+}(this, (function (exports,rxjs,operators,core,common,util) { 'use strict';
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
     var G2WaterWaveComponent = /** @class */ (function () {
         function G2WaterWaveComponent(el, renderer, cd, zone) {
@@ -80,8 +22,7 @@
             // #region fields
             this._title = '';
             this.color = '#1890FF';
-            this.height = 160;
-            // #endregion
+            this._height = 160;
             this.resize$ = null;
             this.initFlag = false;
         }
@@ -101,6 +42,36 @@
             enumerable: true,
             configurable: true
         });
+        Object.defineProperty(G2WaterWaveComponent.prototype, "height", {
+            get: /**
+             * @return {?}
+             */ function () {
+                return this._height;
+            },
+            set: /**
+             * @param {?} value
+             * @return {?}
+             */ function (value) {
+                this._height = util.toNumber(value);
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(G2WaterWaveComponent.prototype, "percent", {
+            get: /**
+             * @return {?}
+             */ function () {
+                return this._percent;
+            },
+            set: /**
+             * @param {?} value
+             * @return {?}
+             */ function (value) {
+                this._percent = util.toNumber(value);
+            },
+            enumerable: true,
+            configurable: true
+        });
         /**
          * @return {?}
          */
@@ -116,7 +87,7 @@
                 /** @type {?} */
                 var self = this;
                 /** @type {?} */
-                var canvas = ( /** @type {?} */(this.node.nativeElement));
+                var canvas = /** @type {?} */ (this.node.nativeElement);
                 /** @type {?} */
                 var ctx = canvas.getContext('2d');
                 /** @type {?} */
@@ -137,19 +108,16 @@
                 var unit = axisLength / 8;
                 /** @type {?} */
                 var range = 0.2;
-                // 振幅
                 /** @type {?} */
                 var currRange = range;
                 /** @type {?} */
                 var xOffset = lineWidth;
                 /** @type {?} */
                 var sp = 0;
-                // 周期偏移量
                 /** @type {?} */
                 var currData = 0;
                 /** @type {?} */
                 var waveupsp = 0.005;
-                // 水波上涨速度
                 /** @type {?} */
                 var arcStack = [];
                 /** @type {?} */
@@ -158,7 +126,7 @@
                 var circleOffset = -(Math.PI / 2);
                 /** @type {?} */
                 var circleLock = true;
-                for (var i = circleOffset; i < circleOffset + (Math.PI * 2); i += 1 / (Math.PI * 8)) {
+                for (var i = circleOffset; i < circleOffset + 2 * Math.PI; i += 1 / (8 * Math.PI)) {
                     arcStack.push([radius + bR * Math.cos(i), radius + bR * Math.sin(i)]);
                 }
                 /** @type {?} */
@@ -181,7 +149,7 @@
                         /** @type {?} */
                         var dx = i;
                         /** @type {?} */
-                        var dy = cR * 2 * (1 - currData) + (radius - cR) - unit * y;
+                        var dy = 2 * cR * (1 - currData) + (radius - cR) - unit * y;
                         ctx.lineTo(dx, dy);
                         sinStack.push([dx, dy]);
                     }
@@ -218,10 +186,10 @@
                             ctx.globalCompositeOperation = 'destination-over';
                             ctx.beginPath();
                             ctx.lineWidth = lineWidth;
-                            ctx.arc(radius, radius, bR, 0, Math.PI * 2, true);
+                            ctx.arc(radius, radius, bR, 0, 2 * Math.PI, true);
                             ctx.beginPath();
                             ctx.save();
-                            ctx.arc(radius, radius, (radius - lineWidth) * 3, 0, Math.PI * 2, true);
+                            ctx.arc(radius, radius, radius - 3 * lineWidth, 0, 2 * Math.PI, true);
                             ctx.restore();
                             ctx.clip();
                             ctx.fillStyle = '#1890FF';
@@ -347,9 +315,10 @@
         G2WaterWaveComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'g2-water-wave',
-                        template: "<div [ngStyle]=\"{'height.px': height, 'width.px': height, 'overflow': 'hidden'}\">\n  <canvas #container class=\"g2-water-wave__canvas\" width=\"{{height*2}}\" height=\"{{height*2}}\"></canvas>\n</div>\n<div class=\"g2-water-wave__desc\" [ngStyle]=\"{'width.px': height}\">\n  <ng-container *ngIf=\"_title; else _titleTpl\"><span class=\"g2-water-wave__desc-title\">{{_title}}</span></ng-container>\n  <h4 class=\"g2-water-wave__desc-percent\">{{percent}}%</h4>\n</div>\n",
+                        template: "\n  <div [ngStyle]=\"{'height.px': height, 'width.px': height, 'overflow': 'hidden'}\">\n    <canvas #container class=\"g2-water-wave__canvas\" width=\"{{height*2}}\" height=\"{{height*2}}\"></canvas>\n  </div>\n  <div class=\"g2-water-wave__desc\" [ngStyle]=\"{'width.px': height}\">\n    <ng-container *ngIf=\"_title; else _titleTpl\"><span class=\"g2-water-wave__desc-title\">{{_title}}</span></ng-container>\n    <h4 class=\"g2-water-wave__desc-percent\">{{percent}}%</h4>\n  </div>",
                         host: { '[class.g2-water-wave]': 'true' },
-                        changeDetection: core.ChangeDetectionStrategy.OnPush
+                        changeDetection: core.ChangeDetectionStrategy.OnPush,
+                        preserveWhitespaces: false
                     }] }
         ];
         /** @nocollapse */
@@ -368,26 +337,71 @@
             percent: [{ type: core.Input }],
             node: [{ type: core.ViewChild, args: ['container',] }]
         };
-        __decorate([
-            util.InputNumber(),
-            __metadata("design:type", Object)
-        ], G2WaterWaveComponent.prototype, "height", void 0);
-        __decorate([
-            util.InputNumber(),
-            __metadata("design:type", Number)
-        ], G2WaterWaveComponent.prototype, "percent", void 0);
         return G2WaterWaveComponent;
     }());
 
+    /*! *****************************************************************************
+    Copyright (c) Microsoft Corporation. All rights reserved.
+    Licensed under the Apache License, Version 2.0 (the "License"); you may not use
+    this file except in compliance with the License. You may obtain a copy of the
+    License at http://www.apache.org/licenses/LICENSE-2.0
+
+    THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+    KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
+    WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
+    MERCHANTABLITY OR NON-INFRINGEMENT.
+
+    See the Apache Version 2.0 License for specific language governing permissions
+    and limitations under the License.
+    ***************************************************************************** */
+    function __read(o, n) {
+        var m = typeof Symbol === "function" && o[Symbol.iterator];
+        if (!m)
+            return o;
+        var i = m.call(o), r, ar = [], e;
+        try {
+            while ((n === void 0 || n-- > 0) && !(r = i.next()).done)
+                ar.push(r.value);
+        }
+        catch (error) {
+            e = { error: error };
+        }
+        finally {
+            try {
+                if (r && !r.done && (m = i["return"]))
+                    m.call(i);
+            }
+            finally {
+                if (e)
+                    throw e.error;
+            }
+        }
+        return ar;
+    }
+    function __spread() {
+        for (var ar = [], i = 0; i < arguments.length; i++)
+            ar = ar.concat(__read(arguments[i]));
+        return ar;
+    }
+
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
     /** @type {?} */
     var COMPONENTS = [G2WaterWaveComponent];
     var G2WaterWaveModule = /** @class */ (function () {
         function G2WaterWaveModule() {
         }
+        /**
+         * @return {?}
+         */
+        G2WaterWaveModule.forRoot = /**
+         * @return {?}
+         */
+            function () {
+                return { ngModule: G2WaterWaveModule, providers: [] };
+            };
         G2WaterWaveModule.decorators = [
             { type: core.NgModule, args: [{
                         imports: [common.CommonModule, util.DelonUtilModule],
@@ -400,12 +414,12 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
 
     exports.G2WaterWaveComponent = G2WaterWaveComponent;

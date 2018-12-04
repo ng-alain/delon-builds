@@ -1,11 +1,11 @@
 import { __spread } from 'tslib';
+import { Component, Input, HostBinding, ViewChild, ChangeDetectionStrategy, NgZone, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, HostBinding, Input, NgZone, ViewChild, NgModule } from '@angular/core';
-import { toBoolean, toNumber, DelonUtilModule } from '@delon/util';
+import { toNumber, toBoolean, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 var G2MiniAreaComponent = /** @class */ (function () {
     function G2MiniAreaComponent(zone) {
@@ -135,8 +135,8 @@ var G2MiniAreaComponent = /** @class */ (function () {
             },
         };
         chart.tooltip({
-            'showTitle': false,
-            'hideMarkders': false,
+            showTitle: false,
+            hideMarkders: false,
             'g2-tooltip': { padding: 4 },
             'g2-tooltip-list-item': { margin: "0px 4px" },
         });
@@ -223,13 +223,22 @@ var G2MiniAreaComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 /** @type {?} */
 var COMPONENTS = [G2MiniAreaComponent];
 var G2MiniAreaModule = /** @class */ (function () {
     function G2MiniAreaModule() {
     }
+    /**
+     * @return {?}
+     */
+    G2MiniAreaModule.forRoot = /**
+     * @return {?}
+     */
+    function () {
+        return { ngModule: G2MiniAreaModule, providers: [] };
+    };
     G2MiniAreaModule.decorators = [
         { type: NgModule, args: [{
                     imports: [CommonModule, DelonUtilModule],
@@ -242,12 +251,12 @@ var G2MiniAreaModule = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 
 export { G2MiniAreaComponent, G2MiniAreaModule };

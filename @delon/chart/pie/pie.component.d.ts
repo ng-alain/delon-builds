@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectorRef, ElementRef, NgZone, OnChanges, OnDestroy, Renderer2 } from '@angular/core';
+import { ElementRef, OnDestroy, OnChanges, NgZone, ChangeDetectorRef, AfterViewInit, Renderer2 } from '@angular/core';
 export declare class G2PieComponent implements OnDestroy, OnChanges, AfterViewInit {
     private el;
     private rend;
@@ -9,19 +9,27 @@ export declare class G2PieComponent implements OnDestroy, OnChanges, AfterViewIn
     private chart;
     private initFlag;
     legendData: any[];
-    animate: boolean;
+    animate: any;
+    private _animate;
     color: string;
     subTitle: string;
     total: string;
-    height: number;
-    hasLegend: boolean;
-    legendBlock: boolean;
+    height: any;
+    private _height;
+    hasLegend: any;
+    private _hasLegend;
+    legendBlock: any;
+    private _legendBlock;
     inner: number;
     padding: number[];
-    percent: number;
-    tooltip: boolean;
-    lineWidth: number;
-    select: boolean;
+    percent: any;
+    private _percent;
+    tooltip: any;
+    private _tooltip;
+    lineWidth: any;
+    private _lineWidth;
+    select: any;
+    private _select;
     data: Array<{
         x: number | string;
         y: number;

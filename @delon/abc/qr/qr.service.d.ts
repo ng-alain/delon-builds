@@ -26,7 +26,7 @@ export declare class QRService {
      *
      * @param [value] 重新指定值
      */
-    refresh(value?: string | {}): string;
+    refresh(value?: string | Object): string;
     /**
      * 返回当前二维码Base64编码
      */

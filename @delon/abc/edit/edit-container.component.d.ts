@@ -1,10 +1,12 @@
 import { TemplateRef } from '@angular/core';
 import { SEConfig } from './edit.config';
 export declare class SEContainerComponent {
-    title: string | TemplateRef<void>;
-    gutter: number;
+    _title: string;
+    _titleTpl: TemplateRef<any>;
+    title: string | TemplateRef<any>;
+    gutter: any;
     private _gutter;
-    col: number;
+    col: any;
     private _col;
     labelWidth: number;
     nzLayout: string;

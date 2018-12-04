@@ -1,4 +1,4 @@
-import { NgZone, OnChanges, OnDestroy } from '@angular/core';
+import { OnDestroy, OnChanges, NgZone } from '@angular/core';
 export declare class G2MiniAreaComponent implements OnDestroy, OnChanges {
     private zone;
     color: string;

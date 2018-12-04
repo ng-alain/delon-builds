@@ -1,4 +1,4 @@
-import { ElementRef, EventEmitter, OnDestroy, OnInit } from '@angular/core';
+import { OnInit, ElementRef, OnDestroy, EventEmitter } from '@angular/core';
 export declare class G2CustomComponent implements OnInit, OnDestroy {
     private el;
     private resize$;

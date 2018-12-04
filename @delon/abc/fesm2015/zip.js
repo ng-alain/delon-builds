@@ -1,17 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { saveAs } from 'file-saver';
+import { Injectable, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Injectable, defineInjectable, inject, NgModule } from '@angular/core';
 import { LazyService, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
- */
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 class ZipConfig {
     constructor() {
@@ -25,14 +20,10 @@ class ZipConfig {
         this.utils = [];
     }
 }
-ZipConfig.decorators = [
-    { type: Injectable, args: [{ providedIn: 'root' },] }
-];
-/** @nocollapse */ ZipConfig.ngInjectableDef = defineInjectable({ factory: function ZipConfig_Factory() { return new ZipConfig(); }, token: ZipConfig, providedIn: "root" });
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 class ZipService {
     /**
@@ -79,13 +70,12 @@ class ZipService {
                     });
                     return;
                 }
-                // from file
                 /** @type {?} */
                 const reader = new FileReader();
                 reader.onload = (e) => {
                     JSZip.loadAsync(e.target.result, options).then(ret => resolve(ret));
                 };
-                reader.readAsBinaryString((/** @type {?} */ (fileOrUrl)));
+                reader.readAsBinaryString(/** @type {?} */ (fileOrUrl));
             });
         });
     }
@@ -146,7 +136,7 @@ class ZipService {
     }
 }
 ZipService.decorators = [
-    { type: Injectable, args: [{ providedIn: 'root' },] }
+    { type: Injectable }
 ];
 /** @nocollapse */
 ZipService.ctorParameters = () => [
@@ -154,13 +144,21 @@ ZipService.ctorParameters = () => [
     { type: HttpClient },
     { type: LazyService }
 ];
-/** @nocollapse */ ZipService.ngInjectableDef = defineInjectable({ factory: function ZipService_Factory() { return new ZipService(inject(ZipConfig), inject(HttpClient), inject(LazyService)); }, token: ZipService, providedIn: "root" });
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 class ZipModule {
+    /**
+     * @return {?}
+     */
+    static forRoot() {
+        return {
+            ngModule: ZipModule,
+            providers: [ZipConfig, ZipService],
+        };
+    }
 }
 ZipModule.decorators = [
     { type: NgModule, args: [{
@@ -170,12 +168,12 @@ ZipModule.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 
 export { ZipService, ZipModule, ZipConfig };

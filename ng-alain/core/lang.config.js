@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const fs = require("fs");
 const path = require("path");
+const fs = require("fs");
 exports.LANGS_CONFIG = [
     {
         langs: ['zh-Hans', 'zh-cn', 'zh-Hans-CN', 'zh'],
@@ -18,7 +18,6 @@ exports.LANGS_CONFIG = [
     { langs: ['en'], zorro: 'en_US', delon: 'en_US', fileName: 'en-US.json' },
     { langs: ['tr'], zorro: 'tr_TR', delon: 'tr_TR', fileName: 'tr-TR.json' },
 ];
-// tslint:disable-next-line:no-any
 function getLangConfig(lang) {
     return exports.LANGS_CONFIG.find(w => w.langs.includes(lang));
 }

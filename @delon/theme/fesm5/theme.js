@@ -1,28 +1,28 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { filter, share, catchError, tap } from 'rxjs/operators';
-import { ACLService } from '@delon/acl';
+import { filter, share, tap, catchError } from 'rxjs/operators';
 import { BehaviorSubject, Subject, Observable, throwError } from 'rxjs';
-import distanceInWordsToNow from 'date-fns/distance_in_words_to_now';
+import { ACLService } from '@delon/acl';
 import format from 'date-fns/format';
+import distanceInWordsToNow from 'date-fns/distance_in_words_to_now';
 import { Title, DomSanitizer } from '@angular/platform-browser';
 import { __spread, __values, __assign, __extends } from 'tslib';
-import { OverlayModule } from '@angular/cdk/overlay';
 import { DOCUMENT, CommonModule, CurrencyPipe } from '@angular/common';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { BellOutline, CaretDownOutline, CaretUpOutline, DeleteOutline, FilterFill, InboxOutline, PlusOutline } from '@ant-design/icons-angular/icons';
+import { OverlayModule } from '@angular/cdk/overlay';
 import { NzModalService, NzIconService, NzDrawerService } from 'ng-zorro-antd';
-import { InjectionToken, Injectable, Inject, Pipe, Version, NgModule, Optional, SkipSelf, defineInjectable, inject, Injector, INJECTOR } from '@angular/core';
+import { BellOutline, FilterFill, CaretUpOutline, CaretDownOutline, DeleteOutline, PlusOutline, InboxOutline } from '@ant-design/icons-angular/icons';
+import { InjectionToken, Injectable, Pipe, Inject, Version, NgModule, Optional, SkipSelf, defineInjectable, inject, Injector, INJECTOR } from '@angular/core';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 /** @type {?} */
 var WINDOW = new InjectionToken('Window');
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 /**
  * @return {?}
@@ -45,8 +45,7 @@ function preloaderFinished() {
         });
         preloader.className += ' preloader-hidden-add preloader-hidden-add-active';
     }
-    // tslint:disable-next-line:no-any
-    ((/** @type {?} */ (window))).appBootstrap = function () {
+    (/** @type {?} */ (window)).appBootstrap = function () {
         setTimeout(function () {
             remove();
             body.style.overflow = '';
@@ -56,24 +55,10 @@ function preloaderFinished() {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
- */
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 /** @type {?} */
-var ALAIN_I18N_TOKEN = new InjectionToken('alainTranslatorToken', {
-    providedIn: 'root',
-    factory: ALAIN_I18N_TOKEN_FACTORY,
-});
-/**
- * @return {?}
- */
-function ALAIN_I18N_TOKEN_FACTORY() {
-    return new AlainI18NServiceFake();
-}
+var ALAIN_I18N_TOKEN = new InjectionToken('alainTranslatorToken');
 var AlainI18NServiceFake = /** @class */ (function () {
     function AlainI18NServiceFake() {
         this.change$ = new BehaviorSubject(null);
@@ -99,14 +84,10 @@ var AlainI18NServiceFake = /** @class */ (function () {
     function (lang) {
         this.change$.next(lang);
     };
-    // tslint:disable-next-line:no-any
-    // tslint:disable-next-line:no-any
     /**
      * @return {?}
      */
-    AlainI18NServiceFake.prototype.getLangs = 
-    // tslint:disable-next-line:no-any
-    /**
+    AlainI18NServiceFake.prototype.getLangs = /**
      * @return {?}
      */
     function () {
@@ -132,7 +113,7 @@ var AlainI18NServiceFake = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 var MenuService = /** @class */ (function () {
     function MenuService(i18nSrv, aclService) {
@@ -141,9 +122,8 @@ var MenuService = /** @class */ (function () {
         this.aclService = aclService;
         this._change$ = new BehaviorSubject([]);
         this.data = [];
-        if (this.i18nSrv) {
+        if (this.i18nSrv)
             this.i18n$ = this.i18nSrv.change.subscribe(function () { return _this.resume(); });
-        }
     }
     Object.defineProperty(MenuService.prototype, "change", {
         get: /**
@@ -221,9 +201,9 @@ var MenuService = /** @class */ (function () {
         /** @type {?} */
         var shortcuts = [];
         this.visit(function (item, parent, depth) {
-            item.__id = i++;
-            item.__parent = parent;
-            item._depth = depth;
+            item["__id"] = i++;
+            item["__parent"] = parent;
+            item["_depth"] = depth;
             if (!item.link)
                 item.link = '';
             if (typeof item.linkExact === 'undefined')
@@ -239,9 +219,9 @@ var MenuService = /** @class */ (function () {
                     item.badgeStatus = 'error';
                 }
             }
-            item._type = item.externalLink ? 2 : 1;
+            item["_type"] = item.externalLink ? 2 : 1;
             if (item.children && item.children.length > 0) {
-                item._type = 3;
+                item["_type"] = 3;
             }
             // icon
             if (typeof item.icon === 'string') {
@@ -260,21 +240,20 @@ var MenuService = /** @class */ (function () {
                 else if (/^https?:\/\//.test(item.icon)) {
                     type = 'img';
                 }
-                // tslint:disable-next-line:no-any
-                item.icon = (/** @type {?} */ ({ type: type, value: value }));
+                item.icon = /** @type {?} */ ({ type: type, value: value });
             }
             if (item.icon != null) {
-                item.icon = __assign({ theme: 'outline', spin: false }, ((/** @type {?} */ (item.icon))));
+                item.icon = Object.assign({ theme: 'outline', spin: false }, item.icon);
             }
             item.text =
                 item.i18n && _this.i18nSrv ? _this.i18nSrv.fanyi(item.i18n) : item.text;
             // group
             item.group = item.group !== false;
             // hidden
-            item._hidden = typeof item.hide === 'undefined' ? false : item.hide;
+            item["_hidden"] = typeof item.hide === 'undefined' ? false : item.hide;
             // acl
             if (item.acl && _this.aclService) {
-                item._hidden = !_this.aclService.can(item.acl);
+                item["_hidden"] = !_this.aclService.can(item.acl);
             }
             // shortcut
             if (parent && item.shortcut === true && parent.shortcutRoot !== true) {
@@ -286,13 +265,6 @@ var MenuService = /** @class */ (function () {
         this.loadShortcut(shortcuts);
         this._change$.next(this.data);
     };
-    /**
-     * 加载快捷菜单，加载位置规则如下：
-     * 1、统一在下标0的节点下（即【主导航】节点下方）
-     *      1、若 children 存在 【shortcutRoot: true】则最优先【推荐】这种方式
-     *      2、否则查找带有【dashboard】字样链接，若存在则在此菜单的下方创建快捷入口
-     *      3、否则放在0节点位置
-     */
     /**
      * 加载快捷菜单，加载位置规则如下：
      * 1、统一在下标0的节点下（即【主导航】节点下方）
@@ -323,29 +295,28 @@ var MenuService = /** @class */ (function () {
             pos = ls.findIndex(function (w) { return w.link.includes('dashboard'); });
             pos = (pos !== -1 ? pos : -1) + 1;
             /** @type {?} */
-            var shortcutMenu = (/** @type {?} */ ({
+            var shortcutMenu = /** @type {?} */ ({
                 text: '快捷菜单',
                 i18n: 'shortcut',
                 icon: 'icon-rocket',
                 children: [],
-            }));
+            });
             this.data[0].children.splice(pos, 0, shortcutMenu);
         }
         /** @type {?} */
         var _data = this.data[0].children[pos];
         if (_data.i18n && this.i18nSrv)
             _data.text = this.i18nSrv.fanyi(_data.i18n);
-        // tslint:disable-next-line:prefer-object-spread
         _data = Object.assign(_data, {
             shortcutRoot: true,
             _type: 3,
             __id: -1,
             _depth: 1,
-            __parent: null,
+            __parent: null
         });
         _data.children = shortcuts.map(function (i) {
-            i._depth = 2;
-            i.__parent = _data;
+            i["_depth"] = 2;
+            i["__parent"] = _data;
             return i;
         });
     };
@@ -435,12 +406,12 @@ var MenuService = /** @class */ (function () {
         if (!url)
             return;
         /** @type {?} */
-        var findItem = this.getHit(url, recursive, function (i) { return (i._open = false); });
+        var findItem = this.getHit(url, recursive, function (i) { return (i["_open"] = false); });
         if (!findItem)
             return;
         do {
-            findItem._open = true;
-            findItem = findItem.__parent;
+            findItem["_open"] = true;
+            findItem = findItem["__parent"];
         } while (findItem);
     };
     /**
@@ -474,7 +445,7 @@ var MenuService = /** @class */ (function () {
             return ret;
         do {
             ret.splice(0, 0, item);
-            item = item.__parent;
+            item = item["__parent"];
         } while (item);
         return ret;
     };
@@ -503,7 +474,7 @@ var MenuService = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 var ScrollService = /** @class */ (function () {
     function ScrollService(win, doc) {
@@ -573,12 +544,7 @@ var ScrollService = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
- */
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 /** @type {?} */
 var LAYOUT_KEY = 'layout';
@@ -604,16 +570,12 @@ var SettingsService = /** @class */ (function () {
     function (key) {
         return JSON.parse(localStorage.getItem(key) || 'null') || null;
     };
-    // tslint:disable-next-line:no-any
-    // tslint:disable-next-line:no-any
     /**
      * @param {?} key
      * @param {?} value
      * @return {?}
      */
-    SettingsService.prototype.set = 
-    // tslint:disable-next-line:no-any
-    /**
+    SettingsService.prototype.set = /**
      * @param {?} key
      * @param {?} value
      * @return {?}
@@ -627,7 +589,12 @@ var SettingsService = /** @class */ (function () {
          */
         function () {
             if (!this._layout) {
-                this._layout = __assign({ fixed: true, collapsed: false, boxed: false, lang: null }, this.get(LAYOUT_KEY));
+                this._layout = Object.assign(/** @type {?} */ ({
+                    fixed: true,
+                    collapsed: false,
+                    boxed: false,
+                    lang: null,
+                }), this.get(LAYOUT_KEY));
                 this.set(LAYOUT_KEY, this._layout);
             }
             return this._layout;
@@ -641,9 +608,9 @@ var SettingsService = /** @class */ (function () {
          */
         function () {
             if (!this._app) {
-                this._app = Object.assign((/** @type {?} */ ({
+                this._app = Object.assign(/** @type {?} */ ({
                     year: new Date().getFullYear(),
-                })), this.get(APP_KEY));
+                }), this.get(APP_KEY));
                 this.set(APP_KEY, this._app);
             }
             return this._app;
@@ -657,7 +624,7 @@ var SettingsService = /** @class */ (function () {
          */
         function () {
             if (!this._user) {
-                this._user = __assign({}, this.get(USER_KEY));
+                this._user = Object.assign(/** @type {?} */ ({}), this.get(USER_KEY));
                 this.set(USER_KEY, this._user);
             }
             return this._user;
@@ -675,16 +642,12 @@ var SettingsService = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
-    // tslint:disable-next-line:no-any
-    // tslint:disable-next-line:no-any
     /**
      * @param {?} name
      * @param {?=} value
      * @return {?}
      */
-    SettingsService.prototype.setLayout = 
-    // tslint:disable-next-line:no-any
-    /**
+    SettingsService.prototype.setLayout = /**
      * @param {?} name
      * @param {?=} value
      * @return {?}
@@ -697,8 +660,7 @@ var SettingsService = /** @class */ (function () {
             this._layout = name;
         }
         this.set(LAYOUT_KEY, this._layout);
-        // tslint:disable-next-line:no-any
-        this.notify$.next((/** @type {?} */ ({ type: 'layout', name: name, value: value })));
+        this.notify$.next(/** @type {?} */ ({ type: 'layout', name: name, value: value }));
         return true;
     };
     /**
@@ -738,12 +700,7 @@ var SettingsService = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
- */
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 var AlainThemeConfig = /** @class */ (function () {
     function AlainThemeConfig() {
@@ -757,20 +714,22 @@ var AlainThemeConfig = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 /** @type {?} */
 var REP_MAX = 6;
 var ResponsiveService = /** @class */ (function () {
     function ResponsiveService(cog) {
-        this.cog = __assign({ rules: {
+        this.cog = Object.assign(/** @type {?} */ ({
+            rules: {
                 1: { xs: 24 },
                 2: { xs: 24, sm: 12 },
                 3: { xs: 24, sm: 12, md: 8 },
                 4: { xs: 24, sm: 12, md: 8, lg: 6 },
                 5: { xs: 24, sm: 12, md: 8, lg: 6, xl: 4 },
                 6: { xs: 24, sm: 12, md: 8, lg: 6, xl: 4, xxl: 2 },
-            } }, (/** @type {?} */ (cog)).responsive);
+            },
+        }), /** @type {?} */ ((cog)).responsive);
         if (Object.keys(this.cog.rules)
             .map(function (i) { return +i; })
             .some(function (i) { return i < 1 || i > REP_MAX; })) {
@@ -817,7 +776,7 @@ var ResponsiveService = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 /**
  * 设置标题
@@ -923,9 +882,9 @@ var TitleService = /** @class */ (function () {
             next = next.firstChild;
         /** @type {?} */
         var data = (next.snapshot && next.snapshot.data) || {};
-        if (data.titleI18n && this.i18nSrv)
-            data.title = this.i18nSrv.fanyi(data.titleI18n);
-        return data.title;
+        if (data["titleI18n"] && this.i18nSrv)
+            data["title"] = this.i18nSrv.fanyi(data["titleI18n"]);
+        return data["title"];
     };
     /**
      * @return {?}
@@ -975,7 +934,7 @@ var TitleService = /** @class */ (function () {
         if (this._prefix) {
             newTitles.push(this._prefix);
         }
-        newTitles.push.apply(newTitles, __spread(((/** @type {?} */ (title)))));
+        newTitles.push.apply(newTitles, __spread((/** @type {?} */ (title))));
         if (this._suffix) {
             newTitles.push(this._suffix);
         }
@@ -1029,21 +988,16 @@ var TitleService = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 /** @type {?} */
 var DELON_LOCALE = new InjectionToken('delon-locale');
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
- */
-var zhCN = (/** @type {?} */ ({
+var zhCN = {
     abbr: 'zh-CN',
     exception: {
         403: '抱歉，你无权访问该页面',
@@ -1080,11 +1034,11 @@ var zhCN = (/** @type {?} */ ({
         removeText: '移除',
         checkAllText: '全选',
     },
-}));
+};
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 var DelonLocaleService = /** @class */ (function () {
     function DelonLocaleService(locale) {
@@ -1158,12 +1112,12 @@ function DELON_LOCALE_SERVICE_PROVIDER_FACTORY(exist, locale) {
 var DELON_LOCALE_SERVICE_PROVIDER = {
     provide: DelonLocaleService,
     useFactory: DELON_LOCALE_SERVICE_PROVIDER_FACTORY,
-    deps: [[new Optional(), new SkipSelf(), DelonLocaleService], DELON_LOCALE],
+    deps: [[new Optional(), new SkipSelf(), DelonLocaleService], DELON_LOCALE]
 };
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 var ɵ0 = zhCN;
 var DelonLocaleModule = /** @class */ (function () {
@@ -1182,9 +1136,9 @@ var DelonLocaleModule = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
-var enUS = (/** @type {?} */ ({
+var enUS = {
     abbr: 'en-US',
     exception: {
         403: "Sorry, you don't have access to this page",
@@ -1221,13 +1175,13 @@ var enUS = (/** @type {?} */ ({
         removeText: 'Remove',
         checkAllText: 'Check all',
     },
-}));
+};
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
-var zhTW = (/** @type {?} */ ({
+var zhTW = {
     abbr: 'zh-TW',
     exception: {
         403: '抱歉，妳無權訪問該頁面',
@@ -1264,13 +1218,13 @@ var zhTW = (/** @type {?} */ ({
         removeText: '移除',
         checkAllText: '全選',
     },
-}));
+};
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
-var trTR = (/** @type {?} */ ({
+var trTR = {
     abbr: 'tr-TR',
     exception: {
         403: "\u00DCzg\u00FCn\u00FCz, bu sayfaya eri\u015Fiminiz yok",
@@ -1307,21 +1261,21 @@ var trTR = (/** @type {?} */ ({
         removeText: 'Kaldır',
         checkAllText: 'Tümünü kontrol et',
     },
-}));
+};
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 /**
  * 对话框辅助类
@@ -1389,7 +1343,11 @@ var ModalHelper = /** @class */ (function () {
      */
     function (comp, params, options) {
         var _this = this;
-        options = __assign({ size: 'lg', exact: true, includeTabs: false }, options);
+        options = Object.assign({
+            size: 'lg',
+            exact: true,
+            includeTabs: false,
+        }, options);
         return new Observable(function (observer) {
             /** @type {?} */
             var cls = '';
@@ -1416,7 +1374,7 @@ var ModalHelper = /** @class */ (function () {
                 nzZIndex: ++_this.zIndex,
             };
             /** @type {?} */
-            var subject = _this.srv.create(__assign({}, defaultOptions, options.modalOptions));
+            var subject = _this.srv.create(Object.assign(defaultOptions, options.modalOptions));
             /** @type {?} */
             var afterClose$ = subject.afterClose.subscribe(function (res) {
                 if (options.exact === true) {
@@ -1490,8 +1448,8 @@ var ModalHelper = /** @class */ (function () {
      */
     function (comp, params, options) {
         /** @type {?} */
-        var modalOptions = __assign({ nzMaskClosable: false }, (options && options.modalOptions));
-        return this.create(comp, params, __assign({}, options, { modalOptions: modalOptions }));
+        var modalOptions = Object.assign({ nzMaskClosable: false }, options && options.modalOptions);
+        return this.create(comp, params, Object.assign({}, options, { modalOptions: modalOptions }));
     };
     /**
      * 打开对话框
@@ -1615,7 +1573,9 @@ var ModalHelper = /** @class */ (function () {
      */
     function (comp, params, size, options) {
         if (size === void 0) { size = 'lg'; }
-        return this.open(comp, params, size, __assign({ nzMaskClosable: false }, options));
+        return this.open(comp, params, size, Object.assign({
+            nzMaskClosable: false,
+        }, options));
     };
     ModalHelper.decorators = [
         { type: Injectable, args: [{ providedIn: 'root' },] }
@@ -1630,7 +1590,7 @@ var ModalHelper = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 /**
  * 抽屉辅助类
@@ -1652,7 +1612,6 @@ var ModalHelper = /** @class */ (function () {
 var DrawerHelper = /** @class */ (function () {
     function DrawerHelper(srv) {
         this.srv = srv;
-        // 大部分情况下抽屉的层级比 Modal 会更低一些
         this.zIndex = 400;
     }
     /**
@@ -1676,10 +1635,15 @@ var DrawerHelper = /** @class */ (function () {
      */
     function (title, comp, params, options) {
         var _this = this;
-        options = __assign({ size: 'md', footer: true, footerHeight: 55, drawerOptions: {
+        options = Object.assign(/** @type {?} */ ({
+            size: 'md',
+            footer: true,
+            footerHeight: 55,
+            drawerOptions: {
                 nzPlacement: 'right',
-                nzWrapClassName: '',
-            } }, options);
+                nzWrapClassName: ''
+            }
+        }), options);
         return new Observable(function (observer) {
             var size = options.size, footer = options.footer, footerHeight = options.footerHeight, drawerOptions = options.drawerOptions;
             /** @type {?} */
@@ -1687,13 +1651,13 @@ var DrawerHelper = /** @class */ (function () {
                 nzContent: comp,
                 nzContentParams: params,
                 nzZIndex: ++_this.zIndex,
-                nzTitle: title,
+                nzTitle: title
             };
             if (footer) {
                 defaultOptions.nzBodyStyle = {
-                    'height': "calc(100% - " + footerHeight + "px)",
-                    'overflow': 'auto',
-                    'padding-bottom': footerHeight - 2 + "px",
+                    height: "calc(100% - " + footerHeight + "px)",
+                    overflow: 'auto',
+                    'padding-bottom': footerHeight - 2 + "px"
                 };
             }
             if (typeof size === 'number') {
@@ -1704,7 +1668,7 @@ var DrawerHelper = /** @class */ (function () {
                 delete drawerOptions.nzWrapClassName;
             }
             /** @type {?} */
-            var subject = _this.srv.create(__assign({}, defaultOptions, drawerOptions));
+            var subject = _this.srv.create(Object.assign(defaultOptions, drawerOptions));
             /** @type {?} */
             var afterClose$ = subject.afterClose.subscribe(function (res) {
                 if (res != null && res !== false) {
@@ -1736,8 +1700,8 @@ var DrawerHelper = /** @class */ (function () {
      */
     function (title, comp, params, options) {
         /** @type {?} */
-        var drawerOptions = __assign({ nzMaskClosable: false }, (options && options.drawerOptions));
-        return this.create(title, comp, params, __assign({}, options, { drawerOptions: drawerOptions }));
+        var drawerOptions = Object.assign({ nzMaskClosable: false }, options && options.drawerOptions);
+        return this.create(title, comp, params, Object.assign({}, options, { drawerOptions: drawerOptions }));
     };
     DrawerHelper.decorators = [
         { type: Injectable, args: [{ providedIn: 'root' },] }
@@ -1752,7 +1716,7 @@ var DrawerHelper = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 /**
  * 封装HttpClient，主要解决：
@@ -1764,7 +1728,10 @@ var _HttpClient = /** @class */ (function () {
     function _HttpClient(http, cog) {
         this.http = http;
         this._loading = false;
-        this.cog = __assign({ nullValueHandling: 'include', dateValueHandling: 'timestamp' }, (/** @type {?} */ (cog)).http);
+        this.cog = Object.assign(/** @type {?} */ ({
+            nullValueHandling: 'include',
+            dateValueHandling: 'timestamp',
+        }), /** @type {?} */ ((cog)).http);
     }
     Object.defineProperty(_HttpClient.prototype, "loading", {
         /** 是否正在加载中 */
@@ -1866,7 +1833,9 @@ var _HttpClient = /** @class */ (function () {
      * @return {?}
      */
     function (url, params, options) {
-        return this.request('GET', url, __assign({ params: params }, options));
+        return this.request('GET', url, Object.assign({
+            params: params,
+        }, options));
     };
     /**
      * POST 请求
@@ -1888,8 +1857,10 @@ var _HttpClient = /** @class */ (function () {
      * @return {?}
      */
     function (url, body, params, options) {
-        return this.request('POST', url, __assign({ body: body,
-            params: params }, options));
+        return this.request('POST', url, Object.assign({
+            body: body,
+            params: params,
+        }, options));
     };
     /**
      * DELETE 请求
@@ -1909,7 +1880,9 @@ var _HttpClient = /** @class */ (function () {
      * @return {?}
      */
     function (url, params, options) {
-        return this.request('DELETE', url, __assign({ params: params }, options));
+        return this.request('DELETE', url, Object.assign({
+            params: params,
+        }, options));
     };
     // #endregion
     /**
@@ -1919,7 +1892,6 @@ var _HttpClient = /** @class */ (function () {
      * @param params 请求参数
      * @param callbackParam CALLBACK值，默认：JSONP_CALLBACK
      */
-    // #endregion
     /**
      * `jsonp` 请求
      *
@@ -1928,9 +1900,7 @@ var _HttpClient = /** @class */ (function () {
      * @param {?=} callbackParam CALLBACK值，默认：JSONP_CALLBACK
      * @return {?}
      */
-    _HttpClient.prototype.jsonp = 
-    // #endregion
-    /**
+    _HttpClient.prototype.jsonp = /**
      * `jsonp` 请求
      *
      * @param {?} url URL地址
@@ -1968,8 +1938,10 @@ var _HttpClient = /** @class */ (function () {
      * @return {?}
      */
     function (url, body, params, options) {
-        return this.request('PATCH', url, __assign({ body: body,
-            params: params }, options));
+        return this.request('PATCH', url, Object.assign({
+            body: body,
+            params: params,
+        }, options));
     };
     /**
      * PUT 请求
@@ -1991,8 +1963,10 @@ var _HttpClient = /** @class */ (function () {
      * @return {?}
      */
     function (url, body, params, options) {
-        return this.request('PUT', url, __assign({ body: body,
-            params: params }, options));
+        return this.request('PUT', url, Object.assign({
+            body: body,
+            params: params,
+        }, options));
     };
     /**
      * `request` 请求
@@ -2045,7 +2019,7 @@ var _HttpClient = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 /**
  * @abstract
@@ -2127,30 +2101,26 @@ function makeParam(paramName) {
         };
     };
 }
-/**
+/** *
  * URL路由参数
  * - 有效范围：方法参数
- * @type {?}
- */
+  @type {?} */
 var Path = makeParam('path');
-/**
+/** *
  * URL 参数 `QueryString`
  * - 有效范围：方法参数
- * @type {?}
- */
+  @type {?} */
 var Query = makeParam('query');
-/**
+/** *
  * 参数 `Body`
  * - 有效范围：方法参数
- * @type {?}
- */
+  @type {?} */
 var Body = makeParam('body')();
-/**
+/** *
  * 参数 `headers`
  * - 有效范围：方法参数
  * - 合并 `BaseHeaders`
- * @type {?}
- */
+  @type {?} */
 var Headers = makeParam('headers');
 /**
  * @param {?} method
@@ -2210,64 +2180,56 @@ function makeMethod(method) {
                     p[i.key] = args[i.index];
                     return p;
                 }, {});
-                return http.request(method, requestUrl, __assign({ body: data.body && data.body.length > 0 ? args[data.body[0].index] : null, params: params, headers: __assign({}, baseData.baseHeaders, headers) }, options));
+                return http.request(method, requestUrl, __assign({ body: data.body && data.body.length > 0 ? args[data.body[0].index] : null, params: params, headers: Object.assign({}, baseData.baseHeaders, headers) }, options));
             };
             return descriptor;
         };
     };
 }
-/**
+/** *
  * `OPTIONS` 请求
  * - 有效范围：方法
- * @type {?}
- */
+  @type {?} */
 var OPTIONS = makeMethod('OPTIONS');
-/**
+/** *
  * `GET` 请求
  * - 有效范围：方法
- * @type {?}
- */
+  @type {?} */
 var GET = makeMethod('GET');
-/**
+/** *
  * `POST` 请求
  * - 有效范围：方法
- * @type {?}
- */
+  @type {?} */
 var POST = makeMethod('POST');
-/**
+/** *
  * `DELETE` 请求
  * - 有效范围：方法
- * @type {?}
- */
+  @type {?} */
 var DELETE = makeMethod('DELETE');
-/**
+/** *
  * `PUT` 请求
  * - 有效范围：方法
- * @type {?}
- */
+  @type {?} */
 var PUT = makeMethod('PUT');
-/**
+/** *
  * `HEAD` 请求
  * - 有效范围：方法
- * @type {?}
- */
+  @type {?} */
 var HEAD = makeMethod('HEAD');
-/**
+/** *
  * `PATCH` 请求
  * - 有效范围：方法
- * @type {?}
- */
+  @type {?} */
 var PATCH = makeMethod('PATCH');
-/**
+/** *
  * `JSONP` 请求
  * - 有效范围：方法
- * @type {?}
- */
+  @type {?} */
 var JSONP = makeMethod('JSONP');
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 var DatePipe = /** @class */ (function () {
     function DatePipe() {
@@ -2287,8 +2249,7 @@ var DatePipe = /** @class */ (function () {
         if (value) {
             if (formatString === 'fn') {
                 return distanceInWordsToNow(value, {
-                    // tslint:disable-next-line:no-any
-                    locale: ((/** @type {?} */ (window))).__locale__,
+                    locale: (/** @type {?} */ (window)).__locale__,
                 });
             }
             if (typeof value === 'string' && !isNaN(+value)) {
@@ -2308,12 +2269,11 @@ var DatePipe = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 /**
  * @see https://ng-alain.com/docs/service-pipe#%E8%B4%A7%E5%B8%81-_currenty
  */
-// tslint:disable-next-line:use-pipe-transform-interface
 var CNCurrencyPipe = /** @class */ (function (_super) {
     __extends(CNCurrencyPipe, _super);
     function CNCurrencyPipe() {
@@ -2333,13 +2293,10 @@ var CNCurrencyPipe = /** @class */ (function (_super) {
      * @param {?=} digits
      * @return {?}
      */
-    function (
-    // tslint:disable-next-line:no-any
-    value, currencyCode, display, digits) {
+    function (value, currencyCode, display, digits) {
         if (currencyCode === void 0) { currencyCode = '￥'; }
         if (display === void 0) { display = 'code'; }
-        // tslint:disable-next-line:no-any
-        return _super.prototype.transform.call(this, value, currencyCode, (/** @type {?} */ (display)), digits);
+        return _super.prototype.transform.call(this, value, currencyCode, /** @type {?} */ (display), digits);
     };
     CNCurrencyPipe.decorators = [
         { type: Pipe, args: [{ name: '_currency' },] }
@@ -2349,7 +2306,7 @@ var CNCurrencyPipe = /** @class */ (function (_super) {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 /**
  * @see https://ng-alain.com/docs/common#%E5%8F%AF%E8%BF%AD%E4%BB%A3-keys
@@ -2357,16 +2314,12 @@ var CNCurrencyPipe = /** @class */ (function (_super) {
 var KeysPipe = /** @class */ (function () {
     function KeysPipe() {
     }
-    // tslint:disable-next-line:no-any
-    // tslint:disable-next-line:no-any
     /**
      * @param {?} value
      * @param {?=} keyIsNumber
      * @return {?}
      */
-    KeysPipe.prototype.transform = 
-    // tslint:disable-next-line:no-any
-    /**
+    KeysPipe.prototype.transform = /**
      * @param {?} value
      * @param {?=} keyIsNumber
      * @return {?}
@@ -2389,7 +2342,7 @@ var KeysPipe = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 var YNPipe = /** @class */ (function () {
     function YNPipe(dom) {
@@ -2424,7 +2377,7 @@ var YNPipe = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 var HTMLPipe = /** @class */ (function () {
     function HTMLPipe(dom) {
@@ -2439,7 +2392,7 @@ var HTMLPipe = /** @class */ (function () {
      * @return {?}
      */
     function (html) {
-        return html ? this.dom.bypassSecurityTrustHtml(html) : '';
+        return html ? /** @type {?} */ (this.dom.bypassSecurityTrustHtml(html)) : '';
     };
     HTMLPipe.decorators = [
         { type: Pipe, args: [{ name: 'html' },] }
@@ -2453,7 +2406,7 @@ var HTMLPipe = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 var URLPipe = /** @class */ (function () {
     function URLPipe(dom) {
@@ -2468,7 +2421,7 @@ var URLPipe = /** @class */ (function () {
      * @return {?}
      */
     function (url) {
-        return url ? this.dom.bypassSecurityTrustUrl(url) : '';
+        return url ? /** @type {?} */ (this.dom.bypassSecurityTrustUrl(url)) : '';
     };
     URLPipe.decorators = [
         { type: Pipe, args: [{ name: 'url' },] }
@@ -2482,7 +2435,7 @@ var URLPipe = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 var I18nPipe = /** @class */ (function () {
     function I18nPipe(i18n) {
@@ -2515,11 +2468,10 @@ var I18nPipe = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 /** @type {?} */
 var HELPERS = [ModalHelper, DrawerHelper];
-// components
 /** @type {?} */
 var COMPONENTS = [];
 /** @type {?} */
@@ -2534,7 +2486,6 @@ var ICONS = [
     PlusOutline,
     InboxOutline,
 ];
-// #endregion
 var AlainThemeModule = /** @class */ (function () {
     function AlainThemeModule(iconSrv) {
         iconSrv.addIcon.apply(iconSrv, __spread(ICONS));
@@ -2549,7 +2500,8 @@ var AlainThemeModule = /** @class */ (function () {
         return {
             ngModule: AlainThemeModule,
             providers: __spread([
-                { provide: WINDOW, useValue: window }
+                { provide: WINDOW, useValue: window },
+                { provide: ALAIN_I18N_TOKEN, useClass: AlainI18NServiceFake }
             ], HELPERS),
         };
     };
@@ -2581,21 +2533,21 @@ var AlainThemeModule = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 /** @type {?} */
-var VERSION = new Version('2.0.1-15a1e88');
+var VERSION = new Version('2.0.1-9e1ee40');
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 
-export { WINDOW, preloaderFinished, TitleService, ALAIN_I18N_TOKEN, AlainI18NServiceFake, _HttpClient, DatePipe, CNCurrencyPipe, KeysPipe, YNPipe, HTMLPipe, URLPipe, AlainThemeConfig, AlainThemeModule, VERSION, MenuService, ScrollService, SettingsService, REP_MAX, ResponsiveService, enUS as en_US, zhCN as zh_CN, zhTW as zh_TW, trTR as tr_TR, DELON_LOCALE, DELON_LOCALE_SERVICE_PROVIDER_FACTORY, DelonLocaleService, DELON_LOCALE_SERVICE_PROVIDER, DelonLocaleModule, ModalHelper, DrawerHelper, BaseUrl, BaseHeaders, BaseApi, Path, Query, Body, Headers, OPTIONS, GET, POST, DELETE, PUT, HEAD, PATCH, JSONP, ALAIN_I18N_TOKEN_FACTORY as ɵa, I18nPipe as ɵb };
+export { WINDOW, preloaderFinished, TitleService, ALAIN_I18N_TOKEN, AlainI18NServiceFake, _HttpClient, DatePipe, CNCurrencyPipe, KeysPipe, YNPipe, HTMLPipe, URLPipe, AlainThemeConfig, AlainThemeModule, VERSION, MenuService, ScrollService, SettingsService, REP_MAX, ResponsiveService, enUS as en_US, zhCN as zh_CN, zhTW as zh_TW, trTR as tr_TR, DELON_LOCALE, DELON_LOCALE_SERVICE_PROVIDER_FACTORY, DelonLocaleService, DELON_LOCALE_SERVICE_PROVIDER, DelonLocaleModule, ModalHelper, DrawerHelper, BaseUrl, BaseHeaders, BaseApi, Path, Query, Body, Headers, OPTIONS, GET, POST, DELETE, PUT, HEAD, PATCH, JSONP, I18nPipe as ɵa };
 
 //# sourceMappingURL=theme.js.map

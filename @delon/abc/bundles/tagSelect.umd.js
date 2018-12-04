@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common'), require('@angular/core'), require('@delon/theme'), require('@delon/util'), require('ng-zorro-antd')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/tag-select', ['exports', '@angular/common', '@angular/core', '@delon/theme', '@delon/util', 'ng-zorro-antd'], factory) :
-    (factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['tag-select'] = {}),global.ng.common,global.ng.core,global.delon.theme,global.delon.util,global.ngZorroAntd));
-}(this, (function (exports,common,core,theme,util,ngZorroAntd) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/common'), require('ng-zorro-antd'), require('@delon/theme'), require('@delon/util')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/tag-select', ['exports', '@angular/core', '@angular/common', 'ng-zorro-antd', '@delon/theme', '@delon/util'], factory) :
+    (factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['tag-select'] = {}),global.ng.core,global.ng.common,global.ngZorroAntd,global.delon.theme,global.delon.util));
+}(this, (function (exports,core,common,ngZorroAntd,theme,util) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -69,13 +69,12 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
     var TagSelectComponent = /** @class */ (function () {
-        function TagSelectComponent(i18n, cdr) {
+        function TagSelectComponent(i18n) {
+            var _this = this;
             this.i18n = i18n;
-            this.cdr = cdr;
-            // tslint:disable-next-line:no-any
             this.locale = {};
             /**
              * 是否启用 `展开与收进`
@@ -83,20 +82,8 @@
             this.expandable = true;
             this.expand = false;
             this.change = new core.EventEmitter();
+            this.i18n$ = this.i18n.change.subscribe(function () { return (_this.locale = _this.i18n.getData('tagSelect')); });
         }
-        /**
-         * @return {?}
-         */
-        TagSelectComponent.prototype.ngOnInit = /**
-         * @return {?}
-         */
-            function () {
-                var _this = this;
-                this.i18n$ = this.i18n.change.subscribe(function () {
-                    _this.locale = _this.i18n.getData('tagSelect');
-                    _this.cdr.detectChanges();
-                });
-            };
         /**
          * @return {?}
          */
@@ -119,16 +106,15 @@
         TagSelectComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'tag-select',
-                        template: "<ng-content></ng-content>\n<a *ngIf=\"expandable\" class=\"tag-select__trigger\" (click)=\"trigger()\">\n  {{expand ? locale.collapse : locale.expand}}<i nz-icon [type]=\"expand ? 'up' : 'down'\" class=\"tag-select__trigger-icon\"></i>\n</a>\n",
+                        template: "\n  <ng-content></ng-content>\n  <a *ngIf=\"expandable\" class=\"tag-select__trigger\" (click)=\"trigger()\">\n    {{expand ? locale.collapse : locale.expand}}<i nz-icon [type]=\"expand ? 'up' : 'down'\" class=\"tag-select__trigger-icon\"></i>\n  </a>",
                         host: { '[class.tag-select]': 'true' },
-                        changeDetection: core.ChangeDetectionStrategy.OnPush
+                        preserveWhitespaces: false
                     }] }
         ];
         /** @nocollapse */
         TagSelectComponent.ctorParameters = function () {
             return [
-                { type: theme.DelonLocaleService },
-                { type: core.ChangeDetectorRef }
+                { type: theme.DelonLocaleService }
             ];
         };
         TagSelectComponent.propDecorators = {
@@ -145,13 +131,22 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
     /** @type {?} */
     var COMPONENTS = [TagSelectComponent];
     var TagSelectModule = /** @class */ (function () {
         function TagSelectModule() {
         }
+        /**
+         * @return {?}
+         */
+        TagSelectModule.forRoot = /**
+         * @return {?}
+         */
+            function () {
+                return { ngModule: TagSelectModule, providers: [] };
+            };
         TagSelectModule.decorators = [
             { type: core.NgModule, args: [{
                         imports: [common.CommonModule, ngZorroAntd.NgZorroAntdModule, theme.DelonLocaleModule, util.DelonUtilModule],
@@ -164,12 +159,12 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
 
     exports.TagSelectComponent = TagSelectComponent;

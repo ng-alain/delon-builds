@@ -13,8 +13,6 @@ import { G2MiniBarModule } from '@delon/chart/mini-bar';
 export { G2MiniBarComponent, G2MiniBarModule } from '@delon/chart/mini-bar';
 import { G2MiniProgressModule } from '@delon/chart/mini-progress';
 export { G2ProgressComponent, G2MiniProgressModule } from '@delon/chart/mini-progress';
-import { NumberInfoModule } from '@delon/chart/number-info';
-export { NumberInfoComponent, NumberInfoModule } from '@delon/chart/number-info';
 import { G2PieModule } from '@delon/chart/pie';
 export { G2PieComponent, G2PieModule } from '@delon/chart/pie';
 import { G2RadarModule } from '@delon/chart/radar';
@@ -23,14 +21,16 @@ import { G2TagCloudModule } from '@delon/chart/tag-cloud';
 export { G2TagCloudComponent, G2TagCloudModule } from '@delon/chart/tag-cloud';
 import { G2TimelineModule } from '@delon/chart/timeline';
 export { G2TimelineComponent, G2TimelineModule } from '@delon/chart/timeline';
-import { TrendModule } from '@delon/chart/trend';
-export { TrendComponent, TrendModule } from '@delon/chart/trend';
 import { G2WaterWaveModule } from '@delon/chart/water-wave';
 export { G2WaterWaveComponent, G2WaterWaveModule } from '@delon/chart/water-wave';
+import { NumberInfoModule } from '@delon/chart/number-info';
+export { NumberInfoComponent, NumberInfoModule } from '@delon/chart/number-info';
+import { TrendModule } from '@delon/chart/trend';
+export { TrendComponent, TrendModule } from '@delon/chart/trend';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 /** @type {?} */
 var MODULES = [
@@ -49,10 +49,44 @@ var MODULES = [
     NumberInfoModule,
     TrendModule,
 ];
-// #endregion
+var DelonChartRootModule = /** @class */ (function () {
+    function DelonChartRootModule() {
+    }
+    DelonChartRootModule.decorators = [
+        { type: NgModule, args: [{
+                    imports: [
+                        G2BarModule.forRoot(),
+                        G2CardModule.forRoot(),
+                        G2CustomModule.forRoot(),
+                        G2GaugeModule.forRoot(),
+                        G2MiniAreaModule.forRoot(),
+                        G2MiniBarModule.forRoot(),
+                        G2MiniProgressModule.forRoot(),
+                        G2PieModule.forRoot(),
+                        G2RadarModule.forRoot(),
+                        G2TagCloudModule.forRoot(),
+                        G2TimelineModule.forRoot(),
+                        G2WaterWaveModule.forRoot(),
+                        NumberInfoModule.forRoot(),
+                        TrendModule.forRoot(),
+                    ],
+                    exports: MODULES,
+                },] }
+    ];
+    return DelonChartRootModule;
+}());
 var DelonChartModule = /** @class */ (function () {
     function DelonChartModule() {
     }
+    /**
+     * @return {?}
+     */
+    DelonChartModule.forRoot = /**
+     * @return {?}
+     */
+    function () {
+        return { ngModule: DelonChartRootModule };
+    };
     DelonChartModule.decorators = [
         { type: NgModule, args: [{ exports: MODULES },] }
     ];
@@ -61,14 +95,14 @@ var DelonChartModule = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 
-export { DelonChartModule };
+export { DelonChartRootModule, DelonChartModule };
 
 //# sourceMappingURL=chart.js.map

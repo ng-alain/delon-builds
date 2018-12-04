@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const core_1 = require("@angular-devkit/core");
-const parse5_1 = require("parse5");
 const ts = require("typescript");
+const parse5_1 = require("parse5");
 const ast_1 = require("../utils/ast");
 const ast_utils_1 = require("../utils/devkit-utils/ast-utils");
 // includes ng-zorro-antd & @delon/*

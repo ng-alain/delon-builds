@@ -1,9 +1,10 @@
-import { chain, Rule, SchematicsException, SchematicContext, Tree } from '@angular-devkit/schematics';
-import * as fs from 'fs';
+import { Rule, chain, Tree, SchematicContext, SchematicsException } from '@angular-devkit/schematics';
 import * as path from 'path';
+import * as fs from 'fs';
+import { Schema } from './schema';
 import { buildAlain } from '../utils/alain';
 import { getProject } from '../utils/project';
-import { Schema } from './schema';
+import { buildRelativePath } from '../utils/devkit-utils/find-module';
 
 const REFER = ', please refer to: https://ng-alain.com/cli/generate#%E8%87%AA%E5%AE%9A%E4%B9%89%E9%A1%B5';
 
@@ -25,11 +26,10 @@ function genFiles(options: Schema) {
       );
     }
 
-    // tslint:disable-next-line:no-any
     (options as any)._filesPath = path.relative(__dirname, path.join(tplDir, options.tplName));
   };
 }
 
-export default function (options: Schema): Rule {
+export default function(options: Schema): Rule {
   return chain([genFiles(options), buildAlain(options)]);
 }

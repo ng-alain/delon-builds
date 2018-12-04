@@ -4,10 +4,87 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common'), require('@angular/core'), require('@delon/theme'), require('@delon/util'), require('ng-zorro-antd')) :
-    typeof define === 'function' && define.amd ? define('@delon/chart/mini-progress', ['exports', '@angular/common', '@angular/core', '@delon/theme', '@delon/util', 'ng-zorro-antd'], factory) :
-    (factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart['mini-progress'] = {}),global.ng.common,global.ng.core,global.delon.theme,global.delon.util,global.ngZorro.antd));
-}(this, (function (exports,common,core,theme,util,ngZorroAntd) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/common'), require('ng-zorro-antd'), require('@delon/util'), require('@delon/theme')) :
+    typeof define === 'function' && define.amd ? define('@delon/chart/mini-progress', ['exports', '@angular/core', '@angular/common', 'ng-zorro-antd', '@delon/util', '@delon/theme'], factory) :
+    (factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart['mini-progress'] = {}),global.ng.core,global.ng.common,global.ngZorro.antd,global.delon.util,global.delon.theme));
+}(this, (function (exports,core,common,ngZorroAntd,util,theme) { 'use strict';
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     */
+    var G2ProgressComponent = /** @class */ (function () {
+        function G2ProgressComponent(i18n) {
+            this.i18n = i18n;
+            this.color = '#1890FF';
+        }
+        Object.defineProperty(G2ProgressComponent.prototype, "target", {
+            get: /**
+             * @return {?}
+             */ function () {
+                return this._target;
+            },
+            set: /**
+             * @param {?} value
+             * @return {?}
+             */ function (value) {
+                this._target = Math.min(Math.max(util.toNumber(value), 0), 100);
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(G2ProgressComponent.prototype, "strokeWidth", {
+            get: /**
+             * @return {?}
+             */ function () {
+                return this._strokeWidth;
+            },
+            set: /**
+             * @param {?} value
+             * @return {?}
+             */ function (value) {
+                this._strokeWidth = util.toNumber(value);
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(G2ProgressComponent.prototype, "percent", {
+            get: /**
+             * @return {?}
+             */ function () {
+                return this._percent;
+            },
+            set: /**
+             * @param {?} value
+             * @return {?}
+             */ function (value) {
+                this._percent = Math.min(Math.max(util.toNumber(value), 0), 100);
+            },
+            enumerable: true,
+            configurable: true
+        });
+        G2ProgressComponent.decorators = [
+            { type: core.Component, args: [{
+                        selector: 'g2-mini-progress',
+                        template: "\n  <nz-tooltip [nzTitle]=\"i18n.getData('miniProgress').target + target + '%'\">\n    <div nz-tooltip class=\"g2-mini-progress__target\" [ngStyle]=\"{'left.%': target}\">\n      <span class=\"g2-mini-progress__target-item\" [ngStyle]=\"{'background-color': color}\"></span>\n      <span class=\"g2-mini-progress__target-item\" [ngStyle]=\"{'background-color': color}\"></span>\n    </div>\n  </nz-tooltip>\n  <div class=\"g2-mini-progress__wrap\">\n    <div class=\"g2-mini-progress__value\" [ngStyle]=\"{'background-color': color, 'width.%': percent, 'height.px':strokeWidth}\"></div>\n  </div>\n  ",
+                        host: { '[class.g2-mini-progress]': 'true' },
+                        preserveWhitespaces: false
+                    }] }
+        ];
+        /** @nocollapse */
+        G2ProgressComponent.ctorParameters = function () {
+            return [
+                { type: theme.DelonLocaleService }
+            ];
+        };
+        G2ProgressComponent.propDecorators = {
+            color: [{ type: core.Input }],
+            target: [{ type: core.Input }],
+            strokeWidth: [{ type: core.Input }],
+            percent: [{ type: core.Input }]
+        };
+        return G2ProgressComponent;
+    }());
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -23,20 +100,6 @@
     See the Apache Version 2.0 License for specific language governing permissions
     and limitations under the License.
     ***************************************************************************** */
-    function __decorate(decorators, target, key, desc) {
-        var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-        if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
-            r = Reflect.decorate(decorators, target, key, desc);
-        else
-            for (var i = decorators.length - 1; i >= 0; i--)
-                if (d = decorators[i])
-                    r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-        return c > 3 && r && Object.defineProperty(target, key, r), r;
-    }
-    function __metadata(metadataKey, metadataValue) {
-        if (typeof Reflect === "object" && typeof Reflect.metadata === "function")
-            return Reflect.metadata(metadataKey, metadataValue);
-    }
     function __read(o, n) {
         var m = typeof Symbol === "function" && o[Symbol.iterator];
         if (!m)
@@ -69,86 +132,22 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
-     */
-    var G2ProgressComponent = /** @class */ (function () {
-        function G2ProgressComponent(i18n) {
-            this.i18n = i18n;
-            this.color = '#1890FF';
-        }
-        Object.defineProperty(G2ProgressComponent.prototype, "target", {
-            get: /**
-             * @return {?}
-             */ function () {
-                return this._target;
-            },
-            // tslint:disable-next-line:no-any
-            set: 
-            // tslint:disable-next-line:no-any
-            /**
-             * @param {?} value
-             * @return {?}
-             */
-            function (value) {
-                this._target = Math.min(Math.max(util.toNumber(value), 0), 100);
-            },
-            enumerable: true,
-            configurable: true
-        });
-        Object.defineProperty(G2ProgressComponent.prototype, "percent", {
-            get: /**
-             * @return {?}
-             */ function () {
-                return this._percent;
-            },
-            // tslint:disable-next-line:no-any
-            set: 
-            // tslint:disable-next-line:no-any
-            /**
-             * @param {?} value
-             * @return {?}
-             */
-            function (value) {
-                this._percent = Math.min(Math.max(util.toNumber(value), 0), 100);
-            },
-            enumerable: true,
-            configurable: true
-        });
-        G2ProgressComponent.decorators = [
-            { type: core.Component, args: [{
-                        selector: 'g2-mini-progress',
-                        template: "<nz-tooltip [nzTitle]=\"i18n.getData('miniProgress').target + target + '%'\">\n  <div nz-tooltip class=\"g2-mini-progress__target\" [ngStyle]=\"{'left.%': target}\">\n    <span class=\"g2-mini-progress__target-item\" [ngStyle]=\"{'background-color': color}\"></span>\n    <span class=\"g2-mini-progress__target-item\" [ngStyle]=\"{'background-color': color}\"></span>\n  </div>\n</nz-tooltip>\n<div class=\"g2-mini-progress__wrap\">\n  <div class=\"g2-mini-progress__value\" [ngStyle]=\"{'background-color': color, 'width.%': percent, 'height.px':strokeWidth}\"></div>\n</div>\n",
-                        host: { '[class.g2-mini-progress]': 'true' }
-                    }] }
-        ];
-        /** @nocollapse */
-        G2ProgressComponent.ctorParameters = function () {
-            return [
-                { type: theme.DelonLocaleService }
-            ];
-        };
-        G2ProgressComponent.propDecorators = {
-            color: [{ type: core.Input }],
-            target: [{ type: core.Input }],
-            strokeWidth: [{ type: core.Input }],
-            percent: [{ type: core.Input }]
-        };
-        __decorate([
-            util.InputNumber(),
-            __metadata("design:type", Number)
-        ], G2ProgressComponent.prototype, "strokeWidth", void 0);
-        return G2ProgressComponent;
-    }());
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
     /** @type {?} */
     var COMPONENTS = [G2ProgressComponent];
     var G2MiniProgressModule = /** @class */ (function () {
         function G2MiniProgressModule() {
         }
+        /**
+         * @return {?}
+         */
+        G2MiniProgressModule.forRoot = /**
+         * @return {?}
+         */
+            function () {
+                return { ngModule: G2MiniProgressModule, providers: [] };
+            };
         G2MiniProgressModule.decorators = [
             { type: core.NgModule, args: [{
                         imports: [common.CommonModule, util.DelonUtilModule, theme.DelonLocaleModule, ngZorroAntd.NgZorroAntdModule],
@@ -161,12 +160,12 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
 
     exports.G2ProgressComponent = G2ProgressComponent;

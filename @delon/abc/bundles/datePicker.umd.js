@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@delon/util'), require('@angular/common'), require('@angular/core'), require('@angular/forms'), require('ng-zorro-antd')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/date-picker', ['exports', '@delon/util', '@angular/common', '@angular/core', '@angular/forms', 'ng-zorro-antd'], factory) :
-    (factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['date-picker'] = {}),global.delon.util,global.ng.common,global.ng.core,global.ng.forms,global.ngZorro.antd));
-}(this, (function (exports,util,common,i0,forms,ngZorroAntd) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@delon/util'), require('@angular/core'), require('@angular/common'), require('@angular/forms'), require('ng-zorro-antd')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/date-picker', ['exports', '@delon/util', '@angular/core', '@angular/common', '@angular/forms', 'ng-zorro-antd'], factory) :
+    (factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['date-picker'] = {}),global.delon.util,global.ng.core,global.ng.common,global.ng.forms,global.ngZorro.antd));
+}(this, (function (exports,util,core,common,forms,ngZorroAntd) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -69,12 +69,9 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
-    // tslint:disable:no-any
-    var  
-    // tslint:disable:no-any
-    DateRangePickerConfig = /** @class */ (function () {
+    var DateRangePickerConfig = /** @class */ (function () {
         function DateRangePickerConfig() {
             this.nzFormat = 'yyyy-MM-dd';
             this.nzAllowClear = true;
@@ -88,29 +85,27 @@
     var DatePickerConfig = /** @class */ (function () {
         function DatePickerConfig() {
         }
-        DatePickerConfig.decorators = [
-            { type: i0.Injectable, args: [{ providedIn: 'root' },] }
-        ];
-        /** @nocollapse */ DatePickerConfig.ngInjectableDef = i0.defineInjectable({ factory: function DatePickerConfig_Factory() { return new DatePickerConfig(); }, token: DatePickerConfig, providedIn: "root" });
         return DatePickerConfig;
     }());
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
     var RangePickerComponent = /** @class */ (function () {
         // #endregion
         function RangePickerComponent(cog) {
             this.value = [];
-            this.ngModelEndChange = new i0.EventEmitter();
+            this.ngModelEndChange = new core.EventEmitter();
             // #region Native properties
             this.nzAllowClear = true;
             this.nzAutoFocus = false;
-            this.nzOnOpenChange = new i0.EventEmitter();
+            this.nzOnOpenChange = new core.EventEmitter();
             this.nzShowToday = true;
-            this.nzOnPanelChange = new i0.EventEmitter();
-            this.nzOnOk = new i0.EventEmitter();
+            this.nzOnPanelChange = new core.EventEmitter();
+            this.nzOnOk = new core.EventEmitter();
+            this.onChangeFn = function () { return void 0; };
+            this.onTouchedFn = function () { return void 0; };
             Object.assign(this, new DateRangePickerConfig(), cog && cog.range);
         }
         /**
@@ -204,14 +199,14 @@
                 this.nzDisabled = disabled;
             };
         RangePickerComponent.decorators = [
-            { type: i0.Component, args: [{
+            { type: core.Component, args: [{
                         selector: 'range-picker',
                         template: "<nz-range-picker\n  [ngModel]=\"value\"\n  (ngModelChange)=\"valueChange($event)\"\n\n  [nzAllowClear]=\"nzAllowClear\"\n  [nzAutoFocus]=\"nzAutoFocus\"\n  [nzClassName]=\"nzClassName\"\n  [nzDisabled]=\"nzDisabled\"\n  [nzSize]=\"nzSize\"\n  [nzDisabledDate]=\"nzDisabledDate\"\n  [nzLocale]=\"nzLocale\"\n  [nzPopupStyle]=\"nzPopupStyle\"\n  [nzDropdownClassName]=\"nzDropdownClassName\"\n  [nzStyle]=\"nzStyle\"\n  [nzPlaceHolder]=\"nzPlaceHolder\"\n  (nzOnOpenChange)=\"_nzOnOpenChange($event)\"\n\n  [nzDateRender]=\"nzDateRender\"\n  [nzDisabledTime]=\"nzDisabledTime\"\n  [nzFormat]=\"nzFormat\"\n  [nzRenderExtraFooter]=\"nzRenderExtraFooter\"\n  [nzShowTime]=\"nzShowTime\"\n  [nzShowToday]=\"nzShowToday\"\n  [nzMode]=\"nzMode\"\n  [nzRanges]=\"nzRanges\"\n  (nzOnPanelChange)=\"_nzOnPanelChange($event)\"\n\n  (nzOnOk)=\"_nzOnOk($event)\"\n></nz-range-picker>\n",
                         providers: [
                             {
                                 provide: forms.NG_VALUE_ACCESSOR,
                                 multi: true,
-                                useExisting: i0.forwardRef(function () { return RangePickerComponent; }),
+                                useExisting: core.forwardRef(function () { return RangePickerComponent; }),
                             },
                         ]
                     }] }
@@ -223,30 +218,30 @@
             ];
         };
         RangePickerComponent.propDecorators = {
-            ngModelEnd: [{ type: i0.Input }],
-            ngModelEndChange: [{ type: i0.Output }],
-            nzAllowClear: [{ type: i0.Input }],
-            nzAutoFocus: [{ type: i0.Input }],
-            nzClassName: [{ type: i0.Input }],
-            nzDisabled: [{ type: i0.Input }],
-            nzSize: [{ type: i0.Input }],
-            nzStyle: [{ type: i0.Input }],
-            nzDisabledDate: [{ type: i0.Input }],
-            nzLocale: [{ type: i0.Input }],
-            nzPopupStyle: [{ type: i0.Input }],
-            nzDropdownClassName: [{ type: i0.Input }],
-            nzPlaceHolder: [{ type: i0.Input }],
-            nzOnOpenChange: [{ type: i0.Output }],
-            nzDateRender: [{ type: i0.Input }],
-            nzFormat: [{ type: i0.Input }],
-            nzDisabledTime: [{ type: i0.Input }],
-            nzRenderExtraFooter: [{ type: i0.Input }],
-            nzShowTime: [{ type: i0.Input }],
-            nzShowToday: [{ type: i0.Input }],
-            nzMode: [{ type: i0.Input }],
-            nzRanges: [{ type: i0.Input }],
-            nzOnPanelChange: [{ type: i0.Output }],
-            nzOnOk: [{ type: i0.Output }]
+            ngModelEnd: [{ type: core.Input }],
+            ngModelEndChange: [{ type: core.Output }],
+            nzAllowClear: [{ type: core.Input }],
+            nzAutoFocus: [{ type: core.Input }],
+            nzClassName: [{ type: core.Input }],
+            nzDisabled: [{ type: core.Input }],
+            nzSize: [{ type: core.Input }],
+            nzStyle: [{ type: core.Input }],
+            nzDisabledDate: [{ type: core.Input }],
+            nzLocale: [{ type: core.Input }],
+            nzPopupStyle: [{ type: core.Input }],
+            nzDropdownClassName: [{ type: core.Input }],
+            nzPlaceHolder: [{ type: core.Input }],
+            nzOnOpenChange: [{ type: core.Output }],
+            nzDateRender: [{ type: core.Input }],
+            nzFormat: [{ type: core.Input }],
+            nzDisabledTime: [{ type: core.Input }],
+            nzRenderExtraFooter: [{ type: core.Input }],
+            nzShowTime: [{ type: core.Input }],
+            nzShowToday: [{ type: core.Input }],
+            nzMode: [{ type: core.Input }],
+            nzRanges: [{ type: core.Input }],
+            nzOnPanelChange: [{ type: core.Output }],
+            nzOnOk: [{ type: core.Output }]
         };
         __decorate([
             util.InputBoolean(),
@@ -257,15 +252,27 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
     /** @type {?} */
     var COMPONENTS = [RangePickerComponent];
     var DatePickerModule = /** @class */ (function () {
         function DatePickerModule() {
         }
+        /**
+         * @return {?}
+         */
+        DatePickerModule.forRoot = /**
+         * @return {?}
+         */
+            function () {
+                return {
+                    ngModule: DatePickerModule,
+                    providers: [DatePickerConfig],
+                };
+            };
         DatePickerModule.decorators = [
-            { type: i0.NgModule, args: [{
+            { type: core.NgModule, args: [{
                         imports: [common.CommonModule, forms.FormsModule, ngZorroAntd.NgZorroAntdModule],
                         declarations: __spread(COMPONENTS),
                         exports: __spread(COMPONENTS),
@@ -276,12 +283,12 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
 
     exports.RangePickerComponent = RangePickerComponent;

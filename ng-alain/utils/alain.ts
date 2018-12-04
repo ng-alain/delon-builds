@@ -1,33 +1,32 @@
-import { strings } from '@angular-devkit/core';
 import {
-  apply,
-  branchAndMerge,
-  chain,
-  filter,
-  mergeWith,
-  move,
-  noop,
-  template,
-  url,
   Rule,
-  SchematicsException,
-  SchematicContext,
   Tree,
+  SchematicContext,
+  SchematicsException,
+  apply,
+  url,
+  noop,
+  filter,
+  template,
+  move,
+  chain,
+  branchAndMerge,
+  mergeWith,
 } from '@angular-devkit/schematics';
 import * as ts from 'typescript';
-import { getSourceFile } from './ast';
-import { findNode, insertImport } from './devkit-utils/ast-utils';
-import { InsertChange } from './devkit-utils/change';
-import {
-  buildRelativePath,
-  findModuleFromOptions,
-} from './devkit-utils/find-module';
+import { strings } from '@angular-devkit/core';
 import { parseName } from './devkit-utils/parse-name';
-import { validateHtmlSelector, validateName } from './devkit-utils/validation';
+import {
+  findModuleFromOptions,
+  buildRelativePath,
+} from './devkit-utils/find-module';
+import { validateName, validateHtmlSelector } from './devkit-utils/validation';
+import { InsertChange } from './devkit-utils/change';
+import { findNode, insertImport } from './devkit-utils/ast-utils';
 import { getProject, Project } from './project';
+import { getSourceFile } from './ast';
 
 export interface CommonSchema {
-  // tslint:disable-next-line:no-any
   [key: string]: any;
   _filesPath?: string;
   name?: string;
@@ -88,7 +87,6 @@ function resolveSchema(host: Tree, project: Project, schema: CommonSchema) {
   if (schema.path === undefined) {
     const projectDirName =
       project.projectType === 'application' ? 'app' : 'lib';
-    // tslint:disable-next-line:no-any
     schema.path = `/${(project as any).sourceRoot}/${projectDirName}/routes`;
   }
 
@@ -97,7 +95,6 @@ function resolveSchema(host: Tree, project: Project, schema: CommonSchema) {
   const parsedPath = parseName(schema.path, schema.name);
   schema.name = parsedPath.name;
   schema.path = parsedPath.path;
-  // tslint:disable-next-line:no-any
   schema.importModulePath = findModuleFromOptions(host, schema as any);
   // fill target
   if (schema.target) {
@@ -111,7 +108,6 @@ function resolveSchema(host: Tree, project: Project, schema: CommonSchema) {
 
   // html selector
   schema.selector =
-    // tslint:disable-next-line:no-any
     schema.selector || buildSelector(schema, (project as any).prefix);
 
   validateName(schema.name);
@@ -149,7 +145,6 @@ export function addValueToVariable(
       `Could not find any [${variableName}] variable.`,
     );
   }
-  // tslint:disable-next-line:no-any
   const arr = (node.parent as any).initializer as ts.ArrayLiteralExpression;
 
   const change = new InsertChange(
@@ -164,8 +159,11 @@ export function addValueToVariable(
 }
 
 function getRelativePath(path: string, schema: CommonSchema) {
-  // tslint:disable-next-line:prefer-template
-  const importPath = `/${schema.path}/` + (schema.flat ? '' : strings.dasherize(schema.name) + '/') + strings.dasherize(schema.name) + '.component';
+  const importPath =
+    `/${schema.path}/` +
+    (schema.flat ? '' : strings.dasherize(schema.name) + '/') +
+    strings.dasherize(schema.name) +
+    '.component';
   return buildRelativePath(path, importPath);
 }
 
@@ -223,7 +221,6 @@ export function buildAlain(schema: CommonSchema): Rule {
 
     resolveSchema(host, project, schema);
 
-    // tslint:disable-next-line:no-any
     schema.componentName = buildComponentName(schema, (project as any).prefix);
 
     // Don't support inline

@@ -4,17 +4,16 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('rxjs'), require('rxjs/operators'), require('@delon/theme'), require('@angular/common/http'), require('@angular/core')) :
-    typeof define === 'function' && define.amd ? define('@delon/mock', ['exports', 'rxjs', 'rxjs/operators', '@delon/theme', '@angular/common/http', '@angular/core'], factory) :
-    (factory((global.delon = global.delon || {}, global.delon.mock = {}),global.rxjs,global.rxjs.operators,global.delon.theme,global.ng.common.http,global.ng.core));
-}(this, (function (exports,rxjs,operators,theme,http,core) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('rxjs'), require('rxjs/operators'), require('@delon/theme'), require('@angular/core'), require('@angular/common/http')) :
+    typeof define === 'function' && define.amd ? define('@delon/mock', ['exports', 'rxjs', 'rxjs/operators', '@delon/theme', '@angular/core', '@angular/common/http'], factory) :
+    (factory((global.delon = global.delon || {}, global.delon.mock = {}),global.rxjs,global.rxjs.operators,global.delon.theme,global.ng.core,global.ng.common.http));
+}(this, (function (exports,rxjs,operators,theme,core,http) { 'use strict';
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
     var MockStatusError = /** @class */ (function () {
-        // tslint:disable-next-line:no-any
         function MockStatusError(status, error) {
             this.status = status;
             this.error = error;
@@ -24,7 +23,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
     var DelonMockConfig = /** @class */ (function () {
         function DelonMockConfig() {
@@ -46,7 +45,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
     var MockService = /** @class */ (function () {
         function MockService(config) {
@@ -55,16 +54,12 @@
             this.applyMock();
             delete this.config.data;
         }
-        // #region parse rule
-        // #region parse rule
         /**
          * @return {?}
          */
-        MockService.prototype.applyMock =
-            // #region parse rule
-            /**
-             * @return {?}
-             */
+        MockService.prototype.applyMock = /**
+         * @return {?}
+         */
             function () {
                 this.cached = [];
                 try {
@@ -120,20 +115,16 @@
                         (a.martcher || '').toString().length;
                 });
             };
-        // tslint:disable-next-line:no-any
-        // tslint:disable-next-line:no-any
         /**
          * @param {?} key
          * @param {?} callback
          * @return {?}
          */
-        MockService.prototype.genRule =
-            // tslint:disable-next-line:no-any
-            /**
-             * @param {?} key
-             * @param {?} callback
-             * @return {?}
-             */
+        MockService.prototype.genRule = /**
+         * @param {?} key
+         * @param {?} callback
+         * @return {?}
+         */
             function (key, callback) {
                 /** @type {?} */
                 var method = 'GET';
@@ -150,13 +141,9 @@
                 /** @type {?} */
                 var segments = [];
                 if (~url.indexOf(':')) {
-                    segments = ( /** @type {?} */(url)).split('/')
-                        .filter(function (segment) { return segment.startsWith(':'); })
-                        .map(function (v) { return v.substring(1); });
+                    segments = /** @type {?} */ ((url)).split('/').filter(function (segment) { return segment.startsWith(':'); }).map(function (v) { return v.substring(1); });
                     /** @type {?} */
-                    var reStr = ( /** @type {?} */(url)).split('/')
-                        .map(function (segment) { return (segment.startsWith(':') ? "([^/]+)" : segment); })
-                        .join('/');
+                    var reStr = /** @type {?} */ ((url)).split('/').map(function (segment) { return (segment.startsWith(':') ? "([^/]+)" : segment); }).join('/');
                     martcher = new RegExp(reStr, 'i');
                 }
                 else if (/(\([^)]+\))/i.test(url)) {
@@ -170,18 +157,14 @@
                     method: method.toUpperCase(),
                 };
             };
-        // tslint:disable-next-line:no-any
-        // tslint:disable-next-line:no-any
         /**
          * @param {?} error
          * @return {?}
          */
-        MockService.prototype.outputError =
-            // tslint:disable-next-line:no-any
-            /**
-             * @param {?} error
-             * @return {?}
-             */
+        MockService.prototype.outputError = /**
+         * @param {?} error
+         * @return {?}
+         */
             function (error) {
                 /** @type {?} */
                 var filePath = error.message.split(': ')[0];
@@ -198,19 +181,16 @@
                 throw error;
             };
         // #endregion
-        // #endregion
         /**
          * @param {?} method
          * @param {?} url
          * @return {?}
          */
-        MockService.prototype.getRule =
-            // #endregion
-            /**
-             * @param {?} method
-             * @param {?} url
-             * @return {?}
-             */
+        MockService.prototype.getRule = /**
+         * @param {?} method
+         * @param {?} url
+         * @return {?}
+         */
             function (method, url) {
                 method = (method || 'GET').toUpperCase();
                 /** @type {?} */
@@ -277,36 +257,9 @@
         return MockService;
     }());
 
-    /*! *****************************************************************************
-    Copyright (c) Microsoft Corporation. All rights reserved.
-    Licensed under the Apache License, Version 2.0 (the "License"); you may not use
-    this file except in compliance with the License. You may obtain a copy of the
-    License at http://www.apache.org/licenses/LICENSE-2.0
-
-    THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-    KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
-    WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
-    MERCHANTABLITY OR NON-INFRINGEMENT.
-
-    See the Apache Version 2.0 License for specific language governing permissions
-    and limitations under the License.
-    ***************************************************************************** */
-    var __assign = function () {
-        __assign = Object.assign || function __assign(t) {
-            for (var s, i = 1, n = arguments.length; i < n; i++) {
-                s = arguments[i];
-                for (var p in s)
-                    if (Object.prototype.hasOwnProperty.call(s, p))
-                        t[p] = s[p];
-            }
-            return t;
-        };
-        return __assign.apply(this, arguments);
-    };
-
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
     var MockInterceptor = /** @class */ (function () {
         function MockInterceptor(injector) {
@@ -326,7 +279,11 @@
                 /** @type {?} */
                 var src = this.injector.get(MockService);
                 /** @type {?} */
-                var config = __assign({ delay: 300, force: false, log: true }, this.injector.get(DelonMockConfig, null));
+                var config = Object.assign({
+                    delay: 300,
+                    force: false,
+                    log: true,
+                }, this.injector.get(DelonMockConfig, null));
                 /** @type {?} */
                 var rule = src.getRule(req.method, req.url.split('?')[0]);
                 if (!rule && !config.force) {
@@ -377,7 +334,7 @@
                         }
                         catch (e) {
                             /** @type {?} */
-                            var errRes_1;
+                            var errRes_1 = void 0;
                             if (e instanceof MockStatusError) {
                                 errRes_1 = new http.HttpErrorResponse({
                                     url: req.url,
@@ -413,11 +370,13 @@
                 }
                 /** @type {?} */
                 var hc = this.injector.get(theme._HttpClient, null);
-                if (hc)
+                if (hc) {
                     hc.begin();
+                }
                 return rxjs.of(response).pipe(operators.delay(config.delay), operators.tap(function () {
-                    if (hc)
+                    if (hc) {
                         hc.end();
+                    }
                 }));
             };
         MockInterceptor.decorators = [
@@ -434,7 +393,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
     var DelonMockModule = /** @class */ (function () {
         function DelonMockModule() {
@@ -479,7 +438,12 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+     */
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
 
     exports.MockStatusError = MockStatusError;

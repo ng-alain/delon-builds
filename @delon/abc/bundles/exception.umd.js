@@ -4,19 +4,18 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common'), require('@angular/core'), require('@angular/router'), require('@delon/theme'), require('@delon/util'), require('ng-zorro-antd')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/exception', ['exports', '@angular/common', '@angular/core', '@angular/router', '@delon/theme', '@delon/util', 'ng-zorro-antd'], factory) :
-    (factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.exception = {}),global.ng.common,global.ng.core,global.ng.router,global.delon.theme,global.delon.util,global.ngZorro.antd));
-}(this, (function (exports,common,core,router,theme,util,ngZorroAntd) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/common'), require('@angular/router'), require('ng-zorro-antd'), require('@delon/theme'), require('@delon/util')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/exception', ['exports', '@angular/core', '@angular/common', '@angular/router', 'ng-zorro-antd', '@delon/theme', '@delon/util'], factory) :
+    (factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.exception = {}),global.ng.core,global.ng.common,global.ng.router,global.ngZorro.antd,global.delon.theme,global.delon.util));
+}(this, (function (exports,core,common,router,ngZorroAntd,theme,util) { 'use strict';
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
     var ExceptionComponent = /** @class */ (function () {
         function ExceptionComponent(i18n) {
             this.i18n = i18n;
-            // tslint:disable-next-line:no-any
             this.locale = {};
             this.hasCon = false;
             this._img = '';
@@ -114,8 +113,9 @@
         ExceptionComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'exception',
-                        template: "<div class=\"exception__img-block\">\n  <div class=\"exception__img\" [ngStyle]=\"{'background-image': 'url(' + _img + ')'}\"></div>\n</div>\n<div class=\"exception__cont\">\n  <h1 class=\"exception__cont-title\" [innerHTML]=\"_title\"></h1>\n  <div class=\"exception__cont-desc\" [innerHTML]=\"_desc || locale[_type]\"></div>\n  <div class=\"exception__cont-actions\">\n    <div (cdkObserveContent)=\"checkContent()\" #conTpl><ng-content></ng-content></div>\n    <button *ngIf=\"!hasCon\" nz-button [routerLink]=\"['/']\" [nzType]=\"'primary'\">{{locale.backToHome}}</button>\n  </div>\n</div>\n",
-                        host: { '[class.exception]': 'true' }
+                        template: "\n  <div class=\"exception__img-block\">\n    <div class=\"exception__img\" [ngStyle]=\"{'background-image': 'url(' + _img + ')'}\"></div>\n  </div>\n  <div class=\"exception__cont\">\n    <h1 class=\"exception__cont-title\" [innerHTML]=\"_title\"></h1>\n    <div class=\"exception__cont-desc\" [innerHTML]=\"_desc || locale[_type]\"></div>\n    <div class=\"exception__cont-actions\">\n      <div (cdkObserveContent)=\"checkContent()\" #conTpl><ng-content></ng-content></div>\n      <button *ngIf=\"!hasCon\" nz-button [routerLink]=\"['/']\" [nzType]=\"'primary'\">{{locale.backToHome}}</button>\n    </div>\n  </div>\n  ",
+                        host: { '[class.exception]': 'true' },
+                        preserveWhitespaces: false
                     }] }
         ];
         /** @nocollapse */
@@ -180,13 +180,22 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
     /** @type {?} */
     var COMPONENTS = [ExceptionComponent];
     var ExceptionModule = /** @class */ (function () {
         function ExceptionModule() {
         }
+        /**
+         * @return {?}
+         */
+        ExceptionModule.forRoot = /**
+         * @return {?}
+         */
+            function () {
+                return { ngModule: ExceptionModule, providers: [] };
+            };
         ExceptionModule.decorators = [
             { type: core.NgModule, args: [{
                         imports: [
@@ -205,12 +214,12 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
 
     exports.ExceptionComponent = ExceptionComponent;

@@ -1,24 +1,24 @@
 import {
-  chain,
   Rule,
-  SchematicsException,
-  SchematicContext,
   Tree,
+  SchematicContext,
+  chain,
+  SchematicsException,
 } from '@angular-devkit/schematics';
 import { NodePackageInstallTask } from '@angular-devkit/schematics/tasks';
 
+import { Schema as PluginSchema } from './schema';
 import { getProject } from '../utils/project';
 import { PluginOptions } from './interface';
-import { Schema as PluginSchema } from './schema';
 
-import { pluginAsdf } from './plugin.asdf';
+import { pluginG2 } from './plugin.g2';
 import { pluginCodeStyle } from './plugin.code-style';
 import { pluginDefaultLanguage } from './plugin.default-language';
-import { pluginDocker } from './plugin.docker';
-import { pluginG2 } from './plugin.g2';
-import { pluginHmr } from './plugin.hmr';
-import { pluginIcon } from './plugin.icon';
 import { pluginNetworkEnv } from './plugin.network-env';
+import { pluginHmr } from './plugin.hmr';
+import { pluginDocker } from './plugin.docker';
+import { pluginAsdf } from './plugin.asdf';
+import { pluginIcon } from './plugin.icon';
 
 function installPackages() {
   return (host: Tree, context: SchematicContext) => {
@@ -26,7 +26,7 @@ function installPackages() {
   };
 }
 
-export default function (options: PluginSchema): Rule {
+export default function(options: PluginSchema): Rule {
   return (host: Tree, context: SchematicContext) => {
     const project = getProject(host, options.project);
     const pluginOptions: PluginOptions = {
@@ -49,7 +49,9 @@ export default function (options: PluginSchema): Rule {
       case 'networkEnv':
         rules.push(
           pluginNetworkEnv(
-            { ...pluginOptions, packageManager: options.packageManager },
+            Object.assign(pluginOptions, {
+              packageManager: options.packageManager,
+            }),
           ),
         );
         break;
@@ -62,10 +64,9 @@ export default function (options: PluginSchema): Rule {
       case 'defaultLanguage':
         rules.push(
           pluginDefaultLanguage(
-            {
-              ...pluginOptions,
+            Object.assign(pluginOptions, {
               defaultLanguage: options.defaultLanguage,
-            },
+            }),
           ),
         );
         break;

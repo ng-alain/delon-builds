@@ -1,22 +1,40 @@
-import { __assign, __decorate, __metadata, __spread } from 'tslib';
+import { __spread } from 'tslib';
+import { Component, Input, ViewChild, ElementRef, NgZone, ChangeDetectionStrategy, ChangeDetectorRef, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Input, NgZone, ViewChild, NgModule } from '@angular/core';
-import { InputNumber, DelonUtilModule } from '@delon/util';
+import { toNumber, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 var G2TagCloudComponent = /** @class */ (function () {
     function G2TagCloudComponent(el, cd, zone) {
         this.el = el;
         this.cd = cd;
         this.zone = zone;
-        // #region fields
-        this.height = 0;
+        this._height = 0;
         this.padding = 0;
         this.initFlag = false;
     }
+    Object.defineProperty(G2TagCloudComponent.prototype, "height", {
+        // #region fields
+        get: /**
+         * @return {?}
+         */
+        function () {
+            return this._height;
+        },
+        set: /**
+         * @param {?} value
+         * @return {?}
+         */
+        function (value) {
+            this._height = toNumber(value);
+            this.cd.detectChanges();
+        },
+        enumerable: true,
+        configurable: true
+    });
     /**
      * @return {?}
      */
@@ -33,9 +51,21 @@ var G2TagCloudComponent = /** @class */ (function () {
              */
             function (cfg, container) {
                 /** @type {?} */
-                var attrs = __assign({ fillOpacity: cfg.opacity, fontSize: cfg.origin._origin.size, rotate: cfg.origin._origin.rotate, text: cfg.origin._origin.text, textAlign: 'center', fontFamily: cfg.origin._origin.font, fill: cfg.color, textBaseline: 'Alphabetic' }, cfg.style);
+                var attrs = Object.assign({}, {
+                    fillOpacity: cfg.opacity,
+                    fontSize: cfg.origin._origin.size,
+                    rotate: cfg.origin._origin.rotate,
+                    text: cfg.origin._origin.text,
+                    textAlign: 'center',
+                    fontFamily: cfg.origin._origin.font,
+                    fill: cfg.color,
+                    textBaseline: 'Alphabetic',
+                }, cfg.style);
                 return container.addShape('text', {
-                    attrs: __assign({}, attrs, { x: cfg.x, y: cfg.y }),
+                    attrs: Object.assign(attrs, {
+                        x: cfg.x,
+                        y: cfg.y,
+                    }),
                 });
             },
         });
@@ -69,9 +99,7 @@ var G2TagCloudComponent = /** @class */ (function () {
             size: [width, height],
             padding: this.padding,
             timeInterval: 5000,
-            rotate: 
-            // max execute time
-            /**
+            rotate: /**
              * @return {?}
              */
             function () {
@@ -167,7 +195,6 @@ var G2TagCloudComponent = /** @class */ (function () {
     function () {
         if (this.initFlag) {
             this.runInstall();
-            this.cd.detectChanges();
         }
     };
     /**
@@ -198,22 +225,27 @@ var G2TagCloudComponent = /** @class */ (function () {
         data: [{ type: Input }],
         node: [{ type: ViewChild, args: ['container',] }]
     };
-    __decorate([
-        InputNumber(),
-        __metadata("design:type", Object)
-    ], G2TagCloudComponent.prototype, "height", void 0);
     return G2TagCloudComponent;
 }());
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 /** @type {?} */
 var COMPONENTS = [G2TagCloudComponent];
 var G2TagCloudModule = /** @class */ (function () {
     function G2TagCloudModule() {
     }
+    /**
+     * @return {?}
+     */
+    G2TagCloudModule.forRoot = /**
+     * @return {?}
+     */
+    function () {
+        return { ngModule: G2TagCloudModule, providers: [] };
+    };
     G2TagCloudModule.decorators = [
         { type: NgModule, args: [{
                     imports: [CommonModule, DelonUtilModule],
@@ -226,12 +258,12 @@ var G2TagCloudModule = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 
 export { G2TagCloudComponent, G2TagCloudModule };

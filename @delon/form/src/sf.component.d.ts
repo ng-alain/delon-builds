@@ -1,15 +1,14 @@
-import { ChangeDetectorRef, EventEmitter, OnChanges, OnDestroy, OnInit } from '@angular/core';
+import { OnInit, OnChanges, OnDestroy, EventEmitter, ChangeDetectorRef } from '@angular/core';
 import { DelonLocaleService } from '@delon/theme';
 import { DelonFormConfig } from './config';
-import { ErrorData } from './errors';
-import { SFButton } from './interface';
-import { FormProperty } from './model/form.property';
-import { FormPropertyFactory } from './model/form.property.factory';
+import { TerminatorService } from './terminator.service';
 import { SFSchema } from './schema/index';
 import { SFUISchema } from './schema/ui';
-import { TerminatorService } from './terminator.service';
-import { SchemaValidatorFactory } from './validator.factory';
-export declare function useFactory(schemaValidatorFactory: SchemaValidatorFactory, options: DelonFormConfig): FormPropertyFactory;
+import { FormProperty } from './model/form.property';
+import { FormPropertyFactory } from './model/form.property.factory';
+import { SFButton } from './interface';
+import { ErrorData } from './errors';
+export declare function useFactory(schemaValidatorFactory: any, options: DelonFormConfig): FormPropertyFactory;
 export declare class SFComponent implements OnInit, OnChanges, OnDestroy {
     private formPropertyFactory;
     private terminator;
@@ -24,7 +23,7 @@ export declare class SFComponent implements OnInit, OnChanges, OnDestroy {
     private _defUi;
     private _inited;
     rootProperty: FormProperty;
-    _formData: {};
+    _formData: any;
     _btn: SFButton;
     _schema: SFSchema;
     _ui: SFUISchema;
@@ -67,7 +66,7 @@ export declare class SFComponent implements OnInit, OnChanges, OnDestroy {
     /** 表单校验状态 */
     readonly valid: boolean;
     /** 表单值 */
-    readonly value: {};
+    readonly value: any;
     onSubmit(e: Event): void;
     constructor(formPropertyFactory: FormPropertyFactory, terminator: TerminatorService, options: DelonFormConfig, cd: ChangeDetectorRef, i18n: DelonLocaleService);
     private coverProperty;

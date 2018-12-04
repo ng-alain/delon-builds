@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, ElementRef, NgZone, OnChanges, OnDestroy, TemplateRef } from '@angular/core';
+import { ElementRef, OnDestroy, OnChanges, NgZone, TemplateRef, ChangeDetectorRef } from '@angular/core';
 export declare class G2BarComponent implements OnDestroy, OnChanges {
     private el;
     private cd;
@@ -7,10 +7,10 @@ export declare class G2BarComponent implements OnDestroy, OnChanges {
     private resize$;
     private chart;
     _title: string;
-    _titleTpl: TemplateRef<void>;
-    title: string | TemplateRef<void>;
+    _titleTpl: TemplateRef<any>;
+    title: string | TemplateRef<any>;
     color: string;
-    height: number;
+    height: any;
     private _height;
     padding: number[];
     data: Array<{

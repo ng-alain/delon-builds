@@ -1,13 +1,13 @@
-import addSeconds from 'date-fns/add_seconds';
 import format from 'date-fns/format';
+import addSeconds from 'date-fns/add_seconds';
 import { __spread } from 'tslib';
+import { Component, Input, Output, EventEmitter, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, Output, NgModule } from '@angular/core';
 import { CountdownModule } from 'ngx-countdown';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 var CountDownComponent = /** @class */ (function () {
     function CountDownComponent() {
@@ -67,7 +67,8 @@ var CountDownComponent = /** @class */ (function () {
     CountDownComponent.decorators = [
         { type: Component, args: [{
                     selector: 'count-down',
-                    template: "\n    <countdown *ngIf=\"config\" [config]=\"config\"\n      (start)=\"_start()\"\n      (finished)=\"_finished()\"\n      (notify)=\"_notify($event)\"></countdown>\n  "
+                    template: "\n    <countdown *ngIf=\"config\" [config]=\"config\"\n      (start)=\"_start()\"\n      (finished)=\"_finished()\"\n      (notify)=\"_notify($event)\"></countdown>\n  ",
+                    preserveWhitespaces: false
                 }] }
     ];
     CountDownComponent.propDecorators = {
@@ -82,13 +83,22 @@ var CountDownComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 /** @type {?} */
 var COMPONENTS = [CountDownComponent];
 var CountDownModule = /** @class */ (function () {
     function CountDownModule() {
     }
+    /**
+     * @return {?}
+     */
+    CountDownModule.forRoot = /**
+     * @return {?}
+     */
+    function () {
+        return { ngModule: CountDownModule, providers: [] };
+    };
     CountDownModule.decorators = [
         { type: NgModule, args: [{
                     imports: [CommonModule, CountdownModule],
@@ -101,12 +111,12 @@ var CountDownModule = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 
 export { CountDownComponent, CountDownModule };

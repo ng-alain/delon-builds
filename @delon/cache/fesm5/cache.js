@@ -1,17 +1,19 @@
 import { HttpClient } from '@angular/common/http';
 import addSeconds from 'date-fns/add_seconds';
-import { of, BehaviorSubject, Observable } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
-import { Injectable, InjectionToken, NgModule, Inject, defineInjectable, inject } from '@angular/core';
+import { Observable, of, BehaviorSubject } from 'rxjs';
+import { tap, map } from 'rxjs/operators';
+import { InjectionToken, Injectable, Inject, NgModule } from '@angular/core';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
+/** @type {?} */
+var DC_STORE_STORAGE_TOKEN = new InjectionToken('DC_STORE_STORAGE_TOKEN');
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 var DelonCacheConfig = /** @class */ (function () {
     function DelonCacheConfig() {
@@ -37,73 +39,12 @@ var DelonCacheConfig = /** @class */ (function () {
          */
         this.meta_key = '__cache_meta';
     }
-    DelonCacheConfig.decorators = [
-        { type: Injectable, args: [{ providedIn: 'root' },] }
-    ];
-    /** @nocollapse */ DelonCacheConfig.ngInjectableDef = defineInjectable({ factory: function DelonCacheConfig_Factory() { return new DelonCacheConfig(); }, token: DelonCacheConfig, providedIn: "root" });
     return DelonCacheConfig;
 }());
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
- */
-/** @type {?} */
-var DC_STORE_STORAGE_TOKEN = new InjectionToken('DC_STORE_STORAGE_TOKEN', {
-    providedIn: 'root',
-    factory: DC_STORE_STORAGE_TOKEN_FACTORY,
-});
-/**
- * @return {?}
- */
-function DC_STORE_STORAGE_TOKEN_FACTORY() {
-    return new LocalStorageCacheService();
-}
-var LocalStorageCacheService = /** @class */ (function () {
-    function LocalStorageCacheService() {
-    }
-    /**
-     * @param {?} key
-     * @return {?}
-     */
-    LocalStorageCacheService.prototype.get = /**
-     * @param {?} key
-     * @return {?}
-     */
-    function (key) {
-        return JSON.parse(localStorage.getItem(key) || 'null') || null;
-    };
-    /**
-     * @param {?} key
-     * @param {?} value
-     * @return {?}
-     */
-    LocalStorageCacheService.prototype.set = /**
-     * @param {?} key
-     * @param {?} value
-     * @return {?}
-     */
-    function (key, value) {
-        localStorage.setItem(key, JSON.stringify(value));
-        return true;
-    };
-    /**
-     * @param {?} key
-     * @return {?}
-     */
-    LocalStorageCacheService.prototype.remove = /**
-     * @param {?} key
-     * @return {?}
-     */
-    function (key) {
-        localStorage.removeItem(key);
-    };
-    return LocalStorageCacheService;
-}());
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 var CacheService = /** @class */ (function () {
     function CacheService(options, store, http) {
@@ -113,7 +54,7 @@ var CacheService = /** @class */ (function () {
         this.memory = new Map();
         this.notifyBuffer = new Map();
         this.meta = new Set();
-        this.freqTick = 3000;
+        this.freq_tick = 3000;
         this.loadMeta();
         this.startExpireNotify();
     }
@@ -139,15 +80,11 @@ var CacheService = /** @class */ (function () {
         }
         return path.reduce(function (o, k) { return o[k]; }, obj) || defaultValue;
     };
-    // #region meta
-    // #region meta
     /**
      * @param {?} key
      * @return {?}
      */
-    CacheService.prototype.pushMeta = 
-    // #region meta
-    /**
+    CacheService.prototype.pushMeta = /**
      * @param {?} key
      * @return {?}
      */
@@ -182,7 +119,7 @@ var CacheService = /** @class */ (function () {
         /** @type {?} */
         var ret = this.store.get(this.options.meta_key);
         if (ret && ret.v) {
-            ((/** @type {?} */ (ret.v))).forEach(function (key) { return _this.meta.add(key); });
+            (/** @type {?} */ (ret.v)).forEach(function (key) { return _this.meta.add(key); });
         }
     };
     /**
@@ -226,7 +163,6 @@ var CacheService = /** @class */ (function () {
     function (key, data, options) {
         var _this = this;
         if (options === void 0) { options = {}; }
-        // expire
         /** @type {?} */
         var e = 0;
         if (options.expire) {
@@ -285,9 +221,9 @@ var CacheService = /** @class */ (function () {
             if (isPromise) {
                 return this.http
                     .get(key)
-                    .pipe(
-                // tslint:disable-next-line:no-any
-                map(function (ret) { return _this._deepGet(ret, (/** @type {?} */ (_this.options.reName)), null); }), tap(function (v) { return _this.set(key, v); }));
+                    .pipe(map(function (ret) {
+                    return _this._deepGet(ret, /** @type {?} */ (_this.options.reName), null);
+                }), tap(function (v) { return _this.set(key, v); }));
             }
             return null;
         }
@@ -330,27 +266,22 @@ var CacheService = /** @class */ (function () {
         var ret = this.getNone(key);
         if (ret === null) {
             if (!(data instanceof Observable)) {
-                this.set(key, data, (/** @type {?} */ (options)));
+                this.set(key, data, /** @type {?} */ (options));
                 return data;
             }
-            return this.set(key, (/** @type {?} */ (data)), (/** @type {?} */ (options)));
+            return this.set(key, /** @type {?} */ (data), /** @type {?} */ (options));
         }
         return of(ret);
     };
     // #endregion
     // #region has
     /** 是否缓存 `key` */
-    // #endregion
-    // #region has
     /**
      * 是否缓存 `key`
      * @param {?} key
      * @return {?}
      */
-    CacheService.prototype.has = 
-    // #endregion
-    // #region has
-    /**
+    CacheService.prototype.has = /**
      * 是否缓存 `key`
      * @param {?} key
      * @return {?}
@@ -358,19 +289,12 @@ var CacheService = /** @class */ (function () {
     function (key) {
         return this.memory.has(key) || this.meta.has(key);
     };
-    // #endregion
-    // #region remove
-    // #endregion
-    // #region remove
     /**
      * @param {?} key
      * @param {?} needNotify
      * @return {?}
      */
-    CacheService.prototype._remove = 
-    // #endregion
-    // #region remove
-    /**
+    CacheService.prototype._remove = /**
      * @param {?} key
      * @param {?} needNotify
      * @return {?}
@@ -420,16 +344,13 @@ var CacheService = /** @class */ (function () {
         /**
          * 设置监听频率，单位：毫秒且最低 `20ms`，默认：`3000ms`
          */
-        set: 
-        // #endregion
-        // #region notify
-        /**
+        set: /**
          * 设置监听频率，单位：毫秒且最低 `20ms`，默认：`3000ms`
          * @param {?} value
          * @return {?}
          */
         function (value) {
-            this.freqTick = Math.max(20, value);
+            this.freq_tick = Math.max(20, value);
             this.abortExpireNotify();
             this.startExpireNotify();
         },
@@ -454,10 +375,10 @@ var CacheService = /** @class */ (function () {
      */
     function () {
         var _this = this;
-        this.freqTime = setTimeout(function () {
+        this.freq_time = setTimeout(function () {
             _this.checkExpireNotify();
             _this.runExpireNotify();
-        }, this.freqTick);
+        }, this.freq_tick);
     };
     /**
      * @return {?}
@@ -485,7 +406,7 @@ var CacheService = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        clearTimeout(this.freqTime);
+        clearTimeout(this.freq_time);
     };
     /**
      * @param {?} key
@@ -579,13 +500,10 @@ var CacheService = /** @class */ (function () {
         this.notifyBuffer.clear();
     };
     // #endregion
-    // #endregion
     /**
      * @return {?}
      */
-    CacheService.prototype.ngOnDestroy = 
-    // #endregion
-    /**
+    CacheService.prototype.ngOnDestroy = /**
      * @return {?}
      */
     function () {
@@ -594,7 +512,7 @@ var CacheService = /** @class */ (function () {
         this.clearNotify();
     };
     CacheService.decorators = [
-        { type: Injectable, args: [{ providedIn: 'root' },] }
+        { type: Injectable }
     ];
     /** @nocollapse */
     CacheService.ctorParameters = function () { return [
@@ -602,17 +520,78 @@ var CacheService = /** @class */ (function () {
         { type: undefined, decorators: [{ type: Inject, args: [DC_STORE_STORAGE_TOKEN,] }] },
         { type: HttpClient }
     ]; };
-    /** @nocollapse */ CacheService.ngInjectableDef = defineInjectable({ factory: function CacheService_Factory() { return new CacheService(inject(DelonCacheConfig), inject(DC_STORE_STORAGE_TOKEN), inject(HttpClient)); }, token: CacheService, providedIn: "root" });
     return CacheService;
 }());
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ */
+var LocalStorageCacheService = /** @class */ (function () {
+    function LocalStorageCacheService() {
+    }
+    /**
+     * @param {?} key
+     * @return {?}
+     */
+    LocalStorageCacheService.prototype.get = /**
+     * @param {?} key
+     * @return {?}
+     */
+    function (key) {
+        return JSON.parse(localStorage.getItem(key) || 'null') || null;
+    };
+    /**
+     * @param {?} key
+     * @param {?} value
+     * @return {?}
+     */
+    LocalStorageCacheService.prototype.set = /**
+     * @param {?} key
+     * @param {?} value
+     * @return {?}
+     */
+    function (key, value) {
+        localStorage.setItem(key, JSON.stringify(value));
+        return true;
+    };
+    /**
+     * @param {?} key
+     * @return {?}
+     */
+    LocalStorageCacheService.prototype.remove = /**
+     * @param {?} key
+     * @return {?}
+     */
+    function (key) {
+        localStorage.removeItem(key);
+    };
+    return LocalStorageCacheService;
+}());
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 var DelonCacheModule = /** @class */ (function () {
     function DelonCacheModule() {
     }
+    /**
+     * @return {?}
+     */
+    DelonCacheModule.forRoot = /**
+     * @return {?}
+     */
+    function () {
+        return {
+            ngModule: DelonCacheModule,
+            providers: [
+                DelonCacheConfig,
+                CacheService,
+                { provide: DC_STORE_STORAGE_TOKEN, useClass: LocalStorageCacheService },
+            ],
+        };
+    };
     DelonCacheModule.decorators = [
         { type: NgModule, args: [{},] }
     ];
@@ -621,14 +600,14 @@ var DelonCacheModule = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 
-export { CacheService, DelonCacheConfig, DelonCacheModule, DC_STORE_STORAGE_TOKEN as ɵa, DC_STORE_STORAGE_TOKEN_FACTORY as ɵb, LocalStorageCacheService as ɵc };
+export { DC_STORE_STORAGE_TOKEN, CacheService, DelonCacheConfig, DelonCacheModule, LocalStorageCacheService as ɵa };
 
 //# sourceMappingURL=cache.js.map

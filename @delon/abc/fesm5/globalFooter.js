@@ -1,18 +1,13 @@
 import { WINDOW } from '@delon/theme';
 import { __decorate, __metadata, __spread } from 'tslib';
+import { Component, Input, ViewChild, ContentChildren, ChangeDetectionStrategy, Inject, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Component, Input, ViewChild, ChangeDetectionStrategy, ContentChildren, Inject, NgModule } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { InputBoolean, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
- */
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 var GlobalFooterItemComponent = /** @class */ (function () {
     function GlobalFooterItemComponent() {
@@ -37,7 +32,7 @@ var GlobalFooterItemComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 var GlobalFooterComponent = /** @class */ (function () {
     function GlobalFooterComponent(router, win) {
@@ -73,6 +68,7 @@ var GlobalFooterComponent = /** @class */ (function () {
                     selector: 'global-footer',
                     template: "<div *ngIf=\"links.length > 0 || items.length > 0\" class=\"global-footer__links\">\n  <a *ngFor=\"let i of links\" class=\"global-footer__links-item\" (click)=\"to(i)\" [innerHTML]=\"i.title\"></a>\n  <a *ngFor=\"let i of items\" class=\"global-footer__links-item\" (click)=\"to(i)\">\n    <ng-container *ngTemplateOutlet=\"i.host\"></ng-container>\n  </a>\n</div>\n<div class=\"global-footer__copyright\">\n  <ng-content></ng-content>\n</div>\n",
                     host: { '[class.global-footer]': 'true' },
+                    preserveWhitespaces: false,
                     changeDetection: ChangeDetectionStrategy.OnPush
                 }] }
     ];
@@ -90,13 +86,22 @@ var GlobalFooterComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 /** @type {?} */
 var COMPONENTS = [GlobalFooterComponent, GlobalFooterItemComponent];
 var GlobalFooterModule = /** @class */ (function () {
     function GlobalFooterModule() {
     }
+    /**
+     * @return {?}
+     */
+    GlobalFooterModule.forRoot = /**
+     * @return {?}
+     */
+    function () {
+        return { ngModule: GlobalFooterModule, providers: [] };
+    };
     GlobalFooterModule.decorators = [
         { type: NgModule, args: [{
                     imports: [CommonModule, RouterModule, DelonUtilModule],
@@ -109,12 +114,12 @@ var GlobalFooterModule = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 
 export { GlobalFooterComponent, GlobalFooterItemComponent, GlobalFooterModule };

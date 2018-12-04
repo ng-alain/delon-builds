@@ -1,18 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { saveAs } from 'file-saver';
-import { __assign, __spread } from 'tslib';
+import { __spread } from 'tslib';
+import { Injectable, Directive, HostListener, Input, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Injectable, Directive, HostListener, Input, defineInjectable, inject, NgModule } from '@angular/core';
 import { LazyService, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
- */
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 var XlsxConfig = /** @class */ (function () {
     function XlsxConfig() {
@@ -27,16 +22,12 @@ var XlsxConfig = /** @class */ (function () {
          */
         this.modules = [];
     }
-    XlsxConfig.decorators = [
-        { type: Injectable, args: [{ providedIn: 'root' },] }
-    ];
-    /** @nocollapse */ XlsxConfig.ngInjectableDef = defineInjectable({ factory: function XlsxConfig_Factory() { return new XlsxConfig(); }, token: XlsxConfig, providedIn: "root" });
     return XlsxConfig;
 }());
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 var XlsxService = /** @class */ (function () {
     function XlsxService(cog, http, lazy) {
@@ -105,7 +96,6 @@ var XlsxService = /** @class */ (function () {
                     });
                     return;
                 }
-                // from file
                 /** @type {?} */
                 var reader = new FileReader();
                 reader.onload = function (e) {
@@ -133,7 +123,7 @@ var XlsxService = /** @class */ (function () {
             /** @type {?} */
             var wb = XLSX.utils.book_new();
             if (Array.isArray(options.sheets)) {
-                ((/** @type {?} */ (options.sheets))).forEach(function (value, index) {
+                (/** @type {?} */ (options.sheets)).forEach(function (value, index) {
                     /** @type {?} */
                     var ws = XLSX.utils.aoa_to_sheet(value.data);
                     XLSX.utils.book_append_sheet(wb, ws, value.name || "Sheet" + (index + 1));
@@ -146,12 +136,16 @@ var XlsxService = /** @class */ (function () {
             if (options.callback)
                 options.callback(wb);
             /** @type {?} */
-            var wbout = XLSX.write(wb, __assign({ bookType: 'xlsx', bookSST: false, type: 'array' }, options.opts));
+            var wbout = XLSX.write(wb, Object.assign({
+                bookType: 'xlsx',
+                bookSST: false,
+                type: 'array',
+            }, options.opts));
             saveAs(new Blob([wbout], { type: 'application/octet-stream' }), options.filename || 'export.xlsx');
         });
     };
     XlsxService.decorators = [
-        { type: Injectable, args: [{ providedIn: 'root' },] }
+        { type: Injectable }
     ];
     /** @nocollapse */
     XlsxService.ctorParameters = function () { return [
@@ -159,13 +153,12 @@ var XlsxService = /** @class */ (function () {
         { type: HttpClient },
         { type: LazyService }
     ]; };
-    /** @nocollapse */ XlsxService.ngInjectableDef = defineInjectable({ factory: function XlsxService_Factory() { return new XlsxService(inject(XlsxConfig), inject(HttpClient), inject(LazyService)); }, token: XlsxService, providedIn: "root" });
     return XlsxService;
 }());
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 var XlsxDirective = /** @class */ (function () {
     function XlsxDirective(srv) {
@@ -196,13 +189,25 @@ var XlsxDirective = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 /** @type {?} */
 var COMPONENTS = [XlsxDirective];
 var XlsxModule = /** @class */ (function () {
     function XlsxModule() {
     }
+    /**
+     * @return {?}
+     */
+    XlsxModule.forRoot = /**
+     * @return {?}
+     */
+    function () {
+        return {
+            ngModule: XlsxModule,
+            providers: [XlsxService, XlsxConfig],
+        };
+    };
     XlsxModule.decorators = [
         { type: NgModule, args: [{
                     imports: [CommonModule, DelonUtilModule],
@@ -215,12 +220,12 @@ var XlsxModule = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 
 export { XlsxConfig, XlsxService, XlsxDirective, XlsxModule };

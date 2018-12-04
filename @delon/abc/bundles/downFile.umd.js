@@ -4,14 +4,14 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common/http'), require('file-saver'), require('@angular/common'), require('@angular/core'), require('@delon/theme')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/down-file', ['exports', '@angular/common/http', 'file-saver', '@angular/common', '@angular/core', '@delon/theme'], factory) :
-    (factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['down-file'] = {}),global.ng.common.http,global.saveAs,global.ng.common,global.ng.core,global.delon.theme));
-}(this, (function (exports,http,fileSaver,common,core,theme) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common/http'), require('file-saver'), require('@angular/core'), require('@angular/common'), require('@delon/theme')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/down-file', ['exports', '@angular/common/http', 'file-saver', '@angular/core', '@angular/common', '@delon/theme'], factory) :
+    (factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['down-file'] = {}),global.ng.common.http,global.saveAs,global.ng.core,global.ng.common,global.delon.theme));
+}(this, (function (exports,http,fileSaver,core,common,theme) { 'use strict';
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
     /**
      * 文件下载
@@ -47,7 +47,6 @@
          * @return {?}
          */
             function (data) {
-                // tslint:disable-next-line:no-any
                 /** @type {?} */
                 var arr = (data || '')
                     .split(';')
@@ -64,7 +63,6 @@
                         value = value.substr(utfId.length);
                     return _a = {}, _a[strArr[0].trim()] = value, _a;
                 });
-                // tslint:disable-next-line:no-any
                 return arr.reduce(function (o, item) { return item; }, {});
             };
         /**
@@ -76,8 +74,7 @@
             function () {
                 var _this = this;
                 this.el.nativeElement.disabled = true;
-                // tslint:disable-next-line:no-any
-                (( /** @type {?} */((this._http || this.http))))
+                ( /** @type {?} */((this._http || this.http)))
                     .request(this.httpMethod, this.httpUrl, {
                     params: this.httpData || {},
                     responseType: 'blob',
@@ -173,13 +170,22 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
     /** @type {?} */
     var DIRECTIVES = [DownFileDirective];
     var DownFileModule = /** @class */ (function () {
         function DownFileModule() {
         }
+        /**
+         * @return {?}
+         */
+        DownFileModule.forRoot = /**
+         * @return {?}
+         */
+            function () {
+                return { ngModule: DownFileModule, providers: [] };
+            };
         DownFileModule.decorators = [
             { type: core.NgModule, args: [{
                         imports: [common.CommonModule, theme.AlainThemeModule],
@@ -192,12 +198,12 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
 
     exports.DownFileDirective = DownFileDirective;

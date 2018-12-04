@@ -1,8 +1,7 @@
 import {
-  Rule,
-  SchematicsException,
-  SchematicContext,
   Tree,
+  SchematicContext,
+  SchematicsException,
 } from '@angular-devkit/schematics';
 import { PluginOptions } from './interface';
 
@@ -23,7 +22,7 @@ registry "https://registry.npm.taobao.org"`,
   },
 };
 
-export function pluginNetworkEnv(options: PluginOptions): Rule {
+export function pluginNetworkEnv(options: PluginOptions): any {
   return (host: Tree, context: SchematicContext) => {
     const item = CONFIG[options.packageManager || ''];
     if (item == null) {

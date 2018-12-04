@@ -1,41 +1,40 @@
 import { Observable } from 'rxjs';
-import { SFValue } from './interface';
 import { FormProperty, PropertyGroup } from './model/form.property';
 export declare const ERRORSDEFAULT: {
     'false schema': string;
     '$ref': string;
-    'additionalItems': string;
-    'additionalProperties': string;
-    'anyOf': string;
-    'dependencies': string;
-    'enum': string;
-    'format': string;
-    'type': string;
-    'required': string;
-    'maxLength': string;
-    'minLength': string;
-    'minimum': string;
-    'formatMinimum': string;
-    'maximum': string;
-    'formatMaximum': string;
-    'maxItems': string;
-    'minItems': string;
-    'maxProperties': string;
-    'minProperties': string;
-    'multipleOf': string;
-    'not': string;
-    'oneOf': string;
-    'pattern': string;
-    'uniqueItems': string;
-    'custom': string;
-    'propertyNames': string;
-    'patternRequired': string;
-    'switch': string;
-    'const': string;
-    'contains': string;
-    'formatExclusiveMaximum': string;
-    'formatExclusiveMinimum': string;
-    'if': string;
+    additionalItems: string;
+    additionalProperties: string;
+    anyOf: string;
+    dependencies: string;
+    enum: string;
+    format: string;
+    type: string;
+    required: string;
+    maxLength: string;
+    minLength: string;
+    minimum: string;
+    formatMinimum: string;
+    maximum: string;
+    formatMaximum: string;
+    maxItems: string;
+    minItems: string;
+    maxProperties: string;
+    minProperties: string;
+    multipleOf: string;
+    not: string;
+    oneOf: string;
+    pattern: string;
+    uniqueItems: string;
+    custom: string;
+    propertyNames: string;
+    patternRequired: string;
+    switch: string;
+    const: string;
+    contains: string;
+    formatExclusiveMaximum: string;
+    formatExclusiveMinimum: string;
+    if: string;
 };
 export interface ErrorData {
     keyword: string;
@@ -76,5 +75,5 @@ export interface ErrorSchema {
     /**
      * 自定义校验
      */
-    validator?(value: SFValue, formProperty: FormProperty, form: PropertyGroup): ErrorData[] | Observable<ErrorData[]>;
+    validator?: (value: any, formProperty: FormProperty, form: PropertyGroup) => ErrorData[] | Observable<ErrorData[]>;
 }

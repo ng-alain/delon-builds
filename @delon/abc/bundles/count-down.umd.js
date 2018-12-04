@@ -4,17 +4,17 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('date-fns/add_seconds'), require('date-fns/format'), require('@angular/common'), require('@angular/core'), require('ngx-countdown')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/count-down', ['exports', 'date-fns/add_seconds', 'date-fns/format', '@angular/common', '@angular/core', 'ngx-countdown'], factory) :
-    (factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['count-down'] = {}),global.addSeconds,global.format,global.ng.common,global.ng.core,global.ngxCountDown));
-}(this, (function (exports,addSeconds,format,common,core,ngxCountdown) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('date-fns/format'), require('date-fns/add_seconds'), require('@angular/core'), require('@angular/common'), require('ngx-countdown')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/count-down', ['exports', 'date-fns/format', 'date-fns/add_seconds', '@angular/core', '@angular/common', 'ngx-countdown'], factory) :
+    (factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['count-down'] = {}),global.format,global.addSeconds,global.ng.core,global.ng.common,global.ngxCountDown));
+}(this, (function (exports,format,addSeconds,core,common,ngxCountdown) { 'use strict';
 
-    addSeconds = addSeconds && addSeconds.hasOwnProperty('default') ? addSeconds['default'] : addSeconds;
     format = format && format.hasOwnProperty('default') ? format['default'] : format;
+    addSeconds = addSeconds && addSeconds.hasOwnProperty('default') ? addSeconds['default'] : addSeconds;
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
     var CountDownComponent = /** @class */ (function () {
         function CountDownComponent() {
@@ -73,7 +73,8 @@
         CountDownComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'count-down',
-                        template: "\n    <countdown *ngIf=\"config\" [config]=\"config\"\n      (start)=\"_start()\"\n      (finished)=\"_finished()\"\n      (notify)=\"_notify($event)\"></countdown>\n  "
+                        template: "\n    <countdown *ngIf=\"config\" [config]=\"config\"\n      (start)=\"_start()\"\n      (finished)=\"_finished()\"\n      (notify)=\"_notify($event)\"></countdown>\n  ",
+                        preserveWhitespaces: false
                     }] }
         ];
         CountDownComponent.propDecorators = {
@@ -132,13 +133,22 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
     /** @type {?} */
     var COMPONENTS = [CountDownComponent];
     var CountDownModule = /** @class */ (function () {
         function CountDownModule() {
         }
+        /**
+         * @return {?}
+         */
+        CountDownModule.forRoot = /**
+         * @return {?}
+         */
+            function () {
+                return { ngModule: CountDownModule, providers: [] };
+            };
         CountDownModule.decorators = [
             { type: core.NgModule, args: [{
                         imports: [common.CommonModule, ngxCountdown.CountdownModule],
@@ -151,12 +161,12 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
      */
 
     exports.CountDownComponent = CountDownComponent;
