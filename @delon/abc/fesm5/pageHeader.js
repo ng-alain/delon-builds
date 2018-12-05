@@ -4,7 +4,7 @@ import { ReuseTabService } from '@delon/abc/reuse-tab';
 import { ALAIN_I18N_TOKEN, MenuService, SettingsService, TitleService } from '@delon/theme';
 import { __spread, __decorate, __metadata } from 'tslib';
 import { CommonModule } from '@angular/common';
-import { Injectable, defineInjectable, TemplateRef, Component, ChangeDetectionStrategy, Renderer2, Optional, Inject, ChangeDetectorRef, ViewChild, Input, NgModule } from '@angular/core';
+import { Injectable, defineInjectable, NgModule, TemplateRef, Component, ChangeDetectionStrategy, Renderer2, Optional, Inject, ChangeDetectorRef, ViewChild, Input } from '@angular/core';
 import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { isEmpty, InputBoolean, InputNumber, DelonUtilModule } from '@delon/util';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
