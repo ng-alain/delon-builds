@@ -1,6 +1,27 @@
+import { __decorate, __metadata } from 'tslib';
+import { InputNumber } from '@delon/util';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, NgModule } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy, ChangeDetectorRef, ContentChildren, NgModule } from '@angular/core';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ */
+class AvatarListItemComponent {
+}
+AvatarListItemComponent.decorators = [
+    { type: Component, args: [{
+                selector: 'avatar-list-item, [avatar-list-item]',
+                template: `<ng-content></ng-content>`
+            }] }
+];
+AvatarListItemComponent.propDecorators = {
+    src: [{ type: Input }],
+    text: [{ type: Input }],
+    icon: [{ type: Input }],
+    tips: [{ type: Input }]
+};
 
 /**
  * @fileoverview added by tsickle
@@ -12,32 +33,65 @@ class AvatarListComponent {
      */
     constructor(cdr) {
         this.cdr = cdr;
-        this._size = '';
-        this._avatarSize = '';
+        this.inited = false;
+        this.items = [];
+        this.exceedCount = 0;
+        this.cls = '';
+        this.avatarSize = '';
+        this.maxLength = 0;
     }
     /**
      * @param {?} value
      * @return {?}
      */
     set size(value) {
-        this._size = value === 'default' ? '' : value;
+        this.cls = 'avatar-list__item' + (value === 'default' ? '' : ` avatar-list__${value}`);
         switch (value) {
             case 'large':
             case 'small':
             case 'default':
-                this._avatarSize = value;
+                this.avatarSize = value;
                 break;
             default:
-                this._avatarSize = 'small';
+                this.avatarSize = 'small';
                 break;
         }
-        this.cdr.markForCheck();
+    }
+    /**
+     * @return {?}
+     */
+    gen() {
+        const { _items } = this;
+        /** @type {?} */
+        const maxLength = this.maxLength > 0 ? this.maxLength : _items.length;
+        /** @type {?} */
+        const numOfChildren = _items.length;
+        /** @type {?} */
+        const numToShow = maxLength > 0 && maxLength >= numOfChildren ? numOfChildren : maxLength;
+        this.items = _items.toArray().slice(0, numToShow);
+        this.exceedCount = numToShow < numOfChildren ? numOfChildren - maxLength : 0;
+        this.cdr.detectChanges();
+    }
+    /**
+     * @return {?}
+     */
+    ngAfterViewInit() {
+        this.gen();
+        this.inited = true;
+    }
+    /**
+     * @return {?}
+     */
+    ngOnChanges() {
+        if (this.inited) {
+            this.gen();
+        }
     }
 }
 AvatarListComponent.decorators = [
     { type: Component, args: [{
                 selector: 'avatar-list',
-                template: "<div class=\"avatar-list__wrap{{_size ? ' avatar-list__' + _size : ''}}\">\n  <ng-content></ng-content>\n</div>\n",
+                template: "<ul class=\"avatar-list__wrap\">\n  <li *ngFor=\"let i of items\" [class]=\"cls\">\n    <nz-tooltip *ngIf=\"i.tips\" [nzTitle]=\"i.tips\">\n      <nz-avatar nz-tooltip [nzSrc]=\"i.src\" [nzText]=\"i.text\" [nzIcon]=\"i.icon\" [nzSize]=\"avatarSize\"></nz-avatar>\n    </nz-tooltip>\n    <nz-avatar *ngIf=\"!i.tips\" [nzSrc]=\"i.src\" [nzText]=\"i.text\" [nzIcon]=\"i.icon\" [nzSize]=\"avatarSize\"></nz-avatar>\n  </li>\n  <li *ngIf=\"exceedCount > 0\" [class]=\"cls\">\n    <nz-avatar [nzSize]=\"avatarSize\" style=\"cursor: auto\" [ngStyle]=\"excessItemsStyle\" [nzText]=\"'+' + exceedCount\"></nz-avatar>\n  </li>\n</ul>",
                 host: { '[class.avatar-list]': 'true' },
                 changeDetection: ChangeDetectionStrategy.OnPush
             }] }
@@ -47,46 +101,15 @@ AvatarListComponent.ctorParameters = () => [
     { type: ChangeDetectorRef }
 ];
 AvatarListComponent.propDecorators = {
-    size: [{ type: Input }]
+    _items: [{ type: ContentChildren, args: [AvatarListItemComponent, { descendants: false },] }],
+    size: [{ type: Input }],
+    maxLength: [{ type: Input }],
+    excessItemsStyle: [{ type: Input }]
 };
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
- */
-class AvatarListItemComponent {
-    /**
-     * @param {?} p
-     */
-    constructor(p) {
-        this.p = p;
-    }
-    /**
-     * @return {?}
-     */
-    get size() {
-        return this.p._avatarSize;
-    }
-}
-AvatarListItemComponent.decorators = [
-    { type: Component, args: [{
-                selector: 'avatar-list-item, [avatar-list-item]',
-                template: "<nz-tooltip *ngIf=\"tips\" [nzTitle]=\"tips\">\n  <nz-avatar nz-tooltip [nzSrc]=\"src\" [nzText]=\"text\" [nzIcon]=\"icon\" [nzSize]=\"size\"></nz-avatar>\n</nz-tooltip>\n<nz-avatar *ngIf=\"!tips\" [nzSrc]=\"src\" [nzText]=\"text\" [nzIcon]=\"icon\" [nzSize]=\"size\"></nz-avatar>\n<ng-content></ng-content>\n",
-                host: {
-                    '[class.avatar-list__item]': 'true',
-                }
-            }] }
-];
-/** @nocollapse */
-AvatarListItemComponent.ctorParameters = () => [
-    { type: AvatarListComponent }
-];
-AvatarListItemComponent.propDecorators = {
-    src: [{ type: Input }],
-    text: [{ type: Input }],
-    icon: [{ type: Input }],
-    tips: [{ type: Input }]
-};
+__decorate([
+    InputNumber(),
+    __metadata("design:type", Object)
+], AvatarListComponent.prototype, "maxLength", void 0);
 
 /**
  * @fileoverview added by tsickle

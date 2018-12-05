@@ -34,7 +34,7 @@ class G2CustomComponent {
      * @return {?}
      */
     installResizeEvent() {
-        if (this.resizeTime <= 0 || !this.resize$)
+        if (this.resizeTime <= 0 || this.resize$)
             return;
         this.resize$ = fromEvent(window, 'resize')
             .pipe(debounceTime(Math.min(200, this.resizeTime)))
@@ -43,8 +43,8 @@ class G2CustomComponent {
     /**
      * @return {?}
      */
-    ngOnInit() {
-        setTimeout(() => this.renderChart());
+    ngAfterViewInit() {
+        this.renderChart();
     }
     /**
      * @return {?}

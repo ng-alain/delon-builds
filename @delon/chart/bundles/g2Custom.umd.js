@@ -100,7 +100,7 @@
          */
             function () {
                 var _this = this;
-                if (this.resizeTime <= 0 || !this.resize$)
+                if (this.resizeTime <= 0 || this.resize$)
                     return;
                 this.resize$ = rxjs.fromEvent(window, 'resize')
                     .pipe(operators.debounceTime(Math.min(200, this.resizeTime)))
@@ -109,12 +109,11 @@
         /**
          * @return {?}
          */
-        G2CustomComponent.prototype.ngOnInit = /**
+        G2CustomComponent.prototype.ngAfterViewInit = /**
          * @return {?}
          */
             function () {
-                var _this = this;
-                setTimeout(function () { return _this.renderChart(); });
+                this.renderChart();
             };
         /**
          * @return {?}

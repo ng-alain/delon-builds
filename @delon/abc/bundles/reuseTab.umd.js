@@ -1330,10 +1330,10 @@
      */
     var ReuseTabComponent = /** @class */ (function () {
         // #endregion
-        function ReuseTabComponent(el, srv, cd, router$$1, route, render, i18nSrv) {
+        function ReuseTabComponent(el, srv, cdr, router$$1, route, render, i18nSrv) {
             var _this = this;
             this.srv = srv;
-            this.cd = cd;
+            this.cdr = cdr;
             this.router = router$$1;
             this.route = route;
             this.render = render;
@@ -1437,7 +1437,7 @@
                 }
                 this.refStatus(false);
                 this.visibility();
-                this.cd.detectChanges();
+                this.cdr.detectChanges();
             };
         /**
          * @return {?}
@@ -1496,7 +1496,7 @@
                     this.list.forEach(function (i, idx) { return (i.active = _this.pos === idx); });
                 }
                 if (dc)
-                    this.cd.detectChanges();
+                    this.cdr.detectChanges();
             };
         /**
          * @param {?} e
@@ -1547,7 +1547,7 @@
                 var item = this.list[idx];
                 this.srv.close(item.url, includeNonCloseable);
                 this.close.emit(item);
-                this.cd.detectChanges();
+                this.cdr.detectChanges();
                 return false;
             };
         // #endregion
@@ -1579,7 +1579,7 @@
                 if (changes.mode)
                     this.srv.mode = this.mode;
                 this.srv.debug = this.debug;
-                this.cd.detectChanges();
+                this.cdr.detectChanges();
             };
         /**
          * @return {?}

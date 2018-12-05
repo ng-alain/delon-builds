@@ -1859,12 +1859,12 @@
         return new FormPropertyFactory(schemaValidatorFactory, options);
     }
     var SFComponent = /** @class */ (function () {
-        function SFComponent(formPropertyFactory, terminator, options, cd, i18n) {
+        function SFComponent(formPropertyFactory, terminator, options, cdr, i18n) {
             var _this = this;
             this.formPropertyFactory = formPropertyFactory;
             this.terminator = terminator;
             this.options = options;
-            this.cd = cd;
+            this.cdr = cdr;
             this.i18n = i18n;
             // tslint:disable-next-line:no-any
             this.locale = {};
@@ -1917,7 +1917,7 @@
                 _this.locale = _this.i18n.getData('sf');
                 if (_this._inited) {
                     _this.coverButtonProperty();
-                    _this.cd.detectChanges();
+                    _this.cdr.detectChanges();
                 }
             });
         }
@@ -2215,7 +2215,7 @@
                 this._valid = !(errors && errors.length);
                 if (!this._valid)
                     this.formError.emit(errors);
-                this.cd.detectChanges();
+                this.cdr.detectChanges();
             };
         /**
          * 刷新 Schema，一般需要动态修改 Schema 某个值时可以方便调用
@@ -2258,7 +2258,7 @@
                 this.rootProperty.errorsChanges.subscribe(function (errors) {
                     _this._valid = !(errors && errors.length);
                     _this.formError.emit(errors);
-                    _this.cd.detectChanges();
+                    _this.cdr.detectChanges();
                 });
                 this.reset();
             };
@@ -2282,7 +2282,7 @@
                     emit = false;
                 }
                 this.rootProperty.resetValue(this.formData, false);
-                Promise.resolve().then(function () { return _this.cd.detectChanges(); });
+                Promise.resolve().then(function () { return _this.cdr.detectChanges(); });
                 if (emit) {
                     this.formReset.emit(this.value);
                 }

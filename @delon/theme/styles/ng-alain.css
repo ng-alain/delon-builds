@@ -23977,16 +23977,17 @@ body {
 }
 .avatar-list__item .ant-avatar {
   border: 1px solid #fff;
+  cursor: pointer;
 }
-.avatar-list__large .avatar-list {
+.avatar-list__large {
   width: 40px;
   height: 40px;
 }
-.avatar-list__small .avatar-list {
+.avatar-list__small {
   width: 24px;
   height: 24px;
 }
-.avatar-list__mini .avatar-list {
+.avatar-list__mini {
   width: 20px;
   height: 20px;
 }
@@ -23994,6 +23995,10 @@ body {
   width: 20px;
   height: 20px;
   line-height: 20px;
+}
+.avatar-list__mini .ant-avatar .ant-avatar-string {
+  font-size: 12px;
+  line-height: 18px;
 }
 .ellipsis {
   overflow: hidden;

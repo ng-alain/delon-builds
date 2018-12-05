@@ -10,11 +10,11 @@ import { NgZorroAntdModule } from 'ng-zorro-antd';
  */
 class G2RadarComponent {
     /**
-     * @param {?} cd
+     * @param {?} cdr
      * @param {?} zone
      */
-    constructor(cd, zone) {
-        this.cd = cd;
+    constructor(cdr, zone) {
+        this.cdr = cdr;
         this.zone = zone;
         // #region fields
         this._title = '';
@@ -147,7 +147,7 @@ class G2RadarComponent {
                     };
                     return result;
                 });
-                this.cd.detectChanges();
+                this.cdr.detectChanges();
             });
         }
     }

@@ -315,11 +315,11 @@
     /** @type {?} */
     var nextUniqueId = 0;
     var SEComponent = /** @class */ (function () {
-        function SEComponent(parent, rep, el, ren, cd) {
+        function SEComponent(parent, rep, el, ren, cdr) {
             this.parent = parent;
             this.rep = rep;
             this.ren = ren;
-            this.cd = cd;
+            this.cdr = cdr;
             this.clsMap = [];
             this.inited = false;
             this.onceFlag = false;
@@ -396,7 +396,7 @@
          * @return {THIS}
          */
             function () {
-                var _a = ( /** @type {?} */(this)), el = _a.el, ren = _a.ren, clsMap = _a.clsMap, col = _a.col, parent = _a.parent, cd = _a.cd;
+                var _a = ( /** @type {?} */(this)), el = _a.el, ren = _a.ren, clsMap = _a.clsMap, col = _a.col, parent = _a.parent, cdr = _a.cdr;
                 ( /** @type {?} */(this)).labelWidth = parent.labelWidth;
                 clsMap.forEach(function (cls) { return ren.removeClass(el, cls); });
                 clsMap.length = 0;
@@ -409,7 +409,7 @@
                     clsMap.push(prefixCls + "__line");
                 }
                 clsMap.forEach(function (cls) { return ren.addClass(el, cls); });
-                cd.detectChanges();
+                cdr.detectChanges();
                 return ( /** @type {?} */(this));
             };
         /**
@@ -430,7 +430,7 @@
                         return;
                     }
                     _this.invalid = status;
-                    _this.cd.detectChanges();
+                    _this.cdr.detectChanges();
                 });
                 if (this._autoId) {
                     /** @type {?} */

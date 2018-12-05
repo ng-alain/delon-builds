@@ -902,15 +902,15 @@ class ReuseTabComponent {
     /**
      * @param {?} el
      * @param {?} srv
-     * @param {?} cd
+     * @param {?} cdr
      * @param {?} router
      * @param {?} route
      * @param {?} render
      * @param {?} i18nSrv
      */
-    constructor(el, srv, cd, router, route, render, i18nSrv) {
+    constructor(el, srv, cdr, router, route, render, i18nSrv) {
         this.srv = srv;
-        this.cd = cd;
+        this.cdr = cdr;
         this.router = router;
         this.route = route;
         this.render = render;
@@ -1002,7 +1002,7 @@ class ReuseTabComponent {
         }
         this.refStatus(false);
         this.visibility();
-        this.cd.detectChanges();
+        this.cdr.detectChanges();
     }
     /**
      * @return {?}
@@ -1043,7 +1043,7 @@ class ReuseTabComponent {
             this.list.forEach((i, idx) => (i.active = this.pos === idx));
         }
         if (dc)
-            this.cd.detectChanges();
+            this.cdr.detectChanges();
     }
     /**
      * @param {?} e
@@ -1082,7 +1082,7 @@ class ReuseTabComponent {
         const item = this.list[idx];
         this.srv.close(item.url, includeNonCloseable);
         this.close.emit(item);
-        this.cd.detectChanges();
+        this.cdr.detectChanges();
         return false;
     }
     // #endregion
@@ -1104,7 +1104,7 @@ class ReuseTabComponent {
         if (changes.mode)
             this.srv.mode = this.mode;
         this.srv.debug = this.debug;
-        this.cd.detectChanges();
+        this.cdr.detectChanges();
     }
     /**
      * @return {?}

@@ -248,13 +248,13 @@ class SEComponent {
      * @param {?} rep
      * @param {?} el
      * @param {?} ren
-     * @param {?} cd
+     * @param {?} cdr
      */
-    constructor(parent, rep, el, ren, cd) {
+    constructor(parent, rep, el, ren, cdr) {
         this.parent = parent;
         this.rep = rep;
         this.ren = ren;
-        this.cd = cd;
+        this.cdr = cdr;
         this.clsMap = [];
         this.inited = false;
         this.onceFlag = false;
@@ -308,7 +308,7 @@ class SEComponent {
      * @return {THIS}
      */
     setClass() {
-        const { el, ren, clsMap, col, parent, cd } = (/** @type {?} */ (this));
+        const { el, ren, clsMap, col, parent, cdr } = (/** @type {?} */ (this));
         (/** @type {?} */ (this)).labelWidth = parent.labelWidth;
         clsMap.forEach(cls => ren.removeClass(el, cls));
         clsMap.length = 0;
@@ -321,7 +321,7 @@ class SEComponent {
             clsMap.push(`${prefixCls}__line`);
         }
         clsMap.forEach(cls => ren.addClass(el, cls));
-        cd.detectChanges();
+        cdr.detectChanges();
         return (/** @type {?} */ (this));
     }
     /**
@@ -338,7 +338,7 @@ class SEComponent {
                 return;
             }
             this.invalid = status;
-            this.cd.detectChanges();
+            this.cdr.detectChanges();
         });
         if (this._autoId) {
             /** @type {?} */

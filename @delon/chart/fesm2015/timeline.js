@@ -9,11 +9,11 @@ import { InputNumber, DelonUtilModule } from '@delon/util';
  */
 class G2TimelineComponent {
     /**
-     * @param {?} cd
+     * @param {?} cdr
      * @param {?} zone
      */
-    constructor(cd, zone) {
-        this.cd = cd;
+    constructor(cdr, zone) {
+        this.cdr = cdr;
         this.zone = zone;
         // #region fields
         this._title = '';
@@ -37,7 +37,7 @@ class G2TimelineComponent {
         else {
             this._title = value;
         }
-        this.cd.detectChanges();
+        this.cdr.detectChanges();
     }
     /**
      * @return {?}

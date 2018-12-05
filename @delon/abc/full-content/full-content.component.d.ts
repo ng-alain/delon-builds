@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { FullContentService } from './full-content.service';
 export declare class FullContentComponent implements AfterViewInit, OnInit, OnChanges, OnDestroy {
     private el;
-    private cd;
+    private cdr;
     private srv;
     private router;
     private doc;
@@ -18,7 +18,7 @@ export declare class FullContentComponent implements AfterViewInit, OnInit, OnCh
     hideTitle: boolean;
     padding: number;
     readonly fullscreenChange: EventEmitter<boolean>;
-    constructor(el: ElementRef, cd: ChangeDetectorRef, srv: FullContentService, router: Router, doc: any);
+    constructor(el: ElementRef, cdr: ChangeDetectorRef, srv: FullContentService, router: Router, doc: any);
     private updateCls;
     private update;
     private updateHeight;

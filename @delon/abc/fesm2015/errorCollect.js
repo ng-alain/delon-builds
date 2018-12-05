@@ -32,12 +32,12 @@ class ErrorCollectComponent {
     /**
      * @param {?} cog
      * @param {?} el
-     * @param {?} cd
+     * @param {?} cdr
      * @param {?} doc
      */
-    constructor(cog, el, cd, doc) {
+    constructor(cog, el, cdr, doc) {
         this.el = el;
-        this.cd = cd;
+        this.cdr = cdr;
         this.doc = doc;
         this.$time = null;
         this._hiden = true;
@@ -60,7 +60,7 @@ class ErrorCollectComponent {
             return;
         this.count = count;
         this._hiden = count === 0;
-        this.cd.markForCheck();
+        this.cdr.markForCheck();
     }
     /**
      * @return {?}

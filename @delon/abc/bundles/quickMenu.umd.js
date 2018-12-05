@@ -73,8 +73,8 @@
      */
     var QuickMenuComponent = /** @class */ (function () {
         // #endregion
-        function QuickMenuComponent(cd, el, render) {
-            this.cd = cd;
+        function QuickMenuComponent(cdr, el, render) {
+            this.cdr = cdr;
             this.el = el;
             this.render = render;
             // #region fields
@@ -117,7 +117,7 @@
                     "margin-right:-" + (this.show ? 0 : this.width) + "px",
                 ];
                 this.render.setAttribute(this.el.nativeElement, 'style', res.join(';'));
-                this.cd.detectChanges();
+                this.cdr.detectChanges();
             };
         /**
          * @return {?}

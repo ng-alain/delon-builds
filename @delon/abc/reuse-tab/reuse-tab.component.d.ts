@@ -5,7 +5,7 @@ import { ReuseContextCloseEvent, ReuseContextI18n, ReuseItem, ReuseTabMatchMode 
 import { ReuseTabService } from './reuse-tab.service';
 export declare class ReuseTabComponent implements OnInit, OnChanges, OnDestroy {
     private srv;
-    private cd;
+    private cdr;
     private router;
     private route;
     private render;
@@ -25,7 +25,7 @@ export declare class ReuseTabComponent implements OnInit, OnChanges, OnDestroy {
     showCurrent: boolean;
     readonly change: EventEmitter<ReuseItem>;
     readonly close: EventEmitter<ReuseItem>;
-    constructor(el: ElementRef, srv: ReuseTabService, cd: ChangeDetectorRef, router: Router, route: ActivatedRoute, render: Renderer2, i18nSrv: AlainI18NService);
+    constructor(el: ElementRef, srv: ReuseTabService, cdr: ChangeDetectorRef, router: Router, route: ActivatedRoute, render: Renderer2, i18nSrv: AlainI18NService);
     private genTit;
     private genList;
     private visibility;

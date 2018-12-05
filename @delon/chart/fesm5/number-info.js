@@ -9,10 +9,10 @@ import { NgZorroAntdModule } from 'ng-zorro-antd';
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 var NumberInfoComponent = /** @class */ (function () {
-    function NumberInfoComponent(el, renderer, cd) {
+    function NumberInfoComponent(el, renderer, cdr) {
         this.el = el;
         this.renderer = renderer;
-        this.cd = cd;
+        this.cdr = cdr;
         this._title = '';
         this._subTitle = '';
         this._total = '';
@@ -114,7 +114,7 @@ var NumberInfoComponent = /** @class */ (function () {
             },
             _a["number-info__" + this.theme] = true,
             _a), true);
-        this.cd.detectChanges();
+        this.cdr.detectChanges();
     };
     /**
      * @return {?}

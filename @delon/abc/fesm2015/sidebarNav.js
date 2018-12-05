@@ -22,16 +22,16 @@ class SidebarNavComponent {
      * @param {?} router
      * @param {?} locationStrategy
      * @param {?} render
-     * @param {?} cd
+     * @param {?} cdr
      * @param {?} doc
      */
-    constructor(menuSrv, settings, router, locationStrategy, render, cd, doc) {
+    constructor(menuSrv, settings, router, locationStrategy, render, cdr, doc) {
         this.menuSrv = menuSrv;
         this.settings = settings;
         this.router = router;
         this.locationStrategy = locationStrategy;
         this.render = render;
-        this.cd = cd;
+        this.cdr = cdr;
         this.doc = doc;
         this.list = [];
         this.autoCloseUnderPad = true;
@@ -52,7 +52,7 @@ class SidebarNavComponent {
         this.genFloatingContainer();
         this.change$ = this.menuSrv.change.subscribe(res => {
             this.list = res;
-            this.cd.detectChanges();
+            this.cdr.detectChanges();
         });
         this.installUnderPad();
     }
@@ -205,7 +205,7 @@ class SidebarNavComponent {
             pItem = pItem.__parent;
         }
         item._open = !item._open;
-        this.cd.markForCheck();
+        this.cdr.markForCheck();
     }
     /**
      * @return {?}

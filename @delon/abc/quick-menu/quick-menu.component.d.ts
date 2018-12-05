@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, ElementRef, OnChanges, OnInit, Renderer2, TemplateRef } from '@angular/core';
 export declare class QuickMenuComponent implements OnInit, OnChanges {
-    private cd;
+    private cdr;
     private el;
     private render;
     icon: string | TemplateRef<void>;
@@ -8,7 +8,7 @@ export declare class QuickMenuComponent implements OnInit, OnChanges {
     width: number;
     bgColor: string;
     borderColor: string;
-    constructor(cd: ChangeDetectorRef, el: ElementRef, render: Renderer2);
+    constructor(cdr: ChangeDetectorRef, el: ElementRef, render: Renderer2);
     private show;
     _click(): void;
     ctrlStyle: {

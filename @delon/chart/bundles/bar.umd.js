@@ -9,200 +9,6 @@
     (factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.bar = {}),global.rxjs,global.rxjs.operators,global.ng.common,global.ng.core,global.delon.util));
 }(this, (function (exports,rxjs,operators,common,core,util) { 'use strict';
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
-     */
-    var G2BarComponent = /** @class */ (function () {
-        function G2BarComponent(el, cd, zone) {
-            this.el = el;
-            this.cd = cd;
-            this.zone = zone;
-            this.autoHideXLabels = false;
-            this.resize$ = null;
-            // #region fields
-            this._title = '';
-            this.color = 'rgba(24, 144, 255, 0.85)';
-            this._height = 0;
-            this._autoLabel = true;
-        }
-        Object.defineProperty(G2BarComponent.prototype, "title", {
-            set: /**
-             * @param {?} value
-             * @return {?}
-             */ function (value) {
-                if (value instanceof core.TemplateRef) {
-                    this._title = null;
-                    this._titleTpl = value;
-                }
-                else {
-                    this._title = value;
-                }
-                this.cd.detectChanges();
-            },
-            enumerable: true,
-            configurable: true
-        });
-        Object.defineProperty(G2BarComponent.prototype, "height", {
-            get: /**
-             * @return {?}
-             */ function () {
-                return this._height;
-            },
-            set: /**
-             * @param {?} value
-             * @return {?}
-             */ function (value) {
-                this._height = util.toNumber(value);
-            },
-            enumerable: true,
-            configurable: true
-        });
-        Object.defineProperty(G2BarComponent.prototype, "autoLabel", {
-            set: /**
-             * @param {?} value
-             * @return {?}
-             */ function (value) {
-                this._autoLabel = util.toBoolean(value);
-            },
-            enumerable: true,
-            configurable: true
-        });
-        /**
-         * @return {?}
-         */
-        G2BarComponent.prototype.runInstall = /**
-         * @return {?}
-         */
-            function () {
-                var _this = this;
-                this.zone.runOutsideAngular(function () { return setTimeout(function () { return _this.install(); }); });
-            };
-        /**
-         * @return {?}
-         */
-        G2BarComponent.prototype.install = /**
-         * @return {?}
-         */
-            function () {
-                /** @type {?} */
-                var canvasWidth = this.el.nativeElement.clientWidth;
-                /** @type {?} */
-                var minWidth = this.data.length * 30;
-                if (canvasWidth <= minWidth) {
-                    if (!this.autoHideXLabels) {
-                        this.autoHideXLabels = true;
-                    }
-                }
-                else if (this.autoHideXLabels) {
-                    this.autoHideXLabels = false;
-                }
-                if (!this.data || (this.data && this.data.length < 1))
-                    return;
-                this.node.nativeElement.innerHTML = '';
-                /** @type {?} */
-                var chart = new G2.Chart({
-                    container: this.node.nativeElement,
-                    forceFit: true,
-                    height: this._title || this._titleTpl ? this.height - 41 : this.height,
-                    legend: null,
-                    padding: this.padding || 'auto',
-                });
-                chart.axis('x', !this.autoHideXLabels);
-                chart.axis('y', {
-                    title: false,
-                    line: false,
-                    tickLine: false,
-                });
-                chart.source(this.data, {
-                    x: {
-                        type: 'cat',
-                    },
-                    y: {
-                        min: 0,
-                    },
-                });
-                chart.tooltip({
-                    showTitle: false,
-                });
-                chart
-                    .interval()
-                    .position('x*y')
-                    .color(this.color)
-                    .tooltip('x*y', function (x, y) {
-                    return {
-                        name: x,
-                        value: y,
-                    };
-                });
-                chart.render();
-                this.chart = chart;
-            };
-        /**
-         * @return {?}
-         */
-        G2BarComponent.prototype.installResizeEvent = /**
-         * @return {?}
-         */
-            function () {
-                var _this = this;
-                if (!this._autoLabel || this.resize$)
-                    return;
-                this.resize$ = rxjs.fromEvent(window, 'resize')
-                    .pipe(operators.debounceTime(200))
-                    .subscribe(function () { return _this.runInstall(); });
-            };
-        /**
-         * @return {?}
-         */
-        G2BarComponent.prototype.ngOnChanges = /**
-         * @return {?}
-         */
-            function () {
-                this.installResizeEvent();
-                this.runInstall();
-            };
-        /**
-         * @return {?}
-         */
-        G2BarComponent.prototype.ngOnDestroy = /**
-         * @return {?}
-         */
-            function () {
-                if (this.resize$)
-                    this.resize$.unsubscribe();
-                if (this.chart) {
-                    this.chart.destroy();
-                    this.chart = null;
-                }
-            };
-        G2BarComponent.decorators = [
-            { type: core.Component, args: [{
-                        selector: 'g2-bar',
-                        template: "<ng-container *ngIf=\"_title; else _titleTpl\">\n  <h4 style=\"margin-bottom:20px\">{{_title}}</h4>\n</ng-container>\n<div #container></div>\n",
-                        changeDetection: core.ChangeDetectionStrategy.OnPush
-                    }] }
-        ];
-        /** @nocollapse */
-        G2BarComponent.ctorParameters = function () {
-            return [
-                { type: core.ElementRef },
-                { type: core.ChangeDetectorRef },
-                { type: core.NgZone }
-            ];
-        };
-        G2BarComponent.propDecorators = {
-            title: [{ type: core.Input }],
-            color: [{ type: core.Input }],
-            height: [{ type: core.HostBinding, args: ['style.height.px',] }, { type: core.Input }],
-            padding: [{ type: core.Input }],
-            data: [{ type: core.Input }],
-            autoLabel: [{ type: core.Input }],
-            node: [{ type: core.ViewChild, args: ['container',] }]
-        };
-        return G2BarComponent;
-    }());
-
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
     Licensed under the Apache License, Version 2.0 (the "License"); you may not use
@@ -217,6 +23,20 @@
     See the Apache Version 2.0 License for specific language governing permissions
     and limitations under the License.
     ***************************************************************************** */
+    function __decorate(decorators, target, key, desc) {
+        var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+        if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
+            r = Reflect.decorate(decorators, target, key, desc);
+        else
+            for (var i = decorators.length - 1; i >= 0; i--)
+                if (d = decorators[i])
+                    r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+        return c > 3 && r && Object.defineProperty(target, key, r), r;
+    }
+    function __metadata(metadataKey, metadataValue) {
+        if (typeof Reflect === "object" && typeof Reflect.metadata === "function")
+            return Reflect.metadata(metadataKey, metadataValue);
+    }
     function __read(o, n) {
         var m = typeof Symbol === "function" && o[Symbol.iterator];
         if (!m)
@@ -246,6 +66,170 @@
             ar = ar.concat(__read(arguments[i]));
         return ar;
     }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     */
+    /** @type {?} */
+    var TITLE_HEIGHT = 41;
+    var G2BarComponent = /** @class */ (function () {
+        function G2BarComponent() {
+            this.resize$ = null;
+            this.inited = false;
+            this.color = 'rgba(24, 144, 255, 0.85)';
+            this.height = 0;
+            this.autoLabel = true;
+        }
+        /**
+         * @return {?}
+         */
+        G2BarComponent.prototype.install = /**
+         * @return {?}
+         */
+            function () {
+                this.uninstall();
+                /** @type {?} */
+                var container = ( /** @type {?} */(this.node.nativeElement));
+                container.innerHTML = '';
+                if (!this.data || (this.data && this.data.length < 1))
+                    return;
+                /** @type {?} */
+                var chart = this.chart = new G2.Chart({
+                    container: container,
+                    forceFit: true,
+                    height: this.title ? this.height - TITLE_HEIGHT : this.height,
+                    legend: null,
+                    padding: this.padding || 'auto',
+                });
+                this.updatelabel();
+                chart.axis('y', {
+                    title: false,
+                    line: false,
+                    tickLine: false,
+                });
+                chart.source(this.data, {
+                    x: {
+                        type: 'cat',
+                    },
+                    y: {
+                        min: 0,
+                    },
+                });
+                chart.tooltip({
+                    showTitle: false,
+                });
+                chart
+                    .interval()
+                    .position('x*y')
+                    .color(this.color)
+                    .tooltip('x*y', function (x, y) {
+                    return ({
+                        name: x,
+                        value: y,
+                    });
+                });
+                chart.render();
+            };
+        /**
+         * @return {?}
+         */
+        G2BarComponent.prototype.uninstall = /**
+         * @return {?}
+         */
+            function () {
+                if (this.chart) {
+                    this.chart.destroy();
+                }
+                this.chart = null;
+            };
+        /**
+         * @return {?}
+         */
+        G2BarComponent.prototype.updatelabel = /**
+         * @return {?}
+         */
+            function () {
+                /** @type {?} */
+                var canvasWidth = this.node.nativeElement.clientWidth;
+                /** @type {?} */
+                var minWidth = this.data.length * 30;
+                this.chart.axis('x', canvasWidth > minWidth);
+            };
+        /**
+         * @return {?}
+         */
+        G2BarComponent.prototype.installResizeEvent = /**
+         * @return {?}
+         */
+            function () {
+                var _this = this;
+                if (!this.autoLabel || this.resize$)
+                    return;
+                this.resize$ = rxjs.fromEvent(window, 'resize')
+                    .pipe(operators.filter(function () { return _this.chart; }), operators.debounceTime(200))
+                    .subscribe(function () { return _this.updatelabel(); });
+            };
+        /**
+         * @return {?}
+         */
+        G2BarComponent.prototype.ngOnInit = /**
+         * @return {?}
+         */
+            function () {
+                this.installResizeEvent();
+                this.install();
+                this.inited = true;
+            };
+        /**
+         * @return {?}
+         */
+        G2BarComponent.prototype.ngOnChanges = /**
+         * @return {?}
+         */
+            function () {
+                if (this.inited) {
+                    this.installResizeEvent();
+                    this.install();
+                }
+            };
+        /**
+         * @return {?}
+         */
+        G2BarComponent.prototype.ngOnDestroy = /**
+         * @return {?}
+         */
+            function () {
+                if (this.resize$)
+                    this.resize$.unsubscribe();
+                this.uninstall();
+            };
+        G2BarComponent.decorators = [
+            { type: core.Component, args: [{
+                        selector: 'g2-bar',
+                        template: "<ng-container *stringTemplateOutlet=\"title\">\n  <h4 style=\"margin-bottom:20px\">{{title}}</h4>\n</ng-container>\n<div #container></div>",
+                        changeDetection: core.ChangeDetectionStrategy.OnPush
+                    }] }
+        ];
+        G2BarComponent.propDecorators = {
+            title: [{ type: core.Input }],
+            color: [{ type: core.Input }],
+            height: [{ type: core.HostBinding, args: ['style.height.px',] }, { type: core.Input }],
+            padding: [{ type: core.Input }],
+            data: [{ type: core.Input }],
+            autoLabel: [{ type: core.Input }],
+            node: [{ type: core.ViewChild, args: ['container',] }]
+        };
+        __decorate([
+            util.InputNumber(),
+            __metadata("design:type", Object)
+        ], G2BarComponent.prototype, "height", void 0);
+        __decorate([
+            util.InputBoolean(),
+            __metadata("design:type", Object)
+        ], G2BarComponent.prototype, "autoLabel", void 0);
+        return G2BarComponent;
+    }());
 
     /**
      * @fileoverview added by tsickle

@@ -47,13 +47,13 @@
     /** @type {?} */
     var FLOATINGCLS = 'sidebar-nav__floating';
     var SidebarNavComponent = /** @class */ (function () {
-        function SidebarNavComponent(menuSrv, settings, router$$1, locationStrategy, render, cd, doc) {
+        function SidebarNavComponent(menuSrv, settings, router$$1, locationStrategy, render, cdr, doc) {
             this.menuSrv = menuSrv;
             this.settings = settings;
             this.router = router$$1;
             this.locationStrategy = locationStrategy;
             this.render = render;
-            this.cd = cd;
+            this.cdr = cdr;
             this.doc = doc;
             this.list = [];
             this.autoCloseUnderPad = true;
@@ -81,7 +81,7 @@
                 this.genFloatingContainer();
                 this.change$ = this.menuSrv.change.subscribe(function (res) {
                     _this.list = res;
-                    _this.cd.detectChanges();
+                    _this.cdr.detectChanges();
                 });
                 this.installUnderPad();
             };
@@ -273,7 +273,7 @@
                     pItem = pItem.__parent;
                 }
                 item._open = !item._open;
-                this.cd.markForCheck();
+                this.cdr.markForCheck();
             };
         /**
          * @return {?}

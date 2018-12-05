@@ -9,7 +9,7 @@ export declare class SidebarNavComponent implements OnInit, OnDestroy {
     private router;
     private locationStrategy;
     private render;
-    private cd;
+    private cdr;
     private doc;
     private bodyEl;
     private change$;
@@ -18,7 +18,7 @@ export declare class SidebarNavComponent implements OnInit, OnDestroy {
     list: Nav[];
     autoCloseUnderPad: boolean;
     readonly select: EventEmitter<Menu>;
-    constructor(menuSrv: MenuService, settings: SettingsService, router: Router, locationStrategy: LocationStrategy, render: Renderer2, cd: ChangeDetectorRef, doc: any);
+    constructor(menuSrv: MenuService, settings: SettingsService, router: Router, locationStrategy: LocationStrategy, render: Renderer2, cdr: ChangeDetectorRef, doc: any);
     readonly collapsed: boolean;
     ngOnInit(): void;
     private floatingAreaClickHandle;

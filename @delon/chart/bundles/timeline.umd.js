@@ -84,8 +84,8 @@
      * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
     var G2TimelineComponent = /** @class */ (function () {
-        function G2TimelineComponent(cd, zone) {
-            this.cd = cd;
+        function G2TimelineComponent(cdr, zone) {
+            this.cdr = cdr;
             this.zone = zone;
             // #region fields
             this._title = '';
@@ -109,7 +109,7 @@
                 else {
                     this._title = value;
                 }
-                this.cd.detectChanges();
+                this.cdr.detectChanges();
             },
             enumerable: true,
             configurable: true

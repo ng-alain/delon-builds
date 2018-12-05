@@ -84,9 +84,9 @@
      * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
     var G2TagCloudComponent = /** @class */ (function () {
-        function G2TagCloudComponent(el, cd, zone) {
+        function G2TagCloudComponent(el, cdr, zone) {
             this.el = el;
-            this.cd = cd;
+            this.cdr = cdr;
             this.zone = zone;
             // #region fields
             this.height = 0;
@@ -241,7 +241,7 @@
             function () {
                 if (this.initFlag) {
                     this.runInstall();
-                    this.cd.detectChanges();
+                    this.cdr.detectChanges();
                 }
             };
         /**

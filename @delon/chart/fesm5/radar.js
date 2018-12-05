@@ -9,8 +9,8 @@ import { NgZorroAntdModule } from 'ng-zorro-antd';
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 var G2RadarComponent = /** @class */ (function () {
-    function G2RadarComponent(cd, zone) {
-        this.cd = cd;
+    function G2RadarComponent(cdr, zone) {
+        this.cdr = cdr;
         this.zone = zone;
         // #region fields
         this._title = '';
@@ -160,7 +160,7 @@ var G2RadarComponent = /** @class */ (function () {
                     };
                     return result;
                 });
-                _this.cd.detectChanges();
+                _this.cdr.detectChanges();
             });
         }
     };

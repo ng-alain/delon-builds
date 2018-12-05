@@ -1400,14 +1400,14 @@ class SFComponent {
      * @param {?} formPropertyFactory
      * @param {?} terminator
      * @param {?} options
-     * @param {?} cd
+     * @param {?} cdr
      * @param {?} i18n
      */
-    constructor(formPropertyFactory, terminator, options, cd, i18n) {
+    constructor(formPropertyFactory, terminator, options, cdr, i18n) {
         this.formPropertyFactory = formPropertyFactory;
         this.terminator = terminator;
         this.options = options;
-        this.cd = cd;
+        this.cdr = cdr;
         this.i18n = i18n;
         // tslint:disable-next-line:no-any
         this.locale = {};
@@ -1460,7 +1460,7 @@ class SFComponent {
             this.locale = this.i18n.getData('sf');
             if (this._inited) {
                 this.coverButtonProperty();
-                this.cd.detectChanges();
+                this.cdr.detectChanges();
             }
         });
     }
@@ -1713,7 +1713,7 @@ class SFComponent {
         this._valid = !(errors && errors.length);
         if (!this._valid)
             this.formError.emit(errors);
-        this.cd.detectChanges();
+        this.cdr.detectChanges();
     }
     /**
      * 刷新 Schema，一般需要动态修改 Schema 某个值时可以方便调用
@@ -1746,7 +1746,7 @@ class SFComponent {
         this.rootProperty.errorsChanges.subscribe(errors => {
             this._valid = !(errors && errors.length);
             this.formError.emit(errors);
-            this.cd.detectChanges();
+            this.cdr.detectChanges();
         });
         this.reset();
     }
@@ -1757,7 +1757,7 @@ class SFComponent {
      */
     reset(emit = false) {
         this.rootProperty.resetValue(this.formData, false);
-        Promise.resolve().then(() => this.cd.detectChanges());
+        Promise.resolve().then(() => this.cdr.detectChanges());
         if (emit) {
             this.formReset.emit(this.value);
         }

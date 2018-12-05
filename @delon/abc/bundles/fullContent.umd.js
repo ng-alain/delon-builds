@@ -115,9 +115,9 @@
     var hideTitleCls = "full-content__hidden-title";
     var FullContentComponent = /** @class */ (function () {
         // #endregion
-        function FullContentComponent(el, cd, srv, router$$1, doc) {
+        function FullContentComponent(el, cdr, srv, router$$1, doc) {
             this.el = el;
-            this.cd = cd;
+            this.cdr = cdr;
             this.srv = srv;
             this.router = router$$1;
             this.doc = doc;
@@ -170,7 +170,7 @@
          */
             function () {
                 this._height = this.bodyEl.getBoundingClientRect().height - (( /** @type {?} */(this.el.nativeElement))).getBoundingClientRect().top - this.padding;
-                this.cd.detectChanges();
+                this.cdr.detectChanges();
             };
         /**
          * @return {?}

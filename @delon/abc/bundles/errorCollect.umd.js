@@ -94,9 +94,9 @@
      * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
     var ErrorCollectComponent = /** @class */ (function () {
-        function ErrorCollectComponent(cog, el, cd, doc) {
+        function ErrorCollectComponent(cog, el, cdr, doc) {
             this.el = el;
-            this.cd = cd;
+            this.cdr = cdr;
             this.doc = doc;
             this.$time = null;
             this._hiden = true;
@@ -125,7 +125,7 @@
                     return;
                 this.count = count;
                 this._hiden = count === 0;
-                this.cd.markForCheck();
+                this.cdr.markForCheck();
             };
         /**
          * @return {?}

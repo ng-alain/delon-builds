@@ -1,5 +1,5 @@
-import { ElementRef, EventEmitter, OnDestroy, OnInit } from '@angular/core';
-export declare class G2CustomComponent implements OnInit, OnDestroy {
+import { AfterViewInit, ElementRef, EventEmitter, OnDestroy } from '@angular/core';
+export declare class G2CustomComponent implements AfterViewInit, OnDestroy {
     private el;
     private resize$;
     height: number;
@@ -10,6 +10,6 @@ export declare class G2CustomComponent implements OnInit, OnDestroy {
     constructor(el: ElementRef);
     private renderChart;
     private installResizeEvent;
-    ngOnInit(): void;
+    ngAfterViewInit(): void;
     ngOnDestroy(): void;
 }

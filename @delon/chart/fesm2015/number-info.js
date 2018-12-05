@@ -12,12 +12,12 @@ class NumberInfoComponent {
     /**
      * @param {?} el
      * @param {?} renderer
-     * @param {?} cd
+     * @param {?} cdr
      */
-    constructor(el, renderer, cd) {
+    constructor(el, renderer, cdr) {
         this.el = el;
         this.renderer = renderer;
-        this.cd = cd;
+        this.cdr = cdr;
         this._title = '';
         this._subTitle = '';
         this._total = '';
@@ -94,7 +94,7 @@ class NumberInfoComponent {
             'number-info': true,
             [`number-info__${this.theme}`]: true,
         }, true);
-        this.cd.detectChanges();
+        this.cdr.detectChanges();
     }
     /**
      * @return {?}

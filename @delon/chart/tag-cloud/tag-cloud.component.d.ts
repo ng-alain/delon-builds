@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, ElementRef, NgZone, OnChanges, OnDestroy, OnInit } from '@angular/core';
 export declare class G2TagCloudComponent implements OnDestroy, OnChanges, OnInit {
     private el;
-    private cd;
+    private cdr;
     private zone;
     height: number;
     padding: number;
@@ -14,7 +14,7 @@ export declare class G2TagCloudComponent implements OnDestroy, OnChanges, OnInit
     private node;
     private chart;
     private initFlag;
-    constructor(el: ElementRef, cd: ChangeDetectorRef, zone: NgZone);
+    constructor(el: ElementRef, cdr: ChangeDetectorRef, zone: NgZone);
     private initTagCloud;
     private renderChart;
     private runInstall;

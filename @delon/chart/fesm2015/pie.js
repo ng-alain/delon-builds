@@ -15,13 +15,13 @@ class G2PieComponent {
     /**
      * @param {?} el
      * @param {?} rend
-     * @param {?} cd
+     * @param {?} cdr
      * @param {?} zone
      */
-    constructor(el, rend, cd, zone) {
+    constructor(el, rend, cdr, zone) {
         this.el = el;
         this.rend = rend;
-        this.cd = cd;
+        this.cdr = cdr;
         this.zone = zone;
         this.scroll$ = null;
         this.initFlag = false;
@@ -148,7 +148,7 @@ class G2PieComponent {
                     origin.percent = (origin.percent * 100).toFixed(2);
                     return origin;
                 });
-                this.cd.detectChanges();
+                this.cdr.detectChanges();
             });
         }
     }

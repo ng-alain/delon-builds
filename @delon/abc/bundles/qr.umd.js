@@ -188,9 +188,9 @@
      */
     var QRComponent = /** @class */ (function () {
         // #endregion
-        function QRComponent(cog, srv, cd) {
+        function QRComponent(cog, srv, cdr) {
             this.srv = srv;
-            this.cd = cd;
+            this.cdr = cdr;
             this.change = new i0.EventEmitter();
             Object.assign(this, cog);
         }
@@ -212,7 +212,7 @@
                     size: this.size,
                     value: this.value,
                 });
-                this.cd.detectChanges();
+                this.cdr.detectChanges();
                 this.change.emit(this.dataURL);
             };
         QRComponent.decorators = [

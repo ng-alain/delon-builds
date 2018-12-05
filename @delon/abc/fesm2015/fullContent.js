@@ -47,14 +47,14 @@ class FullContentComponent {
     // #endregion
     /**
      * @param {?} el
-     * @param {?} cd
+     * @param {?} cdr
      * @param {?} srv
      * @param {?} router
      * @param {?} doc
      */
-    constructor(el, cd, srv, router, doc) {
+    constructor(el, cdr, srv, router, doc) {
         this.el = el;
-        this.cd = cd;
+        this.cdr = cdr;
         this.srv = srv;
         this.router = router;
         this.doc = doc;
@@ -98,7 +98,7 @@ class FullContentComponent {
      */
     updateHeight() {
         this._height = this.bodyEl.getBoundingClientRect().height - ((/** @type {?} */ (this.el.nativeElement))).getBoundingClientRect().top - this.padding;
-        this.cd.detectChanges();
+        this.cdr.detectChanges();
     }
     /**
      * @return {?}

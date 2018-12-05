@@ -38,7 +38,7 @@ var G2CustomComponent = /** @class */ (function () {
      */
     function () {
         var _this = this;
-        if (this.resizeTime <= 0 || !this.resize$)
+        if (this.resizeTime <= 0 || this.resize$)
             return;
         this.resize$ = fromEvent(window, 'resize')
             .pipe(debounceTime(Math.min(200, this.resizeTime)))
@@ -47,12 +47,11 @@ var G2CustomComponent = /** @class */ (function () {
     /**
      * @return {?}
      */
-    G2CustomComponent.prototype.ngOnInit = /**
+    G2CustomComponent.prototype.ngAfterViewInit = /**
      * @return {?}
      */
     function () {
-        var _this = this;
-        setTimeout(function () { return _this.renderChart(); });
+        this.renderChart();
     };
     /**
      * @return {?}

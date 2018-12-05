@@ -1,47 +1,19 @@
-import { __spread } from 'tslib';
+import { __decorate, __metadata, __spread } from 'tslib';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input, NgZone, ViewChild, NgModule } from '@angular/core';
-import { toNumber, DelonUtilModule } from '@delon/util';
+import { ChangeDetectionStrategy, Component, Input, ViewChild, NgModule } from '@angular/core';
+import { InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 var G2GaugeComponent = /** @class */ (function () {
-    function G2GaugeComponent(zone) {
-        this.zone = zone;
+    function G2GaugeComponent() {
+        // #region fields
         this.color = '#2F9CFF';
         this.bgColor = '#F0F2F5';
         this.initFlag = false;
     }
-    Object.defineProperty(G2GaugeComponent.prototype, "height", {
-        get: /**
-         * @return {?}
-         */
-        function () {
-            return this._height;
-        },
-        set: /**
-         * @param {?} value
-         * @return {?}
-         */
-        function (value) {
-            this._height = toNumber(value);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(G2GaugeComponent.prototype, "percent", {
-        set: /**
-         * @param {?} value
-         * @return {?}
-         */
-        function (value) {
-            this._percent = toNumber(value);
-        },
-        enumerable: true,
-        configurable: true
-    });
     /**
      * @return {?}
      */
@@ -49,7 +21,7 @@ var G2GaugeComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        return [{ name: this.title, value: +this._percent }];
+        return [{ name: this.title, value: this.percent }];
     };
     /**
      * @return {?}
@@ -95,20 +67,11 @@ var G2GaugeComponent = /** @class */ (function () {
     /**
      * @return {?}
      */
-    G2GaugeComponent.prototype.runInstall = /**
-     * @return {?}
-     */
-    function () {
-        var _this = this;
-        this.zone.runOutsideAngular(function () { return setTimeout(function () { return _this.install(); }); });
-    };
-    /**
-     * @return {?}
-     */
     G2GaugeComponent.prototype.install = /**
      * @return {?}
      */
     function () {
+        this.uninstall();
         this.node.nativeElement.innerHTML = '';
         /** @type {?} */
         var Shape = G2.Shape;
@@ -211,12 +174,22 @@ var G2GaugeComponent = /** @class */ (function () {
     /**
      * @return {?}
      */
+    G2GaugeComponent.prototype.uninstall = /**
+     * @return {?}
+     */
+    function () {
+        if (this.chart)
+            this.chart.destroy();
+    };
+    /**
+     * @return {?}
+     */
     G2GaugeComponent.prototype.ngOnInit = /**
      * @return {?}
      */
     function () {
         this.initFlag = true;
-        this.runInstall();
+        this.install();
     };
     /**
      * @return {?}
@@ -235,8 +208,7 @@ var G2GaugeComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        if (this.chart)
-            this.chart.destroy();
+        this.uninstall();
     };
     G2GaugeComponent.decorators = [
         { type: Component, args: [{
@@ -245,10 +217,6 @@ var G2GaugeComponent = /** @class */ (function () {
                     changeDetection: ChangeDetectionStrategy.OnPush
                 }] }
     ];
-    /** @nocollapse */
-    G2GaugeComponent.ctorParameters = function () { return [
-        { type: NgZone }
-    ]; };
     G2GaugeComponent.propDecorators = {
         title: [{ type: Input }],
         height: [{ type: Input }],
@@ -258,6 +226,14 @@ var G2GaugeComponent = /** @class */ (function () {
         percent: [{ type: Input }],
         node: [{ type: ViewChild, args: ['container',] }]
     };
+    __decorate([
+        InputNumber(),
+        __metadata("design:type", Object)
+    ], G2GaugeComponent.prototype, "height", void 0);
+    __decorate([
+        InputNumber(),
+        __metadata("design:type", Number)
+    ], G2GaugeComponent.prototype, "percent", void 0);
     return G2GaugeComponent;
 }());
 

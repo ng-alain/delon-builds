@@ -10,10 +10,10 @@ import { InputNumber, DelonUtilModule } from '@delon/util';
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 var G2WaterWaveComponent = /** @class */ (function () {
-    function G2WaterWaveComponent(el, renderer, cd, zone) {
+    function G2WaterWaveComponent(el, renderer, cdr, zone) {
         this.el = el;
         this.renderer = renderer;
-        this.cd = cd;
+        this.cdr = cdr;
         this.zone = zone;
         // #region fields
         this._title = '';
@@ -251,7 +251,7 @@ var G2WaterWaveComponent = /** @class */ (function () {
     function () {
         var _this = this;
         this.initFlag = true;
-        this.cd.detectChanges();
+        this.cdr.detectChanges();
         this.zone.runOutsideAngular(function () {
             _this.updateRadio(1);
             _this.installResizeEvent();
@@ -267,7 +267,7 @@ var G2WaterWaveComponent = /** @class */ (function () {
     function () {
         var _this = this;
         if (this.initFlag) {
-            this.cd.detectChanges();
+            this.cdr.detectChanges();
             this.zone.runOutsideAngular(function () { return _this.renderChart(); });
         }
     };

@@ -1259,10 +1259,10 @@ var ReuseTabService = /** @class */ (function () {
  */
 var ReuseTabComponent = /** @class */ (function () {
     // #endregion
-    function ReuseTabComponent(el, srv, cd, router, route, render, i18nSrv) {
+    function ReuseTabComponent(el, srv, cdr, router, route, render, i18nSrv) {
         var _this = this;
         this.srv = srv;
-        this.cd = cd;
+        this.cdr = cdr;
         this.router = router;
         this.route = route;
         this.render = render;
@@ -1366,7 +1366,7 @@ var ReuseTabComponent = /** @class */ (function () {
         }
         this.refStatus(false);
         this.visibility();
-        this.cd.detectChanges();
+        this.cdr.detectChanges();
     };
     /**
      * @return {?}
@@ -1423,7 +1423,7 @@ var ReuseTabComponent = /** @class */ (function () {
             this.list.forEach(function (i, idx) { return (i.active = _this.pos === idx); });
         }
         if (dc)
-            this.cd.detectChanges();
+            this.cdr.detectChanges();
     };
     /**
      * @param {?} e
@@ -1474,7 +1474,7 @@ var ReuseTabComponent = /** @class */ (function () {
         var item = this.list[idx];
         this.srv.close(item.url, includeNonCloseable);
         this.close.emit(item);
-        this.cd.detectChanges();
+        this.cdr.detectChanges();
         return false;
     };
     // #endregion
@@ -1506,7 +1506,7 @@ var ReuseTabComponent = /** @class */ (function () {
         if (changes.mode)
             this.srv.mode = this.mode;
         this.srv.debug = this.debug;
-        this.cd.detectChanges();
+        this.cdr.detectChanges();
     };
     /**
      * @return {?}

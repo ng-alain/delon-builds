@@ -12,10 +12,10 @@ import { NgZorroAntdModule } from 'ng-zorro-antd';
  */
 var G2PieComponent = /** @class */ (function () {
     // #endregion
-    function G2PieComponent(el, rend, cd, zone) {
+    function G2PieComponent(el, rend, cdr, zone) {
         this.el = el;
         this.rend = rend;
-        this.cd = cd;
+        this.cdr = cdr;
         this.zone = zone;
         this.scroll$ = null;
         this.initFlag = false;
@@ -155,7 +155,7 @@ var G2PieComponent = /** @class */ (function () {
                     origin.percent = (origin.percent * 100).toFixed(2);
                     return origin;
                 });
-                _this.cd.detectChanges();
+                _this.cdr.detectChanges();
             });
         }
     };

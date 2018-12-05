@@ -2,7 +2,7 @@ import { AfterViewInit, ChangeDetectorRef, ElementRef, NgZone, OnChanges, OnDest
 export declare class G2PieComponent implements OnDestroy, OnChanges, AfterViewInit {
     private el;
     private rend;
-    private cd;
+    private cdr;
     private zone;
     private scroll$;
     private node;
@@ -29,7 +29,7 @@ export declare class G2PieComponent implements OnDestroy, OnChanges, AfterViewIn
     }>;
     valueFormat: Function;
     colors: any[];
-    constructor(el: ElementRef, rend: Renderer2, cd: ChangeDetectorRef, zone: NgZone);
+    constructor(el: ElementRef, rend: Renderer2, cdr: ChangeDetectorRef, zone: NgZone);
     private setCls;
     private runInstall;
     private install;

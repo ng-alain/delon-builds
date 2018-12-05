@@ -2,7 +2,7 @@ import { ChangeDetectorRef, ElementRef, OnChanges, Renderer2, TemplateRef } from
 export declare class NumberInfoComponent implements OnChanges {
     private el;
     private renderer;
-    private cd;
+    private cdr;
     _title: string;
     _titleTpl: TemplateRef<void>;
     /** 标题 */
@@ -28,7 +28,7 @@ export declare class NumberInfoComponent implements OnChanges {
     theme: 'light' | 'default';
     /** 设置数字和描述直接的间距（像素） */
     gap: number;
-    constructor(el: ElementRef, renderer: Renderer2, cd: ChangeDetectorRef);
+    constructor(el: ElementRef, renderer: Renderer2, cdr: ChangeDetectorRef);
     _classMap: string[];
     setClass(): void;
     ngOnChanges(): void;

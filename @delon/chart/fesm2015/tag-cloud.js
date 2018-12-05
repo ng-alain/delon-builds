@@ -10,12 +10,12 @@ import { InputNumber, DelonUtilModule } from '@delon/util';
 class G2TagCloudComponent {
     /**
      * @param {?} el
-     * @param {?} cd
+     * @param {?} cdr
      * @param {?} zone
      */
-    constructor(el, cd, zone) {
+    constructor(el, cdr, zone) {
         this.el = el;
-        this.cd = cd;
+        this.cdr = cdr;
         this.zone = zone;
         // #region fields
         this.height = 0;
@@ -149,7 +149,7 @@ class G2TagCloudComponent {
     ngOnChanges() {
         if (this.initFlag) {
             this.runInstall();
-            this.cd.detectChanges();
+            this.cdr.detectChanges();
         }
     }
     /**

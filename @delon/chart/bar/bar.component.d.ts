@@ -1,30 +1,25 @@
-import { ChangeDetectorRef, ElementRef, NgZone, OnChanges, OnDestroy, TemplateRef } from '@angular/core';
-export declare class G2BarComponent implements OnDestroy, OnChanges {
-    private el;
-    private cd;
-    private zone;
-    private autoHideXLabels;
+import { OnChanges, OnDestroy, OnInit, TemplateRef } from '@angular/core';
+export interface G2BarData {
+    x: any;
+    y: any;
+    [key: string]: any;
+}
+export declare class G2BarComponent implements OnInit, OnChanges, OnDestroy {
     private resize$;
+    private inited;
     private chart;
-    _title: string;
-    _titleTpl: TemplateRef<void>;
     title: string | TemplateRef<void>;
     color: string;
     height: number;
-    private _height;
     padding: number[];
-    data: Array<{
-        x: any;
-        y: any;
-        [key: string]: any;
-    }>;
-    autoLabel: any;
-    private _autoLabel;
+    data: G2BarData[];
+    autoLabel: boolean;
     private node;
-    constructor(el: ElementRef, cd: ChangeDetectorRef, zone: NgZone);
-    private runInstall;
     private install;
+    private uninstall;
+    private updatelabel;
     private installResizeEvent;
+    ngOnInit(): void;
     ngOnChanges(): void;
     ngOnDestroy(): void;
 }

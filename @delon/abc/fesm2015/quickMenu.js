@@ -11,12 +11,12 @@ import { NgZorroAntdModule } from 'ng-zorro-antd';
 class QuickMenuComponent {
     // #endregion
     /**
-     * @param {?} cd
+     * @param {?} cdr
      * @param {?} el
      * @param {?} render
      */
-    constructor(cd, el, render) {
-        this.cd = cd;
+    constructor(cdr, el, render) {
+        this.cdr = cdr;
         this.el = el;
         this.render = render;
         // #region fields
@@ -53,7 +53,7 @@ class QuickMenuComponent {
             `margin-right:-${this.show ? 0 : this.width}px`,
         ];
         this.render.setAttribute(this.el.nativeElement, 'style', res.join(';'));
-        this.cd.detectChanges();
+        this.cdr.detectChanges();
     }
     /**
      * @return {?}

@@ -109,11 +109,11 @@ class QRComponent {
     /**
      * @param {?} cog
      * @param {?} srv
-     * @param {?} cd
+     * @param {?} cdr
      */
-    constructor(cog, srv, cd) {
+    constructor(cog, srv, cdr) {
         this.srv = srv;
-        this.cd = cd;
+        this.cdr = cdr;
         this.change = new EventEmitter();
         Object.assign(this, cog);
     }
@@ -132,7 +132,7 @@ class QRComponent {
             size: this.size,
             value: this.value,
         });
-        this.cd.detectChanges();
+        this.cdr.detectChanges();
         this.change.emit(this.dataURL);
     }
 }

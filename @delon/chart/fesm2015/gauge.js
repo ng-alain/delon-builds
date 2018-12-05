@@ -1,17 +1,15 @@
+import { __decorate, __metadata } from 'tslib';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input, NgZone, ViewChild, NgModule } from '@angular/core';
-import { toNumber, DelonUtilModule } from '@delon/util';
+import { ChangeDetectionStrategy, Component, Input, ViewChild, NgModule } from '@angular/core';
+import { InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 class G2GaugeComponent {
-    /**
-     * @param {?} zone
-     */
-    constructor(zone) {
-        this.zone = zone;
+    constructor() {
+        // #region fields
         this.color = '#2F9CFF';
         this.bgColor = '#F0F2F5';
         this.initFlag = false;
@@ -19,28 +17,8 @@ class G2GaugeComponent {
     /**
      * @return {?}
      */
-    get height() {
-        return this._height;
-    }
-    /**
-     * @param {?} value
-     * @return {?}
-     */
-    set height(value) {
-        this._height = toNumber(value);
-    }
-    /**
-     * @param {?} value
-     * @return {?}
-     */
-    set percent(value) {
-        this._percent = toNumber(value);
-    }
-    /**
-     * @return {?}
-     */
     createData() {
-        return [{ name: this.title, value: +this._percent }];
+        return [{ name: this.title, value: this.percent }];
     }
     /**
      * @return {?}
@@ -89,13 +67,8 @@ class G2GaugeComponent {
     /**
      * @return {?}
      */
-    runInstall() {
-        this.zone.runOutsideAngular(() => setTimeout(() => this.install()));
-    }
-    /**
-     * @return {?}
-     */
     install() {
+        this.uninstall();
         this.node.nativeElement.innerHTML = '';
         /** @type {?} */
         const Shape = G2.Shape;
@@ -198,9 +171,16 @@ class G2GaugeComponent {
     /**
      * @return {?}
      */
+    uninstall() {
+        if (this.chart)
+            this.chart.destroy();
+    }
+    /**
+     * @return {?}
+     */
     ngOnInit() {
         this.initFlag = true;
-        this.runInstall();
+        this.install();
     }
     /**
      * @return {?}
@@ -213,8 +193,7 @@ class G2GaugeComponent {
      * @return {?}
      */
     ngOnDestroy() {
-        if (this.chart)
-            this.chart.destroy();
+        this.uninstall();
     }
 }
 G2GaugeComponent.decorators = [
@@ -223,10 +202,6 @@ G2GaugeComponent.decorators = [
                 template: `<div #container></div>`,
                 changeDetection: ChangeDetectionStrategy.OnPush
             }] }
-];
-/** @nocollapse */
-G2GaugeComponent.ctorParameters = () => [
-    { type: NgZone }
 ];
 G2GaugeComponent.propDecorators = {
     title: [{ type: Input }],
@@ -237,6 +212,14 @@ G2GaugeComponent.propDecorators = {
     percent: [{ type: Input }],
     node: [{ type: ViewChild, args: ['container',] }]
 };
+__decorate([
+    InputNumber(),
+    __metadata("design:type", Object)
+], G2GaugeComponent.prototype, "height", void 0);
+__decorate([
+    InputNumber(),
+    __metadata("design:type", Number)
+], G2GaugeComponent.prototype, "percent", void 0);
 
 /**
  * @fileoverview added by tsickle

@@ -1,6 +1,6 @@
 import { AfterViewInit, ChangeDetectorRef, NgZone, OnChanges, OnDestroy, TemplateRef } from '@angular/core';
 export declare class G2TimelineComponent implements OnDestroy, OnChanges, AfterViewInit {
-    private cd;
+    private cdr;
     private zone;
     _title: string;
     _titleTpl: TemplateRef<void>;
@@ -29,7 +29,7 @@ export declare class G2TimelineComponent implements OnDestroy, OnChanges, AfterV
     private chart;
     private initFlag;
     private slider;
-    constructor(cd: ChangeDetectorRef, zone: NgZone);
+    constructor(cdr: ChangeDetectorRef, zone: NgZone);
     ngAfterViewInit(): void;
     private runInstall;
     private install;

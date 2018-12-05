@@ -9,42 +9,75 @@
     (factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.gauge = {}),global.ng.common,global.ng.core,global.delon.util));
 }(this, (function (exports,common,core,util) { 'use strict';
 
+    /*! *****************************************************************************
+    Copyright (c) Microsoft Corporation. All rights reserved.
+    Licensed under the Apache License, Version 2.0 (the "License"); you may not use
+    this file except in compliance with the License. You may obtain a copy of the
+    License at http://www.apache.org/licenses/LICENSE-2.0
+
+    THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+    KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
+    WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
+    MERCHANTABLITY OR NON-INFRINGEMENT.
+
+    See the Apache Version 2.0 License for specific language governing permissions
+    and limitations under the License.
+    ***************************************************************************** */
+    function __decorate(decorators, target, key, desc) {
+        var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+        if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
+            r = Reflect.decorate(decorators, target, key, desc);
+        else
+            for (var i = decorators.length - 1; i >= 0; i--)
+                if (d = decorators[i])
+                    r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+        return c > 3 && r && Object.defineProperty(target, key, r), r;
+    }
+    function __metadata(metadataKey, metadataValue) {
+        if (typeof Reflect === "object" && typeof Reflect.metadata === "function")
+            return Reflect.metadata(metadataKey, metadataValue);
+    }
+    function __read(o, n) {
+        var m = typeof Symbol === "function" && o[Symbol.iterator];
+        if (!m)
+            return o;
+        var i = m.call(o), r, ar = [], e;
+        try {
+            while ((n === void 0 || n-- > 0) && !(r = i.next()).done)
+                ar.push(r.value);
+        }
+        catch (error) {
+            e = { error: error };
+        }
+        finally {
+            try {
+                if (r && !r.done && (m = i["return"]))
+                    m.call(i);
+            }
+            finally {
+                if (e)
+                    throw e.error;
+            }
+        }
+        return ar;
+    }
+    function __spread() {
+        for (var ar = [], i = 0; i < arguments.length; i++)
+            ar = ar.concat(__read(arguments[i]));
+        return ar;
+    }
+
     /**
      * @fileoverview added by tsickle
      * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
     var G2GaugeComponent = /** @class */ (function () {
-        function G2GaugeComponent(zone) {
-            this.zone = zone;
+        function G2GaugeComponent() {
+            // #region fields
             this.color = '#2F9CFF';
             this.bgColor = '#F0F2F5';
             this.initFlag = false;
         }
-        Object.defineProperty(G2GaugeComponent.prototype, "height", {
-            get: /**
-             * @return {?}
-             */ function () {
-                return this._height;
-            },
-            set: /**
-             * @param {?} value
-             * @return {?}
-             */ function (value) {
-                this._height = util.toNumber(value);
-            },
-            enumerable: true,
-            configurable: true
-        });
-        Object.defineProperty(G2GaugeComponent.prototype, "percent", {
-            set: /**
-             * @param {?} value
-             * @return {?}
-             */ function (value) {
-                this._percent = util.toNumber(value);
-            },
-            enumerable: true,
-            configurable: true
-        });
         /**
          * @return {?}
          */
@@ -52,7 +85,7 @@
          * @return {?}
          */
             function () {
-                return [{ name: this.title, value: +this._percent }];
+                return [{ name: this.title, value: this.percent }];
             };
         /**
          * @return {?}
@@ -98,20 +131,11 @@
         /**
          * @return {?}
          */
-        G2GaugeComponent.prototype.runInstall = /**
-         * @return {?}
-         */
-            function () {
-                var _this = this;
-                this.zone.runOutsideAngular(function () { return setTimeout(function () { return _this.install(); }); });
-            };
-        /**
-         * @return {?}
-         */
         G2GaugeComponent.prototype.install = /**
          * @return {?}
          */
             function () {
+                this.uninstall();
                 this.node.nativeElement.innerHTML = '';
                 /** @type {?} */
                 var Shape = G2.Shape;
@@ -213,12 +237,22 @@
         /**
          * @return {?}
          */
+        G2GaugeComponent.prototype.uninstall = /**
+         * @return {?}
+         */
+            function () {
+                if (this.chart)
+                    this.chart.destroy();
+            };
+        /**
+         * @return {?}
+         */
         G2GaugeComponent.prototype.ngOnInit = /**
          * @return {?}
          */
             function () {
                 this.initFlag = true;
-                this.runInstall();
+                this.install();
             };
         /**
          * @return {?}
@@ -237,8 +271,7 @@
          * @return {?}
          */
             function () {
-                if (this.chart)
-                    this.chart.destroy();
+                this.uninstall();
             };
         G2GaugeComponent.decorators = [
             { type: core.Component, args: [{
@@ -247,12 +280,6 @@
                         changeDetection: core.ChangeDetectionStrategy.OnPush
                     }] }
         ];
-        /** @nocollapse */
-        G2GaugeComponent.ctorParameters = function () {
-            return [
-                { type: core.NgZone }
-            ];
-        };
         G2GaugeComponent.propDecorators = {
             title: [{ type: core.Input }],
             height: [{ type: core.Input }],
@@ -262,52 +289,16 @@
             percent: [{ type: core.Input }],
             node: [{ type: core.ViewChild, args: ['container',] }]
         };
+        __decorate([
+            util.InputNumber(),
+            __metadata("design:type", Object)
+        ], G2GaugeComponent.prototype, "height", void 0);
+        __decorate([
+            util.InputNumber(),
+            __metadata("design:type", Number)
+        ], G2GaugeComponent.prototype, "percent", void 0);
         return G2GaugeComponent;
     }());
-
-    /*! *****************************************************************************
-    Copyright (c) Microsoft Corporation. All rights reserved.
-    Licensed under the Apache License, Version 2.0 (the "License"); you may not use
-    this file except in compliance with the License. You may obtain a copy of the
-    License at http://www.apache.org/licenses/LICENSE-2.0
-
-    THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-    KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
-    WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
-    MERCHANTABLITY OR NON-INFRINGEMENT.
-
-    See the Apache Version 2.0 License for specific language governing permissions
-    and limitations under the License.
-    ***************************************************************************** */
-    function __read(o, n) {
-        var m = typeof Symbol === "function" && o[Symbol.iterator];
-        if (!m)
-            return o;
-        var i = m.call(o), r, ar = [], e;
-        try {
-            while ((n === void 0 || n-- > 0) && !(r = i.next()).done)
-                ar.push(r.value);
-        }
-        catch (error) {
-            e = { error: error };
-        }
-        finally {
-            try {
-                if (r && !r.done && (m = i["return"]))
-                    m.call(i);
-            }
-            finally {
-                if (e)
-                    throw e.error;
-            }
-        }
-        return ar;
-    }
-    function __spread() {
-        for (var ar = [], i = 0; i < arguments.length; i++)
-            ar = ar.concat(__read(arguments[i]));
-        return ar;
-    }
 
     /**
      * @fileoverview added by tsickle

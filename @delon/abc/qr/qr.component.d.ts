@@ -3,7 +3,7 @@ import { QRConfig } from './qr.config';
 import { QRService } from './qr.service';
 export declare class QRComponent implements OnChanges {
     private srv;
-    private cd;
+    private cdr;
     dataURL: string;
     background: string;
     backgroundAlpha: number;
@@ -15,6 +15,6 @@ export declare class QRComponent implements OnChanges {
     size: number;
     value: string;
     readonly change: EventEmitter<string>;
-    constructor(cog: QRConfig, srv: QRService, cd: ChangeDetectorRef);
+    constructor(cog: QRConfig, srv: QRService, cdr: ChangeDetectorRef);
     ngOnChanges(): void;
 }

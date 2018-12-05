@@ -3,20 +3,20 @@
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 import * as tslib_1 from "tslib";
-import { Component, Input, TemplateRef, } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, } from '@angular/core';
 import { InputBoolean } from '@delon/util';
 export class G2CardComponent {
-    constructor() {
+    /**
+     * @param {?} cdr
+     */
+    constructor(cdr) {
+        this.cdr = cdr;
         /**
          * 是否显示边框
          */
         this.bordered = false;
-        this._avatar = '';
-        this._title = '';
-        this._action = '';
         this.total = '';
         this._height = 'auto';
-        this._footer = '';
         /**
          * 是否显示Loading
          */
@@ -26,66 +26,28 @@ export class G2CardComponent {
      * @param {?} value
      * @return {?}
      */
-    set avatar(value) {
-        if (value instanceof TemplateRef) {
-            this._avatar = null;
-            this._avatarTpl = value;
-        }
-        else
-            this._avatar = value;
-    }
-    /**
-     * @param {?} value
-     * @return {?}
-     */
-    set title(value) {
-        if (value instanceof TemplateRef) {
-            this._title = null;
-            this._titleTpl = value;
-        }
-        else
-            this._title = value;
-    }
-    /**
-     * @param {?} value
-     * @return {?}
-     */
-    set action(value) {
-        if (value instanceof TemplateRef) {
-            this._action = null;
-            this._actionTpl = value;
-        }
-        else
-            this._action = value;
-    }
-    /**
-     * @param {?} value
-     * @return {?}
-     */
     set contentHeight(value) {
         this._orgHeight = value;
-        this._height =
-            typeof value === 'number' ? (this._height = `${value}px`) : value;
+        this._height = typeof value === 'number' ? (this._height = `${value}px`) : value;
     }
     /**
-     * @param {?} value
      * @return {?}
      */
-    set footer(value) {
-        if (value instanceof TemplateRef) {
-            this._footer = null;
-            this._footerTpl = value;
-        }
-        else
-            this._footer = value;
+    ngOnChanges() {
+        this.cdr.detectChanges();
     }
 }
 G2CardComponent.decorators = [
     { type: Component, args: [{
                 selector: 'g2-card',
-                template: "<nz-card [nzBodyStyle]=\"{padding: '20px 24px 8px 24px'}\" [nzBordered]=\"bordered\">\n  <nz-spin [nzSpinning]=\"loading\">\n    <div class=\"g2-card__top\">\n      <div class=\"g2-card__avatar\">\n        <ng-container *ngIf=\"_avatar; else _avatarTpl\">{{ _avatar }}</ng-container>\n      </div>\n      <div class=\"g2-card__meta-wrap\">\n        <div class=\"g2-card__meta\">\n          <span class=\"g2-card__meta-title\" *ngIf=\"_title; else _titleTpl\">{{ _title }}</span>\n          <span class=\"g2-card__meta-action\" *ngIf=\"_action || _actionTpl\">\n            <ng-container *ngIf=\"_action; else _actionTpl\">{{ _action }}</ng-container>\n          </span>\n        </div>\n        <p *ngIf=\"total\" class=\"g2-card__total\" [innerHTML]=\"total\"></p>\n      </div>\n    </div>\n    <div class=\"g2-card__desc\" [ngStyle]=\"{'height':_height}\">\n      <div [ngClass]=\"{'g2-card__fixed': !!_orgHeight }\">\n        <ng-content></ng-content>\n      </div>\n    </div>\n    <div class=\"g2-card__footer\" *ngIf=\"_footer || _footerTpl\">\n      <ng-container *ngIf=\"_footer; else _footerTpl\">{{ _footer }}</ng-container>\n    </div>\n  </nz-spin>\n</nz-card>\n",
-                host: { '[class.g2-card]': 'true' }
+                template: "<nz-card [nzBodyStyle]=\"{padding: '20px 24px 8px 24px'}\" [nzBordered]=\"bordered\">\n  <nz-spin [nzSpinning]=\"loading\">\n    <div class=\"g2-card__top\">\n      <div class=\"g2-card__avatar\">\n        <ng-container *stringTemplateOutlet=\"avatar\">{{avatar}}</ng-container>\n      </div>\n      <div class=\"g2-card__meta-wrap\">\n        <div class=\"g2-card__meta\">\n          <span class=\"g2-card__meta-title\" *ngIf=\"title\">\n            <ng-container *stringTemplateOutlet=\"title\">{{title}}</ng-container>\n          </span>\n          <span class=\"g2-card__meta-action\" *ngIf=\"action\">\n            <ng-container *stringTemplateOutlet=\"action\">{{action}}</ng-container>\n          </span>\n        </div>\n        <p *ngIf=\"total\" class=\"g2-card__total\" [innerHTML]=\"total\"></p>\n      </div>\n    </div>\n    <div class=\"g2-card__desc\" [ngStyle]=\"{'height':_height}\">\n      <div [ngClass]=\"{'g2-card__fixed': !!_orgHeight }\">\n        <ng-content></ng-content>\n      </div>\n    </div>\n    <div class=\"g2-card__footer\" *ngIf=\"footer\">\n      <ng-container *stringTemplateOutlet=\"footer\">{{footer}}</ng-container>\n    </div>\n  </nz-spin>\n</nz-card>",
+                host: { '[class.g2-card]': 'true' },
+                changeDetection: ChangeDetectionStrategy.OnPush
             }] }
+];
+/** @nocollapse */
+G2CardComponent.ctorParameters = () => [
+    { type: ChangeDetectorRef }
 ];
 G2CardComponent.propDecorators = {
     bordered: [{ type: Input }],
@@ -112,17 +74,11 @@ if (false) {
      */
     G2CardComponent.prototype.bordered;
     /** @type {?} */
-    G2CardComponent.prototype._avatar;
+    G2CardComponent.prototype.avatar;
     /** @type {?} */
-    G2CardComponent.prototype._avatarTpl;
+    G2CardComponent.prototype.title;
     /** @type {?} */
-    G2CardComponent.prototype._title;
-    /** @type {?} */
-    G2CardComponent.prototype._titleTpl;
-    /** @type {?} */
-    G2CardComponent.prototype._action;
-    /** @type {?} */
-    G2CardComponent.prototype._actionTpl;
+    G2CardComponent.prototype.action;
     /** @type {?} */
     G2CardComponent.prototype.total;
     /** @type {?} */
@@ -130,13 +86,13 @@ if (false) {
     /** @type {?} */
     G2CardComponent.prototype._orgHeight;
     /** @type {?} */
-    G2CardComponent.prototype._footer;
-    /** @type {?} */
-    G2CardComponent.prototype._footerTpl;
+    G2CardComponent.prototype.footer;
     /**
      * 是否显示Loading
      * @type {?}
      */
     G2CardComponent.prototype.loading;
+    /** @type {?} */
+    G2CardComponent.prototype.cdr;
 }
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY2FyZC5jb21wb25lbnQuanMiLCJzb3VyY2VSb290Ijoibmc6Ly9AZGVsb24vY2hhcnQvY2FyZC8iLCJzb3VyY2VzIjpbImNhcmQuY29tcG9uZW50LnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7O0FBQUEsT0FBTyxFQUNMLFNBQVMsRUFDVCxLQUFLLEVBQ0wsV0FBVyxHQUNaLE1BQU0sZUFBZSxDQUFDO0FBQ3ZCLE9BQU8sRUFBRSxZQUFZLEVBQUUsTUFBTSxhQUFhLENBQUM7QUFPM0MsTUFBTSxPQUFPLGVBQWU7SUFMNUI7Ozs7UUFRMkIsYUFBUSxHQUFHLEtBQUssQ0FBQztRQUUxQyxZQUFPLEdBQUcsRUFBRSxDQUFDO1FBVWIsV0FBTSxHQUFHLEVBQUUsQ0FBQztRQVVaLFlBQU8sR0FBRyxFQUFFLENBQUM7UUFVSixVQUFLLEdBQUcsRUFBRSxDQUFDO1FBRXBCLFlBQU8sR0FBRyxNQUFNLENBQUM7UUFTakIsWUFBTyxHQUFHLEVBQUUsQ0FBQzs7OztRQVdZLFlBQU8sR0FBRyxLQUFLLENBQUM7SUFFM0MsQ0FBQzs7Ozs7SUFwREMsSUFDSSxNQUFNLENBQUMsS0FBaUM7UUFDMUMsSUFBSSxLQUFLLFlBQVksV0FBVyxFQUFFO1lBQ2hDLElBQUksQ0FBQyxPQUFPLEdBQUcsSUFBSSxDQUFDO1lBQ3BCLElBQUksQ0FBQyxVQUFVLEdBQUcsS0FBSyxDQUFDO1NBQ3pCOztZQUFNLElBQUksQ0FBQyxPQUFPLEdBQUcsS0FBSyxDQUFDO0lBQzlCLENBQUM7Ozs7O0lBSUQsSUFDSSxLQUFLLENBQUMsS0FBaUM7UUFDekMsSUFBSSxLQUFLLFlBQVksV0FBVyxFQUFFO1lBQ2hDLElBQUksQ0FBQyxNQUFNLEdBQUcsSUFBSSxDQUFDO1lBQ25CLElBQUksQ0FBQyxTQUFTLEdBQUcsS0FBSyxDQUFDO1NBQ3hCOztZQUFNLElBQUksQ0FBQyxNQUFNLEdBQUcsS0FBSyxDQUFDO0lBQzdCLENBQUM7Ozs7O0lBSUQsSUFDSSxNQUFNLENBQUMsS0FBaUM7UUFDMUMsSUFBSSxLQUFLLFlBQVksV0FBVyxFQUFFO1lBQ2hDLElBQUksQ0FBQyxPQUFPLEdBQUcsSUFBSSxDQUFDO1lBQ3BCLElBQUksQ0FBQyxVQUFVLEdBQUcsS0FBSyxDQUFDO1NBQ3pCOztZQUFNLElBQUksQ0FBQyxPQUFPLEdBQUcsS0FBSyxDQUFDO0lBQzlCLENBQUM7Ozs7O0lBTUQsSUFDSSxhQUFhLENBQUMsS0FBc0I7UUFDdEMsSUFBSSxDQUFDLFVBQVUsR0FBRyxLQUFLLENBQUM7UUFDeEIsSUFBSSxDQUFDLE9BQU87WUFDVixPQUFPLEtBQUssS0FBSyxRQUFRLENBQUMsQ0FBQyxDQUFDLENBQUMsSUFBSSxDQUFDLE9BQU8sR0FBRyxHQUFHLEtBQUssSUFBSSxDQUFDLENBQUMsQ0FBQyxDQUFDLEtBQUssQ0FBQztJQUN0RSxDQUFDOzs7OztJQUlELElBQ0ksTUFBTSxDQUFDLEtBQWlDO1FBQzFDLElBQUksS0FBSyxZQUFZLFdBQVcsRUFBRTtZQUNoQyxJQUFJLENBQUMsT0FBTyxHQUFHLElBQUksQ0FBQztZQUNwQixJQUFJLENBQUMsVUFBVSxHQUFHLEtBQUssQ0FBQztTQUN6Qjs7WUFBTSxJQUFJLENBQUMsT0FBTyxHQUFHLEtBQUssQ0FBQztJQUM5QixDQUFDOzs7WUEzREYsU0FBUyxTQUFDO2dCQUNULFFBQVEsRUFBRSxTQUFTO2dCQUNuQixtcUNBQW9DO2dCQUNwQyxJQUFJLEVBQUUsRUFBRSxpQkFBaUIsRUFBRSxNQUFNLEVBQUU7YUFDcEM7Ozt1QkFJRSxLQUFLO3FCQUlMLEtBQUs7b0JBVUwsS0FBSztxQkFVTCxLQUFLO29CQVFMLEtBQUs7NEJBSUwsS0FBSztxQkFTTCxLQUFLO3NCQVNMLEtBQUs7O0FBdERtQjtJQUFmLFlBQVksRUFBRTs7aURBQWtCO0FBc0RqQjtJQUFmLFlBQVksRUFBRTs7Z0RBQWlCOzs7Ozs7SUF0RHpDLG1DQUEwQzs7SUFFMUMsa0NBQWE7O0lBQ2IscUNBQThCOztJQVM5QixpQ0FBWTs7SUFDWixvQ0FBNkI7O0lBUzdCLGtDQUFhOztJQUNiLHFDQUE4Qjs7SUFTOUIsZ0NBQW9COztJQUVwQixrQ0FBaUI7O0lBQ2pCLHFDQUE0Qjs7SUFRNUIsa0NBQWE7O0lBQ2IscUNBQThCOzs7OztJQVU5QixrQ0FBeUMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQge1xuICBDb21wb25lbnQsXG4gIElucHV0LFxuICBUZW1wbGF0ZVJlZixcbn0gZnJvbSAnQGFuZ3VsYXIvY29yZSc7XG5pbXBvcnQgeyBJbnB1dEJvb2xlYW4gfSBmcm9tICdAZGVsb24vdXRpbCc7XG5cbkBDb21wb25lbnQoe1xuICBzZWxlY3RvcjogJ2cyLWNhcmQnLFxuICB0ZW1wbGF0ZVVybDogJy4vY2FyZC5jb21wb25lbnQuaHRtbCcsXG4gIGhvc3Q6IHsgJ1tjbGFzcy5nMi1jYXJkXSc6ICd0cnVlJyB9LFxufSlcbmV4cG9ydCBjbGFzcyBHMkNhcmRDb21wb25lbnQge1xuXG4gIC8qKiDmmK/lkKbmmL7npLrovrnmoYYgKi9cbiAgQElucHV0KCkgQElucHV0Qm9vbGVhbigpIGJvcmRlcmVkID0gZmFsc2U7XG5cbiAgX2F2YXRhciA9ICcnO1xuICBfYXZhdGFyVHBsOiBUZW1wbGF0ZVJlZjx2b2lkPjtcbiAgQElucHV0KClcbiAgc2V0IGF2YXRhcih2YWx1ZTogc3RyaW5nIHwgVGVtcGxhdGVSZWY8dm9pZD4pIHtcbiAgICBpZiAodmFsdWUgaW5zdGFuY2VvZiBUZW1wbGF0ZVJlZikge1xuICAgICAgdGhpcy5fYXZhdGFyID0gbnVsbDtcbiAgICAgIHRoaXMuX2F2YXRhclRwbCA9IHZhbHVlO1xuICAgIH0gZWxzZSB0aGlzLl9hdmF0YXIgPSB2YWx1ZTtcbiAgfVxuXG4gIF90aXRsZSA9ICcnO1xuICBfdGl0bGVUcGw6IFRlbXBsYXRlUmVmPHZvaWQ+O1xuICBASW5wdXQoKVxuICBzZXQgdGl0bGUodmFsdWU6IHN0cmluZyB8IFRlbXBsYXRlUmVmPHZvaWQ+KSB7XG4gICAgaWYgKHZhbHVlIGluc3RhbmNlb2YgVGVtcGxhdGVSZWYpIHtcbiAgICAgIHRoaXMuX3RpdGxlID0gbnVsbDtcbiAgICAgIHRoaXMuX3RpdGxlVHBsID0gdmFsdWU7XG4gICAgfSBlbHNlIHRoaXMuX3RpdGxlID0gdmFsdWU7XG4gIH1cblxuICBfYWN0aW9uID0gJyc7XG4gIF9hY3Rpb25UcGw6IFRlbXBsYXRlUmVmPHZvaWQ+O1xuICBASW5wdXQoKVxuICBzZXQgYWN0aW9uKHZhbHVlOiBzdHJpbmcgfCBUZW1wbGF0ZVJlZjx2b2lkPikge1xuICAgIGlmICh2YWx1ZSBpbnN0YW5jZW9mIFRlbXBsYXRlUmVmKSB7XG4gICAgICB0aGlzLl9hY3Rpb24gPSBudWxsO1xuICAgICAgdGhpcy5fYWN0aW9uVHBsID0gdmFsdWU7XG4gICAgfSBlbHNlIHRoaXMuX2FjdGlvbiA9IHZhbHVlO1xuICB9XG5cbiAgQElucHV0KCkgdG90YWwgPSAnJztcblxuICBfaGVpZ2h0ID0gJ2F1dG8nO1xuICBfb3JnSGVpZ2h0OiBudW1iZXIgfCBzdHJpbmc7XG4gIEBJbnB1dCgpXG4gIHNldCBjb250ZW50SGVpZ2h0KHZhbHVlOiBudW1iZXIgfCBzdHJpbmcpIHtcbiAgICB0aGlzLl9vcmdIZWlnaHQgPSB2YWx1ZTtcbiAgICB0aGlzLl9oZWlnaHQgPVxuICAgICAgdHlwZW9mIHZhbHVlID09PSAnbnVtYmVyJyA/ICh0aGlzLl9oZWlnaHQgPSBgJHt2YWx1ZX1weGApIDogdmFsdWU7XG4gIH1cblxuICBfZm9vdGVyID0gJyc7XG4gIF9mb290ZXJUcGw6IFRlbXBsYXRlUmVmPHZvaWQ+O1xuICBASW5wdXQoKVxuICBzZXQgZm9vdGVyKHZhbHVlOiBzdHJpbmcgfCBUZW1wbGF0ZVJlZjx2b2lkPikge1xuICAgIGlmICh2YWx1ZSBpbnN0YW5jZW9mIFRlbXBsYXRlUmVmKSB7XG4gICAgICB0aGlzLl9mb290ZXIgPSBudWxsO1xuICAgICAgdGhpcy5fZm9vdGVyVHBsID0gdmFsdWU7XG4gICAgfSBlbHNlIHRoaXMuX2Zvb3RlciA9IHZhbHVlO1xuICB9XG5cbiAgLyoqIOaYr+WQpuaYvuekukxvYWRpbmcgKi9cbiAgQElucHV0KCkgQElucHV0Qm9vbGVhbigpIGxvYWRpbmcgPSBmYWxzZTtcblxufVxuIl19
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY2FyZC5jb21wb25lbnQuanMiLCJzb3VyY2VSb290Ijoibmc6Ly9AZGVsb24vY2hhcnQvY2FyZC8iLCJzb3VyY2VzIjpbImNhcmQuY29tcG9uZW50LnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7O0FBQUEsT0FBTyxFQUNMLHVCQUF1QixFQUN2QixpQkFBaUIsRUFDakIsU0FBUyxFQUNULEtBQUssR0FHTixNQUFNLGVBQWUsQ0FBQztBQUN2QixPQUFPLEVBQUUsWUFBWSxFQUFFLE1BQU0sYUFBYSxDQUFDO0FBUTNDLE1BQU0sT0FBTyxlQUFlOzs7O0lBa0IxQixZQUFvQixHQUFzQjtRQUF0QixRQUFHLEdBQUgsR0FBRyxDQUFtQjs7OztRQWhCakIsYUFBUSxHQUFHLEtBQUssQ0FBQztRQUlqQyxVQUFLLEdBQUcsRUFBRSxDQUFDO1FBQ3BCLFlBQU8sR0FBRyxNQUFNLENBQUM7Ozs7UUFTUSxZQUFPLEdBQUcsS0FBSyxDQUFDO0lBRUssQ0FBQzs7Ozs7SUFUL0MsSUFDSSxhQUFhLENBQUMsS0FBc0I7UUFDdEMsSUFBSSxDQUFDLFVBQVUsR0FBRyxLQUFLLENBQUM7UUFDeEIsSUFBSSxDQUFDLE9BQU8sR0FBRyxPQUFPLEtBQUssS0FBSyxRQUFRLENBQUMsQ0FBQyxDQUFDLENBQUMsSUFBSSxDQUFDLE9BQU8sR0FBRyxHQUFHLEtBQUssSUFBSSxDQUFDLENBQUMsQ0FBQyxDQUFDLEtBQUssQ0FBQztJQUNuRixDQUFDOzs7O0lBT0QsV0FBVztRQUNULElBQUksQ0FBQyxHQUFHLENBQUMsYUFBYSxFQUFFLENBQUM7SUFDM0IsQ0FBQzs7O1lBNUJGLFNBQVMsU0FBQztnQkFDVCxRQUFRLEVBQUUsU0FBUztnQkFDbkIsdXJDQUFvQztnQkFDcEMsSUFBSSxFQUFFLEVBQUUsaUJBQWlCLEVBQUUsTUFBTSxFQUFFO2dCQUNuQyxlQUFlLEVBQUUsdUJBQXVCLENBQUMsTUFBTTthQUNoRDs7OztZQWJDLGlCQUFpQjs7O3VCQWdCaEIsS0FBSztxQkFDTCxLQUFLO29CQUNMLEtBQUs7cUJBQ0wsS0FBSztvQkFDTCxLQUFLOzRCQUdMLEtBQUs7cUJBS0wsS0FBSztzQkFFTCxLQUFLOztBQWRtQjtJQUFmLFlBQVksRUFBRTs7aURBQWtCO0FBY2pCO0lBQWYsWUFBWSxFQUFFOztnREFBaUI7Ozs7OztJQWR6QyxtQ0FBMEM7O0lBQzFDLGlDQUE0Qzs7SUFDNUMsZ0NBQTJDOztJQUMzQyxpQ0FBNEM7O0lBQzVDLGdDQUFvQjs7SUFDcEIsa0NBQWlCOztJQUNqQixxQ0FBNEI7O0lBTTVCLGlDQUE0Qzs7Ozs7SUFFNUMsa0NBQXlDOztJQUU3Qiw4QkFBOEIiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQge1xuICBDaGFuZ2VEZXRlY3Rpb25TdHJhdGVneSxcbiAgQ2hhbmdlRGV0ZWN0b3JSZWYsXG4gIENvbXBvbmVudCxcbiAgSW5wdXQsXG4gIE9uQ2hhbmdlcyxcbiAgVGVtcGxhdGVSZWYsXG59IGZyb20gJ0Bhbmd1bGFyL2NvcmUnO1xuaW1wb3J0IHsgSW5wdXRCb29sZWFuIH0gZnJvbSAnQGRlbG9uL3V0aWwnO1xuXG5AQ29tcG9uZW50KHtcbiAgc2VsZWN0b3I6ICdnMi1jYXJkJyxcbiAgdGVtcGxhdGVVcmw6ICcuL2NhcmQuY29tcG9uZW50Lmh0bWwnLFxuICBob3N0OiB7ICdbY2xhc3MuZzItY2FyZF0nOiAndHJ1ZScgfSxcbiAgY2hhbmdlRGV0ZWN0aW9uOiBDaGFuZ2VEZXRlY3Rpb25TdHJhdGVneS5PblB1c2gsXG59KVxuZXhwb3J0IGNsYXNzIEcyQ2FyZENvbXBvbmVudCBpbXBsZW1lbnRzIE9uQ2hhbmdlcyB7XG4gIC8qKiDmmK/lkKbmmL7npLrovrnmoYYgKi9cbiAgQElucHV0KCkgQElucHV0Qm9vbGVhbigpIGJvcmRlcmVkID0gZmFsc2U7XG4gIEBJbnB1dCgpIGF2YXRhcjogc3RyaW5nIHwgVGVtcGxhdGVSZWY8dm9pZD47XG4gIEBJbnB1dCgpIHRpdGxlOiBzdHJpbmcgfCBUZW1wbGF0ZVJlZjx2b2lkPjtcbiAgQElucHV0KCkgYWN0aW9uOiBzdHJpbmcgfCBUZW1wbGF0ZVJlZjx2b2lkPjtcbiAgQElucHV0KCkgdG90YWwgPSAnJztcbiAgX2hlaWdodCA9ICdhdXRvJztcbiAgX29yZ0hlaWdodDogbnVtYmVyIHwgc3RyaW5nO1xuICBASW5wdXQoKVxuICBzZXQgY29udGVudEhlaWdodCh2YWx1ZTogbnVtYmVyIHwgc3RyaW5nKSB7XG4gICAgdGhpcy5fb3JnSGVpZ2h0ID0gdmFsdWU7XG4gICAgdGhpcy5faGVpZ2h0ID0gdHlwZW9mIHZhbHVlID09PSAnbnVtYmVyJyA/ICh0aGlzLl9oZWlnaHQgPSBgJHt2YWx1ZX1weGApIDogdmFsdWU7XG4gIH1cbiAgQElucHV0KCkgZm9vdGVyOiBzdHJpbmcgfCBUZW1wbGF0ZVJlZjx2b2lkPjtcbiAgLyoqIOaYr+WQpuaYvuekukxvYWRpbmcgKi9cbiAgQElucHV0KCkgQElucHV0Qm9vbGVhbigpIGxvYWRpbmcgPSBmYWxzZTtcblxuICBjb25zdHJ1Y3Rvcihwcml2YXRlIGNkcjogQ2hhbmdlRGV0ZWN0b3JSZWYpIHsgfVxuXG4gIG5nT25DaGFuZ2VzKCk6IHZvaWQge1xuICAgIHRoaXMuY2RyLmRldGVjdENoYW5nZXMoKTtcbiAgfVxufVxuIl19

@@ -13,13 +13,13 @@ class G2WaterWaveComponent {
     /**
      * @param {?} el
      * @param {?} renderer
-     * @param {?} cd
+     * @param {?} cdr
      * @param {?} zone
      */
-    constructor(el, renderer, cd, zone) {
+    constructor(el, renderer, cdr, zone) {
         this.el = el;
         this.renderer = renderer;
-        this.cd = cd;
+        this.cdr = cdr;
         this.zone = zone;
         // #region fields
         this._title = '';
@@ -235,7 +235,7 @@ class G2WaterWaveComponent {
      */
     ngOnInit() {
         this.initFlag = true;
-        this.cd.detectChanges();
+        this.cdr.detectChanges();
         this.zone.runOutsideAngular(() => {
             this.updateRadio(1);
             this.installResizeEvent();
@@ -247,7 +247,7 @@ class G2WaterWaveComponent {
      */
     ngOnChanges() {
         if (this.initFlag) {
-            this.cd.detectChanges();
+            this.cdr.detectChanges();
             this.zone.runOutsideAngular(() => this.renderChart());
         }
     }

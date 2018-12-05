@@ -14,7 +14,7 @@ export declare class SFComponent implements OnInit, OnChanges, OnDestroy {
     private formPropertyFactory;
     private terminator;
     private options;
-    private cd;
+    private cdr;
     private i18n;
     private i18n$;
     locale: any;
@@ -69,7 +69,7 @@ export declare class SFComponent implements OnInit, OnChanges, OnDestroy {
     /** 表单值 */
     readonly value: {};
     onSubmit(e: Event): void;
-    constructor(formPropertyFactory: FormPropertyFactory, terminator: TerminatorService, options: DelonFormConfig, cd: ChangeDetectorRef, i18n: DelonLocaleService);
+    constructor(formPropertyFactory: FormPropertyFactory, terminator: TerminatorService, options: DelonFormConfig, cdr: ChangeDetectorRef, i18n: DelonLocaleService);
     private coverProperty;
     private coverButtonProperty;
     ngOnInit(): void;
