@@ -1,6 +1,6 @@
 import { __decorate, __metadata } from 'tslib';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, HostBinding, Input, NgZone, ViewChild, NgModule } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, HostBinding, Input, NgModule } from '@angular/core';
 import { InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
@@ -8,35 +8,36 @@ import { InputNumber, DelonUtilModule } from '@delon/util';
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 class G2MiniBarComponent {
+    // #endregion
     /**
-     * @param {?} zone
+     * @param {?} el
      */
-    constructor(zone) {
-        this.zone = zone;
+    constructor(el) {
+        this.el = el;
         // #region fields
+        this.delay = 0;
         this.color = '#1890FF';
         this.height = 0;
         this.borderWidth = 5;
         this.padding = [8, 8, 8, 8];
+        this.data = [];
         this.yTooltipSuffix = '';
     }
     /**
      * @return {?}
      */
     install() {
-        if (!this.data || (this.data && this.data.length < 1))
-            return;
-        this.node.nativeElement.innerHTML = '';
+        const { el, height, padding, data, color, borderWidth, yTooltipSuffix } = this;
         /** @type {?} */
-        const chart = new G2.Chart({
-            container: this.node.nativeElement,
+        const chart = this.chart = new G2.Chart({
+            container: el.nativeElement,
             forceFit: true,
-            height: +this.height,
-            padding: this.padding,
+            height,
+            padding,
             legend: null,
         });
         chart.axis(false);
-        chart.source(this.data, {
+        chart.source(data, {
             x: {
                 type: 'cat',
             },
@@ -54,12 +55,12 @@ class G2MiniBarComponent {
         chart
             .interval()
             .position('x*y')
-            .size(this.borderWidth)
-            .color(this.color)
+            .size(borderWidth)
+            .color(color)
             .tooltip('x*y', (x, y) => {
             return {
                 name: x,
-                value: y + this.yTooltipSuffix,
+                value: y + yTooltipSuffix,
             };
         });
         chart.render();
@@ -68,8 +69,26 @@ class G2MiniBarComponent {
     /**
      * @return {?}
      */
+    attachChart() {
+        const { chart, height, padding, data, color, borderWidth } = this;
+        if (!chart)
+            return;
+        chart.changeData(data).get('geoms')[0].size(borderWidth).color(color);
+        chart.set('height', height);
+        chart.set('padding', padding);
+        chart.repaint();
+    }
+    /**
+     * @return {?}
+     */
+    ngOnInit() {
+        setTimeout(() => this.install(), this.delay);
+    }
+    /**
+     * @return {?}
+     */
     ngOnChanges() {
-        this.zone.runOutsideAngular(() => setTimeout(() => this.install()));
+        this.attachChart();
     }
     /**
      * @return {?}
@@ -77,30 +96,33 @@ class G2MiniBarComponent {
     ngOnDestroy() {
         if (this.chart) {
             this.chart.destroy();
-            this.chart = null;
         }
     }
 }
 G2MiniBarComponent.decorators = [
     { type: Component, args: [{
                 selector: 'g2-mini-bar',
-                template: `<div #container></div>`,
+                template: ``,
                 changeDetection: ChangeDetectionStrategy.OnPush
             }] }
 ];
 /** @nocollapse */
 G2MiniBarComponent.ctorParameters = () => [
-    { type: NgZone }
+    { type: ElementRef }
 ];
 G2MiniBarComponent.propDecorators = {
+    delay: [{ type: Input }],
     color: [{ type: Input }],
     height: [{ type: HostBinding, args: ['style.height.px',] }, { type: Input }],
     borderWidth: [{ type: Input }],
     padding: [{ type: Input }],
     data: [{ type: Input }],
-    yTooltipSuffix: [{ type: Input }],
-    node: [{ type: ViewChild, args: ['container',] }]
+    yTooltipSuffix: [{ type: Input }]
 };
+__decorate([
+    InputNumber(),
+    __metadata("design:type", Object)
+], G2MiniBarComponent.prototype, "delay", void 0);
 __decorate([
     InputNumber(),
     __metadata("design:type", Object)

@@ -1,16 +1,21 @@
-import { AfterViewInit, ChangeDetectorRef, NgZone, OnChanges, OnDestroy, TemplateRef } from '@angular/core';
-export declare class G2TimelineComponent implements OnDestroy, OnChanges, AfterViewInit {
-    private cdr;
-    private zone;
-    _title: string;
-    _titleTpl: TemplateRef<void>;
+import { OnChanges, OnDestroy, OnInit, TemplateRef } from '@angular/core';
+export declare class G2TimelineData {
+    /** 非 `Date` 格式，自动使用 `new Date` 转换，因此，支持时间格式字符串、数字型时间戳 */
+    x: Date | string | number;
+    /** 指标1数据 */
+    y1: number;
+    /** 指标2数据 */
+    y2: number;
+    [key: string]: any;
+}
+export declare class G2TimelineComponent implements OnInit, OnDestroy, OnChanges {
+    private node;
+    private sliderNode;
+    private chart;
+    private slider;
+    delay: number;
     title: string | TemplateRef<void>;
-    data: Array<{
-        x: Date;
-        y1: number;
-        y2: number;
-        [key: string]: any;
-    }>;
+    data: G2TimelineData[];
     titleMap: {
         y1: string;
         y2: string;
@@ -24,16 +29,9 @@ export declare class G2TimelineComponent implements OnDestroy, OnChanges, AfterV
     height: number;
     padding: number[];
     borderWidth: number;
-    private node;
-    private sliderNode;
-    private chart;
-    private initFlag;
-    private slider;
-    constructor(cdr: ChangeDetectorRef, zone: NgZone);
-    ngAfterViewInit(): void;
-    private runInstall;
+    ngOnInit(): void;
     private install;
-    private uninstall;
+    private attachChart;
     ngOnChanges(): void;
     ngOnDestroy(): void;
 }

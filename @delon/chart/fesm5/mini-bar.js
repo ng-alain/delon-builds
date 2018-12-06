@@ -1,6 +1,6 @@
 import { __decorate, __metadata, __spread } from 'tslib';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, HostBinding, Input, NgZone, ViewChild, NgModule } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, HostBinding, Input, NgModule } from '@angular/core';
 import { InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
@@ -8,13 +8,16 @@ import { InputNumber, DelonUtilModule } from '@delon/util';
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 var G2MiniBarComponent = /** @class */ (function () {
-    function G2MiniBarComponent(zone) {
-        this.zone = zone;
+    // #endregion
+    function G2MiniBarComponent(el) {
+        this.el = el;
         // #region fields
+        this.delay = 0;
         this.color = '#1890FF';
         this.height = 0;
         this.borderWidth = 5;
         this.padding = [8, 8, 8, 8];
+        this.data = [];
         this.yTooltipSuffix = '';
     }
     /**
@@ -24,20 +27,17 @@ var G2MiniBarComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        var _this = this;
-        if (!this.data || (this.data && this.data.length < 1))
-            return;
-        this.node.nativeElement.innerHTML = '';
+        var _a = this, el = _a.el, height = _a.height, padding = _a.padding, data = _a.data, color = _a.color, borderWidth = _a.borderWidth, yTooltipSuffix = _a.yTooltipSuffix;
         /** @type {?} */
-        var chart = new G2.Chart({
-            container: this.node.nativeElement,
+        var chart = this.chart = new G2.Chart({
+            container: el.nativeElement,
             forceFit: true,
-            height: +this.height,
-            padding: this.padding,
+            height: height,
+            padding: padding,
             legend: null,
         });
         chart.axis(false);
-        chart.source(this.data, {
+        chart.source(data, {
             x: {
                 type: 'cat',
             },
@@ -55,12 +55,12 @@ var G2MiniBarComponent = /** @class */ (function () {
         chart
             .interval()
             .position('x*y')
-            .size(this.borderWidth)
-            .color(this.color)
+            .size(borderWidth)
+            .color(color)
             .tooltip('x*y', function (x, y) {
             return {
                 name: x,
-                value: y + _this.yTooltipSuffix,
+                value: y + yTooltipSuffix,
             };
         });
         chart.render();
@@ -69,12 +69,36 @@ var G2MiniBarComponent = /** @class */ (function () {
     /**
      * @return {?}
      */
-    G2MiniBarComponent.prototype.ngOnChanges = /**
+    G2MiniBarComponent.prototype.attachChart = /**
+     * @return {?}
+     */
+    function () {
+        var _a = this, chart = _a.chart, height = _a.height, padding = _a.padding, data = _a.data, color = _a.color, borderWidth = _a.borderWidth;
+        if (!chart)
+            return;
+        chart.changeData(data).get('geoms')[0].size(borderWidth).color(color);
+        chart.set('height', height);
+        chart.set('padding', padding);
+        chart.repaint();
+    };
+    /**
+     * @return {?}
+     */
+    G2MiniBarComponent.prototype.ngOnInit = /**
      * @return {?}
      */
     function () {
         var _this = this;
-        this.zone.runOutsideAngular(function () { return setTimeout(function () { return _this.install(); }); });
+        setTimeout(function () { return _this.install(); }, this.delay);
+    };
+    /**
+     * @return {?}
+     */
+    G2MiniBarComponent.prototype.ngOnChanges = /**
+     * @return {?}
+     */
+    function () {
+        this.attachChart();
     };
     /**
      * @return {?}
@@ -85,29 +109,32 @@ var G2MiniBarComponent = /** @class */ (function () {
     function () {
         if (this.chart) {
             this.chart.destroy();
-            this.chart = null;
         }
     };
     G2MiniBarComponent.decorators = [
         { type: Component, args: [{
                     selector: 'g2-mini-bar',
-                    template: "<div #container></div>",
+                    template: "",
                     changeDetection: ChangeDetectionStrategy.OnPush
                 }] }
     ];
     /** @nocollapse */
     G2MiniBarComponent.ctorParameters = function () { return [
-        { type: NgZone }
+        { type: ElementRef }
     ]; };
     G2MiniBarComponent.propDecorators = {
+        delay: [{ type: Input }],
         color: [{ type: Input }],
         height: [{ type: HostBinding, args: ['style.height.px',] }, { type: Input }],
         borderWidth: [{ type: Input }],
         padding: [{ type: Input }],
         data: [{ type: Input }],
-        yTooltipSuffix: [{ type: Input }],
-        node: [{ type: ViewChild, args: ['container',] }]
+        yTooltipSuffix: [{ type: Input }]
     };
+    __decorate([
+        InputNumber(),
+        __metadata("design:type", Object)
+    ], G2MiniBarComponent.prototype, "delay", void 0);
     __decorate([
         InputNumber(),
         __metadata("design:type", Object)

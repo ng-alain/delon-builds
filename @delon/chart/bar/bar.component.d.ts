@@ -6,17 +6,18 @@ export interface G2BarData {
 }
 export declare class G2BarComponent implements OnInit, OnChanges, OnDestroy {
     private resize$;
-    private inited;
     private chart;
+    private node;
+    delay: number;
     title: string | TemplateRef<void>;
     color: string;
     height: number;
-    padding: number[];
+    padding: Array<number | string> | string;
     data: G2BarData[];
     autoLabel: boolean;
-    private node;
     private install;
-    private uninstall;
+    private getHeight;
+    private attachChart;
     private updatelabel;
     private installResizeEvent;
     ngOnInit(): void;

@@ -72,11 +72,14 @@
      * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
     var G2GaugeComponent = /** @class */ (function () {
-        function G2GaugeComponent() {
+        // #endregion
+        function G2GaugeComponent(el) {
+            this.el = el;
             // #region fields
+            this.delay = 0;
             this.color = '#2F9CFF';
             this.bgColor = '#F0F2F5';
-            this.initFlag = false;
+            this.padding = [10, 10, 30, 10];
         }
         /**
          * @return {?}
@@ -94,37 +97,40 @@
          * @return {?}
          */
             function () {
-                if (!this.chart)
+                var _a = this, chart = _a.chart, bgColor = _a.bgColor, color = _a.color, title = _a.title;
+                if (!chart)
                     return;
-                this.chart.guide().clear();
+                /** @type {?} */
+                var guide = chart.guide();
+                guide.clear();
                 /** @type {?} */
                 var data = this.createData();
                 // 绘制仪表盘背景
-                this.chart.guide().arc({
+                guide.arc({
                     zIndex: 0,
                     top: false,
                     start: [0, 0.95],
                     end: [100, 0.95],
                     style: {
                         // 底灰色
-                        stroke: this.bgColor,
+                        stroke: bgColor,
                         lineWidth: 12,
                     },
                 });
                 // 绘制指标
-                this.chart.guide().arc({
+                guide.arc({
                     zIndex: 1,
                     start: [0, 0.95],
                     end: [data[0].value, 0.95],
                     style: {
-                        stroke: this.color,
+                        stroke: color,
                         lineWidth: 12,
                     },
                 });
                 // 绘制数字
-                this.chart.guide().html({
+                guide.html({
                     position: ['50%', '95%'],
-                    html: "\n      <div style=\"width: 300px;text-align: center;font-size: 12px!important;\">\n        <p style=\"font-size: 14px; color: rgba(0,0,0,0.43);margin: 0;\">" + this.title + "</p>\n        <p style=\"font-size: 24px;color: rgba(0,0,0,0.85);margin: 0;\">\n          " + data[0].value + "%\n        </p>\n      </div>",
+                    html: "<div class=\"g2-gauge__desc\">\n        <div class=\"g2-gauge__title\">" + title + "</div>\n        <div class=\"g2-gauge__percent\">" + data[0].value + "%</div>\n      </div>",
                 });
                 this.chart.changeData(data);
             };
@@ -135,8 +141,6 @@
          * @return {?}
          */
             function () {
-                this.uninstall();
-                this.node.nativeElement.innerHTML = '';
                 /** @type {?} */
                 var Shape = G2.Shape;
                 // 自定义Shape 部分
@@ -190,16 +194,15 @@
                         });
                     },
                 });
+                var _a = this, el = _a.el, height = _a.height, padding = _a.padding, format = _a.format, color = _a.color;
                 /** @type {?} */
-                var data = this.createData();
-                /** @type {?} */
-                var chart = new G2.Chart({
-                    container: this.node.nativeElement,
+                var chart = this.chart = new G2.Chart({
+                    container: el.nativeElement,
                     forceFit: true,
-                    height: this.height,
-                    padding: [10, 10, 30, 10],
+                    height: height,
+                    padding: padding,
                 });
-                chart.source(data);
+                chart.source(this.createData());
                 chart.coord('polar', {
                     startAngle: Math.PI * -1.2,
                     endAngle: Math.PI * 0.2,
@@ -217,7 +220,7 @@
                     line: null,
                     label: {
                         offset: -12,
-                        formatter: this.format,
+                        formatter: format,
                     },
                     tickLine: null,
                     grid: null,
@@ -229,20 +232,9 @@
                 })
                     .position('value*1')
                     .shape('pointer')
-                    .color(this.color)
+                    .color(color)
                     .active(false);
-                this.chart = chart;
                 this.draw();
-            };
-        /**
-         * @return {?}
-         */
-        G2GaugeComponent.prototype.uninstall = /**
-         * @return {?}
-         */
-            function () {
-                if (this.chart)
-                    this.chart.destroy();
             };
         /**
          * @return {?}
@@ -251,8 +243,8 @@
          * @return {?}
          */
             function () {
-                this.initFlag = true;
-                this.install();
+                var _this = this;
+                setTimeout(function () { return _this.install(); }, this.delay);
             };
         /**
          * @return {?}
@@ -261,8 +253,7 @@
          * @return {?}
          */
             function () {
-                if (this.initFlag)
-                    this.draw();
+                this.draw();
             };
         /**
          * @return {?}
@@ -271,24 +262,40 @@
          * @return {?}
          */
             function () {
-                this.uninstall();
+                if (this.chart) {
+                    this.chart.destroy();
+                }
             };
         G2GaugeComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'g2-gauge',
-                        template: "<div #container></div>",
+                        template: "",
+                        host: {
+                            '[class.g2-gauge]': 'true',
+                        },
                         changeDetection: core.ChangeDetectionStrategy.OnPush
                     }] }
         ];
+        /** @nocollapse */
+        G2GaugeComponent.ctorParameters = function () {
+            return [
+                { type: core.ElementRef }
+            ];
+        };
         G2GaugeComponent.propDecorators = {
+            delay: [{ type: core.Input }],
             title: [{ type: core.Input }],
             height: [{ type: core.Input }],
             color: [{ type: core.Input }],
             bgColor: [{ type: core.Input }],
             format: [{ type: core.Input }],
             percent: [{ type: core.Input }],
-            node: [{ type: core.ViewChild, args: ['container',] }]
+            padding: [{ type: core.Input }]
         };
+        __decorate([
+            util.InputNumber(),
+            __metadata("design:type", Object)
+        ], G2GaugeComponent.prototype, "delay", void 0);
         __decorate([
             util.InputNumber(),
             __metadata("design:type", Object)

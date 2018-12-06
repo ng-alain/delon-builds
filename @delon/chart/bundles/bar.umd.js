@@ -76,31 +76,34 @@
     var G2BarComponent = /** @class */ (function () {
         function G2BarComponent() {
             this.resize$ = null;
-            this.inited = false;
+            // #region fields
+            this.delay = 0;
             this.color = 'rgba(24, 144, 255, 0.85)';
             this.height = 0;
+            this.padding = 'auto';
+            this.data = [];
             this.autoLabel = true;
         }
+        // #endregion
+        // #endregion
         /**
          * @return {?}
          */
-        G2BarComponent.prototype.install = /**
-         * @return {?}
-         */
+        G2BarComponent.prototype.install =
+            // #endregion
+            /**
+             * @return {?}
+             */
             function () {
-                this.uninstall();
                 /** @type {?} */
                 var container = ( /** @type {?} */(this.node.nativeElement));
-                container.innerHTML = '';
-                if (!this.data || (this.data && this.data.length < 1))
-                    return;
                 /** @type {?} */
                 var chart = this.chart = new G2.Chart({
                     container: container,
                     forceFit: true,
-                    height: this.title ? this.height - TITLE_HEIGHT : this.height,
                     legend: null,
-                    padding: this.padding || 'auto',
+                    height: this.getHeight(),
+                    padding: this.padding,
                 });
                 this.updatelabel();
                 chart.axis('y', {
@@ -134,14 +137,30 @@
         /**
          * @return {?}
          */
-        G2BarComponent.prototype.uninstall = /**
+        G2BarComponent.prototype.getHeight = /**
          * @return {?}
          */
             function () {
-                if (this.chart) {
-                    this.chart.destroy();
-                }
-                this.chart = null;
+                return this.title ? this.height - TITLE_HEIGHT : this.height;
+            };
+        /**
+         * @return {?}
+         */
+        G2BarComponent.prototype.attachChart = /**
+         * @return {?}
+         */
+            function () {
+                var _a = this, chart = _a.chart, padding = _a.padding, data = _a.data;
+                if (!chart)
+                    return;
+                this.installResizeEvent();
+                chart
+                    .changeHeight(this.getHeight())
+                    .changeData(data);
+                // color
+                chart.get('geoms')[0].color(this.color);
+                chart.set('padding', padding);
+                chart.repaint();
             };
         /**
          * @return {?}
@@ -177,9 +196,8 @@
          * @return {?}
          */
             function () {
-                this.installResizeEvent();
-                this.install();
-                this.inited = true;
+                var _this = this;
+                setTimeout(function () { return _this.install(); }, this.delay);
             };
         /**
          * @return {?}
@@ -188,10 +206,7 @@
          * @return {?}
          */
             function () {
-                if (this.inited) {
-                    this.installResizeEvent();
-                    this.install();
-                }
+                this.attachChart();
             };
         /**
          * @return {?}
@@ -200,9 +215,12 @@
          * @return {?}
          */
             function () {
-                if (this.resize$)
+                if (this.resize$) {
                     this.resize$.unsubscribe();
-                this.uninstall();
+                }
+                if (this.chart) {
+                    this.chart.destroy();
+                }
             };
         G2BarComponent.decorators = [
             { type: core.Component, args: [{
@@ -212,14 +230,19 @@
                     }] }
         ];
         G2BarComponent.propDecorators = {
+            node: [{ type: core.ViewChild, args: ['container',] }],
+            delay: [{ type: core.Input }],
             title: [{ type: core.Input }],
             color: [{ type: core.Input }],
             height: [{ type: core.HostBinding, args: ['style.height.px',] }, { type: core.Input }],
             padding: [{ type: core.Input }],
             data: [{ type: core.Input }],
-            autoLabel: [{ type: core.Input }],
-            node: [{ type: core.ViewChild, args: ['container',] }]
+            autoLabel: [{ type: core.Input }]
         };
+        __decorate([
+            util.InputNumber(),
+            __metadata("design:type", Object)
+        ], G2BarComponent.prototype, "delay", void 0);
         __decorate([
             util.InputNumber(),
             __metadata("design:type", Object)

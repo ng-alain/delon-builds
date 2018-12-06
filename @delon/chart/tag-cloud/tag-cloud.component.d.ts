@@ -1,24 +1,21 @@
-import { ChangeDetectorRef, ElementRef, NgZone, OnChanges, OnDestroy, OnInit } from '@angular/core';
+import { ElementRef, OnChanges, OnDestroy, OnInit } from '@angular/core';
+export interface G2TagCloudData {
+    name: string;
+    value: number;
+    category?: any;
+    [key: string]: any;
+}
 export declare class G2TagCloudComponent implements OnDestroy, OnChanges, OnInit {
     private el;
-    private cdr;
-    private zone;
+    private chart;
+    delay: number;
     height: number;
     padding: number;
-    data: Array<{
-        name: string;
-        value: number;
-        category?: any;
-        [key: string]: any;
-    }>;
-    private node;
-    private chart;
-    private initFlag;
-    constructor(el: ElementRef, cdr: ChangeDetectorRef, zone: NgZone);
+    data: G2TagCloudData[];
+    constructor(el: ElementRef);
     private initTagCloud;
-    private renderChart;
-    private runInstall;
-    private uninstall;
+    private install;
+    private attachChart;
     ngOnInit(): void;
     ngOnChanges(): void;
     ngOnDestroy(): void;

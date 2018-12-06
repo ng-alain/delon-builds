@@ -24579,6 +24579,19 @@ g2-tag-cloud {
 .g2-card__footer > * {
   position: relative;
 }
+.g2-gauge__desc {
+  width: 300px;
+  text-align: center;
+  font-size: 12px;
+}
+.g2-gauge__title {
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.43);
+}
+.g2-gauge__percent {
+  font-size: 24px;
+  color: rgba(0, 0, 0, 0.85);
+}
 .g2-mini-progress {
   display: block;
   padding: 5px 0;

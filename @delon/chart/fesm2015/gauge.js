@@ -1,6 +1,6 @@
 import { __decorate, __metadata } from 'tslib';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input, ViewChild, NgModule } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, Input, NgModule } from '@angular/core';
 import { InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
@@ -8,11 +8,17 @@ import { InputNumber, DelonUtilModule } from '@delon/util';
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 class G2GaugeComponent {
-    constructor() {
+    // #endregion
+    /**
+     * @param {?} el
+     */
+    constructor(el) {
+        this.el = el;
         // #region fields
+        this.delay = 0;
         this.color = '#2F9CFF';
         this.bgColor = '#F0F2F5';
-        this.initFlag = false;
+        this.padding = [10, 10, 30, 10];
     }
     /**
      * @return {?}
@@ -24,42 +30,42 @@ class G2GaugeComponent {
      * @return {?}
      */
     draw() {
-        if (!this.chart)
+        const { chart, bgColor, color, title } = this;
+        if (!chart)
             return;
-        this.chart.guide().clear();
+        /** @type {?} */
+        const guide = chart.guide();
+        guide.clear();
         /** @type {?} */
         const data = this.createData();
         // 绘制仪表盘背景
-        this.chart.guide().arc({
+        guide.arc({
             zIndex: 0,
             top: false,
             start: [0, 0.95],
             end: [100, 0.95],
             style: {
                 // 底灰色
-                stroke: this.bgColor,
+                stroke: bgColor,
                 lineWidth: 12,
             },
         });
         // 绘制指标
-        this.chart.guide().arc({
+        guide.arc({
             zIndex: 1,
             start: [0, 0.95],
             end: [data[0].value, 0.95],
             style: {
-                stroke: this.color,
+                stroke: color,
                 lineWidth: 12,
             },
         });
         // 绘制数字
-        this.chart.guide().html({
+        guide.html({
             position: ['50%', '95%'],
-            html: `
-      <div style="width: 300px;text-align: center;font-size: 12px!important;">
-        <p style="font-size: 14px; color: rgba(0,0,0,0.43);margin: 0;">${this.title}</p>
-        <p style="font-size: 24px;color: rgba(0,0,0,0.85);margin: 0;">
-          ${data[0].value}%
-        </p>
+            html: `<div class="g2-gauge__desc">
+        <div class="g2-gauge__title">${title}</div>
+        <div class="g2-gauge__percent">${data[0].value}%</div>
       </div>`,
         });
         this.chart.changeData(data);
@@ -68,8 +74,6 @@ class G2GaugeComponent {
      * @return {?}
      */
     install() {
-        this.uninstall();
-        this.node.nativeElement.innerHTML = '';
         /** @type {?} */
         const Shape = G2.Shape;
         // 自定义Shape 部分
@@ -124,16 +128,15 @@ class G2GaugeComponent {
                 });
             },
         });
+        const { el, height, padding, format, color } = this;
         /** @type {?} */
-        const data = this.createData();
-        /** @type {?} */
-        const chart = new G2.Chart({
-            container: this.node.nativeElement,
+        const chart = this.chart = new G2.Chart({
+            container: el.nativeElement,
             forceFit: true,
-            height: this.height,
-            padding: [10, 10, 30, 10],
+            height,
+            padding,
         });
-        chart.source(data);
+        chart.source(this.createData());
         chart.coord('polar', {
             startAngle: Math.PI * -1.2,
             endAngle: Math.PI * 0.2,
@@ -151,7 +154,7 @@ class G2GaugeComponent {
             line: null,
             label: {
                 offset: -12,
-                formatter: this.format,
+                formatter: format,
             },
             tickLine: null,
             grid: null,
@@ -163,55 +166,59 @@ class G2GaugeComponent {
         })
             .position('value*1')
             .shape('pointer')
-            .color(this.color)
+            .color(color)
             .active(false);
-        this.chart = chart;
         this.draw();
     }
     /**
      * @return {?}
      */
-    uninstall() {
-        if (this.chart)
-            this.chart.destroy();
-    }
-    /**
-     * @return {?}
-     */
     ngOnInit() {
-        this.initFlag = true;
-        this.install();
+        setTimeout(() => this.install(), this.delay);
     }
     /**
      * @return {?}
      */
     ngOnChanges() {
-        if (this.initFlag)
-            this.draw();
+        this.draw();
     }
     /**
      * @return {?}
      */
     ngOnDestroy() {
-        this.uninstall();
+        if (this.chart) {
+            this.chart.destroy();
+        }
     }
 }
 G2GaugeComponent.decorators = [
     { type: Component, args: [{
                 selector: 'g2-gauge',
-                template: `<div #container></div>`,
+                template: ``,
+                host: {
+                    '[class.g2-gauge]': 'true',
+                },
                 changeDetection: ChangeDetectionStrategy.OnPush
             }] }
 ];
+/** @nocollapse */
+G2GaugeComponent.ctorParameters = () => [
+    { type: ElementRef }
+];
 G2GaugeComponent.propDecorators = {
+    delay: [{ type: Input }],
     title: [{ type: Input }],
     height: [{ type: Input }],
     color: [{ type: Input }],
     bgColor: [{ type: Input }],
     format: [{ type: Input }],
     percent: [{ type: Input }],
-    node: [{ type: ViewChild, args: ['container',] }]
+    padding: [{ type: Input }]
 };
+__decorate([
+    InputNumber(),
+    __metadata("design:type", Object)
+], G2GaugeComponent.prototype, "delay", void 0);
 __decorate([
     InputNumber(),
     __metadata("design:type", Object)

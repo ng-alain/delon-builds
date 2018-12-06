@@ -62,7 +62,7 @@
     exports.G2MiniAreaModule = miniArea.G2MiniAreaModule;
     exports.G2MiniBarComponent = miniBar.G2MiniBarComponent;
     exports.G2MiniBarModule = miniBar.G2MiniBarModule;
-    exports.G2ProgressComponent = miniProgress.G2ProgressComponent;
+    exports.G2MiniProgressComponent = miniProgress.G2MiniProgressComponent;
     exports.G2MiniProgressModule = miniProgress.G2MiniProgressModule;
     exports.NumberInfoComponent = numberInfo.NumberInfoComponent;
     exports.NumberInfoModule = numberInfo.NumberInfoModule;
@@ -72,6 +72,7 @@
     exports.G2RadarModule = radar.G2RadarModule;
     exports.G2TagCloudComponent = tagCloud.G2TagCloudComponent;
     exports.G2TagCloudModule = tagCloud.G2TagCloudModule;
+    exports.G2TimelineData = timeline.G2TimelineData;
     exports.G2TimelineComponent = timeline.G2TimelineComponent;
     exports.G2TimelineModule = timeline.G2TimelineModule;
     exports.TrendComponent = trend.TrendComponent;

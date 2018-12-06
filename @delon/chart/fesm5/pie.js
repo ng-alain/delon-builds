@@ -2,7 +2,7 @@ import { fromEvent } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { __decorate, __metadata, __spread } from 'tslib';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Input, NgZone, Renderer2, ViewChild, NgModule } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Input, Renderer2, ViewChild, NgModule } from '@angular/core';
 import { updateHostClass, InputBoolean, InputNumber, DelonUtilModule } from '@delon/util';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 
@@ -12,25 +12,23 @@ import { NgZorroAntdModule } from 'ng-zorro-antd';
  */
 var G2PieComponent = /** @class */ (function () {
     // #endregion
-    function G2PieComponent(el, rend, cdr, zone) {
+    function G2PieComponent(el, rend, cdr) {
         this.el = el;
         this.rend = rend;
         this.cdr = cdr;
-        this.zone = zone;
-        this.scroll$ = null;
-        this.initFlag = false;
         this.legendData = [];
         // #region fields
+        this.delay = 0;
         this.animate = true;
         this.color = 'rgba(24, 144, 255, 0.85)';
         this.height = 0;
         this.hasLegend = false;
-        this.legendBlock = false;
         this.inner = 0.75;
         this.padding = [12, 0, 12, 0];
         this.tooltip = true;
         this.lineWidth = 0;
         this.select = true;
+        this.data = [];
     }
     /**
      * @return {?}
@@ -39,22 +37,41 @@ var G2PieComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        updateHostClass(this.el.nativeElement, this.rend, {
+        var _a = this, el = _a.el, rend = _a.rend, hasLegend = _a.hasLegend, isPercent = _a.isPercent;
+        /** @type {?} */
+        var ne = (/** @type {?} */ (el.nativeElement));
+        console.log('ne.clientWidth', ne.clientWidth);
+        updateHostClass(ne, rend, {
             'g2-pie': true,
-            'g2-pie__legend-has': this.hasLegend,
-            'g2-pie__legend-block': this.legendBlock,
-            'g2-pie__mini': typeof this.percent !== 'undefined',
+            'g2-pie__legend-has': hasLegend,
+            'g2-pie__legend-block': ne.clientWidth <= 380,
+            'g2-pie__mini': isPercent,
         }, true);
     };
     /**
      * @return {?}
      */
-    G2PieComponent.prototype.runInstall = /**
+    G2PieComponent.prototype.fixData = /**
      * @return {?}
      */
     function () {
-        var _this = this;
-        this.zone.runOutsideAngular(function () { return setTimeout(function () { return _this.install(); }); });
+        var _a = this, percent = _a.percent, color = _a.color;
+        this.isPercent = percent != null;
+        if (this.isPercent) {
+            this.select = false;
+            this.tooltip = false;
+            this.percentColor = function (value) { return value === '占比' ? color || 'rgba(24, 144, 255, 0.85)' : '#F0F2F5'; };
+            this.data = [
+                {
+                    x: '占比',
+                    y: percent,
+                },
+                {
+                    x: '反比',
+                    y: 100 - percent,
+                },
+            ];
+        }
     };
     /**
      * @return {?}
@@ -63,44 +80,17 @@ var G2PieComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        var _this = this;
-        this.legendBlock = this.el.nativeElement.clientWidth <= 380;
         this.setCls();
+        var _a = this, node = _a.node, height = _a.height, padding = _a.padding, animate = _a.animate, tooltip = _a.tooltip, inner = _a.inner, hasLegend = _a.hasLegend;
         /** @type {?} */
-        var formatColor;
-        /** @type {?} */
-        var isPercent = typeof this.percent !== 'undefined';
-        if (isPercent) {
-            this.select = false;
-            this.tooltip = false;
-            formatColor = function (value) {
-                return value === '占比' ? _this.color || 'rgba(24, 144, 255, 0.85)' : '#F0F2F5';
-            };
-            this.data = [
-                {
-                    x: '占比',
-                    y: this.percent,
-                },
-                {
-                    x: '反比',
-                    y: 100 - this.percent,
-                },
-            ];
-        }
-        if (!this.data || (this.data && this.data.length < 1))
-            return;
-        if (this.chart)
-            this.chart.destroy();
-        this.node.nativeElement.innerHTML = '';
-        /** @type {?} */
-        var chart = new G2.Chart({
-            container: this.node.nativeElement,
+        var chart = this.chart = new G2.Chart({
+            container: node.nativeElement,
             forceFit: true,
-            height: this.height,
-            padding: this.padding,
-            animate: this.animate,
+            height: height,
+            padding: padding,
+            animate: animate,
         });
-        if (!this.tooltip) {
+        if (!tooltip) {
             chart.tooltip(false);
         }
         else {
@@ -111,9 +101,64 @@ var G2PieComponent = /** @class */ (function () {
         }
         chart.axis(false);
         chart.legend(false);
+        chart.coord('theta', { innerRadius: inner });
+        chart.filter('x', function (val, item) { return item.checked !== false; });
+        chart
+            .intervalStack()
+            .position('y')
+            .tooltip('x*percent', function (name, p) {
+            return {
+                name: name,
+                value: hasLegend ? p : (p * 100).toFixed(2),
+            };
+        })
+            .select(this.select);
+        chart.render();
+        this.attachChart();
+    };
+    /**
+     * @return {?}
+     */
+    G2PieComponent.prototype.installResizeEvent = /**
+     * @return {?}
+     */
+    function () {
+        var _this = this;
+        if (this.resize$ || !this.hasLegend)
+            return;
+        this.resize$ = fromEvent(window, 'resize')
+            .pipe(debounceTime(200))
+            .subscribe(function () { return _this.setCls(); });
+    };
+    /**
+     * @param {?} i
+     * @return {?}
+     */
+    G2PieComponent.prototype._click = /**
+     * @param {?} i
+     * @return {?}
+     */
+    function (i) {
+        var _a = this, legendData = _a.legendData, chart = _a.chart;
+        legendData[i].checked = !legendData[i].checked;
+        chart.repaint();
+    };
+    /**
+     * @return {?}
+     */
+    G2PieComponent.prototype.attachChart = /**
+     * @return {?}
+     */
+    function () {
+        var _a = this, chart = _a.chart, height = _a.height, padding = _a.padding, animate = _a.animate, data = _a.data, lineWidth = _a.lineWidth, isPercent = _a.isPercent, percentColor = _a.percentColor, colors = _a.colors;
+        if (!chart)
+            return;
+        chart.set('height', height);
+        chart.set('padding', padding);
+        chart.set('animate', animate);
         /** @type {?} */
         var dv = new DataSet.DataView();
-        dv.source(this.data).transform({
+        dv.source(data).transform({
             type: 'percent',
             field: 'y',
             dimension: 'x',
@@ -128,75 +173,41 @@ var G2PieComponent = /** @class */ (function () {
                 min: 0,
             },
         });
-        chart.coord('theta', { innerRadius: this.inner });
-        chart
-            .intervalStack()
-            .position('y')
-            .style({ lineWidth: this.lineWidth, stroke: '#fff' })
-            .tooltip('x*percent', function (item, percent) {
-            return {
-                name: item,
-                value: _this.hasLegend ? percent : (percent * 100).toFixed(2),
-            };
-        })
-            .color('x', isPercent ? formatColor : this.colors)
-            .select(this.select);
-        chart.render();
-        this.chart = chart;
-        if (this.hasLegend) {
-            this.zone.run(function () {
-                _this.legendData = chart
-                    .getAllGeoms()[0]
-                    ._attrs.dataArray.map(function (item) {
-                    /** @type {?} */
-                    var origin = item[0]._origin;
-                    origin.color = item[0].color;
-                    origin.checked = true;
-                    origin.percent = (origin.percent * 100).toFixed(2);
-                    return origin;
-                });
-                _this.cdr.detectChanges();
-            });
-        }
+        chart.get('geoms')[0]
+            .style({ lineWidth: lineWidth, stroke: '#fff' })
+            .color('x', isPercent ? percentColor : colors);
+        chart.repaint();
+        this.genLegend();
     };
     /**
      * @return {?}
      */
-    G2PieComponent.prototype.installResizeEvent = /**
+    G2PieComponent.prototype.genLegend = /**
+     * @return {?}
+     */
+    function () {
+        var _a = this, hasLegend = _a.hasLegend, isPercent = _a.isPercent, cdr = _a.cdr, chart = _a.chart;
+        if (!hasLegend || isPercent)
+            return;
+        this.legendData = chart.get('geoms')[0].get('dataArray').map(function (item) {
+            /** @type {?} */
+            var origin = item[0]._origin;
+            origin.color = item[0].color;
+            origin.checked = true;
+            origin.percent = (origin.percent * 100).toFixed(2);
+            return origin;
+        });
+        cdr.detectChanges();
+    };
+    /**
+     * @return {?}
+     */
+    G2PieComponent.prototype.ngOnInit = /**
      * @return {?}
      */
     function () {
         var _this = this;
-        if (this.scroll$ || !this.hasLegend)
-            return;
-        this.scroll$ = fromEvent(window, 'resize')
-            .pipe(debounceTime(200))
-            .subscribe(function () { return _this.runInstall(); });
-    };
-    /**
-     * @param {?} i
-     * @return {?}
-     */
-    G2PieComponent.prototype._click = /**
-     * @param {?} i
-     * @return {?}
-     */
-    function (i) {
-        this.legendData[i].checked = !this.legendData[i].checked;
-        if (this.chart) {
-            this.chart.filter('x', function (val, item) { return item.checked; });
-            this.chart.repaint();
-        }
-    };
-    /**
-     * @return {?}
-     */
-    G2PieComponent.prototype.ngAfterViewInit = /**
-     * @return {?}
-     */
-    function () {
-        this.initFlag = true;
-        this.runInstall();
+        setTimeout(function () { return _this.install(); }, this.delay);
     };
     /**
      * @return {?}
@@ -205,9 +216,10 @@ var G2PieComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
+        this.fixData();
+        this.setCls();
+        this.attachChart();
         this.installResizeEvent();
-        if (this.initFlag)
-            this.runInstall();
     };
     /**
      * @return {?}
@@ -216,17 +228,17 @@ var G2PieComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        if (this.scroll$)
-            this.scroll$.unsubscribe();
+        if (this.resize$) {
+            this.resize$.unsubscribe();
+        }
         if (this.chart) {
             this.chart.destroy();
-            this.chart = null;
         }
     };
     G2PieComponent.decorators = [
         { type: Component, args: [{
                     selector: 'g2-pie',
-                    template: "<div class=\"g2-pie__chart\">\n  <div #container></div>\n  <div *ngIf=\"subTitle || total\" class=\"g2-pie__total\">\n    <h4 *ngIf=\"subTitle\" class=\"g2-pie__total-title\" [innerHTML]=\"subTitle\"></h4>\n    <div *ngIf=\"total\" class=\"g2-pie__total-stat\" [innerHTML]=\"total\"></div>\n  </div>\n</div>\n<ul *ngIf=\"hasLegend && legendData?.length\" class=\"g2-pie__legend\">\n  <li *ngFor=\"let item of legendData; let index = index\" (click)=\"_click(index)\" class=\"g2-pie__legend-item\">\n    <span class=\"g2-pie__legend-dot\" [ngStyle]=\"{'background-color': !item.checked ? '#aaa' : item.color}\"></span>\n    <span class=\"g2-pie__legend-title\">{{item.x}}</span>\n    <nz-divider nzType=\"vertical\"></nz-divider>\n    <span class=\"g2-pie__legend-percent\">{{item.percent}}%</span>\n    <span class=\"g2-pie__legend-value\" [innerHTML]=\"valueFormat ? valueFormat(item.y) : item.y\"></span>\n  </li>\n</ul>\n",
+                    template: "<div class=\"g2-pie__chart\">\n  <div #container></div>\n  <div *ngIf=\"subTitle || total\" class=\"g2-pie__total\">\n    <h4 *ngIf=\"subTitle\" class=\"g2-pie__total-title\">\n      <ng-container *stringTemplateOutlet=\"subTitle\">{{subTitle}}</ng-container>\n    </h4>\n    <div *ngIf=\"total\" class=\"g2-pie__total-stat\">\n      <ng-container *stringTemplateOutlet=\"total\">{{total}}</ng-container>\n    </div>\n  </div>\n</div>\n<ul *ngIf=\"hasLegend && legendData?.length\" class=\"g2-pie__legend\">\n  <li *ngFor=\"let item of legendData; let index = index\" (click)=\"_click(index)\" class=\"g2-pie__legend-item\">\n    <span class=\"g2-pie__legend-dot\" [ngStyle]=\"{'background-color': !item.checked ? '#aaa' : item.color}\"></span>\n    <span class=\"g2-pie__legend-title\">{{item.x}}</span>\n    <nz-divider nzType=\"vertical\"></nz-divider>\n    <span class=\"g2-pie__legend-percent\">{{item.percent}}%</span>\n    <span class=\"g2-pie__legend-value\" [innerHTML]=\"valueFormat ? valueFormat(item.y) : item.y\"></span>\n  </li>\n</ul>\n",
                     changeDetection: ChangeDetectionStrategy.OnPush
                 }] }
     ];
@@ -234,28 +246,31 @@ var G2PieComponent = /** @class */ (function () {
     G2PieComponent.ctorParameters = function () { return [
         { type: ElementRef },
         { type: Renderer2 },
-        { type: ChangeDetectorRef },
-        { type: NgZone }
+        { type: ChangeDetectorRef }
     ]; };
     G2PieComponent.propDecorators = {
         node: [{ type: ViewChild, args: ['container',] }],
+        delay: [{ type: Input }],
         animate: [{ type: Input }],
         color: [{ type: Input }],
         subTitle: [{ type: Input }],
         total: [{ type: Input }],
         height: [{ type: Input }],
         hasLegend: [{ type: Input }],
-        legendBlock: [{ type: Input }],
         inner: [{ type: Input }],
         padding: [{ type: Input }],
         percent: [{ type: Input }],
         tooltip: [{ type: Input }],
         lineWidth: [{ type: Input }],
         select: [{ type: Input }],
-        data: [{ type: Input }],
         valueFormat: [{ type: Input }],
+        data: [{ type: Input }],
         colors: [{ type: Input }]
     };
+    __decorate([
+        InputNumber(),
+        __metadata("design:type", Object)
+    ], G2PieComponent.prototype, "delay", void 0);
     __decorate([
         InputBoolean(),
         __metadata("design:type", Object)
@@ -268,10 +283,6 @@ var G2PieComponent = /** @class */ (function () {
         InputBoolean(),
         __metadata("design:type", Object)
     ], G2PieComponent.prototype, "hasLegend", void 0);
-    __decorate([
-        InputBoolean(),
-        __metadata("design:type", Object)
-    ], G2PieComponent.prototype, "legendBlock", void 0);
     __decorate([
         InputNumber(),
         __metadata("design:type", Number)

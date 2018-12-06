@@ -1,6 +1,6 @@
 import { __decorate, __metadata, __spread } from 'tslib';
 import { CommonModule } from '@angular/common';
-import { Component, Input, NgModule } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, NgModule } from '@angular/core';
 import { InputBoolean, DelonUtilModule } from '@delon/util';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 
@@ -27,7 +27,8 @@ var TrendComponent = /** @class */ (function () {
                         '[class.trend]': 'true',
                         '[class.trend__grey]': '!colorful',
                         '[class.trend__reverse]': 'colorful && reverseColor',
-                    }
+                    },
+                    changeDetection: ChangeDetectionStrategy.OnPush
                 }] }
     ];
     TrendComponent.propDecorators = {

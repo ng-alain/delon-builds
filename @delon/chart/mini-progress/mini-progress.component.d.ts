@@ -1,11 +1,13 @@
+import { ChangeDetectorRef, OnChanges } from '@angular/core';
 import { DelonLocaleService } from '@delon/theme';
-export declare class G2ProgressComponent {
+export declare class G2MiniProgressComponent implements OnChanges {
     i18n: DelonLocaleService;
+    private cdr;
     color: string;
-    target: any;
-    private _target;
+    target: number;
+    percent: number;
     strokeWidth: number;
-    percent: any;
-    private _percent;
-    constructor(i18n: DelonLocaleService);
+    constructor(i18n: DelonLocaleService, cdr: ChangeDetectorRef);
+    private fixNum;
+    ngOnChanges(): void;
 }

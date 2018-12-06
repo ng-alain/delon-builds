@@ -90,7 +90,8 @@
                             '[class.trend]': 'true',
                             '[class.trend__grey]': '!colorful',
                             '[class.trend__reverse]': 'colorful && reverseColor',
-                        }
+                        },
+                        changeDetection: core.ChangeDetectionStrategy.OnPush
                     }] }
         ];
         TrendComponent.propDecorators = {

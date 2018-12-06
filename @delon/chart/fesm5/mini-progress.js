@@ -1,6 +1,6 @@
 import { __decorate, __metadata, __spread } from 'tslib';
 import { CommonModule } from '@angular/common';
-import { Component, Input, NgModule } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, NgModule } from '@angular/core';
 import { DelonLocaleService, DelonLocaleModule } from '@delon/theme';
 import { toNumber, InputNumber, DelonUtilModule } from '@delon/util';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
@@ -9,73 +9,66 @@ import { NgZorroAntdModule } from 'ng-zorro-antd';
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
-var G2ProgressComponent = /** @class */ (function () {
-    function G2ProgressComponent(i18n) {
+var G2MiniProgressComponent = /** @class */ (function () {
+    function G2MiniProgressComponent(i18n, cdr) {
         this.i18n = i18n;
+        this.cdr = cdr;
         this.color = '#1890FF';
     }
-    Object.defineProperty(G2ProgressComponent.prototype, "target", {
-        get: /**
-         * @return {?}
-         */
-        function () {
-            return this._target;
-        },
-        // tslint:disable-next-line:no-any
-        set: 
-        // tslint:disable-next-line:no-any
-        /**
-         * @param {?} value
-         * @return {?}
-         */
-        function (value) {
-            this._target = Math.min(Math.max(toNumber(value), 0), 100);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(G2ProgressComponent.prototype, "percent", {
-        get: /**
-         * @return {?}
-         */
-        function () {
-            return this._percent;
-        },
-        // tslint:disable-next-line:no-any
-        set: 
-        // tslint:disable-next-line:no-any
-        /**
-         * @param {?} value
-         * @return {?}
-         */
-        function (value) {
-            this._percent = Math.min(Math.max(toNumber(value), 0), 100);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    G2ProgressComponent.decorators = [
+    /**
+     * @param {?} value
+     * @return {?}
+     */
+    G2MiniProgressComponent.prototype.fixNum = /**
+     * @param {?} value
+     * @return {?}
+     */
+    function (value) {
+        return Math.min(Math.max(toNumber(value), 0), 100);
+    };
+    /**
+     * @return {?}
+     */
+    G2MiniProgressComponent.prototype.ngOnChanges = /**
+     * @return {?}
+     */
+    function () {
+        this.target = this.fixNum(this.target);
+        this.percent = this.fixNum(this.percent);
+        this.cdr.detectChanges();
+    };
+    G2MiniProgressComponent.decorators = [
         { type: Component, args: [{
                     selector: 'g2-mini-progress',
                     template: "<nz-tooltip [nzTitle]=\"i18n.getData('miniProgress').target + target + '%'\">\n  <div nz-tooltip class=\"g2-mini-progress__target\" [ngStyle]=\"{'left.%': target}\">\n    <span class=\"g2-mini-progress__target-item\" [ngStyle]=\"{'background-color': color}\"></span>\n    <span class=\"g2-mini-progress__target-item\" [ngStyle]=\"{'background-color': color}\"></span>\n  </div>\n</nz-tooltip>\n<div class=\"g2-mini-progress__wrap\">\n  <div class=\"g2-mini-progress__value\" [ngStyle]=\"{'background-color': color, 'width.%': percent, 'height.px':strokeWidth}\"></div>\n</div>\n",
-                    host: { '[class.g2-mini-progress]': 'true' }
+                    host: { '[class.g2-mini-progress]': 'true' },
+                    changeDetection: ChangeDetectionStrategy.OnPush
                 }] }
     ];
     /** @nocollapse */
-    G2ProgressComponent.ctorParameters = function () { return [
-        { type: DelonLocaleService }
+    G2MiniProgressComponent.ctorParameters = function () { return [
+        { type: DelonLocaleService },
+        { type: ChangeDetectorRef }
     ]; };
-    G2ProgressComponent.propDecorators = {
+    G2MiniProgressComponent.propDecorators = {
         color: [{ type: Input }],
         target: [{ type: Input }],
-        strokeWidth: [{ type: Input }],
-        percent: [{ type: Input }]
+        percent: [{ type: Input }],
+        strokeWidth: [{ type: Input }]
     };
     __decorate([
         InputNumber(),
         __metadata("design:type", Number)
-    ], G2ProgressComponent.prototype, "strokeWidth", void 0);
-    return G2ProgressComponent;
+    ], G2MiniProgressComponent.prototype, "target", void 0);
+    __decorate([
+        InputNumber(),
+        __metadata("design:type", Number)
+    ], G2MiniProgressComponent.prototype, "percent", void 0);
+    __decorate([
+        InputNumber(),
+        __metadata("design:type", Number)
+    ], G2MiniProgressComponent.prototype, "strokeWidth", void 0);
+    return G2MiniProgressComponent;
 }());
 
 /**
@@ -83,7 +76,7 @@ var G2ProgressComponent = /** @class */ (function () {
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 /** @type {?} */
-var COMPONENTS = [G2ProgressComponent];
+var COMPONENTS = [G2MiniProgressComponent];
 var G2MiniProgressModule = /** @class */ (function () {
     function G2MiniProgressModule() {
     }
@@ -107,6 +100,6 @@ var G2MiniProgressModule = /** @class */ (function () {
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 
-export { G2ProgressComponent, G2MiniProgressModule };
+export { G2MiniProgressComponent, G2MiniProgressModule };
 
 //# sourceMappingURL=mini-progress.js.map

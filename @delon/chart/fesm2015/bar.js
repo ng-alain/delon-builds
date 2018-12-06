@@ -14,28 +14,28 @@ const TITLE_HEIGHT = 41;
 class G2BarComponent {
     constructor() {
         this.resize$ = null;
-        this.inited = false;
+        // #region fields
+        this.delay = 0;
         this.color = 'rgba(24, 144, 255, 0.85)';
         this.height = 0;
+        this.padding = 'auto';
+        this.data = [];
         this.autoLabel = true;
     }
+    // #endregion
     /**
      * @return {?}
      */
     install() {
-        this.uninstall();
         /** @type {?} */
         const container = (/** @type {?} */ (this.node.nativeElement));
-        container.innerHTML = '';
-        if (!this.data || (this.data && this.data.length < 1))
-            return;
         /** @type {?} */
         const chart = this.chart = new G2.Chart({
             container,
             forceFit: true,
-            height: this.title ? this.height - TITLE_HEIGHT : this.height,
             legend: null,
-            padding: this.padding || 'auto',
+            height: this.getHeight(),
+            padding: this.padding,
         });
         this.updatelabel();
         chart.axis('y', {
@@ -67,11 +67,24 @@ class G2BarComponent {
     /**
      * @return {?}
      */
-    uninstall() {
-        if (this.chart) {
-            this.chart.destroy();
-        }
-        this.chart = null;
+    getHeight() {
+        return this.title ? this.height - TITLE_HEIGHT : this.height;
+    }
+    /**
+     * @return {?}
+     */
+    attachChart() {
+        const { chart, padding, data } = this;
+        if (!chart)
+            return;
+        this.installResizeEvent();
+        chart
+            .changeHeight(this.getHeight())
+            .changeData(data);
+        // color
+        chart.get('geoms')[0].color(this.color);
+        chart.set('padding', padding);
+        chart.repaint();
     }
     /**
      * @return {?}
@@ -97,26 +110,24 @@ class G2BarComponent {
      * @return {?}
      */
     ngOnInit() {
-        this.installResizeEvent();
-        this.install();
-        this.inited = true;
+        setTimeout(() => this.install(), this.delay);
     }
     /**
      * @return {?}
      */
     ngOnChanges() {
-        if (this.inited) {
-            this.installResizeEvent();
-            this.install();
-        }
+        this.attachChart();
     }
     /**
      * @return {?}
      */
     ngOnDestroy() {
-        if (this.resize$)
+        if (this.resize$) {
             this.resize$.unsubscribe();
-        this.uninstall();
+        }
+        if (this.chart) {
+            this.chart.destroy();
+        }
     }
 }
 G2BarComponent.decorators = [
@@ -127,14 +138,19 @@ G2BarComponent.decorators = [
             }] }
 ];
 G2BarComponent.propDecorators = {
+    node: [{ type: ViewChild, args: ['container',] }],
+    delay: [{ type: Input }],
     title: [{ type: Input }],
     color: [{ type: Input }],
     height: [{ type: HostBinding, args: ['style.height.px',] }, { type: Input }],
     padding: [{ type: Input }],
     data: [{ type: Input }],
-    autoLabel: [{ type: Input }],
-    node: [{ type: ViewChild, args: ['container',] }]
+    autoLabel: [{ type: Input }]
 };
+__decorate([
+    InputNumber(),
+    __metadata("design:type", Object)
+], G2BarComponent.prototype, "delay", void 0);
 __decorate([
     InputNumber(),
     __metadata("design:type", Object)

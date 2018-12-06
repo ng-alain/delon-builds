@@ -1,41 +1,44 @@
-import { AfterViewInit, ChangeDetectorRef, ElementRef, NgZone, OnChanges, OnDestroy, Renderer2 } from '@angular/core';
-export declare class G2PieComponent implements OnDestroy, OnChanges, AfterViewInit {
+import { ChangeDetectorRef, ElementRef, OnChanges, OnDestroy, OnInit, Renderer2, TemplateRef } from '@angular/core';
+export interface G2PieData {
+    x: any;
+    y: number;
+    [key: string]: any;
+}
+export declare class G2PieComponent implements OnInit, OnDestroy, OnChanges {
     private el;
     private rend;
     private cdr;
-    private zone;
-    private scroll$;
+    private resize$;
     private node;
     private chart;
-    private initFlag;
+    private isPercent;
+    private percentColor;
     legendData: any[];
+    delay: number;
     animate: boolean;
     color: string;
-    subTitle: string;
-    total: string;
+    subTitle: string | TemplateRef<void>;
+    total: string | TemplateRef<void>;
     height: number;
     hasLegend: boolean;
-    legendBlock: boolean;
     inner: number;
     padding: number[];
     percent: number;
     tooltip: boolean;
     lineWidth: number;
     select: boolean;
-    data: Array<{
-        x: number | string;
-        y: number;
-        [key: string]: any;
-    }>;
-    valueFormat: Function;
+    valueFormat: (y: number) => string;
+    data: G2PieData[];
     colors: any[];
-    constructor(el: ElementRef, rend: Renderer2, cdr: ChangeDetectorRef, zone: NgZone);
+    constructor(el: ElementRef, rend: Renderer2, cdr: ChangeDetectorRef);
     private setCls;
-    private runInstall;
+    private fixData;
     private install;
     private installResizeEvent;
     _click(i: number): void;
-    ngAfterViewInit(): void;
+    private attachChart;
+    private genLegend;
+    ngOnInit(): void;
     ngOnChanges(): void;
     ngOnDestroy(): void;
 }

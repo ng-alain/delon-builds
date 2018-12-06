@@ -1,31 +1,29 @@
-import { NgZone, OnChanges, OnDestroy } from '@angular/core';
-export declare class G2MiniAreaComponent implements OnDestroy, OnChanges {
-    private zone;
+import { ElementRef, OnChanges, OnDestroy, OnInit } from '@angular/core';
+export interface G2MiniAreaData {
+    x: any;
+    y: any;
+    [key: string]: any;
+}
+export declare class G2MiniAreaComponent implements OnInit, OnChanges, OnDestroy {
+    private el;
+    private chart;
+    delay: number;
     color: string;
     borderColor: string;
-    borderWidth: any;
-    private _borderWidth;
+    borderWidth: number;
     height: any;
-    private _height;
-    fit: any;
-    private _fit;
-    line: any;
-    private _line;
-    animate: any;
-    private _animate;
+    fit: boolean;
+    line: boolean;
+    animate: boolean;
     xAxis: any;
     yAxis: any;
     padding: number[];
-    data: Array<{
-        x: number;
-        y: number;
-        [key: string]: any;
-    }>;
+    data: G2MiniAreaData[];
     yTooltipSuffix: string;
-    private node;
-    private chart;
-    constructor(zone: NgZone);
+    constructor(el: ElementRef);
     private install;
+    private attachChart;
+    ngOnInit(): void;
     ngOnChanges(): void;
     ngOnDestroy(): void;
 }

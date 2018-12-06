@@ -1,6 +1,6 @@
 import { __decorate, __metadata, __spread } from 'tslib';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostBinding, Input, NgZone, TemplateRef, ViewChild, NgModule } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostBinding, Input, ViewChild, NgModule } from '@angular/core';
 import { InputBoolean, InputNumber, DelonUtilModule } from '@delon/util';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 
@@ -9,11 +9,12 @@ import { NgZorroAntdModule } from 'ng-zorro-antd';
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 var G2RadarComponent = /** @class */ (function () {
-    function G2RadarComponent(cdr, zone) {
+    // #endregion
+    function G2RadarComponent(cdr) {
         this.cdr = cdr;
-        this.zone = zone;
+        this.legendData = [];
         // #region fields
-        this._title = '';
+        this.delay = 0;
         this.height = 0;
         this.padding = [44, 30, 16, 30];
         this.hasLegend = true;
@@ -29,24 +30,7 @@ var G2RadarComponent = /** @class */ (function () {
             '#fa8c16',
             '#a0d911',
         ];
-        this.legendData = [];
     }
-    Object.defineProperty(G2RadarComponent.prototype, "title", {
-        set: /**
-         * @param {?} value
-         * @return {?}
-         */
-        function (value) {
-            if (value instanceof TemplateRef) {
-                this._title = null;
-                this._titleTpl = value;
-            }
-            else
-                this._title = value;
-        },
-        enumerable: true,
-        configurable: true
-    });
     /**
      * @param {?} i
      * @return {?}
@@ -56,23 +40,9 @@ var G2RadarComponent = /** @class */ (function () {
      * @return {?}
      */
     function (i) {
-        var _this = this;
-        this.legendData[i].checked = !this.legendData[i].checked;
-        if (this.chart) {
-            // const filterItem = this.legendData.filter(l => l.checked).map(l => l.name);
-            this.chart.filter('name', function (val) { return _this.legendData.find(function (w) { return w.name === val; }).checked; });
-            this.chart.repaint();
-        }
-    };
-    /**
-     * @return {?}
-     */
-    G2RadarComponent.prototype.runInstall = /**
-     * @return {?}
-     */
-    function () {
-        var _this = this;
-        this.zone.runOutsideAngular(function () { return setTimeout(function () { return _this.install(); }); });
+        var _a = this, legendData = _a.legendData, chart = _a.chart;
+        legendData[i].checked = !legendData[i].checked;
+        chart.repaint();
     };
     /**
      * @return {?}
@@ -82,22 +52,13 @@ var G2RadarComponent = /** @class */ (function () {
      */
     function () {
         var _this = this;
-        if (!this.data || (this.data && this.data.length < 1))
-            return;
-        this.uninstall();
-        this.node.nativeElement.innerHTML = '';
+        var _a = this, node = _a.node, height = _a.height, hasLegend = _a.hasLegend, padding = _a.padding, colors = _a.colors;
         /** @type {?} */
-        var chart = new G2.Chart({
-            container: this.node.nativeElement,
+        var chart = this.chart = new G2.Chart({
+            container: node.nativeElement,
             forceFit: true,
-            height: +this.height - (this.hasLegend ? 80 : 22),
-            padding: this.padding,
-        });
-        chart.source(this.data, {
-            value: {
-                min: 0,
-                tickCount: this.tickCount,
-            },
+            height: height - (hasLegend ? 80 : 22),
+            padding: padding,
         });
         chart.coord('polar');
         chart.legend(false);
@@ -132,49 +93,81 @@ var G2RadarComponent = /** @class */ (function () {
                 },
             },
         });
+        chart.filter('name', function (name) {
+            /** @type {?} */
+            var legendItem = _this.legendData.find(function (w) { return w.name === name; });
+            return legendItem ? legendItem.checked !== false : true;
+        });
         chart
             .line()
             .position('label*value')
-            .color('name', this.colors);
+            .color('name', colors);
         chart
             .point()
             .position('label*value')
-            .color('name', this.colors)
+            .color('name', colors)
             .shape('circle')
             .size(3);
         chart.render();
-        this.chart = chart;
-        if (this.hasLegend) {
-            this.zone.run(function () {
-                _this.legendData = chart
-                    .getAllGeoms()[0]
-                    ._attrs.dataArray.map(function (item) {
-                    /** @type {?} */
-                    var origin = item[0]._origin;
-                    /** @type {?} */
-                    var result = {
-                        name: origin.name,
-                        color: item[0].color,
-                        checked: true,
-                        value: item.reduce(function (p, n) { return p + n._origin.value; }, 0),
-                    };
-                    return result;
-                });
-                _this.cdr.detectChanges();
-            });
-        }
+        this.attachChart();
     };
     /**
      * @return {?}
      */
-    G2RadarComponent.prototype.uninstall = /**
+    G2RadarComponent.prototype.attachChart = /**
      * @return {?}
      */
     function () {
-        if (this.chart) {
-            this.chart.destroy();
-            this.chart = null;
-        }
+        var _a = this, chart = _a.chart, height = _a.height, hasLegend = _a.hasLegend, padding = _a.padding, data = _a.data, colors = _a.colors, tickCount = _a.tickCount;
+        if (!chart)
+            return;
+        chart.set('height', height - (hasLegend ? 80 : 22));
+        chart.set('padding', padding);
+        chart.source(data, {
+            value: {
+                min: 0,
+                tickCount: tickCount,
+            },
+        });
+        chart.get('geoms').forEach(function (g) {
+            g.color('name', colors);
+        });
+        chart.repaint();
+        this.genLegend();
+    };
+    /**
+     * @return {?}
+     */
+    G2RadarComponent.prototype.genLegend = /**
+     * @return {?}
+     */
+    function () {
+        var _a = this, hasLegend = _a.hasLegend, cdr = _a.cdr, chart = _a.chart;
+        if (!hasLegend)
+            return;
+        this.legendData = chart.get('geoms')[0].get('dataArray').map(function (item) {
+            /** @type {?} */
+            var origin = item[0]._origin;
+            /** @type {?} */
+            var result = {
+                name: origin.name,
+                color: item[0].color,
+                checked: true,
+                value: item.reduce(function (p, n) { return p + n._origin.value; }, 0),
+            };
+            return result;
+        });
+        cdr.detectChanges();
+    };
+    /**
+     * @return {?}
+     */
+    G2RadarComponent.prototype.ngOnInit = /**
+     * @return {?}
+     */
+    function () {
+        var _this = this;
+        setTimeout(function () { return _this.install(); }, this.delay);
     };
     /**
      * @return {?}
@@ -183,7 +176,8 @@ var G2RadarComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        this.runInstall();
+        this.legendData.forEach(function (i) { return i.checked = true; });
+        this.attachChart();
     };
     /**
      * @return {?}
@@ -192,31 +186,37 @@ var G2RadarComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        this.uninstall();
+        if (this.chart) {
+            this.chart.destroy();
+        }
     };
     G2RadarComponent.decorators = [
         { type: Component, args: [{
                     selector: 'g2-radar',
-                    template: "<h4 *ngIf=\"_title; else _titleTpl\">\n  {{ _title }}</h4>\n<div #container></div>\n<div nz-row class=\"g2-radar__legend\" *ngIf=\"hasLegend\">\n  <div nz-col [nzSpan]=\"24 / legendData.length\" *ngFor=\"let i of legendData; let idx = index\" (click)=\"_click(idx)\"\n    class=\"g2-radar__legend-item\">\n    <i class=\"g2-radar__legend-dot\" [ngStyle]=\"{'background-color': !i.checked ? '#aaa' : i.color}\"></i>\n    {{i.name}}\n    <h6 class=\"g2-radar__legend-title\">{{i.value}}</h6>\n  </div>\n</div>\n",
+                    template: "<ng-container *stringTemplateOutlet=\"title\"><h4>{{title}}</h4></ng-container>\n<div #container></div>\n<div nz-row class=\"g2-radar__legend\" *ngIf=\"hasLegend\">\n  <div nz-col [nzSpan]=\"24 / legendData.length\" *ngFor=\"let i of legendData; let idx = index\"\n    (click)=\"_click(idx)\" class=\"g2-radar__legend-item\">\n    <i class=\"g2-radar__legend-dot\" [ngStyle]=\"{'background-color': !i.checked ? '#aaa' : i.color}\"></i>\n    {{i.name}}\n    <h6 class=\"g2-radar__legend-title\">{{i.value}}</h6>\n  </div>\n</div>\n",
                     host: { '[class.g2-radar]': 'true' },
                     changeDetection: ChangeDetectionStrategy.OnPush
                 }] }
     ];
     /** @nocollapse */
     G2RadarComponent.ctorParameters = function () { return [
-        { type: ChangeDetectorRef },
-        { type: NgZone }
+        { type: ChangeDetectorRef }
     ]; };
     G2RadarComponent.propDecorators = {
+        node: [{ type: ViewChild, args: ['container',] }],
+        delay: [{ type: Input }],
         title: [{ type: Input }],
         height: [{ type: HostBinding, args: ['style.height.px',] }, { type: Input }],
         padding: [{ type: Input }],
         hasLegend: [{ type: Input }],
         tickCount: [{ type: Input }],
         data: [{ type: Input }],
-        colors: [{ type: Input }],
-        node: [{ type: ViewChild, args: ['container',] }]
+        colors: [{ type: Input }]
     };
+    __decorate([
+        InputNumber(),
+        __metadata("design:type", Object)
+    ], G2RadarComponent.prototype, "delay", void 0);
     __decorate([
         InputNumber(),
         __metadata("design:type", Object)

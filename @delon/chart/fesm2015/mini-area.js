@@ -1,101 +1,56 @@
+import { __decorate, __metadata } from 'tslib';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, HostBinding, Input, NgZone, ViewChild, NgModule } from '@angular/core';
-import { toBoolean, toNumber, DelonUtilModule } from '@delon/util';
+import { ChangeDetectionStrategy, Component, ElementRef, HostBinding, Input, NgModule } from '@angular/core';
+import { InputBoolean, InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 class G2MiniAreaComponent {
+    // #endregion
     /**
-     * @param {?} zone
+     * @param {?} el
      */
-    constructor(zone) {
-        this.zone = zone;
+    constructor(el) {
+        this.el = el;
         // #region fields
+        this.delay = 0;
         this.color = 'rgba(24, 144, 255, 0.2)';
         this.borderColor = '#1890FF';
-        this._borderWidth = 2;
-        this._fit = true;
-        this._line = false;
-        this._animate = true;
+        this.borderWidth = 2;
+        this.fit = true;
+        this.line = false;
+        this.animate = true;
         this.padding = [8, 8, 8, 8];
+        this.data = [];
         this.yTooltipSuffix = '';
-    }
-    /**
-     * @param {?} value
-     * @return {?}
-     */
-    set borderWidth(value) {
-        this._borderWidth = toNumber(value);
-    }
-    /**
-     * @return {?}
-     */
-    get height() {
-        return this._height;
-    }
-    /**
-     * @param {?} value
-     * @return {?}
-     */
-    set height(value) {
-        this._height = toNumber(value);
-    }
-    /**
-     * @param {?} value
-     * @return {?}
-     */
-    set fit(value) {
-        this._fit = toBoolean(value);
-    }
-    /**
-     * @param {?} value
-     * @return {?}
-     */
-    set line(value) {
-        this._line = toBoolean(value);
-    }
-    /**
-     * @return {?}
-     */
-    get animate() {
-        return this._animate;
-    }
-    /**
-     * @param {?} value
-     * @return {?}
-     */
-    set animate(value) {
-        this._animate = toBoolean(value);
     }
     /**
      * @return {?}
      */
     install() {
-        if (!this.data || (this.data && this.data.length < 1))
-            return;
-        this.node.nativeElement.innerHTML = '';
+        const { el, fit, height, animate, padding, xAxis, yAxis, yTooltipSuffix, data, color, line, borderColor, borderWidth } = this;
         /** @type {?} */
         const chart = new G2.Chart({
-            container: this.node.nativeElement,
-            forceFit: this._fit,
-            height: +this.height,
-            animate: this.animate,
-            padding: this.padding,
+            container: el.nativeElement,
+            forceFit: fit,
+            height,
+            animate,
+            padding,
             legend: null,
         });
-        if (!this.xAxis && !this.yAxis) {
+        if (!xAxis && !yAxis) {
             chart.axis(false);
         }
-        if (this.xAxis) {
-            chart.axis('x', this.xAxis);
+        if (xAxis) {
+            chart.axis('x', xAxis);
         }
         else {
             chart.axis('x', false);
         }
-        if (this.yAxis) {
-            chart.axis('y', this.yAxis);
+        if (yAxis) {
+            chart.axis('y', yAxis);
         }
         else {
             chart.axis('y', false);
@@ -105,11 +60,11 @@ class G2MiniAreaComponent {
             x: {
                 type: 'cat',
                 range: [0, 1],
-                xAxis: this.xAxis,
+                xAxis,
             },
             y: {
                 min: 0,
-                yAxis: this.yAxis,
+                yAxis,
             },
         };
         chart.tooltip({
@@ -120,28 +75,28 @@ class G2MiniAreaComponent {
         });
         /** @type {?} */
         const view = chart.view();
-        view.source(this.data, dataConfig);
+        view.source(data, dataConfig);
         view
             .area()
             .position('x*y')
-            .color(this.color)
+            .color(color)
             .tooltip('x*y', (x, y) => {
             return {
                 name: x,
-                value: y + this.yTooltipSuffix,
+                value: y + yTooltipSuffix,
             };
         })
             .shape('smooth')
             .style({ fillOpacity: 1 });
-        if (this._line) {
+        if (line) {
             /** @type {?} */
             const view2 = chart.view();
-            view2.source(this.data, dataConfig);
+            view2.source(data, dataConfig);
             view2
                 .line()
                 .position('x*y')
-                .color(this.borderColor)
-                .size(this._borderWidth)
+                .color(borderColor)
+                .size(borderWidth)
                 .shape('smooth');
             view2.tooltip(false);
         }
@@ -151,8 +106,34 @@ class G2MiniAreaComponent {
     /**
      * @return {?}
      */
+    attachChart() {
+        const { chart, padding, data, color, borderColor, borderWidth } = this;
+        if (!chart)
+            return;
+        /** @type {?} */
+        const views = chart.get('views');
+        views.forEach(v => {
+            v.changeData(data);
+        });
+        views[0].get('geoms')[0].color(color);
+        // line
+        if (views.length > 1) {
+            views[1].get('geoms')[0].color(borderColor).size(borderWidth);
+        }
+        chart.set('padding', padding);
+        chart.repaint();
+    }
+    /**
+     * @return {?}
+     */
+    ngOnInit() {
+        setTimeout(() => this.install(), this.delay);
+    }
+    /**
+     * @return {?}
+     */
     ngOnChanges() {
-        this.zone.runOutsideAngular(() => setTimeout(() => this.install()));
+        this.attachChart();
     }
     /**
      * @return {?}
@@ -160,22 +141,22 @@ class G2MiniAreaComponent {
     ngOnDestroy() {
         if (this.chart) {
             this.chart.destroy();
-            this.chart = null;
         }
     }
 }
 G2MiniAreaComponent.decorators = [
     { type: Component, args: [{
                 selector: 'g2-mini-area',
-                template: `<div #container></div>`,
+                template: ``,
                 changeDetection: ChangeDetectionStrategy.OnPush
             }] }
 ];
 /** @nocollapse */
 G2MiniAreaComponent.ctorParameters = () => [
-    { type: NgZone }
+    { type: ElementRef }
 ];
 G2MiniAreaComponent.propDecorators = {
+    delay: [{ type: Input }],
     color: [{ type: Input }],
     borderColor: [{ type: Input }],
     borderWidth: [{ type: Input }],
@@ -187,9 +168,32 @@ G2MiniAreaComponent.propDecorators = {
     yAxis: [{ type: Input }],
     padding: [{ type: Input }],
     data: [{ type: Input }],
-    yTooltipSuffix: [{ type: Input }],
-    node: [{ type: ViewChild, args: ['container',] }]
+    yTooltipSuffix: [{ type: Input }]
 };
+__decorate([
+    InputNumber(),
+    __metadata("design:type", Object)
+], G2MiniAreaComponent.prototype, "delay", void 0);
+__decorate([
+    InputNumber(),
+    __metadata("design:type", Object)
+], G2MiniAreaComponent.prototype, "borderWidth", void 0);
+__decorate([
+    InputNumber(),
+    __metadata("design:type", Object)
+], G2MiniAreaComponent.prototype, "height", void 0);
+__decorate([
+    InputBoolean(),
+    __metadata("design:type", Object)
+], G2MiniAreaComponent.prototype, "fit", void 0);
+__decorate([
+    InputBoolean(),
+    __metadata("design:type", Object)
+], G2MiniAreaComponent.prototype, "line", void 0);
+__decorate([
+    InputBoolean(),
+    __metadata("design:type", Object)
+], G2MiniAreaComponent.prototype, "animate", void 0);
 
 /**
  * @fileoverview added by tsickle

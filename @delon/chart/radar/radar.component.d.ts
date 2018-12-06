@@ -1,29 +1,29 @@
-import { ChangeDetectorRef, NgZone, OnChanges, OnDestroy, TemplateRef } from '@angular/core';
-export declare class G2RadarComponent implements OnDestroy, OnChanges {
+import { ChangeDetectorRef, OnChanges, OnDestroy, OnInit, TemplateRef } from '@angular/core';
+export interface G2RadarData {
+    name: string;
+    label: string;
+    value: number;
+    [key: string]: any;
+}
+export declare class G2RadarComponent implements OnInit, OnDestroy, OnChanges {
     private cdr;
-    private zone;
-    _title: string;
-    _titleTpl: TemplateRef<void>;
+    private node;
+    private chart;
+    legendData: any[];
+    delay: number;
     title: string | TemplateRef<void>;
     height: number;
     padding: number[];
     hasLegend: boolean;
     tickCount: number;
-    data: Array<{
-        name: string;
-        label: string;
-        value: number;
-        [key: string]: any;
-    }>;
+    data: G2RadarData[];
     colors: string[];
-    private node;
-    private chart;
-    legendData: any[];
-    constructor(cdr: ChangeDetectorRef, zone: NgZone);
+    constructor(cdr: ChangeDetectorRef);
     _click(i: number): void;
-    private runInstall;
     private install;
-    private uninstall;
+    private attachChart;
+    private genLegend;
+    ngOnInit(): void;
     ngOnChanges(): void;
     ngOnDestroy(): void;
 }
