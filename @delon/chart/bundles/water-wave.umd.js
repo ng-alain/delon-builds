@@ -72,51 +72,36 @@
      * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
     var G2WaterWaveComponent = /** @class */ (function () {
-        function G2WaterWaveComponent(el, renderer, cdr, zone) {
+        // #endregion
+        function G2WaterWaveComponent(el, renderer, cdr) {
             this.el = el;
             this.renderer = renderer;
             this.cdr = cdr;
-            this.zone = zone;
+            this.resize$ = null;
             // #region fields
-            this._title = '';
+            this.delay = 0;
             this.color = '#1890FF';
             this.height = 160;
-            // #endregion
-            this.resize$ = null;
-            this.initFlag = false;
         }
-        Object.defineProperty(G2WaterWaveComponent.prototype, "title", {
-            set: /**
-             * @param {?} value
-             * @return {?}
-             */ function (value) {
-                if (value instanceof core.TemplateRef) {
-                    this._title = null;
-                    this._titleTpl = value;
-                }
-                else {
-                    this._title = value;
-                }
-            },
-            enumerable: true,
-            configurable: true
-        });
         /**
+         * @param {?} type
          * @return {?}
          */
         G2WaterWaveComponent.prototype.renderChart = /**
+         * @param {?} type
          * @return {?}
          */
-            function () {
-                /** @type {?} */
-                var data = this.percent / 100;
-                if (!data)
+            function (type) {
+                if (!this.resize$)
                     return;
-                this.node.nativeElement.innerHTML = '';
+                var _a = this, percent = _a.percent, color = _a.color, node = _a.node;
+                /** @type {?} */
+                var data = Math.min(Math.max(percent / 100, 0), 100);
                 /** @type {?} */
                 var self = this;
+                cancelAnimationFrame(this.timer);
                 /** @type {?} */
-                var canvas = ( /** @type {?} */(this.node.nativeElement));
+                var canvas = ( /** @type {?} */(node.nativeElement));
                 /** @type {?} */
                 var ctx = canvas.getContext('2d');
                 /** @type {?} */
@@ -158,12 +143,13 @@
                 var circleOffset = -(Math.PI / 2);
                 /** @type {?} */
                 var circleLock = true;
-                for (var i = circleOffset; i < circleOffset + (Math.PI * 2); i += 1 / (Math.PI * 8)) {
+                // tslint:disable-next-line:binary-expression-operand-order
+                for (var i = circleOffset; i < circleOffset + 2 * Math.PI; i += 1 / (8 * Math.PI)) {
                     arcStack.push([radius + bR * Math.cos(i), radius + bR * Math.sin(i)]);
                 }
                 /** @type {?} */
                 var cStartPoint = arcStack.shift();
-                ctx.strokeStyle = this.color;
+                ctx.strokeStyle = color;
                 ctx.moveTo(cStartPoint[0], cStartPoint[1]);
                 /**
                  * @return {?}
@@ -180,8 +166,9 @@
                         var y = Math.sin(x) * currRange;
                         /** @type {?} */
                         var dx = i;
+                        // tslint:disable-next-line:binary-expression-operand-order
                         /** @type {?} */
-                        var dy = cR * 2 * (1 - currData) + (radius - cR) - unit * y;
+                        var dy = 2 * cR * (1 - currData) + (radius - cR) - unit * y;
                         ctx.lineTo(dx, dy);
                         sinStack.push([dx, dy]);
                     }
@@ -193,7 +180,7 @@
                     /** @type {?} */
                     var gradient = ctx.createLinearGradient(0, 0, 0, canvasHeight);
                     gradient.addColorStop(0, '#ffffff');
-                    gradient.addColorStop(1, '#1890FF');
+                    gradient.addColorStop(1, color);
                     ctx.fillStyle = gradient;
                     ctx.fill();
                     ctx.restore();
@@ -203,7 +190,7 @@
                  */
                 function render() {
                     ctx.clearRect(0, 0, canvasWidth, canvasHeight);
-                    if (circleLock) {
+                    if (circleLock && type !== 'update') {
                         if (arcStack.length) {
                             /** @type {?} */
                             var temp = arcStack.shift();
@@ -218,13 +205,15 @@
                             ctx.globalCompositeOperation = 'destination-over';
                             ctx.beginPath();
                             ctx.lineWidth = lineWidth;
-                            ctx.arc(radius, radius, bR, 0, Math.PI * 2, true);
+                            // tslint:disable-next-line:binary-expression-operand-order
+                            ctx.arc(radius, radius, bR, 0, 2 * Math.PI, true);
                             ctx.beginPath();
                             ctx.save();
-                            ctx.arc(radius, radius, (radius - lineWidth) * 3, 0, Math.PI * 2, true);
+                            // tslint:disable-next-line:binary-expression-operand-order
+                            ctx.arc(radius, radius, radius - 3 * lineWidth, 0, 2 * Math.PI, true);
                             ctx.restore();
                             ctx.clip();
-                            ctx.fillStyle = '#1890FF';
+                            ctx.fillStyle = color;
                         }
                     }
                     else {
@@ -289,19 +278,11 @@
                 if (this.resize$)
                     return;
                 this.resize$ = rxjs.fromEvent(window, 'resize')
-                    .pipe(operators.debounceTime(500))
-                    .subscribe(function () { return _this.resize(); });
-            };
-        /**
-         * @return {?}
-         */
-        G2WaterWaveComponent.prototype.resize = /**
-         * @return {?}
-         */
-            function () {
-                var offsetWidth = this.el.nativeElement.parentNode.offsetWidth;
-                this.updateRadio(offsetWidth < this.height ? offsetWidth / this.height : 1);
-                this.renderChart();
+                    .pipe(operators.debounceTime(200))
+                    .subscribe(function () {
+                    var offsetWidth = _this.el.nativeElement.parentNode.offsetWidth;
+                    _this.updateRadio(offsetWidth < _this.height ? offsetWidth / _this.height : 1);
+                });
             };
         /**
          * @return {?}
@@ -311,13 +292,9 @@
          */
             function () {
                 var _this = this;
-                this.initFlag = true;
-                this.cdr.detectChanges();
-                this.zone.runOutsideAngular(function () {
-                    _this.updateRadio(1);
-                    _this.installResizeEvent();
-                    setTimeout(function () { return _this.resize(); }, 130);
-                });
+                this.updateRadio(1);
+                this.installResizeEvent();
+                setTimeout(function () { return _this.renderChart(''); }, this.delay);
             };
         /**
          * @return {?}
@@ -326,11 +303,8 @@
          * @return {?}
          */
             function () {
-                var _this = this;
-                if (this.initFlag) {
-                    this.cdr.detectChanges();
-                    this.zone.runOutsideAngular(function () { return _this.renderChart(); });
-                }
+                this.renderChart('update');
+                this.cdr.detectChanges();
             };
         /**
          * @return {?}
@@ -357,17 +331,21 @@
             return [
                 { type: core.ElementRef },
                 { type: core.Renderer2 },
-                { type: core.ChangeDetectorRef },
-                { type: core.NgZone }
+                { type: core.ChangeDetectorRef }
             ];
         };
         G2WaterWaveComponent.propDecorators = {
+            node: [{ type: core.ViewChild, args: ['container',] }],
+            delay: [{ type: core.Input }],
             title: [{ type: core.Input }],
             color: [{ type: core.Input }],
             height: [{ type: core.Input }],
-            percent: [{ type: core.Input }],
-            node: [{ type: core.ViewChild, args: ['container',] }]
+            percent: [{ type: core.Input }]
         };
+        __decorate([
+            util.InputNumber(),
+            __metadata("design:type", Object)
+        ], G2WaterWaveComponent.prototype, "delay", void 0);
         __decorate([
             util.InputNumber(),
             __metadata("design:type", Object)
