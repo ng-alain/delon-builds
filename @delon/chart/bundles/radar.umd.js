@@ -95,17 +95,13 @@
             ];
         }
         /**
-         * @param {?} i
          * @return {?}
          */
-        G2RadarComponent.prototype._click = /**
-         * @param {?} i
+        G2RadarComponent.prototype.getHeight = /**
          * @return {?}
          */
-            function (i) {
-                var _a = this, legendData = _a.legendData, chart = _a.chart;
-                legendData[i].checked = !legendData[i].checked;
-                chart.repaint();
+            function () {
+                return this.height - (this.hasLegend ? 80 : 22);
             };
         /**
          * @return {?}
@@ -115,12 +111,12 @@
          */
             function () {
                 var _this = this;
-                var _a = this, node = _a.node, height = _a.height, hasLegend = _a.hasLegend, padding = _a.padding, colors = _a.colors;
+                var _a = this, node = _a.node, padding = _a.padding;
                 /** @type {?} */
                 var chart = this.chart = new G2.Chart({
                     container: node.nativeElement,
                     forceFit: true,
-                    height: height - (hasLegend ? 80 : 22),
+                    height: this.getHeight(),
                     padding: padding,
                 });
                 chart.coord('polar');
@@ -163,12 +159,10 @@
                 });
                 chart
                     .line()
-                    .position('label*value')
-                    .color('name', colors);
+                    .position('label*value');
                 chart
                     .point()
                     .position('label*value')
-                    .color('name', colors)
                     .shape('circle')
                     .size(3);
                 chart.render();
@@ -181,10 +175,10 @@
          * @return {?}
          */
             function () {
-                var _a = this, chart = _a.chart, height = _a.height, hasLegend = _a.hasLegend, padding = _a.padding, data = _a.data, colors = _a.colors, tickCount = _a.tickCount;
+                var _a = this, chart = _a.chart, padding = _a.padding, data = _a.data, colors = _a.colors, tickCount = _a.tickCount;
                 if (!chart)
                     return;
-                chart.set('height', height - (hasLegend ? 80 : 22));
+                chart.set('height', this.getHeight());
                 chart.set('padding', padding);
                 chart.source(data, {
                     value: {
@@ -221,6 +215,19 @@
                     return result;
                 });
                 cdr.detectChanges();
+            };
+        /**
+         * @param {?} i
+         * @return {?}
+         */
+        G2RadarComponent.prototype._click = /**
+         * @param {?} i
+         * @return {?}
+         */
+            function (i) {
+                var _a = this, legendData = _a.legendData, chart = _a.chart;
+                legendData[i].checked = !legendData[i].checked;
+                chart.repaint();
             };
         /**
          * @return {?}

@@ -19,10 +19,11 @@ export declare class G2RadarComponent implements OnInit, OnDestroy, OnChanges {
     data: G2RadarData[];
     colors: string[];
     constructor(cdr: ChangeDetectorRef);
-    _click(i: number): void;
+    private getHeight;
     private install;
     private attachChart;
     private genLegend;
+    _click(i: number): void;
     ngOnInit(): void;
     ngOnChanges(): void;
     ngOnDestroy(): void;

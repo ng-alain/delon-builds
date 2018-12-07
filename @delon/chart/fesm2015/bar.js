@@ -13,7 +13,6 @@ import { InputBoolean, InputNumber, DelonUtilModule } from '@delon/util';
 const TITLE_HEIGHT = 41;
 class G2BarComponent {
     constructor() {
-        this.resize$ = null;
         // #region fields
         this.delay = 0;
         this.color = 'rgba(24, 144, 255, 0.85)';
@@ -26,16 +25,23 @@ class G2BarComponent {
     /**
      * @return {?}
      */
+    getHeight() {
+        return this.title ? this.height - TITLE_HEIGHT : this.height;
+    }
+    /**
+     * @return {?}
+     */
     install() {
+        const { node, padding } = this;
         /** @type {?} */
-        const container = (/** @type {?} */ (this.node.nativeElement));
+        const container = (/** @type {?} */ (node.nativeElement));
         /** @type {?} */
         const chart = this.chart = new G2.Chart({
             container,
             forceFit: true,
             legend: null,
             height: this.getHeight(),
-            padding: this.padding,
+            padding,
         });
         this.updatelabel();
         chart.axis('y', {
@@ -43,7 +49,7 @@ class G2BarComponent {
             line: false,
             tickLine: false,
         });
-        chart.source(this.data, {
+        chart.source([], {
             x: {
                 type: 'cat',
             },
@@ -57,44 +63,38 @@ class G2BarComponent {
         chart
             .interval()
             .position('x*y')
-            .color(this.color)
-            .tooltip('x*y', (x, y) => ({
-            name: x,
-            value: y,
-        }));
+            .tooltip('x*y', (x, y) => ({ name: x, value: y }));
         chart.render();
-    }
-    /**
-     * @return {?}
-     */
-    getHeight() {
-        return this.title ? this.height - TITLE_HEIGHT : this.height;
+        this.attachChart();
     }
     /**
      * @return {?}
      */
     attachChart() {
-        const { chart, padding, data } = this;
+        const { chart, padding, data, color } = this;
         if (!chart)
             return;
         this.installResizeEvent();
-        chart
-            .changeHeight(this.getHeight())
-            .changeData(data);
+        /** @type {?} */
+        const height = this.getHeight();
+        if (chart.get('height') !== height) {
+            chart.changeHeight(height);
+        }
         // color
-        chart.get('geoms')[0].color(this.color);
+        chart.get('geoms')[0].color(color);
         chart.set('padding', padding);
-        chart.repaint();
+        chart.changeData(data);
     }
     /**
      * @return {?}
      */
     updatelabel() {
+        const { node, data, chart } = this;
         /** @type {?} */
-        const canvasWidth = this.node.nativeElement.clientWidth;
+        const canvasWidth = node.nativeElement.clientWidth;
         /** @type {?} */
-        const minWidth = this.data.length * 30;
-        this.chart.axis('x', canvasWidth > minWidth);
+        const minWidth = data.length * 30;
+        chart.axis('x', canvasWidth > minWidth).repaint();
     }
     /**
      * @return {?}

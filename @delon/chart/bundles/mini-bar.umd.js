@@ -83,6 +83,7 @@
             this.padding = [8, 8, 8, 8];
             this.data = [];
             this.yTooltipSuffix = '';
+            this.tooltipType = 'default';
         }
         /**
          * @return {?}
@@ -91,17 +92,15 @@
          * @return {?}
          */
             function () {
-                var _a = this, el = _a.el, height = _a.height, padding = _a.padding, data = _a.data, color = _a.color, borderWidth = _a.borderWidth, yTooltipSuffix = _a.yTooltipSuffix;
+                var _a = this, el = _a.el, height = _a.height, padding = _a.padding, yTooltipSuffix = _a.yTooltipSuffix, tooltipType = _a.tooltipType;
                 /** @type {?} */
                 var chart = this.chart = new G2.Chart({
                     container: el.nativeElement,
                     forceFit: true,
                     height: height,
                     padding: padding,
-                    legend: null,
                 });
-                chart.axis(false);
-                chart.source(data, {
+                chart.source([], {
                     x: {
                         type: 'cat',
                     },
@@ -109,7 +108,10 @@
                         min: 0,
                     },
                 });
+                chart.legend(false);
+                chart.axis(false);
                 chart.tooltip({
+                    'type': tooltipType === 'mini' ? 'mini' : null,
                     'showTitle': false,
                     'hideMarkders': false,
                     'crosshairs': false,
@@ -119,16 +121,9 @@
                 chart
                     .interval()
                     .position('x*y')
-                    .size(borderWidth)
-                    .color(color)
-                    .tooltip('x*y', function (x, y) {
-                    return {
-                        name: x,
-                        value: y + yTooltipSuffix,
-                    };
-                });
+                    .tooltip('x*y', function (x, y) { return ({ name: x, value: y + yTooltipSuffix }); });
                 chart.render();
-                this.chart = chart;
+                this.attachChart();
             };
         /**
          * @return {?}
@@ -140,10 +135,10 @@
                 var _a = this, chart = _a.chart, height = _a.height, padding = _a.padding, data = _a.data, color = _a.color, borderWidth = _a.borderWidth;
                 if (!chart)
                     return;
-                chart.changeData(data).get('geoms')[0].size(borderWidth).color(color);
+                chart.get('geoms')[0].size(borderWidth).color(color);
                 chart.set('height', height);
                 chart.set('padding', padding);
-                chart.repaint();
+                chart.changeData(data);
             };
         /**
          * @return {?}
@@ -195,7 +190,8 @@
             borderWidth: [{ type: core.Input }],
             padding: [{ type: core.Input }],
             data: [{ type: core.Input }],
-            yTooltipSuffix: [{ type: core.Input }]
+            yTooltipSuffix: [{ type: core.Input }],
+            tooltipType: [{ type: core.Input }]
         };
         __decorate([
             util.InputNumber(),

@@ -7,6 +7,7 @@ export interface G2TagCloudData {
 }
 export declare class G2TagCloudComponent implements OnDestroy, OnChanges, OnInit {
     private el;
+    private resize$;
     private chart;
     delay: number;
     height: number;
@@ -16,6 +17,7 @@ export declare class G2TagCloudComponent implements OnDestroy, OnChanges, OnInit
     private initTagCloud;
     private install;
     private attachChart;
+    private installResizeEvent;
     ngOnInit(): void;
     ngOnChanges(): void;
     ngOnDestroy(): void;

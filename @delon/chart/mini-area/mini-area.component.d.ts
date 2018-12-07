@@ -7,6 +7,8 @@ export interface G2MiniAreaData {
 export declare class G2MiniAreaComponent implements OnInit, OnChanges, OnDestroy {
     private el;
     private chart;
+    private view;
+    private viewLine;
     delay: number;
     color: string;
     borderColor: string;
@@ -20,6 +22,7 @@ export declare class G2MiniAreaComponent implements OnInit, OnChanges, OnDestroy
     padding: number[];
     data: G2MiniAreaData[];
     yTooltipSuffix: string;
+    tooltipType: 'mini' | 'default';
     constructor(el: ElementRef);
     private install;
     private attachChart;

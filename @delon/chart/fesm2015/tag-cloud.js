@@ -1,4 +1,6 @@
 import { __decorate, __metadata } from 'tslib';
+import { fromEvent } from 'rxjs';
+import { debounceTime, filter } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, ElementRef, HostBinding, Input, NgModule } from '@angular/core';
 import { InputNumber, DelonUtilModule } from '@delon/util';
@@ -46,15 +48,9 @@ class G2TagCloudComponent {
     install() {
         const { el, padding, height } = this;
         /** @type {?} */
-        const container = (/** @type {?} */ (el.nativeElement));
-        /** @type {?} */
-        const width = container.offsetWidth;
-        /** @type {?} */
         const chart = this.chart = new G2.Chart({
             container: el.nativeElement,
-            forceFit: true,
             padding,
-            width,
             height,
         });
         chart.legend(false);
@@ -76,16 +72,12 @@ class G2TagCloudComponent {
      * @return {?}
      */
     attachChart() {
-        const { chart, el, height, padding, data } = this;
+        const { chart, height, padding, data } = this;
         if (!chart)
             return;
-        /** @type {?} */
-        const container = (/** @type {?} */ (el.nativeElement));
-        /** @type {?} */
-        const width = container.offsetWidth;
         chart.set('height', height);
-        chart.set('width', width);
         chart.set('padding', padding);
+        chart.forceFit();
         /** @type {?} */
         const dv = new DataSet.View().source(data);
         /** @type {?} */
@@ -97,7 +89,7 @@ class G2TagCloudComponent {
         dv.transform({
             type: 'tag-cloud',
             fields: ['x', 'value'],
-            size: [width, height],
+            size: [chart.get('width'), chart.get('height')],
             padding,
             timeInterval: 5000,
             // max execute time
@@ -132,8 +124,19 @@ class G2TagCloudComponent {
     /**
      * @return {?}
      */
+    installResizeEvent() {
+        if (this.resize$)
+            return;
+        this.resize$ = fromEvent(window, 'resize')
+            .pipe(filter(() => this.chart), debounceTime(200))
+            .subscribe(() => this.attachChart());
+    }
+    /**
+     * @return {?}
+     */
     ngOnInit() {
         this.initTagCloud();
+        this.installResizeEvent();
         setTimeout(() => this.install(), this.delay);
     }
     /**
@@ -146,6 +149,9 @@ class G2TagCloudComponent {
      * @return {?}
      */
     ngOnDestroy() {
+        if (this.resize$) {
+            this.resize$.unsubscribe();
+        }
         if (this.chart) {
             this.chart.destroy();
         }

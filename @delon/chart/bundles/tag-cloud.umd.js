@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common'), require('@angular/core'), require('@delon/util')) :
-    typeof define === 'function' && define.amd ? define('@delon/chart/tag-cloud', ['exports', '@angular/common', '@angular/core', '@delon/util'], factory) :
-    (factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart['tag-cloud'] = {}),global.ng.common,global.ng.core,global.delon.util));
-}(this, (function (exports,common,core,util) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('rxjs'), require('rxjs/operators'), require('@angular/common'), require('@angular/core'), require('@delon/util')) :
+    typeof define === 'function' && define.amd ? define('@delon/chart/tag-cloud', ['exports', 'rxjs', 'rxjs/operators', '@angular/common', '@angular/core', '@delon/util'], factory) :
+    (factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart['tag-cloud'] = {}),global.rxjs,global.rxjs.operators,global.ng.common,global.ng.core,global.delon.util));
+}(this, (function (exports,rxjs,operators,common,core,util) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -124,15 +124,9 @@
             function () {
                 var _a = this, el = _a.el, padding = _a.padding, height = _a.height;
                 /** @type {?} */
-                var container = ( /** @type {?} */(el.nativeElement));
-                /** @type {?} */
-                var width = container.offsetWidth;
-                /** @type {?} */
                 var chart = this.chart = new G2.Chart({
                     container: el.nativeElement,
-                    forceFit: true,
                     padding: padding,
-                    width: width,
                     height: height,
                 });
                 chart.legend(false);
@@ -157,16 +151,12 @@
          * @return {?}
          */
             function () {
-                var _a = this, chart = _a.chart, el = _a.el, height = _a.height, padding = _a.padding, data = _a.data;
+                var _a = this, chart = _a.chart, height = _a.height, padding = _a.padding, data = _a.data;
                 if (!chart)
                     return;
-                /** @type {?} */
-                var container = ( /** @type {?} */(el.nativeElement));
-                /** @type {?} */
-                var width = container.offsetWidth;
                 chart.set('height', height);
-                chart.set('width', width);
                 chart.set('padding', padding);
+                chart.forceFit();
                 /** @type {?} */
                 var dv = new DataSet.View().source(data);
                 /** @type {?} */
@@ -178,7 +168,7 @@
                 dv.transform({
                     type: 'tag-cloud',
                     fields: ['x', 'value'],
-                    size: [width, height],
+                    size: [chart.get('width'), chart.get('height')],
                     padding: padding,
                     timeInterval: 5000,
                     rotate: 
@@ -213,12 +203,27 @@
         /**
          * @return {?}
          */
+        G2TagCloudComponent.prototype.installResizeEvent = /**
+         * @return {?}
+         */
+            function () {
+                var _this = this;
+                if (this.resize$)
+                    return;
+                this.resize$ = rxjs.fromEvent(window, 'resize')
+                    .pipe(operators.filter(function () { return _this.chart; }), operators.debounceTime(200))
+                    .subscribe(function () { return _this.attachChart(); });
+            };
+        /**
+         * @return {?}
+         */
         G2TagCloudComponent.prototype.ngOnInit = /**
          * @return {?}
          */
             function () {
                 var _this = this;
                 this.initTagCloud();
+                this.installResizeEvent();
                 setTimeout(function () { return _this.install(); }, this.delay);
             };
         /**
@@ -237,6 +242,9 @@
          * @return {?}
          */
             function () {
+                if (this.resize$) {
+                    this.resize$.unsubscribe();
+                }
                 if (this.chart) {
                     this.chart.destroy();
                 }

@@ -86,6 +86,7 @@
             this.padding = [8, 8, 8, 8];
             this.data = [];
             this.yTooltipSuffix = '';
+            this.tooltipType = 'default';
         }
         /**
          * @return {?}
@@ -94,15 +95,13 @@
          * @return {?}
          */
             function () {
-                var _a = this, el = _a.el, fit = _a.fit, height = _a.height, animate = _a.animate, padding = _a.padding, xAxis = _a.xAxis, yAxis = _a.yAxis, yTooltipSuffix = _a.yTooltipSuffix, data = _a.data, color = _a.color, line = _a.line, borderColor = _a.borderColor, borderWidth = _a.borderWidth;
+                var _a = this, el = _a.el, fit = _a.fit, height = _a.height, padding = _a.padding, xAxis = _a.xAxis, yAxis = _a.yAxis, yTooltipSuffix = _a.yTooltipSuffix, tooltipType = _a.tooltipType, line = _a.line;
                 /** @type {?} */
                 var chart = this.chart = new G2.Chart({
                     container: el.nativeElement,
                     forceFit: fit,
                     height: height,
-                    animate: animate,
                     padding: padding,
-                    legend: null,
                 });
                 if (!xAxis && !yAxis) {
                     chart.axis(false);
@@ -119,36 +118,22 @@
                 else {
                     chart.axis('y', false);
                 }
+                chart.legend(false);
                 chart.tooltip({
+                    'type': tooltipType === 'mini' ? 'mini' : null,
                     'showTitle': false,
                     'hideMarkders': false,
                     'g2-tooltip': { padding: 4 },
                     'g2-tooltip-list-item': { margin: "0px 4px" },
                 });
-                /** @type {?} */
-                var view = chart.view();
-                view
+                chart
                     .area()
                     .position('x*y')
-                    .color(color)
-                    .tooltip('x*y', function (x, y) {
-                    return {
-                        name: x,
-                        value: y + yTooltipSuffix,
-                    };
-                })
+                    .tooltip('x*y', function (x, y) { return ({ name: x, value: y + yTooltipSuffix }); })
                     .shape('smooth')
-                    .style({ fillOpacity: 1 });
+                    .opacity(1);
                 if (line) {
-                    /** @type {?} */
-                    var view2 = chart.view();
-                    view2
-                        .line()
-                        .position('x*y')
-                        .color(borderColor)
-                        .size(borderWidth)
-                        .shape('smooth');
-                    view2.tooltip(false);
+                    chart.line().position('x*y').shape('smooth').opacity(1).tooltip(false);
                 }
                 chart.render();
                 this.attachChart();
@@ -160,33 +145,20 @@
          * @return {?}
          */
             function () {
-                var _a = this, chart = _a.chart, xAxis = _a.xAxis, yAxis = _a.yAxis, padding = _a.padding, data = _a.data, color = _a.color, borderColor = _a.borderColor, borderWidth = _a.borderWidth;
+                var _a = this, chart = _a.chart, line = _a.line, fit = _a.fit, height = _a.height, animate = _a.animate, padding = _a.padding, data = _a.data, color = _a.color, borderColor = _a.borderColor, borderWidth = _a.borderWidth;
                 if (!chart)
                     return;
                 /** @type {?} */
-                var dataConfig = {
-                    x: {
-                        type: 'cat',
-                        range: [0, 1],
-                        xAxis: xAxis,
-                    },
-                    y: {
-                        min: 0,
-                        yAxis: yAxis,
-                    },
-                };
-                /** @type {?} */
-                var views = chart.get('views');
-                views.forEach(function (v) {
-                    v.changeData(data, dataConfig);
-                });
-                views[0].get('geoms')[0].color(color);
-                // line
-                if (views.length > 1) {
-                    views[1].get('geoms')[0].color(borderColor).size(borderWidth);
+                var geoms = chart.get('geoms');
+                geoms.forEach(function (g) { return g.color(color); });
+                if (line) {
+                    geoms[1].color(borderColor).size(borderWidth);
                 }
+                chart.set('forceFit', fit);
+                chart.set('height', height);
+                chart.set('animate', animate);
                 chart.set('padding', padding);
-                chart.repaint();
+                chart.changeData(data);
             };
         /**
          * @return {?}
@@ -214,9 +186,14 @@
          * @return {?}
          */
             function () {
-                if (this.chart) {
-                    this.chart.destroy();
+                var _a = this, chart = _a.chart, view = _a.view, viewLine = _a.viewLine;
+                if (!chart)
+                    return;
+                view.destroy();
+                if (viewLine) {
+                    viewLine.destroy();
                 }
+                chart.destroy();
             };
         G2MiniAreaComponent.decorators = [
             { type: core.Component, args: [{
@@ -244,7 +221,8 @@
             yAxis: [{ type: core.Input }],
             padding: [{ type: core.Input }],
             data: [{ type: core.Input }],
-            yTooltipSuffix: [{ type: core.Input }]
+            yTooltipSuffix: [{ type: core.Input }],
+            tooltipType: [{ type: core.Input }]
         };
         __decorate([
             util.InputNumber(),

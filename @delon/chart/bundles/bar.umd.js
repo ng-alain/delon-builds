@@ -75,7 +75,6 @@
     var TITLE_HEIGHT = 41;
     var G2BarComponent = /** @class */ (function () {
         function G2BarComponent() {
-            this.resize$ = null;
             // #region fields
             this.delay = 0;
             this.color = 'rgba(24, 144, 255, 0.85)';
@@ -89,21 +88,31 @@
         /**
          * @return {?}
          */
-        G2BarComponent.prototype.install =
+        G2BarComponent.prototype.getHeight =
             // #endregion
             /**
              * @return {?}
              */
             function () {
+                return this.title ? this.height - TITLE_HEIGHT : this.height;
+            };
+        /**
+         * @return {?}
+         */
+        G2BarComponent.prototype.install = /**
+         * @return {?}
+         */
+            function () {
+                var _a = this, node = _a.node, padding = _a.padding;
                 /** @type {?} */
-                var container = ( /** @type {?} */(this.node.nativeElement));
+                var container = ( /** @type {?} */(node.nativeElement));
                 /** @type {?} */
                 var chart = this.chart = new G2.Chart({
                     container: container,
                     forceFit: true,
                     legend: null,
                     height: this.getHeight(),
-                    padding: this.padding,
+                    padding: padding,
                 });
                 this.updatelabel();
                 chart.axis('y', {
@@ -111,7 +120,7 @@
                     line: false,
                     tickLine: false,
                 });
-                chart.source(this.data, {
+                chart.source([], {
                     x: {
                         type: 'cat',
                     },
@@ -125,23 +134,9 @@
                 chart
                     .interval()
                     .position('x*y')
-                    .color(this.color)
-                    .tooltip('x*y', function (x, y) {
-                    return ({
-                        name: x,
-                        value: y,
-                    });
-                });
+                    .tooltip('x*y', function (x, y) { return ({ name: x, value: y }); });
                 chart.render();
-            };
-        /**
-         * @return {?}
-         */
-        G2BarComponent.prototype.getHeight = /**
-         * @return {?}
-         */
-            function () {
-                return this.title ? this.height - TITLE_HEIGHT : this.height;
+                this.attachChart();
             };
         /**
          * @return {?}
@@ -150,17 +145,19 @@
          * @return {?}
          */
             function () {
-                var _a = this, chart = _a.chart, padding = _a.padding, data = _a.data;
+                var _a = this, chart = _a.chart, padding = _a.padding, data = _a.data, color = _a.color;
                 if (!chart)
                     return;
                 this.installResizeEvent();
-                chart
-                    .changeHeight(this.getHeight())
-                    .changeData(data);
+                /** @type {?} */
+                var height = this.getHeight();
+                if (chart.get('height') !== height) {
+                    chart.changeHeight(height);
+                }
                 // color
-                chart.get('geoms')[0].color(this.color);
+                chart.get('geoms')[0].color(color);
                 chart.set('padding', padding);
-                chart.repaint();
+                chart.changeData(data);
             };
         /**
          * @return {?}
@@ -169,11 +166,12 @@
          * @return {?}
          */
             function () {
+                var _a = this, node = _a.node, data = _a.data, chart = _a.chart;
                 /** @type {?} */
-                var canvasWidth = this.node.nativeElement.clientWidth;
+                var canvasWidth = node.nativeElement.clientWidth;
                 /** @type {?} */
-                var minWidth = this.data.length * 30;
-                this.chart.axis('x', canvasWidth > minWidth);
+                var minWidth = data.length * 30;
+                chart.axis('x', canvasWidth > minWidth).repaint();
             };
         /**
          * @return {?}

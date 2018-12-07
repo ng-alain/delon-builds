@@ -15,8 +15,8 @@ export declare class G2BarComponent implements OnInit, OnChanges, OnDestroy {
     padding: Array<number | string> | string;
     data: G2BarData[];
     autoLabel: boolean;
-    private install;
     private getHeight;
+    private install;
     private attachChart;
     private updatelabel;
     private installResizeEvent;

@@ -130,9 +130,7 @@
                     padding: padding,
                 });
                 chart.axis('x', { title: false });
-                chart.axis('y1', {
-                    title: false,
-                });
+                chart.axis('y1', { title: false });
                 chart.axis('y2', false);
                 chart.line().position('x*y1');
                 chart.line().position('x*y2');
@@ -143,6 +141,7 @@
                 /** @type {?} */
                 var slider = this.slider = new Slider({
                     container: sliderNode.nativeElement,
+                    width: 'auto',
                     height: 26,
                     padding: sliderPadding,
                     scales: {
@@ -235,15 +234,14 @@
                     },
                 });
                 chart.repaint();
-                slider.start = ds.state.start;
-                slider.end = ds.state.end;
+                slider.start = new Date(ds.state.start);
+                slider.end = new Date(ds.state.end);
                 slider.onChange = function (_a) {
                     var startValue = _a.startValue, endValue = _a.endValue;
                     ds.setState('start', startValue);
                     ds.setState('end', endValue);
                 },
                     slider.changeData(data);
-                slider.repaint();
             };
         /**
          * @return {?}

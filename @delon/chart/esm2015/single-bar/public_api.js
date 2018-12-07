@@ -1,0 +1,7 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ */
+export { G2SingleBarComponent } from './single-bar.component';
+export { G2SingleBarModule } from './single-bar.module';
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicHVibGljX2FwaS5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0BkZWxvbi9jaGFydC9zaW5nbGUtYmFyLyIsInNvdXJjZXMiOlsicHVibGljX2FwaS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7O0FBQUEscUNBQWMsd0JBQXdCLENBQUM7QUFDdkMsa0NBQWMscUJBQXFCLENBQUMiLCJzb3VyY2VzQ29udGVudCI6WyJleHBvcnQgKiBmcm9tICcuL3NpbmdsZS1iYXIuY29tcG9uZW50JztcbmV4cG9ydCAqIGZyb20gJy4vc2luZ2xlLWJhci5tb2R1bGUnO1xuIl19

@@ -35,24 +35,21 @@ class G2RadarComponent {
         ];
     }
     /**
-     * @param {?} i
      * @return {?}
      */
-    _click(i) {
-        const { legendData, chart } = this;
-        legendData[i].checked = !legendData[i].checked;
-        chart.repaint();
+    getHeight() {
+        return this.height - (this.hasLegend ? 80 : 22);
     }
     /**
      * @return {?}
      */
     install() {
-        const { node, height, hasLegend, padding, colors } = this;
+        const { node, padding } = this;
         /** @type {?} */
         const chart = this.chart = new G2.Chart({
             container: node.nativeElement,
             forceFit: true,
-            height: height - (hasLegend ? 80 : 22),
+            height: this.getHeight(),
             padding,
         });
         chart.coord('polar');
@@ -95,12 +92,10 @@ class G2RadarComponent {
         });
         chart
             .line()
-            .position('label*value')
-            .color('name', colors);
+            .position('label*value');
         chart
             .point()
             .position('label*value')
-            .color('name', colors)
             .shape('circle')
             .size(3);
         chart.render();
@@ -110,10 +105,10 @@ class G2RadarComponent {
      * @return {?}
      */
     attachChart() {
-        const { chart, height, hasLegend, padding, data, colors, tickCount } = this;
+        const { chart, padding, data, colors, tickCount } = this;
         if (!chart)
             return;
-        chart.set('height', height - (hasLegend ? 80 : 22));
+        chart.set('height', this.getHeight());
         chart.set('padding', padding);
         chart.source(data, {
             value: {
@@ -147,6 +142,15 @@ class G2RadarComponent {
             return result;
         });
         cdr.detectChanges();
+    }
+    /**
+     * @param {?} i
+     * @return {?}
+     */
+    _click(i) {
+        const { legendData, chart } = this;
+        legendData[i].checked = !legendData[i].checked;
+        chart.repaint();
     }
     /**
      * @return {?}

@@ -1,3 +1,5 @@
+import { fromEvent } from 'rxjs';
+import { debounceTime, filter } from 'rxjs/operators';
 import { __assign, __decorate, __metadata, __spread } from 'tslib';
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, ElementRef, HostBinding, Input, NgModule } from '@angular/core';
@@ -49,15 +51,9 @@ var G2TagCloudComponent = /** @class */ (function () {
     function () {
         var _a = this, el = _a.el, padding = _a.padding, height = _a.height;
         /** @type {?} */
-        var container = (/** @type {?} */ (el.nativeElement));
-        /** @type {?} */
-        var width = container.offsetWidth;
-        /** @type {?} */
         var chart = this.chart = new G2.Chart({
             container: el.nativeElement,
-            forceFit: true,
             padding: padding,
-            width: width,
             height: height,
         });
         chart.legend(false);
@@ -82,16 +78,12 @@ var G2TagCloudComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        var _a = this, chart = _a.chart, el = _a.el, height = _a.height, padding = _a.padding, data = _a.data;
+        var _a = this, chart = _a.chart, height = _a.height, padding = _a.padding, data = _a.data;
         if (!chart)
             return;
-        /** @type {?} */
-        var container = (/** @type {?} */ (el.nativeElement));
-        /** @type {?} */
-        var width = container.offsetWidth;
         chart.set('height', height);
-        chart.set('width', width);
         chart.set('padding', padding);
+        chart.forceFit();
         /** @type {?} */
         var dv = new DataSet.View().source(data);
         /** @type {?} */
@@ -103,7 +95,7 @@ var G2TagCloudComponent = /** @class */ (function () {
         dv.transform({
             type: 'tag-cloud',
             fields: ['x', 'value'],
-            size: [width, height],
+            size: [chart.get('width'), chart.get('height')],
             padding: padding,
             timeInterval: 5000,
             rotate: 
@@ -139,12 +131,27 @@ var G2TagCloudComponent = /** @class */ (function () {
     /**
      * @return {?}
      */
+    G2TagCloudComponent.prototype.installResizeEvent = /**
+     * @return {?}
+     */
+    function () {
+        var _this = this;
+        if (this.resize$)
+            return;
+        this.resize$ = fromEvent(window, 'resize')
+            .pipe(filter(function () { return _this.chart; }), debounceTime(200))
+            .subscribe(function () { return _this.attachChart(); });
+    };
+    /**
+     * @return {?}
+     */
     G2TagCloudComponent.prototype.ngOnInit = /**
      * @return {?}
      */
     function () {
         var _this = this;
         this.initTagCloud();
+        this.installResizeEvent();
         setTimeout(function () { return _this.install(); }, this.delay);
     };
     /**
@@ -163,6 +170,9 @@ var G2TagCloudComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
+        if (this.resize$) {
+            this.resize$.unsubscribe();
+        }
         if (this.chart) {
             this.chart.destroy();
         }

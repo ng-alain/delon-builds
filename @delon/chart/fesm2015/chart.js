@@ -19,6 +19,8 @@ import { G2PieModule } from '@delon/chart/pie';
 export { G2PieComponent, G2PieModule } from '@delon/chart/pie';
 import { G2RadarModule } from '@delon/chart/radar';
 export { G2RadarComponent, G2RadarModule } from '@delon/chart/radar';
+import { G2SingleBarModule } from '@delon/chart/single-bar';
+export { G2SingleBarComponent, G2SingleBarModule } from '@delon/chart/single-bar';
 import { G2TagCloudModule } from '@delon/chart/tag-cloud';
 export { G2TagCloudComponent, G2TagCloudModule } from '@delon/chart/tag-cloud';
 import { G2TimelineModule } from '@delon/chart/timeline';
@@ -46,6 +48,7 @@ const MODULES = [
     G2TagCloudModule,
     G2TimelineModule,
     G2WaterWaveModule,
+    G2SingleBarModule,
     NumberInfoModule,
     TrendModule,
 ];

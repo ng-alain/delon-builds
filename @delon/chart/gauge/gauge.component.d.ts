@@ -11,9 +11,8 @@ export declare class G2GaugeComponent implements OnInit, OnDestroy, OnChanges {
     percent: number;
     padding: Array<number | string>;
     constructor(el: ElementRef);
-    private createData;
-    private draw;
     private install;
+    private attachChart;
     ngOnInit(): void;
     ngOnChanges(): void;
     ngOnDestroy(): void;

@@ -14,6 +14,7 @@ export declare class G2MiniBarComponent implements OnInit, OnChanges, OnDestroy 
     padding: Array<string | number>;
     data: G2MiniBarData[];
     yTooltipSuffix: string;
+    tooltipType: 'mini' | 'default';
     constructor(el: ElementRef);
     private install;
     private attachChart;

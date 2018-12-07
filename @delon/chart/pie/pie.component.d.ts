@@ -34,10 +34,10 @@ export declare class G2PieComponent implements OnInit, OnDestroy, OnChanges {
     private setCls;
     private fixData;
     private install;
-    private installResizeEvent;
-    _click(i: number): void;
     private attachChart;
     private genLegend;
+    _click(i: number): void;
+    private installResizeEvent;
     ngOnInit(): void;
     ngOnChanges(): void;
     ngOnDestroy(): void;

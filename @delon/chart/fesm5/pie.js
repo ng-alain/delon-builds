@@ -105,42 +105,10 @@ var G2PieComponent = /** @class */ (function () {
         chart
             .intervalStack()
             .position('y')
-            .tooltip('x*percent', function (name, p) {
-            return {
-                name: name,
-                value: hasLegend ? p : (p * 100).toFixed(2),
-            };
-        })
+            .tooltip('x*percent', function (name, p) { return ({ name: name, value: hasLegend ? p : (p * 100).toFixed(2) }); })
             .select(this.select);
         chart.render();
         this.attachChart();
-    };
-    /**
-     * @return {?}
-     */
-    G2PieComponent.prototype.installResizeEvent = /**
-     * @return {?}
-     */
-    function () {
-        var _this = this;
-        if (this.resize$ || !this.hasLegend)
-            return;
-        this.resize$ = fromEvent(window, 'resize')
-            .pipe(debounceTime(200))
-            .subscribe(function () { return _this.setCls(); });
-    };
-    /**
-     * @param {?} i
-     * @return {?}
-     */
-    G2PieComponent.prototype._click = /**
-     * @param {?} i
-     * @return {?}
-     */
-    function (i) {
-        var _a = this, legendData = _a.legendData, chart = _a.chart;
-        legendData[i].checked = !legendData[i].checked;
-        chart.repaint();
     };
     /**
      * @return {?}
@@ -155,6 +123,9 @@ var G2PieComponent = /** @class */ (function () {
         chart.set('height', height);
         chart.set('padding', padding);
         chart.set('animate', animate);
+        chart.get('geoms')[0]
+            .style({ lineWidth: lineWidth, stroke: '#fff' })
+            .color('x', isPercent ? percentColor : colors);
         /** @type {?} */
         var dv = new DataSet.DataView();
         dv.source(data).transform({
@@ -172,9 +143,6 @@ var G2PieComponent = /** @class */ (function () {
                 min: 0,
             },
         });
-        chart.get('geoms')[0]
-            .style({ lineWidth: lineWidth, stroke: '#fff' })
-            .color('x', isPercent ? percentColor : colors);
         chart.repaint();
         this.genLegend();
     };
@@ -197,6 +165,33 @@ var G2PieComponent = /** @class */ (function () {
             return origin;
         });
         cdr.detectChanges();
+    };
+    /**
+     * @param {?} i
+     * @return {?}
+     */
+    G2PieComponent.prototype._click = /**
+     * @param {?} i
+     * @return {?}
+     */
+    function (i) {
+        var _a = this, legendData = _a.legendData, chart = _a.chart;
+        legendData[i].checked = !legendData[i].checked;
+        chart.repaint();
+    };
+    /**
+     * @return {?}
+     */
+    G2PieComponent.prototype.installResizeEvent = /**
+     * @return {?}
+     */
+    function () {
+        var _this = this;
+        if (this.resize$ || !this.hasLegend)
+            return;
+        this.resize$ = fromEvent(window, 'resize')
+            .pipe(debounceTime(200))
+            .subscribe(function () { return _this.setCls(); });
     };
     /**
      * @return {?}
@@ -237,7 +232,7 @@ var G2PieComponent = /** @class */ (function () {
     G2PieComponent.decorators = [
         { type: Component, args: [{
                     selector: 'g2-pie',
-                    template: "<div class=\"g2-pie__chart\">\n  <div #container></div>\n  <div *ngIf=\"subTitle || total\" class=\"g2-pie__total\">\n    <h4 *ngIf=\"subTitle\" class=\"g2-pie__total-title\">\n      <ng-container *stringTemplateOutlet=\"subTitle\">{{subTitle}}</ng-container>\n    </h4>\n    <div *ngIf=\"total\" class=\"g2-pie__total-stat\">\n      <ng-container *stringTemplateOutlet=\"total\">{{total}}</ng-container>\n    </div>\n  </div>\n</div>\n<ul *ngIf=\"hasLegend && legendData?.length\" class=\"g2-pie__legend\">\n  <li *ngFor=\"let item of legendData; let index = index\" (click)=\"_click(index)\" class=\"g2-pie__legend-item\">\n    <span class=\"g2-pie__legend-dot\" [ngStyle]=\"{'background-color': !item.checked ? '#aaa' : item.color}\"></span>\n    <span class=\"g2-pie__legend-title\">{{item.x}}</span>\n    <nz-divider nzType=\"vertical\"></nz-divider>\n    <span class=\"g2-pie__legend-percent\">{{item.percent}}%</span>\n    <span class=\"g2-pie__legend-value\" [innerHTML]=\"valueFormat ? valueFormat(item.y) : item.y\"></span>\n  </li>\n</ul>\n",
+                    template: "<div class=\"g2-pie__chart\">\n  <div #container></div>\n  <div *ngIf=\"subTitle || total\" class=\"g2-pie__total\">\n    <h4 *ngIf=\"subTitle\" class=\"g2-pie__total-title\">\n      <ng-container *stringTemplateOutlet=\"subTitle\"><div [innerHTML]=\"subTitle\"></div></ng-container>\n    </h4>\n    <div *ngIf=\"total\" class=\"g2-pie__total-stat\">\n      <ng-container *stringTemplateOutlet=\"total\"><div [innerHTML]=\"total\"></div></ng-container>\n    </div>\n  </div>\n</div>\n<ul *ngIf=\"hasLegend && legendData?.length\" class=\"g2-pie__legend\">\n  <li *ngFor=\"let item of legendData; let index = index\" (click)=\"_click(index)\" class=\"g2-pie__legend-item\">\n    <span class=\"g2-pie__legend-dot\" [ngStyle]=\"{'background-color': !item.checked ? '#aaa' : item.color}\"></span>\n    <span class=\"g2-pie__legend-title\">{{item.x}}</span>\n    <nz-divider nzType=\"vertical\"></nz-divider>\n    <span class=\"g2-pie__legend-percent\">{{item.percent}}%</span>\n    <span class=\"g2-pie__legend-value\" [innerHTML]=\"valueFormat ? valueFormat(item.y) : item.y\"></span>\n  </li>\n</ul>\n",
                     changeDetection: ChangeDetectionStrategy.OnPush
                 }] }
     ];
