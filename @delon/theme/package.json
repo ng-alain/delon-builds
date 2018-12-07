@@ -1,6 +1,6 @@
 {
   "name": "@delon/theme",
-  "version": "2.0.1-3ab91b4",
+  "version": "2.0.1-9fab361",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -8,9 +8,9 @@
     "url": "git+https://github.com/ng-alain/delon.git"
   },
   "bugs": {
-    "url": "https://github.com/ng-alain/delon/issues"
+    "url": "https://github.com/ng-alain/ng-alain/issues"
   },
-  "homepage": "https://github.com/ng-alain/delon#readme",
+  "homepage": "https://ng-alain.com",
   "keywords": [
     "delon",
     "ng-alain",
@@ -22,8 +22,8 @@
   ],
   "peerDependencies": {
     "ng-zorro-antd": "^7.0.0-rc.0",
-    "@delon/acl": "^2.0.1-3ab91b4",
-    "@delon/util": "^2.0.1-3ab91b4"
+    "@delon/acl": "^2.0.1-9fab361",
+    "@delon/util": "^2.0.1-9fab361"
   },
   "sideEffects": false,
   "main": "bundles/theme.umd.js",
