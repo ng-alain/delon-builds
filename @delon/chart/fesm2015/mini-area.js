@@ -32,7 +32,7 @@ class G2MiniAreaComponent {
     install() {
         const { el, fit, height, animate, padding, xAxis, yAxis, yTooltipSuffix, data, color, line, borderColor, borderWidth } = this;
         /** @type {?} */
-        const chart = new G2.Chart({
+        const chart = this.chart = new G2.Chart({
             container: el.nativeElement,
             forceFit: fit,
             height,
@@ -55,18 +55,6 @@ class G2MiniAreaComponent {
         else {
             chart.axis('y', false);
         }
-        /** @type {?} */
-        const dataConfig = {
-            x: {
-                type: 'cat',
-                range: [0, 1],
-                xAxis,
-            },
-            y: {
-                min: 0,
-                yAxis,
-            },
-        };
         chart.tooltip({
             'showTitle': false,
             'hideMarkders': false,
@@ -75,7 +63,6 @@ class G2MiniAreaComponent {
         });
         /** @type {?} */
         const view = chart.view();
-        view.source(data, dataConfig);
         view
             .area()
             .position('x*y')
@@ -91,7 +78,6 @@ class G2MiniAreaComponent {
         if (line) {
             /** @type {?} */
             const view2 = chart.view();
-            view2.source(data, dataConfig);
             view2
                 .line()
                 .position('x*y')
@@ -101,19 +87,31 @@ class G2MiniAreaComponent {
             view2.tooltip(false);
         }
         chart.render();
-        this.chart = chart;
+        this.attachChart();
     }
     /**
      * @return {?}
      */
     attachChart() {
-        const { chart, padding, data, color, borderColor, borderWidth } = this;
+        const { chart, xAxis, yAxis, padding, data, color, borderColor, borderWidth } = this;
         if (!chart)
             return;
         /** @type {?} */
+        const dataConfig = {
+            x: {
+                type: 'cat',
+                range: [0, 1],
+                xAxis,
+            },
+            y: {
+                min: 0,
+                yAxis,
+            },
+        };
+        /** @type {?} */
         const views = chart.get('views');
         views.forEach(v => {
-            v.changeData(data);
+            v.changeData(data, dataConfig);
         });
         views[0].get('geoms')[0].color(color);
         // line

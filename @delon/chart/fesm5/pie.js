@@ -40,11 +40,10 @@ var G2PieComponent = /** @class */ (function () {
         var _a = this, el = _a.el, rend = _a.rend, hasLegend = _a.hasLegend, isPercent = _a.isPercent;
         /** @type {?} */
         var ne = (/** @type {?} */ (el.nativeElement));
-        console.log('ne.clientWidth', ne.clientWidth);
         updateHostClass(ne, rend, {
             'g2-pie': true,
             'g2-pie__legend-has': hasLegend,
-            'g2-pie__legend-block': ne.clientWidth <= 380,
+            'g2-pie__legend-block': hasLegend && ne.clientWidth <= 380,
             'g2-pie__mini': isPercent,
         }, true);
     };

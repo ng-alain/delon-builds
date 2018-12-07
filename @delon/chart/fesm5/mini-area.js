@@ -32,7 +32,7 @@ var G2MiniAreaComponent = /** @class */ (function () {
     function () {
         var _a = this, el = _a.el, fit = _a.fit, height = _a.height, animate = _a.animate, padding = _a.padding, xAxis = _a.xAxis, yAxis = _a.yAxis, yTooltipSuffix = _a.yTooltipSuffix, data = _a.data, color = _a.color, line = _a.line, borderColor = _a.borderColor, borderWidth = _a.borderWidth;
         /** @type {?} */
-        var chart = new G2.Chart({
+        var chart = this.chart = new G2.Chart({
             container: el.nativeElement,
             forceFit: fit,
             height: height,
@@ -55,18 +55,6 @@ var G2MiniAreaComponent = /** @class */ (function () {
         else {
             chart.axis('y', false);
         }
-        /** @type {?} */
-        var dataConfig = {
-            x: {
-                type: 'cat',
-                range: [0, 1],
-                xAxis: xAxis,
-            },
-            y: {
-                min: 0,
-                yAxis: yAxis,
-            },
-        };
         chart.tooltip({
             'showTitle': false,
             'hideMarkders': false,
@@ -75,7 +63,6 @@ var G2MiniAreaComponent = /** @class */ (function () {
         });
         /** @type {?} */
         var view = chart.view();
-        view.source(data, dataConfig);
         view
             .area()
             .position('x*y')
@@ -91,7 +78,6 @@ var G2MiniAreaComponent = /** @class */ (function () {
         if (line) {
             /** @type {?} */
             var view2 = chart.view();
-            view2.source(data, dataConfig);
             view2
                 .line()
                 .position('x*y')
@@ -101,7 +87,7 @@ var G2MiniAreaComponent = /** @class */ (function () {
             view2.tooltip(false);
         }
         chart.render();
-        this.chart = chart;
+        this.attachChart();
     };
     /**
      * @return {?}
@@ -110,13 +96,25 @@ var G2MiniAreaComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        var _a = this, chart = _a.chart, padding = _a.padding, data = _a.data, color = _a.color, borderColor = _a.borderColor, borderWidth = _a.borderWidth;
+        var _a = this, chart = _a.chart, xAxis = _a.xAxis, yAxis = _a.yAxis, padding = _a.padding, data = _a.data, color = _a.color, borderColor = _a.borderColor, borderWidth = _a.borderWidth;
         if (!chart)
             return;
         /** @type {?} */
+        var dataConfig = {
+            x: {
+                type: 'cat',
+                range: [0, 1],
+                xAxis: xAxis,
+            },
+            y: {
+                min: 0,
+                yAxis: yAxis,
+            },
+        };
+        /** @type {?} */
         var views = chart.get('views');
         views.forEach(function (v) {
-            v.changeData(data);
+            v.changeData(data, dataConfig);
         });
         views[0].get('geoms')[0].color(color);
         // line
