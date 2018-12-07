@@ -7,8 +7,6 @@ export interface G2MiniAreaData {
 export declare class G2MiniAreaComponent implements OnInit, OnChanges, OnDestroy {
     private el;
     private chart;
-    private view;
-    private viewLine;
     delay: number;
     color: string;
     borderColor: string;

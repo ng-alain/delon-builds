@@ -122,14 +122,8 @@ var G2MiniAreaComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        var _a = this, chart = _a.chart, view = _a.view, viewLine = _a.viewLine;
-        if (!chart)
-            return;
-        view.destroy();
-        if (viewLine) {
-            viewLine.destroy();
-        }
-        chart.destroy();
+        if (this.chart)
+            this.chart.destroy();
     };
     G2MiniAreaComponent.decorators = [
         { type: Component, args: [{

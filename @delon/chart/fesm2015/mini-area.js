@@ -109,14 +109,8 @@ class G2MiniAreaComponent {
      * @return {?}
      */
     ngOnDestroy() {
-        const { chart, view, viewLine } = this;
-        if (!chart)
-            return;
-        view.destroy();
-        if (viewLine) {
-            viewLine.destroy();
-        }
-        chart.destroy();
+        if (this.chart)
+            this.chart.destroy();
     }
 }
 G2MiniAreaComponent.decorators = [

@@ -12,7 +12,7 @@ export declare class G2TimelineComponent implements OnInit, OnDestroy, OnChanges
     private node;
     private sliderNode;
     private chart;
-    private slider;
+    private _slider;
     delay: number;
     title: string | TemplateRef<void>;
     data: G2TimelineData[];
@@ -29,6 +29,8 @@ export declare class G2TimelineComponent implements OnInit, OnDestroy, OnChanges
     height: number;
     padding: number[];
     borderWidth: number;
+    tickCount: number;
+    slider: boolean;
     ngOnInit(): void;
     private install;
     private attachChart;

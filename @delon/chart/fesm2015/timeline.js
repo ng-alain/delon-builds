@@ -1,7 +1,7 @@
 import { __decorate, __metadata } from 'tslib';
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input, ViewChild, NgModule } from '@angular/core';
-import { InputNumber, DelonUtilModule } from '@delon/util';
+import { InputBoolean, InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
@@ -20,6 +20,8 @@ class G2TimelineComponent {
         this.height = 400;
         this.padding = [60, 20, 40, 40];
         this.borderWidth = 2;
+        this.tickCount = 8;
+        this.slider = true;
     }
     // #endregion
     /**
@@ -32,7 +34,7 @@ class G2TimelineComponent {
      * @return {?}
      */
     install() {
-        const { node, sliderNode, height, padding, mask } = this;
+        const { node, sliderNode, height, padding, mask, tickCount, slider } = this;
         /** @type {?} */
         const chart = this.chart = new G2.Chart({
             container: node.nativeElement,
@@ -49,34 +51,36 @@ class G2TimelineComponent {
         /** @type {?} */
         const sliderPadding = Object.assign({}, [], padding);
         sliderPadding[0] = 0;
-        /** @type {?} */
-        const slider = this.slider = new Slider({
-            container: sliderNode.nativeElement,
-            width: 'auto',
-            height: 26,
-            padding: sliderPadding,
-            scales: {
-                x: {
-                    type: 'time',
-                    tickCount: 16,
-                    mask,
+        if (slider) {
+            /** @type {?} */
+            const _slider = this._slider = new Slider({
+                container: sliderNode.nativeElement,
+                width: 'auto',
+                height: 26,
+                padding: sliderPadding,
+                scales: {
+                    x: {
+                        type: 'time',
+                        tickCount,
+                        mask,
+                    },
                 },
-            },
-            backgroundChart: {
-                type: 'line',
-            },
-            xAxis: 'x',
-            yAxis: 'y1',
-            data: [],
-        });
-        slider.render();
+                backgroundChart: {
+                    type: 'line',
+                },
+                xAxis: 'x',
+                yAxis: 'y1',
+                data: [],
+            });
+            _slider.render();
+        }
         this.attachChart();
     }
     /**
      * @return {?}
      */
     attachChart() {
-        const { chart, slider, height, padding, data, mask, titleMap, position, colorMap, borderWidth } = this;
+        const { chart, _slider, slider, height, padding, data, mask, titleMap, position, colorMap, borderWidth, tickCount } = this;
         if (!chart)
             return;
         chart.legend({
@@ -98,14 +102,12 @@ class G2TimelineComponent {
         chart.set('height', height);
         chart.set('padding', padding);
         /** @type {?} */
-        const MAX = 8;
-        /** @type {?} */
-        const begin = Math.ceil(data.length > MAX ? (data.length - MAX) / 2 : 0);
+        const begin = Math.ceil(data.length > tickCount ? (data.length - tickCount) / 2 : 0);
         /** @type {?} */
         const ds = new DataSet({
             state: {
                 start: data[begin - 1].x,
-                end: data[begin - 1 + MAX].x,
+                end: data[begin - 1 + tickCount].x,
             },
         });
         /** @type {?} */
@@ -126,7 +128,7 @@ class G2TimelineComponent {
         chart.source(dv, {
             x: {
                 type: 'timeCat',
-                tickCount: MAX,
+                tickCount,
                 mask,
                 range: [0, 1],
             },
@@ -142,13 +144,18 @@ class G2TimelineComponent {
             },
         });
         chart.repaint();
-        slider.start = new Date(ds.state.start);
-        slider.end = new Date(ds.state.end);
-        slider.onChange = ({ startValue, endValue }) => {
-            ds.setState('start', startValue);
-            ds.setState('end', endValue);
-        },
-            slider.changeData(data);
+        if (slider) {
+            _slider.start = ds.state.start;
+            _slider.end = ds.state.end;
+            _slider.onChange = ({ startValue, endValue }) => {
+                // TODO: https://github.com/antvis/g2-plugin-slider/pull/19
+                _slider.start = startValue;
+                _slider.end = endValue;
+                ds.setState('start', startValue);
+                ds.setState('end', endValue);
+            };
+            _slider.changeData(data);
+        }
     }
     /**
      * @return {?}
@@ -162,20 +169,20 @@ class G2TimelineComponent {
     ngOnDestroy() {
         if (this.chart)
             this.chart.destroy();
-        if (this.slider)
-            this.slider.destroy();
+        if (this._slider)
+            this._slider.destroy();
     }
 }
 G2TimelineComponent.decorators = [
     { type: Component, args: [{
                 selector: 'g2-timeline',
-                template: "<ng-container *stringTemplateOutlet=\"title\"><h4>{{title}}</h4></ng-container>\n<div #container></div>\n<div #slider></div>\n",
+                template: "<ng-container *stringTemplateOutlet=\"title\"><h4>{{title}}</h4></ng-container>\n<div #container></div>\n<div #sliderContainer *ngIf=\"slider\"></div>\n",
                 changeDetection: ChangeDetectionStrategy.OnPush
             }] }
 ];
 G2TimelineComponent.propDecorators = {
     node: [{ type: ViewChild, args: ['container',] }],
-    sliderNode: [{ type: ViewChild, args: ['slider',] }],
+    sliderNode: [{ type: ViewChild, args: ['sliderContainer',] }],
     delay: [{ type: Input }],
     title: [{ type: Input }],
     data: [{ type: Input }],
@@ -185,7 +192,9 @@ G2TimelineComponent.propDecorators = {
     position: [{ type: Input }],
     height: [{ type: Input }],
     padding: [{ type: Input }],
-    borderWidth: [{ type: Input }]
+    borderWidth: [{ type: Input }],
+    tickCount: [{ type: Input }],
+    slider: [{ type: Input }]
 };
 __decorate([
     InputNumber(),
@@ -199,6 +208,14 @@ __decorate([
     InputNumber(),
     __metadata("design:type", Object)
 ], G2TimelineComponent.prototype, "borderWidth", void 0);
+__decorate([
+    InputNumber(),
+    __metadata("design:type", Object)
+], G2TimelineComponent.prototype, "tickCount", void 0);
+__decorate([
+    InputBoolean(),
+    __metadata("design:type", Object)
+], G2TimelineComponent.prototype, "slider", void 0);
 
 /**
  * @fileoverview added by tsickle
