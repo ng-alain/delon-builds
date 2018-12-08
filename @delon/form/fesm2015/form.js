@@ -1506,8 +1506,44 @@ class SFComponent {
      * 表单值
      * @return {?}
      */
+    // tslint:disable-next-line:no-any
     get value() {
         return this._item;
+    }
+    /**
+     * 根据路径获取表单元素属性
+     * @param {?} path
+     * @return {?}
+     */
+    getProperty(path) {
+        return this.rootProperty.searchProperty(path);
+    }
+    /**
+     * 根据路径获取表单元素当前值
+     * @param {?} path
+     * @return {?}
+     */
+    // tslint:disable-next-line:no-any
+    getValue(path) {
+        return (/** @type {?} */ (this.getProperty(path))).value;
+    }
+    /**
+     * 根据路径设置某个表单元素属性值
+     * @template THIS
+     * @this {THIS}
+     * @param {?} path 路径
+     * @param {?} value 新值
+     * @return {THIS}
+     */
+    // tslint:disable-next-line:no-any
+    setValue(path, value) {
+        /** @type {?} */
+        const item = (/** @type {?} */ (this)).getProperty(path);
+        if (!item) {
+            throw new Error(`Invalid path: ${path}`);
+        }
+        item.resetValue(value, false);
+        return (/** @type {?} */ (this));
     }
     /**
      * @param {?} e

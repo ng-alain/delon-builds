@@ -67,7 +67,23 @@ export declare class SFComponent implements OnInit, OnChanges, OnDestroy {
     /** 表单校验状态 */
     readonly valid: boolean;
     /** 表单值 */
-    readonly value: {};
+    readonly value: {
+        [key: string]: any;
+    };
+    /**
+     * 根据路径获取表单元素属性
+     */
+    getProperty(path: string): FormProperty;
+    /**
+     * 根据路径获取表单元素当前值
+     */
+    getValue(path: string): any;
+    /**
+     * 根据路径设置某个表单元素属性值
+     * @param path 路径
+     * @param value 新值
+     */
+    setValue(path: string, value: any): this;
     onSubmit(e: Event): void;
     constructor(formPropertyFactory: FormPropertyFactory, terminator: TerminatorService, options: DelonFormConfig, cdr: ChangeDetectorRef, i18n: DelonLocaleService);
     private coverProperty;

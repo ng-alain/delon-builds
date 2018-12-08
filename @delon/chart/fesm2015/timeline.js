@@ -99,6 +99,7 @@ class G2TimelineComponent {
         data.filter(v => !(v.x instanceof Number)).forEach(v => {
             v.x = +new Date(v.x);
         });
+        data.sort((a, b) => +a.x - +b.x);
         chart.set('height', height);
         chart.set('padding', padding);
         /** @type {?} */

@@ -1971,15 +1971,86 @@
         });
         Object.defineProperty(SFComponent.prototype, "value", {
             /** 表单值 */
+            // tslint:disable-next-line:no-any
             get: /**
              * 表单值
              * @return {?}
-             */ function () {
+             */ 
+            // tslint:disable-next-line:no-any
+            function () {
                 return this._item;
             },
             enumerable: true,
             configurable: true
         });
+        /**
+         * 根据路径获取表单元素属性
+         */
+        /**
+         * 根据路径获取表单元素属性
+         * @param {?} path
+         * @return {?}
+         */
+        SFComponent.prototype.getProperty = /**
+         * 根据路径获取表单元素属性
+         * @param {?} path
+         * @return {?}
+         */
+            function (path) {
+                return this.rootProperty.searchProperty(path);
+            };
+        /**
+         * 根据路径获取表单元素当前值
+         */
+        // tslint:disable-next-line:no-any
+        /**
+         * 根据路径获取表单元素当前值
+         * @param {?} path
+         * @return {?}
+         */
+        // tslint:disable-next-line:no-any
+        SFComponent.prototype.getValue = /**
+         * 根据路径获取表单元素当前值
+         * @param {?} path
+         * @return {?}
+         */
+            // tslint:disable-next-line:no-any
+            function (path) {
+                return ( /** @type {?} */(this.getProperty(path))).value;
+            };
+        /**
+         * 根据路径设置某个表单元素属性值
+         * @param path 路径
+         * @param value 新值
+         */
+        // tslint:disable-next-line:no-any
+        /**
+         * 根据路径设置某个表单元素属性值
+         * @template THIS
+         * @this {THIS}
+         * @param {?} path 路径
+         * @param {?} value 新值
+         * @return {THIS}
+         */
+        // tslint:disable-next-line:no-any
+        SFComponent.prototype.setValue = /**
+         * 根据路径设置某个表单元素属性值
+         * @template THIS
+         * @this {THIS}
+         * @param {?} path 路径
+         * @param {?} value 新值
+         * @return {THIS}
+         */
+            // tslint:disable-next-line:no-any
+            function (path, value) {
+                /** @type {?} */
+                var item = ( /** @type {?} */(this)).getProperty(path);
+                if (!item) {
+                    throw new Error("Invalid path: " + path);
+                }
+                item.resetValue(value, false);
+                return ( /** @type {?} */(this));
+            };
         /**
          * @param {?} e
          * @return {?}

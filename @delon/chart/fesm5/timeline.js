@@ -115,6 +115,7 @@ var G2TimelineComponent = /** @class */ (function () {
         data.filter(function (v) { return !(v.x instanceof Number); }).forEach(function (v) {
             v.x = +new Date(v.x);
         });
+        data.sort(function (a, b) { return +a.x - +b.x; });
         chart.set('height', height);
         chart.set('padding', padding);
         /** @type {?} */
