@@ -1,6 +1,6 @@
 {
   "name": "@delon/mock",
-  "version": "2.0.1-32e7d10",
+  "version": "2.0.1-31f1655",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -26,7 +26,7 @@
     "component"
   ],
   "peerDependencies": {
-    "@delon/theme": "^2.0.1-32e7d10"
+    "@delon/theme": "^2.0.1-31f1655"
   },
   "sideEffects": false,
   "main": "bundles/mock.umd.js",
