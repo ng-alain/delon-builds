@@ -22,7 +22,6 @@ LodopConfig.decorators = [
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
-// TODO: zone
 class LodopService {
     /**
      * @param {?} defCog

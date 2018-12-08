@@ -46,8 +46,8 @@ function addDependenciesToPackageJson(options) {
             // allow ignore ng-zorro-antd becauce of @delon/theme dependency
             `ng-zorro-antd@${lib_versions_1.ZORROVERSION}`,
             // ng-zorro-antd need
-            'screenfull@^3.3.1',
-            'ajv@^6.4.0',
+            'screenfull@^3.3.3',
+            'ajv@^6.6.1',
         ]);
         // add ajv
         json_1.scriptsToAngularJson(host, ['node_modules/ajv/dist/ajv.bundle.js'], 'add', [
@@ -75,8 +75,8 @@ function addDependenciesToPackageJson(options) {
         // i18n
         if (options.i18n) {
             json_1.addPackageToPackageJson(host, [
-                `@ngx-translate/core@^10.0.1`,
-                `@ngx-translate/http-loader@^3.0.1`,
+                `@ngx-translate/core@^11.0.1`,
+                `@ngx-translate/http-loader@^4.0.0`,
             ]);
         }
         return host;
@@ -191,12 +191,12 @@ function addCodeStylesToPackageJson() {
         }
         // dependencies
         json_1.addPackageToPackageJson(host, [
-            `tslint-config-prettier@^1.12.0`,
+            `tslint-config-prettier@^1.17.0`,
             `tslint-language-service@^0.9.9`,
             `editorconfig-tools@^0.1.1`,
-            `lint-staged@^7.1.2`,
-            `husky@^0.14.3`,
-            `prettier@^1.12.1`,
+            `lint-staged@^8.1.0`,
+            `husky@^1.1.0`,
+            `prettier@^1.14.1`,
             `prettier-stylelint@^0.4.2`,
             `stylelint@^9.2.0`,
             `stylelint-config-standard@^18.2.0`,

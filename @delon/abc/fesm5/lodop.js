@@ -26,7 +26,6 @@ var LodopConfig = /** @class */ (function () {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
-// TODO: zone
 var LodopService = /** @class */ (function () {
     function LodopService(defCog, scriptSrv) {
         this.defCog = defCog;
