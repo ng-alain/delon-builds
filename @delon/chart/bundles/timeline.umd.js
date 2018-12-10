@@ -242,9 +242,6 @@
                     _slider.end = ds.state.end;
                     _slider.onChange = function (_a) {
                         var startValue = _a.startValue, endValue = _a.endValue;
-                        // TODO: https://github.com/antvis/g2-plugin-slider/pull/19
-                        _slider.start = startValue;
-                        _slider.end = endValue;
                         ds.setState('start', startValue);
                         ds.setState('end', endValue);
                     };
