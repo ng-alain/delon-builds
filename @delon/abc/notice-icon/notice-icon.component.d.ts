@@ -11,6 +11,8 @@ export declare class NoticeIconComponent implements OnInit, AfterViewInit, OnCha
     count: number;
     loading: boolean;
     popoverVisible: boolean;
+    btnClass: string;
+    btnIconClass: string;
     readonly select: EventEmitter<NoticeIconSelect>;
     readonly clear: EventEmitter<string>;
     readonly popoverVisibleChange: EventEmitter<boolean>;

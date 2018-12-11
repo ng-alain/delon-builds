@@ -69,6 +69,8 @@ var NoticeIconComponent = /** @class */ (function () {
         this.data = [];
         this.loading = false;
         this.popoverVisible = false;
+        this.btnClass = '';
+        this.btnIconClass = '';
         this.select = new EventEmitter();
         this.clear = new EventEmitter();
         this.popoverVisibleChange = new EventEmitter();
@@ -116,7 +118,7 @@ var NoticeIconComponent = /** @class */ (function () {
         var _this = this;
         this.i18n$ = this.i18n.change.subscribe(function () {
             _this.locale = _this.i18n.getData('noticeIcon');
-            _this.cdr.detectChanges();
+            _this.cdr.markForCheck();
         });
     };
     /**
@@ -126,6 +128,8 @@ var NoticeIconComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
+        if (!this.ddc)
+            return;
         this.ddc.cdkOverlay.panelClass = ['header-dropdown', 'notice-icon'];
     };
     /**
@@ -135,7 +139,7 @@ var NoticeIconComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        this.cdr.detectChanges();
+        this.cdr.markForCheck();
     };
     /**
      * @return {?}
@@ -149,7 +153,7 @@ var NoticeIconComponent = /** @class */ (function () {
     NoticeIconComponent.decorators = [
         { type: Component, args: [{
                     selector: 'notice-icon',
-                    template: "<ng-template #badgeTpl>\n  <nz-badge [nzCount]=\"count\" class=\"alain-default__nav-item\" [nzStyle]=\"{ 'box-shadow': 'none' }\">\n    <i nz-icon type=\"bell\" class=\"alain-default__nav-item-icon\"></i>\n  </nz-badge>\n</ng-template>\n<div *ngIf=\"data?.length === 0\">\n  <ng-template [ngTemplateOutlet]=\"badgeTpl\"></ng-template>\n</div>\n<nz-dropdown *ngIf=\"data?.length > 0\" [nzVisible]=\"popoverVisible\" (nzVisibleChange)=\"onVisibleChange($event)\"\n  nzTrigger=\"click\" nzPlacement=\"bottomRight\">\n  <div nz-dropdown>\n    <ng-template [ngTemplateOutlet]=\"badgeTpl\"></ng-template>\n  </div>\n  <nz-spin [nzSpinning]=\"loading\" [nzDelay]=\"0\">\n    <nz-tabset>\n      <nz-tab *ngFor=\"let i of data\" [nzTitle]=\"i.title\">\n        <notice-icon-tab [locale]=\"locale\" [data]=\"i\" (select)=\"onSelect($event)\" (clear)=\"onClear($event)\"></notice-icon-tab>\n      </nz-tab>\n    </nz-tabset>\n  </nz-spin>\n</nz-dropdown>\n",
+                    template: "<ng-template #badgeTpl>\n  <nz-badge [nzCount]=\"count\" [ngClass]=\"btnClass\" [nzStyle]=\"{ 'box-shadow': 'none' }\">\n    <i nz-icon type=\"bell\" [ngClass]=\"btnIconClass\"></i>\n  </nz-badge>\n</ng-template>\n<div *ngIf=\"data?.length === 0\">\n  <ng-template [ngTemplateOutlet]=\"badgeTpl\"></ng-template>\n</div>\n<nz-dropdown *ngIf=\"data?.length > 0\" [nzVisible]=\"popoverVisible\" (nzVisibleChange)=\"onVisibleChange($event)\"\n  nzTrigger=\"click\" nzPlacement=\"bottomRight\">\n  <div nz-dropdown>\n    <ng-template [ngTemplateOutlet]=\"badgeTpl\"></ng-template>\n  </div>\n  <nz-spin [nzSpinning]=\"loading\" [nzDelay]=\"0\">\n    <nz-tabset nzSelectedIndex=\"0\">\n      <nz-tab *ngFor=\"let i of data\" [nzTitle]=\"i.title\">\n        <notice-icon-tab [locale]=\"locale\" [data]=\"i\" (select)=\"onSelect($event)\" (clear)=\"onClear($event)\"></notice-icon-tab>\n      </nz-tab>\n    </nz-tabset>\n  </nz-spin>\n</nz-dropdown>\n",
                     host: { '[class.notice-icon__btn]': 'true' },
                     changeDetection: ChangeDetectionStrategy.OnPush
                 }] }
@@ -164,6 +168,8 @@ var NoticeIconComponent = /** @class */ (function () {
         count: [{ type: Input }],
         loading: [{ type: Input }],
         popoverVisible: [{ type: Input }],
+        btnClass: [{ type: Input }],
+        btnIconClass: [{ type: Input }],
         select: [{ type: Output }],
         clear: [{ type: Output }],
         popoverVisibleChange: [{ type: Output }],
