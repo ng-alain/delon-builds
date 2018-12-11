@@ -23772,6 +23772,10 @@ body {
     width: initial;
   }
 }
+.notice-icon__item .ant-badge-count {
+  top: -2px;
+  right: 18px;
+}
 .alain-default__fixed .alain-default__header {
   position: fixed;
   top: 0;
