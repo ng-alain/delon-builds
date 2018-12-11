@@ -402,11 +402,13 @@
                         break;
                 }
                 /** @type {?} */
-                var response = new http.HttpResponse({
-                    status: 200,
-                    body: res,
-                    url: req.url,
-                });
+                var response = res instanceof http.HttpResponse ?
+                    res :
+                    new http.HttpResponse({
+                        status: 200,
+                        url: req.url,
+                        body: res,
+                    });
                 if (config.log) {
                     console.log("%c\uD83D\uDC7D" + req.method + "->" + req.url + "->request", 'background:#000;color:#bada55', req);
                     console.log("%c\uD83D\uDC7D" + req.method + "->" + req.url + "->response", 'background:#000;color:#bada55', response);
