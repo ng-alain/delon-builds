@@ -374,6 +374,14 @@
         return (typeof value === 'string' &&
             /^(0|\+?86|17951)?(13[0-9]|15[0-9]|17[0678]|18[0-9]|14[57])[0-9]{8}$/.test(value));
     }
+    /**
+     * 是否URL地址
+     * @param {?} url
+     * @return {?}
+     */
+    function isUrl(url) {
+        return /(((^https?:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+(?::\d+)?|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)$/.test(url);
+    }
 
     /**
      * @fileoverview added by tsickle
@@ -459,6 +467,20 @@
          */
             function (control) {
                 return isMobile(control.value) ? null : { mobile: true };
+            };
+        /** 是否URL地址 */
+        /**
+         * 是否URL地址
+         * @param {?} control
+         * @return {?}
+         */
+        _Validators.url = /**
+         * 是否URL地址
+         * @param {?} control
+         * @return {?}
+         */
+            function (control) {
+                return isUrl(control.value) ? null : { url: true };
             };
         return _Validators;
     }());
@@ -1076,6 +1098,7 @@
     exports.isDecimal = isDecimal;
     exports.isIdCard = isIdCard;
     exports.isMobile = isMobile;
+    exports.isUrl = isUrl;
     exports.isEmpty = isEmpty;
     exports.toBoolean = toBoolean;
     exports.InputBoolean = InputBoolean;

@@ -8,3 +8,5 @@ export declare function isDecimal(value: string | number): boolean;
 export declare function isIdCard(value: string): boolean;
 /** 是否为手机号 */
 export declare function isMobile(value: string): boolean;
+/** 是否URL地址 */
+export declare function isUrl(url: string): boolean;

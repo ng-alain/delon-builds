@@ -11,4 +11,6 @@ export declare class _Validators {
     static idCard(control: AbstractControl): ValidationErrors | null;
     /** 是否为手机号 */
     static mobile(control: AbstractControl): ValidationErrors | null;
+    /** 是否URL地址 */
+    static url(control: AbstractControl): ValidationErrors | null;
 }

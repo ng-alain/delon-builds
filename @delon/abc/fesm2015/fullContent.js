@@ -3,7 +3,7 @@ import { ActivationEnd, ActivationStart, Router } from '@angular/router';
 import { BehaviorSubject, fromEvent } from 'rxjs';
 import { share, debounceTime, filter } from 'rxjs/operators';
 import { DOCUMENT, CommonModule } from '@angular/common';
-import { Injectable, Directive, HostListener, defineInjectable, EventEmitter, Component, ChangeDetectionStrategy, ElementRef, ChangeDetectorRef, Inject, HostBinding, Input, Output, NgModule } from '@angular/core';
+import { Injectable, Directive, HostListener, defineInjectable, NgModule, EventEmitter, Component, ChangeDetectionStrategy, ElementRef, ChangeDetectorRef, Inject, HostBinding, Input, Output } from '@angular/core';
 import { InputBoolean, InputNumber, DelonUtilModule } from '@delon/util';
 
 /**

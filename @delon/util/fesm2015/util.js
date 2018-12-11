@@ -332,6 +332,14 @@ function isMobile(value) {
     return (typeof value === 'string' &&
         /^(0|\+?86|17951)?(13[0-9]|15[0-9]|17[0678]|18[0-9]|14[57])[0-9]{8}$/.test(value));
 }
+/**
+ * 是否URL地址
+ * @param {?} url
+ * @return {?}
+ */
+function isUrl(url) {
+    return /(((^https?:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+(?::\d+)?|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)$/.test(url);
+}
 
 /**
  * @fileoverview added by tsickle
@@ -381,6 +389,14 @@ class _Validators {
      */
     static mobile(control) {
         return isMobile(control.value) ? null : { mobile: true };
+    }
+    /**
+     * 是否URL地址
+     * @param {?} control
+     * @return {?}
+     */
+    static url(control) {
+        return isUrl(control.value) ? null : { url: true };
     }
 }
 
@@ -835,6 +851,6 @@ DelonUtilModule.decorators = [
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 
-export { _Validators, format, getTimeDistance, LazyService, isNum, isInt, isDecimal, isIdCard, isMobile, isEmpty, toBoolean, InputBoolean, toNumber, InputNumber, deepGet, deepCopy, copy, updateHostClass, ArrayService, DelonUtilConfig, DelonUtilModule, StringTemplateOutletDirective as ɵa };
+export { _Validators, format, getTimeDistance, LazyService, isNum, isInt, isDecimal, isIdCard, isMobile, isUrl, isEmpty, toBoolean, InputBoolean, toNumber, InputNumber, deepGet, deepCopy, copy, updateHostClass, ArrayService, DelonUtilConfig, DelonUtilModule, StringTemplateOutletDirective as ɵa };
 
 //# sourceMappingURL=util.js.map
