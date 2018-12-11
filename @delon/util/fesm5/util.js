@@ -105,19 +105,6 @@ function format(str, obj, needDeepGet) {
             : (obj || {})[key] || '';
     });
 }
-/**
- * 转化成RMB元字符串
- * @param {?} value
- * @param {?=} digits 当数字类型时，允许指定小数点后数字的个数，默认2位小数
- * @return {?}
- */
-// tslint:disable-next-line:no-any
-function yuan(value, digits) {
-    if (digits === void 0) { digits = 2; }
-    if (typeof value === 'number')
-        value = value.toFixed(digits);
-    return "&yen " + value;
-}
 
 /**
  * @fileoverview added by tsickle
@@ -1005,6 +992,6 @@ var DelonUtilModule = /** @class */ (function () {
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 
-export { _Validators, format, yuan, getTimeDistance, LazyService, isNum, isInt, isDecimal, isIdCard, isMobile, isEmpty, toBoolean, InputBoolean, toNumber, InputNumber, deepGet, deepCopy, copy, updateHostClass, ArrayService, DelonUtilConfig, DelonUtilModule, StringTemplateOutletDirective as ɵa };
+export { _Validators, format, getTimeDistance, LazyService, isNum, isInt, isDecimal, isIdCard, isMobile, isEmpty, toBoolean, InputBoolean, toNumber, InputNumber, deepGet, deepCopy, copy, updateHostClass, ArrayService, DelonUtilConfig, DelonUtilModule, StringTemplateOutletDirective as ɵa };
 
 //# sourceMappingURL=util.js.map
