@@ -1,5 +1,5 @@
 import { InputBoolean, InputNumber } from '@delon/util';
-import { __decorate, __metadata, __spread } from 'tslib';
+import { __spread, __decorate, __metadata } from 'tslib';
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy, ChangeDetectorRef, NgModule } from '@angular/core';
 import { DelonLocaleService, DelonLocaleModule } from '@delon/theme';

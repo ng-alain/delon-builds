@@ -1,6 +1,6 @@
-import { __decorate, __metadata, __spread } from 'tslib';
+import { __spread, __decorate, __metadata } from 'tslib';
 import { DOCUMENT, CommonModule } from '@angular/common';
-import { Injectable, Component, ChangeDetectionStrategy, ElementRef, ChangeDetectorRef, Inject, Input, HostBinding, HostListener, defineInjectable, NgModule } from '@angular/core';
+import { Injectable, defineInjectable, NgModule, Component, ChangeDetectionStrategy, ElementRef, ChangeDetectorRef, Inject, Input, HostBinding, HostListener } from '@angular/core';
 import { InputNumber, DelonUtilModule } from '@delon/util';
 
 /**

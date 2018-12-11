@@ -1,5 +1,5 @@
 import { InputNumber } from '@delon/util';
-import { __decorate, __metadata, __spread } from 'tslib';
+import { __spread, __decorate, __metadata } from 'tslib';
 import { CommonModule } from '@angular/common';
 import { Component, Input, ChangeDetectionStrategy, ChangeDetectorRef, ContentChildren, NgModule } from '@angular/core';
 import { NgZorroAntdModule } from 'ng-zorro-antd';

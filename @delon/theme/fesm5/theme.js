@@ -5,7 +5,7 @@ import { BehaviorSubject, Subject, Observable, throwError } from 'rxjs';
 import distanceInWordsToNow from 'date-fns/distance_in_words_to_now';
 import format from 'date-fns/format';
 import { Title, DomSanitizer } from '@angular/platform-browser';
-import { __spread, __values, __assign, __extends } from 'tslib';
+import { __spread, __assign, __extends, __values } from 'tslib';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { DOCUMENT, CommonModule, CurrencyPipe } from '@angular/common';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
@@ -2584,7 +2584,7 @@ var AlainThemeModule = /** @class */ (function () {
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 /** @type {?} */
-var VERSION = new Version('2.0.1-756740d');
+var VERSION = new Version('2.0.1-ec4a7ba');
 
 /**
  * @fileoverview added by tsickle

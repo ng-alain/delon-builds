@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import addSeconds from 'date-fns/add_seconds';
 import { of, BehaviorSubject, Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
-import { Injectable, InjectionToken, NgModule, Inject, defineInjectable, inject } from '@angular/core';
+import { Injectable, InjectionToken, NgModule, defineInjectable, Inject, inject } from '@angular/core';
 
 /**
  * @fileoverview added by tsickle

@@ -10,7 +10,7 @@ import { DOCUMENT, CurrencyPipe, CommonModule } from '@angular/common';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { BellOutline, CaretDownOutline, CaretUpOutline, DeleteOutline, FilterFill, InboxOutline, PlusOutline } from '@ant-design/icons-angular/icons';
 import { NzModalService, NzIconService, NzDrawerService } from 'ng-zorro-antd';
-import { InjectionToken, Injectable, Inject, Pipe, Version, Optional, Injector, NgModule, SkipSelf, defineInjectable, inject, INJECTOR } from '@angular/core';
+import { InjectionToken, Injectable, Inject, Pipe, Version, Injector, Optional, NgModule, SkipSelf, defineInjectable, inject, INJECTOR } from '@angular/core';
 
 /**
  * @fileoverview added by tsickle
@@ -2002,7 +2002,7 @@ AlainThemeModule.ctorParameters = () => [
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 /** @type {?} */
-const VERSION = new Version('2.0.1-756740d');
+const VERSION = new Version('2.0.1-ec4a7ba');
 
 /**
  * @fileoverview added by tsickle
