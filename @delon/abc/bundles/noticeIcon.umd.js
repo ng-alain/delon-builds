@@ -179,6 +179,15 @@
         /**
          * @return {?}
          */
+        NoticeIconComponent.prototype.ngAfterViewInit = /**
+         * @return {?}
+         */
+            function () {
+                this.ddc.cdkOverlay.panelClass = ['header-dropdown', 'notice-icon'];
+            };
+        /**
+         * @return {?}
+         */
         NoticeIconComponent.prototype.ngOnChanges = /**
          * @return {?}
          */
@@ -197,7 +206,7 @@
         NoticeIconComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'notice-icon',
-                        template: "<nz-badge *ngIf=\"data?.length === 0\" [nzCount]=\"count\">\n  <i nz-icon type=\"bell\"></i>\n</nz-badge>\n<nz-popover *ngIf=\"data?.length > 0\" [nzVisible]=\"popoverVisible\" (nzVisibleChange)=\"onVisibleChange($event)\" nzTrigger=\"click\"\n  nzPlacement=\"bottomRight\" nzOverlayClassName=\"notice-icon\">\n  <div nz-popover class=\"alain-default__nav-item notice-icon__item\">\n    <nz-badge [nzCount]=\"count\">\n      <i nz-icon type=\"bell\" class=\"alain-default__nav-item-icon\"></i>\n    </nz-badge>\n  </div>\n  <ng-template #nzTemplate>\n    <nz-spin [nzSpinning]=\"loading\" [nzDelay]=\"0\">\n      <nz-tabset>\n        <nz-tab *ngFor=\"let i of data\" [nzTitle]=\"i.title\">\n          <notice-icon-tab [locale]=\"locale\" [data]=\"i\" (select)=\"onSelect($event)\" (clear)=\"onClear($event)\"></notice-icon-tab>\n        </nz-tab>\n      </nz-tabset>\n    </nz-spin>\n  </ng-template>\n</nz-popover>\n",
+                        template: "<ng-template #badgeTpl>\n  <nz-badge [nzCount]=\"count\" class=\"notice-icon__item\" [nzStyle]=\"{ 'box-shadow': 'none' }\">\n    <i nz-icon type=\"bell\" class=\"notice-icon__item-icon\"></i>\n  </nz-badge>\n</ng-template>\n<div *ngIf=\"data?.length === 0\">\n  <ng-template [ngTemplateOutlet]=\"badgeTpl\"></ng-template>\n</div>\n<nz-dropdown *ngIf=\"data?.length > 0\" [nzVisible]=\"popoverVisible\" (nzVisibleChange)=\"onVisibleChange($event)\"\n  nzTrigger=\"click\" nzPlacement=\"bottomRight\">\n  <div nz-dropdown>\n    <ng-template [ngTemplateOutlet]=\"badgeTpl\"></ng-template>\n  </div>\n  <nz-spin [nzSpinning]=\"loading\" [nzDelay]=\"0\">\n    <nz-tabset>\n      <nz-tab *ngFor=\"let i of data\" [nzTitle]=\"i.title\">\n        <notice-icon-tab [locale]=\"locale\" [data]=\"i\" (select)=\"onSelect($event)\" (clear)=\"onClear($event)\"></notice-icon-tab>\n      </nz-tab>\n    </nz-tabset>\n  </nz-spin>\n</nz-dropdown>\n",
                         host: { '[class.notice-icon__btn]': 'true' },
                         changeDetection: core.ChangeDetectionStrategy.OnPush
                     }] }
@@ -216,7 +225,8 @@
             popoverVisible: [{ type: core.Input }],
             select: [{ type: core.Output }],
             clear: [{ type: core.Output }],
-            popoverVisibleChange: [{ type: core.Output }]
+            popoverVisibleChange: [{ type: core.Output }],
+            ddc: [{ type: core.ViewChild, args: [ngZorroAntd.NzDropDownComponent,] }]
         };
         __decorate([
             util.InputNumber(),
