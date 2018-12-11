@@ -358,6 +358,7 @@ function fixLang(options) {
         const langs = lang_config_1.getLangData(options.defaultLanguage);
         if (!langs)
             return;
+        console.log(`Translating, please wait...`);
         host.visit(p => {
             if (~p.indexOf(`/node_modules/`))
                 return;
@@ -405,6 +406,7 @@ function fixLangInHtml(host, p, langs) {
 }
 function installPackages() {
     return (host, context) => {
+        console.log(`Start installing dependencies, please wait...`);
         context.addTask(new tasks_1.NodePackageInstallTask());
     };
 }
