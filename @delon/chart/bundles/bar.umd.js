@@ -146,7 +146,7 @@
          */
             function () {
                 var _a = this, chart = _a.chart, padding = _a.padding, data = _a.data, color = _a.color;
-                if (!chart)
+                if (!chart || !data || data.length <= 0)
                     return;
                 this.installResizeEvent();
                 /** @type {?} */

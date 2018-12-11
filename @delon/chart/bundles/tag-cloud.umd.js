@@ -152,7 +152,7 @@
          */
             function () {
                 var _a = this, chart = _a.chart, height = _a.height, padding = _a.padding, data = _a.data;
-                if (!chart)
+                if (!chart || !data || data.length <= 0)
                     return;
                 chart.set('height', height);
                 chart.set('padding', padding);

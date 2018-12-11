@@ -66,7 +66,7 @@ class G2MiniBarComponent {
      */
     attachChart() {
         const { chart, height, padding, data, color, borderWidth } = this;
-        if (!chart)
+        if (!chart || !data || data.length <= 0)
             return;
         chart.get('geoms')[0].size(borderWidth).color(color);
         chart.set('height', height);

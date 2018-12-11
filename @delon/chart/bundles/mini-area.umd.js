@@ -146,7 +146,7 @@
          */
             function () {
                 var _a = this, chart = _a.chart, line = _a.line, fit = _a.fit, height = _a.height, animate = _a.animate, padding = _a.padding, data = _a.data, color = _a.color, borderColor = _a.borderColor, borderWidth = _a.borderWidth;
-                if (!chart)
+                if (!chart || !data || data.length <= 0)
                     return;
                 /** @type {?} */
                 var geoms = chart.get('geoms');

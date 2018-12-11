@@ -176,7 +176,7 @@
          */
             function () {
                 var _a = this, chart = _a.chart, padding = _a.padding, data = _a.data, colors = _a.colors, tickCount = _a.tickCount;
-                if (!chart)
+                if (!chart || !data || data.length <= 0)
                     return;
                 chart.set('height', this.getHeight());
                 chart.set('padding', padding);

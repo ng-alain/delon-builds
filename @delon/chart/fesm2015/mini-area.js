@@ -79,7 +79,7 @@ class G2MiniAreaComponent {
      */
     attachChart() {
         const { chart, line, fit, height, animate, padding, data, color, borderColor, borderWidth } = this;
-        if (!chart)
+        if (!chart || !data || data.length <= 0)
             return;
         /** @type {?} */
         const geoms = chart.get('geoms');

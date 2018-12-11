@@ -73,7 +73,7 @@ class G2TagCloudComponent {
      */
     attachChart() {
         const { chart, height, padding, data } = this;
-        if (!chart)
+        if (!chart || !data || data.length <= 0)
             return;
         chart.set('height', height);
         chart.set('padding', padding);

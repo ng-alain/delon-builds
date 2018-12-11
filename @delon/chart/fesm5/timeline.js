@@ -97,7 +97,7 @@ var G2TimelineComponent = /** @class */ (function () {
      */
     function () {
         var _a = this, chart = _a.chart, _slider = _a._slider, slider = _a.slider, height = _a.height, padding = _a.padding, data = _a.data, mask = _a.mask, titleMap = _a.titleMap, position = _a.position, colorMap = _a.colorMap, borderWidth = _a.borderWidth, tickCount = _a.tickCount;
-        if (!chart)
+        if (!chart || !data || data.length <= 0)
             return;
         chart.legend({
             position: position,

@@ -106,7 +106,7 @@ class G2RadarComponent {
      */
     attachChart() {
         const { chart, padding, data, colors, tickCount } = this;
-        if (!chart)
+        if (!chart || !data || data.length <= 0)
             return;
         chart.set('height', this.getHeight());
         chart.set('padding', padding);

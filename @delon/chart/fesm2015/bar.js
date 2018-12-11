@@ -72,7 +72,7 @@ class G2BarComponent {
      */
     attachChart() {
         const { chart, padding, data, color } = this;
-        if (!chart)
+        if (!chart || !data || data.length <= 0)
             return;
         this.installResizeEvent();
         /** @type {?} */

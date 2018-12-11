@@ -69,7 +69,7 @@ var G2MiniBarComponent = /** @class */ (function () {
      */
     function () {
         var _a = this, chart = _a.chart, height = _a.height, padding = _a.padding, data = _a.data, color = _a.color, borderWidth = _a.borderWidth;
-        if (!chart)
+        if (!chart || !data || data.length <= 0)
             return;
         chart.get('geoms')[0].size(borderWidth).color(color);
         chart.set('height', height);
