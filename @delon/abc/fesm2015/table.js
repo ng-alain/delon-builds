@@ -3,8 +3,8 @@ import { XlsxService } from '@delon/abc/xlsx';
 import { __decorate, __metadata } from 'tslib';
 import { Router } from '@angular/router';
 import { ALAIN_I18N_TOKEN, _HttpClient, CNCurrencyPipe, DatePipe, YNPipe, DelonLocaleService, DrawerHelper, ModalHelper } from '@delon/theme';
-import { of } from 'rxjs';
-import { catchError, map, filter } from 'rxjs/operators';
+import { of, Subject } from 'rxjs';
+import { catchError, map, filter, takeUntil } from 'rxjs/operators';
 import { DecimalPipe, DOCUMENT, CommonModule } from '@angular/common';
 import { Directive, Host, Injectable, Input, TemplateRef, Optional, Inject, NgModule, NO_ERRORS_SCHEMA, defineInjectable, EventEmitter, Component, ChangeDetectionStrategy, ChangeDetectorRef, ElementRef, Renderer2, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -967,6 +967,7 @@ class STComponent {
         this.columnSource = columnSource;
         this.dataSource = dataSource;
         this.delonI18n = delonI18n;
+        this.unsubscribe$ = new Subject();
         this.totalTpl = ``;
         // tslint:disable-next-line:no-any
         this.locale = {};
@@ -1018,18 +1019,15 @@ class STComponent {
         if (copyCog.multiSort && copyCog.multiSort.global !== false) {
             this.multiSort = copyCog.multiSort;
         }
-        this.delonI18n$ = this.delonI18n.change.subscribe(() => {
+        this.delonI18n.change.pipe(takeUntil(this.unsubscribe$)).subscribe(() => {
             this.locale = this.delonI18n.getData('st');
             if (this._columns.length > 0) {
                 this.page = this.clonePage;
                 this.cd();
             }
         });
-        if (i18nSrv) {
-            this.i18n$ = i18nSrv.change
-                .pipe(filter(() => this._columns.length > 0))
-                .subscribe(() => this.updateColumns());
-        }
+        i18nSrv.change
+            .pipe(takeUntil(this.unsubscribe$), filter(() => this._columns.length > 0)).subscribe(() => this.updateColumns());
     }
     /**
      * 请求体配置
@@ -1670,9 +1668,9 @@ class STComponent {
      * @return {?}
      */
     ngOnDestroy() {
-        this.delonI18n$.unsubscribe();
-        if (this.i18n$)
-            this.i18n$.unsubscribe();
+        const { unsubscribe$ } = this;
+        unsubscribe$.next();
+        unsubscribe$.complete();
     }
 }
 STComponent.decorators = [

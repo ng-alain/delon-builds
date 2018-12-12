@@ -1196,6 +1196,7 @@
             this.columnSource = columnSource;
             this.dataSource = dataSource;
             this.delonI18n = delonI18n;
+            this.unsubscribe$ = new rxjs.Subject();
             this.totalTpl = "";
             // tslint:disable-next-line:no-any
             this.locale = {};
@@ -1247,18 +1248,15 @@
             if (copyCog.multiSort && copyCog.multiSort.global !== false) {
                 this.multiSort = copyCog.multiSort;
             }
-            this.delonI18n$ = this.delonI18n.change.subscribe(function () {
+            this.delonI18n.change.pipe(operators.takeUntil(this.unsubscribe$)).subscribe(function () {
                 _this.locale = _this.delonI18n.getData('st');
                 if (_this._columns.length > 0) {
                     _this.page = _this.clonePage;
                     _this.cd();
                 }
             });
-            if (i18nSrv) {
-                this.i18n$ = i18nSrv.change
-                    .pipe(operators.filter(function () { return _this._columns.length > 0; }))
-                    .subscribe(function () { return _this.updateColumns(); });
-            }
+            i18nSrv.change
+                .pipe(operators.takeUntil(this.unsubscribe$), operators.filter(function () { return _this._columns.length > 0; })).subscribe(function () { return _this.updateColumns(); });
         }
         Object.defineProperty(STComponent.prototype, "req", {
             /** 请求体配置 */
@@ -2205,9 +2203,9 @@
          * @return {?}
          */
             function () {
-                this.delonI18n$.unsubscribe();
-                if (this.i18n$)
-                    this.i18n$.unsubscribe();
+                var unsubscribe$ = this.unsubscribe$;
+                unsubscribe$.next();
+                unsubscribe$.complete();
             };
         STComponent.decorators = [
             { type: i0.Component, args: [{

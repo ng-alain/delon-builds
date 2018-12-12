@@ -2,8 +2,8 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { XlsxService } from '@delon/abc/xlsx';
 import { Router } from '@angular/router';
 import { ALAIN_I18N_TOKEN, _HttpClient, CNCurrencyPipe, DatePipe, YNPipe, DelonLocaleService, DrawerHelper, ModalHelper } from '@delon/theme';
-import { of } from 'rxjs';
-import { catchError, map, filter } from 'rxjs/operators';
+import { of, Subject } from 'rxjs';
+import { catchError, map, filter, takeUntil } from 'rxjs/operators';
 import { __spread, __values, __assign, __decorate, __metadata } from 'tslib';
 import { DecimalPipe, DOCUMENT, CommonModule } from '@angular/common';
 import { Directive, Host, Injectable, Input, TemplateRef, Optional, NgModule, NO_ERRORS_SCHEMA, defineInjectable, Inject, EventEmitter, Component, ChangeDetectionStrategy, ChangeDetectorRef, ElementRef, Renderer2, Output } from '@angular/core';
@@ -1096,6 +1096,7 @@ var STComponent = /** @class */ (function () {
         this.columnSource = columnSource;
         this.dataSource = dataSource;
         this.delonI18n = delonI18n;
+        this.unsubscribe$ = new Subject();
         this.totalTpl = "";
         // tslint:disable-next-line:no-any
         this.locale = {};
@@ -1147,18 +1148,15 @@ var STComponent = /** @class */ (function () {
         if (copyCog.multiSort && copyCog.multiSort.global !== false) {
             this.multiSort = copyCog.multiSort;
         }
-        this.delonI18n$ = this.delonI18n.change.subscribe(function () {
+        this.delonI18n.change.pipe(takeUntil(this.unsubscribe$)).subscribe(function () {
             _this.locale = _this.delonI18n.getData('st');
             if (_this._columns.length > 0) {
                 _this.page = _this.clonePage;
                 _this.cd();
             }
         });
-        if (i18nSrv) {
-            this.i18n$ = i18nSrv.change
-                .pipe(filter(function () { return _this._columns.length > 0; }))
-                .subscribe(function () { return _this.updateColumns(); });
-        }
+        i18nSrv.change
+            .pipe(takeUntil(this.unsubscribe$), filter(function () { return _this._columns.length > 0; })).subscribe(function () { return _this.updateColumns(); });
     }
     Object.defineProperty(STComponent.prototype, "req", {
         /** 请求体配置 */
@@ -2108,9 +2106,9 @@ var STComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        this.delonI18n$.unsubscribe();
-        if (this.i18n$)
-            this.i18n$.unsubscribe();
+        var unsubscribe$ = this.unsubscribe$;
+        unsubscribe$.next();
+        unsubscribe$.complete();
     };
     STComponent.decorators = [
         { type: Component, args: [{

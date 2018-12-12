@@ -20,8 +20,7 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     private columnSource;
     private dataSource;
     private delonI18n;
-    private i18n$;
-    private delonI18n$;
+    private unsubscribe$;
     private totalTpl;
     private locale;
     private clonePage;
