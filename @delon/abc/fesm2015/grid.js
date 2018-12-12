@@ -1,8 +1,8 @@
 import { __decorate, __metadata } from 'tslib';
 import { ResponsiveService } from '@delon/theme';
 import { CommonModule } from '@angular/common';
-import { Injectable, Component, ChangeDetectionStrategy, Input, HostBinding, Optional, Host, ElementRef, Renderer2, defineInjectable, NgModule } from '@angular/core';
-import { toNumber, InputNumber, DelonUtilModule } from '@delon/util';
+import { Injectable, Component, ChangeDetectionStrategy, Input, HostBinding, defineInjectable, NgModule, ElementRef, Renderer2, Optional, Host } from '@angular/core';
+import { InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
@@ -35,23 +35,6 @@ class SGContainerComponent {
      */
     constructor(cog) {
         Object.assign(this, cog);
-    }
-    /**
-     * @param {?} value
-     * @return {?}
-     */
-    set col(value) {
-        /** @type {?} */
-        const a = toNumber(value, 0);
-        if (a <= 0)
-            return;
-        this._col = toNumber(value, 0);
-    }
-    /**
-     * @return {?}
-     */
-    get col() {
-        return this._col;
     }
     //#endregion
     /**
@@ -86,7 +69,8 @@ SGContainerComponent.ctorParameters = () => [
 ];
 SGContainerComponent.propDecorators = {
     gutter: [{ type: Input }],
-    col: [{ type: Input, args: ['sg-container',] }],
+    colInCon: [{ type: Input, args: ['sg-container',] }],
+    col: [{ type: Input }],
     marginLeft: [{ type: HostBinding, args: ['style.margin-left.px',] }],
     marginRight: [{ type: HostBinding, args: ['style.margin-right.px',] }]
 };
@@ -94,6 +78,14 @@ __decorate([
     InputNumber(),
     __metadata("design:type", Number)
 ], SGContainerComponent.prototype, "gutter", void 0);
+__decorate([
+    InputNumber(null),
+    __metadata("design:type", Number)
+], SGContainerComponent.prototype, "colInCon", void 0);
+__decorate([
+    InputNumber(null),
+    __metadata("design:type", Number)
+], SGContainerComponent.prototype, "col", void 0);
 
 /**
  * @fileoverview added by tsickle
@@ -103,15 +95,15 @@ __decorate([
 const prefixCls = `sg`;
 class SGComponent {
     /**
-     * @param {?} parent
-     * @param {?} rep
      * @param {?} el
      * @param {?} ren
+     * @param {?} parent
+     * @param {?} rep
      */
-    constructor(parent, rep, el, ren) {
+    constructor(el, ren, parent, rep) {
+        this.ren = ren;
         this.parent = parent;
         this.rep = rep;
-        this.ren = ren;
         this.clsMap = [];
         this.inited = false;
         if (parent == null) {
@@ -140,7 +132,7 @@ class SGComponent {
         const { el, ren, clsMap, col, parent } = (/** @type {?} */ (this));
         clsMap.forEach(cls => ren.removeClass(el, cls));
         clsMap.length = 0;
-        clsMap.push(...(/** @type {?} */ (this)).rep.genCls(col != null ? col : parent.col), `${prefixCls}__item`);
+        clsMap.push(...(/** @type {?} */ (this)).rep.genCls(col != null ? col : parent.col || parent.colInCon), `${prefixCls}__item`);
         clsMap.forEach(cls => ren.addClass(el, cls));
         return (/** @type {?} */ (this));
     }
@@ -170,10 +162,10 @@ SGComponent.decorators = [
 ];
 /** @nocollapse */
 SGComponent.ctorParameters = () => [
-    { type: SGContainerComponent, decorators: [{ type: Optional }, { type: Host }] },
-    { type: ResponsiveService },
     { type: ElementRef },
-    { type: Renderer2 }
+    { type: Renderer2 },
+    { type: SGContainerComponent, decorators: [{ type: Optional }, { type: Host }] },
+    { type: ResponsiveService }
 ];
 SGComponent.propDecorators = {
     col: [{ type: Input }],

@@ -128,13 +128,13 @@
          * @return {?}
          */
             function (changes) {
-                if (this.inited) {
-                    if (changes.error) {
-                        this.updateError();
-                    }
-                    else {
-                        this.update();
-                    }
+                if (!this.inited)
+                    return;
+                if (changes.error) {
+                    this.updateError();
+                }
+                else {
+                    this.update();
                 }
             };
         /**

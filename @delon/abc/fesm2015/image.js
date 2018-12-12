@@ -1,6 +1,6 @@
 import { __decorate, __metadata } from 'tslib';
 import { CommonModule } from '@angular/common';
-import { Injectable, defineInjectable, NgModule, Directive, ElementRef, Renderer2, Input } from '@angular/core';
+import { Injectable, Directive, ElementRef, Renderer2, Input, defineInjectable, NgModule } from '@angular/core';
 import { deepCopy, InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
@@ -61,13 +61,13 @@ class ImageDirective {
      * @return {?}
      */
     ngOnChanges(changes) {
-        if (this.inited) {
-            if (changes.error) {
-                this.updateError();
-            }
-            else {
-                this.update();
-            }
+        if (!this.inited)
+            return;
+        if (changes.error) {
+            this.updateError();
+        }
+        else {
+            this.update();
         }
     }
     /**

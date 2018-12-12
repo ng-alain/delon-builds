@@ -1,13 +1,6 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { ElementRef, EventEmitter } from '@angular/core';
 import { _HttpClient } from '@delon/theme';
-/**
- * 文件下载
- *
- * ```html
- * <button nz-button down-file http-url="assets/demo{{i}}" file-name="demo中文">{{i}}</button>
- * ```
- */
 export declare class DownFileDirective {
     private el;
     private http;

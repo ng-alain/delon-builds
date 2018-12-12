@@ -132,25 +132,6 @@
             enumerable: true,
             configurable: true
         });
-        Object.defineProperty(SEContainerComponent.prototype, "col", {
-            get: /**
-             * @return {?}
-             */ function () {
-                return this._col;
-            },
-            set: /**
-             * @param {?} value
-             * @return {?}
-             */ function (value) {
-                /** @type {?} */
-                var a = util.toNumber(value, 0);
-                if (a <= 0)
-                    return;
-                this._col = util.toNumber(value, 0);
-            },
-            enumerable: true,
-            configurable: true
-        });
         Object.defineProperty(SEContainerComponent.prototype, "nzLayout", {
             get: /**
              * @return {?}
@@ -183,15 +164,24 @@
             ];
         };
         SEContainerComponent.propDecorators = {
+            colInCon: [{ type: i0.Input, args: ['se-container',] }],
+            col: [{ type: i0.Input }],
+            labelWidth: [{ type: i0.Input }],
             title: [{ type: i0.Input }],
             gutter: [{ type: i0.Input }],
-            col: [{ type: i0.Input, args: ['se-container',] }],
-            labelWidth: [{ type: i0.Input }],
             nzLayout: [{ type: i0.Input }],
             size: [{ type: i0.Input }],
             firstVisual: [{ type: i0.Input }],
             line: [{ type: i0.Input }]
         };
+        __decorate([
+            util.InputNumber(null),
+            __metadata("design:type", Number)
+        ], SEContainerComponent.prototype, "colInCon", void 0);
+        __decorate([
+            util.InputNumber(null),
+            __metadata("design:type", Number)
+        ], SEContainerComponent.prototype, "col", void 0);
         __decorate([
             util.InputNumber(null),
             __metadata("design:type", Number)
@@ -401,9 +391,7 @@
                 clsMap.forEach(function (cls) { return ren.removeClass(el, cls); });
                 clsMap.length = 0;
                 /** @type {?} */
-                var repCls = parent.nzLayout === 'horizontal'
-                    ? ( /** @type {?} */(this)).rep.genCls(col != null ? col : parent.col)
-                    : [];
+                var repCls = parent.nzLayout === 'horizontal' ? ( /** @type {?} */(this)).rep.genCls(col != null ? col : parent.col || parent.colInCon) : [];
                 clsMap.push.apply(clsMap, __spread(["ant-form-item"], repCls, [prefixCls + "__item"]));
                 if (( /** @type {?} */(this)).line || parent.line) {
                     clsMap.push(prefixCls + "__line");

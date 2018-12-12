@@ -97,25 +97,6 @@
         function SGContainerComponent(cog) {
             Object.assign(this, cog);
         }
-        Object.defineProperty(SGContainerComponent.prototype, "col", {
-            get: /**
-             * @return {?}
-             */ function () {
-                return this._col;
-            },
-            set: /**
-             * @param {?} value
-             * @return {?}
-             */ function (value) {
-                /** @type {?} */
-                var a = util.toNumber(value, 0);
-                if (a <= 0)
-                    return;
-                this._col = util.toNumber(value, 0);
-            },
-            enumerable: true,
-            configurable: true
-        });
         Object.defineProperty(SGContainerComponent.prototype, "marginLeft", {
             //#endregion
             get: 
@@ -157,7 +138,8 @@
         };
         SGContainerComponent.propDecorators = {
             gutter: [{ type: i0.Input }],
-            col: [{ type: i0.Input, args: ['sg-container',] }],
+            colInCon: [{ type: i0.Input, args: ['sg-container',] }],
+            col: [{ type: i0.Input }],
             marginLeft: [{ type: i0.HostBinding, args: ['style.margin-left.px',] }],
             marginRight: [{ type: i0.HostBinding, args: ['style.margin-right.px',] }]
         };
@@ -165,6 +147,14 @@
             util.InputNumber(),
             __metadata("design:type", Number)
         ], SGContainerComponent.prototype, "gutter", void 0);
+        __decorate([
+            util.InputNumber(null),
+            __metadata("design:type", Number)
+        ], SGContainerComponent.prototype, "colInCon", void 0);
+        __decorate([
+            util.InputNumber(null),
+            __metadata("design:type", Number)
+        ], SGContainerComponent.prototype, "col", void 0);
         return SGContainerComponent;
     }());
 
@@ -175,10 +165,10 @@
     /** @type {?} */
     var prefixCls = "sg";
     var SGComponent = /** @class */ (function () {
-        function SGComponent(parent, rep, el, ren) {
+        function SGComponent(el, ren, parent, rep) {
+            this.ren = ren;
             this.parent = parent;
             this.rep = rep;
-            this.ren = ren;
             this.clsMap = [];
             this.inited = false;
             if (parent == null) {
@@ -218,7 +208,7 @@
                 var _a = ( /** @type {?} */(this)), el = _a.el, ren = _a.ren, clsMap = _a.clsMap, col = _a.col, parent = _a.parent;
                 clsMap.forEach(function (cls) { return ren.removeClass(el, cls); });
                 clsMap.length = 0;
-                clsMap.push.apply(clsMap, __spread(( /** @type {?} */(this)).rep.genCls(col != null ? col : parent.col), [prefixCls + "__item"]));
+                clsMap.push.apply(clsMap, __spread(( /** @type {?} */(this)).rep.genCls(col != null ? col : parent.col || parent.colInCon), [prefixCls + "__item"]));
                 clsMap.forEach(function (cls) { return ren.addClass(el, cls); });
                 return ( /** @type {?} */(this));
             };
@@ -252,10 +242,10 @@
         /** @nocollapse */
         SGComponent.ctorParameters = function () {
             return [
-                { type: SGContainerComponent, decorators: [{ type: i0.Optional }, { type: i0.Host }] },
-                { type: theme.ResponsiveService },
                 { type: i0.ElementRef },
-                { type: i0.Renderer2 }
+                { type: i0.Renderer2 },
+                { type: SGContainerComponent, decorators: [{ type: i0.Optional }, { type: i0.Host }] },
+                { type: theme.ResponsiveService }
             ];
         };
         SGComponent.propDecorators = {

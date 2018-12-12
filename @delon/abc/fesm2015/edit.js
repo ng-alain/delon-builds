@@ -73,23 +73,6 @@ class SEContainerComponent {
         this._gutter = toNumber(value);
     }
     /**
-     * @param {?} value
-     * @return {?}
-     */
-    set col(value) {
-        /** @type {?} */
-        const a = toNumber(value, 0);
-        if (a <= 0)
-            return;
-        this._col = toNumber(value, 0);
-    }
-    /**
-     * @return {?}
-     */
-    get col() {
-        return this._col;
-    }
-    /**
      * @return {?}
      */
     get nzLayout() {
@@ -118,15 +101,24 @@ SEContainerComponent.ctorParameters = () => [
     { type: SEConfig }
 ];
 SEContainerComponent.propDecorators = {
+    colInCon: [{ type: Input, args: ['se-container',] }],
+    col: [{ type: Input }],
+    labelWidth: [{ type: Input }],
     title: [{ type: Input }],
     gutter: [{ type: Input }],
-    col: [{ type: Input, args: ['se-container',] }],
-    labelWidth: [{ type: Input }],
     nzLayout: [{ type: Input }],
     size: [{ type: Input }],
     firstVisual: [{ type: Input }],
     line: [{ type: Input }]
 };
+__decorate([
+    InputNumber(null),
+    __metadata("design:type", Number)
+], SEContainerComponent.prototype, "colInCon", void 0);
+__decorate([
+    InputNumber(null),
+    __metadata("design:type", Number)
+], SEContainerComponent.prototype, "col", void 0);
 __decorate([
     InputNumber(null),
     __metadata("design:type", Number)
@@ -313,9 +305,7 @@ class SEComponent {
         clsMap.forEach(cls => ren.removeClass(el, cls));
         clsMap.length = 0;
         /** @type {?} */
-        const repCls = parent.nzLayout === 'horizontal'
-            ? (/** @type {?} */ (this)).rep.genCls(col != null ? col : parent.col)
-            : [];
+        const repCls = parent.nzLayout === 'horizontal' ? (/** @type {?} */ (this)).rep.genCls(col != null ? col : parent.col || parent.colInCon) : [];
         clsMap.push(`ant-form-item`, ...repCls, `${prefixCls}__item`);
         if ((/** @type {?} */ (this)).line || parent.line) {
             clsMap.push(`${prefixCls}__line`);

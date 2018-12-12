@@ -1,8 +1,8 @@
 import { ResponsiveService } from '@delon/theme';
 import { __decorate, __metadata, __spread } from 'tslib';
 import { CommonModule } from '@angular/common';
-import { Injectable, Component, ChangeDetectionStrategy, Input, HostBinding, defineInjectable, NgModule, Optional, Host, ElementRef, Renderer2 } from '@angular/core';
-import { toNumber, InputNumber, DelonUtilModule } from '@delon/util';
+import { Injectable, Component, ChangeDetectionStrategy, Input, HostBinding, defineInjectable, NgModule, ElementRef, Renderer2, Optional, Host } from '@angular/core';
+import { InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
@@ -34,27 +34,6 @@ var SGContainerComponent = /** @class */ (function () {
     function SGContainerComponent(cog) {
         Object.assign(this, cog);
     }
-    Object.defineProperty(SGContainerComponent.prototype, "col", {
-        get: /**
-         * @return {?}
-         */
-        function () {
-            return this._col;
-        },
-        set: /**
-         * @param {?} value
-         * @return {?}
-         */
-        function (value) {
-            /** @type {?} */
-            var a = toNumber(value, 0);
-            if (a <= 0)
-                return;
-            this._col = toNumber(value, 0);
-        },
-        enumerable: true,
-        configurable: true
-    });
     Object.defineProperty(SGContainerComponent.prototype, "marginLeft", {
         //#endregion
         get: 
@@ -95,7 +74,8 @@ var SGContainerComponent = /** @class */ (function () {
     ]; };
     SGContainerComponent.propDecorators = {
         gutter: [{ type: Input }],
-        col: [{ type: Input, args: ['sg-container',] }],
+        colInCon: [{ type: Input, args: ['sg-container',] }],
+        col: [{ type: Input }],
         marginLeft: [{ type: HostBinding, args: ['style.margin-left.px',] }],
         marginRight: [{ type: HostBinding, args: ['style.margin-right.px',] }]
     };
@@ -103,6 +83,14 @@ var SGContainerComponent = /** @class */ (function () {
         InputNumber(),
         __metadata("design:type", Number)
     ], SGContainerComponent.prototype, "gutter", void 0);
+    __decorate([
+        InputNumber(null),
+        __metadata("design:type", Number)
+    ], SGContainerComponent.prototype, "colInCon", void 0);
+    __decorate([
+        InputNumber(null),
+        __metadata("design:type", Number)
+    ], SGContainerComponent.prototype, "col", void 0);
     return SGContainerComponent;
 }());
 
@@ -113,10 +101,10 @@ var SGContainerComponent = /** @class */ (function () {
 /** @type {?} */
 var prefixCls = "sg";
 var SGComponent = /** @class */ (function () {
-    function SGComponent(parent, rep, el, ren) {
+    function SGComponent(el, ren, parent, rep) {
+        this.ren = ren;
         this.parent = parent;
         this.rep = rep;
-        this.ren = ren;
         this.clsMap = [];
         this.inited = false;
         if (parent == null) {
@@ -158,7 +146,7 @@ var SGComponent = /** @class */ (function () {
         var _a = (/** @type {?} */ (this)), el = _a.el, ren = _a.ren, clsMap = _a.clsMap, col = _a.col, parent = _a.parent;
         clsMap.forEach(function (cls) { return ren.removeClass(el, cls); });
         clsMap.length = 0;
-        clsMap.push.apply(clsMap, __spread((/** @type {?} */ (this)).rep.genCls(col != null ? col : parent.col), [prefixCls + "__item"]));
+        clsMap.push.apply(clsMap, __spread((/** @type {?} */ (this)).rep.genCls(col != null ? col : parent.col || parent.colInCon), [prefixCls + "__item"]));
         clsMap.forEach(function (cls) { return ren.addClass(el, cls); });
         return (/** @type {?} */ (this));
     };
@@ -191,10 +179,10 @@ var SGComponent = /** @class */ (function () {
     ];
     /** @nocollapse */
     SGComponent.ctorParameters = function () { return [
-        { type: SGContainerComponent, decorators: [{ type: Optional }, { type: Host }] },
-        { type: ResponsiveService },
         { type: ElementRef },
-        { type: Renderer2 }
+        { type: Renderer2 },
+        { type: SGContainerComponent, decorators: [{ type: Optional }, { type: Host }] },
+        { type: ResponsiveService }
     ]; };
     SGComponent.propDecorators = {
         col: [{ type: Input }],

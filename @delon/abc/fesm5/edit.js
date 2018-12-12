@@ -1,9 +1,9 @@
 import { animate, style, transition, trigger } from '@angular/animations';
 import { FormControlName, NgModel } from '@angular/forms';
 import { ResponsiveService } from '@delon/theme';
-import { __spread, __decorate, __metadata } from 'tslib';
+import { __decorate, __metadata, __spread } from 'tslib';
 import { CommonModule } from '@angular/common';
-import { Injectable, ChangeDetectionStrategy, Component, ElementRef, Host, Optional, Renderer2, defineInjectable, NgModule, Input, ChangeDetectorRef, ContentChild, HostBinding } from '@angular/core';
+import { Injectable, ChangeDetectionStrategy, Component, ElementRef, Host, Optional, Renderer2, Input, defineInjectable, NgModule, ChangeDetectorRef, ContentChild, HostBinding } from '@angular/core';
 import { toNumber, InputBoolean, InputNumber, deepGet, DelonUtilModule } from '@delon/util';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 
@@ -74,27 +74,6 @@ var SEContainerComponent = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(SEContainerComponent.prototype, "col", {
-        get: /**
-         * @return {?}
-         */
-        function () {
-            return this._col;
-        },
-        set: /**
-         * @param {?} value
-         * @return {?}
-         */
-        function (value) {
-            /** @type {?} */
-            var a = toNumber(value, 0);
-            if (a <= 0)
-                return;
-            this._col = toNumber(value, 0);
-        },
-        enumerable: true,
-        configurable: true
-    });
     Object.defineProperty(SEContainerComponent.prototype, "nzLayout", {
         get: /**
          * @return {?}
@@ -127,15 +106,24 @@ var SEContainerComponent = /** @class */ (function () {
         { type: SEConfig }
     ]; };
     SEContainerComponent.propDecorators = {
+        colInCon: [{ type: Input, args: ['se-container',] }],
+        col: [{ type: Input }],
+        labelWidth: [{ type: Input }],
         title: [{ type: Input }],
         gutter: [{ type: Input }],
-        col: [{ type: Input, args: ['se-container',] }],
-        labelWidth: [{ type: Input }],
         nzLayout: [{ type: Input }],
         size: [{ type: Input }],
         firstVisual: [{ type: Input }],
         line: [{ type: Input }]
     };
+    __decorate([
+        InputNumber(null),
+        __metadata("design:type", Number)
+    ], SEContainerComponent.prototype, "colInCon", void 0);
+    __decorate([
+        InputNumber(null),
+        __metadata("design:type", Number)
+    ], SEContainerComponent.prototype, "col", void 0);
     __decorate([
         InputNumber(null),
         __metadata("design:type", Number)
@@ -347,9 +335,7 @@ var SEComponent = /** @class */ (function () {
         clsMap.forEach(function (cls) { return ren.removeClass(el, cls); });
         clsMap.length = 0;
         /** @type {?} */
-        var repCls = parent.nzLayout === 'horizontal'
-            ? (/** @type {?} */ (this)).rep.genCls(col != null ? col : parent.col)
-            : [];
+        var repCls = parent.nzLayout === 'horizontal' ? (/** @type {?} */ (this)).rep.genCls(col != null ? col : parent.col || parent.colInCon) : [];
         clsMap.push.apply(clsMap, __spread(["ant-form-item"], repCls, [prefixCls + "__item"]));
         if ((/** @type {?} */ (this)).line || parent.line) {
             clsMap.push(prefixCls + "__line");

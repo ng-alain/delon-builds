@@ -13,13 +13,6 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
-    /**
-     * 文件下载
-     *
-     * ```html
-     * <button nz-button down-file http-url="assets/demo{{i}}" file-name="demo中文">{{i}}</button>
-     * ```
-     */
     var DownFileDirective = /** @class */ (function () {
         function DownFileDirective(el, http$$1, _http) {
             this.el = el;
@@ -64,7 +57,6 @@
                         value = value.substr(utfId.length);
                     return _a = {}, _a[strArr[0].trim()] = value, _a;
                 });
-                // tslint:disable-next-line:no-any
                 return arr.reduce(function (o, item) { return item; }, {});
             };
         /**

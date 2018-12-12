@@ -33,9 +33,7 @@
              */ function (value) {
                 this.config = {
                     template: "$!h!:$!m!:$!s!",
-                    stopTime: typeof value === 'number'
-                        ? addSeconds(new Date(), value).valueOf()
-                        : format(value, 'x'),
+                    stopTime: typeof value === 'number' ? addSeconds(new Date(), value).valueOf() : format(value, 'x'),
                 };
             },
             enumerable: true,
