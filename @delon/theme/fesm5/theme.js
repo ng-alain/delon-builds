@@ -336,7 +336,13 @@ var MenuService = /** @class */ (function () {
         if (_data.i18n && this.i18nSrv)
             _data.text = this.i18nSrv.fanyi(_data.i18n);
         // tslint:disable-next-line:prefer-object-spread
-        _data = __assign({}, _data, { shortcutRoot: true, _type: 3, __id: -1, _depth: 1, __parent: null });
+        _data = Object.assign(_data, {
+            shortcutRoot: true,
+            _type: 3,
+            __id: -1,
+            _depth: 1,
+            __parent: null,
+        });
         _data.children = shortcuts.map(function (i) {
             i._depth = 2;
             i.__parent = _data;
@@ -2576,7 +2582,7 @@ var AlainThemeModule = /** @class */ (function () {
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 /** @type {?} */
-var VERSION = new Version('2.0.1-ce8c2b8');
+var VERSION = new Version('2.0.1-ceb3087');
 
 /**
  * @fileoverview added by tsickle
