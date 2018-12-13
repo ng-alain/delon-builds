@@ -305,7 +305,7 @@
     /** @type {?} */
     var nextUniqueId = 0;
     var SEComponent = /** @class */ (function () {
-        function SEComponent(parent, rep, el, ren, cdr) {
+        function SEComponent(el, parent, rep, ren, cdr) {
             this.parent = parent;
             this.rep = rep;
             this.ren = ren;
@@ -411,8 +411,7 @@
                 if (!this.ngControl || this.status$)
                     return;
                 this.status$ = this.ngControl.statusChanges.subscribe(function (res) {
-                    if ((_this.ngControl instanceof forms.NgModel && _this.ngControl.isDisabled) ||
-                        (_this.ngControl instanceof forms.FormControlName && _this.ngControl.isDisabled)) {
+                    if (_this.ngControl.isDisabled) {
                         return;
                     }
                     /** @type {?} */
@@ -474,9 +473,9 @@
         /** @nocollapse */
         SEComponent.ctorParameters = function () {
             return [
+                { type: i0.ElementRef },
                 { type: SEContainerComponent, decorators: [{ type: i0.Optional }, { type: i0.Host }] },
                 { type: theme.ResponsiveService },
-                { type: i0.ElementRef },
                 { type: i0.Renderer2 },
                 { type: i0.ChangeDetectorRef }
             ];

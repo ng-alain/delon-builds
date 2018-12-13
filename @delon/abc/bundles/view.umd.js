@@ -192,7 +192,7 @@
      * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
     var SVTitleComponent = /** @class */ (function () {
-        function SVTitleComponent(parent, el, ren) {
+        function SVTitleComponent(el, parent, ren) {
             this.parent = parent;
             this.ren = ren;
             if (parent == null) {
@@ -234,8 +234,8 @@
         /** @nocollapse */
         SVTitleComponent.ctorParameters = function () {
             return [
-                { type: SVContainerComponent, decorators: [{ type: i0.Host }, { type: i0.Optional }] },
                 { type: i0.ElementRef },
+                { type: SVContainerComponent, decorators: [{ type: i0.Host }, { type: i0.Optional }] },
                 { type: i0.Renderer2 }
             ];
         };
@@ -249,7 +249,7 @@
     /** @type {?} */
     var prefixCls$1 = "sv";
     var SVComponent = /** @class */ (function () {
-        function SVComponent(parent, rep, el, ren) {
+        function SVComponent(el, parent, rep, ren) {
             this.parent = parent;
             this.rep = rep;
             this.ren = ren;
@@ -351,9 +351,9 @@
         /** @nocollapse */
         SVComponent.ctorParameters = function () {
             return [
+                { type: i0.ElementRef },
                 { type: SVContainerComponent, decorators: [{ type: i0.Host }, { type: i0.Optional }] },
                 { type: theme.ResponsiveService },
-                { type: i0.ElementRef },
                 { type: i0.Renderer2 }
             ];
         };

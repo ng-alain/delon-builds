@@ -236,13 +236,13 @@ const prefixCls = `se`;
 let nextUniqueId = 0;
 class SEComponent {
     /**
+     * @param {?} el
      * @param {?} parent
      * @param {?} rep
-     * @param {?} el
      * @param {?} ren
      * @param {?} cdr
      */
-    constructor(parent, rep, el, ren, cdr) {
+    constructor(el, parent, rep, ren, cdr) {
         this.parent = parent;
         this.rep = rep;
         this.ren = ren;
@@ -321,8 +321,7 @@ class SEComponent {
         if (!this.ngControl || this.status$)
             return;
         this.status$ = this.ngControl.statusChanges.subscribe(res => {
-            if ((this.ngControl instanceof NgModel && this.ngControl.isDisabled) ||
-                (this.ngControl instanceof FormControlName && this.ngControl.isDisabled)) {
+            if (this.ngControl.isDisabled) {
                 return;
             }
             /** @type {?} */
@@ -375,9 +374,9 @@ SEComponent.decorators = [
 ];
 /** @nocollapse */
 SEComponent.ctorParameters = () => [
+    { type: ElementRef },
     { type: SEContainerComponent, decorators: [{ type: Optional }, { type: Host }] },
     { type: ResponsiveService },
-    { type: ElementRef },
     { type: Renderer2 },
     { type: ChangeDetectorRef }
 ];

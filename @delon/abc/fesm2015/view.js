@@ -122,11 +122,11 @@ __decorate([
  */
 class SVTitleComponent {
     /**
-     * @param {?} parent
      * @param {?} el
+     * @param {?} parent
      * @param {?} ren
      */
-    constructor(parent, el, ren) {
+    constructor(el, parent, ren) {
         this.parent = parent;
         this.ren = ren;
         if (parent == null) {
@@ -162,8 +162,8 @@ SVTitleComponent.decorators = [
 ];
 /** @nocollapse */
 SVTitleComponent.ctorParameters = () => [
-    { type: SVContainerComponent, decorators: [{ type: Host }, { type: Optional }] },
     { type: ElementRef },
+    { type: SVContainerComponent, decorators: [{ type: Host }, { type: Optional }] },
     { type: Renderer2 }
 ];
 
@@ -175,12 +175,12 @@ SVTitleComponent.ctorParameters = () => [
 const prefixCls$1 = `sv`;
 class SVComponent {
     /**
+     * @param {?} el
      * @param {?} parent
      * @param {?} rep
-     * @param {?} el
      * @param {?} ren
      */
-    constructor(parent, rep, el, ren) {
+    constructor(el, parent, rep, ren) {
         this.parent = parent;
         this.rep = rep;
         this.ren = ren;
@@ -261,9 +261,9 @@ SVComponent.decorators = [
 ];
 /** @nocollapse */
 SVComponent.ctorParameters = () => [
+    { type: ElementRef },
     { type: SVContainerComponent, decorators: [{ type: Host }, { type: Optional }] },
     { type: ResponsiveService },
-    { type: ElementRef },
     { type: Renderer2 }
 ];
 SVComponent.propDecorators = {

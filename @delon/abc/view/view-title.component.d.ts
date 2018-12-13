@@ -4,7 +4,7 @@ export declare class SVTitleComponent implements OnInit {
     private parent;
     private ren;
     private el;
-    constructor(parent: SVContainerComponent, el: ElementRef, ren: Renderer2);
+    constructor(el: ElementRef, parent: SVContainerComponent, ren: Renderer2);
     private setClass;
     ngOnInit(): void;
 }

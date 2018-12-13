@@ -128,7 +128,7 @@ var SVContainerComponent = /** @class */ (function () {
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 var SVTitleComponent = /** @class */ (function () {
-    function SVTitleComponent(parent, el, ren) {
+    function SVTitleComponent(el, parent, ren) {
         this.parent = parent;
         this.ren = ren;
         if (parent == null) {
@@ -169,8 +169,8 @@ var SVTitleComponent = /** @class */ (function () {
     ];
     /** @nocollapse */
     SVTitleComponent.ctorParameters = function () { return [
-        { type: SVContainerComponent, decorators: [{ type: Host }, { type: Optional }] },
         { type: ElementRef },
+        { type: SVContainerComponent, decorators: [{ type: Host }, { type: Optional }] },
         { type: Renderer2 }
     ]; };
     return SVTitleComponent;
@@ -183,7 +183,7 @@ var SVTitleComponent = /** @class */ (function () {
 /** @type {?} */
 var prefixCls$1 = "sv";
 var SVComponent = /** @class */ (function () {
-    function SVComponent(parent, rep, el, ren) {
+    function SVComponent(el, parent, rep, ren) {
         this.parent = parent;
         this.rep = rep;
         this.ren = ren;
@@ -285,9 +285,9 @@ var SVComponent = /** @class */ (function () {
     ];
     /** @nocollapse */
     SVComponent.ctorParameters = function () { return [
+        { type: ElementRef },
         { type: SVContainerComponent, decorators: [{ type: Host }, { type: Optional }] },
         { type: ResponsiveService },
-        { type: ElementRef },
         { type: Renderer2 }
     ]; };
     SVComponent.propDecorators = {

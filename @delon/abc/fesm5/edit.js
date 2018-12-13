@@ -245,7 +245,7 @@ var prefixCls = "se";
 /** @type {?} */
 var nextUniqueId = 0;
 var SEComponent = /** @class */ (function () {
-    function SEComponent(parent, rep, el, ren, cdr) {
+    function SEComponent(el, parent, rep, ren, cdr) {
         this.parent = parent;
         this.rep = rep;
         this.ren = ren;
@@ -355,8 +355,7 @@ var SEComponent = /** @class */ (function () {
         if (!this.ngControl || this.status$)
             return;
         this.status$ = this.ngControl.statusChanges.subscribe(function (res) {
-            if ((_this.ngControl instanceof NgModel && _this.ngControl.isDisabled) ||
-                (_this.ngControl instanceof FormControlName && _this.ngControl.isDisabled)) {
+            if (_this.ngControl.isDisabled) {
                 return;
             }
             /** @type {?} */
@@ -417,9 +416,9 @@ var SEComponent = /** @class */ (function () {
     ];
     /** @nocollapse */
     SEComponent.ctorParameters = function () { return [
+        { type: ElementRef },
         { type: SEContainerComponent, decorators: [{ type: Optional }, { type: Host }] },
         { type: ResponsiveService },
-        { type: ElementRef },
         { type: Renderer2 },
         { type: ChangeDetectorRef }
     ]; };
