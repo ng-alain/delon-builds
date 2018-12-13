@@ -16,8 +16,7 @@ export declare class PageHeaderComponent implements OnInit, OnChanges, AfterView
     private reuseSrv;
     private cdr;
     private inited;
-    private ref$;
-    private set$;
+    private unsubscribe$;
     private conTpl;
     private affix;
     private _menus;

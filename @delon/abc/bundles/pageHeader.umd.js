@@ -130,22 +130,24 @@
             this.reuseSrv = reuseSrv;
             this.cdr = cdr;
             this.inited = false;
+            this.unsubscribe$ = new rxjs.Subject();
             this.paths = [];
             this.loading = false;
             this.wide = false;
             Object.assign(this, cog);
-            this.set$ = settings.notify
-                .pipe(operators.filter(function (w) { return _this.affix && w.type === 'layout' && w.name === 'collapsed'; }))
+            settings.notify
+                .pipe(operators.takeUntil(this.unsubscribe$), operators.filter(function (w) { return _this.affix && w.type === 'layout' && w.name === 'collapsed'; }))
                 .subscribe(function () { return _this.affix.updatePosition({}); });
             // tslint:disable-next-line:no-any
             /** @type {?} */
             var data$ = [
-                this.router.events.pipe(operators.filter(function (event) { return event instanceof router.NavigationEnd; })),
+                menuSrv.change.pipe(operators.filter(function () { return _this.inited; })),
+                router$$1.events.pipe(operators.filter(function (event) { return event instanceof router.NavigationEnd; })),
             ];
-            if (this.i18nSrv) {
-                data$.push(this.i18nSrv.change);
+            if (i18nSrv) {
+                data$.push(i18nSrv.change);
             }
-            this.ref$ = rxjs.merge.apply(void 0, __spread(data$)).subscribe(function () {
+            rxjs.merge.apply(void 0, __spread(data$)).pipe(operators.takeUntil(this.unsubscribe$)).subscribe(function () {
                 _this._menus = null;
                 _this.refresh();
             });
@@ -310,8 +312,9 @@
          * @return {?}
          */
             function () {
-                this.set$.unsubscribe();
-                this.ref$.unsubscribe();
+                var unsubscribe$ = this.unsubscribe$;
+                unsubscribe$.next();
+                unsubscribe$.complete();
             };
         PageHeaderComponent.decorators = [
             { type: i0.Component, args: [{

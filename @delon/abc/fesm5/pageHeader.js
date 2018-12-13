@@ -1,5 +1,5 @@
-import { merge } from 'rxjs';
-import { filter } from 'rxjs/operators';
+import { merge, Subject } from 'rxjs';
+import { filter, takeUntil } from 'rxjs/operators';
 import { ReuseTabService } from '@delon/abc/reuse-tab';
 import { ALAIN_I18N_TOKEN, MenuService, SettingsService, TitleService } from '@delon/theme';
 import { __spread, __decorate, __metadata } from 'tslib';
@@ -72,22 +72,24 @@ var PageHeaderComponent = /** @class */ (function () {
         this.reuseSrv = reuseSrv;
         this.cdr = cdr;
         this.inited = false;
+        this.unsubscribe$ = new Subject();
         this.paths = [];
         this.loading = false;
         this.wide = false;
         Object.assign(this, cog);
-        this.set$ = settings.notify
-            .pipe(filter(function (w) { return _this.affix && w.type === 'layout' && w.name === 'collapsed'; }))
+        settings.notify
+            .pipe(takeUntil(this.unsubscribe$), filter(function (w) { return _this.affix && w.type === 'layout' && w.name === 'collapsed'; }))
             .subscribe(function () { return _this.affix.updatePosition({}); });
         // tslint:disable-next-line:no-any
         /** @type {?} */
         var data$ = [
-            this.router.events.pipe(filter(function (event) { return event instanceof NavigationEnd; })),
+            menuSrv.change.pipe(filter(function () { return _this.inited; })),
+            router.events.pipe(filter(function (event) { return event instanceof NavigationEnd; })),
         ];
-        if (this.i18nSrv) {
-            data$.push(this.i18nSrv.change);
+        if (i18nSrv) {
+            data$.push(i18nSrv.change);
         }
-        this.ref$ = merge.apply(void 0, __spread(data$)).subscribe(function () {
+        merge.apply(void 0, __spread(data$)).pipe(takeUntil(this.unsubscribe$)).subscribe(function () {
             _this._menus = null;
             _this.refresh();
         });
@@ -254,8 +256,9 @@ var PageHeaderComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        this.set$.unsubscribe();
-        this.ref$.unsubscribe();
+        var unsubscribe$ = this.unsubscribe$;
+        unsubscribe$.next();
+        unsubscribe$.complete();
     };
     PageHeaderComponent.decorators = [
         { type: Component, args: [{

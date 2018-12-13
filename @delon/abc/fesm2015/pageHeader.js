@@ -1,6 +1,6 @@
 import { __decorate, __metadata } from 'tslib';
-import { merge } from 'rxjs';
-import { filter } from 'rxjs/operators';
+import { merge, Subject } from 'rxjs';
+import { filter, takeUntil } from 'rxjs/operators';
 import { ReuseTabService } from '@delon/abc/reuse-tab';
 import { ALAIN_I18N_TOKEN, MenuService, SettingsService, TitleService } from '@delon/theme';
 import { CommonModule } from '@angular/common';
@@ -81,22 +81,24 @@ class PageHeaderComponent {
         this.reuseSrv = reuseSrv;
         this.cdr = cdr;
         this.inited = false;
+        this.unsubscribe$ = new Subject();
         this.paths = [];
         this.loading = false;
         this.wide = false;
         Object.assign(this, cog);
-        this.set$ = settings.notify
-            .pipe(filter(w => this.affix && w.type === 'layout' && w.name === 'collapsed'))
+        settings.notify
+            .pipe(takeUntil(this.unsubscribe$), filter(w => this.affix && w.type === 'layout' && w.name === 'collapsed'))
             .subscribe(() => this.affix.updatePosition({}));
         // tslint:disable-next-line:no-any
         /** @type {?} */
         const data$ = [
-            this.router.events.pipe(filter((event) => event instanceof NavigationEnd)),
+            menuSrv.change.pipe(filter(() => this.inited)),
+            router.events.pipe(filter((event) => event instanceof NavigationEnd)),
         ];
-        if (this.i18nSrv) {
-            data$.push(this.i18nSrv.change);
+        if (i18nSrv) {
+            data$.push(i18nSrv.change);
         }
-        this.ref$ = merge(...data$).subscribe(() => {
+        merge(...data$).pipe(takeUntil(this.unsubscribe$)).subscribe(() => {
             this._menus = null;
             this.refresh();
         });
@@ -226,8 +228,9 @@ class PageHeaderComponent {
      * @return {?}
      */
     ngOnDestroy() {
-        this.set$.unsubscribe();
-        this.ref$.unsubscribe();
+        const { unsubscribe$ } = this;
+        unsubscribe$.next();
+        unsubscribe$.complete();
     }
 }
 PageHeaderComponent.decorators = [
