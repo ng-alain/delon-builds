@@ -236,7 +236,7 @@ class STColumnSource {
                     item.type = 'none';
                 }
                 else {
-                    item.modal = Object.assign({}, modal, item.modal);
+                    item.modal = Object.assign({ paramsName: 'record', size: 'lg' }, modal, item.modal);
                 }
             }
             if (item.type === 'drawer') {
@@ -245,7 +245,7 @@ class STColumnSource {
                     item.type = 'none';
                 }
                 else {
-                    item.drawer = Object.assign({}, drawer, item.drawer);
+                    item.drawer = Object.assign({ paramsName: 'record', size: 'lg' }, drawer, item.drawer);
                 }
             }
             if (item.type === 'del' && typeof item.pop === 'undefined') {

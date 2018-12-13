@@ -253,7 +253,7 @@ var STColumnSource = /** @class */ (function () {
                         item.type = 'none';
                     }
                     else {
-                        item.modal = __assign({}, modal, item.modal);
+                        item.modal = __assign({ paramsName: 'record', size: 'lg' }, modal, item.modal);
                     }
                 }
                 if (item.type === 'drawer') {
@@ -262,7 +262,7 @@ var STColumnSource = /** @class */ (function () {
                         item.type = 'none';
                     }
                     else {
-                        item.drawer = __assign({}, drawer, item.drawer);
+                        item.drawer = __assign({ paramsName: 'record', size: 'lg' }, drawer, item.drawer);
                     }
                 }
                 if (item.type === 'del' && typeof item.pop === 'undefined') {
