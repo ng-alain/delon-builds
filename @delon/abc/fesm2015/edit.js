@@ -321,6 +321,10 @@ class SEComponent {
         if (!this.ngControl || this.status$)
             return;
         this.status$ = this.ngControl.statusChanges.subscribe(res => {
+            if ((this.ngControl instanceof NgModel && this.ngControl.isDisabled) ||
+                (this.ngControl instanceof FormControlName && this.ngControl.isDisabled)) {
+                return;
+            }
             /** @type {?} */
             const status = res !== 'VALID';
             if (!this.onceFlag || this.invalid === status) {

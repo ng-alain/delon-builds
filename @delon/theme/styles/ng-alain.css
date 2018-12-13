@@ -8005,6 +8005,12 @@ a.ant-btn-sm {
 .ant-tree .font-highlight {
   color: #f5222d;
 }
+textarea.cdk-textarea-autosize-measuring {
+  height: auto !important;
+  overflow: hidden !important;
+  padding: 2px 0 !important;
+  box-sizing: content-box !important;
+}
 .ant-divider {
   font-family: "Chinese Quote", -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-size: 14px;
