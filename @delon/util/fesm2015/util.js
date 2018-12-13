@@ -78,6 +78,41 @@ function copy(value) {
         }
     });
 }
+/**
+ * @param {?} original
+ * @param {...?} objects
+ * @return {?}
+ */
+function deepMerge(original, ...objects) {
+    if (Array.isArray(original) || typeof original !== 'object')
+        return original;
+    /** @type {?} */
+    const isObject = (v) => typeof v === 'object' || typeof v === 'function';
+    /** @type {?} */
+    const merge = (target, obj) => {
+        Object
+            .keys(obj)
+            .filter(key => key !== '__proto__' && Object.prototype.hasOwnProperty.call(obj, key))
+            .forEach(key => {
+            /** @type {?} */
+            const oldValue = obj[key];
+            /** @type {?} */
+            const newValue = target[key];
+            if (Array.isArray(newValue)) {
+                target[key] = [...newValue, ...oldValue];
+            }
+            else if (oldValue != null && isObject(oldValue) && newValue != null && isObject(newValue)) {
+                target[key] = merge(newValue, oldValue);
+            }
+            else {
+                target[key] = deepCopy(oldValue);
+            }
+        });
+        return target;
+    };
+    objects.filter(v => isObject(v)).forEach(v => merge(original, v));
+    return original;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -851,6 +886,6 @@ DelonUtilModule.decorators = [
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 
-export { _Validators, format, getTimeDistance, LazyService, isNum, isInt, isDecimal, isIdCard, isMobile, isUrl, isEmpty, toBoolean, InputBoolean, toNumber, InputNumber, deepGet, deepCopy, copy, updateHostClass, ArrayService, DelonUtilConfig, DelonUtilModule, StringTemplateOutletDirective as ɵa };
+export { _Validators, format, getTimeDistance, LazyService, isNum, isInt, isDecimal, isIdCard, isMobile, isUrl, isEmpty, toBoolean, InputBoolean, toNumber, InputNumber, deepGet, deepCopy, copy, deepMerge, updateHostClass, ArrayService, DelonUtilConfig, DelonUtilModule, StringTemplateOutletDirective as ɵa };
 
 //# sourceMappingURL=util.js.map

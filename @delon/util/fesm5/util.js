@@ -12,7 +12,7 @@ import subWeeks from 'date-fns/sub_weeks';
 import subYears from 'date-fns/sub_years';
 import { BehaviorSubject } from 'rxjs';
 import { filter, share } from 'rxjs/operators';
-import { __assign, __values } from 'tslib';
+import { __assign, __spread, __values } from 'tslib';
 import { NzTreeNode } from 'ng-zorro-antd';
 import { DOCUMENT, CommonModule } from '@angular/common';
 import { Inject, Injectable, Directive, Input, TemplateRef, ViewContainerRef, defineInjectable, NgModule, inject } from '@angular/core';
@@ -78,6 +78,45 @@ function copy(value) {
             }
         }
     });
+}
+/**
+ * @param {?} original
+ * @param {...?} objects
+ * @return {?}
+ */
+function deepMerge(original) {
+    var objects = [];
+    for (var _i = 1; _i < arguments.length; _i++) {
+        objects[_i - 1] = arguments[_i];
+    }
+    if (Array.isArray(original) || typeof original !== 'object')
+        return original;
+    /** @type {?} */
+    var isObject = function (v) { return typeof v === 'object' || typeof v === 'function'; };
+    /** @type {?} */
+    var merge = function (target, obj) {
+        Object
+            .keys(obj)
+            .filter(function (key) { return key !== '__proto__' && Object.prototype.hasOwnProperty.call(obj, key); })
+            .forEach(function (key) {
+            /** @type {?} */
+            var oldValue = obj[key];
+            /** @type {?} */
+            var newValue = target[key];
+            if (Array.isArray(newValue)) {
+                target[key] = __spread(newValue, oldValue);
+            }
+            else if (oldValue != null && isObject(oldValue) && newValue != null && isObject(newValue)) {
+                target[key] = merge(newValue, oldValue);
+            }
+            else {
+                target[key] = deepCopy(oldValue);
+            }
+        });
+        return target;
+    };
+    objects.filter(function (v) { return isObject(v); }).forEach(function (v) { return merge(original, v); });
+    return original;
 }
 
 /**
@@ -1014,6 +1053,6 @@ var DelonUtilModule = /** @class */ (function () {
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 
-export { _Validators, format, getTimeDistance, LazyService, isNum, isInt, isDecimal, isIdCard, isMobile, isUrl, isEmpty, toBoolean, InputBoolean, toNumber, InputNumber, deepGet, deepCopy, copy, updateHostClass, ArrayService, DelonUtilConfig, DelonUtilModule, StringTemplateOutletDirective as ɵa };
+export { _Validators, format, getTimeDistance, LazyService, isNum, isInt, isDecimal, isIdCard, isMobile, isUrl, isEmpty, toBoolean, InputBoolean, toNumber, InputNumber, deepGet, deepCopy, copy, deepMerge, updateHostClass, ArrayService, DelonUtilConfig, DelonUtilModule, StringTemplateOutletDirective as ɵa };
 
 //# sourceMappingURL=util.js.map

@@ -5,7 +5,7 @@ import { _HttpClient } from '@delon/theme';
 import { DOCUMENT } from '@angular/common';
 import { Router } from '@angular/router';
 import { __extends, __assign, __values } from 'tslib';
-import { Injectable, NgModule, InjectionToken, inject, Inject, Injector, defineInjectable, INJECTOR, Optional } from '@angular/core';
+import { Injectable, NgModule, InjectionToken, inject, Inject, defineInjectable, Injector, INJECTOR, Optional } from '@angular/core';
 
 /**
  * @fileoverview added by tsickle
@@ -523,7 +523,7 @@ var BaseInterceptor = /** @class */ (function () {
     function (req, next) {
         var e_1, _a;
         /** @type {?} */
-        var options = Object.assign(new DelonAuthConfig(), this.injector.get(DelonAuthConfig, null));
+        var options = __assign({}, new DelonAuthConfig(), this.injector.get(DelonAuthConfig, null));
         if (options.ignores) {
             try {
                 for (var _b = __values((/** @type {?} */ (options.ignores))), _c = _b.next(); !_c.done; _c = _b.next()) {
@@ -761,7 +761,7 @@ var JWTGuard = /** @class */ (function () {
     function JWTGuard(srv, injector, cog) {
         this.srv = srv;
         this.injector = injector;
-        this.cog = Object.assign(new DelonAuthConfig(), cog);
+        this.cog = __assign({}, new DelonAuthConfig(), cog);
     }
     /**
      * @return {?}
@@ -917,7 +917,7 @@ var SimpleGuard = /** @class */ (function () {
     function SimpleGuard(srv, injector, cog) {
         this.srv = srv;
         this.injector = injector;
-        this.cog = Object.assign(new DelonAuthConfig(), cog);
+        this.cog = __assign({}, new DelonAuthConfig(), cog);
     }
     /**
      * @return {?}

@@ -100,13 +100,13 @@
      * + 支持增加onerror事件
      */
     var ImageDirective = /** @class */ (function () {
-        function ImageDirective(el, render, DEF) {
+        function ImageDirective(cog, el, render) {
             this.el = el;
             this.render = render;
             this.size = 64;
             this.error = './assets/img/logo.svg';
             this.inited = false;
-            Object.assign(this, util.deepCopy(DEF));
+            Object.assign(this, cog);
         }
         /**
          * @return {?}
@@ -178,9 +178,9 @@
         /** @nocollapse */
         ImageDirective.ctorParameters = function () {
             return [
+                { type: ImageConfig },
                 { type: i0.ElementRef },
-                { type: i0.Renderer2 },
-                { type: ImageConfig }
+                { type: i0.Renderer2 }
             ];
         };
         ImageDirective.propDecorators = {

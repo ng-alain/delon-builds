@@ -13,7 +13,7 @@ export declare class ImageDirective implements OnChanges, OnInit {
     size: number;
     error: string;
     private inited;
-    constructor(el: ElementRef, render: Renderer2, DEF: ImageConfig);
+    constructor(cog: ImageConfig, el: ElementRef, render: Renderer2);
     ngOnInit(): void;
     ngOnChanges(changes: {
         [P in keyof this]?: SimpleChange;

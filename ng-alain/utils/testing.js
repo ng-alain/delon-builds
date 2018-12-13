@@ -28,9 +28,7 @@ function createAlainApp(ngAddOptions) {
         skipPackageJson: false,
     }, workspaceTree);
     const alainRunner = createAlainRunner();
-    const tree = alainRunner.runSchematic('ng-add', Object.assign({
-        skipPackageJson: false,
-    }, ngAddOptions), appTree);
+    const tree = alainRunner.runSchematic('ng-add', Object.assign({ skipPackageJson: false }, ngAddOptions), appTree);
     return { runner: alainRunner, tree };
 }
 exports.createAlainApp = createAlainApp;

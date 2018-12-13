@@ -583,7 +583,7 @@
             function (req, next) {
                 var e_1, _a;
                 /** @type {?} */
-                var options = Object.assign(new DelonAuthConfig(), this.injector.get(DelonAuthConfig, null));
+                var options = __assign({}, new DelonAuthConfig(), this.injector.get(DelonAuthConfig, null));
                 if (options.ignores) {
                     try {
                         for (var _b = __values(( /** @type {?} */(options.ignores))), _c = _b.next(); !_c.done; _c = _b.next()) {
@@ -831,7 +831,7 @@
         function JWTGuard(srv, injector, cog) {
             this.srv = srv;
             this.injector = injector;
-            this.cog = Object.assign(new DelonAuthConfig(), cog);
+            this.cog = __assign({}, new DelonAuthConfig(), cog);
         }
         /**
          * @return {?}
@@ -989,7 +989,7 @@
         function SimpleGuard(srv, injector, cog) {
             this.srv = srv;
             this.injector = injector;
-            this.cog = Object.assign(new DelonAuthConfig(), cog);
+            this.cog = __assign({}, new DelonAuthConfig(), cog);
         }
         /**
          * @return {?}

@@ -425,7 +425,7 @@ class BaseInterceptor {
      */
     intercept(req, next) {
         /** @type {?} */
-        const options = Object.assign(new DelonAuthConfig(), this.injector.get(DelonAuthConfig, null));
+        const options = Object.assign({}, new DelonAuthConfig(), this.injector.get(DelonAuthConfig, null));
         if (options.ignores) {
             for (const item of (/** @type {?} */ (options.ignores))) {
                 if (item.test(req.url))
@@ -620,7 +620,7 @@ class JWTGuard {
     constructor(srv, injector, cog) {
         this.srv = srv;
         this.injector = injector;
-        this.cog = Object.assign(new DelonAuthConfig(), cog);
+        this.cog = Object.assign({}, new DelonAuthConfig(), cog);
     }
     /**
      * @return {?}
@@ -738,7 +738,7 @@ class SimpleGuard {
     constructor(srv, injector, cog) {
         this.srv = srv;
         this.injector = injector;
-        this.cog = Object.assign(new DelonAuthConfig(), cog);
+        this.cog = Object.assign({}, new DelonAuthConfig(), cog);
     }
     /**
      * @return {?}

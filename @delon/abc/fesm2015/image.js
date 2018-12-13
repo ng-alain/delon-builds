@@ -1,7 +1,7 @@
 import { __decorate, __metadata } from 'tslib';
 import { CommonModule } from '@angular/common';
 import { Injectable, Directive, ElementRef, Renderer2, Input, defineInjectable, NgModule } from '@angular/core';
-import { deepCopy, InputNumber, DelonUtilModule } from '@delon/util';
+import { InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
@@ -36,17 +36,17 @@ ImageConfig.decorators = [
  */
 class ImageDirective {
     /**
+     * @param {?} cog
      * @param {?} el
      * @param {?} render
-     * @param {?} DEF
      */
-    constructor(el, render, DEF) {
+    constructor(cog, el, render) {
         this.el = el;
         this.render = render;
         this.size = 64;
         this.error = './assets/img/logo.svg';
         this.inited = false;
-        Object.assign(this, deepCopy(DEF));
+        Object.assign(this, cog);
     }
     /**
      * @return {?}
@@ -105,9 +105,9 @@ ImageDirective.decorators = [
 ];
 /** @nocollapse */
 ImageDirective.ctorParameters = () => [
+    { type: ImageConfig },
     { type: ElementRef },
-    { type: Renderer2 },
-    { type: ImageConfig }
+    { type: Renderer2 }
 ];
 ImageDirective.propDecorators = {
     src: [{ type: Input, args: ['_src',] }],

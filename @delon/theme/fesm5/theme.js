@@ -336,13 +336,7 @@ var MenuService = /** @class */ (function () {
         if (_data.i18n && this.i18nSrv)
             _data.text = this.i18nSrv.fanyi(_data.i18n);
         // tslint:disable-next-line:prefer-object-spread
-        _data = Object.assign(_data, {
-            shortcutRoot: true,
-            _type: 3,
-            __id: -1,
-            _depth: 1,
-            __parent: null,
-        });
+        _data = __assign({}, _data, { shortcutRoot: true, _type: 3, __id: -1, _depth: 1, __parent: null });
         _data.children = shortcuts.map(function (i) {
             i._depth = 2;
             i.__parent = _data;
@@ -641,9 +635,7 @@ var SettingsService = /** @class */ (function () {
          */
         function () {
             if (!this._app) {
-                this._app = Object.assign((/** @type {?} */ ({
-                    year: new Date().getFullYear(),
-                })), this.get(APP_KEY));
+                this._app = __assign({ year: new Date().getFullYear() }, this.get(APP_KEY));
                 this.set(APP_KEY, this._app);
             }
             return this._app;
@@ -2584,7 +2576,7 @@ var AlainThemeModule = /** @class */ (function () {
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 /** @type {?} */
-var VERSION = new Version('2.0.1-0c42b06');
+var VERSION = new Version('2.0.1-d891eff');
 
 /**
  * @fileoverview added by tsickle
