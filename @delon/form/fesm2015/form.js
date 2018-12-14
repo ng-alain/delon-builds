@@ -2655,11 +2655,7 @@ class DateWidget extends ControlWidget {
         else {
             this.displayFormat = ui.displayFormat;
         }
-        this.format = ui.format
-            ? ui.format
-            : this.schema.type === 'number'
-                ? 'x'
-                : 'YYYY-MM-DD HH:mm:ss';
+        this.format = ui.format ? ui.format : this.schema.type === 'number' ? 'x' : 'YYYY-MM-DD HH:mm:ss';
         // 公共API
         this.i = {
             allowClear: toBool(ui.allowClear, true),
@@ -2744,88 +2740,7 @@ class DateWidget extends ControlWidget {
 DateWidget.decorators = [
     { type: Component, args: [{
                 selector: 'sf-date',
-                template: `
-  <sf-item-wrap [id]="id" [schema]="schema" [ui]="ui" [showError]="showError" [error]="error" [showTitle]="schema.title">
-    <ng-container [ngSwitch]="mode">
-
-      <nz-month-picker *ngSwitchCase="'month'"
-        [nzDisabled]="disabled"
-        [nzSize]="ui.size"
-        [nzFormat]="displayFormat"
-        [(ngModel)]="displayValue"
-        (ngModelChange)="_change($event)"
-        [nzAllowClear]="i.allowClear"
-        [nzClassName]="ui.className"
-        [nzDisabledDate]="ui.disabledDate"
-        [nzLocale]="ui.locale"
-        [nzPlaceHolder]="ui.placeholder"
-        [nzPopupStyle]="ui.popupStyle"
-        [nzDropdownClassName]="ui.dropdownClassName"
-        (nzOnOpenChange)="_openChange($event)"
-        [nzRenderExtraFooter]="ui.renderExtraFooter"
-      ></nz-month-picker>
-
-      <nz-week-picker *ngSwitchCase="'week'"
-        [nzDisabled]="disabled"
-        [nzSize]="ui.size"
-        [nzFormat]="displayFormat"
-        [(ngModel)]="displayValue"
-        (ngModelChange)="_change($event)"
-        [nzAllowClear]="i.allowClear"
-        [nzClassName]="ui.className"
-        [nzDisabledDate]="ui.disabledDate"
-        [nzLocale]="ui.locale"
-        [nzPlaceHolder]="ui.placeholder"
-        [nzPopupStyle]="ui.popupStyle"
-        [nzDropdownClassName]="ui.dropdownClassName"
-        (nzOnOpenChange)="_openChange($event)"
-      ></nz-week-picker>
-
-      <nz-range-picker *ngSwitchCase="'range'"
-        [nzDisabled]="disabled"
-        [nzSize]="ui.size"
-        [nzFormat]="displayFormat"
-        [(ngModel)]="displayValue"
-        (ngModelChange)="_change($event)"
-        [nzAllowClear]="i.allowClear"
-        [nzClassName]="ui.className"
-        [nzDisabledDate]="ui.disabledDate"
-        [nzLocale]="ui.locale"
-        [nzPlaceHolder]="ui.placeholder"
-        [nzPopupStyle]="ui.popupStyle"
-        [nzDropdownClassName]="ui.dropdownClassName"
-        (nzOnOpenChange)="_openChange($event)"
-        [nzDisabledTime]="ui.disabledTime"
-        [nzRenderExtraFooter]="ui.renderExtraFooter"
-        [nzRanges]="ui.ranges"
-        [nzShowTime]="ui.showTime"
-        (nzOnOk)="_ok($event)"
-      ></nz-range-picker>
-
-      <nz-date-picker *ngSwitchDefault
-        [nzDisabled]="disabled"
-        [nzSize]="ui.size"
-        [nzFormat]="displayFormat"
-        [(ngModel)]="displayValue"
-        (ngModelChange)="_change($event)"
-        [nzAllowClear]="i.allowClear"
-        [nzClassName]="ui.className"
-        [nzDisabledDate]="ui.disabledDate"
-        [nzLocale]="ui.locale"
-        [nzPlaceHolder]="ui.placeholder"
-        [nzPopupStyle]="ui.popupStyle"
-        [nzDropdownClassName]="ui.dropdownClassName"
-        (nzOnOpenChange)="_openChange($event)"
-        [nzDisabledTime]="ui.disabledTime"
-        [nzRenderExtraFooter]="ui.renderExtraFooter"
-        [nzShowTime]="ui.showTime"
-        [nzShowToday]="i.showToday"
-        (nzOnOk)="_ok($event)"
-      ></nz-date-picker>
-    </ng-container>
-
-  </sf-item-wrap>
-  `
+                template: "<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n  <ng-container [ngSwitch]=\"mode\">\n\n    <nz-month-picker *ngSwitchCase=\"'month'\"\n      [nzDisabled]=\"disabled\"\n      [nzSize]=\"ui.size\"\n      [nzFormat]=\"displayFormat\"\n      [(ngModel)]=\"displayValue\"\n      (ngModelChange)=\"_change($event)\"\n      [nzAllowClear]=\"i.allowClear\"\n      [nzClassName]=\"ui.className\"\n      [nzDisabledDate]=\"ui.disabledDate\"\n      [nzLocale]=\"ui.locale\"\n      [nzPlaceHolder]=\"ui.placeholder\"\n      [nzPopupStyle]=\"ui.popupStyle\"\n      [nzDropdownClassName]=\"ui.dropdownClassName\"\n      (nzOnOpenChange)=\"_openChange($event)\"\n      [nzRenderExtraFooter]=\"ui.renderExtraFooter\"\n    ></nz-month-picker>\n\n    <nz-week-picker *ngSwitchCase=\"'week'\"\n      [nzDisabled]=\"disabled\"\n      [nzSize]=\"ui.size\"\n      [nzFormat]=\"displayFormat\"\n      [(ngModel)]=\"displayValue\"\n      (ngModelChange)=\"_change($event)\"\n      [nzAllowClear]=\"i.allowClear\"\n      [nzClassName]=\"ui.className\"\n      [nzDisabledDate]=\"ui.disabledDate\"\n      [nzLocale]=\"ui.locale\"\n      [nzPlaceHolder]=\"ui.placeholder\"\n      [nzPopupStyle]=\"ui.popupStyle\"\n      [nzDropdownClassName]=\"ui.dropdownClassName\"\n      (nzOnOpenChange)=\"_openChange($event)\"\n    ></nz-week-picker>\n\n    <nz-range-picker *ngSwitchCase=\"'range'\"\n      [nzDisabled]=\"disabled\"\n      [nzSize]=\"ui.size\"\n      [nzFormat]=\"displayFormat\"\n      [(ngModel)]=\"displayValue\"\n      (ngModelChange)=\"_change($event)\"\n      [nzAllowClear]=\"i.allowClear\"\n      [nzClassName]=\"ui.className\"\n      [nzDisabledDate]=\"ui.disabledDate\"\n      [nzLocale]=\"ui.locale\"\n      [nzPlaceHolder]=\"ui.placeholder\"\n      [nzPopupStyle]=\"ui.popupStyle\"\n      [nzDropdownClassName]=\"ui.dropdownClassName\"\n      (nzOnOpenChange)=\"_openChange($event)\"\n      [nzDisabledTime]=\"ui.disabledTime\"\n      [nzRenderExtraFooter]=\"ui.renderExtraFooter\"\n      [nzRanges]=\"ui.ranges\"\n      [nzShowTime]=\"ui.showTime\"\n      (nzOnOk)=\"_ok($event)\"\n    ></nz-range-picker>\n\n    <nz-date-picker *ngSwitchDefault\n      [nzDisabled]=\"disabled\"\n      [nzSize]=\"ui.size\"\n      [nzFormat]=\"displayFormat\"\n      [(ngModel)]=\"displayValue\"\n      (ngModelChange)=\"_change($event)\"\n      [nzAllowClear]=\"i.allowClear\"\n      [nzClassName]=\"ui.className\"\n      [nzDisabledDate]=\"ui.disabledDate\"\n      [nzLocale]=\"ui.locale\"\n      [nzPlaceHolder]=\"ui.placeholder\"\n      [nzPopupStyle]=\"ui.popupStyle\"\n      [nzDropdownClassName]=\"ui.dropdownClassName\"\n      (nzOnOpenChange)=\"_openChange($event)\"\n      [nzDisabledTime]=\"ui.disabledTime\"\n      [nzRenderExtraFooter]=\"ui.renderExtraFooter\"\n      [nzShowTime]=\"ui.showTime\"\n      [nzShowToday]=\"i.showToday\"\n      (nzOnOk)=\"_ok($event)\"\n    ></nz-date-picker>\n  </ng-container>\n\n</sf-item-wrap>"
             }] }
 ];
 
@@ -3903,8 +3818,7 @@ class UploadWidget extends ControlWidget {
         this.handlePreview = (file) => {
             this.modalSrv
                 .create({
-                nzContent: `<img src="${file.url ||
-                    file.thumbUrl}" class="img-fluid" />`,
+                nzContent: `<img src="${file.url || file.thumbUrl}" class="img-fluid" />`,
                 nzFooter: null,
             })
                 .afterClose.subscribe(() => this.detectChanges());
@@ -3935,8 +3849,7 @@ class UploadWidget extends ControlWidget {
             this.i.listType = null;
             this.btnType = 'drag';
             this.i.text = this.ui.text || `单击或拖动文件到该区域上传`;
-            this.i.hint =
-                this.ui.hint || `支持单个或批量，严禁上传公司数据或其他安全文件`;
+            this.i.hint = this.ui.hint || `支持单个或批量，严禁上传公司数据或其他安全文件`;
         }
     }
     /**

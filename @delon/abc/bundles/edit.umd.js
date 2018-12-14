@@ -391,7 +391,7 @@
                 clsMap.forEach(function (cls) { return ren.removeClass(el, cls); });
                 clsMap.length = 0;
                 /** @type {?} */
-                var repCls = parent.nzLayout === 'horizontal' ? ( /** @type {?} */(this)).rep.genCls(col != null ? col : parent.col || parent.colInCon) : [];
+                var repCls = parent.nzLayout === 'horizontal' ? ( /** @type {?} */(this)).rep.genCls(col != null ? col : parent.colInCon || parent.col) : [];
                 clsMap.push.apply(clsMap, __spread(["ant-form-item"], repCls, [prefixCls + "__item"]));
                 if (( /** @type {?} */(this)).line || parent.line) {
                     clsMap.push(prefixCls + "__line");

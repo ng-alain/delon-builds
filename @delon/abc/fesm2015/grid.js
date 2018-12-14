@@ -132,7 +132,7 @@ class SGComponent {
         const { el, ren, clsMap, col, parent } = (/** @type {?} */ (this));
         clsMap.forEach(cls => ren.removeClass(el, cls));
         clsMap.length = 0;
-        clsMap.push(...(/** @type {?} */ (this)).rep.genCls(col != null ? col : parent.col || parent.colInCon), `${prefixCls}__item`);
+        clsMap.push(...(/** @type {?} */ (this)).rep.genCls(col != null ? col : parent.colInCon || parent.col), `${prefixCls}__item`);
         clsMap.forEach(cls => ren.addClass(el, cls));
         return (/** @type {?} */ (this));
     }

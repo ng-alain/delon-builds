@@ -305,7 +305,7 @@ class SEComponent {
         clsMap.forEach(cls => ren.removeClass(el, cls));
         clsMap.length = 0;
         /** @type {?} */
-        const repCls = parent.nzLayout === 'horizontal' ? (/** @type {?} */ (this)).rep.genCls(col != null ? col : parent.col || parent.colInCon) : [];
+        const repCls = parent.nzLayout === 'horizontal' ? (/** @type {?} */ (this)).rep.genCls(col != null ? col : parent.colInCon || parent.col) : [];
         clsMap.push(`ant-form-item`, ...repCls, `${prefixCls}__item`);
         if ((/** @type {?} */ (this)).line || parent.line) {
             clsMap.push(`${prefixCls}__line`);
