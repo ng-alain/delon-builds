@@ -9,12 +9,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
  */
 const core_1 = require("@angular-devkit/core");
 const schematics_1 = require("@angular-devkit/schematics");
+const ast_utils_1 = require("@schematics/angular/utility/ast-utils");
+const change_1 = require("@schematics/angular/utility/change");
+const config_1 = require("@schematics/angular/utility/config");
+const find_module_1 = require("@schematics/angular/utility/find-module");
+const parse_name_1 = require("@schematics/angular/utility/parse-name");
 const ts = require("typescript");
-const ast_utils_1 = require("../utils/devkit-utils/ast-utils");
-const change_1 = require("../utils/devkit-utils/change");
-const config_1 = require("../utils/devkit-utils/config");
-const find_module_1 = require("../utils/devkit-utils/find-module");
-const parse_name_1 = require("../utils/devkit-utils/parse-name");
 function addDeclarationToNgModule(options) {
     return (host) => {
         if (!options.module) {

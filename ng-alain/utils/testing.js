@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const path_1 = require("path");
 const testing_1 = require("@angular-devkit/schematics/testing");
+const path_1 = require("path");
 exports.APPNAME = 'foo';
 function createNgRunner() {
     return new testing_1.SchematicTestRunner('schematics', path_1.join('./node_modules/@schematics/angular/collection.json'));

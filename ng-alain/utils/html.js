@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const schematics_1 = require("@angular-devkit/schematics");
+const change_1 = require("@schematics/angular/utility/change");
 const parse5 = require("parse5");
-const change_1 = require("./devkit-utils/change");
 /** Gets the app index.html file */
 function getIndexHtmlPath(host, project) {
     const buildTarget = (project.targets || project.architect).build.options;
@@ -20,7 +20,7 @@ function getTag(host, src, tagName) {
         return getTagInV4(host, src, tagName);
     }
     const document = parse5.parse(src, {
-        sourceCodeLocationInfo: true
+        sourceCodeLocationInfo: true,
     });
     let resNode;
     const visit = (nodes) => {
@@ -85,7 +85,7 @@ function getIndexHtmlContent(host, project) {
     }
     return {
         indexPath,
-        src: buffer.toString()
+        src: buffer.toString(),
     };
 }
 exports.getIndexHtmlContent = getIndexHtmlContent;

@@ -18,11 +18,11 @@ exports.cssSelectors = {
                     replaceWith: 'alain-default__content-title',
                     whitelist: {
                         html: true,
-                        strings: true
-                    }
-                }
-            ]
-        }
+                        strings: true,
+                    },
+                },
+            ],
+        },
     ],
 };
 //# sourceMappingURL=css-selectors.js.map

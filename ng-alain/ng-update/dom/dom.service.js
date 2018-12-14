@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+// tslint:disable:no-string-literal
 const htmlparser2 = require("htmlparser2");
 const DOMHandler = require('domhandler');
 class DomService {
@@ -144,6 +145,7 @@ class DomService {
             dom.children = has.children;
     }
     resolveRemoveWrapElementByClass(dom, name) {
+        // tslint:disable-next-line:no-string-literal
         const classes = (dom.attribs['class'] || '').split(' ');
         if (!classes.includes(name))
             return;

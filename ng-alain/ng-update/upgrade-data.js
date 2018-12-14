@@ -31,7 +31,7 @@ exports.getChangesForTarget = getChangesForTarget;
  */
 function getAllChanges(data) {
     return Object.keys(data)
-        .map(targetVersion => getChangesForTarget(parseInt(targetVersion), data))
+        .map(targetVersion => getChangesForTarget(parseInt(targetVersion, 10), data))
         .reduce((result, versionData) => result.concat(versionData), []);
 }
 exports.getAllChanges = getAllChanges;

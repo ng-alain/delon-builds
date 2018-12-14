@@ -1,10 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const core_1 = require("@angular-devkit/core");
+const ast_utils_1 = require("@schematics/angular/utility/ast-utils");
 const parse5_1 = require("parse5");
 const ts = require("typescript");
 const ast_1 = require("../utils/ast");
-const ast_utils_1 = require("../utils/devkit-utils/ast-utils");
 // includes ng-zorro-antd & @delon/*
 // - zorro: https://github.com/NG-ZORRO/ng-zorro-antd/blob/master/components/icon/nz-icon.service.ts#L6
 // - @delon: https://github.com/ng-alain/delon/blob/master/packages/theme/src/theme.module.ts#L33

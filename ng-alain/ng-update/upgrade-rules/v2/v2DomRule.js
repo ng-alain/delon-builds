@@ -1,9 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const change_1 = require("@schematics/angular/utility/change");
 const ts = require("typescript");
-const dom_service_1 = require("../../dom/dom.service");
 const ast_1 = require("../../../utils/ast");
-const change_1 = require("../../../utils/devkit-utils/change");
+const dom_service_1 = require("../../dom/dom.service");
 const DOM = new dom_service_1.DomService();
 function bondingAttr(name, mapNames, keys, attribs) {
     if (keys.length <= 0)

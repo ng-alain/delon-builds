@@ -49,7 +49,7 @@ function createTslintConfig(target, config) {
     }, {});
     return {
         rulesDirectory: configuredRuleDirs,
-        rules: enabledRules
+        rules: enabledRules,
     };
 }
 exports.createTslintConfig = createTslintConfig;

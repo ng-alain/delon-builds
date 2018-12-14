@@ -1,8 +1,8 @@
 import { RuleWalker } from 'tslint';
-import { CssSelectorUpgradeData, ClassNameUpgradeData } from './data';
+import { ClassNameUpgradeData, CssSelectorUpgradeData } from './data';
 import { TargetVersion } from './target-version';
 export declare type VersionChanges<T> = {
-    [target in TargetVersion]?: ReadableChange<T>[];
+    [target in TargetVersion]?: Array<ReadableChange<T>>;
 };
 export interface ReadableChange<T> {
     pr: string;

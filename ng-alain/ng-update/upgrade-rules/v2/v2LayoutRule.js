@@ -1,10 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const dom_service_1 = require("../../dom/dom.service");
+const change_1 = require("@schematics/angular/utility/change");
 const ast_1 = require("../../../utils/ast");
-const change_1 = require("../../../utils/devkit-utils/change");
 const json_1 = require("../../../utils/json");
 const lib_versions_1 = require("../../../utils/lib-versions");
+const dom_service_1 = require("../../dom/dom.service");
 const DOM = new dom_service_1.DomService();
 function fixClass(host, src, classes) {
     if (!host.exists(src)) {

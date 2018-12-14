@@ -11,6 +11,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 function findAllSubstringIndices(input, search) {
     const result = [];
     let i = -1;
+    // tslint:disable-next-line:no-conditional-assignment
     while ((i = input.indexOf(search, i + 1)) !== -1) {
         result.push(i);
     }

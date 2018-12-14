@@ -2,8 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const chalk_1 = require("chalk");
 const tslint_1 = require("tslint");
-const component_walker_1 = require("../../tslint/component-walker");
 const elements_1 = require("../../html-parsing/elements");
+const component_walker_1 = require("../../tslint/component-walker");
 class Rule extends tslint_1.Rules.AbstractRule {
     apply(sourceFile) {
         return this.applyWithWalker(new Walker(sourceFile, this.getOptions()));

@@ -15,7 +15,7 @@ export interface UpgradeTSLintConfig {
     extraStyleFiles?: string[];
 }
 /** Type for the configuration list of upgrade rules. */
-export declare type UpgradeRules = (string | (string | TargetVersion)[])[];
+export declare type UpgradeRules = Array<string | Array<string | TargetVersion>>;
 /**
  * Creates a TSLint configuration object that can be passed to the schematic `TSLintFixTask`.
  * Each rule will have the specified target version as option which can be used to swap out

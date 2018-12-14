@@ -8,30 +8,30 @@ exports.classNames = {
             changes: [
                 {
                     replace: 'SimpleTableColumn',
-                    replaceWith: 'STColumn'
+                    replaceWith: 'STColumn',
                 },
                 {
                     replace: 'SimpleTableComponent',
-                    replaceWith: 'STComponent'
+                    replaceWith: 'STComponent',
                 },
                 {
                     replace: 'SimpleTableData',
-                    replaceWith: 'STData'
+                    replaceWith: 'STData',
                 },
                 {
                     replace: 'SimpleTableButton',
-                    replaceWith: 'STColumnButton'
+                    replaceWith: 'STColumnButton',
                 },
                 {
                     replace: 'SimpleTableChange',
-                    replaceWith: 'STChange'
+                    replaceWith: 'STChange',
                 },
                 {
                     replace: 'AdPageHeaderConfig',
-                    replaceWith: 'PageHeaderConfig'
+                    replaceWith: 'PageHeaderConfig',
                 },
-            ]
+            ],
         },
-    ]
+    ],
 };
 //# sourceMappingURL=class-names.js.map

@@ -27,7 +27,7 @@ function createUpgradeRule(targetVersion, upgradeConfig) {
         const tslintConfig = tslint_config_1.createTslintConfig(targetVersion, Object.assign({ 
             // Default options that can be overwritten if specified explicitly. e.g. if the
             // Material update schematic wants to specify a different upgrade data.
-            extraStyleFiles: extraStyleFiles }, upgradeConfig));
+            extraStyleFiles }, upgradeConfig));
         for (const tsconfig of projectTsConfigPaths) {
             // Run the update tslint rules.
             tslintFixTasks.push(context.addTask(new tasks_1.TslintFixTask(tslintConfig, {

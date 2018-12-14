@@ -1,4 +1,4 @@
-import { VDom, ConvertAction } from './interfaces';
+import { ConvertAction, VDom } from './interfaces';
 export declare class DomService {
     private dom;
     private rules;
