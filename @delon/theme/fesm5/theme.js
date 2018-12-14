@@ -1064,7 +1064,7 @@ var zhCN = (/** @type {?} */ ({
         collapse: '收起',
     },
     miniProgress: {
-        target: '目标值：'
+        target: '目标值：',
     },
     st: {
         total: '共 {{total}} 条',
@@ -1274,7 +1274,7 @@ var trTR = (/** @type {?} */ ({
         403: "\u00DCzg\u00FCn\u00FCz, bu sayfaya eri\u015Fiminiz yok",
         404: "Maalesef bu sayfa mevcut de\u011Fil",
         500: "\u00DCzg\u00FCn\u00FCz, sunucu hatas\u0131",
-        backToHome: "Ana Sayfa'ya geri dön",
+        backToHome: 'Ana Sayfa\'ya geri dön',
     },
     noticeIcon: {
         emptyText: 'Veri yok',
@@ -2582,7 +2582,7 @@ var AlainThemeModule = /** @class */ (function () {
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 /** @type {?} */
-var VERSION = new Version('2.0.1-e50c21e');
+var VERSION = new Version('2.0.1-4b22a11');
 
 /**
  * @fileoverview added by tsickle
