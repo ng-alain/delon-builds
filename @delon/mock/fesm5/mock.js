@@ -1,8 +1,7 @@
 import { __assign } from 'tslib';
-import { of, Observable } from 'rxjs';
-import { delay, tap } from 'rxjs/operators';
-import { _HttpClient } from '@delon/theme';
-import { HttpErrorResponse, HttpResponse, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { of, throwError } from 'rxjs';
+import { delay } from 'rxjs/operators';
+import { HttpErrorResponse, HttpResponse, HttpResponseBase, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Injectable, Injector, NgModule } from '@angular/core';
 
 /**
@@ -41,6 +40,10 @@ var DelonMockConfig = /** @class */ (function () {
          * 是否打印 Mock 请求信息，弥补浏览器无Network信息
          */
         this.log = true;
+        /**
+         * 是否拦截命中后继续调用后续拦截器的 `intercept` 方法，默认：`true`
+         */
+        this.executeOtherInterceptors = true;
     }
     return DelonMockConfig;
 }());
@@ -281,6 +284,24 @@ var MockService = /** @class */ (function () {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
+var HttpMockInterceptorHandler = /** @class */ (function () {
+    function HttpMockInterceptorHandler(next, interceptor) {
+        this.next = next;
+        this.interceptor = interceptor;
+    }
+    /**
+     * @param {?} req
+     * @return {?}
+     */
+    HttpMockInterceptorHandler.prototype.handle = /**
+     * @param {?} req
+     * @return {?}
+     */
+    function (req) {
+        return this.interceptor.intercept(req, this.next);
+    };
+    return HttpMockInterceptorHandler;
+}());
 var MockInterceptor = /** @class */ (function () {
     function MockInterceptor(injector) {
         this.injector = injector;
@@ -299,7 +320,7 @@ var MockInterceptor = /** @class */ (function () {
         /** @type {?} */
         var src = this.injector.get(MockService);
         /** @type {?} */
-        var config = __assign({ delay: 300, force: false, log: true }, this.injector.get(DelonMockConfig, null));
+        var config = __assign({ delay: 300, force: false, log: true, executeOtherInterceptors: true }, this.injector.get(DelonMockConfig, null));
         /** @type {?} */
         var rule = src.getRule(req.method, req.url.split('?')[0]);
         if (!rule && !config.force) {
@@ -349,51 +370,49 @@ var MockInterceptor = /** @class */ (function () {
                     res = rule.callback.call(this, mockRequest_1);
                 }
                 catch (e) {
-                    /** @type {?} */
-                    var errRes_1;
-                    if (e instanceof MockStatusError) {
-                        errRes_1 = new HttpErrorResponse({
-                            url: req.url,
-                            headers: req.headers,
-                            status: e.status,
-                            statusText: e.statusText || 'Unknown Error',
-                            error: e.error,
-                        });
-                        if (config.log)
-                            console.log("%c\uD83D\uDC80" + req.method + "->" + req.url, 'background:#000;color:#bada55', errRes_1, req);
-                    }
-                    else {
-                        console.log("%c\uD83D\uDC80" + req.method + "->" + req.url, 'background:#000;color:#bada55', "Please use MockStatusError to throw status error", e, req);
-                    }
-                    return new Observable(function (observer) {
-                        observer.error(errRes_1);
+                    res = new HttpErrorResponse({
+                        url: req.url,
+                        headers: req.headers,
+                        status: 400,
+                        statusText: e.statusText || 'Unknown Error',
+                        error: e.error,
                     });
+                    if (e instanceof MockStatusError) {
+                        res.status = e.status;
+                    }
                 }
                 break;
             default:
                 res = rule.callback;
                 break;
         }
-        /** @type {?} */
-        var response = res instanceof HttpResponse ?
-            res :
-            new HttpResponse({
+        if (!(res instanceof HttpResponseBase)) {
+            res = new HttpResponse({
                 status: 200,
                 url: req.url,
                 body: res,
             });
+        }
         if (config.log) {
             console.log("%c\uD83D\uDC7D" + req.method + "->" + req.url + "->request", 'background:#000;color:#bada55', req);
-            console.log("%c\uD83D\uDC7D" + req.method + "->" + req.url + "->response", 'background:#000;color:#bada55', response);
+            console.log("%c\uD83D\uDC7D" + req.method + "->" + req.url + "->response", 'background:#000;color:#bada55', res);
         }
         /** @type {?} */
-        var hc = this.injector.get(_HttpClient, null);
-        if (hc)
-            hc.begin();
-        return of(response).pipe(delay(config.delay), tap(function () {
-            if (hc)
-                hc.end();
-        }));
+        var res$ = res instanceof HttpErrorResponse ? throwError(res) : of(res);
+        if (config.executeOtherInterceptors) {
+            /** @type {?} */
+            var interceptors = this.injector.get(HTTP_INTERCEPTORS, []);
+            /** @type {?} */
+            var lastInterceptors = interceptors.slice(interceptors.indexOf(this) + 1);
+            if (lastInterceptors.length > 0) {
+                /** @type {?} */
+                var chain = lastInterceptors.reduceRight(function (_next, _interceptor) { return new HttpMockInterceptorHandler(_next, _interceptor); }, (/** @type {?} */ ({
+                    handle: function () { return res$; },
+                })));
+                return chain.handle(req).pipe(delay(config.delay));
+            }
+        }
+        return res$.pipe(delay(config.delay));
     };
     MockInterceptor.decorators = [
         { type: Injectable }

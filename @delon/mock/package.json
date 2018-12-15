@@ -1,6 +1,6 @@
 {
   "name": "@delon/mock",
-  "version": "7.0.0-rc.0-9ea5bec",
+  "version": "7.0.0-rc.0-9e56b2e",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -25,9 +25,6 @@
     "angular",
     "component"
   ],
-  "peerDependencies": {
-    "@delon/theme": "^7.0.0-rc.0-9ea5bec"
-  },
   "sideEffects": false,
   "main": "bundles/mock.umd.js",
   "module": "fesm5/mock.js",
