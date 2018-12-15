@@ -1387,6 +1387,49 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
+    var plPL = ( /** @type {?} */({
+        abbr: 'en-US',
+        exception: {
+            403: "Niestety, nie masz uprawnie\u0144 do tej strony",
+            404: "Niestety, ta strona nie istnieje",
+            500: "Niestety, b\u0142\u0105d serwera",
+            backToHome: 'Powróć do strony głównej',
+        },
+        noticeIcon: {
+            emptyText: 'Brak danych',
+            clearText: 'Wyczyść',
+        },
+        reuseTab: {
+            close: 'Zamknij kartę',
+            closeOther: 'Zamknij inne karty',
+            closeRight: 'Zamknij karty po prawej',
+            clear: 'Wyczyść karty',
+        },
+        tagSelect: {
+            expand: 'Rozszerz',
+            collapse: 'Zmniejsz',
+        },
+        miniProgress: {
+            target: 'Cel: ',
+        },
+        st: {
+            total: '{{range[0]}} - {{range[1]}} z {{total}}',
+        },
+        sf: {
+            submit: 'Wyślij',
+            reset: 'Resetuj',
+            search: 'Szukaj',
+            edit: 'Zapisz',
+            addText: 'Dodaj',
+            removeText: 'Usuń',
+            checkAllText: 'Zaznacz wszystkie',
+        },
+    }));
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     */
 
     /**
      * @fileoverview added by tsickle
@@ -2729,6 +2772,7 @@
     exports.zh_CN = zhCN;
     exports.zh_TW = zhTW;
     exports.tr_TR = trTR;
+    exports.pl_PL = plPL;
     exports.DELON_LOCALE = DELON_LOCALE;
     exports.DELON_LOCALE_SERVICE_PROVIDER_FACTORY = DELON_LOCALE_SERVICE_PROVIDER_FACTORY;
     exports.DelonLocaleService = DelonLocaleService;

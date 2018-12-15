@@ -1311,6 +1311,49 @@ var trTR = (/** @type {?} */ ({
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
+var plPL = (/** @type {?} */ ({
+    abbr: 'en-US',
+    exception: {
+        403: "Niestety, nie masz uprawnie\u0144 do tej strony",
+        404: "Niestety, ta strona nie istnieje",
+        500: "Niestety, b\u0142\u0105d serwera",
+        backToHome: 'Powróć do strony głównej',
+    },
+    noticeIcon: {
+        emptyText: 'Brak danych',
+        clearText: 'Wyczyść',
+    },
+    reuseTab: {
+        close: 'Zamknij kartę',
+        closeOther: 'Zamknij inne karty',
+        closeRight: 'Zamknij karty po prawej',
+        clear: 'Wyczyść karty',
+    },
+    tagSelect: {
+        expand: 'Rozszerz',
+        collapse: 'Zmniejsz',
+    },
+    miniProgress: {
+        target: 'Cel: ',
+    },
+    st: {
+        total: '{{range[0]}} - {{range[1]}} z {{total}}',
+    },
+    sf: {
+        submit: 'Wyślij',
+        reset: 'Resetuj',
+        search: 'Szukaj',
+        edit: 'Zapisz',
+        addText: 'Dodaj',
+        removeText: 'Usuń',
+        checkAllText: 'Zaznacz wszystkie',
+    },
+}));
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ */
 
 /**
  * @fileoverview added by tsickle
@@ -2582,7 +2625,7 @@ var AlainThemeModule = /** @class */ (function () {
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 /** @type {?} */
-var VERSION = new Version('7.0.0-rc.0-84116ea');
+var VERSION = new Version('7.0.0-rc.0-025282c');
 
 /**
  * @fileoverview added by tsickle
@@ -2594,6 +2637,6 @@ var VERSION = new Version('7.0.0-rc.0-84116ea');
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 
-export { WINDOW, preloaderFinished, TitleService, ALAIN_I18N_TOKEN, AlainI18NServiceFake, _HttpClient, DatePipe, CNCurrencyPipe, KeysPipe, YNPipe, HTMLPipe, URLPipe, AlainThemeConfig, AlainThemeModule, VERSION, MenuService, ScrollService, SettingsService, REP_MAX, ResponsiveService, enUS as en_US, zhCN as zh_CN, zhTW as zh_TW, trTR as tr_TR, DELON_LOCALE, DELON_LOCALE_SERVICE_PROVIDER_FACTORY, DelonLocaleService, DELON_LOCALE_SERVICE_PROVIDER, DelonLocaleModule, ModalHelper, DrawerHelper, BaseUrl, BaseHeaders, BaseApi, Path, Query, Body, Headers, OPTIONS, GET, POST, DELETE, PUT, HEAD, PATCH, JSONP, ALAIN_I18N_TOKEN_FACTORY as ɵa, I18nPipe as ɵb };
+export { WINDOW, preloaderFinished, TitleService, ALAIN_I18N_TOKEN, AlainI18NServiceFake, _HttpClient, DatePipe, CNCurrencyPipe, KeysPipe, YNPipe, HTMLPipe, URLPipe, AlainThemeConfig, AlainThemeModule, VERSION, MenuService, ScrollService, SettingsService, REP_MAX, ResponsiveService, enUS as en_US, zhCN as zh_CN, zhTW as zh_TW, trTR as tr_TR, plPL as pl_PL, DELON_LOCALE, DELON_LOCALE_SERVICE_PROVIDER_FACTORY, DelonLocaleService, DELON_LOCALE_SERVICE_PROVIDER, DelonLocaleModule, ModalHelper, DrawerHelper, BaseUrl, BaseHeaders, BaseApi, Path, Query, Body, Headers, OPTIONS, GET, POST, DELETE, PUT, HEAD, PATCH, JSONP, ALAIN_I18N_TOKEN_FACTORY as ɵa, I18nPipe as ɵb };
 
 //# sourceMappingURL=theme.js.map
