@@ -20,7 +20,6 @@ class G2TimelineComponent {
         this.height = 400;
         this.padding = [60, 20, 40, 40];
         this.borderWidth = 2;
-        this.tickCount = 8;
         this.slider = true;
     }
     // #endregion
@@ -34,7 +33,7 @@ class G2TimelineComponent {
      * @return {?}
      */
     install() {
-        const { node, sliderNode, height, padding, mask, tickCount, slider } = this;
+        const { node, sliderNode, height, padding, mask, slider } = this;
         /** @type {?} */
         const chart = this.chart = new G2.Chart({
             container: node.nativeElement,
@@ -61,7 +60,8 @@ class G2TimelineComponent {
                 scales: {
                     x: {
                         type: 'time',
-                        tickCount,
+                        tickInterval: 60 * 60 * 1000,
+                        range: [0, 1],
                         mask,
                     },
                 },
@@ -80,7 +80,7 @@ class G2TimelineComponent {
      * @return {?}
      */
     attachChart() {
-        const { chart, _slider, slider, height, padding, data, mask, titleMap, position, colorMap, borderWidth, tickCount } = this;
+        const { chart, _slider, slider, height, padding, data, mask, titleMap, position, colorMap, borderWidth } = this;
         if (!chart || !data || data.length <= 0)
             return;
         chart.legend({
@@ -96,24 +96,28 @@ class G2TimelineComponent {
         chart.get('geoms').forEach((v, idx) => {
             v.color(colorMap[`y${idx + 1}`]).size(borderWidth);
         });
+        chart.set('height', height);
+        chart.set('padding', padding);
         data.filter(v => !(v.x instanceof Number)).forEach(v => {
             v.x = +new Date(v.x);
         });
         data.sort((a, b) => +a.x - +b.x);
-        chart.set('height', height);
-        chart.set('padding', padding);
         /** @type {?} */
-        const begin = Math.ceil(data.length > tickCount ? (data.length - tickCount) / 2 : 0);
+        let max;
+        if (data[0] && data[0].y1 && data[0].y2) {
+            max = Math.max([...data].sort((a, b) => b.y1 - a.y1)[0].y1, [...data].sort((a, b) => b.y2 - a.y2)[0].y2);
+        }
         /** @type {?} */
         const ds = new DataSet({
             state: {
-                start: data[begin - 1].x,
-                end: data[begin - 1 + tickCount].x,
+                start: data[0].x,
+                end: data[data.length - 1].x,
             },
         });
         /** @type {?} */
-        const dv = ds.createView().source(data);
-        dv.source(data).transform({
+        const dv = ds.createView();
+        dv.source(data)
+            .transform({
             type: 'filter',
             callback: (val) => {
                 /** @type {?} */
@@ -121,15 +125,9 @@ class G2TimelineComponent {
                 return time >= ds.state.start && time <= ds.state.end;
             },
         });
-        /** @type {?} */
-        let max;
-        if (data[0] && data[0].y1 && data[0].y2) {
-            max = Math.max(data.sort((a, b) => b.y1 - a.y1)[0].y1, data.sort((a, b) => b.y2 - a.y2)[0].y2);
-        }
         chart.source(dv, {
             x: {
                 type: 'timeCat',
-                tickCount,
                 mask,
                 range: [0, 1],
             },
@@ -191,7 +189,6 @@ G2TimelineComponent.propDecorators = {
     height: [{ type: Input }],
     padding: [{ type: Input }],
     borderWidth: [{ type: Input }],
-    tickCount: [{ type: Input }],
     slider: [{ type: Input }]
 };
 __decorate([
@@ -206,10 +203,6 @@ __decorate([
     InputNumber(),
     __metadata("design:type", Object)
 ], G2TimelineComponent.prototype, "borderWidth", void 0);
-__decorate([
-    InputNumber(),
-    __metadata("design:type", Object)
-], G2TimelineComponent.prototype, "tickCount", void 0);
 __decorate([
     InputBoolean(),
     __metadata("design:type", Object)

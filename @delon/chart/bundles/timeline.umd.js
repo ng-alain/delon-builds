@@ -99,7 +99,6 @@
             this.height = 400;
             this.padding = [60, 20, 40, 40];
             this.borderWidth = 2;
-            this.tickCount = 8;
             this.slider = true;
         }
         // #endregion
@@ -123,7 +122,7 @@
          * @return {?}
          */
             function () {
-                var _a = this, node = _a.node, sliderNode = _a.sliderNode, height = _a.height, padding = _a.padding, mask = _a.mask, tickCount = _a.tickCount, slider = _a.slider;
+                var _a = this, node = _a.node, sliderNode = _a.sliderNode, height = _a.height, padding = _a.padding, mask = _a.mask, slider = _a.slider;
                 /** @type {?} */
                 var chart = this.chart = new G2.Chart({
                     container: node.nativeElement,
@@ -150,7 +149,8 @@
                         scales: {
                             x: {
                                 type: 'time',
-                                tickCount: tickCount,
+                                tickInterval: 60 * 60 * 1000,
+                                range: [0, 1],
                                 mask: mask,
                             },
                         },
@@ -172,7 +172,7 @@
          * @return {?}
          */
             function () {
-                var _a = this, chart = _a.chart, _slider = _a._slider, slider = _a.slider, height = _a.height, padding = _a.padding, data = _a.data, mask = _a.mask, titleMap = _a.titleMap, position = _a.position, colorMap = _a.colorMap, borderWidth = _a.borderWidth, tickCount = _a.tickCount;
+                var _a = this, chart = _a.chart, _slider = _a._slider, slider = _a.slider, height = _a.height, padding = _a.padding, data = _a.data, mask = _a.mask, titleMap = _a.titleMap, position = _a.position, colorMap = _a.colorMap, borderWidth = _a.borderWidth;
                 if (!chart || !data || data.length <= 0)
                     return;
                 chart.legend({
@@ -188,24 +188,28 @@
                 chart.get('geoms').forEach(function (v, idx) {
                     v.color(colorMap["y" + (idx + 1)]).size(borderWidth);
                 });
+                chart.set('height', height);
+                chart.set('padding', padding);
                 data.filter(function (v) { return !(v.x instanceof Number); }).forEach(function (v) {
                     v.x = +new Date(v.x);
                 });
                 data.sort(function (a, b) { return +a.x - +b.x; });
-                chart.set('height', height);
-                chart.set('padding', padding);
                 /** @type {?} */
-                var begin = Math.ceil(data.length > tickCount ? (data.length - tickCount) / 2 : 0);
+                var max;
+                if (data[0] && data[0].y1 && data[0].y2) {
+                    max = Math.max(__spread(data).sort(function (a, b) { return b.y1 - a.y1; })[0].y1, __spread(data).sort(function (a, b) { return b.y2 - a.y2; })[0].y2);
+                }
                 /** @type {?} */
                 var ds = new DataSet({
                     state: {
-                        start: data[begin - 1].x,
-                        end: data[begin - 1 + tickCount].x,
+                        start: data[0].x,
+                        end: data[data.length - 1].x,
                     },
                 });
                 /** @type {?} */
-                var dv = ds.createView().source(data);
-                dv.source(data).transform({
+                var dv = ds.createView();
+                dv.source(data)
+                    .transform({
                     type: 'filter',
                     callback: function (val) {
                         /** @type {?} */
@@ -213,15 +217,9 @@
                         return time >= ds.state.start && time <= ds.state.end;
                     },
                 });
-                /** @type {?} */
-                var max;
-                if (data[0] && data[0].y1 && data[0].y2) {
-                    max = Math.max(data.sort(function (a, b) { return b.y1 - a.y1; })[0].y1, data.sort(function (a, b) { return b.y2 - a.y2; })[0].y2);
-                }
                 chart.source(dv, {
                     x: {
                         type: 'timeCat',
-                        tickCount: tickCount,
                         mask: mask,
                         range: [0, 1],
                     },
@@ -289,7 +287,6 @@
             height: [{ type: core.Input }],
             padding: [{ type: core.Input }],
             borderWidth: [{ type: core.Input }],
-            tickCount: [{ type: core.Input }],
             slider: [{ type: core.Input }]
         };
         __decorate([
@@ -304,10 +301,6 @@
             util.InputNumber(),
             __metadata("design:type", Object)
         ], G2TimelineComponent.prototype, "borderWidth", void 0);
-        __decorate([
-            util.InputNumber(),
-            __metadata("design:type", Object)
-        ], G2TimelineComponent.prototype, "tickCount", void 0);
         __decorate([
             util.InputBoolean(),
             __metadata("design:type", Object)

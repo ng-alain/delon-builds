@@ -29,7 +29,6 @@ export declare class G2TimelineComponent implements OnInit, OnDestroy, OnChanges
     height: number;
     padding: number[];
     borderWidth: number;
-    tickCount: number;
     slider: boolean;
     ngOnInit(): void;
     private install;
