@@ -632,10 +632,6 @@ ResponsiveService.ctorParameters = () => [
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
-/**
- * 设置标题
- * @see https://ng-alain.com/docs/service#TitleService
- */
 class TitleService {
     /**
      * @param {?} injector
@@ -2043,7 +2039,7 @@ AlainThemeModule.ctorParameters = () => [
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 /** @type {?} */
-const VERSION = new Version('7.0.0-rc.0-0c0256e');
+const VERSION = new Version('7.0.0-rc.0-a8e9842');
 
 /**
  * @fileoverview added by tsickle

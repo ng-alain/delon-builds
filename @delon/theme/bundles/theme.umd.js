@@ -900,10 +900,6 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
-    /**
-     * 设置标题
-     * @see https://ng-alain.com/docs/service#TitleService
-     */
     var TitleService = /** @class */ (function () {
         function TitleService(injector, title, menuSrv, i18nSrv, doc) {
             var _this = this;
