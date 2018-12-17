@@ -14,7 +14,73 @@ import { BehaviorSubject } from 'rxjs';
 import { filter, share } from 'rxjs/operators';
 import { NzTreeNode } from 'ng-zorro-antd';
 import { DOCUMENT, CommonModule } from '@angular/common';
-import { Inject, Injectable, Directive, Input, TemplateRef, ViewContainerRef, defineInjectable, NgModule, inject } from '@angular/core';
+import { Directive, Input, TemplateRef, ViewContainerRef, Inject, Injectable, defineInjectable, NgModule, inject } from '@angular/core';
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ */
+class StringTemplateOutletDirective {
+    /**
+     * @param {?} viewContainer
+     * @param {?} defaultTemplate
+     */
+    constructor(viewContainer, defaultTemplate) {
+        this.viewContainer = viewContainer;
+        this.defaultTemplate = defaultTemplate;
+        this.inputTemplate = null;
+        this.inputViewRef = null;
+        this.defaultViewRef = null;
+    }
+    /**
+     * @param {?} value
+     * @return {?}
+     */
+    set stringTemplateOutlet(value) {
+        if (value instanceof TemplateRef) {
+            this.isTemplate = true;
+            this.inputTemplate = value;
+        }
+        else {
+            this.isTemplate = false;
+        }
+        this.updateView();
+    }
+    /**
+     * @return {?}
+     */
+    updateView() {
+        if (!this.isTemplate) {
+            /** use default template when input is string **/
+            if (!this.defaultViewRef) {
+                this.viewContainer.clear();
+                this.inputViewRef = null;
+                this.defaultViewRef = this.viewContainer.createEmbeddedView(this.defaultTemplate);
+            }
+        }
+        else {
+            /** use input template when input is templateRef **/
+            if (!this.inputViewRef) {
+                this.viewContainer.clear();
+                this.defaultViewRef = null;
+                this.inputViewRef = this.viewContainer.createEmbeddedView(this.inputTemplate);
+            }
+        }
+    }
+}
+StringTemplateOutletDirective.decorators = [
+    { type: Directive, args: [{
+                selector: '[stringTemplateOutlet]',
+            },] }
+];
+/** @nocollapse */
+StringTemplateOutletDirective.ctorParameters = () => [
+    { type: ViewContainerRef },
+    { type: TemplateRef }
+];
+StringTemplateOutletDirective.propDecorators = {
+    stringTemplateOutlet: [{ type: Input }]
+};
 
 /**
  * @fileoverview added by tsickle
@@ -800,72 +866,6 @@ ArrayService.ctorParameters = () => [
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
-class StringTemplateOutletDirective {
-    /**
-     * @param {?} viewContainer
-     * @param {?} defaultTemplate
-     */
-    constructor(viewContainer, defaultTemplate) {
-        this.viewContainer = viewContainer;
-        this.defaultTemplate = defaultTemplate;
-        this.inputTemplate = null;
-        this.inputViewRef = null;
-        this.defaultViewRef = null;
-    }
-    /**
-     * @param {?} value
-     * @return {?}
-     */
-    set stringTemplateOutlet(value) {
-        if (value instanceof TemplateRef) {
-            this.isTemplate = true;
-            this.inputTemplate = value;
-        }
-        else {
-            this.isTemplate = false;
-        }
-        this.updateView();
-    }
-    /**
-     * @return {?}
-     */
-    updateView() {
-        if (!this.isTemplate) {
-            /** use default template when input is string **/
-            if (!this.defaultViewRef) {
-                this.viewContainer.clear();
-                this.inputViewRef = null;
-                this.defaultViewRef = this.viewContainer.createEmbeddedView(this.defaultTemplate);
-            }
-        }
-        else {
-            /** use input template when input is templateRef **/
-            if (!this.inputViewRef) {
-                this.viewContainer.clear();
-                this.defaultViewRef = null;
-                this.inputViewRef = this.viewContainer.createEmbeddedView(this.inputTemplate);
-            }
-        }
-    }
-}
-StringTemplateOutletDirective.decorators = [
-    { type: Directive, args: [{
-                selector: '[stringTemplateOutlet]',
-            },] }
-];
-/** @nocollapse */
-StringTemplateOutletDirective.ctorParameters = () => [
-    { type: ViewContainerRef },
-    { type: TemplateRef }
-];
-StringTemplateOutletDirective.propDecorators = {
-    stringTemplateOutlet: [{ type: Input }]
-};
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
- */
 class DelonUtilModule {
 }
 DelonUtilModule.decorators = [
@@ -886,6 +886,6 @@ DelonUtilModule.decorators = [
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 
-export { _Validators, format, getTimeDistance, LazyService, isNum, isInt, isDecimal, isIdCard, isMobile, isUrl, isEmpty, toBoolean, InputBoolean, toNumber, InputNumber, deepGet, deepCopy, copy, deepMerge, updateHostClass, ArrayService, DelonUtilConfig, DelonUtilModule, StringTemplateOutletDirective as ɵa };
+export { _Validators, StringTemplateOutletDirective, format, getTimeDistance, LazyService, isNum, isInt, isDecimal, isIdCard, isMobile, isUrl, isEmpty, toBoolean, InputBoolean, toNumber, InputNumber, deepGet, deepCopy, copy, deepMerge, updateHostClass, ArrayService, DelonUtilConfig, DelonUtilModule };
 
 //# sourceMappingURL=util.js.map

@@ -22,6 +22,77 @@
     subWeeks = subWeeks && subWeeks.hasOwnProperty('default') ? subWeeks['default'] : subWeeks;
     subYears = subYears && subYears.hasOwnProperty('default') ? subYears['default'] : subYears;
 
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     */
+    var StringTemplateOutletDirective = /** @class */ (function () {
+        function StringTemplateOutletDirective(viewContainer, defaultTemplate) {
+            this.viewContainer = viewContainer;
+            this.defaultTemplate = defaultTemplate;
+            this.inputTemplate = null;
+            this.inputViewRef = null;
+            this.defaultViewRef = null;
+        }
+        Object.defineProperty(StringTemplateOutletDirective.prototype, "stringTemplateOutlet", {
+            set: /**
+             * @param {?} value
+             * @return {?}
+             */ function (value) {
+                if (value instanceof i0.TemplateRef) {
+                    this.isTemplate = true;
+                    this.inputTemplate = value;
+                }
+                else {
+                    this.isTemplate = false;
+                }
+                this.updateView();
+            },
+            enumerable: true,
+            configurable: true
+        });
+        /**
+         * @return {?}
+         */
+        StringTemplateOutletDirective.prototype.updateView = /**
+         * @return {?}
+         */
+            function () {
+                if (!this.isTemplate) {
+                    /** use default template when input is string **/
+                    if (!this.defaultViewRef) {
+                        this.viewContainer.clear();
+                        this.inputViewRef = null;
+                        this.defaultViewRef = this.viewContainer.createEmbeddedView(this.defaultTemplate);
+                    }
+                }
+                else {
+                    /** use input template when input is templateRef **/
+                    if (!this.inputViewRef) {
+                        this.viewContainer.clear();
+                        this.defaultViewRef = null;
+                        this.inputViewRef = this.viewContainer.createEmbeddedView(this.inputTemplate);
+                    }
+                }
+            };
+        StringTemplateOutletDirective.decorators = [
+            { type: i0.Directive, args: [{
+                        selector: '[stringTemplateOutlet]',
+                    },] }
+        ];
+        /** @nocollapse */
+        StringTemplateOutletDirective.ctorParameters = function () {
+            return [
+                { type: i0.ViewContainerRef },
+                { type: i0.TemplateRef }
+            ];
+        };
+        StringTemplateOutletDirective.propDecorators = {
+            stringTemplateOutlet: [{ type: i0.Input }]
+        };
+        return StringTemplateOutletDirective;
+    }());
+
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
     Licensed under the Apache License, Version 2.0 (the "License"); you may not use
@@ -1063,77 +1134,6 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
-    var StringTemplateOutletDirective = /** @class */ (function () {
-        function StringTemplateOutletDirective(viewContainer, defaultTemplate) {
-            this.viewContainer = viewContainer;
-            this.defaultTemplate = defaultTemplate;
-            this.inputTemplate = null;
-            this.inputViewRef = null;
-            this.defaultViewRef = null;
-        }
-        Object.defineProperty(StringTemplateOutletDirective.prototype, "stringTemplateOutlet", {
-            set: /**
-             * @param {?} value
-             * @return {?}
-             */ function (value) {
-                if (value instanceof i0.TemplateRef) {
-                    this.isTemplate = true;
-                    this.inputTemplate = value;
-                }
-                else {
-                    this.isTemplate = false;
-                }
-                this.updateView();
-            },
-            enumerable: true,
-            configurable: true
-        });
-        /**
-         * @return {?}
-         */
-        StringTemplateOutletDirective.prototype.updateView = /**
-         * @return {?}
-         */
-            function () {
-                if (!this.isTemplate) {
-                    /** use default template when input is string **/
-                    if (!this.defaultViewRef) {
-                        this.viewContainer.clear();
-                        this.inputViewRef = null;
-                        this.defaultViewRef = this.viewContainer.createEmbeddedView(this.defaultTemplate);
-                    }
-                }
-                else {
-                    /** use input template when input is templateRef **/
-                    if (!this.inputViewRef) {
-                        this.viewContainer.clear();
-                        this.defaultViewRef = null;
-                        this.inputViewRef = this.viewContainer.createEmbeddedView(this.inputTemplate);
-                    }
-                }
-            };
-        StringTemplateOutletDirective.decorators = [
-            { type: i0.Directive, args: [{
-                        selector: '[stringTemplateOutlet]',
-                    },] }
-        ];
-        /** @nocollapse */
-        StringTemplateOutletDirective.ctorParameters = function () {
-            return [
-                { type: i0.ViewContainerRef },
-                { type: i0.TemplateRef }
-            ];
-        };
-        StringTemplateOutletDirective.propDecorators = {
-            stringTemplateOutlet: [{ type: i0.Input }]
-        };
-        return StringTemplateOutletDirective;
-    }());
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
-     */
     var DelonUtilModule = /** @class */ (function () {
         function DelonUtilModule() {
         }
@@ -1158,6 +1158,7 @@
      */
 
     exports._Validators = _Validators;
+    exports.StringTemplateOutletDirective = StringTemplateOutletDirective;
     exports.format = format;
     exports.getTimeDistance = getTimeDistance;
     exports.LazyService = LazyService;
@@ -1180,7 +1181,6 @@
     exports.ArrayService = ArrayService;
     exports.DelonUtilConfig = DelonUtilConfig;
     exports.DelonUtilModule = DelonUtilModule;
-    exports.ɵa = StringTemplateOutletDirective;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 

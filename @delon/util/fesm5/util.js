@@ -15,7 +15,77 @@ import { filter, share } from 'rxjs/operators';
 import { __assign, __spread, __values } from 'tslib';
 import { NzTreeNode } from 'ng-zorro-antd';
 import { DOCUMENT, CommonModule } from '@angular/common';
-import { Inject, Injectable, Directive, Input, TemplateRef, ViewContainerRef, defineInjectable, NgModule, inject } from '@angular/core';
+import { Directive, Input, TemplateRef, ViewContainerRef, Inject, Injectable, defineInjectable, NgModule, inject } from '@angular/core';
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ */
+var StringTemplateOutletDirective = /** @class */ (function () {
+    function StringTemplateOutletDirective(viewContainer, defaultTemplate) {
+        this.viewContainer = viewContainer;
+        this.defaultTemplate = defaultTemplate;
+        this.inputTemplate = null;
+        this.inputViewRef = null;
+        this.defaultViewRef = null;
+    }
+    Object.defineProperty(StringTemplateOutletDirective.prototype, "stringTemplateOutlet", {
+        set: /**
+         * @param {?} value
+         * @return {?}
+         */
+        function (value) {
+            if (value instanceof TemplateRef) {
+                this.isTemplate = true;
+                this.inputTemplate = value;
+            }
+            else {
+                this.isTemplate = false;
+            }
+            this.updateView();
+        },
+        enumerable: true,
+        configurable: true
+    });
+    /**
+     * @return {?}
+     */
+    StringTemplateOutletDirective.prototype.updateView = /**
+     * @return {?}
+     */
+    function () {
+        if (!this.isTemplate) {
+            /** use default template when input is string **/
+            if (!this.defaultViewRef) {
+                this.viewContainer.clear();
+                this.inputViewRef = null;
+                this.defaultViewRef = this.viewContainer.createEmbeddedView(this.defaultTemplate);
+            }
+        }
+        else {
+            /** use input template when input is templateRef **/
+            if (!this.inputViewRef) {
+                this.viewContainer.clear();
+                this.defaultViewRef = null;
+                this.inputViewRef = this.viewContainer.createEmbeddedView(this.inputTemplate);
+            }
+        }
+    };
+    StringTemplateOutletDirective.decorators = [
+        { type: Directive, args: [{
+                    selector: '[stringTemplateOutlet]',
+                },] }
+    ];
+    /** @nocollapse */
+    StringTemplateOutletDirective.ctorParameters = function () { return [
+        { type: ViewContainerRef },
+        { type: TemplateRef }
+    ]; };
+    StringTemplateOutletDirective.propDecorators = {
+        stringTemplateOutlet: [{ type: Input }]
+    };
+    return StringTemplateOutletDirective;
+}());
 
 /**
  * @fileoverview added by tsickle
@@ -960,76 +1030,6 @@ var ArrayService = /** @class */ (function () {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
-var StringTemplateOutletDirective = /** @class */ (function () {
-    function StringTemplateOutletDirective(viewContainer, defaultTemplate) {
-        this.viewContainer = viewContainer;
-        this.defaultTemplate = defaultTemplate;
-        this.inputTemplate = null;
-        this.inputViewRef = null;
-        this.defaultViewRef = null;
-    }
-    Object.defineProperty(StringTemplateOutletDirective.prototype, "stringTemplateOutlet", {
-        set: /**
-         * @param {?} value
-         * @return {?}
-         */
-        function (value) {
-            if (value instanceof TemplateRef) {
-                this.isTemplate = true;
-                this.inputTemplate = value;
-            }
-            else {
-                this.isTemplate = false;
-            }
-            this.updateView();
-        },
-        enumerable: true,
-        configurable: true
-    });
-    /**
-     * @return {?}
-     */
-    StringTemplateOutletDirective.prototype.updateView = /**
-     * @return {?}
-     */
-    function () {
-        if (!this.isTemplate) {
-            /** use default template when input is string **/
-            if (!this.defaultViewRef) {
-                this.viewContainer.clear();
-                this.inputViewRef = null;
-                this.defaultViewRef = this.viewContainer.createEmbeddedView(this.defaultTemplate);
-            }
-        }
-        else {
-            /** use input template when input is templateRef **/
-            if (!this.inputViewRef) {
-                this.viewContainer.clear();
-                this.defaultViewRef = null;
-                this.inputViewRef = this.viewContainer.createEmbeddedView(this.inputTemplate);
-            }
-        }
-    };
-    StringTemplateOutletDirective.decorators = [
-        { type: Directive, args: [{
-                    selector: '[stringTemplateOutlet]',
-                },] }
-    ];
-    /** @nocollapse */
-    StringTemplateOutletDirective.ctorParameters = function () { return [
-        { type: ViewContainerRef },
-        { type: TemplateRef }
-    ]; };
-    StringTemplateOutletDirective.propDecorators = {
-        stringTemplateOutlet: [{ type: Input }]
-    };
-    return StringTemplateOutletDirective;
-}());
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
- */
 var DelonUtilModule = /** @class */ (function () {
     function DelonUtilModule() {
     }
@@ -1053,6 +1053,6 @@ var DelonUtilModule = /** @class */ (function () {
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 
-export { _Validators, format, getTimeDistance, LazyService, isNum, isInt, isDecimal, isIdCard, isMobile, isUrl, isEmpty, toBoolean, InputBoolean, toNumber, InputNumber, deepGet, deepCopy, copy, deepMerge, updateHostClass, ArrayService, DelonUtilConfig, DelonUtilModule, StringTemplateOutletDirective as ɵa };
+export { _Validators, StringTemplateOutletDirective, format, getTimeDistance, LazyService, isNum, isInt, isDecimal, isIdCard, isMobile, isUrl, isEmpty, toBoolean, InputBoolean, toNumber, InputNumber, deepGet, deepCopy, copy, deepMerge, updateHostClass, ArrayService, DelonUtilConfig, DelonUtilModule };
 
 //# sourceMappingURL=util.js.map
