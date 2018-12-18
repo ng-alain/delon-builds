@@ -273,6 +273,10 @@
              * - 计算规则为：`index + noIndex`
              */
             this.noIndex = 1;
+            /**
+             * 通过点击行来展开子行
+             */
+            this.expandRowByClick = false;
         }
         STConfig.decorators = [
             { type: i0.Injectable, args: [{ providedIn: 'root' },] }
@@ -826,9 +830,7 @@
                             pi: retPi,
                             total: retTotal,
                             list: retList,
-                            pageShow: typeof page.show === 'undefined'
-                                ? (retTotal || total) > ps
-                                : page.show,
+                            pageShow: typeof page.show === 'undefined' ? (retTotal || total) > ps : page.show,
                         });
                     });
                 });

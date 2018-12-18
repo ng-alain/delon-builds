@@ -80,4 +80,8 @@ export declare class STConfig {
      * 表格行的类名
      */
     rowClassName?: STRowClassName;
+    /**
+     * 通过点击行来展开子行
+     */
+    expandRowByClick?: boolean;
 }
