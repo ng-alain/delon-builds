@@ -558,24 +558,36 @@ class STDataSource {
             /** @type {?} */
             let retTotal;
             /** @type {?} */
+            let retPs;
+            /** @type {?} */
             let retList;
             /** @type {?} */
             let retPi;
+            /** @type {?} */
+            let showPage = page.show;
             if (typeof data === 'string') {
                 isRemote = true;
                 data$ = this.getByHttp(data, options).pipe(map((result) => {
-                    // list
                     /** @type {?} */
-                    let ret = deepGet(result, (/** @type {?} */ (res.reName.list)), []);
-                    if (ret == null || !Array.isArray(ret)) {
-                        ret = [];
+                    let ret;
+                    if (Array.isArray(result)) {
+                        ret = result;
+                        retTotal = ret.length;
+                        retPs = retTotal;
+                        showPage = false;
                     }
-                    // total
-                    /** @type {?} */
-                    const resultTotal = res.reName.total &&
-                        deepGet(result, (/** @type {?} */ (res.reName.total)), null);
-                    retTotal = resultTotal == null ? total || 0 : +resultTotal;
-                    return (/** @type {?} */ (ret));
+                    else {
+                        // list
+                        ret = deepGet(result, (/** @type {?} */ (res.reName.list)), []);
+                        if (ret == null || !Array.isArray(ret)) {
+                            ret = [];
+                        }
+                        // total
+                        /** @type {?} */
+                        const resultTotal = res.reName.total && deepGet(result, (/** @type {?} */ (res.reName.total)), null);
+                        retTotal = resultTotal == null ? total || 0 : +resultTotal;
+                    }
+                    return ret;
                 }), catchError(err => {
                     rejectPromise(err);
                     return [];
@@ -647,11 +659,16 @@ class STDataSource {
                 return result;
             }));
             data$.forEach((result) => (retList = result)).then(() => {
+                /** @type {?} */
+                const realTotal = retTotal || total;
+                /** @type {?} */
+                const realPs = retPs || ps;
                 resolvePromise({
                     pi: retPi,
+                    ps: retPs,
                     total: retTotal,
                     list: retList,
-                    pageShow: typeof page.show === 'undefined' ? (retTotal || total) > ps : page.show,
+                    pageShow: typeof showPage === 'undefined' ? realTotal > realPs : showPage,
                 });
             });
         });
@@ -1182,6 +1199,9 @@ class STComponent {
             this.loading = false;
             if (typeof result.pi !== 'undefined') {
                 this.pi = result.pi;
+            }
+            if (typeof result.ps !== 'undefined') {
+                this.ps = result.ps;
             }
             if (typeof result.total !== 'undefined') {
                 this.total = result.total;

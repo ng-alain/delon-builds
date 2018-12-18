@@ -21,6 +21,8 @@ export interface STDataSourceResult {
     pageShow?: boolean;
     /** 新 `pi`，若返回 `undefined` 表示用户受控 */
     pi?: number;
+    /** 新 `ps`，若返回 `undefined` 表示用户受控 */
+    ps?: number;
     /** 新 `total`，若返回 `undefined` 表示用户受控 */
     total?: number;
     /** 数据 */

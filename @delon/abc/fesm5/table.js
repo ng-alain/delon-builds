@@ -636,24 +636,36 @@ var STDataSource = /** @class */ (function () {
             /** @type {?} */
             var retTotal;
             /** @type {?} */
+            var retPs;
+            /** @type {?} */
             var retList;
             /** @type {?} */
             var retPi;
+            /** @type {?} */
+            var showPage = page.show;
             if (typeof data === 'string') {
                 isRemote = true;
                 data$ = _this.getByHttp(data, options).pipe(map(function (result) {
-                    // list
                     /** @type {?} */
-                    var ret = deepGet(result, (/** @type {?} */ (res.reName.list)), []);
-                    if (ret == null || !Array.isArray(ret)) {
-                        ret = [];
+                    var ret;
+                    if (Array.isArray(result)) {
+                        ret = result;
+                        retTotal = ret.length;
+                        retPs = retTotal;
+                        showPage = false;
                     }
-                    // total
-                    /** @type {?} */
-                    var resultTotal = res.reName.total &&
-                        deepGet(result, (/** @type {?} */ (res.reName.total)), null);
-                    retTotal = resultTotal == null ? total || 0 : +resultTotal;
-                    return (/** @type {?} */ (ret));
+                    else {
+                        // list
+                        ret = deepGet(result, (/** @type {?} */ (res.reName.list)), []);
+                        if (ret == null || !Array.isArray(ret)) {
+                            ret = [];
+                        }
+                        // total
+                        /** @type {?} */
+                        var resultTotal = res.reName.total && deepGet(result, (/** @type {?} */ (res.reName.total)), null);
+                        retTotal = resultTotal == null ? total || 0 : +resultTotal;
+                    }
+                    return ret;
                 }), catchError(function (err) {
                     rejectPromise(err);
                     return [];
@@ -730,11 +742,16 @@ var STDataSource = /** @class */ (function () {
                 return result;
             }));
             data$.forEach(function (result) { return (retList = result); }).then(function () {
+                /** @type {?} */
+                var realTotal = retTotal || total;
+                /** @type {?} */
+                var realPs = retPs || ps;
                 resolvePromise({
                     pi: retPi,
+                    ps: retPs,
                     total: retTotal,
                     list: retList,
-                    pageShow: typeof page.show === 'undefined' ? (retTotal || total) > ps : page.show,
+                    pageShow: typeof showPage === 'undefined' ? realTotal > realPs : showPage,
                 });
             });
         });
@@ -1352,6 +1369,9 @@ var STComponent = /** @class */ (function () {
             _this.loading = false;
             if (typeof result.pi !== 'undefined') {
                 _this.pi = result.pi;
+            }
+            if (typeof result.ps !== 'undefined') {
+                _this.ps = result.ps;
             }
             if (typeof result.total !== 'undefined') {
                 _this.total = result.total;
