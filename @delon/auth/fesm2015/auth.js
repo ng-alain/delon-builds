@@ -4,7 +4,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { _HttpClient } from '@delon/theme';
 import { DOCUMENT } from '@angular/common';
 import { Router } from '@angular/router';
-import { Injectable, NgModule, InjectionToken, inject, Inject, Injector, defineInjectable, INJECTOR, Optional } from '@angular/core';
+import { Injectable, NgModule, InjectionToken, inject, Inject, Injector, defineInjectable, Optional, INJECTOR } from '@angular/core';
 
 /**
  * @fileoverview added by tsickle
@@ -433,7 +433,7 @@ class BaseInterceptor {
             }
         }
         if (options.allow_anonymous_key &&
-            (req.params.has(options.allow_anonymous_key) || this.injector.get(Router).parseUrl(req.urlWithParams).queryParamMap.has(options.allow_anonymous_key))) {
+            (req.params.has(options.allow_anonymous_key) || new RegExp(`[\?|&]${options.allow_anonymous_key}=[^&]+`).test(req.urlWithParams))) {
             return next.handle(req);
         }
         if (this.isAuth(options)) {

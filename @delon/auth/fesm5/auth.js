@@ -541,7 +541,7 @@ var BaseInterceptor = /** @class */ (function () {
             }
         }
         if (options.allow_anonymous_key &&
-            (req.params.has(options.allow_anonymous_key) || this.injector.get(Router).parseUrl(req.urlWithParams).queryParamMap.has(options.allow_anonymous_key))) {
+            (req.params.has(options.allow_anonymous_key) || new RegExp("[?|&]" + options.allow_anonymous_key + "=[^&]+").test(req.urlWithParams))) {
             return next.handle(req);
         }
         if (this.isAuth(options)) {
