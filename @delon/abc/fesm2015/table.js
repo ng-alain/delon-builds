@@ -301,8 +301,7 @@ class STColumnSource {
         list
             .filter(w => w.fixed && w.fixed === 'right' && w.width)
             .reverse()
-            .forEach((item, idx) => (item._right =
-            (idx > 0 ? list.slice(-idx).reduce(countReduce, 0) : 0) + 'px'));
+            .forEach((item, idx) => (item._right = (idx > 0 ? list.slice(-idx).reduce(countReduce, 0) : 0) + 'px'));
     }
     /**
      * @param {?} item
@@ -998,6 +997,7 @@ class STComponent {
          * - 若指定，则返回：`sort=columnName.(ascend|descend)`
          */
         this.singleSort = null;
+        this.expandRowByClick = false;
         /**
          * 行单击多少时长之类为双击（单位：毫秒），默认：`200`
          */
@@ -1312,6 +1312,11 @@ class STComponent {
     _rowClick(e, item, index) {
         if (((/** @type {?} */ (e.target))).nodeName === 'INPUT')
             return;
+        const { expand, expandRowByClick, rowClickTime } = this;
+        if (!!expand && expandRowByClick) {
+            item.expand = !item.expand;
+            return;
+        }
         ++this.rowClickCount;
         if (this.rowClickCount !== 1)
             return;
@@ -1325,7 +1330,7 @@ class STComponent {
                 this.changeEmit('dblClick', data);
             }
             this.rowClickCount = 0;
-        }, this.rowClickTime);
+        }, rowClickTime);
     }
     /**
      * 移除某行数据
@@ -1711,6 +1716,7 @@ STComponent.propDecorators = {
     header: [{ type: Input }],
     footer: [{ type: Input }],
     body: [{ type: Input }],
+    expandRowByClick: [{ type: Input }],
     expand: [{ type: Input }],
     noResult: [{ type: Input }],
     widthConfig: [{ type: Input }],
@@ -1743,6 +1749,10 @@ __decorate([
     InputBoolean(),
     __metadata("design:type", Object)
 ], STComponent.prototype, "bordered", void 0);
+__decorate([
+    InputBoolean(),
+    __metadata("design:type", Object)
+], STComponent.prototype, "expandRowByClick", void 0);
 __decorate([
     InputNumber(),
     __metadata("design:type", Object)

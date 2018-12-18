@@ -430,17 +430,12 @@
                 // left width
                 list
                     .filter(function (w) { return w.fixed && w.fixed === 'left' && w.width; })
-                    .forEach(function (item, idx) {
-                    return (item._left = list.slice(0, idx).reduce(countReduce, 0) + 'px');
-                });
+                    .forEach(function (item, idx) { return (item._left = list.slice(0, idx).reduce(countReduce, 0) + 'px'); });
                 // right width
                 list
                     .filter(function (w) { return w.fixed && w.fixed === 'right' && w.width; })
                     .reverse()
-                    .forEach(function (item, idx) {
-                    return (item._right =
-                        (idx > 0 ? list.slice(-idx).reduce(countReduce, 0) : 0) + 'px');
-                });
+                    .forEach(function (item, idx) { return (item._right = (idx > 0 ? list.slice(-idx).reduce(countReduce, 0) : 0) + 'px'); });
             };
         /**
          * @param {?} item
@@ -1227,6 +1222,7 @@
              * - 若指定，则返回：`sort=columnName.(ascend|descend)`
              */
             this.singleSort = null;
+            this.expandRowByClick = false;
             /**
              * 行单击多少时长之类为双击（单位：毫秒），默认：`200`
              */
@@ -1664,6 +1660,11 @@
                 var _this = this;
                 if ((( /** @type {?} */(e.target))).nodeName === 'INPUT')
                     return;
+                var _a = this, expand = _a.expand, expandRowByClick = _a.expandRowByClick, rowClickTime = _a.rowClickTime;
+                if (!!expand && expandRowByClick) {
+                    item.expand = !item.expand;
+                    return;
+                }
                 ++this.rowClickCount;
                 if (this.rowClickCount !== 1)
                     return;
@@ -1677,7 +1678,7 @@
                         _this.changeEmit('dblClick', data);
                     }
                     _this.rowClickCount = 0;
-                }, this.rowClickTime);
+                }, rowClickTime);
             };
         /** 移除某行数据 */
         /**
@@ -2248,6 +2249,7 @@
             header: [{ type: i0.Input }],
             footer: [{ type: i0.Input }],
             body: [{ type: i0.Input }],
+            expandRowByClick: [{ type: i0.Input }],
             expand: [{ type: i0.Input }],
             noResult: [{ type: i0.Input }],
             widthConfig: [{ type: i0.Input }],
@@ -2280,6 +2282,10 @@
             util.InputBoolean(),
             __metadata("design:type", Object)
         ], STComponent.prototype, "bordered", void 0);
+        __decorate([
+            util.InputBoolean(),
+            __metadata("design:type", Object)
+        ], STComponent.prototype, "expandRowByClick", void 0);
         __decorate([
             util.InputNumber(),
             __metadata("design:type", Object)

@@ -72,6 +72,7 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     footer: string | TemplateRef<void>;
     /** 额外 `body` 内容 */
     body: TemplateRef<void>;
+    expandRowByClick: boolean;
     /** `expand` 可展开，当数据源中包括 `expand` 表示展开状态 */
     expand: TemplateRef<{
         $implicit: {};
