@@ -6,7 +6,7 @@
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common'), require('@angular/forms'), require('@delon/theme'), require('date-fns/format'), require('rxjs'), require('rxjs/operators'), require('@angular/core'), require('@delon/util'), require('ng-zorro-antd')) :
     typeof define === 'function' && define.amd ? define('@delon/form', ['exports', '@angular/common', '@angular/forms', '@delon/theme', 'date-fns/format', 'rxjs', 'rxjs/operators', '@angular/core', '@delon/util', 'ng-zorro-antd'], factory) :
-    (factory((global.delon = global.delon || {}, global.delon.form = {}),global.ng.common,global.ng.forms,global.delon.theme,global.format,global.rxjs,global.rxjs.operators,global.ng.core,global.delon.util,global.ngZorro.antd));
+    (factory((global.delon = global.delon || {}, global.delon.form = {}),global.ng.common,global.ng.forms,global.delon.theme,global.format,global.rxjs,global.rxjs.operators,global.ng.core,global.delon.util,global['ng-zorro-antd']));
 }(this, (function (exports,common,forms,theme,format,rxjs,operators,i0,util,ngZorroAntd) { 'use strict';
 
     format = format && format.hasOwnProperty('default') ? format['default'] : format;

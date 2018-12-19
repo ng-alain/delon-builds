@@ -6,7 +6,7 @@
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/platform-browser'), require('@delon/abc/xlsx'), require('@angular/router'), require('@delon/theme'), require('rxjs'), require('rxjs/operators'), require('@angular/common'), require('@angular/core'), require('@angular/forms'), require('ng-zorro-antd'), require('@delon/acl'), require('@delon/util')) :
     typeof define === 'function' && define.amd ? define('@delon/abc/table', ['exports', '@angular/platform-browser', '@delon/abc/xlsx', '@angular/router', '@delon/theme', 'rxjs', 'rxjs/operators', '@angular/common', '@angular/core', '@angular/forms', 'ng-zorro-antd', '@delon/acl', '@delon/util'], factory) :
-    (factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.table = {}),global.ng.platformBrowser,global.delon.abc.xlsx,global.ng.router,global.delon.theme,global.rxjs,global.rxjs.operators,global.ng.common,global.ng.core,global.ng.forms,global.ngZorro.antd,global.delon.acl,global.delon.util));
+    (factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.table = {}),global.ng.platformBrowser,global.delon.abc.xlsx,global.ng.router,global.delon.theme,global.rxjs,global.rxjs.operators,global.ng.common,global.ng.core,global.ng.forms,global['ng-zorro-antd'],global.delon.acl,global.delon.util));
 }(this, (function (exports,platformBrowser,xlsx,router,theme,rxjs,operators,common,i0,forms,ngZorroAntd,acl,util) { 'use strict';
 
     /*! *****************************************************************************

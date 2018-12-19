@@ -1,0 +1,33 @@
+{
+  "name": "@delon/testing",
+  "version": "7.0.0-rc.0-1141a0c",
+  "author": "cipchk<cipchk@qq.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ng-alain/delon.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ng-alain/ng-alain/issues"
+  },
+  "homepage": "https://ng-alain.com",
+  "keywords": [
+    "delon",
+    "ng-alain",
+    "angular",
+    "testing"
+  ],
+  "sideEffects": false,
+  "main": "bundles/testing.umd.js",
+  "module": "fesm5/testing.js",
+  "es2015": "fesm2015/testing.js",
+  "esm5": "esm5/testing.js",
+  "esm2015": "esm2015/testing.js",
+  "fesm5": "fesm5/testing.js",
+  "fesm2015": "fesm2015/testing.js",
+  "typings": "testing.d.ts",
+  "metadata": "testing.metadata.json",
+  "dependencies": {
+    "tslib": "^1.9.0"
+  }
+}

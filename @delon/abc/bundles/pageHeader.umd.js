@@ -6,7 +6,7 @@
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('rxjs'), require('rxjs/operators'), require('@delon/abc/reuse-tab'), require('@delon/theme'), require('@angular/common'), require('@angular/core'), require('@angular/router'), require('@delon/util'), require('ng-zorro-antd')) :
     typeof define === 'function' && define.amd ? define('@delon/abc/page-header', ['exports', 'rxjs', 'rxjs/operators', '@delon/abc/reuse-tab', '@delon/theme', '@angular/common', '@angular/core', '@angular/router', '@delon/util', 'ng-zorro-antd'], factory) :
-    (factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['page-header'] = {}),global.rxjs,global.rxjs.operators,global.delon.abc['reuse-tab'],global.delon.theme,global.ng.common,global.ng.core,global.ng.router,global.delon.util,global.ngZorro.antd));
+    (factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['page-header'] = {}),global.rxjs,global.rxjs.operators,global.delon.abc['reuse-tab'],global.delon.theme,global.ng.common,global.ng.core,global.ng.router,global.delon.util,global['ng-zorro-antd']));
 }(this, (function (exports,rxjs,operators,reuseTab,theme,common,i0,router,util,ngZorroAntd) { 'use strict';
 
     /**

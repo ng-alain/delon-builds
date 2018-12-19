@@ -6,7 +6,7 @@
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common'), require('@angular/core'), require('@delon/theme'), require('@delon/util'), require('ng-zorro-antd')) :
     typeof define === 'function' && define.amd ? define('@delon/chart/mini-progress', ['exports', '@angular/common', '@angular/core', '@delon/theme', '@delon/util', 'ng-zorro-antd'], factory) :
-    (factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart['mini-progress'] = {}),global.ng.common,global.ng.core,global.delon.theme,global.delon.util,global.ngZorro.antd));
+    (factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart['mini-progress'] = {}),global.ng.common,global.ng.core,global.delon.theme,global.delon.util,global['ng-zorro-antd']));
 }(this, (function (exports,common,core,theme,util,ngZorroAntd) { 'use strict';
 
     /*! *****************************************************************************

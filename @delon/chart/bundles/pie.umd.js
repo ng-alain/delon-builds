@@ -6,7 +6,7 @@
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('rxjs'), require('rxjs/operators'), require('@angular/common'), require('@angular/core'), require('@delon/util'), require('ng-zorro-antd')) :
     typeof define === 'function' && define.amd ? define('@delon/chart/pie', ['exports', 'rxjs', 'rxjs/operators', '@angular/common', '@angular/core', '@delon/util', 'ng-zorro-antd'], factory) :
-    (factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.pie = {}),global.rxjs,global.rxjs.operators,global.ng.common,global.ng.core,global.delon.util,global.ngZorro.antd));
+    (factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.pie = {}),global.rxjs,global.rxjs.operators,global.ng.common,global.ng.core,global.delon.util,global['ng-zorro-antd']));
 }(this, (function (exports,rxjs,operators,common,core,util,ngZorroAntd) { 'use strict';
 
     /*! *****************************************************************************

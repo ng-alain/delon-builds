@@ -6,7 +6,7 @@
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@delon/util'), require('@angular/common'), require('@angular/core'), require('@angular/forms'), require('ng-zorro-antd')) :
     typeof define === 'function' && define.amd ? define('@delon/abc/date-picker', ['exports', '@delon/util', '@angular/common', '@angular/core', '@angular/forms', 'ng-zorro-antd'], factory) :
-    (factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['date-picker'] = {}),global.delon.util,global.ng.common,global.ng.core,global.ng.forms,global.ngZorro.antd));
+    (factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['date-picker'] = {}),global.delon.util,global.ng.common,global.ng.core,global.ng.forms,global['ng-zorro-antd']));
 }(this, (function (exports,util,common,i0,forms,ngZorroAntd) { 'use strict';
 
     /*! *****************************************************************************
