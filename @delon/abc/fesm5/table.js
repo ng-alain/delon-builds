@@ -482,6 +482,8 @@ var STColumnSource = /** @class */ (function () {
         /** @type {?} */
         var radioCount = 0;
         /** @type {?} */
+        var point = 0;
+        /** @type {?} */
         var columns = [];
         /** @type {?} */
         var copyColumens = (/** @type {?} */ (deepCopy(list)));
@@ -560,6 +562,7 @@ var STColumnSource = /** @class */ (function () {
                 item.buttons = this.btnCoerce(item.buttons);
                 // restore custom row
                 this.restoreRender(item);
+                item.__point = point++;
                 columns.push(item);
             }
         }
@@ -1624,6 +1627,10 @@ var STComponent = /** @class */ (function () {
         ((/** @type {?} */ (data))).map(function (item) { return _this._data.indexOf(item); })
             .filter(function (pos) { return pos !== -1; })
             .forEach(function (pos) { return _this._data.splice(pos, 1); });
+        // recalculate no
+        this._columns
+            .filter(function (w) { return w.type === 'no'; })
+            .forEach(function (c) { return _this._data.forEach(function (i, idx) { return i._values[c.__point] = c.noIndex + idx; }); });
         this.cd();
     };
     //#endregion

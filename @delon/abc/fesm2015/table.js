@@ -417,6 +417,8 @@ class STColumnSource {
         /** @type {?} */
         let radioCount = 0;
         /** @type {?} */
+        let point = 0;
+        /** @type {?} */
         const columns = [];
         /** @type {?} */
         const copyColumens = (/** @type {?} */ (deepCopy(list)));
@@ -493,6 +495,7 @@ class STColumnSource {
             item.buttons = this.btnCoerce(item.buttons);
             // restore custom row
             this.restoreRender(item);
+            item.__point = point++;
             columns.push(item);
         }
         if (checkboxCount > 1) {
@@ -1366,6 +1369,10 @@ class STComponent {
         ((/** @type {?} */ (data))).map(item => this._data.indexOf(item))
             .filter(pos => pos !== -1)
             .forEach(pos => this._data.splice(pos, 1));
+        // recalculate no
+        this._columns
+            .filter(w => w.type === 'no')
+            .forEach(c => this._data.forEach((i, idx) => i._values[c.__point] = c.noIndex + idx));
         this.cd();
     }
     //#endregion
