@@ -512,11 +512,9 @@ var ACLGuard = /** @class */ (function () {
      */
     function (guard) {
         var _this = this;
-        return (guard && guard instanceof Observable
-            ? guard
-            : of(typeof guard !== 'undefined' && guard !== null
-                ? ((/** @type {?} */ (guard)))
-                : null)).pipe(map(function (v) { return _this.srv.can(v); }), tap(function (v) {
+        return (guard && guard instanceof Observable ?
+            guard :
+            of(typeof guard !== 'undefined' && guard !== null ? ((/** @type {?} */ (guard))) : null)).pipe(map(function (v) { return _this.srv.can(v); }), tap(function (v) {
             if (v)
                 return;
             _this.router.navigateByUrl(_this.options.guard_url);

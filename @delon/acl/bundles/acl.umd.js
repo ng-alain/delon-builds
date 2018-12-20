@@ -589,11 +589,9 @@
          */
             function (guard) {
                 var _this = this;
-                return (guard && guard instanceof rxjs.Observable
-                    ? guard
-                    : rxjs.of(typeof guard !== 'undefined' && guard !== null
-                        ? (( /** @type {?} */(guard)))
-                        : null)).pipe(operators.map(function (v) { return _this.srv.can(v); }), operators.tap(function (v) {
+                return (guard && guard instanceof rxjs.Observable ?
+                    guard :
+                    rxjs.of(typeof guard !== 'undefined' && guard !== null ? (( /** @type {?} */(guard))) : null)).pipe(operators.map(function (v) { return _this.srv.can(v); }), operators.tap(function (v) {
                     if (v)
                         return;
                     _this.router.navigateByUrl(_this.options.guard_url);

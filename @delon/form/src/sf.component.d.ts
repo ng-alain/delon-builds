@@ -91,16 +91,16 @@ export declare class SFComponent implements OnInit, OnChanges, OnDestroy {
     ngOnInit(): void;
     ngOnChanges(): void;
     private attachCustomRender;
-    validator(): void;
+    validator(): this;
     /**
      * 刷新 Schema，一般需要动态修改 Schema 某个值时可以方便调用
      */
-    refreshSchema(newSchema?: SFSchema, newUI?: SFUISchema): void;
+    refreshSchema(newSchema?: SFSchema, newUI?: SFUISchema): this;
     /**
      * 重置表单
      * @param [emit] 是否触发 `formReset` 事件，默认：`false`
      */
-    reset(emit?: boolean): void;
+    reset(emit?: boolean): this;
     private cleanRootSub;
     ngOnDestroy(): void;
 }

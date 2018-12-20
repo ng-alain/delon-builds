@@ -1140,10 +1140,13 @@ class STComponent {
         this._multiSort = Object.assign({}, (typeof value === 'object' ? value : {}));
     }
     /**
-     * @return {?}
+     * @template THIS
+     * @this {THIS}
+     * @return {THIS}
      */
     cd() {
-        this.cdr.detectChanges();
+        (/** @type {?} */ (this)).cdr.detectChanges();
+        return (/** @type {?} */ (this));
     }
     /**
      * @param {?} total
@@ -1223,15 +1226,17 @@ class STComponent {
     }
     /**
      * 清空所有数据
+     * @template THIS
+     * @this {THIS}
      * @param {?=} cleanStatus
-     * @return {?}
+     * @return {THIS}
      */
     clear(cleanStatus = true) {
         if (cleanStatus) {
-            this.clearStatus();
+            (/** @type {?} */ (this)).clearStatus();
         }
-        this._data.length = 0;
-        this.cd();
+        (/** @type {?} */ (this))._data.length = 0;
+        return (/** @type {?} */ (this)).cd();
     }
     /**
      * 清空所有状态
@@ -1248,29 +1253,32 @@ class STComponent {
     /**
      * 根据页码重新加载数据
      *
+     * @template THIS
+     * @this {THIS}
      * @param {?=} pi 指定当前页码，默认：`1`
      * @param {?=} extraParams 重新指定 `extraParams` 值
      * @param {?=} options 选项
-     * @return {?}
+     * @return {THIS}
      */
     load(pi = 1, extraParams, options) {
         if (pi !== -1)
-            this.pi = pi;
+            (/** @type {?} */ (this)).pi = pi;
         if (typeof extraParams !== 'undefined') {
-            this._req.params =
-                options && options.merge
-                    ? Object.assign({}, this._req.params, extraParams) : extraParams;
+            (/** @type {?} */ (this))._req.params = options && options.merge ? Object.assign({}, (/** @type {?} */ (this))._req.params, extraParams) : extraParams;
         }
-        this._change('pi');
+        (/** @type {?} */ (this))._change('pi');
+        return (/** @type {?} */ (this));
     }
     /**
      * 重新刷新当前页
+     * @template THIS
+     * @this {THIS}
      * @param {?=} extraParams 重新指定 `extraParams` 值
      * @param {?=} options
-     * @return {?}
+     * @return {THIS}
      */
     reload(extraParams, options) {
-        this.load(-1, extraParams, options);
+        return (/** @type {?} */ (this)).load(-1, extraParams, options);
     }
     /**
      * 重置且重新设置 `pi` 为 `1`，包含以下值：
@@ -1279,12 +1287,15 @@ class STComponent {
      * - `sort` 数据
      * - `fileter` 数据
      *
+     * @template THIS
+     * @this {THIS}
      * @param {?=} extraParams 重新指定 `extraParams` 值
      * @param {?=} options
-     * @return {?}
+     * @return {THIS}
      */
     reset(extraParams, options) {
-        this.clearStatus().load(1, extraParams, options);
+        (/** @type {?} */ (this)).clearStatus().load(1, extraParams, options);
+        return (/** @type {?} */ (this));
     }
     /**
      * @return {?}
@@ -1359,21 +1370,23 @@ class STComponent {
     }
     /**
      * 移除某行数据
+     * @template THIS
+     * @this {THIS}
      * @param {?} data
-     * @return {?}
+     * @return {THIS}
      */
     removeRow(data) {
         if (!Array.isArray(data)) {
             data = [data];
         }
-        ((/** @type {?} */ (data))).map(item => this._data.indexOf(item))
+        ((/** @type {?} */ (data))).map(item => (/** @type {?} */ (this))._data.indexOf(item))
             .filter(pos => pos !== -1)
-            .forEach(pos => this._data.splice(pos, 1));
+            .forEach(pos => (/** @type {?} */ (this))._data.splice(pos, 1));
         // recalculate no
-        this._columns
+        (/** @type {?} */ (this))._columns
             .filter(w => w.type === 'no')
-            .forEach(c => this._data.forEach((i, idx) => i._values[c.__point] = c.noIndex + idx));
-        this.cd();
+            .forEach(c => (/** @type {?} */ (this))._data.forEach((i, idx) => i._values[c.__point] = c.noIndex + idx));
+        return (/** @type {?} */ (this)).cd();
     }
     //#endregion
     //#region sort
