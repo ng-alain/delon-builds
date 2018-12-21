@@ -337,9 +337,11 @@ class ACLGuard {
      * @return {?}
      */
     process(guard) {
-        return (guard && guard instanceof Observable ?
-            guard :
-            of(typeof guard !== 'undefined' && guard !== null ? ((/** @type {?} */ (guard))) : null)).pipe(map(v => this.srv.can(v)), tap(v => {
+        return (guard && guard instanceof Observable
+            ? guard
+            : of(typeof guard !== 'undefined' && guard !== null
+                ? ((/** @type {?} */ (guard)))
+                : null)).pipe(map(v => this.srv.can(v)), tap(v => {
             if (v)
                 return;
             this.router.navigateByUrl(this.options.guard_url);

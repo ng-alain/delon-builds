@@ -90,12 +90,12 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
      */
     readonly change: EventEmitter<STChange>;
     constructor(i18nSrv: AlainI18NService, cdr: ChangeDetectorRef, cog: STConfig, router: Router, el: ElementRef, renderer: Renderer2, exportSrv: STExport, modalHelper: ModalHelper, drawerHelper: DrawerHelper, doc: any, columnSource: STColumnSource, dataSource: STDataSource, delonI18n: DelonLocaleService);
-    cd(): this;
+    cd(): void;
     renderTotal(total: string, range: string[]): string;
     private changeEmit;
     private _load;
     /** 清空所有数据 */
-    clear(cleanStatus?: boolean): this;
+    clear(cleanStatus?: boolean): void;
     /** 清空所有状态 */
     clearStatus(): this;
     /**
@@ -105,12 +105,12 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
      * @param extraParams 重新指定 `extraParams` 值
      * @param options 选项
      */
-    load(pi?: number, extraParams?: {}, options?: STLoadOptions): this;
+    load(pi?: number, extraParams?: {}, options?: STLoadOptions): void;
     /**
      * 重新刷新当前页
      * @param extraParams 重新指定 `extraParams` 值
      */
-    reload(extraParams?: {}, options?: STLoadOptions): this;
+    reload(extraParams?: {}, options?: STLoadOptions): void;
     /**
      * 重置且重新设置 `pi` 为 `1`，包含以下值：
      * - `check` 数据
@@ -120,14 +120,14 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
      *
      * @param extraParams 重新指定 `extraParams` 值
      */
-    reset(extraParams?: {}, options?: STLoadOptions): this;
+    reset(extraParams?: {}, options?: STLoadOptions): void;
     private _toTop;
     _change(type: 'pi' | 'ps'): void;
     _click(e: Event, item: STData, col: STColumn): boolean;
     private rowClickCount;
     _rowClick(e: Event, item: STData, index: number): void;
     /** 移除某行数据 */
-    removeRow(data: STData | STData[]): this;
+    removeRow(data: STData | STData[]): void;
     sort(col: STColumn, idx: number, value: any): void;
     clearSort(): this;
     private handleFilter;
