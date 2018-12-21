@@ -47,7 +47,7 @@ function addDependenciesToPackageJson(options) {
             `ng-zorro-antd@${lib_versions_1.ZORROVERSION}`,
             // ng-zorro-antd need
             'screenfull@^3.3.3',
-            'ajv@^6.6.1',
+            'ajv@^6.6.2',
         ]);
         // add ajv
         json_1.scriptsToAngularJson(host, ['node_modules/ajv/dist/ajv.bundle.js'], 'add', [

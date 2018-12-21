@@ -1740,63 +1740,71 @@ class SFComponent {
         });
     }
     /**
-     * @return {?}
+     * @template THIS
+     * @this {THIS}
+     * @return {THIS}
      */
     validator() {
-        this.rootProperty._runValidation();
+        (/** @type {?} */ (this)).rootProperty._runValidation();
         /** @type {?} */
-        const errors = this.rootProperty.errors;
-        this._valid = !(errors && errors.length);
-        if (!this._valid)
-            this.formError.emit(errors);
-        this.cdr.detectChanges();
+        const errors = (/** @type {?} */ (this)).rootProperty.errors;
+        (/** @type {?} */ (this))._valid = !(errors && errors.length);
+        if (!(/** @type {?} */ (this))._valid)
+            (/** @type {?} */ (this)).formError.emit(errors);
+        (/** @type {?} */ (this)).cdr.detectChanges();
+        return (/** @type {?} */ (this));
     }
     /**
      * 刷新 Schema，一般需要动态修改 Schema 某个值时可以方便调用
+     * @template THIS
+     * @this {THIS}
      * @param {?=} newSchema
      * @param {?=} newUI
-     * @return {?}
+     * @return {THIS}
      */
     refreshSchema(newSchema, newUI) {
         if (newSchema)
-            this.schema = newSchema;
+            (/** @type {?} */ (this)).schema = newSchema;
         if (newUI)
-            this.ui = newUI;
-        if (!this.schema || typeof this.schema.properties === 'undefined')
+            (/** @type {?} */ (this)).ui = newUI;
+        if (!(/** @type {?} */ (this)).schema || typeof (/** @type {?} */ (this)).schema.properties === 'undefined')
             throw new Error(`Invalid Schema`);
-        if (this.schema.ui && typeof this.schema.ui === 'string')
+        if ((/** @type {?} */ (this)).schema.ui && typeof (/** @type {?} */ (this)).schema.ui === 'string')
             throw new Error(`Don't support string with root ui property`);
-        this.schema.type = 'object';
-        this._formData = Object.assign({}, this.formData);
-        if (this._inited)
-            this.terminator.destroy();
-        this.cleanRootSub();
-        this.coverProperty();
-        this.coverButtonProperty();
-        this.rootProperty = this.formPropertyFactory.createProperty(this._schema, this._ui, this.formData);
-        this.attachCustomRender();
-        this.rootProperty.valueChanges.subscribe(value => {
-            this._item = Object.assign({}, this.formData, value);
-            this.formChange.emit(this._item);
+        (/** @type {?} */ (this)).schema.type = 'object';
+        (/** @type {?} */ (this))._formData = Object.assign({}, (/** @type {?} */ (this)).formData);
+        if ((/** @type {?} */ (this))._inited)
+            (/** @type {?} */ (this)).terminator.destroy();
+        (/** @type {?} */ (this)).cleanRootSub();
+        (/** @type {?} */ (this)).coverProperty();
+        (/** @type {?} */ (this)).coverButtonProperty();
+        (/** @type {?} */ (this)).rootProperty = (/** @type {?} */ (this)).formPropertyFactory.createProperty((/** @type {?} */ (this))._schema, (/** @type {?} */ (this))._ui, (/** @type {?} */ (this)).formData);
+        (/** @type {?} */ (this)).attachCustomRender();
+        (/** @type {?} */ (this)).rootProperty.valueChanges.subscribe(value => {
+            (/** @type {?} */ (this))._item = Object.assign({}, (/** @type {?} */ (this)).formData, value);
+            (/** @type {?} */ (this)).formChange.emit((/** @type {?} */ (this))._item);
         });
-        this.rootProperty.errorsChanges.subscribe(errors => {
-            this._valid = !(errors && errors.length);
-            this.formError.emit(errors);
-            this.cdr.detectChanges();
+        (/** @type {?} */ (this)).rootProperty.errorsChanges.subscribe(errors => {
+            (/** @type {?} */ (this))._valid = !(errors && errors.length);
+            (/** @type {?} */ (this)).formError.emit(errors);
+            (/** @type {?} */ (this)).cdr.detectChanges();
         });
-        this.reset();
+        return (/** @type {?} */ (this)).reset();
     }
     /**
      * 重置表单
+     * @template THIS
+     * @this {THIS}
      * @param {?=} emit
-     * @return {?}
+     * @return {THIS}
      */
     reset(emit = false) {
-        this.rootProperty.resetValue(this.formData, false);
-        Promise.resolve().then(() => this.cdr.detectChanges());
+        (/** @type {?} */ (this)).rootProperty.resetValue((/** @type {?} */ (this)).formData, false);
+        Promise.resolve().then(() => (/** @type {?} */ (this)).cdr.detectChanges());
         if (emit) {
-            this.formReset.emit(this.value);
+            (/** @type {?} */ (this)).formReset.emit((/** @type {?} */ (this)).value);
         }
+        return (/** @type {?} */ (this));
     }
     /**
      * @return {?}
@@ -2664,13 +2672,6 @@ class DateWidget extends ControlWidget {
         };
     }
     /**
-     * @return {?}
-     */
-    compCd() {
-        // TODO: removed after nz-datepick support OnPush mode
-        setTimeout(() => this.detectChanges());
-    }
-    /**
      * @param {?} value
      * @return {?}
      */
@@ -2682,7 +2683,6 @@ class DateWidget extends ControlWidget {
         else {
             this.displayValue = value;
         }
-        this.compCd();
     }
     /**
      * @param {?} value
@@ -3517,20 +3517,12 @@ class TimeWidget extends ControlWidget {
         };
     }
     /**
-     * @return {?}
-     */
-    compCd() {
-        // TODO: removed after nz-datepick support OnPush mode
-        setTimeout(() => this.detectChanges());
-    }
-    /**
      * @param {?} value
      * @return {?}
      */
     reset(value) {
         if (value instanceof Date) {
             this.displayValue = value;
-            this.compCd();
             return;
         }
         /** @type {?} */
@@ -3542,7 +3534,6 @@ class TimeWidget extends ControlWidget {
             v = new Date(`1970-1-1 ` + value);
         }
         this.displayValue = v;
-        this.compCd();
     }
     /**
      * @param {?} value

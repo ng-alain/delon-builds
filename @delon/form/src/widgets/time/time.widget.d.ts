@@ -6,7 +6,6 @@ export declare class TimeWidget extends ControlWidget implements OnInit {
     format: string;
     i: any;
     ngOnInit(): void;
-    private compCd;
     reset(value: SFValue): void;
     _change(value: Date): void;
 }
