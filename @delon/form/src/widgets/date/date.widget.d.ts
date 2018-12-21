@@ -9,6 +9,7 @@ export declare class DateWidget extends ControlWidget implements OnInit {
     i: any;
     flatRange: boolean;
     ngOnInit(): void;
+    private compCd;
     reset(value: SFValue): void;
     _change(value: Date | Date[]): void;
     _openChange(status: boolean): void;
