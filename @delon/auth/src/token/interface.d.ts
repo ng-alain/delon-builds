@@ -1,5 +1,6 @@
 import { HttpRequest } from '@angular/common/http';
 import { InjectionToken } from '@angular/core';
+import { ActivatedRouteSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
 export declare const DA_SERVICE_TOKEN: InjectionToken<ITokenService>;
 export interface ITokenModel {
@@ -25,5 +26,5 @@ export interface ITokenService {
     /** 获取登录地址 */
     readonly login_url: string;
     /** 获取授权失败前路由信息 */
-    readonly referrer?: HttpRequest<any>;
+    readonly referrer?: HttpRequest<any> | ActivatedRouteSnapshot;
 }

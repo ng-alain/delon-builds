@@ -553,6 +553,11 @@
                     injector.get(common.DOCUMENT).location.href = options.login_url;
                 }
                 else {
+                    /** @type {?} */
+                    var router$$1 = ( /** @type {?} */(injector.get(router.ActivatedRoute)));
+                    /** @type {?} */
+                    var tokenSrv = ( /** @type {?} */(injector.get(DA_SERVICE_TOKEN)));
+                    tokenSrv.referrer = ( /** @type {?} */(router$$1.snapshot));
                     injector.get(router.Router).navigate([options.login_url]);
                 }
             });

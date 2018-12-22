@@ -3,7 +3,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { _HttpClient } from '@delon/theme';
 import { DOCUMENT } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { __extends, __assign, __values } from 'tslib';
 import { Injectable, NgModule, InjectionToken, inject, Inject, defineInjectable, Injector, INJECTOR, Optional } from '@angular/core';
 
@@ -493,6 +493,11 @@ function ToLogin(options, injector) {
                 injector.get(DOCUMENT).location.href = options.login_url;
             }
             else {
+                /** @type {?} */
+                var router = (/** @type {?} */ (injector.get(ActivatedRoute)));
+                /** @type {?} */
+                var tokenSrv = (/** @type {?} */ (injector.get(DA_SERVICE_TOKEN)));
+                tokenSrv.referrer = (/** @type {?} */ (router.snapshot));
                 injector.get(Router).navigate([options.login_url]);
             }
         });
