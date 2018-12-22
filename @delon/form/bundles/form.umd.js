@@ -2274,73 +2274,64 @@
                 });
             };
         /**
-         * @template THIS
-         * @this {THIS}
-         * @return {THIS}
+         * @return {?}
          */
         SFComponent.prototype.validator = /**
-         * @template THIS
-         * @this {THIS}
-         * @return {THIS}
+         * @return {?}
          */
             function () {
-                ( /** @type {?} */(this)).rootProperty._runValidation();
+                this.rootProperty._runValidation();
                 /** @type {?} */
-                var errors = ( /** @type {?} */(this)).rootProperty.errors;
-                ( /** @type {?} */(this))._valid = !(errors && errors.length);
-                if (!( /** @type {?} */(this))._valid)
-                    ( /** @type {?} */(this)).formError.emit(errors);
-                ( /** @type {?} */(this)).cdr.detectChanges();
-                return ( /** @type {?} */(this));
+                var errors = this.rootProperty.errors;
+                this._valid = !(errors && errors.length);
+                if (!this._valid)
+                    this.formError.emit(errors);
+                this.cdr.detectChanges();
             };
         /**
          * 刷新 Schema，一般需要动态修改 Schema 某个值时可以方便调用
          */
         /**
          * 刷新 Schema，一般需要动态修改 Schema 某个值时可以方便调用
-         * @template THIS
-         * @this {THIS}
          * @param {?=} newSchema
          * @param {?=} newUI
-         * @return {THIS}
+         * @return {?}
          */
         SFComponent.prototype.refreshSchema = /**
          * 刷新 Schema，一般需要动态修改 Schema 某个值时可以方便调用
-         * @template THIS
-         * @this {THIS}
          * @param {?=} newSchema
          * @param {?=} newUI
-         * @return {THIS}
+         * @return {?}
          */
             function (newSchema, newUI) {
                 var _this = this;
                 if (newSchema)
-                    ( /** @type {?} */(this)).schema = newSchema;
+                    this.schema = newSchema;
                 if (newUI)
-                    ( /** @type {?} */(this)).ui = newUI;
-                if (!( /** @type {?} */(this)).schema || typeof ( /** @type {?} */(this)).schema.properties === 'undefined')
+                    this.ui = newUI;
+                if (!this.schema || typeof this.schema.properties === 'undefined')
                     throw new Error("Invalid Schema");
-                if (( /** @type {?} */(this)).schema.ui && typeof ( /** @type {?} */(this)).schema.ui === 'string')
+                if (this.schema.ui && typeof this.schema.ui === 'string')
                     throw new Error("Don't support string with root ui property");
-                ( /** @type {?} */(this)).schema.type = 'object';
-                ( /** @type {?} */(this))._formData = __assign({}, ( /** @type {?} */(this)).formData);
-                if (( /** @type {?} */(this))._inited)
-                    ( /** @type {?} */(this)).terminator.destroy();
-                ( /** @type {?} */(this)).cleanRootSub();
-                ( /** @type {?} */(this)).coverProperty();
-                ( /** @type {?} */(this)).coverButtonProperty();
-                ( /** @type {?} */(this)).rootProperty = ( /** @type {?} */(this)).formPropertyFactory.createProperty(( /** @type {?} */(this))._schema, ( /** @type {?} */(this))._ui, ( /** @type {?} */(this)).formData);
-                ( /** @type {?} */(this)).attachCustomRender();
-                ( /** @type {?} */(this)).rootProperty.valueChanges.subscribe(function (value) {
-                    ( /** @type {?} */(_this))._item = __assign({}, ( /** @type {?} */(_this)).formData, value);
-                    ( /** @type {?} */(_this)).formChange.emit(( /** @type {?} */(_this))._item);
+                this.schema.type = 'object';
+                this._formData = __assign({}, this.formData);
+                if (this._inited)
+                    this.terminator.destroy();
+                this.cleanRootSub();
+                this.coverProperty();
+                this.coverButtonProperty();
+                this.rootProperty = this.formPropertyFactory.createProperty(this._schema, this._ui, this.formData);
+                this.attachCustomRender();
+                this.rootProperty.valueChanges.subscribe(function (value) {
+                    _this._item = __assign({}, _this.formData, value);
+                    _this.formChange.emit(_this._item);
                 });
-                ( /** @type {?} */(this)).rootProperty.errorsChanges.subscribe(function (errors) {
-                    ( /** @type {?} */(_this))._valid = !(errors && errors.length);
-                    ( /** @type {?} */(_this)).formError.emit(errors);
-                    ( /** @type {?} */(_this)).cdr.detectChanges();
+                this.rootProperty.errorsChanges.subscribe(function (errors) {
+                    _this._valid = !(errors && errors.length);
+                    _this.formError.emit(errors);
+                    _this.cdr.detectChanges();
                 });
-                return ( /** @type {?} */(this)).reset();
+                this.reset();
             };
         /**
          * 重置表单
@@ -2348,29 +2339,24 @@
          */
         /**
          * 重置表单
-         * @template THIS
-         * @this {THIS}
          * @param {?=} emit
-         * @return {THIS}
+         * @return {?}
          */
         SFComponent.prototype.reset = /**
          * 重置表单
-         * @template THIS
-         * @this {THIS}
          * @param {?=} emit
-         * @return {THIS}
+         * @return {?}
          */
             function (emit) {
                 var _this = this;
                 if (emit === void 0) {
                     emit = false;
                 }
-                ( /** @type {?} */(this)).rootProperty.resetValue(( /** @type {?} */(this)).formData, false);
-                Promise.resolve().then(function () { return ( /** @type {?} */(_this)).cdr.detectChanges(); });
+                this.rootProperty.resetValue(this.formData, false);
+                Promise.resolve().then(function () { return _this.cdr.detectChanges(); });
                 if (emit) {
-                    ( /** @type {?} */(this)).formReset.emit(( /** @type {?} */(this)).value);
+                    this.formReset.emit(this.value);
                 }
-                return ( /** @type {?} */(this));
             };
         /**
          * @return {?}

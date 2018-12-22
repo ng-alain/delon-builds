@@ -4,7 +4,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { _HttpClient } from '@delon/theme';
 import { DOCUMENT } from '@angular/common';
 import { Router } from '@angular/router';
-import { Injectable, NgModule, InjectionToken, inject, Inject, Injector, defineInjectable, Optional, INJECTOR } from '@angular/core';
+import { Injectable, NgModule, InjectionToken, inject, Inject, Injector, defineInjectable, INJECTOR, Optional } from '@angular/core';
 
 /**
  * @fileoverview added by tsickle
@@ -133,17 +133,17 @@ class TokenService {
         return this.options.login_url;
     }
     /**
-     * @param {?} url
      * @return {?}
      */
-    set redirect(url) {
-        this._redirect = url;
+    get referrer() {
+        return this._referrer;
     }
     /**
+     * @param {?} val
      * @return {?}
      */
-    get redirect() {
-        return this._redirect || '/';
+    set referrer(val) {
+        this._referrer = val;
     }
     /**
      * @param {?} data
@@ -440,6 +440,7 @@ class BaseInterceptor {
             req = this.setReq(req, options);
         }
         else {
+            ((/** @type {?} */ (this.injector.get(DA_SERVICE_TOKEN)))).referrer = req;
             ToLogin(options, this.injector);
             // Unable to guarantee interceptor execution order
             // So cancel the loading state as much as possible

@@ -204,17 +204,17 @@
             enumerable: true,
             configurable: true
         });
-        Object.defineProperty(TokenService.prototype, "redirect", {
+        Object.defineProperty(TokenService.prototype, "referrer", {
             get: /**
              * @return {?}
              */ function () {
-                return this._redirect || '/';
+                return this._referrer;
             },
             set: /**
-             * @param {?} url
+             * @param {?} val
              * @return {?}
-             */ function (url) {
-                this._redirect = url;
+             */ function (val) {
+                this._referrer = val;
             },
             enumerable: true,
             configurable: true
@@ -614,6 +614,7 @@
                     req = this.setReq(req, options);
                 }
                 else {
+                    (( /** @type {?} */(this.injector.get(DA_SERVICE_TOKEN)))).referrer = req;
                     ToLogin(options, this.injector);
                     // Unable to guarantee interceptor execution order
                     // So cancel the loading state as much as possible
