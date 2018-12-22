@@ -194,6 +194,7 @@
             this.options = options;
             this.store = store;
             this.change$ = new rxjs.BehaviorSubject(null);
+            this._referrer = {};
         }
         Object.defineProperty(TokenService.prototype, "login_url", {
             get: /**
@@ -544,20 +545,17 @@
     /**
      * @param {?} options
      * @param {?} injector
+     * @param {?} url
      * @return {?}
      */
-    function ToLogin(options, injector) {
+    function ToLogin(options, injector, url) {
         if (options.token_invalid_redirect === true) {
             setTimeout(function () {
                 if (/^https?:\/\//g.test(options.login_url)) {
                     injector.get(common.DOCUMENT).location.href = options.login_url;
                 }
                 else {
-                    /** @type {?} */
-                    var router$$1 = ( /** @type {?} */(injector.get(router.ActivatedRoute)));
-                    /** @type {?} */
-                    var tokenSrv = ( /** @type {?} */(injector.get(DA_SERVICE_TOKEN)));
-                    tokenSrv.referrer = ( /** @type {?} */(router$$1.snapshot));
+                    (( /** @type {?} */(injector.get(DA_SERVICE_TOKEN)))).referrer.url = url;
                     injector.get(router.Router).navigate([options.login_url]);
                 }
             });
@@ -619,8 +617,7 @@
                     req = this.setReq(req, options);
                 }
                 else {
-                    (( /** @type {?} */(this.injector.get(DA_SERVICE_TOKEN)))).referrer = req;
-                    ToLogin(options, this.injector);
+                    ToLogin(options, this.injector, req.urlWithParams);
                     // Unable to guarantee interceptor execution order
                     // So cancel the loading state as much as possible
                     /** @type {?} */
@@ -849,47 +846,62 @@
                 /** @type {?} */
                 var res = CheckJwt(this.srv.get(JWTTokenModel), this.cog.token_exp_offset);
                 if (!res) {
-                    ToLogin(this.cog, this.injector);
+                    ToLogin(this.cog, this.injector, this.url);
                 }
                 return res;
             };
         // lazy loading
         // lazy loading
         /**
+         * @param {?} route
+         * @param {?} segments
          * @return {?}
          */
         JWTGuard.prototype.canLoad =
             // lazy loading
             /**
+             * @param {?} route
+             * @param {?} segments
              * @return {?}
              */
-            function () {
+            function (route, segments) {
+                this.url = route.path;
                 return this.process();
             };
         // all children route
         // all children route
         /**
+         * @param {?} childRoute
+         * @param {?} state
          * @return {?}
          */
         JWTGuard.prototype.canActivateChild =
             // all children route
             /**
+             * @param {?} childRoute
+             * @param {?} state
              * @return {?}
              */
-            function () {
+            function (childRoute, state) {
+                this.url = state.url;
                 return this.process();
             };
         // route
         // route
         /**
+         * @param {?} route
+         * @param {?} state
          * @return {?}
          */
         JWTGuard.prototype.canActivate =
             // route
             /**
+             * @param {?} route
+             * @param {?} state
              * @return {?}
              */
-            function () {
+            function (route, state) {
+                this.url = state.url;
                 return this.process();
             };
         JWTGuard.decorators = [
@@ -1007,47 +1019,62 @@
                 /** @type {?} */
                 var res = CheckSimple(this.srv.get());
                 if (!res) {
-                    ToLogin(this.cog, this.injector);
+                    ToLogin(this.cog, this.injector, this.url);
                 }
                 return res;
             };
         // lazy loading
         // lazy loading
         /**
+         * @param {?} route
+         * @param {?} segments
          * @return {?}
          */
         SimpleGuard.prototype.canLoad =
             // lazy loading
             /**
+             * @param {?} route
+             * @param {?} segments
              * @return {?}
              */
-            function () {
+            function (route, segments) {
+                this.url = route.path;
                 return this.process();
             };
         // all children route
         // all children route
         /**
+         * @param {?} childRoute
+         * @param {?} state
          * @return {?}
          */
         SimpleGuard.prototype.canActivateChild =
             // all children route
             /**
+             * @param {?} childRoute
+             * @param {?} state
              * @return {?}
              */
-            function () {
+            function (childRoute, state) {
+                this.url = state.url;
                 return this.process();
             };
         // route
         // route
         /**
+         * @param {?} route
+         * @param {?} state
          * @return {?}
          */
         SimpleGuard.prototype.canActivate =
             // route
             /**
+             * @param {?} route
+             * @param {?} state
              * @return {?}
              */
-            function () {
+            function (route, state) {
+                this.url = state.url;
                 return this.process();
             };
         SimpleGuard.decorators = [

@@ -3,8 +3,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { _HttpClient } from '@delon/theme';
 import { DOCUMENT } from '@angular/common';
-import { Router, ActivatedRoute } from '@angular/router';
-import { Injectable, NgModule, InjectionToken, inject, Inject, Injector, defineInjectable, INJECTOR, Optional } from '@angular/core';
+import { Router } from '@angular/router';
+import { Injectable, NgModule, InjectionToken, inject, Inject, Injector, defineInjectable, Optional, INJECTOR } from '@angular/core';
 
 /**
  * @fileoverview added by tsickle
@@ -125,6 +125,7 @@ class TokenService {
         this.options = options;
         this.store = store;
         this.change$ = new BehaviorSubject(null);
+        this._referrer = {};
     }
     /**
      * @return {?}
@@ -389,20 +390,17 @@ function CheckJwt(model, offset) {
 /**
  * @param {?} options
  * @param {?} injector
+ * @param {?} url
  * @return {?}
  */
-function ToLogin(options, injector) {
+function ToLogin(options, injector, url) {
     if (options.token_invalid_redirect === true) {
         setTimeout(() => {
             if (/^https?:\/\//g.test(options.login_url)) {
                 injector.get(DOCUMENT).location.href = options.login_url;
             }
             else {
-                /** @type {?} */
-                const router = (/** @type {?} */ (injector.get(ActivatedRoute)));
-                /** @type {?} */
-                const tokenSrv = (/** @type {?} */ (injector.get(DA_SERVICE_TOKEN)));
-                tokenSrv.referrer = (/** @type {?} */ (router.snapshot));
+                ((/** @type {?} */ (injector.get(DA_SERVICE_TOKEN)))).referrer.url = url;
                 injector.get(Router).navigate([options.login_url]);
             }
         });
@@ -445,8 +443,7 @@ class BaseInterceptor {
             req = this.setReq(req, options);
         }
         else {
-            ((/** @type {?} */ (this.injector.get(DA_SERVICE_TOKEN)))).referrer = req;
-            ToLogin(options, this.injector);
+            ToLogin(options, this.injector, req.urlWithParams);
             // Unable to guarantee interceptor execution order
             // So cancel the loading state as much as possible
             /** @type {?} */
@@ -635,29 +632,38 @@ class JWTGuard {
         /** @type {?} */
         const res = CheckJwt(this.srv.get(JWTTokenModel), this.cog.token_exp_offset);
         if (!res) {
-            ToLogin(this.cog, this.injector);
+            ToLogin(this.cog, this.injector, this.url);
         }
         return res;
     }
     // lazy loading
     /**
+     * @param {?} route
+     * @param {?} segments
      * @return {?}
      */
-    canLoad() {
+    canLoad(route, segments) {
+        this.url = route.path;
         return this.process();
     }
     // all children route
     /**
+     * @param {?} childRoute
+     * @param {?} state
      * @return {?}
      */
-    canActivateChild() {
+    canActivateChild(childRoute, state) {
+        this.url = state.url;
         return this.process();
     }
     // route
     /**
+     * @param {?} route
+     * @param {?} state
      * @return {?}
      */
-    canActivate() {
+    canActivate(route, state) {
+        this.url = state.url;
         return this.process();
     }
 }
@@ -753,29 +759,38 @@ class SimpleGuard {
         /** @type {?} */
         const res = CheckSimple(this.srv.get());
         if (!res) {
-            ToLogin(this.cog, this.injector);
+            ToLogin(this.cog, this.injector, this.url);
         }
         return res;
     }
     // lazy loading
     /**
+     * @param {?} route
+     * @param {?} segments
      * @return {?}
      */
-    canLoad() {
+    canLoad(route, segments) {
+        this.url = route.path;
         return this.process();
     }
     // all children route
     /**
+     * @param {?} childRoute
+     * @param {?} state
      * @return {?}
      */
-    canActivateChild() {
+    canActivateChild(childRoute, state) {
+        this.url = state.url;
         return this.process();
     }
     // route
     /**
+     * @param {?} route
+     * @param {?} state
      * @return {?}
      */
-    canActivate() {
+    canActivate(route, state) {
+        this.url = state.url;
         return this.process();
     }
 }
