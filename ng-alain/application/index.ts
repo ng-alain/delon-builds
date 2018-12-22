@@ -75,7 +75,7 @@ function addDependenciesToPackageJson(options: ApplicationOptions) {
       `ng-zorro-antd@${ZORROVERSION}`,
       // ng-zorro-antd need
       'screenfull@^3.3.3',
-      'ajv@^6.6.1',
+      'ajv@^6.6.2',
     ]);
     // add ajv
     scriptsToAngularJson(host, ['node_modules/ajv/dist/ajv.bundle.js'], 'add', [
@@ -154,7 +154,9 @@ function addPathsToTsConfig() {
       if (!json.compilerOptions.paths) json.compilerOptions.paths = {};
       json.compilerOptions.baseUrl = item.baseUrl;
       const paths = json.compilerOptions.paths;
+      paths['@shared'] = ['app/shared/index'];
       paths['@shared/*'] = ['app/shared/*'];
+      paths['@core'] = ['app/core/index'];
       paths['@core/*'] = ['app/core/*'];
       paths['@env/*'] = ['environments/*'];
       overwriteJSON(host, item.path, json);
