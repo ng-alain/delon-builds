@@ -1,10 +1,9 @@
 import { share } from 'rxjs/operators';
-import { HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { _HttpClient } from '@delon/theme';
 import { DOCUMENT } from '@angular/common';
 import { Router } from '@angular/router';
-import { Injectable, NgModule, InjectionToken, inject, Inject, Injector, defineInjectable, Optional, INJECTOR } from '@angular/core';
+import { Injectable, NgModule, InjectionToken, inject, Inject, Injector, defineInjectable, INJECTOR, Optional } from '@angular/core';
 
 /**
  * @fileoverview added by tsickle
@@ -53,6 +52,10 @@ class DelonAuthConfig {
          * 允许匿名登录KEY，若请求参数中带有该KEY表示忽略TOKEN
          */
         this.allow_anonymous_key = `_allow_anonymous`;
+        /**
+         * 是否校验失效时命中后继续调用后续拦截器的 `intercept` 方法，默认：`true`
+         */
+        this.executeOtherInterceptors = true;
     }
 }
 DelonAuthConfig.decorators = [
@@ -394,13 +397,13 @@ function CheckJwt(model, offset) {
  * @return {?}
  */
 function ToLogin(options, injector, url) {
+    ((/** @type {?} */ (injector.get(DA_SERVICE_TOKEN)))).referrer.url = url;
     if (options.token_invalid_redirect === true) {
         setTimeout(() => {
             if (/^https?:\/\//g.test(options.login_url)) {
                 injector.get(DOCUMENT).location.href = options.login_url;
             }
             else {
-                ((/** @type {?} */ (injector.get(DA_SERVICE_TOKEN)))).referrer.url = url;
                 injector.get(Router).navigate([options.login_url]);
             }
         });
@@ -411,6 +414,23 @@ function ToLogin(options, injector, url) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
+class HttpAuthInterceptorHandler {
+    /**
+     * @param {?} next
+     * @param {?} interceptor
+     */
+    constructor(next, interceptor) {
+        this.next = next;
+        this.interceptor = interceptor;
+    }
+    /**
+     * @param {?} req
+     * @return {?}
+     */
+    handle(req) {
+        return this.interceptor.intercept(req, this.next);
+    }
+}
 /**
  * @abstract
  */
@@ -444,14 +464,9 @@ class BaseInterceptor {
         }
         else {
             ToLogin(options, this.injector, req.urlWithParams);
-            // Unable to guarantee interceptor execution order
-            // So cancel the loading state as much as possible
-            /** @type {?} */
-            const hc = this.injector.get(_HttpClient, null);
-            if (hc)
-                hc.end();
             // Interrupt Http request, so need to generate a new Observable
-            return new Observable((observer) => {
+            /** @type {?} */
+            const err$ = new Observable((observer) => {
                 /** @type {?} */
                 const res = new HttpErrorResponse({
                     url: req.url,
@@ -461,6 +476,18 @@ class BaseInterceptor {
                 });
                 observer.error(res);
             });
+            if (options.executeOtherInterceptors) {
+                /** @type {?} */
+                const interceptors = this.injector.get(HTTP_INTERCEPTORS, []);
+                /** @type {?} */
+                const lastInterceptors = interceptors.slice(interceptors.indexOf(this) + 1);
+                if (lastInterceptors.length > 0) {
+                    /** @type {?} */
+                    const chain = lastInterceptors.reduceRight((_next, _interceptor) => new HttpAuthInterceptorHandler(_next, _interceptor), { handle: (_) => err$ });
+                    return chain.handle(req);
+                }
+            }
+            return err$;
         }
         return next.handle(req);
     }

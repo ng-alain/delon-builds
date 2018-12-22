@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('rxjs/operators'), require('@angular/common/http'), require('rxjs'), require('@delon/theme'), require('@angular/common'), require('@angular/router'), require('@angular/core')) :
-    typeof define === 'function' && define.amd ? define('@delon/auth', ['exports', 'rxjs/operators', '@angular/common/http', 'rxjs', '@delon/theme', '@angular/common', '@angular/router', '@angular/core'], factory) :
-    (factory((global.delon = global.delon || {}, global.delon.auth = {}),global.rxjs.operators,global.ng.common.http,global.rxjs,global.delon.theme,global.ng.common,global.ng.router,global.ng.core));
-}(this, (function (exports,operators,http,rxjs,theme,common,router,i0) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('rxjs/operators'), require('@angular/common/http'), require('rxjs'), require('@angular/common'), require('@angular/router'), require('@angular/core')) :
+    typeof define === 'function' && define.amd ? define('@delon/auth', ['exports', 'rxjs/operators', '@angular/common/http', 'rxjs', '@angular/common', '@angular/router', '@angular/core'], factory) :
+    (factory((global.delon = global.delon || {}, global.delon.auth = {}),global.rxjs.operators,global.ng.common.http,global.rxjs,global.ng.common,global.ng.router,global.ng.core));
+}(this, (function (exports,operators,http,rxjs,common,router,i0) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -109,6 +109,10 @@
              * 允许匿名登录KEY，若请求参数中带有该KEY表示忽略TOKEN
              */
             this.allow_anonymous_key = "_allow_anonymous";
+            /**
+             * 是否校验失效时命中后继续调用后续拦截器的 `intercept` 方法，默认：`true`
+             */
+            this.executeOtherInterceptors = true;
         }
         DelonAuthConfig.decorators = [
             { type: i0.Injectable, args: [{ providedIn: 'root' },] }
@@ -549,13 +553,13 @@
      * @return {?}
      */
     function ToLogin(options, injector, url) {
+        (( /** @type {?} */(injector.get(DA_SERVICE_TOKEN)))).referrer.url = url;
         if (options.token_invalid_redirect === true) {
             setTimeout(function () {
                 if (/^https?:\/\//g.test(options.login_url)) {
                     injector.get(common.DOCUMENT).location.href = options.login_url;
                 }
                 else {
-                    (( /** @type {?} */(injector.get(DA_SERVICE_TOKEN)))).referrer.url = url;
                     injector.get(router.Router).navigate([options.login_url]);
                 }
             });
@@ -566,6 +570,24 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
+    var HttpAuthInterceptorHandler = /** @class */ (function () {
+        function HttpAuthInterceptorHandler(next, interceptor) {
+            this.next = next;
+            this.interceptor = interceptor;
+        }
+        /**
+         * @param {?} req
+         * @return {?}
+         */
+        HttpAuthInterceptorHandler.prototype.handle = /**
+         * @param {?} req
+         * @return {?}
+         */
+            function (req) {
+                return this.interceptor.intercept(req, this.next);
+            };
+        return HttpAuthInterceptorHandler;
+    }());
     /**
      * @abstract
      */
@@ -618,14 +640,9 @@
                 }
                 else {
                     ToLogin(options, this.injector, req.urlWithParams);
-                    // Unable to guarantee interceptor execution order
-                    // So cancel the loading state as much as possible
-                    /** @type {?} */
-                    var hc = this.injector.get(theme._HttpClient, null);
-                    if (hc)
-                        hc.end();
                     // Interrupt Http request, so need to generate a new Observable
-                    return new rxjs.Observable(function (observer) {
+                    /** @type {?} */
+                    var err$_1 = new rxjs.Observable(function (observer) {
                         /** @type {?} */
                         var res = new http.HttpErrorResponse({
                             url: req.url,
@@ -635,6 +652,18 @@
                         });
                         observer.error(res);
                     });
+                    if (options.executeOtherInterceptors) {
+                        /** @type {?} */
+                        var interceptors = this.injector.get(http.HTTP_INTERCEPTORS, []);
+                        /** @type {?} */
+                        var lastInterceptors = interceptors.slice(interceptors.indexOf(this) + 1);
+                        if (lastInterceptors.length > 0) {
+                            /** @type {?} */
+                            var chain = lastInterceptors.reduceRight(function (_next, _interceptor) { return new HttpAuthInterceptorHandler(_next, _interceptor); }, { handle: function (_) { return err$_1; } });
+                            return chain.handle(req);
+                        }
+                    }
+                    return err$_1;
                 }
                 return next.handle(req);
             };
