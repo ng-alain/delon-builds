@@ -1740,71 +1740,63 @@ class SFComponent {
         });
     }
     /**
-     * @template THIS
-     * @this {THIS}
-     * @return {THIS}
+     * @return {?}
      */
     validator() {
-        (/** @type {?} */ (this)).rootProperty._runValidation();
+        this.rootProperty._runValidation();
         /** @type {?} */
-        const errors = (/** @type {?} */ (this)).rootProperty.errors;
-        (/** @type {?} */ (this))._valid = !(errors && errors.length);
-        if (!(/** @type {?} */ (this))._valid)
-            (/** @type {?} */ (this)).formError.emit(errors);
-        (/** @type {?} */ (this)).cdr.detectChanges();
-        return (/** @type {?} */ (this));
+        const errors = this.rootProperty.errors;
+        this._valid = !(errors && errors.length);
+        if (!this._valid)
+            this.formError.emit(errors);
+        this.cdr.detectChanges();
     }
     /**
      * 刷新 Schema，一般需要动态修改 Schema 某个值时可以方便调用
-     * @template THIS
-     * @this {THIS}
      * @param {?=} newSchema
      * @param {?=} newUI
-     * @return {THIS}
+     * @return {?}
      */
     refreshSchema(newSchema, newUI) {
         if (newSchema)
-            (/** @type {?} */ (this)).schema = newSchema;
+            this.schema = newSchema;
         if (newUI)
-            (/** @type {?} */ (this)).ui = newUI;
-        if (!(/** @type {?} */ (this)).schema || typeof (/** @type {?} */ (this)).schema.properties === 'undefined')
+            this.ui = newUI;
+        if (!this.schema || typeof this.schema.properties === 'undefined')
             throw new Error(`Invalid Schema`);
-        if ((/** @type {?} */ (this)).schema.ui && typeof (/** @type {?} */ (this)).schema.ui === 'string')
+        if (this.schema.ui && typeof this.schema.ui === 'string')
             throw new Error(`Don't support string with root ui property`);
-        (/** @type {?} */ (this)).schema.type = 'object';
-        (/** @type {?} */ (this))._formData = Object.assign({}, (/** @type {?} */ (this)).formData);
-        if ((/** @type {?} */ (this))._inited)
-            (/** @type {?} */ (this)).terminator.destroy();
-        (/** @type {?} */ (this)).cleanRootSub();
-        (/** @type {?} */ (this)).coverProperty();
-        (/** @type {?} */ (this)).coverButtonProperty();
-        (/** @type {?} */ (this)).rootProperty = (/** @type {?} */ (this)).formPropertyFactory.createProperty((/** @type {?} */ (this))._schema, (/** @type {?} */ (this))._ui, (/** @type {?} */ (this)).formData);
-        (/** @type {?} */ (this)).attachCustomRender();
-        (/** @type {?} */ (this)).rootProperty.valueChanges.subscribe(value => {
-            (/** @type {?} */ (this))._item = Object.assign({}, (/** @type {?} */ (this)).formData, value);
-            (/** @type {?} */ (this)).formChange.emit((/** @type {?} */ (this))._item);
+        this.schema.type = 'object';
+        this._formData = Object.assign({}, this.formData);
+        if (this._inited)
+            this.terminator.destroy();
+        this.cleanRootSub();
+        this.coverProperty();
+        this.coverButtonProperty();
+        this.rootProperty = this.formPropertyFactory.createProperty(this._schema, this._ui, this.formData);
+        this.attachCustomRender();
+        this.rootProperty.valueChanges.subscribe(value => {
+            this._item = Object.assign({}, this.formData, value);
+            this.formChange.emit(this._item);
         });
-        (/** @type {?} */ (this)).rootProperty.errorsChanges.subscribe(errors => {
-            (/** @type {?} */ (this))._valid = !(errors && errors.length);
-            (/** @type {?} */ (this)).formError.emit(errors);
-            (/** @type {?} */ (this)).cdr.detectChanges();
+        this.rootProperty.errorsChanges.subscribe(errors => {
+            this._valid = !(errors && errors.length);
+            this.formError.emit(errors);
+            this.cdr.detectChanges();
         });
-        return (/** @type {?} */ (this)).reset();
+        this.reset();
     }
     /**
      * 重置表单
-     * @template THIS
-     * @this {THIS}
      * @param {?=} emit
-     * @return {THIS}
+     * @return {?}
      */
     reset(emit = false) {
-        (/** @type {?} */ (this)).rootProperty.resetValue((/** @type {?} */ (this)).formData, false);
-        Promise.resolve().then(() => (/** @type {?} */ (this)).cdr.detectChanges());
+        this.rootProperty.resetValue(this.formData, false);
+        Promise.resolve().then(() => this.cdr.detectChanges());
         if (emit) {
-            (/** @type {?} */ (this)).formReset.emit((/** @type {?} */ (this)).value);
+            this.formReset.emit(this.value);
         }
-        return (/** @type {?} */ (this));
     }
     /**
      * @return {?}
