@@ -1380,18 +1380,13 @@
             configurable: true
         });
         /**
-         * @template THIS
-         * @this {THIS}
-         * @return {THIS}
+         * @return {?}
          */
         STComponent.prototype.cd = /**
-         * @template THIS
-         * @this {THIS}
-         * @return {THIS}
+         * @return {?}
          */
             function () {
-                ( /** @type {?} */(this)).cdr.detectChanges();
-                return ( /** @type {?} */(this));
+                this.cdr.detectChanges();
             };
         /**
          * @param {?} total
@@ -1492,27 +1487,23 @@
         /** 清空所有数据 */
         /**
          * 清空所有数据
-         * @template THIS
-         * @this {THIS}
          * @param {?=} cleanStatus
-         * @return {THIS}
+         * @return {?}
          */
         STComponent.prototype.clear = /**
          * 清空所有数据
-         * @template THIS
-         * @this {THIS}
          * @param {?=} cleanStatus
-         * @return {THIS}
+         * @return {?}
          */
             function (cleanStatus) {
                 if (cleanStatus === void 0) {
                     cleanStatus = true;
                 }
                 if (cleanStatus) {
-                    ( /** @type {?} */(this)).clearStatus();
+                    this.clearStatus();
                 }
-                ( /** @type {?} */(this))._data.length = 0;
-                return ( /** @type {?} */(this)).cd();
+                this._data.length = 0;
+                this.cd();
             };
         /** 清空所有状态 */
         /**
@@ -1543,34 +1534,31 @@
         /**
          * 根据页码重新加载数据
          *
-         * @template THIS
-         * @this {THIS}
          * @param {?=} pi 指定当前页码，默认：`1`
          * @param {?=} extraParams 重新指定 `extraParams` 值
          * @param {?=} options 选项
-         * @return {THIS}
+         * @return {?}
          */
         STComponent.prototype.load = /**
          * 根据页码重新加载数据
          *
-         * @template THIS
-         * @this {THIS}
          * @param {?=} pi 指定当前页码，默认：`1`
          * @param {?=} extraParams 重新指定 `extraParams` 值
          * @param {?=} options 选项
-         * @return {THIS}
+         * @return {?}
          */
             function (pi, extraParams, options) {
                 if (pi === void 0) {
                     pi = 1;
                 }
                 if (pi !== -1)
-                    ( /** @type {?} */(this)).pi = pi;
+                    this.pi = pi;
                 if (typeof extraParams !== 'undefined') {
-                    ( /** @type {?} */(this))._req.params = options && options.merge ? __assign({}, ( /** @type {?} */(this))._req.params, extraParams) : extraParams;
+                    this._req.params =
+                        options && options.merge
+                            ? __assign({}, this._req.params, extraParams) : extraParams;
                 }
-                ( /** @type {?} */(this))._change('pi');
-                return ( /** @type {?} */(this));
+                this._change('pi');
             };
         /**
          * 重新刷新当前页
@@ -1578,22 +1566,18 @@
          */
         /**
          * 重新刷新当前页
-         * @template THIS
-         * @this {THIS}
          * @param {?=} extraParams 重新指定 `extraParams` 值
          * @param {?=} options
-         * @return {THIS}
+         * @return {?}
          */
         STComponent.prototype.reload = /**
          * 重新刷新当前页
-         * @template THIS
-         * @this {THIS}
          * @param {?=} extraParams 重新指定 `extraParams` 值
          * @param {?=} options
-         * @return {THIS}
+         * @return {?}
          */
             function (extraParams, options) {
-                return ( /** @type {?} */(this)).load(-1, extraParams, options);
+                this.load(-1, extraParams, options);
             };
         /**
          * 重置且重新设置 `pi` 为 `1`，包含以下值：
@@ -1611,11 +1595,9 @@
          * - `sort` 数据
          * - `fileter` 数据
          *
-         * @template THIS
-         * @this {THIS}
          * @param {?=} extraParams 重新指定 `extraParams` 值
          * @param {?=} options
-         * @return {THIS}
+         * @return {?}
          */
         STComponent.prototype.reset = /**
          * 重置且重新设置 `pi` 为 `1`，包含以下值：
@@ -1624,15 +1606,12 @@
          * - `sort` 数据
          * - `fileter` 数据
          *
-         * @template THIS
-         * @this {THIS}
          * @param {?=} extraParams 重新指定 `extraParams` 值
          * @param {?=} options
-         * @return {THIS}
+         * @return {?}
          */
             function (extraParams, options) {
-                ( /** @type {?} */(this)).clearStatus().load(1, extraParams, options);
-                return ( /** @type {?} */(this));
+                this.clearStatus().load(1, extraParams, options);
             };
         /**
          * @return {?}
@@ -1729,31 +1708,27 @@
         /** 移除某行数据 */
         /**
          * 移除某行数据
-         * @template THIS
-         * @this {THIS}
          * @param {?} data
-         * @return {THIS}
+         * @return {?}
          */
         STComponent.prototype.removeRow = /**
          * 移除某行数据
-         * @template THIS
-         * @this {THIS}
          * @param {?} data
-         * @return {THIS}
+         * @return {?}
          */
             function (data) {
                 var _this = this;
                 if (!Array.isArray(data)) {
                     data = [data];
                 }
-                (( /** @type {?} */(data))).map(function (item) { return ( /** @type {?} */(_this))._data.indexOf(item); })
+                (( /** @type {?} */(data))).map(function (item) { return _this._data.indexOf(item); })
                     .filter(function (pos) { return pos !== -1; })
-                    .forEach(function (pos) { return ( /** @type {?} */(_this))._data.splice(pos, 1); });
+                    .forEach(function (pos) { return _this._data.splice(pos, 1); });
                 // recalculate no
-                ( /** @type {?} */(this))._columns
+                this._columns
                     .filter(function (w) { return w.type === 'no'; })
-                    .forEach(function (c) { return ( /** @type {?} */(_this))._data.forEach(function (i, idx) { return i._values[c.__point] = c.noIndex + idx; }); });
-                return ( /** @type {?} */(this)).cd();
+                    .forEach(function (c) { return _this._data.forEach(function (i, idx) { return i._values[c.__point] = c.noIndex + idx; }); });
+                this.cd();
             };
         //#endregion
         //#region sort
