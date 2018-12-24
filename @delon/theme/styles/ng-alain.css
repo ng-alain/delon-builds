@@ -23501,6 +23501,9 @@ body {
   transition: opacity 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), width 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
   opacity: 1;
 }
+.sidebar-nav__item-disabled {
+  opacity: 0.6;
+}
 .sidebar-nav__selected {
   border-left-color: #1890ff;
   background-color: #fcfcfc;

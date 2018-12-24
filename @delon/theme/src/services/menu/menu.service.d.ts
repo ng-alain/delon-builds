@@ -30,7 +30,7 @@ export declare class MenuService implements OnDestroy {
      * 清空菜单
      */
     clear(): void;
-    private getHit;
+    getHit(url: string, recursive?: boolean, cb?: (i: Menu) => void): Menu;
     /**
      * 根据URL设置菜单 `_open` 属性
      * - 若 `recursive: true` 则会自动向上递归查找

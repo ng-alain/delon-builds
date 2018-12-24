@@ -306,8 +306,6 @@
                     item._depth = depth;
                     if (!item.link)
                         item.link = '';
-                    if (typeof item.linkExact === 'undefined')
-                        item.linkExact = false;
                     if (!item.externalLink)
                         item.externalLink = '';
                     // badge
@@ -346,16 +344,15 @@
                     if (item.icon != null) {
                         item.icon = __assign({ theme: 'outline', spin: false }, (( /** @type {?} */(item.icon))));
                     }
-                    item.text =
-                        item.i18n && _this.i18nSrv ? _this.i18nSrv.fanyi(item.i18n) : item.text;
+                    item.text = item.i18n && _this.i18nSrv ? _this.i18nSrv.fanyi(item.i18n) : item.text;
                     // group
                     item.group = item.group !== false;
                     // hidden
                     item._hidden = typeof item.hide === 'undefined' ? false : item.hide;
+                    // disabled
+                    item.disabled = typeof item.disabled === 'undefined' ? false : item.disabled;
                     // acl
-                    if (item.acl && _this.aclService) {
-                        item._hidden = !_this.aclService.can(item.acl);
-                    }
+                    item._aclResult = item.acl && _this.aclService ? _this.aclService.can(item.acl) : true;
                     // shortcut
                     if (parent && item.shortcut === true && parent.shortcutRoot !== true) {
                         shortcuts.push(item);
@@ -418,10 +415,10 @@
                 // tslint:disable-next-line:prefer-object-spread
                 _data = Object.assign(_data, {
                     shortcutRoot: true,
-                    _type: 3,
                     __id: -1,
-                    _depth: 1,
                     __parent: null,
+                    _type: 3,
+                    _depth: 1,
                 });
                 _data.children = shortcuts.map(function (i) {
                     i._depth = 2;
@@ -520,10 +517,14 @@
                 if (!url)
                     return;
                 /** @type {?} */
-                var findItem = this.getHit(url, recursive, function (i) { return (i._open = false); });
+                var findItem = this.getHit(url, recursive, function (i) {
+                    i._selected = false;
+                    i._open = false;
+                });
                 if (!findItem)
                     return;
                 do {
+                    findItem._selected = true;
                     findItem._open = true;
                     findItem = findItem.__parent;
                 } while (findItem);

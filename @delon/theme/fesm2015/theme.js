@@ -177,8 +177,6 @@ class MenuService {
             item._depth = depth;
             if (!item.link)
                 item.link = '';
-            if (typeof item.linkExact === 'undefined')
-                item.linkExact = false;
             if (!item.externalLink)
                 item.externalLink = '';
             // badge
@@ -217,16 +215,15 @@ class MenuService {
             if (item.icon != null) {
                 item.icon = Object.assign({ theme: 'outline', spin: false }, ((/** @type {?} */ (item.icon))));
             }
-            item.text =
-                item.i18n && this.i18nSrv ? this.i18nSrv.fanyi(item.i18n) : item.text;
+            item.text = item.i18n && this.i18nSrv ? this.i18nSrv.fanyi(item.i18n) : item.text;
             // group
             item.group = item.group !== false;
             // hidden
             item._hidden = typeof item.hide === 'undefined' ? false : item.hide;
+            // disabled
+            item.disabled = typeof item.disabled === 'undefined' ? false : item.disabled;
             // acl
-            if (item.acl && this.aclService) {
-                item._hidden = !this.aclService.can(item.acl);
-            }
+            item._aclResult = item.acl && this.aclService ? this.aclService.can(item.acl) : true;
             // shortcut
             if (parent && item.shortcut === true && parent.shortcutRoot !== true) {
                 shortcuts.push(item);
@@ -273,10 +270,10 @@ class MenuService {
         // tslint:disable-next-line:prefer-object-spread
         _data = Object.assign(_data, {
             shortcutRoot: true,
-            _type: 3,
             __id: -1,
-            _depth: 1,
             __parent: null,
+            _type: 3,
+            _depth: 1,
         });
         _data.children = shortcuts.map(i => {
             i._depth = 2;
@@ -337,10 +334,14 @@ class MenuService {
         if (!url)
             return;
         /** @type {?} */
-        let findItem = this.getHit(url, recursive, i => (i._open = false));
+        let findItem = this.getHit(url, recursive, i => {
+            i._selected = false;
+            i._open = false;
+        });
         if (!findItem)
             return;
         do {
+            findItem._selected = true;
             findItem._open = true;
             findItem = findItem.__parent;
         } while (findItem);
@@ -2039,7 +2040,7 @@ AlainThemeModule.ctorParameters = () => [
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 /** @type {?} */
-const VERSION = new Version('7.0.0-rc.0-2eab515');
+const VERSION = new Version('7.0.0-rc.0-f24a648');
 
 /**
  * @fileoverview added by tsickle
