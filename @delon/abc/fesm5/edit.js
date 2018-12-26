@@ -355,7 +355,7 @@ var SEComponent = /** @class */ (function () {
         if (!this.ngControl || this.status$)
             return;
         this.status$ = this.ngControl.statusChanges.subscribe(function (res) {
-            if (_this.ngControl.isDisabled) {
+            if (_this.ngControl.disabled) {
                 return;
             }
             /** @type {?} */

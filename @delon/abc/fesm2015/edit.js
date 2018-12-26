@@ -321,7 +321,7 @@ class SEComponent {
         if (!this.ngControl || this.status$)
             return;
         this.status$ = this.ngControl.statusChanges.subscribe(res => {
-            if (this.ngControl.isDisabled) {
+            if (this.ngControl.disabled) {
                 return;
             }
             /** @type {?} */
