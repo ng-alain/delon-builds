@@ -24585,8 +24585,9 @@ g2-tag-cloud {
 .g2-card__meta-action {
   cursor: pointer;
   position: absolute;
-  top: 0;
+  top: 4px;
   right: 0;
+  line-height: 1;
 }
 .g2-card__avatar {
   position: relative;
