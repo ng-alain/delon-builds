@@ -411,7 +411,7 @@
                 if (!this.ngControl || this.status$)
                     return;
                 this.status$ = this.ngControl.statusChanges.subscribe(function (res) {
-                    if (_this.ngControl.disabled) {
+                    if (_this.ngControl.isDisabled) {
                         return;
                     }
                     /** @type {?} */
