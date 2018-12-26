@@ -447,11 +447,11 @@ ScrollService.ctorParameters = () => [
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 /** @type {?} */
-const LAYOUT_KEY = 'layout';
+const LAYOUT = 'layout';
 /** @type {?} */
-const USER_KEY = 'user';
+const USER = 'user';
 /** @type {?} */
-const APP_KEY = 'app';
+const APP = 'app';
 class SettingsService {
     constructor() {
         this.notify$ = new Subject();
@@ -480,8 +480,8 @@ class SettingsService {
      */
     get layout() {
         if (!this._layout) {
-            this._layout = Object.assign({ fixed: true, collapsed: false, boxed: false, lang: null }, this.get(LAYOUT_KEY));
-            this.set(LAYOUT_KEY, this._layout);
+            this._layout = Object.assign({ fixed: true, collapsed: false, boxed: false, lang: null }, this.get(LAYOUT));
+            this.set(LAYOUT, this._layout);
         }
         return this._layout;
     }
@@ -490,8 +490,8 @@ class SettingsService {
      */
     get app() {
         if (!this._app) {
-            this._app = Object.assign({ year: new Date().getFullYear() }, this.get(APP_KEY));
-            this.set(APP_KEY, this._app);
+            this._app = Object.assign({ year: new Date().getFullYear() }, this.get(APP));
+            this.set(APP, this._app);
         }
         return this._app;
     }
@@ -500,8 +500,8 @@ class SettingsService {
      */
     get user() {
         if (!this._user) {
-            this._user = Object.assign({}, this.get(USER_KEY));
-            this.set(USER_KEY, this._user);
+            this._user = Object.assign({}, this.get(USER));
+            this.set(USER, this._user);
         }
         return this._user;
     }
@@ -524,7 +524,7 @@ class SettingsService {
         else {
             this._layout = name;
         }
-        this.set(LAYOUT_KEY, this._layout);
+        this.set(LAYOUT, this._layout);
         // tslint:disable-next-line:no-any
         this.notify$.next((/** @type {?} */ ({ type: 'layout', name, value })));
         return true;
@@ -535,7 +535,7 @@ class SettingsService {
      */
     setApp(value) {
         this._app = value;
-        this.set(APP_KEY, value);
+        this.set(APP, value);
         this.notify$.next({ type: 'app', value });
         return true;
     }
@@ -545,7 +545,7 @@ class SettingsService {
      */
     setUser(value) {
         this._user = value;
-        this.set(USER_KEY, value);
+        this.set(USER, value);
         this.notify$.next({ type: 'user', value });
         return true;
     }
@@ -2040,7 +2040,7 @@ AlainThemeModule.ctorParameters = () => [
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 /** @type {?} */
-const VERSION = new Version('7.0.0-rc.1-7223e85');
+const VERSION = new Version('7.0.0-rc.1-f065827');
 
 /**
  * @fileoverview added by tsickle
@@ -2052,6 +2052,6 @@ const VERSION = new Version('7.0.0-rc.1-7223e85');
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 
-export { WINDOW, preloaderFinished, TitleService, ALAIN_I18N_TOKEN, AlainI18NServiceFake, _HttpClient, DatePipe, CNCurrencyPipe, KeysPipe, YNPipe, HTMLPipe, URLPipe, AlainThemeConfig, AlainThemeModule, VERSION, MenuService, ScrollService, SettingsService, REP_MAX, ResponsiveService, enUS as en_US, zhCN as zh_CN, zhTW as zh_TW, trTR as tr_TR, plPL as pl_PL, DELON_LOCALE, DELON_LOCALE_SERVICE_PROVIDER_FACTORY, DelonLocaleService, DELON_LOCALE_SERVICE_PROVIDER, DelonLocaleModule, ModalHelper, DrawerHelper, BaseUrl, BaseHeaders, BaseApi, Path, Query, Body, Headers, OPTIONS, GET, POST, DELETE, PUT, HEAD, PATCH, JSONP, ALAIN_I18N_TOKEN_FACTORY as ɵa, I18nPipe as ɵb };
+export { WINDOW, preloaderFinished, TitleService, ALAIN_I18N_TOKEN, AlainI18NServiceFake, _HttpClient, DatePipe, CNCurrencyPipe, KeysPipe, YNPipe, HTMLPipe, URLPipe, AlainThemeConfig, AlainThemeModule, VERSION, MenuService, ScrollService, LAYOUT, USER, APP, SettingsService, REP_MAX, ResponsiveService, enUS as en_US, zhCN as zh_CN, zhTW as zh_TW, trTR as tr_TR, plPL as pl_PL, DELON_LOCALE, DELON_LOCALE_SERVICE_PROVIDER_FACTORY, DelonLocaleService, DELON_LOCALE_SERVICE_PROVIDER, DelonLocaleModule, ModalHelper, DrawerHelper, BaseUrl, BaseHeaders, BaseApi, Path, Query, Body, Headers, OPTIONS, GET, POST, DELETE, PUT, HEAD, PATCH, JSONP, ALAIN_I18N_TOKEN_FACTORY as ɵa, I18nPipe as ɵb };
 
 //# sourceMappingURL=theme.js.map
