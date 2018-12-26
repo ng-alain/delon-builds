@@ -672,11 +672,11 @@
      * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
     /** @type {?} */
-    var LAYOUT = 'layout';
+    var LAYOUT_KEY = 'layout';
     /** @type {?} */
-    var USER = 'user';
+    var USER_KEY = 'user';
     /** @type {?} */
-    var APP = 'app';
+    var APP_KEY = 'app';
     var SettingsService = /** @class */ (function () {
         function SettingsService() {
             this.notify$ = new rxjs.Subject();
@@ -717,8 +717,8 @@
              * @return {?}
              */ function () {
                 if (!this._layout) {
-                    this._layout = __assign({ fixed: true, collapsed: false, boxed: false, lang: null }, this.get(LAYOUT));
-                    this.set(LAYOUT, this._layout);
+                    this._layout = __assign({ fixed: true, collapsed: false, boxed: false, lang: null }, this.get(LAYOUT_KEY));
+                    this.set(LAYOUT_KEY, this._layout);
                 }
                 return this._layout;
             },
@@ -730,8 +730,8 @@
              * @return {?}
              */ function () {
                 if (!this._app) {
-                    this._app = __assign({ year: new Date().getFullYear() }, this.get(APP));
-                    this.set(APP, this._app);
+                    this._app = __assign({ year: new Date().getFullYear() }, this.get(APP_KEY));
+                    this.set(APP_KEY, this._app);
                 }
                 return this._app;
             },
@@ -743,8 +743,8 @@
              * @return {?}
              */ function () {
                 if (!this._user) {
-                    this._user = __assign({}, this.get(USER));
-                    this.set(USER, this._user);
+                    this._user = __assign({}, this.get(USER_KEY));
+                    this.set(USER_KEY, this._user);
                 }
                 return this._user;
             },
@@ -781,7 +781,7 @@
                 else {
                     this._layout = name;
                 }
-                this.set(LAYOUT, this._layout);
+                this.set(LAYOUT_KEY, this._layout);
                 // tslint:disable-next-line:no-any
                 this.notify$.next(( /** @type {?} */({ type: 'layout', name: name, value: value })));
                 return true;
@@ -796,7 +796,7 @@
          */
             function (value) {
                 this._app = value;
-                this.set(APP, value);
+                this.set(APP_KEY, value);
                 this.notify$.next({ type: 'app', value: value });
                 return true;
             };
@@ -810,7 +810,7 @@
          */
             function (value) {
                 this._user = value;
-                this.set(USER, value);
+                this.set(USER_KEY, value);
                 this.notify$.next({ type: 'user', value: value });
                 return true;
             };
@@ -2762,9 +2762,6 @@
     exports.VERSION = VERSION;
     exports.MenuService = MenuService;
     exports.ScrollService = ScrollService;
-    exports.LAYOUT = LAYOUT;
-    exports.USER = USER;
-    exports.APP = APP;
     exports.SettingsService = SettingsService;
     exports.REP_MAX = REP_MAX;
     exports.ResponsiveService = ResponsiveService;

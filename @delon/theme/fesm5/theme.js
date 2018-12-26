@@ -582,11 +582,11 @@ var ScrollService = /** @class */ (function () {
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 /** @type {?} */
-var LAYOUT = 'layout';
+var LAYOUT_KEY = 'layout';
 /** @type {?} */
-var USER = 'user';
+var USER_KEY = 'user';
 /** @type {?} */
-var APP = 'app';
+var APP_KEY = 'app';
 var SettingsService = /** @class */ (function () {
     function SettingsService() {
         this.notify$ = new Subject();
@@ -628,8 +628,8 @@ var SettingsService = /** @class */ (function () {
          */
         function () {
             if (!this._layout) {
-                this._layout = __assign({ fixed: true, collapsed: false, boxed: false, lang: null }, this.get(LAYOUT));
-                this.set(LAYOUT, this._layout);
+                this._layout = __assign({ fixed: true, collapsed: false, boxed: false, lang: null }, this.get(LAYOUT_KEY));
+                this.set(LAYOUT_KEY, this._layout);
             }
             return this._layout;
         },
@@ -642,8 +642,8 @@ var SettingsService = /** @class */ (function () {
          */
         function () {
             if (!this._app) {
-                this._app = __assign({ year: new Date().getFullYear() }, this.get(APP));
-                this.set(APP, this._app);
+                this._app = __assign({ year: new Date().getFullYear() }, this.get(APP_KEY));
+                this.set(APP_KEY, this._app);
             }
             return this._app;
         },
@@ -656,8 +656,8 @@ var SettingsService = /** @class */ (function () {
          */
         function () {
             if (!this._user) {
-                this._user = __assign({}, this.get(USER));
-                this.set(USER, this._user);
+                this._user = __assign({}, this.get(USER_KEY));
+                this.set(USER_KEY, this._user);
             }
             return this._user;
         },
@@ -695,7 +695,7 @@ var SettingsService = /** @class */ (function () {
         else {
             this._layout = name;
         }
-        this.set(LAYOUT, this._layout);
+        this.set(LAYOUT_KEY, this._layout);
         // tslint:disable-next-line:no-any
         this.notify$.next((/** @type {?} */ ({ type: 'layout', name: name, value: value })));
         return true;
@@ -710,7 +710,7 @@ var SettingsService = /** @class */ (function () {
      */
     function (value) {
         this._app = value;
-        this.set(APP, value);
+        this.set(APP_KEY, value);
         this.notify$.next({ type: 'app', value: value });
         return true;
     };
@@ -724,7 +724,7 @@ var SettingsService = /** @class */ (function () {
      */
     function (value) {
         this._user = value;
-        this.set(USER, value);
+        this.set(USER_KEY, value);
         this.notify$.next({ type: 'user', value: value });
         return true;
     };
@@ -2622,7 +2622,7 @@ var AlainThemeModule = /** @class */ (function () {
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 /** @type {?} */
-var VERSION = new Version('7.0.0-rc.1-c6b6cbe');
+var VERSION = new Version('7.0.0-rc.1-9fd715a');
 
 /**
  * @fileoverview added by tsickle
@@ -2634,6 +2634,6 @@ var VERSION = new Version('7.0.0-rc.1-c6b6cbe');
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 
-export { WINDOW, preloaderFinished, TitleService, ALAIN_I18N_TOKEN, AlainI18NServiceFake, _HttpClient, DatePipe, CNCurrencyPipe, KeysPipe, YNPipe, HTMLPipe, URLPipe, AlainThemeConfig, AlainThemeModule, VERSION, MenuService, ScrollService, LAYOUT, USER, APP, SettingsService, REP_MAX, ResponsiveService, enUS as en_US, zhCN as zh_CN, zhTW as zh_TW, trTR as tr_TR, plPL as pl_PL, DELON_LOCALE, DELON_LOCALE_SERVICE_PROVIDER_FACTORY, DelonLocaleService, DELON_LOCALE_SERVICE_PROVIDER, DelonLocaleModule, ModalHelper, DrawerHelper, BaseUrl, BaseHeaders, BaseApi, Path, Query, Body, Headers, OPTIONS, GET, POST, DELETE, PUT, HEAD, PATCH, JSONP, ALAIN_I18N_TOKEN_FACTORY as ɵa, I18nPipe as ɵb };
+export { WINDOW, preloaderFinished, TitleService, ALAIN_I18N_TOKEN, AlainI18NServiceFake, _HttpClient, DatePipe, CNCurrencyPipe, KeysPipe, YNPipe, HTMLPipe, URLPipe, AlainThemeConfig, AlainThemeModule, VERSION, MenuService, ScrollService, SettingsService, REP_MAX, ResponsiveService, enUS as en_US, zhCN as zh_CN, zhTW as zh_TW, trTR as tr_TR, plPL as pl_PL, DELON_LOCALE, DELON_LOCALE_SERVICE_PROVIDER_FACTORY, DelonLocaleService, DELON_LOCALE_SERVICE_PROVIDER, DelonLocaleModule, ModalHelper, DrawerHelper, BaseUrl, BaseHeaders, BaseApi, Path, Query, Body, Headers, OPTIONS, GET, POST, DELETE, PUT, HEAD, PATCH, JSONP, ALAIN_I18N_TOKEN_FACTORY as ɵa, I18nPipe as ɵb };
 
 //# sourceMappingURL=theme.js.map

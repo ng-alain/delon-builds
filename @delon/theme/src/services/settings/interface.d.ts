@@ -1,31 +1,31 @@
 export interface App {
-    [key: string]: any;
-    /** Name for app */
     name?: string;
-    /** Description for app */
     description?: string;
+    year?: number;
+    [key: string]: any;
 }
 export interface User {
-    [key: string]: any;
-    /** Name for current user */
     name?: string;
-    /** Avatar for current user */
     avatar?: string;
-    /** Email for current user */
     email?: string;
+    [key: string]: any;
 }
 export interface Layout {
-    [key: string]: any;
-    /** Whether to fold menu */
+    /** 是否固定顶部菜单 */
+    fixed: boolean;
+    /** 是否折叠右边菜单 */
     collapsed: boolean;
-    /** Current language */
+    /** 是否固定宽度 */
+    boxed: boolean;
+    /** 语言环境 */
     lang: string;
-    /** Color weak */
-    colorWeak: boolean;
+    /** 当前主题 */
+    theme: string;
+    [key: string]: any;
 }
 export interface SettingsNotify {
     type: 'layout' | 'app' | 'user';
-    /** Update `key` name, limited `layout` type */
+    /** 更新 `key`，限 `layout` 有效 */
     name?: string;
     value: any;
 }
