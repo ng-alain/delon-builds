@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/portal'), require('@delon/util'), require('rxjs/operators'), require('rxjs'), require('@angular/cdk/overlay'), require('@angular/common'), require('@angular/core'), require('@angular/router'), require('@delon/theme'), require('ng-zorro-antd')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/reuse-tab', ['exports', '@angular/cdk/portal', '@delon/util', 'rxjs/operators', 'rxjs', '@angular/cdk/overlay', '@angular/common', '@angular/core', '@angular/router', '@delon/theme', 'ng-zorro-antd'], factory) :
-    (factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['reuse-tab'] = {}),global.ng.cdk.portal,global.delon.util,global.rxjs.operators,global.rxjs,global.ng.cdk.overlay,global.ng.common,global.ng.core,global.ng.router,global.delon.theme,global['ng-zorro-antd']));
-}(this, (function (exports,portal,util,operators,rxjs,overlay,common,i0,router,i1,ngZorroAntd) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/portal'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('@angular/cdk/overlay'), require('@angular/common'), require('@angular/core'), require('@angular/router'), require('@delon/theme'), require('ng-zorro-antd')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/reuse-tab', ['exports', '@angular/cdk/portal', '@delon/util', 'rxjs', 'rxjs/operators', '@angular/cdk/overlay', '@angular/common', '@angular/core', '@angular/router', '@delon/theme', 'ng-zorro-antd'], factory) :
+    (factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['reuse-tab'] = {}),global.ng.cdk.portal,global.delon.util,global.rxjs,global.rxjs.operators,global.ng.cdk.overlay,global.ng.common,global.ng.core,global.ng.router,global.delon.theme,global['ng-zorro-antd']));
+}(this, (function (exports,portal,util,rxjs,operators,overlay,common,i0,router,i1,ngZorroAntd) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -428,6 +428,7 @@
             this.injector = injector;
             this.menuService = menuService;
             this._max = 10;
+            this._keepingScroll = true;
             this._debug = false;
             this._mode = ReuseTabMatchMode.Menu;
             this._excludes = [];
@@ -435,6 +436,7 @@
             this._cached = [];
             this._titleCached = {};
             this._closableCached = {};
+            this.positionBuffer = [0, 0];
         }
         Object.defineProperty(ReuseTabService.prototype, "curUrl", {
             // #region public
@@ -496,6 +498,22 @@
              * @return {?}
              */ function (value) {
                 this._debug = value;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(ReuseTabService.prototype, "keepingScroll", {
+            get: /**
+             * @return {?}
+             */ function () {
+                return this._keepingScroll;
+            },
+            set: /**
+             * @param {?} value
+             * @return {?}
+             */ function (value) {
+                this._keepingScroll = value;
+                this.initScroll();
             },
             enumerable: true,
             configurable: true
@@ -997,11 +1015,7 @@
                     next = next.parent;
                 }
                 /** @type {?} */
-                var url = '/' +
-                    segments
-                        .filter(function (i) { return i; })
-                        .reverse()
-                        .join('/');
+                var url = '/' + segments.filter(function (i) { return i; }).reverse().join('/');
                 return url;
             };
         /**
@@ -1101,6 +1115,15 @@
                 console.warn.apply(console, __spread(args));
             };
         /**
+         * @return {?}
+         */
+        ReuseTabService.prototype.init = /**
+         * @return {?}
+         */
+            function () {
+                this.initScroll();
+            };
+        /**
          * @param {?} url
          * @return {?}
          */
@@ -1194,6 +1217,7 @@
                 var item = {
                     title: this.getTitle(url, _snapshot),
                     closable: this.getClosable(url, _snapshot),
+                    position: ( /** @type {?} */(this.positionBuffer.slice(0))),
                     url: url,
                     _snapshot: _snapshot,
                     _handle: _handle,
@@ -1212,6 +1236,7 @@
                     this._cached[idx] = item;
                 }
                 this.removeUrlBuffer = null;
+                this.positionBuffer = [0, 0];
                 this.di('#store', idx === -1 ? '[new]' : '[override]', url);
                 if (_handle && _handle.componentRef) {
                     this.runHook('_onReuseDestroy', url, _handle.componentRef);
@@ -1292,8 +1317,7 @@
                 if (!ret)
                     return false;
                 /** @type {?} */
-                var path = ( /** @type {?} */(((future.routeConfig && future.routeConfig.path) ||
-                    '')));
+                var path = ( /** @type {?} */(((future.routeConfig && future.routeConfig.path) || '')));
                 if (path.length > 0 && ~path.indexOf(':')) {
                     /** @type {?} */
                     var futureUrl = this.getUrl(future);
@@ -1305,15 +1329,77 @@
                 this.di('#shouldReuseRoute', ret, this.getUrl(curr) + "=>" + this.getUrl(future), future, curr);
                 return ret;
             };
+        // #region scroll
+        // #region scroll
         /**
          * @return {?}
          */
-        ReuseTabService.prototype.ngOnDestroy = /**
+        ReuseTabService.prototype.isValidScroll =
+            // #region scroll
+            /**
+             * @return {?}
+             */
+            function () {
+                /** @type {?} */
+                var routerConfig = this.injector.get(router.ROUTER_CONFIGURATION, ( /** @type {?} */({})));
+                return routerConfig.scrollPositionRestoration == null || routerConfig.scrollPositionRestoration === 'disabled';
+            };
+        Object.defineProperty(ReuseTabService.prototype, "vs", {
+            get: /**
+             * @return {?}
+             */ function () {
+                return this.injector.get(common.ViewportScroller);
+            },
+            enumerable: true,
+            configurable: true
+        });
+        /**
+         * @return {?}
+         */
+        ReuseTabService.prototype.initScroll = /**
          * @return {?}
          */
             function () {
+                var _this = this;
+                if (this._router$) {
+                    this._router$.unsubscribe();
+                }
+                /** @type {?} */
+                var router$$1 = this.injector.get(router.Router, null);
+                if (!this.keepingScroll || router$$1 == null) {
+                    return;
+                }
+                this._router$ = router$$1.events.pipe(operators.filter(function () { return _this.isValidScroll(); })).subscribe(function (e) {
+                    if (e instanceof router.NavigationStart) {
+                        _this.positionBuffer = _this.vs.getScrollPosition();
+                    }
+                    else if (e instanceof router.NavigationEnd) {
+                        /** @type {?} */
+                        var item = _this.get(_this.curUrl);
+                        if (item && item.position) {
+                            _this.vs.scrollToPosition(item.position);
+                        }
+                    }
+                });
+            };
+        // #endregion
+        // #endregion
+        /**
+         * @return {?}
+         */
+        ReuseTabService.prototype.ngOnDestroy =
+            // #endregion
+            /**
+             * @return {?}
+             */
+            function () {
+                var _a = this, _cachedChange = _a._cachedChange, _router$ = _a._router$;
+                this.clear();
                 this._cached = [];
-                this._cachedChange.unsubscribe();
+                _cachedChange.complete();
+                if (_router$) {
+                    _router$.unsubscribe();
+                }
             };
         ReuseTabService.decorators = [
             { type: i0.Injectable, args: [{ providedIn: 'root' },] }
@@ -1350,6 +1436,7 @@
             this.debug = false;
             this.allowClose = true;
             this.showCurrent = true;
+            this.keepingScroll = true;
             this.change = new i0.EventEmitter();
             this.close = new i0.EventEmitter();
             this.el = el.nativeElement;
@@ -1567,6 +1654,7 @@
              */
             function () {
                 this.genList();
+                this.srv.init();
             };
         /**
          * @param {?} changes
@@ -1583,6 +1671,8 @@
                     this.srv.excludes = this.excludes;
                 if (changes.mode)
                     this.srv.mode = this.mode;
+                if (changes.keepingScroll)
+                    this.srv.keepingScroll = this.keepingScroll;
                 this.srv.debug = this.debug;
                 this.cdr.detectChanges();
             };
@@ -1629,6 +1719,7 @@
             excludes: [{ type: i0.Input }],
             allowClose: [{ type: i0.Input }],
             showCurrent: [{ type: i0.Input }],
+            keepingScroll: [{ type: i0.Input }],
             change: [{ type: i0.Output }],
             close: [{ type: i0.Output }]
         };
@@ -1648,6 +1739,10 @@
             util.InputBoolean(),
             __metadata("design:type", Object)
         ], ReuseTabComponent.prototype, "showCurrent", void 0);
+        __decorate([
+            util.InputBoolean(),
+            __metadata("design:type", Object)
+        ], ReuseTabComponent.prototype, "keepingScroll", void 0);
         return ReuseTabComponent;
     }());
 

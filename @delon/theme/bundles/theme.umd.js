@@ -230,16 +230,14 @@
             configurable: true
         });
         /**
-         * @param {?} data
          * @param {?} callback
          * @return {?}
          */
         MenuService.prototype.visit = /**
-         * @param {?} data
          * @param {?} callback
          * @return {?}
          */
-            function (data, callback) {
+            function (callback) {
                 /** @type {?} */
                 var inFn = function (list, parentMenu, depth) {
                     var e_1, _a;
@@ -269,7 +267,7 @@
                         }
                     }
                 };
-                inFn(data, null, 0);
+                inFn(this.data, null, 0);
             };
         /**
          * @param {?} items
@@ -302,7 +300,7 @@
                 var i = 1;
                 /** @type {?} */
                 var shortcuts = [];
-                this.visit(this.data, function (item, parent, depth) {
+                this.visit(function (item, parent, depth) {
                     item.__id = i++;
                     item.__parent = parent;
                     item._depth = depth;
@@ -453,20 +451,18 @@
                 this._change$.next(this.data);
             };
         /**
-         * @param {?} data
          * @param {?} url
          * @param {?=} recursive
          * @param {?=} cb
          * @return {?}
          */
         MenuService.prototype.getHit = /**
-         * @param {?} data
          * @param {?} url
          * @param {?=} recursive
          * @param {?=} cb
          * @return {?}
          */
-            function (data, url, recursive, cb) {
+            function (url, recursive, cb) {
                 if (recursive === void 0) {
                     recursive = false;
                 }
@@ -476,7 +472,7 @@
                 /** @type {?} */
                 var item = null;
                 while (!item && url) {
-                    this.visit(data, function (i) {
+                    this.visit(function (i) {
                         if (cb) {
                             cb(i);
                         }
@@ -486,7 +482,10 @@
                     });
                     if (!recursive)
                         break;
-                    url = url.split('/').slice(0, -1).join('/');
+                    url = url
+                        .split('/')
+                        .slice(0, -1)
+                        .join('/');
                 }
                 return item;
             };
@@ -518,7 +517,7 @@
                 if (!url)
                     return;
                 /** @type {?} */
-                var findItem = this.getHit(this.data, url, recursive, function (i) {
+                var findItem = this.getHit(url, recursive, function (i) {
                     i._selected = false;
                     i._open = false;
                 });
@@ -558,7 +557,7 @@
                 /** @type {?} */
                 var ret = [];
                 /** @type {?} */
-                var item = this.getHit(this.data, url, recursive);
+                var item = this.getHit(url, recursive);
                 if (!item)
                     return ret;
                 do {

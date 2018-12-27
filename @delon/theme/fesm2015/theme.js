@@ -135,11 +135,10 @@ class MenuService {
         return this._change$.pipe(share());
     }
     /**
-     * @param {?} data
      * @param {?} callback
      * @return {?}
      */
-    visit(data, callback) {
+    visit(callback) {
         /** @type {?} */
         const inFn = (list, parentMenu, depth) => {
             for (const item of list) {
@@ -152,7 +151,7 @@ class MenuService {
                 }
             }
         };
-        inFn(data, null, 0);
+        inFn(this.data, null, 0);
     }
     /**
      * @param {?} items
@@ -172,7 +171,7 @@ class MenuService {
         let i = 1;
         /** @type {?} */
         const shortcuts = [];
-        this.visit(this.data, (item, parent, depth) => {
+        this.visit((item, parent, depth) => {
             item.__id = i++;
             item.__parent = parent;
             item._depth = depth;
@@ -297,17 +296,16 @@ class MenuService {
         this._change$.next(this.data);
     }
     /**
-     * @param {?} data
      * @param {?} url
      * @param {?=} recursive
      * @param {?=} cb
      * @return {?}
      */
-    getHit(data, url, recursive = false, cb = null) {
+    getHit(url, recursive = false, cb = null) {
         /** @type {?} */
         let item = null;
         while (!item && url) {
-            this.visit(data, i => {
+            this.visit(i => {
                 if (cb) {
                     cb(i);
                 }
@@ -317,7 +315,10 @@ class MenuService {
             });
             if (!recursive)
                 break;
-            url = url.split('/').slice(0, -1).join('/');
+            url = url
+                .split('/')
+                .slice(0, -1)
+                .join('/');
         }
         return item;
     }
@@ -333,7 +334,7 @@ class MenuService {
         if (!url)
             return;
         /** @type {?} */
-        let findItem = this.getHit(this.data, url, recursive, i => {
+        let findItem = this.getHit(url, recursive, i => {
             i._selected = false;
             i._open = false;
         });
@@ -357,7 +358,7 @@ class MenuService {
         /** @type {?} */
         const ret = [];
         /** @type {?} */
-        let item = this.getHit(this.data, url, recursive);
+        let item = this.getHit(url, recursive);
         if (!item)
             return ret;
         do {
@@ -2039,7 +2040,7 @@ AlainThemeModule.ctorParameters = () => [
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 /** @type {?} */
-const VERSION = new Version('7.0.0-rc.1-405deb7');
+const VERSION = new Version('7.0.0-rc.1-ff9a351');
 
 /**
  * @fileoverview added by tsickle

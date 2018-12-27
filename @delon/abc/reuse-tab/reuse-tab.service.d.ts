@@ -12,6 +12,7 @@ export declare class ReuseTabService implements OnDestroy {
     private injector;
     private menuService;
     private _max;
+    private _keepingScroll;
     private _debug;
     private _mode;
     private _excludes;
@@ -19,7 +20,9 @@ export declare class ReuseTabService implements OnDestroy {
     private _cached;
     private _titleCached;
     private _closableCached;
+    private _router$;
     private removeUrlBuffer;
+    private positionBuffer;
     /** 当前路由地址 */
     readonly curUrl: string;
     /** 允许最多复用多少个页面，取值范围 `2-100`，值发生变更时会强制关闭且忽略可关闭条件 */
@@ -28,6 +31,7 @@ export declare class ReuseTabService implements OnDestroy {
     mode: ReuseTabMatchMode;
     /** 设置Debug模式 */
     debug: boolean;
+    keepingScroll: boolean;
     /** 排除规则，限 `mode=URL` */
     excludes: RegExp[];
     /** 获取已缓存的路由 */
@@ -133,6 +137,7 @@ export declare class ReuseTabService implements OnDestroy {
     private destroy;
     private di;
     constructor(injector: Injector, menuService: MenuService);
+    init(): void;
     private getMenu;
     private runHook;
     private hasInValidRoute;
@@ -156,5 +161,8 @@ export declare class ReuseTabService implements OnDestroy {
      * 决定是否应该进行复用路由处理
      */
     shouldReuseRoute(future: ActivatedRouteSnapshot, curr: ActivatedRouteSnapshot): boolean;
+    private isValidScroll;
+    private readonly vs;
+    private initScroll;
     ngOnDestroy(): void;
 }
