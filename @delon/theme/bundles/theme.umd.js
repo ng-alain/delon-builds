@@ -230,14 +230,16 @@
             configurable: true
         });
         /**
+         * @param {?} data
          * @param {?} callback
          * @return {?}
          */
         MenuService.prototype.visit = /**
+         * @param {?} data
          * @param {?} callback
          * @return {?}
          */
-            function (callback) {
+            function (data, callback) {
                 /** @type {?} */
                 var inFn = function (list, parentMenu, depth) {
                     var e_1, _a;
@@ -267,7 +269,7 @@
                         }
                     }
                 };
-                inFn(this.data, null, 0);
+                inFn(data, null, 0);
             };
         /**
          * @param {?} items
@@ -300,7 +302,7 @@
                 var i = 1;
                 /** @type {?} */
                 var shortcuts = [];
-                this.visit(function (item, parent, depth) {
+                this.visit(this.data, function (item, parent, depth) {
                     item.__id = i++;
                     item.__parent = parent;
                     item._depth = depth;
@@ -451,18 +453,20 @@
                 this._change$.next(this.data);
             };
         /**
+         * @param {?} data
          * @param {?} url
          * @param {?=} recursive
          * @param {?=} cb
          * @return {?}
          */
         MenuService.prototype.getHit = /**
+         * @param {?} data
          * @param {?} url
          * @param {?=} recursive
          * @param {?=} cb
          * @return {?}
          */
-            function (url, recursive, cb) {
+            function (data, url, recursive, cb) {
                 if (recursive === void 0) {
                     recursive = false;
                 }
@@ -472,7 +476,7 @@
                 /** @type {?} */
                 var item = null;
                 while (!item && url) {
-                    this.visit(function (i) {
+                    this.visit(data, function (i) {
                         if (cb) {
                             cb(i);
                         }
@@ -482,10 +486,7 @@
                     });
                     if (!recursive)
                         break;
-                    url = url
-                        .split('/')
-                        .slice(0, -1)
-                        .join('/');
+                    url = url.split('/').slice(0, -1).join('/');
                 }
                 return item;
             };
@@ -517,7 +518,7 @@
                 if (!url)
                     return;
                 /** @type {?} */
-                var findItem = this.getHit(url, recursive, function (i) {
+                var findItem = this.getHit(this.data, url, recursive, function (i) {
                     i._selected = false;
                     i._open = false;
                 });
@@ -557,7 +558,7 @@
                 /** @type {?} */
                 var ret = [];
                 /** @type {?} */
-                var item = this.getHit(url, recursive);
+                var item = this.getHit(this.data, url, recursive);
                 if (!item)
                     return ret;
                 do {
@@ -672,11 +673,11 @@
      * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
     /** @type {?} */
-    var LAYOUT_KEY = 'layout';
+    var LAYOUT = 'layout';
     /** @type {?} */
-    var USER_KEY = 'user';
+    var USER = 'user';
     /** @type {?} */
-    var APP_KEY = 'app';
+    var APP = 'app';
     var SettingsService = /** @class */ (function () {
         function SettingsService() {
             this.notify$ = new rxjs.Subject();
@@ -717,8 +718,8 @@
              * @return {?}
              */ function () {
                 if (!this._layout) {
-                    this._layout = __assign({ fixed: true, collapsed: false, boxed: false, lang: null }, this.get(LAYOUT_KEY));
-                    this.set(LAYOUT_KEY, this._layout);
+                    this._layout = __assign({ fixed: true, collapsed: false, boxed: false, lang: null }, this.get(LAYOUT));
+                    this.set(LAYOUT, this._layout);
                 }
                 return this._layout;
             },
@@ -730,8 +731,8 @@
              * @return {?}
              */ function () {
                 if (!this._app) {
-                    this._app = __assign({ year: new Date().getFullYear() }, this.get(APP_KEY));
-                    this.set(APP_KEY, this._app);
+                    this._app = __assign({ year: new Date().getFullYear() }, this.get(APP));
+                    this.set(APP, this._app);
                 }
                 return this._app;
             },
@@ -743,8 +744,8 @@
              * @return {?}
              */ function () {
                 if (!this._user) {
-                    this._user = __assign({}, this.get(USER_KEY));
-                    this.set(USER_KEY, this._user);
+                    this._user = __assign({}, this.get(USER));
+                    this.set(USER, this._user);
                 }
                 return this._user;
             },
@@ -781,7 +782,7 @@
                 else {
                     this._layout = name;
                 }
-                this.set(LAYOUT_KEY, this._layout);
+                this.set(LAYOUT, this._layout);
                 // tslint:disable-next-line:no-any
                 this.notify$.next(( /** @type {?} */({ type: 'layout', name: name, value: value })));
                 return true;
@@ -796,7 +797,7 @@
          */
             function (value) {
                 this._app = value;
-                this.set(APP_KEY, value);
+                this.set(APP, value);
                 this.notify$.next({ type: 'app', value: value });
                 return true;
             };
@@ -810,7 +811,7 @@
          */
             function (value) {
                 this._user = value;
-                this.set(USER_KEY, value);
+                this.set(USER, value);
                 this.notify$.next({ type: 'user', value: value });
                 return true;
             };
@@ -2762,6 +2763,9 @@
     exports.VERSION = VERSION;
     exports.MenuService = MenuService;
     exports.ScrollService = ScrollService;
+    exports.LAYOUT = LAYOUT;
+    exports.USER = USER;
+    exports.APP = APP;
     exports.SettingsService = SettingsService;
     exports.REP_MAX = REP_MAX;
     exports.ResponsiveService = ResponsiveService;

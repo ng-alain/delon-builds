@@ -23101,8 +23101,17 @@ code {
   overflow-x: hidden;
   overflow-y: auto;
 }
+body,
+.scrollbar,
+.ant-dialog-wrap,
+.ant-drawer-body,
+.ant-drawer-wrapper-body,
+.ant-anchor-wrapper,
+textarea.ant-input {
+  scrollbar-color: rgba(0, 0, 0, 0.3) #6e6e6e;
+  scrollbar-width: thin;
+}
 body::-webkit-scrollbar,
-.nz-measure-scrollbar-placeholder::-webkit-scrollbar,
 .scrollbar::-webkit-scrollbar,
 .ant-dialog-wrap::-webkit-scrollbar,
 .ant-drawer-body::-webkit-scrollbar,
@@ -23113,7 +23122,6 @@ textarea.ant-input::-webkit-scrollbar {
   width: 6px;
 }
 body::-webkit-scrollbar-track,
-.nz-measure-scrollbar-placeholder::-webkit-scrollbar-track,
 .scrollbar::-webkit-scrollbar-track,
 .ant-dialog-wrap::-webkit-scrollbar-track,
 .ant-drawer-body::-webkit-scrollbar-track,
@@ -23123,7 +23131,6 @@ textarea.ant-input::-webkit-scrollbar-track {
   box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
 }
 body::-webkit-scrollbar-thumb,
-.nz-measure-scrollbar-placeholder::-webkit-scrollbar-thumb,
 .scrollbar::-webkit-scrollbar-thumb,
 .ant-dialog-wrap::-webkit-scrollbar-thumb,
 .ant-drawer-body::-webkit-scrollbar-thumb,
@@ -23385,16 +23392,30 @@ body {
   overflow-x: hidden;
   overflow-y: scroll;
   height: 100%;
-  transition: width 0.2s;
-  width: 220px;
+  -webkit-overflow-scrolling: touch;
+  -ms-scroll-chaining: chained;
+  -ms-content-zooming: zoom;
+  -ms-scroll-rails: none;
+  -ms-content-zoom-limit-min: 100%;
+  -ms-content-zoom-limit-max: 500%;
+  -ms-scroll-snap-type: proximity;
+  -ms-scroll-snap-points-x: snapList(100%, 200%, 300%, 400%, 500%);
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.alain-default__aside-inner::-webkit-scrollbar {
+  height: 0;
+  width: 0;
+}
+.alain-default__aside-inner::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 0 transparent;
+}
+.alain-default__aside-inner::-webkit-scrollbar-thumb {
+  background-color: transparent;
 }
 @media (min-width: 768px) {
   .alain-default__collapsed .alain-default__aside {
     width: 64px;
-  }
-  .alain-default__collapsed .alain-default__aside-inner {
-    transition: width 0.2s;
-    width: 84px;
   }
 }
 @media (max-width: 767px) {
@@ -24560,8 +24581,9 @@ g2-tag-cloud {
 .g2-card__meta-action {
   cursor: pointer;
   position: absolute;
-  top: 0;
+  top: 4px;
   right: 0;
+  line-height: 1;
 }
 .g2-card__avatar {
   position: relative;

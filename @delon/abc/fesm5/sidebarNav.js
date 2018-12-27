@@ -41,6 +41,16 @@ var SidebarNavComponent = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
+    Object.defineProperty(SidebarNavComponent.prototype, "_d", {
+        get: /**
+         * @return {?}
+         */
+        function () {
+            return this.menuSrv.menus;
+        },
+        enumerable: true,
+        configurable: true
+    });
     /**
      * @param {?} e
      * @return {?}
@@ -60,7 +70,7 @@ var SidebarNavComponent = /** @class */ (function () {
         var id = +(/** @type {?} */ (linkNode.dataset)).id;
         /** @type {?} */
         var item;
-        this.menuSrv.visit(function (i) {
+        this.menuSrv.visit(this._d, function (i) {
             if (!item && i.__id === id) {
                 item = i;
             }
@@ -224,7 +234,7 @@ var SidebarNavComponent = /** @class */ (function () {
      * @return {?}
      */
     function (item) {
-        this.menuSrv.visit(function (i, p) {
+        this.menuSrv.visit(this._d, function (i, p) {
             if (i !== item)
                 i._open = false;
         });
@@ -270,8 +280,8 @@ var SidebarNavComponent = /** @class */ (function () {
         this.bodyEl = doc.querySelector('body');
         menuSrv.openedByUrl(router.url);
         this.genFloatingContainer();
-        menuSrv.change.pipe(takeUntil(unsubscribe$)).subscribe(function (_) {
-            menuSrv.visit(function (i) {
+        menuSrv.change.pipe(takeUntil(unsubscribe$)).subscribe(function (data) {
+            menuSrv.visit(data, function (i) {
                 if (i._aclResult)
                     return;
                 if (_this.disabledAcl) {

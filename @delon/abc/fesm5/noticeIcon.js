@@ -1,7 +1,7 @@
 import { InputBoolean, InputNumber } from '@delon/util';
 import { __spread, __decorate, __metadata } from 'tslib';
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy, ChangeDetectorRef, ViewChild, NgModule } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy, ChangeDetectorRef, NgModule } from '@angular/core';
 import { DelonLocaleService, DelonLocaleModule } from '@delon/theme';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 
@@ -87,16 +87,6 @@ var NoticeIconComponent = /** @class */ (function () {
         this.popoverVisibleChange.emit(result);
     };
     /**
-     * @return {?}
-     */
-    NoticeIconComponent.prototype.fixCls = /**
-     * @return {?}
-     */
-    function () {
-        // TODO: https://github.com/NG-ZORRO/ng-zorro-antd/issues/2634
-        this.ddc.cdkOverlay.panelClass = ['header-dropdown', 'notice-icon'];
-    };
-    /**
      * @param {?} i
      * @return {?}
      */
@@ -152,7 +142,7 @@ var NoticeIconComponent = /** @class */ (function () {
     NoticeIconComponent.decorators = [
         { type: Component, args: [{
                     selector: 'notice-icon',
-                    template: "<ng-template #badgeTpl>\n  <nz-badge [nzCount]=\"count\" [ngClass]=\"btnClass\" [nzStyle]=\"{ 'box-shadow': 'none' }\">\n    <i nz-icon type=\"bell\" [ngClass]=\"btnIconClass\"></i>\n  </nz-badge>\n</ng-template>\n<div *ngIf=\"data?.length === 0\">\n  <ng-template [ngTemplateOutlet]=\"badgeTpl\"></ng-template>\n</div>\n<nz-dropdown #dd *ngIf=\"data?.length > 0\" [nzVisible]=\"popoverVisible\" (nzVisibleChange)=\"onVisibleChange($event)\"\n  nzTrigger=\"click\" nzPlacement=\"bottomRight\">\n  <div nz-dropdown (click)=\"fixCls()\">\n    <ng-template [ngTemplateOutlet]=\"badgeTpl\"></ng-template>\n  </div>\n  <nz-spin [nzSpinning]=\"loading\" [nzDelay]=\"0\">\n    <nz-tabset nzSelectedIndex=\"0\">\n      <nz-tab *ngFor=\"let i of data\" [nzTitle]=\"i.title\">\n        <notice-icon-tab [locale]=\"locale\" [data]=\"i\" (select)=\"onSelect($event)\" (clear)=\"onClear($event)\"></notice-icon-tab>\n      </nz-tab>\n    </nz-tabset>\n  </nz-spin>\n</nz-dropdown>\n",
+                    template: "<ng-template #badgeTpl>\n  <nz-badge [nzCount]=\"count\" [ngClass]=\"btnClass\" [nzStyle]=\"{ 'box-shadow': 'none' }\">\n    <i nz-icon type=\"bell\" [ngClass]=\"btnIconClass\"></i>\n  </nz-badge>\n</ng-template>\n<div *ngIf=\"data?.length === 0\">\n  <ng-template [ngTemplateOutlet]=\"badgeTpl\"></ng-template>\n</div>\n<nz-dropdown *ngIf=\"data?.length > 0\" [nzVisible]=\"popoverVisible\" (nzVisibleChange)=\"onVisibleChange($event)\"\n  nzTrigger=\"click\" nzPlacement=\"bottomRight\" [nzOverlayClassName]=\"['header-dropdown', 'notice-icon']\">\n  <div nz-dropdown>\n    <ng-template [ngTemplateOutlet]=\"badgeTpl\"></ng-template>\n  </div>\n  <nz-spin [nzSpinning]=\"loading\" [nzDelay]=\"0\">\n    <nz-tabset nzSelectedIndex=\"0\">\n      <nz-tab *ngFor=\"let i of data\" [nzTitle]=\"i.title\">\n        <notice-icon-tab [locale]=\"locale\" [data]=\"i\" (select)=\"onSelect($event)\" (clear)=\"onClear($event)\"></notice-icon-tab>\n      </nz-tab>\n    </nz-tabset>\n  </nz-spin>\n</nz-dropdown>\n",
                     host: { '[class.notice-icon__btn]': 'true' },
                     changeDetection: ChangeDetectionStrategy.OnPush
                 }] }
@@ -171,8 +161,7 @@ var NoticeIconComponent = /** @class */ (function () {
         btnIconClass: [{ type: Input }],
         select: [{ type: Output }],
         clear: [{ type: Output }],
-        popoverVisibleChange: [{ type: Output }],
-        ddc: [{ type: ViewChild, args: ['dd',] }]
+        popoverVisibleChange: [{ type: Output }]
     };
     __decorate([
         InputNumber(),
