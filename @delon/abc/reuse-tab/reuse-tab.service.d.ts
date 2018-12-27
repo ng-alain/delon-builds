@@ -1,7 +1,7 @@
 import { Injector, OnDestroy } from '@angular/core';
 import { ActivatedRouteSnapshot } from '@angular/router';
-import { MenuService } from '@delon/theme';
 import { Observable } from 'rxjs';
+import { MenuService } from '@delon/theme';
 import { ReuseTabCached, ReuseTabMatchMode, ReuseTabNotify, ReuseTitle } from './reuse-tab.interfaces';
 /**
  * 路由复用类，提供复用所需要一些基本接口
@@ -32,6 +32,7 @@ export declare class ReuseTabService implements OnDestroy {
     /** 设置Debug模式 */
     debug: boolean;
     keepingScroll: boolean;
+    keepingScrollContainer: Element;
     /** 排除规则，限 `mode=URL` */
     excludes: RegExp[];
     /** 获取已缓存的路由 */
@@ -162,7 +163,7 @@ export declare class ReuseTabService implements OnDestroy {
      */
     shouldReuseRoute(future: ActivatedRouteSnapshot, curr: ActivatedRouteSnapshot): boolean;
     private isValidScroll;
-    private readonly vs;
+    private readonly ss;
     private initScroll;
     ngOnDestroy(): void;
 }

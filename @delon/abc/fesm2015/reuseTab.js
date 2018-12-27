@@ -4,10 +4,10 @@ import { InputBoolean, InputNumber } from '@delon/util';
 import { debounceTime, filter } from 'rxjs/operators';
 import { Subject, Subscription, BehaviorSubject, combineLatest } from 'rxjs';
 import { ConnectionPositionPair, Overlay, OverlayModule } from '@angular/cdk/overlay';
-import { ViewportScroller, CommonModule } from '@angular/common';
+import { DOCUMENT, CommonModule } from '@angular/common';
 import { Component, EventEmitter, HostListener, Input, Output, ElementRef, Injectable, Directive, Injector, NgModule, ChangeDetectionStrategy, ChangeDetectorRef, Renderer2, Optional, Inject, defineInjectable, inject, INJECTOR } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, NavigationStart, Router, ROUTER_CONFIGURATION, RouterModule } from '@angular/router';
-import { DelonLocaleService, MenuService, DelonLocaleModule, ALAIN_I18N_TOKEN } from '@delon/theme';
+import { DelonLocaleService, MenuService, ScrollService, DelonLocaleModule, ALAIN_I18N_TOKEN } from '@delon/theme';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 
 /**
@@ -910,8 +910,8 @@ class ReuseTabService {
     /**
      * @return {?}
      */
-    get vs() {
-        return this.injector.get(ViewportScroller);
+    get ss() {
+        return this.injector.get(ScrollService);
     }
     /**
      * @return {?}
@@ -927,13 +927,13 @@ class ReuseTabService {
         }
         this._router$ = router.events.subscribe(e => {
             if (e instanceof NavigationStart) {
-                this.positionBuffer[this.curUrl] = this.vs.getScrollPosition();
+                this.positionBuffer[this.curUrl] = this.ss.getScrollPosition(this.keepingScrollContainer);
             }
             else if (e instanceof NavigationEnd) {
                 /** @type {?} */
                 const item = this.get(this.curUrl);
                 if (item && item.position) {
-                    this.vs.scrollToPosition(item.position);
+                    this.ss.scrollToPosition(this.keepingScrollContainer, item.position);
                 }
             }
         });
@@ -976,14 +976,16 @@ class ReuseTabComponent {
      * @param {?} route
      * @param {?} render
      * @param {?} i18nSrv
+     * @param {?} doc
      */
-    constructor(el, srv, cdr, router, route, render, i18nSrv) {
+    constructor(el, srv, cdr, router, route, render, i18nSrv, doc) {
         this.srv = srv;
         this.cdr = cdr;
         this.router = router;
         this.route = route;
         this.render = render;
         this.i18nSrv = i18nSrv;
+        this.doc = doc;
         this.list = [];
         this.pos = 0;
         // #region fields
@@ -1003,6 +1005,13 @@ class ReuseTabComponent {
                 .pipe(debounceTime(100))
                 .subscribe(() => this.genList());
         }
+    }
+    /**
+     * @param {?} value
+     * @return {?}
+     */
+    set keepingScrollContainer(value) {
+        this._keepingScrollContainer = typeof value === 'string' ? this.doc.querySelector(value) : value;
     }
     /**
      * @param {?} title
@@ -1174,8 +1183,10 @@ class ReuseTabComponent {
             this.srv.excludes = this.excludes;
         if (changes.mode)
             this.srv.mode = this.mode;
-        if (changes.keepingScroll)
+        if (changes.keepingScroll) {
             this.srv.keepingScroll = this.keepingScroll;
+            this.srv.keepingScrollContainer = this._keepingScrollContainer;
+        }
         this.srv.debug = this.debug;
         this.cdr.detectChanges();
     }
@@ -1208,7 +1219,8 @@ ReuseTabComponent.ctorParameters = () => [
     { type: Router },
     { type: ActivatedRoute },
     { type: Renderer2 },
-    { type: undefined, decorators: [{ type: Optional }, { type: Inject, args: [ALAIN_I18N_TOKEN,] }] }
+    { type: undefined, decorators: [{ type: Optional }, { type: Inject, args: [ALAIN_I18N_TOKEN,] }] },
+    { type: undefined, decorators: [{ type: Inject, args: [DOCUMENT,] }] }
 ];
 ReuseTabComponent.propDecorators = {
     mode: [{ type: Input }],
@@ -1219,6 +1231,7 @@ ReuseTabComponent.propDecorators = {
     allowClose: [{ type: Input }],
     showCurrent: [{ type: Input }],
     keepingScroll: [{ type: Input }],
+    keepingScrollContainer: [{ type: Input }],
     change: [{ type: Output }],
     close: [{ type: Output }]
 };

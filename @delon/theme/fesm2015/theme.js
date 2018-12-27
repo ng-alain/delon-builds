@@ -400,6 +400,28 @@ class ScrollService {
         this.doc = doc;
     }
     /**
+     * 获取滚动条位置
+     * @param {?=} element 指定元素，默认 `window`
+     * @return {?}
+     */
+    getScrollPosition(element) {
+        if (element) {
+            return [element.scrollLeft, element.scrollTop];
+        }
+        else {
+            return [this.win.pageXOffset, this.win.pageYOffset];
+        }
+    }
+    /**
+     * 设置滚动条位置
+     * @param {?} element 指定元素
+     * @param {?} position
+     * @return {?}
+     */
+    scrollToPosition(element, position) {
+        (element || this.win).scrollTo(position[0], position[1]);
+    }
+    /**
      * 设置滚动条至指定元素
      * @param {?=} element 指定元素，默认 `document.body`
      * @param {?=} topOffset 偏移值，默认 `0`
@@ -2040,7 +2062,7 @@ AlainThemeModule.ctorParameters = () => [
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 /** @type {?} */
-const VERSION = new Version('7.0.0-rc.1-06f0cd4');
+const VERSION = new Version('7.0.0-rc.1-329f047');
 
 /**
  * @fileoverview added by tsickle

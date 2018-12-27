@@ -1343,11 +1343,11 @@
                 var routerConfig = this.injector.get(router.ROUTER_CONFIGURATION, ( /** @type {?} */({})));
                 return routerConfig.scrollPositionRestoration == null || routerConfig.scrollPositionRestoration === 'disabled';
             };
-        Object.defineProperty(ReuseTabService.prototype, "vs", {
+        Object.defineProperty(ReuseTabService.prototype, "ss", {
             get: /**
              * @return {?}
              */ function () {
-                return this.injector.get(common.ViewportScroller);
+                return this.injector.get(i1.ScrollService);
             },
             enumerable: true,
             configurable: true
@@ -1370,13 +1370,13 @@
                 }
                 this._router$ = router$$1.events.subscribe(function (e) {
                     if (e instanceof router.NavigationStart) {
-                        _this.positionBuffer[_this.curUrl] = _this.vs.getScrollPosition();
+                        _this.positionBuffer[_this.curUrl] = _this.ss.getScrollPosition(_this.keepingScrollContainer);
                     }
                     else if (e instanceof router.NavigationEnd) {
                         /** @type {?} */
                         var item = _this.get(_this.curUrl);
                         if (item && item.position) {
-                            _this.vs.scrollToPosition(item.position);
+                            _this.ss.scrollToPosition(_this.keepingScrollContainer, item.position);
                         }
                     }
                 });
@@ -1420,7 +1420,7 @@
      */
     var ReuseTabComponent = /** @class */ (function () {
         // #endregion
-        function ReuseTabComponent(el, srv, cdr, router$$1, route, render, i18nSrv) {
+        function ReuseTabComponent(el, srv, cdr, router$$1, route, render, i18nSrv, doc) {
             var _this = this;
             this.srv = srv;
             this.cdr = cdr;
@@ -1428,6 +1428,7 @@
             this.route = route;
             this.render = render;
             this.i18nSrv = i18nSrv;
+            this.doc = doc;
             this.list = [];
             this.pos = 0;
             // #region fields
@@ -1451,6 +1452,16 @@
                     .subscribe(function () { return _this.genList(); });
             }
         }
+        Object.defineProperty(ReuseTabComponent.prototype, "keepingScrollContainer", {
+            set: /**
+             * @param {?} value
+             * @return {?}
+             */ function (value) {
+                this._keepingScrollContainer = typeof value === 'string' ? this.doc.querySelector(value) : value;
+            },
+            enumerable: true,
+            configurable: true
+        });
         /**
          * @param {?} title
          * @return {?}
@@ -1670,8 +1681,10 @@
                     this.srv.excludes = this.excludes;
                 if (changes.mode)
                     this.srv.mode = this.mode;
-                if (changes.keepingScroll)
+                if (changes.keepingScroll) {
                     this.srv.keepingScroll = this.keepingScroll;
+                    this.srv.keepingScrollContainer = this._keepingScrollContainer;
+                }
                 this.srv.debug = this.debug;
                 this.cdr.detectChanges();
             };
@@ -1707,7 +1720,8 @@
                 { type: router.Router },
                 { type: router.ActivatedRoute },
                 { type: i0.Renderer2 },
-                { type: undefined, decorators: [{ type: i0.Optional }, { type: i0.Inject, args: [i1.ALAIN_I18N_TOKEN,] }] }
+                { type: undefined, decorators: [{ type: i0.Optional }, { type: i0.Inject, args: [i1.ALAIN_I18N_TOKEN,] }] },
+                { type: undefined, decorators: [{ type: i0.Inject, args: [common.DOCUMENT,] }] }
             ];
         };
         ReuseTabComponent.propDecorators = {
@@ -1719,6 +1733,7 @@
             allowClose: [{ type: i0.Input }],
             showCurrent: [{ type: i0.Input }],
             keepingScroll: [{ type: i0.Input }],
+            keepingScrollContainer: [{ type: i0.Input }],
             change: [{ type: i0.Output }],
             close: [{ type: i0.Output }]
         };

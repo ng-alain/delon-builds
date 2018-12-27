@@ -601,6 +601,47 @@
             this.doc = doc;
         }
         /**
+         * 获取滚动条位置
+         * @param element 指定元素，默认 `window`
+         */
+        /**
+         * 获取滚动条位置
+         * @param {?=} element 指定元素，默认 `window`
+         * @return {?}
+         */
+        ScrollService.prototype.getScrollPosition = /**
+         * 获取滚动条位置
+         * @param {?=} element 指定元素，默认 `window`
+         * @return {?}
+         */
+            function (element) {
+                if (element) {
+                    return [element.scrollLeft, element.scrollTop];
+                }
+                else {
+                    return [this.win.pageXOffset, this.win.pageYOffset];
+                }
+            };
+        /**
+         * 设置滚动条位置
+         * @param element 指定元素
+         */
+        /**
+         * 设置滚动条位置
+         * @param {?} element 指定元素
+         * @param {?} position
+         * @return {?}
+         */
+        ScrollService.prototype.scrollToPosition = /**
+         * 设置滚动条位置
+         * @param {?} element 指定元素
+         * @param {?} position
+         * @return {?}
+         */
+            function (element, position) {
+                (element || this.win).scrollTo(position[0], position[1]);
+            };
+        /**
          * 设置滚动条至指定元素
          * @param element 指定元素，默认 `document.body`
          * @param topOffset 偏移值，默认 `0`
