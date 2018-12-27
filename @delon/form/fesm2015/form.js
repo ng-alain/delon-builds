@@ -4,8 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { DelonLocaleService, DelonLocaleModule } from '@delon/theme';
 import format from 'date-fns/format';
 import { of, combineLatest, BehaviorSubject, Observable, Subject } from 'rxjs';
-import { map, distinctUntilChanged, filter, takeUntil, debounceTime, flatMap, startWith, tap } from 'rxjs/operators';
-import { Injectable, Component, Input, Directive, TemplateRef, ChangeDetectorRef, HostBinding, Inject, Injector, ViewChild, ViewContainerRef, ComponentFactoryResolver, EventEmitter, ChangeDetectionStrategy, Output, ElementRef, Renderer2, defineInjectable, NgModule } from '@angular/core';
+import { map, takeWhile, distinctUntilChanged, filter, debounceTime, flatMap, startWith, tap } from 'rxjs/operators';
+import { Injectable, Component, Input, Directive, TemplateRef, ChangeDetectorRef, HostBinding, Inject, ViewChild, ViewContainerRef, ComponentFactoryResolver, EventEmitter, ChangeDetectionStrategy, Output, ElementRef, Renderer2, defineInjectable, NgModule } from '@angular/core';
 import { deepCopy, InputBoolean, InputNumber, deepGet, DelonUtilModule } from '@delon/util';
 import { NzTreeNode, NzModalService, NgZorroAntdModule } from 'ng-zorro-antd';
 
@@ -347,7 +347,7 @@ function getData(schema, ui, formData, asyncArgs) {
     if (typeof ui.asyncData === 'function') {
         return ui
             .asyncData(asyncArgs)
-            .pipe(map(list => getEnum(list, formData, schema.readOnly)));
+            .pipe(takeWhile(() => ui.__destroy !== true), map(list => getEnum(list, formData, schema.readOnly)));
     }
     return of(getCopyEnum(schema.enum, formData, schema.readOnly));
 }
@@ -1891,7 +1891,6 @@ class SFItemComponent {
     constructor(widgetFactory, terminator) {
         this.widgetFactory = widgetFactory;
         this.terminator = terminator;
-        this.unsubscribe$ = new Subject();
         this.widget = null;
     }
     /**
@@ -1915,7 +1914,9 @@ class SFItemComponent {
      * @return {?}
      */
     ngOnInit() {
-        this.terminator.onDestroy.subscribe(() => this.ngOnDestroy());
+        this.terminator.onDestroy.subscribe(() => {
+            this.ngOnDestroy();
+        });
     }
     /**
      * @return {?}
@@ -1928,9 +1929,7 @@ class SFItemComponent {
      * @return {?}
      */
     ngOnDestroy() {
-        const { unsubscribe$ } = this;
-        unsubscribe$.next();
-        unsubscribe$.complete();
+        this.formProperty.ui.__destroy = true;
         this.ref.destroy();
     }
 }
@@ -2094,14 +2093,10 @@ SFTemplateDirective.propDecorators = {
 class Widget {
     /**
      * @param {?} cd
-     * @param {?} injector
-     * @param {?=} sfItemComp
      * @param {?=} sfComp
      */
-    constructor(cd, injector, sfItemComp, sfComp) {
+    constructor(cd, sfComp) {
         this.cd = cd;
-        this.injector = injector;
-        this.sfItemComp = sfItemComp;
         this.sfComp = sfComp;
         this.showError = false;
         this.id = '';
@@ -2126,7 +2121,7 @@ class Widget {
      */
     ngAfterViewInit() {
         this.formProperty.errorsChanges
-            .pipe(takeUntil(this.sfItemComp.unsubscribe$), filter(w => w != null))
+            .pipe(filter(w => w != null))
             .subscribe((errors) => {
             if (this.ui.debug)
                 di('errorsChanges', this.formProperty.path, errors);
@@ -2134,7 +2129,8 @@ class Widget {
             if (this.firstVisual) {
                 this.showError = errors.length > 0;
                 this.error = this.showError ? errors[0].message : '';
-                this.cd.detectChanges();
+                if (this.ui.__destroy !== true)
+                    this.cd.detectChanges();
             }
             this.firstVisual = true;
         });
@@ -2156,23 +2152,15 @@ class Widget {
         return this.formProperty.value;
     }
     /**
-     * @param {?=} onlySelf
      * @return {?}
      */
-    detectChanges(onlySelf = false) {
-        if (onlySelf) {
-            this.cd.markForCheck();
-        }
-        else {
-            this.formProperty.root.widget.cd.markForCheck();
-        }
+    detectChanges() {
+        this.formProperty.root.widget.cd.markForCheck();
     }
 }
 /** @nocollapse */
 Widget.ctorParameters = () => [
     { type: ChangeDetectorRef, decorators: [{ type: Inject, args: [ChangeDetectorRef,] }] },
-    { type: Injector, decorators: [{ type: Inject, args: [Injector,] }] },
-    { type: SFItemComponent, decorators: [{ type: Inject, args: [SFItemComponent,] }] },
     { type: SFComponent, decorators: [{ type: Inject, args: [SFComponent,] }] }
 ];
 Widget.propDecorators = {
@@ -2196,7 +2184,7 @@ class ArrayLayoutWidget extends Widget {
      */
     ngAfterViewInit() {
         this.formProperty.errorsChanges
-            .pipe(takeUntil(this.sfItemComp.unsubscribe$))
+            .pipe(filter(() => this.ui.__destroy !== true))
             .subscribe(() => this.cd.detectChanges());
     }
 }
@@ -2211,7 +2199,7 @@ class ObjectLayoutWidget extends Widget {
      */
     ngAfterViewInit() {
         this.formProperty.errorsChanges
-            .pipe(takeUntil(this.sfItemComp.unsubscribe$))
+            .pipe(filter(() => this.ui.__destroy !== true))
             .subscribe(() => this.cd.detectChanges());
     }
 }
@@ -2307,7 +2295,7 @@ class AutoCompleteWidget extends ControlWidget {
         const orgTime = +(this.ui.debounceTime || 0);
         /** @type {?} */
         const time = Math.max(0, this.isAsync ? Math.max(50, orgTime) : orgTime);
-        this.list = this.formProperty.valueChanges.pipe(takeUntil(this.sfItemComp.unsubscribe$), debounceTime(time), startWith(''), flatMap(input => this.isAsync ? this.ui.asyncData(input) : this.filterData(input)), map(res => getEnum(res, null, this.schema.readOnly)));
+        this.list = this.formProperty.valueChanges.pipe(debounceTime(time), startWith(''), flatMap(input => this.isAsync ? this.ui.asyncData(input) : this.filterData(input)), map(res => getEnum(res, null, this.schema.readOnly)));
     }
     /**
      * @param {?} value
@@ -2424,7 +2412,7 @@ class CascaderWidget extends ControlWidget {
      * @return {?}
      */
     reset(value) {
-        getData(this.schema, {}, this.formProperty.formData).subscribe(list => {
+        getData(this.schema, this.ui, this.formProperty.formData).subscribe(list => {
             this.data = list;
             this.detectChanges();
         });
@@ -2478,42 +2466,36 @@ CascaderWidget.decorators = [
     { type: Component, args: [{
                 selector: 'sf-cascader',
                 template: `
-    <sf-item-wrap
-      [id]="id"
-      [schema]="schema"
-      [ui]="ui"
-      [showError]="showError"
-      [error]="error"
-      [showTitle]="schema.title"
-    >
-      <nz-cascader
-        [nzDisabled]="disabled"
-        [nzSize]="ui.size"
-        [ngModel]="value"
-        (ngModelChange)="_change($event)"
-        [nzOptions]="data"
-        [nzAllowClear]="ui.allowClear"
-        [nzAutoFocus]="ui.autoFocus"
-        [nzChangeOn]="ui.changeOn"
-        [nzChangeOnSelect]="ui.changeOnSelect"
-        [nzColumnClassName]="ui.columnClassName"
-        [nzExpandTrigger]="ui.expandTrigger"
-        [nzMenuClassName]="ui.menuClassName"
-        [nzMenuStyle]="ui.menuStyle"
-        [nzLabelProperty]="ui.labelProperty || 'label'"
-        [nzValueProperty]="ui.valueProperty || 'value'"
-        [nzLoadData]="loadData"
-        [nzPlaceHolder]="ui.placeholder"
-        [nzShowArrow]="showArrow"
-        [nzShowInput]="showInput"
-        [nzShowSearch]="ui.showSearch"
-        (nzClear)="_clear($event)"
-        (nzVisibleChange)="_visibleChange($event)"
-        (nzSelect)="_select($event)"
-        (nzSelectionChange)="_selectionChange($event)"
-      >
-      </nz-cascader>
-    </sf-item-wrap>
+  <sf-item-wrap [id]="id" [schema]="schema" [ui]="ui" [showError]="showError" [error]="error" [showTitle]="schema.title">
+
+    <nz-cascader
+      [nzDisabled]="disabled"
+      [nzSize]="ui.size"
+      [ngModel]="value"
+      (ngModelChange)="_change($event)"
+      [nzOptions]="data"
+      [nzAllowClear]="ui.allowClear"
+      [nzAutoFocus]="ui.autoFocus"
+      [nzChangeOn]="ui.changeOn"
+      [nzChangeOnSelect]="ui.changeOnSelect"
+      [nzColumnClassName]="ui.columnClassName"
+      [nzExpandTrigger]="ui.expandTrigger"
+      [nzMenuClassName]="ui.menuClassName"
+      [nzMenuStyle]="ui.menuStyle"
+      [nzLabelProperty]="ui.labelProperty || 'label'"
+      [nzValueProperty]="ui.valueProperty || 'value'"
+      [nzLoadData]="loadData"
+      [nzPlaceHolder]="ui.placeholder"
+      [nzShowArrow]="showArrow"
+      [nzShowInput]="showInput"
+      [nzShowSearch]="ui.showSearch"
+      (nzClear)="_clear($event)"
+      (nzVisibleChange)="_visibleChange($event)"
+      (nzSelect)="_select($event)"
+      (nzSelectionChange)="_selectionChange($event)">
+    </nz-cascader>
+
+  </sf-item-wrap>
   `
             }] }
 ];
@@ -2792,13 +2774,11 @@ class MentionWidget extends ControlWidget {
      * @return {?}
      */
     ngOnInit() {
-        const { valueWith, notFoundContent, placement, prefix, autosize } = this.ui;
         this.i = {
-            valueWith: valueWith || (item => item.label),
-            notFoundContent: notFoundContent || '无匹配结果，轻敲空格完成输入',
-            placement: placement || 'bottom',
-            prefix: prefix || '@',
-            autosize: typeof autosize === 'undefined' ? true : this.ui.autosize,
+            valueWith: this.ui.valueWith || (item => item.label),
+            notFoundContent: this.ui.notFoundContent || '无匹配结果，轻敲空格完成输入',
+            placement: this.ui.placement || 'bottom',
+            prefix: this.ui.prefix || '@',
         };
         /** @type {?} */
         const min = typeof this.schema.minimum !== 'undefined' ? this.schema.minimum : -1;
@@ -2893,7 +2873,7 @@ MentionWidget.decorators = [
             (ngModelChange)="setValue($event)"
             [attr.maxLength]="schema.maxLength || null"
             [attr.placeholder]="ui.placeholder"
-            [nzAutosize]="i.autosize">
+            [nzAutosize]="ui.autosize">
           </textarea>
         </ng-container>
 
@@ -3851,12 +3831,17 @@ TreeSelectWidget.decorators = [
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 class UploadWidget extends ControlWidget {
-    constructor() {
-        super(...arguments);
+    /**
+     * @param {?} cd
+     * @param {?} modalSrv
+     */
+    constructor(cd, modalSrv) {
+        super(cd);
+        this.modalSrv = modalSrv;
         this.fileList = [];
         this.btnType = '';
         this.handlePreview = (file) => {
-            this.injector.get(NzModalService)
+            this.modalSrv
                 .create({
                 nzContent: `<img src="${file.url || file.thumbUrl}" class="img-fluid" />`,
                 nzFooter: null,
@@ -3868,21 +3853,20 @@ class UploadWidget extends ControlWidget {
      * @return {?}
      */
     ngOnInit() {
-        const { type, text, action, accept, limit, fileSize, fileType, listType, multiple, name, showUploadList, withCredentials, resReName } = this.ui;
         this.i = {
-            type: type || 'select',
-            text: text || '点击上传',
-            action: action || '',
-            accept: accept || '',
-            limit: limit == null ? 0 : +limit,
-            size: fileSize == null ? 0 : +fileSize,
-            fileType: fileType || '',
-            listType: listType || 'text',
-            multiple: toBool(multiple, false),
-            name: name || 'file',
-            showUploadList: toBool(showUploadList, true),
-            withCredentials: toBool(withCredentials, false),
-            resReName: (resReName || '').split('.'),
+            type: this.ui.type || 'select',
+            text: this.ui.text || '点击上传',
+            action: this.ui.action || '',
+            accept: this.ui.accept || '',
+            limit: this.ui.limit == null ? 0 : +this.ui.limit,
+            size: this.ui.fileSize == null ? 0 : +this.ui.fileSize,
+            fileType: this.ui.fileType || '',
+            listType: this.ui.listType || 'text',
+            multiple: toBool(this.ui.multiple, false),
+            name: this.ui.name || 'file',
+            showUploadList: toBool(this.ui.showUploadList, true),
+            withCredentials: toBool(this.ui.withCredentials, false),
+            resReName: (this.ui.resReName || '').split('.'),
         };
         if (this.i.listType === 'picture-card')
             this.btnType = 'plus';
@@ -3971,6 +3955,11 @@ UploadWidget.decorators = [
   </sf-item-wrap>
   `
             }] }
+];
+/** @nocollapse */
+UploadWidget.ctorParameters = () => [
+    { type: ChangeDetectorRef },
+    { type: NzModalService }
 ];
 
 /**

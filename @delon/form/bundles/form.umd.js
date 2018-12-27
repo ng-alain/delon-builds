@@ -483,7 +483,7 @@
         if (typeof ui.asyncData === 'function') {
             return ui
                 .asyncData(asyncArgs)
-                .pipe(operators.map(function (list) { return getEnum(list, formData, schema.readOnly); }));
+                .pipe(operators.takeWhile(function () { return ui.__destroy !== true; }), operators.map(function (list) { return getEnum(list, formData, schema.readOnly); }));
         }
         return rxjs.of(getCopyEnum(schema.enum, formData, schema.readOnly));
     }
@@ -2462,7 +2462,6 @@
         function SFItemComponent(widgetFactory, terminator) {
             this.widgetFactory = widgetFactory;
             this.terminator = terminator;
-            this.unsubscribe$ = new rxjs.Subject();
             this.widget = null;
         }
         /**
@@ -2494,7 +2493,9 @@
          */
             function () {
                 var _this = this;
-                this.terminator.onDestroy.subscribe(function () { return _this.ngOnDestroy(); });
+                this.terminator.onDestroy.subscribe(function () {
+                    _this.ngOnDestroy();
+                });
             };
         /**
          * @return {?}
@@ -2513,9 +2514,7 @@
          * @return {?}
          */
             function () {
-                var unsubscribe$ = this.unsubscribe$;
-                unsubscribe$.next();
-                unsubscribe$.complete();
+                this.formProperty.ui.__destroy = true;
                 this.ref.destroy();
             };
         SFItemComponent.decorators = [
@@ -2694,10 +2693,8 @@
      * @template T
      */
     var Widget = /** @class */ (function () {
-        function Widget(cd, injector, sfItemComp, sfComp) {
+        function Widget(cd, sfComp) {
             this.cd = cd;
-            this.injector = injector;
-            this.sfItemComp = sfItemComp;
             this.sfComp = sfComp;
             this.showError = false;
             this.id = '';
@@ -2732,7 +2729,7 @@
             function () {
                 var _this = this;
                 this.formProperty.errorsChanges
-                    .pipe(operators.takeUntil(this.sfItemComp.unsubscribe$), operators.filter(function (w) { return w != null; }))
+                    .pipe(operators.filter(function (w) { return w != null; }))
                     .subscribe(function (errors) {
                     if (_this.ui.debug)
                         di('errorsChanges', _this.formProperty.path, errors);
@@ -2740,7 +2737,8 @@
                     if (_this.firstVisual) {
                         _this.showError = errors.length > 0;
                         _this.error = _this.showError ? errors[0].message : '';
-                        _this.cd.detectChanges();
+                        if (_this.ui.__destroy !== true)
+                            _this.cd.detectChanges();
                     }
                     _this.firstVisual = true;
                 });
@@ -2769,30 +2767,18 @@
             configurable: true
         });
         /**
-         * @param {?=} onlySelf
          * @return {?}
          */
         Widget.prototype.detectChanges = /**
-         * @param {?=} onlySelf
          * @return {?}
          */
-            function (onlySelf) {
-                if (onlySelf === void 0) {
-                    onlySelf = false;
-                }
-                if (onlySelf) {
-                    this.cd.markForCheck();
-                }
-                else {
-                    this.formProperty.root.widget.cd.markForCheck();
-                }
+            function () {
+                this.formProperty.root.widget.cd.markForCheck();
             };
         /** @nocollapse */
         Widget.ctorParameters = function () {
             return [
                 { type: i0.ChangeDetectorRef, decorators: [{ type: i0.Inject, args: [i0.ChangeDetectorRef,] }] },
-                { type: i0.Injector, decorators: [{ type: i0.Inject, args: [i0.Injector,] }] },
-                { type: SFItemComponent, decorators: [{ type: i0.Inject, args: [SFItemComponent,] }] },
                 { type: SFComponent, decorators: [{ type: i0.Inject, args: [SFComponent,] }] }
             ];
         };
@@ -2840,7 +2826,7 @@
             function () {
                 var _this = this;
                 this.formProperty.errorsChanges
-                    .pipe(operators.takeUntil(this.sfItemComp.unsubscribe$))
+                    .pipe(operators.filter(function () { return _this.ui.__destroy !== true; }))
                     .subscribe(function () { return _this.cd.detectChanges(); });
             };
         return ArrayLayoutWidget;
@@ -2868,7 +2854,7 @@
             function () {
                 var _this = this;
                 this.formProperty.errorsChanges
-                    .pipe(operators.takeUntil(this.sfItemComp.unsubscribe$))
+                    .pipe(operators.filter(function () { return _this.ui.__destroy !== true; }))
                     .subscribe(function () { return _this.cd.detectChanges(); });
             };
         return ObjectLayoutWidget;
@@ -2995,7 +2981,7 @@
                 var orgTime = +(this.ui.debounceTime || 0);
                 /** @type {?} */
                 var time = Math.max(0, this.isAsync ? Math.max(50, orgTime) : orgTime);
-                this.list = this.formProperty.valueChanges.pipe(operators.takeUntil(this.sfItemComp.unsubscribe$), operators.debounceTime(time), operators.startWith(''), operators.flatMap(function (input) {
+                this.list = this.formProperty.valueChanges.pipe(operators.debounceTime(time), operators.startWith(''), operators.flatMap(function (input) {
                     return _this.isAsync ? _this.ui.asyncData(input) : _this.filterData(input);
                 }), operators.map(function (res) { return getEnum(res, null, _this.schema.readOnly); }));
             };
@@ -3114,7 +3100,7 @@
          */
             function (value) {
                 var _this = this;
-                getData(this.schema, {}, this.formProperty.formData).subscribe(function (list) {
+                getData(this.schema, this.ui, this.formProperty.formData).subscribe(function (list) {
                     _this.data = list;
                     _this.detectChanges();
                 });
@@ -3195,7 +3181,7 @@
         CascaderWidget.decorators = [
             { type: i0.Component, args: [{
                         selector: 'sf-cascader',
-                        template: "\n    <sf-item-wrap\n      [id]=\"id\"\n      [schema]=\"schema\"\n      [ui]=\"ui\"\n      [showError]=\"showError\"\n      [error]=\"error\"\n      [showTitle]=\"schema.title\"\n    >\n      <nz-cascader\n        [nzDisabled]=\"disabled\"\n        [nzSize]=\"ui.size\"\n        [ngModel]=\"value\"\n        (ngModelChange)=\"_change($event)\"\n        [nzOptions]=\"data\"\n        [nzAllowClear]=\"ui.allowClear\"\n        [nzAutoFocus]=\"ui.autoFocus\"\n        [nzChangeOn]=\"ui.changeOn\"\n        [nzChangeOnSelect]=\"ui.changeOnSelect\"\n        [nzColumnClassName]=\"ui.columnClassName\"\n        [nzExpandTrigger]=\"ui.expandTrigger\"\n        [nzMenuClassName]=\"ui.menuClassName\"\n        [nzMenuStyle]=\"ui.menuStyle\"\n        [nzLabelProperty]=\"ui.labelProperty || 'label'\"\n        [nzValueProperty]=\"ui.valueProperty || 'value'\"\n        [nzLoadData]=\"loadData\"\n        [nzPlaceHolder]=\"ui.placeholder\"\n        [nzShowArrow]=\"showArrow\"\n        [nzShowInput]=\"showInput\"\n        [nzShowSearch]=\"ui.showSearch\"\n        (nzClear)=\"_clear($event)\"\n        (nzVisibleChange)=\"_visibleChange($event)\"\n        (nzSelect)=\"_select($event)\"\n        (nzSelectionChange)=\"_selectionChange($event)\"\n      >\n      </nz-cascader>\n    </sf-item-wrap>\n  "
+                        template: "\n  <sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n\n    <nz-cascader\n      [nzDisabled]=\"disabled\"\n      [nzSize]=\"ui.size\"\n      [ngModel]=\"value\"\n      (ngModelChange)=\"_change($event)\"\n      [nzOptions]=\"data\"\n      [nzAllowClear]=\"ui.allowClear\"\n      [nzAutoFocus]=\"ui.autoFocus\"\n      [nzChangeOn]=\"ui.changeOn\"\n      [nzChangeOnSelect]=\"ui.changeOnSelect\"\n      [nzColumnClassName]=\"ui.columnClassName\"\n      [nzExpandTrigger]=\"ui.expandTrigger\"\n      [nzMenuClassName]=\"ui.menuClassName\"\n      [nzMenuStyle]=\"ui.menuStyle\"\n      [nzLabelProperty]=\"ui.labelProperty || 'label'\"\n      [nzValueProperty]=\"ui.valueProperty || 'value'\"\n      [nzLoadData]=\"loadData\"\n      [nzPlaceHolder]=\"ui.placeholder\"\n      [nzShowArrow]=\"showArrow\"\n      [nzShowInput]=\"showInput\"\n      [nzShowSearch]=\"ui.showSearch\"\n      (nzClear)=\"_clear($event)\"\n      (nzVisibleChange)=\"_visibleChange($event)\"\n      (nzSelect)=\"_select($event)\"\n      (nzSelectionChange)=\"_selectionChange($event)\">\n    </nz-cascader>\n\n  </sf-item-wrap>\n  "
                     }] }
         ];
         return CascaderWidget;
@@ -3556,13 +3542,11 @@
          */
             function () {
                 var _this = this;
-                var _a = this.ui, valueWith = _a.valueWith, notFoundContent = _a.notFoundContent, placement = _a.placement, prefix = _a.prefix, autosize = _a.autosize;
                 this.i = {
-                    valueWith: valueWith || (function (item) { return item.label; }),
-                    notFoundContent: notFoundContent || '无匹配结果，轻敲空格完成输入',
-                    placement: placement || 'bottom',
-                    prefix: prefix || '@',
-                    autosize: typeof autosize === 'undefined' ? true : this.ui.autosize,
+                    valueWith: this.ui.valueWith || (function (item) { return item.label; }),
+                    notFoundContent: this.ui.notFoundContent || '无匹配结果，轻敲空格完成输入',
+                    placement: this.ui.placement || 'bottom',
+                    prefix: this.ui.prefix || '@',
                 };
                 /** @type {?} */
                 var min = typeof this.schema.minimum !== 'undefined' ? this.schema.minimum : -1;
@@ -3640,7 +3624,7 @@
         MentionWidget.decorators = [
             { type: i0.Component, args: [{
                         selector: 'sf-mention',
-                        template: "\n    <sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n\n      <nz-mention #mentions\n        [nzSuggestions]=\"data\"\n        [nzValueWith]=\"i.valueWith\"\n        [nzLoading]=\"loading\"\n        [nzNotFoundContent]=\"i.notFoundContent\"\n        [nzPlacement]=\"i.placement\"\n        [nzPrefix]=\"i.prefix\"\n        (nzOnSelect)=\"_select($event)\"\n        (nzOnSearchChange)=\"_search($event)\">\n\n        <ng-container *ngIf=\"ui.inputStyle !== 'textarea'\">\n          <input nzMentionTrigger nz-input\n            [attr.id]=\"id\"\n            [disabled]=\"disabled\"\n            [attr.disabled]=\"disabled\"\n            [nzSize]=\"ui.size\"\n            [ngModel]=\"value\"\n            (ngModelChange)=\"setValue($event)\"\n            [attr.maxLength]=\"schema.maxLength || null\"\n            [attr.placeholder]=\"ui.placeholder\"\n            autocomplete=\"off\">\n        </ng-container>\n\n        <ng-container *ngIf=\"ui.inputStyle === 'textarea'\">\n          <textarea nzMentionTrigger nz-input\n            [attr.id]=\"id\"\n            [disabled]=\"disabled\"\n            [attr.disabled]=\"disabled\"\n            [nzSize]=\"ui.size\"\n            [ngModel]=\"value\"\n            (ngModelChange)=\"setValue($event)\"\n            [attr.maxLength]=\"schema.maxLength || null\"\n            [attr.placeholder]=\"ui.placeholder\"\n            [nzAutosize]=\"i.autosize\">\n          </textarea>\n        </ng-container>\n\n      </nz-mention>\n\n    </sf-item-wrap>\n    "
+                        template: "\n    <sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n\n      <nz-mention #mentions\n        [nzSuggestions]=\"data\"\n        [nzValueWith]=\"i.valueWith\"\n        [nzLoading]=\"loading\"\n        [nzNotFoundContent]=\"i.notFoundContent\"\n        [nzPlacement]=\"i.placement\"\n        [nzPrefix]=\"i.prefix\"\n        (nzOnSelect)=\"_select($event)\"\n        (nzOnSearchChange)=\"_search($event)\">\n\n        <ng-container *ngIf=\"ui.inputStyle !== 'textarea'\">\n          <input nzMentionTrigger nz-input\n            [attr.id]=\"id\"\n            [disabled]=\"disabled\"\n            [attr.disabled]=\"disabled\"\n            [nzSize]=\"ui.size\"\n            [ngModel]=\"value\"\n            (ngModelChange)=\"setValue($event)\"\n            [attr.maxLength]=\"schema.maxLength || null\"\n            [attr.placeholder]=\"ui.placeholder\"\n            autocomplete=\"off\">\n        </ng-container>\n\n        <ng-container *ngIf=\"ui.inputStyle === 'textarea'\">\n          <textarea nzMentionTrigger nz-input\n            [attr.id]=\"id\"\n            [disabled]=\"disabled\"\n            [attr.disabled]=\"disabled\"\n            [nzSize]=\"ui.size\"\n            [ngModel]=\"value\"\n            (ngModelChange)=\"setValue($event)\"\n            [attr.maxLength]=\"schema.maxLength || null\"\n            [attr.placeholder]=\"ui.placeholder\"\n            [nzAutosize]=\"ui.autosize\">\n          </textarea>\n        </ng-container>\n\n      </nz-mention>\n\n    </sf-item-wrap>\n    "
                     }] }
         ];
         MentionWidget.propDecorators = {
@@ -4529,12 +4513,13 @@
      */
     var UploadWidget = /** @class */ (function (_super) {
         __extends(UploadWidget, _super);
-        function UploadWidget() {
-            var _this = _super !== null && _super.apply(this, arguments) || this;
+        function UploadWidget(cd, modalSrv) {
+            var _this = _super.call(this, cd) || this;
+            _this.modalSrv = modalSrv;
             _this.fileList = [];
             _this.btnType = '';
             _this.handlePreview = function (file) {
-                _this.injector.get(ngZorroAntd.NzModalService)
+                _this.modalSrv
                     .create({
                     nzContent: "<img src=\"" + (file.url || file.thumbUrl) + "\" class=\"img-fluid\" />",
                     nzFooter: null,
@@ -4550,21 +4535,20 @@
          * @return {?}
          */
             function () {
-                var _a = this.ui, type = _a.type, text = _a.text, action = _a.action, accept = _a.accept, limit = _a.limit, fileSize = _a.fileSize, fileType = _a.fileType, listType = _a.listType, multiple = _a.multiple, name = _a.name, showUploadList = _a.showUploadList, withCredentials = _a.withCredentials, resReName = _a.resReName;
                 this.i = {
-                    type: type || 'select',
-                    text: text || '点击上传',
-                    action: action || '',
-                    accept: accept || '',
-                    limit: limit == null ? 0 : +limit,
-                    size: fileSize == null ? 0 : +fileSize,
-                    fileType: fileType || '',
-                    listType: listType || 'text',
-                    multiple: toBool(multiple, false),
-                    name: name || 'file',
-                    showUploadList: toBool(showUploadList, true),
-                    withCredentials: toBool(withCredentials, false),
-                    resReName: (resReName || '').split('.'),
+                    type: this.ui.type || 'select',
+                    text: this.ui.text || '点击上传',
+                    action: this.ui.action || '',
+                    accept: this.ui.accept || '',
+                    limit: this.ui.limit == null ? 0 : +this.ui.limit,
+                    size: this.ui.fileSize == null ? 0 : +this.ui.fileSize,
+                    fileType: this.ui.fileType || '',
+                    listType: this.ui.listType || 'text',
+                    multiple: toBool(this.ui.multiple, false),
+                    name: this.ui.name || 'file',
+                    showUploadList: toBool(this.ui.showUploadList, true),
+                    withCredentials: toBool(this.ui.withCredentials, false),
+                    resReName: (this.ui.resReName || '').split('.'),
                 };
                 if (this.i.listType === 'picture-card')
                     this.btnType = 'plus';
@@ -4628,6 +4612,13 @@
                         template: "\n  <sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n\n    <nz-upload\n      [nzType]=\"i.type\"\n      [nzFileList]=\"fileList\"\n      [nzDisabled]=\"disabled\"\n      [nzAction]=\"i.action\"\n      [nzAccept]=\"i.accept\"\n      [nzLimit]=\"i.limit\"\n      [nzSize]=\"i.size\"\n      [nzFileType]=\"i.fileType\"\n      [nzHeaders]=\"ui.headers\"\n      [nzData]=\"ui.data\"\n      [nzListType]=\"i.listType\"\n      [nzMultiple]=\"i.multiple\"\n      [nzName]=\"i.name\"\n      [nzShowUploadList]=\"i.showUploadList\"\n      [nzWithCredentials]=\"i.withCredentials\"\n      [nzRemove]=\"ui.remove\"\n      [nzPreview]=\"handlePreview\"\n      (nzChange)=\"change($event)\">\n      <ng-container [ngSwitch]=\"btnType\">\n        <ng-container *ngSwitchCase=\"'plus'\">\n          <i nz-icon type=\"plus\"></i>\n          <div class=\"ant-upload-text\" [innerHTML]=\"i.text\"></div>\n        </ng-container>\n        <ng-container *ngSwitchCase=\"'drag'\">\n          <p class=\"ant-upload-drag-icon\"><i nz-icon type=\"inbox\"></i></p>\n          <p class=\"ant-upload-text\" [innerHTML]=\"i.text\"></p>\n          <p class=\"ant-upload-hint\" [innerHTML]=\"i.hint\"></p>\n        </ng-container>\n        <ng-container *ngSwitchDefault>\n          <button type=\"button\" nz-button>\n            <i nz-icon type=\"upload\"></i><span [innerHTML]=\"i.text\"></span>\n          </button>\n        </ng-container>\n      </ng-container>\n    </nz-upload>\n\n  </sf-item-wrap>\n  "
                     }] }
         ];
+        /** @nocollapse */
+        UploadWidget.ctorParameters = function () {
+            return [
+                { type: i0.ChangeDetectorRef },
+                { type: ngZorroAntd.NzModalService }
+            ];
+        };
         return UploadWidget;
     }(ControlWidget));
 
