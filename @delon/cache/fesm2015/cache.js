@@ -214,16 +214,14 @@ class CacheService {
         /** @type {?} */
         const isPromise = options.mode !== 'none' && this.options.mode === 'promise';
         /** @type {?} */
-        const value = this.memory.has(key)
-            ? this.memory.get(key)
-            : this.store.get(this.options.prefix + key);
+        const value = this.memory.has(key) ? this.memory.get(key) : this.store.get(this.options.prefix + key);
         if (!value || (value.e && value.e > 0 && value.e < new Date().valueOf())) {
             if (isPromise) {
                 return this.http
                     .get(key)
                     .pipe(
                 // tslint:disable-next-line:no-any
-                map((ret) => this._deepGet(ret, (/** @type {?} */ (this.options.reName)), null)), tap(v => this.set(key, v)));
+                map((ret) => this._deepGet(ret, (/** @type {?} */ (this.options.reName)), null)), tap(v => this.set(key, v, { type: options.type, expire: options.expire })));
             }
             return null;
         }

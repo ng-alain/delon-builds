@@ -284,16 +284,14 @@
                 /** @type {?} */
                 var isPromise = options.mode !== 'none' && this.options.mode === 'promise';
                 /** @type {?} */
-                var value = this.memory.has(key)
-                    ? this.memory.get(key)
-                    : this.store.get(this.options.prefix + key);
+                var value = this.memory.has(key) ? this.memory.get(key) : this.store.get(this.options.prefix + key);
                 if (!value || (value.e && value.e > 0 && value.e < new Date().valueOf())) {
                     if (isPromise) {
                         return this.http
                             .get(key)
                             .pipe(
                         // tslint:disable-next-line:no-any
-                        operators.map(function (ret) { return _this._deepGet(ret, ( /** @type {?} */(_this.options.reName)), null); }), operators.tap(function (v) { return _this.set(key, v); }));
+                        operators.map(function (ret) { return _this._deepGet(ret, ( /** @type {?} */(_this.options.reName)), null); }), operators.tap(function (v) { return _this.set(key, v, { type: options.type, expire: options.expire }); }));
                     }
                     return null;
                 }
