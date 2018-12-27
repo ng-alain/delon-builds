@@ -337,7 +337,7 @@ class ReuseTabService {
         return this.getUrl(this.injector.get(ActivatedRoute).snapshot);
     }
     /**
-     * 允许最多复用多少个页面，取值范围 `2-100`，值发生变更时会强制关闭且忽略可关闭条件
+     * 允许最多复用多少个页面，取值范围 `2-100`
      * @param {?} value
      * @return {?}
      */
@@ -799,14 +799,9 @@ class ReuseTabService {
             _handle,
         };
         if (idx === -1) {
-            if (this.count >= this._max) {
-                // Get the oldest closable location
-                /** @type {?} */
-                const closeIdx = this._cached.findIndex(w => w.closable);
-                if (closeIdx !== -1)
-                    this.remove(closeIdx, false);
-            }
             this._cached.push(item);
+            if (this.count > this._max)
+                this._cached.shift();
         }
         else {
             this._cached[idx] = item;
