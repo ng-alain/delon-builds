@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/portal'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('@angular/cdk/overlay'), require('@angular/common'), require('@angular/core'), require('@angular/router'), require('@delon/theme'), require('ng-zorro-antd')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/reuse-tab', ['exports', '@angular/cdk/portal', '@delon/util', 'rxjs', 'rxjs/operators', '@angular/cdk/overlay', '@angular/common', '@angular/core', '@angular/router', '@delon/theme', 'ng-zorro-antd'], factory) :
-    (factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['reuse-tab'] = {}),global.ng.cdk.portal,global.delon.util,global.rxjs,global.rxjs.operators,global.ng.cdk.overlay,global.ng.common,global.ng.core,global.ng.router,global.delon.theme,global['ng-zorro-antd']));
-}(this, (function (exports,portal,util,rxjs,operators,overlay,common,i0,router,i1,ngZorroAntd) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/portal'), require('@delon/util'), require('rxjs/operators'), require('rxjs'), require('@angular/cdk/overlay'), require('@angular/common'), require('@angular/core'), require('@angular/router'), require('@delon/theme'), require('ng-zorro-antd')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/reuse-tab', ['exports', '@angular/cdk/portal', '@delon/util', 'rxjs/operators', 'rxjs', '@angular/cdk/overlay', '@angular/common', '@angular/core', '@angular/router', '@delon/theme', 'ng-zorro-antd'], factory) :
+    (factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['reuse-tab'] = {}),global.ng.cdk.portal,global.delon.util,global.rxjs.operators,global.rxjs,global.ng.cdk.overlay,global.ng.common,global.ng.core,global.ng.router,global.delon.theme,global['ng-zorro-antd']));
+}(this, (function (exports,portal,util,operators,rxjs,overlay,common,i0,router,i1,ngZorroAntd) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -428,7 +428,7 @@
             this.injector = injector;
             this.menuService = menuService;
             this._max = 10;
-            this._keepingScroll = true;
+            this._keepingScroll = false;
             this._debug = false;
             this._mode = ReuseTabMatchMode.Menu;
             this._excludes = [];
@@ -436,7 +436,7 @@
             this._cached = [];
             this._titleCached = {};
             this._closableCached = {};
-            this.positionBuffer = [0, 0];
+            this.positionBuffer = {};
         }
         Object.defineProperty(ReuseTabService.prototype, "curUrl", {
             // #region public
@@ -1217,7 +1217,7 @@
                 var item = {
                     title: this.getTitle(url, _snapshot),
                     closable: this.getClosable(url, _snapshot),
-                    position: ( /** @type {?} */(this.positionBuffer.slice(0))),
+                    position: this.positionBuffer[url],
                     url: url,
                     _snapshot: _snapshot,
                     _handle: _handle,
@@ -1236,7 +1236,6 @@
                     this._cached[idx] = item;
                 }
                 this.removeUrlBuffer = null;
-                this.positionBuffer = [0, 0];
                 this.di('#store', idx === -1 ? '[new]' : '[override]', url);
                 if (_handle && _handle.componentRef) {
                     this.runHook('_onReuseDestroy', url, _handle.componentRef);
@@ -1366,12 +1365,12 @@
                 }
                 /** @type {?} */
                 var router$$1 = this.injector.get(router.Router, null);
-                if (!this.keepingScroll || router$$1 == null) {
+                if (router$$1 == null || !this.keepingScroll || !this.isValidScroll()) {
                     return;
                 }
-                this._router$ = router$$1.events.pipe(operators.filter(function () { return _this.isValidScroll(); })).subscribe(function (e) {
+                this._router$ = router$$1.events.subscribe(function (e) {
                     if (e instanceof router.NavigationStart) {
-                        _this.positionBuffer = _this.vs.getScrollPosition();
+                        _this.positionBuffer[_this.curUrl] = _this.vs.getScrollPosition();
                     }
                     else if (e instanceof router.NavigationEnd) {
                         /** @type {?} */
@@ -1436,7 +1435,7 @@
             this.debug = false;
             this.allowClose = true;
             this.showCurrent = true;
-            this.keepingScroll = true;
+            this.keepingScroll = false;
             this.change = new i0.EventEmitter();
             this.close = new i0.EventEmitter();
             this.el = el.nativeElement;

@@ -1,7 +1,7 @@
 import { ComponentPortal } from '@angular/cdk/portal';
 import { InputBoolean, InputNumber } from '@delon/util';
+import { debounceTime, filter } from 'rxjs/operators';
 import { Subject, Subscription, BehaviorSubject, combineLatest } from 'rxjs';
-import { filter, debounceTime } from 'rxjs/operators';
 import { __spread, __assign, __read, __decorate, __metadata } from 'tslib';
 import { ConnectionPositionPair, Overlay, OverlayModule } from '@angular/cdk/overlay';
 import { ViewportScroller, CommonModule } from '@angular/common';
@@ -353,7 +353,7 @@ var ReuseTabService = /** @class */ (function () {
         this.injector = injector;
         this.menuService = menuService;
         this._max = 10;
-        this._keepingScroll = true;
+        this._keepingScroll = false;
         this._debug = false;
         this._mode = ReuseTabMatchMode.Menu;
         this._excludes = [];
@@ -361,7 +361,7 @@ var ReuseTabService = /** @class */ (function () {
         this._cached = [];
         this._titleCached = {};
         this._closableCached = {};
-        this.positionBuffer = [0, 0];
+        this.positionBuffer = {};
     }
     Object.defineProperty(ReuseTabService.prototype, "curUrl", {
         // #region public
@@ -1150,7 +1150,7 @@ var ReuseTabService = /** @class */ (function () {
         var item = {
             title: this.getTitle(url, _snapshot),
             closable: this.getClosable(url, _snapshot),
-            position: (/** @type {?} */ (this.positionBuffer.slice(0))),
+            position: this.positionBuffer[url],
             url: url,
             _snapshot: _snapshot,
             _handle: _handle,
@@ -1169,7 +1169,6 @@ var ReuseTabService = /** @class */ (function () {
             this._cached[idx] = item;
         }
         this.removeUrlBuffer = null;
-        this.positionBuffer = [0, 0];
         this.di('#store', idx === -1 ? '[new]' : '[override]', url);
         if (_handle && _handle.componentRef) {
             this.runHook('_onReuseDestroy', url, _handle.componentRef);
@@ -1300,12 +1299,12 @@ var ReuseTabService = /** @class */ (function () {
         }
         /** @type {?} */
         var router = this.injector.get(Router, null);
-        if (!this.keepingScroll || router == null) {
+        if (router == null || !this.keepingScroll || !this.isValidScroll()) {
             return;
         }
-        this._router$ = router.events.pipe(filter(function () { return _this.isValidScroll(); })).subscribe(function (e) {
+        this._router$ = router.events.subscribe(function (e) {
             if (e instanceof NavigationStart) {
-                _this.positionBuffer = _this.vs.getScrollPosition();
+                _this.positionBuffer[_this.curUrl] = _this.vs.getScrollPosition();
             }
             else if (e instanceof NavigationEnd) {
                 /** @type {?} */
@@ -1368,7 +1367,7 @@ var ReuseTabComponent = /** @class */ (function () {
         this.debug = false;
         this.allowClose = true;
         this.showCurrent = true;
-        this.keepingScroll = true;
+        this.keepingScroll = false;
         this.change = new EventEmitter();
         this.close = new EventEmitter();
         this.el = el.nativeElement;
