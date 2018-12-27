@@ -23,7 +23,6 @@ export declare class ReuseTabComponent implements OnInit, OnChanges, OnDestroy {
     excludes: RegExp[];
     allowClose: boolean;
     showCurrent: boolean;
-    keepingScroll: boolean;
     readonly change: EventEmitter<ReuseItem>;
     readonly close: EventEmitter<ReuseItem>;
     constructor(el: ElementRef, srv: ReuseTabService, cdr: ChangeDetectorRef, router: Router, route: ActivatedRoute, render: Renderer2, i18nSrv: AlainI18NService);

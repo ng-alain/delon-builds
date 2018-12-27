@@ -19,6 +19,7 @@ export declare class SidebarNavComponent implements OnInit, OnDestroy {
     autoCloseUnderPad: boolean;
     readonly select: EventEmitter<Menu>;
     readonly collapsed: boolean;
+    private readonly _d;
     constructor(menuSrv: MenuService, settings: SettingsService, router: Router, render: Renderer2, cdr: ChangeDetectorRef, doc: any, win: Window);
     private floatingAreaClickHandle;
     private clearFloatingContainer;

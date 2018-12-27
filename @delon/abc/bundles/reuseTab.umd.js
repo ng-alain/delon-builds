@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/portal'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('@angular/cdk/overlay'), require('@angular/common'), require('@angular/core'), require('@angular/router'), require('@delon/theme'), require('ng-zorro-antd')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/reuse-tab', ['exports', '@angular/cdk/portal', '@delon/util', 'rxjs', 'rxjs/operators', '@angular/cdk/overlay', '@angular/common', '@angular/core', '@angular/router', '@delon/theme', 'ng-zorro-antd'], factory) :
-    (factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['reuse-tab'] = {}),global.ng.cdk.portal,global.delon.util,global.rxjs,global.rxjs.operators,global.ng.cdk.overlay,global.ng.common,global.ng.core,global.ng.router,global.delon.theme,global['ng-zorro-antd']));
-}(this, (function (exports,portal,util,rxjs,operators,overlay,common,i0,i1,i2,ngZorroAntd) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/portal'), require('@delon/util'), require('rxjs/operators'), require('rxjs'), require('@angular/cdk/overlay'), require('@angular/common'), require('@angular/core'), require('@angular/router'), require('@delon/theme'), require('ng-zorro-antd')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/reuse-tab', ['exports', '@angular/cdk/portal', '@delon/util', 'rxjs/operators', 'rxjs', '@angular/cdk/overlay', '@angular/common', '@angular/core', '@angular/router', '@delon/theme', 'ng-zorro-antd'], factory) :
+    (factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['reuse-tab'] = {}),global.ng.cdk.portal,global.delon.util,global.rxjs.operators,global.rxjs,global.ng.cdk.overlay,global.ng.common,global.ng.core,global.ng.router,global.delon.theme,global['ng-zorro-antd']));
+}(this, (function (exports,portal,util,operators,rxjs,overlay,common,i0,router,i1,ngZorroAntd) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -180,7 +180,7 @@
         /** @nocollapse */
         ReuseTabContextMenuComponent.ctorParameters = function () {
             return [
-                { type: i2.DelonLocaleService }
+                { type: i1.DelonLocaleService }
             ];
         };
         ReuseTabContextMenuComponent.propDecorators = {
@@ -424,12 +424,10 @@
      */
     var ReuseTabService = /** @class */ (function () {
         // #endregion
-        function ReuseTabService(injector, router, menuService) {
+        function ReuseTabService(injector, menuService) {
             this.injector = injector;
-            this.router = router;
             this.menuService = menuService;
             this._max = 10;
-            this._keepingScroll = true;
             this._debug = false;
             this._mode = ReuseTabMatchMode.Menu;
             this._excludes = [];
@@ -437,7 +435,6 @@
             this._cached = [];
             this._titleCached = {};
             this._closableCached = {};
-            this.positionBuffer = [0, 0];
         }
         Object.defineProperty(ReuseTabService.prototype, "curUrl", {
             // #region public
@@ -449,7 +446,7 @@
              * @return {?}
              */
             function () {
-                return this.getUrl(this.injector.get(i1.ActivatedRoute).snapshot);
+                return this.getUrl(this.injector.get(router.ActivatedRoute).snapshot);
             },
             enumerable: true,
             configurable: true
@@ -499,22 +496,6 @@
              * @return {?}
              */ function (value) {
                 this._debug = value;
-            },
-            enumerable: true,
-            configurable: true
-        });
-        Object.defineProperty(ReuseTabService.prototype, "keepingScroll", {
-            get: /**
-             * @return {?}
-             */ function () {
-                return this._keepingScroll;
-            },
-            set: /**
-             * @param {?} value
-             * @return {?}
-             */ function (value) {
-                this._keepingScroll = value;
-                this.initScroll();
             },
             enumerable: true,
             configurable: true
@@ -841,7 +822,7 @@
                 else {
                     this.removeUrlBuffer = url;
                 }
-                this.injector.get(i1.Router).navigateByUrl(newUrl);
+                this.injector.get(router.Router).navigateByUrl(newUrl);
             };
         /**
          * 获取标题，顺序如下：
@@ -1016,7 +997,11 @@
                     next = next.parent;
                 }
                 /** @type {?} */
-                var url = '/' + segments.filter(function (i) { return i; }).reverse().join('/');
+                var url = '/' +
+                    segments
+                        .filter(function (i) { return i; })
+                        .reverse()
+                        .join('/');
                 return url;
             };
         /**
@@ -1116,15 +1101,6 @@
                 console.warn.apply(console, __spread(args));
             };
         /**
-         * @return {?}
-         */
-        ReuseTabService.prototype.init = /**
-         * @return {?}
-         */
-            function () {
-                this.initScroll();
-            };
-        /**
          * @param {?} url
          * @return {?}
          */
@@ -1218,7 +1194,6 @@
                 var item = {
                     title: this.getTitle(url, _snapshot),
                     closable: this.getClosable(url, _snapshot),
-                    position: ( /** @type {?} */(this.positionBuffer.slice(0))),
                     url: url,
                     _snapshot: _snapshot,
                     _handle: _handle,
@@ -1237,7 +1212,6 @@
                     this._cached[idx] = item;
                 }
                 this.removeUrlBuffer = null;
-                this.positionBuffer = [0, 0];
                 this.di('#store', idx === -1 ? '[new]' : '[override]', url);
                 if (_handle && _handle.componentRef) {
                     this.runHook('_onReuseDestroy', url, _handle.componentRef);
@@ -1318,7 +1292,8 @@
                 if (!ret)
                     return false;
                 /** @type {?} */
-                var path = ( /** @type {?} */(((future.routeConfig && future.routeConfig.path) || '')));
+                var path = ( /** @type {?} */(((future.routeConfig && future.routeConfig.path) ||
+                    '')));
                 if (path.length > 0 && ~path.indexOf(':')) {
                     /** @type {?} */
                     var futureUrl = this.getUrl(future);
@@ -1330,75 +1305,15 @@
                 this.di('#shouldReuseRoute', ret, this.getUrl(curr) + "=>" + this.getUrl(future), future, curr);
                 return ret;
             };
-        // #region scroll
-        // #region scroll
         /**
          * @return {?}
          */
-        ReuseTabService.prototype.isValidScroll =
-            // #region scroll
-            /**
-             * @return {?}
-             */
-            function () {
-                /** @type {?} */
-                var routerConfig = this.injector.get(i1.ROUTER_CONFIGURATION, ( /** @type {?} */({})));
-                return routerConfig.scrollPositionRestoration == null || routerConfig.scrollPositionRestoration === 'disabled';
-            };
-        Object.defineProperty(ReuseTabService.prototype, "vs", {
-            get: /**
-             * @return {?}
-             */ function () {
-                return this.injector.get(common.ViewportScroller);
-            },
-            enumerable: true,
-            configurable: true
-        });
-        /**
-         * @return {?}
-         */
-        ReuseTabService.prototype.initScroll = /**
+        ReuseTabService.prototype.ngOnDestroy = /**
          * @return {?}
          */
             function () {
-                var _this = this;
-                if (this._router$) {
-                    this._router$.unsubscribe();
-                }
-                if (!this.keepingScroll) {
-                    return;
-                }
-                this._router$ = this.router.events.pipe(operators.filter(function () { return _this.isValidScroll(); })).subscribe(function (e) {
-                    if (e instanceof i1.NavigationStart) {
-                        _this.positionBuffer = _this.vs.getScrollPosition();
-                    }
-                    else if (e instanceof i1.NavigationEnd) {
-                        /** @type {?} */
-                        var item = _this.get(_this.curUrl);
-                        if (item && item.position) {
-                            _this.vs.scrollToPosition(item.position);
-                        }
-                    }
-                });
-            };
-        // #endregion
-        // #endregion
-        /**
-         * @return {?}
-         */
-        ReuseTabService.prototype.ngOnDestroy =
-            // #endregion
-            /**
-             * @return {?}
-             */
-            function () {
-                var _a = this, _cachedChange = _a._cachedChange, _router$ = _a._router$;
-                this.clear();
                 this._cached = [];
-                _cachedChange.complete();
-                if (_router$) {
-                    _router$.unsubscribe();
-                }
+                this._cachedChange.unsubscribe();
             };
         ReuseTabService.decorators = [
             { type: i0.Injectable, args: [{ providedIn: 'root' },] }
@@ -1407,11 +1322,10 @@
         ReuseTabService.ctorParameters = function () {
             return [
                 { type: i0.Injector },
-                { type: i1.Router },
-                { type: i2.MenuService }
+                { type: i1.MenuService }
             ];
         };
-        /** @nocollapse */ ReuseTabService.ngInjectableDef = i0.defineInjectable({ factory: function ReuseTabService_Factory() { return new ReuseTabService(i0.inject(i0.INJECTOR), i0.inject(i1.Router), i0.inject(i2.MenuService)); }, token: ReuseTabService, providedIn: "root" });
+        /** @nocollapse */ ReuseTabService.ngInjectableDef = i0.defineInjectable({ factory: function ReuseTabService_Factory() { return new ReuseTabService(i0.inject(i0.INJECTOR), i0.inject(i1.MenuService)); }, token: ReuseTabService, providedIn: "root" });
         return ReuseTabService;
     }());
 
@@ -1421,11 +1335,11 @@
      */
     var ReuseTabComponent = /** @class */ (function () {
         // #endregion
-        function ReuseTabComponent(el, srv, cdr, router, route, render, i18nSrv) {
+        function ReuseTabComponent(el, srv, cdr, router$$1, route, render, i18nSrv) {
             var _this = this;
             this.srv = srv;
             this.cdr = cdr;
-            this.router = router;
+            this.router = router$$1;
             this.route = route;
             this.render = render;
             this.i18nSrv = i18nSrv;
@@ -1436,12 +1350,11 @@
             this.debug = false;
             this.allowClose = true;
             this.showCurrent = true;
-            this.keepingScroll = true;
             this.change = new i0.EventEmitter();
             this.close = new i0.EventEmitter();
             this.el = el.nativeElement;
             /** @type {?} */
-            var route$ = this.router.events.pipe(operators.filter(function (evt) { return evt instanceof i1.NavigationEnd; }));
+            var route$ = this.router.events.pipe(operators.filter(function (evt) { return evt instanceof router.NavigationEnd; }));
             this.sub$ = rxjs.combineLatest(this.srv.change, route$).subscribe(function (_a) {
                 var _b = __read(_a, 2), res = _b[0], e = _b[1];
                 return _this.genList(res);
@@ -1654,7 +1567,6 @@
              */
             function () {
                 this.genList();
-                this.srv.init();
             };
         /**
          * @param {?} changes
@@ -1671,8 +1583,6 @@
                     this.srv.excludes = this.excludes;
                 if (changes.mode)
                     this.srv.mode = this.mode;
-                if (changes.keepingScroll)
-                    this.srv.keepingScroll = this.keepingScroll;
                 this.srv.debug = this.debug;
                 this.cdr.detectChanges();
             };
@@ -1705,10 +1615,10 @@
                 { type: i0.ElementRef },
                 { type: ReuseTabService },
                 { type: i0.ChangeDetectorRef },
-                { type: i1.Router },
-                { type: i1.ActivatedRoute },
+                { type: router.Router },
+                { type: router.ActivatedRoute },
                 { type: i0.Renderer2 },
-                { type: undefined, decorators: [{ type: i0.Optional }, { type: i0.Inject, args: [i2.ALAIN_I18N_TOKEN,] }] }
+                { type: undefined, decorators: [{ type: i0.Optional }, { type: i0.Inject, args: [i1.ALAIN_I18N_TOKEN,] }] }
             ];
         };
         ReuseTabComponent.propDecorators = {
@@ -1719,7 +1629,6 @@
             excludes: [{ type: i0.Input }],
             allowClose: [{ type: i0.Input }],
             showCurrent: [{ type: i0.Input }],
-            keepingScroll: [{ type: i0.Input }],
             change: [{ type: i0.Output }],
             close: [{ type: i0.Output }]
         };
@@ -1739,10 +1648,6 @@
             util.InputBoolean(),
             __metadata("design:type", Object)
         ], ReuseTabComponent.prototype, "showCurrent", void 0);
-        __decorate([
-            util.InputBoolean(),
-            __metadata("design:type", Object)
-        ], ReuseTabComponent.prototype, "keepingScroll", void 0);
         return ReuseTabComponent;
     }());
 
@@ -1835,8 +1740,8 @@
             { type: i0.NgModule, args: [{
                         imports: [
                             common.CommonModule,
-                            i1.RouterModule,
-                            i2.DelonLocaleModule,
+                            router.RouterModule,
+                            i1.DelonLocaleModule,
                             ngZorroAntd.NgZorroAntdModule,
                             overlay.OverlayModule,
                         ],
