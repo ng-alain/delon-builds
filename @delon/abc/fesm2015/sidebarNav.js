@@ -47,12 +47,6 @@ class SidebarNavComponent {
         return this.settings.layout.collapsed;
     }
     /**
-     * @return {?}
-     */
-    get _d() {
-        return this.menuSrv.menus;
-    }
-    /**
      * @param {?} e
      * @return {?}
      */
@@ -67,7 +61,7 @@ class SidebarNavComponent {
         const id = +(/** @type {?} */ (linkNode.dataset)).id;
         /** @type {?} */
         let item;
-        this.menuSrv.visit(this._d, i => {
+        this.menuSrv.visit(i => {
             if (!item && i.__id === id) {
                 item = i;
             }
@@ -196,7 +190,7 @@ class SidebarNavComponent {
      * @return {?}
      */
     toggleOpen(item) {
-        this.menuSrv.visit(this._d, (i, p) => {
+        this.menuSrv.visit((i, p) => {
             if (i !== item)
                 i._open = false;
         });
@@ -232,8 +226,8 @@ class SidebarNavComponent {
         this.bodyEl = doc.querySelector('body');
         menuSrv.openedByUrl(router.url);
         this.genFloatingContainer();
-        menuSrv.change.pipe(takeUntil(unsubscribe$)).subscribe(data => {
-            menuSrv.visit(data, i => {
+        menuSrv.change.pipe(takeUntil(unsubscribe$)).subscribe(_ => {
+            menuSrv.visit(i => {
                 if (i._aclResult)
                     return;
                 if (this.disabledAcl) {
