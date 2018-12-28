@@ -135,10 +135,11 @@ class MenuService {
         return this._change$.pipe(share());
     }
     /**
+     * @param {?} data
      * @param {?} callback
      * @return {?}
      */
-    visit(callback) {
+    visit(data, callback) {
         /** @type {?} */
         const inFn = (list, parentMenu, depth) => {
             for (const item of list) {
@@ -151,7 +152,7 @@ class MenuService {
                 }
             }
         };
-        inFn(this.data, null, 0);
+        inFn(data, null, 0);
     }
     /**
      * @param {?} items
@@ -171,7 +172,7 @@ class MenuService {
         let i = 1;
         /** @type {?} */
         const shortcuts = [];
-        this.visit((item, parent, depth) => {
+        this.visit(this.data, (item, parent, depth) => {
             item.__id = i++;
             item.__parent = parent;
             item._depth = depth;
@@ -296,16 +297,17 @@ class MenuService {
         this._change$.next(this.data);
     }
     /**
+     * @param {?} data
      * @param {?} url
      * @param {?=} recursive
      * @param {?=} cb
      * @return {?}
      */
-    getHit(url, recursive = false, cb = null) {
+    getHit(data, url, recursive = false, cb = null) {
         /** @type {?} */
         let item = null;
         while (!item && url) {
-            this.visit(i => {
+            this.visit(data, i => {
                 if (cb) {
                     cb(i);
                 }
@@ -315,10 +317,7 @@ class MenuService {
             });
             if (!recursive)
                 break;
-            url = url
-                .split('/')
-                .slice(0, -1)
-                .join('/');
+            url = url.split('/').slice(0, -1).join('/');
         }
         return item;
     }
@@ -334,7 +333,7 @@ class MenuService {
         if (!url)
             return;
         /** @type {?} */
-        let findItem = this.getHit(url, recursive, i => {
+        let findItem = this.getHit(this.data, url, recursive, i => {
             i._selected = false;
             i._open = false;
         });
@@ -358,7 +357,7 @@ class MenuService {
         /** @type {?} */
         const ret = [];
         /** @type {?} */
-        let item = this.getHit(url, recursive);
+        let item = this.getHit(this.data, url, recursive);
         if (!item)
             return ret;
         do {
@@ -398,28 +397,6 @@ class ScrollService {
     constructor(win, doc) {
         this.win = win;
         this.doc = doc;
-    }
-    /**
-     * 获取滚动条位置
-     * @param {?=} element 指定元素，默认 `window`
-     * @return {?}
-     */
-    getScrollPosition(element) {
-        if (element) {
-            return [element.scrollLeft, element.scrollTop];
-        }
-        else {
-            return [this.win.pageXOffset, this.win.pageYOffset];
-        }
-    }
-    /**
-     * 设置滚动条位置
-     * @param {?} element 指定元素
-     * @param {?} position
-     * @return {?}
-     */
-    scrollToPosition(element, position) {
-        (element || this.win).scrollTo(position[0], position[1]);
     }
     /**
      * 设置滚动条至指定元素
@@ -2062,7 +2039,7 @@ AlainThemeModule.ctorParameters = () => [
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 /** @type {?} */
-const VERSION = new Version('7.0.0-rc.1-329f047');
+const VERSION = new Version('7.0.0-rc.1-ccee787');
 
 /**
  * @fileoverview added by tsickle

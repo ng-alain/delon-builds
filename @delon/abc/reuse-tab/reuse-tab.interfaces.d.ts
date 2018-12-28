@@ -40,8 +40,6 @@ export interface ReuseTabCached {
     url: string;
     /** 是否允许关闭，默认：`true` */
     closable?: boolean;
-    /** 当前滚动条位置 */
-    position?: [number, number];
     _snapshot: ActivatedRouteSnapshot;
     _handle: any;
 }

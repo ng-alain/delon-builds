@@ -230,14 +230,16 @@
             configurable: true
         });
         /**
+         * @param {?} data
          * @param {?} callback
          * @return {?}
          */
         MenuService.prototype.visit = /**
+         * @param {?} data
          * @param {?} callback
          * @return {?}
          */
-            function (callback) {
+            function (data, callback) {
                 /** @type {?} */
                 var inFn = function (list, parentMenu, depth) {
                     var e_1, _a;
@@ -267,7 +269,7 @@
                         }
                     }
                 };
-                inFn(this.data, null, 0);
+                inFn(data, null, 0);
             };
         /**
          * @param {?} items
@@ -300,7 +302,7 @@
                 var i = 1;
                 /** @type {?} */
                 var shortcuts = [];
-                this.visit(function (item, parent, depth) {
+                this.visit(this.data, function (item, parent, depth) {
                     item.__id = i++;
                     item.__parent = parent;
                     item._depth = depth;
@@ -451,18 +453,20 @@
                 this._change$.next(this.data);
             };
         /**
+         * @param {?} data
          * @param {?} url
          * @param {?=} recursive
          * @param {?=} cb
          * @return {?}
          */
         MenuService.prototype.getHit = /**
+         * @param {?} data
          * @param {?} url
          * @param {?=} recursive
          * @param {?=} cb
          * @return {?}
          */
-            function (url, recursive, cb) {
+            function (data, url, recursive, cb) {
                 if (recursive === void 0) {
                     recursive = false;
                 }
@@ -472,7 +476,7 @@
                 /** @type {?} */
                 var item = null;
                 while (!item && url) {
-                    this.visit(function (i) {
+                    this.visit(data, function (i) {
                         if (cb) {
                             cb(i);
                         }
@@ -482,10 +486,7 @@
                     });
                     if (!recursive)
                         break;
-                    url = url
-                        .split('/')
-                        .slice(0, -1)
-                        .join('/');
+                    url = url.split('/').slice(0, -1).join('/');
                 }
                 return item;
             };
@@ -517,7 +518,7 @@
                 if (!url)
                     return;
                 /** @type {?} */
-                var findItem = this.getHit(url, recursive, function (i) {
+                var findItem = this.getHit(this.data, url, recursive, function (i) {
                     i._selected = false;
                     i._open = false;
                 });
@@ -557,7 +558,7 @@
                 /** @type {?} */
                 var ret = [];
                 /** @type {?} */
-                var item = this.getHit(url, recursive);
+                var item = this.getHit(this.data, url, recursive);
                 if (!item)
                     return ret;
                 do {
@@ -600,47 +601,6 @@
             this.win = win;
             this.doc = doc;
         }
-        /**
-         * 获取滚动条位置
-         * @param element 指定元素，默认 `window`
-         */
-        /**
-         * 获取滚动条位置
-         * @param {?=} element 指定元素，默认 `window`
-         * @return {?}
-         */
-        ScrollService.prototype.getScrollPosition = /**
-         * 获取滚动条位置
-         * @param {?=} element 指定元素，默认 `window`
-         * @return {?}
-         */
-            function (element) {
-                if (element) {
-                    return [element.scrollLeft, element.scrollTop];
-                }
-                else {
-                    return [this.win.pageXOffset, this.win.pageYOffset];
-                }
-            };
-        /**
-         * 设置滚动条位置
-         * @param element 指定元素
-         */
-        /**
-         * 设置滚动条位置
-         * @param {?} element 指定元素
-         * @param {?} position
-         * @return {?}
-         */
-        ScrollService.prototype.scrollToPosition = /**
-         * 设置滚动条位置
-         * @param {?} element 指定元素
-         * @param {?} position
-         * @return {?}
-         */
-            function (element, position) {
-                (element || this.win).scrollTo(position[0], position[1]);
-            };
         /**
          * 设置滚动条至指定元素
          * @param element 指定元素，默认 `document.body`
