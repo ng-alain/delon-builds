@@ -170,7 +170,7 @@ export declare class ReuseTabService implements OnDestroy {
      * 3. 组件 `keepingScroll` 值
      */
     getKeepingScroll(url: string, route?: ActivatedRouteSnapshot): boolean;
-    private isValidScroll;
+    private readonly isDisabledInRouter;
     private readonly ss;
     private initScroll;
     ngOnDestroy(): void;

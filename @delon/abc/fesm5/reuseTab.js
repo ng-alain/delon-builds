@@ -1301,17 +1301,18 @@ var ReuseTabService = /** @class */ (function () {
             return menu.keepingScroll;
         return this.keepingScroll;
     };
-    /**
-     * @return {?}
-     */
-    ReuseTabService.prototype.isValidScroll = /**
-     * @return {?}
-     */
-    function () {
-        /** @type {?} */
-        var routerConfig = this.injector.get(ROUTER_CONFIGURATION, (/** @type {?} */ ({})));
-        return routerConfig.scrollPositionRestoration == null || routerConfig.scrollPositionRestoration === 'disabled';
-    };
+    Object.defineProperty(ReuseTabService.prototype, "isDisabledInRouter", {
+        get: /**
+         * @return {?}
+         */
+        function () {
+            /** @type {?} */
+            var routerConfig = this.injector.get(ROUTER_CONFIGURATION, (/** @type {?} */ ({})));
+            return routerConfig.scrollPositionRestoration === 'disabled';
+        },
+        enumerable: true,
+        configurable: true
+    });
     Object.defineProperty(ReuseTabService.prototype, "ss", {
         get: /**
          * @return {?}
@@ -1333,20 +1334,29 @@ var ReuseTabService = /** @class */ (function () {
         if (this._router$) {
             this._router$.unsubscribe();
         }
-        /** @type {?} */
-        var router = this.injector.get(Router, null);
-        if (router == null || !this.keepingScroll || !this.isValidScroll()) {
-            return;
-        }
-        this._router$ = router.events.subscribe(function (e) {
+        this._router$ = this.injector.get(Router).events.subscribe(function (e) {
             if (e instanceof NavigationStart) {
-                _this.positionBuffer[_this.curUrl] = _this.ss.getScrollPosition(_this.keepingScrollContainer);
+                /** @type {?} */
+                var url = _this.curUrl;
+                if (_this.getKeepingScroll(url)) {
+                    _this.positionBuffer[url] = _this.ss.getScrollPosition(_this.keepingScrollContainer);
+                }
+                else {
+                    delete _this.positionBuffer[url];
+                }
             }
             else if (e instanceof NavigationEnd) {
                 /** @type {?} */
-                var item_1 = _this.get(_this.curUrl);
-                if (item_1 && item_1.position) {
-                    setTimeout(function () { return _this.ss.scrollToPosition(_this.keepingScrollContainer, item_1.position); }, 1);
+                var url = _this.curUrl;
+                /** @type {?} */
+                var item_1 = _this.get(url);
+                if (item_1 && item_1.position && _this.getKeepingScroll(url)) {
+                    if (_this.isDisabledInRouter) {
+                        _this.ss.scrollToPosition(_this.keepingScrollContainer, item_1.position);
+                    }
+                    else {
+                        setTimeout(function () { return _this.ss.scrollToPosition(_this.keepingScrollContainer, item_1.position); }, 1);
+                    }
                 }
             }
         });

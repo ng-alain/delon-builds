@@ -921,10 +921,10 @@ class ReuseTabService {
     /**
      * @return {?}
      */
-    isValidScroll() {
+    get isDisabledInRouter() {
         /** @type {?} */
         const routerConfig = this.injector.get(ROUTER_CONFIGURATION, (/** @type {?} */ ({})));
-        return routerConfig.scrollPositionRestoration == null || routerConfig.scrollPositionRestoration === 'disabled';
+        return routerConfig.scrollPositionRestoration === 'disabled';
     }
     /**
      * @return {?}
@@ -939,20 +939,29 @@ class ReuseTabService {
         if (this._router$) {
             this._router$.unsubscribe();
         }
-        /** @type {?} */
-        const router = this.injector.get(Router, null);
-        if (router == null || !this.keepingScroll || !this.isValidScroll()) {
-            return;
-        }
-        this._router$ = router.events.subscribe(e => {
+        this._router$ = this.injector.get(Router).events.subscribe(e => {
             if (e instanceof NavigationStart) {
-                this.positionBuffer[this.curUrl] = this.ss.getScrollPosition(this.keepingScrollContainer);
+                /** @type {?} */
+                const url = this.curUrl;
+                if (this.getKeepingScroll(url)) {
+                    this.positionBuffer[url] = this.ss.getScrollPosition(this.keepingScrollContainer);
+                }
+                else {
+                    delete this.positionBuffer[url];
+                }
             }
             else if (e instanceof NavigationEnd) {
                 /** @type {?} */
-                const item = this.get(this.curUrl);
-                if (item && item.position) {
-                    setTimeout(() => this.ss.scrollToPosition(this.keepingScrollContainer, item.position), 1);
+                const url = this.curUrl;
+                /** @type {?} */
+                const item = this.get(url);
+                if (item && item.position && this.getKeepingScroll(url)) {
+                    if (this.isDisabledInRouter) {
+                        this.ss.scrollToPosition(this.keepingScrollContainer, item.position);
+                    }
+                    else {
+                        setTimeout(() => this.ss.scrollToPosition(this.keepingScrollContainer, item.position), 1);
+                    }
                 }
             }
         });
