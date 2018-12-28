@@ -10,9 +10,11 @@ export declare class ReuseTabComponent implements OnInit, OnChanges, OnDestroy {
     private route;
     private render;
     private i18nSrv;
+    private doc;
     private el;
     private sub$;
     private i18n$;
+    private _keepingScrollContainer;
     list: ReuseItem[];
     item: ReuseItem;
     pos: number;
@@ -23,9 +25,11 @@ export declare class ReuseTabComponent implements OnInit, OnChanges, OnDestroy {
     excludes: RegExp[];
     allowClose: boolean;
     showCurrent: boolean;
+    keepingScroll: boolean;
+    keepingScrollContainer: string | Element;
     readonly change: EventEmitter<ReuseItem>;
     readonly close: EventEmitter<ReuseItem>;
-    constructor(el: ElementRef, srv: ReuseTabService, cdr: ChangeDetectorRef, router: Router, route: ActivatedRoute, render: Renderer2, i18nSrv: AlainI18NService);
+    constructor(el: ElementRef, srv: ReuseTabService, cdr: ChangeDetectorRef, router: Router, route: ActivatedRoute, render: Renderer2, i18nSrv: AlainI18NService, doc: any);
     private genTit;
     private genList;
     private visibility;

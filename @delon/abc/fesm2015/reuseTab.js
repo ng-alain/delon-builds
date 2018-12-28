@@ -4,10 +4,10 @@ import { InputBoolean, InputNumber } from '@delon/util';
 import { debounceTime, filter } from 'rxjs/operators';
 import { Subject, Subscription, BehaviorSubject, combineLatest } from 'rxjs';
 import { ConnectionPositionPair, Overlay, OverlayModule } from '@angular/cdk/overlay';
-import { CommonModule } from '@angular/common';
+import { DOCUMENT, CommonModule } from '@angular/common';
 import { Component, EventEmitter, HostListener, Input, Output, ElementRef, Injectable, Directive, Injector, NgModule, ChangeDetectionStrategy, ChangeDetectorRef, Renderer2, Optional, Inject, defineInjectable, inject, INJECTOR } from '@angular/core';
-import { ActivatedRoute, Router, NavigationEnd, RouterModule } from '@angular/router';
-import { DelonLocaleService, MenuService, DelonLocaleModule, ALAIN_I18N_TOKEN } from '@delon/theme';
+import { ActivatedRoute, NavigationEnd, NavigationStart, Router, ROUTER_CONFIGURATION, RouterModule } from '@angular/router';
+import { DelonLocaleService, MenuService, ScrollService, DelonLocaleModule, ALAIN_I18N_TOKEN } from '@delon/theme';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 
 /**
@@ -320,6 +320,7 @@ class ReuseTabService {
         this.injector = injector;
         this.menuService = menuService;
         this._max = 10;
+        this._keepingScroll = false;
         this._debug = false;
         this._mode = ReuseTabMatchMode.Menu;
         this._excludes = [];
@@ -327,6 +328,7 @@ class ReuseTabService {
         this._cached = [];
         this._titleCached = {};
         this._closableCached = {};
+        this.positionBuffer = {};
     }
     // #region public
     /**
@@ -374,6 +376,20 @@ class ReuseTabService {
      */
     get debug() {
         return this._debug;
+    }
+    /**
+     * @param {?} value
+     * @return {?}
+     */
+    set keepingScroll(value) {
+        this._keepingScroll = value;
+        this.initScroll();
+    }
+    /**
+     * @return {?}
+     */
+    get keepingScroll() {
+        return this._keepingScroll;
     }
     /**
      * 排除规则，限 `mode=URL`
@@ -670,11 +686,7 @@ class ReuseTabService {
             next = next.parent;
         }
         /** @type {?} */
-        const url = '/' +
-            segments
-                .filter(i => i)
-                .reverse()
-                .join('/');
+        const url = '/' + segments.filter(i => i).reverse().join('/');
         return url;
     }
     /**
@@ -737,6 +749,12 @@ class ReuseTabService {
         console.warn(...args);
     }
     /**
+     * @return {?}
+     */
+    init() {
+        this.initScroll();
+    }
+    /**
      * @param {?} url
      * @return {?}
      */
@@ -794,6 +812,7 @@ class ReuseTabService {
         const item = {
             title: this.getTitle(url, _snapshot),
             closable: this.getClosable(url, _snapshot),
+            position: this.getKeepingScroll(url, _snapshot) ? this.positionBuffer[url] : null,
             url,
             _snapshot,
             _handle,
@@ -867,8 +886,7 @@ class ReuseTabService {
         if (!ret)
             return false;
         /** @type {?} */
-        const path = (/** @type {?} */ (((future.routeConfig && future.routeConfig.path) ||
-            '')));
+        const path = (/** @type {?} */ (((future.routeConfig && future.routeConfig.path) || '')));
         if (path.length > 0 && ~path.indexOf(':')) {
             /** @type {?} */
             const futureUrl = this.getUrl(future);
@@ -880,12 +898,77 @@ class ReuseTabService {
         this.di('#shouldReuseRoute', ret, `${this.getUrl(curr)}=>${this.getUrl(future)}`, future, curr);
         return ret;
     }
+    // #region scroll
+    /**
+     * 获取 `keepingScroll` 状态，顺序如下：
+     *
+     * 1. 路由配置中 data 属性中包含 `keepingScroll`
+     * 2. 菜单数据中 `keepingScroll` 属性
+     * 3. 组件 `keepingScroll` 值
+     * @param {?} url
+     * @param {?=} route
+     * @return {?}
+     */
+    getKeepingScroll(url, route) {
+        if (route && route.data && typeof route.data.keepingScroll === 'boolean')
+            return route.data.keepingScroll;
+        /** @type {?} */
+        const menu = this.mode !== ReuseTabMatchMode.URL ? this.getMenu(url) : null;
+        if (menu && typeof menu.keepingScroll === 'boolean')
+            return menu.keepingScroll;
+        return this.keepingScroll;
+    }
+    /**
+     * @return {?}
+     */
+    isValidScroll() {
+        /** @type {?} */
+        const routerConfig = this.injector.get(ROUTER_CONFIGURATION, (/** @type {?} */ ({})));
+        return routerConfig.scrollPositionRestoration == null || routerConfig.scrollPositionRestoration === 'disabled';
+    }
+    /**
+     * @return {?}
+     */
+    get ss() {
+        return this.injector.get(ScrollService);
+    }
+    /**
+     * @return {?}
+     */
+    initScroll() {
+        if (this._router$) {
+            this._router$.unsubscribe();
+        }
+        /** @type {?} */
+        const router = this.injector.get(Router, null);
+        if (router == null || !this.keepingScroll || !this.isValidScroll()) {
+            return;
+        }
+        this._router$ = router.events.subscribe(e => {
+            if (e instanceof NavigationStart) {
+                this.positionBuffer[this.curUrl] = this.ss.getScrollPosition(this.keepingScrollContainer);
+            }
+            else if (e instanceof NavigationEnd) {
+                /** @type {?} */
+                const item = this.get(this.curUrl);
+                if (item && item.position) {
+                    setTimeout(() => this.ss.scrollToPosition(this.keepingScrollContainer, item.position), 1);
+                }
+            }
+        });
+    }
+    // #endregion
     /**
      * @return {?}
      */
     ngOnDestroy() {
+        const { _cachedChange, _router$ } = this;
+        this.clear();
         this._cached = [];
-        this._cachedChange.unsubscribe();
+        _cachedChange.complete();
+        if (_router$) {
+            _router$.unsubscribe();
+        }
     }
 }
 ReuseTabService.decorators = [
@@ -912,14 +995,16 @@ class ReuseTabComponent {
      * @param {?} route
      * @param {?} render
      * @param {?} i18nSrv
+     * @param {?} doc
      */
-    constructor(el, srv, cdr, router, route, render, i18nSrv) {
+    constructor(el, srv, cdr, router, route, render, i18nSrv, doc) {
         this.srv = srv;
         this.cdr = cdr;
         this.router = router;
         this.route = route;
         this.render = render;
         this.i18nSrv = i18nSrv;
+        this.doc = doc;
         this.list = [];
         this.pos = 0;
         // #region fields
@@ -927,6 +1012,7 @@ class ReuseTabComponent {
         this.debug = false;
         this.allowClose = true;
         this.showCurrent = true;
+        this.keepingScroll = false;
         this.change = new EventEmitter();
         this.close = new EventEmitter();
         this.el = el.nativeElement;
@@ -938,6 +1024,13 @@ class ReuseTabComponent {
                 .pipe(debounceTime(100))
                 .subscribe(() => this.genList());
         }
+    }
+    /**
+     * @param {?} value
+     * @return {?}
+     */
+    set keepingScrollContainer(value) {
+        this._keepingScrollContainer = typeof value === 'string' ? this.doc.querySelector(value) : value;
     }
     /**
      * @param {?} title
@@ -1096,6 +1189,7 @@ class ReuseTabComponent {
      */
     ngOnInit() {
         this.genList();
+        this.srv.init();
     }
     /**
      * @param {?} changes
@@ -1108,6 +1202,10 @@ class ReuseTabComponent {
             this.srv.excludes = this.excludes;
         if (changes.mode)
             this.srv.mode = this.mode;
+        if (changes.keepingScroll) {
+            this.srv.keepingScroll = this.keepingScroll;
+            this.srv.keepingScrollContainer = this._keepingScrollContainer;
+        }
         this.srv.debug = this.debug;
         this.cdr.detectChanges();
     }
@@ -1140,7 +1238,8 @@ ReuseTabComponent.ctorParameters = () => [
     { type: Router },
     { type: ActivatedRoute },
     { type: Renderer2 },
-    { type: undefined, decorators: [{ type: Optional }, { type: Inject, args: [ALAIN_I18N_TOKEN,] }] }
+    { type: undefined, decorators: [{ type: Optional }, { type: Inject, args: [ALAIN_I18N_TOKEN,] }] },
+    { type: undefined, decorators: [{ type: Inject, args: [DOCUMENT,] }] }
 ];
 ReuseTabComponent.propDecorators = {
     mode: [{ type: Input }],
@@ -1150,6 +1249,8 @@ ReuseTabComponent.propDecorators = {
     excludes: [{ type: Input }],
     allowClose: [{ type: Input }],
     showCurrent: [{ type: Input }],
+    keepingScroll: [{ type: Input }],
+    keepingScrollContainer: [{ type: Input }],
     change: [{ type: Output }],
     close: [{ type: Output }]
 };
@@ -1169,6 +1270,10 @@ __decorate([
     InputBoolean(),
     __metadata("design:type", Object)
 ], ReuseTabComponent.prototype, "showCurrent", void 0);
+__decorate([
+    InputBoolean(),
+    __metadata("design:type", Object)
+], ReuseTabComponent.prototype, "keepingScroll", void 0);
 
 /**
  * @fileoverview added by tsickle
