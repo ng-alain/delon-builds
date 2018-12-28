@@ -330,13 +330,19 @@ class ReuseTabService {
         this._closableCached = {};
         this.positionBuffer = {};
     }
+    /**
+     * @return {?}
+     */
+    get snapshot() {
+        return this.injector.get(ActivatedRoute).snapshot;
+    }
     // #region public
     /**
      * 当前路由地址
      * @return {?}
      */
     get curUrl() {
-        return this.getUrl(this.injector.get(ActivatedRoute).snapshot);
+        return this.getUrl(this.snapshot);
     }
     /**
      * 允许最多复用多少个页面，取值范围 `2-100`，值发生变更时会强制关闭且忽略可关闭条件
@@ -943,7 +949,7 @@ class ReuseTabService {
             if (e instanceof NavigationStart) {
                 /** @type {?} */
                 const url = this.curUrl;
-                if (this.getKeepingScroll(url)) {
+                if (this.getKeepingScroll(url, this.getTruthRoute(this.snapshot))) {
                     this.positionBuffer[url] = this.ss.getScrollPosition(this.keepingScrollContainer);
                 }
                 else {
@@ -955,7 +961,7 @@ class ReuseTabService {
                 const url = this.curUrl;
                 /** @type {?} */
                 const item = this.get(url);
-                if (item && item.position && this.getKeepingScroll(url)) {
+                if (item && item.position && this.getKeepingScroll(url, this.getTruthRoute(this.snapshot))) {
                     if (this.isDisabledInRouter) {
                         this.ss.scrollToPosition(this.keepingScrollContainer, item.position);
                     }

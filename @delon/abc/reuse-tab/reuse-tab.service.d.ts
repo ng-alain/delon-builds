@@ -23,6 +23,7 @@ export declare class ReuseTabService implements OnDestroy {
     private _router$;
     private removeUrlBuffer;
     private positionBuffer;
+    private readonly snapshot;
     /** 当前路由地址 */
     readonly curUrl: string;
     /** 允许最多复用多少个页面，取值范围 `2-100`，值发生变更时会强制关闭且忽略可关闭条件 */

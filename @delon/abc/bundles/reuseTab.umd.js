@@ -438,6 +438,15 @@
             this._closableCached = {};
             this.positionBuffer = {};
         }
+        Object.defineProperty(ReuseTabService.prototype, "snapshot", {
+            get: /**
+             * @return {?}
+             */ function () {
+                return this.injector.get(router.ActivatedRoute).snapshot;
+            },
+            enumerable: true,
+            configurable: true
+        });
         Object.defineProperty(ReuseTabService.prototype, "curUrl", {
             // #region public
             /** 当前路由地址 */
@@ -448,7 +457,7 @@
              * @return {?}
              */
             function () {
-                return this.getUrl(this.injector.get(router.ActivatedRoute).snapshot);
+                return this.getUrl(this.snapshot);
             },
             enumerable: true,
             configurable: true
@@ -1403,7 +1412,7 @@
                     if (e instanceof router.NavigationStart) {
                         /** @type {?} */
                         var url = _this.curUrl;
-                        if (_this.getKeepingScroll(url)) {
+                        if (_this.getKeepingScroll(url, _this.getTruthRoute(_this.snapshot))) {
                             _this.positionBuffer[url] = _this.ss.getScrollPosition(_this.keepingScrollContainer);
                         }
                         else {
@@ -1415,7 +1424,7 @@
                         var url = _this.curUrl;
                         /** @type {?} */
                         var item_1 = _this.get(url);
-                        if (item_1 && item_1.position && _this.getKeepingScroll(url)) {
+                        if (item_1 && item_1.position && _this.getKeepingScroll(url, _this.getTruthRoute(_this.snapshot))) {
                             if (_this.isDisabledInRouter) {
                                 _this.ss.scrollToPosition(_this.keepingScrollContainer, item_1.position);
                             }
