@@ -9,7 +9,7 @@ import { __spread, __assign, __extends, __values } from 'tslib';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { DOCUMENT, CommonModule, CurrencyPipe } from '@angular/common';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { BellOutline, CaretUpOutline, DeleteOutline, InboxOutline, PlusOutline } from '@ant-design/icons-angular/icons';
+import { BellOutline, CaretDownOutline, CaretUpOutline, DeleteOutline, FilterFill, InboxOutline, PlusOutline } from '@ant-design/icons-angular/icons';
 import { NzModalService, NzIconService, NzDrawerService } from 'ng-zorro-antd';
 import { InjectionToken, Injectable, Inject, Pipe, Version, NgModule, Optional, SkipSelf, defineInjectable, inject, Injector, INJECTOR } from '@angular/core';
 
@@ -17,17 +17,8 @@ import { InjectionToken, Injectable, Inject, Pipe, Version, NgModule, Optional, 
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
-/**
- * @return {?}
- */
-function WINDOW_FACTORY() {
-    return window;
-}
 /** @type {?} */
-var WINDOW = new InjectionToken('Window', {
-    providedIn: 'root',
-    factory: WINDOW_FACTORY,
-});
+var WINDOW = new InjectionToken('Window');
 
 /**
  * @fileoverview added by tsickle
@@ -536,7 +527,7 @@ var ScrollService = /** @class */ (function () {
      * @return {?}
      */
     function (element) {
-        if (element && element !== this.win) {
+        if (element) {
             return [element.scrollLeft, element.scrollTop];
         }
         else {
@@ -2616,7 +2607,9 @@ var PIPES = [DatePipe, CNCurrencyPipe, KeysPipe, YNPipe, I18nPipe, HTMLPipe, URL
 /** @type {?} */
 var ICONS = [
     BellOutline,
+    FilterFill,
     CaretUpOutline,
+    CaretDownOutline,
     DeleteOutline,
     PlusOutline,
     InboxOutline,
@@ -2635,7 +2628,9 @@ var AlainThemeModule = /** @class */ (function () {
     function () {
         return {
             ngModule: AlainThemeModule,
-            providers: __spread(HELPERS),
+            providers: __spread([
+                { provide: WINDOW, useValue: window }
+            ], HELPERS),
         };
     };
     /**
@@ -2669,7 +2664,7 @@ var AlainThemeModule = /** @class */ (function () {
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 /** @type {?} */
-var VERSION = new Version('7.0.0-rc.2-907ca23');
+var VERSION = new Version('7.0.0-rc.2-2d6ea8c');
 
 /**
  * @fileoverview added by tsickle

@@ -8,7 +8,7 @@ import { Title, DomSanitizer } from '@angular/platform-browser';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { DOCUMENT, CurrencyPipe, CommonModule } from '@angular/common';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { BellOutline, CaretUpOutline, DeleteOutline, InboxOutline, PlusOutline } from '@ant-design/icons-angular/icons';
+import { BellOutline, CaretDownOutline, CaretUpOutline, DeleteOutline, FilterFill, InboxOutline, PlusOutline } from '@ant-design/icons-angular/icons';
 import { NzModalService, NzIconService, NzDrawerService } from 'ng-zorro-antd';
 import { InjectionToken, Injectable, Inject, Pipe, Version, Injector, Optional, NgModule, SkipSelf, defineInjectable, inject, INJECTOR } from '@angular/core';
 
@@ -16,17 +16,8 @@ import { InjectionToken, Injectable, Inject, Pipe, Version, Injector, Optional, 
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
-/**
- * @return {?}
- */
-function WINDOW_FACTORY() {
-    return window;
-}
 /** @type {?} */
-const WINDOW = new InjectionToken('Window', {
-    providedIn: 'root',
-    factory: WINDOW_FACTORY,
-});
+const WINDOW = new InjectionToken('Window');
 
 /**
  * @fileoverview added by tsickle
@@ -413,7 +404,7 @@ class ScrollService {
      * @return {?}
      */
     getScrollPosition(element) {
-        if (element && element !== this.win) {
+        if (element) {
             return [element.scrollLeft, element.scrollTop];
         }
         else {
@@ -2016,7 +2007,9 @@ const PIPES = [DatePipe, CNCurrencyPipe, KeysPipe, YNPipe, I18nPipe, HTMLPipe, U
 /** @type {?} */
 const ICONS = [
     BellOutline,
+    FilterFill,
     CaretUpOutline,
+    CaretDownOutline,
     DeleteOutline,
     PlusOutline,
     InboxOutline,
@@ -2036,6 +2029,7 @@ class AlainThemeModule {
         return {
             ngModule: AlainThemeModule,
             providers: [
+                { provide: WINDOW, useValue: window },
                 ...HELPERS,
             ],
         };
@@ -2067,7 +2061,7 @@ AlainThemeModule.ctorParameters = () => [
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 /** @type {?} */
-const VERSION = new Version('7.0.0-rc.2-907ca23');
+const VERSION = new Version('7.0.0-rc.2-2d6ea8c');
 
 /**
  * @fileoverview added by tsickle

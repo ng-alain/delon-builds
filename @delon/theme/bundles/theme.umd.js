@@ -16,17 +16,8 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
-    /**
-     * @return {?}
-     */
-    function WINDOW_FACTORY() {
-        return window;
-    }
     /** @type {?} */
-    var WINDOW = new i0.InjectionToken('Window', {
-        providedIn: 'root',
-        factory: WINDOW_FACTORY,
-    });
+    var WINDOW = new i0.InjectionToken('Window');
 
     /**
      * @fileoverview added by tsickle
@@ -625,7 +616,7 @@
          * @return {?}
          */
             function (element) {
-                if (element && element !== this.win) {
+                if (element) {
                     return [element.scrollLeft, element.scrollTop];
                 }
                 else {
@@ -2725,7 +2716,9 @@
     /** @type {?} */
     var ICONS = [
         icons.BellOutline,
+        icons.FilterFill,
         icons.CaretUpOutline,
+        icons.CaretDownOutline,
         icons.DeleteOutline,
         icons.PlusOutline,
         icons.InboxOutline,
@@ -2744,7 +2737,9 @@
             function () {
                 return {
                     ngModule: AlainThemeModule,
-                    providers: __spread(HELPERS),
+                    providers: __spread([
+                        { provide: WINDOW, useValue: window }
+                    ], HELPERS),
                 };
             };
         /**

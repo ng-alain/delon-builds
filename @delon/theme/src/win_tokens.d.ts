@@ -1,2 +1,2 @@
 import { InjectionToken } from '@angular/core';
-export declare const WINDOW: InjectionToken<any>;
+export declare const WINDOW: InjectionToken<{}>;
