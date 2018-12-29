@@ -2006,7 +2006,8 @@ I18nPipe.ctorParameters = () => [
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
-// #region import
+/** @type {?} */
+const HELPERS = [ModalHelper, DrawerHelper];
 // components
 /** @type {?} */
 const COMPONENTS = [];
@@ -2028,6 +2029,26 @@ class AlainThemeModule {
     constructor(iconSrv) {
         iconSrv.addIcon(...ICONS);
     }
+    /**
+     * @return {?}
+     */
+    static forRoot() {
+        return {
+            ngModule: AlainThemeModule,
+            providers: [
+                ...HELPERS,
+            ],
+        };
+    }
+    /**
+     * @return {?}
+     */
+    static forChild() {
+        return {
+            ngModule: AlainThemeModule,
+            providers: [...HELPERS],
+        };
+    }
 }
 AlainThemeModule.decorators = [
     { type: NgModule, args: [{
@@ -2046,7 +2067,7 @@ AlainThemeModule.ctorParameters = () => [
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 /** @type {?} */
-const VERSION = new Version('7.0.0-rc.2-d394dc8');
+const VERSION = new Version('7.0.0-rc.2-907ca23');
 
 /**
  * @fileoverview added by tsickle

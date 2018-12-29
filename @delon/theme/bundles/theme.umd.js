@@ -2715,7 +2715,8 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
-    // #region import
+    /** @type {?} */
+    var HELPERS = [ModalHelper, DrawerHelper];
     // components
     /** @type {?} */
     var COMPONENTS = [];
@@ -2734,6 +2735,30 @@
         function AlainThemeModule(iconSrv) {
             iconSrv.addIcon.apply(iconSrv, __spread(ICONS));
         }
+        /**
+         * @return {?}
+         */
+        AlainThemeModule.forRoot = /**
+         * @return {?}
+         */
+            function () {
+                return {
+                    ngModule: AlainThemeModule,
+                    providers: __spread(HELPERS),
+                };
+            };
+        /**
+         * @return {?}
+         */
+        AlainThemeModule.forChild = /**
+         * @return {?}
+         */
+            function () {
+                return {
+                    ngModule: AlainThemeModule,
+                    providers: __spread(HELPERS),
+                };
+            };
         AlainThemeModule.decorators = [
             { type: i0.NgModule, args: [{
                         imports: [i2$1.CommonModule, router.RouterModule, overlay.OverlayModule],
