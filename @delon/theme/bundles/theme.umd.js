@@ -16,8 +16,17 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
+    /**
+     * @return {?}
+     */
+    function WINDOW_FACTORY() {
+        return window;
+    }
     /** @type {?} */
-    var WINDOW = new i0.InjectionToken('Window');
+    var WINDOW = new i0.InjectionToken('Window', {
+        providedIn: 'root',
+        factory: WINDOW_FACTORY,
+    });
 
     /**
      * @fileoverview added by tsickle
@@ -616,7 +625,7 @@
          * @return {?}
          */
             function (element) {
-                if (element) {
+                if (element && element !== this.win) {
                     return [element.scrollLeft, element.scrollTop];
                 }
                 else {
@@ -2706,8 +2715,7 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
-    /** @type {?} */
-    var HELPERS = [ModalHelper, DrawerHelper];
+    // #region import
     // components
     /** @type {?} */
     var COMPONENTS = [];
@@ -2728,32 +2736,6 @@
         function AlainThemeModule(iconSrv) {
             iconSrv.addIcon.apply(iconSrv, __spread(ICONS));
         }
-        /**
-         * @return {?}
-         */
-        AlainThemeModule.forRoot = /**
-         * @return {?}
-         */
-            function () {
-                return {
-                    ngModule: AlainThemeModule,
-                    providers: __spread([
-                        { provide: WINDOW, useValue: window }
-                    ], HELPERS),
-                };
-            };
-        /**
-         * @return {?}
-         */
-        AlainThemeModule.forChild = /**
-         * @return {?}
-         */
-            function () {
-                return {
-                    ngModule: AlainThemeModule,
-                    providers: __spread(HELPERS),
-                };
-            };
         AlainThemeModule.decorators = [
             { type: i0.NgModule, args: [{
                         imports: [i2$1.CommonModule, router.RouterModule, overlay.OverlayModule],

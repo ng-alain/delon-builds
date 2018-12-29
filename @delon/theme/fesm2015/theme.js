@@ -16,8 +16,17 @@ import { InjectionToken, Injectable, Inject, Pipe, Version, Injector, Optional, 
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
+/**
+ * @return {?}
+ */
+function WINDOW_FACTORY() {
+    return window;
+}
 /** @type {?} */
-const WINDOW = new InjectionToken('Window');
+const WINDOW = new InjectionToken('Window', {
+    providedIn: 'root',
+    factory: WINDOW_FACTORY,
+});
 
 /**
  * @fileoverview added by tsickle
@@ -404,7 +413,7 @@ class ScrollService {
      * @return {?}
      */
     getScrollPosition(element) {
-        if (element) {
+        if (element && element !== this.win) {
             return [element.scrollLeft, element.scrollTop];
         }
         else {
@@ -1997,8 +2006,7 @@ I18nPipe.ctorParameters = () => [
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
-/** @type {?} */
-const HELPERS = [ModalHelper, DrawerHelper];
+// #region import
 // components
 /** @type {?} */
 const COMPONENTS = [];
@@ -2022,27 +2030,6 @@ class AlainThemeModule {
     constructor(iconSrv) {
         iconSrv.addIcon(...ICONS);
     }
-    /**
-     * @return {?}
-     */
-    static forRoot() {
-        return {
-            ngModule: AlainThemeModule,
-            providers: [
-                { provide: WINDOW, useValue: window },
-                ...HELPERS,
-            ],
-        };
-    }
-    /**
-     * @return {?}
-     */
-    static forChild() {
-        return {
-            ngModule: AlainThemeModule,
-            providers: [...HELPERS],
-        };
-    }
 }
 AlainThemeModule.decorators = [
     { type: NgModule, args: [{
@@ -2061,7 +2048,7 @@ AlainThemeModule.ctorParameters = () => [
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 /** @type {?} */
-const VERSION = new Version('7.0.0-rc.2');
+const VERSION = new Version('7.0.0-rc.2-35d8428');
 
 /**
  * @fileoverview added by tsickle

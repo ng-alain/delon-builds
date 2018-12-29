@@ -17,8 +17,17 @@ import { InjectionToken, Injectable, Inject, Pipe, Version, NgModule, Optional, 
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
+/**
+ * @return {?}
+ */
+function WINDOW_FACTORY() {
+    return window;
+}
 /** @type {?} */
-var WINDOW = new InjectionToken('Window');
+var WINDOW = new InjectionToken('Window', {
+    providedIn: 'root',
+    factory: WINDOW_FACTORY,
+});
 
 /**
  * @fileoverview added by tsickle
@@ -527,7 +536,7 @@ var ScrollService = /** @class */ (function () {
      * @return {?}
      */
     function (element) {
-        if (element) {
+        if (element && element !== this.win) {
             return [element.scrollLeft, element.scrollTop];
         }
         else {
@@ -2597,8 +2606,7 @@ var I18nPipe = /** @class */ (function () {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
-/** @type {?} */
-var HELPERS = [ModalHelper, DrawerHelper];
+// #region import
 // components
 /** @type {?} */
 var COMPONENTS = [];
@@ -2619,32 +2627,6 @@ var AlainThemeModule = /** @class */ (function () {
     function AlainThemeModule(iconSrv) {
         iconSrv.addIcon.apply(iconSrv, __spread(ICONS));
     }
-    /**
-     * @return {?}
-     */
-    AlainThemeModule.forRoot = /**
-     * @return {?}
-     */
-    function () {
-        return {
-            ngModule: AlainThemeModule,
-            providers: __spread([
-                { provide: WINDOW, useValue: window }
-            ], HELPERS),
-        };
-    };
-    /**
-     * @return {?}
-     */
-    AlainThemeModule.forChild = /**
-     * @return {?}
-     */
-    function () {
-        return {
-            ngModule: AlainThemeModule,
-            providers: __spread(HELPERS),
-        };
-    };
     AlainThemeModule.decorators = [
         { type: NgModule, args: [{
                     imports: [CommonModule, RouterModule, OverlayModule],
@@ -2664,7 +2646,7 @@ var AlainThemeModule = /** @class */ (function () {
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 /** @type {?} */
-var VERSION = new Version('7.0.0-rc.2');
+var VERSION = new Version('7.0.0-rc.2-35d8428');
 
 /**
  * @fileoverview added by tsickle
