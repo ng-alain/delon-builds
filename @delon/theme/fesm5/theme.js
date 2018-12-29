@@ -9,7 +9,7 @@ import { __spread, __assign, __extends, __values } from 'tslib';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { DOCUMENT, CommonModule, CurrencyPipe } from '@angular/common';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { BellOutline, CaretDownOutline, CaretUpOutline, DeleteOutline, FilterFill, InboxOutline, PlusOutline } from '@ant-design/icons-angular/icons';
+import { BellOutline, CaretUpOutline, DeleteOutline, InboxOutline, PlusOutline } from '@ant-design/icons-angular/icons';
 import { NzModalService, NzIconService, NzDrawerService } from 'ng-zorro-antd';
 import { InjectionToken, Injectable, Inject, Pipe, Version, NgModule, Optional, SkipSelf, defineInjectable, inject, Injector, INJECTOR } from '@angular/core';
 
@@ -2615,9 +2615,7 @@ var PIPES = [DatePipe, CNCurrencyPipe, KeysPipe, YNPipe, I18nPipe, HTMLPipe, URL
 /** @type {?} */
 var ICONS = [
     BellOutline,
-    FilterFill,
     CaretUpOutline,
-    CaretDownOutline,
     DeleteOutline,
     PlusOutline,
     InboxOutline,
@@ -2646,7 +2644,7 @@ var AlainThemeModule = /** @class */ (function () {
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 /** @type {?} */
-var VERSION = new Version('7.0.0-rc.2-35d8428');
+var VERSION = new Version('7.0.0-rc.2-d394dc8');
 
 /**
  * @fileoverview added by tsickle

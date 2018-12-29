@@ -8,7 +8,7 @@ import { Title, DomSanitizer } from '@angular/platform-browser';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { DOCUMENT, CurrencyPipe, CommonModule } from '@angular/common';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { BellOutline, CaretDownOutline, CaretUpOutline, DeleteOutline, FilterFill, InboxOutline, PlusOutline } from '@ant-design/icons-angular/icons';
+import { BellOutline, CaretUpOutline, DeleteOutline, InboxOutline, PlusOutline } from '@ant-design/icons-angular/icons';
 import { NzModalService, NzIconService, NzDrawerService } from 'ng-zorro-antd';
 import { InjectionToken, Injectable, Inject, Pipe, Version, Injector, Optional, NgModule, SkipSelf, defineInjectable, inject, INJECTOR } from '@angular/core';
 
@@ -2015,9 +2015,7 @@ const PIPES = [DatePipe, CNCurrencyPipe, KeysPipe, YNPipe, I18nPipe, HTMLPipe, U
 /** @type {?} */
 const ICONS = [
     BellOutline,
-    FilterFill,
     CaretUpOutline,
-    CaretDownOutline,
     DeleteOutline,
     PlusOutline,
     InboxOutline,
@@ -2048,7 +2046,7 @@ AlainThemeModule.ctorParameters = () => [
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 /** @type {?} */
-const VERSION = new Version('7.0.0-rc.2-35d8428');
+const VERSION = new Version('7.0.0-rc.2-d394dc8');
 
 /**
  * @fileoverview added by tsickle

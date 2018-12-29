@@ -2724,9 +2724,7 @@
     /** @type {?} */
     var ICONS = [
         icons.BellOutline,
-        icons.FilterFill,
         icons.CaretUpOutline,
-        icons.CaretDownOutline,
         icons.DeleteOutline,
         icons.PlusOutline,
         icons.InboxOutline,
