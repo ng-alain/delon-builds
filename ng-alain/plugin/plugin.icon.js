@@ -266,6 +266,7 @@ export const ICONS_AUTO = [
 }
 function pluginIcon(options) {
     return (host, context) => {
+        console.log(`Analyzing files...`);
         genCustomIcons(options, host);
         const icons = getIcons(host);
         genIconFile(options, host, icons);

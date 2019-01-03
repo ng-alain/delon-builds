@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { DelonLocaleService, DelonLocaleModule } from '@delon/theme';
-import { NgModel, FormsModule } from '@angular/forms';
 import format from 'date-fns/format';
 import { of, combineLatest, BehaviorSubject, Observable, Subject } from 'rxjs';
 import { map, distinctUntilChanged, filter, takeUntil, debounceTime, flatMap, startWith, tap } from 'rxjs/operators';
@@ -2838,29 +2838,14 @@ var AutoCompleteWidget = /** @class */ (function (_super) {
     __extends(AutoCompleteWidget, _super);
     function AutoCompleteWidget() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
-        // tslint:disable-next-line:no-any
-        _this.i = {};
         _this.fixData = [];
-        _this.typing = '';
         _this.isAsync = false;
         return _this;
     }
     /**
-     * @param {?} item
      * @return {?}
      */
-    AutoCompleteWidget.prototype.updateValue = /**
-     * @param {?} item
-     * @return {?}
-     */
-    function (item) {
-        this.typing = item.nzLabel;
-        this.setValue(item.nzValue);
-    };
-    /**
-     * @return {?}
-     */
-    AutoCompleteWidget.prototype.ngAfterViewInit = /**
+    AutoCompleteWidget.prototype.ngOnInit = /**
      * @return {?}
      */
     function () {
@@ -2881,7 +2866,9 @@ var AutoCompleteWidget = /** @class */ (function (_super) {
         var orgTime = +(this.ui.debounceTime || 0);
         /** @type {?} */
         var time = Math.max(0, this.isAsync ? Math.max(50, orgTime) : orgTime);
-        this.list = this.ngModel.valueChanges.pipe(debounceTime(time), startWith(''), flatMap(function (input) { return _this.isAsync ? _this.ui.asyncData(input) : _this.filterData(input); }), map(function (res) { return getEnum(res, null, _this.schema.readOnly); }));
+        this.list = this.formProperty.valueChanges.pipe(takeUntil(this.sfItemComp.unsubscribe$), debounceTime(time), startWith(''), flatMap(function (input) {
+            return _this.isAsync ? _this.ui.asyncData(input) : _this.filterData(input);
+        }), map(function (res) { return getEnum(res, null, _this.schema.readOnly); }));
     };
     /**
      * @param {?} value
@@ -2936,12 +2923,9 @@ var AutoCompleteWidget = /** @class */ (function (_super) {
     AutoCompleteWidget.decorators = [
         { type: Component, args: [{
                     selector: 'sf-autocomplete',
-                    template: "<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n    <input nz-input [nzAutocomplete]=\"auto\"\n        [attr.id]=\"id\"\n        [disabled]=\"disabled\"\n        [attr.disabled]=\"disabled\"\n        [nzSize]=\"ui.size\"\n        [(ngModel)]=\"typing\"\n        [attr.maxLength]=\"schema.maxLength || null\"\n        [attr.placeholder]=\"ui.placeholder\"\n        autocomplete=\"off\">\n    <nz-autocomplete #auto\n        [nzBackfill]=\"i.backfill\"\n        [nzDefaultActiveFirstOption]=\"i.defaultActiveFirstOption\"\n        [nzWidth]=\"i.width\"\n        (selectionChange)=\"updateValue($event)\">\n        <nz-auto-option *ngFor=\"let i of list | async\" [nzValue]=\"i.value\" [nzLabel]=\"i.label\">\n            {{i.label}}\n        </nz-auto-option>\n    </nz-autocomplete>\n</sf-item-wrap>"
+                    template: "\n    <sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n      <input nz-input [nzAutocomplete]=\"auto\"\n        [attr.id]=\"id\"\n        [disabled]=\"disabled\"\n        [attr.disabled]=\"disabled\"\n        [nzSize]=\"ui.size\"\n        [ngModel]=\"value\"\n        (ngModelChange)=\"setValue($event)\"\n        [attr.maxLength]=\"schema.maxLength || null\"\n        [attr.placeholder]=\"ui.placeholder\"\n        autocomplete=\"off\">\n      <nz-autocomplete #auto\n        [nzBackfill]=\"i.backfill\"\n        [nzDefaultActiveFirstOption]=\"i.defaultActiveFirstOption\"\n        [nzWidth]=\"i.width\"\n        (selectionChange)=\"setValue($event?.nzValue)\">\n        <nz-auto-option *ngFor=\"let i of list | async\" [nzValue]=\"i.value\">{{i.label}}</nz-auto-option>\n      </nz-autocomplete>\n    </sf-item-wrap>\n    "
                 }] }
     ];
-    AutoCompleteWidget.propDecorators = {
-        ngModel: [{ type: ViewChild, args: [NgModel,] }]
-    };
     return AutoCompleteWidget;
 }(ControlWidget));
 

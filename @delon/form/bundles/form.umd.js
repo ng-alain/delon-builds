@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common'), require('@delon/theme'), require('@angular/forms'), require('date-fns/format'), require('rxjs'), require('rxjs/operators'), require('@angular/core'), require('@delon/util'), require('ng-zorro-antd')) :
-    typeof define === 'function' && define.amd ? define('@delon/form', ['exports', '@angular/common', '@delon/theme', '@angular/forms', 'date-fns/format', 'rxjs', 'rxjs/operators', '@angular/core', '@delon/util', 'ng-zorro-antd'], factory) :
-    (factory((global.delon = global.delon || {}, global.delon.form = {}),global.ng.common,global.delon.theme,global.ng.forms,global.format,global.rxjs,global.rxjs.operators,global.ng.core,global.delon.util,global['ng-zorro-antd']));
-}(this, (function (exports,common,theme,forms,format,rxjs,operators,i0,util,ngZorroAntd) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common'), require('@angular/forms'), require('@delon/theme'), require('date-fns/format'), require('rxjs'), require('rxjs/operators'), require('@angular/core'), require('@delon/util'), require('ng-zorro-antd')) :
+    typeof define === 'function' && define.amd ? define('@delon/form', ['exports', '@angular/common', '@angular/forms', '@delon/theme', 'date-fns/format', 'rxjs', 'rxjs/operators', '@angular/core', '@delon/util', 'ng-zorro-antd'], factory) :
+    (factory((global.delon = global.delon || {}, global.delon.form = {}),global.ng.common,global.ng.forms,global.delon.theme,global.format,global.rxjs,global.rxjs.operators,global.ng.core,global.delon.util,global['ng-zorro-antd']));
+}(this, (function (exports,common,forms,theme,format,rxjs,operators,i0,util,ngZorroAntd) { 'use strict';
 
     format = format && format.hasOwnProperty('default') ? format['default'] : format;
 
@@ -2967,29 +2967,14 @@
         __extends(AutoCompleteWidget, _super);
         function AutoCompleteWidget() {
             var _this = _super !== null && _super.apply(this, arguments) || this;
-            // tslint:disable-next-line:no-any
-            _this.i = {};
             _this.fixData = [];
-            _this.typing = '';
             _this.isAsync = false;
             return _this;
         }
         /**
-         * @param {?} item
          * @return {?}
          */
-        AutoCompleteWidget.prototype.updateValue = /**
-         * @param {?} item
-         * @return {?}
-         */
-            function (item) {
-                this.typing = item.nzLabel;
-                this.setValue(item.nzValue);
-            };
-        /**
-         * @return {?}
-         */
-        AutoCompleteWidget.prototype.ngAfterViewInit = /**
+        AutoCompleteWidget.prototype.ngOnInit = /**
          * @return {?}
          */
             function () {
@@ -3010,7 +2995,9 @@
                 var orgTime = +(this.ui.debounceTime || 0);
                 /** @type {?} */
                 var time = Math.max(0, this.isAsync ? Math.max(50, orgTime) : orgTime);
-                this.list = this.ngModel.valueChanges.pipe(operators.debounceTime(time), operators.startWith(''), operators.flatMap(function (input) { return _this.isAsync ? _this.ui.asyncData(input) : _this.filterData(input); }), operators.map(function (res) { return getEnum(res, null, _this.schema.readOnly); }));
+                this.list = this.formProperty.valueChanges.pipe(operators.takeUntil(this.sfItemComp.unsubscribe$), operators.debounceTime(time), operators.startWith(''), operators.flatMap(function (input) {
+                    return _this.isAsync ? _this.ui.asyncData(input) : _this.filterData(input);
+                }), operators.map(function (res) { return getEnum(res, null, _this.schema.readOnly); }));
             };
         /**
          * @param {?} value
@@ -3065,12 +3052,9 @@
         AutoCompleteWidget.decorators = [
             { type: i0.Component, args: [{
                         selector: 'sf-autocomplete',
-                        template: "<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n    <input nz-input [nzAutocomplete]=\"auto\"\n        [attr.id]=\"id\"\n        [disabled]=\"disabled\"\n        [attr.disabled]=\"disabled\"\n        [nzSize]=\"ui.size\"\n        [(ngModel)]=\"typing\"\n        [attr.maxLength]=\"schema.maxLength || null\"\n        [attr.placeholder]=\"ui.placeholder\"\n        autocomplete=\"off\">\n    <nz-autocomplete #auto\n        [nzBackfill]=\"i.backfill\"\n        [nzDefaultActiveFirstOption]=\"i.defaultActiveFirstOption\"\n        [nzWidth]=\"i.width\"\n        (selectionChange)=\"updateValue($event)\">\n        <nz-auto-option *ngFor=\"let i of list | async\" [nzValue]=\"i.value\" [nzLabel]=\"i.label\">\n            {{i.label}}\n        </nz-auto-option>\n    </nz-autocomplete>\n</sf-item-wrap>"
+                        template: "\n    <sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n      <input nz-input [nzAutocomplete]=\"auto\"\n        [attr.id]=\"id\"\n        [disabled]=\"disabled\"\n        [attr.disabled]=\"disabled\"\n        [nzSize]=\"ui.size\"\n        [ngModel]=\"value\"\n        (ngModelChange)=\"setValue($event)\"\n        [attr.maxLength]=\"schema.maxLength || null\"\n        [attr.placeholder]=\"ui.placeholder\"\n        autocomplete=\"off\">\n      <nz-autocomplete #auto\n        [nzBackfill]=\"i.backfill\"\n        [nzDefaultActiveFirstOption]=\"i.defaultActiveFirstOption\"\n        [nzWidth]=\"i.width\"\n        (selectionChange)=\"setValue($event?.nzValue)\">\n        <nz-auto-option *ngFor=\"let i of list | async\" [nzValue]=\"i.value\">{{i.label}}</nz-auto-option>\n      </nz-autocomplete>\n    </sf-item-wrap>\n    "
                     }] }
         ];
-        AutoCompleteWidget.propDecorators = {
-            ngModel: [{ type: i0.ViewChild, args: [forms.NgModel,] }]
-        };
         return AutoCompleteWidget;
     }(ControlWidget));
 

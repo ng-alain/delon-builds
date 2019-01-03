@@ -1,20 +1,16 @@
-import { AfterViewInit } from '@angular/core';
-import { NzAutocompleteOptionComponent } from 'ng-zorro-antd';
+import { OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { SFValue } from '../../interface';
 import { SFSchemaEnum } from '../../schema';
 import { ControlWidget } from '../../widget';
 export declare const EMAILSUFFIX: string[];
-export declare class AutoCompleteWidget extends ControlWidget implements AfterViewInit {
+export declare class AutoCompleteWidget extends ControlWidget implements OnInit {
     i: any;
     fixData: SFSchemaEnum[];
     list: Observable<SFSchemaEnum[]>;
-    typing: string;
-    private ngModel;
     private filterOption;
     private isAsync;
-    updateValue(item: NzAutocompleteOptionComponent): void;
-    ngAfterViewInit(): void;
+    ngOnInit(): void;
     reset(value: SFValue): void;
     private filterData;
     private addEmailSuffix;

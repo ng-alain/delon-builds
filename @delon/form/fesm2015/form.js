@@ -1,7 +1,7 @@
 import { __decorate, __metadata, __rest } from 'tslib';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { DelonLocaleService, DelonLocaleModule } from '@delon/theme';
-import { NgModel, FormsModule } from '@angular/forms';
 import format from 'date-fns/format';
 import { of, combineLatest, BehaviorSubject, Observable, Subject } from 'rxjs';
 import { map, distinctUntilChanged, filter, takeUntil, debounceTime, flatMap, startWith, tap } from 'rxjs/operators';
@@ -2286,24 +2286,13 @@ const EMAILSUFFIX = [
 class AutoCompleteWidget extends ControlWidget {
     constructor() {
         super(...arguments);
-        // tslint:disable-next-line:no-any
-        this.i = {};
         this.fixData = [];
-        this.typing = '';
         this.isAsync = false;
     }
     /**
-     * @param {?} item
      * @return {?}
      */
-    updateValue(item) {
-        this.typing = item.nzLabel;
-        this.setValue(item.nzValue);
-    }
-    /**
-     * @return {?}
-     */
-    ngAfterViewInit() {
+    ngOnInit() {
         this.i = {
             backfill: toBool(this.ui.backfill, false),
             defaultActiveFirstOption: toBool(this.ui.defaultActiveFirstOption, true),
@@ -2318,7 +2307,7 @@ class AutoCompleteWidget extends ControlWidget {
         const orgTime = +(this.ui.debounceTime || 0);
         /** @type {?} */
         const time = Math.max(0, this.isAsync ? Math.max(50, orgTime) : orgTime);
-        this.list = this.ngModel.valueChanges.pipe(debounceTime(time), startWith(''), flatMap(input => this.isAsync ? this.ui.asyncData(input) : this.filterData(input)), map(res => getEnum(res, null, this.schema.readOnly)));
+        this.list = this.formProperty.valueChanges.pipe(takeUntil(this.sfItemComp.unsubscribe$), debounceTime(time), startWith(''), flatMap(input => this.isAsync ? this.ui.asyncData(input) : this.filterData(input)), map(res => getEnum(res, null, this.schema.readOnly)));
     }
     /**
      * @param {?} value
@@ -2361,12 +2350,29 @@ class AutoCompleteWidget extends ControlWidget {
 AutoCompleteWidget.decorators = [
     { type: Component, args: [{
                 selector: 'sf-autocomplete',
-                template: "<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n    <input nz-input [nzAutocomplete]=\"auto\"\n        [attr.id]=\"id\"\n        [disabled]=\"disabled\"\n        [attr.disabled]=\"disabled\"\n        [nzSize]=\"ui.size\"\n        [(ngModel)]=\"typing\"\n        [attr.maxLength]=\"schema.maxLength || null\"\n        [attr.placeholder]=\"ui.placeholder\"\n        autocomplete=\"off\">\n    <nz-autocomplete #auto\n        [nzBackfill]=\"i.backfill\"\n        [nzDefaultActiveFirstOption]=\"i.defaultActiveFirstOption\"\n        [nzWidth]=\"i.width\"\n        (selectionChange)=\"updateValue($event)\">\n        <nz-auto-option *ngFor=\"let i of list | async\" [nzValue]=\"i.value\" [nzLabel]=\"i.label\">\n            {{i.label}}\n        </nz-auto-option>\n    </nz-autocomplete>\n</sf-item-wrap>"
+                template: `
+    <sf-item-wrap [id]="id" [schema]="schema" [ui]="ui" [showError]="showError" [error]="error" [showTitle]="schema.title">
+      <input nz-input [nzAutocomplete]="auto"
+        [attr.id]="id"
+        [disabled]="disabled"
+        [attr.disabled]="disabled"
+        [nzSize]="ui.size"
+        [ngModel]="value"
+        (ngModelChange)="setValue($event)"
+        [attr.maxLength]="schema.maxLength || null"
+        [attr.placeholder]="ui.placeholder"
+        autocomplete="off">
+      <nz-autocomplete #auto
+        [nzBackfill]="i.backfill"
+        [nzDefaultActiveFirstOption]="i.defaultActiveFirstOption"
+        [nzWidth]="i.width"
+        (selectionChange)="setValue($event?.nzValue)">
+        <nz-auto-option *ngFor="let i of list | async" [nzValue]="i.value">{{i.label}}</nz-auto-option>
+      </nz-autocomplete>
+    </sf-item-wrap>
+    `
             }] }
 ];
-AutoCompleteWidget.propDecorators = {
-    ngModel: [{ type: ViewChild, args: [NgModel,] }]
-};
 
 /**
  * @fileoverview added by tsickle

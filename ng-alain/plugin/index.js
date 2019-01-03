@@ -30,16 +30,16 @@ function default_1(options) {
         const rules = [];
         switch (options.name) {
             case 'g2':
-                rules.push(plugin_g2_1.pluginG2(pluginOptions));
+                rules.push(plugin_g2_1.pluginG2(pluginOptions), installPackages());
                 break;
             case 'codeStyle':
-                rules.push(plugin_code_style_1.pluginCodeStyle(pluginOptions));
+                rules.push(plugin_code_style_1.pluginCodeStyle(pluginOptions), installPackages());
                 break;
             case 'networkEnv':
                 rules.push(plugin_network_env_1.pluginNetworkEnv(Object.assign({}, pluginOptions, { packageManager: options.packageManager })));
                 break;
             case 'hmr':
-                rules.push(plugin_hmr_1.pluginHmr(pluginOptions));
+                rules.push(plugin_hmr_1.pluginHmr(pluginOptions), installPackages());
                 break;
             case 'docker':
                 rules.push(plugin_docker_1.pluginDocker(pluginOptions));
@@ -56,7 +56,6 @@ function default_1(options) {
             default:
                 throw new schematics_1.SchematicsException(`Could not find plugin name: ${options.name}`);
         }
-        rules.push(installPackages());
         return schematics_1.chain(rules)(host, context);
     };
 }
