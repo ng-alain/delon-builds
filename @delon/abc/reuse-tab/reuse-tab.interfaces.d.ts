@@ -62,8 +62,9 @@ export interface ReuseContextEvent {
     event: MouseEvent;
     item: ReuseItem;
     comp?: ReuseTabContextComponent;
+    customContextMenu?: ReuseCustomContextMenu[];
 }
-export declare type CloseType = 'close' | 'closeOther' | 'closeRight' | 'clear' | null;
+export declare type CloseType = 'close' | 'closeOther' | 'closeRight' | 'clear' | 'custom' | null;
 export interface ReuseContextCloseEvent {
     type: CloseType;
     item: ReuseItem;
@@ -74,4 +75,10 @@ export interface ReuseContextI18n {
     closeOther?: string;
     closeRight?: string;
     clear?: string;
+}
+export interface ReuseCustomContextMenu {
+    id: string;
+    title: string;
+    fn: (item: ReuseItem, menu: ReuseCustomContextMenu) => void;
+    disabled?: (item: ReuseItem) => boolean;
 }

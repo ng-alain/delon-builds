@@ -5,7 +5,7 @@ import { debounceTime, filter } from 'rxjs/operators';
 import { Subject, Subscription, BehaviorSubject, combineLatest } from 'rxjs';
 import { ConnectionPositionPair, Overlay, OverlayModule } from '@angular/cdk/overlay';
 import { DOCUMENT, CommonModule } from '@angular/common';
-import { Component, EventEmitter, HostListener, Input, Output, ElementRef, Injectable, Directive, Injector, NgModule, ChangeDetectionStrategy, ChangeDetectorRef, Renderer2, Optional, Inject, defineInjectable, inject, INJECTOR } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, HostListener, Input, Output, ElementRef, Injectable, Directive, Injector, NgModule, ChangeDetectorRef, Renderer2, Optional, Inject, defineInjectable, inject, INJECTOR } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, NavigationStart, Router, ROUTER_CONFIGURATION, RouterModule } from '@angular/router';
 import { DelonLocaleService, MenuService, ScrollService, DelonLocaleModule, ALAIN_I18N_TOKEN } from '@delon/theme';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
@@ -43,10 +43,9 @@ class ReuseTabContextMenuComponent {
     }
     /**
      * @param {?} type
-     * @param {?} item
      * @return {?}
      */
-    notify(type, item) {
+    notify(type) {
         this.close.next({
             type,
             item: this.item,
@@ -63,16 +62,29 @@ class ReuseTabContextMenuComponent {
     /**
      * @param {?} e
      * @param {?} type
+     * @param {?=} custom
      * @return {?}
      */
-    click(e, type) {
+    click(e, type, custom) {
         e.preventDefault();
         e.stopPropagation();
         if (type === 'close' && !this.item.closable)
             return;
         if (type === 'closeRight' && this.item.last)
             return;
-        this.notify(type, this.item);
+        if (custom) {
+            if (this.isDisabled(custom))
+                return;
+            custom.fn(this.item, custom);
+        }
+        this.notify(type);
+    }
+    /**
+     * @param {?} custom
+     * @return {?}
+     */
+    isDisabled(custom) {
+        return custom.disabled ? custom.disabled(this.item) : false;
     }
     /**
      * @param {?} event
@@ -81,13 +93,14 @@ class ReuseTabContextMenuComponent {
     closeMenu(event) {
         if (event.type === 'click' && event.button === 2)
             return;
-        this.notify(null, null);
+        this.notify(null);
     }
 }
 ReuseTabContextMenuComponent.decorators = [
     { type: Component, args: [{
                 selector: 'reuse-tab-context-menu',
-                template: "<ul nz-menu>\n  <li nz-menu-item (click)=\"click($event, 'close')\" data-type=\"close\" [nzDisabled]=\"!item.closable\" [innerHTML]=\"i18n.close\"></li>\n  <li nz-menu-item (click)=\"click($event, 'closeOther')\" data-type=\"closeOther\" [innerHTML]=\"i18n.closeOther\"></li>\n  <li nz-menu-item (click)=\"click($event, 'closeRight')\" data-type=\"closeRight\" [nzDisabled]=\"item.last\" [innerHTML]=\"i18n.closeRight\"></li>\n  <li nz-menu-item (click)=\"click($event, 'clear')\" data-type=\"clear\" [innerHTML]=\"i18n.clear\"></li>\n</ul>\n"
+                template: "<ul nz-menu>\n  <li nz-menu-item (click)=\"click($event, 'close')\" data-type=\"close\" [nzDisabled]=\"!item.closable\" [innerHTML]=\"i18n.close\"></li>\n  <li nz-menu-item (click)=\"click($event, 'closeOther')\" data-type=\"closeOther\" [innerHTML]=\"i18n.closeOther\"></li>\n  <li nz-menu-item (click)=\"click($event, 'closeRight')\" data-type=\"closeRight\" [nzDisabled]=\"item.last\" [innerHTML]=\"i18n.closeRight\"></li>\n  <li nz-menu-item (click)=\"click($event, 'clear')\" data-type=\"clear\" [innerHTML]=\"i18n.clear\"></li>\n  <ng-container *ngIf=\"customContextMenu!.length > 0\">\n    <li nz-menu-divider></li>\n    <li *ngFor=\"let i of customContextMenu\" nz-menu-item [attr.data-type]=\"i.id\" [nzDisabled]=\"isDisabled(i)\" (click)=\"click($event, 'custom', i)\" [innerHTML]=\"i.title\"></li>\n  </ng-container>\n</ul>\n",
+                changeDetection: ChangeDetectionStrategy.OnPush
             }] }
 ];
 /** @nocollapse */
@@ -98,6 +111,7 @@ ReuseTabContextMenuComponent.propDecorators = {
     i18n: [{ type: Input }],
     item: [{ type: Input }],
     event: [{ type: Input }],
+    customContextMenu: [{ type: Input }],
     close: [{ type: Output }],
     closeMenu: [{ type: HostListener, args: ['document:click', ['$event'],] }, { type: HostListener, args: ['document:contextmenu', ['$event'],] }]
 };
@@ -131,7 +145,7 @@ class ReuseTabContextService {
      */
     open(context) {
         this.remove();
-        const { event, item } = context;
+        const { event, item, customContextMenu } = context;
         /** @type {?} */
         const fakeElement = new ElementRef({
             getBoundingClientRect: () => ({
@@ -164,6 +178,7 @@ class ReuseTabContextService {
         const instance = comp.instance;
         instance.i18n = this.i18n;
         instance.item = Object.assign({}, item);
+        instance.customContextMenu = customContextMenu;
         instance.event = event;
         /** @type {?} */
         const sub$ = new Subscription();
@@ -245,6 +260,7 @@ class ReuseTabContextDirective {
         this.srv.show.next({
             event,
             item: this.item,
+            customContextMenu: this.customContextMenu,
         });
         event.preventDefault();
         event.stopPropagation();
@@ -261,6 +277,7 @@ ReuseTabContextDirective.ctorParameters = () => [
 ];
 ReuseTabContextDirective.propDecorators = {
     item: [{ type: Input, args: ['reuse-tab-context-menu',] }],
+    customContextMenu: [{ type: Input }],
     onContextMenu: [{ type: HostListener, args: ['contextmenu', ['$event'],] }]
 };
 
@@ -1028,6 +1045,7 @@ class ReuseTabComponent {
         this.allowClose = true;
         this.showCurrent = true;
         this.keepingScroll = false;
+        this.customContextMenu = [];
         this.change = new EventEmitter();
         this.close = new EventEmitter();
         this.el = el.nativeElement;
@@ -1237,7 +1255,7 @@ class ReuseTabComponent {
 ReuseTabComponent.decorators = [
     { type: Component, args: [{
                 selector: 'reuse-tab',
-                template: "<nz-tabset [nzSelectedIndex]=\"pos\" [nzAnimated]=\"false\" nzType=\"line\">\n  <nz-tab *ngFor=\"let i of list; let index = index\" [nzTitle]=\"titleTemplate\">\n    <ng-template #titleTemplate>\n      <span [reuse-tab-context-menu]=\"i\" (click)=\"to($event, index)\" class=\"name\">{{i.title}}</span>\n      <i *ngIf=\"i.closable\" nz-icon type=\"close\" class=\"reuse-tab__op\" (click)=\"_close($event, index, false)\"></i>\n    </ng-template>\n  </nz-tab>\n</nz-tabset>\n<reuse-tab-context [i18n]=\"i18n\" (change)=\"cmChange($event)\"></reuse-tab-context>\n",
+                template: "<nz-tabset [nzSelectedIndex]=\"pos\" [nzAnimated]=\"false\" nzType=\"line\">\n  <nz-tab *ngFor=\"let i of list; let index = index\" [nzTitle]=\"titleTemplate\">\n    <ng-template #titleTemplate>\n      <span [reuse-tab-context-menu]=\"i\" [customContextMenu]=\"customContextMenu\" (click)=\"to($event, index)\" class=\"name\">{{i.title}}</span>\n      <i *ngIf=\"i.closable\" nz-icon type=\"close\" class=\"reuse-tab__op\" (click)=\"_close($event, index, false)\"></i>\n    </ng-template>\n  </nz-tab>\n</nz-tabset>\n<reuse-tab-context [i18n]=\"i18n\" (change)=\"cmChange($event)\"></reuse-tab-context>\n",
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 providers: [ReuseTabContextService],
                 host: {
@@ -1266,6 +1284,7 @@ ReuseTabComponent.propDecorators = {
     showCurrent: [{ type: Input }],
     keepingScroll: [{ type: Input }],
     keepingScrollContainer: [{ type: Input }],
+    customContextMenu: [{ type: Input }],
     change: [{ type: Output }],
     close: [{ type: Output }]
 };
