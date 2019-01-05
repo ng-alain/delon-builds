@@ -27,7 +27,6 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     _data: STData[];
     _isPagination: boolean;
     _allChecked: boolean;
-    _allCheckedDisabled: boolean;
     _indeterminate: boolean;
     _columns: STColumn[];
     data: string | STData[] | Observable<STData[]>;
@@ -156,7 +155,7 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
      * @param opt 额外参数
      */
     export(newData?: STData[], opt?: STExportOptions): void;
-    private refreshColumns;
+    private updateColumns;
     private setClass;
     ngAfterViewInit(): void;
     ngOnChanges(changes: {
