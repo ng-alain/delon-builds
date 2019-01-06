@@ -1,8 +1,8 @@
 import { ComponentPortal } from '@angular/cdk/portal';
 import { InputBoolean, InputNumber } from '@delon/util';
-import { debounceTime, filter } from 'rxjs/operators';
-import { Subject, Subscription, BehaviorSubject, combineLatest } from 'rxjs';
-import { __spread, __assign, __read, __decorate, __metadata } from 'tslib';
+import { debounceTime, filter, takeUntil } from 'rxjs/operators';
+import { Subject, Subscription, BehaviorSubject } from 'rxjs';
+import { __spread, __assign, __decorate, __metadata } from 'tslib';
 import { ConnectionPositionPair, Overlay, OverlayModule } from '@angular/cdk/overlay';
 import { DOCUMENT, CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, EventEmitter, HostListener, Input, Output, ElementRef, Injectable, Directive, Injector, NgModule, ChangeDetectorRef, Renderer2, Optional, Inject, defineInjectable, inject, INJECTOR } from '@angular/core';
@@ -1430,7 +1430,6 @@ var ReuseTabService = /** @class */ (function () {
 var ReuseTabComponent = /** @class */ (function () {
     // #endregion
     function ReuseTabComponent(el, srv, cdr, router, route, render, i18nSrv, doc) {
-        var _this = this;
         this.srv = srv;
         this.cdr = cdr;
         this.router = router;
@@ -1438,6 +1437,7 @@ var ReuseTabComponent = /** @class */ (function () {
         this.render = render;
         this.i18nSrv = i18nSrv;
         this.doc = doc;
+        this.unsubscribe$ = new Subject();
         this.list = [];
         this.pos = 0;
         // #region fields
@@ -1450,17 +1450,6 @@ var ReuseTabComponent = /** @class */ (function () {
         this.change = new EventEmitter();
         this.close = new EventEmitter();
         this.el = el.nativeElement;
-        /** @type {?} */
-        var route$ = this.router.events.pipe(filter(function (evt) { return evt instanceof NavigationEnd; }));
-        this.sub$ = combineLatest(this.srv.change, route$).subscribe(function (_a) {
-            var _b = __read(_a, 2), res = _b[0], e = _b[1];
-            return _this.genList(res);
-        });
-        if (this.i18nSrv) {
-            this.i18n$ = this.i18nSrv.change
-                .pipe(debounceTime(100))
-                .subscribe(function () { return _this.genList(); });
-        }
     }
     Object.defineProperty(ReuseTabComponent.prototype, "keepingScrollContainer", {
         set: /**
@@ -1672,6 +1661,14 @@ var ReuseTabComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
+        var _this = this;
+        this.router.events.pipe(takeUntil(this.unsubscribe$), filter(function (evt) { return evt instanceof NavigationEnd; })).subscribe(function () { return _this.genList(); });
+        this.srv.change.pipe(takeUntil(this.unsubscribe$)).subscribe(function (res) { return _this.genList(res); });
+        if (this.i18nSrv) {
+            this.i18nSrv.change
+                .pipe(takeUntil(this.unsubscribe$), debounceTime(100))
+                .subscribe(function () { return _this.genList(); });
+        }
         this.genList();
         this.srv.init();
     };
@@ -1704,15 +1701,14 @@ var ReuseTabComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        var _a = this, i18n$ = _a.i18n$, sub$ = _a.sub$;
-        sub$.unsubscribe();
-        if (i18n$)
-            i18n$.unsubscribe();
+        var unsubscribe$ = this.unsubscribe$;
+        unsubscribe$.next();
+        unsubscribe$.complete();
     };
     ReuseTabComponent.decorators = [
         { type: Component, args: [{
                     selector: 'reuse-tab',
-                    template: "<nz-tabset [nzSelectedIndex]=\"pos\" [nzAnimated]=\"false\" nzType=\"line\">\n  <nz-tab *ngFor=\"let i of list; let index = index\" [nzTitle]=\"titleTemplate\">\n    <ng-template #titleTemplate>\n      <span [reuse-tab-context-menu]=\"i\" [customContextMenu]=\"customContextMenu\" (click)=\"to($event, index)\" class=\"name\">{{i.title}}</span>\n      <i *ngIf=\"i.closable\" nz-icon type=\"close\" class=\"reuse-tab__op\" (click)=\"_close($event, index, false)\"></i>\n    </ng-template>\n  </nz-tab>\n</nz-tabset>\n<reuse-tab-context [i18n]=\"i18n\" (change)=\"cmChange($event)\"></reuse-tab-context>\n",
+                    template: "<nz-tabset [nzSelectedIndex]=\"pos\" [nzAnimated]=\"false\" nzType=\"line\">\n  <nz-tab *ngFor=\"let i of list; let index = index\" [nzTitle]=\"titleTemplate\">\n    <ng-template #titleTemplate>\n      <span [reuse-tab-context-menu]=\"i\" [customContextMenu]=\"customContextMenu\" (click)=\"to($event, index)\" class=\"reuse-tab__name\">{{i.title}}</span>\n      <i *ngIf=\"i.closable\" nz-icon type=\"close\" class=\"reuse-tab__op\" (click)=\"_close($event, index, false)\"></i>\n    </ng-template>\n  </nz-tab>\n</nz-tabset>\n<reuse-tab-context [i18n]=\"i18n\" (change)=\"cmChange($event)\"></reuse-tab-context>\n",
                     changeDetection: ChangeDetectionStrategy.OnPush,
                     providers: [ReuseTabContextService],
                     host: {

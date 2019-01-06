@@ -1496,7 +1496,6 @@
     var ReuseTabComponent = /** @class */ (function () {
         // #endregion
         function ReuseTabComponent(el, srv, cdr, router$$1, route, render, i18nSrv, doc) {
-            var _this = this;
             this.srv = srv;
             this.cdr = cdr;
             this.router = router$$1;
@@ -1504,6 +1503,7 @@
             this.render = render;
             this.i18nSrv = i18nSrv;
             this.doc = doc;
+            this.unsubscribe$ = new rxjs.Subject();
             this.list = [];
             this.pos = 0;
             // #region fields
@@ -1516,17 +1516,6 @@
             this.change = new i0.EventEmitter();
             this.close = new i0.EventEmitter();
             this.el = el.nativeElement;
-            /** @type {?} */
-            var route$ = this.router.events.pipe(operators.filter(function (evt) { return evt instanceof router.NavigationEnd; }));
-            this.sub$ = rxjs.combineLatest(this.srv.change, route$).subscribe(function (_a) {
-                var _b = __read(_a, 2), res = _b[0], e = _b[1];
-                return _this.genList(res);
-            });
-            if (this.i18nSrv) {
-                this.i18n$ = this.i18nSrv.change
-                    .pipe(operators.debounceTime(100))
-                    .subscribe(function () { return _this.genList(); });
-            }
         }
         Object.defineProperty(ReuseTabComponent.prototype, "keepingScrollContainer", {
             set: /**
@@ -1739,6 +1728,14 @@
              * @return {?}
              */
             function () {
+                var _this = this;
+                this.router.events.pipe(operators.takeUntil(this.unsubscribe$), operators.filter(function (evt) { return evt instanceof router.NavigationEnd; })).subscribe(function () { return _this.genList(); });
+                this.srv.change.pipe(operators.takeUntil(this.unsubscribe$)).subscribe(function (res) { return _this.genList(res); });
+                if (this.i18nSrv) {
+                    this.i18nSrv.change
+                        .pipe(operators.takeUntil(this.unsubscribe$), operators.debounceTime(100))
+                        .subscribe(function () { return _this.genList(); });
+                }
                 this.genList();
                 this.srv.init();
             };
@@ -1771,15 +1768,14 @@
          * @return {?}
          */
             function () {
-                var _a = this, i18n$ = _a.i18n$, sub$ = _a.sub$;
-                sub$.unsubscribe();
-                if (i18n$)
-                    i18n$.unsubscribe();
+                var unsubscribe$ = this.unsubscribe$;
+                unsubscribe$.next();
+                unsubscribe$.complete();
             };
         ReuseTabComponent.decorators = [
             { type: i0.Component, args: [{
                         selector: 'reuse-tab',
-                        template: "<nz-tabset [nzSelectedIndex]=\"pos\" [nzAnimated]=\"false\" nzType=\"line\">\n  <nz-tab *ngFor=\"let i of list; let index = index\" [nzTitle]=\"titleTemplate\">\n    <ng-template #titleTemplate>\n      <span [reuse-tab-context-menu]=\"i\" [customContextMenu]=\"customContextMenu\" (click)=\"to($event, index)\" class=\"name\">{{i.title}}</span>\n      <i *ngIf=\"i.closable\" nz-icon type=\"close\" class=\"reuse-tab__op\" (click)=\"_close($event, index, false)\"></i>\n    </ng-template>\n  </nz-tab>\n</nz-tabset>\n<reuse-tab-context [i18n]=\"i18n\" (change)=\"cmChange($event)\"></reuse-tab-context>\n",
+                        template: "<nz-tabset [nzSelectedIndex]=\"pos\" [nzAnimated]=\"false\" nzType=\"line\">\n  <nz-tab *ngFor=\"let i of list; let index = index\" [nzTitle]=\"titleTemplate\">\n    <ng-template #titleTemplate>\n      <span [reuse-tab-context-menu]=\"i\" [customContextMenu]=\"customContextMenu\" (click)=\"to($event, index)\" class=\"reuse-tab__name\">{{i.title}}</span>\n      <i *ngIf=\"i.closable\" nz-icon type=\"close\" class=\"reuse-tab__op\" (click)=\"_close($event, index, false)\"></i>\n    </ng-template>\n  </nz-tab>\n</nz-tabset>\n<reuse-tab-context [i18n]=\"i18n\" (change)=\"cmChange($event)\"></reuse-tab-context>\n",
                         changeDetection: i0.ChangeDetectionStrategy.OnPush,
                         providers: [ReuseTabContextService],
                         host: {

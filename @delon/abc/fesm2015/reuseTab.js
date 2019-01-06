@@ -1,8 +1,8 @@
 import { ComponentPortal } from '@angular/cdk/portal';
 import { __decorate, __metadata } from 'tslib';
 import { InputBoolean, InputNumber } from '@delon/util';
-import { debounceTime, filter } from 'rxjs/operators';
-import { Subject, Subscription, BehaviorSubject, combineLatest } from 'rxjs';
+import { debounceTime, filter, takeUntil } from 'rxjs/operators';
+import { Subject, Subscription, BehaviorSubject } from 'rxjs';
 import { ConnectionPositionPair, Overlay, OverlayModule } from '@angular/cdk/overlay';
 import { DOCUMENT, CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, EventEmitter, HostListener, Input, Output, ElementRef, Injectable, Directive, Injector, NgModule, ChangeDetectorRef, Renderer2, Optional, Inject, defineInjectable, inject, INJECTOR } from '@angular/core';
@@ -1037,6 +1037,7 @@ class ReuseTabComponent {
         this.render = render;
         this.i18nSrv = i18nSrv;
         this.doc = doc;
+        this.unsubscribe$ = new Subject();
         this.list = [];
         this.pos = 0;
         // #region fields
@@ -1049,14 +1050,6 @@ class ReuseTabComponent {
         this.change = new EventEmitter();
         this.close = new EventEmitter();
         this.el = el.nativeElement;
-        /** @type {?} */
-        const route$ = this.router.events.pipe(filter(evt => evt instanceof NavigationEnd));
-        this.sub$ = combineLatest(this.srv.change, route$).subscribe(([res, e]) => this.genList(res));
-        if (this.i18nSrv) {
-            this.i18n$ = this.i18nSrv.change
-                .pipe(debounceTime(100))
-                .subscribe(() => this.genList());
-        }
     }
     /**
      * @param {?} value
@@ -1221,6 +1214,13 @@ class ReuseTabComponent {
      * @return {?}
      */
     ngOnInit() {
+        this.router.events.pipe(takeUntil(this.unsubscribe$), filter(evt => evt instanceof NavigationEnd)).subscribe(() => this.genList());
+        this.srv.change.pipe(takeUntil(this.unsubscribe$)).subscribe(res => this.genList(res));
+        if (this.i18nSrv) {
+            this.i18nSrv.change
+                .pipe(takeUntil(this.unsubscribe$), debounceTime(100))
+                .subscribe(() => this.genList());
+        }
         this.genList();
         this.srv.init();
     }
@@ -1246,16 +1246,15 @@ class ReuseTabComponent {
      * @return {?}
      */
     ngOnDestroy() {
-        const { i18n$, sub$ } = this;
-        sub$.unsubscribe();
-        if (i18n$)
-            i18n$.unsubscribe();
+        const { unsubscribe$ } = this;
+        unsubscribe$.next();
+        unsubscribe$.complete();
     }
 }
 ReuseTabComponent.decorators = [
     { type: Component, args: [{
                 selector: 'reuse-tab',
-                template: "<nz-tabset [nzSelectedIndex]=\"pos\" [nzAnimated]=\"false\" nzType=\"line\">\n  <nz-tab *ngFor=\"let i of list; let index = index\" [nzTitle]=\"titleTemplate\">\n    <ng-template #titleTemplate>\n      <span [reuse-tab-context-menu]=\"i\" [customContextMenu]=\"customContextMenu\" (click)=\"to($event, index)\" class=\"name\">{{i.title}}</span>\n      <i *ngIf=\"i.closable\" nz-icon type=\"close\" class=\"reuse-tab__op\" (click)=\"_close($event, index, false)\"></i>\n    </ng-template>\n  </nz-tab>\n</nz-tabset>\n<reuse-tab-context [i18n]=\"i18n\" (change)=\"cmChange($event)\"></reuse-tab-context>\n",
+                template: "<nz-tabset [nzSelectedIndex]=\"pos\" [nzAnimated]=\"false\" nzType=\"line\">\n  <nz-tab *ngFor=\"let i of list; let index = index\" [nzTitle]=\"titleTemplate\">\n    <ng-template #titleTemplate>\n      <span [reuse-tab-context-menu]=\"i\" [customContextMenu]=\"customContextMenu\" (click)=\"to($event, index)\" class=\"reuse-tab__name\">{{i.title}}</span>\n      <i *ngIf=\"i.closable\" nz-icon type=\"close\" class=\"reuse-tab__op\" (click)=\"_close($event, index, false)\"></i>\n    </ng-template>\n  </nz-tab>\n</nz-tabset>\n<reuse-tab-context [i18n]=\"i18n\" (change)=\"cmChange($event)\"></reuse-tab-context>\n",
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 providers: [ReuseTabContextService],
                 host: {

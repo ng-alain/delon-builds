@@ -12,8 +12,7 @@ export declare class ReuseTabComponent implements OnInit, OnChanges, OnDestroy {
     private i18nSrv;
     private doc;
     private el;
-    private sub$;
-    private i18n$;
+    private unsubscribe$;
     private _keepingScrollContainer;
     list: ReuseItem[];
     item: ReuseItem;
