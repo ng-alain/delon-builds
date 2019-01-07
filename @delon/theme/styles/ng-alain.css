@@ -23931,6 +23931,9 @@ body {
   margin-bottom: 0;
   padding-bottom: 0;
 }
+.se__item .ant-form-explain {
+  display: block;
+}
 .se__label {
   text-align: right;
   color: rgba(0, 0, 0, 0.85);
@@ -23981,9 +23984,6 @@ body {
 }
 .se__inline .se__item:last-child {
   margin-right: 0;
-}
-.se .ant-form-explain {
-  display: block;
 }
 @media (max-width: 767px) {
   .se__horizontal .se__item {
