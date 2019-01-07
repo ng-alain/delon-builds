@@ -2067,7 +2067,7 @@ AlainThemeModule.ctorParameters = () => [
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 /** @type {?} */
-const VERSION = new Version('7.0.0-rc.3-38ba715b');
+const VERSION = new Version('7.0.0-rc.3-681d5c74');
 
 /**
  * @fileoverview added by tsickle
