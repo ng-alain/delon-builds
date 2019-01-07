@@ -29,6 +29,7 @@ var SidebarNavComponent = /** @class */ (function () {
         this.list = [];
         this.disabledAcl = false;
         this.autoCloseUnderPad = true;
+        this.recursivePath = true;
         this.select = new EventEmitter();
     }
     Object.defineProperty(SidebarNavComponent.prototype, "collapsed", {
@@ -278,7 +279,7 @@ var SidebarNavComponent = /** @class */ (function () {
         var _this = this;
         var _a = this, doc = _a.doc, router = _a.router, unsubscribe$ = _a.unsubscribe$, menuSrv = _a.menuSrv, cdr = _a.cdr;
         this.bodyEl = doc.querySelector('body');
-        menuSrv.openedByUrl(router.url);
+        menuSrv.openedByUrl(router.url, this.recursivePath);
         this.genFloatingContainer();
         menuSrv.change.pipe(takeUntil(unsubscribe$)).subscribe(function (data) {
             menuSrv.visit(data, function (i) {
@@ -297,7 +298,7 @@ var SidebarNavComponent = /** @class */ (function () {
         router.events
             .pipe(takeUntil(unsubscribe$), filter(function (e) { return e instanceof NavigationEnd; }))
             .subscribe(function (e) {
-            _this.menuSrv.openedByUrl(e.urlAfterRedirects);
+            _this.menuSrv.openedByUrl(e.urlAfterRedirects, _this.recursivePath);
             _this.underPad();
             _this.cdr.detectChanges();
         });
@@ -371,6 +372,7 @@ var SidebarNavComponent = /** @class */ (function () {
     SidebarNavComponent.propDecorators = {
         disabledAcl: [{ type: Input }],
         autoCloseUnderPad: [{ type: Input }],
+        recursivePath: [{ type: Input }],
         select: [{ type: Output }],
         _click: [{ type: HostListener, args: ['click',] }],
         _docClick: [{ type: HostListener, args: ['document:click',] }]
@@ -383,6 +385,10 @@ var SidebarNavComponent = /** @class */ (function () {
         InputBoolean(),
         __metadata("design:type", Object)
     ], SidebarNavComponent.prototype, "autoCloseUnderPad", void 0);
+    __decorate([
+        InputBoolean(),
+        __metadata("design:type", Object)
+    ], SidebarNavComponent.prototype, "recursivePath", void 0);
     return SidebarNavComponent;
 }());
 

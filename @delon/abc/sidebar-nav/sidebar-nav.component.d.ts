@@ -17,6 +17,7 @@ export declare class SidebarNavComponent implements OnInit, OnDestroy {
     list: Nav[];
     disabledAcl: boolean;
     autoCloseUnderPad: boolean;
+    recursivePath: boolean;
     readonly select: EventEmitter<Menu>;
     readonly collapsed: boolean;
     private readonly _d;

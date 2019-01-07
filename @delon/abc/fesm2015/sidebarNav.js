@@ -38,6 +38,7 @@ class SidebarNavComponent {
         this.list = [];
         this.disabledAcl = false;
         this.autoCloseUnderPad = true;
+        this.recursivePath = true;
         this.select = new EventEmitter();
     }
     /**
@@ -230,7 +231,7 @@ class SidebarNavComponent {
     ngOnInit() {
         const { doc, router, unsubscribe$, menuSrv, cdr } = this;
         this.bodyEl = doc.querySelector('body');
-        menuSrv.openedByUrl(router.url);
+        menuSrv.openedByUrl(router.url, this.recursivePath);
         this.genFloatingContainer();
         menuSrv.change.pipe(takeUntil(unsubscribe$)).subscribe(data => {
             menuSrv.visit(data, i => {
@@ -249,7 +250,7 @@ class SidebarNavComponent {
         router.events
             .pipe(takeUntil(unsubscribe$), filter(e => e instanceof NavigationEnd))
             .subscribe((e) => {
-            this.menuSrv.openedByUrl(e.urlAfterRedirects);
+            this.menuSrv.openedByUrl(e.urlAfterRedirects, this.recursivePath);
             this.underPad();
             this.cdr.detectChanges();
         });
@@ -307,6 +308,7 @@ SidebarNavComponent.ctorParameters = () => [
 SidebarNavComponent.propDecorators = {
     disabledAcl: [{ type: Input }],
     autoCloseUnderPad: [{ type: Input }],
+    recursivePath: [{ type: Input }],
     select: [{ type: Output }],
     _click: [{ type: HostListener, args: ['click',] }],
     _docClick: [{ type: HostListener, args: ['document:click',] }]
@@ -319,6 +321,10 @@ __decorate([
     InputBoolean(),
     __metadata("design:type", Object)
 ], SidebarNavComponent.prototype, "autoCloseUnderPad", void 0);
+__decorate([
+    InputBoolean(),
+    __metadata("design:type", Object)
+], SidebarNavComponent.prototype, "recursivePath", void 0);
 
 /**
  * @fileoverview added by tsickle
