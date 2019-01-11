@@ -1259,13 +1259,6 @@
              */
             this.change = new i0.EventEmitter();
             this.rowClickCount = 0;
-            /** @type {?} */
-            var copyCog = __assign({}, cog);
-            delete copyCog.multiSort;
-            util.deepMerge(this, copyCog);
-            if (cog.multiSort && cog.multiSort.global !== false) {
-                this.multiSort = __assign({}, cog.multiSort);
-            }
             this.delonI18n.change.pipe(operators.takeUntil(this.unsubscribe$)).subscribe(function () {
                 _this.locale = _this.delonI18n.getData('st');
                 if (_this._columns.length > 0) {
@@ -1273,6 +1266,13 @@
                     _this.cd();
                 }
             });
+            /** @type {?} */
+            var copyCog = util.deepMerge(new STConfig(), cog);
+            delete copyCog.multiSort;
+            util.deepMerge(this, copyCog);
+            if (cog.multiSort && cog.multiSort.global !== false) {
+                this.multiSort = __assign({}, cog.multiSort);
+            }
             i18nSrv.change
                 .pipe(operators.takeUntil(this.unsubscribe$), operators.filter(function () { return _this._columns.length > 0; })).subscribe(function () { return _this.refreshColumns(); });
         }

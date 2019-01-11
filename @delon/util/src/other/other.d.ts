@@ -10,4 +10,4 @@ export declare function deepGet(obj: any, path: string | string[], defaultValue?
 export declare function deepCopy(obj: any): any;
 /** 复制内容至剪贴板 */
 export declare function copy(value: string): Promise<string>;
-export declare function deepMerge(original: any, ...objects: any[]): void;
+export declare function deepMerge(original: any, ...objects: any[]): any;

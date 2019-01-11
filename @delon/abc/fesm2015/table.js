@@ -1034,13 +1034,6 @@ class STComponent {
          */
         this.change = new EventEmitter();
         this.rowClickCount = 0;
-        /** @type {?} */
-        const copyCog = Object.assign({}, cog);
-        delete copyCog.multiSort;
-        deepMerge(this, copyCog);
-        if (cog.multiSort && cog.multiSort.global !== false) {
-            this.multiSort = Object.assign({}, cog.multiSort);
-        }
         this.delonI18n.change.pipe(takeUntil(this.unsubscribe$)).subscribe(() => {
             this.locale = this.delonI18n.getData('st');
             if (this._columns.length > 0) {
@@ -1048,6 +1041,13 @@ class STComponent {
                 this.cd();
             }
         });
+        /** @type {?} */
+        const copyCog = deepMerge(new STConfig(), cog);
+        delete copyCog.multiSort;
+        deepMerge(this, copyCog);
+        if (cog.multiSort && cog.multiSort.global !== false) {
+            this.multiSort = Object.assign({}, cog.multiSort);
+        }
         i18nSrv.change
             .pipe(takeUntil(this.unsubscribe$), filter(() => this._columns.length > 0)).subscribe(() => this.refreshColumns());
     }
