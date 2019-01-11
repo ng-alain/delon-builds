@@ -24037,9 +24037,30 @@ body {
   font-size: 12px;
   line-height: 18px;
 }
+ellipsis {
+  display: inline-block;
+}
 .ellipsis {
   overflow: hidden;
+  display: inline-block;
+  word-break: break-all;
+  width: 100%;
+}
+.ellipsis__lines {
+  position: relative;
+}
+.ellipsis__line-clamp {
+  position: relative;
+  overflow: hidden;
+  text-overflow: ellipsis;
   display: -webkit-box;
+}
+.ellipsis__shadow {
+  display: block;
+  position: absolute;
+  color: transparent;
+  opacity: 0;
+  z-index: -999;
 }
 .error-collect {
   color: #f5222d;

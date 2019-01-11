@@ -1,6 +1,35 @@
-import { ElementRef, Renderer2 } from '@angular/core';
-export declare class EllipsisComponent {
-    /** 在按照行数截取下最大的行数，超过则截取省略 */
+import { AfterViewInit, ChangeDetectorRef, ElementRef, NgZone, OnChanges } from '@angular/core';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+export declare class EllipsisComponent implements AfterViewInit, OnChanges {
+    private el;
+    private ngZone;
+    private dom;
+    private doc;
+    private cdr;
+    private isSupportLineClamp;
+    private orgEl;
+    private shadowOrgEl;
+    private shadowTextEl;
+    private inited;
+    orgHtml: SafeHtml;
+    type: string;
+    cls: {};
+    text: string;
+    targetCount: number;
+    tooltip: boolean;
+    length: number;
     lines: number;
-    constructor(el: ElementRef, render: Renderer2);
+    fullWidthRecognition: boolean;
+    tail: string;
+    constructor(el: ElementRef, ngZone: NgZone, dom: DomSanitizer, doc: Document, cdr: ChangeDetectorRef);
+    private getStrFullLength;
+    private cutStrByFullLength;
+    private bisection;
+    private genType;
+    private gen;
+    private getEl;
+    private executeOnStable;
+    refresh(): void;
+    ngAfterViewInit(): void;
+    ngOnChanges(): void;
 }

@@ -16,7 +16,7 @@ export declare class Rule extends Rules.AbstractRule {
 }
 export declare class Walker extends RuleWalker {
     /** Change data that upgrades to the specified target version. */
-    data: import("../../data/class-names").ClassNameUpgradeData[];
+    data: import("../../data").ClassNameUpgradeData[];
     /**
      * List of identifier names that have been imported from `@angular/material` or `@angular/cdk`
      * in the current source file and therefore can be considered trusted.

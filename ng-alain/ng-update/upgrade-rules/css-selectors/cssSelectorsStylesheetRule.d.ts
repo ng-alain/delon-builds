@@ -18,7 +18,7 @@ export declare class Rule extends Rules.AbstractRule {
 }
 export declare class Walker extends ComponentWalker {
     /** Change data that upgrades to the specified target version. */
-    data: import("../../data/css-selectors").CssSelectorUpgradeData[];
+    data: import("../../data").CssSelectorUpgradeData[];
     constructor(sourceFile: ts.SourceFile, options: IOptions);
     visitInlineStylesheet(node: ts.StringLiteralLike): void;
     visitExternalStylesheet(node: ExternalResource): void;

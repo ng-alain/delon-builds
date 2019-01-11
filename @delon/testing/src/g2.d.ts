@@ -4,7 +4,7 @@ export declare type PageG2Type = 'geoms' | 'views';
 export declare class PageG2<T> {
     fixture: ComponentFixture<T>;
     constructor(fixture?: ComponentFixture<T>);
-    readonly dl: import("@angular/core/src/debug/debug_node").DebugElement;
+    readonly dl: import("@angular/core").DebugElement;
     readonly context: T;
     readonly comp: any;
     readonly chart: any;

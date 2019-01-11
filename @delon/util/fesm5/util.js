@@ -15,7 +15,7 @@ import { filter, share } from 'rxjs/operators';
 import { __assign, __spread, __values } from 'tslib';
 import { NzTreeNode } from 'ng-zorro-antd';
 import { DOCUMENT, CommonModule } from '@angular/common';
-import { Directive, Input, TemplateRef, ViewContainerRef, Inject, Injectable, NgModule, defineInjectable, inject } from '@angular/core';
+import { Directive, Input, TemplateRef, ViewContainerRef, Inject, Injectable, defineInjectable, NgModule, inject } from '@angular/core';
 
 /**
  * @fileoverview added by tsickle

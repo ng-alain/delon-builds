@@ -5,7 +5,7 @@ export declare class TestContext<T> {
     constructor(fixture: ComponentFixture<T>);
     readonly component: T;
     readonly el: HTMLElement;
-    readonly dl: import("@angular/core/src/debug/debug_node").DebugElement;
+    readonly dl: import("@angular/core").DebugElement;
     readonly context: T;
     detectChanges(): void;
     resolve<T1>(component: Type<T1>): T1;
