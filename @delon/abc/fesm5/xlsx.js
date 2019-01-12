@@ -181,7 +181,10 @@ var XlsxDirective = /** @class */ (function () {
         this.srv.export(this.data);
     };
     XlsxDirective.decorators = [
-        { type: Directive, args: [{ selector: '[xlsx]' },] }
+        { type: Directive, args: [{
+                    selector: '[xlsx]',
+                    exportAs: 'xlsxDirective',
+                },] }
     ];
     /** @nocollapse */
     XlsxDirective.ctorParameters = function () { return [

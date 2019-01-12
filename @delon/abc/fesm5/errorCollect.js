@@ -1,4 +1,4 @@
-import { __spread, __decorate, __metadata } from 'tslib';
+import { __spread, __assign, __decorate, __metadata } from 'tslib';
 import { DOCUMENT, CommonModule } from '@angular/common';
 import { Injectable, defineInjectable, NgModule, Component, ChangeDetectionStrategy, ElementRef, ChangeDetectorRef, Inject, Input, HostBinding, HostListener } from '@angular/core';
 import { InputNumber, DelonUtilModule } from '@delon/util';
@@ -37,7 +37,7 @@ var ErrorCollectComponent = /** @class */ (function () {
         this.$time = null;
         this._hiden = true;
         this.count = 0;
-        Object.assign(this, cog);
+        Object.assign(this, __assign({}, new ErrorCollectConfig(), cog));
     }
     Object.defineProperty(ErrorCollectComponent.prototype, "errEls", {
         get: /**
@@ -134,7 +134,7 @@ var ErrorCollectComponent = /** @class */ (function () {
     function () {
         this.formEl = this.findParent(this.el.nativeElement, 'form');
         if (this.formEl === null)
-            throw new Error('未找到有效 form 元素');
+            throw new Error('No found form element');
         this.install();
     };
     /**
@@ -151,7 +151,8 @@ var ErrorCollectComponent = /** @class */ (function () {
                     selector: 'error-collect, [error-collect]',
                     template: "\n    <i nz-icon type=\"exclamation-circle\"></i>\n    <span class=\"pl-sm\">{{ count }}</span>\n  ",
                     host: { '[class.error-collect]': 'true' },
-                    changeDetection: ChangeDetectionStrategy.OnPush
+                    changeDetection: ChangeDetectionStrategy.OnPush,
+                    exportAs: 'errorCollect'
                 }] }
     ];
     /** @nocollapse */

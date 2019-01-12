@@ -42,7 +42,7 @@ class ErrorCollectComponent {
         this.$time = null;
         this._hiden = true;
         this.count = 0;
-        Object.assign(this, cog);
+        Object.assign(this, Object.assign({}, new ErrorCollectConfig(), cog));
     }
     /**
      * @return {?}
@@ -114,7 +114,7 @@ class ErrorCollectComponent {
     ngOnInit() {
         this.formEl = this.findParent(this.el.nativeElement, 'form');
         if (this.formEl === null)
-            throw new Error('未找到有效 form 元素');
+            throw new Error('No found form element');
         this.install();
     }
     /**
@@ -132,7 +132,8 @@ ErrorCollectComponent.decorators = [
     <span class="pl-sm">{{ count }}</span>
   `,
                 host: { '[class.error-collect]': 'true' },
-                changeDetection: ChangeDetectionStrategy.OnPush
+                changeDetection: ChangeDetectionStrategy.OnPush,
+                exportAs: 'errorCollect'
             }] }
 ];
 /** @nocollapse */

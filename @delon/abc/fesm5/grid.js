@@ -1,5 +1,5 @@
 import { ResponsiveService } from '@delon/theme';
-import { __decorate, __metadata, __spread } from 'tslib';
+import { __assign, __decorate, __metadata, __spread } from 'tslib';
 import { CommonModule } from '@angular/common';
 import { Injectable, Component, ChangeDetectionStrategy, Input, HostBinding, defineInjectable, NgModule, ElementRef, Renderer2, Optional, Host } from '@angular/core';
 import { InputNumber, DelonUtilModule } from '@delon/util';
@@ -32,7 +32,7 @@ var SGConfig = /** @class */ (function () {
  */
 var SGContainerComponent = /** @class */ (function () {
     function SGContainerComponent(cog) {
-        Object.assign(this, cog);
+        Object.assign(this, __assign({}, new SGConfig(), cog));
     }
     Object.defineProperty(SGContainerComponent.prototype, "marginLeft", {
         //#endregion
@@ -65,7 +65,8 @@ var SGContainerComponent = /** @class */ (function () {
                         '[class.ant-row]': 'true',
                         '[class.sg__wrap]': 'true',
                     },
-                    changeDetection: ChangeDetectionStrategy.OnPush
+                    changeDetection: ChangeDetectionStrategy.OnPush,
+                    exportAs: 'sgContainer'
                 }] }
     ];
     /** @nocollapse */

@@ -1,7 +1,7 @@
 import { animate, style, transition, trigger } from '@angular/animations';
 import { FormControlName, NgModel } from '@angular/forms';
 import { ResponsiveService } from '@delon/theme';
-import { __decorate, __metadata, __spread } from 'tslib';
+import { __assign, __decorate, __metadata, __spread } from 'tslib';
 import { CommonModule } from '@angular/common';
 import { Injectable, ChangeDetectionStrategy, Component, ElementRef, Host, Optional, Renderer2, Input, defineInjectable, NgModule, ChangeDetectorRef, ContentChild, HostBinding } from '@angular/core';
 import { toNumber, InputBoolean, InputNumber, deepGet, DelonUtilModule } from '@delon/util';
@@ -55,7 +55,7 @@ var SEContainerComponent = /** @class */ (function () {
     //#endregion
     function SEContainerComponent(cog) {
         this.line = false;
-        Object.assign(this, cog);
+        Object.assign(this, __assign({}, new SEConfig(), cog));
     }
     Object.defineProperty(SEContainerComponent.prototype, "gutter", {
         get: /**
@@ -98,7 +98,8 @@ var SEContainerComponent = /** @class */ (function () {
         { type: Component, args: [{
                     selector: 'se-container, [se-container]',
                     template: "<div class=\"ant-row se__container se__{{nzLayout}} se__{{size}}\" [ngStyle]=\"{'margin-left.px': -(gutter / 2), 'margin-right.px': -(gutter / 2)}\">\n  <se-title *ngIf=\"title\">\n    <ng-container *stringTemplateOutlet=\"title\">{{ title }}</ng-container>\n  </se-title>\n  <ng-content></ng-content>\n</div>",
-                    changeDetection: ChangeDetectionStrategy.OnPush
+                    changeDetection: ChangeDetectionStrategy.OnPush,
+                    exportAs: 'seContainer'
                 }] }
     ];
     /** @nocollapse */

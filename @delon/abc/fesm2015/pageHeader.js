@@ -85,7 +85,7 @@ class PageHeaderComponent {
         this.paths = [];
         this.loading = false;
         this.wide = false;
-        Object.assign(this, cog);
+        Object.assign(this, Object.assign({}, new PageHeaderConfig(), cog));
         settings.notify
             .pipe(takeUntil(this.unsubscribe$), filter(w => this.affix && w.type === 'layout' && w.name === 'collapsed'))
             .subscribe(() => this.affix.updatePosition({}));

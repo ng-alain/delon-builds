@@ -23,6 +23,18 @@
     See the Apache Version 2.0 License for specific language governing permissions
     and limitations under the License.
     ***************************************************************************** */
+    var __assign = function () {
+        __assign = Object.assign || function __assign(t) {
+            for (var s, i = 1, n = arguments.length; i < n; i++) {
+                s = arguments[i];
+                for (var p in s)
+                    if (Object.prototype.hasOwnProperty.call(s, p))
+                        t[p] = s[p];
+            }
+            return t;
+        };
+        return __assign.apply(this, arguments);
+    };
     function __decorate(decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
@@ -101,7 +113,7 @@
             this.$time = null;
             this._hiden = true;
             this.count = 0;
-            Object.assign(this, cog);
+            Object.assign(this, __assign({}, new ErrorCollectConfig(), cog));
         }
         Object.defineProperty(ErrorCollectComponent.prototype, "errEls", {
             get: /**
@@ -197,7 +209,7 @@
             function () {
                 this.formEl = this.findParent(this.el.nativeElement, 'form');
                 if (this.formEl === null)
-                    throw new Error('未找到有效 form 元素');
+                    throw new Error('No found form element');
                 this.install();
             };
         /**
@@ -214,7 +226,8 @@
                         selector: 'error-collect, [error-collect]',
                         template: "\n    <i nz-icon type=\"exclamation-circle\"></i>\n    <span class=\"pl-sm\">{{ count }}</span>\n  ",
                         host: { '[class.error-collect]': 'true' },
-                        changeDetection: i0.ChangeDetectionStrategy.OnPush
+                        changeDetection: i0.ChangeDetectionStrategy.OnPush,
+                        exportAs: 'errorCollect'
                     }] }
         ];
         /** @nocollapse */

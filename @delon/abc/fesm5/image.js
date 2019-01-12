@@ -1,4 +1,4 @@
-import { __spread, __decorate, __metadata } from 'tslib';
+import { __spread, __assign, __decorate, __metadata } from 'tslib';
 import { CommonModule } from '@angular/common';
 import { Injectable, defineInjectable, NgModule, Directive, ElementRef, Renderer2, Input } from '@angular/core';
 import { InputNumber, DelonUtilModule } from '@delon/util';
@@ -42,7 +42,7 @@ var ImageDirective = /** @class */ (function () {
         this.size = 64;
         this.error = './assets/img/logo.svg';
         this.inited = false;
-        Object.assign(this, cog);
+        Object.assign(this, __assign({}, new ImageConfig(), cog));
     }
     /**
      * @return {?}
@@ -109,7 +109,10 @@ var ImageDirective = /** @class */ (function () {
         this.render.setAttribute(this.el.nativeElement, 'onerror', "this.src='" + this.error + "'");
     };
     ImageDirective.decorators = [
-        { type: Directive, args: [{ selector: '[_src]' },] }
+        { type: Directive, args: [{
+                    selector: '[_src]',
+                    exportAs: 'srcDirective',
+                },] }
     ];
     /** @nocollapse */
     ImageDirective.ctorParameters = function () { return [

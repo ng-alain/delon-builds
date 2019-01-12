@@ -2,7 +2,7 @@ import { merge, Subject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
 import { ReuseTabService } from '@delon/abc/reuse-tab';
 import { ALAIN_I18N_TOKEN, MenuService, SettingsService, TitleService } from '@delon/theme';
-import { __spread, __decorate, __metadata } from 'tslib';
+import { __spread, __assign, __decorate, __metadata } from 'tslib';
 import { CommonModule } from '@angular/common';
 import { Injectable, defineInjectable, NgModule, TemplateRef, Component, ChangeDetectionStrategy, Renderer2, Optional, Inject, ChangeDetectorRef, ViewChild, Input } from '@angular/core';
 import { NavigationEnd, Router, RouterModule } from '@angular/router';
@@ -76,7 +76,7 @@ var PageHeaderComponent = /** @class */ (function () {
         this.paths = [];
         this.loading = false;
         this.wide = false;
-        Object.assign(this, cog);
+        Object.assign(this, __assign({}, new PageHeaderConfig(), cog));
         settings.notify
             .pipe(takeUntil(this.unsubscribe$), filter(function (w) { return _this.affix && w.type === 'layout' && w.name === 'collapsed'; }))
             .subscribe(function () { return _this.affix.updatePosition({}); });

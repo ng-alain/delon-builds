@@ -11,6 +11,33 @@
 
     addSeconds = addSeconds && addSeconds.hasOwnProperty('default') ? addSeconds['default'] : addSeconds;
 
+    /*! *****************************************************************************
+    Copyright (c) Microsoft Corporation. All rights reserved.
+    Licensed under the Apache License, Version 2.0 (the "License"); you may not use
+    this file except in compliance with the License. You may obtain a copy of the
+    License at http://www.apache.org/licenses/LICENSE-2.0
+
+    THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+    KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
+    WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
+    MERCHANTABLITY OR NON-INFRINGEMENT.
+
+    See the Apache Version 2.0 License for specific language governing permissions
+    and limitations under the License.
+    ***************************************************************************** */
+    var __assign = function () {
+        __assign = Object.assign || function __assign(t) {
+            for (var s, i = 1, n = arguments.length; i < n; i++) {
+                s = arguments[i];
+                for (var p in s)
+                    if (Object.prototype.hasOwnProperty.call(s, p))
+                        t[p] = s[p];
+            }
+            return t;
+        };
+        return __assign.apply(this, arguments);
+    };
+
     /**
      * @fileoverview added by tsickle
      * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
@@ -108,14 +135,15 @@
      * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
     var CacheService = /** @class */ (function () {
-        function CacheService(options, store, http) {
-            this.options = options;
+        function CacheService(_, store, http) {
             this.store = store;
             this.http = http;
             this.memory = new Map();
             this.notifyBuffer = new Map();
             this.meta = new Set();
             this.freqTick = 3000;
+            this.cog = {};
+            Object.assign(this.cog, __assign({}, new DelonCacheConfig(), _));
             this.loadMeta();
             this.startExpireNotify();
         }
@@ -182,7 +210,7 @@
             function () {
                 var _this = this;
                 /** @type {?} */
-                var ret = this.store.get(this.options.meta_key);
+                var ret = this.store.get(this.cog.meta_key);
                 if (ret && ret.v) {
                     (( /** @type {?} */(ret.v))).forEach(function (key) { return _this.meta.add(key); });
                 }
@@ -197,7 +225,7 @@
                 /** @type {?} */
                 var metaData = [];
                 this.meta.forEach(function (key) { return metaData.push(key); });
-                this.store.set(this.options.meta_key, { v: metaData, e: 0 });
+                this.store.set(this.cog.meta_key, { v: metaData, e: 0 });
             };
         /**
          * @return {?}
@@ -261,7 +289,7 @@
                     this.memory.set(key, value);
                 }
                 else {
-                    this.store.set(this.options.prefix + key, value);
+                    this.store.set(this.cog.prefix + key, value);
                     this.pushMeta(key);
                 }
                 this.runNotify(key, 'set');
@@ -282,16 +310,16 @@
                     options = {};
                 }
                 /** @type {?} */
-                var isPromise = options.mode !== 'none' && this.options.mode === 'promise';
+                var isPromise = options.mode !== 'none' && this.cog.mode === 'promise';
                 /** @type {?} */
-                var value = this.memory.has(key) ? this.memory.get(key) : this.store.get(this.options.prefix + key);
+                var value = this.memory.has(key) ? this.memory.get(key) : this.store.get(this.cog.prefix + key);
                 if (!value || (value.e && value.e > 0 && value.e < new Date().valueOf())) {
                     if (isPromise) {
                         return this.http
                             .get(key)
                             .pipe(
                         // tslint:disable-next-line:no-any
-                        operators.map(function (ret) { return _this._deepGet(ret, ( /** @type {?} */(_this.options.reName)), null); }), operators.tap(function (v) { return _this.set(key, v, { type: options.type, expire: options.expire }); }));
+                        operators.map(function (ret) { return _this._deepGet(ret, ( /** @type {?} */(_this.cog.reName)), null); }), operators.tap(function (v) { return _this.set(key, v, { type: options.type, expire: options.expire }); }));
                     }
                     return null;
                 }
@@ -388,7 +416,7 @@
                     this.memory.delete(key);
                     return;
                 }
-                this.store.remove(this.options.prefix + key);
+                this.store.remove(this.cog.prefix + key);
                 this.removeMeta(key);
             };
         /** 移除缓存 */
@@ -418,7 +446,7 @@
                 var _this = this;
                 this.notifyBuffer.forEach(function (v, k) { return _this.runNotify(k, 'remove'); });
                 this.memory.clear();
-                this.meta.forEach(function (key) { return _this.store.remove(_this.options.prefix + key); });
+                this.meta.forEach(function (key) { return _this.store.remove(_this.cog.prefix + key); });
             };
         Object.defineProperty(CacheService.prototype, "freq", {
             // #endregion

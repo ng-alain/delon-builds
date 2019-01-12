@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 import { DelonCacheConfig } from './cache.config';
 import { CacheNotifyResult, ICacheStore } from './interface';
 export declare class CacheService implements OnDestroy {
-    private options;
     private store;
     private http;
     private readonly memory;
@@ -12,7 +11,8 @@ export declare class CacheService implements OnDestroy {
     private meta;
     private freqTick;
     private freqTime;
-    constructor(options: DelonCacheConfig, store: ICacheStore, http: HttpClient);
+    private cog;
+    constructor(_: DelonCacheConfig, store: ICacheStore, http: HttpClient);
     _deepGet(obj: any, path: string[], defaultValue?: any): any;
     private pushMeta;
     private removeMeta;

@@ -1,3 +1,4 @@
+import { __assign } from 'tslib';
 import { HttpClient } from '@angular/common/http';
 import addSeconds from 'date-fns/add_seconds';
 import { of, BehaviorSubject, Observable } from 'rxjs';
@@ -106,14 +107,15 @@ var LocalStorageCacheService = /** @class */ (function () {
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 var CacheService = /** @class */ (function () {
-    function CacheService(options, store, http) {
-        this.options = options;
+    function CacheService(_, store, http) {
         this.store = store;
         this.http = http;
         this.memory = new Map();
         this.notifyBuffer = new Map();
         this.meta = new Set();
         this.freqTick = 3000;
+        this.cog = {};
+        Object.assign(this.cog, __assign({}, new DelonCacheConfig(), _));
         this.loadMeta();
         this.startExpireNotify();
     }
@@ -180,7 +182,7 @@ var CacheService = /** @class */ (function () {
     function () {
         var _this = this;
         /** @type {?} */
-        var ret = this.store.get(this.options.meta_key);
+        var ret = this.store.get(this.cog.meta_key);
         if (ret && ret.v) {
             ((/** @type {?} */ (ret.v))).forEach(function (key) { return _this.meta.add(key); });
         }
@@ -195,7 +197,7 @@ var CacheService = /** @class */ (function () {
         /** @type {?} */
         var metaData = [];
         this.meta.forEach(function (key) { return metaData.push(key); });
-        this.store.set(this.options.meta_key, { v: metaData, e: 0 });
+        this.store.set(this.cog.meta_key, { v: metaData, e: 0 });
     };
     /**
      * @return {?}
@@ -257,7 +259,7 @@ var CacheService = /** @class */ (function () {
             this.memory.set(key, value);
         }
         else {
-            this.store.set(this.options.prefix + key, value);
+            this.store.set(this.cog.prefix + key, value);
             this.pushMeta(key);
         }
         this.runNotify(key, 'set');
@@ -276,16 +278,16 @@ var CacheService = /** @class */ (function () {
         var _this = this;
         if (options === void 0) { options = {}; }
         /** @type {?} */
-        var isPromise = options.mode !== 'none' && this.options.mode === 'promise';
+        var isPromise = options.mode !== 'none' && this.cog.mode === 'promise';
         /** @type {?} */
-        var value = this.memory.has(key) ? this.memory.get(key) : this.store.get(this.options.prefix + key);
+        var value = this.memory.has(key) ? this.memory.get(key) : this.store.get(this.cog.prefix + key);
         if (!value || (value.e && value.e > 0 && value.e < new Date().valueOf())) {
             if (isPromise) {
                 return this.http
                     .get(key)
                     .pipe(
                 // tslint:disable-next-line:no-any
-                map(function (ret) { return _this._deepGet(ret, (/** @type {?} */ (_this.options.reName)), null); }), tap(function (v) { return _this.set(key, v, { type: options.type, expire: options.expire }); }));
+                map(function (ret) { return _this._deepGet(ret, (/** @type {?} */ (_this.cog.reName)), null); }), tap(function (v) { return _this.set(key, v, { type: options.type, expire: options.expire }); }));
             }
             return null;
         }
@@ -380,7 +382,7 @@ var CacheService = /** @class */ (function () {
             this.memory.delete(key);
             return;
         }
-        this.store.remove(this.options.prefix + key);
+        this.store.remove(this.cog.prefix + key);
         this.removeMeta(key);
     };
     /** 移除缓存 */
@@ -410,7 +412,7 @@ var CacheService = /** @class */ (function () {
         var _this = this;
         this.notifyBuffer.forEach(function (v, k) { return _this.runNotify(k, 'remove'); });
         this.memory.clear();
-        this.meta.forEach(function (key) { return _this.store.remove(_this.options.prefix + key); });
+        this.meta.forEach(function (key) { return _this.store.remove(_this.cog.prefix + key); });
     };
     Object.defineProperty(CacheService.prototype, "freq", {
         // #endregion

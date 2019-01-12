@@ -23,6 +23,18 @@
     See the Apache Version 2.0 License for specific language governing permissions
     and limitations under the License.
     ***************************************************************************** */
+    var __assign = function () {
+        __assign = Object.assign || function __assign(t) {
+            for (var s, i = 1, n = arguments.length; i < n; i++) {
+                s = arguments[i];
+                for (var p in s)
+                    if (Object.prototype.hasOwnProperty.call(s, p))
+                        t[p] = s[p];
+            }
+            return t;
+        };
+        return __assign.apply(this, arguments);
+    };
     function __decorate(decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
@@ -112,7 +124,7 @@
         function SVContainerComponent(el, ren, cog) {
             this.ren = ren;
             this.el = el.nativeElement;
-            Object.assign(this, cog);
+            Object.assign(this, __assign({}, new SVConfig(), cog));
         }
         /**
          * @return {?}
@@ -152,7 +164,8 @@
             { type: i0.Component, args: [{
                         selector: 'sv-container, [sv-container]',
                         template: "<div class=\"ant-row\" [ngStyle]=\"{'margin-left.px': -(gutter / 2), 'margin-right.px': -(gutter / 2)}\">\n  <sv-title *ngIf=\"title\">\n    <ng-container *stringTemplateOutlet=\"title\">{{title}}</ng-container>\n  </sv-title>\n  <ng-content></ng-content>\n</div>",
-                        changeDetection: i0.ChangeDetectionStrategy.OnPush
+                        changeDetection: i0.ChangeDetectionStrategy.OnPush,
+                        exportAs: 'svContainer'
                     }] }
         ];
         /** @nocollapse */

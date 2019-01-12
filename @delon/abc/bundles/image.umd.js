@@ -23,6 +23,18 @@
     See the Apache Version 2.0 License for specific language governing permissions
     and limitations under the License.
     ***************************************************************************** */
+    var __assign = function () {
+        __assign = Object.assign || function __assign(t) {
+            for (var s, i = 1, n = arguments.length; i < n; i++) {
+                s = arguments[i];
+                for (var p in s)
+                    if (Object.prototype.hasOwnProperty.call(s, p))
+                        t[p] = s[p];
+            }
+            return t;
+        };
+        return __assign.apply(this, arguments);
+    };
     function __decorate(decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
@@ -106,7 +118,7 @@
             this.size = 64;
             this.error = './assets/img/logo.svg';
             this.inited = false;
-            Object.assign(this, cog);
+            Object.assign(this, __assign({}, new ImageConfig(), cog));
         }
         /**
          * @return {?}
@@ -173,7 +185,10 @@
                 this.render.setAttribute(this.el.nativeElement, 'onerror', "this.src='" + this.error + "'");
             };
         ImageDirective.decorators = [
-            { type: i0.Directive, args: [{ selector: '[_src]' },] }
+            { type: i0.Directive, args: [{
+                        selector: '[_src]',
+                        exportAs: 'srcDirective',
+                    },] }
         ];
         /** @nocollapse */
         ImageDirective.ctorParameters = function () {

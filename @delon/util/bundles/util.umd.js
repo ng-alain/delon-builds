@@ -225,13 +225,14 @@
     }
     /**
      * @param {?} original
+     * @param {?} ingoreArray
      * @param {...?} objects
      * @return {?}
      */
-    function deepMerge(original) {
+    function deepMergeKey(original, ingoreArray) {
         var objects = [];
-        for (var _i = 1; _i < arguments.length; _i++) {
-            objects[_i - 1] = arguments[_i];
+        for (var _i = 2; _i < arguments.length; _i++) {
+            objects[_i - 2] = arguments[_i];
         }
         if (Array.isArray(original) || typeof original !== 'object')
             return original;
@@ -247,7 +248,7 @@
                 var oldValue = obj[key];
                 /** @type {?} */
                 var newValue = target[key];
-                if (Array.isArray(newValue)) {
+                if (!ingoreArray && Array.isArray(newValue)) {
                     target[key] = __spread(newValue, oldValue);
                 }
                 else if (oldValue != null && isObject(oldValue) && newValue != null && isObject(newValue)) {
@@ -261,6 +262,18 @@
         };
         objects.filter(function (v) { return isObject(v); }).forEach(function (v) { return merge(original, v); });
         return original;
+    }
+    /**
+     * @param {?} original
+     * @param {...?} objects
+     * @return {?}
+     */
+    function deepMerge(original) {
+        var objects = [];
+        for (var _i = 1; _i < arguments.length; _i++) {
+            objects[_i - 1] = arguments[_i];
+        }
+        return deepMergeKey.apply(void 0, __spread([original, false], objects));
     }
 
     /**
@@ -1176,6 +1189,7 @@
     exports.deepGet = deepGet;
     exports.deepCopy = deepCopy;
     exports.copy = copy;
+    exports.deepMergeKey = deepMergeKey;
     exports.deepMerge = deepMerge;
     exports.updateHostClass = updateHostClass;
     exports.ArrayService = ArrayService;

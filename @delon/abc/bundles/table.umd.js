@@ -1267,9 +1267,9 @@
                 }
             });
             /** @type {?} */
-            var copyCog = util.deepMerge(new STConfig(), cog);
+            var copyCog = util.deepMergeKey(new STConfig(), true, cog);
             delete copyCog.multiSort;
-            util.deepMerge(this, copyCog);
+            Object.assign(this, copyCog);
             if (cog.multiSort && cog.multiSort.global !== false) {
                 this.multiSort = __assign({}, cog.multiSort);
             }
@@ -1288,13 +1288,7 @@
              * @param {?} value
              * @return {?}
              */ function (value) {
-                var req = this.cog.req;
-                /** @type {?} */
-                var item = __assign({}, req, value);
-                if (item.reName == null) {
-                    item.reName = util.deepCopy(req.reName);
-                }
-                this._req = item;
+                this._req = util.deepMerge({}, this.cog.req, value);
             },
             enumerable: true,
             configurable: true
@@ -1311,14 +1305,14 @@
              * @param {?} value
              * @return {?}
              */ function (value) {
-                var res = this.cog.res;
                 /** @type {?} */
-                var item = __assign({}, res, value);
-                item.reName = __assign({}, res.reName, item.reName);
-                if (!Array.isArray(item.reName.list))
-                    item.reName.list = item.reName.list.split('.');
-                if (!Array.isArray(item.reName.total))
-                    item.reName.total = item.reName.total.split('.');
+                var item = util.deepMergeKey({}, true, this.cog.res, value);
+                /** @type {?} */
+                var reName = item.reName;
+                if (!Array.isArray(reName.list))
+                    reName.list = reName.list.split('.');
+                if (!Array.isArray(reName.total))
+                    reName.total = reName.total.split('.');
                 this._res = item;
             },
             enumerable: true,
@@ -1337,9 +1331,8 @@
              * @return {?}
              */ function (value) {
                 this.clonePage = value;
-                var page = this.cog.page;
                 /** @type {?} */
-                var item = __assign({}, util.deepCopy(page), value);
+                var item = util.deepMergeKey({}, true, this.cog.page, value);
                 var total = item.total;
                 if (typeof total === 'string' && total.length) {
                     this.totalTpl = total;

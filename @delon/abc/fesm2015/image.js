@@ -1,6 +1,6 @@
 import { __decorate, __metadata } from 'tslib';
 import { CommonModule } from '@angular/common';
-import { Injectable, Directive, ElementRef, Renderer2, Input, defineInjectable, NgModule } from '@angular/core';
+import { Injectable, defineInjectable, NgModule, Directive, ElementRef, Renderer2, Input } from '@angular/core';
 import { InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
@@ -46,7 +46,7 @@ class ImageDirective {
         this.size = 64;
         this.error = './assets/img/logo.svg';
         this.inited = false;
-        Object.assign(this, cog);
+        Object.assign(this, Object.assign({}, new ImageConfig(), cog));
     }
     /**
      * @return {?}
@@ -101,7 +101,10 @@ class ImageDirective {
     }
 }
 ImageDirective.decorators = [
-    { type: Directive, args: [{ selector: '[_src]' },] }
+    { type: Directive, args: [{
+                selector: '[_src]',
+                exportAs: 'srcDirective',
+            },] }
 ];
 /** @nocollapse */
 ImageDirective.ctorParameters = () => [

@@ -159,7 +159,10 @@ class XlsxDirective {
     }
 }
 XlsxDirective.decorators = [
-    { type: Directive, args: [{ selector: '[xlsx]' },] }
+    { type: Directive, args: [{
+                selector: '[xlsx]',
+                exportAs: 'xlsxDirective',
+            },] }
 ];
 /** @nocollapse */
 XlsxDirective.ctorParameters = () => [

@@ -90,18 +90,19 @@ class LocalStorageCacheService {
  */
 class CacheService {
     /**
-     * @param {?} options
+     * @param {?} _
      * @param {?} store
      * @param {?} http
      */
-    constructor(options, store, http) {
-        this.options = options;
+    constructor(_, store, http) {
         this.store = store;
         this.http = http;
         this.memory = new Map();
         this.notifyBuffer = new Map();
         this.meta = new Set();
         this.freqTick = 3000;
+        this.cog = {};
+        Object.assign(this.cog, Object.assign({}, new DelonCacheConfig(), _));
         this.loadMeta();
         this.startExpireNotify();
     }
@@ -147,7 +148,7 @@ class CacheService {
      */
     loadMeta() {
         /** @type {?} */
-        const ret = this.store.get(this.options.meta_key);
+        const ret = this.store.get(this.cog.meta_key);
         if (ret && ret.v) {
             ((/** @type {?} */ (ret.v))).forEach(key => this.meta.add(key));
         }
@@ -159,7 +160,7 @@ class CacheService {
         /** @type {?} */
         const metaData = [];
         this.meta.forEach(key => metaData.push(key));
-        this.store.set(this.options.meta_key, { v: metaData, e: 0 });
+        this.store.set(this.cog.meta_key, { v: metaData, e: 0 });
     }
     /**
      * @return {?}
@@ -200,7 +201,7 @@ class CacheService {
             this.memory.set(key, value);
         }
         else {
-            this.store.set(this.options.prefix + key, value);
+            this.store.set(this.cog.prefix + key, value);
             this.pushMeta(key);
         }
         this.runNotify(key, 'set');
@@ -212,16 +213,16 @@ class CacheService {
      */
     get(key, options = {}) {
         /** @type {?} */
-        const isPromise = options.mode !== 'none' && this.options.mode === 'promise';
+        const isPromise = options.mode !== 'none' && this.cog.mode === 'promise';
         /** @type {?} */
-        const value = this.memory.has(key) ? this.memory.get(key) : this.store.get(this.options.prefix + key);
+        const value = this.memory.has(key) ? this.memory.get(key) : this.store.get(this.cog.prefix + key);
         if (!value || (value.e && value.e > 0 && value.e < new Date().valueOf())) {
             if (isPromise) {
                 return this.http
                     .get(key)
                     .pipe(
                 // tslint:disable-next-line:no-any
-                map((ret) => this._deepGet(ret, (/** @type {?} */ (this.options.reName)), null)), tap(v => this.set(key, v, { type: options.type, expire: options.expire })));
+                map((ret) => this._deepGet(ret, (/** @type {?} */ (this.cog.reName)), null)), tap(v => this.set(key, v, { type: options.type, expire: options.expire })));
             }
             return null;
         }
@@ -278,7 +279,7 @@ class CacheService {
             this.memory.delete(key);
             return;
         }
-        this.store.remove(this.options.prefix + key);
+        this.store.remove(this.cog.prefix + key);
         this.removeMeta(key);
     }
     /**
@@ -296,7 +297,7 @@ class CacheService {
     clear() {
         this.notifyBuffer.forEach((v, k) => this.runNotify(k, 'remove'));
         this.memory.clear();
-        this.meta.forEach(key => this.store.remove(this.options.prefix + key));
+        this.meta.forEach(key => this.store.remove(this.cog.prefix + key));
     }
     // #endregion
     // #region notify

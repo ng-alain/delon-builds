@@ -151,13 +151,14 @@ function copy(value) {
 }
 /**
  * @param {?} original
+ * @param {?} ingoreArray
  * @param {...?} objects
  * @return {?}
  */
-function deepMerge(original) {
+function deepMergeKey(original, ingoreArray) {
     var objects = [];
-    for (var _i = 1; _i < arguments.length; _i++) {
-        objects[_i - 1] = arguments[_i];
+    for (var _i = 2; _i < arguments.length; _i++) {
+        objects[_i - 2] = arguments[_i];
     }
     if (Array.isArray(original) || typeof original !== 'object')
         return original;
@@ -173,7 +174,7 @@ function deepMerge(original) {
             var oldValue = obj[key];
             /** @type {?} */
             var newValue = target[key];
-            if (Array.isArray(newValue)) {
+            if (!ingoreArray && Array.isArray(newValue)) {
                 target[key] = __spread(newValue, oldValue);
             }
             else if (oldValue != null && isObject(oldValue) && newValue != null && isObject(newValue)) {
@@ -187,6 +188,18 @@ function deepMerge(original) {
     };
     objects.filter(function (v) { return isObject(v); }).forEach(function (v) { return merge(original, v); });
     return original;
+}
+/**
+ * @param {?} original
+ * @param {...?} objects
+ * @return {?}
+ */
+function deepMerge(original) {
+    var objects = [];
+    for (var _i = 1; _i < arguments.length; _i++) {
+        objects[_i - 1] = arguments[_i];
+    }
+    return deepMergeKey.apply(void 0, __spread([original, false], objects));
 }
 
 /**
@@ -1053,6 +1066,6 @@ var DelonUtilModule = /** @class */ (function () {
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 
-export { _Validators, StringTemplateOutletDirective, format, getTimeDistance, LazyService, isNum, isInt, isDecimal, isIdCard, isMobile, isUrl, isEmpty, toBoolean, InputBoolean, toNumber, InputNumber, deepGet, deepCopy, copy, deepMerge, updateHostClass, ArrayService, DelonUtilConfig, DelonUtilModule };
+export { _Validators, StringTemplateOutletDirective, format, getTimeDistance, LazyService, isNum, isInt, isDecimal, isIdCard, isMobile, isUrl, isEmpty, toBoolean, InputBoolean, toNumber, InputNumber, deepGet, deepCopy, copy, deepMergeKey, deepMerge, updateHostClass, ArrayService, DelonUtilConfig, DelonUtilModule };
 
 //# sourceMappingURL=util.js.map

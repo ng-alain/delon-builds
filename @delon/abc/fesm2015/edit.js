@@ -57,7 +57,7 @@ class SEContainerComponent {
      */
     constructor(cog) {
         this.line = false;
-        Object.assign(this, cog);
+        Object.assign(this, Object.assign({}, new SEConfig(), cog));
     }
     /**
      * @return {?}
@@ -93,7 +93,8 @@ SEContainerComponent.decorators = [
     { type: Component, args: [{
                 selector: 'se-container, [se-container]',
                 template: "<div class=\"ant-row se__container se__{{nzLayout}} se__{{size}}\" [ngStyle]=\"{'margin-left.px': -(gutter / 2), 'margin-right.px': -(gutter / 2)}\">\n  <se-title *ngIf=\"title\">\n    <ng-container *stringTemplateOutlet=\"title\">{{ title }}</ng-container>\n  </se-title>\n  <ng-content></ng-content>\n</div>",
-                changeDetection: ChangeDetectionStrategy.OnPush
+                changeDetection: ChangeDetectionStrategy.OnPush,
+                exportAs: 'seContainer'
             }] }
 ];
 /** @nocollapse */

@@ -240,7 +240,10 @@
                 this.srv.export(this.data);
             };
         XlsxDirective.decorators = [
-            { type: i0.Directive, args: [{ selector: '[xlsx]' },] }
+            { type: i0.Directive, args: [{
+                        selector: '[xlsx]',
+                        exportAs: 'xlsxDirective',
+                    },] }
         ];
         /** @nocollapse */
         XlsxDirective.ctorParameters = function () {

@@ -54,7 +54,7 @@ class SVContainerComponent {
     constructor(el, ren, cog) {
         this.ren = ren;
         this.el = el.nativeElement;
-        Object.assign(this, cog);
+        Object.assign(this, Object.assign({}, new SVConfig(), cog));
     }
     /**
      * @return {?}
@@ -85,7 +85,8 @@ SVContainerComponent.decorators = [
     { type: Component, args: [{
                 selector: 'sv-container, [sv-container]',
                 template: "<div class=\"ant-row\" [ngStyle]=\"{'margin-left.px': -(gutter / 2), 'margin-right.px': -(gutter / 2)}\">\n  <sv-title *ngIf=\"title\">\n    <ng-container *stringTemplateOutlet=\"title\">{{title}}</ng-container>\n  </sv-title>\n  <ng-content></ng-content>\n</div>",
-                changeDetection: ChangeDetectionStrategy.OnPush
+                changeDetection: ChangeDetectionStrategy.OnPush,
+                exportAs: 'svContainer'
             }] }
 ];
 /** @nocollapse */

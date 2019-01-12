@@ -115,7 +115,7 @@ class QRComponent {
         this.srv = srv;
         this.cdr = cdr;
         this.change = new EventEmitter();
-        Object.assign(this, cog);
+        Object.assign(this, Object.assign({}, new QRConfig(), cog));
     }
     /**
      * @return {?}

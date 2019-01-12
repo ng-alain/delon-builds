@@ -1,4 +1,4 @@
-import { __decorate, __metadata, __spread } from 'tslib';
+import { __assign, __decorate, __metadata, __spread } from 'tslib';
 import { CommonModule } from '@angular/common';
 import { Injectable, defineInjectable, inject, EventEmitter, Component, ChangeDetectionStrategy, ChangeDetectorRef, Input, HostBinding, Output, NgModule } from '@angular/core';
 import { InputNumber, DelonUtilModule } from '@delon/util';
@@ -127,7 +127,7 @@ var QRComponent = /** @class */ (function () {
         this.srv = srv;
         this.cdr = cdr;
         this.change = new EventEmitter();
-        Object.assign(this, cog);
+        Object.assign(this, __assign({}, new QRConfig(), cog));
     }
     /**
      * @return {?}

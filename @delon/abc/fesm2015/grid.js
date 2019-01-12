@@ -34,7 +34,7 @@ class SGContainerComponent {
      * @param {?} cog
      */
     constructor(cog) {
-        Object.assign(this, cog);
+        Object.assign(this, Object.assign({}, new SGConfig(), cog));
     }
     //#endregion
     /**
@@ -60,7 +60,8 @@ SGContainerComponent.decorators = [
                     '[class.ant-row]': 'true',
                     '[class.sg__wrap]': 'true',
                 },
-                changeDetection: ChangeDetectionStrategy.OnPush
+                changeDetection: ChangeDetectionStrategy.OnPush,
+                exportAs: 'sgContainer'
             }] }
 ];
 /** @nocollapse */

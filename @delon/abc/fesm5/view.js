@@ -1,5 +1,5 @@
 import { ResponsiveService } from '@delon/theme';
-import { __decorate, __metadata, __spread } from 'tslib';
+import { __assign, __decorate, __metadata, __spread } from 'tslib';
 import { ObserversModule } from '@angular/cdk/observers';
 import { CommonModule } from '@angular/common';
 import { Injectable, ChangeDetectionStrategy, Component, ElementRef, Host, Optional, Renderer2, Input, defineInjectable, NgModule, ViewChild, HostBinding } from '@angular/core';
@@ -50,7 +50,7 @@ var SVContainerComponent = /** @class */ (function () {
     function SVContainerComponent(el, ren, cog) {
         this.ren = ren;
         this.el = el.nativeElement;
-        Object.assign(this, cog);
+        Object.assign(this, __assign({}, new SVConfig(), cog));
     }
     /**
      * @return {?}
@@ -90,7 +90,8 @@ var SVContainerComponent = /** @class */ (function () {
         { type: Component, args: [{
                     selector: 'sv-container, [sv-container]',
                     template: "<div class=\"ant-row\" [ngStyle]=\"{'margin-left.px': -(gutter / 2), 'margin-right.px': -(gutter / 2)}\">\n  <sv-title *ngIf=\"title\">\n    <ng-container *stringTemplateOutlet=\"title\">{{title}}</ng-container>\n  </sv-title>\n  <ng-content></ng-content>\n</div>",
-                    changeDetection: ChangeDetectionStrategy.OnPush
+                    changeDetection: ChangeDetectionStrategy.OnPush,
+                    exportAs: 'svContainer'
                 }] }
     ];
     /** @nocollapse */

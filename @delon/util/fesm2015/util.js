@@ -146,10 +146,11 @@ function copy(value) {
 }
 /**
  * @param {?} original
+ * @param {?} ingoreArray
  * @param {...?} objects
  * @return {?}
  */
-function deepMerge(original, ...objects) {
+function deepMergeKey(original, ingoreArray, ...objects) {
     if (Array.isArray(original) || typeof original !== 'object')
         return original;
     /** @type {?} */
@@ -164,7 +165,7 @@ function deepMerge(original, ...objects) {
             const oldValue = obj[key];
             /** @type {?} */
             const newValue = target[key];
-            if (Array.isArray(newValue)) {
+            if (!ingoreArray && Array.isArray(newValue)) {
                 target[key] = [...newValue, ...oldValue];
             }
             else if (oldValue != null && isObject(oldValue) && newValue != null && isObject(newValue)) {
@@ -178,6 +179,14 @@ function deepMerge(original, ...objects) {
     };
     objects.filter(v => isObject(v)).forEach(v => merge(original, v));
     return original;
+}
+/**
+ * @param {?} original
+ * @param {...?} objects
+ * @return {?}
+ */
+function deepMerge(original, ...objects) {
+    return deepMergeKey(original, false, ...objects);
 }
 
 /**
@@ -886,6 +895,6 @@ DelonUtilModule.decorators = [
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 
-export { _Validators, StringTemplateOutletDirective, format, getTimeDistance, LazyService, isNum, isInt, isDecimal, isIdCard, isMobile, isUrl, isEmpty, toBoolean, InputBoolean, toNumber, InputNumber, deepGet, deepCopy, copy, deepMerge, updateHostClass, ArrayService, DelonUtilConfig, DelonUtilModule };
+export { _Validators, StringTemplateOutletDirective, format, getTimeDistance, LazyService, isNum, isInt, isDecimal, isIdCard, isMobile, isUrl, isEmpty, toBoolean, InputBoolean, toNumber, InputNumber, deepGet, deepCopy, copy, deepMergeKey, deepMerge, updateHostClass, ArrayService, DelonUtilConfig, DelonUtilModule };
 
 //# sourceMappingURL=util.js.map

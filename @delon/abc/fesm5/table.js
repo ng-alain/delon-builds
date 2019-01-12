@@ -10,7 +10,7 @@ import { Directive, Host, Injectable, Input, TemplateRef, Optional, NgModule, NO
 import { FormsModule } from '@angular/forms';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { ACLService, DelonACLModule } from '@delon/acl';
-import { deepCopy, deepGet, deepMerge, toBoolean, updateHostClass, InputBoolean, InputNumber, DelonUtilModule } from '@delon/util';
+import { deepCopy, deepGet, deepMerge, deepMergeKey, toBoolean, updateHostClass, InputBoolean, InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
@@ -1167,9 +1167,9 @@ var STComponent = /** @class */ (function () {
             }
         });
         /** @type {?} */
-        var copyCog = deepMerge(new STConfig(), cog);
+        var copyCog = deepMergeKey(new STConfig(), true, cog);
         delete copyCog.multiSort;
-        deepMerge(this, copyCog);
+        Object.assign(this, copyCog);
         if (cog.multiSort && cog.multiSort.global !== false) {
             this.multiSort = __assign({}, cog.multiSort);
         }
@@ -1190,13 +1190,7 @@ var STComponent = /** @class */ (function () {
          * @return {?}
          */
         function (value) {
-            var req = this.cog.req;
-            /** @type {?} */
-            var item = __assign({}, req, value);
-            if (item.reName == null) {
-                item.reName = deepCopy(req.reName);
-            }
-            this._req = item;
+            this._req = deepMerge({}, this.cog.req, value);
         },
         enumerable: true,
         configurable: true
@@ -1215,14 +1209,14 @@ var STComponent = /** @class */ (function () {
          * @return {?}
          */
         function (value) {
-            var res = this.cog.res;
             /** @type {?} */
-            var item = __assign({}, res, value);
-            item.reName = __assign({}, res.reName, item.reName);
-            if (!Array.isArray(item.reName.list))
-                item.reName.list = item.reName.list.split('.');
-            if (!Array.isArray(item.reName.total))
-                item.reName.total = item.reName.total.split('.');
+            var item = deepMergeKey({}, true, this.cog.res, value);
+            /** @type {?} */
+            var reName = item.reName;
+            if (!Array.isArray(reName.list))
+                reName.list = reName.list.split('.');
+            if (!Array.isArray(reName.total))
+                reName.total = reName.total.split('.');
             this._res = item;
         },
         enumerable: true,
@@ -1243,9 +1237,8 @@ var STComponent = /** @class */ (function () {
          */
         function (value) {
             this.clonePage = value;
-            var page = this.cog.page;
             /** @type {?} */
-            var item = __assign({}, deepCopy(page), value);
+            var item = deepMergeKey({}, true, this.cog.page, value);
             var total = item.total;
             if (typeof total === 'string' && total.length) {
                 this.totalTpl = total;
