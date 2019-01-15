@@ -2941,42 +2941,26 @@ class NumberWidget extends ControlWidget {
         if (ui.parser)
             this.parser = ui.parser;
     }
-    /**
-     * @param {?} val
-     * @return {?}
-     */
-    _setValue(val) {
-        this.setValue(this.schema.type === 'integer' ? Math.floor(val) : val);
-    }
 }
 NumberWidget.decorators = [
     { type: Component, args: [{
                 selector: 'sf-number',
                 template: `
-    <sf-item-wrap
-      [id]="id"
-      [schema]="schema"
-      [ui]="ui"
-      [showError]="showError"
-      [error]="error"
-      [showTitle]="schema.title"
-    >
-      <nz-input-number
-        [ngModel]="value"
-        (ngModelChange)="_setValue($event)"
-        [nzDisabled]="disabled"
-        [nzSize]="ui.size"
-        [nzMin]="min"
-        [nzMax]="max"
-        [nzStep]="step"
-        [nzFormatter]="formatter"
-        [nzParser]="parser"
-        [nzPrecision]="ui.precision"
-        [nzPlaceHolder]="ui.placeholder || ''"
-      >
-      </nz-input-number>
-    </sf-item-wrap>
-  `
+  <sf-item-wrap [id]="id" [schema]="schema" [ui]="ui" [showError]="showError" [error]="error" [showTitle]="schema.title">
+    <nz-input-number
+      [ngModel]="value"
+      (ngModelChange)="setValue($event)"
+      [nzDisabled]="disabled"
+      [nzSize]="ui.size"
+      [nzMin]="min"
+      [nzMax]="max"
+      [nzStep]="step"
+      [nzFormatter]="formatter"
+      [nzParser]="parser"
+      [nzPrecision]="ui.precision"
+      [nzPlaceHolder]="ui.placeholder || ''">
+    </nz-input-number>
+  </sf-item-wrap>`
             }] }
 ];
 
