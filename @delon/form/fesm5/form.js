@@ -4,8 +4,8 @@ import { NgModel, FormsModule } from '@angular/forms';
 import format from 'date-fns/format';
 import { of, combineLatest, BehaviorSubject, Observable, Subject } from 'rxjs';
 import { map, distinctUntilChanged, filter, takeUntil, debounceTime, flatMap, startWith, tap } from 'rxjs/operators';
-import { __extends, __decorate, __metadata, __assign, __spread, __values, __rest } from 'tslib';
-import { Injectable, Component, Input, Directive, TemplateRef, ComponentFactoryResolver, ViewChild, ViewContainerRef, ChangeDetectorRef, Inject, Injector, HostBinding, ElementRef, Renderer2, EventEmitter, ChangeDetectionStrategy, Output, defineInjectable, NgModule } from '@angular/core';
+import { __extends, __assign, __decorate, __metadata, __spread, __values, __rest } from 'tslib';
+import { Injectable, Component, Input, Directive, TemplateRef, ComponentFactoryResolver, ViewChild, ViewContainerRef, ChangeDetectorRef, Inject, Injector, HostBinding, EventEmitter, ChangeDetectionStrategy, Output, ElementRef, Renderer2, defineInjectable, NgModule } from '@angular/core';
 import { deepCopy, InputBoolean, InputNumber, deepGet, DelonUtilModule } from '@delon/util';
 import { NzTreeNode, NzModalService, NgZorroAntdModule } from 'ng-zorro-antd';
 
@@ -3671,23 +3671,10 @@ var RadioWidget = /** @class */ (function (_super) {
         this.styleType = (this.ui.styleType || 'default') === 'default';
         getData(this.schema, this.ui, this.formProperty.formData).subscribe(function (list) { return (_this.data = list); });
     };
-    /**
-     * @param {?} value
-     * @return {?}
-     */
-    RadioWidget.prototype._setValue = /**
-     * @param {?} value
-     * @return {?}
-     */
-    function (value) {
-        this.setValue(value);
-        if (this.ui.change)
-            this.ui.change(value);
-    };
     RadioWidget.decorators = [
         { type: Component, args: [{
                     selector: 'sf-radio',
-                    template: "\n  <sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n\n    <nz-radio-group\n      [nzDisabled]=\"disabled\"\n      [nzSize]=\"ui.size\"\n      [nzName]=\"id\"\n      [ngModel]=\"value\"\n      (ngModelChange)=\"_setValue($event)\">\n      <ng-container *ngIf=\"styleType\">\n        <label *ngFor=\"let option of data\"\n          nz-radio\n          [nzValue]=\"option.value\"\n          [nzDisabled]=\"option.disabled\">\n          <span [innerHTML]=\"option.label\"></span>\n        </label>\n      </ng-container>\n      <ng-container *ngIf=\"!styleType\">\n        <label *ngFor=\"let option of data\"\n          nz-radio-button\n          [nzValue]=\"option.value\"\n          [nzDisabled]=\"option.disabled\">\n          <span [innerHTML]=\"option.label\"></span>\n        </label>\n      </ng-container>\n    </nz-radio-group>\n\n  </sf-item-wrap>\n  "
+                    template: "\n  <sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n\n    <nz-radio-group\n      [nzDisabled]=\"disabled\"\n      [nzSize]=\"ui.size\"\n      [nzName]=\"id\"\n      [ngModel]=\"value\"\n      (ngModelChange)=\"setValue($event)\">\n      <ng-container *ngIf=\"styleType\">\n        <label *ngFor=\"let option of data\"\n          nz-radio\n          [nzValue]=\"option.value\"\n          [nzDisabled]=\"option.disabled\">\n          <span [innerHTML]=\"option.label\"></span>\n        </label>\n      </ng-container>\n      <ng-container *ngIf=\"!styleType\">\n        <label *ngFor=\"let option of data\"\n          nz-radio-button\n          [nzValue]=\"option.value\"\n          [nzDisabled]=\"option.disabled\">\n          <span [innerHTML]=\"option.label\"></span>\n        </label>\n      </ng-container>\n    </nz-radio-group>\n\n  </sf-item-wrap>\n  "
                 }] }
     ];
     return RadioWidget;
