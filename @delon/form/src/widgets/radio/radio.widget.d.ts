@@ -5,4 +5,5 @@ export declare class RadioWidget extends ControlWidget {
     data: SFSchemaEnum[];
     styleType: boolean;
     reset(value: SFValue): void;
+    _setValue(value: SFValue): void;
 }

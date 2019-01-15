@@ -2941,26 +2941,42 @@ class NumberWidget extends ControlWidget {
         if (ui.parser)
             this.parser = ui.parser;
     }
+    /**
+     * @param {?} val
+     * @return {?}
+     */
+    _setValue(val) {
+        this.setValue(this.schema.type === 'integer' ? Math.floor(val) : val);
+    }
 }
 NumberWidget.decorators = [
     { type: Component, args: [{
                 selector: 'sf-number',
                 template: `
-  <sf-item-wrap [id]="id" [schema]="schema" [ui]="ui" [showError]="showError" [error]="error" [showTitle]="schema.title">
-    <nz-input-number
-      [ngModel]="value"
-      (ngModelChange)="setValue($event)"
-      [nzDisabled]="disabled"
-      [nzSize]="ui.size"
-      [nzMin]="min"
-      [nzMax]="max"
-      [nzStep]="step"
-      [nzFormatter]="formatter"
-      [nzParser]="parser"
-      [nzPrecision]="ui.precision"
-      [nzPlaceHolder]="ui.placeholder || ''">
-    </nz-input-number>
-  </sf-item-wrap>`
+    <sf-item-wrap
+      [id]="id"
+      [schema]="schema"
+      [ui]="ui"
+      [showError]="showError"
+      [error]="error"
+      [showTitle]="schema.title"
+    >
+      <nz-input-number
+        [ngModel]="value"
+        (ngModelChange)="_setValue($event)"
+        [nzDisabled]="disabled"
+        [nzSize]="ui.size"
+        [nzMin]="min"
+        [nzMax]="max"
+        [nzStep]="step"
+        [nzFormatter]="formatter"
+        [nzParser]="parser"
+        [nzPrecision]="ui.precision"
+        [nzPlaceHolder]="ui.placeholder || ''"
+      >
+      </nz-input-number>
+    </sf-item-wrap>
+  `
             }] }
 ];
 
@@ -3040,6 +3056,15 @@ class RadioWidget extends ControlWidget {
         this.styleType = (this.ui.styleType || 'default') === 'default';
         getData(this.schema, this.ui, this.formProperty.formData).subscribe(list => (this.data = list));
     }
+    /**
+     * @param {?} value
+     * @return {?}
+     */
+    _setValue(value) {
+        this.setValue(value);
+        if (this.ui.change)
+            this.ui.change(value);
+    }
 }
 RadioWidget.decorators = [
     { type: Component, args: [{
@@ -3052,7 +3077,7 @@ RadioWidget.decorators = [
       [nzSize]="ui.size"
       [nzName]="id"
       [ngModel]="value"
-      (ngModelChange)="setValue($event)">
+      (ngModelChange)="_setValue($event)">
       <ng-container *ngIf="styleType">
         <label *ngFor="let option of data"
           nz-radio
