@@ -7,4 +7,5 @@ export declare class NumberWidget extends ControlWidget implements OnInit {
     formatter: (value: any) => any;
     parser: (value: any) => any;
     ngOnInit(): void;
+    _setValue(val: number): void;
 }
