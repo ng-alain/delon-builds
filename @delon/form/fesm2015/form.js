@@ -3040,6 +3040,15 @@ class RadioWidget extends ControlWidget {
         this.styleType = (this.ui.styleType || 'default') === 'default';
         getData(this.schema, this.ui, this.formProperty.formData).subscribe(list => (this.data = list));
     }
+    /**
+     * @param {?} value
+     * @return {?}
+     */
+    _setValue(value) {
+        this.setValue(value);
+        if (this.ui.change)
+            this.ui.change(value);
+    }
 }
 RadioWidget.decorators = [
     { type: Component, args: [{
@@ -3052,7 +3061,7 @@ RadioWidget.decorators = [
       [nzSize]="ui.size"
       [nzName]="id"
       [ngModel]="value"
-      (ngModelChange)="setValue($event)">
+      (ngModelChange)="_setValue($event)">
       <ng-container *ngIf="styleType">
         <label *ngFor="let option of data"
           nz-radio
