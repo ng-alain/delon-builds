@@ -73,8 +73,9 @@
      */
     var G2MiniAreaComponent = /** @class */ (function () {
         // #endregion
-        function G2MiniAreaComponent(el) {
+        function G2MiniAreaComponent(el, ngZone) {
             this.el = el;
+            this.ngZone = ngZone;
             // #region fields
             this.delay = 0;
             this.color = 'rgba(24, 144, 255, 0.2)';
@@ -168,7 +169,7 @@
          */
             function () {
                 var _this = this;
-                setTimeout(function () { return _this.install(); }, this.delay);
+                this.ngZone.runOutsideAngular(function () { return setTimeout(function () { return _this.install(); }, _this.delay); });
             };
         /**
          * @return {?}
@@ -177,7 +178,8 @@
          * @return {?}
          */
             function () {
-                this.attachChart();
+                var _this = this;
+                this.ngZone.runOutsideAngular(function () { return _this.attachChart(); });
             };
         /**
          * @return {?}
@@ -199,7 +201,8 @@
         /** @nocollapse */
         G2MiniAreaComponent.ctorParameters = function () {
             return [
-                { type: core.ElementRef }
+                { type: core.ElementRef },
+                { type: core.NgZone }
             ];
         };
         G2MiniAreaComponent.propDecorators = {

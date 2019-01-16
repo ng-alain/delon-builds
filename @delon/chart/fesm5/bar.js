@@ -2,7 +2,7 @@ import { fromEvent } from 'rxjs';
 import { debounceTime, filter } from 'rxjs/operators';
 import { __spread, __decorate, __metadata } from 'tslib';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, HostBinding, Input, ViewChild, NgModule } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding, Input, NgZone, ViewChild, NgModule } from '@angular/core';
 import { InputBoolean, InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
@@ -12,7 +12,9 @@ import { InputBoolean, InputNumber, DelonUtilModule } from '@delon/util';
 /** @type {?} */
 var TITLE_HEIGHT = 41;
 var G2BarComponent = /** @class */ (function () {
-    function G2BarComponent() {
+    // #endregion
+    function G2BarComponent(ngZone) {
+        this.ngZone = ngZone;
         // #region fields
         this.delay = 0;
         this.color = 'rgba(24, 144, 255, 0.85)';
@@ -21,14 +23,10 @@ var G2BarComponent = /** @class */ (function () {
         this.data = [];
         this.autoLabel = true;
     }
-    // #endregion
-    // #endregion
     /**
      * @return {?}
      */
-    G2BarComponent.prototype.getHeight = 
-    // #endregion
-    /**
+    G2BarComponent.prototype.getHeight = /**
      * @return {?}
      */
     function () {
@@ -123,7 +121,7 @@ var G2BarComponent = /** @class */ (function () {
             return;
         this.resize$ = fromEvent(window, 'resize')
             .pipe(filter(function () { return _this.chart; }), debounceTime(200))
-            .subscribe(function () { return _this.updatelabel(); });
+            .subscribe(function () { return _this.ngZone.runOutsideAngular(function () { return _this.updatelabel(); }); });
     };
     /**
      * @return {?}
@@ -133,7 +131,7 @@ var G2BarComponent = /** @class */ (function () {
      */
     function () {
         var _this = this;
-        setTimeout(function () { return _this.install(); }, this.delay);
+        this.ngZone.runOutsideAngular(function () { return setTimeout(function () { return _this.install(); }, _this.delay); });
     };
     /**
      * @return {?}
@@ -142,7 +140,8 @@ var G2BarComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        this.attachChart();
+        var _this = this;
+        this.ngZone.runOutsideAngular(function () { return _this.attachChart(); });
     };
     /**
      * @return {?}
@@ -165,6 +164,10 @@ var G2BarComponent = /** @class */ (function () {
                     changeDetection: ChangeDetectionStrategy.OnPush
                 }] }
     ];
+    /** @nocollapse */
+    G2BarComponent.ctorParameters = function () { return [
+        { type: NgZone }
+    ]; };
     G2BarComponent.propDecorators = {
         node: [{ type: ViewChild, args: ['container',] }],
         delay: [{ type: Input }],

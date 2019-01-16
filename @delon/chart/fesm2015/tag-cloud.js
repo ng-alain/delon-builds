@@ -2,7 +2,7 @@ import { __decorate, __metadata } from 'tslib';
 import { fromEvent } from 'rxjs';
 import { debounceTime, filter } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, ElementRef, HostBinding, Input, NgModule } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, HostBinding, Input, NgZone, NgModule } from '@angular/core';
 import { InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
@@ -13,9 +13,11 @@ class G2TagCloudComponent {
     // #endregion
     /**
      * @param {?} el
+     * @param {?} ngZone
      */
-    constructor(el) {
+    constructor(el, ngZone) {
         this.el = el;
+        this.ngZone = ngZone;
         // #region fields
         this.delay = 0;
         this.height = 100;
@@ -124,12 +126,18 @@ class G2TagCloudComponent {
     /**
      * @return {?}
      */
+    _attachChart() {
+        this.ngZone.runOutsideAngular(() => this.attachChart());
+    }
+    /**
+     * @return {?}
+     */
     installResizeEvent() {
         if (this.resize$)
             return;
         this.resize$ = fromEvent(window, 'resize')
             .pipe(filter(() => this.chart), debounceTime(200))
-            .subscribe(() => this.attachChart());
+            .subscribe(() => this._attachChart());
     }
     /**
      * @return {?}
@@ -137,13 +145,13 @@ class G2TagCloudComponent {
     ngOnInit() {
         this.initTagCloud();
         this.installResizeEvent();
-        setTimeout(() => this.install(), this.delay);
+        this.ngZone.runOutsideAngular(() => setTimeout(() => this.install(), this.delay));
     }
     /**
      * @return {?}
      */
     ngOnChanges() {
-        this.attachChart();
+        this._attachChart();
     }
     /**
      * @return {?}
@@ -166,7 +174,8 @@ G2TagCloudComponent.decorators = [
 ];
 /** @nocollapse */
 G2TagCloudComponent.ctorParameters = () => [
-    { type: ElementRef }
+    { type: ElementRef },
+    { type: NgZone }
 ];
 G2TagCloudComponent.propDecorators = {
     delay: [{ type: Input }],

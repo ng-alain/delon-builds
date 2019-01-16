@@ -1,6 +1,6 @@
 import { __spread, __decorate, __metadata } from 'tslib';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostBinding, Input, ViewChild, NgModule } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostBinding, Input, NgZone, ViewChild, NgModule } from '@angular/core';
 import { InputBoolean, InputNumber, DelonUtilModule } from '@delon/util';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 
@@ -10,8 +10,9 @@ import { NgZorroAntdModule } from 'ng-zorro-antd';
  */
 var G2RadarComponent = /** @class */ (function () {
     // #endregion
-    function G2RadarComponent(cdr) {
+    function G2RadarComponent(cdr, ngZone) {
         this.cdr = cdr;
+        this.ngZone = ngZone;
         this.legendData = [];
         // #region fields
         this.delay = 0;
@@ -112,6 +113,7 @@ var G2RadarComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
+        var _this = this;
         var _a = this, chart = _a.chart, padding = _a.padding, data = _a.data, colors = _a.colors, tickCount = _a.tickCount;
         if (!chart || !data || data.length <= 0)
             return;
@@ -127,7 +129,7 @@ var G2RadarComponent = /** @class */ (function () {
             g.color('name', colors);
         });
         chart.repaint();
-        this.genLegend();
+        this.ngZone.run(function () { return _this.genLegend(); });
     };
     /**
      * @return {?}
@@ -174,7 +176,7 @@ var G2RadarComponent = /** @class */ (function () {
      */
     function () {
         var _this = this;
-        setTimeout(function () { return _this.install(); }, this.delay);
+        this.ngZone.runOutsideAngular(function () { return setTimeout(function () { return _this.install(); }, _this.delay); });
     };
     /**
      * @return {?}
@@ -183,8 +185,9 @@ var G2RadarComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
+        var _this = this;
         this.legendData.forEach(function (i) { return i.checked = true; });
-        this.attachChart();
+        this.ngZone.runOutsideAngular(function () { return _this.attachChart(); });
     };
     /**
      * @return {?}
@@ -207,7 +210,8 @@ var G2RadarComponent = /** @class */ (function () {
     ];
     /** @nocollapse */
     G2RadarComponent.ctorParameters = function () { return [
-        { type: ChangeDetectorRef }
+        { type: ChangeDetectorRef },
+        { type: NgZone }
     ]; };
     G2RadarComponent.propDecorators = {
         node: [{ type: ViewChild, args: ['container',] }],

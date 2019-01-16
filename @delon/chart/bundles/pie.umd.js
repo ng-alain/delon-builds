@@ -73,9 +73,10 @@
      */
     var G2PieComponent = /** @class */ (function () {
         // #endregion
-        function G2PieComponent(el, rend, cdr) {
+        function G2PieComponent(el, rend, ngZone, cdr) {
             this.el = el;
             this.rend = rend;
+            this.ngZone = ngZone;
             this.cdr = cdr;
             this.legendData = [];
             // #region fields
@@ -120,7 +121,9 @@
                 if (this.isPercent) {
                     this.select = false;
                     this.tooltip = false;
-                    this.percentColor = function (value) { return value === '占比' ? color || 'rgba(24, 144, 255, 0.85)' : '#F0F2F5'; };
+                    this.percentColor = function (value) {
+                        return value === '占比' ? color || 'rgba(24, 144, 255, 0.85)' : '#F0F2F5';
+                    };
                     this.data = [
                         {
                             x: '占比',
@@ -143,13 +146,13 @@
                 this.setCls();
                 var _a = this, node = _a.node, height = _a.height, padding = _a.padding, animate = _a.animate, tooltip = _a.tooltip, inner = _a.inner, hasLegend = _a.hasLegend;
                 /** @type {?} */
-                var chart = this.chart = new G2.Chart({
+                var chart = (this.chart = new G2.Chart({
                     container: node.nativeElement,
                     forceFit: true,
                     height: height,
                     padding: padding,
                     animate: animate,
-                });
+                }));
                 if (!tooltip) {
                     chart.tooltip(false);
                 }
@@ -166,7 +169,12 @@
                 chart
                     .intervalStack()
                     .position('y')
-                    .tooltip('x*percent', function (name, p) { return ({ name: name, value: hasLegend ? p : (p * 100).toFixed(2) }); })
+                    .tooltip('x*percent', function (name, p) {
+                    return ({
+                        name: name,
+                        value: hasLegend ? p : (p * 100).toFixed(2),
+                    });
+                })
                     .select(this.select);
                 chart.render();
                 this.attachChart();
@@ -178,13 +186,15 @@
          * @return {?}
          */
             function () {
+                var _this = this;
                 var _a = this, chart = _a.chart, height = _a.height, padding = _a.padding, animate = _a.animate, data = _a.data, lineWidth = _a.lineWidth, isPercent = _a.isPercent, percentColor = _a.percentColor, colors = _a.colors;
                 if (!chart)
                     return;
                 chart.set('height', height);
                 chart.set('padding', padding);
                 chart.set('animate', animate);
-                chart.get('geoms')[0]
+                chart
+                    .get('geoms')[0]
                     .style({ lineWidth: lineWidth, stroke: '#fff' })
                     .color('x', isPercent ? percentColor : colors);
                 /** @type {?} */
@@ -205,7 +215,7 @@
                     },
                 });
                 chart.repaint();
-                this.genLegend();
+                this.ngZone.run(function () { return _this.genLegend(); });
             };
         /**
          * @return {?}
@@ -217,7 +227,10 @@
                 var _a = this, hasLegend = _a.hasLegend, isPercent = _a.isPercent, cdr = _a.cdr, chart = _a.chart;
                 if (!hasLegend || isPercent)
                     return;
-                this.legendData = chart.get('geoms')[0].get('dataArray').map(function (item) {
+                this.legendData = chart
+                    .get('geoms')[0]
+                    .get('dataArray')
+                    .map(function (item) {
                     /** @type {?} */
                     var origin = item[0]._origin;
                     origin.color = item[0].color;
@@ -262,7 +275,7 @@
          */
             function () {
                 var _this = this;
-                setTimeout(function () { return _this.install(); }, this.delay);
+                this.ngZone.runOutsideAngular(function () { return setTimeout(function () { return _this.install(); }, _this.delay); });
             };
         /**
          * @return {?}
@@ -271,9 +284,10 @@
          * @return {?}
          */
             function () {
+                var _this = this;
                 this.fixData();
                 this.setCls();
-                this.attachChart();
+                this.ngZone.runOutsideAngular(function () { return _this.attachChart(); });
                 this.installResizeEvent();
             };
         /**
@@ -302,6 +316,7 @@
             return [
                 { type: core.ElementRef },
                 { type: core.Renderer2 },
+                { type: core.NgZone },
                 { type: core.ChangeDetectorRef }
             ];
         };

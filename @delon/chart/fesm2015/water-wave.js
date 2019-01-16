@@ -2,7 +2,7 @@ import { __decorate, __metadata } from 'tslib';
 import { fromEvent } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Input, Renderer2, ViewChild, NgModule } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Input, NgZone, Renderer2, ViewChild, NgModule } from '@angular/core';
 import { InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
@@ -14,11 +14,13 @@ class G2WaterWaveComponent {
     /**
      * @param {?} el
      * @param {?} renderer
+     * @param {?} ngZone
      * @param {?} cdr
      */
-    constructor(el, renderer, cdr) {
+    constructor(el, renderer, ngZone, cdr) {
         this.el = el;
         this.renderer = renderer;
+        this.ngZone = ngZone;
         this.cdr = cdr;
         this.resize$ = null;
         // #region fields
@@ -221,13 +223,13 @@ class G2WaterWaveComponent {
     ngOnInit() {
         this.updateRadio(1);
         this.installResizeEvent();
-        setTimeout(() => this.renderChart(''), this.delay);
+        this.ngZone.runOutsideAngular(() => setTimeout(() => this.renderChart(''), this.delay));
     }
     /**
      * @return {?}
      */
     ngOnChanges() {
-        this.renderChart('update');
+        this.ngZone.runOutsideAngular(() => this.renderChart('update'));
         this.cdr.detectChanges();
     }
     /**
@@ -252,6 +254,7 @@ G2WaterWaveComponent.decorators = [
 G2WaterWaveComponent.ctorParameters = () => [
     { type: ElementRef },
     { type: Renderer2 },
+    { type: NgZone },
     { type: ChangeDetectorRef }
 ];
 G2WaterWaveComponent.propDecorators = {

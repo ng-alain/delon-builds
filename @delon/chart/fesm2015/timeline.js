@@ -1,6 +1,6 @@
 import { __decorate, __metadata } from 'tslib';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input, ViewChild, NgModule } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, NgZone, ViewChild, NgModule } from '@angular/core';
 import { InputBoolean, InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
@@ -10,7 +10,12 @@ import { InputBoolean, InputNumber, DelonUtilModule } from '@delon/util';
 class G2TimelineData {
 }
 class G2TimelineComponent {
-    constructor() {
+    // #endregion
+    /**
+     * @param {?} ngZone
+     */
+    constructor(ngZone) {
+        this.ngZone = ngZone;
         // #region fields
         this.delay = 0;
         this.data = [];
@@ -22,12 +27,11 @@ class G2TimelineComponent {
         this.borderWidth = 2;
         this.slider = true;
     }
-    // #endregion
     /**
      * @return {?}
      */
     ngOnInit() {
-        setTimeout(() => this.install(), this.delay);
+        this.ngZone.runOutsideAngular(() => setTimeout(() => this.install(), this.delay));
     }
     /**
      * @return {?}
@@ -157,7 +161,7 @@ class G2TimelineComponent {
      * @return {?}
      */
     ngOnChanges() {
-        this.attachChart();
+        this.ngZone.runOutsideAngular(() => this.attachChart());
     }
     /**
      * @return {?}
@@ -175,6 +179,10 @@ G2TimelineComponent.decorators = [
                 template: "<ng-container *stringTemplateOutlet=\"title\"><h4>{{title}}</h4></ng-container>\n<div #container></div>\n<div #sliderContainer *ngIf=\"slider\"></div>\n",
                 changeDetection: ChangeDetectionStrategy.OnPush
             }] }
+];
+/** @nocollapse */
+G2TimelineComponent.ctorParameters = () => [
+    { type: NgZone }
 ];
 G2TimelineComponent.propDecorators = {
     node: [{ type: ViewChild, args: ['container',] }],

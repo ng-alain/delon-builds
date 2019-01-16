@@ -1,6 +1,7 @@
-import { ElementRef, OnChanges, OnDestroy, OnInit } from '@angular/core';
+import { ElementRef, NgZone, OnChanges, OnDestroy, OnInit } from '@angular/core';
 export declare class G2SingleBarComponent implements OnInit, OnChanges, OnDestroy {
     private el;
+    private ngZone;
     private chart;
     delay: number;
     plusColor: string;
@@ -14,7 +15,7 @@ export declare class G2SingleBarComponent implements OnInit, OnChanges, OnDestro
     format: (value: number, item: {}, index: number) => string;
     padding: any;
     textStyle: any;
-    constructor(el: ElementRef);
+    constructor(el: ElementRef, ngZone: NgZone);
     private install;
     private attachChart;
     ngOnInit(): void;

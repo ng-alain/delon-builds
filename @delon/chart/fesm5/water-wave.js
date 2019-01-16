@@ -2,7 +2,7 @@ import { fromEvent } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { __spread, __decorate, __metadata } from 'tslib';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Input, Renderer2, ViewChild, NgModule } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Input, NgZone, Renderer2, ViewChild, NgModule } from '@angular/core';
 import { InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
@@ -11,9 +11,10 @@ import { InputNumber, DelonUtilModule } from '@delon/util';
  */
 var G2WaterWaveComponent = /** @class */ (function () {
     // #endregion
-    function G2WaterWaveComponent(el, renderer, cdr) {
+    function G2WaterWaveComponent(el, renderer, ngZone, cdr) {
         this.el = el;
         this.renderer = renderer;
+        this.ngZone = ngZone;
         this.cdr = cdr;
         this.resize$ = null;
         // #region fields
@@ -232,7 +233,7 @@ var G2WaterWaveComponent = /** @class */ (function () {
         var _this = this;
         this.updateRadio(1);
         this.installResizeEvent();
-        setTimeout(function () { return _this.renderChart(''); }, this.delay);
+        this.ngZone.runOutsideAngular(function () { return setTimeout(function () { return _this.renderChart(''); }, _this.delay); });
     };
     /**
      * @return {?}
@@ -241,7 +242,8 @@ var G2WaterWaveComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        this.renderChart('update');
+        var _this = this;
+        this.ngZone.runOutsideAngular(function () { return _this.renderChart('update'); });
         this.cdr.detectChanges();
     };
     /**
@@ -268,6 +270,7 @@ var G2WaterWaveComponent = /** @class */ (function () {
     G2WaterWaveComponent.ctorParameters = function () { return [
         { type: ElementRef },
         { type: Renderer2 },
+        { type: NgZone },
         { type: ChangeDetectorRef }
     ]; };
     G2WaterWaveComponent.propDecorators = {

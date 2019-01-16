@@ -2,7 +2,7 @@ import { __decorate, __metadata } from 'tslib';
 import { fromEvent } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Input, Renderer2, ViewChild, NgModule } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Input, NgZone, Renderer2, ViewChild, NgModule } from '@angular/core';
 import { updateHostClass, InputBoolean, InputNumber, DelonUtilModule } from '@delon/util';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 
@@ -15,11 +15,13 @@ class G2PieComponent {
     /**
      * @param {?} el
      * @param {?} rend
+     * @param {?} ngZone
      * @param {?} cdr
      */
-    constructor(el, rend, cdr) {
+    constructor(el, rend, ngZone, cdr) {
         this.el = el;
         this.rend = rend;
+        this.ngZone = ngZone;
         this.cdr = cdr;
         this.legendData = [];
         // #region fields
@@ -78,13 +80,13 @@ class G2PieComponent {
         this.setCls();
         const { node, height, padding, animate, tooltip, inner, hasLegend } = this;
         /** @type {?} */
-        const chart = this.chart = new G2.Chart({
+        const chart = (this.chart = new G2.Chart({
             container: node.nativeElement,
             forceFit: true,
             height,
             padding,
             animate,
-        });
+        }));
         if (!tooltip) {
             chart.tooltip(false);
         }
@@ -101,7 +103,10 @@ class G2PieComponent {
         chart
             .intervalStack()
             .position('y')
-            .tooltip('x*percent', (name, p) => ({ name, value: hasLegend ? p : (p * 100).toFixed(2) }))
+            .tooltip('x*percent', (name, p) => ({
+            name,
+            value: hasLegend ? p : (p * 100).toFixed(2),
+        }))
             .select(this.select);
         chart.render();
         this.attachChart();
@@ -110,13 +115,14 @@ class G2PieComponent {
      * @return {?}
      */
     attachChart() {
-        const { chart, height, padding, animate, data, lineWidth, isPercent, percentColor, colors } = this;
+        const { chart, height, padding, animate, data, lineWidth, isPercent, percentColor, colors, } = this;
         if (!chart)
             return;
         chart.set('height', height);
         chart.set('padding', padding);
         chart.set('animate', animate);
-        chart.get('geoms')[0]
+        chart
+            .get('geoms')[0]
             .style({ lineWidth, stroke: '#fff' })
             .color('x', isPercent ? percentColor : colors);
         /** @type {?} */
@@ -137,7 +143,7 @@ class G2PieComponent {
             },
         });
         chart.repaint();
-        this.genLegend();
+        this.ngZone.run(() => this.genLegend());
     }
     /**
      * @return {?}
@@ -146,7 +152,10 @@ class G2PieComponent {
         const { hasLegend, isPercent, cdr, chart } = this;
         if (!hasLegend || isPercent)
             return;
-        this.legendData = chart.get('geoms')[0].get('dataArray').map((item) => {
+        this.legendData = chart
+            .get('geoms')[0]
+            .get('dataArray')
+            .map((item) => {
             /** @type {?} */
             const origin = item[0]._origin;
             origin.color = item[0].color;
@@ -179,7 +188,7 @@ class G2PieComponent {
      * @return {?}
      */
     ngOnInit() {
-        setTimeout(() => this.install(), this.delay);
+        this.ngZone.runOutsideAngular(() => setTimeout(() => this.install(), this.delay));
     }
     /**
      * @return {?}
@@ -187,7 +196,7 @@ class G2PieComponent {
     ngOnChanges() {
         this.fixData();
         this.setCls();
-        this.attachChart();
+        this.ngZone.runOutsideAngular(() => this.attachChart());
         this.installResizeEvent();
     }
     /**
@@ -213,6 +222,7 @@ G2PieComponent.decorators = [
 G2PieComponent.ctorParameters = () => [
     { type: ElementRef },
     { type: Renderer2 },
+    { type: NgZone },
     { type: ChangeDetectorRef }
 ];
 G2PieComponent.propDecorators = {

@@ -1,4 +1,4 @@
-import { ElementRef, OnChanges, OnDestroy, OnInit } from '@angular/core';
+import { ElementRef, NgZone, OnChanges, OnDestroy, OnInit } from '@angular/core';
 export interface G2MiniAreaData {
     x: any;
     y: any;
@@ -6,6 +6,7 @@ export interface G2MiniAreaData {
 }
 export declare class G2MiniAreaComponent implements OnInit, OnChanges, OnDestroy {
     private el;
+    private ngZone;
     private chart;
     delay: number;
     color: string;
@@ -21,7 +22,7 @@ export declare class G2MiniAreaComponent implements OnInit, OnChanges, OnDestroy
     data: G2MiniAreaData[];
     yTooltipSuffix: string;
     tooltipType: 'mini' | 'default';
-    constructor(el: ElementRef);
+    constructor(el: ElementRef, ngZone: NgZone);
     private install;
     private attachChart;
     ngOnInit(): void;

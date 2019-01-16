@@ -2,7 +2,7 @@ import { __decorate, __metadata } from 'tslib';
 import { fromEvent } from 'rxjs';
 import { debounceTime, filter } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, HostBinding, Input, ViewChild, NgModule } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding, Input, NgZone, ViewChild, NgModule } from '@angular/core';
 import { InputBoolean, InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
@@ -12,7 +12,12 @@ import { InputBoolean, InputNumber, DelonUtilModule } from '@delon/util';
 /** @type {?} */
 const TITLE_HEIGHT = 41;
 class G2BarComponent {
-    constructor() {
+    // #endregion
+    /**
+     * @param {?} ngZone
+     */
+    constructor(ngZone) {
+        this.ngZone = ngZone;
         // #region fields
         this.delay = 0;
         this.color = 'rgba(24, 144, 255, 0.85)';
@@ -21,7 +26,6 @@ class G2BarComponent {
         this.data = [];
         this.autoLabel = true;
     }
-    // #endregion
     /**
      * @return {?}
      */
@@ -104,19 +108,19 @@ class G2BarComponent {
             return;
         this.resize$ = fromEvent(window, 'resize')
             .pipe(filter(() => this.chart), debounceTime(200))
-            .subscribe(() => this.updatelabel());
+            .subscribe(() => this.ngZone.runOutsideAngular(() => this.updatelabel()));
     }
     /**
      * @return {?}
      */
     ngOnInit() {
-        setTimeout(() => this.install(), this.delay);
+        this.ngZone.runOutsideAngular(() => setTimeout(() => this.install(), this.delay));
     }
     /**
      * @return {?}
      */
     ngOnChanges() {
-        this.attachChart();
+        this.ngZone.runOutsideAngular(() => this.attachChart());
     }
     /**
      * @return {?}
@@ -136,6 +140,10 @@ G2BarComponent.decorators = [
                 template: "<ng-container *stringTemplateOutlet=\"title\">\n  <h4 style=\"margin-bottom:20px\">{{title}}</h4>\n</ng-container>\n<div #container></div>",
                 changeDetection: ChangeDetectionStrategy.OnPush
             }] }
+];
+/** @nocollapse */
+G2BarComponent.ctorParameters = () => [
+    { type: NgZone }
 ];
 G2BarComponent.propDecorators = {
     node: [{ type: ViewChild, args: ['container',] }],

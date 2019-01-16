@@ -73,8 +73,9 @@
      */
     var G2MiniBarComponent = /** @class */ (function () {
         // #endregion
-        function G2MiniBarComponent(el) {
+        function G2MiniBarComponent(el, ngZone) {
             this.el = el;
+            this.ngZone = ngZone;
             // #region fields
             this.delay = 0;
             this.color = '#1890FF';
@@ -148,7 +149,7 @@
          */
             function () {
                 var _this = this;
-                setTimeout(function () { return _this.install(); }, this.delay);
+                this.ngZone.runOutsideAngular(function () { return setTimeout(function () { return _this.install(); }, _this.delay); });
             };
         /**
          * @return {?}
@@ -157,7 +158,8 @@
          * @return {?}
          */
             function () {
-                this.attachChart();
+                var _this = this;
+                this.ngZone.runOutsideAngular(function () { return _this.attachChart(); });
             };
         /**
          * @return {?}
@@ -180,7 +182,8 @@
         /** @nocollapse */
         G2MiniBarComponent.ctorParameters = function () {
             return [
-                { type: core.ElementRef }
+                { type: core.ElementRef },
+                { type: core.NgZone }
             ];
         };
         G2MiniBarComponent.propDecorators = {

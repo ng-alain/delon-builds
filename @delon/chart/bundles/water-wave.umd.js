@@ -73,9 +73,10 @@
      */
     var G2WaterWaveComponent = /** @class */ (function () {
         // #endregion
-        function G2WaterWaveComponent(el, renderer, cdr) {
+        function G2WaterWaveComponent(el, renderer, ngZone, cdr) {
             this.el = el;
             this.renderer = renderer;
+            this.ngZone = ngZone;
             this.cdr = cdr;
             this.resize$ = null;
             // #region fields
@@ -294,7 +295,7 @@
                 var _this = this;
                 this.updateRadio(1);
                 this.installResizeEvent();
-                setTimeout(function () { return _this.renderChart(''); }, this.delay);
+                this.ngZone.runOutsideAngular(function () { return setTimeout(function () { return _this.renderChart(''); }, _this.delay); });
             };
         /**
          * @return {?}
@@ -303,7 +304,8 @@
          * @return {?}
          */
             function () {
-                this.renderChart('update');
+                var _this = this;
+                this.ngZone.runOutsideAngular(function () { return _this.renderChart('update'); });
                 this.cdr.detectChanges();
             };
         /**
@@ -331,6 +333,7 @@
             return [
                 { type: core.ElementRef },
                 { type: core.Renderer2 },
+                { type: core.NgZone },
                 { type: core.ChangeDetectorRef }
             ];
         };

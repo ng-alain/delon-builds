@@ -74,7 +74,9 @@
     /** @type {?} */
     var TITLE_HEIGHT = 41;
     var G2BarComponent = /** @class */ (function () {
-        function G2BarComponent() {
+        // #endregion
+        function G2BarComponent(ngZone) {
+            this.ngZone = ngZone;
             // #region fields
             this.delay = 0;
             this.color = 'rgba(24, 144, 255, 0.85)';
@@ -83,16 +85,12 @@
             this.data = [];
             this.autoLabel = true;
         }
-        // #endregion
-        // #endregion
         /**
          * @return {?}
          */
-        G2BarComponent.prototype.getHeight =
-            // #endregion
-            /**
-             * @return {?}
-             */
+        G2BarComponent.prototype.getHeight = /**
+         * @return {?}
+         */
             function () {
                 return this.title ? this.height - TITLE_HEIGHT : this.height;
             };
@@ -185,7 +183,7 @@
                     return;
                 this.resize$ = rxjs.fromEvent(window, 'resize')
                     .pipe(operators.filter(function () { return _this.chart; }), operators.debounceTime(200))
-                    .subscribe(function () { return _this.updatelabel(); });
+                    .subscribe(function () { return _this.ngZone.runOutsideAngular(function () { return _this.updatelabel(); }); });
             };
         /**
          * @return {?}
@@ -195,7 +193,7 @@
          */
             function () {
                 var _this = this;
-                setTimeout(function () { return _this.install(); }, this.delay);
+                this.ngZone.runOutsideAngular(function () { return setTimeout(function () { return _this.install(); }, _this.delay); });
             };
         /**
          * @return {?}
@@ -204,7 +202,8 @@
          * @return {?}
          */
             function () {
-                this.attachChart();
+                var _this = this;
+                this.ngZone.runOutsideAngular(function () { return _this.attachChart(); });
             };
         /**
          * @return {?}
@@ -227,6 +226,12 @@
                         changeDetection: core.ChangeDetectionStrategy.OnPush
                     }] }
         ];
+        /** @nocollapse */
+        G2BarComponent.ctorParameters = function () {
+            return [
+                { type: core.NgZone }
+            ];
+        };
         G2BarComponent.propDecorators = {
             node: [{ type: core.ViewChild, args: ['container',] }],
             delay: [{ type: core.Input }],

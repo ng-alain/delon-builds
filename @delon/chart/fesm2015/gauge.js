@@ -1,6 +1,6 @@
 import { __decorate, __metadata } from 'tslib';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, ElementRef, Input, NgModule } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, Input, NgZone, NgModule } from '@angular/core';
 import { InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
@@ -11,9 +11,11 @@ class G2GaugeComponent {
     // #endregion
     /**
      * @param {?} el
+     * @param {?} ngZone
      */
-    constructor(el) {
+    constructor(el, ngZone) {
         this.el = el;
+        this.ngZone = ngZone;
         // #region fields
         this.delay = 0;
         this.color = '#2f9cff';
@@ -153,13 +155,13 @@ class G2GaugeComponent {
      * @return {?}
      */
     ngOnInit() {
-        setTimeout(() => this.install(), this.delay);
+        this.ngZone.runOutsideAngular(() => setTimeout(() => this.install(), this.delay));
     }
     /**
      * @return {?}
      */
     ngOnChanges() {
-        this.attachChart();
+        this.ngZone.runOutsideAngular(() => this.attachChart());
     }
     /**
      * @return {?}
@@ -182,7 +184,8 @@ G2GaugeComponent.decorators = [
 ];
 /** @nocollapse */
 G2GaugeComponent.ctorParameters = () => [
-    { type: ElementRef }
+    { type: ElementRef },
+    { type: NgZone }
 ];
 G2GaugeComponent.propDecorators = {
     delay: [{ type: Input }],

@@ -1,6 +1,6 @@
 import { __spread, __decorate, __metadata } from 'tslib';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, ElementRef, HostBinding, Input, NgModule } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, HostBinding, Input, NgZone, NgModule } from '@angular/core';
 import { InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
@@ -9,8 +9,9 @@ import { InputNumber, DelonUtilModule } from '@delon/util';
  */
 var G2MiniBarComponent = /** @class */ (function () {
     // #endregion
-    function G2MiniBarComponent(el) {
+    function G2MiniBarComponent(el, ngZone) {
         this.el = el;
+        this.ngZone = ngZone;
         // #region fields
         this.delay = 0;
         this.color = '#1890FF';
@@ -84,7 +85,7 @@ var G2MiniBarComponent = /** @class */ (function () {
      */
     function () {
         var _this = this;
-        setTimeout(function () { return _this.install(); }, this.delay);
+        this.ngZone.runOutsideAngular(function () { return setTimeout(function () { return _this.install(); }, _this.delay); });
     };
     /**
      * @return {?}
@@ -93,7 +94,8 @@ var G2MiniBarComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        this.attachChart();
+        var _this = this;
+        this.ngZone.runOutsideAngular(function () { return _this.attachChart(); });
     };
     /**
      * @return {?}
@@ -115,7 +117,8 @@ var G2MiniBarComponent = /** @class */ (function () {
     ];
     /** @nocollapse */
     G2MiniBarComponent.ctorParameters = function () { return [
-        { type: ElementRef }
+        { type: ElementRef },
+        { type: NgZone }
     ]; };
     G2MiniBarComponent.propDecorators = {
         delay: [{ type: Input }],

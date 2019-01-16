@@ -1,6 +1,6 @@
 import { __decorate, __metadata } from 'tslib';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostBinding, Input, ViewChild, NgModule } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostBinding, Input, NgZone, ViewChild, NgModule } from '@angular/core';
 import { InputBoolean, InputNumber, DelonUtilModule } from '@delon/util';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 
@@ -12,9 +12,11 @@ class G2RadarComponent {
     // #endregion
     /**
      * @param {?} cdr
+     * @param {?} ngZone
      */
-    constructor(cdr) {
+    constructor(cdr, ngZone) {
         this.cdr = cdr;
+        this.ngZone = ngZone;
         this.legendData = [];
         // #region fields
         this.delay = 0;
@@ -120,7 +122,7 @@ class G2RadarComponent {
             g.color('name', colors);
         });
         chart.repaint();
-        this.genLegend();
+        this.ngZone.run(() => this.genLegend());
     }
     /**
      * @return {?}
@@ -156,14 +158,14 @@ class G2RadarComponent {
      * @return {?}
      */
     ngOnInit() {
-        setTimeout(() => this.install(), this.delay);
+        this.ngZone.runOutsideAngular(() => setTimeout(() => this.install(), this.delay));
     }
     /**
      * @return {?}
      */
     ngOnChanges() {
         this.legendData.forEach(i => i.checked = true);
-        this.attachChart();
+        this.ngZone.runOutsideAngular(() => this.attachChart());
     }
     /**
      * @return {?}
@@ -184,7 +186,8 @@ G2RadarComponent.decorators = [
 ];
 /** @nocollapse */
 G2RadarComponent.ctorParameters = () => [
-    { type: ChangeDetectorRef }
+    { type: ChangeDetectorRef },
+    { type: NgZone }
 ];
 G2RadarComponent.propDecorators = {
     node: [{ type: ViewChild, args: ['container',] }],

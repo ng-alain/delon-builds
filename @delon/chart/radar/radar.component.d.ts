@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, OnChanges, OnDestroy, OnInit, TemplateRef } from '@angular/core';
+import { ChangeDetectorRef, NgZone, OnChanges, OnDestroy, OnInit, TemplateRef } from '@angular/core';
 export interface G2RadarData {
     name: string;
     label: string;
@@ -7,6 +7,7 @@ export interface G2RadarData {
 }
 export declare class G2RadarComponent implements OnInit, OnDestroy, OnChanges {
     private cdr;
+    private ngZone;
     private node;
     private chart;
     legendData: any[];
@@ -18,7 +19,7 @@ export declare class G2RadarComponent implements OnInit, OnDestroy, OnChanges {
     tickCount: number;
     data: G2RadarData[];
     colors: string[];
-    constructor(cdr: ChangeDetectorRef);
+    constructor(cdr: ChangeDetectorRef, ngZone: NgZone);
     private getHeight;
     private install;
     private attachChart;

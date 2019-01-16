@@ -1,6 +1,6 @@
 import { __spread, __decorate, __metadata } from 'tslib';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, ElementRef, HostBinding, Input, NgModule } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, HostBinding, Input, NgZone, NgModule } from '@angular/core';
 import { InputBoolean, InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
@@ -9,8 +9,9 @@ import { InputBoolean, InputNumber, DelonUtilModule } from '@delon/util';
  */
 var G2MiniAreaComponent = /** @class */ (function () {
     // #endregion
-    function G2MiniAreaComponent(el) {
+    function G2MiniAreaComponent(el, ngZone) {
         this.el = el;
+        this.ngZone = ngZone;
         // #region fields
         this.delay = 0;
         this.color = 'rgba(24, 144, 255, 0.2)';
@@ -104,7 +105,7 @@ var G2MiniAreaComponent = /** @class */ (function () {
      */
     function () {
         var _this = this;
-        setTimeout(function () { return _this.install(); }, this.delay);
+        this.ngZone.runOutsideAngular(function () { return setTimeout(function () { return _this.install(); }, _this.delay); });
     };
     /**
      * @return {?}
@@ -113,7 +114,8 @@ var G2MiniAreaComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        this.attachChart();
+        var _this = this;
+        this.ngZone.runOutsideAngular(function () { return _this.attachChart(); });
     };
     /**
      * @return {?}
@@ -134,7 +136,8 @@ var G2MiniAreaComponent = /** @class */ (function () {
     ];
     /** @nocollapse */
     G2MiniAreaComponent.ctorParameters = function () { return [
-        { type: ElementRef }
+        { type: ElementRef },
+        { type: NgZone }
     ]; };
     G2MiniAreaComponent.propDecorators = {
         delay: [{ type: Input }],

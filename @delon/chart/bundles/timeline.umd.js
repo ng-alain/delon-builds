@@ -89,7 +89,9 @@
         return G2TimelineData;
     }());
     var G2TimelineComponent = /** @class */ (function () {
-        function G2TimelineComponent() {
+        // #endregion
+        function G2TimelineComponent(ngZone) {
+            this.ngZone = ngZone;
             // #region fields
             this.delay = 0;
             this.data = [];
@@ -101,19 +103,15 @@
             this.borderWidth = 2;
             this.slider = true;
         }
-        // #endregion
-        // #endregion
         /**
          * @return {?}
          */
-        G2TimelineComponent.prototype.ngOnInit =
-            // #endregion
-            /**
-             * @return {?}
-             */
+        G2TimelineComponent.prototype.ngOnInit = /**
+         * @return {?}
+         */
             function () {
                 var _this = this;
-                setTimeout(function () { return _this.install(); }, this.delay);
+                this.ngZone.runOutsideAngular(function () { return setTimeout(function () { return _this.install(); }, _this.delay); });
             };
         /**
          * @return {?}
@@ -253,7 +251,8 @@
          * @return {?}
          */
             function () {
-                this.attachChart();
+                var _this = this;
+                this.ngZone.runOutsideAngular(function () { return _this.attachChart(); });
             };
         /**
          * @return {?}
@@ -274,6 +273,12 @@
                         changeDetection: core.ChangeDetectionStrategy.OnPush
                     }] }
         ];
+        /** @nocollapse */
+        G2TimelineComponent.ctorParameters = function () {
+            return [
+                { type: core.NgZone }
+            ];
+        };
         G2TimelineComponent.propDecorators = {
             node: [{ type: core.ViewChild, args: ['container',] }],
             sliderNode: [{ type: core.ViewChild, args: ['sliderContainer',] }],

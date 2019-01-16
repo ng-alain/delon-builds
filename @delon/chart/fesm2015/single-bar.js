@@ -1,6 +1,6 @@
 import { __decorate, __metadata } from 'tslib';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, ElementRef, HostBinding, Input, NgModule } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, HostBinding, Input, NgZone, NgModule } from '@angular/core';
 import { InputBoolean, InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
@@ -11,9 +11,11 @@ class G2SingleBarComponent {
     // #endregion
     /**
      * @param {?} el
+     * @param {?} ngZone
      */
-    constructor(el) {
+    constructor(el, ngZone) {
         this.el = el;
+        this.ngZone = ngZone;
         // #region fields
         this.delay = 0;
         this.plusColor = '#40a9ff';
@@ -86,13 +88,13 @@ class G2SingleBarComponent {
      * @return {?}
      */
     ngOnInit() {
-        setTimeout(() => this.install(), this.delay);
+        this.ngZone.runOutsideAngular(() => setTimeout(() => this.install(), this.delay));
     }
     /**
      * @return {?}
      */
     ngOnChanges() {
-        this.attachChart();
+        this.ngZone.runOutsideAngular(() => this.attachChart());
     }
     /**
      * @return {?}
@@ -112,7 +114,8 @@ G2SingleBarComponent.decorators = [
 ];
 /** @nocollapse */
 G2SingleBarComponent.ctorParameters = () => [
-    { type: ElementRef }
+    { type: ElementRef },
+    { type: NgZone }
 ];
 G2SingleBarComponent.propDecorators = {
     delay: [{ type: Input }],

@@ -1,6 +1,6 @@
 import { __spread, __assign, __decorate, __metadata } from 'tslib';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input, ViewChild, NgModule } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, NgZone, ViewChild, NgModule } from '@angular/core';
 import { InputBoolean, InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
@@ -13,7 +13,9 @@ var G2TimelineData = /** @class */ (function () {
     return G2TimelineData;
 }());
 var G2TimelineComponent = /** @class */ (function () {
-    function G2TimelineComponent() {
+    // #endregion
+    function G2TimelineComponent(ngZone) {
+        this.ngZone = ngZone;
         // #region fields
         this.delay = 0;
         this.data = [];
@@ -25,19 +27,15 @@ var G2TimelineComponent = /** @class */ (function () {
         this.borderWidth = 2;
         this.slider = true;
     }
-    // #endregion
-    // #endregion
     /**
      * @return {?}
      */
-    G2TimelineComponent.prototype.ngOnInit = 
-    // #endregion
-    /**
+    G2TimelineComponent.prototype.ngOnInit = /**
      * @return {?}
      */
     function () {
         var _this = this;
-        setTimeout(function () { return _this.install(); }, this.delay);
+        this.ngZone.runOutsideAngular(function () { return setTimeout(function () { return _this.install(); }, _this.delay); });
     };
     /**
      * @return {?}
@@ -177,7 +175,8 @@ var G2TimelineComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        this.attachChart();
+        var _this = this;
+        this.ngZone.runOutsideAngular(function () { return _this.attachChart(); });
     };
     /**
      * @return {?}
@@ -198,6 +197,10 @@ var G2TimelineComponent = /** @class */ (function () {
                     changeDetection: ChangeDetectionStrategy.OnPush
                 }] }
     ];
+    /** @nocollapse */
+    G2TimelineComponent.ctorParameters = function () { return [
+        { type: NgZone }
+    ]; };
     G2TimelineComponent.propDecorators = {
         node: [{ type: ViewChild, args: ['container',] }],
         sliderNode: [{ type: ViewChild, args: ['sliderContainer',] }],

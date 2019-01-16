@@ -73,8 +73,9 @@
      */
     var G2RadarComponent = /** @class */ (function () {
         // #endregion
-        function G2RadarComponent(cdr) {
+        function G2RadarComponent(cdr, ngZone) {
             this.cdr = cdr;
+            this.ngZone = ngZone;
             this.legendData = [];
             // #region fields
             this.delay = 0;
@@ -175,6 +176,7 @@
          * @return {?}
          */
             function () {
+                var _this = this;
                 var _a = this, chart = _a.chart, padding = _a.padding, data = _a.data, colors = _a.colors, tickCount = _a.tickCount;
                 if (!chart || !data || data.length <= 0)
                     return;
@@ -190,7 +192,7 @@
                     g.color('name', colors);
                 });
                 chart.repaint();
-                this.genLegend();
+                this.ngZone.run(function () { return _this.genLegend(); });
             };
         /**
          * @return {?}
@@ -237,7 +239,7 @@
          */
             function () {
                 var _this = this;
-                setTimeout(function () { return _this.install(); }, this.delay);
+                this.ngZone.runOutsideAngular(function () { return setTimeout(function () { return _this.install(); }, _this.delay); });
             };
         /**
          * @return {?}
@@ -246,8 +248,9 @@
          * @return {?}
          */
             function () {
+                var _this = this;
                 this.legendData.forEach(function (i) { return i.checked = true; });
-                this.attachChart();
+                this.ngZone.runOutsideAngular(function () { return _this.attachChart(); });
             };
         /**
          * @return {?}
@@ -271,7 +274,8 @@
         /** @nocollapse */
         G2RadarComponent.ctorParameters = function () {
             return [
-                { type: core.ChangeDetectorRef }
+                { type: core.ChangeDetectorRef },
+                { type: core.NgZone }
             ];
         };
         G2RadarComponent.propDecorators = {

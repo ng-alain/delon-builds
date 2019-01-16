@@ -85,8 +85,9 @@
      */
     var G2TagCloudComponent = /** @class */ (function () {
         // #endregion
-        function G2TagCloudComponent(el) {
+        function G2TagCloudComponent(el, ngZone) {
             this.el = el;
+            this.ngZone = ngZone;
             // #region fields
             this.delay = 0;
             this.height = 100;
@@ -203,6 +204,16 @@
         /**
          * @return {?}
          */
+        G2TagCloudComponent.prototype._attachChart = /**
+         * @return {?}
+         */
+            function () {
+                var _this = this;
+                this.ngZone.runOutsideAngular(function () { return _this.attachChart(); });
+            };
+        /**
+         * @return {?}
+         */
         G2TagCloudComponent.prototype.installResizeEvent = /**
          * @return {?}
          */
@@ -212,7 +223,7 @@
                     return;
                 this.resize$ = rxjs.fromEvent(window, 'resize')
                     .pipe(operators.filter(function () { return _this.chart; }), operators.debounceTime(200))
-                    .subscribe(function () { return _this.attachChart(); });
+                    .subscribe(function () { return _this._attachChart(); });
             };
         /**
          * @return {?}
@@ -224,7 +235,7 @@
                 var _this = this;
                 this.initTagCloud();
                 this.installResizeEvent();
-                setTimeout(function () { return _this.install(); }, this.delay);
+                this.ngZone.runOutsideAngular(function () { return setTimeout(function () { return _this.install(); }, _this.delay); });
             };
         /**
          * @return {?}
@@ -233,7 +244,7 @@
          * @return {?}
          */
             function () {
-                this.attachChart();
+                this._attachChart();
             };
         /**
          * @return {?}
@@ -259,7 +270,8 @@
         /** @nocollapse */
         G2TagCloudComponent.ctorParameters = function () {
             return [
-                { type: core.ElementRef }
+                { type: core.ElementRef },
+                { type: core.NgZone }
             ];
         };
         G2TagCloudComponent.propDecorators = {

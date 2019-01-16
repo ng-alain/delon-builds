@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, ElementRef, OnChanges, OnDestroy, OnInit, Renderer2, TemplateRef } from '@angular/core';
+import { ChangeDetectorRef, ElementRef, NgZone, OnChanges, OnDestroy, OnInit, Renderer2, TemplateRef } from '@angular/core';
 export interface G2PieData {
     x: any;
     y: number;
@@ -7,6 +7,7 @@ export interface G2PieData {
 export declare class G2PieComponent implements OnInit, OnDestroy, OnChanges {
     private el;
     private rend;
+    private ngZone;
     private cdr;
     private resize$;
     private node;
@@ -30,7 +31,7 @@ export declare class G2PieComponent implements OnInit, OnDestroy, OnChanges {
     valueFormat: (y: number) => string;
     data: G2PieData[];
     colors: any[];
-    constructor(el: ElementRef, rend: Renderer2, cdr: ChangeDetectorRef);
+    constructor(el: ElementRef, rend: Renderer2, ngZone: NgZone, cdr: ChangeDetectorRef);
     private setCls;
     private fixData;
     private install;
