@@ -94,6 +94,7 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     cd(): this;
     renderTotal(total: string, range: string[]): string;
     private changeEmit;
+    private readonly routerState;
     private _load;
     /** 清空所有数据 */
     clear(cleanStatus?: boolean): this;
