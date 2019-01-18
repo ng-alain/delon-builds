@@ -490,6 +490,9 @@ var STColumnSource = /** @class */ (function () {
         try {
             for (var copyColumens_1 = __values(copyColumens), copyColumens_1_1 = copyColumens_1.next(); !copyColumens_1_1.done; copyColumens_1_1 = copyColumens_1.next()) {
                 var item = copyColumens_1_1.value;
+                if (item.iif && !item.iif(item)) {
+                    continue;
+                }
                 if (this.acl && item.acl && !this.acl.can(item.acl)) {
                     continue;
                 }
@@ -1175,7 +1178,7 @@ var STComponent = /** @class */ (function () {
         }
         i18nSrv.change
             .pipe(takeUntil(this.unsubscribe$), filter(function () { return _this._columns.length > 0; }))
-            .subscribe(function () { return _this.refreshColumns(); });
+            .subscribe(function () { return _this.resetColumns(); });
     }
     Object.defineProperty(STComponent.prototype, "req", {
         /** 请求体配置 */
@@ -2116,7 +2119,7 @@ var STComponent = /** @class */ (function () {
     /**
      * @return {?}
      */
-    STComponent.prototype.refreshColumns = 
+    STComponent.prototype.resetColumns = 
     //#endregion
     /**
      * @return {?}
@@ -2157,7 +2160,7 @@ var STComponent = /** @class */ (function () {
      */
     function (changes) {
         if (changes.columns) {
-            this.refreshColumns();
+            this.resetColumns();
         }
         if (changes.data && changes.data.currentValue) {
             this._load();

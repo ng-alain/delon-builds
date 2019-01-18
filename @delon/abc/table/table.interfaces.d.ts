@@ -244,6 +244,12 @@ export interface STColumn {
      * - 计算规则为：`index + noIndex`
      */
     noIndex?: number;
+    /**
+     * 条件表达式
+     * - 仅赋值 `columns` 时执行一次
+     * - 可调用 `resetColumns()` 再一次触发
+     */
+    iif?: (item: STColumn) => boolean;
     [key: string]: any;
 }
 export interface STColumnSort {
