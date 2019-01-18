@@ -423,9 +423,6 @@ class STColumnSource {
         /** @type {?} */
         const copyColumens = (/** @type {?} */ (deepCopy(list)));
         for (const item of copyColumens) {
-            if (item.iif && !item.iif(item)) {
-                continue;
-            }
             if (this.acl && item.acl && !this.acl.can(item.acl)) {
                 continue;
             }
@@ -1053,7 +1050,7 @@ class STComponent {
         }
         i18nSrv.change
             .pipe(takeUntil(this.unsubscribe$), filter(() => this._columns.length > 0))
-            .subscribe(() => this.resetColumns());
+            .subscribe(() => this.refreshColumns());
     }
     /**
      * 请求体配置
@@ -1685,7 +1682,7 @@ class STComponent {
     /**
      * @return {?}
      */
-    resetColumns() {
+    refreshColumns() {
         this._columns = this.columnSource.process(this.columns);
     }
     /**
@@ -1710,7 +1707,7 @@ class STComponent {
      */
     ngOnChanges(changes) {
         if (changes.columns) {
-            this.resetColumns();
+            this.refreshColumns();
         }
         if (changes.data && changes.data.currentValue) {
             this._load();

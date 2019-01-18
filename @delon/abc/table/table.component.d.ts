@@ -157,7 +157,7 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
      * @param opt 额外参数
      */
     export(newData?: STData[], opt?: STExportOptions): void;
-    resetColumns(): void;
+    private refreshColumns;
     private setClass;
     ngAfterViewInit(): void;
     ngOnChanges(changes: {
