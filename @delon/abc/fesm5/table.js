@@ -1178,7 +1178,7 @@ var STComponent = /** @class */ (function () {
         }
         i18nSrv.change
             .pipe(takeUntil(this.unsubscribe$), filter(function () { return _this._columns.length > 0; }))
-            .subscribe(function () { return _this.resetColumns(); });
+            .subscribe(function () { return _this._resetColumns(); });
     }
     Object.defineProperty(STComponent.prototype, "req", {
         /** 请求体配置 */
@@ -2117,15 +2117,33 @@ var STComponent = /** @class */ (function () {
     //#endregion
     //#endregion
     /**
-     * @return {?}
+     * @template THIS
+     * @this {THIS}
+     * @return {THIS}
      */
     STComponent.prototype.resetColumns = 
     //#endregion
     /**
-     * @return {?}
+     * @template THIS
+     * @this {THIS}
+     * @return {THIS}
      */
     function () {
-        this._columns = this.columnSource.process(this.columns);
+        return (/** @type {?} */ (this))._resetColumns().cd();
+    };
+    /**
+     * @template THIS
+     * @this {THIS}
+     * @return {THIS}
+     */
+    STComponent.prototype._resetColumns = /**
+     * @template THIS
+     * @this {THIS}
+     * @return {THIS}
+     */
+    function () {
+        (/** @type {?} */ (this))._columns = (/** @type {?} */ (this)).columnSource.process((/** @type {?} */ (this)).columns);
+        return (/** @type {?} */ (this));
     };
     /**
      * @return {?}
@@ -2160,7 +2178,7 @@ var STComponent = /** @class */ (function () {
      */
     function (changes) {
         if (changes.columns) {
-            this.resetColumns();
+            this._resetColumns();
         }
         if (changes.data && changes.data.currentValue) {
             this._load();
