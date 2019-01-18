@@ -4596,16 +4596,13 @@
          * @return {?}
          */
             function () {
-                var _a = this.ui, type = _a.type, text = _a.text, action = _a.action, accept = _a.accept, limit = _a.limit, filter = _a.filter, fileSize = _a.fileSize, fileType = _a.fileType, listType = _a.listType, multiple = _a.multiple, name = _a.name, showUploadList = _a.showUploadList, withCredentials = _a.withCredentials, resReName = _a.resReName, beforeUpload = _a.beforeUpload, customRequest = _a.customRequest, directory = _a.directory, openFileDialogOnClick = _a.openFileDialogOnClick;
+                var _a = this.ui, type = _a.type, text = _a.text, action = _a.action, accept = _a.accept, limit = _a.limit, fileSize = _a.fileSize, fileType = _a.fileType, listType = _a.listType, multiple = _a.multiple, name = _a.name, showUploadList = _a.showUploadList, withCredentials = _a.withCredentials, resReName = _a.resReName;
                 this.i = {
                     type: type || 'select',
                     text: text || '点击上传',
                     action: action || '',
                     accept: accept || '',
-                    directory: toBool(directory, false),
-                    openFileDialogOnClick: toBool(openFileDialogOnClick, true),
                     limit: limit == null ? 0 : +limit,
-                    filter: filter == null ? [] : filter,
                     size: fileSize == null ? 0 : +fileSize,
                     fileType: fileType || '',
                     listType: listType || 'text',
@@ -4614,8 +4611,6 @@
                     showUploadList: toBool(showUploadList, true),
                     withCredentials: toBool(withCredentials, false),
                     resReName: (resReName || '').split('.'),
-                    beforeUpload: typeof beforeUpload === 'function' ? beforeUpload : null,
-                    customRequest: typeof customRequest === 'function' ? customRequest : null,
                 };
                 if (this.i.listType === 'picture-card') {
                     this.btnType = 'plus';
@@ -4681,7 +4676,7 @@
         UploadWidget.decorators = [
             { type: i0.Component, args: [{
                         selector: 'sf-upload',
-                        template: "\n    <sf-item-wrap\n      [id]=\"id\"\n      [schema]=\"schema\"\n      [ui]=\"ui\"\n      [showError]=\"showError\"\n      [error]=\"error\"\n      [showTitle]=\"schema.title\"\n    >\n      <nz-upload\n        [nzType]=\"i.type\"\n        [nzFileList]=\"fileList\"\n        [nzDisabled]=\"disabled\"\n        [nzAction]=\"i.action\"\n        [nzDirectory]=\"i.directory\"\n        [nzOpenFileDialogOnClick]=\"i.openFileDialogOnClick\"\n        [nzAccept]=\"i.accept\"\n        [nzLimit]=\"i.limit\"\n        [nzFilter]=\"i.filter\"\n        [nzSize]=\"i.size\"\n        [nzFileType]=\"i.fileType\"\n        [nzHeaders]=\"ui.headers\"\n        [nzData]=\"ui.data\"\n        [nzListType]=\"i.listType\"\n        [nzMultiple]=\"i.multiple\"\n        [nzName]=\"i.name\"\n        [nzShowUploadList]=\"i.showUploadList\"\n        [nzWithCredentials]=\"i.withCredentials\"\n        [nzBeforeUpload]=\"i.beforeUpload\"\n        [nzCustomRequest]=\"i.customRequest\"\n        [nzRemove]=\"ui.remove\"\n        [nzPreview]=\"handlePreview\"\n        (nzChange)=\"change($event)\"\n      >\n        <ng-container [ngSwitch]=\"btnType\">\n          <ng-container *ngSwitchCase=\"'plus'\">\n            <i nz-icon type=\"plus\"></i>\n            <div class=\"ant-upload-text\" [innerHTML]=\"i.text\"></div>\n          </ng-container>\n          <ng-container *ngSwitchCase=\"'drag'\">\n            <p class=\"ant-upload-drag-icon\"><i nz-icon type=\"inbox\"></i></p>\n            <p class=\"ant-upload-text\" [innerHTML]=\"i.text\"></p>\n            <p class=\"ant-upload-hint\" [innerHTML]=\"i.hint\"></p>\n          </ng-container>\n          <ng-container *ngSwitchDefault>\n            <button type=\"button\" nz-button>\n              <i nz-icon type=\"upload\"></i><span [innerHTML]=\"i.text\"></span>\n            </button>\n          </ng-container>\n        </ng-container>\n      </nz-upload>\n    </sf-item-wrap>\n  "
+                        template: "\n    <sf-item-wrap\n      [id]=\"id\"\n      [schema]=\"schema\"\n      [ui]=\"ui\"\n      [showError]=\"showError\"\n      [error]=\"error\"\n      [showTitle]=\"schema.title\"\n    >\n      <nz-upload\n        [nzType]=\"i.type\"\n        [nzFileList]=\"fileList\"\n        [nzDisabled]=\"disabled\"\n        [nzAction]=\"i.action\"\n        [nzAccept]=\"i.accept\"\n        [nzLimit]=\"i.limit\"\n        [nzSize]=\"i.size\"\n        [nzFileType]=\"i.fileType\"\n        [nzHeaders]=\"ui.headers\"\n        [nzData]=\"ui.data\"\n        [nzListType]=\"i.listType\"\n        [nzMultiple]=\"i.multiple\"\n        [nzName]=\"i.name\"\n        [nzShowUploadList]=\"i.showUploadList\"\n        [nzWithCredentials]=\"i.withCredentials\"\n        [nzRemove]=\"ui.remove\"\n        [nzPreview]=\"handlePreview\"\n        (nzChange)=\"change($event)\"\n      >\n        <ng-container [ngSwitch]=\"btnType\">\n          <ng-container *ngSwitchCase=\"'plus'\">\n            <i nz-icon type=\"plus\"></i>\n            <div class=\"ant-upload-text\" [innerHTML]=\"i.text\"></div>\n          </ng-container>\n          <ng-container *ngSwitchCase=\"'drag'\">\n            <p class=\"ant-upload-drag-icon\"><i nz-icon type=\"inbox\"></i></p>\n            <p class=\"ant-upload-text\" [innerHTML]=\"i.text\"></p>\n            <p class=\"ant-upload-hint\" [innerHTML]=\"i.hint\"></p>\n          </ng-container>\n          <ng-container *ngSwitchDefault>\n            <button type=\"button\" nz-button>\n              <i nz-icon type=\"upload\"></i><span [innerHTML]=\"i.text\"></span>\n            </button>\n          </ng-container>\n        </ng-container>\n      </nz-upload>\n    </sf-item-wrap>\n  "
                     }] }
         ];
         return UploadWidget;

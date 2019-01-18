@@ -1620,6 +1620,7 @@ var STComponent = /** @class */ (function () {
         var _a = this, expand = _a.expand, expandRowByClick = _a.expandRowByClick, rowClickTime = _a.rowClickTime;
         if (!!expand && expandRowByClick) {
             item.expand = !item.expand;
+            this.changeEmit('expand', item);
             return;
         }
         ++this.rowClickCount;

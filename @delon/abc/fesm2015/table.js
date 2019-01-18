@@ -1355,6 +1355,7 @@ class STComponent {
         const { expand, expandRowByClick, rowClickTime } = this;
         if (!!expand && expandRowByClick) {
             item.expand = !item.expand;
+            this.changeEmit('expand', item);
             return;
         }
         ++this.rowClickCount;
