@@ -592,7 +592,7 @@ export interface STColumnTagValue {
      */
     color?: 'geekblue' | 'blue' | 'purple' | 'success' | 'red' | 'volcano' | 'orange' | 'gold' | 'lime' | 'green' | 'cyan' | string;
 }
-export declare type STChangeType = 'pi' | 'ps' | 'checkbox' | 'radio' | 'sort' | 'filter' | 'click' | 'dblClick';
+export declare type STChangeType = 'pi' | 'ps' | 'checkbox' | 'radio' | 'sort' | 'filter' | 'click' | 'dblClick' | 'expand';
 /**
  * 回调数据
  */
@@ -633,6 +633,10 @@ export interface STChange {
      * 行点击或双击参数
      */
     click?: STChangeRowClick;
+    /**
+     * `expand` 参数
+     */
+    expand?: STData;
 }
 /** 行单击参数 */
 export interface STChangeSort {
