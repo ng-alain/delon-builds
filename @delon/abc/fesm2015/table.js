@@ -1053,7 +1053,7 @@ class STComponent {
         }
         i18nSrv.change
             .pipe(takeUntil(this.unsubscribe$), filter(() => this._columns.length > 0))
-            .subscribe(() => this._resetColumns());
+            .subscribe(() => this.refreshColumns());
     }
     /**
      * 请求体配置
@@ -1683,19 +1683,17 @@ class STComponent {
     }
     //#endregion
     /**
-     * @template THIS
-     * @this {THIS}
-     * @return {THIS}
+     * @return {?}
      */
     resetColumns() {
-        return (/** @type {?} */ (this))._resetColumns().cd();
+        return this.refreshColumns()._load();
     }
     /**
      * @template THIS
      * @this {THIS}
      * @return {THIS}
      */
-    _resetColumns() {
+    refreshColumns() {
         (/** @type {?} */ (this))._columns = (/** @type {?} */ (this)).columnSource.process((/** @type {?} */ (this)).columns);
         return (/** @type {?} */ (this));
     }
@@ -1721,7 +1719,7 @@ class STComponent {
      */
     ngOnChanges(changes) {
         if (changes.columns) {
-            this._resetColumns();
+            this.refreshColumns();
         }
         if (changes.data && changes.data.currentValue) {
             this._load();
