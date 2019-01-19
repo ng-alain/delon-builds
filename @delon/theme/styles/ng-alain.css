@@ -22966,6 +22966,15 @@ code {
 .text-xl {
   font-size: 22px !important;
 }
+.width-xs {
+  width: 80px !important;
+}
+.max-width-xs {
+  max-width: 80px !important;
+}
+.min-width-xs {
+  min-width: 80px !important;
+}
 .width-sm {
   width: 160px !important;
 }
@@ -22992,6 +23001,24 @@ code {
 }
 .min-width-lg {
   min-width: 320px !important;
+}
+.width-xl {
+  width: 400px !important;
+}
+.max-width-xl {
+  max-width: 400px !important;
+}
+.min-width-xl {
+  min-width: 400px !important;
+}
+.width-xxl {
+  width: 480px !important;
+}
+.max-width-xxl {
+  max-width: 480px !important;
+}
+.min-width-xxl {
+  min-width: 480px !important;
 }
 .width-10 {
   width: 10% !important;
