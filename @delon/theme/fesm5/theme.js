@@ -886,7 +886,9 @@ var TitleService = /** @class */ (function () {
          */
         this.default = "Not Page Name";
         if (this.i18nSrv) {
-            this.i18n$ = this.i18nSrv.change.subscribe(function () { return _this.setTitle(); });
+            this.i18n$ = this.i18nSrv.change
+                .pipe(filter(function () { return !!_this.i18n$; }))
+                .subscribe(function () { return _this.setTitle(); });
         }
     }
     Object.defineProperty(TitleService.prototype, "separator", {
@@ -2669,7 +2671,7 @@ var AlainThemeModule = /** @class */ (function () {
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 /** @type {?} */
-var VERSION = new Version('7.0.0-rc.4-5bd9d7e');
+var VERSION = new Version('7.0.0-rc.4-f53bc43e');
 
 /**
  * @fileoverview added by tsickle

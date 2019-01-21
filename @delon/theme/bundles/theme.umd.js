@@ -969,7 +969,9 @@
              */
             this.default = "Not Page Name";
             if (this.i18nSrv) {
-                this.i18n$ = this.i18nSrv.change.subscribe(function () { return _this.setTitle(); });
+                this.i18n$ = this.i18nSrv.change
+                    .pipe(operators.filter(function () { return !!_this.i18n$; }))
+                    .subscribe(function () { return _this.setTitle(); });
             }
         }
         Object.defineProperty(TitleService.prototype, "separator", {

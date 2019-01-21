@@ -686,7 +686,9 @@ class TitleService {
          */
         this.default = `Not Page Name`;
         if (this.i18nSrv) {
-            this.i18n$ = this.i18nSrv.change.subscribe(() => this.setTitle());
+            this.i18n$ = this.i18nSrv.change
+                .pipe(filter(() => !!this.i18n$))
+                .subscribe(() => this.setTitle());
         }
     }
     /**
@@ -2067,7 +2069,7 @@ AlainThemeModule.ctorParameters = () => [
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 /** @type {?} */
-const VERSION = new Version('7.0.0-rc.4-5bd9d7e');
+const VERSION = new Version('7.0.0-rc.4-f53bc43e');
 
 /**
  * @fileoverview added by tsickle
