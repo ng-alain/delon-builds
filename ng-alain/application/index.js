@@ -69,7 +69,7 @@ function addDependenciesToPackageJson(options) {
         // ng-alain
         json_1.addPackageToPackageJson(host, [
             `ng-alain@${lib_versions_1.VERSION}`,
-            `ng-alain-codelyzer@DEP-7.0.0-rc.4`,
+            `ng-alain-codelyzer@DEP-7.0.0-rc.5`,
             `@delon/testing@${lib_versions_1.VERSION}`,
             // color-less
             `less-bundle-promise@^1.0.7`,
