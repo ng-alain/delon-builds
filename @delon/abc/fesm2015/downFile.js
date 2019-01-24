@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { saveAs } from 'file-saver';
 import { CommonModule } from '@angular/common';
-import { Directive, ElementRef, EventEmitter, HostListener, Input, Optional, Output, NgModule } from '@angular/core';
+import { Directive, ElementRef, EventEmitter, HostListener, Input, Output, NgModule } from '@angular/core';
 import { _HttpClient, AlainThemeModule } from '@delon/theme';
 
 /**
@@ -59,8 +59,7 @@ class DownFileDirective {
      */
     _click() {
         this.el.nativeElement.disabled = true;
-        // tslint:disable-next-line:no-any
-        ((/** @type {?} */ ((this._http || this.http))))
+        this._http
             .request(this.httpMethod, this.httpUrl, {
             params: this.httpData || {},
             responseType: 'blob',
@@ -89,13 +88,13 @@ class DownFileDirective {
     }
 }
 DownFileDirective.decorators = [
-    { type: Directive, args: [{ selector: '[down-file]' },] }
+    { type: Directive, args: [{ selector: '[down-file]', exportAs: 'downFileDirective' },] }
 ];
 /** @nocollapse */
 DownFileDirective.ctorParameters = () => [
     { type: ElementRef },
     { type: HttpClient },
-    { type: _HttpClient, decorators: [{ type: Optional }] }
+    { type: _HttpClient }
 ];
 DownFileDirective.propDecorators = {
     httpData: [{ type: Input, args: ['http-data',] }],

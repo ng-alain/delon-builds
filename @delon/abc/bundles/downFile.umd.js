@@ -68,8 +68,7 @@
             function () {
                 var _this = this;
                 this.el.nativeElement.disabled = true;
-                // tslint:disable-next-line:no-any
-                (( /** @type {?} */((this._http || this.http))))
+                this._http
                     .request(this.httpMethod, this.httpUrl, {
                     params: this.httpData || {},
                     responseType: 'blob',
@@ -97,14 +96,14 @@
                 });
             };
         DownFileDirective.decorators = [
-            { type: core.Directive, args: [{ selector: '[down-file]' },] }
+            { type: core.Directive, args: [{ selector: '[down-file]', exportAs: 'downFileDirective' },] }
         ];
         /** @nocollapse */
         DownFileDirective.ctorParameters = function () {
             return [
                 { type: core.ElementRef },
                 { type: http.HttpClient },
-                { type: theme._HttpClient, decorators: [{ type: core.Optional }] }
+                { type: theme._HttpClient }
             ];
         };
         DownFileDirective.propDecorators = {

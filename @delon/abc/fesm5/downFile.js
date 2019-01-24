@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { saveAs } from 'file-saver';
 import { __spread } from 'tslib';
 import { CommonModule } from '@angular/common';
-import { Directive, ElementRef, EventEmitter, HostListener, Input, Optional, Output, NgModule } from '@angular/core';
+import { Directive, ElementRef, EventEmitter, HostListener, Input, Output, NgModule } from '@angular/core';
 import { _HttpClient, AlainThemeModule } from '@delon/theme';
 
 /**
@@ -64,8 +64,7 @@ var DownFileDirective = /** @class */ (function () {
     function () {
         var _this = this;
         this.el.nativeElement.disabled = true;
-        // tslint:disable-next-line:no-any
-        ((/** @type {?} */ ((this._http || this.http))))
+        this._http
             .request(this.httpMethod, this.httpUrl, {
             params: this.httpData || {},
             responseType: 'blob',
@@ -93,13 +92,13 @@ var DownFileDirective = /** @class */ (function () {
         });
     };
     DownFileDirective.decorators = [
-        { type: Directive, args: [{ selector: '[down-file]' },] }
+        { type: Directive, args: [{ selector: '[down-file]', exportAs: 'downFileDirective' },] }
     ];
     /** @nocollapse */
     DownFileDirective.ctorParameters = function () { return [
         { type: ElementRef },
         { type: HttpClient },
-        { type: _HttpClient, decorators: [{ type: Optional }] }
+        { type: _HttpClient }
     ]; };
     DownFileDirective.propDecorators = {
         httpData: [{ type: Input, args: ['http-data',] }],

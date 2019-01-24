@@ -265,7 +265,8 @@ class STColumnSource {
             if (item.icon) {
                 item.icon = Object.assign({}, btnIcon, (typeof item.icon === 'string' ? { type: item.icon } : item.icon));
             }
-            item.children = item.children && item.children.length > 0 ? this.btnCoerce(item.children) : [];
+            item.children =
+                item.children && item.children.length > 0 ? this.btnCoerce(item.children) : [];
             // i18n
             if (item.i18n && this.i18nSrv) {
                 item.text = this.i18nSrv.fanyi(item.i18n);
@@ -283,10 +284,7 @@ class STColumnSource {
         for (const item of list) {
             if (!item.iif)
                 item.iif = () => true;
-            if (!item.children) {
-                item.children = [];
-            }
-            else {
+            if (item.children.length > 0) {
                 this.btnCoerceIf(item.children);
             }
         }
@@ -1210,7 +1208,7 @@ class STComponent {
      * @return {?}
      */
     _load() {
-        const { pi, ps, data, req, res, page, total, singleSort, multiSort, rowClassName, } = this;
+        const { pi, ps, data, req, res, page, total, singleSort, multiSort, rowClassName } = this;
         this.loading = true;
         return this.dataSource
             .process({
@@ -1290,8 +1288,7 @@ class STComponent {
             (/** @type {?} */ (this)).pi = pi;
         if (typeof extraParams !== 'undefined') {
             (/** @type {?} */ (this))._req.params =
-                options && options.merge
-                    ? Object.assign({}, (/** @type {?} */ (this))._req.params, extraParams) : extraParams;
+                options && options.merge ? Object.assign({}, (/** @type {?} */ (this))._req.params, extraParams) : extraParams;
         }
         (/** @type {?} */ (this))._change('pi');
         return (/** @type {?} */ (this));
@@ -1522,13 +1519,11 @@ class STComponent {
         const validData = (/** @type {?} */ (this))._data.filter(w => !w.disabled);
         /** @type {?} */
         const checkedList = validData.filter(w => w.checked === true);
-        (/** @type {?} */ (this))._allChecked =
-            checkedList.length > 0 && checkedList.length === validData.length;
+        (/** @type {?} */ (this))._allChecked = checkedList.length > 0 && checkedList.length === validData.length;
         /** @type {?} */
         const allUnChecked = validData.every(value => !value.checked);
         (/** @type {?} */ (this))._indeterminate = !(/** @type {?} */ (this))._allChecked && !allUnChecked;
-        (/** @type {?} */ (this))._allCheckedDisabled =
-            (/** @type {?} */ (this))._data.length === (/** @type {?} */ (this))._data.filter(w => w.disabled).length;
+        (/** @type {?} */ (this))._allCheckedDisabled = (/** @type {?} */ (this))._data.length === (/** @type {?} */ (this))._data.filter(w => w.disabled).length;
         (/** @type {?} */ (this)).cd();
         return (/** @type {?} */ (this));
     }

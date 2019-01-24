@@ -282,7 +282,8 @@ var STColumnSource = /** @class */ (function () {
                 if (item.icon) {
                     item.icon = __assign({}, btnIcon, (typeof item.icon === 'string' ? { type: item.icon } : item.icon));
                 }
-                item.children = item.children && item.children.length > 0 ? this.btnCoerce(item.children) : [];
+                item.children =
+                    item.children && item.children.length > 0 ? this.btnCoerce(item.children) : [];
                 // i18n
                 if (item.i18n && this.i18nSrv) {
                     item.text = this.i18nSrv.fanyi(item.i18n);
@@ -315,10 +316,7 @@ var STColumnSource = /** @class */ (function () {
                 var item = list_2_1.value;
                 if (!item.iif)
                     item.iif = function () { return true; };
-                if (!item.children) {
-                    item.children = [];
-                }
-                else {
+                if (item.children.length > 0) {
                     this.btnCoerceIf(item.children);
                 }
             }
@@ -341,9 +339,7 @@ var STColumnSource = /** @class */ (function () {
      */
     function (list) {
         /** @type {?} */
-        var countReduce = function (a, b) {
-            return a + +b.width.toString().replace('px', '');
-        };
+        var countReduce = function (a, b) { return a + +b.width.toString().replace('px', ''); };
         // left width
         list
             .filter(function (w) { return w.fixed && w.fixed === 'left' && w.width; })
@@ -352,7 +348,9 @@ var STColumnSource = /** @class */ (function () {
         list
             .filter(function (w) { return w.fixed && w.fixed === 'right' && w.width; })
             .reverse()
-            .forEach(function (item, idx) { return (item._right = (idx > 0 ? list.slice(-idx).reduce(countReduce, 0) : 0) + 'px'); });
+            .forEach(function (item, idx) {
+            return (item._right = (idx > 0 ? list.slice(-idx).reduce(countReduce, 0) : 0) + 'px');
+        });
     };
     /**
      * @param {?} item
@@ -1498,8 +1496,7 @@ var STComponent = /** @class */ (function () {
             (/** @type {?} */ (this)).pi = pi;
         if (typeof extraParams !== 'undefined') {
             (/** @type {?} */ (this))._req.params =
-                options && options.merge
-                    ? __assign({}, (/** @type {?} */ (this))._req.params, extraParams) : extraParams;
+                options && options.merge ? __assign({}, (/** @type {?} */ (this))._req.params, extraParams) : extraParams;
         }
         (/** @type {?} */ (this))._change('pi');
         return (/** @type {?} */ (this));
@@ -1686,9 +1683,7 @@ var STComponent = /** @class */ (function () {
         // recalculate no
         (/** @type {?} */ (this))._columns
             .filter(function (w) { return w.type === 'no'; })
-            .forEach(function (c) {
-            return (/** @type {?} */ (_this))._data.forEach(function (i, idx) { return (i._values[c.__point] = c.noIndex + idx); });
-        });
+            .forEach(function (c) { return (/** @type {?} */ (_this))._data.forEach(function (i, idx) { return (i._values[c.__point] = c.noIndex + idx); }); });
         return (/** @type {?} */ (this)).cd();
     };
     //#endregion
@@ -1859,13 +1854,11 @@ var STComponent = /** @class */ (function () {
         var validData = (/** @type {?} */ (this))._data.filter(function (w) { return !w.disabled; });
         /** @type {?} */
         var checkedList = validData.filter(function (w) { return w.checked === true; });
-        (/** @type {?} */ (this))._allChecked =
-            checkedList.length > 0 && checkedList.length === validData.length;
+        (/** @type {?} */ (this))._allChecked = checkedList.length > 0 && checkedList.length === validData.length;
         /** @type {?} */
         var allUnChecked = validData.every(function (value) { return !value.checked; });
         (/** @type {?} */ (this))._indeterminate = !(/** @type {?} */ (this))._allChecked && !allUnChecked;
-        (/** @type {?} */ (this))._allCheckedDisabled =
-            (/** @type {?} */ (this))._data.length === (/** @type {?} */ (this))._data.filter(function (w) { return w.disabled; }).length;
+        (/** @type {?} */ (this))._allCheckedDisabled = (/** @type {?} */ (this))._data.length === (/** @type {?} */ (this))._data.filter(function (w) { return w.disabled; }).length;
         (/** @type {?} */ (this)).cd();
         return (/** @type {?} */ (this));
     };
