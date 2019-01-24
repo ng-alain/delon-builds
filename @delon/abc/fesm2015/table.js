@@ -100,9 +100,10 @@ class STConfig {
          * 请求体配置
          */
         this.req = {
+            type: 'page',
             method: 'GET',
             allInBody: false,
-            reName: { pi: 'pi', ps: 'ps' },
+            reName: { pi: 'pi', ps: 'ps', skip: 'skip', limit: 'limit' },
         };
         /**
          * 返回体配置
@@ -573,7 +574,7 @@ class STDataSource {
             let showPage = page.show;
             if (typeof data === 'string') {
                 isRemote = true;
-                data$ = this.getByHttp(data, options).pipe(map((result) => {
+                data$ = this.getByHttp(data, options).pipe(map(result => {
                     /** @type {?} */
                     let ret;
                     if (Array.isArray(result)) {
@@ -621,7 +622,9 @@ class STDataSource {
                 }), 
                 // filter
                 map((result) => {
-                    columns.filter(w => w.filter).forEach(c => {
+                    columns
+                        .filter(w => w.filter)
+                        .forEach(c => {
                         /** @type {?} */
                         const values = c.filter.menus.filter(w => w.checked);
                         if (values.length === 0)
@@ -664,7 +667,9 @@ class STDataSource {
                 }
                 return result;
             }));
-            data$.forEach((result) => (retList = result)).then(() => {
+            data$
+                .forEach((result) => (retList = result))
+                .then(() => {
                 /** @type {?} */
                 const realTotal = retTotal || total;
                 /** @type {?} */
@@ -730,7 +735,20 @@ class STDataSource {
         /** @type {?} */
         const method = (req.method || 'GET').toUpperCase();
         /** @type {?} */
-        const params = Object.assign({ [req.reName.pi]: page.zeroIndexed ? pi - 1 : pi, [req.reName.ps]: ps }, req.params, this.getReqSortMap(singleSort, multiSort, columns), this.getReqFilterMap(columns));
+        let params = {};
+        if (req.type === 'page') {
+            params = {
+                [req.reName.pi]: page.zeroIndexed ? pi - 1 : pi,
+                [req.reName.ps]: ps,
+            };
+        }
+        else {
+            params = {
+                [req.reName.skip]: (pi - 1) * ps,
+                [req.reName.limit]: ps,
+            };
+        }
+        params = Object.assign({}, params, req.params, this.getReqSortMap(singleSort, multiSort, columns), this.getReqFilterMap(columns));
         // tslint:disable-next-line:no-any
         /** @type {?} */
         let reqOptions = {
@@ -829,7 +847,9 @@ class STDataSource {
     getReqFilterMap(columns) {
         /** @type {?} */
         let ret = {};
-        columns.filter(w => w.filter && w.filter.default === true).forEach(col => {
+        columns
+            .filter(w => w.filter && w.filter.default === true)
+            .forEach(col => {
             /** @type {?} */
             const values = col.filter.menus.filter(f => f.checked === true);
             /** @type {?} */

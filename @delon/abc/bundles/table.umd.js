@@ -191,9 +191,10 @@
              * 请求体配置
              */
             this.req = {
+                type: 'page',
                 method: 'GET',
                 allInBody: false,
-                reName: { pi: 'pi', ps: 'ps' },
+                reName: { pi: 'pi', ps: 'ps', skip: 'skip', limit: 'limit' },
             };
             /**
              * 返回体配置
@@ -795,7 +796,9 @@
                         }), 
                         // filter
                         operators.map(function (result) {
-                            columns.filter(function (w) { return w.filter; }).forEach(function (c) {
+                            columns
+                                .filter(function (w) { return w.filter; })
+                                .forEach(function (c) {
                                 /** @type {?} */
                                 var values = c.filter.menus.filter(function (w) { return w.checked; });
                                 if (values.length === 0)
@@ -806,9 +809,7 @@
                                     console.warn("[st] Muse provide the fn function in filter");
                                     return;
                                 }
-                                result = result.filter(function (record) {
-                                    return values.some(function (v) { return onFilter(v, record); });
-                                });
+                                result = result.filter(function (record) { return values.some(function (v) { return onFilter(v, record); }); });
                             });
                             return result;
                         }), 
@@ -843,7 +844,9 @@
                         }
                         return result;
                     }));
-                    data$.forEach(function (result) { return (retList = result); }).then(function () {
+                    data$
+                        .forEach(function (result) { return (retList = result); })
+                        .then(function () {
                         /** @type {?} */
                         var realTotal = retTotal || total;
                         /** @type {?} */
@@ -916,12 +919,25 @@
          * @return {?}
          */
             function (url, options) {
-                var _a;
+                var _a, _b;
                 var req = options.req, page = options.page, pi = options.pi, ps = options.ps, singleSort = options.singleSort, multiSort = options.multiSort, columns = options.columns;
                 /** @type {?} */
                 var method = (req.method || 'GET').toUpperCase();
                 /** @type {?} */
-                var params = __assign((_a = {}, _a[req.reName.pi] = page.zeroIndexed ? pi - 1 : pi, _a[req.reName.ps] = ps, _a), req.params, this.getReqSortMap(singleSort, multiSort, columns), this.getReqFilterMap(columns));
+                var params = {};
+                if (req.type === 'page') {
+                    params = (_a = {},
+                        _a[req.reName.pi] = page.zeroIndexed ? pi - 1 : pi,
+                        _a[req.reName.ps] = ps,
+                        _a);
+                }
+                else {
+                    params = (_b = {},
+                        _b[req.reName.skip] = (pi - 1) * ps,
+                        _b[req.reName.limit] = ps,
+                        _b);
+                }
+                params = __assign({}, params, req.params, this.getReqSortMap(singleSort, multiSort, columns), this.getReqFilterMap(columns));
                 // tslint:disable-next-line:no-any
                 /** @type {?} */
                 var reqOptions = {
@@ -1047,7 +1063,9 @@
             function (columns) {
                 /** @type {?} */
                 var ret = {};
-                columns.filter(function (w) { return w.filter && w.filter.default === true; }).forEach(function (col) {
+                columns
+                    .filter(function (w) { return w.filter && w.filter.default === true; })
+                    .forEach(function (col) {
                     /** @type {?} */
                     var values = col.filter.menus.filter(function (f) { return f.checked === true; });
                     /** @type {?} */
