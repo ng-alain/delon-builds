@@ -150,16 +150,9 @@
             settings.notify
                 .pipe(operators.takeUntil(this.unsubscribe$), operators.filter(function (w) { return _this.affix && w.type === 'layout' && w.name === 'collapsed'; }))
                 .subscribe(function () { return _this.affix.updatePosition({}); });
-            // tslint:disable-next-line:no-any
-            /** @type {?} */
-            var data$ = [
-                menuSrv.change.pipe(operators.filter(function () { return _this.inited; })),
-                router$$1.events.pipe(operators.filter(function (event) { return event instanceof router.NavigationEnd; })),
-            ];
-            if (i18nSrv) {
-                data$.push(i18nSrv.change);
-            }
-            rxjs.merge.apply(void 0, __spread(data$)).pipe(operators.takeUntil(this.unsubscribe$)).subscribe(function () {
+            rxjs.merge(menuSrv.change.pipe(operators.filter(function () { return _this.inited; })), router$$1.events.pipe(operators.filter(function (event) { return event instanceof router.NavigationEnd; })), i18nSrv.change)
+                .pipe(operators.takeUntil(this.unsubscribe$))
+                .subscribe(function () {
                 _this._menus = null;
                 _this.refresh();
             });

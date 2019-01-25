@@ -59,12 +59,14 @@ class StringTemplateOutletDirective {
             }
         }
         else {
-            /** use input template when input is templateRef **/
-            if (!this.inputViewRef) {
-                this.viewContainer.clear();
-                this.defaultViewRef = null;
-                this.inputViewRef = this.viewContainer.createEmbeddedView(this.inputTemplate);
+            // clear previous view if any.
+            if (this.inputViewRef) {
+                this.inputViewRef = null;
             }
+            /** use input template when input is templateRef **/
+            this.viewContainer.clear();
+            this.defaultViewRef = null;
+            this.inputViewRef = this.viewContainer.createEmbeddedView(this.inputTemplate);
         }
     }
 }

@@ -89,16 +89,9 @@ class PageHeaderComponent {
         settings.notify
             .pipe(takeUntil(this.unsubscribe$), filter(w => this.affix && w.type === 'layout' && w.name === 'collapsed'))
             .subscribe(() => this.affix.updatePosition({}));
-        // tslint:disable-next-line:no-any
-        /** @type {?} */
-        const data$ = [
-            menuSrv.change.pipe(filter(() => this.inited)),
-            router.events.pipe(filter((event) => event instanceof NavigationEnd)),
-        ];
-        if (i18nSrv) {
-            data$.push(i18nSrv.change);
-        }
-        merge(...data$).pipe(takeUntil(this.unsubscribe$)).subscribe(() => {
+        merge(menuSrv.change.pipe(filter(() => this.inited)), router.events.pipe(filter((event) => event instanceof NavigationEnd)), i18nSrv.change)
+            .pipe(takeUntil(this.unsubscribe$))
+            .subscribe(() => {
             this._menus = null;
             this.refresh();
         });
