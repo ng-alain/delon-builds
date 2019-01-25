@@ -2000,14 +2000,14 @@ var SFComponent = /** @class */ (function () {
                     ui.spanControl = null;
                     ui.offsetControl = null;
                 }
-                if (ui.widget === 'date' && ui.end != null && parentSchema) {
+                if (ui.widget === 'date' && ui.end != null) {
                     /** @type {?} */
-                    var dateEndProperty = parentSchema.properties[ui.end];
+                    var dateEndProperty = schema.properties[ui.end];
                     if (dateEndProperty) {
                         dateEndProperty.ui = __assign({}, ((/** @type {?} */ (dateEndProperty.ui))), { hidden: true });
                     }
                     else {
-                        ui.end = '';
+                        ui.end = null;
                     }
                 }
                 ui.hidden = typeof ui.hidden === 'boolean' ? ui.hidden : false;
