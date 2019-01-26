@@ -1,8 +1,6 @@
 import { Schema as ComponentSchema } from '@schematics/angular/component/schema';
 
 export interface Schema extends ComponentSchema {
-  [key: string]: any;
-
   /**
    * 指定模板名称 (Specifies template name)
    */
