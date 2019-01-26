@@ -150,7 +150,9 @@ var MenuService = /** @class */ (function () {
         this.aclService = aclService;
         this._change$ = new BehaviorSubject([]);
         this.data = [];
-        this.i18n$ = this.i18nSrv.change.subscribe(function () { return _this.resume(); });
+        if (this.i18nSrv) {
+            this.i18n$ = this.i18nSrv.change.subscribe(function () { return _this.resume(); });
+        }
     }
     Object.defineProperty(MenuService.prototype, "change", {
         get: /**
@@ -410,10 +412,7 @@ var MenuService = /** @class */ (function () {
             });
             if (!recursive)
                 break;
-            url = url
-                .split('/')
-                .slice(0, -1)
-                .join('/');
+            url = url.split('/').slice(0, -1).join('/');
         }
         return item;
     };
@@ -498,7 +497,8 @@ var MenuService = /** @class */ (function () {
      */
     function () {
         this._change$.unsubscribe();
-        this.i18n$.unsubscribe();
+        if (this.i18n$)
+            this.i18n$.unsubscribe();
     };
     MenuService.decorators = [
         { type: Injectable, args: [{ providedIn: 'root' },] }
@@ -885,9 +885,11 @@ var TitleService = /** @class */ (function () {
          * 设置默认标题名
          */
         this.default = "Not Page Name";
-        this.i18n$ = this.i18nSrv.change
-            .pipe(filter(function () { return !!_this.i18n$; }))
-            .subscribe(function () { return _this.setTitle(); });
+        if (this.i18nSrv) {
+            this.i18n$ = this.i18nSrv.change
+                .pipe(filter(function () { return !!_this.i18n$; }))
+                .subscribe(function () { return _this.setTitle(); });
+        }
     }
     Object.defineProperty(TitleService.prototype, "separator", {
         /** 设置分隔符 */
@@ -1007,7 +1009,11 @@ var TitleService = /** @class */ (function () {
      */
     function (title) {
         if (!title) {
-            title = this.getByRoute() || this.getByMenu() || this.getByElement() || this.default;
+            title =
+                this.getByRoute() ||
+                    this.getByMenu() ||
+                    this.getByElement() ||
+                    this.default;
         }
         if (title && !Array.isArray(title)) {
             title = [title];
@@ -1051,7 +1057,8 @@ var TitleService = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        this.i18n$.unsubscribe();
+        if (this.i18n$)
+            this.i18n$.unsubscribe();
     };
     TitleService.decorators = [
         { type: Injectable, args: [{ providedIn: 'root' },] }
@@ -1775,15 +1782,13 @@ var DrawerHelper = /** @class */ (function () {
             };
             if (footer) {
                 defaultOptions.nzBodyStyle = {
-                    height: "calc(100% - " + footerHeight + "px)",
-                    overflow: 'auto',
+                    'height': "calc(100% - " + footerHeight + "px)",
+                    'overflow': 'auto',
                     'padding-bottom': footerHeight - 2 + "px",
                 };
             }
             if (typeof size === 'number') {
-                defaultOptions[drawerOptions.nzPlacement === 'top' || drawerOptions.nzPlacement === 'bottom'
-                    ? 'nzHeight'
-                    : 'nzWidth'] = options.size;
+                defaultOptions[drawerOptions.nzPlacement === 'top' || drawerOptions.nzPlacement === 'bottom' ? 'nzHeight' : 'nzWidth'] = options.size;
             }
             else {
                 defaultOptions.nzWrapClassName = (drawerOptions.nzWrapClassName + (" drawer-" + options.size)).trim();
@@ -2666,7 +2671,7 @@ var AlainThemeModule = /** @class */ (function () {
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 /** @type {?} */
-var VERSION = new Version('7.0.0-rc.6-42ce9c55');
+var VERSION = new Version('7.0.0-rc.6-61958be');
 
 /**
  * @fileoverview added by tsickle

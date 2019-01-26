@@ -10,7 +10,7 @@ export declare class TokenService implements ITokenService {
     private _referrer;
     constructor(options: DelonAuthConfig, store: IStore);
     readonly login_url: string;
-    readonly referrer: AuthReferrer;
+    referrer: AuthReferrer;
     set(data: ITokenModel): boolean;
     get(type?: any): any;
     clear(): void;

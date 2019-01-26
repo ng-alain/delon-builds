@@ -1865,16 +1865,15 @@ var SFComponent = /** @class */ (function () {
     });
     /**
      * 根据路径获取表单元素属性
-     * @param path [路径](https://ng-alain.com/form/qa#path)
      */
     /**
      * 根据路径获取表单元素属性
-     * @param {?} path [路径](https://ng-alain.com/form/qa#path)
+     * @param {?} path
      * @return {?}
      */
     SFComponent.prototype.getProperty = /**
      * 根据路径获取表单元素属性
-     * @param {?} path [路径](https://ng-alain.com/form/qa#path)
+     * @param {?} path
      * @return {?}
      */
     function (path) {
@@ -1882,18 +1881,17 @@ var SFComponent = /** @class */ (function () {
     };
     /**
      * 根据路径获取表单元素当前值
-     * @param path [路径](https://ng-alain.com/form/qa#path)
      */
     // tslint:disable-next-line:no-any
     /**
      * 根据路径获取表单元素当前值
-     * @param {?} path [路径](https://ng-alain.com/form/qa#path)
+     * @param {?} path
      * @return {?}
      */
     // tslint:disable-next-line:no-any
     SFComponent.prototype.getValue = /**
      * 根据路径获取表单元素当前值
-     * @param {?} path [路径](https://ng-alain.com/form/qa#path)
+     * @param {?} path
      * @return {?}
      */
     // tslint:disable-next-line:no-any
@@ -1902,7 +1900,7 @@ var SFComponent = /** @class */ (function () {
     };
     /**
      * 根据路径设置某个表单元素属性值
-     * @param path [路径](https://ng-alain.com/form/qa#path)
+     * @param path 路径
      * @param value 新值
      */
     // tslint:disable-next-line:no-any
@@ -1910,7 +1908,7 @@ var SFComponent = /** @class */ (function () {
      * 根据路径设置某个表单元素属性值
      * @template THIS
      * @this {THIS}
-     * @param {?} path [路径](https://ng-alain.com/form/qa#path)
+     * @param {?} path 路径
      * @param {?} value 新值
      * @return {THIS}
      */
@@ -1919,7 +1917,7 @@ var SFComponent = /** @class */ (function () {
      * 根据路径设置某个表单元素属性值
      * @template THIS
      * @this {THIS}
-     * @param {?} path [路径](https://ng-alain.com/form/qa#path)
+     * @param {?} path 路径
      * @param {?} value 新值
      * @return {THIS}
      */
@@ -1971,9 +1969,7 @@ var SFComponent = /** @class */ (function () {
                 /** @type {?} */
                 var property = retrieveSchema((/** @type {?} */ (schema.properties[key])), definitions);
                 /** @type {?} */
-                var ui = (/** @type {?} */ (__assign({ widget: property.type }, (property.format && FORMATMAPS[property.format]), (typeof property.ui === 'string' ? { widget: property.ui } : null), (!property.ui && Array.isArray(property.enum) && property.enum.length > 0
-                    ? { widget: 'select' }
-                    : null), _this._defUi, ((/** @type {?} */ (property.ui))), uiSchema[uiKey])));
+                var ui = (/** @type {?} */ (__assign({ widget: property.type }, (property.format && FORMATMAPS[property.format]), (typeof property.ui === 'string' ? { widget: property.ui } : null), (!property.ui && Array.isArray(property.enum) && property.enum.length > 0 ? { widget: 'select' } : null), _this._defUi, ((/** @type {?} */ (property.ui))), uiSchema[uiKey])));
                 // 继承父节点布局属性
                 if (isHorizontal) {
                     if (parentUiSchema.spanLabelFixed) {
@@ -1984,10 +1980,14 @@ var SFComponent = /** @class */ (function () {
                     else {
                         if (!ui.spanLabel)
                             ui.spanLabel =
-                                typeof parentUiSchema.spanLabel === 'undefined' ? 5 : parentUiSchema.spanLabel;
+                                typeof parentUiSchema.spanLabel === 'undefined'
+                                    ? 5
+                                    : parentUiSchema.spanLabel;
                         if (!ui.spanControl)
                             ui.spanControl =
-                                typeof parentUiSchema.spanControl === 'undefined' ? 19 : parentUiSchema.spanControl;
+                                typeof parentUiSchema.spanControl === 'undefined'
+                                    ? 19
+                                    : parentUiSchema.spanControl;
                         if (!ui.offsetControl)
                             ui.offsetControl =
                                 typeof parentUiSchema.offsetControl === 'undefined'

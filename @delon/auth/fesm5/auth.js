@@ -161,6 +161,13 @@ var TokenService = /** @class */ (function () {
         function () {
             return this._referrer;
         },
+        set: /**
+         * @param {?} val
+         * @return {?}
+         */
+        function (val) {
+            this._referrer = val;
+        },
         enumerable: true,
         configurable: true
     });

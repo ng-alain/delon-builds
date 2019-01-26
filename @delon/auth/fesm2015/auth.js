@@ -143,6 +143,13 @@ class TokenService {
         return this._referrer;
     }
     /**
+     * @param {?} val
+     * @return {?}
+     */
+    set referrer(val) {
+        this._referrer = val;
+    }
+    /**
      * @param {?} data
      * @return {?}
      */

@@ -63,14 +63,12 @@ var StringTemplateOutletDirective = /** @class */ (function () {
             }
         }
         else {
-            // clear previous view if any.
-            if (this.inputViewRef) {
-                this.inputViewRef = null;
-            }
             /** use input template when input is templateRef **/
-            this.viewContainer.clear();
-            this.defaultViewRef = null;
-            this.inputViewRef = this.viewContainer.createEmbeddedView(this.inputTemplate);
+            if (!this.inputViewRef) {
+                this.viewContainer.clear();
+                this.defaultViewRef = null;
+                this.inputViewRef = this.viewContainer.createEmbeddedView(this.inputTemplate);
+            }
         }
     };
     StringTemplateOutletDirective.decorators = [
@@ -168,7 +166,8 @@ function deepMergeKey(original, ingoreArray) {
     var isObject = function (v) { return typeof v === 'object' || typeof v === 'function'; };
     /** @type {?} */
     var merge = function (target, obj) {
-        Object.keys(obj)
+        Object
+            .keys(obj)
             .filter(function (key) { return key !== '__proto__' && Object.prototype.hasOwnProperty.call(obj, key); })
             .forEach(function (key) {
             /** @type {?} */
@@ -178,10 +177,7 @@ function deepMergeKey(original, ingoreArray) {
             if (!ingoreArray && Array.isArray(newValue)) {
                 target[key] = __spread(newValue, oldValue);
             }
-            else if (oldValue != null &&
-                isObject(oldValue) &&
-                newValue != null &&
-                isObject(newValue)) {
+            else if (oldValue != null && isObject(oldValue) && newValue != null && isObject(newValue)) {
                 target[key] = merge(newValue, oldValue);
             }
             else {
@@ -612,10 +608,12 @@ function isEmpty(element) {
     for (var i = 0; i < nodes.length; i++) {
         /** @type {?} */
         var node = nodes.item(i);
-        if (node.nodeType === 1 && ((/** @type {?} */ (node))).outerHTML.toString().trim().length !== 0) {
+        if (node.nodeType === 1 &&
+            ((/** @type {?} */ (node))).outerHTML.toString().trim().length !== 0) {
             return false;
         }
-        else if (node.nodeType === 3 && node.textContent.toString().trim().length !== 0) {
+        else if (node.nodeType === 3 &&
+            node.textContent.toString().trim().length !== 0) {
             return false;
         }
     }
@@ -643,7 +641,6 @@ function toBoolean(value, allowUndefined) {
  */
 function InputBoolean(allowUndefined) {
     if (allowUndefined === void 0) { allowUndefined = false; }
-    // tslint:disable-line:no-any
     return function InputBooleanPropDecorator(target, name) {
         // Add our own private prop
         /** @type {?} */
@@ -679,7 +676,9 @@ function InputBoolean(allowUndefined) {
  */
 function toNumber(value, fallbackValue) {
     if (fallbackValue === void 0) { fallbackValue = 0; }
-    return !isNaN(parseFloat((/** @type {?} */ (value)))) && !isNaN(Number(value)) ? Number(value) : fallbackValue;
+    return !isNaN(parseFloat((/** @type {?} */ (value)))) && !isNaN(Number(value))
+        ? Number(value)
+        : fallbackValue;
 }
 /**
  * Input decorator that handle a prop to do get/set automatically with toNumber
@@ -692,7 +691,6 @@ function toNumber(value, fallbackValue) {
  */
 function InputNumber(fallback) {
     if (fallback === void 0) { fallback = 0; }
-    // tslint:disable-line:no-any
     return function InputBooleanPropDecorator(target, name) {
         // Add our own private prop
         /** @type {?} */

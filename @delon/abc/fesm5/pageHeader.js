@@ -80,9 +80,16 @@ var PageHeaderComponent = /** @class */ (function () {
         settings.notify
             .pipe(takeUntil(this.unsubscribe$), filter(function (w) { return _this.affix && w.type === 'layout' && w.name === 'collapsed'; }))
             .subscribe(function () { return _this.affix.updatePosition({}); });
-        merge(menuSrv.change.pipe(filter(function () { return _this.inited; })), router.events.pipe(filter(function (event) { return event instanceof NavigationEnd; })), i18nSrv.change)
-            .pipe(takeUntil(this.unsubscribe$))
-            .subscribe(function () {
+        // tslint:disable-next-line:no-any
+        /** @type {?} */
+        var data$ = [
+            menuSrv.change.pipe(filter(function () { return _this.inited; })),
+            router.events.pipe(filter(function (event) { return event instanceof NavigationEnd; })),
+        ];
+        if (i18nSrv) {
+            data$.push(i18nSrv.change);
+        }
+        merge.apply(void 0, __spread(data$)).pipe(takeUntil(this.unsubscribe$)).subscribe(function () {
             _this._menus = null;
             _this.refresh();
         });

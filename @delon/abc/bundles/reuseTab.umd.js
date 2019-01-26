@@ -448,7 +448,6 @@
         function ReuseTabService(injector, menuService) {
             this.injector = injector;
             this.menuService = menuService;
-            this._inited = false;
             this._max = 10;
             this._keepingScroll = false;
             this._debug = false;
@@ -469,25 +468,16 @@
             enumerable: true,
             configurable: true
         });
-        Object.defineProperty(ReuseTabService.prototype, "inited", {
+        Object.defineProperty(ReuseTabService.prototype, "curUrl", {
             // #region public
+            /** 当前路由地址 */
             get: 
             // #region public
             /**
+             * 当前路由地址
              * @return {?}
              */
             function () {
-                return this._inited;
-            },
-            enumerable: true,
-            configurable: true
-        });
-        Object.defineProperty(ReuseTabService.prototype, "curUrl", {
-            /** 当前路由地址 */
-            get: /**
-             * 当前路由地址
-             * @return {?}
-             */ function () {
                 return this.getUrl(this.snapshot);
             },
             enumerable: true,
@@ -1055,11 +1045,7 @@
                     next = next.parent;
                 }
                 /** @type {?} */
-                var url = '/' +
-                    segments
-                        .filter(function (i) { return i; })
-                        .reverse()
-                        .join('/');
+                var url = '/' + segments.filter(function (i) { return i; }).reverse().join('/');
                 return url;
             };
         /**
@@ -1166,7 +1152,6 @@
          */
             function () {
                 this.initScroll();
-                this._inited = true;
             };
         /**
          * @param {?} url
@@ -1212,7 +1197,9 @@
          * @return {?}
          */
             function (route) {
-                return !route.routeConfig || route.routeConfig.loadChildren || route.routeConfig.children;
+                return (!route.routeConfig ||
+                    route.routeConfig.loadChildren ||
+                    route.routeConfig.children);
             };
         /**
          * 决定是否允许路由复用，若 `true` 会触发 `store`
@@ -1458,9 +1445,7 @@
                         var url = _this.curUrl;
                         /** @type {?} */
                         var item_1 = _this.get(url);
-                        if (item_1 &&
-                            item_1.position &&
-                            _this.getKeepingScroll(url, _this.getTruthRoute(_this.snapshot))) {
+                        if (item_1 && item_1.position && _this.getKeepingScroll(url, _this.getTruthRoute(_this.snapshot))) {
                             if (_this.isDisabledInRouter) {
                                 _this.ss.scrollToPosition(_this.keepingScrollContainer, item_1.position);
                             }
@@ -1537,8 +1522,7 @@
              * @param {?} value
              * @return {?}
              */ function (value) {
-                this._keepingScrollContainer =
-                    typeof value === 'string' ? this.doc.querySelector(value) : value;
+                this._keepingScrollContainer = typeof value === 'string' ? this.doc.querySelector(value) : value;
             },
             enumerable: true,
             configurable: true
@@ -1552,7 +1536,9 @@
          * @return {?}
          */
             function (title) {
-                return title.i18n && this.i18nSrv ? this.i18nSrv.fanyi(title.i18n) : title.text;
+                return title.i18n && this.i18nSrv
+                    ? this.i18nSrv.fanyi(title.i18n)
+                    : title.text;
             };
         /**
          * @param {?=} notify
@@ -1567,7 +1553,9 @@
                 /** @type {?} */
                 var isClosed = notify && notify.active === 'close';
                 /** @type {?} */
-                var beforeClosePos = isClosed ? this.list.findIndex(function (w) { return w.url === notify.url; }) : -1;
+                var beforeClosePos = isClosed
+                    ? this.list.findIndex(function (w) { return w.url === notify.url; })
+                    : -1;
                 /** @type {?} */
                 var ls = this.srv.items.map(function (item, index) {
                     return ( /** @type {?} */({
@@ -1589,7 +1577,7 @@
                     // jump directly when the current exists in the list
                     // or create a new current item and jump
                     if (idx !== -1 || (isClosed && notify.url === url_1)) {
-                        this.pos = isClosed ? (idx >= beforeClosePos ? this.pos - 1 : this.pos) : idx;
+                        this.pos = isClosed ? idx >= beforeClosePos ? this.pos - 1 : this.pos : idx;
                     }
                     else {
                         /** @type {?} */
@@ -1597,7 +1585,9 @@
                         ls.push(( /** @type {?} */({
                             url: url_1,
                             title: this.genTit(this.srv.getTitle(url_1, snapshotTrue)),
-                            closable: this.allowClose && this.srv.count > 0 && this.srv.getClosable(url_1, snapshotTrue),
+                            closable: this.allowClose &&
+                                this.srv.count > 0 &&
+                                this.srv.getClosable(url_1, snapshotTrue),
                             index: ls.length,
                             active: false,
                             last: false,
@@ -1739,13 +1729,13 @@
              */
             function () {
                 var _this = this;
-                this.router.events
-                    .pipe(operators.takeUntil(this.unsubscribe$), operators.filter(function (evt) { return evt instanceof router.NavigationEnd; }))
-                    .subscribe(function () { return _this.genList(); });
+                this.router.events.pipe(operators.takeUntil(this.unsubscribe$), operators.filter(function (evt) { return evt instanceof router.NavigationEnd; })).subscribe(function () { return _this.genList(); });
                 this.srv.change.pipe(operators.takeUntil(this.unsubscribe$)).subscribe(function (res) { return _this.genList(res); });
-                this.i18nSrv.change
-                    .pipe(operators.filter(function () { return _this.srv.inited; }), operators.takeUntil(this.unsubscribe$), operators.debounceTime(100))
-                    .subscribe(function () { return _this.genList(); });
+                if (this.i18nSrv) {
+                    this.i18nSrv.change
+                        .pipe(operators.takeUntil(this.unsubscribe$), operators.debounceTime(100))
+                        .subscribe(function () { return _this.genList(); });
+                }
                 this.genList();
                 this.srv.init();
             };

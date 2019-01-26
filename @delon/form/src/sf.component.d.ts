@@ -72,17 +72,15 @@ export declare class SFComponent implements OnInit, OnChanges, OnDestroy {
     };
     /**
      * 根据路径获取表单元素属性
-     * @param path [路径](https://ng-alain.com/form/qa#path)
      */
     getProperty(path: string): FormProperty;
     /**
      * 根据路径获取表单元素当前值
-     * @param path [路径](https://ng-alain.com/form/qa#path)
      */
     getValue(path: string): any;
     /**
      * 根据路径设置某个表单元素属性值
-     * @param path [路径](https://ng-alain.com/form/qa#path)
+     * @param path 路径
      * @param value 新值
      */
     setValue(path: string, value: any): this;
