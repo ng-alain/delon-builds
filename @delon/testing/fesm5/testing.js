@@ -276,6 +276,49 @@ PageG2 = /** @class */ (function () {
         configurable: true
     });
     /**
+     * @template THIS,M
+     * @this {THIS}
+     * @param {?} module
+     * @param {?} comp
+     * @return {THIS}
+     */
+    PageG2.prototype.genModule = /**
+     * @template THIS,M
+     * @this {THIS}
+     * @param {?} module
+     * @param {?} comp
+     * @return {THIS}
+     */
+    function (module, comp) {
+        TestBed.configureTestingModule({
+            imports: [module],
+            declarations: [comp],
+        });
+        return (/** @type {?} */ (this));
+    };
+    /**
+     * @template THIS
+     * @this {THIS}
+     * @param {?} comp
+     * @param {?=} dc
+     * @return {THIS}
+     */
+    PageG2.prototype.genComp = /**
+     * @template THIS
+     * @this {THIS}
+     * @param {?} comp
+     * @param {?=} dc
+     * @return {THIS}
+     */
+    function (comp, dc) {
+        if (dc === void 0) { dc = false; }
+        (/** @type {?} */ (this)).fixture = TestBed.createComponent(comp);
+        if (dc) {
+            (/** @type {?} */ (this)).dcFirst();
+        }
+        return (/** @type {?} */ (this));
+    };
+    /**
      * @template M
      * @param {?} module
      * @param {?} comp
@@ -291,14 +334,7 @@ PageG2 = /** @class */ (function () {
      */
     function (module, comp, options) {
         if (options === void 0) { options = { dc: true }; }
-        TestBed.configureTestingModule({
-            imports: [module],
-            declarations: [comp],
-        });
-        this.fixture = TestBed.createComponent(comp);
-        if (options.dc) {
-            this.dcFirst();
-        }
+        this.genModule(module, comp).genComp(comp, options.dc);
         return this;
     };
     /**
@@ -598,11 +634,14 @@ PageG2 = /** @class */ (function () {
  * @template M, T
  * @param {?} module
  * @param {?} comp
+ * @param {?=} page
  * @return {?}
  */
-function checkDelay(module, comp) {
-    /** @type {?} */
-    var page = new PageG2().makeModule(module, comp, { dc: false });
+function checkDelay(module, comp, page) {
+    if (page === void 0) { page = null; }
+    if (page == null) {
+        page = new PageG2().makeModule(module, comp, { dc: false });
+    }
     /** @type {?} */
     var context = (/** @type {?} */ (page.context));
     if (typeof context.delay === 'undefined') {
