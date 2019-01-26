@@ -110,6 +110,7 @@ var G2PieComponent = /** @class */ (function () {
             .position('y')
             .tooltip('x*percent', function (name, p) { return ({
             name: name,
+            // 由于 hasLegend 会优先处理为百分比格式，因此无需要在 tooltip 中重新转换
             value: hasLegend ? p : (p * 100).toFixed(2),
         }); })
             .select(this.select);
@@ -234,11 +235,12 @@ var G2PieComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
+        var _this = this;
         if (this.resize$) {
             this.resize$.unsubscribe();
         }
         if (this.chart) {
-            this.chart.destroy();
+            this.ngZone.runOutsideAngular(function () { return _this.chart.destroy(); });
         }
     };
     G2PieComponent.decorators = [

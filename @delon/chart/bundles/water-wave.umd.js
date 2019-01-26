@@ -258,14 +258,15 @@
                 render();
             };
         /**
-         * @param {?} radio
          * @return {?}
          */
         G2WaterWaveComponent.prototype.updateRadio = /**
-         * @param {?} radio
          * @return {?}
          */
-            function (radio) {
+            function () {
+                var offsetWidth = this.el.nativeElement.parentNode.offsetWidth;
+                /** @type {?} */
+                var radio = offsetWidth < this.height ? offsetWidth / this.height : 1;
                 this.renderer.setStyle(this.el.nativeElement, 'transform', "scale(" + radio + ")");
             };
         /**
@@ -276,14 +277,9 @@
          */
             function () {
                 var _this = this;
-                if (this.resize$)
-                    return;
                 this.resize$ = rxjs.fromEvent(window, 'resize')
                     .pipe(operators.debounceTime(200))
-                    .subscribe(function () {
-                    var offsetWidth = _this.el.nativeElement.parentNode.offsetWidth;
-                    _this.updateRadio(offsetWidth < _this.height ? offsetWidth / _this.height : 1);
-                });
+                    .subscribe(function () { return _this.updateRadio(); });
             };
         /**
          * @return {?}
@@ -293,7 +289,7 @@
          */
             function () {
                 var _this = this;
-                this.updateRadio(1);
+                this.updateRadio();
                 this.installResizeEvent();
                 this.ngZone.runOutsideAngular(function () { return setTimeout(function () { return _this.renderChart(''); }, _this.delay); });
             };
@@ -315,10 +311,10 @@
          * @return {?}
          */
             function () {
-                if (this.timer)
+                if (this.timer) {
                     cancelAnimationFrame(this.timer);
-                if (this.resize$)
-                    this.resize$.unsubscribe();
+                }
+                this.resize$.unsubscribe();
             };
         G2WaterWaveComponent.decorators = [
             { type: core.Component, args: [{

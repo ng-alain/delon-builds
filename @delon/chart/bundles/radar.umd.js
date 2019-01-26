@@ -114,12 +114,12 @@
                 var _this = this;
                 var _a = this, node = _a.node, padding = _a.padding;
                 /** @type {?} */
-                var chart = this.chart = new G2.Chart({
+                var chart = (this.chart = new G2.Chart({
                     container: node.nativeElement,
                     forceFit: true,
                     height: this.getHeight(),
                     padding: padding,
-                });
+                }));
                 chart.coord('polar');
                 chart.legend(false);
                 chart.axis('label', {
@@ -158,9 +158,7 @@
                     var legendItem = _this.legendData.find(function (w) { return w.name === name; });
                     return legendItem ? legendItem.checked !== false : true;
                 });
-                chart
-                    .line()
-                    .position('label*value');
+                chart.line().position('label*value');
                 chart
                     .point()
                     .position('label*value')
@@ -204,7 +202,10 @@
                 var _a = this, hasLegend = _a.hasLegend, cdr = _a.cdr, chart = _a.chart;
                 if (!hasLegend)
                     return;
-                this.legendData = chart.get('geoms')[0].get('dataArray').map(function (item) {
+                this.legendData = chart
+                    .get('geoms')[0]
+                    .get('dataArray')
+                    .map(function (item) {
                     /** @type {?} */
                     var origin = item[0]._origin;
                     /** @type {?} */
@@ -249,7 +250,7 @@
          */
             function () {
                 var _this = this;
-                this.legendData.forEach(function (i) { return i.checked = true; });
+                this.legendData.forEach(function (i) { return (i.checked = true); });
                 this.ngZone.runOutsideAngular(function () { return _this.attachChart(); });
             };
         /**
@@ -259,8 +260,9 @@
          * @return {?}
          */
             function () {
+                var _this = this;
                 if (this.chart) {
-                    this.chart.destroy();
+                    this.ngZone.runOutsideAngular(function () { return _this.chart.destroy(); });
                 }
             };
         G2RadarComponent.decorators = [

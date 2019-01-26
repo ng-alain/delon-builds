@@ -17,6 +17,7 @@ var G2MiniAreaComponent = /** @class */ (function () {
         this.color = 'rgba(24, 144, 255, 0.2)';
         this.borderColor = '#1890FF';
         this.borderWidth = 2;
+        this.height = 56;
         this.fit = true;
         this.line = false;
         this.animate = true;
@@ -34,12 +35,12 @@ var G2MiniAreaComponent = /** @class */ (function () {
     function () {
         var _a = this, el = _a.el, fit = _a.fit, height = _a.height, padding = _a.padding, xAxis = _a.xAxis, yAxis = _a.yAxis, yTooltipSuffix = _a.yTooltipSuffix, tooltipType = _a.tooltipType, line = _a.line;
         /** @type {?} */
-        var chart = this.chart = new G2.Chart({
+        var chart = (this.chart = new G2.Chart({
             container: el.nativeElement,
             forceFit: fit,
             height: height,
             padding: padding,
-        });
+        }));
         if (!xAxis && !yAxis) {
             chart.axis(false);
         }
@@ -57,9 +58,9 @@ var G2MiniAreaComponent = /** @class */ (function () {
         }
         chart.legend(false);
         chart.tooltip({
-            'type': tooltipType === 'mini' ? 'mini' : null,
-            'showTitle': false,
-            'hideMarkders': false,
+            type: tooltipType === 'mini' ? 'mini' : null,
+            showTitle: false,
+            hideMarkders: false,
             'g2-tooltip': { padding: 4 },
             'g2-tooltip-list-item': { margin: "0px 4px" },
         });
@@ -70,7 +71,12 @@ var G2MiniAreaComponent = /** @class */ (function () {
             .shape('smooth')
             .opacity(1);
         if (line) {
-            chart.line().position('x*y').shape('smooth').opacity(1).tooltip(false);
+            chart
+                .line()
+                .position('x*y')
+                .shape('smooth')
+                .opacity(1)
+                .tooltip(false);
         }
         chart.render();
         this.attachChart();
@@ -83,8 +89,9 @@ var G2MiniAreaComponent = /** @class */ (function () {
      */
     function () {
         var _a = this, chart = _a.chart, line = _a.line, fit = _a.fit, height = _a.height, animate = _a.animate, padding = _a.padding, data = _a.data, color = _a.color, borderColor = _a.borderColor, borderWidth = _a.borderWidth;
-        if (!chart || !data || data.length <= 0)
+        if (!chart || !data || data.length <= 0) {
             return;
+        }
         /** @type {?} */
         var geoms = chart.get('geoms');
         geoms.forEach(function (g) { return g.color(color); });
@@ -124,8 +131,10 @@ var G2MiniAreaComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        if (this.chart)
-            this.chart.destroy();
+        var _this = this;
+        if (this.chart) {
+            this.ngZone.runOutsideAngular(function () { return _this.chart.destroy(); });
+        }
     };
     G2MiniAreaComponent.decorators = [
         { type: Component, args: [{

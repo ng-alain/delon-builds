@@ -198,30 +198,27 @@ class G2WaterWaveComponent {
         render();
     }
     /**
-     * @param {?} radio
      * @return {?}
      */
-    updateRadio(radio) {
+    updateRadio() {
+        const { offsetWidth } = this.el.nativeElement.parentNode;
+        /** @type {?} */
+        const radio = offsetWidth < this.height ? offsetWidth / this.height : 1;
         this.renderer.setStyle(this.el.nativeElement, 'transform', `scale(${radio})`);
     }
     /**
      * @return {?}
      */
     installResizeEvent() {
-        if (this.resize$)
-            return;
         this.resize$ = fromEvent(window, 'resize')
             .pipe(debounceTime(200))
-            .subscribe(() => {
-            const { offsetWidth } = this.el.nativeElement.parentNode;
-            this.updateRadio(offsetWidth < this.height ? offsetWidth / this.height : 1);
-        });
+            .subscribe(() => this.updateRadio());
     }
     /**
      * @return {?}
      */
     ngOnInit() {
-        this.updateRadio(1);
+        this.updateRadio();
         this.installResizeEvent();
         this.ngZone.runOutsideAngular(() => setTimeout(() => this.renderChart(''), this.delay));
     }
@@ -236,10 +233,10 @@ class G2WaterWaveComponent {
      * @return {?}
      */
     ngOnDestroy() {
-        if (this.timer)
+        if (this.timer) {
             cancelAnimationFrame(this.timer);
-        if (this.resize$)
-            this.resize$.unsubscribe();
+        }
+        this.resize$.unsubscribe();
     }
 }
 G2WaterWaveComponent.decorators = [

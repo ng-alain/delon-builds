@@ -12,7 +12,7 @@ export declare class G2MiniAreaComponent implements OnInit, OnChanges, OnDestroy
     color: string;
     borderColor: string;
     borderWidth: number;
-    height: any;
+    height: number;
     fit: boolean;
     line: boolean;
     animate: boolean;

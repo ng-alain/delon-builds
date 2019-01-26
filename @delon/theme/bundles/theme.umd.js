@@ -225,9 +225,7 @@
             this.aclService = aclService;
             this._change$ = new rxjs.BehaviorSubject([]);
             this.data = [];
-            if (this.i18nSrv) {
-                this.i18n$ = this.i18nSrv.change.subscribe(function () { return _this.resume(); });
-            }
+            this.i18n$ = this.i18nSrv.change.subscribe(function () { return _this.resume(); });
         }
         Object.defineProperty(MenuService.prototype, "change", {
             get: /**
@@ -495,7 +493,10 @@
                     });
                     if (!recursive)
                         break;
-                    url = url.split('/').slice(0, -1).join('/');
+                    url = url
+                        .split('/')
+                        .slice(0, -1)
+                        .join('/');
                 }
                 return item;
             };
@@ -584,8 +585,7 @@
          */
             function () {
                 this._change$.unsubscribe();
-                if (this.i18n$)
-                    this.i18n$.unsubscribe();
+                this.i18n$.unsubscribe();
             };
         MenuService.decorators = [
             { type: i0.Injectable, args: [{ providedIn: 'root' },] }
@@ -968,11 +968,9 @@
              * 设置默认标题名
              */
             this.default = "Not Page Name";
-            if (this.i18nSrv) {
-                this.i18n$ = this.i18nSrv.change
-                    .pipe(operators.filter(function () { return !!_this.i18n$; }))
-                    .subscribe(function () { return _this.setTitle(); });
-            }
+            this.i18n$ = this.i18nSrv.change
+                .pipe(operators.filter(function () { return !!_this.i18n$; }))
+                .subscribe(function () { return _this.setTitle(); });
         }
         Object.defineProperty(TitleService.prototype, "separator", {
             /** 设置分隔符 */
@@ -1088,11 +1086,7 @@
          */
             function (title) {
                 if (!title) {
-                    title =
-                        this.getByRoute() ||
-                            this.getByMenu() ||
-                            this.getByElement() ||
-                            this.default;
+                    title = this.getByRoute() || this.getByMenu() || this.getByElement() || this.default;
                 }
                 if (title && !Array.isArray(title)) {
                     title = [title];
@@ -1136,8 +1130,7 @@
          * @return {?}
          */
             function () {
-                if (this.i18n$)
-                    this.i18n$.unsubscribe();
+                this.i18n$.unsubscribe();
             };
         TitleService.decorators = [
             { type: i0.Injectable, args: [{ providedIn: 'root' },] }
@@ -1864,13 +1857,15 @@
                     };
                     if (footer) {
                         defaultOptions.nzBodyStyle = {
-                            'height': "calc(100% - " + footerHeight + "px)",
-                            'overflow': 'auto',
+                            height: "calc(100% - " + footerHeight + "px)",
+                            overflow: 'auto',
                             'padding-bottom': footerHeight - 2 + "px",
                         };
                     }
                     if (typeof size === 'number') {
-                        defaultOptions[drawerOptions.nzPlacement === 'top' || drawerOptions.nzPlacement === 'bottom' ? 'nzHeight' : 'nzWidth'] = options.size;
+                        defaultOptions[drawerOptions.nzPlacement === 'top' || drawerOptions.nzPlacement === 'bottom'
+                            ? 'nzHeight'
+                            : 'nzWidth'] = options.size;
                     }
                     else {
                         defaultOptions.nzWrapClassName = (drawerOptions.nzWrapClassName + (" drawer-" + options.size)).trim();

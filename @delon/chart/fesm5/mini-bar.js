@@ -31,12 +31,12 @@ var G2MiniBarComponent = /** @class */ (function () {
     function () {
         var _a = this, el = _a.el, height = _a.height, padding = _a.padding, yTooltipSuffix = _a.yTooltipSuffix, tooltipType = _a.tooltipType;
         /** @type {?} */
-        var chart = this.chart = new G2.Chart({
+        var chart = (this.chart = new G2.Chart({
             container: el.nativeElement,
             forceFit: true,
             height: height,
             padding: padding,
-        });
+        }));
         chart.source([], {
             x: {
                 type: 'cat',
@@ -48,10 +48,10 @@ var G2MiniBarComponent = /** @class */ (function () {
         chart.legend(false);
         chart.axis(false);
         chart.tooltip({
-            'type': tooltipType === 'mini' ? 'mini' : null,
-            'showTitle': false,
-            'hideMarkders': false,
-            'crosshairs': false,
+            type: tooltipType === 'mini' ? 'mini' : null,
+            showTitle: false,
+            hideMarkders: false,
+            crosshairs: false,
             'g2-tooltip': { padding: 4 },
             'g2-tooltip-list-item': { margin: "0px 4px" },
         });
@@ -72,7 +72,10 @@ var G2MiniBarComponent = /** @class */ (function () {
         var _a = this, chart = _a.chart, height = _a.height, padding = _a.padding, data = _a.data, color = _a.color, borderWidth = _a.borderWidth;
         if (!chart || !data || data.length <= 0)
             return;
-        chart.get('geoms')[0].size(borderWidth).color(color);
+        chart
+            .get('geoms')[0]
+            .size(borderWidth)
+            .color(color);
         chart.set('height', height);
         chart.set('padding', padding);
         chart.changeData(data);
@@ -104,8 +107,9 @@ var G2MiniBarComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
+        var _this = this;
         if (this.chart) {
-            this.chart.destroy();
+            this.ngZone.runOutsideAngular(function () { return _this.chart.destroy(); });
         }
     };
     G2MiniBarComponent.decorators = [

@@ -130,13 +130,13 @@
                 });
                 var _a = this, el = _a.el, height = _a.height, padding = _a.padding, format = _a.format;
                 /** @type {?} */
-                var chart = this.chart = new G2.Chart({
+                var chart = (this.chart = new G2.Chart({
                     container: el.nativeElement,
                     animate: false,
                     forceFit: true,
                     height: height,
                     padding: padding,
-                });
+                }));
                 chart
                     .point({ generatePoints: true })
                     .position('value*1')
@@ -240,8 +240,9 @@
          * @return {?}
          */
             function () {
+                var _this = this;
                 if (this.chart) {
-                    this.chart.destroy();
+                    this.ngZone.runOutsideAngular(function () { return _this.chart.destroy(); });
                 }
             };
         G2GaugeComponent.decorators = [

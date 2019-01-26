@@ -50,11 +50,11 @@ class G2TagCloudComponent {
     install() {
         const { el, padding, height } = this;
         /** @type {?} */
-        const chart = this.chart = new G2.Chart({
+        const chart = (this.chart = new G2.Chart({
             container: el.nativeElement,
             padding,
             height,
-        });
+        }));
         chart.legend(false);
         chart.axis(false);
         chart.tooltip({
@@ -95,10 +95,7 @@ class G2TagCloudComponent {
             padding,
             timeInterval: 5000,
             // max execute time
-            /**
-             * @return {?}
-             */
-            rotate() {
+            rotate: () => {
                 /** @type {?} */
                 let random = ~~(Math.random() * 4) % 4;
                 if (random === 2) {
@@ -106,16 +103,7 @@ class G2TagCloudComponent {
                 }
                 return random * 90; // 0, 90, 270
             },
-            /**
-             * @param {?} d
-             * @return {?}
-             */
-            fontSize(d) {
-                if (d.value) {
-                    return ((d.value - min) / (max - min)) * (80 - 24) + 24;
-                }
-                return 0;
-            },
+            fontSize: d => (d.value ? ((d.value - min) / (max - min)) * (80 - 24) + 24 : 0),
         });
         chart.source(dv, {
             x: { nice: false },
@@ -133,8 +121,6 @@ class G2TagCloudComponent {
      * @return {?}
      */
     installResizeEvent() {
-        if (this.resize$)
-            return;
         this.resize$ = fromEvent(window, 'resize')
             .pipe(filter(() => this.chart), debounceTime(200))
             .subscribe(() => this._attachChart());
@@ -157,11 +143,9 @@ class G2TagCloudComponent {
      * @return {?}
      */
     ngOnDestroy() {
-        if (this.resize$) {
-            this.resize$.unsubscribe();
-        }
+        this.resize$.unsubscribe();
         if (this.chart) {
-            this.chart.destroy();
+            this.ngZone.runOutsideAngular(() => this.chart.destroy());
         }
     }
 }

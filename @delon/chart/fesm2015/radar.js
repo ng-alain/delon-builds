@@ -48,12 +48,12 @@ class G2RadarComponent {
     install() {
         const { node, padding } = this;
         /** @type {?} */
-        const chart = this.chart = new G2.Chart({
+        const chart = (this.chart = new G2.Chart({
             container: node.nativeElement,
             forceFit: true,
             height: this.getHeight(),
             padding,
-        });
+        }));
         chart.coord('polar');
         chart.legend(false);
         chart.axis('label', {
@@ -92,9 +92,7 @@ class G2RadarComponent {
             const legendItem = this.legendData.find(w => w.name === name);
             return legendItem ? legendItem.checked !== false : true;
         });
-        chart
-            .line()
-            .position('label*value');
+        chart.line().position('label*value');
         chart
             .point()
             .position('label*value')
@@ -131,7 +129,10 @@ class G2RadarComponent {
         const { hasLegend, cdr, chart } = this;
         if (!hasLegend)
             return;
-        this.legendData = chart.get('geoms')[0].get('dataArray').map((item) => {
+        this.legendData = chart
+            .get('geoms')[0]
+            .get('dataArray')
+            .map((item) => {
             /** @type {?} */
             const origin = item[0]._origin;
             /** @type {?} */
@@ -164,7 +165,7 @@ class G2RadarComponent {
      * @return {?}
      */
     ngOnChanges() {
-        this.legendData.forEach(i => i.checked = true);
+        this.legendData.forEach(i => (i.checked = true));
         this.ngZone.runOutsideAngular(() => this.attachChart());
     }
     /**
@@ -172,7 +173,7 @@ class G2RadarComponent {
      */
     ngOnDestroy() {
         if (this.chart) {
-            this.chart.destroy();
+            this.ngZone.runOutsideAngular(() => this.chart.destroy());
         }
     }
 }

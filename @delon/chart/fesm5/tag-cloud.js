@@ -52,11 +52,11 @@ var G2TagCloudComponent = /** @class */ (function () {
     function () {
         var _a = this, el = _a.el, padding = _a.padding, height = _a.height;
         /** @type {?} */
-        var chart = this.chart = new G2.Chart({
+        var chart = (this.chart = new G2.Chart({
             container: el.nativeElement,
             padding: padding,
             height: height,
-        });
+        }));
         chart.legend(false);
         chart.axis(false);
         chart.tooltip({
@@ -99,12 +99,8 @@ var G2TagCloudComponent = /** @class */ (function () {
             size: [chart.get('width'), chart.get('height')],
             padding: padding,
             timeInterval: 5000,
-            rotate: 
             // max execute time
-            /**
-             * @return {?}
-             */
-            function () {
+            rotate: function () {
                 /** @type {?} */
                 var random = ~~(Math.random() * 4) % 4;
                 if (random === 2) {
@@ -112,16 +108,7 @@ var G2TagCloudComponent = /** @class */ (function () {
                 }
                 return random * 90; // 0, 90, 270
             },
-            fontSize: /**
-             * @param {?} d
-             * @return {?}
-             */
-            function (d) {
-                if (d.value) {
-                    return ((d.value - min) / (max - min)) * (80 - 24) + 24;
-                }
-                return 0;
-            },
+            fontSize: function (d) { return (d.value ? ((d.value - min) / (max - min)) * (80 - 24) + 24 : 0); },
         });
         chart.source(dv, {
             x: { nice: false },
@@ -147,8 +134,6 @@ var G2TagCloudComponent = /** @class */ (function () {
      */
     function () {
         var _this = this;
-        if (this.resize$)
-            return;
         this.resize$ = fromEvent(window, 'resize')
             .pipe(filter(function () { return _this.chart; }), debounceTime(200))
             .subscribe(function () { return _this._attachChart(); });
@@ -181,11 +166,10 @@ var G2TagCloudComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        if (this.resize$) {
-            this.resize$.unsubscribe();
-        }
+        var _this = this;
+        this.resize$.unsubscribe();
         if (this.chart) {
-            this.chart.destroy();
+            this.ngZone.runOutsideAngular(function () { return _this.chart.destroy(); });
         }
     };
     G2TagCloudComponent.decorators = [

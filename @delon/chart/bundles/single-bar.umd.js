@@ -110,17 +110,16 @@
             function () {
                 var _a = this, el = _a.el, height = _a.height, padding = _a.padding, textStyle = _a.textStyle, line = _a.line, format = _a.format;
                 /** @type {?} */
-                var chart = this.chart = new G2.Chart({
+                var chart = (this.chart = new G2.Chart({
                     container: el.nativeElement,
                     forceFit: true,
                     height: height,
                     padding: padding,
-                });
+                }));
                 chart.legend(false);
                 chart.axis(false);
                 chart.tooltip({ type: 'mini' });
-                chart.coord()
-                    .transpose();
+                chart.coord().transpose();
                 chart
                     .interval()
                     .position('1*value')
@@ -160,7 +159,7 @@
                 chart.set('padding', padding);
                 chart
                     .get('geoms')[0]
-                    .color('value', function (val) { return val > 0 ? plusColor : minusColor; })
+                    .color('value', function (val) { return (val > 0 ? plusColor : minusColor); })
                     .size(barSize);
                 chart.repaint();
             };
@@ -191,8 +190,9 @@
          * @return {?}
          */
             function () {
+                var _this = this;
                 if (this.chart) {
-                    this.chart.destroy();
+                    this.ngZone.runOutsideAngular(function () { return _this.chart.destroy(); });
                 }
             };
         G2SingleBarComponent.decorators = [

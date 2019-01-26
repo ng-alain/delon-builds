@@ -21,6 +21,7 @@ class G2MiniAreaComponent {
         this.color = 'rgba(24, 144, 255, 0.2)';
         this.borderColor = '#1890FF';
         this.borderWidth = 2;
+        this.height = 56;
         this.fit = true;
         this.line = false;
         this.animate = true;
@@ -35,12 +36,12 @@ class G2MiniAreaComponent {
     install() {
         const { el, fit, height, padding, xAxis, yAxis, yTooltipSuffix, tooltipType, line } = this;
         /** @type {?} */
-        const chart = this.chart = new G2.Chart({
+        const chart = (this.chart = new G2.Chart({
             container: el.nativeElement,
             forceFit: fit,
             height,
             padding,
-        });
+        }));
         if (!xAxis && !yAxis) {
             chart.axis(false);
         }
@@ -58,9 +59,9 @@ class G2MiniAreaComponent {
         }
         chart.legend(false);
         chart.tooltip({
-            'type': tooltipType === 'mini' ? 'mini' : null,
-            'showTitle': false,
-            'hideMarkders': false,
+            type: tooltipType === 'mini' ? 'mini' : null,
+            showTitle: false,
+            hideMarkders: false,
             'g2-tooltip': { padding: 4 },
             'g2-tooltip-list-item': { margin: `0px 4px` },
         });
@@ -71,7 +72,12 @@ class G2MiniAreaComponent {
             .shape('smooth')
             .opacity(1);
         if (line) {
-            chart.line().position('x*y').shape('smooth').opacity(1).tooltip(false);
+            chart
+                .line()
+                .position('x*y')
+                .shape('smooth')
+                .opacity(1)
+                .tooltip(false);
         }
         chart.render();
         this.attachChart();
@@ -80,9 +86,10 @@ class G2MiniAreaComponent {
      * @return {?}
      */
     attachChart() {
-        const { chart, line, fit, height, animate, padding, data, color, borderColor, borderWidth } = this;
-        if (!chart || !data || data.length <= 0)
+        const { chart, line, fit, height, animate, padding, data, color, borderColor, borderWidth, } = this;
+        if (!chart || !data || data.length <= 0) {
             return;
+        }
         /** @type {?} */
         const geoms = chart.get('geoms');
         geoms.forEach(g => g.color(color));
@@ -111,8 +118,9 @@ class G2MiniAreaComponent {
      * @return {?}
      */
     ngOnDestroy() {
-        if (this.chart)
-            this.chart.destroy();
+        if (this.chart) {
+            this.ngZone.runOutsideAngular(() => this.chart.destroy());
+        }
     }
 }
 G2MiniAreaComponent.decorators = [

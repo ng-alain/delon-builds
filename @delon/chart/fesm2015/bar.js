@@ -40,13 +40,13 @@ class G2BarComponent {
         /** @type {?} */
         const container = (/** @type {?} */ (node.nativeElement));
         /** @type {?} */
-        const chart = this.chart = new G2.Chart({
+        const chart = (this.chart = new G2.Chart({
             container,
             forceFit: true,
             legend: null,
             height: this.getHeight(),
             padding,
-        });
+        }));
         this.updatelabel();
         chart.axis('y', {
             title: false,
@@ -130,7 +130,7 @@ class G2BarComponent {
             this.resize$.unsubscribe();
         }
         if (this.chart) {
-            this.chart.destroy();
+            this.ngZone.runOutsideAngular(() => this.chart.destroy());
         }
     }
 }

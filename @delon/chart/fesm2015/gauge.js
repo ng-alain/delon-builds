@@ -68,13 +68,13 @@ class G2GaugeComponent {
         });
         const { el, height, padding, format } = this;
         /** @type {?} */
-        const chart = this.chart = new G2.Chart({
+        const chart = (this.chart = new G2.Chart({
             container: el.nativeElement,
             animate: false,
             forceFit: true,
             height,
             padding,
-        });
+        }));
         chart
             .point({ generatePoints: true })
             .position('value*1')
@@ -168,7 +168,7 @@ class G2GaugeComponent {
      */
     ngOnDestroy() {
         if (this.chart) {
-            this.chart.destroy();
+            this.ngZone.runOutsideAngular(() => this.chart.destroy());
         }
     }
 }

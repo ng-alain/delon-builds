@@ -122,12 +122,12 @@
             function () {
                 var _a = this, node = _a.node, sliderNode = _a.sliderNode, height = _a.height, padding = _a.padding, mask = _a.mask, slider = _a.slider;
                 /** @type {?} */
-                var chart = this.chart = new G2.Chart({
+                var chart = (this.chart = new G2.Chart({
                     container: node.nativeElement,
                     forceFit: true,
                     height: height,
                     padding: padding,
-                });
+                }));
                 chart.axis('x', { title: false });
                 chart.axis('y1', { title: false });
                 chart.axis('y2', false);
@@ -139,7 +139,7 @@
                 sliderPadding[0] = 0;
                 if (slider) {
                     /** @type {?} */
-                    var _slider = this._slider = new Slider({
+                    var _slider = (this._slider = new Slider({
                         container: sliderNode.nativeElement,
                         width: 'auto',
                         height: 26,
@@ -158,7 +158,7 @@
                         xAxis: 'x',
                         yAxis: 'y1',
                         data: [],
-                    });
+                    }));
                     _slider.render();
                 }
                 this.attachChart();
@@ -177,10 +177,7 @@
                     position: position,
                     custom: true,
                     clickable: false,
-                    items: [
-                        { value: titleMap.y1, fill: colorMap.y1 },
-                        { value: titleMap.y2, fill: colorMap.y2 },
-                    ],
+                    items: [{ value: titleMap.y1, fill: colorMap.y1 }, { value: titleMap.y2, fill: colorMap.y2 }],
                 });
                 // border
                 chart.get('geoms').forEach(function (v, idx) {
@@ -188,15 +185,14 @@
                 });
                 chart.set('height', height);
                 chart.set('padding', padding);
-                data.filter(function (v) { return !(v.x instanceof Number); }).forEach(function (v) {
+                data
+                    .filter(function (v) { return !(v.x instanceof Number); })
+                    .forEach(function (v) {
                     v.x = +new Date(v.x);
                 });
                 data.sort(function (a, b) { return +a.x - +b.x; });
                 /** @type {?} */
-                var max;
-                if (data[0] && data[0].y1 && data[0].y2) {
-                    max = Math.max(__spread(data).sort(function (a, b) { return b.y1 - a.y1; })[0].y1, __spread(data).sort(function (a, b) { return b.y2 - a.y2; })[0].y2);
-                }
+                var max = Math.max(__spread(data).sort(function (a, b) { return b.y1 - a.y1; })[0].y1, __spread(data).sort(function (a, b) { return b.y2 - a.y2; })[0].y2);
                 /** @type {?} */
                 var ds = new DataSet({
                     state: {
@@ -206,8 +202,7 @@
                 });
                 /** @type {?} */
                 var dv = ds.createView();
-                dv.source(data)
-                    .transform({
+                dv.source(data).transform({
                     type: 'filter',
                     callback: function (val) {
                         /** @type {?} */
@@ -261,10 +256,13 @@
          * @return {?}
          */
             function () {
-                if (this.chart)
-                    this.chart.destroy();
-                if (this._slider)
-                    this._slider.destroy();
+                var _this = this;
+                if (this.chart) {
+                    this.ngZone.runOutsideAngular(function () { return _this.chart.destroy(); });
+                }
+                if (this._slider) {
+                    this.ngZone.runOutsideAngular(function () { return _this._slider.destroy(); });
+                }
             };
         G2TimelineComponent.decorators = [
             { type: core.Component, args: [{

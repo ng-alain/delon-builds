@@ -35,17 +35,16 @@ class G2SingleBarComponent {
     install() {
         const { el, height, padding, textStyle, line, format } = this;
         /** @type {?} */
-        const chart = this.chart = new G2.Chart({
+        const chart = (this.chart = new G2.Chart({
             container: el.nativeElement,
             forceFit: true,
             height,
             padding,
-        });
+        }));
         chart.legend(false);
         chart.axis(false);
         chart.tooltip({ type: 'mini' });
-        chart.coord()
-            .transpose();
+        chart.coord().transpose();
         chart
             .interval()
             .position('1*value')
@@ -80,7 +79,7 @@ class G2SingleBarComponent {
         chart.set('padding', padding);
         chart
             .get('geoms')[0]
-            .color('value', val => val > 0 ? plusColor : minusColor)
+            .color('value', val => (val > 0 ? plusColor : minusColor))
             .size(barSize);
         chart.repaint();
     }
@@ -101,7 +100,7 @@ class G2SingleBarComponent {
      */
     ngOnDestroy() {
         if (this.chart) {
-            this.chart.destroy();
+            this.ngZone.runOutsideAngular(() => this.chart.destroy());
         }
     }
 }

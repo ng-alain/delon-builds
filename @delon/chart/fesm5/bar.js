@@ -43,13 +43,13 @@ var G2BarComponent = /** @class */ (function () {
         /** @type {?} */
         var container = (/** @type {?} */ (node.nativeElement));
         /** @type {?} */
-        var chart = this.chart = new G2.Chart({
+        var chart = (this.chart = new G2.Chart({
             container: container,
             forceFit: true,
             legend: null,
             height: this.getHeight(),
             padding: padding,
-        });
+        }));
         this.updatelabel();
         chart.axis('y', {
             title: false,
@@ -150,11 +150,12 @@ var G2BarComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
+        var _this = this;
         if (this.resize$) {
             this.resize$.unsubscribe();
         }
         if (this.chart) {
-            this.chart.destroy();
+            this.ngZone.runOutsideAngular(function () { return _this.chart.destroy(); });
         }
     };
     G2BarComponent.decorators = [

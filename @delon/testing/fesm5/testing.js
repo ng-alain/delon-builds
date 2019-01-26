@@ -219,6 +219,10 @@ function dispatchDropDown(dl, trigger, allowNull) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
+/** @type {?} */
+var PageG2DataCount = 2;
+/** @type {?} */
+var PageG2Height = 100;
 /**
  * @template T
  */
@@ -311,6 +315,10 @@ PageG2 = /** @class */ (function () {
         (/** @type {?} */ (this)).dc();
         flush();
         discardPeriodicTasks();
+        // FIX: `Error during cleanup of component`
+        if ((/** @type {?} */ (this)).comp && typeof (/** @type {?} */ (this)).comp.chart !== 'undefined') {
+            spyOn((/** @type {?} */ (this)).comp.chart, 'destroy');
+        }
         return (/** @type {?} */ (this));
     };
     /**
@@ -326,6 +334,22 @@ PageG2 = /** @class */ (function () {
     function () {
         (/** @type {?} */ (this)).fixture.changeDetectorRef.markForCheck();
         (/** @type {?} */ (this)).fixture.detectChanges();
+        return (/** @type {?} */ (this));
+    };
+    /**
+     * @template THIS
+     * @this {THIS}
+     * @return {THIS}
+     */
+    PageG2.prototype.end = /**
+     * @template THIS
+     * @this {THIS}
+     * @return {THIS}
+     */
+    function () {
+        // The 201 value is delay value
+        tick(201);
+        discardPeriodicTasks();
         return (/** @type {?} */ (this));
     };
     /**
@@ -531,8 +555,67 @@ PageG2 = /** @class */ (function () {
         expect(results[0].get('data').length).toBe(num);
         return (/** @type {?} */ (this));
     };
+    /**
+     * @template THIS
+     * @this {THIS}
+     * @param {?} includeText
+     * @param {?=} point
+     * @return {THIS}
+     */
+    PageG2.prototype.checkTooltip = /**
+     * @template THIS
+     * @this {THIS}
+     * @param {?} includeText
+     * @param {?=} point
+     * @return {THIS}
+     */
+    function (includeText, point) {
+        if (!point) {
+            /** @type {?} */
+            var g2El = (/** @type {?} */ ((/** @type {?} */ (this)).dl.nativeElement));
+            point = {
+                x: g2El.offsetWidth / 2,
+                y: g2El.offsetHeight / 2,
+            };
+        }
+        (/** @type {?} */ (this)).chart.showTooltip(point);
+        /** @type {?} */
+        var el = (/** @type {?} */ (this)).getEl('.g2-tooltip');
+        if (includeText === null) {
+            expect(el == null).toBe(true, "Shoule be not found g2-tooltip element");
+        }
+        else {
+            expect(el != null).toBe(true, "Shoule be has g2-tooltip element");
+            /** @type {?} */
+            var text = el.textContent.trim();
+            expect(text.includes(includeText)).toBe(true, "Shoule be include \"" + includeText + "\" text of tooltip text context \"" + text + "\"");
+        }
+        return (/** @type {?} */ (this));
+    };
     return PageG2;
 }());
+/**
+ * @template M, T
+ * @param {?} module
+ * @param {?} comp
+ * @return {?}
+ */
+function checkDelay(module, comp) {
+    /** @type {?} */
+    var page = new PageG2().makeModule(module, comp, { dc: false });
+    /** @type {?} */
+    var context = (/** @type {?} */ (page.context));
+    if (typeof context.delay === 'undefined') {
+        console.warn("You muse be dinfed \"delay\" property in test component");
+        return;
+    }
+    context.delay = 100;
+    page.dc();
+    page.comp.ngOnDestroy();
+    expect(page.chart == null).toBe(true);
+    tick(201);
+    discardPeriodicTasks();
+}
 
 var _this = this;
 /**
@@ -647,6 +730,6 @@ var createTestContext = function (component) {
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 
-export { dispatchEvent, dispatchFakeEvent, dispatchKeyboardEvent, dispatchMouseEvent, dispatchTouchEvent, createMouseEvent, createTouchEvent, createKeyboardEvent, createFakeEvent, typeInElement, dispatchDropDown, DROPDOWN_MIN_TIME, PageG2, TestContext, configureTestSuite, createTestContext };
+export { dispatchEvent, dispatchFakeEvent, dispatchKeyboardEvent, dispatchMouseEvent, dispatchTouchEvent, createMouseEvent, createTouchEvent, createKeyboardEvent, createFakeEvent, typeInElement, dispatchDropDown, DROPDOWN_MIN_TIME, checkDelay, PageG2DataCount, PageG2Height, PageG2, TestContext, configureTestSuite, createTestContext };
 
 //# sourceMappingURL=testing.js.map

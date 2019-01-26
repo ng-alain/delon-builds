@@ -249,6 +249,10 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
+    /** @type {?} */
+    var PageG2DataCount = 2;
+    /** @type {?} */
+    var PageG2Height = 100;
     /**
      * @template T
      */
@@ -340,6 +344,10 @@
                 ( /** @type {?} */(this)).dc();
                 testing.flush();
                 testing.discardPeriodicTasks();
+                // FIX: `Error during cleanup of component`
+                if (( /** @type {?} */(this)).comp && typeof ( /** @type {?} */(this)).comp.chart !== 'undefined') {
+                    spyOn(( /** @type {?} */(this)).comp.chart, 'destroy');
+                }
                 return ( /** @type {?} */(this));
             };
         /**
@@ -355,6 +363,22 @@
             function () {
                 ( /** @type {?} */(this)).fixture.changeDetectorRef.markForCheck();
                 ( /** @type {?} */(this)).fixture.detectChanges();
+                return ( /** @type {?} */(this));
+            };
+        /**
+         * @template THIS
+         * @this {THIS}
+         * @return {THIS}
+         */
+        PageG2.prototype.end = /**
+         * @template THIS
+         * @this {THIS}
+         * @return {THIS}
+         */
+            function () {
+                // The 201 value is delay value
+                testing.tick(201);
+                testing.discardPeriodicTasks();
                 return ( /** @type {?} */(this));
             };
         /**
@@ -564,8 +588,67 @@
                 expect(results[0].get('data').length).toBe(num);
                 return ( /** @type {?} */(this));
             };
+        /**
+         * @template THIS
+         * @this {THIS}
+         * @param {?} includeText
+         * @param {?=} point
+         * @return {THIS}
+         */
+        PageG2.prototype.checkTooltip = /**
+         * @template THIS
+         * @this {THIS}
+         * @param {?} includeText
+         * @param {?=} point
+         * @return {THIS}
+         */
+            function (includeText, point) {
+                if (!point) {
+                    /** @type {?} */
+                    var g2El = ( /** @type {?} */(( /** @type {?} */(this)).dl.nativeElement));
+                    point = {
+                        x: g2El.offsetWidth / 2,
+                        y: g2El.offsetHeight / 2,
+                    };
+                }
+                ( /** @type {?} */(this)).chart.showTooltip(point);
+                /** @type {?} */
+                var el = ( /** @type {?} */(this)).getEl('.g2-tooltip');
+                if (includeText === null) {
+                    expect(el == null).toBe(true, "Shoule be not found g2-tooltip element");
+                }
+                else {
+                    expect(el != null).toBe(true, "Shoule be has g2-tooltip element");
+                    /** @type {?} */
+                    var text = el.textContent.trim();
+                    expect(text.includes(includeText)).toBe(true, "Shoule be include \"" + includeText + "\" text of tooltip text context \"" + text + "\"");
+                }
+                return ( /** @type {?} */(this));
+            };
         return PageG2;
     }());
+    /**
+     * @template M, T
+     * @param {?} module
+     * @param {?} comp
+     * @return {?}
+     */
+    function checkDelay(module, comp) {
+        /** @type {?} */
+        var page = new PageG2().makeModule(module, comp, { dc: false });
+        /** @type {?} */
+        var context = ( /** @type {?} */(page.context));
+        if (typeof context.delay === 'undefined') {
+            console.warn("You muse be dinfed \"delay\" property in test component");
+            return;
+        }
+        context.delay = 100;
+        page.dc();
+        page.comp.ngOnDestroy();
+        expect(page.chart == null).toBe(true);
+        testing.tick(201);
+        testing.discardPeriodicTasks();
+    }
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -793,6 +876,9 @@
     exports.typeInElement = typeInElement;
     exports.dispatchDropDown = dispatchDropDown;
     exports.DROPDOWN_MIN_TIME = DROPDOWN_MIN_TIME;
+    exports.checkDelay = checkDelay;
+    exports.PageG2DataCount = PageG2DataCount;
+    exports.PageG2Height = PageG2Height;
     exports.PageG2 = PageG2;
     exports.TestContext = TestContext;
     exports.configureTestSuite = configureTestSuite;

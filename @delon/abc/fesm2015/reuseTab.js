@@ -336,6 +336,7 @@ class ReuseTabService {
     constructor(injector, menuService) {
         this.injector = injector;
         this.menuService = menuService;
+        this._inited = false;
         this._max = 10;
         this._keepingScroll = false;
         this._debug = false;
@@ -354,6 +355,12 @@ class ReuseTabService {
         return this.injector.get(ActivatedRoute).snapshot;
     }
     // #region public
+    /**
+     * @return {?}
+     */
+    get inited() {
+        return this._inited;
+    }
     /**
      * 当前路由地址
      * @return {?}
@@ -709,7 +716,11 @@ class ReuseTabService {
             next = next.parent;
         }
         /** @type {?} */
-        const url = '/' + segments.filter(i => i).reverse().join('/');
+        const url = '/' +
+            segments
+                .filter(i => i)
+                .reverse()
+                .join('/');
         return url;
     }
     /**
@@ -776,6 +787,7 @@ class ReuseTabService {
      */
     init() {
         this.initScroll();
+        this._inited = true;
     }
     /**
      * @param {?} url
@@ -804,9 +816,7 @@ class ReuseTabService {
      * @return {?}
      */
     hasInValidRoute(route) {
-        return (!route.routeConfig ||
-            route.routeConfig.loadChildren ||
-            route.routeConfig.children);
+        return !route.routeConfig || route.routeConfig.loadChildren || route.routeConfig.children;
     }
     /**
      * 决定是否允许路由复用，若 `true` 会触发 `store`
@@ -978,7 +988,9 @@ class ReuseTabService {
                 const url = this.curUrl;
                 /** @type {?} */
                 const item = this.get(url);
-                if (item && item.position && this.getKeepingScroll(url, this.getTruthRoute(this.snapshot))) {
+                if (item &&
+                    item.position &&
+                    this.getKeepingScroll(url, this.getTruthRoute(this.snapshot))) {
                     if (this.isDisabledInRouter) {
                         this.ss.scrollToPosition(this.keepingScrollContainer, item.position);
                     }
@@ -1056,16 +1068,15 @@ class ReuseTabComponent {
      * @return {?}
      */
     set keepingScrollContainer(value) {
-        this._keepingScrollContainer = typeof value === 'string' ? this.doc.querySelector(value) : value;
+        this._keepingScrollContainer =
+            typeof value === 'string' ? this.doc.querySelector(value) : value;
     }
     /**
      * @param {?} title
      * @return {?}
      */
     genTit(title) {
-        return title.i18n && this.i18nSrv
-            ? this.i18nSrv.fanyi(title.i18n)
-            : title.text;
+        return title.i18n && this.i18nSrv ? this.i18nSrv.fanyi(title.i18n) : title.text;
     }
     /**
      * @param {?=} notify
@@ -1075,9 +1086,7 @@ class ReuseTabComponent {
         /** @type {?} */
         const isClosed = notify && notify.active === 'close';
         /** @type {?} */
-        const beforeClosePos = isClosed
-            ? this.list.findIndex(w => w.url === notify.url)
-            : -1;
+        const beforeClosePos = isClosed ? this.list.findIndex(w => w.url === notify.url) : -1;
         /** @type {?} */
         const ls = this.srv.items.map((item, index) => {
             return (/** @type {?} */ ({
@@ -1099,7 +1108,7 @@ class ReuseTabComponent {
             // jump directly when the current exists in the list
             // or create a new current item and jump
             if (idx !== -1 || (isClosed && notify.url === url)) {
-                this.pos = isClosed ? idx >= beforeClosePos ? this.pos - 1 : this.pos : idx;
+                this.pos = isClosed ? (idx >= beforeClosePos ? this.pos - 1 : this.pos) : idx;
             }
             else {
                 /** @type {?} */
@@ -1107,9 +1116,7 @@ class ReuseTabComponent {
                 ls.push((/** @type {?} */ ({
                     url,
                     title: this.genTit(this.srv.getTitle(url, snapshotTrue)),
-                    closable: this.allowClose &&
-                        this.srv.count > 0 &&
-                        this.srv.getClosable(url, snapshotTrue),
+                    closable: this.allowClose && this.srv.count > 0 && this.srv.getClosable(url, snapshotTrue),
                     index: ls.length,
                     active: false,
                     last: false,
@@ -1214,13 +1221,13 @@ class ReuseTabComponent {
      * @return {?}
      */
     ngOnInit() {
-        this.router.events.pipe(takeUntil(this.unsubscribe$), filter(evt => evt instanceof NavigationEnd)).subscribe(() => this.genList());
+        this.router.events
+            .pipe(takeUntil(this.unsubscribe$), filter(evt => evt instanceof NavigationEnd))
+            .subscribe(() => this.genList());
         this.srv.change.pipe(takeUntil(this.unsubscribe$)).subscribe(res => this.genList(res));
-        if (this.i18nSrv) {
-            this.i18nSrv.change
-                .pipe(takeUntil(this.unsubscribe$), debounceTime(100))
-                .subscribe(() => this.genList());
-        }
+        this.i18nSrv.change
+            .pipe(filter(() => this.srv.inited), takeUntil(this.unsubscribe$), debounceTime(100))
+            .subscribe(() => this.genList());
         this.genList();
         this.srv.init();
     }

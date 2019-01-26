@@ -1,5 +1,5 @@
 import { WINDOW } from '@delon/theme';
-import { __spread, __decorate, __metadata } from 'tslib';
+import { __decorate, __metadata, __spread } from 'tslib';
 import { CommonModule } from '@angular/common';
 import { Component, Input, ViewChild, ChangeDetectionStrategy, ContentChildren, Inject, NgModule } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';

@@ -1,7 +1,7 @@
 import { ElementRef, NgZone, OnChanges, OnDestroy, OnInit } from '@angular/core';
 export interface G2TagCloudData {
-    name: string;
-    value: number;
+    x?: string;
+    value?: number;
     category?: any;
     [key: string]: any;
 }
