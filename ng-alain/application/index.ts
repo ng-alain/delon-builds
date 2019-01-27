@@ -231,9 +231,9 @@ function addCodeStylesToPackageJson() {
       `editorconfig-tools@^0.1.1`,
       `lint-staged@^8.1.0`,
       `husky@^1.1.0`,
-      `prettier@^1.14.1`,
+      `prettier@^1.16.1`,
       `prettier-stylelint@^0.4.2`,
-      `stylelint@^9.2.0`,
+      `stylelint@^9.10.1`,
       `stylelint-config-standard@^18.2.0`,
     ]);
     return host;
