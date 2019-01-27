@@ -4,7 +4,7 @@ import { DelonLocaleService, DelonLocaleModule } from '@delon/theme';
 import { NgModel, FormsModule } from '@angular/forms';
 import format from 'date-fns/format';
 import { map, distinctUntilChanged, filter, takeUntil, debounceTime, flatMap, startWith, tap } from 'rxjs/operators';
-import { Injectable, Component, Input, Directive, TemplateRef, ChangeDetectorRef, HostBinding, Inject, Injector, ViewChild, ViewContainerRef, ComponentFactoryResolver, ElementRef, Renderer2, EventEmitter, ChangeDetectionStrategy, Output, defineInjectable, NgModule } from '@angular/core';
+import { Injectable, Component, Input, Directive, TemplateRef, ChangeDetectorRef, HostBinding, Inject, Injector, ViewChild, ViewContainerRef, ComponentFactoryResolver, EventEmitter, ChangeDetectionStrategy, Output, ElementRef, Renderer2, defineInjectable, NgModule } from '@angular/core';
 import { deepCopy, InputBoolean, InputNumber, deepGet, DelonUtilModule } from '@delon/util';
 import { NzTreeNode, NzModalService, NgZorroAntdModule } from 'ng-zorro-antd';
 import { of, combineLatest, BehaviorSubject, Observable, Subject } from 'rxjs';
@@ -1438,6 +1438,10 @@ class SFComponent {
          */
         this.firstVisual = true;
         /**
+         * 是否只展示错误视觉不显示错误文本
+         */
+        this.onlyVisual = false;
+        /**
          * 数据变更时回调
          */
         this.formChange = new EventEmitter();
@@ -1475,15 +1479,17 @@ class SFComponent {
                 this.layout = 'inline';
                 this.firstVisual = false;
                 this.liveValidate = false;
-                if (this._btn)
+                if (this._btn) {
                     this._btn.submit = this._btn.search;
+                }
                 break;
             case 'edit':
                 this.layout = 'horizontal';
                 this.firstVisual = false;
                 this.liveValidate = true;
-                if (this._btn)
+                if (this._btn) {
                     this._btn.submit = this._btn.edit;
+                }
                 break;
         }
         this._mode = value;
@@ -1645,6 +1651,9 @@ class SFComponent {
         if (this.ui == null)
             this.ui = {};
         this._defUi = Object.assign({ onlyVisual: this.options.onlyVisual, size: this.options.size, liveValidate: this.liveValidate, firstVisual: this.firstVisual }, this.options.ui, _schema.ui, this.ui['*']);
+        if (this.onlyVisual === true) {
+            this._defUi.onlyVisual = true;
+        }
         // root
         this._ui = Object.assign({}, this._defUi);
         inFn(_schema, _schema, this.ui, this.ui, this._ui);
@@ -1711,20 +1720,12 @@ class SFComponent {
      * @return {?}
      */
     _addTpl(path, templateRef) {
-        /** @type {?} */
-        const property = this.rootProperty.searchProperty(path);
-        if (!property) {
-            console.warn(`未找到路径：${path}`);
-            return;
-        }
         if (this._renders.has(path)) {
-            console.warn(`已经存在相同自定义路径：${path}`);
+            console.warn(`Duplicate definition "${path}" custom widget`);
             return;
         }
         this._renders.set(path, templateRef);
-        /** @type {?} */
-        const pui = this.rootProperty.searchProperty(path).ui;
-        pui._render = templateRef;
+        this.attachCustomRender();
     }
     /**
      * @return {?}
@@ -1732,9 +1733,11 @@ class SFComponent {
     attachCustomRender() {
         this._renders.forEach((tpl, path) => {
             /** @type {?} */
-            const pui = this.rootProperty.searchProperty(path).ui;
-            if (!pui._render)
-                pui._render = tpl;
+            const property = this.rootProperty.searchProperty(path);
+            if (property == null) {
+                return;
+            }
+            property.ui._render = tpl;
         });
     }
     /**
@@ -1839,6 +1842,7 @@ SFComponent.decorators = [
                     '[class.sf]': 'true',
                     '[class.sf-search]': `mode === 'search'`,
                     '[class.sf-edit]': `mode === 'edit'`,
+                    '[class.sf__no-error]': `onlyVisual`,
                 },
                 changeDetection: ChangeDetectionStrategy.OnPush
             }] }
@@ -1860,6 +1864,7 @@ SFComponent.propDecorators = {
     liveValidate: [{ type: Input }],
     autocomplete: [{ type: Input }],
     firstVisual: [{ type: Input }],
+    onlyVisual: [{ type: Input }],
     mode: [{ type: Input }],
     formChange: [{ type: Output }],
     formSubmit: [{ type: Output }],
@@ -1874,6 +1879,10 @@ __decorate([
     InputBoolean(),
     __metadata("design:type", Object)
 ], SFComponent.prototype, "firstVisual", void 0);
+__decorate([
+    InputBoolean(),
+    __metadata("design:type", Object)
+], SFComponent.prototype, "onlyVisual", void 0);
 
 /**
  * @fileoverview added by tsickle

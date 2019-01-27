@@ -1773,6 +1773,10 @@ var SFComponent = /** @class */ (function () {
          */
         this.firstVisual = true;
         /**
+         * 是否只展示错误视觉不显示错误文本
+         */
+        this.onlyVisual = false;
+        /**
          * 数据变更时回调
          */
         this.formChange = new EventEmitter();
@@ -1818,15 +1822,17 @@ var SFComponent = /** @class */ (function () {
                     this.layout = 'inline';
                     this.firstVisual = false;
                     this.liveValidate = false;
-                    if (this._btn)
+                    if (this._btn) {
                         this._btn.submit = this._btn.search;
+                    }
                     break;
                 case 'edit':
                     this.layout = 'horizontal';
                     this.firstVisual = false;
                     this.liveValidate = true;
-                    if (this._btn)
+                    if (this._btn) {
                         this._btn.submit = this._btn.edit;
+                    }
                     break;
             }
             this._mode = value;
@@ -2041,6 +2047,9 @@ var SFComponent = /** @class */ (function () {
         if (this.ui == null)
             this.ui = {};
         this._defUi = __assign({ onlyVisual: this.options.onlyVisual, size: this.options.size, liveValidate: this.liveValidate, firstVisual: this.firstVisual }, this.options.ui, _schema.ui, this.ui['*']);
+        if (this.onlyVisual === true) {
+            this._defUi.onlyVisual = true;
+        }
         // root
         this._ui = __assign({}, this._defUi);
         inFn(_schema, _schema, this.ui, this.ui, this._ui);
@@ -2123,20 +2132,12 @@ var SFComponent = /** @class */ (function () {
      * @return {?}
      */
     function (path, templateRef) {
-        /** @type {?} */
-        var property = this.rootProperty.searchProperty(path);
-        if (!property) {
-            console.warn("\u672A\u627E\u5230\u8DEF\u5F84\uFF1A" + path);
-            return;
-        }
         if (this._renders.has(path)) {
-            console.warn("\u5DF2\u7ECF\u5B58\u5728\u76F8\u540C\u81EA\u5B9A\u4E49\u8DEF\u5F84\uFF1A" + path);
+            console.warn("Duplicate definition \"" + path + "\" custom widget");
             return;
         }
         this._renders.set(path, templateRef);
-        /** @type {?} */
-        var pui = this.rootProperty.searchProperty(path).ui;
-        pui._render = templateRef;
+        this.attachCustomRender();
     };
     /**
      * @return {?}
@@ -2148,9 +2149,11 @@ var SFComponent = /** @class */ (function () {
         var _this = this;
         this._renders.forEach(function (tpl, path) {
             /** @type {?} */
-            var pui = _this.rootProperty.searchProperty(path).ui;
-            if (!pui._render)
-                pui._render = tpl;
+            var property = _this.rootProperty.searchProperty(path);
+            if (property == null) {
+                return;
+            }
+            property.ui._render = tpl;
         });
     };
     /**
@@ -2290,6 +2293,7 @@ var SFComponent = /** @class */ (function () {
                         '[class.sf]': 'true',
                         '[class.sf-search]': "mode === 'search'",
                         '[class.sf-edit]': "mode === 'edit'",
+                        '[class.sf__no-error]': "onlyVisual",
                     },
                     changeDetection: ChangeDetectionStrategy.OnPush
                 }] }
@@ -2311,6 +2315,7 @@ var SFComponent = /** @class */ (function () {
         liveValidate: [{ type: Input }],
         autocomplete: [{ type: Input }],
         firstVisual: [{ type: Input }],
+        onlyVisual: [{ type: Input }],
         mode: [{ type: Input }],
         formChange: [{ type: Output }],
         formSubmit: [{ type: Output }],
@@ -2325,6 +2330,10 @@ var SFComponent = /** @class */ (function () {
         InputBoolean(),
         __metadata("design:type", Object)
     ], SFComponent.prototype, "firstVisual", void 0);
+    __decorate([
+        InputBoolean(),
+        __metadata("design:type", Object)
+    ], SFComponent.prototype, "onlyVisual", void 0);
     return SFComponent;
 }());
 

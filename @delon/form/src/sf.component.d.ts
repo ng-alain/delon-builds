@@ -53,6 +53,8 @@ export declare class SFComponent implements OnInit, OnChanges, OnDestroy {
     autocomplete: 'on' | 'off';
     /** 立即显示错误视觉 */
     firstVisual: boolean;
+    /** 是否只展示错误视觉不显示错误文本 */
+    onlyVisual: boolean;
     /** 表单模式 */
     mode: 'default' | 'search' | 'edit';
     private _mode;
