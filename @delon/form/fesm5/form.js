@@ -2,9 +2,9 @@ import { CommonModule } from '@angular/common';
 import { DelonLocaleService, DelonLocaleModule } from '@delon/theme';
 import { NgModel, FormsModule } from '@angular/forms';
 import format from 'date-fns/format';
-import { map, distinctUntilChanged, take, filter, takeUntil, debounceTime, flatMap, startWith, tap } from 'rxjs/operators';
+import { map, distinctUntilChanged, filter, takeUntil, debounceTime, flatMap, startWith, tap } from 'rxjs/operators';
 import { __extends, __assign, __decorate, __metadata, __spread, __values, __rest } from 'tslib';
-import { Injectable, Component, Input, Directive, TemplateRef, ComponentFactoryResolver, ViewChild, ViewContainerRef, ChangeDetectorRef, Inject, Injector, HostBinding, EventEmitter, ChangeDetectionStrategy, NgZone, Output, ElementRef, Renderer2, defineInjectable, NgModule } from '@angular/core';
+import { Injectable, Component, Input, Directive, TemplateRef, ComponentFactoryResolver, ViewChild, ViewContainerRef, ChangeDetectorRef, Inject, Injector, HostBinding, EventEmitter, ChangeDetectionStrategy, Output, ElementRef, Renderer2, defineInjectable, NgModule } from '@angular/core';
 import { deepCopy, toBoolean, InputBoolean, InputNumber, deepGet, DelonUtilModule } from '@delon/util';
 import { NzTreeNode, NzModalService, NgZorroAntdModule } from 'ng-zorro-antd';
 import { of, combineLatest, BehaviorSubject, Observable, Subject } from 'rxjs';
@@ -345,7 +345,6 @@ function getEnum(list, formData, readOnly) {
     }
     // fix disabled status
     if (readOnly) {
-        console.log('1');
         list.forEach(function (item) { return (item.disabled = true); });
     }
     return list;
@@ -368,7 +367,6 @@ function getCopyEnum(list, formData, readOnly) {
  */
 function getData(schema, ui, formData, asyncArgs) {
     if (typeof ui.asyncData === 'function') {
-        console.log('2');
         return ui.asyncData(asyncArgs).pipe(map(function (list) { return getEnum(list, formData, schema.readOnly); }));
     }
     return of(getCopyEnum(schema.enum, formData, schema.readOnly));
@@ -1740,14 +1738,13 @@ function useFactory(schemaValidatorFactory, options) {
     return new FormPropertyFactory(schemaValidatorFactory, options);
 }
 var SFComponent = /** @class */ (function () {
-    function SFComponent(formPropertyFactory, terminator, options, cdr, i18n, ngZone) {
+    function SFComponent(formPropertyFactory, terminator, options, cdr, i18n) {
         var _this = this;
         this.formPropertyFactory = formPropertyFactory;
         this.terminator = terminator;
         this.options = options;
         this.cdr = cdr;
         this.i18n = i18n;
-        this.ngZone = ngZone;
         // tslint:disable-next-line:no-any
         this.locale = {};
         this._renders = new Map();
@@ -2248,10 +2245,7 @@ var SFComponent = /** @class */ (function () {
         var _this = this;
         if (emit === void 0) { emit = false; }
         (/** @type {?} */ (this)).rootProperty.resetValue((/** @type {?} */ (this)).formData, false);
-        (/** @type {?} */ (this)).ngZone.onStable
-            .asObservable()
-            .pipe(take(1))
-            .subscribe(function () { return (/** @type {?} */ (_this)).cdr.markForCheck(); });
+        Promise.resolve().then(function () { return (/** @type {?} */ (_this)).cdr.detectChanges(); });
         if (emit) {
             (/** @type {?} */ (this)).formReset.emit((/** @type {?} */ (this)).value);
         }
@@ -2308,8 +2302,7 @@ var SFComponent = /** @class */ (function () {
         { type: TerminatorService },
         { type: DelonFormConfig },
         { type: ChangeDetectorRef },
-        { type: DelonLocaleService },
-        { type: NgZone }
+        { type: DelonLocaleService }
     ]; };
     SFComponent.propDecorators = {
         layout: [{ type: Input }],
@@ -3814,8 +3807,9 @@ var SelectWidget = /** @class */ (function (_super) {
      * @return {?}
      */
     function (values) {
-        if (this.ui.change)
+        if (this.ui.change) {
             this.ui.change(values);
+        }
         this.setValue(values);
     };
     /**
@@ -3827,8 +3821,9 @@ var SelectWidget = /** @class */ (function (_super) {
      * @return {?}
      */
     function (value) {
-        if (this.ui.openChange)
+        if (this.ui.openChange) {
             this.ui.openChange(value);
+        }
     };
     /**
      * @param {?} text
@@ -3856,13 +3851,14 @@ var SelectWidget = /** @class */ (function (_super) {
      * @return {?}
      */
     function () {
-        if (this.ui.scrollToBottom)
+        if (this.ui.scrollToBottom) {
             this.ui.scrollToBottom();
+        }
     };
     SelectWidget.decorators = [
         { type: Component, args: [{
                     selector: 'sf-select',
-                    template: "\n  <sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n\n    <nz-select\n      [nzDisabled]=\"disabled\"\n      [nzSize]=\"ui.size\"\n      [ngModel]=\"value\"\n      (ngModelChange)=\"change($event)\"\n      [nzPlaceHolder]=\"ui.placeholder\"\n      [nzAllowClear]=\"i.allowClear\"\n      [nzAutoFocus]=\"i.autoFocus\"\n      [nzDropdownClassName]=\"i.dropdownClassName\"\n      [nzDropdownMatchSelectWidth]=\"i.dropdownMatchSelectWidth\"\n      [nzServerSearch]=\"i.serverSearch\"\n      [nzMaxMultipleCount]=\"i.maxMultipleCount\"\n      [nzMode]=\"i.mode\"\n      [nzNotFoundContent]=\"i.notFoundContent\"\n      [nzShowSearch]=\"i.showSearch\"\n      (nzOpenChange)=\"openChange($event)\"\n      (nzOnSearch)=\"searchChange($event)\"\n      (nzScrollToBottom)=\"scrollToBottom()\">\n      <ng-container *ngIf=\"!hasGroup\">\n        <nz-option\n          *ngFor=\"let o of data\"\n          [nzLabel]=\"o.label\"\n          [nzValue]=\"o.value\"\n          [nzDisabled]=\"o.disabled\">\n        </nz-option>\n      </ng-container>\n      <ng-container *ngIf=\"hasGroup\">\n        <nz-option-group *ngFor=\"let i of data\" [nzLabel]=\"i.label\">\n          <nz-option\n            *ngFor=\"let o of i.children\"\n            [nzLabel]=\"o.label\"\n            [nzValue]=\"o.value\"\n            [nzDisabled]=\"o.disabled\">\n          </nz-option>\n        </nz-option-group>\n      </ng-container>\n    </nz-select>\n\n  </sf-item-wrap>\n  "
+                    template: "\n    <sf-item-wrap\n      [id]=\"id\"\n      [schema]=\"schema\"\n      [ui]=\"ui\"\n      [showError]=\"showError\"\n      [error]=\"error\"\n      [showTitle]=\"schema.title\"\n    >\n      <nz-select\n        [nzDisabled]=\"disabled\"\n        [nzSize]=\"ui.size\"\n        [ngModel]=\"value\"\n        (ngModelChange)=\"change($event)\"\n        [nzPlaceHolder]=\"ui.placeholder\"\n        [nzAllowClear]=\"i.allowClear\"\n        [nzAutoFocus]=\"i.autoFocus\"\n        [nzDropdownClassName]=\"i.dropdownClassName\"\n        [nzDropdownMatchSelectWidth]=\"i.dropdownMatchSelectWidth\"\n        [nzServerSearch]=\"i.serverSearch\"\n        [nzMaxMultipleCount]=\"i.maxMultipleCount\"\n        [nzMode]=\"i.mode\"\n        [nzNotFoundContent]=\"i.notFoundContent\"\n        [nzShowSearch]=\"i.showSearch\"\n        (nzOpenChange)=\"openChange($event)\"\n        (nzOnSearch)=\"searchChange($event)\"\n        (nzScrollToBottom)=\"scrollToBottom()\"\n      >\n        <ng-container *ngIf=\"!hasGroup\">\n          <nz-option\n            *ngFor=\"let o of data\"\n            [nzLabel]=\"o.label\"\n            [nzValue]=\"o.value\"\n            [nzDisabled]=\"o.disabled\"\n          >\n          </nz-option>\n        </ng-container>\n        <ng-container *ngIf=\"hasGroup\">\n          <nz-option-group *ngFor=\"let i of data\" [nzLabel]=\"i.label\">\n            <nz-option\n              *ngFor=\"let o of i.children\"\n              [nzLabel]=\"o.label\"\n              [nzValue]=\"o.value\"\n              [nzDisabled]=\"o.disabled\"\n            >\n            </nz-option>\n          </nz-option-group>\n        </ng-container>\n      </nz-select>\n    </sf-item-wrap>\n  "
                 }] }
     ];
     return SelectWidget;
