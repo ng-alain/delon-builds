@@ -238,15 +238,15 @@
             showTime: true,
             format: 'YYYY-MM-DDTHH:mm:ssZ',
         },
-        'date': { widget: 'date', format: 'YYYY-MM-DD' },
+        date: { widget: 'date', format: 'YYYY-MM-DD' },
         'full-date': { widget: 'date', format: 'YYYY-MM-DD' },
-        'time': { widget: 'time' },
+        time: { widget: 'time' },
         'full-time': { widget: 'time' },
-        'week': { widget: 'date', mode: 'week', format: 'YYYY-WW' },
-        'month': { widget: 'date', mode: 'month', format: 'YYYY-MM' },
-        'uri': { widget: 'upload' },
-        'email': { widget: 'autocomplete', type: 'email' },
-        'color': { widget: 'string', type: 'color' },
+        week: { widget: 'date', mode: 'week', format: 'YYYY-WW' },
+        month: { widget: 'date', mode: 'month', format: 'YYYY-MM' },
+        uri: { widget: 'upload' },
+        email: { widget: 'autocomplete', type: 'email' },
+        color: { widget: 'string', type: 'color' },
         '': { widget: 'string' },
     };
     /**
@@ -262,19 +262,22 @@
      * @return {?}
      */
     function toBool(value, defaultValue) {
-        return value == null ? defaultValue : "" + value !== 'false';
+        return util.toBoolean(value, defaultValue);
     }
     /**
+     * @param {?} ui
      * @param {...?} args
      * @return {?}
      */
-    function di() {
+    function di(ui) {
         var args = [];
-        for (var _i = 0; _i < arguments.length; _i++) {
-            args[_i] = arguments[_i];
+        for (var _i = 1; _i < arguments.length; _i++) {
+            args[_i - 1] = arguments[_i];
         }
-        // tslint:disable-next-line:no-console
-        console.warn.apply(console, __spread(args));
+        if (ui.debug) {
+            // tslint:disable-next-line:no-console
+            console.warn.apply(console, __spread(args));
+        }
     }
     /**
      * 根据 `$ref` 查找 `definitions`
@@ -459,7 +462,8 @@
         }
         // fix disabled status
         if (readOnly) {
-            list.forEach(function (item) { return item.disabled = true; });
+            console.log('1');
+            list.forEach(function (item) { return (item.disabled = true); });
         }
         return list;
     }
@@ -481,9 +485,8 @@
      */
     function getData(schema, ui, formData, asyncArgs) {
         if (typeof ui.asyncData === 'function') {
-            return ui
-                .asyncData(asyncArgs)
-                .pipe(operators.map(function (list) { return getEnum(list, formData, schema.readOnly); }));
+            console.log('2');
+            return ui.asyncData(asyncArgs).pipe(operators.map(function (list) { return getEnum(list, formData, schema.readOnly); }));
         }
         return rxjs.of(getCopyEnum(schema.enum, formData, schema.readOnly));
     }
@@ -1859,13 +1862,14 @@
         return new FormPropertyFactory(schemaValidatorFactory, options);
     }
     var SFComponent = /** @class */ (function () {
-        function SFComponent(formPropertyFactory, terminator, options, cdr, i18n) {
+        function SFComponent(formPropertyFactory, terminator, options, cdr, i18n, ngZone) {
             var _this = this;
             this.formPropertyFactory = formPropertyFactory;
             this.terminator = terminator;
             this.options = options;
             this.cdr = cdr;
             this.i18n = i18n;
+            this.ngZone = ngZone;
             // tslint:disable-next-line:no-any
             this.locale = {};
             this._renders = new Map();
@@ -2177,9 +2181,7 @@
                 resolveIf(_schema, this._ui);
                 inIfFn(_schema, this._ui);
                 this._schema = _schema;
-                if (this._ui.debug) {
-                    di('cover schema & ui', this._ui, _schema);
-                }
+                di(this._ui, 'cover schema & ui', this._ui, _schema);
             };
         /**
          * @return {?}
@@ -2216,8 +2218,7 @@
                 if (this._mode) {
                     this.mode = this._mode;
                 }
-                if (this._ui.debug)
-                    di('button property', this._btn);
+                di(this._ui, 'button property', this._btn);
             };
         /**
          * @return {?}
@@ -2369,7 +2370,10 @@
                     emit = false;
                 }
                 ( /** @type {?} */(this)).rootProperty.resetValue(( /** @type {?} */(this)).formData, false);
-                Promise.resolve().then(function () { return ( /** @type {?} */(_this)).cdr.detectChanges(); });
+                ( /** @type {?} */(this)).ngZone.onStable
+                    .asObservable()
+                    .pipe(operators.take(1))
+                    .subscribe(function () { return ( /** @type {?} */(_this)).cdr.markForCheck(); });
                 if (emit) {
                     ( /** @type {?} */(this)).formReset.emit(( /** @type {?} */(this)).value);
                 }
@@ -2427,7 +2431,8 @@
                 { type: TerminatorService },
                 { type: DelonFormConfig },
                 { type: i0.ChangeDetectorRef },
-                { type: theme.DelonLocaleService }
+                { type: theme.DelonLocaleService },
+                { type: i0.NgZone }
             ];
         };
         SFComponent.propDecorators = {
@@ -2743,8 +2748,7 @@
                 this.formProperty.errorsChanges
                     .pipe(operators.takeUntil(this.sfItemComp.unsubscribe$), operators.filter(function (w) { return w != null; }))
                     .subscribe(function (errors) {
-                    if (_this.ui.debug)
-                        di('errorsChanges', _this.formProperty.path, errors);
+                    di(_this.ui, 'errorsChanges', _this.formProperty.path, errors);
                     // 不显示首次校验视觉
                     if (_this.firstVisual) {
                         _this.showError = errors.length > 0;
@@ -2764,9 +2768,7 @@
          */
             function (value) {
                 this.formProperty.setValue(value, false);
-                if (this.ui.debug) {
-                    di('valueChanges', this.formProperty.path, this.formProperty);
-                }
+                di(this.ui, 'valueChanges', this.formProperty.path, this.formProperty);
             };
         Object.defineProperty(Widget.prototype, "value", {
             get: /**

@@ -3,9 +3,9 @@ import { CommonModule } from '@angular/common';
 import { DelonLocaleService, DelonLocaleModule } from '@delon/theme';
 import { NgModel, FormsModule } from '@angular/forms';
 import format from 'date-fns/format';
-import { map, distinctUntilChanged, filter, takeUntil, debounceTime, flatMap, startWith, tap } from 'rxjs/operators';
-import { Injectable, Component, Input, Directive, TemplateRef, ChangeDetectorRef, HostBinding, Inject, Injector, ViewChild, ViewContainerRef, ComponentFactoryResolver, EventEmitter, ChangeDetectionStrategy, Output, ElementRef, Renderer2, defineInjectable, NgModule } from '@angular/core';
-import { deepCopy, InputBoolean, InputNumber, deepGet, DelonUtilModule } from '@delon/util';
+import { map, distinctUntilChanged, take, filter, takeUntil, debounceTime, flatMap, startWith, tap } from 'rxjs/operators';
+import { Injectable, Component, Input, Directive, TemplateRef, ChangeDetectorRef, HostBinding, Inject, Injector, ViewChild, ViewContainerRef, ComponentFactoryResolver, EventEmitter, ChangeDetectionStrategy, NgZone, Output, ElementRef, Renderer2, defineInjectable, NgModule } from '@angular/core';
+import { deepCopy, toBoolean, InputBoolean, InputNumber, deepGet, DelonUtilModule } from '@delon/util';
 import { NzTreeNode, NzModalService, NgZorroAntdModule } from 'ng-zorro-antd';
 import { of, combineLatest, BehaviorSubject, Observable, Subject } from 'rxjs';
 
@@ -128,15 +128,15 @@ const FORMATMAPS = {
         showTime: true,
         format: 'YYYY-MM-DDTHH:mm:ssZ',
     },
-    'date': { widget: 'date', format: 'YYYY-MM-DD' },
+    date: { widget: 'date', format: 'YYYY-MM-DD' },
     'full-date': { widget: 'date', format: 'YYYY-MM-DD' },
-    'time': { widget: 'time' },
+    time: { widget: 'time' },
     'full-time': { widget: 'time' },
-    'week': { widget: 'date', mode: 'week', format: 'YYYY-WW' },
-    'month': { widget: 'date', mode: 'month', format: 'YYYY-MM' },
-    'uri': { widget: 'upload' },
-    'email': { widget: 'autocomplete', type: 'email' },
-    'color': { widget: 'string', type: 'color' },
+    week: { widget: 'date', mode: 'week', format: 'YYYY-WW' },
+    month: { widget: 'date', mode: 'month', format: 'YYYY-MM' },
+    uri: { widget: 'upload' },
+    email: { widget: 'autocomplete', type: 'email' },
+    color: { widget: 'string', type: 'color' },
     '': { widget: 'string' },
 };
 /**
@@ -152,15 +152,18 @@ function isBlank(o) {
  * @return {?}
  */
 function toBool(value, defaultValue) {
-    return value == null ? defaultValue : `${value}` !== 'false';
+    return toBoolean(value, defaultValue);
 }
 /**
+ * @param {?} ui
  * @param {...?} args
  * @return {?}
  */
-function di(...args) {
-    // tslint:disable-next-line:no-console
-    console.warn(...args);
+function di(ui, ...args) {
+    if (ui.debug) {
+        // tslint:disable-next-line:no-console
+        console.warn(...args);
+    }
 }
 /**
  * 根据 `$ref` 查找 `definitions`
@@ -323,7 +326,8 @@ function getEnum(list, formData, readOnly) {
     }
     // fix disabled status
     if (readOnly) {
-        list.forEach((item) => item.disabled = true);
+        console.log('1');
+        list.forEach((item) => (item.disabled = true));
     }
     return list;
 }
@@ -345,9 +349,8 @@ function getCopyEnum(list, formData, readOnly) {
  */
 function getData(schema, ui, formData, asyncArgs) {
     if (typeof ui.asyncData === 'function') {
-        return ui
-            .asyncData(asyncArgs)
-            .pipe(map(list => getEnum(list, formData, schema.readOnly)));
+        console.log('2');
+        return ui.asyncData(asyncArgs).pipe(map(list => getEnum(list, formData, schema.readOnly)));
     }
     return of(getCopyEnum(schema.enum, formData, schema.readOnly));
 }
@@ -1402,13 +1405,15 @@ class SFComponent {
      * @param {?} options
      * @param {?} cdr
      * @param {?} i18n
+     * @param {?} ngZone
      */
-    constructor(formPropertyFactory, terminator, options, cdr, i18n) {
+    constructor(formPropertyFactory, terminator, options, cdr, i18n, ngZone) {
         this.formPropertyFactory = formPropertyFactory;
         this.terminator = terminator;
         this.options = options;
         this.cdr = cdr;
         this.i18n = i18n;
+        this.ngZone = ngZone;
         // tslint:disable-next-line:no-any
         this.locale = {};
         this._renders = new Map();
@@ -1661,9 +1666,7 @@ class SFComponent {
         resolveIf(_schema, this._ui);
         inIfFn(_schema, this._ui);
         this._schema = _schema;
-        if (this._ui.debug) {
-            di('cover schema & ui', this._ui, _schema);
-        }
+        di(this._ui, 'cover schema & ui', this._ui, _schema);
     }
     /**
      * @return {?}
@@ -1697,8 +1700,7 @@ class SFComponent {
         if (this._mode) {
             this.mode = this._mode;
         }
-        if (this._ui.debug)
-            di('button property', this._btn);
+        di(this._ui, 'button property', this._btn);
     }
     /**
      * @return {?}
@@ -1801,7 +1803,10 @@ class SFComponent {
      */
     reset(emit = false) {
         (/** @type {?} */ (this)).rootProperty.resetValue((/** @type {?} */ (this)).formData, false);
-        Promise.resolve().then(() => (/** @type {?} */ (this)).cdr.detectChanges());
+        (/** @type {?} */ (this)).ngZone.onStable
+            .asObservable()
+            .pipe(take(1))
+            .subscribe(() => (/** @type {?} */ (this)).cdr.markForCheck());
         if (emit) {
             (/** @type {?} */ (this)).formReset.emit((/** @type {?} */ (this)).value);
         }
@@ -1853,7 +1858,8 @@ SFComponent.ctorParameters = () => [
     { type: TerminatorService },
     { type: DelonFormConfig },
     { type: ChangeDetectorRef },
-    { type: DelonLocaleService }
+    { type: DelonLocaleService },
+    { type: NgZone }
 ];
 SFComponent.propDecorators = {
     layout: [{ type: Input }],
@@ -2135,8 +2141,7 @@ class Widget {
         this.formProperty.errorsChanges
             .pipe(takeUntil(this.sfItemComp.unsubscribe$), filter(w => w != null))
             .subscribe((errors) => {
-            if (this.ui.debug)
-                di('errorsChanges', this.formProperty.path, errors);
+            di(this.ui, 'errorsChanges', this.formProperty.path, errors);
             // 不显示首次校验视觉
             if (this.firstVisual) {
                 this.showError = errors.length > 0;
@@ -2152,9 +2157,7 @@ class Widget {
      */
     setValue(value) {
         this.formProperty.setValue(value, false);
-        if (this.ui.debug) {
-            di('valueChanges', this.formProperty.path, this.formProperty);
-        }
+        di(this.ui, 'valueChanges', this.formProperty.path, this.formProperty);
     }
     /**
      * @return {?}

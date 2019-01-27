@@ -1,13 +1,13 @@
 import { Observable } from 'rxjs';
 import { SFSchema, SFSchemaDefinition, SFSchemaEnum } from './schema';
-import { SFUISchemaItem, SFUISchemaItemRun } from './schema/ui';
+import { SFUISchema, SFUISchemaItem, SFUISchemaItemRun } from './schema/ui';
 export declare const FORMATMAPS: {
     'date-time': {
         widget: string;
         showTime: boolean;
         format: string;
     };
-    'date': {
+    date: {
         widget: string;
         format: string;
     };
@@ -15,30 +15,30 @@ export declare const FORMATMAPS: {
         widget: string;
         format: string;
     };
-    'time': {
+    time: {
         widget: string;
     };
     'full-time': {
         widget: string;
     };
-    'week': {
+    week: {
         widget: string;
         mode: string;
         format: string;
     };
-    'month': {
+    month: {
         widget: string;
         mode: string;
         format: string;
     };
-    'uri': {
+    uri: {
         widget: string;
     };
-    'email': {
+    email: {
         widget: string;
         type: string;
     };
-    'color': {
+    color: {
         widget: string;
         type: string;
     };
@@ -48,7 +48,7 @@ export declare const FORMATMAPS: {
 };
 export declare function isBlank(o: any): boolean;
 export declare function toBool(value: any, defaultValue: boolean): boolean;
-export declare function di(...args: any[]): void;
+export declare function di(ui: SFUISchema, ...args: any[]): void;
 /**
  * 取回Schema，并处理 `$ref` 的关系
  */
