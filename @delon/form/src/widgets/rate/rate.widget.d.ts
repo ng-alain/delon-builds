@@ -6,6 +6,6 @@ export declare class RateWidget extends ControlWidget implements OnInit {
     allowClear: boolean;
     autoFocus: boolean;
     hasText: boolean;
+    readonly text: string;
     ngOnInit(): void;
-    genText(): string;
 }

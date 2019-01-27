@@ -3719,6 +3719,18 @@ var RateWidget = /** @class */ (function (_super) {
         _this.hasText = false;
         return _this;
     }
+    Object.defineProperty(RateWidget.prototype, "text", {
+        get: /**
+         * @return {?}
+         */
+        function () {
+            return this.hasText
+                ? ((/** @type {?} */ (this.ui.text))).replace('{{value}}', this.formProperty.value)
+                : '';
+        },
+        enumerable: true,
+        configurable: true
+    });
     /**
      * @return {?}
      */
@@ -3732,21 +3744,10 @@ var RateWidget = /** @class */ (function (_super) {
         this.autoFocus = toBool(this.ui.autoFocus, false);
         this.hasText = !!this.ui.text;
     };
-    /**
-     * @return {?}
-     */
-    RateWidget.prototype.genText = /**
-     * @return {?}
-     */
-    function () {
-        return this.hasText
-            ? ((/** @type {?} */ (this.ui.text))).replace('{{value}}', this.formProperty.value)
-            : '';
-    };
     RateWidget.decorators = [
         { type: Component, args: [{
                     selector: 'sf-rate',
-                    template: "\n  <sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n\n    <nz-rate\n      [nzDisabled]=\"disabled\"\n      [ngModel]=\"value\"\n      (ngModelChange)=\"setValue($event)\"\n      [nzAllowClear]=\"allowClear\"\n      [nzAllowHalf]=\"allowHalf\"\n      [nzAutoFocus]=\"autoFocus\"\n      [nzCount]=\"count\"></nz-rate>\n    <span *ngIf=\"hasText && formProperty.value\" class=\"ant-rate-text\">{{ genText() }}</span>\n\n  </sf-item-wrap>\n  "
+                    template: "<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n  <nz-rate [nzDisabled]=\"disabled\" [ngModel]=\"value\" (ngModelChange)=\"setValue($event)\" [nzAllowClear]=\"allowClear\" [nzAllowHalf]=\"allowHalf\"\n           [nzAutoFocus]=\"autoFocus\" [nzCount]=\"count\"></nz-rate>\n  <span *ngIf=\"hasText && formProperty.value\" class=\"ant-rate-text\">{{ text }}</span>\n</sf-item-wrap>\n"
                 }] }
     ];
     return RateWidget;
