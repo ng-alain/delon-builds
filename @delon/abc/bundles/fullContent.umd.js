@@ -122,7 +122,9 @@
             this.router = router$$1;
             this.doc = doc;
             this.inited = false;
-            this.id = "_full-content-" + Math.random().toString(36).substring(2);
+            this.id = "_full-content-" + Math.random()
+                .toString(36)
+                .substring(2);
             this.scroll$ = null;
             this._height = 0;
             this.hideTitle = true;
@@ -169,7 +171,10 @@
          * @return {?}
          */
             function () {
-                this._height = this.bodyEl.getBoundingClientRect().height - (( /** @type {?} */(this.el.nativeElement))).getBoundingClientRect().top - this.padding;
+                this._height =
+                    this.bodyEl.getBoundingClientRect().height -
+                        (( /** @type {?} */(this.el.nativeElement))).getBoundingClientRect().top -
+                        this.padding;
                 this.cdr.detectChanges();
             };
         /**
@@ -199,9 +204,7 @@
                     .pipe(operators.debounceTime(200))
                     .subscribe(function () { return _this.updateHeight(); });
                 // when servier changed
-                this.srv$ = this.srv.change
-                    .pipe(operators.filter(function (res) { return res !== null; }))
-                    .subscribe(function () { return _this.toggle(); });
+                this.srv$ = this.srv.change.pipe(operators.filter(function (res) { return res !== null; })).subscribe(function () { return _this.toggle(); });
                 // when router changed
                 this.route$ = this.router.events
                     .pipe(operators.filter(function (e) { return e instanceof router.ActivationStart || e instanceof router.ActivationEnd; }), operators.debounceTime(200))
@@ -261,7 +264,7 @@
         FullContentComponent.decorators = [
             { type: i0.Component, args: [{
                         selector: 'full-content',
-                        template: "<ng-content></ng-content>",
+                        template: "\n    <ng-content></ng-content>\n  ",
                         host: { '[class.full-content]': 'true' },
                         changeDetection: i0.ChangeDetectionStrategy.OnPush
                     }] }

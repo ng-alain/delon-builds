@@ -137,7 +137,7 @@ class G2BarComponent {
 G2BarComponent.decorators = [
     { type: Component, args: [{
                 selector: 'g2-bar',
-                template: "<ng-container *stringTemplateOutlet=\"title\">\n  <h4 style=\"margin-bottom:20px\">{{title}}</h4>\n</ng-container>\n<div #container></div>",
+                template: "<ng-container *stringTemplateOutlet=\"title\">\n  <h4 style=\"margin-bottom:20px\">{{title}}</h4>\n</ng-container>\n<div #container></div>\n",
                 changeDetection: ChangeDetectionStrategy.OnPush
             }] }
 ];

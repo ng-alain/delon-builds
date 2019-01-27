@@ -36,7 +36,7 @@
         }
         /** @type {?} */
         var event = document.createEvent('MouseEvent');
-        event.initMouseEvent(type, false, /* canBubble */ false, /* cancelable */ window, /* view */ 0, /* detail */ x, /* screenX */ y, /* screenY */ x, /* clientX */ y, /* clientY */ false, /* ctrlKey */ false, /* altKey */ false, /* shiftKey */ false, /* metaKey */ 0, /* button */ null /* relatedTarget */);
+        event.initMouseEvent(type, false /* canBubble */, false /* cancelable */, window /* view */, 0 /* detail */, x /* screenX */, y /* screenY */, x /* clientX */, y /* clientY */, false /* ctrlKey */, false /* altKey */, false /* shiftKey */, false /* metaKey */, 0 /* button */, null /* relatedTarget */);
         return event;
     }
     /**
@@ -808,28 +808,36 @@
         Object.defineProperty(TestContext.prototype, "component", {
             get: /**
              * @return {?}
-             */ function () { return this.fixture.componentInstance; },
+             */ function () {
+                return this.fixture.componentInstance;
+            },
             enumerable: true,
             configurable: true
         });
         Object.defineProperty(TestContext.prototype, "el", {
             get: /**
              * @return {?}
-             */ function () { return this.fixture.debugElement.nativeElement; },
+             */ function () {
+                return this.fixture.debugElement.nativeElement;
+            },
             enumerable: true,
             configurable: true
         });
         Object.defineProperty(TestContext.prototype, "dl", {
             get: /**
              * @return {?}
-             */ function () { return this.fixture.debugElement; },
+             */ function () {
+                return this.fixture.debugElement;
+            },
             enumerable: true,
             configurable: true
         });
         Object.defineProperty(TestContext.prototype, "context", {
             get: /**
              * @return {?}
-             */ function () { return this.fixture.componentInstance; },
+             */ function () {
+                return this.fixture.componentInstance;
+            },
             enumerable: true,
             configurable: true
         });
@@ -839,7 +847,9 @@
         TestContext.prototype.detectChanges = /**
          * @return {?}
          */
-            function () { this.fixture.detectChanges(); };
+            function () {
+                this.fixture.detectChanges();
+            };
         /**
          * @template T1
          * @param {?} component
@@ -880,7 +890,9 @@
                             }
                         });
                     });
-                })().then(done).catch(done.fail);
+                })()
+                    .then(done)
+                    .catch(done.fail);
             });
         }
         afterEach(function () {

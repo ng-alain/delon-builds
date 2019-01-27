@@ -27,11 +27,10 @@ function addDeclarationToNgModule(options) {
         }
         const sourceText = text.toString('utf-8');
         const source = ts.createSourceFile(modulePath, sourceText, ts.ScriptTarget.Latest, true);
-        // tslint:disable-next-line:prefer-template
-        const importModulePath = core_1.normalize(`/${options.path}/` + (options.flat ? '' : core_1.strings.dasherize(options.name) + '/') + core_1.strings.dasherize(options.name) + '.module');
+        const importModulePath = core_1.normalize(`/${options.path}/${options.flat ? '' : core_1.strings.dasherize(options.name) + '/'}${core_1.strings.dasherize(options.name)}.module`);
         const relativeDir = core_1.relative(core_1.dirname(modulePath), core_1.dirname(importModulePath));
         // tslint:disable-next-line:prefer-template
-        const relativePath = (relativeDir.startsWith('.') ? relativeDir : './' + relativeDir) + '/' + core_1.basename(importModulePath);
+        const relativePath = `${relativeDir.startsWith('.') ? relativeDir : './' + relativeDir}/${core_1.basename(importModulePath)}`;
         const changes = ast_utils_1.addImportToModule(source, modulePath, core_1.strings.classify(`${options.name}Module`), relativePath);
         const recorder = host.beginUpdate(modulePath);
         for (const change of changes) {

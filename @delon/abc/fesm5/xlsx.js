@@ -94,9 +94,7 @@ var XlsxService = /** @class */ (function () {
             _this.init().then(function () {
                 // from url
                 if (typeof fileOrUrl === 'string') {
-                    _this.http
-                        .request('GET', fileOrUrl, { responseType: 'arraybuffer' })
-                        .subscribe(function (res) {
+                    _this.http.request('GET', fileOrUrl, { responseType: 'arraybuffer' }).subscribe(function (res) {
                         /** @type {?} */
                         var wb = XLSX.read(new Uint8Array(res), { type: 'array' });
                         resolver(_this.read(wb));

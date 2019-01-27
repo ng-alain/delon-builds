@@ -108,9 +108,7 @@
                     _this.init().then(function () {
                         // from url
                         if (typeof fileOrUrl === 'string') {
-                            _this.http
-                                .request('GET', fileOrUrl, { responseType: 'arraybuffer' })
-                                .subscribe(function (res) {
+                            _this.http.request('GET', fileOrUrl, { responseType: 'arraybuffer' }).subscribe(function (res) {
                                 JSZip.loadAsync(res, options).then(function (ret) { return resolve(ret); });
                             }, function (err) {
                                 reject(err);
@@ -203,9 +201,7 @@
                 /** @type {?} */
                 var opt = __assign({}, options);
                 return new Promise(function (resolve, reject) {
-                    zip
-                        .generateAsync(__assign({ type: 'blob' }, opt.options), opt.update)
-                        .then(function (data) {
+                    zip.generateAsync(__assign({ type: 'blob' }, opt.options), opt.update).then(function (data) {
                         if (opt.callback)
                             opt.callback(data);
                         fileSaver.saveAs(data, opt.filename || 'download.zip');

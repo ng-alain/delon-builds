@@ -205,9 +205,7 @@ class ACLService {
      * @return {?}
      */
     parseAbility(value) {
-        if (typeof value === 'number' ||
-            typeof value === 'string' ||
-            Array.isArray(value)) {
+        if (typeof value === 'number' || typeof value === 'string' || Array.isArray(value)) {
             value = (/** @type {?} */ ({ ability: Array.isArray(value) ? value : [value] }));
         }
         delete value.role;
@@ -337,9 +335,9 @@ class ACLGuard {
      * @return {?}
      */
     process(guard) {
-        return (guard && guard instanceof Observable ?
-            guard :
-            of(typeof guard !== 'undefined' && guard !== null ? ((/** @type {?} */ (guard))) : null)).pipe(map(v => this.srv.can(v)), tap(v => {
+        return (guard && guard instanceof Observable
+            ? guard
+            : of(typeof guard !== 'undefined' && guard !== null ? ((/** @type {?} */ (guard))) : null)).pipe(map(v => this.srv.can(v)), tap(v => {
             if (v)
                 return;
             this.router.navigateByUrl(this.options.guard_url);

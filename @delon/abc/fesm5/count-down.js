@@ -65,7 +65,7 @@ var CountDownComponent = /** @class */ (function () {
     CountDownComponent.decorators = [
         { type: Component, args: [{
                     selector: 'count-down',
-                    template: "\n    <countdown *ngIf=\"config\" [config]=\"config\"\n      (start)=\"_start()\"\n      (finished)=\"_finished()\"\n      (notify)=\"_notify($event)\"></countdown>\n  "
+                    template: "\n    <countdown\n      *ngIf=\"config\"\n      [config]=\"config\"\n      (start)=\"_start()\"\n      (finished)=\"_finished()\"\n      (notify)=\"_notify($event)\"\n    ></countdown>\n  "
                 }] }
     ];
     CountDownComponent.propDecorators = {

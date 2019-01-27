@@ -127,9 +127,7 @@ var LodopService = /** @class */ (function () {
                 onResolve('script-load-error', res[0]);
                 return;
             }
-            _this._lodop =
-                window.hasOwnProperty(_this.cog.name) &&
-                    ((/** @type {?} */ (window[_this.cog.name])));
+            _this._lodop = window.hasOwnProperty(_this.cog.name) && ((/** @type {?} */ (window[_this.cog.name])));
             if (_this._lodop === null) {
                 onResolve('load-variable-name-error', { name: _this.cog.name });
                 return;

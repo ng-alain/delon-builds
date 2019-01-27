@@ -129,7 +129,7 @@
         G2CustomComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'g2,g2-custom',
-                        template: "<ng-content></ng-content>",
+                        template: "\n    <ng-content></ng-content>\n  ",
                         changeDetection: core.ChangeDetectionStrategy.OnPush
                     }] }
         ];

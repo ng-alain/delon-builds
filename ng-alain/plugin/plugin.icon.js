@@ -51,12 +51,7 @@ const WHITE_ICONS = [
     'InboxOutline',
 ];
 const ATTRIBUTES = {
-    'nz-input-group': [
-        'nzAddOnBeforeIcon',
-        'nzAddOnAfterIcon',
-        'nzPrefixIcon',
-        'nzSuffixIcon',
-    ],
+    'nz-input-group': ['nzAddOnBeforeIcon', 'nzAddOnAfterIcon', 'nzPrefixIcon', 'nzSuffixIcon'],
     'nz-avatar': ['nzIcon'],
     'quick-menu': ['icon'],
 };
@@ -155,8 +150,7 @@ function fixValue(str, prefix) {
     // value ? 'icon' : 'icon'
     // focus ? 'anticon anticon-arrow-down' : 'anticon anticon-search'
     // 'icon'
-    const types = str.replace(/anticon anticon-/g, '').match(/['|"|`][-A-Za-z]+['|"|`]/g) ||
-        [];
+    const types = str.replace(/anticon anticon-/g, '').match(/['|"|`][-A-Za-z]+['|"|`]/g) || [];
     if (types.length > 0) {
         return types.map(t => prefix + t.replace(/['|"|`]/g, ''));
     }

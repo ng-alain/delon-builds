@@ -19,7 +19,9 @@ class GlobalFooterItemComponent {
 GlobalFooterItemComponent.decorators = [
     { type: Component, args: [{
                 selector: 'global-footer-item',
-                template: `<ng-template #host><ng-content></ng-content></ng-template>`
+                template: `
+    <ng-template #host><ng-content></ng-content></ng-template>
+  `
             }] }
 ];
 GlobalFooterItemComponent.propDecorators = {

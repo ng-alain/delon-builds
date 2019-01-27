@@ -59,7 +59,9 @@ class FullContentComponent {
         this.router = router;
         this.doc = doc;
         this.inited = false;
-        this.id = `_full-content-${Math.random().toString(36).substring(2)}`;
+        this.id = `_full-content-${Math.random()
+            .toString(36)
+            .substring(2)}`;
         this.scroll$ = null;
         this._height = 0;
         this.hideTitle = true;
@@ -97,7 +99,10 @@ class FullContentComponent {
      * @return {?}
      */
     updateHeight() {
-        this._height = this.bodyEl.getBoundingClientRect().height - ((/** @type {?} */ (this.el.nativeElement))).getBoundingClientRect().top - this.padding;
+        this._height =
+            this.bodyEl.getBoundingClientRect().height -
+                ((/** @type {?} */ (this.el.nativeElement))).getBoundingClientRect().top -
+                this.padding;
         this.cdr.detectChanges();
     }
     /**
@@ -120,9 +125,7 @@ class FullContentComponent {
             .pipe(debounceTime(200))
             .subscribe(() => this.updateHeight());
         // when servier changed
-        this.srv$ = this.srv.change
-            .pipe(filter(res => res !== null))
-            .subscribe(() => this.toggle());
+        this.srv$ = this.srv.change.pipe(filter(res => res !== null)).subscribe(() => this.toggle());
         // when router changed
         this.route$ = this.router.events
             .pipe(filter((e) => e instanceof ActivationStart || e instanceof ActivationEnd), debounceTime(200))
@@ -170,7 +173,9 @@ class FullContentComponent {
 FullContentComponent.decorators = [
     { type: Component, args: [{
                 selector: 'full-content',
-                template: `<ng-content></ng-content>`,
+                template: `
+    <ng-content></ng-content>
+  `,
                 host: { '[class.full-content]': 'true' },
                 changeDetection: ChangeDetectionStrategy.OnPush
             }] }

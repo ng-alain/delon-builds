@@ -50,22 +50,9 @@ function addDependenciesToPackageJson(options) {
             'ajv@^6.6.2',
         ]);
         // add ajv
-        json_1.scriptsToAngularJson(host, ['node_modules/ajv/dist/ajv.bundle.js'], 'add', [
-            'build',
-            'test',
-        ]);
+        json_1.scriptsToAngularJson(host, ['node_modules/ajv/dist/ajv.bundle.js'], 'add', ['build', 'test']);
         // @delon/*
-        json_1.addPackageToPackageJson(host, [
-            'abc',
-            'acl',
-            'auth',
-            'cache',
-            'form',
-            'mock',
-            'theme',
-            'util',
-            'chart',
-        ].map(pkg => `@delon/${pkg}@${lib_versions_1.VERSION}`));
+        json_1.addPackageToPackageJson(host, ['abc', 'acl', 'auth', 'cache', 'form', 'mock', 'theme', 'util', 'chart'].map(pkg => `@delon/${pkg}@${lib_versions_1.VERSION}`));
         // ng-alain
         json_1.addPackageToPackageJson(host, [
             `ng-alain@${lib_versions_1.VERSION}`,
@@ -145,13 +132,10 @@ function addCodeStylesToPackageJson() {
         json.scripts['lint-staged'] = `lint-staged`;
         json.scripts['tslint-check'] = `tslint-config-prettier-check ./tslint.json`;
         json['lint-staged'] = {
-            '*.{cmd,html,json,md,sh,txt,xml,yml}': [
-                'editorconfig-tools fix',
-                'git add',
-            ],
+            '*.{cmd,html,json,md,sh,txt,xml,yml}': ['editorconfig-tools fix', 'git add'],
             '*.ts': ['npm run lint:ts', 'prettier --write', 'git add'],
             '*.less': ['npm run lint:style', 'prettier --write', 'git add'],
-            'ignore': ['src/assets/*'],
+            ignore: ['src/assets/*'],
         };
         json_1.overwritePackage(host, json);
         // tslint
@@ -257,10 +241,7 @@ function addStyle(options) {
         html_1.addHeadStyle(host, project, `  <style type="text/css">.preloader{position:fixed;top:0;left:0;width:100%;height:100%;overflow:hidden;background:#49a9ee;z-index:9999;transition:opacity .65s}.preloader-hidden-add{opacity:1;display:block}.preloader-hidden-add-active{opacity:0}.preloader-hidden{display:none}.cs-loader{position:absolute;top:0;left:0;height:100%;width:100%}.cs-loader-inner{transform:translateY(-50%);top:50%;position:absolute;width:100%;color:#fff;text-align:center}.cs-loader-inner label{font-size:20px;opacity:0;display:inline-block}@keyframes lol{0%{opacity:0;transform:translateX(-300px)}33%{opacity:1;transform:translateX(0)}66%{opacity:1;transform:translateX(0)}100%{opacity:0;transform:translateX(300px)}}.cs-loader-inner label:nth-child(6){animation:lol 3s infinite ease-in-out}.cs-loader-inner label:nth-child(5){animation:lol 3s .1s infinite ease-in-out}.cs-loader-inner label:nth-child(4){animation:lol 3s .2s infinite ease-in-out}.cs-loader-inner label:nth-child(3){animation:lol 3s .3s infinite ease-in-out}.cs-loader-inner label:nth-child(2){animation:lol 3s .4s infinite ease-in-out}.cs-loader-inner label:nth-child(1){animation:lol 3s .5s infinite ease-in-out}</style>`);
         html_1.addHtmlToBody(host, project, `  <div class="preloader"><div class="cs-loader"><div class="cs-loader-inner"><label>	●</label><label>	●</label><label>	●</label><label>	●</label><label>	●</label><label>	●</label></div></div>\n`);
         // add styles
-        file_1.addFiles(host, [
-            `${project.sourceRoot}/styles/index.less`,
-            `${project.sourceRoot}/styles/theme.less`,
-        ], overwriteDataFileRoot);
+        file_1.addFiles(host, [`${project.sourceRoot}/styles/index.less`, `${project.sourceRoot}/styles/theme.less`], overwriteDataFileRoot);
         return host;
     };
 }

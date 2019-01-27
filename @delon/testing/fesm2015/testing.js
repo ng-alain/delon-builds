@@ -24,7 +24,7 @@ import { tick, discardPeriodicTasks, flush, TestBed, getTestBed } from '@angular
 function createMouseEvent(type, x = 0, y = 0) {
     /** @type {?} */
     const event = document.createEvent('MouseEvent');
-    event.initMouseEvent(type, false, /* canBubble */ false, /* cancelable */ window, /* view */ 0, /* detail */ x, /* screenX */ y, /* screenY */ x, /* clientX */ y, /* clientY */ false, /* ctrlKey */ false, /* altKey */ false, /* shiftKey */ false, /* metaKey */ 0, /* button */ null /* relatedTarget */);
+    event.initMouseEvent(type, false /* canBubble */, false /* cancelable */, window /* view */, 0 /* detail */, x /* screenX */, y /* screenY */, x /* clientX */, y /* clientY */, false /* ctrlKey */, false /* altKey */, false /* shiftKey */, false /* metaKey */, 0 /* button */, null /* relatedTarget */);
     return event;
 }
 /**
@@ -524,23 +524,33 @@ class TestContext {
     /**
      * @return {?}
      */
-    get component() { return this.fixture.componentInstance; }
+    get component() {
+        return this.fixture.componentInstance;
+    }
     /**
      * @return {?}
      */
-    get el() { return this.fixture.debugElement.nativeElement; }
+    get el() {
+        return this.fixture.debugElement.nativeElement;
+    }
     /**
      * @return {?}
      */
-    get dl() { return this.fixture.debugElement; }
+    get dl() {
+        return this.fixture.debugElement;
+    }
     /**
      * @return {?}
      */
-    get context() { return this.fixture.componentInstance; }
+    get context() {
+        return this.fixture.componentInstance;
+    }
     /**
      * @return {?}
      */
-    detectChanges() { this.fixture.detectChanges(); }
+    detectChanges() {
+        this.fixture.detectChanges();
+    }
     /**
      * @template T1
      * @param {?} component
@@ -564,7 +574,9 @@ const configureTestSuite = (configureAction) => {
         beforeAll((done) => (() => __awaiter(this, void 0, void 0, function* () {
             configureAction();
             yield TestBed.compileComponents();
-        }))().then(done).catch(done.fail));
+        }))()
+            .then(done)
+            .catch(done.fail));
     }
     afterEach(() => {
         testBedApi._activeFixtures.forEach((fixture) => fixture.destroy());

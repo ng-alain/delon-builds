@@ -92,9 +92,7 @@ class MockService {
             Object.keys(rules).forEach((ruleKey) => {
                 /** @type {?} */
                 const value = rules[ruleKey];
-                if (!(typeof value === 'function' ||
-                    typeof value === 'object' ||
-                    typeof value === 'string')) {
+                if (!(typeof value === 'function' || typeof value === 'object' || typeof value === 'string')) {
                     throw Error(`mock value of [${key}-${ruleKey}] should be function or object or string, but got ${typeof value}`);
                 }
                 /** @type {?} */
@@ -113,8 +111,7 @@ class MockService {
             });
         });
         // regular ordering
-        this.cached.sort((a, b) => (b.martcher || '').toString().length -
-            (a.martcher || '').toString().length);
+        this.cached.sort((a, b) => (b.martcher || '').toString().length - (a.martcher || '').toString().length);
     }
     // tslint:disable-next-line:no-any
     /**
@@ -189,8 +186,7 @@ class MockService {
         /** @type {?} */
         const params = {};
         /** @type {?} */
-        const list = this.cached.filter(w => w.method === method &&
-            (w.martcher ? w.martcher.test(url) : w.url === url));
+        const list = this.cached.filter(w => w.method === method && (w.martcher ? w.martcher.test(url) : w.url === url));
         if (list.length === 0)
             return null;
         /** @type {?} */
@@ -313,12 +309,8 @@ class MockInterceptor {
                         }
                     });
                 }
-                req.params
-                    .keys()
-                    .forEach(key => (mockRequest.queryString[key] = req.params.get(key)));
-                req.headers
-                    .keys()
-                    .forEach(key => (mockRequest.headers[key] = req.headers.get(key)));
+                req.params.keys().forEach(key => (mockRequest.queryString[key] = req.params.get(key)));
+                req.headers.keys().forEach(key => (mockRequest.headers[key] = req.headers.get(key)));
                 try {
                     res = rule.callback.call(this, mockRequest);
                 }
@@ -401,9 +393,7 @@ class DelonMockModule {
     static forChild() {
         return {
             ngModule: DelonMockModule,
-            providers: [
-                { provide: HTTP_INTERCEPTORS, useClass: MockInterceptor, multi: true },
-            ],
+            providers: [{ provide: HTTP_INTERCEPTORS, useClass: MockInterceptor, multi: true }],
         };
     }
 }

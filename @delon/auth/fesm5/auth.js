@@ -383,7 +383,7 @@ var MemoryStore = /** @class */ (function () {
      * @return {?}
      */
     function (key) {
-        return this.cache[key] || (/** @type {?} */ ({}));
+        return this.cache[key] || ((/** @type {?} */ ({})));
     };
     /**
      * @param {?} key
@@ -468,7 +468,7 @@ var SessionStorageStore = /** @class */ (function () {
  * @return {?}
  */
 function CheckSimple(model) {
-    return (model != null && typeof model.token === 'string' && model.token.length > 0);
+    return model != null && typeof model.token === 'string' && model.token.length > 0;
 }
 /**
  * @param {?} model
@@ -558,7 +558,8 @@ var BaseInterceptor = /** @class */ (function () {
             }
         }
         if (options.allow_anonymous_key &&
-            (req.params.has(options.allow_anonymous_key) || new RegExp("[?|&]" + options.allow_anonymous_key + "=[^&]+").test(req.urlWithParams))) {
+            (req.params.has(options.allow_anonymous_key) ||
+                new RegExp("[?|&]" + options.allow_anonymous_key + "=[^&]+").test(req.urlWithParams))) {
             return next.handle(req);
         }
         if (this.isAuth(options)) {
@@ -749,9 +750,7 @@ var JWTInterceptor = /** @class */ (function (_super) {
      * @return {?}
      */
     function (options) {
-        this.model = this.injector
-            .get(DA_SERVICE_TOKEN)
-            .get(JWTTokenModel);
+        this.model = this.injector.get(DA_SERVICE_TOKEN).get(JWTTokenModel);
         return CheckJwt((/** @type {?} */ (this.model)), options.token_exp_offset);
     };
     /**

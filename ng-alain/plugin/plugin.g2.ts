@@ -26,13 +26,11 @@ export function pluginG2(options: PluginOptions): Rule {
     // typing
     g2Typing(host, options);
     // package
-    (options.type === 'add'
-      ? addPackageToPackageJson
-      : removePackageFromPackageJson)(host, [
-        '@antv/data-set@^0.10.1',
-        '@antv/g2@^3.4.5',
-        '@antv/g2-plugin-slider@^2.1.1',
-      ]);
+    (options.type === 'add' ? addPackageToPackageJson : removePackageFromPackageJson)(host, [
+      '@antv/data-set@^0.10.1',
+      '@antv/g2@^3.4.5',
+      '@antv/g2-plugin-slider@^2.1.1',
+    ]);
     // angular
     scriptsToAngularJson(
       host,

@@ -62,7 +62,9 @@ var FullContentComponent = /** @class */ (function () {
         this.router = router;
         this.doc = doc;
         this.inited = false;
-        this.id = "_full-content-" + Math.random().toString(36).substring(2);
+        this.id = "_full-content-" + Math.random()
+            .toString(36)
+            .substring(2);
         this.scroll$ = null;
         this._height = 0;
         this.hideTitle = true;
@@ -109,7 +111,10 @@ var FullContentComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        this._height = this.bodyEl.getBoundingClientRect().height - ((/** @type {?} */ (this.el.nativeElement))).getBoundingClientRect().top - this.padding;
+        this._height =
+            this.bodyEl.getBoundingClientRect().height -
+                ((/** @type {?} */ (this.el.nativeElement))).getBoundingClientRect().top -
+                this.padding;
         this.cdr.detectChanges();
     };
     /**
@@ -139,9 +144,7 @@ var FullContentComponent = /** @class */ (function () {
             .pipe(debounceTime(200))
             .subscribe(function () { return _this.updateHeight(); });
         // when servier changed
-        this.srv$ = this.srv.change
-            .pipe(filter(function (res) { return res !== null; }))
-            .subscribe(function () { return _this.toggle(); });
+        this.srv$ = this.srv.change.pipe(filter(function (res) { return res !== null; })).subscribe(function () { return _this.toggle(); });
         // when router changed
         this.route$ = this.router.events
             .pipe(filter(function (e) { return e instanceof ActivationStart || e instanceof ActivationEnd; }), debounceTime(200))
@@ -201,7 +204,7 @@ var FullContentComponent = /** @class */ (function () {
     FullContentComponent.decorators = [
         { type: Component, args: [{
                     selector: 'full-content',
-                    template: "<ng-content></ng-content>",
+                    template: "\n    <ng-content></ng-content>\n  ",
                     host: { '[class.full-content]': 'true' },
                     changeDetection: ChangeDetectionStrategy.OnPush
                 }] }

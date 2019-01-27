@@ -67,7 +67,7 @@ var G2CustomComponent = /** @class */ (function () {
     G2CustomComponent.decorators = [
         { type: Component, args: [{
                     selector: 'g2,g2-custom',
-                    template: "<ng-content></ng-content>",
+                    template: "\n    <ng-content></ng-content>\n  ",
                     changeDetection: ChangeDetectionStrategy.OnPush
                 }] }
     ];

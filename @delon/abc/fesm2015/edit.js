@@ -92,7 +92,7 @@ class SEContainerComponent {
 SEContainerComponent.decorators = [
     { type: Component, args: [{
                 selector: 'se-container, [se-container]',
-                template: "<div class=\"ant-row se__container se__{{nzLayout}} se__{{size}}\" [ngStyle]=\"{'margin-left.px': -(gutter / 2), 'margin-right.px': -(gutter / 2)}\">\n  <se-title *ngIf=\"title\">\n    <ng-container *stringTemplateOutlet=\"title\">{{ title }}</ng-container>\n  </se-title>\n  <ng-content></ng-content>\n</div>",
+                template: "<div class=\"ant-row se__container se__{{nzLayout}} se__{{size}}\"\n     [ngStyle]=\"{'margin-left.px': -(gutter / 2), 'margin-right.px': -(gutter / 2)}\">\n  <se-title *ngIf=\"title\">\n    <ng-container *stringTemplateOutlet=\"title\">{{ title }}</ng-container>\n  </se-title>\n  <ng-content></ng-content>\n</div>\n",
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 exportAs: 'seContainer'
             }] }
@@ -306,7 +306,9 @@ class SEComponent {
         clsMap.forEach(cls => ren.removeClass(el, cls));
         clsMap.length = 0;
         /** @type {?} */
-        const repCls = parent.nzLayout === 'horizontal' ? (/** @type {?} */ (this)).rep.genCls(col != null ? col : parent.colInCon || parent.col) : [];
+        const repCls = parent.nzLayout === 'horizontal'
+            ? (/** @type {?} */ (this)).rep.genCls(col != null ? col : parent.colInCon || parent.col)
+            : [];
         clsMap.push(`ant-form-item`, ...repCls, `${prefixCls}__item`);
         if ((/** @type {?} */ (this)).line || parent.line) {
             clsMap.push(`${prefixCls}__line`);
@@ -369,7 +371,7 @@ class SEComponent {
 SEComponent.decorators = [
     { type: Component, args: [{
                 selector: 'se',
-                template: "<div class=\"ant-form-item-label se__label\" [class.se__nolabel]=\"!label\" [style.width.px]=\"labelWidth\">\n  <label *ngIf=\"label\" [attr.for]=\"_id\" [ngClass]=\"{'ant-form-item-required': required}\">\n    <ng-container *stringTemplateOutlet=\"label\">{{ label }}</ng-container>\n    <span class=\"se__label-optional\">\n      {{ optional }}\n      <nz-tooltip *ngIf=\"optionalHelp\" [nzTitle]=\"optionalHelp\">\n        <i nz-tooltip nz-icon type=\"question-circle\"></i>\n      </nz-tooltip>\n    </span>\n  </label>\n</div>\n<div class=\"ant-form-item-control-wrapper se__control\">\n  <div class=\"ant-form-item-control {{controlClass}}\" [class.has-error]=\"invalid\">\n    <ng-content></ng-content>\n    <se-error *ngIf=\"showErr\">{{error}}</se-error>\n    <div *ngIf=\"extra\" class=\"ant-form-extra\">{{extra}}</div>\n  </div>\n</div>",
+                template: "<div class=\"ant-form-item-label se__label\"\n     [class.se__nolabel]=\"!label\"\n     [style.width.px]=\"labelWidth\">\n  <label *ngIf=\"label\"\n         [attr.for]=\"_id\"\n         [ngClass]=\"{'ant-form-item-required': required}\">\n    <ng-container *stringTemplateOutlet=\"label\">{{ label }}</ng-container>\n    <span class=\"se__label-optional\">\n      {{ optional }}\n      <nz-tooltip *ngIf=\"optionalHelp\"\n                  [nzTitle]=\"optionalHelp\">\n        <i nz-tooltip\n           nz-icon\n           type=\"question-circle\"></i>\n      </nz-tooltip>\n    </span>\n  </label>\n</div>\n<div class=\"ant-form-item-control-wrapper se__control\">\n  <div class=\"ant-form-item-control {{controlClass}}\"\n       [class.has-error]=\"invalid\">\n    <ng-content></ng-content>\n    <se-error *ngIf=\"showErr\">{{error}}</se-error>\n    <div *ngIf=\"extra\"\n         class=\"ant-form-extra\">{{extra}}</div>\n  </div>\n</div>\n",
                 changeDetection: ChangeDetectionStrategy.OnPush
             }] }
 ];
@@ -416,12 +418,7 @@ __decorate([
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 /** @type {?} */
-const COMPONENTS = [
-    SEContainerComponent,
-    SEComponent,
-    SEErrorComponent,
-    SETitleComponent,
-];
+const COMPONENTS = [SEContainerComponent, SEComponent, SEErrorComponent, SETitleComponent];
 class SEModule {
 }
 SEModule.decorators = [

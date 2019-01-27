@@ -9,9 +9,7 @@ export declare class DateRangePickerConfig {
     nzDisabledDate?: any;
     nzDisabledTime?: any;
     nzLocale?: any;
-    nzPopupStyle?: {
-        'position': string;
-    };
+    nzPopupStyle?: any;
     nzDropdownClassName?: any;
     nzRenderExtraFooter?: any;
     nzPlaceHolder?: any;

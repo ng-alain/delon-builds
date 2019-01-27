@@ -49,10 +49,13 @@ CountDownComponent.decorators = [
     { type: Component, args: [{
                 selector: 'count-down',
                 template: `
-    <countdown *ngIf="config" [config]="config"
+    <countdown
+      *ngIf="config"
+      [config]="config"
       (start)="_start()"
       (finished)="_finished()"
-      (notify)="_notify($event)"></countdown>
+      (notify)="_notify($event)"
+    ></countdown>
   `
             }] }
 ];

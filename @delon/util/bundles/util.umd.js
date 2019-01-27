@@ -302,9 +302,7 @@
             needDeepGet = false;
         }
         return (str || '').replace(/\${([^}]+)}/g, function (work, key) {
-            return needDeepGet
-                ? deepGet(obj, key.split('.'), '')
-                : (obj || {})[key] || '';
+            return needDeepGet ? deepGet(obj, key.split('.'), '') : (obj || {})[key] || '';
         });
     }
 
@@ -338,9 +336,7 @@
             case '-year':
                 return [startOfYear(subYears(time, 1)), endOfYear(subYears(time, 1))];
             default:
-                return type > 0
-                    ? [time, addDays(time, type)]
-                    : [addDays(time, type), time];
+                return type > 0 ? [time, addDays(time, type)] : [addDays(time, type), time];
         }
     }
 
@@ -558,7 +554,7 @@
      * @return {?}
      */
     function isIdCard(value) {
-        return (typeof value === 'string' && /(^\d{15}$)|(^\d{17}([0-9]|X)$)/i.test(value));
+        return typeof value === 'string' && /(^\d{15}$)|(^\d{17}([0-9]|X)$)/i.test(value);
     }
     /**
      * 是否为手机号
@@ -928,9 +924,7 @@
                             result.push(i);
                             /** @type {?} */
                             var children = i[options.childrenMapName];
-                            if (children != null &&
-                                Array.isArray(children) &&
-                                children.length > 0) {
+                            if (children != null && Array.isArray(children) && children.length > 0) {
                                 inFn(children, i, deep + 1);
                             }
                             if (options.clearChildren) {
@@ -1125,9 +1119,11 @@
                 var keys = [];
                 this.visitTree(tree, function (item, parent, deep) {
                     if (item.isChecked || (options.includeHalfChecked && item.isHalfChecked)) {
-                        keys.push(options.cb ?
-                            options.cb(item, parent, deep) :
-                            options.keyMapName ? item.origin[options.keyMapName] : item.key);
+                        keys.push(options.cb
+                            ? options.cb(item, parent, deep)
+                            : options.keyMapName
+                                ? item.origin[options.keyMapName]
+                                : item.key);
                     }
                 });
                 return keys;

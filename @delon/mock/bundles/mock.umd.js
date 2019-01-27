@@ -98,9 +98,7 @@
                     Object.keys(rules).forEach(function (ruleKey) {
                         /** @type {?} */
                         var value = rules[ruleKey];
-                        if (!(typeof value === 'function' ||
-                            typeof value === 'object' ||
-                            typeof value === 'string')) {
+                        if (!(typeof value === 'function' || typeof value === 'object' || typeof value === 'string')) {
                             throw Error("mock value of [" + key + "-" + ruleKey + "] should be function or object or string, but got " + typeof value);
                         }
                         /** @type {?} */
@@ -119,10 +117,7 @@
                     });
                 });
                 // regular ordering
-                this.cached.sort(function (a, b) {
-                    return (b.martcher || '').toString().length -
-                        (a.martcher || '').toString().length;
-                });
+                this.cached.sort(function (a, b) { return (b.martcher || '').toString().length - (a.martcher || '').toString().length; });
             };
         // tslint:disable-next-line:no-any
         // tslint:disable-next-line:no-any
@@ -220,10 +215,7 @@
                 /** @type {?} */
                 var params = {};
                 /** @type {?} */
-                var list = this.cached.filter(function (w) {
-                    return w.method === method &&
-                        (w.martcher ? w.martcher.test(url) : w.url === url);
-                });
+                var list = this.cached.filter(function (w) { return w.method === method && (w.martcher ? w.martcher.test(url) : w.url === url); });
                 if (list.length === 0)
                     return null;
                 /** @type {?} */
@@ -388,12 +380,8 @@
                                 }
                             });
                         }
-                        req.params
-                            .keys()
-                            .forEach(function (key) { return (mockRequest_1.queryString[key] = req.params.get(key)); });
-                        req.headers
-                            .keys()
-                            .forEach(function (key) { return (mockRequest_1.headers[key] = req.headers.get(key)); });
+                        req.params.keys().forEach(function (key) { return (mockRequest_1.queryString[key] = req.params.get(key)); });
+                        req.headers.keys().forEach(function (key) { return (mockRequest_1.headers[key] = req.headers.get(key)); });
                         try {
                             res = rule.callback.call(this, mockRequest_1);
                         }
@@ -488,9 +476,7 @@
             function () {
                 return {
                     ngModule: DelonMockModule,
-                    providers: [
-                        { provide: http.HTTP_INTERCEPTORS, useClass: MockInterceptor, multi: true },
-                    ],
+                    providers: [{ provide: http.HTTP_INTERCEPTORS, useClass: MockInterceptor, multi: true }],
                 };
             };
         DelonMockModule.decorators = [

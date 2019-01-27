@@ -56,13 +56,9 @@ function addNodeTypeToTsconfig(host, options) {
 function pluginHmr(options) {
     return (host, context) => {
         // 1. add package
-        (options.type === 'add'
-            ? json_1.addPackageToPackageJson
-            : json_1.removePackageFromPackageJson)(host, ['@angularclass/hmr@^2.1.3'], 'devDependencies');
+        (options.type === 'add' ? json_1.addPackageToPackageJson : json_1.removePackageFromPackageJson)(host, ['@angularclass/hmr@^2.1.3'], 'devDependencies');
         // 2. add run scripts
-        (options.type === 'add'
-            ? json_1.addPackageToPackageJson
-            : json_1.removePackageFromPackageJson)(host, ['hmr@ng serve -c=hmr'], 'scripts');
+        (options.type === 'add' ? json_1.addPackageToPackageJson : json_1.removePackageFromPackageJson)(host, ['hmr@ng serve -c=hmr'], 'scripts');
         // 3. add angular.json
         configToAngularJson(host, options);
         if (options.type === 'add') {

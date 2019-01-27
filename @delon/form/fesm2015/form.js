@@ -4,7 +4,7 @@ import { DelonLocaleService, DelonLocaleModule } from '@delon/theme';
 import { NgModel, FormsModule } from '@angular/forms';
 import format from 'date-fns/format';
 import { map, distinctUntilChanged, filter, takeUntil, debounceTime, flatMap, startWith, tap } from 'rxjs/operators';
-import { Injectable, Component, Input, Directive, TemplateRef, ChangeDetectorRef, HostBinding, Inject, Injector, ViewChild, ViewContainerRef, ComponentFactoryResolver, EventEmitter, ChangeDetectionStrategy, Output, ElementRef, Renderer2, defineInjectable, NgModule } from '@angular/core';
+import { Injectable, Component, Input, Directive, TemplateRef, ChangeDetectorRef, HostBinding, Inject, Injector, ViewChild, ViewContainerRef, ComponentFactoryResolver, ElementRef, Renderer2, EventEmitter, ChangeDetectionStrategy, Output, defineInjectable, NgModule } from '@angular/core';
 import { deepCopy, toBoolean, InputBoolean, InputNumber, deepGet, DelonUtilModule } from '@delon/util';
 import { NzTreeNode, NzModalService, NgZorroAntdModule } from 'ng-zorro-antd';
 import { of, combineLatest, BehaviorSubject, Observable, Subject } from 'rxjs';
@@ -16,40 +16,40 @@ import { of, combineLatest, BehaviorSubject, Observable, Subject } from 'rxjs';
 /** @type {?} */
 const ERRORSDEFAULT = {
     'false schema': `布尔模式出错`,
-    '$ref': `无法找到引用{ref}`,
-    'additionalItems': `不允许超过{ref}`,
-    'additionalProperties': `不允许有额外的属性`,
-    'anyOf': `数据应为 anyOf 所指定的其中一个`,
-    'dependencies': `应当拥有属性{property}的依赖属性{deps}`,
-    'enum': `应当是预设定的枚举值之一`,
-    'format': `格式不正确`,
+    $ref: `无法找到引用{ref}`,
+    additionalItems: `不允许超过{ref}`,
+    additionalProperties: `不允许有额外的属性`,
+    anyOf: `数据应为 anyOf 所指定的其中一个`,
+    dependencies: `应当拥有属性{property}的依赖属性{deps}`,
+    enum: `应当是预设定的枚举值之一`,
+    format: `格式不正确`,
     // `应当匹配格式 "{format}"`,
-    'type': `类型应当是 {type}`,
-    'required': `必填项`,
-    'maxLength': `至多 {limit} 个字符`,
-    'minLength': `至少 {limit} 个字符以上`,
-    'minimum': `必须 {comparison}{limit}`,
-    'formatMinimum': `必须 {comparison}{limit}`,
-    'maximum': `必须 {comparison}{limit}`,
-    'formatMaximum': `必须 {comparison}{limit}`,
-    'maxItems': `不应多于 {limit} 个项`,
-    'minItems': `不应少于 {limit} 个项`,
-    'maxProperties': `不应多于 {limit} 个属性`,
-    'minProperties': `不应少于 {limit} 个属性`,
-    'multipleOf': `应当是 {multipleOf} 的整数倍`,
-    'not': `不应当匹配 "not" schema`,
-    'oneOf': `只能匹配一个 "oneOf" 中的 schema`,
-    'pattern': `数据格式不正确`,
-    'uniqueItems': `不应当含有重复项 (第 {j} 项与第 {i} 项是重复的)`,
-    'custom': `格式不正确`,
-    'propertyNames': `属性名 "{propertyName}" 无效`,
-    'patternRequired': `应当有属性匹配模式 {missingPattern}`,
-    'switch': `由于 {caseIndex} 失败，未通过 "switch" 校验`,
-    'const': `应当等于常量`,
-    'contains': `应当包含一个有效项`,
-    'formatExclusiveMaximum': `formatExclusiveMaximum 应当是布尔值`,
-    'formatExclusiveMinimum': `formatExclusiveMinimum 应当是布尔值`,
-    'if': `应当匹配模式 "{failingKeyword}"`,
+    type: `类型应当是 {type}`,
+    required: `必填项`,
+    maxLength: `至多 {limit} 个字符`,
+    minLength: `至少 {limit} 个字符以上`,
+    minimum: `必须 {comparison}{limit}`,
+    formatMinimum: `必须 {comparison}{limit}`,
+    maximum: `必须 {comparison}{limit}`,
+    formatMaximum: `必须 {comparison}{limit}`,
+    maxItems: `不应多于 {limit} 个项`,
+    minItems: `不应少于 {limit} 个项`,
+    maxProperties: `不应多于 {limit} 个属性`,
+    minProperties: `不应少于 {limit} 个属性`,
+    multipleOf: `应当是 {multipleOf} 的整数倍`,
+    not: `不应当匹配 "not" schema`,
+    oneOf: `只能匹配一个 "oneOf" 中的 schema`,
+    pattern: `数据格式不正确`,
+    uniqueItems: `不应当含有重复项 (第 {j} 项与第 {i} 项是重复的)`,
+    custom: `格式不正确`,
+    propertyNames: `属性名 "{propertyName}" 无效`,
+    patternRequired: `应当有属性匹配模式 {missingPattern}`,
+    switch: `由于 {caseIndex} 失败，未通过 "switch" 校验`,
+    const: `应当等于常量`,
+    contains: `应当包含一个有效项`,
+    formatExclusiveMaximum: `formatExclusiveMaximum 应当是布尔值`,
+    formatExclusiveMinimum: `formatExclusiveMinimum 应当是布尔值`,
+    if: `应当匹配模式 "{failingKeyword}"`,
 };
 
 /**
@@ -423,7 +423,7 @@ class FormProperty {
      */
     get root() {
         // tslint:disable-next-line:no-any
-        return this._root || (/** @type {?} */ (((/** @type {?} */ (this)))));
+        return this._root || ((/** @type {?} */ (((/** @type {?} */ (this))))));
     }
     /**
      * @return {?}
@@ -611,9 +611,7 @@ class FormProperty {
                 /** @type {?} */
                 let message = err._custom === true && err.message
                     ? err.message
-                    : (this.ui.errors || {})[err.keyword] ||
-                        this.options.errors[err.keyword] ||
-                        ``;
+                    : (this.ui.errors || {})[err.keyword] || this.options.errors[err.keyword] || ``;
                 if (message && typeof message === 'function')
                     message = (/** @type {?} */ (message(err)));
                 if (message) {
@@ -729,9 +727,7 @@ class PropertyGroup extends FormProperty {
         const propertyId = subPathIdx !== -1 ? path.substr(0, subPathIdx) : path;
         /** @type {?} */
         let property = this.properties[propertyId];
-        if (property !== null &&
-            subPathIdx !== -1 &&
-            property instanceof PropertyGroup) {
+        if (property !== null && subPathIdx !== -1 && property instanceof PropertyGroup) {
             /** @type {?} */
             const subPath = path.substr(subPathIdx + 1);
             property = ((/** @type {?} */ (property))).getProperty(subPath);
@@ -1049,7 +1045,8 @@ class ObjectProperty extends PropertyGroup {
         /** @type {?} */
         let orderedProperties;
         try {
-            orderedProperties = orderProperties(Object.keys(this.schema.properties), (/** @type {?} */ (this.ui.order)));
+            orderedProperties = orderProperties(Object.keys(this.schema.properties), (/** @type {?} */ (this.ui
+                .order)));
         }
         catch (e) {
             console.error(`Invalid ${this.schema.title || 'root'} object field configuration:`, e);
@@ -1166,8 +1163,7 @@ class FormPropertyFactory {
                 path += ((/** @type {?} */ (parent))).tick++;
             }
             else {
-                throw new Error('Instanciation of a FormProperty with an unknown parent type: ' +
-                    parent.type);
+                throw new Error('Instanciation of a FormProperty with an unknown parent type: ' + parent.type);
             }
         }
         else {
@@ -1180,8 +1176,7 @@ class FormPropertyFactory {
         }
         else {
             // fix required
-            if (propertyId &&
-                ((/** @type {?} */ (((/** @type {?} */ (parent)).schema.required || [])))).indexOf(propertyId) !== -1) {
+            if (propertyId && ((/** @type {?} */ (((/** @type {?} */ (parent)).schema.required || [])))).indexOf(propertyId) !== -1) {
                 ui._required = true;
             }
             // fix title
@@ -1283,7 +1278,9 @@ class AjvSchemaValidatorFactory extends SchemaValidatorFactory {
      */
     createValidatorFn(schema, extraOptions) {
         /** @type {?} */
-        const ingoreKeywords = [].concat(this.options.ingoreKeywords).concat(extraOptions.ingoreKeywords);
+        const ingoreKeywords = []
+            .concat(this.options.ingoreKeywords)
+            .concat(extraOptions.ingoreKeywords);
         return (value) => {
             try {
                 this.ajv.validate(schema, value);
@@ -1826,7 +1823,7 @@ class SFComponent {
 SFComponent.decorators = [
     { type: Component, args: [{
                 selector: 'sf, [sf]',
-                template: "<ng-template #con>\n  <ng-content></ng-content>\n</ng-template>\n<form nz-form [nzLayout]=\"layout\" (submit)=\"onSubmit($event)\" [attr.autocomplete]=\"autocomplete\">\n  <sf-item [formProperty]=\"rootProperty\"></sf-item>\n  <ng-container *ngIf=\"button !== 'none'; else con\">\n    <nz-form-item [ngClass]=\"_btn.render.class\" class=\"sf-btns\" [fixed-label]=\"_btn.render.spanLabelFixed\">\n      <div nz-col class=\"ant-form-item-control-wrapper\" [nzSpan]=\"_btn.render.grid.span\" [nzOffset]=\"_btn.render.grid.offset\"\n              [nzXs]=\"_btn.render.grid.xs\" [nzSm]=\"_btn.render.grid.sm\" [nzMd]=\"_btn.render.grid.md\"\n              [nzLg]=\"_btn.render.grid.lg\" [nzXl]=\"_btn.render.grid.xl\" [nzXXl]=\"_btn.render.grid.xxl\">\n        <div class=\"ant-form-item-control\">\n          <ng-container *ngIf=\"button; else con\">\n            <button type=\"submit\" nz-button [nzType]=\"_btn.submit_type\" [nzSize]=\"_btn.render.size\"\n              [disabled]=\"liveValidate && !valid\">{{_btn.submit}}</button>\n            <button *ngIf=\"_btn.reset\" type=\"button\" nz-button\n              [nzType]=\"_btn.reset_type\" [nzSize]=\"_btn.render.size\" (click)=\"reset(true)\">\n              {{_btn.reset}}\n            </button>\n          </ng-container>\n        </div>\n      </div>\n    </nz-form-item>\n  </ng-container>\n</form>\n",
+                template: "<ng-template #con>\n  <ng-content></ng-content>\n</ng-template>\n<form nz-form\n      [nzLayout]=\"layout\"\n      (submit)=\"onSubmit($event)\"\n      [attr.autocomplete]=\"autocomplete\">\n  <sf-item [formProperty]=\"rootProperty\"></sf-item>\n  <ng-container *ngIf=\"button !== 'none'; else con\">\n    <nz-form-item [ngClass]=\"_btn.render.class\"\n                  class=\"sf-btns\"\n                  [fixed-label]=\"_btn.render.spanLabelFixed\">\n      <div nz-col\n           class=\"ant-form-item-control-wrapper\"\n           [nzSpan]=\"_btn.render.grid.span\"\n           [nzOffset]=\"_btn.render.grid.offset\"\n           [nzXs]=\"_btn.render.grid.xs\"\n           [nzSm]=\"_btn.render.grid.sm\"\n           [nzMd]=\"_btn.render.grid.md\"\n           [nzLg]=\"_btn.render.grid.lg\"\n           [nzXl]=\"_btn.render.grid.xl\"\n           [nzXXl]=\"_btn.render.grid.xxl\">\n        <div class=\"ant-form-item-control\">\n          <ng-container *ngIf=\"button; else con\">\n            <button type=\"submit\"\n                    nz-button\n                    [nzType]=\"_btn.submit_type\"\n                    [nzSize]=\"_btn.render.size\"\n                    [disabled]=\"liveValidate && !valid\">{{_btn.submit}}</button>\n            <button *ngIf=\"_btn.reset\"\n                    type=\"button\"\n                    nz-button\n                    [nzType]=\"_btn.reset_type\"\n                    [nzSize]=\"_btn.render.size\"\n                    (click)=\"reset(true)\">\n              {{_btn.reset}}\n            </button>\n          </ng-container>\n        </div>\n      </div>\n    </nz-form-item>\n  </ng-container>\n</form>\n",
                 providers: [
                     WidgetFactory,
                     {
@@ -1926,7 +1923,8 @@ class SFItemComponent {
      * @return {?}
      */
     ngOnChanges() {
-        this.ref = this.widgetFactory.createWidget(this.container, (/** @type {?} */ ((this.formProperty.ui.widget || this.formProperty.schema.type))));
+        this.ref = this.widgetFactory.createWidget(this.container, (/** @type {?} */ ((this.formProperty.ui.widget ||
+            this.formProperty.schema.type))));
         this.onWidgetInstanciated(this.ref.instance);
     }
     /**
@@ -1942,7 +1940,9 @@ class SFItemComponent {
 SFItemComponent.decorators = [
     { type: Component, args: [{
                 selector: 'sf-item',
-                template: `<ng-template #target></ng-template>`
+                template: `
+    <ng-template #target></ng-template>
+  `
             }] }
 ];
 /** @nocollapse */
@@ -2041,7 +2041,7 @@ class SFItemWrapComponent {
 SFItemWrapComponent.decorators = [
     { type: Component, args: [{
                 selector: 'sf-item-wrap',
-                template: "<nz-form-item [style.width.px]=\"ui.width\">\n  <nz-col *ngIf=\"showTitle\" [nzSpan]=\"ui.spanLabel\" class=\"ant-form-item-label\">\n    <label *ngIf=\"t\" [attr.for]=\"id\" [class.ant-form-item-required]=\"ui._required\">\n      {{ t }}\n      <span class=\"optional\">\n        {{ ui.optional }}\n        <nz-tooltip *ngIf=\"ui.optionalHelp\" [nzTitle]=\"ui.optionalHelp\">\n          <i nz-tooltip nz-icon type=\"question-circle\"></i>\n        </nz-tooltip>\n      </span>\n    </label>\n  </nz-col>\n  <nz-col class=\"ant-form-item-control-wrapper\" [nzSpan]=\"ui.spanControl\" [nzOffset]=\"ui.offsetControl\">\n    <div class=\"ant-form-item-control\" [class.has-error]=\"showError\">\n      <ng-content></ng-content>\n      <nz-form-extra *ngIf=\"schema.description\" [innerHTML]=\"schema.description\"></nz-form-extra>\n      <nz-form-explain *ngIf=\"!ui.onlyVisual && showError\">{{error}}</nz-form-explain>\n    </div>\n  </nz-col>\n</nz-form-item>\n"
+                template: "<nz-form-item [style.width.px]=\"ui.width\">\n  <nz-col *ngIf=\"showTitle\"\n          [nzSpan]=\"ui.spanLabel\"\n          class=\"ant-form-item-label\">\n    <label *ngIf=\"t\"\n           [attr.for]=\"id\"\n           [class.ant-form-item-required]=\"ui._required\">\n      {{ t }}\n      <span class=\"optional\">\n        {{ ui.optional }}\n        <nz-tooltip *ngIf=\"ui.optionalHelp\"\n                    [nzTitle]=\"ui.optionalHelp\">\n          <i nz-tooltip\n             nz-icon\n             type=\"question-circle\"></i>\n        </nz-tooltip>\n      </span>\n    </label>\n  </nz-col>\n  <nz-col class=\"ant-form-item-control-wrapper\"\n          [nzSpan]=\"ui.spanControl\"\n          [nzOffset]=\"ui.offsetControl\">\n    <div class=\"ant-form-item-control\"\n         [class.has-error]=\"showError\">\n      <ng-content></ng-content>\n      <nz-form-extra *ngIf=\"schema.description\"\n                     [innerHTML]=\"schema.description\"></nz-form-extra>\n      <nz-form-explain *ngIf=\"!ui.onlyVisual && showError\">{{error}}</nz-form-explain>\n    </div>\n  </nz-col>\n</nz-form-item>\n"
             }] }
 ];
 SFItemWrapComponent.propDecorators = {
@@ -2269,7 +2269,7 @@ class ArrayWidget extends ArrayLayoutWidget {
 ArrayWidget.decorators = [
     { type: Component, args: [{
                 selector: 'sf-array',
-                template: "<nz-form-item>\n  <nz-col *ngIf=\"schema.title\" [nzSpan]=\"ui.spanLabel\" class=\"ant-form-item-label\">\n    <label>\n      {{ schema.title }}\n      <span class=\"optional\">\n        {{ ui.optional }}\n        <nz-tooltip *ngIf=\"ui.optionalHelp\" [nzTitle]=\"ui.optionalHelp\">\n          <i nz-tooltip nz-icon type=\"question-circle\"></i>\n        </nz-tooltip>\n      </span>\n    </label>\n    <div class=\"add\">\n      <button type=\"button\" nz-button [nzType]=\"addType\" [disabled]=\"addDisabled\" (click)=\"addItem()\" [innerHTML]=\"addTitle\"></button>\n    </div>\n  </nz-col>\n  <nz-col class=\"ant-form-item-control-wrapper\" [nzSpan]=\"ui.spanControl\" [nzOffset]=\"ui.offsetControl\">\n    <div class=\"ant-form-item-control\" [class.has-error]=\"showError\">\n\n      <nz-row class=\"sf-array-container\">\n        <ng-container *ngFor=\"let i of formProperty.properties; let idx=index\">\n          <nz-col *ngIf=\"i.visible && !i.ui.hidden\" [nzSpan]=\"arraySpan\" [attr.data-index]=\"idx\" class=\"sf-array-item\">\n            <nz-card>\n              <sf-item [formProperty]=\"i\"></sf-item>\n              <span *ngIf=\"removeTitle\" class=\"remove\" (click)=\"removeItem(idx)\" [attr.title]=\"removeTitle\">\n                <i nz-icon type=\"delete\"></i>\n              </span>\n            </nz-card>\n          </nz-col>\n        </ng-container>\n      </nz-row>\n\n      <nz-form-extra *ngIf=\"schema.description\" [innerHTML]=\"schema.description\"></nz-form-extra>\n      <nz-form-explain *ngIf=\"!ui.onlyVisual && showError\">{{error}}</nz-form-explain>\n\n    </div>\n  </nz-col>\n</nz-form-item>\n"
+                template: "<nz-form-item>\n  <nz-col *ngIf=\"schema.title\"\n          [nzSpan]=\"ui.spanLabel\"\n          class=\"ant-form-item-label\">\n    <label>\n      {{ schema.title }}\n      <span class=\"optional\">\n        {{ ui.optional }}\n        <nz-tooltip *ngIf=\"ui.optionalHelp\"\n                    [nzTitle]=\"ui.optionalHelp\">\n          <i nz-tooltip\n             nz-icon\n             type=\"question-circle\"></i>\n        </nz-tooltip>\n      </span>\n    </label>\n    <div class=\"add\">\n      <button type=\"button\"\n              nz-button\n              [nzType]=\"addType\"\n              [disabled]=\"addDisabled\"\n              (click)=\"addItem()\"\n              [innerHTML]=\"addTitle\"></button>\n    </div>\n  </nz-col>\n  <nz-col class=\"ant-form-item-control-wrapper\"\n          [nzSpan]=\"ui.spanControl\"\n          [nzOffset]=\"ui.offsetControl\">\n    <div class=\"ant-form-item-control\"\n         [class.has-error]=\"showError\">\n\n      <nz-row class=\"sf-array-container\">\n        <ng-container *ngFor=\"let i of formProperty.properties; let idx=index\">\n          <nz-col *ngIf=\"i.visible && !i.ui.hidden\"\n                  [nzSpan]=\"arraySpan\"\n                  [attr.data-index]=\"idx\"\n                  class=\"sf-array-item\">\n            <nz-card>\n              <sf-item [formProperty]=\"i\"></sf-item>\n              <span *ngIf=\"removeTitle\"\n                    class=\"remove\"\n                    (click)=\"removeItem(idx)\"\n                    [attr.title]=\"removeTitle\">\n                <i nz-icon\n                   type=\"delete\"></i>\n              </span>\n            </nz-card>\n          </nz-col>\n        </ng-container>\n      </nz-row>\n\n      <nz-form-extra *ngIf=\"schema.description\"\n                     [innerHTML]=\"schema.description\"></nz-form-extra>\n      <nz-form-explain *ngIf=\"!ui.onlyVisual && showError\">{{error}}</nz-form-explain>\n\n    </div>\n  </nz-col>\n</nz-form-item>\n"
             }] }
 ];
 
@@ -2278,13 +2278,7 @@ ArrayWidget.decorators = [
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 /** @type {?} */
-const EMAILSUFFIX = [
-    'qq.com',
-    '163.com',
-    'gmail.com',
-    '126.com',
-    'aliyun.com',
-];
+const EMAILSUFFIX = ['qq.com', '163.com', 'gmail.com', '126.com', 'aliyun.com'];
 class AutoCompleteWidget extends ControlWidget {
     constructor() {
         super(...arguments);
@@ -2320,7 +2314,7 @@ class AutoCompleteWidget extends ControlWidget {
         const orgTime = +(this.ui.debounceTime || 0);
         /** @type {?} */
         const time = Math.max(0, this.isAsync ? Math.max(50, orgTime) : orgTime);
-        this.list = this.ngModel.valueChanges.pipe(debounceTime(time), startWith(''), flatMap(input => this.isAsync ? this.ui.asyncData(input) : this.filterData(input)), map(res => getEnum(res, null, this.schema.readOnly)));
+        this.list = this.ngModel.valueChanges.pipe(debounceTime(time), startWith(''), flatMap(input => (this.isAsync ? this.ui.asyncData(input) : this.filterData(input))), map(res => getEnum(res, null, this.schema.readOnly)));
     }
     /**
      * @param {?} value
@@ -2355,15 +2349,13 @@ class AutoCompleteWidget extends ControlWidget {
      * @return {?}
      */
     addEmailSuffix(value) {
-        return of(!value || ~value.indexOf('@')
-            ? []
-            : this.fixData.map(domain => `${value}@${domain.label}`));
+        return of(!value || ~value.indexOf('@') ? [] : this.fixData.map(domain => `${value}@${domain.label}`));
     }
 }
 AutoCompleteWidget.decorators = [
     { type: Component, args: [{
                 selector: 'sf-autocomplete',
-                template: "<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n    <input nz-input [nzAutocomplete]=\"auto\"\n        [attr.id]=\"id\"\n        [disabled]=\"disabled\"\n        [attr.disabled]=\"disabled\"\n        [nzSize]=\"ui.size\"\n        [(ngModel)]=\"typing\"\n        [attr.maxLength]=\"schema.maxLength || null\"\n        [attr.placeholder]=\"ui.placeholder\"\n        autocomplete=\"off\">\n    <nz-autocomplete #auto\n        [nzBackfill]=\"i.backfill\"\n        [nzDefaultActiveFirstOption]=\"i.defaultActiveFirstOption\"\n        [nzWidth]=\"i.width\"\n        (selectionChange)=\"updateValue($event)\">\n        <nz-auto-option *ngFor=\"let i of list | async\" [nzValue]=\"i.value\" [nzLabel]=\"i.label\">\n            {{i.label}}\n        </nz-auto-option>\n    </nz-autocomplete>\n</sf-item-wrap>"
+                template: "<sf-item-wrap [id]=\"id\"\n              [schema]=\"schema\"\n              [ui]=\"ui\"\n              [showError]=\"showError\"\n              [error]=\"error\"\n              [showTitle]=\"schema.title\">\n  <input nz-input\n         [nzAutocomplete]=\"auto\"\n         [attr.id]=\"id\"\n         [disabled]=\"disabled\"\n         [attr.disabled]=\"disabled\"\n         [nzSize]=\"ui.size\"\n         [(ngModel)]=\"typing\"\n         [attr.maxLength]=\"schema.maxLength || null\"\n         [attr.placeholder]=\"ui.placeholder\"\n         autocomplete=\"off\">\n  <nz-autocomplete #auto\n                   [nzBackfill]=\"i.backfill\"\n                   [nzDefaultActiveFirstOption]=\"i.defaultActiveFirstOption\"\n                   [nzWidth]=\"i.width\"\n                   (selectionChange)=\"updateValue($event)\">\n    <nz-auto-option *ngFor=\"let i of list | async\"\n                    [nzValue]=\"i.value\"\n                    [nzLabel]=\"i.label\">\n      {{i.label}}\n    </nz-auto-option>\n  </nz-autocomplete>\n</sf-item-wrap>\n"
             }] }
 ];
 AutoCompleteWidget.propDecorators = {
@@ -2379,17 +2371,7 @@ class BooleanWidget extends ControlWidget {
 BooleanWidget.decorators = [
     { type: Component, args: [{
                 selector: 'sf-boolean',
-                template: `
-  <sf-item-wrap [id]="id" [schema]="schema" [ui]="ui" [showError]="showError" [error]="error" [showTitle]="schema.title">
-    <nz-switch
-      [ngModel]="value"
-      (ngModelChange)="setValue($event)"
-      [nzDisabled]="disabled"
-      [nzSize]="ui.size"
-      [nzCheckedChildren]="ui.checkedChildren"
-      [nzUnCheckedChildren]="ui.unCheckedChildren">
-    </nz-switch>
-  </sf-item-wrap>`
+                template: "<sf-item-wrap [id]=\"id\"\n              [schema]=\"schema\"\n              [ui]=\"ui\"\n              [showError]=\"showError\"\n              [error]=\"error\"\n              [showTitle]=\"schema.title\">\n  <nz-switch [ngModel]=\"value\"\n             (ngModelChange)=\"setValue($event)\"\n             [nzDisabled]=\"disabled\"\n             [nzSize]=\"ui.size\"\n             [nzCheckedChildren]=\"ui.checkedChildren\"\n             [nzUnCheckedChildren]=\"ui.unCheckedChildren\">\n  </nz-switch>\n</sf-item-wrap>\n"
             }] }
 ];
 
@@ -2473,44 +2455,7 @@ class CascaderWidget extends ControlWidget {
 CascaderWidget.decorators = [
     { type: Component, args: [{
                 selector: 'sf-cascader',
-                template: `
-    <sf-item-wrap
-      [id]="id"
-      [schema]="schema"
-      [ui]="ui"
-      [showError]="showError"
-      [error]="error"
-      [showTitle]="schema.title"
-    >
-      <nz-cascader
-        [nzDisabled]="disabled"
-        [nzSize]="ui.size"
-        [ngModel]="value"
-        (ngModelChange)="_change($event)"
-        [nzOptions]="data"
-        [nzAllowClear]="ui.allowClear"
-        [nzAutoFocus]="ui.autoFocus"
-        [nzChangeOn]="ui.changeOn"
-        [nzChangeOnSelect]="ui.changeOnSelect"
-        [nzColumnClassName]="ui.columnClassName"
-        [nzExpandTrigger]="ui.expandTrigger"
-        [nzMenuClassName]="ui.menuClassName"
-        [nzMenuStyle]="ui.menuStyle"
-        [nzLabelProperty]="ui.labelProperty || 'label'"
-        [nzValueProperty]="ui.valueProperty || 'value'"
-        [nzLoadData]="loadData"
-        [nzPlaceHolder]="ui.placeholder"
-        [nzShowArrow]="showArrow"
-        [nzShowInput]="showInput"
-        [nzShowSearch]="ui.showSearch"
-        (nzClear)="_clear($event)"
-        (nzVisibleChange)="_visibleChange($event)"
-        (nzSelect)="_select($event)"
-        (nzSelectionChange)="_selectionChange($event)"
-      >
-      </nz-cascader>
-    </sf-item-wrap>
-  `
+                template: "<sf-item-wrap [id]=\"id\"\n              [schema]=\"schema\"\n              [ui]=\"ui\"\n              [showError]=\"showError\"\n              [error]=\"error\"\n              [showTitle]=\"schema.title\">\n  <nz-cascader [nzDisabled]=\"disabled\"\n               [nzSize]=\"ui.size\"\n               [ngModel]=\"value\"\n               (ngModelChange)=\"_change($event)\"\n               [nzOptions]=\"data\"\n               [nzAllowClear]=\"ui.allowClear\"\n               [nzAutoFocus]=\"ui.autoFocus\"\n               [nzChangeOn]=\"ui.changeOn\"\n               [nzChangeOnSelect]=\"ui.changeOnSelect\"\n               [nzColumnClassName]=\"ui.columnClassName\"\n               [nzExpandTrigger]=\"ui.expandTrigger\"\n               [nzMenuClassName]=\"ui.menuClassName\"\n               [nzMenuStyle]=\"ui.menuStyle\"\n               [nzLabelProperty]=\"ui.labelProperty || 'label'\"\n               [nzValueProperty]=\"ui.valueProperty || 'value'\"\n               [nzLoadData]=\"loadData\"\n               [nzPlaceHolder]=\"ui.placeholder\"\n               [nzShowArrow]=\"showArrow\"\n               [nzShowInput]=\"showInput\"\n               [nzShowSearch]=\"ui.showSearch\"\n               (nzClear)=\"_clear($event)\"\n               (nzVisibleChange)=\"_visibleChange($event)\"\n               (nzSelect)=\"_select($event)\"\n               (nzSelectionChange)=\"_selectionChange($event)\">\n  </nz-cascader>\n</sf-item-wrap>\n"
             }] }
 ];
 
@@ -2618,7 +2563,7 @@ class CheckboxWidget extends ControlWidget {
 CheckboxWidget.decorators = [
     { type: Component, args: [{
                 selector: 'sf-checkbox',
-                template: "<ng-template #all>\n  <label *ngIf=\"ui.checkAll\" nz-checkbox class=\"mr-sm\" [(ngModel)]=\"allChecked\" [nzIndeterminate]=\"indeterminate\"\n    (click)=\"onAllChecked($event)\">{{ ui.checkAllText || l.checkAllText }}</label>\n</ng-template>\n<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\"\n  [error]=\"error\" [showTitle]=\"true\" [title]=\"labelTitle\">\n  <ng-container *ngIf=\"inited && data.length === 0\">\n    <label nz-checkbox [nzDisabled]=\"disabled\" [ngModel]=\"value\" (ngModelChange)=\"_setValue($event)\">\n      {{schema.title}}\n      <span class=\"sf__optional\">\n        {{ ui.optional }}\n        <nz-tooltip *ngIf=\"ui.optionalHelp\" [nzTitle]=\"ui.optionalHelp\">\n          <i nz-tooltip nz-icon type=\"question-circle\"></i>\n        </nz-tooltip>\n      </span>\n    </label>\n  </ng-container>\n  <ng-container *ngIf=\"inited && data.length > 0\">\n    <ng-container *ngIf=\"grid_span === 0\">\n      <ng-template [ngTemplateOutlet]=\"all\"></ng-template>\n      <nz-checkbox-group [ngModel]=\"data\" (ngModelChange)=\"notifySet()\"></nz-checkbox-group>\n    </ng-container>\n    <ng-container *ngIf=\"grid_span !== 0\">\n      <nz-checkbox-wrapper class=\"sf__checkbox-list\" (nzOnChange)=\"groupInGridChange($event)\">\n        <nz-row>\n          <nz-col [nzSpan]=\"grid_span\" *ngIf=\"ui.checkAll\">\n            <ng-template [ngTemplateOutlet]=\"all\"></ng-template>\n          </nz-col>\n          <nz-col [nzSpan]=\"grid_span\" *ngFor=\"let i of data\">\n            <label nz-checkbox [nzValue]=\"i.value\" [ngModel]=\"i.checked\" [nzDisabled]=\"i.disabled\">{{i.label}}</label>\n          </nz-col>\n        </nz-row>\n      </nz-checkbox-wrapper>\n    </ng-container>\n  </ng-container>\n</sf-item-wrap>\n"
+                template: "<ng-template #all>\n  <label *ngIf=\"ui.checkAll\"\n         nz-checkbox\n         class=\"mr-sm\"\n         [(ngModel)]=\"allChecked\"\n         [nzIndeterminate]=\"indeterminate\"\n         (click)=\"onAllChecked($event)\">{{ ui.checkAllText || l.checkAllText }}</label>\n</ng-template>\n<sf-item-wrap [id]=\"id\"\n              [schema]=\"schema\"\n              [ui]=\"ui\"\n              [showError]=\"showError\"\n              [error]=\"error\"\n              [showTitle]=\"true\"\n              [title]=\"labelTitle\">\n  <ng-container *ngIf=\"inited && data.length === 0\">\n    <label nz-checkbox\n           [nzDisabled]=\"disabled\"\n           [ngModel]=\"value\"\n           (ngModelChange)=\"_setValue($event)\">\n      {{schema.title}}\n      <span class=\"sf__optional\">\n        {{ ui.optional }}\n        <nz-tooltip *ngIf=\"ui.optionalHelp\"\n                    [nzTitle]=\"ui.optionalHelp\">\n          <i nz-tooltip\n             nz-icon\n             type=\"question-circle\"></i>\n        </nz-tooltip>\n      </span>\n    </label>\n  </ng-container>\n  <ng-container *ngIf=\"inited && data.length > 0\">\n    <ng-container *ngIf=\"grid_span === 0\">\n      <ng-template [ngTemplateOutlet]=\"all\"></ng-template>\n      <nz-checkbox-group [ngModel]=\"data\"\n                         (ngModelChange)=\"notifySet()\"></nz-checkbox-group>\n    </ng-container>\n    <ng-container *ngIf=\"grid_span !== 0\">\n      <nz-checkbox-wrapper class=\"sf__checkbox-list\"\n                           (nzOnChange)=\"groupInGridChange($event)\">\n        <nz-row>\n          <nz-col [nzSpan]=\"grid_span\"\n                  *ngIf=\"ui.checkAll\">\n            <ng-template [ngTemplateOutlet]=\"all\"></ng-template>\n          </nz-col>\n          <nz-col [nzSpan]=\"grid_span\"\n                  *ngFor=\"let i of data\">\n            <label nz-checkbox\n                   [nzValue]=\"i.value\"\n                   [ngModel]=\"i.checked\"\n                   [nzDisabled]=\"i.disabled\">{{i.label}}</label>\n          </nz-col>\n        </nz-row>\n      </nz-checkbox-wrapper>\n    </ng-container>\n  </ng-container>\n</sf-item-wrap>\n"
             }] }
 ];
 
@@ -2632,13 +2577,19 @@ CustomWidget.decorators = [
     { type: Component, args: [{
                 selector: 'sf-custom',
                 template: `
-  <sf-item-wrap [id]="id" [schema]="schema" [ui]="ui" [showError]="showError" [error]="error" [showTitle]="schema.title">
-
-    <ng-template
-      [ngTemplateOutlet]="$any(ui)._render"
-      [ngTemplateOutletContext]="{$implicit: this, schema: schema, ui: ui }"></ng-template>
-
-  </sf-item-wrap>
+    <sf-item-wrap
+      [id]="id"
+      [schema]="schema"
+      [ui]="ui"
+      [showError]="showError"
+      [error]="error"
+      [showTitle]="schema.title"
+    >
+      <ng-template
+        [ngTemplateOutlet]="$any(ui)._render"
+        [ngTemplateOutletContext]="{$implicit: this, schema: schema, ui: ui }"
+      ></ng-template>
+    </sf-item-wrap>
   `
             }] }
 ];
@@ -2677,7 +2628,11 @@ class DateWidget extends ControlWidget {
         else {
             this.displayFormat = ui.displayFormat;
         }
-        this.format = ui.format ? ui.format : this.schema.type === 'number' ? 'x' : 'YYYY-MM-DD HH:mm:ss';
+        this.format = ui.format
+            ? ui.format
+            : this.schema.type === 'number'
+                ? 'x'
+                : 'YYYY-MM-DD HH:mm:ss';
         // 公共API
         this.i = {
             allowClear: toBool(ui.allowClear, true),
@@ -2717,7 +2672,9 @@ class DateWidget extends ControlWidget {
             return;
         }
         /** @type {?} */
-        const res = Array.isArray(value) ? value.map(d => format(d, this.format)) : format(value, this.format);
+        const res = Array.isArray(value)
+            ? value.map(d => format(d, this.format))
+            : format(value, this.format);
         if (this.flatRange) {
             this.setEnd(res[1]);
             this.setValue(res[0]);
@@ -2770,7 +2727,7 @@ class DateWidget extends ControlWidget {
 DateWidget.decorators = [
     { type: Component, args: [{
                 selector: 'sf-date',
-                template: "<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n  <ng-container [ngSwitch]=\"mode\">\n\n    <nz-month-picker *ngSwitchCase=\"'month'\"\n      [nzDisabled]=\"disabled\"\n      [nzSize]=\"ui.size\"\n      [nzFormat]=\"displayFormat\"\n      [(ngModel)]=\"displayValue\"\n      (ngModelChange)=\"_change($event)\"\n      [nzAllowClear]=\"i.allowClear\"\n      [nzClassName]=\"ui.className\"\n      [nzDisabledDate]=\"ui.disabledDate\"\n      [nzLocale]=\"ui.locale\"\n      [nzPlaceHolder]=\"ui.placeholder\"\n      [nzPopupStyle]=\"ui.popupStyle\"\n      [nzDropdownClassName]=\"ui.dropdownClassName\"\n      (nzOnOpenChange)=\"_openChange($event)\"\n      [nzRenderExtraFooter]=\"ui.renderExtraFooter\"\n    ></nz-month-picker>\n\n    <nz-week-picker *ngSwitchCase=\"'week'\"\n      [nzDisabled]=\"disabled\"\n      [nzSize]=\"ui.size\"\n      [nzFormat]=\"displayFormat\"\n      [(ngModel)]=\"displayValue\"\n      (ngModelChange)=\"_change($event)\"\n      [nzAllowClear]=\"i.allowClear\"\n      [nzClassName]=\"ui.className\"\n      [nzDisabledDate]=\"ui.disabledDate\"\n      [nzLocale]=\"ui.locale\"\n      [nzPlaceHolder]=\"ui.placeholder\"\n      [nzPopupStyle]=\"ui.popupStyle\"\n      [nzDropdownClassName]=\"ui.dropdownClassName\"\n      (nzOnOpenChange)=\"_openChange($event)\"\n    ></nz-week-picker>\n\n    <nz-range-picker *ngSwitchCase=\"'range'\"\n      [nzDisabled]=\"disabled\"\n      [nzSize]=\"ui.size\"\n      [nzFormat]=\"displayFormat\"\n      [(ngModel)]=\"displayValue\"\n      (ngModelChange)=\"_change($event)\"\n      [nzAllowClear]=\"i.allowClear\"\n      [nzClassName]=\"ui.className\"\n      [nzDisabledDate]=\"ui.disabledDate\"\n      [nzLocale]=\"ui.locale\"\n      [nzPlaceHolder]=\"ui.placeholder\"\n      [nzPopupStyle]=\"ui.popupStyle\"\n      [nzDropdownClassName]=\"ui.dropdownClassName\"\n      (nzOnOpenChange)=\"_openChange($event)\"\n      [nzDisabledTime]=\"ui.disabledTime\"\n      [nzRenderExtraFooter]=\"ui.renderExtraFooter\"\n      [nzRanges]=\"ui.ranges\"\n      [nzShowTime]=\"ui.showTime\"\n      (nzOnOk)=\"_ok($event)\"\n    ></nz-range-picker>\n\n    <nz-date-picker *ngSwitchDefault\n      [nzDisabled]=\"disabled\"\n      [nzSize]=\"ui.size\"\n      [nzFormat]=\"displayFormat\"\n      [(ngModel)]=\"displayValue\"\n      (ngModelChange)=\"_change($event)\"\n      [nzAllowClear]=\"i.allowClear\"\n      [nzClassName]=\"ui.className\"\n      [nzDisabledDate]=\"ui.disabledDate\"\n      [nzLocale]=\"ui.locale\"\n      [nzPlaceHolder]=\"ui.placeholder\"\n      [nzPopupStyle]=\"ui.popupStyle\"\n      [nzDropdownClassName]=\"ui.dropdownClassName\"\n      (nzOnOpenChange)=\"_openChange($event)\"\n      [nzDisabledTime]=\"ui.disabledTime\"\n      [nzRenderExtraFooter]=\"ui.renderExtraFooter\"\n      [nzShowTime]=\"ui.showTime\"\n      [nzShowToday]=\"i.showToday\"\n      (nzOnOk)=\"_ok($event)\"\n    ></nz-date-picker>\n  </ng-container>\n\n</sf-item-wrap>"
+                template: "<sf-item-wrap [id]=\"id\"\n              [schema]=\"schema\"\n              [ui]=\"ui\"\n              [showError]=\"showError\"\n              [error]=\"error\"\n              [showTitle]=\"schema.title\">\n  <ng-container [ngSwitch]=\"mode\">\n\n    <nz-month-picker *ngSwitchCase=\"'month'\"\n                     [nzDisabled]=\"disabled\"\n                     [nzSize]=\"ui.size\"\n                     [nzFormat]=\"displayFormat\"\n                     [(ngModel)]=\"displayValue\"\n                     (ngModelChange)=\"_change($event)\"\n                     [nzAllowClear]=\"i.allowClear\"\n                     [nzClassName]=\"ui.className\"\n                     [nzDisabledDate]=\"ui.disabledDate\"\n                     [nzLocale]=\"ui.locale\"\n                     [nzPlaceHolder]=\"ui.placeholder\"\n                     [nzPopupStyle]=\"ui.popupStyle\"\n                     [nzDropdownClassName]=\"ui.dropdownClassName\"\n                     (nzOnOpenChange)=\"_openChange($event)\"\n                     [nzRenderExtraFooter]=\"ui.renderExtraFooter\"></nz-month-picker>\n\n    <nz-week-picker *ngSwitchCase=\"'week'\"\n                    [nzDisabled]=\"disabled\"\n                    [nzSize]=\"ui.size\"\n                    [nzFormat]=\"displayFormat\"\n                    [(ngModel)]=\"displayValue\"\n                    (ngModelChange)=\"_change($event)\"\n                    [nzAllowClear]=\"i.allowClear\"\n                    [nzClassName]=\"ui.className\"\n                    [nzDisabledDate]=\"ui.disabledDate\"\n                    [nzLocale]=\"ui.locale\"\n                    [nzPlaceHolder]=\"ui.placeholder\"\n                    [nzPopupStyle]=\"ui.popupStyle\"\n                    [nzDropdownClassName]=\"ui.dropdownClassName\"\n                    (nzOnOpenChange)=\"_openChange($event)\"></nz-week-picker>\n\n    <nz-range-picker *ngSwitchCase=\"'range'\"\n                     [nzDisabled]=\"disabled\"\n                     [nzSize]=\"ui.size\"\n                     [nzFormat]=\"displayFormat\"\n                     [(ngModel)]=\"displayValue\"\n                     (ngModelChange)=\"_change($event)\"\n                     [nzAllowClear]=\"i.allowClear\"\n                     [nzClassName]=\"ui.className\"\n                     [nzDisabledDate]=\"ui.disabledDate\"\n                     [nzLocale]=\"ui.locale\"\n                     [nzPlaceHolder]=\"ui.placeholder\"\n                     [nzPopupStyle]=\"ui.popupStyle\"\n                     [nzDropdownClassName]=\"ui.dropdownClassName\"\n                     (nzOnOpenChange)=\"_openChange($event)\"\n                     [nzDisabledTime]=\"ui.disabledTime\"\n                     [nzRenderExtraFooter]=\"ui.renderExtraFooter\"\n                     [nzRanges]=\"ui.ranges\"\n                     [nzShowTime]=\"ui.showTime\"\n                     (nzOnOk)=\"_ok($event)\"></nz-range-picker>\n\n    <nz-date-picker *ngSwitchDefault\n                    [nzDisabled]=\"disabled\"\n                    [nzSize]=\"ui.size\"\n                    [nzFormat]=\"displayFormat\"\n                    [(ngModel)]=\"displayValue\"\n                    (ngModelChange)=\"_change($event)\"\n                    [nzAllowClear]=\"i.allowClear\"\n                    [nzClassName]=\"ui.className\"\n                    [nzDisabledDate]=\"ui.disabledDate\"\n                    [nzLocale]=\"ui.locale\"\n                    [nzPlaceHolder]=\"ui.placeholder\"\n                    [nzPopupStyle]=\"ui.popupStyle\"\n                    [nzDropdownClassName]=\"ui.dropdownClassName\"\n                    (nzOnOpenChange)=\"_openChange($event)\"\n                    [nzDisabledTime]=\"ui.disabledTime\"\n                    [nzRenderExtraFooter]=\"ui.renderExtraFooter\"\n                    [nzShowTime]=\"ui.showTime\"\n                    [nzShowToday]=\"i.showToday\"\n                    (nzOnOk)=\"_ok($event)\"></nz-date-picker>\n  </ng-container>\n\n</sf-item-wrap>\n"
             }] }
 ];
 
@@ -2853,50 +2810,7 @@ class MentionWidget extends ControlWidget {
 MentionWidget.decorators = [
     { type: Component, args: [{
                 selector: 'sf-mention',
-                template: `
-    <sf-item-wrap [id]="id" [schema]="schema" [ui]="ui" [showError]="showError" [error]="error" [showTitle]="schema.title">
-
-      <nz-mention #mentions
-        [nzSuggestions]="data"
-        [nzValueWith]="i.valueWith"
-        [nzLoading]="loading"
-        [nzNotFoundContent]="i.notFoundContent"
-        [nzPlacement]="i.placement"
-        [nzPrefix]="i.prefix"
-        (nzOnSelect)="_select($event)"
-        (nzOnSearchChange)="_search($event)">
-
-        <ng-container *ngIf="ui.inputStyle !== 'textarea'">
-          <input nzMentionTrigger nz-input
-            [attr.id]="id"
-            [disabled]="disabled"
-            [attr.disabled]="disabled"
-            [nzSize]="ui.size"
-            [ngModel]="value"
-            (ngModelChange)="setValue($event)"
-            [attr.maxLength]="schema.maxLength || null"
-            [attr.placeholder]="ui.placeholder"
-            autocomplete="off">
-        </ng-container>
-
-        <ng-container *ngIf="ui.inputStyle === 'textarea'">
-          <textarea nzMentionTrigger nz-input
-            [attr.id]="id"
-            [disabled]="disabled"
-            [attr.disabled]="disabled"
-            [nzSize]="ui.size"
-            [ngModel]="value"
-            (ngModelChange)="setValue($event)"
-            [attr.maxLength]="schema.maxLength || null"
-            [attr.placeholder]="ui.placeholder"
-            [nzAutosize]="i.autosize">
-          </textarea>
-        </ng-container>
-
-      </nz-mention>
-
-    </sf-item-wrap>
-    `
+                template: "<sf-item-wrap [id]=\"id\"\n              [schema]=\"schema\"\n              [ui]=\"ui\"\n              [showError]=\"showError\"\n              [error]=\"error\"\n              [showTitle]=\"schema.title\">\n  <nz-mention #mentions\n              [nzSuggestions]=\"data\"\n              [nzValueWith]=\"i.valueWith\"\n              [nzLoading]=\"loading\"\n              [nzNotFoundContent]=\"i.notFoundContent\"\n              [nzPlacement]=\"i.placement\"\n              [nzPrefix]=\"i.prefix\"\n              (nzOnSelect)=\"_select($event)\"\n              (nzOnSearchChange)=\"_search($event)\">\n    <ng-container *ngIf=\"ui.inputStyle !== 'textarea'\">\n      <input nzMentionTrigger\n             nz-input\n             [attr.id]=\"id\"\n             [disabled]=\"disabled\"\n             [attr.disabled]=\"disabled\"\n             [nzSize]=\"ui.size\"\n             [ngModel]=\"value\"\n             (ngModelChange)=\"setValue($event)\"\n             [attr.maxLength]=\"schema.maxLength || null\"\n             [attr.placeholder]=\"ui.placeholder\"\n             autocomplete=\"off\" />\n    </ng-container>\n\n    <ng-container *ngIf=\"ui.inputStyle === 'textarea'\">\n      <textarea nzMentionTrigger\n                nz-input\n                [attr.id]=\"id\"\n                [disabled]=\"disabled\"\n                [attr.disabled]=\"disabled\"\n                [nzSize]=\"ui.size\"\n                [ngModel]=\"value\"\n                (ngModelChange)=\"setValue($event)\"\n                [attr.maxLength]=\"schema.maxLength || null\"\n                [attr.placeholder]=\"ui.placeholder\"\n                [nzAutosize]=\"i.autosize\">\n        </textarea>\n    </ng-container>\n  </nz-mention>\n</sf-item-wrap>\n"
             }] }
 ];
 MentionWidget.propDecorators = {
@@ -2954,31 +2868,7 @@ class NumberWidget extends ControlWidget {
 NumberWidget.decorators = [
     { type: Component, args: [{
                 selector: 'sf-number',
-                template: `
-    <sf-item-wrap
-      [id]="id"
-      [schema]="schema"
-      [ui]="ui"
-      [showError]="showError"
-      [error]="error"
-      [showTitle]="schema.title"
-    >
-      <nz-input-number
-        [ngModel]="value"
-        (ngModelChange)="_setValue($event)"
-        [nzDisabled]="disabled"
-        [nzSize]="ui.size"
-        [nzMin]="min"
-        [nzMax]="max"
-        [nzStep]="step"
-        [nzFormatter]="formatter"
-        [nzParser]="parser"
-        [nzPrecision]="ui.precision"
-        [nzPlaceHolder]="ui.placeholder || ''"
-      >
-      </nz-input-number>
-    </sf-item-wrap>
-  `
+                template: "<sf-item-wrap [id]=\"id\"\n              [schema]=\"schema\"\n              [ui]=\"ui\"\n              [showError]=\"showError\"\n              [error]=\"error\"\n              [showTitle]=\"schema.title\">\n  <nz-input-number [ngModel]=\"value\"\n                   (ngModelChange)=\"_setValue($event)\"\n                   [nzDisabled]=\"disabled\"\n                   [nzSize]=\"ui.size\"\n                   [nzMin]=\"min\"\n                   [nzMax]=\"max\"\n                   [nzStep]=\"step\"\n                   [nzFormatter]=\"formatter\"\n                   [nzParser]=\"parser\"\n                   [nzPrecision]=\"ui.precision\"\n                   [nzPlaceHolder]=\"ui.placeholder || ''\">\n  </nz-input-number>\n</sf-item-wrap>\n"
             }] }
 ];
 
@@ -3016,28 +2906,7 @@ class ObjectWidget extends ObjectLayoutWidget {
 ObjectWidget.decorators = [
     { type: Component, args: [{
                 selector: 'sf-object',
-                template: `
-  <ng-container *ngIf="grid; else noGrid">
-    <div nz-row [nzGutter]="grid.gutter">
-      <ng-container *ngFor="let i of list">
-        <ng-container *ngIf="i.property.visible && i.show">
-          <div nz-col
-            [nzSpan]="i.grid.span" [nzOffset]="i.grid.offset"
-            [nzXs]="i.grid.xs" [nzSm]="i.grid.sm" [nzMd]="i.grid.md"
-            [nzLg]="i.grid.lg" [nzXl]="i.grid.xl" [nzXXl]="i.grid.xxl">
-            <sf-item [formProperty]="i.property" [fixed-label]="i.spanLabelFixed"></sf-item>
-          </div>
-        </ng-container>
-      </ng-container>
-    </div>
-  </ng-container>
-  <ng-template #noGrid>
-    <ng-container *ngFor="let i of list">
-      <ng-container *ngIf="i.property.visible && i.show">
-        <sf-item [formProperty]="i.property" [fixed-label]="i.spanLabelFixed"></sf-item>
-      </ng-container>
-    </ng-container>
-  </ng-template>`
+                template: "<ng-container *ngIf=\"grid; else noGrid\">\n  <div nz-row\n       [nzGutter]=\"grid.gutter\">\n    <ng-container *ngFor=\"let i of list\">\n      <ng-container *ngIf=\"i.property.visible && i.show\">\n        <div nz-col\n             [nzSpan]=\"i.grid.span\"\n             [nzOffset]=\"i.grid.offset\"\n             [nzXs]=\"i.grid.xs\"\n             [nzSm]=\"i.grid.sm\"\n             [nzMd]=\"i.grid.md\"\n             [nzLg]=\"i.grid.lg\"\n             [nzXl]=\"i.grid.xl\"\n             [nzXXl]=\"i.grid.xxl\">\n          <sf-item [formProperty]=\"i.property\"\n                   [fixed-label]=\"i.spanLabelFixed\"></sf-item>\n        </div>\n      </ng-container>\n    </ng-container>\n  </div>\n</ng-container>\n<ng-template #noGrid>\n  <ng-container *ngFor=\"let i of list\">\n    <ng-container *ngIf=\"i.property.visible && i.show\">\n      <sf-item [formProperty]=\"i.property\"\n               [fixed-label]=\"i.spanLabelFixed\"></sf-item>\n    </ng-container>\n  </ng-container>\n</ng-template>\n"
             }] }
 ];
 
@@ -3071,35 +2940,7 @@ class RadioWidget extends ControlWidget {
 RadioWidget.decorators = [
     { type: Component, args: [{
                 selector: 'sf-radio',
-                template: `
-  <sf-item-wrap [id]="id" [schema]="schema" [ui]="ui" [showError]="showError" [error]="error" [showTitle]="schema.title">
-
-    <nz-radio-group
-      [nzDisabled]="disabled"
-      [nzSize]="ui.size"
-      [nzName]="id"
-      [ngModel]="value"
-      (ngModelChange)="_setValue($event)">
-      <ng-container *ngIf="styleType">
-        <label *ngFor="let option of data"
-          nz-radio
-          [nzValue]="option.value"
-          [nzDisabled]="option.disabled">
-          <span [innerHTML]="option.label"></span>
-        </label>
-      </ng-container>
-      <ng-container *ngIf="!styleType">
-        <label *ngFor="let option of data"
-          nz-radio-button
-          [nzValue]="option.value"
-          [nzDisabled]="option.disabled">
-          <span [innerHTML]="option.label"></span>
-        </label>
-      </ng-container>
-    </nz-radio-group>
-
-  </sf-item-wrap>
-  `
+                template: "<sf-item-wrap [id]=\"id\"\n              [schema]=\"schema\"\n              [ui]=\"ui\"\n              [showError]=\"showError\"\n              [error]=\"error\"\n              [showTitle]=\"schema.title\">\n\n  <nz-radio-group [nzDisabled]=\"disabled\"\n                  [nzSize]=\"ui.size\"\n                  [nzName]=\"id\"\n                  [ngModel]=\"value\"\n                  (ngModelChange)=\"_setValue($event)\">\n    <ng-container *ngIf=\"styleType\">\n      <label *ngFor=\"let option of data\"\n             nz-radio\n             [nzValue]=\"option.value\"\n             [nzDisabled]=\"option.disabled\">\n        <span [innerHTML]=\"option.label\"></span>\n      </label>\n    </ng-container>\n    <ng-container *ngIf=\"!styleType\">\n      <label *ngFor=\"let option of data\"\n             nz-radio-button\n             [nzValue]=\"option.value\"\n             [nzDisabled]=\"option.disabled\">\n        <span [innerHTML]=\"option.label\"></span>\n      </label>\n    </ng-container>\n  </nz-radio-group>\n\n</sf-item-wrap>\n"
             }] }
 ];
 
@@ -3134,7 +2975,7 @@ class RateWidget extends ControlWidget {
 RateWidget.decorators = [
     { type: Component, args: [{
                 selector: 'sf-rate',
-                template: "<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n  <nz-rate [nzDisabled]=\"disabled\" [ngModel]=\"value\" (ngModelChange)=\"setValue($event)\" [nzAllowClear]=\"allowClear\" [nzAllowHalf]=\"allowHalf\"\n           [nzAutoFocus]=\"autoFocus\" [nzCount]=\"count\"></nz-rate>\n  <span *ngIf=\"hasText && formProperty.value\" class=\"ant-rate-text\">{{ text }}</span>\n</sf-item-wrap>\n"
+                template: "<sf-item-wrap [id]=\"id\"\n              [schema]=\"schema\"\n              [ui]=\"ui\"\n              [showError]=\"showError\"\n              [error]=\"error\"\n              [showTitle]=\"schema.title\">\n  <nz-rate [nzDisabled]=\"disabled\"\n           [ngModel]=\"value\"\n           (ngModelChange)=\"setValue($event)\"\n           [nzAllowClear]=\"allowClear\"\n           [nzAllowHalf]=\"allowHalf\"\n           [nzAutoFocus]=\"autoFocus\"\n           [nzCount]=\"count\"></nz-rate>\n  <span *ngIf=\"hasText && formProperty.value\"\n        class=\"ant-rate-text\">{{ text }}</span>\n</sf-item-wrap>\n"
             }] }
 ];
 
@@ -3219,57 +3060,7 @@ class SelectWidget extends ControlWidget {
 SelectWidget.decorators = [
     { type: Component, args: [{
                 selector: 'sf-select',
-                template: `
-    <sf-item-wrap
-      [id]="id"
-      [schema]="schema"
-      [ui]="ui"
-      [showError]="showError"
-      [error]="error"
-      [showTitle]="schema.title"
-    >
-      <nz-select
-        [nzDisabled]="disabled"
-        [nzSize]="ui.size"
-        [ngModel]="value"
-        (ngModelChange)="change($event)"
-        [nzPlaceHolder]="ui.placeholder"
-        [nzAllowClear]="i.allowClear"
-        [nzAutoFocus]="i.autoFocus"
-        [nzDropdownClassName]="i.dropdownClassName"
-        [nzDropdownMatchSelectWidth]="i.dropdownMatchSelectWidth"
-        [nzServerSearch]="i.serverSearch"
-        [nzMaxMultipleCount]="i.maxMultipleCount"
-        [nzMode]="i.mode"
-        [nzNotFoundContent]="i.notFoundContent"
-        [nzShowSearch]="i.showSearch"
-        (nzOpenChange)="openChange($event)"
-        (nzOnSearch)="searchChange($event)"
-        (nzScrollToBottom)="scrollToBottom()"
-      >
-        <ng-container *ngIf="!hasGroup">
-          <nz-option
-            *ngFor="let o of data"
-            [nzLabel]="o.label"
-            [nzValue]="o.value"
-            [nzDisabled]="o.disabled"
-          >
-          </nz-option>
-        </ng-container>
-        <ng-container *ngIf="hasGroup">
-          <nz-option-group *ngFor="let i of data" [nzLabel]="i.label">
-            <nz-option
-              *ngFor="let o of i.children"
-              [nzLabel]="o.label"
-              [nzValue]="o.value"
-              [nzDisabled]="o.disabled"
-            >
-            </nz-option>
-          </nz-option-group>
-        </ng-container>
-      </nz-select>
-    </sf-item-wrap>
-  `
+                template: "<sf-item-wrap [id]=\"id\"\n              [schema]=\"schema\"\n              [ui]=\"ui\"\n              [showError]=\"showError\"\n              [error]=\"error\"\n              [showTitle]=\"schema.title\">\n  <nz-select [nzDisabled]=\"disabled\"\n             [nzSize]=\"ui.size\"\n             [ngModel]=\"value\"\n             (ngModelChange)=\"change($event)\"\n             [nzPlaceHolder]=\"ui.placeholder\"\n             [nzAllowClear]=\"i.allowClear\"\n             [nzAutoFocus]=\"i.autoFocus\"\n             [nzDropdownClassName]=\"i.dropdownClassName\"\n             [nzDropdownMatchSelectWidth]=\"i.dropdownMatchSelectWidth\"\n             [nzServerSearch]=\"i.serverSearch\"\n             [nzMaxMultipleCount]=\"i.maxMultipleCount\"\n             [nzMode]=\"i.mode\"\n             [nzNotFoundContent]=\"i.notFoundContent\"\n             [nzShowSearch]=\"i.showSearch\"\n             (nzOpenChange)=\"openChange($event)\"\n             (nzOnSearch)=\"searchChange($event)\"\n             (nzScrollToBottom)=\"scrollToBottom()\">\n    <ng-container *ngIf=\"!hasGroup\">\n      <nz-option *ngFor=\"let o of data\"\n                 [nzLabel]=\"o.label\"\n                 [nzValue]=\"o.value\"\n                 [nzDisabled]=\"o.disabled\">\n      </nz-option>\n    </ng-container>\n    <ng-container *ngIf=\"hasGroup\">\n      <nz-option-group *ngFor=\"let i of data\"\n                       [nzLabel]=\"i.label\">\n        <nz-option *ngFor=\"let o of i.children\"\n                   [nzLabel]=\"o.label\"\n                   [nzValue]=\"o.value\"\n                   [nzDisabled]=\"o.disabled\">\n        </nz-option>\n      </nz-option-group>\n    </ng-container>\n  </nz-select>\n</sf-item-wrap>\n"
             }] }
 ];
 
@@ -3310,27 +3101,7 @@ class SliderWidget extends ControlWidget {
 SliderWidget.decorators = [
     { type: Component, args: [{
                 selector: 'sf-slider',
-                template: `
-  <sf-item-wrap [id]="id" [schema]="schema" [ui]="ui" [showError]="showError" [error]="error" [showTitle]="schema.title">
-
-    <nz-slider
-      [ngModel]="value"
-      (ngModelChange)="setValue($event)"
-      [nzDisabled]="disabled"
-      [nzRange]="ui.range"
-      [nzMin]="min"
-      [nzMax]="max"
-      [nzStep]="step"
-      [nzMarks]="marks"
-      [nzDots]="ui.dots"
-      [nzIncluded]="included"
-      [nzVertical]="ui.vertical"
-      [nzTipFormatter]="_formatter"
-      (nzOnAfterChange)="_afterChange($event)">
-    </nz-slider>
-
-  </sf-item-wrap>
-  `
+                template: "<sf-item-wrap [id]=\"id\"\n              [schema]=\"schema\"\n              [ui]=\"ui\"\n              [showError]=\"showError\"\n              [error]=\"error\"\n              [showTitle]=\"schema.title\">\n\n  <nz-slider [ngModel]=\"value\"\n             (ngModelChange)=\"setValue($event)\"\n             [nzDisabled]=\"disabled\"\n             [nzRange]=\"ui.range\"\n             [nzMin]=\"min\"\n             [nzMax]=\"max\"\n             [nzStep]=\"step\"\n             [nzMarks]=\"marks\"\n             [nzDots]=\"ui.dots\"\n             [nzIncluded]=\"included\"\n             [nzVertical]=\"ui.vertical\"\n             [nzTipFormatter]=\"_formatter\"\n             (nzOnAfterChange)=\"_afterChange($event)\">\n  </nz-slider>\n\n</sf-item-wrap>\n"
             }] }
 ];
 
@@ -3367,35 +3138,7 @@ class StringWidget extends ControlWidget {
 StringWidget.decorators = [
     { type: Component, args: [{
                 selector: 'sf-string',
-                template: `
-  <sf-item-wrap [id]="id" [schema]="schema" [ui]="ui" [showError]="showError" [error]="error" [showTitle]="schema.title">
-
-    <ng-template #ipt>
-      <input nz-input
-        [attr.id]="id"
-        [disabled]="disabled"
-        [attr.disabled]="disabled"
-        [nzSize]="ui.size"
-        [ngModel]="value"
-        (ngModelChange)="setValue($event)"
-        [attr.maxLength]="schema.maxLength || null"
-        [attr.type]="ui.type || 'text'"
-        [attr.placeholder]="ui.placeholder"
-        [attr.autocomplete]="ui.autocomplete"
-        [attr.autoFocus]="ui.autofocus">
-    </ng-template>
-
-    <ng-container *ngIf="type === 'addon'; else ipt">
-      <nz-input-group
-        [nzAddOnBefore]="ui.addOnBefore" [nzAddOnAfter]="ui.addOnAfter"
-        [nzAddOnBeforeIcon]="ui.addOnBeforeIcon" [nzAddOnAfterIcon]="ui.addOnAfterIcon"
-        [nzPrefix]="ui.prefix" [nzPrefixIcon]="ui.prefixIcon"
-        [nzSuffix]="ui.suffix" [nzSuffixIcon]="ui.suffixIcon">
-        <ng-template [ngTemplateOutlet]="ipt"></ng-template>
-      </nz-input-group>
-    </ng-container>
-  </sf-item-wrap>
-  `
+                template: "<sf-item-wrap [id]=\"id\"\n              [schema]=\"schema\"\n              [ui]=\"ui\"\n              [showError]=\"showError\"\n              [error]=\"error\"\n              [showTitle]=\"schema.title\">\n\n  <ng-template #ipt>\n    <input nz-input\n           [attr.id]=\"id\"\n           [disabled]=\"disabled\"\n           [attr.disabled]=\"disabled\"\n           [nzSize]=\"ui.size\"\n           [ngModel]=\"value\"\n           (ngModelChange)=\"setValue($event)\"\n           [attr.maxLength]=\"schema.maxLength || null\"\n           [attr.type]=\"ui.type || 'text'\"\n           [attr.placeholder]=\"ui.placeholder\"\n           [attr.autocomplete]=\"ui.autocomplete\"\n           [attr.autoFocus]=\"ui.autofocus\">\n  </ng-template>\n\n  <ng-container *ngIf=\"type === 'addon'; else ipt\">\n    <nz-input-group [nzAddOnBefore]=\"ui.addOnBefore\"\n                    [nzAddOnAfter]=\"ui.addOnAfter\"\n                    [nzAddOnBeforeIcon]=\"ui.addOnBeforeIcon\"\n                    [nzAddOnAfterIcon]=\"ui.addOnAfterIcon\"\n                    [nzPrefix]=\"ui.prefix\"\n                    [nzPrefixIcon]=\"ui.prefixIcon\"\n                    [nzSuffix]=\"ui.suffix\"\n                    [nzSuffixIcon]=\"ui.suffixIcon\">\n      <ng-template [ngTemplateOutlet]=\"ipt\"></ng-template>\n    </nz-input-group>\n  </ng-container>\n</sf-item-wrap>\n"
             }] }
 ];
 
@@ -3449,21 +3192,7 @@ class TagWidget extends ControlWidget {
 TagWidget.decorators = [
     { type: Component, args: [{
                 selector: 'sf-tag',
-                template: `
-  <sf-item-wrap [id]="id" [schema]="schema" [ui]="ui" [showError]="showError" [error]="error" [showTitle]="schema.title">
-
-    <nz-tag
-      *ngFor="let i of data"
-      nzMode="checkable"
-      [nzChecked]="i.checked"
-      (nzAfterClose)="_afterClose()"
-      (nzOnClose)="_close($event)"
-      (nzCheckedChange)="onChange(i)">
-      {{i.label}}
-    </nz-tag>
-
-  </sf-item-wrap>
-  `
+                template: "<sf-item-wrap [id]=\"id\"\n              [schema]=\"schema\"\n              [ui]=\"ui\"\n              [showError]=\"showError\"\n              [error]=\"error\"\n              [showTitle]=\"schema.title\">\n\n  <nz-tag *ngFor=\"let i of data\"\n          nzMode=\"checkable\"\n          [nzChecked]=\"i.checked\"\n          (nzAfterClose)=\"_afterClose()\"\n          (nzOnClose)=\"_close($event)\"\n          (nzCheckedChange)=\"onChange(i)\">\n    {{i.label}}\n  </nz-tag>\n\n</sf-item-wrap>\n"
             }] }
 ];
 
@@ -3482,11 +3211,7 @@ class TextWidget extends ControlWidget {
 TextWidget.decorators = [
     { type: Component, args: [{
                 selector: 'sf-text',
-                template: `
-  <sf-item-wrap [id]="id" [schema]="schema" [ui]="ui" [showError]="showError" [error]="error" [showTitle]="schema.title">
-    {{ value || ui.defaultText || '-' }}
-  </sf-item-wrap>
-  `
+                template: "<sf-item-wrap [id]=\"id\"\n              [schema]=\"schema\"\n              [ui]=\"ui\"\n              [showError]=\"showError\"\n              [error]=\"error\"\n              [showTitle]=\"schema.title\">\n  {{ value || ui.defaultText || '-' }}\n</sf-item-wrap>\n"
             }] }
 ];
 
@@ -3512,22 +3237,7 @@ class TextareaWidget extends ControlWidget {
 TextareaWidget.decorators = [
     { type: Component, args: [{
                 selector: 'sf-textarea',
-                template: `
-  <sf-item-wrap [id]="id" [schema]="schema" [ui]="ui" [showError]="showError" [error]="error" [showTitle]="schema.title">
-
-    <textarea nz-input
-      [attr.id]="id"
-      [disabled]="disabled"
-      [attr.disabled]="disabled"
-      [nzSize]="ui.size"
-      [ngModel]="value"
-      (ngModelChange)="setValue($event)"
-      [attr.maxLength]="schema.maxLength || null"
-      [attr.placeholder]="ui.placeholder"
-      [nzAutosize]="autosize">
-    </textarea>
-
-  </sf-item-wrap>`
+                template: "<sf-item-wrap [id]=\"id\"\n              [schema]=\"schema\"\n              [ui]=\"ui\"\n              [showError]=\"showError\"\n              [error]=\"error\"\n              [showTitle]=\"schema.title\">\n\n  <textarea nz-input\n            [attr.id]=\"id\"\n            [disabled]=\"disabled\"\n            [attr.disabled]=\"disabled\"\n            [nzSize]=\"ui.size\"\n            [ngModel]=\"value\"\n            (ngModelChange)=\"setValue($event)\"\n            [attr.maxLength]=\"schema.maxLength || null\"\n            [attr.placeholder]=\"ui.placeholder\"\n            [nzAutosize]=\"autosize\">\n    </textarea>\n\n</sf-item-wrap>\n"
             }] }
 ];
 
@@ -3546,11 +3256,7 @@ class TimeWidget extends ControlWidget {
     ngOnInit() {
         /** @type {?} */
         const ui = this.ui;
-        this.format = ui.format
-            ? ui.format
-            : this.schema.type === 'number'
-                ? 'x'
-                : 'HH:mm:ss';
+        this.format = ui.format ? ui.format : this.schema.type === 'number' ? 'x' : 'HH:mm:ss';
         this.i = {
             displayFormat: ui.displayFormat || 'HH:mm:ss',
             allowEmpty: toBool(ui.allowEmpty, true),
@@ -3609,31 +3315,7 @@ class TimeWidget extends ControlWidget {
 TimeWidget.decorators = [
     { type: Component, args: [{
                 selector: 'sf-time',
-                template: `
-  <sf-item-wrap [id]="id" [schema]="schema" [ui]="ui" [showError]="showError" [error]="error" [showTitle]="schema.title">
-
-    <nz-time-picker
-      [(ngModel)]="displayValue"
-      (ngModelChange)="_change($event)"
-      [nzDisabled]="disabled"
-      [nzSize]="ui.size"
-      [nzFormat]="i.displayFormat"
-      [nzAllowEmpty]="i.allowEmpty"
-      [nzClearText]="i.clearText"
-      [nzDefaultOpenValue]="i.defaultOpenValue"
-      [nzDisabledHours]="ui.disabledHours"
-      [nzDisabledMinutes]="ui.disabledMinutes"
-      [nzDisabledSeconds]="ui.disabledSeconds"
-      [nzHideDisabledOptions]="i.hideDisabledOptions"
-      [nzHourStep]="i.hourStep"
-      [nzMinuteStep]="i.minuteStep"
-      [nzSecondStep]="i.secondStep"
-      [nzPopupClassName]="ui.popupClassName"
-      >
-    </nz-time-picker>
-
-  </sf-item-wrap>
-  `
+                template: "<sf-item-wrap [id]=\"id\"\n              [schema]=\"schema\"\n              [ui]=\"ui\"\n              [showError]=\"showError\"\n              [error]=\"error\"\n              [showTitle]=\"schema.title\">\n\n  <nz-time-picker [(ngModel)]=\"displayValue\"\n                  (ngModelChange)=\"_change($event)\"\n                  [nzDisabled]=\"disabled\"\n                  [nzSize]=\"ui.size\"\n                  [nzFormat]=\"i.displayFormat\"\n                  [nzAllowEmpty]=\"i.allowEmpty\"\n                  [nzClearText]=\"i.clearText\"\n                  [nzDefaultOpenValue]=\"i.defaultOpenValue\"\n                  [nzDisabledHours]=\"ui.disabledHours\"\n                  [nzDisabledMinutes]=\"ui.disabledMinutes\"\n                  [nzDisabledSeconds]=\"ui.disabledSeconds\"\n                  [nzHideDisabledOptions]=\"i.hideDisabledOptions\"\n                  [nzHourStep]=\"i.hourStep\"\n                  [nzMinuteStep]=\"i.minuteStep\"\n                  [nzSecondStep]=\"i.secondStep\"\n                  [nzPopupClassName]=\"ui.popupClassName\">\n  </nz-time-picker>\n\n</sf-item-wrap>\n"
             }] }
 ];
 
@@ -3725,28 +3407,7 @@ class TransferWidget extends ControlWidget {
 TransferWidget.decorators = [
     { type: Component, args: [{
                 selector: 'sf-transfer',
-                template: `
-  <sf-item-wrap [id]="id" [schema]="schema" [ui]="ui" [showError]="showError" [error]="error" [showTitle]="schema.title">
-
-    <nz-transfer
-      [nzDataSource]="list"
-      [nzTitles]="i.titles"
-      [nzOperations]="i.operations"
-      [nzListStyle]="ui.listStyle"
-      [nzItemUnit]="i.itemUnit"
-      [nzItemsUnit]="i.itemsUnit"
-      [nzShowSearch]="ui.showSearch"
-      [nzFilterOption]="ui.filterOption"
-      [nzSearchPlaceholder]="ui.searchPlaceholder"
-      [nzNotFoundContent]="ui.notFoundContent"
-      [nzCanMove]="_canMove"
-      (nzChange)="_change($event)"
-      (nzSearchChange)="_searchChange($event)"
-      (nzSelectChange)="_selectChange($event)">
-    </nz-transfer>
-
-  </sf-item-wrap>
-  `
+                template: "<sf-item-wrap [id]=\"id\"\n              [schema]=\"schema\"\n              [ui]=\"ui\"\n              [showError]=\"showError\"\n              [error]=\"error\"\n              [showTitle]=\"schema.title\">\n\n  <nz-transfer [nzDataSource]=\"list\"\n               [nzTitles]=\"i.titles\"\n               [nzOperations]=\"i.operations\"\n               [nzListStyle]=\"ui.listStyle\"\n               [nzItemUnit]=\"i.itemUnit\"\n               [nzItemsUnit]=\"i.itemsUnit\"\n               [nzShowSearch]=\"ui.showSearch\"\n               [nzFilterOption]=\"ui.filterOption\"\n               [nzSearchPlaceholder]=\"ui.searchPlaceholder\"\n               [nzNotFoundContent]=\"ui.notFoundContent\"\n               [nzCanMove]=\"_canMove\"\n               (nzChange)=\"_change($event)\"\n               (nzSearchChange)=\"_searchChange($event)\"\n               (nzSelectChange)=\"_selectChange($event)\">\n  </nz-transfer>\n\n</sf-item-wrap>\n"
             }] }
 ];
 
@@ -3835,32 +3496,7 @@ class TreeSelectWidget extends ControlWidget {
 TreeSelectWidget.decorators = [
     { type: Component, args: [{
                 selector: 'sf-tree-select',
-                template: `
-  <sf-item-wrap [id]="id" [schema]="schema" [ui]="ui" [showError]="showError" [error]="error" [showTitle]="schema.title">
-    <nz-tree-select
-      [nzAllowClear]="i.allowClear"
-      [nzPlaceHolder]="ui.placeholder"
-      [nzDisabled]="disabled"
-      [nzShowSearch]="i.showSearch"
-      [nzDropdownMatchSelectWidth]="i.dropdownMatchSelectWidth"
-      [nzDropdownStyle]="ui.dropdownStyle"
-      [nzMultiple]="i.multiple"
-      [nzSize]="ui.size"
-      [nzCheckable]="i.checkable"
-      [nzShowExpand]="i.showExpand"
-      [nzShowLine]="i.showLine"
-      [nzAsyncData]="i.asyncData"
-      [nzNodes]="data"
-      [nzDefaultExpandAll]="i.defaultExpandAll"
-      [nzDefaultExpandedKeys]="i.defaultExpandedKeys"
-      [nzDisplayWith]="i.displayWith"
-      [ngModel]="value"
-      (ngModelChange)="change($event)"
-      (nzExpandChange)="expandChange($event)">
-    </nz-tree-select>
-
-  </sf-item-wrap>
-  `
+                template: "<sf-item-wrap [id]=\"id\"\n              [schema]=\"schema\"\n              [ui]=\"ui\"\n              [showError]=\"showError\"\n              [error]=\"error\"\n              [showTitle]=\"schema.title\">\n  <nz-tree-select [nzAllowClear]=\"i.allowClear\"\n                  [nzPlaceHolder]=\"ui.placeholder\"\n                  [nzDisabled]=\"disabled\"\n                  [nzShowSearch]=\"i.showSearch\"\n                  [nzDropdownMatchSelectWidth]=\"i.dropdownMatchSelectWidth\"\n                  [nzDropdownStyle]=\"ui.dropdownStyle\"\n                  [nzMultiple]=\"i.multiple\"\n                  [nzSize]=\"ui.size\"\n                  [nzCheckable]=\"i.checkable\"\n                  [nzShowExpand]=\"i.showExpand\"\n                  [nzShowLine]=\"i.showLine\"\n                  [nzAsyncData]=\"i.asyncData\"\n                  [nzNodes]=\"data\"\n                  [nzDefaultExpandAll]=\"i.defaultExpandAll\"\n                  [nzDefaultExpandedKeys]=\"i.defaultExpandedKeys\"\n                  [nzDisplayWith]=\"i.displayWith\"\n                  [ngModel]=\"value\"\n                  (ngModelChange)=\"change($event)\"\n                  (nzExpandChange)=\"expandChange($event)\">\n  </nz-tree-select>\n\n</sf-item-wrap>\n"
             }] }
 ];
 
@@ -3881,8 +3517,7 @@ class UploadWidget extends ControlWidget {
             this.injector
                 .get(NzModalService)
                 .create({
-                nzContent: `<img src="${file.url ||
-                    file.thumbUrl}" class="img-fluid" />`,
+                nzContent: `<img src="${file.url || file.thumbUrl}" class="img-fluid" />`,
                 nzFooter: null,
             })
                 .afterClose.subscribe(() => this.detectChanges());
@@ -3920,8 +3555,7 @@ class UploadWidget extends ControlWidget {
             this.i.listType = null;
             this.btnType = 'drag';
             this.i.text = this.ui.text || `单击或拖动文件到该区域上传`;
-            this.i.hint =
-                this.ui.hint || `支持单个或批量，严禁上传公司数据或其他安全文件`;
+            this.i.hint = this.ui.hint || `支持单个或批量，严禁上传公司数据或其他安全文件`;
         }
     }
     /**
@@ -3941,9 +3575,7 @@ class UploadWidget extends ControlWidget {
      */
     reset(value) {
         const { fileList } = this.ui;
-        (fileList
-            ? of(fileList)
-            : getData(this.schema, this.ui, this.formProperty.formData)).subscribe(list => {
+        (fileList ? of(fileList) : getData(this.schema, this.ui, this.formProperty.formData)).subscribe(list => {
             this.fileList = (/** @type {?} */ (list));
             this._setValue(this.fileList);
             this.detectChanges();
@@ -3962,59 +3594,7 @@ class UploadWidget extends ControlWidget {
 UploadWidget.decorators = [
     { type: Component, args: [{
                 selector: 'sf-upload',
-                template: `
-    <sf-item-wrap
-      [id]="id"
-      [schema]="schema"
-      [ui]="ui"
-      [showError]="showError"
-      [error]="error"
-      [showTitle]="schema.title"
-    >
-      <nz-upload
-        [nzType]="i.type"
-        [nzFileList]="fileList"
-        [nzDisabled]="disabled"
-        [nzAction]="i.action"
-        [nzDirectory]="i.directory"
-        [nzOpenFileDialogOnClick]="i.openFileDialogOnClick"
-        [nzAccept]="i.accept"
-        [nzLimit]="i.limit"
-        [nzFilter]="i.filter"
-        [nzSize]="i.size"
-        [nzFileType]="i.fileType"
-        [nzHeaders]="ui.headers"
-        [nzData]="ui.data"
-        [nzListType]="i.listType"
-        [nzMultiple]="i.multiple"
-        [nzName]="i.name"
-        [nzShowUploadList]="i.showUploadList"
-        [nzWithCredentials]="i.withCredentials"
-        [nzBeforeUpload]="i.beforeUpload"
-        [nzCustomRequest]="i.customRequest"
-        [nzRemove]="ui.remove"
-        [nzPreview]="handlePreview"
-        (nzChange)="change($event)"
-      >
-        <ng-container [ngSwitch]="btnType">
-          <ng-container *ngSwitchCase="'plus'">
-            <i nz-icon type="plus"></i>
-            <div class="ant-upload-text" [innerHTML]="i.text"></div>
-          </ng-container>
-          <ng-container *ngSwitchCase="'drag'">
-            <p class="ant-upload-drag-icon"><i nz-icon type="inbox"></i></p>
-            <p class="ant-upload-text" [innerHTML]="i.text"></p>
-            <p class="ant-upload-hint" [innerHTML]="i.hint"></p>
-          </ng-container>
-          <ng-container *ngSwitchDefault>
-            <button type="button" nz-button>
-              <i nz-icon type="upload"></i><span [innerHTML]="i.text"></span>
-            </button>
-          </ng-container>
-        </ng-container>
-      </nz-upload>
-    </sf-item-wrap>
-  `
+                template: "<sf-item-wrap [id]=\"id\"\n              [schema]=\"schema\"\n              [ui]=\"ui\"\n              [showError]=\"showError\"\n              [error]=\"error\"\n              [showTitle]=\"schema.title\">\n  <nz-upload [nzType]=\"i.type\"\n             [nzFileList]=\"fileList\"\n             [nzDisabled]=\"disabled\"\n             [nzAction]=\"i.action\"\n             [nzDirectory]=\"i.directory\"\n             [nzOpenFileDialogOnClick]=\"i.openFileDialogOnClick\"\n             [nzAccept]=\"i.accept\"\n             [nzLimit]=\"i.limit\"\n             [nzFilter]=\"i.filter\"\n             [nzSize]=\"i.size\"\n             [nzFileType]=\"i.fileType\"\n             [nzHeaders]=\"ui.headers\"\n             [nzData]=\"ui.data\"\n             [nzListType]=\"i.listType\"\n             [nzMultiple]=\"i.multiple\"\n             [nzName]=\"i.name\"\n             [nzShowUploadList]=\"i.showUploadList\"\n             [nzWithCredentials]=\"i.withCredentials\"\n             [nzBeforeUpload]=\"i.beforeUpload\"\n             [nzCustomRequest]=\"i.customRequest\"\n             [nzRemove]=\"ui.remove\"\n             [nzPreview]=\"handlePreview\"\n             (nzChange)=\"change($event)\">\n    <ng-container [ngSwitch]=\"btnType\">\n      <ng-container *ngSwitchCase=\"'plus'\">\n        <i nz-icon\n           type=\"plus\"></i>\n        <div class=\"ant-upload-text\"\n             [innerHTML]=\"i.text\"></div>\n      </ng-container>\n      <ng-container *ngSwitchCase=\"'drag'\">\n        <p class=\"ant-upload-drag-icon\"><i nz-icon\n             type=\"inbox\"></i></p>\n        <p class=\"ant-upload-text\"\n           [innerHTML]=\"i.text\"></p>\n        <p class=\"ant-upload-hint\"\n           [innerHTML]=\"i.hint\"></p>\n      </ng-container>\n      <ng-container *ngSwitchDefault>\n        <button type=\"button\"\n                nz-button>\n          <i nz-icon\n             type=\"upload\"></i><span [innerHTML]=\"i.text\"></span>\n        </button>\n      </ng-container>\n    </ng-container>\n  </nz-upload>\n</sf-item-wrap>\n"
             }] }
 ];
 

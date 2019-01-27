@@ -43,8 +43,7 @@ function findElementsWithAttribute(html, attributeName) {
             if (node.childNodes) {
                 visitNodes(node.childNodes);
             }
-            if (node.attrs &&
-                node.attrs.some(attr => attr.name === attributeName.toLowerCase())) {
+            if (node.attrs && node.attrs.some(attr => attr.name === attributeName.toLowerCase())) {
                 elements.push(node);
             }
         });
@@ -89,7 +88,9 @@ exports.findElementHasAttribute = findElementHasAttribute;
 function findElementHasAttributes(html, tagName, attrs) {
     const res = [];
     findElementsWithTagName(html, tagName).forEach(node => {
-        attrs.filter(attr => hasElementAttribute(node, attr)).forEach(attr => {
+        attrs
+            .filter(attr => hasElementAttribute(node, attr))
+            .forEach(attr => {
             res.push({ attr, offset: getStartOffsetOfAttribute(node, attr) });
         });
     });
@@ -98,13 +99,11 @@ function findElementHasAttributes(html, tagName, attrs) {
 exports.findElementHasAttributes = findElementHasAttributes;
 /** Shorthand function that checks if the specified element contains the given attribute. */
 function hasElementAttribute(element, attributeName) {
-    return (element.attrs &&
-        element.attrs.some(attr => attr.name === attributeName.toLowerCase()));
+    return element.attrs && element.attrs.some(attr => attr.name === attributeName.toLowerCase());
 }
 /** Gets the start offset of the given attribute from a Parse5 element. */
 function getStartOffsetOfAttribute(element, attributeName) {
-    return element.sourceCodeLocation.attrs[attributeName.toLowerCase()]
-        .startOffset;
+    return element.sourceCodeLocation.attrs[attributeName.toLowerCase()].startOffset;
 }
 exports.getStartOffsetOfAttribute = getStartOffsetOfAttribute;
 //# sourceMappingURL=elements.js.map

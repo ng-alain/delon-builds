@@ -100,15 +100,13 @@ class LodopService {
                 setTimeout(() => checkStatus(), 100);
             }
         };
-        this.scriptSrv.loadScript(url).then((res) => {
+        this.scriptSrv.loadScript(url).then(res => {
             if (res.status !== 'ok') {
                 this.pending = false;
                 onResolve('script-load-error', res[0]);
                 return;
             }
-            this._lodop =
-                window.hasOwnProperty(this.cog.name) &&
-                    ((/** @type {?} */ (window[this.cog.name])));
+            this._lodop = window.hasOwnProperty(this.cog.name) && ((/** @type {?} */ (window[this.cog.name])));
             if (this._lodop === null) {
                 onResolve('load-variable-name-error', { name: this.cog.name });
                 return;

@@ -211,9 +211,7 @@ function deepMerge(original, ...objects) {
  * @return {?}
  */
 function format(str, obj, needDeepGet = false) {
-    return (str || '').replace(/\${([^}]+)}/g, (work, key) => needDeepGet
-        ? deepGet(obj, key.split('.'), '')
-        : (obj || {})[key] || '');
+    return (str || '').replace(/\${([^}]+)}/g, (work, key) => needDeepGet ? deepGet(obj, key.split('.'), '') : (obj || {})[key] || '');
 }
 
 /**
@@ -246,9 +244,7 @@ function getTimeDistance(type, time) {
         case '-year':
             return [startOfYear(subYears(time, 1)), endOfYear(subYears(time, 1))];
         default:
-            return type > 0
-                ? [time, addDays(time, type)]
-                : [addDays(time, type), time];
+            return type > 0 ? [time, addDays(time, type)] : [addDays(time, type), time];
     }
 }
 
@@ -435,7 +431,7 @@ function isDecimal(value) {
  * @return {?}
  */
 function isIdCard(value) {
-    return (typeof value === 'string' && /(^\d{15}$)|(^\d{17}([0-9]|X)$)/i.test(value));
+    return typeof value === 'string' && /(^\d{15}$)|(^\d{17}([0-9]|X)$)/i.test(value);
 }
 /**
  * 是否为手机号
@@ -744,9 +740,7 @@ class ArrayService {
                 result.push(i);
                 /** @type {?} */
                 const children = i[options.childrenMapName];
-                if (children != null &&
-                    Array.isArray(children) &&
-                    children.length > 0) {
+                if (children != null && Array.isArray(children) && children.length > 0) {
                     inFn(children, i, deep + 1);
                 }
                 if (options.clearChildren) {
@@ -856,9 +850,11 @@ class ArrayService {
         const keys = [];
         this.visitTree(tree, (item, parent, deep) => {
             if (item.isChecked || (options.includeHalfChecked && item.isHalfChecked)) {
-                keys.push(options.cb ?
-                    options.cb(item, parent, deep) :
-                    options.keyMapName ? item.origin[options.keyMapName] : item.key);
+                keys.push(options.cb
+                    ? options.cb(item, parent, deep)
+                    : options.keyMapName
+                        ? item.origin[options.keyMapName]
+                        : item.key);
             }
         });
         return keys;

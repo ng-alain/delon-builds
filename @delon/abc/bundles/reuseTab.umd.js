@@ -190,7 +190,7 @@
         ReuseTabContextMenuComponent.decorators = [
             { type: i0.Component, args: [{
                         selector: 'reuse-tab-context-menu',
-                        template: "<ul nz-menu>\n  <li nz-menu-item (click)=\"click($event, 'close')\" data-type=\"close\" [nzDisabled]=\"!item.closable\" [innerHTML]=\"i18n.close\"></li>\n  <li nz-menu-item (click)=\"click($event, 'closeOther')\" data-type=\"closeOther\" [innerHTML]=\"i18n.closeOther\"></li>\n  <li nz-menu-item (click)=\"click($event, 'closeRight')\" data-type=\"closeRight\" [nzDisabled]=\"item.last\" [innerHTML]=\"i18n.closeRight\"></li>\n  <li nz-menu-item (click)=\"click($event, 'clear')\" data-type=\"clear\" [innerHTML]=\"i18n.clear\"></li>\n  <ng-container *ngIf=\"customContextMenu!.length > 0\">\n    <li nz-menu-divider></li>\n    <li *ngFor=\"let i of customContextMenu\" nz-menu-item [attr.data-type]=\"i.id\" [nzDisabled]=\"isDisabled(i)\" (click)=\"click($event, 'custom', i)\" [innerHTML]=\"i.title\"></li>\n  </ng-container>\n</ul>\n",
+                        template: "<ul nz-menu>\n  <li nz-menu-item\n      (click)=\"click($event, 'close')\"\n      data-type=\"close\"\n      [nzDisabled]=\"!item.closable\"\n      [innerHTML]=\"i18n.close\"></li>\n  <li nz-menu-item\n      (click)=\"click($event, 'closeOther')\"\n      data-type=\"closeOther\"\n      [innerHTML]=\"i18n.closeOther\"></li>\n  <li nz-menu-item\n      (click)=\"click($event, 'closeRight')\"\n      data-type=\"closeRight\"\n      [nzDisabled]=\"item.last\"\n      [innerHTML]=\"i18n.closeRight\"></li>\n  <li nz-menu-item\n      (click)=\"click($event, 'clear')\"\n      data-type=\"clear\"\n      [innerHTML]=\"i18n.clear\"></li>\n  <ng-container *ngIf=\"customContextMenu!.length > 0\">\n    <li nz-menu-divider></li>\n    <li *ngFor=\"let i of customContextMenu\"\n        nz-menu-item\n        [attr.data-type]=\"i.id\"\n        [nzDisabled]=\"isDisabled(i)\"\n        (click)=\"click($event, 'custom', i)\"\n        [innerHTML]=\"i.title\"></li>\n  </ng-container>\n</ul>\n",
                         changeDetection: i0.ChangeDetectionStrategy.OnPush
                     }] }
         ];
@@ -1930,13 +1930,7 @@
         }
         ReuseTabModule.decorators = [
             { type: i0.NgModule, args: [{
-                        imports: [
-                            common.CommonModule,
-                            router.RouterModule,
-                            i1.DelonLocaleModule,
-                            ngZorroAntd.NgZorroAntdModule,
-                            overlay.OverlayModule,
-                        ],
+                        imports: [common.CommonModule, router.RouterModule, i1.DelonLocaleModule, ngZorroAntd.NgZorroAntdModule, overlay.OverlayModule],
                         declarations: __spread(COMPONENTS, NOEXPORTS),
                         entryComponents: [ReuseTabContextMenuComponent],
                         exports: __spread(COMPONENTS),

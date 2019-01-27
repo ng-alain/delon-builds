@@ -26,7 +26,7 @@ function createMouseEvent(type, x, y) {
     if (y === void 0) { y = 0; }
     /** @type {?} */
     var event = document.createEvent('MouseEvent');
-    event.initMouseEvent(type, false, /* canBubble */ false, /* cancelable */ window, /* view */ 0, /* detail */ x, /* screenX */ y, /* screenY */ x, /* clientX */ y, /* clientY */ false, /* ctrlKey */ false, /* altKey */ false, /* shiftKey */ false, /* metaKey */ 0, /* button */ null /* relatedTarget */);
+    event.initMouseEvent(type, false /* canBubble */, false /* cancelable */, window /* view */, 0 /* detail */, x /* screenX */, y /* screenY */, x /* clientX */, y /* clientY */, false /* ctrlKey */, false /* altKey */, false /* shiftKey */, false /* metaKey */, 0 /* button */, null /* relatedTarget */);
     return event;
 }
 /**
@@ -671,7 +671,9 @@ TestContext = /** @class */ (function () {
         get: /**
          * @return {?}
          */
-        function () { return this.fixture.componentInstance; },
+        function () {
+            return this.fixture.componentInstance;
+        },
         enumerable: true,
         configurable: true
     });
@@ -679,7 +681,9 @@ TestContext = /** @class */ (function () {
         get: /**
          * @return {?}
          */
-        function () { return this.fixture.debugElement.nativeElement; },
+        function () {
+            return this.fixture.debugElement.nativeElement;
+        },
         enumerable: true,
         configurable: true
     });
@@ -687,7 +691,9 @@ TestContext = /** @class */ (function () {
         get: /**
          * @return {?}
          */
-        function () { return this.fixture.debugElement; },
+        function () {
+            return this.fixture.debugElement;
+        },
         enumerable: true,
         configurable: true
     });
@@ -695,7 +701,9 @@ TestContext = /** @class */ (function () {
         get: /**
          * @return {?}
          */
-        function () { return this.fixture.componentInstance; },
+        function () {
+            return this.fixture.componentInstance;
+        },
         enumerable: true,
         configurable: true
     });
@@ -705,7 +713,9 @@ TestContext = /** @class */ (function () {
     TestContext.prototype.detectChanges = /**
      * @return {?}
      */
-    function () { this.fixture.detectChanges(); };
+    function () {
+        this.fixture.detectChanges();
+    };
     /**
      * @template T1
      * @param {?} component
@@ -732,18 +742,22 @@ var configureTestSuite = function (configureAction) {
         TestBed.resetTestingModule = function () { return TestBed; };
     });
     if (configureAction) {
-        beforeAll(function (done) { return (function () { return __awaiter(_this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        configureAction();
-                        return [4 /*yield*/, TestBed.compileComponents()];
-                    case 1:
-                        _a.sent();
-                        return [2 /*return*/];
-                }
-            });
-        }); })().then(done).catch(done.fail); });
+        beforeAll(function (done) {
+            return (function () { return __awaiter(_this, void 0, void 0, function () {
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0:
+                            configureAction();
+                            return [4 /*yield*/, TestBed.compileComponents()];
+                        case 1:
+                            _a.sent();
+                            return [2 /*return*/];
+                    }
+                });
+            }); })()
+                .then(done)
+                .catch(done.fail);
+        });
     }
     afterEach(function () {
         testBedApi._activeFixtures.forEach(function (fixture) { return fixture.destroy(); });

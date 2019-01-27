@@ -20,9 +20,7 @@ function pluginG2(options) {
         // typing
         g2Typing(host, options);
         // package
-        (options.type === 'add'
-            ? json_1.addPackageToPackageJson
-            : json_1.removePackageFromPackageJson)(host, [
+        (options.type === 'add' ? json_1.addPackageToPackageJson : json_1.removePackageFromPackageJson)(host, [
             '@antv/data-set@^0.10.1',
             '@antv/g2@^3.4.5',
             '@antv/g2-plugin-slider@^2.1.1',

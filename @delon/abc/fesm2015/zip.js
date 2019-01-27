@@ -70,9 +70,7 @@ class ZipService {
             this.init().then(() => {
                 // from url
                 if (typeof fileOrUrl === 'string') {
-                    this.http
-                        .request('GET', fileOrUrl, { responseType: 'arraybuffer' })
-                        .subscribe((res) => {
+                    this.http.request('GET', fileOrUrl, { responseType: 'arraybuffer' }).subscribe((res) => {
                         JSZip.loadAsync(res, options).then(ret => resolve(ret));
                     }, (err) => {
                         reject(err);
@@ -132,9 +130,7 @@ class ZipService {
         /** @type {?} */
         const opt = Object.assign({}, options);
         return new Promise((resolve, reject) => {
-            zip
-                .generateAsync(Object.assign({ type: 'blob' }, opt.options), opt.update)
-                .then((data) => {
+            zip.generateAsync(Object.assign({ type: 'blob' }, opt.options), opt.update).then((data) => {
                 if (opt.callback)
                     opt.callback(data);
                 saveAs(data, opt.filename || 'download.zip');

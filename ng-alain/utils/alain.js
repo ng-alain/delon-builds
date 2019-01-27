@@ -95,8 +95,7 @@ function addValueToVariable(host, path, variableName, text) {
 }
 exports.addValueToVariable = addValueToVariable;
 function getRelativePath(path, schema) {
-    // tslint:disable-next-line:prefer-template
-    const importPath = `/${schema.path}/` + (schema.flat ? '' : core_1.strings.dasherize(schema.name) + '/') + core_1.strings.dasherize(schema.name) + '.component';
+    const importPath = `/${schema.path}/${schema.flat ? '' : core_1.strings.dasherize(schema.name) + '/'}${core_1.strings.dasherize(schema.name)}.component`;
     return find_module_1.buildRelativePath(path, importPath);
 }
 function addDeclaration(schema) {
@@ -130,16 +129,12 @@ function buildAlain(schema) {
         const templateSource = schematics_1.apply(schematics_1.url(schema._filesPath), [
             schematics_1.filter(path => !path.endsWith('.DS_Store')),
             schema.spec ? schematics_1.noop() : schematics_1.filter(path => !path.endsWith('.spec.ts')),
-            schema.inlineStyle
-                ? schematics_1.filter(path => !path.endsWith('.__styleext__'))
-                : schematics_1.noop(),
+            schema.inlineStyle ? schematics_1.filter(path => !path.endsWith('.__styleext__')) : schematics_1.noop(),
             schema.inlineTemplate ? schematics_1.filter(path => !path.endsWith('.html')) : schematics_1.noop(),
             schematics_1.template(Object.assign({}, core_1.strings, { 'if-flat': (s) => (schema.flat ? '' : s) }, schema)),
             schematics_1.move(null, schema.path + '/'),
         ]);
-        return schematics_1.chain([
-            schematics_1.branchAndMerge(schematics_1.chain([addDeclaration(schema), schematics_1.mergeWith(templateSource)])),
-        ])(host, context);
+        return schematics_1.chain([schematics_1.branchAndMerge(schematics_1.chain([addDeclaration(schema), schematics_1.mergeWith(templateSource)]))])(host, context);
     };
 }
 exports.buildAlain = buildAlain;

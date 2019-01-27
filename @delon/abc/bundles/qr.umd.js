@@ -86,16 +86,18 @@
          * @return {?}
          */
             function (value) {
-                this.qr.set(typeof value === 'object' ? value : {
-                    background: this.background,
-                    backgroundAlpha: this.backgroundAlpha,
-                    foreground: this.foreground,
-                    foregroundAlpha: this.foregroundAlpha,
-                    level: this.level,
-                    padding: this.padding,
-                    size: this.size,
-                    value: value || this.value,
-                });
+                this.qr.set(typeof value === 'object'
+                    ? value
+                    : {
+                        background: this.background,
+                        backgroundAlpha: this.backgroundAlpha,
+                        foreground: this.foreground,
+                        foregroundAlpha: this.foregroundAlpha,
+                        level: this.level,
+                        padding: this.padding,
+                        size: this.size,
+                        value: value || this.value,
+                    });
                 return this.dataURL;
             };
         Object.defineProperty(QRService.prototype, "dataURL", {
@@ -230,7 +232,7 @@
         QRComponent.decorators = [
             { type: i0.Component, args: [{
                         selector: 'qr',
-                        template: "<img class=\"qr__img\" src=\"{{dataURL}}\">",
+                        template: "\n    <img class=\"qr__img\" src=\"{{ dataURL }}\" />\n  ",
                         host: { '[class.qr]': 'true' },
                         changeDetection: i0.ChangeDetectionStrategy.OnPush
                     }] }

@@ -20,7 +20,7 @@ var GlobalFooterItemComponent = /** @class */ (function () {
     GlobalFooterItemComponent.decorators = [
         { type: Component, args: [{
                     selector: 'global-footer-item',
-                    template: "<ng-template #host><ng-content></ng-content></ng-template>"
+                    template: "\n    <ng-template #host><ng-content></ng-content></ng-template>\n  "
                 }] }
     ];
     GlobalFooterItemComponent.propDecorators = {

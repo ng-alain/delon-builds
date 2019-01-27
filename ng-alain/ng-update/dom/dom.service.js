@@ -31,8 +31,7 @@ class DomService {
     parseRule() {
         const inFn = (list) => {
             for (const item of list) {
-                if (item.type === 'text' &&
-                    (!item.next || item.data.trim().length === 0)) {
+                if (item.type === 'text' && (!item.next || item.data.trim().length === 0)) {
                     continue;
                 }
                 this.resolveTagName(item);
@@ -220,9 +219,7 @@ class DomService {
             if (!ngDom)
                 return;
             const name = dom.attribs[k];
-            const newName = `${rule.value}${name
-                .substr(0, 1)
-                .toUpperCase()}${name.substr(1)}`;
+            const newName = `${rule.value}${name.substr(0, 1).toUpperCase()}${name.substr(1)}`;
             // ng-template
             delete ngDom.attribs[`#${name}`];
             ngDom.attribs[`#${newName}`] = '';
@@ -291,9 +288,7 @@ class DomService {
                     result.push(html);
                     continue;
                 }
-                if (item.children &&
-                    item.children.length === 1 &&
-                    item.children[0].type === 'text') {
+                if (item.children && item.children.length === 1 && item.children[0].type === 'text') {
                     result.push(`${this.genTab(deep)}<${item.name}${this.genAttr(item.attribs)}>${item.children[0].data.trim()}</${item.name}>`);
                     continue;
                 }

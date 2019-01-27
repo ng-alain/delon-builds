@@ -78,9 +78,7 @@ class XlsxService {
             this.init().then(() => {
                 // from url
                 if (typeof fileOrUrl === 'string') {
-                    this.http
-                        .request('GET', fileOrUrl, { responseType: 'arraybuffer' })
-                        .subscribe((res) => {
+                    this.http.request('GET', fileOrUrl, { responseType: 'arraybuffer' }).subscribe((res) => {
                         /** @type {?} */
                         const wb = XLSX.read(new Uint8Array(res), { type: 'array' });
                         resolver(this.read(wb));
