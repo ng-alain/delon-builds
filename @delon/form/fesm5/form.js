@@ -4159,8 +4159,9 @@ var TimeWidget = /** @class */ (function (_super) {
         var v = value != null && value.toString().length ? new Date(value) : null;
         // trying restore full Date format
         if (v != null && v.toString() === 'Invalid Date') {
-            if (value.toString().split(':').length <= 1)
+            if (value.toString().split(':').length <= 1) {
                 value += ':00';
+            }
             v = new Date("1970-1-1 " + value);
         }
         this.displayValue = v;
