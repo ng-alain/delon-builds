@@ -677,6 +677,7 @@ class STDataSource {
                     ps: retPs,
                     total: retTotal,
                     list: retList,
+                    statistical: this.genStatistical(columns, retList),
                     pageShow: typeof showPage === 'undefined' ? realTotal > realPs : showPage,
                 });
             });
@@ -693,9 +694,9 @@ class STDataSource {
             /** @type {?} */
             const formatRes = col.format(item, col);
             if (~formatRes.indexOf('<')) {
-                return this.dom.bypassSecurityTrustHtml(formatRes);
+                return { text: this.dom.bypassSecurityTrustHtml(formatRes), org: formatRes };
             }
-            return formatRes;
+            return { text: formatRes == null ? '' : formatRes, org: formatRes };
         }
         /** @type {?} */
         const value = deepGet(item, (/** @type {?} */ (col.index)), col.default);
@@ -721,7 +722,7 @@ class STDataSource {
                 ret = this.ynPipe.transform(value === col.yn.truth, col.yn.yes, col.yn.no);
                 break;
         }
-        return ret == null ? '' : ret;
+        return { text: ret == null ? '' : ret, org: value };
     }
     /**
      * @param {?} url
@@ -861,6 +862,101 @@ class STDataSource {
             ret = Object.assign({}, ret, obj);
         });
         return ret;
+    }
+    //#endregion
+    // #region statistical
+    /**
+     * @param {?} columns
+     * @param {?} list
+     * @return {?}
+     */
+    genStatistical(columns, list) {
+        /** @type {?} */
+        const res = {};
+        columns.forEach((col, index) => {
+            res[col.key ? col.key : index] = col.statistical == null ? {} : this.getStatistical(col, index, list);
+        });
+        return res;
+    }
+    /**
+     * @param {?} col
+     * @param {?} index
+     * @param {?} list
+     * @return {?}
+     */
+    getStatistical(col, index, list) {
+        /** @type {?} */
+        const val = col.statistical;
+        /** @type {?} */
+        const item = Object.assign({ digits: 2, currenty: null }, (typeof val === 'string' ? { type: (/** @type {?} */ (val)) } : ((/** @type {?} */ (val)))));
+        /** @type {?} */
+        let res = { value: 0 };
+        /** @type {?} */
+        let currenty = false;
+        if (typeof item.type === 'function') {
+            res = item.type(this.getValues(index, list), col, list);
+            currenty = true;
+        }
+        else {
+            switch (item.type) {
+                case 'count':
+                    res.value = list.length;
+                    break;
+                case 'distinctCount':
+                    res.value = this.getValues(index, list).filter((value, idx, self) => self.indexOf(value) === idx).length;
+                    break;
+                case 'sum':
+                    res.value = this.toFixed(this.getSum(index, list), item.digits);
+                    currenty = true;
+                    break;
+                case 'average':
+                    res.value = this.toFixed(this.getSum(index, list) / list.length, item.digits);
+                    currenty = true;
+                    break;
+                case 'max':
+                    res.value = Math.max(...this.getValues(index, list));
+                    currenty = true;
+                    break;
+                case 'min':
+                    res.value = Math.min(...this.getValues(index, list));
+                    currenty = true;
+                    break;
+            }
+        }
+        if (item.currenty === true || (item.currenty == null && currenty === true)) {
+            res.text = this.currentyPipe.transform(res.value);
+        }
+        else {
+            res.text = String(res.value);
+        }
+        return res;
+    }
+    /**
+     * @param {?} val
+     * @param {?} digits
+     * @return {?}
+     */
+    toFixed(val, digits) {
+        if (isNaN(val) || !isFinite(val)) {
+            return 0;
+        }
+        return parseFloat(val.toFixed(digits));
+    }
+    /**
+     * @param {?} index
+     * @param {?} list
+     * @return {?}
+     */
+    getValues(index, list) {
+        return list.map(i => i._values[index].org);
+    }
+    /**
+     * @param {?} index
+     * @param {?} list
+     * @return {?}
+     */
+    getSum(index, list) {
+        return this.getValues(index, list).reduce((p, i) => (p += parseFloat(String(i.toString() === '' ? 0 : i))), 0);
     }
 }
 STDataSource.decorators = [
@@ -1012,6 +1108,7 @@ class STComponent {
         // tslint:disable-next-line:no-any
         this.locale = {};
         this._data = [];
+        this._statistical = {};
         this._isPagination = true;
         this._allChecked = false;
         this._allCheckedDisabled = false;
@@ -1237,6 +1334,7 @@ class STComponent {
                 this._isPagination = result.pageShow;
             }
             this._data = result.list;
+            this._statistical = result.statistical;
             return this._data;
         })
             .then(() => this._refCheck())
@@ -1409,7 +1507,7 @@ class STComponent {
         // recalculate no
         (/** @type {?} */ (this))._columns
             .filter(w => w.type === 'no')
-            .forEach(c => (/** @type {?} */ (this))._data.forEach((i, idx) => (i._values[c.__point] = c.noIndex + idx)));
+            .forEach(c => (/** @type {?} */ (this))._data.forEach((i, idx) => (i._values[c.__point] = { text: c.noIndex + idx, org: idx })));
         return (/** @type {?} */ (this)).cd();
     }
     //#endregion
@@ -1751,7 +1849,7 @@ class STComponent {
 STComponent.decorators = [
     { type: Component, args: [{
                 selector: 'st',
-                template: "<ng-template #btnTpl\n             let-i\n             let-btn=\"btn\"\n             let-sub=\"sub\">\n  <nz-popconfirm *ngIf=\"btn.pop === true\"\n                 [nzTitle]=\"btn.popTitle\"\n                 (nzOnConfirm)=\"_btnClick($event, i, btn)\">\n    <a *ngIf=\"!sub\"\n       nz-popconfirm>\n      <ng-template [ngTemplateOutlet]=\"btnTextTpl\"\n                   [ngTemplateOutletContext]=\"{ $implicit: i, btn: btn }\"></ng-template>\n    </a>\n    <span *ngIf=\"sub\"\n          nz-popconfirm>\n      <ng-template [ngTemplateOutlet]=\"btnTextTpl\"\n                   [ngTemplateOutletContext]=\"{ $implicit: i, btn: btn }\"></ng-template>\n    </span>\n  </nz-popconfirm>\n  <ng-container *ngIf=\"btn.pop !== true\">\n    <a *ngIf=\"!sub\"\n       (click)=\"_btnClick($event, i, btn)\">\n      <ng-template [ngTemplateOutlet]=\"btnTextTpl\"\n                   [ngTemplateOutletContext]=\"{ $implicit: i, btn: btn }\"></ng-template>\n    </a>\n    <span *ngIf=\"sub\"\n          (click)=\"_btnClick($event, i, btn)\">\n      <ng-template [ngTemplateOutlet]=\"btnTextTpl\"\n                   [ngTemplateOutletContext]=\"{ $implicit: i, btn: btn }\"></ng-template>\n    </span>\n  </ng-container>\n</ng-template>\n<ng-template #btnTextTpl\n             let-i\n             let-btn=\"btn\">\n  <i *ngIf=\"btn.icon\"\n     nz-icon\n     [type]=\"btn.icon.type\"\n     [theme]=\"btn.icon.theme\"\n     [spin]=\"btn.icon.spin\"\n     [twoToneColor]=\"btn.icon.twoToneColor\"\n     [iconfont]=\"btn.icon.iconfont\"></i>\n  <span [innerHTML]=\"_btnText(i, btn)\"\n        [ngClass]=\"{'pl-xs': btn.icon}\"></span>\n</ng-template>\n<nz-table [nzData]=\"_data\"\n          [(nzPageIndex)]=\"pi\"\n          (nzPageIndexChange)=\"_change('pi')\"\n          [(nzPageSize)]=\"ps\"\n          (nzPageSizeChange)=\"_change('ps')\"\n          [nzTotal]=\"total\"\n          [nzShowPagination]=\"_isPagination\"\n          [nzFrontPagination]=\"false\"\n          [nzBordered]=\"bordered\"\n          [nzSize]=\"size\"\n          [nzLoading]=\"loading\"\n          [nzLoadingDelay]=\"loadingDelay\"\n          [nzScroll]=\"scroll\"\n          [nzTitle]=\"header\"\n          [nzFooter]=\"footer\"\n          [nzNoResult]=\"noResult\"\n          [nzPageSizeOptions]=\"page.pageSizes\"\n          [nzShowQuickJumper]=\"page.showQuickJumper\"\n          [nzShowSizeChanger]=\"page.showSize\"\n          [nzShowTotal]=\"totalTpl\">\n  <thead class=\"st__head\">\n    <tr>\n      <th *ngIf=\"expand\"\n          [nzShowExpand]=\"expand\"></th>\n      <th *ngFor=\"let c of _columns; let index=index\"\n          [nzWidth]=\"c.width\"\n          [nzLeft]=\"c._left\"\n          [nzRight]=\"c._right\"\n          [ngClass]=\"c.className\"\n          [attr.colspan]=\"c.colSpan\"\n          [attr.data-col]=\"c.indexKey\"\n          [nzShowSort]=\"c._sort.enabled\"\n          [nzSort]=\"c._sort.default\"\n          (nzSortChange)=\"sort(c, index, $event)\"\n          [nzCustomFilter]=\"c.filter\">\n        <ng-template #renderTitle\n                     [ngTemplateOutlet]=\"c.__renderTitle\"\n                     [ngTemplateOutletContext]=\"{$implicit: c, index: index }\"></ng-template>\n        <ng-container *ngIf=\"!c.__renderTitle; else renderTitle\">\n          <ng-container [ngSwitch]=\"c.type\">\n            <ng-container *ngSwitchCase=\"'checkbox'\">\n              <label nz-checkbox\n                     class=\"st__checkall\"\n                     [nzDisabled]=\"_allCheckedDisabled\"\n                     [(ngModel)]=\"_allChecked\"\n                     [nzIndeterminate]=\"_indeterminate\"\n                     (ngModelChange)=\"_checkAll()\"></label>\n              <nz-dropdown *ngIf=\"c.selections.length\"\n                           class=\"st__selection\">\n                <span nz-dropdown>\n                  <i nz-icon\n                     type=\"down\"></i>\n                </span>\n                <ul nz-menu>\n                  <li nz-menu-item\n                      *ngFor=\"let rw of c.selections\"\n                      (click)=\"_rowSelection(rw)\"\n                      [innerHTML]=\"rw.text\">\n                  </li>\n                </ul>\n              </nz-dropdown>\n            </ng-container>\n            <ng-container *ngSwitchDefault>\n              <span [innerHTML]=\"c.title\"></span>\n            </ng-container>\n          </ng-container>\n          <nz-dropdown *ngIf=\"c.filter\"\n                       class=\"st__filter\"\n                       nzTrigger=\"click\"\n                       [hasFilterButton]=\"true\"\n                       [nzClickHide]=\"false\"\n                       [(nzVisible)]=\"c.filter.visible\">\n            <i nz-icon\n               [type]=\"c.filter.icon\"\n               theme=\"fill\"\n               [class.ant-table-filter-selected]=\"c.filter.default\"\n               [class.ant-table-filter-open]=\"c.filter.visible\"\n               nz-dropdown></i>\n            <ul nz-menu>\n              <ng-container *ngIf=\"c.filter.multiple\">\n                <li nz-menu-item\n                    *ngFor=\"let filter of c.filter.menus\">\n                  <label nz-checkbox\n                         [(ngModel)]=\"filter.checked\">{{filter.text}}</label>\n                </li>\n              </ng-container>\n              <ng-container *ngIf=\"!c.filter.multiple\">\n                <li nz-menu-item\n                    *ngFor=\"let filter of c.filter.menus\">\n                  <label nz-radio\n                         [ngModel]=\"filter.checked\"\n                         (ngModelChange)=\"_filterRadio(c, filter, $event)\">{{filter.text}}</label>\n                </li>\n              </ng-container>\n            </ul>\n            <div class=\"ant-table-filter-dropdown-btns\">\n              <a class=\"ant-table-filter-dropdown-link confirm\"\n                 (click)=\"c.filter.visible = false\">\n                <span (click)=\"_filterConfirm(c)\">{{c.filter.confirmText}}</span>\n              </a>\n              <a class=\"ant-table-filter-dropdown-link clear\"\n                 (click)=\"c.filter.visible = false\">\n                <span (click)=\"_filterClear(c)\">{{c.filter.clearText}}</span>\n              </a>\n            </div>\n          </nz-dropdown>\n        </ng-container>\n      </th>\n    </tr>\n  </thead>\n  <tbody class=\"st__body\">\n    <ng-container *ngFor=\"let i of _data; let index=index\">\n      <tr [attr.data-index]=\"index\"\n          (click)=\"_rowClick($event, i, index)\"\n          [class]=\"i._rowClassName\">\n        <td *ngIf=\"expand\"\n            [nzShowExpand]=\"expand\"\n            [(nzExpand)]=\"i.expand\"></td>\n        <td *ngFor=\"let c of _columns; let cIdx=index\"\n            [nzLeft]=\"c._left\"\n            [nzRight]=\"c._right\"\n            [nzCheckbox]=\"c.type === 'checkbox'\"\n            [ngClass]=\"c.className\"\n            [attr.colspan]=\"c.colSpan\">\n          <span class=\"ant-table-rep__title\"\n                [innerHTML]=\"c.title\"></span>\n          <span>\n            <ng-template #render\n                         [ngTemplateOutlet]=\"c.__render\"\n                         [ngTemplateOutletContext]=\"{$implicit: i, index: index, column: c }\"></ng-template>\n            <ng-container *ngIf=\"!c.__render; else render\">\n              <ng-container [ngSwitch]=\"c.type\">\n                <label *ngSwitchCase=\"'checkbox'\"\n                       nz-checkbox\n                       [nzDisabled]=\"i.disabled\"\n                       [ngModel]=\"i.checked\"\n                       (ngModelChange)=\"_checkSelection(i, $event)\"></label>\n                <label *ngSwitchCase=\"'radio'\"\n                       nz-radio\n                       [nzDisabled]=\"i.disabled\"\n                       [ngModel]=\"i.checked\"\n                       (ngModelChange)=\"_refRadio($event, i)\"></label>\n                <a *ngSwitchCase=\"'link'\"\n                   (click)=\"_click($event, i, c)\"\n                   [innerHTML]=\"i._values[cIdx]\"></a>\n                <nz-tag *ngSwitchCase=\"'tag'\"\n                        [nzColor]=\"c.tag[i._values[cIdx]].color\">{{c.tag[i._values[cIdx]].text || i._values[cIdx]}}</nz-tag>\n                <nz-badge *ngSwitchCase=\"'badge'\"\n                          [nzStatus]=\"c.badge[i._values[cIdx]].color\"\n                          [nzText]=\"c.badge[i._values[cIdx]].text || i._values[cIdx]\"></nz-badge>\n                <span *ngSwitchDefault\n                      [innerHTML]=\"i._values[cIdx]\"></span>\n              </ng-container>\n              <ng-container *ngFor=\"let btn of _validBtns(i, c); let last=last\">\n                <nz-dropdown *ngIf=\"btn.children.length > 0\">\n                  <a class=\"ant-dropdown-link\"\n                     nz-dropdown>\n                    <span [innerHTML]=\"_btnText(i, btn)\"></span>\n                    <i nz-icon\n                       type=\"down\"></i>\n                  </a>\n                  <ul nz-menu>\n                    <ng-container *ngFor=\"let subBtn of btn.children\">\n                      <li nz-menu-item\n                          *ngIf=\"subBtn.iif(i, subBtn, c)\">\n                        <ng-template [ngTemplateOutlet]=\"btnTpl\"\n                                     [ngTemplateOutletContext]=\"{ $implicit: i, btn: subBtn, sub: true }\"></ng-template>\n                      </li>\n                    </ng-container>\n                  </ul>\n                </nz-dropdown>\n                <ng-container *ngIf=\"btn.children.length == 0\">\n                  <ng-template [ngTemplateOutlet]=\"btnTpl\"\n                               [ngTemplateOutletContext]=\"{ $implicit: i, btn: btn, sub: false }\"></ng-template>\n                </ng-container>\n                <nz-divider *ngIf=\"!last\"\n                            nzType=\"vertical\"></nz-divider>\n              </ng-container>\n              <ng-template [ngIf]=\"!c.__renderExpanded\"\n                           [ngTemplateOutlet]=\"c.__renderExpanded\"\n                           [ngTemplateOutletContext]=\"{$implicit: i, index: index, column: c }\"></ng-template>\n            </ng-container>\n          </span>\n        </td>\n      </tr>\n      <tr [nzExpand]=\"i.expand\">\n        <td></td>\n        <td [attr.colspan]=\"_columns.length\">\n          <ng-template [ngTemplateOutlet]=\"expand\"\n                       [ngTemplateOutletContext]=\"{$implicit: i, index: index }\"></ng-template>\n        </td>\n      </tr>\n    </ng-container>\n    <ng-container *ngIf=\"!loading\">\n      <ng-template [ngTemplateOutlet]=\"body\"></ng-template>\n    </ng-container>\n  </tbody>\n  <ng-template #totalTpl\n               let-range=\"range\"\n               let-total>{{ renderTotal(total, range) }}</ng-template>\n</nz-table>\n",
+                template: "<ng-template #btnTpl let-i let-btn=\"btn\" let-sub=\"sub\">\n  <nz-popconfirm *ngIf=\"btn.pop === true\" [nzTitle]=\"btn.popTitle\" (nzOnConfirm)=\"_btnClick($event, i, btn)\">\n    <a *ngIf=\"!sub\" nz-popconfirm>\n      <ng-template [ngTemplateOutlet]=\"btnTextTpl\" [ngTemplateOutletContext]=\"{ $implicit: i, btn: btn }\"></ng-template>\n    </a>\n    <span *ngIf=\"sub\" nz-popconfirm>\n      <ng-template [ngTemplateOutlet]=\"btnTextTpl\" [ngTemplateOutletContext]=\"{ $implicit: i, btn: btn }\"></ng-template>\n    </span>\n  </nz-popconfirm>\n  <ng-container *ngIf=\"btn.pop !== true\">\n    <a *ngIf=\"!sub\" (click)=\"_btnClick($event, i, btn)\">\n      <ng-template [ngTemplateOutlet]=\"btnTextTpl\" [ngTemplateOutletContext]=\"{ $implicit: i, btn: btn }\"></ng-template>\n    </a>\n    <span *ngIf=\"sub\" (click)=\"_btnClick($event, i, btn)\">\n      <ng-template [ngTemplateOutlet]=\"btnTextTpl\" [ngTemplateOutletContext]=\"{ $implicit: i, btn: btn }\"></ng-template>\n    </span>\n  </ng-container>\n</ng-template>\n<ng-template #btnTextTpl let-i let-btn=\"btn\">\n  <i *ngIf=\"btn.icon\" nz-icon [type]=\"btn.icon.type\" [theme]=\"btn.icon.theme\" [spin]=\"btn.icon.spin\"\n     [twoToneColor]=\"btn.icon.twoToneColor\" [iconfont]=\"btn.icon.iconfont\"></i>\n  <span [innerHTML]=\"_btnText(i, btn)\" [ngClass]=\"{'pl-xs': btn.icon}\"></span>\n</ng-template>\n<nz-table [nzData]=\"_data\" [(nzPageIndex)]=\"pi\" (nzPageIndexChange)=\"_change('pi')\" [(nzPageSize)]=\"ps\"\n          (nzPageSizeChange)=\"_change('ps')\" [nzTotal]=\"total\" [nzShowPagination]=\"_isPagination\"\n          [nzFrontPagination]=\"false\" [nzBordered]=\"bordered\" [nzSize]=\"size\" [nzLoading]=\"loading\"\n          [nzLoadingDelay]=\"loadingDelay\" [nzScroll]=\"scroll\" [nzTitle]=\"header\" [nzFooter]=\"footer\"\n          [nzNoResult]=\"noResult\" [nzPageSizeOptions]=\"page.pageSizes\" [nzShowQuickJumper]=\"page.showQuickJumper\"\n          [nzShowSizeChanger]=\"page.showSize\" [nzShowTotal]=\"totalTpl\">\n  <thead class=\"st__head\">\n    <tr>\n      <th *ngIf=\"expand\" [nzShowExpand]=\"expand\"></th>\n      <th *ngFor=\"let c of _columns; let index=index\" [nzWidth]=\"c.width\" [nzLeft]=\"c._left\"\n          [nzRight]=\"c._right\" [ngClass]=\"c.className\" [attr.colspan]=\"c.colSpan\" [attr.data-col]=\"c.indexKey\"\n          [nzShowSort]=\"c._sort.enabled\" [nzSort]=\"c._sort.default\" (nzSortChange)=\"sort(c, index, $event)\"\n          [nzCustomFilter]=\"c.filter\">\n        <ng-template #renderTitle [ngTemplateOutlet]=\"c.__renderTitle\" [ngTemplateOutletContext]=\"{$implicit: c, index: index }\"></ng-template>\n        <ng-container *ngIf=\"!c.__renderTitle; else renderTitle\">\n          <ng-container [ngSwitch]=\"c.type\">\n            <ng-container *ngSwitchCase=\"'checkbox'\">\n              <label nz-checkbox class=\"st__checkall\" [nzDisabled]=\"_allCheckedDisabled\"\n                     [(ngModel)]=\"_allChecked\" [nzIndeterminate]=\"_indeterminate\" (ngModelChange)=\"_checkAll()\"></label>\n              <nz-dropdown *ngIf=\"c.selections.length\" class=\"st__selection\">\n                <span nz-dropdown>\n                  <i nz-icon type=\"down\"></i>\n                </span>\n                <ul nz-menu>\n                  <li nz-menu-item *ngFor=\"let rw of c.selections\" (click)=\"_rowSelection(rw)\"\n                      [innerHTML]=\"rw.text\">\n                  </li>\n                </ul>\n              </nz-dropdown>\n            </ng-container>\n            <ng-container *ngSwitchDefault>\n              <span [innerHTML]=\"c.title\"></span>\n            </ng-container>\n          </ng-container>\n          <nz-dropdown *ngIf=\"c.filter\" class=\"st__filter\" nzTrigger=\"click\" [hasFilterButton]=\"true\"\n                       [nzClickHide]=\"false\" [(nzVisible)]=\"c.filter.visible\">\n            <i nz-icon [type]=\"c.filter.icon\" theme=\"fill\" [class.ant-table-filter-selected]=\"c.filter.default\"\n               [class.ant-table-filter-open]=\"c.filter.visible\" nz-dropdown></i>\n            <ul nz-menu>\n              <ng-container *ngIf=\"c.filter.multiple\">\n                <li nz-menu-item *ngFor=\"let filter of c.filter.menus\">\n                  <label nz-checkbox [(ngModel)]=\"filter.checked\">{{filter.text}}</label>\n                </li>\n              </ng-container>\n              <ng-container *ngIf=\"!c.filter.multiple\">\n                <li nz-menu-item *ngFor=\"let filter of c.filter.menus\">\n                  <label nz-radio [ngModel]=\"filter.checked\" (ngModelChange)=\"_filterRadio(c, filter, $event)\">{{filter.text}}</label>\n                </li>\n              </ng-container>\n            </ul>\n            <div class=\"ant-table-filter-dropdown-btns\">\n              <a class=\"ant-table-filter-dropdown-link confirm\" (click)=\"c.filter.visible = false\">\n                <span (click)=\"_filterConfirm(c)\">{{c.filter.confirmText}}</span>\n              </a>\n              <a class=\"ant-table-filter-dropdown-link clear\" (click)=\"c.filter.visible = false\">\n                <span (click)=\"_filterClear(c)\">{{c.filter.clearText}}</span>\n              </a>\n            </div>\n          </nz-dropdown>\n        </ng-container>\n      </th>\n    </tr>\n  </thead>\n  <tbody class=\"st__body\">\n    <ng-container *ngIf=\"!loading\">\n      <ng-template [ngTemplateOutlet]=\"bodyHeader\" [ngTemplateOutletContext]=\"{$implicit: _statistical }\"></ng-template>\n    </ng-container>\n    <ng-container *ngFor=\"let i of _data; let index=index\">\n      <tr [attr.data-index]=\"index\" (click)=\"_rowClick($event, i, index)\" [class]=\"i._rowClassName\">\n        <td *ngIf=\"expand\" [nzShowExpand]=\"expand\" [(nzExpand)]=\"i.expand\"></td>\n        <td *ngFor=\"let c of _columns; let cIdx=index\" [nzLeft]=\"c._left\" [nzRight]=\"c._right\"\n            [nzCheckbox]=\"c.type === 'checkbox'\" [ngClass]=\"c.className\" [attr.colspan]=\"c.colSpan\">\n          <span class=\"ant-table-rep__title\" [innerHTML]=\"c.title\"></span>\n          <span>\n            <ng-template #render [ngTemplateOutlet]=\"c.__render\" [ngTemplateOutletContext]=\"{$implicit: i, index: index, column: c }\"></ng-template>\n            <ng-container *ngIf=\"!c.__render; else render\">\n              <ng-container [ngSwitch]=\"c.type\">\n                <label *ngSwitchCase=\"'checkbox'\" nz-checkbox [nzDisabled]=\"i.disabled\" [ngModel]=\"i.checked\"\n                       (ngModelChange)=\"_checkSelection(i, $event)\"></label>\n                <label *ngSwitchCase=\"'radio'\" nz-radio [nzDisabled]=\"i.disabled\" [ngModel]=\"i.checked\"\n                       (ngModelChange)=\"_refRadio($event, i)\"></label>\n                <a *ngSwitchCase=\"'link'\" (click)=\"_click($event, i, c)\" [innerHTML]=\"i._values[cIdx].text\"></a>\n                <nz-tag *ngSwitchCase=\"'tag'\" [nzColor]=\"c.tag[i._values[cIdx].text].color\">{{c.tag[i._values[cIdx].text].text\n                  || i._values[cIdx].text}}</nz-tag>\n                <nz-badge *ngSwitchCase=\"'badge'\" [nzStatus]=\"c.badge[i._values[cIdx].text].color\"\n                          [nzText]=\"c.badge[i._values[cIdx].text].text || i._values[cIdx].text\"></nz-badge>\n                <span *ngSwitchDefault [innerHTML]=\"i._values[cIdx].text\"></span>\n              </ng-container>\n              <ng-container *ngFor=\"let btn of _validBtns(i, c); let last=last\">\n                <nz-dropdown *ngIf=\"btn.children.length > 0\">\n                  <a class=\"ant-dropdown-link\" nz-dropdown>\n                    <span [innerHTML]=\"_btnText(i, btn)\"></span>\n                    <i nz-icon type=\"down\"></i>\n                  </a>\n                  <ul nz-menu>\n                    <ng-container *ngFor=\"let subBtn of btn.children\">\n                      <li nz-menu-item *ngIf=\"subBtn.iif(i, subBtn, c)\">\n                        <ng-template [ngTemplateOutlet]=\"btnTpl\" [ngTemplateOutletContext]=\"{ $implicit: i, btn: subBtn, sub: true }\"></ng-template>\n                      </li>\n                    </ng-container>\n                  </ul>\n                </nz-dropdown>\n                <ng-container *ngIf=\"btn.children.length == 0\">\n                  <ng-template [ngTemplateOutlet]=\"btnTpl\" [ngTemplateOutletContext]=\"{ $implicit: i, btn: btn, sub: false }\"></ng-template>\n                </ng-container>\n                <nz-divider *ngIf=\"!last\" nzType=\"vertical\"></nz-divider>\n              </ng-container>\n              <ng-template [ngIf]=\"!c.__renderExpanded\" [ngTemplateOutlet]=\"c.__renderExpanded\"\n                           [ngTemplateOutletContext]=\"{$implicit: i, index: index, column: c }\"></ng-template>\n            </ng-container>\n          </span>\n        </td>\n      </tr>\n      <tr [nzExpand]=\"i.expand\">\n        <td></td>\n        <td [attr.colspan]=\"_columns.length\">\n          <ng-template [ngTemplateOutlet]=\"expand\" [ngTemplateOutletContext]=\"{$implicit: i, index: index }\"></ng-template>\n        </td>\n      </tr>\n    </ng-container>\n    <ng-container *ngIf=\"!loading\">\n      <ng-template [ngTemplateOutlet]=\"body\" [ngTemplateOutletContext]=\"{$implicit: _statistical }\"></ng-template>\n    </ng-container>\n  </tbody>\n  <ng-template #totalTpl let-range=\"range\" let-total>{{ renderTotal(total, range) }}</ng-template>\n</nz-table>\n",
                 providers: [
                     STDataSource,
                     STRowSource,
@@ -1800,6 +1898,7 @@ STComponent.propDecorators = {
     rowClassName: [{ type: Input }],
     header: [{ type: Input }],
     footer: [{ type: Input }],
+    bodyHeader: [{ type: Input }],
     body: [{ type: Input }],
     expandRowByClick: [{ type: Input }],
     expand: [{ type: Input }],
