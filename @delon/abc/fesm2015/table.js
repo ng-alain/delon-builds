@@ -948,7 +948,7 @@ class STDataSource {
      * @return {?}
      */
     getValues(index, list) {
-        return list.map(i => i._values[index].org);
+        return list.map(i => i._values[index].org).map(i => i == null ? 0 : i);
     }
     /**
      * @param {?} index
@@ -956,7 +956,7 @@ class STDataSource {
      * @return {?}
      */
     getSum(index, list) {
-        return this.getValues(index, list).reduce((p, i) => (p += parseFloat(String(i.toString() === '' ? 0 : i))), 0);
+        return this.getValues(index, list).reduce((p, i) => (p += i == null ? 0 : parseFloat(String(i.toString() === '' ? 0 : i))), 0);
     }
 }
 STDataSource.decorators = [

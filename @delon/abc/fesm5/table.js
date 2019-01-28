@@ -1095,7 +1095,7 @@ var STDataSource = /** @class */ (function () {
      * @return {?}
      */
     function (index, list) {
-        return list.map(function (i) { return i._values[index].org; });
+        return list.map(function (i) { return i._values[index].org; }).map(function (i) { return i == null ? 0 : i; });
     };
     /**
      * @param {?} index
@@ -1108,7 +1108,7 @@ var STDataSource = /** @class */ (function () {
      * @return {?}
      */
     function (index, list) {
-        return this.getValues(index, list).reduce(function (p, i) { return (p += parseFloat(String(i.toString() === '' ? 0 : i))); }, 0);
+        return this.getValues(index, list).reduce(function (p, i) { return (p += i == null ? 0 : parseFloat(String(i.toString() === '' ? 0 : i))); }, 0);
     };
     STDataSource.decorators = [
         { type: Injectable }
