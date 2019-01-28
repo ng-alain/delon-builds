@@ -693,7 +693,7 @@ class STDataSource {
         if (col.format) {
             /** @type {?} */
             const formatRes = col.format(item, col);
-            if (~formatRes.indexOf('<')) {
+            if (formatRes && ~formatRes.indexOf('</')) {
                 return { text: this.dom.bypassSecurityTrustHtml(formatRes), org: formatRes };
             }
             return { text: formatRes == null ? '' : formatRes, org: formatRes };
@@ -874,7 +874,8 @@ class STDataSource {
         /** @type {?} */
         const res = {};
         columns.forEach((col, index) => {
-            res[col.key ? col.key : index] = col.statistical == null ? {} : this.getStatistical(col, index, list);
+            res[col.key ? col.key : index] =
+                col.statistical == null ? {} : this.getStatistical(col, index, list);
         });
         return res;
     }
@@ -948,7 +949,7 @@ class STDataSource {
      * @return {?}
      */
     getValues(index, list) {
-        return list.map(i => i._values[index].org).map(i => i == null ? 0 : i);
+        return list.map(i => i._values[index].org).map(i => (i === '' || i == null ? 0 : i));
     }
     /**
      * @param {?} index
@@ -956,7 +957,7 @@ class STDataSource {
      * @return {?}
      */
     getSum(index, list) {
-        return this.getValues(index, list).reduce((p, i) => (p += i == null ? 0 : parseFloat(String(i.toString() === '' ? 0 : i))), 0);
+        return this.getValues(index, list).reduce((p, i) => (p += parseFloat(String(i))), 0);
     }
 }
 STDataSource.decorators = [

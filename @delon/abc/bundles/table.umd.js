@@ -876,7 +876,7 @@
                 if (col.format) {
                     /** @type {?} */
                     var formatRes = col.format(item, col);
-                    if (~formatRes.indexOf('<')) {
+                    if (formatRes && ~formatRes.indexOf('</')) {
                         return { text: this.dom.bypassSecurityTrustHtml(formatRes), org: formatRes };
                     }
                     return { text: formatRes == null ? '' : formatRes, org: formatRes };
@@ -1101,7 +1101,8 @@
                 /** @type {?} */
                 var res = {};
                 columns.forEach(function (col, index) {
-                    res[col.key ? col.key : index] = col.statistical == null ? {} : _this.getStatistical(col, index, list);
+                    res[col.key ? col.key : index] =
+                        col.statistical == null ? {} : _this.getStatistical(col, index, list);
                 });
                 return res;
             };
@@ -1191,7 +1192,7 @@
          * @return {?}
          */
             function (index, list) {
-                return list.map(function (i) { return i._values[index].org; }).map(function (i) { return i == null ? 0 : i; });
+                return list.map(function (i) { return i._values[index].org; }).map(function (i) { return (i === '' || i == null ? 0 : i); });
             };
         /**
          * @param {?} index
@@ -1204,7 +1205,7 @@
          * @return {?}
          */
             function (index, list) {
-                return this.getValues(index, list).reduce(function (p, i) { return (p += i == null ? 0 : parseFloat(String(i.toString() === '' ? 0 : i))); }, 0);
+                return this.getValues(index, list).reduce(function (p, i) { return (p += parseFloat(String(i))); }, 0);
             };
         STDataSource.decorators = [
             { type: i0.Injectable }
