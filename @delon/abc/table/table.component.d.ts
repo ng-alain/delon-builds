@@ -6,7 +6,7 @@ import { STColumnSource } from './table-column-source';
 import { STDataSource } from './table-data-source';
 import { STExport } from './table-export';
 import { STConfig } from './table.config';
-import { STChange, STColumn, STColumnButton, STColumnFilterMenu, STColumnSelection, STData, STError, STExportOptions, STLoadOptions, STPage, STReq, STRes, STRowClassName, STSingleSort, STStatisticalResults } from './table.interfaces';
+import { STChange, STColumn, STColumnButton, STColumnFilterMenu, STColumnSelection, STData, STError, STExportOptions, STLoadOptions, STPage, STReq, STRes, STRowClassName, STSingleSort } from './table.interfaces';
 export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy {
     private cdr;
     private cog;
@@ -25,7 +25,6 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     private locale;
     private clonePage;
     _data: STData[];
-    _statistical: STStatisticalResults;
     _isPagination: boolean;
     _allChecked: boolean;
     _allCheckedDisabled: boolean;
@@ -72,10 +71,8 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     header: string | TemplateRef<void>;
     /** `footer` 底部 */
     footer: string | TemplateRef<void>;
-    /** 额外 `body` 顶部内容 */
-    bodyHeader: TemplateRef<STStatisticalResults>;
     /** 额外 `body` 内容 */
-    body: TemplateRef<STStatisticalResults>;
+    body: TemplateRef<void>;
     expandRowByClick: boolean;
     /** `expand` 可展开，当数据源中包括 `expand` 表示展开状态 */
     expand: TemplateRef<{

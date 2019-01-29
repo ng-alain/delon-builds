@@ -121,10 +121,6 @@ export interface STData {
  */
 export interface STColumn {
     /**
-     * 用于定义数据源主键，例如：`STStatistical`
-     */
-    key?: string;
-    /**
      * 列标题
      */
     title: string;
@@ -260,33 +256,7 @@ export interface STColumn {
      * - 可调用 `resetColumns()` 再一次触发
      */
     iif?: (item: STColumn) => boolean;
-    /**
-     * 统计
-     */
-    statistical?: STStatisticalType | STStatistical;
     [key: string]: any;
-}
-export declare type STStatisticalType = 'count' | 'distinctCount' | 'sum' | 'average' | 'max' | 'min';
-export declare type STStatisticalFn = (values: number[], col: STColumn, list: STData[]) => STStatisticalResult;
-export interface STStatistical {
-    type: STStatisticalType | STStatisticalFn;
-    /**
-     * 保留小数位数，默认：`2`
-     */
-    digits?: number;
-    /**
-     * 是否需要货币格式化，默认以下情况为 `true`
-     * - `type` 为 `STStatisticalFn`、 `sum`、`average`、`max`、`min`
-     */
-    currenty?: boolean;
-}
-export interface STStatisticalResults {
-    [key: string]: STStatisticalResult;
-    [index: number]: STStatisticalResult;
-}
-export interface STStatisticalResult {
-    value: number;
-    text?: string;
 }
 export interface STColumnSort {
     /**

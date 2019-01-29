@@ -2,7 +2,7 @@ import { DecimalPipe } from '@angular/common';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
 import { _HttpClient, CNCurrencyPipe, DatePipe, YNPipe } from '@delon/theme';
-import { STColumn, STData, STMultiSort, STPage, STReq, STRes, STRowClassName, STSingleSort, STStatisticalResults } from './table.interfaces';
+import { STColumn, STData, STMultiSort, STPage, STReq, STRes, STRowClassName, STSingleSort } from './table.interfaces';
 export interface STDataSourceOptions {
     pi?: number;
     ps?: number;
@@ -27,8 +27,6 @@ export interface STDataSourceResult {
     total?: number;
     /** 数据 */
     list?: STData[];
-    /** 统计数据 */
-    statistical?: STStatisticalResults;
 }
 export declare class STDataSource {
     private http;
@@ -47,9 +45,4 @@ export declare class STDataSource {
         [key: string]: string;
     };
     private getReqFilterMap;
-    private genStatistical;
-    private getStatistical;
-    private toFixed;
-    private getValues;
-    private getSum;
 }
