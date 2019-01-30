@@ -3017,6 +3017,7 @@
          * @return {?}
          */
             function (value) {
+                this.typing = this.value;
                 if (this.isAsync)
                     return;
                 switch (this.ui.type) {
