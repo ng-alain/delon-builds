@@ -1,4 +1,4 @@
-import { __spread, __decorate, __metadata } from 'tslib';
+import { __decorate, __metadata, __spread } from 'tslib';
 import { DOCUMENT, CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, ElementRef, Inject, Input, Renderer2, NgModule } from '@angular/core';
 import { ErrorCollectModule } from '@delon/abc/error-collect';

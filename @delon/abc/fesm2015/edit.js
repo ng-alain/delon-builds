@@ -328,12 +328,12 @@ class SEComponent {
                 return;
             }
             /** @type {?} */
-            const status = res !== 'VALID';
-            if (!this.onceFlag || this.invalid === status) {
+            const invalid = res === 'INVALID';
+            if (!this.onceFlag) {
                 this.onceFlag = true;
                 return;
             }
-            this.invalid = status;
+            this.invalid = this.ngControl.dirty && invalid;
             this.cdr.detectChanges();
         });
         if (this._autoId) {
