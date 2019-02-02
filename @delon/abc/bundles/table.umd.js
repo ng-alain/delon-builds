@@ -937,7 +937,6 @@
                         _b);
                 }
                 params = __assign({}, params, req.params, this.getReqSortMap(singleSort, multiSort, columns), this.getReqFilterMap(columns));
-                // tslint:disable-next-line:no-any
                 /** @type {?} */
                 var reqOptions = {
                     params: params,
@@ -949,6 +948,9 @@
                         body: __assign({}, req.body, params),
                         headers: req.headers,
                     };
+                }
+                if (typeof req.process === 'function') {
+                    reqOptions = req.process(reqOptions);
                 }
                 return this.http.request(method, url, reqOptions);
             };
