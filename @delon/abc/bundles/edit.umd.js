@@ -430,12 +430,12 @@
                         return;
                     }
                     /** @type {?} */
-                    var status = res !== 'VALID';
-                    if (!_this.onceFlag || _this.invalid === status) {
+                    var invalid = res === 'INVALID';
+                    if (!_this.onceFlag) {
                         _this.onceFlag = true;
                         return;
                     }
-                    _this.invalid = status;
+                    _this.invalid = _this.ngControl.dirty && invalid;
                     _this.cdr.detectChanges();
                 });
                 if (this._autoId) {
