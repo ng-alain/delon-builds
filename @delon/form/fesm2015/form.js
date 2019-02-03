@@ -839,10 +839,7 @@ class ArrayProperty extends PropertyGroup {
      */
     resetValue(value, onlySelf) {
         this._value = value || this.schema.default || [];
-        this.properties = [];
-        this.clearErrors();
-        this.resetProperties(this._value);
-        this.updateValueAndValidity(onlySelf, true);
+        this.setValue(this._value, onlySelf);
     }
     /**
      * @return {?}
@@ -2246,8 +2243,9 @@ class ArrayWidget extends ArrayLayoutWidget {
      * @return {?}
      */
     ngOnInit() {
-        if (this.ui.grid && this.ui.grid.arraySpan)
+        if (this.ui.grid && this.ui.grid.arraySpan) {
             this.arraySpan = this.ui.grid.arraySpan;
+        }
         this.addTitle = this.ui.addTitle || this.l.addText;
         this.addType = this.ui.addType || 'dashed';
         this.removeTitle =
