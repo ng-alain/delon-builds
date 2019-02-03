@@ -3,8 +3,8 @@ import { DelonLocaleService, DelonLocaleModule } from '@delon/theme';
 import { NgModel, FormsModule } from '@angular/forms';
 import format from 'date-fns/format';
 import { map, distinctUntilChanged, filter, takeUntil, debounceTime, flatMap, startWith, tap } from 'rxjs/operators';
-import { __extends, __decorate, __metadata, __assign, __spread, __values, __rest } from 'tslib';
-import { Injectable, Component, Input, Directive, TemplateRef, ComponentFactoryResolver, ViewChild, ViewContainerRef, ChangeDetectorRef, Inject, Injector, HostBinding, ElementRef, Renderer2, EventEmitter, ChangeDetectionStrategy, Output, defineInjectable, NgModule } from '@angular/core';
+import { __extends, __decorate, __metadata, __spread, __assign, __values, __rest } from 'tslib';
+import { Injectable, Component, Input, Directive, TemplateRef, ComponentFactoryResolver, ViewChild, ViewContainerRef, ChangeDetectorRef, Inject, Injector, HostBinding, ElementRef, Renderer2, defineInjectable, NgModule, EventEmitter, ChangeDetectionStrategy, Output } from '@angular/core';
 import { deepCopy, toBoolean, InputBoolean, InputNumber, deepGet, DelonUtilModule } from '@delon/util';
 import { NzTreeNode, NzModalService, NgZorroAntdModule } from 'ng-zorro-antd';
 import { of, combineLatest, BehaviorSubject, Observable, Subject } from 'rxjs';
@@ -504,7 +504,7 @@ FormProperty = /** @class */ (function () {
          * @return {?}
          */
         function () {
-            return this._errors === null;
+            return this._errors === null || this._errors.length === 0;
         },
         enumerable: true,
         configurable: true
@@ -679,7 +679,7 @@ FormProperty = /** @class */ (function () {
         if (hasCustomError) {
             list.forEach(function (err, idx) {
                 if (!err.message)
-                    throw new Error("\u81EA\u5B9A\u4E49\u6821\u9A8C\u5668\u5FC5\u987B\u81F3\u5C11\u8FD4\u56DE\u4E00\u4E2A 'message' \u5C5E\u6027\uFF0C\u7528\u4E8E\u8868\u793A\u9519\u8BEF\u6587\u672C");
+                    throw new Error("The custom validator must contain a 'message' attribute to viewed error text");
                 err._custom = true;
             });
         }
@@ -726,8 +726,9 @@ FormProperty = /** @class */ (function () {
                 var message = err._custom === true && err.message
                     ? err.message
                     : (_this.ui.errors || {})[err.keyword] || _this.options.errors[err.keyword] || "";
-                if (message && typeof message === 'function')
+                if (message && typeof message === 'function') {
                     message = (/** @type {?} */ (message(err)));
+                }
                 if (message) {
                     if (~((/** @type {?} */ (message))).indexOf('{')) {
                         message = ((/** @type {?} */ (message))).replace(/{([\.a-z0-9]+)}/g, function (v, key) { return err.params[key] || ''; });

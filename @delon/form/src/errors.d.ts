@@ -38,6 +38,7 @@ export declare const ERRORSDEFAULT: {
     if: string;
 };
 export interface ErrorData {
+    [key: string]: any;
     keyword: string;
     dataPath?: string;
     schemaPath?: string;
@@ -45,7 +46,6 @@ export interface ErrorData {
         [key: string]: any;
     };
     message?: string;
-    _custom?: boolean;
 }
 export interface ErrorSchema {
     /**

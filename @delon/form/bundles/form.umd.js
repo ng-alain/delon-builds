@@ -610,7 +610,7 @@
             get: /**
              * @return {?}
              */ function () {
-                return this._errors === null;
+                return this._errors === null || this._errors.length === 0;
             },
             enumerable: true,
             configurable: true
@@ -791,7 +791,7 @@
                 if (hasCustomError) {
                     list.forEach(function (err, idx) {
                         if (!err.message)
-                            throw new Error("\u81EA\u5B9A\u4E49\u6821\u9A8C\u5668\u5FC5\u987B\u81F3\u5C11\u8FD4\u56DE\u4E00\u4E2A 'message' \u5C5E\u6027\uFF0C\u7528\u4E8E\u8868\u793A\u9519\u8BEF\u6587\u672C");
+                            throw new Error("The custom validator must contain a 'message' attribute to viewed error text");
                         err._custom = true;
                     });
                 }
@@ -840,8 +840,9 @@
                         var message = err._custom === true && err.message
                             ? err.message
                             : (_this.ui.errors || {})[err.keyword] || _this.options.errors[err.keyword] || "";
-                        if (message && typeof message === 'function')
+                        if (message && typeof message === 'function') {
                             message = ( /** @type {?} */(message(err)));
+                        }
                         if (message) {
                             if (~(( /** @type {?} */(message))).indexOf('{')) {
                                 message = (( /** @type {?} */(message))).replace(/{([\.a-z0-9]+)}/g, function (v, key) { return err.params[key] || ''; });

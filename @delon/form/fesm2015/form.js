@@ -454,7 +454,7 @@ class FormProperty {
      * @return {?}
      */
     get valid() {
-        return this._errors === null;
+        return this._errors === null || this._errors.length === 0;
     }
     /**
      * 更新值且校验数据
@@ -578,7 +578,7 @@ class FormProperty {
         if (hasCustomError) {
             list.forEach((err, idx) => {
                 if (!err.message)
-                    throw new Error(`自定义校验器必须至少返回一个 'message' 属性，用于表示错误文本`);
+                    throw new Error(`The custom validator must contain a 'message' attribute to viewed error text`);
                 err._custom = true;
             });
         }
@@ -613,8 +613,9 @@ class FormProperty {
                 let message = err._custom === true && err.message
                     ? err.message
                     : (this.ui.errors || {})[err.keyword] || this.options.errors[err.keyword] || ``;
-                if (message && typeof message === 'function')
+                if (message && typeof message === 'function') {
                     message = (/** @type {?} */ (message(err)));
+                }
                 if (message) {
                     if (~((/** @type {?} */ (message))).indexOf('{')) {
                         message = ((/** @type {?} */ (message))).replace(/{([\.a-z0-9]+)}/g, (v, key) => err.params[key] || '');
