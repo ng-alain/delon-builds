@@ -47,7 +47,7 @@ export declare const FORMATMAPS: {
     };
 };
 export declare function isBlank(o: any): boolean;
-export declare function toBool(value: any, defaultValue: boolean): boolean;
+export declare function toBool(value: any, defaultValue: boolean): any;
 export declare function di(ui: SFUISchema, ...args: any[]): void;
 /**
  * 取回Schema，并处理 `$ref` 的关系
