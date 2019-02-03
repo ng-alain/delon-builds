@@ -816,7 +816,6 @@
      * @return {?}
      */
     function removeClass(el, classMap, renderer) {
-        // tslint:disable-next-line:forin
         for (var i in classMap) {
             renderer.removeClass(el, i);
         }

@@ -3,8 +3,8 @@ import { DelonLocaleService, DelonLocaleModule } from '@delon/theme';
 import { NgModel, FormsModule } from '@angular/forms';
 import format from 'date-fns/format';
 import { map, distinctUntilChanged, filter, takeUntil, debounceTime, flatMap, startWith, tap } from 'rxjs/operators';
-import { __extends, __decorate, __metadata, __spread, __assign, __values, __rest } from 'tslib';
-import { Injectable, Component, Input, Directive, TemplateRef, ComponentFactoryResolver, ViewChild, ViewContainerRef, ChangeDetectorRef, Inject, Injector, HostBinding, ElementRef, Renderer2, defineInjectable, NgModule, EventEmitter, ChangeDetectionStrategy, Output } from '@angular/core';
+import { __extends, __assign, __decorate, __metadata, __spread, __values, __rest } from 'tslib';
+import { Injectable, Component, Input, Directive, TemplateRef, ComponentFactoryResolver, ViewChild, ViewContainerRef, ChangeDetectorRef, Inject, Injector, HostBinding, EventEmitter, ChangeDetectionStrategy, Output, ElementRef, Renderer2, defineInjectable, NgModule } from '@angular/core';
 import { deepCopy, toBoolean, InputBoolean, InputNumber, deepGet, DelonUtilModule } from '@delon/util';
 import { NzTreeNode, NzModalService, NgZorroAntdModule } from 'ng-zorro-antd';
 import { of, combineLatest, BehaviorSubject, Observable, Subject } from 'rxjs';
@@ -1326,7 +1326,7 @@ var ObjectProperty = /** @class */ (function (_super) {
      */
     function (value, onlySelf) {
         for (var propertyId in value) {
-            if (value.hasOwnProperty(propertyId)) {
+            if (value.hasOwnProperty(propertyId) && this.properties[propertyId]) {
                 this.properties[propertyId].setValue(value[propertyId], true);
             }
         }
@@ -1344,7 +1344,6 @@ var ObjectProperty = /** @class */ (function (_super) {
      */
     function (value, onlySelf) {
         value = value || this.schema.default || {};
-        // tslint:disable-next-line:forin
         for (var propertyId in this.schema.properties) {
             this.properties[propertyId].resetValue(value[propertyId], true);
         }

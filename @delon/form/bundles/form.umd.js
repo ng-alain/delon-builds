@@ -1443,7 +1443,7 @@
          */
             function (value, onlySelf) {
                 for (var propertyId in value) {
-                    if (value.hasOwnProperty(propertyId)) {
+                    if (value.hasOwnProperty(propertyId) && this.properties[propertyId]) {
                         this.properties[propertyId].setValue(value[propertyId], true);
                     }
                 }
@@ -1461,7 +1461,6 @@
          */
             function (value, onlySelf) {
                 value = value || this.schema.default || {};
-                // tslint:disable-next-line:forin
                 for (var propertyId in this.schema.properties) {
                     this.properties[propertyId].resetValue(value[propertyId], true);
                 }

@@ -1906,7 +1906,6 @@ var _HttpClient = /** @class */ (function () {
         url += ~url.indexOf('?') ? '' : '?';
         /** @type {?} */
         var arr = [];
-        // tslint:disable-next-line:forin
         for (var key in params) {
             arr.push(key + "=" + params[key]);
         }
@@ -2461,7 +2460,6 @@ var KeysPipe = /** @class */ (function () {
         if (keyIsNumber === void 0) { keyIsNumber = false; }
         /** @type {?} */
         var ret = [];
-        // tslint:disable-next-line:forin
         for (var key in value) {
             ret.push({ key: keyIsNumber ? +key : key, value: value[key] });
         }
@@ -2666,7 +2664,7 @@ var AlainThemeModule = /** @class */ (function () {
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 /** @type {?} */
-var VERSION = new Version('7.0.0-rc.6-d2044fe9');
+var VERSION = new Version('7.0.0-rc.6-baadbd3d');
 
 /**
  * @fileoverview added by tsickle

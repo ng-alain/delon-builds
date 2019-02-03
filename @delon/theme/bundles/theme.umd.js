@@ -1989,7 +1989,6 @@
                 url += ~url.indexOf('?') ? '' : '?';
                 /** @type {?} */
                 var arr = [];
-                // tslint:disable-next-line:forin
                 for (var key in params) {
                     arr.push(key + "=" + params[key]);
                 }
@@ -2562,7 +2561,6 @@
                 }
                 /** @type {?} */
                 var ret = [];
-                // tslint:disable-next-line:forin
                 for (var key in value) {
                     ret.push({ key: keyIsNumber ? +key : key, value: value[key] });
                 }

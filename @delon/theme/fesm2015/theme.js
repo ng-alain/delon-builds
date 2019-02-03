@@ -1459,7 +1459,6 @@ class _HttpClient {
         url += ~url.indexOf('?') ? '' : '?';
         /** @type {?} */
         const arr = [];
-        // tslint:disable-next-line:forin
         for (const key in params) {
             arr.push(`${key}=${params[key]}`);
         }
@@ -1874,7 +1873,6 @@ class KeysPipe {
     transform(value, keyIsNumber = false) {
         /** @type {?} */
         const ret = [];
-        // tslint:disable-next-line:forin
         for (const key in value) {
             ret.push({ key: keyIsNumber ? +key : key, value: value[key] });
         }
@@ -2064,7 +2062,7 @@ AlainThemeModule.ctorParameters = () => [
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 /** @type {?} */
-const VERSION = new Version('7.0.0-rc.6-d2044fe9');
+const VERSION = new Version('7.0.0-rc.6-baadbd3d');
 
 /**
  * @fileoverview added by tsickle

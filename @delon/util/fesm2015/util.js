@@ -642,7 +642,6 @@ function InputNumber(fallback = 0) {
  * @return {?}
  */
 function removeClass(el, classMap, renderer) {
-    // tslint:disable-next-line:forin
     for (const i in classMap) {
         renderer.removeClass(el, i);
     }
