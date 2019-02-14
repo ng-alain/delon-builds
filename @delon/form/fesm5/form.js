@@ -3,8 +3,8 @@ import { DelonLocaleService, DelonLocaleModule } from '@delon/theme';
 import { NgModel, FormsModule } from '@angular/forms';
 import format from 'date-fns/format';
 import { map, distinctUntilChanged, filter, takeUntil, debounceTime, flatMap, startWith, tap } from 'rxjs/operators';
-import { __extends, __assign, __decorate, __metadata, __spread, __values, __rest } from 'tslib';
-import { Injectable, Component, Input, Directive, TemplateRef, ComponentFactoryResolver, ViewChild, ViewContainerRef, ChangeDetectorRef, Inject, Injector, HostBinding, EventEmitter, ChangeDetectionStrategy, Output, ElementRef, Renderer2, defineInjectable, NgModule } from '@angular/core';
+import { __extends, __decorate, __metadata, __assign, __spread, __values, __rest } from 'tslib';
+import { Injectable, Component, Input, Directive, TemplateRef, ComponentFactoryResolver, ViewChild, ViewContainerRef, ChangeDetectorRef, Inject, Injector, HostBinding, ElementRef, Renderer2, EventEmitter, ChangeDetectionStrategy, Output, defineInjectable, NgModule } from '@angular/core';
 import { deepCopy, toBoolean, InputBoolean, InputNumber, deepGet, DelonUtilModule } from '@delon/util';
 import { NzTreeNode, NzModalService, NgZorroAntdModule } from 'ng-zorro-antd';
 import { of, combineLatest, BehaviorSubject, Observable, Subject } from 'rxjs';
@@ -3285,11 +3285,8 @@ var DateWidget = /** @class */ (function (_super) {
         else {
             this.displayFormat = ui.displayFormat;
         }
-        this.format = ui.format
-            ? ui.format
-            : this.schema.type === 'number'
-                ? 'x'
-                : 'YYYY-MM-DD HH:mm:ss';
+        // 构建属性对象时会对默认值进行校验，因此可以直接使用 format 作为格式化属性
+        this.format = ui.format;
         // 公共API
         this.i = {
             allowClear: toBool(ui.allowClear, true),
@@ -3725,9 +3722,7 @@ var RateWidget = /** @class */ (function (_super) {
          * @return {?}
          */
         function () {
-            return this.hasText
-                ? ((/** @type {?} */ (this.ui.text))).replace('{{value}}', this.formProperty.value)
-                : '';
+            return ((/** @type {?} */ (this.ui.text))).replace('{{value}}', this.formProperty.value);
         },
         enumerable: true,
         configurable: true
@@ -4123,7 +4118,8 @@ var TimeWidget = /** @class */ (function (_super) {
     function () {
         /** @type {?} */
         var ui = this.ui;
-        this.format = ui.format ? ui.format : this.schema.type === 'number' ? 'x' : 'HH:mm:ss';
+        // 构建属性对象时会对默认值进行校验，因此可以直接使用 format 作为格式化属性
+        this.format = ui.format;
         this.i = {
             displayFormat: ui.displayFormat || 'HH:mm:ss',
             allowEmpty: toBool(ui.allowEmpty, true),

@@ -2628,11 +2628,8 @@ class DateWidget extends ControlWidget {
         else {
             this.displayFormat = ui.displayFormat;
         }
-        this.format = ui.format
-            ? ui.format
-            : this.schema.type === 'number'
-                ? 'x'
-                : 'YYYY-MM-DD HH:mm:ss';
+        // 构建属性对象时会对默认值进行校验，因此可以直接使用 format 作为格式化属性
+        this.format = ui.format;
         // 公共API
         this.i = {
             allowClear: toBool(ui.allowClear, true),
@@ -2962,9 +2959,7 @@ class RateWidget extends ControlWidget {
      * @return {?}
      */
     get text() {
-        return this.hasText
-            ? ((/** @type {?} */ (this.ui.text))).replace('{{value}}', this.formProperty.value)
-            : '';
+        return ((/** @type {?} */ (this.ui.text))).replace('{{value}}', this.formProperty.value);
     }
     /**
      * @return {?}
@@ -3261,7 +3256,8 @@ class TimeWidget extends ControlWidget {
     ngOnInit() {
         /** @type {?} */
         const ui = this.ui;
-        this.format = ui.format ? ui.format : this.schema.type === 'number' ? 'x' : 'HH:mm:ss';
+        // 构建属性对象时会对默认值进行校验，因此可以直接使用 format 作为格式化属性
+        this.format = ui.format;
         this.i = {
             displayFormat: ui.displayFormat || 'HH:mm:ss',
             allowEmpty: toBool(ui.allowEmpty, true),
