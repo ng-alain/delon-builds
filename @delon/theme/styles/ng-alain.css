@@ -19857,9 +19857,6 @@ fieldset {
 .sf {
   display: block;
 }
-.sf-search + .ad-st {
-  margin-top: 16px;
-}
 .sf__optional {
   color: rgba(0, 0, 0, 0.45);
 }
@@ -19870,10 +19867,19 @@ fieldset {
 .sf__fixed .ant-form-item-control-wrapper {
   flex: 1;
 }
-.sf-array-container nz-card {
+.sf__title {
+  margin-bottom: 8px;
+  padding: 0 16px;
+  font-weight: 700;
+  text-align: left;
+}
+.sf__array-add {
+  margin-right: 16px;
+}
+.sf__array-container nz-card {
   margin: 0 16px 0 0;
 }
-.sf-array-container nz-card .remove {
+.sf__array-container nz-card .remove {
   display: none;
   position: absolute;
   right: -16px;
@@ -19887,14 +19893,11 @@ fieldset {
   border-radius: 50%;
   cursor: pointer;
 }
-.sf-array-container nz-card .remove i {
+.sf__array-container nz-card .remove i {
   color: #fff;
 }
-.sf-array-container nz-card:hover .remove {
+.sf__array-container nz-card:hover .remove {
   display: block;
-}
-.sf sf-array .add {
-  margin-right: 16px;
 }
 .sf__checkbox-list {
   width: 100%;
