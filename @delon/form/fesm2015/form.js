@@ -1127,6 +1127,8 @@ class StringProperty extends AtomicProperty {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
+/** @type {?} */
+const SEQ = '/';
 class FormPropertyFactory {
     /**
      * @param {?} schemaValidatorFactory
@@ -1152,7 +1154,7 @@ class FormPropertyFactory {
         if (parent) {
             path += parent.path;
             if (parent.parent !== null) {
-                path += '/';
+                path += SEQ;
             }
             if (parent.type === 'object') {
                 path += propertyId;
@@ -1165,7 +1167,7 @@ class FormPropertyFactory {
             }
         }
         else {
-            path = '/';
+            path = SEQ;
         }
         if (schema.$ref) {
             /** @type {?} */
@@ -1174,12 +1176,13 @@ class FormPropertyFactory {
         }
         else {
             // fix required
-            if (propertyId && ((/** @type {?} */ (((/** @type {?} */ (parent)).schema.required || [])))).indexOf(propertyId) !== -1) {
+            if (propertyId && ((/** @type {?} */ (((/** @type {?} */ (parent)).schema.required || [])))).indexOf(propertyId.split(SEQ).pop()) !== -1) {
                 ui._required = true;
             }
             // fix title
-            if (schema.title == null)
+            if (schema.title == null) {
                 schema.title = propertyId;
+            }
             // fix date
             if ((schema.type === 'string' || schema.type === 'number') &&
                 !schema.format &&
@@ -2628,8 +2631,11 @@ class DateWidget extends ControlWidget {
         else {
             this.displayFormat = ui.displayFormat;
         }
-        // 构建属性对象时会对默认值进行校验，因此可以直接使用 format 作为格式化属性
-        this.format = ui.format;
+        this.format = ui.format
+            ? ui.format
+            : this.schema.type === 'number'
+                ? 'x'
+                : 'YYYY-MM-DD HH:mm:ss';
         // 公共API
         this.i = {
             allowClear: toBool(ui.allowClear, true),
@@ -2884,7 +2890,7 @@ class ObjectWidget extends ObjectLayoutWidget {
     ngOnInit() {
         const { formProperty, ui } = this;
         const { grid, showTitle } = ui;
-        if (!formProperty.isRoot() && !(formProperty.parent instanceof ArrayProperty) && showTitle === true) {
+        if (showTitle || (typeof showTitle === 'undefined' && !formProperty.isRoot() && !(formProperty.parent instanceof ArrayProperty))) {
             this.title = this.schema.title;
         }
         this.grid = grid;
@@ -2959,7 +2965,9 @@ class RateWidget extends ControlWidget {
      * @return {?}
      */
     get text() {
-        return ((/** @type {?} */ (this.ui.text))).replace('{{value}}', this.formProperty.value);
+        return this.hasText
+            ? ((/** @type {?} */ (this.ui.text))).replace('{{value}}', this.formProperty.value)
+            : '';
     }
     /**
      * @return {?}
@@ -3256,8 +3264,7 @@ class TimeWidget extends ControlWidget {
     ngOnInit() {
         /** @type {?} */
         const ui = this.ui;
-        // 构建属性对象时会对默认值进行校验，因此可以直接使用 format 作为格式化属性
-        this.format = ui.format;
+        this.format = ui.format ? ui.format : this.schema.type === 'number' ? 'x' : 'HH:mm:ss';
         this.i = {
             displayFormat: ui.displayFormat || 'HH:mm:ss',
             allowEmpty: toBool(ui.allowEmpty, true),
