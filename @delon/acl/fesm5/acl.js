@@ -3,7 +3,7 @@ import { BehaviorSubject, of, Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { __spread, __values } from 'tslib';
 import { CommonModule } from '@angular/common';
-import { Injectable, Directive, ElementRef, Input, Renderer2, defineInjectable, inject, NgModule } from '@angular/core';
+import { Injectable, Directive, ElementRef, Input, Renderer2, defineInjectable, NgModule, inject } from '@angular/core';
 
 /**
  * @fileoverview added by tsickle

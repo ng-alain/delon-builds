@@ -19204,9 +19204,6 @@ nz-button-group + nz-popconfirm {
 .ant-btn-group .ant-btn + .ant-btn {
   margin-left: -1px;
 }
-.ant-transfer-operation .ant-btn + .ant-btn {
-  margin-left: initial;
-}
 a:focus {
   text-decoration: none;
 }
