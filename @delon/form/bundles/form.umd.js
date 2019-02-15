@@ -1533,8 +1533,6 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
-    /** @type {?} */
-    var SEQ = '/';
     var FormPropertyFactory = /** @class */ (function () {
         function FormPropertyFactory(schemaValidatorFactory, options) {
             this.schemaValidatorFactory = schemaValidatorFactory;
@@ -1567,7 +1565,7 @@
                 if (parent) {
                     path += parent.path;
                     if (parent.parent !== null) {
-                        path += SEQ;
+                        path += '/';
                     }
                     if (parent.type === 'object') {
                         path += propertyId;
@@ -1580,7 +1578,7 @@
                     }
                 }
                 else {
-                    path = SEQ;
+                    path = '/';
                 }
                 if (schema.$ref) {
                     /** @type {?} */
@@ -1589,13 +1587,12 @@
                 }
                 else {
                     // fix required
-                    if (propertyId && (( /** @type {?} */((( /** @type {?} */(parent)).schema.required || [])))).indexOf(propertyId.split(SEQ).pop()) !== -1) {
+                    if (propertyId && (( /** @type {?} */((( /** @type {?} */(parent)).schema.required || [])))).indexOf(propertyId) !== -1) {
                         ui._required = true;
                     }
                     // fix title
-                    if (schema.title == null) {
+                    if (schema.title == null)
                         schema.title = propertyId;
-                    }
                     // fix date
                     if ((schema.type === 'string' || schema.type === 'number') &&
                         !schema.format &&
@@ -3416,11 +3413,8 @@
                 else {
                     this.displayFormat = ui.displayFormat;
                 }
-                this.format = ui.format
-                    ? ui.format
-                    : this.schema.type === 'number'
-                        ? 'x'
-                        : 'YYYY-MM-DD HH:mm:ss';
+                // 构建属性对象时会对默认值进行校验，因此可以直接使用 format 作为格式化属性
+                this.format = ui.format;
                 // 公共API
                 this.i = {
                     allowClear: toBool(ui.allowClear, true),
@@ -3754,7 +3748,7 @@
                 var e_1, _a;
                 var _b = this, formProperty = _b.formProperty, ui = _b.ui;
                 var grid = ui.grid, showTitle = ui.showTitle;
-                if (showTitle || (typeof showTitle === 'undefined' && !formProperty.isRoot() && !(formProperty.parent instanceof ArrayProperty))) {
+                if (!formProperty.isRoot() && !(formProperty.parent instanceof ArrayProperty) && showTitle === true) {
                     this.title = this.schema.title;
                 }
                 this.grid = grid;
@@ -3860,9 +3854,7 @@
             get: /**
              * @return {?}
              */ function () {
-                return this.hasText
-                    ? (( /** @type {?} */(this.ui.text))).replace('{{value}}', this.formProperty.value)
-                    : '';
+                return (( /** @type {?} */(this.ui.text))).replace('{{value}}', this.formProperty.value);
             },
             enumerable: true,
             configurable: true
@@ -4258,7 +4250,8 @@
             function () {
                 /** @type {?} */
                 var ui = this.ui;
-                this.format = ui.format ? ui.format : this.schema.type === 'number' ? 'x' : 'HH:mm:ss';
+                // 构建属性对象时会对默认值进行校验，因此可以直接使用 format 作为格式化属性
+                this.format = ui.format;
                 this.i = {
                     displayFormat: ui.displayFormat || 'HH:mm:ss',
                     allowEmpty: toBool(ui.allowEmpty, true),

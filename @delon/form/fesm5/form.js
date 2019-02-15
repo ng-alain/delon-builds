@@ -4,7 +4,7 @@ import { NgModel, FormsModule } from '@angular/forms';
 import format from 'date-fns/format';
 import { map, distinctUntilChanged, filter, takeUntil, debounceTime, flatMap, startWith, tap } from 'rxjs/operators';
 import { __extends, __assign, __decorate, __metadata, __spread, __values, __rest } from 'tslib';
-import { Injectable, Component, Input, Directive, TemplateRef, ComponentFactoryResolver, ViewChild, ViewContainerRef, ChangeDetectorRef, Inject, Injector, HostBinding, EventEmitter, ChangeDetectionStrategy, Output, defineInjectable, ElementRef, Renderer2, NgModule } from '@angular/core';
+import { Injectable, Component, Input, Directive, TemplateRef, ComponentFactoryResolver, ViewChild, ViewContainerRef, ChangeDetectorRef, Inject, Injector, HostBinding, EventEmitter, ChangeDetectionStrategy, Output, ElementRef, Renderer2, defineInjectable, NgModule } from '@angular/core';
 import { deepCopy, toBoolean, InputBoolean, InputNumber, deepGet, DelonUtilModule } from '@delon/util';
 import { NzTreeNode, NzModalService, NgZorroAntdModule } from 'ng-zorro-antd';
 import { of, combineLatest, BehaviorSubject, Observable, Subject } from 'rxjs';
@@ -1416,8 +1416,6 @@ var StringProperty = /** @class */ (function (_super) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
-/** @type {?} */
-var SEQ = '/';
 var FormPropertyFactory = /** @class */ (function () {
     function FormPropertyFactory(schemaValidatorFactory, options) {
         this.schemaValidatorFactory = schemaValidatorFactory;
@@ -1448,7 +1446,7 @@ var FormPropertyFactory = /** @class */ (function () {
         if (parent) {
             path += parent.path;
             if (parent.parent !== null) {
-                path += SEQ;
+                path += '/';
             }
             if (parent.type === 'object') {
                 path += propertyId;
@@ -1461,7 +1459,7 @@ var FormPropertyFactory = /** @class */ (function () {
             }
         }
         else {
-            path = SEQ;
+            path = '/';
         }
         if (schema.$ref) {
             /** @type {?} */
@@ -1470,13 +1468,12 @@ var FormPropertyFactory = /** @class */ (function () {
         }
         else {
             // fix required
-            if (propertyId && ((/** @type {?} */ (((/** @type {?} */ (parent)).schema.required || [])))).indexOf(propertyId.split(SEQ).pop()) !== -1) {
+            if (propertyId && ((/** @type {?} */ (((/** @type {?} */ (parent)).schema.required || [])))).indexOf(propertyId) !== -1) {
                 ui._required = true;
             }
             // fix title
-            if (schema.title == null) {
+            if (schema.title == null)
                 schema.title = propertyId;
-            }
             // fix date
             if ((schema.type === 'string' || schema.type === 'number') &&
                 !schema.format &&
@@ -3288,11 +3285,8 @@ var DateWidget = /** @class */ (function (_super) {
         else {
             this.displayFormat = ui.displayFormat;
         }
-        this.format = ui.format
-            ? ui.format
-            : this.schema.type === 'number'
-                ? 'x'
-                : 'YYYY-MM-DD HH:mm:ss';
+        // 构建属性对象时会对默认值进行校验，因此可以直接使用 format 作为格式化属性
+        this.format = ui.format;
         // 公共API
         this.i = {
             allowClear: toBool(ui.allowClear, true),
@@ -3627,7 +3621,7 @@ var ObjectWidget = /** @class */ (function (_super) {
         var e_1, _a;
         var _b = this, formProperty = _b.formProperty, ui = _b.ui;
         var grid = ui.grid, showTitle = ui.showTitle;
-        if (showTitle || (typeof showTitle === 'undefined' && !formProperty.isRoot() && !(formProperty.parent instanceof ArrayProperty))) {
+        if (!formProperty.isRoot() && !(formProperty.parent instanceof ArrayProperty) && showTitle === true) {
             this.title = this.schema.title;
         }
         this.grid = grid;
@@ -3728,9 +3722,7 @@ var RateWidget = /** @class */ (function (_super) {
          * @return {?}
          */
         function () {
-            return this.hasText
-                ? ((/** @type {?} */ (this.ui.text))).replace('{{value}}', this.formProperty.value)
-                : '';
+            return ((/** @type {?} */ (this.ui.text))).replace('{{value}}', this.formProperty.value);
         },
         enumerable: true,
         configurable: true
@@ -4126,7 +4118,8 @@ var TimeWidget = /** @class */ (function (_super) {
     function () {
         /** @type {?} */
         var ui = this.ui;
-        this.format = ui.format ? ui.format : this.schema.type === 'number' ? 'x' : 'HH:mm:ss';
+        // 构建属性对象时会对默认值进行校验，因此可以直接使用 format 作为格式化属性
+        this.format = ui.format;
         this.i = {
             displayFormat: ui.displayFormat || 'HH:mm:ss',
             allowEmpty: toBool(ui.allowEmpty, true),

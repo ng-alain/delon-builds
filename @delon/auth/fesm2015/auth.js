@@ -3,7 +3,7 @@ import { HttpErrorResponse, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { DOCUMENT } from '@angular/common';
 import { Router } from '@angular/router';
-import { Injectable, InjectionToken, inject, Inject, Injector, NgModule, defineInjectable, INJECTOR, Optional } from '@angular/core';
+import { Injectable, NgModule, InjectionToken, inject, Inject, Injector, defineInjectable, INJECTOR, Optional } from '@angular/core';
 
 /**
  * @fileoverview added by tsickle
