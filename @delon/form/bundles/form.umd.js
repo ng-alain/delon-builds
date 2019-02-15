@@ -3748,7 +3748,7 @@
                 var e_1, _a;
                 var _b = this, formProperty = _b.formProperty, ui = _b.ui;
                 var grid = ui.grid, showTitle = ui.showTitle;
-                if (showTitle || (typeof showTitle === 'undefined' && !formProperty.isRoot() && !(formProperty.parent instanceof ArrayProperty))) {
+                if (!formProperty.isRoot() && !(formProperty.parent instanceof ArrayProperty) && showTitle === true) {
                     this.title = this.schema.title;
                 }
                 this.grid = grid;
