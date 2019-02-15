@@ -1416,6 +1416,8 @@ var StringProperty = /** @class */ (function (_super) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
+/** @type {?} */
+var SEQ = '/';
 var FormPropertyFactory = /** @class */ (function () {
     function FormPropertyFactory(schemaValidatorFactory, options) {
         this.schemaValidatorFactory = schemaValidatorFactory;
@@ -1446,7 +1448,7 @@ var FormPropertyFactory = /** @class */ (function () {
         if (parent) {
             path += parent.path;
             if (parent.parent !== null) {
-                path += '/';
+                path += SEQ;
             }
             if (parent.type === 'object') {
                 path += propertyId;
@@ -1459,7 +1461,7 @@ var FormPropertyFactory = /** @class */ (function () {
             }
         }
         else {
-            path = '/';
+            path = SEQ;
         }
         if (schema.$ref) {
             /** @type {?} */
@@ -1468,12 +1470,13 @@ var FormPropertyFactory = /** @class */ (function () {
         }
         else {
             // fix required
-            if (propertyId && ((/** @type {?} */ (((/** @type {?} */ (parent)).schema.required || [])))).indexOf(propertyId) !== -1) {
+            if (propertyId && ((/** @type {?} */ (((/** @type {?} */ (parent)).schema.required || [])))).indexOf(propertyId.split(SEQ).pop()) !== -1) {
                 ui._required = true;
             }
             // fix title
-            if (schema.title == null)
+            if (schema.title == null) {
                 schema.title = propertyId;
+            }
             // fix date
             if ((schema.type === 'string' || schema.type === 'number') &&
                 !schema.format &&
