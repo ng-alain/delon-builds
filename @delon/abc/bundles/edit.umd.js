@@ -426,17 +426,7 @@
                 if (!this.ngControl || this.status$)
                     return;
                 this.status$ = this.ngControl.statusChanges.subscribe(function (res) {
-                    if (_this.ngControl.disabled || _this.ngControl.isDisabled) {
-                        return;
-                    }
-                    /** @type {?} */
-                    var invalid = res === 'INVALID';
-                    if (!_this.onceFlag) {
-                        _this.onceFlag = true;
-                        return;
-                    }
-                    _this.invalid = _this.ngControl.dirty && invalid;
-                    _this.cdr.detectChanges();
+                    return _this.updateStatus(res === 'INVALID');
                 });
                 if (this._autoId) {
                     /** @type {?} */
@@ -445,6 +435,21 @@
                         control.id = this._id;
                     }
                 }
+            };
+        /**
+         * @param {?} invalid
+         * @return {?}
+         */
+        SEComponent.prototype.updateStatus = /**
+         * @param {?} invalid
+         * @return {?}
+         */
+            function (invalid) {
+                if (this.ngControl.disabled || this.ngControl.isDisabled) {
+                    return;
+                }
+                this.invalid = (invalid && this.onceFlag) || (this.ngControl.dirty && invalid);
+                this.cdr.detectChanges();
             };
         /**
          * @return {?}
@@ -464,8 +469,15 @@
          * @return {?}
          */
             function () {
+                var _this = this;
                 this.setClass().bindModel();
                 this.inited = true;
+                if (this.onceFlag) {
+                    Promise.resolve().then(function () {
+                        _this.updateStatus(_this.ngControl.invalid);
+                        _this.onceFlag = false;
+                    });
+                }
             };
         /**
          * @return {?}

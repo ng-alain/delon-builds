@@ -34,6 +34,7 @@ export declare class SEComponent implements OnChanges, AfterViewInit, OnDestroy 
     constructor(el: ElementRef, parent: SEContainerComponent, rep: ResponsiveService, ren: Renderer2, cdr: ChangeDetectorRef);
     private setClass;
     private bindModel;
+    private updateStatus;
     ngOnChanges(): void;
     ngAfterViewInit(): void;
     ngOnDestroy(): void;
