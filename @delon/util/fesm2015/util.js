@@ -253,7 +253,6 @@ function getTimeDistance(type, time) {
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 class LazyService {
-    // tslint:disable-next-line:no-any
     /**
      * @param {?} doc
      */
@@ -316,7 +315,6 @@ class LazyService {
                 this.cached[path] = item;
                 resolve(item);
             };
-            // tslint:disable-next-line:no-any
             /** @type {?} */
             const node = (/** @type {?} */ (this.doc.createElement('script')));
             node.type = 'text/javascript';
@@ -514,7 +512,6 @@ class _Validators {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
-// tslint:disable:no-any
 /**
  * @param {?} element
  * @return {?}
@@ -554,7 +551,6 @@ function toBoolean(value, allowUndefined = false) {
  * @return {?}
  */
 function InputBoolean(allowUndefined = false) {
-    // tslint:disable-line:no-any
     return function InputBooleanPropDecorator(target, name) {
         // Add our own private prop
         /** @type {?} */
@@ -601,7 +597,6 @@ function toNumber(value, fallbackValue = 0) {
  * @return {?}
  */
 function InputNumber(fallback = 0) {
-    // tslint:disable-line:no-any
     return function InputBooleanPropDecorator(target, name) {
         // Add our own private prop
         /** @type {?} */

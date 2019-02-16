@@ -71,10 +71,7 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
-    // tslint:disable:no-any
-    var  
-    // tslint:disable:no-any
-    DateRangePickerConfig = /** @class */ (function () {
+    var DateRangePickerConfig = /** @class */ (function () {
         function DateRangePickerConfig() {
             this.nzFormat = 'yyyy-MM-dd';
             this.nzAllowClear = true;

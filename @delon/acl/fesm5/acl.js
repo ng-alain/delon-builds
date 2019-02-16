@@ -336,11 +336,9 @@ var ACLService = /** @class */ (function () {
         }
         if (t.ability) {
             if (t.mode === 'allOf') {
-                // tslint:disable-next-line:no-any
                 return ((/** @type {?} */ (t.ability))).every(function (v) { return _this.abilities.includes(v); });
             }
             else {
-                // tslint:disable-next-line:no-any
                 return ((/** @type {?} */ (t.ability))).some(function (v) { return _this.abilities.includes(v); });
             }
         }

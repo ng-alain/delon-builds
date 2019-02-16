@@ -345,7 +345,6 @@
      * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
     var LazyService = /** @class */ (function () {
-        // tslint:disable-next-line:no-any
         function LazyService(doc) {
             this.doc = doc;
             this.list = {};
@@ -422,7 +421,6 @@
                         _this.cached[path] = item;
                         resolve(item);
                     };
-                    // tslint:disable-next-line:no-any
                     /** @type {?} */
                     var node = ( /** @type {?} */(_this.doc.createElement('script')));
                     node.type = 'text/javascript';
@@ -680,7 +678,6 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
-    // tslint:disable:no-any
     /**
      * @param {?} element
      * @return {?}
@@ -726,7 +723,6 @@
         if (allowUndefined === void 0) {
             allowUndefined = false;
         }
-        // tslint:disable-line:no-any
         return function InputBooleanPropDecorator(target, name) {
             // Add our own private prop
             /** @type {?} */
@@ -777,7 +773,6 @@
         if (fallback === void 0) {
             fallback = 0;
         }
-        // tslint:disable-line:no-any
         return function InputBooleanPropDecorator(target, name) {
             // Add our own private prop
             /** @type {?} */

@@ -14,7 +14,6 @@
      * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
     var MockStatusError = /** @class */ (function () {
-        // tslint:disable-next-line:no-any
         function MockStatusError(status, error) {
             this.status = status;
             this.error = error;
@@ -119,20 +118,16 @@
                 // regular ordering
                 this.cached.sort(function (a, b) { return (b.martcher || '').toString().length - (a.martcher || '').toString().length; });
             };
-        // tslint:disable-next-line:no-any
-        // tslint:disable-next-line:no-any
         /**
          * @param {?} key
          * @param {?} callback
          * @return {?}
          */
-        MockService.prototype.genRule =
-            // tslint:disable-next-line:no-any
-            /**
-             * @param {?} key
-             * @param {?} callback
-             * @return {?}
-             */
+        MockService.prototype.genRule = /**
+         * @param {?} key
+         * @param {?} callback
+         * @return {?}
+         */
             function (key, callback) {
                 /** @type {?} */
                 var method = 'GET';
@@ -169,18 +164,14 @@
                     method: method.toUpperCase(),
                 };
             };
-        // tslint:disable-next-line:no-any
-        // tslint:disable-next-line:no-any
         /**
          * @param {?} error
          * @return {?}
          */
-        MockService.prototype.outputError =
-            // tslint:disable-next-line:no-any
-            /**
-             * @param {?} error
-             * @return {?}
-             */
+        MockService.prototype.outputError = /**
+         * @param {?} error
+         * @return {?}
+         */
             function (error) {
                 /** @type {?} */
                 var filePath = error.message.split(': ')[0];

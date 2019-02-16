@@ -1,19 +1,20 @@
 import { OnDestroy, OnInit } from '@angular/core';
-import { DelonLocaleService } from '@delon/theme';
+import { DelonLocaleService, LocaleData } from '@delon/theme';
+export declare type ExceptionType = 403 | 404 | 500;
 export declare class ExceptionComponent implements OnInit, OnDestroy {
     private i18n;
     private i18n$;
     private conTpl;
-    _type: number;
-    locale: any;
+    _type: ExceptionType;
+    locale: LocaleData;
     hasCon: boolean;
     _img: string;
     _title: string;
     _desc: string;
-    type: 403 | 404 | 500;
-    img: any;
-    title: any;
-    desc: any;
+    type: ExceptionType;
+    img: string;
+    title: string;
+    desc: string;
     checkContent(): void;
     constructor(i18n: DelonLocaleService);
     ngOnInit(): void;

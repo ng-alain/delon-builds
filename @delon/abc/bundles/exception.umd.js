@@ -16,7 +16,6 @@
     var ExceptionComponent = /** @class */ (function () {
         function ExceptionComponent(i18n) {
             this.i18n = i18n;
-            // tslint:disable-next-line:no-any
             this.locale = {};
             this.hasCon = false;
             this._img = '';
@@ -207,8 +206,8 @@
      * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
 
-    exports.ExceptionComponent = ExceptionComponent;
     exports.ExceptionModule = ExceptionModule;
+    exports.ExceptionComponent = ExceptionComponent;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 

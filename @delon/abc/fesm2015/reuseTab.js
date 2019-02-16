@@ -757,13 +757,11 @@ class ReuseTabService {
      * @param {?=} data
      * @return {?}
      */
-    // tslint:disable-next-line:no-any
     refresh(data) {
         this._cachedChange.next({ active: 'refresh', data });
     }
     // #endregion
     // #region privates
-    // tslint:disable-next-line:no-any
     /**
      * @param {?} _handle
      * @return {?}
@@ -800,7 +798,6 @@ class ReuseTabService {
             return null;
         return menus.pop();
     }
-    // tslint:disable-next-line:no-any
     /**
      * @param {?} method
      * @param {?} url
@@ -835,7 +832,6 @@ class ReuseTabService {
      * @param {?} _handle
      * @return {?}
      */
-    // tslint:disable-next-line:no-any
     store(_snapshot, _handle) {
         /** @type {?} */
         const url = this.getUrl(_snapshot);

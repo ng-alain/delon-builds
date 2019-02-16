@@ -13,7 +13,6 @@ import { Injectable, Injector, NgModule } from '@angular/core';
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 class MockStatusError {
-    // tslint:disable-next-line:no-any
     /**
      * @param {?} status
      * @param {?=} error
@@ -113,7 +112,6 @@ class MockService {
         // regular ordering
         this.cached.sort((a, b) => (b.martcher || '').toString().length - (a.martcher || '').toString().length);
     }
-    // tslint:disable-next-line:no-any
     /**
      * @param {?} key
      * @param {?} callback
@@ -155,7 +153,6 @@ class MockService {
             method: method.toUpperCase(),
         };
     }
-    // tslint:disable-next-line:no-any
     /**
      * @param {?} error
      * @return {?}

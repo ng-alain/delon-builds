@@ -13,7 +13,6 @@ import { NgZorroAntdModule } from 'ng-zorro-antd';
 var ExceptionComponent = /** @class */ (function () {
     function ExceptionComponent(i18n) {
         this.i18n = i18n;
-        // tslint:disable-next-line:no-any
         this.locale = {};
         this.hasCon = false;
         this._img = '';
@@ -162,6 +161,6 @@ var ExceptionModule = /** @class */ (function () {
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 
-export { ExceptionComponent, ExceptionModule };
+export { ExceptionModule, ExceptionComponent };
 
 //# sourceMappingURL=exception.js.map

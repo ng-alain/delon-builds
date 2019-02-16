@@ -75,7 +75,6 @@
         function TagSelectComponent(i18n, cdr) {
             this.i18n = i18n;
             this.cdr = cdr;
-            // tslint:disable-next-line:no-any
             this.locale = {};
             /**
              * 是否启用 `展开与收进`

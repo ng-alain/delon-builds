@@ -34,7 +34,6 @@ class LodopService {
         this._lodop = null;
         this._init = new Subject();
         this._events = new Subject();
-        // tslint:disable-next-line:no-any
         this.printBuffer = [];
         this.cog = defCog;
     }
@@ -173,7 +172,6 @@ class LodopService {
             /** @type {?} */
             const fn = this._lodop[res[1]];
             if (fn) {
-                // tslint:disable-next-line:no-any
                 /** @type {?} */
                 let arr;
                 try {

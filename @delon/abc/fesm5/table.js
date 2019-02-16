@@ -365,7 +365,6 @@ var STColumnSource = /** @class */ (function () {
         if (item.sorter && typeof item.sorter === 'function') {
             return {
                 enabled: true,
-                // tslint:disable-next-line:no-any
                 default: (/** @type {?} */ (item.sort)),
                 compare: item.sorter,
                 key: item.sortKey || item.indexKey,
@@ -407,7 +406,6 @@ var STColumnSource = /** @class */ (function () {
                 confirmText: item.filterConfirmText,
                 clearText: item.filterClearText,
                 default: item.filtered,
-                // tslint:disable-next-line:no-any
                 fn: (/** @type {?} */ (item.filter)),
                 icon: item.filterIcon,
                 key: item.filterKey || item.indexKey,
@@ -545,7 +543,6 @@ var STColumnSource = /** @class */ (function () {
                 if ((item.type === 'link' && typeof item.click !== 'function') ||
                     (item.type === 'badge' && item.badge == null) ||
                     (item.type === 'tag' && item.tag == null)) {
-                    // tslint:disable-next-line:no-any
                     ((/** @type {?} */ (item))).type = '';
                 }
                 // className
@@ -1136,22 +1133,17 @@ var STExport = /** @class */ (function () {
     function STExport(xlsxSrv) {
         this.xlsxSrv = xlsxSrv;
     }
-    // tslint:disable-next-line:no-any
-    // tslint:disable-next-line:no-any
     /**
      * @param {?} item
      * @param {?} col
      * @return {?}
      */
-    STExport.prototype._stGet = 
-    // tslint:disable-next-line:no-any
-    /**
+    STExport.prototype._stGet = /**
      * @param {?} item
      * @param {?} col
      * @return {?}
      */
     function (item, col) {
-        // tslint:disable-next-line:no-any
         /** @type {?} */
         var ret = { t: 's', v: '' };
         if (col.format) {
@@ -1261,7 +1253,6 @@ var STComponent = /** @class */ (function () {
         this.delonI18n = delonI18n;
         this.unsubscribe$ = new Subject();
         this.totalTpl = "";
-        // tslint:disable-next-line:no-any
         this.locale = {};
         this._data = [];
         this._statistical = {};
@@ -1411,10 +1402,7 @@ var STComponent = /** @class */ (function () {
         function () {
             return this._multiSort;
         },
-        // tslint:disable-next-line:no-any
-        set: 
-        // tslint:disable-next-line:no-any
-        /**
+        set: /**
          * @param {?} value
          * @return {?}
          */
@@ -1460,16 +1448,12 @@ var STComponent = /** @class */ (function () {
                 .replace('{{range[1]}}', range[1])
             : '';
     };
-    // tslint:disable-next-line:no-any
-    // tslint:disable-next-line:no-any
     /**
      * @param {?} type
      * @param {?=} data
      * @return {?}
      */
-    STComponent.prototype.changeEmit = 
-    // tslint:disable-next-line:no-any
-    /**
+    STComponent.prototype.changeEmit = /**
      * @param {?} type
      * @param {?=} data
      * @return {?}
@@ -1817,10 +1801,8 @@ var STComponent = /** @class */ (function () {
     };
     //#endregion
     //#region sort
-    // tslint:disable-next-line:no-any
     //#endregion
     //#region sort
-    // tslint:disable-next-line:no-any
     /**
      * @param {?} col
      * @param {?} idx
@@ -1830,7 +1812,6 @@ var STComponent = /** @class */ (function () {
     STComponent.prototype.sort = 
     //#endregion
     //#region sort
-    // tslint:disable-next-line:no-any
     /**
      * @param {?} col
      * @param {?} idx
@@ -2134,7 +2115,6 @@ var STComponent = /** @class */ (function () {
             var modal = btn.modal;
             /** @type {?} */
             var obj = (_a = {}, _a[modal.paramsName] = record, _a);
-            // tslint:disable-next-line:no-any
             ((/** @type {?} */ (this.modalHelper[btn.type === 'modal' ? 'create' : 'createStatic'])))(modal.component, __assign({}, obj, (modal.params && modal.params(record))), __assign({}, modal))
                 .pipe(filter(function (w) { return typeof w !== 'undefined'; }))
                 .subscribe(function (res) { return _this.btnCallback(record, btn, res); });
@@ -2160,17 +2140,13 @@ var STComponent = /** @class */ (function () {
         }
         this.btnCallback(record, btn);
     };
-    // tslint:disable-next-line:no-any
-    // tslint:disable-next-line:no-any
     /**
      * @param {?} record
      * @param {?} btn
      * @param {?=} modal
      * @return {?}
      */
-    STComponent.prototype.btnCallback = 
-    // tslint:disable-next-line:no-any
-    /**
+    STComponent.prototype.btnCallback = /**
      * @param {?} record
      * @param {?} btn
      * @param {?=} modal

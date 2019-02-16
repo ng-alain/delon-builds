@@ -91,7 +91,6 @@
             this._lodop = null;
             this._init = new rxjs.Subject();
             this._events = new rxjs.Subject();
-            // tslint:disable-next-line:no-any
             this.printBuffer = [];
             this.cog = defCog;
         }
@@ -281,7 +280,6 @@
                     /** @type {?} */
                     var fn = _this._lodop[res[1]];
                     if (fn) {
-                        // tslint:disable-next-line:no-any
                         /** @type {?} */
                         var arr = void 0;
                         try {

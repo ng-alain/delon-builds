@@ -14,7 +14,7 @@ export { EllipsisComponent, EllipsisModule } from '@delon/abc/ellipsis';
 import { ErrorCollectModule } from '@delon/abc/error-collect';
 export { ErrorCollectComponent, ErrorCollectConfig, ErrorCollectModule } from '@delon/abc/error-collect';
 import { ExceptionModule } from '@delon/abc/exception';
-export { ExceptionComponent, ExceptionModule } from '@delon/abc/exception';
+export { ExceptionModule, ExceptionComponent } from '@delon/abc/exception';
 import { FooterToolbarModule } from '@delon/abc/footer-toolbar';
 export { FooterToolbarComponent, FooterToolbarModule } from '@delon/abc/footer-toolbar';
 import { FullContentModule } from '@delon/abc/full-content';

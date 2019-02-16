@@ -84,8 +84,8 @@
     exports.ErrorCollectComponent = errorCollect.ErrorCollectComponent;
     exports.ErrorCollectConfig = errorCollect.ErrorCollectConfig;
     exports.ErrorCollectModule = errorCollect.ErrorCollectModule;
-    exports.ExceptionComponent = exception.ExceptionComponent;
     exports.ExceptionModule = exception.ExceptionModule;
+    exports.ExceptionComponent = exception.ExceptionComponent;
     exports.FooterToolbarComponent = footerToolbar.FooterToolbarComponent;
     exports.FooterToolbarModule = footerToolbar.FooterToolbarModule;
     exports.FullContentComponent = fullContent.FullContentComponent;

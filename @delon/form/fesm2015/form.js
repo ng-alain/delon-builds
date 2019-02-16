@@ -4,7 +4,7 @@ import { DelonLocaleService, DelonLocaleModule } from '@delon/theme';
 import { NgModel, FormsModule } from '@angular/forms';
 import format from 'date-fns/format';
 import { map, distinctUntilChanged, filter, takeUntil, debounceTime, flatMap, startWith, tap } from 'rxjs/operators';
-import { Injectable, Component, Input, Directive, TemplateRef, ChangeDetectorRef, HostBinding, Inject, Injector, ViewChild, ViewContainerRef, ComponentFactoryResolver, EventEmitter, ChangeDetectionStrategy, Output, ElementRef, Renderer2, defineInjectable, NgModule } from '@angular/core';
+import { Injectable, Component, Input, Directive, TemplateRef, ChangeDetectorRef, HostBinding, Inject, Injector, ViewChild, ViewContainerRef, ComponentFactoryResolver, EventEmitter, ChangeDetectionStrategy, Output, ElementRef, Renderer2, NgModule, defineInjectable } from '@angular/core';
 import { deepCopy, toBoolean, InputBoolean, InputNumber, deepGet, DelonUtilModule } from '@delon/util';
 import { NzTreeNode, NzModalService, NgZorroAntdModule } from 'ng-zorro-antd';
 import { of, combineLatest, BehaviorSubject, Observable, Subject } from 'rxjs';
@@ -424,7 +424,6 @@ class FormProperty {
      * @return {?}
      */
     get root() {
-        // tslint:disable-next-line:no-any
         return this._root || ((/** @type {?} */ (((/** @type {?} */ (this))))));
     }
     /**
@@ -853,7 +852,6 @@ class ArrayProperty extends PropertyGroup {
      * @return {?}
      */
     _updateValue() {
-        // tslint:disable-next-line:no-any
         /** @type {?} */
         const value = [];
         this.forEachChild((property) => {
@@ -1316,7 +1314,6 @@ class WidgetRegistry {
     constructor() {
         this.widgets = {};
     }
-    // tslint:disable-next-line:no-any
     /**
      * @param {?} widget
      * @return {?}
@@ -1324,7 +1321,6 @@ class WidgetRegistry {
     setDefault(widget) {
         this.defaultWidget = widget;
     }
-    // tslint:disable-next-line:no-any
     /**
      * @param {?} type
      * @param {?} widget
@@ -1369,7 +1365,6 @@ class WidgetFactory {
         if (!this.registry.has(type)) {
             console.warn(`No widget for type "${type}"`);
         }
-        // tslint:disable-next-line:no-any
         /** @type {?} */
         const componentClass = (/** @type {?} */ (this.registry.getType(type)));
         /** @type {?} */
@@ -1412,11 +1407,10 @@ class SFComponent {
         this.options = options;
         this.cdr = cdr;
         this.i18n = i18n;
-        // tslint:disable-next-line:no-any
-        this.locale = {};
         this._renders = new Map();
         this._valid = true;
         this._inited = false;
+        this.locale = {};
         this.rootProperty = null;
         // #region fields
         /**
@@ -1515,7 +1509,6 @@ class SFComponent {
      * 表单值
      * @return {?}
      */
-    // tslint:disable-next-line:no-any
     get value() {
         return this._item;
     }
@@ -1532,7 +1525,6 @@ class SFComponent {
      * @param {?} path [路径](https://ng-alain.com/form/qa#path)
      * @return {?}
      */
-    // tslint:disable-next-line:no-any
     getValue(path) {
         return (/** @type {?} */ (this.getProperty(path))).value;
     }
@@ -1544,7 +1536,6 @@ class SFComponent {
      * @param {?} value 新值
      * @return {THIS}
      */
-    // tslint:disable-next-line:no-any
     setValue(path, value) {
         /** @type {?} */
         const item = (/** @type {?} */ (this)).getProperty(path);
@@ -2239,7 +2230,6 @@ class ArrayWidget extends ArrayLayoutWidget {
         return (this.schema.maxItems &&
             ((/** @type {?} */ (this.formProperty.properties))).length >= this.schema.maxItems);
     }
-    // tslint:disable-next-line:no-any
     /**
      * @return {?}
      */
@@ -2288,7 +2278,6 @@ const EMAILSUFFIX = ['qq.com', '163.com', 'gmail.com', '126.com', 'aliyun.com'];
 class AutoCompleteWidget extends ControlWidget {
     constructor() {
         super(...arguments);
-        // tslint:disable-next-line:no-any
         this.i = {};
         this.fixData = [];
         this.typing = '';
@@ -2400,7 +2389,6 @@ class CascaderWidget extends ControlWidget {
         this.showInput = toBool(this.ui.showInput, true);
         this.triggerAction = this.ui.triggerAction || ['click'];
         if (!!this.ui.asyncData) {
-            // tslint:disable-next-line:no-any
             this.loadData = (node, index) => ((/** @type {?} */ (this.ui.asyncData)))(node, index, this);
         }
     }
@@ -2431,7 +2419,6 @@ class CascaderWidget extends ControlWidget {
         if (this.ui.change)
             this.ui.change(value);
     }
-    // tslint:disable-next-line:no-any
     /**
      * @param {?} options
      * @return {?}
@@ -2440,7 +2427,6 @@ class CascaderWidget extends ControlWidget {
         if (this.ui.selectionChange)
             this.ui.selectionChange(options);
     }
-    // tslint:disable-next-line:no-any
     /**
      * @param {?} options
      * @return {?}
@@ -2449,7 +2435,6 @@ class CascaderWidget extends ControlWidget {
         if (this.ui.select)
             this.ui.select(options);
     }
-    // tslint:disable-next-line:no-any
     /**
      * @param {?} options
      * @return {?}
@@ -2695,7 +2680,6 @@ class DateWidget extends ControlWidget {
         if (this.ui.onOpenChange)
             this.ui.onOpenChange(status);
     }
-    // tslint:disable-next-line:no-any
     /**
      * @param {?} value
      * @return {?}
@@ -2785,7 +2769,6 @@ class MentionWidget extends ControlWidget {
             this.detectChanges();
         });
     }
-    // tslint:disable-next-line:no-any
     /**
      * @param {?} options
      * @return {?}
@@ -2794,7 +2777,6 @@ class MentionWidget extends ControlWidget {
         if (this.ui.select)
             this.ui.select(options);
     }
-    // tslint:disable-next-line:no-any
     /**
      * @param {?} option
      * @return {?}
@@ -3229,7 +3211,6 @@ TextWidget.decorators = [
 class TextareaWidget extends ControlWidget {
     constructor() {
         super(...arguments);
-        // tslint:disable-next-line:no-any
         this.autosize = true;
     }
     /**
@@ -3364,7 +3345,6 @@ class TransferWidget extends ControlWidget {
                 formData = [formData];
             }
             list.forEach((item) => {
-                // tslint:disable-next-line:no-any
                 if (~((/** @type {?} */ (formData))).indexOf(item.value)) {
                     item.direction = 'right';
                 }
@@ -3390,7 +3370,6 @@ class TransferWidget extends ControlWidget {
             this._data = this._data.concat(...options.list);
         }
         else {
-            // tslint:disable-next-line:no-any
             this._data = this._data.filter((w) => options.list.indexOf(w) === -1);
         }
         if (this.ui.change)
@@ -3445,7 +3424,6 @@ class TreeSelectWidget extends ControlWidget {
      * @return {?}
      */
     tranData(list) {
-        // tslint:disable-next-line:no-any
         return list.map(node => new NzTreeNode((/** @type {?} */ (deepCopy(node)))));
     }
     /**

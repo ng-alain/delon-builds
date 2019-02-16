@@ -15,7 +15,7 @@ export { DownFileDirective, DownFileModule } from '@delon/abc/down-file';
 export { ImageDirective, ImageConfig, ImageModule } from '@delon/abc/image';
 export { EllipsisComponent, EllipsisModule } from '@delon/abc/ellipsis';
 export { GlobalFooterComponent, GlobalFooterItemComponent, GlobalFooterModule } from '@delon/abc/global-footer';
-export { ExceptionComponent, ExceptionModule } from '@delon/abc/exception';
+export { ExceptionModule, ExceptionComponent } from '@delon/abc/exception';
 export { NoticeIconTabComponent, NoticeIconComponent, NoticeIconModule } from '@delon/abc/notice-icon';
 export { PageHeaderConfig, PageHeaderComponent, PageHeaderModule } from '@delon/abc/page-header';
 export { ResultComponent, ResultModule } from '@delon/abc/result';

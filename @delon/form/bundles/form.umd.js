@@ -565,7 +565,6 @@
             get: /**
              * @return {?}
              */ function () {
-                // tslint:disable-next-line:no-any
                 return this._root || (( /** @type {?} */((( /** @type {?} */(this))))));
             },
             enumerable: true,
@@ -1145,7 +1144,6 @@
          * @return {?}
          */
             function () {
-                // tslint:disable-next-line:no-any
                 /** @type {?} */
                 var value = [];
                 this.forEachChild(function (property) {
@@ -1751,35 +1749,27 @@
         function WidgetRegistry() {
             this.widgets = {};
         }
-        // tslint:disable-next-line:no-any
-        // tslint:disable-next-line:no-any
         /**
          * @param {?} widget
          * @return {?}
          */
-        WidgetRegistry.prototype.setDefault =
-            // tslint:disable-next-line:no-any
-            /**
-             * @param {?} widget
-             * @return {?}
-             */
+        WidgetRegistry.prototype.setDefault = /**
+         * @param {?} widget
+         * @return {?}
+         */
             function (widget) {
                 this.defaultWidget = widget;
             };
-        // tslint:disable-next-line:no-any
-        // tslint:disable-next-line:no-any
         /**
          * @param {?} type
          * @param {?} widget
          * @return {?}
          */
-        WidgetRegistry.prototype.register =
-            // tslint:disable-next-line:no-any
-            /**
-             * @param {?} type
-             * @param {?} widget
-             * @return {?}
-             */
+        WidgetRegistry.prototype.register = /**
+         * @param {?} type
+         * @param {?} widget
+         * @return {?}
+         */
             function (type, widget) {
                 this.widgets[type] = widget;
             };
@@ -1829,7 +1819,6 @@
                 if (!this.registry.has(type)) {
                     console.warn("No widget for type \"" + type + "\"");
                 }
-                // tslint:disable-next-line:no-any
                 /** @type {?} */
                 var componentClass = ( /** @type {?} */(this.registry.getType(type)));
                 /** @type {?} */
@@ -1869,11 +1858,10 @@
             this.options = options;
             this.cdr = cdr;
             this.i18n = i18n;
-            // tslint:disable-next-line:no-any
-            this.locale = {};
             this._renders = new Map();
             this._valid = true;
             this._inited = false;
+            this.locale = {};
             this.rootProperty = null;
             // #region fields
             /**
@@ -1980,13 +1968,10 @@
         });
         Object.defineProperty(SFComponent.prototype, "value", {
             /** 表单值 */
-            // tslint:disable-next-line:no-any
             get: /**
              * 表单值
              * @return {?}
-             */ 
-            // tslint:disable-next-line:no-any
-            function () {
+             */ function () {
                 return this._item;
             },
             enumerable: true,
@@ -2013,19 +1998,16 @@
          * 根据路径获取表单元素当前值
          * @param path [路径](https://ng-alain.com/form/qa#path)
          */
-        // tslint:disable-next-line:no-any
         /**
          * 根据路径获取表单元素当前值
          * @param {?} path [路径](https://ng-alain.com/form/qa#path)
          * @return {?}
          */
-        // tslint:disable-next-line:no-any
         SFComponent.prototype.getValue = /**
          * 根据路径获取表单元素当前值
          * @param {?} path [路径](https://ng-alain.com/form/qa#path)
          * @return {?}
          */
-            // tslint:disable-next-line:no-any
             function (path) {
                 return ( /** @type {?} */(this.getProperty(path))).value;
             };
@@ -2034,7 +2016,6 @@
          * @param path [路径](https://ng-alain.com/form/qa#path)
          * @param value 新值
          */
-        // tslint:disable-next-line:no-any
         /**
          * 根据路径设置某个表单元素属性值
          * @template THIS
@@ -2043,7 +2024,6 @@
          * @param {?} value 新值
          * @return {THIS}
          */
-        // tslint:disable-next-line:no-any
         SFComponent.prototype.setValue = /**
          * 根据路径设置某个表单元素属性值
          * @template THIS
@@ -2052,7 +2032,6 @@
          * @param {?} value 新值
          * @return {THIS}
          */
-            // tslint:disable-next-line:no-any
             function (path, value) {
                 /** @type {?} */
                 var item = ( /** @type {?} */(this)).getProperty(path);
@@ -2903,13 +2882,9 @@
             configurable: true
         });
         Object.defineProperty(ArrayWidget.prototype, "l", {
-            // tslint:disable-next-line:no-any
-            get: 
-            // tslint:disable-next-line:no-any
-            /**
+            get: /**
              * @return {?}
-             */
-            function () {
+             */ function () {
                 return this.formProperty.root.widget.sfComp.locale;
             },
             enumerable: true,
@@ -2969,7 +2944,6 @@
         __extends(AutoCompleteWidget, _super);
         function AutoCompleteWidget() {
             var _this = _super !== null && _super.apply(this, arguments) || this;
-            // tslint:disable-next-line:no-any
             _this.i = {};
             _this.fixData = [];
             _this.typing = '';
@@ -3117,7 +3091,6 @@
                 this.showInput = toBool(this.ui.showInput, true);
                 this.triggerAction = this.ui.triggerAction || ['click'];
                 if (!!this.ui.asyncData) {
-                    // tslint:disable-next-line:no-any
                     this.loadData = function (node, index) { return (( /** @type {?} */(_this.ui.asyncData)))(node, index, _this); };
                 }
             };
@@ -3161,50 +3134,38 @@
                 if (this.ui.change)
                     this.ui.change(value);
             };
-        // tslint:disable-next-line:no-any
-        // tslint:disable-next-line:no-any
         /**
          * @param {?} options
          * @return {?}
          */
-        CascaderWidget.prototype._selectionChange =
-            // tslint:disable-next-line:no-any
-            /**
-             * @param {?} options
-             * @return {?}
-             */
+        CascaderWidget.prototype._selectionChange = /**
+         * @param {?} options
+         * @return {?}
+         */
             function (options) {
                 if (this.ui.selectionChange)
                     this.ui.selectionChange(options);
             };
-        // tslint:disable-next-line:no-any
-        // tslint:disable-next-line:no-any
         /**
          * @param {?} options
          * @return {?}
          */
-        CascaderWidget.prototype._select =
-            // tslint:disable-next-line:no-any
-            /**
-             * @param {?} options
-             * @return {?}
-             */
+        CascaderWidget.prototype._select = /**
+         * @param {?} options
+         * @return {?}
+         */
             function (options) {
                 if (this.ui.select)
                     this.ui.select(options);
             };
-        // tslint:disable-next-line:no-any
-        // tslint:disable-next-line:no-any
         /**
          * @param {?} options
          * @return {?}
          */
-        CascaderWidget.prototype._clear =
-            // tslint:disable-next-line:no-any
-            /**
-             * @param {?} options
-             * @return {?}
-             */
+        CascaderWidget.prototype._clear = /**
+         * @param {?} options
+         * @return {?}
+         */
             function (options) {
                 if (this.ui.clear)
                     this.ui.clear(options);
@@ -3497,18 +3458,14 @@
                 if (this.ui.onOpenChange)
                     this.ui.onOpenChange(status);
             };
-        // tslint:disable-next-line:no-any
-        // tslint:disable-next-line:no-any
         /**
          * @param {?} value
          * @return {?}
          */
-        DateWidget.prototype._ok =
-            // tslint:disable-next-line:no-any
-            /**
-             * @param {?} value
-             * @return {?}
-             */
+        DateWidget.prototype._ok = /**
+         * @param {?} value
+         * @return {?}
+         */
             function (value) {
                 if (this.ui.onOk)
                     this.ui.onOk(value);
@@ -3617,34 +3574,26 @@
                     _this.detectChanges();
                 });
             };
-        // tslint:disable-next-line:no-any
-        // tslint:disable-next-line:no-any
         /**
          * @param {?} options
          * @return {?}
          */
-        MentionWidget.prototype._select =
-            // tslint:disable-next-line:no-any
-            /**
-             * @param {?} options
-             * @return {?}
-             */
+        MentionWidget.prototype._select = /**
+         * @param {?} options
+         * @return {?}
+         */
             function (options) {
                 if (this.ui.select)
                     this.ui.select(options);
             };
-        // tslint:disable-next-line:no-any
-        // tslint:disable-next-line:no-any
         /**
          * @param {?} option
          * @return {?}
          */
-        MentionWidget.prototype._search =
-            // tslint:disable-next-line:no-any
-            /**
-             * @param {?} option
-             * @return {?}
-             */
+        MentionWidget.prototype._search = /**
+         * @param {?} option
+         * @return {?}
+         */
             function (option) {
                 var _this = this;
                 if (typeof this.ui.loadData !== 'function')
@@ -4213,7 +4162,6 @@
         __extends(TextareaWidget, _super);
         function TextareaWidget() {
             var _this = _super !== null && _super.apply(this, arguments) || this;
-            // tslint:disable-next-line:no-any
             _this.autosize = true;
             return _this;
         }
@@ -4381,7 +4329,6 @@
                         formData = [formData];
                     }
                     list.forEach(function (item) {
-                        // tslint:disable-next-line:no-any
                         if (~(( /** @type {?} */(formData))).indexOf(item.value)) {
                             item.direction = 'right';
                         }
@@ -4415,7 +4362,6 @@
                     this._data = (_a = this._data).concat.apply(_a, __spread(options.list));
                 }
                 else {
-                    // tslint:disable-next-line:no-any
                     this._data = this._data.filter(function (w) { return options.list.indexOf(w) === -1; });
                 }
                 if (this.ui.change)
@@ -4489,7 +4435,6 @@
          * @return {?}
          */
             function (list) {
-                // tslint:disable-next-line:no-any
                 return list.map(function (node) { return new ngZorroAntd.NzTreeNode(( /** @type {?} */(util.deepCopy(node)))); });
             };
         /**

@@ -54,7 +54,6 @@ function preloaderFinished() {
         });
         preloader.className += ' preloader-hidden-add preloader-hidden-add-active';
     }
-    // tslint:disable-next-line:no-any
     ((/** @type {?} */ (window))).appBootstrap = function () {
         setTimeout(function () {
             remove();
@@ -108,14 +107,10 @@ var AlainI18NServiceFake = /** @class */ (function () {
     function (lang) {
         this.change$.next(lang);
     };
-    // tslint:disable-next-line:no-any
-    // tslint:disable-next-line:no-any
     /**
      * @return {?}
      */
-    AlainI18NServiceFake.prototype.getLangs = 
-    // tslint:disable-next-line:no-any
-    /**
+    AlainI18NServiceFake.prototype.getLangs = /**
      * @return {?}
      */
     function () {
@@ -267,7 +262,6 @@ var MenuService = /** @class */ (function () {
                 else if (/^https?:\/\//.test(item.icon)) {
                     type = 'img';
                 }
-                // tslint:disable-next-line:no-any
                 item.icon = (/** @type {?} */ ({ type: type, value: value }));
             }
             if (item.icon != null) {
@@ -656,16 +650,12 @@ var SettingsService = /** @class */ (function () {
     function (key) {
         return JSON.parse(localStorage.getItem(key) || 'null') || null;
     };
-    // tslint:disable-next-line:no-any
-    // tslint:disable-next-line:no-any
     /**
      * @param {?} key
      * @param {?} value
      * @return {?}
      */
-    SettingsService.prototype.set = 
-    // tslint:disable-next-line:no-any
-    /**
+    SettingsService.prototype.set = /**
      * @param {?} key
      * @param {?} value
      * @return {?}
@@ -725,16 +715,12 @@ var SettingsService = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
-    // tslint:disable-next-line:no-any
-    // tslint:disable-next-line:no-any
     /**
      * @param {?} name
      * @param {?=} value
      * @return {?}
      */
-    SettingsService.prototype.setLayout = 
-    // tslint:disable-next-line:no-any
-    /**
+    SettingsService.prototype.setLayout = /**
      * @param {?} name
      * @param {?=} value
      * @return {?}
@@ -747,7 +733,6 @@ var SettingsService = /** @class */ (function () {
             this._layout = name;
         }
         this.set(LAYOUT, this._layout);
-        // tslint:disable-next-line:no-any
         this.notify$.next((/** @type {?} */ ({ type: 'layout', name: name, value: value })));
         return true;
     };
@@ -2372,7 +2357,6 @@ var DatePipe = /** @class */ (function () {
         if (value) {
             if (formatString === 'fn') {
                 return distanceInWordsToNow(value, {
-                    // tslint:disable-next-line:no-any
                     locale: ((/** @type {?} */ (window))).__locale__,
                 });
             }
@@ -2396,7 +2380,7 @@ var DatePipe = /** @class */ (function () {
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 /**
- * @see https://ng-alain.com/docs/service-pipe#%E8%B4%A7%E5%B8%81-_currenty
+ * @see https://ng-alain.com/theme/currency
  */
 // tslint:disable-next-line:use-pipe-transform-interface
 var CNCurrencyPipe = /** @class */ (function (_super) {
@@ -2418,12 +2402,9 @@ var CNCurrencyPipe = /** @class */ (function (_super) {
      * @param {?=} digits
      * @return {?}
      */
-    function (
-    // tslint:disable-next-line:no-any
-    value, currencyCode, display, digits) {
+    function (value, currencyCode, display, digits) {
         if (currencyCode === void 0) { currencyCode = '￥'; }
         if (display === void 0) { display = 'code'; }
-        // tslint:disable-next-line:no-any
         return _super.prototype.transform.call(this, value, currencyCode, (/** @type {?} */ (display)), digits);
     };
     CNCurrencyPipe.decorators = [
@@ -2437,21 +2418,17 @@ var CNCurrencyPipe = /** @class */ (function (_super) {
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 /**
- * @see https://ng-alain.com/docs/common#%E5%8F%AF%E8%BF%AD%E4%BB%A3-keys
+ * @see https://ng-alain.com/theme/keys
  */
 var KeysPipe = /** @class */ (function () {
     function KeysPipe() {
     }
-    // tslint:disable-next-line:no-any
-    // tslint:disable-next-line:no-any
     /**
      * @param {?} value
      * @param {?=} keyIsNumber
      * @return {?}
      */
-    KeysPipe.prototype.transform = 
-    // tslint:disable-next-line:no-any
-    /**
+    KeysPipe.prototype.transform = /**
      * @param {?} value
      * @param {?=} keyIsNumber
      * @return {?}
@@ -2664,7 +2641,7 @@ var AlainThemeModule = /** @class */ (function () {
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 /** @type {?} */
-var VERSION = new Version('7.0.0-rc.8');
+var VERSION = new Version('7.0.0-rc.8-f60d040');
 
 /**
  * @fileoverview added by tsickle

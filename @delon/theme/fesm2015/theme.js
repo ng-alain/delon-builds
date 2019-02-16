@@ -53,7 +53,6 @@ function preloaderFinished() {
         });
         preloader.className += ' preloader-hidden-add preloader-hidden-add-active';
     }
-    // tslint:disable-next-line:no-any
     ((/** @type {?} */ (window))).appBootstrap = () => {
         setTimeout(() => {
             remove();
@@ -99,7 +98,6 @@ class AlainI18NServiceFake {
     use(lang) {
         this.change$.next(lang);
     }
-    // tslint:disable-next-line:no-any
     /**
      * @return {?}
      */
@@ -217,7 +215,6 @@ class MenuService {
                 else if (/^https?:\/\//.test(item.icon)) {
                     type = 'img';
                 }
-                // tslint:disable-next-line:no-any
                 item.icon = (/** @type {?} */ ({ type, value }));
             }
             if (item.icon != null) {
@@ -496,7 +493,6 @@ class SettingsService {
     get(key) {
         return JSON.parse(localStorage.getItem(key) || 'null') || null;
     }
-    // tslint:disable-next-line:no-any
     /**
      * @param {?} key
      * @param {?} value
@@ -541,7 +537,6 @@ class SettingsService {
     get notify() {
         return this.notify$.asObservable();
     }
-    // tslint:disable-next-line:no-any
     /**
      * @param {?} name
      * @param {?=} value
@@ -555,7 +550,6 @@ class SettingsService {
             this._layout = name;
         }
         this.set(LAYOUT, this._layout);
-        // tslint:disable-next-line:no-any
         this.notify$.next((/** @type {?} */ ({ type: 'layout', name, value })));
         return true;
     }
@@ -1811,7 +1805,6 @@ class DatePipe {
         if (value) {
             if (formatString === 'fn') {
                 return distanceInWordsToNow(value, {
-                    // tslint:disable-next-line:no-any
                     locale: ((/** @type {?} */ (window))).__locale__,
                 });
             }
@@ -1834,7 +1827,7 @@ DatePipe.decorators = [
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 /**
- * @see https://ng-alain.com/docs/service-pipe#%E8%B4%A7%E5%B8%81-_currenty
+ * @see https://ng-alain.com/theme/currency
  */
 // tslint:disable-next-line:use-pipe-transform-interface
 class CNCurrencyPipe extends CurrencyPipe {
@@ -1845,10 +1838,7 @@ class CNCurrencyPipe extends CurrencyPipe {
      * @param {?=} digits
      * @return {?}
      */
-    transform(
-    // tslint:disable-next-line:no-any
-    value, currencyCode = '￥', display = 'code', digits) {
-        // tslint:disable-next-line:no-any
+    transform(value, currencyCode = '￥', display = 'code', digits) {
         return super.transform(value, currencyCode, (/** @type {?} */ (display)), digits);
     }
 }
@@ -1861,10 +1851,9 @@ CNCurrencyPipe.decorators = [
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 /**
- * @see https://ng-alain.com/docs/common#%E5%8F%AF%E8%BF%AD%E4%BB%A3-keys
+ * @see https://ng-alain.com/theme/keys
  */
 class KeysPipe {
-    // tslint:disable-next-line:no-any
     /**
      * @param {?} value
      * @param {?=} keyIsNumber
@@ -2062,7 +2051,7 @@ AlainThemeModule.ctorParameters = () => [
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 /** @type {?} */
-const VERSION = new Version('7.0.0-rc.8');
+const VERSION = new Version('7.0.0-rc.8-f60d040');
 
 /**
  * @fileoverview added by tsickle

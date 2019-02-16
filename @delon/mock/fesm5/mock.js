@@ -14,7 +14,6 @@ import { Injectable, Injector, NgModule } from '@angular/core';
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 var MockStatusError = /** @class */ (function () {
-    // tslint:disable-next-line:no-any
     function MockStatusError(status, error) {
         this.status = status;
         this.error = error;
@@ -119,16 +118,12 @@ var MockService = /** @class */ (function () {
         // regular ordering
         this.cached.sort(function (a, b) { return (b.martcher || '').toString().length - (a.martcher || '').toString().length; });
     };
-    // tslint:disable-next-line:no-any
-    // tslint:disable-next-line:no-any
     /**
      * @param {?} key
      * @param {?} callback
      * @return {?}
      */
-    MockService.prototype.genRule = 
-    // tslint:disable-next-line:no-any
-    /**
+    MockService.prototype.genRule = /**
      * @param {?} key
      * @param {?} callback
      * @return {?}
@@ -169,15 +164,11 @@ var MockService = /** @class */ (function () {
             method: method.toUpperCase(),
         };
     };
-    // tslint:disable-next-line:no-any
-    // tslint:disable-next-line:no-any
     /**
      * @param {?} error
      * @return {?}
      */
-    MockService.prototype.outputError = 
-    // tslint:disable-next-line:no-any
-    /**
+    MockService.prototype.outputError = /**
      * @param {?} error
      * @return {?}
      */

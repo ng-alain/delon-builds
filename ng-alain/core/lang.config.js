@@ -19,7 +19,6 @@ exports.LANGS_CONFIG = [
     { langs: ['tr'], zorro: 'tr_TR', delon: 'tr_TR', fileName: 'tr-TR.json' },
     { langs: ['pl'], zorro: 'pl_PL', delon: 'pl_PL', fileName: 'pl-PL.json' },
 ];
-// tslint:disable-next-line:no-any
 function getLangConfig(lang) {
     return exports.LANGS_CONFIG.find(w => w.langs.includes(lang));
 }

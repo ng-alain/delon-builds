@@ -3,8 +3,8 @@ import { DelonLocaleService, DelonLocaleModule } from '@delon/theme';
 import { NgModel, FormsModule } from '@angular/forms';
 import format from 'date-fns/format';
 import { map, distinctUntilChanged, filter, takeUntil, debounceTime, flatMap, startWith, tap } from 'rxjs/operators';
-import { __extends, __assign, __decorate, __metadata, __spread, __values, __rest } from 'tslib';
-import { Injectable, Component, Input, Directive, TemplateRef, ComponentFactoryResolver, ViewChild, ViewContainerRef, ChangeDetectorRef, Inject, Injector, HostBinding, EventEmitter, ChangeDetectionStrategy, Output, ElementRef, Renderer2, defineInjectable, NgModule } from '@angular/core';
+import { __extends, __decorate, __metadata, __assign, __spread, __values, __rest } from 'tslib';
+import { Injectable, Component, Input, Directive, TemplateRef, ComponentFactoryResolver, ViewChild, ViewContainerRef, ChangeDetectorRef, Inject, Injector, HostBinding, ElementRef, Renderer2, EventEmitter, ChangeDetectionStrategy, Output, defineInjectable, NgModule } from '@angular/core';
 import { deepCopy, toBoolean, InputBoolean, InputNumber, deepGet, DelonUtilModule } from '@delon/util';
 import { NzTreeNode, NzModalService, NgZorroAntdModule } from 'ng-zorro-antd';
 import { of, combineLatest, BehaviorSubject, Observable, Subject } from 'rxjs';
@@ -454,7 +454,6 @@ FormProperty = /** @class */ (function () {
          * @return {?}
          */
         function () {
-            // tslint:disable-next-line:no-any
             return this._root || ((/** @type {?} */ (((/** @type {?} */ (this))))));
         },
         enumerable: true,
@@ -1032,7 +1031,6 @@ var ArrayProperty = /** @class */ (function (_super) {
      * @return {?}
      */
     function () {
-        // tslint:disable-next-line:no-any
         /** @type {?} */
         var value = [];
         this.forEachChild(function (property) {
@@ -1631,31 +1629,23 @@ var WidgetRegistry = /** @class */ (function () {
     function WidgetRegistry() {
         this.widgets = {};
     }
-    // tslint:disable-next-line:no-any
-    // tslint:disable-next-line:no-any
     /**
      * @param {?} widget
      * @return {?}
      */
-    WidgetRegistry.prototype.setDefault = 
-    // tslint:disable-next-line:no-any
-    /**
+    WidgetRegistry.prototype.setDefault = /**
      * @param {?} widget
      * @return {?}
      */
     function (widget) {
         this.defaultWidget = widget;
     };
-    // tslint:disable-next-line:no-any
-    // tslint:disable-next-line:no-any
     /**
      * @param {?} type
      * @param {?} widget
      * @return {?}
      */
-    WidgetRegistry.prototype.register = 
-    // tslint:disable-next-line:no-any
-    /**
+    WidgetRegistry.prototype.register = /**
      * @param {?} type
      * @param {?} widget
      * @return {?}
@@ -1709,7 +1699,6 @@ var WidgetFactory = /** @class */ (function () {
         if (!this.registry.has(type)) {
             console.warn("No widget for type \"" + type + "\"");
         }
-        // tslint:disable-next-line:no-any
         /** @type {?} */
         var componentClass = (/** @type {?} */ (this.registry.getType(type)));
         /** @type {?} */
@@ -1747,11 +1736,10 @@ var SFComponent = /** @class */ (function () {
         this.options = options;
         this.cdr = cdr;
         this.i18n = i18n;
-        // tslint:disable-next-line:no-any
-        this.locale = {};
         this._renders = new Map();
         this._valid = true;
         this._inited = false;
+        this.locale = {};
         this.rootProperty = null;
         // #region fields
         /**
@@ -1860,12 +1848,10 @@ var SFComponent = /** @class */ (function () {
     });
     Object.defineProperty(SFComponent.prototype, "value", {
         /** 表单值 */
-        // tslint:disable-next-line:no-any
         get: /**
          * 表单值
          * @return {?}
          */
-        // tslint:disable-next-line:no-any
         function () {
             return this._item;
         },
@@ -1893,19 +1879,16 @@ var SFComponent = /** @class */ (function () {
      * 根据路径获取表单元素当前值
      * @param path [路径](https://ng-alain.com/form/qa#path)
      */
-    // tslint:disable-next-line:no-any
     /**
      * 根据路径获取表单元素当前值
      * @param {?} path [路径](https://ng-alain.com/form/qa#path)
      * @return {?}
      */
-    // tslint:disable-next-line:no-any
     SFComponent.prototype.getValue = /**
      * 根据路径获取表单元素当前值
      * @param {?} path [路径](https://ng-alain.com/form/qa#path)
      * @return {?}
      */
-    // tslint:disable-next-line:no-any
     function (path) {
         return (/** @type {?} */ (this.getProperty(path))).value;
     };
@@ -1914,7 +1897,6 @@ var SFComponent = /** @class */ (function () {
      * @param path [路径](https://ng-alain.com/form/qa#path)
      * @param value 新值
      */
-    // tslint:disable-next-line:no-any
     /**
      * 根据路径设置某个表单元素属性值
      * @template THIS
@@ -1923,7 +1905,6 @@ var SFComponent = /** @class */ (function () {
      * @param {?} value 新值
      * @return {THIS}
      */
-    // tslint:disable-next-line:no-any
     SFComponent.prototype.setValue = /**
      * 根据路径设置某个表单元素属性值
      * @template THIS
@@ -1932,7 +1913,6 @@ var SFComponent = /** @class */ (function () {
      * @param {?} value 新值
      * @return {THIS}
      */
-    // tslint:disable-next-line:no-any
     function (path, value) {
         /** @type {?} */
         var item = (/** @type {?} */ (this)).getProperty(path);
@@ -2774,10 +2754,7 @@ var ArrayWidget = /** @class */ (function (_super) {
         configurable: true
     });
     Object.defineProperty(ArrayWidget.prototype, "l", {
-        // tslint:disable-next-line:no-any
-        get: 
-        // tslint:disable-next-line:no-any
-        /**
+        get: /**
          * @return {?}
          */
         function () {
@@ -2840,7 +2817,6 @@ var AutoCompleteWidget = /** @class */ (function (_super) {
     __extends(AutoCompleteWidget, _super);
     function AutoCompleteWidget() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
-        // tslint:disable-next-line:no-any
         _this.i = {};
         _this.fixData = [];
         _this.typing = '';
@@ -2988,7 +2964,6 @@ var CascaderWidget = /** @class */ (function (_super) {
         this.showInput = toBool(this.ui.showInput, true);
         this.triggerAction = this.ui.triggerAction || ['click'];
         if (!!this.ui.asyncData) {
-            // tslint:disable-next-line:no-any
             this.loadData = function (node, index) { return ((/** @type {?} */ (_this.ui.asyncData)))(node, index, _this); };
         }
     };
@@ -3032,15 +3007,11 @@ var CascaderWidget = /** @class */ (function (_super) {
         if (this.ui.change)
             this.ui.change(value);
     };
-    // tslint:disable-next-line:no-any
-    // tslint:disable-next-line:no-any
     /**
      * @param {?} options
      * @return {?}
      */
-    CascaderWidget.prototype._selectionChange = 
-    // tslint:disable-next-line:no-any
-    /**
+    CascaderWidget.prototype._selectionChange = /**
      * @param {?} options
      * @return {?}
      */
@@ -3048,15 +3019,11 @@ var CascaderWidget = /** @class */ (function (_super) {
         if (this.ui.selectionChange)
             this.ui.selectionChange(options);
     };
-    // tslint:disable-next-line:no-any
-    // tslint:disable-next-line:no-any
     /**
      * @param {?} options
      * @return {?}
      */
-    CascaderWidget.prototype._select = 
-    // tslint:disable-next-line:no-any
-    /**
+    CascaderWidget.prototype._select = /**
      * @param {?} options
      * @return {?}
      */
@@ -3064,15 +3031,11 @@ var CascaderWidget = /** @class */ (function (_super) {
         if (this.ui.select)
             this.ui.select(options);
     };
-    // tslint:disable-next-line:no-any
-    // tslint:disable-next-line:no-any
     /**
      * @param {?} options
      * @return {?}
      */
-    CascaderWidget.prototype._clear = 
-    // tslint:disable-next-line:no-any
-    /**
+    CascaderWidget.prototype._clear = /**
      * @param {?} options
      * @return {?}
      */
@@ -3369,15 +3332,11 @@ var DateWidget = /** @class */ (function (_super) {
         if (this.ui.onOpenChange)
             this.ui.onOpenChange(status);
     };
-    // tslint:disable-next-line:no-any
-    // tslint:disable-next-line:no-any
     /**
      * @param {?} value
      * @return {?}
      */
-    DateWidget.prototype._ok = 
-    // tslint:disable-next-line:no-any
-    /**
+    DateWidget.prototype._ok = /**
      * @param {?} value
      * @return {?}
      */
@@ -3490,15 +3449,11 @@ var MentionWidget = /** @class */ (function (_super) {
             _this.detectChanges();
         });
     };
-    // tslint:disable-next-line:no-any
-    // tslint:disable-next-line:no-any
     /**
      * @param {?} options
      * @return {?}
      */
-    MentionWidget.prototype._select = 
-    // tslint:disable-next-line:no-any
-    /**
+    MentionWidget.prototype._select = /**
      * @param {?} options
      * @return {?}
      */
@@ -3506,15 +3461,11 @@ var MentionWidget = /** @class */ (function (_super) {
         if (this.ui.select)
             this.ui.select(options);
     };
-    // tslint:disable-next-line:no-any
-    // tslint:disable-next-line:no-any
     /**
      * @param {?} option
      * @return {?}
      */
-    MentionWidget.prototype._search = 
-    // tslint:disable-next-line:no-any
-    /**
+    MentionWidget.prototype._search = /**
      * @param {?} option
      * @return {?}
      */
@@ -4081,7 +4032,6 @@ var TextareaWidget = /** @class */ (function (_super) {
     __extends(TextareaWidget, _super);
     function TextareaWidget() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
-        // tslint:disable-next-line:no-any
         _this.autosize = true;
         return _this;
     }
@@ -4249,7 +4199,6 @@ var TransferWidget = /** @class */ (function (_super) {
                 formData = [formData];
             }
             list.forEach(function (item) {
-                // tslint:disable-next-line:no-any
                 if (~((/** @type {?} */ (formData))).indexOf(item.value)) {
                     item.direction = 'right';
                 }
@@ -4283,7 +4232,6 @@ var TransferWidget = /** @class */ (function (_super) {
             this._data = (_a = this._data).concat.apply(_a, __spread(options.list));
         }
         else {
-            // tslint:disable-next-line:no-any
             this._data = this._data.filter(function (w) { return options.list.indexOf(w) === -1; });
         }
         if (this.ui.change)
@@ -4357,7 +4305,6 @@ var TreeSelectWidget = /** @class */ (function (_super) {
      * @return {?}
      */
     function (list) {
-        // tslint:disable-next-line:no-any
         return list.map(function (node) { return new NzTreeNode((/** @type {?} */ (deepCopy(node)))); });
     };
     /**

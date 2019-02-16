@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, EventEmitter, OnChanges, OnDestroy, OnInit } from '@angular/core';
-import { DelonLocaleService } from '@delon/theme';
+import { DelonLocaleService, LocaleData } from '@delon/theme';
 import { DelonFormConfig } from './config';
 import { ErrorData } from './errors';
 import { SFButton } from './interface';
@@ -17,12 +17,12 @@ export declare class SFComponent implements OnInit, OnChanges, OnDestroy {
     private cdr;
     private i18n;
     private i18n$;
-    locale: any;
     private _renders;
     private _item;
     private _valid;
     private _defUi;
     private _inited;
+    locale: LocaleData;
     rootProperty: FormProperty;
     _formData: {};
     _btn: SFButton;

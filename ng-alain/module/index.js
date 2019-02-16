@@ -51,7 +51,6 @@ function default_1(schema) {
         const project = workspace.projects[schema.project];
         if (schema.path === undefined) {
             const projectDirName = project.projectType === 'application' ? 'app' : 'lib';
-            // tslint:disable-next-line:no-any
             schema.path = `/${project.sourceRoot}/${projectDirName}/routes`;
         }
         if (schema.module) {

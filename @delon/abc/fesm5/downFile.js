@@ -36,7 +36,6 @@ var DownFileDirective = /** @class */ (function () {
      * @return {?}
      */
     function (data) {
-        // tslint:disable-next-line:no-any
         /** @type {?} */
         var arr = (data || '')
             .split(';')

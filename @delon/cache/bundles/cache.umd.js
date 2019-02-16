@@ -317,9 +317,7 @@
                     : this.store.get(this.cog.prefix + key);
                 if (!value || (value.e && value.e > 0 && value.e < new Date().valueOf())) {
                     if (isPromise) {
-                        return this.http.get(key).pipe(
-                        // tslint:disable-next-line:no-any
-                        operators.map(function (ret) { return _this._deepGet(ret, ( /** @type {?} */(_this.cog.reName)), null); }), operators.tap(function (v) { return _this.set(key, v, { type: options.type, expire: options.expire }); }));
+                        return this.http.get(key).pipe(operators.map(function (ret) { return _this._deepGet(ret, ( /** @type {?} */(_this.cog.reName)), null); }), operators.tap(function (v) { return _this.set(key, v, { type: options.type, expire: options.expire }); }));
                     }
                     return null;
                 }

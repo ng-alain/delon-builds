@@ -712,7 +712,7 @@
         str = String(str).replace(/=+$/, '');
         for (
         // initialize result and counters
-        // tslint:disable:no-any no-conditional-assignment binary-expression-operand-order
+        // tslint:disable:no-conditional-assignment binary-expression-operand-order
         var bc = 0, bs = void 0, buffer = void 0, idx = 0; 
         // get next character
         (buffer = str.charAt(idx++)); 
@@ -753,13 +753,10 @@
             /**
              * 获取载荷信息
              */
-            // tslint:disable-next-line:no-any
             get: /**
              * 获取载荷信息
              * @return {?}
-             */ 
-            // tslint:disable-next-line:no-any
-            function () {
+             */ function () {
                 /** @type {?} */
                 var parts = (this.token || '').split('.');
                 if (parts.length !== 3)
@@ -972,20 +969,16 @@
                 this.model = ( /** @type {?} */(this.injector.get(DA_SERVICE_TOKEN).get()));
                 return CheckSimple(( /** @type {?} */(this.model)));
             };
-        // tslint:disable-next-line:no-any
-        // tslint:disable-next-line:no-any
         /**
          * @param {?} req
          * @param {?} options
          * @return {?}
          */
-        SimpleInterceptor.prototype.setReq =
-            // tslint:disable-next-line:no-any
-            /**
-             * @param {?} req
-             * @param {?} options
-             * @return {?}
-             */
+        SimpleInterceptor.prototype.setReq = /**
+         * @param {?} req
+         * @param {?} options
+         * @return {?}
+         */
             function (req, options) {
                 var _this = this;
                 /** @type {?} */

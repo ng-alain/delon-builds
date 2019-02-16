@@ -9,7 +9,6 @@ import { NgZorroAntdModule } from 'ng-zorro-antd';
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
-// tslint:disable:no-any
 class DateRangePickerConfig {
     constructor() {
         this.nzFormat = 'yyyy-MM-dd';

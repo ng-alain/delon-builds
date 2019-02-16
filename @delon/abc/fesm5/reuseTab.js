@@ -1037,28 +1037,23 @@ var ReuseTabService = /** @class */ (function () {
     /**
      * 刷新，触发一个 refresh 类型事件
      */
-    // tslint:disable-next-line:no-any
     /**
      * 刷新，触发一个 refresh 类型事件
      * @param {?=} data
      * @return {?}
      */
-    // tslint:disable-next-line:no-any
     ReuseTabService.prototype.refresh = /**
      * 刷新，触发一个 refresh 类型事件
      * @param {?=} data
      * @return {?}
      */
-    // tslint:disable-next-line:no-any
     function (data) {
         this._cachedChange.next({ active: 'refresh', data: data });
     };
     // #endregion
     // #region privates
-    // tslint:disable-next-line:no-any
     // #endregion
     // #region privates
-    // tslint:disable-next-line:no-any
     /**
      * @param {?} _handle
      * @return {?}
@@ -1066,7 +1061,6 @@ var ReuseTabService = /** @class */ (function () {
     ReuseTabService.prototype.destroy = 
     // #endregion
     // #region privates
-    // tslint:disable-next-line:no-any
     /**
      * @param {?} _handle
      * @return {?}
@@ -1118,17 +1112,13 @@ var ReuseTabService = /** @class */ (function () {
             return null;
         return menus.pop();
     };
-    // tslint:disable-next-line:no-any
-    // tslint:disable-next-line:no-any
     /**
      * @param {?} method
      * @param {?} url
      * @param {?} comp
      * @return {?}
      */
-    ReuseTabService.prototype.runHook = 
-    // tslint:disable-next-line:no-any
-    /**
+    ReuseTabService.prototype.runHook = /**
      * @param {?} method
      * @param {?} url
      * @param {?} comp
@@ -1171,21 +1161,18 @@ var ReuseTabService = /** @class */ (function () {
     /**
      * 存储
      */
-    // tslint:disable-next-line:no-any
     /**
      * 存储
      * @param {?} _snapshot
      * @param {?} _handle
      * @return {?}
      */
-    // tslint:disable-next-line:no-any
     ReuseTabService.prototype.store = /**
      * 存储
      * @param {?} _snapshot
      * @param {?} _handle
      * @return {?}
      */
-    // tslint:disable-next-line:no-any
     function (_snapshot, _handle) {
         /** @type {?} */
         var url = this.getUrl(_snapshot);

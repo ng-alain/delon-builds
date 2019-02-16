@@ -52,14 +52,12 @@ function resolveSchema(host, project, schema) {
     // path
     if (schema.path === undefined) {
         const projectDirName = project.projectType === 'application' ? 'app' : 'lib';
-        // tslint:disable-next-line:no-any
         schema.path = `/${project.sourceRoot}/${projectDirName}/routes`;
     }
     schema.path += `/${schema.module}`;
     const parsedPath = parse_name_1.parseName(schema.path, schema.name);
     schema.name = parsedPath.name;
     schema.path = parsedPath.path;
-    // tslint:disable-next-line:no-any
     schema.importModulePath = find_module_1.findModuleFromOptions(host, schema);
     // fill target
     if (schema.target) {
@@ -68,7 +66,6 @@ function resolveSchema(host, project, schema) {
     schema.routerModulePath = schema.importModulePath.replace('.module.ts', '-routing.module.ts');
     // html selector
     schema.selector =
-        // tslint:disable-next-line:no-any
         schema.selector || buildSelector(schema, project.prefix);
     validation_1.validateName(schema.name);
     validation_1.validateHtmlSelector(schema.selector);
@@ -86,7 +83,6 @@ function addValueToVariable(host, path, variableName, text) {
     if (!node) {
         throw new schematics_1.SchematicsException(`Could not find any [${variableName}] variable.`);
     }
-    // tslint:disable-next-line:no-any
     const arr = node.parent.initializer;
     const change = new change_1.InsertChange(path, arr.end - 1, `${arr.elements && arr.elements.length > 0 ? ',' : ''}\n  ${text}`);
     const declarationRecorder = host.beginUpdate(path);
@@ -122,7 +118,6 @@ function buildAlain(schema) {
     return (host, context) => {
         const project = project_1.getProject(host, schema.project);
         resolveSchema(host, project, schema);
-        // tslint:disable-next-line:no-any
         schema.componentName = buildComponentName(schema, project.prefix);
         // Don't support inline
         schema.inlineTemplate = false;

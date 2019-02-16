@@ -315,7 +315,6 @@ class STColumnSource {
         if (item.sorter && typeof item.sorter === 'function') {
             return {
                 enabled: true,
-                // tslint:disable-next-line:no-any
                 default: (/** @type {?} */ (item.sort)),
                 compare: item.sorter,
                 key: item.sortKey || item.indexKey,
@@ -352,7 +351,6 @@ class STColumnSource {
                 confirmText: item.filterConfirmText,
                 clearText: item.filterClearText,
                 default: item.filtered,
-                // tslint:disable-next-line:no-any
                 fn: (/** @type {?} */ (item.filter)),
                 icon: item.filterIcon,
                 key: item.filterKey || item.indexKey,
@@ -478,7 +476,6 @@ class STColumnSource {
             if ((item.type === 'link' && typeof item.click !== 'function') ||
                 (item.type === 'badge' && item.badge == null) ||
                 (item.type === 'tag' && item.tag == null)) {
-                // tslint:disable-next-line:no-any
                 ((/** @type {?} */ (item))).type = '';
             }
             // className
@@ -986,14 +983,12 @@ class STExport {
     constructor(xlsxSrv) {
         this.xlsxSrv = xlsxSrv;
     }
-    // tslint:disable-next-line:no-any
     /**
      * @param {?} item
      * @param {?} col
      * @return {?}
      */
     _stGet(item, col) {
-        // tslint:disable-next-line:no-any
         /** @type {?} */
         const ret = { t: 's', v: '' };
         if (col.format) {
@@ -1108,7 +1103,6 @@ class STComponent {
         this.delonI18n = delonI18n;
         this.unsubscribe$ = new Subject();
         this.totalTpl = ``;
-        // tslint:disable-next-line:no-any
         this.locale = {};
         this._data = [];
         this._statistical = {};
@@ -1241,7 +1235,6 @@ class STComponent {
     get multiSort() {
         return this._multiSort;
     }
-    // tslint:disable-next-line:no-any
     /**
      * @param {?} value
      * @return {?}
@@ -1275,7 +1268,6 @@ class STComponent {
                 .replace('{{range[1]}}', range[1])
             : '';
     }
-    // tslint:disable-next-line:no-any
     /**
      * @param {?} type
      * @param {?=} data
@@ -1515,7 +1507,6 @@ class STComponent {
     }
     //#endregion
     //#region sort
-    // tslint:disable-next-line:no-any
     /**
      * @param {?} col
      * @param {?} idx
@@ -1713,7 +1704,6 @@ class STComponent {
             const { modal } = btn;
             /** @type {?} */
             const obj = { [modal.paramsName]: record };
-            // tslint:disable-next-line:no-any
             ((/** @type {?} */ (this.modalHelper[btn.type === 'modal' ? 'create' : 'createStatic'])))(modal.component, Object.assign({}, obj, (modal.params && modal.params(record))), Object.assign({}, modal))
                 .pipe(filter(w => typeof w !== 'undefined'))
                 .subscribe(res => this.btnCallback(record, btn, res));
@@ -1739,7 +1729,6 @@ class STComponent {
         }
         this.btnCallback(record, btn);
     }
-    // tslint:disable-next-line:no-any
     /**
      * @param {?} record
      * @param {?} btn

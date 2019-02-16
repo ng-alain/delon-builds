@@ -15,7 +15,6 @@ class ExceptionComponent {
      */
     constructor(i18n) {
         this.i18n = i18n;
-        // tslint:disable-next-line:no-any
         this.locale = {};
         this.hasCon = false;
         this._img = '';
@@ -134,6 +133,6 @@ ExceptionModule.decorators = [
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 
-export { ExceptionComponent, ExceptionModule };
+export { ExceptionModule, ExceptionComponent };
 
 //# sourceMappingURL=exception.js.map

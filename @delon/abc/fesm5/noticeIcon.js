@@ -16,7 +16,6 @@ import { NgZorroAntdModule } from 'ng-zorro-antd';
  */
 var NoticeIconTabComponent = /** @class */ (function () {
     function NoticeIconTabComponent() {
-        // tslint:disable-next-line:no-any
         this.locale = {};
         this.select = new EventEmitter();
         this.clear = new EventEmitter();
@@ -64,7 +63,6 @@ var NoticeIconComponent = /** @class */ (function () {
     function NoticeIconComponent(i18n, cdr) {
         this.i18n = i18n;
         this.cdr = cdr;
-        // tslint:disable-next-line:no-any
         this.locale = {};
         this.data = [];
         this.loading = false;

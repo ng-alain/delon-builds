@@ -532,7 +532,7 @@ function b64decode(str) {
     str = String(str).replace(/=+$/, '');
     for (
     // initialize result and counters
-    // tslint:disable:no-any no-conditional-assignment binary-expression-operand-order
+    // tslint:disable:no-conditional-assignment binary-expression-operand-order
     let bc = 0, bs, buffer, idx = 0; 
     // get next character
     (buffer = str.charAt(idx++)); 
@@ -571,7 +571,6 @@ class JWTTokenModel {
      * 获取载荷信息
      * @return {?}
      */
-    // tslint:disable-next-line:no-any
     get payload() {
         /** @type {?} */
         const parts = (this.token || '').split('.');
@@ -717,7 +716,6 @@ class SimpleInterceptor extends BaseInterceptor {
         this.model = (/** @type {?} */ (this.injector.get(DA_SERVICE_TOKEN).get()));
         return CheckSimple((/** @type {?} */ (this.model)));
     }
-    // tslint:disable-next-line:no-any
     /**
      * @param {?} req
      * @param {?} options

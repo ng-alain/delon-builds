@@ -15,7 +15,6 @@
      */
     var NoticeIconTabComponent = /** @class */ (function () {
         function NoticeIconTabComponent() {
-            // tslint:disable-next-line:no-any
             this.locale = {};
             this.select = new core.EventEmitter();
             this.clear = new core.EventEmitter();
@@ -121,7 +120,6 @@
         function NoticeIconComponent(i18n, cdr) {
             this.i18n = i18n;
             this.cdr = cdr;
-            // tslint:disable-next-line:no-any
             this.locale = {};
             this.data = [];
             this.loading = false;

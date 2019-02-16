@@ -36,7 +36,6 @@ class DownFileDirective {
      * @return {?}
      */
     getDisposition(data) {
-        // tslint:disable-next-line:no-any
         /** @type {?} */
         const arr = (data || '')
             .split(';')

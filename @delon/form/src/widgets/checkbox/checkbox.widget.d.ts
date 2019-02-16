@@ -8,7 +8,7 @@ export declare class CheckboxWidget extends ControlWidget {
     grid_span: number;
     labelTitle: string;
     inited: boolean;
-    readonly l: any;
+    readonly l: import("../../../../../dist/@delon/theme/public_api").LocaleData;
     reset(value: SFValue): void;
     _setValue(value: SFValue): void;
     notifySet(): void;

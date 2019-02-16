@@ -220,9 +220,7 @@ class CacheService {
             : this.store.get(this.cog.prefix + key);
         if (!value || (value.e && value.e > 0 && value.e < new Date().valueOf())) {
             if (isPromise) {
-                return this.http.get(key).pipe(
-                // tslint:disable-next-line:no-any
-                map((ret) => this._deepGet(ret, (/** @type {?} */ (this.cog.reName)), null)), tap(v => this.set(key, v, { type: options.type, expire: options.expire })));
+                return this.http.get(key).pipe(map((ret) => this._deepGet(ret, (/** @type {?} */ (this.cog.reName)), null)), tap(v => this.set(key, v, { type: options.type, expire: options.expire })));
             }
             return null;
         }
