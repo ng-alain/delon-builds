@@ -2,7 +2,7 @@
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
-import { Directive, HostListener, Input } from '@angular/core';
+import { Directive, Input } from '@angular/core';
 import { XlsxService } from './xlsx.service';
 var XlsxDirective = /** @class */ (function () {
     function XlsxDirective(srv) {
@@ -20,6 +20,9 @@ var XlsxDirective = /** @class */ (function () {
     XlsxDirective.decorators = [
         { type: Directive, args: [{
                     selector: '[xlsx]',
+                    host: {
+                        '(click)': '_click()',
+                    },
                     exportAs: 'xlsxDirective',
                 },] }
     ];
@@ -28,8 +31,7 @@ var XlsxDirective = /** @class */ (function () {
         { type: XlsxService }
     ]; };
     XlsxDirective.propDecorators = {
-        data: [{ type: Input, args: ['xlsx',] }],
-        _click: [{ type: HostListener, args: ['click',] }]
+        data: [{ type: Input, args: ['xlsx',] }]
     };
     return XlsxDirective;
 }());
@@ -40,4 +42,4 @@ if (false) {
     /** @type {?} */
     XlsxDirective.prototype.srv;
 }
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoieGxzeC5kaXJlY3RpdmUuanMiLCJzb3VyY2VSb290Ijoibmc6Ly9AZGVsb24vYWJjL3hsc3gvIiwic291cmNlcyI6WyJ4bHN4LmRpcmVjdGl2ZS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7O0FBQUEsT0FBTyxFQUFFLFNBQVMsRUFBRSxZQUFZLEVBQUUsS0FBSyxFQUFFLE1BQU0sZUFBZSxDQUFDO0FBQy9ELE9BQU8sRUFBRSxXQUFXLEVBQUUsTUFBTSxnQkFBZ0IsQ0FBQztBQUc3QztJQU9FLHVCQUFvQixHQUFnQjtRQUFoQixRQUFHLEdBQUgsR0FBRyxDQUFhO0lBQUcsQ0FBQzs7OztJQUd4Qyw4QkFBTTs7O0lBRE47UUFFRSxJQUFJLENBQUMsR0FBRyxDQUFDLE1BQU0sQ0FBQyxJQUFJLENBQUMsSUFBSSxDQUFDLENBQUM7SUFDN0IsQ0FBQzs7Z0JBWkYsU0FBUyxTQUFDO29CQUNULFFBQVEsRUFBRSxRQUFRO29CQUNsQixRQUFRLEVBQUUsZUFBZTtpQkFDMUI7Ozs7Z0JBTlEsV0FBVzs7O3VCQVFqQixLQUFLLFNBQUMsTUFBTTt5QkFJWixZQUFZLFNBQUMsT0FBTzs7SUFJdkIsb0JBQUM7Q0FBQSxBQWJELElBYUM7U0FUWSxhQUFhOzs7SUFDeEIsNkJBQXVDOztJQUUzQiw0QkFBd0IiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBEaXJlY3RpdmUsIEhvc3RMaXN0ZW5lciwgSW5wdXQgfSBmcm9tICdAYW5ndWxhci9jb3JlJztcbmltcG9ydCB7IFhsc3hTZXJ2aWNlIH0gZnJvbSAnLi94bHN4LnNlcnZpY2UnO1xuaW1wb3J0IHsgWGxzeEV4cG9ydE9wdGlvbnMgfSBmcm9tICcuL3hsc3gudHlwZXMnO1xuXG5ARGlyZWN0aXZlKHtcbiAgc2VsZWN0b3I6ICdbeGxzeF0nLFxuICBleHBvcnRBczogJ3hsc3hEaXJlY3RpdmUnLFxufSlcbmV4cG9ydCBjbGFzcyBYbHN4RGlyZWN0aXZlIHtcbiAgQElucHV0KCd4bHN4JykgZGF0YTogWGxzeEV4cG9ydE9wdGlvbnM7XG5cbiAgY29uc3RydWN0b3IocHJpdmF0ZSBzcnY6IFhsc3hTZXJ2aWNlKSB7fVxuXG4gIEBIb3N0TGlzdGVuZXIoJ2NsaWNrJylcbiAgX2NsaWNrKCkge1xuICAgIHRoaXMuc3J2LmV4cG9ydCh0aGlzLmRhdGEpO1xuICB9XG59XG4iXX0=
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoieGxzeC5kaXJlY3RpdmUuanMiLCJzb3VyY2VSb290Ijoibmc6Ly9AZGVsb24vYWJjL3hsc3gvIiwic291cmNlcyI6WyJ4bHN4LmRpcmVjdGl2ZS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7O0FBQUEsT0FBTyxFQUFFLFNBQVMsRUFBRSxLQUFLLEVBQUUsTUFBTSxlQUFlLENBQUM7QUFDakQsT0FBTyxFQUFFLFdBQVcsRUFBRSxNQUFNLGdCQUFnQixDQUFDO0FBRzdDO0lBVUUsdUJBQW9CLEdBQWdCO1FBQWhCLFFBQUcsR0FBSCxHQUFHLENBQWE7SUFBRyxDQUFDOzs7O0lBRXhDLDhCQUFNOzs7SUFBTjtRQUNFLElBQUksQ0FBQyxHQUFHLENBQUMsTUFBTSxDQUFDLElBQUksQ0FBQyxJQUFJLENBQUMsQ0FBQztJQUM3QixDQUFDOztnQkFkRixTQUFTLFNBQUM7b0JBQ1QsUUFBUSxFQUFFLFFBQVE7b0JBQ2xCLElBQUksRUFBRTt3QkFDSixTQUFTLEVBQUUsVUFBVTtxQkFDdEI7b0JBQ0QsUUFBUSxFQUFFLGVBQWU7aUJBQzFCOzs7O2dCQVRRLFdBQVc7Ozt1QkFXakIsS0FBSyxTQUFDLE1BQU07O0lBT2Ysb0JBQUM7Q0FBQSxBQWZELElBZUM7U0FSWSxhQUFhOzs7SUFDeEIsNkJBQXVDOztJQUUzQiw0QkFBd0IiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBEaXJlY3RpdmUsIElucHV0IH0gZnJvbSAnQGFuZ3VsYXIvY29yZSc7XG5pbXBvcnQgeyBYbHN4U2VydmljZSB9IGZyb20gJy4veGxzeC5zZXJ2aWNlJztcbmltcG9ydCB7IFhsc3hFeHBvcnRPcHRpb25zIH0gZnJvbSAnLi94bHN4LnR5cGVzJztcblxuQERpcmVjdGl2ZSh7XG4gIHNlbGVjdG9yOiAnW3hsc3hdJyxcbiAgaG9zdDoge1xuICAgICcoY2xpY2spJzogJ19jbGljaygpJyxcbiAgfSxcbiAgZXhwb3J0QXM6ICd4bHN4RGlyZWN0aXZlJyxcbn0pXG5leHBvcnQgY2xhc3MgWGxzeERpcmVjdGl2ZSB7XG4gIEBJbnB1dCgneGxzeCcpIGRhdGE6IFhsc3hFeHBvcnRPcHRpb25zO1xuXG4gIGNvbnN0cnVjdG9yKHByaXZhdGUgc3J2OiBYbHN4U2VydmljZSkge31cblxuICBfY2xpY2soKSB7XG4gICAgdGhpcy5zcnYuZXhwb3J0KHRoaXMuZGF0YSk7XG4gIH1cbn1cbiJdfQ==

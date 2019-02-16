@@ -95,7 +95,13 @@
                 });
             };
         DownFileDirective.decorators = [
-            { type: core.Directive, args: [{ selector: '[down-file]', exportAs: 'downFileDirective' },] }
+            { type: core.Directive, args: [{
+                        selector: '[down-file]',
+                        host: {
+                            '(click)': '_click()',
+                        },
+                        exportAs: 'downFileDirective',
+                    },] }
         ];
         /** @nocollapse */
         DownFileDirective.ctorParameters = function () {
@@ -111,8 +117,7 @@
             httpUrl: [{ type: core.Input, args: ['http-url',] }],
             fileName: [{ type: core.Input, args: ['file-name',] }],
             success: [{ type: core.Output }],
-            error: [{ type: core.Output }],
-            _click: [{ type: core.HostListener, args: ['click',] }]
+            error: [{ type: core.Output }]
         };
         return DownFileDirective;
     }());

@@ -240,6 +240,9 @@
         XlsxDirective.decorators = [
             { type: i0.Directive, args: [{
                         selector: '[xlsx]',
+                        host: {
+                            '(click)': '_click()',
+                        },
                         exportAs: 'xlsxDirective',
                     },] }
         ];
@@ -250,8 +253,7 @@
             ];
         };
         XlsxDirective.propDecorators = {
-            data: [{ type: i0.Input, args: ['xlsx',] }],
-            _click: [{ type: i0.HostListener, args: ['click',] }]
+            data: [{ type: i0.Input, args: ['xlsx',] }]
         };
         return XlsxDirective;
     }());

@@ -1,6 +1,6 @@
 import { __spread, __assign, __decorate, __metadata } from 'tslib';
 import { DOCUMENT, CommonModule } from '@angular/common';
-import { Injectable, defineInjectable, NgModule, Component, ChangeDetectionStrategy, ElementRef, ChangeDetectorRef, Inject, Input, HostBinding, HostListener } from '@angular/core';
+import { Injectable, defineInjectable, NgModule, Component, ChangeDetectionStrategy, ElementRef, ChangeDetectorRef, Inject, Input, HostBinding } from '@angular/core';
 import { InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
@@ -150,7 +150,10 @@ var ErrorCollectComponent = /** @class */ (function () {
         { type: Component, args: [{
                     selector: 'error-collect, [error-collect]',
                     template: "\n    <i nz-icon type=\"exclamation-circle\"></i>\n    <span class=\"pl-sm\">{{ count }}</span>\n  ",
-                    host: { '[class.error-collect]': 'true' },
+                    host: {
+                        '[class.error-collect]': 'true',
+                        '(click)': '_click()',
+                    },
                     changeDetection: ChangeDetectionStrategy.OnPush,
                     exportAs: 'errorCollect'
                 }] }
@@ -165,8 +168,7 @@ var ErrorCollectComponent = /** @class */ (function () {
     ErrorCollectComponent.propDecorators = {
         freq: [{ type: Input }],
         offsetTop: [{ type: Input }],
-        _hiden: [{ type: HostBinding, args: ['class.d-none',] }],
-        _click: [{ type: HostListener, args: ['click',] }]
+        _hiden: [{ type: HostBinding, args: ['class.d-none',] }]
     };
     __decorate([
         InputNumber(),

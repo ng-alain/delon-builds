@@ -143,7 +143,10 @@
             { type: core.Component, args: [{
                         selector: 'quick-menu',
                         template: "<div class=\"quick-menu__inner\">\n  <div class=\"quick-menu__ctrl\"\n       [ngStyle]=\"ctrlStyle\">\n    <div class=\"quick-menu__ctrl-icon\">\n      <ng-container *stringTemplateOutlet=\"icon\"><i nz-icon\n           [type]=\"icon\"></i></ng-container>\n    </div>\n  </div>\n  <ng-content></ng-content>\n</div>\n",
-                        host: { '[class.quick-menu]': 'true' },
+                        host: {
+                            '[class.quick-menu]': 'true',
+                            '(click)': '_click()',
+                        },
                         changeDetection: core.ChangeDetectionStrategy.OnPush
                     }] }
         ];
@@ -160,8 +163,7 @@
             top: [{ type: core.Input }],
             width: [{ type: core.Input }],
             bgColor: [{ type: core.Input }],
-            borderColor: [{ type: core.Input }],
-            _click: [{ type: core.HostListener, args: ['click',] }]
+            borderColor: [{ type: core.Input }]
         };
         __decorate([
             util.InputNumber(),

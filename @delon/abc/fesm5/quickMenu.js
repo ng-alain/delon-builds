@@ -1,6 +1,6 @@
 import { __spread, __decorate, __metadata } from 'tslib';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, HostListener, Input, Renderer2, NgModule } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Input, Renderer2, NgModule } from '@angular/core';
 import { InputNumber, DelonUtilModule } from '@delon/util';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 
@@ -80,7 +80,10 @@ var QuickMenuComponent = /** @class */ (function () {
         { type: Component, args: [{
                     selector: 'quick-menu',
                     template: "<div class=\"quick-menu__inner\">\n  <div class=\"quick-menu__ctrl\"\n       [ngStyle]=\"ctrlStyle\">\n    <div class=\"quick-menu__ctrl-icon\">\n      <ng-container *stringTemplateOutlet=\"icon\"><i nz-icon\n           [type]=\"icon\"></i></ng-container>\n    </div>\n  </div>\n  <ng-content></ng-content>\n</div>\n",
-                    host: { '[class.quick-menu]': 'true' },
+                    host: {
+                        '[class.quick-menu]': 'true',
+                        '(click)': '_click()',
+                    },
                     changeDetection: ChangeDetectionStrategy.OnPush
                 }] }
     ];
@@ -95,8 +98,7 @@ var QuickMenuComponent = /** @class */ (function () {
         top: [{ type: Input }],
         width: [{ type: Input }],
         bgColor: [{ type: Input }],
-        borderColor: [{ type: Input }],
-        _click: [{ type: HostListener, args: ['click',] }]
+        borderColor: [{ type: Input }]
     };
     __decorate([
         InputNumber(),

@@ -3,7 +3,7 @@ import { BehaviorSubject, fromEvent } from 'rxjs';
 import { share, debounceTime, filter } from 'rxjs/operators';
 import { __spread, __decorate, __metadata } from 'tslib';
 import { DOCUMENT, CommonModule } from '@angular/common';
-import { Injectable, Directive, HostListener, defineInjectable, NgModule, EventEmitter, Component, ChangeDetectionStrategy, ElementRef, ChangeDetectorRef, Inject, HostBinding, Input, Output } from '@angular/core';
+import { Injectable, Directive, defineInjectable, NgModule, EventEmitter, Component, ChangeDetectionStrategy, ElementRef, ChangeDetectorRef, Inject, HostBinding, Input, Output } from '@angular/core';
 import { InputBoolean, InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
@@ -259,15 +259,15 @@ var FullContentToggleDirective = /** @class */ (function () {
     FullContentToggleDirective.decorators = [
         { type: Directive, args: [{
                     selector: '[full-toggle]',
+                    host: {
+                        '(click)': '_click()',
+                    },
                 },] }
     ];
     /** @nocollapse */
     FullContentToggleDirective.ctorParameters = function () { return [
         { type: FullContentComponent }
     ]; };
-    FullContentToggleDirective.propDecorators = {
-        _click: [{ type: HostListener, args: ['click',] }]
-    };
     return FullContentToggleDirective;
 }());
 

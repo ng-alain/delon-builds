@@ -5,7 +5,7 @@ import { debounceTime, filter, takeUntil } from 'rxjs/operators';
 import { Subject, Subscription, BehaviorSubject } from 'rxjs';
 import { ConnectionPositionPair, Overlay, OverlayModule } from '@angular/cdk/overlay';
 import { DOCUMENT, CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, EventEmitter, HostListener, Input, Output, ElementRef, Injectable, Directive, Injector, NgModule, ChangeDetectorRef, Renderer2, Optional, Inject, defineInjectable, inject, INJECTOR } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ElementRef, Injectable, Directive, Injector, NgModule, ChangeDetectorRef, Renderer2, Optional, Inject, defineInjectable, inject, INJECTOR } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, NavigationStart, Router, ROUTER_CONFIGURATION, RouterModule } from '@angular/router';
 import { DelonLocaleService, MenuService, ScrollService, DelonLocaleModule, ALAIN_I18N_TOKEN } from '@delon/theme';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
@@ -100,6 +100,10 @@ ReuseTabContextMenuComponent.decorators = [
     { type: Component, args: [{
                 selector: 'reuse-tab-context-menu',
                 template: "<ul nz-menu>\n  <li nz-menu-item\n      (click)=\"click($event, 'close')\"\n      data-type=\"close\"\n      [nzDisabled]=\"!item.closable\"\n      [innerHTML]=\"i18n.close\"></li>\n  <li nz-menu-item\n      (click)=\"click($event, 'closeOther')\"\n      data-type=\"closeOther\"\n      [innerHTML]=\"i18n.closeOther\"></li>\n  <li nz-menu-item\n      (click)=\"click($event, 'closeRight')\"\n      data-type=\"closeRight\"\n      [nzDisabled]=\"item.last\"\n      [innerHTML]=\"i18n.closeRight\"></li>\n  <li nz-menu-item\n      (click)=\"click($event, 'clear')\"\n      data-type=\"clear\"\n      [innerHTML]=\"i18n.clear\"></li>\n  <ng-container *ngIf=\"customContextMenu!.length > 0\">\n    <li nz-menu-divider></li>\n    <li *ngFor=\"let i of customContextMenu\"\n        nz-menu-item\n        [attr.data-type]=\"i.id\"\n        [nzDisabled]=\"isDisabled(i)\"\n        (click)=\"click($event, 'custom', i)\"\n        [innerHTML]=\"i.title\"></li>\n  </ng-container>\n</ul>\n",
+                host: {
+                    '(document:click)': 'closeMenu($event)',
+                    '(document:contextmenu)': 'closeMenu($event)',
+                },
                 changeDetection: ChangeDetectionStrategy.OnPush
             }] }
 ];
@@ -112,8 +116,7 @@ ReuseTabContextMenuComponent.propDecorators = {
     item: [{ type: Input }],
     event: [{ type: Input }],
     customContextMenu: [{ type: Input }],
-    close: [{ type: Output }],
-    closeMenu: [{ type: HostListener, args: ['document:click', ['$event'],] }, { type: HostListener, args: ['document:contextmenu', ['$event'],] }]
+    close: [{ type: Output }]
 };
 
 /**
@@ -256,7 +259,7 @@ class ReuseTabContextDirective {
      * @param {?} event
      * @return {?}
      */
-    onContextMenu(event) {
+    _onContextMenu(event) {
         this.srv.show.next({
             event,
             item: this.item,
@@ -269,6 +272,9 @@ class ReuseTabContextDirective {
 ReuseTabContextDirective.decorators = [
     { type: Directive, args: [{
                 selector: '[reuse-tab-context-menu]',
+                host: {
+                    '(contextmenu)': '_onContextMenu($event)',
+                },
             },] }
 ];
 /** @nocollapse */
@@ -277,8 +283,7 @@ ReuseTabContextDirective.ctorParameters = () => [
 ];
 ReuseTabContextDirective.propDecorators = {
     item: [{ type: Input, args: ['reuse-tab-context-menu',] }],
-    customContextMenu: [{ type: Input }],
-    onContextMenu: [{ type: HostListener, args: ['contextmenu', ['$event'],] }]
+    customContextMenu: [{ type: Input }]
 };
 
 /**

@@ -5,5 +5,5 @@ export declare class ReuseTabContextDirective {
     item: ReuseItem;
     customContextMenu: ReuseCustomContextMenu[];
     constructor(srv: ReuseTabContextService);
-    onContextMenu(event: MouseEvent): void;
+    _onContextMenu(event: MouseEvent): void;
 }

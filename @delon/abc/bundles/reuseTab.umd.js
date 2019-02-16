@@ -191,6 +191,10 @@
             { type: i0.Component, args: [{
                         selector: 'reuse-tab-context-menu',
                         template: "<ul nz-menu>\n  <li nz-menu-item\n      (click)=\"click($event, 'close')\"\n      data-type=\"close\"\n      [nzDisabled]=\"!item.closable\"\n      [innerHTML]=\"i18n.close\"></li>\n  <li nz-menu-item\n      (click)=\"click($event, 'closeOther')\"\n      data-type=\"closeOther\"\n      [innerHTML]=\"i18n.closeOther\"></li>\n  <li nz-menu-item\n      (click)=\"click($event, 'closeRight')\"\n      data-type=\"closeRight\"\n      [nzDisabled]=\"item.last\"\n      [innerHTML]=\"i18n.closeRight\"></li>\n  <li nz-menu-item\n      (click)=\"click($event, 'clear')\"\n      data-type=\"clear\"\n      [innerHTML]=\"i18n.clear\"></li>\n  <ng-container *ngIf=\"customContextMenu!.length > 0\">\n    <li nz-menu-divider></li>\n    <li *ngFor=\"let i of customContextMenu\"\n        nz-menu-item\n        [attr.data-type]=\"i.id\"\n        [nzDisabled]=\"isDisabled(i)\"\n        (click)=\"click($event, 'custom', i)\"\n        [innerHTML]=\"i.title\"></li>\n  </ng-container>\n</ul>\n",
+                        host: {
+                            '(document:click)': 'closeMenu($event)',
+                            '(document:contextmenu)': 'closeMenu($event)',
+                        },
                         changeDetection: i0.ChangeDetectionStrategy.OnPush
                     }] }
         ];
@@ -205,8 +209,7 @@
             item: [{ type: i0.Input }],
             event: [{ type: i0.Input }],
             customContextMenu: [{ type: i0.Input }],
-            close: [{ type: i0.Output }],
-            closeMenu: [{ type: i0.HostListener, args: ['document:click', ['$event'],] }, { type: i0.HostListener, args: ['document:contextmenu', ['$event'],] }]
+            close: [{ type: i0.Output }]
         };
         return ReuseTabContextMenuComponent;
     }());
@@ -365,7 +368,7 @@
          * @param {?} event
          * @return {?}
          */
-        ReuseTabContextDirective.prototype.onContextMenu = /**
+        ReuseTabContextDirective.prototype._onContextMenu = /**
          * @param {?} event
          * @return {?}
          */
@@ -381,6 +384,9 @@
         ReuseTabContextDirective.decorators = [
             { type: i0.Directive, args: [{
                         selector: '[reuse-tab-context-menu]',
+                        host: {
+                            '(contextmenu)': '_onContextMenu($event)',
+                        },
                     },] }
         ];
         /** @nocollapse */
@@ -391,8 +397,7 @@
         };
         ReuseTabContextDirective.propDecorators = {
             item: [{ type: i0.Input, args: ['reuse-tab-context-menu',] }],
-            customContextMenu: [{ type: i0.Input }],
-            onContextMenu: [{ type: i0.HostListener, args: ['contextmenu', ['$event'],] }]
+            customContextMenu: [{ type: i0.Input }]
         };
         return ReuseTabContextDirective;
     }());

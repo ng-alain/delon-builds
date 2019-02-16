@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { saveAs } from 'file-saver';
 import { CommonModule } from '@angular/common';
-import { Injectable, Directive, HostListener, Input, defineInjectable, NgModule, inject } from '@angular/core';
+import { Injectable, Directive, Input, defineInjectable, NgModule, inject } from '@angular/core';
 import { LazyService, DelonUtilModule } from '@delon/util';
 
 /**
@@ -159,6 +159,9 @@ class XlsxDirective {
 XlsxDirective.decorators = [
     { type: Directive, args: [{
                 selector: '[xlsx]',
+                host: {
+                    '(click)': '_click()',
+                },
                 exportAs: 'xlsxDirective',
             },] }
 ];
@@ -167,8 +170,7 @@ XlsxDirective.ctorParameters = () => [
     { type: XlsxService }
 ];
 XlsxDirective.propDecorators = {
-    data: [{ type: Input, args: ['xlsx',] }],
-    _click: [{ type: HostListener, args: ['click',] }]
+    data: [{ type: Input, args: ['xlsx',] }]
 };
 
 /**

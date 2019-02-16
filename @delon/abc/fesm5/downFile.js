@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { saveAs } from 'file-saver';
 import { __spread } from 'tslib';
 import { CommonModule } from '@angular/common';
-import { Directive, ElementRef, EventEmitter, HostListener, Input, Output, NgModule } from '@angular/core';
+import { Directive, ElementRef, EventEmitter, Input, Output, NgModule } from '@angular/core';
 import { _HttpClient, AlainThemeModule } from '@delon/theme';
 
 /**
@@ -91,7 +91,13 @@ var DownFileDirective = /** @class */ (function () {
         });
     };
     DownFileDirective.decorators = [
-        { type: Directive, args: [{ selector: '[down-file]', exportAs: 'downFileDirective' },] }
+        { type: Directive, args: [{
+                    selector: '[down-file]',
+                    host: {
+                        '(click)': '_click()',
+                    },
+                    exportAs: 'downFileDirective',
+                },] }
     ];
     /** @nocollapse */
     DownFileDirective.ctorParameters = function () { return [
@@ -105,8 +111,7 @@ var DownFileDirective = /** @class */ (function () {
         httpUrl: [{ type: Input, args: ['http-url',] }],
         fileName: [{ type: Input, args: ['file-name',] }],
         success: [{ type: Output }],
-        error: [{ type: Output }],
-        _click: [{ type: HostListener, args: ['click',] }]
+        error: [{ type: Output }]
     };
     return DownFileDirective;
 }());

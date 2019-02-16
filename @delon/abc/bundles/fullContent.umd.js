@@ -321,6 +321,9 @@
         FullContentToggleDirective.decorators = [
             { type: i0.Directive, args: [{
                         selector: '[full-toggle]',
+                        host: {
+                            '(click)': '_click()',
+                        },
                     },] }
         ];
         /** @nocollapse */
@@ -328,9 +331,6 @@
             return [
                 { type: FullContentComponent }
             ];
-        };
-        FullContentToggleDirective.propDecorators = {
-            _click: [{ type: i0.HostListener, args: ['click',] }]
         };
         return FullContentToggleDirective;
     }());
