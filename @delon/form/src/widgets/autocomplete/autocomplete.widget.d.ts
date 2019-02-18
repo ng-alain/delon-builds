@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { SFValue } from '../../interface';
 import { SFSchemaEnum } from '../../schema';
 import { ControlWidget } from '../../widget';
+export declare const EMAILSUFFIX: string[];
 export declare class AutoCompleteWidget extends ControlWidget implements AfterViewInit {
     i: any;
     fixData: SFSchemaEnum[];

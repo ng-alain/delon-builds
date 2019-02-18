@@ -7,7 +7,7 @@ import { SFUISchema, SFUISchemaItem, SFUISchemaItemRun } from '../schema/ui';
 import { SchemaValidatorFactory } from '../validator.factory';
 import { Widget } from '../widget';
 export declare abstract class FormProperty {
-    private _options;
+    private options;
     schemaValidator: (value: SFValue) => ErrorData[];
     schema: SFSchema;
     ui: SFUISchema | SFUISchemaItemRun;
@@ -25,7 +25,7 @@ export declare abstract class FormProperty {
     private _root;
     private _parent;
     private _path;
-    constructor(schemaValidatorFactory: SchemaValidatorFactory, schema: SFSchema, ui: SFUISchema | SFUISchemaItem, formData: {}, parent: PropertyGroup, path: string, _options: DelonFormConfig);
+    constructor(schemaValidatorFactory: SchemaValidatorFactory, schema: SFSchema, ui: SFUISchema | SFUISchemaItem, formData: {}, parent: PropertyGroup, path: string, options: DelonFormConfig);
     readonly valueChanges: BehaviorSubject<any>;
     readonly errorsChanges: BehaviorSubject<ErrorData[]>;
     readonly type: string;
@@ -36,7 +36,6 @@ export declare abstract class FormProperty {
     readonly errors: ErrorData[];
     readonly visible: boolean;
     readonly valid: boolean;
-    readonly options: DelonFormConfig;
     /**
      * 设置值
      *
