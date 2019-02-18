@@ -12,8 +12,7 @@ export declare class SVComponent implements AfterViewInit, OnChanges {
     col: number;
     default: boolean;
     type: 'primary' | 'success' | 'danger' | 'warning';
-    readonly paddingLeft: number;
-    readonly paddingRight: number;
+    readonly paddingValue: number;
     constructor(el: ElementRef, parent: SVContainerComponent, rep: ResponsiveService, ren: Renderer2);
     private setClass;
     ngAfterViewInit(): void;

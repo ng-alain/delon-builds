@@ -3,7 +3,7 @@ import { FormControlName, NgModel } from '@angular/forms';
 import { ResponsiveService } from '@delon/theme';
 import { __assign, __decorate, __metadata, __spread } from 'tslib';
 import { CommonModule } from '@angular/common';
-import { Injectable, ChangeDetectionStrategy, Component, ElementRef, Host, Optional, Renderer2, Input, defineInjectable, NgModule, ChangeDetectorRef, ContentChild, HostBinding } from '@angular/core';
+import { Injectable, ChangeDetectionStrategy, Component, ElementRef, Host, Optional, Renderer2, Input, defineInjectable, NgModule, ChangeDetectorRef, ContentChild } from '@angular/core';
 import { toNumber, InputBoolean, InputNumber, deepGet, DelonUtilModule } from '@delon/util';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 
@@ -277,21 +277,11 @@ var SEComponent = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(SEComponent.prototype, "paddingLeft", {
+    Object.defineProperty(SEComponent.prototype, "paddingValue", {
         // #endregion
         get: 
         // #endregion
         /**
-         * @return {?}
-         */
-        function () {
-            return this.parent.gutter / 2;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(SEComponent.prototype, "paddingRight", {
-        get: /**
          * @return {?}
          */
         function () {
@@ -426,6 +416,11 @@ var SEComponent = /** @class */ (function () {
         { type: Component, args: [{
                     selector: 'se',
                     template: "<div class=\"ant-form-item-label se__label\"\n     [class.se__nolabel]=\"!label\"\n     [style.width.px]=\"labelWidth\">\n  <label *ngIf=\"label\"\n         [attr.for]=\"_id\"\n         [ngClass]=\"{'ant-form-item-required': required}\">\n    <ng-container *stringTemplateOutlet=\"label\">{{ label }}</ng-container>\n    <span class=\"se__label-optional\">\n      {{ optional }}\n      <nz-tooltip *ngIf=\"optionalHelp\"\n                  [nzTitle]=\"optionalHelp\">\n        <i nz-tooltip\n           nz-icon\n           type=\"question-circle\"></i>\n      </nz-tooltip>\n    </span>\n  </label>\n</div>\n<div class=\"ant-form-item-control-wrapper se__control\">\n  <div class=\"ant-form-item-control {{controlClass}}\"\n       [class.has-error]=\"invalid\">\n    <ng-content></ng-content>\n    <se-error *ngIf=\"showErr\">{{error}}</se-error>\n    <div *ngIf=\"extra\"\n         class=\"ant-form-extra\">{{extra}}</div>\n  </div>\n</div>\n",
+                    host: {
+                        '[style.padding-left.px]': 'paddingValue',
+                        '[style.padding-right.px]': 'paddingValue',
+                        '[class.ant-form-item-with-help]': 'showErr',
+                    },
                     changeDetection: ChangeDetectionStrategy.OnPush
                 }] }
     ];
@@ -449,10 +444,7 @@ var SEComponent = /** @class */ (function () {
         required: [{ type: Input }],
         controlClass: [{ type: Input }],
         line: [{ type: Input }],
-        id: [{ type: Input }],
-        paddingLeft: [{ type: HostBinding, args: ['style.padding-left.px',] }],
-        paddingRight: [{ type: HostBinding, args: ['style.padding-right.px',] }],
-        showErr: [{ type: HostBinding, args: ['class.ant-form-item-with-help',] }]
+        id: [{ type: Input }]
     };
     __decorate([
         InputNumber(null),

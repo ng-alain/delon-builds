@@ -27,8 +27,7 @@ export declare class SEComponent implements OnChanges, AfterViewInit, OnDestroy 
     id: string;
     _id: string;
     _autoId: boolean;
-    readonly paddingLeft: number;
-    readonly paddingRight: number;
+    readonly paddingValue: number;
     readonly showErr: boolean;
     private readonly ngControl;
     constructor(el: ElementRef, parent: SEContainerComponent, rep: ResponsiveService, ren: Renderer2, cdr: ChangeDetectorRef);

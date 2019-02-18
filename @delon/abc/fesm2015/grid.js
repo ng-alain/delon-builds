@@ -1,7 +1,7 @@
 import { __decorate, __metadata } from 'tslib';
 import { ResponsiveService } from '@delon/theme';
 import { CommonModule } from '@angular/common';
-import { Injectable, Component, ChangeDetectionStrategy, Input, HostBinding, defineInjectable, NgModule, ElementRef, Renderer2, Optional, Host } from '@angular/core';
+import { Injectable, Component, ChangeDetectionStrategy, Input, ElementRef, Renderer2, Optional, Host, defineInjectable, NgModule } from '@angular/core';
 import { InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
@@ -40,13 +40,7 @@ class SGContainerComponent {
     /**
      * @return {?}
      */
-    get marginLeft() {
-        return -(this.gutter / 2);
-    }
-    /**
-     * @return {?}
-     */
-    get marginRight() {
+    get marginValue() {
         return -(this.gutter / 2);
     }
 }
@@ -57,6 +51,8 @@ SGContainerComponent.decorators = [
     <ng-content></ng-content>
   `,
                 host: {
+                    '[style.margin-left.px]': 'marginValue',
+                    '[style.margin-right.px]': 'marginValue',
                     '[class.ant-row]': 'true',
                     '[class.sg__wrap]': 'true',
                 },
@@ -71,9 +67,7 @@ SGContainerComponent.ctorParameters = () => [
 SGContainerComponent.propDecorators = {
     gutter: [{ type: Input }],
     colInCon: [{ type: Input, args: ['sg-container',] }],
-    col: [{ type: Input }],
-    marginLeft: [{ type: HostBinding, args: ['style.margin-left.px',] }],
-    marginRight: [{ type: HostBinding, args: ['style.margin-right.px',] }]
+    col: [{ type: Input }]
 };
 __decorate([
     InputNumber(),
@@ -115,13 +109,7 @@ class SGComponent {
     /**
      * @return {?}
      */
-    get paddingLeft() {
-        return this.parent.gutter / 2;
-    }
-    /**
-     * @return {?}
-     */
-    get paddingRight() {
+    get paddingValue() {
         return this.parent.gutter / 2;
     }
     /**
@@ -158,6 +146,10 @@ SGComponent.decorators = [
                 template: `
     <ng-content></ng-content>
   `,
+                host: {
+                    '[style.padding-left.px]': 'paddingValue',
+                    '[style.padding-right.px]': 'paddingValue',
+                },
                 changeDetection: ChangeDetectionStrategy.OnPush
             }] }
 ];
@@ -169,9 +161,7 @@ SGComponent.ctorParameters = () => [
     { type: ResponsiveService }
 ];
 SGComponent.propDecorators = {
-    col: [{ type: Input }],
-    paddingLeft: [{ type: HostBinding, args: ['style.padding-left.px',] }],
-    paddingRight: [{ type: HostBinding, args: ['style.padding-right.px',] }]
+    col: [{ type: Input }]
 };
 __decorate([
     InputNumber(null),

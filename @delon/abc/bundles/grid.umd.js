@@ -109,7 +109,7 @@
         function SGContainerComponent(cog) {
             Object.assign(this, __assign({}, new SGConfig(), cog));
         }
-        Object.defineProperty(SGContainerComponent.prototype, "marginLeft", {
+        Object.defineProperty(SGContainerComponent.prototype, "marginValue", {
             // #endregion
             get: 
             // #endregion
@@ -122,20 +122,13 @@
             enumerable: true,
             configurable: true
         });
-        Object.defineProperty(SGContainerComponent.prototype, "marginRight", {
-            get: /**
-             * @return {?}
-             */ function () {
-                return -(this.gutter / 2);
-            },
-            enumerable: true,
-            configurable: true
-        });
         SGContainerComponent.decorators = [
             { type: i0.Component, args: [{
                         selector: 'sg-container, [sg-container]',
                         template: "\n    <ng-content></ng-content>\n  ",
                         host: {
+                            '[style.margin-left.px]': 'marginValue',
+                            '[style.margin-right.px]': 'marginValue',
                             '[class.ant-row]': 'true',
                             '[class.sg__wrap]': 'true',
                         },
@@ -152,9 +145,7 @@
         SGContainerComponent.propDecorators = {
             gutter: [{ type: i0.Input }],
             colInCon: [{ type: i0.Input, args: ['sg-container',] }],
-            col: [{ type: i0.Input }],
-            marginLeft: [{ type: i0.HostBinding, args: ['style.margin-left.px',] }],
-            marginRight: [{ type: i0.HostBinding, args: ['style.margin-right.px',] }]
+            col: [{ type: i0.Input }]
         };
         __decorate([
             util.InputNumber(),
@@ -189,16 +180,7 @@
             }
             this.el = el.nativeElement;
         }
-        Object.defineProperty(SGComponent.prototype, "paddingLeft", {
-            get: /**
-             * @return {?}
-             */ function () {
-                return this.parent.gutter / 2;
-            },
-            enumerable: true,
-            configurable: true
-        });
-        Object.defineProperty(SGComponent.prototype, "paddingRight", {
+        Object.defineProperty(SGComponent.prototype, "paddingValue", {
             get: /**
              * @return {?}
              */ function () {
@@ -249,6 +231,10 @@
             { type: i0.Component, args: [{
                         selector: 'sg',
                         template: "\n    <ng-content></ng-content>\n  ",
+                        host: {
+                            '[style.padding-left.px]': 'paddingValue',
+                            '[style.padding-right.px]': 'paddingValue',
+                        },
                         changeDetection: i0.ChangeDetectionStrategy.OnPush
                     }] }
         ];
@@ -262,9 +248,7 @@
             ];
         };
         SGComponent.propDecorators = {
-            col: [{ type: i0.Input }],
-            paddingLeft: [{ type: i0.HostBinding, args: ['style.padding-left.px',] }],
-            paddingRight: [{ type: i0.HostBinding, args: ['style.padding-right.px',] }]
+            col: [{ type: i0.Input }]
         };
         __decorate([
             util.InputNumber(null),

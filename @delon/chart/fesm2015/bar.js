@@ -2,7 +2,7 @@ import { __decorate, __metadata } from 'tslib';
 import { fromEvent } from 'rxjs';
 import { debounceTime, filter } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, HostBinding, Input, NgZone, ViewChild, NgModule } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, NgZone, ViewChild, NgModule } from '@angular/core';
 import { InputBoolean, InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
@@ -138,6 +138,9 @@ G2BarComponent.decorators = [
     { type: Component, args: [{
                 selector: 'g2-bar',
                 template: "<ng-container *stringTemplateOutlet=\"title\">\n  <h4 style=\"margin-bottom:20px\">{{title}}</h4>\n</ng-container>\n<div #container></div>\n",
+                host: {
+                    '[style.height.px]': 'height',
+                },
                 changeDetection: ChangeDetectionStrategy.OnPush
             }] }
 ];
@@ -150,7 +153,7 @@ G2BarComponent.propDecorators = {
     delay: [{ type: Input }],
     title: [{ type: Input }],
     color: [{ type: Input }],
-    height: [{ type: HostBinding, args: ['style.height.px',] }, { type: Input }],
+    height: [{ type: Input }],
     padding: [{ type: Input }],
     data: [{ type: Input }],
     autoLabel: [{ type: Input }]

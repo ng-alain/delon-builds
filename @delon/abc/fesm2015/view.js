@@ -2,7 +2,7 @@ import { __decorate, __metadata } from 'tslib';
 import { ResponsiveService } from '@delon/theme';
 import { ObserversModule } from '@angular/cdk/observers';
 import { CommonModule } from '@angular/common';
-import { Injectable, ChangeDetectionStrategy, Component, ElementRef, Host, Optional, Renderer2, Input, defineInjectable, NgModule, ViewChild, HostBinding } from '@angular/core';
+import { Injectable, ChangeDetectionStrategy, Component, ElementRef, Host, Optional, Renderer2, Input, defineInjectable, NgModule, ViewChild } from '@angular/core';
 import { updateHostClass, InputNumber, isEmpty, InputBoolean, DelonUtilModule } from '@delon/util';
 
 /**
@@ -195,13 +195,7 @@ class SVComponent {
     /**
      * @return {?}
      */
-    get paddingLeft() {
-        return this.parent && this.parent.gutter / 2;
-    }
-    /**
-     * @return {?}
-     */
-    get paddingRight() {
+    get paddingValue() {
         return this.parent && this.parent.gutter / 2;
     }
     /**
@@ -257,6 +251,10 @@ SVComponent.decorators = [
     { type: Component, args: [{
                 selector: 'sv, [sv]',
                 template: "<div class=\"sv__label\"\n     [class.sv__label-empty]=\"!label\"\n     [style.width.px]=\"parent.labelWidth\">\n  <ng-container *stringTemplateOutlet=\"label\">{{label}}</ng-container>\n</div>\n<div class=\"sv__detail\"\n     (cdkObserveContent)=\"checkContent()\"\n     #conEl>\n  <ng-content></ng-content>\n</div>\n",
+                host: {
+                    '[style.padding-left.px]': 'paddingValue',
+                    '[style.padding-right.px]': 'paddingValue',
+                },
                 changeDetection: ChangeDetectionStrategy.OnPush
             }] }
 ];
@@ -272,9 +270,7 @@ SVComponent.propDecorators = {
     label: [{ type: Input }],
     col: [{ type: Input }],
     default: [{ type: Input }],
-    type: [{ type: Input }],
-    paddingLeft: [{ type: HostBinding, args: ['style.padding-left.px',] }],
-    paddingRight: [{ type: HostBinding, args: ['style.padding-right.px',] }]
+    type: [{ type: Input }]
 };
 __decorate([
     InputNumber(null),

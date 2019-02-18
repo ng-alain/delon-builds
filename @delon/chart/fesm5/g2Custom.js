@@ -2,7 +2,7 @@ import { fromEvent } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { __decorate, __metadata, __spread } from 'tslib';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, HostBinding, Input, Output, NgModule } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, Output, NgModule } from '@angular/core';
 import { InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
@@ -68,6 +68,9 @@ var G2CustomComponent = /** @class */ (function () {
         { type: Component, args: [{
                     selector: 'g2,g2-custom',
                     template: "\n    <ng-content></ng-content>\n  ",
+                    host: {
+                        '[style.height.px]': 'height',
+                    },
                     changeDetection: ChangeDetectionStrategy.OnPush
                 }] }
     ];
@@ -76,7 +79,7 @@ var G2CustomComponent = /** @class */ (function () {
         { type: ElementRef }
     ]; };
     G2CustomComponent.propDecorators = {
-        height: [{ type: HostBinding, args: ['style.height.px',] }, { type: Input }],
+        height: [{ type: Input }],
         resizeTime: [{ type: Input }],
         render: [{ type: Output }],
         resize: [{ type: Output }],

@@ -1,6 +1,6 @@
 import { __decorate, __metadata } from 'tslib';
 import { CommonModule } from '@angular/common';
-import { Injectable, defineInjectable, inject, EventEmitter, Component, ChangeDetectionStrategy, ChangeDetectorRef, Input, HostBinding, Output, NgModule } from '@angular/core';
+import { Injectable, defineInjectable, inject, EventEmitter, Component, ChangeDetectionStrategy, ChangeDetectorRef, Input, Output, NgModule } from '@angular/core';
 import { InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
@@ -144,7 +144,11 @@ QRComponent.decorators = [
                 template: `
     <img class="qr__img" src="{{ dataURL }}" />
   `,
-                host: { '[class.qr]': 'true' },
+                host: {
+                    '[class.qr]': 'true',
+                    '[style.height.px]': 'size',
+                    '[style.width.px]': 'size',
+                },
                 changeDetection: ChangeDetectionStrategy.OnPush
             }] }
 ];
@@ -162,7 +166,7 @@ QRComponent.propDecorators = {
     level: [{ type: Input }],
     mime: [{ type: Input }],
     padding: [{ type: Input }],
-    size: [{ type: HostBinding, args: ['style.height.px',] }, { type: HostBinding, args: ['style.width.px',] }, { type: Input }],
+    size: [{ type: Input }],
     value: [{ type: Input }],
     change: [{ type: Output }]
 };

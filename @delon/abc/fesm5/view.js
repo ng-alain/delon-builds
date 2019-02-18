@@ -2,7 +2,7 @@ import { ResponsiveService } from '@delon/theme';
 import { __assign, __decorate, __metadata, __spread } from 'tslib';
 import { ObserversModule } from '@angular/cdk/observers';
 import { CommonModule } from '@angular/common';
-import { Injectable, ChangeDetectionStrategy, Component, ElementRef, Host, Optional, Renderer2, Input, defineInjectable, NgModule, ViewChild, HostBinding } from '@angular/core';
+import { Injectable, ChangeDetectionStrategy, Component, ElementRef, Host, Optional, Renderer2, Input, defineInjectable, NgModule, ViewChild } from '@angular/core';
 import { updateHostClass, InputNumber, isEmpty, InputBoolean, DelonUtilModule } from '@delon/util';
 
 /**
@@ -194,21 +194,11 @@ var SVComponent = /** @class */ (function () {
         }
         this.el = el.nativeElement;
     }
-    Object.defineProperty(SVComponent.prototype, "paddingLeft", {
+    Object.defineProperty(SVComponent.prototype, "paddingValue", {
         // #endregion
         get: 
         // #endregion
         /**
-         * @return {?}
-         */
-        function () {
-            return this.parent && this.parent.gutter / 2;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(SVComponent.prototype, "paddingRight", {
-        get: /**
          * @return {?}
          */
         function () {
@@ -281,6 +271,10 @@ var SVComponent = /** @class */ (function () {
         { type: Component, args: [{
                     selector: 'sv, [sv]',
                     template: "<div class=\"sv__label\"\n     [class.sv__label-empty]=\"!label\"\n     [style.width.px]=\"parent.labelWidth\">\n  <ng-container *stringTemplateOutlet=\"label\">{{label}}</ng-container>\n</div>\n<div class=\"sv__detail\"\n     (cdkObserveContent)=\"checkContent()\"\n     #conEl>\n  <ng-content></ng-content>\n</div>\n",
+                    host: {
+                        '[style.padding-left.px]': 'paddingValue',
+                        '[style.padding-right.px]': 'paddingValue',
+                    },
                     changeDetection: ChangeDetectionStrategy.OnPush
                 }] }
     ];
@@ -296,9 +290,7 @@ var SVComponent = /** @class */ (function () {
         label: [{ type: Input }],
         col: [{ type: Input }],
         default: [{ type: Input }],
-        type: [{ type: Input }],
-        paddingLeft: [{ type: HostBinding, args: ['style.padding-left.px',] }],
-        paddingRight: [{ type: HostBinding, args: ['style.padding-right.px',] }]
+        type: [{ type: Input }]
     };
     __decorate([
         InputNumber(null),

@@ -76,11 +76,11 @@
             this.i18n = i18n;
             this.cdr = cdr;
             this.locale = {};
+            this.expand = false;
             /**
              * 是否启用 `展开与收进`
              */
             this.expandable = true;
-            this.expand = false;
             this.change = new core.EventEmitter();
         }
         /**
@@ -119,7 +119,11 @@
             { type: core.Component, args: [{
                         selector: 'tag-select',
                         template: "<ng-content></ng-content>\n<a *ngIf=\"expandable\" class=\"tag-select__trigger\" (click)=\"trigger()\">\n  {{expand ? locale.collapse : locale.expand}}<i nz-icon [type]=\"expand ? 'up' : 'down'\" class=\"tag-select__trigger-icon\"></i>\n</a>\n",
-                        host: { '[class.tag-select]': 'true' },
+                        host: {
+                            '[class.tag-select]': 'true',
+                            '[class.tag-select__has-expand]': 'expandable',
+                            '[class.tag-select__expanded]': 'expand',
+                        },
                         changeDetection: core.ChangeDetectionStrategy.OnPush
                     }] }
         ];
@@ -131,8 +135,7 @@
             ];
         };
         TagSelectComponent.propDecorators = {
-            expandable: [{ type: core.Input }, { type: core.HostBinding, args: ['class.tag-select__has-expand',] }],
-            expand: [{ type: core.HostBinding, args: ['class.tag-select__expanded',] }],
+            expandable: [{ type: core.Input }],
             change: [{ type: core.Output }]
         };
         __decorate([

@@ -1,6 +1,6 @@
 import { __spread, __assign, __decorate, __metadata } from 'tslib';
 import { DOCUMENT, CommonModule } from '@angular/common';
-import { Injectable, defineInjectable, NgModule, Component, ChangeDetectionStrategy, ElementRef, ChangeDetectorRef, Inject, Input, HostBinding } from '@angular/core';
+import { Injectable, defineInjectable, NgModule, Component, ChangeDetectionStrategy, ElementRef, ChangeDetectorRef, Inject, Input } from '@angular/core';
 import { InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
@@ -152,6 +152,7 @@ var ErrorCollectComponent = /** @class */ (function () {
                     template: "\n    <i nz-icon type=\"exclamation-circle\"></i>\n    <span class=\"pl-sm\">{{ count }}</span>\n  ",
                     host: {
                         '[class.error-collect]': 'true',
+                        '[class.d-none]': '_hiden',
                         '(click)': '_click()',
                     },
                     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -167,8 +168,7 @@ var ErrorCollectComponent = /** @class */ (function () {
     ]; };
     ErrorCollectComponent.propDecorators = {
         freq: [{ type: Input }],
-        offsetTop: [{ type: Input }],
-        _hiden: [{ type: HostBinding, args: ['class.d-none',] }]
+        offsetTop: [{ type: Input }]
     };
     __decorate([
         InputNumber(),

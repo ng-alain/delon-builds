@@ -265,7 +265,10 @@
             { type: i0.Component, args: [{
                         selector: 'full-content',
                         template: "\n    <ng-content></ng-content>\n  ",
-                        host: { '[class.full-content]': 'true' },
+                        host: {
+                            '[class.full-content]': 'true',
+                            '[style.height.px]': '_height',
+                        },
                         changeDetection: i0.ChangeDetectionStrategy.OnPush
                     }] }
         ];
@@ -280,7 +283,6 @@
             ];
         };
         FullContentComponent.propDecorators = {
-            _height: [{ type: i0.HostBinding, args: ['style.height.px',] }],
             fullscreen: [{ type: i0.Input }],
             hideTitle: [{ type: i0.Input }],
             padding: [{ type: i0.Input }],

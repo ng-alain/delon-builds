@@ -1,6 +1,6 @@
 import { __decorate, __metadata } from 'tslib';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, ElementRef, HostBinding, Input, NgZone, NgModule } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, Input, NgZone, NgModule } from '@angular/core';
 import { InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
@@ -103,6 +103,9 @@ G2MiniBarComponent.decorators = [
     { type: Component, args: [{
                 selector: 'g2-mini-bar',
                 template: ``,
+                host: {
+                    '[style.height.px]': 'height',
+                },
                 changeDetection: ChangeDetectionStrategy.OnPush
             }] }
 ];
@@ -114,7 +117,7 @@ G2MiniBarComponent.ctorParameters = () => [
 G2MiniBarComponent.propDecorators = {
     delay: [{ type: Input }],
     color: [{ type: Input }],
-    height: [{ type: HostBinding, args: ['style.height.px',] }, { type: Input }],
+    height: [{ type: Input }],
     borderWidth: [{ type: Input }],
     padding: [{ type: Input }],
     data: [{ type: Input }],

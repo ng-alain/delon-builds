@@ -1,6 +1,6 @@
 import { __decorate, __metadata } from 'tslib';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, HostBinding, Input, Output, NgModule } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, Output, NgModule } from '@angular/core';
 import { DelonLocaleService, DelonLocaleModule } from '@delon/theme';
 import { InputBoolean, DelonUtilModule } from '@delon/util';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
@@ -18,11 +18,11 @@ class TagSelectComponent {
         this.i18n = i18n;
         this.cdr = cdr;
         this.locale = {};
+        this.expand = false;
         /**
          * 是否启用 `展开与收进`
          */
         this.expandable = true;
-        this.expand = false;
         this.change = new EventEmitter();
     }
     /**
@@ -52,7 +52,11 @@ TagSelectComponent.decorators = [
     { type: Component, args: [{
                 selector: 'tag-select',
                 template: "<ng-content></ng-content>\n<a *ngIf=\"expandable\" class=\"tag-select__trigger\" (click)=\"trigger()\">\n  {{expand ? locale.collapse : locale.expand}}<i nz-icon [type]=\"expand ? 'up' : 'down'\" class=\"tag-select__trigger-icon\"></i>\n</a>\n",
-                host: { '[class.tag-select]': 'true' },
+                host: {
+                    '[class.tag-select]': 'true',
+                    '[class.tag-select__has-expand]': 'expandable',
+                    '[class.tag-select__expanded]': 'expand',
+                },
                 changeDetection: ChangeDetectionStrategy.OnPush
             }] }
 ];
@@ -62,8 +66,7 @@ TagSelectComponent.ctorParameters = () => [
     { type: ChangeDetectorRef }
 ];
 TagSelectComponent.propDecorators = {
-    expandable: [{ type: Input }, { type: HostBinding, args: ['class.tag-select__has-expand',] }],
-    expand: [{ type: HostBinding, args: ['class.tag-select__expanded',] }],
+    expandable: [{ type: Input }],
     change: [{ type: Output }]
 };
 __decorate([

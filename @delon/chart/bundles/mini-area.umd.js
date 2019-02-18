@@ -204,6 +204,9 @@
             { type: core.Component, args: [{
                         selector: 'g2-mini-area',
                         template: "",
+                        host: {
+                            '[style.height.px]': 'height',
+                        },
                         changeDetection: core.ChangeDetectionStrategy.OnPush
                     }] }
         ];
@@ -219,7 +222,7 @@
             color: [{ type: core.Input }],
             borderColor: [{ type: core.Input }],
             borderWidth: [{ type: core.Input }],
-            height: [{ type: core.HostBinding, args: ['style.height.px',] }, { type: core.Input }],
+            height: [{ type: core.Input }],
             fit: [{ type: core.Input }],
             line: [{ type: core.Input }],
             animate: [{ type: core.Input }],

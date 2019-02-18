@@ -180,6 +180,9 @@
             { type: core.Component, args: [{
                         selector: 'g2-mini-bar',
                         template: "",
+                        host: {
+                            '[style.height.px]': 'height',
+                        },
                         changeDetection: core.ChangeDetectionStrategy.OnPush
                     }] }
         ];
@@ -193,7 +196,7 @@
         G2MiniBarComponent.propDecorators = {
             delay: [{ type: core.Input }],
             color: [{ type: core.Input }],
-            height: [{ type: core.HostBinding, args: ['style.height.px',] }, { type: core.Input }],
+            height: [{ type: core.Input }],
             borderWidth: [{ type: core.Input }],
             padding: [{ type: core.Input }],
             data: [{ type: core.Input }],

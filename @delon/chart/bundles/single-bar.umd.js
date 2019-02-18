@@ -199,6 +199,9 @@
             { type: core.Component, args: [{
                         selector: 'g2-single-bar',
                         template: "",
+                        host: {
+                            '[style.height.px]': 'height',
+                        },
                         changeDetection: core.ChangeDetectionStrategy.OnPush
                     }] }
         ];
@@ -213,7 +216,7 @@
             delay: [{ type: core.Input }],
             plusColor: [{ type: core.Input }],
             minusColor: [{ type: core.Input }],
-            height: [{ type: core.HostBinding, args: ['style.height.px',] }, { type: core.Input }],
+            height: [{ type: core.Input }],
             barSize: [{ type: core.Input }],
             min: [{ type: core.Input }],
             max: [{ type: core.Input }],

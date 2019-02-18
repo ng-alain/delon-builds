@@ -233,7 +233,11 @@
             { type: i0.Component, args: [{
                         selector: 'qr',
                         template: "\n    <img class=\"qr__img\" src=\"{{ dataURL }}\" />\n  ",
-                        host: { '[class.qr]': 'true' },
+                        host: {
+                            '[class.qr]': 'true',
+                            '[style.height.px]': 'size',
+                            '[style.width.px]': 'size',
+                        },
                         changeDetection: i0.ChangeDetectionStrategy.OnPush
                     }] }
         ];
@@ -253,7 +257,7 @@
             level: [{ type: i0.Input }],
             mime: [{ type: i0.Input }],
             padding: [{ type: i0.Input }],
-            size: [{ type: i0.HostBinding, args: ['style.height.px',] }, { type: i0.HostBinding, args: ['style.width.px',] }, { type: i0.Input }],
+            size: [{ type: i0.Input }],
             value: [{ type: i0.Input }],
             change: [{ type: i0.Output }]
         };

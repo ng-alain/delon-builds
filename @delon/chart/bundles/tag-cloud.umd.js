@@ -249,6 +249,9 @@
             { type: core.Component, args: [{
                         selector: 'g2-tag-cloud',
                         template: "",
+                        host: {
+                            '[style.height.px]': 'height',
+                        },
                         changeDetection: core.ChangeDetectionStrategy.OnPush
                     }] }
         ];
@@ -261,7 +264,7 @@
         };
         G2TagCloudComponent.propDecorators = {
             delay: [{ type: core.Input }],
-            height: [{ type: core.HostBinding, args: ['style.height.px',] }, { type: core.Input }],
+            height: [{ type: core.Input }],
             padding: [{ type: core.Input }],
             data: [{ type: core.Input }]
         };

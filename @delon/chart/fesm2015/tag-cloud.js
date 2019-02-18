@@ -2,7 +2,7 @@ import { __decorate, __metadata } from 'tslib';
 import { fromEvent } from 'rxjs';
 import { debounceTime, filter } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, ElementRef, HostBinding, Input, NgZone, NgModule } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, Input, NgZone, NgModule } from '@angular/core';
 import { InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
@@ -153,6 +153,9 @@ G2TagCloudComponent.decorators = [
     { type: Component, args: [{
                 selector: 'g2-tag-cloud',
                 template: ``,
+                host: {
+                    '[style.height.px]': 'height',
+                },
                 changeDetection: ChangeDetectionStrategy.OnPush
             }] }
 ];
@@ -163,7 +166,7 @@ G2TagCloudComponent.ctorParameters = () => [
 ];
 G2TagCloudComponent.propDecorators = {
     delay: [{ type: Input }],
-    height: [{ type: HostBinding, args: ['style.height.px',] }, { type: Input }],
+    height: [{ type: Input }],
     padding: [{ type: Input }],
     data: [{ type: Input }]
 };

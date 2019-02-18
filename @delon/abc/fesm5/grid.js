@@ -1,7 +1,7 @@
 import { ResponsiveService } from '@delon/theme';
 import { __assign, __decorate, __metadata, __spread } from 'tslib';
 import { CommonModule } from '@angular/common';
-import { Injectable, Component, ChangeDetectionStrategy, Input, HostBinding, defineInjectable, NgModule, ElementRef, Renderer2, Optional, Host } from '@angular/core';
+import { Injectable, Component, ChangeDetectionStrategy, Input, defineInjectable, NgModule, ElementRef, Renderer2, Optional, Host } from '@angular/core';
 import { InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
@@ -34,21 +34,11 @@ var SGContainerComponent = /** @class */ (function () {
     function SGContainerComponent(cog) {
         Object.assign(this, __assign({}, new SGConfig(), cog));
     }
-    Object.defineProperty(SGContainerComponent.prototype, "marginLeft", {
+    Object.defineProperty(SGContainerComponent.prototype, "marginValue", {
         // #endregion
         get: 
         // #endregion
         /**
-         * @return {?}
-         */
-        function () {
-            return -(this.gutter / 2);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(SGContainerComponent.prototype, "marginRight", {
-        get: /**
          * @return {?}
          */
         function () {
@@ -62,6 +52,8 @@ var SGContainerComponent = /** @class */ (function () {
                     selector: 'sg-container, [sg-container]',
                     template: "\n    <ng-content></ng-content>\n  ",
                     host: {
+                        '[style.margin-left.px]': 'marginValue',
+                        '[style.margin-right.px]': 'marginValue',
                         '[class.ant-row]': 'true',
                         '[class.sg__wrap]': 'true',
                     },
@@ -76,9 +68,7 @@ var SGContainerComponent = /** @class */ (function () {
     SGContainerComponent.propDecorators = {
         gutter: [{ type: Input }],
         colInCon: [{ type: Input, args: ['sg-container',] }],
-        col: [{ type: Input }],
-        marginLeft: [{ type: HostBinding, args: ['style.margin-left.px',] }],
-        marginRight: [{ type: HostBinding, args: ['style.margin-right.px',] }]
+        col: [{ type: Input }]
     };
     __decorate([
         InputNumber(),
@@ -113,17 +103,7 @@ var SGComponent = /** @class */ (function () {
         }
         this.el = el.nativeElement;
     }
-    Object.defineProperty(SGComponent.prototype, "paddingLeft", {
-        get: /**
-         * @return {?}
-         */
-        function () {
-            return this.parent.gutter / 2;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(SGComponent.prototype, "paddingRight", {
+    Object.defineProperty(SGComponent.prototype, "paddingValue", {
         get: /**
          * @return {?}
          */
@@ -175,6 +155,10 @@ var SGComponent = /** @class */ (function () {
         { type: Component, args: [{
                     selector: 'sg',
                     template: "\n    <ng-content></ng-content>\n  ",
+                    host: {
+                        '[style.padding-left.px]': 'paddingValue',
+                        '[style.padding-right.px]': 'paddingValue',
+                    },
                     changeDetection: ChangeDetectionStrategy.OnPush
                 }] }
     ];
@@ -186,9 +170,7 @@ var SGComponent = /** @class */ (function () {
         { type: ResponsiveService }
     ]; };
     SGComponent.propDecorators = {
-        col: [{ type: Input }],
-        paddingLeft: [{ type: HostBinding, args: ['style.padding-left.px',] }],
-        paddingRight: [{ type: HostBinding, args: ['style.padding-right.px',] }]
+        col: [{ type: Input }]
     };
     __decorate([
         InputNumber(null),

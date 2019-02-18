@@ -269,7 +269,10 @@
             { type: core.Component, args: [{
                         selector: 'g2-radar',
                         template: "<ng-container *stringTemplateOutlet=\"title\">\n  <h4>{{title}}</h4>\n</ng-container>\n<div #container></div>\n<div nz-row\n     class=\"g2-radar__legend\"\n     *ngIf=\"hasLegend\">\n  <div nz-col\n       [nzSpan]=\"24 / legendData.length\"\n       *ngFor=\"let i of legendData; let idx = index\"\n       (click)=\"_click(idx)\"\n       class=\"g2-radar__legend-item\">\n    <i class=\"g2-radar__legend-dot\"\n       [ngStyle]=\"{'background-color': !i.checked ? '#aaa' : i.color}\"></i>\n    {{i.name}}\n    <h6 class=\"g2-radar__legend-title\">{{i.value}}</h6>\n  </div>\n</div>\n",
-                        host: { '[class.g2-radar]': 'true' },
+                        host: {
+                            '[style.height.px]': 'height',
+                            '[class.g2-radar]': 'true',
+                        },
                         changeDetection: core.ChangeDetectionStrategy.OnPush
                     }] }
         ];
@@ -284,7 +287,7 @@
             node: [{ type: core.ViewChild, args: ['container',] }],
             delay: [{ type: core.Input }],
             title: [{ type: core.Input }],
-            height: [{ type: core.HostBinding, args: ['style.height.px',] }, { type: core.Input }],
+            height: [{ type: core.Input }],
             padding: [{ type: core.Input }],
             hasLegend: [{ type: core.Input }],
             tickCount: [{ type: core.Input }],

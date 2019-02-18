@@ -224,6 +224,9 @@
             { type: core.Component, args: [{
                         selector: 'g2-bar',
                         template: "<ng-container *stringTemplateOutlet=\"title\">\n  <h4 style=\"margin-bottom:20px\">{{title}}</h4>\n</ng-container>\n<div #container></div>\n",
+                        host: {
+                            '[style.height.px]': 'height',
+                        },
                         changeDetection: core.ChangeDetectionStrategy.OnPush
                     }] }
         ];
@@ -238,7 +241,7 @@
             delay: [{ type: core.Input }],
             title: [{ type: core.Input }],
             color: [{ type: core.Input }],
-            height: [{ type: core.HostBinding, args: ['style.height.px',] }, { type: core.Input }],
+            height: [{ type: core.Input }],
             padding: [{ type: core.Input }],
             data: [{ type: core.Input }],
             autoLabel: [{ type: core.Input }]

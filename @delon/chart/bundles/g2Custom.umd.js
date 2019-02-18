@@ -130,6 +130,9 @@
             { type: core.Component, args: [{
                         selector: 'g2,g2-custom',
                         template: "\n    <ng-content></ng-content>\n  ",
+                        host: {
+                            '[style.height.px]': 'height',
+                        },
                         changeDetection: core.ChangeDetectionStrategy.OnPush
                     }] }
         ];
@@ -140,7 +143,7 @@
             ];
         };
         G2CustomComponent.propDecorators = {
-            height: [{ type: core.HostBinding, args: ['style.height.px',] }, { type: core.Input }],
+            height: [{ type: core.Input }],
             resizeTime: [{ type: core.Input }],
             render: [{ type: core.Output }],
             resize: [{ type: core.Output }],

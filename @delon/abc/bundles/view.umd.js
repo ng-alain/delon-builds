@@ -272,7 +272,7 @@
             }
             this.el = el.nativeElement;
         }
-        Object.defineProperty(SVComponent.prototype, "paddingLeft", {
+        Object.defineProperty(SVComponent.prototype, "paddingValue", {
             // #endregion
             get: 
             // #endregion
@@ -280,15 +280,6 @@
              * @return {?}
              */
             function () {
-                return this.parent && this.parent.gutter / 2;
-            },
-            enumerable: true,
-            configurable: true
-        });
-        Object.defineProperty(SVComponent.prototype, "paddingRight", {
-            get: /**
-             * @return {?}
-             */ function () {
                 return this.parent && this.parent.gutter / 2;
             },
             enumerable: true,
@@ -358,6 +349,10 @@
             { type: i0.Component, args: [{
                         selector: 'sv, [sv]',
                         template: "<div class=\"sv__label\"\n     [class.sv__label-empty]=\"!label\"\n     [style.width.px]=\"parent.labelWidth\">\n  <ng-container *stringTemplateOutlet=\"label\">{{label}}</ng-container>\n</div>\n<div class=\"sv__detail\"\n     (cdkObserveContent)=\"checkContent()\"\n     #conEl>\n  <ng-content></ng-content>\n</div>\n",
+                        host: {
+                            '[style.padding-left.px]': 'paddingValue',
+                            '[style.padding-right.px]': 'paddingValue',
+                        },
                         changeDetection: i0.ChangeDetectionStrategy.OnPush
                     }] }
         ];
@@ -375,9 +370,7 @@
             label: [{ type: i0.Input }],
             col: [{ type: i0.Input }],
             default: [{ type: i0.Input }],
-            type: [{ type: i0.Input }],
-            paddingLeft: [{ type: i0.HostBinding, args: ['style.padding-left.px',] }],
-            paddingRight: [{ type: i0.HostBinding, args: ['style.padding-right.px',] }]
+            type: [{ type: i0.Input }]
         };
         __decorate([
             util.InputNumber(null),

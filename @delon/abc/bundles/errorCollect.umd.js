@@ -227,6 +227,7 @@
                         template: "\n    <i nz-icon type=\"exclamation-circle\"></i>\n    <span class=\"pl-sm\">{{ count }}</span>\n  ",
                         host: {
                             '[class.error-collect]': 'true',
+                            '[class.d-none]': '_hiden',
                             '(click)': '_click()',
                         },
                         changeDetection: i0.ChangeDetectionStrategy.OnPush,
@@ -244,8 +245,7 @@
         };
         ErrorCollectComponent.propDecorators = {
             freq: [{ type: i0.Input }],
-            offsetTop: [{ type: i0.Input }],
-            _hiden: [{ type: i0.HostBinding, args: ['class.d-none',] }]
+            offsetTop: [{ type: i0.Input }]
         };
         __decorate([
             util.InputNumber(),

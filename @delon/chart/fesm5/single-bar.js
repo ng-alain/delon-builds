@@ -1,6 +1,6 @@
 import { __spread, __assign, __decorate, __metadata } from 'tslib';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, ElementRef, HostBinding, Input, NgZone, NgModule } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, Input, NgZone, NgModule } from '@angular/core';
 import { InputBoolean, InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
@@ -121,6 +121,9 @@ var G2SingleBarComponent = /** @class */ (function () {
         { type: Component, args: [{
                     selector: 'g2-single-bar',
                     template: "",
+                    host: {
+                        '[style.height.px]': 'height',
+                    },
                     changeDetection: ChangeDetectionStrategy.OnPush
                 }] }
     ];
@@ -133,7 +136,7 @@ var G2SingleBarComponent = /** @class */ (function () {
         delay: [{ type: Input }],
         plusColor: [{ type: Input }],
         minusColor: [{ type: Input }],
-        height: [{ type: HostBinding, args: ['style.height.px',] }, { type: Input }],
+        height: [{ type: Input }],
         barSize: [{ type: Input }],
         min: [{ type: Input }],
         max: [{ type: Input }],

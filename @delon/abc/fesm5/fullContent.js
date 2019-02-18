@@ -3,7 +3,7 @@ import { BehaviorSubject, fromEvent } from 'rxjs';
 import { share, debounceTime, filter } from 'rxjs/operators';
 import { __spread, __decorate, __metadata } from 'tslib';
 import { DOCUMENT, CommonModule } from '@angular/common';
-import { Injectable, Directive, defineInjectable, NgModule, EventEmitter, Component, ChangeDetectionStrategy, ElementRef, ChangeDetectorRef, Inject, HostBinding, Input, Output } from '@angular/core';
+import { Injectable, Directive, defineInjectable, NgModule, EventEmitter, Component, ChangeDetectionStrategy, ElementRef, ChangeDetectorRef, Inject, Input, Output } from '@angular/core';
 import { InputBoolean, InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
@@ -205,7 +205,10 @@ var FullContentComponent = /** @class */ (function () {
         { type: Component, args: [{
                     selector: 'full-content',
                     template: "\n    <ng-content></ng-content>\n  ",
-                    host: { '[class.full-content]': 'true' },
+                    host: {
+                        '[class.full-content]': 'true',
+                        '[style.height.px]': '_height',
+                    },
                     changeDetection: ChangeDetectionStrategy.OnPush
                 }] }
     ];
@@ -218,7 +221,6 @@ var FullContentComponent = /** @class */ (function () {
         { type: undefined, decorators: [{ type: Inject, args: [DOCUMENT,] }] }
     ]; };
     FullContentComponent.propDecorators = {
-        _height: [{ type: HostBinding, args: ['style.height.px',] }],
         fullscreen: [{ type: Input }],
         hideTitle: [{ type: Input }],
         padding: [{ type: Input }],
