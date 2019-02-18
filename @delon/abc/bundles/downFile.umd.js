@@ -4,19 +4,18 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common/http'), require('file-saver'), require('@angular/common'), require('@angular/core'), require('@delon/theme')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/down-file', ['exports', '@angular/common/http', 'file-saver', '@angular/common', '@angular/core', '@delon/theme'], factory) :
-    (factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['down-file'] = {}),global.ng.common.http,global.saveAs,global.ng.common,global.ng.core,global.delon.theme));
-}(this, (function (exports,http,fileSaver,common,core,theme) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('file-saver'), require('@angular/common'), require('@angular/core'), require('@delon/theme')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/down-file', ['exports', 'file-saver', '@angular/common', '@angular/core', '@delon/theme'], factory) :
+    (factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['down-file'] = {}),global.saveAs,global.ng.common,global.ng.core,global.delon.theme));
+}(this, (function (exports,fileSaver,common,core,theme) { 'use strict';
 
     /**
      * @fileoverview added by tsickle
      * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
     var DownFileDirective = /** @class */ (function () {
-        function DownFileDirective(el, http$$1, _http) {
+        function DownFileDirective(el, _http) {
             this.el = el;
-            this.http = http$$1;
             this._http = _http;
             /**
              * 请求类型
@@ -107,7 +106,6 @@
         DownFileDirective.ctorParameters = function () {
             return [
                 { type: core.ElementRef },
-                { type: http.HttpClient },
                 { type: theme._HttpClient }
             ];
         };

@@ -36,7 +36,7 @@ class SGContainerComponent {
     constructor(cog) {
         Object.assign(this, Object.assign({}, new SGConfig(), cog));
     }
-    //#endregion
+    // #endregion
     /**
      * @return {?}
      */

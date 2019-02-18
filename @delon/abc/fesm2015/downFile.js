@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { saveAs } from 'file-saver';
 import { CommonModule } from '@angular/common';
 import { Directive, ElementRef, EventEmitter, Input, Output, NgModule } from '@angular/core';
@@ -11,12 +10,10 @@ import { _HttpClient, AlainThemeModule } from '@delon/theme';
 class DownFileDirective {
     /**
      * @param {?} el
-     * @param {?} http
      * @param {?} _http
      */
-    constructor(el, http, _http) {
+    constructor(el, _http) {
         this.el = el;
-        this.http = http;
         this._http = _http;
         /**
          * 请求类型
@@ -98,7 +95,6 @@ DownFileDirective.decorators = [
 /** @nocollapse */
 DownFileDirective.ctorParameters = () => [
     { type: ElementRef },
-    { type: HttpClient },
     { type: _HttpClient }
 ];
 DownFileDirective.propDecorators = {

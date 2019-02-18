@@ -951,14 +951,14 @@
                 }
                 return this.http.request(method, url, reqOptions);
             };
-        //#region sort
-        //#region sort
+        // #region sort
+        // #region sort
         /**
          * @param {?} columns
          * @return {?}
          */
         STDataSource.prototype.getValidSort =
-            //#region sort
+            // #region sort
             /**
              * @param {?} columns
              * @return {?}
@@ -1043,17 +1043,17 @@
                 }
                 return ret;
             };
-        //#endregion
-        //#region filter
-        //#endregion
-        //#region filter
+        // #endregion
+        // #region filter
+        // #endregion
+        // #region filter
         /**
          * @param {?} columns
          * @return {?}
          */
         STDataSource.prototype.getReqFilterMap =
-            //#endregion
-            //#region filter
+            // #endregion
+            // #region filter
             /**
              * @param {?} columns
              * @return {?}
@@ -1078,9 +1078,9 @@
                 });
                 return ret;
             };
-        //#endregion
+        // #endregion
         // #region statistical
-        //#endregion
+        // #endregion
         // #region statistical
         /**
          * @param {?} columns
@@ -1088,7 +1088,7 @@
          * @return {?}
          */
         STDataSource.prototype.genStatistical =
-            //#endregion
+            // #endregion
             // #region statistical
             /**
              * @param {?} columns
@@ -1573,13 +1573,13 @@
             enumerable: true,
             configurable: true
         });
-        //#region data
-        //#region data
+        // #region data
+        // #region data
         /**
          * @return {?}
          */
         STComponent.prototype._load =
-            //#region data
+            // #region data
             /**
              * @return {?}
              */
@@ -1894,10 +1894,10 @@
                     .forEach(function (c) { return ( /** @type {?} */(_this))._data.forEach(function (i, idx) { return (i._values[c.__point] = { text: c.noIndex + idx, org: idx }); }); });
                 return ( /** @type {?} */(this)).cd();
             };
-        //#endregion
-        //#region sort
-        //#endregion
-        //#region sort
+        // #endregion
+        // #region sort
+        // #endregion
+        // #region sort
         /**
          * @param {?} col
          * @param {?} idx
@@ -1905,8 +1905,8 @@
          * @return {?}
          */
         STComponent.prototype.sort =
-            //#endregion
-            //#region sort
+            // #endregion
+            // #region sort
             /**
              * @param {?} col
              * @param {?} idx
@@ -1943,17 +1943,17 @@
                 ( /** @type {?} */(this))._columns.forEach(function (item) { return (item._sort.default = null); });
                 return ( /** @type {?} */(this));
             };
-        //#endregion
-        //#region filter
-        //#endregion
-        //#region filter
+        // #endregion
+        // #region filter
+        // #endregion
+        // #region filter
         /**
          * @param {?} col
          * @return {?}
          */
         STComponent.prototype.handleFilter =
-            //#endregion
-            //#region filter
+            // #endregion
+            // #region filter
             /**
              * @param {?} col
              * @return {?}
@@ -2021,11 +2021,11 @@
                 });
                 return ( /** @type {?} */(this));
             };
-        //#endregion
-        //#region checkbox
+        // #endregion
+        // #region checkbox
         /** 清除所有 `checkbox` */
-        //#endregion
-        //#region checkbox
+        // #endregion
+        // #region checkbox
         /**
          * 清除所有 `checkbox`
          * @template THIS
@@ -2033,8 +2033,8 @@
          * @return {THIS}
          */
         STComponent.prototype.clearCheck =
-            //#endregion
-            //#region checkbox
+            // #endregion
+            // #region checkbox
             /**
              * 清除所有 `checkbox`
              * @template THIS
@@ -2134,11 +2134,11 @@
                 ( /** @type {?} */(this)).changeEmit('checkbox', res);
                 return ( /** @type {?} */(this));
             };
-        //#endregion
-        //#region radio
+        // #endregion
+        // #region radio
         /** 清除所有 `radio` */
-        //#endregion
-        //#region radio
+        // #endregion
+        // #region radio
         /**
          * 清除所有 `radio`
          * @template THIS
@@ -2146,8 +2146,8 @@
          * @return {THIS}
          */
         STComponent.prototype.clearRadio =
-            //#endregion
-            //#region radio
+            // #endregion
+            // #region radio
             /**
              * 清除所有 `radio`
              * @template THIS
@@ -2180,10 +2180,10 @@
                 ( /** @type {?} */(this)).changeEmit('radio', item);
                 return ( /** @type {?} */(this));
             };
-        //#endregion
-        //#region buttons
-        //#endregion
-        //#region buttons
+        // #endregion
+        // #region buttons
+        // #endregion
+        // #region buttons
         /**
          * @param {?} e
          * @param {?} record
@@ -2191,8 +2191,8 @@
          * @return {?}
          */
         STComponent.prototype._btnClick =
-            //#endregion
-            //#region buttons
+            // #endregion
+            // #region buttons
             /**
              * @param {?} e
              * @param {?} record
@@ -2292,15 +2292,15 @@
             function (item, col) {
                 return col.buttons.filter(function (btn) { return btn.iif(item, btn, col); });
             };
-        //#endregion
-        //#region export
+        // #endregion
+        // #region export
         /**
          * 导出当前页，确保已经注册 `XlsxModule`
          * @param newData 重新指定数据，例如希望导出所有数据非常有用
          * @param opt 额外参数
          */
-        //#endregion
-        //#region export
+        // #endregion
+        // #region export
         /**
          * 导出当前页，确保已经注册 `XlsxModule`
          * @param {?=} newData 重新指定数据，例如希望导出所有数据非常有用
@@ -2308,8 +2308,8 @@
          * @return {?}
          */
         STComponent.prototype.export =
-            //#endregion
-            //#region export
+            // #endregion
+            // #region export
             /**
              * 导出当前页，确保已经注册 `XlsxModule`
              * @param {?=} newData 重新指定数据，例如希望导出所有数据非常有用
@@ -2325,13 +2325,13 @@
                     }));
                 });
             };
-        //#endregion
-        //#endregion
+        // #endregion
+        // #endregion
         /**
          * @return {?}
          */
         STComponent.prototype.resetColumns =
-            //#endregion
+            // #endregion
             /**
              * @return {?}
              */

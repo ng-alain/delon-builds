@@ -51,7 +51,7 @@ SEConfig.decorators = [
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 class SEContainerComponent {
-    //#endregion
+    // #endregion
     /**
      * @param {?} cog
      */

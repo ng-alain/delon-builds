@@ -762,7 +762,7 @@ class STDataSource {
         }
         return this.http.request(method, url, reqOptions);
     }
-    //#region sort
+    // #region sort
     /**
      * @param {?} columns
      * @return {?}
@@ -836,8 +836,8 @@ class STDataSource {
         }
         return ret;
     }
-    //#endregion
-    //#region filter
+    // #endregion
+    // #region filter
     /**
      * @param {?} columns
      * @return {?}
@@ -862,7 +862,7 @@ class STDataSource {
         });
         return ret;
     }
-    //#endregion
+    // #endregion
     // #region statistical
     /**
      * @param {?} columns
@@ -1293,7 +1293,7 @@ class STComponent {
         const { pi, ps, total } = this;
         return { pi, ps, total };
     }
-    //#region data
+    // #region data
     /**
      * @return {?}
      */
@@ -1505,8 +1505,8 @@ class STComponent {
             .forEach(c => (/** @type {?} */ (this))._data.forEach((i, idx) => (i._values[c.__point] = { text: c.noIndex + idx, org: idx })));
         return (/** @type {?} */ (this)).cd();
     }
-    //#endregion
-    //#region sort
+    // #endregion
+    // #region sort
     /**
      * @param {?} col
      * @param {?} idx
@@ -1538,8 +1538,8 @@ class STComponent {
         (/** @type {?} */ (this))._columns.forEach(item => (item._sort.default = null));
         return (/** @type {?} */ (this));
     }
-    //#endregion
-    //#region filter
+    // #endregion
+    // #region filter
     /**
      * @param {?} col
      * @return {?}
@@ -1588,8 +1588,8 @@ class STComponent {
         });
         return (/** @type {?} */ (this));
     }
-    //#endregion
-    //#region checkbox
+    // #endregion
+    // #region checkbox
     /**
      * 清除所有 `checkbox`
      * @template THIS
@@ -1660,8 +1660,8 @@ class STComponent {
         (/** @type {?} */ (this)).changeEmit('checkbox', res);
         return (/** @type {?} */ (this));
     }
-    //#endregion
-    //#region radio
+    // #endregion
+    // #region radio
     /**
      * 清除所有 `radio`
      * @template THIS
@@ -1687,8 +1687,8 @@ class STComponent {
         (/** @type {?} */ (this)).changeEmit('radio', item);
         return (/** @type {?} */ (this));
     }
-    //#endregion
-    //#region buttons
+    // #endregion
+    // #region buttons
     /**
      * @param {?} e
      * @param {?} record
@@ -1770,8 +1770,8 @@ class STComponent {
     _validBtns(item, col) {
         return col.buttons.filter(btn => btn.iif(item, btn, col));
     }
-    //#endregion
-    //#region export
+    // #endregion
+    // #region export
     /**
      * 导出当前页，确保已经注册 `XlsxModule`
      * @param {?=} newData 重新指定数据，例如希望导出所有数据非常有用
@@ -1784,7 +1784,7 @@ class STComponent {
             _c: this._columns,
         })));
     }
-    //#endregion
+    // #endregion
     /**
      * @return {?}
      */

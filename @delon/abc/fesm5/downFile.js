@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { saveAs } from 'file-saver';
 import { __spread } from 'tslib';
 import { CommonModule } from '@angular/common';
@@ -10,9 +9,8 @@ import { _HttpClient, AlainThemeModule } from '@delon/theme';
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 var DownFileDirective = /** @class */ (function () {
-    function DownFileDirective(el, http, _http) {
+    function DownFileDirective(el, _http) {
         this.el = el;
-        this.http = http;
         this._http = _http;
         /**
          * 请求类型
@@ -102,7 +100,6 @@ var DownFileDirective = /** @class */ (function () {
     /** @nocollapse */
     DownFileDirective.ctorParameters = function () { return [
         { type: ElementRef },
-        { type: HttpClient },
         { type: _HttpClient }
     ]; };
     DownFileDirective.propDecorators = {

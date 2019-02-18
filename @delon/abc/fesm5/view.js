@@ -46,7 +46,7 @@ var SVConfig = /** @class */ (function () {
 /** @type {?} */
 var prefixCls = "sv";
 var SVContainerComponent = /** @class */ (function () {
-    //#endregion
+    // #endregion
     function SVContainerComponent(el, ren, cog) {
         this.ren = ren;
         this.el = el.nativeElement;
@@ -195,9 +195,9 @@ var SVComponent = /** @class */ (function () {
         this.el = el.nativeElement;
     }
     Object.defineProperty(SVComponent.prototype, "paddingLeft", {
-        //#endregion
+        // #endregion
         get: 
-        //#endregion
+        // #endregion
         /**
          * @return {?}
          */

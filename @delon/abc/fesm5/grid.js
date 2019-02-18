@@ -35,9 +35,9 @@ var SGContainerComponent = /** @class */ (function () {
         Object.assign(this, __assign({}, new SGConfig(), cog));
     }
     Object.defineProperty(SGContainerComponent.prototype, "marginLeft", {
-        //#endregion
+        // #endregion
         get: 
-        //#endregion
+        // #endregion
         /**
          * @return {?}
          */

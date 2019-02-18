@@ -45,7 +45,7 @@ SVConfig.decorators = [
 /** @type {?} */
 const prefixCls = `sv`;
 class SVContainerComponent {
-    //#endregion
+    // #endregion
     /**
      * @param {?} el
      * @param {?} ren
@@ -191,7 +191,7 @@ class SVComponent {
         }
         this.el = el.nativeElement;
     }
-    //#endregion
+    // #endregion
     /**
      * @return {?}
      */

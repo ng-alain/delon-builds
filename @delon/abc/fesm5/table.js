@@ -855,14 +855,14 @@ var STDataSource = /** @class */ (function () {
         }
         return this.http.request(method, url, reqOptions);
     };
-    //#region sort
-    //#region sort
+    // #region sort
+    // #region sort
     /**
      * @param {?} columns
      * @return {?}
      */
     STDataSource.prototype.getValidSort = 
-    //#region sort
+    // #region sort
     /**
      * @param {?} columns
      * @return {?}
@@ -947,17 +947,17 @@ var STDataSource = /** @class */ (function () {
         }
         return ret;
     };
-    //#endregion
-    //#region filter
-    //#endregion
-    //#region filter
+    // #endregion
+    // #region filter
+    // #endregion
+    // #region filter
     /**
      * @param {?} columns
      * @return {?}
      */
     STDataSource.prototype.getReqFilterMap = 
-    //#endregion
-    //#region filter
+    // #endregion
+    // #region filter
     /**
      * @param {?} columns
      * @return {?}
@@ -982,9 +982,9 @@ var STDataSource = /** @class */ (function () {
         });
         return ret;
     };
-    //#endregion
+    // #endregion
     // #region statistical
-    //#endregion
+    // #endregion
     // #region statistical
     /**
      * @param {?} columns
@@ -992,7 +992,7 @@ var STDataSource = /** @class */ (function () {
      * @return {?}
      */
     STDataSource.prototype.genStatistical = 
-    //#endregion
+    // #endregion
     // #region statistical
     /**
      * @param {?} columns
@@ -1482,13 +1482,13 @@ var STComponent = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
-    //#region data
-    //#region data
+    // #region data
+    // #region data
     /**
      * @return {?}
      */
     STComponent.prototype._load = 
-    //#region data
+    // #region data
     /**
      * @return {?}
      */
@@ -1799,10 +1799,10 @@ var STComponent = /** @class */ (function () {
             .forEach(function (c) { return (/** @type {?} */ (_this))._data.forEach(function (i, idx) { return (i._values[c.__point] = { text: c.noIndex + idx, org: idx }); }); });
         return (/** @type {?} */ (this)).cd();
     };
-    //#endregion
-    //#region sort
-    //#endregion
-    //#region sort
+    // #endregion
+    // #region sort
+    // #endregion
+    // #region sort
     /**
      * @param {?} col
      * @param {?} idx
@@ -1810,8 +1810,8 @@ var STComponent = /** @class */ (function () {
      * @return {?}
      */
     STComponent.prototype.sort = 
-    //#endregion
-    //#region sort
+    // #endregion
+    // #region sort
     /**
      * @param {?} col
      * @param {?} idx
@@ -1848,17 +1848,17 @@ var STComponent = /** @class */ (function () {
         (/** @type {?} */ (this))._columns.forEach(function (item) { return (item._sort.default = null); });
         return (/** @type {?} */ (this));
     };
-    //#endregion
-    //#region filter
-    //#endregion
-    //#region filter
+    // #endregion
+    // #region filter
+    // #endregion
+    // #region filter
     /**
      * @param {?} col
      * @return {?}
      */
     STComponent.prototype.handleFilter = 
-    //#endregion
-    //#region filter
+    // #endregion
+    // #region filter
     /**
      * @param {?} col
      * @return {?}
@@ -1926,11 +1926,11 @@ var STComponent = /** @class */ (function () {
         });
         return (/** @type {?} */ (this));
     };
-    //#endregion
-    //#region checkbox
+    // #endregion
+    // #region checkbox
     /** 清除所有 `checkbox` */
-    //#endregion
-    //#region checkbox
+    // #endregion
+    // #region checkbox
     /**
      * 清除所有 `checkbox`
      * @template THIS
@@ -1938,8 +1938,8 @@ var STComponent = /** @class */ (function () {
      * @return {THIS}
      */
     STComponent.prototype.clearCheck = 
-    //#endregion
-    //#region checkbox
+    // #endregion
+    // #region checkbox
     /**
      * 清除所有 `checkbox`
      * @template THIS
@@ -2039,11 +2039,11 @@ var STComponent = /** @class */ (function () {
         (/** @type {?} */ (this)).changeEmit('checkbox', res);
         return (/** @type {?} */ (this));
     };
-    //#endregion
-    //#region radio
+    // #endregion
+    // #region radio
     /** 清除所有 `radio` */
-    //#endregion
-    //#region radio
+    // #endregion
+    // #region radio
     /**
      * 清除所有 `radio`
      * @template THIS
@@ -2051,8 +2051,8 @@ var STComponent = /** @class */ (function () {
      * @return {THIS}
      */
     STComponent.prototype.clearRadio = 
-    //#endregion
-    //#region radio
+    // #endregion
+    // #region radio
     /**
      * 清除所有 `radio`
      * @template THIS
@@ -2085,10 +2085,10 @@ var STComponent = /** @class */ (function () {
         (/** @type {?} */ (this)).changeEmit('radio', item);
         return (/** @type {?} */ (this));
     };
-    //#endregion
-    //#region buttons
-    //#endregion
-    //#region buttons
+    // #endregion
+    // #region buttons
+    // #endregion
+    // #region buttons
     /**
      * @param {?} e
      * @param {?} record
@@ -2096,8 +2096,8 @@ var STComponent = /** @class */ (function () {
      * @return {?}
      */
     STComponent.prototype._btnClick = 
-    //#endregion
-    //#region buttons
+    // #endregion
+    // #region buttons
     /**
      * @param {?} e
      * @param {?} record
@@ -2197,15 +2197,15 @@ var STComponent = /** @class */ (function () {
     function (item, col) {
         return col.buttons.filter(function (btn) { return btn.iif(item, btn, col); });
     };
-    //#endregion
-    //#region export
+    // #endregion
+    // #region export
     /**
      * 导出当前页，确保已经注册 `XlsxModule`
      * @param newData 重新指定数据，例如希望导出所有数据非常有用
      * @param opt 额外参数
      */
-    //#endregion
-    //#region export
+    // #endregion
+    // #region export
     /**
      * 导出当前页，确保已经注册 `XlsxModule`
      * @param {?=} newData 重新指定数据，例如希望导出所有数据非常有用
@@ -2213,8 +2213,8 @@ var STComponent = /** @class */ (function () {
      * @return {?}
      */
     STComponent.prototype.export = 
-    //#endregion
-    //#region export
+    // #endregion
+    // #region export
     /**
      * 导出当前页，确保已经注册 `XlsxModule`
      * @param {?=} newData 重新指定数据，例如希望导出所有数据非常有用
@@ -2230,13 +2230,13 @@ var STComponent = /** @class */ (function () {
             }));
         });
     };
-    //#endregion
-    //#endregion
+    // #endregion
+    // #endregion
     /**
      * @return {?}
      */
     STComponent.prototype.resetColumns = 
-    //#endregion
+    // #endregion
     /**
      * @return {?}
      */

@@ -124,7 +124,7 @@
      * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
     var SEContainerComponent = /** @class */ (function () {
-        //#endregion
+        // #endregion
         function SEContainerComponent(cog) {
             this.line = false;
             Object.assign(this, __assign({}, new SEConfig(), cog));

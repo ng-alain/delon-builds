@@ -1,9 +1,8 @@
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpResponse } from '@angular/common/http';
 import { ElementRef, EventEmitter } from '@angular/core';
 import { _HttpClient } from '@delon/theme';
 export declare class DownFileDirective {
     private el;
-    private http;
     private _http;
     /** URL请求参数 */
     httpData: {};
@@ -18,6 +17,6 @@ export declare class DownFileDirective {
     /** 错误回调 */
     readonly error: EventEmitter<{}>;
     private getDisposition;
-    constructor(el: ElementRef, http: HttpClient, _http: _HttpClient);
+    constructor(el: ElementRef, _http: _HttpClient);
     _click(): void;
 }
