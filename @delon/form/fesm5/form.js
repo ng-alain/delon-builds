@@ -110,6 +110,10 @@ var DelonFormConfig = /** @class */ (function () {
          * time小部件：`type="number"` 且不指定 `schema.format` 和 `ui.format` 时日期格式，默认：`x` 13位Unix Timestamp，日期统一使用 `1970-01-01`
          */
         this.uiTimeNumberFormat = 'x';
+        /**
+         * 指定 `format: 'email'` 的默认Email后缀
+         */
+        this.uiEmailSuffixes = ['qq.com', '163.com', 'gmail.com', '126.com', 'aliyun.com'];
     }
     DelonFormConfig.decorators = [
         { type: Injectable, args: [{ providedIn: 'root' },] }
@@ -384,8 +388,8 @@ var  /**
  * @abstract
  */
 FormProperty = /** @class */ (function () {
-    function FormProperty(schemaValidatorFactory, schema, ui, formData, parent, path, options) {
-        this.options = options;
+    function FormProperty(schemaValidatorFactory, schema, ui, formData, parent, path, _options) {
+        this._options = _options;
         this._value = null;
         this._errors = null;
         this._objErrors = {};
@@ -505,6 +509,16 @@ FormProperty = /** @class */ (function () {
          */
         function () {
             return this._errors === null || this._errors.length === 0;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(FormProperty.prototype, "options", {
+        get: /**
+         * @return {?}
+         */
+        function () {
+            return this._options;
         },
         enumerable: true,
         configurable: true
@@ -725,7 +739,7 @@ FormProperty = /** @class */ (function () {
                 /** @type {?} */
                 var message = err._custom === true && err.message
                     ? err.message
-                    : (_this.ui.errors || {})[err.keyword] || _this.options.errors[err.keyword] || "";
+                    : (_this.ui.errors || {})[err.keyword] || _this._options.errors[err.keyword] || "";
                 if (message && typeof message === 'function') {
                     message = (/** @type {?} */ (message(err)));
                 }
@@ -1960,7 +1974,7 @@ var SFComponent = /** @class */ (function () {
                 /** @type {?} */
                 var property = retrieveSchema((/** @type {?} */ (schema.properties[key])), definitions);
                 /** @type {?} */
-                var ui = (/** @type {?} */ (__assign({ widget: property.type }, (property.format && FORMATMAPS[property.format]), (typeof property.ui === 'string' ? { widget: property.ui } : null), (!property.ui && Array.isArray(property.enum) && property.enum.length > 0
+                var ui = (/** @type {?} */ (__assign({ widget: property.type }, (property.format && FORMATMAPS[property.format]), (typeof property.ui === 'string' ? { widget: property.ui } : null), (!property.format && !property.ui && Array.isArray(property.enum) && property.enum.length > 0
                     ? { widget: 'select' }
                     : null), _this._defUi, ((/** @type {?} */ (property.ui))), uiSchema[uiKey])));
                 // 继承父节点布局属性
@@ -2811,8 +2825,6 @@ var ArrayWidget = /** @class */ (function (_super) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
-/** @type {?} */
-var EMAILSUFFIX = ['qq.com', '163.com', 'gmail.com', '126.com', 'aliyun.com'];
 var AutoCompleteWidget = /** @class */ (function (_super) {
     __extends(AutoCompleteWidget, _super);
     function AutoCompleteWidget() {
@@ -2875,7 +2887,7 @@ var AutoCompleteWidget = /** @class */ (function (_super) {
             return;
         switch (this.ui.type) {
             case 'email':
-                this.fixData = getCopyEnum(EMAILSUFFIX, null, this.schema.readOnly);
+                this.fixData = getCopyEnum(this.schema.enum || this.formProperty.options.uiEmailSuffixes, null, this.schema.readOnly);
                 break;
             default:
                 this.fixData = getCopyEnum(this.schema.enum, this.formProperty.formData, this.schema.readOnly);
@@ -4654,6 +4666,6 @@ var DelonFormModule = /** @class */ (function () {
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 
-export { DelonFormConfig, useFactory, SFComponent, SFItemComponent, SFFixedDirective, DelonFormModule, ERRORSDEFAULT, FormProperty, PropertyGroup, FormPropertyFactory, AtomicProperty, ObjectProperty, ArrayProperty, StringProperty, NumberProperty, BooleanProperty, Widget, ControlWidget, ArrayLayoutWidget, ObjectLayoutWidget, ObjectWidget, ArrayWidget, StringWidget, NumberWidget, DateWidget, TimeWidget, RadioWidget, CheckboxWidget, BooleanWidget, TextareaWidget, SelectWidget, TreeSelectWidget, TagWidget, UploadWidget, TransferWidget, SliderWidget, RateWidget, EMAILSUFFIX, AutoCompleteWidget, CascaderWidget, MentionWidget, CustomWidget, NzWidgetRegistry, WidgetRegistry, WidgetFactory, SchemaValidatorFactory, AjvSchemaValidatorFactory, SFItemWrapComponent as ɵb, TerminatorService as ɵa, SFTemplateDirective as ɵc, TextWidget as ɵd };
+export { DelonFormConfig, useFactory, SFComponent, SFItemComponent, SFFixedDirective, DelonFormModule, ERRORSDEFAULT, FormProperty, PropertyGroup, FormPropertyFactory, AtomicProperty, ObjectProperty, ArrayProperty, StringProperty, NumberProperty, BooleanProperty, Widget, ControlWidget, ArrayLayoutWidget, ObjectLayoutWidget, ObjectWidget, ArrayWidget, StringWidget, NumberWidget, DateWidget, TimeWidget, RadioWidget, CheckboxWidget, BooleanWidget, TextareaWidget, SelectWidget, TreeSelectWidget, TagWidget, UploadWidget, TransferWidget, SliderWidget, RateWidget, AutoCompleteWidget, CascaderWidget, MentionWidget, CustomWidget, NzWidgetRegistry, WidgetRegistry, WidgetFactory, SchemaValidatorFactory, AjvSchemaValidatorFactory, SFItemWrapComponent as ɵb, TerminatorService as ɵa, SFTemplateDirective as ɵc, TextWidget as ɵd };
 
 //# sourceMappingURL=form.js.map
