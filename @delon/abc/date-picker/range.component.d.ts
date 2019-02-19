@@ -1,9 +1,15 @@
 import { EventEmitter } from '@angular/core';
 import { ControlValueAccessor } from '@angular/forms';
-import { DatePickerConfig } from './date-picker.config';
+import { DatePickerConfig, DateRangePickerShortcutItem } from './date-picker.config';
 export declare class RangePickerComponent implements ControlValueAccessor {
+    private onChangeFn;
+    private onTouchedFn;
+    private _shortcut;
+    private _cog;
+    private comp;
     value: Date[];
     ngModelEnd: Date;
+    shortcut: any;
     readonly ngModelEndChange: EventEmitter<Date>;
     nzAllowClear: boolean;
     nzAutoFocus: boolean;
@@ -32,10 +38,9 @@ export declare class RangePickerComponent implements ControlValueAccessor {
     _nzOnPanelChange(e: any): void;
     _nzOnOk(e: any): void;
     valueChange(e: Date[]): void;
-    private onChangeFn;
-    private onTouchedFn;
     writeValue(value: Date): void;
     registerOnChange(fn: (val: Date) => void): void;
     registerOnTouched(fn: () => void): void;
     setDisabledState(disabled: boolean): void;
+    clickShortcut(item: DateRangePickerShortcutItem): void;
 }
