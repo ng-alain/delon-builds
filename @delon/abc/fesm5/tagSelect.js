@@ -1,4 +1,4 @@
-import { __spread, __decorate, __metadata } from 'tslib';
+import { __decorate, __metadata, __spread } from 'tslib';
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, Output, NgModule } from '@angular/core';
 import { DelonLocaleService, DelonLocaleModule } from '@delon/theme';
