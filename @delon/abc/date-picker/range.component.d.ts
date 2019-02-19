@@ -37,7 +37,7 @@ export declare class RangePickerComponent implements ControlValueAccessor {
     _nzOnOpenChange(e: any): void;
     _nzOnPanelChange(e: any): void;
     _nzOnOk(e: any): void;
-    valueChange(e: Date[]): void;
+    valueChange(e: [Date, Date]): void;
     writeValue(value: Date): void;
     registerOnChange(fn: (val: Date) => void): void;
     registerOnTouched(fn: () => void): void;

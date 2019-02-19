@@ -84,8 +84,20 @@
                 closed: true,
                 list: [
                     {
+                        text: '今天',
+                        fn: function () { return util.getTimeDistance('today'); },
+                    },
+                    {
+                        text: '昨天',
+                        fn: function () { return util.getTimeDistance('yesterday'); },
+                    },
+                    {
                         text: '近3天',
                         fn: function () { return util.getTimeDistance(-2); },
+                    },
+                    {
+                        text: '近7天',
+                        fn: function () { return util.getTimeDistance(-6); },
                     },
                     {
                         text: '本周',
@@ -195,6 +207,7 @@
          * @return {?}
          */
             function (e) {
+                e = util.fixEndTimeOfRange(e);
                 this.onChangeFn(e[0]);
                 this.ngModelEnd = e[1];
                 this.ngModelEndChange.emit(e[1]);
@@ -252,8 +265,8 @@
          * @return {?}
          */
             function (item) {
-                this.value = item.fn(this.value);
-                this.valueChange(this.value);
+                this.value = item.fn(( /** @type {?} */(this.value)));
+                this.valueChange(( /** @type {?} */(this.value)));
                 if (this._shortcut.closed) {
                     this.comp.closeOverlay();
                 }

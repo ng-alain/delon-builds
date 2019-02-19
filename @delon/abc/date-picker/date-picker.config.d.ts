@@ -25,13 +25,13 @@ export interface DateRangePickerShortcut {
     /** Whether to close the panel after clicking, default: `true` */
     closed?: boolean;
     /**
-     * Shortcut list, default: `近3天`, `本周`, `本月`, `全年`
+     * Shortcut list, default: `今天`, `昨天`, `近3天`, `近7天`, `本周`, `本月`, `全年`
      */
     list?: DateRangePickerShortcutItem[];
 }
 export interface DateRangePickerShortcutItem {
     text: string;
-    fn: (value: Date[]) => Date[];
+    fn: (value: [Date, Date]) => [Date, Date];
 }
 export declare class DatePickerConfig {
     range?: DateRangePickerConfig;

@@ -1,7 +1,7 @@
-import { getTimeDistance, deepMergeKey, InputBoolean } from '@delon/util';
+import { getTimeDistance, deepMergeKey, fixEndTimeOfRange, InputBoolean } from '@delon/util';
 import { __spread, __decorate, __metadata } from 'tslib';
 import { CommonModule } from '@angular/common';
-import { Injectable, defineInjectable, NgModule, EventEmitter, Component, forwardRef, ViewChild, Input, Output } from '@angular/core';
+import { Injectable, NgModule, defineInjectable, EventEmitter, Component, forwardRef, ViewChild, Input, Output } from '@angular/core';
 import { NG_VALUE_ACCESSOR, FormsModule } from '@angular/forms';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 
@@ -22,8 +22,20 @@ var DateRangePickerConfig = /** @class */ (function () {
             closed: true,
             list: [
                 {
+                    text: '今天',
+                    fn: function () { return getTimeDistance('today'); },
+                },
+                {
+                    text: '昨天',
+                    fn: function () { return getTimeDistance('yesterday'); },
+                },
+                {
                     text: '近3天',
                     fn: function () { return getTimeDistance(-2); },
+                },
+                {
+                    text: '近7天',
+                    fn: function () { return getTimeDistance(-6); },
                 },
                 {
                     text: '本周',
@@ -135,6 +147,7 @@ var RangePickerComponent = /** @class */ (function () {
      * @return {?}
      */
     function (e) {
+        e = fixEndTimeOfRange(e);
         this.onChangeFn(e[0]);
         this.ngModelEnd = e[1];
         this.ngModelEndChange.emit(e[1]);
@@ -192,8 +205,8 @@ var RangePickerComponent = /** @class */ (function () {
      * @return {?}
      */
     function (item) {
-        this.value = item.fn(this.value);
-        this.valueChange(this.value);
+        this.value = item.fn((/** @type {?} */ (this.value)));
+        this.valueChange((/** @type {?} */ (this.value)));
         if (this._shortcut.closed) {
             this.comp.closeOverlay();
         }
