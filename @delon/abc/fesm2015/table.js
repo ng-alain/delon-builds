@@ -545,7 +545,6 @@ class STDataSource {
         this.ynPipe = ynPipe;
         this.numberPipe = numberPipe;
         this.dom = dom;
-        this.sortTick = 0;
     }
     /**
      * @param {?} options
@@ -797,12 +796,6 @@ class STDataSource {
         };
     }
     /**
-     * @return {?}
-     */
-    get nextSortTick() {
-        return ++this.sortTick;
-    }
-    /**
      * @param {?} singleSort
      * @param {?} multiSort
      * @param {?} columns
@@ -818,9 +811,13 @@ class STDataSource {
         if (multiSort) {
             /** @type {?} */
             const ms = Object.assign({ key: 'sort', separator: '-', nameSeparator: '.' }, multiSort);
+            sortList.forEach(item => {
+                ret[item.key] = (item.reName || {})[item.default] || item.default;
+            });
+            // 合并处理
             ret = {
-                [ms.key]: sortList.sort((a, b) => a.tick - b.tick)
-                    .map(item => item.key + ms.nameSeparator + ((item.reName || {})[item.default] || item.default))
+                [ms.key]: Object.keys(ret)
+                    .map(key => key + ms.nameSeparator + ret[key])
                     .join(ms.separator),
             };
         }
@@ -1519,7 +1516,6 @@ class STComponent {
     sort(col, idx, value) {
         if (this.multiSort) {
             col._sort.default = value;
-            col._sort.tick = this.dataSource.nextSortTick;
         }
         else {
             this._columns.forEach((item, index) => (item._sort.default = index === idx ? value : null));
