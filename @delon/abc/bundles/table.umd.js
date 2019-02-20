@@ -714,6 +714,7 @@
             this.ynPipe = ynPipe;
             this.numberPipe = numberPipe;
             this.dom = dom;
+            this.sortTick = 0;
         }
         /**
          * @param {?} options
@@ -995,6 +996,15 @@
                     return 0;
                 };
             };
+        Object.defineProperty(STDataSource.prototype, "nextSortTick", {
+            get: /**
+             * @return {?}
+             */ function () {
+                return ++this.sortTick;
+            },
+            enumerable: true,
+            configurable: true
+        });
         /**
          * @param {?} singleSort
          * @param {?} multiSort
@@ -1018,13 +1028,9 @@
                 if (multiSort) {
                     /** @type {?} */
                     var ms_1 = __assign({ key: 'sort', separator: '-', nameSeparator: '.' }, multiSort);
-                    sortList.forEach(function (item) {
-                        ret[item.key] = (item.reName || {})[item.default] || item.default;
-                    });
-                    // 合并处理
                     ret = (_a = {},
-                        _a[ms_1.key] = Object.keys(ret)
-                            .map(function (key) { return key + ms_1.nameSeparator + ret[key]; })
+                        _a[ms_1.key] = sortList.sort(function (a, b) { return a.tick - b.tick; })
+                            .map(function (item) { return item.key + ms_1.nameSeparator + ((item.reName || {})[item.default] || item.default); })
                             .join(ms_1.separator),
                         _a);
                 }
@@ -1916,6 +1922,7 @@
             function (col, idx, value) {
                 if (this.multiSort) {
                     col._sort.default = value;
+                    col._sort.tick = this.dataSource.nextSortTick;
                 }
                 else {
                     this._columns.forEach(function (item, index) { return (item._sort.default = index === idx ? value : null); });
