@@ -1,9 +1,11 @@
 import extend from 'extend';
 import addDays from 'date-fns/add_days';
+import endOfDay from 'date-fns/end_of_day';
 import endOfMonth from 'date-fns/end_of_month';
 import endOfWeek from 'date-fns/end_of_week';
 import endOfYear from 'date-fns/end_of_year';
 import parse from 'date-fns/parse';
+import startOfDay from 'date-fns/start_of_day';
 import startOfMonth from 'date-fns/start_of_month';
 import startOfWeek from 'date-fns/start_of_week';
 import startOfYear from 'date-fns/start_of_year';
@@ -226,26 +228,51 @@ function format(str, obj, needDeepGet = false) {
  */
 function getTimeDistance(type, time) {
     time = parse(time || new Date());
+    /** @type {?} */
+    const options = { weekStartsOn: 1 };
+    /** @type {?} */
+    let res;
     switch (type) {
         case 'today':
-            return [time, time];
+            res = [time, time];
+            break;
         case '-today':
-            return [addDays(time, -1), time];
+            res = [addDays(time, -1), time];
+            break;
+        case 'yesterday':
+            res = [addDays(time, -1), addDays(time, -1)];
+            break;
         case 'week':
-            return [startOfWeek(time), endOfWeek(time)];
+            res = [startOfWeek(time, options), endOfWeek(time, options)];
+            break;
         case '-week':
-            return [startOfWeek(subWeeks(time, 1)), endOfWeek(subWeeks(time, 1))];
+            res = [startOfWeek(subWeeks(time, 1), options), endOfWeek(subWeeks(time, 1), options)];
+            break;
         case 'month':
-            return [startOfMonth(time), endOfMonth(time)];
+            res = [startOfMonth(time), endOfMonth(time)];
+            break;
         case '-month':
-            return [startOfMonth(subMonths(time, 1)), endOfMonth(subMonths(time, 1))];
+            res = [startOfMonth(subMonths(time, 1)), endOfMonth(subMonths(time, 1))];
+            break;
         case 'year':
-            return [startOfYear(time), endOfYear(time)];
+            res = [startOfYear(time), endOfYear(time)];
+            break;
         case '-year':
-            return [startOfYear(subYears(time, 1)), endOfYear(subYears(time, 1))];
+            res = [startOfYear(subYears(time, 1)), endOfYear(subYears(time, 1))];
+            break;
         default:
-            return type > 0 ? [time, addDays(time, type)] : [addDays(time, type), time];
+            res = type > 0 ? [time, addDays(time, type)] : [addDays(time, type), time];
+            break;
     }
+    return fixEndTimeOfRange(res);
+}
+/**
+ * fix time is the most, big value
+ * @param {?} dates
+ * @return {?}
+ */
+function fixEndTimeOfRange(dates) {
+    return [startOfDay(dates[0]), endOfDay(dates[1])];
 }
 
 /**
@@ -887,6 +914,6 @@ DelonUtilModule.decorators = [
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 
-export { _Validators, StringTemplateOutletDirective, format, getTimeDistance, LazyService, isNum, isInt, isDecimal, isIdCard, isMobile, isUrl, isEmpty, toBoolean, InputBoolean, toNumber, InputNumber, deepGet, deepCopy, copy, deepMergeKey, deepMerge, updateHostClass, ArrayService, DelonUtilConfig, DelonUtilModule };
+export { _Validators, StringTemplateOutletDirective, format, getTimeDistance, fixEndTimeOfRange, LazyService, isNum, isInt, isDecimal, isIdCard, isMobile, isUrl, isEmpty, toBoolean, InputBoolean, toNumber, InputNumber, deepGet, deepCopy, copy, deepMergeKey, deepMerge, updateHostClass, ArrayService, DelonUtilConfig, DelonUtilModule };
 
 //# sourceMappingURL=util.js.map

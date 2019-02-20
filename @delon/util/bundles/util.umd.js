@@ -4,17 +4,19 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('extend'), require('date-fns/add_days'), require('date-fns/end_of_month'), require('date-fns/end_of_week'), require('date-fns/end_of_year'), require('date-fns/parse'), require('date-fns/start_of_month'), require('date-fns/start_of_week'), require('date-fns/start_of_year'), require('date-fns/sub_months'), require('date-fns/sub_weeks'), require('date-fns/sub_years'), require('rxjs'), require('rxjs/operators'), require('ng-zorro-antd'), require('@angular/common'), require('@angular/core')) :
-    typeof define === 'function' && define.amd ? define('@delon/util', ['exports', 'extend', 'date-fns/add_days', 'date-fns/end_of_month', 'date-fns/end_of_week', 'date-fns/end_of_year', 'date-fns/parse', 'date-fns/start_of_month', 'date-fns/start_of_week', 'date-fns/start_of_year', 'date-fns/sub_months', 'date-fns/sub_weeks', 'date-fns/sub_years', 'rxjs', 'rxjs/operators', 'ng-zorro-antd', '@angular/common', '@angular/core'], factory) :
-    (factory((global.delon = global.delon || {}, global.delon.util = {}),global.Extend,global.addDays,global.endOfMonth,global.endOfWeek,global.endOfYear,global.parse,global.startOfMonth,global.startOfWeek,global.startOfYear,global.subMonths,global.subWeeks,global.subYears,global.rxjs,global.rxjs.operators,global['ng-zorro-antd'],global.ng.common,global.ng.core));
-}(this, (function (exports,extend,addDays,endOfMonth,endOfWeek,endOfYear,parse,startOfMonth,startOfWeek,startOfYear,subMonths,subWeeks,subYears,rxjs,operators,ngZorroAntd,i1,i0) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('extend'), require('date-fns/add_days'), require('date-fns/end_of_day'), require('date-fns/end_of_month'), require('date-fns/end_of_week'), require('date-fns/end_of_year'), require('date-fns/parse'), require('date-fns/start_of_day'), require('date-fns/start_of_month'), require('date-fns/start_of_week'), require('date-fns/start_of_year'), require('date-fns/sub_months'), require('date-fns/sub_weeks'), require('date-fns/sub_years'), require('rxjs'), require('rxjs/operators'), require('ng-zorro-antd'), require('@angular/common'), require('@angular/core')) :
+    typeof define === 'function' && define.amd ? define('@delon/util', ['exports', 'extend', 'date-fns/add_days', 'date-fns/end_of_day', 'date-fns/end_of_month', 'date-fns/end_of_week', 'date-fns/end_of_year', 'date-fns/parse', 'date-fns/start_of_day', 'date-fns/start_of_month', 'date-fns/start_of_week', 'date-fns/start_of_year', 'date-fns/sub_months', 'date-fns/sub_weeks', 'date-fns/sub_years', 'rxjs', 'rxjs/operators', 'ng-zorro-antd', '@angular/common', '@angular/core'], factory) :
+    (factory((global.delon = global.delon || {}, global.delon.util = {}),global.Extend,global.addDays,global.endOfDay,global.endOfMonth,global.endOfWeek,global.endOfYear,global.parse,global.startOfDay,global.startOfMonth,global.startOfWeek,global.startOfYear,global.subMonths,global.subWeeks,global.subYears,global.rxjs,global.rxjs.operators,global['ng-zorro-antd'],global.ng.common,global.ng.core));
+}(this, (function (exports,extend,addDays,endOfDay,endOfMonth,endOfWeek,endOfYear,parse,startOfDay,startOfMonth,startOfWeek,startOfYear,subMonths,subWeeks,subYears,rxjs,operators,ngZorroAntd,i1,i0) { 'use strict';
 
     extend = extend && extend.hasOwnProperty('default') ? extend['default'] : extend;
     addDays = addDays && addDays.hasOwnProperty('default') ? addDays['default'] : addDays;
+    endOfDay = endOfDay && endOfDay.hasOwnProperty('default') ? endOfDay['default'] : endOfDay;
     endOfMonth = endOfMonth && endOfMonth.hasOwnProperty('default') ? endOfMonth['default'] : endOfMonth;
     endOfWeek = endOfWeek && endOfWeek.hasOwnProperty('default') ? endOfWeek['default'] : endOfWeek;
     endOfYear = endOfYear && endOfYear.hasOwnProperty('default') ? endOfYear['default'] : endOfYear;
     parse = parse && parse.hasOwnProperty('default') ? parse['default'] : parse;
+    startOfDay = startOfDay && startOfDay.hasOwnProperty('default') ? startOfDay['default'] : startOfDay;
     startOfMonth = startOfMonth && startOfMonth.hasOwnProperty('default') ? startOfMonth['default'] : startOfMonth;
     startOfWeek = startOfWeek && startOfWeek.hasOwnProperty('default') ? startOfWeek['default'] : startOfWeek;
     startOfYear = startOfYear && startOfYear.hasOwnProperty('default') ? startOfYear['default'] : startOfYear;
@@ -318,26 +320,51 @@
      */
     function getTimeDistance(type, time) {
         time = parse(time || new Date());
+        /** @type {?} */
+        var options = { weekStartsOn: 1 };
+        /** @type {?} */
+        var res;
         switch (type) {
             case 'today':
-                return [time, time];
+                res = [time, time];
+                break;
             case '-today':
-                return [addDays(time, -1), time];
+                res = [addDays(time, -1), time];
+                break;
+            case 'yesterday':
+                res = [addDays(time, -1), addDays(time, -1)];
+                break;
             case 'week':
-                return [startOfWeek(time), endOfWeek(time)];
+                res = [startOfWeek(time, options), endOfWeek(time, options)];
+                break;
             case '-week':
-                return [startOfWeek(subWeeks(time, 1)), endOfWeek(subWeeks(time, 1))];
+                res = [startOfWeek(subWeeks(time, 1), options), endOfWeek(subWeeks(time, 1), options)];
+                break;
             case 'month':
-                return [startOfMonth(time), endOfMonth(time)];
+                res = [startOfMonth(time), endOfMonth(time)];
+                break;
             case '-month':
-                return [startOfMonth(subMonths(time, 1)), endOfMonth(subMonths(time, 1))];
+                res = [startOfMonth(subMonths(time, 1)), endOfMonth(subMonths(time, 1))];
+                break;
             case 'year':
-                return [startOfYear(time), endOfYear(time)];
+                res = [startOfYear(time), endOfYear(time)];
+                break;
             case '-year':
-                return [startOfYear(subYears(time, 1)), endOfYear(subYears(time, 1))];
+                res = [startOfYear(subYears(time, 1)), endOfYear(subYears(time, 1))];
+                break;
             default:
-                return type > 0 ? [time, addDays(time, type)] : [addDays(time, type), time];
+                res = type > 0 ? [time, addDays(time, type)] : [addDays(time, type), time];
+                break;
         }
+        return fixEndTimeOfRange(res);
+    }
+    /**
+     * fix time is the most, big value
+     * @param {?} dates
+     * @return {?}
+     */
+    function fixEndTimeOfRange(dates) {
+        return [startOfDay(dates[0]), endOfDay(dates[1])];
     }
 
     /**
@@ -1166,6 +1193,7 @@
     exports.StringTemplateOutletDirective = StringTemplateOutletDirective;
     exports.format = format;
     exports.getTimeDistance = getTimeDistance;
+    exports.fixEndTimeOfRange = fixEndTimeOfRange;
     exports.LazyService = LazyService;
     exports.isNum = isNum;
     exports.isInt = isInt;
