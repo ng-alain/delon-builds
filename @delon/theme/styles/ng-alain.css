@@ -23524,8 +23524,6 @@ body {
   overflow: hidden;
   text-overflow: ellipsis;
   position: relative;
-  display: flex;
-  align-items: center;
   user-select: none;
 }
 .sidebar-nav__item-link:hover {
