@@ -1,7 +1,7 @@
 import { __decorate, __metadata } from 'tslib';
 import { getTimeDistance, deepMergeKey, fixEndTimeOfRange, InputBoolean } from '@delon/util';
 import { CommonModule } from '@angular/common';
-import { Injectable, NgModule, defineInjectable, EventEmitter, Component, forwardRef, ViewChild, Input, Output } from '@angular/core';
+import { Injectable, EventEmitter, Component, forwardRef, ViewChild, Input, Output, NgModule, defineInjectable } from '@angular/core';
 import { NG_VALUE_ACCESSOR, FormsModule } from '@angular/forms';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 
