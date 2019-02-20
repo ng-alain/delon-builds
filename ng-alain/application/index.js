@@ -385,6 +385,18 @@ function fixLangInHtml(host, p, langs) {
         host.overwrite(p, html);
     }
 }
+function fixVsCode(options) {
+    return (host) => {
+        const filePath = '.vscode/extensions.json';
+        let json = json_1.getJSON(host, filePath);
+        if (json == null) {
+            host.create(filePath, '');
+            json = {};
+        }
+        json.recommendations = ['cipchk.ng-alain-extension-pack'];
+        json_1.overwriteJSON(host, filePath, json);
+    };
+}
 function installPackages() {
     return (host, context) => {
         console.log(`Start installing dependencies, please wait...`);
@@ -411,6 +423,7 @@ function default_1(options) {
             forceLess(),
             addStyle(options),
             fixLang(options),
+            fixVsCode(options),
             installPackages(),
         ])(host, context);
     };
