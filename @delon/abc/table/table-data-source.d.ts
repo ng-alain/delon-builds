@@ -37,12 +37,14 @@ export declare class STDataSource {
     private ynPipe;
     private numberPipe;
     private dom;
+    private sortTick;
     constructor(http: _HttpClient, currentyPipe: CNCurrencyPipe, datePipe: DatePipe, ynPipe: YNPipe, numberPipe: DecimalPipe, dom: DomSanitizer);
     process(options: STDataSourceOptions): Promise<STDataSourceResult>;
     private get;
     private getByHttp;
     private getValidSort;
     private getSorterFn;
+    readonly nextSortTick: number;
     getReqSortMap(singleSort: STSingleSort, multiSort: STMultiSort, columns: STColumn[]): {
         [key: string]: string;
     };
