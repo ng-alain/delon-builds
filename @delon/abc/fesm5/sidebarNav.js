@@ -3,7 +3,7 @@ import { Subject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
 import { MenuService, SettingsService, WINDOW } from '@delon/theme';
 import { DOCUMENT, CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Inject, Input, NgZone, Output, Renderer2, NgModule } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Inject, Input, Output, Renderer2, NgModule } from '@angular/core';
 import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { InputBoolean, DelonUtilModule } from '@delon/util';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
@@ -17,13 +17,12 @@ var SHOWCLS = 'sidebar-nav__floating-show';
 /** @type {?} */
 var FLOATINGCLS = 'sidebar-nav__floating';
 var SidebarNavComponent = /** @class */ (function () {
-    function SidebarNavComponent(menuSrv, settings, router, render, cdr, ngZone, doc, win) {
+    function SidebarNavComponent(menuSrv, settings, router, render, cdr, doc, win) {
         this.menuSrv = menuSrv;
         this.settings = settings;
         this.router = router;
         this.render = render;
         this.cdr = cdr;
-        this.ngZone = ngZone;
         this.doc = doc;
         this.win = win;
         this.unsubscribe$ = new Subject();
@@ -191,21 +190,18 @@ var SidebarNavComponent = /** @class */ (function () {
      * @return {?}
      */
     function (e, item) {
-        var _this = this;
         if (this.collapsed !== true) {
             return;
         }
-        this.ngZone.runOutsideAngular(function () {
-            e.preventDefault();
-            /** @type {?} */
-            var linkNode = (/** @type {?} */ (e.target));
-            _this.genFloatingContainer();
-            /** @type {?} */
-            var subNode = _this.genSubNode((/** @type {?} */ (linkNode)), item);
-            _this.hideAll();
-            subNode.classList.add(SHOWCLS);
-            _this.calPos((/** @type {?} */ (linkNode)), subNode);
-        });
+        e.preventDefault();
+        /** @type {?} */
+        var linkNode = (/** @type {?} */ (e.target));
+        this.genFloatingContainer();
+        /** @type {?} */
+        var subNode = this.genSubNode((/** @type {?} */ (linkNode)), item);
+        this.hideAll();
+        subNode.classList.add(SHOWCLS);
+        this.calPos((/** @type {?} */ (linkNode)), subNode);
     };
     /**
      * @param {?} item
@@ -284,7 +280,7 @@ var SidebarNavComponent = /** @class */ (function () {
         var _a = this, doc = _a.doc, router = _a.router, unsubscribe$ = _a.unsubscribe$, menuSrv = _a.menuSrv, cdr = _a.cdr;
         this.bodyEl = doc.querySelector('body');
         menuSrv.openedByUrl(router.url, this.recursivePath);
-        this.ngZone.runOutsideAngular(function () { return _this.genFloatingContainer(); });
+        this.genFloatingContainer();
         menuSrv.change.pipe(takeUntil(unsubscribe$)).subscribe(function (data) {
             menuSrv.visit(data, function (i) {
                 if (i._aclResult)
@@ -374,7 +370,6 @@ var SidebarNavComponent = /** @class */ (function () {
         { type: Router },
         { type: Renderer2 },
         { type: ChangeDetectorRef },
-        { type: NgZone },
         { type: undefined, decorators: [{ type: Inject, args: [DOCUMENT,] }] },
         { type: Window, decorators: [{ type: Inject, args: [WINDOW,] }] }
     ]; };

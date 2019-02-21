@@ -47,13 +47,12 @@
     /** @type {?} */
     var FLOATINGCLS = 'sidebar-nav__floating';
     var SidebarNavComponent = /** @class */ (function () {
-        function SidebarNavComponent(menuSrv, settings, router$$1, render, cdr, ngZone, doc, win) {
+        function SidebarNavComponent(menuSrv, settings, router$$1, render, cdr, doc, win) {
             this.menuSrv = menuSrv;
             this.settings = settings;
             this.router = router$$1;
             this.render = render;
             this.cdr = cdr;
-            this.ngZone = ngZone;
             this.doc = doc;
             this.win = win;
             this.unsubscribe$ = new rxjs.Subject();
@@ -219,21 +218,18 @@
          * @return {?}
          */
             function (e, item) {
-                var _this = this;
                 if (this.collapsed !== true) {
                     return;
                 }
-                this.ngZone.runOutsideAngular(function () {
-                    e.preventDefault();
-                    /** @type {?} */
-                    var linkNode = ( /** @type {?} */(e.target));
-                    _this.genFloatingContainer();
-                    /** @type {?} */
-                    var subNode = _this.genSubNode(( /** @type {?} */(linkNode)), item);
-                    _this.hideAll();
-                    subNode.classList.add(SHOWCLS);
-                    _this.calPos(( /** @type {?} */(linkNode)), subNode);
-                });
+                e.preventDefault();
+                /** @type {?} */
+                var linkNode = ( /** @type {?} */(e.target));
+                this.genFloatingContainer();
+                /** @type {?} */
+                var subNode = this.genSubNode(( /** @type {?} */(linkNode)), item);
+                this.hideAll();
+                subNode.classList.add(SHOWCLS);
+                this.calPos(( /** @type {?} */(linkNode)), subNode);
             };
         /**
          * @param {?} item
@@ -312,7 +308,7 @@
                 var _a = this, doc = _a.doc, router$$1 = _a.router, unsubscribe$ = _a.unsubscribe$, menuSrv = _a.menuSrv, cdr = _a.cdr;
                 this.bodyEl = doc.querySelector('body');
                 menuSrv.openedByUrl(router$$1.url, this.recursivePath);
-                this.ngZone.runOutsideAngular(function () { return _this.genFloatingContainer(); });
+                this.genFloatingContainer();
                 menuSrv.change.pipe(operators.takeUntil(unsubscribe$)).subscribe(function (data) {
                     menuSrv.visit(data, function (i) {
                         if (i._aclResult)
@@ -403,7 +399,6 @@
                 { type: router.Router },
                 { type: core.Renderer2 },
                 { type: core.ChangeDetectorRef },
-                { type: core.NgZone },
                 { type: undefined, decorators: [{ type: core.Inject, args: [common.DOCUMENT,] }] },
                 { type: Window, decorators: [{ type: core.Inject, args: [theme.WINDOW,] }] }
             ];
