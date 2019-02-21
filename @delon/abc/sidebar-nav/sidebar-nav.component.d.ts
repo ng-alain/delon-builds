@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, EventEmitter, OnDestroy, OnInit, Renderer2 } from '@angular/core';
+import { ChangeDetectorRef, EventEmitter, NgZone, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
 import { Menu, MenuService, SettingsService } from '@delon/theme';
 import { Nav } from './sidebar-nav.types';
@@ -8,6 +8,7 @@ export declare class SidebarNavComponent implements OnInit, OnDestroy {
     private router;
     private render;
     private cdr;
+    private ngZone;
     private doc;
     private win;
     private bodyEl;
@@ -21,7 +22,7 @@ export declare class SidebarNavComponent implements OnInit, OnDestroy {
     readonly select: EventEmitter<Menu>;
     readonly collapsed: boolean;
     private readonly _d;
-    constructor(menuSrv: MenuService, settings: SettingsService, router: Router, render: Renderer2, cdr: ChangeDetectorRef, doc: any, win: Window);
+    constructor(menuSrv: MenuService, settings: SettingsService, router: Router, render: Renderer2, cdr: ChangeDetectorRef, ngZone: NgZone, doc: any, win: Window);
     private floatingAreaClickHandle;
     private clearFloatingContainer;
     private genFloatingContainer;
