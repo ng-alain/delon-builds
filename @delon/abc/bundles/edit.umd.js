@@ -327,7 +327,7 @@
             this.inited = false;
             this.onceFlag = false;
             this.invalid = false;
-            this.labelWidth = null;
+            this._labelWidth = null;
             this.required = false;
             this.controlClass = '';
             this._id = "_se-" + nextUniqueId++;
@@ -390,16 +390,16 @@
          * @return {THIS}
          */
             function () {
-                var _a = ( /** @type {?} */(this)), el = _a.el, ren = _a.ren, clsMap = _a.clsMap, col = _a.col, parent = _a.parent, cdr = _a.cdr;
-                ( /** @type {?} */(this)).labelWidth = parent.labelWidth;
+                var _a = ( /** @type {?} */(this)), el = _a.el, ren = _a.ren, clsMap = _a.clsMap, col = _a.col, parent = _a.parent, cdr = _a.cdr, line = _a.line, labelWidth = _a.labelWidth, rep = _a.rep;
+                ( /** @type {?} */(this))._labelWidth = labelWidth != null ? labelWidth : parent.labelWidth;
                 clsMap.forEach(function (cls) { return ren.removeClass(el, cls); });
                 clsMap.length = 0;
                 /** @type {?} */
                 var repCls = parent.nzLayout === 'horizontal'
-                    ? ( /** @type {?} */(this)).rep.genCls(col != null ? col : parent.colInCon || parent.col)
+                    ? rep.genCls(col != null ? col : parent.colInCon || parent.col)
                     : [];
                 clsMap.push.apply(clsMap, __spread(["ant-form-item"], repCls, [prefixCls + "__item"]));
-                if (( /** @type {?} */(this)).line || parent.line) {
+                if (line || parent.line) {
                     clsMap.push(prefixCls + "__line");
                 }
                 clsMap.forEach(function (cls) { return ren.addClass(el, cls); });
@@ -484,7 +484,7 @@
         SEComponent.decorators = [
             { type: i0.Component, args: [{
                         selector: 'se',
-                        template: "<div class=\"ant-form-item-label se__label\"\n     [class.se__nolabel]=\"!label\"\n     [style.width.px]=\"labelWidth\">\n  <label *ngIf=\"label\"\n         [attr.for]=\"_id\"\n         [ngClass]=\"{'ant-form-item-required': required}\">\n    <ng-container *stringTemplateOutlet=\"label\">{{ label }}</ng-container>\n    <span class=\"se__label-optional\">\n      {{ optional }}\n      <nz-tooltip *ngIf=\"optionalHelp\"\n                  [nzTitle]=\"optionalHelp\">\n        <i nz-tooltip\n           nz-icon\n           type=\"question-circle\"></i>\n      </nz-tooltip>\n    </span>\n  </label>\n</div>\n<div class=\"ant-form-item-control-wrapper se__control\">\n  <div class=\"ant-form-item-control {{controlClass}}\"\n       [class.has-error]=\"invalid\">\n    <ng-content></ng-content>\n    <se-error *ngIf=\"showErr\">{{error}}</se-error>\n    <div *ngIf=\"extra\"\n         class=\"ant-form-extra\">{{extra}}</div>\n  </div>\n</div>\n",
+                        template: "<div class=\"ant-form-item-label se__label\"\n     [class.se__nolabel]=\"!label\"\n     [style.width.px]=\"_labelWidth\">\n  <label *ngIf=\"label\"\n         [attr.for]=\"_id\"\n         [ngClass]=\"{'ant-form-item-required': required}\">\n    <ng-container *stringTemplateOutlet=\"label\">{{ label }}</ng-container>\n    <span class=\"se__label-optional\">\n      {{ optional }}\n      <nz-tooltip *ngIf=\"optionalHelp\"\n                  [nzTitle]=\"optionalHelp\">\n        <i nz-tooltip\n           nz-icon\n           type=\"question-circle\"></i>\n      </nz-tooltip>\n    </span>\n  </label>\n</div>\n<div class=\"ant-form-item-control-wrapper se__control\">\n  <div class=\"ant-form-item-control {{controlClass}}\"\n       [class.has-error]=\"invalid\">\n    <ng-content></ng-content>\n    <se-error *ngIf=\"showErr\">{{error}}</se-error>\n    <div *ngIf=\"extra\"\n         class=\"ant-form-extra\">{{extra}}</div>\n  </div>\n</div>\n",
                         host: {
                             '[style.padding-left.px]': 'paddingValue',
                             '[style.padding-right.px]': 'paddingValue',
@@ -515,6 +515,7 @@
             required: [{ type: i0.Input }],
             controlClass: [{ type: i0.Input }],
             line: [{ type: i0.Input }],
+            labelWidth: [{ type: i0.Input }],
             id: [{ type: i0.Input }]
         };
         __decorate([
@@ -529,6 +530,10 @@
             util.InputBoolean(null),
             __metadata("design:type", Boolean)
         ], SEComponent.prototype, "line", void 0);
+        __decorate([
+            util.InputNumber(null),
+            __metadata("design:type", Number)
+        ], SEComponent.prototype, "labelWidth", void 0);
         return SEComponent;
     }());
 

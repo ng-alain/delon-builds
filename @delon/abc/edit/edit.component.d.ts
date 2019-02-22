@@ -14,7 +14,7 @@ export declare class SEComponent implements OnChanges, AfterViewInit, OnDestroy 
     private inited;
     private onceFlag;
     invalid: boolean;
-    labelWidth: any;
+    _labelWidth: any;
     optional: string;
     optionalHelp: string;
     error: string;
@@ -24,6 +24,7 @@ export declare class SEComponent implements OnChanges, AfterViewInit, OnDestroy 
     required: boolean;
     controlClass: string;
     line: boolean;
+    labelWidth: number;
     id: string;
     _id: string;
     _autoId: boolean;

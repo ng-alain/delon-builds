@@ -252,7 +252,7 @@ class SEComponent {
         this.inited = false;
         this.onceFlag = false;
         this.invalid = false;
-        this.labelWidth = null;
+        this._labelWidth = null;
         this.required = false;
         this.controlClass = '';
         this._id = `_se-${nextUniqueId++}`;
@@ -295,16 +295,16 @@ class SEComponent {
      * @return {THIS}
      */
     setClass() {
-        const { el, ren, clsMap, col, parent, cdr } = (/** @type {?} */ (this));
-        (/** @type {?} */ (this)).labelWidth = parent.labelWidth;
+        const { el, ren, clsMap, col, parent, cdr, line, labelWidth, rep } = (/** @type {?} */ (this));
+        (/** @type {?} */ (this))._labelWidth = labelWidth != null ? labelWidth : parent.labelWidth;
         clsMap.forEach(cls => ren.removeClass(el, cls));
         clsMap.length = 0;
         /** @type {?} */
         const repCls = parent.nzLayout === 'horizontal'
-            ? (/** @type {?} */ (this)).rep.genCls(col != null ? col : parent.colInCon || parent.col)
+            ? rep.genCls(col != null ? col : parent.colInCon || parent.col)
             : [];
         clsMap.push(`ant-form-item`, ...repCls, `${prefixCls}__item`);
-        if ((/** @type {?} */ (this)).line || parent.line) {
+        if (line || parent.line) {
             clsMap.push(`${prefixCls}__line`);
         }
         clsMap.forEach(cls => ren.addClass(el, cls));
@@ -370,7 +370,7 @@ class SEComponent {
 SEComponent.decorators = [
     { type: Component, args: [{
                 selector: 'se',
-                template: "<div class=\"ant-form-item-label se__label\"\n     [class.se__nolabel]=\"!label\"\n     [style.width.px]=\"labelWidth\">\n  <label *ngIf=\"label\"\n         [attr.for]=\"_id\"\n         [ngClass]=\"{'ant-form-item-required': required}\">\n    <ng-container *stringTemplateOutlet=\"label\">{{ label }}</ng-container>\n    <span class=\"se__label-optional\">\n      {{ optional }}\n      <nz-tooltip *ngIf=\"optionalHelp\"\n                  [nzTitle]=\"optionalHelp\">\n        <i nz-tooltip\n           nz-icon\n           type=\"question-circle\"></i>\n      </nz-tooltip>\n    </span>\n  </label>\n</div>\n<div class=\"ant-form-item-control-wrapper se__control\">\n  <div class=\"ant-form-item-control {{controlClass}}\"\n       [class.has-error]=\"invalid\">\n    <ng-content></ng-content>\n    <se-error *ngIf=\"showErr\">{{error}}</se-error>\n    <div *ngIf=\"extra\"\n         class=\"ant-form-extra\">{{extra}}</div>\n  </div>\n</div>\n",
+                template: "<div class=\"ant-form-item-label se__label\"\n     [class.se__nolabel]=\"!label\"\n     [style.width.px]=\"_labelWidth\">\n  <label *ngIf=\"label\"\n         [attr.for]=\"_id\"\n         [ngClass]=\"{'ant-form-item-required': required}\">\n    <ng-container *stringTemplateOutlet=\"label\">{{ label }}</ng-container>\n    <span class=\"se__label-optional\">\n      {{ optional }}\n      <nz-tooltip *ngIf=\"optionalHelp\"\n                  [nzTitle]=\"optionalHelp\">\n        <i nz-tooltip\n           nz-icon\n           type=\"question-circle\"></i>\n      </nz-tooltip>\n    </span>\n  </label>\n</div>\n<div class=\"ant-form-item-control-wrapper se__control\">\n  <div class=\"ant-form-item-control {{controlClass}}\"\n       [class.has-error]=\"invalid\">\n    <ng-content></ng-content>\n    <se-error *ngIf=\"showErr\">{{error}}</se-error>\n    <div *ngIf=\"extra\"\n         class=\"ant-form-extra\">{{extra}}</div>\n  </div>\n</div>\n",
                 host: {
                     '[style.padding-left.px]': 'paddingValue',
                     '[style.padding-right.px]': 'paddingValue',
@@ -399,6 +399,7 @@ SEComponent.propDecorators = {
     required: [{ type: Input }],
     controlClass: [{ type: Input }],
     line: [{ type: Input }],
+    labelWidth: [{ type: Input }],
     id: [{ type: Input }]
 };
 __decorate([
@@ -413,6 +414,10 @@ __decorate([
     InputBoolean(null),
     __metadata("design:type", Boolean)
 ], SEComponent.prototype, "line", void 0);
+__decorate([
+    InputNumber(null),
+    __metadata("design:type", Number)
+], SEComponent.prototype, "labelWidth", void 0);
 
 /**
  * @fileoverview added by tsickle
