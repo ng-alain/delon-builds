@@ -702,7 +702,7 @@ class STDataSource {
         let ret = value;
         switch (col.type) {
             case 'no':
-                ret = this.getNoIndex(item, col, idx);
+                ret = col.noIndex + idx;
                 break;
             case 'img':
                 ret = value ? `<img src="${value}" class="img">` : '';
@@ -762,15 +762,6 @@ class STDataSource {
             reqOptions = req.process(reqOptions);
         }
         return this.http.request(method, url, reqOptions);
-    }
-    /**
-     * @param {?} item
-     * @param {?} col
-     * @param {?} idx
-     * @return {?}
-     */
-    getNoIndex(item, col, idx) {
-        return typeof col.noIndex === 'function' ? col.noIndex(item, col, idx) : col.noIndex + idx;
     }
     // #region sort
     /**
@@ -1514,7 +1505,7 @@ class STComponent {
         // recalculate no
         (/** @type {?} */ (this))._columns
             .filter(w => w.type === 'no')
-            .forEach(c => (/** @type {?} */ (this))._data.forEach((i, idx) => (i._values[c.__point] = { text: (/** @type {?} */ (this)).dataSource.getNoIndex(i, c, idx), org: idx })));
+            .forEach(c => (/** @type {?} */ (this))._data.forEach((i, idx) => (i._values[c.__point] = { text: c.noIndex + idx, org: idx })));
         return (/** @type {?} */ (this)).cd();
     }
     // #endregion
