@@ -3,7 +3,7 @@ import { Subject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
 import { MenuService, SettingsService, WINDOW } from '@delon/theme';
 import { DOCUMENT, CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Inject, Input, Output, Renderer2, NgModule } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Inject, Input, NgZone, Output, Renderer2, NgModule } from '@angular/core';
 import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { InputBoolean, DelonUtilModule } from '@delon/util';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
@@ -23,15 +23,17 @@ class SidebarNavComponent {
      * @param {?} router
      * @param {?} render
      * @param {?} cdr
+     * @param {?} ngZone
      * @param {?} doc
      * @param {?} win
      */
-    constructor(menuSrv, settings, router, render, cdr, doc, win) {
+    constructor(menuSrv, settings, router, render, cdr, ngZone, doc, win) {
         this.menuSrv = menuSrv;
         this.settings = settings;
         this.router = router;
         this.render = render;
         this.cdr = cdr;
+        this.ngZone = ngZone;
         this.doc = doc;
         this.win = win;
         this.unsubscribe$ = new Subject();
@@ -163,15 +165,17 @@ class SidebarNavComponent {
         if (this.collapsed !== true) {
             return;
         }
-        e.preventDefault();
-        /** @type {?} */
-        const linkNode = (/** @type {?} */ (e.target));
-        this.genFloatingContainer();
-        /** @type {?} */
-        const subNode = this.genSubNode((/** @type {?} */ (linkNode)), item);
-        this.hideAll();
-        subNode.classList.add(SHOWCLS);
-        this.calPos((/** @type {?} */ (linkNode)), subNode);
+        this.ngZone.runOutsideAngular(() => {
+            e.preventDefault();
+            /** @type {?} */
+            const linkNode = (/** @type {?} */ (e.target));
+            this.genFloatingContainer();
+            /** @type {?} */
+            const subNode = this.genSubNode((/** @type {?} */ (linkNode)), item);
+            this.hideAll();
+            subNode.classList.add(SHOWCLS);
+            this.calPos((/** @type {?} */ (linkNode)), subNode);
+        });
     }
     /**
      * @param {?} item
@@ -232,7 +236,7 @@ class SidebarNavComponent {
         const { doc, router, unsubscribe$, menuSrv, cdr } = this;
         this.bodyEl = doc.querySelector('body');
         menuSrv.openedByUrl(router.url, this.recursivePath);
-        this.genFloatingContainer();
+        this.ngZone.runOutsideAngular(() => this.genFloatingContainer());
         menuSrv.change.pipe(takeUntil(unsubscribe$)).subscribe(data => {
             menuSrv.visit(data, i => {
                 if (i._aclResult)
@@ -306,6 +310,7 @@ SidebarNavComponent.ctorParameters = () => [
     { type: Router },
     { type: Renderer2 },
     { type: ChangeDetectorRef },
+    { type: NgZone },
     { type: undefined, decorators: [{ type: Inject, args: [DOCUMENT,] }] },
     { type: Window, decorators: [{ type: Inject, args: [WINDOW,] }] }
 ];
