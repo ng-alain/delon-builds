@@ -1,3 +1,4 @@
+import { LocaleData } from '@delon/theme';
 import { SFValue } from '../../interface';
 import { SFSchemaEnum } from '../../schema';
 import { ControlWidget } from '../../widget';
@@ -8,7 +9,7 @@ export declare class CheckboxWidget extends ControlWidget {
     grid_span: number;
     labelTitle: string;
     inited: boolean;
-    readonly l: import("../../../../../dist/@delon/theme/public_api").LocaleData;
+    readonly l: LocaleData;
     reset(value: SFValue): void;
     _setValue(value: SFValue): void;
     notifySet(): void;
