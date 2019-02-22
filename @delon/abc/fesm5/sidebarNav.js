@@ -31,6 +31,7 @@ var SidebarNavComponent = /** @class */ (function () {
         this.disabledAcl = false;
         this.autoCloseUnderPad = true;
         this.recursivePath = true;
+        this.openStrictly = false;
         this.select = new EventEmitter();
     }
     Object.defineProperty(SidebarNavComponent.prototype, "collapsed", {
@@ -239,15 +240,17 @@ var SidebarNavComponent = /** @class */ (function () {
      * @return {?}
      */
     function (item) {
-        this.menuSrv.visit(this._d, function (i, p) {
-            if (i !== item)
-                i._open = false;
-        });
-        /** @type {?} */
-        var pItem = item.__parent;
-        while (pItem) {
-            pItem._open = true;
-            pItem = pItem.__parent;
+        if (!this.openStrictly) {
+            this.menuSrv.visit(this._d, function (i, p) {
+                if (i !== item)
+                    i._open = false;
+            });
+            /** @type {?} */
+            var pItem = item.__parent;
+            while (pItem) {
+                pItem._open = true;
+                pItem = pItem.__parent;
+            }
         }
         item._open = !item._open;
         this.cdr.markForCheck();
@@ -287,13 +290,16 @@ var SidebarNavComponent = /** @class */ (function () {
         this.ngZone.runOutsideAngular(function () { return _this.genFloatingContainer(); });
         menuSrv.change.pipe(takeUntil(unsubscribe$)).subscribe(function (data) {
             menuSrv.visit(data, function (i) {
-                if (i._aclResult)
-                    return;
-                if (_this.disabledAcl) {
-                    i.disabled = true;
+                if (!i._aclResult) {
+                    if (_this.disabledAcl) {
+                        i.disabled = true;
+                    }
+                    else {
+                        i._hidden = true;
+                    }
                 }
-                else {
-                    i._hidden = true;
+                if (_this.openStrictly) {
+                    i._open = i.open != null ? i.open : false;
                 }
             });
             _this.list = menuSrv.menus;
@@ -382,6 +388,7 @@ var SidebarNavComponent = /** @class */ (function () {
         disabledAcl: [{ type: Input }],
         autoCloseUnderPad: [{ type: Input }],
         recursivePath: [{ type: Input }],
+        openStrictly: [{ type: Input }],
         select: [{ type: Output }]
     };
     __decorate([
@@ -396,6 +403,10 @@ var SidebarNavComponent = /** @class */ (function () {
         InputBoolean(),
         __metadata("design:type", Object)
     ], SidebarNavComponent.prototype, "recursivePath", void 0);
+    __decorate([
+        InputBoolean(),
+        __metadata("design:type", Object)
+    ], SidebarNavComponent.prototype, "openStrictly", void 0);
     return SidebarNavComponent;
 }());
 

@@ -13,12 +13,12 @@ export declare class SidebarNavComponent implements OnInit, OnDestroy {
     private win;
     private bodyEl;
     private unsubscribe$;
-    /** @inner */
-    floatingEl: HTMLDivElement;
+    private floatingEl;
     list: Nav[];
     disabledAcl: boolean;
     autoCloseUnderPad: boolean;
     recursivePath: boolean;
+    openStrictly: boolean;
     readonly select: EventEmitter<Menu>;
     readonly collapsed: boolean;
     private readonly _d;

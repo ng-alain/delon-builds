@@ -41,6 +41,7 @@ class SidebarNavComponent {
         this.disabledAcl = false;
         this.autoCloseUnderPad = true;
         this.recursivePath = true;
+        this.openStrictly = false;
         this.select = new EventEmitter();
     }
     /**
@@ -201,15 +202,17 @@ class SidebarNavComponent {
      * @return {?}
      */
     toggleOpen(item) {
-        this.menuSrv.visit(this._d, (i, p) => {
-            if (i !== item)
-                i._open = false;
-        });
-        /** @type {?} */
-        let pItem = item.__parent;
-        while (pItem) {
-            pItem._open = true;
-            pItem = pItem.__parent;
+        if (!this.openStrictly) {
+            this.menuSrv.visit(this._d, (i, p) => {
+                if (i !== item)
+                    i._open = false;
+            });
+            /** @type {?} */
+            let pItem = item.__parent;
+            while (pItem) {
+                pItem._open = true;
+                pItem = pItem.__parent;
+            }
         }
         item._open = !item._open;
         this.cdr.markForCheck();
@@ -238,14 +241,17 @@ class SidebarNavComponent {
         menuSrv.openedByUrl(router.url, this.recursivePath);
         this.ngZone.runOutsideAngular(() => this.genFloatingContainer());
         menuSrv.change.pipe(takeUntil(unsubscribe$)).subscribe(data => {
-            menuSrv.visit(data, i => {
-                if (i._aclResult)
-                    return;
-                if (this.disabledAcl) {
-                    i.disabled = true;
+            menuSrv.visit(data, (i) => {
+                if (!i._aclResult) {
+                    if (this.disabledAcl) {
+                        i.disabled = true;
+                    }
+                    else {
+                        i._hidden = true;
+                    }
                 }
-                else {
-                    i._hidden = true;
+                if (this.openStrictly) {
+                    i._open = i.open != null ? i.open : false;
                 }
             });
             this.list = menuSrv.menus;
@@ -318,6 +324,7 @@ SidebarNavComponent.propDecorators = {
     disabledAcl: [{ type: Input }],
     autoCloseUnderPad: [{ type: Input }],
     recursivePath: [{ type: Input }],
+    openStrictly: [{ type: Input }],
     select: [{ type: Output }]
 };
 __decorate([
@@ -332,6 +339,10 @@ __decorate([
     InputBoolean(),
     __metadata("design:type", Object)
 ], SidebarNavComponent.prototype, "recursivePath", void 0);
+__decorate([
+    InputBoolean(),
+    __metadata("design:type", Object)
+], SidebarNavComponent.prototype, "openStrictly", void 0);
 
 /**
  * @fileoverview added by tsickle

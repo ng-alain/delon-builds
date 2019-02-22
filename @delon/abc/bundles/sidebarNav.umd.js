@@ -61,6 +61,7 @@
             this.disabledAcl = false;
             this.autoCloseUnderPad = true;
             this.recursivePath = true;
+            this.openStrictly = false;
             this.select = new core.EventEmitter();
         }
         Object.defineProperty(SidebarNavComponent.prototype, "collapsed", {
@@ -267,15 +268,17 @@
          * @return {?}
          */
             function (item) {
-                this.menuSrv.visit(this._d, function (i, p) {
-                    if (i !== item)
-                        i._open = false;
-                });
-                /** @type {?} */
-                var pItem = item.__parent;
-                while (pItem) {
-                    pItem._open = true;
-                    pItem = pItem.__parent;
+                if (!this.openStrictly) {
+                    this.menuSrv.visit(this._d, function (i, p) {
+                        if (i !== item)
+                            i._open = false;
+                    });
+                    /** @type {?} */
+                    var pItem = item.__parent;
+                    while (pItem) {
+                        pItem._open = true;
+                        pItem = pItem.__parent;
+                    }
                 }
                 item._open = !item._open;
                 this.cdr.markForCheck();
@@ -315,13 +318,16 @@
                 this.ngZone.runOutsideAngular(function () { return _this.genFloatingContainer(); });
                 menuSrv.change.pipe(operators.takeUntil(unsubscribe$)).subscribe(function (data) {
                     menuSrv.visit(data, function (i) {
-                        if (i._aclResult)
-                            return;
-                        if (_this.disabledAcl) {
-                            i.disabled = true;
+                        if (!i._aclResult) {
+                            if (_this.disabledAcl) {
+                                i.disabled = true;
+                            }
+                            else {
+                                i._hidden = true;
+                            }
                         }
-                        else {
-                            i._hidden = true;
+                        if (_this.openStrictly) {
+                            i._open = i.open != null ? i.open : false;
                         }
                     });
                     _this.list = menuSrv.menus;
@@ -412,6 +418,7 @@
             disabledAcl: [{ type: core.Input }],
             autoCloseUnderPad: [{ type: core.Input }],
             recursivePath: [{ type: core.Input }],
+            openStrictly: [{ type: core.Input }],
             select: [{ type: core.Output }]
         };
         __decorate([
@@ -426,6 +433,10 @@
             util.InputBoolean(),
             __metadata("design:type", Object)
         ], SidebarNavComponent.prototype, "recursivePath", void 0);
+        __decorate([
+            util.InputBoolean(),
+            __metadata("design:type", Object)
+        ], SidebarNavComponent.prototype, "openStrictly", void 0);
         return SidebarNavComponent;
     }());
 
