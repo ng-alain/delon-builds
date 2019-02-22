@@ -789,7 +789,7 @@ var STDataSource = /** @class */ (function () {
         var ret = value;
         switch (col.type) {
             case 'no':
-                ret = col.noIndex + idx;
+                ret = this.getNoIndex(item, col, idx);
                 break;
             case 'img':
                 ret = value ? "<img src=\"" + value + "\" class=\"img\">" : '';
@@ -855,6 +855,21 @@ var STDataSource = /** @class */ (function () {
             reqOptions = req.process(reqOptions);
         }
         return this.http.request(method, url, reqOptions);
+    };
+    /**
+     * @param {?} item
+     * @param {?} col
+     * @param {?} idx
+     * @return {?}
+     */
+    STDataSource.prototype.getNoIndex = /**
+     * @param {?} item
+     * @param {?} col
+     * @param {?} idx
+     * @return {?}
+     */
+    function (item, col, idx) {
+        return typeof col.noIndex === 'function' ? col.noIndex(item, col, idx) : col.noIndex + idx;
     };
     // #region sort
     // #region sort
@@ -1803,7 +1818,7 @@ var STComponent = /** @class */ (function () {
         // recalculate no
         (/** @type {?} */ (this))._columns
             .filter(function (w) { return w.type === 'no'; })
-            .forEach(function (c) { return (/** @type {?} */ (_this))._data.forEach(function (i, idx) { return (i._values[c.__point] = { text: c.noIndex + idx, org: idx }); }); });
+            .forEach(function (c) { return (/** @type {?} */ (_this))._data.forEach(function (i, idx) { return (i._values[c.__point] = { text: (/** @type {?} */ (_this)).dataSource.getNoIndex(i, c, idx), org: idx }); }); });
         return (/** @type {?} */ (this)).cd();
     };
     // #endregion

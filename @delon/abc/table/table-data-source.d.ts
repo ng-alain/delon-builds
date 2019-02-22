@@ -42,6 +42,7 @@ export declare class STDataSource {
     process(options: STDataSourceOptions): Promise<STDataSourceResult>;
     private get;
     private getByHttp;
+    getNoIndex(item: STData, col: STColumn, idx: number): number;
     private getValidSort;
     private getSorterFn;
     readonly nextSortTick: number;
