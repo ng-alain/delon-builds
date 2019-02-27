@@ -149,7 +149,7 @@
             Object.assign(this, __assign({}, new PageHeaderConfig(), cog));
             settings.notify
                 .pipe(operators.takeUntil(this.unsubscribe$), operators.filter(function (w) { return _this.affix && w.type === 'layout' && w.name === 'collapsed'; }))
-                .subscribe(function () { return _this.affix.updatePosition({}); });
+                .subscribe(function () { return _this.affix.updatePosition(( /** @type {?} */({}))); });
             rxjs.merge(menuSrv.change.pipe(operators.filter(function () { return _this.inited; })), router$$1.events.pipe(operators.filter(function (event) { return event instanceof router.NavigationEnd; })), i18nSrv.change)
                 .pipe(operators.takeUntil(this.unsubscribe$))
                 .subscribe(function () {

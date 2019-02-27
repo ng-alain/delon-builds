@@ -6,8 +6,6 @@ import { ControlWidget } from '../../widget';
 export declare class TreeSelectWidget extends ControlWidget implements OnInit {
     i: any;
     data: SFSchemaEnum[];
-    private dc;
-    private tranData;
     ngOnInit(): void;
     reset(value: SFValue): void;
     change(value: string[] | string): void;

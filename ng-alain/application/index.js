@@ -46,8 +46,8 @@ function addDependenciesToPackageJson(options) {
             // allow ignore ng-zorro-antd becauce of @delon/theme dependency
             `ng-zorro-antd@${lib_versions_1.ZORROVERSION}`,
             // ng-zorro-antd need
-            'screenfull@^3.3.3',
-            'ajv@^6.6.2',
+            'screenfull@^4.0.0',
+            'ajv@^6.9.1',
         ]);
         // add ajv
         json_1.scriptsToAngularJson(host, ['node_modules/ajv/dist/ajv.bundle.js'], 'add', ['build', 'test']);

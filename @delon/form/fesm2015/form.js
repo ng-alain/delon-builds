@@ -2,11 +2,11 @@ import { __decorate, __metadata, __rest } from 'tslib';
 import { CommonModule } from '@angular/common';
 import { DelonLocaleService, DelonLocaleModule } from '@delon/theme';
 import { NgModel, FormsModule } from '@angular/forms';
-import format from 'date-fns/format';
 import { map, distinctUntilChanged, filter, takeUntil, debounceTime, flatMap, startWith, tap } from 'rxjs/operators';
+import format from 'date-fns/format';
 import { Injectable, Component, Input, Directive, TemplateRef, ChangeDetectorRef, HostBinding, Inject, Injector, ViewChild, ViewContainerRef, ComponentFactoryResolver, EventEmitter, ChangeDetectionStrategy, Output, ElementRef, Renderer2, defineInjectable, NgModule } from '@angular/core';
 import { deepCopy, toBoolean, InputBoolean, InputNumber, deepGet, DelonUtilModule } from '@delon/util';
-import { NzTreeNode, NzModalService, NgZorroAntdModule } from 'ng-zorro-antd';
+import { NzModalService, NgZorroAntdModule } from 'ng-zorro-antd';
 import { of, combineLatest, BehaviorSubject, Observable, Subject } from 'rxjs';
 
 /**
@@ -2547,8 +2547,7 @@ class CheckboxWidget extends ControlWidget {
         else {
             (/** @type {?} */ (this)).indeterminate = true;
         }
-        // issues: https://github.com/NG-ZORRO/ng-zorro-antd/issues/2025
-        setTimeout(() => (/** @type {?} */ (this)).detectChanges());
+        (/** @type {?} */ (this)).detectChanges();
         return (/** @type {?} */ (this));
     }
     /**
@@ -3422,21 +3421,6 @@ class TreeSelectWidget extends ControlWidget {
     /**
      * @return {?}
      */
-    dc() {
-        // Muse wait `nz-tree-select` write values
-        // https://github.com/NG-ZORRO/ng-zorro-antd/issues/2316
-        setTimeout(() => this.detectChanges(), 1000);
-    }
-    /**
-     * @param {?} list
-     * @return {?}
-     */
-    tranData(list) {
-        return list.map(node => new NzTreeNode((/** @type {?} */ (deepCopy(node)))));
-    }
-    /**
-     * @return {?}
-     */
     ngOnInit() {
         const { ui } = this;
         this.i = {
@@ -3459,10 +3443,8 @@ class TreeSelectWidget extends ControlWidget {
      */
     reset(value) {
         getData(this.schema, this.ui, this.formProperty.formData)
-            .pipe(map(list => this.tranData(list)))
             .subscribe(list => {
             this.data = list;
-            this.dc();
         });
     }
     /**
@@ -3483,11 +3465,9 @@ class TreeSelectWidget extends ControlWidget {
         if (typeof ui.expandChange !== 'function')
             return;
         ui.expandChange(e)
-            .pipe(map((list) => this.tranData(list)))
             .subscribe(res => {
             e.node.clearChildren();
             e.node.addChildren(res);
-            this.dc();
         });
     }
 }

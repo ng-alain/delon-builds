@@ -79,7 +79,7 @@ var PageHeaderComponent = /** @class */ (function () {
         Object.assign(this, __assign({}, new PageHeaderConfig(), cog));
         settings.notify
             .pipe(takeUntil(this.unsubscribe$), filter(function (w) { return _this.affix && w.type === 'layout' && w.name === 'collapsed'; }))
-            .subscribe(function () { return _this.affix.updatePosition({}); });
+            .subscribe(function () { return _this.affix.updatePosition((/** @type {?} */ ({}))); });
         merge(menuSrv.change.pipe(filter(function () { return _this.inited; })), router.events.pipe(filter(function (event) { return event instanceof NavigationEnd; })), i18nSrv.change)
             .pipe(takeUntil(this.unsubscribe$))
             .subscribe(function () {

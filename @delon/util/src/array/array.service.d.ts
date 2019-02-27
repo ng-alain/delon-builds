@@ -53,7 +53,7 @@ export declare class ArrayService {
         disabledMapname?: string;
         /** 转换成树数据后，执行的递归回调 */
         cb?: (item: any, parent: any, deep: number) => void;
-    }): NzTreeNode[];
+    }): any[];
     /**
      * 递归访问整个树
      */

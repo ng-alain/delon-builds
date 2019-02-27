@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('extend'), require('date-fns/add_days'), require('date-fns/end_of_day'), require('date-fns/end_of_month'), require('date-fns/end_of_week'), require('date-fns/end_of_year'), require('date-fns/parse'), require('date-fns/start_of_day'), require('date-fns/start_of_month'), require('date-fns/start_of_week'), require('date-fns/start_of_year'), require('date-fns/sub_months'), require('date-fns/sub_weeks'), require('date-fns/sub_years'), require('rxjs'), require('rxjs/operators'), require('ng-zorro-antd'), require('@angular/common'), require('@angular/core')) :
-    typeof define === 'function' && define.amd ? define('@delon/util', ['exports', 'extend', 'date-fns/add_days', 'date-fns/end_of_day', 'date-fns/end_of_month', 'date-fns/end_of_week', 'date-fns/end_of_year', 'date-fns/parse', 'date-fns/start_of_day', 'date-fns/start_of_month', 'date-fns/start_of_week', 'date-fns/start_of_year', 'date-fns/sub_months', 'date-fns/sub_weeks', 'date-fns/sub_years', 'rxjs', 'rxjs/operators', 'ng-zorro-antd', '@angular/common', '@angular/core'], factory) :
-    (factory((global.delon = global.delon || {}, global.delon.util = {}),global.Extend,global.addDays,global.endOfDay,global.endOfMonth,global.endOfWeek,global.endOfYear,global.parse,global.startOfDay,global.startOfMonth,global.startOfWeek,global.startOfYear,global.subMonths,global.subWeeks,global.subYears,global.rxjs,global.rxjs.operators,global['ng-zorro-antd'],global.ng.common,global.ng.core));
-}(this, (function (exports,extend,addDays,endOfDay,endOfMonth,endOfWeek,endOfYear,parse,startOfDay,startOfMonth,startOfWeek,startOfYear,subMonths,subWeeks,subYears,rxjs,operators,ngZorroAntd,i1,i0) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('extend'), require('date-fns/add_days'), require('date-fns/end_of_day'), require('date-fns/end_of_month'), require('date-fns/end_of_week'), require('date-fns/end_of_year'), require('date-fns/parse'), require('date-fns/start_of_day'), require('date-fns/start_of_month'), require('date-fns/start_of_week'), require('date-fns/start_of_year'), require('date-fns/sub_months'), require('date-fns/sub_weeks'), require('date-fns/sub_years'), require('rxjs'), require('rxjs/operators'), require('@angular/common'), require('@angular/core')) :
+    typeof define === 'function' && define.amd ? define('@delon/util', ['exports', 'extend', 'date-fns/add_days', 'date-fns/end_of_day', 'date-fns/end_of_month', 'date-fns/end_of_week', 'date-fns/end_of_year', 'date-fns/parse', 'date-fns/start_of_day', 'date-fns/start_of_month', 'date-fns/start_of_week', 'date-fns/start_of_year', 'date-fns/sub_months', 'date-fns/sub_weeks', 'date-fns/sub_years', 'rxjs', 'rxjs/operators', '@angular/common', '@angular/core'], factory) :
+    (factory((global.delon = global.delon || {}, global.delon.util = {}),global.Extend,global.addDays,global.endOfDay,global.endOfMonth,global.endOfWeek,global.endOfYear,global.parse,global.startOfDay,global.startOfMonth,global.startOfWeek,global.startOfYear,global.subMonths,global.subWeeks,global.subYears,global.rxjs,global.rxjs.operators,global.ng.common,global.ng.core));
+}(this, (function (exports,extend,addDays,endOfDay,endOfMonth,endOfWeek,endOfYear,parse,startOfDay,startOfMonth,startOfWeek,startOfYear,subMonths,subWeeks,subYears,rxjs,operators,i1,i0) { 'use strict';
 
     extend = extend && extend.hasOwnProperty('default') ? extend['default'] : extend;
     addDays = addDays && addDays.hasOwnProperty('default') ? addDays['default'] : addDays;
@@ -1068,7 +1068,7 @@
                         options.cb(item, parent, deep);
                     }
                 });
-                return tree.map(function (node) { return new ngZorroAntd.NzTreeNode(node); });
+                return tree;
             };
         /**
          * 递归访问整个树

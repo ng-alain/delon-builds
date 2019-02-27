@@ -1576,7 +1576,7 @@ var STComponent = /** @class */ (function () {
         if (cleanStatus) {
             (/** @type {?} */ (this)).clearStatus();
         }
-        (/** @type {?} */ (this))._data.length = 0;
+        (/** @type {?} */ (this))._data = [];
         return (/** @type {?} */ (this)).cd();
     };
     /** 清空所有状态 */

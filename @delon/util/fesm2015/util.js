@@ -14,7 +14,6 @@ import subWeeks from 'date-fns/sub_weeks';
 import subYears from 'date-fns/sub_years';
 import { BehaviorSubject } from 'rxjs';
 import { filter, share } from 'rxjs/operators';
-import { NzTreeNode } from 'ng-zorro-antd';
 import { DOCUMENT, CommonModule } from '@angular/common';
 import { Directive, Input, TemplateRef, ViewContainerRef, Inject, Injectable, defineInjectable, NgModule, inject } from '@angular/core';
 
@@ -835,7 +834,7 @@ class ArrayService {
                 options.cb(item, parent, deep);
             }
         });
-        return tree.map(node => new NzTreeNode(node));
+        return tree;
     }
     /**
      * 递归访问整个树

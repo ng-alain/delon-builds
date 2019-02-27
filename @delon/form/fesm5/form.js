@@ -1,12 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { DelonLocaleService, DelonLocaleModule } from '@delon/theme';
 import { NgModel, FormsModule } from '@angular/forms';
-import format from 'date-fns/format';
 import { map, distinctUntilChanged, filter, takeUntil, debounceTime, flatMap, startWith, tap } from 'rxjs/operators';
-import { __extends, __assign, __decorate, __metadata, __spread, __values, __rest } from 'tslib';
-import { Injectable, Component, Input, Directive, TemplateRef, ComponentFactoryResolver, ViewChild, ViewContainerRef, ChangeDetectorRef, Inject, Injector, HostBinding, EventEmitter, ChangeDetectionStrategy, Output, ElementRef, Renderer2, defineInjectable, NgModule } from '@angular/core';
+import format from 'date-fns/format';
+import { __extends, __decorate, __metadata, __assign, __spread, __values, __rest } from 'tslib';
+import { Injectable, Component, Input, Directive, TemplateRef, ComponentFactoryResolver, ViewChild, ViewContainerRef, ChangeDetectorRef, Inject, Injector, HostBinding, ElementRef, Renderer2, EventEmitter, ChangeDetectionStrategy, Output, defineInjectable, NgModule } from '@angular/core';
 import { deepCopy, toBoolean, InputBoolean, InputNumber, deepGet, DelonUtilModule } from '@delon/util';
-import { NzTreeNode, NzModalService, NgZorroAntdModule } from 'ng-zorro-antd';
+import { NzModalService, NgZorroAntdModule } from 'ng-zorro-antd';
 import { of, combineLatest, BehaviorSubject, Observable, Subject } from 'rxjs';
 
 /**
@@ -3173,7 +3173,6 @@ var CheckboxWidget = /** @class */ (function (_super) {
      * @return {THIS}
      */
     function () {
-        var _this = this;
         if ((/** @type {?} */ (this)).data.every(function (item) { return item.checked !== true; })) {
             (/** @type {?} */ (this)).allChecked = false;
             (/** @type {?} */ (this)).indeterminate = false;
@@ -3185,8 +3184,7 @@ var CheckboxWidget = /** @class */ (function (_super) {
         else {
             (/** @type {?} */ (this)).indeterminate = true;
         }
-        // issues: https://github.com/NG-ZORRO/ng-zorro-antd/issues/2025
-        setTimeout(function () { return (/** @type {?} */ (_this)).detectChanges(); });
+        (/** @type {?} */ (this)).detectChanges();
         return (/** @type {?} */ (this));
     };
     /**
@@ -4299,29 +4297,6 @@ var TreeSelectWidget = /** @class */ (function (_super) {
     /**
      * @return {?}
      */
-    TreeSelectWidget.prototype.dc = /**
-     * @return {?}
-     */
-    function () {
-        var _this = this;
-        // Muse wait `nz-tree-select` write values
-        // https://github.com/NG-ZORRO/ng-zorro-antd/issues/2316
-        setTimeout(function () { return _this.detectChanges(); }, 1000);
-    };
-    /**
-     * @param {?} list
-     * @return {?}
-     */
-    TreeSelectWidget.prototype.tranData = /**
-     * @param {?} list
-     * @return {?}
-     */
-    function (list) {
-        return list.map(function (node) { return new NzTreeNode((/** @type {?} */ (deepCopy(node)))); });
-    };
-    /**
-     * @return {?}
-     */
     TreeSelectWidget.prototype.ngOnInit = /**
      * @return {?}
      */
@@ -4352,10 +4327,8 @@ var TreeSelectWidget = /** @class */ (function (_super) {
     function (value) {
         var _this = this;
         getData(this.schema, this.ui, this.formProperty.formData)
-            .pipe(map(function (list) { return _this.tranData(list); }))
             .subscribe(function (list) {
             _this.data = list;
-            _this.dc();
         });
     };
     /**
@@ -4380,16 +4353,13 @@ var TreeSelectWidget = /** @class */ (function (_super) {
      * @return {?}
      */
     function (e) {
-        var _this = this;
         var ui = this.ui;
         if (typeof ui.expandChange !== 'function')
             return;
         ui.expandChange(e)
-            .pipe(map(function (list) { return _this.tranData(list); }))
             .subscribe(function (res) {
             e.node.clearChildren();
             e.node.addChildren(res);
-            _this.dc();
         });
     };
     TreeSelectWidget.decorators = [

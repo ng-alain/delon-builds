@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common'), require('@delon/theme'), require('@angular/forms'), require('date-fns/format'), require('rxjs/operators'), require('@angular/core'), require('@delon/util'), require('ng-zorro-antd'), require('rxjs')) :
-    typeof define === 'function' && define.amd ? define('@delon/form', ['exports', '@angular/common', '@delon/theme', '@angular/forms', 'date-fns/format', 'rxjs/operators', '@angular/core', '@delon/util', 'ng-zorro-antd', 'rxjs'], factory) :
-    (factory((global.delon = global.delon || {}, global.delon.form = {}),global.ng.common,global.delon.theme,global.ng.forms,global.format,global.rxjs.operators,global.ng.core,global.delon.util,global['ng-zorro-antd'],global.rxjs));
-}(this, (function (exports,common,theme,forms,format,operators,i0,util,ngZorroAntd,rxjs) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common'), require('@delon/theme'), require('@angular/forms'), require('rxjs/operators'), require('date-fns/format'), require('@angular/core'), require('@delon/util'), require('ng-zorro-antd'), require('rxjs')) :
+    typeof define === 'function' && define.amd ? define('@delon/form', ['exports', '@angular/common', '@delon/theme', '@angular/forms', 'rxjs/operators', 'date-fns/format', '@angular/core', '@delon/util', 'ng-zorro-antd', 'rxjs'], factory) :
+    (factory((global.delon = global.delon || {}, global.delon.form = {}),global.ng.common,global.delon.theme,global.ng.forms,global.rxjs.operators,global.format,global.ng.core,global.delon.util,global['ng-zorro-antd'],global.rxjs));
+}(this, (function (exports,common,theme,forms,operators,format,i0,util,ngZorroAntd,rxjs) { 'use strict';
 
     format = format && format.hasOwnProperty('default') ? format['default'] : format;
 
@@ -3298,7 +3298,6 @@
          * @return {THIS}
          */
             function () {
-                var _this = this;
                 if (( /** @type {?} */(this)).data.every(function (item) { return item.checked !== true; })) {
                     ( /** @type {?} */(this)).allChecked = false;
                     ( /** @type {?} */(this)).indeterminate = false;
@@ -3310,8 +3309,7 @@
                 else {
                     ( /** @type {?} */(this)).indeterminate = true;
                 }
-                // issues: https://github.com/NG-ZORRO/ng-zorro-antd/issues/2025
-                setTimeout(function () { return ( /** @type {?} */(_this)).detectChanges(); });
+                ( /** @type {?} */(this)).detectChanges();
                 return ( /** @type {?} */(this));
             };
         /**
@@ -4428,29 +4426,6 @@
         /**
          * @return {?}
          */
-        TreeSelectWidget.prototype.dc = /**
-         * @return {?}
-         */
-            function () {
-                var _this = this;
-                // Muse wait `nz-tree-select` write values
-                // https://github.com/NG-ZORRO/ng-zorro-antd/issues/2316
-                setTimeout(function () { return _this.detectChanges(); }, 1000);
-            };
-        /**
-         * @param {?} list
-         * @return {?}
-         */
-        TreeSelectWidget.prototype.tranData = /**
-         * @param {?} list
-         * @return {?}
-         */
-            function (list) {
-                return list.map(function (node) { return new ngZorroAntd.NzTreeNode(( /** @type {?} */(util.deepCopy(node)))); });
-            };
-        /**
-         * @return {?}
-         */
         TreeSelectWidget.prototype.ngOnInit = /**
          * @return {?}
          */
@@ -4481,10 +4456,8 @@
             function (value) {
                 var _this = this;
                 getData(this.schema, this.ui, this.formProperty.formData)
-                    .pipe(operators.map(function (list) { return _this.tranData(list); }))
                     .subscribe(function (list) {
                     _this.data = list;
-                    _this.dc();
                 });
             };
         /**
@@ -4509,16 +4482,13 @@
          * @return {?}
          */
             function (e) {
-                var _this = this;
                 var ui = this.ui;
                 if (typeof ui.expandChange !== 'function')
                     return;
                 ui.expandChange(e)
-                    .pipe(operators.map(function (list) { return _this.tranData(list); }))
                     .subscribe(function (res) {
                     e.node.clearChildren();
                     e.node.addChildren(res);
-                    _this.dc();
                 });
             };
         TreeSelectWidget.decorators = [

@@ -215,7 +215,7 @@
      * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
      */
     /**
-     * [nz-dropdown](https://github.com/NG-ZORRO/ng-zorro-antd/blob/master/components/dropdown/nz-dropdown.component.ts#L159) 抖动合理值
+     * [nz-dropdown](https://github.com/NG-ZORRO/ng-zorro-antd/blob/master/components/dropdown/nz-dropdown.component.ts#L88) 抖动合理值
      * @type {?}
      */
     var DROPDOWN_MIN_TIME = 51;
@@ -235,11 +235,13 @@
         if (allowNull && directive == null) {
             return false;
         }
+        /** @type {?} */
+        var el = directive.injector.get(ngZorroAntd.NzDropDownDirective).el;
         if (trigger === 'click') {
-            directive.injector.get(ngZorroAntd.NzDropDownDirective).onClick(null);
+            dispatchFakeEvent(el, 'click');
         }
         else {
-            directive.injector.get(ngZorroAntd.NzDropDownDirective).onMouseEnter(null);
+            dispatchFakeEvent(el, 'mouseenter');
         }
         testing.tick(DROPDOWN_MIN_TIME);
         return true;

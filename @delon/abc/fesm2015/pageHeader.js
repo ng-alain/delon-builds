@@ -88,7 +88,7 @@ class PageHeaderComponent {
         Object.assign(this, Object.assign({}, new PageHeaderConfig(), cog));
         settings.notify
             .pipe(takeUntil(this.unsubscribe$), filter(w => this.affix && w.type === 'layout' && w.name === 'collapsed'))
-            .subscribe(() => this.affix.updatePosition({}));
+            .subscribe(() => this.affix.updatePosition((/** @type {?} */ ({}))));
         merge(menuSrv.change.pipe(filter(() => this.inited)), router.events.pipe(filter((event) => event instanceof NavigationEnd)), i18nSrv.change)
             .pipe(takeUntil(this.unsubscribe$))
             .subscribe(() => {
