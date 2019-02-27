@@ -24661,7 +24661,7 @@ body {
   }
 }
 .alain-default__nav-item .ant-badge-count {
-  top: -6px;
+  top: 6px;
   right: 18px;
 }
 .app-icons {
