@@ -1124,6 +1124,49 @@ var plPL = (/** @type {?} */ ({
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
+var elGR = (/** @type {?} */ ({
+    abbr: 'el-GR',
+    exception: {
+        403: `Λυπούμαστε, δεν έχετε πρόσβαση σε αυτήν τη σελίδα`,
+        404: `Λυπούμαστε, η σελίδα αυτή δεν βρέθηκε`,
+        500: `Λυπούμαστε, σφάλμα διακομιστή`,
+        backToHome: 'Επιστροφή στην αρχική σελίδα',
+    },
+    noticeIcon: {
+        emptyText: 'Δεν υπάρχουν δεδομένα',
+        clearText: 'Καθαρισμός',
+    },
+    reuseTab: {
+        close: 'Κλείσιμο καρτέλας',
+        closeOther: 'Κλείσιμο των άλλων καρτέλων',
+        closeRight: 'Κλείσιμο των καρτελών δεξιά',
+        clear: 'Καθαρισμός καρτελών',
+    },
+    tagSelect: {
+        expand: 'Επέκταση',
+        collapse: 'Σύμπτυξη',
+    },
+    miniProgress: {
+        target: 'Στόχος: ',
+    },
+    st: {
+        total: '{{range[0]}} - {{range[1]}} από {{total}}',
+    },
+    sf: {
+        submit: 'Υποβολή',
+        reset: 'Επαναφορά',
+        search: 'Αναζήτηση',
+        edit: 'Αποθήκευση',
+        addText: 'Προσθήκη',
+        removeText: 'Αφαίρεση',
+        checkAllText: 'Επιλογή όλων',
+    },
+}));
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ */
 
 /**
  * @fileoverview added by tsickle
@@ -2051,7 +2094,7 @@ AlainThemeModule.ctorParameters = () => [
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 /** @type {?} */
-const VERSION = new Version('7.0.0-rc.10-881c09f5');
+const VERSION = new Version('7.0.0-rc.10-146ed0f5');
 
 /**
  * @fileoverview added by tsickle
@@ -2063,6 +2106,6 @@ const VERSION = new Version('7.0.0-rc.10-881c09f5');
  * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
  */
 
-export { WINDOW, preloaderFinished, TitleService, ALAIN_I18N_TOKEN, AlainI18NServiceFake, _HttpClient, DatePipe, CNCurrencyPipe, KeysPipe, YNPipe, HTMLPipe, URLPipe, AlainThemeConfig, AlainThemeModule, VERSION, MenuService, ScrollService, LAYOUT, USER, APP, SettingsService, REP_MAX, ResponsiveService, enUS as en_US, zhCN as zh_CN, zhTW as zh_TW, trTR as tr_TR, plPL as pl_PL, DELON_LOCALE, DELON_LOCALE_SERVICE_PROVIDER_FACTORY, DelonLocaleService, DELON_LOCALE_SERVICE_PROVIDER, DelonLocaleModule, ModalHelper, DrawerHelper, BaseUrl, BaseHeaders, BaseApi, Path, Query, Body, Headers, OPTIONS, GET, POST, DELETE, PUT, HEAD, PATCH, JSONP, ALAIN_I18N_TOKEN_FACTORY as ɵa, I18nPipe as ɵb };
+export { WINDOW, preloaderFinished, TitleService, ALAIN_I18N_TOKEN, AlainI18NServiceFake, _HttpClient, DatePipe, CNCurrencyPipe, KeysPipe, YNPipe, HTMLPipe, URLPipe, AlainThemeConfig, AlainThemeModule, VERSION, MenuService, ScrollService, LAYOUT, USER, APP, SettingsService, REP_MAX, ResponsiveService, enUS as en_US, zhCN as zh_CN, zhTW as zh_TW, trTR as tr_TR, plPL as pl_PL, elGR as el_GR, DELON_LOCALE, DELON_LOCALE_SERVICE_PROVIDER_FACTORY, DelonLocaleService, DELON_LOCALE_SERVICE_PROVIDER, DelonLocaleModule, ModalHelper, DrawerHelper, BaseUrl, BaseHeaders, BaseApi, Path, Query, Body, Headers, OPTIONS, GET, POST, DELETE, PUT, HEAD, PATCH, JSONP, ALAIN_I18N_TOKEN_FACTORY as ɵa, I18nPipe as ɵb };
 
 //# sourceMappingURL=theme.js.map
