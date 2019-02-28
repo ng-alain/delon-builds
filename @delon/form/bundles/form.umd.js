@@ -4806,6 +4806,7 @@
          * @return {?}
          */
             function (e) {
+                var _this = this;
                 var ui = this.ui;
                 if (typeof ui.expandChange !== 'function')
                     return;
@@ -4816,6 +4817,7 @@
              */function (res) {
                     e.node.clearChildren();
                     e.node.addChildren(res);
+                    _this.detectChanges();
                 }));
             };
         TreeSelectWidget.decorators = [

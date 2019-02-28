@@ -15,6 +15,7 @@ import subYears from 'date-fns/sub_years';
 import { BehaviorSubject } from 'rxjs';
 import { filter, share } from 'rxjs/operators';
 import { __assign, __spread, __values } from 'tslib';
+import { NzTreeNode } from 'ng-zorro-antd';
 import { DOCUMENT, CommonModule } from '@angular/common';
 import { Directive, Input, TemplateRef, ViewContainerRef, Inject, Injectable, defineInjectable, NgModule, inject } from '@angular/core';
 
@@ -1071,7 +1072,11 @@ var ArrayService = /** @class */ (function () {
                 options.cb(item, parent, deep);
             }
         }));
-        return tree;
+        return tree.map((/**
+         * @param {?} node
+         * @return {?}
+         */
+        function (node) { return new NzTreeNode(node); }));
     };
     /**
      * 递归访问整个树
