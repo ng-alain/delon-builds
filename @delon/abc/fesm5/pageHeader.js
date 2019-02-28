@@ -11,7 +11,7 @@ import { NgZorroAntdModule } from 'ng-zorro-antd';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var PageHeaderConfig = /** @class */ (function () {
     function PageHeaderConfig() {
@@ -58,7 +58,7 @@ var PageHeaderConfig = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var PageHeaderComponent = /** @class */ (function () {
     // #endregion
@@ -78,17 +78,35 @@ var PageHeaderComponent = /** @class */ (function () {
         this.wide = false;
         Object.assign(this, __assign({}, new PageHeaderConfig(), cog));
         settings.notify
-            .pipe(takeUntil(this.unsubscribe$), filter(function (w) { return _this.affix && w.type === 'layout' && w.name === 'collapsed'; }))
-            .subscribe(function () { return _this.affix.updatePosition((/** @type {?} */ ({}))); });
-        merge(menuSrv.change.pipe(filter(function () { return _this.inited; })), router.events.pipe(filter(function (event) { return event instanceof NavigationEnd; })), i18nSrv.change)
+            .pipe(takeUntil(this.unsubscribe$), filter((/**
+         * @param {?} w
+         * @return {?}
+         */
+        function (w) { return _this.affix && w.type === 'layout' && w.name === 'collapsed'; })))
+            .subscribe((/**
+         * @return {?}
+         */
+        function () { return _this.affix.updatePosition((/** @type {?} */ ({}))); }));
+        merge(menuSrv.change.pipe(filter((/**
+         * @return {?}
+         */
+        function () { return _this.inited; }))), router.events.pipe(filter((/**
+         * @param {?} event
+         * @return {?}
+         */
+        function (event) { return event instanceof NavigationEnd; }))), i18nSrv.change)
             .pipe(takeUntil(this.unsubscribe$))
-            .subscribe(function () {
+            .subscribe((/**
+         * @return {?}
+         */
+        function () {
             _this._menus = null;
             _this.refresh();
-        });
+        }));
     }
     Object.defineProperty(PageHeaderComponent.prototype, "menus", {
         get: /**
+         * @private
          * @return {?}
          */
         function () {
@@ -130,11 +148,13 @@ var PageHeaderComponent = /** @class */ (function () {
         this.cdr.detectChanges();
     };
     /**
+     * @private
      * @template THIS
      * @this {THIS}
      * @return {THIS}
      */
     PageHeaderComponent.prototype.genBreadcrumb = /**
+     * @private
      * @template THIS
      * @this {THIS}
      * @return {THIS}
@@ -147,7 +167,11 @@ var PageHeaderComponent = /** @class */ (function () {
         }
         /** @type {?} */
         var paths = [];
-        (/** @type {?} */ (this)).menus.forEach(function (item) {
+        (/** @type {?} */ (this)).menus.forEach((/**
+         * @param {?} item
+         * @return {?}
+         */
+        function (item) {
             if (typeof item.hideInBreadcrumb !== 'undefined' && item.hideInBreadcrumb)
                 return;
             /** @type {?} */
@@ -155,7 +179,7 @@ var PageHeaderComponent = /** @class */ (function () {
             if (item.i18n && (/** @type {?} */ (_this)).i18nSrv)
                 title = (/** @type {?} */ (_this)).i18nSrv.fanyi(item.i18n);
             paths.push({ title: title, link: item.link && [item.link] });
-        });
+        }));
         // add home
         if ((/** @type {?} */ (this)).home) {
             paths.splice(0, 0, {
@@ -167,11 +191,13 @@ var PageHeaderComponent = /** @class */ (function () {
         return (/** @type {?} */ (this));
     };
     /**
+     * @private
      * @template THIS
      * @this {THIS}
      * @return {THIS}
      */
     PageHeaderComponent.prototype.setTitle = /**
+     * @private
      * @template THIS
      * @this {THIS}
      * @return {THIS}
@@ -331,7 +357,7 @@ var PageHeaderComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 var COMPONENTS = [PageHeaderComponent];
@@ -350,12 +376,12 @@ var PageHeaderModule = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 export { PageHeaderConfig, PageHeaderComponent, PageHeaderModule };

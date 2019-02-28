@@ -10,7 +10,7 @@ import { NgZorroAntdModule } from 'ng-zorro-antd';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 var SHOWCLS = 'sidebar-nav__floating-show';
@@ -46,6 +46,7 @@ var SidebarNavComponent = /** @class */ (function () {
     });
     Object.defineProperty(SidebarNavComponent.prototype, "_d", {
         get: /**
+         * @private
          * @return {?}
          */
         function () {
@@ -55,10 +56,12 @@ var SidebarNavComponent = /** @class */ (function () {
         configurable: true
     });
     /**
+     * @private
      * @param {?} e
      * @return {?}
      */
     SidebarNavComponent.prototype.floatingAreaClickHandle = /**
+     * @private
      * @param {?} e
      * @return {?}
      */
@@ -73,20 +76,26 @@ var SidebarNavComponent = /** @class */ (function () {
         var id = +(/** @type {?} */ (linkNode.dataset)).id;
         /** @type {?} */
         var item;
-        this.menuSrv.visit(this._d, function (i) {
+        this.menuSrv.visit(this._d, (/**
+         * @param {?} i
+         * @return {?}
+         */
+        function (i) {
             if (!item && i.__id === id) {
                 item = i;
             }
-        });
+        }));
         this.to(item);
         this.hideAll();
         e.preventDefault();
         return false;
     };
     /**
+     * @private
      * @return {?}
      */
     SidebarNavComponent.prototype.clearFloatingContainer = /**
+     * @private
      * @return {?}
      */
     function () {
@@ -102,9 +111,11 @@ var SidebarNavComponent = /** @class */ (function () {
         }
     };
     /**
+     * @private
      * @return {?}
      */
     SidebarNavComponent.prototype.genFloatingContainer = /**
+     * @private
      * @return {?}
      */
     function () {
@@ -115,11 +126,13 @@ var SidebarNavComponent = /** @class */ (function () {
         this.bodyEl.appendChild(this.floatingEl);
     };
     /**
+     * @private
      * @param {?} linkNode
      * @param {?} item
      * @return {?}
      */
     SidebarNavComponent.prototype.genSubNode = /**
+     * @private
      * @param {?} linkNode
      * @param {?} item
      * @return {?}
@@ -131,16 +144,21 @@ var SidebarNavComponent = /** @class */ (function () {
         var node = (/** @type {?} */ (linkNode.nextElementSibling.cloneNode(true)));
         node.id = id;
         node.classList.add(FLOATINGCLS);
-        node.addEventListener('mouseleave', function () {
+        node.addEventListener('mouseleave', (/**
+         * @return {?}
+         */
+        function () {
             node.classList.remove(SHOWCLS);
-        }, false);
+        }), false);
         this.floatingEl.appendChild(node);
         return node;
     };
     /**
+     * @private
      * @return {?}
      */
     SidebarNavComponent.prototype.hideAll = /**
+     * @private
      * @return {?}
      */
     function () {
@@ -154,6 +172,7 @@ var SidebarNavComponent = /** @class */ (function () {
     // calculate the node position values.
     // calculate the node position values.
     /**
+     * @private
      * @param {?} linkNode
      * @param {?} node
      * @return {?}
@@ -161,6 +180,7 @@ var SidebarNavComponent = /** @class */ (function () {
     SidebarNavComponent.prototype.calPos = 
     // calculate the node position values.
     /**
+     * @private
      * @param {?} linkNode
      * @param {?} node
      * @return {?}
@@ -196,7 +216,10 @@ var SidebarNavComponent = /** @class */ (function () {
         if (this.collapsed !== true) {
             return;
         }
-        this.ngZone.runOutsideAngular(function () {
+        this.ngZone.runOutsideAngular((/**
+         * @return {?}
+         */
+        function () {
             e.preventDefault();
             /** @type {?} */
             var linkNode = (/** @type {?} */ (e.target));
@@ -206,7 +229,7 @@ var SidebarNavComponent = /** @class */ (function () {
             _this.hideAll();
             subNode.classList.add(SHOWCLS);
             _this.calPos((/** @type {?} */ (linkNode)), subNode);
-        });
+        }));
     };
     /**
      * @param {?} item
@@ -241,10 +264,15 @@ var SidebarNavComponent = /** @class */ (function () {
      */
     function (item) {
         if (!this.openStrictly) {
-            this.menuSrv.visit(this._d, function (i, p) {
+            this.menuSrv.visit(this._d, (/**
+             * @param {?} i
+             * @param {?} p
+             * @return {?}
+             */
+            function (i, p) {
                 if (i !== item)
                     i._open = false;
-            });
+            }));
             /** @type {?} */
             var pItem = item.__parent;
             while (pItem) {
@@ -287,9 +315,20 @@ var SidebarNavComponent = /** @class */ (function () {
         var _a = this, doc = _a.doc, router = _a.router, unsubscribe$ = _a.unsubscribe$, menuSrv = _a.menuSrv, cdr = _a.cdr;
         this.bodyEl = doc.querySelector('body');
         menuSrv.openedByUrl(router.url, this.recursivePath);
-        this.ngZone.runOutsideAngular(function () { return _this.genFloatingContainer(); });
-        menuSrv.change.pipe(takeUntil(unsubscribe$)).subscribe(function (data) {
-            menuSrv.visit(data, function (i) {
+        this.ngZone.runOutsideAngular((/**
+         * @return {?}
+         */
+        function () { return _this.genFloatingContainer(); }));
+        menuSrv.change.pipe(takeUntil(unsubscribe$)).subscribe((/**
+         * @param {?} data
+         * @return {?}
+         */
+        function (data) {
+            menuSrv.visit(data, (/**
+             * @param {?} i
+             * @return {?}
+             */
+            function (i) {
                 if (!i._aclResult) {
                     if (_this.disabledAcl) {
                         i.disabled = true;
@@ -301,17 +340,25 @@ var SidebarNavComponent = /** @class */ (function () {
                 if (_this.openStrictly) {
                     i._open = i.open != null ? i.open : false;
                 }
-            });
+            }));
             _this.list = menuSrv.menus;
             cdr.detectChanges();
-        });
+        }));
         router.events
-            .pipe(takeUntil(unsubscribe$), filter(function (e) { return e instanceof NavigationEnd; }))
-            .subscribe(function (e) {
+            .pipe(takeUntil(unsubscribe$), filter((/**
+         * @param {?} e
+         * @return {?}
+         */
+        function (e) { return e instanceof NavigationEnd; })))
+            .subscribe((/**
+         * @param {?} e
+         * @return {?}
+         */
+        function (e) {
             _this.menuSrv.openedByUrl(e.urlAfterRedirects, _this.recursivePath);
             _this.underPad();
             _this.cdr.detectChanges();
-        });
+        }));
         this.underPad();
     };
     /**
@@ -331,6 +378,7 @@ var SidebarNavComponent = /** @class */ (function () {
         get: 
         // #region Under pad
         /**
+         * @private
          * @return {?}
          */
         function () {
@@ -340,22 +388,29 @@ var SidebarNavComponent = /** @class */ (function () {
         configurable: true
     });
     /**
+     * @private
      * @return {?}
      */
     SidebarNavComponent.prototype.underPad = /**
+     * @private
      * @return {?}
      */
     function () {
         var _this = this;
         if (this.autoCloseUnderPad && this.isPad && !this.collapsed) {
-            setTimeout(function () { return _this.openAside(true); });
+            setTimeout((/**
+             * @return {?}
+             */
+            function () { return _this.openAside(true); }));
         }
     };
     /**
+     * @private
      * @param {?} status
      * @return {?}
      */
     SidebarNavComponent.prototype.openAside = /**
+     * @private
      * @param {?} status
      * @return {?}
      */
@@ -412,7 +467,7 @@ var SidebarNavComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var SidebarNavModule = /** @class */ (function () {
     function SidebarNavModule() {
@@ -429,12 +484,12 @@ var SidebarNavModule = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 export { SidebarNavComponent, SidebarNavModule };

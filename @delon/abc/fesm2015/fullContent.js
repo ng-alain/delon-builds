@@ -8,7 +8,7 @@ import { InputBoolean, InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class FullContentService {
     constructor() {
@@ -35,7 +35,7 @@ FullContentService.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const wrapCls = `full-content__body`;
@@ -69,6 +69,7 @@ class FullContentComponent {
         this.fullscreenChange = new EventEmitter();
     }
     /**
+     * @private
      * @return {?}
      */
     updateCls() {
@@ -88,6 +89,7 @@ class FullContentComponent {
         }
     }
     /**
+     * @private
      * @return {?}
      */
     update() {
@@ -96,6 +98,7 @@ class FullContentComponent {
         this.fullscreenChange.emit(this.fullscreen);
     }
     /**
+     * @private
      * @return {?}
      */
     updateHeight() {
@@ -106,6 +109,7 @@ class FullContentComponent {
         this.cdr.detectChanges();
     }
     /**
+     * @private
      * @return {?}
      */
     removeInBody() {
@@ -123,13 +127,30 @@ class FullContentComponent {
         // when window resize
         this.scroll$ = fromEvent(window, 'resize')
             .pipe(debounceTime(200))
-            .subscribe(() => this.updateHeight());
+            .subscribe((/**
+         * @return {?}
+         */
+        () => this.updateHeight()));
         // when servier changed
-        this.srv$ = this.srv.change.pipe(filter(res => res !== null)).subscribe(() => this.toggle());
+        this.srv$ = this.srv.change.pipe(filter((/**
+         * @param {?} res
+         * @return {?}
+         */
+        res => res !== null))).subscribe((/**
+         * @return {?}
+         */
+        () => this.toggle()));
         // when router changed
         this.route$ = this.router.events
-            .pipe(filter((e) => e instanceof ActivationStart || e instanceof ActivationEnd), debounceTime(200))
-            .subscribe(() => {
+            .pipe(filter((/**
+         * @param {?} e
+         * @return {?}
+         */
+        (e) => e instanceof ActivationStart || e instanceof ActivationEnd)), debounceTime(200))
+            .subscribe((/**
+         * @return {?}
+         */
+        () => {
             if (!!this.doc.querySelector('#' + this.id)) {
                 this.bodyEl.classList.add(wrapCls);
                 this.updateCls();
@@ -137,7 +158,7 @@ class FullContentComponent {
             else {
                 this.removeInBody();
             }
-        });
+        }));
     }
     /**
      * @return {?}
@@ -151,7 +172,10 @@ class FullContentComponent {
      * @return {?}
      */
     ngAfterViewInit() {
-        setTimeout(() => this.updateHeight());
+        setTimeout((/**
+         * @return {?}
+         */
+        () => this.updateHeight()));
     }
     /**
      * @return {?}
@@ -212,7 +236,7 @@ __decorate([
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class FullContentToggleDirective {
     /**
@@ -243,7 +267,7 @@ FullContentToggleDirective.ctorParameters = () => [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const COMPONENTS = [FullContentComponent, FullContentToggleDirective];
@@ -259,12 +283,12 @@ FullContentModule.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 export { FullContentComponent, FullContentService, FullContentToggleDirective, FullContentModule };

@@ -69,7 +69,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var G2PieComponent = /** @class */ (function () {
         // #endregion
@@ -93,9 +93,11 @@
             this.data = [];
         }
         /**
+         * @private
          * @return {?}
          */
         G2PieComponent.prototype.setCls = /**
+         * @private
          * @return {?}
          */
             function () {
@@ -110,9 +112,11 @@
                 }, true);
             };
         /**
+         * @private
          * @return {?}
          */
         G2PieComponent.prototype.fixData = /**
+         * @private
          * @return {?}
          */
             function () {
@@ -121,9 +125,12 @@
                 if (this.isPercent) {
                     this.select = false;
                     this.tooltip = false;
-                    this.percentColor = function (value) {
+                    this.percentColor = ( /**
+                     * @param {?} value
+                     * @return {?}
+                     */function (value) {
                         return value === '占比' ? color || 'rgba(24, 144, 255, 0.85)' : '#F0F2F5';
-                    };
+                    });
                     this.data = [
                         {
                             x: '占比',
@@ -137,9 +144,11 @@
                 }
             };
         /**
+         * @private
          * @return {?}
          */
         G2PieComponent.prototype.install = /**
+         * @private
          * @return {?}
          */
             function () {
@@ -165,25 +174,35 @@
                 chart.axis(false);
                 chart.legend(false);
                 chart.coord('theta', { innerRadius: inner });
-                chart.filter('x', function (val, item) { return item.checked !== false; });
+                chart.filter('x', ( /**
+                 * @param {?} val
+                 * @param {?} item
+                 * @return {?}
+                 */function (val, item) { return item.checked !== false; }));
                 chart
                     .intervalStack()
                     .position('y')
-                    .tooltip('x*percent', function (name, p) {
+                    .tooltip('x*percent', ( /**
+             * @param {?} name
+             * @param {?} p
+             * @return {?}
+             */function (name, p) {
                     return ({
                         name: name,
                         // 由于 hasLegend 会优先处理为百分比格式，因此无需要在 tooltip 中重新转换
                         value: hasLegend ? p : (p * 100).toFixed(2),
                     });
-                })
+                }))
                     .select(this.select);
                 chart.render();
                 this.attachChart();
             };
         /**
+         * @private
          * @return {?}
          */
         G2PieComponent.prototype.attachChart = /**
+         * @private
          * @return {?}
          */
             function () {
@@ -216,12 +235,16 @@
                     },
                 });
                 chart.repaint();
-                this.ngZone.run(function () { return _this.genLegend(); });
+                this.ngZone.run(( /**
+                 * @return {?}
+                 */function () { return _this.genLegend(); }));
             };
         /**
+         * @private
          * @return {?}
          */
         G2PieComponent.prototype.genLegend = /**
+         * @private
          * @return {?}
          */
             function () {
@@ -231,14 +254,17 @@
                 this.legendData = chart
                     .get('geoms')[0]
                     .get('dataArray')
-                    .map(function (item) {
+                    .map(( /**
+             * @param {?} item
+             * @return {?}
+             */function (item) {
                     /** @type {?} */
                     var origin = item[0]._origin;
                     origin.color = item[0].color;
                     origin.checked = true;
                     origin.percent = (origin.percent * 100).toFixed(2);
                     return origin;
-                });
+                }));
                 cdr.detectChanges();
             };
         /**
@@ -255,9 +281,11 @@
                 chart.repaint();
             };
         /**
+         * @private
          * @return {?}
          */
         G2PieComponent.prototype.installResizeEvent = /**
+         * @private
          * @return {?}
          */
             function () {
@@ -266,7 +294,9 @@
                     return;
                 this.resize$ = rxjs.fromEvent(window, 'resize')
                     .pipe(operators.debounceTime(200))
-                    .subscribe(function () { return _this.setCls(); });
+                    .subscribe(( /**
+             * @return {?}
+             */function () { return _this.setCls(); }));
             };
         /**
          * @return {?}
@@ -276,7 +306,13 @@
          */
             function () {
                 var _this = this;
-                this.ngZone.runOutsideAngular(function () { return setTimeout(function () { return _this.install(); }, _this.delay); });
+                this.ngZone.runOutsideAngular(( /**
+                 * @return {?}
+                 */function () {
+                    return setTimeout(( /**
+                     * @return {?}
+                     */function () { return _this.install(); }), _this.delay);
+                }));
             };
         /**
          * @return {?}
@@ -288,7 +324,9 @@
                 var _this = this;
                 this.fixData();
                 this.setCls();
-                this.ngZone.runOutsideAngular(function () { return _this.attachChart(); });
+                this.ngZone.runOutsideAngular(( /**
+                 * @return {?}
+                 */function () { return _this.attachChart(); }));
                 this.installResizeEvent();
             };
         /**
@@ -303,7 +341,9 @@
                     this.resize$.unsubscribe();
                 }
                 if (this.chart) {
-                    this.ngZone.runOutsideAngular(function () { return _this.chart.destroy(); });
+                    this.ngZone.runOutsideAngular(( /**
+                     * @return {?}
+                     */function () { return _this.chart.destroy(); }));
                 }
             };
         G2PieComponent.decorators = [
@@ -378,7 +418,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
     var COMPONENTS = [G2PieComponent];
@@ -397,12 +437,12 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     exports.G2PieComponent = G2PieComponent;

@@ -11,7 +11,7 @@ import { of, combineLatest, BehaviorSubject, Observable, Subject } from 'rxjs';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const ERRORSDEFAULT = {
@@ -54,7 +54,7 @@ const ERRORSDEFAULT = {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class DelonFormConfig {
     constructor() {
@@ -123,7 +123,7 @@ DelonFormConfig.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const FORMATMAPS = {
@@ -241,16 +241,32 @@ function resolveIf(schema, ui) {
     const visibleIf = {};
     /** @type {?} */
     const visibleElse = {};
-    ifKeys.forEach(key => {
+    ifKeys.forEach((/**
+     * @param {?} key
+     * @return {?}
+     */
+    key => {
         /** @type {?} */
         const cond = schema.if.properties[key].enum;
         visibleIf[key] = cond;
         if (hasElse)
-            visibleElse[key] = (value) => !cond.includes(value);
-    });
-    schema.then.required.forEach(key => (ui[`$${key}`].visibleIf = visibleIf));
+            visibleElse[key] = (/**
+             * @param {?} value
+             * @return {?}
+             */
+            (value) => !cond.includes(value));
+    }));
+    schema.then.required.forEach((/**
+     * @param {?} key
+     * @return {?}
+     */
+    key => (ui[`$${key}`].visibleIf = visibleIf)));
     if (hasElse)
-        schema.else.required.forEach(key => (ui[`$${key}`].visibleIf = visibleElse));
+        schema.else.required.forEach((/**
+         * @param {?} key
+         * @return {?}
+         */
+        key => (ui[`$${key}`].visibleIf = visibleElse)));
     return schema;
 }
 /**
@@ -259,11 +275,15 @@ function resolveIf(schema, ui) {
  * @return {?}
  */
 function detectKey(keys, detectKeys) {
-    detectKeys.forEach(key => {
+    detectKeys.forEach((/**
+     * @param {?} key
+     * @return {?}
+     */
+    key => {
         if (!keys.includes(key)) {
             throw new Error(`if: properties does not contain '${key}'`);
         }
-    });
+    }));
 }
 /**
  * @param {?} properties
@@ -274,23 +294,44 @@ function orderProperties(properties, order) {
     if (!Array.isArray(order))
         return properties;
     /** @type {?} */
-    const arrayToHash = arr => arr.reduce((prev, curr) => {
+    const arrayToHash = (/**
+     * @param {?} arr
+     * @return {?}
+     */
+    arr => arr.reduce((/**
+     * @param {?} prev
+     * @param {?} curr
+     * @return {?}
+     */
+    (prev, curr) => {
         prev[curr] = true;
         return prev;
-    }, {});
+    }), {}));
     /** @type {?} */
-    const errorPropList = arr => `property [${arr.join(`', '`)}]`;
+    const errorPropList = (/**
+     * @param {?} arr
+     * @return {?}
+     */
+    arr => `property [${arr.join(`', '`)}]`);
     /** @type {?} */
     const propertyHash = arrayToHash(properties);
     /** @type {?} */
     const orderHash = arrayToHash(order);
     /** @type {?} */
-    const extraneous = order.filter(prop => prop !== '*' && !propertyHash[prop]);
+    const extraneous = order.filter((/**
+     * @param {?} prop
+     * @return {?}
+     */
+    prop => prop !== '*' && !propertyHash[prop]));
     if (extraneous.length) {
         throw new Error(`ui schema order list contains extraneous ${errorPropList(extraneous)}`);
     }
     /** @type {?} */
-    const rest = properties.filter(prop => !orderHash[prop]);
+    const rest = properties.filter((/**
+     * @param {?} prop
+     * @return {?}
+     */
+    prop => !orderHash[prop]));
     /** @type {?} */
     const restIndex = order.indexOf('*');
     if (restIndex === -1) {
@@ -317,21 +358,33 @@ function getEnum(list, formData, readOnly) {
     if (isBlank(list) || !Array.isArray(list) || list.length === 0)
         return [];
     if (typeof list[0] !== 'object') {
-        list = list.map((item) => {
+        list = list.map((/**
+         * @param {?} item
+         * @return {?}
+         */
+        (item) => {
             return (/** @type {?} */ ({ label: item, value: item }));
-        });
+        }));
     }
     if (formData) {
         if (!Array.isArray(formData))
             formData = [formData];
-        list.forEach((item) => {
+        list.forEach((/**
+         * @param {?} item
+         * @return {?}
+         */
+        (item) => {
             if (~formData.indexOf(item.value))
                 item.checked = true;
-        });
+        }));
     }
     // fix disabled status
     if (readOnly) {
-        list.forEach((item) => (item.disabled = true));
+        list.forEach((/**
+         * @param {?} item
+         * @return {?}
+         */
+        (item) => (item.disabled = true)));
     }
     return list;
 }
@@ -353,14 +406,18 @@ function getCopyEnum(list, formData, readOnly) {
  */
 function getData(schema, ui, formData, asyncArgs) {
     if (typeof ui.asyncData === 'function') {
-        return ui.asyncData(asyncArgs).pipe(map(list => getEnum(list, formData, schema.readOnly)));
+        return ui.asyncData(asyncArgs).pipe(map((/**
+         * @param {?} list
+         * @return {?}
+         */
+        list => getEnum(list, formData, schema.readOnly))));
     }
     return of(getCopyEnum(schema.enum, formData, schema.readOnly));
 }
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * @abstract
@@ -525,6 +582,7 @@ class FormProperty {
     }
     // #region process errors
     /**
+     * @private
      * @param {?} value
      * @return {?}
      */
@@ -564,10 +622,14 @@ class FormProperty {
             /** @type {?} */
             const customErrors = customValidator(this.value, this, this.findRoot());
             if (customErrors instanceof Observable) {
-                customErrors.subscribe(res => {
+                customErrors.subscribe((/**
+                 * @param {?} res
+                 * @return {?}
+                 */
+                res => {
                     this.setCustomErrors(errors, res);
                     this.widget.detectChanges();
-                });
+                }));
                 return;
             }
             this.setCustomErrors(errors, customErrors);
@@ -577,6 +639,7 @@ class FormProperty {
         this.setErrors(this._errors);
     }
     /**
+     * @private
      * @param {?} errors
      * @param {?} list
      * @return {?}
@@ -586,16 +649,22 @@ class FormProperty {
         /** @type {?} */
         const hasCustomError = list != null && list.length > 0;
         if (hasCustomError) {
-            list.forEach((err, idx) => {
+            list.forEach((/**
+             * @param {?} err
+             * @param {?} idx
+             * @return {?}
+             */
+            (err, idx) => {
                 if (!err.message)
                     throw new Error(`The custom validator must contain a 'message' attribute to viewed error text`);
                 err._custom = true;
-            });
+            }));
         }
         this._errors = this.mergeErrors(errors, list);
         this.setErrors(this._errors);
     }
     /**
+     * @private
      * @param {?} errors
      * @param {?} newErrors
      * @return {?}
@@ -612,13 +681,18 @@ class FormProperty {
         return errors;
     }
     /**
+     * @protected
      * @param {?} errors
      * @param {?=} emitFormat
      * @return {?}
      */
     setErrors(errors, emitFormat = true) {
         if (emitFormat && errors && !this.ui.onlyVisual) {
-            errors = errors.map((err) => {
+            errors = errors.map((/**
+             * @param {?} err
+             * @return {?}
+             */
+            (err) => {
                 /** @type {?} */
                 let message = err._custom === true && err.message
                     ? err.message
@@ -628,12 +702,17 @@ class FormProperty {
                 }
                 if (message) {
                     if (~((/** @type {?} */ (message))).indexOf('{')) {
-                        message = ((/** @type {?} */ (message))).replace(/{([\.a-z0-9]+)}/g, (v, key) => err.params[key] || '');
+                        message = ((/** @type {?} */ (message))).replace(/{([\.a-z0-9]+)}/g, (/**
+                         * @param {?} v
+                         * @param {?} key
+                         * @return {?}
+                         */
+                        (v, key) => err.params[key] || ''));
                     }
                     err.message = (/** @type {?} */ (message));
                 }
                 return err;
-            });
+            }));
         }
         this._errors = errors;
         this._errorsChanges.next(errors);
@@ -651,18 +730,23 @@ class FormProperty {
         this._objErrors[path] = errors;
         /** @type {?} */
         const platErrors = [];
-        Object.keys(this._objErrors).forEach(p => {
+        Object.keys(this._objErrors).forEach((/**
+         * @param {?} p
+         * @return {?}
+         */
+        p => {
             /** @type {?} */
             const property = this.searchProperty(p);
             if (property && !property.visible)
                 return;
             platErrors.push(...this._objErrors[p]);
-        });
+        }));
         this.setErrors(platErrors, false);
     }
     // #endregion
     // #region condition
     /**
+     * @private
      * @param {?} visible
      * @return {?}
      */
@@ -691,7 +775,11 @@ class FormProperty {
                     const property = this.searchProperty(dependencyPath);
                     if (property) {
                         /** @type {?} */
-                        const valueCheck = property.valueChanges.pipe(map((value) => {
+                        const valueCheck = property.valueChanges.pipe(map((/**
+                         * @param {?} value
+                         * @return {?}
+                         */
+                        (value) => {
                             /** @type {?} */
                             const vi = visibleIf[dependencyPath];
                             if (typeof vi === 'function')
@@ -702,11 +790,15 @@ class FormProperty {
                             else {
                                 return vi.indexOf(value) !== -1;
                             }
-                        }));
+                        })));
                         /** @type {?} */
                         const visibilityCheck = property._visibilityChanges;
                         /** @type {?} */
-                        const and = combineLatest(valueCheck, visibilityCheck).pipe(map(results => results[0] && results[1]));
+                        const and = combineLatest(valueCheck, visibilityCheck).pipe(map((/**
+                         * @param {?} results
+                         * @return {?}
+                         */
+                        results => results[0] && results[1])));
                         propertiesBinding.push(and);
                     }
                     else {
@@ -715,8 +807,16 @@ class FormProperty {
                 }
             }
             combineLatest(propertiesBinding)
-                .pipe(map(values => values.indexOf(true) !== -1), distinctUntilChanged())
-                .subscribe(visible => this.setVisible(visible));
+                .pipe(map((/**
+             * @param {?} values
+             * @return {?}
+             */
+            values => values.indexOf(true) !== -1)), distinctUntilChanged())
+                .subscribe((/**
+             * @param {?} visible
+             * @return {?}
+             */
+            visible => this.setVisible(visible)));
         }
     }
 }
@@ -764,12 +864,16 @@ class PropertyGroup extends FormProperty {
      * @return {?}
      */
     forEachChildRecursive(fn) {
-        this.forEachChild(child => {
+        this.forEachChild((/**
+         * @param {?} child
+         * @return {?}
+         */
+        child => {
             fn(child);
             if (child instanceof PropertyGroup) {
                 ((/** @type {?} */ (child))).forEachChildRecursive(fn);
             }
-        });
+        }));
     }
     /**
      * @return {?}
@@ -779,12 +883,17 @@ class PropertyGroup extends FormProperty {
         this._bindVisibilityRecursive();
     }
     /**
+     * @private
      * @return {?}
      */
     _bindVisibilityRecursive() {
-        this.forEachChildRecursive(property => {
+        this.forEachChildRecursive((/**
+         * @param {?} property
+         * @return {?}
+         */
+        property => {
             property._bindVisibility();
-        });
+        }));
     }
     /**
      * @return {?}
@@ -796,7 +905,7 @@ class PropertyGroup extends FormProperty {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class ArrayProperty extends PropertyGroup {
     /**
@@ -864,14 +973,19 @@ class ArrayProperty extends PropertyGroup {
     _updateValue() {
         /** @type {?} */
         const value = [];
-        this.forEachChild((property) => {
+        this.forEachChild((/**
+         * @param {?} property
+         * @return {?}
+         */
+        (property) => {
             if (property.visible && property._hasValue()) {
                 value.push(Object.assign({}, property.formData, property.value));
             }
-        });
+        }));
         this._value = value;
     }
     /**
+     * @private
      * @param {?} formData
      * @return {?}
      */
@@ -882,6 +996,7 @@ class ArrayProperty extends PropertyGroup {
         return newProperty;
     }
     /**
+     * @private
      * @param {?} formDatas
      * @return {?}
      */
@@ -893,6 +1008,7 @@ class ArrayProperty extends PropertyGroup {
         }
     }
     /**
+     * @private
      * @param {?=} path
      * @return {?}
      */
@@ -928,7 +1044,7 @@ class ArrayProperty extends PropertyGroup {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * @abstract
@@ -976,7 +1092,7 @@ class AtomicProperty extends FormProperty {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class BooleanProperty extends AtomicProperty {
     /**
@@ -989,7 +1105,7 @@ class BooleanProperty extends AtomicProperty {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class NumberProperty extends AtomicProperty {
     /**
@@ -1019,7 +1135,7 @@ class NumberProperty extends AtomicProperty {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class ObjectProperty extends PropertyGroup {
     /**
@@ -1045,6 +1161,7 @@ class ObjectProperty extends PropertyGroup {
         return this._propertiesId;
     }
     /**
+     * @private
      * @return {?}
      */
     createProperties() {
@@ -1059,10 +1176,14 @@ class ObjectProperty extends PropertyGroup {
         catch (e) {
             console.error(`Invalid ${this.schema.title || 'root'} object field configuration:`, e);
         }
-        orderedProperties.forEach(propertyId => {
+        orderedProperties.forEach((/**
+         * @param {?} propertyId
+         * @return {?}
+         */
+        propertyId => {
             this.properties[propertyId] = this.formPropertyFactory.createProperty(this.schema.properties[propertyId], this.ui['$' + propertyId], (this.formData || {})[propertyId], this, propertyId);
             this._propertiesId.push(propertyId);
-        });
+        }));
     }
     /**
      * @param {?} value
@@ -1101,18 +1222,23 @@ class ObjectProperty extends PropertyGroup {
     _updateValue() {
         /** @type {?} */
         const value = {};
-        this.forEachChild((property, propertyId) => {
+        this.forEachChild((/**
+         * @param {?} property
+         * @param {?} propertyId
+         * @return {?}
+         */
+        (property, propertyId) => {
             if (property.visible && property._hasValue()) {
                 value[propertyId] = property.value;
             }
-        });
+        }));
         this._value = value;
     }
 }
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class StringProperty extends AtomicProperty {
     /**
@@ -1134,7 +1260,7 @@ class StringProperty extends AtomicProperty {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const SEQ = '/';
@@ -1234,6 +1360,7 @@ class FormPropertyFactory {
         return newProperty;
     }
     /**
+     * @private
      * @param {?} rootProperty
      * @return {?}
      */
@@ -1245,7 +1372,7 @@ class FormPropertyFactory {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class TerminatorService {
     constructor() {
@@ -1261,7 +1388,7 @@ class TerminatorService {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * @abstract
@@ -1291,7 +1418,11 @@ class AjvSchemaValidatorFactory extends SchemaValidatorFactory {
         const ingoreKeywords = []
             .concat(this.options.ingoreKeywords)
             .concat(extraOptions.ingoreKeywords);
-        return (value) => {
+        return (/**
+         * @param {?} value
+         * @return {?}
+         */
+        (value) => {
             try {
                 this.ajv.validate(schema, value);
             }
@@ -1305,10 +1436,14 @@ class AjvSchemaValidatorFactory extends SchemaValidatorFactory {
             /** @type {?} */
             let errors = this.ajv.errors;
             if (this.options && ingoreKeywords && errors) {
-                errors = errors.filter(w => ingoreKeywords.indexOf(w.keyword) === -1);
+                errors = errors.filter((/**
+                 * @param {?} w
+                 * @return {?}
+                 */
+                w => ingoreKeywords.indexOf(w.keyword) === -1));
             }
             return errors;
-        };
+        });
     }
 }
 /** @nocollapse */
@@ -1318,7 +1453,7 @@ AjvSchemaValidatorFactory.ctorParameters = () => [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class WidgetRegistry {
     constructor() {
@@ -1393,7 +1528,7 @@ WidgetFactory.ctorParameters = () => [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * @param {?} schemaValidatorFactory
@@ -1467,13 +1602,16 @@ class SFComponent {
         this.liveValidate = options.liveValidate;
         this.firstVisual = options.firstVisual;
         this.autocomplete = options.autocomplete;
-        this.i18n$ = this.i18n.change.subscribe(() => {
+        this.i18n$ = this.i18n.change.subscribe((/**
+         * @return {?}
+         */
+        () => {
             this.locale = this.i18n.getData('sf');
             if (this._inited) {
                 this.coverButtonProperty();
                 this.cdr.detectChanges();
             }
-        });
+        }));
     }
     /**
      * 表单模式
@@ -1569,6 +1707,7 @@ class SFComponent {
         this.formSubmit.emit(this.value);
     }
     /**
+     * @private
      * @return {?}
      */
     coverProperty() {
@@ -1578,8 +1717,20 @@ class SFComponent {
         const _schema = deepCopy(this.schema);
         const { definitions } = _schema;
         /** @type {?} */
-        const inFn = (schema, parentSchema, uiSchema, parentUiSchema, uiRes) => {
-            Object.keys(schema.properties).forEach(key => {
+        const inFn = (/**
+         * @param {?} schema
+         * @param {?} parentSchema
+         * @param {?} uiSchema
+         * @param {?} parentUiSchema
+         * @param {?} uiRes
+         * @return {?}
+         */
+        (schema, parentSchema, uiSchema, parentUiSchema, uiRes) => {
+            Object.keys(schema.properties).forEach((/**
+             * @param {?} key
+             * @return {?}
+             */
+            key => {
                 /** @type {?} */
                 const uiKey = `$${key}`;
                 /** @type {?} */
@@ -1634,11 +1785,20 @@ class SFComponent {
                 if (property.properties && Object.keys(property.properties).length) {
                     inFn(property, schema, uiSchema[uiKey] || {}, ui, uiRes[uiKey]);
                 }
-            });
-        };
+            }));
+        });
         /** @type {?} */
-        const inIfFn = (schema, ui) => {
-            Object.keys(schema.properties).forEach(key => {
+        const inIfFn = (/**
+         * @param {?} schema
+         * @param {?} ui
+         * @return {?}
+         */
+        (schema, ui) => {
+            Object.keys(schema.properties).forEach((/**
+             * @param {?} key
+             * @return {?}
+             */
+            key => {
                 /** @type {?} */
                 const property = schema.properties[key];
                 /** @type {?} */
@@ -1650,8 +1810,8 @@ class SFComponent {
                 if (property.properties) {
                     inIfFn(property, ui[uiKey]);
                 }
-            });
-        };
+            }));
+        });
         if (this.ui == null)
             this.ui = {};
         this._defUi = Object.assign({ onlyVisual: this.options.onlyVisual, size: this.options.size, liveValidate: this.liveValidate, firstVisual: this.firstVisual }, this.options.ui, _schema.ui, this.ui['*']);
@@ -1668,12 +1828,17 @@ class SFComponent {
         di(this._ui, 'cover schema & ui', this._ui, _schema);
     }
     /**
+     * @private
      * @return {?}
      */
     coverButtonProperty() {
         this._btn = Object.assign({ render: { size: 'default' } }, this.locale, this.options.button, ((/** @type {?} */ (this.button))));
         /** @type {?} */
-        const firstKey = Object.keys(this._ui).find(w => w.startsWith('$'));
+        const firstKey = Object.keys(this._ui).find((/**
+         * @param {?} w
+         * @return {?}
+         */
+        w => w.startsWith('$')));
         if (this.layout === 'horizontal') {
             /** @type {?} */
             const btnUi = firstKey ? this._ui[firstKey] : this._defUi;
@@ -1729,17 +1894,23 @@ class SFComponent {
         this.attachCustomRender();
     }
     /**
+     * @private
      * @return {?}
      */
     attachCustomRender() {
-        this._renders.forEach((tpl, path) => {
+        this._renders.forEach((/**
+         * @param {?} tpl
+         * @param {?} path
+         * @return {?}
+         */
+        (tpl, path) => {
             /** @type {?} */
             const property = this.rootProperty.searchProperty(path);
             if (property == null) {
                 return;
             }
             property.ui._render = tpl;
-        });
+        }));
     }
     /**
      * @template THIS
@@ -1782,15 +1953,23 @@ class SFComponent {
         (/** @type {?} */ (this)).coverButtonProperty();
         (/** @type {?} */ (this)).rootProperty = (/** @type {?} */ (this)).formPropertyFactory.createProperty((/** @type {?} */ (this))._schema, (/** @type {?} */ (this))._ui, (/** @type {?} */ (this)).formData);
         (/** @type {?} */ (this)).attachCustomRender();
-        (/** @type {?} */ (this)).rootProperty.valueChanges.subscribe(value => {
+        (/** @type {?} */ (this)).rootProperty.valueChanges.subscribe((/**
+         * @param {?} value
+         * @return {?}
+         */
+        value => {
             (/** @type {?} */ (this))._item = Object.assign({}, (/** @type {?} */ (this)).formData, value);
             (/** @type {?} */ (this)).formChange.emit((/** @type {?} */ (this))._item);
-        });
-        (/** @type {?} */ (this)).rootProperty.errorsChanges.subscribe(errors => {
+        }));
+        (/** @type {?} */ (this)).rootProperty.errorsChanges.subscribe((/**
+         * @param {?} errors
+         * @return {?}
+         */
+        errors => {
             (/** @type {?} */ (this))._valid = !(errors && errors.length);
             (/** @type {?} */ (this)).formError.emit(errors);
             (/** @type {?} */ (this)).cdr.detectChanges();
-        });
+        }));
         return (/** @type {?} */ (this)).reset();
     }
     /**
@@ -1802,13 +1981,17 @@ class SFComponent {
      */
     reset(emit = false) {
         (/** @type {?} */ (this)).rootProperty.resetValue((/** @type {?} */ (this)).formData, false);
-        Promise.resolve().then(() => (/** @type {?} */ (this)).cdr.detectChanges());
+        Promise.resolve().then((/**
+         * @return {?}
+         */
+        () => (/** @type {?} */ (this)).cdr.detectChanges()));
         if (emit) {
             (/** @type {?} */ (this)).formReset.emit((/** @type {?} */ (this)).value);
         }
         return (/** @type {?} */ (this));
     }
     /**
+     * @private
      * @return {?}
      */
     cleanRootSub() {
@@ -1887,7 +2070,7 @@ __decorate([
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 let nextUniqueId = 0;
@@ -1923,7 +2106,10 @@ class SFItemComponent {
      * @return {?}
      */
     ngOnInit() {
-        this.terminator.onDestroy.subscribe(() => this.ngOnDestroy());
+        this.terminator.onDestroy.subscribe((/**
+         * @return {?}
+         */
+        () => this.ngOnDestroy()));
     }
     /**
      * @return {?}
@@ -1963,7 +2149,7 @@ SFItemComponent.propDecorators = {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class SFFixedDirective {
     /**
@@ -1976,6 +2162,7 @@ class SFFixedDirective {
         this.el = (/** @type {?} */ (er.nativeElement));
     }
     /**
+     * @private
      * @return {?}
      */
     init() {
@@ -2031,7 +2218,7 @@ __decorate([
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class SFItemWrapComponent {
     constructor() {
@@ -2062,7 +2249,7 @@ SFItemWrapComponent.propDecorators = {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class SFTemplateDirective {
     /**
@@ -2096,7 +2283,7 @@ SFTemplateDirective.propDecorators = {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * @abstract
@@ -2137,8 +2324,16 @@ class Widget {
      */
     ngAfterViewInit() {
         this.formProperty.errorsChanges
-            .pipe(takeUntil(this.sfItemComp.unsubscribe$), filter(w => w != null))
-            .subscribe((errors) => {
+            .pipe(takeUntil(this.sfItemComp.unsubscribe$), filter((/**
+         * @param {?} w
+         * @return {?}
+         */
+        w => w != null)))
+            .subscribe((/**
+         * @param {?} errors
+         * @return {?}
+         */
+        (errors) => {
             di(this.ui, 'errorsChanges', this.formProperty.path, errors);
             // 不显示首次校验视觉
             if (this.firstVisual) {
@@ -2147,7 +2342,7 @@ class Widget {
                 this.cd.detectChanges();
             }
             this.firstVisual = true;
-        });
+        }));
     }
     /**
      * @param {?} value
@@ -2205,7 +2400,10 @@ class ArrayLayoutWidget extends Widget {
     ngAfterViewInit() {
         this.formProperty.errorsChanges
             .pipe(takeUntil(this.sfItemComp.unsubscribe$))
-            .subscribe(() => this.cd.detectChanges());
+            .subscribe((/**
+         * @return {?}
+         */
+        () => this.cd.detectChanges()));
     }
 }
 class ObjectLayoutWidget extends Widget {
@@ -2220,13 +2418,16 @@ class ObjectLayoutWidget extends Widget {
     ngAfterViewInit() {
         this.formProperty.errorsChanges
             .pipe(takeUntil(this.sfItemComp.unsubscribe$))
-            .subscribe(() => this.cd.detectChanges());
+            .subscribe((/**
+         * @return {?}
+         */
+        () => this.cd.detectChanges()));
     }
 }
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class ArrayWidget extends ArrayLayoutWidget {
     constructor() {
@@ -2281,7 +2482,7 @@ ArrayWidget.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class AutoCompleteWidget extends ControlWidget {
     constructor() {
@@ -2310,14 +2511,27 @@ class AutoCompleteWidget extends ControlWidget {
         };
         this.filterOption = this.ui.filterOption == null ? true : this.ui.filterOption;
         if (typeof this.filterOption === 'boolean') {
-            this.filterOption = (input, option) => option.label.toLowerCase().indexOf((input || '').toLowerCase()) > -1;
+            this.filterOption = (/**
+             * @param {?} input
+             * @param {?} option
+             * @return {?}
+             */
+            (input, option) => option.label.toLowerCase().indexOf((input || '').toLowerCase()) > -1);
         }
         this.isAsync = !!this.ui.asyncData;
         /** @type {?} */
         const orgTime = +(this.ui.debounceTime || 0);
         /** @type {?} */
         const time = Math.max(0, this.isAsync ? Math.max(50, orgTime) : orgTime);
-        this.list = this.ngModel.valueChanges.pipe(debounceTime(time), startWith(''), flatMap(input => (this.isAsync ? this.ui.asyncData(input) : this.filterData(input))), map(res => getEnum(res, null, this.schema.readOnly)));
+        this.list = this.ngModel.valueChanges.pipe(debounceTime(time), startWith(''), flatMap((/**
+         * @param {?} input
+         * @return {?}
+         */
+        input => (this.isAsync ? this.ui.asyncData(input) : this.filterData(input)))), map((/**
+         * @param {?} res
+         * @return {?}
+         */
+        res => getEnum(res, null, this.schema.readOnly))));
     }
     /**
      * @param {?} value
@@ -2337,6 +2551,7 @@ class AutoCompleteWidget extends ControlWidget {
         }
     }
     /**
+     * @private
      * @param {?} input
      * @return {?}
      */
@@ -2345,15 +2560,24 @@ class AutoCompleteWidget extends ControlWidget {
             case 'email':
                 return this.addEmailSuffix(input);
             default:
-                return of(this.fixData.filter(option => this.filterOption(input, option)));
+                return of(this.fixData.filter((/**
+                 * @param {?} option
+                 * @return {?}
+                 */
+                option => this.filterOption(input, option))));
         }
     }
     /**
+     * @private
      * @param {?} value
      * @return {?}
      */
     addEmailSuffix(value) {
-        return of(!value || ~value.indexOf('@') ? [] : this.fixData.map(domain => `${value}@${domain.label}`));
+        return of(!value || ~value.indexOf('@') ? [] : this.fixData.map((/**
+         * @param {?} domain
+         * @return {?}
+         */
+        domain => `${value}@${domain.label}`)));
     }
 }
 AutoCompleteWidget.decorators = [
@@ -2368,7 +2592,7 @@ AutoCompleteWidget.propDecorators = {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class BooleanWidget extends ControlWidget {
 }
@@ -2381,7 +2605,7 @@ BooleanWidget.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class CascaderWidget extends ControlWidget {
     constructor() {
@@ -2397,7 +2621,12 @@ class CascaderWidget extends ControlWidget {
         this.showInput = toBool(this.ui.showInput, true);
         this.triggerAction = this.ui.triggerAction || ['click'];
         if (!!this.ui.asyncData) {
-            this.loadData = (node, index) => ((/** @type {?} */ (this.ui.asyncData)))(node, index, this);
+            this.loadData = (/**
+             * @param {?} node
+             * @param {?} index
+             * @return {?}
+             */
+            (node, index) => ((/** @type {?} */ (this.ui.asyncData)))(node, index, this));
         }
     }
     /**
@@ -2405,10 +2634,14 @@ class CascaderWidget extends ControlWidget {
      * @return {?}
      */
     reset(value) {
-        getData(this.schema, {}, this.formProperty.formData).subscribe(list => {
+        getData(this.schema, {}, this.formProperty.formData).subscribe((/**
+         * @param {?} list
+         * @return {?}
+         */
+        list => {
             this.data = list;
             this.detectChanges();
-        });
+        }));
     }
     /**
      * @param {?} status
@@ -2461,7 +2694,7 @@ CascaderWidget.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class CheckboxWidget extends ControlWidget {
     constructor() {
@@ -2484,7 +2717,11 @@ class CheckboxWidget extends ControlWidget {
      */
     reset(value) {
         this.inited = false;
-        getData(this.schema, this.ui, this.formProperty.formData).subscribe(list => {
+        getData(this.schema, this.ui, this.formProperty.formData).subscribe((/**
+         * @param {?} list
+         * @return {?}
+         */
+        list => {
             this.data = list;
             this.allChecked = false;
             this.indeterminate = false;
@@ -2493,7 +2730,7 @@ class CheckboxWidget extends ControlWidget {
             this.updateAllChecked();
             this.inited = true;
             this.cd.detectChanges();
-        });
+        }));
     }
     /**
      * @param {?} value
@@ -2509,8 +2746,16 @@ class CheckboxWidget extends ControlWidget {
      */
     notifySet() {
         /** @type {?} */
-        const checkList = this.data.filter(w => w.checked);
-        this.updateAllChecked().setValue(checkList.map(item => item.value));
+        const checkList = this.data.filter((/**
+         * @param {?} w
+         * @return {?}
+         */
+        w => w.checked));
+        this.updateAllChecked().setValue(checkList.map((/**
+         * @param {?} item
+         * @return {?}
+         */
+        item => item.value)));
         this.notifyChange(checkList);
     }
     /**
@@ -2518,7 +2763,11 @@ class CheckboxWidget extends ControlWidget {
      * @return {?}
      */
     groupInGridChange(values) {
-        this.data.forEach(item => (item.checked = values.indexOf(item.value) !== -1));
+        this.data.forEach((/**
+         * @param {?} item
+         * @return {?}
+         */
+        item => (item.checked = values.indexOf(item.value) !== -1)));
         this.notifySet();
     }
     /**
@@ -2527,7 +2776,11 @@ class CheckboxWidget extends ControlWidget {
      */
     onAllChecked(e) {
         e.stopPropagation();
-        this.data.forEach(item => (item.checked = this.allChecked));
+        this.data.forEach((/**
+         * @param {?} item
+         * @return {?}
+         */
+        item => (item.checked = this.allChecked)));
         this.notifySet();
     }
     /**
@@ -2536,11 +2789,19 @@ class CheckboxWidget extends ControlWidget {
      * @return {THIS}
      */
     updateAllChecked() {
-        if ((/** @type {?} */ (this)).data.every(item => item.checked !== true)) {
+        if ((/** @type {?} */ (this)).data.every((/**
+         * @param {?} item
+         * @return {?}
+         */
+        item => item.checked !== true))) {
             (/** @type {?} */ (this)).allChecked = false;
             (/** @type {?} */ (this)).indeterminate = false;
         }
-        else if ((/** @type {?} */ (this)).data.every(item => item.checked === true)) {
+        else if ((/** @type {?} */ (this)).data.every((/**
+         * @param {?} item
+         * @return {?}
+         */
+        item => item.checked === true))) {
             (/** @type {?} */ (this)).allChecked = true;
             (/** @type {?} */ (this)).indeterminate = false;
         }
@@ -2551,6 +2812,7 @@ class CheckboxWidget extends ControlWidget {
         return (/** @type {?} */ (this));
     }
     /**
+     * @private
      * @param {?} res
      * @return {?}
      */
@@ -2568,7 +2830,7 @@ CheckboxWidget.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class CustomWidget extends ControlWidget {
 }
@@ -2595,7 +2857,7 @@ CustomWidget.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class DateWidget extends ControlWidget {
     constructor() {
@@ -2637,11 +2899,15 @@ class DateWidget extends ControlWidget {
         };
     }
     /**
+     * @private
      * @return {?}
      */
     compCd() {
         // TODO: removed after nz-datepick support OnPush mode
-        setTimeout(() => this.detectChanges());
+        setTimeout((/**
+         * @return {?}
+         */
+        () => this.detectChanges()));
     }
     /**
      * @param {?} value
@@ -2669,7 +2935,11 @@ class DateWidget extends ControlWidget {
         }
         /** @type {?} */
         const res = Array.isArray(value)
-            ? value.map(d => format(d, this.format))
+            ? value.map((/**
+             * @param {?} d
+             * @return {?}
+             */
+            d => format(d, this.format)))
             : format(value, this.format);
         if (this.flatRange) {
             this.setEnd(res[1]);
@@ -2696,12 +2966,14 @@ class DateWidget extends ControlWidget {
             this.ui.onOk(value);
     }
     /**
+     * @private
      * @return {?}
      */
     get endProperty() {
         return this.formProperty.parent.properties[this.ui.end];
     }
     /**
+     * @private
      * @param {?} value
      * @return {?}
      */
@@ -2709,6 +2981,7 @@ class DateWidget extends ControlWidget {
         this.endProperty.setValue(value, true);
     }
     /**
+     * @private
      * @param {?} value
      * @return {?}
      */
@@ -2728,7 +3001,7 @@ DateWidget.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class MentionWidget extends ControlWidget {
     constructor() {
@@ -2742,7 +3015,11 @@ class MentionWidget extends ControlWidget {
     ngOnInit() {
         const { valueWith, notFoundContent, placement, prefix, autosize } = this.ui;
         this.i = {
-            valueWith: valueWith || (item => item.label),
+            valueWith: valueWith || ((/**
+             * @param {?} item
+             * @return {?}
+             */
+            item => item.label)),
             notFoundContent: notFoundContent || '无匹配结果，轻敲空格完成输入',
             placement: placement || 'bottom',
             prefix: prefix || '@',
@@ -2753,7 +3030,10 @@ class MentionWidget extends ControlWidget {
         /** @type {?} */
         const max = typeof this.schema.maximum !== 'undefined' ? this.schema.maximum : -1;
         if (!this.ui.validator && (min !== -1 || max !== -1)) {
-            this.ui.validator = () => {
+            this.ui.validator = (/**
+             * @return {?}
+             */
+            () => {
                 /** @type {?} */
                 const count = this.mentionChild.getMentions().length;
                 if (min !== -1 && count < min) {
@@ -2763,7 +3043,7 @@ class MentionWidget extends ControlWidget {
                     return [{ keyword: 'mention', message: `最多提及 ${max} 次` }];
                 }
                 return null;
-            };
+            });
         }
     }
     /**
@@ -2771,10 +3051,14 @@ class MentionWidget extends ControlWidget {
      * @return {?}
      */
     reset(value) {
-        getData(this.schema, this.ui, null).subscribe(list => {
+        getData(this.schema, this.ui, null).subscribe((/**
+         * @param {?} list
+         * @return {?}
+         */
+        list => {
             this.data = list;
             this.detectChanges();
-        });
+        }));
     }
     /**
      * @param {?} options
@@ -2793,11 +3077,22 @@ class MentionWidget extends ControlWidget {
             return;
         this.loading = true;
         ((/** @type {?} */ (this.ui.loadData(option))))
-            .pipe(tap(() => (this.loading = false)), map(res => getEnum(res, null, this.schema.readOnly)))
-            .subscribe(res => {
+            .pipe(tap((/**
+         * @return {?}
+         */
+        () => (this.loading = false))), map((/**
+         * @param {?} res
+         * @return {?}
+         */
+        res => getEnum(res, null, this.schema.readOnly))))
+            .subscribe((/**
+         * @param {?} res
+         * @return {?}
+         */
+        res => {
             this.data = res;
             this.cd.detectChanges();
-        });
+        }));
     }
 }
 MentionWidget.decorators = [
@@ -2812,13 +3107,21 @@ MentionWidget.propDecorators = {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class NumberWidget extends ControlWidget {
     constructor() {
         super(...arguments);
-        this.formatter = value => value;
-        this.parser = value => value;
+        this.formatter = (/**
+         * @param {?} value
+         * @return {?}
+         */
+        value => value);
+        this.parser = (/**
+         * @param {?} value
+         * @return {?}
+         */
+        value => value);
     }
     /**
      * @return {?}
@@ -2838,12 +3141,28 @@ class NumberWidget extends ControlWidget {
             this.step = Math.trunc(this.step);
         }
         if (ui.prefix != null) {
-            ui.formatter = value => `${ui.prefix} ${value}`;
-            ui.parser = value => value.replace(`${ui.prefix} `, '');
+            ui.formatter = (/**
+             * @param {?} value
+             * @return {?}
+             */
+            value => `${ui.prefix} ${value}`);
+            ui.parser = (/**
+             * @param {?} value
+             * @return {?}
+             */
+            value => value.replace(`${ui.prefix} `, ''));
         }
         if (ui.unit != null) {
-            ui.formatter = value => `${value} ${ui.unit}`;
-            ui.parser = value => value.replace(` ${ui.unit}`, '');
+            ui.formatter = (/**
+             * @param {?} value
+             * @return {?}
+             */
+            value => `${value} ${ui.unit}`);
+            ui.parser = (/**
+             * @param {?} value
+             * @return {?}
+             */
+            value => value.replace(` ${ui.unit}`, ''));
         }
         if (ui.formatter)
             this.formatter = ui.formatter;
@@ -2867,7 +3186,7 @@ NumberWidget.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class ObjectWidget extends ObjectLayoutWidget {
     constructor() {
@@ -2910,7 +3229,7 @@ ObjectWidget.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class RadioWidget extends ControlWidget {
     constructor() {
@@ -2923,7 +3242,11 @@ class RadioWidget extends ControlWidget {
      */
     reset(value) {
         this.styleType = (this.ui.styleType || 'default') === 'default';
-        getData(this.schema, this.ui, this.formProperty.formData).subscribe(list => (this.data = list));
+        getData(this.schema, this.ui, this.formProperty.formData).subscribe((/**
+         * @param {?} list
+         * @return {?}
+         */
+        list => (this.data = list)));
     }
     /**
      * @param {?} value
@@ -2944,7 +3267,7 @@ RadioWidget.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class RateWidget extends ControlWidget {
     constructor() {
@@ -2977,7 +3300,7 @@ RateWidget.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class SelectWidget extends ControlWidget {
     constructor() {
@@ -3005,11 +3328,19 @@ class SelectWidget extends ControlWidget {
      * @return {?}
      */
     reset(value) {
-        getData(this.schema, this.ui, this.formProperty.formData).subscribe(list => {
+        getData(this.schema, this.ui, this.formProperty.formData).subscribe((/**
+         * @param {?} list
+         * @return {?}
+         */
+        list => {
             this.data = list;
-            this.hasGroup = list.filter(w => w.group === true).length > 0;
+            this.hasGroup = list.filter((/**
+             * @param {?} w
+             * @return {?}
+             */
+            w => w.group === true)).length > 0;
             this.detectChanges();
-        });
+        }));
     }
     /**
      * @param {?} values
@@ -3036,10 +3367,14 @@ class SelectWidget extends ControlWidget {
      */
     searchChange(text) {
         if (this.ui.onSearch) {
-            this.ui.onSearch(text).then((res) => {
+            this.ui.onSearch(text).then((/**
+             * @param {?} res
+             * @return {?}
+             */
+            (res) => {
                 this.data = res;
                 this.detectChanges();
-            });
+            }));
             return;
         }
         this.detectChanges();
@@ -3062,16 +3397,20 @@ SelectWidget.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class SliderWidget extends ControlWidget {
     constructor() {
         super(...arguments);
-        this._formatter = (value) => {
+        this._formatter = (/**
+         * @param {?} value
+         * @return {?}
+         */
+        (value) => {
             if (this.ui.formatter)
                 return this.ui.formatter(value);
             return value;
-        };
+        });
     }
     /**
      * @return {?}
@@ -3103,7 +3442,7 @@ SliderWidget.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class StringWidget extends ControlWidget {
     /**
@@ -3140,7 +3479,7 @@ StringWidget.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class TagWidget extends ControlWidget {
     /**
@@ -3148,10 +3487,14 @@ class TagWidget extends ControlWidget {
      * @return {?}
      */
     reset(value) {
-        getData(this.schema, this.ui, this.formProperty.formData).subscribe(list => {
+        getData(this.schema, this.ui, this.formProperty.formData).subscribe((/**
+         * @param {?} list
+         * @return {?}
+         */
+        list => {
             this.data = list;
             this.detectChanges();
-        });
+        }));
     }
     /**
      * @param {?} item
@@ -3179,10 +3522,19 @@ class TagWidget extends ControlWidget {
             this.ui.onClose(e);
     }
     /**
+     * @private
      * @return {?}
      */
     updateValue() {
-        this.formProperty.setValue(this.data.filter(w => w.checked).map(i => i.value), false);
+        this.formProperty.setValue(this.data.filter((/**
+         * @param {?} w
+         * @return {?}
+         */
+        w => w.checked)).map((/**
+         * @param {?} i
+         * @return {?}
+         */
+        i => i.value)), false);
     }
 }
 TagWidget.decorators = [
@@ -3194,7 +3546,7 @@ TagWidget.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class TextWidget extends ControlWidget {
     /**
@@ -3213,7 +3565,7 @@ TextWidget.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class TextareaWidget extends ControlWidget {
     constructor() {
@@ -3238,7 +3590,7 @@ TextareaWidget.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class TimeWidget extends ControlWidget {
     constructor() {
@@ -3265,11 +3617,15 @@ class TimeWidget extends ControlWidget {
         };
     }
     /**
+     * @private
      * @return {?}
      */
     compCd() {
         // TODO: removed after nz-datepick support OnPush mode
-        setTimeout(() => this.detectChanges());
+        setTimeout((/**
+         * @return {?}
+         */
+        () => this.detectChanges()));
     }
     /**
      * @param {?} value
@@ -3318,16 +3674,20 @@ TimeWidget.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class TransferWidget extends ControlWidget {
     constructor() {
         super(...arguments);
         this.list = [];
         this._data = [];
-        this._canMove = (arg) => {
+        this._canMove = (/**
+         * @param {?} arg
+         * @return {?}
+         */
+        (arg) => {
             return this.ui.canMove ? this.ui.canMove(arg) : of(arg.list);
-        };
+        });
     }
     /**
      * @return {?}
@@ -3345,28 +3705,45 @@ class TransferWidget extends ControlWidget {
      * @return {?}
      */
     reset(value) {
-        getData(this.schema, this.ui, null).subscribe(list => {
+        getData(this.schema, this.ui, null).subscribe((/**
+         * @param {?} list
+         * @return {?}
+         */
+        list => {
             /** @type {?} */
             let formData = this.formProperty.formData;
             if (!Array.isArray(formData)) {
                 formData = [formData];
             }
-            list.forEach((item) => {
+            list.forEach((/**
+             * @param {?} item
+             * @return {?}
+             */
+            (item) => {
                 if (~((/** @type {?} */ (formData))).indexOf(item.value)) {
                     item.direction = 'right';
                 }
-            });
+            }));
             this.list = list;
-            this._data = list.filter(w => w.direction === 'right');
+            this._data = list.filter((/**
+             * @param {?} w
+             * @return {?}
+             */
+            w => w.direction === 'right'));
             this.notify();
             this.detectChanges();
-        });
+        }));
     }
     /**
+     * @private
      * @return {?}
      */
     notify() {
-        this.formProperty.setValue(this._data.map(i => i.value), false);
+        this.formProperty.setValue(this._data.map((/**
+         * @param {?} i
+         * @return {?}
+         */
+        i => i.value)), false);
     }
     /**
      * @param {?} options
@@ -3377,7 +3754,11 @@ class TransferWidget extends ControlWidget {
             this._data = this._data.concat(...options.list);
         }
         else {
-            this._data = this._data.filter((w) => options.list.indexOf(w) === -1);
+            this._data = this._data.filter((/**
+             * @param {?} w
+             * @return {?}
+             */
+            (w) => options.list.indexOf(w) === -1));
         }
         if (this.ui.change)
             this.ui.change(options);
@@ -3411,7 +3792,7 @@ TransferWidget.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class TreeSelectWidget extends ControlWidget {
     constructor() {
@@ -3434,7 +3815,11 @@ class TreeSelectWidget extends ControlWidget {
             asyncData: typeof ui.expandChange === 'function',
             defaultExpandAll: toBool(ui.defaultExpandAll, false),
             defaultExpandedKeys: ui.defaultExpandedKeys || [],
-            displayWith: ui.displayWith || ((node) => node.title),
+            displayWith: ui.displayWith || ((/**
+             * @param {?} node
+             * @return {?}
+             */
+            (node) => node.title)),
         };
     }
     /**
@@ -3443,9 +3828,13 @@ class TreeSelectWidget extends ControlWidget {
      */
     reset(value) {
         getData(this.schema, this.ui, this.formProperty.formData)
-            .subscribe(list => {
+            .subscribe((/**
+         * @param {?} list
+         * @return {?}
+         */
+        list => {
             this.data = list;
-        });
+        }));
     }
     /**
      * @param {?} value
@@ -3465,10 +3854,14 @@ class TreeSelectWidget extends ControlWidget {
         if (typeof ui.expandChange !== 'function')
             return;
         ui.expandChange(e)
-            .subscribe(res => {
+            .subscribe((/**
+         * @param {?} res
+         * @return {?}
+         */
+        res => {
             e.node.clearChildren();
             e.node.addChildren(res);
-        });
+        }));
     }
 }
 TreeSelectWidget.decorators = [
@@ -3480,14 +3873,18 @@ TreeSelectWidget.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class UploadWidget extends ControlWidget {
     constructor() {
         super(...arguments);
         this.fileList = [];
         this.btnType = '';
-        this.handlePreview = (file) => {
+        this.handlePreview = (/**
+         * @param {?} file
+         * @return {?}
+         */
+        (file) => {
             if (this.ui.preview) {
                 this.ui.preview(file);
                 return;
@@ -3498,8 +3895,11 @@ class UploadWidget extends ControlWidget {
                 nzContent: `<img src="${file.url || file.thumbUrl}" class="img-fluid" />`,
                 nzFooter: null,
             })
-                .afterClose.subscribe(() => this.detectChanges());
-        };
+                .afterClose.subscribe((/**
+             * @return {?}
+             */
+            () => this.detectChanges()));
+        });
     }
     /**
      * @return {?}
@@ -3553,19 +3953,28 @@ class UploadWidget extends ControlWidget {
      */
     reset(value) {
         const { fileList } = this.ui;
-        (fileList ? of(fileList) : getData(this.schema, this.ui, this.formProperty.formData)).subscribe(list => {
+        (fileList ? of(fileList) : getData(this.schema, this.ui, this.formProperty.formData)).subscribe((/**
+         * @param {?} list
+         * @return {?}
+         */
+        list => {
             this.fileList = (/** @type {?} */ (list));
             this._setValue(this.fileList);
             this.detectChanges();
-        });
+        }));
     }
     /**
+     * @private
      * @param {?} fileList
      * @return {?}
      */
     _setValue(fileList) {
         /** @type {?} */
-        const res = fileList.map(item => deepGet(item.response, this.i.resReName, item.response));
+        const res = fileList.map((/**
+         * @param {?} item
+         * @return {?}
+         */
+        item => deepGet(item.response, this.i.resReName, item.response)));
         this.setValue(this.i.multiple === true ? res : res.pop());
     }
 }
@@ -3578,7 +3987,7 @@ UploadWidget.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class NzWidgetRegistry extends WidgetRegistry {
     constructor() {
@@ -3612,7 +4021,7 @@ class NzWidgetRegistry extends WidgetRegistry {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const COMPONENTS = [
@@ -3676,42 +4085,42 @@ DelonFormModule.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 export { DelonFormConfig, useFactory, SFComponent, SFItemComponent, SFFixedDirective, DelonFormModule, ERRORSDEFAULT, FormProperty, PropertyGroup, FormPropertyFactory, AtomicProperty, ObjectProperty, ArrayProperty, StringProperty, NumberProperty, BooleanProperty, Widget, ControlWidget, ArrayLayoutWidget, ObjectLayoutWidget, ObjectWidget, ArrayWidget, StringWidget, NumberWidget, DateWidget, TimeWidget, RadioWidget, CheckboxWidget, BooleanWidget, TextareaWidget, SelectWidget, TreeSelectWidget, TagWidget, UploadWidget, TransferWidget, SliderWidget, RateWidget, AutoCompleteWidget, CascaderWidget, MentionWidget, CustomWidget, NzWidgetRegistry, WidgetRegistry, WidgetFactory, SchemaValidatorFactory, AjvSchemaValidatorFactory, SFItemWrapComponent as ɵb, TerminatorService as ɵa, SFTemplateDirective as ɵc, TextWidget as ɵd };

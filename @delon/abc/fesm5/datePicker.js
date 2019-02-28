@@ -7,7 +7,7 @@ import { NgZorroAntdModule } from 'ng-zorro-antd';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var DateRangePickerConfig = /** @class */ (function () {
     function DateRangePickerConfig() {
@@ -23,31 +23,52 @@ var DateRangePickerConfig = /** @class */ (function () {
             list: [
                 {
                     text: '今天',
-                    fn: function () { return getTimeDistance('today'); },
+                    fn: (/**
+                     * @return {?}
+                     */
+                    function () { return getTimeDistance('today'); }),
                 },
                 {
                     text: '昨天',
-                    fn: function () { return getTimeDistance('yesterday'); },
+                    fn: (/**
+                     * @return {?}
+                     */
+                    function () { return getTimeDistance('yesterday'); }),
                 },
                 {
                     text: '近3天',
-                    fn: function () { return getTimeDistance(-2); },
+                    fn: (/**
+                     * @return {?}
+                     */
+                    function () { return getTimeDistance(-2); }),
                 },
                 {
                     text: '近7天',
-                    fn: function () { return getTimeDistance(-6); },
+                    fn: (/**
+                     * @return {?}
+                     */
+                    function () { return getTimeDistance(-6); }),
                 },
                 {
                     text: '本周',
-                    fn: function () { return getTimeDistance('week'); },
+                    fn: (/**
+                     * @return {?}
+                     */
+                    function () { return getTimeDistance('week'); }),
                 },
                 {
                     text: '本月',
-                    fn: function () { return getTimeDistance('month'); },
+                    fn: (/**
+                     * @return {?}
+                     */
+                    function () { return getTimeDistance('month'); }),
                 },
                 {
                     text: '全年',
-                    fn: function () { return getTimeDistance('year'); },
+                    fn: (/**
+                     * @return {?}
+                     */
+                    function () { return getTimeDistance('year'); }),
                 },
             ],
         };
@@ -66,7 +87,7 @@ var DatePickerConfig = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var RangePickerComponent = /** @class */ (function () {
     // #endregion
@@ -219,7 +240,10 @@ var RangePickerComponent = /** @class */ (function () {
                         {
                             provide: NG_VALUE_ACCESSOR,
                             multi: true,
-                            useExisting: forwardRef(function () { return RangePickerComponent; }),
+                            useExisting: forwardRef((/**
+                             * @return {?}
+                             */
+                            function () { return RangePickerComponent; })),
                         },
                     ]
                 }] }
@@ -265,7 +289,7 @@ var RangePickerComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 var COMPONENTS = [RangePickerComponent];
@@ -284,12 +308,12 @@ var DatePickerModule = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 export { RangePickerComponent, DatePickerModule, DateRangePickerConfig, DatePickerConfig };

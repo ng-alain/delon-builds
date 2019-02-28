@@ -69,7 +69,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var G2WaterWaveComponent = /** @class */ (function () {
         // #endregion
@@ -85,10 +85,12 @@
             this.height = 160;
         }
         /**
+         * @private
          * @param {?} type
          * @return {?}
          */
         G2WaterWaveComponent.prototype.renderChart = /**
+         * @private
          * @param {?} type
          * @return {?}
          */
@@ -258,9 +260,11 @@
                 render();
             };
         /**
+         * @private
          * @return {?}
          */
         G2WaterWaveComponent.prototype.updateRadio = /**
+         * @private
          * @return {?}
          */
             function () {
@@ -270,16 +274,20 @@
                 this.renderer.setStyle(this.el.nativeElement, 'transform', "scale(" + radio + ")");
             };
         /**
+         * @private
          * @return {?}
          */
         G2WaterWaveComponent.prototype.installResizeEvent = /**
+         * @private
          * @return {?}
          */
             function () {
                 var _this = this;
                 this.resize$ = rxjs.fromEvent(window, 'resize')
                     .pipe(operators.debounceTime(200))
-                    .subscribe(function () { return _this.updateRadio(); });
+                    .subscribe(( /**
+             * @return {?}
+             */function () { return _this.updateRadio(); }));
             };
         /**
          * @return {?}
@@ -291,7 +299,13 @@
                 var _this = this;
                 this.updateRadio();
                 this.installResizeEvent();
-                this.ngZone.runOutsideAngular(function () { return setTimeout(function () { return _this.renderChart(''); }, _this.delay); });
+                this.ngZone.runOutsideAngular(( /**
+                 * @return {?}
+                 */function () {
+                    return setTimeout(( /**
+                     * @return {?}
+                     */function () { return _this.renderChart(''); }), _this.delay);
+                }));
             };
         /**
          * @return {?}
@@ -301,7 +315,9 @@
          */
             function () {
                 var _this = this;
-                this.ngZone.runOutsideAngular(function () { return _this.renderChart('update'); });
+                this.ngZone.runOutsideAngular(( /**
+                 * @return {?}
+                 */function () { return _this.renderChart('update'); }));
                 this.cdr.detectChanges();
             };
         /**
@@ -358,7 +374,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
     var COMPONENTS = [G2WaterWaveComponent];
@@ -377,12 +393,12 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     exports.G2WaterWaveComponent = G2WaterWaveComponent;

@@ -8,7 +8,7 @@ import { NgZorroAntdModule } from 'ng-zorro-antd';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class G2PieComponent {
     // #endregion
@@ -38,6 +38,7 @@ class G2PieComponent {
         this.data = [];
     }
     /**
+     * @private
      * @return {?}
      */
     setCls() {
@@ -52,6 +53,7 @@ class G2PieComponent {
         }, true);
     }
     /**
+     * @private
      * @return {?}
      */
     fixData() {
@@ -60,7 +62,11 @@ class G2PieComponent {
         if (this.isPercent) {
             this.select = false;
             this.tooltip = false;
-            this.percentColor = value => value === '占比' ? color || 'rgba(24, 144, 255, 0.85)' : '#F0F2F5';
+            this.percentColor = (/**
+             * @param {?} value
+             * @return {?}
+             */
+            value => value === '占比' ? color || 'rgba(24, 144, 255, 0.85)' : '#F0F2F5');
             this.data = [
                 {
                     x: '占比',
@@ -74,6 +80,7 @@ class G2PieComponent {
         }
     }
     /**
+     * @private
      * @return {?}
      */
     install() {
@@ -99,20 +106,31 @@ class G2PieComponent {
         chart.axis(false);
         chart.legend(false);
         chart.coord('theta', { innerRadius: inner });
-        chart.filter('x', (val, item) => item.checked !== false);
+        chart.filter('x', (/**
+         * @param {?} val
+         * @param {?} item
+         * @return {?}
+         */
+        (val, item) => item.checked !== false));
         chart
             .intervalStack()
             .position('y')
-            .tooltip('x*percent', (name, p) => ({
+            .tooltip('x*percent', (/**
+         * @param {?} name
+         * @param {?} p
+         * @return {?}
+         */
+        (name, p) => ({
             name,
             // 由于 hasLegend 会优先处理为百分比格式，因此无需要在 tooltip 中重新转换
             value: hasLegend ? p : (p * 100).toFixed(2),
-        }))
+        })))
             .select(this.select);
         chart.render();
         this.attachChart();
     }
     /**
+     * @private
      * @return {?}
      */
     attachChart() {
@@ -144,9 +162,13 @@ class G2PieComponent {
             },
         });
         chart.repaint();
-        this.ngZone.run(() => this.genLegend());
+        this.ngZone.run((/**
+         * @return {?}
+         */
+        () => this.genLegend()));
     }
     /**
+     * @private
      * @return {?}
      */
     genLegend() {
@@ -156,14 +178,18 @@ class G2PieComponent {
         this.legendData = chart
             .get('geoms')[0]
             .get('dataArray')
-            .map((item) => {
+            .map((/**
+         * @param {?} item
+         * @return {?}
+         */
+        (item) => {
             /** @type {?} */
             const origin = item[0]._origin;
             origin.color = item[0].color;
             origin.checked = true;
             origin.percent = (origin.percent * 100).toFixed(2);
             return origin;
-        });
+        }));
         cdr.detectChanges();
     }
     /**
@@ -176,6 +202,7 @@ class G2PieComponent {
         chart.repaint();
     }
     /**
+     * @private
      * @return {?}
      */
     installResizeEvent() {
@@ -183,13 +210,22 @@ class G2PieComponent {
             return;
         this.resize$ = fromEvent(window, 'resize')
             .pipe(debounceTime(200))
-            .subscribe(() => this.setCls());
+            .subscribe((/**
+         * @return {?}
+         */
+        () => this.setCls()));
     }
     /**
      * @return {?}
      */
     ngOnInit() {
-        this.ngZone.runOutsideAngular(() => setTimeout(() => this.install(), this.delay));
+        this.ngZone.runOutsideAngular((/**
+         * @return {?}
+         */
+        () => setTimeout((/**
+         * @return {?}
+         */
+        () => this.install()), this.delay)));
     }
     /**
      * @return {?}
@@ -197,7 +233,10 @@ class G2PieComponent {
     ngOnChanges() {
         this.fixData();
         this.setCls();
-        this.ngZone.runOutsideAngular(() => this.attachChart());
+        this.ngZone.runOutsideAngular((/**
+         * @return {?}
+         */
+        () => this.attachChart()));
         this.installResizeEvent();
     }
     /**
@@ -208,7 +247,10 @@ class G2PieComponent {
             this.resize$.unsubscribe();
         }
         if (this.chart) {
-            this.ngZone.runOutsideAngular(() => this.chart.destroy());
+            this.ngZone.runOutsideAngular((/**
+             * @return {?}
+             */
+            () => this.chart.destroy()));
         }
     }
 }
@@ -280,7 +322,7 @@ __decorate([
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const COMPONENTS = [G2PieComponent];
@@ -296,12 +338,12 @@ G2PieModule.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 export { G2PieComponent, G2PieModule };

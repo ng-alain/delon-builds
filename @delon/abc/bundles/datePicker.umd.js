@@ -69,7 +69,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var DateRangePickerConfig = /** @class */ (function () {
         function DateRangePickerConfig() {
@@ -85,31 +85,45 @@
                 list: [
                     {
                         text: '今天',
-                        fn: function () { return util.getTimeDistance('today'); },
+                        fn: ( /**
+                         * @return {?}
+                         */function () { return util.getTimeDistance('today'); }),
                     },
                     {
                         text: '昨天',
-                        fn: function () { return util.getTimeDistance('yesterday'); },
+                        fn: ( /**
+                         * @return {?}
+                         */function () { return util.getTimeDistance('yesterday'); }),
                     },
                     {
                         text: '近3天',
-                        fn: function () { return util.getTimeDistance(-2); },
+                        fn: ( /**
+                         * @return {?}
+                         */function () { return util.getTimeDistance(-2); }),
                     },
                     {
                         text: '近7天',
-                        fn: function () { return util.getTimeDistance(-6); },
+                        fn: ( /**
+                         * @return {?}
+                         */function () { return util.getTimeDistance(-6); }),
                     },
                     {
                         text: '本周',
-                        fn: function () { return util.getTimeDistance('week'); },
+                        fn: ( /**
+                         * @return {?}
+                         */function () { return util.getTimeDistance('week'); }),
                     },
                     {
                         text: '本月',
-                        fn: function () { return util.getTimeDistance('month'); },
+                        fn: ( /**
+                         * @return {?}
+                         */function () { return util.getTimeDistance('month'); }),
                     },
                     {
                         text: '全年',
-                        fn: function () { return util.getTimeDistance('year'); },
+                        fn: ( /**
+                         * @return {?}
+                         */function () { return util.getTimeDistance('year'); }),
                     },
                 ],
             };
@@ -128,7 +142,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var RangePickerComponent = /** @class */ (function () {
         // #endregion
@@ -279,7 +293,9 @@
                             {
                                 provide: forms.NG_VALUE_ACCESSOR,
                                 multi: true,
-                                useExisting: i0.forwardRef(function () { return RangePickerComponent; }),
+                                useExisting: i0.forwardRef(( /**
+                                 * @return {?}
+                                 */function () { return RangePickerComponent; })),
                             },
                         ]
                     }] }
@@ -327,7 +343,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
     var COMPONENTS = [RangePickerComponent];
@@ -346,12 +362,12 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     exports.RangePickerComponent = RangePickerComponent;

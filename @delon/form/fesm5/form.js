@@ -11,7 +11,7 @@ import { of, combineLatest, BehaviorSubject, Observable, Subject } from 'rxjs';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 var ERRORSDEFAULT = {
@@ -54,7 +54,7 @@ var ERRORSDEFAULT = {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var DelonFormConfig = /** @class */ (function () {
     function DelonFormConfig() {
@@ -124,7 +124,7 @@ var DelonFormConfig = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 var FORMATMAPS = {
@@ -258,16 +258,32 @@ function resolveIf(schema, ui) {
     var visibleIf = {};
     /** @type {?} */
     var visibleElse = {};
-    ifKeys.forEach(function (key) {
+    ifKeys.forEach((/**
+     * @param {?} key
+     * @return {?}
+     */
+    function (key) {
         /** @type {?} */
         var cond = schema.if.properties[key].enum;
         visibleIf[key] = cond;
         if (hasElse)
-            visibleElse[key] = function (value) { return !cond.includes(value); };
-    });
-    schema.then.required.forEach(function (key) { return (ui["$" + key].visibleIf = visibleIf); });
+            visibleElse[key] = (/**
+             * @param {?} value
+             * @return {?}
+             */
+            function (value) { return !cond.includes(value); });
+    }));
+    schema.then.required.forEach((/**
+     * @param {?} key
+     * @return {?}
+     */
+    function (key) { return (ui["$" + key].visibleIf = visibleIf); }));
     if (hasElse)
-        schema.else.required.forEach(function (key) { return (ui["$" + key].visibleIf = visibleElse); });
+        schema.else.required.forEach((/**
+         * @param {?} key
+         * @return {?}
+         */
+        function (key) { return (ui["$" + key].visibleIf = visibleElse); }));
     return schema;
 }
 /**
@@ -276,11 +292,15 @@ function resolveIf(schema, ui) {
  * @return {?}
  */
 function detectKey(keys, detectKeys) {
-    detectKeys.forEach(function (key) {
+    detectKeys.forEach((/**
+     * @param {?} key
+     * @return {?}
+     */
+    function (key) {
         if (!keys.includes(key)) {
             throw new Error("if: properties does not contain '" + key + "'");
         }
-    });
+    }));
 }
 /**
  * @param {?} properties
@@ -291,25 +311,46 @@ function orderProperties(properties, order) {
     if (!Array.isArray(order))
         return properties;
     /** @type {?} */
-    var arrayToHash = function (arr) {
-        return arr.reduce(function (prev, curr) {
+    var arrayToHash = (/**
+     * @param {?} arr
+     * @return {?}
+     */
+    function (arr) {
+        return arr.reduce((/**
+         * @param {?} prev
+         * @param {?} curr
+         * @return {?}
+         */
+        function (prev, curr) {
             prev[curr] = true;
             return prev;
-        }, {});
-    };
+        }), {});
+    });
     /** @type {?} */
-    var errorPropList = function (arr) { return "property [" + arr.join("', '") + "]"; };
+    var errorPropList = (/**
+     * @param {?} arr
+     * @return {?}
+     */
+    function (arr) { return "property [" + arr.join("', '") + "]"; });
     /** @type {?} */
     var propertyHash = arrayToHash(properties);
     /** @type {?} */
     var orderHash = arrayToHash(order);
     /** @type {?} */
-    var extraneous = order.filter(function (prop) { return prop !== '*' && !propertyHash[prop]; });
+    var extraneous = order.filter((/**
+     * @param {?} prop
+     * @return {?}
+     */
+    function (prop) { return prop !== '*' && !propertyHash[prop]; }));
     if (extraneous.length) {
         throw new Error("ui schema order list contains extraneous " + errorPropList(extraneous));
     }
     /** @type {?} */
-    var rest = properties.filter(function (prop) { return !orderHash[prop]; });
+    var rest = properties.filter((/**
+     * @param {?} prop
+     * @return {?}
+     */
+    function (prop) { return !orderHash[prop]; }));
     /** @type {?} */
     var restIndex = order.indexOf('*');
     if (restIndex === -1) {
@@ -336,21 +377,33 @@ function getEnum(list, formData, readOnly) {
     if (isBlank(list) || !Array.isArray(list) || list.length === 0)
         return [];
     if (typeof list[0] !== 'object') {
-        list = list.map(function (item) {
+        list = list.map((/**
+         * @param {?} item
+         * @return {?}
+         */
+        function (item) {
             return (/** @type {?} */ ({ label: item, value: item }));
-        });
+        }));
     }
     if (formData) {
         if (!Array.isArray(formData))
             formData = [formData];
-        list.forEach(function (item) {
+        list.forEach((/**
+         * @param {?} item
+         * @return {?}
+         */
+        function (item) {
             if (~formData.indexOf(item.value))
                 item.checked = true;
-        });
+        }));
     }
     // fix disabled status
     if (readOnly) {
-        list.forEach(function (item) { return (item.disabled = true); });
+        list.forEach((/**
+         * @param {?} item
+         * @return {?}
+         */
+        function (item) { return (item.disabled = true); }));
     }
     return list;
 }
@@ -372,14 +425,18 @@ function getCopyEnum(list, formData, readOnly) {
  */
 function getData(schema, ui, formData, asyncArgs) {
     if (typeof ui.asyncData === 'function') {
-        return ui.asyncData(asyncArgs).pipe(map(function (list) { return getEnum(list, formData, schema.readOnly); }));
+        return ui.asyncData(asyncArgs).pipe(map((/**
+         * @param {?} list
+         * @return {?}
+         */
+        function (list) { return getEnum(list, formData, schema.readOnly); })));
     }
     return of(getCopyEnum(schema.enum, formData, schema.readOnly));
 }
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * @abstract
@@ -611,12 +668,14 @@ FormProperty = /** @class */ (function () {
     // #region process errors
     // #region process errors
     /**
+     * @private
      * @param {?} value
      * @return {?}
      */
     FormProperty.prototype.isEmptyData = 
     // #region process errors
     /**
+     * @private
      * @param {?} value
      * @return {?}
      */
@@ -664,10 +723,14 @@ FormProperty = /** @class */ (function () {
             /** @type {?} */
             var customErrors = customValidator(this.value, this, this.findRoot());
             if (customErrors instanceof Observable) {
-                customErrors.subscribe(function (res) {
+                customErrors.subscribe((/**
+                 * @param {?} res
+                 * @return {?}
+                 */
+                function (res) {
                     _this.setCustomErrors(errors, res);
                     _this.widget.detectChanges();
-                });
+                }));
                 return;
             }
             this.setCustomErrors(errors, customErrors);
@@ -677,11 +740,13 @@ FormProperty = /** @class */ (function () {
         this.setErrors(this._errors);
     };
     /**
+     * @private
      * @param {?} errors
      * @param {?} list
      * @return {?}
      */
     FormProperty.prototype.setCustomErrors = /**
+     * @private
      * @param {?} errors
      * @param {?} list
      * @return {?}
@@ -691,21 +756,28 @@ FormProperty = /** @class */ (function () {
         /** @type {?} */
         var hasCustomError = list != null && list.length > 0;
         if (hasCustomError) {
-            list.forEach(function (err, idx) {
+            list.forEach((/**
+             * @param {?} err
+             * @param {?} idx
+             * @return {?}
+             */
+            function (err, idx) {
                 if (!err.message)
                     throw new Error("The custom validator must contain a 'message' attribute to viewed error text");
                 err._custom = true;
-            });
+            }));
         }
         this._errors = this.mergeErrors(errors, list);
         this.setErrors(this._errors);
     };
     /**
+     * @private
      * @param {?} errors
      * @param {?} newErrors
      * @return {?}
      */
     FormProperty.prototype.mergeErrors = /**
+     * @private
      * @param {?} errors
      * @param {?} newErrors
      * @return {?}
@@ -722,11 +794,13 @@ FormProperty = /** @class */ (function () {
         return errors;
     };
     /**
+     * @protected
      * @param {?} errors
      * @param {?=} emitFormat
      * @return {?}
      */
     FormProperty.prototype.setErrors = /**
+     * @protected
      * @param {?} errors
      * @param {?=} emitFormat
      * @return {?}
@@ -735,7 +809,11 @@ FormProperty = /** @class */ (function () {
         var _this = this;
         if (emitFormat === void 0) { emitFormat = true; }
         if (emitFormat && errors && !this.ui.onlyVisual) {
-            errors = errors.map(function (err) {
+            errors = errors.map((/**
+             * @param {?} err
+             * @return {?}
+             */
+            function (err) {
                 /** @type {?} */
                 var message = err._custom === true && err.message
                     ? err.message
@@ -745,12 +823,17 @@ FormProperty = /** @class */ (function () {
                 }
                 if (message) {
                     if (~((/** @type {?} */ (message))).indexOf('{')) {
-                        message = ((/** @type {?} */ (message))).replace(/{([\.a-z0-9]+)}/g, function (v, key) { return err.params[key] || ''; });
+                        message = ((/** @type {?} */ (message))).replace(/{([\.a-z0-9]+)}/g, (/**
+                         * @param {?} v
+                         * @param {?} key
+                         * @return {?}
+                         */
+                        function (v, key) { return err.params[key] || ''; }));
                     }
                     err.message = (/** @type {?} */ (message));
                 }
                 return err;
-            });
+            }));
         }
         this._errors = errors;
         this._errorsChanges.next(errors);
@@ -774,13 +857,17 @@ FormProperty = /** @class */ (function () {
         this._objErrors[path] = errors;
         /** @type {?} */
         var platErrors = [];
-        Object.keys(this._objErrors).forEach(function (p) {
+        Object.keys(this._objErrors).forEach((/**
+         * @param {?} p
+         * @return {?}
+         */
+        function (p) {
             /** @type {?} */
             var property = _this.searchProperty(p);
             if (property && !property.visible)
                 return;
             platErrors.push.apply(platErrors, __spread(_this._objErrors[p]));
-        });
+        }));
         this.setErrors(platErrors, false);
     };
     // #endregion
@@ -788,6 +875,7 @@ FormProperty = /** @class */ (function () {
     // #endregion
     // #region condition
     /**
+     * @private
      * @param {?} visible
      * @return {?}
      */
@@ -795,6 +883,7 @@ FormProperty = /** @class */ (function () {
     // #endregion
     // #region condition
     /**
+     * @private
      * @param {?} visible
      * @return {?}
      */
@@ -830,7 +919,11 @@ FormProperty = /** @class */ (function () {
                     var property = this_1.searchProperty(dependencyPath);
                     if (property) {
                         /** @type {?} */
-                        var valueCheck = property.valueChanges.pipe(map(function (value) {
+                        var valueCheck = property.valueChanges.pipe(map((/**
+                         * @param {?} value
+                         * @return {?}
+                         */
+                        function (value) {
                             /** @type {?} */
                             var vi = visibleIf[dependencyPath];
                             if (typeof vi === 'function')
@@ -841,11 +934,15 @@ FormProperty = /** @class */ (function () {
                             else {
                                 return vi.indexOf(value) !== -1;
                             }
-                        }));
+                        })));
                         /** @type {?} */
                         var visibilityCheck = property._visibilityChanges;
                         /** @type {?} */
-                        var and = combineLatest(valueCheck, visibilityCheck).pipe(map(function (results) { return results[0] && results[1]; }));
+                        var and = combineLatest(valueCheck, visibilityCheck).pipe(map((/**
+                         * @param {?} results
+                         * @return {?}
+                         */
+                        function (results) { return results[0] && results[1]; })));
                         propertiesBinding.push(and);
                     }
                     else {
@@ -858,8 +955,16 @@ FormProperty = /** @class */ (function () {
                 _loop_1(dependencyPath);
             }
             combineLatest(propertiesBinding)
-                .pipe(map(function (values) { return values.indexOf(true) !== -1; }), distinctUntilChanged())
-                .subscribe(function (visible) { return _this.setVisible(visible); });
+                .pipe(map((/**
+             * @param {?} values
+             * @return {?}
+             */
+            function (values) { return values.indexOf(true) !== -1; })), distinctUntilChanged())
+                .subscribe((/**
+             * @param {?} visible
+             * @return {?}
+             */
+            function (visible) { return _this.setVisible(visible); }));
         }
     };
     return FormProperty;
@@ -925,12 +1030,16 @@ PropertyGroup = /** @class */ (function (_super) {
      * @return {?}
      */
     function (fn) {
-        this.forEachChild(function (child) {
+        this.forEachChild((/**
+         * @param {?} child
+         * @return {?}
+         */
+        function (child) {
             fn(child);
             if (child instanceof PropertyGroup) {
                 ((/** @type {?} */ (child))).forEachChildRecursive(fn);
             }
-        });
+        }));
     };
     /**
      * @return {?}
@@ -943,15 +1052,21 @@ PropertyGroup = /** @class */ (function (_super) {
         this._bindVisibilityRecursive();
     };
     /**
+     * @private
      * @return {?}
      */
     PropertyGroup.prototype._bindVisibilityRecursive = /**
+     * @private
      * @return {?}
      */
     function () {
-        this.forEachChildRecursive(function (property) {
+        this.forEachChildRecursive((/**
+         * @param {?} property
+         * @return {?}
+         */
+        function (property) {
             property._bindVisibility();
-        });
+        }));
     };
     /**
      * @return {?}
@@ -967,7 +1082,7 @@ PropertyGroup = /** @class */ (function (_super) {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var ArrayProperty = /** @class */ (function (_super) {
     __extends(ArrayProperty, _super);
@@ -1047,18 +1162,24 @@ var ArrayProperty = /** @class */ (function (_super) {
     function () {
         /** @type {?} */
         var value = [];
-        this.forEachChild(function (property) {
+        this.forEachChild((/**
+         * @param {?} property
+         * @return {?}
+         */
+        function (property) {
             if (property.visible && property._hasValue()) {
                 value.push(__assign({}, property.formData, property.value));
             }
-        });
+        }));
         this._value = value;
     };
     /**
+     * @private
      * @param {?} formData
      * @return {?}
      */
     ArrayProperty.prototype.addProperty = /**
+     * @private
      * @param {?} formData
      * @return {?}
      */
@@ -1069,10 +1190,12 @@ var ArrayProperty = /** @class */ (function (_super) {
         return newProperty;
     };
     /**
+     * @private
      * @param {?} formDatas
      * @return {?}
      */
     ArrayProperty.prototype.resetProperties = /**
+     * @private
      * @param {?} formDatas
      * @return {?}
      */
@@ -1095,10 +1218,12 @@ var ArrayProperty = /** @class */ (function (_super) {
         }
     };
     /**
+     * @private
      * @param {?=} path
      * @return {?}
      */
     ArrayProperty.prototype.clearErrors = /**
+     * @private
      * @param {?=} path
      * @return {?}
      */
@@ -1146,7 +1271,7 @@ var ArrayProperty = /** @class */ (function (_super) {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * @abstract
@@ -1218,7 +1343,7 @@ AtomicProperty = /** @class */ (function (_super) {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var BooleanProperty = /** @class */ (function (_super) {
     __extends(BooleanProperty, _super);
@@ -1239,7 +1364,7 @@ var BooleanProperty = /** @class */ (function (_super) {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var NumberProperty = /** @class */ (function (_super) {
     __extends(NumberProperty, _super);
@@ -1282,7 +1407,7 @@ var NumberProperty = /** @class */ (function (_super) {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var ObjectProperty = /** @class */ (function (_super) {
     __extends(ObjectProperty, _super);
@@ -1304,9 +1429,11 @@ var ObjectProperty = /** @class */ (function (_super) {
         configurable: true
     });
     /**
+     * @private
      * @return {?}
      */
     ObjectProperty.prototype.createProperties = /**
+     * @private
      * @return {?}
      */
     function () {
@@ -1322,10 +1449,14 @@ var ObjectProperty = /** @class */ (function (_super) {
         catch (e) {
             console.error("Invalid " + (this.schema.title || 'root') + " object field configuration:", e);
         }
-        orderedProperties.forEach(function (propertyId) {
+        orderedProperties.forEach((/**
+         * @param {?} propertyId
+         * @return {?}
+         */
+        function (propertyId) {
             _this.properties[propertyId] = _this.formPropertyFactory.createProperty(_this.schema.properties[propertyId], _this.ui['$' + propertyId], (_this.formData || {})[propertyId], _this, propertyId);
             _this._propertiesId.push(propertyId);
-        });
+        }));
     };
     /**
      * @param {?} value
@@ -1380,11 +1511,16 @@ var ObjectProperty = /** @class */ (function (_super) {
     function () {
         /** @type {?} */
         var value = {};
-        this.forEachChild(function (property, propertyId) {
+        this.forEachChild((/**
+         * @param {?} property
+         * @param {?} propertyId
+         * @return {?}
+         */
+        function (property, propertyId) {
             if (property.visible && property._hasValue()) {
                 value[propertyId] = property.value;
             }
-        });
+        }));
         this._value = value;
     };
     return ObjectProperty;
@@ -1392,7 +1528,7 @@ var ObjectProperty = /** @class */ (function (_super) {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var StringProperty = /** @class */ (function (_super) {
     __extends(StringProperty, _super);
@@ -1427,7 +1563,7 @@ var StringProperty = /** @class */ (function (_super) {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 var SEQ = '/';
@@ -1532,10 +1668,12 @@ var FormPropertyFactory = /** @class */ (function () {
         return newProperty;
     };
     /**
+     * @private
      * @param {?} rootProperty
      * @return {?}
      */
     FormPropertyFactory.prototype.initializeRoot = /**
+     * @private
      * @param {?} rootProperty
      * @return {?}
      */
@@ -1548,7 +1686,7 @@ var FormPropertyFactory = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var TerminatorService = /** @class */ (function () {
     function TerminatorService() {
@@ -1568,7 +1706,7 @@ var TerminatorService = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * @abstract
@@ -1609,7 +1747,11 @@ var AjvSchemaValidatorFactory = /** @class */ (function (_super) {
         var ingoreKeywords = []
             .concat(this.options.ingoreKeywords)
             .concat(extraOptions.ingoreKeywords);
-        return function (value) {
+        return (/**
+         * @param {?} value
+         * @return {?}
+         */
+        function (value) {
             try {
                 _this.ajv.validate(schema, value);
             }
@@ -1623,10 +1765,14 @@ var AjvSchemaValidatorFactory = /** @class */ (function (_super) {
             /** @type {?} */
             var errors = _this.ajv.errors;
             if (_this.options && ingoreKeywords && errors) {
-                errors = errors.filter(function (w) { return ingoreKeywords.indexOf(w.keyword) === -1; });
+                errors = errors.filter((/**
+                 * @param {?} w
+                 * @return {?}
+                 */
+                function (w) { return ingoreKeywords.indexOf(w.keyword) === -1; }));
             }
             return errors;
-        };
+        });
     };
     /** @nocollapse */
     AjvSchemaValidatorFactory.ctorParameters = function () { return [
@@ -1637,7 +1783,7 @@ var AjvSchemaValidatorFactory = /** @class */ (function (_super) {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var WidgetRegistry = /** @class */ (function () {
     function WidgetRegistry() {
@@ -1732,7 +1878,7 @@ var WidgetFactory = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * @param {?} schemaValidatorFactory
@@ -1800,13 +1946,16 @@ var SFComponent = /** @class */ (function () {
         this.liveValidate = options.liveValidate;
         this.firstVisual = options.firstVisual;
         this.autocomplete = options.autocomplete;
-        this.i18n$ = this.i18n.change.subscribe(function () {
+        this.i18n$ = this.i18n.change.subscribe((/**
+         * @return {?}
+         */
+        function () {
             _this.locale = _this.i18n.getData('sf');
             if (_this._inited) {
                 _this.coverButtonProperty();
                 _this.cdr.detectChanges();
             }
-        });
+        }));
     }
     Object.defineProperty(SFComponent.prototype, "mode", {
         get: /**
@@ -1954,9 +2103,11 @@ var SFComponent = /** @class */ (function () {
         this.formSubmit.emit(this.value);
     };
     /**
+     * @private
      * @return {?}
      */
     SFComponent.prototype.coverProperty = /**
+     * @private
      * @return {?}
      */
     function () {
@@ -1967,8 +2118,20 @@ var SFComponent = /** @class */ (function () {
         var _schema = deepCopy(this.schema);
         var definitions = _schema.definitions;
         /** @type {?} */
-        var inFn = function (schema, parentSchema, uiSchema, parentUiSchema, uiRes) {
-            Object.keys(schema.properties).forEach(function (key) {
+        var inFn = (/**
+         * @param {?} schema
+         * @param {?} parentSchema
+         * @param {?} uiSchema
+         * @param {?} parentUiSchema
+         * @param {?} uiRes
+         * @return {?}
+         */
+        function (schema, parentSchema, uiSchema, parentUiSchema, uiRes) {
+            Object.keys(schema.properties).forEach((/**
+             * @param {?} key
+             * @return {?}
+             */
+            function (key) {
                 /** @type {?} */
                 var uiKey = "$" + key;
                 /** @type {?} */
@@ -2023,11 +2186,20 @@ var SFComponent = /** @class */ (function () {
                 if (property.properties && Object.keys(property.properties).length) {
                     inFn(property, schema, uiSchema[uiKey] || {}, ui, uiRes[uiKey]);
                 }
-            });
-        };
+            }));
+        });
         /** @type {?} */
-        var inIfFn = function (schema, ui) {
-            Object.keys(schema.properties).forEach(function (key) {
+        var inIfFn = (/**
+         * @param {?} schema
+         * @param {?} ui
+         * @return {?}
+         */
+        function (schema, ui) {
+            Object.keys(schema.properties).forEach((/**
+             * @param {?} key
+             * @return {?}
+             */
+            function (key) {
                 /** @type {?} */
                 var property = schema.properties[key];
                 /** @type {?} */
@@ -2039,8 +2211,8 @@ var SFComponent = /** @class */ (function () {
                 if (property.properties) {
                     inIfFn(property, ui[uiKey]);
                 }
-            });
-        };
+            }));
+        });
         if (this.ui == null)
             this.ui = {};
         this._defUi = __assign({ onlyVisual: this.options.onlyVisual, size: this.options.size, liveValidate: this.liveValidate, firstVisual: this.firstVisual }, this.options.ui, _schema.ui, this.ui['*']);
@@ -2057,15 +2229,21 @@ var SFComponent = /** @class */ (function () {
         di(this._ui, 'cover schema & ui', this._ui, _schema);
     };
     /**
+     * @private
      * @return {?}
      */
     SFComponent.prototype.coverButtonProperty = /**
+     * @private
      * @return {?}
      */
     function () {
         this._btn = __assign({ render: { size: 'default' } }, this.locale, this.options.button, ((/** @type {?} */ (this.button))));
         /** @type {?} */
-        var firstKey = Object.keys(this._ui).find(function (w) { return w.startsWith('$'); });
+        var firstKey = Object.keys(this._ui).find((/**
+         * @param {?} w
+         * @return {?}
+         */
+        function (w) { return w.startsWith('$'); }));
         if (this.layout === 'horizontal') {
             /** @type {?} */
             var btnUi = firstKey ? this._ui[firstKey] : this._defUi;
@@ -2134,21 +2312,28 @@ var SFComponent = /** @class */ (function () {
         this.attachCustomRender();
     };
     /**
+     * @private
      * @return {?}
      */
     SFComponent.prototype.attachCustomRender = /**
+     * @private
      * @return {?}
      */
     function () {
         var _this = this;
-        this._renders.forEach(function (tpl, path) {
+        this._renders.forEach((/**
+         * @param {?} tpl
+         * @param {?} path
+         * @return {?}
+         */
+        function (tpl, path) {
             /** @type {?} */
             var property = _this.rootProperty.searchProperty(path);
             if (property == null) {
                 return;
             }
             property.ui._render = tpl;
-        });
+        }));
     };
     /**
      * @template THIS
@@ -2208,15 +2393,23 @@ var SFComponent = /** @class */ (function () {
         (/** @type {?} */ (this)).coverButtonProperty();
         (/** @type {?} */ (this)).rootProperty = (/** @type {?} */ (this)).formPropertyFactory.createProperty((/** @type {?} */ (this))._schema, (/** @type {?} */ (this))._ui, (/** @type {?} */ (this)).formData);
         (/** @type {?} */ (this)).attachCustomRender();
-        (/** @type {?} */ (this)).rootProperty.valueChanges.subscribe(function (value) {
+        (/** @type {?} */ (this)).rootProperty.valueChanges.subscribe((/**
+         * @param {?} value
+         * @return {?}
+         */
+        function (value) {
             (/** @type {?} */ (_this))._item = __assign({}, (/** @type {?} */ (_this)).formData, value);
             (/** @type {?} */ (_this)).formChange.emit((/** @type {?} */ (_this))._item);
-        });
-        (/** @type {?} */ (this)).rootProperty.errorsChanges.subscribe(function (errors) {
+        }));
+        (/** @type {?} */ (this)).rootProperty.errorsChanges.subscribe((/**
+         * @param {?} errors
+         * @return {?}
+         */
+        function (errors) {
             (/** @type {?} */ (_this))._valid = !(errors && errors.length);
             (/** @type {?} */ (_this)).formError.emit(errors);
             (/** @type {?} */ (_this)).cdr.detectChanges();
-        });
+        }));
         return (/** @type {?} */ (this)).reset();
     };
     /**
@@ -2241,16 +2434,21 @@ var SFComponent = /** @class */ (function () {
         var _this = this;
         if (emit === void 0) { emit = false; }
         (/** @type {?} */ (this)).rootProperty.resetValue((/** @type {?} */ (this)).formData, false);
-        Promise.resolve().then(function () { return (/** @type {?} */ (_this)).cdr.detectChanges(); });
+        Promise.resolve().then((/**
+         * @return {?}
+         */
+        function () { return (/** @type {?} */ (_this)).cdr.detectChanges(); }));
         if (emit) {
             (/** @type {?} */ (this)).formReset.emit((/** @type {?} */ (this)).value);
         }
         return (/** @type {?} */ (this));
     };
     /**
+     * @private
      * @return {?}
      */
     SFComponent.prototype.cleanRootSub = /**
+     * @private
      * @return {?}
      */
     function () {
@@ -2333,7 +2531,7 @@ var SFComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 var nextUniqueId = 0;
@@ -2373,7 +2571,10 @@ var SFItemComponent = /** @class */ (function () {
      */
     function () {
         var _this = this;
-        this.terminator.onDestroy.subscribe(function () { return _this.ngOnDestroy(); });
+        this.terminator.onDestroy.subscribe((/**
+         * @return {?}
+         */
+        function () { return _this.ngOnDestroy(); }));
     };
     /**
      * @return {?}
@@ -2418,7 +2619,7 @@ var SFItemComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var SFFixedDirective = /** @class */ (function () {
     function SFFixedDirective(er, render) {
@@ -2427,9 +2628,11 @@ var SFFixedDirective = /** @class */ (function () {
         this.el = (/** @type {?} */ (er.nativeElement));
     }
     /**
+     * @private
      * @return {?}
      */
     SFFixedDirective.prototype.init = /**
+     * @private
      * @return {?}
      */
     function () {
@@ -2492,7 +2695,7 @@ var SFFixedDirective = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var SFItemWrapComponent = /** @class */ (function () {
     function SFItemWrapComponent() {
@@ -2528,7 +2731,7 @@ var SFItemWrapComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var SFTemplateDirective = /** @class */ (function () {
     function SFTemplateDirective(templateRef, table) {
@@ -2562,7 +2765,7 @@ var SFTemplateDirective = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * @abstract
@@ -2609,8 +2812,16 @@ var Widget = /** @class */ (function () {
     function () {
         var _this = this;
         this.formProperty.errorsChanges
-            .pipe(takeUntil(this.sfItemComp.unsubscribe$), filter(function (w) { return w != null; }))
-            .subscribe(function (errors) {
+            .pipe(takeUntil(this.sfItemComp.unsubscribe$), filter((/**
+         * @param {?} w
+         * @return {?}
+         */
+        function (w) { return w != null; })))
+            .subscribe((/**
+         * @param {?} errors
+         * @return {?}
+         */
+        function (errors) {
             di(_this.ui, 'errorsChanges', _this.formProperty.path, errors);
             // 不显示首次校验视觉
             if (_this.firstVisual) {
@@ -2619,7 +2830,7 @@ var Widget = /** @class */ (function () {
                 _this.cd.detectChanges();
             }
             _this.firstVisual = true;
-        });
+        }));
     };
     /**
      * @param {?} value
@@ -2712,7 +2923,10 @@ var ArrayLayoutWidget = /** @class */ (function (_super) {
         var _this = this;
         this.formProperty.errorsChanges
             .pipe(takeUntil(this.sfItemComp.unsubscribe$))
-            .subscribe(function () { return _this.cd.detectChanges(); });
+            .subscribe((/**
+         * @return {?}
+         */
+        function () { return _this.cd.detectChanges(); }));
     };
     return ArrayLayoutWidget;
 }(Widget));
@@ -2740,14 +2954,17 @@ var ObjectLayoutWidget = /** @class */ (function (_super) {
         var _this = this;
         this.formProperty.errorsChanges
             .pipe(takeUntil(this.sfItemComp.unsubscribe$))
-            .subscribe(function () { return _this.cd.detectChanges(); });
+            .subscribe((/**
+         * @return {?}
+         */
+        function () { return _this.cd.detectChanges(); }));
     };
     return ObjectLayoutWidget;
 }(Widget));
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var ArrayWidget = /** @class */ (function (_super) {
     __extends(ArrayWidget, _super);
@@ -2823,7 +3040,7 @@ var ArrayWidget = /** @class */ (function (_super) {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var AutoCompleteWidget = /** @class */ (function (_super) {
     __extends(AutoCompleteWidget, _super);
@@ -2862,16 +3079,29 @@ var AutoCompleteWidget = /** @class */ (function (_super) {
         };
         this.filterOption = this.ui.filterOption == null ? true : this.ui.filterOption;
         if (typeof this.filterOption === 'boolean') {
-            this.filterOption = function (input, option) {
+            this.filterOption = (/**
+             * @param {?} input
+             * @param {?} option
+             * @return {?}
+             */
+            function (input, option) {
                 return option.label.toLowerCase().indexOf((input || '').toLowerCase()) > -1;
-            };
+            });
         }
         this.isAsync = !!this.ui.asyncData;
         /** @type {?} */
         var orgTime = +(this.ui.debounceTime || 0);
         /** @type {?} */
         var time = Math.max(0, this.isAsync ? Math.max(50, orgTime) : orgTime);
-        this.list = this.ngModel.valueChanges.pipe(debounceTime(time), startWith(''), flatMap(function (input) { return (_this.isAsync ? _this.ui.asyncData(input) : _this.filterData(input)); }), map(function (res) { return getEnum(res, null, _this.schema.readOnly); }));
+        this.list = this.ngModel.valueChanges.pipe(debounceTime(time), startWith(''), flatMap((/**
+         * @param {?} input
+         * @return {?}
+         */
+        function (input) { return (_this.isAsync ? _this.ui.asyncData(input) : _this.filterData(input)); })), map((/**
+         * @param {?} res
+         * @return {?}
+         */
+        function (res) { return getEnum(res, null, _this.schema.readOnly); })));
     };
     /**
      * @param {?} value
@@ -2895,10 +3125,12 @@ var AutoCompleteWidget = /** @class */ (function (_super) {
         }
     };
     /**
+     * @private
      * @param {?} input
      * @return {?}
      */
     AutoCompleteWidget.prototype.filterData = /**
+     * @private
      * @param {?} input
      * @return {?}
      */
@@ -2908,19 +3140,29 @@ var AutoCompleteWidget = /** @class */ (function (_super) {
             case 'email':
                 return this.addEmailSuffix(input);
             default:
-                return of(this.fixData.filter(function (option) { return _this.filterOption(input, option); }));
+                return of(this.fixData.filter((/**
+                 * @param {?} option
+                 * @return {?}
+                 */
+                function (option) { return _this.filterOption(input, option); })));
         }
     };
     /**
+     * @private
      * @param {?} value
      * @return {?}
      */
     AutoCompleteWidget.prototype.addEmailSuffix = /**
+     * @private
      * @param {?} value
      * @return {?}
      */
     function (value) {
-        return of(!value || ~value.indexOf('@') ? [] : this.fixData.map(function (domain) { return value + "@" + domain.label; }));
+        return of(!value || ~value.indexOf('@') ? [] : this.fixData.map((/**
+         * @param {?} domain
+         * @return {?}
+         */
+        function (domain) { return value + "@" + domain.label; })));
     };
     AutoCompleteWidget.decorators = [
         { type: Component, args: [{
@@ -2936,7 +3178,7 @@ var AutoCompleteWidget = /** @class */ (function (_super) {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var BooleanWidget = /** @class */ (function (_super) {
     __extends(BooleanWidget, _super);
@@ -2954,7 +3196,7 @@ var BooleanWidget = /** @class */ (function (_super) {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var CascaderWidget = /** @class */ (function (_super) {
     __extends(CascaderWidget, _super);
@@ -2976,7 +3218,12 @@ var CascaderWidget = /** @class */ (function (_super) {
         this.showInput = toBool(this.ui.showInput, true);
         this.triggerAction = this.ui.triggerAction || ['click'];
         if (!!this.ui.asyncData) {
-            this.loadData = function (node, index) { return ((/** @type {?} */ (_this.ui.asyncData)))(node, index, _this); };
+            this.loadData = (/**
+             * @param {?} node
+             * @param {?} index
+             * @return {?}
+             */
+            function (node, index) { return ((/** @type {?} */ (_this.ui.asyncData)))(node, index, _this); });
         }
     };
     /**
@@ -2989,10 +3236,14 @@ var CascaderWidget = /** @class */ (function (_super) {
      */
     function (value) {
         var _this = this;
-        getData(this.schema, {}, this.formProperty.formData).subscribe(function (list) {
+        getData(this.schema, {}, this.formProperty.formData).subscribe((/**
+         * @param {?} list
+         * @return {?}
+         */
+        function (list) {
             _this.data = list;
             _this.detectChanges();
-        });
+        }));
     };
     /**
      * @param {?} status
@@ -3066,7 +3317,7 @@ var CascaderWidget = /** @class */ (function (_super) {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var CheckboxWidget = /** @class */ (function (_super) {
     __extends(CheckboxWidget, _super);
@@ -3100,7 +3351,11 @@ var CheckboxWidget = /** @class */ (function (_super) {
     function (value) {
         var _this = this;
         this.inited = false;
-        getData(this.schema, this.ui, this.formProperty.formData).subscribe(function (list) {
+        getData(this.schema, this.ui, this.formProperty.formData).subscribe((/**
+         * @param {?} list
+         * @return {?}
+         */
+        function (list) {
             _this.data = list;
             _this.allChecked = false;
             _this.indeterminate = false;
@@ -3109,7 +3364,7 @@ var CheckboxWidget = /** @class */ (function (_super) {
             _this.updateAllChecked();
             _this.inited = true;
             _this.cd.detectChanges();
-        });
+        }));
     };
     /**
      * @param {?} value
@@ -3132,8 +3387,16 @@ var CheckboxWidget = /** @class */ (function (_super) {
      */
     function () {
         /** @type {?} */
-        var checkList = this.data.filter(function (w) { return w.checked; });
-        this.updateAllChecked().setValue(checkList.map(function (item) { return item.value; }));
+        var checkList = this.data.filter((/**
+         * @param {?} w
+         * @return {?}
+         */
+        function (w) { return w.checked; }));
+        this.updateAllChecked().setValue(checkList.map((/**
+         * @param {?} item
+         * @return {?}
+         */
+        function (item) { return item.value; })));
         this.notifyChange(checkList);
     };
     /**
@@ -3145,7 +3408,11 @@ var CheckboxWidget = /** @class */ (function (_super) {
      * @return {?}
      */
     function (values) {
-        this.data.forEach(function (item) { return (item.checked = values.indexOf(item.value) !== -1); });
+        this.data.forEach((/**
+         * @param {?} item
+         * @return {?}
+         */
+        function (item) { return (item.checked = values.indexOf(item.value) !== -1); }));
         this.notifySet();
     };
     /**
@@ -3159,7 +3426,11 @@ var CheckboxWidget = /** @class */ (function (_super) {
     function (e) {
         var _this = this;
         e.stopPropagation();
-        this.data.forEach(function (item) { return (item.checked = _this.allChecked); });
+        this.data.forEach((/**
+         * @param {?} item
+         * @return {?}
+         */
+        function (item) { return (item.checked = _this.allChecked); }));
         this.notifySet();
     };
     /**
@@ -3173,11 +3444,19 @@ var CheckboxWidget = /** @class */ (function (_super) {
      * @return {THIS}
      */
     function () {
-        if ((/** @type {?} */ (this)).data.every(function (item) { return item.checked !== true; })) {
+        if ((/** @type {?} */ (this)).data.every((/**
+         * @param {?} item
+         * @return {?}
+         */
+        function (item) { return item.checked !== true; }))) {
             (/** @type {?} */ (this)).allChecked = false;
             (/** @type {?} */ (this)).indeterminate = false;
         }
-        else if ((/** @type {?} */ (this)).data.every(function (item) { return item.checked === true; })) {
+        else if ((/** @type {?} */ (this)).data.every((/**
+         * @param {?} item
+         * @return {?}
+         */
+        function (item) { return item.checked === true; }))) {
             (/** @type {?} */ (this)).allChecked = true;
             (/** @type {?} */ (this)).indeterminate = false;
         }
@@ -3188,10 +3467,12 @@ var CheckboxWidget = /** @class */ (function (_super) {
         return (/** @type {?} */ (this));
     };
     /**
+     * @private
      * @param {?} res
      * @return {?}
      */
     CheckboxWidget.prototype.notifyChange = /**
+     * @private
      * @param {?} res
      * @return {?}
      */
@@ -3210,7 +3491,7 @@ var CheckboxWidget = /** @class */ (function (_super) {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var CustomWidget = /** @class */ (function (_super) {
     __extends(CustomWidget, _super);
@@ -3228,7 +3509,7 @@ var CustomWidget = /** @class */ (function (_super) {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var DateWidget = /** @class */ (function (_super) {
     __extends(DateWidget, _super);
@@ -3275,15 +3556,20 @@ var DateWidget = /** @class */ (function (_super) {
         };
     };
     /**
+     * @private
      * @return {?}
      */
     DateWidget.prototype.compCd = /**
+     * @private
      * @return {?}
      */
     function () {
         var _this = this;
         // TODO: removed after nz-datepick support OnPush mode
-        setTimeout(function () { return _this.detectChanges(); });
+        setTimeout((/**
+         * @return {?}
+         */
+        function () { return _this.detectChanges(); }));
     };
     /**
      * @param {?} value
@@ -3320,7 +3606,11 @@ var DateWidget = /** @class */ (function (_super) {
         }
         /** @type {?} */
         var res = Array.isArray(value)
-            ? value.map(function (d) { return format(d, _this.format); })
+            ? value.map((/**
+             * @param {?} d
+             * @return {?}
+             */
+            function (d) { return format(d, _this.format); }))
             : format(value, this.format);
         if (this.flatRange) {
             this.setEnd(res[1]);
@@ -3356,6 +3646,7 @@ var DateWidget = /** @class */ (function (_super) {
     };
     Object.defineProperty(DateWidget.prototype, "endProperty", {
         get: /**
+         * @private
          * @return {?}
          */
         function () {
@@ -3365,10 +3656,12 @@ var DateWidget = /** @class */ (function (_super) {
         configurable: true
     });
     /**
+     * @private
      * @param {?} value
      * @return {?}
      */
     DateWidget.prototype.setEnd = /**
+     * @private
      * @param {?} value
      * @return {?}
      */
@@ -3376,10 +3669,12 @@ var DateWidget = /** @class */ (function (_super) {
         this.endProperty.setValue(value, true);
     };
     /**
+     * @private
      * @param {?} value
      * @return {?}
      */
     DateWidget.prototype.toDate = /**
+     * @private
      * @param {?} value
      * @return {?}
      */
@@ -3400,7 +3695,7 @@ var DateWidget = /** @class */ (function (_super) {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var MentionWidget = /** @class */ (function (_super) {
     __extends(MentionWidget, _super);
@@ -3420,7 +3715,11 @@ var MentionWidget = /** @class */ (function (_super) {
         var _this = this;
         var _a = this.ui, valueWith = _a.valueWith, notFoundContent = _a.notFoundContent, placement = _a.placement, prefix = _a.prefix, autosize = _a.autosize;
         this.i = {
-            valueWith: valueWith || (function (item) { return item.label; }),
+            valueWith: valueWith || ((/**
+             * @param {?} item
+             * @return {?}
+             */
+            function (item) { return item.label; })),
             notFoundContent: notFoundContent || '无匹配结果，轻敲空格完成输入',
             placement: placement || 'bottom',
             prefix: prefix || '@',
@@ -3431,7 +3730,10 @@ var MentionWidget = /** @class */ (function (_super) {
         /** @type {?} */
         var max = typeof this.schema.maximum !== 'undefined' ? this.schema.maximum : -1;
         if (!this.ui.validator && (min !== -1 || max !== -1)) {
-            this.ui.validator = function () {
+            this.ui.validator = (/**
+             * @return {?}
+             */
+            function () {
                 /** @type {?} */
                 var count = _this.mentionChild.getMentions().length;
                 if (min !== -1 && count < min) {
@@ -3441,7 +3743,7 @@ var MentionWidget = /** @class */ (function (_super) {
                     return [{ keyword: 'mention', message: "\u6700\u591A\u63D0\u53CA " + max + " \u6B21" }];
                 }
                 return null;
-            };
+            });
         }
     };
     /**
@@ -3454,10 +3756,14 @@ var MentionWidget = /** @class */ (function (_super) {
      */
     function (value) {
         var _this = this;
-        getData(this.schema, this.ui, null).subscribe(function (list) {
+        getData(this.schema, this.ui, null).subscribe((/**
+         * @param {?} list
+         * @return {?}
+         */
+        function (list) {
             _this.data = list;
             _this.detectChanges();
-        });
+        }));
     };
     /**
      * @param {?} options
@@ -3485,11 +3791,22 @@ var MentionWidget = /** @class */ (function (_super) {
             return;
         this.loading = true;
         ((/** @type {?} */ (this.ui.loadData(option))))
-            .pipe(tap(function () { return (_this.loading = false); }), map(function (res) { return getEnum(res, null, _this.schema.readOnly); }))
-            .subscribe(function (res) {
+            .pipe(tap((/**
+         * @return {?}
+         */
+        function () { return (_this.loading = false); })), map((/**
+         * @param {?} res
+         * @return {?}
+         */
+        function (res) { return getEnum(res, null, _this.schema.readOnly); })))
+            .subscribe((/**
+         * @param {?} res
+         * @return {?}
+         */
+        function (res) {
             _this.data = res;
             _this.cd.detectChanges();
-        });
+        }));
     };
     MentionWidget.decorators = [
         { type: Component, args: [{
@@ -3505,14 +3822,22 @@ var MentionWidget = /** @class */ (function (_super) {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var NumberWidget = /** @class */ (function (_super) {
     __extends(NumberWidget, _super);
     function NumberWidget() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.formatter = function (value) { return value; };
-        _this.parser = function (value) { return value; };
+        _this.formatter = (/**
+         * @param {?} value
+         * @return {?}
+         */
+        function (value) { return value; });
+        _this.parser = (/**
+         * @param {?} value
+         * @return {?}
+         */
+        function (value) { return value; });
         return _this;
     }
     /**
@@ -3536,12 +3861,28 @@ var NumberWidget = /** @class */ (function (_super) {
             this.step = Math.trunc(this.step);
         }
         if (ui.prefix != null) {
-            ui.formatter = function (value) { return ui.prefix + " " + value; };
-            ui.parser = function (value) { return value.replace(ui.prefix + " ", ''); };
+            ui.formatter = (/**
+             * @param {?} value
+             * @return {?}
+             */
+            function (value) { return ui.prefix + " " + value; });
+            ui.parser = (/**
+             * @param {?} value
+             * @return {?}
+             */
+            function (value) { return value.replace(ui.prefix + " ", ''); });
         }
         if (ui.unit != null) {
-            ui.formatter = function (value) { return value + " " + ui.unit; };
-            ui.parser = function (value) { return value.replace(" " + ui.unit, ''); };
+            ui.formatter = (/**
+             * @param {?} value
+             * @return {?}
+             */
+            function (value) { return value + " " + ui.unit; });
+            ui.parser = (/**
+             * @param {?} value
+             * @return {?}
+             */
+            function (value) { return value.replace(" " + ui.unit, ''); });
         }
         if (ui.formatter)
             this.formatter = ui.formatter;
@@ -3570,7 +3911,7 @@ var NumberWidget = /** @class */ (function (_super) {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var ObjectWidget = /** @class */ (function (_super) {
     __extends(ObjectWidget, _super);
@@ -3630,7 +3971,7 @@ var ObjectWidget = /** @class */ (function (_super) {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var RadioWidget = /** @class */ (function (_super) {
     __extends(RadioWidget, _super);
@@ -3650,7 +3991,11 @@ var RadioWidget = /** @class */ (function (_super) {
     function (value) {
         var _this = this;
         this.styleType = (this.ui.styleType || 'default') === 'default';
-        getData(this.schema, this.ui, this.formProperty.formData).subscribe(function (list) { return (_this.data = list); });
+        getData(this.schema, this.ui, this.formProperty.formData).subscribe((/**
+         * @param {?} list
+         * @return {?}
+         */
+        function (list) { return (_this.data = list); }));
     };
     /**
      * @param {?} value
@@ -3676,7 +4021,7 @@ var RadioWidget = /** @class */ (function (_super) {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var RateWidget = /** @class */ (function (_super) {
     __extends(RateWidget, _super);
@@ -3719,7 +4064,7 @@ var RateWidget = /** @class */ (function (_super) {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var SelectWidget = /** @class */ (function (_super) {
     __extends(SelectWidget, _super);
@@ -3757,11 +4102,19 @@ var SelectWidget = /** @class */ (function (_super) {
      */
     function (value) {
         var _this = this;
-        getData(this.schema, this.ui, this.formProperty.formData).subscribe(function (list) {
+        getData(this.schema, this.ui, this.formProperty.formData).subscribe((/**
+         * @param {?} list
+         * @return {?}
+         */
+        function (list) {
             _this.data = list;
-            _this.hasGroup = list.filter(function (w) { return w.group === true; }).length > 0;
+            _this.hasGroup = list.filter((/**
+             * @param {?} w
+             * @return {?}
+             */
+            function (w) { return w.group === true; })).length > 0;
             _this.detectChanges();
-        });
+        }));
     };
     /**
      * @param {?} values
@@ -3801,10 +4154,14 @@ var SelectWidget = /** @class */ (function (_super) {
     function (text) {
         var _this = this;
         if (this.ui.onSearch) {
-            this.ui.onSearch(text).then(function (res) {
+            this.ui.onSearch(text).then((/**
+             * @param {?} res
+             * @return {?}
+             */
+            function (res) {
                 _this.data = res;
                 _this.detectChanges();
-            });
+            }));
             return;
         }
         this.detectChanges();
@@ -3831,17 +4188,21 @@ var SelectWidget = /** @class */ (function (_super) {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var SliderWidget = /** @class */ (function (_super) {
     __extends(SliderWidget, _super);
     function SliderWidget() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this._formatter = function (value) {
+        _this._formatter = (/**
+         * @param {?} value
+         * @return {?}
+         */
+        function (value) {
             if (_this.ui.formatter)
                 return _this.ui.formatter(value);
             return value;
-        };
+        });
         return _this;
     }
     /**
@@ -3882,7 +4243,7 @@ var SliderWidget = /** @class */ (function (_super) {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var StringWidget = /** @class */ (function (_super) {
     __extends(StringWidget, _super);
@@ -3931,7 +4292,7 @@ var StringWidget = /** @class */ (function (_super) {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var TagWidget = /** @class */ (function (_super) {
     __extends(TagWidget, _super);
@@ -3948,10 +4309,14 @@ var TagWidget = /** @class */ (function (_super) {
      */
     function (value) {
         var _this = this;
-        getData(this.schema, this.ui, this.formProperty.formData).subscribe(function (list) {
+        getData(this.schema, this.ui, this.formProperty.formData).subscribe((/**
+         * @param {?} list
+         * @return {?}
+         */
+        function (list) {
             _this.data = list;
             _this.detectChanges();
-        });
+        }));
     };
     /**
      * @param {?} item
@@ -3990,13 +4355,23 @@ var TagWidget = /** @class */ (function (_super) {
             this.ui.onClose(e);
     };
     /**
+     * @private
      * @return {?}
      */
     TagWidget.prototype.updateValue = /**
+     * @private
      * @return {?}
      */
     function () {
-        this.formProperty.setValue(this.data.filter(function (w) { return w.checked; }).map(function (i) { return i.value; }), false);
+        this.formProperty.setValue(this.data.filter((/**
+         * @param {?} w
+         * @return {?}
+         */
+        function (w) { return w.checked; })).map((/**
+         * @param {?} i
+         * @return {?}
+         */
+        function (i) { return i.value; })), false);
     };
     TagWidget.decorators = [
         { type: Component, args: [{
@@ -4009,7 +4384,7 @@ var TagWidget = /** @class */ (function (_super) {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var TextWidget = /** @class */ (function (_super) {
     __extends(TextWidget, _super);
@@ -4036,7 +4411,7 @@ var TextWidget = /** @class */ (function (_super) {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var TextareaWidget = /** @class */ (function (_super) {
     __extends(TextareaWidget, _super);
@@ -4067,7 +4442,7 @@ var TextareaWidget = /** @class */ (function (_super) {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var TimeWidget = /** @class */ (function (_super) {
     __extends(TimeWidget, _super);
@@ -4099,15 +4474,20 @@ var TimeWidget = /** @class */ (function (_super) {
         };
     };
     /**
+     * @private
      * @return {?}
      */
     TimeWidget.prototype.compCd = /**
+     * @private
      * @return {?}
      */
     function () {
         var _this = this;
         // TODO: removed after nz-datepick support OnPush mode
-        setTimeout(function () { return _this.detectChanges(); });
+        setTimeout((/**
+         * @return {?}
+         */
+        function () { return _this.detectChanges(); }));
     };
     /**
      * @param {?} value
@@ -4165,7 +4545,7 @@ var TimeWidget = /** @class */ (function (_super) {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var TransferWidget = /** @class */ (function (_super) {
     __extends(TransferWidget, _super);
@@ -4173,9 +4553,13 @@ var TransferWidget = /** @class */ (function (_super) {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.list = [];
         _this._data = [];
-        _this._canMove = function (arg) {
+        _this._canMove = (/**
+         * @param {?} arg
+         * @return {?}
+         */
+        function (arg) {
             return _this.ui.canMove ? _this.ui.canMove(arg) : of(arg.list);
-        };
+        });
         return _this;
     }
     /**
@@ -4202,31 +4586,49 @@ var TransferWidget = /** @class */ (function (_super) {
      */
     function (value) {
         var _this = this;
-        getData(this.schema, this.ui, null).subscribe(function (list) {
+        getData(this.schema, this.ui, null).subscribe((/**
+         * @param {?} list
+         * @return {?}
+         */
+        function (list) {
             /** @type {?} */
             var formData = _this.formProperty.formData;
             if (!Array.isArray(formData)) {
                 formData = [formData];
             }
-            list.forEach(function (item) {
+            list.forEach((/**
+             * @param {?} item
+             * @return {?}
+             */
+            function (item) {
                 if (~((/** @type {?} */ (formData))).indexOf(item.value)) {
                     item.direction = 'right';
                 }
-            });
+            }));
             _this.list = list;
-            _this._data = list.filter(function (w) { return w.direction === 'right'; });
+            _this._data = list.filter((/**
+             * @param {?} w
+             * @return {?}
+             */
+            function (w) { return w.direction === 'right'; }));
             _this.notify();
             _this.detectChanges();
-        });
+        }));
     };
     /**
+     * @private
      * @return {?}
      */
     TransferWidget.prototype.notify = /**
+     * @private
      * @return {?}
      */
     function () {
-        this.formProperty.setValue(this._data.map(function (i) { return i.value; }), false);
+        this.formProperty.setValue(this._data.map((/**
+         * @param {?} i
+         * @return {?}
+         */
+        function (i) { return i.value; })), false);
     };
     /**
      * @param {?} options
@@ -4242,7 +4644,11 @@ var TransferWidget = /** @class */ (function (_super) {
             this._data = (_a = this._data).concat.apply(_a, __spread(options.list));
         }
         else {
-            this._data = this._data.filter(function (w) { return options.list.indexOf(w) === -1; });
+            this._data = this._data.filter((/**
+             * @param {?} w
+             * @return {?}
+             */
+            function (w) { return options.list.indexOf(w) === -1; }));
         }
         if (this.ui.change)
             this.ui.change(options);
@@ -4285,7 +4691,7 @@ var TransferWidget = /** @class */ (function (_super) {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var TreeSelectWidget = /** @class */ (function (_super) {
     __extends(TreeSelectWidget, _super);
@@ -4313,7 +4719,11 @@ var TreeSelectWidget = /** @class */ (function (_super) {
             asyncData: typeof ui.expandChange === 'function',
             defaultExpandAll: toBool(ui.defaultExpandAll, false),
             defaultExpandedKeys: ui.defaultExpandedKeys || [],
-            displayWith: ui.displayWith || (function (node) { return node.title; }),
+            displayWith: ui.displayWith || ((/**
+             * @param {?} node
+             * @return {?}
+             */
+            function (node) { return node.title; })),
         };
     };
     /**
@@ -4327,9 +4737,13 @@ var TreeSelectWidget = /** @class */ (function (_super) {
     function (value) {
         var _this = this;
         getData(this.schema, this.ui, this.formProperty.formData)
-            .subscribe(function (list) {
+            .subscribe((/**
+         * @param {?} list
+         * @return {?}
+         */
+        function (list) {
             _this.data = list;
-        });
+        }));
     };
     /**
      * @param {?} value
@@ -4357,10 +4771,14 @@ var TreeSelectWidget = /** @class */ (function (_super) {
         if (typeof ui.expandChange !== 'function')
             return;
         ui.expandChange(e)
-            .subscribe(function (res) {
+            .subscribe((/**
+         * @param {?} res
+         * @return {?}
+         */
+        function (res) {
             e.node.clearChildren();
             e.node.addChildren(res);
-        });
+        }));
     };
     TreeSelectWidget.decorators = [
         { type: Component, args: [{
@@ -4373,7 +4791,7 @@ var TreeSelectWidget = /** @class */ (function (_super) {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var UploadWidget = /** @class */ (function (_super) {
     __extends(UploadWidget, _super);
@@ -4381,7 +4799,11 @@ var UploadWidget = /** @class */ (function (_super) {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.fileList = [];
         _this.btnType = '';
-        _this.handlePreview = function (file) {
+        _this.handlePreview = (/**
+         * @param {?} file
+         * @return {?}
+         */
+        function (file) {
             if (_this.ui.preview) {
                 _this.ui.preview(file);
                 return;
@@ -4392,8 +4814,11 @@ var UploadWidget = /** @class */ (function (_super) {
                 nzContent: "<img src=\"" + (file.url || file.thumbUrl) + "\" class=\"img-fluid\" />",
                 nzFooter: null,
             })
-                .afterClose.subscribe(function () { return _this.detectChanges(); });
-        };
+                .afterClose.subscribe((/**
+             * @return {?}
+             */
+            function () { return _this.detectChanges(); }));
+        });
         return _this;
     }
     /**
@@ -4460,24 +4885,34 @@ var UploadWidget = /** @class */ (function (_super) {
     function (value) {
         var _this = this;
         var fileList = this.ui.fileList;
-        (fileList ? of(fileList) : getData(this.schema, this.ui, this.formProperty.formData)).subscribe(function (list) {
+        (fileList ? of(fileList) : getData(this.schema, this.ui, this.formProperty.formData)).subscribe((/**
+         * @param {?} list
+         * @return {?}
+         */
+        function (list) {
             _this.fileList = (/** @type {?} */ (list));
             _this._setValue(_this.fileList);
             _this.detectChanges();
-        });
+        }));
     };
     /**
+     * @private
      * @param {?} fileList
      * @return {?}
      */
     UploadWidget.prototype._setValue = /**
+     * @private
      * @param {?} fileList
      * @return {?}
      */
     function (fileList) {
         var _this = this;
         /** @type {?} */
-        var res = fileList.map(function (item) { return deepGet(item.response, _this.i.resReName, item.response); });
+        var res = fileList.map((/**
+         * @param {?} item
+         * @return {?}
+         */
+        function (item) { return deepGet(item.response, _this.i.resReName, item.response); }));
         this.setValue(this.i.multiple === true ? res : res.pop());
     };
     UploadWidget.decorators = [
@@ -4491,7 +4926,7 @@ var UploadWidget = /** @class */ (function (_super) {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var NzWidgetRegistry = /** @class */ (function (_super) {
     __extends(NzWidgetRegistry, _super);
@@ -4528,7 +4963,7 @@ var NzWidgetRegistry = /** @class */ (function (_super) {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 var COMPONENTS = [
@@ -4598,42 +5033,42 @@ var DelonFormModule = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 export { DelonFormConfig, useFactory, SFComponent, SFItemComponent, SFFixedDirective, DelonFormModule, ERRORSDEFAULT, FormProperty, PropertyGroup, FormPropertyFactory, AtomicProperty, ObjectProperty, ArrayProperty, StringProperty, NumberProperty, BooleanProperty, Widget, ControlWidget, ArrayLayoutWidget, ObjectLayoutWidget, ObjectWidget, ArrayWidget, StringWidget, NumberWidget, DateWidget, TimeWidget, RadioWidget, CheckboxWidget, BooleanWidget, TextareaWidget, SelectWidget, TreeSelectWidget, TagWidget, UploadWidget, TransferWidget, SliderWidget, RateWidget, AutoCompleteWidget, CascaderWidget, MentionWidget, CustomWidget, NzWidgetRegistry, WidgetRegistry, WidgetFactory, SchemaValidatorFactory, AjvSchemaValidatorFactory, SFItemWrapComponent as ɵb, TerminatorService as ɵa, SFTemplateDirective as ɵc, TextWidget as ɵd };

@@ -7,7 +7,7 @@ import { NgZorroAntdModule } from 'ng-zorro-antd';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class TagSelectComponent {
     /**
@@ -29,10 +29,13 @@ class TagSelectComponent {
      * @return {?}
      */
     ngOnInit() {
-        this.i18n$ = this.i18n.change.subscribe(() => {
+        this.i18n$ = this.i18n.change.subscribe((/**
+         * @return {?}
+         */
+        () => {
             this.locale = this.i18n.getData('tagSelect');
             this.cdr.detectChanges();
-        });
+        }));
     }
     /**
      * @return {?}
@@ -76,7 +79,7 @@ __decorate([
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const COMPONENTS = [TagSelectComponent];
@@ -92,12 +95,12 @@ TagSelectModule.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 export { TagSelectComponent, TagSelectModule };

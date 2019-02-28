@@ -12,7 +12,7 @@ import { NgZorroAntdModule } from 'ng-zorro-antd';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var ReuseTabContextMenuComponent = /** @class */ (function () {
     function ReuseTabContextMenuComponent(i18nSrv) {
@@ -47,10 +47,12 @@ var ReuseTabContextMenuComponent = /** @class */ (function () {
         configurable: true
     });
     /**
+     * @private
      * @param {?} type
      * @return {?}
      */
     ReuseTabContextMenuComponent.prototype.notify = /**
+     * @private
      * @param {?} type
      * @return {?}
      */
@@ -148,7 +150,7 @@ var ReuseTabContextMenuComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var ReuseTabContextService = /** @class */ (function () {
     function ReuseTabContextService(overlay) {
@@ -183,14 +185,17 @@ var ReuseTabContextService = /** @class */ (function () {
         var event = context.event, item = context.item, customContextMenu = context.customContextMenu;
         /** @type {?} */
         var fakeElement = new ElementRef({
-            getBoundingClientRect: function () { return ({
+            getBoundingClientRect: (/**
+             * @return {?}
+             */
+            function () { return ({
                 bottom: event.clientY,
                 height: 0,
                 left: event.clientX,
                 right: event.clientX,
                 top: event.clientY,
                 width: 0,
-            }); },
+            }); }),
         });
         /** @type {?} */
         var positions = [
@@ -217,11 +222,18 @@ var ReuseTabContextService = /** @class */ (function () {
         instance.event = event;
         /** @type {?} */
         var sub$ = new Subscription();
-        sub$.add(instance.close.subscribe(function (res) {
+        sub$.add(instance.close.subscribe((/**
+         * @param {?} res
+         * @return {?}
+         */
+        function (res) {
             _this.close.next(res);
             _this.remove();
-        }));
-        comp.onDestroy(function () { return sub$.unsubscribe(); });
+        })));
+        comp.onDestroy((/**
+         * @return {?}
+         */
+        function () { return sub$.unsubscribe(); }));
     };
     ReuseTabContextService.decorators = [
         { type: Injectable }
@@ -235,7 +247,7 @@ var ReuseTabContextService = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var ReuseTabContextComponent = /** @class */ (function () {
     function ReuseTabContextComponent(srv) {
@@ -243,8 +255,16 @@ var ReuseTabContextComponent = /** @class */ (function () {
         this.srv = srv;
         this.sub$ = new Subscription();
         this.change = new EventEmitter();
-        this.sub$.add(srv.show.subscribe(function (context) { return _this.srv.open(context); }));
-        this.sub$.add(srv.close.subscribe(function (res) { return _this.change.emit(res); }));
+        this.sub$.add(srv.show.subscribe((/**
+         * @param {?} context
+         * @return {?}
+         */
+        function (context) { return _this.srv.open(context); })));
+        this.sub$.add(srv.close.subscribe((/**
+         * @param {?} res
+         * @return {?}
+         */
+        function (res) { return _this.change.emit(res); })));
     }
     Object.defineProperty(ReuseTabContextComponent.prototype, "i18n", {
         set: /**
@@ -285,7 +305,7 @@ var ReuseTabContextComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var ReuseTabContextDirective = /** @class */ (function () {
     function ReuseTabContextDirective(srv) {
@@ -329,7 +349,7 @@ var ReuseTabContextDirective = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @enum {number} */
 var ReuseTabMatchMode = {
@@ -366,7 +386,7 @@ ReuseTabMatchMode[ReuseTabMatchMode.URL] = 'URL';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * 路由复用类，提供复用所需要一些基本接口
@@ -392,6 +412,7 @@ var ReuseTabService = /** @class */ (function () {
     }
     Object.defineProperty(ReuseTabService.prototype, "snapshot", {
         get: /**
+         * @private
          * @return {?}
          */
         function () {
@@ -589,7 +610,11 @@ var ReuseTabService = /** @class */ (function () {
      * @return {?}
      */
     function (url) {
-        return this._cached.findIndex(function (w) { return w.url === url; });
+        return this._cached.findIndex((/**
+         * @param {?} w
+         * @return {?}
+         */
+        function (w) { return w.url === url; }));
     };
     /** 获取指定路径缓存是否存在 */
     /**
@@ -617,14 +642,20 @@ var ReuseTabService = /** @class */ (function () {
      * @return {?}
      */
     function (url) {
-        return url ? this._cached.find(function (w) { return w.url === url; }) || null : null;
+        return url ? this._cached.find((/**
+         * @param {?} w
+         * @return {?}
+         */
+        function (w) { return w.url === url; })) || null : null;
     };
     /**
+     * @private
      * @param {?} url
      * @param {?} includeNonCloseable
      * @return {?}
      */
     ReuseTabService.prototype.remove = /**
+     * @private
      * @param {?} url
      * @param {?} includeNonCloseable
      * @return {?}
@@ -719,11 +750,19 @@ var ReuseTabService = /** @class */ (function () {
     function (includeNonCloseable) {
         var _this = this;
         if (includeNonCloseable === void 0) { includeNonCloseable = false; }
-        this._cached.forEach(function (w) {
+        this._cached.forEach((/**
+         * @param {?} w
+         * @return {?}
+         */
+        function (w) {
             if (!includeNonCloseable && w.closable)
                 _this.destroy(w._handle);
-        });
-        this._cached = this._cached.filter(function (w) { return !includeNonCloseable && !w.closable; });
+        }));
+        this._cached = this._cached.filter((/**
+         * @param {?} w
+         * @return {?}
+         */
+        function (w) { return !includeNonCloseable && !w.closable; }));
         this.removeUrlBuffer = null;
         this._cachedChange.next({ active: 'clear', list: this._cached });
         this.di('clear all catch');
@@ -783,7 +822,11 @@ var ReuseTabService = /** @class */ (function () {
      */
     function (url, position) {
         /** @type {?} */
-        var start = this._cached.findIndex(function (w) { return w.url === url; });
+        var start = this._cached.findIndex((/**
+         * @param {?} w
+         * @return {?}
+         */
+        function (w) { return w.url === url; }));
         if (start === -1)
             return;
         /** @type {?} */
@@ -997,7 +1040,11 @@ var ReuseTabService = /** @class */ (function () {
         /** @type {?} */
         var url = '/' +
             segments
-                .filter(function (i) { return i; })
+                .filter((/**
+             * @param {?} i
+             * @return {?}
+             */
+            function (i) { return i; }))
                 .reverse()
                 .join('/');
         return url;
@@ -1037,7 +1084,11 @@ var ReuseTabService = /** @class */ (function () {
             }
             return true;
         }
-        return this._excludes.findIndex(function (r) { return r.test(url); }) === -1;
+        return this._excludes.findIndex((/**
+         * @param {?} r
+         * @return {?}
+         */
+        function (r) { return r.test(url); })) === -1;
     };
     /**
      * 刷新，触发一个 refresh 类型事件
@@ -1060,6 +1111,7 @@ var ReuseTabService = /** @class */ (function () {
     // #endregion
     // #region privates
     /**
+     * @private
      * @param {?} _handle
      * @return {?}
      */
@@ -1067,6 +1119,7 @@ var ReuseTabService = /** @class */ (function () {
     // #endregion
     // #region privates
     /**
+     * @private
      * @param {?} _handle
      * @return {?}
      */
@@ -1075,10 +1128,12 @@ var ReuseTabService = /** @class */ (function () {
             _handle.componentRef.destroy();
     };
     /**
+     * @private
      * @param {...?} args
      * @return {?}
      */
     ReuseTabService.prototype.di = /**
+     * @private
      * @param {...?} args
      * @return {?}
      */
@@ -1103,10 +1158,12 @@ var ReuseTabService = /** @class */ (function () {
         this._inited = true;
     };
     /**
+     * @private
      * @param {?} url
      * @return {?}
      */
     ReuseTabService.prototype.getMenu = /**
+     * @private
      * @param {?} url
      * @return {?}
      */
@@ -1118,12 +1175,14 @@ var ReuseTabService = /** @class */ (function () {
         return menus.pop();
     };
     /**
+     * @private
      * @param {?} method
      * @param {?} url
      * @param {?} comp
      * @return {?}
      */
     ReuseTabService.prototype.runHook = /**
+     * @private
      * @param {?} method
      * @param {?} url
      * @param {?} comp
@@ -1134,10 +1193,12 @@ var ReuseTabService = /** @class */ (function () {
             comp.instance[method]();
     };
     /**
+     * @private
      * @param {?} route
      * @return {?}
      */
     ReuseTabService.prototype.hasInValidRoute = /**
+     * @private
      * @param {?} route
      * @return {?}
      */
@@ -1196,7 +1257,11 @@ var ReuseTabService = /** @class */ (function () {
             if (this.count >= this._max) {
                 // Get the oldest closable location
                 /** @type {?} */
-                var closeIdx = this._cached.findIndex(function (w) { return w.closable; });
+                var closeIdx = this._cached.findIndex((/**
+                 * @param {?} w
+                 * @return {?}
+                 */
+                function (w) { return w.closable; }));
                 if (closeIdx !== -1)
                     this.remove(closeIdx, false);
             }
@@ -1340,6 +1405,7 @@ var ReuseTabService = /** @class */ (function () {
     };
     Object.defineProperty(ReuseTabService.prototype, "isDisabledInRouter", {
         get: /**
+         * @private
          * @return {?}
          */
         function () {
@@ -1352,6 +1418,7 @@ var ReuseTabService = /** @class */ (function () {
     });
     Object.defineProperty(ReuseTabService.prototype, "ss", {
         get: /**
+         * @private
          * @return {?}
          */
         function () {
@@ -1361,9 +1428,11 @@ var ReuseTabService = /** @class */ (function () {
         configurable: true
     });
     /**
+     * @private
      * @return {?}
      */
     ReuseTabService.prototype.initScroll = /**
+     * @private
      * @return {?}
      */
     function () {
@@ -1371,7 +1440,11 @@ var ReuseTabService = /** @class */ (function () {
         if (this._router$) {
             this._router$.unsubscribe();
         }
-        this._router$ = this.injector.get(Router).events.subscribe(function (e) {
+        this._router$ = this.injector.get(Router).events.subscribe((/**
+         * @param {?} e
+         * @return {?}
+         */
+        function (e) {
             if (e instanceof NavigationStart) {
                 /** @type {?} */
                 var url = _this.curUrl;
@@ -1394,11 +1467,14 @@ var ReuseTabService = /** @class */ (function () {
                         _this.ss.scrollToPosition(_this.keepingScrollContainer, item_1.position);
                     }
                     else {
-                        setTimeout(function () { return _this.ss.scrollToPosition(_this.keepingScrollContainer, item_1.position); }, 1);
+                        setTimeout((/**
+                         * @return {?}
+                         */
+                        function () { return _this.ss.scrollToPosition(_this.keepingScrollContainer, item_1.position); }), 1);
                     }
                 }
             }
-        });
+        }));
     };
     // #endregion
     // #endregion
@@ -1433,7 +1509,7 @@ var ReuseTabService = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var ReuseTabComponent = /** @class */ (function () {
     // #endregion
@@ -1472,10 +1548,12 @@ var ReuseTabComponent = /** @class */ (function () {
         configurable: true
     });
     /**
+     * @private
      * @param {?} title
      * @return {?}
      */
     ReuseTabComponent.prototype.genTit = /**
+     * @private
      * @param {?} title
      * @return {?}
      */
@@ -1483,10 +1561,12 @@ var ReuseTabComponent = /** @class */ (function () {
         return title.i18n && this.i18nSrv ? this.i18nSrv.fanyi(title.i18n) : title.text;
     };
     /**
+     * @private
      * @param {?=} notify
      * @return {?}
      */
     ReuseTabComponent.prototype.genList = /**
+     * @private
      * @param {?=} notify
      * @return {?}
      */
@@ -1495,9 +1575,18 @@ var ReuseTabComponent = /** @class */ (function () {
         /** @type {?} */
         var isClosed = notify && notify.active === 'close';
         /** @type {?} */
-        var beforeClosePos = isClosed ? this.list.findIndex(function (w) { return w.url === notify.url; }) : -1;
+        var beforeClosePos = isClosed ? this.list.findIndex((/**
+         * @param {?} w
+         * @return {?}
+         */
+        function (w) { return w.url === notify.url; })) : -1;
         /** @type {?} */
-        var ls = this.srv.items.map(function (item, index) {
+        var ls = this.srv.items.map((/**
+         * @param {?} item
+         * @param {?} index
+         * @return {?}
+         */
+        function (item, index) {
             return (/** @type {?} */ ({
                 url: item.url,
                 title: _this.genTit(item.title),
@@ -1506,14 +1595,18 @@ var ReuseTabComponent = /** @class */ (function () {
                 active: false,
                 last: false,
             }));
-        });
+        }));
         if (this.showCurrent) {
             /** @type {?} */
             var snapshot = this.route.snapshot;
             /** @type {?} */
             var url_1 = this.srv.getUrl(snapshot);
             /** @type {?} */
-            var idx = ls.findIndex(function (w) { return w.url === url_1; });
+            var idx = ls.findIndex((/**
+             * @param {?} w
+             * @return {?}
+             */
+            function (w) { return w.url === url_1; }));
             // jump directly when the current exists in the list
             // or create a new current item and jump
             if (idx !== -1 || (isClosed && notify.url === url_1)) {
@@ -1545,9 +1638,11 @@ var ReuseTabComponent = /** @class */ (function () {
         this.cdr.detectChanges();
     };
     /**
+     * @private
      * @return {?}
      */
     ReuseTabComponent.prototype.visibility = /**
+     * @private
      * @return {?}
      */
     function () {
@@ -1596,7 +1691,12 @@ var ReuseTabComponent = /** @class */ (function () {
         if (dc === void 0) { dc = true; }
         if (this.list.length) {
             this.list[this.list.length - 1].last = true;
-            this.list.forEach(function (i, idx) { return (i.active = _this.pos === idx); });
+            this.list.forEach((/**
+             * @param {?} i
+             * @param {?} idx
+             * @return {?}
+             */
+            function (i, idx) { return (i.active = _this.pos === idx); }));
         }
         if (dc)
             this.cdr.detectChanges();
@@ -1620,14 +1720,18 @@ var ReuseTabComponent = /** @class */ (function () {
         index = Math.max(0, Math.min(index, this.list.length - 1));
         /** @type {?} */
         var item = this.list[index];
-        this.router.navigateByUrl(item.url).then(function (res) {
+        this.router.navigateByUrl(item.url).then((/**
+         * @param {?} res
+         * @return {?}
+         */
+        function (res) {
             if (!res)
                 return;
             _this.pos = index;
             _this.item = item;
             _this.refStatus();
             _this.change.emit(item);
-        });
+        }));
     };
     /**
      * @param {?} e
@@ -1666,12 +1770,29 @@ var ReuseTabComponent = /** @class */ (function () {
     function () {
         var _this = this;
         this.router.events
-            .pipe(takeUntil(this.unsubscribe$), filter(function (evt) { return evt instanceof NavigationEnd; }))
-            .subscribe(function () { return _this.genList(); });
-        this.srv.change.pipe(takeUntil(this.unsubscribe$)).subscribe(function (res) { return _this.genList(res); });
+            .pipe(takeUntil(this.unsubscribe$), filter((/**
+         * @param {?} evt
+         * @return {?}
+         */
+        function (evt) { return evt instanceof NavigationEnd; })))
+            .subscribe((/**
+         * @return {?}
+         */
+        function () { return _this.genList(); }));
+        this.srv.change.pipe(takeUntil(this.unsubscribe$)).subscribe((/**
+         * @param {?} res
+         * @return {?}
+         */
+        function (res) { return _this.genList(res); }));
         this.i18nSrv.change
-            .pipe(filter(function () { return _this.srv.inited; }), takeUntil(this.unsubscribe$), debounceTime(100))
-            .subscribe(function () { return _this.genList(); });
+            .pipe(filter((/**
+         * @return {?}
+         */
+        function () { return _this.srv.inited; })), takeUntil(this.unsubscribe$), debounceTime(100))
+            .subscribe((/**
+         * @return {?}
+         */
+        function () { return _this.genList(); }));
         this.genList();
         this.srv.init();
     };
@@ -1769,7 +1890,7 @@ var ReuseTabComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var ReuseTabStrategy = /** @class */ (function () {
     function ReuseTabStrategy(srv) {
@@ -1839,7 +1960,7 @@ var ReuseTabStrategy = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 var COMPONENTS = [ReuseTabComponent];
@@ -1865,12 +1986,12 @@ var ReuseTabModule = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 export { ReuseTabContextMenuComponent, ReuseTabContextComponent, ReuseTabContextDirective, ReuseTabContextService, ReuseTabComponent, ReuseTabService, ReuseTabStrategy, ReuseTabModule, ReuseTabMatchMode };

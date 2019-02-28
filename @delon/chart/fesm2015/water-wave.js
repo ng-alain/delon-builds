@@ -7,7 +7,7 @@ import { InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class G2WaterWaveComponent {
     // #endregion
@@ -29,6 +29,7 @@ class G2WaterWaveComponent {
         this.height = 160;
     }
     /**
+     * @private
      * @param {?} type
      * @return {?}
      */
@@ -198,6 +199,7 @@ class G2WaterWaveComponent {
         render();
     }
     /**
+     * @private
      * @return {?}
      */
     updateRadio() {
@@ -207,12 +209,16 @@ class G2WaterWaveComponent {
         this.renderer.setStyle(this.el.nativeElement, 'transform', `scale(${radio})`);
     }
     /**
+     * @private
      * @return {?}
      */
     installResizeEvent() {
         this.resize$ = fromEvent(window, 'resize')
             .pipe(debounceTime(200))
-            .subscribe(() => this.updateRadio());
+            .subscribe((/**
+         * @return {?}
+         */
+        () => this.updateRadio()));
     }
     /**
      * @return {?}
@@ -220,13 +226,22 @@ class G2WaterWaveComponent {
     ngOnInit() {
         this.updateRadio();
         this.installResizeEvent();
-        this.ngZone.runOutsideAngular(() => setTimeout(() => this.renderChart(''), this.delay));
+        this.ngZone.runOutsideAngular((/**
+         * @return {?}
+         */
+        () => setTimeout((/**
+         * @return {?}
+         */
+        () => this.renderChart('')), this.delay)));
     }
     /**
      * @return {?}
      */
     ngOnChanges() {
-        this.ngZone.runOutsideAngular(() => this.renderChart('update'));
+        this.ngZone.runOutsideAngular((/**
+         * @return {?}
+         */
+        () => this.renderChart('update')));
         this.cdr.detectChanges();
     }
     /**
@@ -277,7 +292,7 @@ __decorate([
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const COMPONENTS = [G2WaterWaveComponent];
@@ -293,12 +308,12 @@ G2WaterWaveModule.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 export { G2WaterWaveComponent, G2WaterWaveModule };

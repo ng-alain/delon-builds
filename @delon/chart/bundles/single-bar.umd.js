@@ -81,7 +81,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var G2SingleBarComponent = /** @class */ (function () {
         // #endregion
@@ -102,9 +102,11 @@
             this.textStyle = { fontSize: 12, color: '#595959' };
         }
         /**
+         * @private
          * @return {?}
          */
         G2SingleBarComponent.prototype.install = /**
+         * @private
          * @return {?}
          */
             function () {
@@ -124,13 +126,16 @@
                     .interval()
                     .position('1*value')
                     .opacity(1)
-                    .label('value', function (val) {
+                    .label('value', ( /**
+             * @param {?} val
+             * @return {?}
+             */function (val) {
                     return ({
                         formatter: format,
                         offset: val > 0 ? 10 : -10,
                         textStyle: __assign({}, textStyle, { textAlign: val > 0 ? 'start' : 'end' }),
                     });
-                });
+                }));
                 if (line) {
                     chart.guide().line({
                         start: ['50%', '0%'],
@@ -145,9 +150,11 @@
                 this.attachChart();
             };
         /**
+         * @private
          * @return {?}
          */
         G2SingleBarComponent.prototype.attachChart = /**
+         * @private
          * @return {?}
          */
             function () {
@@ -159,7 +166,10 @@
                 chart.set('padding', padding);
                 chart
                     .get('geoms')[0]
-                    .color('value', function (val) { return (val > 0 ? plusColor : minusColor); })
+                    .color('value', ( /**
+             * @param {?} val
+             * @return {?}
+             */function (val) { return (val > 0 ? plusColor : minusColor); }))
                     .size(barSize);
                 chart.repaint();
             };
@@ -171,7 +181,13 @@
          */
             function () {
                 var _this = this;
-                this.ngZone.runOutsideAngular(function () { return setTimeout(function () { return _this.install(); }, _this.delay); });
+                this.ngZone.runOutsideAngular(( /**
+                 * @return {?}
+                 */function () {
+                    return setTimeout(( /**
+                     * @return {?}
+                     */function () { return _this.install(); }), _this.delay);
+                }));
             };
         /**
          * @return {?}
@@ -181,7 +197,9 @@
          */
             function () {
                 var _this = this;
-                this.ngZone.runOutsideAngular(function () { return _this.attachChart(); });
+                this.ngZone.runOutsideAngular(( /**
+                 * @return {?}
+                 */function () { return _this.attachChart(); }));
             };
         /**
          * @return {?}
@@ -192,7 +210,9 @@
             function () {
                 var _this = this;
                 if (this.chart) {
-                    this.ngZone.runOutsideAngular(function () { return _this.chart.destroy(); });
+                    this.ngZone.runOutsideAngular(( /**
+                     * @return {?}
+                     */function () { return _this.chart.destroy(); }));
                 }
             };
         G2SingleBarComponent.decorators = [
@@ -259,7 +279,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
     var COMPONENTS = [G2SingleBarComponent];
@@ -278,12 +298,12 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     exports.G2SingleBarComponent = G2SingleBarComponent;

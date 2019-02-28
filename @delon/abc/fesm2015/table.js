@@ -14,12 +14,12 @@ import { deepCopy, deepGet, deepMerge, deepMergeKey, toBoolean, updateHostClass,
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class STRowSource {
     constructor() {
@@ -84,7 +84,7 @@ STRowDirective.propDecorators = {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class STConfig {
     constructor() {
@@ -196,7 +196,7 @@ STConfig.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class STColumnSource {
     /**
@@ -212,6 +212,7 @@ class STColumnSource {
         this.cog = cog;
     }
     /**
+     * @private
      * @param {?} list
      * @return {?}
      */
@@ -277,36 +278,65 @@ class STColumnSource {
         return ret;
     }
     /**
+     * @private
      * @param {?} list
      * @return {?}
      */
     btnCoerceIf(list) {
         for (const item of list) {
             if (!item.iif)
-                item.iif = () => true;
+                item.iif = (/**
+                 * @return {?}
+                 */
+                () => true);
             if (item.children.length > 0) {
                 this.btnCoerceIf(item.children);
             }
         }
     }
     /**
+     * @private
      * @param {?} list
      * @return {?}
      */
     fixedCoerce(list) {
         /** @type {?} */
-        const countReduce = (a, b) => a + +b.width.toString().replace('px', '');
+        const countReduce = (/**
+         * @param {?} a
+         * @param {?} b
+         * @return {?}
+         */
+        (a, b) => a + +b.width.toString().replace('px', ''));
         // left width
         list
-            .filter(w => w.fixed && w.fixed === 'left' && w.width)
-            .forEach((item, idx) => (item._left = list.slice(0, idx).reduce(countReduce, 0) + 'px'));
+            .filter((/**
+         * @param {?} w
+         * @return {?}
+         */
+        w => w.fixed && w.fixed === 'left' && w.width))
+            .forEach((/**
+         * @param {?} item
+         * @param {?} idx
+         * @return {?}
+         */
+        (item, idx) => (item._left = list.slice(0, idx).reduce(countReduce, 0) + 'px')));
         // right width
         list
-            .filter(w => w.fixed && w.fixed === 'right' && w.width)
+            .filter((/**
+         * @param {?} w
+         * @return {?}
+         */
+        w => w.fixed && w.fixed === 'right' && w.width))
             .reverse()
-            .forEach((item, idx) => (item._right = (idx > 0 ? list.slice(-idx).reduce(countReduce, 0) : 0) + 'px'));
+            .forEach((/**
+         * @param {?} item
+         * @param {?} idx
+         * @return {?}
+         */
+        (item, idx) => (item._right = (idx > 0 ? list.slice(-idx).reduce(countReduce, 0) : 0) + 'px')));
     }
     /**
+     * @private
      * @param {?} item
      * @return {?}
      */
@@ -339,6 +369,7 @@ class STColumnSource {
         return res;
     }
     /**
+     * @private
      * @param {?} item
      * @return {?}
      */
@@ -380,9 +411,17 @@ class STColumnSource {
         if (!res.key) {
             res.key = item.indexKey;
         }
-        res.default = res.menus.findIndex(w => w.checked) !== -1;
+        res.default = res.menus.findIndex((/**
+         * @param {?} w
+         * @return {?}
+         */
+        w => w.checked)) !== -1;
         if (this.acl) {
-            res.menus = res.menus.filter(w => this.acl.can(w.acl));
+            res.menus = res.menus.filter((/**
+             * @param {?} w
+             * @return {?}
+             */
+            w => this.acl.can(w.acl)));
         }
         if (res.menus.length <= 0) {
             res = null;
@@ -390,6 +429,7 @@ class STColumnSource {
         return res;
     }
     /**
+     * @private
      * @param {?} item
      * @return {?}
      */
@@ -452,7 +492,11 @@ class STColumnSource {
                 }
             }
             if (this.acl) {
-                item.selections = item.selections.filter(w => this.acl.can(w.acl));
+                item.selections = item.selections.filter((/**
+                 * @param {?} w
+                 * @return {?}
+                 */
+                w => this.acl.can(w.acl)));
             }
             // radio
             if (item.type === 'radio') {
@@ -511,7 +555,11 @@ class STColumnSource {
      * @return {?}
      */
     restoreAllRender(columns) {
-        columns.forEach(i => this.restoreRender(i));
+        columns.forEach((/**
+         * @param {?} i
+         * @return {?}
+         */
+        i => this.restoreRender(i)));
     }
 }
 STColumnSource.decorators = [
@@ -527,7 +575,7 @@ STColumnSource.ctorParameters = () => [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class STDataSource {
     /**
@@ -552,7 +600,12 @@ class STDataSource {
      * @return {?}
      */
     process(options) {
-        return new Promise((resolvePromise, rejectPromise) => {
+        return new Promise((/**
+         * @param {?} resolvePromise
+         * @param {?} rejectPromise
+         * @return {?}
+         */
+        (resolvePromise, rejectPromise) => {
             /** @type {?} */
             let data$;
             /** @type {?} */
@@ -570,7 +623,11 @@ class STDataSource {
             let showPage = page.show;
             if (typeof data === 'string') {
                 isRemote = true;
-                data$ = this.getByHttp(data, options).pipe(map(result => {
+                data$ = this.getByHttp(data, options).pipe(map((/**
+                 * @param {?} result
+                 * @return {?}
+                 */
+                result => {
                     /** @type {?} */
                     let ret;
                     if (Array.isArray(result)) {
@@ -591,10 +648,14 @@ class STDataSource {
                         retTotal = resultTotal == null ? total || 0 : +resultTotal;
                     }
                     return ret;
-                }), catchError(err => {
+                })), catchError((/**
+                 * @param {?} err
+                 * @return {?}
+                 */
+                err => {
                     rejectPromise(err);
                     return [];
-                }));
+                })));
             }
             else if (Array.isArray(data)) {
                 data$ = of(data);
@@ -606,7 +667,11 @@ class STDataSource {
             if (!isRemote) {
                 data$ = data$.pipe(
                 // sort
-                map((result) => {
+                map((/**
+                 * @param {?} result
+                 * @return {?}
+                 */
+                (result) => {
                     /** @type {?} */
                     let copyResult = result.slice(0);
                     /** @type {?} */
@@ -615,14 +680,30 @@ class STDataSource {
                         copyResult = copyResult.sort(sorterFn);
                     }
                     return copyResult;
-                }), 
+                })), 
                 // filter
-                map((result) => {
+                map((/**
+                 * @param {?} result
+                 * @return {?}
+                 */
+                (result) => {
                     columns
-                        .filter(w => w.filter)
-                        .forEach(c => {
+                        .filter((/**
+                     * @param {?} w
+                     * @return {?}
+                     */
+                    w => w.filter))
+                        .forEach((/**
+                     * @param {?} c
+                     * @return {?}
+                     */
+                    c => {
                         /** @type {?} */
-                        const values = c.filter.menus.filter(w => w.checked);
+                        const values = c.filter.menus.filter((/**
+                         * @param {?} w
+                         * @return {?}
+                         */
+                        w => w.checked));
                         if (values.length === 0)
                             return;
                         /** @type {?} */
@@ -631,12 +712,24 @@ class STDataSource {
                             console.warn(`[st] Muse provide the fn function in filter`);
                             return;
                         }
-                        result = result.filter(record => values.some(v => onFilter(v, record)));
-                    });
+                        result = result.filter((/**
+                         * @param {?} record
+                         * @return {?}
+                         */
+                        record => values.some((/**
+                         * @param {?} v
+                         * @return {?}
+                         */
+                        v => onFilter(v, record)))));
+                    }));
                     return result;
-                }), 
+                })), 
                 // paging
-                map((result) => {
+                map((/**
+                 * @param {?} result
+                 * @return {?}
+                 */
+                (result) => {
                     if (page.front) {
                         /** @type {?} */
                         const maxPageIndex = Math.ceil(result.length / ps);
@@ -647,25 +740,44 @@ class STDataSource {
                         }
                     }
                     return result;
-                }));
+                })));
             }
             // pre-process
             if (typeof res.process === 'function') {
-                data$ = data$.pipe(map(result => res.process(result)));
+                data$ = data$.pipe(map((/**
+                 * @param {?} result
+                 * @return {?}
+                 */
+                result => res.process(result))));
             }
             // data accelerator
-            data$ = data$.pipe(map(result => {
+            data$ = data$.pipe(map((/**
+             * @param {?} result
+             * @return {?}
+             */
+            result => {
                 for (let i = 0, len = result.length; i < len; i++) {
-                    result[i]._values = columns.map(c => this.get(result[i], c, i));
+                    result[i]._values = columns.map((/**
+                     * @param {?} c
+                     * @return {?}
+                     */
+                    c => this.get(result[i], c, i)));
                     if (options.rowClassName) {
                         result[i]._rowClassName = options.rowClassName(result[i], i);
                     }
                 }
                 return result;
-            }));
+            })));
             data$
-                .forEach((result) => (retList = result))
-                .then(() => {
+                .forEach((/**
+             * @param {?} result
+             * @return {?}
+             */
+            (result) => (retList = result)))
+                .then((/**
+             * @return {?}
+             */
+            () => {
                 /** @type {?} */
                 const realTotal = retTotal || total;
                 /** @type {?} */
@@ -678,10 +790,11 @@ class STDataSource {
                     statistical: this.genStatistical(columns, retList),
                     pageShow: typeof showPage === 'undefined' ? realTotal > realPs : showPage,
                 });
-            });
-        });
+            }));
+        }));
     }
     /**
+     * @private
      * @param {?} item
      * @param {?} col
      * @param {?} idx
@@ -723,6 +836,7 @@ class STDataSource {
         return { text: ret == null ? '' : ret, org: value };
     }
     /**
+     * @private
      * @param {?} url
      * @param {?} options
      * @return {?}
@@ -774,15 +888,25 @@ class STDataSource {
     }
     // #region sort
     /**
+     * @private
      * @param {?} columns
      * @return {?}
      */
     getValidSort(columns) {
         return columns
-            .filter(item => item._sort && item._sort.enabled && item._sort.default)
-            .map(item => item._sort);
+            .filter((/**
+         * @param {?} item
+         * @return {?}
+         */
+        item => item._sort && item._sort.enabled && item._sort.default))
+            .map((/**
+         * @param {?} item
+         * @return {?}
+         */
+        item => item._sort));
     }
     /**
+     * @private
      * @param {?} columns
      * @return {?}
      */
@@ -796,14 +920,19 @@ class STDataSource {
             console.warn(`[st] Muse provide the compare function in sort`);
             return;
         }
-        return (a, b) => {
+        return (/**
+         * @param {?} a
+         * @param {?} b
+         * @return {?}
+         */
+        (a, b) => {
             /** @type {?} */
             const result = sortList[0].compare(a, b);
             if (result !== 0) {
                 return sortList[0].default === 'descend' ? -result : result;
             }
             return 0;
-        };
+        });
     }
     /**
      * @return {?}
@@ -828,8 +957,17 @@ class STDataSource {
             /** @type {?} */
             const ms = Object.assign({ key: 'sort', separator: '-', nameSeparator: '.' }, multiSort);
             ret = {
-                [ms.key]: sortList.sort((a, b) => a.tick - b.tick)
-                    .map(item => item.key + ms.nameSeparator + ((item.reName || {})[item.default] || item.default))
+                [ms.key]: sortList.sort((/**
+                 * @param {?} a
+                 * @param {?} b
+                 * @return {?}
+                 */
+                (a, b) => a.tick - b.tick))
+                    .map((/**
+                 * @param {?} item
+                 * @return {?}
+                 */
+                item => item.key + ms.nameSeparator + ((item.reName || {})[item.default] || item.default)))
                     .join(ms.separator),
             };
         }
@@ -851,6 +989,7 @@ class STDataSource {
     // #endregion
     // #region filter
     /**
+     * @private
      * @param {?} columns
      * @return {?}
      */
@@ -858,25 +997,42 @@ class STDataSource {
         /** @type {?} */
         let ret = {};
         columns
-            .filter(w => w.filter && w.filter.default === true)
-            .forEach(col => {
+            .filter((/**
+         * @param {?} w
+         * @return {?}
+         */
+        w => w.filter && w.filter.default === true))
+            .forEach((/**
+         * @param {?} col
+         * @return {?}
+         */
+        col => {
             /** @type {?} */
-            const values = col.filter.menus.filter(f => f.checked === true);
+            const values = col.filter.menus.filter((/**
+             * @param {?} f
+             * @return {?}
+             */
+            f => f.checked === true));
             /** @type {?} */
             let obj = {};
             if (col.filter.reName) {
                 obj = col.filter.reName(col.filter.menus, col);
             }
             else {
-                obj[col.filter.key] = values.map(i => i.value).join(',');
+                obj[col.filter.key] = values.map((/**
+                 * @param {?} i
+                 * @return {?}
+                 */
+                i => i.value)).join(',');
             }
             ret = Object.assign({}, ret, obj);
-        });
+        }));
         return ret;
     }
     // #endregion
     // #region statistical
     /**
+     * @private
      * @param {?} columns
      * @param {?} list
      * @return {?}
@@ -884,13 +1040,19 @@ class STDataSource {
     genStatistical(columns, list) {
         /** @type {?} */
         const res = {};
-        columns.forEach((col, index) => {
+        columns.forEach((/**
+         * @param {?} col
+         * @param {?} index
+         * @return {?}
+         */
+        (col, index) => {
             res[col.key ? col.key : index] =
                 col.statistical == null ? {} : this.getStatistical(col, index, list);
-        });
+        }));
         return res;
     }
     /**
+     * @private
      * @param {?} col
      * @param {?} index
      * @param {?} list
@@ -915,7 +1077,13 @@ class STDataSource {
                     res.value = list.length;
                     break;
                 case 'distinctCount':
-                    res.value = this.getValues(index, list).filter((value, idx, self) => self.indexOf(value) === idx).length;
+                    res.value = this.getValues(index, list).filter((/**
+                     * @param {?} value
+                     * @param {?} idx
+                     * @param {?} self
+                     * @return {?}
+                     */
+                    (value, idx, self) => self.indexOf(value) === idx)).length;
                     break;
                 case 'sum':
                     res.value = this.toFixed(this.getSum(index, list), item.digits);
@@ -944,6 +1112,7 @@ class STDataSource {
         return res;
     }
     /**
+     * @private
      * @param {?} val
      * @param {?} digits
      * @return {?}
@@ -955,20 +1124,35 @@ class STDataSource {
         return parseFloat(val.toFixed(digits));
     }
     /**
+     * @private
      * @param {?} index
      * @param {?} list
      * @return {?}
      */
     getValues(index, list) {
-        return list.map(i => i._values[index].org).map(i => (i === '' || i == null ? 0 : i));
+        return list.map((/**
+         * @param {?} i
+         * @return {?}
+         */
+        i => i._values[index].org)).map((/**
+         * @param {?} i
+         * @return {?}
+         */
+        i => (i === '' || i == null ? 0 : i)));
     }
     /**
+     * @private
      * @param {?} index
      * @param {?} list
      * @return {?}
      */
     getSum(index, list) {
-        return this.getValues(index, list).reduce((p, i) => (p += parseFloat(String(i))), 0);
+        return this.getValues(index, list).reduce((/**
+         * @param {?} p
+         * @param {?} i
+         * @return {?}
+         */
+        (p, i) => (p += parseFloat(String(i)))), 0);
     }
 }
 STDataSource.decorators = [
@@ -986,7 +1170,7 @@ STDataSource.ctorParameters = () => [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class STExport {
     /**
@@ -996,6 +1180,7 @@ class STExport {
         this.xlsxSrv = xlsxSrv;
     }
     /**
+     * @private
      * @param {?} item
      * @param {?} col
      * @return {?}
@@ -1025,6 +1210,7 @@ class STExport {
         return ret;
     }
     /**
+     * @private
      * @param {?} opt
      * @return {?}
      */
@@ -1034,7 +1220,11 @@ class STExport {
         /** @type {?} */
         const sheet = (sheets[opt.sheetname || 'Sheet1'] = {});
         /** @type {?} */
-        const colData = opt._c.filter(w => w.exported !== false && w.index && (!w.buttons || w.buttons.length === 0));
+        const colData = opt._c.filter((/**
+         * @param {?} w
+         * @return {?}
+         */
+        w => w.exported !== false && w.index && (!w.buttons || w.buttons.length === 0)));
         /** @type {?} */
         const cc = colData.length;
         /** @type {?} */
@@ -1081,7 +1271,7 @@ STExport.ctorParameters = () => [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class STComponent {
     // #endregion
@@ -1159,13 +1349,16 @@ class STComponent {
          */
         this.change = new EventEmitter();
         this.rowClickCount = 0;
-        this.delonI18n.change.pipe(takeUntil(this.unsubscribe$)).subscribe(() => {
+        this.delonI18n.change.pipe(takeUntil(this.unsubscribe$)).subscribe((/**
+         * @return {?}
+         */
+        () => {
             this.locale = this.delonI18n.getData('st');
             if (this._columns.length > 0) {
                 this.page = this.clonePage;
                 this.cd();
             }
-        });
+        }));
         /** @type {?} */
         const copyCog = deepMergeKey(new STConfig(), true, cog);
         delete copyCog.multiSort;
@@ -1174,8 +1367,16 @@ class STComponent {
             this.multiSort = Object.assign({}, cog.multiSort);
         }
         i18nSrv.change
-            .pipe(takeUntil(this.unsubscribe$), filter(() => this._columns.length > 0))
-            .subscribe(() => this.refreshColumns());
+            .pipe(takeUntil(this.unsubscribe$), filter((/**
+         * @return {?}
+         */
+        () => this._columns.length > 0)))
+            .subscribe((/**
+         * @template THIS
+         * @this {THIS}
+         * @return {THIS}
+         */
+        () => this.refreshColumns()));
     }
     /**
      * 请求体配置
@@ -1281,6 +1482,7 @@ class STComponent {
             : '';
     }
     /**
+     * @private
      * @param {?} type
      * @param {?=} data
      * @return {?}
@@ -1299,6 +1501,7 @@ class STComponent {
         this.change.emit(res);
     }
     /**
+     * @private
      * @return {?}
      */
     get routerState() {
@@ -1307,6 +1510,7 @@ class STComponent {
     }
     // #region data
     /**
+     * @private
      * @return {?}
      */
     _load() {
@@ -1326,7 +1530,11 @@ class STComponent {
             multiSort,
             rowClassName,
         })
-            .then(result => {
+            .then((/**
+         * @param {?} result
+         * @return {?}
+         */
+        result => {
             this.loading = false;
             if (typeof result.pi !== 'undefined') {
                 this.pi = result.pi;
@@ -1343,12 +1551,21 @@ class STComponent {
             this._data = result.list;
             this._statistical = result.statistical;
             return this._data;
-        })
-            .then(() => this._refCheck())
-            .catch(error => {
+        }))
+            .then((/**
+         * @template THIS
+         * @this {THIS}
+         * @return {THIS}
+         */
+        () => this._refCheck()))
+            .catch((/**
+         * @param {?} error
+         * @return {?}
+         */
+        error => {
             this.loading = false;
             this.error.emit({ type: 'req', error });
-        });
+        }));
     }
     /**
      * 清空所有数据
@@ -1425,6 +1642,7 @@ class STComponent {
         return (/** @type {?} */ (this));
     }
     /**
+     * @private
      * @return {?}
      */
     _toTop() {
@@ -1445,9 +1663,12 @@ class STComponent {
      * @return {?}
      */
     _change(type) {
-        this._load().then(() => {
+        this._load().then((/**
+         * @return {?}
+         */
+        () => {
             this._toTop();
-        });
+        }));
         this.changeEmit(type);
     }
     /**
@@ -1484,7 +1705,10 @@ class STComponent {
         ++this.rowClickCount;
         if (this.rowClickCount !== 1)
             return;
-        setTimeout(() => {
+        setTimeout((/**
+         * @return {?}
+         */
+        () => {
             /** @type {?} */
             const data = { e, item, index };
             if (this.rowClickCount === 1) {
@@ -1494,7 +1718,7 @@ class STComponent {
                 this.changeEmit('dblClick', data);
             }
             this.rowClickCount = 0;
-        }, rowClickTime);
+        }), rowClickTime);
     }
     /**
      * 移除某行数据
@@ -1508,13 +1732,38 @@ class STComponent {
             data = [data];
         }
         ((/** @type {?} */ (data)))
-            .map(item => (/** @type {?} */ (this))._data.indexOf(item))
-            .filter(pos => pos !== -1)
-            .forEach(pos => (/** @type {?} */ (this))._data.splice(pos, 1));
+            .map((/**
+         * @param {?} item
+         * @return {?}
+         */
+        item => (/** @type {?} */ (this))._data.indexOf(item)))
+            .filter((/**
+         * @param {?} pos
+         * @return {?}
+         */
+        pos => pos !== -1))
+            .forEach((/**
+         * @param {?} pos
+         * @return {?}
+         */
+        pos => (/** @type {?} */ (this))._data.splice(pos, 1)));
         // recalculate no
         (/** @type {?} */ (this))._columns
-            .filter(w => w.type === 'no')
-            .forEach(c => (/** @type {?} */ (this))._data.forEach((i, idx) => (i._values[c.__point] = { text: (/** @type {?} */ (this)).dataSource.getNoIndex(i, c, idx), org: idx })));
+            .filter((/**
+         * @param {?} w
+         * @return {?}
+         */
+        w => w.type === 'no'))
+            .forEach((/**
+         * @param {?} c
+         * @return {?}
+         */
+        c => (/** @type {?} */ (this))._data.forEach((/**
+         * @param {?} i
+         * @param {?} idx
+         * @return {?}
+         */
+        (i, idx) => (i._values[c.__point] = { text: (/** @type {?} */ (this)).dataSource.getNoIndex(i, c, idx), org: idx })))));
         return (/** @type {?} */ (this)).cd();
     }
     // #endregion
@@ -1531,7 +1780,12 @@ class STComponent {
             col._sort.tick = this.dataSource.nextSortTick;
         }
         else {
-            this._columns.forEach((item, index) => (item._sort.default = index === idx ? value : null));
+            this._columns.forEach((/**
+             * @param {?} item
+             * @param {?} index
+             * @return {?}
+             */
+            (item, index) => (item._sort.default = index === idx ? value : null)));
         }
         this._load();
         /** @type {?} */
@@ -1548,17 +1802,26 @@ class STComponent {
      * @return {THIS}
      */
     clearSort() {
-        (/** @type {?} */ (this))._columns.forEach(item => (item._sort.default = null));
+        (/** @type {?} */ (this))._columns.forEach((/**
+         * @param {?} item
+         * @return {?}
+         */
+        item => (item._sort.default = null)));
         return (/** @type {?} */ (this));
     }
     // #endregion
     // #region filter
     /**
+     * @private
      * @param {?} col
      * @return {?}
      */
     handleFilter(col) {
-        col.filter.default = col.filter.menus.findIndex(w => w.checked) !== -1;
+        col.filter.default = col.filter.menus.findIndex((/**
+         * @param {?} w
+         * @return {?}
+         */
+        w => w.checked)) !== -1;
         this._load();
         this.changeEmit('filter', col);
     }
@@ -1574,7 +1837,11 @@ class STComponent {
      * @return {?}
      */
     _filterClear(col) {
-        col.filter.menus.forEach(i => (i.checked = false));
+        col.filter.menus.forEach((/**
+         * @param {?} i
+         * @return {?}
+         */
+        i => (i.checked = false)));
         this.handleFilter(col);
     }
     /**
@@ -1584,7 +1851,11 @@ class STComponent {
      * @return {?}
      */
     _filterRadio(col, item, checked) {
-        col.filter.menus.forEach(i => (i.checked = false));
+        col.filter.menus.forEach((/**
+         * @param {?} i
+         * @return {?}
+         */
+        i => (i.checked = false)));
         item.checked = checked;
     }
     /**
@@ -1594,11 +1865,23 @@ class STComponent {
      */
     clearFilter() {
         (/** @type {?} */ (this))._columns
-            .filter(w => w.filter && w.filter.default === true)
-            .forEach(col => {
+            .filter((/**
+         * @param {?} w
+         * @return {?}
+         */
+        w => w.filter && w.filter.default === true))
+            .forEach((/**
+         * @param {?} col
+         * @return {?}
+         */
+        col => {
             col.filter.default = false;
-            col.filter.menus.forEach(f => (f.checked = false));
-        });
+            col.filter.menus.forEach((/**
+             * @param {?} f
+             * @return {?}
+             */
+            f => (f.checked = false)));
+        }));
         return (/** @type {?} */ (this));
     }
     // #endregion
@@ -1613,20 +1896,37 @@ class STComponent {
         return (/** @type {?} */ (this))._checkAll(false);
     }
     /**
+     * @private
      * @template THIS
      * @this {THIS}
      * @return {THIS}
      */
     _refCheck() {
         /** @type {?} */
-        const validData = (/** @type {?} */ (this))._data.filter(w => !w.disabled);
+        const validData = (/** @type {?} */ (this))._data.filter((/**
+         * @param {?} w
+         * @return {?}
+         */
+        w => !w.disabled));
         /** @type {?} */
-        const checkedList = validData.filter(w => w.checked === true);
+        const checkedList = validData.filter((/**
+         * @param {?} w
+         * @return {?}
+         */
+        w => w.checked === true));
         (/** @type {?} */ (this))._allChecked = checkedList.length > 0 && checkedList.length === validData.length;
         /** @type {?} */
-        const allUnChecked = validData.every(value => !value.checked);
+        const allUnChecked = validData.every((/**
+         * @param {?} value
+         * @return {?}
+         */
+        value => !value.checked));
         (/** @type {?} */ (this))._indeterminate = !(/** @type {?} */ (this))._allChecked && !allUnChecked;
-        (/** @type {?} */ (this))._allCheckedDisabled = (/** @type {?} */ (this))._data.length === (/** @type {?} */ (this))._data.filter(w => w.disabled).length;
+        (/** @type {?} */ (this))._allCheckedDisabled = (/** @type {?} */ (this))._data.length === (/** @type {?} */ (this))._data.filter((/**
+         * @param {?} w
+         * @return {?}
+         */
+        w => w.disabled)).length;
         (/** @type {?} */ (this)).cd();
         return (/** @type {?} */ (this));
     }
@@ -1638,7 +1938,15 @@ class STComponent {
      */
     _checkAll(checked) {
         checked = typeof checked === 'undefined' ? (/** @type {?} */ (this))._allChecked : checked;
-        (/** @type {?} */ (this))._data.filter(w => !w.disabled).forEach(i => (i.checked = checked));
+        (/** @type {?} */ (this))._data.filter((/**
+         * @param {?} w
+         * @return {?}
+         */
+        w => !w.disabled)).forEach((/**
+         * @param {?} i
+         * @return {?}
+         */
+        i => (i.checked = checked)));
         return (/** @type {?} */ (this))._refCheck()._checkNotify();
     }
     /**
@@ -1669,7 +1977,11 @@ class STComponent {
      */
     _checkNotify() {
         /** @type {?} */
-        const res = (/** @type {?} */ (this))._data.filter(w => !w.disabled && w.checked === true);
+        const res = (/** @type {?} */ (this))._data.filter((/**
+         * @param {?} w
+         * @return {?}
+         */
+        w => !w.disabled && w.checked === true));
         (/** @type {?} */ (this)).changeEmit('checkbox', res);
         return (/** @type {?} */ (this));
     }
@@ -1682,7 +1994,15 @@ class STComponent {
      * @return {THIS}
      */
     clearRadio() {
-        (/** @type {?} */ (this))._data.filter(w => w.checked).forEach(item => (item.checked = false));
+        (/** @type {?} */ (this))._data.filter((/**
+         * @param {?} w
+         * @return {?}
+         */
+        w => w.checked)).forEach((/**
+         * @param {?} item
+         * @return {?}
+         */
+        item => (item.checked = false)));
         (/** @type {?} */ (this)).changeEmit('radio', null);
         return (/** @type {?} */ (this));
     }
@@ -1695,7 +2015,15 @@ class STComponent {
      */
     _refRadio(checked, item) {
         // if (item.disabled === true) return;
-        (/** @type {?} */ (this))._data.filter(w => !w.disabled).forEach(i => (i.checked = false));
+        (/** @type {?} */ (this))._data.filter((/**
+         * @param {?} w
+         * @return {?}
+         */
+        w => !w.disabled)).forEach((/**
+         * @param {?} i
+         * @return {?}
+         */
+        i => (i.checked = false)));
         item.checked = checked;
         (/** @type {?} */ (this)).changeEmit('radio', item);
         return (/** @type {?} */ (this));
@@ -1718,8 +2046,16 @@ class STComponent {
             /** @type {?} */
             const obj = { [modal.paramsName]: record };
             ((/** @type {?} */ (this.modalHelper[btn.type === 'modal' ? 'create' : 'createStatic'])))(modal.component, Object.assign({}, obj, (modal.params && modal.params(record))), Object.assign({}, modal))
-                .pipe(filter(w => typeof w !== 'undefined'))
-                .subscribe(res => this.btnCallback(record, btn, res));
+                .pipe(filter((/**
+             * @param {?} w
+             * @return {?}
+             */
+            w => typeof w !== 'undefined')))
+                .subscribe((/**
+             * @param {?} res
+             * @return {?}
+             */
+            res => this.btnCallback(record, btn, res)));
             return;
         }
         else if (btn.type === 'drawer') {
@@ -1728,8 +2064,16 @@ class STComponent {
             const obj = { [drawer.paramsName]: record };
             this.drawerHelper
                 .create(drawer.title, drawer.component, Object.assign({}, obj, (drawer.params && drawer.params(record))), Object.assign({}, drawer))
-                .pipe(filter(w => typeof w !== 'undefined'))
-                .subscribe(res => this.btnCallback(record, btn, res));
+                .pipe(filter((/**
+             * @param {?} w
+             * @return {?}
+             */
+            w => typeof w !== 'undefined')))
+                .subscribe((/**
+             * @param {?} res
+             * @return {?}
+             */
+            res => this.btnCallback(record, btn, res)));
             return;
         }
         else if (btn.type === 'link') {
@@ -1743,6 +2087,7 @@ class STComponent {
         this.btnCallback(record, btn);
     }
     /**
+     * @private
      * @param {?} record
      * @param {?} btn
      * @param {?=} modal
@@ -1781,7 +2126,11 @@ class STComponent {
      * @return {?}
      */
     _validBtns(item, col) {
-        return col.buttons.filter(btn => btn.iif(item, btn, col));
+        return col.buttons.filter((/**
+         * @param {?} btn
+         * @return {?}
+         */
+        btn => btn.iif(item, btn, col)));
     }
     // #endregion
     // #region export
@@ -1792,10 +2141,14 @@ class STComponent {
      * @return {?}
      */
     export(newData, opt) {
-        (newData ? of(newData) : of(this._data)).subscribe((res) => this.exportSrv.export(Object.assign({}, opt, {
+        (newData ? of(newData) : of(this._data)).subscribe((/**
+         * @param {?} res
+         * @return {?}
+         */
+        (res) => this.exportSrv.export(Object.assign({}, opt, {
             _d: res,
             _c: this._columns,
-        })));
+        }))));
     }
     // #endregion
     /**
@@ -1805,6 +2158,7 @@ class STComponent {
         return this.refreshColumns()._load();
     }
     /**
+     * @private
      * @template THIS
      * @this {THIS}
      * @return {THIS}
@@ -1814,6 +2168,7 @@ class STComponent {
         return (/** @type {?} */ (this));
     }
     /**
+     * @private
      * @return {?}
      */
     setClass() {
@@ -1953,7 +2308,7 @@ __decorate([
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const COMPONENTS = [STComponent, STRowDirective];
@@ -1970,12 +2325,12 @@ STModule.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 export { STComponent, STRowDirective, STConfig, STModule, STColumnSource, STDataSource, STExport, STRowSource as ɵa };

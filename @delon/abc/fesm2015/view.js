@@ -7,7 +7,7 @@ import { updateHostClass, InputNumber, isEmpty, InputBoolean, DelonUtilModule } 
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class SVConfig {
     constructor() {
@@ -40,7 +40,7 @@ SVConfig.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const prefixCls = `sv`;
@@ -57,6 +57,7 @@ class SVContainerComponent {
         Object.assign(this, Object.assign({}, new SVConfig(), cog));
     }
     /**
+     * @private
      * @return {?}
      */
     setClass() {
@@ -119,7 +120,7 @@ __decorate([
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class SVTitleComponent {
     /**
@@ -136,6 +137,7 @@ class SVTitleComponent {
         this.el = el.nativeElement;
     }
     /**
+     * @private
      * @return {?}
      */
     setClass() {
@@ -170,7 +172,7 @@ SVTitleComponent.ctorParameters = () => [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const prefixCls$1 = `sv`;
@@ -199,11 +201,16 @@ class SVComponent {
         return this.parent && this.parent.gutter / 2;
     }
     /**
+     * @private
      * @return {?}
      */
     setClass() {
         const { el, ren, col, clsMap, type, rep } = this;
-        clsMap.forEach(cls => ren.removeClass(el, cls));
+        clsMap.forEach((/**
+         * @param {?} cls
+         * @return {?}
+         */
+        cls => ren.removeClass(el, cls)));
         clsMap.length = 0;
         clsMap.push(...rep.genCls(col != null ? col : this.parent.col));
         clsMap.push(`${prefixCls$1}__item`);
@@ -211,7 +218,11 @@ class SVComponent {
             clsMap.push(`${prefixCls$1}__item-fixed`);
         if (type)
             clsMap.push(`${prefixCls$1}__type-${type}`);
-        clsMap.forEach(cls => ren.addClass(el, cls));
+        clsMap.forEach((/**
+         * @param {?} cls
+         * @return {?}
+         */
+        cls => ren.addClass(el, cls)));
     }
     /**
      * @return {?}
@@ -283,7 +294,7 @@ __decorate([
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const COMPONENTS = [SVContainerComponent, SVComponent, SVTitleComponent];
@@ -299,12 +310,12 @@ SVModule.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 export { SVContainerComponent, SVTitleComponent, SVComponent, SVConfig, SVModule };

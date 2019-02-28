@@ -26,7 +26,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var StringTemplateOutletDirective = /** @class */ (function () {
         function StringTemplateOutletDirective(viewContainer, defaultTemplate) {
@@ -167,7 +167,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /**
      * 类似 `_.get`，根据 `path` 获取安全值
@@ -189,7 +189,11 @@
             var checkObj = obj[path[0]];
             return typeof checkObj === 'undefined' ? defaultValue : checkObj;
         }
-        return path.reduce(function (o, k) { return (o || {})[k]; }, obj) || defaultValue;
+        return path.reduce(( /**
+         * @param {?} o
+         * @param {?} k
+         * @return {?}
+         */function (o, k) { return (o || {})[k]; }), obj) || defaultValue;
     }
     /**
      * @param {?} obj
@@ -206,7 +210,11 @@
      * @return {?}
      */
     function copy(value) {
-        return new Promise(function (resolve, reject) {
+        return new Promise(( /**
+         * @param {?} resolve
+         * @param {?} reject
+         * @return {?}
+         */function (resolve, reject) {
             /** @type {?} */
             var copyTextArea = ( /** @type {?} */(null));
             try {
@@ -225,7 +233,7 @@
                     copyTextArea.parentNode.removeChild(copyTextArea);
                 }
             }
-        });
+        }));
     }
     /**
      * @param {?} original
@@ -241,12 +249,25 @@
         if (Array.isArray(original) || typeof original !== 'object')
             return original;
         /** @type {?} */
-        var isObject = function (v) { return typeof v === 'object' || typeof v === 'function'; };
+        var isObject = ( /**
+         * @param {?} v
+         * @return {?}
+         */function (v) { return typeof v === 'object' || typeof v === 'function'; });
         /** @type {?} */
-        var merge = function (target, obj) {
+        var merge = ( /**
+         * @param {?} target
+         * @param {?} obj
+         * @return {?}
+         */function (target, obj) {
             Object.keys(obj)
-                .filter(function (key) { return key !== '__proto__' && Object.prototype.hasOwnProperty.call(obj, key); })
-                .forEach(function (key) {
+                .filter(( /**
+         * @param {?} key
+         * @return {?}
+         */function (key) { return key !== '__proto__' && Object.prototype.hasOwnProperty.call(obj, key); }))
+                .forEach(( /**
+         * @param {?} key
+         * @return {?}
+         */function (key) {
                 /** @type {?} */
                 var oldValue = obj[key];
                 /** @type {?} */
@@ -263,10 +284,16 @@
                 else {
                     target[key] = deepCopy(oldValue);
                 }
-            });
+            }));
             return target;
-        };
-        objects.filter(function (v) { return isObject(v); }).forEach(function (v) { return merge(original, v); });
+        });
+        objects.filter(( /**
+         * @param {?} v
+         * @return {?}
+         */function (v) { return isObject(v); })).forEach(( /**
+         * @param {?} v
+         * @return {?}
+         */function (v) { return merge(original, v); }));
         return original;
     }
     /**
@@ -284,7 +311,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /**
      * 字符串格式化
@@ -303,14 +330,18 @@
         if (needDeepGet === void 0) {
             needDeepGet = false;
         }
-        return (str || '').replace(/\${([^}]+)}/g, function (work, key) {
+        return (str || '').replace(/\${([^}]+)}/g, ( /**
+         * @param {?} work
+         * @param {?} key
+         * @return {?}
+         */function (work, key) {
             return needDeepGet ? deepGet(obj, key.split('.'), '') : (obj || {})[key] || '';
-        });
+        }));
     }
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /**
      * 获取时间范围
@@ -369,7 +400,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var LazyService = /** @class */ (function () {
         function LazyService(doc) {
@@ -382,7 +413,10 @@
             get: /**
              * @return {?}
              */ function () {
-                return this._notify.asObservable().pipe(operators.share(), operators.filter(function (ls) { return ls.length !== 0; }));
+                return this._notify.asObservable().pipe(operators.share(), operators.filter(( /**
+                 * @param {?} ls
+                 * @return {?}
+                 */function (ls) { return ls.length !== 0; })));
             },
             enumerable: true,
             configurable: true
@@ -412,18 +446,24 @@
                 }
                 /** @type {?} */
                 var promises = [];
-                paths.forEach(function (path) {
+                paths.forEach(( /**
+                 * @param {?} path
+                 * @return {?}
+                 */function (path) {
                     if (path.endsWith('.js')) {
                         promises.push(_this.loadScript(path));
                     }
                     else {
                         promises.push(_this.loadStyle(path));
                     }
-                });
-                return Promise.all(promises).then(function (res) {
+                }));
+                return Promise.all(promises).then(( /**
+                 * @param {?} res
+                 * @return {?}
+                 */function (res) {
                     _this._notify.next(res);
                     return Promise.resolve(res);
-                });
+                }));
             };
         /**
          * @param {?} path
@@ -437,17 +477,23 @@
          */
             function (path, innerContent) {
                 var _this = this;
-                return new Promise(function (resolve) {
+                return new Promise(( /**
+                 * @param {?} resolve
+                 * @return {?}
+                 */function (resolve) {
                     if (_this.list[path] === true) {
                         resolve(_this.cached[path]);
                         return;
                     }
                     _this.list[path] = true;
                     /** @type {?} */
-                    var onSuccess = function (item) {
+                    var onSuccess = ( /**
+                     * @param {?} item
+                     * @return {?}
+                     */function (item) {
                         _this.cached[path] = item;
                         resolve(item);
-                    };
+                    });
                     /** @type {?} */
                     var node = ( /** @type {?} */(_this.doc.createElement('script')));
                     node.type = 'text/javascript';
@@ -458,7 +504,9 @@
                     }
                     if (node.readyState) {
                         // IE
-                        node.onreadystatechange = function () {
+                        node.onreadystatechange = ( /**
+                         * @return {?}
+                         */function () {
                             if (node.readyState === 'loaded' || node.readyState === 'complete') {
                                 node.onreadystatechange = null;
                                 onSuccess({
@@ -467,27 +515,32 @@
                                     status: 'ok',
                                 });
                             }
-                        };
+                        });
                     }
                     else {
-                        node.onload = function () {
+                        node.onload = ( /**
+                         * @return {?}
+                         */function () {
                             return onSuccess({
                                 path: path,
                                 loaded: true,
                                 status: 'ok',
                             });
-                        };
+                        });
                     }
-                    node.onerror = function (error) {
+                    node.onerror = ( /**
+                     * @param {?} error
+                     * @return {?}
+                     */function (error) {
                         return onSuccess({
                             path: path,
                             loaded: false,
                             status: 'error',
                             error: error,
                         });
-                    };
+                    });
                     _this.doc.getElementsByTagName('head')[0].appendChild(node);
-                });
+                }));
             };
         /**
          * @param {?} path
@@ -506,7 +559,10 @@
                 if (rel === void 0) {
                     rel = 'stylesheet';
                 }
-                return new Promise(function (resolve) {
+                return new Promise(( /**
+                 * @param {?} resolve
+                 * @return {?}
+                 */function (resolve) {
                     if (_this.list[path] === true) {
                         resolve(_this.cached[path]);
                         return;
@@ -529,7 +585,7 @@
                     };
                     _this.cached[path] = item;
                     resolve(item);
-                });
+                }));
             };
         LazyService.decorators = [
             { type: i0.Injectable, args: [{ providedIn: 'root' },] }
@@ -546,7 +602,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /**
      * 是否为数字
@@ -601,7 +657,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /**
      * 一套日常验证器
@@ -703,7 +759,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /**
      * @param {?} element
@@ -750,7 +806,11 @@
         if (allowUndefined === void 0) {
             allowUndefined = false;
         }
-        return function InputBooleanPropDecorator(target, name) {
+        return ( /**
+         * @param {?} target
+         * @param {?} name
+         * @return {?}
+         */function InputBooleanPropDecorator(target, name) {
             // Add our own private prop
             /** @type {?} */
             var privatePropName = "$$__" + name;
@@ -774,7 +834,7 @@
                     this[privatePropName] = toBoolean(value, allowUndefined); // tslint:disable-line:no-invalid-this
                 },
             });
-        };
+        });
     }
     /**
      * @param {?} value
@@ -800,7 +860,11 @@
         if (fallback === void 0) {
             fallback = 0;
         }
-        return function InputBooleanPropDecorator(target, name) {
+        return ( /**
+         * @param {?} target
+         * @param {?} name
+         * @return {?}
+         */function InputBooleanPropDecorator(target, name) {
             // Add our own private prop
             /** @type {?} */
             var privatePropName = "$$__" + name;
@@ -824,12 +888,12 @@
                     this[privatePropName] = toNumber(value, fallback); // tslint:disable-line:no-invalid-this
                 },
             });
-        };
+        });
     }
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /**
      * @param {?} el
@@ -892,7 +956,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var DelonUtilConfig = /** @class */ (function () {
         function DelonUtilConfig() {
@@ -906,7 +970,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var ArrayService = /** @class */ (function () {
         function ArrayService(cog) {
@@ -932,7 +996,12 @@
                 /** @type {?} */
                 var result = [];
                 /** @type {?} */
-                var inFn = function (list, parent, deep) {
+                var inFn = ( /**
+                 * @param {?} list
+                 * @param {?} parent
+                 * @param {?} deep
+                 * @return {?}
+                 */function (list, parent, deep) {
                     var e_1, _a;
                     try {
                         for (var list_1 = __values(list), list_1_1 = list_1.next(); !list_1_1.done; list_1_1 = list_1.next()) {
@@ -966,7 +1035,7 @@
                                 throw e_1.error;
                         }
                     }
-                };
+                });
                 inFn(tree, 1, null);
                 return result;
             };
@@ -1051,7 +1120,12 @@
                     parentIdMapName: options.parentIdMapName,
                     childrenMapName: 'children',
                 });
-                this.visitTree(tree, function (item, parent, deep) {
+                this.visitTree(tree, ( /**
+                 * @param {?} item
+                 * @param {?} parent
+                 * @param {?} deep
+                 * @return {?}
+                 */function (item, parent, deep) {
                     item.key = item[options.idMapName];
                     item.title = item[options.titleMapName];
                     item.checked = item[options.checkedMapname];
@@ -1067,7 +1141,7 @@
                     if (options.cb) {
                         options.cb(item, parent, deep);
                     }
-                });
+                }));
                 return tree;
             };
         /**
@@ -1090,7 +1164,12 @@
             function (tree, cb, options) {
                 options = __assign({ childrenMapName: this.c.childrenMapName }, options);
                 /** @type {?} */
-                var inFn = function (data, parent, deep) {
+                var inFn = ( /**
+                 * @param {?} data
+                 * @param {?} parent
+                 * @param {?} deep
+                 * @return {?}
+                 */function (data, parent, deep) {
                     var e_3, _a;
                     try {
                         for (var data_1 = __values(data), data_1_1 = data_1.next(); !data_1_1.done; data_1_1 = data_1.next()) {
@@ -1116,7 +1195,7 @@
                                 throw e_3.error;
                         }
                     }
-                };
+                });
                 inFn(tree, null, 1);
             };
         /**
@@ -1138,7 +1217,12 @@
                 options = __assign({ includeHalfChecked: true }, options);
                 /** @type {?} */
                 var keys = [];
-                this.visitTree(tree, function (item, parent, deep) {
+                this.visitTree(tree, ( /**
+                 * @param {?} item
+                 * @param {?} parent
+                 * @param {?} deep
+                 * @return {?}
+                 */function (item, parent, deep) {
                     if (item.isChecked || (options.includeHalfChecked && item.isHalfChecked)) {
                         keys.push(options.cb
                             ? options.cb(item, parent, deep)
@@ -1146,7 +1230,7 @@
                                 ? item.origin[options.keyMapName]
                                 : item.key);
                     }
-                });
+                }));
                 return keys;
             };
         ArrayService.decorators = [
@@ -1164,7 +1248,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var DelonUtilModule = /** @class */ (function () {
         function DelonUtilModule() {
@@ -1181,12 +1265,12 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     exports._Validators = _Validators;

@@ -19,7 +19,7 @@ import { Directive, Input, TemplateRef, ViewContainerRef, Inject, Injectable, de
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class StringTemplateOutletDirective {
     /**
@@ -87,7 +87,7 @@ StringTemplateOutletDirective.propDecorators = {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * 类似 `_.get`，根据 `path` 获取安全值
@@ -109,7 +109,12 @@ function deepGet(obj, path, defaultValue) {
         const checkObj = obj[path[0]];
         return typeof checkObj === 'undefined' ? defaultValue : checkObj;
     }
-    return path.reduce((o, k) => (o || {})[k], obj) || defaultValue;
+    return path.reduce((/**
+     * @param {?} o
+     * @param {?} k
+     * @return {?}
+     */
+    (o, k) => (o || {})[k]), obj) || defaultValue;
 }
 /**
  * @param {?} obj
@@ -126,7 +131,12 @@ function deepCopy(obj) {
  * @return {?}
  */
 function copy(value) {
-    return new Promise((resolve, reject) => {
+    return new Promise((/**
+     * @param {?} resolve
+     * @param {?} reject
+     * @return {?}
+     */
+    (resolve, reject) => {
         /** @type {?} */
         let copyTextArea = (/** @type {?} */ (null));
         try {
@@ -145,7 +155,7 @@ function copy(value) {
                 copyTextArea.parentNode.removeChild(copyTextArea);
             }
         }
-    });
+    }));
 }
 /**
  * @param {?} original
@@ -157,12 +167,29 @@ function deepMergeKey(original, ingoreArray, ...objects) {
     if (Array.isArray(original) || typeof original !== 'object')
         return original;
     /** @type {?} */
-    const isObject = (v) => typeof v === 'object' || typeof v === 'function';
+    const isObject = (/**
+     * @param {?} v
+     * @return {?}
+     */
+    (v) => typeof v === 'object' || typeof v === 'function');
     /** @type {?} */
-    const merge = (target, obj) => {
+    const merge = (/**
+     * @param {?} target
+     * @param {?} obj
+     * @return {?}
+     */
+    (target, obj) => {
         Object.keys(obj)
-            .filter(key => key !== '__proto__' && Object.prototype.hasOwnProperty.call(obj, key))
-            .forEach(key => {
+            .filter((/**
+         * @param {?} key
+         * @return {?}
+         */
+        key => key !== '__proto__' && Object.prototype.hasOwnProperty.call(obj, key)))
+            .forEach((/**
+         * @param {?} key
+         * @return {?}
+         */
+        key => {
             /** @type {?} */
             const oldValue = obj[key];
             /** @type {?} */
@@ -179,10 +206,18 @@ function deepMergeKey(original, ingoreArray, ...objects) {
             else {
                 target[key] = deepCopy(oldValue);
             }
-        });
+        }));
         return target;
-    };
-    objects.filter(v => isObject(v)).forEach(v => merge(original, v));
+    });
+    objects.filter((/**
+     * @param {?} v
+     * @return {?}
+     */
+    v => isObject(v))).forEach((/**
+     * @param {?} v
+     * @return {?}
+     */
+    v => merge(original, v)));
     return original;
 }
 /**
@@ -196,7 +231,7 @@ function deepMerge(original, ...objects) {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * 字符串格式化
@@ -212,12 +247,17 @@ function deepMerge(original, ...objects) {
  * @return {?}
  */
 function format(str, obj, needDeepGet = false) {
-    return (str || '').replace(/\${([^}]+)}/g, (work, key) => needDeepGet ? deepGet(obj, key.split('.'), '') : (obj || {})[key] || '');
+    return (str || '').replace(/\${([^}]+)}/g, (/**
+     * @param {?} work
+     * @param {?} key
+     * @return {?}
+     */
+    (work, key) => needDeepGet ? deepGet(obj, key.split('.'), '') : (obj || {})[key] || ''));
 }
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * 获取时间范围
@@ -276,7 +316,7 @@ function fixEndTimeOfRange(dates) {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class LazyService {
     /**
@@ -292,7 +332,11 @@ class LazyService {
      * @return {?}
      */
     get change() {
-        return this._notify.asObservable().pipe(share(), filter(ls => ls.length !== 0));
+        return this._notify.asObservable().pipe(share(), filter((/**
+         * @param {?} ls
+         * @return {?}
+         */
+        ls => ls.length !== 0)));
     }
     /**
      * @return {?}
@@ -311,18 +355,26 @@ class LazyService {
         }
         /** @type {?} */
         const promises = [];
-        paths.forEach(path => {
+        paths.forEach((/**
+         * @param {?} path
+         * @return {?}
+         */
+        path => {
             if (path.endsWith('.js')) {
                 promises.push(this.loadScript(path));
             }
             else {
                 promises.push(this.loadStyle(path));
             }
-        });
-        return Promise.all(promises).then(res => {
+        }));
+        return Promise.all(promises).then((/**
+         * @param {?} res
+         * @return {?}
+         */
+        res => {
             this._notify.next(res);
             return Promise.resolve(res);
-        });
+        }));
     }
     /**
      * @param {?} path
@@ -330,17 +382,25 @@ class LazyService {
      * @return {?}
      */
     loadScript(path, innerContent) {
-        return new Promise(resolve => {
+        return new Promise((/**
+         * @param {?} resolve
+         * @return {?}
+         */
+        resolve => {
             if (this.list[path] === true) {
                 resolve(this.cached[path]);
                 return;
             }
             this.list[path] = true;
             /** @type {?} */
-            const onSuccess = (item) => {
+            const onSuccess = (/**
+             * @param {?} item
+             * @return {?}
+             */
+            (item) => {
                 this.cached[path] = item;
                 resolve(item);
-            };
+            });
             /** @type {?} */
             const node = (/** @type {?} */ (this.doc.createElement('script')));
             node.type = 'text/javascript';
@@ -351,7 +411,10 @@ class LazyService {
             }
             if (node.readyState) {
                 // IE
-                node.onreadystatechange = () => {
+                node.onreadystatechange = (/**
+                 * @return {?}
+                 */
+                () => {
                     if (node.readyState === 'loaded' || node.readyState === 'complete') {
                         node.onreadystatechange = null;
                         onSuccess({
@@ -360,23 +423,30 @@ class LazyService {
                             status: 'ok',
                         });
                     }
-                };
+                });
             }
             else {
-                node.onload = () => onSuccess({
+                node.onload = (/**
+                 * @return {?}
+                 */
+                () => onSuccess({
                     path,
                     loaded: true,
                     status: 'ok',
-                });
+                }));
             }
-            node.onerror = (error) => onSuccess({
+            node.onerror = (/**
+             * @param {?} error
+             * @return {?}
+             */
+            (error) => onSuccess({
                 path,
                 loaded: false,
                 status: 'error',
                 error,
-            });
+            }));
             this.doc.getElementsByTagName('head')[0].appendChild(node);
-        });
+        }));
     }
     /**
      * @param {?} path
@@ -385,7 +455,11 @@ class LazyService {
      * @return {?}
      */
     loadStyle(path, rel = 'stylesheet', innerContent) {
-        return new Promise(resolve => {
+        return new Promise((/**
+         * @param {?} resolve
+         * @return {?}
+         */
+        resolve => {
             if (this.list[path] === true) {
                 resolve(this.cached[path]);
                 return;
@@ -408,7 +482,7 @@ class LazyService {
             };
             this.cached[path] = item;
             resolve(item);
-        });
+        }));
     }
 }
 LazyService.decorators = [
@@ -422,7 +496,7 @@ LazyService.ctorParameters = () => [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * 是否为数字
@@ -477,7 +551,7 @@ function isUrl(url) {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * 一套日常验证器
@@ -536,7 +610,7 @@ class _Validators {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * @param {?} element
@@ -577,7 +651,12 @@ function toBoolean(value, allowUndefined = false) {
  * @return {?}
  */
 function InputBoolean(allowUndefined = false) {
-    return function InputBooleanPropDecorator(target, name) {
+    return (/**
+     * @param {?} target
+     * @param {?} name
+     * @return {?}
+     */
+    function InputBooleanPropDecorator(target, name) {
         // Add our own private prop
         /** @type {?} */
         const privatePropName = `$$__${name}`;
@@ -603,7 +682,7 @@ function InputBoolean(allowUndefined = false) {
                 this[privatePropName] = toBoolean(value, allowUndefined); // tslint:disable-line:no-invalid-this
             },
         });
-    };
+    });
 }
 /**
  * @param {?} value
@@ -623,7 +702,12 @@ function toNumber(value, fallbackValue = 0) {
  * @return {?}
  */
 function InputNumber(fallback = 0) {
-    return function InputBooleanPropDecorator(target, name) {
+    return (/**
+     * @param {?} target
+     * @param {?} name
+     * @return {?}
+     */
+    function InputBooleanPropDecorator(target, name) {
         // Add our own private prop
         /** @type {?} */
         const privatePropName = `$$__${name}`;
@@ -649,12 +733,12 @@ function InputNumber(fallback = 0) {
                 this[privatePropName] = toNumber(value, fallback); // tslint:disable-line:no-invalid-this
             },
         });
-    };
+    });
 }
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * @param {?} el
@@ -714,12 +798,12 @@ function updateHostClass(el, renderer, classMap, cleanAll = false) {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class DelonUtilConfig {
 }
@@ -730,7 +814,7 @@ DelonUtilConfig.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class ArrayService {
     /**
@@ -750,7 +834,13 @@ class ArrayService {
         /** @type {?} */
         const result = [];
         /** @type {?} */
-        const inFn = (list, parent, deep) => {
+        const inFn = (/**
+         * @param {?} list
+         * @param {?} parent
+         * @param {?} deep
+         * @return {?}
+         */
+        (list, parent, deep) => {
             for (const i of list) {
                 i[options.deepMapName] = deep;
                 i[options.parentMapName] = parent;
@@ -767,7 +857,7 @@ class ArrayService {
                     delete i[options.childrenMapName];
                 }
             }
-        };
+        });
         inFn(tree, 1, null);
         return result;
     }
@@ -817,7 +907,13 @@ class ArrayService {
             parentIdMapName: options.parentIdMapName,
             childrenMapName: 'children',
         });
-        this.visitTree(tree, (item, parent, deep) => {
+        this.visitTree(tree, (/**
+         * @param {?} item
+         * @param {?} parent
+         * @param {?} deep
+         * @return {?}
+         */
+        (item, parent, deep) => {
             item.key = item[options.idMapName];
             item.title = item[options.titleMapName];
             item.checked = item[options.checkedMapname];
@@ -833,7 +929,7 @@ class ArrayService {
             if (options.cb) {
                 options.cb(item, parent, deep);
             }
-        });
+        }));
         return tree;
     }
     /**
@@ -846,7 +942,13 @@ class ArrayService {
     visitTree(tree, cb, options) {
         options = Object.assign({ childrenMapName: this.c.childrenMapName }, options);
         /** @type {?} */
-        const inFn = (data, parent, deep) => {
+        const inFn = (/**
+         * @param {?} data
+         * @param {?} parent
+         * @param {?} deep
+         * @return {?}
+         */
+        (data, parent, deep) => {
             for (const item of data) {
                 cb(item, parent, deep);
                 /** @type {?} */
@@ -855,7 +957,7 @@ class ArrayService {
                     inFn(childrenVal, item, deep + 1);
                 }
             }
-        };
+        });
         inFn(tree, null, 1);
     }
     /**
@@ -868,7 +970,13 @@ class ArrayService {
         options = Object.assign({ includeHalfChecked: true }, options);
         /** @type {?} */
         const keys = [];
-        this.visitTree(tree, (item, parent, deep) => {
+        this.visitTree(tree, (/**
+         * @param {?} item
+         * @param {?} parent
+         * @param {?} deep
+         * @return {?}
+         */
+        (item, parent, deep) => {
             if (item.isChecked || (options.includeHalfChecked && item.isHalfChecked)) {
                 keys.push(options.cb
                     ? options.cb(item, parent, deep)
@@ -876,7 +984,7 @@ class ArrayService {
                         ? item.origin[options.keyMapName]
                         : item.key);
             }
-        });
+        }));
         return keys;
     }
 }
@@ -891,7 +999,7 @@ ArrayService.ctorParameters = () => [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class DelonUtilModule {
 }
@@ -905,12 +1013,12 @@ DelonUtilModule.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 export { _Validators, StringTemplateOutletDirective, format, getTimeDistance, fixEndTimeOfRange, LazyService, isNum, isInt, isDecimal, isIdCard, isMobile, isUrl, isEmpty, toBoolean, InputBoolean, toNumber, InputNumber, deepGet, deepCopy, copy, deepMergeKey, deepMerge, updateHostClass, ArrayService, DelonUtilConfig, DelonUtilModule };

@@ -5,7 +5,7 @@ import { _HttpClient, AlainThemeModule } from '@delon/theme';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class DownFileDirective {
     /**
@@ -29,6 +29,7 @@ class DownFileDirective {
         this.error = new EventEmitter();
     }
     /**
+     * @private
      * @param {?} data
      * @return {?}
      */
@@ -36,8 +37,16 @@ class DownFileDirective {
         /** @type {?} */
         const arr = (data || '')
             .split(';')
-            .filter(i => i.includes('='))
-            .map(v => {
+            .filter((/**
+         * @param {?} i
+         * @return {?}
+         */
+        i => i.includes('=')))
+            .map((/**
+         * @param {?} v
+         * @return {?}
+         */
+        v => {
             /** @type {?} */
             const strArr = v.split('=');
             /** @type {?} */
@@ -47,8 +56,13 @@ class DownFileDirective {
             if (value.startsWith(utfId))
                 value = value.substr(utfId.length);
             return { [strArr[0].trim()]: value };
-        });
-        return arr.reduce((o, item) => item, {});
+        }));
+        return arr.reduce((/**
+         * @param {?} o
+         * @param {?} item
+         * @return {?}
+         */
+        (o, item) => item), {});
     }
     /**
      * @return {?}
@@ -61,7 +75,11 @@ class DownFileDirective {
             responseType: 'blob',
             observe: 'response',
         })
-            .subscribe((res) => {
+            .subscribe((/**
+         * @param {?} res
+         * @return {?}
+         */
+        (res) => {
             if (res.status !== 200 || res.body.size <= 0) {
                 this.error.emit(res);
                 return;
@@ -77,10 +95,14 @@ class DownFileDirective {
             saveAs(res.body, decodeURI(fileName));
             this.success.emit(res);
             this.el.nativeElement.disabled = false;
-        }, err => {
+        }), (/**
+         * @param {?} err
+         * @return {?}
+         */
+        err => {
             this.error.emit(err);
             this.el.nativeElement.disabled = false;
-        });
+        }));
     }
 }
 DownFileDirective.decorators = [
@@ -108,7 +130,7 @@ DownFileDirective.propDecorators = {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const DIRECTIVES = [DownFileDirective];
@@ -124,12 +146,12 @@ DownFileModule.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 export { DownFileDirective, DownFileModule };

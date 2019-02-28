@@ -5,7 +5,7 @@ import { InputBoolean, InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class G2MiniAreaComponent {
     // #endregion
@@ -31,6 +31,7 @@ class G2MiniAreaComponent {
         this.tooltipType = 'default';
     }
     /**
+     * @private
      * @return {?}
      */
     install() {
@@ -68,7 +69,12 @@ class G2MiniAreaComponent {
         chart
             .area()
             .position('x*y')
-            .tooltip('x*y', (x, y) => ({ name: x, value: y + yTooltipSuffix }))
+            .tooltip('x*y', (/**
+         * @param {?} x
+         * @param {?} y
+         * @return {?}
+         */
+        (x, y) => ({ name: x, value: y + yTooltipSuffix })))
             .shape('smooth')
             .opacity(1);
         if (line) {
@@ -83,6 +89,7 @@ class G2MiniAreaComponent {
         this.attachChart();
     }
     /**
+     * @private
      * @return {?}
      */
     attachChart() {
@@ -92,7 +99,11 @@ class G2MiniAreaComponent {
         }
         /** @type {?} */
         const geoms = chart.get('geoms');
-        geoms.forEach(g => g.color(color));
+        geoms.forEach((/**
+         * @param {?} g
+         * @return {?}
+         */
+        g => g.color(color)));
         if (line) {
             geoms[1].color(borderColor).size(borderWidth);
         }
@@ -106,20 +117,32 @@ class G2MiniAreaComponent {
      * @return {?}
      */
     ngOnInit() {
-        this.ngZone.runOutsideAngular(() => setTimeout(() => this.install(), this.delay));
+        this.ngZone.runOutsideAngular((/**
+         * @return {?}
+         */
+        () => setTimeout((/**
+         * @return {?}
+         */
+        () => this.install()), this.delay)));
     }
     /**
      * @return {?}
      */
     ngOnChanges() {
-        this.ngZone.runOutsideAngular(() => this.attachChart());
+        this.ngZone.runOutsideAngular((/**
+         * @return {?}
+         */
+        () => this.attachChart()));
     }
     /**
      * @return {?}
      */
     ngOnDestroy() {
         if (this.chart) {
-            this.ngZone.runOutsideAngular(() => this.chart.destroy());
+            this.ngZone.runOutsideAngular((/**
+             * @return {?}
+             */
+            () => this.chart.destroy()));
         }
     }
 }
@@ -181,7 +204,7 @@ __decorate([
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const COMPONENTS = [G2MiniAreaComponent];
@@ -197,12 +220,12 @@ G2MiniAreaModule.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 export { G2MiniAreaComponent, G2MiniAreaModule };

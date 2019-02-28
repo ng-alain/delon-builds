@@ -11,7 +11,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var XlsxConfig = /** @class */ (function () {
         function XlsxConfig() {
@@ -91,7 +91,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var XlsxService = /** @class */ (function () {
         function XlsxService(cog, http, lazy) {
@@ -100,30 +100,37 @@
             this.lazy = lazy;
         }
         /**
+         * @private
          * @return {?}
          */
         XlsxService.prototype.init = /**
+         * @private
          * @return {?}
          */
             function () {
                 return this.lazy.load([this.cog.url].concat(this.cog.modules));
             };
         /**
+         * @private
          * @param {?} wb
          * @return {?}
          */
         XlsxService.prototype.read = /**
+         * @private
          * @param {?} wb
          * @return {?}
          */
             function (wb) {
                 /** @type {?} */
                 var ret = {};
-                wb.SheetNames.forEach(function (name) {
+                wb.SheetNames.forEach(( /**
+                 * @param {?} name
+                 * @return {?}
+                 */function (name) {
                     /** @type {?} */
                     var sheet = wb.Sheets[name];
                     ret[name] = XLSX.utils.sheet_to_json(sheet, { header: 1 });
-                });
+                }));
                 return ret;
             };
         /**
@@ -147,30 +154,45 @@
                 if (rABS === void 0) {
                     rABS = 'readAsBinaryString';
                 }
-                return new Promise(function (resolver, reject) {
-                    _this.init().then(function () {
+                return new Promise(( /**
+                 * @param {?} resolver
+                 * @param {?} reject
+                 * @return {?}
+                 */function (resolver, reject) {
+                    _this.init().then(( /**
+                     * @return {?}
+                     */function () {
                         // from url
                         if (typeof fileOrUrl === 'string') {
-                            _this.http.request('GET', fileOrUrl, { responseType: 'arraybuffer' }).subscribe(function (res) {
+                            _this.http.request('GET', fileOrUrl, { responseType: 'arraybuffer' }).subscribe(( /**
+                             * @param {?} res
+                             * @return {?}
+                             */function (res) {
                                 /** @type {?} */
                                 var wb = XLSX.read(new Uint8Array(res), { type: 'array' });
                                 resolver(_this.read(wb));
-                            }, function (err) {
+                            }), ( /**
+                             * @param {?} err
+                             * @return {?}
+                             */function (err) {
                                 reject(err);
-                            });
+                            }));
                             return;
                         }
                         // from file
                         /** @type {?} */
                         var reader = new FileReader();
-                        reader.onload = function (e) {
+                        reader.onload = ( /**
+                         * @param {?} e
+                         * @return {?}
+                         */function (e) {
                             /** @type {?} */
                             var wb = XLSX.read(e.target.result, { type: 'binary' });
                             resolver(_this.read(wb));
-                        };
+                        });
                         reader[rABS](fileOrUrl);
-                    });
-                });
+                    }));
+                }));
             };
         /** 导出 */
         /**
@@ -184,15 +206,21 @@
          * @return {?}
          */
             function (options) {
-                return this.init().then(function () {
+                return this.init().then(( /**
+                 * @return {?}
+                 */function () {
                     /** @type {?} */
                     var wb = XLSX.utils.book_new();
                     if (Array.isArray(options.sheets)) {
-                        (( /** @type {?} */(options.sheets))).forEach(function (value, index) {
+                        (( /** @type {?} */(options.sheets))).forEach(( /**
+                         * @param {?} value
+                         * @param {?} index
+                         * @return {?}
+                         */function (value, index) {
                             /** @type {?} */
                             var ws = XLSX.utils.aoa_to_sheet(value.data);
                             XLSX.utils.book_append_sheet(wb, ws, value.name || "Sheet" + (index + 1));
-                        });
+                        }));
                     }
                     else {
                         wb.SheetNames = Object.keys(options.sheets);
@@ -203,7 +231,7 @@
                     /** @type {?} */
                     var wbout = XLSX.write(wb, __assign({ bookType: 'xlsx', bookSST: false, type: 'array' }, options.opts));
                     fileSaver.saveAs(new Blob([wbout], { type: 'application/octet-stream' }), options.filename || 'export.xlsx');
-                });
+                }));
             };
         XlsxService.decorators = [
             { type: i0.Injectable, args: [{ providedIn: 'root' },] }
@@ -222,7 +250,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var XlsxDirective = /** @class */ (function () {
         function XlsxDirective(srv) {
@@ -260,7 +288,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
     var COMPONENTS = [XlsxDirective];
@@ -279,7 +307,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     exports.XlsxConfig = XlsxConfig;

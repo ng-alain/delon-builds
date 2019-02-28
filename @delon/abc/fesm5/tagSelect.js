@@ -7,7 +7,7 @@ import { NgZorroAntdModule } from 'ng-zorro-antd';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var TagSelectComponent = /** @class */ (function () {
     function TagSelectComponent(i18n, cdr) {
@@ -29,10 +29,13 @@ var TagSelectComponent = /** @class */ (function () {
      */
     function () {
         var _this = this;
-        this.i18n$ = this.i18n.change.subscribe(function () {
+        this.i18n$ = this.i18n.change.subscribe((/**
+         * @return {?}
+         */
+        function () {
             _this.locale = _this.i18n.getData('tagSelect');
             _this.cdr.detectChanges();
-        });
+        }));
     };
     /**
      * @return {?}
@@ -83,7 +86,7 @@ var TagSelectComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 var COMPONENTS = [TagSelectComponent];
@@ -102,12 +105,12 @@ var TagSelectModule = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 export { TagSelectComponent, TagSelectModule };

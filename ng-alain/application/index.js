@@ -175,11 +175,11 @@ function addCodeStylesToPackageJson() {
         }
         // dependencies
         json_1.addPackageToPackageJson(host, [
-            `tslint-config-prettier@^1.17.0`,
+            `tslint-config-prettier@^1.18.0`,
             `tslint-language-service@^0.9.9`,
             `editorconfig-tools@^0.1.1`,
             `lint-staged@^8.1.0`,
-            `husky@^1.1.0`,
+            `husky@^1.3.1`,
             `prettier@^1.16.1`,
             `prettier-stylelint@^0.4.2`,
             `stylelint@^9.10.1`,

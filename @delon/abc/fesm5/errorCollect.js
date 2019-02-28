@@ -5,7 +5,7 @@ import { InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var ErrorCollectConfig = /** @class */ (function () {
     function ErrorCollectConfig() {
@@ -27,7 +27,7 @@ var ErrorCollectConfig = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var ErrorCollectComponent = /** @class */ (function () {
     function ErrorCollectComponent(cog, el, cdr, doc) {
@@ -41,6 +41,7 @@ var ErrorCollectComponent = /** @class */ (function () {
     }
     Object.defineProperty(ErrorCollectComponent.prototype, "errEls", {
         get: /**
+         * @private
          * @return {?}
          */
         function () {
@@ -50,9 +51,11 @@ var ErrorCollectComponent = /** @class */ (function () {
         configurable: true
     });
     /**
+     * @private
      * @return {?}
      */
     ErrorCollectComponent.prototype.update = /**
+     * @private
      * @return {?}
      */
     function () {
@@ -83,32 +86,41 @@ var ErrorCollectComponent = /** @class */ (function () {
         this.doc.documentElement.scrollTop -= this.offsetTop;
     };
     /**
+     * @private
      * @return {?}
      */
     ErrorCollectComponent.prototype.install = /**
+     * @private
      * @return {?}
      */
     function () {
         var _this = this;
         this.uninstall();
-        this.$time = setInterval(function () { return _this.update(); }, this.freq);
+        this.$time = setInterval((/**
+         * @return {?}
+         */
+        function () { return _this.update(); }), this.freq);
         this.update();
     };
     /**
+     * @private
      * @return {?}
      */
     ErrorCollectComponent.prototype.uninstall = /**
+     * @private
      * @return {?}
      */
     function () {
         clearInterval(this.$time);
     };
     /**
+     * @private
      * @param {?} el
      * @param {?} selector
      * @return {?}
      */
     ErrorCollectComponent.prototype.findParent = /**
+     * @private
      * @param {?} el
      * @param {?} selector
      * @return {?}
@@ -183,7 +195,7 @@ var ErrorCollectComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 var COMPONENTS = [ErrorCollectComponent];
@@ -202,12 +214,12 @@ var ErrorCollectModule = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 export { ErrorCollectComponent, ErrorCollectConfig, ErrorCollectModule };

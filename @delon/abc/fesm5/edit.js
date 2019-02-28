@@ -9,7 +9,7 @@ import { NgZorroAntdModule } from 'ng-zorro-antd';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var SEConfig = /** @class */ (function () {
     function SEConfig() {
@@ -49,7 +49,7 @@ var SEConfig = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var SEContainerComponent = /** @class */ (function () {
     // #endregion
@@ -142,7 +142,7 @@ var SEContainerComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var SEErrorComponent = /** @class */ (function () {
     function SEErrorComponent() {
@@ -186,7 +186,7 @@ var SEErrorComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var SETitleComponent = /** @class */ (function () {
     function SETitleComponent(parent, el, ren) {
@@ -198,9 +198,11 @@ var SETitleComponent = /** @class */ (function () {
         this.el = el.nativeElement;
     }
     /**
+     * @private
      * @return {?}
      */
     SETitleComponent.prototype.setClass = /**
+     * @private
      * @return {?}
      */
     function () {
@@ -239,7 +241,7 @@ var SETitleComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 var prefixCls = "se";
@@ -302,6 +304,7 @@ var SEComponent = /** @class */ (function () {
     });
     Object.defineProperty(SEComponent.prototype, "ngControl", {
         get: /**
+         * @private
          * @return {?}
          */
         function () {
@@ -311,11 +314,13 @@ var SEComponent = /** @class */ (function () {
         configurable: true
     });
     /**
+     * @private
      * @template THIS
      * @this {THIS}
      * @return {THIS}
      */
     SEComponent.prototype.setClass = /**
+     * @private
      * @template THIS
      * @this {THIS}
      * @return {THIS}
@@ -323,7 +328,11 @@ var SEComponent = /** @class */ (function () {
     function () {
         var _a = (/** @type {?} */ (this)), el = _a.el, ren = _a.ren, clsMap = _a.clsMap, col = _a.col, parent = _a.parent, cdr = _a.cdr, line = _a.line, labelWidth = _a.labelWidth, rep = _a.rep;
         (/** @type {?} */ (this))._labelWidth = labelWidth != null ? labelWidth : parent.labelWidth;
-        clsMap.forEach(function (cls) { return ren.removeClass(el, cls); });
+        clsMap.forEach((/**
+         * @param {?} cls
+         * @return {?}
+         */
+        function (cls) { return ren.removeClass(el, cls); }));
         clsMap.length = 0;
         /** @type {?} */
         var repCls = parent.nzLayout === 'horizontal'
@@ -333,23 +342,33 @@ var SEComponent = /** @class */ (function () {
         if (line || parent.line) {
             clsMap.push(prefixCls + "__line");
         }
-        clsMap.forEach(function (cls) { return ren.addClass(el, cls); });
+        clsMap.forEach((/**
+         * @param {?} cls
+         * @return {?}
+         */
+        function (cls) { return ren.addClass(el, cls); }));
         cdr.detectChanges();
         return (/** @type {?} */ (this));
     };
     /**
+     * @private
      * @return {?}
      */
     SEComponent.prototype.bindModel = /**
+     * @private
      * @return {?}
      */
     function () {
         var _this = this;
         if (!this.ngControl || this.status$)
             return;
-        this.status$ = this.ngControl.statusChanges.subscribe(function (res) {
+        this.status$ = this.ngControl.statusChanges.subscribe((/**
+         * @param {?} res
+         * @return {?}
+         */
+        function (res) {
             return _this.updateStatus(res === 'INVALID');
-        });
+        }));
         if (this._autoId) {
             /** @type {?} */
             var control = (/** @type {?} */ (deepGet(this.ngControl.valueAccessor, '_elementRef.nativeElement')));
@@ -359,10 +378,12 @@ var SEComponent = /** @class */ (function () {
         }
     };
     /**
+     * @private
      * @param {?} invalid
      * @return {?}
      */
     SEComponent.prototype.updateStatus = /**
+     * @private
      * @param {?} invalid
      * @return {?}
      */
@@ -395,10 +416,13 @@ var SEComponent = /** @class */ (function () {
         this.setClass().bindModel();
         this.inited = true;
         if (this.onceFlag) {
-            Promise.resolve().then(function () {
+            Promise.resolve().then((/**
+             * @return {?}
+             */
+            function () {
                 _this.updateStatus(_this.ngControl.invalid);
                 _this.onceFlag = false;
-            });
+            }));
         }
     };
     /**
@@ -468,7 +492,7 @@ var SEComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 var COMPONENTS = [SEContainerComponent, SEComponent, SEErrorComponent, SETitleComponent];
@@ -487,12 +511,12 @@ var SEModule = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 export { SEContainerComponent, SEErrorComponent, SETitleComponent, SEComponent, SEConfig, SEModule };

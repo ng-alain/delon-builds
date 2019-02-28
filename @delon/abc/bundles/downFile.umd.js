@@ -11,7 +11,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var DownFileDirective = /** @class */ (function () {
         function DownFileDirective(el, _http) {
@@ -31,10 +31,12 @@
             this.error = new core.EventEmitter();
         }
         /**
+         * @private
          * @param {?} data
          * @return {?}
          */
         DownFileDirective.prototype.getDisposition = /**
+         * @private
          * @param {?} data
          * @return {?}
          */
@@ -42,8 +44,14 @@
                 /** @type {?} */
                 var arr = (data || '')
                     .split(';')
-                    .filter(function (i) { return i.includes('='); })
-                    .map(function (v) {
+                    .filter(( /**
+             * @param {?} i
+             * @return {?}
+             */function (i) { return i.includes('='); }))
+                    .map(( /**
+             * @param {?} v
+             * @return {?}
+             */function (v) {
                     var _a;
                     /** @type {?} */
                     var strArr = v.split('=');
@@ -54,8 +62,12 @@
                     if (value.startsWith(utfId))
                         value = value.substr(utfId.length);
                     return _a = {}, _a[strArr[0].trim()] = value, _a;
-                });
-                return arr.reduce(function (o, item) { return item; }, {});
+                }));
+                return arr.reduce(( /**
+                 * @param {?} o
+                 * @param {?} item
+                 * @return {?}
+                 */function (o, item) { return item; }), {});
             };
         /**
          * @return {?}
@@ -72,7 +84,10 @@
                     responseType: 'blob',
                     observe: 'response',
                 })
-                    .subscribe(function (res) {
+                    .subscribe(( /**
+             * @param {?} res
+             * @return {?}
+             */function (res) {
                     if (res.status !== 200 || res.body.size <= 0) {
                         _this.error.emit(res);
                         return;
@@ -88,10 +103,13 @@
                     fileSaver.saveAs(res.body, decodeURI(fileName));
                     _this.success.emit(res);
                     _this.el.nativeElement.disabled = false;
-                }, function (err) {
+                }), ( /**
+                 * @param {?} err
+                 * @return {?}
+                 */function (err) {
                     _this.error.emit(err);
                     _this.el.nativeElement.disabled = false;
-                });
+                }));
             };
         DownFileDirective.decorators = [
             { type: core.Directive, args: [{
@@ -166,7 +184,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
     var DIRECTIVES = [DownFileDirective];
@@ -185,12 +203,12 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     exports.DownFileDirective = DownFileDirective;

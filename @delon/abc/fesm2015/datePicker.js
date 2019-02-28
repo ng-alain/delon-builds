@@ -7,7 +7,7 @@ import { NgZorroAntdModule } from 'ng-zorro-antd';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class DateRangePickerConfig {
     constructor() {
@@ -23,31 +23,52 @@ class DateRangePickerConfig {
             list: [
                 {
                     text: '今天',
-                    fn: () => getTimeDistance('today'),
+                    fn: (/**
+                     * @return {?}
+                     */
+                    () => getTimeDistance('today')),
                 },
                 {
                     text: '昨天',
-                    fn: () => getTimeDistance('yesterday'),
+                    fn: (/**
+                     * @return {?}
+                     */
+                    () => getTimeDistance('yesterday')),
                 },
                 {
                     text: '近3天',
-                    fn: () => getTimeDistance(-2),
+                    fn: (/**
+                     * @return {?}
+                     */
+                    () => getTimeDistance(-2)),
                 },
                 {
                     text: '近7天',
-                    fn: () => getTimeDistance(-6),
+                    fn: (/**
+                     * @return {?}
+                     */
+                    () => getTimeDistance(-6)),
                 },
                 {
                     text: '本周',
-                    fn: () => getTimeDistance('week'),
+                    fn: (/**
+                     * @return {?}
+                     */
+                    () => getTimeDistance('week')),
                 },
                 {
                     text: '本月',
-                    fn: () => getTimeDistance('month'),
+                    fn: (/**
+                     * @return {?}
+                     */
+                    () => getTimeDistance('month')),
                 },
                 {
                     text: '全年',
-                    fn: () => getTimeDistance('year'),
+                    fn: (/**
+                     * @return {?}
+                     */
+                    () => getTimeDistance('year')),
                 },
             ],
         };
@@ -62,7 +83,7 @@ DatePickerConfig.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class RangePickerComponent {
     // #endregion
@@ -179,7 +200,10 @@ RangePickerComponent.decorators = [
                     {
                         provide: NG_VALUE_ACCESSOR,
                         multi: true,
-                        useExisting: forwardRef(() => RangePickerComponent),
+                        useExisting: forwardRef((/**
+                         * @return {?}
+                         */
+                        () => RangePickerComponent)),
                     },
                 ]
             }] }
@@ -223,7 +247,7 @@ __decorate([
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const COMPONENTS = [RangePickerComponent];
@@ -239,12 +263,12 @@ DatePickerModule.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 export { RangePickerComponent, DatePickerModule, DateRangePickerConfig, DatePickerConfig };

@@ -7,7 +7,7 @@ import { NgZorroAntdModule } from 'ng-zorro-antd';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class ExceptionComponent {
     /**
@@ -78,7 +78,10 @@ class ExceptionComponent {
      * @return {?}
      */
     ngOnInit() {
-        this.i18n$ = this.i18n.change.subscribe(() => (this.locale = this.i18n.getData('exception')));
+        this.i18n$ = this.i18n.change.subscribe((/**
+         * @return {?}
+         */
+        () => (this.locale = this.i18n.getData('exception'))));
         this.checkContent();
     }
     /**
@@ -109,7 +112,7 @@ ExceptionComponent.propDecorators = {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const COMPONENTS = [ExceptionComponent];
@@ -125,12 +128,12 @@ ExceptionModule.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 export { ExceptionModule, ExceptionComponent };

@@ -5,7 +5,7 @@ import { InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class ErrorCollectConfig {
     constructor() {
@@ -26,7 +26,7 @@ ErrorCollectConfig.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class ErrorCollectComponent {
     /**
@@ -45,12 +45,14 @@ class ErrorCollectComponent {
         Object.assign(this, Object.assign({}, new ErrorCollectConfig(), cog));
     }
     /**
+     * @private
      * @return {?}
      */
     get errEls() {
         return this.formEl.querySelectorAll('.has-error');
     }
     /**
+     * @private
      * @return {?}
      */
     update() {
@@ -78,20 +80,26 @@ class ErrorCollectComponent {
         this.doc.documentElement.scrollTop -= this.offsetTop;
     }
     /**
+     * @private
      * @return {?}
      */
     install() {
         this.uninstall();
-        this.$time = setInterval(() => this.update(), this.freq);
+        this.$time = setInterval((/**
+         * @return {?}
+         */
+        () => this.update()), this.freq);
         this.update();
     }
     /**
+     * @private
      * @return {?}
      */
     uninstall() {
         clearInterval(this.$time);
     }
     /**
+     * @private
      * @param {?} el
      * @param {?} selector
      * @return {?}
@@ -162,7 +170,7 @@ __decorate([
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const COMPONENTS = [ErrorCollectComponent];
@@ -178,12 +186,12 @@ ErrorCollectModule.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 export { ErrorCollectComponent, ErrorCollectConfig, ErrorCollectModule };

@@ -7,7 +7,7 @@ import { InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var G2CustomComponent = /** @class */ (function () {
     // #endregion
@@ -20,9 +20,11 @@ var G2CustomComponent = /** @class */ (function () {
         this.destroy = new EventEmitter();
     }
     /**
+     * @private
      * @return {?}
      */
     G2CustomComponent.prototype.renderChart = /**
+     * @private
      * @return {?}
      */
     function () {
@@ -31,9 +33,11 @@ var G2CustomComponent = /** @class */ (function () {
         this.installResizeEvent();
     };
     /**
+     * @private
      * @return {?}
      */
     G2CustomComponent.prototype.installResizeEvent = /**
+     * @private
      * @return {?}
      */
     function () {
@@ -42,7 +46,10 @@ var G2CustomComponent = /** @class */ (function () {
             return;
         this.resize$ = fromEvent(window, 'resize')
             .pipe(debounceTime(Math.min(200, this.resizeTime)))
-            .subscribe(function () { return _this.resize.emit(_this.el); });
+            .subscribe((/**
+         * @return {?}
+         */
+        function () { return _this.resize.emit(_this.el); }));
     };
     /**
      * @return {?}
@@ -98,7 +105,7 @@ var G2CustomComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 var COMPONENTS = [G2CustomComponent];
@@ -117,12 +124,12 @@ var G2CustomModule = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 export { G2CustomComponent, G2CustomModule };

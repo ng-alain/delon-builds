@@ -12,7 +12,7 @@ import { NgZorroAntdModule } from 'ng-zorro-antd';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class ReuseTabContextMenuComponent {
     /**
@@ -42,6 +42,7 @@ class ReuseTabContextMenuComponent {
         return this.event.ctrlKey;
     }
     /**
+     * @private
      * @param {?} type
      * @return {?}
      */
@@ -121,7 +122,7 @@ ReuseTabContextMenuComponent.propDecorators = {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class ReuseTabContextService {
     /**
@@ -151,14 +152,17 @@ class ReuseTabContextService {
         const { event, item, customContextMenu } = context;
         /** @type {?} */
         const fakeElement = new ElementRef({
-            getBoundingClientRect: () => ({
+            getBoundingClientRect: (/**
+             * @return {?}
+             */
+            () => ({
                 bottom: event.clientY,
                 height: 0,
                 left: event.clientX,
                 right: event.clientX,
                 top: event.clientY,
                 width: 0,
-            }),
+            })),
         });
         /** @type {?} */
         const positions = [
@@ -185,11 +189,18 @@ class ReuseTabContextService {
         instance.event = event;
         /** @type {?} */
         const sub$ = new Subscription();
-        sub$.add(instance.close.subscribe((res) => {
+        sub$.add(instance.close.subscribe((/**
+         * @param {?} res
+         * @return {?}
+         */
+        (res) => {
             this.close.next(res);
             this.remove();
-        }));
-        comp.onDestroy(() => sub$.unsubscribe());
+        })));
+        comp.onDestroy((/**
+         * @return {?}
+         */
+        () => sub$.unsubscribe()));
     }
 }
 ReuseTabContextService.decorators = [
@@ -202,7 +213,7 @@ ReuseTabContextService.ctorParameters = () => [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class ReuseTabContextComponent {
     /**
@@ -212,8 +223,16 @@ class ReuseTabContextComponent {
         this.srv = srv;
         this.sub$ = new Subscription();
         this.change = new EventEmitter();
-        this.sub$.add(srv.show.subscribe(context => this.srv.open(context)));
-        this.sub$.add(srv.close.subscribe(res => this.change.emit(res)));
+        this.sub$.add(srv.show.subscribe((/**
+         * @param {?} context
+         * @return {?}
+         */
+        context => this.srv.open(context))));
+        this.sub$.add(srv.close.subscribe((/**
+         * @param {?} res
+         * @return {?}
+         */
+        res => this.change.emit(res))));
     }
     /**
      * @param {?} value
@@ -246,7 +265,7 @@ ReuseTabContextComponent.propDecorators = {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class ReuseTabContextDirective {
     /**
@@ -288,7 +307,7 @@ ReuseTabContextDirective.propDecorators = {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @enum {number} */
 const ReuseTabMatchMode = {
@@ -325,7 +344,7 @@ ReuseTabMatchMode[ReuseTabMatchMode.URL] = 'URL';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * 路由复用类，提供复用所需要一些基本接口
@@ -354,6 +373,7 @@ class ReuseTabService {
         this.positionBuffer = {};
     }
     /**
+     * @private
      * @return {?}
      */
     get snapshot() {
@@ -487,7 +507,11 @@ class ReuseTabService {
      * @return {?}
      */
     index(url) {
-        return this._cached.findIndex(w => w.url === url);
+        return this._cached.findIndex((/**
+         * @param {?} w
+         * @return {?}
+         */
+        w => w.url === url));
     }
     /**
      * 获取指定路径缓存是否存在
@@ -503,9 +527,14 @@ class ReuseTabService {
      * @return {?}
      */
     get(url) {
-        return url ? this._cached.find(w => w.url === url) || null : null;
+        return url ? this._cached.find((/**
+         * @param {?} w
+         * @return {?}
+         */
+        w => w.url === url)) || null : null;
     }
     /**
+     * @private
      * @param {?} url
      * @param {?} includeNonCloseable
      * @return {?}
@@ -561,11 +590,19 @@ class ReuseTabService {
      * @return {?}
      */
     clear(includeNonCloseable = false) {
-        this._cached.forEach(w => {
+        this._cached.forEach((/**
+         * @param {?} w
+         * @return {?}
+         */
+        w => {
             if (!includeNonCloseable && w.closable)
                 this.destroy(w._handle);
-        });
-        this._cached = this._cached.filter(w => !includeNonCloseable && !w.closable);
+        }));
+        this._cached = this._cached.filter((/**
+         * @param {?} w
+         * @return {?}
+         */
+        w => !includeNonCloseable && !w.closable));
         this.removeUrlBuffer = null;
         this._cachedChange.next({ active: 'clear', list: this._cached });
         this.di('clear all catch');
@@ -590,7 +627,11 @@ class ReuseTabService {
      */
     move(url, position) {
         /** @type {?} */
-        const start = this._cached.findIndex(w => w.url === url);
+        const start = this._cached.findIndex((/**
+         * @param {?} w
+         * @return {?}
+         */
+        w => w.url === url));
         if (start === -1)
             return;
         /** @type {?} */
@@ -723,7 +764,11 @@ class ReuseTabService {
         /** @type {?} */
         const url = '/' +
             segments
-                .filter(i => i)
+                .filter((/**
+             * @param {?} i
+             * @return {?}
+             */
+            i => i))
                 .reverse()
                 .join('/');
         return url;
@@ -755,7 +800,11 @@ class ReuseTabService {
             }
             return true;
         }
-        return this._excludes.findIndex(r => r.test(url)) === -1;
+        return this._excludes.findIndex((/**
+         * @param {?} r
+         * @return {?}
+         */
+        r => r.test(url))) === -1;
     }
     /**
      * 刷新，触发一个 refresh 类型事件
@@ -768,6 +817,7 @@ class ReuseTabService {
     // #endregion
     // #region privates
     /**
+     * @private
      * @param {?} _handle
      * @return {?}
      */
@@ -776,6 +826,7 @@ class ReuseTabService {
             _handle.componentRef.destroy();
     }
     /**
+     * @private
      * @param {...?} args
      * @return {?}
      */
@@ -793,6 +844,7 @@ class ReuseTabService {
         this._inited = true;
     }
     /**
+     * @private
      * @param {?} url
      * @return {?}
      */
@@ -804,6 +856,7 @@ class ReuseTabService {
         return menus.pop();
     }
     /**
+     * @private
      * @param {?} method
      * @param {?} url
      * @param {?} comp
@@ -814,6 +867,7 @@ class ReuseTabService {
             comp.instance[method]();
     }
     /**
+     * @private
      * @param {?} route
      * @return {?}
      */
@@ -855,7 +909,11 @@ class ReuseTabService {
             if (this.count >= this._max) {
                 // Get the oldest closable location
                 /** @type {?} */
-                const closeIdx = this._cached.findIndex(w => w.closable);
+                const closeIdx = this._cached.findIndex((/**
+                 * @param {?} w
+                 * @return {?}
+                 */
+                w => w.closable));
                 if (closeIdx !== -1)
                     this.remove(closeIdx, false);
             }
@@ -953,6 +1011,7 @@ class ReuseTabService {
         return this.keepingScroll;
     }
     /**
+     * @private
      * @return {?}
      */
     get isDisabledInRouter() {
@@ -961,19 +1020,25 @@ class ReuseTabService {
         return routerConfig.scrollPositionRestoration === 'disabled';
     }
     /**
+     * @private
      * @return {?}
      */
     get ss() {
         return this.injector.get(ScrollService);
     }
     /**
+     * @private
      * @return {?}
      */
     initScroll() {
         if (this._router$) {
             this._router$.unsubscribe();
         }
-        this._router$ = this.injector.get(Router).events.subscribe(e => {
+        this._router$ = this.injector.get(Router).events.subscribe((/**
+         * @param {?} e
+         * @return {?}
+         */
+        e => {
             if (e instanceof NavigationStart) {
                 /** @type {?} */
                 const url = this.curUrl;
@@ -996,11 +1061,14 @@ class ReuseTabService {
                         this.ss.scrollToPosition(this.keepingScrollContainer, item.position);
                     }
                     else {
-                        setTimeout(() => this.ss.scrollToPosition(this.keepingScrollContainer, item.position), 1);
+                        setTimeout((/**
+                         * @return {?}
+                         */
+                        () => this.ss.scrollToPosition(this.keepingScrollContainer, item.position)), 1);
                     }
                 }
             }
-        });
+        }));
     }
     // #endregion
     /**
@@ -1028,7 +1096,7 @@ ReuseTabService.ctorParameters = () => [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class ReuseTabComponent {
     // #endregion
@@ -1073,6 +1141,7 @@ class ReuseTabComponent {
             typeof value === 'string' ? this.doc.querySelector(value) : value;
     }
     /**
+     * @private
      * @param {?} title
      * @return {?}
      */
@@ -1080,6 +1149,7 @@ class ReuseTabComponent {
         return title.i18n && this.i18nSrv ? this.i18nSrv.fanyi(title.i18n) : title.text;
     }
     /**
+     * @private
      * @param {?=} notify
      * @return {?}
      */
@@ -1087,9 +1157,18 @@ class ReuseTabComponent {
         /** @type {?} */
         const isClosed = notify && notify.active === 'close';
         /** @type {?} */
-        const beforeClosePos = isClosed ? this.list.findIndex(w => w.url === notify.url) : -1;
+        const beforeClosePos = isClosed ? this.list.findIndex((/**
+         * @param {?} w
+         * @return {?}
+         */
+        w => w.url === notify.url)) : -1;
         /** @type {?} */
-        const ls = this.srv.items.map((item, index) => {
+        const ls = this.srv.items.map((/**
+         * @param {?} item
+         * @param {?} index
+         * @return {?}
+         */
+        (item, index) => {
             return (/** @type {?} */ ({
                 url: item.url,
                 title: this.genTit(item.title),
@@ -1098,14 +1177,18 @@ class ReuseTabComponent {
                 active: false,
                 last: false,
             }));
-        });
+        }));
         if (this.showCurrent) {
             /** @type {?} */
             const snapshot = this.route.snapshot;
             /** @type {?} */
             const url = this.srv.getUrl(snapshot);
             /** @type {?} */
-            const idx = ls.findIndex(w => w.url === url);
+            const idx = ls.findIndex((/**
+             * @param {?} w
+             * @return {?}
+             */
+            w => w.url === url));
             // jump directly when the current exists in the list
             // or create a new current item and jump
             if (idx !== -1 || (isClosed && notify.url === url)) {
@@ -1137,6 +1220,7 @@ class ReuseTabComponent {
         this.cdr.detectChanges();
     }
     /**
+     * @private
      * @return {?}
      */
     visibility() {
@@ -1172,7 +1256,12 @@ class ReuseTabComponent {
     refStatus(dc = true) {
         if (this.list.length) {
             this.list[this.list.length - 1].last = true;
-            this.list.forEach((i, idx) => (i.active = this.pos === idx));
+            this.list.forEach((/**
+             * @param {?} i
+             * @param {?} idx
+             * @return {?}
+             */
+            (i, idx) => (i.active = this.pos === idx)));
         }
         if (dc)
             this.cdr.detectChanges();
@@ -1190,14 +1279,18 @@ class ReuseTabComponent {
         index = Math.max(0, Math.min(index, this.list.length - 1));
         /** @type {?} */
         const item = this.list[index];
-        this.router.navigateByUrl(item.url).then(res => {
+        this.router.navigateByUrl(item.url).then((/**
+         * @param {?} res
+         * @return {?}
+         */
+        res => {
             if (!res)
                 return;
             this.pos = index;
             this.item = item;
             this.refStatus();
             this.change.emit(item);
-        });
+        }));
     }
     /**
      * @param {?} e
@@ -1223,12 +1316,29 @@ class ReuseTabComponent {
      */
     ngOnInit() {
         this.router.events
-            .pipe(takeUntil(this.unsubscribe$), filter(evt => evt instanceof NavigationEnd))
-            .subscribe(() => this.genList());
-        this.srv.change.pipe(takeUntil(this.unsubscribe$)).subscribe(res => this.genList(res));
+            .pipe(takeUntil(this.unsubscribe$), filter((/**
+         * @param {?} evt
+         * @return {?}
+         */
+        evt => evt instanceof NavigationEnd)))
+            .subscribe((/**
+         * @return {?}
+         */
+        () => this.genList()));
+        this.srv.change.pipe(takeUntil(this.unsubscribe$)).subscribe((/**
+         * @param {?} res
+         * @return {?}
+         */
+        res => this.genList(res)));
         this.i18nSrv.change
-            .pipe(filter(() => this.srv.inited), takeUntil(this.unsubscribe$), debounceTime(100))
-            .subscribe(() => this.genList());
+            .pipe(filter((/**
+         * @return {?}
+         */
+        () => this.srv.inited)), takeUntil(this.unsubscribe$), debounceTime(100))
+            .subscribe((/**
+         * @return {?}
+         */
+        () => this.genList()));
         this.genList();
         this.srv.init();
     }
@@ -1318,7 +1428,7 @@ __decorate([
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class ReuseTabStrategy {
     /**
@@ -1368,7 +1478,7 @@ class ReuseTabStrategy {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const COMPONENTS = [ReuseTabComponent];
@@ -1391,12 +1501,12 @@ ReuseTabModule.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 export { ReuseTabContextMenuComponent, ReuseTabContextComponent, ReuseTabContextDirective, ReuseTabContextService, ReuseTabComponent, ReuseTabService, ReuseTabStrategy, ReuseTabModule, ReuseTabMatchMode };

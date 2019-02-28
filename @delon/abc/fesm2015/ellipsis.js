@@ -9,7 +9,7 @@ import { NgZorroAntdModule } from 'ng-zorro-antd';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class EllipsisComponent {
     // #endregion
@@ -39,20 +39,27 @@ class EllipsisComponent {
         this.tail = '...';
     }
     /**
+     * @private
      * @param {?} str
      * @return {?}
      */
     getStrFullLength(str) {
-        return str.split('').reduce((pre, cur) => {
+        return str.split('').reduce((/**
+         * @param {?} pre
+         * @param {?} cur
+         * @return {?}
+         */
+        (pre, cur) => {
             /** @type {?} */
             const charCode = cur.charCodeAt(0);
             if (charCode >= 0 && charCode <= 128) {
                 return pre + 1;
             }
             return pre + 2;
-        }, 0);
+        }), 0);
     }
     /**
+     * @private
      * @param {?} str
      * @param {?} maxLength
      * @return {?}
@@ -60,7 +67,12 @@ class EllipsisComponent {
     cutStrByFullLength(str, maxLength) {
         /** @type {?} */
         let showLength = 0;
-        return str.split('').reduce((pre, cur) => {
+        return str.split('').reduce((/**
+         * @param {?} pre
+         * @param {?} cur
+         * @return {?}
+         */
+        (pre, cur) => {
             /** @type {?} */
             const charCode = cur.charCodeAt(0);
             if (charCode >= 0 && charCode <= 128) {
@@ -73,9 +85,10 @@ class EllipsisComponent {
                 return pre + cur;
             }
             return pre;
-        }, '');
+        }), '');
     }
     /**
+     * @private
      * @param {?} th
      * @param {?} m
      * @param {?} b
@@ -124,6 +137,7 @@ class EllipsisComponent {
         return this.bisection(th, mid, begin, end, text, shadowNode);
     }
     /**
+     * @private
      * @return {?}
      */
     genType() {
@@ -148,6 +162,7 @@ class EllipsisComponent {
         cdr.detectChanges();
     }
     /**
+     * @private
      * @return {?}
      */
     gen() {
@@ -210,6 +225,7 @@ class EllipsisComponent {
         }
     }
     /**
+     * @private
      * @param {?} cls
      * @return {?}
      */
@@ -217,6 +233,7 @@ class EllipsisComponent {
         return this.el.nativeElement.querySelector(cls);
     }
     /**
+     * @private
      * @param {?} fn
      * @return {?}
      */
@@ -236,7 +253,10 @@ class EllipsisComponent {
      */
     refresh() {
         this.genType();
-        this.executeOnStable(() => {
+        this.executeOnStable((/**
+         * @return {?}
+         */
+        () => {
             const { type, dom, orgEl, cdr } = this;
             /** @type {?} */
             const html = orgEl.nativeElement.innerHTML;
@@ -250,7 +270,7 @@ class EllipsisComponent {
                     el.innerHTML = html;
                 }
             }
-        });
+        }));
     }
     /**
      * @return {?}
@@ -312,7 +332,7 @@ __decorate([
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const COMPONENTS = [EllipsisComponent];
@@ -328,12 +348,12 @@ EllipsisModule.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 export { EllipsisComponent, EllipsisModule };

@@ -9,7 +9,7 @@ import { NgZorroAntdModule } from 'ng-zorro-antd';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var EllipsisComponent = /** @class */ (function () {
     // #endregion
@@ -32,29 +32,38 @@ var EllipsisComponent = /** @class */ (function () {
         this.tail = '...';
     }
     /**
+     * @private
      * @param {?} str
      * @return {?}
      */
     EllipsisComponent.prototype.getStrFullLength = /**
+     * @private
      * @param {?} str
      * @return {?}
      */
     function (str) {
-        return str.split('').reduce(function (pre, cur) {
+        return str.split('').reduce((/**
+         * @param {?} pre
+         * @param {?} cur
+         * @return {?}
+         */
+        function (pre, cur) {
             /** @type {?} */
             var charCode = cur.charCodeAt(0);
             if (charCode >= 0 && charCode <= 128) {
                 return pre + 1;
             }
             return pre + 2;
-        }, 0);
+        }), 0);
     };
     /**
+     * @private
      * @param {?} str
      * @param {?} maxLength
      * @return {?}
      */
     EllipsisComponent.prototype.cutStrByFullLength = /**
+     * @private
      * @param {?} str
      * @param {?} maxLength
      * @return {?}
@@ -62,7 +71,12 @@ var EllipsisComponent = /** @class */ (function () {
     function (str, maxLength) {
         /** @type {?} */
         var showLength = 0;
-        return str.split('').reduce(function (pre, cur) {
+        return str.split('').reduce((/**
+         * @param {?} pre
+         * @param {?} cur
+         * @return {?}
+         */
+        function (pre, cur) {
             /** @type {?} */
             var charCode = cur.charCodeAt(0);
             if (charCode >= 0 && charCode <= 128) {
@@ -75,9 +89,10 @@ var EllipsisComponent = /** @class */ (function () {
                 return pre + cur;
             }
             return pre;
-        }, '');
+        }), '');
     };
     /**
+     * @private
      * @param {?} th
      * @param {?} m
      * @param {?} b
@@ -87,6 +102,7 @@ var EllipsisComponent = /** @class */ (function () {
      * @return {?}
      */
     EllipsisComponent.prototype.bisection = /**
+     * @private
      * @param {?} th
      * @param {?} m
      * @param {?} b
@@ -135,9 +151,11 @@ var EllipsisComponent = /** @class */ (function () {
         return this.bisection(th, mid, begin, end, text, shadowNode);
     };
     /**
+     * @private
      * @return {?}
      */
     EllipsisComponent.prototype.genType = /**
+     * @private
      * @return {?}
      */
     function () {
@@ -162,9 +180,11 @@ var EllipsisComponent = /** @class */ (function () {
         cdr.detectChanges();
     };
     /**
+     * @private
      * @return {?}
      */
     EllipsisComponent.prototype.gen = /**
+     * @private
      * @return {?}
      */
     function () {
@@ -227,10 +247,12 @@ var EllipsisComponent = /** @class */ (function () {
         }
     };
     /**
+     * @private
      * @param {?} cls
      * @return {?}
      */
     EllipsisComponent.prototype.getEl = /**
+     * @private
      * @param {?} cls
      * @return {?}
      */
@@ -238,10 +260,12 @@ var EllipsisComponent = /** @class */ (function () {
         return this.el.nativeElement.querySelector(cls);
     };
     /**
+     * @private
      * @param {?} fn
      * @return {?}
      */
     EllipsisComponent.prototype.executeOnStable = /**
+     * @private
      * @param {?} fn
      * @return {?}
      */
@@ -265,7 +289,10 @@ var EllipsisComponent = /** @class */ (function () {
     function () {
         var _this = this;
         this.genType();
-        this.executeOnStable(function () {
+        this.executeOnStable((/**
+         * @return {?}
+         */
+        function () {
             var _a = _this, type = _a.type, dom = _a.dom, orgEl = _a.orgEl, cdr = _a.cdr;
             /** @type {?} */
             var html = orgEl.nativeElement.innerHTML;
@@ -279,7 +306,7 @@ var EllipsisComponent = /** @class */ (function () {
                     el.innerHTML = html;
                 }
             }
-        });
+        }));
     };
     /**
      * @return {?}
@@ -348,7 +375,7 @@ var EllipsisComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 var COMPONENTS = [EllipsisComponent];
@@ -367,12 +394,12 @@ var EllipsisModule = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 export { EllipsisComponent, EllipsisModule };

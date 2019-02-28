@@ -7,12 +7,12 @@ import { Injectable, InjectionToken, NgModule, defineInjectable, Inject, inject 
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var DelonCacheConfig = /** @class */ (function () {
     function DelonCacheConfig() {
@@ -47,7 +47,7 @@ var DelonCacheConfig = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 var DC_STORE_STORAGE_TOKEN = new InjectionToken('DC_STORE_STORAGE_TOKEN', {
@@ -104,7 +104,7 @@ var LocalStorageCacheService = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var CacheService = /** @class */ (function () {
     function CacheService(_, store, http) {
@@ -139,17 +139,24 @@ var CacheService = /** @class */ (function () {
             var checkObj = path.length ? obj[path[0]] : obj;
             return typeof checkObj === 'undefined' ? defaultValue : checkObj;
         }
-        return path.reduce(function (o, k) { return o[k]; }, obj) || defaultValue;
+        return path.reduce((/**
+         * @param {?} o
+         * @param {?} k
+         * @return {?}
+         */
+        function (o, k) { return o[k]; }), obj) || defaultValue;
     };
     // #region meta
     // #region meta
     /**
+     * @private
      * @param {?} key
      * @return {?}
      */
     CacheService.prototype.pushMeta = 
     // #region meta
     /**
+     * @private
      * @param {?} key
      * @return {?}
      */
@@ -160,10 +167,12 @@ var CacheService = /** @class */ (function () {
         this.saveMeta();
     };
     /**
+     * @private
      * @param {?} key
      * @return {?}
      */
     CacheService.prototype.removeMeta = /**
+     * @private
      * @param {?} key
      * @return {?}
      */
@@ -174,9 +183,11 @@ var CacheService = /** @class */ (function () {
         this.saveMeta();
     };
     /**
+     * @private
      * @return {?}
      */
     CacheService.prototype.loadMeta = /**
+     * @private
      * @return {?}
      */
     function () {
@@ -184,19 +195,29 @@ var CacheService = /** @class */ (function () {
         /** @type {?} */
         var ret = this.store.get(this.cog.meta_key);
         if (ret && ret.v) {
-            ((/** @type {?} */ (ret.v))).forEach(function (key) { return _this.meta.add(key); });
+            ((/** @type {?} */ (ret.v))).forEach((/**
+             * @param {?} key
+             * @return {?}
+             */
+            function (key) { return _this.meta.add(key); }));
         }
     };
     /**
+     * @private
      * @return {?}
      */
     CacheService.prototype.saveMeta = /**
+     * @private
      * @return {?}
      */
     function () {
         /** @type {?} */
         var metaData = [];
-        this.meta.forEach(function (key) { return metaData.push(key); });
+        this.meta.forEach((/**
+         * @param {?} key
+         * @return {?}
+         */
+        function (key) { return metaData.push(key); }));
         this.store.set(this.cog.meta_key, { v: metaData, e: 0 });
     };
     /**
@@ -238,17 +259,23 @@ var CacheService = /** @class */ (function () {
             this.save(options.type, key, { v: data, e: e });
             return;
         }
-        return data.pipe(tap(function (v) {
+        return data.pipe(tap((/**
+         * @param {?} v
+         * @return {?}
+         */
+        function (v) {
             _this.save(options.type, key, { v: v, e: e });
-        }));
+        })));
     };
     /**
+     * @private
      * @param {?} type
      * @param {?} key
      * @param {?} value
      * @return {?}
      */
     CacheService.prototype.save = /**
+     * @private
      * @param {?} type
      * @param {?} key
      * @param {?} value
@@ -285,7 +312,15 @@ var CacheService = /** @class */ (function () {
             : this.store.get(this.cog.prefix + key);
         if (!value || (value.e && value.e > 0 && value.e < new Date().valueOf())) {
             if (isPromise) {
-                return this.http.get(key).pipe(map(function (ret) { return _this._deepGet(ret, (/** @type {?} */ (_this.cog.reName)), null); }), tap(function (v) { return _this.set(key, v, { type: options.type, expire: options.expire }); }));
+                return this.http.get(key).pipe(map((/**
+                 * @param {?} ret
+                 * @return {?}
+                 */
+                function (ret) { return _this._deepGet(ret, (/** @type {?} */ (_this.cog.reName)), null); })), tap((/**
+                 * @param {?} v
+                 * @return {?}
+                 */
+                function (v) { return _this.set(key, v, { type: options.type, expire: options.expire }); })));
             }
             return null;
         }
@@ -361,6 +396,7 @@ var CacheService = /** @class */ (function () {
     // #endregion
     // #region remove
     /**
+     * @private
      * @param {?} key
      * @param {?} needNotify
      * @return {?}
@@ -369,6 +405,7 @@ var CacheService = /** @class */ (function () {
     // #endregion
     // #region remove
     /**
+     * @private
      * @param {?} key
      * @param {?} needNotify
      * @return {?}
@@ -408,9 +445,18 @@ var CacheService = /** @class */ (function () {
      */
     function () {
         var _this = this;
-        this.notifyBuffer.forEach(function (v, k) { return _this.runNotify(k, 'remove'); });
+        this.notifyBuffer.forEach((/**
+         * @param {?} v
+         * @param {?} k
+         * @return {?}
+         */
+        function (v, k) { return _this.runNotify(k, 'remove'); }));
         this.memory.clear();
-        this.meta.forEach(function (key) { return _this.store.remove(_this.cog.prefix + key); });
+        this.meta.forEach((/**
+         * @param {?} key
+         * @return {?}
+         */
+        function (key) { return _this.store.remove(_this.cog.prefix + key); }));
     };
     Object.defineProperty(CacheService.prototype, "freq", {
         // #endregion
@@ -435,9 +481,11 @@ var CacheService = /** @class */ (function () {
         configurable: true
     });
     /**
+     * @private
      * @return {?}
      */
     CacheService.prototype.startExpireNotify = /**
+     * @private
      * @return {?}
      */
     function () {
@@ -445,52 +493,72 @@ var CacheService = /** @class */ (function () {
         this.runExpireNotify();
     };
     /**
+     * @private
      * @return {?}
      */
     CacheService.prototype.runExpireNotify = /**
+     * @private
      * @return {?}
      */
     function () {
         var _this = this;
-        this.freqTime = setTimeout(function () {
+        this.freqTime = setTimeout((/**
+         * @return {?}
+         */
+        function () {
             _this.checkExpireNotify();
             _this.runExpireNotify();
-        }, this.freqTick);
+        }), this.freqTick);
     };
     /**
+     * @private
      * @return {?}
      */
     CacheService.prototype.checkExpireNotify = /**
+     * @private
      * @return {?}
      */
     function () {
         var _this = this;
         /** @type {?} */
         var removed = [];
-        this.notifyBuffer.forEach(function (v, key) {
+        this.notifyBuffer.forEach((/**
+         * @param {?} v
+         * @param {?} key
+         * @return {?}
+         */
+        function (v, key) {
             if (_this.has(key) && _this.getNone(key) === null)
                 removed.push(key);
-        });
-        removed.forEach(function (key) {
+        }));
+        removed.forEach((/**
+         * @param {?} key
+         * @return {?}
+         */
+        function (key) {
             _this.runNotify(key, 'expire');
             _this._remove(key, false);
-        });
+        }));
     };
     /**
+     * @private
      * @return {?}
      */
     CacheService.prototype.abortExpireNotify = /**
+     * @private
      * @return {?}
      */
     function () {
         clearTimeout(this.freqTime);
     };
     /**
+     * @private
      * @param {?} key
      * @param {?} type
      * @return {?}
      */
     CacheService.prototype.runNotify = /**
+     * @private
      * @param {?} key
      * @param {?} type
      * @return {?}
@@ -573,7 +641,11 @@ var CacheService = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        this.notifyBuffer.forEach(function (v) { return v.unsubscribe(); });
+        this.notifyBuffer.forEach((/**
+         * @param {?} v
+         * @return {?}
+         */
+        function (v) { return v.unsubscribe(); }));
         this.notifyBuffer.clear();
     };
     // #endregion
@@ -606,7 +678,7 @@ var CacheService = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var DelonCacheModule = /** @class */ (function () {
     function DelonCacheModule() {
@@ -619,12 +691,12 @@ var DelonCacheModule = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 export { CacheService, DelonCacheConfig, DelonCacheModule, DC_STORE_STORAGE_TOKEN as ɵa, DC_STORE_STORAGE_TOKEN_FACTORY as ɵb, LocalStorageCacheService as ɵc };

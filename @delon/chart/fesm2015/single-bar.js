@@ -5,7 +5,7 @@ import { InputBoolean, InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class G2SingleBarComponent {
     // #endregion
@@ -30,6 +30,7 @@ class G2SingleBarComponent {
         this.textStyle = { fontSize: 12, color: '#595959' };
     }
     /**
+     * @private
      * @return {?}
      */
     install() {
@@ -49,11 +50,15 @@ class G2SingleBarComponent {
             .interval()
             .position('1*value')
             .opacity(1)
-            .label('value', val => ({
+            .label('value', (/**
+         * @param {?} val
+         * @return {?}
+         */
+        val => ({
             formatter: format,
             offset: val > 0 ? 10 : -10,
             textStyle: Object.assign({}, textStyle, { textAlign: val > 0 ? 'start' : 'end' }),
-        }));
+        })));
         if (line) {
             chart.guide().line({
                 start: ['50%', '0%'],
@@ -68,6 +73,7 @@ class G2SingleBarComponent {
         this.attachChart();
     }
     /**
+     * @private
      * @return {?}
      */
     attachChart() {
@@ -79,7 +85,11 @@ class G2SingleBarComponent {
         chart.set('padding', padding);
         chart
             .get('geoms')[0]
-            .color('value', val => (val > 0 ? plusColor : minusColor))
+            .color('value', (/**
+         * @param {?} val
+         * @return {?}
+         */
+        val => (val > 0 ? plusColor : minusColor)))
             .size(barSize);
         chart.repaint();
     }
@@ -87,20 +97,32 @@ class G2SingleBarComponent {
      * @return {?}
      */
     ngOnInit() {
-        this.ngZone.runOutsideAngular(() => setTimeout(() => this.install(), this.delay));
+        this.ngZone.runOutsideAngular((/**
+         * @return {?}
+         */
+        () => setTimeout((/**
+         * @return {?}
+         */
+        () => this.install()), this.delay)));
     }
     /**
      * @return {?}
      */
     ngOnChanges() {
-        this.ngZone.runOutsideAngular(() => this.attachChart());
+        this.ngZone.runOutsideAngular((/**
+         * @return {?}
+         */
+        () => this.attachChart()));
     }
     /**
      * @return {?}
      */
     ngOnDestroy() {
         if (this.chart) {
-            this.ngZone.runOutsideAngular(() => this.chart.destroy());
+            this.ngZone.runOutsideAngular((/**
+             * @return {?}
+             */
+            () => this.chart.destroy()));
         }
     }
 }
@@ -164,7 +186,7 @@ __decorate([
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const COMPONENTS = [G2SingleBarComponent];
@@ -180,12 +202,12 @@ G2SingleBarModule.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 export { G2SingleBarComponent, G2SingleBarModule };

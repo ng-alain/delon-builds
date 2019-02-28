@@ -64,7 +64,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var DelonAuthConfig = /** @class */ (function () {
         function DelonAuthConfig() {
@@ -123,7 +123,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /**
      * @return {?}
@@ -175,7 +175,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
     var DA_STORE_TOKEN = new i0.InjectionToken('AUTH_STORE_TOKEN', {
@@ -185,7 +185,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /**
      * @return {?}
@@ -276,7 +276,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
     var DA_SERVICE_TOKEN = new i0.InjectionToken('DA_SERVICE_TOKEN', {
@@ -286,7 +286,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
     var OPENTYPE = '_delonAuthSocialType';
@@ -335,7 +335,9 @@
                     return;
                 }
                 this._win = window.open(url, '_blank', options.windowFeatures);
-                this._winTime = setInterval(function () {
+                this._winTime = setInterval(( /**
+                 * @return {?}
+                 */function () {
                     if (_this._win && _this._win.closed) {
                         _this.ngOnDestroy();
                         /** @type {?} */
@@ -349,10 +351,13 @@
                         _this.observer.next(model);
                         _this.observer.complete();
                     }
-                }, 100);
-                return rxjs.Observable.create(function (observer) {
+                }), 100);
+                return rxjs.Observable.create(( /**
+                 * @param {?} observer
+                 * @return {?}
+                 */function (observer) {
                     _this.observer = observer;
-                });
+                }));
             };
         /**
          * 授权成功后的回调处理
@@ -430,7 +435,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var MemoryStore = /** @class */ (function () {
         function MemoryStore() {
@@ -477,7 +482,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var SessionStorageStore = /** @class */ (function () {
         function SessionStorageStore() {
@@ -523,7 +528,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /**
      * @param {?} model
@@ -549,20 +554,22 @@
     function ToLogin(options, injector, url) {
         (( /** @type {?} */(injector.get(DA_SERVICE_TOKEN)))).referrer.url = url;
         if (options.token_invalid_redirect === true) {
-            setTimeout(function () {
+            setTimeout(( /**
+             * @return {?}
+             */function () {
                 if (/^https?:\/\//g.test(options.login_url)) {
                     injector.get(common.DOCUMENT).location.href = options.login_url;
                 }
                 else {
                     injector.get(router.Router).navigate([options.login_url]);
                 }
-            });
+            }));
         }
     }
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var HttpAuthInterceptorHandler = /** @class */ (function () {
         function HttpAuthInterceptorHandler(next, interceptor) {
@@ -637,7 +644,10 @@
                     ToLogin(options, this.injector, req.urlWithParams);
                     // Interrupt Http request, so need to generate a new Observable
                     /** @type {?} */
-                    var err$_1 = new rxjs.Observable(function (observer) {
+                    var err$_1 = new rxjs.Observable(( /**
+                     * @param {?} observer
+                     * @return {?}
+                     */function (observer) {
                         /** @type {?} */
                         var res = new http.HttpErrorResponse({
                             url: req.url,
@@ -646,7 +656,7 @@
                             statusText: "From Auth Intercept --> https://ng-alain.com/docs/auth",
                         });
                         observer.error(res);
-                    });
+                    }));
                     if (options.executeOtherInterceptors) {
                         /** @type {?} */
                         var interceptors = this.injector.get(http.HTTP_INTERCEPTORS, []);
@@ -654,7 +664,14 @@
                         var lastInterceptors = interceptors.slice(interceptors.indexOf(this) + 1);
                         if (lastInterceptors.length > 0) {
                             /** @type {?} */
-                            var chain = lastInterceptors.reduceRight(function (_next, _interceptor) { return new HttpAuthInterceptorHandler(_next, _interceptor); }, { handle: function (_) { return err$_1; } });
+                            var chain = lastInterceptors.reduceRight(( /**
+                             * @param {?} _next
+                             * @param {?} _interceptor
+                             * @return {?}
+                             */function (_next, _interceptor) { return new HttpAuthInterceptorHandler(_next, _interceptor); }), { handle: ( /**
+                                     * @param {?} _
+                                     * @return {?}
+                                     */function (_) { return err$_1; }) });
                             return chain.handle(req);
                         }
                     }
@@ -673,7 +690,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /**
      * @param {?} str
@@ -736,15 +753,18 @@
      */
     function b64DecodeUnicode(str) {
         return decodeURIComponent(Array.prototype.map
-            .call(b64decode(str), function (c) {
+            .call(b64decode(str), ( /**
+     * @param {?} c
+     * @return {?}
+     */function (c) {
             return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-        })
+        }))
             .join(''));
     }
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var JWTTokenModel = /** @class */ (function () {
         function JWTTokenModel() {
@@ -803,7 +823,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var JWTInterceptor = /** @class */ (function (_super) {
         __extends(JWTInterceptor, _super);
@@ -847,7 +867,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var JWTGuard = /** @class */ (function () {
         function JWTGuard(srv, injector, cog) {
@@ -856,9 +876,11 @@
             this.cog = __assign({}, new DelonAuthConfig(), cog);
         }
         /**
+         * @private
          * @return {?}
          */
         JWTGuard.prototype.process = /**
+         * @private
          * @return {?}
          */
             function () {
@@ -940,7 +962,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var SimpleTokenModel = /** @class */ (function () {
         function SimpleTokenModel() {
@@ -950,7 +972,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var SimpleInterceptor = /** @class */ (function (_super) {
         __extends(SimpleInterceptor, _super);
@@ -982,7 +1004,11 @@
             function (req, options) {
                 var _this = this;
                 /** @type {?} */
-                var token = options.token_send_template.replace(/\$\{([\w]+)\}/g, function (_, g) { return _this.model[g]; });
+                var token = options.token_send_template.replace(/\$\{([\w]+)\}/g, ( /**
+                 * @param {?} _
+                 * @param {?} g
+                 * @return {?}
+                 */function (_, g) { return _this.model[g]; }));
                 switch (options.token_send_place) {
                     case 'header':
                         /** @type {?} */
@@ -1016,7 +1042,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var SimpleGuard = /** @class */ (function () {
         function SimpleGuard(srv, injector, cog) {
@@ -1025,9 +1051,11 @@
             this.cog = __assign({}, new DelonAuthConfig(), cog);
         }
         /**
+         * @private
          * @return {?}
          */
         SimpleGuard.prototype.process = /**
+         * @private
          * @return {?}
          */
             function () {
@@ -1109,7 +1137,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var DelonAuthModule = /** @class */ (function () {
         function DelonAuthModule() {
@@ -1122,12 +1150,12 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     exports.SocialService = SocialService;

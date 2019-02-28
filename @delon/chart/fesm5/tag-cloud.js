@@ -7,7 +7,7 @@ import { InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var G2TagCloudComponent = /** @class */ (function () {
     // #endregion
@@ -21,9 +21,11 @@ var G2TagCloudComponent = /** @class */ (function () {
         this.data = [];
     }
     /**
+     * @private
      * @return {?}
      */
     G2TagCloudComponent.prototype.initTagCloud = /**
+     * @private
      * @return {?}
      */
     function () {
@@ -44,9 +46,11 @@ var G2TagCloudComponent = /** @class */ (function () {
         });
     };
     /**
+     * @private
      * @return {?}
      */
     G2TagCloudComponent.prototype.install = /**
+     * @private
      * @return {?}
      */
     function () {
@@ -73,9 +77,11 @@ var G2TagCloudComponent = /** @class */ (function () {
         this.attachChart();
     };
     /**
+     * @private
      * @return {?}
      */
     G2TagCloudComponent.prototype.attachChart = /**
+     * @private
      * @return {?}
      */
     function () {
@@ -100,15 +106,22 @@ var G2TagCloudComponent = /** @class */ (function () {
             padding: padding,
             timeInterval: 5000,
             // max execute time
-            rotate: function () {
+            rotate: (/**
+             * @return {?}
+             */
+            function () {
                 /** @type {?} */
                 var random = ~~(Math.random() * 4) % 4;
                 if (random === 2) {
                     random = 0;
                 }
                 return random * 90; // 0, 90, 270
-            },
-            fontSize: function (d) { return (d.value ? ((d.value - min) / (max - min)) * (80 - 24) + 24 : 0); },
+            }),
+            fontSize: (/**
+             * @param {?} d
+             * @return {?}
+             */
+            function (d) { return (d.value ? ((d.value - min) / (max - min)) * (80 - 24) + 24 : 0); }),
         });
         chart.source(dv, {
             x: { nice: false },
@@ -117,26 +130,39 @@ var G2TagCloudComponent = /** @class */ (function () {
         chart.repaint();
     };
     /**
+     * @private
      * @return {?}
      */
     G2TagCloudComponent.prototype._attachChart = /**
+     * @private
      * @return {?}
      */
     function () {
         var _this = this;
-        this.ngZone.runOutsideAngular(function () { return _this.attachChart(); });
+        this.ngZone.runOutsideAngular((/**
+         * @return {?}
+         */
+        function () { return _this.attachChart(); }));
     };
     /**
+     * @private
      * @return {?}
      */
     G2TagCloudComponent.prototype.installResizeEvent = /**
+     * @private
      * @return {?}
      */
     function () {
         var _this = this;
         this.resize$ = fromEvent(window, 'resize')
-            .pipe(filter(function () { return _this.chart; }), debounceTime(200))
-            .subscribe(function () { return _this._attachChart(); });
+            .pipe(filter((/**
+         * @return {?}
+         */
+        function () { return _this.chart; })), debounceTime(200))
+            .subscribe((/**
+         * @return {?}
+         */
+        function () { return _this._attachChart(); }));
     };
     /**
      * @return {?}
@@ -148,7 +174,13 @@ var G2TagCloudComponent = /** @class */ (function () {
         var _this = this;
         this.initTagCloud();
         this.installResizeEvent();
-        this.ngZone.runOutsideAngular(function () { return setTimeout(function () { return _this.install(); }, _this.delay); });
+        this.ngZone.runOutsideAngular((/**
+         * @return {?}
+         */
+        function () { return setTimeout((/**
+         * @return {?}
+         */
+        function () { return _this.install(); }), _this.delay); }));
     };
     /**
      * @return {?}
@@ -169,7 +201,10 @@ var G2TagCloudComponent = /** @class */ (function () {
         var _this = this;
         this.resize$.unsubscribe();
         if (this.chart) {
-            this.ngZone.runOutsideAngular(function () { return _this.chart.destroy(); });
+            this.ngZone.runOutsideAngular((/**
+             * @return {?}
+             */
+            function () { return _this.chart.destroy(); }));
         }
     };
     G2TagCloudComponent.decorators = [
@@ -206,7 +241,7 @@ var G2TagCloudComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 var COMPONENTS = [G2TagCloudComponent];
@@ -225,12 +260,12 @@ var G2TagCloudModule = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 export { G2TagCloudComponent, G2TagCloudModule };

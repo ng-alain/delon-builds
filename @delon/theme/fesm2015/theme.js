@@ -14,7 +14,7 @@ import { InjectionToken, Injectable, Inject, Pipe, Version, Injector, Optional, 
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * @return {?}
@@ -30,7 +30,7 @@ const WINDOW = new InjectionToken('Window', {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * @return {?}
@@ -48,27 +48,36 @@ function preloaderFinished() {
         // preloader value null when running --hmr
         if (!preloader)
             return;
-        preloader.addEventListener('transitionend', function () {
+        preloader.addEventListener('transitionend', (/**
+         * @return {?}
+         */
+        function () {
             preloader.className = 'preloader-hidden';
-        });
+        }));
         preloader.className += ' preloader-hidden-add preloader-hidden-add-active';
     }
-    ((/** @type {?} */ (window))).appBootstrap = () => {
-        setTimeout(() => {
+    ((/** @type {?} */ (window))).appBootstrap = (/**
+     * @return {?}
+     */
+    () => {
+        setTimeout((/**
+         * @return {?}
+         */
+        () => {
             remove();
             body.style.overflow = '';
-        }, 100);
-    };
+        }), 100);
+    });
 }
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const ALAIN_I18N_TOKEN = new InjectionToken('alainTranslatorToken', {
@@ -89,7 +98,11 @@ class AlainI18NServiceFake {
      * @return {?}
      */
     get change() {
-        return this.change$.asObservable().pipe(filter(w => w != null));
+        return this.change$.asObservable().pipe(filter((/**
+         * @param {?} w
+         * @return {?}
+         */
+        w => w != null)));
     }
     /**
      * @param {?} lang
@@ -119,7 +132,7 @@ AlainI18NServiceFake.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class MenuService {
     /**
@@ -131,7 +144,10 @@ class MenuService {
         this.aclService = aclService;
         this._change$ = new BehaviorSubject([]);
         this.data = [];
-        this.i18n$ = this.i18nSrv.change.subscribe(() => this.resume());
+        this.i18n$ = this.i18nSrv.change.subscribe((/**
+         * @return {?}
+         */
+        () => this.resume()));
     }
     /**
      * @return {?}
@@ -146,7 +162,13 @@ class MenuService {
      */
     visit(data, callback) {
         /** @type {?} */
-        const inFn = (list, parentMenu, depth) => {
+        const inFn = (/**
+         * @param {?} list
+         * @param {?} parentMenu
+         * @param {?} depth
+         * @return {?}
+         */
+        (list, parentMenu, depth) => {
             for (const item of list) {
                 callback(item, parentMenu, depth);
                 if (item.children && item.children.length > 0) {
@@ -156,7 +178,7 @@ class MenuService {
                     item.children = [];
                 }
             }
-        };
+        });
         inFn(data, null, 0);
     }
     /**
@@ -177,7 +199,13 @@ class MenuService {
         let i = 1;
         /** @type {?} */
         const shortcuts = [];
-        this.visit(this.data, (item, parent, depth) => {
+        this.visit(this.data, (/**
+         * @param {?} item
+         * @param {?} parent
+         * @param {?} depth
+         * @return {?}
+         */
+        (item, parent, depth) => {
             item.__id = i++;
             item.__parent = parent;
             item._depth = depth;
@@ -235,7 +263,7 @@ class MenuService {
             }
             if (callback)
                 callback(item, parent, depth);
-        });
+        }));
         this.loadShortcut(shortcuts);
         this._change$.next(this.data);
     }
@@ -245,6 +273,7 @@ class MenuService {
      *      1、若 children 存在 【shortcutRoot: true】则最优先【推荐】这种方式
      *      2、否则查找带有【dashboard】字样链接，若存在则在此菜单的下方创建快捷入口
      *      3、否则放在0节点位置
+     * @private
      * @param {?} shortcuts
      * @return {?}
      */
@@ -255,9 +284,17 @@ class MenuService {
         /** @type {?} */
         const ls = this.data[0].children;
         /** @type {?} */
-        let pos = ls.findIndex(w => w.shortcutRoot === true);
+        let pos = ls.findIndex((/**
+         * @param {?} w
+         * @return {?}
+         */
+        w => w.shortcutRoot === true));
         if (pos === -1) {
-            pos = ls.findIndex(w => w.link.includes('dashboard'));
+            pos = ls.findIndex((/**
+             * @param {?} w
+             * @return {?}
+             */
+            w => w.link.includes('dashboard')));
             pos = (pos !== -1 ? pos : -1) + 1;
             /** @type {?} */
             const shortcutMenu = (/** @type {?} */ ({
@@ -280,11 +317,15 @@ class MenuService {
             _type: 3,
             _depth: 1,
         });
-        _data.children = shortcuts.map(i => {
+        _data.children = shortcuts.map((/**
+         * @param {?} i
+         * @return {?}
+         */
+        i => {
             i._depth = 2;
             i.__parent = _data;
             return i;
-        });
+        }));
     }
     /**
      * @return {?}
@@ -311,14 +352,18 @@ class MenuService {
         /** @type {?} */
         let item = null;
         while (!item && url) {
-            this.visit(data, i => {
+            this.visit(data, (/**
+             * @param {?} i
+             * @return {?}
+             */
+            i => {
                 if (cb) {
                     cb(i);
                 }
                 if (i.link != null && i.link === url) {
                     item = i;
                 }
-            });
+            }));
             if (!recursive)
                 break;
             url = url
@@ -340,10 +385,14 @@ class MenuService {
         if (!url)
             return;
         /** @type {?} */
-        let findItem = this.getHit(this.data, url, recursive, i => {
+        let findItem = this.getHit(this.data, url, recursive, (/**
+         * @param {?} i
+         * @return {?}
+         */
+        i => {
             i._selected = false;
             i._open = false;
-        });
+        }));
         if (!findItem)
             return;
         do {
@@ -393,7 +442,7 @@ MenuService.ctorParameters = () => [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class ScrollService {
     /**
@@ -466,12 +515,12 @@ ScrollService.ctorParameters = () => [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const LAYOUT = 'layout';
@@ -487,6 +536,7 @@ class SettingsService {
         this._layout = null;
     }
     /**
+     * @private
      * @param {?} key
      * @return {?}
      */
@@ -494,6 +544,7 @@ class SettingsService {
         return JSON.parse(localStorage.getItem(key) || 'null') || null;
     }
     /**
+     * @private
      * @param {?} key
      * @param {?} value
      * @return {?}
@@ -581,12 +632,12 @@ SettingsService.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class AlainThemeConfig {
 }
@@ -597,7 +648,7 @@ AlainThemeConfig.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const REP_MAX = 6;
@@ -615,8 +666,16 @@ class ResponsiveService {
                 6: { xs: 24, sm: 12, md: 8, lg: 6, xl: 4, xxl: 2 },
             } }, (/** @type {?} */ (cog)).responsive);
         if (Object.keys(this.cog.rules)
-            .map(i => +i)
-            .some((i) => i < 1 || i > REP_MAX)) {
+            .map((/**
+         * @param {?} i
+         * @return {?}
+         */
+        i => +i))
+            .some((/**
+         * @param {?} i
+         * @return {?}
+         */
+        (i) => i < 1 || i > REP_MAX))) {
             throw new Error(`[theme] the responseive rule index value range must be 1-${REP_MAX}`);
         }
     }
@@ -655,7 +714,7 @@ ResponsiveService.ctorParameters = () => [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class TitleService {
     /**
@@ -680,8 +739,14 @@ class TitleService {
          */
         this.default = `Not Page Name`;
         this.i18n$ = this.i18nSrv.change
-            .pipe(filter(() => !!this.i18n$))
-            .subscribe(() => this.setTitle());
+            .pipe(filter((/**
+         * @return {?}
+         */
+        () => !!this.i18n$)))
+            .subscribe((/**
+         * @return {?}
+         */
+        () => this.setTitle()));
     }
     /**
      * 设置分隔符
@@ -716,6 +781,7 @@ class TitleService {
         this._reverse = value;
     }
     /**
+     * @private
      * @return {?}
      */
     getByElement() {
@@ -728,6 +794,7 @@ class TitleService {
         return '';
     }
     /**
+     * @private
      * @return {?}
      */
     getByRoute() {
@@ -742,6 +809,7 @@ class TitleService {
         return data.title;
     }
     /**
+     * @private
      * @return {?}
      */
     getByMenu() {
@@ -814,19 +882,19 @@ TitleService.ctorParameters = () => [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const DELON_LOCALE = new InjectionToken('delon-locale');
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var zhCN = (/** @type {?} */ ({
     abbr: 'zh-CN',
@@ -869,7 +937,7 @@ var zhCN = (/** @type {?} */ ({
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class DelonLocaleService {
     /**
@@ -934,7 +1002,7 @@ const DELON_LOCALE_SERVICE_PROVIDER = {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 const ɵ0 = zhCN;
 class DelonLocaleModule {
@@ -950,7 +1018,7 @@ DelonLocaleModule.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var enUS = (/** @type {?} */ ({
     abbr: 'en-US',
@@ -993,7 +1061,7 @@ var enUS = (/** @type {?} */ ({
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var zhTW = (/** @type {?} */ ({
     abbr: 'zh-TW',
@@ -1036,7 +1104,7 @@ var zhTW = (/** @type {?} */ ({
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var trTR = (/** @type {?} */ ({
     abbr: 'tr-TR',
@@ -1079,7 +1147,7 @@ var trTR = (/** @type {?} */ ({
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var plPL = (/** @type {?} */ ({
     abbr: 'en-US',
@@ -1122,7 +1190,7 @@ var plPL = (/** @type {?} */ ({
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var elGR = (/** @type {?} */ ({
     abbr: 'el-GR',
@@ -1165,17 +1233,17 @@ var elGR = (/** @type {?} */ ({
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * 对话框辅助类
@@ -1209,7 +1277,11 @@ class ModalHelper {
      */
     create(comp, params, options) {
         options = Object.assign({ size: 'lg', exact: true, includeTabs: false }, options);
-        return new Observable((observer) => {
+        return new Observable((/**
+         * @param {?} observer
+         * @return {?}
+         */
+        (observer) => {
             /** @type {?} */
             let cls = '';
             /** @type {?} */
@@ -1237,7 +1309,11 @@ class ModalHelper {
             /** @type {?} */
             const subject = this.srv.create(Object.assign({}, defaultOptions, options.modalOptions));
             /** @type {?} */
-            const afterClose$ = subject.afterClose.subscribe((res) => {
+            const afterClose$ = subject.afterClose.subscribe((/**
+             * @param {?} res
+             * @return {?}
+             */
+            (res) => {
                 if (options.exact === true) {
                     if (res != null) {
                         observer.next(res);
@@ -1248,8 +1324,8 @@ class ModalHelper {
                 }
                 observer.complete();
                 afterClose$.unsubscribe();
-            });
-        });
+            }));
+        }));
     }
     /**
      * 构建静态框，点击蒙层不允许关闭
@@ -1335,7 +1411,7 @@ ModalHelper.ctorParameters = () => [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * 抽屉辅助类
@@ -1376,7 +1452,11 @@ class DrawerHelper {
                 nzPlacement: 'right',
                 nzWrapClassName: '',
             } }, options);
-        return new Observable((observer) => {
+        return new Observable((/**
+         * @param {?} observer
+         * @return {?}
+         */
+        (observer) => {
             const { size, footer, footerHeight, drawerOptions } = options;
             /** @type {?} */
             const defaultOptions = {
@@ -1404,14 +1484,18 @@ class DrawerHelper {
             /** @type {?} */
             const subject = this.srv.create(Object.assign({}, defaultOptions, drawerOptions));
             /** @type {?} */
-            const afterClose$ = subject.afterClose.subscribe((res) => {
+            const afterClose$ = subject.afterClose.subscribe((/**
+             * @param {?} res
+             * @return {?}
+             */
+            (res) => {
                 if (res != null && res !== false) {
                     observer.next(res);
                 }
                 observer.complete();
                 afterClose$.unsubscribe();
-            });
-        });
+            }));
+        }));
     }
     /**
      * 构建一个抽屉，点击蒙层不允许关闭
@@ -1438,7 +1522,7 @@ DrawerHelper.ctorParameters = () => [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * 封装HttpClient，主要解决：
@@ -1471,7 +1555,11 @@ class _HttpClient {
     parseParams(params) {
         /** @type {?} */
         const newParams = {};
-        Object.keys(params).forEach(key => {
+        Object.keys(params).forEach((/**
+         * @param {?} key
+         * @return {?}
+         */
+        key => {
             /** @type {?} */
             let _data = params[key];
             // 忽略空值
@@ -1482,7 +1570,7 @@ class _HttpClient {
                 _data = _data.valueOf();
             }
             newParams[key] = _data;
-        });
+        }));
         return new HttpParams({ fromObject: newParams });
     }
     /**
@@ -1506,14 +1594,20 @@ class _HttpClient {
      */
     begin() {
         // console.time('http');
-        setTimeout(() => (this._loading = true));
+        setTimeout((/**
+         * @return {?}
+         */
+        () => (this._loading = true)));
     }
     /**
      * @return {?}
      */
     end() {
         // console.timeEnd('http');
-        setTimeout(() => (this._loading = false));
+        setTimeout((/**
+         * @return {?}
+         */
+        () => (this._loading = false)));
     }
     /**
      * GET 请求
@@ -1557,12 +1651,19 @@ class _HttpClient {
      * @return {?}
      */
     jsonp(url, params, callbackParam = 'JSONP_CALLBACK') {
-        return this.http.jsonp(this.appliedUrl(url, params), callbackParam).pipe(tap(() => {
+        return this.http.jsonp(this.appliedUrl(url, params), callbackParam).pipe(tap((/**
+         * @return {?}
+         */
+        () => {
             this.end();
-        }), catchError(res => {
+        })), catchError((/**
+         * @param {?} res
+         * @return {?}
+         */
+        res => {
             this.end();
             return throwError(res);
-        }));
+        })));
     }
     /**
      * PATCH 请求
@@ -1602,12 +1703,19 @@ class _HttpClient {
             if (options.params)
                 options.params = this.parseParams(options.params);
         }
-        return this.http.request(method, url, options).pipe(tap(() => {
+        return this.http.request(method, url, options).pipe(tap((/**
+         * @return {?}
+         */
+        () => {
             this.end();
-        }), catchError(res => {
+        })), catchError((/**
+         * @param {?} res
+         * @return {?}
+         */
+        res => {
             this.end();
             return throwError(res);
-        }));
+        })));
     }
 }
 _HttpClient.decorators = [
@@ -1622,7 +1730,7 @@ _HttpClient.ctorParameters = () => [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * @abstract
@@ -1661,12 +1769,17 @@ function setParam(target, key = paramKey) {
  * @return {?}
  */
 function BaseUrl(url) {
-    return function (target) {
+    return (/**
+     * @template TClass
+     * @param {?} target
+     * @return {?}
+     */
+    function (target) {
         /** @type {?} */
         const params = setParam(target.prototype);
         params.baseUrl = url;
         return target;
-    };
+    });
 }
 /**
  * 默认 `headers`
@@ -1675,20 +1788,36 @@ function BaseUrl(url) {
  * @return {?}
  */
 function BaseHeaders(headers) {
-    return function (target) {
+    return (/**
+     * @template TClass
+     * @param {?} target
+     * @return {?}
+     */
+    function (target) {
         /** @type {?} */
         const params = setParam(target.prototype);
         params.baseHeaders = headers;
         return target;
-    };
+    });
 }
 /**
  * @param {?} paramName
  * @return {?}
  */
 function makeParam(paramName) {
-    return function (key, ...extraOptions) {
-        return function (target, propertyKey, index) {
+    return (/**
+     * @param {?=} key
+     * @param {...?} extraOptions
+     * @return {?}
+     */
+    function (key, ...extraOptions) {
+        return (/**
+         * @param {?} target
+         * @param {?} propertyKey
+         * @param {?} index
+         * @return {?}
+         */
+        function (target, propertyKey, index) {
             /** @type {?} */
             const params = setParam(setParam(target), propertyKey);
             /** @type {?} */
@@ -1698,8 +1827,8 @@ function makeParam(paramName) {
             }
             tParams.push(Object.assign({ key,
                 index }, extraOptions));
-        };
-    };
+        });
+    });
 }
 /**
  * URL路由参数
@@ -1731,9 +1860,24 @@ const Headers = makeParam('headers');
  * @return {?}
  */
 function makeMethod(method) {
-    return function (url = '', options) {
-        return (target, targetKey, descriptor) => {
-            descriptor.value = function (...args) {
+    return (/**
+     * @param {?=} url
+     * @param {?=} options
+     * @return {?}
+     */
+    function (url = '', options) {
+        return (/**
+         * @param {?} target
+         * @param {?=} targetKey
+         * @param {?=} descriptor
+         * @return {?}
+         */
+        (target, targetKey, descriptor) => {
+            descriptor.value = (/**
+             * @param {...?} args
+             * @return {?}
+             */
+            function (...args) {
                 options = options || {};
                 /** @type {?} */
                 const http = this.injector.get(_HttpClient, null);
@@ -1766,24 +1910,38 @@ function makeMethod(method) {
                     }
                     delete options.acl;
                 }
-                (data.path || []).forEach((i) => {
+                (data.path || []).forEach((/**
+                 * @param {?} i
+                 * @return {?}
+                 */
+                (i) => {
                     requestUrl = requestUrl.replace(new RegExp(`:${i.key}`, 'g'), encodeURIComponent(args[i.index]));
-                });
+                }));
                 /** @type {?} */
-                const params = (data.query || []).reduce((p, i) => {
+                const params = (data.query || []).reduce((/**
+                 * @param {?} p
+                 * @param {?} i
+                 * @return {?}
+                 */
+                (p, i) => {
                     p[i.key] = args[i.index];
                     return p;
-                }, {});
+                }), {});
                 /** @type {?} */
-                const headers = (data.headers || []).reduce((p, i) => {
+                const headers = (data.headers || []).reduce((/**
+                 * @param {?} p
+                 * @param {?} i
+                 * @return {?}
+                 */
+                (p, i) => {
                     p[i.key] = args[i.index];
                     return p;
-                }, {});
+                }), {});
                 return http.request(method, requestUrl, Object.assign({ body: data.body && data.body.length > 0 ? args[data.body[0].index] : null, params, headers: Object.assign({}, baseData.baseHeaders, headers) }, options));
-            };
+            });
             return descriptor;
-        };
-    };
+        });
+    });
 }
 /**
  * `OPTIONS` 请求
@@ -1836,7 +1994,7 @@ const JSONP = makeMethod('JSONP');
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class DatePipe {
     /**
@@ -1867,7 +2025,7 @@ DatePipe.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * @see https://ng-alain.com/theme/currency
@@ -1891,7 +2049,7 @@ CNCurrencyPipe.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * @see https://ng-alain.com/theme/keys
@@ -1917,7 +2075,7 @@ KeysPipe.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class YNPipe {
     /**
@@ -1948,7 +2106,7 @@ YNPipe.ctorParameters = () => [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class HTMLPipe {
     /**
@@ -1975,7 +2133,7 @@ HTMLPipe.ctorParameters = () => [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class URLPipe {
     /**
@@ -2002,7 +2160,7 @@ URLPipe.ctorParameters = () => [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class I18nPipe {
     /**
@@ -2031,7 +2189,7 @@ I18nPipe.ctorParameters = () => [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const HELPERS = [ModalHelper, DrawerHelper];
@@ -2091,19 +2249,19 @@ AlainThemeModule.ctorParameters = () => [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-const VERSION = new Version('7.0.0-rc.10-bca02030');
+const VERSION = new Version('7.0.0-rc.10-9bc3badf');
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 export { WINDOW, preloaderFinished, TitleService, ALAIN_I18N_TOKEN, AlainI18NServiceFake, _HttpClient, DatePipe, CNCurrencyPipe, KeysPipe, YNPipe, HTMLPipe, URLPipe, AlainThemeConfig, AlainThemeModule, VERSION, MenuService, ScrollService, LAYOUT, USER, APP, SettingsService, REP_MAX, ResponsiveService, enUS as en_US, zhCN as zh_CN, zhTW as zh_TW, trTR as tr_TR, plPL as pl_PL, elGR as el_GR, DELON_LOCALE, DELON_LOCALE_SERVICE_PROVIDER_FACTORY, DelonLocaleService, DELON_LOCALE_SERVICE_PROVIDER, DelonLocaleModule, ModalHelper, DrawerHelper, BaseUrl, BaseHeaders, BaseApi, Path, Query, Body, Headers, OPTIONS, GET, POST, DELETE, PUT, HEAD, PATCH, JSONP, ALAIN_I18N_TOKEN_FACTORY as ɵa, I18nPipe as ɵb };

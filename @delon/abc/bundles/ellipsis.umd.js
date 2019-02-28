@@ -69,7 +69,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var EllipsisComponent = /** @class */ (function () {
         // #endregion
@@ -92,29 +92,37 @@
             this.tail = '...';
         }
         /**
+         * @private
          * @param {?} str
          * @return {?}
          */
         EllipsisComponent.prototype.getStrFullLength = /**
+         * @private
          * @param {?} str
          * @return {?}
          */
             function (str) {
-                return str.split('').reduce(function (pre, cur) {
+                return str.split('').reduce(( /**
+                 * @param {?} pre
+                 * @param {?} cur
+                 * @return {?}
+                 */function (pre, cur) {
                     /** @type {?} */
                     var charCode = cur.charCodeAt(0);
                     if (charCode >= 0 && charCode <= 128) {
                         return pre + 1;
                     }
                     return pre + 2;
-                }, 0);
+                }), 0);
             };
         /**
+         * @private
          * @param {?} str
          * @param {?} maxLength
          * @return {?}
          */
         EllipsisComponent.prototype.cutStrByFullLength = /**
+         * @private
          * @param {?} str
          * @param {?} maxLength
          * @return {?}
@@ -122,7 +130,11 @@
             function (str, maxLength) {
                 /** @type {?} */
                 var showLength = 0;
-                return str.split('').reduce(function (pre, cur) {
+                return str.split('').reduce(( /**
+                 * @param {?} pre
+                 * @param {?} cur
+                 * @return {?}
+                 */function (pre, cur) {
                     /** @type {?} */
                     var charCode = cur.charCodeAt(0);
                     if (charCode >= 0 && charCode <= 128) {
@@ -135,9 +147,10 @@
                         return pre + cur;
                     }
                     return pre;
-                }, '');
+                }), '');
             };
         /**
+         * @private
          * @param {?} th
          * @param {?} m
          * @param {?} b
@@ -147,6 +160,7 @@
          * @return {?}
          */
         EllipsisComponent.prototype.bisection = /**
+         * @private
          * @param {?} th
          * @param {?} m
          * @param {?} b
@@ -195,9 +209,11 @@
                 return this.bisection(th, mid, begin, end, text, shadowNode);
             };
         /**
+         * @private
          * @return {?}
          */
         EllipsisComponent.prototype.genType = /**
+         * @private
          * @return {?}
          */
             function () {
@@ -222,9 +238,11 @@
                 cdr.detectChanges();
             };
         /**
+         * @private
          * @return {?}
          */
         EllipsisComponent.prototype.gen = /**
+         * @private
          * @return {?}
          */
             function () {
@@ -287,10 +305,12 @@
                 }
             };
         /**
+         * @private
          * @param {?} cls
          * @return {?}
          */
         EllipsisComponent.prototype.getEl = /**
+         * @private
          * @param {?} cls
          * @return {?}
          */
@@ -298,10 +318,12 @@
                 return this.el.nativeElement.querySelector(cls);
             };
         /**
+         * @private
          * @param {?} fn
          * @return {?}
          */
         EllipsisComponent.prototype.executeOnStable = /**
+         * @private
          * @param {?} fn
          * @return {?}
          */
@@ -325,7 +347,9 @@
             function () {
                 var _this = this;
                 this.genType();
-                this.executeOnStable(function () {
+                this.executeOnStable(( /**
+                 * @return {?}
+                 */function () {
                     var _a = _this, type = _a.type, dom = _a.dom, orgEl = _a.orgEl, cdr = _a.cdr;
                     /** @type {?} */
                     var html = orgEl.nativeElement.innerHTML;
@@ -339,7 +363,7 @@
                             el.innerHTML = html;
                         }
                     }
-                });
+                }));
             };
         /**
          * @return {?}
@@ -410,7 +434,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
     var COMPONENTS = [EllipsisComponent];
@@ -429,12 +453,12 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     exports.EllipsisComponent = EllipsisComponent;

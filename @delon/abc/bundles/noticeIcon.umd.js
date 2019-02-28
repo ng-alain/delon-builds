@@ -11,7 +11,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var NoticeIconTabComponent = /** @class */ (function () {
         function NoticeIconTabComponent() {
@@ -114,7 +114,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var NoticeIconComponent = /** @class */ (function () {
         function NoticeIconComponent(i18n, cdr) {
@@ -171,10 +171,12 @@
          */
             function () {
                 var _this = this;
-                this.i18n$ = this.i18n.change.subscribe(function () {
+                this.i18n$ = this.i18n.change.subscribe(( /**
+                 * @return {?}
+                 */function () {
                     _this.locale = _this.i18n.getData('noticeIcon');
                     _this.cdr.markForCheck();
-                });
+                }));
             };
         /**
          * @return {?}
@@ -237,7 +239,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
     var COMPONENTS = [NoticeIconComponent];
@@ -256,7 +258,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     exports.NoticeIconTabComponent = NoticeIconTabComponent;

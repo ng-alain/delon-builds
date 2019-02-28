@@ -11,7 +11,7 @@ import { NgZorroAntdModule } from 'ng-zorro-antd';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class PageHeaderConfig {
     constructor() {
@@ -57,7 +57,7 @@ PageHeaderConfig.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class PageHeaderComponent {
     // #endregion
@@ -87,16 +87,34 @@ class PageHeaderComponent {
         this.wide = false;
         Object.assign(this, Object.assign({}, new PageHeaderConfig(), cog));
         settings.notify
-            .pipe(takeUntil(this.unsubscribe$), filter(w => this.affix && w.type === 'layout' && w.name === 'collapsed'))
-            .subscribe(() => this.affix.updatePosition((/** @type {?} */ ({}))));
-        merge(menuSrv.change.pipe(filter(() => this.inited)), router.events.pipe(filter((event) => event instanceof NavigationEnd)), i18nSrv.change)
+            .pipe(takeUntil(this.unsubscribe$), filter((/**
+         * @param {?} w
+         * @return {?}
+         */
+        w => this.affix && w.type === 'layout' && w.name === 'collapsed')))
+            .subscribe((/**
+         * @return {?}
+         */
+        () => this.affix.updatePosition((/** @type {?} */ ({})))));
+        merge(menuSrv.change.pipe(filter((/**
+         * @return {?}
+         */
+        () => this.inited))), router.events.pipe(filter((/**
+         * @param {?} event
+         * @return {?}
+         */
+        (event) => event instanceof NavigationEnd))), i18nSrv.change)
             .pipe(takeUntil(this.unsubscribe$))
-            .subscribe(() => {
+            .subscribe((/**
+         * @return {?}
+         */
+        () => {
             this._menus = null;
             this.refresh();
-        });
+        }));
     }
     /**
+     * @private
      * @return {?}
      */
     get menus() {
@@ -128,6 +146,7 @@ class PageHeaderComponent {
         this.cdr.detectChanges();
     }
     /**
+     * @private
      * @template THIS
      * @this {THIS}
      * @return {THIS}
@@ -139,7 +158,11 @@ class PageHeaderComponent {
         }
         /** @type {?} */
         const paths = [];
-        (/** @type {?} */ (this)).menus.forEach(item => {
+        (/** @type {?} */ (this)).menus.forEach((/**
+         * @param {?} item
+         * @return {?}
+         */
+        item => {
             if (typeof item.hideInBreadcrumb !== 'undefined' && item.hideInBreadcrumb)
                 return;
             /** @type {?} */
@@ -147,7 +170,7 @@ class PageHeaderComponent {
             if (item.i18n && (/** @type {?} */ (this)).i18nSrv)
                 title = (/** @type {?} */ (this)).i18nSrv.fanyi(item.i18n);
             paths.push({ title, link: item.link && [item.link] });
-        });
+        }));
         // add home
         if ((/** @type {?} */ (this)).home) {
             paths.splice(0, 0, {
@@ -159,6 +182,7 @@ class PageHeaderComponent {
         return (/** @type {?} */ (this));
     }
     /**
+     * @private
      * @template THIS
      * @this {THIS}
      * @return {THIS}
@@ -302,7 +326,7 @@ __decorate([
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const COMPONENTS = [PageHeaderComponent];
@@ -318,12 +342,12 @@ PageHeaderModule.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 export { PageHeaderConfig, PageHeaderComponent, PageHeaderModule };

@@ -6,12 +6,12 @@ import { Injectable, Injector, NgModule } from '@angular/core';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var MockStatusError = /** @class */ (function () {
     function MockStatusError(status, error) {
@@ -23,7 +23,7 @@ var MockStatusError = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var DelonMockConfig = /** @class */ (function () {
     function DelonMockConfig() {
@@ -49,7 +49,7 @@ var DelonMockConfig = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var MockService = /** @class */ (function () {
     function MockService(config) {
@@ -61,11 +61,13 @@ var MockService = /** @class */ (function () {
     // #region parse rule
     // #region parse rule
     /**
+     * @private
      * @return {?}
      */
     MockService.prototype.applyMock = 
     // #region parse rule
     /**
+     * @private
      * @return {?}
      */
     function () {
@@ -78,9 +80,11 @@ var MockService = /** @class */ (function () {
         }
     };
     /**
+     * @private
      * @return {?}
      */
     MockService.prototype.realApplyMock = /**
+     * @private
      * @return {?}
      */
     function () {
@@ -89,12 +93,20 @@ var MockService = /** @class */ (function () {
         var data = this.config.data;
         if (!data)
             return;
-        Object.keys(data).forEach(function (key) {
+        Object.keys(data).forEach((/**
+         * @param {?} key
+         * @return {?}
+         */
+        function (key) {
             /** @type {?} */
             var rules = data[key];
             if (!rules)
                 return;
-            Object.keys(rules).forEach(function (ruleKey) {
+            Object.keys(rules).forEach((/**
+             * @param {?} ruleKey
+             * @return {?}
+             */
+            function (ruleKey) {
                 /** @type {?} */
                 var value = rules[ruleKey];
                 if (!(typeof value === 'function' || typeof value === 'object' || typeof value === 'string')) {
@@ -106,24 +118,35 @@ var MockService = /** @class */ (function () {
                     throw Error("method of " + key + "-" + ruleKey + " is not valid");
                 }
                 /** @type {?} */
-                var item = _this.cached.find(function (w) { return w.url === rule.url && w.method === rule.method; });
+                var item = _this.cached.find((/**
+                 * @param {?} w
+                 * @return {?}
+                 */
+                function (w) { return w.url === rule.url && w.method === rule.method; }));
                 if (item) {
                     item.callback = rule.callback;
                 }
                 else {
                     _this.cached.push(rule);
                 }
-            });
-        });
+            }));
+        }));
         // regular ordering
-        this.cached.sort(function (a, b) { return (b.martcher || '').toString().length - (a.martcher || '').toString().length; });
+        this.cached.sort((/**
+         * @param {?} a
+         * @param {?} b
+         * @return {?}
+         */
+        function (a, b) { return (b.martcher || '').toString().length - (a.martcher || '').toString().length; }));
     };
     /**
+     * @private
      * @param {?} key
      * @param {?} callback
      * @return {?}
      */
     MockService.prototype.genRule = /**
+     * @private
      * @param {?} key
      * @param {?} callback
      * @return {?}
@@ -145,11 +168,23 @@ var MockService = /** @class */ (function () {
         var segments = [];
         if (~url.indexOf(':')) {
             segments = (/** @type {?} */ (url)).split('/')
-                .filter(function (segment) { return segment.startsWith(':'); })
-                .map(function (v) { return v.substring(1); });
+                .filter((/**
+             * @param {?} segment
+             * @return {?}
+             */
+            function (segment) { return segment.startsWith(':'); }))
+                .map((/**
+             * @param {?} v
+             * @return {?}
+             */
+            function (v) { return v.substring(1); }));
             /** @type {?} */
             var reStr = (/** @type {?} */ (url)).split('/')
-                .map(function (segment) { return (segment.startsWith(':') ? "([^/]+)" : segment); })
+                .map((/**
+             * @param {?} segment
+             * @return {?}
+             */
+            function (segment) { return (segment.startsWith(':') ? "([^/]+)" : segment); }))
                 .join('/');
             martcher = new RegExp("^" + reStr, 'i');
         }
@@ -165,10 +200,12 @@ var MockService = /** @class */ (function () {
         };
     };
     /**
+     * @private
      * @param {?} error
      * @return {?}
      */
     MockService.prototype.outputError = /**
+     * @private
      * @param {?} error
      * @return {?}
      */
@@ -178,8 +215,16 @@ var MockService = /** @class */ (function () {
         /** @type {?} */
         var errors = error.stack
             .split('\n')
-            .filter(function (line) { return line.trim().indexOf('at ') !== 0; })
-            .map(function (line) { return line.replace(filePath + ": ", ''); });
+            .filter((/**
+         * @param {?} line
+         * @return {?}
+         */
+        function (line) { return line.trim().indexOf('at ') !== 0; }))
+            .map((/**
+         * @param {?} line
+         * @return {?}
+         */
+        function (line) { return line.replace(filePath + ": ", ''); }));
         errors.splice(1, 0, ['']);
         console.group();
         console.warn("==========Failed to parse mock config.==========");
@@ -206,17 +251,30 @@ var MockService = /** @class */ (function () {
         /** @type {?} */
         var params = {};
         /** @type {?} */
-        var list = this.cached.filter(function (w) { return w.method === method && (w.martcher ? w.martcher.test(url) : w.url === url); });
+        var list = this.cached.filter((/**
+         * @param {?} w
+         * @return {?}
+         */
+        function (w) { return w.method === method && (w.martcher ? w.martcher.test(url) : w.url === url); }));
         if (list.length === 0)
             return null;
         /** @type {?} */
-        var ret = list.find(function (w) { return w.url === url; }) || list[0];
+        var ret = list.find((/**
+         * @param {?} w
+         * @return {?}
+         */
+        function (w) { return w.url === url; })) || list[0];
         if (ret.martcher) {
             /** @type {?} */
             var execArr = ret.martcher.exec(url);
-            execArr.slice(1).map(function (value, index) {
+            execArr.slice(1).map((/**
+             * @param {?} value
+             * @param {?} index
+             * @return {?}
+             */
+            function (value, index) {
                 params[ret.segments[index]] = value;
-            });
+            }));
         }
         return {
             url: url,
@@ -265,7 +323,7 @@ var MockService = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var HttpMockInterceptorHandler = /** @class */ (function () {
     function HttpMockInterceptorHandler(next, interceptor) {
@@ -324,7 +382,11 @@ var MockInterceptor = /** @class */ (function () {
                 /** @type {?} */
                 var urlParams = req.url.split('?');
                 if (urlParams.length > 1) {
-                    urlParams[1].split('&').forEach(function (item) {
+                    urlParams[1].split('&').forEach((/**
+                     * @param {?} item
+                     * @return {?}
+                     */
+                    function (item) {
                         /** @type {?} */
                         var itemArr = item.split('=');
                         /** @type {?} */
@@ -341,10 +403,18 @@ var MockInterceptor = /** @class */ (function () {
                         else {
                             mockRequest_1.queryString[key] = value;
                         }
-                    });
+                    }));
                 }
-                req.params.keys().forEach(function (key) { return (mockRequest_1.queryString[key] = req.params.get(key)); });
-                req.headers.keys().forEach(function (key) { return (mockRequest_1.headers[key] = req.headers.get(key)); });
+                req.params.keys().forEach((/**
+                 * @param {?} key
+                 * @return {?}
+                 */
+                function (key) { return (mockRequest_1.queryString[key] = req.params.get(key)); }));
+                req.headers.keys().forEach((/**
+                 * @param {?} key
+                 * @return {?}
+                 */
+                function (key) { return (mockRequest_1.headers[key] = req.headers.get(key)); }));
                 try {
                     res = rule.callback.call(this, mockRequest_1);
                 }
@@ -385,8 +455,16 @@ var MockInterceptor = /** @class */ (function () {
             var lastInterceptors = interceptors.slice(interceptors.indexOf(this) + 1);
             if (lastInterceptors.length > 0) {
                 /** @type {?} */
-                var chain = lastInterceptors.reduceRight(function (_next, _interceptor) { return new HttpMockInterceptorHandler(_next, _interceptor); }, (/** @type {?} */ ({
-                    handle: function () { return res$; },
+                var chain = lastInterceptors.reduceRight((/**
+                 * @param {?} _next
+                 * @param {?} _interceptor
+                 * @return {?}
+                 */
+                function (_next, _interceptor) { return new HttpMockInterceptorHandler(_next, _interceptor); }), (/** @type {?} */ ({
+                    handle: (/**
+                     * @return {?}
+                     */
+                    function () { return res$; }),
                 })));
                 return chain.handle(req).pipe(delay(config.delay));
             }
@@ -405,7 +483,7 @@ var MockInterceptor = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var DelonMockModule = /** @class */ (function () {
     function DelonMockModule() {
@@ -448,12 +526,12 @@ var DelonMockModule = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 export { MockStatusError, MockService, MockInterceptor, DelonMockConfig, DelonMockModule };

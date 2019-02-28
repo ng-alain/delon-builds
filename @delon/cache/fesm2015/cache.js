@@ -6,12 +6,12 @@ import { Injectable, InjectionToken, NgModule, defineInjectable, Inject, inject 
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class DelonCacheConfig {
     constructor() {
@@ -45,7 +45,7 @@ DelonCacheConfig.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const DC_STORE_STORAGE_TOKEN = new InjectionToken('DC_STORE_STORAGE_TOKEN', {
@@ -86,7 +86,7 @@ class LocalStorageCacheService {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class CacheService {
     /**
@@ -120,10 +120,16 @@ class CacheService {
             const checkObj = path.length ? obj[path[0]] : obj;
             return typeof checkObj === 'undefined' ? defaultValue : checkObj;
         }
-        return path.reduce((o, k) => o[k], obj) || defaultValue;
+        return path.reduce((/**
+         * @param {?} o
+         * @param {?} k
+         * @return {?}
+         */
+        (o, k) => o[k]), obj) || defaultValue;
     }
     // #region meta
     /**
+     * @private
      * @param {?} key
      * @return {?}
      */
@@ -134,6 +140,7 @@ class CacheService {
         this.saveMeta();
     }
     /**
+     * @private
      * @param {?} key
      * @return {?}
      */
@@ -144,22 +151,32 @@ class CacheService {
         this.saveMeta();
     }
     /**
+     * @private
      * @return {?}
      */
     loadMeta() {
         /** @type {?} */
         const ret = this.store.get(this.cog.meta_key);
         if (ret && ret.v) {
-            ((/** @type {?} */ (ret.v))).forEach(key => this.meta.add(key));
+            ((/** @type {?} */ (ret.v))).forEach((/**
+             * @param {?} key
+             * @return {?}
+             */
+            key => this.meta.add(key)));
         }
     }
     /**
+     * @private
      * @return {?}
      */
     saveMeta() {
         /** @type {?} */
         const metaData = [];
-        this.meta.forEach(key => metaData.push(key));
+        this.meta.forEach((/**
+         * @param {?} key
+         * @return {?}
+         */
+        key => metaData.push(key)));
         this.store.set(this.cog.meta_key, { v: metaData, e: 0 });
     }
     /**
@@ -186,11 +203,16 @@ class CacheService {
             this.save(options.type, key, { v: data, e });
             return;
         }
-        return data.pipe(tap((v) => {
+        return data.pipe(tap((/**
+         * @param {?} v
+         * @return {?}
+         */
+        (v) => {
             this.save(options.type, key, { v, e });
-        }));
+        })));
     }
     /**
+     * @private
      * @param {?} type
      * @param {?} key
      * @param {?} value
@@ -220,7 +242,15 @@ class CacheService {
             : this.store.get(this.cog.prefix + key);
         if (!value || (value.e && value.e > 0 && value.e < new Date().valueOf())) {
             if (isPromise) {
-                return this.http.get(key).pipe(map((ret) => this._deepGet(ret, (/** @type {?} */ (this.cog.reName)), null)), tap(v => this.set(key, v, { type: options.type, expire: options.expire })));
+                return this.http.get(key).pipe(map((/**
+                 * @param {?} ret
+                 * @return {?}
+                 */
+                (ret) => this._deepGet(ret, (/** @type {?} */ (this.cog.reName)), null))), tap((/**
+                 * @param {?} v
+                 * @return {?}
+                 */
+                v => this.set(key, v, { type: options.type, expire: options.expire }))));
             }
             return null;
         }
@@ -266,6 +296,7 @@ class CacheService {
     // #endregion
     // #region remove
     /**
+     * @private
      * @param {?} key
      * @param {?} needNotify
      * @return {?}
@@ -293,9 +324,18 @@ class CacheService {
      * @return {?}
      */
     clear() {
-        this.notifyBuffer.forEach((v, k) => this.runNotify(k, 'remove'));
+        this.notifyBuffer.forEach((/**
+         * @param {?} v
+         * @param {?} k
+         * @return {?}
+         */
+        (v, k) => this.runNotify(k, 'remove')));
         this.memory.clear();
-        this.meta.forEach(key => this.store.remove(this.cog.prefix + key));
+        this.meta.forEach((/**
+         * @param {?} key
+         * @return {?}
+         */
+        key => this.store.remove(this.cog.prefix + key)));
     }
     // #endregion
     // #region notify
@@ -310,6 +350,7 @@ class CacheService {
         this.startExpireNotify();
     }
     /**
+     * @private
      * @return {?}
      */
     startExpireNotify() {
@@ -317,36 +358,52 @@ class CacheService {
         this.runExpireNotify();
     }
     /**
+     * @private
      * @return {?}
      */
     runExpireNotify() {
-        this.freqTime = setTimeout(() => {
+        this.freqTime = setTimeout((/**
+         * @return {?}
+         */
+        () => {
             this.checkExpireNotify();
             this.runExpireNotify();
-        }, this.freqTick);
+        }), this.freqTick);
     }
     /**
+     * @private
      * @return {?}
      */
     checkExpireNotify() {
         /** @type {?} */
         const removed = [];
-        this.notifyBuffer.forEach((v, key) => {
+        this.notifyBuffer.forEach((/**
+         * @param {?} v
+         * @param {?} key
+         * @return {?}
+         */
+        (v, key) => {
             if (this.has(key) && this.getNone(key) === null)
                 removed.push(key);
-        });
-        removed.forEach(key => {
+        }));
+        removed.forEach((/**
+         * @param {?} key
+         * @return {?}
+         */
+        key => {
             this.runNotify(key, 'expire');
             this._remove(key, false);
-        });
+        }));
     }
     /**
+     * @private
      * @return {?}
      */
     abortExpireNotify() {
         clearTimeout(this.freqTime);
     }
     /**
+     * @private
      * @param {?} key
      * @param {?} type
      * @return {?}
@@ -396,7 +453,11 @@ class CacheService {
      * @return {?}
      */
     clearNotify() {
-        this.notifyBuffer.forEach(v => v.unsubscribe());
+        this.notifyBuffer.forEach((/**
+         * @param {?} v
+         * @return {?}
+         */
+        v => v.unsubscribe()));
         this.notifyBuffer.clear();
     }
     // #endregion
@@ -422,7 +483,7 @@ CacheService.ctorParameters = () => [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class DelonCacheModule {
 }
@@ -432,12 +493,12 @@ DelonCacheModule.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 export { CacheService, DelonCacheConfig, DelonCacheModule, DC_STORE_STORAGE_TOKEN as ɵa, DC_STORE_STORAGE_TOKEN_FACTORY as ɵb, LocalStorageCacheService as ɵc };

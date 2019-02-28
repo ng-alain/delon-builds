@@ -69,7 +69,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var G2RadarComponent = /** @class */ (function () {
         // #endregion
@@ -96,18 +96,22 @@
             ];
         }
         /**
+         * @private
          * @return {?}
          */
         G2RadarComponent.prototype.getHeight = /**
+         * @private
          * @return {?}
          */
             function () {
                 return this.height - (this.hasLegend ? 80 : 22);
             };
         /**
+         * @private
          * @return {?}
          */
         G2RadarComponent.prototype.install = /**
+         * @private
          * @return {?}
          */
             function () {
@@ -153,11 +157,17 @@
                         },
                     },
                 });
-                chart.filter('name', function (name) {
+                chart.filter('name', ( /**
+                 * @param {?} name
+                 * @return {?}
+                 */function (name) {
                     /** @type {?} */
-                    var legendItem = _this.legendData.find(function (w) { return w.name === name; });
+                    var legendItem = _this.legendData.find(( /**
+                     * @param {?} w
+                     * @return {?}
+                     */function (w) { return w.name === name; }));
                     return legendItem ? legendItem.checked !== false : true;
-                });
+                }));
                 chart.line().position('label*value');
                 chart
                     .point()
@@ -168,9 +178,11 @@
                 this.attachChart();
             };
         /**
+         * @private
          * @return {?}
          */
         G2RadarComponent.prototype.attachChart = /**
+         * @private
          * @return {?}
          */
             function () {
@@ -186,16 +198,23 @@
                         tickCount: tickCount,
                     },
                 });
-                chart.get('geoms').forEach(function (g) {
+                chart.get('geoms').forEach(( /**
+                 * @param {?} g
+                 * @return {?}
+                 */function (g) {
                     g.color('name', colors);
-                });
+                }));
                 chart.repaint();
-                this.ngZone.run(function () { return _this.genLegend(); });
+                this.ngZone.run(( /**
+                 * @return {?}
+                 */function () { return _this.genLegend(); }));
             };
         /**
+         * @private
          * @return {?}
          */
         G2RadarComponent.prototype.genLegend = /**
+         * @private
          * @return {?}
          */
             function () {
@@ -205,7 +224,10 @@
                 this.legendData = chart
                     .get('geoms')[0]
                     .get('dataArray')
-                    .map(function (item) {
+                    .map(( /**
+             * @param {?} item
+             * @return {?}
+             */function (item) {
                     /** @type {?} */
                     var origin = item[0]._origin;
                     /** @type {?} */
@@ -213,10 +235,14 @@
                         name: origin.name,
                         color: item[0].color,
                         checked: true,
-                        value: item.reduce(function (p, n) { return p + n._origin.value; }, 0),
+                        value: item.reduce(( /**
+                         * @param {?} p
+                         * @param {?} n
+                         * @return {?}
+                         */function (p, n) { return p + n._origin.value; }), 0),
                     };
                     return result;
-                });
+                }));
                 cdr.detectChanges();
             };
         /**
@@ -240,7 +266,13 @@
          */
             function () {
                 var _this = this;
-                this.ngZone.runOutsideAngular(function () { return setTimeout(function () { return _this.install(); }, _this.delay); });
+                this.ngZone.runOutsideAngular(( /**
+                 * @return {?}
+                 */function () {
+                    return setTimeout(( /**
+                     * @return {?}
+                     */function () { return _this.install(); }), _this.delay);
+                }));
             };
         /**
          * @return {?}
@@ -250,8 +282,13 @@
          */
             function () {
                 var _this = this;
-                this.legendData.forEach(function (i) { return (i.checked = true); });
-                this.ngZone.runOutsideAngular(function () { return _this.attachChart(); });
+                this.legendData.forEach(( /**
+                 * @param {?} i
+                 * @return {?}
+                 */function (i) { return (i.checked = true); }));
+                this.ngZone.runOutsideAngular(( /**
+                 * @return {?}
+                 */function () { return _this.attachChart(); }));
             };
         /**
          * @return {?}
@@ -262,7 +299,9 @@
             function () {
                 var _this = this;
                 if (this.chart) {
-                    this.ngZone.runOutsideAngular(function () { return _this.chart.destroy(); });
+                    this.ngZone.runOutsideAngular(( /**
+                     * @return {?}
+                     */function () { return _this.chart.destroy(); }));
                 }
             };
         G2RadarComponent.decorators = [
@@ -315,7 +354,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
     var COMPONENTS = [G2RadarComponent];
@@ -334,12 +373,12 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     exports.G2RadarComponent = G2RadarComponent;

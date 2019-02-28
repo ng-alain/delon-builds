@@ -4,12 +4,12 @@ import { LazyService, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class LodopConfig {
 }
@@ -20,7 +20,7 @@ LodopConfig.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class LodopService {
     /**
@@ -61,6 +61,7 @@ class LodopService {
         return this._events.asObservable();
     }
     /**
+     * @private
      * @return {?}
      */
     check() {
@@ -68,6 +69,7 @@ class LodopService {
             throw new Error(`请务必先调用 lodop 获取对象`);
     }
     /**
+     * @private
      * @return {?}
      */
     request() {
@@ -77,16 +79,24 @@ class LodopService {
         /** @type {?} */
         let checkMaxCount = this.cog.checkMaxCount;
         /** @type {?} */
-        const onResolve = (status, error) => {
+        const onResolve = (/**
+         * @param {?} status
+         * @param {?=} error
+         * @return {?}
+         */
+        (status, error) => {
             this._init.next({
                 ok: status === 'ok',
                 status,
                 error,
                 lodop: this._lodop,
             });
-        };
+        });
         /** @type {?} */
-        const checkStatus = () => {
+        const checkStatus = (/**
+         * @return {?}
+         */
+        () => {
             --checkMaxCount;
             if (this._lodop.webskt && this._lodop.webskt.readyState === 1) {
                 onResolve('ok');
@@ -96,10 +106,17 @@ class LodopService {
                     onResolve('check-limit');
                     return;
                 }
-                setTimeout(() => checkStatus(), 100);
+                setTimeout((/**
+                 * @return {?}
+                 */
+                () => checkStatus()), 100);
             }
-        };
-        this.scriptSrv.loadScript(url).then(res => {
+        });
+        this.scriptSrv.loadScript(url).then((/**
+         * @param {?} res
+         * @return {?}
+         */
+        res => {
             if (res.status !== 'ok') {
                 this.pending = false;
                 onResolve('script-load-error', res[0]);
@@ -112,7 +129,7 @@ class LodopService {
             }
             this._lodop.SET_LICENSES(this.cog.companyName, this.cog.license, this.cog.licenseA, this.cog.licenseB);
             checkStatus();
-        });
+        }));
     }
     /**
      * 重置 lodop 对象
@@ -164,7 +181,11 @@ class LodopService {
         this.check();
         if (!parser)
             parser = /LODOP\.([^(]+)\(([^\n]+)\);/i;
-        code.split('\n').forEach(line => {
+        code.split('\n').forEach((/**
+         * @param {?} line
+         * @return {?}
+         */
+        line => {
             /** @type {?} */
             const res = parser.exec(line.trim());
             if (!res)
@@ -183,13 +204,18 @@ class LodopService {
                 if (Array.isArray(arr) && contextObj) {
                     for (let i = 0; i < arr.length; i++) {
                         if (typeof arr[i] === 'string') {
-                            arr[i] = arr[i].replace(/{{(.*?)}}/g, (match, key) => contextObj[key.trim()] || '');
+                            arr[i] = arr[i].replace(/{{(.*?)}}/g, (/**
+                             * @param {?} match
+                             * @param {?} key
+                             * @return {?}
+                             */
+                            (match, key) => contextObj[key.trim()] || ''));
                         }
                     }
                 }
                 fn.apply(this._lodop, arr);
             }
-        });
+        }));
     }
     /**
      * 打开打印设计关闭后自动返回代码
@@ -201,16 +227,26 @@ class LodopService {
         this.check();
         /** @type {?} */
         const tid = this._lodop.PRINT_DESIGN();
-        return new Promise(resolve => {
-            this._lodop.On_Return = (taskID, value) => {
+        return new Promise((/**
+         * @param {?} resolve
+         * @return {?}
+         */
+        resolve => {
+            this._lodop.On_Return = (/**
+             * @param {?} taskID
+             * @param {?} value
+             * @return {?}
+             */
+            (taskID, value) => {
                 if (tid !== taskID)
                     return;
                 this._lodop.On_Return = null;
                 resolve('' + value);
-            };
-        });
+            });
+        }));
     }
     /**
+     * @private
      * @return {?}
      */
     printDo() {
@@ -221,13 +257,18 @@ class LodopService {
         this.attachCode(data.code, data.item, data.parser);
         /** @type {?} */
         const tid = this._lodop.PRINT();
-        this._lodop.On_Return = (taskID, value) => {
+        this._lodop.On_Return = (/**
+         * @param {?} taskID
+         * @param {?} value
+         * @return {?}
+         */
+        (taskID, value) => {
             if (tid !== taskID)
                 return;
             this._lodop.On_Return = null;
             this._events.next(Object.assign({ ok: value === true, error: value === true ? null : value }, data));
             this.printDo();
-        };
+        });
     }
     /**
      * 立即打印，一般用于批量套打
@@ -240,9 +281,13 @@ class LodopService {
     print(code, contextObj, parser) {
         this.check();
         if (contextObj) {
-            this.printBuffer.push(...(Array.isArray(contextObj) ? contextObj : [contextObj]).map(item => {
+            this.printBuffer.push(...(Array.isArray(contextObj) ? contextObj : [contextObj]).map((/**
+             * @param {?} item
+             * @return {?}
+             */
+            item => {
                 return { code, parser, item };
-            }));
+            })));
         }
         this.printDo();
     }
@@ -266,7 +311,7 @@ LodopService.ctorParameters = () => [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class LodopModule {
 }
@@ -278,12 +323,12 @@ LodopModule.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 export { LodopService, LodopConfig, LodopModule };

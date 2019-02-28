@@ -6,12 +6,12 @@ import { LazyService, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class ZipConfig {
     constructor() {
@@ -32,7 +32,7 @@ ZipConfig.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class ZipService {
     /**
@@ -46,12 +46,14 @@ class ZipService {
         this.lazy = lazy;
     }
     /**
+     * @private
      * @return {?}
      */
     init() {
         return this.lazy.load([this.cog.url].concat(this.cog.utils));
     }
     /**
+     * @private
      * @param {?} zip
      * @return {?}
      */
@@ -66,39 +68,74 @@ class ZipService {
      * @return {?}
      */
     read(fileOrUrl, options) {
-        return new Promise((resolve, reject) => {
-            this.init().then(() => {
+        return new Promise((/**
+         * @param {?} resolve
+         * @param {?} reject
+         * @return {?}
+         */
+        (resolve, reject) => {
+            this.init().then((/**
+             * @return {?}
+             */
+            () => {
                 // from url
                 if (typeof fileOrUrl === 'string') {
-                    this.http.request('GET', fileOrUrl, { responseType: 'arraybuffer' }).subscribe((res) => {
-                        JSZip.loadAsync(res, options).then(ret => resolve(ret));
-                    }, (err) => {
+                    this.http.request('GET', fileOrUrl, { responseType: 'arraybuffer' }).subscribe((/**
+                     * @param {?} res
+                     * @return {?}
+                     */
+                    (res) => {
+                        JSZip.loadAsync(res, options).then((/**
+                         * @param {?} ret
+                         * @return {?}
+                         */
+                        ret => resolve(ret)));
+                    }), (/**
+                     * @param {?} err
+                     * @return {?}
+                     */
+                    (err) => {
                         reject(err);
-                    });
+                    }));
                     return;
                 }
                 // from file
                 /** @type {?} */
                 const reader = new FileReader();
-                reader.onload = (e) => {
-                    JSZip.loadAsync(e.target.result, options).then(ret => resolve(ret));
-                };
+                reader.onload = (/**
+                 * @param {?} e
+                 * @return {?}
+                 */
+                (e) => {
+                    JSZip.loadAsync(e.target.result, options).then((/**
+                     * @param {?} ret
+                     * @return {?}
+                     */
+                    ret => resolve(ret)));
+                });
                 reader.readAsBinaryString((/** @type {?} */ (fileOrUrl)));
-            });
-        });
+            }));
+        }));
     }
     /**
      * 创建 Zip 实例，用于创建压缩文件
      * @return {?}
      */
     create() {
-        return new Promise(resolve => {
-            this.init().then(() => {
+        return new Promise((/**
+         * @param {?} resolve
+         * @return {?}
+         */
+        resolve => {
+            this.init().then((/**
+             * @return {?}
+             */
+            () => {
                 /** @type {?} */
                 const zipFile = new JSZip();
                 resolve(zipFile);
-            });
-        });
+            }));
+        }));
     }
     /**
      * 下载URL资源并写入 zip
@@ -109,14 +146,27 @@ class ZipService {
      */
     pushUrl(zip, path, url) {
         this.check(zip);
-        return new Promise((resolve, reject) => {
-            this.http.request('GET', url, { responseType: 'arraybuffer' }).subscribe((res) => {
+        return new Promise((/**
+         * @param {?} resolve
+         * @param {?} reject
+         * @return {?}
+         */
+        (resolve, reject) => {
+            this.http.request('GET', url, { responseType: 'arraybuffer' }).subscribe((/**
+             * @param {?} res
+             * @return {?}
+             */
+            (res) => {
                 zip.file(path, res);
                 resolve();
-            }, (error) => {
+            }), (/**
+             * @param {?} error
+             * @return {?}
+             */
+            (error) => {
                 reject({ url, error });
-            });
-        });
+            }));
+        }));
     }
     /**
      * 保存Zip并执行打开保存对话框
@@ -129,16 +179,29 @@ class ZipService {
         this.check(zip);
         /** @type {?} */
         const opt = Object.assign({}, options);
-        return new Promise((resolve, reject) => {
-            zip.generateAsync(Object.assign({ type: 'blob' }, opt.options), opt.update).then((data) => {
+        return new Promise((/**
+         * @param {?} resolve
+         * @param {?} reject
+         * @return {?}
+         */
+        (resolve, reject) => {
+            zip.generateAsync(Object.assign({ type: 'blob' }, opt.options), opt.update).then((/**
+             * @param {?} data
+             * @return {?}
+             */
+            (data) => {
                 if (opt.callback)
                     opt.callback(data);
                 saveAs(data, opt.filename || 'download.zip');
                 resolve();
-            }, err => {
+            }), (/**
+             * @param {?} err
+             * @return {?}
+             */
+            err => {
                 reject(err);
-            });
-        });
+            }));
+        }));
     }
 }
 ZipService.decorators = [
@@ -154,7 +217,7 @@ ZipService.ctorParameters = () => [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class ZipModule {
 }
@@ -166,12 +229,12 @@ ZipModule.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 export { ZipService, ZipModule, ZipConfig };

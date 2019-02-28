@@ -7,7 +7,7 @@ import { InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class G2CustomComponent {
     // #endregion
@@ -23,6 +23,7 @@ class G2CustomComponent {
         this.destroy = new EventEmitter();
     }
     /**
+     * @private
      * @return {?}
      */
     renderChart() {
@@ -31,6 +32,7 @@ class G2CustomComponent {
         this.installResizeEvent();
     }
     /**
+     * @private
      * @return {?}
      */
     installResizeEvent() {
@@ -38,7 +40,10 @@ class G2CustomComponent {
             return;
         this.resize$ = fromEvent(window, 'resize')
             .pipe(debounceTime(Math.min(200, this.resizeTime)))
-            .subscribe(() => this.resize.emit(this.el));
+            .subscribe((/**
+         * @return {?}
+         */
+        () => this.resize.emit(this.el)));
     }
     /**
      * @return {?}
@@ -89,7 +94,7 @@ __decorate([
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const COMPONENTS = [G2CustomComponent];
@@ -105,12 +110,12 @@ G2CustomModule.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 export { G2CustomComponent, G2CustomModule };

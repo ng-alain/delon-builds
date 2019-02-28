@@ -7,7 +7,7 @@ import { NgZorroAntdModule } from 'ng-zorro-antd';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var G2MiniProgressComponent = /** @class */ (function () {
     function G2MiniProgressComponent(i18n, cdr) {
@@ -16,10 +16,12 @@ var G2MiniProgressComponent = /** @class */ (function () {
         this.color = '#1890FF';
     }
     /**
+     * @private
      * @param {?} value
      * @return {?}
      */
     G2MiniProgressComponent.prototype.fixNum = /**
+     * @private
      * @param {?} value
      * @return {?}
      */
@@ -73,7 +75,7 @@ var G2MiniProgressComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 var COMPONENTS = [G2MiniProgressComponent];
@@ -92,12 +94,12 @@ var G2MiniProgressModule = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 export { G2MiniProgressComponent, G2MiniProgressModule };

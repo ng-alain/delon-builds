@@ -6,7 +6,7 @@ import { InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var SGConfig = /** @class */ (function () {
     function SGConfig() {
@@ -28,7 +28,7 @@ var SGConfig = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var SGContainerComponent = /** @class */ (function () {
     function SGContainerComponent(cog) {
@@ -87,7 +87,7 @@ var SGContainerComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 var prefixCls = "sg";
@@ -114,21 +114,31 @@ var SGComponent = /** @class */ (function () {
         configurable: true
     });
     /**
+     * @private
      * @template THIS
      * @this {THIS}
      * @return {THIS}
      */
     SGComponent.prototype.setClass = /**
+     * @private
      * @template THIS
      * @this {THIS}
      * @return {THIS}
      */
     function () {
         var _a = (/** @type {?} */ (this)), el = _a.el, ren = _a.ren, clsMap = _a.clsMap, col = _a.col, parent = _a.parent;
-        clsMap.forEach(function (cls) { return ren.removeClass(el, cls); });
+        clsMap.forEach((/**
+         * @param {?} cls
+         * @return {?}
+         */
+        function (cls) { return ren.removeClass(el, cls); }));
         clsMap.length = 0;
         clsMap.push.apply(clsMap, __spread((/** @type {?} */ (this)).rep.genCls(col != null ? col : parent.colInCon || parent.col), [prefixCls + "__item"]));
-        clsMap.forEach(function (cls) { return ren.addClass(el, cls); });
+        clsMap.forEach((/**
+         * @param {?} cls
+         * @return {?}
+         */
+        function (cls) { return ren.addClass(el, cls); }));
         return (/** @type {?} */ (this));
     };
     /**
@@ -181,7 +191,7 @@ var SGComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 var COMPONENTS = [SGContainerComponent, SGComponent];
@@ -200,12 +210,12 @@ var SGModule = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 export { SGContainerComponent, SGComponent, SGConfig, SGModule };

@@ -7,7 +7,7 @@ import { InputBoolean, InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const TITLE_HEIGHT = 41;
@@ -27,12 +27,14 @@ class G2BarComponent {
         this.autoLabel = true;
     }
     /**
+     * @private
      * @return {?}
      */
     getHeight() {
         return this.title ? this.height - TITLE_HEIGHT : this.height;
     }
     /**
+     * @private
      * @return {?}
      */
     install() {
@@ -67,11 +69,17 @@ class G2BarComponent {
         chart
             .interval()
             .position('x*y')
-            .tooltip('x*y', (x, y) => ({ name: x, value: y }));
+            .tooltip('x*y', (/**
+         * @param {?} x
+         * @param {?} y
+         * @return {?}
+         */
+        (x, y) => ({ name: x, value: y })));
         chart.render();
         this.attachChart();
     }
     /**
+     * @private
      * @return {?}
      */
     attachChart() {
@@ -90,6 +98,7 @@ class G2BarComponent {
         chart.changeData(data);
     }
     /**
+     * @private
      * @return {?}
      */
     updatelabel() {
@@ -101,26 +110,45 @@ class G2BarComponent {
         chart.axis('x', canvasWidth > minWidth).repaint();
     }
     /**
+     * @private
      * @return {?}
      */
     installResizeEvent() {
         if (!this.autoLabel || this.resize$)
             return;
         this.resize$ = fromEvent(window, 'resize')
-            .pipe(filter(() => this.chart), debounceTime(200))
-            .subscribe(() => this.ngZone.runOutsideAngular(() => this.updatelabel()));
+            .pipe(filter((/**
+         * @return {?}
+         */
+        () => this.chart)), debounceTime(200))
+            .subscribe((/**
+         * @return {?}
+         */
+        () => this.ngZone.runOutsideAngular((/**
+         * @return {?}
+         */
+        () => this.updatelabel()))));
     }
     /**
      * @return {?}
      */
     ngOnInit() {
-        this.ngZone.runOutsideAngular(() => setTimeout(() => this.install(), this.delay));
+        this.ngZone.runOutsideAngular((/**
+         * @return {?}
+         */
+        () => setTimeout((/**
+         * @return {?}
+         */
+        () => this.install()), this.delay)));
     }
     /**
      * @return {?}
      */
     ngOnChanges() {
-        this.ngZone.runOutsideAngular(() => this.attachChart());
+        this.ngZone.runOutsideAngular((/**
+         * @return {?}
+         */
+        () => this.attachChart()));
     }
     /**
      * @return {?}
@@ -130,7 +158,10 @@ class G2BarComponent {
             this.resize$.unsubscribe();
         }
         if (this.chart) {
-            this.ngZone.runOutsideAngular(() => this.chart.destroy());
+            this.ngZone.runOutsideAngular((/**
+             * @return {?}
+             */
+            () => this.chart.destroy()));
         }
     }
 }
@@ -173,7 +204,7 @@ __decorate([
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const COMPONENTS = [G2BarComponent];
@@ -189,12 +220,12 @@ G2BarModule.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 export { G2BarComponent, G2BarModule };

@@ -81,7 +81,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var SEConfig = /** @class */ (function () {
         function SEConfig() {
@@ -121,7 +121,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var SEContainerComponent = /** @class */ (function () {
         // #endregion
@@ -212,7 +212,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var SEErrorComponent = /** @class */ (function () {
         function SEErrorComponent() {
@@ -256,7 +256,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var SETitleComponent = /** @class */ (function () {
         function SETitleComponent(parent, el, ren) {
@@ -268,9 +268,11 @@
             this.el = el.nativeElement;
         }
         /**
+         * @private
          * @return {?}
          */
         SETitleComponent.prototype.setClass = /**
+         * @private
          * @return {?}
          */
             function () {
@@ -311,7 +313,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
     var prefixCls = "se";
@@ -372,6 +374,7 @@
         });
         Object.defineProperty(SEComponent.prototype, "ngControl", {
             get: /**
+             * @private
              * @return {?}
              */ function () {
                 return this.ngModel || this.formControlName;
@@ -380,11 +383,13 @@
             configurable: true
         });
         /**
+         * @private
          * @template THIS
          * @this {THIS}
          * @return {THIS}
          */
         SEComponent.prototype.setClass = /**
+         * @private
          * @template THIS
          * @this {THIS}
          * @return {THIS}
@@ -392,7 +397,10 @@
             function () {
                 var _a = ( /** @type {?} */(this)), el = _a.el, ren = _a.ren, clsMap = _a.clsMap, col = _a.col, parent = _a.parent, cdr = _a.cdr, line = _a.line, labelWidth = _a.labelWidth, rep = _a.rep;
                 ( /** @type {?} */(this))._labelWidth = labelWidth != null ? labelWidth : parent.labelWidth;
-                clsMap.forEach(function (cls) { return ren.removeClass(el, cls); });
+                clsMap.forEach(( /**
+                 * @param {?} cls
+                 * @return {?}
+                 */function (cls) { return ren.removeClass(el, cls); }));
                 clsMap.length = 0;
                 /** @type {?} */
                 var repCls = parent.nzLayout === 'horizontal'
@@ -402,23 +410,31 @@
                 if (line || parent.line) {
                     clsMap.push(prefixCls + "__line");
                 }
-                clsMap.forEach(function (cls) { return ren.addClass(el, cls); });
+                clsMap.forEach(( /**
+                 * @param {?} cls
+                 * @return {?}
+                 */function (cls) { return ren.addClass(el, cls); }));
                 cdr.detectChanges();
                 return ( /** @type {?} */(this));
             };
         /**
+         * @private
          * @return {?}
          */
         SEComponent.prototype.bindModel = /**
+         * @private
          * @return {?}
          */
             function () {
                 var _this = this;
                 if (!this.ngControl || this.status$)
                     return;
-                this.status$ = this.ngControl.statusChanges.subscribe(function (res) {
+                this.status$ = this.ngControl.statusChanges.subscribe(( /**
+                 * @param {?} res
+                 * @return {?}
+                 */function (res) {
                     return _this.updateStatus(res === 'INVALID');
-                });
+                }));
                 if (this._autoId) {
                     /** @type {?} */
                     var control = ( /** @type {?} */(util.deepGet(this.ngControl.valueAccessor, '_elementRef.nativeElement')));
@@ -428,10 +444,12 @@
                 }
             };
         /**
+         * @private
          * @param {?} invalid
          * @return {?}
          */
         SEComponent.prototype.updateStatus = /**
+         * @private
          * @param {?} invalid
          * @return {?}
          */
@@ -464,10 +482,12 @@
                 this.setClass().bindModel();
                 this.inited = true;
                 if (this.onceFlag) {
-                    Promise.resolve().then(function () {
+                    Promise.resolve().then(( /**
+                     * @return {?}
+                     */function () {
                         _this.updateStatus(_this.ngControl.invalid);
                         _this.onceFlag = false;
-                    });
+                    }));
                 }
             };
         /**
@@ -539,7 +559,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
     var COMPONENTS = [SEContainerComponent, SEComponent, SEErrorComponent, SETitleComponent];
@@ -558,12 +578,12 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     exports.SEContainerComponent = SEContainerComponent;

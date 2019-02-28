@@ -8,7 +8,7 @@ import { InputBoolean, InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var FullContentService = /** @class */ (function () {
     function FullContentService() {
@@ -45,7 +45,7 @@ var FullContentService = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 var wrapCls = "full-content__body";
@@ -72,9 +72,11 @@ var FullContentComponent = /** @class */ (function () {
         this.fullscreenChange = new EventEmitter();
     }
     /**
+     * @private
      * @return {?}
      */
     FullContentComponent.prototype.updateCls = /**
+     * @private
      * @return {?}
      */
     function () {
@@ -94,9 +96,11 @@ var FullContentComponent = /** @class */ (function () {
         }
     };
     /**
+     * @private
      * @return {?}
      */
     FullContentComponent.prototype.update = /**
+     * @private
      * @return {?}
      */
     function () {
@@ -105,9 +109,11 @@ var FullContentComponent = /** @class */ (function () {
         this.fullscreenChange.emit(this.fullscreen);
     };
     /**
+     * @private
      * @return {?}
      */
     FullContentComponent.prototype.updateHeight = /**
+     * @private
      * @return {?}
      */
     function () {
@@ -118,9 +124,11 @@ var FullContentComponent = /** @class */ (function () {
         this.cdr.detectChanges();
     };
     /**
+     * @private
      * @return {?}
      */
     FullContentComponent.prototype.removeInBody = /**
+     * @private
      * @return {?}
      */
     function () {
@@ -142,13 +150,30 @@ var FullContentComponent = /** @class */ (function () {
         // when window resize
         this.scroll$ = fromEvent(window, 'resize')
             .pipe(debounceTime(200))
-            .subscribe(function () { return _this.updateHeight(); });
+            .subscribe((/**
+         * @return {?}
+         */
+        function () { return _this.updateHeight(); }));
         // when servier changed
-        this.srv$ = this.srv.change.pipe(filter(function (res) { return res !== null; })).subscribe(function () { return _this.toggle(); });
+        this.srv$ = this.srv.change.pipe(filter((/**
+         * @param {?} res
+         * @return {?}
+         */
+        function (res) { return res !== null; }))).subscribe((/**
+         * @return {?}
+         */
+        function () { return _this.toggle(); }));
         // when router changed
         this.route$ = this.router.events
-            .pipe(filter(function (e) { return e instanceof ActivationStart || e instanceof ActivationEnd; }), debounceTime(200))
-            .subscribe(function () {
+            .pipe(filter((/**
+         * @param {?} e
+         * @return {?}
+         */
+        function (e) { return e instanceof ActivationStart || e instanceof ActivationEnd; })), debounceTime(200))
+            .subscribe((/**
+         * @return {?}
+         */
+        function () {
             if (!!_this.doc.querySelector('#' + _this.id)) {
                 _this.bodyEl.classList.add(wrapCls);
                 _this.updateCls();
@@ -156,7 +181,7 @@ var FullContentComponent = /** @class */ (function () {
             else {
                 _this.removeInBody();
             }
-        });
+        }));
     };
     /**
      * @return {?}
@@ -177,7 +202,10 @@ var FullContentComponent = /** @class */ (function () {
      */
     function () {
         var _this = this;
-        setTimeout(function () { return _this.updateHeight(); });
+        setTimeout((/**
+         * @return {?}
+         */
+        function () { return _this.updateHeight(); }));
     };
     /**
      * @return {?}
@@ -243,7 +271,7 @@ var FullContentComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var FullContentToggleDirective = /** @class */ (function () {
     function FullContentToggleDirective(parent) {
@@ -275,7 +303,7 @@ var FullContentToggleDirective = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 var COMPONENTS = [FullContentComponent, FullContentToggleDirective];
@@ -294,12 +322,12 @@ var FullContentModule = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 export { FullContentComponent, FullContentService, FullContentToggleDirective, FullContentModule };

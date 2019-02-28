@@ -81,7 +81,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var ErrorCollectConfig = /** @class */ (function () {
         function ErrorCollectConfig() {
@@ -103,7 +103,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var ErrorCollectComponent = /** @class */ (function () {
         function ErrorCollectComponent(cog, el, cdr, doc) {
@@ -117,6 +117,7 @@
         }
         Object.defineProperty(ErrorCollectComponent.prototype, "errEls", {
             get: /**
+             * @private
              * @return {?}
              */ function () {
                 return this.formEl.querySelectorAll('.has-error');
@@ -125,9 +126,11 @@
             configurable: true
         });
         /**
+         * @private
          * @return {?}
          */
         ErrorCollectComponent.prototype.update = /**
+         * @private
          * @return {?}
          */
             function () {
@@ -158,32 +161,40 @@
                 this.doc.documentElement.scrollTop -= this.offsetTop;
             };
         /**
+         * @private
          * @return {?}
          */
         ErrorCollectComponent.prototype.install = /**
+         * @private
          * @return {?}
          */
             function () {
                 var _this = this;
                 this.uninstall();
-                this.$time = setInterval(function () { return _this.update(); }, this.freq);
+                this.$time = setInterval(( /**
+                 * @return {?}
+                 */function () { return _this.update(); }), this.freq);
                 this.update();
             };
         /**
+         * @private
          * @return {?}
          */
         ErrorCollectComponent.prototype.uninstall = /**
+         * @private
          * @return {?}
          */
             function () {
                 clearInterval(this.$time);
             };
         /**
+         * @private
          * @param {?} el
          * @param {?} selector
          * @return {?}
          */
         ErrorCollectComponent.prototype.findParent = /**
+         * @private
          * @param {?} el
          * @param {?} selector
          * @return {?}
@@ -260,7 +271,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
     var COMPONENTS = [ErrorCollectComponent];
@@ -279,12 +290,12 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     exports.ErrorCollectComponent = ErrorCollectComponent;

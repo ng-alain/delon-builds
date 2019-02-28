@@ -6,7 +6,7 @@ import { NgZorroAntdModule } from 'ng-zorro-antd';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class G2RadarComponent {
     // #endregion
@@ -37,12 +37,14 @@ class G2RadarComponent {
         ];
     }
     /**
+     * @private
      * @return {?}
      */
     getHeight() {
         return this.height - (this.hasLegend ? 80 : 22);
     }
     /**
+     * @private
      * @return {?}
      */
     install() {
@@ -87,11 +89,19 @@ class G2RadarComponent {
                 },
             },
         });
-        chart.filter('name', (name) => {
+        chart.filter('name', (/**
+         * @param {?} name
+         * @return {?}
+         */
+        (name) => {
             /** @type {?} */
-            const legendItem = this.legendData.find(w => w.name === name);
+            const legendItem = this.legendData.find((/**
+             * @param {?} w
+             * @return {?}
+             */
+            w => w.name === name));
             return legendItem ? legendItem.checked !== false : true;
-        });
+        }));
         chart.line().position('label*value');
         chart
             .point()
@@ -102,6 +112,7 @@ class G2RadarComponent {
         this.attachChart();
     }
     /**
+     * @private
      * @return {?}
      */
     attachChart() {
@@ -116,13 +127,21 @@ class G2RadarComponent {
                 tickCount,
             },
         });
-        chart.get('geoms').forEach(g => {
+        chart.get('geoms').forEach((/**
+         * @param {?} g
+         * @return {?}
+         */
+        g => {
             g.color('name', colors);
-        });
+        }));
         chart.repaint();
-        this.ngZone.run(() => this.genLegend());
+        this.ngZone.run((/**
+         * @return {?}
+         */
+        () => this.genLegend()));
     }
     /**
+     * @private
      * @return {?}
      */
     genLegend() {
@@ -132,7 +151,11 @@ class G2RadarComponent {
         this.legendData = chart
             .get('geoms')[0]
             .get('dataArray')
-            .map((item) => {
+            .map((/**
+         * @param {?} item
+         * @return {?}
+         */
+        (item) => {
             /** @type {?} */
             const origin = item[0]._origin;
             /** @type {?} */
@@ -140,10 +163,15 @@ class G2RadarComponent {
                 name: origin.name,
                 color: item[0].color,
                 checked: true,
-                value: item.reduce((p, n) => p + n._origin.value, 0),
+                value: item.reduce((/**
+                 * @param {?} p
+                 * @param {?} n
+                 * @return {?}
+                 */
+                (p, n) => p + n._origin.value), 0),
             };
             return result;
-        });
+        }));
         cdr.detectChanges();
     }
     /**
@@ -159,21 +187,37 @@ class G2RadarComponent {
      * @return {?}
      */
     ngOnInit() {
-        this.ngZone.runOutsideAngular(() => setTimeout(() => this.install(), this.delay));
+        this.ngZone.runOutsideAngular((/**
+         * @return {?}
+         */
+        () => setTimeout((/**
+         * @return {?}
+         */
+        () => this.install()), this.delay)));
     }
     /**
      * @return {?}
      */
     ngOnChanges() {
-        this.legendData.forEach(i => (i.checked = true));
-        this.ngZone.runOutsideAngular(() => this.attachChart());
+        this.legendData.forEach((/**
+         * @param {?} i
+         * @return {?}
+         */
+        i => (i.checked = true)));
+        this.ngZone.runOutsideAngular((/**
+         * @return {?}
+         */
+        () => this.attachChart()));
     }
     /**
      * @return {?}
      */
     ngOnDestroy() {
         if (this.chart) {
-            this.ngZone.runOutsideAngular(() => this.chart.destroy());
+            this.ngZone.runOutsideAngular((/**
+             * @return {?}
+             */
+            () => this.chart.destroy()));
         }
     }
 }
@@ -223,7 +267,7 @@ __decorate([
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const COMPONENTS = [G2RadarComponent];
@@ -239,12 +283,12 @@ G2RadarModule.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 export { G2RadarComponent, G2RadarModule };

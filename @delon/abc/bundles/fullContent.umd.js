@@ -69,7 +69,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var FullContentService = /** @class */ (function () {
         function FullContentService() {
@@ -105,7 +105,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
     var wrapCls = "full-content__body";
@@ -132,9 +132,11 @@
             this.fullscreenChange = new i0.EventEmitter();
         }
         /**
+         * @private
          * @return {?}
          */
         FullContentComponent.prototype.updateCls = /**
+         * @private
          * @return {?}
          */
             function () {
@@ -154,9 +156,11 @@
                 }
             };
         /**
+         * @private
          * @return {?}
          */
         FullContentComponent.prototype.update = /**
+         * @private
          * @return {?}
          */
             function () {
@@ -165,9 +169,11 @@
                 this.fullscreenChange.emit(this.fullscreen);
             };
         /**
+         * @private
          * @return {?}
          */
         FullContentComponent.prototype.updateHeight = /**
+         * @private
          * @return {?}
          */
             function () {
@@ -178,9 +184,11 @@
                 this.cdr.detectChanges();
             };
         /**
+         * @private
          * @return {?}
          */
         FullContentComponent.prototype.removeInBody = /**
+         * @private
          * @return {?}
          */
             function () {
@@ -202,13 +210,25 @@
                 // when window resize
                 this.scroll$ = rxjs.fromEvent(window, 'resize')
                     .pipe(operators.debounceTime(200))
-                    .subscribe(function () { return _this.updateHeight(); });
+                    .subscribe(( /**
+             * @return {?}
+             */function () { return _this.updateHeight(); }));
                 // when servier changed
-                this.srv$ = this.srv.change.pipe(operators.filter(function (res) { return res !== null; })).subscribe(function () { return _this.toggle(); });
+                this.srv$ = this.srv.change.pipe(operators.filter(( /**
+                 * @param {?} res
+                 * @return {?}
+                 */function (res) { return res !== null; }))).subscribe(( /**
+                 * @return {?}
+                 */function () { return _this.toggle(); }));
                 // when router changed
                 this.route$ = this.router.events
-                    .pipe(operators.filter(function (e) { return e instanceof router.ActivationStart || e instanceof router.ActivationEnd; }), operators.debounceTime(200))
-                    .subscribe(function () {
+                    .pipe(operators.filter(( /**
+             * @param {?} e
+             * @return {?}
+             */function (e) { return e instanceof router.ActivationStart || e instanceof router.ActivationEnd; })), operators.debounceTime(200))
+                    .subscribe(( /**
+             * @return {?}
+             */function () {
                     if (!!_this.doc.querySelector('#' + _this.id)) {
                         _this.bodyEl.classList.add(wrapCls);
                         _this.updateCls();
@@ -216,7 +236,7 @@
                     else {
                         _this.removeInBody();
                     }
-                });
+                }));
             };
         /**
          * @return {?}
@@ -237,7 +257,9 @@
          */
             function () {
                 var _this = this;
-                setTimeout(function () { return _this.updateHeight(); });
+                setTimeout(( /**
+                 * @return {?}
+                 */function () { return _this.updateHeight(); }));
             };
         /**
          * @return {?}
@@ -305,7 +327,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var FullContentToggleDirective = /** @class */ (function () {
         function FullContentToggleDirective(parent) {
@@ -339,7 +361,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
     var COMPONENTS = [FullContentComponent, FullContentToggleDirective];
@@ -358,12 +380,12 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     exports.FullContentComponent = FullContentComponent;

@@ -5,7 +5,7 @@ import { InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var G2MiniBarComponent = /** @class */ (function () {
     // #endregion
@@ -23,9 +23,11 @@ var G2MiniBarComponent = /** @class */ (function () {
         this.tooltipType = 'default';
     }
     /**
+     * @private
      * @return {?}
      */
     G2MiniBarComponent.prototype.install = /**
+     * @private
      * @return {?}
      */
     function () {
@@ -58,14 +60,21 @@ var G2MiniBarComponent = /** @class */ (function () {
         chart
             .interval()
             .position('x*y')
-            .tooltip('x*y', function (x, y) { return ({ name: x, value: y + yTooltipSuffix }); });
+            .tooltip('x*y', (/**
+         * @param {?} x
+         * @param {?} y
+         * @return {?}
+         */
+        function (x, y) { return ({ name: x, value: y + yTooltipSuffix }); }));
         chart.render();
         this.attachChart();
     };
     /**
+     * @private
      * @return {?}
      */
     G2MiniBarComponent.prototype.attachChart = /**
+     * @private
      * @return {?}
      */
     function () {
@@ -88,7 +97,13 @@ var G2MiniBarComponent = /** @class */ (function () {
      */
     function () {
         var _this = this;
-        this.ngZone.runOutsideAngular(function () { return setTimeout(function () { return _this.install(); }, _this.delay); });
+        this.ngZone.runOutsideAngular((/**
+         * @return {?}
+         */
+        function () { return setTimeout((/**
+         * @return {?}
+         */
+        function () { return _this.install(); }), _this.delay); }));
     };
     /**
      * @return {?}
@@ -98,7 +113,10 @@ var G2MiniBarComponent = /** @class */ (function () {
      */
     function () {
         var _this = this;
-        this.ngZone.runOutsideAngular(function () { return _this.attachChart(); });
+        this.ngZone.runOutsideAngular((/**
+         * @return {?}
+         */
+        function () { return _this.attachChart(); }));
     };
     /**
      * @return {?}
@@ -109,7 +127,10 @@ var G2MiniBarComponent = /** @class */ (function () {
     function () {
         var _this = this;
         if (this.chart) {
-            this.ngZone.runOutsideAngular(function () { return _this.chart.destroy(); });
+            this.ngZone.runOutsideAngular((/**
+             * @return {?}
+             */
+            function () { return _this.chart.destroy(); }));
         }
     };
     G2MiniBarComponent.decorators = [
@@ -154,7 +175,7 @@ var G2MiniBarComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 var COMPONENTS = [G2MiniBarComponent];
@@ -173,12 +194,12 @@ var G2MiniBarModule = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 export { G2MiniBarComponent, G2MiniBarModule };

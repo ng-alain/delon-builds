@@ -14,12 +14,12 @@ import { deepCopy, deepGet, deepMerge, deepMergeKey, toBoolean, updateHostClass,
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var STRowSource = /** @class */ (function () {
     function STRowSource() {
@@ -99,7 +99,7 @@ var STRowDirective = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var STConfig = /** @class */ (function () {
     function STConfig() {
@@ -212,7 +212,7 @@ var STConfig = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var STColumnSource = /** @class */ (function () {
     function STColumnSource(rowSource, acl, i18nSrv, cog) {
@@ -222,10 +222,12 @@ var STColumnSource = /** @class */ (function () {
         this.cog = cog;
     }
     /**
+     * @private
      * @param {?} list
      * @return {?}
      */
     STColumnSource.prototype.btnCoerce = /**
+     * @private
      * @param {?} list
      * @return {?}
      */
@@ -302,10 +304,12 @@ var STColumnSource = /** @class */ (function () {
         return ret;
     };
     /**
+     * @private
      * @param {?} list
      * @return {?}
      */
     STColumnSource.prototype.btnCoerceIf = /**
+     * @private
      * @param {?} list
      * @return {?}
      */
@@ -315,7 +319,10 @@ var STColumnSource = /** @class */ (function () {
             for (var list_2 = __values(list), list_2_1 = list_2.next(); !list_2_1.done; list_2_1 = list_2.next()) {
                 var item = list_2_1.value;
                 if (!item.iif)
-                    item.iif = function () { return true; };
+                    item.iif = (/**
+                     * @return {?}
+                     */
+                    function () { return true; });
                 if (item.children.length > 0) {
                     this.btnCoerceIf(item.children);
                 }
@@ -330,33 +337,60 @@ var STColumnSource = /** @class */ (function () {
         }
     };
     /**
+     * @private
      * @param {?} list
      * @return {?}
      */
     STColumnSource.prototype.fixedCoerce = /**
+     * @private
      * @param {?} list
      * @return {?}
      */
     function (list) {
         /** @type {?} */
-        var countReduce = function (a, b) { return a + +b.width.toString().replace('px', ''); };
+        var countReduce = (/**
+         * @param {?} a
+         * @param {?} b
+         * @return {?}
+         */
+        function (a, b) { return a + +b.width.toString().replace('px', ''); });
         // left width
         list
-            .filter(function (w) { return w.fixed && w.fixed === 'left' && w.width; })
-            .forEach(function (item, idx) { return (item._left = list.slice(0, idx).reduce(countReduce, 0) + 'px'); });
+            .filter((/**
+         * @param {?} w
+         * @return {?}
+         */
+        function (w) { return w.fixed && w.fixed === 'left' && w.width; }))
+            .forEach((/**
+         * @param {?} item
+         * @param {?} idx
+         * @return {?}
+         */
+        function (item, idx) { return (item._left = list.slice(0, idx).reduce(countReduce, 0) + 'px'); }));
         // right width
         list
-            .filter(function (w) { return w.fixed && w.fixed === 'right' && w.width; })
+            .filter((/**
+         * @param {?} w
+         * @return {?}
+         */
+        function (w) { return w.fixed && w.fixed === 'right' && w.width; }))
             .reverse()
-            .forEach(function (item, idx) {
+            .forEach((/**
+         * @param {?} item
+         * @param {?} idx
+         * @return {?}
+         */
+        function (item, idx) {
             return (item._right = (idx > 0 ? list.slice(-idx).reduce(countReduce, 0) : 0) + 'px');
-        });
+        }));
     };
     /**
+     * @private
      * @param {?} item
      * @return {?}
      */
     STColumnSource.prototype.sortCoerce = /**
+     * @private
      * @param {?} item
      * @return {?}
      */
@@ -389,10 +423,12 @@ var STColumnSource = /** @class */ (function () {
         return res;
     };
     /**
+     * @private
      * @param {?} item
      * @return {?}
      */
     STColumnSource.prototype.filterCoerce = /**
+     * @private
      * @param {?} item
      * @return {?}
      */
@@ -435,9 +471,17 @@ var STColumnSource = /** @class */ (function () {
         if (!res.key) {
             res.key = item.indexKey;
         }
-        res.default = res.menus.findIndex(function (w) { return w.checked; }) !== -1;
+        res.default = res.menus.findIndex((/**
+         * @param {?} w
+         * @return {?}
+         */
+        function (w) { return w.checked; })) !== -1;
         if (this.acl) {
-            res.menus = res.menus.filter(function (w) { return _this.acl.can(w.acl); });
+            res.menus = res.menus.filter((/**
+             * @param {?} w
+             * @return {?}
+             */
+            function (w) { return _this.acl.can(w.acl); }));
         }
         if (res.menus.length <= 0) {
             res = null;
@@ -445,10 +489,12 @@ var STColumnSource = /** @class */ (function () {
         return res;
     };
     /**
+     * @private
      * @param {?} item
      * @return {?}
      */
     STColumnSource.prototype.restoreRender = /**
+     * @private
      * @param {?} item
      * @return {?}
      */
@@ -519,7 +565,11 @@ var STColumnSource = /** @class */ (function () {
                     }
                 }
                 if (this.acl) {
-                    item.selections = item.selections.filter(function (w) { return _this.acl.can(w.acl); });
+                    item.selections = item.selections.filter((/**
+                     * @param {?} w
+                     * @return {?}
+                     */
+                    function (w) { return _this.acl.can(w.acl); }));
                 }
                 // radio
                 if (item.type === 'radio') {
@@ -591,7 +641,11 @@ var STColumnSource = /** @class */ (function () {
      */
     function (columns) {
         var _this = this;
-        columns.forEach(function (i) { return _this.restoreRender(i); });
+        columns.forEach((/**
+         * @param {?} i
+         * @return {?}
+         */
+        function (i) { return _this.restoreRender(i); }));
     };
     STColumnSource.decorators = [
         { type: Injectable }
@@ -608,7 +662,7 @@ var STColumnSource = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var STDataSource = /** @class */ (function () {
     function STDataSource(http, currentyPipe, datePipe, ynPipe, numberPipe, dom) {
@@ -630,7 +684,12 @@ var STDataSource = /** @class */ (function () {
      */
     function (options) {
         var _this = this;
-        return new Promise(function (resolvePromise, rejectPromise) {
+        return new Promise((/**
+         * @param {?} resolvePromise
+         * @param {?} rejectPromise
+         * @return {?}
+         */
+        function (resolvePromise, rejectPromise) {
             /** @type {?} */
             var data$;
             /** @type {?} */
@@ -648,7 +707,11 @@ var STDataSource = /** @class */ (function () {
             var showPage = page.show;
             if (typeof data === 'string') {
                 isRemote = true;
-                data$ = _this.getByHttp(data, options).pipe(map(function (result) {
+                data$ = _this.getByHttp(data, options).pipe(map((/**
+                 * @param {?} result
+                 * @return {?}
+                 */
+                function (result) {
                     /** @type {?} */
                     var ret;
                     if (Array.isArray(result)) {
@@ -669,10 +732,14 @@ var STDataSource = /** @class */ (function () {
                         retTotal = resultTotal == null ? total || 0 : +resultTotal;
                     }
                     return ret;
-                }), catchError(function (err) {
+                })), catchError((/**
+                 * @param {?} err
+                 * @return {?}
+                 */
+                function (err) {
                     rejectPromise(err);
                     return [];
-                }));
+                })));
             }
             else if (Array.isArray(data)) {
                 data$ = of(data);
@@ -684,7 +751,11 @@ var STDataSource = /** @class */ (function () {
             if (!isRemote) {
                 data$ = data$.pipe(
                 // sort
-                map(function (result) {
+                map((/**
+                 * @param {?} result
+                 * @return {?}
+                 */
+                function (result) {
                     /** @type {?} */
                     var copyResult = result.slice(0);
                     /** @type {?} */
@@ -693,14 +764,30 @@ var STDataSource = /** @class */ (function () {
                         copyResult = copyResult.sort(sorterFn);
                     }
                     return copyResult;
-                }), 
+                })), 
                 // filter
-                map(function (result) {
+                map((/**
+                 * @param {?} result
+                 * @return {?}
+                 */
+                function (result) {
                     columns
-                        .filter(function (w) { return w.filter; })
-                        .forEach(function (c) {
+                        .filter((/**
+                     * @param {?} w
+                     * @return {?}
+                     */
+                    function (w) { return w.filter; }))
+                        .forEach((/**
+                     * @param {?} c
+                     * @return {?}
+                     */
+                    function (c) {
                         /** @type {?} */
-                        var values = c.filter.menus.filter(function (w) { return w.checked; });
+                        var values = c.filter.menus.filter((/**
+                         * @param {?} w
+                         * @return {?}
+                         */
+                        function (w) { return w.checked; }));
                         if (values.length === 0)
                             return;
                         /** @type {?} */
@@ -709,12 +796,24 @@ var STDataSource = /** @class */ (function () {
                             console.warn("[st] Muse provide the fn function in filter");
                             return;
                         }
-                        result = result.filter(function (record) { return values.some(function (v) { return onFilter(v, record); }); });
-                    });
+                        result = result.filter((/**
+                         * @param {?} record
+                         * @return {?}
+                         */
+                        function (record) { return values.some((/**
+                         * @param {?} v
+                         * @return {?}
+                         */
+                        function (v) { return onFilter(v, record); })); }));
+                    }));
                     return result;
-                }), 
+                })), 
                 // paging
-                map(function (result) {
+                map((/**
+                 * @param {?} result
+                 * @return {?}
+                 */
+                function (result) {
                     if (page.front) {
                         /** @type {?} */
                         var maxPageIndex = Math.ceil(result.length / ps);
@@ -725,16 +824,28 @@ var STDataSource = /** @class */ (function () {
                         }
                     }
                     return result;
-                }));
+                })));
             }
             // pre-process
             if (typeof res.process === 'function') {
-                data$ = data$.pipe(map(function (result) { return res.process(result); }));
+                data$ = data$.pipe(map((/**
+                 * @param {?} result
+                 * @return {?}
+                 */
+                function (result) { return res.process(result); })));
             }
             // data accelerator
-            data$ = data$.pipe(map(function (result) {
+            data$ = data$.pipe(map((/**
+             * @param {?} result
+             * @return {?}
+             */
+            function (result) {
                 var _loop_1 = function (i, len) {
-                    result[i]._values = columns.map(function (c) { return _this.get(result[i], c, i); });
+                    result[i]._values = columns.map((/**
+                     * @param {?} c
+                     * @return {?}
+                     */
+                    function (c) { return _this.get(result[i], c, i); }));
                     if (options.rowClassName) {
                         result[i]._rowClassName = options.rowClassName(result[i], i);
                     }
@@ -743,10 +854,17 @@ var STDataSource = /** @class */ (function () {
                     _loop_1(i, len);
                 }
                 return result;
-            }));
+            })));
             data$
-                .forEach(function (result) { return (retList = result); })
-                .then(function () {
+                .forEach((/**
+             * @param {?} result
+             * @return {?}
+             */
+            function (result) { return (retList = result); }))
+                .then((/**
+             * @return {?}
+             */
+            function () {
                 /** @type {?} */
                 var realTotal = retTotal || total;
                 /** @type {?} */
@@ -759,16 +877,18 @@ var STDataSource = /** @class */ (function () {
                     statistical: _this.genStatistical(columns, retList),
                     pageShow: typeof showPage === 'undefined' ? realTotal > realPs : showPage,
                 });
-            });
-        });
+            }));
+        }));
     };
     /**
+     * @private
      * @param {?} item
      * @param {?} col
      * @param {?} idx
      * @return {?}
      */
     STDataSource.prototype.get = /**
+     * @private
      * @param {?} item
      * @param {?} col
      * @param {?} idx
@@ -810,11 +930,13 @@ var STDataSource = /** @class */ (function () {
         return { text: ret == null ? '' : ret, org: value };
     };
     /**
+     * @private
      * @param {?} url
      * @param {?} options
      * @return {?}
      */
     STDataSource.prototype.getByHttp = /**
+     * @private
      * @param {?} url
      * @param {?} options
      * @return {?}
@@ -874,25 +996,37 @@ var STDataSource = /** @class */ (function () {
     // #region sort
     // #region sort
     /**
+     * @private
      * @param {?} columns
      * @return {?}
      */
     STDataSource.prototype.getValidSort = 
     // #region sort
     /**
+     * @private
      * @param {?} columns
      * @return {?}
      */
     function (columns) {
         return columns
-            .filter(function (item) { return item._sort && item._sort.enabled && item._sort.default; })
-            .map(function (item) { return item._sort; });
+            .filter((/**
+         * @param {?} item
+         * @return {?}
+         */
+        function (item) { return item._sort && item._sort.enabled && item._sort.default; }))
+            .map((/**
+         * @param {?} item
+         * @return {?}
+         */
+        function (item) { return item._sort; }));
     };
     /**
+     * @private
      * @param {?} columns
      * @return {?}
      */
     STDataSource.prototype.getSorterFn = /**
+     * @private
      * @param {?} columns
      * @return {?}
      */
@@ -906,14 +1040,19 @@ var STDataSource = /** @class */ (function () {
             console.warn("[st] Muse provide the compare function in sort");
             return;
         }
-        return function (a, b) {
+        return (/**
+         * @param {?} a
+         * @param {?} b
+         * @return {?}
+         */
+        function (a, b) {
             /** @type {?} */
             var result = sortList[0].compare(a, b);
             if (result !== 0) {
                 return sortList[0].default === 'descend' ? -result : result;
             }
             return 0;
-        };
+        });
     };
     Object.defineProperty(STDataSource.prototype, "nextSortTick", {
         get: /**
@@ -949,8 +1088,17 @@ var STDataSource = /** @class */ (function () {
             /** @type {?} */
             var ms_1 = __assign({ key: 'sort', separator: '-', nameSeparator: '.' }, multiSort);
             ret = (_a = {},
-                _a[ms_1.key] = sortList.sort(function (a, b) { return a.tick - b.tick; })
-                    .map(function (item) { return item.key + ms_1.nameSeparator + ((item.reName || {})[item.default] || item.default); })
+                _a[ms_1.key] = sortList.sort((/**
+                 * @param {?} a
+                 * @param {?} b
+                 * @return {?}
+                 */
+                function (a, b) { return a.tick - b.tick; }))
+                    .map((/**
+                 * @param {?} item
+                 * @return {?}
+                 */
+                function (item) { return item.key + ms_1.nameSeparator + ((item.reName || {})[item.default] || item.default); }))
                     .join(ms_1.separator),
                 _a);
         }
@@ -974,6 +1122,7 @@ var STDataSource = /** @class */ (function () {
     // #endregion
     // #region filter
     /**
+     * @private
      * @param {?} columns
      * @return {?}
      */
@@ -981,6 +1130,7 @@ var STDataSource = /** @class */ (function () {
     // #endregion
     // #region filter
     /**
+     * @private
      * @param {?} columns
      * @return {?}
      */
@@ -988,20 +1138,36 @@ var STDataSource = /** @class */ (function () {
         /** @type {?} */
         var ret = {};
         columns
-            .filter(function (w) { return w.filter && w.filter.default === true; })
-            .forEach(function (col) {
+            .filter((/**
+         * @param {?} w
+         * @return {?}
+         */
+        function (w) { return w.filter && w.filter.default === true; }))
+            .forEach((/**
+         * @param {?} col
+         * @return {?}
+         */
+        function (col) {
             /** @type {?} */
-            var values = col.filter.menus.filter(function (f) { return f.checked === true; });
+            var values = col.filter.menus.filter((/**
+             * @param {?} f
+             * @return {?}
+             */
+            function (f) { return f.checked === true; }));
             /** @type {?} */
             var obj = {};
             if (col.filter.reName) {
                 obj = col.filter.reName(col.filter.menus, col);
             }
             else {
-                obj[col.filter.key] = values.map(function (i) { return i.value; }).join(',');
+                obj[col.filter.key] = values.map((/**
+                 * @param {?} i
+                 * @return {?}
+                 */
+                function (i) { return i.value; })).join(',');
             }
             ret = __assign({}, ret, obj);
-        });
+        }));
         return ret;
     };
     // #endregion
@@ -1009,6 +1175,7 @@ var STDataSource = /** @class */ (function () {
     // #endregion
     // #region statistical
     /**
+     * @private
      * @param {?} columns
      * @param {?} list
      * @return {?}
@@ -1017,6 +1184,7 @@ var STDataSource = /** @class */ (function () {
     // #endregion
     // #region statistical
     /**
+     * @private
      * @param {?} columns
      * @param {?} list
      * @return {?}
@@ -1025,19 +1193,26 @@ var STDataSource = /** @class */ (function () {
         var _this = this;
         /** @type {?} */
         var res = {};
-        columns.forEach(function (col, index) {
+        columns.forEach((/**
+         * @param {?} col
+         * @param {?} index
+         * @return {?}
+         */
+        function (col, index) {
             res[col.key ? col.key : index] =
                 col.statistical == null ? {} : _this.getStatistical(col, index, list);
-        });
+        }));
         return res;
     };
     /**
+     * @private
      * @param {?} col
      * @param {?} index
      * @param {?} list
      * @return {?}
      */
     STDataSource.prototype.getStatistical = /**
+     * @private
      * @param {?} col
      * @param {?} index
      * @param {?} list
@@ -1062,7 +1237,13 @@ var STDataSource = /** @class */ (function () {
                     res.value = list.length;
                     break;
                 case 'distinctCount':
-                    res.value = this.getValues(index, list).filter(function (value, idx, self) { return self.indexOf(value) === idx; }).length;
+                    res.value = this.getValues(index, list).filter((/**
+                     * @param {?} value
+                     * @param {?} idx
+                     * @param {?} self
+                     * @return {?}
+                     */
+                    function (value, idx, self) { return self.indexOf(value) === idx; })).length;
                     break;
                 case 'sum':
                     res.value = this.toFixed(this.getSum(index, list), item.digits);
@@ -1091,11 +1272,13 @@ var STDataSource = /** @class */ (function () {
         return res;
     };
     /**
+     * @private
      * @param {?} val
      * @param {?} digits
      * @return {?}
      */
     STDataSource.prototype.toFixed = /**
+     * @private
      * @param {?} val
      * @param {?} digits
      * @return {?}
@@ -1107,30 +1290,47 @@ var STDataSource = /** @class */ (function () {
         return parseFloat(val.toFixed(digits));
     };
     /**
+     * @private
      * @param {?} index
      * @param {?} list
      * @return {?}
      */
     STDataSource.prototype.getValues = /**
+     * @private
      * @param {?} index
      * @param {?} list
      * @return {?}
      */
     function (index, list) {
-        return list.map(function (i) { return i._values[index].org; }).map(function (i) { return (i === '' || i == null ? 0 : i); });
+        return list.map((/**
+         * @param {?} i
+         * @return {?}
+         */
+        function (i) { return i._values[index].org; })).map((/**
+         * @param {?} i
+         * @return {?}
+         */
+        function (i) { return (i === '' || i == null ? 0 : i); }));
     };
     /**
+     * @private
      * @param {?} index
      * @param {?} list
      * @return {?}
      */
     STDataSource.prototype.getSum = /**
+     * @private
      * @param {?} index
      * @param {?} list
      * @return {?}
      */
     function (index, list) {
-        return this.getValues(index, list).reduce(function (p, i) { return (p += parseFloat(String(i))); }, 0);
+        return this.getValues(index, list).reduce((/**
+         * @param {?} p
+         * @param {?} i
+         * @return {?}
+         */
+        function (p, i) { return (p += parseFloat(String(i))); }), 0);
     };
     STDataSource.decorators = [
         { type: Injectable }
@@ -1149,18 +1349,20 @@ var STDataSource = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var STExport = /** @class */ (function () {
     function STExport(xlsxSrv) {
         this.xlsxSrv = xlsxSrv;
     }
     /**
+     * @private
      * @param {?} item
      * @param {?} col
      * @return {?}
      */
     STExport.prototype._stGet = /**
+     * @private
      * @param {?} item
      * @param {?} col
      * @return {?}
@@ -1190,10 +1392,12 @@ var STExport = /** @class */ (function () {
         return ret;
     };
     /**
+     * @private
      * @param {?} opt
      * @return {?}
      */
     STExport.prototype.genSheet = /**
+     * @private
      * @param {?} opt
      * @return {?}
      */
@@ -1203,7 +1407,11 @@ var STExport = /** @class */ (function () {
         /** @type {?} */
         var sheet = (sheets[opt.sheetname || 'Sheet1'] = {});
         /** @type {?} */
-        var colData = opt._c.filter(function (w) { return w.exported !== false && w.index && (!w.buttons || w.buttons.length === 0); });
+        var colData = opt._c.filter((/**
+         * @param {?} w
+         * @return {?}
+         */
+        function (w) { return w.exported !== false && w.index && (!w.buttons || w.buttons.length === 0); }));
         /** @type {?} */
         var cc = colData.length;
         /** @type {?} */
@@ -1255,7 +1463,7 @@ var STExport = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var STComponent = /** @class */ (function () {
     // #endregion
@@ -1319,13 +1527,16 @@ var STComponent = /** @class */ (function () {
          */
         this.change = new EventEmitter();
         this.rowClickCount = 0;
-        this.delonI18n.change.pipe(takeUntil(this.unsubscribe$)).subscribe(function () {
+        this.delonI18n.change.pipe(takeUntil(this.unsubscribe$)).subscribe((/**
+         * @return {?}
+         */
+        function () {
             _this.locale = _this.delonI18n.getData('st');
             if (_this._columns.length > 0) {
                 _this.page = _this.clonePage;
                 _this.cd();
             }
-        });
+        }));
         /** @type {?} */
         var copyCog = deepMergeKey(new STConfig(), true, cog);
         delete copyCog.multiSort;
@@ -1334,8 +1545,16 @@ var STComponent = /** @class */ (function () {
             this.multiSort = __assign({}, cog.multiSort);
         }
         i18nSrv.change
-            .pipe(takeUntil(this.unsubscribe$), filter(function () { return _this._columns.length > 0; }))
-            .subscribe(function () { return _this.refreshColumns(); });
+            .pipe(takeUntil(this.unsubscribe$), filter((/**
+         * @return {?}
+         */
+        function () { return _this._columns.length > 0; })))
+            .subscribe((/**
+         * @template THIS
+         * @this {THIS}
+         * @return {THIS}
+         */
+        function () { return _this.refreshColumns(); }));
     }
     Object.defineProperty(STComponent.prototype, "req", {
         /** 请求体配置 */
@@ -1471,11 +1690,13 @@ var STComponent = /** @class */ (function () {
             : '';
     };
     /**
+     * @private
      * @param {?} type
      * @param {?=} data
      * @return {?}
      */
     STComponent.prototype.changeEmit = /**
+     * @private
      * @param {?} type
      * @param {?=} data
      * @return {?}
@@ -1495,6 +1716,7 @@ var STComponent = /** @class */ (function () {
     };
     Object.defineProperty(STComponent.prototype, "routerState", {
         get: /**
+         * @private
          * @return {?}
          */
         function () {
@@ -1507,11 +1729,13 @@ var STComponent = /** @class */ (function () {
     // #region data
     // #region data
     /**
+     * @private
      * @return {?}
      */
     STComponent.prototype._load = 
     // #region data
     /**
+     * @private
      * @return {?}
      */
     function () {
@@ -1532,7 +1756,11 @@ var STComponent = /** @class */ (function () {
             multiSort: multiSort,
             rowClassName: rowClassName,
         })
-            .then(function (result) {
+            .then((/**
+         * @param {?} result
+         * @return {?}
+         */
+        function (result) {
             _this.loading = false;
             if (typeof result.pi !== 'undefined') {
                 _this.pi = result.pi;
@@ -1549,12 +1777,21 @@ var STComponent = /** @class */ (function () {
             _this._data = result.list;
             _this._statistical = result.statistical;
             return _this._data;
-        })
-            .then(function () { return _this._refCheck(); })
-            .catch(function (error) {
+        }))
+            .then((/**
+         * @template THIS
+         * @this {THIS}
+         * @return {THIS}
+         */
+        function () { return _this._refCheck(); }))
+            .catch((/**
+         * @param {?} error
+         * @return {?}
+         */
+        function (error) {
             _this.loading = false;
             _this.error.emit({ type: 'req', error: error });
-        });
+        }));
     };
     /** 清空所有数据 */
     /**
@@ -1699,9 +1936,11 @@ var STComponent = /** @class */ (function () {
         return (/** @type {?} */ (this));
     };
     /**
+     * @private
      * @return {?}
      */
     STComponent.prototype._toTop = /**
+     * @private
      * @return {?}
      */
     function () {
@@ -1727,9 +1966,12 @@ var STComponent = /** @class */ (function () {
      */
     function (type) {
         var _this = this;
-        this._load().then(function () {
+        this._load().then((/**
+         * @return {?}
+         */
+        function () {
             _this._toTop();
-        });
+        }));
         this.changeEmit(type);
     };
     /**
@@ -1779,7 +2021,10 @@ var STComponent = /** @class */ (function () {
         ++this.rowClickCount;
         if (this.rowClickCount !== 1)
             return;
-        setTimeout(function () {
+        setTimeout((/**
+         * @return {?}
+         */
+        function () {
             /** @type {?} */
             var data = { e: e, item: item, index: index };
             if (_this.rowClickCount === 1) {
@@ -1789,7 +2034,7 @@ var STComponent = /** @class */ (function () {
                 _this.changeEmit('dblClick', data);
             }
             _this.rowClickCount = 0;
-        }, rowClickTime);
+        }), rowClickTime);
     };
     /** 移除某行数据 */
     /**
@@ -1812,13 +2057,38 @@ var STComponent = /** @class */ (function () {
             data = [data];
         }
         ((/** @type {?} */ (data)))
-            .map(function (item) { return (/** @type {?} */ (_this))._data.indexOf(item); })
-            .filter(function (pos) { return pos !== -1; })
-            .forEach(function (pos) { return (/** @type {?} */ (_this))._data.splice(pos, 1); });
+            .map((/**
+         * @param {?} item
+         * @return {?}
+         */
+        function (item) { return (/** @type {?} */ (_this))._data.indexOf(item); }))
+            .filter((/**
+         * @param {?} pos
+         * @return {?}
+         */
+        function (pos) { return pos !== -1; }))
+            .forEach((/**
+         * @param {?} pos
+         * @return {?}
+         */
+        function (pos) { return (/** @type {?} */ (_this))._data.splice(pos, 1); }));
         // recalculate no
         (/** @type {?} */ (this))._columns
-            .filter(function (w) { return w.type === 'no'; })
-            .forEach(function (c) { return (/** @type {?} */ (_this))._data.forEach(function (i, idx) { return (i._values[c.__point] = { text: (/** @type {?} */ (_this)).dataSource.getNoIndex(i, c, idx), org: idx }); }); });
+            .filter((/**
+         * @param {?} w
+         * @return {?}
+         */
+        function (w) { return w.type === 'no'; }))
+            .forEach((/**
+         * @param {?} c
+         * @return {?}
+         */
+        function (c) { return (/** @type {?} */ (_this))._data.forEach((/**
+         * @param {?} i
+         * @param {?} idx
+         * @return {?}
+         */
+        function (i, idx) { return (i._values[c.__point] = { text: (/** @type {?} */ (_this)).dataSource.getNoIndex(i, c, idx), org: idx }); })); }));
         return (/** @type {?} */ (this)).cd();
     };
     // #endregion
@@ -1846,7 +2116,12 @@ var STComponent = /** @class */ (function () {
             col._sort.tick = this.dataSource.nextSortTick;
         }
         else {
-            this._columns.forEach(function (item, index) { return (item._sort.default = index === idx ? value : null); });
+            this._columns.forEach((/**
+             * @param {?} item
+             * @param {?} index
+             * @return {?}
+             */
+            function (item, index) { return (item._sort.default = index === idx ? value : null); }));
         }
         this._load();
         /** @type {?} */
@@ -1868,7 +2143,11 @@ var STComponent = /** @class */ (function () {
      * @return {THIS}
      */
     function () {
-        (/** @type {?} */ (this))._columns.forEach(function (item) { return (item._sort.default = null); });
+        (/** @type {?} */ (this))._columns.forEach((/**
+         * @param {?} item
+         * @return {?}
+         */
+        function (item) { return (item._sort.default = null); }));
         return (/** @type {?} */ (this));
     };
     // #endregion
@@ -1876,6 +2155,7 @@ var STComponent = /** @class */ (function () {
     // #endregion
     // #region filter
     /**
+     * @private
      * @param {?} col
      * @return {?}
      */
@@ -1883,11 +2163,16 @@ var STComponent = /** @class */ (function () {
     // #endregion
     // #region filter
     /**
+     * @private
      * @param {?} col
      * @return {?}
      */
     function (col) {
-        col.filter.default = col.filter.menus.findIndex(function (w) { return w.checked; }) !== -1;
+        col.filter.default = col.filter.menus.findIndex((/**
+         * @param {?} w
+         * @return {?}
+         */
+        function (w) { return w.checked; })) !== -1;
         this._load();
         this.changeEmit('filter', col);
     };
@@ -1911,7 +2196,11 @@ var STComponent = /** @class */ (function () {
      * @return {?}
      */
     function (col) {
-        col.filter.menus.forEach(function (i) { return (i.checked = false); });
+        col.filter.menus.forEach((/**
+         * @param {?} i
+         * @return {?}
+         */
+        function (i) { return (i.checked = false); }));
         this.handleFilter(col);
     };
     /**
@@ -1927,7 +2216,11 @@ var STComponent = /** @class */ (function () {
      * @return {?}
      */
     function (col, item, checked) {
-        col.filter.menus.forEach(function (i) { return (i.checked = false); });
+        col.filter.menus.forEach((/**
+         * @param {?} i
+         * @return {?}
+         */
+        function (i) { return (i.checked = false); }));
         item.checked = checked;
     };
     /**
@@ -1942,11 +2235,23 @@ var STComponent = /** @class */ (function () {
      */
     function () {
         (/** @type {?} */ (this))._columns
-            .filter(function (w) { return w.filter && w.filter.default === true; })
-            .forEach(function (col) {
+            .filter((/**
+         * @param {?} w
+         * @return {?}
+         */
+        function (w) { return w.filter && w.filter.default === true; }))
+            .forEach((/**
+         * @param {?} col
+         * @return {?}
+         */
+        function (col) {
             col.filter.default = false;
-            col.filter.menus.forEach(function (f) { return (f.checked = false); });
-        });
+            col.filter.menus.forEach((/**
+             * @param {?} f
+             * @return {?}
+             */
+            function (f) { return (f.checked = false); }));
+        }));
         return (/** @type {?} */ (this));
     };
     // #endregion
@@ -1973,25 +2278,43 @@ var STComponent = /** @class */ (function () {
         return (/** @type {?} */ (this))._checkAll(false);
     };
     /**
+     * @private
      * @template THIS
      * @this {THIS}
      * @return {THIS}
      */
     STComponent.prototype._refCheck = /**
+     * @private
      * @template THIS
      * @this {THIS}
      * @return {THIS}
      */
     function () {
         /** @type {?} */
-        var validData = (/** @type {?} */ (this))._data.filter(function (w) { return !w.disabled; });
+        var validData = (/** @type {?} */ (this))._data.filter((/**
+         * @param {?} w
+         * @return {?}
+         */
+        function (w) { return !w.disabled; }));
         /** @type {?} */
-        var checkedList = validData.filter(function (w) { return w.checked === true; });
+        var checkedList = validData.filter((/**
+         * @param {?} w
+         * @return {?}
+         */
+        function (w) { return w.checked === true; }));
         (/** @type {?} */ (this))._allChecked = checkedList.length > 0 && checkedList.length === validData.length;
         /** @type {?} */
-        var allUnChecked = validData.every(function (value) { return !value.checked; });
+        var allUnChecked = validData.every((/**
+         * @param {?} value
+         * @return {?}
+         */
+        function (value) { return !value.checked; }));
         (/** @type {?} */ (this))._indeterminate = !(/** @type {?} */ (this))._allChecked && !allUnChecked;
-        (/** @type {?} */ (this))._allCheckedDisabled = (/** @type {?} */ (this))._data.length === (/** @type {?} */ (this))._data.filter(function (w) { return w.disabled; }).length;
+        (/** @type {?} */ (this))._allCheckedDisabled = (/** @type {?} */ (this))._data.length === (/** @type {?} */ (this))._data.filter((/**
+         * @param {?} w
+         * @return {?}
+         */
+        function (w) { return w.disabled; })).length;
         (/** @type {?} */ (this)).cd();
         return (/** @type {?} */ (this));
     };
@@ -2009,7 +2332,15 @@ var STComponent = /** @class */ (function () {
      */
     function (checked) {
         checked = typeof checked === 'undefined' ? (/** @type {?} */ (this))._allChecked : checked;
-        (/** @type {?} */ (this))._data.filter(function (w) { return !w.disabled; }).forEach(function (i) { return (i.checked = checked); });
+        (/** @type {?} */ (this))._data.filter((/**
+         * @param {?} w
+         * @return {?}
+         */
+        function (w) { return !w.disabled; })).forEach((/**
+         * @param {?} i
+         * @return {?}
+         */
+        function (i) { return (i.checked = checked); }));
         return (/** @type {?} */ (this))._refCheck()._checkNotify();
     };
     /**
@@ -2058,7 +2389,11 @@ var STComponent = /** @class */ (function () {
      */
     function () {
         /** @type {?} */
-        var res = (/** @type {?} */ (this))._data.filter(function (w) { return !w.disabled && w.checked === true; });
+        var res = (/** @type {?} */ (this))._data.filter((/**
+         * @param {?} w
+         * @return {?}
+         */
+        function (w) { return !w.disabled && w.checked === true; }));
         (/** @type {?} */ (this)).changeEmit('checkbox', res);
         return (/** @type {?} */ (this));
     };
@@ -2083,7 +2418,15 @@ var STComponent = /** @class */ (function () {
      * @return {THIS}
      */
     function () {
-        (/** @type {?} */ (this))._data.filter(function (w) { return w.checked; }).forEach(function (item) { return (item.checked = false); });
+        (/** @type {?} */ (this))._data.filter((/**
+         * @param {?} w
+         * @return {?}
+         */
+        function (w) { return w.checked; })).forEach((/**
+         * @param {?} item
+         * @return {?}
+         */
+        function (item) { return (item.checked = false); }));
         (/** @type {?} */ (this)).changeEmit('radio', null);
         return (/** @type {?} */ (this));
     };
@@ -2103,7 +2446,15 @@ var STComponent = /** @class */ (function () {
      */
     function (checked, item) {
         // if (item.disabled === true) return;
-        (/** @type {?} */ (this))._data.filter(function (w) { return !w.disabled; }).forEach(function (i) { return (i.checked = false); });
+        (/** @type {?} */ (this))._data.filter((/**
+         * @param {?} w
+         * @return {?}
+         */
+        function (w) { return !w.disabled; })).forEach((/**
+         * @param {?} i
+         * @return {?}
+         */
+        function (i) { return (i.checked = false); }));
         item.checked = checked;
         (/** @type {?} */ (this)).changeEmit('radio', item);
         return (/** @type {?} */ (this));
@@ -2139,8 +2490,16 @@ var STComponent = /** @class */ (function () {
             /** @type {?} */
             var obj = (_a = {}, _a[modal.paramsName] = record, _a);
             ((/** @type {?} */ (this.modalHelper[btn.type === 'modal' ? 'create' : 'createStatic'])))(modal.component, __assign({}, obj, (modal.params && modal.params(record))), __assign({}, modal))
-                .pipe(filter(function (w) { return typeof w !== 'undefined'; }))
-                .subscribe(function (res) { return _this.btnCallback(record, btn, res); });
+                .pipe(filter((/**
+             * @param {?} w
+             * @return {?}
+             */
+            function (w) { return typeof w !== 'undefined'; })))
+                .subscribe((/**
+             * @param {?} res
+             * @return {?}
+             */
+            function (res) { return _this.btnCallback(record, btn, res); }));
             return;
         }
         else if (btn.type === 'drawer') {
@@ -2149,8 +2508,16 @@ var STComponent = /** @class */ (function () {
             var obj = (_b = {}, _b[drawer.paramsName] = record, _b);
             this.drawerHelper
                 .create(drawer.title, drawer.component, __assign({}, obj, (drawer.params && drawer.params(record))), __assign({}, drawer))
-                .pipe(filter(function (w) { return typeof w !== 'undefined'; }))
-                .subscribe(function (res) { return _this.btnCallback(record, btn, res); });
+                .pipe(filter((/**
+             * @param {?} w
+             * @return {?}
+             */
+            function (w) { return typeof w !== 'undefined'; })))
+                .subscribe((/**
+             * @param {?} res
+             * @return {?}
+             */
+            function (res) { return _this.btnCallback(record, btn, res); }));
             return;
         }
         else if (btn.type === 'link') {
@@ -2164,12 +2531,14 @@ var STComponent = /** @class */ (function () {
         this.btnCallback(record, btn);
     };
     /**
+     * @private
      * @param {?} record
      * @param {?} btn
      * @param {?=} modal
      * @return {?}
      */
     STComponent.prototype.btnCallback = /**
+     * @private
      * @param {?} record
      * @param {?} btn
      * @param {?=} modal
@@ -2218,7 +2587,11 @@ var STComponent = /** @class */ (function () {
      * @return {?}
      */
     function (item, col) {
-        return col.buttons.filter(function (btn) { return btn.iif(item, btn, col); });
+        return col.buttons.filter((/**
+         * @param {?} btn
+         * @return {?}
+         */
+        function (btn) { return btn.iif(item, btn, col); }));
     };
     // #endregion
     // #region export
@@ -2246,12 +2619,16 @@ var STComponent = /** @class */ (function () {
      */
     function (newData, opt) {
         var _this = this;
-        (newData ? of(newData) : of(this._data)).subscribe(function (res) {
+        (newData ? of(newData) : of(this._data)).subscribe((/**
+         * @param {?} res
+         * @return {?}
+         */
+        function (res) {
             return _this.exportSrv.export(__assign({}, opt, {
                 _d: res,
                 _c: _this._columns,
             }));
-        });
+        }));
     };
     // #endregion
     // #endregion
@@ -2267,11 +2644,13 @@ var STComponent = /** @class */ (function () {
         return this.refreshColumns()._load();
     };
     /**
+     * @private
      * @template THIS
      * @this {THIS}
      * @return {THIS}
      */
     STComponent.prototype.refreshColumns = /**
+     * @private
      * @template THIS
      * @this {THIS}
      * @return {THIS}
@@ -2281,9 +2660,11 @@ var STComponent = /** @class */ (function () {
         return (/** @type {?} */ (this));
     };
     /**
+     * @private
      * @return {?}
      */
     STComponent.prototype.setClass = /**
+     * @private
      * @return {?}
      */
     function () {
@@ -2435,7 +2816,7 @@ var STComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 var COMPONENTS = [STComponent, STRowDirective];
@@ -2455,12 +2836,12 @@ var STModule = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 export { STComponent, STRowDirective, STConfig, STModule, STColumnSource, STDataSource, STExport, STRowSource as ɵa };

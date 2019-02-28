@@ -5,7 +5,7 @@ import { InputBoolean, InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class G2TimelineData {
 }
@@ -31,9 +31,16 @@ class G2TimelineComponent {
      * @return {?}
      */
     ngOnInit() {
-        this.ngZone.runOutsideAngular(() => setTimeout(() => this.install(), this.delay));
+        this.ngZone.runOutsideAngular((/**
+         * @return {?}
+         */
+        () => setTimeout((/**
+         * @return {?}
+         */
+        () => this.install()), this.delay)));
     }
     /**
+     * @private
      * @return {?}
      */
     install() {
@@ -81,6 +88,7 @@ class G2TimelineComponent {
         this.attachChart();
     }
     /**
+     * @private
      * @return {?}
      */
     attachChart() {
@@ -94,19 +102,47 @@ class G2TimelineComponent {
             items: [{ value: titleMap.y1, fill: colorMap.y1 }, { value: titleMap.y2, fill: colorMap.y2 }],
         });
         // border
-        chart.get('geoms').forEach((v, idx) => {
+        chart.get('geoms').forEach((/**
+         * @param {?} v
+         * @param {?} idx
+         * @return {?}
+         */
+        (v, idx) => {
             v.color(colorMap[`y${idx + 1}`]).size(borderWidth);
-        });
+        }));
         chart.set('height', height);
         chart.set('padding', padding);
         data
-            .filter(v => !(v.x instanceof Number))
-            .forEach(v => {
+            .filter((/**
+         * @param {?} v
+         * @return {?}
+         */
+        v => !(v.x instanceof Number)))
+            .forEach((/**
+         * @param {?} v
+         * @return {?}
+         */
+        v => {
             v.x = +new Date(v.x);
-        });
-        data.sort((a, b) => +a.x - +b.x);
+        }));
+        data.sort((/**
+         * @param {?} a
+         * @param {?} b
+         * @return {?}
+         */
+        (a, b) => +a.x - +b.x));
         /** @type {?} */
-        const max = Math.max([...data].sort((a, b) => b.y1 - a.y1)[0].y1, [...data].sort((a, b) => b.y2 - a.y2)[0].y2);
+        const max = Math.max([...data].sort((/**
+         * @param {?} a
+         * @param {?} b
+         * @return {?}
+         */
+        (a, b) => b.y1 - a.y1))[0].y1, [...data].sort((/**
+         * @param {?} a
+         * @param {?} b
+         * @return {?}
+         */
+        (a, b) => b.y2 - a.y2))[0].y2);
         /** @type {?} */
         const ds = new DataSet({
             state: {
@@ -118,11 +154,15 @@ class G2TimelineComponent {
         const dv = ds.createView();
         dv.source(data).transform({
             type: 'filter',
-            callback: (val) => {
+            callback: (/**
+             * @param {?} val
+             * @return {?}
+             */
+            (val) => {
                 /** @type {?} */
                 const time = +val.x;
                 return time >= ds.state.start && time <= ds.state.end;
-            },
+            }),
         });
         chart.source(dv, {
             x: {
@@ -145,10 +185,14 @@ class G2TimelineComponent {
         if (slider) {
             _slider.start = ds.state.start;
             _slider.end = ds.state.end;
-            _slider.onChange = ({ startValue, endValue }) => {
+            _slider.onChange = (/**
+             * @param {?} __0
+             * @return {?}
+             */
+            ({ startValue, endValue }) => {
                 ds.setState('start', startValue);
                 ds.setState('end', endValue);
-            };
+            });
             _slider.changeData(data);
         }
     }
@@ -156,17 +200,26 @@ class G2TimelineComponent {
      * @return {?}
      */
     ngOnChanges() {
-        this.ngZone.runOutsideAngular(() => this.attachChart());
+        this.ngZone.runOutsideAngular((/**
+         * @return {?}
+         */
+        () => this.attachChart()));
     }
     /**
      * @return {?}
      */
     ngOnDestroy() {
         if (this.chart) {
-            this.ngZone.runOutsideAngular(() => this.chart.destroy());
+            this.ngZone.runOutsideAngular((/**
+             * @return {?}
+             */
+            () => this.chart.destroy()));
         }
         if (this._slider) {
-            this.ngZone.runOutsideAngular(() => this._slider.destroy());
+            this.ngZone.runOutsideAngular((/**
+             * @return {?}
+             */
+            () => this._slider.destroy()));
         }
     }
 }
@@ -215,7 +268,7 @@ __decorate([
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const COMPONENTS = [G2TimelineComponent];
@@ -231,12 +284,12 @@ G2TimelineModule.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 export { G2TimelineData, G2TimelineComponent, G2TimelineModule };

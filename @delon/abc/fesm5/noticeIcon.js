@@ -7,12 +7,12 @@ import { NgZorroAntdModule } from 'ng-zorro-antd';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var NoticeIconTabComponent = /** @class */ (function () {
     function NoticeIconTabComponent() {
@@ -57,7 +57,7 @@ var NoticeIconTabComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var NoticeIconComponent = /** @class */ (function () {
     function NoticeIconComponent(i18n, cdr) {
@@ -114,10 +114,13 @@ var NoticeIconComponent = /** @class */ (function () {
      */
     function () {
         var _this = this;
-        this.i18n$ = this.i18n.change.subscribe(function () {
+        this.i18n$ = this.i18n.change.subscribe((/**
+         * @return {?}
+         */
+        function () {
             _this.locale = _this.i18n.getData('noticeIcon');
             _this.cdr.markForCheck();
-        });
+        }));
     };
     /**
      * @return {?}
@@ -178,7 +181,7 @@ var NoticeIconComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 var COMPONENTS = [NoticeIconComponent];
@@ -197,12 +200,12 @@ var NoticeIconModule = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 export { NoticeIconTabComponent, NoticeIconComponent, NoticeIconModule };

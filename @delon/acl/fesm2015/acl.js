@@ -6,7 +6,7 @@ import { Injectable, Directive, ElementRef, Input, Renderer2, defineInjectable, 
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * 访问控制服务
@@ -37,6 +37,7 @@ class ACLService {
         };
     }
     /**
+     * @private
      * @param {?} val
      * @return {?}
      */
@@ -183,16 +184,32 @@ class ACLService {
         }
         if (t.role) {
             if (t.mode === 'allOf')
-                return t.role.every(v => this.roles.includes(v));
+                return t.role.every((/**
+                 * @param {?} v
+                 * @return {?}
+                 */
+                v => this.roles.includes(v)));
             else
-                return t.role.some(v => this.roles.includes(v));
+                return t.role.some((/**
+                 * @param {?} v
+                 * @return {?}
+                 */
+                v => this.roles.includes(v)));
         }
         if (t.ability) {
             if (t.mode === 'allOf') {
-                return ((/** @type {?} */ (t.ability))).every(v => this.abilities.includes(v));
+                return ((/** @type {?} */ (t.ability))).every((/**
+                 * @param {?} v
+                 * @return {?}
+                 */
+                v => this.abilities.includes(v)));
             }
             else {
-                return ((/** @type {?} */ (t.ability))).some(v => this.abilities.includes(v));
+                return ((/** @type {?} */ (t.ability))).some((/**
+                 * @param {?} v
+                 * @return {?}
+                 */
+                v => this.abilities.includes(v)));
             }
         }
         return false;
@@ -225,7 +242,7 @@ ACLService.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class ACLDirective {
     /**
@@ -237,7 +254,10 @@ class ACLDirective {
         this.el = el;
         this.renderer = renderer;
         this.srv = srv;
-        this.change$ = this.srv.change.subscribe(() => this.set(this._value));
+        this.change$ = this.srv.change.subscribe((/**
+         * @return {?}
+         */
+        () => this.set(this._value)));
     }
     /**
      * @param {?} value
@@ -254,6 +274,7 @@ class ACLDirective {
         this.set(this.srv.parseAbility(value));
     }
     /**
+     * @private
      * @param {?} value
      * @return {?}
      */
@@ -293,7 +314,7 @@ ACLDirective.propDecorators = {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class DelonACLConfig {
     constructor() {
@@ -310,12 +331,12 @@ DelonACLConfig.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class ACLGuard {
     /**
@@ -329,17 +350,26 @@ class ACLGuard {
         this.options = options;
     }
     /**
+     * @private
      * @param {?} guard
      * @return {?}
      */
     process(guard) {
         return (guard && guard instanceof Observable
             ? guard
-            : of(typeof guard !== 'undefined' && guard !== null ? ((/** @type {?} */ (guard))) : null)).pipe(map(v => this.srv.can(v)), tap(v => {
+            : of(typeof guard !== 'undefined' && guard !== null ? ((/** @type {?} */ (guard))) : null)).pipe(map((/**
+         * @param {?} v
+         * @return {?}
+         */
+        v => this.srv.can(v))), tap((/**
+         * @param {?} v
+         * @return {?}
+         */
+        v => {
             if (v)
                 return;
             this.router.navigateByUrl(this.options.guard_url);
-        }));
+        })));
     }
     // lazy loading
     /**
@@ -381,7 +411,7 @@ ACLGuard.ctorParameters = () => [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const COMPONENTS = [ACLDirective];
@@ -397,12 +427,12 @@ DelonACLModule.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 export { ACLService, ACLDirective, DelonACLConfig, ACLGuard, DelonACLModule };

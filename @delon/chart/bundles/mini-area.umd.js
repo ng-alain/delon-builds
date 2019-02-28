@@ -69,7 +69,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var G2MiniAreaComponent = /** @class */ (function () {
         // #endregion
@@ -91,9 +91,11 @@
             this.tooltipType = 'default';
         }
         /**
+         * @private
          * @return {?}
          */
         G2MiniAreaComponent.prototype.install = /**
+         * @private
          * @return {?}
          */
             function () {
@@ -131,7 +133,11 @@
                 chart
                     .area()
                     .position('x*y')
-                    .tooltip('x*y', function (x, y) { return ({ name: x, value: y + yTooltipSuffix }); })
+                    .tooltip('x*y', ( /**
+             * @param {?} x
+             * @param {?} y
+             * @return {?}
+             */function (x, y) { return ({ name: x, value: y + yTooltipSuffix }); }))
                     .shape('smooth')
                     .opacity(1);
                 if (line) {
@@ -146,9 +152,11 @@
                 this.attachChart();
             };
         /**
+         * @private
          * @return {?}
          */
         G2MiniAreaComponent.prototype.attachChart = /**
+         * @private
          * @return {?}
          */
             function () {
@@ -158,7 +166,10 @@
                 }
                 /** @type {?} */
                 var geoms = chart.get('geoms');
-                geoms.forEach(function (g) { return g.color(color); });
+                geoms.forEach(( /**
+                 * @param {?} g
+                 * @return {?}
+                 */function (g) { return g.color(color); }));
                 if (line) {
                     geoms[1].color(borderColor).size(borderWidth);
                 }
@@ -176,7 +187,13 @@
          */
             function () {
                 var _this = this;
-                this.ngZone.runOutsideAngular(function () { return setTimeout(function () { return _this.install(); }, _this.delay); });
+                this.ngZone.runOutsideAngular(( /**
+                 * @return {?}
+                 */function () {
+                    return setTimeout(( /**
+                     * @return {?}
+                     */function () { return _this.install(); }), _this.delay);
+                }));
             };
         /**
          * @return {?}
@@ -186,7 +203,9 @@
          */
             function () {
                 var _this = this;
-                this.ngZone.runOutsideAngular(function () { return _this.attachChart(); });
+                this.ngZone.runOutsideAngular(( /**
+                 * @return {?}
+                 */function () { return _this.attachChart(); }));
             };
         /**
          * @return {?}
@@ -197,7 +216,9 @@
             function () {
                 var _this = this;
                 if (this.chart) {
-                    this.ngZone.runOutsideAngular(function () { return _this.chart.destroy(); });
+                    this.ngZone.runOutsideAngular(( /**
+                     * @return {?}
+                     */function () { return _this.chart.destroy(); }));
                 }
             };
         G2MiniAreaComponent.decorators = [
@@ -262,7 +283,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
     var COMPONENTS = [G2MiniAreaComponent];
@@ -281,12 +302,12 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     exports.G2MiniAreaComponent = G2MiniAreaComponent;

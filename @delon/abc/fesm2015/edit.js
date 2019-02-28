@@ -9,7 +9,7 @@ import { NgZorroAntdModule } from 'ng-zorro-antd';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class SEConfig {
     constructor() {
@@ -48,7 +48,7 @@ SEConfig.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class SEContainerComponent {
     // #endregion
@@ -135,7 +135,7 @@ __decorate([
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class SEErrorComponent {
 }
@@ -178,7 +178,7 @@ SEErrorComponent.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class SETitleComponent {
     /**
@@ -195,6 +195,7 @@ class SETitleComponent {
         this.el = el.nativeElement;
     }
     /**
+     * @private
      * @return {?}
      */
     setClass() {
@@ -229,7 +230,7 @@ SETitleComponent.ctorParameters = () => [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const prefixCls = `se`;
@@ -284,12 +285,14 @@ class SEComponent {
         return this.invalid && this.parent.size !== 'compact' && !!this.error;
     }
     /**
+     * @private
      * @return {?}
      */
     get ngControl() {
         return this.ngModel || this.formControlName;
     }
     /**
+     * @private
      * @template THIS
      * @this {THIS}
      * @return {THIS}
@@ -297,7 +300,11 @@ class SEComponent {
     setClass() {
         const { el, ren, clsMap, col, parent, cdr, line, labelWidth, rep } = (/** @type {?} */ (this));
         (/** @type {?} */ (this))._labelWidth = labelWidth != null ? labelWidth : parent.labelWidth;
-        clsMap.forEach(cls => ren.removeClass(el, cls));
+        clsMap.forEach((/**
+         * @param {?} cls
+         * @return {?}
+         */
+        cls => ren.removeClass(el, cls)));
         clsMap.length = 0;
         /** @type {?} */
         const repCls = parent.nzLayout === 'horizontal'
@@ -307,17 +314,26 @@ class SEComponent {
         if (line || parent.line) {
             clsMap.push(`${prefixCls}__line`);
         }
-        clsMap.forEach(cls => ren.addClass(el, cls));
+        clsMap.forEach((/**
+         * @param {?} cls
+         * @return {?}
+         */
+        cls => ren.addClass(el, cls)));
         cdr.detectChanges();
         return (/** @type {?} */ (this));
     }
     /**
+     * @private
      * @return {?}
      */
     bindModel() {
         if (!this.ngControl || this.status$)
             return;
-        this.status$ = this.ngControl.statusChanges.subscribe(res => this.updateStatus(res === 'INVALID'));
+        this.status$ = this.ngControl.statusChanges.subscribe((/**
+         * @param {?} res
+         * @return {?}
+         */
+        res => this.updateStatus(res === 'INVALID')));
         if (this._autoId) {
             /** @type {?} */
             const control = (/** @type {?} */ (deepGet(this.ngControl.valueAccessor, '_elementRef.nativeElement')));
@@ -327,6 +343,7 @@ class SEComponent {
         }
     }
     /**
+     * @private
      * @param {?} invalid
      * @return {?}
      */
@@ -352,10 +369,13 @@ class SEComponent {
         this.setClass().bindModel();
         this.inited = true;
         if (this.onceFlag) {
-            Promise.resolve().then(() => {
+            Promise.resolve().then((/**
+             * @return {?}
+             */
+            () => {
                 this.updateStatus(this.ngControl.invalid);
                 this.onceFlag = false;
-            });
+            }));
         }
     }
     /**
@@ -421,7 +441,7 @@ __decorate([
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const COMPONENTS = [SEContainerComponent, SEComponent, SEErrorComponent, SETitleComponent];
@@ -437,12 +457,12 @@ SEModule.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 export { SEContainerComponent, SEErrorComponent, SETitleComponent, SEComponent, SEConfig, SEModule };

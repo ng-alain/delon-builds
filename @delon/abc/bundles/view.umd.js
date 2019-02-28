@@ -81,7 +81,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var SVConfig = /** @class */ (function () {
         function SVConfig() {
@@ -115,7 +115,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
     var prefixCls = "sv";
@@ -127,9 +127,11 @@
             Object.assign(this, __assign({}, new SVConfig(), cog));
         }
         /**
+         * @private
          * @return {?}
          */
         SVContainerComponent.prototype.setClass = /**
+         * @private
          * @return {?}
          */
             function () {
@@ -202,7 +204,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var SVTitleComponent = /** @class */ (function () {
         function SVTitleComponent(el, parent, ren) {
@@ -214,9 +216,11 @@
             this.el = el.nativeElement;
         }
         /**
+         * @private
          * @return {?}
          */
         SVTitleComponent.prototype.setClass = /**
+         * @private
          * @return {?}
          */
             function () {
@@ -257,7 +261,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
     var prefixCls$1 = "sv";
@@ -286,14 +290,19 @@
             configurable: true
         });
         /**
+         * @private
          * @return {?}
          */
         SVComponent.prototype.setClass = /**
+         * @private
          * @return {?}
          */
             function () {
                 var _a = this, el = _a.el, ren = _a.ren, col = _a.col, clsMap = _a.clsMap, type = _a.type, rep = _a.rep;
-                clsMap.forEach(function (cls) { return ren.removeClass(el, cls); });
+                clsMap.forEach(( /**
+                 * @param {?} cls
+                 * @return {?}
+                 */function (cls) { return ren.removeClass(el, cls); }));
                 clsMap.length = 0;
                 clsMap.push.apply(clsMap, __spread(rep.genCls(col != null ? col : this.parent.col)));
                 clsMap.push(prefixCls$1 + "__item");
@@ -301,7 +310,10 @@
                     clsMap.push(prefixCls$1 + "__item-fixed");
                 if (type)
                     clsMap.push(prefixCls$1 + "__type-" + type);
-                clsMap.forEach(function (cls) { return ren.addClass(el, cls); });
+                clsMap.forEach(( /**
+                 * @param {?} cls
+                 * @return {?}
+                 */function (cls) { return ren.addClass(el, cls); }));
             };
         /**
          * @return {?}
@@ -385,7 +397,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
     var COMPONENTS = [SVContainerComponent, SVComponent, SVTitleComponent];
@@ -404,12 +416,12 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     exports.SVContainerComponent = SVContainerComponent;

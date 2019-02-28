@@ -20,7 +20,7 @@ import { Directive, Input, TemplateRef, ViewContainerRef, Inject, Injectable, de
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var StringTemplateOutletDirective = /** @class */ (function () {
     function StringTemplateOutletDirective(viewContainer, defaultTemplate) {
@@ -92,7 +92,7 @@ var StringTemplateOutletDirective = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * 类似 `_.get`，根据 `path` 获取安全值
@@ -114,7 +114,12 @@ function deepGet(obj, path, defaultValue) {
         var checkObj = obj[path[0]];
         return typeof checkObj === 'undefined' ? defaultValue : checkObj;
     }
-    return path.reduce(function (o, k) { return (o || {})[k]; }, obj) || defaultValue;
+    return path.reduce((/**
+     * @param {?} o
+     * @param {?} k
+     * @return {?}
+     */
+    function (o, k) { return (o || {})[k]; }), obj) || defaultValue;
 }
 /**
  * @param {?} obj
@@ -131,7 +136,12 @@ function deepCopy(obj) {
  * @return {?}
  */
 function copy(value) {
-    return new Promise(function (resolve, reject) {
+    return new Promise((/**
+     * @param {?} resolve
+     * @param {?} reject
+     * @return {?}
+     */
+    function (resolve, reject) {
         /** @type {?} */
         var copyTextArea = (/** @type {?} */ (null));
         try {
@@ -150,7 +160,7 @@ function copy(value) {
                 copyTextArea.parentNode.removeChild(copyTextArea);
             }
         }
-    });
+    }));
 }
 /**
  * @param {?} original
@@ -166,12 +176,29 @@ function deepMergeKey(original, ingoreArray) {
     if (Array.isArray(original) || typeof original !== 'object')
         return original;
     /** @type {?} */
-    var isObject = function (v) { return typeof v === 'object' || typeof v === 'function'; };
+    var isObject = (/**
+     * @param {?} v
+     * @return {?}
+     */
+    function (v) { return typeof v === 'object' || typeof v === 'function'; });
     /** @type {?} */
-    var merge = function (target, obj) {
+    var merge = (/**
+     * @param {?} target
+     * @param {?} obj
+     * @return {?}
+     */
+    function (target, obj) {
         Object.keys(obj)
-            .filter(function (key) { return key !== '__proto__' && Object.prototype.hasOwnProperty.call(obj, key); })
-            .forEach(function (key) {
+            .filter((/**
+         * @param {?} key
+         * @return {?}
+         */
+        function (key) { return key !== '__proto__' && Object.prototype.hasOwnProperty.call(obj, key); }))
+            .forEach((/**
+         * @param {?} key
+         * @return {?}
+         */
+        function (key) {
             /** @type {?} */
             var oldValue = obj[key];
             /** @type {?} */
@@ -188,10 +215,18 @@ function deepMergeKey(original, ingoreArray) {
             else {
                 target[key] = deepCopy(oldValue);
             }
-        });
+        }));
         return target;
-    };
-    objects.filter(function (v) { return isObject(v); }).forEach(function (v) { return merge(original, v); });
+    });
+    objects.filter((/**
+     * @param {?} v
+     * @return {?}
+     */
+    function (v) { return isObject(v); })).forEach((/**
+     * @param {?} v
+     * @return {?}
+     */
+    function (v) { return merge(original, v); }));
     return original;
 }
 /**
@@ -209,7 +244,7 @@ function deepMerge(original) {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * 字符串格式化
@@ -226,14 +261,19 @@ function deepMerge(original) {
  */
 function format(str, obj, needDeepGet) {
     if (needDeepGet === void 0) { needDeepGet = false; }
-    return (str || '').replace(/\${([^}]+)}/g, function (work, key) {
+    return (str || '').replace(/\${([^}]+)}/g, (/**
+     * @param {?} work
+     * @param {?} key
+     * @return {?}
+     */
+    function (work, key) {
         return needDeepGet ? deepGet(obj, key.split('.'), '') : (obj || {})[key] || '';
-    });
+    }));
 }
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * 获取时间范围
@@ -292,7 +332,7 @@ function fixEndTimeOfRange(dates) {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var LazyService = /** @class */ (function () {
     function LazyService(doc) {
@@ -306,7 +346,11 @@ var LazyService = /** @class */ (function () {
          * @return {?}
          */
         function () {
-            return this._notify.asObservable().pipe(share(), filter(function (ls) { return ls.length !== 0; }));
+            return this._notify.asObservable().pipe(share(), filter((/**
+             * @param {?} ls
+             * @return {?}
+             */
+            function (ls) { return ls.length !== 0; })));
         },
         enumerable: true,
         configurable: true
@@ -336,18 +380,26 @@ var LazyService = /** @class */ (function () {
         }
         /** @type {?} */
         var promises = [];
-        paths.forEach(function (path) {
+        paths.forEach((/**
+         * @param {?} path
+         * @return {?}
+         */
+        function (path) {
             if (path.endsWith('.js')) {
                 promises.push(_this.loadScript(path));
             }
             else {
                 promises.push(_this.loadStyle(path));
             }
-        });
-        return Promise.all(promises).then(function (res) {
+        }));
+        return Promise.all(promises).then((/**
+         * @param {?} res
+         * @return {?}
+         */
+        function (res) {
             _this._notify.next(res);
             return Promise.resolve(res);
-        });
+        }));
     };
     /**
      * @param {?} path
@@ -361,17 +413,25 @@ var LazyService = /** @class */ (function () {
      */
     function (path, innerContent) {
         var _this = this;
-        return new Promise(function (resolve) {
+        return new Promise((/**
+         * @param {?} resolve
+         * @return {?}
+         */
+        function (resolve) {
             if (_this.list[path] === true) {
                 resolve(_this.cached[path]);
                 return;
             }
             _this.list[path] = true;
             /** @type {?} */
-            var onSuccess = function (item) {
+            var onSuccess = (/**
+             * @param {?} item
+             * @return {?}
+             */
+            function (item) {
                 _this.cached[path] = item;
                 resolve(item);
-            };
+            });
             /** @type {?} */
             var node = (/** @type {?} */ (_this.doc.createElement('script')));
             node.type = 'text/javascript';
@@ -382,7 +442,10 @@ var LazyService = /** @class */ (function () {
             }
             if (node.readyState) {
                 // IE
-                node.onreadystatechange = function () {
+                node.onreadystatechange = (/**
+                 * @return {?}
+                 */
+                function () {
                     if (node.readyState === 'loaded' || node.readyState === 'complete') {
                         node.onreadystatechange = null;
                         onSuccess({
@@ -391,27 +454,34 @@ var LazyService = /** @class */ (function () {
                             status: 'ok',
                         });
                     }
-                };
+                });
             }
             else {
-                node.onload = function () {
+                node.onload = (/**
+                 * @return {?}
+                 */
+                function () {
                     return onSuccess({
                         path: path,
                         loaded: true,
                         status: 'ok',
                     });
-                };
+                });
             }
-            node.onerror = function (error) {
+            node.onerror = (/**
+             * @param {?} error
+             * @return {?}
+             */
+            function (error) {
                 return onSuccess({
                     path: path,
                     loaded: false,
                     status: 'error',
                     error: error,
                 });
-            };
+            });
             _this.doc.getElementsByTagName('head')[0].appendChild(node);
-        });
+        }));
     };
     /**
      * @param {?} path
@@ -428,7 +498,11 @@ var LazyService = /** @class */ (function () {
     function (path, rel, innerContent) {
         var _this = this;
         if (rel === void 0) { rel = 'stylesheet'; }
-        return new Promise(function (resolve) {
+        return new Promise((/**
+         * @param {?} resolve
+         * @return {?}
+         */
+        function (resolve) {
             if (_this.list[path] === true) {
                 resolve(_this.cached[path]);
                 return;
@@ -451,7 +525,7 @@ var LazyService = /** @class */ (function () {
             };
             _this.cached[path] = item;
             resolve(item);
-        });
+        }));
     };
     LazyService.decorators = [
         { type: Injectable, args: [{ providedIn: 'root' },] }
@@ -466,7 +540,7 @@ var LazyService = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * 是否为数字
@@ -521,7 +595,7 @@ function isUrl(url) {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * 一套日常验证器
@@ -623,7 +697,7 @@ _Validators = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * @param {?} element
@@ -666,7 +740,12 @@ function toBoolean(value, allowUndefined) {
  */
 function InputBoolean(allowUndefined) {
     if (allowUndefined === void 0) { allowUndefined = false; }
-    return function InputBooleanPropDecorator(target, name) {
+    return (/**
+     * @param {?} target
+     * @param {?} name
+     * @return {?}
+     */
+    function InputBooleanPropDecorator(target, name) {
         // Add our own private prop
         /** @type {?} */
         var privatePropName = "$$__" + name;
@@ -692,7 +771,7 @@ function InputBoolean(allowUndefined) {
                 this[privatePropName] = toBoolean(value, allowUndefined); // tslint:disable-line:no-invalid-this
             },
         });
-    };
+    });
 }
 /**
  * @param {?} value
@@ -714,7 +793,12 @@ function toNumber(value, fallbackValue) {
  */
 function InputNumber(fallback) {
     if (fallback === void 0) { fallback = 0; }
-    return function InputBooleanPropDecorator(target, name) {
+    return (/**
+     * @param {?} target
+     * @param {?} name
+     * @return {?}
+     */
+    function InputBooleanPropDecorator(target, name) {
         // Add our own private prop
         /** @type {?} */
         var privatePropName = "$$__" + name;
@@ -740,12 +824,12 @@ function InputNumber(fallback) {
                 this[privatePropName] = toNumber(value, fallback); // tslint:disable-line:no-invalid-this
             },
         });
-    };
+    });
 }
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * @param {?} el
@@ -806,12 +890,12 @@ function updateHostClass(el, renderer, classMap, cleanAll) {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var DelonUtilConfig = /** @class */ (function () {
     function DelonUtilConfig() {
@@ -825,7 +909,7 @@ var DelonUtilConfig = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var ArrayService = /** @class */ (function () {
     function ArrayService(cog) {
@@ -851,7 +935,13 @@ var ArrayService = /** @class */ (function () {
         /** @type {?} */
         var result = [];
         /** @type {?} */
-        var inFn = function (list, parent, deep) {
+        var inFn = (/**
+         * @param {?} list
+         * @param {?} parent
+         * @param {?} deep
+         * @return {?}
+         */
+        function (list, parent, deep) {
             var e_1, _a;
             try {
                 for (var list_1 = __values(list), list_1_1 = list_1.next(); !list_1_1.done; list_1_1 = list_1.next()) {
@@ -879,7 +969,7 @@ var ArrayService = /** @class */ (function () {
                 }
                 finally { if (e_1) throw e_1.error; }
             }
-        };
+        });
         inFn(tree, 1, null);
         return result;
     };
@@ -958,7 +1048,13 @@ var ArrayService = /** @class */ (function () {
             parentIdMapName: options.parentIdMapName,
             childrenMapName: 'children',
         });
-        this.visitTree(tree, function (item, parent, deep) {
+        this.visitTree(tree, (/**
+         * @param {?} item
+         * @param {?} parent
+         * @param {?} deep
+         * @return {?}
+         */
+        function (item, parent, deep) {
             item.key = item[options.idMapName];
             item.title = item[options.titleMapName];
             item.checked = item[options.checkedMapname];
@@ -974,7 +1070,7 @@ var ArrayService = /** @class */ (function () {
             if (options.cb) {
                 options.cb(item, parent, deep);
             }
-        });
+        }));
         return tree;
     };
     /**
@@ -997,7 +1093,13 @@ var ArrayService = /** @class */ (function () {
     function (tree, cb, options) {
         options = __assign({ childrenMapName: this.c.childrenMapName }, options);
         /** @type {?} */
-        var inFn = function (data, parent, deep) {
+        var inFn = (/**
+         * @param {?} data
+         * @param {?} parent
+         * @param {?} deep
+         * @return {?}
+         */
+        function (data, parent, deep) {
             var e_3, _a;
             try {
                 for (var data_1 = __values(data), data_1_1 = data_1.next(); !data_1_1.done; data_1_1 = data_1.next()) {
@@ -1017,7 +1119,7 @@ var ArrayService = /** @class */ (function () {
                 }
                 finally { if (e_3) throw e_3.error; }
             }
-        };
+        });
         inFn(tree, null, 1);
     };
     /**
@@ -1039,7 +1141,13 @@ var ArrayService = /** @class */ (function () {
         options = __assign({ includeHalfChecked: true }, options);
         /** @type {?} */
         var keys = [];
-        this.visitTree(tree, function (item, parent, deep) {
+        this.visitTree(tree, (/**
+         * @param {?} item
+         * @param {?} parent
+         * @param {?} deep
+         * @return {?}
+         */
+        function (item, parent, deep) {
             if (item.isChecked || (options.includeHalfChecked && item.isHalfChecked)) {
                 keys.push(options.cb
                     ? options.cb(item, parent, deep)
@@ -1047,7 +1155,7 @@ var ArrayService = /** @class */ (function () {
                         ? item.origin[options.keyMapName]
                         : item.key);
             }
-        });
+        }));
         return keys;
     };
     ArrayService.decorators = [
@@ -1063,7 +1171,7 @@ var ArrayService = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var DelonUtilModule = /** @class */ (function () {
     function DelonUtilModule() {
@@ -1080,12 +1188,12 @@ var DelonUtilModule = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 export { _Validators, StringTemplateOutletDirective, format, getTimeDistance, fixEndTimeOfRange, LazyService, isNum, isInt, isDecimal, isIdCard, isMobile, isUrl, isEmpty, toBoolean, InputBoolean, toNumber, InputNumber, deepGet, deepCopy, copy, deepMergeKey, deepMerge, updateHostClass, ArrayService, DelonUtilConfig, DelonUtilModule };

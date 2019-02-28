@@ -5,7 +5,7 @@ import { InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var G2GaugeComponent = /** @class */ (function () {
     // #endregion
@@ -19,9 +19,11 @@ var G2GaugeComponent = /** @class */ (function () {
         this.padding = [10, 10, 30, 10];
     }
     /**
+     * @private
      * @return {?}
      */
     G2GaugeComponent.prototype.install = /**
+     * @private
      * @return {?}
      */
     function () {
@@ -106,9 +108,11 @@ var G2GaugeComponent = /** @class */ (function () {
         this.attachChart();
     };
     /**
+     * @private
      * @return {?}
      */
     G2GaugeComponent.prototype.attachChart = /**
+     * @private
      * @return {?}
      */
     function () {
@@ -158,7 +162,13 @@ var G2GaugeComponent = /** @class */ (function () {
      */
     function () {
         var _this = this;
-        this.ngZone.runOutsideAngular(function () { return setTimeout(function () { return _this.install(); }, _this.delay); });
+        this.ngZone.runOutsideAngular((/**
+         * @return {?}
+         */
+        function () { return setTimeout((/**
+         * @return {?}
+         */
+        function () { return _this.install(); }), _this.delay); }));
     };
     /**
      * @return {?}
@@ -168,7 +178,10 @@ var G2GaugeComponent = /** @class */ (function () {
      */
     function () {
         var _this = this;
-        this.ngZone.runOutsideAngular(function () { return _this.attachChart(); });
+        this.ngZone.runOutsideAngular((/**
+         * @return {?}
+         */
+        function () { return _this.attachChart(); }));
     };
     /**
      * @return {?}
@@ -179,7 +192,10 @@ var G2GaugeComponent = /** @class */ (function () {
     function () {
         var _this = this;
         if (this.chart) {
-            this.ngZone.runOutsideAngular(function () { return _this.chart.destroy(); });
+            this.ngZone.runOutsideAngular((/**
+             * @return {?}
+             */
+            function () { return _this.chart.destroy(); }));
         }
     };
     G2GaugeComponent.decorators = [
@@ -224,7 +240,7 @@ var G2GaugeComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 var COMPONENTS = [G2GaugeComponent];
@@ -243,12 +259,12 @@ var G2GaugeModule = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 export { G2GaugeComponent, G2GaugeModule };

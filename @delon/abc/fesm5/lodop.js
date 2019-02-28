@@ -5,12 +5,12 @@ import { LazyService, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var LodopConfig = /** @class */ (function () {
     function LodopConfig() {
@@ -24,7 +24,7 @@ var LodopConfig = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var LodopService = /** @class */ (function () {
     function LodopService(defCog, scriptSrv) {
@@ -75,9 +75,11 @@ var LodopService = /** @class */ (function () {
         configurable: true
     });
     /**
+     * @private
      * @return {?}
      */
     LodopService.prototype.check = /**
+     * @private
      * @return {?}
      */
     function () {
@@ -85,9 +87,11 @@ var LodopService = /** @class */ (function () {
             throw new Error("\u8BF7\u52A1\u5FC5\u5148\u8C03\u7528 lodop \u83B7\u53D6\u5BF9\u8C61");
     };
     /**
+     * @private
      * @return {?}
      */
     LodopService.prototype.request = /**
+     * @private
      * @return {?}
      */
     function () {
@@ -98,16 +102,24 @@ var LodopService = /** @class */ (function () {
         /** @type {?} */
         var checkMaxCount = this.cog.checkMaxCount;
         /** @type {?} */
-        var onResolve = function (status, error) {
+        var onResolve = (/**
+         * @param {?} status
+         * @param {?=} error
+         * @return {?}
+         */
+        function (status, error) {
             _this._init.next({
                 ok: status === 'ok',
                 status: status,
                 error: error,
                 lodop: _this._lodop,
             });
-        };
+        });
         /** @type {?} */
-        var checkStatus = function () {
+        var checkStatus = (/**
+         * @return {?}
+         */
+        function () {
             --checkMaxCount;
             if (_this._lodop.webskt && _this._lodop.webskt.readyState === 1) {
                 onResolve('ok');
@@ -117,10 +129,17 @@ var LodopService = /** @class */ (function () {
                     onResolve('check-limit');
                     return;
                 }
-                setTimeout(function () { return checkStatus(); }, 100);
+                setTimeout((/**
+                 * @return {?}
+                 */
+                function () { return checkStatus(); }), 100);
             }
-        };
-        this.scriptSrv.loadScript(url).then(function (res) {
+        });
+        this.scriptSrv.loadScript(url).then((/**
+         * @param {?} res
+         * @return {?}
+         */
+        function (res) {
             if (res.status !== 'ok') {
                 _this.pending = false;
                 onResolve('script-load-error', res[0]);
@@ -133,7 +152,7 @@ var LodopService = /** @class */ (function () {
             }
             _this._lodop.SET_LICENSES(_this.cog.companyName, _this.cog.license, _this.cog.licenseA, _this.cog.licenseB);
             checkStatus();
-        });
+        }));
     };
     /** 重置 lodop 对象 */
     /**
@@ -220,7 +239,11 @@ var LodopService = /** @class */ (function () {
         this.check();
         if (!parser)
             parser = /LODOP\.([^(]+)\(([^\n]+)\);/i;
-        code.split('\n').forEach(function (line) {
+        code.split('\n').forEach((/**
+         * @param {?} line
+         * @return {?}
+         */
+        function (line) {
             /** @type {?} */
             var res = parser.exec(line.trim());
             if (!res)
@@ -239,13 +262,18 @@ var LodopService = /** @class */ (function () {
                 if (Array.isArray(arr) && contextObj) {
                     for (var i = 0; i < arr.length; i++) {
                         if (typeof arr[i] === 'string') {
-                            arr[i] = arr[i].replace(/{{(.*?)}}/g, function (match, key) { return contextObj[key.trim()] || ''; });
+                            arr[i] = arr[i].replace(/{{(.*?)}}/g, (/**
+                             * @param {?} match
+                             * @param {?} key
+                             * @return {?}
+                             */
+                            function (match, key) { return contextObj[key.trim()] || ''; }));
                         }
                     }
                 }
                 fn.apply(_this._lodop, arr);
             }
-        });
+        }));
     };
     /**
      * 打开打印设计关闭后自动返回代码
@@ -269,19 +297,30 @@ var LodopService = /** @class */ (function () {
         this.check();
         /** @type {?} */
         var tid = this._lodop.PRINT_DESIGN();
-        return new Promise(function (resolve) {
-            _this._lodop.On_Return = function (taskID, value) {
+        return new Promise((/**
+         * @param {?} resolve
+         * @return {?}
+         */
+        function (resolve) {
+            _this._lodop.On_Return = (/**
+             * @param {?} taskID
+             * @param {?} value
+             * @return {?}
+             */
+            function (taskID, value) {
                 if (tid !== taskID)
                     return;
                 _this._lodop.On_Return = null;
                 resolve('' + value);
-            };
-        });
+            });
+        }));
     };
     /**
+     * @private
      * @return {?}
      */
     LodopService.prototype.printDo = /**
+     * @private
      * @return {?}
      */
     function () {
@@ -293,13 +332,18 @@ var LodopService = /** @class */ (function () {
         this.attachCode(data.code, data.item, data.parser);
         /** @type {?} */
         var tid = this._lodop.PRINT();
-        this._lodop.On_Return = function (taskID, value) {
+        this._lodop.On_Return = (/**
+         * @param {?} taskID
+         * @param {?} value
+         * @return {?}
+         */
+        function (taskID, value) {
             if (tid !== taskID)
                 return;
             _this._lodop.On_Return = null;
             _this._events.next(__assign({ ok: value === true, error: value === true ? null : value }, data));
             _this.printDo();
-        };
+        });
     };
     /**
      * 立即打印，一般用于批量套打
@@ -328,9 +372,13 @@ var LodopService = /** @class */ (function () {
         var _a;
         this.check();
         if (contextObj) {
-            (_a = this.printBuffer).push.apply(_a, __spread((Array.isArray(contextObj) ? contextObj : [contextObj]).map(function (item) {
+            (_a = this.printBuffer).push.apply(_a, __spread((Array.isArray(contextObj) ? contextObj : [contextObj]).map((/**
+             * @param {?} item
+             * @return {?}
+             */
+            function (item) {
                 return { code: code, parser: parser, item: item };
-            })));
+            }))));
         }
         this.printDo();
     };
@@ -358,7 +406,7 @@ var LodopService = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var LodopModule = /** @class */ (function () {
     function LodopModule() {
@@ -373,12 +421,12 @@ var LodopModule = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 export { LodopService, LodopConfig, LodopModule };

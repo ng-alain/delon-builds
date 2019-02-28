@@ -15,7 +15,7 @@ import { InjectionToken, Injectable, Inject, Pipe, Version, NgModule, Optional, 
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * @return {?}
@@ -31,7 +31,7 @@ var WINDOW = new InjectionToken('Window', {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * @return {?}
@@ -49,27 +49,36 @@ function preloaderFinished() {
         // preloader value null when running --hmr
         if (!preloader)
             return;
-        preloader.addEventListener('transitionend', function () {
+        preloader.addEventListener('transitionend', (/**
+         * @return {?}
+         */
+        function () {
             preloader.className = 'preloader-hidden';
-        });
+        }));
         preloader.className += ' preloader-hidden-add preloader-hidden-add-active';
     }
-    ((/** @type {?} */ (window))).appBootstrap = function () {
-        setTimeout(function () {
+    ((/** @type {?} */ (window))).appBootstrap = (/**
+     * @return {?}
+     */
+    function () {
+        setTimeout((/**
+         * @return {?}
+         */
+        function () {
             remove();
             body.style.overflow = '';
-        }, 100);
-    };
+        }), 100);
+    });
 }
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 var ALAIN_I18N_TOKEN = new InjectionToken('alainTranslatorToken', {
@@ -91,7 +100,11 @@ var AlainI18NServiceFake = /** @class */ (function () {
          * @return {?}
          */
         function () {
-            return this.change$.asObservable().pipe(filter(function (w) { return w != null; }));
+            return this.change$.asObservable().pipe(filter((/**
+             * @param {?} w
+             * @return {?}
+             */
+            function (w) { return w != null; })));
         },
         enumerable: true,
         configurable: true
@@ -136,7 +149,7 @@ var AlainI18NServiceFake = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var MenuService = /** @class */ (function () {
     function MenuService(i18nSrv, aclService) {
@@ -145,7 +158,10 @@ var MenuService = /** @class */ (function () {
         this.aclService = aclService;
         this._change$ = new BehaviorSubject([]);
         this.data = [];
-        this.i18n$ = this.i18nSrv.change.subscribe(function () { return _this.resume(); });
+        this.i18n$ = this.i18nSrv.change.subscribe((/**
+         * @return {?}
+         */
+        function () { return _this.resume(); }));
     }
     Object.defineProperty(MenuService.prototype, "change", {
         get: /**
@@ -169,7 +185,13 @@ var MenuService = /** @class */ (function () {
      */
     function (data, callback) {
         /** @type {?} */
-        var inFn = function (list, parentMenu, depth) {
+        var inFn = (/**
+         * @param {?} list
+         * @param {?} parentMenu
+         * @param {?} depth
+         * @return {?}
+         */
+        function (list, parentMenu, depth) {
             var e_1, _a;
             try {
                 for (var list_1 = __values(list), list_1_1 = list_1.next(); !list_1_1.done; list_1_1 = list_1.next()) {
@@ -190,7 +212,7 @@ var MenuService = /** @class */ (function () {
                 }
                 finally { if (e_1) throw e_1.error; }
             }
-        };
+        });
         inFn(data, null, 0);
     };
     /**
@@ -224,7 +246,13 @@ var MenuService = /** @class */ (function () {
         var i = 1;
         /** @type {?} */
         var shortcuts = [];
-        this.visit(this.data, function (item, parent, depth) {
+        this.visit(this.data, (/**
+         * @param {?} item
+         * @param {?} parent
+         * @param {?} depth
+         * @return {?}
+         */
+        function (item, parent, depth) {
             item.__id = i++;
             item.__parent = parent;
             item._depth = depth;
@@ -282,7 +310,7 @@ var MenuService = /** @class */ (function () {
             }
             if (callback)
                 callback(item, parent, depth);
-        });
+        }));
         this.loadShortcut(shortcuts);
         this._change$.next(this.data);
     };
@@ -299,6 +327,7 @@ var MenuService = /** @class */ (function () {
      *      1、若 children 存在 【shortcutRoot: true】则最优先【推荐】这种方式
      *      2、否则查找带有【dashboard】字样链接，若存在则在此菜单的下方创建快捷入口
      *      3、否则放在0节点位置
+     * @private
      * @param {?} shortcuts
      * @return {?}
      */
@@ -308,6 +337,7 @@ var MenuService = /** @class */ (function () {
      *      1、若 children 存在 【shortcutRoot: true】则最优先【推荐】这种方式
      *      2、否则查找带有【dashboard】字样链接，若存在则在此菜单的下方创建快捷入口
      *      3、否则放在0节点位置
+     * @private
      * @param {?} shortcuts
      * @return {?}
      */
@@ -318,9 +348,17 @@ var MenuService = /** @class */ (function () {
         /** @type {?} */
         var ls = this.data[0].children;
         /** @type {?} */
-        var pos = ls.findIndex(function (w) { return w.shortcutRoot === true; });
+        var pos = ls.findIndex((/**
+         * @param {?} w
+         * @return {?}
+         */
+        function (w) { return w.shortcutRoot === true; }));
         if (pos === -1) {
-            pos = ls.findIndex(function (w) { return w.link.includes('dashboard'); });
+            pos = ls.findIndex((/**
+             * @param {?} w
+             * @return {?}
+             */
+            function (w) { return w.link.includes('dashboard'); }));
             pos = (pos !== -1 ? pos : -1) + 1;
             /** @type {?} */
             var shortcutMenu = (/** @type {?} */ ({
@@ -343,11 +381,15 @@ var MenuService = /** @class */ (function () {
             _type: 3,
             _depth: 1,
         });
-        _data.children = shortcuts.map(function (i) {
+        _data.children = shortcuts.map((/**
+         * @param {?} i
+         * @return {?}
+         */
+        function (i) {
             i._depth = 2;
             i.__parent = _data;
             return i;
-        });
+        }));
     };
     Object.defineProperty(MenuService.prototype, "menus", {
         get: /**
@@ -394,14 +436,18 @@ var MenuService = /** @class */ (function () {
         /** @type {?} */
         var item = null;
         while (!item && url) {
-            this.visit(data, function (i) {
+            this.visit(data, (/**
+             * @param {?} i
+             * @return {?}
+             */
+            function (i) {
                 if (cb) {
                     cb(i);
                 }
                 if (i.link != null && i.link === url) {
                     item = i;
                 }
-            });
+            }));
             if (!recursive)
                 break;
             url = url
@@ -437,10 +483,14 @@ var MenuService = /** @class */ (function () {
         if (!url)
             return;
         /** @type {?} */
-        var findItem = this.getHit(this.data, url, recursive, function (i) {
+        var findItem = this.getHit(this.data, url, recursive, (/**
+         * @param {?} i
+         * @return {?}
+         */
+        function (i) {
             i._selected = false;
             i._open = false;
-        });
+        }));
         if (!findItem)
             return;
         do {
@@ -508,7 +558,7 @@ var MenuService = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var ScrollService = /** @class */ (function () {
     function ScrollService(win, doc) {
@@ -619,12 +669,12 @@ var ScrollService = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 var LAYOUT = 'layout';
@@ -640,10 +690,12 @@ var SettingsService = /** @class */ (function () {
         this._layout = null;
     }
     /**
+     * @private
      * @param {?} key
      * @return {?}
      */
     SettingsService.prototype.get = /**
+     * @private
      * @param {?} key
      * @return {?}
      */
@@ -651,11 +703,13 @@ var SettingsService = /** @class */ (function () {
         return JSON.parse(localStorage.getItem(key) || 'null') || null;
     };
     /**
+     * @private
      * @param {?} key
      * @param {?} value
      * @return {?}
      */
     SettingsService.prototype.set = /**
+     * @private
      * @param {?} key
      * @param {?} value
      * @return {?}
@@ -773,12 +827,12 @@ var SettingsService = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var AlainThemeConfig = /** @class */ (function () {
     function AlainThemeConfig() {
@@ -792,7 +846,7 @@ var AlainThemeConfig = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 var REP_MAX = 6;
@@ -807,8 +861,16 @@ var ResponsiveService = /** @class */ (function () {
                 6: { xs: 24, sm: 12, md: 8, lg: 6, xl: 4, xxl: 2 },
             } }, (/** @type {?} */ (cog)).responsive);
         if (Object.keys(this.cog.rules)
-            .map(function (i) { return +i; })
-            .some(function (i) { return i < 1 || i > REP_MAX; })) {
+            .map((/**
+         * @param {?} i
+         * @return {?}
+         */
+        function (i) { return +i; }))
+            .some((/**
+         * @param {?} i
+         * @return {?}
+         */
+        function (i) { return i < 1 || i > REP_MAX; }))) {
             throw new Error("[theme] the responseive rule index value range must be 1-" + REP_MAX);
         }
     }
@@ -852,7 +914,7 @@ var ResponsiveService = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var TitleService = /** @class */ (function () {
     function TitleService(injector, title, menuSrv, i18nSrv, doc) {
@@ -871,8 +933,14 @@ var TitleService = /** @class */ (function () {
          */
         this.default = "Not Page Name";
         this.i18n$ = this.i18nSrv.change
-            .pipe(filter(function () { return !!_this.i18n$; }))
-            .subscribe(function () { return _this.setTitle(); });
+            .pipe(filter((/**
+         * @return {?}
+         */
+        function () { return !!_this.i18n$; })))
+            .subscribe((/**
+         * @return {?}
+         */
+        function () { return _this.setTitle(); }));
     }
     Object.defineProperty(TitleService.prototype, "separator", {
         /** 设置分隔符 */
@@ -927,9 +995,11 @@ var TitleService = /** @class */ (function () {
         configurable: true
     });
     /**
+     * @private
      * @return {?}
      */
     TitleService.prototype.getByElement = /**
+     * @private
      * @return {?}
      */
     function () {
@@ -942,9 +1012,11 @@ var TitleService = /** @class */ (function () {
         return '';
     };
     /**
+     * @private
      * @return {?}
      */
     TitleService.prototype.getByRoute = /**
+     * @private
      * @return {?}
      */
     function () {
@@ -959,9 +1031,11 @@ var TitleService = /** @class */ (function () {
         return data.title;
     };
     /**
+     * @private
      * @return {?}
      */
     TitleService.prototype.getByMenu = /**
+     * @private
      * @return {?}
      */
     function () {
@@ -1055,19 +1129,19 @@ var TitleService = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 var DELON_LOCALE = new InjectionToken('delon-locale');
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var zhCN = (/** @type {?} */ ({
     abbr: 'zh-CN',
@@ -1110,7 +1184,7 @@ var zhCN = (/** @type {?} */ ({
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var DelonLocaleService = /** @class */ (function () {
     function DelonLocaleService(locale) {
@@ -1189,7 +1263,7 @@ var DELON_LOCALE_SERVICE_PROVIDER = {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var ɵ0 = zhCN;
 var DelonLocaleModule = /** @class */ (function () {
@@ -1208,7 +1282,7 @@ var DelonLocaleModule = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var enUS = (/** @type {?} */ ({
     abbr: 'en-US',
@@ -1251,7 +1325,7 @@ var enUS = (/** @type {?} */ ({
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var zhTW = (/** @type {?} */ ({
     abbr: 'zh-TW',
@@ -1294,7 +1368,7 @@ var zhTW = (/** @type {?} */ ({
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var trTR = (/** @type {?} */ ({
     abbr: 'tr-TR',
@@ -1337,7 +1411,7 @@ var trTR = (/** @type {?} */ ({
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var plPL = (/** @type {?} */ ({
     abbr: 'en-US',
@@ -1380,7 +1454,7 @@ var plPL = (/** @type {?} */ ({
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var elGR = (/** @type {?} */ ({
     abbr: 'el-GR',
@@ -1423,17 +1497,17 @@ var elGR = (/** @type {?} */ ({
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * 对话框辅助类
@@ -1502,7 +1576,11 @@ var ModalHelper = /** @class */ (function () {
     function (comp, params, options) {
         var _this = this;
         options = __assign({ size: 'lg', exact: true, includeTabs: false }, options);
-        return new Observable(function (observer) {
+        return new Observable((/**
+         * @param {?} observer
+         * @return {?}
+         */
+        function (observer) {
             /** @type {?} */
             var cls = '';
             /** @type {?} */
@@ -1530,7 +1608,11 @@ var ModalHelper = /** @class */ (function () {
             /** @type {?} */
             var subject = _this.srv.create(__assign({}, defaultOptions, options.modalOptions));
             /** @type {?} */
-            var afterClose$ = subject.afterClose.subscribe(function (res) {
+            var afterClose$ = subject.afterClose.subscribe((/**
+             * @param {?} res
+             * @return {?}
+             */
+            function (res) {
                 if (options.exact === true) {
                     if (res != null) {
                         observer.next(res);
@@ -1541,8 +1623,8 @@ var ModalHelper = /** @class */ (function () {
                 }
                 observer.complete();
                 afterClose$.unsubscribe();
-            });
-        });
+            }));
+        }));
     };
     /**
      * 构建静态框，点击蒙层不允许关闭
@@ -1742,7 +1824,7 @@ var ModalHelper = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * 抽屉辅助类
@@ -1792,7 +1874,11 @@ var DrawerHelper = /** @class */ (function () {
                 nzPlacement: 'right',
                 nzWrapClassName: '',
             } }, options);
-        return new Observable(function (observer) {
+        return new Observable((/**
+         * @param {?} observer
+         * @return {?}
+         */
+        function (observer) {
             var size = options.size, footer = options.footer, footerHeight = options.footerHeight, drawerOptions = options.drawerOptions;
             /** @type {?} */
             var defaultOptions = {
@@ -1820,14 +1906,18 @@ var DrawerHelper = /** @class */ (function () {
             /** @type {?} */
             var subject = _this.srv.create(__assign({}, defaultOptions, drawerOptions));
             /** @type {?} */
-            var afterClose$ = subject.afterClose.subscribe(function (res) {
+            var afterClose$ = subject.afterClose.subscribe((/**
+             * @param {?} res
+             * @return {?}
+             */
+            function (res) {
                 if (res != null && res !== false) {
                     observer.next(res);
                 }
                 observer.complete();
                 afterClose$.unsubscribe();
-            });
-        });
+            }));
+        }));
     };
     /**
      * 构建一个抽屉，点击蒙层不允许关闭
@@ -1866,7 +1956,7 @@ var DrawerHelper = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * 封装HttpClient，主要解决：
@@ -1904,7 +1994,11 @@ var _HttpClient = /** @class */ (function () {
         var _this = this;
         /** @type {?} */
         var newParams = {};
-        Object.keys(params).forEach(function (key) {
+        Object.keys(params).forEach((/**
+         * @param {?} key
+         * @return {?}
+         */
+        function (key) {
             /** @type {?} */
             var _data = params[key];
             // 忽略空值
@@ -1915,7 +2009,7 @@ var _HttpClient = /** @class */ (function () {
                 _data = _data.valueOf();
             }
             newParams[key] = _data;
-        });
+        }));
         return new HttpParams({ fromObject: newParams });
     };
     /**
@@ -1948,7 +2042,10 @@ var _HttpClient = /** @class */ (function () {
     function () {
         var _this = this;
         // console.time('http');
-        setTimeout(function () { return (_this._loading = true); });
+        setTimeout((/**
+         * @return {?}
+         */
+        function () { return (_this._loading = true); }));
     };
     /**
      * @return {?}
@@ -1959,7 +2056,10 @@ var _HttpClient = /** @class */ (function () {
     function () {
         var _this = this;
         // console.timeEnd('http');
-        setTimeout(function () { return (_this._loading = false); });
+        setTimeout((/**
+         * @return {?}
+         */
+        function () { return (_this._loading = false); }));
     };
     /**
      * GET 请求
@@ -2054,12 +2154,19 @@ var _HttpClient = /** @class */ (function () {
     function (url, params, callbackParam) {
         var _this = this;
         if (callbackParam === void 0) { callbackParam = 'JSONP_CALLBACK'; }
-        return this.http.jsonp(this.appliedUrl(url, params), callbackParam).pipe(tap(function () {
+        return this.http.jsonp(this.appliedUrl(url, params), callbackParam).pipe(tap((/**
+         * @return {?}
+         */
+        function () {
             _this.end();
-        }), catchError(function (res) {
+        })), catchError((/**
+         * @param {?} res
+         * @return {?}
+         */
+        function (res) {
             _this.end();
             return throwError(res);
-        }));
+        })));
     };
     /**
      * PATCH 请求
@@ -2137,12 +2244,19 @@ var _HttpClient = /** @class */ (function () {
             if (options.params)
                 options.params = this.parseParams(options.params);
         }
-        return this.http.request(method, url, options).pipe(tap(function () {
+        return this.http.request(method, url, options).pipe(tap((/**
+         * @return {?}
+         */
+        function () {
             _this.end();
-        }), catchError(function (res) {
+        })), catchError((/**
+         * @param {?} res
+         * @return {?}
+         */
+        function (res) {
             _this.end();
             return throwError(res);
-        }));
+        })));
     };
     _HttpClient.decorators = [
         { type: Injectable, args: [{ providedIn: 'root' },] }
@@ -2158,7 +2272,7 @@ var _HttpClient = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * @abstract
@@ -2196,12 +2310,17 @@ function setParam(target, key) {
  * @return {?}
  */
 function BaseUrl(url) {
-    return function (target) {
+    return (/**
+     * @template TClass
+     * @param {?} target
+     * @return {?}
+     */
+    function (target) {
         /** @type {?} */
         var params = setParam(target.prototype);
         params.baseUrl = url;
         return target;
-    };
+    });
 }
 /**
  * 默认 `headers`
@@ -2210,24 +2329,40 @@ function BaseUrl(url) {
  * @return {?}
  */
 function BaseHeaders(headers) {
-    return function (target) {
+    return (/**
+     * @template TClass
+     * @param {?} target
+     * @return {?}
+     */
+    function (target) {
         /** @type {?} */
         var params = setParam(target.prototype);
         params.baseHeaders = headers;
         return target;
-    };
+    });
 }
 /**
  * @param {?} paramName
  * @return {?}
  */
 function makeParam(paramName) {
-    return function (key) {
+    return (/**
+     * @param {?=} key
+     * @param {...?} extraOptions
+     * @return {?}
+     */
+    function (key) {
         var extraOptions = [];
         for (var _i = 1; _i < arguments.length; _i++) {
             extraOptions[_i - 1] = arguments[_i];
         }
-        return function (target, propertyKey, index) {
+        return (/**
+         * @param {?} target
+         * @param {?} propertyKey
+         * @param {?} index
+         * @return {?}
+         */
+        function (target, propertyKey, index) {
             /** @type {?} */
             var params = setParam(setParam(target), propertyKey);
             /** @type {?} */
@@ -2237,8 +2372,8 @@ function makeParam(paramName) {
             }
             tParams.push(__assign({ key: key,
                 index: index }, extraOptions));
-        };
-    };
+        });
+    });
 }
 /**
  * URL路由参数
@@ -2270,10 +2405,25 @@ var Headers = makeParam('headers');
  * @return {?}
  */
 function makeMethod(method) {
-    return function (url, options) {
+    return (/**
+     * @param {?=} url
+     * @param {?=} options
+     * @return {?}
+     */
+    function (url, options) {
         if (url === void 0) { url = ''; }
-        return function (target, targetKey, descriptor) {
-            descriptor.value = function () {
+        return (/**
+         * @param {?} target
+         * @param {?=} targetKey
+         * @param {?=} descriptor
+         * @return {?}
+         */
+        function (target, targetKey, descriptor) {
+            descriptor.value = (/**
+             * @param {...?} args
+             * @return {?}
+             */
+            function () {
                 var args = [];
                 for (var _i = 0; _i < arguments.length; _i++) {
                     args[_i] = arguments[_i];
@@ -2310,24 +2460,38 @@ function makeMethod(method) {
                     }
                     delete options.acl;
                 }
-                (data.path || []).forEach(function (i) {
+                (data.path || []).forEach((/**
+                 * @param {?} i
+                 * @return {?}
+                 */
+                function (i) {
                     requestUrl = requestUrl.replace(new RegExp(":" + i.key, 'g'), encodeURIComponent(args[i.index]));
-                });
+                }));
                 /** @type {?} */
-                var params = (data.query || []).reduce(function (p, i) {
+                var params = (data.query || []).reduce((/**
+                 * @param {?} p
+                 * @param {?} i
+                 * @return {?}
+                 */
+                function (p, i) {
                     p[i.key] = args[i.index];
                     return p;
-                }, {});
+                }), {});
                 /** @type {?} */
-                var headers = (data.headers || []).reduce(function (p, i) {
+                var headers = (data.headers || []).reduce((/**
+                 * @param {?} p
+                 * @param {?} i
+                 * @return {?}
+                 */
+                function (p, i) {
                     p[i.key] = args[i.index];
                     return p;
-                }, {});
+                }), {});
                 return http.request(method, requestUrl, __assign({ body: data.body && data.body.length > 0 ? args[data.body[0].index] : null, params: params, headers: __assign({}, baseData.baseHeaders, headers) }, options));
-            };
+            });
             return descriptor;
-        };
-    };
+        });
+    });
 }
 /**
  * `OPTIONS` 请求
@@ -2380,7 +2544,7 @@ var JSONP = makeMethod('JSONP');
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var DatePipe = /** @class */ (function () {
     function DatePipe() {
@@ -2420,7 +2584,7 @@ var DatePipe = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * @see https://ng-alain.com/theme/currency
@@ -2458,7 +2622,7 @@ var CNCurrencyPipe = /** @class */ (function (_super) {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * @see https://ng-alain.com/theme/keys
@@ -2493,7 +2657,7 @@ var KeysPipe = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var YNPipe = /** @class */ (function () {
     function YNPipe(dom) {
@@ -2528,7 +2692,7 @@ var YNPipe = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var HTMLPipe = /** @class */ (function () {
     function HTMLPipe(dom) {
@@ -2557,7 +2721,7 @@ var HTMLPipe = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var URLPipe = /** @class */ (function () {
     function URLPipe(dom) {
@@ -2586,7 +2750,7 @@ var URLPipe = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var I18nPipe = /** @class */ (function () {
     function I18nPipe(i18n) {
@@ -2619,7 +2783,7 @@ var I18nPipe = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 var HELPERS = [ModalHelper, DrawerHelper];
@@ -2681,19 +2845,19 @@ var AlainThemeModule = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-var VERSION = new Version('7.0.0-rc.10-bca02030');
+var VERSION = new Version('7.0.0-rc.10-9bc3badf');
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 export { WINDOW, preloaderFinished, TitleService, ALAIN_I18N_TOKEN, AlainI18NServiceFake, _HttpClient, DatePipe, CNCurrencyPipe, KeysPipe, YNPipe, HTMLPipe, URLPipe, AlainThemeConfig, AlainThemeModule, VERSION, MenuService, ScrollService, LAYOUT, USER, APP, SettingsService, REP_MAX, ResponsiveService, enUS as en_US, zhCN as zh_CN, zhTW as zh_TW, trTR as tr_TR, plPL as pl_PL, elGR as el_GR, DELON_LOCALE, DELON_LOCALE_SERVICE_PROVIDER_FACTORY, DelonLocaleService, DELON_LOCALE_SERVICE_PROVIDER, DelonLocaleModule, ModalHelper, DrawerHelper, BaseUrl, BaseHeaders, BaseApi, Path, Query, Body, Headers, OPTIONS, GET, POST, DELETE, PUT, HEAD, PATCH, JSONP, ALAIN_I18N_TOKEN_FACTORY as ɵa, I18nPipe as ɵb };

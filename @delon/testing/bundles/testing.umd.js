@@ -11,7 +11,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /**
      * @license
@@ -87,16 +87,26 @@
         // Webkit Browsers don't set the keyCode when calling the init function.
         // See related bug https://bugs.webkit.org/show_bug.cgi?id=16735
         Object.defineProperties(event, {
-            keyCode: { get: function () { return keyCode; } },
-            key: { get: function () { return key; } },
-            target: { get: function () { return target; } },
+            keyCode: { get: ( /**
+                     * @return {?}
+                     */function () { return keyCode; }) },
+            key: { get: ( /**
+                     * @return {?}
+                     */function () { return key; }) },
+            target: { get: ( /**
+                     * @return {?}
+                     */function () { return target; }) },
         });
         // IE won't set `defaultPrevented` on synthetic events so we need to do it manually.
-        event.preventDefault = function () {
-            Object.defineProperty(event, 'defaultPrevented', { get: function () { return true; } });
+        event.preventDefault = ( /**
+         * @return {?}
+         */function () {
+            Object.defineProperty(event, 'defaultPrevented', { get: ( /**
+                     * @return {?}
+                     */function () { return true; }) });
             // tslint:disable-next-line:no-invalid-this
             return originalPreventDefault.apply(this, arguments);
-        };
+        });
         return event;
     }
     /**
@@ -121,7 +131,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /**
      * Utility to dispatch any event on a Node.
@@ -195,7 +205,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /**
      * Focuses an input, sets its value and dispatches
@@ -212,7 +222,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /**
      * [nz-dropdown](https://github.com/NG-ZORRO/ng-zorro-antd/blob/master/components/dropdown/nz-dropdown.component.ts#L88) 抖动合理值
@@ -249,7 +259,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
     var PageG2DataCount = 2;
@@ -868,18 +878,30 @@
         return TestContext;
     }());
     /** @type {?} */
-    var configureTestSuite = function (configureAction) {
+    var configureTestSuite = ( /**
+     * @param {?=} configureAction
+     * @return {?}
+     */function (configureAction) {
         /** @type {?} */
         var testBedApi = testing.getTestBed();
         /** @type {?} */
         var originReset = testing.TestBed.resetTestingModule;
-        beforeAll(function () {
+        beforeAll(( /**
+         * @return {?}
+         */function () {
             testing.TestBed.resetTestingModule();
-            testing.TestBed.resetTestingModule = function () { return testing.TestBed; };
-        });
+            testing.TestBed.resetTestingModule = ( /**
+             * @return {?}
+             */function () { return testing.TestBed; });
+        }));
         if (configureAction) {
-            beforeAll(function (done) {
-                return (function () {
+            beforeAll(( /**
+             * @param {?} done
+             * @return {?}
+             */function (done) {
+                return (( /**
+                 * @return {?}
+                 */function () {
                     return __awaiter(_this, void 0, void 0, function () {
                         return __generator(this, function (_a) {
                             switch (_a.label) {
@@ -892,33 +914,44 @@
                             }
                         });
                     });
-                })()
+                }))()
                     .then(done)
                     .catch(done.fail);
-            });
+            }));
         }
-        afterEach(function () {
-            testBedApi._activeFixtures.forEach(function (fixture) { return fixture.destroy(); });
+        afterEach(( /**
+         * @return {?}
+         */function () {
+            testBedApi._activeFixtures.forEach(( /**
+             * @param {?} fixture
+             * @return {?}
+             */function (fixture) { return fixture.destroy(); }));
             testBedApi._instantiated = false;
-        });
-        afterAll(function () {
+        }));
+        afterAll(( /**
+         * @return {?}
+         */function () {
             testing.TestBed.resetTestingModule = originReset;
             testing.TestBed.resetTestingModule();
-        });
-    };
+        }));
+    });
     /** @type {?} */
-    var createTestContext = function (component) {
+    var createTestContext = ( /**
+     * @template T
+     * @param {?} component
+     * @return {?}
+     */function (component) {
         return new TestContext(testing.TestBed.createComponent(component));
-    };
+    });
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     exports.dispatchEvent = dispatchEvent;

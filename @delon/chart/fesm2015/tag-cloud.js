@@ -7,7 +7,7 @@ import { InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class G2TagCloudComponent {
     // #endregion
@@ -25,6 +25,7 @@ class G2TagCloudComponent {
         this.data = [];
     }
     /**
+     * @private
      * @return {?}
      */
     initTagCloud() {
@@ -45,6 +46,7 @@ class G2TagCloudComponent {
         });
     }
     /**
+     * @private
      * @return {?}
      */
     install() {
@@ -71,6 +73,7 @@ class G2TagCloudComponent {
         this.attachChart();
     }
     /**
+     * @private
      * @return {?}
      */
     attachChart() {
@@ -95,15 +98,22 @@ class G2TagCloudComponent {
             padding,
             timeInterval: 5000,
             // max execute time
-            rotate: () => {
+            rotate: (/**
+             * @return {?}
+             */
+            () => {
                 /** @type {?} */
                 let random = ~~(Math.random() * 4) % 4;
                 if (random === 2) {
                     random = 0;
                 }
                 return random * 90; // 0, 90, 270
-            },
-            fontSize: d => (d.value ? ((d.value - min) / (max - min)) * (80 - 24) + 24 : 0),
+            }),
+            fontSize: (/**
+             * @param {?} d
+             * @return {?}
+             */
+            d => (d.value ? ((d.value - min) / (max - min)) * (80 - 24) + 24 : 0)),
         });
         chart.source(dv, {
             x: { nice: false },
@@ -112,18 +122,29 @@ class G2TagCloudComponent {
         chart.repaint();
     }
     /**
+     * @private
      * @return {?}
      */
     _attachChart() {
-        this.ngZone.runOutsideAngular(() => this.attachChart());
+        this.ngZone.runOutsideAngular((/**
+         * @return {?}
+         */
+        () => this.attachChart()));
     }
     /**
+     * @private
      * @return {?}
      */
     installResizeEvent() {
         this.resize$ = fromEvent(window, 'resize')
-            .pipe(filter(() => this.chart), debounceTime(200))
-            .subscribe(() => this._attachChart());
+            .pipe(filter((/**
+         * @return {?}
+         */
+        () => this.chart)), debounceTime(200))
+            .subscribe((/**
+         * @return {?}
+         */
+        () => this._attachChart()));
     }
     /**
      * @return {?}
@@ -131,7 +152,13 @@ class G2TagCloudComponent {
     ngOnInit() {
         this.initTagCloud();
         this.installResizeEvent();
-        this.ngZone.runOutsideAngular(() => setTimeout(() => this.install(), this.delay));
+        this.ngZone.runOutsideAngular((/**
+         * @return {?}
+         */
+        () => setTimeout((/**
+         * @return {?}
+         */
+        () => this.install()), this.delay)));
     }
     /**
      * @return {?}
@@ -145,7 +172,10 @@ class G2TagCloudComponent {
     ngOnDestroy() {
         this.resize$.unsubscribe();
         if (this.chart) {
-            this.ngZone.runOutsideAngular(() => this.chart.destroy());
+            this.ngZone.runOutsideAngular((/**
+             * @return {?}
+             */
+            () => this.chart.destroy()));
         }
     }
 }
@@ -181,7 +211,7 @@ __decorate([
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const COMPONENTS = [G2TagCloudComponent];
@@ -197,12 +227,12 @@ G2TagCloudModule.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 export { G2TagCloudComponent, G2TagCloudModule };

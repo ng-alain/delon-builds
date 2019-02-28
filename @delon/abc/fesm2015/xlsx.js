@@ -6,12 +6,12 @@ import { LazyService, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class XlsxConfig {
     constructor() {
@@ -34,7 +34,7 @@ XlsxConfig.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class XlsxService {
     /**
@@ -48,23 +48,29 @@ class XlsxService {
         this.lazy = lazy;
     }
     /**
+     * @private
      * @return {?}
      */
     init() {
         return this.lazy.load([this.cog.url].concat(this.cog.modules));
     }
     /**
+     * @private
      * @param {?} wb
      * @return {?}
      */
     read(wb) {
         /** @type {?} */
         const ret = {};
-        wb.SheetNames.forEach(name => {
+        wb.SheetNames.forEach((/**
+         * @param {?} name
+         * @return {?}
+         */
+        name => {
             /** @type {?} */
             const sheet = wb.Sheets[name];
             ret[name] = XLSX.utils.sheet_to_json(sheet, { header: 1 });
-        });
+        }));
         return ret;
     }
     /**
@@ -74,30 +80,50 @@ class XlsxService {
      * @return {?}
      */
     import(fileOrUrl, rABS = 'readAsBinaryString') {
-        return new Promise((resolver, reject) => {
-            this.init().then(() => {
+        return new Promise((/**
+         * @param {?} resolver
+         * @param {?} reject
+         * @return {?}
+         */
+        (resolver, reject) => {
+            this.init().then((/**
+             * @return {?}
+             */
+            () => {
                 // from url
                 if (typeof fileOrUrl === 'string') {
-                    this.http.request('GET', fileOrUrl, { responseType: 'arraybuffer' }).subscribe((res) => {
+                    this.http.request('GET', fileOrUrl, { responseType: 'arraybuffer' }).subscribe((/**
+                     * @param {?} res
+                     * @return {?}
+                     */
+                    (res) => {
                         /** @type {?} */
                         const wb = XLSX.read(new Uint8Array(res), { type: 'array' });
                         resolver(this.read(wb));
-                    }, (err) => {
+                    }), (/**
+                     * @param {?} err
+                     * @return {?}
+                     */
+                    (err) => {
                         reject(err);
-                    });
+                    }));
                     return;
                 }
                 // from file
                 /** @type {?} */
                 const reader = new FileReader();
-                reader.onload = (e) => {
+                reader.onload = (/**
+                 * @param {?} e
+                 * @return {?}
+                 */
+                (e) => {
                     /** @type {?} */
                     const wb = XLSX.read(e.target.result, { type: 'binary' });
                     resolver(this.read(wb));
-                };
+                });
                 reader[rABS](fileOrUrl);
-            });
-        });
+            }));
+        }));
     }
     /**
      * 导出
@@ -105,15 +131,23 @@ class XlsxService {
      * @return {?}
      */
     export(options) {
-        return this.init().then(() => {
+        return this.init().then((/**
+         * @return {?}
+         */
+        () => {
             /** @type {?} */
             const wb = XLSX.utils.book_new();
             if (Array.isArray(options.sheets)) {
-                ((/** @type {?} */ (options.sheets))).forEach((value, index) => {
+                ((/** @type {?} */ (options.sheets))).forEach((/**
+                 * @param {?} value
+                 * @param {?} index
+                 * @return {?}
+                 */
+                (value, index) => {
                     /** @type {?} */
                     const ws = XLSX.utils.aoa_to_sheet(value.data);
                     XLSX.utils.book_append_sheet(wb, ws, value.name || `Sheet${index + 1}`);
-                });
+                }));
             }
             else {
                 wb.SheetNames = Object.keys(options.sheets);
@@ -124,7 +158,7 @@ class XlsxService {
             /** @type {?} */
             const wbout = XLSX.write(wb, Object.assign({ bookType: 'xlsx', bookSST: false, type: 'array' }, options.opts));
             saveAs(new Blob([wbout], { type: 'application/octet-stream' }), options.filename || 'export.xlsx');
-        });
+        }));
     }
 }
 XlsxService.decorators = [
@@ -140,7 +174,7 @@ XlsxService.ctorParameters = () => [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class XlsxDirective {
     /**
@@ -175,7 +209,7 @@ XlsxDirective.propDecorators = {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const COMPONENTS = [XlsxDirective];
@@ -191,12 +225,12 @@ XlsxModule.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 export { XlsxConfig, XlsxService, XlsxDirective, XlsxModule };

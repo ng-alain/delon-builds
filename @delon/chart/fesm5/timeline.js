@@ -5,7 +5,7 @@ import { InputBoolean, InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var G2TimelineData = /** @class */ (function () {
     function G2TimelineData() {
@@ -35,12 +35,20 @@ var G2TimelineComponent = /** @class */ (function () {
      */
     function () {
         var _this = this;
-        this.ngZone.runOutsideAngular(function () { return setTimeout(function () { return _this.install(); }, _this.delay); });
+        this.ngZone.runOutsideAngular((/**
+         * @return {?}
+         */
+        function () { return setTimeout((/**
+         * @return {?}
+         */
+        function () { return _this.install(); }), _this.delay); }));
     };
     /**
+     * @private
      * @return {?}
      */
     G2TimelineComponent.prototype.install = /**
+     * @private
      * @return {?}
      */
     function () {
@@ -88,9 +96,11 @@ var G2TimelineComponent = /** @class */ (function () {
         this.attachChart();
     };
     /**
+     * @private
      * @return {?}
      */
     G2TimelineComponent.prototype.attachChart = /**
+     * @private
      * @return {?}
      */
     function () {
@@ -104,19 +114,47 @@ var G2TimelineComponent = /** @class */ (function () {
             items: [{ value: titleMap.y1, fill: colorMap.y1 }, { value: titleMap.y2, fill: colorMap.y2 }],
         });
         // border
-        chart.get('geoms').forEach(function (v, idx) {
+        chart.get('geoms').forEach((/**
+         * @param {?} v
+         * @param {?} idx
+         * @return {?}
+         */
+        function (v, idx) {
             v.color(colorMap["y" + (idx + 1)]).size(borderWidth);
-        });
+        }));
         chart.set('height', height);
         chart.set('padding', padding);
         data
-            .filter(function (v) { return !(v.x instanceof Number); })
-            .forEach(function (v) {
+            .filter((/**
+         * @param {?} v
+         * @return {?}
+         */
+        function (v) { return !(v.x instanceof Number); }))
+            .forEach((/**
+         * @param {?} v
+         * @return {?}
+         */
+        function (v) {
             v.x = +new Date(v.x);
-        });
-        data.sort(function (a, b) { return +a.x - +b.x; });
+        }));
+        data.sort((/**
+         * @param {?} a
+         * @param {?} b
+         * @return {?}
+         */
+        function (a, b) { return +a.x - +b.x; }));
         /** @type {?} */
-        var max = Math.max(__spread(data).sort(function (a, b) { return b.y1 - a.y1; })[0].y1, __spread(data).sort(function (a, b) { return b.y2 - a.y2; })[0].y2);
+        var max = Math.max(__spread(data).sort((/**
+         * @param {?} a
+         * @param {?} b
+         * @return {?}
+         */
+        function (a, b) { return b.y1 - a.y1; }))[0].y1, __spread(data).sort((/**
+         * @param {?} a
+         * @param {?} b
+         * @return {?}
+         */
+        function (a, b) { return b.y2 - a.y2; }))[0].y2);
         /** @type {?} */
         var ds = new DataSet({
             state: {
@@ -128,11 +166,15 @@ var G2TimelineComponent = /** @class */ (function () {
         var dv = ds.createView();
         dv.source(data).transform({
             type: 'filter',
-            callback: function (val) {
+            callback: (/**
+             * @param {?} val
+             * @return {?}
+             */
+            function (val) {
                 /** @type {?} */
                 var time = +val.x;
                 return time >= ds.state.start && time <= ds.state.end;
-            },
+            }),
         });
         chart.source(dv, {
             x: {
@@ -155,11 +197,15 @@ var G2TimelineComponent = /** @class */ (function () {
         if (slider) {
             _slider.start = ds.state.start;
             _slider.end = ds.state.end;
-            _slider.onChange = function (_a) {
+            _slider.onChange = (/**
+             * @param {?} __0
+             * @return {?}
+             */
+            function (_a) {
                 var startValue = _a.startValue, endValue = _a.endValue;
                 ds.setState('start', startValue);
                 ds.setState('end', endValue);
-            };
+            });
             _slider.changeData(data);
         }
     };
@@ -171,7 +217,10 @@ var G2TimelineComponent = /** @class */ (function () {
      */
     function () {
         var _this = this;
-        this.ngZone.runOutsideAngular(function () { return _this.attachChart(); });
+        this.ngZone.runOutsideAngular((/**
+         * @return {?}
+         */
+        function () { return _this.attachChart(); }));
     };
     /**
      * @return {?}
@@ -182,10 +231,16 @@ var G2TimelineComponent = /** @class */ (function () {
     function () {
         var _this = this;
         if (this.chart) {
-            this.ngZone.runOutsideAngular(function () { return _this.chart.destroy(); });
+            this.ngZone.runOutsideAngular((/**
+             * @return {?}
+             */
+            function () { return _this.chart.destroy(); }));
         }
         if (this._slider) {
-            this.ngZone.runOutsideAngular(function () { return _this._slider.destroy(); });
+            this.ngZone.runOutsideAngular((/**
+             * @return {?}
+             */
+            function () { return _this._slider.destroy(); }));
         }
     };
     G2TimelineComponent.decorators = [
@@ -235,7 +290,7 @@ var G2TimelineComponent = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 var COMPONENTS = [G2TimelineComponent];
@@ -254,12 +309,12 @@ var G2TimelineModule = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 export { G2TimelineData, G2TimelineComponent, G2TimelineModule };

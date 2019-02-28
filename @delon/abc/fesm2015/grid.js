@@ -1,12 +1,12 @@
 import { __decorate, __metadata } from 'tslib';
 import { ResponsiveService } from '@delon/theme';
 import { CommonModule } from '@angular/common';
-import { Injectable, Component, ChangeDetectionStrategy, Input, ElementRef, Renderer2, Optional, Host, defineInjectable, NgModule } from '@angular/core';
+import { Injectable, Component, ChangeDetectionStrategy, Input, defineInjectable, NgModule, ElementRef, Renderer2, Optional, Host } from '@angular/core';
 import { InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class SGConfig {
     constructor() {
@@ -27,7 +27,7 @@ SGConfig.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class SGContainerComponent {
     /**
@@ -84,7 +84,7 @@ __decorate([
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const prefixCls = `sg`;
@@ -113,16 +113,25 @@ class SGComponent {
         return this.parent.gutter / 2;
     }
     /**
+     * @private
      * @template THIS
      * @this {THIS}
      * @return {THIS}
      */
     setClass() {
         const { el, ren, clsMap, col, parent } = (/** @type {?} */ (this));
-        clsMap.forEach(cls => ren.removeClass(el, cls));
+        clsMap.forEach((/**
+         * @param {?} cls
+         * @return {?}
+         */
+        cls => ren.removeClass(el, cls)));
         clsMap.length = 0;
         clsMap.push(...(/** @type {?} */ (this)).rep.genCls(col != null ? col : parent.colInCon || parent.col), `${prefixCls}__item`);
-        clsMap.forEach(cls => ren.addClass(el, cls));
+        clsMap.forEach((/**
+         * @param {?} cls
+         * @return {?}
+         */
+        cls => ren.addClass(el, cls)));
         return (/** @type {?} */ (this));
     }
     /**
@@ -170,7 +179,7 @@ __decorate([
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const COMPONENTS = [SGContainerComponent, SGComponent];
@@ -186,12 +195,12 @@ SGModule.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 export { SGContainerComponent, SGComponent, SGConfig, SGModule };

@@ -5,12 +5,12 @@ import { Injectable, Injector, NgModule } from '@angular/core';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class MockStatusError {
     /**
@@ -25,7 +25,7 @@ class MockStatusError {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class DelonMockConfig {
     constructor() {
@@ -50,7 +50,7 @@ class DelonMockConfig {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class MockService {
     /**
@@ -64,6 +64,7 @@ class MockService {
     }
     // #region parse rule
     /**
+     * @private
      * @return {?}
      */
     applyMock() {
@@ -76,6 +77,7 @@ class MockService {
         }
     }
     /**
+     * @private
      * @return {?}
      */
     realApplyMock() {
@@ -83,12 +85,20 @@ class MockService {
         const data = this.config.data;
         if (!data)
             return;
-        Object.keys(data).forEach((key) => {
+        Object.keys(data).forEach((/**
+         * @param {?} key
+         * @return {?}
+         */
+        (key) => {
             /** @type {?} */
             const rules = data[key];
             if (!rules)
                 return;
-            Object.keys(rules).forEach((ruleKey) => {
+            Object.keys(rules).forEach((/**
+             * @param {?} ruleKey
+             * @return {?}
+             */
+            (ruleKey) => {
                 /** @type {?} */
                 const value = rules[ruleKey];
                 if (!(typeof value === 'function' || typeof value === 'object' || typeof value === 'string')) {
@@ -100,19 +110,29 @@ class MockService {
                     throw Error(`method of ${key}-${ruleKey} is not valid`);
                 }
                 /** @type {?} */
-                const item = this.cached.find(w => w.url === rule.url && w.method === rule.method);
+                const item = this.cached.find((/**
+                 * @param {?} w
+                 * @return {?}
+                 */
+                w => w.url === rule.url && w.method === rule.method));
                 if (item) {
                     item.callback = rule.callback;
                 }
                 else {
                     this.cached.push(rule);
                 }
-            });
-        });
+            }));
+        }));
         // regular ordering
-        this.cached.sort((a, b) => (b.martcher || '').toString().length - (a.martcher || '').toString().length);
+        this.cached.sort((/**
+         * @param {?} a
+         * @param {?} b
+         * @return {?}
+         */
+        (a, b) => (b.martcher || '').toString().length - (a.martcher || '').toString().length));
     }
     /**
+     * @private
      * @param {?} key
      * @param {?} callback
      * @return {?}
@@ -134,11 +154,23 @@ class MockService {
         let segments = [];
         if (~url.indexOf(':')) {
             segments = (/** @type {?} */ (url)).split('/')
-                .filter(segment => segment.startsWith(':'))
-                .map(v => v.substring(1));
+                .filter((/**
+             * @param {?} segment
+             * @return {?}
+             */
+            segment => segment.startsWith(':')))
+                .map((/**
+             * @param {?} v
+             * @return {?}
+             */
+            v => v.substring(1)));
             /** @type {?} */
             const reStr = (/** @type {?} */ (url)).split('/')
-                .map(segment => (segment.startsWith(':') ? `([^/]+)` : segment))
+                .map((/**
+             * @param {?} segment
+             * @return {?}
+             */
+            segment => (segment.startsWith(':') ? `([^/]+)` : segment)))
                 .join('/');
             martcher = new RegExp(`^${reStr}`, 'i');
         }
@@ -154,6 +186,7 @@ class MockService {
         };
     }
     /**
+     * @private
      * @param {?} error
      * @return {?}
      */
@@ -163,8 +196,16 @@ class MockService {
         /** @type {?} */
         const errors = error.stack
             .split('\n')
-            .filter(line => line.trim().indexOf('at ') !== 0)
-            .map(line => line.replace(`${filePath}: `, ''));
+            .filter((/**
+         * @param {?} line
+         * @return {?}
+         */
+        line => line.trim().indexOf('at ') !== 0))
+            .map((/**
+         * @param {?} line
+         * @return {?}
+         */
+        line => line.replace(`${filePath}: `, '')));
         errors.splice(1, 0, ['']);
         console.group();
         console.warn(`==========Failed to parse mock config.==========`);
@@ -183,17 +224,30 @@ class MockService {
         /** @type {?} */
         const params = {};
         /** @type {?} */
-        const list = this.cached.filter(w => w.method === method && (w.martcher ? w.martcher.test(url) : w.url === url));
+        const list = this.cached.filter((/**
+         * @param {?} w
+         * @return {?}
+         */
+        w => w.method === method && (w.martcher ? w.martcher.test(url) : w.url === url)));
         if (list.length === 0)
             return null;
         /** @type {?} */
-        const ret = list.find(w => w.url === url) || list[0];
+        const ret = list.find((/**
+         * @param {?} w
+         * @return {?}
+         */
+        w => w.url === url)) || list[0];
         if (ret.martcher) {
             /** @type {?} */
             const execArr = ret.martcher.exec(url);
-            execArr.slice(1).map((value, index) => {
+            execArr.slice(1).map((/**
+             * @param {?} value
+             * @param {?} index
+             * @return {?}
+             */
+            (value, index) => {
                 params[ret.segments[index]] = value;
-            });
+            }));
         }
         return {
             url,
@@ -231,7 +285,7 @@ MockService.ctorParameters = () => [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class HttpMockInterceptorHandler {
     /**
@@ -287,7 +341,11 @@ class MockInterceptor {
                 /** @type {?} */
                 const urlParams = req.url.split('?');
                 if (urlParams.length > 1) {
-                    urlParams[1].split('&').forEach(item => {
+                    urlParams[1].split('&').forEach((/**
+                     * @param {?} item
+                     * @return {?}
+                     */
+                    item => {
                         /** @type {?} */
                         const itemArr = item.split('=');
                         /** @type {?} */
@@ -304,10 +362,18 @@ class MockInterceptor {
                         else {
                             mockRequest.queryString[key] = value;
                         }
-                    });
+                    }));
                 }
-                req.params.keys().forEach(key => (mockRequest.queryString[key] = req.params.get(key)));
-                req.headers.keys().forEach(key => (mockRequest.headers[key] = req.headers.get(key)));
+                req.params.keys().forEach((/**
+                 * @param {?} key
+                 * @return {?}
+                 */
+                key => (mockRequest.queryString[key] = req.params.get(key))));
+                req.headers.keys().forEach((/**
+                 * @param {?} key
+                 * @return {?}
+                 */
+                key => (mockRequest.headers[key] = req.headers.get(key))));
                 try {
                     res = rule.callback.call(this, mockRequest);
                 }
@@ -348,8 +414,16 @@ class MockInterceptor {
             const lastInterceptors = interceptors.slice(interceptors.indexOf(this) + 1);
             if (lastInterceptors.length > 0) {
                 /** @type {?} */
-                const chain = lastInterceptors.reduceRight((_next, _interceptor) => new HttpMockInterceptorHandler(_next, _interceptor), (/** @type {?} */ ({
-                    handle: () => res$,
+                const chain = lastInterceptors.reduceRight((/**
+                 * @param {?} _next
+                 * @param {?} _interceptor
+                 * @return {?}
+                 */
+                (_next, _interceptor) => new HttpMockInterceptorHandler(_next, _interceptor)), (/** @type {?} */ ({
+                    handle: (/**
+                     * @return {?}
+                     */
+                    () => res$),
                 })));
                 return chain.handle(req).pipe(delay(config.delay));
             }
@@ -367,7 +441,7 @@ MockInterceptor.ctorParameters = () => [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class DelonMockModule {
     /**
@@ -400,12 +474,12 @@ DelonMockModule.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 export { MockStatusError, MockService, MockInterceptor, DelonMockConfig, DelonMockModule };

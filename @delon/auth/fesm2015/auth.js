@@ -7,7 +7,7 @@ import { Injectable, NgModule, InjectionToken, inject, Inject, Injector, defineI
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class DelonAuthConfig {
     constructor() {
@@ -65,7 +65,7 @@ DelonAuthConfig.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * @return {?}
@@ -101,7 +101,7 @@ class LocalStorageStore {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const DA_STORE_TOKEN = new InjectionToken('AUTH_STORE_TOKEN', {
@@ -111,7 +111,7 @@ const DA_STORE_TOKEN = new InjectionToken('AUTH_STORE_TOKEN', {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * @return {?}
@@ -182,7 +182,7 @@ TokenService.ctorParameters = () => [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const DA_SERVICE_TOKEN = new InjectionToken('DA_SERVICE_TOKEN', {
@@ -192,7 +192,7 @@ const DA_SERVICE_TOKEN = new InjectionToken('DA_SERVICE_TOKEN', {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const OPENTYPE = '_delonAuthSocialType';
@@ -225,7 +225,10 @@ class SocialService {
             return;
         }
         this._win = window.open(url, '_blank', options.windowFeatures);
-        this._winTime = setInterval(() => {
+        this._winTime = setInterval((/**
+         * @return {?}
+         */
+        () => {
             if (this._win && this._win.closed) {
                 this.ngOnDestroy();
                 /** @type {?} */
@@ -239,10 +242,14 @@ class SocialService {
                 this.observer.next(model);
                 this.observer.complete();
             }
-        }, 100);
-        return Observable.create((observer) => {
+        }), 100);
+        return Observable.create((/**
+         * @param {?} observer
+         * @return {?}
+         */
+        (observer) => {
             this.observer = observer;
-        });
+        }));
     }
     /**
      * 授权成功后的回调处理
@@ -303,7 +310,7 @@ SocialService.ctorParameters = () => [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class MemoryStore {
     constructor() {
@@ -336,7 +343,7 @@ class MemoryStore {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class SessionStorageStore {
     /**
@@ -366,7 +373,7 @@ class SessionStorageStore {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * @param {?} model
@@ -392,20 +399,23 @@ function CheckJwt(model, offset) {
 function ToLogin(options, injector, url) {
     ((/** @type {?} */ (injector.get(DA_SERVICE_TOKEN)))).referrer.url = url;
     if (options.token_invalid_redirect === true) {
-        setTimeout(() => {
+        setTimeout((/**
+         * @return {?}
+         */
+        () => {
             if (/^https?:\/\//g.test(options.login_url)) {
                 injector.get(DOCUMENT).location.href = options.login_url;
             }
             else {
                 injector.get(Router).navigate([options.login_url]);
             }
-        });
+        }));
     }
 }
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class HttpAuthInterceptorHandler {
     /**
@@ -460,7 +470,11 @@ class BaseInterceptor {
             ToLogin(options, this.injector, req.urlWithParams);
             // Interrupt Http request, so need to generate a new Observable
             /** @type {?} */
-            const err$ = new Observable((observer) => {
+            const err$ = new Observable((/**
+             * @param {?} observer
+             * @return {?}
+             */
+            (observer) => {
                 /** @type {?} */
                 const res = new HttpErrorResponse({
                     url: req.url,
@@ -469,7 +483,7 @@ class BaseInterceptor {
                     statusText: `From Auth Intercept --> https://ng-alain.com/docs/auth`,
                 });
                 observer.error(res);
-            });
+            }));
             if (options.executeOtherInterceptors) {
                 /** @type {?} */
                 const interceptors = this.injector.get(HTTP_INTERCEPTORS, []);
@@ -477,7 +491,16 @@ class BaseInterceptor {
                 const lastInterceptors = interceptors.slice(interceptors.indexOf(this) + 1);
                 if (lastInterceptors.length > 0) {
                     /** @type {?} */
-                    const chain = lastInterceptors.reduceRight((_next, _interceptor) => new HttpAuthInterceptorHandler(_next, _interceptor), { handle: (_) => err$ });
+                    const chain = lastInterceptors.reduceRight((/**
+                     * @param {?} _next
+                     * @param {?} _interceptor
+                     * @return {?}
+                     */
+                    (_next, _interceptor) => new HttpAuthInterceptorHandler(_next, _interceptor)), { handle: (/**
+                         * @param {?} _
+                         * @return {?}
+                         */
+                        (_) => err$) });
                     return chain.handle(req);
                 }
             }
@@ -493,7 +516,7 @@ BaseInterceptor.ctorParameters = () => [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * @param {?} str
@@ -556,15 +579,19 @@ function b64decode(str) {
  */
 function b64DecodeUnicode(str) {
     return decodeURIComponent(Array.prototype.map
-        .call(b64decode(str), (c) => {
+        .call(b64decode(str), (/**
+     * @param {?} c
+     * @return {?}
+     */
+    (c) => {
         return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-    })
+    }))
         .join(''));
 }
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class JWTTokenModel {
     /**
@@ -600,7 +627,7 @@ class JWTTokenModel {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class JWTInterceptor extends BaseInterceptor {
     /**
@@ -630,7 +657,7 @@ JWTInterceptor.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class JWTGuard {
     /**
@@ -644,6 +671,7 @@ class JWTGuard {
         this.cog = Object.assign({}, new DelonAuthConfig(), cog);
     }
     /**
+     * @private
      * @return {?}
      */
     process() {
@@ -698,14 +726,14 @@ JWTGuard.ctorParameters = () => [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class SimpleTokenModel {
 }
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class SimpleInterceptor extends BaseInterceptor {
     /**
@@ -723,7 +751,12 @@ class SimpleInterceptor extends BaseInterceptor {
      */
     setReq(req, options) {
         /** @type {?} */
-        const token = options.token_send_template.replace(/\$\{([\w]+)\}/g, (_, g) => this.model[g]);
+        const token = options.token_send_template.replace(/\$\{([\w]+)\}/g, (/**
+         * @param {?} _
+         * @param {?} g
+         * @return {?}
+         */
+        (_, g) => this.model[g]));
         switch (options.token_send_place) {
             case 'header':
                 /** @type {?} */
@@ -756,7 +789,7 @@ SimpleInterceptor.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class SimpleGuard {
     /**
@@ -770,6 +803,7 @@ class SimpleGuard {
         this.cog = Object.assign({}, new DelonAuthConfig(), cog);
     }
     /**
+     * @private
      * @return {?}
      */
     process() {
@@ -824,7 +858,7 @@ SimpleGuard.ctorParameters = () => [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class DelonAuthModule {
 }
@@ -834,12 +868,12 @@ DelonAuthModule.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 export { SocialService, DA_STORE_TOKEN, DA_STORE_TOKEN_LOCAL_FACTORY, LocalStorageStore, MemoryStore, SessionStorageStore, BaseInterceptor, DA_SERVICE_TOKEN, DA_SERVICE_TOKEN_FACTORY, TokenService, urlBase64Decode, JWTTokenModel, JWTInterceptor, JWTGuard, SimpleTokenModel, SimpleInterceptor, SimpleGuard, DelonAuthConfig, DelonAuthModule };

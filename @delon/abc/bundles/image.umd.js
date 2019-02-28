@@ -81,7 +81,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var ImageConfig = /** @class */ (function () {
         function ImageConfig() {
@@ -103,7 +103,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /**
      * img标签
@@ -150,9 +150,11 @@
                 }
             };
         /**
+         * @private
          * @return {?}
          */
         ImageDirective.prototype.update = /**
+         * @private
          * @return {?}
          */
             function () {
@@ -176,9 +178,11 @@
                 this.render.setAttribute(this.el.nativeElement, 'src', newSrc);
             };
         /**
+         * @private
          * @return {?}
          */
         ImageDirective.prototype.updateError = /**
+         * @private
          * @return {?}
          */
             function () {
@@ -212,7 +216,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
     var DIRECTIVES = [ImageDirective];
@@ -231,12 +235,12 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     exports.ImageDirective = ImageDirective;

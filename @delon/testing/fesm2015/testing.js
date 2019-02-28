@@ -5,7 +5,7 @@ import { tick, discardPeriodicTasks, flush, TestBed, getTestBed } from '@angular
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * @license
@@ -69,16 +69,31 @@ function createKeyboardEvent(type, keyCode, target, key) {
     // Webkit Browsers don't set the keyCode when calling the init function.
     // See related bug https://bugs.webkit.org/show_bug.cgi?id=16735
     Object.defineProperties(event, {
-        keyCode: { get: () => keyCode },
-        key: { get: () => key },
-        target: { get: () => target },
+        keyCode: { get: (/**
+             * @return {?}
+             */
+            () => keyCode) },
+        key: { get: (/**
+             * @return {?}
+             */
+            () => key) },
+        target: { get: (/**
+             * @return {?}
+             */
+            () => target) },
     });
     // IE won't set `defaultPrevented` on synthetic events so we need to do it manually.
-    event.preventDefault = function () {
-        Object.defineProperty(event, 'defaultPrevented', { get: () => true });
+    event.preventDefault = (/**
+     * @return {?}
+     */
+    function () {
+        Object.defineProperty(event, 'defaultPrevented', { get: (/**
+             * @return {?}
+             */
+            () => true) });
         // tslint:disable-next-line:no-invalid-this
         return originalPreventDefault.apply(this, arguments);
-    };
+    });
     return event;
 }
 /**
@@ -97,7 +112,7 @@ function createFakeEvent(type, canBubble = true, cancelable = true) {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * Utility to dispatch any event on a Node.
@@ -156,7 +171,7 @@ function dispatchTouchEvent(node, type, x = 0, y = 0) {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * Focuses an input, sets its value and dispatches
@@ -173,7 +188,7 @@ function typeInElement(value, element) {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * [nz-dropdown](https://github.com/NG-ZORRO/ng-zorro-antd/blob/master/components/dropdown/nz-dropdown.component.ts#L88) 抖动合理值
@@ -207,7 +222,7 @@ function dispatchDropDown(dl, trigger, allowNull = true) {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const PageG2DataCount = 2;
@@ -511,7 +526,7 @@ function checkDelay(module, comp, page = null) {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * @template T
@@ -563,45 +578,77 @@ class TestContext {
     }
 }
 /** @type {?} */
-const configureTestSuite = (configureAction) => {
+const configureTestSuite = (/**
+ * @param {?=} configureAction
+ * @return {?}
+ */
+(configureAction) => {
     /** @type {?} */
     const testBedApi = getTestBed();
     /** @type {?} */
     const originReset = TestBed.resetTestingModule;
-    beforeAll(() => {
+    beforeAll((/**
+     * @return {?}
+     */
+    () => {
         TestBed.resetTestingModule();
-        TestBed.resetTestingModule = () => TestBed;
-    });
+        TestBed.resetTestingModule = (/**
+         * @return {?}
+         */
+        () => TestBed);
+    }));
     if (configureAction) {
-        beforeAll((done) => (() => __awaiter(this, void 0, void 0, function* () {
+        beforeAll((/**
+         * @param {?} done
+         * @return {?}
+         */
+        (done) => ((/**
+         * @return {?}
+         */
+        () => __awaiter(this, void 0, void 0, function* () {
             configureAction();
             yield TestBed.compileComponents();
-        }))()
+        })))()
             .then(done)
-            .catch(done.fail));
+            .catch(done.fail)));
     }
-    afterEach(() => {
-        testBedApi._activeFixtures.forEach((fixture) => fixture.destroy());
+    afterEach((/**
+     * @return {?}
+     */
+    () => {
+        testBedApi._activeFixtures.forEach((/**
+         * @param {?} fixture
+         * @return {?}
+         */
+        (fixture) => fixture.destroy()));
         testBedApi._instantiated = false;
-    });
-    afterAll(() => {
+    }));
+    afterAll((/**
+     * @return {?}
+     */
+    () => {
         TestBed.resetTestingModule = originReset;
         TestBed.resetTestingModule();
-    });
-};
+    }));
+});
 /** @type {?} */
-const createTestContext = (component) => {
+const createTestContext = (/**
+ * @template T
+ * @param {?} component
+ * @return {?}
+ */
+(component) => {
     return new TestContext(TestBed.createComponent(component));
-};
+});
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingReturn,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 export { dispatchEvent, dispatchFakeEvent, dispatchKeyboardEvent, dispatchMouseEvent, dispatchTouchEvent, createMouseEvent, createTouchEvent, createKeyboardEvent, createFakeEvent, typeInElement, dispatchDropDown, DROPDOWN_MIN_TIME, checkDelay, PageG2DataCount, PageG2Height, PageG2, TestContext, configureTestSuite, createTestContext };
