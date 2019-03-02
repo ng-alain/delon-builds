@@ -9,6 +9,7 @@ export declare class UploadWidget extends ControlWidget implements OnInit {
     ngOnInit(): void;
     change(args: UploadChangeParam): void;
     reset(value: SFValue): void;
+    private _getValue;
     private _setValue;
     handlePreview: (file: UploadFile) => void;
 }
