@@ -221,7 +221,7 @@ function dispatchDropDown(dl, trigger, allowNull) {
         return false;
     }
     /** @type {?} */
-    var el = (/** @type {?} */ (directive.injector.get(NzDropDownDirective).elementRef.nativeElement));
+    var el = directive.injector.get(NzDropDownDirective).el;
     if (trigger === 'click') {
         dispatchFakeEvent(el, 'click');
     }

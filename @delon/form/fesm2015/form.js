@@ -3890,24 +3890,23 @@ class UploadWidget extends ControlWidget {
                 this.ui.preview(file);
                 return;
             }
-            /** @type {?} */
-            const _url = file.thumbUrl || file.url;
-            if (!_url) {
-                return;
-            }
             this.injector
                 .get(NzModalService)
                 .create({
-                nzContent: `<img src="${_url}" class="img-fluid" />`,
+                nzContent: `<img src="${file.url || file.thumbUrl}" class="img-fluid" />`,
                 nzFooter: null,
-            });
+            })
+                .afterClose.subscribe((/**
+             * @return {?}
+             */
+            () => this.detectChanges()));
         });
     }
     /**
      * @return {?}
      */
     ngOnInit() {
-        const { type, text, action, accept, limit, filter: filter$$1, fileSize, fileType, listType, multiple, name, showUploadList, withCredentials, resReName, urlReName, beforeUpload, customRequest, directory, openFileDialogOnClick, } = this.ui;
+        const { type, text, action, accept, limit, filter: filter$$1, fileSize, fileType, listType, multiple, name, showUploadList, withCredentials, resReName, beforeUpload, customRequest, directory, openFileDialogOnClick, } = this.ui;
         this.i = {
             type: type || 'select',
             text: text || '点击上传',
@@ -3925,7 +3924,6 @@ class UploadWidget extends ControlWidget {
             showUploadList: toBool(showUploadList, true),
             withCredentials: toBool(withCredentials, false),
             resReName: (resReName || '').split('.'),
-            urlReName: (urlReName || '').split('.'),
             beforeUpload: typeof beforeUpload === 'function' ? beforeUpload : null,
             customRequest: typeof customRequest === 'function' ? customRequest : null,
         };
@@ -3968,35 +3966,16 @@ class UploadWidget extends ControlWidget {
     }
     /**
      * @private
-     * @param {?} file
-     * @return {?}
-     */
-    _getValue(file) {
-        return deepGet(file.response, this.i.resReName, file.response);
-    }
-    /**
-     * @private
      * @param {?} fileList
      * @return {?}
      */
     _setValue(fileList) {
-        fileList.filter((/**
-         * @param {?} file
-         * @return {?}
-         */
-        file => !file.url)).forEach((/**
-         * @param {?} file
-         * @return {?}
-         */
-        file => {
-            file.url = deepGet(file.response, this.i.urlReName);
-        }));
         /** @type {?} */
         const res = fileList.map((/**
-         * @param {?} file
+         * @param {?} item
          * @return {?}
          */
-        file => this._getValue(file)));
+        item => deepGet(item.response, this.i.resReName, item.response)));
         this.setValue(this.i.multiple === true ? res : res.pop());
     }
 }

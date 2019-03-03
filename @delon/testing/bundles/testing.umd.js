@@ -246,7 +246,7 @@
             return false;
         }
         /** @type {?} */
-        var el = ( /** @type {?} */(directive.injector.get(ngZorroAntd.NzDropDownDirective).elementRef.nativeElement));
+        var el = directive.injector.get(ngZorroAntd.NzDropDownDirective).el;
         if (trigger === 'click') {
             dispatchFakeEvent(el, 'click');
         }

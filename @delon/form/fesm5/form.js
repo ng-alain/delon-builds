@@ -4810,17 +4810,16 @@ var UploadWidget = /** @class */ (function (_super) {
                 _this.ui.preview(file);
                 return;
             }
-            /** @type {?} */
-            var _url = file.thumbUrl || file.url;
-            if (!_url) {
-                return;
-            }
             _this.injector
                 .get(NzModalService)
                 .create({
-                nzContent: "<img src=\"" + _url + "\" class=\"img-fluid\" />",
+                nzContent: "<img src=\"" + (file.url || file.thumbUrl) + "\" class=\"img-fluid\" />",
                 nzFooter: null,
-            });
+            })
+                .afterClose.subscribe((/**
+             * @return {?}
+             */
+            function () { return _this.detectChanges(); }));
         });
         return _this;
     }
@@ -4831,7 +4830,7 @@ var UploadWidget = /** @class */ (function (_super) {
      * @return {?}
      */
     function () {
-        var _a = this.ui, type = _a.type, text = _a.text, action = _a.action, accept = _a.accept, limit = _a.limit, filter$$1 = _a.filter, fileSize = _a.fileSize, fileType = _a.fileType, listType = _a.listType, multiple = _a.multiple, name = _a.name, showUploadList = _a.showUploadList, withCredentials = _a.withCredentials, resReName = _a.resReName, urlReName = _a.urlReName, beforeUpload = _a.beforeUpload, customRequest = _a.customRequest, directory = _a.directory, openFileDialogOnClick = _a.openFileDialogOnClick;
+        var _a = this.ui, type = _a.type, text = _a.text, action = _a.action, accept = _a.accept, limit = _a.limit, filter$$1 = _a.filter, fileSize = _a.fileSize, fileType = _a.fileType, listType = _a.listType, multiple = _a.multiple, name = _a.name, showUploadList = _a.showUploadList, withCredentials = _a.withCredentials, resReName = _a.resReName, beforeUpload = _a.beforeUpload, customRequest = _a.customRequest, directory = _a.directory, openFileDialogOnClick = _a.openFileDialogOnClick;
         this.i = {
             type: type || 'select',
             text: text || '点击上传',
@@ -4849,7 +4848,6 @@ var UploadWidget = /** @class */ (function (_super) {
             showUploadList: toBool(showUploadList, true),
             withCredentials: toBool(withCredentials, false),
             resReName: (resReName || '').split('.'),
-            urlReName: (urlReName || '').split('.'),
             beforeUpload: typeof beforeUpload === 'function' ? beforeUpload : null,
             customRequest: typeof customRequest === 'function' ? customRequest : null,
         };
@@ -4901,19 +4899,6 @@ var UploadWidget = /** @class */ (function (_super) {
     };
     /**
      * @private
-     * @param {?} file
-     * @return {?}
-     */
-    UploadWidget.prototype._getValue = /**
-     * @private
-     * @param {?} file
-     * @return {?}
-     */
-    function (file) {
-        return deepGet(file.response, this.i.resReName, file.response);
-    };
-    /**
-     * @private
      * @param {?} fileList
      * @return {?}
      */
@@ -4924,23 +4909,12 @@ var UploadWidget = /** @class */ (function (_super) {
      */
     function (fileList) {
         var _this = this;
-        fileList.filter((/**
-         * @param {?} file
-         * @return {?}
-         */
-        function (file) { return !file.url; })).forEach((/**
-         * @param {?} file
-         * @return {?}
-         */
-        function (file) {
-            file.url = deepGet(file.response, _this.i.urlReName);
-        }));
         /** @type {?} */
         var res = fileList.map((/**
-         * @param {?} file
+         * @param {?} item
          * @return {?}
          */
-        function (file) { return _this._getValue(file); }));
+        function (item) { return deepGet(item.response, _this.i.resReName, item.response); }));
         this.setValue(this.i.multiple === true ? res : res.pop());
     };
     UploadWidget.decorators = [
