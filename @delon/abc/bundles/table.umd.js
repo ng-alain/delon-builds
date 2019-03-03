@@ -1625,7 +1625,7 @@
              * @param {?} value
              * @return {?}
              */ function (value) {
-                this._req = util.deepMerge({}, this.cog.req, value);
+                this._req = util.deepMerge({}, this._req, this.cog.req, value);
             },
             enumerable: true,
             configurable: true

@@ -1570,7 +1570,7 @@ var STComponent = /** @class */ (function () {
          * @return {?}
          */
         function (value) {
-            this._req = deepMerge({}, this.cog.req, value);
+            this._req = deepMerge({}, this._req, this.cog.req, value);
         },
         enumerable: true,
         configurable: true
