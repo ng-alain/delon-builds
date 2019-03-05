@@ -1390,7 +1390,7 @@ class STComponent {
      * @return {?}
      */
     set req(value) {
-        this._req = deepMerge({}, this._req, this.cog.req, value);
+        this._req = deepMerge({}, this.cog.req, value);
     }
     /**
      * 返回体配置
