@@ -27,6 +27,6 @@ export declare type UpgradeRules = Array<string | Array<string | TargetVersion>>
  * specify additional external stylesheets which are not referenced by Angular.
  */
 export declare function createTslintConfig(target: TargetVersion, config: UpgradeTSLintConfig): {
-    rulesDirectory: any;
+    rulesDirectory: string[];
     rules: {};
 };

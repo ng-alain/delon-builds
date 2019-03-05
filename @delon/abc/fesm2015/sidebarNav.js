@@ -212,7 +212,10 @@ class SidebarNavComponent {
             }
             return false;
         }
-        this.router.navigateByUrl(item.link);
+        this.ngZone.run((/**
+         * @return {?}
+         */
+        () => this.router.navigateByUrl(item.link)));
     }
     /**
      * @param {?} item

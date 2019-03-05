@@ -240,6 +240,7 @@ var SidebarNavComponent = /** @class */ (function () {
      * @return {?}
      */
     function (item) {
+        var _this = this;
         this.select.emit(item);
         if (item.disabled)
             return;
@@ -252,7 +253,10 @@ var SidebarNavComponent = /** @class */ (function () {
             }
             return false;
         }
-        this.router.navigateByUrl(item.link);
+        this.ngZone.run((/**
+         * @return {?}
+         */
+        function () { return _this.router.navigateByUrl(item.link); }));
     };
     /**
      * @param {?} item

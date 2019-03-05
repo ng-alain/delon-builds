@@ -1887,13 +1887,6 @@ var DrawerHelper = /** @class */ (function () {
                 nzZIndex: ++_this.zIndex,
                 nzTitle: title,
             };
-            if (footer) {
-                defaultOptions.nzBodyStyle = {
-                    height: "calc(100% - " + footerHeight + "px)",
-                    overflow: 'auto',
-                    'padding-bottom': footerHeight - 2 + "px",
-                };
-            }
             if (typeof size === 'number') {
                 defaultOptions[drawerOptions.nzPlacement === 'top' || drawerOptions.nzPlacement === 'bottom'
                     ? 'nzHeight'
@@ -1902,6 +1895,24 @@ var DrawerHelper = /** @class */ (function () {
             else {
                 defaultOptions.nzWrapClassName = (drawerOptions.nzWrapClassName + (" drawer-" + options.size)).trim();
                 delete drawerOptions.nzWrapClassName;
+            }
+            if (footer) {
+                var nzPlacement = drawerOptions.nzPlacement, nzHeight = drawerOptions.nzHeight;
+                // Should be header * footer, because of includes header
+                /** @type {?} */
+                var reduceHeight = (footerHeight * 2) - 2;
+                if (nzPlacement === 'left' || nzPlacement === 'right') {
+                    defaultOptions.nzBodyStyle = {
+                        height: "calc(100% - " + reduceHeight + "px)",
+                        overflow: 'auto',
+                    };
+                }
+                else {
+                    defaultOptions.nzBodyStyle = {
+                        height: +(nzHeight || 256) - reduceHeight + "px",
+                        overflow: 'auto',
+                    };
+                }
             }
             /** @type {?} */
             var subject = _this.srv.create(__assign({}, defaultOptions, drawerOptions));
@@ -2677,7 +2688,7 @@ var YNPipe = /** @class */ (function () {
      */
     function (value, yes, no) {
         return this.dom.bypassSecurityTrustHtml(value ?
-            "<i class=\"text-blue\" title=\"" + (yes || '是') + "\"><svg viewBox=\"64 64 896 896\" fill=\"currentColor\" width=\"1em\" height=\"1em\" aria-hidden=\"true\"><path d=\"M912 190h-69.9c-9.8 0-19.1 4.5-25.1 12.2L404.7 724.5 207 474a32 32 0 0 0-25.1-12.2H112c-6.7.0.1-47fd86bf0.4 7.7-6.3 12.9l273.9 347c12.8 16.2 37.4 16.2 50.3 0l488.4-618.9c4.1-5.1.4-12.8-6.3-12.8z\"></path></svg></i>" :
+            "<i class=\"text-blue\" title=\"" + (yes || '是') + "\"><svg viewBox=\"64 64 896 896\" fill=\"currentColor\" width=\"1em\" height=\"1em\" aria-hidden=\"true\"><path d=\"M912 190h-69.9c-9.8 0-19.1 4.5-25.1 12.2L404.7 724.5 207 474a32 32 0 0 0-25.1-12.2H112c-6.7.0.1-88cc23730.4 7.7-6.3 12.9l273.9 347c12.8 16.2 37.4 16.2 50.3 0l488.4-618.9c4.1-5.1.4-12.8-6.3-12.8z\"></path></svg></i>" :
             "<i class=\"text-grey\" title=\"" + (no || '否') + "\"><svg viewBox=\"64 64 896 896\" fill=\"currentColor\" width=\"1em\" height=\"1em\" aria-hidden=\"true\"><path d=\"M563.8 512l262.5-312.9c4.4-5.2.7-13.1-6.1-13.1h-79.8c-4.7 0-9.2 2.1-12.3 5.7L511.6 449.8 295.1 191.7c-3-3.6-7.5-5.7-12.3-5.7H203c-6.8 0-10.5 7.9-6.1 13.1L459.4 512 196.9 824.9A7.95 7.95 0 0 0 203 838h79.8c4.7 0 9.2-2.1 12.3-5.7l216.5-258.1 216.5 258.1c3 3.6 7.5 5.7 12.3 5.7h79.8c6.8 0 10.5-7.9 6.1-13.1L563.8 512z\"></path></svg></i>");
     };
     YNPipe.decorators = [
@@ -2848,7 +2859,7 @@ var AlainThemeModule = /** @class */ (function () {
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-var VERSION = new Version('7.0.1-47fd86bf');
+var VERSION = new Version('7.0.1-88cc2373');
 
 /**
  * @fileoverview added by tsickle
