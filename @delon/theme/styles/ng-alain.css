@@ -20129,54 +20129,46 @@ a:focus {
   padding: 0 !important;
 }
 @media (min-width: 300px) {
-  .ant-drawer-left .drawer-sm,
-  .ant-drawer-right .drawer-sm {
+  .drawer-sm {
     max-width: 300px;
     width: auto !important;
   }
 }
 @media (max-width: 299px) {
-  .ant-drawer-left .drawer-sm,
-  .ant-drawer-right .drawer-sm {
+  .drawer-sm {
     width: 100% !important;
   }
 }
 @media (min-width: 600px) {
-  .ant-drawer-left .drawer-md,
-  .ant-drawer-right .drawer-md {
+  .drawer-md {
     max-width: 600px;
     width: auto !important;
   }
 }
 @media (max-width: 599px) {
-  .ant-drawer-left .drawer-md,
-  .ant-drawer-right .drawer-md {
+  .drawer-md {
     width: 100% !important;
   }
 }
 @media (min-width: 900px) {
-  .ant-drawer-left .drawer-lg,
-  .ant-drawer-right .drawer-lg {
+  .drawer-lg {
     max-width: 900px;
     width: auto !important;
   }
 }
 @media (max-width: 899px) {
-  .ant-drawer-left .drawer-lg,
-  .ant-drawer-right .drawer-lg {
+  .drawer-lg {
     width: 100% !important;
   }
 }
 @media (min-width: 1200px) {
-  .ant-drawer-left .drawer-xl,
-  .ant-drawer-right .drawer-xl {
+  .drawer-xl {
     max-width: 1200px;
     width: auto !important;
   }
 }
 @media (max-width: 1199px) {
-  .ant-drawer-left .drawer-xl,
-  .ant-drawer-right .drawer-xl {
+  .drawer-xl {
     width: 100% !important;
   }
 }

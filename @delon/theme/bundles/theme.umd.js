@@ -1950,6 +1950,13 @@
                         nzZIndex: ++_this.zIndex,
                         nzTitle: title,
                     };
+                    if (footer) {
+                        defaultOptions.nzBodyStyle = {
+                            height: "calc(100% - " + footerHeight + "px)",
+                            overflow: 'auto',
+                            'padding-bottom': footerHeight - 2 + "px",
+                        };
+                    }
                     if (typeof size === 'number') {
                         defaultOptions[drawerOptions.nzPlacement === 'top' || drawerOptions.nzPlacement === 'bottom'
                             ? 'nzHeight'
@@ -1958,24 +1965,6 @@
                     else {
                         defaultOptions.nzWrapClassName = (drawerOptions.nzWrapClassName + (" drawer-" + options.size)).trim();
                         delete drawerOptions.nzWrapClassName;
-                    }
-                    if (footer) {
-                        var nzPlacement = drawerOptions.nzPlacement, nzHeight = drawerOptions.nzHeight;
-                        // Should be header * footer, because of includes header
-                        /** @type {?} */
-                        var reduceHeight = (footerHeight * 2) - 2;
-                        if (nzPlacement === 'left' || nzPlacement === 'right') {
-                            defaultOptions.nzBodyStyle = {
-                                height: "calc(100% - " + reduceHeight + "px)",
-                                overflow: 'auto',
-                            };
-                        }
-                        else {
-                            defaultOptions.nzBodyStyle = {
-                                height: +(nzHeight || 256) - reduceHeight + "px",
-                                overflow: 'auto',
-                            };
-                        }
                     }
                     /** @type {?} */
                     var subject = _this.srv.create(__assign({}, defaultOptions, drawerOptions));

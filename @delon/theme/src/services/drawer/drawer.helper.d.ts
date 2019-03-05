@@ -2,7 +2,7 @@ import { NzDrawerOptions, NzDrawerService } from 'ng-zorro-antd';
 import { Observable } from 'rxjs';
 export interface DrawerHelperOptions {
     /**
-     * 大小，若值为数值类型，则根据 `nzPlacement` 自动转化为 `nzHeight` 或 `nzWidth`；例如：lg、600，默认：`md`
+     * 大小；例如：lg、600，默认：`md`
      *
      * | 类型 | 默认大小 |
      * | --- | ------ |
