@@ -24898,10 +24898,6 @@ body {
   margin-bottom: 0;
   padding-bottom: 0;
 }
-.se__item-empty:before {
-  content: '';
-  display: inline-block;
-}
 .se__item .ant-form-explain {
   display: block;
 }
