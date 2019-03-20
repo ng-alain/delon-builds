@@ -3145,7 +3145,7 @@ class NumberWidget extends ControlWidget {
              * @param {?} value
              * @return {?}
              */
-            value => `${ui.prefix} ${value}`);
+            value => value == null ? '' : `${ui.prefix} ${value}`);
             ui.parser = (/**
              * @param {?} value
              * @return {?}
@@ -3157,7 +3157,7 @@ class NumberWidget extends ControlWidget {
              * @param {?} value
              * @return {?}
              */
-            value => `${value} ${ui.unit}`);
+            value => value == null ? '' : `${value} ${ui.unit}`);
             ui.parser = (/**
              * @param {?} value
              * @return {?}

@@ -3919,7 +3919,7 @@
                     ui.formatter = ( /**
                      * @param {?} value
                      * @return {?}
-                     */function (value) { return ui.prefix + " " + value; });
+                     */function (value) { return value == null ? '' : ui.prefix + " " + value; });
                     ui.parser = ( /**
                      * @param {?} value
                      * @return {?}
@@ -3929,7 +3929,7 @@
                     ui.formatter = ( /**
                      * @param {?} value
                      * @return {?}
-                     */function (value) { return value + " " + ui.unit; });
+                     */function (value) { return value == null ? '' : value + " " + ui.unit; });
                     ui.parser = ( /**
                      * @param {?} value
                      * @return {?}
