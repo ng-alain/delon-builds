@@ -620,6 +620,8 @@ class STDataSource {
             /** @type {?} */
             let retPi;
             /** @type {?} */
+            let rawData;
+            /** @type {?} */
             let showPage = page.show;
             if (typeof data === 'string') {
                 isRemote = true;
@@ -628,6 +630,7 @@ class STDataSource {
                  * @return {?}
                  */
                 result => {
+                    rawData = result;
                     /** @type {?} */
                     let ret;
                     if (Array.isArray(result)) {
@@ -647,7 +650,7 @@ class STDataSource {
                         const resultTotal = res.reName.total && deepGet(result, (/** @type {?} */ (res.reName.total)), null);
                         retTotal = resultTotal == null ? total || 0 : +resultTotal;
                     }
-                    return ret;
+                    return deepCopy(ret);
                 })), catchError((/**
                  * @param {?} err
                  * @return {?}
@@ -672,8 +675,9 @@ class STDataSource {
                  * @return {?}
                  */
                 (result) => {
+                    rawData = result;
                     /** @type {?} */
-                    let copyResult = result.slice(0);
+                    let copyResult = deepCopy(result);
                     /** @type {?} */
                     const sorterFn = this.getSorterFn(columns);
                     if (sorterFn) {
@@ -787,7 +791,7 @@ class STDataSource {
                     ps: retPs,
                     total: retTotal,
                     list: retList,
-                    statistical: this.genStatistical(columns, retList),
+                    statistical: this.genStatistical(columns, retList, rawData),
                     pageShow: typeof showPage === 'undefined' ? realTotal > realPs : showPage,
                 });
             }));
@@ -1035,9 +1039,10 @@ class STDataSource {
      * @private
      * @param {?} columns
      * @param {?} list
+     * @param {?} rawData
      * @return {?}
      */
-    genStatistical(columns, list) {
+    genStatistical(columns, list, rawData) {
         /** @type {?} */
         const res = {};
         columns.forEach((/**
@@ -1047,7 +1052,7 @@ class STDataSource {
          */
         (col, index) => {
             res[col.key ? col.key : index] =
-                col.statistical == null ? {} : this.getStatistical(col, index, list);
+                col.statistical == null ? {} : this.getStatistical(col, index, list, rawData);
         }));
         return res;
     }
@@ -1056,9 +1061,10 @@ class STDataSource {
      * @param {?} col
      * @param {?} index
      * @param {?} list
+     * @param {?} rawData
      * @return {?}
      */
-    getStatistical(col, index, list) {
+    getStatistical(col, index, list, rawData) {
         /** @type {?} */
         const val = col.statistical;
         /** @type {?} */
@@ -1068,7 +1074,7 @@ class STDataSource {
         /** @type {?} */
         let currenty = false;
         if (typeof item.type === 'function') {
-            res = item.type(this.getValues(index, list), col, list);
+            res = item.type(this.getValues(index, list), col, list, rawData);
             currenty = true;
         }
         else {
