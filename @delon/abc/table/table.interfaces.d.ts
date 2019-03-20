@@ -286,7 +286,7 @@ export interface STColumn {
     [key: string]: any;
 }
 export declare type STStatisticalType = 'count' | 'distinctCount' | 'sum' | 'average' | 'max' | 'min';
-export declare type STStatisticalFn = (values: number[], col: STColumn, list: STData[], rawData?: any) => STStatisticalResult;
+export declare type STStatisticalFn = (values: number[], col: STColumn, list: STData[]) => STStatisticalResult;
 export interface STStatistical {
     type: STStatisticalType | STStatisticalFn;
     /**

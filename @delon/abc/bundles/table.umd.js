@@ -789,8 +789,6 @@
                     /** @type {?} */
                     var retPi;
                     /** @type {?} */
-                    var rawData;
-                    /** @type {?} */
                     var showPage = page.show;
                     if (typeof data === 'string') {
                         isRemote = true;
@@ -798,7 +796,6 @@
                          * @param {?} result
                          * @return {?}
                          */function (result) {
-                            rawData = result;
                             /** @type {?} */
                             var ret;
                             if (Array.isArray(result)) {
@@ -818,7 +815,7 @@
                                 var resultTotal = res.reName.total && util.deepGet(result, ( /** @type {?} */(res.reName.total)), null);
                                 retTotal = resultTotal == null ? total || 0 : +resultTotal;
                             }
-                            return util.deepCopy(ret);
+                            return ret;
                         })), operators.catchError(( /**
                          * @param {?} err
                          * @return {?}
@@ -841,9 +838,8 @@
                          * @param {?} result
                          * @return {?}
                          */function (result) {
-                            rawData = result;
                             /** @type {?} */
-                            var copyResult = util.deepCopy(result);
+                            var copyResult = result.slice(0);
                             /** @type {?} */
                             var sorterFn = _this.getSorterFn(columns);
                             if (sorterFn) {
@@ -950,7 +946,7 @@
                             ps: retPs,
                             total: retTotal,
                             list: retList,
-                            statistical: _this.genStatistical(columns, retList, rawData),
+                            statistical: _this.genStatistical(columns, retList),
                             pageShow: typeof showPage === 'undefined' ? realTotal > realPs : showPage,
                         });
                     }));
@@ -1244,7 +1240,6 @@
          * @private
          * @param {?} columns
          * @param {?} list
-         * @param {?} rawData
          * @return {?}
          */
         STDataSource.prototype.genStatistical =
@@ -1254,10 +1249,9 @@
              * @private
              * @param {?} columns
              * @param {?} list
-             * @param {?} rawData
              * @return {?}
              */
-            function (columns, list, rawData) {
+            function (columns, list) {
                 var _this = this;
                 /** @type {?} */
                 var res = {};
@@ -1267,7 +1261,7 @@
                  * @return {?}
                  */function (col, index) {
                     res[col.key ? col.key : index] =
-                        col.statistical == null ? {} : _this.getStatistical(col, index, list, rawData);
+                        col.statistical == null ? {} : _this.getStatistical(col, index, list);
                 }));
                 return res;
             };
@@ -1276,7 +1270,6 @@
          * @param {?} col
          * @param {?} index
          * @param {?} list
-         * @param {?} rawData
          * @return {?}
          */
         STDataSource.prototype.getStatistical = /**
@@ -1284,10 +1277,9 @@
          * @param {?} col
          * @param {?} index
          * @param {?} list
-         * @param {?} rawData
          * @return {?}
          */
-            function (col, index, list, rawData) {
+            function (col, index, list) {
                 /** @type {?} */
                 var val = col.statistical;
                 /** @type {?} */
@@ -1297,7 +1289,7 @@
                 /** @type {?} */
                 var currenty = false;
                 if (typeof item.type === 'function') {
-                    res = item.type(this.getValues(index, list), col, list, rawData);
+                    res = item.type(this.getValues(index, list), col, list);
                     currenty = true;
                 }
                 else {

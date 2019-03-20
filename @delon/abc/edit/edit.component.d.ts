@@ -1,7 +1,7 @@
-import { AfterViewInit, ChangeDetectorRef, ElementRef, OnChanges, OnDestroy, Renderer2, TemplateRef } from '@angular/core';
+import { AfterContentInit, AfterViewInit, ChangeDetectorRef, ElementRef, OnChanges, OnDestroy, Renderer2, TemplateRef } from '@angular/core';
 import { ResponsiveService } from '@delon/theme';
 import { SEContainerComponent } from './edit-container.component';
-export declare class SEComponent implements OnChanges, AfterViewInit, OnDestroy {
+export declare class SEComponent implements OnChanges, AfterContentInit, AfterViewInit, OnDestroy {
     private parent;
     private rep;
     private ren;
@@ -10,6 +10,7 @@ export declare class SEComponent implements OnChanges, AfterViewInit, OnDestroy 
     private status$;
     private readonly ngModel;
     private readonly formControlName;
+    private readonly contentElement;
     private clsMap;
     private inited;
     private onceFlag;
@@ -35,6 +36,8 @@ export declare class SEComponent implements OnChanges, AfterViewInit, OnDestroy 
     private setClass;
     private bindModel;
     private updateStatus;
+    checkContent(): void;
+    ngAfterContentInit(): void;
     ngOnChanges(): void;
     ngAfterViewInit(): void;
     ngOnDestroy(): void;

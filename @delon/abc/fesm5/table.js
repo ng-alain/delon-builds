@@ -704,8 +704,6 @@ var STDataSource = /** @class */ (function () {
             /** @type {?} */
             var retPi;
             /** @type {?} */
-            var rawData;
-            /** @type {?} */
             var showPage = page.show;
             if (typeof data === 'string') {
                 isRemote = true;
@@ -714,7 +712,6 @@ var STDataSource = /** @class */ (function () {
                  * @return {?}
                  */
                 function (result) {
-                    rawData = result;
                     /** @type {?} */
                     var ret;
                     if (Array.isArray(result)) {
@@ -734,7 +731,7 @@ var STDataSource = /** @class */ (function () {
                         var resultTotal = res.reName.total && deepGet(result, (/** @type {?} */ (res.reName.total)), null);
                         retTotal = resultTotal == null ? total || 0 : +resultTotal;
                     }
-                    return deepCopy(ret);
+                    return ret;
                 })), catchError((/**
                  * @param {?} err
                  * @return {?}
@@ -759,9 +756,8 @@ var STDataSource = /** @class */ (function () {
                  * @return {?}
                  */
                 function (result) {
-                    rawData = result;
                     /** @type {?} */
-                    var copyResult = deepCopy(result);
+                    var copyResult = result.slice(0);
                     /** @type {?} */
                     var sorterFn = _this.getSorterFn(columns);
                     if (sorterFn) {
@@ -878,7 +874,7 @@ var STDataSource = /** @class */ (function () {
                     ps: retPs,
                     total: retTotal,
                     list: retList,
-                    statistical: _this.genStatistical(columns, retList, rawData),
+                    statistical: _this.genStatistical(columns, retList),
                     pageShow: typeof showPage === 'undefined' ? realTotal > realPs : showPage,
                 });
             }));
@@ -1182,7 +1178,6 @@ var STDataSource = /** @class */ (function () {
      * @private
      * @param {?} columns
      * @param {?} list
-     * @param {?} rawData
      * @return {?}
      */
     STDataSource.prototype.genStatistical = 
@@ -1192,10 +1187,9 @@ var STDataSource = /** @class */ (function () {
      * @private
      * @param {?} columns
      * @param {?} list
-     * @param {?} rawData
      * @return {?}
      */
-    function (columns, list, rawData) {
+    function (columns, list) {
         var _this = this;
         /** @type {?} */
         var res = {};
@@ -1206,7 +1200,7 @@ var STDataSource = /** @class */ (function () {
          */
         function (col, index) {
             res[col.key ? col.key : index] =
-                col.statistical == null ? {} : _this.getStatistical(col, index, list, rawData);
+                col.statistical == null ? {} : _this.getStatistical(col, index, list);
         }));
         return res;
     };
@@ -1215,7 +1209,6 @@ var STDataSource = /** @class */ (function () {
      * @param {?} col
      * @param {?} index
      * @param {?} list
-     * @param {?} rawData
      * @return {?}
      */
     STDataSource.prototype.getStatistical = /**
@@ -1223,10 +1216,9 @@ var STDataSource = /** @class */ (function () {
      * @param {?} col
      * @param {?} index
      * @param {?} list
-     * @param {?} rawData
      * @return {?}
      */
-    function (col, index, list, rawData) {
+    function (col, index, list) {
         /** @type {?} */
         var val = col.statistical;
         /** @type {?} */
@@ -1236,7 +1228,7 @@ var STDataSource = /** @class */ (function () {
         /** @type {?} */
         var currenty = false;
         if (typeof item.type === 'function') {
-            res = item.type(this.getValues(index, list), col, list, rawData);
+            res = item.type(this.getValues(index, list), col, list);
             currenty = true;
         }
         else {
