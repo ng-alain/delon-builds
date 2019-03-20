@@ -1,6 +1,6 @@
 {
   "name": "@delon/form",
-  "version": "7.0.2-aaf9632",
+  "version": "7.0.2-9d19166",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -28,8 +28,8 @@
     "component"
   ],
   "peerDependencies": {
-    "@delon/theme": "^7.0.2-aaf9632",
-    "@delon/util": "^7.0.2-aaf9632"
+    "@delon/theme": "^7.0.2-9d19166",
+    "@delon/util": "^7.0.2-9d19166"
   },
   "sideEffects": false,
   "main": "bundles/form.umd.js",
