@@ -620,6 +620,8 @@ class STDataSource {
             /** @type {?} */
             let retPi;
             /** @type {?} */
+            let rawData;
+            /** @type {?} */
             let showPage = page.show;
             if (typeof data === 'string') {
                 isRemote = true;
@@ -628,6 +630,7 @@ class STDataSource {
                  * @return {?}
                  */
                 result => {
+                    rawData = result;
                     /** @type {?} */
                     let ret;
                     if (Array.isArray(result)) {
@@ -647,7 +650,7 @@ class STDataSource {
                         const resultTotal = res.reName.total && deepGet(result, (/** @type {?} */ (res.reName.total)), null);
                         retTotal = resultTotal == null ? total || 0 : +resultTotal;
                     }
-                    return ret;
+                    return deepCopy(ret);
                 })), catchError((/**
                  * @param {?} err
                  * @return {?}
@@ -672,8 +675,9 @@ class STDataSource {
                  * @return {?}
                  */
                 (result) => {
+                    rawData = result;
                     /** @type {?} */
-                    let copyResult = result.slice(0);
+                    let copyResult = deepCopy(result);
                     /** @type {?} */
                     const sorterFn = this.getSorterFn(columns);
                     if (sorterFn) {
@@ -787,7 +791,7 @@ class STDataSource {
                     ps: retPs,
                     total: retTotal,
                     list: retList,
-                    statistical: this.genStatistical(columns, retList),
+                    statistical: this.genStatistical(columns, retList, rawData),
                     pageShow: typeof showPage === 'undefined' ? realTotal > realPs : showPage,
                 });
             }));
@@ -1035,9 +1039,10 @@ class STDataSource {
      * @private
      * @param {?} columns
      * @param {?} list
+     * @param {?} rawData
      * @return {?}
      */
-    genStatistical(columns, list) {
+    genStatistical(columns, list, rawData) {
         /** @type {?} */
         const res = {};
         columns.forEach((/**
@@ -1047,7 +1052,7 @@ class STDataSource {
          */
         (col, index) => {
             res[col.key ? col.key : index] =
-                col.statistical == null ? {} : this.getStatistical(col, index, list);
+                col.statistical == null ? {} : this.getStatistical(col, index, list, rawData);
         }));
         return res;
     }
@@ -1056,9 +1061,10 @@ class STDataSource {
      * @param {?} col
      * @param {?} index
      * @param {?} list
+     * @param {?} rawData
      * @return {?}
      */
-    getStatistical(col, index, list) {
+    getStatistical(col, index, list, rawData) {
         /** @type {?} */
         const val = col.statistical;
         /** @type {?} */
@@ -1068,7 +1074,7 @@ class STDataSource {
         /** @type {?} */
         let currenty = false;
         if (typeof item.type === 'function') {
-            res = item.type(this.getValues(index, list), col, list);
+            res = item.type(this.getValues(index, list), col, list, rawData);
             currenty = true;
         }
         else {
@@ -1359,9 +1365,10 @@ class STComponent {
                 this.cd();
             }
         }));
-        this.copyCog = deepMergeKey(new STConfig(), true, cog);
-        delete this.copyCog.multiSort;
-        Object.assign(this, this.copyCog);
+        /** @type {?} */
+        const copyCog = deepMergeKey(new STConfig(), true, cog);
+        delete copyCog.multiSort;
+        Object.assign(this, copyCog);
         if (cog.multiSort && cog.multiSort.global !== false) {
             this.multiSort = Object.assign({}, cog.multiSort);
         }
@@ -2044,7 +2051,7 @@ class STComponent {
             const { modal } = btn;
             /** @type {?} */
             const obj = { [modal.paramsName]: record };
-            ((/** @type {?} */ (this.modalHelper[btn.type === 'modal' ? 'create' : 'createStatic'])))(modal.component, Object.assign({}, obj, (modal.params && modal.params(record))), deepMergeKey({}, true, this.copyCog.modal, modal))
+            ((/** @type {?} */ (this.modalHelper[btn.type === 'modal' ? 'create' : 'createStatic'])))(modal.component, Object.assign({}, obj, (modal.params && modal.params(record))), Object.assign({}, modal))
                 .pipe(filter((/**
              * @param {?} w
              * @return {?}
@@ -2062,7 +2069,7 @@ class STComponent {
             /** @type {?} */
             const obj = { [drawer.paramsName]: record };
             this.drawerHelper
-                .create(drawer.title, drawer.component, Object.assign({}, obj, (drawer.params && drawer.params(record))), deepMergeKey({}, true, this.copyCog.drawer, drawer))
+                .create(drawer.title, drawer.component, Object.assign({}, obj, (drawer.params && drawer.params(record))), Object.assign({}, drawer))
                 .pipe(filter((/**
              * @param {?} w
              * @return {?}

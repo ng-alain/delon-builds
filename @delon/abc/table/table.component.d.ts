@@ -24,7 +24,6 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     private totalTpl;
     private locale;
     private clonePage;
-    private copyCog;
     _data: STData[];
     _statistical: STStatisticalResults;
     _isPagination: boolean;

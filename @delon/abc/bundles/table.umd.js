@@ -789,6 +789,8 @@
                     /** @type {?} */
                     var retPi;
                     /** @type {?} */
+                    var rawData;
+                    /** @type {?} */
                     var showPage = page.show;
                     if (typeof data === 'string') {
                         isRemote = true;
@@ -796,6 +798,7 @@
                          * @param {?} result
                          * @return {?}
                          */function (result) {
+                            rawData = result;
                             /** @type {?} */
                             var ret;
                             if (Array.isArray(result)) {
@@ -815,7 +818,7 @@
                                 var resultTotal = res.reName.total && util.deepGet(result, ( /** @type {?} */(res.reName.total)), null);
                                 retTotal = resultTotal == null ? total || 0 : +resultTotal;
                             }
-                            return ret;
+                            return util.deepCopy(ret);
                         })), operators.catchError(( /**
                          * @param {?} err
                          * @return {?}
@@ -838,8 +841,9 @@
                          * @param {?} result
                          * @return {?}
                          */function (result) {
+                            rawData = result;
                             /** @type {?} */
-                            var copyResult = result.slice(0);
+                            var copyResult = util.deepCopy(result);
                             /** @type {?} */
                             var sorterFn = _this.getSorterFn(columns);
                             if (sorterFn) {
@@ -946,7 +950,7 @@
                             ps: retPs,
                             total: retTotal,
                             list: retList,
-                            statistical: _this.genStatistical(columns, retList),
+                            statistical: _this.genStatistical(columns, retList, rawData),
                             pageShow: typeof showPage === 'undefined' ? realTotal > realPs : showPage,
                         });
                     }));
@@ -1240,6 +1244,7 @@
          * @private
          * @param {?} columns
          * @param {?} list
+         * @param {?} rawData
          * @return {?}
          */
         STDataSource.prototype.genStatistical =
@@ -1249,9 +1254,10 @@
              * @private
              * @param {?} columns
              * @param {?} list
+             * @param {?} rawData
              * @return {?}
              */
-            function (columns, list) {
+            function (columns, list, rawData) {
                 var _this = this;
                 /** @type {?} */
                 var res = {};
@@ -1261,7 +1267,7 @@
                  * @return {?}
                  */function (col, index) {
                     res[col.key ? col.key : index] =
-                        col.statistical == null ? {} : _this.getStatistical(col, index, list);
+                        col.statistical == null ? {} : _this.getStatistical(col, index, list, rawData);
                 }));
                 return res;
             };
@@ -1270,6 +1276,7 @@
          * @param {?} col
          * @param {?} index
          * @param {?} list
+         * @param {?} rawData
          * @return {?}
          */
         STDataSource.prototype.getStatistical = /**
@@ -1277,9 +1284,10 @@
          * @param {?} col
          * @param {?} index
          * @param {?} list
+         * @param {?} rawData
          * @return {?}
          */
-            function (col, index, list) {
+            function (col, index, list, rawData) {
                 /** @type {?} */
                 var val = col.statistical;
                 /** @type {?} */
@@ -1289,7 +1297,7 @@
                 /** @type {?} */
                 var currenty = false;
                 if (typeof item.type === 'function') {
-                    res = item.type(this.getValues(index, list), col, list);
+                    res = item.type(this.getValues(index, list), col, list, rawData);
                     currenty = true;
                 }
                 else {
@@ -1596,9 +1604,10 @@
                     _this.cd();
                 }
             }));
-            this.copyCog = util.deepMergeKey(new STConfig(), true, cog);
-            delete this.copyCog.multiSort;
-            Object.assign(this, this.copyCog);
+            /** @type {?} */
+            var copyCog = util.deepMergeKey(new STConfig(), true, cog);
+            delete copyCog.multiSort;
+            Object.assign(this, copyCog);
             if (cog.multiSort && cog.multiSort.global !== false) {
                 this.multiSort = __assign({}, cog.multiSort);
             }
@@ -2512,7 +2521,7 @@
                     var modal = btn.modal;
                     /** @type {?} */
                     var obj = (_a = {}, _a[modal.paramsName] = record, _a);
-                    (( /** @type {?} */(this.modalHelper[btn.type === 'modal' ? 'create' : 'createStatic'])))(modal.component, __assign({}, obj, (modal.params && modal.params(record))), util.deepMergeKey({}, true, this.copyCog.modal, modal))
+                    (( /** @type {?} */(this.modalHelper[btn.type === 'modal' ? 'create' : 'createStatic'])))(modal.component, __assign({}, obj, (modal.params && modal.params(record))), __assign({}, modal))
                         .pipe(operators.filter(( /**
                  * @param {?} w
                  * @return {?}
@@ -2528,7 +2537,7 @@
                     /** @type {?} */
                     var obj = (_b = {}, _b[drawer.paramsName] = record, _b);
                     this.drawerHelper
-                        .create(drawer.title, drawer.component, __assign({}, obj, (drawer.params && drawer.params(record))), util.deepMergeKey({}, true, this.copyCog.drawer, drawer))
+                        .create(drawer.title, drawer.component, __assign({}, obj, (drawer.params && drawer.params(record))), __assign({}, drawer))
                         .pipe(operators.filter(( /**
                  * @param {?} w
                  * @return {?}
