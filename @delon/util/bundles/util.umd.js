@@ -189,13 +189,11 @@
             var checkObj = obj[path[0]];
             return typeof checkObj === 'undefined' ? defaultValue : checkObj;
         }
-        /** @type {?} */
-        var res = path.reduce(( /**
+        return path.reduce(( /**
          * @param {?} o
          * @param {?} k
          * @return {?}
-         */function (o, k) { return (o || {})[k]; }), obj);
-        return typeof res === 'undefined' ? defaultValue : res;
+         */function (o, k) { return (o || {})[k]; }), obj) || defaultValue;
     }
     /**
      * @param {?} obj
