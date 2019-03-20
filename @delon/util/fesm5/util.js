@@ -115,12 +115,14 @@ function deepGet(obj, path, defaultValue) {
         var checkObj = obj[path[0]];
         return typeof checkObj === 'undefined' ? defaultValue : checkObj;
     }
-    return path.reduce((/**
+    /** @type {?} */
+    var res = path.reduce((/**
      * @param {?} o
      * @param {?} k
      * @return {?}
      */
-    function (o, k) { return (o || {})[k]; }), obj) || defaultValue;
+    function (o, k) { return (o || {})[k]; }), obj);
+    return typeof res === 'undefined' ? defaultValue : res;
 }
 /**
  * @param {?} obj

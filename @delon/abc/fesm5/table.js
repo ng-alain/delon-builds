@@ -603,10 +603,6 @@ var STColumnSource = /** @class */ (function () {
                         date: 'text-center',
                     }[item.type];
                 }
-                // width
-                if (typeof item.width === 'number') {
-                    item.width = item.width + "px";
-                }
                 // sorter
                 item._sort = this.sortCoerce(item);
                 // filter
