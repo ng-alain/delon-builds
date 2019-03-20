@@ -463,6 +463,33 @@
         /**
          * @return {?}
          */
+        SEComponent.prototype.checkContent = /**
+         * @return {?}
+         */
+            function () {
+                /** @type {?} */
+                var el = this.contentElement.nativeElement;
+                /** @type {?} */
+                var cls = prefixCls + "__item-empty";
+                if (util.isEmpty(el)) {
+                    this.ren.addClass(el, cls);
+                }
+                else {
+                    this.ren.removeClass(el, cls);
+                }
+            };
+        /**
+         * @return {?}
+         */
+        SEComponent.prototype.ngAfterContentInit = /**
+         * @return {?}
+         */
+            function () {
+                this.checkContent();
+            };
+        /**
+         * @return {?}
+         */
         SEComponent.prototype.ngOnChanges = /**
          * @return {?}
          */
@@ -504,7 +531,7 @@
         SEComponent.decorators = [
             { type: i0.Component, args: [{
                         selector: 'se',
-                        template: "<div class=\"ant-form-item-label se__label\"\n     [class.se__nolabel]=\"!label\"\n     [style.width.px]=\"_labelWidth\">\n  <label *ngIf=\"label\"\n         [attr.for]=\"_id\"\n         [ngClass]=\"{'ant-form-item-required': required}\">\n    <ng-container *stringTemplateOutlet=\"label\">{{ label }}</ng-container>\n    <span class=\"se__label-optional\">\n      {{ optional }}\n      <nz-tooltip *ngIf=\"optionalHelp\"\n                  [nzTitle]=\"optionalHelp\">\n        <i nz-tooltip\n           nz-icon\n           type=\"question-circle\"></i>\n      </nz-tooltip>\n    </span>\n  </label>\n</div>\n<div class=\"ant-form-item-control-wrapper se__control\">\n  <div class=\"ant-form-item-control {{controlClass}}\"\n       [class.has-error]=\"invalid\">\n    <ng-content></ng-content>\n    <se-error *ngIf=\"showErr\">{{error}}</se-error>\n    <div *ngIf=\"extra\"\n         class=\"ant-form-extra\">{{extra}}</div>\n  </div>\n</div>\n",
+                        template: "<div class=\"ant-form-item-label se__label\"\n     [class.se__nolabel]=\"!label\"\n     [style.width.px]=\"_labelWidth\">\n  <label *ngIf=\"label\"\n         [attr.for]=\"_id\"\n         [ngClass]=\"{'ant-form-item-required': required}\">\n    <ng-container *stringTemplateOutlet=\"label\">{{ label }}</ng-container>\n    <span class=\"se__label-optional\">\n      {{ optional }}\n      <nz-tooltip *ngIf=\"optionalHelp\"\n                  [nzTitle]=\"optionalHelp\">\n        <i nz-tooltip\n           nz-icon\n           type=\"question-circle\"></i>\n      </nz-tooltip>\n    </span>\n  </label>\n</div>\n<div class=\"ant-form-item-control-wrapper se__control\">\n  <div class=\"ant-form-item-control {{controlClass}}\"\n       [class.has-error]=\"invalid\">\n    <span (cdkObserveContent)=\"checkContent()\" #contentElement><ng-content></ng-content></span>\n    <se-error *ngIf=\"showErr\">{{error}}</se-error>\n    <div *ngIf=\"extra\"\n         class=\"ant-form-extra\">{{extra}}</div>\n  </div>\n</div>\n",
                         host: {
                             '[style.padding-left.px]': 'paddingValue',
                             '[style.padding-right.px]': 'paddingValue',
@@ -526,6 +553,7 @@
         SEComponent.propDecorators = {
             ngModel: [{ type: i0.ContentChild, args: [forms.NgModel,] }],
             formControlName: [{ type: i0.ContentChild, args: [forms.FormControlName,] }],
+            contentElement: [{ type: i0.ViewChild, args: ['contentElement',] }],
             optional: [{ type: i0.Input }],
             optionalHelp: [{ type: i0.Input }],
             error: [{ type: i0.Input }],

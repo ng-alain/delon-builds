@@ -682,6 +682,10 @@
                                 date: 'text-center',
                             }[item.type];
                         }
+                        // width
+                        if (typeof item.width === 'number') {
+                            item.width = item.width + "px";
+                        }
                         // sorter
                         item._sort = this.sortCoerce(item);
                         // filter
@@ -1604,10 +1608,9 @@
                     _this.cd();
                 }
             }));
-            /** @type {?} */
-            var copyCog = util.deepMergeKey(new STConfig(), true, cog);
-            delete copyCog.multiSort;
-            Object.assign(this, copyCog);
+            this.copyCog = util.deepMergeKey(new STConfig(), true, cog);
+            delete this.copyCog.multiSort;
+            Object.assign(this, this.copyCog);
             if (cog.multiSort && cog.multiSort.global !== false) {
                 this.multiSort = __assign({}, cog.multiSort);
             }
@@ -2521,7 +2524,7 @@
                     var modal = btn.modal;
                     /** @type {?} */
                     var obj = (_a = {}, _a[modal.paramsName] = record, _a);
-                    (( /** @type {?} */(this.modalHelper[btn.type === 'modal' ? 'create' : 'createStatic'])))(modal.component, __assign({}, obj, (modal.params && modal.params(record))), __assign({}, modal))
+                    (( /** @type {?} */(this.modalHelper[btn.type === 'modal' ? 'create' : 'createStatic'])))(modal.component, __assign({}, obj, (modal.params && modal.params(record))), util.deepMergeKey({}, true, this.copyCog.modal, modal))
                         .pipe(operators.filter(( /**
                  * @param {?} w
                  * @return {?}
@@ -2537,7 +2540,7 @@
                     /** @type {?} */
                     var obj = (_b = {}, _b[drawer.paramsName] = record, _b);
                     this.drawerHelper
-                        .create(drawer.title, drawer.component, __assign({}, obj, (drawer.params && drawer.params(record))), __assign({}, drawer))
+                        .create(drawer.title, drawer.component, __assign({}, obj, (drawer.params && drawer.params(record))), util.deepMergeKey({}, true, this.copyCog.drawer, drawer))
                         .pipe(operators.filter(( /**
                  * @param {?} w
                  * @return {?}

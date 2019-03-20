@@ -603,6 +603,10 @@ var STColumnSource = /** @class */ (function () {
                         date: 'text-center',
                     }[item.type];
                 }
+                // width
+                if (typeof item.width === 'number') {
+                    item.width = item.width + "px";
+                }
                 // sorter
                 item._sort = this.sortCoerce(item);
                 // filter
@@ -1545,10 +1549,9 @@ var STComponent = /** @class */ (function () {
                 _this.cd();
             }
         }));
-        /** @type {?} */
-        var copyCog = deepMergeKey(new STConfig(), true, cog);
-        delete copyCog.multiSort;
-        Object.assign(this, copyCog);
+        this.copyCog = deepMergeKey(new STConfig(), true, cog);
+        delete this.copyCog.multiSort;
+        Object.assign(this, this.copyCog);
         if (cog.multiSort && cog.multiSort.global !== false) {
             this.multiSort = __assign({}, cog.multiSort);
         }
@@ -2497,7 +2500,7 @@ var STComponent = /** @class */ (function () {
             var modal = btn.modal;
             /** @type {?} */
             var obj = (_a = {}, _a[modal.paramsName] = record, _a);
-            ((/** @type {?} */ (this.modalHelper[btn.type === 'modal' ? 'create' : 'createStatic'])))(modal.component, __assign({}, obj, (modal.params && modal.params(record))), __assign({}, modal))
+            ((/** @type {?} */ (this.modalHelper[btn.type === 'modal' ? 'create' : 'createStatic'])))(modal.component, __assign({}, obj, (modal.params && modal.params(record))), deepMergeKey({}, true, this.copyCog.modal, modal))
                 .pipe(filter((/**
              * @param {?} w
              * @return {?}
@@ -2515,7 +2518,7 @@ var STComponent = /** @class */ (function () {
             /** @type {?} */
             var obj = (_b = {}, _b[drawer.paramsName] = record, _b);
             this.drawerHelper
-                .create(drawer.title, drawer.component, __assign({}, obj, (drawer.params && drawer.params(record))), __assign({}, drawer))
+                .create(drawer.title, drawer.component, __assign({}, obj, (drawer.params && drawer.params(record))), deepMergeKey({}, true, this.copyCog.drawer, drawer))
                 .pipe(filter((/**
              * @param {?} w
              * @return {?}
