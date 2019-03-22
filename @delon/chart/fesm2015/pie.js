@@ -157,9 +157,6 @@ class G2PieComponent {
                 type: 'cat',
                 range: [0, 1],
             },
-            y: {
-                min: 0,
-            },
         });
         chart.repaint();
         this.ngZone.run((/**
