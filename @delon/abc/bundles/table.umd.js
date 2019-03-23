@@ -1295,14 +1295,14 @@
                 /** @type {?} */
                 var val = col.statistical;
                 /** @type {?} */
-                var item = __assign({ digits: 2, currenty: null }, (typeof val === 'string' ? { type: ( /** @type {?} */(val)) } : (( /** @type {?} */(val)))));
+                var item = __assign({ digits: 2, currency: null }, (typeof val === 'string' ? { type: ( /** @type {?} */(val)) } : (( /** @type {?} */(val)))));
                 /** @type {?} */
                 var res = { value: 0 };
                 /** @type {?} */
-                var currenty = false;
+                var currency = false;
                 if (typeof item.type === 'function') {
                     res = item.type(this.getValues(index, list), col, list, rawData);
-                    currenty = true;
+                    currency = true;
                 }
                 else {
                     switch (item.type) {
@@ -1319,23 +1319,23 @@
                             break;
                         case 'sum':
                             res.value = this.toFixed(this.getSum(index, list), item.digits);
-                            currenty = true;
+                            currency = true;
                             break;
                         case 'average':
                             res.value = this.toFixed(this.getSum(index, list) / list.length, item.digits);
-                            currenty = true;
+                            currency = true;
                             break;
                         case 'max':
                             res.value = Math.max.apply(Math, __spread(this.getValues(index, list)));
-                            currenty = true;
+                            currency = true;
                             break;
                         case 'min':
                             res.value = Math.min.apply(Math, __spread(this.getValues(index, list)));
-                            currenty = true;
+                            currency = true;
                             break;
                     }
                 }
-                if (item.currenty === true || (item.currenty == null && currenty === true)) {
+                if (item.currency === true || (item.currency == null && currency === true)) {
                     res.text = this.currentyPipe.transform(res.value);
                 }
                 else {
