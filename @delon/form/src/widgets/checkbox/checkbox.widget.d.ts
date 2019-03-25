@@ -14,7 +14,7 @@ export declare class CheckboxWidget extends ControlWidget {
     _setValue(value: SFValue): void;
     notifySet(): void;
     groupInGridChange(values: SFValue[]): void;
-    onAllChecked(): void;
+    onAllChecked(e: Event): void;
     updateAllChecked(): this;
     private notifyChange;
 }

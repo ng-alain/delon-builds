@@ -1235,6 +1235,49 @@ var elGR = (/** @type {?} */ ({
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+var koKR = (/** @type {?} */ ({
+    abbr: 'ko-KR',
+    exception: {
+        403: `죄송합니다.이 페이지에 액세스 할 수 없습니다.`,
+        404: `죄송합니다. 해당 페이지가 없습니다.`,
+        500: `죄송합니다, 서버 오류가 있습니다.`,
+        backToHome: '홈으로 돌아갑니다.',
+    },
+    noticeIcon: {
+        emptyText: '데이터 없음',
+        clearText: '지우기',
+    },
+    reuseTab: {
+        close: '탭 닫기',
+        closeOther: '다른 탭 닫기',
+        closeRight: '오른쪽 탭 닫기',
+        clear: '탭 지우기',
+    },
+    tagSelect: {
+        expand: '펼치기',
+        collapse: '접기',
+    },
+    miniProgress: {
+        target: '대상: ',
+    },
+    st: {
+        total: '전체 {{total}}건',
+    },
+    sf: {
+        submit: '제출',
+        reset: '재설정',
+        search: '검색',
+        edit: '저장',
+        addText: '추가',
+        removeText: '제거',
+        checkAllText: '모두 확인',
+    },
+}));
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 
 /**
  * @fileoverview added by tsickle
@@ -2263,7 +2306,7 @@ AlainThemeModule.ctorParameters = () => [
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-const VERSION = new Version('7.0.3-57c4adb');
+const VERSION = new Version('7.0.3-5e3ad9c');
 
 /**
  * @fileoverview added by tsickle
@@ -2275,6 +2318,6 @@ const VERSION = new Version('7.0.3-57c4adb');
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { WINDOW, preloaderFinished, TitleService, ALAIN_I18N_TOKEN, AlainI18NServiceFake, _HttpClient, DatePipe, CNCurrencyPipe, KeysPipe, YNPipe, HTMLPipe, URLPipe, AlainThemeConfig, AlainThemeModule, VERSION, MenuService, ScrollService, LAYOUT, USER, APP, SettingsService, REP_MAX, ResponsiveService, enUS as en_US, zhCN as zh_CN, zhTW as zh_TW, trTR as tr_TR, plPL as pl_PL, elGR as el_GR, DELON_LOCALE, DELON_LOCALE_SERVICE_PROVIDER_FACTORY, DelonLocaleService, DELON_LOCALE_SERVICE_PROVIDER, DelonLocaleModule, ModalHelper, DrawerHelper, BaseUrl, BaseHeaders, BaseApi, Path, Query, Body, Headers, OPTIONS, GET, POST, DELETE, PUT, HEAD, PATCH, JSONP, ALAIN_I18N_TOKEN_FACTORY as ɵa, I18nPipe as ɵb };
+export { WINDOW, preloaderFinished, TitleService, ALAIN_I18N_TOKEN, AlainI18NServiceFake, _HttpClient, DatePipe, CNCurrencyPipe, KeysPipe, YNPipe, HTMLPipe, URLPipe, AlainThemeConfig, AlainThemeModule, VERSION, MenuService, ScrollService, LAYOUT, USER, APP, SettingsService, REP_MAX, ResponsiveService, enUS as en_US, zhCN as zh_CN, zhTW as zh_TW, trTR as tr_TR, plPL as pl_PL, elGR as el_GR, koKR as ko_KR, DELON_LOCALE, DELON_LOCALE_SERVICE_PROVIDER_FACTORY, DelonLocaleService, DELON_LOCALE_SERVICE_PROVIDER, DelonLocaleModule, ModalHelper, DrawerHelper, BaseUrl, BaseHeaders, BaseApi, Path, Query, Body, Headers, OPTIONS, GET, POST, DELETE, PUT, HEAD, PATCH, JSONP, ALAIN_I18N_TOKEN_FACTORY as ɵa, I18nPipe as ɵb };
 
 //# sourceMappingURL=theme.js.map

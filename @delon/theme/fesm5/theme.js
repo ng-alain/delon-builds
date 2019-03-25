@@ -1499,6 +1499,49 @@ var elGR = (/** @type {?} */ ({
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+var koKR = (/** @type {?} */ ({
+    abbr: 'ko-KR',
+    exception: {
+        403: "\uC8C4\uC1A1\uD569\uB2C8\uB2E4.\uC774 \uD398\uC774\uC9C0\uC5D0 \uC561\uC138\uC2A4 \uD560 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4.",
+        404: "\uC8C4\uC1A1\uD569\uB2C8\uB2E4. \uD574\uB2F9 \uD398\uC774\uC9C0\uAC00 \uC5C6\uC2B5\uB2C8\uB2E4.",
+        500: "\uC8C4\uC1A1\uD569\uB2C8\uB2E4, \uC11C\uBC84 \uC624\uB958\uAC00 \uC788\uC2B5\uB2C8\uB2E4.",
+        backToHome: '홈으로 돌아갑니다.',
+    },
+    noticeIcon: {
+        emptyText: '데이터 없음',
+        clearText: '지우기',
+    },
+    reuseTab: {
+        close: '탭 닫기',
+        closeOther: '다른 탭 닫기',
+        closeRight: '오른쪽 탭 닫기',
+        clear: '탭 지우기',
+    },
+    tagSelect: {
+        expand: '펼치기',
+        collapse: '접기',
+    },
+    miniProgress: {
+        target: '대상: ',
+    },
+    st: {
+        total: '전체 {{total}}건',
+    },
+    sf: {
+        submit: '제출',
+        reset: '재설정',
+        search: '검색',
+        edit: '저장',
+        addText: '추가',
+        removeText: '제거',
+        checkAllText: '모두 확인',
+    },
+}));
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 
 /**
  * @fileoverview added by tsickle
@@ -2859,7 +2902,7 @@ var AlainThemeModule = /** @class */ (function () {
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-var VERSION = new Version('7.0.3-57c4adb');
+var VERSION = new Version('7.0.3-5e3ad9c');
 
 /**
  * @fileoverview added by tsickle
@@ -2871,6 +2914,6 @@ var VERSION = new Version('7.0.3-57c4adb');
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { WINDOW, preloaderFinished, TitleService, ALAIN_I18N_TOKEN, AlainI18NServiceFake, _HttpClient, DatePipe, CNCurrencyPipe, KeysPipe, YNPipe, HTMLPipe, URLPipe, AlainThemeConfig, AlainThemeModule, VERSION, MenuService, ScrollService, LAYOUT, USER, APP, SettingsService, REP_MAX, ResponsiveService, enUS as en_US, zhCN as zh_CN, zhTW as zh_TW, trTR as tr_TR, plPL as pl_PL, elGR as el_GR, DELON_LOCALE, DELON_LOCALE_SERVICE_PROVIDER_FACTORY, DelonLocaleService, DELON_LOCALE_SERVICE_PROVIDER, DelonLocaleModule, ModalHelper, DrawerHelper, BaseUrl, BaseHeaders, BaseApi, Path, Query, Body, Headers, OPTIONS, GET, POST, DELETE, PUT, HEAD, PATCH, JSONP, ALAIN_I18N_TOKEN_FACTORY as ɵa, I18nPipe as ɵb };
+export { WINDOW, preloaderFinished, TitleService, ALAIN_I18N_TOKEN, AlainI18NServiceFake, _HttpClient, DatePipe, CNCurrencyPipe, KeysPipe, YNPipe, HTMLPipe, URLPipe, AlainThemeConfig, AlainThemeModule, VERSION, MenuService, ScrollService, LAYOUT, USER, APP, SettingsService, REP_MAX, ResponsiveService, enUS as en_US, zhCN as zh_CN, zhTW as zh_TW, trTR as tr_TR, plPL as pl_PL, elGR as el_GR, koKR as ko_KR, DELON_LOCALE, DELON_LOCALE_SERVICE_PROVIDER_FACTORY, DelonLocaleService, DELON_LOCALE_SERVICE_PROVIDER, DelonLocaleModule, ModalHelper, DrawerHelper, BaseUrl, BaseHeaders, BaseApi, Path, Query, Body, Headers, OPTIONS, GET, POST, DELETE, PUT, HEAD, PATCH, JSONP, ALAIN_I18N_TOKEN_FACTORY as ɵa, I18nPipe as ɵb };
 
 //# sourceMappingURL=theme.js.map
