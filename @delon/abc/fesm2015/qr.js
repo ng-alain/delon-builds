@@ -1,6 +1,6 @@
 import { __decorate, __metadata } from 'tslib';
 import { CommonModule } from '@angular/common';
-import { Injectable, EventEmitter, Component, ChangeDetectionStrategy, ChangeDetectorRef, Input, Output, defineInjectable, NgModule, inject } from '@angular/core';
+import { Injectable, defineInjectable, inject, EventEmitter, Component, ChangeDetectionStrategy, ChangeDetectorRef, Input, Output, NgModule } from '@angular/core';
 import { InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
@@ -71,8 +71,7 @@ class QRService {
      * @return {?}
      */
     refresh(value) {
-        /** @type {?} */
-        const option = typeof value === 'object'
+        this.qr.set(typeof value === 'object'
             ? value
             : {
                 background: this.background,
@@ -83,34 +82,8 @@ class QRService {
                 padding: this.padding,
                 size: this.size,
                 value: value || this.value,
-            };
-        option.value = this.toUtf8ByteArray(option.value);
-        this.qr.set(option);
+            });
         return this.dataURL;
-    }
-    /**
-     * @private
-     * @param {?} str
-     * @return {?}
-     */
-    toUtf8ByteArray(str) {
-        str = encodeURI(str);
-        /** @type {?} */
-        const result = [];
-        for (let i = 0; i < str.length; i++) {
-            if (str.charAt(i) !== '%') {
-                result.push(str.charCodeAt(i));
-            }
-            else {
-                result.push(parseInt(str.substr(i + 1, 2), 16));
-                i += 2;
-            }
-        }
-        return result.map((/**
-         * @param {?} v
-         * @return {?}
-         */
-        v => String.fromCharCode(v))).join('');
     }
     /**
      * 返回当前二维码Base64编码
