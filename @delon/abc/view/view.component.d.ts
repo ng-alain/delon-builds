@@ -9,6 +9,7 @@ export declare class SVComponent implements AfterViewInit, OnChanges {
     private el;
     private clsMap;
     label: string | TemplateRef<void>;
+    unit: string | TemplateRef<void>;
     col: number;
     default: boolean;
     type: 'primary' | 'success' | 'danger' | 'warning';
