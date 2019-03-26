@@ -1,6 +1,6 @@
 import { __assign, __decorate, __metadata, __spread } from 'tslib';
 import { CommonModule } from '@angular/common';
-import { Injectable, defineInjectable, inject, EventEmitter, Component, ChangeDetectionStrategy, ChangeDetectorRef, Input, Output, NgModule } from '@angular/core';
+import { Injectable, EventEmitter, Component, ChangeDetectionStrategy, ChangeDetectorRef, Input, Output, defineInjectable, NgModule, inject } from '@angular/core';
 import { InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
@@ -80,7 +80,8 @@ var QRService = /** @class */ (function () {
      * @return {?}
      */
     function (value) {
-        this.qr.set(typeof value === 'object'
+        /** @type {?} */
+        var option = typeof value === 'object'
             ? value
             : {
                 background: this.background,
@@ -91,8 +92,39 @@ var QRService = /** @class */ (function () {
                 padding: this.padding,
                 size: this.size,
                 value: value || this.value,
-            });
+            };
+        option.value = this.toUtf8ByteArray(option.value);
+        this.qr.set(option);
         return this.dataURL;
+    };
+    /**
+     * @private
+     * @param {?} str
+     * @return {?}
+     */
+    QRService.prototype.toUtf8ByteArray = /**
+     * @private
+     * @param {?} str
+     * @return {?}
+     */
+    function (str) {
+        str = encodeURI(str);
+        /** @type {?} */
+        var result = [];
+        for (var i = 0; i < str.length; i++) {
+            if (str.charAt(i) !== '%') {
+                result.push(str.charCodeAt(i));
+            }
+            else {
+                result.push(parseInt(str.substr(i + 1, 2), 16));
+                i += 2;
+            }
+        }
+        return result.map((/**
+         * @param {?} v
+         * @return {?}
+         */
+        function (v) { return String.fromCharCode(v); })).join('');
     };
     Object.defineProperty(QRService.prototype, "dataURL", {
         /**

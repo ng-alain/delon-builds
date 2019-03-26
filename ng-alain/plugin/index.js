@@ -11,7 +11,6 @@ const plugin_g2_1 = require("./plugin.g2");
 const plugin_hmr_1 = require("./plugin.hmr");
 const plugin_icon_1 = require("./plugin.icon");
 const plugin_network_env_1 = require("./plugin.network-env");
-const plugin_sts_1 = require("./plugin.sts");
 function installPackages() {
     return (host, context) => {
         context.addTask(new tasks_1.NodePackageInstallTask());
@@ -50,9 +49,6 @@ function default_1(options) {
                 break;
             case 'icon':
                 rules.push(plugin_icon_1.pluginIcon(pluginOptions));
-                break;
-            case 'sts':
-                rules.push(...plugin_sts_1.pluginSTS(pluginOptions));
                 break;
             case 'asdf':
                 rules.push(plugin_asdf_1.pluginAsdf(pluginOptions));
