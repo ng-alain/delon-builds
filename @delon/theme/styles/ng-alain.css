@@ -24866,6 +24866,14 @@ body {
 .sv__default:before {
   content: '-';
 }
+.sv__default ~ .sv__unit {
+  display: none !important;
+}
+.sv__unit {
+  display: inline;
+  margin-left: 8px;
+  color: #8c8c8c;
+}
 .sv__small .ant-row {
   margin-bottom: -8px;
 }
