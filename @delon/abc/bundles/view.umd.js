@@ -360,7 +360,7 @@
         SVComponent.decorators = [
             { type: i0.Component, args: [{
                         selector: 'sv, [sv]',
-                        template: "<div class=\"sv__label\"\n     [class.sv__label-empty]=\"!label\"\n     [style.width.px]=\"parent.labelWidth\">\n  <ng-container *stringTemplateOutlet=\"label\">{{label}}</ng-container>\n</div>\n<div class=\"sv__detail\">\n  <span (cdkObserveContent)=\"checkContent()\"\n        #conEl>\n    <ng-content></ng-content>\n  </span>\n  <span class=\"sv__unit\" *stringTemplateOutlet=\"unit\">{{unit}}</span>\n</div>\n",
+                        template: "<div class=\"sv__label\"\n     [class.sv__label-empty]=\"!label\"\n     [style.width.px]=\"parent.labelWidth\">\n  <ng-container *stringTemplateOutlet=\"label\">{{label}}</ng-container>\n</div>\n<div class=\"sv__detail\"\n     (cdkObserveContent)=\"checkContent()\"\n     #conEl>\n  <ng-content></ng-content>\n</div>\n",
                         host: {
                             '[style.padding-left.px]': 'paddingValue',
                             '[style.padding-right.px]': 'paddingValue',
@@ -380,7 +380,6 @@
         SVComponent.propDecorators = {
             conEl: [{ type: i0.ViewChild, args: ['conEl',] }],
             label: [{ type: i0.Input }],
-            unit: [{ type: i0.Input }],
             col: [{ type: i0.Input }],
             default: [{ type: i0.Input }],
             type: [{ type: i0.Input }]

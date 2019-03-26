@@ -5,6 +5,7 @@ import { ControlWidget } from '../../widget';
 export declare class SelectWidget extends ControlWidget implements OnInit {
     i: any;
     data: SFSchemaEnum[];
+    _value: any;
     hasGroup: boolean;
     ngOnInit(): void;
     reset(value: SFValue): void;

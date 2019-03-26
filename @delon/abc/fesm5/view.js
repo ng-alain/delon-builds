@@ -284,7 +284,7 @@ var SVComponent = /** @class */ (function () {
     SVComponent.decorators = [
         { type: Component, args: [{
                     selector: 'sv, [sv]',
-                    template: "<div class=\"sv__label\"\n     [class.sv__label-empty]=\"!label\"\n     [style.width.px]=\"parent.labelWidth\">\n  <ng-container *stringTemplateOutlet=\"label\">{{label}}</ng-container>\n</div>\n<div class=\"sv__detail\">\n  <span (cdkObserveContent)=\"checkContent()\"\n        #conEl>\n    <ng-content></ng-content>\n  </span>\n  <span class=\"sv__unit\" *stringTemplateOutlet=\"unit\">{{unit}}</span>\n</div>\n",
+                    template: "<div class=\"sv__label\"\n     [class.sv__label-empty]=\"!label\"\n     [style.width.px]=\"parent.labelWidth\">\n  <ng-container *stringTemplateOutlet=\"label\">{{label}}</ng-container>\n</div>\n<div class=\"sv__detail\"\n     (cdkObserveContent)=\"checkContent()\"\n     #conEl>\n  <ng-content></ng-content>\n</div>\n",
                     host: {
                         '[style.padding-left.px]': 'paddingValue',
                         '[style.padding-right.px]': 'paddingValue',
@@ -302,7 +302,6 @@ var SVComponent = /** @class */ (function () {
     SVComponent.propDecorators = {
         conEl: [{ type: ViewChild, args: ['conEl',] }],
         label: [{ type: Input }],
-        unit: [{ type: Input }],
         col: [{ type: Input }],
         default: [{ type: Input }],
         type: [{ type: Input }]
