@@ -4603,7 +4603,7 @@ a.ant-btn-sm {
 }
 .ant-collapse > .ant-collapse-item > .ant-collapse-header {
   position: relative;
-  padding: 12px 0 12px 40px;
+  padding: 12px 16px 12px 40px;
   color: rgba(0, 0, 0, 0.85);
   line-height: 22px;
   cursor: pointer;
@@ -4653,6 +4653,9 @@ a.ant-btn-sm {
 }
 .ant-collapse > .ant-collapse-item > .ant-collapse-header .ant-collapse-arrow svg {
   transition: transform 0.24s;
+}
+.ant-collapse > .ant-collapse-item > .ant-collapse-header .ant-collapse-extra {
+  float: right;
 }
 .ant-collapse > .ant-collapse-item > .ant-collapse-header:focus {
   outline: none;
@@ -13658,6 +13661,89 @@ a.ant-notification-notice-close:focus {
     padding-bottom: 0;
     opacity: 0;
   }
+}
+.ant-page-header {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 14px;
+  font-variant: tabular-nums;
+  line-height: 1.5;
+  list-style: none;
+  font-feature-settings: 'tnum';
+  position: relative;
+  padding: 16px 32px;
+  background: #fff;
+}
+.ant-page-header.ant-page-header-has-footer {
+  padding: 20px 32px;
+  padding-bottom: 0;
+}
+.ant-page-header-back-icon {
+  display: inline-block;
+  padding: 4px 0;
+  font-size: 16px;
+  line-height: 100%;
+  cursor: pointer;
+}
+.ant-page-header-back-icon i:hover {
+  color: #1890ff;
+}
+.ant-page-header .ant-divider {
+  height: 14px;
+  margin: 0 12px;
+}
+.ant-page-header .ant-breadcrumb {
+  margin-bottom: 12px;
+}
+.ant-page-header-title-view {
+  display: inline-block;
+}
+.ant-page-header-title-view-title {
+  display: inline-block;
+  padding-right: 12px;
+  color: rgba(0, 0, 0, 0.85);
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 1.4;
+}
+.ant-page-header-title-view-sub-title {
+  display: inline-block;
+  padding-right: 12px;
+  color: rgba(0, 0, 0, 0.45);
+  font-size: 14px;
+  line-height: 1.8;
+}
+.ant-page-header-title-view-tags {
+  display: inline-block;
+  vertical-align: top;
+}
+.ant-page-header-title-view-extra {
+  position: absolute;
+  top: 16px;
+  right: 32px;
+}
+.ant-page-header-title-view-extra > * {
+  margin-right: 8px;
+}
+.ant-page-header-title-view-extra > *:last-child {
+  margin-right: 0;
+}
+.ant-page-header-content-view {
+  padding-top: 12px;
+}
+.ant-page-header-footer {
+  margin: 0 -8px;
+  padding-top: 24px;
+}
+.ant-page-header-footer .ant-tabs-bar {
+  margin-bottom: 1px;
+  border-bottom: 0;
+}
+.ant-page-header-footer .ant-tabs-bar .ant-tabs-nav .ant-tabs-tab {
+  padding: 12px 8px;
+  padding-top: 0;
 }
 .ant-pagination {
   box-sizing: border-box;
