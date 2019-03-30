@@ -1230,23 +1230,55 @@ class ReuseTabComponent {
     }
     // #region UI
     /**
+     * @private
+     * @return {?}
+     */
+    get acitveIndex() {
+        return this.list.find((/**
+         * @param {?} w
+         * @return {?}
+         */
+        w => w.active)).index;
+    }
+    /**
      * @param {?} res
      * @return {?}
      */
     cmChange(res) {
+        /** @type {?} */
+        let fn;
         switch (res.type) {
             case 'close':
                 this._close(null, res.item.index, res.includeNonCloseable);
                 break;
             case 'closeRight':
-                this.srv.closeRight(res.item.url, res.includeNonCloseable);
-                this.close.emit(null);
+                fn = (/**
+                 * @return {?}
+                 */
+                () => {
+                    this.srv.closeRight(res.item.url, res.includeNonCloseable);
+                    this.close.emit(null);
+                });
                 break;
             case 'clear':
             case 'closeOther':
-                this.srv.clear(res.includeNonCloseable);
-                this.close.emit(null);
+                fn = (/**
+                 * @return {?}
+                 */
+                () => {
+                    this.srv.clear(res.includeNonCloseable);
+                    this.close.emit(null);
+                });
                 break;
+        }
+        if (!fn) {
+            return;
+        }
+        if (!res.item.active && res.item.index <= this.acitveIndex) {
+            this.to(null, res.item.index, fn);
+        }
+        else {
+            fn();
         }
     }
     /**
@@ -1269,9 +1301,10 @@ class ReuseTabComponent {
     /**
      * @param {?} e
      * @param {?} index
+     * @param {?=} cb
      * @return {?}
      */
-    to(e, index) {
+    to(e, index, cb) {
         if (e) {
             e.preventDefault();
             e.stopPropagation();
@@ -1290,6 +1323,9 @@ class ReuseTabComponent {
             this.item = item;
             this.refStatus();
             this.change.emit(item);
+            if (cb) {
+                cb();
+            }
         }));
     }
     /**

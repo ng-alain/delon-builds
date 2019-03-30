@@ -1650,32 +1650,68 @@ var ReuseTabComponent = /** @class */ (function () {
             return;
         this.render.setStyle(this.el, 'display', this.list.length === 0 ? 'none' : 'block');
     };
-    // #region UI
-    // #region UI
+    Object.defineProperty(ReuseTabComponent.prototype, "acitveIndex", {
+        // #region UI
+        get: 
+        // #region UI
+        /**
+         * @private
+         * @return {?}
+         */
+        function () {
+            return this.list.find((/**
+             * @param {?} w
+             * @return {?}
+             */
+            function (w) { return w.active; })).index;
+        },
+        enumerable: true,
+        configurable: true
+    });
     /**
      * @param {?} res
      * @return {?}
      */
-    ReuseTabComponent.prototype.cmChange = 
-    // #region UI
-    /**
+    ReuseTabComponent.prototype.cmChange = /**
      * @param {?} res
      * @return {?}
      */
     function (res) {
+        var _this = this;
+        /** @type {?} */
+        var fn;
         switch (res.type) {
             case 'close':
                 this._close(null, res.item.index, res.includeNonCloseable);
                 break;
             case 'closeRight':
-                this.srv.closeRight(res.item.url, res.includeNonCloseable);
-                this.close.emit(null);
+                fn = (/**
+                 * @return {?}
+                 */
+                function () {
+                    _this.srv.closeRight(res.item.url, res.includeNonCloseable);
+                    _this.close.emit(null);
+                });
                 break;
             case 'clear':
             case 'closeOther':
-                this.srv.clear(res.includeNonCloseable);
-                this.close.emit(null);
+                fn = (/**
+                 * @return {?}
+                 */
+                function () {
+                    _this.srv.clear(res.includeNonCloseable);
+                    _this.close.emit(null);
+                });
                 break;
+        }
+        if (!fn) {
+            return;
+        }
+        if (!res.item.active && res.item.index <= this.acitveIndex) {
+            this.to(null, res.item.index, fn);
+        }
+        else {
+            fn();
         }
     };
     /**
@@ -1704,14 +1740,16 @@ var ReuseTabComponent = /** @class */ (function () {
     /**
      * @param {?} e
      * @param {?} index
+     * @param {?=} cb
      * @return {?}
      */
     ReuseTabComponent.prototype.to = /**
      * @param {?} e
      * @param {?} index
+     * @param {?=} cb
      * @return {?}
      */
-    function (e, index) {
+    function (e, index, cb) {
         var _this = this;
         if (e) {
             e.preventDefault();
@@ -1731,6 +1769,9 @@ var ReuseTabComponent = /** @class */ (function () {
             _this.item = item;
             _this.refStatus();
             _this.change.emit(item);
+            if (cb) {
+                cb();
+            }
         }));
     };
     /**
