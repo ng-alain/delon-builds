@@ -4048,7 +4048,10 @@
                 getData(this.schema, this.ui, this.formProperty.formData).subscribe(( /**
                  * @param {?} list
                  * @return {?}
-                 */function (list) { return (_this.data = list); }));
+                 */function (list) {
+                    _this.data = list;
+                    _this.detectChanges();
+                }));
             };
         /**
          * @param {?} value

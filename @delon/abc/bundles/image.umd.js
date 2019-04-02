@@ -158,16 +158,14 @@
          * @return {?}
          */
             function () {
-                var _this = this;
                 /** @type {?} */
                 var newSrc = this.src;
-                var _a = this, size = _a.size, render = _a.render, el = _a.el;
                 if (newSrc.includes('qlogo.cn')) {
                     /** @type {?} */
                     var arr = newSrc.split('/');
                     /** @type {?} */
-                    var imgSize = arr[arr.length - 1];
-                    arr[arr.length - 1] = imgSize === '0' || +imgSize !== size ? size.toString() : imgSize;
+                    var size = arr[arr.length - 1];
+                    arr[arr.length - 1] = size === '0' || +size !== this.size ? this.size.toString() : size;
                     newSrc = arr.join('/');
                 }
                 /** @type {?} */
@@ -177,13 +175,7 @@
                 if (isHttp || isHttps) {
                     newSrc = newSrc.substr(isHttp ? 5 : 6);
                 }
-                render.setAttribute(el.nativeElement, 'src', newSrc);
-                ['height', 'width'].forEach(( /**
-                 * @param {?} v
-                 * @return {?}
-                 */function (v) {
-                    return render.setAttribute(_this.el.nativeElement, v, size.toString());
-                }));
+                this.render.setAttribute(this.el.nativeElement, 'src', newSrc);
             };
         /**
          * @private

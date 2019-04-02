@@ -3244,7 +3244,10 @@ class RadioWidget extends ControlWidget {
          * @param {?} list
          * @return {?}
          */
-        list => (this.data = list)));
+        list => {
+            this.data = list;
+            this.detectChanges();
+        }));
     }
     /**
      * @param {?} value

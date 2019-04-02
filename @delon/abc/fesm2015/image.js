@@ -77,13 +77,12 @@ class ImageDirective {
     update() {
         /** @type {?} */
         let newSrc = this.src;
-        const { size, render, el } = this;
         if (newSrc.includes('qlogo.cn')) {
             /** @type {?} */
             const arr = newSrc.split('/');
             /** @type {?} */
-            const imgSize = arr[arr.length - 1];
-            arr[arr.length - 1] = imgSize === '0' || +imgSize !== size ? size.toString() : imgSize;
+            const size = arr[arr.length - 1];
+            arr[arr.length - 1] = size === '0' || +size !== this.size ? this.size.toString() : size;
             newSrc = arr.join('/');
         }
         /** @type {?} */
@@ -93,12 +92,7 @@ class ImageDirective {
         if (isHttp || isHttps) {
             newSrc = newSrc.substr(isHttp ? 5 : 6);
         }
-        render.setAttribute(el.nativeElement, 'src', newSrc);
-        ['height', 'width'].forEach((/**
-         * @param {?} v
-         * @return {?}
-         */
-        v => render.setAttribute(this.el.nativeElement, v, size.toString())));
+        this.render.setAttribute(this.el.nativeElement, 'src', newSrc);
     }
     /**
      * @private
