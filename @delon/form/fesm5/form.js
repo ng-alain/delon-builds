@@ -3992,7 +3992,10 @@ var RadioWidget = /** @class */ (function (_super) {
          * @param {?} list
          * @return {?}
          */
-        function (list) { return (_this.data = list); }));
+        function (list) {
+            _this.data = list;
+            _this.detectChanges();
+        }));
     };
     /**
      * @param {?} value
