@@ -2902,7 +2902,7 @@ var AlainThemeModule = /** @class */ (function () {
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-var VERSION = new Version('7.1.0-9839f69');
+var VERSION = new Version('7.1.0-76fc61b');
 
 /**
  * @fileoverview added by tsickle
