@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, ElementRef, EventEmitter, OnChanges, OnDestroy, OnInit, Renderer2, SimpleChange, SimpleChanges } from '@angular/core';
+import { ChangeDetectorRef, ElementRef, EventEmitter, OnChanges, OnDestroy, OnInit, Renderer2, SimpleChange, SimpleChanges, TemplateRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlainI18NService } from '@delon/theme';
 import { ReuseContextCloseEvent, ReuseContextI18n, ReuseCustomContextMenu, ReuseItem, ReuseTabMatchMode } from './reuse-tab.interfaces';
@@ -27,6 +27,11 @@ export declare class ReuseTabComponent implements OnInit, OnChanges, OnDestroy {
     keepingScroll: boolean;
     keepingScrollContainer: string | Element;
     customContextMenu: ReuseCustomContextMenu[];
+    tabBarExtraContent: TemplateRef<void>;
+    tabBarGutter: number;
+    tabBarStyle: {
+        [key: string]: string;
+    };
     readonly change: EventEmitter<ReuseItem>;
     readonly close: EventEmitter<ReuseItem>;
     constructor(el: ElementRef, srv: ReuseTabService, cdr: ChangeDetectorRef, router: Router, route: ActivatedRoute, render: Renderer2, i18nSrv: AlainI18NService, doc: any);
