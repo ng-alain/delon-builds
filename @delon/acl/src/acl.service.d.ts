@@ -1,9 +1,11 @@
 import { Observable } from 'rxjs';
+import { DelonACLConfig } from './acl.config';
 import { ACLCanType, ACLType } from './acl.type';
 /**
  * 访问控制服务
  */
 export declare class ACLService {
+    private options;
     private roles;
     private abilities;
     private full;
@@ -16,6 +18,7 @@ export declare class ACLService {
         roles: string[];
         abilities: (string | number)[];
     };
+    constructor(options: DelonACLConfig);
     private parseACLType;
     /**
      * 设置当前用户角色或权限能力（会先清除所有）

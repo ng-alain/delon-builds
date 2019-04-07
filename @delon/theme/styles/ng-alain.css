@@ -20957,30 +20957,6 @@ fieldset {
 .sf__no-error .ant-form-item {
   margin-bottom: 8px;
 }
-.sf__inline sf-item-wrap .ant-form-item {
-  display: inline-flex;
-}
-.sf__inline sf-item-wrap .ant-form-item .ant-form-item-control-wrapper {
-  flex: 1;
-}
-.sf__inline .sf-btns {
-  margin-right: 0;
-}
-@media (max-width: 767px) {
-  .sf__inline sf-item-wrap .ant-form-item {
-    display: block !important;
-    width: initial !important;
-    margin-right: 0;
-  }
-  .sf__inline .ant-form-item-label,
-  .sf__inline .ant-form-item-control-wrapper {
-    display: block !important;
-    width: 100% !important;
-    padding: inherit;
-    line-height: 39.9999px;
-    text-align: left;
-  }
-}
 .acl__hide {
   display: none !important;
 }

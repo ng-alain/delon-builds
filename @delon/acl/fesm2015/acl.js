@@ -8,11 +8,32 @@ import { Injectable, Directive, ElementRef, Input, Renderer2, defineInjectable, 
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+class DelonACLConfig {
+    constructor() {
+        /**
+         * 路由守卫失败后跳转，默认：`/403`
+         */
+        this.guard_url = '/403';
+    }
+}
+DelonACLConfig.decorators = [
+    { type: Injectable, args: [{ providedIn: 'root' },] }
+];
+/** @nocollapse */ DelonACLConfig.ngInjectableDef = defineInjectable({ factory: function DelonACLConfig_Factory() { return new DelonACLConfig(); }, token: DelonACLConfig, providedIn: "root" });
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 /**
  * 访问控制服务
  */
 class ACLService {
-    constructor() {
+    /**
+     * @param {?} options
+     */
+    constructor(options) {
+        this.options = options;
         this.roles = [];
         this.abilities = [];
         this.full = false;
@@ -169,6 +190,10 @@ class ACLService {
         if (this.full === true || !roleOrAbility) {
             return true;
         }
+        const { preCan } = this.options;
+        if (preCan) {
+            roleOrAbility = preCan(roleOrAbility);
+        }
         /** @type {?} */
         let t = {};
         if (typeof roleOrAbility === 'number') {
@@ -238,7 +263,11 @@ class ACLService {
 ACLService.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
-/** @nocollapse */ ACLService.ngInjectableDef = defineInjectable({ factory: function ACLService_Factory() { return new ACLService(); }, token: ACLService, providedIn: "root" });
+/** @nocollapse */
+ACLService.ctorParameters = () => [
+    { type: DelonACLConfig }
+];
+/** @nocollapse */ ACLService.ngInjectableDef = defineInjectable({ factory: function ACLService_Factory() { return new ACLService(inject(DelonACLConfig)); }, token: ACLService, providedIn: "root" });
 
 /**
  * @fileoverview added by tsickle
@@ -311,23 +340,6 @@ ACLDirective.propDecorators = {
     acl: [{ type: Input, args: ['acl',] }],
     ability: [{ type: Input, args: ['acl-ability',] }]
 };
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class DelonACLConfig {
-    constructor() {
-        /**
-         * 路由守卫失败后跳转，默认：`/403`
-         */
-        this.guard_url = '/403';
-    }
-}
-DelonACLConfig.decorators = [
-    { type: Injectable, args: [{ providedIn: 'root' },] }
-];
-/** @nocollapse */ DelonACLConfig.ngInjectableDef = defineInjectable({ factory: function DelonACLConfig_Factory() { return new DelonACLConfig(); }, token: DelonACLConfig, providedIn: "root" });
 
 /**
  * @fileoverview added by tsickle
