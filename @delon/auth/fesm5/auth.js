@@ -4,7 +4,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { DOCUMENT } from '@angular/common';
 import { Router } from '@angular/router';
 import { __extends, __assign, __values } from 'tslib';
-import { Injectable, InjectionToken, inject, Inject, NgModule, defineInjectable, Injector, INJECTOR, Optional } from '@angular/core';
+import { Injectable, NgModule, InjectionToken, inject, Inject, defineInjectable, Injector, INJECTOR, Optional } from '@angular/core';
 
 /**
  * @fileoverview added by tsickle

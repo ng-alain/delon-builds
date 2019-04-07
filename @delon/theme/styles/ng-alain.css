@@ -20957,23 +20957,23 @@ fieldset {
 .sf__no-error .ant-form-item {
   margin-bottom: 8px;
 }
-.sf__search sf-item-wrap .ant-form-item {
+.sf__inline sf-item-wrap .ant-form-item {
   display: inline-flex;
 }
-.sf__search sf-item-wrap .ant-form-item .ant-form-item-control-wrapper {
+.sf__inline sf-item-wrap .ant-form-item .ant-form-item-control-wrapper {
   flex: 1;
 }
-.sf__search .sf-btns {
+.sf__inline .sf-btns {
   margin-right: 0;
 }
 @media (max-width: 767px) {
-  .sf__search sf-item-wrap .ant-form-item {
+  .sf__inline sf-item-wrap .ant-form-item {
     display: block !important;
     width: initial !important;
     margin-right: 0;
   }
-  .sf__search .ant-form-item-label,
-  .sf__search .ant-form-item-control-wrapper {
+  .sf__inline .ant-form-item-label,
+  .sf__inline .ant-form-item-control-wrapper {
     display: block !important;
     width: 100% !important;
     padding: inherit;
