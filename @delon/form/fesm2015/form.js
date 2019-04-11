@@ -1584,6 +1584,10 @@ class SFComponent {
          */
         this.onlyVisual = false;
         /**
+         * Whether to load status，when `true` reset button is disabled status, submit button is loading status
+         */
+        this.loading = false;
+        /**
          * 数据变更时回调
          */
         this.formChange = new EventEmitter();
@@ -1874,9 +1878,14 @@ class SFComponent {
         this.validator();
     }
     /**
+     * @param {?} changes
      * @return {?}
      */
-    ngOnChanges() {
+    ngOnChanges(changes) {
+        if (changes.loading && Object.keys(changes).length === 1) {
+            this.cdr.detectChanges();
+            return;
+        }
         this.refreshSchema();
     }
     /**
@@ -2012,7 +2021,7 @@ class SFComponent {
 SFComponent.decorators = [
     { type: Component, args: [{
                 selector: 'sf, [sf]',
-                template: "<ng-template #con>\n  <ng-content></ng-content>\n</ng-template>\n<form nz-form\n      [nzLayout]=\"layout\"\n      (submit)=\"onSubmit($event)\"\n      [attr.autocomplete]=\"autocomplete\">\n  <sf-item [formProperty]=\"rootProperty\"></sf-item>\n  <ng-container *ngIf=\"button !== 'none'; else con\">\n    <nz-form-item [ngClass]=\"_btn.render.class\"\n                  class=\"sf-btns\"\n                  [fixed-label]=\"_btn.render.spanLabelFixed\">\n      <div nz-col\n           class=\"ant-form-item-control-wrapper\"\n           [nzSpan]=\"_btn.render.grid.span\"\n           [nzOffset]=\"_btn.render.grid.offset\"\n           [nzXs]=\"_btn.render.grid.xs\"\n           [nzSm]=\"_btn.render.grid.sm\"\n           [nzMd]=\"_btn.render.grid.md\"\n           [nzLg]=\"_btn.render.grid.lg\"\n           [nzXl]=\"_btn.render.grid.xl\"\n           [nzXXl]=\"_btn.render.grid.xxl\">\n        <div class=\"ant-form-item-control\">\n          <ng-container *ngIf=\"button; else con\">\n            <button type=\"submit\"\n                    nz-button\n                    [nzType]=\"_btn.submit_type\"\n                    [nzSize]=\"_btn.render.size\"\n                    [disabled]=\"liveValidate && !valid\">{{_btn.submit}}</button>\n            <button *ngIf=\"_btn.reset\"\n                    type=\"button\"\n                    nz-button\n                    [nzType]=\"_btn.reset_type\"\n                    [nzSize]=\"_btn.render.size\"\n                    (click)=\"reset(true)\">\n              {{_btn.reset}}\n            </button>\n          </ng-container>\n        </div>\n      </div>\n    </nz-form-item>\n  </ng-container>\n</form>\n",
+                template: "<ng-template #con>\n  <ng-content></ng-content>\n</ng-template>\n<form nz-form\n      [nzLayout]=\"layout\"\n      (submit)=\"onSubmit($event)\"\n      [attr.autocomplete]=\"autocomplete\">\n  <sf-item [formProperty]=\"rootProperty\"></sf-item>\n  <ng-container *ngIf=\"button !== 'none'; else con\">\n    <nz-form-item [ngClass]=\"_btn.render.class\"\n                  class=\"sf-btns\"\n                  [fixed-label]=\"_btn.render.spanLabelFixed\">\n      <div nz-col\n           class=\"ant-form-item-control-wrapper\"\n           [nzSpan]=\"_btn.render.grid.span\"\n           [nzOffset]=\"_btn.render.grid.offset\"\n           [nzXs]=\"_btn.render.grid.xs\"\n           [nzSm]=\"_btn.render.grid.sm\"\n           [nzMd]=\"_btn.render.grid.md\"\n           [nzLg]=\"_btn.render.grid.lg\"\n           [nzXl]=\"_btn.render.grid.xl\"\n           [nzXXl]=\"_btn.render.grid.xxl\">\n        <div class=\"ant-form-item-control\">\n          <ng-container *ngIf=\"button; else con\">\n            <button type=\"submit\"\n                    nz-button\n                    [nzType]=\"_btn.submit_type\"\n                    [nzSize]=\"_btn.render.size\"\n                    [nzLoading]=\"loading\"\n                    [disabled]=\"liveValidate && !valid\">{{_btn.submit}}</button>\n            <button *ngIf=\"_btn.reset\"\n                    type=\"button\"\n                    nz-button\n                    [nzType]=\"_btn.reset_type\"\n                    [nzSize]=\"_btn.render.size\"\n                    [disabled]=\"loading\"\n                    (click)=\"reset(true)\">\n              {{_btn.reset}}\n            </button>\n          </ng-container>\n        </div>\n      </div>\n    </nz-form-item>\n  </ng-container>\n</form>\n",
                 providers: [
                     WidgetFactory,
                     {
@@ -2051,6 +2060,7 @@ SFComponent.propDecorators = {
     firstVisual: [{ type: Input }],
     onlyVisual: [{ type: Input }],
     mode: [{ type: Input }],
+    loading: [{ type: Input }],
     formChange: [{ type: Output }],
     formSubmit: [{ type: Output }],
     formReset: [{ type: Output }],
@@ -2068,6 +2078,10 @@ __decorate([
     InputBoolean(),
     __metadata("design:type", Object)
 ], SFComponent.prototype, "onlyVisual", void 0);
+__decorate([
+    InputBoolean(),
+    __metadata("design:type", Object)
+], SFComponent.prototype, "loading", void 0);
 
 /**
  * @fileoverview added by tsickle
