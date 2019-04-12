@@ -6,7 +6,7 @@ import { STColumnSource } from './table-column-source';
 import { STDataSource } from './table-data-source';
 import { STExport } from './table-export';
 import { STConfig } from './table.config';
-import { STChange, STColumn, STColumnButton, STColumnFilterMenu, STColumnSelection, STData, STError, STExportOptions, STLoadOptions, STPage, STReq, STRes, STRowClassName, STSingleSort, STStatisticalResults } from './table.interfaces';
+import { STChange, STColumn, STColumnButton, STColumnFilterMenu, STColumnSelection, STData, STError, STExportOptions, STLoadOptions, STPage, STReq, STRes, STRowClassName, STSingleSort, STStatisticalResults, STWidthMode } from './table.interfaces';
 export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy {
     private cdr;
     private cog;
@@ -69,6 +69,8 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     /** 是否多排序，当 `sort` 多个相同值时自动合并，建议后端支持时使用 */
     multiSort: any;
     rowClassName: STRowClassName;
+    widthMode: STWidthMode;
+    private _widthMode;
     /** `header` 标题 */
     header: string | TemplateRef<void>;
     /** `footer` 底部 */
@@ -97,6 +99,8 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     constructor(i18nSrv: AlainI18NService, cdr: ChangeDetectorRef, cog: STConfig, router: Router, el: ElementRef, renderer: Renderer2, exportSrv: STExport, modalHelper: ModalHelper, drawerHelper: DrawerHelper, doc: any, columnSource: STColumnSource, dataSource: STDataSource, delonI18n: DelonLocaleService);
     cd(): this;
     renderTotal(total: string, range: string[]): string;
+    isTruncate(column: STColumn): boolean;
+    columnClass(column: STColumn): string;
     private changeEmit;
     private readonly routerState;
     private _load;

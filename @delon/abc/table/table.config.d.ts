@@ -1,4 +1,4 @@
-import { STColumnButtonDrawerConfig, STColumnButtonModalConfig, STIcon, STMultiSort, STPage, STReq, STRes, STRowClassName, STSingleSort } from './table.interfaces';
+import { STColumnButtonDrawerConfig, STColumnButtonModalConfig, STIcon, STMultiSort, STPage, STReq, STRes, STRowClassName, STSingleSort, STWidthMode } from './table.interfaces';
 export declare class STConfig {
     /**
      * 起始页码，默认为：`1`
@@ -84,4 +84,8 @@ export declare class STConfig {
      * 通过点击行来展开子行
      */
     expandRowByClick?: boolean;
+    /**
+     * 指定 `width` 模式
+     */
+    widthMode?: STWidthMode;
 }

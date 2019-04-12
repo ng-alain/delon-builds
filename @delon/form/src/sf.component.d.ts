@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, EventEmitter, OnChanges, OnDestroy, OnInit, SimpleChange, SimpleChanges } from '@angular/core';
+import { ChangeDetectorRef, EventEmitter, OnChanges, OnDestroy, OnInit } from '@angular/core';
 import { DelonLocaleService, LocaleData } from '@delon/theme';
 import { DelonFormConfig } from './config';
 import { ErrorData } from './errors';
@@ -58,10 +58,6 @@ export declare class SFComponent implements OnInit, OnChanges, OnDestroy {
     /** 表单模式 */
     mode: 'default' | 'search' | 'edit';
     private _mode;
-    /**
-     * Whether to load status，when `true` reset button is disabled status, submit button is loading status
-     */
-    loading: boolean;
     /** 数据变更时回调 */
     readonly formChange: EventEmitter<{}>;
     /** 提交表单时回调 */
@@ -97,9 +93,7 @@ export declare class SFComponent implements OnInit, OnChanges, OnDestroy {
     private coverProperty;
     private coverButtonProperty;
     ngOnInit(): void;
-    ngOnChanges(changes: {
-        [P in keyof this]?: SimpleChange;
-    } & SimpleChanges): void;
+    ngOnChanges(): void;
     private attachCustomRender;
     validator(): this;
     /**

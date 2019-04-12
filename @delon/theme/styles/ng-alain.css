@@ -24907,6 +24907,14 @@ body {
 .st .ant-table-pagination.ant-pagination {
   margin-bottom: 0;
 }
+@media screen and (min-width: 768px) {
+  .st__width-strict .ant-table-body > table {
+    table-layout: fixed;
+  }
+  .st__width-strict-truncate .ant-table-body > table {
+    word-wrap: break-word;
+  }
+}
 .sv {
   display: block;
 }
