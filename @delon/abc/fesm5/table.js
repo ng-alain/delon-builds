@@ -2742,7 +2742,7 @@ var STComponent = /** @class */ (function () {
             _a["st"] = true,
             _a["st__p-" + this.page.placement] = this.page.placement,
             _a["st__width-" + type] = true,
-            _a["st__width-strict-truncate"] = type === 'strict' && strictBehavior === 'truncate',
+            _a["st__width-strict-" + strictBehavior] = type === 'strict',
             _a["ant-table-rep__hide-header-footer"] = this.responsiveHideHeaderFooter,
             _a));
     };
