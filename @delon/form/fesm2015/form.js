@@ -3637,24 +3637,13 @@ class TimeWidget extends ControlWidget {
         };
     }
     /**
-     * @private
-     * @return {?}
-     */
-    compCd() {
-        // TODO: removed after nz-datepick support OnPush mode
-        setTimeout((/**
-         * @return {?}
-         */
-        () => this.detectChanges()));
-    }
-    /**
      * @param {?} value
      * @return {?}
      */
     reset(value) {
         if (value instanceof Date) {
             this.displayValue = value;
-            this.compCd();
+            this.detectChanges();
             return;
         }
         /** @type {?} */
@@ -3667,7 +3656,7 @@ class TimeWidget extends ControlWidget {
             v = new Date(`1970-1-1 ` + value);
         }
         this.displayValue = v;
-        this.compCd();
+        this.detectChanges();
     }
     /**
      * @param {?} value

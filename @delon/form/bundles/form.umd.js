@@ -4542,21 +4542,6 @@
                 };
             };
         /**
-         * @private
-         * @return {?}
-         */
-        TimeWidget.prototype.compCd = /**
-         * @private
-         * @return {?}
-         */
-            function () {
-                var _this = this;
-                // TODO: removed after nz-datepick support OnPush mode
-                setTimeout(( /**
-                 * @return {?}
-                 */function () { return _this.detectChanges(); }));
-            };
-        /**
          * @param {?} value
          * @return {?}
          */
@@ -4567,7 +4552,7 @@
             function (value) {
                 if (value instanceof Date) {
                     this.displayValue = value;
-                    this.compCd();
+                    this.detectChanges();
                     return;
                 }
                 /** @type {?} */
@@ -4580,7 +4565,7 @@
                     v = new Date("1970-1-1 " + value);
                 }
                 this.displayValue = v;
-                this.compCd();
+                this.detectChanges();
             };
         /**
          * @param {?} value
