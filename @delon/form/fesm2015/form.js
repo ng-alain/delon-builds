@@ -3843,6 +3843,7 @@ class TreeSelectWidget extends ControlWidget {
          */
         list => {
             this.data = list;
+            this.detectChanges();
         }));
     }
     /**
