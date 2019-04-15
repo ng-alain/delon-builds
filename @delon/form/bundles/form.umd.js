@@ -4787,6 +4787,7 @@
              * @return {?}
              */function (list) {
                     _this.data = list;
+                    _this.detectChanges();
                 }));
             };
         /**

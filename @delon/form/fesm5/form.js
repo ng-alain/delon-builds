@@ -4747,6 +4747,7 @@ var TreeSelectWidget = /** @class */ (function (_super) {
          */
         function (list) {
             _this.data = list;
+            _this.detectChanges();
         }));
     };
     /**
