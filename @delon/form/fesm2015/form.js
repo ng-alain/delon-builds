@@ -3336,7 +3336,7 @@ class SelectWidget extends ControlWidget {
             serverSearch: toBool(this.ui.serverSearch, false),
             maxMultipleCount: this.ui.maxMultipleCount || Infinity,
             mode: this.ui.mode || 'default',
-            notFoundContent: this.ui.notFoundContent || '无法找到',
+            notFoundContent: this.ui.notFoundContent,
             showSearch: toBool(this.ui.showSearch, true),
             tokenSeparators: this.ui.tokenSeparators || [],
             maxTagCount: this.ui.maxTagCount || null,
@@ -3843,7 +3843,6 @@ class TreeSelectWidget extends ControlWidget {
          */
         list => {
             this.data = list;
-            this.detectChanges();
         }));
     }
     /**

@@ -4105,7 +4105,7 @@ var SelectWidget = /** @class */ (function (_super) {
             serverSearch: toBool(this.ui.serverSearch, false),
             maxMultipleCount: this.ui.maxMultipleCount || Infinity,
             mode: this.ui.mode || 'default',
-            notFoundContent: this.ui.notFoundContent || '无法找到',
+            notFoundContent: this.ui.notFoundContent,
             showSearch: toBool(this.ui.showSearch, true),
             tokenSeparators: this.ui.tokenSeparators || [],
             maxTagCount: this.ui.maxTagCount || null,
@@ -4747,7 +4747,6 @@ var TreeSelectWidget = /** @class */ (function (_super) {
          */
         function (list) {
             _this.data = list;
-            _this.detectChanges();
         }));
     };
     /**
