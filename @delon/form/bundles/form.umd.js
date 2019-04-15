@@ -4160,7 +4160,7 @@
                     serverSearch: toBool(this.ui.serverSearch, false),
                     maxMultipleCount: this.ui.maxMultipleCount || Infinity,
                     mode: this.ui.mode || 'default',
-                    notFoundContent: this.ui.notFoundContent,
+                    notFoundContent: this.ui.notFoundContent || '无法找到',
                     showSearch: toBool(this.ui.showSearch, true),
                     tokenSeparators: this.ui.tokenSeparators || [],
                     maxTagCount: this.ui.maxTagCount || null,

@@ -1024,8 +1024,8 @@ var enUS = (/** @type {?} */ ({
     abbr: 'en-US',
     exception: {
         403: `Sorry, you don't have access to this page`,
-        404: `Sorry, that page doesn't exist`,
-        500: `Sorry, server error`,
+        404: `Sorry, the page you visited does not exist`,
+        500: `Sorry, the server is reporting an error`,
         backToHome: 'Back To Home',
     },
     noticeIcon: {
@@ -2306,7 +2306,7 @@ AlainThemeModule.ctorParameters = () => [
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-const VERSION = new Version('7.2.0-c5fe9b0');
+const VERSION = new Version('7.2.0-4463e79');
 
 /**
  * @fileoverview added by tsickle
