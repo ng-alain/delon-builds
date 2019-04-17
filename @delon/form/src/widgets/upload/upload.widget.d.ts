@@ -11,5 +11,6 @@ export declare class UploadWidget extends ControlWidget implements OnInit {
     reset(value: SFValue): void;
     private _getValue;
     private _setValue;
+    handleRemove: () => boolean;
     handlePreview: (file: UploadFile) => void;
 }
