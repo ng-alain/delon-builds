@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('rxjs'), require('rxjs/operators'), require('@delon/theme'), require('@angular/common'), require('@angular/core'), require('@angular/router'), require('@delon/util'), require('ng-zorro-antd')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/sidebar-nav', ['exports', 'rxjs', 'rxjs/operators', '@delon/theme', '@angular/common', '@angular/core', '@angular/router', '@delon/util', 'ng-zorro-antd'], factory) :
-    (factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['sidebar-nav'] = {}),global.rxjs,global.rxjs.operators,global.delon.theme,global.ng.common,global.ng.core,global.ng.router,global.delon.util,global['ng-zorro-antd']));
-}(this, (function (exports,rxjs,operators,theme,common,core,router,util,ngZorroAntd) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common'), require('@angular/core'), require('@angular/router'), require('rxjs'), require('rxjs/operators'), require('@delon/theme'), require('@delon/util'), require('ng-zorro-antd')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/sidebar-nav', ['exports', '@angular/common', '@angular/core', '@angular/router', 'rxjs', 'rxjs/operators', '@delon/theme', '@delon/util', 'ng-zorro-antd'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['sidebar-nav'] = {}), global.ng.common, global.ng.core, global.ng.router, global.rxjs, global.rxjs.operators, global.delon.theme, global.delon.util, global['ng-zorro-antd']));
+}(this, function (exports, common, core, router, rxjs, operators, theme, util, ngZorroAntd) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -23,19 +23,16 @@
     See the Apache Version 2.0 License for specific language governing permissions
     and limitations under the License.
     ***************************************************************************** */
+
     function __decorate(decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-        if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
-            r = Reflect.decorate(decorators, target, key, desc);
-        else
-            for (var i = decorators.length - 1; i >= 0; i--)
-                if (d = decorators[i])
-                    r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+        if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+        else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
         return c > 3 && r && Object.defineProperty(target, key, r), r;
     }
+
     function __metadata(metadataKey, metadataValue) {
-        if (typeof Reflect === "object" && typeof Reflect.metadata === "function")
-            return Reflect.metadata(metadataKey, metadataValue);
+        if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(metadataKey, metadataValue);
     }
 
     /**
@@ -47,10 +44,10 @@
     /** @type {?} */
     var FLOATINGCLS = 'sidebar-nav__floating';
     var SidebarNavComponent = /** @class */ (function () {
-        function SidebarNavComponent(menuSrv, settings, router$$1, render, cdr, ngZone, doc, win) {
+        function SidebarNavComponent(menuSrv, settings, router, render, cdr, ngZone, doc, win) {
             this.menuSrv = menuSrv;
             this.settings = settings;
-            this.router = router$$1;
+            this.router = router;
             this.render = render;
             this.cdr = cdr;
             this.ngZone = ngZone;
@@ -67,7 +64,8 @@
         Object.defineProperty(SidebarNavComponent.prototype, "collapsed", {
             get: /**
              * @return {?}
-             */ function () {
+             */
+            function () {
                 return this.settings.layout.collapsed;
             },
             enumerable: true,
@@ -77,7 +75,8 @@
             get: /**
              * @private
              * @return {?}
-             */ function () {
+             */
+            function () {
                 return this.menuSrv.menus;
             },
             enumerable: true,
@@ -93,30 +92,31 @@
          * @param {?} e
          * @return {?}
          */
-            function (e) {
-                e.stopPropagation();
-                /** @type {?} */
-                var linkNode = ( /** @type {?} */(e.target));
-                if (linkNode.nodeName !== 'A') {
-                    return false;
-                }
-                /** @type {?} */
-                var id = +( /** @type {?} */(linkNode.dataset)).id;
-                /** @type {?} */
-                var item;
-                this.menuSrv.visit(this._d, ( /**
-                 * @param {?} i
-                 * @return {?}
-                 */function (i) {
-                    if (!item && i.__id === id) {
-                        item = i;
-                    }
-                }));
-                this.to(item);
-                this.hideAll();
-                e.preventDefault();
+        function (e) {
+            e.stopPropagation();
+            /** @type {?} */
+            var linkNode = (/** @type {?} */ (e.target));
+            if (linkNode.nodeName !== 'A') {
                 return false;
-            };
+            }
+            /** @type {?} */
+            var id = +(/** @type {?} */ (linkNode.dataset)).id;
+            /** @type {?} */
+            var item;
+            this.menuSrv.visit(this._d, (/**
+             * @param {?} i
+             * @return {?}
+             */
+            function (i) {
+                if (!item && i.__id === id) {
+                    item = i;
+                }
+            }));
+            this.to(item);
+            this.hideAll();
+            e.preventDefault();
+            return false;
+        };
         /**
          * @private
          * @return {?}
@@ -125,18 +125,18 @@
          * @private
          * @return {?}
          */
-            function () {
-                if (!this.floatingEl)
-                    return;
-                this.floatingEl.removeEventListener('click', this.floatingAreaClickHandle.bind(this));
-                // fix ie: https://github.com/ng-alain/delon/issues/52
-                if (this.floatingEl.hasOwnProperty('remove')) {
-                    this.floatingEl.remove();
-                }
-                else if (this.floatingEl.parentNode) {
-                    this.floatingEl.parentNode.removeChild(this.floatingEl);
-                }
-            };
+        function () {
+            if (!this.floatingEl)
+                return;
+            this.floatingEl.removeEventListener('click', this.floatingAreaClickHandle.bind(this));
+            // fix ie: https://github.com/ng-alain/delon/issues/52
+            if (this.floatingEl.hasOwnProperty('remove')) {
+                this.floatingEl.remove();
+            }
+            else if (this.floatingEl.parentNode) {
+                this.floatingEl.parentNode.removeChild(this.floatingEl);
+            }
+        };
         /**
          * @private
          * @return {?}
@@ -145,13 +145,13 @@
          * @private
          * @return {?}
          */
-            function () {
-                this.clearFloatingContainer();
-                this.floatingEl = this.render.createElement('div');
-                this.floatingEl.classList.add(FLOATINGCLS + '-container');
-                this.floatingEl.addEventListener('click', this.floatingAreaClickHandle.bind(this), false);
-                this.bodyEl.appendChild(this.floatingEl);
-            };
+        function () {
+            this.clearFloatingContainer();
+            this.floatingEl = this.render.createElement('div');
+            this.floatingEl.classList.add(FLOATINGCLS + '-container');
+            this.floatingEl.addEventListener('click', this.floatingAreaClickHandle.bind(this), false);
+            this.bodyEl.appendChild(this.floatingEl);
+        };
         /**
          * @private
          * @param {?} linkNode
@@ -164,21 +164,22 @@
          * @param {?} item
          * @return {?}
          */
-            function (linkNode, item) {
-                /** @type {?} */
-                var id = "_sidebar-nav-" + item.__id;
-                /** @type {?} */
-                var node = ( /** @type {?} */(linkNode.nextElementSibling.cloneNode(true)));
-                node.id = id;
-                node.classList.add(FLOATINGCLS);
-                node.addEventListener('mouseleave', ( /**
-                 * @return {?}
-                 */function () {
-                    node.classList.remove(SHOWCLS);
-                }), false);
-                this.floatingEl.appendChild(node);
-                return node;
-            };
+        function (linkNode, item) {
+            /** @type {?} */
+            var id = "_sidebar-nav-" + item.__id;
+            /** @type {?} */
+            var node = (/** @type {?} */ (linkNode.nextElementSibling.cloneNode(true)));
+            node.id = id;
+            node.classList.add(FLOATINGCLS);
+            node.addEventListener('mouseleave', (/**
+             * @return {?}
+             */
+            function () {
+                node.classList.remove(SHOWCLS);
+            }), false);
+            this.floatingEl.appendChild(node);
+            return node;
+        };
         /**
          * @private
          * @return {?}
@@ -187,14 +188,14 @@
          * @private
          * @return {?}
          */
-            function () {
-                /** @type {?} */
-                var allNode = this.floatingEl.querySelectorAll('.' + FLOATINGCLS);
-                // tslint:disable-next-line:prefer-for-of
-                for (var i = 0; i < allNode.length; i++) {
-                    allNode[i].classList.remove(SHOWCLS);
-                }
-            };
+        function () {
+            /** @type {?} */
+            var allNode = this.floatingEl.querySelectorAll('.' + FLOATINGCLS);
+            // tslint:disable-next-line:prefer-for-of
+            for (var i = 0; i < allNode.length; i++) {
+                allNode[i].classList.remove(SHOWCLS);
+            }
+        };
         // calculate the node position values.
         // calculate the node position values.
         /**
@@ -203,30 +204,30 @@
          * @param {?} node
          * @return {?}
          */
-        SidebarNavComponent.prototype.calPos =
-            // calculate the node position values.
-            /**
-             * @private
-             * @param {?} linkNode
-             * @param {?} node
-             * @return {?}
-             */
-            function (linkNode, node) {
-                /** @type {?} */
-                var rect = linkNode.getBoundingClientRect();
-                // bug: https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/14721015/
-                /** @type {?} */
-                var scrollTop = Math.max(this.doc.documentElement.scrollTop, this.bodyEl.scrollTop);
-                /** @type {?} */
-                var docHeight = Math.max(this.doc.documentElement.clientHeight, this.bodyEl.clientHeight);
-                /** @type {?} */
-                var offsetHeight = 0;
-                if (docHeight < rect.top + node.clientHeight) {
-                    offsetHeight = rect.top + node.clientHeight - docHeight;
-                }
-                node.style.top = rect.top + scrollTop - offsetHeight + "px";
-                node.style.left = rect.right + 5 + "px";
-            };
+        SidebarNavComponent.prototype.calPos = 
+        // calculate the node position values.
+        /**
+         * @private
+         * @param {?} linkNode
+         * @param {?} node
+         * @return {?}
+         */
+        function (linkNode, node) {
+            /** @type {?} */
+            var rect = linkNode.getBoundingClientRect();
+            // bug: https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/14721015/
+            /** @type {?} */
+            var scrollTop = Math.max(this.doc.documentElement.scrollTop, this.bodyEl.scrollTop);
+            /** @type {?} */
+            var docHeight = Math.max(this.doc.documentElement.clientHeight, this.bodyEl.clientHeight);
+            /** @type {?} */
+            var offsetHeight = 0;
+            if (docHeight < rect.top + node.clientHeight) {
+                offsetHeight = rect.top + node.clientHeight - docHeight;
+            }
+            node.style.top = rect.top + scrollTop - offsetHeight + "px";
+            node.style.left = rect.right + 5 + "px";
+        };
         /**
          * @param {?} e
          * @param {?} item
@@ -237,25 +238,26 @@
          * @param {?} item
          * @return {?}
          */
-            function (e, item) {
-                var _this = this;
-                if (this.collapsed !== true) {
-                    return;
-                }
-                this.ngZone.runOutsideAngular(( /**
-                 * @return {?}
-                 */function () {
-                    e.preventDefault();
-                    /** @type {?} */
-                    var linkNode = ( /** @type {?} */(e.target));
-                    _this.genFloatingContainer();
-                    /** @type {?} */
-                    var subNode = _this.genSubNode(( /** @type {?} */(linkNode)), item);
-                    _this.hideAll();
-                    subNode.classList.add(SHOWCLS);
-                    _this.calPos(( /** @type {?} */(linkNode)), subNode);
-                }));
-            };
+        function (e, item) {
+            var _this = this;
+            if (this.collapsed !== true) {
+                return;
+            }
+            this.ngZone.runOutsideAngular((/**
+             * @return {?}
+             */
+            function () {
+                e.preventDefault();
+                /** @type {?} */
+                var linkNode = (/** @type {?} */ (e.target));
+                _this.genFloatingContainer();
+                /** @type {?} */
+                var subNode = _this.genSubNode((/** @type {?} */ (linkNode)), item);
+                _this.hideAll();
+                subNode.classList.add(SHOWCLS);
+                _this.calPos((/** @type {?} */ (linkNode)), subNode);
+            }));
+        };
         /**
          * @param {?} item
          * @return {?}
@@ -264,24 +266,25 @@
          * @param {?} item
          * @return {?}
          */
-            function (item) {
-                var _this = this;
-                this.select.emit(item);
-                if (item.disabled)
-                    return;
-                if (item.externalLink) {
-                    if (item.target === '_blank') {
-                        this.win.open(item.externalLink);
-                    }
-                    else {
-                        this.win.location.href = item.externalLink;
-                    }
-                    return false;
+        function (item) {
+            var _this = this;
+            this.select.emit(item);
+            if (item.disabled)
+                return;
+            if (item.externalLink) {
+                if (item.target === '_blank') {
+                    this.win.open(item.externalLink);
                 }
-                this.ngZone.run(( /**
-                 * @return {?}
-                 */function () { return _this.router.navigateByUrl(item.link); }));
-            };
+                else {
+                    this.win.location.href = item.externalLink;
+                }
+                return false;
+            }
+            this.ngZone.run((/**
+             * @return {?}
+             */
+            function () { return _this.router.navigateByUrl(item.link); }));
+        };
         /**
          * @param {?} item
          * @return {?}
@@ -290,111 +293,117 @@
          * @param {?} item
          * @return {?}
          */
-            function (item) {
-                if (!this.openStrictly) {
-                    this.menuSrv.visit(this._d, ( /**
-                     * @param {?} i
-                     * @param {?} p
-                     * @return {?}
-                     */function (i, p) {
-                        if (i !== item)
-                            i._open = false;
-                    }));
-                    /** @type {?} */
-                    var pItem = item.__parent;
-                    while (pItem) {
-                        pItem._open = true;
-                        pItem = pItem.__parent;
-                    }
+        function (item) {
+            if (!this.openStrictly) {
+                this.menuSrv.visit(this._d, (/**
+                 * @param {?} i
+                 * @param {?} p
+                 * @return {?}
+                 */
+                function (i, p) {
+                    if (i !== item)
+                        i._open = false;
+                }));
+                /** @type {?} */
+                var pItem = item.__parent;
+                while (pItem) {
+                    pItem._open = true;
+                    pItem = pItem.__parent;
                 }
-                item._open = !item._open;
-                this.cdr.markForCheck();
-            };
+            }
+            item._open = !item._open;
+            this.cdr.markForCheck();
+        };
         /**
          * @return {?}
          */
         SidebarNavComponent.prototype._click = /**
          * @return {?}
          */
-            function () {
-                if (this.isPad && this.collapsed) {
-                    this.openAside(false);
-                    this.hideAll();
-                }
-            };
+        function () {
+            if (this.isPad && this.collapsed) {
+                this.openAside(false);
+                this.hideAll();
+            }
+        };
         /**
          * @return {?}
          */
         SidebarNavComponent.prototype._docClick = /**
          * @return {?}
          */
-            function () {
-                this.hideAll();
-            };
+        function () {
+            this.hideAll();
+        };
         /**
          * @return {?}
          */
         SidebarNavComponent.prototype.ngOnInit = /**
          * @return {?}
          */
-            function () {
-                var _this = this;
-                var _a = this, doc = _a.doc, router$$1 = _a.router, unsubscribe$ = _a.unsubscribe$, menuSrv = _a.menuSrv, cdr = _a.cdr;
-                this.bodyEl = doc.querySelector('body');
-                menuSrv.openedByUrl(router$$1.url, this.recursivePath);
-                this.ngZone.runOutsideAngular(( /**
+        function () {
+            var _this = this;
+            var _a = this, doc = _a.doc, router$1 = _a.router, unsubscribe$ = _a.unsubscribe$, menuSrv = _a.menuSrv, cdr = _a.cdr;
+            this.bodyEl = doc.querySelector('body');
+            menuSrv.openedByUrl(router$1.url, this.recursivePath);
+            this.ngZone.runOutsideAngular((/**
+             * @return {?}
+             */
+            function () { return _this.genFloatingContainer(); }));
+            menuSrv.change.pipe(operators.takeUntil(unsubscribe$)).subscribe((/**
+             * @param {?} data
+             * @return {?}
+             */
+            function (data) {
+                menuSrv.visit(data, (/**
+                 * @param {?} i
                  * @return {?}
-                 */function () { return _this.genFloatingContainer(); }));
-                menuSrv.change.pipe(operators.takeUntil(unsubscribe$)).subscribe(( /**
-                 * @param {?} data
-                 * @return {?}
-                 */function (data) {
-                    menuSrv.visit(data, ( /**
-                     * @param {?} i
-                     * @return {?}
-                     */function (i) {
-                        if (!i._aclResult) {
-                            if (_this.disabledAcl) {
-                                i.disabled = true;
-                            }
-                            else {
-                                i._hidden = true;
-                            }
+                 */
+                function (i) {
+                    if (!i._aclResult) {
+                        if (_this.disabledAcl) {
+                            i.disabled = true;
                         }
-                        if (_this.openStrictly) {
-                            i._open = i.open != null ? i.open : false;
+                        else {
+                            i._hidden = true;
                         }
-                    }));
-                    _this.list = menuSrv.menus;
-                    cdr.detectChanges();
+                    }
+                    if (_this.openStrictly) {
+                        i._open = i.open != null ? i.open : false;
+                    }
                 }));
-                router$$1.events
-                    .pipe(operators.takeUntil(unsubscribe$), operators.filter(( /**
+                _this.list = menuSrv.menus;
+                cdr.detectChanges();
+            }));
+            router$1.events
+                .pipe(operators.takeUntil(unsubscribe$), operators.filter((/**
              * @param {?} e
              * @return {?}
-             */function (e) { return e instanceof router.NavigationEnd; })))
-                    .subscribe(( /**
+             */
+            function (e) { return e instanceof router.NavigationEnd; })))
+                .subscribe((/**
              * @param {?} e
              * @return {?}
-             */function (e) {
-                    _this.menuSrv.openedByUrl(e.urlAfterRedirects, _this.recursivePath);
-                    _this.underPad();
-                    _this.cdr.detectChanges();
-                }));
-                this.underPad();
-            };
+             */
+            function (e) {
+                _this.menuSrv.openedByUrl(e.urlAfterRedirects, _this.recursivePath);
+                _this.underPad();
+                _this.cdr.detectChanges();
+            }));
+            this.underPad();
+        };
         /**
          * @return {?}
          */
         SidebarNavComponent.prototype.ngOnDestroy = /**
          * @return {?}
          */
-            function () {
-                var unsubscribe$ = this.unsubscribe$;
-                unsubscribe$.next();
-                unsubscribe$.complete();
-                this.clearFloatingContainer();
-            };
+        function () {
+            var unsubscribe$ = this.unsubscribe$;
+            unsubscribe$.next();
+            unsubscribe$.complete();
+            this.clearFloatingContainer();
+        };
         Object.defineProperty(SidebarNavComponent.prototype, "isPad", {
             // #region Under pad
             get: 
@@ -417,14 +426,15 @@
          * @private
          * @return {?}
          */
-            function () {
-                var _this = this;
-                if (this.autoCloseUnderPad && this.isPad && !this.collapsed) {
-                    setTimeout(( /**
-                     * @return {?}
-                     */function () { return _this.openAside(true); }));
-                }
-            };
+        function () {
+            var _this = this;
+            if (this.autoCloseUnderPad && this.isPad && !this.collapsed) {
+                setTimeout((/**
+                 * @return {?}
+                 */
+                function () { return _this.openAside(true); }));
+            }
+        };
         /**
          * @private
          * @param {?} status
@@ -435,9 +445,9 @@
          * @param {?} status
          * @return {?}
          */
-            function (status) {
-                this.settings.setLayout('collapsed', status);
-            };
+        function (status) {
+            this.settings.setLayout('collapsed', status);
+        };
         SidebarNavComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'sidebar-nav',
@@ -450,18 +460,16 @@
                     }] }
         ];
         /** @nocollapse */
-        SidebarNavComponent.ctorParameters = function () {
-            return [
-                { type: theme.MenuService },
-                { type: theme.SettingsService },
-                { type: router.Router },
-                { type: core.Renderer2 },
-                { type: core.ChangeDetectorRef },
-                { type: core.NgZone },
-                { type: undefined, decorators: [{ type: core.Inject, args: [common.DOCUMENT,] }] },
-                { type: Window, decorators: [{ type: core.Inject, args: [theme.WINDOW,] }] }
-            ];
-        };
+        SidebarNavComponent.ctorParameters = function () { return [
+            { type: theme.MenuService },
+            { type: theme.SettingsService },
+            { type: router.Router },
+            { type: core.Renderer2 },
+            { type: core.ChangeDetectorRef },
+            { type: core.NgZone },
+            { type: undefined, decorators: [{ type: core.Inject, args: [common.DOCUMENT,] }] },
+            { type: Window, decorators: [{ type: core.Inject, args: [theme.WINDOW,] }] }
+        ]; };
         SidebarNavComponent.propDecorators = {
             disabledAcl: [{ type: core.Input }],
             autoCloseUnderPad: [{ type: core.Input }],
@@ -505,21 +513,10 @@
         return SidebarNavModule;
     }());
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-
     exports.SidebarNavComponent = SidebarNavComponent;
     exports.SidebarNavModule = SidebarNavModule;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
-})));
-
+}));
 //# sourceMappingURL=sidebarNav.umd.js.map

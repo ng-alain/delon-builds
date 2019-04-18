@@ -1,7 +1,7 @@
 import { __decorate, __metadata } from 'tslib';
-import { CommonModule } from '@angular/common';
-import { Injectable, defineInjectable, NgModule, Directive, ElementRef, Renderer2, Input } from '@angular/core';
+import { Injectable, defineInjectable, Directive, ElementRef, Renderer2, Input, NgModule } from '@angular/core';
 import { InputNumber, DelonUtilModule } from '@delon/util';
+import { CommonModule } from '@angular/common';
 
 /**
  * @fileoverview added by tsickle
@@ -156,6 +156,5 @@ ImageModule.decorators = [
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { ImageDirective, ImageConfig, ImageModule };
-
+export { ImageConfig, ImageDirective, ImageModule };
 //# sourceMappingURL=image.js.map

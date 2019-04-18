@@ -1,6 +1,6 @@
 import { __assign, __spread } from 'tslib';
+import { defineInjectable, Injectable, inject, NgModule } from '@angular/core';
 import { of, Subject } from 'rxjs';
-import { Injectable, NgModule, defineInjectable, inject } from '@angular/core';
 import { LazyService, DelonUtilModule } from '@delon/util';
 
 /**
@@ -429,6 +429,5 @@ var LodopModule = /** @class */ (function () {
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { LodopService, LodopConfig, LodopModule };
-
+export { LodopConfig, LodopModule, LodopService };
 //# sourceMappingURL=lodop.js.map

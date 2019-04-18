@@ -1,7 +1,7 @@
+import { Injectable, defineInjectable, inject, EventEmitter, Component, ChangeDetectionStrategy, ChangeDetectorRef, Input, Output, NgModule } from '@angular/core';
 import { __decorate, __metadata } from 'tslib';
-import { CommonModule } from '@angular/common';
-import { Injectable, EventEmitter, Component, ChangeDetectionStrategy, ChangeDetectorRef, Input, Output, defineInjectable, NgModule, inject } from '@angular/core';
 import { InputNumber, DelonUtilModule } from '@delon/util';
+import { CommonModule } from '@angular/common';
 
 /**
  * @fileoverview added by tsickle
@@ -232,6 +232,5 @@ QRModule.decorators = [
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { QRService, QRComponent, QRConfig, QRModule };
-
+export { QRComponent, QRConfig, QRModule, QRService };
 //# sourceMappingURL=qr.js.map

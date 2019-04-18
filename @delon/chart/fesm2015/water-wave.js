@@ -1,9 +1,9 @@
 import { __decorate, __metadata } from 'tslib';
+import { Component, ChangeDetectionStrategy, ElementRef, Renderer2, NgZone, ChangeDetectorRef, ViewChild, Input, NgModule } from '@angular/core';
+import { InputNumber, DelonUtilModule } from '@delon/util';
 import { fromEvent } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Input, NgZone, Renderer2, ViewChild, NgModule } from '@angular/core';
-import { InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
@@ -317,5 +317,4 @@ G2WaterWaveModule.decorators = [
  */
 
 export { G2WaterWaveComponent, G2WaterWaveModule };
-
 //# sourceMappingURL=water-wave.js.map

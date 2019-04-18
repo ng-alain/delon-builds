@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common'), require('@angular/core'), require('@delon/theme'), require('@delon/util'), require('ng-zorro-antd')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/tag-select', ['exports', '@angular/common', '@angular/core', '@delon/theme', '@delon/util', 'ng-zorro-antd'], factory) :
-    (factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['tag-select'] = {}),global.ng.common,global.ng.core,global.delon.theme,global.delon.util,global.ngZorroAntd));
-}(this, (function (exports,common,core,theme,util,ngZorroAntd) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/theme'), require('@delon/util'), require('@angular/common'), require('ng-zorro-antd')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/tag-select', ['exports', '@angular/core', '@delon/theme', '@delon/util', '@angular/common', 'ng-zorro-antd'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['tag-select'] = {}), global.ng.core, global.delon.theme, global.delon.util, global.ng.common, global.ngZorroAntd));
+}(this, function (exports, core, theme, util, common, ngZorroAntd) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -23,44 +23,35 @@
     See the Apache Version 2.0 License for specific language governing permissions
     and limitations under the License.
     ***************************************************************************** */
+
     function __decorate(decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-        if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
-            r = Reflect.decorate(decorators, target, key, desc);
-        else
-            for (var i = decorators.length - 1; i >= 0; i--)
-                if (d = decorators[i])
-                    r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+        if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+        else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
         return c > 3 && r && Object.defineProperty(target, key, r), r;
     }
+
     function __metadata(metadataKey, metadataValue) {
-        if (typeof Reflect === "object" && typeof Reflect.metadata === "function")
-            return Reflect.metadata(metadataKey, metadataValue);
+        if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(metadataKey, metadataValue);
     }
+
     function __read(o, n) {
         var m = typeof Symbol === "function" && o[Symbol.iterator];
-        if (!m)
-            return o;
+        if (!m) return o;
         var i = m.call(o), r, ar = [], e;
         try {
-            while ((n === void 0 || n-- > 0) && !(r = i.next()).done)
-                ar.push(r.value);
+            while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
         }
-        catch (error) {
-            e = { error: error };
-        }
+        catch (error) { e = { error: error }; }
         finally {
             try {
-                if (r && !r.done && (m = i["return"]))
-                    m.call(i);
+                if (r && !r.done && (m = i["return"])) m.call(i);
             }
-            finally {
-                if (e)
-                    throw e.error;
-            }
+            finally { if (e) throw e.error; }
         }
         return ar;
     }
+
     function __spread() {
         for (var ar = [], i = 0; i < arguments.length; i++)
             ar = ar.concat(__read(arguments[i]));
@@ -89,34 +80,35 @@
         TagSelectComponent.prototype.ngOnInit = /**
          * @return {?}
          */
+        function () {
+            var _this = this;
+            this.i18n$ = this.i18n.change.subscribe((/**
+             * @return {?}
+             */
             function () {
-                var _this = this;
-                this.i18n$ = this.i18n.change.subscribe(( /**
-                 * @return {?}
-                 */function () {
-                    _this.locale = _this.i18n.getData('tagSelect');
-                    _this.cdr.detectChanges();
-                }));
-            };
+                _this.locale = _this.i18n.getData('tagSelect');
+                _this.cdr.detectChanges();
+            }));
+        };
         /**
          * @return {?}
          */
         TagSelectComponent.prototype.trigger = /**
          * @return {?}
          */
-            function () {
-                this.expand = !this.expand;
-                this.change.emit(this.expand);
-            };
+        function () {
+            this.expand = !this.expand;
+            this.change.emit(this.expand);
+        };
         /**
          * @return {?}
          */
         TagSelectComponent.prototype.ngOnDestroy = /**
          * @return {?}
          */
-            function () {
-                this.i18n$.unsubscribe();
-            };
+        function () {
+            this.i18n$.unsubscribe();
+        };
         TagSelectComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'tag-select',
@@ -130,12 +122,10 @@
                     }] }
         ];
         /** @nocollapse */
-        TagSelectComponent.ctorParameters = function () {
-            return [
-                { type: theme.DelonLocaleService },
-                { type: core.ChangeDetectorRef }
-            ];
-        };
+        TagSelectComponent.ctorParameters = function () { return [
+            { type: theme.DelonLocaleService },
+            { type: core.ChangeDetectorRef }
+        ]; };
         TagSelectComponent.propDecorators = {
             expandable: [{ type: core.Input }],
             change: [{ type: core.Output }]
@@ -166,21 +156,10 @@
         return TagSelectModule;
     }());
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-
     exports.TagSelectComponent = TagSelectComponent;
     exports.TagSelectModule = TagSelectModule;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
-})));
-
+}));
 //# sourceMappingURL=tagSelect.umd.js.map

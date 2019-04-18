@@ -1,10 +1,10 @@
-import { animate, style, transition, trigger } from '@angular/animations';
 import { __decorate, __metadata } from 'tslib';
-import { FormControlName, NgModel } from '@angular/forms';
+import { Injectable, defineInjectable, Component, ChangeDetectionStrategy, Input, Host, Optional, ElementRef, Renderer2, ChangeDetectorRef, ContentChild, ViewChild, NgModule } from '@angular/core';
+import { toNumber, InputNumber, InputBoolean, deepGet, isEmpty, DelonUtilModule } from '@delon/util';
+import { trigger, transition, style, animate } from '@angular/animations';
+import { NgModel, FormControlName } from '@angular/forms';
 import { ResponsiveService } from '@delon/theme';
 import { CommonModule } from '@angular/common';
-import { Injectable, ChangeDetectionStrategy, Component, ElementRef, Host, Optional, Renderer2, Input, defineInjectable, NgModule, ChangeDetectorRef, ContentChild, ViewChild } from '@angular/core';
-import { toNumber, InputBoolean, InputNumber, deepGet, isEmpty, DelonUtilModule } from '@delon/util';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 
 /**
@@ -487,6 +487,5 @@ SEModule.decorators = [
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { SEContainerComponent, SEErrorComponent, SETitleComponent, SEComponent, SEConfig, SEModule };
-
+export { SEComponent, SEConfig, SEContainerComponent, SEErrorComponent, SEModule, SETitleComponent };
 //# sourceMappingURL=edit.js.map

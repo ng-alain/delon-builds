@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('rxjs'), require('rxjs/operators'), require('@angular/common'), require('@angular/core'), require('@delon/util')) :
-    typeof define === 'function' && define.amd ? define('@delon/chart/tag-cloud', ['exports', 'rxjs', 'rxjs/operators', '@angular/common', '@angular/core', '@delon/util'], factory) :
-    (factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart['tag-cloud'] = {}),global.rxjs,global.rxjs.operators,global.ng.common,global.ng.core,global.delon.util));
-}(this, (function (exports,rxjs,operators,common,core,util) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('@angular/common')) :
+    typeof define === 'function' && define.amd ? define('@delon/chart/tag-cloud', ['exports', '@angular/core', '@delon/util', 'rxjs', 'rxjs/operators', '@angular/common'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart['tag-cloud'] = {}), global.ng.core, global.delon.util, global.rxjs, global.rxjs.operators, global.ng.common));
+}(this, function (exports, core, util, rxjs, operators, common) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -23,56 +23,46 @@
     See the Apache Version 2.0 License for specific language governing permissions
     and limitations under the License.
     ***************************************************************************** */
-    var __assign = function () {
+
+    var __assign = function() {
         __assign = Object.assign || function __assign(t) {
             for (var s, i = 1, n = arguments.length; i < n; i++) {
                 s = arguments[i];
-                for (var p in s)
-                    if (Object.prototype.hasOwnProperty.call(s, p))
-                        t[p] = s[p];
+                for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
             }
             return t;
         };
         return __assign.apply(this, arguments);
     };
+
     function __decorate(decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-        if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
-            r = Reflect.decorate(decorators, target, key, desc);
-        else
-            for (var i = decorators.length - 1; i >= 0; i--)
-                if (d = decorators[i])
-                    r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+        if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+        else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
         return c > 3 && r && Object.defineProperty(target, key, r), r;
     }
+
     function __metadata(metadataKey, metadataValue) {
-        if (typeof Reflect === "object" && typeof Reflect.metadata === "function")
-            return Reflect.metadata(metadataKey, metadataValue);
+        if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(metadataKey, metadataValue);
     }
+
     function __read(o, n) {
         var m = typeof Symbol === "function" && o[Symbol.iterator];
-        if (!m)
-            return o;
+        if (!m) return o;
         var i = m.call(o), r, ar = [], e;
         try {
-            while ((n === void 0 || n-- > 0) && !(r = i.next()).done)
-                ar.push(r.value);
+            while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
         }
-        catch (error) {
-            e = { error: error };
-        }
+        catch (error) { e = { error: error }; }
         finally {
             try {
-                if (r && !r.done && (m = i["return"]))
-                    m.call(i);
+                if (r && !r.done && (m = i["return"])) m.call(i);
             }
-            finally {
-                if (e)
-                    throw e.error;
-            }
+            finally { if (e) throw e.error; }
         }
         return ar;
     }
+
     function __spread() {
         for (var ar = [], i = 0; i < arguments.length; i++)
             ar = ar.concat(__read(arguments[i]));
@@ -102,22 +92,23 @@
          * @private
          * @return {?}
          */
-            function () {
-                // 给point注册一个词云的shape
-                G2.Shape.registerShape('point', 'cloud', {
-                    drawShape: /**
-                     * @param {?} cfg
-                     * @param {?} container
-                     * @return {?}
-                     */ function (cfg, container) {
-                        /** @type {?} */
-                        var attrs = __assign({ fillOpacity: cfg.opacity, fontSize: cfg.origin._origin.size, rotate: cfg.origin._origin.rotate, text: cfg.origin._origin.text, textAlign: 'center', fontFamily: cfg.origin._origin.font, fill: cfg.color, textBaseline: 'Alphabetic' }, cfg.style);
-                        return container.addShape('text', {
-                            attrs: __assign({}, attrs, { x: cfg.x, y: cfg.y }),
-                        });
-                    },
-                });
-            };
+        function () {
+            // 给point注册一个词云的shape
+            G2.Shape.registerShape('point', 'cloud', {
+                drawShape: /**
+                 * @param {?} cfg
+                 * @param {?} container
+                 * @return {?}
+                 */
+                function (cfg, container) {
+                    /** @type {?} */
+                    var attrs = __assign({ fillOpacity: cfg.opacity, fontSize: cfg.origin._origin.size, rotate: cfg.origin._origin.rotate, text: cfg.origin._origin.text, textAlign: 'center', fontFamily: cfg.origin._origin.font, fill: cfg.color, textBaseline: 'Alphabetic' }, cfg.style);
+                    return container.addShape('text', {
+                        attrs: __assign({}, attrs, { x: cfg.x, y: cfg.y }),
+                    });
+                },
+            });
+        };
         /**
          * @private
          * @return {?}
@@ -126,29 +117,29 @@
          * @private
          * @return {?}
          */
-            function () {
-                var _a = this, el = _a.el, padding = _a.padding, height = _a.height;
-                /** @type {?} */
-                var chart = (this.chart = new G2.Chart({
-                    container: el.nativeElement,
-                    padding: padding,
-                    height: height,
-                }));
-                chart.legend(false);
-                chart.axis(false);
-                chart.tooltip({
-                    showTitle: false,
-                });
-                chart.coord().reflect();
-                chart
-                    .point()
-                    .position('x*y')
-                    .color('category')
-                    .shape('cloud')
-                    .tooltip('value*category');
-                chart.render();
-                this.attachChart();
-            };
+        function () {
+            var _a = this, el = _a.el, padding = _a.padding, height = _a.height;
+            /** @type {?} */
+            var chart = (this.chart = new G2.Chart({
+                container: el.nativeElement,
+                padding: padding,
+                height: height,
+            }));
+            chart.legend(false);
+            chart.axis(false);
+            chart.tooltip({
+                showTitle: false,
+            });
+            chart.coord().reflect();
+            chart
+                .point()
+                .position('x*y')
+                .color('category')
+                .shape('cloud')
+                .tooltip('value*category');
+            chart.render();
+            this.attachChart();
+        };
         /**
          * @private
          * @return {?}
@@ -157,49 +148,51 @@
          * @private
          * @return {?}
          */
-            function () {
-                var _a = this, chart = _a.chart, height = _a.height, padding = _a.padding, data = _a.data;
-                if (!chart || !data || data.length <= 0)
-                    return;
-                chart.set('height', height);
-                chart.set('padding', padding);
-                chart.forceFit();
-                /** @type {?} */
-                var dv = new DataSet.View().source(data);
-                /** @type {?} */
-                var range = dv.range('value');
-                /** @type {?} */
-                var min = range[0];
-                /** @type {?} */
-                var max = range[1];
-                dv.transform({
-                    type: 'tag-cloud',
-                    fields: ['x', 'value'],
-                    size: [chart.get('width'), chart.get('height')],
-                    padding: padding,
-                    timeInterval: 5000,
-                    // max execute time
-                    rotate: ( /**
-                     * @return {?}
-                     */function () {
-                        /** @type {?} */
-                        var random = ~~(Math.random() * 4) % 4;
-                        if (random === 2) {
-                            random = 0;
-                        }
-                        return random * 90; // 0, 90, 270
-                    }),
-                    fontSize: ( /**
-                     * @param {?} d
-                     * @return {?}
-                     */function (d) { return (d.value ? ((d.value - min) / (max - min)) * (80 - 24) + 24 : 0); }),
-                });
-                chart.source(dv, {
-                    x: { nice: false },
-                    y: { nice: false },
-                });
-                chart.repaint();
-            };
+        function () {
+            var _a = this, chart = _a.chart, height = _a.height, padding = _a.padding, data = _a.data;
+            if (!chart || !data || data.length <= 0)
+                return;
+            chart.set('height', height);
+            chart.set('padding', padding);
+            chart.forceFit();
+            /** @type {?} */
+            var dv = new DataSet.View().source(data);
+            /** @type {?} */
+            var range = dv.range('value');
+            /** @type {?} */
+            var min = range[0];
+            /** @type {?} */
+            var max = range[1];
+            dv.transform({
+                type: 'tag-cloud',
+                fields: ['x', 'value'],
+                size: [chart.get('width'), chart.get('height')],
+                padding: padding,
+                timeInterval: 5000,
+                // max execute time
+                rotate: (/**
+                 * @return {?}
+                 */
+                function () {
+                    /** @type {?} */
+                    var random = ~~(Math.random() * 4) % 4;
+                    if (random === 2) {
+                        random = 0;
+                    }
+                    return random * 90; // 0, 90, 270
+                }),
+                fontSize: (/**
+                 * @param {?} d
+                 * @return {?}
+                 */
+                function (d) { return (d.value ? ((d.value - min) / (max - min)) * (80 - 24) + 24 : 0); }),
+            });
+            chart.source(dv, {
+                x: { nice: false },
+                y: { nice: false },
+            });
+            chart.repaint();
+        };
         /**
          * @private
          * @return {?}
@@ -208,12 +201,13 @@
          * @private
          * @return {?}
          */
-            function () {
-                var _this = this;
-                this.ngZone.runOutsideAngular(( /**
-                 * @return {?}
-                 */function () { return _this.attachChart(); }));
-            };
+        function () {
+            var _this = this;
+            this.ngZone.runOutsideAngular((/**
+             * @return {?}
+             */
+            function () { return _this.attachChart(); }));
+        };
         /**
          * @private
          * @return {?}
@@ -222,58 +216,61 @@
          * @private
          * @return {?}
          */
-            function () {
-                var _this = this;
-                this.resize$ = rxjs.fromEvent(window, 'resize')
-                    .pipe(operators.filter(( /**
+        function () {
+            var _this = this;
+            this.resize$ = rxjs.fromEvent(window, 'resize')
+                .pipe(operators.filter((/**
              * @return {?}
-             */function () { return _this.chart; })), operators.debounceTime(200))
-                    .subscribe(( /**
+             */
+            function () { return _this.chart; })), operators.debounceTime(200))
+                .subscribe((/**
              * @return {?}
-             */function () { return _this._attachChart(); }));
-            };
+             */
+            function () { return _this._attachChart(); }));
+        };
         /**
          * @return {?}
          */
         G2TagCloudComponent.prototype.ngOnInit = /**
          * @return {?}
          */
-            function () {
-                var _this = this;
-                this.initTagCloud();
-                this.installResizeEvent();
-                this.ngZone.runOutsideAngular(( /**
-                 * @return {?}
-                 */function () {
-                    return setTimeout(( /**
-                     * @return {?}
-                     */function () { return _this.install(); }), _this.delay);
-                }));
-            };
+        function () {
+            var _this = this;
+            this.initTagCloud();
+            this.installResizeEvent();
+            this.ngZone.runOutsideAngular((/**
+             * @return {?}
+             */
+            function () { return setTimeout((/**
+             * @return {?}
+             */
+            function () { return _this.install(); }), _this.delay); }));
+        };
         /**
          * @return {?}
          */
         G2TagCloudComponent.prototype.ngOnChanges = /**
          * @return {?}
          */
-            function () {
-                this._attachChart();
-            };
+        function () {
+            this._attachChart();
+        };
         /**
          * @return {?}
          */
         G2TagCloudComponent.prototype.ngOnDestroy = /**
          * @return {?}
          */
-            function () {
-                var _this = this;
-                this.resize$.unsubscribe();
-                if (this.chart) {
-                    this.ngZone.runOutsideAngular(( /**
-                     * @return {?}
-                     */function () { return _this.chart.destroy(); }));
-                }
-            };
+        function () {
+            var _this = this;
+            this.resize$.unsubscribe();
+            if (this.chart) {
+                this.ngZone.runOutsideAngular((/**
+                 * @return {?}
+                 */
+                function () { return _this.chart.destroy(); }));
+            }
+        };
         G2TagCloudComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'g2-tag-cloud',
@@ -285,12 +282,10 @@
                     }] }
         ];
         /** @nocollapse */
-        G2TagCloudComponent.ctorParameters = function () {
-            return [
-                { type: core.ElementRef },
-                { type: core.NgZone }
-            ];
-        };
+        G2TagCloudComponent.ctorParameters = function () { return [
+            { type: core.ElementRef },
+            { type: core.NgZone }
+        ]; };
         G2TagCloudComponent.propDecorators = {
             delay: [{ type: core.Input }],
             height: [{ type: core.Input }],
@@ -327,21 +322,10 @@
         return G2TagCloudModule;
     }());
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-
     exports.G2TagCloudComponent = G2TagCloudComponent;
     exports.G2TagCloudModule = G2TagCloudModule;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
-})));
-
+}));
 //# sourceMappingURL=tag-cloud.umd.js.map

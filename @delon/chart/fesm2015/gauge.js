@@ -1,7 +1,7 @@
 import { __decorate, __metadata } from 'tslib';
-import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, ElementRef, Input, NgZone, NgModule } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ElementRef, NgZone, Input, NgModule } from '@angular/core';
 import { InputNumber, DelonUtilModule } from '@delon/util';
+import { CommonModule } from '@angular/common';
 
 /**
  * @fileoverview added by tsickle
@@ -251,5 +251,4 @@ G2GaugeModule.decorators = [
  */
 
 export { G2GaugeComponent, G2GaugeModule };
-
 //# sourceMappingURL=gauge.js.map

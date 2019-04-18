@@ -1,13 +1,13 @@
-import { ComponentPortal } from '@angular/cdk/portal';
-import { InputBoolean, InputNumber } from '@delon/util';
-import { debounceTime, filter, takeUntil } from 'rxjs/operators';
-import { Subject, Subscription, BehaviorSubject } from 'rxjs';
-import { __spread, __assign, __decorate, __metadata } from 'tslib';
+import { __assign, __spread, __decorate, __metadata } from 'tslib';
+import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter, ElementRef, Injectable, Directive, Injector, defineInjectable, inject, INJECTOR, ChangeDetectorRef, Renderer2, Optional, Inject, NgModule } from '@angular/core';
+import { DelonLocaleService, ScrollService, MenuService, ALAIN_I18N_TOKEN, DelonLocaleModule } from '@delon/theme';
+import { Subscription, Subject, BehaviorSubject } from 'rxjs';
 import { ConnectionPositionPair, Overlay, OverlayModule } from '@angular/cdk/overlay';
+import { ComponentPortal } from '@angular/cdk/portal';
 import { DOCUMENT, CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ElementRef, Injectable, Directive, Injector, NgModule, ChangeDetectorRef, Renderer2, Optional, Inject, defineInjectable, inject, INJECTOR } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, NavigationStart, Router, ROUTER_CONFIGURATION, RouterModule } from '@angular/router';
-import { DelonLocaleService, MenuService, ScrollService, DelonLocaleModule, ALAIN_I18N_TOKEN } from '@delon/theme';
+import { ActivatedRoute, Router, ROUTER_CONFIGURATION, NavigationStart, NavigationEnd, RouterModule } from '@angular/router';
+import { InputBoolean, InputNumber } from '@delon/util';
+import { takeUntil, filter, debounceTime } from 'rxjs/operators';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 
 /**
@@ -2038,6 +2038,5 @@ var ReuseTabModule = /** @class */ (function () {
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { ReuseTabContextMenuComponent, ReuseTabContextComponent, ReuseTabContextDirective, ReuseTabContextService, ReuseTabComponent, ReuseTabService, ReuseTabStrategy, ReuseTabModule, ReuseTabMatchMode };
-
+export { ReuseTabComponent, ReuseTabContextComponent, ReuseTabContextDirective, ReuseTabContextMenuComponent, ReuseTabContextService, ReuseTabMatchMode, ReuseTabModule, ReuseTabService, ReuseTabStrategy };
 //# sourceMappingURL=reuseTab.js.map

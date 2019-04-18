@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('rxjs/operators'), require('@angular/common/http'), require('rxjs'), require('@angular/common'), require('@angular/router'), require('@angular/core')) :
-    typeof define === 'function' && define.amd ? define('@delon/auth', ['exports', 'rxjs/operators', '@angular/common/http', 'rxjs', '@angular/common', '@angular/router', '@angular/core'], factory) :
-    (factory((global.delon = global.delon || {}, global.delon.auth = {}),global.rxjs.operators,global.ng.common.http,global.rxjs,global.ng.common,global.ng.router,global.ng.core));
-}(this, (function (exports,operators,http,rxjs,common,router,i0) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common'), require('@angular/core'), require('@angular/router'), require('rxjs'), require('rxjs/operators'), require('@angular/common/http')) :
+    typeof define === 'function' && define.amd ? define('@delon/auth', ['exports', '@angular/common', '@angular/core', '@angular/router', 'rxjs', 'rxjs/operators', '@angular/common/http'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.auth = {}), global.ng.common, global.ng.core, global.ng.router, global.rxjs, global.rxjs.operators, global.ng.common.http));
+}(this, function (exports, common, core, router, rxjs, operators, http) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -24,39 +24,37 @@
     and limitations under the License.
     ***************************************************************************** */
     /* global Reflect, Promise */
-    var extendStatics = function (d, b) {
+
+    var extendStatics = function(d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b)
-                if (b.hasOwnProperty(p))
-                    d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
+
     function __extends(d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     }
-    var __assign = function () {
+
+    var __assign = function() {
         __assign = Object.assign || function __assign(t) {
             for (var s, i = 1, n = arguments.length; i < n; i++) {
                 s = arguments[i];
-                for (var p in s)
-                    if (Object.prototype.hasOwnProperty.call(s, p))
-                        t[p] = s[p];
+                for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
             }
             return t;
         };
         return __assign.apply(this, arguments);
     };
+
     function __values(o) {
         var m = typeof Symbol === "function" && o[Symbol.iterator], i = 0;
-        if (m)
-            return m.call(o);
+        if (m) return m.call(o);
         return {
             next: function () {
-                if (o && i >= o.length)
-                    o = void 0;
+                if (o && i >= o.length) o = void 0;
                 return { value: o && o[i++], done: !o };
             }
         };
@@ -115,9 +113,9 @@
             this.executeOtherInterceptors = true;
         }
         DelonAuthConfig.decorators = [
-            { type: i0.Injectable, args: [{ providedIn: 'root' },] }
+            { type: core.Injectable, args: [{ providedIn: 'root' },] }
         ];
-        /** @nocollapse */ DelonAuthConfig.ngInjectableDef = i0.defineInjectable({ factory: function DelonAuthConfig_Factory() { return new DelonAuthConfig(); }, token: DelonAuthConfig, providedIn: "root" });
+        /** @nocollapse */ DelonAuthConfig.ngInjectableDef = core.defineInjectable({ factory: function DelonAuthConfig_Factory() { return new DelonAuthConfig(); }, token: DelonAuthConfig, providedIn: "root" });
         return DelonAuthConfig;
     }());
 
@@ -142,9 +140,9 @@
          * @param {?} key
          * @return {?}
          */
-            function (key) {
-                return JSON.parse(localStorage.getItem(key) || '{}') || {};
-            };
+        function (key) {
+            return JSON.parse(localStorage.getItem(key) || '{}') || {};
+        };
         /**
          * @param {?} key
          * @param {?} value
@@ -155,10 +153,10 @@
          * @param {?} value
          * @return {?}
          */
-            function (key, value) {
-                localStorage.setItem(key, JSON.stringify(value));
-                return true;
-            };
+        function (key, value) {
+            localStorage.setItem(key, JSON.stringify(value));
+            return true;
+        };
         /**
          * @param {?} key
          * @return {?}
@@ -167,9 +165,9 @@
          * @param {?} key
          * @return {?}
          */
-            function (key) {
-                localStorage.removeItem(key);
-            };
+        function (key) {
+            localStorage.removeItem(key);
+        };
         return LocalStorageStore;
     }());
 
@@ -178,7 +176,7 @@
      * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
-    var DA_STORE_TOKEN = new i0.InjectionToken('AUTH_STORE_TOKEN', {
+    var DA_STORE_TOKEN = new core.InjectionToken('AUTH_STORE_TOKEN', {
         providedIn: 'root',
         factory: DA_STORE_TOKEN_LOCAL_FACTORY,
     });
@@ -191,7 +189,7 @@
      * @return {?}
      */
     function DA_SERVICE_TOKEN_FACTORY() {
-        return new TokenService(i0.inject(DelonAuthConfig), i0.inject(DA_STORE_TOKEN));
+        return new TokenService(core.inject(DelonAuthConfig), core.inject(DA_STORE_TOKEN));
     }
     var TokenService = /** @class */ (function () {
         function TokenService(options, store) {
@@ -203,7 +201,8 @@
         Object.defineProperty(TokenService.prototype, "login_url", {
             get: /**
              * @return {?}
-             */ function () {
+             */
+            function () {
                 return this.options.login_url;
             },
             enumerable: true,
@@ -212,7 +211,8 @@
         Object.defineProperty(TokenService.prototype, "referrer", {
             get: /**
              * @return {?}
-             */ function () {
+             */
+            function () {
                 return this._referrer;
             },
             enumerable: true,
@@ -226,10 +226,10 @@
          * @param {?} data
          * @return {?}
          */
-            function (data) {
-                this.change$.next(data);
-                return this.store.set(this.options.store_key, data);
-            };
+        function (data) {
+            this.change$.next(data);
+            return this.store.set(this.options.store_key, data);
+        };
         /**
          * @template T
          * @param {?=} type
@@ -240,37 +240,35 @@
          * @param {?=} type
          * @return {?}
          */
-            function (type) {
-                /** @type {?} */
-                var data = this.store.get(this.options.store_key);
-                return type ? (( /** @type {?} */(Object.assign(new type(), data)))) : (( /** @type {?} */(data)));
-            };
+        function (type) {
+            /** @type {?} */
+            var data = this.store.get(this.options.store_key);
+            return type ? ((/** @type {?} */ (Object.assign(new type(), data)))) : ((/** @type {?} */ (data)));
+        };
         /**
          * @return {?}
          */
         TokenService.prototype.clear = /**
          * @return {?}
          */
-            function () {
-                this.change$.next(null);
-                this.store.remove(this.options.store_key);
-            };
+        function () {
+            this.change$.next(null);
+            this.store.remove(this.options.store_key);
+        };
         /**
          * @return {?}
          */
         TokenService.prototype.change = /**
          * @return {?}
          */
-            function () {
-                return this.change$.pipe(operators.share());
-            };
-        /** @nocollapse */
-        TokenService.ctorParameters = function () {
-            return [
-                { type: DelonAuthConfig },
-                { type: undefined, decorators: [{ type: i0.Inject, args: [DA_STORE_TOKEN,] }] }
-            ];
+        function () {
+            return this.change$.pipe(operators.share());
         };
+        /** @nocollapse */
+        TokenService.ctorParameters = function () { return [
+            { type: DelonAuthConfig },
+            { type: undefined, decorators: [{ type: core.Inject, args: [DA_STORE_TOKEN,] }] }
+        ]; };
         return TokenService;
     }());
 
@@ -279,7 +277,7 @@
      * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
-    var DA_SERVICE_TOKEN = new i0.InjectionToken('DA_SERVICE_TOKEN', {
+    var DA_SERVICE_TOKEN = new core.InjectionToken('DA_SERVICE_TOKEN', {
         providedIn: 'root',
         factory: DA_SERVICE_TOKEN_FACTORY,
     });
@@ -293,10 +291,10 @@
     /** @type {?} */
     var HREFCALLBACK = '_delonAuthSocialCallbackByHref';
     var SocialService = /** @class */ (function () {
-        function SocialService(tokenService, doc, router$$1) {
+        function SocialService(tokenService, doc, router) {
             this.tokenService = tokenService;
             this.doc = doc;
-            this.router = router$$1;
+            this.router = router;
         }
         /**
          * 跳转至登录页，若为 `type=window` 时，返回值是 `Observable<ITokenModel>`
@@ -319,46 +317,44 @@
          * @param {?=} options
          * @return {?}
          */
-            function (url, callback, options) {
-                var _this = this;
-                if (callback === void 0) {
-                    callback = '/';
-                }
-                if (options === void 0) {
-                    options = {};
-                }
-                options = __assign({ type: 'window', windowFeatures: 'location=yes,height=570,width=520,scrollbars=yes,status=yes' }, options);
-                localStorage.setItem(OPENTYPE, options.type);
-                localStorage.setItem(HREFCALLBACK, callback);
-                if (options.type === 'href') {
-                    this.doc.location.href = url;
-                    return;
-                }
-                this._win = window.open(url, '_blank', options.windowFeatures);
-                this._winTime = setInterval(( /**
-                 * @return {?}
-                 */function () {
-                    if (_this._win && _this._win.closed) {
-                        _this.ngOnDestroy();
-                        /** @type {?} */
-                        var model = _this.tokenService.get();
-                        if (model && !model.token)
-                            model = null;
-                        // 触发变更通知
-                        if (model) {
-                            _this.tokenService.set(model);
-                        }
-                        _this.observer.next(model);
-                        _this.observer.complete();
+        function (url, callback, options) {
+            var _this = this;
+            if (callback === void 0) { callback = '/'; }
+            if (options === void 0) { options = {}; }
+            options = __assign({ type: 'window', windowFeatures: 'location=yes,height=570,width=520,scrollbars=yes,status=yes' }, options);
+            localStorage.setItem(OPENTYPE, options.type);
+            localStorage.setItem(HREFCALLBACK, callback);
+            if (options.type === 'href') {
+                this.doc.location.href = url;
+                return;
+            }
+            this._win = window.open(url, '_blank', options.windowFeatures);
+            this._winTime = setInterval((/**
+             * @return {?}
+             */
+            function () {
+                if (_this._win && _this._win.closed) {
+                    _this.ngOnDestroy();
+                    /** @type {?} */
+                    var model = _this.tokenService.get();
+                    if (model && !model.token)
+                        model = null;
+                    // 触发变更通知
+                    if (model) {
+                        _this.tokenService.set(model);
                     }
-                }), 100);
-                return rxjs.Observable.create(( /**
-                 * @param {?} observer
-                 * @return {?}
-                 */function (observer) {
-                    _this.observer = observer;
-                }));
-            };
+                    _this.observer.next(model);
+                    _this.observer.complete();
+                }
+            }), 100);
+            return rxjs.Observable.create((/**
+             * @param {?} observer
+             * @return {?}
+             */
+            function (observer) {
+                _this.observer = observer;
+            }));
+        };
         /**
          * 授权成功后的回调处理
          *
@@ -376,60 +372,58 @@
          * @param {?=} rawData 指定回调认证信息，为空时从根据当前URL解析
          * @return {?}
          */
-            function (rawData) {
-                // from uri
-                if (!rawData && this.router.url.indexOf('?') === -1) {
-                    throw new Error("url muse contain a ?");
-                }
-                // parse
+        function (rawData) {
+            // from uri
+            if (!rawData && this.router.url.indexOf('?') === -1) {
+                throw new Error("url muse contain a ?");
+            }
+            // parse
+            /** @type {?} */
+            var data = { token: "" };
+            if (typeof rawData === 'string') {
                 /** @type {?} */
-                var data = { token: "" };
-                if (typeof rawData === 'string') {
-                    /** @type {?} */
-                    var rightUrl = rawData.split('?')[1].split('#')[0];
-                    data = ( /** @type {?} */(this.router.parseUrl('./?' + rightUrl).queryParams));
-                }
-                else {
-                    data = rawData;
-                }
-                if (!data || !data.token)
-                    throw new Error("invalide token data");
-                this.tokenService.set(data);
-                /** @type {?} */
-                var url = localStorage.getItem(HREFCALLBACK) || '/';
-                localStorage.removeItem(HREFCALLBACK);
-                /** @type {?} */
-                var type = localStorage.getItem(OPENTYPE);
-                localStorage.removeItem(OPENTYPE);
-                if (type === 'window') {
-                    window.close();
-                }
-                else {
-                    this.router.navigateByUrl(url);
-                }
-                return data;
-            };
+                var rightUrl = rawData.split('?')[1].split('#')[0];
+                data = (/** @type {?} */ (this.router.parseUrl('./?' + rightUrl).queryParams));
+            }
+            else {
+                data = rawData;
+            }
+            if (!data || !data.token)
+                throw new Error("invalide token data");
+            this.tokenService.set(data);
+            /** @type {?} */
+            var url = localStorage.getItem(HREFCALLBACK) || '/';
+            localStorage.removeItem(HREFCALLBACK);
+            /** @type {?} */
+            var type = localStorage.getItem(OPENTYPE);
+            localStorage.removeItem(OPENTYPE);
+            if (type === 'window') {
+                window.close();
+            }
+            else {
+                this.router.navigateByUrl(url);
+            }
+            return data;
+        };
         /**
          * @return {?}
          */
         SocialService.prototype.ngOnDestroy = /**
          * @return {?}
          */
-            function () {
-                clearInterval(this._winTime);
-                this._winTime = null;
-            };
+        function () {
+            clearInterval(this._winTime);
+            this._winTime = null;
+        };
         SocialService.decorators = [
-            { type: i0.Injectable }
+            { type: core.Injectable }
         ];
         /** @nocollapse */
-        SocialService.ctorParameters = function () {
-            return [
-                { type: undefined, decorators: [{ type: i0.Inject, args: [DA_SERVICE_TOKEN,] }] },
-                { type: undefined, decorators: [{ type: i0.Inject, args: [common.DOCUMENT,] }] },
-                { type: router.Router }
-            ];
-        };
+        SocialService.ctorParameters = function () { return [
+            { type: undefined, decorators: [{ type: core.Inject, args: [DA_SERVICE_TOKEN,] }] },
+            { type: undefined, decorators: [{ type: core.Inject, args: [common.DOCUMENT,] }] },
+            { type: router.Router }
+        ]; };
         return SocialService;
     }());
 
@@ -449,9 +443,9 @@
          * @param {?} key
          * @return {?}
          */
-            function (key) {
-                return this.cache[key] || (( /** @type {?} */({})));
-            };
+        function (key) {
+            return this.cache[key] || ((/** @type {?} */ ({})));
+        };
         /**
          * @param {?} key
          * @param {?} value
@@ -462,10 +456,10 @@
          * @param {?} value
          * @return {?}
          */
-            function (key, value) {
-                this.cache[key] = value;
-                return true;
-            };
+        function (key, value) {
+            this.cache[key] = value;
+            return true;
+        };
         /**
          * @param {?} key
          * @return {?}
@@ -474,9 +468,9 @@
          * @param {?} key
          * @return {?}
          */
-            function (key) {
-                this.cache[key] = null;
-            };
+        function (key) {
+            this.cache[key] = null;
+        };
         return MemoryStore;
     }());
 
@@ -495,9 +489,9 @@
          * @param {?} key
          * @return {?}
          */
-            function (key) {
-                return JSON.parse(sessionStorage.getItem(key) || '{}') || {};
-            };
+        function (key) {
+            return JSON.parse(sessionStorage.getItem(key) || '{}') || {};
+        };
         /**
          * @param {?} key
          * @param {?} value
@@ -508,10 +502,10 @@
          * @param {?} value
          * @return {?}
          */
-            function (key, value) {
-                sessionStorage.setItem(key, JSON.stringify(value));
-                return true;
-            };
+        function (key, value) {
+            sessionStorage.setItem(key, JSON.stringify(value));
+            return true;
+        };
         /**
          * @param {?} key
          * @return {?}
@@ -520,9 +514,9 @@
          * @param {?} key
          * @return {?}
          */
-            function (key) {
-                sessionStorage.removeItem(key);
-            };
+        function (key) {
+            sessionStorage.removeItem(key);
+        };
         return SessionStorageStore;
     }());
 
@@ -552,11 +546,12 @@
      * @return {?}
      */
     function ToLogin(options, injector, url) {
-        (( /** @type {?} */(injector.get(DA_SERVICE_TOKEN)))).referrer.url = url;
+        ((/** @type {?} */ (injector.get(DA_SERVICE_TOKEN)))).referrer.url = url;
         if (options.token_invalid_redirect === true) {
-            setTimeout(( /**
+            setTimeout((/**
              * @return {?}
-             */function () {
+             */
+            function () {
                 if (/^https?:\/\//g.test(options.login_url)) {
                     injector.get(common.DOCUMENT).location.href = options.login_url;
                 }
@@ -584,9 +579,9 @@
          * @param {?} req
          * @return {?}
          */
-            function (req) {
-                return this.interceptor.intercept(req, this.next);
-            };
+        function (req) {
+            return this.interceptor.intercept(req, this.next);
+        };
         return HttpAuthInterceptorHandler;
     }());
     /**
@@ -606,85 +601,80 @@
          * @param {?} next
          * @return {?}
          */
-            function (req, next) {
-                var e_1, _a;
-                /** @type {?} */
-                var options = __assign({}, new DelonAuthConfig(), this.injector.get(DelonAuthConfig, null));
-                if (options.ignores) {
+        function (req, next) {
+            var e_1, _a;
+            /** @type {?} */
+            var options = __assign({}, new DelonAuthConfig(), this.injector.get(DelonAuthConfig, null));
+            if (options.ignores) {
+                try {
+                    for (var _b = __values((/** @type {?} */ (options.ignores))), _c = _b.next(); !_c.done; _c = _b.next()) {
+                        var item = _c.value;
+                        if (item.test(req.url))
+                            return next.handle(req);
+                    }
+                }
+                catch (e_1_1) { e_1 = { error: e_1_1 }; }
+                finally {
                     try {
-                        for (var _b = __values(( /** @type {?} */(options.ignores))), _c = _b.next(); !_c.done; _c = _b.next()) {
-                            var item = _c.value;
-                            if (item.test(req.url))
-                                return next.handle(req);
-                        }
+                        if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
                     }
-                    catch (e_1_1) {
-                        e_1 = { error: e_1_1 };
-                    }
-                    finally {
-                        try {
-                            if (_c && !_c.done && (_a = _b.return))
-                                _a.call(_b);
-                        }
-                        finally {
-                            if (e_1)
-                                throw e_1.error;
-                        }
-                    }
+                    finally { if (e_1) throw e_1.error; }
                 }
-                if (options.allow_anonymous_key &&
-                    (req.params.has(options.allow_anonymous_key) ||
-                        new RegExp("[?|&]" + options.allow_anonymous_key + "=[^&]+").test(req.urlWithParams))) {
-                    return next.handle(req);
-                }
-                if (this.isAuth(options)) {
-                    req = this.setReq(req, options);
-                }
-                else {
-                    ToLogin(options, this.injector, req.urlWithParams);
-                    // Interrupt Http request, so need to generate a new Observable
-                    /** @type {?} */
-                    var err$_1 = new rxjs.Observable(( /**
-                     * @param {?} observer
-                     * @return {?}
-                     */function (observer) {
-                        /** @type {?} */
-                        var res = new http.HttpErrorResponse({
-                            url: req.url,
-                            headers: req.headers,
-                            status: 401,
-                            statusText: "From Auth Intercept --> https://ng-alain.com/docs/auth",
-                        });
-                        observer.error(res);
-                    }));
-                    if (options.executeOtherInterceptors) {
-                        /** @type {?} */
-                        var interceptors = this.injector.get(http.HTTP_INTERCEPTORS, []);
-                        /** @type {?} */
-                        var lastInterceptors = interceptors.slice(interceptors.indexOf(this) + 1);
-                        if (lastInterceptors.length > 0) {
-                            /** @type {?} */
-                            var chain = lastInterceptors.reduceRight(( /**
-                             * @param {?} _next
-                             * @param {?} _interceptor
-                             * @return {?}
-                             */function (_next, _interceptor) { return new HttpAuthInterceptorHandler(_next, _interceptor); }), { handle: ( /**
-                                     * @param {?} _
-                                     * @return {?}
-                                     */function (_) { return err$_1; }) });
-                            return chain.handle(req);
-                        }
-                    }
-                    return err$_1;
-                }
+            }
+            if (options.allow_anonymous_key &&
+                (req.params.has(options.allow_anonymous_key) ||
+                    new RegExp("[?|&]" + options.allow_anonymous_key + "=[^&]+").test(req.urlWithParams))) {
                 return next.handle(req);
-            };
-        /** @nocollapse */
-        BaseInterceptor.ctorParameters = function () {
-            return [
-                { type: i0.Injector, decorators: [{ type: i0.Optional }] }
-            ];
+            }
+            if (this.isAuth(options)) {
+                req = this.setReq(req, options);
+            }
+            else {
+                ToLogin(options, this.injector, req.urlWithParams);
+                // Interrupt Http request, so need to generate a new Observable
+                /** @type {?} */
+                var err$_1 = new rxjs.Observable((/**
+                 * @param {?} observer
+                 * @return {?}
+                 */
+                function (observer) {
+                    /** @type {?} */
+                    var res = new http.HttpErrorResponse({
+                        url: req.url,
+                        headers: req.headers,
+                        status: 401,
+                        statusText: "From Auth Intercept --> https://ng-alain.com/docs/auth",
+                    });
+                    observer.error(res);
+                }));
+                if (options.executeOtherInterceptors) {
+                    /** @type {?} */
+                    var interceptors = this.injector.get(http.HTTP_INTERCEPTORS, []);
+                    /** @type {?} */
+                    var lastInterceptors = interceptors.slice(interceptors.indexOf(this) + 1);
+                    if (lastInterceptors.length > 0) {
+                        /** @type {?} */
+                        var chain = lastInterceptors.reduceRight((/**
+                         * @param {?} _next
+                         * @param {?} _interceptor
+                         * @return {?}
+                         */
+                        function (_next, _interceptor) { return new HttpAuthInterceptorHandler(_next, _interceptor); }), { handle: (/**
+                             * @param {?} _
+                             * @return {?}
+                             */
+                            function (_) { return err$_1; }) });
+                        return chain.handle(req);
+                    }
+                }
+                return err$_1;
+            }
+            return next.handle(req);
         };
+        /** @nocollapse */
+        BaseInterceptor.ctorParameters = function () { return [
+            { type: core.Injector, decorators: [{ type: core.Optional }] }
+        ]; };
         return BaseInterceptor;
     }());
 
@@ -753,10 +743,11 @@
      */
     function b64DecodeUnicode(str) {
         return decodeURIComponent(Array.prototype.map
-            .call(b64decode(str), ( /**
-     * @param {?} c
-     * @return {?}
-     */function (c) {
+            .call(b64decode(str), (/**
+         * @param {?} c
+         * @return {?}
+         */
+        function (c) {
             return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
         }))
             .join(''));
@@ -776,7 +767,8 @@
             get: /**
              * 获取载荷信息
              * @return {?}
-             */ function () {
+             */
+            function () {
                 /** @type {?} */
                 var parts = (this.token || '').split('.');
                 if (parts.length !== 3)
@@ -805,19 +797,17 @@
          * @param {?=} offsetSeconds 偏移量
          * @return {?}
          */
-            function (offsetSeconds) {
-                if (offsetSeconds === void 0) {
-                    offsetSeconds = 0;
-                }
-                /** @type {?} */
-                var decoded = this.payload;
-                if (!decoded.hasOwnProperty('exp'))
-                    return null;
-                /** @type {?} */
-                var date = new Date(0);
-                date.setUTCSeconds(decoded.exp);
-                return !(date.valueOf() > new Date().valueOf() + offsetSeconds * 1000);
-            };
+        function (offsetSeconds) {
+            if (offsetSeconds === void 0) { offsetSeconds = 0; }
+            /** @type {?} */
+            var decoded = this.payload;
+            if (!decoded.hasOwnProperty('exp'))
+                return null;
+            /** @type {?} */
+            var date = new Date(0);
+            date.setUTCSeconds(decoded.exp);
+            return !(date.valueOf() > new Date().valueOf() + offsetSeconds * 1000);
+        };
         return JWTTokenModel;
     }());
 
@@ -838,10 +828,10 @@
          * @param {?} options
          * @return {?}
          */
-            function (options) {
-                this.model = this.injector.get(DA_SERVICE_TOKEN).get(JWTTokenModel);
-                return CheckJwt(( /** @type {?} */(this.model)), options.token_exp_offset);
-            };
+        function (options) {
+            this.model = this.injector.get(DA_SERVICE_TOKEN).get(JWTTokenModel);
+            return CheckJwt((/** @type {?} */ (this.model)), options.token_exp_offset);
+        };
         /**
          * @param {?} req
          * @param {?} options
@@ -852,15 +842,15 @@
          * @param {?} options
          * @return {?}
          */
-            function (req, options) {
-                return req.clone({
-                    setHeaders: {
-                        Authorization: "Bearer " + this.model.token,
-                    },
-                });
-            };
+        function (req, options) {
+            return req.clone({
+                setHeaders: {
+                    Authorization: "Bearer " + this.model.token,
+                },
+            });
+        };
         JWTInterceptor.decorators = [
-            { type: i0.Injectable }
+            { type: core.Injectable }
         ];
         return JWTInterceptor;
     }(BaseInterceptor));
@@ -883,14 +873,14 @@
          * @private
          * @return {?}
          */
-            function () {
-                /** @type {?} */
-                var res = CheckJwt(this.srv.get(JWTTokenModel), this.cog.token_exp_offset);
-                if (!res) {
-                    ToLogin(this.cog, this.injector, this.url);
-                }
-                return res;
-            };
+        function () {
+            /** @type {?} */
+            var res = CheckJwt(this.srv.get(JWTTokenModel), this.cog.token_exp_offset);
+            if (!res) {
+                ToLogin(this.cog, this.injector, this.url);
+            }
+            return res;
+        };
         // lazy loading
         // lazy loading
         /**
@@ -898,17 +888,17 @@
          * @param {?} segments
          * @return {?}
          */
-        JWTGuard.prototype.canLoad =
-            // lazy loading
-            /**
-             * @param {?} route
-             * @param {?} segments
-             * @return {?}
-             */
-            function (route, segments) {
-                this.url = route.path;
-                return this.process();
-            };
+        JWTGuard.prototype.canLoad = 
+        // lazy loading
+        /**
+         * @param {?} route
+         * @param {?} segments
+         * @return {?}
+         */
+        function (route, segments) {
+            this.url = route.path;
+            return this.process();
+        };
         // all children route
         // all children route
         /**
@@ -916,17 +906,17 @@
          * @param {?} state
          * @return {?}
          */
-        JWTGuard.prototype.canActivateChild =
-            // all children route
-            /**
-             * @param {?} childRoute
-             * @param {?} state
-             * @return {?}
-             */
-            function (childRoute, state) {
-                this.url = state.url;
-                return this.process();
-            };
+        JWTGuard.prototype.canActivateChild = 
+        // all children route
+        /**
+         * @param {?} childRoute
+         * @param {?} state
+         * @return {?}
+         */
+        function (childRoute, state) {
+            this.url = state.url;
+            return this.process();
+        };
         // route
         // route
         /**
@@ -934,29 +924,27 @@
          * @param {?} state
          * @return {?}
          */
-        JWTGuard.prototype.canActivate =
-            // route
-            /**
-             * @param {?} route
-             * @param {?} state
-             * @return {?}
-             */
-            function (route, state) {
-                this.url = state.url;
-                return this.process();
-            };
+        JWTGuard.prototype.canActivate = 
+        // route
+        /**
+         * @param {?} route
+         * @param {?} state
+         * @return {?}
+         */
+        function (route, state) {
+            this.url = state.url;
+            return this.process();
+        };
         JWTGuard.decorators = [
-            { type: i0.Injectable, args: [{ providedIn: 'root' },] }
+            { type: core.Injectable, args: [{ providedIn: 'root' },] }
         ];
         /** @nocollapse */
-        JWTGuard.ctorParameters = function () {
-            return [
-                { type: undefined, decorators: [{ type: i0.Inject, args: [DA_SERVICE_TOKEN,] }] },
-                { type: i0.Injector },
-                { type: DelonAuthConfig }
-            ];
-        };
-        /** @nocollapse */ JWTGuard.ngInjectableDef = i0.defineInjectable({ factory: function JWTGuard_Factory() { return new JWTGuard(i0.inject(DA_SERVICE_TOKEN), i0.inject(i0.INJECTOR), i0.inject(DelonAuthConfig)); }, token: JWTGuard, providedIn: "root" });
+        JWTGuard.ctorParameters = function () { return [
+            { type: undefined, decorators: [{ type: core.Inject, args: [DA_SERVICE_TOKEN,] }] },
+            { type: core.Injector },
+            { type: DelonAuthConfig }
+        ]; };
+        /** @nocollapse */ JWTGuard.ngInjectableDef = core.defineInjectable({ factory: function JWTGuard_Factory() { return new JWTGuard(core.inject(DA_SERVICE_TOKEN), core.inject(core.INJECTOR), core.inject(DelonAuthConfig)); }, token: JWTGuard, providedIn: "root" });
         return JWTGuard;
     }());
 
@@ -987,10 +975,10 @@
          * @param {?} options
          * @return {?}
          */
-            function (options) {
-                this.model = ( /** @type {?} */(this.injector.get(DA_SERVICE_TOKEN).get()));
-                return CheckSimple(( /** @type {?} */(this.model)));
-            };
+        function (options) {
+            this.model = (/** @type {?} */ (this.injector.get(DA_SERVICE_TOKEN).get()));
+            return CheckSimple((/** @type {?} */ (this.model)));
+        };
         /**
          * @param {?} req
          * @param {?} options
@@ -1001,41 +989,42 @@
          * @param {?} options
          * @return {?}
          */
-            function (req, options) {
-                var _this = this;
-                /** @type {?} */
-                var token = options.token_send_template.replace(/\$\{([\w]+)\}/g, ( /**
-                 * @param {?} _
-                 * @param {?} g
-                 * @return {?}
-                 */function (_, g) { return _this.model[g]; }));
-                switch (options.token_send_place) {
-                    case 'header':
-                        /** @type {?} */
-                        var obj = {};
-                        obj[options.token_send_key] = token;
-                        req = req.clone({
-                            setHeaders: obj,
-                        });
-                        break;
-                    case 'body':
-                        /** @type {?} */
-                        var body = req.body || {};
-                        body[options.token_send_key] = token;
-                        req = req.clone({
-                            body: body,
-                        });
-                        break;
-                    case 'url':
-                        req = req.clone({
-                            params: req.params.append(options.token_send_key, token),
-                        });
-                        break;
-                }
-                return req;
-            };
+        function (req, options) {
+            var _this = this;
+            /** @type {?} */
+            var token = options.token_send_template.replace(/\$\{([\w]+)\}/g, (/**
+             * @param {?} _
+             * @param {?} g
+             * @return {?}
+             */
+            function (_, g) { return _this.model[g]; }));
+            switch (options.token_send_place) {
+                case 'header':
+                    /** @type {?} */
+                    var obj = {};
+                    obj[options.token_send_key] = token;
+                    req = req.clone({
+                        setHeaders: obj,
+                    });
+                    break;
+                case 'body':
+                    /** @type {?} */
+                    var body = req.body || {};
+                    body[options.token_send_key] = token;
+                    req = req.clone({
+                        body: body,
+                    });
+                    break;
+                case 'url':
+                    req = req.clone({
+                        params: req.params.append(options.token_send_key, token),
+                    });
+                    break;
+            }
+            return req;
+        };
         SimpleInterceptor.decorators = [
-            { type: i0.Injectable }
+            { type: core.Injectable }
         ];
         return SimpleInterceptor;
     }(BaseInterceptor));
@@ -1058,14 +1047,14 @@
          * @private
          * @return {?}
          */
-            function () {
-                /** @type {?} */
-                var res = CheckSimple(this.srv.get());
-                if (!res) {
-                    ToLogin(this.cog, this.injector, this.url);
-                }
-                return res;
-            };
+        function () {
+            /** @type {?} */
+            var res = CheckSimple(this.srv.get());
+            if (!res) {
+                ToLogin(this.cog, this.injector, this.url);
+            }
+            return res;
+        };
         // lazy loading
         // lazy loading
         /**
@@ -1073,17 +1062,17 @@
          * @param {?} segments
          * @return {?}
          */
-        SimpleGuard.prototype.canLoad =
-            // lazy loading
-            /**
-             * @param {?} route
-             * @param {?} segments
-             * @return {?}
-             */
-            function (route, segments) {
-                this.url = route.path;
-                return this.process();
-            };
+        SimpleGuard.prototype.canLoad = 
+        // lazy loading
+        /**
+         * @param {?} route
+         * @param {?} segments
+         * @return {?}
+         */
+        function (route, segments) {
+            this.url = route.path;
+            return this.process();
+        };
         // all children route
         // all children route
         /**
@@ -1091,17 +1080,17 @@
          * @param {?} state
          * @return {?}
          */
-        SimpleGuard.prototype.canActivateChild =
-            // all children route
-            /**
-             * @param {?} childRoute
-             * @param {?} state
-             * @return {?}
-             */
-            function (childRoute, state) {
-                this.url = state.url;
-                return this.process();
-            };
+        SimpleGuard.prototype.canActivateChild = 
+        // all children route
+        /**
+         * @param {?} childRoute
+         * @param {?} state
+         * @return {?}
+         */
+        function (childRoute, state) {
+            this.url = state.url;
+            return this.process();
+        };
         // route
         // route
         /**
@@ -1109,29 +1098,27 @@
          * @param {?} state
          * @return {?}
          */
-        SimpleGuard.prototype.canActivate =
-            // route
-            /**
-             * @param {?} route
-             * @param {?} state
-             * @return {?}
-             */
-            function (route, state) {
-                this.url = state.url;
-                return this.process();
-            };
+        SimpleGuard.prototype.canActivate = 
+        // route
+        /**
+         * @param {?} route
+         * @param {?} state
+         * @return {?}
+         */
+        function (route, state) {
+            this.url = state.url;
+            return this.process();
+        };
         SimpleGuard.decorators = [
-            { type: i0.Injectable, args: [{ providedIn: 'root' },] }
+            { type: core.Injectable, args: [{ providedIn: 'root' },] }
         ];
         /** @nocollapse */
-        SimpleGuard.ctorParameters = function () {
-            return [
-                { type: undefined, decorators: [{ type: i0.Inject, args: [DA_SERVICE_TOKEN,] }] },
-                { type: i0.Injector },
-                { type: DelonAuthConfig }
-            ];
-        };
-        /** @nocollapse */ SimpleGuard.ngInjectableDef = i0.defineInjectable({ factory: function SimpleGuard_Factory() { return new SimpleGuard(i0.inject(DA_SERVICE_TOKEN), i0.inject(i0.INJECTOR), i0.inject(DelonAuthConfig)); }, token: SimpleGuard, providedIn: "root" });
+        SimpleGuard.ctorParameters = function () { return [
+            { type: undefined, decorators: [{ type: core.Inject, args: [DA_SERVICE_TOKEN,] }] },
+            { type: core.Injector },
+            { type: DelonAuthConfig }
+        ]; };
+        /** @nocollapse */ SimpleGuard.ngInjectableDef = core.defineInjectable({ factory: function SimpleGuard_Factory() { return new SimpleGuard(core.inject(DA_SERVICE_TOKEN), core.inject(core.INJECTOR), core.inject(DelonAuthConfig)); }, token: SimpleGuard, providedIn: "root" });
         return SimpleGuard;
     }());
 
@@ -1143,43 +1130,32 @@
         function DelonAuthModule() {
         }
         DelonAuthModule.decorators = [
-            { type: i0.NgModule, args: [{},] }
+            { type: core.NgModule, args: [{},] }
         ];
         return DelonAuthModule;
     }());
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-
-    exports.SocialService = SocialService;
-    exports.DA_STORE_TOKEN = DA_STORE_TOKEN;
-    exports.DA_STORE_TOKEN_LOCAL_FACTORY = DA_STORE_TOKEN_LOCAL_FACTORY;
-    exports.LocalStorageStore = LocalStorageStore;
-    exports.MemoryStore = MemoryStore;
-    exports.SessionStorageStore = SessionStorageStore;
     exports.BaseInterceptor = BaseInterceptor;
     exports.DA_SERVICE_TOKEN = DA_SERVICE_TOKEN;
     exports.DA_SERVICE_TOKEN_FACTORY = DA_SERVICE_TOKEN_FACTORY;
-    exports.TokenService = TokenService;
-    exports.urlBase64Decode = urlBase64Decode;
-    exports.JWTTokenModel = JWTTokenModel;
-    exports.JWTInterceptor = JWTInterceptor;
-    exports.JWTGuard = JWTGuard;
-    exports.SimpleTokenModel = SimpleTokenModel;
-    exports.SimpleInterceptor = SimpleInterceptor;
-    exports.SimpleGuard = SimpleGuard;
+    exports.DA_STORE_TOKEN = DA_STORE_TOKEN;
+    exports.DA_STORE_TOKEN_LOCAL_FACTORY = DA_STORE_TOKEN_LOCAL_FACTORY;
     exports.DelonAuthConfig = DelonAuthConfig;
     exports.DelonAuthModule = DelonAuthModule;
+    exports.JWTGuard = JWTGuard;
+    exports.JWTInterceptor = JWTInterceptor;
+    exports.JWTTokenModel = JWTTokenModel;
+    exports.LocalStorageStore = LocalStorageStore;
+    exports.MemoryStore = MemoryStore;
+    exports.SessionStorageStore = SessionStorageStore;
+    exports.SimpleGuard = SimpleGuard;
+    exports.SimpleInterceptor = SimpleInterceptor;
+    exports.SimpleTokenModel = SimpleTokenModel;
+    exports.SocialService = SocialService;
+    exports.TokenService = TokenService;
+    exports.urlBase64Decode = urlBase64Decode;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
-})));
-
+}));
 //# sourceMappingURL=auth.umd.js.map

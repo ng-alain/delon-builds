@@ -1,9 +1,9 @@
-import { Router } from '@angular/router';
-import { BehaviorSubject, of, Observable } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
 import { __spread, __values } from 'tslib';
+import { defineInjectable, Injectable, inject, Directive, ElementRef, Renderer2, Input, NgModule } from '@angular/core';
+import { BehaviorSubject, Observable, of } from 'rxjs';
+import { Router } from '@angular/router';
+import { map, tap } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
-import { Injectable, Directive, ElementRef, Input, Renderer2, defineInjectable, inject, NgModule } from '@angular/core';
 
 /**
  * @fileoverview added by tsickle
@@ -649,6 +649,5 @@ var DelonACLModule = /** @class */ (function () {
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { ACLService, ACLDirective, DelonACLConfig, ACLGuard, DelonACLModule };
-
+export { ACLDirective, ACLGuard, ACLService, DelonACLConfig, DelonACLModule };
 //# sourceMappingURL=acl.js.map

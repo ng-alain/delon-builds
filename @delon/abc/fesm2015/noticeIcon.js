@@ -1,8 +1,8 @@
+import { EventEmitter, Component, Input, Output, ChangeDetectionStrategy, ChangeDetectorRef, NgModule } from '@angular/core';
 import { __decorate, __metadata } from 'tslib';
-import { InputBoolean, InputNumber } from '@delon/util';
-import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy, ChangeDetectorRef, NgModule } from '@angular/core';
 import { DelonLocaleService, DelonLocaleModule } from '@delon/theme';
+import { InputNumber, InputBoolean } from '@delon/util';
+import { CommonModule } from '@angular/common';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 
 /**
@@ -178,6 +178,5 @@ NoticeIconModule.decorators = [
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { NoticeIconTabComponent, NoticeIconComponent, NoticeIconModule };
-
+export { NoticeIconComponent, NoticeIconModule, NoticeIconTabComponent };
 //# sourceMappingURL=noticeIcon.js.map

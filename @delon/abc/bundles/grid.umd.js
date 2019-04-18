@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@delon/theme'), require('@angular/common'), require('@angular/core'), require('@delon/util')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/grid', ['exports', '@delon/theme', '@angular/common', '@angular/core', '@delon/util'], factory) :
-    (factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.grid = {}),global.delon.theme,global.ng.common,global.ng.core,global.delon.util));
-}(this, (function (exports,theme,common,i0,util) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util'), require('@delon/theme'), require('@angular/common')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/grid', ['exports', '@angular/core', '@delon/util', '@delon/theme', '@angular/common'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.grid = {}), global.ng.core, global.delon.util, global.delon.theme, global.ng.common));
+}(this, function (exports, core, util, theme, common) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -23,56 +23,46 @@
     See the Apache Version 2.0 License for specific language governing permissions
     and limitations under the License.
     ***************************************************************************** */
-    var __assign = function () {
+
+    var __assign = function() {
         __assign = Object.assign || function __assign(t) {
             for (var s, i = 1, n = arguments.length; i < n; i++) {
                 s = arguments[i];
-                for (var p in s)
-                    if (Object.prototype.hasOwnProperty.call(s, p))
-                        t[p] = s[p];
+                for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
             }
             return t;
         };
         return __assign.apply(this, arguments);
     };
+
     function __decorate(decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-        if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
-            r = Reflect.decorate(decorators, target, key, desc);
-        else
-            for (var i = decorators.length - 1; i >= 0; i--)
-                if (d = decorators[i])
-                    r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+        if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+        else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
         return c > 3 && r && Object.defineProperty(target, key, r), r;
     }
+
     function __metadata(metadataKey, metadataValue) {
-        if (typeof Reflect === "object" && typeof Reflect.metadata === "function")
-            return Reflect.metadata(metadataKey, metadataValue);
+        if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(metadataKey, metadataValue);
     }
+
     function __read(o, n) {
         var m = typeof Symbol === "function" && o[Symbol.iterator];
-        if (!m)
-            return o;
+        if (!m) return o;
         var i = m.call(o), r, ar = [], e;
         try {
-            while ((n === void 0 || n-- > 0) && !(r = i.next()).done)
-                ar.push(r.value);
+            while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
         }
-        catch (error) {
-            e = { error: error };
-        }
+        catch (error) { e = { error: error }; }
         finally {
             try {
-                if (r && !r.done && (m = i["return"]))
-                    m.call(i);
+                if (r && !r.done && (m = i["return"])) m.call(i);
             }
-            finally {
-                if (e)
-                    throw e.error;
-            }
+            finally { if (e) throw e.error; }
         }
         return ar;
     }
+
     function __spread() {
         for (var ar = [], i = 0; i < arguments.length; i++)
             ar = ar.concat(__read(arguments[i]));
@@ -95,9 +85,9 @@
             this.col = 2;
         }
         SGConfig.decorators = [
-            { type: i0.Injectable, args: [{ providedIn: 'root' },] }
+            { type: core.Injectable, args: [{ providedIn: 'root' },] }
         ];
-        /** @nocollapse */ SGConfig.ngInjectableDef = i0.defineInjectable({ factory: function SGConfig_Factory() { return new SGConfig(); }, token: SGConfig, providedIn: "root" });
+        /** @nocollapse */ SGConfig.ngInjectableDef = core.defineInjectable({ factory: function SGConfig_Factory() { return new SGConfig(); }, token: SGConfig, providedIn: "root" });
         return SGConfig;
     }());
 
@@ -123,7 +113,7 @@
             configurable: true
         });
         SGContainerComponent.decorators = [
-            { type: i0.Component, args: [{
+            { type: core.Component, args: [{
                         selector: 'sg-container, [sg-container]',
                         template: "\n    <ng-content></ng-content>\n  ",
                         host: {
@@ -132,20 +122,18 @@
                             '[class.ant-row]': 'true',
                             '[class.sg__wrap]': 'true',
                         },
-                        changeDetection: i0.ChangeDetectionStrategy.OnPush,
+                        changeDetection: core.ChangeDetectionStrategy.OnPush,
                         exportAs: 'sgContainer'
                     }] }
         ];
         /** @nocollapse */
-        SGContainerComponent.ctorParameters = function () {
-            return [
-                { type: SGConfig }
-            ];
-        };
+        SGContainerComponent.ctorParameters = function () { return [
+            { type: SGConfig }
+        ]; };
         SGContainerComponent.propDecorators = {
-            gutter: [{ type: i0.Input }],
-            colInCon: [{ type: i0.Input, args: ['sg-container',] }],
-            col: [{ type: i0.Input }]
+            gutter: [{ type: core.Input }],
+            colInCon: [{ type: core.Input, args: ['sg-container',] }],
+            col: [{ type: core.Input }]
         };
         __decorate([
             util.InputNumber(),
@@ -183,7 +171,8 @@
         Object.defineProperty(SGComponent.prototype, "paddingValue", {
             get: /**
              * @return {?}
-             */ function () {
+             */
+            function () {
                 return this.parent.gutter / 2;
             },
             enumerable: true,
@@ -201,62 +190,62 @@
          * @this {THIS}
          * @return {THIS}
          */
-            function () {
-                var _a = ( /** @type {?} */(this)), el = _a.el, ren = _a.ren, clsMap = _a.clsMap, col = _a.col, parent = _a.parent;
-                clsMap.forEach(( /**
-                 * @param {?} cls
-                 * @return {?}
-                 */function (cls) { return ren.removeClass(el, cls); }));
-                clsMap.length = 0;
-                clsMap.push.apply(clsMap, __spread(( /** @type {?} */(this)).rep.genCls(col != null ? col : parent.colInCon || parent.col), [prefixCls + "__item"]));
-                clsMap.forEach(( /**
-                 * @param {?} cls
-                 * @return {?}
-                 */function (cls) { return ren.addClass(el, cls); }));
-                return ( /** @type {?} */(this));
-            };
+        function () {
+            var _a = (/** @type {?} */ (this)), el = _a.el, ren = _a.ren, clsMap = _a.clsMap, col = _a.col, parent = _a.parent;
+            clsMap.forEach((/**
+             * @param {?} cls
+             * @return {?}
+             */
+            function (cls) { return ren.removeClass(el, cls); }));
+            clsMap.length = 0;
+            clsMap.push.apply(clsMap, __spread((/** @type {?} */ (this)).rep.genCls(col != null ? col : parent.colInCon || parent.col), [prefixCls + "__item"]));
+            clsMap.forEach((/**
+             * @param {?} cls
+             * @return {?}
+             */
+            function (cls) { return ren.addClass(el, cls); }));
+            return (/** @type {?} */ (this));
+        };
         /**
          * @return {?}
          */
         SGComponent.prototype.ngOnChanges = /**
          * @return {?}
          */
-            function () {
-                if (this.inited)
-                    this.setClass();
-            };
+        function () {
+            if (this.inited)
+                this.setClass();
+        };
         /**
          * @return {?}
          */
         SGComponent.prototype.ngAfterViewInit = /**
          * @return {?}
          */
-            function () {
-                this.setClass();
-                this.inited = true;
-            };
+        function () {
+            this.setClass();
+            this.inited = true;
+        };
         SGComponent.decorators = [
-            { type: i0.Component, args: [{
+            { type: core.Component, args: [{
                         selector: 'sg',
                         template: "\n    <ng-content></ng-content>\n  ",
                         host: {
                             '[style.padding-left.px]': 'paddingValue',
                             '[style.padding-right.px]': 'paddingValue',
                         },
-                        changeDetection: i0.ChangeDetectionStrategy.OnPush
+                        changeDetection: core.ChangeDetectionStrategy.OnPush
                     }] }
         ];
         /** @nocollapse */
-        SGComponent.ctorParameters = function () {
-            return [
-                { type: i0.ElementRef },
-                { type: i0.Renderer2 },
-                { type: SGContainerComponent, decorators: [{ type: i0.Optional }, { type: i0.Host }] },
-                { type: theme.ResponsiveService }
-            ];
-        };
+        SGComponent.ctorParameters = function () { return [
+            { type: core.ElementRef },
+            { type: core.Renderer2 },
+            { type: SGContainerComponent, decorators: [{ type: core.Optional }, { type: core.Host }] },
+            { type: theme.ResponsiveService }
+        ]; };
         SGComponent.propDecorators = {
-            col: [{ type: i0.Input }]
+            col: [{ type: core.Input }]
         };
         __decorate([
             util.InputNumber(null),
@@ -275,7 +264,7 @@
         function SGModule() {
         }
         SGModule.decorators = [
-            { type: i0.NgModule, args: [{
+            { type: core.NgModule, args: [{
                         imports: [common.CommonModule, util.DelonUtilModule],
                         declarations: __spread(COMPONENTS),
                         exports: __spread(COMPONENTS),
@@ -284,23 +273,12 @@
         return SGModule;
     }());
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-
-    exports.SGContainerComponent = SGContainerComponent;
     exports.SGComponent = SGComponent;
     exports.SGConfig = SGConfig;
+    exports.SGContainerComponent = SGContainerComponent;
     exports.SGModule = SGModule;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
-})));
-
+}));
 //# sourceMappingURL=grid.umd.js.map

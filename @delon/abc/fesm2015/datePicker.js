@@ -1,8 +1,8 @@
 import { __decorate, __metadata } from 'tslib';
+import { Injectable, defineInjectable, EventEmitter, Component, forwardRef, ViewChild, Input, Output, NgModule } from '@angular/core';
+import { NG_VALUE_ACCESSOR, FormsModule } from '@angular/forms';
 import { getTimeDistance, deepMergeKey, fixEndTimeOfRange, InputBoolean } from '@delon/util';
 import { CommonModule } from '@angular/common';
-import { Injectable, NgModule, defineInjectable, EventEmitter, Component, forwardRef, ViewChild, Input, Output } from '@angular/core';
-import { NG_VALUE_ACCESSOR, FormsModule } from '@angular/forms';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 
 /**
@@ -271,6 +271,5 @@ DatePickerModule.decorators = [
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { RangePickerComponent, DatePickerModule, DateRangePickerConfig, DatePickerConfig };
-
+export { DatePickerConfig, DatePickerModule, DateRangePickerConfig, RangePickerComponent };
 //# sourceMappingURL=datePicker.js.map

@@ -1,7 +1,7 @@
-import { __spread, __assign, __decorate, __metadata } from 'tslib';
+import { __assign, __spread, __decorate, __metadata } from 'tslib';
+import { Component, ChangeDetectionStrategy, NgZone, ViewChild, Input, NgModule } from '@angular/core';
+import { InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input, NgZone, ViewChild, NgModule } from '@angular/core';
-import { InputBoolean, InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
@@ -317,6 +317,5 @@ var G2TimelineModule = /** @class */ (function () {
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { G2TimelineData, G2TimelineComponent, G2TimelineModule };
-
+export { G2TimelineComponent, G2TimelineData, G2TimelineModule };
 //# sourceMappingURL=timeline.js.map

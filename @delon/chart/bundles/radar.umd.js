@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common'), require('@angular/core'), require('@delon/util'), require('ng-zorro-antd')) :
-    typeof define === 'function' && define.amd ? define('@delon/chart/radar', ['exports', '@angular/common', '@angular/core', '@delon/util', 'ng-zorro-antd'], factory) :
-    (factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.radar = {}),global.ng.common,global.ng.core,global.delon.util,global['ng-zorro-antd']));
-}(this, (function (exports,common,core,util,ngZorroAntd) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util'), require('@angular/common'), require('ng-zorro-antd')) :
+    typeof define === 'function' && define.amd ? define('@delon/chart/radar', ['exports', '@angular/core', '@delon/util', '@angular/common', 'ng-zorro-antd'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.radar = {}), global.ng.core, global.delon.util, global.ng.common, global['ng-zorro-antd']));
+}(this, function (exports, core, util, common, ngZorroAntd) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -23,44 +23,35 @@
     See the Apache Version 2.0 License for specific language governing permissions
     and limitations under the License.
     ***************************************************************************** */
+
     function __decorate(decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-        if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
-            r = Reflect.decorate(decorators, target, key, desc);
-        else
-            for (var i = decorators.length - 1; i >= 0; i--)
-                if (d = decorators[i])
-                    r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+        if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+        else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
         return c > 3 && r && Object.defineProperty(target, key, r), r;
     }
+
     function __metadata(metadataKey, metadataValue) {
-        if (typeof Reflect === "object" && typeof Reflect.metadata === "function")
-            return Reflect.metadata(metadataKey, metadataValue);
+        if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(metadataKey, metadataValue);
     }
+
     function __read(o, n) {
         var m = typeof Symbol === "function" && o[Symbol.iterator];
-        if (!m)
-            return o;
+        if (!m) return o;
         var i = m.call(o), r, ar = [], e;
         try {
-            while ((n === void 0 || n-- > 0) && !(r = i.next()).done)
-                ar.push(r.value);
+            while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
         }
-        catch (error) {
-            e = { error: error };
-        }
+        catch (error) { e = { error: error }; }
         finally {
             try {
-                if (r && !r.done && (m = i["return"]))
-                    m.call(i);
+                if (r && !r.done && (m = i["return"])) m.call(i);
             }
-            finally {
-                if (e)
-                    throw e.error;
-            }
+            finally { if (e) throw e.error; }
         }
         return ar;
     }
+
     function __spread() {
         for (var ar = [], i = 0; i < arguments.length; i++)
             ar = ar.concat(__read(arguments[i]));
@@ -103,9 +94,9 @@
          * @private
          * @return {?}
          */
-            function () {
-                return this.height - (this.hasLegend ? 80 : 22);
-            };
+        function () {
+            return this.height - (this.hasLegend ? 80 : 22);
+        };
         /**
          * @private
          * @return {?}
@@ -114,69 +105,71 @@
          * @private
          * @return {?}
          */
-            function () {
-                var _this = this;
-                var _a = this, node = _a.node, padding = _a.padding;
+        function () {
+            var _this = this;
+            var _a = this, node = _a.node, padding = _a.padding;
+            /** @type {?} */
+            var chart = (this.chart = new G2.Chart({
+                container: node.nativeElement,
+                forceFit: true,
+                height: this.getHeight(),
+                padding: padding,
+            }));
+            chart.coord('polar');
+            chart.legend(false);
+            chart.axis('label', {
+                line: null,
+                labelOffset: 8,
+                labels: {
+                    label: {
+                        fill: 'rgba(0, 0, 0, .65)',
+                    },
+                },
+                grid: {
+                    line: {
+                        stroke: '#e9e9e9',
+                        lineWidth: 1,
+                        lineDash: [0, 0],
+                    },
+                },
+            });
+            chart.axis('value', {
+                grid: {
+                    type: 'polygon',
+                    line: {
+                        stroke: '#e9e9e9',
+                        lineWidth: 1,
+                        lineDash: [0, 0],
+                    },
+                },
+                labels: {
+                    label: {
+                        fill: 'rgba(0, 0, 0, .65)',
+                    },
+                },
+            });
+            chart.filter('name', (/**
+             * @param {?} name
+             * @return {?}
+             */
+            function (name) {
                 /** @type {?} */
-                var chart = (this.chart = new G2.Chart({
-                    container: node.nativeElement,
-                    forceFit: true,
-                    height: this.getHeight(),
-                    padding: padding,
-                }));
-                chart.coord('polar');
-                chart.legend(false);
-                chart.axis('label', {
-                    line: null,
-                    labelOffset: 8,
-                    labels: {
-                        label: {
-                            fill: 'rgba(0, 0, 0, .65)',
-                        },
-                    },
-                    grid: {
-                        line: {
-                            stroke: '#e9e9e9',
-                            lineWidth: 1,
-                            lineDash: [0, 0],
-                        },
-                    },
-                });
-                chart.axis('value', {
-                    grid: {
-                        type: 'polygon',
-                        line: {
-                            stroke: '#e9e9e9',
-                            lineWidth: 1,
-                            lineDash: [0, 0],
-                        },
-                    },
-                    labels: {
-                        label: {
-                            fill: 'rgba(0, 0, 0, .65)',
-                        },
-                    },
-                });
-                chart.filter('name', ( /**
-                 * @param {?} name
+                var legendItem = _this.legendData.find((/**
+                 * @param {?} w
                  * @return {?}
-                 */function (name) {
-                    /** @type {?} */
-                    var legendItem = _this.legendData.find(( /**
-                     * @param {?} w
-                     * @return {?}
-                     */function (w) { return w.name === name; }));
-                    return legendItem ? legendItem.checked !== false : true;
-                }));
-                chart.line().position('label*value');
-                chart
-                    .point()
-                    .position('label*value')
-                    .shape('circle')
-                    .size(3);
-                chart.render();
-                this.attachChart();
-            };
+                 */
+                function (w) { return w.name === name; }));
+                return legendItem ? legendItem.checked !== false : true;
+            }));
+            chart.line().position('label*value');
+            chart
+                .point()
+                .position('label*value')
+                .shape('circle')
+                .size(3);
+            chart.render();
+            this.attachChart();
+        };
         /**
          * @private
          * @return {?}
@@ -185,30 +178,32 @@
          * @private
          * @return {?}
          */
-            function () {
-                var _this = this;
-                var _a = this, chart = _a.chart, padding = _a.padding, data = _a.data, colors = _a.colors, tickCount = _a.tickCount;
-                if (!chart || !data || data.length <= 0)
-                    return;
-                chart.set('height', this.getHeight());
-                chart.set('padding', padding);
-                chart.source(data, {
-                    value: {
-                        min: 0,
-                        tickCount: tickCount,
-                    },
-                });
-                chart.get('geoms').forEach(( /**
-                 * @param {?} g
-                 * @return {?}
-                 */function (g) {
-                    g.color('name', colors);
-                }));
-                chart.repaint();
-                this.ngZone.run(( /**
-                 * @return {?}
-                 */function () { return _this.genLegend(); }));
-            };
+        function () {
+            var _this = this;
+            var _a = this, chart = _a.chart, padding = _a.padding, data = _a.data, colors = _a.colors, tickCount = _a.tickCount;
+            if (!chart || !data || data.length <= 0)
+                return;
+            chart.set('height', this.getHeight());
+            chart.set('padding', padding);
+            chart.source(data, {
+                value: {
+                    min: 0,
+                    tickCount: tickCount,
+                },
+            });
+            chart.get('geoms').forEach((/**
+             * @param {?} g
+             * @return {?}
+             */
+            function (g) {
+                g.color('name', colors);
+            }));
+            chart.repaint();
+            this.ngZone.run((/**
+             * @return {?}
+             */
+            function () { return _this.genLegend(); }));
+        };
         /**
          * @private
          * @return {?}
@@ -217,34 +212,36 @@
          * @private
          * @return {?}
          */
-            function () {
-                var _a = this, hasLegend = _a.hasLegend, cdr = _a.cdr, chart = _a.chart;
-                if (!hasLegend)
-                    return;
-                this.legendData = chart
-                    .get('geoms')[0]
-                    .get('dataArray')
-                    .map(( /**
+        function () {
+            var _a = this, hasLegend = _a.hasLegend, cdr = _a.cdr, chart = _a.chart;
+            if (!hasLegend)
+                return;
+            this.legendData = chart
+                .get('geoms')[0]
+                .get('dataArray')
+                .map((/**
              * @param {?} item
              * @return {?}
-             */function (item) {
-                    /** @type {?} */
-                    var origin = item[0]._origin;
-                    /** @type {?} */
-                    var result = {
-                        name: origin.name,
-                        color: item[0].color,
-                        checked: true,
-                        value: item.reduce(( /**
-                         * @param {?} p
-                         * @param {?} n
-                         * @return {?}
-                         */function (p, n) { return p + n._origin.value; }), 0),
-                    };
-                    return result;
-                }));
-                cdr.detectChanges();
-            };
+             */
+            function (item) {
+                /** @type {?} */
+                var origin = item[0]._origin;
+                /** @type {?} */
+                var result = {
+                    name: origin.name,
+                    color: item[0].color,
+                    checked: true,
+                    value: item.reduce((/**
+                     * @param {?} p
+                     * @param {?} n
+                     * @return {?}
+                     */
+                    function (p, n) { return p + n._origin.value; }), 0),
+                };
+                return result;
+            }));
+            cdr.detectChanges();
+        };
         /**
          * @param {?} i
          * @return {?}
@@ -253,57 +250,60 @@
          * @param {?} i
          * @return {?}
          */
-            function (i) {
-                var _a = this, legendData = _a.legendData, chart = _a.chart;
-                legendData[i].checked = !legendData[i].checked;
-                chart.repaint();
-            };
+        function (i) {
+            var _a = this, legendData = _a.legendData, chart = _a.chart;
+            legendData[i].checked = !legendData[i].checked;
+            chart.repaint();
+        };
         /**
          * @return {?}
          */
         G2RadarComponent.prototype.ngOnInit = /**
          * @return {?}
          */
-            function () {
-                var _this = this;
-                this.ngZone.runOutsideAngular(( /**
-                 * @return {?}
-                 */function () {
-                    return setTimeout(( /**
-                     * @return {?}
-                     */function () { return _this.install(); }), _this.delay);
-                }));
-            };
+        function () {
+            var _this = this;
+            this.ngZone.runOutsideAngular((/**
+             * @return {?}
+             */
+            function () { return setTimeout((/**
+             * @return {?}
+             */
+            function () { return _this.install(); }), _this.delay); }));
+        };
         /**
          * @return {?}
          */
         G2RadarComponent.prototype.ngOnChanges = /**
          * @return {?}
          */
-            function () {
-                var _this = this;
-                this.legendData.forEach(( /**
-                 * @param {?} i
-                 * @return {?}
-                 */function (i) { return (i.checked = true); }));
-                this.ngZone.runOutsideAngular(( /**
-                 * @return {?}
-                 */function () { return _this.attachChart(); }));
-            };
+        function () {
+            var _this = this;
+            this.legendData.forEach((/**
+             * @param {?} i
+             * @return {?}
+             */
+            function (i) { return (i.checked = true); }));
+            this.ngZone.runOutsideAngular((/**
+             * @return {?}
+             */
+            function () { return _this.attachChart(); }));
+        };
         /**
          * @return {?}
          */
         G2RadarComponent.prototype.ngOnDestroy = /**
          * @return {?}
          */
-            function () {
-                var _this = this;
-                if (this.chart) {
-                    this.ngZone.runOutsideAngular(( /**
-                     * @return {?}
-                     */function () { return _this.chart.destroy(); }));
-                }
-            };
+        function () {
+            var _this = this;
+            if (this.chart) {
+                this.ngZone.runOutsideAngular((/**
+                 * @return {?}
+                 */
+                function () { return _this.chart.destroy(); }));
+            }
+        };
         G2RadarComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'g2-radar',
@@ -316,12 +316,10 @@
                     }] }
         ];
         /** @nocollapse */
-        G2RadarComponent.ctorParameters = function () {
-            return [
-                { type: core.ChangeDetectorRef },
-                { type: core.NgZone }
-            ];
-        };
+        G2RadarComponent.ctorParameters = function () { return [
+            { type: core.ChangeDetectorRef },
+            { type: core.NgZone }
+        ]; };
         G2RadarComponent.propDecorators = {
             node: [{ type: core.ViewChild, args: ['container',] }],
             delay: [{ type: core.Input }],
@@ -371,21 +369,10 @@
         return G2RadarModule;
     }());
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-
     exports.G2RadarComponent = G2RadarComponent;
     exports.G2RadarModule = G2RadarModule;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
-})));
-
+}));
 //# sourceMappingURL=radar.umd.js.map

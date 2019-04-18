@@ -1,10 +1,10 @@
 import { __decorate, __metadata } from 'tslib';
+import { DOCUMENT, CommonModule } from '@angular/common';
+import { Component, ChangeDetectionStrategy, ElementRef, NgZone, Inject, ChangeDetectorRef, ViewChild, Input, NgModule } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { InputBoolean, InputNumber, DelonUtilModule } from '@delon/util';
 import { take } from 'rxjs/operators';
 import { ObserversModule } from '@angular/cdk/observers';
-import { DOCUMENT, CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Inject, Input, NgZone, ViewChild, NgModule } from '@angular/core';
-import { InputBoolean, InputNumber, DelonUtilModule } from '@delon/util';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 
 /**
@@ -357,5 +357,4 @@ EllipsisModule.decorators = [
  */
 
 export { EllipsisComponent, EllipsisModule };
-
 //# sourceMappingURL=ellipsis.js.map

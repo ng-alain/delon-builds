@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('rxjs'), require('rxjs/operators'), require('@angular/common'), require('@angular/core'), require('@delon/util')) :
-    typeof define === 'function' && define.amd ? define('@delon/chart/custom', ['exports', 'rxjs', 'rxjs/operators', '@angular/common', '@angular/core', '@delon/util'], factory) :
-    (factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.custom = {}),global.rxjs,global.rxjs.operators,global.ng.common,global.ng.core,global.delon.util));
-}(this, (function (exports,rxjs,operators,common,core,util) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('@angular/common')) :
+    typeof define === 'function' && define.amd ? define('@delon/chart/custom', ['exports', '@angular/core', '@delon/util', 'rxjs', 'rxjs/operators', '@angular/common'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.custom = {}), global.ng.core, global.delon.util, global.rxjs, global.rxjs.operators, global.ng.common));
+}(this, function (exports, core, util, rxjs, operators, common) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -23,44 +23,35 @@
     See the Apache Version 2.0 License for specific language governing permissions
     and limitations under the License.
     ***************************************************************************** */
+
     function __decorate(decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-        if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
-            r = Reflect.decorate(decorators, target, key, desc);
-        else
-            for (var i = decorators.length - 1; i >= 0; i--)
-                if (d = decorators[i])
-                    r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+        if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+        else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
         return c > 3 && r && Object.defineProperty(target, key, r), r;
     }
+
     function __metadata(metadataKey, metadataValue) {
-        if (typeof Reflect === "object" && typeof Reflect.metadata === "function")
-            return Reflect.metadata(metadataKey, metadataValue);
+        if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(metadataKey, metadataValue);
     }
+
     function __read(o, n) {
         var m = typeof Symbol === "function" && o[Symbol.iterator];
-        if (!m)
-            return o;
+        if (!m) return o;
         var i = m.call(o), r, ar = [], e;
         try {
-            while ((n === void 0 || n-- > 0) && !(r = i.next()).done)
-                ar.push(r.value);
+            while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
         }
-        catch (error) {
-            e = { error: error };
-        }
+        catch (error) { e = { error: error }; }
         finally {
             try {
-                if (r && !r.done && (m = i["return"]))
-                    m.call(i);
+                if (r && !r.done && (m = i["return"])) m.call(i);
             }
-            finally {
-                if (e)
-                    throw e.error;
-            }
+            finally { if (e) throw e.error; }
         }
         return ar;
     }
+
     function __spread() {
         for (var ar = [], i = 0; i < arguments.length; i++)
             ar = ar.concat(__read(arguments[i]));
@@ -89,11 +80,11 @@
          * @private
          * @return {?}
          */
-            function () {
-                this.el.nativeElement.innerHTML = '';
-                this.render.emit(this.el);
-                this.installResizeEvent();
-            };
+        function () {
+            this.el.nativeElement.innerHTML = '';
+            this.render.emit(this.el);
+            this.installResizeEvent();
+        };
         /**
          * @private
          * @return {?}
@@ -102,36 +93,37 @@
          * @private
          * @return {?}
          */
-            function () {
-                var _this = this;
-                if (this.resizeTime <= 0 || this.resize$)
-                    return;
-                this.resize$ = rxjs.fromEvent(window, 'resize')
-                    .pipe(operators.debounceTime(Math.min(200, this.resizeTime)))
-                    .subscribe(( /**
+        function () {
+            var _this = this;
+            if (this.resizeTime <= 0 || this.resize$)
+                return;
+            this.resize$ = rxjs.fromEvent(window, 'resize')
+                .pipe(operators.debounceTime(Math.min(200, this.resizeTime)))
+                .subscribe((/**
              * @return {?}
-             */function () { return _this.resize.emit(_this.el); }));
-            };
+             */
+            function () { return _this.resize.emit(_this.el); }));
+        };
         /**
          * @return {?}
          */
         G2CustomComponent.prototype.ngAfterViewInit = /**
          * @return {?}
          */
-            function () {
-                this.renderChart();
-            };
+        function () {
+            this.renderChart();
+        };
         /**
          * @return {?}
          */
         G2CustomComponent.prototype.ngOnDestroy = /**
          * @return {?}
          */
-            function () {
-                this.destroy.emit(this.el);
-                if (this.resize$)
-                    this.resize$.unsubscribe();
-            };
+        function () {
+            this.destroy.emit(this.el);
+            if (this.resize$)
+                this.resize$.unsubscribe();
+        };
         G2CustomComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'g2,g2-custom',
@@ -143,11 +135,9 @@
                     }] }
         ];
         /** @nocollapse */
-        G2CustomComponent.ctorParameters = function () {
-            return [
-                { type: core.ElementRef }
-            ];
-        };
+        G2CustomComponent.ctorParameters = function () { return [
+            { type: core.ElementRef }
+        ]; };
         G2CustomComponent.propDecorators = {
             height: [{ type: core.Input }],
             resizeTime: [{ type: core.Input }],
@@ -185,21 +175,10 @@
         return G2CustomModule;
     }());
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-
     exports.G2CustomComponent = G2CustomComponent;
     exports.G2CustomModule = G2CustomModule;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
-})));
-
+}));
 //# sourceMappingURL=g2Custom.umd.js.map

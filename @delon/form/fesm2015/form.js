@@ -1,13 +1,13 @@
-import { __decorate, __metadata, __rest } from 'tslib';
-import { CommonModule } from '@angular/common';
+import { Injectable, defineInjectable, Inject, ComponentFactoryResolver, EventEmitter, Component, ChangeDetectionStrategy, ChangeDetectorRef, Input, Output, ViewChild, ViewContainerRef, Directive, ElementRef, Renderer2, TemplateRef, Injector, HostBinding, NgModule } from '@angular/core';
+import { __rest, __decorate, __metadata } from 'tslib';
 import { DelonLocaleService, DelonLocaleModule } from '@delon/theme';
-import { NgModel, FormsModule } from '@angular/forms';
-import { map, distinctUntilChanged, filter, takeUntil, debounceTime, flatMap, startWith, tap } from 'rxjs/operators';
-import format from 'date-fns/format';
-import { Injectable, Component, Input, Directive, TemplateRef, ChangeDetectorRef, HostBinding, Inject, Injector, ViewChild, ViewContainerRef, ComponentFactoryResolver, EventEmitter, ChangeDetectionStrategy, Output, ElementRef, Renderer2, defineInjectable, NgModule } from '@angular/core';
 import { deepCopy, toBoolean, InputBoolean, InputNumber, deepGet, DelonUtilModule } from '@delon/util';
+import { of, BehaviorSubject, Observable, combineLatest, Subject } from 'rxjs';
+import { map, distinctUntilChanged, takeUntil, filter, debounceTime, startWith, flatMap, tap } from 'rxjs/operators';
+import { CommonModule } from '@angular/common';
+import { NgModel, FormsModule } from '@angular/forms';
 import { NzModalService, NgZorroAntdModule } from 'ng-zorro-antd';
-import { of, combineLatest, BehaviorSubject, Observable, Subject } from 'rxjs';
+import format from 'date-fns/format';
 
 /**
  * @fileoverview added by tsickle
@@ -3926,7 +3926,7 @@ class UploadWidget extends ControlWidget {
      * @return {?}
      */
     ngOnInit() {
-        const { type, text, action, accept, limit, filter: filter$$1, fileSize, fileType, listType, multiple, name, showUploadList, withCredentials, resReName, urlReName, beforeUpload, customRequest, directory, openFileDialogOnClick, } = this.ui;
+        const { type, text, action, accept, limit, filter, fileSize, fileType, listType, multiple, name, showUploadList, withCredentials, resReName, urlReName, beforeUpload, customRequest, directory, openFileDialogOnClick, } = this.ui;
         this.i = {
             type: type || 'select',
             text: text || '点击上传',
@@ -3935,7 +3935,7 @@ class UploadWidget extends ControlWidget {
             directory: toBool(directory, false),
             openFileDialogOnClick: toBool(openFileDialogOnClick, true),
             limit: limit == null ? 0 : +limit,
-            filter: filter$$1 == null ? [] : filter$$1,
+            filter: filter == null ? [] : filter,
             size: fileSize == null ? 0 : +fileSize,
             fileType: fileType || '',
             listType: listType || 'text',
@@ -4168,6 +4168,5 @@ DelonFormModule.decorators = [
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { DelonFormConfig, useFactory, SFComponent, SFItemComponent, SFFixedDirective, DelonFormModule, ERRORSDEFAULT, FormProperty, PropertyGroup, FormPropertyFactory, AtomicProperty, ObjectProperty, ArrayProperty, StringProperty, NumberProperty, BooleanProperty, Widget, ControlWidget, ArrayLayoutWidget, ObjectLayoutWidget, ObjectWidget, ArrayWidget, StringWidget, NumberWidget, DateWidget, TimeWidget, RadioWidget, CheckboxWidget, BooleanWidget, TextareaWidget, SelectWidget, TreeSelectWidget, TagWidget, UploadWidget, TransferWidget, SliderWidget, RateWidget, AutoCompleteWidget, CascaderWidget, MentionWidget, CustomWidget, NzWidgetRegistry, WidgetRegistry, WidgetFactory, SchemaValidatorFactory, AjvSchemaValidatorFactory, SFItemWrapComponent as ɵb, TerminatorService as ɵa, SFTemplateDirective as ɵc, TextWidget as ɵd };
-
+export { AjvSchemaValidatorFactory, ArrayLayoutWidget, ArrayProperty, ArrayWidget, AtomicProperty, AutoCompleteWidget, BooleanProperty, BooleanWidget, CascaderWidget, CheckboxWidget, ControlWidget, CustomWidget, DateWidget, DelonFormConfig, DelonFormModule, ERRORSDEFAULT, FormProperty, FormPropertyFactory, MentionWidget, NumberProperty, NumberWidget, NzWidgetRegistry, ObjectLayoutWidget, ObjectProperty, ObjectWidget, PropertyGroup, RadioWidget, RateWidget, SFComponent, SFFixedDirective, SFItemComponent, SchemaValidatorFactory, SelectWidget, SliderWidget, StringProperty, StringWidget, TagWidget, TextareaWidget, TimeWidget, TransferWidget, TreeSelectWidget, UploadWidget, Widget, WidgetFactory, WidgetRegistry, useFactory, TerminatorService as ɵa, SFItemWrapComponent as ɵb, SFTemplateDirective as ɵc, TextWidget as ɵd };
 //# sourceMappingURL=form.js.map

@@ -1,8 +1,8 @@
 import { __decorate, __metadata } from 'tslib';
+import { Injectable, defineInjectable, Component, ChangeDetectionStrategy, Input, ElementRef, Renderer2, Optional, Host, NgModule } from '@angular/core';
+import { InputNumber, DelonUtilModule } from '@delon/util';
 import { ResponsiveService } from '@delon/theme';
 import { CommonModule } from '@angular/common';
-import { Injectable, Component, ChangeDetectionStrategy, Input, defineInjectable, NgModule, ElementRef, Renderer2, Optional, Host } from '@angular/core';
-import { InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
@@ -203,6 +203,5 @@ SGModule.decorators = [
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { SGContainerComponent, SGComponent, SGConfig, SGModule };
-
+export { SGComponent, SGConfig, SGContainerComponent, SGModule };
 //# sourceMappingURL=grid.js.map

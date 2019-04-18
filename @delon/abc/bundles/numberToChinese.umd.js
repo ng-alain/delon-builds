@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common'), require('@angular/core')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/number-to-chinese', ['exports', '@angular/common', '@angular/core'], factory) :
-    (factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['number-to-chinese'] = {}),global.ng.common,global.ng.core));
-}(this, (function (exports,common,core) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/common')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/number-to-chinese', ['exports', '@angular/core', '@angular/common'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['number-to-chinese'] = {}), global.ng.core, global.ng.common));
+}(this, function (exports, core, common) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -23,42 +23,39 @@
     See the Apache Version 2.0 License for specific language governing permissions
     and limitations under the License.
     ***************************************************************************** */
-    var __assign = function () {
+
+    var __assign = function() {
         __assign = Object.assign || function __assign(t) {
             for (var s, i = 1, n = arguments.length; i < n; i++) {
                 s = arguments[i];
-                for (var p in s)
-                    if (Object.prototype.hasOwnProperty.call(s, p))
-                        t[p] = s[p];
+                for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
             }
             return t;
         };
         return __assign.apply(this, arguments);
     };
+
     function __read(o, n) {
         var m = typeof Symbol === "function" && o[Symbol.iterator];
-        if (!m)
-            return o;
+        if (!m) return o;
         var i = m.call(o), r, ar = [], e;
         try {
-            while ((n === void 0 || n-- > 0) && !(r = i.next()).done)
-                ar.push(r.value);
+            while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
         }
-        catch (error) {
-            e = { error: error };
-        }
+        catch (error) { e = { error: error }; }
         finally {
             try {
-                if (r && !r.done && (m = i["return"]))
-                    m.call(i);
+                if (r && !r.done && (m = i["return"])) m.call(i);
             }
-            finally {
-                if (e)
-                    throw e.error;
-            }
+            finally { if (e) throw e.error; }
         }
         return ar;
     }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
 
     /**
      * @fileoverview added by tsickle
@@ -71,9 +68,7 @@
      * @return {?}
      */
     function numberToChinese(value, rmb, options) {
-        if (rmb === void 0) {
-            rmb = true;
-        }
+        if (rmb === void 0) { rmb = true; }
         var _a;
         options = __assign({ minusSymbol: '负', validThrow: false }, options);
         if (typeof value === 'number')
@@ -240,15 +235,11 @@
          * @param {?=} minusSymbol
          * @return {?}
          */
-            function (value, rmb, minusSymbol) {
-                if (rmb === void 0) {
-                    rmb = true;
-                }
-                if (minusSymbol === void 0) {
-                    minusSymbol = '负';
-                }
-                return numberToChinese(value, rmb, { minusSymbol: minusSymbol });
-            };
+        function (value, rmb, minusSymbol) {
+            if (rmb === void 0) { rmb = true; }
+            if (minusSymbol === void 0) { minusSymbol = '负'; }
+            return numberToChinese(value, rmb, { minusSymbol: minusSymbol });
+        };
         NaNumberToChinesePipe.decorators = [
             { type: core.Pipe, args: [{ name: 'n2c' },] }
         ];
@@ -274,17 +265,11 @@
         return NumberToChineseModule;
     }());
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-
-    exports.numberToChinese = numberToChinese;
     exports.NaNumberToChinesePipe = NaNumberToChinesePipe;
     exports.NumberToChineseModule = NumberToChineseModule;
+    exports.numberToChinese = numberToChinese;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
-})));
-
+}));
 //# sourceMappingURL=numberToChinese.umd.js.map

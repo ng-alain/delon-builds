@@ -1,6 +1,6 @@
-import { __spread, __assign, __decorate, __metadata } from 'tslib';
+import { __decorate, __metadata, __assign, __spread } from 'tslib';
 import { DOCUMENT, CommonModule } from '@angular/common';
-import { Injectable, defineInjectable, NgModule, Component, ChangeDetectionStrategy, ElementRef, ChangeDetectorRef, Inject, Input } from '@angular/core';
+import { defineInjectable, Injectable, Component, ChangeDetectionStrategy, ElementRef, ChangeDetectorRef, Inject, Input, NgModule } from '@angular/core';
 import { InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
@@ -223,5 +223,4 @@ var ErrorCollectModule = /** @class */ (function () {
  */
 
 export { ErrorCollectComponent, ErrorCollectConfig, ErrorCollectModule };
-
 //# sourceMappingURL=errorCollect.js.map

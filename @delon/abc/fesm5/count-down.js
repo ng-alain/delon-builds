@@ -1,8 +1,8 @@
+import { Component, Input, Output, EventEmitter, NgModule } from '@angular/core';
 import addSeconds from 'date-fns/add_seconds';
 import format from 'date-fns/format';
 import { __spread } from 'tslib';
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, Output, NgModule } from '@angular/core';
 import { CountdownModule } from 'ngx-countdown';
 
 /**
@@ -108,5 +108,4 @@ var CountDownModule = /** @class */ (function () {
  */
 
 export { CountDownComponent, CountDownModule };
-
 //# sourceMappingURL=count-down.js.map

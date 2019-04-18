@@ -4,12 +4,107 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common'), require('@delon/theme'), require('@angular/forms'), require('rxjs/operators'), require('date-fns/format'), require('@angular/core'), require('@delon/util'), require('ng-zorro-antd'), require('rxjs')) :
-    typeof define === 'function' && define.amd ? define('@delon/form', ['exports', '@angular/common', '@delon/theme', '@angular/forms', 'rxjs/operators', 'date-fns/format', '@angular/core', '@delon/util', 'ng-zorro-antd', 'rxjs'], factory) :
-    (factory((global.delon = global.delon || {}, global.delon.form = {}),global.ng.common,global.delon.theme,global.ng.forms,global.rxjs.operators,global.format,global.ng.core,global.delon.util,global['ng-zorro-antd'],global.rxjs));
-}(this, (function (exports,common,theme,forms,operators,format,i0,util,ngZorroAntd,rxjs) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/theme'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('@angular/common'), require('@angular/forms'), require('ng-zorro-antd'), require('date-fns/format')) :
+    typeof define === 'function' && define.amd ? define('@delon/form', ['exports', '@angular/core', '@delon/theme', '@delon/util', 'rxjs', 'rxjs/operators', '@angular/common', '@angular/forms', 'ng-zorro-antd', 'date-fns/format'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.form = {}), global.ng.core, global.delon.theme, global.delon.util, global.rxjs, global.rxjs.operators, global.ng.common, global.ng.forms, global['ng-zorro-antd'], global.format));
+}(this, function (exports, core, theme, util, rxjs, operators, common, forms, ngZorroAntd, format) { 'use strict';
 
     format = format && format.hasOwnProperty('default') ? format['default'] : format;
+
+    /*! *****************************************************************************
+    Copyright (c) Microsoft Corporation. All rights reserved.
+    Licensed under the Apache License, Version 2.0 (the "License"); you may not use
+    this file except in compliance with the License. You may obtain a copy of the
+    License at http://www.apache.org/licenses/LICENSE-2.0
+
+    THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+    KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
+    WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
+    MERCHANTABLITY OR NON-INFRINGEMENT.
+
+    See the Apache Version 2.0 License for specific language governing permissions
+    and limitations under the License.
+    ***************************************************************************** */
+    /* global Reflect, Promise */
+
+    var extendStatics = function(d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+
+    function __extends(d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    }
+
+    var __assign = function() {
+        __assign = Object.assign || function __assign(t) {
+            for (var s, i = 1, n = arguments.length; i < n; i++) {
+                s = arguments[i];
+                for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+            }
+            return t;
+        };
+        return __assign.apply(this, arguments);
+    };
+
+    function __rest(s, e) {
+        var t = {};
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+            t[p] = s[p];
+        if (s != null && typeof Object.getOwnPropertySymbols === "function")
+            for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) if (e.indexOf(p[i]) < 0)
+                t[p[i]] = s[p[i]];
+        return t;
+    }
+
+    function __decorate(decorators, target, key, desc) {
+        var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+        if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+        else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+        return c > 3 && r && Object.defineProperty(target, key, r), r;
+    }
+
+    function __metadata(metadataKey, metadataValue) {
+        if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(metadataKey, metadataValue);
+    }
+
+    function __values(o) {
+        var m = typeof Symbol === "function" && o[Symbol.iterator], i = 0;
+        if (m) return m.call(o);
+        return {
+            next: function () {
+                if (o && i >= o.length) o = void 0;
+                return { value: o && o[i++], done: !o };
+            }
+        };
+    }
+
+    function __read(o, n) {
+        var m = typeof Symbol === "function" && o[Symbol.iterator];
+        if (!m) return o;
+        var i = m.call(o), r, ar = [], e;
+        try {
+            while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
+        }
+        catch (error) { e = { error: error }; }
+        finally {
+            try {
+                if (r && !r.done && (m = i["return"])) m.call(i);
+            }
+            finally { if (e) throw e.error; }
+        }
+        return ar;
+    }
+
+    function __spread() {
+        for (var ar = [], i = 0; i < arguments.length; i++)
+            ar = ar.concat(__read(arguments[i]));
+        return ar;
+    }
 
     /**
      * @fileoverview added by tsickle
@@ -118,118 +213,11 @@
             this.uiEmailSuffixes = ['qq.com', '163.com', 'gmail.com', '126.com', 'aliyun.com'];
         }
         DelonFormConfig.decorators = [
-            { type: i0.Injectable, args: [{ providedIn: 'root' },] }
+            { type: core.Injectable, args: [{ providedIn: 'root' },] }
         ];
-        /** @nocollapse */ DelonFormConfig.ngInjectableDef = i0.defineInjectable({ factory: function DelonFormConfig_Factory() { return new DelonFormConfig(); }, token: DelonFormConfig, providedIn: "root" });
+        /** @nocollapse */ DelonFormConfig.ngInjectableDef = core.defineInjectable({ factory: function DelonFormConfig_Factory() { return new DelonFormConfig(); }, token: DelonFormConfig, providedIn: "root" });
         return DelonFormConfig;
     }());
-
-    /*! *****************************************************************************
-    Copyright (c) Microsoft Corporation. All rights reserved.
-    Licensed under the Apache License, Version 2.0 (the "License"); you may not use
-    this file except in compliance with the License. You may obtain a copy of the
-    License at http://www.apache.org/licenses/LICENSE-2.0
-
-    THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-    KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
-    WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
-    MERCHANTABLITY OR NON-INFRINGEMENT.
-
-    See the Apache Version 2.0 License for specific language governing permissions
-    and limitations under the License.
-    ***************************************************************************** */
-    /* global Reflect, Promise */
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b)
-                if (b.hasOwnProperty(p))
-                    d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    function __extends(d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    }
-    var __assign = function () {
-        __assign = Object.assign || function __assign(t) {
-            for (var s, i = 1, n = arguments.length; i < n; i++) {
-                s = arguments[i];
-                for (var p in s)
-                    if (Object.prototype.hasOwnProperty.call(s, p))
-                        t[p] = s[p];
-            }
-            return t;
-        };
-        return __assign.apply(this, arguments);
-    };
-    function __rest(s, e) {
-        var t = {};
-        for (var p in s)
-            if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
-                t[p] = s[p];
-        if (s != null && typeof Object.getOwnPropertySymbols === "function")
-            for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++)
-                if (e.indexOf(p[i]) < 0)
-                    t[p[i]] = s[p[i]];
-        return t;
-    }
-    function __decorate(decorators, target, key, desc) {
-        var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-        if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
-            r = Reflect.decorate(decorators, target, key, desc);
-        else
-            for (var i = decorators.length - 1; i >= 0; i--)
-                if (d = decorators[i])
-                    r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-        return c > 3 && r && Object.defineProperty(target, key, r), r;
-    }
-    function __metadata(metadataKey, metadataValue) {
-        if (typeof Reflect === "object" && typeof Reflect.metadata === "function")
-            return Reflect.metadata(metadataKey, metadataValue);
-    }
-    function __values(o) {
-        var m = typeof Symbol === "function" && o[Symbol.iterator], i = 0;
-        if (m)
-            return m.call(o);
-        return {
-            next: function () {
-                if (o && i >= o.length)
-                    o = void 0;
-                return { value: o && o[i++], done: !o };
-            }
-        };
-    }
-    function __read(o, n) {
-        var m = typeof Symbol === "function" && o[Symbol.iterator];
-        if (!m)
-            return o;
-        var i = m.call(o), r, ar = [], e;
-        try {
-            while ((n === void 0 || n-- > 0) && !(r = i.next()).done)
-                ar.push(r.value);
-        }
-        catch (error) {
-            e = { error: error };
-        }
-        finally {
-            try {
-                if (r && !r.done && (m = i["return"]))
-                    m.call(i);
-            }
-            finally {
-                if (e)
-                    throw e.error;
-            }
-        }
-        return ar;
-    }
-    function __spread() {
-        for (var ar = [], i = 0; i < arguments.length; i++)
-            ar = ar.concat(__read(arguments[i]));
-        return ar;
-    }
 
     /**
      * @fileoverview added by tsickle
@@ -312,18 +300,12 @@
                     }
                 }
             }
-            catch (e_1_1) {
-                e_1 = { error: e_1_1 };
-            }
+            catch (e_1_1) { e_1 = { error: e_1_1 }; }
             finally {
                 try {
-                    if (parts_1_1 && !parts_1_1.done && (_a = parts_1.return))
-                        _a.call(parts_1);
+                    if (parts_1_1 && !parts_1_1.done && (_a = parts_1.return)) _a.call(parts_1);
                 }
-                finally {
-                    if (e_1)
-                        throw e_1.error;
-                }
+                finally { if (e_1) throw e_1.error; }
             }
             return current;
         }
@@ -336,9 +318,7 @@
      * @return {?}
      */
     function retrieveSchema(schema, definitions) {
-        if (definitions === void 0) {
-            definitions = {};
-        }
+        if (definitions === void 0) { definitions = {}; }
         if (schema.hasOwnProperty('$ref')) {
             /** @type {?} */
             var $refSchema = findSchemaDefinition(schema.$ref, definitions);
@@ -375,28 +355,32 @@
         var visibleIf = {};
         /** @type {?} */
         var visibleElse = {};
-        ifKeys.forEach(( /**
+        ifKeys.forEach((/**
          * @param {?} key
          * @return {?}
-         */function (key) {
+         */
+        function (key) {
             /** @type {?} */
             var cond = schema.if.properties[key].enum;
             visibleIf[key] = cond;
             if (hasElse)
-                visibleElse[key] = ( /**
+                visibleElse[key] = (/**
                  * @param {?} value
                  * @return {?}
-                 */function (value) { return !cond.includes(value); });
+                 */
+                function (value) { return !cond.includes(value); });
         }));
-        schema.then.required.forEach(( /**
+        schema.then.required.forEach((/**
          * @param {?} key
          * @return {?}
-         */function (key) { return (ui["$" + key].visibleIf = visibleIf); }));
+         */
+        function (key) { return (ui["$" + key].visibleIf = visibleIf); }));
         if (hasElse)
-            schema.else.required.forEach(( /**
+            schema.else.required.forEach((/**
              * @param {?} key
              * @return {?}
-             */function (key) { return (ui["$" + key].visibleIf = visibleElse); }));
+             */
+            function (key) { return (ui["$" + key].visibleIf = visibleElse); }));
         return schema;
     }
     /**
@@ -405,10 +389,11 @@
      * @return {?}
      */
     function detectKey(keys, detectKeys) {
-        detectKeys.forEach(( /**
+        detectKeys.forEach((/**
          * @param {?} key
          * @return {?}
-         */function (key) {
+         */
+        function (key) {
             if (!keys.includes(key)) {
                 throw new Error("if: properties does not contain '" + key + "'");
             }
@@ -423,41 +408,46 @@
         if (!Array.isArray(order))
             return properties;
         /** @type {?} */
-        var arrayToHash = ( /**
+        var arrayToHash = (/**
          * @param {?} arr
          * @return {?}
-         */function (arr) {
-            return arr.reduce(( /**
+         */
+        function (arr) {
+            return arr.reduce((/**
              * @param {?} prev
              * @param {?} curr
              * @return {?}
-             */function (prev, curr) {
+             */
+            function (prev, curr) {
                 prev[curr] = true;
                 return prev;
             }), {});
         });
         /** @type {?} */
-        var errorPropList = ( /**
+        var errorPropList = (/**
          * @param {?} arr
          * @return {?}
-         */function (arr) { return "property [" + arr.join("', '") + "]"; });
+         */
+        function (arr) { return "property [" + arr.join("', '") + "]"; });
         /** @type {?} */
         var propertyHash = arrayToHash(properties);
         /** @type {?} */
         var orderHash = arrayToHash(order);
         /** @type {?} */
-        var extraneous = order.filter(( /**
+        var extraneous = order.filter((/**
          * @param {?} prop
          * @return {?}
-         */function (prop) { return prop !== '*' && !propertyHash[prop]; }));
+         */
+        function (prop) { return prop !== '*' && !propertyHash[prop]; }));
         if (extraneous.length) {
             throw new Error("ui schema order list contains extraneous " + errorPropList(extraneous));
         }
         /** @type {?} */
-        var rest = properties.filter(( /**
+        var rest = properties.filter((/**
          * @param {?} prop
          * @return {?}
-         */function (prop) { return !orderHash[prop]; }));
+         */
+        function (prop) { return !orderHash[prop]; }));
         /** @type {?} */
         var restIndex = order.indexOf('*');
         if (restIndex === -1) {
@@ -484,30 +474,33 @@
         if (isBlank(list) || !Array.isArray(list) || list.length === 0)
             return [];
         if (typeof list[0] !== 'object') {
-            list = list.map(( /**
+            list = list.map((/**
              * @param {?} item
              * @return {?}
-             */function (item) {
-                return ( /** @type {?} */({ label: item, value: item }));
+             */
+            function (item) {
+                return (/** @type {?} */ ({ label: item, value: item }));
             }));
         }
         if (formData) {
             if (!Array.isArray(formData))
                 formData = [formData];
-            list.forEach(( /**
+            list.forEach((/**
              * @param {?} item
              * @return {?}
-             */function (item) {
+             */
+            function (item) {
                 if (~formData.indexOf(item.value))
                     item.checked = true;
             }));
         }
         // fix disabled status
         if (readOnly) {
-            list.forEach(( /**
+            list.forEach((/**
              * @param {?} item
              * @return {?}
-             */function (item) { return (item.disabled = true); }));
+             */
+            function (item) { return (item.disabled = true); }));
         }
         return list;
     }
@@ -529,10 +522,11 @@
      */
     function getData(schema, ui, formData, asyncArgs) {
         if (typeof ui.asyncData === 'function') {
-            return ui.asyncData(asyncArgs).pipe(operators.map(( /**
+            return ui.asyncData(asyncArgs).pipe(operators.map((/**
              * @param {?} list
              * @return {?}
-             */function (list) { return getEnum(list, formData, schema.readOnly); })));
+             */
+            function (list) { return getEnum(list, formData, schema.readOnly); })));
         }
         return rxjs.of(getCopyEnum(schema.enum, formData, schema.readOnly));
     }
@@ -544,9 +538,10 @@
     /**
      * @abstract
      */
-    var /**
+    var   /**
      * @abstract
-     */ FormProperty = /** @class */ (function () {
+     */
+    FormProperty = /** @class */ (function () {
         function FormProperty(schemaValidatorFactory, schema, ui, formData, parent, path, _options) {
             this._options = _options;
             this._value = null;
@@ -559,8 +554,8 @@
             this.schema = schema;
             this.ui = ui;
             this.schemaValidator = schemaValidatorFactory.createValidatorFn(schema, {
-                ingoreKeywords: ( /** @type {?} */(this.ui.ingoreKeywords)),
-                debug: ( /** @type {?} */((( /** @type {?} */(ui))))).debug,
+                ingoreKeywords: (/** @type {?} */ (this.ui.ingoreKeywords)),
+                debug: (/** @type {?} */ (((/** @type {?} */ (ui))))).debug,
             });
             this.formData = formData || schema.default;
             this._parent = parent;
@@ -568,14 +563,15 @@
                 this._root = parent.root;
             }
             else if (this instanceof PropertyGroup) {
-                this._root = ( /** @type {?} */(this));
+                this._root = (/** @type {?} */ (this));
             }
             this._path = path;
         }
         Object.defineProperty(FormProperty.prototype, "valueChanges", {
             get: /**
              * @return {?}
-             */ function () {
+             */
+            function () {
                 return this._valueChanges;
             },
             enumerable: true,
@@ -584,7 +580,8 @@
         Object.defineProperty(FormProperty.prototype, "errorsChanges", {
             get: /**
              * @return {?}
-             */ function () {
+             */
+            function () {
                 return this._errorsChanges;
             },
             enumerable: true,
@@ -593,7 +590,8 @@
         Object.defineProperty(FormProperty.prototype, "type", {
             get: /**
              * @return {?}
-             */ function () {
+             */
+            function () {
                 return this.schema.type;
             },
             enumerable: true,
@@ -602,7 +600,8 @@
         Object.defineProperty(FormProperty.prototype, "parent", {
             get: /**
              * @return {?}
-             */ function () {
+             */
+            function () {
                 return this._parent;
             },
             enumerable: true,
@@ -611,8 +610,9 @@
         Object.defineProperty(FormProperty.prototype, "root", {
             get: /**
              * @return {?}
-             */ function () {
-                return this._root || (( /** @type {?} */((( /** @type {?} */(this))))));
+             */
+            function () {
+                return this._root || ((/** @type {?} */ (((/** @type {?} */ (this))))));
             },
             enumerable: true,
             configurable: true
@@ -620,7 +620,8 @@
         Object.defineProperty(FormProperty.prototype, "path", {
             get: /**
              * @return {?}
-             */ function () {
+             */
+            function () {
                 return this._path;
             },
             enumerable: true,
@@ -629,7 +630,8 @@
         Object.defineProperty(FormProperty.prototype, "value", {
             get: /**
              * @return {?}
-             */ function () {
+             */
+            function () {
                 return this._value;
             },
             enumerable: true,
@@ -638,7 +640,8 @@
         Object.defineProperty(FormProperty.prototype, "errors", {
             get: /**
              * @return {?}
-             */ function () {
+             */
+            function () {
                 return this._errors;
             },
             enumerable: true,
@@ -647,7 +650,8 @@
         Object.defineProperty(FormProperty.prototype, "visible", {
             get: /**
              * @return {?}
-             */ function () {
+             */
+            function () {
                 return this._visible;
             },
             enumerable: true,
@@ -656,7 +660,8 @@
         Object.defineProperty(FormProperty.prototype, "valid", {
             get: /**
              * @return {?}
-             */ function () {
+             */
+            function () {
                 return this._errors === null || this._errors.length === 0;
             },
             enumerable: true,
@@ -665,7 +670,8 @@
         Object.defineProperty(FormProperty.prototype, "options", {
             get: /**
              * @return {?}
-             */ function () {
+             */
+            function () {
                 return this._options;
             },
             enumerable: true,
@@ -693,28 +699,22 @@
          * @param {?=} emitValidator
          * @return {?}
          */
-            function (onlySelf, emitValueEvent, emitValidator) {
-                if (onlySelf === void 0) {
-                    onlySelf = false;
-                }
-                if (emitValueEvent === void 0) {
-                    emitValueEvent = true;
-                }
-                if (emitValidator === void 0) {
-                    emitValidator = true;
-                }
-                this._updateValue();
-                if (emitValueEvent) {
-                    this.valueChanges.next(this.value);
-                }
-                // `emitValidator` 每一次数据变更已经包含完整错误链路，后续父节点数据变更无须再触发校验
-                if (emitValidator && this.ui.liveValidate === true) {
-                    this._runValidation();
-                }
-                if (this.parent && !onlySelf) {
-                    this.parent.updateValueAndValidity(onlySelf, emitValueEvent, false);
-                }
-            };
+        function (onlySelf, emitValueEvent, emitValidator) {
+            if (onlySelf === void 0) { onlySelf = false; }
+            if (emitValueEvent === void 0) { emitValueEvent = true; }
+            if (emitValidator === void 0) { emitValidator = true; }
+            this._updateValue();
+            if (emitValueEvent) {
+                this.valueChanges.next(this.value);
+            }
+            // `emitValidator` 每一次数据变更已经包含完整错误链路，后续父节点数据变更无须再触发校验
+            if (emitValidator && this.ui.liveValidate === true) {
+                this._runValidation();
+            }
+            if (this.parent && !onlySelf) {
+                this.parent.updateValueAndValidity(onlySelf, emitValueEvent, false);
+            }
+        };
         /** 根据路径搜索表单属性 */
         /**
          * 根据路径搜索表单属性
@@ -726,25 +726,25 @@
          * @param {?} path
          * @return {?}
          */
-            function (path) {
-                /** @type {?} */
-                var prop = this;
-                /** @type {?} */
-                var base = null;
-                /** @type {?} */
-                var result = null;
-                if (path[0] === '/') {
-                    base = this.findRoot();
-                    result = base.getProperty(path.substr(1));
+        function (path) {
+            /** @type {?} */
+            var prop = this;
+            /** @type {?} */
+            var base = null;
+            /** @type {?} */
+            var result = null;
+            if (path[0] === '/') {
+                base = this.findRoot();
+                result = base.getProperty(path.substr(1));
+            }
+            else {
+                while (result === null && prop.parent !== null) {
+                    prop = base = prop.parent;
+                    result = base.getProperty(path);
                 }
-                else {
-                    while (result === null && prop.parent !== null) {
-                        prop = base = prop.parent;
-                        result = base.getProperty(path);
-                    }
-                }
-                return result;
-            };
+            }
+            return result;
+        };
         /** 查找根表单属性 */
         /**
          * 查找根表单属性
@@ -754,14 +754,14 @@
          * 查找根表单属性
          * @return {?}
          */
-            function () {
-                /** @type {?} */
-                var property = this;
-                while (property.parent !== null) {
-                    property = property.parent;
-                }
-                return ( /** @type {?} */(property));
-            };
+        function () {
+            /** @type {?} */
+            var property = this;
+            while (property.parent !== null) {
+                property = property.parent;
+            }
+            return (/** @type {?} */ (property));
+        };
         // #region process errors
         // #region process errors
         /**
@@ -769,22 +769,22 @@
          * @param {?} value
          * @return {?}
          */
-        FormProperty.prototype.isEmptyData =
-            // #region process errors
-            /**
-             * @private
-             * @param {?} value
-             * @return {?}
-             */
-            function (value) {
-                if (isBlank(value))
-                    return true;
-                switch (this.type) {
-                    case 'string':
-                        return ('' + value).length === 0;
-                }
-                return false;
-            };
+        FormProperty.prototype.isEmptyData = 
+        // #region process errors
+        /**
+         * @private
+         * @param {?} value
+         * @return {?}
+         */
+        function (value) {
+            if (isBlank(value))
+                return true;
+            switch (this.type) {
+                case 'string':
+                    return ('' + value).length === 0;
+            }
+            return false;
+        };
         /**
          * @internal
          */
@@ -796,45 +796,46 @@
          * \@internal
          * @return {?}
          */
-            function () {
-                var _this = this;
+        function () {
+            var _this = this;
+            /** @type {?} */
+            var errors;
+            // The definition of some rules:
+            // 1. Should not ajv validator when is empty data and required fields
+            // 2. Should not ajv validator when is empty data
+            /** @type {?} */
+            var isEmpty = this.isEmptyData(this._value);
+            if (isEmpty && this.ui._required) {
+                errors = [{ keyword: 'required' }];
+            }
+            else if (isEmpty) {
+                errors = [];
+            }
+            else {
+                errors = this.schemaValidator(this._value) || [];
+            }
+            /** @type {?} */
+            var customValidator = ((/** @type {?} */ (this.ui))).validator;
+            if (typeof customValidator === 'function') {
                 /** @type {?} */
-                var errors;
-                // The definition of some rules:
-                // 1. Should not ajv validator when is empty data and required fields
-                // 2. Should not ajv validator when is empty data
-                /** @type {?} */
-                var isEmpty = this.isEmptyData(this._value);
-                if (isEmpty && this.ui._required) {
-                    errors = [{ keyword: 'required' }];
-                }
-                else if (isEmpty) {
-                    errors = [];
-                }
-                else {
-                    errors = this.schemaValidator(this._value) || [];
-                }
-                /** @type {?} */
-                var customValidator = (( /** @type {?} */(this.ui))).validator;
-                if (typeof customValidator === 'function') {
-                    /** @type {?} */
-                    var customErrors = customValidator(this.value, this, this.findRoot());
-                    if (customErrors instanceof rxjs.Observable) {
-                        customErrors.subscribe(( /**
-                         * @param {?} res
-                         * @return {?}
-                         */function (res) {
-                            _this.setCustomErrors(errors, res);
-                            _this.widget.detectChanges();
-                        }));
-                        return;
-                    }
-                    this.setCustomErrors(errors, customErrors);
+                var customErrors = customValidator(this.value, this, this.findRoot());
+                if (customErrors instanceof rxjs.Observable) {
+                    customErrors.subscribe((/**
+                     * @param {?} res
+                     * @return {?}
+                     */
+                    function (res) {
+                        _this.setCustomErrors(errors, res);
+                        _this.widget.detectChanges();
+                    }));
                     return;
                 }
-                this._errors = errors;
-                this.setErrors(this._errors);
-            };
+                this.setCustomErrors(errors, customErrors);
+                return;
+            }
+            this._errors = errors;
+            this.setErrors(this._errors);
+        };
         /**
          * @private
          * @param {?} errors
@@ -847,24 +848,25 @@
          * @param {?} list
          * @return {?}
          */
-            function (errors, list) {
-                // fix error format
-                /** @type {?} */
-                var hasCustomError = list != null && list.length > 0;
-                if (hasCustomError) {
-                    list.forEach(( /**
-                     * @param {?} err
-                     * @param {?} idx
-                     * @return {?}
-                     */function (err, idx) {
-                        if (!err.message)
-                            throw new Error("The custom validator must contain a 'message' attribute to viewed error text");
-                        err._custom = true;
-                    }));
-                }
-                this._errors = this.mergeErrors(errors, list);
-                this.setErrors(this._errors);
-            };
+        function (errors, list) {
+            // fix error format
+            /** @type {?} */
+            var hasCustomError = list != null && list.length > 0;
+            if (hasCustomError) {
+                list.forEach((/**
+                 * @param {?} err
+                 * @param {?} idx
+                 * @return {?}
+                 */
+                function (err, idx) {
+                    if (!err.message)
+                        throw new Error("The custom validator must contain a 'message' attribute to viewed error text");
+                    err._custom = true;
+                }));
+            }
+            this._errors = this.mergeErrors(errors, list);
+            this.setErrors(this._errors);
+        };
         /**
          * @private
          * @param {?} errors
@@ -877,17 +879,17 @@
          * @param {?} newErrors
          * @return {?}
          */
-            function (errors, newErrors) {
-                if (newErrors) {
-                    if (Array.isArray(newErrors)) {
-                        errors = errors.concat.apply(errors, __spread(newErrors));
-                    }
-                    else {
-                        errors.push(newErrors);
-                    }
+        function (errors, newErrors) {
+            if (newErrors) {
+                if (Array.isArray(newErrors)) {
+                    errors = errors.concat.apply(errors, __spread(newErrors));
                 }
-                return errors;
-            };
+                else {
+                    errors.push(newErrors);
+                }
+            }
+            return errors;
+        };
         /**
          * @protected
          * @param {?} errors
@@ -900,43 +902,43 @@
          * @param {?=} emitFormat
          * @return {?}
          */
-            function (errors, emitFormat) {
-                var _this = this;
-                if (emitFormat === void 0) {
-                    emitFormat = true;
-                }
-                if (emitFormat && errors && !this.ui.onlyVisual) {
-                    errors = errors.map(( /**
-                     * @param {?} err
-                     * @return {?}
-                     */function (err) {
-                        /** @type {?} */
-                        var message = err._custom === true && err.message
-                            ? err.message
-                            : (_this.ui.errors || {})[err.keyword] || _this._options.errors[err.keyword] || "";
-                        if (message && typeof message === 'function') {
-                            message = ( /** @type {?} */(message(err)));
+        function (errors, emitFormat) {
+            var _this = this;
+            if (emitFormat === void 0) { emitFormat = true; }
+            if (emitFormat && errors && !this.ui.onlyVisual) {
+                errors = errors.map((/**
+                 * @param {?} err
+                 * @return {?}
+                 */
+                function (err) {
+                    /** @type {?} */
+                    var message = err._custom === true && err.message
+                        ? err.message
+                        : (_this.ui.errors || {})[err.keyword] || _this._options.errors[err.keyword] || "";
+                    if (message && typeof message === 'function') {
+                        message = (/** @type {?} */ (message(err)));
+                    }
+                    if (message) {
+                        if (~((/** @type {?} */ (message))).indexOf('{')) {
+                            message = ((/** @type {?} */ (message))).replace(/{([\.a-z0-9]+)}/g, (/**
+                             * @param {?} v
+                             * @param {?} key
+                             * @return {?}
+                             */
+                            function (v, key) { return err.params[key] || ''; }));
                         }
-                        if (message) {
-                            if (~(( /** @type {?} */(message))).indexOf('{')) {
-                                message = (( /** @type {?} */(message))).replace(/{([\.a-z0-9]+)}/g, ( /**
-                                 * @param {?} v
-                                 * @param {?} key
-                                 * @return {?}
-                                 */function (v, key) { return err.params[key] || ''; }));
-                            }
-                            err.message = ( /** @type {?} */(message));
-                        }
-                        return err;
-                    }));
-                }
-                this._errors = errors;
-                this._errorsChanges.next(errors);
-                // Should send errors to parent field
-                if (this._parent) {
-                    this._parent.setParentAndPlatErrors(errors, this.path);
-                }
-            };
+                        err.message = (/** @type {?} */ (message));
+                    }
+                    return err;
+                }));
+            }
+            this._errors = errors;
+            this._errorsChanges.next(errors);
+            // Should send errors to parent field
+            if (this._parent) {
+                this._parent.setParentAndPlatErrors(errors, this.path);
+            }
+        };
         /**
          * @param {?} errors
          * @param {?} path
@@ -947,23 +949,24 @@
          * @param {?} path
          * @return {?}
          */
-            function (errors, path) {
-                var _this = this;
-                this._objErrors[path] = errors;
+        function (errors, path) {
+            var _this = this;
+            this._objErrors[path] = errors;
+            /** @type {?} */
+            var platErrors = [];
+            Object.keys(this._objErrors).forEach((/**
+             * @param {?} p
+             * @return {?}
+             */
+            function (p) {
                 /** @type {?} */
-                var platErrors = [];
-                Object.keys(this._objErrors).forEach(( /**
-                 * @param {?} p
-                 * @return {?}
-                 */function (p) {
-                    /** @type {?} */
-                    var property = _this.searchProperty(p);
-                    if (property && !property.visible)
-                        return;
-                    platErrors.push.apply(platErrors, __spread(_this._objErrors[p]));
-                }));
-                this.setErrors(platErrors, false);
-            };
+                var property = _this.searchProperty(p);
+                if (property && !property.visible)
+                    return;
+                platErrors.push.apply(platErrors, __spread(_this._objErrors[p]));
+            }));
+            this.setErrors(platErrors, false);
+        };
         // #endregion
         // #region condition
         // #endregion
@@ -973,98 +976,103 @@
          * @param {?} visible
          * @return {?}
          */
-        FormProperty.prototype.setVisible =
-            // #endregion
-            // #region condition
-            /**
-             * @private
-             * @param {?} visible
-             * @return {?}
-             */
-            function (visible) {
-                this._visible = visible;
-                this._visibilityChanges.next(visible);
-                // 部分数据源来自 reset
-                this.resetValue(this.value, true);
-            };
+        FormProperty.prototype.setVisible = 
+        // #endregion
+        // #region condition
+        /**
+         * @private
+         * @param {?} visible
+         * @return {?}
+         */
+        function (visible) {
+            this._visible = visible;
+            this._visibilityChanges.next(visible);
+            // 部分数据源来自 reset
+            this.resetValue(this.value, true);
+        };
         // A field is visible if AT LEAST ONE of the properties it depends on is visible AND has a value in the list
         // A field is visible if AT LEAST ONE of the properties it depends on is visible AND has a value in the list
         /**
          * @return {?}
          */
-        FormProperty.prototype._bindVisibility =
-            // A field is visible if AT LEAST ONE of the properties it depends on is visible AND has a value in the list
-            /**
-             * @return {?}
-             */
-            function () {
-                var _this = this;
+        FormProperty.prototype._bindVisibility = 
+        // A field is visible if AT LEAST ONE of the properties it depends on is visible AND has a value in the list
+        /**
+         * @return {?}
+         */
+        function () {
+            var _this = this;
+            /** @type {?} */
+            var visibleIf = ((/** @type {?} */ (this.ui))).visibleIf;
+            if (typeof visibleIf === 'object' && Object.keys(visibleIf).length === 0) {
+                this.setVisible(false);
+            }
+            else if (visibleIf !== undefined) {
                 /** @type {?} */
-                var visibleIf = (( /** @type {?} */(this.ui))).visibleIf;
-                if (typeof visibleIf === 'object' && Object.keys(visibleIf).length === 0) {
-                    this.setVisible(false);
-                }
-                else if (visibleIf !== undefined) {
-                    /** @type {?} */
-                    var propertiesBinding = [];
-                    var _loop_1 = function (dependencyPath) {
-                        if (visibleIf.hasOwnProperty(dependencyPath)) {
+                var propertiesBinding = [];
+                var _loop_1 = function (dependencyPath) {
+                    if (visibleIf.hasOwnProperty(dependencyPath)) {
+                        /** @type {?} */
+                        var property = this_1.searchProperty(dependencyPath);
+                        if (property) {
                             /** @type {?} */
-                            var property = this_1.searchProperty(dependencyPath);
-                            if (property) {
+                            var valueCheck = property.valueChanges.pipe(operators.map((/**
+                             * @param {?} value
+                             * @return {?}
+                             */
+                            function (value) {
                                 /** @type {?} */
-                                var valueCheck = property.valueChanges.pipe(operators.map(( /**
-                                 * @param {?} value
-                                 * @return {?}
-                                 */function (value) {
-                                    /** @type {?} */
-                                    var vi = visibleIf[dependencyPath];
-                                    if (typeof vi === 'function')
-                                        return vi(value);
-                                    if (vi.indexOf('$ANY$') !== -1) {
-                                        return value.length > 0;
-                                    }
-                                    else {
-                                        return vi.indexOf(value) !== -1;
-                                    }
-                                })));
-                                /** @type {?} */
-                                var visibilityCheck = property._visibilityChanges;
-                                /** @type {?} */
-                                var and = rxjs.combineLatest(valueCheck, visibilityCheck).pipe(operators.map(( /**
-                                 * @param {?} results
-                                 * @return {?}
-                                 */function (results) { return results[0] && results[1]; })));
-                                propertiesBinding.push(and);
-                            }
-                            else {
-                                console.warn("Can't find property " + dependencyPath + " for visibility check of " + this_1.path);
-                            }
+                                var vi = visibleIf[dependencyPath];
+                                if (typeof vi === 'function')
+                                    return vi(value);
+                                if (vi.indexOf('$ANY$') !== -1) {
+                                    return value.length > 0;
+                                }
+                                else {
+                                    return vi.indexOf(value) !== -1;
+                                }
+                            })));
+                            /** @type {?} */
+                            var visibilityCheck = property._visibilityChanges;
+                            /** @type {?} */
+                            var and = rxjs.combineLatest(valueCheck, visibilityCheck).pipe(operators.map((/**
+                             * @param {?} results
+                             * @return {?}
+                             */
+                            function (results) { return results[0] && results[1]; })));
+                            propertiesBinding.push(and);
                         }
-                    };
-                    var this_1 = this;
-                    for (var dependencyPath in visibleIf) {
-                        _loop_1(dependencyPath);
+                        else {
+                            console.warn("Can't find property " + dependencyPath + " for visibility check of " + this_1.path);
+                        }
                     }
-                    rxjs.combineLatest(propertiesBinding)
-                        .pipe(operators.map(( /**
+                };
+                var this_1 = this;
+                for (var dependencyPath in visibleIf) {
+                    _loop_1(dependencyPath);
+                }
+                rxjs.combineLatest(propertiesBinding)
+                    .pipe(operators.map((/**
                  * @param {?} values
                  * @return {?}
-                 */function (values) { return values.indexOf(true) !== -1; })), operators.distinctUntilChanged())
-                        .subscribe(( /**
+                 */
+                function (values) { return values.indexOf(true) !== -1; })), operators.distinctUntilChanged())
+                    .subscribe((/**
                  * @param {?} visible
                  * @return {?}
-                 */function (visible) { return _this.setVisible(visible); }));
-                }
-            };
+                 */
+                function (visible) { return _this.setVisible(visible); }));
+            }
+        };
         return FormProperty;
     }());
     /**
      * @abstract
      */
-    var /**
+    var   /**
      * @abstract
-     */ PropertyGroup = /** @class */ (function (_super) {
+     */
+    PropertyGroup = /** @class */ (function (_super) {
         __extends(PropertyGroup, _super);
         function PropertyGroup() {
             var _this = _super !== null && _super.apply(this, arguments) || this;
@@ -1079,20 +1087,20 @@
          * @param {?} path
          * @return {?}
          */
-            function (path) {
+        function (path) {
+            /** @type {?} */
+            var subPathIdx = path.indexOf('/');
+            /** @type {?} */
+            var propertyId = subPathIdx !== -1 ? path.substr(0, subPathIdx) : path;
+            /** @type {?} */
+            var property = this.properties[propertyId];
+            if (property !== null && subPathIdx !== -1 && property instanceof PropertyGroup) {
                 /** @type {?} */
-                var subPathIdx = path.indexOf('/');
-                /** @type {?} */
-                var propertyId = subPathIdx !== -1 ? path.substr(0, subPathIdx) : path;
-                /** @type {?} */
-                var property = this.properties[propertyId];
-                if (property !== null && subPathIdx !== -1 && property instanceof PropertyGroup) {
-                    /** @type {?} */
-                    var subPath = path.substr(subPathIdx + 1);
-                    property = (( /** @type {?} */(property))).getProperty(subPath);
-                }
-                return property;
-            };
+                var subPath = path.substr(subPathIdx + 1);
+                property = ((/** @type {?} */ (property))).getProperty(subPath);
+            }
+            return property;
+        };
         /**
          * @param {?} fn
          * @return {?}
@@ -1101,15 +1109,15 @@
          * @param {?} fn
          * @return {?}
          */
-            function (fn) {
-                for (var propertyId in this.properties) {
-                    if (this.properties.hasOwnProperty(propertyId)) {
-                        /** @type {?} */
-                        var property = this.properties[propertyId];
-                        fn(property, propertyId);
-                    }
+        function (fn) {
+            for (var propertyId in this.properties) {
+                if (this.properties.hasOwnProperty(propertyId)) {
+                    /** @type {?} */
+                    var property = this.properties[propertyId];
+                    fn(property, propertyId);
                 }
-            };
+            }
+        };
         /**
          * @param {?} fn
          * @return {?}
@@ -1118,27 +1126,28 @@
          * @param {?} fn
          * @return {?}
          */
-            function (fn) {
-                this.forEachChild(( /**
-                 * @param {?} child
-                 * @return {?}
-                 */function (child) {
-                    fn(child);
-                    if (child instanceof PropertyGroup) {
-                        (( /** @type {?} */(child))).forEachChildRecursive(fn);
-                    }
-                }));
-            };
+        function (fn) {
+            this.forEachChild((/**
+             * @param {?} child
+             * @return {?}
+             */
+            function (child) {
+                fn(child);
+                if (child instanceof PropertyGroup) {
+                    ((/** @type {?} */ (child))).forEachChildRecursive(fn);
+                }
+            }));
+        };
         /**
          * @return {?}
          */
         PropertyGroup.prototype._bindVisibility = /**
          * @return {?}
          */
-            function () {
-                _super.prototype._bindVisibility.call(this);
-                this._bindVisibilityRecursive();
-            };
+        function () {
+            _super.prototype._bindVisibility.call(this);
+            this._bindVisibilityRecursive();
+        };
         /**
          * @private
          * @return {?}
@@ -1147,23 +1156,24 @@
          * @private
          * @return {?}
          */
-            function () {
-                this.forEachChildRecursive(( /**
-                 * @param {?} property
-                 * @return {?}
-                 */function (property) {
-                    property._bindVisibility();
-                }));
-            };
+        function () {
+            this.forEachChildRecursive((/**
+             * @param {?} property
+             * @return {?}
+             */
+            function (property) {
+                property._bindVisibility();
+            }));
+        };
         /**
          * @return {?}
          */
         PropertyGroup.prototype.isRoot = /**
          * @return {?}
          */
-            function () {
-                return this === this.root;
-            };
+        function () {
+            return this === this.root;
+        };
         return PropertyGroup;
     }(FormProperty));
 
@@ -1188,19 +1198,19 @@
          * @param {?} path
          * @return {?}
          */
-            function (path) {
-                /** @type {?} */
-                var subPathIdx = path.indexOf('/');
-                /** @type {?} */
-                var pos = +(subPathIdx !== -1 ? path.substr(0, subPathIdx) : path);
-                /** @type {?} */
-                var list = ( /** @type {?} */(this.properties));
-                if (isNaN(pos) || pos >= list.length)
-                    return undefined;
-                /** @type {?} */
-                var subPath = path.substr(subPathIdx + 1);
-                return list[pos].getProperty(subPath);
-            };
+        function (path) {
+            /** @type {?} */
+            var subPathIdx = path.indexOf('/');
+            /** @type {?} */
+            var pos = +(subPathIdx !== -1 ? path.substr(0, subPathIdx) : path);
+            /** @type {?} */
+            var list = (/** @type {?} */ (this.properties));
+            if (isNaN(pos) || pos >= list.length)
+                return undefined;
+            /** @type {?} */
+            var subPath = path.substr(subPathIdx + 1);
+            return list[pos].getProperty(subPath);
+        };
         /**
          * @param {?} value
          * @param {?} onlySelf
@@ -1211,12 +1221,12 @@
          * @param {?} onlySelf
          * @return {?}
          */
-            function (value, onlySelf) {
-                this.properties = [];
-                this.clearErrors();
-                this.resetProperties(value);
-                this.updateValueAndValidity(onlySelf, true);
-            };
+        function (value, onlySelf) {
+            this.properties = [];
+            this.clearErrors();
+            this.resetProperties(value);
+            this.updateValueAndValidity(onlySelf, true);
+        };
         /**
          * @param {?} value
          * @param {?} onlySelf
@@ -1227,38 +1237,39 @@
          * @param {?} onlySelf
          * @return {?}
          */
-            function (value, onlySelf) {
-                this._value = value || this.schema.default || [];
-                this.setValue(this._value, onlySelf);
-            };
+        function (value, onlySelf) {
+            this._value = value || this.schema.default || [];
+            this.setValue(this._value, onlySelf);
+        };
         /**
          * @return {?}
          */
         ArrayProperty.prototype._hasValue = /**
          * @return {?}
          */
-            function () {
-                return true;
-            };
+        function () {
+            return true;
+        };
         /**
          * @return {?}
          */
         ArrayProperty.prototype._updateValue = /**
          * @return {?}
          */
-            function () {
-                /** @type {?} */
-                var value = [];
-                this.forEachChild(( /**
-                 * @param {?} property
-                 * @return {?}
-                 */function (property) {
-                    if (property.visible && property._hasValue()) {
-                        value.push(__assign({}, property.formData, property.value));
-                    }
-                }));
-                this._value = value;
-            };
+        function () {
+            /** @type {?} */
+            var value = [];
+            this.forEachChild((/**
+             * @param {?} property
+             * @return {?}
+             */
+            function (property) {
+                if (property.visible && property._hasValue()) {
+                    value.push(__assign({}, property.formData, property.value));
+                }
+            }));
+            this._value = value;
+        };
         /**
          * @private
          * @param {?} formData
@@ -1269,12 +1280,12 @@
          * @param {?} formData
          * @return {?}
          */
-            function (formData) {
-                /** @type {?} */
-                var newProperty = ( /** @type {?} */(this.formPropertyFactory.createProperty(this.schema.items, this.ui.$items, formData, this)));
-                (( /** @type {?} */(this.properties))).push(newProperty);
-                return newProperty;
-            };
+        function (formData) {
+            /** @type {?} */
+            var newProperty = (/** @type {?} */ (this.formPropertyFactory.createProperty(this.schema.items, this.ui.$items, formData, this)));
+            ((/** @type {?} */ (this.properties))).push(newProperty);
+            return newProperty;
+        };
         /**
          * @private
          * @param {?} formDatas
@@ -1285,30 +1296,24 @@
          * @param {?} formDatas
          * @return {?}
          */
-            function (formDatas) {
-                var e_1, _a;
+        function (formDatas) {
+            var e_1, _a;
+            try {
+                for (var formDatas_1 = __values(formDatas), formDatas_1_1 = formDatas_1.next(); !formDatas_1_1.done; formDatas_1_1 = formDatas_1.next()) {
+                    var item = formDatas_1_1.value;
+                    /** @type {?} */
+                    var property = this.addProperty(item);
+                    property.resetValue(item, true);
+                }
+            }
+            catch (e_1_1) { e_1 = { error: e_1_1 }; }
+            finally {
                 try {
-                    for (var formDatas_1 = __values(formDatas), formDatas_1_1 = formDatas_1.next(); !formDatas_1_1.done; formDatas_1_1 = formDatas_1.next()) {
-                        var item = formDatas_1_1.value;
-                        /** @type {?} */
-                        var property = this.addProperty(item);
-                        property.resetValue(item, true);
-                    }
+                    if (formDatas_1_1 && !formDatas_1_1.done && (_a = formDatas_1.return)) _a.call(formDatas_1);
                 }
-                catch (e_1_1) {
-                    e_1 = { error: e_1_1 };
-                }
-                finally {
-                    try {
-                        if (formDatas_1_1 && !formDatas_1_1.done && (_a = formDatas_1.return))
-                            _a.call(formDatas_1);
-                    }
-                    finally {
-                        if (e_1)
-                            throw e_1.error;
-                    }
-                }
-            };
+                finally { if (e_1) throw e_1.error; }
+            }
+        };
         /**
          * @private
          * @param {?=} path
@@ -1319,30 +1324,30 @@
          * @param {?=} path
          * @return {?}
          */
-            function (path) {
-                if (path)
-                    delete this._objErrors[path];
-                else
-                    this._objErrors = {};
-            };
+        function (path) {
+            if (path)
+                delete this._objErrors[path];
+            else
+                this._objErrors = {};
+        };
         // #region actions
         // #region actions
         /**
          * @param {?} formData
          * @return {?}
          */
-        ArrayProperty.prototype.add =
-            // #region actions
-            /**
-             * @param {?} formData
-             * @return {?}
-             */
-            function (formData) {
-                /** @type {?} */
-                var newProperty = this.addProperty(formData);
-                newProperty.resetValue(formData, false);
-                return newProperty;
-            };
+        ArrayProperty.prototype.add = 
+        // #region actions
+        /**
+         * @param {?} formData
+         * @return {?}
+         */
+        function (formData) {
+            /** @type {?} */
+            var newProperty = this.addProperty(formData);
+            newProperty.resetValue(formData, false);
+            return newProperty;
+        };
         /**
          * @param {?} index
          * @return {?}
@@ -1351,13 +1356,13 @@
          * @param {?} index
          * @return {?}
          */
-            function (index) {
-                /** @type {?} */
-                var list = ( /** @type {?} */(this.properties));
-                this.clearErrors(list[index].path);
-                list.splice(index, 1);
-                this.updateValueAndValidity(false, true);
-            };
+        function (index) {
+            /** @type {?} */
+            var list = (/** @type {?} */ (this.properties));
+            this.clearErrors(list[index].path);
+            list.splice(index, 1);
+            this.updateValueAndValidity(false, true);
+        };
         return ArrayProperty;
     }(PropertyGroup));
 
@@ -1368,9 +1373,10 @@
     /**
      * @abstract
      */
-    var /**
+    var   /**
      * @abstract
-     */ AtomicProperty = /** @class */ (function (_super) {
+     */
+    AtomicProperty = /** @class */ (function (_super) {
         __extends(AtomicProperty, _super);
         function AtomicProperty() {
             return _super !== null && _super.apply(this, arguments) || this;
@@ -1385,10 +1391,10 @@
          * @param {?} onlySelf
          * @return {?}
          */
-            function (value, onlySelf) {
-                this._value = value;
-                this.updateValueAndValidity(onlySelf, true);
-            };
+        function (value, onlySelf) {
+            this._value = value;
+            this.updateValueAndValidity(onlySelf, true);
+        };
         /**
          * @param {?} value
          * @param {?} onlySelf
@@ -1399,36 +1405,36 @@
          * @param {?} onlySelf
          * @return {?}
          */
-            function (value, onlySelf) {
-                if (value == null) {
-                    if (this.schema.default !== undefined) {
-                        value = this.schema.default;
-                    }
-                    else {
-                        value = this.fallbackValue();
-                    }
+        function (value, onlySelf) {
+            if (value == null) {
+                if (this.schema.default !== undefined) {
+                    value = this.schema.default;
                 }
-                this._value = value;
-                this.updateValueAndValidity(onlySelf, true);
-                if (this.widget)
-                    this.widget.reset(value);
-            };
+                else {
+                    value = this.fallbackValue();
+                }
+            }
+            this._value = value;
+            this.updateValueAndValidity(onlySelf, true);
+            if (this.widget)
+                this.widget.reset(value);
+        };
         /**
          * @return {?}
          */
         AtomicProperty.prototype._hasValue = /**
          * @return {?}
          */
-            function () {
-                return this.fallbackValue() !== this.value;
-            };
+        function () {
+            return this.fallbackValue() !== this.value;
+        };
         /**
          * @return {?}
          */
         AtomicProperty.prototype._updateValue = /**
          * @return {?}
          */
-            function () { };
+        function () { };
         return AtomicProperty;
     }(FormProperty));
 
@@ -1447,9 +1453,9 @@
         BooleanProperty.prototype.fallbackValue = /**
          * @return {?}
          */
-            function () {
-                return null;
-            };
+        function () {
+            return null;
+        };
         return BooleanProperty;
     }(AtomicProperty));
 
@@ -1468,9 +1474,9 @@
         NumberProperty.prototype.fallbackValue = /**
          * @return {?}
          */
-            function () {
-                return null;
-            };
+        function () {
+            return null;
+        };
         /**
          * @param {?} value
          * @param {?} onlySelf
@@ -1481,18 +1487,18 @@
          * @param {?} onlySelf
          * @return {?}
          */
-            function (value, onlySelf) {
-                if (typeof value === 'string') {
-                    if (value.length) {
-                        value = value.indexOf('.') > -1 ? parseFloat(value) : parseInt(value, 10);
-                    }
-                    else {
-                        value = undefined;
-                    }
+        function (value, onlySelf) {
+            if (typeof value === 'string') {
+                if (value.length) {
+                    value = value.indexOf('.') > -1 ? parseFloat(value) : parseInt(value, 10);
                 }
-                this._value = value;
-                this.updateValueAndValidity(onlySelf, true);
-            };
+                else {
+                    value = undefined;
+                }
+            }
+            this._value = value;
+            this.updateValueAndValidity(onlySelf, true);
+        };
         return NumberProperty;
     }(AtomicProperty));
 
@@ -1512,7 +1518,8 @@
         Object.defineProperty(ObjectProperty.prototype, "propertiesId", {
             get: /**
              * @return {?}
-             */ function () {
+             */
+            function () {
                 return this._propertiesId;
             },
             enumerable: true,
@@ -1526,27 +1533,28 @@
          * @private
          * @return {?}
          */
-            function () {
-                var _this = this;
-                this.properties = {};
-                this._propertiesId = [];
-                /** @type {?} */
-                var orderedProperties;
-                try {
-                    orderedProperties = orderProperties(Object.keys(this.schema.properties), ( /** @type {?} */(this.ui
-                        .order)));
-                }
-                catch (e) {
-                    console.error("Invalid " + (this.schema.title || 'root') + " object field configuration:", e);
-                }
-                orderedProperties.forEach(( /**
-                 * @param {?} propertyId
-                 * @return {?}
-                 */function (propertyId) {
-                    _this.properties[propertyId] = _this.formPropertyFactory.createProperty(_this.schema.properties[propertyId], _this.ui['$' + propertyId], (_this.formData || {})[propertyId], _this, propertyId);
-                    _this._propertiesId.push(propertyId);
-                }));
-            };
+        function () {
+            var _this = this;
+            this.properties = {};
+            this._propertiesId = [];
+            /** @type {?} */
+            var orderedProperties;
+            try {
+                orderedProperties = orderProperties(Object.keys(this.schema.properties), (/** @type {?} */ (this.ui
+                    .order)));
+            }
+            catch (e) {
+                console.error("Invalid " + (this.schema.title || 'root') + " object field configuration:", e);
+            }
+            orderedProperties.forEach((/**
+             * @param {?} propertyId
+             * @return {?}
+             */
+            function (propertyId) {
+                _this.properties[propertyId] = _this.formPropertyFactory.createProperty(_this.schema.properties[propertyId], _this.ui['$' + propertyId], (_this.formData || {})[propertyId], _this, propertyId);
+                _this._propertiesId.push(propertyId);
+            }));
+        };
         /**
          * @param {?} value
          * @param {?} onlySelf
@@ -1557,14 +1565,14 @@
          * @param {?} onlySelf
          * @return {?}
          */
-            function (value, onlySelf) {
-                for (var propertyId in value) {
-                    if (value.hasOwnProperty(propertyId) && this.properties[propertyId]) {
-                        this.properties[propertyId].setValue(value[propertyId], true);
-                    }
+        function (value, onlySelf) {
+            for (var propertyId in value) {
+                if (value.hasOwnProperty(propertyId) && this.properties[propertyId]) {
+                    this.properties[propertyId].setValue(value[propertyId], true);
                 }
-                this.updateValueAndValidity(onlySelf, true);
-            };
+            }
+            this.updateValueAndValidity(onlySelf, true);
+        };
         /**
          * @param {?} value
          * @param {?} onlySelf
@@ -1575,42 +1583,43 @@
          * @param {?} onlySelf
          * @return {?}
          */
-            function (value, onlySelf) {
-                value = value || this.schema.default || {};
-                for (var propertyId in this.schema.properties) {
-                    this.properties[propertyId].resetValue(value[propertyId], true);
-                }
-                this.updateValueAndValidity(onlySelf, true);
-            };
+        function (value, onlySelf) {
+            value = value || this.schema.default || {};
+            for (var propertyId in this.schema.properties) {
+                this.properties[propertyId].resetValue(value[propertyId], true);
+            }
+            this.updateValueAndValidity(onlySelf, true);
+        };
         /**
          * @return {?}
          */
         ObjectProperty.prototype._hasValue = /**
          * @return {?}
          */
-            function () {
-                return this.value != null && !!Object.keys(this.value).length;
-            };
+        function () {
+            return this.value != null && !!Object.keys(this.value).length;
+        };
         /**
          * @return {?}
          */
         ObjectProperty.prototype._updateValue = /**
          * @return {?}
          */
-            function () {
-                /** @type {?} */
-                var value = {};
-                this.forEachChild(( /**
-                 * @param {?} property
-                 * @param {?} propertyId
-                 * @return {?}
-                 */function (property, propertyId) {
-                    if (property.visible && property._hasValue()) {
-                        value[propertyId] = property.value;
-                    }
-                }));
-                this._value = value;
-            };
+        function () {
+            /** @type {?} */
+            var value = {};
+            this.forEachChild((/**
+             * @param {?} property
+             * @param {?} propertyId
+             * @return {?}
+             */
+            function (property, propertyId) {
+                if (property.visible && property._hasValue()) {
+                    value[propertyId] = property.value;
+                }
+            }));
+            this._value = value;
+        };
         return ObjectProperty;
     }(PropertyGroup));
 
@@ -1629,9 +1638,9 @@
         StringProperty.prototype.fallbackValue = /**
          * @return {?}
          */
-            function () {
-                return null;
-            };
+        function () {
+            return null;
+        };
         /**
          * @param {?} value
          * @param {?} onlySelf
@@ -1642,10 +1651,10 @@
          * @param {?} onlySelf
          * @return {?}
          */
-            function (value, onlySelf) {
-                this._value = value == null ? '' : value;
-                this.updateValueAndValidity(onlySelf, true);
-            };
+        function (value, onlySelf) {
+            this._value = value == null ? '' : value;
+            this.updateValueAndValidity(onlySelf, true);
+        };
         return StringProperty;
     }(AtomicProperty));
 
@@ -1676,87 +1685,85 @@
          * @param {?=} propertyId
          * @return {?}
          */
-            function (schema, ui, formData, parent, propertyId) {
-                if (parent === void 0) {
-                    parent = null;
+        function (schema, ui, formData, parent, propertyId) {
+            if (parent === void 0) { parent = null; }
+            /** @type {?} */
+            var newProperty = null;
+            /** @type {?} */
+            var path = '';
+            if (parent) {
+                path += parent.path;
+                if (parent.parent !== null) {
+                    path += SEQ;
                 }
-                /** @type {?} */
-                var newProperty = null;
-                /** @type {?} */
-                var path = '';
-                if (parent) {
-                    path += parent.path;
-                    if (parent.parent !== null) {
-                        path += SEQ;
-                    }
-                    if (parent.type === 'object') {
-                        path += propertyId;
-                    }
-                    else if (parent.type === 'array') {
-                        path += (( /** @type {?} */(parent))).tick++;
-                    }
-                    else {
-                        throw new Error('Instanciation of a FormProperty with an unknown parent type: ' + parent.type);
-                    }
+                if (parent.type === 'object') {
+                    path += propertyId;
+                }
+                else if (parent.type === 'array') {
+                    path += ((/** @type {?} */ (parent))).tick++;
                 }
                 else {
-                    path = SEQ;
+                    throw new Error('Instanciation of a FormProperty with an unknown parent type: ' + parent.type);
                 }
-                if (schema.$ref) {
-                    /** @type {?} */
-                    var refSchema = retrieveSchema(schema, parent.root.schema.definitions);
-                    newProperty = this.createProperty(refSchema, ui, formData, parent, path);
+            }
+            else {
+                path = SEQ;
+            }
+            if (schema.$ref) {
+                /** @type {?} */
+                var refSchema = retrieveSchema(schema, parent.root.schema.definitions);
+                newProperty = this.createProperty(refSchema, ui, formData, parent, path);
+            }
+            else {
+                // fix required
+                if (propertyId && ((/** @type {?} */ (((/** @type {?} */ (parent)).schema.required || [])))).indexOf(propertyId.split(SEQ).pop()) !== -1) {
+                    ui._required = true;
                 }
-                else {
-                    // fix required
-                    if (propertyId && (( /** @type {?} */((( /** @type {?} */(parent)).schema.required || [])))).indexOf(propertyId.split(SEQ).pop()) !== -1) {
-                        ui._required = true;
-                    }
-                    // fix title
-                    if (schema.title == null) {
-                        schema.title = propertyId;
-                    }
-                    // fix date
-                    if ((schema.type === 'string' || schema.type === 'number') &&
-                        !schema.format &&
-                        !(( /** @type {?} */(ui))).format) {
-                        if ((( /** @type {?} */(ui))).widget === 'date')
-                            ui.format =
-                                schema.type === 'string'
-                                    ? this.options.uiDateStringFormat
-                                    : this.options.uiDateNumberFormat;
-                        else if ((( /** @type {?} */(ui))).widget === 'time')
-                            ui.format =
-                                schema.type === 'string'
-                                    ? this.options.uiTimeStringFormat
-                                    : this.options.uiTimeNumberFormat;
-                    }
-                    switch (schema.type) {
-                        case 'integer':
-                        case 'number':
-                            newProperty = new NumberProperty(this.schemaValidatorFactory, schema, ui, formData, parent, path, this.options);
-                            break;
-                        case 'string':
-                            newProperty = new StringProperty(this.schemaValidatorFactory, schema, ui, formData, parent, path, this.options);
-                            break;
-                        case 'boolean':
-                            newProperty = new BooleanProperty(this.schemaValidatorFactory, schema, ui, formData, parent, path, this.options);
-                            break;
-                        case 'object':
-                            newProperty = new ObjectProperty(this, this.schemaValidatorFactory, schema, ui, formData, parent, path, this.options);
-                            break;
-                        case 'array':
-                            newProperty = new ArrayProperty(this, this.schemaValidatorFactory, schema, ui, formData, parent, path, this.options);
-                            break;
-                        default:
-                            throw new TypeError("Undefined type " + schema.type);
-                    }
+                // fix title
+                if (schema.title == null) {
+                    schema.title = propertyId;
                 }
-                if (newProperty instanceof PropertyGroup) {
-                    this.initializeRoot(newProperty);
+                // fix date
+                if ((schema.type === 'string' || schema.type === 'number') &&
+                    !schema.format &&
+                    !((/** @type {?} */ (ui))).format) {
+                    if (((/** @type {?} */ (ui))).widget === 'date')
+                        ui.format =
+                            schema.type === 'string'
+                                ? this.options.uiDateStringFormat
+                                : this.options.uiDateNumberFormat;
+                    else if (((/** @type {?} */ (ui))).widget === 'time')
+                        ui.format =
+                            schema.type === 'string'
+                                ? this.options.uiTimeStringFormat
+                                : this.options.uiTimeNumberFormat;
                 }
-                return newProperty;
-            };
+                switch (schema.type) {
+                    case 'integer':
+                    case 'number':
+                        newProperty = new NumberProperty(this.schemaValidatorFactory, schema, ui, formData, parent, path, this.options);
+                        break;
+                    case 'string':
+                        newProperty = new StringProperty(this.schemaValidatorFactory, schema, ui, formData, parent, path, this.options);
+                        break;
+                    case 'boolean':
+                        newProperty = new BooleanProperty(this.schemaValidatorFactory, schema, ui, formData, parent, path, this.options);
+                        break;
+                    case 'object':
+                        newProperty = new ObjectProperty(this, this.schemaValidatorFactory, schema, ui, formData, parent, path, this.options);
+                        break;
+                    case 'array':
+                        newProperty = new ArrayProperty(this, this.schemaValidatorFactory, schema, ui, formData, parent, path, this.options);
+                        break;
+                    default:
+                        throw new TypeError("Undefined type " + schema.type);
+                }
+            }
+            if (newProperty instanceof PropertyGroup) {
+                this.initializeRoot(newProperty);
+            }
+            return newProperty;
+        };
         /**
          * @private
          * @param {?} rootProperty
@@ -1767,10 +1774,10 @@
          * @param {?} rootProperty
          * @return {?}
          */
-            function (rootProperty) {
-                // rootProperty.init();
-                rootProperty._bindVisibility();
-            };
+        function (rootProperty) {
+            // rootProperty.init();
+            rootProperty._bindVisibility();
+        };
         return FormPropertyFactory;
     }());
 
@@ -1788,9 +1795,9 @@
         TerminatorService.prototype.destroy = /**
          * @return {?}
          */
-            function () {
-                this.onDestroy.next(true);
-            };
+        function () {
+            this.onDestroy.next(true);
+        };
         return TerminatorService;
     }());
 
@@ -1801,9 +1808,10 @@
     /**
      * @abstract
      */
-    var /**
+    var   /**
      * @abstract
-     */ SchemaValidatorFactory = /** @class */ (function () {
+     */
+    SchemaValidatorFactory = /** @class */ (function () {
         function SchemaValidatorFactory() {
         }
         return SchemaValidatorFactory;
@@ -1830,43 +1838,43 @@
          * @param {?} extraOptions
          * @return {?}
          */
-            function (schema, extraOptions) {
-                var _this = this;
+        function (schema, extraOptions) {
+            var _this = this;
+            /** @type {?} */
+            var ingoreKeywords = []
+                .concat(this.options.ingoreKeywords)
+                .concat(extraOptions.ingoreKeywords);
+            return (/**
+             * @param {?} value
+             * @return {?}
+             */
+            function (value) {
+                try {
+                    _this.ajv.validate(schema, value);
+                }
+                catch (e) {
+                    // swallow errors thrown in ajv due to invalid schemas, these
+                    // still get displayed
+                    if (extraOptions.debug) {
+                        console.warn(e);
+                    }
+                }
                 /** @type {?} */
-                var ingoreKeywords = []
-                    .concat(this.options.ingoreKeywords)
-                    .concat(extraOptions.ingoreKeywords);
-                return ( /**
-                 * @param {?} value
-                 * @return {?}
-                 */function (value) {
-                    try {
-                        _this.ajv.validate(schema, value);
-                    }
-                    catch (e) {
-                        // swallow errors thrown in ajv due to invalid schemas, these
-                        // still get displayed
-                        if (extraOptions.debug) {
-                            console.warn(e);
-                        }
-                    }
-                    /** @type {?} */
-                    var errors = _this.ajv.errors;
-                    if (_this.options && ingoreKeywords && errors) {
-                        errors = errors.filter(( /**
-                         * @param {?} w
-                         * @return {?}
-                         */function (w) { return ingoreKeywords.indexOf(w.keyword) === -1; }));
-                    }
-                    return errors;
-                });
-            };
-        /** @nocollapse */
-        AjvSchemaValidatorFactory.ctorParameters = function () {
-            return [
-                { type: DelonFormConfig, decorators: [{ type: i0.Inject, args: [DelonFormConfig,] }] }
-            ];
+                var errors = _this.ajv.errors;
+                if (_this.options && ingoreKeywords && errors) {
+                    errors = errors.filter((/**
+                     * @param {?} w
+                     * @return {?}
+                     */
+                    function (w) { return ingoreKeywords.indexOf(w.keyword) === -1; }));
+                }
+                return errors;
+            });
         };
+        /** @nocollapse */
+        AjvSchemaValidatorFactory.ctorParameters = function () { return [
+            { type: DelonFormConfig, decorators: [{ type: core.Inject, args: [DelonFormConfig,] }] }
+        ]; };
         return AjvSchemaValidatorFactory;
     }(SchemaValidatorFactory));
 
@@ -1886,9 +1894,9 @@
          * @param {?} widget
          * @return {?}
          */
-            function (widget) {
-                this.defaultWidget = widget;
-            };
+        function (widget) {
+            this.defaultWidget = widget;
+        };
         /**
          * @param {?} type
          * @param {?} widget
@@ -1899,9 +1907,9 @@
          * @param {?} widget
          * @return {?}
          */
-            function (type, widget) {
-                this.widgets[type] = widget;
-            };
+        function (type, widget) {
+            this.widgets[type] = widget;
+        };
         /**
          * @param {?} type
          * @return {?}
@@ -1910,9 +1918,9 @@
          * @param {?} type
          * @return {?}
          */
-            function (type) {
-                return this.widgets.hasOwnProperty(type);
-            };
+        function (type) {
+            return this.widgets.hasOwnProperty(type);
+        };
         /**
          * @param {?} type
          * @return {?}
@@ -1921,12 +1929,12 @@
          * @param {?} type
          * @return {?}
          */
-            function (type) {
-                if (this.has(type)) {
-                    return this.widgets[type];
-                }
-                return this.defaultWidget;
-            };
+        function (type) {
+            if (this.has(type)) {
+                return this.widgets[type];
+            }
+            return this.defaultWidget;
+        };
         return WidgetRegistry;
     }());
     var WidgetFactory = /** @class */ (function () {
@@ -1944,26 +1952,24 @@
          * @param {?} type
          * @return {?}
          */
-            function (container, type) {
-                if (!this.registry.has(type)) {
-                    console.warn("No widget for type \"" + type + "\"");
-                }
-                /** @type {?} */
-                var componentClass = ( /** @type {?} */(this.registry.getType(type)));
-                /** @type {?} */
-                var componentFactory = this.resolver.resolveComponentFactory(componentClass);
-                return container.createComponent(componentFactory);
-            };
+        function (container, type) {
+            if (!this.registry.has(type)) {
+                console.warn("No widget for type \"" + type + "\"");
+            }
+            /** @type {?} */
+            var componentClass = (/** @type {?} */ (this.registry.getType(type)));
+            /** @type {?} */
+            var componentFactory = this.resolver.resolveComponentFactory(componentClass);
+            return container.createComponent(componentFactory);
+        };
         WidgetFactory.decorators = [
-            { type: i0.Injectable }
+            { type: core.Injectable }
         ];
         /** @nocollapse */
-        WidgetFactory.ctorParameters = function () {
-            return [
-                { type: WidgetRegistry },
-                { type: i0.ComponentFactoryResolver }
-            ];
-        };
+        WidgetFactory.ctorParameters = function () { return [
+            { type: WidgetRegistry },
+            { type: core.ComponentFactoryResolver }
+        ]; };
         return WidgetFactory;
     }());
 
@@ -2025,25 +2031,26 @@
             /**
              * 数据变更时回调
              */
-            this.formChange = new i0.EventEmitter();
+            this.formChange = new core.EventEmitter();
             /**
              * 提交表单时回调
              */
-            this.formSubmit = new i0.EventEmitter();
+            this.formSubmit = new core.EventEmitter();
             /**
              * 重置表单时回调
              */
-            this.formReset = new i0.EventEmitter();
+            this.formReset = new core.EventEmitter();
             /**
              * 表单校验结果回调
              */
-            this.formError = new i0.EventEmitter();
+            this.formError = new core.EventEmitter();
             this.liveValidate = options.liveValidate;
             this.firstVisual = options.firstVisual;
             this.autocomplete = options.autocomplete;
-            this.i18n$ = this.i18n.change.subscribe(( /**
+            this.i18n$ = this.i18n.change.subscribe((/**
              * @return {?}
-             */function () {
+             */
+            function () {
                 _this.locale = _this.i18n.getData('sf');
                 if (_this._inited) {
                     _this.coverButtonProperty();
@@ -2054,7 +2061,8 @@
         Object.defineProperty(SFComponent.prototype, "mode", {
             get: /**
              * @return {?}
-             */ function () {
+             */
+            function () {
                 return this._mode;
             },
             /** 表单模式 */
@@ -2062,7 +2070,8 @@
              * 表单模式
              * @param {?} value
              * @return {?}
-             */ function (value) {
+             */
+            function (value) {
                 switch (value) {
                     case 'search':
                         this.layout = 'inline';
@@ -2106,7 +2115,8 @@
             get: /**
              * 表单值
              * @return {?}
-             */ function () {
+             */
+            function () {
                 return this._item;
             },
             enumerable: true,
@@ -2126,9 +2136,9 @@
          * @param {?} path [路径](https://ng-alain.com/form/qa#path)
          * @return {?}
          */
-            function (path) {
-                return this.rootProperty.searchProperty(path);
-            };
+        function (path) {
+            return this.rootProperty.searchProperty(path);
+        };
         /**
          * 根据路径获取表单元素当前值
          * @param path [路径](https://ng-alain.com/form/qa#path)
@@ -2143,9 +2153,9 @@
          * @param {?} path [路径](https://ng-alain.com/form/qa#path)
          * @return {?}
          */
-            function (path) {
-                return ( /** @type {?} */(this.getProperty(path))).value;
-            };
+        function (path) {
+            return (/** @type {?} */ (this.getProperty(path))).value;
+        };
         /**
          * 根据路径设置某个表单元素属性值
          * @param path [路径](https://ng-alain.com/form/qa#path)
@@ -2167,15 +2177,15 @@
          * @param {?} value 新值
          * @return {THIS}
          */
-            function (path, value) {
-                /** @type {?} */
-                var item = ( /** @type {?} */(this)).getProperty(path);
-                if (!item) {
-                    throw new Error("Invalid path: " + path);
-                }
-                item.resetValue(value, false);
-                return ( /** @type {?} */(this));
-            };
+        function (path, value) {
+            /** @type {?} */
+            var item = (/** @type {?} */ (this)).getProperty(path);
+            if (!item) {
+                throw new Error("Invalid path: " + path);
+            }
+            item.resetValue(value, false);
+            return (/** @type {?} */ (this));
+        };
         /**
          * @param {?} e
          * @return {?}
@@ -2184,15 +2194,15 @@
          * @param {?} e
          * @return {?}
          */
-            function (e) {
-                e.preventDefault();
-                e.stopPropagation();
-                if (!this.liveValidate)
-                    this.validator();
-                if (!this.valid)
-                    return;
-                this.formSubmit.emit(this.value);
-            };
+        function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            if (!this.liveValidate)
+                this.validator();
+            if (!this.valid)
+                return;
+            this.formSubmit.emit(this.value);
+        };
         /**
          * @private
          * @return {?}
@@ -2201,120 +2211,124 @@
          * @private
          * @return {?}
          */
-            function () {
-                var _this = this;
-                /** @type {?} */
-                var isHorizontal = this.layout === 'horizontal';
-                /** @type {?} */
-                var _schema = util.deepCopy(this.schema);
-                var definitions = _schema.definitions;
-                /** @type {?} */
-                var inFn = ( /**
-                 * @param {?} schema
-                 * @param {?} parentSchema
-                 * @param {?} uiSchema
-                 * @param {?} parentUiSchema
-                 * @param {?} uiRes
+        function () {
+            var _this = this;
+            /** @type {?} */
+            var isHorizontal = this.layout === 'horizontal';
+            /** @type {?} */
+            var _schema = util.deepCopy(this.schema);
+            var definitions = _schema.definitions;
+            /** @type {?} */
+            var inFn = (/**
+             * @param {?} schema
+             * @param {?} parentSchema
+             * @param {?} uiSchema
+             * @param {?} parentUiSchema
+             * @param {?} uiRes
+             * @return {?}
+             */
+            function (schema, parentSchema, uiSchema, parentUiSchema, uiRes) {
+                Object.keys(schema.properties).forEach((/**
+                 * @param {?} key
                  * @return {?}
-                 */function (schema, parentSchema, uiSchema, parentUiSchema, uiRes) {
-                    Object.keys(schema.properties).forEach(( /**
-                     * @param {?} key
-                     * @return {?}
-                     */function (key) {
-                        /** @type {?} */
-                        var uiKey = "$" + key;
-                        /** @type {?} */
-                        var property = retrieveSchema(( /** @type {?} */(schema.properties[key])), definitions);
-                        /** @type {?} */
-                        var ui = ( /** @type {?} */(__assign({ widget: property.type }, (property.format && FORMATMAPS[property.format]), (typeof property.ui === 'string' ? { widget: property.ui } : null), (!property.format && !property.ui && Array.isArray(property.enum) && property.enum.length > 0
-                            ? { widget: 'select' }
-                            : null), _this._defUi, (( /** @type {?} */(property.ui))), uiSchema[uiKey])));
-                        // 继承父节点布局属性
-                        if (isHorizontal) {
-                            if (parentUiSchema.spanLabelFixed) {
-                                if (!ui.spanLabelFixed) {
-                                    ui.spanLabelFixed = parentUiSchema.spanLabelFixed;
-                                }
-                            }
-                            else {
-                                if (!ui.spanLabel)
-                                    ui.spanLabel =
-                                        typeof parentUiSchema.spanLabel === 'undefined' ? 5 : parentUiSchema.spanLabel;
-                                if (!ui.spanControl)
-                                    ui.spanControl =
-                                        typeof parentUiSchema.spanControl === 'undefined' ? 19 : parentUiSchema.spanControl;
-                                if (!ui.offsetControl)
-                                    ui.offsetControl =
-                                        typeof parentUiSchema.offsetControl === 'undefined'
-                                            ? null
-                                            : parentUiSchema.offsetControl;
+                 */
+                function (key) {
+                    /** @type {?} */
+                    var uiKey = "$" + key;
+                    /** @type {?} */
+                    var property = retrieveSchema((/** @type {?} */ (schema.properties[key])), definitions);
+                    /** @type {?} */
+                    var ui = (/** @type {?} */ (__assign({ widget: property.type }, (property.format && FORMATMAPS[property.format]), (typeof property.ui === 'string' ? { widget: property.ui } : null), (!property.format && !property.ui && Array.isArray(property.enum) && property.enum.length > 0
+                        ? { widget: 'select' }
+                        : null), _this._defUi, ((/** @type {?} */ (property.ui))), uiSchema[uiKey])));
+                    // 继承父节点布局属性
+                    if (isHorizontal) {
+                        if (parentUiSchema.spanLabelFixed) {
+                            if (!ui.spanLabelFixed) {
+                                ui.spanLabelFixed = parentUiSchema.spanLabelFixed;
                             }
                         }
                         else {
-                            ui.spanLabel = null;
-                            ui.spanControl = null;
-                            ui.offsetControl = null;
+                            if (!ui.spanLabel)
+                                ui.spanLabel =
+                                    typeof parentUiSchema.spanLabel === 'undefined' ? 5 : parentUiSchema.spanLabel;
+                            if (!ui.spanControl)
+                                ui.spanControl =
+                                    typeof parentUiSchema.spanControl === 'undefined' ? 19 : parentUiSchema.spanControl;
+                            if (!ui.offsetControl)
+                                ui.offsetControl =
+                                    typeof parentUiSchema.offsetControl === 'undefined'
+                                        ? null
+                                        : parentUiSchema.offsetControl;
                         }
-                        if (ui.widget === 'date' && ui.end != null) {
-                            /** @type {?} */
-                            var dateEndProperty = schema.properties[ui.end];
-                            if (dateEndProperty) {
-                                dateEndProperty.ui = __assign({}, (( /** @type {?} */(dateEndProperty.ui))), { hidden: true });
-                            }
-                            else {
-                                ui.end = null;
-                            }
+                    }
+                    else {
+                        ui.spanLabel = null;
+                        ui.spanControl = null;
+                        ui.offsetControl = null;
+                    }
+                    if (ui.widget === 'date' && ui.end != null) {
+                        /** @type {?} */
+                        var dateEndProperty = schema.properties[ui.end];
+                        if (dateEndProperty) {
+                            dateEndProperty.ui = __assign({}, ((/** @type {?} */ (dateEndProperty.ui))), { hidden: true });
                         }
-                        ui.hidden = typeof ui.hidden === 'boolean' ? ui.hidden : false;
-                        uiRes[uiKey] = ui;
-                        delete property.ui;
-                        if (property.items) {
-                            uiRes[uiKey].$items = uiRes[uiKey].$items || {};
-                            inFn(property.items, property.items, (uiSchema[uiKey] || {}).$items || {}, ui, uiRes[uiKey].$items);
+                        else {
+                            ui.end = null;
                         }
-                        if (property.properties && Object.keys(property.properties).length) {
-                            inFn(property, schema, uiSchema[uiKey] || {}, ui, uiRes[uiKey]);
-                        }
-                    }));
-                });
-                /** @type {?} */
-                var inIfFn = ( /**
-                 * @param {?} schema
-                 * @param {?} ui
+                    }
+                    ui.hidden = typeof ui.hidden === 'boolean' ? ui.hidden : false;
+                    uiRes[uiKey] = ui;
+                    delete property.ui;
+                    if (property.items) {
+                        uiRes[uiKey].$items = uiRes[uiKey].$items || {};
+                        inFn(property.items, property.items, (uiSchema[uiKey] || {}).$items || {}, ui, uiRes[uiKey].$items);
+                    }
+                    if (property.properties && Object.keys(property.properties).length) {
+                        inFn(property, schema, uiSchema[uiKey] || {}, ui, uiRes[uiKey]);
+                    }
+                }));
+            });
+            /** @type {?} */
+            var inIfFn = (/**
+             * @param {?} schema
+             * @param {?} ui
+             * @return {?}
+             */
+            function (schema, ui) {
+                Object.keys(schema.properties).forEach((/**
+                 * @param {?} key
                  * @return {?}
-                 */function (schema, ui) {
-                    Object.keys(schema.properties).forEach(( /**
-                     * @param {?} key
-                     * @return {?}
-                     */function (key) {
-                        /** @type {?} */
-                        var property = schema.properties[key];
-                        /** @type {?} */
-                        var uiKey = "$" + key;
-                        resolveIf(property, ui[uiKey]);
-                        if (property.items) {
-                            inIfFn(property.items, ui[uiKey].$items);
-                        }
-                        if (property.properties) {
-                            inIfFn(property, ui[uiKey]);
-                        }
-                    }));
-                });
-                if (this.ui == null)
-                    this.ui = {};
-                this._defUi = __assign({ onlyVisual: this.options.onlyVisual, size: this.options.size, liveValidate: this.liveValidate, firstVisual: this.firstVisual }, this.options.ui, _schema.ui, this.ui['*']);
-                if (this.onlyVisual === true) {
-                    this._defUi.onlyVisual = true;
-                }
-                // root
-                this._ui = __assign({}, this._defUi);
-                inFn(_schema, _schema, this.ui, this.ui, this._ui);
-                // cond
-                resolveIf(_schema, this._ui);
-                inIfFn(_schema, this._ui);
-                this._schema = _schema;
-                di(this._ui, 'cover schema & ui', this._ui, _schema);
-            };
+                 */
+                function (key) {
+                    /** @type {?} */
+                    var property = schema.properties[key];
+                    /** @type {?} */
+                    var uiKey = "$" + key;
+                    resolveIf(property, ui[uiKey]);
+                    if (property.items) {
+                        inIfFn(property.items, ui[uiKey].$items);
+                    }
+                    if (property.properties) {
+                        inIfFn(property, ui[uiKey]);
+                    }
+                }));
+            });
+            if (this.ui == null)
+                this.ui = {};
+            this._defUi = __assign({ onlyVisual: this.options.onlyVisual, size: this.options.size, liveValidate: this.liveValidate, firstVisual: this.firstVisual }, this.options.ui, _schema.ui, this.ui['*']);
+            if (this.onlyVisual === true) {
+                this._defUi.onlyVisual = true;
+            }
+            // root
+            this._ui = __assign({}, this._defUi);
+            inFn(_schema, _schema, this.ui, this.ui, this._ui);
+            // cond
+            resolveIf(_schema, this._ui);
+            inIfFn(_schema, this._ui);
+            this._schema = _schema;
+            di(this._ui, 'cover schema & ui', this._ui, _schema);
+        };
         /**
          * @private
          * @return {?}
@@ -2323,50 +2337,51 @@
          * @private
          * @return {?}
          */
-            function () {
-                this._btn = __assign({ render: { size: 'default' } }, this.locale, this.options.button, (( /** @type {?} */(this.button))));
+        function () {
+            this._btn = __assign({ render: { size: 'default' } }, this.locale, this.options.button, ((/** @type {?} */ (this.button))));
+            /** @type {?} */
+            var firstKey = Object.keys(this._ui).find((/**
+             * @param {?} w
+             * @return {?}
+             */
+            function (w) { return w.startsWith('$'); }));
+            if (this.layout === 'horizontal') {
                 /** @type {?} */
-                var firstKey = Object.keys(this._ui).find(( /**
-                 * @param {?} w
-                 * @return {?}
-                 */function (w) { return w.startsWith('$'); }));
-                if (this.layout === 'horizontal') {
-                    /** @type {?} */
-                    var btnUi = firstKey ? this._ui[firstKey] : this._defUi;
-                    if (!this._btn.render.grid) {
-                        this._btn.render.grid = {
-                            offset: btnUi.spanLabel,
-                            span: btnUi.spanControl,
-                        };
-                    }
-                    // fixed label
-                    if (this._btn.render.spanLabelFixed == null) {
-                        this._btn.render.spanLabelFixed = btnUi.spanLabelFixed;
-                    }
-                    // 固定标签宽度时，若不指定样式，则默认居中
-                    if (!this._btn.render.class &&
-                        (typeof btnUi.spanLabelFixed === 'number' && btnUi.spanLabelFixed > 0)) {
-                        this._btn.render.class = 'text-center';
-                    }
+                var btnUi = firstKey ? this._ui[firstKey] : this._defUi;
+                if (!this._btn.render.grid) {
+                    this._btn.render.grid = {
+                        offset: btnUi.spanLabel,
+                        span: btnUi.spanControl,
+                    };
                 }
-                else {
-                    this._btn.render.grid = {};
+                // fixed label
+                if (this._btn.render.spanLabelFixed == null) {
+                    this._btn.render.spanLabelFixed = btnUi.spanLabelFixed;
                 }
-                if (this._mode) {
-                    this.mode = this._mode;
+                // 固定标签宽度时，若不指定样式，则默认居中
+                if (!this._btn.render.class &&
+                    (typeof btnUi.spanLabelFixed === 'number' && btnUi.spanLabelFixed > 0)) {
+                    this._btn.render.class = 'text-center';
                 }
-                di(this._ui, 'button property', this._btn);
-            };
+            }
+            else {
+                this._btn.render.grid = {};
+            }
+            if (this._mode) {
+                this.mode = this._mode;
+            }
+            di(this._ui, 'button property', this._btn);
+        };
         /**
          * @return {?}
          */
         SFComponent.prototype.ngOnInit = /**
          * @return {?}
          */
-            function () {
-                this._inited = true;
-                this.validator();
-            };
+        function () {
+            this._inited = true;
+            this.validator();
+        };
         /**
          * @param {?} changes
          * @return {?}
@@ -2375,13 +2390,13 @@
          * @param {?} changes
          * @return {?}
          */
-            function (changes) {
-                if (changes.loading && Object.keys(changes).length === 1) {
-                    this.cdr.detectChanges();
-                    return;
-                }
-                this.refreshSchema();
-            };
+        function (changes) {
+            if (changes.loading && Object.keys(changes).length === 1) {
+                this.cdr.detectChanges();
+                return;
+            }
+            this.refreshSchema();
+        };
         /** @internal */
         /**
          * \@internal
@@ -2395,14 +2410,14 @@
          * @param {?} templateRef
          * @return {?}
          */
-            function (path, templateRef) {
-                if (this._renders.has(path)) {
-                    console.warn("Duplicate definition \"" + path + "\" custom widget");
-                    return;
-                }
-                this._renders.set(path, templateRef);
-                this.attachCustomRender();
-            };
+        function (path, templateRef) {
+            if (this._renders.has(path)) {
+                console.warn("Duplicate definition \"" + path + "\" custom widget");
+                return;
+            }
+            this._renders.set(path, templateRef);
+            this.attachCustomRender();
+        };
         /**
          * @private
          * @return {?}
@@ -2411,21 +2426,22 @@
          * @private
          * @return {?}
          */
-            function () {
-                var _this = this;
-                this._renders.forEach(( /**
-                 * @param {?} tpl
-                 * @param {?} path
-                 * @return {?}
-                 */function (tpl, path) {
-                    /** @type {?} */
-                    var property = _this.rootProperty.searchProperty(path);
-                    if (property == null) {
-                        return;
-                    }
-                    property.ui._render = tpl;
-                }));
-            };
+        function () {
+            var _this = this;
+            this._renders.forEach((/**
+             * @param {?} tpl
+             * @param {?} path
+             * @return {?}
+             */
+            function (tpl, path) {
+                /** @type {?} */
+                var property = _this.rootProperty.searchProperty(path);
+                if (property == null) {
+                    return;
+                }
+                property.ui._render = tpl;
+            }));
+        };
         /**
          * @template THIS
          * @this {THIS}
@@ -2436,16 +2452,16 @@
          * @this {THIS}
          * @return {THIS}
          */
-            function () {
-                ( /** @type {?} */(this)).rootProperty._runValidation();
-                /** @type {?} */
-                var errors = ( /** @type {?} */(this)).rootProperty.errors;
-                ( /** @type {?} */(this))._valid = !(errors && errors.length);
-                if (!( /** @type {?} */(this))._valid)
-                    ( /** @type {?} */(this)).formError.emit(errors);
-                ( /** @type {?} */(this)).cdr.detectChanges();
-                return ( /** @type {?} */(this));
-            };
+        function () {
+            (/** @type {?} */ (this)).rootProperty._runValidation();
+            /** @type {?} */
+            var errors = (/** @type {?} */ (this)).rootProperty.errors;
+            (/** @type {?} */ (this))._valid = !(errors && errors.length);
+            if (!(/** @type {?} */ (this))._valid)
+                (/** @type {?} */ (this)).formError.emit(errors);
+            (/** @type {?} */ (this)).cdr.detectChanges();
+            return (/** @type {?} */ (this));
+        };
         /**
          * 刷新 Schema，一般需要动态修改 Schema 某个值时可以方便调用
          */
@@ -2465,42 +2481,44 @@
          * @param {?=} newUI
          * @return {THIS}
          */
-            function (newSchema, newUI) {
-                var _this = this;
-                if (newSchema)
-                    ( /** @type {?} */(this)).schema = newSchema;
-                if (newUI)
-                    ( /** @type {?} */(this)).ui = newUI;
-                if (!( /** @type {?} */(this)).schema || typeof ( /** @type {?} */(this)).schema.properties === 'undefined')
-                    throw new Error("Invalid Schema");
-                if (( /** @type {?} */(this)).schema.ui && typeof ( /** @type {?} */(this)).schema.ui === 'string')
-                    throw new Error("Don't support string with root ui property");
-                ( /** @type {?} */(this)).schema.type = 'object';
-                ( /** @type {?} */(this))._formData = __assign({}, ( /** @type {?} */(this)).formData);
-                if (( /** @type {?} */(this))._inited)
-                    ( /** @type {?} */(this)).terminator.destroy();
-                ( /** @type {?} */(this)).cleanRootSub();
-                ( /** @type {?} */(this)).coverProperty();
-                ( /** @type {?} */(this)).coverButtonProperty();
-                ( /** @type {?} */(this)).rootProperty = ( /** @type {?} */(this)).formPropertyFactory.createProperty(( /** @type {?} */(this))._schema, ( /** @type {?} */(this))._ui, ( /** @type {?} */(this)).formData);
-                ( /** @type {?} */(this)).attachCustomRender();
-                ( /** @type {?} */(this)).rootProperty.valueChanges.subscribe(( /**
-                 * @param {?} value
-                 * @return {?}
-                 */function (value) {
-                    ( /** @type {?} */(_this))._item = __assign({}, ( /** @type {?} */(_this)).formData, value);
-                    ( /** @type {?} */(_this)).formChange.emit(( /** @type {?} */(_this))._item);
-                }));
-                ( /** @type {?} */(this)).rootProperty.errorsChanges.subscribe(( /**
-                 * @param {?} errors
-                 * @return {?}
-                 */function (errors) {
-                    ( /** @type {?} */(_this))._valid = !(errors && errors.length);
-                    ( /** @type {?} */(_this)).formError.emit(errors);
-                    ( /** @type {?} */(_this)).cdr.detectChanges();
-                }));
-                return ( /** @type {?} */(this)).reset();
-            };
+        function (newSchema, newUI) {
+            var _this = this;
+            if (newSchema)
+                (/** @type {?} */ (this)).schema = newSchema;
+            if (newUI)
+                (/** @type {?} */ (this)).ui = newUI;
+            if (!(/** @type {?} */ (this)).schema || typeof (/** @type {?} */ (this)).schema.properties === 'undefined')
+                throw new Error("Invalid Schema");
+            if ((/** @type {?} */ (this)).schema.ui && typeof (/** @type {?} */ (this)).schema.ui === 'string')
+                throw new Error("Don't support string with root ui property");
+            (/** @type {?} */ (this)).schema.type = 'object';
+            (/** @type {?} */ (this))._formData = __assign({}, (/** @type {?} */ (this)).formData);
+            if ((/** @type {?} */ (this))._inited)
+                (/** @type {?} */ (this)).terminator.destroy();
+            (/** @type {?} */ (this)).cleanRootSub();
+            (/** @type {?} */ (this)).coverProperty();
+            (/** @type {?} */ (this)).coverButtonProperty();
+            (/** @type {?} */ (this)).rootProperty = (/** @type {?} */ (this)).formPropertyFactory.createProperty((/** @type {?} */ (this))._schema, (/** @type {?} */ (this))._ui, (/** @type {?} */ (this)).formData);
+            (/** @type {?} */ (this)).attachCustomRender();
+            (/** @type {?} */ (this)).rootProperty.valueChanges.subscribe((/**
+             * @param {?} value
+             * @return {?}
+             */
+            function (value) {
+                (/** @type {?} */ (_this))._item = __assign({}, (/** @type {?} */ (_this)).formData, value);
+                (/** @type {?} */ (_this)).formChange.emit((/** @type {?} */ (_this))._item);
+            }));
+            (/** @type {?} */ (this)).rootProperty.errorsChanges.subscribe((/**
+             * @param {?} errors
+             * @return {?}
+             */
+            function (errors) {
+                (/** @type {?} */ (_this))._valid = !(errors && errors.length);
+                (/** @type {?} */ (_this)).formError.emit(errors);
+                (/** @type {?} */ (_this)).cdr.detectChanges();
+            }));
+            return (/** @type {?} */ (this)).reset();
+        };
         /**
          * 重置表单
          * @param [emit] 是否触发 `formReset` 事件，默认：`false`
@@ -2519,20 +2537,19 @@
          * @param {?=} emit
          * @return {THIS}
          */
-            function (emit) {
-                var _this = this;
-                if (emit === void 0) {
-                    emit = false;
-                }
-                ( /** @type {?} */(this)).rootProperty.resetValue(( /** @type {?} */(this)).formData, false);
-                Promise.resolve().then(( /**
-                 * @return {?}
-                 */function () { return ( /** @type {?} */(_this)).cdr.detectChanges(); }));
-                if (emit) {
-                    ( /** @type {?} */(this)).formReset.emit(( /** @type {?} */(this)).value);
-                }
-                return ( /** @type {?} */(this));
-            };
+        function (emit) {
+            var _this = this;
+            if (emit === void 0) { emit = false; }
+            (/** @type {?} */ (this)).rootProperty.resetValue((/** @type {?} */ (this)).formData, false);
+            Promise.resolve().then((/**
+             * @return {?}
+             */
+            function () { return (/** @type {?} */ (_this)).cdr.detectChanges(); }));
+            if (emit) {
+                (/** @type {?} */ (this)).formReset.emit((/** @type {?} */ (this)).value);
+            }
+            return (/** @type {?} */ (this));
+        };
         /**
          * @private
          * @return {?}
@@ -2541,25 +2558,25 @@
          * @private
          * @return {?}
          */
-            function () {
-                if (!this.rootProperty)
-                    return;
-                this.rootProperty.errorsChanges.unsubscribe();
-                this.rootProperty.valueChanges.unsubscribe();
-            };
+        function () {
+            if (!this.rootProperty)
+                return;
+            this.rootProperty.errorsChanges.unsubscribe();
+            this.rootProperty.valueChanges.unsubscribe();
+        };
         /**
          * @return {?}
          */
         SFComponent.prototype.ngOnDestroy = /**
          * @return {?}
          */
-            function () {
-                this.cleanRootSub();
-                this.terminator.destroy();
-                this.i18n$.unsubscribe();
-            };
+        function () {
+            this.cleanRootSub();
+            this.terminator.destroy();
+            this.i18n$.unsubscribe();
+        };
         SFComponent.decorators = [
-            { type: i0.Component, args: [{
+            { type: core.Component, args: [{
                         selector: 'sf, [sf]',
                         template: "<ng-template #con>\n  <ng-content></ng-content>\n</ng-template>\n<form nz-form\n      [nzLayout]=\"layout\"\n      (submit)=\"onSubmit($event)\"\n      [attr.autocomplete]=\"autocomplete\">\n  <sf-item [formProperty]=\"rootProperty\"></sf-item>\n  <ng-container *ngIf=\"button !== 'none'; else con\">\n    <nz-form-item [ngClass]=\"_btn.render.class\"\n                  class=\"sf-btns\"\n                  [fixed-label]=\"_btn.render.spanLabelFixed\">\n      <div nz-col\n           class=\"ant-form-item-control-wrapper\"\n           [nzSpan]=\"_btn.render.grid.span\"\n           [nzOffset]=\"_btn.render.grid.offset\"\n           [nzXs]=\"_btn.render.grid.xs\"\n           [nzSm]=\"_btn.render.grid.sm\"\n           [nzMd]=\"_btn.render.grid.md\"\n           [nzLg]=\"_btn.render.grid.lg\"\n           [nzXl]=\"_btn.render.grid.xl\"\n           [nzXXl]=\"_btn.render.grid.xxl\">\n        <div class=\"ant-form-item-control\">\n          <ng-container *ngIf=\"button; else con\">\n            <button type=\"submit\"\n                    nz-button\n                    [nzType]=\"_btn.submit_type\"\n                    [nzSize]=\"_btn.render.size\"\n                    [nzLoading]=\"loading\"\n                    [disabled]=\"liveValidate && !valid\">{{_btn.submit}}</button>\n            <button *ngIf=\"_btn.reset\"\n                    type=\"button\"\n                    nz-button\n                    [nzType]=\"_btn.reset_type\"\n                    [nzSize]=\"_btn.render.size\"\n                    [disabled]=\"loading\"\n                    (click)=\"reset(true)\">\n              {{_btn.reset}}\n            </button>\n          </ng-container>\n        </div>\n      </div>\n    </nz-form-item>\n  </ng-container>\n</form>\n",
                         providers: [
@@ -2578,35 +2595,33 @@
                             '[class.sf__edit]': "mode === 'edit'",
                             '[class.sf__no-error]': "onlyVisual",
                         },
-                        changeDetection: i0.ChangeDetectionStrategy.OnPush
+                        changeDetection: core.ChangeDetectionStrategy.OnPush
                     }] }
         ];
         /** @nocollapse */
-        SFComponent.ctorParameters = function () {
-            return [
-                { type: FormPropertyFactory },
-                { type: TerminatorService },
-                { type: DelonFormConfig },
-                { type: i0.ChangeDetectorRef },
-                { type: theme.DelonLocaleService }
-            ];
-        };
+        SFComponent.ctorParameters = function () { return [
+            { type: FormPropertyFactory },
+            { type: TerminatorService },
+            { type: DelonFormConfig },
+            { type: core.ChangeDetectorRef },
+            { type: theme.DelonLocaleService }
+        ]; };
         SFComponent.propDecorators = {
-            layout: [{ type: i0.Input }],
-            schema: [{ type: i0.Input }],
-            ui: [{ type: i0.Input }],
-            formData: [{ type: i0.Input }],
-            button: [{ type: i0.Input }],
-            liveValidate: [{ type: i0.Input }],
-            autocomplete: [{ type: i0.Input }],
-            firstVisual: [{ type: i0.Input }],
-            onlyVisual: [{ type: i0.Input }],
-            mode: [{ type: i0.Input }],
-            loading: [{ type: i0.Input }],
-            formChange: [{ type: i0.Output }],
-            formSubmit: [{ type: i0.Output }],
-            formReset: [{ type: i0.Output }],
-            formError: [{ type: i0.Output }]
+            layout: [{ type: core.Input }],
+            schema: [{ type: core.Input }],
+            ui: [{ type: core.Input }],
+            formData: [{ type: core.Input }],
+            button: [{ type: core.Input }],
+            liveValidate: [{ type: core.Input }],
+            autocomplete: [{ type: core.Input }],
+            firstVisual: [{ type: core.Input }],
+            onlyVisual: [{ type: core.Input }],
+            mode: [{ type: core.Input }],
+            loading: [{ type: core.Input }],
+            formChange: [{ type: core.Output }],
+            formSubmit: [{ type: core.Output }],
+            formReset: [{ type: core.Output }],
+            formError: [{ type: core.Output }]
         };
         __decorate([
             util.InputBoolean(),
@@ -2648,70 +2663,69 @@
          * @param {?} widget
          * @return {?}
          */
-            function (widget) {
-                this.widget = widget;
-                /** @type {?} */
-                var id = "_sf-" + nextUniqueId++;
-                /** @type {?} */
-                var ui = ( /** @type {?} */(this.formProperty.ui));
-                this.widget.formProperty = this.formProperty;
-                this.widget.schema = this.formProperty.schema;
-                this.widget.ui = ui;
-                this.widget.id = id;
-                this.widget.firstVisual = ui.firstVisual;
-                this.formProperty.widget = widget;
-            };
+        function (widget) {
+            this.widget = widget;
+            /** @type {?} */
+            var id = "_sf-" + nextUniqueId++;
+            /** @type {?} */
+            var ui = (/** @type {?} */ (this.formProperty.ui));
+            this.widget.formProperty = this.formProperty;
+            this.widget.schema = this.formProperty.schema;
+            this.widget.ui = ui;
+            this.widget.id = id;
+            this.widget.firstVisual = ui.firstVisual;
+            this.formProperty.widget = widget;
+        };
         /**
          * @return {?}
          */
         SFItemComponent.prototype.ngOnInit = /**
          * @return {?}
          */
-            function () {
-                var _this = this;
-                this.terminator.onDestroy.subscribe(( /**
-                 * @return {?}
-                 */function () { return _this.ngOnDestroy(); }));
-            };
+        function () {
+            var _this = this;
+            this.terminator.onDestroy.subscribe((/**
+             * @return {?}
+             */
+            function () { return _this.ngOnDestroy(); }));
+        };
         /**
          * @return {?}
          */
         SFItemComponent.prototype.ngOnChanges = /**
          * @return {?}
          */
-            function () {
-                this.ref = this.widgetFactory.createWidget(this.container, ( /** @type {?} */((this.formProperty.ui.widget ||
-                    this.formProperty.schema.type))));
-                this.onWidgetInstanciated(this.ref.instance);
-            };
+        function () {
+            this.ref = this.widgetFactory.createWidget(this.container, (/** @type {?} */ ((this.formProperty.ui.widget ||
+                this.formProperty.schema.type))));
+            this.onWidgetInstanciated(this.ref.instance);
+        };
         /**
          * @return {?}
          */
         SFItemComponent.prototype.ngOnDestroy = /**
          * @return {?}
          */
-            function () {
-                var unsubscribe$ = this.unsubscribe$;
-                unsubscribe$.next();
-                unsubscribe$.complete();
-                this.ref.destroy();
-            };
+        function () {
+            var unsubscribe$ = this.unsubscribe$;
+            unsubscribe$.next();
+            unsubscribe$.complete();
+            this.ref.destroy();
+        };
         SFItemComponent.decorators = [
-            { type: i0.Component, args: [{
+            { type: core.Component, args: [{
                         selector: 'sf-item',
                         template: "\n    <ng-template #target></ng-template>\n  "
                     }] }
         ];
         /** @nocollapse */
-        SFItemComponent.ctorParameters = function () {
-            return [
-                { type: WidgetFactory },
-                { type: TerminatorService }
-            ];
-        };
+        SFItemComponent.ctorParameters = function () { return [
+            { type: WidgetFactory },
+            { type: TerminatorService }
+        ]; };
         SFItemComponent.propDecorators = {
-            formProperty: [{ type: i0.Input }],
-            container: [{ type: i0.ViewChild, args: ['target', { read: i0.ViewContainerRef },] }]
+            formProperty: [{ type: core.Input }],
+            container: [{ type: core.ViewChild, args: ['target', { read: core.ViewContainerRef },] }]
         };
         return SFItemComponent;
     }());
@@ -2724,7 +2738,7 @@
         function SFFixedDirective(er, render) {
             this.render = render;
             this._inited = false;
-            this.el = ( /** @type {?} */(er.nativeElement));
+            this.el = (/** @type {?} */ (er.nativeElement));
         }
         /**
          * @private
@@ -2734,58 +2748,56 @@
          * @private
          * @return {?}
          */
-            function () {
-                if (!this._inited || this.num == null || this.num <= 0)
-                    return;
+        function () {
+            if (!this._inited || this.num == null || this.num <= 0)
+                return;
+            /** @type {?} */
+            var widgetEl = this.el.querySelector('.ant-row') || this.el;
+            this.render.addClass(widgetEl, 'sf__fixed');
+            /** @type {?} */
+            var labelEl = widgetEl.querySelector('.ant-form-item-label');
+            /** @type {?} */
+            var unit = this.num + 'px';
+            if (labelEl) {
+                this.render.setStyle(labelEl, 'width', unit);
+                this.render.setStyle(labelEl, 'flex', "0 0 " + unit);
+            }
+            else {
                 /** @type {?} */
-                var widgetEl = this.el.querySelector('.ant-row') || this.el;
-                this.render.addClass(widgetEl, 'sf__fixed');
-                /** @type {?} */
-                var labelEl = widgetEl.querySelector('.ant-form-item-label');
-                /** @type {?} */
-                var unit = this.num + 'px';
-                if (labelEl) {
-                    this.render.setStyle(labelEl, 'width', unit);
-                    this.render.setStyle(labelEl, 'flex', "0 0 " + unit);
-                }
-                else {
-                    /** @type {?} */
-                    var controlEl = widgetEl.querySelector('.ant-form-item-control-wrapper');
-                    this.render.setStyle(controlEl, 'margin-left', unit);
-                }
-            };
+                var controlEl = widgetEl.querySelector('.ant-form-item-control-wrapper');
+                this.render.setStyle(controlEl, 'margin-left', unit);
+            }
+        };
         /**
          * @return {?}
          */
         SFFixedDirective.prototype.ngAfterViewInit = /**
          * @return {?}
          */
-            function () {
-                this._inited = true;
-                this.init();
-            };
+        function () {
+            this._inited = true;
+            this.init();
+        };
         /**
          * @return {?}
          */
         SFFixedDirective.prototype.ngOnChanges = /**
          * @return {?}
          */
-            function () {
-                if (this._inited)
-                    this.init();
-            };
+        function () {
+            if (this._inited)
+                this.init();
+        };
         SFFixedDirective.decorators = [
-            { type: i0.Directive, args: [{ selector: '[fixed-label]' },] }
+            { type: core.Directive, args: [{ selector: '[fixed-label]' },] }
         ];
         /** @nocollapse */
-        SFFixedDirective.ctorParameters = function () {
-            return [
-                { type: i0.ElementRef },
-                { type: i0.Renderer2 }
-            ];
-        };
+        SFFixedDirective.ctorParameters = function () { return [
+            { type: core.ElementRef },
+            { type: core.Renderer2 }
+        ]; };
         SFFixedDirective.propDecorators = {
-            num: [{ type: i0.Input, args: ['fixed-label',] }]
+            num: [{ type: core.Input, args: ['fixed-label',] }]
         };
         __decorate([
             util.InputNumber(),
@@ -2805,26 +2817,27 @@
         Object.defineProperty(SFItemWrapComponent.prototype, "t", {
             get: /**
              * @return {?}
-             */ function () {
+             */
+            function () {
                 return this.title === null ? this.schema.title : this.title;
             },
             enumerable: true,
             configurable: true
         });
         SFItemWrapComponent.decorators = [
-            { type: i0.Component, args: [{
+            { type: core.Component, args: [{
                         selector: 'sf-item-wrap',
                         template: "<nz-form-item [style.width.px]=\"ui.width\">\n  <nz-col *ngIf=\"showTitle\"\n          [nzSpan]=\"ui.spanLabel\"\n          class=\"ant-form-item-label\">\n    <label *ngIf=\"t\"\n           [attr.for]=\"id\"\n           [class.ant-form-item-required]=\"ui._required\">\n      {{ t }}\n      <span class=\"optional\">\n        {{ ui.optional }}\n        <nz-tooltip *ngIf=\"ui.optionalHelp\"\n                    [nzTitle]=\"ui.optionalHelp\">\n          <i nz-tooltip\n             nz-icon\n             type=\"question-circle\"></i>\n        </nz-tooltip>\n      </span>\n    </label>\n  </nz-col>\n  <nz-col class=\"ant-form-item-control-wrapper\"\n          [nzSpan]=\"ui.spanControl\"\n          [nzOffset]=\"ui.offsetControl\">\n    <div class=\"ant-form-item-control\"\n         [class.has-error]=\"showError\">\n      <ng-content></ng-content>\n      <nz-form-extra *ngIf=\"schema.description\"\n                     [innerHTML]=\"schema.description\"></nz-form-extra>\n      <nz-form-explain *ngIf=\"!ui.onlyVisual && showError\">{{error}}</nz-form-explain>\n    </div>\n  </nz-col>\n</nz-form-item>\n"
                     }] }
         ];
         SFItemWrapComponent.propDecorators = {
-            id: [{ type: i0.Input }],
-            schema: [{ type: i0.Input }],
-            ui: [{ type: i0.Input }],
-            showError: [{ type: i0.Input }],
-            error: [{ type: i0.Input }],
-            showTitle: [{ type: i0.Input }],
-            title: [{ type: i0.Input }]
+            id: [{ type: core.Input }],
+            schema: [{ type: core.Input }],
+            ui: [{ type: core.Input }],
+            showError: [{ type: core.Input }],
+            error: [{ type: core.Input }],
+            showTitle: [{ type: core.Input }],
+            title: [{ type: core.Input }]
         };
         return SFItemWrapComponent;
     }());
@@ -2844,23 +2857,21 @@
         SFTemplateDirective.prototype.ngOnInit = /**
          * @return {?}
          */
-            function () {
-                this.table._addTpl(this.path.startsWith('/') ? this.path : "/" + this.path, this.templateRef);
-            };
+        function () {
+            this.table._addTpl(this.path.startsWith('/') ? this.path : "/" + this.path, this.templateRef);
+        };
         SFTemplateDirective.decorators = [
-            { type: i0.Directive, args: [{
+            { type: core.Directive, args: [{
                         selector: '[sf-template]',
                     },] }
         ];
         /** @nocollapse */
-        SFTemplateDirective.ctorParameters = function () {
-            return [
-                { type: i0.TemplateRef },
-                { type: SFComponent }
-            ];
-        };
+        SFTemplateDirective.ctorParameters = function () { return [
+            { type: core.TemplateRef },
+            { type: SFComponent }
+        ]; };
         SFTemplateDirective.propDecorators = {
-            path: [{ type: i0.Input, args: ['sf-template',] }]
+            path: [{ type: core.Input, args: ['sf-template',] }]
         };
         return SFTemplateDirective;
     }());
@@ -2886,7 +2897,8 @@
         Object.defineProperty(Widget.prototype, "cls", {
             get: /**
              * @return {?}
-             */ function () {
+             */
+            function () {
                 return this.ui.class || '';
             },
             enumerable: true,
@@ -2895,7 +2907,8 @@
         Object.defineProperty(Widget.prototype, "disabled", {
             get: /**
              * @return {?}
-             */ function () {
+             */
+            function () {
                 if (this.schema.readOnly === true)
                     return true;
                 return null;
@@ -2909,27 +2922,29 @@
         Widget.prototype.ngAfterViewInit = /**
          * @return {?}
          */
-            function () {
-                var _this = this;
-                this.formProperty.errorsChanges
-                    .pipe(operators.takeUntil(this.sfItemComp.unsubscribe$), operators.filter(( /**
+        function () {
+            var _this = this;
+            this.formProperty.errorsChanges
+                .pipe(operators.takeUntil(this.sfItemComp.unsubscribe$), operators.filter((/**
              * @param {?} w
              * @return {?}
-             */function (w) { return w != null; })))
-                    .subscribe(( /**
+             */
+            function (w) { return w != null; })))
+                .subscribe((/**
              * @param {?} errors
              * @return {?}
-             */function (errors) {
-                    di(_this.ui, 'errorsChanges', _this.formProperty.path, errors);
-                    // 不显示首次校验视觉
-                    if (_this.firstVisual) {
-                        _this.showError = errors.length > 0;
-                        _this.error = _this.showError ? errors[0].message : '';
-                        _this.cd.detectChanges();
-                    }
-                    _this.firstVisual = true;
-                }));
-            };
+             */
+            function (errors) {
+                di(_this.ui, 'errorsChanges', _this.formProperty.path, errors);
+                // 不显示首次校验视觉
+                if (_this.firstVisual) {
+                    _this.showError = errors.length > 0;
+                    _this.error = _this.showError ? errors[0].message : '';
+                    _this.cd.detectChanges();
+                }
+                _this.firstVisual = true;
+            }));
+        };
         /**
          * @param {?} value
          * @return {?}
@@ -2938,14 +2953,15 @@
          * @param {?} value
          * @return {?}
          */
-            function (value) {
-                this.formProperty.setValue(value, false);
-                di(this.ui, 'valueChanges', this.formProperty.path, this.formProperty);
-            };
+        function (value) {
+            this.formProperty.setValue(value, false);
+            di(this.ui, 'valueChanges', this.formProperty.path, this.formProperty);
+        };
         Object.defineProperty(Widget.prototype, "value", {
             get: /**
              * @return {?}
-             */ function () {
+             */
+            function () {
                 return this.formProperty.value;
             },
             enumerable: true,
@@ -2959,28 +2975,24 @@
          * @param {?=} onlySelf
          * @return {?}
          */
-            function (onlySelf) {
-                if (onlySelf === void 0) {
-                    onlySelf = false;
-                }
-                if (onlySelf) {
-                    this.cd.markForCheck();
-                }
-                else {
-                    this.formProperty.root.widget.cd.markForCheck();
-                }
-            };
-        /** @nocollapse */
-        Widget.ctorParameters = function () {
-            return [
-                { type: i0.ChangeDetectorRef, decorators: [{ type: i0.Inject, args: [i0.ChangeDetectorRef,] }] },
-                { type: i0.Injector, decorators: [{ type: i0.Inject, args: [i0.Injector,] }] },
-                { type: SFItemComponent, decorators: [{ type: i0.Inject, args: [SFItemComponent,] }] },
-                { type: SFComponent, decorators: [{ type: i0.Inject, args: [SFComponent,] }] }
-            ];
+        function (onlySelf) {
+            if (onlySelf === void 0) { onlySelf = false; }
+            if (onlySelf) {
+                this.cd.markForCheck();
+            }
+            else {
+                this.formProperty.root.widget.cd.markForCheck();
+            }
         };
+        /** @nocollapse */
+        Widget.ctorParameters = function () { return [
+            { type: core.ChangeDetectorRef, decorators: [{ type: core.Inject, args: [core.ChangeDetectorRef,] }] },
+            { type: core.Injector, decorators: [{ type: core.Inject, args: [core.Injector,] }] },
+            { type: SFItemComponent, decorators: [{ type: core.Inject, args: [SFItemComponent,] }] },
+            { type: SFComponent, decorators: [{ type: core.Inject, args: [SFComponent,] }] }
+        ]; };
         Widget.propDecorators = {
-            cls: [{ type: i0.HostBinding, args: ['class',] }]
+            cls: [{ type: core.HostBinding, args: ['class',] }]
         };
         return Widget;
     }());
@@ -2997,7 +3009,7 @@
          * @param {?} value
          * @return {?}
          */
-            function (value) { };
+        function (value) { };
         return ControlWidget;
     }(Widget));
     var ArrayLayoutWidget = /** @class */ (function (_super) {
@@ -3013,21 +3025,22 @@
          * @param {?} value
          * @return {?}
          */
-            function (value) { };
+        function (value) { };
         /**
          * @return {?}
          */
         ArrayLayoutWidget.prototype.ngAfterViewInit = /**
          * @return {?}
          */
-            function () {
-                var _this = this;
-                this.formProperty.errorsChanges
-                    .pipe(operators.takeUntil(this.sfItemComp.unsubscribe$))
-                    .subscribe(( /**
+        function () {
+            var _this = this;
+            this.formProperty.errorsChanges
+                .pipe(operators.takeUntil(this.sfItemComp.unsubscribe$))
+                .subscribe((/**
              * @return {?}
-             */function () { return _this.cd.detectChanges(); }));
-            };
+             */
+            function () { return _this.cd.detectChanges(); }));
+        };
         return ArrayLayoutWidget;
     }(Widget));
     var ObjectLayoutWidget = /** @class */ (function (_super) {
@@ -3043,21 +3056,22 @@
          * @param {?} value
          * @return {?}
          */
-            function (value) { };
+        function (value) { };
         /**
          * @return {?}
          */
         ObjectLayoutWidget.prototype.ngAfterViewInit = /**
          * @return {?}
          */
-            function () {
-                var _this = this;
-                this.formProperty.errorsChanges
-                    .pipe(operators.takeUntil(this.sfItemComp.unsubscribe$))
-                    .subscribe(( /**
+        function () {
+            var _this = this;
+            this.formProperty.errorsChanges
+                .pipe(operators.takeUntil(this.sfItemComp.unsubscribe$))
+                .subscribe((/**
              * @return {?}
-             */function () { return _this.cd.detectChanges(); }));
-            };
+             */
+            function () { return _this.cd.detectChanges(); }));
+        };
         return ObjectLayoutWidget;
     }(Widget));
 
@@ -3075,9 +3089,10 @@
         Object.defineProperty(ArrayWidget.prototype, "addDisabled", {
             get: /**
              * @return {?}
-             */ function () {
+             */
+            function () {
                 return (this.schema.maxItems &&
-                    (( /** @type {?} */(this.formProperty.properties))).length >= this.schema.maxItems);
+                    ((/** @type {?} */ (this.formProperty.properties))).length >= this.schema.maxItems);
             },
             enumerable: true,
             configurable: true
@@ -3085,7 +3100,8 @@
         Object.defineProperty(ArrayWidget.prototype, "l", {
             get: /**
              * @return {?}
-             */ function () {
+             */
+            function () {
                 return this.formProperty.root.widget.sfComp.locale;
             },
             enumerable: true,
@@ -3097,24 +3113,24 @@
         ArrayWidget.prototype.ngOnInit = /**
          * @return {?}
          */
-            function () {
-                if (this.ui.grid && this.ui.grid.arraySpan) {
-                    this.arraySpan = this.ui.grid.arraySpan;
-                }
-                this.addTitle = this.ui.addTitle || this.l.addText;
-                this.addType = this.ui.addType || 'dashed';
-                this.removeTitle =
-                    this.ui.removable === false ? null : this.ui.removeTitle || this.l.removeText;
-            };
+        function () {
+            if (this.ui.grid && this.ui.grid.arraySpan) {
+                this.arraySpan = this.ui.grid.arraySpan;
+            }
+            this.addTitle = this.ui.addTitle || this.l.addText;
+            this.addType = this.ui.addType || 'dashed';
+            this.removeTitle =
+                this.ui.removable === false ? null : this.ui.removeTitle || this.l.removeText;
+        };
         /**
          * @return {?}
          */
         ArrayWidget.prototype.addItem = /**
          * @return {?}
          */
-            function () {
-                this.formProperty.add(null);
-            };
+        function () {
+            this.formProperty.add(null);
+        };
         /**
          * @param {?} index
          * @return {?}
@@ -3123,11 +3139,11 @@
          * @param {?} index
          * @return {?}
          */
-            function (index) {
-                this.formProperty.remove(index);
-            };
+        function (index) {
+            this.formProperty.remove(index);
+        };
         ArrayWidget.decorators = [
-            { type: i0.Component, args: [{
+            { type: core.Component, args: [{
                         selector: 'sf-array',
                         template: "<nz-form-item>\n  <nz-col *ngIf=\"schema.title\"\n          [nzSpan]=\"ui.spanLabel\"\n          class=\"ant-form-item-label\">\n    <label>\n      {{ schema.title }}\n      <span class=\"optional\">\n        {{ ui.optional }}\n        <nz-tooltip *ngIf=\"ui.optionalHelp\"\n                    [nzTitle]=\"ui.optionalHelp\">\n          <i nz-tooltip\n             nz-icon\n             type=\"question-circle\"></i>\n        </nz-tooltip>\n      </span>\n    </label>\n    <div class=\"sf__array-add\">\n      <button type=\"button\"\n              nz-button\n              [nzType]=\"addType\"\n              [disabled]=\"addDisabled\"\n              (click)=\"addItem()\"\n              [innerHTML]=\"addTitle\"></button>\n    </div>\n  </nz-col>\n  <nz-col class=\"ant-form-item-control-wrapper\"\n          [nzSpan]=\"ui.spanControl\"\n          [nzOffset]=\"ui.offsetControl\">\n    <div class=\"ant-form-item-control\"\n         [class.has-error]=\"showError\">\n\n      <nz-row class=\"sf__array-container\">\n        <ng-container *ngFor=\"let i of formProperty.properties; let idx=index\">\n          <nz-col *ngIf=\"i.visible && !i.ui.hidden\"\n                  [nzSpan]=\"arraySpan\"\n                  [attr.data-index]=\"idx\"\n                  class=\"sf-array-item\">\n            <nz-card>\n              <sf-item [formProperty]=\"i\"></sf-item>\n              <span *ngIf=\"removeTitle\"\n                    class=\"remove\"\n                    (click)=\"removeItem(idx)\"\n                    [attr.title]=\"removeTitle\">\n                <i nz-icon\n                   type=\"delete\"></i>\n              </span>\n            </nz-card>\n          </nz-col>\n        </ng-container>\n      </nz-row>\n\n      <nz-form-extra *ngIf=\"schema.description\"\n                     [innerHTML]=\"schema.description\"></nz-form-extra>\n      <nz-form-explain *ngIf=\"!ui.onlyVisual && showError\">{{error}}</nz-form-explain>\n\n    </div>\n  </nz-col>\n</nz-form-item>\n"
                     }] }
@@ -3157,46 +3173,49 @@
          * @param {?} item
          * @return {?}
          */
-            function (item) {
-                this.typing = item.nzLabel;
-                this.setValue(item.nzValue);
-            };
+        function (item) {
+            this.typing = item.nzLabel;
+            this.setValue(item.nzValue);
+        };
         /**
          * @return {?}
          */
         AutoCompleteWidget.prototype.ngAfterViewInit = /**
          * @return {?}
          */
-            function () {
-                var _this = this;
-                this.i = {
-                    backfill: toBool(this.ui.backfill, false),
-                    defaultActiveFirstOption: toBool(this.ui.defaultActiveFirstOption, true),
-                    width: this.ui.width || undefined,
-                };
-                this.filterOption = this.ui.filterOption == null ? true : this.ui.filterOption;
-                if (typeof this.filterOption === 'boolean') {
-                    this.filterOption = ( /**
-                     * @param {?} input
-                     * @param {?} option
-                     * @return {?}
-                     */function (input, option) {
-                        return option.label.toLowerCase().indexOf((input || '').toLowerCase()) > -1;
-                    });
-                }
-                this.isAsync = !!this.ui.asyncData;
-                /** @type {?} */
-                var orgTime = +(this.ui.debounceTime || 0);
-                /** @type {?} */
-                var time = Math.max(0, this.isAsync ? Math.max(50, orgTime) : orgTime);
-                this.list = this.ngModel.valueChanges.pipe(operators.debounceTime(time), operators.startWith(''), operators.flatMap(( /**
-                 * @param {?} input
-                 * @return {?}
-                 */function (input) { return (_this.isAsync ? _this.ui.asyncData(input) : _this.filterData(input)); })), operators.map(( /**
-                 * @param {?} res
-                 * @return {?}
-                 */function (res) { return getEnum(res, null, _this.schema.readOnly); })));
+        function () {
+            var _this = this;
+            this.i = {
+                backfill: toBool(this.ui.backfill, false),
+                defaultActiveFirstOption: toBool(this.ui.defaultActiveFirstOption, true),
+                width: this.ui.width || undefined,
             };
+            this.filterOption = this.ui.filterOption == null ? true : this.ui.filterOption;
+            if (typeof this.filterOption === 'boolean') {
+                this.filterOption = (/**
+                 * @param {?} input
+                 * @param {?} option
+                 * @return {?}
+                 */
+                function (input, option) {
+                    return option.label.toLowerCase().indexOf((input || '').toLowerCase()) > -1;
+                });
+            }
+            this.isAsync = !!this.ui.asyncData;
+            /** @type {?} */
+            var orgTime = +(this.ui.debounceTime || 0);
+            /** @type {?} */
+            var time = Math.max(0, this.isAsync ? Math.max(50, orgTime) : orgTime);
+            this.list = this.ngModel.valueChanges.pipe(operators.debounceTime(time), operators.startWith(''), operators.flatMap((/**
+             * @param {?} input
+             * @return {?}
+             */
+            function (input) { return (_this.isAsync ? _this.ui.asyncData(input) : _this.filterData(input)); })), operators.map((/**
+             * @param {?} res
+             * @return {?}
+             */
+            function (res) { return getEnum(res, null, _this.schema.readOnly); })));
+        };
         /**
          * @param {?} value
          * @return {?}
@@ -3205,19 +3224,19 @@
          * @param {?} value
          * @return {?}
          */
-            function (value) {
-                this.typing = this.value;
-                if (this.isAsync)
-                    return;
-                switch (this.ui.type) {
-                    case 'email':
-                        this.fixData = getCopyEnum(this.schema.enum || this.formProperty.options.uiEmailSuffixes, null, this.schema.readOnly);
-                        break;
-                    default:
-                        this.fixData = getCopyEnum(this.schema.enum, this.formProperty.formData, this.schema.readOnly);
-                        break;
-                }
-            };
+        function (value) {
+            this.typing = this.value;
+            if (this.isAsync)
+                return;
+            switch (this.ui.type) {
+                case 'email':
+                    this.fixData = getCopyEnum(this.schema.enum || this.formProperty.options.uiEmailSuffixes, null, this.schema.readOnly);
+                    break;
+                default:
+                    this.fixData = getCopyEnum(this.schema.enum, this.formProperty.formData, this.schema.readOnly);
+                    break;
+            }
+        };
         /**
          * @private
          * @param {?} input
@@ -3228,18 +3247,19 @@
          * @param {?} input
          * @return {?}
          */
-            function (input) {
-                var _this = this;
-                switch (this.ui.type) {
-                    case 'email':
-                        return this.addEmailSuffix(input);
-                    default:
-                        return rxjs.of(this.fixData.filter(( /**
-                         * @param {?} option
-                         * @return {?}
-                         */function (option) { return _this.filterOption(input, option); })));
-                }
-            };
+        function (input) {
+            var _this = this;
+            switch (this.ui.type) {
+                case 'email':
+                    return this.addEmailSuffix(input);
+                default:
+                    return rxjs.of(this.fixData.filter((/**
+                     * @param {?} option
+                     * @return {?}
+                     */
+                    function (option) { return _this.filterOption(input, option); })));
+            }
+        };
         /**
          * @private
          * @param {?} value
@@ -3250,20 +3270,21 @@
          * @param {?} value
          * @return {?}
          */
-            function (value) {
-                return rxjs.of(!value || ~value.indexOf('@') ? [] : this.fixData.map(( /**
-                 * @param {?} domain
-                 * @return {?}
-                 */function (domain) { return value + "@" + domain.label; })));
-            };
+        function (value) {
+            return rxjs.of(!value || ~value.indexOf('@') ? [] : this.fixData.map((/**
+             * @param {?} domain
+             * @return {?}
+             */
+            function (domain) { return value + "@" + domain.label; })));
+        };
         AutoCompleteWidget.decorators = [
-            { type: i0.Component, args: [{
+            { type: core.Component, args: [{
                         selector: 'sf-autocomplete',
                         template: "<sf-item-wrap [id]=\"id\"\n              [schema]=\"schema\"\n              [ui]=\"ui\"\n              [showError]=\"showError\"\n              [error]=\"error\"\n              [showTitle]=\"schema.title\">\n  <input nz-input\n         [nzAutocomplete]=\"auto\"\n         [attr.id]=\"id\"\n         [disabled]=\"disabled\"\n         [attr.disabled]=\"disabled\"\n         [nzSize]=\"ui.size\"\n         [(ngModel)]=\"typing\"\n         [attr.maxLength]=\"schema.maxLength || null\"\n         [attr.placeholder]=\"ui.placeholder\"\n         autocomplete=\"off\">\n  <nz-autocomplete #auto\n                   [nzBackfill]=\"i.backfill\"\n                   [nzDefaultActiveFirstOption]=\"i.defaultActiveFirstOption\"\n                   [nzWidth]=\"i.width\"\n                   (selectionChange)=\"updateValue($event)\">\n    <nz-auto-option *ngFor=\"let i of list | async\"\n                    [nzValue]=\"i.value\"\n                    [nzLabel]=\"i.label\">\n      {{i.label}}\n    </nz-auto-option>\n  </nz-autocomplete>\n</sf-item-wrap>\n"
                     }] }
         ];
         AutoCompleteWidget.propDecorators = {
-            ngModel: [{ type: i0.ViewChild, args: [forms.NgModel,] }]
+            ngModel: [{ type: core.ViewChild, args: [forms.NgModel,] }]
         };
         return AutoCompleteWidget;
     }(ControlWidget));
@@ -3278,7 +3299,7 @@
             return _super !== null && _super.apply(this, arguments) || this;
         }
         BooleanWidget.decorators = [
-            { type: i0.Component, args: [{
+            { type: core.Component, args: [{
                         selector: 'sf-boolean',
                         template: "<sf-item-wrap [id]=\"id\"\n              [schema]=\"schema\"\n              [ui]=\"ui\"\n              [showError]=\"showError\"\n              [error]=\"error\"\n              [showTitle]=\"schema.title\">\n  <nz-switch [ngModel]=\"value\"\n             (ngModelChange)=\"setValue($event)\"\n             [nzDisabled]=\"disabled\"\n             [nzSize]=\"ui.size\"\n             [nzCheckedChildren]=\"ui.checkedChildren\"\n             [nzUnCheckedChildren]=\"ui.unCheckedChildren\">\n  </nz-switch>\n</sf-item-wrap>\n"
                     }] }
@@ -3303,20 +3324,21 @@
         CascaderWidget.prototype.ngOnInit = /**
          * @return {?}
          */
-            function () {
-                var _this = this;
-                this.clearText = this.ui.clearText || '清除';
-                this.showArrow = toBool(this.ui.showArrow, true);
-                this.showInput = toBool(this.ui.showInput, true);
-                this.triggerAction = this.ui.triggerAction || ['click'];
-                if (!!this.ui.asyncData) {
-                    this.loadData = ( /**
-                     * @param {?} node
-                     * @param {?} index
-                     * @return {?}
-                     */function (node, index) { return (( /** @type {?} */(_this.ui.asyncData)))(node, index, _this); });
-                }
-            };
+        function () {
+            var _this = this;
+            this.clearText = this.ui.clearText || '清除';
+            this.showArrow = toBool(this.ui.showArrow, true);
+            this.showInput = toBool(this.ui.showInput, true);
+            this.triggerAction = this.ui.triggerAction || ['click'];
+            if (!!this.ui.asyncData) {
+                this.loadData = (/**
+                 * @param {?} node
+                 * @param {?} index
+                 * @return {?}
+                 */
+                function (node, index) { return ((/** @type {?} */ (_this.ui.asyncData)))(node, index, _this); });
+            }
+        };
         /**
          * @param {?} value
          * @return {?}
@@ -3325,16 +3347,17 @@
          * @param {?} value
          * @return {?}
          */
-            function (value) {
-                var _this = this;
-                getData(this.schema, {}, this.formProperty.formData).subscribe(( /**
-                 * @param {?} list
-                 * @return {?}
-                 */function (list) {
-                    _this.data = list;
-                    _this.detectChanges();
-                }));
-            };
+        function (value) {
+            var _this = this;
+            getData(this.schema, {}, this.formProperty.formData).subscribe((/**
+             * @param {?} list
+             * @return {?}
+             */
+            function (list) {
+                _this.data = list;
+                _this.detectChanges();
+            }));
+        };
         /**
          * @param {?} status
          * @return {?}
@@ -3343,10 +3366,10 @@
          * @param {?} status
          * @return {?}
          */
-            function (status) {
-                if (this.ui.visibleChange)
-                    this.ui.visibleChange(status);
-            };
+        function (status) {
+            if (this.ui.visibleChange)
+                this.ui.visibleChange(status);
+        };
         /**
          * @param {?} value
          * @return {?}
@@ -3355,11 +3378,11 @@
          * @param {?} value
          * @return {?}
          */
-            function (value) {
-                this.setValue(value);
-                if (this.ui.change)
-                    this.ui.change(value);
-            };
+        function (value) {
+            this.setValue(value);
+            if (this.ui.change)
+                this.ui.change(value);
+        };
         /**
          * @param {?} options
          * @return {?}
@@ -3368,10 +3391,10 @@
          * @param {?} options
          * @return {?}
          */
-            function (options) {
-                if (this.ui.selectionChange)
-                    this.ui.selectionChange(options);
-            };
+        function (options) {
+            if (this.ui.selectionChange)
+                this.ui.selectionChange(options);
+        };
         /**
          * @param {?} options
          * @return {?}
@@ -3380,10 +3403,10 @@
          * @param {?} options
          * @return {?}
          */
-            function (options) {
-                if (this.ui.select)
-                    this.ui.select(options);
-            };
+        function (options) {
+            if (this.ui.select)
+                this.ui.select(options);
+        };
         /**
          * @param {?} options
          * @return {?}
@@ -3392,12 +3415,12 @@
          * @param {?} options
          * @return {?}
          */
-            function (options) {
-                if (this.ui.clear)
-                    this.ui.clear(options);
-            };
+        function (options) {
+            if (this.ui.clear)
+                this.ui.clear(options);
+        };
         CascaderWidget.decorators = [
-            { type: i0.Component, args: [{
+            { type: core.Component, args: [{
                         selector: 'sf-cascader',
                         template: "<sf-item-wrap [id]=\"id\"\n              [schema]=\"schema\"\n              [ui]=\"ui\"\n              [showError]=\"showError\"\n              [error]=\"error\"\n              [showTitle]=\"schema.title\">\n  <nz-cascader [nzDisabled]=\"disabled\"\n               [nzSize]=\"ui.size\"\n               [ngModel]=\"value\"\n               (ngModelChange)=\"_change($event)\"\n               [nzOptions]=\"data\"\n               [nzAllowClear]=\"ui.allowClear\"\n               [nzAutoFocus]=\"ui.autoFocus\"\n               [nzChangeOn]=\"ui.changeOn\"\n               [nzChangeOnSelect]=\"ui.changeOnSelect\"\n               [nzColumnClassName]=\"ui.columnClassName\"\n               [nzExpandTrigger]=\"ui.expandTrigger\"\n               [nzMenuClassName]=\"ui.menuClassName\"\n               [nzMenuStyle]=\"ui.menuStyle\"\n               [nzLabelProperty]=\"ui.labelProperty || 'label'\"\n               [nzValueProperty]=\"ui.valueProperty || 'value'\"\n               [nzLoadData]=\"loadData\"\n               [nzPlaceHolder]=\"ui.placeholder\"\n               [nzShowArrow]=\"showArrow\"\n               [nzShowInput]=\"showInput\"\n               [nzShowSearch]=\"ui.showSearch\"\n               (nzClear)=\"_clear($event)\"\n               (nzVisibleChange)=\"_visibleChange($event)\"\n               (nzSelect)=\"_select($event)\"\n               (nzSelectionChange)=\"_selectionChange($event)\">\n  </nz-cascader>\n</sf-item-wrap>\n"
                     }] }
@@ -3423,7 +3446,8 @@
         Object.defineProperty(CheckboxWidget.prototype, "l", {
             get: /**
              * @return {?}
-             */ function () {
+             */
+            function () {
                 return this.formProperty.root.widget.sfComp.locale;
             },
             enumerable: true,
@@ -3437,23 +3461,24 @@
          * @param {?} value
          * @return {?}
          */
-            function (value) {
-                var _this = this;
-                this.inited = false;
-                getData(this.schema, this.ui, this.formProperty.formData).subscribe(( /**
-                 * @param {?} list
-                 * @return {?}
-                 */function (list) {
-                    _this.data = list;
-                    _this.allChecked = false;
-                    _this.indeterminate = false;
-                    _this.labelTitle = list.length === 0 ? '' : _this.schema.title;
-                    _this.grid_span = _this.ui.span && _this.ui.span > 0 ? _this.ui.span : 0;
-                    _this.updateAllChecked();
-                    _this.inited = true;
-                    _this.cd.detectChanges();
-                }));
-            };
+        function (value) {
+            var _this = this;
+            this.inited = false;
+            getData(this.schema, this.ui, this.formProperty.formData).subscribe((/**
+             * @param {?} list
+             * @return {?}
+             */
+            function (list) {
+                _this.data = list;
+                _this.allChecked = false;
+                _this.indeterminate = false;
+                _this.labelTitle = list.length === 0 ? '' : _this.schema.title;
+                _this.grid_span = _this.ui.span && _this.ui.span > 0 ? _this.ui.span : 0;
+                _this.updateAllChecked();
+                _this.inited = true;
+                _this.cd.detectChanges();
+            }));
+        };
         /**
          * @param {?} value
          * @return {?}
@@ -3462,29 +3487,31 @@
          * @param {?} value
          * @return {?}
          */
-            function (value) {
-                this.setValue(value);
-                this.detectChanges();
-                this.notifyChange(value);
-            };
+        function (value) {
+            this.setValue(value);
+            this.detectChanges();
+            this.notifyChange(value);
+        };
         /**
          * @return {?}
          */
         CheckboxWidget.prototype.notifySet = /**
          * @return {?}
          */
-            function () {
-                /** @type {?} */
-                var checkList = this.data.filter(( /**
-                 * @param {?} w
-                 * @return {?}
-                 */function (w) { return w.checked; }));
-                this.updateAllChecked().setValue(checkList.map(( /**
-                 * @param {?} item
-                 * @return {?}
-                 */function (item) { return item.value; })));
-                this.notifyChange(checkList);
-            };
+        function () {
+            /** @type {?} */
+            var checkList = this.data.filter((/**
+             * @param {?} w
+             * @return {?}
+             */
+            function (w) { return w.checked; }));
+            this.updateAllChecked().setValue(checkList.map((/**
+             * @param {?} item
+             * @return {?}
+             */
+            function (item) { return item.value; })));
+            this.notifyChange(checkList);
+        };
         /**
          * @param {?} values
          * @return {?}
@@ -3493,27 +3520,29 @@
          * @param {?} values
          * @return {?}
          */
-            function (values) {
-                this.data.forEach(( /**
-                 * @param {?} item
-                 * @return {?}
-                 */function (item) { return (item.checked = values.indexOf(item.value) !== -1); }));
-                this.notifySet();
-            };
+        function (values) {
+            this.data.forEach((/**
+             * @param {?} item
+             * @return {?}
+             */
+            function (item) { return (item.checked = values.indexOf(item.value) !== -1); }));
+            this.notifySet();
+        };
         /**
          * @return {?}
          */
         CheckboxWidget.prototype.onAllChecked = /**
          * @return {?}
          */
-            function () {
-                var _this = this;
-                this.data.forEach(( /**
-                 * @param {?} item
-                 * @return {?}
-                 */function (item) { return (item.checked = _this.allChecked); }));
-                this.notifySet();
-            };
+        function () {
+            var _this = this;
+            this.data.forEach((/**
+             * @param {?} item
+             * @return {?}
+             */
+            function (item) { return (item.checked = _this.allChecked); }));
+            this.notifySet();
+        };
         /**
          * @template THIS
          * @this {THIS}
@@ -3524,27 +3553,29 @@
          * @this {THIS}
          * @return {THIS}
          */
-            function () {
-                if (( /** @type {?} */(this)).data.every(( /**
-                 * @param {?} item
-                 * @return {?}
-                 */function (item) { return item.checked !== true; }))) {
-                    ( /** @type {?} */(this)).allChecked = false;
-                    ( /** @type {?} */(this)).indeterminate = false;
-                }
-                else if (( /** @type {?} */(this)).data.every(( /**
-                 * @param {?} item
-                 * @return {?}
-                 */function (item) { return item.checked === true; }))) {
-                    ( /** @type {?} */(this)).allChecked = true;
-                    ( /** @type {?} */(this)).indeterminate = false;
-                }
-                else {
-                    ( /** @type {?} */(this)).indeterminate = true;
-                }
-                ( /** @type {?} */(this)).detectChanges();
-                return ( /** @type {?} */(this));
-            };
+        function () {
+            if ((/** @type {?} */ (this)).data.every((/**
+             * @param {?} item
+             * @return {?}
+             */
+            function (item) { return item.checked !== true; }))) {
+                (/** @type {?} */ (this)).allChecked = false;
+                (/** @type {?} */ (this)).indeterminate = false;
+            }
+            else if ((/** @type {?} */ (this)).data.every((/**
+             * @param {?} item
+             * @return {?}
+             */
+            function (item) { return item.checked === true; }))) {
+                (/** @type {?} */ (this)).allChecked = true;
+                (/** @type {?} */ (this)).indeterminate = false;
+            }
+            else {
+                (/** @type {?} */ (this)).indeterminate = true;
+            }
+            (/** @type {?} */ (this)).detectChanges();
+            return (/** @type {?} */ (this));
+        };
         /**
          * @private
          * @param {?} res
@@ -3555,12 +3586,12 @@
          * @param {?} res
          * @return {?}
          */
-            function (res) {
-                if (this.ui.change)
-                    this.ui.change(res);
-            };
+        function (res) {
+            if (this.ui.change)
+                this.ui.change(res);
+        };
         CheckboxWidget.decorators = [
-            { type: i0.Component, args: [{
+            { type: core.Component, args: [{
                         selector: 'sf-checkbox',
                         template: "<ng-template #all>\n  <label *ngIf=\"ui.checkAll\"\n         nz-checkbox\n         class=\"sf__checkbox-all mr-sm\"\n         [(ngModel)]=\"allChecked\"\n         (ngModelChange)=\"onAllChecked()\"\n         [nzIndeterminate]=\"indeterminate\">{{ ui.checkAllText || l.checkAllText }}</label>\n</ng-template>\n<sf-item-wrap [id]=\"id\"\n              [schema]=\"schema\"\n              [ui]=\"ui\"\n              [showError]=\"showError\"\n              [error]=\"error\"\n              [showTitle]=\"true\"\n              [title]=\"labelTitle\">\n  <ng-container *ngIf=\"inited && data.length === 0\">\n    <label nz-checkbox\n           [nzDisabled]=\"disabled\"\n           [ngModel]=\"value\"\n           (ngModelChange)=\"_setValue($event)\">\n      {{schema.title}}\n      <span class=\"sf__optional\">\n        {{ ui.optional }}\n        <nz-tooltip *ngIf=\"ui.optionalHelp\"\n                    [nzTitle]=\"ui.optionalHelp\">\n          <i nz-tooltip\n             nz-icon\n             type=\"question-circle\"></i>\n        </nz-tooltip>\n      </span>\n    </label>\n  </ng-container>\n  <ng-container *ngIf=\"inited && data.length > 0\">\n    <ng-container *ngIf=\"grid_span === 0\">\n      <ng-template [ngTemplateOutlet]=\"all\"></ng-template>\n      <nz-checkbox-group [ngModel]=\"data\"\n                         (ngModelChange)=\"notifySet()\"></nz-checkbox-group>\n    </ng-container>\n    <ng-container *ngIf=\"grid_span !== 0\">\n      <nz-checkbox-wrapper class=\"sf__checkbox-list\"\n                           (nzOnChange)=\"groupInGridChange($event)\">\n        <nz-row>\n          <nz-col [nzSpan]=\"grid_span\"\n                  *ngIf=\"ui.checkAll\">\n            <ng-template [ngTemplateOutlet]=\"all\"></ng-template>\n          </nz-col>\n          <nz-col [nzSpan]=\"grid_span\"\n                  *ngFor=\"let i of data\">\n            <label nz-checkbox\n                   [nzValue]=\"i.value\"\n                   [ngModel]=\"i.checked\"\n                   [nzDisabled]=\"i.disabled\">{{i.label}}</label>\n          </nz-col>\n        </nz-row>\n      </nz-checkbox-wrapper>\n    </ng-container>\n  </ng-container>\n</sf-item-wrap>\n"
                     }] }
@@ -3578,7 +3609,7 @@
             return _super !== null && _super.apply(this, arguments) || this;
         }
         CustomWidget.decorators = [
-            { type: i0.Component, args: [{
+            { type: core.Component, args: [{
                         selector: 'sf-custom',
                         template: "\n    <sf-item-wrap\n      [id]=\"id\"\n      [schema]=\"schema\"\n      [ui]=\"ui\"\n      [showError]=\"showError\"\n      [error]=\"error\"\n      [showTitle]=\"schema.title\"\n    >\n      <ng-template\n        [ngTemplateOutlet]=\"$any(ui)._render\"\n        [ngTemplateOutletContext]=\"{$implicit: this, schema: schema, ui: ui }\"\n      ></ng-template>\n    </sf-item-wrap>\n  "
                     }] }
@@ -3604,36 +3635,36 @@
         DateWidget.prototype.ngOnInit = /**
          * @return {?}
          */
-            function () {
-                /** @type {?} */
-                var ui = this.ui;
-                this.mode = ui.mode || 'date';
-                this.flatRange = ui.end != null;
-                if (this.flatRange) {
-                    this.mode = 'range';
+        function () {
+            /** @type {?} */
+            var ui = this.ui;
+            this.mode = ui.mode || 'date';
+            this.flatRange = ui.end != null;
+            if (this.flatRange) {
+                this.mode = 'range';
+            }
+            if (!ui.displayFormat) {
+                switch (this.mode) {
+                    case 'month':
+                        this.displayFormat = "yyyy-MM";
+                        break;
+                    case 'week':
+                        this.displayFormat = "yyyy-ww";
+                        break;
                 }
-                if (!ui.displayFormat) {
-                    switch (this.mode) {
-                        case 'month':
-                            this.displayFormat = "yyyy-MM";
-                            break;
-                        case 'week':
-                            this.displayFormat = "yyyy-ww";
-                            break;
-                    }
-                }
-                else {
-                    this.displayFormat = ui.displayFormat;
-                }
-                // 构建属性对象时会对默认值进行校验，因此可以直接使用 format 作为格式化属性
-                this.format = ui.format;
-                // 公共API
-                this.i = {
-                    allowClear: toBool(ui.allowClear, true),
-                    // nz-date-picker
-                    showToday: toBool(ui.showToday, true),
-                };
+            }
+            else {
+                this.displayFormat = ui.displayFormat;
+            }
+            // 构建属性对象时会对默认值进行校验，因此可以直接使用 format 作为格式化属性
+            this.format = ui.format;
+            // 公共API
+            this.i = {
+                allowClear: toBool(ui.allowClear, true),
+                // nz-date-picker
+                showToday: toBool(ui.showToday, true),
             };
+        };
         /**
          * @private
          * @return {?}
@@ -3642,13 +3673,14 @@
          * @private
          * @return {?}
          */
-            function () {
-                var _this = this;
-                // TODO: removed after nz-datepick support OnPush mode
-                setTimeout(( /**
-                 * @return {?}
-                 */function () { return _this.detectChanges(); }));
-            };
+        function () {
+            var _this = this;
+            // TODO: removed after nz-datepick support OnPush mode
+            setTimeout((/**
+             * @return {?}
+             */
+            function () { return _this.detectChanges(); }));
+        };
         /**
          * @param {?} value
          * @return {?}
@@ -3657,16 +3689,16 @@
          * @param {?} value
          * @return {?}
          */
-            function (value) {
-                value = this.toDate(value);
-                if (this.flatRange) {
-                    this.displayValue = value == null ? [] : [value, this.toDate(this.endProperty.formData)];
-                }
-                else {
-                    this.displayValue = value;
-                }
-                this.compCd();
-            };
+        function (value) {
+            value = this.toDate(value);
+            if (this.flatRange) {
+                this.displayValue = value == null ? [] : [value, this.toDate(this.endProperty.formData)];
+            }
+            else {
+                this.displayValue = value;
+            }
+            this.compCd();
+        };
         /**
          * @param {?} value
          * @return {?}
@@ -3675,28 +3707,29 @@
          * @param {?} value
          * @return {?}
          */
-            function (value) {
-                var _this = this;
-                if (value == null) {
-                    this.setValue(null);
-                    this.setEnd(null);
-                    return;
-                }
-                /** @type {?} */
-                var res = Array.isArray(value)
-                    ? value.map(( /**
-                     * @param {?} d
-                     * @return {?}
-                     */function (d) { return format(d, _this.format); }))
-                    : format(value, this.format);
-                if (this.flatRange) {
-                    this.setEnd(res[1]);
-                    this.setValue(res[0]);
-                }
-                else {
-                    this.setValue(res);
-                }
-            };
+        function (value) {
+            var _this = this;
+            if (value == null) {
+                this.setValue(null);
+                this.setEnd(null);
+                return;
+            }
+            /** @type {?} */
+            var res = Array.isArray(value)
+                ? value.map((/**
+                 * @param {?} d
+                 * @return {?}
+                 */
+                function (d) { return format(d, _this.format); }))
+                : format(value, this.format);
+            if (this.flatRange) {
+                this.setEnd(res[1]);
+                this.setValue(res[0]);
+            }
+            else {
+                this.setValue(res);
+            }
+        };
         /**
          * @param {?} status
          * @return {?}
@@ -3705,10 +3738,10 @@
          * @param {?} status
          * @return {?}
          */
-            function (status) {
-                if (this.ui.onOpenChange)
-                    this.ui.onOpenChange(status);
-            };
+        function (status) {
+            if (this.ui.onOpenChange)
+                this.ui.onOpenChange(status);
+        };
         /**
          * @param {?} value
          * @return {?}
@@ -3717,15 +3750,16 @@
          * @param {?} value
          * @return {?}
          */
-            function (value) {
-                if (this.ui.onOk)
-                    this.ui.onOk(value);
-            };
+        function (value) {
+            if (this.ui.onOk)
+                this.ui.onOk(value);
+        };
         Object.defineProperty(DateWidget.prototype, "endProperty", {
             get: /**
              * @private
              * @return {?}
-             */ function () {
+             */
+            function () {
                 return this.formProperty.parent.properties[this.ui.end];
             },
             enumerable: true,
@@ -3741,11 +3775,11 @@
          * @param {?} value
          * @return {?}
          */
-            function (value) {
-                if (this.flatRange) {
-                    this.endProperty.setValue(value, true);
-                }
-            };
+        function (value) {
+            if (this.flatRange) {
+                this.endProperty.setValue(value, true);
+            }
+        };
         /**
          * @private
          * @param {?} value
@@ -3756,14 +3790,14 @@
          * @param {?} value
          * @return {?}
          */
-            function (value) {
-                if (typeof value === 'number' || (typeof value === 'string' && !isNaN(+value))) {
-                    value = new Date(+value);
-                }
-                return value;
-            };
+        function (value) {
+            if (typeof value === 'number' || (typeof value === 'string' && !isNaN(+value))) {
+                value = new Date(+value);
+            }
+            return value;
+        };
         DateWidget.decorators = [
-            { type: i0.Component, args: [{
+            { type: core.Component, args: [{
                         selector: 'sf-date',
                         template: "<sf-item-wrap [id]=\"id\"\n              [schema]=\"schema\"\n              [ui]=\"ui\"\n              [showError]=\"showError\"\n              [error]=\"error\"\n              [showTitle]=\"schema.title\">\n  <ng-container [ngSwitch]=\"mode\">\n\n    <nz-month-picker *ngSwitchCase=\"'month'\"\n                     [nzDisabled]=\"disabled\"\n                     [nzSize]=\"ui.size\"\n                     [nzFormat]=\"displayFormat\"\n                     [(ngModel)]=\"displayValue\"\n                     (ngModelChange)=\"_change($event)\"\n                     [nzAllowClear]=\"i.allowClear\"\n                     [nzClassName]=\"ui.className\"\n                     [nzDisabledDate]=\"ui.disabledDate\"\n                     [nzLocale]=\"ui.locale\"\n                     [nzPlaceHolder]=\"ui.placeholder\"\n                     [nzPopupStyle]=\"ui.popupStyle\"\n                     [nzDropdownClassName]=\"ui.dropdownClassName\"\n                     (nzOnOpenChange)=\"_openChange($event)\"\n                     [nzRenderExtraFooter]=\"ui.renderExtraFooter\"></nz-month-picker>\n\n    <nz-week-picker *ngSwitchCase=\"'week'\"\n                    [nzDisabled]=\"disabled\"\n                    [nzSize]=\"ui.size\"\n                    [nzFormat]=\"displayFormat\"\n                    [(ngModel)]=\"displayValue\"\n                    (ngModelChange)=\"_change($event)\"\n                    [nzAllowClear]=\"i.allowClear\"\n                    [nzClassName]=\"ui.className\"\n                    [nzDisabledDate]=\"ui.disabledDate\"\n                    [nzLocale]=\"ui.locale\"\n                    [nzPlaceHolder]=\"ui.placeholder\"\n                    [nzPopupStyle]=\"ui.popupStyle\"\n                    [nzDropdownClassName]=\"ui.dropdownClassName\"\n                    (nzOnOpenChange)=\"_openChange($event)\"></nz-week-picker>\n\n    <nz-range-picker *ngSwitchCase=\"'range'\"\n                     [nzDisabled]=\"disabled\"\n                     [nzSize]=\"ui.size\"\n                     [nzFormat]=\"displayFormat\"\n                     [(ngModel)]=\"displayValue\"\n                     (ngModelChange)=\"_change($event)\"\n                     [nzAllowClear]=\"i.allowClear\"\n                     [nzClassName]=\"ui.className\"\n                     [nzDisabledDate]=\"ui.disabledDate\"\n                     [nzLocale]=\"ui.locale\"\n                     [nzPlaceHolder]=\"ui.placeholder\"\n                     [nzPopupStyle]=\"ui.popupStyle\"\n                     [nzDropdownClassName]=\"ui.dropdownClassName\"\n                     (nzOnOpenChange)=\"_openChange($event)\"\n                     [nzDisabledTime]=\"ui.disabledTime\"\n                     [nzRenderExtraFooter]=\"ui.renderExtraFooter\"\n                     [nzRanges]=\"ui.ranges\"\n                     [nzShowTime]=\"ui.showTime\"\n                     (nzOnOk)=\"_ok($event)\"></nz-range-picker>\n\n    <nz-date-picker *ngSwitchDefault\n                    [nzDisabled]=\"disabled\"\n                    [nzSize]=\"ui.size\"\n                    [nzFormat]=\"displayFormat\"\n                    [(ngModel)]=\"displayValue\"\n                    (ngModelChange)=\"_change($event)\"\n                    [nzAllowClear]=\"i.allowClear\"\n                    [nzClassName]=\"ui.className\"\n                    [nzDisabledDate]=\"ui.disabledDate\"\n                    [nzLocale]=\"ui.locale\"\n                    [nzPlaceHolder]=\"ui.placeholder\"\n                    [nzPopupStyle]=\"ui.popupStyle\"\n                    [nzDropdownClassName]=\"ui.dropdownClassName\"\n                    (nzOnOpenChange)=\"_openChange($event)\"\n                    [nzDisabledTime]=\"ui.disabledTime\"\n                    [nzRenderExtraFooter]=\"ui.renderExtraFooter\"\n                    [nzShowTime]=\"ui.showTime\"\n                    [nzShowToday]=\"i.showToday\"\n                    (nzOnOk)=\"_ok($event)\"></nz-date-picker>\n  </ng-container>\n\n</sf-item-wrap>\n"
                     }] }
@@ -3789,39 +3823,41 @@
         MentionWidget.prototype.ngOnInit = /**
          * @return {?}
          */
-            function () {
-                var _this = this;
-                var _a = this.ui, valueWith = _a.valueWith, notFoundContent = _a.notFoundContent, placement = _a.placement, prefix = _a.prefix, autosize = _a.autosize;
-                this.i = {
-                    valueWith: valueWith || (( /**
-                     * @param {?} item
-                     * @return {?}
-                     */function (item) { return item.label; })),
-                    notFoundContent: notFoundContent || '无匹配结果，轻敲空格完成输入',
-                    placement: placement || 'bottom',
-                    prefix: prefix || '@',
-                    autosize: typeof autosize === 'undefined' ? true : this.ui.autosize,
-                };
-                /** @type {?} */
-                var min = typeof this.schema.minimum !== 'undefined' ? this.schema.minimum : -1;
-                /** @type {?} */
-                var max = typeof this.schema.maximum !== 'undefined' ? this.schema.maximum : -1;
-                if (!this.ui.validator && (min !== -1 || max !== -1)) {
-                    this.ui.validator = ( /**
-                     * @return {?}
-                     */function () {
-                        /** @type {?} */
-                        var count = _this.mentionChild.getMentions().length;
-                        if (min !== -1 && count < min) {
-                            return [{ keyword: 'mention', message: "\u6700\u5C11\u63D0\u53CA " + min + " \u6B21" }];
-                        }
-                        if (max !== -1 && count > max) {
-                            return [{ keyword: 'mention', message: "\u6700\u591A\u63D0\u53CA " + max + " \u6B21" }];
-                        }
-                        return null;
-                    });
-                }
+        function () {
+            var _this = this;
+            var _a = this.ui, valueWith = _a.valueWith, notFoundContent = _a.notFoundContent, placement = _a.placement, prefix = _a.prefix, autosize = _a.autosize;
+            this.i = {
+                valueWith: valueWith || ((/**
+                 * @param {?} item
+                 * @return {?}
+                 */
+                function (item) { return item.label; })),
+                notFoundContent: notFoundContent || '无匹配结果，轻敲空格完成输入',
+                placement: placement || 'bottom',
+                prefix: prefix || '@',
+                autosize: typeof autosize === 'undefined' ? true : this.ui.autosize,
             };
+            /** @type {?} */
+            var min = typeof this.schema.minimum !== 'undefined' ? this.schema.minimum : -1;
+            /** @type {?} */
+            var max = typeof this.schema.maximum !== 'undefined' ? this.schema.maximum : -1;
+            if (!this.ui.validator && (min !== -1 || max !== -1)) {
+                this.ui.validator = (/**
+                 * @return {?}
+                 */
+                function () {
+                    /** @type {?} */
+                    var count = _this.mentionChild.getMentions().length;
+                    if (min !== -1 && count < min) {
+                        return [{ keyword: 'mention', message: "\u6700\u5C11\u63D0\u53CA " + min + " \u6B21" }];
+                    }
+                    if (max !== -1 && count > max) {
+                        return [{ keyword: 'mention', message: "\u6700\u591A\u63D0\u53CA " + max + " \u6B21" }];
+                    }
+                    return null;
+                });
+            }
+        };
         /**
          * @param {?} value
          * @return {?}
@@ -3830,16 +3866,17 @@
          * @param {?} value
          * @return {?}
          */
-            function (value) {
-                var _this = this;
-                getData(this.schema, this.ui, null).subscribe(( /**
-                 * @param {?} list
-                 * @return {?}
-                 */function (list) {
-                    _this.data = list;
-                    _this.detectChanges();
-                }));
-            };
+        function (value) {
+            var _this = this;
+            getData(this.schema, this.ui, null).subscribe((/**
+             * @param {?} list
+             * @return {?}
+             */
+            function (list) {
+                _this.data = list;
+                _this.detectChanges();
+            }));
+        };
         /**
          * @param {?} options
          * @return {?}
@@ -3848,10 +3885,10 @@
          * @param {?} options
          * @return {?}
          */
-            function (options) {
-                if (this.ui.select)
-                    this.ui.select(options);
-            };
+        function (options) {
+            if (this.ui.select)
+                this.ui.select(options);
+        };
         /**
          * @param {?} option
          * @return {?}
@@ -3860,34 +3897,37 @@
          * @param {?} option
          * @return {?}
          */
-            function (option) {
-                var _this = this;
-                if (typeof this.ui.loadData !== 'function')
-                    return;
-                this.loading = true;
-                (( /** @type {?} */(this.ui.loadData(option))))
-                    .pipe(operators.tap(( /**
+        function (option) {
+            var _this = this;
+            if (typeof this.ui.loadData !== 'function')
+                return;
+            this.loading = true;
+            ((/** @type {?} */ (this.ui.loadData(option))))
+                .pipe(operators.tap((/**
              * @return {?}
-             */function () { return (_this.loading = false); })), operators.map(( /**
-                 * @param {?} res
-                 * @return {?}
-                 */function (res) { return getEnum(res, null, _this.schema.readOnly); })))
-                    .subscribe(( /**
+             */
+            function () { return (_this.loading = false); })), operators.map((/**
              * @param {?} res
              * @return {?}
-             */function (res) {
-                    _this.data = res;
-                    _this.cd.detectChanges();
-                }));
-            };
+             */
+            function (res) { return getEnum(res, null, _this.schema.readOnly); })))
+                .subscribe((/**
+             * @param {?} res
+             * @return {?}
+             */
+            function (res) {
+                _this.data = res;
+                _this.cd.detectChanges();
+            }));
+        };
         MentionWidget.decorators = [
-            { type: i0.Component, args: [{
+            { type: core.Component, args: [{
                         selector: 'sf-mention',
                         template: "<sf-item-wrap [id]=\"id\"\n              [schema]=\"schema\"\n              [ui]=\"ui\"\n              [showError]=\"showError\"\n              [error]=\"error\"\n              [showTitle]=\"schema.title\">\n  <nz-mention #mentions\n              [nzSuggestions]=\"data\"\n              [nzValueWith]=\"i.valueWith\"\n              [nzLoading]=\"loading\"\n              [nzNotFoundContent]=\"i.notFoundContent\"\n              [nzPlacement]=\"i.placement\"\n              [nzPrefix]=\"i.prefix\"\n              (nzOnSelect)=\"_select($event)\"\n              (nzOnSearchChange)=\"_search($event)\">\n    <ng-container *ngIf=\"ui.inputStyle !== 'textarea'\">\n      <input nzMentionTrigger\n             nz-input\n             [attr.id]=\"id\"\n             [disabled]=\"disabled\"\n             [attr.disabled]=\"disabled\"\n             [nzSize]=\"ui.size\"\n             [ngModel]=\"value\"\n             (ngModelChange)=\"setValue($event)\"\n             [attr.maxLength]=\"schema.maxLength || null\"\n             [attr.placeholder]=\"ui.placeholder\"\n             autocomplete=\"off\" />\n    </ng-container>\n\n    <ng-container *ngIf=\"ui.inputStyle === 'textarea'\">\n      <textarea nzMentionTrigger\n                nz-input\n                [attr.id]=\"id\"\n                [disabled]=\"disabled\"\n                [attr.disabled]=\"disabled\"\n                [nzSize]=\"ui.size\"\n                [ngModel]=\"value\"\n                (ngModelChange)=\"setValue($event)\"\n                [attr.maxLength]=\"schema.maxLength || null\"\n                [attr.placeholder]=\"ui.placeholder\"\n                [nzAutosize]=\"i.autosize\">\n        </textarea>\n    </ng-container>\n  </nz-mention>\n</sf-item-wrap>\n"
                     }] }
         ];
         MentionWidget.propDecorators = {
-            mentionChild: [{ type: i0.ViewChild, args: ['mentions',] }]
+            mentionChild: [{ type: core.ViewChild, args: ['mentions',] }]
         };
         return MentionWidget;
     }(ControlWidget));
@@ -3900,14 +3940,16 @@
         __extends(NumberWidget, _super);
         function NumberWidget() {
             var _this = _super !== null && _super.apply(this, arguments) || this;
-            _this.formatter = ( /**
+            _this.formatter = (/**
              * @param {?} value
              * @return {?}
-             */function (value) { return value; });
-            _this.parser = ( /**
+             */
+            function (value) { return value; });
+            _this.parser = (/**
              * @param {?} value
              * @return {?}
-             */function (value) { return value; });
+             */
+            function (value) { return value; });
             return _this;
         }
         /**
@@ -3916,45 +3958,49 @@
         NumberWidget.prototype.ngOnInit = /**
          * @return {?}
          */
-            function () {
-                var _a = this, schema = _a.schema, ui = _a.ui;
-                if (typeof schema.minimum !== 'undefined') {
-                    this.min = schema.exclusiveMinimum ? schema.minimum + 1 : schema.minimum;
-                }
-                if (typeof schema.maximum !== 'undefined') {
-                    this.max = schema.exclusiveMaximum ? schema.maximum - 1 : schema.maximum;
-                }
-                this.step = schema.multipleOf || 1;
-                if (schema.type === 'integer') {
-                    this.min = Math.trunc(this.min);
-                    this.max = Math.trunc(this.max);
-                    this.step = Math.trunc(this.step);
-                }
-                if (ui.prefix != null) {
-                    ui.formatter = ( /**
-                     * @param {?} value
-                     * @return {?}
-                     */function (value) { return value == null ? '' : ui.prefix + " " + value; });
-                    ui.parser = ( /**
-                     * @param {?} value
-                     * @return {?}
-                     */function (value) { return value.replace(ui.prefix + " ", ''); });
-                }
-                if (ui.unit != null) {
-                    ui.formatter = ( /**
-                     * @param {?} value
-                     * @return {?}
-                     */function (value) { return value == null ? '' : value + " " + ui.unit; });
-                    ui.parser = ( /**
-                     * @param {?} value
-                     * @return {?}
-                     */function (value) { return value.replace(" " + ui.unit, ''); });
-                }
-                if (ui.formatter)
-                    this.formatter = ui.formatter;
-                if (ui.parser)
-                    this.parser = ui.parser;
-            };
+        function () {
+            var _a = this, schema = _a.schema, ui = _a.ui;
+            if (typeof schema.minimum !== 'undefined') {
+                this.min = schema.exclusiveMinimum ? schema.minimum + 1 : schema.minimum;
+            }
+            if (typeof schema.maximum !== 'undefined') {
+                this.max = schema.exclusiveMaximum ? schema.maximum - 1 : schema.maximum;
+            }
+            this.step = schema.multipleOf || 1;
+            if (schema.type === 'integer') {
+                this.min = Math.trunc(this.min);
+                this.max = Math.trunc(this.max);
+                this.step = Math.trunc(this.step);
+            }
+            if (ui.prefix != null) {
+                ui.formatter = (/**
+                 * @param {?} value
+                 * @return {?}
+                 */
+                function (value) { return value == null ? '' : ui.prefix + " " + value; });
+                ui.parser = (/**
+                 * @param {?} value
+                 * @return {?}
+                 */
+                function (value) { return value.replace(ui.prefix + " ", ''); });
+            }
+            if (ui.unit != null) {
+                ui.formatter = (/**
+                 * @param {?} value
+                 * @return {?}
+                 */
+                function (value) { return value == null ? '' : value + " " + ui.unit; });
+                ui.parser = (/**
+                 * @param {?} value
+                 * @return {?}
+                 */
+                function (value) { return value.replace(" " + ui.unit, ''); });
+            }
+            if (ui.formatter)
+                this.formatter = ui.formatter;
+            if (ui.parser)
+                this.parser = ui.parser;
+        };
         /**
          * @param {?} val
          * @return {?}
@@ -3963,11 +4009,11 @@
          * @param {?} val
          * @return {?}
          */
-            function (val) {
-                this.setValue(this.schema.type === 'integer' ? Math.floor(val) : val);
-            };
+        function (val) {
+            this.setValue(this.schema.type === 'integer' ? Math.floor(val) : val);
+        };
         NumberWidget.decorators = [
-            { type: i0.Component, args: [{
+            { type: core.Component, args: [{
                         selector: 'sf-number',
                         template: "<sf-item-wrap [id]=\"id\"\n              [schema]=\"schema\"\n              [ui]=\"ui\"\n              [showError]=\"showError\"\n              [error]=\"error\"\n              [showTitle]=\"schema.title\">\n  <nz-input-number [ngModel]=\"value\"\n                   (ngModelChange)=\"_setValue($event)\"\n                   [nzDisabled]=\"disabled\"\n                   [nzSize]=\"ui.size\"\n                   [nzMin]=\"min\"\n                   [nzMax]=\"max\"\n                   [nzStep]=\"step\"\n                   [nzFormatter]=\"formatter\"\n                   [nzParser]=\"parser\"\n                   [nzPrecision]=\"ui.precision\"\n                   [nzPlaceHolder]=\"ui.placeholder || ''\">\n  </nz-input-number>\n</sf-item-wrap>\n"
                     }] }
@@ -3992,48 +4038,42 @@
         ObjectWidget.prototype.ngOnInit = /**
          * @return {?}
          */
-            function () {
-                var e_1, _a;
-                var _b = this, formProperty = _b.formProperty, ui = _b.ui;
-                var grid = ui.grid, showTitle = ui.showTitle;
-                if (!formProperty.isRoot() && !(formProperty.parent instanceof ArrayProperty) && showTitle === true) {
-                    this.title = this.schema.title;
+        function () {
+            var e_1, _a;
+            var _b = this, formProperty = _b.formProperty, ui = _b.ui;
+            var grid = ui.grid, showTitle = ui.showTitle;
+            if (!formProperty.isRoot() && !(formProperty.parent instanceof ArrayProperty) && showTitle === true) {
+                this.title = this.schema.title;
+            }
+            this.grid = grid;
+            /** @type {?} */
+            var list = [];
+            try {
+                for (var _c = __values(formProperty.propertiesId), _d = _c.next(); !_d.done; _d = _c.next()) {
+                    var key = _d.value;
+                    /** @type {?} */
+                    var property = (/** @type {?} */ (formProperty.properties[key]));
+                    /** @type {?} */
+                    var item = {
+                        property: property,
+                        grid: property.ui.grid || grid || {},
+                        spanLabelFixed: property.ui.spanLabelFixed,
+                        show: property.ui.hidden === false,
+                    };
+                    list.push(item);
                 }
-                this.grid = grid;
-                /** @type {?} */
-                var list = [];
+            }
+            catch (e_1_1) { e_1 = { error: e_1_1 }; }
+            finally {
                 try {
-                    for (var _c = __values(formProperty.propertiesId), _d = _c.next(); !_d.done; _d = _c.next()) {
-                        var key = _d.value;
-                        /** @type {?} */
-                        var property = ( /** @type {?} */(formProperty.properties[key]));
-                        /** @type {?} */
-                        var item = {
-                            property: property,
-                            grid: property.ui.grid || grid || {},
-                            spanLabelFixed: property.ui.spanLabelFixed,
-                            show: property.ui.hidden === false,
-                        };
-                        list.push(item);
-                    }
+                    if (_d && !_d.done && (_a = _c.return)) _a.call(_c);
                 }
-                catch (e_1_1) {
-                    e_1 = { error: e_1_1 };
-                }
-                finally {
-                    try {
-                        if (_d && !_d.done && (_a = _c.return))
-                            _a.call(_c);
-                    }
-                    finally {
-                        if (e_1)
-                            throw e_1.error;
-                    }
-                }
-                this.list = list;
-            };
+                finally { if (e_1) throw e_1.error; }
+            }
+            this.list = list;
+        };
         ObjectWidget.decorators = [
-            { type: i0.Component, args: [{
+            { type: core.Component, args: [{
                         selector: 'sf-object',
                         template: "<div *ngIf=\"title\" class=\"sf__title\">{{ title }}</div>\n<ng-container *ngIf=\"grid; else noGrid\">\n  <div nz-row\n       [nzGutter]=\"grid.gutter\">\n    <ng-container *ngFor=\"let i of list\">\n      <ng-container *ngIf=\"i.property.visible && i.show\">\n        <div nz-col\n             [nzSpan]=\"i.grid.span\"\n             [nzOffset]=\"i.grid.offset\"\n             [nzXs]=\"i.grid.xs\"\n             [nzSm]=\"i.grid.sm\"\n             [nzMd]=\"i.grid.md\"\n             [nzLg]=\"i.grid.lg\"\n             [nzXl]=\"i.grid.xl\"\n             [nzXXl]=\"i.grid.xxl\">\n          <sf-item [formProperty]=\"i.property\"\n                   [fixed-label]=\"i.spanLabelFixed\"></sf-item>\n        </div>\n      </ng-container>\n    </ng-container>\n  </div>\n</ng-container>\n<ng-template #noGrid>\n  <ng-container *ngFor=\"let i of list\">\n    <ng-container *ngIf=\"i.property.visible && i.show\">\n      <sf-item [formProperty]=\"i.property\"\n               [fixed-label]=\"i.spanLabelFixed\"></sf-item>\n    </ng-container>\n  </ng-container>\n</ng-template>\n"
                     }] }
@@ -4060,17 +4100,18 @@
          * @param {?} value
          * @return {?}
          */
-            function (value) {
-                var _this = this;
-                this.styleType = (this.ui.styleType || 'default') === 'default';
-                getData(this.schema, this.ui, this.formProperty.formData).subscribe(( /**
-                 * @param {?} list
-                 * @return {?}
-                 */function (list) {
-                    _this.data = list;
-                    _this.detectChanges();
-                }));
-            };
+        function (value) {
+            var _this = this;
+            this.styleType = (this.ui.styleType || 'default') === 'default';
+            getData(this.schema, this.ui, this.formProperty.formData).subscribe((/**
+             * @param {?} list
+             * @return {?}
+             */
+            function (list) {
+                _this.data = list;
+                _this.detectChanges();
+            }));
+        };
         /**
          * @param {?} value
          * @return {?}
@@ -4079,13 +4120,13 @@
          * @param {?} value
          * @return {?}
          */
-            function (value) {
-                this.setValue(value);
-                if (this.ui.change)
-                    this.ui.change(value);
-            };
+        function (value) {
+            this.setValue(value);
+            if (this.ui.change)
+                this.ui.change(value);
+        };
         RadioWidget.decorators = [
-            { type: i0.Component, args: [{
+            { type: core.Component, args: [{
                         selector: 'sf-radio',
                         template: "<sf-item-wrap [id]=\"id\"\n              [schema]=\"schema\"\n              [ui]=\"ui\"\n              [showError]=\"showError\"\n              [error]=\"error\"\n              [showTitle]=\"schema.title\">\n\n  <nz-radio-group [nzDisabled]=\"disabled\"\n                  [nzSize]=\"ui.size\"\n                  [nzName]=\"id\"\n                  [ngModel]=\"value\"\n                  (ngModelChange)=\"_setValue($event)\">\n    <ng-container *ngIf=\"styleType\">\n      <label *ngFor=\"let option of data\"\n             nz-radio\n             [nzValue]=\"option.value\"\n             [nzDisabled]=\"option.disabled\">\n        <span [innerHTML]=\"option.label\"></span>\n      </label>\n    </ng-container>\n    <ng-container *ngIf=\"!styleType\">\n      <label *ngFor=\"let option of data\"\n             nz-radio-button\n             [nzValue]=\"option.value\"\n             [nzDisabled]=\"option.disabled\">\n        <span [innerHTML]=\"option.label\"></span>\n      </label>\n    </ng-container>\n  </nz-radio-group>\n\n</sf-item-wrap>\n"
                     }] }
@@ -4107,8 +4148,9 @@
         Object.defineProperty(RateWidget.prototype, "text", {
             get: /**
              * @return {?}
-             */ function () {
-                return (( /** @type {?} */(this.ui.text))).replace('{{value}}', this.formProperty.value);
+             */
+            function () {
+                return ((/** @type {?} */ (this.ui.text))).replace('{{value}}', this.formProperty.value);
             },
             enumerable: true,
             configurable: true
@@ -4119,15 +4161,15 @@
         RateWidget.prototype.ngOnInit = /**
          * @return {?}
          */
-            function () {
-                this.count = this.schema.maximum || 5;
-                this.allowHalf = (this.schema.multipleOf || 0.5) === 0.5;
-                this.allowClear = toBool(this.ui.allowClear, true);
-                this.autoFocus = toBool(this.ui.autoFocus, false);
-                this.hasText = !!this.ui.text;
-            };
+        function () {
+            this.count = this.schema.maximum || 5;
+            this.allowHalf = (this.schema.multipleOf || 0.5) === 0.5;
+            this.allowClear = toBool(this.ui.allowClear, true);
+            this.autoFocus = toBool(this.ui.autoFocus, false);
+            this.hasText = !!this.ui.text;
+        };
         RateWidget.decorators = [
-            { type: i0.Component, args: [{
+            { type: core.Component, args: [{
                         selector: 'sf-rate',
                         template: "<sf-item-wrap [id]=\"id\"\n              [schema]=\"schema\"\n              [ui]=\"ui\"\n              [showError]=\"showError\"\n              [error]=\"error\"\n              [showTitle]=\"schema.title\">\n  <nz-rate [nzDisabled]=\"disabled\"\n           [ngModel]=\"value\"\n           (ngModelChange)=\"setValue($event)\"\n           [nzAllowClear]=\"allowClear\"\n           [nzAllowHalf]=\"allowHalf\"\n           [nzAutoFocus]=\"autoFocus\"\n           [nzCount]=\"count\"></nz-rate>\n  <span *ngIf=\"hasText && formProperty.value\"\n        class=\"ant-rate-text\">{{ text }}</span>\n</sf-item-wrap>\n"
                     }] }
@@ -4152,22 +4194,22 @@
         SelectWidget.prototype.ngOnInit = /**
          * @return {?}
          */
-            function () {
-                this.i = {
-                    autoClearSearchValue: toBool(this.ui.autoClearSearchValue, true),
-                    allowClear: this.ui.allowClear,
-                    autoFocus: toBool(this.ui.autoFocus, false),
-                    dropdownClassName: this.ui.dropdownClassName || null,
-                    dropdownMatchSelectWidth: toBool(this.ui.dropdownMatchSelectWidth, true),
-                    serverSearch: toBool(this.ui.serverSearch, false),
-                    maxMultipleCount: this.ui.maxMultipleCount || Infinity,
-                    mode: this.ui.mode || 'default',
-                    notFoundContent: this.ui.notFoundContent,
-                    showSearch: toBool(this.ui.showSearch, true),
-                    tokenSeparators: this.ui.tokenSeparators || [],
-                    maxTagCount: this.ui.maxTagCount || null,
-                };
+        function () {
+            this.i = {
+                autoClearSearchValue: toBool(this.ui.autoClearSearchValue, true),
+                allowClear: this.ui.allowClear,
+                autoFocus: toBool(this.ui.autoFocus, false),
+                dropdownClassName: this.ui.dropdownClassName || null,
+                dropdownMatchSelectWidth: toBool(this.ui.dropdownMatchSelectWidth, true),
+                serverSearch: toBool(this.ui.serverSearch, false),
+                maxMultipleCount: this.ui.maxMultipleCount || Infinity,
+                mode: this.ui.mode || 'default',
+                notFoundContent: this.ui.notFoundContent,
+                showSearch: toBool(this.ui.showSearch, true),
+                tokenSeparators: this.ui.tokenSeparators || [],
+                maxTagCount: this.ui.maxTagCount || null,
             };
+        };
         /**
          * @param {?} value
          * @return {?}
@@ -4176,21 +4218,23 @@
          * @param {?} value
          * @return {?}
          */
-            function (value) {
-                var _this = this;
-                getData(this.schema, this.ui, this.formProperty.formData).subscribe(( /**
-                 * @param {?} list
+        function (value) {
+            var _this = this;
+            getData(this.schema, this.ui, this.formProperty.formData).subscribe((/**
+             * @param {?} list
+             * @return {?}
+             */
+            function (list) {
+                _this._value = value;
+                _this.data = list;
+                _this.hasGroup = list.filter((/**
+                 * @param {?} w
                  * @return {?}
-                 */function (list) {
-                    _this._value = value;
-                    _this.data = list;
-                    _this.hasGroup = list.filter(( /**
-                     * @param {?} w
-                     * @return {?}
-                     */function (w) { return w.group === true; })).length > 0;
-                    _this.detectChanges();
-                }));
-            };
+                 */
+                function (w) { return w.group === true; })).length > 0;
+                _this.detectChanges();
+            }));
+        };
         /**
          * @param {?} values
          * @return {?}
@@ -4199,12 +4243,12 @@
          * @param {?} values
          * @return {?}
          */
-            function (values) {
-                if (this.ui.change) {
-                    this.ui.change(values);
-                }
-                this.setValue(values);
-            };
+        function (values) {
+            if (this.ui.change) {
+                this.ui.change(values);
+            }
+            this.setValue(values);
+        };
         /**
          * @param {?} value
          * @return {?}
@@ -4213,11 +4257,11 @@
          * @param {?} value
          * @return {?}
          */
-            function (value) {
-                if (this.ui.openChange) {
-                    this.ui.openChange(value);
-                }
-            };
+        function (value) {
+            if (this.ui.openChange) {
+                this.ui.openChange(value);
+            }
+        };
         /**
          * @param {?} text
          * @return {?}
@@ -4226,33 +4270,34 @@
          * @param {?} text
          * @return {?}
          */
-            function (text) {
-                var _this = this;
-                if (this.ui.onSearch) {
-                    this.ui.onSearch(text).then(( /**
-                     * @param {?} res
-                     * @return {?}
-                     */function (res) {
-                        _this.data = res;
-                        _this.detectChanges();
-                    }));
-                    return;
-                }
-                this.detectChanges();
-            };
+        function (text) {
+            var _this = this;
+            if (this.ui.onSearch) {
+                this.ui.onSearch(text).then((/**
+                 * @param {?} res
+                 * @return {?}
+                 */
+                function (res) {
+                    _this.data = res;
+                    _this.detectChanges();
+                }));
+                return;
+            }
+            this.detectChanges();
+        };
         /**
          * @return {?}
          */
         SelectWidget.prototype.scrollToBottom = /**
          * @return {?}
          */
-            function () {
-                if (this.ui.scrollToBottom) {
-                    this.ui.scrollToBottom();
-                }
-            };
+        function () {
+            if (this.ui.scrollToBottom) {
+                this.ui.scrollToBottom();
+            }
+        };
         SelectWidget.decorators = [
-            { type: i0.Component, args: [{
+            { type: core.Component, args: [{
                         selector: 'sf-select',
                         template: "<sf-item-wrap [id]=\"id\"\n              [schema]=\"schema\"\n              [ui]=\"ui\"\n              [showError]=\"showError\"\n              [error]=\"error\"\n              [showTitle]=\"schema.title\">\n  <nz-select [nzDisabled]=\"disabled\"\n             [nzSize]=\"ui.size\"\n             [(ngModel)]=\"_value\"\n             (ngModelChange)=\"change($event)\"\n             [nzPlaceHolder]=\"ui.placeholder\"\n             [nzAutoClearSearchValue]=\"i.autoClearSearchValue\"\n             [nzAllowClear]=\"i.allowClear\"\n             [nzAutoFocus]=\"i.autoFocus\"\n             [nzDropdownClassName]=\"i.dropdownClassName\"\n             [nzDropdownMatchSelectWidth]=\"i.dropdownMatchSelectWidth\"\n             [nzServerSearch]=\"i.serverSearch\"\n             [nzMaxMultipleCount]=\"i.maxMultipleCount\"\n             [nzMode]=\"i.mode\"\n             [nzNotFoundContent]=\"i.notFoundContent\"\n             [nzShowSearch]=\"i.showSearch\"\n             [nzTokenSeparators]=\"i.tokenSeparators\"\n             [nzMaxTagCount]=\"i.maxTagCount\"\n             (nzOpenChange)=\"openChange($event)\"\n             (nzOnSearch)=\"searchChange($event)\"\n             (nzScrollToBottom)=\"scrollToBottom()\">\n    <ng-container *ngIf=\"!hasGroup\">\n      <nz-option *ngFor=\"let o of data\"\n                 [nzLabel]=\"o.label\"\n                 [nzValue]=\"o.value\"\n                 [nzDisabled]=\"o.disabled\">\n      </nz-option>\n    </ng-container>\n    <ng-container *ngIf=\"hasGroup\">\n      <nz-option-group *ngFor=\"let i of data\"\n                       [nzLabel]=\"i.label\">\n        <nz-option *ngFor=\"let o of i.children\"\n                   [nzLabel]=\"o.label\"\n                   [nzValue]=\"o.value\"\n                   [nzDisabled]=\"o.disabled\">\n        </nz-option>\n      </nz-option-group>\n    </ng-container>\n  </nz-select>\n</sf-item-wrap>\n"
                     }] }
@@ -4268,10 +4313,11 @@
         __extends(SliderWidget, _super);
         function SliderWidget() {
             var _this = _super !== null && _super.apply(this, arguments) || this;
-            _this._formatter = ( /**
+            _this._formatter = (/**
              * @param {?} value
              * @return {?}
-             */function (value) {
+             */
+            function (value) {
                 if (_this.ui.formatter)
                     return _this.ui.formatter(value);
                 return value;
@@ -4284,15 +4330,15 @@
         SliderWidget.prototype.ngOnInit = /**
          * @return {?}
          */
-            function () {
-                this.min = this.schema.minimum || 0;
-                this.max = this.schema.maximum || 100;
-                this.step = this.schema.multipleOf || 1;
-                this.marks = this.ui.marks || null;
-                /** @type {?} */
-                var included = this.ui.included;
-                this.included = typeof included === 'undefined' ? true : included;
-            };
+        function () {
+            this.min = this.schema.minimum || 0;
+            this.max = this.schema.maximum || 100;
+            this.step = this.schema.multipleOf || 1;
+            this.marks = this.ui.marks || null;
+            /** @type {?} */
+            var included = this.ui.included;
+            this.included = typeof included === 'undefined' ? true : included;
+        };
         /**
          * @param {?} value
          * @return {?}
@@ -4301,12 +4347,12 @@
          * @param {?} value
          * @return {?}
          */
-            function (value) {
-                if (this.ui.afterChange)
-                    this.ui.afterChange(value);
-            };
+        function (value) {
+            if (this.ui.afterChange)
+                this.ui.afterChange(value);
+        };
         SliderWidget.decorators = [
-            { type: i0.Component, args: [{
+            { type: core.Component, args: [{
                         selector: 'sf-slider',
                         template: "<sf-item-wrap [id]=\"id\"\n              [schema]=\"schema\"\n              [ui]=\"ui\"\n              [showError]=\"showError\"\n              [error]=\"error\"\n              [showTitle]=\"schema.title\">\n\n  <nz-slider [ngModel]=\"value\"\n             (ngModelChange)=\"setValue($event)\"\n             [nzDisabled]=\"disabled\"\n             [nzRange]=\"ui.range\"\n             [nzMin]=\"min\"\n             [nzMax]=\"max\"\n             [nzStep]=\"step\"\n             [nzMarks]=\"marks\"\n             [nzDots]=\"ui.dots\"\n             [nzIncluded]=\"included\"\n             [nzVertical]=\"ui.vertical\"\n             [nzTipFormatter]=\"_formatter\"\n             (nzOnAfterChange)=\"_afterChange($event)\">\n  </nz-slider>\n\n</sf-item-wrap>\n"
                     }] }
@@ -4329,18 +4375,18 @@
         StringWidget.prototype.ngOnInit = /**
          * @return {?}
          */
-            function () {
-                this.type = !!(this.ui.addOnAfter ||
-                    this.ui.addOnBefore ||
-                    this.ui.addOnAfterIcon ||
-                    this.ui.addOnBeforeIcon ||
-                    this.ui.prefix ||
-                    this.ui.prefixIcon ||
-                    this.ui.suffix ||
-                    this.ui.suffixIcon)
-                    ? 'addon'
-                    : '';
-            };
+        function () {
+            this.type = !!(this.ui.addOnAfter ||
+                this.ui.addOnBefore ||
+                this.ui.addOnAfterIcon ||
+                this.ui.addOnBeforeIcon ||
+                this.ui.prefix ||
+                this.ui.prefixIcon ||
+                this.ui.suffix ||
+                this.ui.suffixIcon)
+                ? 'addon'
+                : '';
+        };
         /**
          * @param {?} value
          * @return {?}
@@ -4349,13 +4395,13 @@
          * @param {?} value
          * @return {?}
          */
-            function (value) {
-                if (this.schema.format === 'color' && !value) {
-                    this.setValue('#000000');
-                }
-            };
+        function (value) {
+            if (this.schema.format === 'color' && !value) {
+                this.setValue('#000000');
+            }
+        };
         StringWidget.decorators = [
-            { type: i0.Component, args: [{
+            { type: core.Component, args: [{
                         selector: 'sf-string',
                         template: "<sf-item-wrap [id]=\"id\"\n              [schema]=\"schema\"\n              [ui]=\"ui\"\n              [showError]=\"showError\"\n              [error]=\"error\"\n              [showTitle]=\"schema.title\">\n\n  <ng-template #ipt>\n    <input nz-input\n           [attr.id]=\"id\"\n           [disabled]=\"disabled\"\n           [attr.disabled]=\"disabled\"\n           [nzSize]=\"ui.size\"\n           [ngModel]=\"value\"\n           (ngModelChange)=\"setValue($event)\"\n           [attr.maxLength]=\"schema.maxLength || null\"\n           [attr.type]=\"ui.type || 'text'\"\n           [attr.placeholder]=\"ui.placeholder\"\n           [attr.autocomplete]=\"ui.autocomplete\"\n           [attr.autoFocus]=\"ui.autofocus\">\n  </ng-template>\n\n  <ng-container *ngIf=\"type === 'addon'; else ipt\">\n    <nz-input-group [nzAddOnBefore]=\"ui.addOnBefore\"\n                    [nzAddOnAfter]=\"ui.addOnAfter\"\n                    [nzAddOnBeforeIcon]=\"ui.addOnBeforeIcon\"\n                    [nzAddOnAfterIcon]=\"ui.addOnAfterIcon\"\n                    [nzPrefix]=\"ui.prefix\"\n                    [nzPrefixIcon]=\"ui.prefixIcon\"\n                    [nzSuffix]=\"ui.suffix\"\n                    [nzSuffixIcon]=\"ui.suffixIcon\">\n      <ng-template [ngTemplateOutlet]=\"ipt\"></ng-template>\n    </nz-input-group>\n  </ng-container>\n</sf-item-wrap>\n"
                     }] }
@@ -4380,16 +4426,17 @@
          * @param {?} value
          * @return {?}
          */
-            function (value) {
-                var _this = this;
-                getData(this.schema, this.ui, this.formProperty.formData).subscribe(( /**
-                 * @param {?} list
-                 * @return {?}
-                 */function (list) {
-                    _this.data = list;
-                    _this.detectChanges();
-                }));
-            };
+        function (value) {
+            var _this = this;
+            getData(this.schema, this.ui, this.formProperty.formData).subscribe((/**
+             * @param {?} list
+             * @return {?}
+             */
+            function (list) {
+                _this.data = list;
+                _this.detectChanges();
+            }));
+        };
         /**
          * @param {?} item
          * @return {?}
@@ -4398,22 +4445,22 @@
          * @param {?} item
          * @return {?}
          */
-            function (item) {
-                item.checked = !item.checked;
-                this.updateValue();
-                if (this.ui.checkedChange)
-                    this.ui.checkedChange(item.checked);
-            };
+        function (item) {
+            item.checked = !item.checked;
+            this.updateValue();
+            if (this.ui.checkedChange)
+                this.ui.checkedChange(item.checked);
+        };
         /**
          * @return {?}
          */
         TagWidget.prototype._afterClose = /**
          * @return {?}
          */
-            function () {
-                if (this.ui.afterClose)
-                    this.ui.afterClose();
-            };
+        function () {
+            if (this.ui.afterClose)
+                this.ui.afterClose();
+        };
         /**
          * @param {?} e
          * @return {?}
@@ -4422,10 +4469,10 @@
          * @param {?} e
          * @return {?}
          */
-            function (e) {
-                if (this.ui.onClose)
-                    this.ui.onClose(e);
-            };
+        function (e) {
+            if (this.ui.onClose)
+                this.ui.onClose(e);
+        };
         /**
          * @private
          * @return {?}
@@ -4434,17 +4481,19 @@
          * @private
          * @return {?}
          */
-            function () {
-                this.formProperty.setValue(this.data.filter(( /**
-                 * @param {?} w
-                 * @return {?}
-                 */function (w) { return w.checked; })).map(( /**
-                 * @param {?} i
-                 * @return {?}
-                 */function (i) { return i.value; })), false);
-            };
+        function () {
+            this.formProperty.setValue(this.data.filter((/**
+             * @param {?} w
+             * @return {?}
+             */
+            function (w) { return w.checked; })).map((/**
+             * @param {?} i
+             * @return {?}
+             */
+            function (i) { return i.value; })), false);
+        };
         TagWidget.decorators = [
-            { type: i0.Component, args: [{
+            { type: core.Component, args: [{
                         selector: 'sf-tag',
                         template: "<sf-item-wrap [id]=\"id\"\n              [schema]=\"schema\"\n              [ui]=\"ui\"\n              [showError]=\"showError\"\n              [error]=\"error\"\n              [showTitle]=\"schema.title\">\n\n  <nz-tag *ngFor=\"let i of data\"\n          [nzMode]=\"ui.mode || 'checkable'\"\n          [nzChecked]=\"i.checked\"\n          (nzAfterClose)=\"_afterClose()\"\n          (nzOnClose)=\"_close($event)\"\n          (nzCheckedChange)=\"onChange(i)\">\n    {{i.label}}\n  </nz-tag>\n\n</sf-item-wrap>\n"
                     }] }
@@ -4467,11 +4516,11 @@
         TextWidget.prototype.ngOnInit = /**
          * @return {?}
          */
-            function () {
-                this.ui._required = false;
-            };
+        function () {
+            this.ui._required = false;
+        };
         TextWidget.decorators = [
-            { type: i0.Component, args: [{
+            { type: core.Component, args: [{
                         selector: 'sf-text',
                         template: "<sf-item-wrap [id]=\"id\"\n              [schema]=\"schema\"\n              [ui]=\"ui\"\n              [showError]=\"showError\"\n              [error]=\"error\"\n              [showTitle]=\"schema.title\">\n  {{ value || ui.defaultText || '-' }}\n</sf-item-wrap>\n"
                     }] }
@@ -4496,13 +4545,13 @@
         TextareaWidget.prototype.ngOnInit = /**
          * @return {?}
          */
-            function () {
-                if (this.ui.autosize != null) {
-                    this.autosize = this.ui.autosize;
-                }
-            };
+        function () {
+            if (this.ui.autosize != null) {
+                this.autosize = this.ui.autosize;
+            }
+        };
         TextareaWidget.decorators = [
-            { type: i0.Component, args: [{
+            { type: core.Component, args: [{
                         selector: 'sf-textarea',
                         template: "<sf-item-wrap [id]=\"id\"\n              [schema]=\"schema\"\n              [ui]=\"ui\"\n              [showError]=\"showError\"\n              [error]=\"error\"\n              [showTitle]=\"schema.title\">\n\n  <textarea nz-input\n            [attr.id]=\"id\"\n            [disabled]=\"disabled\"\n            [attr.disabled]=\"disabled\"\n            [nzSize]=\"ui.size\"\n            [ngModel]=\"value\"\n            (ngModelChange)=\"setValue($event)\"\n            [attr.maxLength]=\"schema.maxLength || null\"\n            [attr.placeholder]=\"ui.placeholder\"\n            [nzAutosize]=\"autosize\">\n    </textarea>\n\n</sf-item-wrap>\n"
                     }] }
@@ -4527,22 +4576,22 @@
         TimeWidget.prototype.ngOnInit = /**
          * @return {?}
          */
-            function () {
-                /** @type {?} */
-                var ui = this.ui;
-                // 构建属性对象时会对默认值进行校验，因此可以直接使用 format 作为格式化属性
-                this.format = ui.format;
-                this.i = {
-                    displayFormat: ui.displayFormat || 'HH:mm:ss',
-                    allowEmpty: toBool(ui.allowEmpty, true),
-                    clearText: ui.clearText || '清除',
-                    defaultOpenValue: ui.defaultOpenValue || new Date(),
-                    hideDisabledOptions: toBool(ui.hideDisabledOptions, false),
-                    hourStep: ui.hourStep || 1,
-                    minuteStep: ui.nzMinuteStep || 1,
-                    secondStep: ui.secondStep || 1,
-                };
+        function () {
+            /** @type {?} */
+            var ui = this.ui;
+            // 构建属性对象时会对默认值进行校验，因此可以直接使用 format 作为格式化属性
+            this.format = ui.format;
+            this.i = {
+                displayFormat: ui.displayFormat || 'HH:mm:ss',
+                allowEmpty: toBool(ui.allowEmpty, true),
+                clearText: ui.clearText || '清除',
+                defaultOpenValue: ui.defaultOpenValue || new Date(),
+                hideDisabledOptions: toBool(ui.hideDisabledOptions, false),
+                hourStep: ui.hourStep || 1,
+                minuteStep: ui.nzMinuteStep || 1,
+                secondStep: ui.secondStep || 1,
             };
+        };
         /**
          * @param {?} value
          * @return {?}
@@ -4551,24 +4600,24 @@
          * @param {?} value
          * @return {?}
          */
-            function (value) {
-                if (value instanceof Date) {
-                    this.displayValue = value;
-                    this.detectChanges();
-                    return;
-                }
-                /** @type {?} */
-                var v = value != null && value.toString().length ? new Date(value) : null;
-                // trying restore full Date format
-                if (v != null && v.toString() === 'Invalid Date') {
-                    if (value.toString().split(':').length <= 1) {
-                        value += ':00';
-                    }
-                    v = new Date("1970-1-1 " + value);
-                }
-                this.displayValue = v;
+        function (value) {
+            if (value instanceof Date) {
+                this.displayValue = value;
                 this.detectChanges();
-            };
+                return;
+            }
+            /** @type {?} */
+            var v = value != null && value.toString().length ? new Date(value) : null;
+            // trying restore full Date format
+            if (v != null && v.toString() === 'Invalid Date') {
+                if (value.toString().split(':').length <= 1) {
+                    value += ':00';
+                }
+                v = new Date("1970-1-1 " + value);
+            }
+            this.displayValue = v;
+            this.detectChanges();
+        };
         /**
          * @param {?} value
          * @return {?}
@@ -4577,19 +4626,19 @@
          * @param {?} value
          * @return {?}
          */
-            function (value) {
-                if (value == null) {
-                    this.setValue(null);
-                    return;
-                }
-                if (this.ui.utcEpoch === true) {
-                    this.setValue(Date.UTC(1970, 0, 1, value.getHours(), value.getMinutes(), value.getSeconds()));
-                    return;
-                }
-                this.setValue(format(value, this.format));
-            };
+        function (value) {
+            if (value == null) {
+                this.setValue(null);
+                return;
+            }
+            if (this.ui.utcEpoch === true) {
+                this.setValue(Date.UTC(1970, 0, 1, value.getHours(), value.getMinutes(), value.getSeconds()));
+                return;
+            }
+            this.setValue(format(value, this.format));
+        };
         TimeWidget.decorators = [
-            { type: i0.Component, args: [{
+            { type: core.Component, args: [{
                         selector: 'sf-time',
                         template: "<sf-item-wrap [id]=\"id\"\n              [schema]=\"schema\"\n              [ui]=\"ui\"\n              [showError]=\"showError\"\n              [error]=\"error\"\n              [showTitle]=\"schema.title\">\n\n  <nz-time-picker [(ngModel)]=\"displayValue\"\n                  (ngModelChange)=\"_change($event)\"\n                  [nzDisabled]=\"disabled\"\n                  [nzSize]=\"ui.size\"\n                  [nzFormat]=\"i.displayFormat\"\n                  [nzAllowEmpty]=\"i.allowEmpty\"\n                  [nzClearText]=\"i.clearText\"\n                  [nzDefaultOpenValue]=\"i.defaultOpenValue\"\n                  [nzDisabledHours]=\"ui.disabledHours\"\n                  [nzDisabledMinutes]=\"ui.disabledMinutes\"\n                  [nzDisabledSeconds]=\"ui.disabledSeconds\"\n                  [nzHideDisabledOptions]=\"i.hideDisabledOptions\"\n                  [nzHourStep]=\"i.hourStep\"\n                  [nzMinuteStep]=\"i.minuteStep\"\n                  [nzSecondStep]=\"i.secondStep\"\n                  [nzPopupClassName]=\"ui.popupClassName\">\n  </nz-time-picker>\n\n</sf-item-wrap>\n"
                     }] }
@@ -4607,10 +4656,11 @@
             var _this = _super !== null && _super.apply(this, arguments) || this;
             _this.list = [];
             _this._data = [];
-            _this._canMove = ( /**
+            _this._canMove = (/**
              * @param {?} arg
              * @return {?}
-             */function (arg) {
+             */
+            function (arg) {
                 return _this.ui.canMove ? _this.ui.canMove(arg) : rxjs.of(arg.list);
             });
             return _this;
@@ -4621,14 +4671,14 @@
         TransferWidget.prototype.ngOnInit = /**
          * @return {?}
          */
-            function () {
-                this.i = {
-                    titles: this.ui.titles || ['', ''],
-                    operations: this.ui.operations || ['', ''],
-                    itemUnit: this.ui.itemUnit || '项',
-                    itemsUnit: this.ui.itemsUnit || '项',
-                };
+        function () {
+            this.i = {
+                titles: this.ui.titles || ['', ''],
+                operations: this.ui.operations || ['', ''],
+                itemUnit: this.ui.itemUnit || '项',
+                itemsUnit: this.ui.itemsUnit || '项',
             };
+        };
         /**
          * @param {?} value
          * @return {?}
@@ -4637,34 +4687,37 @@
          * @param {?} value
          * @return {?}
          */
-            function (value) {
-                var _this = this;
-                getData(this.schema, this.ui, null).subscribe(( /**
-                 * @param {?} list
+        function (value) {
+            var _this = this;
+            getData(this.schema, this.ui, null).subscribe((/**
+             * @param {?} list
+             * @return {?}
+             */
+            function (list) {
+                /** @type {?} */
+                var formData = _this.formProperty.formData;
+                if (!Array.isArray(formData)) {
+                    formData = [formData];
+                }
+                list.forEach((/**
+                 * @param {?} item
                  * @return {?}
-                 */function (list) {
-                    /** @type {?} */
-                    var formData = _this.formProperty.formData;
-                    if (!Array.isArray(formData)) {
-                        formData = [formData];
+                 */
+                function (item) {
+                    if (~((/** @type {?} */ (formData))).indexOf(item.value)) {
+                        item.direction = 'right';
                     }
-                    list.forEach(( /**
-                     * @param {?} item
-                     * @return {?}
-                     */function (item) {
-                        if (~(( /** @type {?} */(formData))).indexOf(item.value)) {
-                            item.direction = 'right';
-                        }
-                    }));
-                    _this.list = list;
-                    _this._data = list.filter(( /**
-                     * @param {?} w
-                     * @return {?}
-                     */function (w) { return w.direction === 'right'; }));
-                    _this.notify();
-                    _this.detectChanges();
                 }));
-            };
+                _this.list = list;
+                _this._data = list.filter((/**
+                 * @param {?} w
+                 * @return {?}
+                 */
+                function (w) { return w.direction === 'right'; }));
+                _this.notify();
+                _this.detectChanges();
+            }));
+        };
         /**
          * @private
          * @return {?}
@@ -4673,12 +4726,13 @@
          * @private
          * @return {?}
          */
-            function () {
-                this.formProperty.setValue(this._data.map(( /**
-                 * @param {?} i
-                 * @return {?}
-                 */function (i) { return i.value; })), false);
-            };
+        function () {
+            this.formProperty.setValue(this._data.map((/**
+             * @param {?} i
+             * @return {?}
+             */
+            function (i) { return i.value; })), false);
+        };
         /**
          * @param {?} options
          * @return {?}
@@ -4687,21 +4741,22 @@
          * @param {?} options
          * @return {?}
          */
-            function (options) {
-                var _a;
-                if (options.to === 'right') {
-                    this._data = (_a = this._data).concat.apply(_a, __spread(options.list));
-                }
-                else {
-                    this._data = this._data.filter(( /**
-                     * @param {?} w
-                     * @return {?}
-                     */function (w) { return options.list.indexOf(w) === -1; }));
-                }
-                if (this.ui.change)
-                    this.ui.change(options);
-                this.notify();
-            };
+        function (options) {
+            var _a;
+            if (options.to === 'right') {
+                this._data = (_a = this._data).concat.apply(_a, __spread(options.list));
+            }
+            else {
+                this._data = this._data.filter((/**
+                 * @param {?} w
+                 * @return {?}
+                 */
+                function (w) { return options.list.indexOf(w) === -1; }));
+            }
+            if (this.ui.change)
+                this.ui.change(options);
+            this.notify();
+        };
         /**
          * @param {?} options
          * @return {?}
@@ -4710,11 +4765,11 @@
          * @param {?} options
          * @return {?}
          */
-            function (options) {
-                if (this.ui.searchChange)
-                    this.ui.searchChange(options);
-                this.cd.detectChanges();
-            };
+        function (options) {
+            if (this.ui.searchChange)
+                this.ui.searchChange(options);
+            this.cd.detectChanges();
+        };
         /**
          * @param {?} options
          * @return {?}
@@ -4723,13 +4778,13 @@
          * @param {?} options
          * @return {?}
          */
-            function (options) {
-                if (this.ui.selectChange)
-                    this.ui.selectChange(options);
-                this.cd.detectChanges();
-            };
+        function (options) {
+            if (this.ui.selectChange)
+                this.ui.selectChange(options);
+            this.cd.detectChanges();
+        };
         TransferWidget.decorators = [
-            { type: i0.Component, args: [{
+            { type: core.Component, args: [{
                         selector: 'sf-transfer',
                         template: "<sf-item-wrap [id]=\"id\"\n              [schema]=\"schema\"\n              [ui]=\"ui\"\n              [showError]=\"showError\"\n              [error]=\"error\"\n              [showTitle]=\"schema.title\">\n\n  <nz-transfer [nzDataSource]=\"list\"\n               [nzTitles]=\"i.titles\"\n               [nzOperations]=\"i.operations\"\n               [nzListStyle]=\"ui.listStyle\"\n               [nzItemUnit]=\"i.itemUnit\"\n               [nzItemsUnit]=\"i.itemsUnit\"\n               [nzShowSearch]=\"ui.showSearch\"\n               [nzFilterOption]=\"ui.filterOption\"\n               [nzSearchPlaceholder]=\"ui.searchPlaceholder\"\n               [nzNotFoundContent]=\"ui.notFoundContent\"\n               [nzCanMove]=\"_canMove\"\n               (nzChange)=\"_change($event)\"\n               (nzSearchChange)=\"_searchChange($event)\"\n               (nzSelectChange)=\"_selectChange($event)\">\n  </nz-transfer>\n\n</sf-item-wrap>\n"
                     }] }
@@ -4754,25 +4809,26 @@
         TreeSelectWidget.prototype.ngOnInit = /**
          * @return {?}
          */
-            function () {
-                var ui = this.ui;
-                this.i = {
-                    allowClear: ui.allowClear,
-                    showSearch: toBool(ui.showSearch, false),
-                    dropdownMatchSelectWidth: toBool(ui.dropdownMatchSelectWidth, true),
-                    multiple: toBool(ui.multiple, false),
-                    checkable: toBool(ui.checkable, false),
-                    showExpand: toBool(ui.showExpand, true),
-                    showLine: toBool(ui.showLine, false),
-                    asyncData: typeof ui.expandChange === 'function',
-                    defaultExpandAll: toBool(ui.defaultExpandAll, false),
-                    defaultExpandedKeys: ui.defaultExpandedKeys || [],
-                    displayWith: ui.displayWith || (( /**
-                     * @param {?} node
-                     * @return {?}
-                     */function (node) { return node.title; })),
-                };
+        function () {
+            var ui = this.ui;
+            this.i = {
+                allowClear: ui.allowClear,
+                showSearch: toBool(ui.showSearch, false),
+                dropdownMatchSelectWidth: toBool(ui.dropdownMatchSelectWidth, true),
+                multiple: toBool(ui.multiple, false),
+                checkable: toBool(ui.checkable, false),
+                showExpand: toBool(ui.showExpand, true),
+                showLine: toBool(ui.showLine, false),
+                asyncData: typeof ui.expandChange === 'function',
+                defaultExpandAll: toBool(ui.defaultExpandAll, false),
+                defaultExpandedKeys: ui.defaultExpandedKeys || [],
+                displayWith: ui.displayWith || ((/**
+                 * @param {?} node
+                 * @return {?}
+                 */
+                function (node) { return node.title; })),
             };
+        };
         /**
          * @param {?} value
          * @return {?}
@@ -4781,17 +4837,18 @@
          * @param {?} value
          * @return {?}
          */
-            function (value) {
-                var _this = this;
-                getData(this.schema, this.ui, this.formProperty.formData)
-                    .subscribe(( /**
+        function (value) {
+            var _this = this;
+            getData(this.schema, this.ui, this.formProperty.formData)
+                .subscribe((/**
              * @param {?} list
              * @return {?}
-             */function (list) {
-                    _this.data = list;
-                    _this.detectChanges();
-                }));
-            };
+             */
+            function (list) {
+                _this.data = list;
+                _this.detectChanges();
+            }));
+        };
         /**
          * @param {?} value
          * @return {?}
@@ -4800,11 +4857,11 @@
          * @param {?} value
          * @return {?}
          */
-            function (value) {
-                if (this.ui.change)
-                    this.ui.change(value);
-                this.setValue(value);
-            };
+        function (value) {
+            if (this.ui.change)
+                this.ui.change(value);
+            this.setValue(value);
+        };
         /**
          * @param {?} e
          * @return {?}
@@ -4813,23 +4870,24 @@
          * @param {?} e
          * @return {?}
          */
-            function (e) {
-                var _this = this;
-                var ui = this.ui;
-                if (typeof ui.expandChange !== 'function')
-                    return;
-                ui.expandChange(e)
-                    .subscribe(( /**
+        function (e) {
+            var _this = this;
+            var ui = this.ui;
+            if (typeof ui.expandChange !== 'function')
+                return;
+            ui.expandChange(e)
+                .subscribe((/**
              * @param {?} res
              * @return {?}
-             */function (res) {
-                    e.node.clearChildren();
-                    e.node.addChildren(res);
-                    _this.detectChanges();
-                }));
-            };
+             */
+            function (res) {
+                e.node.clearChildren();
+                e.node.addChildren(res);
+                _this.detectChanges();
+            }));
+        };
         TreeSelectWidget.decorators = [
-            { type: i0.Component, args: [{
+            { type: core.Component, args: [{
                         selector: 'sf-tree-select',
                         template: "<sf-item-wrap [id]=\"id\"\n              [schema]=\"schema\"\n              [ui]=\"ui\"\n              [showError]=\"showError\"\n              [error]=\"error\"\n              [showTitle]=\"schema.title\">\n  <nz-tree-select [nzAllowClear]=\"i.allowClear\"\n                  [nzPlaceHolder]=\"ui.placeholder\"\n                  [nzDisabled]=\"disabled\"\n                  [nzShowSearch]=\"i.showSearch\"\n                  [nzDropdownMatchSelectWidth]=\"i.dropdownMatchSelectWidth\"\n                  [nzDropdownStyle]=\"ui.dropdownStyle\"\n                  [nzMultiple]=\"i.multiple\"\n                  [nzSize]=\"ui.size\"\n                  [nzCheckable]=\"i.checkable\"\n                  [nzShowExpand]=\"i.showExpand\"\n                  [nzShowLine]=\"i.showLine\"\n                  [nzAsyncData]=\"i.asyncData\"\n                  [nzNodes]=\"data\"\n                  [nzDefaultExpandAll]=\"i.defaultExpandAll\"\n                  [nzDefaultExpandedKeys]=\"i.defaultExpandedKeys\"\n                  [nzDisplayWith]=\"i.displayWith\"\n                  [ngModel]=\"value\"\n                  (ngModelChange)=\"change($event)\"\n                  (nzExpandChange)=\"expandChange($event)\">\n  </nz-tree-select>\n\n</sf-item-wrap>\n"
                     }] }
@@ -4847,16 +4905,18 @@
             var _this = _super !== null && _super.apply(this, arguments) || this;
             _this.fileList = [];
             _this.btnType = '';
-            _this.handleRemove = ( /**
+            _this.handleRemove = (/**
              * @return {?}
-             */function () {
+             */
+            function () {
                 _this._setValue(_this.fileList);
                 return true;
             });
-            _this.handlePreview = ( /**
+            _this.handlePreview = (/**
              * @param {?} file
              * @return {?}
-             */function (file) {
+             */
+            function (file) {
                 if (_this.ui.preview) {
                     _this.ui.preview(file);
                     return;
@@ -4881,39 +4941,39 @@
         UploadWidget.prototype.ngOnInit = /**
          * @return {?}
          */
-            function () {
-                var _a = this.ui, type = _a.type, text = _a.text, action = _a.action, accept = _a.accept, limit = _a.limit, filter = _a.filter, fileSize = _a.fileSize, fileType = _a.fileType, listType = _a.listType, multiple = _a.multiple, name = _a.name, showUploadList = _a.showUploadList, withCredentials = _a.withCredentials, resReName = _a.resReName, urlReName = _a.urlReName, beforeUpload = _a.beforeUpload, customRequest = _a.customRequest, directory = _a.directory, openFileDialogOnClick = _a.openFileDialogOnClick;
-                this.i = {
-                    type: type || 'select',
-                    text: text || '点击上传',
-                    action: action || '',
-                    accept: accept || '',
-                    directory: toBool(directory, false),
-                    openFileDialogOnClick: toBool(openFileDialogOnClick, true),
-                    limit: limit == null ? 0 : +limit,
-                    filter: filter == null ? [] : filter,
-                    size: fileSize == null ? 0 : +fileSize,
-                    fileType: fileType || '',
-                    listType: listType || 'text',
-                    multiple: toBool(multiple, false),
-                    name: name || 'file',
-                    showUploadList: toBool(showUploadList, true),
-                    withCredentials: toBool(withCredentials, false),
-                    resReName: (resReName || '').split('.'),
-                    urlReName: (urlReName || '').split('.'),
-                    beforeUpload: typeof beforeUpload === 'function' ? beforeUpload : null,
-                    customRequest: typeof customRequest === 'function' ? customRequest : null,
-                };
-                if (this.i.listType === 'picture-card') {
-                    this.btnType = 'plus';
-                }
-                if (this.i.type === 'drag') {
-                    this.i.listType = null;
-                    this.btnType = 'drag';
-                    this.i.text = this.ui.text || "\u5355\u51FB\u6216\u62D6\u52A8\u6587\u4EF6\u5230\u8BE5\u533A\u57DF\u4E0A\u4F20";
-                    this.i.hint = this.ui.hint || "\u652F\u6301\u5355\u4E2A\u6216\u6279\u91CF\uFF0C\u4E25\u7981\u4E0A\u4F20\u516C\u53F8\u6570\u636E\u6216\u5176\u4ED6\u5B89\u5168\u6587\u4EF6";
-                }
+        function () {
+            var _a = this.ui, type = _a.type, text = _a.text, action = _a.action, accept = _a.accept, limit = _a.limit, filter = _a.filter, fileSize = _a.fileSize, fileType = _a.fileType, listType = _a.listType, multiple = _a.multiple, name = _a.name, showUploadList = _a.showUploadList, withCredentials = _a.withCredentials, resReName = _a.resReName, urlReName = _a.urlReName, beforeUpload = _a.beforeUpload, customRequest = _a.customRequest, directory = _a.directory, openFileDialogOnClick = _a.openFileDialogOnClick;
+            this.i = {
+                type: type || 'select',
+                text: text || '点击上传',
+                action: action || '',
+                accept: accept || '',
+                directory: toBool(directory, false),
+                openFileDialogOnClick: toBool(openFileDialogOnClick, true),
+                limit: limit == null ? 0 : +limit,
+                filter: filter == null ? [] : filter,
+                size: fileSize == null ? 0 : +fileSize,
+                fileType: fileType || '',
+                listType: listType || 'text',
+                multiple: toBool(multiple, false),
+                name: name || 'file',
+                showUploadList: toBool(showUploadList, true),
+                withCredentials: toBool(withCredentials, false),
+                resReName: (resReName || '').split('.'),
+                urlReName: (urlReName || '').split('.'),
+                beforeUpload: typeof beforeUpload === 'function' ? beforeUpload : null,
+                customRequest: typeof customRequest === 'function' ? customRequest : null,
             };
+            if (this.i.listType === 'picture-card') {
+                this.btnType = 'plus';
+            }
+            if (this.i.type === 'drag') {
+                this.i.listType = null;
+                this.btnType = 'drag';
+                this.i.text = this.ui.text || "\u5355\u51FB\u6216\u62D6\u52A8\u6587\u4EF6\u5230\u8BE5\u533A\u57DF\u4E0A\u4F20";
+                this.i.hint = this.ui.hint || "\u652F\u6301\u5355\u4E2A\u6216\u6279\u91CF\uFF0C\u4E25\u7981\u4E0A\u4F20\u516C\u53F8\u6570\u636E\u6216\u5176\u4ED6\u5B89\u5168\u6587\u4EF6";
+            }
+        };
         /**
          * @param {?} args
          * @return {?}
@@ -4922,13 +4982,13 @@
          * @param {?} args
          * @return {?}
          */
-            function (args) {
-                if (this.ui.change)
-                    this.ui.change(args);
-                if (args.type !== 'success')
-                    return;
-                this._setValue(args.fileList);
-            };
+        function (args) {
+            if (this.ui.change)
+                this.ui.change(args);
+            if (args.type !== 'success')
+                return;
+            this._setValue(args.fileList);
+        };
         /**
          * @param {?} value
          * @return {?}
@@ -4937,18 +4997,19 @@
          * @param {?} value
          * @return {?}
          */
-            function (value) {
-                var _this = this;
-                var fileList = this.ui.fileList;
-                (fileList ? rxjs.of(fileList) : getData(this.schema, this.ui, this.formProperty.formData)).subscribe(( /**
-                 * @param {?} list
-                 * @return {?}
-                 */function (list) {
-                    _this.fileList = ( /** @type {?} */(list));
-                    _this._setValue(_this.fileList);
-                    _this.detectChanges();
-                }));
-            };
+        function (value) {
+            var _this = this;
+            var fileList = this.ui.fileList;
+            (fileList ? rxjs.of(fileList) : getData(this.schema, this.ui, this.formProperty.formData)).subscribe((/**
+             * @param {?} list
+             * @return {?}
+             */
+            function (list) {
+                _this.fileList = (/** @type {?} */ (list));
+                _this._setValue(_this.fileList);
+                _this.detectChanges();
+            }));
+        };
         /**
          * @private
          * @param {?} file
@@ -4959,9 +5020,9 @@
          * @param {?} file
          * @return {?}
          */
-            function (file) {
-                return util.deepGet(file.response, this.i.resReName, file.response);
-            };
+        function (file) {
+            return util.deepGet(file.response, this.i.resReName, file.response);
+        };
         /**
          * @private
          * @param {?} fileList
@@ -4972,29 +5033,33 @@
          * @param {?} fileList
          * @return {?}
          */
-            function (fileList) {
-                var _this = this;
-                fileList.filter(( /**
-                 * @param {?} file
-                 * @return {?}
-                 */function (file) { return !file.url; })).forEach(( /**
-                 * @param {?} file
-                 * @return {?}
-                 */function (file) {
-                    file.url = util.deepGet(file.response, _this.i.urlReName);
-                }));
-                /** @type {?} */
-                var res = fileList.filter(( /**
-                 * @param {?} w
-                 * @return {?}
-                 */function (w) { return w.status === 'done'; })).map(( /**
-                 * @param {?} file
-                 * @return {?}
-                 */function (file) { return _this._getValue(file); }));
-                this.setValue(this.i.multiple === true ? res : res.pop());
-            };
+        function (fileList) {
+            var _this = this;
+            fileList.filter((/**
+             * @param {?} file
+             * @return {?}
+             */
+            function (file) { return !file.url; })).forEach((/**
+             * @param {?} file
+             * @return {?}
+             */
+            function (file) {
+                file.url = util.deepGet(file.response, _this.i.urlReName);
+            }));
+            /** @type {?} */
+            var res = fileList.filter((/**
+             * @param {?} w
+             * @return {?}
+             */
+            function (w) { return w.status === 'done'; })).map((/**
+             * @param {?} file
+             * @return {?}
+             */
+            function (file) { return _this._getValue(file); }));
+            this.setValue(this.i.multiple === true ? res : res.pop());
+        };
         UploadWidget.decorators = [
-            { type: i0.Component, args: [{
+            { type: core.Component, args: [{
                         selector: 'sf-upload',
                         template: "<sf-item-wrap [id]=\"id\"\n              [schema]=\"schema\"\n              [ui]=\"ui\"\n              [showError]=\"showError\"\n              [error]=\"error\"\n              [showTitle]=\"schema.title\">\n  <nz-upload [nzType]=\"i.type\"\n             [(nzFileList)]=\"fileList\"\n             [nzDisabled]=\"disabled\"\n             [nzAction]=\"i.action\"\n             [nzDirectory]=\"i.directory\"\n             [nzOpenFileDialogOnClick]=\"i.openFileDialogOnClick\"\n             [nzAccept]=\"i.accept\"\n             [nzLimit]=\"i.limit\"\n             [nzFilter]=\"i.filter\"\n             [nzSize]=\"i.size\"\n             [nzFileType]=\"i.fileType\"\n             [nzHeaders]=\"ui.headers\"\n             [nzData]=\"ui.data\"\n             [nzListType]=\"i.listType\"\n             [nzMultiple]=\"i.multiple\"\n             [nzName]=\"i.name\"\n             [nzShowUploadList]=\"i.showUploadList\"\n             [nzWithCredentials]=\"i.withCredentials\"\n             [nzBeforeUpload]=\"i.beforeUpload\"\n             [nzCustomRequest]=\"i.customRequest\"\n             [nzRemove]=\"ui.remove || handleRemove\"\n             [nzPreview]=\"handlePreview\"\n             (nzChange)=\"change($event)\">\n    <ng-container [ngSwitch]=\"btnType\">\n      <ng-container *ngSwitchCase=\"'plus'\">\n        <i nz-icon\n           type=\"plus\"></i>\n        <div class=\"ant-upload-text\"\n             [innerHTML]=\"i.text\"></div>\n      </ng-container>\n      <ng-container *ngSwitchCase=\"'drag'\">\n        <p class=\"ant-upload-drag-icon\"><i nz-icon\n             type=\"inbox\"></i></p>\n        <p class=\"ant-upload-text\"\n           [innerHTML]=\"i.text\"></p>\n        <p class=\"ant-upload-hint\"\n           [innerHTML]=\"i.hint\"></p>\n      </ng-container>\n      <ng-container *ngSwitchDefault>\n        <button type=\"button\"\n                nz-button>\n          <i nz-icon\n             type=\"upload\"></i><span [innerHTML]=\"i.text\"></span>\n        </button>\n      </ng-container>\n    </ng-container>\n  </nz-upload>\n</sf-item-wrap>\n"
                     }] }
@@ -5086,20 +5151,20 @@
         DelonFormModule.forRoot = /**
          * @return {?}
          */
-            function () {
-                return {
-                    ngModule: DelonFormModule,
-                    providers: [
-                        {
-                            provide: SchemaValidatorFactory,
-                            useClass: AjvSchemaValidatorFactory,
-                        },
-                        { provide: WidgetRegistry, useClass: NzWidgetRegistry },
-                    ],
-                };
+        function () {
+            return {
+                ngModule: DelonFormModule,
+                providers: [
+                    {
+                        provide: SchemaValidatorFactory,
+                        useClass: AjvSchemaValidatorFactory,
+                    },
+                    { provide: WidgetRegistry, useClass: NzWidgetRegistry },
+                ],
             };
+        };
         DelonFormModule.decorators = [
-            { type: i0.NgModule, args: [{
+            { type: core.NgModule, args: [{
                         imports: [common.CommonModule, forms.FormsModule, util.DelonUtilModule, theme.DelonLocaleModule, ngZorroAntd.NgZorroAntdModule],
                         declarations: __spread(COMPONENTS, WIDGETS),
                         entryComponents: __spread(WIDGETS),
@@ -5109,84 +5174,58 @@
         return DelonFormModule;
     }());
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-
+    exports.AjvSchemaValidatorFactory = AjvSchemaValidatorFactory;
+    exports.ArrayLayoutWidget = ArrayLayoutWidget;
+    exports.ArrayProperty = ArrayProperty;
+    exports.ArrayWidget = ArrayWidget;
+    exports.AtomicProperty = AtomicProperty;
+    exports.AutoCompleteWidget = AutoCompleteWidget;
+    exports.BooleanProperty = BooleanProperty;
+    exports.BooleanWidget = BooleanWidget;
+    exports.CascaderWidget = CascaderWidget;
+    exports.CheckboxWidget = CheckboxWidget;
+    exports.ControlWidget = ControlWidget;
+    exports.CustomWidget = CustomWidget;
+    exports.DateWidget = DateWidget;
     exports.DelonFormConfig = DelonFormConfig;
-    exports.useFactory = useFactory;
-    exports.SFComponent = SFComponent;
-    exports.SFItemComponent = SFItemComponent;
-    exports.SFFixedDirective = SFFixedDirective;
     exports.DelonFormModule = DelonFormModule;
     exports.ERRORSDEFAULT = ERRORSDEFAULT;
     exports.FormProperty = FormProperty;
-    exports.PropertyGroup = PropertyGroup;
     exports.FormPropertyFactory = FormPropertyFactory;
-    exports.AtomicProperty = AtomicProperty;
-    exports.ObjectProperty = ObjectProperty;
-    exports.ArrayProperty = ArrayProperty;
-    exports.StringProperty = StringProperty;
-    exports.NumberProperty = NumberProperty;
-    exports.BooleanProperty = BooleanProperty;
-    exports.Widget = Widget;
-    exports.ControlWidget = ControlWidget;
-    exports.ArrayLayoutWidget = ArrayLayoutWidget;
-    exports.ObjectLayoutWidget = ObjectLayoutWidget;
-    exports.ObjectWidget = ObjectWidget;
-    exports.ArrayWidget = ArrayWidget;
-    exports.StringWidget = StringWidget;
-    exports.NumberWidget = NumberWidget;
-    exports.DateWidget = DateWidget;
-    exports.TimeWidget = TimeWidget;
-    exports.RadioWidget = RadioWidget;
-    exports.CheckboxWidget = CheckboxWidget;
-    exports.BooleanWidget = BooleanWidget;
-    exports.TextareaWidget = TextareaWidget;
-    exports.SelectWidget = SelectWidget;
-    exports.TreeSelectWidget = TreeSelectWidget;
-    exports.TagWidget = TagWidget;
-    exports.UploadWidget = UploadWidget;
-    exports.TransferWidget = TransferWidget;
-    exports.SliderWidget = SliderWidget;
-    exports.RateWidget = RateWidget;
-    exports.AutoCompleteWidget = AutoCompleteWidget;
-    exports.CascaderWidget = CascaderWidget;
     exports.MentionWidget = MentionWidget;
-    exports.CustomWidget = CustomWidget;
+    exports.NumberProperty = NumberProperty;
+    exports.NumberWidget = NumberWidget;
     exports.NzWidgetRegistry = NzWidgetRegistry;
-    exports.WidgetRegistry = WidgetRegistry;
-    exports.WidgetFactory = WidgetFactory;
+    exports.ObjectLayoutWidget = ObjectLayoutWidget;
+    exports.ObjectProperty = ObjectProperty;
+    exports.ObjectWidget = ObjectWidget;
+    exports.PropertyGroup = PropertyGroup;
+    exports.RadioWidget = RadioWidget;
+    exports.RateWidget = RateWidget;
+    exports.SFComponent = SFComponent;
+    exports.SFFixedDirective = SFFixedDirective;
+    exports.SFItemComponent = SFItemComponent;
     exports.SchemaValidatorFactory = SchemaValidatorFactory;
-    exports.AjvSchemaValidatorFactory = AjvSchemaValidatorFactory;
-    exports.ɵb = SFItemWrapComponent;
+    exports.SelectWidget = SelectWidget;
+    exports.SliderWidget = SliderWidget;
+    exports.StringProperty = StringProperty;
+    exports.StringWidget = StringWidget;
+    exports.TagWidget = TagWidget;
+    exports.TextareaWidget = TextareaWidget;
+    exports.TimeWidget = TimeWidget;
+    exports.TransferWidget = TransferWidget;
+    exports.TreeSelectWidget = TreeSelectWidget;
+    exports.UploadWidget = UploadWidget;
+    exports.Widget = Widget;
+    exports.WidgetFactory = WidgetFactory;
+    exports.WidgetRegistry = WidgetRegistry;
+    exports.useFactory = useFactory;
     exports.ɵa = TerminatorService;
+    exports.ɵb = SFItemWrapComponent;
     exports.ɵc = SFTemplateDirective;
     exports.ɵd = TextWidget;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
-})));
-
+}));
 //# sourceMappingURL=form.umd.js.map

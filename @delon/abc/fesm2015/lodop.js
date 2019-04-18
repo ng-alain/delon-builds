@@ -1,5 +1,5 @@
-import { of, Subject } from 'rxjs';
-import { Injectable, NgModule, defineInjectable, inject } from '@angular/core';
+import { Injectable, defineInjectable, inject, NgModule } from '@angular/core';
+import { Subject, of } from 'rxjs';
 import { LazyService, DelonUtilModule } from '@delon/util';
 
 /**
@@ -331,6 +331,5 @@ LodopModule.decorators = [
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { LodopService, LodopConfig, LodopModule };
-
+export { LodopConfig, LodopModule, LodopService };
 //# sourceMappingURL=lodop.js.map

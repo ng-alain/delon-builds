@@ -1,10 +1,10 @@
 import { __decorate, __metadata } from 'tslib';
-import { Subject } from 'rxjs';
-import { filter, takeUntil } from 'rxjs/operators';
-import { MenuService, SettingsService, WINDOW } from '@delon/theme';
 import { DOCUMENT, CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Inject, Input, NgZone, Output, Renderer2, NgModule } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Renderer2, ChangeDetectorRef, NgZone, Inject, Input, Output, EventEmitter, NgModule } from '@angular/core';
 import { NavigationEnd, Router, RouterModule } from '@angular/router';
+import { Subject } from 'rxjs';
+import { takeUntil, filter } from 'rxjs/operators';
+import { MenuService, SettingsService, WINDOW } from '@delon/theme';
 import { InputBoolean, DelonUtilModule } from '@delon/util';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 
@@ -497,5 +497,4 @@ var SidebarNavModule = /** @class */ (function () {
  */
 
 export { SidebarNavComponent, SidebarNavModule };
-
 //# sourceMappingURL=sidebarNav.js.map

@@ -1,9 +1,9 @@
-import { __spread } from 'tslib';
-import { CommonModule } from '@angular/common';
-import { Component, Input, ViewChild, NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Component, ViewChild, Input, NgModule } from '@angular/core';
 import { DelonLocaleService, DelonLocaleModule } from '@delon/theme';
 import { isEmpty, DelonUtilModule } from '@delon/util';
+import { __spread } from 'tslib';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 
 /**
@@ -164,6 +164,5 @@ var ExceptionModule = /** @class */ (function () {
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { ExceptionModule, ExceptionComponent };
-
+export { ExceptionComponent, ExceptionModule };
 //# sourceMappingURL=exception.js.map

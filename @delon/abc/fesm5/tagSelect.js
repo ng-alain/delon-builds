@@ -1,8 +1,8 @@
 import { __decorate, __metadata, __spread } from 'tslib';
-import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, Output, NgModule } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ChangeDetectorRef, Input, Output, EventEmitter, NgModule } from '@angular/core';
 import { DelonLocaleService, DelonLocaleModule } from '@delon/theme';
 import { InputBoolean, DelonUtilModule } from '@delon/util';
+import { CommonModule } from '@angular/common';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 
 /**
@@ -114,5 +114,4 @@ var TagSelectModule = /** @class */ (function () {
  */
 
 export { TagSelectComponent, TagSelectModule };
-
 //# sourceMappingURL=tagSelect.js.map

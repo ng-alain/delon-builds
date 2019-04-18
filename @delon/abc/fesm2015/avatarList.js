@@ -1,7 +1,7 @@
+import { Component, Input, ChangeDetectionStrategy, ChangeDetectorRef, ContentChildren, NgModule } from '@angular/core';
 import { __decorate, __metadata } from 'tslib';
 import { InputNumber } from '@delon/util';
 import { CommonModule } from '@angular/common';
-import { Component, Input, ChangeDetectionStrategy, ChangeDetectorRef, ContentChildren, NgModule } from '@angular/core';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 
 /**
@@ -138,6 +138,5 @@ AvatarListModule.decorators = [
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { AvatarListItemComponent, AvatarListComponent, AvatarListModule };
-
+export { AvatarListComponent, AvatarListItemComponent, AvatarListModule };
 //# sourceMappingURL=avatarList.js.map

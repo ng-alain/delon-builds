@@ -1,9 +1,9 @@
 import { __decorate, __metadata } from 'tslib';
+import { Component, ChangeDetectionStrategy, NgZone, ViewChild, Input, NgModule } from '@angular/core';
+import { InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
 import { fromEvent } from 'rxjs';
-import { debounceTime, filter } from 'rxjs/operators';
+import { filter, debounceTime } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input, NgZone, ViewChild, NgModule } from '@angular/core';
-import { InputBoolean, InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
@@ -229,5 +229,4 @@ G2BarModule.decorators = [
  */
 
 export { G2BarComponent, G2BarModule };
-
 //# sourceMappingURL=bar.js.map

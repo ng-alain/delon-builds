@@ -1,7 +1,7 @@
 import { __decorate, __metadata } from 'tslib';
+import { Component, ChangeDetectionStrategy, ElementRef, NgZone, Input, NgModule } from '@angular/core';
+import { InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, ElementRef, Input, NgZone, NgModule } from '@angular/core';
-import { InputBoolean, InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
@@ -211,5 +211,4 @@ G2SingleBarModule.decorators = [
  */
 
 export { G2SingleBarComponent, G2SingleBarModule };
-
 //# sourceMappingURL=single-bar.js.map

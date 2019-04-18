@@ -1,8 +1,8 @@
-import { ResponsiveService } from '@delon/theme';
-import { __assign, __decorate, __metadata, __spread } from 'tslib';
-import { CommonModule } from '@angular/common';
-import { Injectable, Component, ChangeDetectionStrategy, Input, defineInjectable, NgModule, ElementRef, Renderer2, Optional, Host } from '@angular/core';
+import { __decorate, __metadata, __assign, __spread } from 'tslib';
+import { defineInjectable, Injectable, Component, ChangeDetectionStrategy, Input, ElementRef, Renderer2, Optional, Host, NgModule } from '@angular/core';
 import { InputNumber, DelonUtilModule } from '@delon/util';
+import { ResponsiveService } from '@delon/theme';
+import { CommonModule } from '@angular/common';
 
 /**
  * @fileoverview added by tsickle
@@ -218,6 +218,5 @@ var SGModule = /** @class */ (function () {
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { SGContainerComponent, SGComponent, SGConfig, SGModule };
-
+export { SGComponent, SGConfig, SGContainerComponent, SGModule };
 //# sourceMappingURL=grid.js.map

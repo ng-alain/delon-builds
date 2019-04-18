@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/chart/bar'), require('@delon/chart/card'), require('@delon/chart/custom'), require('@delon/chart/gauge'), require('@delon/chart/mini-area'), require('@delon/chart/mini-bar'), require('@delon/chart/mini-progress'), require('@delon/chart/number-info'), require('@delon/chart/pie'), require('@delon/chart/radar'), require('@delon/chart/single-bar'), require('@delon/chart/tag-cloud'), require('@delon/chart/timeline'), require('@delon/chart/trend'), require('@delon/chart/water-wave')) :
-    typeof define === 'function' && define.amd ? define('@delon/chart', ['exports', '@angular/core', '@delon/chart/bar', '@delon/chart/card', '@delon/chart/custom', '@delon/chart/gauge', '@delon/chart/mini-area', '@delon/chart/mini-bar', '@delon/chart/mini-progress', '@delon/chart/number-info', '@delon/chart/pie', '@delon/chart/radar', '@delon/chart/single-bar', '@delon/chart/tag-cloud', '@delon/chart/timeline', '@delon/chart/trend', '@delon/chart/water-wave'], factory) :
-    (factory((global.delon = global.delon || {}, global.delon.chart = {}),global.ng.core,global.delon.chart.bar,global.delon.chart.card,global.delon.chart.custom,global.delon.chart.gauge,global.delon.chart['mini-area'],global.delon.chart['mini-bar'],global.delon.chart['mini-progress'],global.delon.chart['number-info'],global.delon.chart.pie,global.delon.chart.radar,global.delon.chart['single-bar'],global.delon.chart['tag-cloud'],global.delon.chart.timeline,global.delon.chart.trend,global.delon.chart['water-wave']));
-}(this, (function (exports,core,bar,card,custom,gauge,miniArea,miniBar,miniProgress,numberInfo,pie,radar,singleBar,tagCloud,timeline,trend,waterWave) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@delon/chart/bar'), require('@delon/chart/card'), require('@delon/chart/custom'), require('@delon/chart/gauge'), require('@delon/chart/mini-area'), require('@delon/chart/mini-bar'), require('@delon/chart/mini-progress'), require('@delon/chart/pie'), require('@delon/chart/radar'), require('@delon/chart/tag-cloud'), require('@delon/chart/timeline'), require('@delon/chart/water-wave'), require('@delon/chart/number-info'), require('@delon/chart/trend'), require('@delon/chart/single-bar'), require('@angular/core')) :
+    typeof define === 'function' && define.amd ? define('@delon/chart', ['exports', '@delon/chart/bar', '@delon/chart/card', '@delon/chart/custom', '@delon/chart/gauge', '@delon/chart/mini-area', '@delon/chart/mini-bar', '@delon/chart/mini-progress', '@delon/chart/pie', '@delon/chart/radar', '@delon/chart/tag-cloud', '@delon/chart/timeline', '@delon/chart/water-wave', '@delon/chart/number-info', '@delon/chart/trend', '@delon/chart/single-bar', '@angular/core'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.chart = {}), global.delon.chart.bar, global.delon.chart.card, global.delon.chart.custom, global.delon.chart.gauge, global.delon.chart['mini-area'], global.delon.chart['mini-bar'], global.delon.chart['mini-progress'], global.delon.chart.pie, global.delon.chart.radar, global.delon.chart['tag-cloud'], global.delon.chart.timeline, global.delon.chart['water-wave'], global.delon.chart['number-info'], global.delon.chart.trend, global.delon.chart['single-bar'], global.ng.core));
+}(this, function (exports, bar, card, custom, gauge, miniArea, miniBar, miniProgress, pie, radar, tagCloud, timeline, waterWave, numberInfo, trend, singleBar, core) { 'use strict';
 
     /**
      * @fileoverview added by tsickle
@@ -41,51 +41,195 @@
         return DelonChartModule;
     }());
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-
-    exports.G2BarComponent = bar.G2BarComponent;
-    exports.G2BarModule = bar.G2BarModule;
-    exports.G2CardComponent = card.G2CardComponent;
-    exports.G2CardModule = card.G2CardModule;
-    exports.G2CustomComponent = custom.G2CustomComponent;
-    exports.G2CustomModule = custom.G2CustomModule;
-    exports.G2GaugeComponent = gauge.G2GaugeComponent;
-    exports.G2GaugeModule = gauge.G2GaugeModule;
-    exports.G2MiniAreaComponent = miniArea.G2MiniAreaComponent;
-    exports.G2MiniAreaModule = miniArea.G2MiniAreaModule;
-    exports.G2MiniBarComponent = miniBar.G2MiniBarComponent;
-    exports.G2MiniBarModule = miniBar.G2MiniBarModule;
-    exports.G2MiniProgressComponent = miniProgress.G2MiniProgressComponent;
-    exports.G2MiniProgressModule = miniProgress.G2MiniProgressModule;
-    exports.NumberInfoComponent = numberInfo.NumberInfoComponent;
-    exports.NumberInfoModule = numberInfo.NumberInfoModule;
-    exports.G2PieComponent = pie.G2PieComponent;
-    exports.G2PieModule = pie.G2PieModule;
-    exports.G2RadarComponent = radar.G2RadarComponent;
-    exports.G2RadarModule = radar.G2RadarModule;
-    exports.G2SingleBarComponent = singleBar.G2SingleBarComponent;
-    exports.G2SingleBarModule = singleBar.G2SingleBarModule;
-    exports.G2TagCloudComponent = tagCloud.G2TagCloudComponent;
-    exports.G2TagCloudModule = tagCloud.G2TagCloudModule;
-    exports.G2TimelineData = timeline.G2TimelineData;
-    exports.G2TimelineComponent = timeline.G2TimelineComponent;
-    exports.G2TimelineModule = timeline.G2TimelineModule;
-    exports.TrendComponent = trend.TrendComponent;
-    exports.TrendModule = trend.TrendModule;
-    exports.G2WaterWaveComponent = waterWave.G2WaterWaveComponent;
-    exports.G2WaterWaveModule = waterWave.G2WaterWaveModule;
+    Object.defineProperty(exports, 'G2BarComponent', {
+        enumerable: true,
+        get: function () {
+            return bar.G2BarComponent;
+        }
+    });
+    Object.defineProperty(exports, 'G2BarModule', {
+        enumerable: true,
+        get: function () {
+            return bar.G2BarModule;
+        }
+    });
+    Object.defineProperty(exports, 'G2CardComponent', {
+        enumerable: true,
+        get: function () {
+            return card.G2CardComponent;
+        }
+    });
+    Object.defineProperty(exports, 'G2CardModule', {
+        enumerable: true,
+        get: function () {
+            return card.G2CardModule;
+        }
+    });
+    Object.defineProperty(exports, 'G2CustomComponent', {
+        enumerable: true,
+        get: function () {
+            return custom.G2CustomComponent;
+        }
+    });
+    Object.defineProperty(exports, 'G2CustomModule', {
+        enumerable: true,
+        get: function () {
+            return custom.G2CustomModule;
+        }
+    });
+    Object.defineProperty(exports, 'G2GaugeComponent', {
+        enumerable: true,
+        get: function () {
+            return gauge.G2GaugeComponent;
+        }
+    });
+    Object.defineProperty(exports, 'G2GaugeModule', {
+        enumerable: true,
+        get: function () {
+            return gauge.G2GaugeModule;
+        }
+    });
+    Object.defineProperty(exports, 'G2MiniAreaComponent', {
+        enumerable: true,
+        get: function () {
+            return miniArea.G2MiniAreaComponent;
+        }
+    });
+    Object.defineProperty(exports, 'G2MiniAreaModule', {
+        enumerable: true,
+        get: function () {
+            return miniArea.G2MiniAreaModule;
+        }
+    });
+    Object.defineProperty(exports, 'G2MiniBarComponent', {
+        enumerable: true,
+        get: function () {
+            return miniBar.G2MiniBarComponent;
+        }
+    });
+    Object.defineProperty(exports, 'G2MiniBarModule', {
+        enumerable: true,
+        get: function () {
+            return miniBar.G2MiniBarModule;
+        }
+    });
+    Object.defineProperty(exports, 'G2MiniProgressComponent', {
+        enumerable: true,
+        get: function () {
+            return miniProgress.G2MiniProgressComponent;
+        }
+    });
+    Object.defineProperty(exports, 'G2MiniProgressModule', {
+        enumerable: true,
+        get: function () {
+            return miniProgress.G2MiniProgressModule;
+        }
+    });
+    Object.defineProperty(exports, 'G2PieComponent', {
+        enumerable: true,
+        get: function () {
+            return pie.G2PieComponent;
+        }
+    });
+    Object.defineProperty(exports, 'G2PieModule', {
+        enumerable: true,
+        get: function () {
+            return pie.G2PieModule;
+        }
+    });
+    Object.defineProperty(exports, 'G2RadarComponent', {
+        enumerable: true,
+        get: function () {
+            return radar.G2RadarComponent;
+        }
+    });
+    Object.defineProperty(exports, 'G2RadarModule', {
+        enumerable: true,
+        get: function () {
+            return radar.G2RadarModule;
+        }
+    });
+    Object.defineProperty(exports, 'G2TagCloudComponent', {
+        enumerable: true,
+        get: function () {
+            return tagCloud.G2TagCloudComponent;
+        }
+    });
+    Object.defineProperty(exports, 'G2TagCloudModule', {
+        enumerable: true,
+        get: function () {
+            return tagCloud.G2TagCloudModule;
+        }
+    });
+    Object.defineProperty(exports, 'G2TimelineComponent', {
+        enumerable: true,
+        get: function () {
+            return timeline.G2TimelineComponent;
+        }
+    });
+    Object.defineProperty(exports, 'G2TimelineData', {
+        enumerable: true,
+        get: function () {
+            return timeline.G2TimelineData;
+        }
+    });
+    Object.defineProperty(exports, 'G2TimelineModule', {
+        enumerable: true,
+        get: function () {
+            return timeline.G2TimelineModule;
+        }
+    });
+    Object.defineProperty(exports, 'G2WaterWaveComponent', {
+        enumerable: true,
+        get: function () {
+            return waterWave.G2WaterWaveComponent;
+        }
+    });
+    Object.defineProperty(exports, 'G2WaterWaveModule', {
+        enumerable: true,
+        get: function () {
+            return waterWave.G2WaterWaveModule;
+        }
+    });
+    Object.defineProperty(exports, 'NumberInfoComponent', {
+        enumerable: true,
+        get: function () {
+            return numberInfo.NumberInfoComponent;
+        }
+    });
+    Object.defineProperty(exports, 'NumberInfoModule', {
+        enumerable: true,
+        get: function () {
+            return numberInfo.NumberInfoModule;
+        }
+    });
+    Object.defineProperty(exports, 'TrendComponent', {
+        enumerable: true,
+        get: function () {
+            return trend.TrendComponent;
+        }
+    });
+    Object.defineProperty(exports, 'TrendModule', {
+        enumerable: true,
+        get: function () {
+            return trend.TrendModule;
+        }
+    });
+    Object.defineProperty(exports, 'G2SingleBarComponent', {
+        enumerable: true,
+        get: function () {
+            return singleBar.G2SingleBarComponent;
+        }
+    });
+    Object.defineProperty(exports, 'G2SingleBarModule', {
+        enumerable: true,
+        get: function () {
+            return singleBar.G2SingleBarModule;
+        }
+    });
     exports.DelonChartModule = DelonChartModule;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
-})));
-
+}));
 //# sourceMappingURL=chart.umd.js.map

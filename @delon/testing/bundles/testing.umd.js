@@ -4,10 +4,62 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/platform-browser'), require('ng-zorro-antd'), require('@angular/core/testing')) :
-    typeof define === 'function' && define.amd ? define('@delon/testing', ['exports', '@angular/platform-browser', 'ng-zorro-antd', '@angular/core/testing'], factory) :
-    (factory((global.delon = global.delon || {}, global.delon.testing = {}),global.ng.platformBrowser,global['ng-zorro-antd'],global.ng.core.testing));
-}(this, (function (exports,platformBrowser,ngZorroAntd,testing) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core/testing'), require('@angular/platform-browser'), require('ng-zorro-antd')) :
+    typeof define === 'function' && define.amd ? define('@delon/testing', ['exports', '@angular/core/testing', '@angular/platform-browser', 'ng-zorro-antd'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.testing = {}), global.ng.core.testing, global.ng.platformBrowser, global['ng-zorro-antd']));
+}(this, function (exports, testing, platformBrowser, ngZorroAntd) { 'use strict';
+
+    /*! *****************************************************************************
+    Copyright (c) Microsoft Corporation. All rights reserved.
+    Licensed under the Apache License, Version 2.0 (the "License"); you may not use
+    this file except in compliance with the License. You may obtain a copy of the
+    License at http://www.apache.org/licenses/LICENSE-2.0
+
+    THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+    KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
+    WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
+    MERCHANTABLITY OR NON-INFRINGEMENT.
+
+    See the Apache Version 2.0 License for specific language governing permissions
+    and limitations under the License.
+    ***************************************************************************** */
+
+    function __awaiter(thisArg, _arguments, P, generator) {
+        return new (P || (P = Promise))(function (resolve, reject) {
+            function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+            function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+            function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+            step((generator = generator.apply(thisArg, _arguments || [])).next());
+        });
+    }
+
+    function __generator(thisArg, body) {
+        var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+        return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+        function verb(n) { return function (v) { return step([n, v]); }; }
+        function step(op) {
+            if (f) throw new TypeError("Generator is already executing.");
+            while (_) try {
+                if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+                if (y = 0, t) op = [op[0] & 2, t.value];
+                switch (op[0]) {
+                    case 0: case 1: t = op; break;
+                    case 4: _.label++; return { value: op[1], done: false };
+                    case 5: _.label++; y = op[1]; op = [0]; continue;
+                    case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                    default:
+                        if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                        if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                        if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                        if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                        if (t[2]) _.ops.pop();
+                        _.trys.pop(); continue;
+                }
+                op = body.call(thisArg, _);
+            } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+            if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+        }
+    }
 
     /**
      * @fileoverview added by tsickle
@@ -28,12 +80,8 @@
      * @return {?}
      */
     function createMouseEvent(type, x, y) {
-        if (x === void 0) {
-            x = 0;
-        }
-        if (y === void 0) {
-            y = 0;
-        }
+        if (x === void 0) { x = 0; }
+        if (y === void 0) { y = 0; }
         /** @type {?} */
         var event = document.createEvent('MouseEvent');
         event.initMouseEvent(type, false /* canBubble */, false /* cancelable */, window /* view */, 0 /* detail */, x /* screenX */, y /* screenY */, x /* clientX */, y /* clientY */, false /* ctrlKey */, false /* altKey */, false /* shiftKey */, false /* metaKey */, 0 /* button */, null /* relatedTarget */);
@@ -47,12 +95,8 @@
      * @return {?}
      */
     function createTouchEvent(type, pageX, pageY) {
-        if (pageX === void 0) {
-            pageX = 0;
-        }
-        if (pageY === void 0) {
-            pageY = 0;
-        }
+        if (pageX === void 0) { pageX = 0; }
+        if (pageY === void 0) { pageY = 0; }
         // In favor of creating events that work for most of the browsers, the event is created
         // as a basic UI Event. The necessary details for the event will be set manually.
         /** @type {?} */
@@ -77,7 +121,7 @@
      */
     function createKeyboardEvent(type, keyCode, target, key) {
         /** @type {?} */
-        var event = ( /** @type {?} */(document.createEvent('KeyboardEvent')));
+        var event = (/** @type {?} */ (document.createEvent('KeyboardEvent')));
         // Firefox does not support `initKeyboardEvent`, but supports `initKeyEvent`.
         /** @type {?} */
         var initEventFn = (event.initKeyEvent || event.initKeyboardEvent).bind(event);
@@ -87,23 +131,28 @@
         // Webkit Browsers don't set the keyCode when calling the init function.
         // See related bug https://bugs.webkit.org/show_bug.cgi?id=16735
         Object.defineProperties(event, {
-            keyCode: { get: ( /**
-                     * @return {?}
-                     */function () { return keyCode; }) },
-            key: { get: ( /**
-                     * @return {?}
-                     */function () { return key; }) },
-            target: { get: ( /**
-                     * @return {?}
-                     */function () { return target; }) },
+            keyCode: { get: (/**
+                 * @return {?}
+                 */
+                function () { return keyCode; }) },
+            key: { get: (/**
+                 * @return {?}
+                 */
+                function () { return key; }) },
+            target: { get: (/**
+                 * @return {?}
+                 */
+                function () { return target; }) },
         });
         // IE won't set `defaultPrevented` on synthetic events so we need to do it manually.
-        event.preventDefault = ( /**
+        event.preventDefault = (/**
          * @return {?}
-         */function () {
-            Object.defineProperty(event, 'defaultPrevented', { get: ( /**
-                     * @return {?}
-                     */function () { return true; }) });
+         */
+        function () {
+            Object.defineProperty(event, 'defaultPrevented', { get: (/**
+                 * @return {?}
+                 */
+                function () { return true; }) });
             // tslint:disable-next-line:no-invalid-this
             return originalPreventDefault.apply(this, arguments);
         });
@@ -117,12 +166,8 @@
      * @return {?}
      */
     function createFakeEvent(type, canBubble, cancelable) {
-        if (canBubble === void 0) {
-            canBubble = true;
-        }
-        if (cancelable === void 0) {
-            cancelable = true;
-        }
+        if (canBubble === void 0) { canBubble = true; }
+        if (cancelable === void 0) { cancelable = true; }
         /** @type {?} */
         var event = document.createEvent('Event');
         event.initEvent(type, canBubble, cancelable);
@@ -162,7 +207,7 @@
      * @return {?}
      */
     function dispatchKeyboardEvent(node, type, keyCode, target) {
-        return ( /** @type {?} */(dispatchEvent(node, createKeyboardEvent(type, keyCode, target))));
+        return (/** @type {?} */ (dispatchEvent(node, createKeyboardEvent(type, keyCode, target))));
     }
     /**
      * Shorthand to dispatch a mouse event on the specified coordinates.
@@ -174,16 +219,10 @@
      * @return {?}
      */
     function dispatchMouseEvent(node, type, x, y, event) {
-        if (x === void 0) {
-            x = 0;
-        }
-        if (y === void 0) {
-            y = 0;
-        }
-        if (event === void 0) {
-            event = createMouseEvent(type, x, y);
-        }
-        return ( /** @type {?} */(dispatchEvent(node, event)));
+        if (x === void 0) { x = 0; }
+        if (y === void 0) { y = 0; }
+        if (event === void 0) { event = createMouseEvent(type, x, y); }
+        return (/** @type {?} */ (dispatchEvent(node, event)));
     }
     /**
      * Shorthand to dispatch a touch event on the specified coordinates.
@@ -194,12 +233,8 @@
      * @return {?}
      */
     function dispatchTouchEvent(node, type, x, y) {
-        if (x === void 0) {
-            x = 0;
-        }
-        if (y === void 0) {
-            y = 0;
-        }
+        if (x === void 0) { x = 0; }
+        if (y === void 0) { y = 0; }
         return dispatchEvent(node, createTouchEvent(type, x, y));
     }
 
@@ -237,16 +272,14 @@
      * @return {?}
      */
     function dispatchDropDown(dl, trigger, allowNull) {
-        if (allowNull === void 0) {
-            allowNull = true;
-        }
+        if (allowNull === void 0) { allowNull = true; }
         /** @type {?} */
         var directive = dl.query(platformBrowser.By.directive(ngZorroAntd.NzDropDownDirective));
         if (allowNull && directive == null) {
             return false;
         }
         /** @type {?} */
-        var el = ( /** @type {?} */(directive.injector.get(ngZorroAntd.NzDropDownDirective).elementRef.nativeElement));
+        var el = (/** @type {?} */ (directive.injector.get(ngZorroAntd.NzDropDownDirective).elementRef.nativeElement));
         if (trigger === 'click') {
             dispatchFakeEvent(el, 'click');
         }
@@ -268,19 +301,19 @@
     /**
      * @template T
      */
-    var /**
+    var   /**
      * @template T
-     */ PageG2 = /** @class */ (function () {
+     */
+    PageG2 = /** @class */ (function () {
         function PageG2(fixture) {
-            if (fixture === void 0) {
-                fixture = null;
-            }
+            if (fixture === void 0) { fixture = null; }
             this.fixture = fixture;
         }
         Object.defineProperty(PageG2.prototype, "dl", {
             get: /**
              * @return {?}
-             */ function () {
+             */
+            function () {
                 return this.fixture.debugElement;
             },
             enumerable: true,
@@ -289,7 +322,8 @@
         Object.defineProperty(PageG2.prototype, "context", {
             get: /**
              * @return {?}
-             */ function () {
+             */
+            function () {
                 return this.fixture.componentInstance;
             },
             enumerable: true,
@@ -298,7 +332,8 @@
         Object.defineProperty(PageG2.prototype, "comp", {
             get: /**
              * @return {?}
-             */ function () {
+             */
+            function () {
                 // tslint:disable-next-line:no-string-literal
                 return this.context['comp'];
             },
@@ -308,7 +343,8 @@
         Object.defineProperty(PageG2.prototype, "chart", {
             get: /**
              * @return {?}
-             */ function () {
+             */
+            function () {
                 return this.comp.chart;
             },
             enumerable: true,
@@ -328,13 +364,13 @@
          * @param {?} comp
          * @return {THIS}
          */
-            function (module, comp) {
-                testing.TestBed.configureTestingModule({
-                    imports: [module],
-                    declarations: [comp],
-                });
-                return ( /** @type {?} */(this));
-            };
+        function (module, comp) {
+            testing.TestBed.configureTestingModule({
+                imports: [module],
+                declarations: [comp],
+            });
+            return (/** @type {?} */ (this));
+        };
         /**
          * @template THIS
          * @this {THIS}
@@ -349,16 +385,14 @@
          * @param {?=} dc
          * @return {THIS}
          */
-            function (comp, dc) {
-                if (dc === void 0) {
-                    dc = false;
-                }
-                ( /** @type {?} */(this)).fixture = testing.TestBed.createComponent(comp);
-                if (dc) {
-                    ( /** @type {?} */(this)).dcFirst();
-                }
-                return ( /** @type {?} */(this));
-            };
+        function (comp, dc) {
+            if (dc === void 0) { dc = false; }
+            (/** @type {?} */ (this)).fixture = testing.TestBed.createComponent(comp);
+            if (dc) {
+                (/** @type {?} */ (this)).dcFirst();
+            }
+            return (/** @type {?} */ (this));
+        };
         /**
          * @template M
          * @param {?} module
@@ -373,13 +407,11 @@
          * @param {?=} options
          * @return {?}
          */
-            function (module, comp, options) {
-                if (options === void 0) {
-                    options = { dc: true };
-                }
-                this.genModule(module, comp).genComp(comp, options.dc);
-                return this;
-            };
+        function (module, comp, options) {
+            if (options === void 0) { options = { dc: true }; }
+            this.genModule(module, comp).genComp(comp, options.dc);
+            return this;
+        };
         /**
          * @template THIS
          * @this {THIS}
@@ -390,16 +422,16 @@
          * @this {THIS}
          * @return {THIS}
          */
-            function () {
-                ( /** @type {?} */(this)).dc();
-                testing.flush();
-                testing.discardPeriodicTasks();
-                // FIX: `Error during cleanup of component`
-                if (( /** @type {?} */(this)).comp && typeof ( /** @type {?} */(this)).comp.chart !== 'undefined') {
-                    spyOn(( /** @type {?} */(this)).comp.chart, 'destroy');
-                }
-                return ( /** @type {?} */(this));
-            };
+        function () {
+            (/** @type {?} */ (this)).dc();
+            testing.flush();
+            testing.discardPeriodicTasks();
+            // FIX: `Error during cleanup of component`
+            if ((/** @type {?} */ (this)).comp && typeof (/** @type {?} */ (this)).comp.chart !== 'undefined') {
+                spyOn((/** @type {?} */ (this)).comp.chart, 'destroy');
+            }
+            return (/** @type {?} */ (this));
+        };
         /**
          * @template THIS
          * @this {THIS}
@@ -410,11 +442,11 @@
          * @this {THIS}
          * @return {THIS}
          */
-            function () {
-                ( /** @type {?} */(this)).fixture.changeDetectorRef.markForCheck();
-                ( /** @type {?} */(this)).fixture.detectChanges();
-                return ( /** @type {?} */(this));
-            };
+        function () {
+            (/** @type {?} */ (this)).fixture.changeDetectorRef.markForCheck();
+            (/** @type {?} */ (this)).fixture.detectChanges();
+            return (/** @type {?} */ (this));
+        };
         /**
          * @template THIS
          * @this {THIS}
@@ -425,21 +457,21 @@
          * @this {THIS}
          * @return {THIS}
          */
-            function () {
-                // The 201 value is delay value
-                testing.tick(201);
-                testing.discardPeriodicTasks();
-                return ( /** @type {?} */(this));
-            };
+        function () {
+            // The 201 value is delay value
+            testing.tick(201);
+            testing.discardPeriodicTasks();
+            return (/** @type {?} */ (this));
+        };
         /**
          * @return {?}
          */
         PageG2.prototype.destroy = /**
          * @return {?}
          */
-            function () {
-                this.comp.ngOnDestroy();
-            };
+        function () {
+            this.comp.ngOnDestroy();
+        };
         /**
          * @template THIS
          * @this {THIS}
@@ -452,12 +484,12 @@
          * @param {?} data
          * @return {THIS}
          */
-            function (data) {
-                // tslint:disable-next-line:no-string-literal
-                ( /** @type {?} */(this)).context['data'] = data;
-                ( /** @type {?} */(this)).dc();
-                return ( /** @type {?} */(this));
-            };
+        function (data) {
+            // tslint:disable-next-line:no-string-literal
+            (/** @type {?} */ (this)).context['data'] = data;
+            (/** @type {?} */ (this)).dc();
+            return (/** @type {?} */ (this));
+        };
         /**
          * @param {?} cls
          * @return {?}
@@ -466,9 +498,9 @@
          * @param {?} cls
          * @return {?}
          */
-            function (cls) {
-                return (( /** @type {?} */(this.dl.nativeElement))).querySelectorAll(cls);
-            };
+        function (cls) {
+            return ((/** @type {?} */ (this.dl.nativeElement))).querySelectorAll(cls);
+        };
         /**
          * @param {?} cls
          * @return {?}
@@ -477,9 +509,9 @@
          * @param {?} cls
          * @return {?}
          */
-            function (cls) {
-                return (( /** @type {?} */(this.dl.nativeElement))).querySelector(cls);
-            };
+        function (cls) {
+            return ((/** @type {?} */ (this.dl.nativeElement))).querySelector(cls);
+        };
         /**
          * @template THIS
          * @this {THIS}
@@ -492,13 +524,11 @@
          * @param {?=} stauts
          * @return {THIS}
          */
-            function (stauts) {
-                if (stauts === void 0) {
-                    stauts = true;
-                }
-                ( /** @type {?} */(this)).isExists('canvas', stauts);
-                return ( /** @type {?} */(this));
-            };
+        function (stauts) {
+            if (stauts === void 0) { stauts = true; }
+            (/** @type {?} */ (this)).isExists('canvas', stauts);
+            return (/** @type {?} */ (this));
+        };
         /**
          * @template THIS
          * @this {THIS}
@@ -513,12 +543,12 @@
          * @param {?} value
          * @return {THIS}
          */
-            function (cls, value) {
-                /** @type {?} */
-                var el = ( /** @type {?} */(this)).getEl(cls);
-                expect(el ? el.textContent.trim() : '').toBe(value);
-                return ( /** @type {?} */(this));
-            };
+        function (cls, value) {
+            /** @type {?} */
+            var el = (/** @type {?} */ (this)).getEl(cls);
+            expect(el ? el.textContent.trim() : '').toBe(value);
+            return (/** @type {?} */ (this));
+        };
         /**
          * @template THIS
          * @this {THIS}
@@ -533,13 +563,11 @@
          * @param {?=} stauts
          * @return {THIS}
          */
-            function (cls, stauts) {
-                if (stauts === void 0) {
-                    stauts = true;
-                }
-                expect(( /** @type {?} */(this)).getEl(cls) != null).toBe(stauts);
-                return ( /** @type {?} */(this));
-            };
+        function (cls, stauts) {
+            if (stauts === void 0) { stauts = true; }
+            expect((/** @type {?} */ (this)).getEl(cls) != null).toBe(stauts);
+            return (/** @type {?} */ (this));
+        };
         /**
          * @template THIS
          * @this {THIS}
@@ -554,10 +582,10 @@
          * @param {?} value
          * @return {THIS}
          */
-            function (key, value) {
-                expect(( /** @type {?} */(this)).chart.get(key)).toBe(value);
-                return ( /** @type {?} */(this));
-            };
+        function (key, value) {
+            expect((/** @type {?} */ (this)).chart.get(key)).toBe(value);
+            return (/** @type {?} */ (this));
+        };
         /**
          * @template THIS
          * @this {THIS}
@@ -574,12 +602,12 @@
          * @param {?} value
          * @return {THIS}
          */
-            function (type, key, value) {
-                /** @type {?} */
-                var x = ( /** @type {?} */(this)).chart.get(type)[0].get('attrOptions')[key];
-                expect(x.field).toBe(value);
-                return ( /** @type {?} */(this));
-            };
+        function (type, key, value) {
+            /** @type {?} */
+            var x = (/** @type {?} */ (this)).chart.get(type)[0].get('attrOptions')[key];
+            expect(x.field).toBe(value);
+            return (/** @type {?} */ (this));
+        };
         /**
          * @template THIS
          * @this {THIS}
@@ -592,12 +620,12 @@
          * @param {?} num
          * @return {THIS}
          */
-            function (num) {
-                /** @type {?} */
-                var x = ( /** @type {?} */(this)).chart.getXScales();
-                expect(x[0].values.length).toBe(num);
-                return ( /** @type {?} */(this));
-            };
+        function (num) {
+            /** @type {?} */
+            var x = (/** @type {?} */ (this)).chart.getXScales();
+            expect(x[0].values.length).toBe(num);
+            return (/** @type {?} */ (this));
+        };
         /**
          * @template THIS
          * @this {THIS}
@@ -610,13 +638,13 @@
          * @param {?} num
          * @return {THIS}
          */
-            function (num) {
-                /** @type {?} */
-                var y = ( /** @type {?} */(this)).chart.getYScales();
-                expect(y.length).toBe(1);
-                expect(y[0].values.length).toBe(num);
-                return ( /** @type {?} */(this));
-            };
+        function (num) {
+            /** @type {?} */
+            var y = (/** @type {?} */ (this)).chart.getYScales();
+            expect(y.length).toBe(1);
+            expect(y[0].values.length).toBe(num);
+            return (/** @type {?} */ (this));
+        };
         /**
          * @template THIS
          * @this {THIS}
@@ -631,13 +659,13 @@
          * @param {?} num
          * @return {THIS}
          */
-            function (type, num) {
-                /** @type {?} */
-                var results = ( /** @type {?} */(this)).chart.get(type);
-                expect(results.length).toBeGreaterThan(0);
-                expect(results[0].get('data').length).toBe(num);
-                return ( /** @type {?} */(this));
-            };
+        function (type, num) {
+            /** @type {?} */
+            var results = (/** @type {?} */ (this)).chart.get(type);
+            expect(results.length).toBeGreaterThan(0);
+            expect(results[0].get('data').length).toBe(num);
+            return (/** @type {?} */ (this));
+        };
         /**
          * @template THIS
          * @this {THIS}
@@ -652,29 +680,29 @@
          * @param {?=} point
          * @return {THIS}
          */
-            function (includeText, point) {
-                if (!point) {
-                    /** @type {?} */
-                    var g2El = ( /** @type {?} */(( /** @type {?} */(this)).dl.nativeElement));
-                    point = {
-                        x: g2El.offsetWidth / 2,
-                        y: g2El.offsetHeight / 2,
-                    };
-                }
-                ( /** @type {?} */(this)).chart.showTooltip(point);
+        function (includeText, point) {
+            if (!point) {
                 /** @type {?} */
-                var el = ( /** @type {?} */(this)).getEl('.g2-tooltip');
-                if (includeText === null) {
-                    expect(el == null).toBe(true, "Shoule be not found g2-tooltip element");
-                }
-                else {
-                    expect(el != null).toBe(true, "Shoule be has g2-tooltip element");
-                    /** @type {?} */
-                    var text = el.textContent.trim();
-                    expect(text.includes(includeText)).toBe(true, "Shoule be include \"" + includeText + "\" text of tooltip text context \"" + text + "\"");
-                }
-                return ( /** @type {?} */(this));
-            };
+                var g2El = (/** @type {?} */ ((/** @type {?} */ (this)).dl.nativeElement));
+                point = {
+                    x: g2El.offsetWidth / 2,
+                    y: g2El.offsetHeight / 2,
+                };
+            }
+            (/** @type {?} */ (this)).chart.showTooltip(point);
+            /** @type {?} */
+            var el = (/** @type {?} */ (this)).getEl('.g2-tooltip');
+            if (includeText === null) {
+                expect(el == null).toBe(true, "Shoule be not found g2-tooltip element");
+            }
+            else {
+                expect(el != null).toBe(true, "Shoule be has g2-tooltip element");
+                /** @type {?} */
+                var text = el.textContent.trim();
+                expect(text.includes(includeText)).toBe(true, "Shoule be include \"" + includeText + "\" text of tooltip text context \"" + text + "\"");
+            }
+            return (/** @type {?} */ (this));
+        };
         return PageG2;
     }());
     /**
@@ -685,14 +713,12 @@
      * @return {?}
      */
     function checkDelay(module, comp, page) {
-        if (page === void 0) {
-            page = null;
-        }
+        if (page === void 0) { page = null; }
         if (page == null) {
             page = new PageG2().makeModule(module, comp, { dc: false });
         }
         /** @type {?} */
-        var context = ( /** @type {?} */(page.context));
+        var context = (/** @type {?} */ (page.context));
         if (typeof context.delay === 'undefined') {
             console.warn("You muse be dinfed \"delay\" property in test component");
             return;
@@ -705,122 +731,22 @@
         testing.discardPeriodicTasks();
     }
 
-    /*! *****************************************************************************
-    Copyright (c) Microsoft Corporation. All rights reserved.
-    Licensed under the Apache License, Version 2.0 (the "License"); you may not use
-    this file except in compliance with the License. You may obtain a copy of the
-    License at http://www.apache.org/licenses/LICENSE-2.0
-
-    THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-    KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
-    WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
-    MERCHANTABLITY OR NON-INFRINGEMENT.
-
-    See the Apache Version 2.0 License for specific language governing permissions
-    and limitations under the License.
-    ***************************************************************************** */
-    function __awaiter(thisArg, _arguments, P, generator) {
-        return new (P || (P = Promise))(function (resolve, reject) {
-            function fulfilled(value) { try {
-                step(generator.next(value));
-            }
-            catch (e) {
-                reject(e);
-            } }
-            function rejected(value) { try {
-                step(generator["throw"](value));
-            }
-            catch (e) {
-                reject(e);
-            } }
-            function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-            step((generator = generator.apply(thisArg, _arguments || [])).next());
-        });
-    }
-    function __generator(thisArg, body) {
-        var _ = { label: 0, sent: function () { if (t[0] & 1)
-                throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-        return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function () { return this; }), g;
-        function verb(n) { return function (v) { return step([n, v]); }; }
-        function step(op) {
-            if (f)
-                throw new TypeError("Generator is already executing.");
-            while (_)
-                try {
-                    if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done)
-                        return t;
-                    if (y = 0, t)
-                        op = [op[0] & 2, t.value];
-                    switch (op[0]) {
-                        case 0:
-                        case 1:
-                            t = op;
-                            break;
-                        case 4:
-                            _.label++;
-                            return { value: op[1], done: false };
-                        case 5:
-                            _.label++;
-                            y = op[1];
-                            op = [0];
-                            continue;
-                        case 7:
-                            op = _.ops.pop();
-                            _.trys.pop();
-                            continue;
-                        default:
-                            if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) {
-                                _ = 0;
-                                continue;
-                            }
-                            if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) {
-                                _.label = op[1];
-                                break;
-                            }
-                            if (op[0] === 6 && _.label < t[1]) {
-                                _.label = t[1];
-                                t = op;
-                                break;
-                            }
-                            if (t && _.label < t[2]) {
-                                _.label = t[2];
-                                _.ops.push(op);
-                                break;
-                            }
-                            if (t[2])
-                                _.ops.pop();
-                            _.trys.pop();
-                            continue;
-                    }
-                    op = body.call(thisArg, _);
-                }
-                catch (e) {
-                    op = [6, e];
-                    y = 0;
-                }
-                finally {
-                    f = t = 0;
-                }
-            if (op[0] & 5)
-                throw op[1];
-            return { value: op[0] ? op[1] : void 0, done: true };
-        }
-    }
-
     var _this = this;
     /**
      * @template T
      */
-    var /**
+    var   /**
      * @template T
-     */ TestContext = /** @class */ (function () {
+     */
+    TestContext = /** @class */ (function () {
         function TestContext(fixture) {
             this.fixture = fixture;
         }
         Object.defineProperty(TestContext.prototype, "component", {
             get: /**
              * @return {?}
-             */ function () {
+             */
+            function () {
                 return this.fixture.componentInstance;
             },
             enumerable: true,
@@ -829,7 +755,8 @@
         Object.defineProperty(TestContext.prototype, "el", {
             get: /**
              * @return {?}
-             */ function () {
+             */
+            function () {
                 return this.fixture.debugElement.nativeElement;
             },
             enumerable: true,
@@ -838,7 +765,8 @@
         Object.defineProperty(TestContext.prototype, "dl", {
             get: /**
              * @return {?}
-             */ function () {
+             */
+            function () {
                 return this.fixture.debugElement;
             },
             enumerable: true,
@@ -847,7 +775,8 @@
         Object.defineProperty(TestContext.prototype, "context", {
             get: /**
              * @return {?}
-             */ function () {
+             */
+            function () {
                 return this.fixture.componentInstance;
             },
             enumerable: true,
@@ -859,9 +788,9 @@
         TestContext.prototype.detectChanges = /**
          * @return {?}
          */
-            function () {
-                this.fixture.detectChanges();
-            };
+        function () {
+            this.fixture.detectChanges();
+        };
         /**
          * @template T1
          * @param {?} component
@@ -872,110 +801,106 @@
          * @param {?} component
          * @return {?}
          */
-            function (component) {
-                return ( /** @type {?} */(this.fixture.debugElement.injector.get(component)));
-            };
+        function (component) {
+            return (/** @type {?} */ (this.fixture.debugElement.injector.get(component)));
+        };
         return TestContext;
     }());
     /** @type {?} */
-    var configureTestSuite = ( /**
+    var configureTestSuite = (/**
      * @param {?=} configureAction
      * @return {?}
-     */function (configureAction) {
+     */
+    function (configureAction) {
         /** @type {?} */
         var testBedApi = testing.getTestBed();
         /** @type {?} */
         var originReset = testing.TestBed.resetTestingModule;
-        beforeAll(( /**
+        beforeAll((/**
          * @return {?}
-         */function () {
+         */
+        function () {
             testing.TestBed.resetTestingModule();
-            testing.TestBed.resetTestingModule = ( /**
+            testing.TestBed.resetTestingModule = (/**
              * @return {?}
-             */function () { return testing.TestBed; });
+             */
+            function () { return testing.TestBed; });
         }));
         if (configureAction) {
-            beforeAll(( /**
+            beforeAll((/**
              * @param {?} done
              * @return {?}
-             */function (done) {
-                return (( /**
+             */
+            function (done) {
+                return ((/**
                  * @return {?}
-                 */function () {
-                    return __awaiter(_this, void 0, void 0, function () {
-                        return __generator(this, function (_a) {
-                            switch (_a.label) {
-                                case 0:
-                                    configureAction();
-                                    return [4 /*yield*/, testing.TestBed.compileComponents()];
-                                case 1:
-                                    _a.sent();
-                                    return [2 /*return*/];
-                            }
-                        });
+                 */
+                function () { return __awaiter(_this, void 0, void 0, function () {
+                    return __generator(this, function (_a) {
+                        switch (_a.label) {
+                            case 0:
+                                configureAction();
+                                return [4 /*yield*/, testing.TestBed.compileComponents()];
+                            case 1:
+                                _a.sent();
+                                return [2 /*return*/];
+                        }
                     });
-                }))()
+                }); }))()
                     .then(done)
                     .catch(done.fail);
             }));
         }
-        afterEach(( /**
+        afterEach((/**
          * @return {?}
-         */function () {
-            testBedApi._activeFixtures.forEach(( /**
+         */
+        function () {
+            testBedApi._activeFixtures.forEach((/**
              * @param {?} fixture
              * @return {?}
-             */function (fixture) { return fixture.destroy(); }));
+             */
+            function (fixture) { return fixture.destroy(); }));
             testBedApi._instantiated = false;
         }));
-        afterAll(( /**
+        afterAll((/**
          * @return {?}
-         */function () {
+         */
+        function () {
             testing.TestBed.resetTestingModule = originReset;
             testing.TestBed.resetTestingModule();
         }));
     });
     /** @type {?} */
-    var createTestContext = ( /**
+    var createTestContext = (/**
      * @template T
      * @param {?} component
      * @return {?}
-     */function (component) {
+     */
+    function (component) {
         return new TestContext(testing.TestBed.createComponent(component));
     });
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-
+    exports.DROPDOWN_MIN_TIME = DROPDOWN_MIN_TIME;
+    exports.PageG2 = PageG2;
+    exports.PageG2DataCount = PageG2DataCount;
+    exports.PageG2Height = PageG2Height;
+    exports.TestContext = TestContext;
+    exports.checkDelay = checkDelay;
+    exports.configureTestSuite = configureTestSuite;
+    exports.createFakeEvent = createFakeEvent;
+    exports.createKeyboardEvent = createKeyboardEvent;
+    exports.createMouseEvent = createMouseEvent;
+    exports.createTestContext = createTestContext;
+    exports.createTouchEvent = createTouchEvent;
+    exports.dispatchDropDown = dispatchDropDown;
     exports.dispatchEvent = dispatchEvent;
     exports.dispatchFakeEvent = dispatchFakeEvent;
     exports.dispatchKeyboardEvent = dispatchKeyboardEvent;
     exports.dispatchMouseEvent = dispatchMouseEvent;
     exports.dispatchTouchEvent = dispatchTouchEvent;
-    exports.createMouseEvent = createMouseEvent;
-    exports.createTouchEvent = createTouchEvent;
-    exports.createKeyboardEvent = createKeyboardEvent;
-    exports.createFakeEvent = createFakeEvent;
     exports.typeInElement = typeInElement;
-    exports.dispatchDropDown = dispatchDropDown;
-    exports.DROPDOWN_MIN_TIME = DROPDOWN_MIN_TIME;
-    exports.checkDelay = checkDelay;
-    exports.PageG2DataCount = PageG2DataCount;
-    exports.PageG2Height = PageG2Height;
-    exports.PageG2 = PageG2;
-    exports.TestContext = TestContext;
-    exports.configureTestSuite = configureTestSuite;
-    exports.createTestContext = createTestContext;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
-})));
-
+}));
 //# sourceMappingURL=testing.umd.js.map

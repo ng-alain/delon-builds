@@ -1,7 +1,7 @@
 import { __decorate, __metadata, __spread } from 'tslib';
-import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, ElementRef, Input, Renderer2, NgModule } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ElementRef, Renderer2, Input, NgModule } from '@angular/core';
 import { updateHostClass, InputNumber, DelonUtilModule } from '@delon/util';
+import { CommonModule } from '@angular/common';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 
 /**
@@ -104,5 +104,4 @@ var NumberInfoModule = /** @class */ (function () {
  */
 
 export { NumberInfoComponent, NumberInfoModule };
-
 //# sourceMappingURL=number-info.js.map

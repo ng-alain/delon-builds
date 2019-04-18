@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('rxjs'), require('rxjs/operators'), require('@angular/common'), require('@angular/core'), require('@delon/util')) :
-    typeof define === 'function' && define.amd ? define('@delon/chart/bar', ['exports', 'rxjs', 'rxjs/operators', '@angular/common', '@angular/core', '@delon/util'], factory) :
-    (factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.bar = {}),global.rxjs,global.rxjs.operators,global.ng.common,global.ng.core,global.delon.util));
-}(this, (function (exports,rxjs,operators,common,core,util) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('@angular/common')) :
+    typeof define === 'function' && define.amd ? define('@delon/chart/bar', ['exports', '@angular/core', '@delon/util', 'rxjs', 'rxjs/operators', '@angular/common'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.bar = {}), global.ng.core, global.delon.util, global.rxjs, global.rxjs.operators, global.ng.common));
+}(this, function (exports, core, util, rxjs, operators, common) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -23,44 +23,35 @@
     See the Apache Version 2.0 License for specific language governing permissions
     and limitations under the License.
     ***************************************************************************** */
+
     function __decorate(decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-        if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
-            r = Reflect.decorate(decorators, target, key, desc);
-        else
-            for (var i = decorators.length - 1; i >= 0; i--)
-                if (d = decorators[i])
-                    r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+        if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+        else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
         return c > 3 && r && Object.defineProperty(target, key, r), r;
     }
+
     function __metadata(metadataKey, metadataValue) {
-        if (typeof Reflect === "object" && typeof Reflect.metadata === "function")
-            return Reflect.metadata(metadataKey, metadataValue);
+        if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(metadataKey, metadataValue);
     }
+
     function __read(o, n) {
         var m = typeof Symbol === "function" && o[Symbol.iterator];
-        if (!m)
-            return o;
+        if (!m) return o;
         var i = m.call(o), r, ar = [], e;
         try {
-            while ((n === void 0 || n-- > 0) && !(r = i.next()).done)
-                ar.push(r.value);
+            while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
         }
-        catch (error) {
-            e = { error: error };
-        }
+        catch (error) { e = { error: error }; }
         finally {
             try {
-                if (r && !r.done && (m = i["return"]))
-                    m.call(i);
+                if (r && !r.done && (m = i["return"])) m.call(i);
             }
-            finally {
-                if (e)
-                    throw e.error;
-            }
+            finally { if (e) throw e.error; }
         }
         return ar;
     }
+
     function __spread() {
         for (var ar = [], i = 0; i < arguments.length; i++)
             ar = ar.concat(__read(arguments[i]));
@@ -93,9 +84,9 @@
          * @private
          * @return {?}
          */
-            function () {
-                return this.title ? this.height - TITLE_HEIGHT : this.height;
-            };
+        function () {
+            return this.title ? this.height - TITLE_HEIGHT : this.height;
+        };
         /**
          * @private
          * @return {?}
@@ -104,46 +95,47 @@
          * @private
          * @return {?}
          */
-            function () {
-                var _a = this, node = _a.node, padding = _a.padding;
-                /** @type {?} */
-                var container = ( /** @type {?} */(node.nativeElement));
-                /** @type {?} */
-                var chart = (this.chart = new G2.Chart({
-                    container: container,
-                    forceFit: true,
-                    legend: null,
-                    height: this.getHeight(),
-                    padding: padding,
-                }));
-                this.updatelabel();
-                chart.axis('y', {
-                    title: false,
-                    line: false,
-                    tickLine: false,
-                });
-                chart.source([], {
-                    x: {
-                        type: 'cat',
-                    },
-                    y: {
-                        min: 0,
-                    },
-                });
-                chart.tooltip({
-                    showTitle: false,
-                });
-                chart
-                    .interval()
-                    .position('x*y')
-                    .tooltip('x*y', ( /**
+        function () {
+            var _a = this, node = _a.node, padding = _a.padding;
+            /** @type {?} */
+            var container = (/** @type {?} */ (node.nativeElement));
+            /** @type {?} */
+            var chart = (this.chart = new G2.Chart({
+                container: container,
+                forceFit: true,
+                legend: null,
+                height: this.getHeight(),
+                padding: padding,
+            }));
+            this.updatelabel();
+            chart.axis('y', {
+                title: false,
+                line: false,
+                tickLine: false,
+            });
+            chart.source([], {
+                x: {
+                    type: 'cat',
+                },
+                y: {
+                    min: 0,
+                },
+            });
+            chart.tooltip({
+                showTitle: false,
+            });
+            chart
+                .interval()
+                .position('x*y')
+                .tooltip('x*y', (/**
              * @param {?} x
              * @param {?} y
              * @return {?}
-             */function (x, y) { return ({ name: x, value: y }); }));
-                chart.render();
-                this.attachChart();
-            };
+             */
+            function (x, y) { return ({ name: x, value: y }); }));
+            chart.render();
+            this.attachChart();
+        };
         /**
          * @private
          * @return {?}
@@ -152,21 +144,21 @@
          * @private
          * @return {?}
          */
-            function () {
-                var _a = this, chart = _a.chart, padding = _a.padding, data = _a.data, color = _a.color;
-                if (!chart || !data || data.length <= 0)
-                    return;
-                this.installResizeEvent();
-                /** @type {?} */
-                var height = this.getHeight();
-                if (chart.get('height') !== height) {
-                    chart.changeHeight(height);
-                }
-                // color
-                chart.get('geoms')[0].color(color);
-                chart.set('padding', padding);
-                chart.changeData(data);
-            };
+        function () {
+            var _a = this, chart = _a.chart, padding = _a.padding, data = _a.data, color = _a.color;
+            if (!chart || !data || data.length <= 0)
+                return;
+            this.installResizeEvent();
+            /** @type {?} */
+            var height = this.getHeight();
+            if (chart.get('height') !== height) {
+                chart.changeHeight(height);
+            }
+            // color
+            chart.get('geoms')[0].color(color);
+            chart.set('padding', padding);
+            chart.changeData(data);
+        };
         /**
          * @private
          * @return {?}
@@ -175,14 +167,14 @@
          * @private
          * @return {?}
          */
-            function () {
-                var _a = this, node = _a.node, data = _a.data, chart = _a.chart;
-                /** @type {?} */
-                var canvasWidth = node.nativeElement.clientWidth;
-                /** @type {?} */
-                var minWidth = data.length * 30;
-                chart.axis('x', canvasWidth > minWidth).repaint();
-            };
+        function () {
+            var _a = this, node = _a.node, data = _a.data, chart = _a.chart;
+            /** @type {?} */
+            var canvasWidth = node.nativeElement.clientWidth;
+            /** @type {?} */
+            var minWidth = data.length * 30;
+            chart.axis('x', canvasWidth > minWidth).repaint();
+        };
         /**
          * @private
          * @return {?}
@@ -191,67 +183,70 @@
          * @private
          * @return {?}
          */
-            function () {
-                var _this = this;
-                if (!this.autoLabel || this.resize$)
-                    return;
-                this.resize$ = rxjs.fromEvent(window, 'resize')
-                    .pipe(operators.filter(( /**
+        function () {
+            var _this = this;
+            if (!this.autoLabel || this.resize$)
+                return;
+            this.resize$ = rxjs.fromEvent(window, 'resize')
+                .pipe(operators.filter((/**
              * @return {?}
-             */function () { return _this.chart; })), operators.debounceTime(200))
-                    .subscribe(( /**
+             */
+            function () { return _this.chart; })), operators.debounceTime(200))
+                .subscribe((/**
              * @return {?}
-             */function () {
-                    return _this.ngZone.runOutsideAngular(( /**
-                     * @return {?}
-                     */function () { return _this.updatelabel(); }));
-                }));
-            };
+             */
+            function () { return _this.ngZone.runOutsideAngular((/**
+             * @return {?}
+             */
+            function () { return _this.updatelabel(); })); }));
+        };
         /**
          * @return {?}
          */
         G2BarComponent.prototype.ngOnInit = /**
          * @return {?}
          */
-            function () {
-                var _this = this;
-                this.ngZone.runOutsideAngular(( /**
-                 * @return {?}
-                 */function () {
-                    return setTimeout(( /**
-                     * @return {?}
-                     */function () { return _this.install(); }), _this.delay);
-                }));
-            };
+        function () {
+            var _this = this;
+            this.ngZone.runOutsideAngular((/**
+             * @return {?}
+             */
+            function () { return setTimeout((/**
+             * @return {?}
+             */
+            function () { return _this.install(); }), _this.delay); }));
+        };
         /**
          * @return {?}
          */
         G2BarComponent.prototype.ngOnChanges = /**
          * @return {?}
          */
-            function () {
-                var _this = this;
-                this.ngZone.runOutsideAngular(( /**
-                 * @return {?}
-                 */function () { return _this.attachChart(); }));
-            };
+        function () {
+            var _this = this;
+            this.ngZone.runOutsideAngular((/**
+             * @return {?}
+             */
+            function () { return _this.attachChart(); }));
+        };
         /**
          * @return {?}
          */
         G2BarComponent.prototype.ngOnDestroy = /**
          * @return {?}
          */
-            function () {
-                var _this = this;
-                if (this.resize$) {
-                    this.resize$.unsubscribe();
-                }
-                if (this.chart) {
-                    this.ngZone.runOutsideAngular(( /**
-                     * @return {?}
-                     */function () { return _this.chart.destroy(); }));
-                }
-            };
+        function () {
+            var _this = this;
+            if (this.resize$) {
+                this.resize$.unsubscribe();
+            }
+            if (this.chart) {
+                this.ngZone.runOutsideAngular((/**
+                 * @return {?}
+                 */
+                function () { return _this.chart.destroy(); }));
+            }
+        };
         G2BarComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'g2-bar',
@@ -263,11 +258,9 @@
                     }] }
         ];
         /** @nocollapse */
-        G2BarComponent.ctorParameters = function () {
-            return [
-                { type: core.NgZone }
-            ];
-        };
+        G2BarComponent.ctorParameters = function () { return [
+            { type: core.NgZone }
+        ]; };
         G2BarComponent.propDecorators = {
             node: [{ type: core.ViewChild, args: ['container',] }],
             delay: [{ type: core.Input }],
@@ -312,21 +305,10 @@
         return G2BarModule;
     }());
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-
     exports.G2BarComponent = G2BarComponent;
     exports.G2BarModule = G2BarModule;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
-})));
-
+}));
 //# sourceMappingURL=bar.umd.js.map

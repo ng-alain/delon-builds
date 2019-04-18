@@ -1,10 +1,10 @@
+import { __assign, __values, __extends } from 'tslib';
+import { DOCUMENT } from '@angular/common';
+import { defineInjectable, Injectable, InjectionToken, inject, Inject, Injector, Optional, INJECTOR, NgModule } from '@angular/core';
+import { Router } from '@angular/router';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { share } from 'rxjs/operators';
 import { HttpErrorResponse, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { DOCUMENT } from '@angular/common';
-import { Router } from '@angular/router';
-import { __extends, __assign, __values } from 'tslib';
-import { Injectable, NgModule, InjectionToken, inject, Inject, defineInjectable, Injector, INJECTOR, Optional } from '@angular/core';
 
 /**
  * @fileoverview added by tsickle
@@ -1091,6 +1091,5 @@ var DelonAuthModule = /** @class */ (function () {
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { SocialService, DA_STORE_TOKEN, DA_STORE_TOKEN_LOCAL_FACTORY, LocalStorageStore, MemoryStore, SessionStorageStore, BaseInterceptor, DA_SERVICE_TOKEN, DA_SERVICE_TOKEN_FACTORY, TokenService, urlBase64Decode, JWTTokenModel, JWTInterceptor, JWTGuard, SimpleTokenModel, SimpleInterceptor, SimpleGuard, DelonAuthConfig, DelonAuthModule };
-
+export { BaseInterceptor, DA_SERVICE_TOKEN, DA_SERVICE_TOKEN_FACTORY, DA_STORE_TOKEN, DA_STORE_TOKEN_LOCAL_FACTORY, DelonAuthConfig, DelonAuthModule, JWTGuard, JWTInterceptor, JWTTokenModel, LocalStorageStore, MemoryStore, SessionStorageStore, SimpleGuard, SimpleInterceptor, SimpleTokenModel, SocialService, TokenService, urlBase64Decode };
 //# sourceMappingURL=auth.js.map

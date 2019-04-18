@@ -1,9 +1,9 @@
+import { __decorate, __metadata, __spread } from 'tslib';
+import { Component, ChangeDetectionStrategy, ElementRef, Input, Output, EventEmitter, NgModule } from '@angular/core';
+import { InputNumber, DelonUtilModule } from '@delon/util';
 import { fromEvent } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
-import { __decorate, __metadata, __spread } from 'tslib';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, Output, NgModule } from '@angular/core';
-import { InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
@@ -133,5 +133,4 @@ var G2CustomModule = /** @class */ (function () {
  */
 
 export { G2CustomComponent, G2CustomModule };
-
 //# sourceMappingURL=g2Custom.js.map

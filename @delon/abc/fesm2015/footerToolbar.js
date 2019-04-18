@@ -1,8 +1,8 @@
 import { __decorate, __metadata } from 'tslib';
 import { DOCUMENT, CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, ElementRef, Inject, Input, Renderer2, NgModule } from '@angular/core';
-import { ErrorCollectModule } from '@delon/abc/error-collect';
+import { Component, ChangeDetectionStrategy, ElementRef, Renderer2, Inject, Input, NgModule } from '@angular/core';
 import { InputBoolean, DelonUtilModule } from '@delon/util';
+import { ErrorCollectModule } from '@delon/abc/error-collect';
 
 /**
  * @fileoverview added by tsickle
@@ -92,5 +92,4 @@ FooterToolbarModule.decorators = [
  */
 
 export { FooterToolbarComponent, FooterToolbarModule };
-
 //# sourceMappingURL=footerToolbar.js.map

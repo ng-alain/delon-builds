@@ -1,8 +1,8 @@
+import { Directive, ElementRef, Input, Output, EventEmitter, NgModule } from '@angular/core';
+import { _HttpClient, AlainThemeModule } from '@delon/theme';
 import { saveAs } from 'file-saver';
 import { __spread } from 'tslib';
 import { CommonModule } from '@angular/common';
-import { Directive, ElementRef, EventEmitter, Input, Output, NgModule } from '@angular/core';
-import { _HttpClient, AlainThemeModule } from '@delon/theme';
 
 /**
  * @fileoverview added by tsickle
@@ -166,5 +166,4 @@ var DownFileModule = /** @class */ (function () {
  */
 
 export { DownFileDirective, DownFileModule };
-
 //# sourceMappingURL=downFile.js.map

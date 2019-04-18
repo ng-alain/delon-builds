@@ -1,8 +1,8 @@
+import { Injectable, defineInjectable, inject, NgModule } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { LazyService, DelonUtilModule } from '@delon/util';
 import { saveAs } from 'file-saver';
 import { CommonModule } from '@angular/common';
-import { Injectable, defineInjectable, NgModule, inject } from '@angular/core';
-import { LazyService, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
@@ -237,6 +237,5 @@ ZipModule.decorators = [
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { ZipService, ZipModule, ZipConfig };
-
+export { ZipConfig, ZipModule, ZipService };
 //# sourceMappingURL=zip.js.map

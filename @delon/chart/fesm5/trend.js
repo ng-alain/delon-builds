@@ -1,7 +1,7 @@
 import { __decorate, __metadata, __spread } from 'tslib';
-import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input, NgModule } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, NgModule } from '@angular/core';
 import { InputBoolean, DelonUtilModule } from '@delon/util';
+import { CommonModule } from '@angular/common';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 
 /**
@@ -77,5 +77,4 @@ var TrendModule = /** @class */ (function () {
  */
 
 export { TrendComponent, TrendModule };
-
 //# sourceMappingURL=trend.js.map

@@ -1,3 +1,5 @@
+import { TemplateRef, Directive, ViewContainerRef, Input, Injectable, Inject, defineInjectable, inject, NgModule } from '@angular/core';
+import { __spread, __assign, __values } from 'tslib';
 import extend from 'extend';
 import addDays from 'date-fns/add_days';
 import endOfDay from 'date-fns/end_of_day';
@@ -12,12 +14,10 @@ import startOfYear from 'date-fns/start_of_year';
 import subMonths from 'date-fns/sub_months';
 import subWeeks from 'date-fns/sub_weeks';
 import subYears from 'date-fns/sub_years';
-import { BehaviorSubject } from 'rxjs';
-import { filter, share } from 'rxjs/operators';
-import { __assign, __spread, __values } from 'tslib';
-import { NzTreeNode } from 'ng-zorro-antd';
 import { DOCUMENT, CommonModule } from '@angular/common';
-import { Directive, Input, TemplateRef, ViewContainerRef, Inject, Injectable, defineInjectable, NgModule, inject } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
+import { share, filter } from 'rxjs/operators';
+import { NzTreeNode } from 'ng-zorro-antd';
 
 /**
  * @fileoverview added by tsickle
@@ -1203,6 +1203,5 @@ var DelonUtilModule = /** @class */ (function () {
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { _Validators, StringTemplateOutletDirective, format, getTimeDistance, fixEndTimeOfRange, LazyService, isNum, isInt, isDecimal, isIdCard, isMobile, isUrl, isEmpty, toBoolean, InputBoolean, toNumber, InputNumber, deepGet, deepCopy, copy, deepMergeKey, deepMerge, updateHostClass, ArrayService, DelonUtilConfig, DelonUtilModule };
-
+export { ArrayService, DelonUtilConfig, DelonUtilModule, InputBoolean, InputNumber, LazyService, StringTemplateOutletDirective, _Validators, copy, deepCopy, deepGet, deepMerge, deepMergeKey, fixEndTimeOfRange, format, getTimeDistance, isDecimal, isEmpty, isIdCard, isInt, isMobile, isNum, isUrl, toBoolean, toNumber, updateHostClass };
 //# sourceMappingURL=util.js.map

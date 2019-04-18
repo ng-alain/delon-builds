@@ -4,13 +4,87 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common/http'), require('rxjs/operators'), require('@delon/acl'), require('rxjs'), require('date-fns/distance_in_words_to_now'), require('date-fns/format'), require('@angular/platform-browser'), require('@angular/cdk/overlay'), require('@angular/common'), require('@angular/router'), require('@ant-design/icons-angular/icons'), require('ng-zorro-antd'), require('@angular/core')) :
-    typeof define === 'function' && define.amd ? define('@delon/theme', ['exports', '@angular/common/http', 'rxjs/operators', '@delon/acl', 'rxjs', 'date-fns/distance_in_words_to_now', 'date-fns/format', '@angular/platform-browser', '@angular/cdk/overlay', '@angular/common', '@angular/router', '@ant-design/icons-angular/icons', 'ng-zorro-antd', '@angular/core'], factory) :
-    (factory((global.delon = global.delon || {}, global.delon.theme = {}),global.ng.common.http,global.rxjs.operators,global.delon.acl,global.rxjs,global.distanceInWordsToNow,global.format,global.ng.platformBrowser,global.ng.cdk.overlay,global.ng.common,global.ng.router,global.icons,global['ng-zorro-antd'],global.ng.core));
-}(this, (function (exports,i1,operators,i2,rxjs,distanceInWordsToNow,format,i1$1,overlay,i2$1,router,icons,i1$2,i0) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('rxjs'), require('rxjs/operators'), require('@delon/acl'), require('@angular/common'), require('@angular/platform-browser'), require('@angular/router'), require('ng-zorro-antd'), require('@angular/common/http'), require('date-fns/distance_in_words_to_now'), require('date-fns/format'), require('@angular/cdk/overlay'), require('@ant-design/icons-angular/icons')) :
+    typeof define === 'function' && define.amd ? define('@delon/theme', ['exports', '@angular/core', 'rxjs', 'rxjs/operators', '@delon/acl', '@angular/common', '@angular/platform-browser', '@angular/router', 'ng-zorro-antd', '@angular/common/http', 'date-fns/distance_in_words_to_now', 'date-fns/format', '@angular/cdk/overlay', '@ant-design/icons-angular/icons'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.theme = {}), global.ng.core, global.rxjs, global.rxjs.operators, global.delon.acl, global.ng.common, global.ng.platformBrowser, global.ng.router, global['ng-zorro-antd'], global.ng.common.http, global.distanceInWordsToNow, global.format, global.ng.cdk.overlay, global.icons));
+}(this, function (exports, core, rxjs, operators, acl, common, platformBrowser, router, ngZorroAntd, http, distanceInWordsToNow, format, overlay, icons) { 'use strict';
 
     distanceInWordsToNow = distanceInWordsToNow && distanceInWordsToNow.hasOwnProperty('default') ? distanceInWordsToNow['default'] : distanceInWordsToNow;
     format = format && format.hasOwnProperty('default') ? format['default'] : format;
+
+    /*! *****************************************************************************
+    Copyright (c) Microsoft Corporation. All rights reserved.
+    Licensed under the Apache License, Version 2.0 (the "License"); you may not use
+    this file except in compliance with the License. You may obtain a copy of the
+    License at http://www.apache.org/licenses/LICENSE-2.0
+
+    THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+    KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
+    WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
+    MERCHANTABLITY OR NON-INFRINGEMENT.
+
+    See the Apache Version 2.0 License for specific language governing permissions
+    and limitations under the License.
+    ***************************************************************************** */
+    /* global Reflect, Promise */
+
+    var extendStatics = function(d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+
+    function __extends(d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    }
+
+    var __assign = function() {
+        __assign = Object.assign || function __assign(t) {
+            for (var s, i = 1, n = arguments.length; i < n; i++) {
+                s = arguments[i];
+                for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+            }
+            return t;
+        };
+        return __assign.apply(this, arguments);
+    };
+
+    function __values(o) {
+        var m = typeof Symbol === "function" && o[Symbol.iterator], i = 0;
+        if (m) return m.call(o);
+        return {
+            next: function () {
+                if (o && i >= o.length) o = void 0;
+                return { value: o && o[i++], done: !o };
+            }
+        };
+    }
+
+    function __read(o, n) {
+        var m = typeof Symbol === "function" && o[Symbol.iterator];
+        if (!m) return o;
+        var i = m.call(o), r, ar = [], e;
+        try {
+            while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
+        }
+        catch (error) { e = { error: error }; }
+        finally {
+            try {
+                if (r && !r.done && (m = i["return"])) m.call(i);
+            }
+            finally { if (e) throw e.error; }
+        }
+        return ar;
+    }
+
+    function __spread() {
+        for (var ar = [], i = 0; i < arguments.length; i++)
+            ar = ar.concat(__read(arguments[i]));
+        return ar;
+    }
 
     /**
      * @fileoverview added by tsickle
@@ -23,7 +97,7 @@
         return window;
     }
     /** @type {?} */
-    var WINDOW = new i0.InjectionToken('Window', {
+    var WINDOW = new core.InjectionToken('Window', {
         providedIn: 'root',
         factory: WINDOW_FACTORY,
     });
@@ -48,113 +122,39 @@
             // preloader value null when running --hmr
             if (!preloader)
                 return;
-            preloader.addEventListener('transitionend', ( /**
+            preloader.addEventListener('transitionend', (/**
              * @return {?}
-             */function () {
+             */
+            function () {
                 preloader.className = 'preloader-hidden';
             }));
             preloader.className += ' preloader-hidden-add preloader-hidden-add-active';
         }
-        (( /** @type {?} */(window))).appBootstrap = ( /**
+        ((/** @type {?} */ (window))).appBootstrap = (/**
          * @return {?}
-         */function () {
-            setTimeout(( /**
+         */
+        function () {
+            setTimeout((/**
              * @return {?}
-             */function () {
+             */
+            function () {
                 remove();
                 body.style.overflow = '';
             }), 100);
         });
     }
 
-    /*! *****************************************************************************
-    Copyright (c) Microsoft Corporation. All rights reserved.
-    Licensed under the Apache License, Version 2.0 (the "License"); you may not use
-    this file except in compliance with the License. You may obtain a copy of the
-    License at http://www.apache.org/licenses/LICENSE-2.0
-
-    THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-    KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
-    WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
-    MERCHANTABLITY OR NON-INFRINGEMENT.
-
-    See the Apache Version 2.0 License for specific language governing permissions
-    and limitations under the License.
-    ***************************************************************************** */
-    /* global Reflect, Promise */
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b)
-                if (b.hasOwnProperty(p))
-                    d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    function __extends(d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    }
-    var __assign = function () {
-        __assign = Object.assign || function __assign(t) {
-            for (var s, i = 1, n = arguments.length; i < n; i++) {
-                s = arguments[i];
-                for (var p in s)
-                    if (Object.prototype.hasOwnProperty.call(s, p))
-                        t[p] = s[p];
-            }
-            return t;
-        };
-        return __assign.apply(this, arguments);
-    };
-    function __values(o) {
-        var m = typeof Symbol === "function" && o[Symbol.iterator], i = 0;
-        if (m)
-            return m.call(o);
-        return {
-            next: function () {
-                if (o && i >= o.length)
-                    o = void 0;
-                return { value: o && o[i++], done: !o };
-            }
-        };
-    }
-    function __read(o, n) {
-        var m = typeof Symbol === "function" && o[Symbol.iterator];
-        if (!m)
-            return o;
-        var i = m.call(o), r, ar = [], e;
-        try {
-            while ((n === void 0 || n-- > 0) && !(r = i.next()).done)
-                ar.push(r.value);
-        }
-        catch (error) {
-            e = { error: error };
-        }
-        finally {
-            try {
-                if (r && !r.done && (m = i["return"]))
-                    m.call(i);
-            }
-            finally {
-                if (e)
-                    throw e.error;
-            }
-        }
-        return ar;
-    }
-    function __spread() {
-        for (var ar = [], i = 0; i < arguments.length; i++)
-            ar = ar.concat(__read(arguments[i]));
-        return ar;
-    }
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
 
     /**
      * @fileoverview added by tsickle
      * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
-    var ALAIN_I18N_TOKEN = new i0.InjectionToken('alainTranslatorToken', {
+    var ALAIN_I18N_TOKEN = new core.InjectionToken('alainTranslatorToken', {
         providedIn: 'root',
         factory: ALAIN_I18N_TOKEN_FACTORY,
     });
@@ -171,11 +171,13 @@
         Object.defineProperty(AlainI18NServiceFake.prototype, "change", {
             get: /**
              * @return {?}
-             */ function () {
-                return this.change$.asObservable().pipe(operators.filter(( /**
+             */
+            function () {
+                return this.change$.asObservable().pipe(operators.filter((/**
                  * @param {?} w
                  * @return {?}
-                 */function (w) { return w != null; })));
+                 */
+                function (w) { return w != null; })));
             },
             enumerable: true,
             configurable: true
@@ -188,18 +190,18 @@
          * @param {?} lang
          * @return {?}
          */
-            function (lang) {
-                this.change$.next(lang);
-            };
+        function (lang) {
+            this.change$.next(lang);
+        };
         /**
          * @return {?}
          */
         AlainI18NServiceFake.prototype.getLangs = /**
          * @return {?}
          */
-            function () {
-                return [];
-            };
+        function () {
+            return [];
+        };
         /**
          * @param {?} key
          * @return {?}
@@ -208,13 +210,13 @@
          * @param {?} key
          * @return {?}
          */
-            function (key) {
-                return key;
-            };
+        function (key) {
+            return key;
+        };
         AlainI18NServiceFake.decorators = [
-            { type: i0.Injectable, args: [{ providedIn: 'root' },] }
+            { type: core.Injectable, args: [{ providedIn: 'root' },] }
         ];
-        /** @nocollapse */ AlainI18NServiceFake.ngInjectableDef = i0.defineInjectable({ factory: function AlainI18NServiceFake_Factory() { return new AlainI18NServiceFake(); }, token: AlainI18NServiceFake, providedIn: "root" });
+        /** @nocollapse */ AlainI18NServiceFake.ngInjectableDef = core.defineInjectable({ factory: function AlainI18NServiceFake_Factory() { return new AlainI18NServiceFake(); }, token: AlainI18NServiceFake, providedIn: "root" });
         return AlainI18NServiceFake;
     }());
 
@@ -229,14 +231,16 @@
             this.aclService = aclService;
             this._change$ = new rxjs.BehaviorSubject([]);
             this.data = [];
-            this.i18n$ = this.i18nSrv.change.subscribe(( /**
+            this.i18n$ = this.i18nSrv.change.subscribe((/**
              * @return {?}
-             */function () { return _this.resume(); }));
+             */
+            function () { return _this.resume(); }));
         }
         Object.defineProperty(MenuService.prototype, "change", {
             get: /**
              * @return {?}
-             */ function () {
+             */
+            function () {
                 return this._change$.pipe(operators.share());
             },
             enumerable: true,
@@ -252,43 +256,38 @@
          * @param {?} callback
          * @return {?}
          */
-            function (data, callback) {
-                /** @type {?} */
-                var inFn = ( /**
-                 * @param {?} list
-                 * @param {?} parentMenu
-                 * @param {?} depth
-                 * @return {?}
-                 */function (list, parentMenu, depth) {
-                    var e_1, _a;
+        function (data, callback) {
+            /** @type {?} */
+            var inFn = (/**
+             * @param {?} list
+             * @param {?} parentMenu
+             * @param {?} depth
+             * @return {?}
+             */
+            function (list, parentMenu, depth) {
+                var e_1, _a;
+                try {
+                    for (var list_1 = __values(list), list_1_1 = list_1.next(); !list_1_1.done; list_1_1 = list_1.next()) {
+                        var item = list_1_1.value;
+                        callback(item, parentMenu, depth);
+                        if (item.children && item.children.length > 0) {
+                            inFn(item.children, item, depth + 1);
+                        }
+                        else {
+                            item.children = [];
+                        }
+                    }
+                }
+                catch (e_1_1) { e_1 = { error: e_1_1 }; }
+                finally {
                     try {
-                        for (var list_1 = __values(list), list_1_1 = list_1.next(); !list_1_1.done; list_1_1 = list_1.next()) {
-                            var item = list_1_1.value;
-                            callback(item, parentMenu, depth);
-                            if (item.children && item.children.length > 0) {
-                                inFn(item.children, item, depth + 1);
-                            }
-                            else {
-                                item.children = [];
-                            }
-                        }
+                        if (list_1_1 && !list_1_1.done && (_a = list_1.return)) _a.call(list_1);
                     }
-                    catch (e_1_1) {
-                        e_1 = { error: e_1_1 };
-                    }
-                    finally {
-                        try {
-                            if (list_1_1 && !list_1_1.done && (_a = list_1.return))
-                                _a.call(list_1);
-                        }
-                        finally {
-                            if (e_1)
-                                throw e_1.error;
-                        }
-                    }
-                });
-                inFn(data, null, 0);
-            };
+                    finally { if (e_1) throw e_1.error; }
+                }
+            });
+            inFn(data, null, 0);
+        };
         /**
          * @param {?} items
          * @return {?}
@@ -297,10 +296,10 @@
          * @param {?} items
          * @return {?}
          */
-            function (items) {
-                this.data = items;
-                this.resume();
-            };
+        function (items) {
+            this.data = items;
+            this.resume();
+        };
         /**
          * 重置菜单，可能I18N、用户权限变动时需要调用刷新
          */
@@ -314,79 +313,80 @@
          * @param {?=} callback
          * @return {?}
          */
-            function (callback) {
-                var _this = this;
-                /** @type {?} */
-                var i = 1;
-                /** @type {?} */
-                var shortcuts = [];
-                this.visit(this.data, ( /**
-                 * @param {?} item
-                 * @param {?} parent
-                 * @param {?} depth
-                 * @return {?}
-                 */function (item, parent, depth) {
-                    item.__id = i++;
-                    item.__parent = parent;
-                    item._depth = depth;
-                    if (!item.link)
-                        item.link = '';
-                    if (!item.externalLink)
-                        item.externalLink = '';
-                    // badge
-                    if (item.badge) {
-                        if (item.badgeDot !== true) {
-                            item.badgeDot = false;
-                        }
-                        if (!item.badgeStatus) {
-                            item.badgeStatus = 'error';
-                        }
+        function (callback) {
+            var _this = this;
+            /** @type {?} */
+            var i = 1;
+            /** @type {?} */
+            var shortcuts = [];
+            this.visit(this.data, (/**
+             * @param {?} item
+             * @param {?} parent
+             * @param {?} depth
+             * @return {?}
+             */
+            function (item, parent, depth) {
+                item.__id = i++;
+                item.__parent = parent;
+                item._depth = depth;
+                if (!item.link)
+                    item.link = '';
+                if (!item.externalLink)
+                    item.externalLink = '';
+                // badge
+                if (item.badge) {
+                    if (item.badgeDot !== true) {
+                        item.badgeDot = false;
                     }
-                    item._type = item.externalLink ? 2 : 1;
-                    if (item.children && item.children.length > 0) {
-                        item._type = 3;
+                    if (!item.badgeStatus) {
+                        item.badgeStatus = 'error';
                     }
-                    // icon
-                    if (typeof item.icon === 'string') {
-                        /** @type {?} */
-                        var type = 'class';
-                        /** @type {?} */
-                        var value = item.icon;
-                        // compatible `anticon anticon-user`
-                        if (~item.icon.indexOf("anticon-")) {
-                            type = 'icon';
-                            value = value
-                                .split('-')
-                                .slice(1)
-                                .join('-');
-                        }
-                        else if (/^https?:\/\//.test(item.icon)) {
-                            type = 'img';
-                        }
-                        item.icon = ( /** @type {?} */({ type: type, value: value }));
+                }
+                item._type = item.externalLink ? 2 : 1;
+                if (item.children && item.children.length > 0) {
+                    item._type = 3;
+                }
+                // icon
+                if (typeof item.icon === 'string') {
+                    /** @type {?} */
+                    var type = 'class';
+                    /** @type {?} */
+                    var value = item.icon;
+                    // compatible `anticon anticon-user`
+                    if (~item.icon.indexOf("anticon-")) {
+                        type = 'icon';
+                        value = value
+                            .split('-')
+                            .slice(1)
+                            .join('-');
                     }
-                    if (item.icon != null) {
-                        item.icon = __assign({ theme: 'outline', spin: false }, (( /** @type {?} */(item.icon))));
+                    else if (/^https?:\/\//.test(item.icon)) {
+                        type = 'img';
                     }
-                    item.text = item.i18n && _this.i18nSrv ? _this.i18nSrv.fanyi(item.i18n) : item.text;
-                    // group
-                    item.group = item.group !== false;
-                    // hidden
-                    item._hidden = typeof item.hide === 'undefined' ? false : item.hide;
-                    // disabled
-                    item.disabled = typeof item.disabled === 'undefined' ? false : item.disabled;
-                    // acl
-                    item._aclResult = item.acl && _this.aclService ? _this.aclService.can(item.acl) : true;
-                    // shortcut
-                    if (parent && item.shortcut === true && parent.shortcutRoot !== true) {
-                        shortcuts.push(item);
-                    }
-                    if (callback)
-                        callback(item, parent, depth);
-                }));
-                this.loadShortcut(shortcuts);
-                this._change$.next(this.data);
-            };
+                    item.icon = (/** @type {?} */ ({ type: type, value: value }));
+                }
+                if (item.icon != null) {
+                    item.icon = __assign({ theme: 'outline', spin: false }, ((/** @type {?} */ (item.icon))));
+                }
+                item.text = item.i18n && _this.i18nSrv ? _this.i18nSrv.fanyi(item.i18n) : item.text;
+                // group
+                item.group = item.group !== false;
+                // hidden
+                item._hidden = typeof item.hide === 'undefined' ? false : item.hide;
+                // disabled
+                item.disabled = typeof item.disabled === 'undefined' ? false : item.disabled;
+                // acl
+                item._aclResult = item.acl && _this.aclService ? _this.aclService.can(item.acl) : true;
+                // shortcut
+                if (parent && item.shortcut === true && parent.shortcutRoot !== true) {
+                    shortcuts.push(item);
+                }
+                if (callback)
+                    callback(item, parent, depth);
+            }));
+            this.loadShortcut(shortcuts);
+            this._change$.next(this.data);
+        };
         /**
          * 加载快捷菜单，加载位置规则如下：
          * 1、统一在下标0的节点下（即【主导航】节点下方）
@@ -414,57 +414,61 @@
          * @param {?} shortcuts
          * @return {?}
          */
-            function (shortcuts) {
-                if (shortcuts.length === 0 || this.data.length === 0) {
-                    return;
-                }
-                /** @type {?} */
-                var ls = this.data[0].children;
-                /** @type {?} */
-                var pos = ls.findIndex(( /**
+        function (shortcuts) {
+            if (shortcuts.length === 0 || this.data.length === 0) {
+                return;
+            }
+            /** @type {?} */
+            var ls = this.data[0].children;
+            /** @type {?} */
+            var pos = ls.findIndex((/**
+             * @param {?} w
+             * @return {?}
+             */
+            function (w) { return w.shortcutRoot === true; }));
+            if (pos === -1) {
+                pos = ls.findIndex((/**
                  * @param {?} w
                  * @return {?}
-                 */function (w) { return w.shortcutRoot === true; }));
-                if (pos === -1) {
-                    pos = ls.findIndex(( /**
-                     * @param {?} w
-                     * @return {?}
-                     */function (w) { return w.link.includes('dashboard'); }));
-                    pos = (pos !== -1 ? pos : -1) + 1;
-                    /** @type {?} */
-                    var shortcutMenu = ( /** @type {?} */({
-                        text: '快捷菜单',
-                        i18n: 'shortcut',
-                        icon: 'icon-rocket',
-                        children: [],
-                    }));
-                    this.data[0].children.splice(pos, 0, shortcutMenu);
-                }
+                 */
+                function (w) { return w.link.includes('dashboard'); }));
+                pos = (pos !== -1 ? pos : -1) + 1;
                 /** @type {?} */
-                var _data = this.data[0].children[pos];
-                if (_data.i18n && this.i18nSrv)
-                    _data.text = this.i18nSrv.fanyi(_data.i18n);
-                // tslint:disable-next-line:prefer-object-spread
-                _data = Object.assign(_data, {
-                    shortcutRoot: true,
-                    __id: -1,
-                    __parent: null,
-                    _type: 3,
-                    _depth: 1,
-                });
-                _data.children = shortcuts.map(( /**
-                 * @param {?} i
-                 * @return {?}
-                 */function (i) {
-                    i._depth = 2;
-                    i.__parent = _data;
-                    return i;
+                var shortcutMenu = (/** @type {?} */ ({
+                    text: '快捷菜单',
+                    i18n: 'shortcut',
+                    icon: 'icon-rocket',
+                    children: [],
                 }));
-            };
+                this.data[0].children.splice(pos, 0, shortcutMenu);
+            }
+            /** @type {?} */
+            var _data = this.data[0].children[pos];
+            if (_data.i18n && this.i18nSrv)
+                _data.text = this.i18nSrv.fanyi(_data.i18n);
+            // tslint:disable-next-line:prefer-object-spread
+            _data = Object.assign(_data, {
+                shortcutRoot: true,
+                __id: -1,
+                __parent: null,
+                _type: 3,
+                _depth: 1,
+            });
+            _data.children = shortcuts.map((/**
+             * @param {?} i
+             * @return {?}
+             */
+            function (i) {
+                i._depth = 2;
+                i.__parent = _data;
+                return i;
+            }));
+        };
         Object.defineProperty(MenuService.prototype, "menus", {
             get: /**
              * @return {?}
-             */ function () {
+             */
+            function () {
                 return this.data;
             },
             enumerable: true,
@@ -481,10 +485,10 @@
          * 清空菜单
          * @return {?}
          */
-            function () {
-                this.data = [];
-                this._change$.next(this.data);
-            };
+        function () {
+            this.data = [];
+            this._change$.next(this.data);
+        };
         /**
          * @param {?} data
          * @param {?} url
@@ -499,36 +503,33 @@
          * @param {?=} cb
          * @return {?}
          */
-            function (data, url, recursive, cb) {
-                if (recursive === void 0) {
-                    recursive = false;
-                }
-                if (cb === void 0) {
-                    cb = null;
-                }
-                /** @type {?} */
-                var item = null;
-                while (!item && url) {
-                    this.visit(data, ( /**
-                     * @param {?} i
-                     * @return {?}
-                     */function (i) {
-                        if (cb) {
-                            cb(i);
-                        }
-                        if (i.link != null && i.link === url) {
-                            item = i;
-                        }
-                    }));
-                    if (!recursive)
-                        break;
-                    url = url
-                        .split('/')
-                        .slice(0, -1)
-                        .join('/');
-                }
-                return item;
-            };
+        function (data, url, recursive, cb) {
+            if (recursive === void 0) { recursive = false; }
+            if (cb === void 0) { cb = null; }
+            /** @type {?} */
+            var item = null;
+            while (!item && url) {
+                this.visit(data, (/**
+                 * @param {?} i
+                 * @return {?}
+                 */
+                function (i) {
+                    if (cb) {
+                        cb(i);
+                    }
+                    if (i.link != null && i.link === url) {
+                        item = i;
+                    }
+                }));
+                if (!recursive)
+                    break;
+                url = url
+                    .split('/')
+                    .slice(0, -1)
+                    .join('/');
+            }
+            return item;
+        };
         /**
          * 根据URL设置菜单 `_open` 属性
          * - 若 `recursive: true` 则会自动向上递归查找
@@ -550,28 +551,27 @@
          * @param {?=} recursive
          * @return {?}
          */
-            function (url, recursive) {
-                if (recursive === void 0) {
-                    recursive = false;
-                }
-                if (!url)
-                    return;
-                /** @type {?} */
-                var findItem = this.getHit(this.data, url, recursive, ( /**
-                 * @param {?} i
-                 * @return {?}
-                 */function (i) {
-                    i._selected = false;
-                    i._open = false;
-                }));
-                if (!findItem)
-                    return;
-                do {
-                    findItem._selected = true;
-                    findItem._open = true;
-                    findItem = findItem.__parent;
-                } while (findItem);
-            };
+        function (url, recursive) {
+            if (recursive === void 0) { recursive = false; }
+            if (!url)
+                return;
+            /** @type {?} */
+            var findItem = this.getHit(this.data, url, recursive, (/**
+             * @param {?} i
+             * @return {?}
+             */
+            function (i) {
+                i._selected = false;
+                i._open = false;
+            }));
+            if (!findItem)
+                return;
+            do {
+                findItem._selected = true;
+                findItem._open = true;
+                findItem = findItem.__parent;
+            } while (findItem);
+        };
         /**
          * 根据url获取菜单列表
          * - 若 `recursive: true` 则会自动向上递归查找
@@ -593,43 +593,39 @@
          * @param {?=} recursive
          * @return {?}
          */
-            function (url, recursive) {
-                if (recursive === void 0) {
-                    recursive = false;
-                }
-                /** @type {?} */
-                var ret = [];
-                /** @type {?} */
-                var item = this.getHit(this.data, url, recursive);
-                if (!item)
-                    return ret;
-                do {
-                    ret.splice(0, 0, item);
-                    item = item.__parent;
-                } while (item);
+        function (url, recursive) {
+            if (recursive === void 0) { recursive = false; }
+            /** @type {?} */
+            var ret = [];
+            /** @type {?} */
+            var item = this.getHit(this.data, url, recursive);
+            if (!item)
                 return ret;
-            };
+            do {
+                ret.splice(0, 0, item);
+                item = item.__parent;
+            } while (item);
+            return ret;
+        };
         /**
          * @return {?}
          */
         MenuService.prototype.ngOnDestroy = /**
          * @return {?}
          */
-            function () {
-                this._change$.unsubscribe();
-                this.i18n$.unsubscribe();
-            };
+        function () {
+            this._change$.unsubscribe();
+            this.i18n$.unsubscribe();
+        };
         MenuService.decorators = [
-            { type: i0.Injectable, args: [{ providedIn: 'root' },] }
+            { type: core.Injectable, args: [{ providedIn: 'root' },] }
         ];
         /** @nocollapse */
-        MenuService.ctorParameters = function () {
-            return [
-                { type: undefined, decorators: [{ type: i0.Optional }, { type: i0.Inject, args: [ALAIN_I18N_TOKEN,] }] },
-                { type: i2.ACLService, decorators: [{ type: i0.Optional }] }
-            ];
-        };
-        /** @nocollapse */ MenuService.ngInjectableDef = i0.defineInjectable({ factory: function MenuService_Factory() { return new MenuService(i0.inject(ALAIN_I18N_TOKEN, 8), i0.inject(i2.ACLService, 8)); }, token: MenuService, providedIn: "root" });
+        MenuService.ctorParameters = function () { return [
+            { type: undefined, decorators: [{ type: core.Optional }, { type: core.Inject, args: [ALAIN_I18N_TOKEN,] }] },
+            { type: acl.ACLService, decorators: [{ type: core.Optional }] }
+        ]; };
+        /** @nocollapse */ MenuService.ngInjectableDef = core.defineInjectable({ factory: function MenuService_Factory() { return new MenuService(core.inject(ALAIN_I18N_TOKEN, 8), core.inject(acl.ACLService, 8)); }, token: MenuService, providedIn: "root" });
         return MenuService;
     }());
 
@@ -656,14 +652,14 @@
          * @param {?=} element 指定元素，默认 `window`
          * @return {?}
          */
-            function (element) {
-                if (element && element !== this.win) {
-                    return [element.scrollLeft, element.scrollTop];
-                }
-                else {
-                    return [this.win.pageXOffset, this.win.pageYOffset];
-                }
-            };
+        function (element) {
+            if (element && element !== this.win) {
+                return [element.scrollLeft, element.scrollTop];
+            }
+            else {
+                return [this.win.pageXOffset, this.win.pageYOffset];
+            }
+        };
         /**
          * 设置滚动条位置
          * @param element 指定元素
@@ -680,9 +676,9 @@
          * @param {?} position
          * @return {?}
          */
-            function (element, position) {
-                (element || this.win).scrollTo(position[0], position[1]);
-            };
+        function (element, position) {
+            (element || this.win).scrollTo(position[0], position[1]);
+        };
         /**
          * 设置滚动条至指定元素
          * @param element 指定元素，默认 `document.body`
@@ -700,22 +696,20 @@
          * @param {?=} topOffset 偏移值，默认 `0`
          * @return {?}
          */
-            function (element, topOffset) {
-                if (topOffset === void 0) {
-                    topOffset = 0;
+        function (element, topOffset) {
+            if (topOffset === void 0) { topOffset = 0; }
+            if (!element)
+                element = this.doc.body;
+            element.scrollIntoView();
+            /** @type {?} */
+            var w = this.win;
+            if (w && w.scrollBy) {
+                w.scrollBy(0, element.getBoundingClientRect().top - topOffset);
+                if (w.pageYOffset < 20) {
+                    w.scrollBy(0, -w.pageYOffset);
                 }
-                if (!element)
-                    element = this.doc.body;
-                element.scrollIntoView();
-                /** @type {?} */
-                var w = this.win;
-                if (w && w.scrollBy) {
-                    w.scrollBy(0, element.getBoundingClientRect().top - topOffset);
-                    if (w.pageYOffset < 20) {
-                        w.scrollBy(0, -w.pageYOffset);
-                    }
-                }
-            };
+            }
+        };
         /**
          * 滚动至顶部
          * @param topOffset 偏移值，默认 `0`
@@ -730,25 +724,26 @@
          * @param {?=} topOffset 偏移值，默认 `0`
          * @return {?}
          */
-            function (topOffset) {
-                if (topOffset === void 0) {
-                    topOffset = 0;
-                }
-                this.scrollToElement(this.doc.body, topOffset);
-            };
+        function (topOffset) {
+            if (topOffset === void 0) { topOffset = 0; }
+            this.scrollToElement(this.doc.body, topOffset);
+        };
         ScrollService.decorators = [
-            { type: i0.Injectable, args: [{ providedIn: 'root' },] }
+            { type: core.Injectable, args: [{ providedIn: 'root' },] }
         ];
         /** @nocollapse */
-        ScrollService.ctorParameters = function () {
-            return [
-                { type: undefined, decorators: [{ type: i0.Inject, args: [WINDOW,] }] },
-                { type: undefined, decorators: [{ type: i0.Inject, args: [i2$1.DOCUMENT,] }] }
-            ];
-        };
-        /** @nocollapse */ ScrollService.ngInjectableDef = i0.defineInjectable({ factory: function ScrollService_Factory() { return new ScrollService(i0.inject(WINDOW), i0.inject(i2$1.DOCUMENT)); }, token: ScrollService, providedIn: "root" });
+        ScrollService.ctorParameters = function () { return [
+            { type: undefined, decorators: [{ type: core.Inject, args: [WINDOW,] }] },
+            { type: undefined, decorators: [{ type: core.Inject, args: [common.DOCUMENT,] }] }
+        ]; };
+        /** @nocollapse */ ScrollService.ngInjectableDef = core.defineInjectable({ factory: function ScrollService_Factory() { return new ScrollService(core.inject(WINDOW), core.inject(common.DOCUMENT)); }, token: ScrollService, providedIn: "root" });
         return ScrollService;
     }());
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
 
     /**
      * @fileoverview added by tsickle
@@ -777,9 +772,9 @@
          * @param {?} key
          * @return {?}
          */
-            function (key) {
-                return JSON.parse(localStorage.getItem(key) || 'null') || null;
-            };
+        function (key) {
+            return JSON.parse(localStorage.getItem(key) || 'null') || null;
+        };
         /**
          * @private
          * @param {?} key
@@ -792,13 +787,14 @@
          * @param {?} value
          * @return {?}
          */
-            function (key, value) {
-                localStorage.setItem(key, JSON.stringify(value));
-            };
+        function (key, value) {
+            localStorage.setItem(key, JSON.stringify(value));
+        };
         Object.defineProperty(SettingsService.prototype, "layout", {
             get: /**
              * @return {?}
-             */ function () {
+             */
+            function () {
                 if (!this._layout) {
                     this._layout = __assign({ fixed: true, collapsed: false, boxed: false, lang: null }, this.get(LAYOUT));
                     this.set(LAYOUT, this._layout);
@@ -811,7 +807,8 @@
         Object.defineProperty(SettingsService.prototype, "app", {
             get: /**
              * @return {?}
-             */ function () {
+             */
+            function () {
                 if (!this._app) {
                     this._app = __assign({ year: new Date().getFullYear() }, this.get(APP));
                     this.set(APP, this._app);
@@ -824,7 +821,8 @@
         Object.defineProperty(SettingsService.prototype, "user", {
             get: /**
              * @return {?}
-             */ function () {
+             */
+            function () {
                 if (!this._user) {
                     this._user = __assign({}, this.get(USER));
                     this.set(USER, this._user);
@@ -837,7 +835,8 @@
         Object.defineProperty(SettingsService.prototype, "notify", {
             get: /**
              * @return {?}
-             */ function () {
+             */
+            function () {
                 return this.notify$.asObservable();
             },
             enumerable: true,
@@ -853,17 +852,17 @@
          * @param {?=} value
          * @return {?}
          */
-            function (name, value) {
-                if (typeof name === 'string') {
-                    this.layout[name] = value;
-                }
-                else {
-                    this._layout = name;
-                }
-                this.set(LAYOUT, this._layout);
-                this.notify$.next(( /** @type {?} */({ type: 'layout', name: name, value: value })));
-                return true;
-            };
+        function (name, value) {
+            if (typeof name === 'string') {
+                this.layout[name] = value;
+            }
+            else {
+                this._layout = name;
+            }
+            this.set(LAYOUT, this._layout);
+            this.notify$.next((/** @type {?} */ ({ type: 'layout', name: name, value: value })));
+            return true;
+        };
         /**
          * @param {?} value
          * @return {?}
@@ -872,12 +871,12 @@
          * @param {?} value
          * @return {?}
          */
-            function (value) {
-                this._app = value;
-                this.set(APP, value);
-                this.notify$.next({ type: 'app', value: value });
-                return true;
-            };
+        function (value) {
+            this._app = value;
+            this.set(APP, value);
+            this.notify$.next({ type: 'app', value: value });
+            return true;
+        };
         /**
          * @param {?} value
          * @return {?}
@@ -886,18 +885,23 @@
          * @param {?} value
          * @return {?}
          */
-            function (value) {
-                this._user = value;
-                this.set(USER, value);
-                this.notify$.next({ type: 'user', value: value });
-                return true;
-            };
+        function (value) {
+            this._user = value;
+            this.set(USER, value);
+            this.notify$.next({ type: 'user', value: value });
+            return true;
+        };
         SettingsService.decorators = [
-            { type: i0.Injectable, args: [{ providedIn: 'root' },] }
+            { type: core.Injectable, args: [{ providedIn: 'root' },] }
         ];
-        /** @nocollapse */ SettingsService.ngInjectableDef = i0.defineInjectable({ factory: function SettingsService_Factory() { return new SettingsService(); }, token: SettingsService, providedIn: "root" });
+        /** @nocollapse */ SettingsService.ngInjectableDef = core.defineInjectable({ factory: function SettingsService_Factory() { return new SettingsService(); }, token: SettingsService, providedIn: "root" });
         return SettingsService;
     }());
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
 
     /**
      * @fileoverview added by tsickle
@@ -907,9 +911,9 @@
         function AlainThemeConfig() {
         }
         AlainThemeConfig.decorators = [
-            { type: i0.Injectable, args: [{ providedIn: 'root' },] }
+            { type: core.Injectable, args: [{ providedIn: 'root' },] }
         ];
-        /** @nocollapse */ AlainThemeConfig.ngInjectableDef = i0.defineInjectable({ factory: function AlainThemeConfig_Factory() { return new AlainThemeConfig(); }, token: AlainThemeConfig, providedIn: "root" });
+        /** @nocollapse */ AlainThemeConfig.ngInjectableDef = core.defineInjectable({ factory: function AlainThemeConfig_Factory() { return new AlainThemeConfig(); }, token: AlainThemeConfig, providedIn: "root" });
         return AlainThemeConfig;
     }());
 
@@ -928,16 +932,18 @@
                     4: { xs: 24, sm: 12, md: 8, lg: 6 },
                     5: { xs: 24, sm: 12, md: 8, lg: 6, xl: 4 },
                     6: { xs: 24, sm: 12, md: 8, lg: 6, xl: 4, xxl: 2 },
-                } }, ( /** @type {?} */(cog)).responsive);
+                } }, (/** @type {?} */ (cog)).responsive);
             if (Object.keys(this.cog.rules)
-                .map(( /**
-         * @param {?} i
-         * @return {?}
-         */function (i) { return +i; }))
-                .some(( /**
-         * @param {?} i
-         * @return {?}
-         */function (i) { return i < 1 || i > REP_MAX; }))) {
+                .map((/**
+             * @param {?} i
+             * @return {?}
+             */
+            function (i) { return +i; }))
+                .some((/**
+             * @param {?} i
+             * @return {?}
+             */
+            function (i) { return i < 1 || i > REP_MAX; }))) {
                 throw new Error("[theme] the responseive rule index value range must be 1-" + REP_MAX);
             }
         }
@@ -949,35 +955,33 @@
          * @param {?} count
          * @return {?}
          */
-            function (count) {
-                /** @type {?} */
-                var rule = this.cog.rules[count > REP_MAX ? REP_MAX : Math.max(count, 1)];
-                /** @type {?} */
-                var antColClass = 'ant-col';
-                /** @type {?} */
-                var clsMap = [antColClass + "-xs-" + rule.xs];
-                if (rule.sm)
-                    clsMap.push(antColClass + "-sm-" + rule.sm);
-                if (rule.md)
-                    clsMap.push(antColClass + "-md-" + rule.md);
-                if (rule.lg)
-                    clsMap.push(antColClass + "-lg-" + rule.lg);
-                if (rule.xl)
-                    clsMap.push(antColClass + "-xl-" + rule.xl);
-                if (rule.xxl)
-                    clsMap.push(antColClass + "-xxl-" + rule.xxl);
-                return clsMap;
-            };
+        function (count) {
+            /** @type {?} */
+            var rule = this.cog.rules[count > REP_MAX ? REP_MAX : Math.max(count, 1)];
+            /** @type {?} */
+            var antColClass = 'ant-col';
+            /** @type {?} */
+            var clsMap = [antColClass + "-xs-" + rule.xs];
+            if (rule.sm)
+                clsMap.push(antColClass + "-sm-" + rule.sm);
+            if (rule.md)
+                clsMap.push(antColClass + "-md-" + rule.md);
+            if (rule.lg)
+                clsMap.push(antColClass + "-lg-" + rule.lg);
+            if (rule.xl)
+                clsMap.push(antColClass + "-xl-" + rule.xl);
+            if (rule.xxl)
+                clsMap.push(antColClass + "-xxl-" + rule.xxl);
+            return clsMap;
+        };
         ResponsiveService.decorators = [
-            { type: i0.Injectable, args: [{ providedIn: 'root' },] }
+            { type: core.Injectable, args: [{ providedIn: 'root' },] }
         ];
         /** @nocollapse */
-        ResponsiveService.ctorParameters = function () {
-            return [
-                { type: AlainThemeConfig }
-            ];
-        };
-        /** @nocollapse */ ResponsiveService.ngInjectableDef = i0.defineInjectable({ factory: function ResponsiveService_Factory() { return new ResponsiveService(i0.inject(AlainThemeConfig)); }, token: ResponsiveService, providedIn: "root" });
+        ResponsiveService.ctorParameters = function () { return [
+            { type: AlainThemeConfig }
+        ]; };
+        /** @nocollapse */ ResponsiveService.ngInjectableDef = core.defineInjectable({ factory: function ResponsiveService_Factory() { return new ResponsiveService(core.inject(AlainThemeConfig)); }, token: ResponsiveService, providedIn: "root" });
         return ResponsiveService;
     }());
 
@@ -1002,12 +1006,14 @@
              */
             this.default = "Not Page Name";
             this.i18n$ = this.i18nSrv.change
-                .pipe(operators.filter(( /**
-         * @return {?}
-         */function () { return !!_this.i18n$; })))
-                .subscribe(( /**
-         * @return {?}
-         */function () { return _this.setTitle(); }));
+                .pipe(operators.filter((/**
+             * @return {?}
+             */
+            function () { return !!_this.i18n$; })))
+                .subscribe((/**
+             * @return {?}
+             */
+            function () { return _this.setTitle(); }));
         }
         Object.defineProperty(TitleService.prototype, "separator", {
             /** 设置分隔符 */
@@ -1015,7 +1021,8 @@
              * 设置分隔符
              * @param {?} value
              * @return {?}
-             */ function (value) {
+             */
+            function (value) {
                 this._separator = value;
             },
             enumerable: true,
@@ -1027,7 +1034,8 @@
              * 设置前缀
              * @param {?} value
              * @return {?}
-             */ function (value) {
+             */
+            function (value) {
                 this._prefix = value;
             },
             enumerable: true,
@@ -1039,7 +1047,8 @@
              * 设置后缀
              * @param {?} value
              * @return {?}
-             */ function (value) {
+             */
+            function (value) {
                 this._suffix = value;
             },
             enumerable: true,
@@ -1051,7 +1060,8 @@
              * 设置是否反转
              * @param {?} value
              * @return {?}
-             */ function (value) {
+             */
+            function (value) {
                 this._reverse = value;
             },
             enumerable: true,
@@ -1065,15 +1075,15 @@
          * @private
          * @return {?}
          */
-            function () {
-                /** @type {?} */
-                var el = this.doc.querySelector('.alain-default__content-title h1') ||
-                    this.doc.querySelector('.page-header__title');
-                if (el) {
-                    return el.firstChild.textContent.trim();
-                }
-                return '';
-            };
+        function () {
+            /** @type {?} */
+            var el = this.doc.querySelector('.alain-default__content-title h1') ||
+                this.doc.querySelector('.page-header__title');
+            if (el) {
+                return el.firstChild.textContent.trim();
+            }
+            return '';
+        };
         /**
          * @private
          * @return {?}
@@ -1082,17 +1092,17 @@
          * @private
          * @return {?}
          */
-            function () {
-                /** @type {?} */
-                var next = this.injector.get(router.ActivatedRoute);
-                while (next.firstChild)
-                    next = next.firstChild;
-                /** @type {?} */
-                var data = (next.snapshot && next.snapshot.data) || {};
-                if (data.titleI18n && this.i18nSrv)
-                    data.title = this.i18nSrv.fanyi(data.titleI18n);
-                return data.title;
-            };
+        function () {
+            /** @type {?} */
+            var next = this.injector.get(router.ActivatedRoute);
+            while (next.firstChild)
+                next = next.firstChild;
+            /** @type {?} */
+            var data = (next.snapshot && next.snapshot.data) || {};
+            if (data.titleI18n && this.i18nSrv)
+                data.title = this.i18nSrv.fanyi(data.titleI18n);
+            return data.title;
+        };
         /**
          * @private
          * @return {?}
@@ -1101,19 +1111,19 @@
          * @private
          * @return {?}
          */
-            function () {
-                /** @type {?} */
-                var menus = this.menuSrv.getPathByUrl(this.injector.get(router.Router).url);
-                if (!menus || menus.length <= 0)
-                    return '';
-                /** @type {?} */
-                var item = menus[menus.length - 1];
-                /** @type {?} */
-                var title;
-                if (item.i18n && this.i18nSrv)
-                    title = this.i18nSrv.fanyi(item.i18n);
-                return title || item.text;
-            };
+        function () {
+            /** @type {?} */
+            var menus = this.menuSrv.getPathByUrl(this.injector.get(router.Router).url);
+            if (!menus || menus.length <= 0)
+                return '';
+            /** @type {?} */
+            var item = menus[menus.length - 1];
+            /** @type {?} */
+            var title;
+            if (item.i18n && this.i18nSrv)
+                title = this.i18nSrv.fanyi(item.i18n);
+            return title || item.text;
+        };
         /**
          * 设置标题
          */
@@ -1127,27 +1137,27 @@
          * @param {?=} title
          * @return {?}
          */
-            function (title) {
-                if (!title) {
-                    title = this.getByRoute() || this.getByMenu() || this.getByElement() || this.default;
-                }
-                if (title && !Array.isArray(title)) {
-                    title = [title];
-                }
-                /** @type {?} */
-                var newTitles = [];
-                if (this._prefix) {
-                    newTitles.push(this._prefix);
-                }
-                newTitles.push.apply(newTitles, __spread((( /** @type {?} */(title)))));
-                if (this._suffix) {
-                    newTitles.push(this._suffix);
-                }
-                if (this._reverse) {
-                    newTitles = newTitles.reverse();
-                }
-                this.title.setTitle(newTitles.join(this._separator));
-            };
+        function (title) {
+            if (!title) {
+                title = this.getByRoute() || this.getByMenu() || this.getByElement() || this.default;
+            }
+            if (title && !Array.isArray(title)) {
+                title = [title];
+            }
+            /** @type {?} */
+            var newTitles = [];
+            if (this._prefix) {
+                newTitles.push(this._prefix);
+            }
+            newTitles.push.apply(newTitles, __spread(((/** @type {?} */ (title)))));
+            if (this._suffix) {
+                newTitles.push(this._suffix);
+            }
+            if (this._reverse) {
+                newTitles = newTitles.reverse();
+            }
+            this.title.setTitle(newTitles.join(this._separator));
+        };
         /**
          * 设置国际化标题
          */
@@ -1163,32 +1173,30 @@
          * @param {?=} params
          * @return {?}
          */
-            function (key, params) {
-                this.setTitle(this.i18nSrv.fanyi(key, params));
-            };
+        function (key, params) {
+            this.setTitle(this.i18nSrv.fanyi(key, params));
+        };
         /**
          * @return {?}
          */
         TitleService.prototype.ngOnDestroy = /**
          * @return {?}
          */
-            function () {
-                this.i18n$.unsubscribe();
-            };
+        function () {
+            this.i18n$.unsubscribe();
+        };
         TitleService.decorators = [
-            { type: i0.Injectable, args: [{ providedIn: 'root' },] }
+            { type: core.Injectable, args: [{ providedIn: 'root' },] }
         ];
         /** @nocollapse */
-        TitleService.ctorParameters = function () {
-            return [
-                { type: i0.Injector },
-                { type: i1$1.Title },
-                { type: MenuService },
-                { type: undefined, decorators: [{ type: i0.Optional }, { type: i0.Inject, args: [ALAIN_I18N_TOKEN,] }] },
-                { type: undefined, decorators: [{ type: i0.Inject, args: [i2$1.DOCUMENT,] }] }
-            ];
-        };
-        /** @nocollapse */ TitleService.ngInjectableDef = i0.defineInjectable({ factory: function TitleService_Factory() { return new TitleService(i0.inject(i0.INJECTOR), i0.inject(i1$1.Title), i0.inject(MenuService), i0.inject(ALAIN_I18N_TOKEN, 8), i0.inject(i2$1.DOCUMENT)); }, token: TitleService, providedIn: "root" });
+        TitleService.ctorParameters = function () { return [
+            { type: core.Injector },
+            { type: platformBrowser.Title },
+            { type: MenuService },
+            { type: undefined, decorators: [{ type: core.Optional }, { type: core.Inject, args: [ALAIN_I18N_TOKEN,] }] },
+            { type: undefined, decorators: [{ type: core.Inject, args: [common.DOCUMENT,] }] }
+        ]; };
+        /** @nocollapse */ TitleService.ngInjectableDef = core.defineInjectable({ factory: function TitleService_Factory() { return new TitleService(core.inject(core.INJECTOR), core.inject(platformBrowser.Title), core.inject(MenuService), core.inject(ALAIN_I18N_TOKEN, 8), core.inject(common.DOCUMENT)); }, token: TitleService, providedIn: "root" });
         return TitleService;
     }());
 
@@ -1197,13 +1205,18 @@
      * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
-    var DELON_LOCALE = new i0.InjectionToken('delon-locale');
+    var DELON_LOCALE = new core.InjectionToken('delon-locale');
 
     /**
      * @fileoverview added by tsickle
      * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var zhCN = ( /** @type {?} */({
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var zhCN = (/** @type {?} */ ({
         abbr: 'zh-CN',
         exception: {
             403: '抱歉，你无权访问该页面',
@@ -1254,7 +1267,8 @@
         Object.defineProperty(DelonLocaleService.prototype, "change", {
             get: /**
              * @return {?}
-             */ function () {
+             */
+            function () {
                 return this.change$.asObservable();
             },
             enumerable: true,
@@ -1268,17 +1282,18 @@
          * @param {?} locale
          * @return {?}
          */
-            function (locale) {
-                if (this._locale && this._locale.abbr === locale.abbr) {
-                    return;
-                }
-                this._locale = locale;
-                this.change$.next(locale);
-            };
+        function (locale) {
+            if (this._locale && this._locale.abbr === locale.abbr) {
+                return;
+            }
+            this._locale = locale;
+            this.change$.next(locale);
+        };
         Object.defineProperty(DelonLocaleService.prototype, "locale", {
             get: /**
              * @return {?}
-             */ function () {
+             */
+            function () {
                 return this._locale;
             },
             enumerable: true,
@@ -1292,18 +1307,16 @@
          * @param {?} path
          * @return {?}
          */
-            function (path) {
-                return this._locale[path] || {};
-            };
+        function (path) {
+            return this._locale[path] || {};
+        };
         DelonLocaleService.decorators = [
-            { type: i0.Injectable }
+            { type: core.Injectable }
         ];
         /** @nocollapse */
-        DelonLocaleService.ctorParameters = function () {
-            return [
-                { type: undefined, decorators: [{ type: i0.Inject, args: [DELON_LOCALE,] }] }
-            ];
-        };
+        DelonLocaleService.ctorParameters = function () { return [
+            { type: undefined, decorators: [{ type: core.Inject, args: [DELON_LOCALE,] }] }
+        ]; };
         return DelonLocaleService;
     }());
     /**
@@ -1318,7 +1331,7 @@
     var DELON_LOCALE_SERVICE_PROVIDER = {
         provide: DelonLocaleService,
         useFactory: DELON_LOCALE_SERVICE_PROVIDER_FACTORY,
-        deps: [[new i0.Optional(), new i0.SkipSelf(), DelonLocaleService], DELON_LOCALE],
+        deps: [[new core.Optional(), new core.SkipSelf(), DelonLocaleService], DELON_LOCALE],
     };
 
     /**
@@ -1330,7 +1343,7 @@
         function DelonLocaleModule() {
         }
         DelonLocaleModule.decorators = [
-            { type: i0.NgModule, args: [{
+            { type: core.NgModule, args: [{
                         providers: [
                             { provide: DELON_LOCALE, useValue: ɵ0 },
                             DELON_LOCALE_SERVICE_PROVIDER,
@@ -1344,7 +1357,7 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var enUS = ( /** @type {?} */({
+    var enUS = (/** @type {?} */ ({
         abbr: 'en-US',
         exception: {
             403: "Sorry, you don't have access to this page",
@@ -1387,7 +1400,7 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var zhTW = ( /** @type {?} */({
+    var zhTW = (/** @type {?} */ ({
         abbr: 'zh-TW',
         exception: {
             403: '抱歉，妳無權訪問該頁面',
@@ -1430,7 +1443,7 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var trTR = ( /** @type {?} */({
+    var trTR = (/** @type {?} */ ({
         abbr: 'tr-TR',
         exception: {
             403: "\u00DCzg\u00FCn\u00FCz, bu sayfaya eri\u015Fiminiz yok",
@@ -1473,7 +1486,7 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var plPL = ( /** @type {?} */({
+    var plPL = (/** @type {?} */ ({
         abbr: 'en-US',
         exception: {
             403: "Niestety, nie masz uprawnie\u0144 do tej strony",
@@ -1516,7 +1529,7 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var elGR = ( /** @type {?} */({
+    var elGR = (/** @type {?} */ ({
         abbr: 'el-GR',
         exception: {
             403: "\u039B\u03C5\u03C0\u03BF\u03CD\u03BC\u03B1\u03C3\u03C4\u03B5, \u03B4\u03B5\u03BD \u03AD\u03C7\u03B5\u03C4\u03B5 \u03C0\u03C1\u03CC\u03C3\u03B2\u03B1\u03C3\u03B7 \u03C3\u03B5 \u03B1\u03C5\u03C4\u03AE\u03BD \u03C4\u03B7 \u03C3\u03B5\u03BB\u03AF\u03B4\u03B1",
@@ -1559,7 +1572,7 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var koKR = ( /** @type {?} */({
+    var koKR = (/** @type {?} */ ({
         abbr: 'ko-KR',
         exception: {
             403: "\uC8C4\uC1A1\uD569\uB2C8\uB2E4.\uC774 \uD398\uC774\uC9C0\uC5D0 \uC561\uC138\uC2A4 \uD560 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4.",
@@ -1676,57 +1689,59 @@
          * ```
          * @return {?}
          */
-            function (comp, params, options) {
-                var _this = this;
-                options = __assign({ size: 'lg', exact: true, includeTabs: false }, options);
-                return new rxjs.Observable(( /**
-                 * @param {?} observer
+        function (comp, params, options) {
+            var _this = this;
+            options = __assign({ size: 'lg', exact: true, includeTabs: false }, options);
+            return new rxjs.Observable((/**
+             * @param {?} observer
+             * @return {?}
+             */
+            function (observer) {
+                /** @type {?} */
+                var cls = '';
+                /** @type {?} */
+                var width = '';
+                if (options.size) {
+                    if (typeof options.size === 'number') {
+                        width = options.size + "px";
+                    }
+                    else {
+                        cls = "modal-" + options.size;
+                    }
+                }
+                if (options.includeTabs) {
+                    cls += ' modal-include-tabs';
+                }
+                /** @type {?} */
+                var defaultOptions = {
+                    nzWrapClassName: cls,
+                    nzContent: comp,
+                    nzWidth: width ? width : undefined,
+                    nzFooter: null,
+                    nzComponentParams: params,
+                    nzZIndex: ++_this.zIndex,
+                };
+                /** @type {?} */
+                var subject = _this.srv.create(__assign({}, defaultOptions, options.modalOptions));
+                /** @type {?} */
+                var afterClose$ = subject.afterClose.subscribe((/**
+                 * @param {?} res
                  * @return {?}
-                 */function (observer) {
-                    /** @type {?} */
-                    var cls = '';
-                    /** @type {?} */
-                    var width = '';
-                    if (options.size) {
-                        if (typeof options.size === 'number') {
-                            width = options.size + "px";
-                        }
-                        else {
-                            cls = "modal-" + options.size;
-                        }
-                    }
-                    if (options.includeTabs) {
-                        cls += ' modal-include-tabs';
-                    }
-                    /** @type {?} */
-                    var defaultOptions = {
-                        nzWrapClassName: cls,
-                        nzContent: comp,
-                        nzWidth: width ? width : undefined,
-                        nzFooter: null,
-                        nzComponentParams: params,
-                        nzZIndex: ++_this.zIndex,
-                    };
-                    /** @type {?} */
-                    var subject = _this.srv.create(__assign({}, defaultOptions, options.modalOptions));
-                    /** @type {?} */
-                    var afterClose$ = subject.afterClose.subscribe(( /**
-                     * @param {?} res
-                     * @return {?}
-                     */function (res) {
-                        if (options.exact === true) {
-                            if (res != null) {
-                                observer.next(res);
-                            }
-                        }
-                        else {
+                 */
+                function (res) {
+                    if (options.exact === true) {
+                        if (res != null) {
                             observer.next(res);
                         }
-                        observer.complete();
-                        afterClose$.unsubscribe();
-                    }));
+                    }
+                    else {
+                        observer.next(res);
+                    }
+                    observer.complete();
+                    afterClose$.unsubscribe();
                 }));
-            };
+            }));
+        };
         /**
          * 构建静态框，点击蒙层不允许关闭
          *
@@ -1783,11 +1798,11 @@
          * ```
          * @return {?}
          */
-            function (comp, params, options) {
-                /** @type {?} */
-                var modalOptions = __assign({ nzMaskClosable: false }, (options && options.modalOptions));
-                return this.create(comp, params, __assign({}, options, { modalOptions: modalOptions }));
-            };
+        function (comp, params, options) {
+            /** @type {?} */
+            var modalOptions = __assign({ nzMaskClosable: false }, (options && options.modalOptions));
+            return this.create(comp, params, __assign({}, options, { modalOptions: modalOptions }));
+        };
         /**
          * 打开对话框
          * @param comp 组件
@@ -1844,16 +1859,14 @@
          * ```
          * @return {?}
          */
-            function (comp, params, size, options) {
-                if (size === void 0) {
-                    size = 'lg';
-                }
-                return this.create(comp, params, {
-                    size: size,
-                    modalOptions: options,
-                    exact: false,
-                });
-            };
+        function (comp, params, size, options) {
+            if (size === void 0) { size = 'lg'; }
+            return this.create(comp, params, {
+                size: size,
+                modalOptions: options,
+                exact: false,
+            });
+        };
         /**
          * 静态框，点击蒙层不允许关闭
          * @param comp 组件
@@ -1910,22 +1923,18 @@
          * ```
          * @return {?}
          */
-            function (comp, params, size, options) {
-                if (size === void 0) {
-                    size = 'lg';
-                }
-                return this.open(comp, params, size, __assign({ nzMaskClosable: false }, options));
-            };
+        function (comp, params, size, options) {
+            if (size === void 0) { size = 'lg'; }
+            return this.open(comp, params, size, __assign({ nzMaskClosable: false }, options));
+        };
         ModalHelper.decorators = [
-            { type: i0.Injectable, args: [{ providedIn: 'root' },] }
+            { type: core.Injectable, args: [{ providedIn: 'root' },] }
         ];
         /** @nocollapse */
-        ModalHelper.ctorParameters = function () {
-            return [
-                { type: i1$2.NzModalService }
-            ];
-        };
-        /** @nocollapse */ ModalHelper.ngInjectableDef = i0.defineInjectable({ factory: function ModalHelper_Factory() { return new ModalHelper(i0.inject(i1$2.NzModalService)); }, token: ModalHelper, providedIn: "root" });
+        ModalHelper.ctorParameters = function () { return [
+            { type: ngZorroAntd.NzModalService }
+        ]; };
+        /** @nocollapse */ ModalHelper.ngInjectableDef = core.defineInjectable({ factory: function ModalHelper_Factory() { return new ModalHelper(core.inject(ngZorroAntd.NzModalService)); }, token: ModalHelper, providedIn: "root" });
         return ModalHelper;
     }());
 
@@ -1975,66 +1984,68 @@
          * @param {?=} options
          * @return {?}
          */
-            function (title, comp, params, options) {
-                var _this = this;
-                options = __assign({ size: 'md', footer: true, footerHeight: 55, drawerOptions: {
-                        nzPlacement: 'right',
-                        nzWrapClassName: '',
-                    } }, options);
-                return new rxjs.Observable(( /**
-                 * @param {?} observer
-                 * @return {?}
-                 */function (observer) {
-                    var size = options.size, footer = options.footer, footerHeight = options.footerHeight, drawerOptions = options.drawerOptions;
+        function (title, comp, params, options) {
+            var _this = this;
+            options = __assign({ size: 'md', footer: true, footerHeight: 55, drawerOptions: {
+                    nzPlacement: 'right',
+                    nzWrapClassName: '',
+                } }, options);
+            return new rxjs.Observable((/**
+             * @param {?} observer
+             * @return {?}
+             */
+            function (observer) {
+                var size = options.size, footer = options.footer, footerHeight = options.footerHeight, drawerOptions = options.drawerOptions;
+                /** @type {?} */
+                var defaultOptions = {
+                    nzContent: comp,
+                    nzContentParams: params,
+                    nzZIndex: ++_this.zIndex,
+                    nzTitle: title,
+                };
+                if (typeof size === 'number') {
+                    defaultOptions[drawerOptions.nzPlacement === 'top' || drawerOptions.nzPlacement === 'bottom'
+                        ? 'nzHeight'
+                        : 'nzWidth'] = options.size;
+                }
+                else {
+                    defaultOptions.nzWrapClassName = (drawerOptions.nzWrapClassName + (" drawer-" + options.size)).trim();
+                    delete drawerOptions.nzWrapClassName;
+                }
+                if (footer) {
+                    var nzPlacement = drawerOptions.nzPlacement, nzHeight = drawerOptions.nzHeight;
+                    // Should be header * footer, because of includes header
                     /** @type {?} */
-                    var defaultOptions = {
-                        nzContent: comp,
-                        nzContentParams: params,
-                        nzZIndex: ++_this.zIndex,
-                        nzTitle: title,
-                    };
-                    if (typeof size === 'number') {
-                        defaultOptions[drawerOptions.nzPlacement === 'top' || drawerOptions.nzPlacement === 'bottom'
-                            ? 'nzHeight'
-                            : 'nzWidth'] = options.size;
+                    var reduceHeight = (footerHeight * 2) - 2;
+                    if (nzPlacement === 'left' || nzPlacement === 'right') {
+                        defaultOptions.nzBodyStyle = {
+                            height: "calc(100% - " + reduceHeight + "px)",
+                            overflow: 'auto',
+                        };
                     }
                     else {
-                        defaultOptions.nzWrapClassName = (drawerOptions.nzWrapClassName + (" drawer-" + options.size)).trim();
-                        delete drawerOptions.nzWrapClassName;
+                        defaultOptions.nzBodyStyle = {
+                            height: +(nzHeight || 256) - reduceHeight + "px",
+                            overflow: 'auto',
+                        };
                     }
-                    if (footer) {
-                        var nzPlacement = drawerOptions.nzPlacement, nzHeight = drawerOptions.nzHeight;
-                        // Should be header * footer, because of includes header
-                        /** @type {?} */
-                        var reduceHeight = (footerHeight * 2) - 2;
-                        if (nzPlacement === 'left' || nzPlacement === 'right') {
-                            defaultOptions.nzBodyStyle = {
-                                height: "calc(100% - " + reduceHeight + "px)",
-                                overflow: 'auto',
-                            };
-                        }
-                        else {
-                            defaultOptions.nzBodyStyle = {
-                                height: +(nzHeight || 256) - reduceHeight + "px",
-                                overflow: 'auto',
-                            };
-                        }
+                }
+                /** @type {?} */
+                var subject = _this.srv.create(__assign({}, defaultOptions, drawerOptions));
+                /** @type {?} */
+                var afterClose$ = subject.afterClose.subscribe((/**
+                 * @param {?} res
+                 * @return {?}
+                 */
+                function (res) {
+                    if (res != null && res !== false) {
+                        observer.next(res);
                     }
-                    /** @type {?} */
-                    var subject = _this.srv.create(__assign({}, defaultOptions, drawerOptions));
-                    /** @type {?} */
-                    var afterClose$ = subject.afterClose.subscribe(( /**
-                     * @param {?} res
-                     * @return {?}
-                     */function (res) {
-                        if (res != null && res !== false) {
-                            observer.next(res);
-                        }
-                        observer.complete();
-                        afterClose$.unsubscribe();
-                    }));
+                    observer.complete();
+                    afterClose$.unsubscribe();
                 }));
-            };
+            }));
+        };
         /**
          * 构建一个抽屉，点击蒙层不允许关闭
          */
@@ -2054,21 +2065,19 @@
          * @param {?=} options
          * @return {?}
          */
-            function (title, comp, params, options) {
-                /** @type {?} */
-                var drawerOptions = __assign({ nzMaskClosable: false }, (options && options.drawerOptions));
-                return this.create(title, comp, params, __assign({}, options, { drawerOptions: drawerOptions }));
-            };
+        function (title, comp, params, options) {
+            /** @type {?} */
+            var drawerOptions = __assign({ nzMaskClosable: false }, (options && options.drawerOptions));
+            return this.create(title, comp, params, __assign({}, options, { drawerOptions: drawerOptions }));
+        };
         DrawerHelper.decorators = [
-            { type: i0.Injectable, args: [{ providedIn: 'root' },] }
+            { type: core.Injectable, args: [{ providedIn: 'root' },] }
         ];
         /** @nocollapse */
-        DrawerHelper.ctorParameters = function () {
-            return [
-                { type: i1$2.NzDrawerService }
-            ];
-        };
-        /** @nocollapse */ DrawerHelper.ngInjectableDef = i0.defineInjectable({ factory: function DrawerHelper_Factory() { return new DrawerHelper(i0.inject(i1$2.NzDrawerService)); }, token: DrawerHelper, providedIn: "root" });
+        DrawerHelper.ctorParameters = function () { return [
+            { type: ngZorroAntd.NzDrawerService }
+        ]; };
+        /** @nocollapse */ DrawerHelper.ngInjectableDef = core.defineInjectable({ factory: function DrawerHelper_Factory() { return new DrawerHelper(core.inject(ngZorroAntd.NzDrawerService)); }, token: DrawerHelper, providedIn: "root" });
         return DrawerHelper;
     }());
 
@@ -2086,14 +2095,15 @@
         function _HttpClient(http, cog) {
             this.http = http;
             this._loading = false;
-            this.cog = __assign({ nullValueHandling: 'include', dateValueHandling: 'timestamp' }, ( /** @type {?} */(cog)).http);
+            this.cog = __assign({ nullValueHandling: 'include', dateValueHandling: 'timestamp' }, (/** @type {?} */ (cog)).http);
         }
         Object.defineProperty(_HttpClient.prototype, "loading", {
             /** 是否正在加载中 */
             get: /**
              * 是否正在加载中
              * @return {?}
-             */ function () {
+             */
+            function () {
                 return this._loading;
             },
             enumerable: true,
@@ -2107,27 +2117,28 @@
          * @param {?} params
          * @return {?}
          */
-            function (params) {
-                var _this = this;
+        function (params) {
+            var _this = this;
+            /** @type {?} */
+            var newParams = {};
+            Object.keys(params).forEach((/**
+             * @param {?} key
+             * @return {?}
+             */
+            function (key) {
                 /** @type {?} */
-                var newParams = {};
-                Object.keys(params).forEach(( /**
-                 * @param {?} key
-                 * @return {?}
-                 */function (key) {
-                    /** @type {?} */
-                    var _data = params[key];
-                    // 忽略空值
-                    if (_this.cog.nullValueHandling === 'ignore' && _data == null)
-                        return;
-                    // 将时间转化为：时间戳 (秒)
-                    if (_this.cog.dateValueHandling === 'timestamp' && _data instanceof Date) {
-                        _data = _data.valueOf();
-                    }
-                    newParams[key] = _data;
-                }));
-                return new i1.HttpParams({ fromObject: newParams });
-            };
+                var _data = params[key];
+                // 忽略空值
+                if (_this.cog.nullValueHandling === 'ignore' && _data == null)
+                    return;
+                // 将时间转化为：时间戳 (秒)
+                if (_this.cog.dateValueHandling === 'timestamp' && _data instanceof Date) {
+                    _data = _data.valueOf();
+                }
+                newParams[key] = _data;
+            }));
+            return new http.HttpParams({ fromObject: newParams });
+        };
         /**
          * @param {?} url
          * @param {?=} params
@@ -2138,43 +2149,45 @@
          * @param {?=} params
          * @return {?}
          */
-            function (url, params) {
-                if (!params)
-                    return url;
-                url += ~url.indexOf('?') ? '' : '?';
-                /** @type {?} */
-                var arr = [];
-                for (var key in params) {
-                    arr.push(key + "=" + params[key]);
-                }
-                return url + arr.join('&');
-            };
+        function (url, params) {
+            if (!params)
+                return url;
+            url += ~url.indexOf('?') ? '' : '?';
+            /** @type {?} */
+            var arr = [];
+            for (var key in params) {
+                arr.push(key + "=" + params[key]);
+            }
+            return url + arr.join('&');
+        };
         /**
          * @return {?}
          */
         _HttpClient.prototype.begin = /**
          * @return {?}
          */
-            function () {
-                var _this = this;
-                // console.time('http');
-                setTimeout(( /**
-                 * @return {?}
-                 */function () { return (_this._loading = true); }));
-            };
+        function () {
+            var _this = this;
+            // console.time('http');
+            setTimeout((/**
+             * @return {?}
+             */
+            function () { return (_this._loading = true); }));
+        };
         /**
          * @return {?}
          */
         _HttpClient.prototype.end = /**
          * @return {?}
          */
-            function () {
-                var _this = this;
-                // console.timeEnd('http');
-                setTimeout(( /**
-                 * @return {?}
-                 */function () { return (_this._loading = false); }));
-            };
+        function () {
+            var _this = this;
+            // console.timeEnd('http');
+            setTimeout((/**
+             * @return {?}
+             */
+            function () { return (_this._loading = false); }));
+        };
         /**
          * GET 请求
          */
@@ -2192,9 +2205,9 @@
          * @param {?} options
          * @return {?}
          */
-            function (url, params, options) {
-                return this.request('GET', url, __assign({ params: params }, options));
-            };
+        function (url, params, options) {
+            return this.request('GET', url, __assign({ params: params }, options));
+        };
         /**
          * POST 请求
          */
@@ -2214,10 +2227,10 @@
          * @param {?} options
          * @return {?}
          */
-            function (url, body, params, options) {
-                return this.request('POST', url, __assign({ body: body,
-                    params: params }, options));
-            };
+        function (url, body, params, options) {
+            return this.request('POST', url, __assign({ body: body,
+                params: params }, options));
+        };
         /**
          * DELETE 请求
          */
@@ -2235,9 +2248,9 @@
          * @param {?} options
          * @return {?}
          */
-            function (url, params, options) {
-                return this.request('DELETE', url, __assign({ params: params }, options));
-            };
+        function (url, params, options) {
+            return this.request('DELETE', url, __assign({ params: params }, options));
+        };
         // #endregion
         /**
          * `jsonp` 请求
@@ -2255,33 +2268,33 @@
          * @param {?=} callbackParam CALLBACK值，默认：JSONP_CALLBACK
          * @return {?}
          */
-        _HttpClient.prototype.jsonp =
-            // #endregion
-            /**
-             * `jsonp` 请求
-             *
-             * @param {?} url URL地址
-             * @param {?=} params 请求参数
-             * @param {?=} callbackParam CALLBACK值，默认：JSONP_CALLBACK
+        _HttpClient.prototype.jsonp = 
+        // #endregion
+        /**
+         * `jsonp` 请求
+         *
+         * @param {?} url URL地址
+         * @param {?=} params 请求参数
+         * @param {?=} callbackParam CALLBACK值，默认：JSONP_CALLBACK
+         * @return {?}
+         */
+        function (url, params, callbackParam) {
+            var _this = this;
+            if (callbackParam === void 0) { callbackParam = 'JSONP_CALLBACK'; }
+            return this.http.jsonp(this.appliedUrl(url, params), callbackParam).pipe(operators.tap((/**
              * @return {?}
              */
-            function (url, params, callbackParam) {
-                var _this = this;
-                if (callbackParam === void 0) {
-                    callbackParam = 'JSONP_CALLBACK';
-                }
-                return this.http.jsonp(this.appliedUrl(url, params), callbackParam).pipe(operators.tap(( /**
-                 * @return {?}
-                 */function () {
-                    _this.end();
-                })), operators.catchError(( /**
-                 * @param {?} res
-                 * @return {?}
-                 */function (res) {
-                    _this.end();
-                    return rxjs.throwError(res);
-                })));
-            };
+            function () {
+                _this.end();
+            })), operators.catchError((/**
+             * @param {?} res
+             * @return {?}
+             */
+            function (res) {
+                _this.end();
+                return rxjs.throwError(res);
+            })));
+        };
         /**
          * PATCH 请求
          */
@@ -2301,10 +2314,10 @@
          * @param {?} options
          * @return {?}
          */
-            function (url, body, params, options) {
-                return this.request('PATCH', url, __assign({ body: body,
-                    params: params }, options));
-            };
+        function (url, body, params, options) {
+            return this.request('PATCH', url, __assign({ body: body,
+                params: params }, options));
+        };
         /**
          * PUT 请求
          */
@@ -2324,10 +2337,10 @@
          * @param {?} options
          * @return {?}
          */
-            function (url, body, params, options) {
-                return this.request('PUT', url, __assign({ body: body,
-                    params: params }, options));
-            };
+        function (url, body, params, options) {
+            return this.request('PUT', url, __assign({ body: body,
+                params: params }, options));
+        };
         /**
          * `request` 请求
          *
@@ -2351,36 +2364,36 @@
          * @param {?=} options 参数
          * @return {?}
          */
-            function (method, url, options) {
-                var _this = this;
-                this.begin();
-                if (options) {
-                    if (options.params)
-                        options.params = this.parseParams(options.params);
-                }
-                return this.http.request(method, url, options).pipe(operators.tap(( /**
-                 * @return {?}
-                 */function () {
-                    _this.end();
-                })), operators.catchError(( /**
-                 * @param {?} res
-                 * @return {?}
-                 */function (res) {
-                    _this.end();
-                    return rxjs.throwError(res);
-                })));
-            };
+        function (method, url, options) {
+            var _this = this;
+            this.begin();
+            if (options) {
+                if (options.params)
+                    options.params = this.parseParams(options.params);
+            }
+            return this.http.request(method, url, options).pipe(operators.tap((/**
+             * @return {?}
+             */
+            function () {
+                _this.end();
+            })), operators.catchError((/**
+             * @param {?} res
+             * @return {?}
+             */
+            function (res) {
+                _this.end();
+                return rxjs.throwError(res);
+            })));
+        };
         _HttpClient.decorators = [
-            { type: i0.Injectable, args: [{ providedIn: 'root' },] }
+            { type: core.Injectable, args: [{ providedIn: 'root' },] }
         ];
         /** @nocollapse */
-        _HttpClient.ctorParameters = function () {
-            return [
-                { type: i1.HttpClient },
-                { type: AlainThemeConfig }
-            ];
-        };
-        /** @nocollapse */ _HttpClient.ngInjectableDef = i0.defineInjectable({ factory: function _HttpClient_Factory() { return new _HttpClient(i0.inject(i1.HttpClient), i0.inject(AlainThemeConfig)); }, token: _HttpClient, providedIn: "root" });
+        _HttpClient.ctorParameters = function () { return [
+            { type: http.HttpClient },
+            { type: AlainThemeConfig }
+        ]; };
+        /** @nocollapse */ _HttpClient.ngInjectableDef = core.defineInjectable({ factory: function _HttpClient_Factory() { return new _HttpClient(core.inject(http.HttpClient), core.inject(AlainThemeConfig)); }, token: _HttpClient, providedIn: "root" });
         return _HttpClient;
     }());
 
@@ -2396,11 +2409,9 @@
             this.injector = injector;
         }
         /** @nocollapse */
-        BaseApi.ctorParameters = function () {
-            return [
-                { type: i0.Injector, decorators: [{ type: i0.Inject, args: [i0.Injector,] }] }
-            ];
-        };
+        BaseApi.ctorParameters = function () { return [
+            { type: core.Injector, decorators: [{ type: core.Inject, args: [core.Injector,] }] }
+        ]; };
         return BaseApi;
     }());
     /** @type {?} */
@@ -2411,9 +2422,7 @@
      * @return {?}
      */
     function setParam(target, key) {
-        if (key === void 0) {
-            key = paramKey;
-        }
+        if (key === void 0) { key = paramKey; }
         /** @type {?} */
         var params = target[key];
         if (typeof params === 'undefined') {
@@ -2428,11 +2437,12 @@
      * @return {?}
      */
     function BaseUrl(url) {
-        return ( /**
+        return (/**
          * @template TClass
          * @param {?} target
          * @return {?}
-         */function (target) {
+         */
+        function (target) {
             /** @type {?} */
             var params = setParam(target.prototype);
             params.baseUrl = url;
@@ -2446,11 +2456,12 @@
      * @return {?}
      */
     function BaseHeaders(headers) {
-        return ( /**
+        return (/**
          * @template TClass
          * @param {?} target
          * @return {?}
-         */function (target) {
+         */
+        function (target) {
             /** @type {?} */
             var params = setParam(target.prototype);
             params.baseHeaders = headers;
@@ -2462,21 +2473,23 @@
      * @return {?}
      */
     function makeParam(paramName) {
-        return ( /**
+        return (/**
          * @param {?=} key
          * @param {...?} extraOptions
          * @return {?}
-         */function (key) {
+         */
+        function (key) {
             var extraOptions = [];
             for (var _i = 1; _i < arguments.length; _i++) {
                 extraOptions[_i - 1] = arguments[_i];
             }
-            return ( /**
+            return (/**
              * @param {?} target
              * @param {?} propertyKey
              * @param {?} index
              * @return {?}
-             */function (target, propertyKey, index) {
+             */
+            function (target, propertyKey, index) {
                 /** @type {?} */
                 var params = setParam(setParam(target), propertyKey);
                 /** @type {?} */
@@ -2519,24 +2532,25 @@
      * @return {?}
      */
     function makeMethod(method) {
-        return ( /**
+        return (/**
          * @param {?=} url
          * @param {?=} options
          * @return {?}
-         */function (url, options) {
-            if (url === void 0) {
-                url = '';
-            }
-            return ( /**
+         */
+        function (url, options) {
+            if (url === void 0) { url = ''; }
+            return (/**
              * @param {?} target
              * @param {?=} targetKey
              * @param {?=} descriptor
              * @return {?}
-             */function (target, targetKey, descriptor) {
-                descriptor.value = ( /**
+             */
+            function (target, targetKey, descriptor) {
+                descriptor.value = (/**
                  * @param {...?} args
                  * @return {?}
-                 */function () {
+                 */
+                function () {
                     var args = [];
                     for (var _i = 0; _i < arguments.length; _i++) {
                         args[_i] = arguments[_i];
@@ -2563,7 +2577,7 @@
                     }
                     if (options.acl) {
                         /** @type {?} */
-                        var aclSrv = this.injector.get(i2.ACLService, null);
+                        var aclSrv = this.injector.get(acl.ACLService, null);
                         if (aclSrv && !aclSrv.can(options.acl)) {
                             return rxjs.throwError({
                                 url: requestUrl,
@@ -2573,27 +2587,30 @@
                         }
                         delete options.acl;
                     }
-                    (data.path || []).forEach(( /**
+                    (data.path || []).forEach((/**
                      * @param {?} i
                      * @return {?}
-                     */function (i) {
+                     */
+                    function (i) {
                         requestUrl = requestUrl.replace(new RegExp(":" + i.key, 'g'), encodeURIComponent(args[i.index]));
                     }));
                     /** @type {?} */
-                    var params = (data.query || []).reduce(( /**
+                    var params = (data.query || []).reduce((/**
                      * @param {?} p
                      * @param {?} i
                      * @return {?}
-                     */function (p, i) {
+                     */
+                    function (p, i) {
                         p[i.key] = args[i.index];
                         return p;
                     }), {});
                     /** @type {?} */
-                    var headers = (data.headers || []).reduce(( /**
+                    var headers = (data.headers || []).reduce((/**
                      * @param {?} p
                      * @param {?} i
                      * @return {?}
-                     */function (p, i) {
+                     */
+                    function (p, i) {
                         p[i.key] = args[i.index];
                         return p;
                     }), {});
@@ -2669,27 +2686,25 @@
          * @param {?=} formatString
          * @return {?}
          */
-            function (value, formatString) {
-                if (formatString === void 0) {
-                    formatString = 'YYYY-MM-DD HH:mm';
+        function (value, formatString) {
+            if (formatString === void 0) { formatString = 'YYYY-MM-DD HH:mm'; }
+            if (value) {
+                if (formatString === 'fn') {
+                    return distanceInWordsToNow(value, {
+                        locale: ((/** @type {?} */ (window))).__locale__,
+                    });
                 }
-                if (value) {
-                    if (formatString === 'fn') {
-                        return distanceInWordsToNow(value, {
-                            locale: (( /** @type {?} */(window))).__locale__,
-                        });
-                    }
-                    if (typeof value === 'string' && !isNaN(+value)) {
-                        value = +value;
-                    }
-                    return format(value, formatString);
+                if (typeof value === 'string' && !isNaN(+value)) {
+                    value = +value;
                 }
-                else {
-                    return '';
-                }
-            };
+                return format(value, formatString);
+            }
+            else {
+                return '';
+            }
+        };
         DatePipe.decorators = [
-            { type: i0.Pipe, args: [{ name: '_date' },] }
+            { type: core.Pipe, args: [{ name: '_date' },] }
         ];
         return DatePipe;
     }());
@@ -2721,20 +2736,16 @@
          * @param {?=} digits
          * @return {?}
          */
-            function (value, currencyCode, display, digits) {
-                if (currencyCode === void 0) {
-                    currencyCode = '￥';
-                }
-                if (display === void 0) {
-                    display = 'code';
-                }
-                return _super.prototype.transform.call(this, value, currencyCode, ( /** @type {?} */(display)), digits);
-            };
+        function (value, currencyCode, display, digits) {
+            if (currencyCode === void 0) { currencyCode = '￥'; }
+            if (display === void 0) { display = 'code'; }
+            return _super.prototype.transform.call(this, value, currencyCode, (/** @type {?} */ (display)), digits);
+        };
         CNCurrencyPipe.decorators = [
-            { type: i0.Pipe, args: [{ name: '_currency' },] }
+            { type: core.Pipe, args: [{ name: '_currency' },] }
         ];
         return CNCurrencyPipe;
-    }(i2$1.CurrencyPipe));
+    }(common.CurrencyPipe));
 
     /**
      * @fileoverview added by tsickle
@@ -2756,19 +2767,17 @@
          * @param {?=} keyIsNumber
          * @return {?}
          */
-            function (value, keyIsNumber) {
-                if (keyIsNumber === void 0) {
-                    keyIsNumber = false;
-                }
-                /** @type {?} */
-                var ret = [];
-                for (var key in value) {
-                    ret.push({ key: keyIsNumber ? +key : key, value: value[key] });
-                }
-                return ret;
-            };
+        function (value, keyIsNumber) {
+            if (keyIsNumber === void 0) { keyIsNumber = false; }
+            /** @type {?} */
+            var ret = [];
+            for (var key in value) {
+                ret.push({ key: keyIsNumber ? +key : key, value: value[key] });
+            }
+            return ret;
+        };
         KeysPipe.decorators = [
-            { type: i0.Pipe, args: [{ name: 'keys' },] }
+            { type: core.Pipe, args: [{ name: 'keys' },] }
         ];
         return KeysPipe;
     }());
@@ -2793,20 +2802,18 @@
          * @param {?} no
          * @return {?}
          */
-            function (value, yes, no) {
-                return this.dom.bypassSecurityTrustHtml(value ?
-                    "<i class=\"text-blue\" title=\"" + (yes || '是') + "\"><svg viewBox=\"64 64 896 896\" fill=\"currentColor\" width=\"1em\" height=\"1em\" aria-hidden=\"true\"><path d=\"M912 190h-69.9c-9.8 0-19.1 4.5-25.1 12.2L404.7 724.5 207 474a32 32 0 0 0-25.1-12.2H112c-6.7 0-10.4 7.7-6.3 12.9l273.9 347c12.8 16.2 37.4 16.2 50.3 0l488.4-618.9c4.1-5.1.4-12.8-6.3-12.8z\"></path></svg></i>" :
-                    "<i class=\"text-grey\" title=\"" + (no || '否') + "\"><svg viewBox=\"64 64 896 896\" fill=\"currentColor\" width=\"1em\" height=\"1em\" aria-hidden=\"true\"><path d=\"M563.8 512l262.5-312.9c4.4-5.2.7-13.1-6.1-13.1h-79.8c-4.7 0-9.2 2.1-12.3 5.7L511.6 449.8 295.1 191.7c-3-3.6-7.5-5.7-12.3-5.7H203c-6.8 0-10.5 7.9-6.1 13.1L459.4 512 196.9 824.9A7.95 7.95 0 0 0 203 838h79.8c4.7 0 9.2-2.1 12.3-5.7l216.5-258.1 216.5 258.1c3 3.6 7.5 5.7 12.3 5.7h79.8c6.8 0 10.5-7.9 6.1-13.1L563.8 512z\"></path></svg></i>");
-            };
+        function (value, yes, no) {
+            return this.dom.bypassSecurityTrustHtml(value ?
+                "<i class=\"text-blue\" title=\"" + (yes || '是') + "\"><svg viewBox=\"64 64 896 896\" fill=\"currentColor\" width=\"1em\" height=\"1em\" aria-hidden=\"true\"><path d=\"M912 190h-69.9c-9.8 0-19.1 4.5-25.1 12.2L404.7 724.5 207 474a32 32 0 0 0-25.1-12.2H112c-6.7 0-10.4 7.7-6.3 12.9l273.9 347c12.8 16.2 37.4 16.2 50.3 0l488.4-618.9c4.1-5.1.4-12.8-6.3-12.8z\"></path></svg></i>" :
+                "<i class=\"text-grey\" title=\"" + (no || '否') + "\"><svg viewBox=\"64 64 896 896\" fill=\"currentColor\" width=\"1em\" height=\"1em\" aria-hidden=\"true\"><path d=\"M563.8 512l262.5-312.9c4.4-5.2.7-13.1-6.1-13.1h-79.8c-4.7 0-9.2 2.1-12.3 5.7L511.6 449.8 295.1 191.7c-3-3.6-7.5-5.7-12.3-5.7H203c-6.8 0-10.5 7.9-6.1 13.1L459.4 512 196.9 824.9A7.95 7.95 0 0 0 203 838h79.8c4.7 0 9.2-2.1 12.3-5.7l216.5-258.1 216.5 258.1c3 3.6 7.5 5.7 12.3 5.7h79.8c6.8 0 10.5-7.9 6.1-13.1L563.8 512z\"></path></svg></i>");
+        };
         YNPipe.decorators = [
-            { type: i0.Pipe, args: [{ name: 'yn' },] }
+            { type: core.Pipe, args: [{ name: 'yn' },] }
         ];
         /** @nocollapse */
-        YNPipe.ctorParameters = function () {
-            return [
-                { type: i1$1.DomSanitizer }
-            ];
-        };
+        YNPipe.ctorParameters = function () { return [
+            { type: platformBrowser.DomSanitizer }
+        ]; };
         return YNPipe;
     }());
 
@@ -2826,18 +2833,16 @@
          * @param {?} html
          * @return {?}
          */
-            function (html) {
-                return html ? this.dom.bypassSecurityTrustHtml(html) : '';
-            };
+        function (html) {
+            return html ? this.dom.bypassSecurityTrustHtml(html) : '';
+        };
         HTMLPipe.decorators = [
-            { type: i0.Pipe, args: [{ name: 'html' },] }
+            { type: core.Pipe, args: [{ name: 'html' },] }
         ];
         /** @nocollapse */
-        HTMLPipe.ctorParameters = function () {
-            return [
-                { type: i1$1.DomSanitizer }
-            ];
-        };
+        HTMLPipe.ctorParameters = function () { return [
+            { type: platformBrowser.DomSanitizer }
+        ]; };
         return HTMLPipe;
     }());
 
@@ -2857,18 +2862,16 @@
          * @param {?} url
          * @return {?}
          */
-            function (url) {
-                return url ? this.dom.bypassSecurityTrustUrl(url) : '';
-            };
+        function (url) {
+            return url ? this.dom.bypassSecurityTrustUrl(url) : '';
+        };
         URLPipe.decorators = [
-            { type: i0.Pipe, args: [{ name: 'url' },] }
+            { type: core.Pipe, args: [{ name: 'url' },] }
         ];
         /** @nocollapse */
-        URLPipe.ctorParameters = function () {
-            return [
-                { type: i1$1.DomSanitizer }
-            ];
-        };
+        URLPipe.ctorParameters = function () { return [
+            { type: platformBrowser.DomSanitizer }
+        ]; };
         return URLPipe;
     }());
 
@@ -2892,18 +2895,16 @@
          * @param {?=} isSafe
          * @return {?}
          */
-            function (key, interpolateParams, isSafe) {
-                return this.i18n.fanyi(key, interpolateParams, isSafe);
-            };
+        function (key, interpolateParams, isSafe) {
+            return this.i18n.fanyi(key, interpolateParams, isSafe);
+        };
         I18nPipe.decorators = [
-            { type: i0.Pipe, args: [{ name: 'i18n' },] }
+            { type: core.Pipe, args: [{ name: 'i18n' },] }
         ];
         /** @nocollapse */
-        I18nPipe.ctorParameters = function () {
-            return [
-                { type: undefined, decorators: [{ type: i0.Inject, args: [ALAIN_I18N_TOKEN,] }] }
-            ];
-        };
+        I18nPipe.ctorParameters = function () { return [
+            { type: undefined, decorators: [{ type: core.Inject, args: [ALAIN_I18N_TOKEN,] }] }
+        ]; };
         return I18nPipe;
     }());
 
@@ -2937,37 +2938,35 @@
         AlainThemeModule.forRoot = /**
          * @return {?}
          */
-            function () {
-                return {
-                    ngModule: AlainThemeModule,
-                    providers: __spread(HELPERS),
-                };
+        function () {
+            return {
+                ngModule: AlainThemeModule,
+                providers: __spread(HELPERS),
             };
+        };
         /**
          * @return {?}
          */
         AlainThemeModule.forChild = /**
          * @return {?}
          */
-            function () {
-                return {
-                    ngModule: AlainThemeModule,
-                    providers: __spread(HELPERS),
-                };
+        function () {
+            return {
+                ngModule: AlainThemeModule,
+                providers: __spread(HELPERS),
             };
+        };
         AlainThemeModule.decorators = [
-            { type: i0.NgModule, args: [{
-                        imports: [i2$1.CommonModule, router.RouterModule, overlay.OverlayModule],
+            { type: core.NgModule, args: [{
+                        imports: [common.CommonModule, router.RouterModule, overlay.OverlayModule],
                         declarations: __spread(COMPONENTS, PIPES),
                         exports: __spread(COMPONENTS, PIPES, [DelonLocaleModule]),
                     },] }
         ];
         /** @nocollapse */
-        AlainThemeModule.ctorParameters = function () {
-            return [
-                { type: i1$2.NzIconService }
-            ];
-        };
+        AlainThemeModule.ctorParameters = function () { return [
+            { type: ngZorroAntd.NzIconService }
+        ]; };
         return AlainThemeModule;
     }());
 
@@ -2976,75 +2975,64 @@
      * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
-    var VERSION = new i0.Version('7.2.0');
+    var VERSION = new core.Version('7.2.0');
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-
-    exports.WINDOW = WINDOW;
-    exports.preloaderFinished = preloaderFinished;
-    exports.TitleService = TitleService;
     exports.ALAIN_I18N_TOKEN = ALAIN_I18N_TOKEN;
+    exports.APP = APP;
     exports.AlainI18NServiceFake = AlainI18NServiceFake;
-    exports._HttpClient = _HttpClient;
-    exports.DatePipe = DatePipe;
-    exports.CNCurrencyPipe = CNCurrencyPipe;
-    exports.KeysPipe = KeysPipe;
-    exports.YNPipe = YNPipe;
-    exports.HTMLPipe = HTMLPipe;
-    exports.URLPipe = URLPipe;
     exports.AlainThemeConfig = AlainThemeConfig;
     exports.AlainThemeModule = AlainThemeModule;
-    exports.VERSION = VERSION;
-    exports.MenuService = MenuService;
-    exports.ScrollService = ScrollService;
-    exports.LAYOUT = LAYOUT;
-    exports.USER = USER;
-    exports.APP = APP;
-    exports.SettingsService = SettingsService;
-    exports.REP_MAX = REP_MAX;
-    exports.ResponsiveService = ResponsiveService;
-    exports.en_US = enUS;
-    exports.zh_CN = zhCN;
-    exports.zh_TW = zhTW;
-    exports.tr_TR = trTR;
-    exports.pl_PL = plPL;
-    exports.el_GR = elGR;
-    exports.ko_KR = koKR;
-    exports.DELON_LOCALE = DELON_LOCALE;
-    exports.DELON_LOCALE_SERVICE_PROVIDER_FACTORY = DELON_LOCALE_SERVICE_PROVIDER_FACTORY;
-    exports.DelonLocaleService = DelonLocaleService;
-    exports.DELON_LOCALE_SERVICE_PROVIDER = DELON_LOCALE_SERVICE_PROVIDER;
-    exports.DelonLocaleModule = DelonLocaleModule;
-    exports.ModalHelper = ModalHelper;
-    exports.DrawerHelper = DrawerHelper;
-    exports.BaseUrl = BaseUrl;
-    exports.BaseHeaders = BaseHeaders;
     exports.BaseApi = BaseApi;
+    exports.BaseHeaders = BaseHeaders;
+    exports.BaseUrl = BaseUrl;
+    exports.Body = Body;
+    exports.CNCurrencyPipe = CNCurrencyPipe;
+    exports.DELETE = DELETE;
+    exports.DELON_LOCALE = DELON_LOCALE;
+    exports.DELON_LOCALE_SERVICE_PROVIDER = DELON_LOCALE_SERVICE_PROVIDER;
+    exports.DELON_LOCALE_SERVICE_PROVIDER_FACTORY = DELON_LOCALE_SERVICE_PROVIDER_FACTORY;
+    exports.DatePipe = DatePipe;
+    exports.DelonLocaleModule = DelonLocaleModule;
+    exports.DelonLocaleService = DelonLocaleService;
+    exports.DrawerHelper = DrawerHelper;
+    exports.GET = GET;
+    exports.HEAD = HEAD;
+    exports.HTMLPipe = HTMLPipe;
+    exports.Headers = Headers;
+    exports.JSONP = JSONP;
+    exports.KeysPipe = KeysPipe;
+    exports.LAYOUT = LAYOUT;
+    exports.MenuService = MenuService;
+    exports.ModalHelper = ModalHelper;
+    exports.OPTIONS = OPTIONS;
+    exports.PATCH = PATCH;
+    exports.POST = POST;
+    exports.PUT = PUT;
     exports.Path = Path;
     exports.Query = Query;
-    exports.Body = Body;
-    exports.Headers = Headers;
-    exports.OPTIONS = OPTIONS;
-    exports.GET = GET;
-    exports.POST = POST;
-    exports.DELETE = DELETE;
-    exports.PUT = PUT;
-    exports.HEAD = HEAD;
-    exports.PATCH = PATCH;
-    exports.JSONP = JSONP;
+    exports.REP_MAX = REP_MAX;
+    exports.ResponsiveService = ResponsiveService;
+    exports.ScrollService = ScrollService;
+    exports.SettingsService = SettingsService;
+    exports.TitleService = TitleService;
+    exports.URLPipe = URLPipe;
+    exports.USER = USER;
+    exports.VERSION = VERSION;
+    exports.WINDOW = WINDOW;
+    exports.YNPipe = YNPipe;
+    exports._HttpClient = _HttpClient;
+    exports.el_GR = elGR;
+    exports.en_US = enUS;
+    exports.ko_KR = koKR;
+    exports.pl_PL = plPL;
+    exports.preloaderFinished = preloaderFinished;
+    exports.tr_TR = trTR;
+    exports.zh_CN = zhCN;
+    exports.zh_TW = zhTW;
     exports.ɵa = ALAIN_I18N_TOKEN_FACTORY;
     exports.ɵb = I18nPipe;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
-})));
-
+}));
 //# sourceMappingURL=theme.umd.js.map

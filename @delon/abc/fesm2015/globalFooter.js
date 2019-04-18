@@ -1,9 +1,9 @@
+import { Component, ViewChild, Input, ChangeDetectionStrategy, Inject, ContentChildren, NgModule } from '@angular/core';
+import { Router, RouterModule } from '@angular/router';
 import { WINDOW } from '@delon/theme';
 import { __decorate, __metadata } from 'tslib';
-import { CommonModule } from '@angular/common';
-import { Component, Input, ViewChild, ChangeDetectionStrategy, ContentChildren, Inject, NgModule } from '@angular/core';
-import { Router, RouterModule } from '@angular/router';
 import { InputBoolean, DelonUtilModule } from '@delon/util';
+import { CommonModule } from '@angular/common';
 
 /**
  * @fileoverview added by tsickle
@@ -113,5 +113,4 @@ GlobalFooterModule.decorators = [
  */
 
 export { GlobalFooterComponent, GlobalFooterItemComponent, GlobalFooterModule };
-
 //# sourceMappingURL=globalFooter.js.map

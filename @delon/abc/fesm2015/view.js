@@ -1,9 +1,9 @@
 import { __decorate, __metadata } from 'tslib';
+import { Injectable, defineInjectable, Component, ChangeDetectionStrategy, ElementRef, Renderer2, Input, Host, Optional, ViewChild, NgModule } from '@angular/core';
+import { updateHostClass, InputNumber, isEmpty, InputBoolean, DelonUtilModule } from '@delon/util';
 import { ResponsiveService } from '@delon/theme';
 import { ObserversModule } from '@angular/cdk/observers';
 import { CommonModule } from '@angular/common';
-import { Injectable, ChangeDetectionStrategy, Component, ElementRef, Host, Optional, Renderer2, Input, defineInjectable, NgModule, ViewChild } from '@angular/core';
-import { updateHostClass, InputNumber, isEmpty, InputBoolean, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
@@ -319,6 +319,5 @@ SVModule.decorators = [
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { SVContainerComponent, SVTitleComponent, SVComponent, SVConfig, SVModule };
-
+export { SVComponent, SVConfig, SVContainerComponent, SVModule, SVTitleComponent };
 //# sourceMappingURL=view.js.map

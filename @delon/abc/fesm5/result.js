@@ -1,6 +1,6 @@
+import { Component, Input, NgModule } from '@angular/core';
 import { __spread } from 'tslib';
 import { CommonModule } from '@angular/common';
-import { Component, Input, NgModule } from '@angular/core';
 import { DelonUtilModule } from '@delon/util';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 
@@ -81,5 +81,4 @@ var ResultModule = /** @class */ (function () {
  */
 
 export { ResultComponent, ResultModule };
-
 //# sourceMappingURL=result.js.map

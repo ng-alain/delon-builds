@@ -1,9 +1,9 @@
-import { fromEvent } from 'rxjs';
-import { debounceTime, filter } from 'rxjs/operators';
-import { __spread, __assign, __decorate, __metadata } from 'tslib';
-import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, ElementRef, Input, NgZone, NgModule } from '@angular/core';
+import { __assign, __decorate, __metadata, __spread } from 'tslib';
+import { Component, ChangeDetectionStrategy, ElementRef, NgZone, Input, NgModule } from '@angular/core';
 import { InputNumber, DelonUtilModule } from '@delon/util';
+import { fromEvent } from 'rxjs';
+import { filter, debounceTime } from 'rxjs/operators';
+import { CommonModule } from '@angular/common';
 
 /**
  * @fileoverview added by tsickle
@@ -269,5 +269,4 @@ var G2TagCloudModule = /** @class */ (function () {
  */
 
 export { G2TagCloudComponent, G2TagCloudModule };
-
 //# sourceMappingURL=tag-cloud.js.map

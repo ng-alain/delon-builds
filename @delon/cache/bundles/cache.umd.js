@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common/http'), require('date-fns/add_seconds'), require('rxjs'), require('rxjs/operators'), require('@angular/core')) :
-    typeof define === 'function' && define.amd ? define('@delon/cache', ['exports', '@angular/common/http', 'date-fns/add_seconds', 'rxjs', 'rxjs/operators', '@angular/core'], factory) :
-    (factory((global.delon = global.delon || {}, global.delon.cache = {}),global.ng.common.http,global.addSeconds,global.rxjs,global.rxjs.operators,global.ng.core));
-}(this, (function (exports,i3,addSeconds,rxjs,operators,i0) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common/http'), require('@angular/core'), require('date-fns/add_seconds'), require('rxjs'), require('rxjs/operators')) :
+    typeof define === 'function' && define.amd ? define('@delon/cache', ['exports', '@angular/common/http', '@angular/core', 'date-fns/add_seconds', 'rxjs', 'rxjs/operators'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.cache = {}), global.ng.common.http, global.ng.core, global.addSeconds, global.rxjs, global.rxjs.operators));
+}(this, function (exports, http, core, addSeconds, rxjs, operators) { 'use strict';
 
     addSeconds = addSeconds && addSeconds.hasOwnProperty('default') ? addSeconds['default'] : addSeconds;
 
@@ -25,18 +25,22 @@
     See the Apache Version 2.0 License for specific language governing permissions
     and limitations under the License.
     ***************************************************************************** */
-    var __assign = function () {
+
+    var __assign = function() {
         __assign = Object.assign || function __assign(t) {
             for (var s, i = 1, n = arguments.length; i < n; i++) {
                 s = arguments[i];
-                for (var p in s)
-                    if (Object.prototype.hasOwnProperty.call(s, p))
-                        t[p] = s[p];
+                for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
             }
             return t;
         };
         return __assign.apply(this, arguments);
     };
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
 
     /**
      * @fileoverview added by tsickle
@@ -67,9 +71,9 @@
             this.meta_key = '__cache_meta';
         }
         DelonCacheConfig.decorators = [
-            { type: i0.Injectable, args: [{ providedIn: 'root' },] }
+            { type: core.Injectable, args: [{ providedIn: 'root' },] }
         ];
-        /** @nocollapse */ DelonCacheConfig.ngInjectableDef = i0.defineInjectable({ factory: function DelonCacheConfig_Factory() { return new DelonCacheConfig(); }, token: DelonCacheConfig, providedIn: "root" });
+        /** @nocollapse */ DelonCacheConfig.ngInjectableDef = core.defineInjectable({ factory: function DelonCacheConfig_Factory() { return new DelonCacheConfig(); }, token: DelonCacheConfig, providedIn: "root" });
         return DelonCacheConfig;
     }());
 
@@ -78,7 +82,7 @@
      * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
-    var DC_STORE_STORAGE_TOKEN = new i0.InjectionToken('DC_STORE_STORAGE_TOKEN', {
+    var DC_STORE_STORAGE_TOKEN = new core.InjectionToken('DC_STORE_STORAGE_TOKEN', {
         providedIn: 'root',
         factory: DC_STORE_STORAGE_TOKEN_FACTORY,
     });
@@ -99,9 +103,9 @@
          * @param {?} key
          * @return {?}
          */
-            function (key) {
-                return JSON.parse(localStorage.getItem(key) || 'null') || null;
-            };
+        function (key) {
+            return JSON.parse(localStorage.getItem(key) || 'null') || null;
+        };
         /**
          * @param {?} key
          * @param {?} value
@@ -112,10 +116,10 @@
          * @param {?} value
          * @return {?}
          */
-            function (key, value) {
-                localStorage.setItem(key, JSON.stringify(value));
-                return true;
-            };
+        function (key, value) {
+            localStorage.setItem(key, JSON.stringify(value));
+            return true;
+        };
         /**
          * @param {?} key
          * @return {?}
@@ -124,9 +128,9 @@
          * @param {?} key
          * @return {?}
          */
-            function (key) {
-                localStorage.removeItem(key);
-            };
+        function (key) {
+            localStorage.removeItem(key);
+        };
         return LocalStorageCacheService;
     }());
 
@@ -159,20 +163,21 @@
          * @param {?=} defaultValue
          * @return {?}
          */
-            function (obj, path, defaultValue) {
-                if (!obj)
-                    return defaultValue;
-                if (path.length <= 1) {
-                    /** @type {?} */
-                    var checkObj = path.length ? obj[path[0]] : obj;
-                    return typeof checkObj === 'undefined' ? defaultValue : checkObj;
-                }
-                return path.reduce(( /**
-                 * @param {?} o
-                 * @param {?} k
-                 * @return {?}
-                 */function (o, k) { return o[k]; }), obj) || defaultValue;
-            };
+        function (obj, path, defaultValue) {
+            if (!obj)
+                return defaultValue;
+            if (path.length <= 1) {
+                /** @type {?} */
+                var checkObj = path.length ? obj[path[0]] : obj;
+                return typeof checkObj === 'undefined' ? defaultValue : checkObj;
+            }
+            return path.reduce((/**
+             * @param {?} o
+             * @param {?} k
+             * @return {?}
+             */
+            function (o, k) { return o[k]; }), obj) || defaultValue;
+        };
         // #region meta
         // #region meta
         /**
@@ -180,19 +185,19 @@
          * @param {?} key
          * @return {?}
          */
-        CacheService.prototype.pushMeta =
-            // #region meta
-            /**
-             * @private
-             * @param {?} key
-             * @return {?}
-             */
-            function (key) {
-                if (this.meta.has(key))
-                    return;
-                this.meta.add(key);
-                this.saveMeta();
-            };
+        CacheService.prototype.pushMeta = 
+        // #region meta
+        /**
+         * @private
+         * @param {?} key
+         * @return {?}
+         */
+        function (key) {
+            if (this.meta.has(key))
+                return;
+            this.meta.add(key);
+            this.saveMeta();
+        };
         /**
          * @private
          * @param {?} key
@@ -203,12 +208,12 @@
          * @param {?} key
          * @return {?}
          */
-            function (key) {
-                if (!this.meta.has(key))
-                    return;
-                this.meta.delete(key);
-                this.saveMeta();
-            };
+        function (key) {
+            if (!this.meta.has(key))
+                return;
+            this.meta.delete(key);
+            this.saveMeta();
+        };
         /**
          * @private
          * @return {?}
@@ -217,17 +222,18 @@
          * @private
          * @return {?}
          */
-            function () {
-                var _this = this;
-                /** @type {?} */
-                var ret = this.store.get(this.cog.meta_key);
-                if (ret && ret.v) {
-                    (( /** @type {?} */(ret.v))).forEach(( /**
-                     * @param {?} key
-                     * @return {?}
-                     */function (key) { return _this.meta.add(key); }));
-                }
-            };
+        function () {
+            var _this = this;
+            /** @type {?} */
+            var ret = this.store.get(this.cog.meta_key);
+            if (ret && ret.v) {
+                ((/** @type {?} */ (ret.v))).forEach((/**
+                 * @param {?} key
+                 * @return {?}
+                 */
+                function (key) { return _this.meta.add(key); }));
+            }
+        };
         /**
          * @private
          * @return {?}
@@ -236,24 +242,25 @@
          * @private
          * @return {?}
          */
-            function () {
-                /** @type {?} */
-                var metaData = [];
-                this.meta.forEach(( /**
-                 * @param {?} key
-                 * @return {?}
-                 */function (key) { return metaData.push(key); }));
-                this.store.set(this.cog.meta_key, { v: metaData, e: 0 });
-            };
+        function () {
+            /** @type {?} */
+            var metaData = [];
+            this.meta.forEach((/**
+             * @param {?} key
+             * @return {?}
+             */
+            function (key) { return metaData.push(key); }));
+            this.store.set(this.cog.meta_key, { v: metaData, e: 0 });
+        };
         /**
          * @return {?}
          */
         CacheService.prototype.getMeta = /**
          * @return {?}
          */
-            function () {
-                return this.meta;
-            };
+        function () {
+            return this.meta;
+        };
         /**
          * 缓存对象
          */
@@ -271,28 +278,27 @@
          * @param {?=} options
          * @return {?}
          */
-            function (key, data, options) {
-                var _this = this;
-                if (options === void 0) {
-                    options = {};
-                }
-                // expire
-                /** @type {?} */
-                var e = 0;
-                if (options.expire) {
-                    e = addSeconds(new Date(), options.expire).valueOf();
-                }
-                if (!(data instanceof rxjs.Observable)) {
-                    this.save(options.type, key, { v: data, e: e });
-                    return;
-                }
-                return data.pipe(operators.tap(( /**
-                 * @param {?} v
-                 * @return {?}
-                 */function (v) {
-                    _this.save(options.type, key, { v: v, e: e });
-                })));
-            };
+        function (key, data, options) {
+            var _this = this;
+            if (options === void 0) { options = {}; }
+            // expire
+            /** @type {?} */
+            var e = 0;
+            if (options.expire) {
+                e = addSeconds(new Date(), options.expire).valueOf();
+            }
+            if (!(data instanceof rxjs.Observable)) {
+                this.save(options.type, key, { v: data, e: e });
+                return;
+            }
+            return data.pipe(operators.tap((/**
+             * @param {?} v
+             * @return {?}
+             */
+            function (v) {
+                _this.save(options.type, key, { v: v, e: e });
+            })));
+        };
         /**
          * @private
          * @param {?} type
@@ -307,16 +313,16 @@
          * @param {?} value
          * @return {?}
          */
-            function (type, key, value) {
-                if (type === 'm') {
-                    this.memory.set(key, value);
-                }
-                else {
-                    this.store.set(this.cog.prefix + key, value);
-                    this.pushMeta(key);
-                }
-                this.runNotify(key, 'set');
-            };
+        function (type, key, value) {
+            if (type === 'm') {
+                this.memory.set(key, value);
+            }
+            else {
+                this.store.set(this.cog.prefix + key, value);
+                this.pushMeta(key);
+            }
+            this.runNotify(key, 'set');
+        };
         /**
          * @param {?} key
          * @param {?=} options
@@ -327,31 +333,31 @@
          * @param {?=} options
          * @return {?}
          */
-            function (key, options) {
-                var _this = this;
-                if (options === void 0) {
-                    options = {};
+        function (key, options) {
+            var _this = this;
+            if (options === void 0) { options = {}; }
+            /** @type {?} */
+            var isPromise = options.mode !== 'none' && this.cog.mode === 'promise';
+            /** @type {?} */
+            var value = this.memory.has(key)
+                ? this.memory.get(key)
+                : this.store.get(this.cog.prefix + key);
+            if (!value || (value.e && value.e > 0 && value.e < new Date().valueOf())) {
+                if (isPromise) {
+                    return this.http.get(key).pipe(operators.map((/**
+                     * @param {?} ret
+                     * @return {?}
+                     */
+                    function (ret) { return _this._deepGet(ret, (/** @type {?} */ (_this.cog.reName)), null); })), operators.tap((/**
+                     * @param {?} v
+                     * @return {?}
+                     */
+                    function (v) { return _this.set(key, v, { type: options.type, expire: options.expire }); })));
                 }
-                /** @type {?} */
-                var isPromise = options.mode !== 'none' && this.cog.mode === 'promise';
-                /** @type {?} */
-                var value = this.memory.has(key)
-                    ? this.memory.get(key)
-                    : this.store.get(this.cog.prefix + key);
-                if (!value || (value.e && value.e > 0 && value.e < new Date().valueOf())) {
-                    if (isPromise) {
-                        return this.http.get(key).pipe(operators.map(( /**
-                         * @param {?} ret
-                         * @return {?}
-                         */function (ret) { return _this._deepGet(ret, ( /** @type {?} */(_this.cog.reName)), null); })), operators.tap(( /**
-                         * @param {?} v
-                         * @return {?}
-                         */function (v) { return _this.set(key, v, { type: options.type, expire: options.expire }); })));
-                    }
-                    return null;
-                }
-                return isPromise ? rxjs.of(value.v) : value.v;
-            };
+                return null;
+            }
+            return isPromise ? rxjs.of(value.v) : value.v;
+        };
         /** 获取缓存数据，若 `key` 不存在或已过期则返回 null */
         /**
          * 获取缓存数据，若 `key` 不存在或已过期则返回 null
@@ -363,9 +369,9 @@
          * @param {?} key
          * @return {?}
          */
-            function (key) {
-                return this.get(key, { mode: 'none' });
-            };
+        function (key) {
+            return this.get(key, { mode: 'none' });
+        };
         /**
          * 获取缓存，若不存在则设置缓存对象
          */
@@ -383,21 +389,19 @@
          * @param {?=} options
          * @return {?}
          */
-            function (key, data, options) {
-                if (options === void 0) {
-                    options = {};
+        function (key, data, options) {
+            if (options === void 0) { options = {}; }
+            /** @type {?} */
+            var ret = this.getNone(key);
+            if (ret === null) {
+                if (!(data instanceof rxjs.Observable)) {
+                    this.set(key, data, (/** @type {?} */ (options)));
+                    return data;
                 }
-                /** @type {?} */
-                var ret = this.getNone(key);
-                if (ret === null) {
-                    if (!(data instanceof rxjs.Observable)) {
-                        this.set(key, data, ( /** @type {?} */(options)));
-                        return data;
-                    }
-                    return this.set(key, ( /** @type {?} */(data)), ( /** @type {?} */(options)));
-                }
-                return rxjs.of(ret);
-            };
+                return this.set(key, (/** @type {?} */ (data)), (/** @type {?} */ (options)));
+            }
+            return rxjs.of(ret);
+        };
         // #endregion
         // #region has
         /** 是否缓存 `key` */
@@ -408,17 +412,17 @@
          * @param {?} key
          * @return {?}
          */
-        CacheService.prototype.has =
-            // #endregion
-            // #region has
-            /**
-             * 是否缓存 `key`
-             * @param {?} key
-             * @return {?}
-             */
-            function (key) {
-                return this.memory.has(key) || this.meta.has(key);
-            };
+        CacheService.prototype.has = 
+        // #endregion
+        // #region has
+        /**
+         * 是否缓存 `key`
+         * @param {?} key
+         * @return {?}
+         */
+        function (key) {
+            return this.memory.has(key) || this.meta.has(key);
+        };
         // #endregion
         // #region remove
         // #endregion
@@ -429,25 +433,25 @@
          * @param {?} needNotify
          * @return {?}
          */
-        CacheService.prototype._remove =
-            // #endregion
-            // #region remove
-            /**
-             * @private
-             * @param {?} key
-             * @param {?} needNotify
-             * @return {?}
-             */
-            function (key, needNotify) {
-                if (needNotify)
-                    this.runNotify(key, 'remove');
-                if (this.memory.has(key)) {
-                    this.memory.delete(key);
-                    return;
-                }
-                this.store.remove(this.cog.prefix + key);
-                this.removeMeta(key);
-            };
+        CacheService.prototype._remove = 
+        // #endregion
+        // #region remove
+        /**
+         * @private
+         * @param {?} key
+         * @param {?} needNotify
+         * @return {?}
+         */
+        function (key, needNotify) {
+            if (needNotify)
+                this.runNotify(key, 'remove');
+            if (this.memory.has(key)) {
+                this.memory.delete(key);
+                return;
+            }
+            this.store.remove(this.cog.prefix + key);
+            this.removeMeta(key);
+        };
         /** 移除缓存 */
         /**
          * 移除缓存
@@ -459,9 +463,9 @@
          * @param {?} key
          * @return {?}
          */
-            function (key) {
-                this._remove(key, true);
-            };
+        function (key) {
+            this._remove(key, true);
+        };
         /** 清空所有缓存 */
         /**
          * 清空所有缓存
@@ -471,19 +475,21 @@
          * 清空所有缓存
          * @return {?}
          */
-            function () {
-                var _this = this;
-                this.notifyBuffer.forEach(( /**
-                 * @param {?} v
-                 * @param {?} k
-                 * @return {?}
-                 */function (v, k) { return _this.runNotify(k, 'remove'); }));
-                this.memory.clear();
-                this.meta.forEach(( /**
-                 * @param {?} key
-                 * @return {?}
-                 */function (key) { return _this.store.remove(_this.cog.prefix + key); }));
-            };
+        function () {
+            var _this = this;
+            this.notifyBuffer.forEach((/**
+             * @param {?} v
+             * @param {?} k
+             * @return {?}
+             */
+            function (v, k) { return _this.runNotify(k, 'remove'); }));
+            this.memory.clear();
+            this.meta.forEach((/**
+             * @param {?} key
+             * @return {?}
+             */
+            function (key) { return _this.store.remove(_this.cog.prefix + key); }));
+        };
         Object.defineProperty(CacheService.prototype, "freq", {
             // #endregion
             // #region notify
@@ -514,10 +520,10 @@
          * @private
          * @return {?}
          */
-            function () {
-                this.checkExpireNotify();
-                this.runExpireNotify();
-            };
+        function () {
+            this.checkExpireNotify();
+            this.runExpireNotify();
+        };
         /**
          * @private
          * @return {?}
@@ -526,15 +532,16 @@
          * @private
          * @return {?}
          */
+        function () {
+            var _this = this;
+            this.freqTime = setTimeout((/**
+             * @return {?}
+             */
             function () {
-                var _this = this;
-                this.freqTime = setTimeout(( /**
-                 * @return {?}
-                 */function () {
-                    _this.checkExpireNotify();
-                    _this.runExpireNotify();
-                }), this.freqTick);
-            };
+                _this.checkExpireNotify();
+                _this.runExpireNotify();
+            }), this.freqTick);
+        };
         /**
          * @private
          * @return {?}
@@ -543,26 +550,28 @@
          * @private
          * @return {?}
          */
-            function () {
-                var _this = this;
-                /** @type {?} */
-                var removed = [];
-                this.notifyBuffer.forEach(( /**
-                 * @param {?} v
-                 * @param {?} key
-                 * @return {?}
-                 */function (v, key) {
-                    if (_this.has(key) && _this.getNone(key) === null)
-                        removed.push(key);
-                }));
-                removed.forEach(( /**
-                 * @param {?} key
-                 * @return {?}
-                 */function (key) {
-                    _this.runNotify(key, 'expire');
-                    _this._remove(key, false);
-                }));
-            };
+        function () {
+            var _this = this;
+            /** @type {?} */
+            var removed = [];
+            this.notifyBuffer.forEach((/**
+             * @param {?} v
+             * @param {?} key
+             * @return {?}
+             */
+            function (v, key) {
+                if (_this.has(key) && _this.getNone(key) === null)
+                    removed.push(key);
+            }));
+            removed.forEach((/**
+             * @param {?} key
+             * @return {?}
+             */
+            function (key) {
+                _this.runNotify(key, 'expire');
+                _this._remove(key, false);
+            }));
+        };
         /**
          * @private
          * @return {?}
@@ -571,9 +580,9 @@
          * @private
          * @return {?}
          */
-            function () {
-                clearTimeout(this.freqTime);
-            };
+        function () {
+            clearTimeout(this.freqTime);
+        };
         /**
          * @private
          * @param {?} key
@@ -586,11 +595,11 @@
          * @param {?} type
          * @return {?}
          */
-            function (key, type) {
-                if (!this.notifyBuffer.has(key))
-                    return;
-                this.notifyBuffer.get(key).next({ type: type, value: this.getNone(key) });
-            };
+        function (key, type) {
+            if (!this.notifyBuffer.has(key))
+                return;
+            this.notifyBuffer.get(key).next({ type: type, value: this.getNone(key) });
+        };
         /**
          * `key` 监听，当 `key` 变更、过期、移除时通知，注意以下若干细节：
          *
@@ -613,14 +622,14 @@
          * @param {?} key
          * @return {?}
          */
-            function (key) {
-                if (!this.notifyBuffer.has(key)) {
-                    /** @type {?} */
-                    var change$ = new rxjs.BehaviorSubject(this.getNone(key));
-                    this.notifyBuffer.set(key, change$);
-                }
-                return this.notifyBuffer.get(key).asObservable();
-            };
+        function (key) {
+            if (!this.notifyBuffer.has(key)) {
+                /** @type {?} */
+                var change$ = new rxjs.BehaviorSubject(this.getNone(key));
+                this.notifyBuffer.set(key, change$);
+            }
+            return this.notifyBuffer.get(key).asObservable();
+        };
         /**
          * 取消 `key` 监听
          */
@@ -634,12 +643,12 @@
          * @param {?} key
          * @return {?}
          */
-            function (key) {
-                if (!this.notifyBuffer.has(key))
-                    return;
-                this.notifyBuffer.get(key).unsubscribe();
-                this.notifyBuffer.delete(key);
-            };
+        function (key) {
+            if (!this.notifyBuffer.has(key))
+                return;
+            this.notifyBuffer.get(key).unsubscribe();
+            this.notifyBuffer.delete(key);
+        };
         /** `key` 是否已经监听 */
         /**
          * `key` 是否已经监听
@@ -651,9 +660,9 @@
          * @param {?} key
          * @return {?}
          */
-            function (key) {
-                return this.notifyBuffer.has(key);
-            };
+        function (key) {
+            return this.notifyBuffer.has(key);
+        };
         /** 清空所有 `key` 的监听 */
         /**
          * 清空所有 `key` 的监听
@@ -663,40 +672,39 @@
          * 清空所有 `key` 的监听
          * @return {?}
          */
-            function () {
-                this.notifyBuffer.forEach(( /**
-                 * @param {?} v
-                 * @return {?}
-                 */function (v) { return v.unsubscribe(); }));
-                this.notifyBuffer.clear();
-            };
+        function () {
+            this.notifyBuffer.forEach((/**
+             * @param {?} v
+             * @return {?}
+             */
+            function (v) { return v.unsubscribe(); }));
+            this.notifyBuffer.clear();
+        };
         // #endregion
         // #endregion
         /**
          * @return {?}
          */
-        CacheService.prototype.ngOnDestroy =
-            // #endregion
-            /**
-             * @return {?}
-             */
-            function () {
-                this.memory.clear();
-                this.abortExpireNotify();
-                this.clearNotify();
-            };
+        CacheService.prototype.ngOnDestroy = 
+        // #endregion
+        /**
+         * @return {?}
+         */
+        function () {
+            this.memory.clear();
+            this.abortExpireNotify();
+            this.clearNotify();
+        };
         CacheService.decorators = [
-            { type: i0.Injectable, args: [{ providedIn: 'root' },] }
+            { type: core.Injectable, args: [{ providedIn: 'root' },] }
         ];
         /** @nocollapse */
-        CacheService.ctorParameters = function () {
-            return [
-                { type: DelonCacheConfig },
-                { type: undefined, decorators: [{ type: i0.Inject, args: [DC_STORE_STORAGE_TOKEN,] }] },
-                { type: i3.HttpClient }
-            ];
-        };
-        /** @nocollapse */ CacheService.ngInjectableDef = i0.defineInjectable({ factory: function CacheService_Factory() { return new CacheService(i0.inject(DelonCacheConfig), i0.inject(DC_STORE_STORAGE_TOKEN), i0.inject(i3.HttpClient)); }, token: CacheService, providedIn: "root" });
+        CacheService.ctorParameters = function () { return [
+            { type: DelonCacheConfig },
+            { type: undefined, decorators: [{ type: core.Inject, args: [DC_STORE_STORAGE_TOKEN,] }] },
+            { type: http.HttpClient }
+        ]; };
+        /** @nocollapse */ CacheService.ngInjectableDef = core.defineInjectable({ factory: function CacheService_Factory() { return new CacheService(core.inject(DelonCacheConfig), core.inject(DC_STORE_STORAGE_TOKEN), core.inject(http.HttpClient)); }, token: CacheService, providedIn: "root" });
         return CacheService;
     }());
 
@@ -708,15 +716,10 @@
         function DelonCacheModule() {
         }
         DelonCacheModule.decorators = [
-            { type: i0.NgModule, args: [{},] }
+            { type: core.NgModule, args: [{},] }
         ];
         return DelonCacheModule;
     }());
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
 
     exports.CacheService = CacheService;
     exports.DelonCacheConfig = DelonCacheConfig;
@@ -727,6 +730,5 @@
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
-})));
-
+}));
 //# sourceMappingURL=cache.umd.js.map

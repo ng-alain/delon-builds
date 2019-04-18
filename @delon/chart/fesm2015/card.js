@@ -1,7 +1,7 @@
 import { __decorate, __metadata } from 'tslib';
-import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, NgModule } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ChangeDetectorRef, Input, NgModule } from '@angular/core';
 import { InputBoolean, DelonUtilModule } from '@delon/util';
+import { CommonModule } from '@angular/common';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 
 /**
@@ -98,5 +98,4 @@ G2CardModule.decorators = [
  */
 
 export { G2CardComponent, G2CardModule };
-
 //# sourceMappingURL=card.js.map

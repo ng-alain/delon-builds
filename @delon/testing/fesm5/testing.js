@@ -1,7 +1,7 @@
+import { tick, TestBed, flush, discardPeriodicTasks, getTestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NzDropDownDirective } from 'ng-zorro-antd';
 import { __awaiter, __generator } from 'tslib';
-import { tick, discardPeriodicTasks, flush, TestBed, getTestBed } from '@angular/core/testing';
 
 /**
  * @fileoverview added by tsickle
@@ -832,6 +832,5 @@ function (component) {
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { dispatchEvent, dispatchFakeEvent, dispatchKeyboardEvent, dispatchMouseEvent, dispatchTouchEvent, createMouseEvent, createTouchEvent, createKeyboardEvent, createFakeEvent, typeInElement, dispatchDropDown, DROPDOWN_MIN_TIME, checkDelay, PageG2DataCount, PageG2Height, PageG2, TestContext, configureTestSuite, createTestContext };
-
+export { DROPDOWN_MIN_TIME, PageG2, PageG2DataCount, PageG2Height, TestContext, checkDelay, configureTestSuite, createFakeEvent, createKeyboardEvent, createMouseEvent, createTestContext, createTouchEvent, dispatchDropDown, dispatchEvent, dispatchFakeEvent, dispatchKeyboardEvent, dispatchMouseEvent, dispatchTouchEvent, typeInElement };
 //# sourceMappingURL=testing.js.map

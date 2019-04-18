@@ -1,9 +1,9 @@
 import { __assign } from 'tslib';
 import { HttpClient } from '@angular/common/http';
+import { defineInjectable, Injectable, InjectionToken, Inject, inject, NgModule } from '@angular/core';
 import addSeconds from 'date-fns/add_seconds';
-import { of, BehaviorSubject, Observable } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
-import { Injectable, InjectionToken, NgModule, defineInjectable, Inject, inject } from '@angular/core';
+import { Observable, of, BehaviorSubject } from 'rxjs';
+import { tap, map } from 'rxjs/operators';
 
 /**
  * @fileoverview added by tsickle
@@ -700,5 +700,4 @@ var DelonCacheModule = /** @class */ (function () {
  */
 
 export { CacheService, DelonCacheConfig, DelonCacheModule, DC_STORE_STORAGE_TOKEN as ɵa, DC_STORE_STORAGE_TOKEN_FACTORY as ɵb, LocalStorageCacheService as ɵc };
-
 //# sourceMappingURL=cache.js.map

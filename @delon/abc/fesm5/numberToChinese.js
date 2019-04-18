@@ -1,6 +1,6 @@
 import { __assign, __read } from 'tslib';
-import { CommonModule } from '@angular/common';
 import { Pipe, NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 /**
  * @fileoverview added by tsickle
@@ -225,6 +225,5 @@ var NumberToChineseModule = /** @class */ (function () {
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { numberToChinese, NaNumberToChinesePipe, NumberToChineseModule };
-
+export { NaNumberToChinesePipe, NumberToChineseModule, numberToChinese };
 //# sourceMappingURL=numberToChinese.js.map

@@ -1,10 +1,10 @@
-import { ActivationEnd, ActivationStart, Router } from '@angular/router';
+import { __decorate, __metadata, __spread } from 'tslib';
+import { DOCUMENT, CommonModule } from '@angular/common';
+import { Injectable, defineInjectable, Component, ChangeDetectionStrategy, ElementRef, ChangeDetectorRef, Inject, Input, Output, EventEmitter, Directive, NgModule } from '@angular/core';
+import { ActivationStart, ActivationEnd, Router } from '@angular/router';
+import { InputBoolean, InputNumber, DelonUtilModule } from '@delon/util';
 import { BehaviorSubject, fromEvent } from 'rxjs';
 import { share, debounceTime, filter } from 'rxjs/operators';
-import { __spread, __decorate, __metadata } from 'tslib';
-import { DOCUMENT, CommonModule } from '@angular/common';
-import { Injectable, Directive, defineInjectable, NgModule, EventEmitter, Component, ChangeDetectionStrategy, ElementRef, ChangeDetectorRef, Inject, Input, Output } from '@angular/core';
-import { InputBoolean, InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
@@ -330,6 +330,5 @@ var FullContentModule = /** @class */ (function () {
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { FullContentComponent, FullContentService, FullContentToggleDirective, FullContentModule };
-
+export { FullContentComponent, FullContentModule, FullContentService, FullContentToggleDirective };
 //# sourceMappingURL=fullContent.js.map

@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common'), require('@angular/core'), require('@delon/util')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/image', ['exports', '@angular/common', '@angular/core', '@delon/util'], factory) :
-    (factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.image = {}),global.ng.common,global.ng.core,global.delon.util));
-}(this, (function (exports,common,i0,util) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util'), require('@angular/common')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/image', ['exports', '@angular/core', '@delon/util', '@angular/common'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.image = {}), global.ng.core, global.delon.util, global.ng.common));
+}(this, function (exports, core, util, common) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -23,56 +23,46 @@
     See the Apache Version 2.0 License for specific language governing permissions
     and limitations under the License.
     ***************************************************************************** */
-    var __assign = function () {
+
+    var __assign = function() {
         __assign = Object.assign || function __assign(t) {
             for (var s, i = 1, n = arguments.length; i < n; i++) {
                 s = arguments[i];
-                for (var p in s)
-                    if (Object.prototype.hasOwnProperty.call(s, p))
-                        t[p] = s[p];
+                for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
             }
             return t;
         };
         return __assign.apply(this, arguments);
     };
+
     function __decorate(decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-        if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
-            r = Reflect.decorate(decorators, target, key, desc);
-        else
-            for (var i = decorators.length - 1; i >= 0; i--)
-                if (d = decorators[i])
-                    r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+        if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+        else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
         return c > 3 && r && Object.defineProperty(target, key, r), r;
     }
+
     function __metadata(metadataKey, metadataValue) {
-        if (typeof Reflect === "object" && typeof Reflect.metadata === "function")
-            return Reflect.metadata(metadataKey, metadataValue);
+        if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(metadataKey, metadataValue);
     }
+
     function __read(o, n) {
         var m = typeof Symbol === "function" && o[Symbol.iterator];
-        if (!m)
-            return o;
+        if (!m) return o;
         var i = m.call(o), r, ar = [], e;
         try {
-            while ((n === void 0 || n-- > 0) && !(r = i.next()).done)
-                ar.push(r.value);
+            while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
         }
-        catch (error) {
-            e = { error: error };
-        }
+        catch (error) { e = { error: error }; }
         finally {
             try {
-                if (r && !r.done && (m = i["return"]))
-                    m.call(i);
+                if (r && !r.done && (m = i["return"])) m.call(i);
             }
-            finally {
-                if (e)
-                    throw e.error;
-            }
+            finally { if (e) throw e.error; }
         }
         return ar;
     }
+
     function __spread() {
         for (var ar = [], i = 0; i < arguments.length; i++)
             ar = ar.concat(__read(arguments[i]));
@@ -95,9 +85,9 @@
             this.error = './assets/img/logo.svg';
         }
         ImageConfig.decorators = [
-            { type: i0.Injectable, args: [{ providedIn: 'root' },] }
+            { type: core.Injectable, args: [{ providedIn: 'root' },] }
         ];
-        /** @nocollapse */ ImageConfig.ngInjectableDef = i0.defineInjectable({ factory: function ImageConfig_Factory() { return new ImageConfig(); }, token: ImageConfig, providedIn: "root" });
+        /** @nocollapse */ ImageConfig.ngInjectableDef = core.defineInjectable({ factory: function ImageConfig_Factory() { return new ImageConfig(); }, token: ImageConfig, providedIn: "root" });
         return ImageConfig;
     }());
 
@@ -126,11 +116,11 @@
         ImageDirective.prototype.ngOnInit = /**
          * @return {?}
          */
-            function () {
-                this.update();
-                this.updateError();
-                this.inited = true;
-            };
+        function () {
+            this.update();
+            this.updateError();
+            this.inited = true;
+        };
         /**
          * @param {?} changes
          * @return {?}
@@ -139,16 +129,16 @@
          * @param {?} changes
          * @return {?}
          */
-            function (changes) {
-                if (!this.inited)
-                    return;
-                if (changes.error) {
-                    this.updateError();
-                }
-                else {
-                    this.update();
-                }
-            };
+        function (changes) {
+            if (!this.inited)
+                return;
+            if (changes.error) {
+                this.updateError();
+            }
+            else {
+                this.update();
+            }
+        };
         /**
          * @private
          * @return {?}
@@ -157,34 +147,35 @@
          * @private
          * @return {?}
          */
-            function () {
-                var _this = this;
+        function () {
+            var _this = this;
+            /** @type {?} */
+            var newSrc = this.src;
+            var _a = this, size = _a.size, render = _a.render, el = _a.el;
+            if (newSrc.includes('qlogo.cn')) {
                 /** @type {?} */
-                var newSrc = this.src;
-                var _a = this, size = _a.size, render = _a.render, el = _a.el;
-                if (newSrc.includes('qlogo.cn')) {
-                    /** @type {?} */
-                    var arr = newSrc.split('/');
-                    /** @type {?} */
-                    var imgSize = arr[arr.length - 1];
-                    arr[arr.length - 1] = imgSize === '0' || +imgSize !== size ? size.toString() : imgSize;
-                    newSrc = arr.join('/');
-                }
+                var arr = newSrc.split('/');
                 /** @type {?} */
-                var isHttp = newSrc.startsWith('http:');
-                /** @type {?} */
-                var isHttps = newSrc.startsWith('https:');
-                if (isHttp || isHttps) {
-                    newSrc = newSrc.substr(isHttp ? 5 : 6);
-                }
-                render.setAttribute(el.nativeElement, 'src', newSrc);
-                ['height', 'width'].forEach(( /**
-                 * @param {?} v
-                 * @return {?}
-                 */function (v) {
-                    return render.setAttribute(_this.el.nativeElement, v, size.toString());
-                }));
-            };
+                var imgSize = arr[arr.length - 1];
+                arr[arr.length - 1] = imgSize === '0' || +imgSize !== size ? size.toString() : imgSize;
+                newSrc = arr.join('/');
+            }
+            /** @type {?} */
+            var isHttp = newSrc.startsWith('http:');
+            /** @type {?} */
+            var isHttps = newSrc.startsWith('https:');
+            if (isHttp || isHttps) {
+                newSrc = newSrc.substr(isHttp ? 5 : 6);
+            }
+            render.setAttribute(el.nativeElement, 'src', newSrc);
+            ['height', 'width'].forEach((/**
+             * @param {?} v
+             * @return {?}
+             */
+            function (v) {
+                return render.setAttribute(_this.el.nativeElement, v, size.toString());
+            }));
+        };
         /**
          * @private
          * @return {?}
@@ -193,27 +184,25 @@
          * @private
          * @return {?}
          */
-            function () {
-                this.render.setAttribute(this.el.nativeElement, 'onerror', "this.src='" + this.error + "'");
-            };
+        function () {
+            this.render.setAttribute(this.el.nativeElement, 'onerror', "this.src='" + this.error + "'");
+        };
         ImageDirective.decorators = [
-            { type: i0.Directive, args: [{
+            { type: core.Directive, args: [{
                         selector: '[_src]',
                         exportAs: 'srcDirective',
                     },] }
         ];
         /** @nocollapse */
-        ImageDirective.ctorParameters = function () {
-            return [
-                { type: ImageConfig },
-                { type: i0.ElementRef },
-                { type: i0.Renderer2 }
-            ];
-        };
+        ImageDirective.ctorParameters = function () { return [
+            { type: ImageConfig },
+            { type: core.ElementRef },
+            { type: core.Renderer2 }
+        ]; };
         ImageDirective.propDecorators = {
-            src: [{ type: i0.Input, args: ['_src',] }],
-            size: [{ type: i0.Input }],
-            error: [{ type: i0.Input }]
+            src: [{ type: core.Input, args: ['_src',] }],
+            size: [{ type: core.Input }],
+            error: [{ type: core.Input }]
         };
         __decorate([
             util.InputNumber(),
@@ -232,7 +221,7 @@
         function ImageModule() {
         }
         ImageModule.decorators = [
-            { type: i0.NgModule, args: [{
+            { type: core.NgModule, args: [{
                         imports: [common.CommonModule, util.DelonUtilModule],
                         declarations: __spread(DIRECTIVES),
                         exports: __spread(DIRECTIVES),
@@ -241,22 +230,11 @@
         return ImageModule;
     }());
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-
-    exports.ImageDirective = ImageDirective;
     exports.ImageConfig = ImageConfig;
+    exports.ImageDirective = ImageDirective;
     exports.ImageModule = ImageModule;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
-})));
-
+}));
 //# sourceMappingURL=image.umd.js.map

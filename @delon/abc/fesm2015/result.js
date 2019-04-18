@@ -1,5 +1,5 @@
-import { CommonModule } from '@angular/common';
 import { Component, Input, NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { DelonUtilModule } from '@delon/util';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 
@@ -72,5 +72,4 @@ ResultModule.decorators = [
  */
 
 export { ResultComponent, ResultModule };
-
 //# sourceMappingURL=result.js.map

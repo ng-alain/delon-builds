@@ -1,7 +1,7 @@
-import { __spread, __decorate, __metadata } from 'tslib';
-import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Input, Renderer2, NgModule } from '@angular/core';
+import { __decorate, __metadata, __spread } from 'tslib';
+import { Component, ChangeDetectionStrategy, ChangeDetectorRef, ElementRef, Renderer2, Input, NgModule } from '@angular/core';
 import { InputNumber, DelonUtilModule } from '@delon/util';
+import { CommonModule } from '@angular/common';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 
 /**
@@ -143,5 +143,4 @@ var QuickMenuModule = /** @class */ (function () {
  */
 
 export { QuickMenuComponent, QuickMenuModule };
-
 //# sourceMappingURL=quickMenu.js.map

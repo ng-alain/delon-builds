@@ -1,7 +1,7 @@
-import { __spread, __decorate, __metadata } from 'tslib';
+import { __decorate, __metadata, __spread } from 'tslib';
+import { Component, ChangeDetectionStrategy, ChangeDetectorRef, NgZone, ViewChild, Input, NgModule } from '@angular/core';
+import { InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, NgZone, ViewChild, NgModule } from '@angular/core';
-import { InputBoolean, InputNumber, DelonUtilModule } from '@delon/util';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 
 /**
@@ -326,5 +326,4 @@ var G2RadarModule = /** @class */ (function () {
  */
 
 export { G2RadarComponent, G2RadarModule };
-
 //# sourceMappingURL=radar.js.map

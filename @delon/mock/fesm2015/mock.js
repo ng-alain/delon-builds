@@ -1,7 +1,7 @@
-import { of, throwError } from 'rxjs';
-import { delay } from 'rxjs/operators';
-import { HttpErrorResponse, HttpResponse, HttpResponseBase, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Injectable, Injector, NgModule } from '@angular/core';
+import { HttpErrorResponse, HttpResponseBase, HttpResponse, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { throwError, of } from 'rxjs';
+import { delay } from 'rxjs/operators';
 
 /**
  * @fileoverview added by tsickle
@@ -482,6 +482,5 @@ DelonMockModule.decorators = [
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { MockStatusError, MockService, MockInterceptor, DelonMockConfig, DelonMockModule };
-
+export { DelonMockConfig, DelonMockModule, MockInterceptor, MockService, MockStatusError };
 //# sourceMappingURL=mock.js.map

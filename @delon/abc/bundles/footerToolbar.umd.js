@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common'), require('@angular/core'), require('@delon/abc/error-collect'), require('@delon/util')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/footer-toolbar', ['exports', '@angular/common', '@angular/core', '@delon/abc/error-collect', '@delon/util'], factory) :
-    (factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['footer-toolbar'] = {}),global.ng.common,global.ng.core,global.delon.abc['error-collect'],global.delon.util));
-}(this, (function (exports,common,core,errorCollect,util) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common'), require('@angular/core'), require('@delon/util'), require('@delon/abc/error-collect')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/footer-toolbar', ['exports', '@angular/common', '@angular/core', '@delon/util', '@delon/abc/error-collect'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['footer-toolbar'] = {}), global.ng.common, global.ng.core, global.delon.util, global.delon.abc['error-collect']));
+}(this, function (exports, common, core, util, errorCollect) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -23,44 +23,35 @@
     See the Apache Version 2.0 License for specific language governing permissions
     and limitations under the License.
     ***************************************************************************** */
+
     function __decorate(decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-        if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
-            r = Reflect.decorate(decorators, target, key, desc);
-        else
-            for (var i = decorators.length - 1; i >= 0; i--)
-                if (d = decorators[i])
-                    r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+        if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+        else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
         return c > 3 && r && Object.defineProperty(target, key, r), r;
     }
+
     function __metadata(metadataKey, metadataValue) {
-        if (typeof Reflect === "object" && typeof Reflect.metadata === "function")
-            return Reflect.metadata(metadataKey, metadataValue);
+        if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(metadataKey, metadataValue);
     }
+
     function __read(o, n) {
         var m = typeof Symbol === "function" && o[Symbol.iterator];
-        if (!m)
-            return o;
+        if (!m) return o;
         var i = m.call(o), r, ar = [], e;
         try {
-            while ((n === void 0 || n-- > 0) && !(r = i.next()).done)
-                ar.push(r.value);
+            while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
         }
-        catch (error) {
-            e = { error: error };
-        }
+        catch (error) { e = { error: error }; }
         finally {
             try {
-                if (r && !r.done && (m = i["return"]))
-                    m.call(i);
+                if (r && !r.done && (m = i["return"])) m.call(i);
             }
-            finally {
-                if (e)
-                    throw e.error;
-            }
+            finally { if (e) throw e.error; }
         }
         return ar;
     }
+
     function __spread() {
         for (var ar = [], i = 0; i < arguments.length; i++)
             ar = ar.concat(__read(arguments[i]));
@@ -84,7 +75,8 @@
             get: /**
              * @private
              * @return {?}
-             */ function () {
+             */
+            function () {
                 return this.doc.querySelector('body').classList;
             },
             enumerable: true,
@@ -96,19 +88,19 @@
         FooterToolbarComponent.prototype.ngOnInit = /**
          * @return {?}
          */
-            function () {
-                this.renderer.addClass(this.el.nativeElement, 'footer-toolbar');
-                this.bodyCls.add(CLSBODY);
-            };
+        function () {
+            this.renderer.addClass(this.el.nativeElement, 'footer-toolbar');
+            this.bodyCls.add(CLSBODY);
+        };
         /**
          * @return {?}
          */
         FooterToolbarComponent.prototype.ngOnDestroy = /**
          * @return {?}
          */
-            function () {
-                this.bodyCls.remove(CLSBODY);
-            };
+        function () {
+            this.bodyCls.remove(CLSBODY);
+        };
         FooterToolbarComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'footer-toolbar',
@@ -117,13 +109,11 @@
                     }] }
         ];
         /** @nocollapse */
-        FooterToolbarComponent.ctorParameters = function () {
-            return [
-                { type: core.ElementRef },
-                { type: core.Renderer2 },
-                { type: undefined, decorators: [{ type: core.Inject, args: [common.DOCUMENT,] }] }
-            ];
-        };
+        FooterToolbarComponent.ctorParameters = function () { return [
+            { type: core.ElementRef },
+            { type: core.Renderer2 },
+            { type: undefined, decorators: [{ type: core.Inject, args: [common.DOCUMENT,] }] }
+        ]; };
         FooterToolbarComponent.propDecorators = {
             errorCollect: [{ type: core.Input }],
             extra: [{ type: core.Input }]
@@ -154,21 +144,10 @@
         return FooterToolbarModule;
     }());
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-
     exports.FooterToolbarComponent = FooterToolbarComponent;
     exports.FooterToolbarModule = FooterToolbarModule;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
-})));
-
+}));
 //# sourceMappingURL=footerToolbar.umd.js.map

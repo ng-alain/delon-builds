@@ -1,6 +1,6 @@
 import { __decorate, __metadata } from 'tslib';
 import { DOCUMENT, CommonModule } from '@angular/common';
-import { Injectable, defineInjectable, NgModule, Component, ChangeDetectionStrategy, ElementRef, ChangeDetectorRef, Inject, Input } from '@angular/core';
+import { Injectable, defineInjectable, Component, ChangeDetectionStrategy, ElementRef, ChangeDetectorRef, Inject, Input, NgModule } from '@angular/core';
 import { InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
@@ -195,5 +195,4 @@ ErrorCollectModule.decorators = [
  */
 
 export { ErrorCollectComponent, ErrorCollectConfig, ErrorCollectModule };
-
 //# sourceMappingURL=errorCollect.js.map

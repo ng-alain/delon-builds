@@ -1,9 +1,9 @@
 import { __decorate, __metadata } from 'tslib';
-import { fromEvent } from 'rxjs';
-import { debounceTime, filter } from 'rxjs/operators';
-import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, ElementRef, Input, NgZone, NgModule } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ElementRef, NgZone, Input, NgModule } from '@angular/core';
 import { InputNumber, DelonUtilModule } from '@delon/util';
+import { fromEvent } from 'rxjs';
+import { filter, debounceTime } from 'rxjs/operators';
+import { CommonModule } from '@angular/common';
 
 /**
  * @fileoverview added by tsickle
@@ -236,5 +236,4 @@ G2TagCloudModule.decorators = [
  */
 
 export { G2TagCloudComponent, G2TagCloudModule };
-
 //# sourceMappingURL=tag-cloud.js.map

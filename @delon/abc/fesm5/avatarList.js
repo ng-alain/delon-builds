@@ -1,7 +1,7 @@
-import { InputNumber } from '@delon/util';
-import { __spread, __decorate, __metadata } from 'tslib';
-import { CommonModule } from '@angular/common';
 import { Component, Input, ChangeDetectionStrategy, ChangeDetectorRef, ContentChildren, NgModule } from '@angular/core';
+import { __decorate, __metadata, __spread } from 'tslib';
+import { InputNumber } from '@delon/util';
+import { CommonModule } from '@angular/common';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 
 /**
@@ -156,6 +156,5 @@ var AvatarListModule = /** @class */ (function () {
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { AvatarListItemComponent, AvatarListComponent, AvatarListModule };
-
+export { AvatarListComponent, AvatarListItemComponent, AvatarListModule };
 //# sourceMappingURL=avatarList.js.map

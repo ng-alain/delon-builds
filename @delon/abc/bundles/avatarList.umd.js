@@ -4,10 +4,59 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@delon/util'), require('@angular/common'), require('@angular/core'), require('ng-zorro-antd')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/avatar-list', ['exports', '@delon/util', '@angular/common', '@angular/core', 'ng-zorro-antd'], factory) :
-    (factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['avatar-list'] = {}),global.delon.util,global.ng.common,global.ng.core,global['ng-zorro-antd']));
-}(this, (function (exports,util,common,core,ngZorroAntd) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util'), require('@angular/common'), require('ng-zorro-antd')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/avatar-list', ['exports', '@angular/core', '@delon/util', '@angular/common', 'ng-zorro-antd'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['avatar-list'] = {}), global.ng.core, global.delon.util, global.ng.common, global['ng-zorro-antd']));
+}(this, function (exports, core, util, common, ngZorroAntd) { 'use strict';
+
+    /*! *****************************************************************************
+    Copyright (c) Microsoft Corporation. All rights reserved.
+    Licensed under the Apache License, Version 2.0 (the "License"); you may not use
+    this file except in compliance with the License. You may obtain a copy of the
+    License at http://www.apache.org/licenses/LICENSE-2.0
+
+    THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+    KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
+    WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
+    MERCHANTABLITY OR NON-INFRINGEMENT.
+
+    See the Apache Version 2.0 License for specific language governing permissions
+    and limitations under the License.
+    ***************************************************************************** */
+
+    function __decorate(decorators, target, key, desc) {
+        var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+        if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+        else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+        return c > 3 && r && Object.defineProperty(target, key, r), r;
+    }
+
+    function __metadata(metadataKey, metadataValue) {
+        if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(metadataKey, metadataValue);
+    }
+
+    function __read(o, n) {
+        var m = typeof Symbol === "function" && o[Symbol.iterator];
+        if (!m) return o;
+        var i = m.call(o), r, ar = [], e;
+        try {
+            while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
+        }
+        catch (error) { e = { error: error }; }
+        finally {
+            try {
+                if (r && !r.done && (m = i["return"])) m.call(i);
+            }
+            finally { if (e) throw e.error; }
+        }
+        return ar;
+    }
+
+    function __spread() {
+        for (var ar = [], i = 0; i < arguments.length; i++)
+            ar = ar.concat(__read(arguments[i]));
+        return ar;
+    }
 
     /**
      * @fileoverview added by tsickle
@@ -31,64 +80,6 @@
         return AvatarListItemComponent;
     }());
 
-    /*! *****************************************************************************
-    Copyright (c) Microsoft Corporation. All rights reserved.
-    Licensed under the Apache License, Version 2.0 (the "License"); you may not use
-    this file except in compliance with the License. You may obtain a copy of the
-    License at http://www.apache.org/licenses/LICENSE-2.0
-
-    THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-    KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
-    WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
-    MERCHANTABLITY OR NON-INFRINGEMENT.
-
-    See the Apache Version 2.0 License for specific language governing permissions
-    and limitations under the License.
-    ***************************************************************************** */
-    function __decorate(decorators, target, key, desc) {
-        var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-        if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
-            r = Reflect.decorate(decorators, target, key, desc);
-        else
-            for (var i = decorators.length - 1; i >= 0; i--)
-                if (d = decorators[i])
-                    r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-        return c > 3 && r && Object.defineProperty(target, key, r), r;
-    }
-    function __metadata(metadataKey, metadataValue) {
-        if (typeof Reflect === "object" && typeof Reflect.metadata === "function")
-            return Reflect.metadata(metadataKey, metadataValue);
-    }
-    function __read(o, n) {
-        var m = typeof Symbol === "function" && o[Symbol.iterator];
-        if (!m)
-            return o;
-        var i = m.call(o), r, ar = [], e;
-        try {
-            while ((n === void 0 || n-- > 0) && !(r = i.next()).done)
-                ar.push(r.value);
-        }
-        catch (error) {
-            e = { error: error };
-        }
-        finally {
-            try {
-                if (r && !r.done && (m = i["return"]))
-                    m.call(i);
-            }
-            finally {
-                if (e)
-                    throw e.error;
-            }
-        }
-        return ar;
-    }
-    function __spread() {
-        for (var ar = [], i = 0; i < arguments.length; i++)
-            ar = ar.concat(__read(arguments[i]));
-        return ar;
-    }
-
     /**
      * @fileoverview added by tsickle
      * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
@@ -107,7 +98,8 @@
             set: /**
              * @param {?} value
              * @return {?}
-             */ function (value) {
+             */
+            function (value) {
                 this.cls = 'avatar-list__item' + (value === 'default' ? '' : " avatar-list__" + value);
                 switch (value) {
                     case 'large':
@@ -131,39 +123,39 @@
          * @private
          * @return {?}
          */
-            function () {
-                var _items = this._items;
-                /** @type {?} */
-                var maxLength = this.maxLength > 0 ? this.maxLength : _items.length;
-                /** @type {?} */
-                var numOfChildren = _items.length;
-                /** @type {?} */
-                var numToShow = maxLength > 0 && maxLength >= numOfChildren ? numOfChildren : maxLength;
-                this.items = _items.toArray().slice(0, numToShow);
-                this.exceedCount = numToShow < numOfChildren ? numOfChildren - maxLength : 0;
-                this.cdr.detectChanges();
-            };
+        function () {
+            var _items = this._items;
+            /** @type {?} */
+            var maxLength = this.maxLength > 0 ? this.maxLength : _items.length;
+            /** @type {?} */
+            var numOfChildren = _items.length;
+            /** @type {?} */
+            var numToShow = maxLength > 0 && maxLength >= numOfChildren ? numOfChildren : maxLength;
+            this.items = _items.toArray().slice(0, numToShow);
+            this.exceedCount = numToShow < numOfChildren ? numOfChildren - maxLength : 0;
+            this.cdr.detectChanges();
+        };
         /**
          * @return {?}
          */
         AvatarListComponent.prototype.ngAfterViewInit = /**
          * @return {?}
          */
-            function () {
-                this.gen();
-                this.inited = true;
-            };
+        function () {
+            this.gen();
+            this.inited = true;
+        };
         /**
          * @return {?}
          */
         AvatarListComponent.prototype.ngOnChanges = /**
          * @return {?}
          */
-            function () {
-                if (this.inited) {
-                    this.gen();
-                }
-            };
+        function () {
+            if (this.inited) {
+                this.gen();
+            }
+        };
         AvatarListComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'avatar-list',
@@ -173,11 +165,9 @@
                     }] }
         ];
         /** @nocollapse */
-        AvatarListComponent.ctorParameters = function () {
-            return [
-                { type: core.ChangeDetectorRef }
-            ];
-        };
+        AvatarListComponent.ctorParameters = function () { return [
+            { type: core.ChangeDetectorRef }
+        ]; };
         AvatarListComponent.propDecorators = {
             _items: [{ type: core.ContentChildren, args: [AvatarListItemComponent, { descendants: false },] }],
             size: [{ type: core.Input }],
@@ -210,22 +200,11 @@
         return AvatarListModule;
     }());
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-
-    exports.AvatarListItemComponent = AvatarListItemComponent;
     exports.AvatarListComponent = AvatarListComponent;
+    exports.AvatarListItemComponent = AvatarListItemComponent;
     exports.AvatarListModule = AvatarListModule;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
-})));
-
+}));
 //# sourceMappingURL=avatarList.umd.js.map

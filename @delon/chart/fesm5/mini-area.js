@@ -1,7 +1,7 @@
-import { __spread, __decorate, __metadata } from 'tslib';
+import { __decorate, __metadata, __spread } from 'tslib';
+import { Component, ChangeDetectionStrategy, ElementRef, NgZone, Input, NgModule } from '@angular/core';
+import { InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, ElementRef, Input, NgZone, NgModule } from '@angular/core';
-import { InputBoolean, InputNumber, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
@@ -249,5 +249,4 @@ var G2MiniAreaModule = /** @class */ (function () {
  */
 
 export { G2MiniAreaComponent, G2MiniAreaModule };
-
 //# sourceMappingURL=mini-area.js.map

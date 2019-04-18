@@ -1,8 +1,8 @@
+import { Injectable, defineInjectable, inject, Directive, Input, NgModule } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { LazyService, DelonUtilModule } from '@delon/util';
 import { saveAs } from 'file-saver';
 import { CommonModule } from '@angular/common';
-import { Injectable, Directive, Input, defineInjectable, NgModule, inject } from '@angular/core';
-import { LazyService, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
@@ -233,6 +233,5 @@ XlsxModule.decorators = [
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { XlsxConfig, XlsxService, XlsxDirective, XlsxModule };
-
+export { XlsxConfig, XlsxDirective, XlsxModule, XlsxService };
 //# sourceMappingURL=xlsx.js.map

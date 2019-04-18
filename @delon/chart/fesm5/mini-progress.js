@@ -1,8 +1,8 @@
 import { __decorate, __metadata, __spread } from 'tslib';
-import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, NgModule } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ChangeDetectorRef, Input, NgModule } from '@angular/core';
 import { DelonLocaleService, DelonLocaleModule } from '@delon/theme';
 import { toNumber, InputNumber, DelonUtilModule } from '@delon/util';
+import { CommonModule } from '@angular/common';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 
 /**
@@ -103,5 +103,4 @@ var G2MiniProgressModule = /** @class */ (function () {
  */
 
 export { G2MiniProgressComponent, G2MiniProgressModule };
-
 //# sourceMappingURL=mini-progress.js.map
