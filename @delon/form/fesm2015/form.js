@@ -2991,7 +2991,9 @@ class DateWidget extends ControlWidget {
      * @return {?}
      */
     setEnd(value) {
-        this.endProperty.setValue(value, true);
+        if (this.flatRange) {
+            this.endProperty.setValue(value, true);
+        }
     }
     /**
      * @private
