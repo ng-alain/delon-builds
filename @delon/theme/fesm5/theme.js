@@ -2903,7 +2903,7 @@ var AlainThemeModule = /** @class */ (function () {
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-var VERSION = new Version('7.2.0-a174973d');
+var VERSION = new Version('7.2.0-d60fcc27');
 
 /**
  * @fileoverview added by tsickle
