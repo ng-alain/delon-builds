@@ -240,7 +240,7 @@ class MockService {
         if (ret.martcher) {
             /** @type {?} */
             const execArr = ret.martcher.exec(url);
-            execArr.slice(1).map((/**
+            (/** @type {?} */ (execArr)).slice(1).map((/**
              * @param {?} value
              * @param {?} index
              * @return {?}
@@ -320,7 +320,7 @@ class MockInterceptor {
         /** @type {?} */
         const src = this.injector.get(MockService);
         /** @type {?} */
-        const config = Object.assign({ delay: 300, force: false, log: true, executeOtherInterceptors: true }, this.injector.get(DelonMockConfig, null));
+        const config = Object.assign({ delay: 300, force: false, log: true, executeOtherInterceptors: true }, this.injector.get(DelonMockConfig));
         /** @type {?} */
         const rule = src.getRule(req.method, req.url.split('?')[0]);
         if (!rule && !config.force) {
@@ -328,7 +328,7 @@ class MockInterceptor {
         }
         /** @type {?} */
         let res;
-        switch (typeof rule.callback) {
+        switch (typeof (/** @type {?} */ (rule)).callback) {
             case 'function':
                 /** @type {?} */
                 const mockRequest = {
@@ -336,7 +336,7 @@ class MockInterceptor {
                     body: req.body,
                     queryString: {},
                     headers: {},
-                    params: rule.params,
+                    params: (/** @type {?} */ (rule)).params,
                 };
                 /** @type {?} */
                 const urlParams = req.url.split('?');
@@ -375,7 +375,7 @@ class MockInterceptor {
                  */
                 key => (mockRequest.headers[key] = req.headers.get(key))));
                 try {
-                    res = rule.callback.call(this, mockRequest);
+                    res = (/** @type {?} */ (rule)).callback.call(this, mockRequest);
                 }
                 catch (e) {
                     res = new HttpErrorResponse({
@@ -391,7 +391,7 @@ class MockInterceptor {
                 }
                 break;
             default:
-                res = rule.callback;
+                res = (/** @type {?} */ (rule)).callback;
                 break;
         }
         if (!(res instanceof HttpResponseBase)) {

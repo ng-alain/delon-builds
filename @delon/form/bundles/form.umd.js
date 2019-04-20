@@ -321,7 +321,7 @@
         if (definitions === void 0) { definitions = {}; }
         if (schema.hasOwnProperty('$ref')) {
             /** @type {?} */
-            var $refSchema = findSchemaDefinition(schema.$ref, definitions);
+            var $refSchema = findSchemaDefinition((/** @type {?} */ (schema.$ref)), definitions);
             // remove $ref property
             var $ref = schema.$ref, localSchema = __rest(schema, ["$ref"]);
             return retrieveSchema(__assign({}, $refSchema, localSchema), definitions);
@@ -335,21 +335,21 @@
      */
     function resolveIf(schema, ui) {
         if (!(schema.hasOwnProperty('if') && schema.hasOwnProperty('then')))
-            return;
-        if (!schema.if.properties)
+            return null;
+        if (!(/** @type {?} */ (schema.if)).properties)
             throw new Error("if: does not contain 'properties'");
         /** @type {?} */
-        var allKeys = Object.keys(schema.properties);
+        var allKeys = Object.keys((/** @type {?} */ (schema.properties)));
         /** @type {?} */
-        var ifKeys = Object.keys(schema.if.properties);
+        var ifKeys = Object.keys((/** @type {?} */ ((/** @type {?} */ (schema.if)).properties)));
         detectKey(allKeys, ifKeys);
-        detectKey(allKeys, schema.then.required);
-        schema.required = schema.required.concat(schema.then.required);
+        detectKey(allKeys, (/** @type {?} */ ((/** @type {?} */ (schema.then)).required)));
+        schema.required = (/** @type {?} */ (schema.required)).concat((/** @type {?} */ ((/** @type {?} */ (schema.then)).required)));
         /** @type {?} */
         var hasElse = schema.hasOwnProperty('else');
         if (hasElse) {
-            detectKey(allKeys, schema.else.required);
-            schema.required = schema.required.concat(schema.else.required);
+            detectKey(allKeys, (/** @type {?} */ ((/** @type {?} */ (schema.else)).required)));
+            schema.required = schema.required.concat((/** @type {?} */ ((/** @type {?} */ (schema.else)).required)));
         }
         /** @type {?} */
         var visibleIf = {};
@@ -361,22 +361,22 @@
          */
         function (key) {
             /** @type {?} */
-            var cond = schema.if.properties[key].enum;
+            var cond = (/** @type {?} */ ((/** @type {?} */ (schema.if)).properties))[key].enum;
             visibleIf[key] = cond;
             if (hasElse)
                 visibleElse[key] = (/**
                  * @param {?} value
                  * @return {?}
                  */
-                function (value) { return !cond.includes(value); });
+                function (value) { return !(/** @type {?} */ (cond)).includes(value); });
         }));
-        schema.then.required.forEach((/**
+        (/** @type {?} */ ((/** @type {?} */ (schema.then)).required)).forEach((/**
          * @param {?} key
          * @return {?}
          */
         function (key) { return (ui["$" + key].visibleIf = visibleIf); }));
         if (hasElse)
-            schema.else.required.forEach((/**
+            (/** @type {?} */ ((/** @type {?} */ (schema.else)).required)).forEach((/**
              * @param {?} key
              * @return {?}
              */
@@ -526,9 +526,9 @@
              * @param {?} list
              * @return {?}
              */
-            function (list) { return getEnum(list, formData, schema.readOnly); })));
+            function (list) { return getEnum(list, formData, (/** @type {?} */ (schema.readOnly))); })));
         }
-        return rxjs.of(getCopyEnum(schema.enum, formData, schema.readOnly));
+        return rxjs.of(getCopyEnum((/** @type {?} */ (schema.enum)), formData, (/** @type {?} */ (schema.readOnly))));
     }
 
     /**
@@ -555,7 +555,7 @@
             this.ui = ui;
             this.schemaValidator = schemaValidatorFactory.createValidatorFn(schema, {
                 ingoreKeywords: (/** @type {?} */ (this.ui.ingoreKeywords)),
-                debug: (/** @type {?} */ (((/** @type {?} */ (ui))))).debug,
+                debug: (/** @type {?} */ ((/** @type {?} */ (((/** @type {?} */ (ui))))).debug)),
             });
             this.formData = formData || schema.default;
             this._parent = parent;
@@ -592,7 +592,7 @@
              * @return {?}
              */
             function () {
-                return this.schema.type;
+                return (/** @type {?} */ (this.schema.type));
             },
             enumerable: true,
             configurable: true
@@ -914,7 +914,7 @@
                     /** @type {?} */
                     var message = err._custom === true && err.message
                         ? err.message
-                        : (_this.ui.errors || {})[err.keyword] || _this._options.errors[err.keyword] || "";
+                        : (_this.ui.errors || {})[err.keyword] || (/** @type {?} */ (_this._options.errors))[err.keyword] || "";
                     if (message && typeof message === 'function') {
                         message = (/** @type {?} */ (message(err)));
                     }
@@ -925,7 +925,7 @@
                              * @param {?} key
                              * @return {?}
                              */
-                            function (v, key) { return err.params[key] || ''; }));
+                            function (v, key) { return (/** @type {?} */ (err.params))[key] || ''; }));
                         }
                         err.message = (/** @type {?} */ (message));
                     }
@@ -1093,7 +1093,7 @@
             /** @type {?} */
             var propertyId = subPathIdx !== -1 ? path.substr(0, subPathIdx) : path;
             /** @type {?} */
-            var property = this.properties[propertyId];
+            var property = (/** @type {?} */ (this.properties))[propertyId];
             if (property !== null && subPathIdx !== -1 && property instanceof PropertyGroup) {
                 /** @type {?} */
                 var subPath = path.substr(subPathIdx + 1);
@@ -1282,7 +1282,7 @@
          */
         function (formData) {
             /** @type {?} */
-            var newProperty = (/** @type {?} */ (this.formPropertyFactory.createProperty(this.schema.items, this.ui.$items, formData, this)));
+            var newProperty = (/** @type {?} */ (this.formPropertyFactory.createProperty((/** @type {?} */ (this.schema.items)), this.ui.$items, formData, this)));
             ((/** @type {?} */ (this.properties))).push(newProperty);
             return newProperty;
         };
@@ -1540,18 +1540,18 @@
             /** @type {?} */
             var orderedProperties;
             try {
-                orderedProperties = orderProperties(Object.keys(this.schema.properties), (/** @type {?} */ (this.ui
+                orderedProperties = orderProperties(Object.keys((/** @type {?} */ (this.schema.properties))), (/** @type {?} */ (this.ui
                     .order)));
             }
             catch (e) {
                 console.error("Invalid " + (this.schema.title || 'root') + " object field configuration:", e);
             }
-            orderedProperties.forEach((/**
+            (/** @type {?} */ (orderedProperties)).forEach((/**
              * @param {?} propertyId
              * @return {?}
              */
             function (propertyId) {
-                _this.properties[propertyId] = _this.formPropertyFactory.createProperty(_this.schema.properties[propertyId], _this.ui['$' + propertyId], (_this.formData || {})[propertyId], _this, propertyId);
+                (/** @type {?} */ (_this.properties))[propertyId] = _this.formPropertyFactory.createProperty((/** @type {?} */ (_this.schema.properties))[propertyId], _this.ui['$' + propertyId], (_this.formData || {})[propertyId], _this, propertyId);
                 _this._propertiesId.push(propertyId);
             }));
         };
@@ -1567,8 +1567,8 @@
          */
         function (value, onlySelf) {
             for (var propertyId in value) {
-                if (value.hasOwnProperty(propertyId) && this.properties[propertyId]) {
-                    this.properties[propertyId].setValue(value[propertyId], true);
+                if (value.hasOwnProperty(propertyId) && (/** @type {?} */ (this.properties))[propertyId]) {
+                    (/** @type {?} */ (this.properties))[propertyId].setValue(value[propertyId], true);
                 }
             }
             this.updateValueAndValidity(onlySelf, true);
@@ -1586,7 +1586,7 @@
         function (value, onlySelf) {
             value = value || this.schema.default || {};
             for (var propertyId in this.schema.properties) {
-                this.properties[propertyId].resetValue(value[propertyId], true);
+                (/** @type {?} */ (this.properties))[propertyId].resetValue(value[propertyId], true);
             }
             this.updateValueAndValidity(onlySelf, true);
         };
@@ -1711,12 +1711,12 @@
             }
             if (schema.$ref) {
                 /** @type {?} */
-                var refSchema = retrieveSchema(schema, parent.root.schema.definitions);
+                var refSchema = retrieveSchema(schema, (/** @type {?} */ (parent)).root.schema.definitions);
                 newProperty = this.createProperty(refSchema, ui, formData, parent, path);
             }
             else {
                 // fix required
-                if (propertyId && ((/** @type {?} */ (((/** @type {?} */ (parent)).schema.required || [])))).indexOf(propertyId.split(SEQ).pop()) !== -1) {
+                if (propertyId && ((/** @type {?} */ (((/** @type {?} */ (parent)).schema.required || [])))).indexOf((/** @type {?} */ (propertyId.split(SEQ).pop()))) !== -1) {
                     ui._required = true;
                 }
                 // fix title
@@ -1841,9 +1841,7 @@
         function (schema, extraOptions) {
             var _this = this;
             /** @type {?} */
-            var ingoreKeywords = []
-                .concat(this.options.ingoreKeywords)
-                .concat(extraOptions.ingoreKeywords);
+            var ingoreKeywords = __spread((/** @type {?} */ (this.options.ingoreKeywords)), (/** @type {?} */ (extraOptions.ingoreKeywords)));
             return (/**
              * @param {?} value
              * @return {?}
@@ -2044,9 +2042,9 @@
              * 表单校验结果回调
              */
             this.formError = new core.EventEmitter();
-            this.liveValidate = options.liveValidate;
-            this.firstVisual = options.firstVisual;
-            this.autocomplete = options.autocomplete;
+            this.liveValidate = (/** @type {?} */ (options.liveValidate));
+            this.firstVisual = (/** @type {?} */ (options.firstVisual));
+            this.autocomplete = (/** @type {?} */ (options.autocomplete));
             this.i18n$ = this.i18n.change.subscribe((/**
              * @return {?}
              */
@@ -2137,7 +2135,7 @@
          * @return {?}
          */
         function (path) {
-            return this.rootProperty.searchProperty(path);
+            return (/** @type {?} */ (this.rootProperty)).searchProperty(path);
         };
         /**
          * 根据路径获取表单元素当前值
@@ -2228,7 +2226,7 @@
              * @return {?}
              */
             function (schema, parentSchema, uiSchema, parentUiSchema, uiRes) {
-                Object.keys(schema.properties).forEach((/**
+                Object.keys((/** @type {?} */ (schema.properties))).forEach((/**
                  * @param {?} key
                  * @return {?}
                  */
@@ -2236,7 +2234,7 @@
                     /** @type {?} */
                     var uiKey = "$" + key;
                     /** @type {?} */
-                    var property = retrieveSchema((/** @type {?} */ (schema.properties[key])), definitions);
+                    var property = retrieveSchema((/** @type {?} */ ((/** @type {?} */ (schema.properties))[key])), definitions);
                     /** @type {?} */
                     var ui = (/** @type {?} */ (__assign({ widget: property.type }, (property.format && FORMATMAPS[property.format]), (typeof property.ui === 'string' ? { widget: property.ui } : null), (!property.format && !property.ui && Array.isArray(property.enum) && property.enum.length > 0
                         ? { widget: 'select' }
@@ -2269,7 +2267,7 @@
                     }
                     if (ui.widget === 'date' && ui.end != null) {
                         /** @type {?} */
-                        var dateEndProperty = schema.properties[ui.end];
+                        var dateEndProperty = (/** @type {?} */ (schema.properties))[ui.end];
                         if (dateEndProperty) {
                             dateEndProperty.ui = __assign({}, ((/** @type {?} */ (dateEndProperty.ui))), { hidden: true });
                         }
@@ -2296,13 +2294,13 @@
              * @return {?}
              */
             function (schema, ui) {
-                Object.keys(schema.properties).forEach((/**
+                Object.keys((/** @type {?} */ (schema.properties))).forEach((/**
                  * @param {?} key
                  * @return {?}
                  */
                 function (key) {
                     /** @type {?} */
-                    var property = schema.properties[key];
+                    var property = (/** @type {?} */ (schema.properties))[key];
                     /** @type {?} */
                     var uiKey = "$" + key;
                     resolveIf(property, ui[uiKey]);
@@ -2348,24 +2346,24 @@
             if (this.layout === 'horizontal') {
                 /** @type {?} */
                 var btnUi = firstKey ? this._ui[firstKey] : this._defUi;
-                if (!this._btn.render.grid) {
-                    this._btn.render.grid = {
+                if (!(/** @type {?} */ (this._btn.render)).grid) {
+                    (/** @type {?} */ (this._btn.render)).grid = {
                         offset: btnUi.spanLabel,
                         span: btnUi.spanControl,
                     };
                 }
                 // fixed label
-                if (this._btn.render.spanLabelFixed == null) {
-                    this._btn.render.spanLabelFixed = btnUi.spanLabelFixed;
+                if ((/** @type {?} */ (this._btn.render)).spanLabelFixed == null) {
+                    (/** @type {?} */ (this._btn.render)).spanLabelFixed = btnUi.spanLabelFixed;
                 }
                 // 固定标签宽度时，若不指定样式，则默认居中
-                if (!this._btn.render.class &&
+                if (!(/** @type {?} */ (this._btn.render)).class &&
                     (typeof btnUi.spanLabelFixed === 'number' && btnUi.spanLabelFixed > 0)) {
-                    this._btn.render.class = 'text-center';
+                    (/** @type {?} */ (this._btn.render)).class = 'text-center';
                 }
             }
             else {
-                this._btn.render.grid = {};
+                (/** @type {?} */ (this._btn.render)).grid = {};
             }
             if (this._mode) {
                 this.mode = this._mode;
@@ -2435,7 +2433,7 @@
              */
             function (tpl, path) {
                 /** @type {?} */
-                var property = _this.rootProperty.searchProperty(path);
+                var property = (/** @type {?} */ (_this.rootProperty)).searchProperty(path);
                 if (property == null) {
                     return;
                 }
@@ -2453,12 +2451,12 @@
          * @return {THIS}
          */
         function () {
-            (/** @type {?} */ (this)).rootProperty._runValidation();
+            (/** @type {?} */ ((/** @type {?} */ (this)).rootProperty))._runValidation();
             /** @type {?} */
-            var errors = (/** @type {?} */ (this)).rootProperty.errors;
+            var errors = (/** @type {?} */ ((/** @type {?} */ (this)).rootProperty)).errors;
             (/** @type {?} */ (this))._valid = !(errors && errors.length);
             if (!(/** @type {?} */ (this))._valid)
-                (/** @type {?} */ (this)).formError.emit(errors);
+                (/** @type {?} */ (this)).formError.emit((/** @type {?} */ (errors)));
             (/** @type {?} */ (this)).cdr.detectChanges();
             return (/** @type {?} */ (this));
         };
@@ -2514,7 +2512,7 @@
              */
             function (errors) {
                 (/** @type {?} */ (_this))._valid = !(errors && errors.length);
-                (/** @type {?} */ (_this)).formError.emit(errors);
+                (/** @type {?} */ (_this)).formError.emit((/** @type {?} */ (errors)));
                 (/** @type {?} */ (_this)).cdr.detectChanges();
             }));
             return (/** @type {?} */ (this)).reset();
@@ -2540,7 +2538,7 @@
         function (emit) {
             var _this = this;
             if (emit === void 0) { emit = false; }
-            (/** @type {?} */ (this)).rootProperty.resetValue((/** @type {?} */ (this)).formData, false);
+            (/** @type {?} */ ((/** @type {?} */ (this)).rootProperty)).resetValue((/** @type {?} */ (this)).formData, false);
             Promise.resolve().then((/**
              * @return {?}
              */
@@ -2578,7 +2576,7 @@
         SFComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'sf, [sf]',
-                        template: "<ng-template #con>\n  <ng-content></ng-content>\n</ng-template>\n<form nz-form\n      [nzLayout]=\"layout\"\n      (submit)=\"onSubmit($event)\"\n      [attr.autocomplete]=\"autocomplete\">\n  <sf-item [formProperty]=\"rootProperty\"></sf-item>\n  <ng-container *ngIf=\"button !== 'none'; else con\">\n    <nz-form-item [ngClass]=\"_btn.render.class\"\n                  class=\"sf-btns\"\n                  [fixed-label]=\"_btn.render.spanLabelFixed\">\n      <div nz-col\n           class=\"ant-form-item-control-wrapper\"\n           [nzSpan]=\"_btn.render.grid.span\"\n           [nzOffset]=\"_btn.render.grid.offset\"\n           [nzXs]=\"_btn.render.grid.xs\"\n           [nzSm]=\"_btn.render.grid.sm\"\n           [nzMd]=\"_btn.render.grid.md\"\n           [nzLg]=\"_btn.render.grid.lg\"\n           [nzXl]=\"_btn.render.grid.xl\"\n           [nzXXl]=\"_btn.render.grid.xxl\">\n        <div class=\"ant-form-item-control\">\n          <ng-container *ngIf=\"button; else con\">\n            <button type=\"submit\"\n                    nz-button\n                    [nzType]=\"_btn.submit_type\"\n                    [nzSize]=\"_btn.render.size\"\n                    [nzLoading]=\"loading\"\n                    [disabled]=\"liveValidate && !valid\">{{_btn.submit}}</button>\n            <button *ngIf=\"_btn.reset\"\n                    type=\"button\"\n                    nz-button\n                    [nzType]=\"_btn.reset_type\"\n                    [nzSize]=\"_btn.render.size\"\n                    [disabled]=\"loading\"\n                    (click)=\"reset(true)\">\n              {{_btn.reset}}\n            </button>\n          </ng-container>\n        </div>\n      </div>\n    </nz-form-item>\n  </ng-container>\n</form>\n",
+                        template: "<ng-template #con>\n  <ng-content></ng-content>\n</ng-template>\n<form nz-form\n      [nzLayout]=\"layout\"\n      (submit)=\"onSubmit($event)\"\n      [attr.autocomplete]=\"autocomplete\">\n  <sf-item [formProperty]=\"rootProperty\"></sf-item>\n  <ng-container *ngIf=\"button !== 'none'; else con\">\n    <nz-form-item [ngClass]=\"_btn.render!.class\"\n                  class=\"sf-btns\"\n                  [fixed-label]=\"_btn.render!.spanLabelFixed\">\n      <div nz-col\n           class=\"ant-form-item-control-wrapper\"\n           [nzSpan]=\"_btn.render!.grid!.span\"\n           [nzOffset]=\"_btn.render!.grid!.offset\"\n           [nzXs]=\"_btn.render!.grid!.xs\"\n           [nzSm]=\"_btn.render!.grid!.sm\"\n           [nzMd]=\"_btn.render!.grid!.md\"\n           [nzLg]=\"_btn.render!.grid!.lg\"\n           [nzXl]=\"_btn.render!.grid!.xl\"\n           [nzXXl]=\"_btn.render!.grid!.xxl\">\n        <div class=\"ant-form-item-control\">\n          <ng-container *ngIf=\"button; else con\">\n            <button type=\"submit\"\n                    nz-button\n                    [nzType]=\"_btn.submit_type\"\n                    [nzSize]=\"_btn.render!.size\"\n                    [nzLoading]=\"loading\"\n                    [disabled]=\"liveValidate && !valid\">{{_btn.submit}}</button>\n            <button *ngIf=\"_btn.reset\"\n                    type=\"button\"\n                    nz-button\n                    [nzType]=\"_btn.reset_type\"\n                    [nzSize]=\"_btn.render!.size\"\n                    [disabled]=\"loading\"\n                    (click)=\"reset(true)\">\n              {{_btn.reset}}\n            </button>\n          </ng-container>\n        </div>\n      </div>\n    </nz-form-item>\n  </ng-container>\n</form>\n",
                         providers: [
                             WidgetFactory,
                             {
@@ -2673,7 +2671,7 @@
             this.widget.schema = this.formProperty.schema;
             this.widget.ui = ui;
             this.widget.id = id;
-            this.widget.firstVisual = ui.firstVisual;
+            this.widget.firstVisual = (/** @type {?} */ (ui.firstVisual));
             this.formProperty.widget = widget;
         };
         /**
@@ -2925,7 +2923,7 @@
         function () {
             var _this = this;
             this.formProperty.errorsChanges
-                .pipe(operators.takeUntil(this.sfItemComp.unsubscribe$), operators.filter((/**
+                .pipe(operators.takeUntil((/** @type {?} */ (this.sfItemComp)).unsubscribe$), operators.filter((/**
              * @param {?} w
              * @return {?}
              */
@@ -2939,7 +2937,7 @@
                 // 不显示首次校验视觉
                 if (_this.firstVisual) {
                     _this.showError = errors.length > 0;
-                    _this.error = _this.showError ? errors[0].message : '';
+                    _this.error = _this.showError ? (/** @type {?} */ (errors[0].message)) : '';
                     _this.cd.detectChanges();
                 }
                 _this.firstVisual = true;
@@ -3035,7 +3033,7 @@
         function () {
             var _this = this;
             this.formProperty.errorsChanges
-                .pipe(operators.takeUntil(this.sfItemComp.unsubscribe$))
+                .pipe(operators.takeUntil((/** @type {?} */ (this.sfItemComp)).unsubscribe$))
                 .subscribe((/**
              * @return {?}
              */
@@ -3066,7 +3064,7 @@
         function () {
             var _this = this;
             this.formProperty.errorsChanges
-                .pipe(operators.takeUntil(this.sfItemComp.unsubscribe$))
+                .pipe(operators.takeUntil((/** @type {?} */ (this.sfItemComp)).unsubscribe$))
                 .subscribe((/**
              * @return {?}
              */
@@ -3102,7 +3100,7 @@
              * @return {?}
              */
             function () {
-                return this.formProperty.root.widget.sfComp.locale;
+                return (/** @type {?} */ (this.formProperty.root.widget.sfComp)).locale;
             },
             enumerable: true,
             configurable: true
@@ -3129,7 +3127,7 @@
          * @return {?}
          */
         function () {
-            this.formProperty.add(null);
+            this.formProperty.add((/** @type {?} */ (null)));
         };
         /**
          * @param {?} index
@@ -3206,15 +3204,15 @@
             var orgTime = +(this.ui.debounceTime || 0);
             /** @type {?} */
             var time = Math.max(0, this.isAsync ? Math.max(50, orgTime) : orgTime);
-            this.list = this.ngModel.valueChanges.pipe(operators.debounceTime(time), operators.startWith(''), operators.flatMap((/**
+            this.list = (/** @type {?} */ (this.ngModel.valueChanges)).pipe(operators.debounceTime(time), operators.startWith(''), operators.flatMap((/**
              * @param {?} input
              * @return {?}
              */
-            function (input) { return (_this.isAsync ? _this.ui.asyncData(input) : _this.filterData(input)); })), operators.map((/**
+            function (input) { return (_this.isAsync ? (/** @type {?} */ (_this.ui.asyncData))(input) : _this.filterData(input)); })), operators.map((/**
              * @param {?} res
              * @return {?}
              */
-            function (res) { return getEnum(res, null, _this.schema.readOnly); })));
+            function (res) { return getEnum(res, null, (/** @type {?} */ (_this.schema.readOnly))); })));
         };
         /**
          * @param {?} value
@@ -3230,10 +3228,10 @@
                 return;
             switch (this.ui.type) {
                 case 'email':
-                    this.fixData = getCopyEnum(this.schema.enum || this.formProperty.options.uiEmailSuffixes, null, this.schema.readOnly);
+                    this.fixData = getCopyEnum((/** @type {?} */ (this.schema.enum)) || this.formProperty.options.uiEmailSuffixes, null, (/** @type {?} */ (this.schema.readOnly)));
                     break;
                 default:
-                    this.fixData = getCopyEnum(this.schema.enum, this.formProperty.formData, this.schema.readOnly);
+                    this.fixData = getCopyEnum((/** @type {?} */ (this.schema.enum)), this.formProperty.formData, (/** @type {?} */ (this.schema.readOnly)));
                     break;
             }
         };
@@ -3448,7 +3446,7 @@
              * @return {?}
              */
             function () {
-                return this.formProperty.root.widget.sfComp.locale;
+                return (/** @type {?} */ (this.formProperty.root.widget.sfComp)).locale;
             },
             enumerable: true,
             configurable: true
@@ -3472,7 +3470,7 @@
                 _this.data = list;
                 _this.allChecked = false;
                 _this.indeterminate = false;
-                _this.labelTitle = list.length === 0 ? '' : _this.schema.title;
+                _this.labelTitle = list.length === 0 ? '' : (/** @type {?} */ (_this.schema.title));
                 _this.grid_span = _this.ui.span && _this.ui.span > 0 ? _this.ui.span : 0;
                 _this.updateAllChecked();
                 _this.inited = true;
@@ -3760,7 +3758,7 @@
              * @return {?}
              */
             function () {
-                return this.formProperty.parent.properties[this.ui.end];
+                return (/** @type {?} */ ((/** @type {?} */ (this.formProperty.parent)).properties))[this.ui.end];
             },
             enumerable: true,
             configurable: true
@@ -3842,7 +3840,7 @@
             /** @type {?} */
             var max = typeof this.schema.maximum !== 'undefined' ? this.schema.maximum : -1;
             if (!this.ui.validator && (min !== -1 || max !== -1)) {
-                this.ui.validator = (/**
+                this.ui.validator = (/** @type {?} */ (((/**
                  * @return {?}
                  */
                 function () {
@@ -3855,7 +3853,7 @@
                         return [{ keyword: 'mention', message: "\u6700\u591A\u63D0\u53CA " + max + " \u6B21" }];
                     }
                     return null;
-                });
+                }))));
             }
         };
         /**
@@ -3910,7 +3908,7 @@
              * @param {?} res
              * @return {?}
              */
-            function (res) { return getEnum(res, null, _this.schema.readOnly); })))
+            function (res) { return getEnum(res, null, (/** @type {?} */ (_this.schema.readOnly))); })))
                 .subscribe((/**
              * @param {?} res
              * @return {?}
@@ -4043,16 +4041,16 @@
             var _b = this, formProperty = _b.formProperty, ui = _b.ui;
             var grid = ui.grid, showTitle = ui.showTitle;
             if (!formProperty.isRoot() && !(formProperty.parent instanceof ArrayProperty) && showTitle === true) {
-                this.title = this.schema.title;
+                this.title = (/** @type {?} */ (this.schema.title));
             }
-            this.grid = grid;
+            this.grid = (/** @type {?} */ (grid));
             /** @type {?} */
             var list = [];
             try {
                 for (var _c = __values(formProperty.propertiesId), _d = _c.next(); !_d.done; _d = _c.next()) {
                     var key = _d.value;
                     /** @type {?} */
-                    var property = (/** @type {?} */ (formProperty.properties[key]));
+                    var property = (/** @type {?} */ ((/** @type {?} */ (formProperty.properties))[key]));
                     /** @type {?} */
                     var item = {
                         property: property,
@@ -4881,8 +4879,8 @@
              * @return {?}
              */
             function (res) {
-                e.node.clearChildren();
-                e.node.addChildren(res);
+                (/** @type {?} */ (e.node)).clearChildren();
+                (/** @type {?} */ (e.node)).addChildren(res);
                 _this.detectChanges();
             }));
         };

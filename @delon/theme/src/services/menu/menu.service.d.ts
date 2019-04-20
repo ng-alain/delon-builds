@@ -11,12 +11,12 @@ export declare class MenuService implements OnDestroy {
     private data;
     constructor(i18nSrv: AlainI18NService, aclService: ACLService);
     readonly change: Observable<Menu[]>;
-    visit(data: Menu[], callback: (item: Menu, parentMenum: Menu, depth?: number) => void): void;
+    visit(data: Menu[], callback: (item: Menu, parentMenum: Menu | null, depth?: number) => void): void;
     add(items: Menu[]): void;
     /**
      * 重置菜单，可能I18N、用户权限变动时需要调用刷新
      */
-    resume(callback?: (item: Menu, parentMenum: Menu, depth?: number) => void): void;
+    resume(callback?: (item: Menu, parentMenum: Menu | null, depth?: number) => void): void;
     /**
      * 加载快捷菜单，加载位置规则如下：
      * 1、统一在下标0的节点下（即【主导航】节点下方）
@@ -30,13 +30,13 @@ export declare class MenuService implements OnDestroy {
      * 清空菜单
      */
     clear(): void;
-    getHit(data: Menu[], url: string, recursive?: boolean, cb?: (i: Menu) => void): Menu;
+    getHit(data: Menu[], url: string, recursive?: boolean, cb?: ((i: Menu) => void) | null): Menu | null;
     /**
      * 根据URL设置菜单 `_open` 属性
      * - 若 `recursive: true` 则会自动向上递归查找
      *  - 菜单数据源包含 `/ware`，则 `/ware/1` 也视为 `/ware` 项
      */
-    openedByUrl(url: string, recursive?: boolean): void;
+    openedByUrl(url: string | null, recursive?: boolean): void;
     /**
      * 根据url获取菜单列表
      * - 若 `recursive: true` 则会自动向上递归查找

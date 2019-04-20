@@ -34,7 +34,7 @@ export declare class DelonAuthConfig {
     /**
      * 忽略TOKEN的URL地址列表，默认值为：[ /\/login/, /assets\//, /passport\// ]
      */
-    ignores?: RegExp[];
+    ignores?: RegExp[] | null;
     /**
      * 允许匿名登录KEY，若请求参数中带有该KEY表示忽略TOKEN
      */

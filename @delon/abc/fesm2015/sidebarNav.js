@@ -70,7 +70,7 @@ class SidebarNavComponent {
             return false;
         }
         /** @type {?} */
-        const id = +(/** @type {?} */ (linkNode.dataset)).id;
+        const id = +(/** @type {?} */ ((/** @type {?} */ (linkNode.dataset)).id));
         /** @type {?} */
         let item;
         this.menuSrv.visit(this._d, (/**
@@ -82,7 +82,7 @@ class SidebarNavComponent {
                 item = i;
             }
         }));
-        this.to(item);
+        this.to((/** @type {?} */ (item)));
         this.hideAll();
         e.preventDefault();
         return false;
@@ -124,7 +124,7 @@ class SidebarNavComponent {
         /** @type {?} */
         const id = `_sidebar-nav-${item.__id}`;
         /** @type {?} */
-        const node = (/** @type {?} */ (linkNode.nextElementSibling.cloneNode(true)));
+        const node = (/** @type {?} */ ((/** @type {?} */ (linkNode.nextElementSibling)).cloneNode(true)));
         node.id = id;
         node.classList.add(FLOATINGCLS);
         node.addEventListener('mouseleave', (/**
@@ -215,7 +215,7 @@ class SidebarNavComponent {
         this.ngZone.run((/**
          * @return {?}
          */
-        () => this.router.navigateByUrl(item.link)));
+        () => this.router.navigateByUrl((/** @type {?} */ (item.link)))));
     }
     /**
      * @param {?} item

@@ -111,7 +111,7 @@
              * @return {?}
              */
             function () {
-                return this.formEl.querySelectorAll('.has-error');
+                return (/** @type {?} */ (this.formEl)).querySelectorAll('.has-error');
             },
             enumerable: true,
             configurable: true
@@ -177,7 +177,7 @@
          * @return {?}
          */
         function () {
-            clearInterval(this.$time);
+            clearInterval((/** @type {?} */ (this.$time)));
         };
         /**
          * @private
@@ -196,12 +196,12 @@
             var retEl = null;
             while (el) {
                 if (el.querySelector(selector)) {
-                    retEl = el;
+                    retEl = (/** @type {?} */ (el));
                     break;
                 }
-                el = el.parentElement;
+                el = (/** @type {?} */ (el.parentElement));
             }
-            return retEl;
+            return (/** @type {?} */ (retEl));
         };
         /**
          * @return {?}

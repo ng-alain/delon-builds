@@ -132,11 +132,12 @@ class PageHeaderComponent {
         if (value instanceof TemplateRef) {
             this._title = null;
             this._titleTpl = value;
+            this._titleVal = '';
         }
         else {
             this._title = value;
+            this._titleVal = this._title;
         }
-        this._titleVal = this._title;
     }
     /**
      * @return {?}
@@ -147,18 +148,16 @@ class PageHeaderComponent {
     }
     /**
      * @private
-     * @template THIS
-     * @this {THIS}
-     * @return {THIS}
+     * @return {?}
      */
     genBreadcrumb() {
-        if ((/** @type {?} */ (this)).breadcrumb || !(/** @type {?} */ (this)).autoBreadcrumb || (/** @type {?} */ (this)).menus.length <= 0) {
-            (/** @type {?} */ (this)).paths = [];
+        if (this.breadcrumb || !this.autoBreadcrumb || this.menus.length <= 0) {
+            this.paths = [];
             return;
         }
         /** @type {?} */
         const paths = [];
-        (/** @type {?} */ (this)).menus.forEach((/**
+        this.menus.forEach((/**
          * @param {?} item
          * @return {?}
          */
@@ -167,19 +166,19 @@ class PageHeaderComponent {
                 return;
             /** @type {?} */
             let title = item.text;
-            if (item.i18n && (/** @type {?} */ (this)).i18nSrv)
-                title = (/** @type {?} */ (this)).i18nSrv.fanyi(item.i18n);
-            paths.push({ title, link: item.link && [item.link] });
+            if (item.i18n && this.i18nSrv)
+                title = this.i18nSrv.fanyi(item.i18n);
+            paths.push({ title, link: (/** @type {?} */ ((item.link && [item.link]))) });
         }));
         // add home
-        if ((/** @type {?} */ (this)).home) {
+        if (this.home) {
             paths.splice(0, 0, {
-                title: ((/** @type {?} */ (this)).homeI18n && (/** @type {?} */ (this)).i18nSrv && (/** @type {?} */ (this)).i18nSrv.fanyi((/** @type {?} */ (this)).homeI18n)) || (/** @type {?} */ (this)).home,
-                link: [(/** @type {?} */ (this)).homeLink],
+                title: (this.homeI18n && this.i18nSrv && this.i18nSrv.fanyi(this.homeI18n)) || this.home,
+                link: [this.homeLink],
             });
         }
-        (/** @type {?} */ (this)).paths = paths;
-        return (/** @type {?} */ (this));
+        this.paths = paths;
+        return this;
     }
     /**
      * @private

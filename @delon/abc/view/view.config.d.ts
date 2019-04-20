@@ -10,5 +10,5 @@ export declare class SVConfig {
     /** 是否显示默认值，当内容为空值时显示 `-`，默认：`true` */
     default: boolean;
     /** `label` 固定宽度，若 `null` 或 `undefined` 表示非固定，默认：`null` */
-    labelWidth: any;
+    labelWidth: null;
 }

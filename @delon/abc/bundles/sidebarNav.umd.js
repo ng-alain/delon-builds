@@ -100,7 +100,7 @@
                 return false;
             }
             /** @type {?} */
-            var id = +(/** @type {?} */ (linkNode.dataset)).id;
+            var id = +(/** @type {?} */ ((/** @type {?} */ (linkNode.dataset)).id));
             /** @type {?} */
             var item;
             this.menuSrv.visit(this._d, (/**
@@ -112,7 +112,7 @@
                     item = i;
                 }
             }));
-            this.to(item);
+            this.to((/** @type {?} */ (item)));
             this.hideAll();
             e.preventDefault();
             return false;
@@ -168,7 +168,7 @@
             /** @type {?} */
             var id = "_sidebar-nav-" + item.__id;
             /** @type {?} */
-            var node = (/** @type {?} */ (linkNode.nextElementSibling.cloneNode(true)));
+            var node = (/** @type {?} */ ((/** @type {?} */ (linkNode.nextElementSibling)).cloneNode(true)));
             node.id = id;
             node.classList.add(FLOATINGCLS);
             node.addEventListener('mouseleave', (/**
@@ -283,7 +283,7 @@
             this.ngZone.run((/**
              * @return {?}
              */
-            function () { return _this.router.navigateByUrl(item.link); }));
+            function () { return _this.router.navigateByUrl((/** @type {?} */ (item.link))); }));
         };
         /**
          * @param {?} item

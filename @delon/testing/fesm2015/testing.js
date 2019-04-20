@@ -242,13 +242,13 @@ class PageG2 {
      * @return {?}
      */
     get dl() {
-        return this.fixture.debugElement;
+        return (/** @type {?} */ (this.fixture)).debugElement;
     }
     /**
      * @return {?}
      */
     get context() {
-        return this.fixture.componentInstance;
+        return (/** @type {?} */ (this.fixture)).componentInstance;
     }
     /**
      * @return {?}
@@ -323,8 +323,8 @@ class PageG2 {
      * @return {THIS}
      */
     dc() {
-        (/** @type {?} */ (this)).fixture.changeDetectorRef.markForCheck();
-        (/** @type {?} */ (this)).fixture.detectChanges();
+        (/** @type {?} */ ((/** @type {?} */ (this)).fixture)).changeDetectorRef.markForCheck();
+        (/** @type {?} */ ((/** @type {?} */ (this)).fixture)).detectChanges();
         return (/** @type {?} */ (this));
     }
     /**
@@ -368,7 +368,7 @@ class PageG2 {
      * @return {?}
      */
     getEl(cls) {
-        return ((/** @type {?} */ (this.dl.nativeElement))).querySelector(cls);
+        return (/** @type {?} */ (((/** @type {?} */ (this.dl.nativeElement))).querySelector(cls)));
     }
     /**
      * @template THIS
@@ -390,7 +390,7 @@ class PageG2 {
     isText(cls, value) {
         /** @type {?} */
         const el = (/** @type {?} */ (this)).getEl(cls);
-        expect(el ? el.textContent.trim() : '').toBe(value);
+        expect(el ? (/** @type {?} */ (el.textContent)).trim() : '').toBe(value);
         return (/** @type {?} */ (this));
     }
     /**
@@ -493,7 +493,7 @@ class PageG2 {
         else {
             expect(el != null).toBe(true, `Shoule be has g2-tooltip element`);
             /** @type {?} */
-            const text = el.textContent.trim();
+            const text = (/** @type {?} */ (el.textContent)).trim();
             expect(text.includes(includeText)).toBe(true, `Shoule be include "${includeText}" text of tooltip text context "${text}"`);
         }
         return (/** @type {?} */ (this));

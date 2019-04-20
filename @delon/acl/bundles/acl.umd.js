@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('rxjs'), require('rxjs/operators'), require('@angular/router'), require('@angular/common')) :
-    typeof define === 'function' && define.amd ? define('@delon/acl', ['exports', '@angular/core', 'rxjs', 'rxjs/operators', '@angular/router', '@angular/common'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.acl = {}), global.ng.core, global.rxjs, global.rxjs.operators, global.ng.router, global.ng.common));
-}(this, function (exports, core, rxjs, operators, router, common) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('rxjs'), require('@angular/router'), require('rxjs/operators'), require('@angular/common')) :
+    typeof define === 'function' && define.amd ? define('@delon/acl', ['exports', '@angular/core', 'rxjs', '@angular/router', 'rxjs/operators', '@angular/common'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.acl = {}), global.ng.core, global.rxjs, global.ng.router, global.rxjs.operators, global.ng.common));
+}(this, function (exports, core, rxjs, router, operators, common) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -23,20 +23,6 @@
     See the Apache Version 2.0 License for specific language governing permissions
     and limitations under the License.
     ***************************************************************************** */
-    /* global Reflect, Promise */
-
-    var extendStatics = function(d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-
-    function __extends(d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    }
 
     function __values(o) {
         var m = typeof Symbol === "function" && o[Symbol.iterator], i = 0;
@@ -507,11 +493,7 @@
             this.el = el;
             this.renderer = renderer;
             this.srv = srv;
-            this.change$ = this.srv.change.pipe(operators.filter((/**
-             * @param {?} r
-             * @return {?}
-             */
-            function (r) { return r != null; }))).subscribe((/**
+            this.change$ = this.srv.change.subscribe((/**
              * @return {?}
              */
             function () { return _this.set(_this._value); }));
@@ -539,38 +521,27 @@
             configurable: true
         });
         /**
-         * @protected
+         * @private
          * @param {?} value
          * @return {?}
          */
         ACLDirective.prototype.set = /**
-         * @protected
+         * @private
          * @param {?} value
          * @return {?}
          */
         function (value) {
-            this._value = value;
-            this._updateView();
-        };
-        /**
-         * @protected
-         * @return {?}
-         */
-        ACLDirective.prototype._updateView = /**
-         * @protected
-         * @return {?}
-         */
-        function () {
             /** @type {?} */
             var CLS = 'acl__hide';
             /** @type {?} */
             var el = this.el.nativeElement;
-            if (this.srv.can(this._value)) {
+            if (this.srv.can(value)) {
                 this.renderer.removeClass(el, CLS);
             }
             else {
                 this.renderer.addClass(el, CLS);
             }
+            this._value = value;
         };
         /**
          * @return {?}
@@ -596,60 +567,6 @@
         };
         return ACLDirective;
     }());
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var ACLIfDirective = /** @class */ (function (_super) {
-        __extends(ACLIfDirective, _super);
-        function ACLIfDirective(_viewContainer, templateRef, el, renderer, srv) {
-            var _this = _super.call(this, el, renderer, srv) || this;
-            _this._viewContainer = _viewContainer;
-            _this.templateRef = templateRef;
-            return _this;
-        }
-        Object.defineProperty(ACLIfDirective.prototype, "acl", {
-            set: /**
-             * @param {?} value
-             * @return {?}
-             */
-            function (value) {
-                this.set(value);
-            },
-            enumerable: true,
-            configurable: true
-        });
-        /**
-         * @protected
-         * @return {?}
-         */
-        ACLIfDirective.prototype._updateView = /**
-         * @protected
-         * @return {?}
-         */
-        function () {
-            this._viewContainer.clear();
-            if (this.srv.can(this._value)) {
-                this._viewContainer.createEmbeddedView(this.templateRef);
-            }
-        };
-        ACLIfDirective.decorators = [
-            { type: core.Directive, args: [{ selector: '[aclIf]' },] }
-        ];
-        /** @nocollapse */
-        ACLIfDirective.ctorParameters = function () { return [
-            { type: core.ViewContainerRef },
-            { type: core.TemplateRef },
-            { type: core.ElementRef },
-            { type: core.Renderer2 },
-            { type: ACLService }
-        ]; };
-        ACLIfDirective.propDecorators = {
-            acl: [{ type: core.Input, args: ['aclIf',] }]
-        };
-        return ACLIfDirective;
-    }(ACLDirective));
 
     /**
      * @fileoverview added by tsickle
@@ -691,7 +608,7 @@
             function (v) {
                 if (v)
                     return;
-                _this.router.navigateByUrl(_this.options.guard_url);
+                _this.router.navigateByUrl((/** @type {?} */ (_this.options.guard_url)));
             })));
         };
         // lazy loading
@@ -761,7 +678,7 @@
      * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
-    var COMPONENTS = [ACLDirective, ACLIfDirective];
+    var COMPONENTS = [ACLDirective];
     var DelonACLModule = /** @class */ (function () {
         function DelonACLModule() {
         }
@@ -777,7 +694,6 @@
 
     exports.ACLDirective = ACLDirective;
     exports.ACLGuard = ACLGuard;
-    exports.ACLIfDirective = ACLIfDirective;
     exports.ACLService = ACLService;
     exports.DelonACLConfig = DelonACLConfig;
     exports.DelonACLModule = DelonACLModule;

@@ -30,7 +30,7 @@ function numberToChinese(value, rmb = true, options) {
     /** @type {?} */
     let symbol = '';
     if (integer.startsWith('-')) {
-        symbol = options.minusSymbol;
+        symbol = (/** @type {?} */ (options.minusSymbol));
         integer = integer.substr(1);
     }
     if (/^-?\d+$/.test(value))

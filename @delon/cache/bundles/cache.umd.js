@@ -225,7 +225,7 @@
         function () {
             var _this = this;
             /** @type {?} */
-            var ret = this.store.get(this.cog.meta_key);
+            var ret = this.store.get((/** @type {?} */ (this.cog.meta_key)));
             if (ret && ret.v) {
                 ((/** @type {?} */ (ret.v))).forEach((/**
                  * @param {?} key
@@ -250,7 +250,7 @@
              * @return {?}
              */
             function (key) { return metaData.push(key); }));
-            this.store.set(this.cog.meta_key, { v: metaData, e: 0 });
+            this.store.set((/** @type {?} */ (this.cog.meta_key)), { v: metaData, e: 0 });
         };
         /**
          * @return {?}
@@ -288,7 +288,7 @@
                 e = addSeconds(new Date(), options.expire).valueOf();
             }
             if (!(data instanceof rxjs.Observable)) {
-                this.save(options.type, key, { v: data, e: e });
+                this.save((/** @type {?} */ (options.type)), key, { v: data, e: e });
                 return;
             }
             return data.pipe(operators.tap((/**
@@ -296,7 +296,7 @@
              * @return {?}
              */
             function (v) {
-                _this.save(options.type, key, { v: v, e: e });
+                _this.save((/** @type {?} */ (options.type)), key, { v: v, e: e });
             })));
         };
         /**
@@ -340,7 +340,7 @@
             var isPromise = options.mode !== 'none' && this.cog.mode === 'promise';
             /** @type {?} */
             var value = this.memory.has(key)
-                ? this.memory.get(key)
+                ? (/** @type {?} */ (this.memory.get(key)))
                 : this.store.get(this.cog.prefix + key);
             if (!value || (value.e && value.e > 0 && value.e < new Date().valueOf())) {
                 if (isPromise) {
@@ -352,7 +352,7 @@
                      * @param {?} v
                      * @return {?}
                      */
-                    function (v) { return _this.set(key, v, { type: options.type, expire: options.expire }); })));
+                    function (v) { return _this.set(key, v, { type: (/** @type {?} */ (options.type)), expire: options.expire }); })));
                 }
                 return null;
             }
@@ -598,7 +598,7 @@
         function (key, type) {
             if (!this.notifyBuffer.has(key))
                 return;
-            this.notifyBuffer.get(key).next({ type: type, value: this.getNone(key) });
+            (/** @type {?} */ (this.notifyBuffer.get(key))).next({ type: type, value: this.getNone(key) });
         };
         /**
          * `key` 监听，当 `key` 变更、过期、移除时通知，注意以下若干细节：
@@ -628,7 +628,7 @@
                 var change$ = new rxjs.BehaviorSubject(this.getNone(key));
                 this.notifyBuffer.set(key, change$);
             }
-            return this.notifyBuffer.get(key).asObservable();
+            return (/** @type {?} */ (this.notifyBuffer.get(key))).asObservable();
         };
         /**
          * 取消 `key` 监听
@@ -646,7 +646,7 @@
         function (key) {
             if (!this.notifyBuffer.has(key))
                 return;
-            this.notifyBuffer.get(key).unsubscribe();
+            (/** @type {?} */ (this.notifyBuffer.get(key))).unsubscribe();
             this.notifyBuffer.delete(key);
         };
         /** `key` 是否已经监听 */

@@ -257,9 +257,9 @@ var STColumnSource = /** @class */ (function () {
                         item.modal = {
                             component: item.component,
                             params: item.params,
-                            paramsName: item.paramName || modal.paramsName,
-                            size: item.size || modal.size,
-                            modalOptions: item.modalOptions || modal.modalOptions,
+                            paramsName: item.paramName || (/** @type {?} */ (modal)).paramsName,
+                            size: item.size || (/** @type {?} */ (modal)).size,
+                            modalOptions: item.modalOptions || (/** @type {?} */ (modal)).modalOptions,
                         };
                     }
                     if (item.modal == null || item.modal.component == null) {
@@ -330,7 +330,7 @@ var STColumnSource = /** @class */ (function () {
                      * @return {?}
                      */
                     function () { return true; });
-                if (item.children.length > 0) {
+                if (item.children && item.children.length > 0) {
                     this.btnCoerceIf(item.children);
                 }
             }
@@ -360,7 +360,7 @@ var STColumnSource = /** @class */ (function () {
          * @param {?} b
          * @return {?}
          */
-        function (a, b) { return a + +b.width.toString().replace('px', ''); });
+        function (a, b) { return a + +(/** @type {?} */ (b.width)).toString().replace('px', ''); });
         // left width
         list
             .filter((/**
@@ -458,7 +458,7 @@ var STColumnSource = /** @class */ (function () {
             };
         }
         else {
-            res = item.filter;
+            res = (/** @type {?} */ (item.filter));
         }
         if (res == null || res.menus.length === 0) {
             return null;
@@ -482,7 +482,7 @@ var STColumnSource = /** @class */ (function () {
          * @param {?} w
          * @return {?}
          */
-        function (w) { return w.checked; })) !== -1;
+        function (w) { return (/** @type {?} */ (w.checked)); })) !== -1;
         if (this.acl) {
             res.menus = res.menus.filter((/**
              * @param {?} w
@@ -608,7 +608,7 @@ var STColumnSource = /** @class */ (function () {
                         number: 'text-right',
                         currency: 'text-right',
                         date: 'text-center',
-                    }[item.type];
+                    }[(/** @type {?} */ (item.type))];
                 }
                 // width
                 if (typeof item.width === 'number') {
@@ -617,9 +617,9 @@ var STColumnSource = /** @class */ (function () {
                 // sorter
                 item._sort = this.sortCoerce(item);
                 // filter
-                item.filter = this.filterCoerce(item);
+                item.filter = (/** @type {?} */ (this.filterCoerce(item)));
                 // buttons
-                item.buttons = this.btnCoerce(item.buttons);
+                item.buttons = this.btnCoerce((/** @type {?} */ (item.buttons)));
                 // restore custom row
                 this.restoreRender(item);
                 item.__point = point++;
@@ -736,13 +736,13 @@ var STDataSource = /** @class */ (function () {
                     }
                     else {
                         // list
-                        ret = deepGet(result, (/** @type {?} */ (res.reName.list)), []);
+                        ret = deepGet(result, (/** @type {?} */ ((/** @type {?} */ (res.reName)).list)), []);
                         if (ret == null || !Array.isArray(ret)) {
                             ret = [];
                         }
                         // total
                         /** @type {?} */
-                        var resultTotal = res.reName.total && deepGet(result, (/** @type {?} */ (res.reName.total)), null);
+                        var resultTotal = (/** @type {?} */ (res.reName)).total && deepGet(result, (/** @type {?} */ ((/** @type {?} */ (res.reName)).total)), null);
                         retTotal = resultTotal == null ? total || 0 : +resultTotal;
                     }
                     return deepCopy(ret);
@@ -798,7 +798,7 @@ var STDataSource = /** @class */ (function () {
                      */
                     function (c) {
                         /** @type {?} */
-                        var values = c.filter.menus.filter((/**
+                        var values = (/** @type {?} */ (c.filter)).menus.filter((/**
                          * @param {?} w
                          * @return {?}
                          */
@@ -806,7 +806,7 @@ var STDataSource = /** @class */ (function () {
                         if (values.length === 0)
                             return;
                         /** @type {?} */
-                        var onFilter = c.filter.fn;
+                        var onFilter = (/** @type {?} */ (c.filter)).fn;
                         if (typeof onFilter !== 'function') {
                             console.warn("[st] Muse provide the fn function in filter");
                             return;
@@ -847,7 +847,7 @@ var STDataSource = /** @class */ (function () {
                  * @param {?} result
                  * @return {?}
                  */
-                function (result) { return res.process(result); })));
+                function (result) { return (/** @type {?} */ (res.process))(result); })));
             }
             // data accelerator
             data$ = data$.pipe(map((/**
@@ -939,7 +939,7 @@ var STDataSource = /** @class */ (function () {
                 ret = this.datePipe.transform(value, col.dateFormat);
                 break;
             case 'yn':
-                ret = this.ynPipe.transform(value === col.yn.truth, col.yn.yes, col.yn.no);
+                ret = this.ynPipe.transform(value === (/** @type {?} */ (col.yn)).truth, (/** @type {?} */ ((/** @type {?} */ (col.yn)).yes)), (/** @type {?} */ ((/** @type {?} */ (col.yn)).no)));
                 break;
         }
         return { text: ret == null ? '' : ret, org: value };
@@ -963,16 +963,18 @@ var STDataSource = /** @class */ (function () {
         var method = (req.method || 'GET').toUpperCase();
         /** @type {?} */
         var params = {};
+        /** @type {?} */
+        var reName = (/** @type {?} */ (req.reName));
         if (req.type === 'page') {
             params = (_a = {},
-                _a[req.reName.pi] = page.zeroIndexed ? pi - 1 : pi,
-                _a[req.reName.ps] = ps,
+                _a[(/** @type {?} */ (reName.pi))] = page.zeroIndexed ? pi - 1 : pi,
+                _a[(/** @type {?} */ (reName.ps))] = ps,
                 _a);
         }
         else {
             params = (_b = {},
-                _b[req.reName.skip] = (pi - 1) * ps,
-                _b[req.reName.limit] = ps,
+                _b[(/** @type {?} */ (reName.skip))] = (pi - 1) * ps,
+                _b[(/** @type {?} */ (reName.limit))] = ps,
                 _b);
         }
         params = __assign({}, params, req.params, this.getReqSortMap(singleSort, multiSort, columns), this.getReqFilterMap(columns));
@@ -1006,7 +1008,7 @@ var STDataSource = /** @class */ (function () {
      * @return {?}
      */
     function (item, col, idx) {
-        return typeof col.noIndex === 'function' ? col.noIndex(item, col, idx) : col.noIndex + idx;
+        return typeof col.noIndex === 'function' ? col.noIndex(item, col, idx) : (/** @type {?} */ (col.noIndex)) + idx;
     };
     // #region sort
     // #region sort
@@ -1062,7 +1064,7 @@ var STDataSource = /** @class */ (function () {
          */
         function (a, b) {
             /** @type {?} */
-            var result = sortList[0].compare(a, b);
+            var result = (/** @type {?} */ (sortList[0].compare))(a, b);
             if (result !== 0) {
                 return sortList[0].default === 'descend' ? -result : result;
             }
@@ -1113,7 +1115,7 @@ var STDataSource = /** @class */ (function () {
                  * @param {?} item
                  * @return {?}
                  */
-                function (item) { return item.key + ms_1.nameSeparator + ((item.reName || {})[item.default] || item.default); }))
+                function (item) { return item.key + ms_1.nameSeparator + ((item.reName || {})[(/** @type {?} */ (item.default))] || item.default); }))
                     .join(ms_1.separator),
                 _a);
         }
@@ -1123,12 +1125,12 @@ var STDataSource = /** @class */ (function () {
             /** @type {?} */
             var sortFiled = mapData.key;
             /** @type {?} */
-            var sortValue = (sortList[0].reName || {})[mapData.default] || mapData.default;
+            var sortValue = (sortList[0].reName || {})[(/** @type {?} */ (mapData.default))] || mapData.default;
             if (singleSort) {
                 sortValue = sortFiled + (singleSort.nameSeparator || '.') + sortValue;
                 sortFiled = singleSort.key || 'sort';
             }
-            ret[sortFiled] = sortValue;
+            ret[(/** @type {?} */ (sortFiled))] = (/** @type {?} */ (sortValue));
         }
         return ret;
     };
@@ -1164,18 +1166,18 @@ var STDataSource = /** @class */ (function () {
          */
         function (col) {
             /** @type {?} */
-            var values = col.filter.menus.filter((/**
+            var values = (/** @type {?} */ (col.filter)).menus.filter((/**
              * @param {?} f
              * @return {?}
              */
             function (f) { return f.checked === true; }));
             /** @type {?} */
             var obj = {};
-            if (col.filter.reName) {
-                obj = col.filter.reName(col.filter.menus, col);
+            if ((/** @type {?} */ (col.filter)).reName) {
+                obj = (/** @type {?} */ ((/** @type {?} */ (col.filter)).reName))((/** @type {?} */ (col.filter)).menus, col);
             }
             else {
-                obj[col.filter.key] = values.map((/**
+                obj[(/** @type {?} */ ((/** @type {?} */ (col.filter)).key))] = values.map((/**
                  * @param {?} i
                  * @return {?}
                  */
@@ -1241,7 +1243,7 @@ var STDataSource = /** @class */ (function () {
         /** @type {?} */
         var val = col.statistical;
         /** @type {?} */
-        var item = __assign({ digits: 2, currency: null }, (typeof val === 'string' ? { type: (/** @type {?} */ (val)) } : ((/** @type {?} */ (val)))));
+        var item = __assign({ digits: 2, currency: undefined }, (typeof val === 'string' ? { type: (/** @type {?} */ (val)) } : ((/** @type {?} */ (val)))));
         /** @type {?} */
         var res = { value: 0 };
         /** @type {?} */
@@ -1265,11 +1267,11 @@ var STDataSource = /** @class */ (function () {
                     function (value, idx, self) { return self.indexOf(value) === idx; })).length;
                     break;
                 case 'sum':
-                    res.value = this.toFixed(this.getSum(index, list), item.digits);
+                    res.value = this.toFixed(this.getSum(index, list), (/** @type {?} */ (item.digits)));
                     currency = true;
                     break;
                 case 'average':
-                    res.value = this.toFixed(this.getSum(index, list) / list.length, item.digits);
+                    res.value = this.toFixed(this.getSum(index, list) / list.length, (/** @type {?} */ (item.digits)));
                     currency = true;
                     break;
                 case 'max':
@@ -1283,7 +1285,7 @@ var STDataSource = /** @class */ (function () {
             }
         }
         if (item.currency === true || (item.currency == null && currency === true)) {
-            res.text = this.currentyPipe.transform(res.value);
+            res.text = (/** @type {?} */ (this.currentyPipe.transform(res.value)));
         }
         else {
             res.text = String(res.value);
@@ -1426,7 +1428,7 @@ var STExport = /** @class */ (function () {
         /** @type {?} */
         var sheet = (sheets[opt.sheetname || 'Sheet1'] = {});
         /** @type {?} */
-        var colData = opt._c.filter((/**
+        var colData = (/** @type {?} */ (opt._c)).filter((/**
          * @param {?} w
          * @return {?}
          */
@@ -1434,7 +1436,7 @@ var STExport = /** @class */ (function () {
         /** @type {?} */
         var cc = colData.length;
         /** @type {?} */
-        var dc = opt._d.length;
+        var dc = (/** @type {?} */ (opt._d)).length;
         // column
         for (var i = 0; i < cc; i++) {
             sheet[String.fromCharCode(i + 65) + "1"] = {
@@ -1445,7 +1447,7 @@ var STExport = /** @class */ (function () {
         // content
         for (var i = 0; i < dc; i++) {
             for (var j = 0; j < cc; j++) {
-                sheet["" + String.fromCharCode(j + 65) + (i + 2)] = this._stGet(opt._d[i], colData[j]);
+                sheet["" + String.fromCharCode(j + 65) + (i + 2)] = this._stGet((/** @type {?} */ (opt._d))[i], colData[j]);
             }
         }
         if (cc > 0 && dc > 0) {
@@ -1733,7 +1735,7 @@ var STComponent = /** @class */ (function () {
      * @return {?}
      */
     function (column) {
-        return column.width && this.widthMode.strictBehavior === 'truncate';
+        return !!column.width && this.widthMode.strictBehavior === 'truncate';
     };
     /**
      * @param {?} column
@@ -1831,8 +1833,8 @@ var STComponent = /** @class */ (function () {
             if (typeof result.pageShow !== 'undefined') {
                 _this._isPagination = result.pageShow;
             }
-            _this._data = result.list;
-            _this._statistical = result.statistical;
+            _this._data = (/** @type {?} */ (result.list));
+            _this._statistical = (/** @type {?} */ (result.statistical));
             return _this._data;
         }))
             .then((/**
@@ -2006,12 +2008,12 @@ var STComponent = /** @class */ (function () {
         /** @type {?} */
         var el = (/** @type {?} */ (this.el.nativeElement));
         if (this.scroll) {
-            el.querySelector('.ant-table-body').scrollTo(0, 0);
+            (/** @type {?} */ (el.querySelector('.ant-table-body'))).scrollTo(0, 0);
             return;
         }
         el.scrollIntoView();
         // fix header height
-        this.doc.documentElement.scrollTop -= this.page.toTopOffset;
+        this.doc.documentElement.scrollTop -= (/** @type {?} */ (this.page.toTopOffset));
     };
     /**
      * @param {?} type
@@ -2047,7 +2049,7 @@ var STComponent = /** @class */ (function () {
         e.preventDefault();
         e.stopPropagation();
         /** @type {?} */
-        var res = col.click(item, this);
+        var res = (/** @type {?} */ (col.click))(item, this);
         if (typeof res === 'string') {
             this.router.navigateByUrl(res, { state: this.routerState });
         }
@@ -2236,11 +2238,11 @@ var STComponent = /** @class */ (function () {
      * @return {?}
      */
     function (col) {
-        col.filter.default = col.filter.menus.findIndex((/**
+        (/** @type {?} */ (col.filter)).default = (/** @type {?} */ (col.filter)).menus.findIndex((/**
          * @param {?} w
          * @return {?}
          */
-        function (w) { return w.checked; })) !== -1;
+        function (w) { return (/** @type {?} */ (w.checked)); })) !== -1;
         this._load();
         this.changeEmit('filter', col);
     };
@@ -2264,7 +2266,7 @@ var STComponent = /** @class */ (function () {
      * @return {?}
      */
     function (col) {
-        col.filter.menus.forEach((/**
+        (/** @type {?} */ (col.filter)).menus.forEach((/**
          * @param {?} i
          * @return {?}
          */
@@ -2284,7 +2286,7 @@ var STComponent = /** @class */ (function () {
      * @return {?}
      */
     function (col, item, checked) {
-        col.filter.menus.forEach((/**
+        (/** @type {?} */ (col.filter)).menus.forEach((/**
          * @param {?} i
          * @return {?}
          */
@@ -2313,8 +2315,8 @@ var STComponent = /** @class */ (function () {
          * @return {?}
          */
         function (col) {
-            col.filter.default = false;
-            col.filter.menus.forEach((/**
+            (/** @type {?} */ (col.filter)).default = false;
+            (/** @type {?} */ (col.filter)).menus.forEach((/**
              * @param {?} f
              * @return {?}
              */
@@ -2556,8 +2558,8 @@ var STComponent = /** @class */ (function () {
         if (btn.type === 'modal' || btn.type === 'static') {
             var modal = btn.modal;
             /** @type {?} */
-            var obj = (_a = {}, _a[modal.paramsName] = record, _a);
-            ((/** @type {?} */ (this.modalHelper[btn.type === 'modal' ? 'create' : 'createStatic'])))(modal.component, __assign({}, obj, (modal.params && modal.params(record))), deepMergeKey({}, true, this.copyCog.modal, modal))
+            var obj = (_a = {}, _a[(/** @type {?} */ ((/** @type {?} */ (modal)).paramsName))] = record, _a);
+            ((/** @type {?} */ (this.modalHelper[btn.type === 'modal' ? 'create' : 'createStatic'])))((/** @type {?} */ (modal)).component, __assign({}, obj, ((/** @type {?} */ (modal)).params != null ? (/** @type {?} */ ((/** @type {?} */ (modal)).params))(record) : {})), deepMergeKey({}, true, this.copyCog.modal, modal))
                 .pipe(filter((/**
              * @param {?} w
              * @return {?}
@@ -2573,9 +2575,9 @@ var STComponent = /** @class */ (function () {
         else if (btn.type === 'drawer') {
             var drawer = btn.drawer;
             /** @type {?} */
-            var obj = (_b = {}, _b[drawer.paramsName] = record, _b);
+            var obj = (_b = {}, _b[(/** @type {?} */ ((/** @type {?} */ (drawer)).paramsName))] = record, _b);
             this.drawerHelper
-                .create(drawer.title, drawer.component, __assign({}, obj, (drawer.params && drawer.params(record))), deepMergeKey({}, true, this.copyCog.drawer, drawer))
+                .create((/** @type {?} */ ((/** @type {?} */ (drawer)).title)), (/** @type {?} */ (drawer)).component, __assign({}, obj, ((/** @type {?} */ (drawer)).params != null ? (/** @type {?} */ ((/** @type {?} */ (drawer)).params))(record) : {})), deepMergeKey({}, true, this.copyCog.drawer, drawer))
                 .pipe(filter((/**
              * @param {?} w
              * @return {?}
@@ -2655,11 +2657,11 @@ var STComponent = /** @class */ (function () {
      * @return {?}
      */
     function (item, col) {
-        return col.buttons.filter((/**
+        return (/** @type {?} */ (col.buttons)).filter((/**
          * @param {?} btn
          * @return {?}
          */
-        function (btn) { return btn.iif(item, btn, col); }));
+        function (btn) { return (/** @type {?} */ (btn.iif))(item, btn, col); }));
     };
     // #endregion
     // #region export

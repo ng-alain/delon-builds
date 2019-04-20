@@ -185,7 +185,7 @@ class ReuseTabContextService {
         const instance = comp.instance;
         instance.i18n = this.i18n;
         instance.item = Object.assign({}, item);
-        instance.customContextMenu = customContextMenu;
+        instance.customContextMenu = (/** @type {?} */ (customContextMenu));
         instance.event = event;
         /** @type {?} */
         const sub$ = new Subscription();
@@ -523,7 +523,7 @@ class ReuseTabService {
     }
     /**
      * 获取指定路径缓存
-     * @param {?} url
+     * @param {?=} url
      * @return {?}
      */
     get(url) {
@@ -759,7 +759,7 @@ class ReuseTabService {
         const segments = [];
         while (next) {
             segments.push(next.url.join('/'));
-            next = next.parent;
+            next = (/** @type {?} */ (next.parent));
         }
         /** @type {?} */
         const url = '/' +
@@ -913,7 +913,7 @@ class ReuseTabService {
                  * @param {?} w
                  * @return {?}
                  */
-                w => w.closable));
+                w => (/** @type {?} */ (w.closable))));
                 if (closeIdx !== -1)
                     this.remove(closeIdx, false);
             }
@@ -944,8 +944,8 @@ class ReuseTabService {
         /** @type {?} */
         const ret = !!(data && data._handle);
         this.di('#shouldAttach', ret, url);
-        if (ret && data._handle.componentRef) {
-            this.runHook('_onReuseInit', url, data._handle.componentRef);
+        if (ret && (/** @type {?} */ (data))._handle.componentRef) {
+            this.runHook('_onReuseInit', url, (/** @type {?} */ (data))._handle.componentRef);
         }
         return ret;
     }
@@ -1064,7 +1064,7 @@ class ReuseTabService {
                         setTimeout((/**
                          * @return {?}
                          */
-                        () => this.ss.scrollToPosition(this.keepingScrollContainer, item.position)), 1);
+                        () => this.ss.scrollToPosition(this.keepingScrollContainer, (/** @type {?} */ (item.position)))), 1);
                     }
                 }
             }
@@ -1161,7 +1161,7 @@ class ReuseTabComponent {
          * @param {?} w
          * @return {?}
          */
-        w => w.url === notify.url)) : -1;
+        w => w.url === (/** @type {?} */ (notify)).url)) : -1;
         /** @type {?} */
         const ls = this.srv.items.map((/**
          * @param {?} item
@@ -1191,7 +1191,7 @@ class ReuseTabComponent {
             w => w.url === url));
             // jump directly when the current exists in the list
             // or create a new current item and jump
-            if (idx !== -1 || (isClosed && notify.url === url)) {
+            if (idx !== -1 || (isClosed && (/** @type {?} */ (notify)).url === url)) {
                 this.pos = isClosed ? (idx >= beforeClosePos ? this.pos - 1 : this.pos) : idx;
             }
             else {
@@ -1234,11 +1234,11 @@ class ReuseTabComponent {
      * @return {?}
      */
     get acitveIndex() {
-        return this.list.find((/**
+        return (/** @type {?} */ (this.list.find((/**
          * @param {?} w
          * @return {?}
          */
-        w => w.active)).index;
+        w => w.active)))).index;
     }
     /**
      * @param {?} res
@@ -1246,7 +1246,7 @@ class ReuseTabComponent {
      */
     cmChange(res) {
         /** @type {?} */
-        let fn;
+        let fn = null;
         switch (res.type) {
             case 'close':
                 this._close(null, res.item.index, res.includeNonCloseable);
@@ -1305,7 +1305,7 @@ class ReuseTabComponent {
      * @return {?}
      */
     to(e, index, cb) {
-        if (e) {
+        if (e != null) {
             e.preventDefault();
             e.stopPropagation();
         }
@@ -1335,7 +1335,7 @@ class ReuseTabComponent {
      * @return {?}
      */
     _close(e, idx, includeNonCloseable) {
-        if (e) {
+        if (e != null) {
             e.preventDefault();
             e.stopPropagation();
         }
@@ -1365,7 +1365,7 @@ class ReuseTabComponent {
          * @param {?} res
          * @return {?}
          */
-        res => this.genList(res)));
+        res => this.genList((/** @type {?} */ (res)))));
         this.i18nSrv.change
             .pipe(filter((/**
          * @return {?}

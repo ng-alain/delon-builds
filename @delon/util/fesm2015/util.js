@@ -68,7 +68,7 @@ class StringTemplateOutletDirective {
             /** use input template when input is templateRef **/
             this.viewContainer.clear();
             this.defaultViewRef = null;
-            this.inputViewRef = this.viewContainer.createEmbeddedView(this.inputTemplate);
+            this.inputViewRef = this.viewContainer.createEmbeddedView((/** @type {?} */ (this.inputTemplate)));
         }
     }
 }
@@ -141,7 +141,7 @@ function copy(value) {
      */
     (resolve, reject) => {
         /** @type {?} */
-        let copyTextArea = (/** @type {?} */ (null));
+        let copyTextArea = null;
         try {
             copyTextArea = document.createElement('textarea');
             copyTextArea.style.height = '0px';
@@ -628,7 +628,7 @@ function isEmpty(element) {
         if (node.nodeType === 1 && ((/** @type {?} */ (node))).outerHTML.toString().trim().length !== 0) {
             return false;
         }
-        else if (node.nodeType === 3 && node.textContent.toString().trim().length !== 0) {
+        else if (node.nodeType === 3 && (/** @type {?} */ (node.textContent)).toString().trim().length !== 0) {
             return false;
         }
     }
@@ -833,35 +833,36 @@ class ArrayService {
      * @return {?}
      */
     treeToArr(tree, options) {
-        options = Object.assign({ deepMapName: this.c.deepMapName, parentMapName: this.c.parentMapName, childrenMapName: this.c.childrenMapName, clearChildren: true, cb: null }, options);
+        /** @type {?} */
+        const opt = (/** @type {?} */ (Object.assign({ deepMapName: this.c.deepMapName, parentMapName: this.c.parentMapName, childrenMapName: this.c.childrenMapName, clearChildren: true, cb: null }, options)));
         /** @type {?} */
         const result = [];
         /** @type {?} */
         const inFn = (/**
          * @param {?} list
          * @param {?} parent
-         * @param {?} deep
+         * @param {?=} deep
          * @return {?}
          */
-        (list, parent, deep) => {
+        (list, parent, deep = 0) => {
             for (const i of list) {
-                i[options.deepMapName] = deep;
-                i[options.parentMapName] = parent;
-                if (options.cb) {
-                    options.cb(i, parent, deep);
+                i[(/** @type {?} */ (opt.deepMapName))] = deep;
+                i[(/** @type {?} */ (opt.parentMapName))] = parent;
+                if (opt.cb) {
+                    opt.cb(i, parent, deep);
                 }
                 result.push(i);
                 /** @type {?} */
-                const children = i[options.childrenMapName];
+                const children = i[(/** @type {?} */ (opt.childrenMapName))];
                 if (children != null && Array.isArray(children) && children.length > 0) {
                     inFn(children, i, deep + 1);
                 }
-                if (options.clearChildren) {
-                    delete i[options.childrenMapName];
+                if (opt.clearChildren) {
+                    delete i[(/** @type {?} */ (opt.childrenMapName))];
                 }
             }
         });
-        inFn(tree, 1, null);
+        inFn(tree, 1);
         return result;
     }
     /**
@@ -871,20 +872,21 @@ class ArrayService {
      * @return {?}
      */
     arrToTree(arr, options) {
-        options = Object.assign({ idMapName: this.c.idMapName, parentIdMapName: this.c.parentIdMapName, childrenMapName: this.c.childrenMapName, cb: null }, options);
+        /** @type {?} */
+        const opt = (/** @type {?} */ (Object.assign({ idMapName: this.c.idMapName, parentIdMapName: this.c.parentIdMapName, childrenMapName: this.c.childrenMapName, cb: null }, options)));
         /** @type {?} */
         const tree = [];
         /** @type {?} */
         const childrenOf = {};
         for (const item of arr) {
             /** @type {?} */
-            const id = item[options.idMapName];
+            const id = item[(/** @type {?} */ (opt.idMapName))];
             /** @type {?} */
-            const pid = item[options.parentIdMapName];
+            const pid = item[(/** @type {?} */ (opt.parentIdMapName))];
             childrenOf[id] = childrenOf[id] || [];
-            item[options.childrenMapName] = childrenOf[id];
-            if (options.cb) {
-                options.cb(item);
+            item[(/** @type {?} */ (opt.childrenMapName))] = childrenOf[id];
+            if (opt.cb) {
+                opt.cb(item);
             }
             if (pid) {
                 childrenOf[pid] = childrenOf[pid] || [];
@@ -903,11 +905,12 @@ class ArrayService {
      * @return {?}
      */
     arrToTreeNode(arr, options) {
-        options = Object.assign({ idMapName: this.c.idMapName, parentIdMapName: this.c.parentIdMapName, titleMapName: this.c.titleMapName, isLeafMapName: 'isLeaf', checkedMapname: this.c.checkedMapname, selectedMapname: this.c.selectedMapname, expandedMapname: this.c.expandedMapname, disabledMapname: this.c.disabledMapname, cb: null }, options);
+        /** @type {?} */
+        const opt = (/** @type {?} */ (Object.assign({ idMapName: this.c.idMapName, parentIdMapName: this.c.parentIdMapName, titleMapName: this.c.titleMapName, isLeafMapName: 'isLeaf', checkedMapname: this.c.checkedMapname, selectedMapname: this.c.selectedMapname, expandedMapname: this.c.expandedMapname, disabledMapname: this.c.disabledMapname, cb: null }, options)));
         /** @type {?} */
         const tree = this.arrToTree(arr, {
-            idMapName: options.idMapName,
-            parentIdMapName: options.parentIdMapName,
+            idMapName: opt.idMapName,
+            parentIdMapName: opt.parentIdMapName,
             childrenMapName: 'children',
         });
         this.visitTree(tree, (/**
@@ -917,20 +920,20 @@ class ArrayService {
          * @return {?}
          */
         (item, parent, deep) => {
-            item.key = item[options.idMapName];
-            item.title = item[options.titleMapName];
-            item.checked = item[options.checkedMapname];
-            item.selected = item[options.selectedMapname];
-            item.expanded = item[options.expandedMapname];
-            item.disabled = item[options.disabledMapname];
-            if (item[options.isLeafMapName] == null) {
+            item.key = item[(/** @type {?} */ (opt.idMapName))];
+            item.title = item[(/** @type {?} */ (opt.titleMapName))];
+            item.checked = item[(/** @type {?} */ (opt.checkedMapname))];
+            item.selected = item[(/** @type {?} */ (opt.selectedMapname))];
+            item.expanded = item[(/** @type {?} */ (opt.expandedMapname))];
+            item.disabled = item[(/** @type {?} */ (opt.disabledMapname))];
+            if (item[(/** @type {?} */ (opt.isLeafMapName))] == null) {
                 item.isLeaf = item.children.length === 0;
             }
             else {
-                item.isLeaf = item[options.isLeafMapName];
+                item.isLeaf = item[(/** @type {?} */ (opt.isLeafMapName))];
             }
-            if (options.cb) {
-                options.cb(item, parent, deep);
+            if (opt.cb) {
+                opt.cb(item, parent, deep);
             }
         }));
         return tree.map((/**
@@ -959,7 +962,7 @@ class ArrayService {
             for (const item of data) {
                 cb(item, parent, deep);
                 /** @type {?} */
-                const childrenVal = item[options.childrenMapName];
+                const childrenVal = item[(/** @type {?} */ ((/** @type {?} */ (options)).childrenMapName))];
                 if (childrenVal && childrenVal.length > 0) {
                     inFn(childrenVal, item, deep + 1);
                 }
@@ -974,7 +977,8 @@ class ArrayService {
      * @return {?}
      */
     getKeysByTreeNode(tree, options) {
-        options = Object.assign({ includeHalfChecked: true }, options);
+        /** @type {?} */
+        const opt = (/** @type {?} */ (Object.assign({ includeHalfChecked: true }, options)));
         /** @type {?} */
         const keys = [];
         this.visitTree(tree, (/**
@@ -984,11 +988,11 @@ class ArrayService {
          * @return {?}
          */
         (item, parent, deep) => {
-            if (item.isChecked || (options.includeHalfChecked && item.isHalfChecked)) {
-                keys.push(options.cb
-                    ? options.cb(item, parent, deep)
-                    : options.keyMapName
-                        ? item.origin[options.keyMapName]
+            if (item.isChecked || (opt.includeHalfChecked && item.isHalfChecked)) {
+                keys.push(opt.cb
+                    ? opt.cb(item, parent, deep)
+                    : opt.keyMapName
+                        ? item.origin[opt.keyMapName]
                         : item.key);
             }
         }));

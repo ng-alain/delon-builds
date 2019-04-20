@@ -174,7 +174,7 @@ var TokenService = /** @class */ (function () {
      */
     function (data) {
         this.change$.next(data);
-        return this.store.set(this.options.store_key, data);
+        return this.store.set((/** @type {?} */ (this.options.store_key)), data);
     };
     /**
      * @template T
@@ -188,7 +188,7 @@ var TokenService = /** @class */ (function () {
      */
     function (type) {
         /** @type {?} */
-        var data = this.store.get(this.options.store_key);
+        var data = this.store.get((/** @type {?} */ (this.options.store_key)));
         return type ? ((/** @type {?} */ (Object.assign(new type(), data)))) : ((/** @type {?} */ (data)));
     };
     /**
@@ -199,7 +199,7 @@ var TokenService = /** @class */ (function () {
      */
     function () {
         this.change$.next(null);
-        this.store.remove(this.options.store_key);
+        this.store.remove((/** @type {?} */ (this.options.store_key)));
     };
     /**
      * @return {?}
@@ -268,7 +268,7 @@ var SocialService = /** @class */ (function () {
         if (callback === void 0) { callback = '/'; }
         if (options === void 0) { options = {}; }
         options = __assign({ type: 'window', windowFeatures: 'location=yes,height=570,width=520,scrollbars=yes,status=yes' }, options);
-        localStorage.setItem(OPENTYPE, options.type);
+        localStorage.setItem(OPENTYPE, (/** @type {?} */ (options.type)));
         localStorage.setItem(HREFCALLBACK, callback);
         if (options.type === 'href') {
             this.doc.location.href = url;
@@ -332,7 +332,7 @@ var SocialService = /** @class */ (function () {
             data = (/** @type {?} */ (this.router.parseUrl('./?' + rightUrl).queryParams));
         }
         else {
-            data = rawData;
+            data = (/** @type {?} */ (rawData));
         }
         if (!data || !data.token)
             throw new Error("invalide token data");
@@ -483,7 +483,7 @@ function CheckSimple(model) {
  * @return {?}
  */
 function CheckJwt(model, offset) {
-    return model != null && model.token && !model.isExpired(offset);
+    return model != null && !!model.token && !model.isExpired(offset);
 }
 /**
  * @param {?} options
@@ -492,14 +492,14 @@ function CheckJwt(model, offset) {
  * @return {?}
  */
 function ToLogin(options, injector, url) {
-    ((/** @type {?} */ (injector.get(DA_SERVICE_TOKEN)))).referrer.url = url;
+    (/** @type {?} */ (((/** @type {?} */ (injector.get(DA_SERVICE_TOKEN)))).referrer)).url = url;
     if (options.token_invalid_redirect === true) {
         setTimeout((/**
          * @return {?}
          */
         function () {
-            if (/^https?:\/\//g.test(options.login_url)) {
-                injector.get(DOCUMENT).location.href = options.login_url;
+            if (/^https?:\/\//g.test((/** @type {?} */ (options.login_url)))) {
+                injector.get(DOCUMENT).location.href = (/** @type {?} */ (options.login_url));
             }
             else {
                 injector.get(Router).navigate([options.login_url]);
@@ -776,7 +776,7 @@ var JWTInterceptor = /** @class */ (function (_super) {
      */
     function (options) {
         this.model = this.injector.get(DA_SERVICE_TOKEN).get(JWTTokenModel);
-        return CheckJwt((/** @type {?} */ (this.model)), options.token_exp_offset);
+        return CheckJwt((/** @type {?} */ (this.model)), (/** @type {?} */ (options.token_exp_offset)));
     };
     /**
      * @param {?} req
@@ -821,7 +821,7 @@ var JWTGuard = /** @class */ (function () {
      */
     function () {
         /** @type {?} */
-        var res = CheckJwt(this.srv.get(JWTTokenModel), this.cog.token_exp_offset);
+        var res = CheckJwt(this.srv.get(JWTTokenModel), (/** @type {?} */ (this.cog.token_exp_offset)));
         if (!res) {
             ToLogin(this.cog, this.injector, this.url);
         }
@@ -937,8 +937,9 @@ var SimpleInterceptor = /** @class */ (function (_super) {
      */
     function (req, options) {
         var _this = this;
+        var token_send_template = options.token_send_template, token_send_key = options.token_send_key;
         /** @type {?} */
-        var token = options.token_send_template.replace(/\$\{([\w]+)\}/g, (/**
+        var token = (/** @type {?} */ (token_send_template)).replace(/\$\{([\w]+)\}/g, (/**
          * @param {?} _
          * @param {?} g
          * @return {?}
@@ -948,7 +949,7 @@ var SimpleInterceptor = /** @class */ (function (_super) {
             case 'header':
                 /** @type {?} */
                 var obj = {};
-                obj[options.token_send_key] = token;
+                obj[(/** @type {?} */ (token_send_key))] = token;
                 req = req.clone({
                     setHeaders: obj,
                 });
@@ -956,14 +957,14 @@ var SimpleInterceptor = /** @class */ (function (_super) {
             case 'body':
                 /** @type {?} */
                 var body = req.body || {};
-                body[options.token_send_key] = token;
+                body[(/** @type {?} */ (token_send_key))] = token;
                 req = req.clone({
                     body: body,
                 });
                 break;
             case 'url':
                 req = req.clone({
-                    params: req.params.append(options.token_send_key, token),
+                    params: req.params.append((/** @type {?} */ (token_send_key)), token),
                 });
                 break;
         }
@@ -995,7 +996,7 @@ var SimpleGuard = /** @class */ (function () {
      */
     function () {
         /** @type {?} */
-        var res = CheckSimple(this.srv.get());
+        var res = CheckSimple((/** @type {?} */ (this.srv.get())));
         if (!res) {
             ToLogin(this.cog, this.injector, this.url);
         }

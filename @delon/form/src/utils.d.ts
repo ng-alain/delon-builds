@@ -53,7 +53,7 @@ export declare function di(ui: SFUISchema, ...args: any[]): void;
  * 取回Schema，并处理 `$ref` 的关系
  */
 export declare function retrieveSchema(schema: SFSchema, definitions?: SFSchemaDefinition): SFSchema;
-export declare function resolveIf(schema: SFSchema, ui: SFUISchemaItemRun): SFSchema;
+export declare function resolveIf(schema: SFSchema, ui: SFUISchemaItemRun): SFSchema | null;
 export declare function orderProperties(properties: string[], order: string[]): string[];
 export declare function getEnum(list: any[], formData: any, readOnly: boolean): SFSchemaEnum[];
 export declare function getCopyEnum(list: any[], formData: any, readOnly: boolean): SFSchemaEnum[];

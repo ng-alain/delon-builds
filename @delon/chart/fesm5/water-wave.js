@@ -44,7 +44,7 @@ var G2WaterWaveComponent = /** @class */ (function () {
         /** @type {?} */
         var canvas = (/** @type {?} */ (node.nativeElement));
         /** @type {?} */
-        var ctx = canvas.getContext('2d');
+        var ctx = (/** @type {?} */ (canvas.getContext('2d')));
         /** @type {?} */
         var canvasWidth = canvas.width;
         /** @type {?} */
@@ -89,7 +89,7 @@ var G2WaterWaveComponent = /** @class */ (function () {
             arcStack.push([radius + bR * Math.cos(i), radius + bR * Math.sin(i)]);
         }
         /** @type {?} */
-        var cStartPoint = arcStack.shift();
+        var cStartPoint = (/** @type {?} */ (arcStack.shift()));
         ctx.strokeStyle = color;
         ctx.moveTo(cStartPoint[0], cStartPoint[1]);
         /**
@@ -114,7 +114,7 @@ var G2WaterWaveComponent = /** @class */ (function () {
                 sinStack.push([dx, dy]);
             }
             /** @type {?} */
-            var startPoint = sinStack.shift();
+            var startPoint = (/** @type {?} */ (sinStack.shift()));
             ctx.lineTo(xOffset + axisLength, canvasHeight);
             ctx.lineTo(xOffset, canvasHeight);
             ctx.lineTo(startPoint[0], startPoint[1]);
@@ -132,9 +132,9 @@ var G2WaterWaveComponent = /** @class */ (function () {
         function render() {
             ctx.clearRect(0, 0, canvasWidth, canvasHeight);
             if (circleLock && type !== 'update') {
-                if (arcStack.length) {
+                if ((/** @type {?} */ (arcStack)).length) {
                     /** @type {?} */
-                    var temp = arcStack.shift();
+                    var temp = (/** @type {?} */ ((/** @type {?} */ (arcStack)).shift()));
                     ctx.lineTo(temp[0], temp[1]);
                     ctx.stroke();
                 }
@@ -270,7 +270,7 @@ var G2WaterWaveComponent = /** @class */ (function () {
         if (this.timer) {
             cancelAnimationFrame(this.timer);
         }
-        this.resize$.unsubscribe();
+        (/** @type {?} */ (this.resize$)).unsubscribe();
     };
     G2WaterWaveComponent.decorators = [
         { type: Component, args: [{

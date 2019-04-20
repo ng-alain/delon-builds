@@ -51,7 +51,7 @@ var ZipService = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        return this.lazy.load([this.cog.url].concat(this.cog.utils));
+        return this.lazy.load([(/** @type {?} */ (this.cog.url))].concat((/** @type {?} */ (this.cog.utils))));
     };
     /**
      * @private
@@ -225,7 +225,7 @@ var ZipService = /** @class */ (function () {
     function (zip, options) {
         this.check(zip);
         /** @type {?} */
-        var opt = __assign({}, options);
+        var opt = (/** @type {?} */ (__assign({}, options)));
         return new Promise((/**
          * @param {?} resolve
          * @param {?} reject

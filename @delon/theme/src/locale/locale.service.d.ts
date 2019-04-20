@@ -4,7 +4,7 @@ import { FullLocaleData, LocaleData } from './locale.types';
 export declare class DelonLocaleService {
     private _locale;
     private change$;
-    constructor(locale: FullLocaleData);
+    constructor(locale: FullLocaleData | null);
     readonly change: Observable<FullLocaleData>;
     setLocale(locale: FullLocaleData): void;
     readonly locale: FullLocaleData;

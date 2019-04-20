@@ -30,7 +30,7 @@ export declare class SidebarNavComponent implements OnInit, OnDestroy {
     private hideAll;
     private calPos;
     showSubMenu(e: MouseEvent, item: Nav): void;
-    to(item: Menu): boolean;
+    to(item: Menu): false | undefined;
     toggleOpen(item: Nav): void;
     _click(): void;
     _docClick(): void;

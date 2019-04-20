@@ -1,7 +1,7 @@
 import { ITokenModel } from '../interface';
 export declare class JWTTokenModel implements ITokenModel {
     [key: string]: any;
-    token: string;
+    token: string | null | undefined;
     /**
      * 获取载荷信息
      */
@@ -11,5 +11,5 @@ export declare class JWTTokenModel implements ITokenModel {
      *
      * @param offsetSeconds 偏移量
      */
-    isExpired(offsetSeconds?: number): boolean;
+    isExpired(offsetSeconds?: number): boolean | null;
 }

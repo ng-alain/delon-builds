@@ -298,7 +298,7 @@
             if (ret.martcher) {
                 /** @type {?} */
                 var execArr = ret.martcher.exec(url);
-                execArr.slice(1).map((/**
+                (/** @type {?} */ (execArr)).slice(1).map((/**
                  * @param {?} value
                  * @param {?} index
                  * @return {?}
@@ -392,7 +392,7 @@
             /** @type {?} */
             var src = this.injector.get(MockService);
             /** @type {?} */
-            var config = __assign({ delay: 300, force: false, log: true, executeOtherInterceptors: true }, this.injector.get(DelonMockConfig, null));
+            var config = __assign({ delay: 300, force: false, log: true, executeOtherInterceptors: true }, this.injector.get(DelonMockConfig));
             /** @type {?} */
             var rule = src.getRule(req.method, req.url.split('?')[0]);
             if (!rule && !config.force) {
@@ -400,7 +400,7 @@
             }
             /** @type {?} */
             var res;
-            switch (typeof rule.callback) {
+            switch (typeof (/** @type {?} */ (rule)).callback) {
                 case 'function':
                     /** @type {?} */
                     var mockRequest_1 = {
@@ -408,7 +408,7 @@
                         body: req.body,
                         queryString: {},
                         headers: {},
-                        params: rule.params,
+                        params: (/** @type {?} */ (rule)).params,
                     };
                     /** @type {?} */
                     var urlParams = req.url.split('?');
@@ -447,7 +447,7 @@
                      */
                     function (key) { return (mockRequest_1.headers[key] = req.headers.get(key)); }));
                     try {
-                        res = rule.callback.call(this, mockRequest_1);
+                        res = (/** @type {?} */ (rule)).callback.call(this, mockRequest_1);
                     }
                     catch (e) {
                         res = new http.HttpErrorResponse({
@@ -463,7 +463,7 @@
                     }
                     break;
                 default:
-                    res = rule.callback;
+                    res = (/** @type {?} */ (rule)).callback;
                     break;
             }
             if (!(res instanceof http.HttpResponseBase)) {

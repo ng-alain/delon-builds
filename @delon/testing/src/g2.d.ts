@@ -4,8 +4,8 @@ export declare type PageG2Type = 'geoms' | 'views';
 export declare const PageG2DataCount = 2;
 export declare const PageG2Height = 100;
 export declare class PageG2<T> {
-    fixture: ComponentFixture<T>;
-    constructor(fixture?: ComponentFixture<T>);
+    fixture: ComponentFixture<T> | null;
+    constructor(fixture?: ComponentFixture<T> | null);
     readonly dl: import("@angular/core").DebugElement;
     readonly context: T;
     readonly comp: any;
@@ -30,9 +30,9 @@ export declare class PageG2<T> {
     isXScalesCount(num: number): this;
     isYScalesCount(num: number): this;
     isDataCount(type: PageG2Type, num: number): this;
-    checkTooltip(includeText: string, point?: {
+    checkTooltip(includeText: string | null, point?: {
         x: number;
         y: number;
     }): this;
 }
-export declare function checkDelay<M, T>(module: M, comp: Type<T>, page?: PageG2<T>): void;
+export declare function checkDelay<M, T>(module: M, comp: Type<T>, page?: PageG2<T> | null): void;

@@ -10,5 +10,5 @@ export declare class TestContext<T> {
     detectChanges(): void;
     resolve<T1>(component: Type<T1>): T1;
 }
-export declare const configureTestSuite: (configureAction?: () => void) => void;
+export declare const configureTestSuite: (configureAction?: (() => void) | undefined) => void;
 export declare const createTestContext: <T>(component: Type<T>) => TestContext<T>;
