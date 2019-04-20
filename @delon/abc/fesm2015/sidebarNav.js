@@ -3,7 +3,7 @@ import { DOCUMENT, CommonModule } from '@angular/common';
 import { EventEmitter, Component, ChangeDetectionStrategy, Renderer2, ChangeDetectorRef, NgZone, Inject, Input, Output, NgModule } from '@angular/core';
 import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { Subject } from 'rxjs';
-import { takeUntil, filter } from 'rxjs/operators';
+import { takeUntil } from 'rxjs/operators';
 import { MenuService, SettingsService, WINDOW } from '@delon/theme';
 import { InputBoolean, DelonUtilModule } from '@delon/util';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
@@ -293,20 +293,16 @@ class SidebarNavComponent {
             this.list = menuSrv.menus;
             cdr.detectChanges();
         }));
-        router.events
-            .pipe(takeUntil(unsubscribe$), filter((/**
+        router.events.pipe(takeUntil(unsubscribe$)).subscribe((/**
          * @param {?} e
          * @return {?}
          */
-        e => e instanceof NavigationEnd)))
-            .subscribe((/**
-         * @param {?} e
-         * @return {?}
-         */
-        (e) => {
-            this.menuSrv.openedByUrl(e.urlAfterRedirects, this.recursivePath);
-            this.underPad();
-            this.cdr.detectChanges();
+        e => {
+            if (e instanceof NavigationEnd) {
+                this.menuSrv.openedByUrl(e.urlAfterRedirects, this.recursivePath);
+                this.underPad();
+                this.cdr.detectChanges();
+            }
         }));
         this.underPad();
     }

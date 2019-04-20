@@ -2271,6 +2271,7 @@ var _HttpClient = /** @class */ (function () {
         return this.request('PUT', url, __assign({ body: body,
             params: params }, options));
     };
+    // #endregion
     /**
      * `request` 请求
      *
@@ -2278,6 +2279,7 @@ var _HttpClient = /** @class */ (function () {
      * @param url URL地址
      * @param options 参数
      */
+    // #endregion
     /**
      * `request` 请求
      *
@@ -2286,7 +2288,9 @@ var _HttpClient = /** @class */ (function () {
      * @param {?=} options 参数
      * @return {?}
      */
-    _HttpClient.prototype.request = /**
+    _HttpClient.prototype.request = 
+    // #endregion
+    /**
      * `request` 请求
      *
      * @param {?} method 请求方法类型
@@ -2903,7 +2907,7 @@ var AlainThemeModule = /** @class */ (function () {
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-var VERSION = new Version('7.2.0-d60fcc27');
+var VERSION = new Version('7.2.0-6fefb2fa');
 
 /**
  * @fileoverview added by tsickle

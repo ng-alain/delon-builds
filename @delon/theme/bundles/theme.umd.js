@@ -2344,6 +2344,7 @@
             return this.request('PUT', url, __assign({ body: body,
                 params: params }, options));
         };
+        // #endregion
         /**
          * `request` 请求
          *
@@ -2351,6 +2352,7 @@
          * @param url URL地址
          * @param options 参数
          */
+        // #endregion
         /**
          * `request` 请求
          *
@@ -2359,7 +2361,9 @@
          * @param {?=} options 参数
          * @return {?}
          */
-        _HttpClient.prototype.request = /**
+        _HttpClient.prototype.request = 
+        // #endregion
+        /**
          * `request` 请求
          *
          * @param {?} method 请求方法类型

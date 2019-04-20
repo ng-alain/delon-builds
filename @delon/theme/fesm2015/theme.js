@@ -1741,6 +1741,7 @@ class _HttpClient {
         return this.request('PUT', url, Object.assign({ body,
             params }, options));
     }
+    // #endregion
     /**
      * `request` 请求
      *
@@ -2302,7 +2303,7 @@ AlainThemeModule.ctorParameters = () => [
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-const VERSION = new Version('7.2.0-d60fcc27');
+const VERSION = new Version('7.2.0-6fefb2fa');
 
 /**
  * @fileoverview added by tsickle

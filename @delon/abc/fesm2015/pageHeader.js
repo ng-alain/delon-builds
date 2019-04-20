@@ -100,10 +100,10 @@ class PageHeaderComponent {
          * @return {?}
          */
         () => this.inited))), router.events.pipe(filter((/**
-         * @param {?} event
+         * @param {?} e
          * @return {?}
          */
-        (event) => event instanceof NavigationEnd))), i18nSrv.change)
+        e => e instanceof NavigationEnd))), i18nSrv.change)
             .pipe(takeUntil(this.unsubscribe$))
             .subscribe((/**
          * @return {?}

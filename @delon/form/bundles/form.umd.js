@@ -2923,21 +2923,19 @@
         function () {
             var _this = this;
             this.formProperty.errorsChanges
-                .pipe(operators.takeUntil((/** @type {?} */ (this.sfItemComp)).unsubscribe$), operators.filter((/**
-             * @param {?} w
-             * @return {?}
-             */
-            function (w) { return w != null; })))
+                .pipe(operators.takeUntil((/** @type {?} */ (this.sfItemComp)).unsubscribe$))
                 .subscribe((/**
              * @param {?} errors
              * @return {?}
              */
             function (errors) {
+                if (errors == null)
+                    return;
                 di(_this.ui, 'errorsChanges', _this.formProperty.path, errors);
                 // 不显示首次校验视觉
                 if (_this.firstVisual) {
                     _this.showError = errors.length > 0;
-                    _this.error = _this.showError ? (/** @type {?} */ (errors[0].message)) : '';
+                    _this.error = _this.showError ? ((/** @type {?} */ (errors[0].message))) : '';
                     _this.cd.detectChanges();
                 }
                 _this.firstVisual = true;

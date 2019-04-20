@@ -261,7 +261,7 @@ export declare class _HttpClient {
      * @param url URL地址
      * @param options 参数
      */
-    request<R>(method: string, url: string, options?: {
+    request(method: string, url: string, options?: {
         body?: any;
         headers?: HttpHeaders | {
             [header: string]: string | string[];
@@ -273,5 +273,5 @@ export declare class _HttpClient {
         responseType?: 'arraybuffer' | 'blob' | 'json' | 'text';
         reportProgress?: boolean;
         withCredentials?: boolean;
-    }): Observable<R>;
+    }): Observable<any>;
 }

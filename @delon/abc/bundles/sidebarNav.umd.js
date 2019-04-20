@@ -375,20 +375,16 @@
                 _this.list = menuSrv.menus;
                 cdr.detectChanges();
             }));
-            router$1.events
-                .pipe(operators.takeUntil(unsubscribe$), operators.filter((/**
-             * @param {?} e
-             * @return {?}
-             */
-            function (e) { return e instanceof router.NavigationEnd; })))
-                .subscribe((/**
+            router$1.events.pipe(operators.takeUntil(unsubscribe$)).subscribe((/**
              * @param {?} e
              * @return {?}
              */
             function (e) {
-                _this.menuSrv.openedByUrl(e.urlAfterRedirects, _this.recursivePath);
-                _this.underPad();
-                _this.cdr.detectChanges();
+                if (e instanceof router.NavigationEnd) {
+                    _this.menuSrv.openedByUrl(e.urlAfterRedirects, _this.recursivePath);
+                    _this.underPad();
+                    _this.cdr.detectChanges();
+                }
             }));
             this.underPad();
         };

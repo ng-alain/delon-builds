@@ -3,7 +3,7 @@ import { __spread, __rest, __assign, __values, __extends, __decorate, __metadata
 import { DelonLocaleService, DelonLocaleModule } from '@delon/theme';
 import { deepCopy, toBoolean, InputBoolean, InputNumber, deepGet, DelonUtilModule } from '@delon/util';
 import { of, Observable, combineLatest, BehaviorSubject, Subject } from 'rxjs';
-import { map, distinctUntilChanged, takeUntil, filter, debounceTime, startWith, flatMap, tap } from 'rxjs/operators';
+import { map, distinctUntilChanged, takeUntil, debounceTime, startWith, flatMap, tap } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
 import { NgModel, FormsModule } from '@angular/forms';
 import { NzModalService, NgZorroAntdModule } from 'ng-zorro-antd';
@@ -2826,21 +2826,19 @@ var Widget = /** @class */ (function () {
     function () {
         var _this = this;
         this.formProperty.errorsChanges
-            .pipe(takeUntil((/** @type {?} */ (this.sfItemComp)).unsubscribe$), filter((/**
-         * @param {?} w
-         * @return {?}
-         */
-        function (w) { return w != null; })))
+            .pipe(takeUntil((/** @type {?} */ (this.sfItemComp)).unsubscribe$))
             .subscribe((/**
          * @param {?} errors
          * @return {?}
          */
         function (errors) {
+            if (errors == null)
+                return;
             di(_this.ui, 'errorsChanges', _this.formProperty.path, errors);
             // 不显示首次校验视觉
             if (_this.firstVisual) {
                 _this.showError = errors.length > 0;
-                _this.error = _this.showError ? (/** @type {?} */ (errors[0].message)) : '';
+                _this.error = _this.showError ? ((/** @type {?} */ (errors[0].message))) : '';
                 _this.cd.detectChanges();
             }
             _this.firstVisual = true;

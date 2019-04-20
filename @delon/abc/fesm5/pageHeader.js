@@ -91,10 +91,10 @@ var PageHeaderComponent = /** @class */ (function () {
          * @return {?}
          */
         function () { return _this.inited; }))), router.events.pipe(filter((/**
-         * @param {?} event
+         * @param {?} e
          * @return {?}
          */
-        function (event) { return event instanceof NavigationEnd; }))), i18nSrv.change)
+        function (e) { return e instanceof NavigationEnd; }))), i18nSrv.change)
             .pipe(takeUntil(this.unsubscribe$))
             .subscribe((/**
          * @return {?}

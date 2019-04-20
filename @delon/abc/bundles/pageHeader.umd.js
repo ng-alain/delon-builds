@@ -151,10 +151,10 @@
              * @return {?}
              */
             function () { return _this.inited; }))), router$1.events.pipe(operators.filter((/**
-             * @param {?} event
+             * @param {?} e
              * @return {?}
              */
-            function (event) { return event instanceof router.NavigationEnd; }))), i18nSrv.change)
+            function (e) { return e instanceof router.NavigationEnd; }))), i18nSrv.change)
                 .pipe(operators.takeUntil(this.unsubscribe$))
                 .subscribe((/**
              * @return {?}
