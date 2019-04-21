@@ -50,6 +50,7 @@ var SGContainerComponent = /** @class */ (function () {
     SGContainerComponent.decorators = [
         { type: Component, args: [{
                     selector: 'sg-container, [sg-container]',
+                    exportAs: 'sgContainer',
                     template: "\n    <ng-content></ng-content>\n  ",
                     host: {
                         '[style.margin-left.px]': 'marginValue',
@@ -57,8 +58,7 @@ var SGContainerComponent = /** @class */ (function () {
                         '[class.ant-row]': 'true',
                         '[class.sg__wrap]': 'true',
                     },
-                    changeDetection: ChangeDetectionStrategy.OnPush,
-                    exportAs: 'sgContainer'
+                    changeDetection: ChangeDetectionStrategy.OnPush
                 }] }
     ];
     /** @nocollapse */
@@ -164,6 +164,7 @@ var SGComponent = /** @class */ (function () {
     SGComponent.decorators = [
         { type: Component, args: [{
                     selector: 'sg',
+                    exportAs: 'sg',
                     template: "\n    <ng-content></ng-content>\n  ",
                     host: {
                         '[style.padding-left.px]': 'paddingValue',

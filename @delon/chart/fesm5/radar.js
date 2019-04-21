@@ -21,7 +21,16 @@ var G2RadarComponent = /** @class */ (function () {
         this.hasLegend = true;
         this.tickCount = 4;
         this.data = [];
-        this.colors = ['#1890FF', '#FACC14', '#2FC25B', '#8543E0', '#F04864', '#13C2C2', '#fa8c16', '#a0d911'];
+        this.colors = [
+            '#1890FF',
+            '#FACC14',
+            '#2FC25B',
+            '#8543E0',
+            '#F04864',
+            '#13C2C2',
+            '#fa8c16',
+            '#a0d911',
+        ];
     }
     /**
      * @private
@@ -244,6 +253,7 @@ var G2RadarComponent = /** @class */ (function () {
     G2RadarComponent.decorators = [
         { type: Component, args: [{
                     selector: 'g2-radar',
+                    exportAs: 'g2Radar',
                     template: "<ng-container *stringTemplateOutlet=\"title\">\n  <h4>{{title}}</h4>\n</ng-container>\n<div #container></div>\n<div nz-row\n     class=\"g2-radar__legend\"\n     *ngIf=\"hasLegend\">\n  <div nz-col\n       [nzSpan]=\"24 / legendData.length\"\n       *ngFor=\"let i of legendData; let idx = index\"\n       (click)=\"_click(idx)\"\n       class=\"g2-radar__legend-item\">\n    <i class=\"g2-radar__legend-dot\"\n       [ngStyle]=\"{'background-color': !i.checked ? '#aaa' : i.color}\"></i>\n    {{i.name}}\n    <h6 class=\"g2-radar__legend-title\">{{i.value}}</h6>\n  </div>\n</div>\n",
                     host: {
                         '[style.height.px]': 'height',

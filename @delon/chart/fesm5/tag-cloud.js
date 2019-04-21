@@ -210,6 +210,7 @@ var G2TagCloudComponent = /** @class */ (function () {
     G2TagCloudComponent.decorators = [
         { type: Component, args: [{
                     selector: 'g2-tag-cloud',
+                    exportAs: 'g2TagCloud',
                     template: "",
                     host: {
                         '[style.height.px]': 'height',

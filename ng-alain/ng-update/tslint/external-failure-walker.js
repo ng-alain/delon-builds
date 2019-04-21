@@ -15,12 +15,10 @@ const tslint_1 = require("tslint");
 class ExternalFailureWalker extends tslint_1.RuleWalker {
     /** Adds a failure for the external resource at the specified position with the given width. */
     addExternalFailureAt(node, start, width, message, fix) {
-        // tslint:disable-next-line: deprecation
         this.addFailure(new tslint_1.RuleFailure(node, start, start + width, message, this.getRuleName(), fix));
     }
     /** Adds a failure at the specified range for the external resource. */
     addExternalFailureFromStartToEnd(node, start, end, message, fix) {
-        // tslint:disable-next-line: deprecation
         this.addFailure(new tslint_1.RuleFailure(node, start, end, message, this.getRuleName(), fix));
     }
     /** Adds a failure for the whole external resource node. */

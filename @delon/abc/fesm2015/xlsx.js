@@ -193,10 +193,10 @@ class XlsxDirective {
 XlsxDirective.decorators = [
     { type: Directive, args: [{
                 selector: '[xlsx]',
+                exportAs: 'xlsx',
                 host: {
                     '(click)': '_click()',
                 },
-                exportAs: 'xlsxDirective',
             },] }
 ];
 /** @nocollapse */

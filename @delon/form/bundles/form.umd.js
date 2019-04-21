@@ -1540,7 +1540,8 @@
             /** @type {?} */
             var orderedProperties;
             try {
-                orderedProperties = orderProperties(Object.keys((/** @type {?} */ (this.schema.properties))), (/** @type {?} */ (this.ui.order)));
+                orderedProperties = orderProperties(Object.keys((/** @type {?} */ (this.schema.properties))), (/** @type {?} */ (this.ui
+                    .order)));
             }
             catch (e) {
                 console.error("Invalid " + (this.schema.title || 'root') + " object field configuration:", e);
@@ -1723,11 +1724,19 @@
                     schema.title = propertyId;
                 }
                 // fix date
-                if ((schema.type === 'string' || schema.type === 'number') && !schema.format && !((/** @type {?} */ (ui))).format) {
+                if ((schema.type === 'string' || schema.type === 'number') &&
+                    !schema.format &&
+                    !((/** @type {?} */ (ui))).format) {
                     if (((/** @type {?} */ (ui))).widget === 'date')
-                        ui.format = schema.type === 'string' ? this.options.uiDateStringFormat : this.options.uiDateNumberFormat;
+                        ui.format =
+                            schema.type === 'string'
+                                ? this.options.uiDateStringFormat
+                                : this.options.uiDateNumberFormat;
                     else if (((/** @type {?} */ (ui))).widget === 'time')
-                        ui.format = schema.type === 'string' ? this.options.uiTimeStringFormat : this.options.uiTimeNumberFormat;
+                        ui.format =
+                            schema.type === 'string'
+                                ? this.options.uiTimeStringFormat
+                                : this.options.uiTimeNumberFormat;
                 }
                 switch (schema.type) {
                     case 'integer':
@@ -1832,7 +1841,7 @@
         function (schema, extraOptions) {
             var _this = this;
             /** @type {?} */
-            var ingoreKeywords = __spread(((/** @type {?} */ (this.options.ingoreKeywords))), ((/** @type {?} */ (extraOptions.ingoreKeywords))));
+            var ingoreKeywords = __spread((/** @type {?} */ (this.options.ingoreKeywords)), (/** @type {?} */ (extraOptions.ingoreKeywords)));
             return (/**
              * @param {?} value
              * @return {?}
@@ -2239,12 +2248,16 @@
                         }
                         else {
                             if (!ui.spanLabel)
-                                ui.spanLabel = typeof parentUiSchema.spanLabel === 'undefined' ? 5 : parentUiSchema.spanLabel;
+                                ui.spanLabel =
+                                    typeof parentUiSchema.spanLabel === 'undefined' ? 5 : parentUiSchema.spanLabel;
                             if (!ui.spanControl)
-                                ui.spanControl = typeof parentUiSchema.spanControl === 'undefined' ? 19 : parentUiSchema.spanControl;
+                                ui.spanControl =
+                                    typeof parentUiSchema.spanControl === 'undefined' ? 19 : parentUiSchema.spanControl;
                             if (!ui.offsetControl)
                                 ui.offsetControl =
-                                    typeof parentUiSchema.offsetControl === 'undefined' ? null : parentUiSchema.offsetControl;
+                                    typeof parentUiSchema.offsetControl === 'undefined'
+                                        ? null
+                                        : parentUiSchema.offsetControl;
                         }
                     }
                     else {
@@ -2344,7 +2357,8 @@
                     (/** @type {?} */ (this._btn.render)).spanLabelFixed = btnUi.spanLabelFixed;
                 }
                 // 固定标签宽度时，若不指定样式，则默认居中
-                if (!(/** @type {?} */ (this._btn.render)).class && (typeof btnUi.spanLabelFixed === 'number' && btnUi.spanLabelFixed > 0)) {
+                if (!(/** @type {?} */ (this._btn.render)).class &&
+                    (typeof btnUi.spanLabelFixed === 'number' && btnUi.spanLabelFixed > 0)) {
                     (/** @type {?} */ (this._btn.render)).class = 'text-center';
                 }
             }
@@ -2562,6 +2576,7 @@
         SFComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'sf, [sf]',
+                        exportAs: 'sf',
                         template: "<ng-template #con>\n  <ng-content></ng-content>\n</ng-template>\n<form nz-form\n      [nzLayout]=\"layout\"\n      (submit)=\"onSubmit($event)\"\n      [attr.autocomplete]=\"autocomplete\">\n  <sf-item [formProperty]=\"rootProperty\"></sf-item>\n  <ng-container *ngIf=\"button !== 'none'; else con\">\n    <nz-form-item [ngClass]=\"_btn.render!.class\"\n                  class=\"sf-btns\"\n                  [fixed-label]=\"_btn.render!.spanLabelFixed\">\n      <div nz-col\n           class=\"ant-form-item-control-wrapper\"\n           [nzSpan]=\"_btn.render!.grid!.span\"\n           [nzOffset]=\"_btn.render!.grid!.offset\"\n           [nzXs]=\"_btn.render!.grid!.xs\"\n           [nzSm]=\"_btn.render!.grid!.sm\"\n           [nzMd]=\"_btn.render!.grid!.md\"\n           [nzLg]=\"_btn.render!.grid!.lg\"\n           [nzXl]=\"_btn.render!.grid!.xl\"\n           [nzXXl]=\"_btn.render!.grid!.xxl\">\n        <div class=\"ant-form-item-control\">\n          <ng-container *ngIf=\"button; else con\">\n            <button type=\"submit\"\n                    nz-button\n                    [nzType]=\"_btn.submit_type\"\n                    [nzSize]=\"_btn.render!.size\"\n                    [nzLoading]=\"loading\"\n                    [disabled]=\"liveValidate && !valid\">{{_btn.submit}}</button>\n            <button *ngIf=\"_btn.reset\"\n                    type=\"button\"\n                    nz-button\n                    [nzType]=\"_btn.reset_type\"\n                    [nzSize]=\"_btn.render!.size\"\n                    [disabled]=\"loading\"\n                    (click)=\"reset(true)\">\n              {{_btn.reset}}\n            </button>\n          </ng-container>\n        </div>\n      </div>\n    </nz-form-item>\n  </ng-container>\n</form>\n",
                         providers: [
                             WidgetFactory,
@@ -2699,6 +2714,7 @@
         SFItemComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'sf-item',
+                        exportAs: 'sfItem',
                         template: "\n    <ng-template #target></ng-template>\n  "
                     }] }
         ];
@@ -3073,7 +3089,8 @@
              * @return {?}
              */
             function () {
-                return this.schema.maxItems && ((/** @type {?} */ (this.formProperty.properties))).length >= this.schema.maxItems;
+                return (this.schema.maxItems &&
+                    ((/** @type {?} */ (this.formProperty.properties))).length >= this.schema.maxItems);
             },
             enumerable: true,
             configurable: true
@@ -3100,7 +3117,8 @@
             }
             this.addTitle = this.ui.addTitle || this.l.addText;
             this.addType = this.ui.addType || 'dashed';
-            this.removeTitle = this.ui.removable === false ? null : this.ui.removeTitle || this.l.removeText;
+            this.removeTitle =
+                this.ui.removable === false ? null : this.ui.removeTitle || this.l.removeText;
         };
         /**
          * @return {?}
@@ -3452,7 +3470,7 @@
                 _this.data = list;
                 _this.allChecked = false;
                 _this.indeterminate = false;
-                _this.labelTitle = list.length === 0 ? '' : ((/** @type {?} */ (_this.schema.title)));
+                _this.labelTitle = list.length === 0 ? '' : (/** @type {?} */ (_this.schema.title));
                 _this.grid_span = _this.ui.span && _this.ui.span > 0 ? _this.ui.span : 0;
                 _this.updateAllChecked();
                 _this.inited = true;
@@ -3695,11 +3713,13 @@
                 return;
             }
             /** @type {?} */
-            var res = Array.isArray(value) ? value.map((/**
-             * @param {?} d
-             * @return {?}
-             */
-            function (d) { return format(d, _this.format); })) : format(value, this.format);
+            var res = Array.isArray(value)
+                ? value.map((/**
+                 * @param {?} d
+                 * @return {?}
+                 */
+                function (d) { return format(d, _this.format); }))
+                : format(value, this.format);
             if (this.flatRange) {
                 this.setEnd(res[1]);
                 this.setValue(res[0]);
@@ -3955,7 +3975,7 @@
                  * @param {?} value
                  * @return {?}
                  */
-                function (value) { return (value == null ? '' : ui.prefix + " " + value); });
+                function (value) { return value == null ? '' : ui.prefix + " " + value; });
                 ui.parser = (/**
                  * @param {?} value
                  * @return {?}
@@ -3967,7 +3987,7 @@
                  * @param {?} value
                  * @return {?}
                  */
-                function (value) { return (value == null ? '' : value + " " + ui.unit); });
+                function (value) { return value == null ? '' : value + " " + ui.unit; });
                 ui.parser = (/**
                  * @param {?} value
                  * @return {?}
@@ -4817,7 +4837,8 @@
          */
         function (value) {
             var _this = this;
-            getData(this.schema, this.ui, this.formProperty.formData).subscribe((/**
+            getData(this.schema, this.ui, this.formProperty.formData)
+                .subscribe((/**
              * @param {?} list
              * @return {?}
              */
@@ -4852,7 +4873,8 @@
             var ui = this.ui;
             if (typeof ui.expandChange !== 'function')
                 return;
-            ui.expandChange(e).subscribe((/**
+            ui.expandChange(e)
+                .subscribe((/**
              * @param {?} res
              * @return {?}
              */
@@ -4902,7 +4924,9 @@
                 if (!_url) {
                     return;
                 }
-                _this.injector.get(ngZorroAntd.NzModalService).create({
+                _this.injector
+                    .get(ngZorroAntd.NzModalService)
+                    .create({
                     nzContent: "<img src=\"" + _url + "\" class=\"img-fluid\" />",
                     nzFooter: null,
                 });
@@ -5009,13 +5033,11 @@
          */
         function (fileList) {
             var _this = this;
-            fileList
-                .filter((/**
+            fileList.filter((/**
              * @param {?} file
              * @return {?}
              */
-            function (file) { return !file.url; }))
-                .forEach((/**
+            function (file) { return !file.url; })).forEach((/**
              * @param {?} file
              * @return {?}
              */
@@ -5085,7 +5107,13 @@
      * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
-    var COMPONENTS = [SFComponent, SFItemComponent, SFItemWrapComponent, SFTemplateDirective, SFFixedDirective];
+    var COMPONENTS = [
+        SFComponent,
+        SFItemComponent,
+        SFItemWrapComponent,
+        SFTemplateDirective,
+        SFFixedDirective,
+    ];
     /** @type {?} */
     var WIDGETS = [
         ObjectWidget,

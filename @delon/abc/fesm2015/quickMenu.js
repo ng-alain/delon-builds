@@ -74,6 +74,7 @@ class QuickMenuComponent {
 QuickMenuComponent.decorators = [
     { type: Component, args: [{
                 selector: 'quick-menu',
+                exportAs: 'quickMenu',
                 template: "<div class=\"quick-menu__inner\">\n  <div class=\"quick-menu__ctrl\"\n       [ngStyle]=\"ctrlStyle\">\n    <div class=\"quick-menu__ctrl-icon\">\n      <ng-container *stringTemplateOutlet=\"icon\"><i nz-icon\n           [type]=\"icon\"></i></ng-container>\n    </div>\n  </div>\n  <ng-content></ng-content>\n</div>\n",
                 host: {
                     '[class.quick-menu]': 'true',

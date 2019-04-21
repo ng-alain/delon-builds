@@ -274,6 +274,7 @@
         G2TagCloudComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'g2-tag-cloud',
+                        exportAs: 'g2TagCloud',
                         template: "",
                         host: {
                             '[style.height.px]': 'height',

@@ -17,6 +17,7 @@ import { ExternalFailureWalker } from './external-failure-walker';
  * the component metadata.
  */
 export class ComponentWalker extends ExternalFailureWalker {
+
   visitInlineTemplate(_template: ts.StringLiteralLike) {}
   visitInlineStylesheet(_stylesheet: ts.StringLiteralLike) {}
 
@@ -153,10 +154,8 @@ export class ComponentWalker extends ExternalFailureWalker {
    * TypeScript node could not be resolved in the file system.
    */
   private _createResourceNotFoundFailure(node: ts.Node, resourceUrl: string) {
-    this.addFailureAtNode(
-      node,
-      `Could not resolve resource file: "${resourceUrl}". ` + `Skipping automatic upgrade for this file.`,
-    );
+    this.addFailureAtNode(node, `Could not resolve resource file: "${resourceUrl}". ` +
+        `Skipping automatic upgrade for this file.`);
   }
 
   /** Reports the specified additional stylesheets. */

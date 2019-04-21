@@ -22,6 +22,7 @@ var TrendComponent = /** @class */ (function () {
     TrendComponent.decorators = [
         { type: Component, args: [{
                     selector: 'trend',
+                    exportAs: 'trend',
                     template: "<ng-content></ng-content>\n<span *ngIf=\"flag\" class=\"trend__{{flag}}\"><i nz-icon type=\"caret-{{flag}}\"></i></span>\n",
                     host: {
                         '[class.trend]': 'true',

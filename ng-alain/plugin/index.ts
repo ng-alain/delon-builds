@@ -1,4 +1,10 @@
-import { chain, Rule, SchematicsException, SchematicContext, Tree } from '@angular-devkit/schematics';
+import {
+  chain,
+  Rule,
+  SchematicsException,
+  SchematicContext,
+  Tree,
+} from '@angular-devkit/schematics';
 import { NodePackageInstallTask } from '@angular-devkit/schematics/tasks';
 
 import { getProject } from '../utils/project';

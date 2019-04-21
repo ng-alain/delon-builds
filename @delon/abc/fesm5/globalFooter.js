@@ -20,6 +20,7 @@ var GlobalFooterItemComponent = /** @class */ (function () {
     GlobalFooterItemComponent.decorators = [
         { type: Component, args: [{
                     selector: 'global-footer-item',
+                    exportAs: 'globalFooterItem',
                     template: "\n    <ng-template #host><ng-content></ng-content></ng-template>\n  "
                 }] }
     ];
@@ -71,6 +72,7 @@ var GlobalFooterComponent = /** @class */ (function () {
     GlobalFooterComponent.decorators = [
         { type: Component, args: [{
                     selector: 'global-footer',
+                    exportAs: 'globalFooter',
                     template: "<div *ngIf=\"links.length > 0 || items.length > 0\" class=\"global-footer__links\">\n  <a *ngFor=\"let i of links\" class=\"global-footer__links-item\" (click)=\"to(i)\" [innerHTML]=\"i.title\"></a>\n  <a *ngFor=\"let i of items\" class=\"global-footer__links-item\" (click)=\"to(i)\">\n    <ng-container *ngTemplateOutlet=\"i.host\"></ng-container>\n  </a>\n</div>\n<div class=\"global-footer__copyright\">\n  <ng-content></ng-content>\n</div>\n",
                     host: { '[class.global-footer]': 'true' },
                     changeDetection: ChangeDetectionStrategy.OnPush

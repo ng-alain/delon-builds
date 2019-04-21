@@ -76,7 +76,9 @@ function resolveSchema(host: Tree, project: Project, schema: CommonSchema) {
   }
   // module name
   if (!schema.module) {
-    throw new SchematicsException(`Must specify module name. (e.g: ng g ng-alain:list <list name> -m=<module name>)`);
+    throw new SchematicsException(
+      `Must specify module name. (e.g: ng g ng-alain:list <list name> -m=<module name>)`,
+    );
   }
   // path
   if (schema.path === undefined) {
@@ -98,7 +100,8 @@ function resolveSchema(host: Tree, project: Project, schema: CommonSchema) {
   schema.routerModulePath = schema.importModulePath.replace('.module.ts', '-routing.module.ts');
 
   // html selector
-  schema.selector = schema.selector || buildSelector(schema, (project as any).prefix);
+  schema.selector =
+    schema.selector || buildSelector(schema, (project as any).prefix);
 
   validateName(schema.name);
   validateHtmlSelector(schema.selector);
@@ -132,9 +135,9 @@ export function addValueToVariable(host: Tree, path: string, variableName: strin
 }
 
 function getRelativePath(path: string, schema: CommonSchema) {
-  const importPath = `/${schema.path}/${schema.flat ? '' : strings.dasherize(schema.name) + '/'}${strings.dasherize(
-    schema.name,
-  )}.component`;
+  const importPath = `/${schema.path}/${
+    schema.flat ? '' : strings.dasherize(schema.name) + '/'
+  }${strings.dasherize(schema.name)}.component`;
   return buildRelativePath(path, importPath);
 }
 
@@ -200,7 +203,10 @@ export function buildAlain(schema: CommonSchema): Rule {
       move(null, schema.path + '/'),
     ]);
 
-    return chain([branchAndMerge(chain([addDeclaration(schema), mergeWith(templateSource)]))])(host, context);
+    return chain([branchAndMerge(chain([addDeclaration(schema), mergeWith(templateSource)]))])(
+      host,
+      context,
+    );
   };
 }
 

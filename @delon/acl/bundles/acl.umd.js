@@ -412,7 +412,9 @@
             if (typeof roleOrAbility === 'number') {
                 t = { ability: [roleOrAbility] };
             }
-            else if (Array.isArray(roleOrAbility) && roleOrAbility.length > 0 && typeof roleOrAbility[0] === 'number') {
+            else if (Array.isArray(roleOrAbility) &&
+                roleOrAbility.length > 0 &&
+                typeof roleOrAbility[0] === 'number') {
                 t = { ability: roleOrAbility };
             }
             else {
@@ -580,7 +582,10 @@
             this.change$.unsubscribe();
         };
         ACLDirective.decorators = [
-            { type: core.Directive, args: [{ selector: '[acl]' },] }
+            { type: core.Directive, args: [{
+                        selector: '[acl]',
+                        exportAs: 'acl',
+                    },] }
         ];
         /** @nocollapse */
         ACLDirective.ctorParameters = function () { return [
@@ -633,7 +638,10 @@
             }
         };
         ACLIfDirective.decorators = [
-            { type: core.Directive, args: [{ selector: '[aclIf]' },] }
+            { type: core.Directive, args: [{
+                        selector: '[aclIf]',
+                        exportAs: 'aclIf',
+                    },] }
         ];
         /** @nocollapse */
         ACLIfDirective.ctorParameters = function () { return [
