@@ -155,9 +155,9 @@
         SVContainerComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'sv-container, [sv-container]',
+                        exportAs: 'svContainer',
                         template: "<div class=\"ant-row\"\n     [ngStyle]=\"{'margin-left.px': -(gutter / 2), 'margin-right.px': -(gutter / 2)}\">\n  <sv-title *ngIf=\"title\">\n    <ng-container *stringTemplateOutlet=\"title\">{{title}}</ng-container>\n  </sv-title>\n  <ng-content></ng-content>\n</div>\n",
-                        changeDetection: core.ChangeDetectionStrategy.OnPush,
-                        exportAs: 'svContainer'
+                        changeDetection: core.ChangeDetectionStrategy.OnPush
                     }] }
         ];
         /** @nocollapse */
@@ -229,6 +229,7 @@
         SVTitleComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'sv-title, [sv-title]',
+                        exportAs: 'svTitle',
                         template: '<ng-content></ng-content>',
                         host: {
                             '[class.sv__title]': 'true',
@@ -348,6 +349,7 @@
         SVComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'sv, [sv]',
+                        exportAs: 'sv',
                         template: "<div class=\"sv__label\"\n     [class.sv__label-empty]=\"!label\"\n     [style.width.px]=\"parent.labelWidth\">\n  <ng-container *stringTemplateOutlet=\"label\">{{label}}</ng-container>\n</div>\n<div class=\"sv__detail\">\n  <span (cdkObserveContent)=\"checkContent()\"\n        #conEl>\n    <ng-content></ng-content>\n  </span>\n  <span class=\"sv__unit\" *stringTemplateOutlet=\"unit\">{{unit}}</span>\n</div>\n",
                         host: {
                             '[style.padding-left.px]': 'paddingValue',

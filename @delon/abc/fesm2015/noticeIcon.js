@@ -37,6 +37,7 @@ class NoticeIconTabComponent {
 NoticeIconTabComponent.decorators = [
     { type: Component, args: [{
                 selector: 'notice-icon-tab',
+                exportAs: 'noticeIconTab',
                 template: "<div *ngIf=\"data.list?.length === 0; else listTpl\" class=\"notice-icon__notfound\">\n  <img class=\"notice-icon__notfound-img\" *ngIf=\"data.emptyImage\" src=\"{{data.emptyImage}}\" alt=\"not found\" />\n  <p>{{data.emptyText || locale.emptyText}}</p>\n</div>\n<ng-template #listTpl>\n  <nz-list [nzDataSource]=\"data.list\" [nzRenderItem]=\"item\">\n    <ng-template #item let-item>\n      <nz-list-item (click)=\"onClick(item)\" [ngClass]=\"{'notice-icon__item-read': item.read}\">\n        <nz-list-item-meta [nzTitle]=\"nzTitle\" [nzDescription]=\"nzDescription\" [nzAvatar]=\"item.avatar\">\n          <ng-template #nzTitle>\n            {{item.title}}\n            <div class=\"notice-icon__item-extra\" *ngIf=\"item.extra\">\n              <nz-tag [nzColor]=\"item.color\">{{item.extra}}</nz-tag>\n            </div>\n          </ng-template>\n          <ng-template #nzDescription>\n            <div *ngIf=\"item.description\" class=\"notice-icon__item-desc\">{{item.description}}</div>\n            <div *ngIf=\"item.datetime\" class=\"notice-icon__item-time\">{{item.datetime}}</div>\n          </ng-template>\n        </nz-list-item-meta>\n      </nz-list-item>\n    </ng-template>\n  </nz-list>\n  <div class=\"notice-icon__clear\" (click)=\"onClear()\">{{ data.clearText || locale.clearText }}</div>\n</ng-template>\n"
             }] }
 ];
@@ -118,6 +119,7 @@ class NoticeIconComponent {
 NoticeIconComponent.decorators = [
     { type: Component, args: [{
                 selector: 'notice-icon',
+                exportAs: 'noticeIcon',
                 template: "<ng-template #badgeTpl>\n  <nz-badge [nzCount]=\"count\"\n            [ngClass]=\"btnClass\"\n            [nzStyle]=\"{ 'box-shadow': 'none' }\">\n    <i nz-icon\n       type=\"bell\"\n       [ngClass]=\"btnIconClass\"></i>\n  </nz-badge>\n</ng-template>\n<div *ngIf=\"data?.length === 0\">\n  <ng-template [ngTemplateOutlet]=\"badgeTpl\"></ng-template>\n</div>\n<nz-dropdown *ngIf=\"data?.length > 0\"\n             [nzVisible]=\"popoverVisible\"\n             (nzVisibleChange)=\"onVisibleChange($event)\"\n             nzTrigger=\"click\"\n             nzPlacement=\"bottomRight\"\n             [nzOverlayClassName]=\"['header-dropdown', 'notice-icon']\">\n  <div nz-dropdown>\n    <ng-template [ngTemplateOutlet]=\"badgeTpl\"></ng-template>\n  </div>\n  <nz-spin [nzSpinning]=\"loading\"\n           [nzDelay]=\"0\">\n    <nz-tabset nzSelectedIndex=\"0\">\n      <nz-tab *ngFor=\"let i of data\"\n              [nzTitle]=\"i.title\">\n        <notice-icon-tab [locale]=\"locale\"\n                         [data]=\"i\"\n                         (select)=\"onSelect($event)\"\n                         (clear)=\"onClear($event)\"></notice-icon-tab>\n      </nz-tab>\n    </nz-tabset>\n  </nz-spin>\n</nz-dropdown>\n",
                 host: { '[class.notice-icon__btn]': 'true' },
                 changeDetection: ChangeDetectionStrategy.OnPush

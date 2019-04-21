@@ -339,7 +339,10 @@ class ACLDirective {
     }
 }
 ACLDirective.decorators = [
-    { type: Directive, args: [{ selector: '[acl]' },] }
+    { type: Directive, args: [{
+                selector: '[acl]',
+                exportAs: 'acl',
+            },] }
 ];
 /** @nocollapse */
 ACLDirective.ctorParameters = () => [
@@ -388,7 +391,10 @@ class ACLIfDirective extends ACLDirective {
     }
 }
 ACLIfDirective.decorators = [
-    { type: Directive, args: [{ selector: '[aclIf]' },] }
+    { type: Directive, args: [{
+                selector: '[aclIf]',
+                exportAs: 'aclIf',
+            },] }
 ];
 /** @nocollapse */
 ACLIfDirective.ctorParameters = () => [

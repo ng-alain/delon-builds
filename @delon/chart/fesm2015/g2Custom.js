@@ -63,6 +63,7 @@ class G2CustomComponent {
 G2CustomComponent.decorators = [
     { type: Component, args: [{
                 selector: 'g2,g2-custom',
+                exportAs: 'g2Custom',
                 template: `
     <ng-content></ng-content>
   `,

@@ -124,7 +124,7 @@ var ImageDirective = /** @class */ (function () {
     ImageDirective.decorators = [
         { type: Directive, args: [{
                     selector: '[_src]',
-                    exportAs: 'srcDirective',
+                    exportAs: '_src',
                 },] }
     ];
     /** @nocollapse */

@@ -582,7 +582,10 @@
             this.change$.unsubscribe();
         };
         ACLDirective.decorators = [
-            { type: core.Directive, args: [{ selector: '[acl]' },] }
+            { type: core.Directive, args: [{
+                        selector: '[acl]',
+                        exportAs: 'acl',
+                    },] }
         ];
         /** @nocollapse */
         ACLDirective.ctorParameters = function () { return [
@@ -635,7 +638,10 @@
             }
         };
         ACLIfDirective.decorators = [
-            { type: core.Directive, args: [{ selector: '[aclIf]' },] }
+            { type: core.Directive, args: [{
+                        selector: '[aclIf]',
+                        exportAs: 'aclIf',
+                    },] }
         ];
         /** @nocollapse */
         ACLIfDirective.ctorParameters = function () { return [

@@ -390,6 +390,7 @@
         ReuseTabContextDirective.decorators = [
             { type: core.Directive, args: [{
                         selector: '[reuse-tab-context-menu]',
+                        exportAs: 'reuseTabContextMenu',
                         host: {
                             '(contextmenu)': '_onContextMenu($event)',
                         },
@@ -1876,6 +1877,7 @@
         ReuseTabComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'reuse-tab',
+                        exportAs: 'reuseTab',
                         template: "<nz-tabset [nzSelectedIndex]=\"pos\" [nzAnimated]=\"false\" nzType=\"line\"\n  [nzTabBarExtraContent]=\"tabBarExtraContent\"\n  [nzTabBarGutter]=\"tabBarGutter\"\n  [nzTabBarStyle]=\"tabBarStyle\">\n  <nz-tab *ngFor=\"let i of list; let index = index\" [nzTitle]=\"titleTemplate\">\n    <ng-template #titleTemplate>\n      <span [reuse-tab-context-menu]=\"i\" [customContextMenu]=\"customContextMenu\" (click)=\"to($event, index)\" class=\"reuse-tab__name\">{{i.title}}</span>\n      <i *ngIf=\"i.closable\" nz-icon type=\"close\" class=\"reuse-tab__op\" (click)=\"_close($event, index, false)\"></i>\n    </ng-template>\n  </nz-tab>\n</nz-tabset>\n<reuse-tab-context [i18n]=\"i18n\" (change)=\"cmChange($event)\"></reuse-tab-context>\n",
                         changeDetection: core.ChangeDetectionStrategy.OnPush,
                         providers: [ReuseTabContextService],

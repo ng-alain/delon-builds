@@ -210,6 +210,7 @@
         G2SingleBarComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'g2-single-bar',
+                        exportAs: 'g2SingleBar',
                         template: "",
                         host: {
                             '[style.height.px]': 'height',

@@ -161,14 +161,14 @@ var ErrorCollectComponent = /** @class */ (function () {
     ErrorCollectComponent.decorators = [
         { type: Component, args: [{
                     selector: 'error-collect, [error-collect]',
+                    exportAs: 'errorCollect',
                     template: "\n    <i nz-icon type=\"exclamation-circle\"></i>\n    <span class=\"pl-sm\">{{ count }}</span>\n  ",
                     host: {
                         '[class.error-collect]': 'true',
                         '[class.d-none]': '_hiden',
                         '(click)': '_click()',
                     },
-                    changeDetection: ChangeDetectionStrategy.OnPush,
-                    exportAs: 'errorCollect'
+                    changeDetection: ChangeDetectionStrategy.OnPush
                 }] }
     ];
     /** @nocollapse */

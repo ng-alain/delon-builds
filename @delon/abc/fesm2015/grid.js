@@ -47,6 +47,7 @@ class SGContainerComponent {
 SGContainerComponent.decorators = [
     { type: Component, args: [{
                 selector: 'sg-container, [sg-container]',
+                exportAs: 'sgContainer',
                 template: `
     <ng-content></ng-content>
   `,
@@ -56,8 +57,7 @@ SGContainerComponent.decorators = [
                     '[class.ant-row]': 'true',
                     '[class.sg__wrap]': 'true',
                 },
-                changeDetection: ChangeDetectionStrategy.OnPush,
-                exportAs: 'sgContainer'
+                changeDetection: ChangeDetectionStrategy.OnPush
             }] }
 ];
 /** @nocollapse */
@@ -152,6 +152,7 @@ class SGComponent {
 SGComponent.decorators = [
     { type: Component, args: [{
                 selector: 'sg',
+                exportAs: 'sg',
                 template: `
     <ng-content></ng-content>
   `,

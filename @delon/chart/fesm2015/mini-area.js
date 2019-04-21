@@ -149,6 +149,7 @@ class G2MiniAreaComponent {
 G2MiniAreaComponent.decorators = [
     { type: Component, args: [{
                 selector: 'g2-mini-area',
+                exportAs: 'g2MiniArea',
                 template: ``,
                 host: {
                     '[style.height.px]': 'height',

@@ -270,10 +270,10 @@
         XlsxDirective.decorators = [
             { type: core.Directive, args: [{
                         selector: '[xlsx]',
+                        exportAs: 'xlsx',
                         host: {
                             '(click)': '_click()',
                         },
-                        exportAs: 'xlsxDirective',
                     },] }
         ];
         /** @nocollapse */
