@@ -209,7 +209,10 @@ function deepMergeKey(original, ingoreArray) {
             if (!ingoreArray && Array.isArray(newValue)) {
                 target[key] = __spread(newValue, oldValue);
             }
-            else if (oldValue != null && isObject(oldValue) && newValue != null && isObject(newValue)) {
+            else if (oldValue != null &&
+                isObject(oldValue) &&
+                newValue != null &&
+                isObject(newValue)) {
                 target[key] = merge(newValue, oldValue);
             }
             else {
@@ -581,7 +584,8 @@ function isIdCard(value) {
  * @return {?}
  */
 function isMobile(value) {
-    return typeof value === 'string' && /^(0|\+?86|17951)?(13[0-9]|15[0-9]|17[0678]|18[0-9]|14[57])[0-9]{8}$/.test(value);
+    return (typeof value === 'string' &&
+        /^(0|\+?86|17951)?(13[0-9]|15[0-9]|17[0678]|18[0-9]|14[57])[0-9]{8}$/.test(value));
 }
 /**
  * 是否URL地址
@@ -724,7 +728,9 @@ function isEmpty(element) {
  */
 function toBoolean(value, allowUndefined) {
     if (allowUndefined === void 0) { allowUndefined = false; }
-    return allowUndefined && typeof value === 'undefined' ? undefined : value != null && "" + value !== 'false';
+    return allowUndefined && typeof value === 'undefined'
+        ? undefined
+        : value != null && "" + value !== 'false';
 }
 /**
  * Input decorator that handle a prop to do get/set automatically with toBoolean
@@ -1155,7 +1161,11 @@ var ArrayService = /** @class */ (function () {
          */
         function (item, parent, deep) {
             if (item.isChecked || (opt.includeHalfChecked && item.isHalfChecked)) {
-                keys.push(opt.cb ? opt.cb(item, parent, deep) : opt.keyMapName ? item.origin[opt.keyMapName] : item.key);
+                keys.push(opt.cb
+                    ? opt.cb(item, parent, deep)
+                    : opt.keyMapName
+                        ? item.origin[opt.keyMapName]
+                        : item.key);
             }
         }));
         return keys;

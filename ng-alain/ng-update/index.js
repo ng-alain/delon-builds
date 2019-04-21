@@ -23,7 +23,11 @@ const tslintUpgradeConfig = {
     extraUpgradeRules,
 };
 function updateToV2() {
-    return schematics_1.chain([v2LayoutRule_1.v2LayoutRule, v2DomRule_1.v2DomRule, upgrade_rules_1.createUpgradeRule(target_version_1.TargetVersion.V2, tslintUpgradeConfig)]);
+    return schematics_1.chain([
+        v2LayoutRule_1.v2LayoutRule,
+        v2DomRule_1.v2DomRule,
+        upgrade_rules_1.createUpgradeRule(target_version_1.TargetVersion.V2, tslintUpgradeConfig),
+    ]);
 }
 exports.updateToV2 = updateToV2;
 function postUpdate() {

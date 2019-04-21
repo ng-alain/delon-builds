@@ -44,7 +44,9 @@ exports.overwriteFiles = overwriteFiles;
  * @param [overwrite=false] `true` is force, default: `false`
  */
 function addFiles(host, files, _filePath, overwrite = false) {
-    files.filter(p => overwrite || !host.exists(p)).forEach(p => overwriteFile(host, p, path_1.join(_filePath, p), true));
+    files
+        .filter(p => overwrite || !host.exists(p))
+        .forEach(p => overwriteFile(host, p, path_1.join(_filePath, p), true));
     return host;
 }
 exports.addFiles = addFiles;

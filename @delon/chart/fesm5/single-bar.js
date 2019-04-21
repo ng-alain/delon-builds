@@ -144,6 +144,7 @@ var G2SingleBarComponent = /** @class */ (function () {
     G2SingleBarComponent.decorators = [
         { type: Component, args: [{
                     selector: 'g2-single-bar',
+                    exportAs: 'g2SingleBar',
                     template: "",
                     host: {
                         '[style.height.px]': 'height',

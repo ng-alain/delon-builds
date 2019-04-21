@@ -32,7 +32,11 @@ export function overwritePackage(host: Tree, json: any) {
  * addPackageToPackageJson(host, [ '＠delon/abc＠^1.0.0' ], 'devDependencies')
  * ```
  */
-export function addPackageToPackageJson(host: Tree, pkg: string | string[], type = 'dependencies'): Tree {
+export function addPackageToPackageJson(
+  host: Tree,
+  pkg: string | string[],
+  type = 'dependencies',
+): Tree {
   const json = getJSON(host, 'package.json', type);
   if (json == null) return host;
 
@@ -56,7 +60,11 @@ export function addPackageToPackageJson(host: Tree, pkg: string | string[], type
  * addPackageToPackageJson(host, [ '＠delon/abc' ], 'devDependencies')
  * ```
  */
-export function removePackageFromPackageJson(host: Tree, pkg: string | string[], type = 'dependencies'): Tree {
+export function removePackageFromPackageJson(
+  host: Tree,
+  pkg: string | string[],
+  type = 'dependencies',
+): Tree {
   const json = getJSON(host, 'package.json', type);
   if (json == null) return host;
 

@@ -46,6 +46,7 @@ class FooterToolbarComponent {
 FooterToolbarComponent.decorators = [
     { type: Component, args: [{
                 selector: 'footer-toolbar',
+                exportAs: 'footerToolbar',
                 template: "<div class=\"footer-toolbar__left\">\n  <ng-container *stringTemplateOutlet=\"extra\">{{ extra }}</ng-container>\n</div>\n<div class=\"footer-toolbar__right\">\n  <error-collect *ngIf=\"errorCollect\"></error-collect>\n  <ng-content></ng-content>\n</div>\n",
                 changeDetection: ChangeDetectionStrategy.OnPush
             }] }

@@ -291,6 +291,7 @@ class ReuseTabContextDirective {
 ReuseTabContextDirective.decorators = [
     { type: Directive, args: [{
                 selector: '[reuse-tab-context-menu]',
+                exportAs: 'reuseTabContextMenu',
                 host: {
                     '(contextmenu)': '_onContextMenu($event)',
                 },
@@ -1013,7 +1014,9 @@ class ReuseTabService {
                 const url = this.curUrl;
                 /** @type {?} */
                 const item = this.get(url);
-                if (item && item.position && this.getKeepingScroll(url, this.getTruthRoute(this.snapshot))) {
+                if (item &&
+                    item.position &&
+                    this.getKeepingScroll(url, this.getTruthRoute(this.snapshot))) {
                     if (this.isDisabledInRouter) {
                         this.ss.scrollToPosition(this.keepingScrollContainer, item.position);
                     }
@@ -1094,7 +1097,8 @@ class ReuseTabComponent {
      * @return {?}
      */
     set keepingScrollContainer(value) {
-        this._keepingScrollContainer = typeof value === 'string' ? this.doc.querySelector(value) : value;
+        this._keepingScrollContainer =
+            typeof value === 'string' ? this.doc.querySelector(value) : value;
     }
     /**
      * @private
@@ -1364,6 +1368,7 @@ class ReuseTabComponent {
 ReuseTabComponent.decorators = [
     { type: Component, args: [{
                 selector: 'reuse-tab',
+                exportAs: 'reuseTab',
                 template: "<nz-tabset [nzSelectedIndex]=\"pos\" [nzAnimated]=\"false\" nzType=\"line\"\n  [nzTabBarExtraContent]=\"tabBarExtraContent\"\n  [nzTabBarGutter]=\"tabBarGutter\"\n  [nzTabBarStyle]=\"tabBarStyle\">\n  <nz-tab *ngFor=\"let i of list; let index = index\" [nzTitle]=\"titleTemplate\">\n    <ng-template #titleTemplate>\n      <span [reuse-tab-context-menu]=\"i\" [customContextMenu]=\"customContextMenu\" (click)=\"to($event, index)\" class=\"reuse-tab__name\">{{i.title}}</span>\n      <i *ngIf=\"i.closable\" nz-icon type=\"close\" class=\"reuse-tab__op\" (click)=\"_close($event, index, false)\"></i>\n    </ng-template>\n  </nz-tab>\n</nz-tabset>\n<reuse-tab-context [i18n]=\"i18n\" (change)=\"cmChange($event)\"></reuse-tab-context>\n",
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 providers: [ReuseTabContextService],
@@ -1478,7 +1483,11 @@ class ReuseTabStrategy {
 /** @type {?} */
 const COMPONENTS = [ReuseTabComponent];
 /** @type {?} */
-const NOEXPORTS = [ReuseTabContextMenuComponent, ReuseTabContextComponent, ReuseTabContextDirective];
+const NOEXPORTS = [
+    ReuseTabContextMenuComponent,
+    ReuseTabContextComponent,
+    ReuseTabContextDirective,
+];
 class ReuseTabModule {
 }
 ReuseTabModule.decorators = [

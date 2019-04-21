@@ -92,7 +92,7 @@ class G2TimelineComponent {
      * @return {?}
      */
     attachChart() {
-        const { chart, _slider, slider, height, padding, data, mask, titleMap, position, colorMap, borderWidth } = this;
+        const { chart, _slider, slider, height, padding, data, mask, titleMap, position, colorMap, borderWidth, } = this;
         if (!chart || !data || data.length <= 0)
             return;
         chart.legend({
@@ -226,6 +226,7 @@ class G2TimelineComponent {
 G2TimelineComponent.decorators = [
     { type: Component, args: [{
                 selector: 'g2-timeline',
+                exportAs: 'g2Timeline',
                 template: "<ng-container *stringTemplateOutlet=\"title\">\n  <h4>{{title}}</h4>\n</ng-container>\n<div #container></div>\n<div #sliderContainer\n     *ngIf=\"slider\"></div>\n",
                 changeDetection: ChangeDetectionStrategy.OnPush
             }] }

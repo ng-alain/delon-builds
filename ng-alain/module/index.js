@@ -66,7 +66,9 @@ function default_1(schema) {
             schematics_1.template(Object.assign({}, core_1.strings, { 'if-flat': (s) => (schema.flat ? '' : s) }, schema)),
             schematics_1.move(parsedPath.path),
         ]);
-        return schematics_1.chain([schematics_1.branchAndMerge(schematics_1.chain([addDeclarationToNgModule(schema), schematics_1.mergeWith(templateSource)]))])(host, context);
+        return schematics_1.chain([
+            schematics_1.branchAndMerge(schematics_1.chain([addDeclarationToNgModule(schema), schematics_1.mergeWith(templateSource)])),
+        ])(host, context);
     };
 }
 exports.default = default_1;

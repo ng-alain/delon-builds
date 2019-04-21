@@ -54,6 +54,7 @@ class TagSelectComponent {
 TagSelectComponent.decorators = [
     { type: Component, args: [{
                 selector: 'tag-select',
+                exportAs: 'tagSelect',
                 template: "<ng-content></ng-content>\n<a *ngIf=\"expandable\" class=\"tag-select__trigger\" (click)=\"trigger()\">\n  {{expand ? locale.collapse : locale.expand}}<i nz-icon [type]=\"expand ? 'up' : 'down'\" class=\"tag-select__trigger-icon\"></i>\n</a>\n",
                 host: {
                     '[class.tag-select]': 'true',

@@ -345,7 +345,9 @@ var ACLService = /** @class */ (function () {
         if (typeof roleOrAbility === 'number') {
             t = { ability: [roleOrAbility] };
         }
-        else if (Array.isArray(roleOrAbility) && roleOrAbility.length > 0 && typeof roleOrAbility[0] === 'number') {
+        else if (Array.isArray(roleOrAbility) &&
+            roleOrAbility.length > 0 &&
+            typeof roleOrAbility[0] === 'number') {
             t = { ability: roleOrAbility };
         }
         else {
@@ -513,7 +515,10 @@ var ACLDirective = /** @class */ (function () {
         this.change$.unsubscribe();
     };
     ACLDirective.decorators = [
-        { type: Directive, args: [{ selector: '[acl]' },] }
+        { type: Directive, args: [{
+                    selector: '[acl]',
+                    exportAs: 'acl',
+                },] }
     ];
     /** @nocollapse */
     ACLDirective.ctorParameters = function () { return [
@@ -566,7 +571,10 @@ var ACLIfDirective = /** @class */ (function (_super) {
         }
     };
     ACLIfDirective.decorators = [
-        { type: Directive, args: [{ selector: '[aclIf]' },] }
+        { type: Directive, args: [{
+                    selector: '[aclIf]',
+                    exportAs: 'aclIf',
+                },] }
     ];
     /** @nocollapse */
     ACLIfDirective.ctorParameters = function () { return [

@@ -738,10 +738,12 @@ class TitleService {
          * 设置默认标题名
          */
         this.default = `Not Page Name`;
-        this.i18n$ = this.i18nSrv.change.pipe(filter((/**
+        this.i18n$ = this.i18nSrv.change
+            .pipe(filter((/**
          * @return {?}
          */
-        () => !!this.i18n$))).subscribe((/**
+        () => !!this.i18n$)))
+            .subscribe((/**
          * @return {?}
          */
         () => this.setTitle()));
@@ -784,7 +786,8 @@ class TitleService {
      */
     getByElement() {
         /** @type {?} */
-        const el = this.doc.querySelector('.alain-default__content-title h1') || this.doc.querySelector('.page-header__title');
+        const el = this.doc.querySelector('.alain-default__content-title h1') ||
+            this.doc.querySelector('.page-header__title');
         if (el) {
             return el.firstChild.textContent.trim();
         }
@@ -1006,7 +1009,10 @@ class DelonLocaleModule {
 }
 DelonLocaleModule.decorators = [
     { type: NgModule, args: [{
-                providers: [{ provide: DELON_LOCALE, useValue: ɵ0 }, DELON_LOCALE_SERVICE_PROVIDER],
+                providers: [
+                    { provide: DELON_LOCALE, useValue: ɵ0 },
+                    DELON_LOCALE_SERVICE_PROVIDER,
+                ],
             },] }
 ];
 
@@ -1106,7 +1112,7 @@ var trTR = (/** @type {?} */ ({
         403: `Üzgünüz, bu sayfaya erişiminiz yok`,
         404: `Maalesef bu sayfa mevcut değil`,
         500: `Üzgünüz, sunucu hatası`,
-        backToHome: "Ana Sayfa'ya geri dön",
+        backToHome: 'Ana Sayfa\'ya geri dön',
     },
     noticeIcon: {
         emptyText: 'Veri yok',
@@ -1503,7 +1509,9 @@ class DrawerHelper {
                 nzTitle: title,
             };
             if (typeof size === 'number') {
-                defaultOptions[(/** @type {?} */ (drawerOptions)).nzPlacement === 'top' || (/** @type {?} */ (drawerOptions)).nzPlacement === 'bottom' ? 'nzHeight' : 'nzWidth'] = (/** @type {?} */ (options)).size;
+                defaultOptions[(/** @type {?} */ (drawerOptions)).nzPlacement === 'top' || (/** @type {?} */ (drawerOptions)).nzPlacement === 'bottom'
+                    ? 'nzHeight'
+                    : 'nzWidth'] = (/** @type {?} */ (options)).size;
             }
             else {
                 defaultOptions.nzWrapClassName = ((/** @type {?} */ (drawerOptions)).nzWrapClassName + ` drawer-${(/** @type {?} */ (options)).size}`).trim();
@@ -1513,7 +1521,7 @@ class DrawerHelper {
                 const { nzPlacement, nzHeight } = (/** @type {?} */ (drawerOptions));
                 // Should be header * footer, because of includes header
                 /** @type {?} */
-                const reduceHeight = (/** @type {?} */ (footerHeight)) * 2 - 2;
+                const reduceHeight = ((/** @type {?} */ (footerHeight)) * 2) - 2;
                 if (nzPlacement === 'left' || nzPlacement === 'right') {
                     defaultOptions.nzBodyStyle = {
                         height: `calc(100% - ${reduceHeight}px)`,
@@ -1933,7 +1941,10 @@ function makeMethod(method) {
                 const data = setParam(baseData, targetKey);
                 /** @type {?} */
                 let requestUrl = url || '';
-                requestUrl = [baseData.baseUrl || '', requestUrl.startsWith('/') ? requestUrl.substr(1) : requestUrl].join('/');
+                requestUrl = [
+                    baseData.baseUrl || '',
+                    requestUrl.startsWith('/') ? requestUrl.substr(1) : requestUrl,
+                ].join('/');
                 // fix last split
                 if (requestUrl.length > 1 && requestUrl.endsWith('/')) {
                     requestUrl = requestUrl.substr(0, requestUrl.length - 1);
@@ -2131,11 +2142,9 @@ class YNPipe {
      * @return {?}
      */
     transform(value, yes, no) {
-        return this.dom.bypassSecurityTrustHtml(value
-            ? `<i class="text-blue" title="${yes ||
-                '是'}"><svg viewBox="64 64 896 896" fill="currentColor" width="1em" height="1em" aria-hidden="true"><path d="M912 190h-69.9c-9.8 0-19.1 4.5-25.1 12.2L404.7 724.5 207 474a32 32 0 0 0-25.1-12.2H112c-6.7 0-10.4 7.7-6.3 12.9l273.9 347c12.8 16.2 37.4 16.2 50.3 0l488.4-618.9c4.1-5.1.4-12.8-6.3-12.8z"></path></svg></i>`
-            : `<i class="text-grey" title="${no ||
-                '否'}"><svg viewBox="64 64 896 896" fill="currentColor" width="1em" height="1em" aria-hidden="true"><path d="M563.8 512l262.5-312.9c4.4-5.2.7-13.1-6.1-13.1h-79.8c-4.7 0-9.2 2.1-12.3 5.7L511.6 449.8 295.1 191.7c-3-3.6-7.5-5.7-12.3-5.7H203c-6.8 0-10.5 7.9-6.1 13.1L459.4 512 196.9 824.9A7.95 7.95 0 0 0 203 838h79.8c4.7 0 9.2-2.1 12.3-5.7l216.5-258.1 216.5 258.1c3 3.6 7.5 5.7 12.3 5.7h79.8c6.8 0 10.5-7.9 6.1-13.1L563.8 512z"></path></svg></i>`);
+        return this.dom.bypassSecurityTrustHtml(value ?
+            `<i class="text-blue" title="${yes || '是'}"><svg viewBox="64 64 896 896" fill="currentColor" width="1em" height="1em" aria-hidden="true"><path d="M912 190h-69.9c-9.8 0-19.1 4.5-25.1 12.2L404.7 724.5 207 474a32 32 0 0 0-25.1-12.2H112c-6.7 0-10.4 7.7-6.3 12.9l273.9 347c12.8 16.2 37.4 16.2 50.3 0l488.4-618.9c4.1-5.1.4-12.8-6.3-12.8z"></path></svg></i>` :
+            `<i class="text-grey" title="${no || '否'}"><svg viewBox="64 64 896 896" fill="currentColor" width="1em" height="1em" aria-hidden="true"><path d="M563.8 512l262.5-312.9c4.4-5.2.7-13.1-6.1-13.1h-79.8c-4.7 0-9.2 2.1-12.3 5.7L511.6 449.8 295.1 191.7c-3-3.6-7.5-5.7-12.3-5.7H203c-6.8 0-10.5 7.9-6.1 13.1L459.4 512 196.9 824.9A7.95 7.95 0 0 0 203 838h79.8c4.7 0 9.2-2.1 12.3-5.7l216.5-258.1 216.5 258.1c3 3.6 7.5 5.7 12.3 5.7h79.8c6.8 0 10.5-7.9 6.1-13.1L563.8 512z"></path></svg></i>`);
     }
 }
 YNPipe.decorators = [
@@ -2241,7 +2250,13 @@ const COMPONENTS = [];
 /** @type {?} */
 const PIPES = [DatePipe, CNCurrencyPipe, KeysPipe, YNPipe, I18nPipe, HTMLPipe, URLPipe];
 /** @type {?} */
-const ICONS = [BellOutline, CaretUpOutline, DeleteOutline, PlusOutline, InboxOutline];
+const ICONS = [
+    BellOutline,
+    CaretUpOutline,
+    DeleteOutline,
+    PlusOutline,
+    InboxOutline,
+];
 // #endregion
 class AlainThemeModule {
     /**
@@ -2256,7 +2271,9 @@ class AlainThemeModule {
     static forRoot() {
         return {
             ngModule: AlainThemeModule,
-            providers: [...HELPERS],
+            providers: [
+                ...HELPERS,
+            ],
         };
     }
     /**
@@ -2286,7 +2303,7 @@ AlainThemeModule.ctorParameters = () => [
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-const VERSION = new Version('7.2.0-71cb108');
+const VERSION = new Version('7.2.0-8b643da0');
 
 /**
  * @fileoverview added by tsickle

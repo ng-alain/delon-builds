@@ -95,6 +95,7 @@
         G2MiniProgressComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'g2-mini-progress',
+                        exportAs: 'g2MiniProgress',
                         template: "<nz-tooltip [nzTitle]=\"i18n.getData('miniProgress').target + target + '%'\">\n  <div nz-tooltip class=\"g2-mini-progress__target\" [ngStyle]=\"{'left.%': target}\">\n    <span class=\"g2-mini-progress__target-item\" [ngStyle]=\"{'background-color': color}\"></span>\n    <span class=\"g2-mini-progress__target-item\" [ngStyle]=\"{'background-color': color}\"></span>\n  </div>\n</nz-tooltip>\n<div class=\"g2-mini-progress__wrap\">\n  <div class=\"g2-mini-progress__value\" [ngStyle]=\"{'background-color': color, 'width.%': percent, 'height.px':strokeWidth}\"></div>\n</div>\n",
                         host: { '[class.g2-mini-progress]': 'true' },
                         changeDetection: core.ChangeDetectionStrategy.OnPush

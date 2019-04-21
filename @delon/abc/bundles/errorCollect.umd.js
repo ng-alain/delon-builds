@@ -227,14 +227,14 @@
         ErrorCollectComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'error-collect, [error-collect]',
+                        exportAs: 'errorCollect',
                         template: "\n    <i nz-icon type=\"exclamation-circle\"></i>\n    <span class=\"pl-sm\">{{ count }}</span>\n  ",
                         host: {
                             '[class.error-collect]': 'true',
                             '[class.d-none]': '_hiden',
                             '(click)': '_click()',
                         },
-                        changeDetection: core.ChangeDetectionStrategy.OnPush,
-                        exportAs: 'errorCollect'
+                        changeDetection: core.ChangeDetectionStrategy.OnPush
                     }] }
         ];
         /** @nocollapse */
