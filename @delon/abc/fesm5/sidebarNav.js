@@ -3,7 +3,7 @@ import { DOCUMENT, CommonModule } from '@angular/common';
 import { Component, ChangeDetectionStrategy, Renderer2, ChangeDetectorRef, NgZone, Inject, Input, Output, EventEmitter, NgModule } from '@angular/core';
 import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { takeUntil, filter } from 'rxjs/operators';
 import { MenuService, SettingsService, WINDOW } from '@delon/theme';
 import { InputBoolean, DelonUtilModule } from '@delon/util';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
@@ -73,7 +73,7 @@ var SidebarNavComponent = /** @class */ (function () {
             return false;
         }
         /** @type {?} */
-        var id = +(/** @type {?} */ ((/** @type {?} */ (linkNode.dataset)).id));
+        var id = +(/** @type {?} */ (linkNode.dataset)).id;
         /** @type {?} */
         var item;
         this.menuSrv.visit(this._d, (/**
@@ -85,7 +85,7 @@ var SidebarNavComponent = /** @class */ (function () {
                 item = i;
             }
         }));
-        this.to((/** @type {?} */ (item)));
+        this.to(item);
         this.hideAll();
         e.preventDefault();
         return false;
@@ -141,7 +141,7 @@ var SidebarNavComponent = /** @class */ (function () {
         /** @type {?} */
         var id = "_sidebar-nav-" + item.__id;
         /** @type {?} */
-        var node = (/** @type {?} */ ((/** @type {?} */ (linkNode.nextElementSibling)).cloneNode(true)));
+        var node = (/** @type {?} */ (linkNode.nextElementSibling.cloneNode(true)));
         node.id = id;
         node.classList.add(FLOATINGCLS);
         node.addEventListener('mouseleave', (/**
@@ -256,7 +256,7 @@ var SidebarNavComponent = /** @class */ (function () {
         this.ngZone.run((/**
          * @return {?}
          */
-        function () { return _this.router.navigateByUrl((/** @type {?} */ (item.link))); }));
+        function () { return _this.router.navigateByUrl(item.link); }));
     };
     /**
      * @param {?} item
@@ -348,16 +348,20 @@ var SidebarNavComponent = /** @class */ (function () {
             _this.list = menuSrv.menus;
             cdr.detectChanges();
         }));
-        router.events.pipe(takeUntil(unsubscribe$)).subscribe((/**
+        router.events
+            .pipe(takeUntil(unsubscribe$), filter((/**
+         * @param {?} e
+         * @return {?}
+         */
+        function (e) { return e instanceof NavigationEnd; })))
+            .subscribe((/**
          * @param {?} e
          * @return {?}
          */
         function (e) {
-            if (e instanceof NavigationEnd) {
-                _this.menuSrv.openedByUrl(e.urlAfterRedirects, _this.recursivePath);
-                _this.underPad();
-                _this.cdr.detectChanges();
-            }
+            _this.menuSrv.openedByUrl(e.urlAfterRedirects, _this.recursivePath);
+            _this.underPad();
+            _this.cdr.detectChanges();
         }));
         this.underPad();
     };

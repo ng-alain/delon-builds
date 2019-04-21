@@ -23,7 +23,7 @@ export declare class SFComponent implements OnInit, OnChanges, OnDestroy {
     private _defUi;
     private _inited;
     locale: LocaleData;
-    rootProperty: FormProperty | null;
+    rootProperty: FormProperty;
     _formData: {};
     _btn: SFButton;
     _schema: SFSchema;
@@ -80,7 +80,7 @@ export declare class SFComponent implements OnInit, OnChanges, OnDestroy {
      * 根据路径获取表单元素属性
      * @param path [路径](https://ng-alain.com/form/qa#path)
      */
-    getProperty(path: string): FormProperty | null;
+    getProperty(path: string): FormProperty;
     /**
      * 根据路径获取表单元素当前值
      * @param path [路径](https://ng-alain.com/form/qa#path)

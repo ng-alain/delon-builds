@@ -49,7 +49,7 @@ class ErrorCollectComponent {
      * @return {?}
      */
     get errEls() {
-        return (/** @type {?} */ (this.formEl)).querySelectorAll('.has-error');
+        return this.formEl.querySelectorAll('.has-error');
     }
     /**
      * @private
@@ -96,7 +96,7 @@ class ErrorCollectComponent {
      * @return {?}
      */
     uninstall() {
-        clearInterval((/** @type {?} */ (this.$time)));
+        clearInterval(this.$time);
     }
     /**
      * @private
@@ -109,12 +109,12 @@ class ErrorCollectComponent {
         let retEl = null;
         while (el) {
             if (el.querySelector(selector)) {
-                retEl = (/** @type {?} */ (el));
+                retEl = el;
                 break;
             }
-            el = (/** @type {?} */ (el.parentElement));
+            el = el.parentElement;
         }
-        return (/** @type {?} */ (retEl));
+        return retEl;
     }
     /**
      * @return {?}

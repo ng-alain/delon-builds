@@ -3,7 +3,7 @@ import { DOCUMENT, CommonModule } from '@angular/common';
 import { EventEmitter, Component, ChangeDetectionStrategy, Renderer2, ChangeDetectorRef, NgZone, Inject, Input, Output, NgModule } from '@angular/core';
 import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { takeUntil, filter } from 'rxjs/operators';
 import { MenuService, SettingsService, WINDOW } from '@delon/theme';
 import { InputBoolean, DelonUtilModule } from '@delon/util';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
@@ -70,7 +70,7 @@ class SidebarNavComponent {
             return false;
         }
         /** @type {?} */
-        const id = +(/** @type {?} */ ((/** @type {?} */ (linkNode.dataset)).id));
+        const id = +(/** @type {?} */ (linkNode.dataset)).id;
         /** @type {?} */
         let item;
         this.menuSrv.visit(this._d, (/**
@@ -82,7 +82,7 @@ class SidebarNavComponent {
                 item = i;
             }
         }));
-        this.to((/** @type {?} */ (item)));
+        this.to(item);
         this.hideAll();
         e.preventDefault();
         return false;
@@ -124,7 +124,7 @@ class SidebarNavComponent {
         /** @type {?} */
         const id = `_sidebar-nav-${item.__id}`;
         /** @type {?} */
-        const node = (/** @type {?} */ ((/** @type {?} */ (linkNode.nextElementSibling)).cloneNode(true)));
+        const node = (/** @type {?} */ (linkNode.nextElementSibling.cloneNode(true)));
         node.id = id;
         node.classList.add(FLOATINGCLS);
         node.addEventListener('mouseleave', (/**
@@ -215,7 +215,7 @@ class SidebarNavComponent {
         this.ngZone.run((/**
          * @return {?}
          */
-        () => this.router.navigateByUrl((/** @type {?} */ (item.link)))));
+        () => this.router.navigateByUrl(item.link)));
     }
     /**
      * @param {?} item
@@ -293,16 +293,20 @@ class SidebarNavComponent {
             this.list = menuSrv.menus;
             cdr.detectChanges();
         }));
-        router.events.pipe(takeUntil(unsubscribe$)).subscribe((/**
+        router.events
+            .pipe(takeUntil(unsubscribe$), filter((/**
          * @param {?} e
          * @return {?}
          */
-        e => {
-            if (e instanceof NavigationEnd) {
-                this.menuSrv.openedByUrl(e.urlAfterRedirects, this.recursivePath);
-                this.underPad();
-                this.cdr.detectChanges();
-            }
+        e => e instanceof NavigationEnd)))
+            .subscribe((/**
+         * @param {?} e
+         * @return {?}
+         */
+        (e) => {
+            this.menuSrv.openedByUrl(e.urlAfterRedirects, this.recursivePath);
+            this.underPad();
+            this.cdr.detectChanges();
         }));
         this.underPad();
     }

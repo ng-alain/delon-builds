@@ -156,7 +156,7 @@ class CacheService {
      */
     loadMeta() {
         /** @type {?} */
-        const ret = this.store.get((/** @type {?} */ (this.cog.meta_key)));
+        const ret = this.store.get(this.cog.meta_key);
         if (ret && ret.v) {
             ((/** @type {?} */ (ret.v))).forEach((/**
              * @param {?} key
@@ -177,7 +177,7 @@ class CacheService {
          * @return {?}
          */
         key => metaData.push(key)));
-        this.store.set((/** @type {?} */ (this.cog.meta_key)), { v: metaData, e: 0 });
+        this.store.set(this.cog.meta_key, { v: metaData, e: 0 });
     }
     /**
      * @return {?}
@@ -200,7 +200,7 @@ class CacheService {
             e = addSeconds(new Date(), options.expire).valueOf();
         }
         if (!(data instanceof Observable)) {
-            this.save((/** @type {?} */ (options.type)), key, { v: data, e });
+            this.save(options.type, key, { v: data, e });
             return;
         }
         return data.pipe(tap((/**
@@ -208,7 +208,7 @@ class CacheService {
          * @return {?}
          */
         (v) => {
-            this.save((/** @type {?} */ (options.type)), key, { v, e });
+            this.save(options.type, key, { v, e });
         })));
     }
     /**
@@ -238,7 +238,7 @@ class CacheService {
         const isPromise = options.mode !== 'none' && this.cog.mode === 'promise';
         /** @type {?} */
         const value = this.memory.has(key)
-            ? (/** @type {?} */ (this.memory.get(key)))
+            ? this.memory.get(key)
             : this.store.get(this.cog.prefix + key);
         if (!value || (value.e && value.e > 0 && value.e < new Date().valueOf())) {
             if (isPromise) {
@@ -250,7 +250,7 @@ class CacheService {
                  * @param {?} v
                  * @return {?}
                  */
-                v => this.set(key, v, { type: (/** @type {?} */ (options.type)), expire: options.expire }))));
+                v => this.set(key, v, { type: options.type, expire: options.expire }))));
             }
             return null;
         }
@@ -411,7 +411,7 @@ class CacheService {
     runNotify(key, type) {
         if (!this.notifyBuffer.has(key))
             return;
-        (/** @type {?} */ (this.notifyBuffer.get(key))).next({ type, value: this.getNone(key) });
+        this.notifyBuffer.get(key).next({ type, value: this.getNone(key) });
     }
     /**
      * `key` 监听，当 `key` 变更、过期、移除时通知，注意以下若干细节：
@@ -427,7 +427,7 @@ class CacheService {
             const change$ = new BehaviorSubject(this.getNone(key));
             this.notifyBuffer.set(key, change$);
         }
-        return (/** @type {?} */ (this.notifyBuffer.get(key))).asObservable();
+        return this.notifyBuffer.get(key).asObservable();
     }
     /**
      * 取消 `key` 监听
@@ -437,7 +437,7 @@ class CacheService {
     cancelNotify(key) {
         if (!this.notifyBuffer.has(key))
             return;
-        (/** @type {?} */ (this.notifyBuffer.get(key))).unsubscribe();
+        this.notifyBuffer.get(key).unsubscribe();
         this.notifyBuffer.delete(key);
     }
     /**

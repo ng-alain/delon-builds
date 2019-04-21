@@ -277,7 +277,7 @@
             var instance = comp.instance;
             instance.i18n = this.i18n;
             instance.item = __assign({}, item);
-            instance.customContextMenu = (/** @type {?} */ (customContextMenu));
+            instance.customContextMenu = customContextMenu;
             instance.event = event;
             /** @type {?} */
             var sub$ = new rxjs.Subscription();
@@ -692,12 +692,12 @@
         /** 获取指定路径缓存 */
         /**
          * 获取指定路径缓存
-         * @param {?=} url
+         * @param {?} url
          * @return {?}
          */
         ReuseTabService.prototype.get = /**
          * 获取指定路径缓存
-         * @param {?=} url
+         * @param {?} url
          * @return {?}
          */
         function (url) {
@@ -1094,7 +1094,7 @@
             var segments = [];
             while (next) {
                 segments.push(next.url.join('/'));
-                next = (/** @type {?} */ (next.parent));
+                next = next.parent;
             }
             /** @type {?} */
             var url = '/' +
@@ -1320,7 +1320,7 @@
                      * @param {?} w
                      * @return {?}
                      */
-                    function (w) { return (/** @type {?} */ (w.closable)); }));
+                    function (w) { return w.closable; }));
                     if (closeIdx !== -1)
                         this.remove(closeIdx, false);
                 }
@@ -1359,8 +1359,8 @@
             /** @type {?} */
             var ret = !!(data && data._handle);
             this.di('#shouldAttach', ret, url);
-            if (ret && (/** @type {?} */ (data))._handle.componentRef) {
-                this.runHook('_onReuseInit', url, (/** @type {?} */ (data))._handle.componentRef);
+            if (ret && data._handle.componentRef) {
+                this.runHook('_onReuseInit', url, data._handle.componentRef);
             }
             return ret;
         };
@@ -1529,7 +1529,7 @@
                             setTimeout((/**
                              * @return {?}
                              */
-                            function () { return _this.ss.scrollToPosition(_this.keepingScrollContainer, (/** @type {?} */ (item_1.position))); }), 1);
+                            function () { return _this.ss.scrollToPosition(_this.keepingScrollContainer, item_1.position); }), 1);
                         }
                     }
                 }
@@ -1638,7 +1638,7 @@
              * @param {?} w
              * @return {?}
              */
-            function (w) { return w.url === (/** @type {?} */ (notify)).url; })) : -1;
+            function (w) { return w.url === notify.url; })) : -1;
             /** @type {?} */
             var ls = this.srv.items.map((/**
              * @param {?} item
@@ -1668,7 +1668,7 @@
                 function (w) { return w.url === url_1; }));
                 // jump directly when the current exists in the list
                 // or create a new current item and jump
-                if (idx !== -1 || (isClosed && (/** @type {?} */ (notify)).url === url_1)) {
+                if (idx !== -1 || (isClosed && notify.url === url_1)) {
                     this.pos = isClosed ? (idx >= beforeClosePos ? this.pos - 1 : this.pos) : idx;
                 }
                 else {
@@ -1718,11 +1718,11 @@
              * @return {?}
              */
             function () {
-                return (/** @type {?} */ (this.list.find((/**
+                return this.list.find((/**
                  * @param {?} w
                  * @return {?}
                  */
-                function (w) { return w.active; })))).index;
+                function (w) { return w.active; })).index;
             },
             enumerable: true,
             configurable: true
@@ -1738,7 +1738,7 @@
         function (res) {
             var _this = this;
             /** @type {?} */
-            var fn = null;
+            var fn;
             switch (res.type) {
                 case 'close':
                     this._close(null, res.item.index, res.includeNonCloseable);
@@ -1810,7 +1810,7 @@
          */
         function (e, index, cb) {
             var _this = this;
-            if (e != null) {
+            if (e) {
                 e.preventDefault();
                 e.stopPropagation();
             }
@@ -1846,7 +1846,7 @@
          * @return {?}
          */
         function (e, idx, includeNonCloseable) {
-            if (e != null) {
+            if (e) {
                 e.preventDefault();
                 e.stopPropagation();
             }
@@ -1883,7 +1883,7 @@
              * @param {?} res
              * @return {?}
              */
-            function (res) { return _this.genList((/** @type {?} */ (res))); }));
+            function (res) { return _this.genList(res); }));
             this.i18nSrv.change
                 .pipe(operators.filter((/**
              * @return {?}

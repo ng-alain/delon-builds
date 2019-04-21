@@ -53,7 +53,7 @@ var XlsxService = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        return this.lazy.load([(/** @type {?} */ (this.cog.url))].concat((/** @type {?} */ (this.cog.modules))));
+        return this.lazy.load([this.cog.url].concat(this.cog.modules));
     };
     /**
      * @private

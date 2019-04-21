@@ -43,7 +43,7 @@ export declare class ReuseTabService implements OnDestroy {
     /** 获取当前缓存的路由总数 */
     readonly count: number;
     /** 订阅缓存变更通知 */
-    readonly change: Observable<ReuseTabNotify | null>;
+    readonly change: Observable<ReuseTabNotify>;
     /** 自定义当前标题 */
     title: string | ReuseTitle;
     /** 获取指定路径缓存所在位置，`-1` 表示无缓存 */
@@ -51,7 +51,7 @@ export declare class ReuseTabService implements OnDestroy {
     /** 获取指定路径缓存是否存在 */
     exists(url: string): boolean;
     /** 获取指定路径缓存 */
-    get(url?: string): ReuseTabCached | null;
+    get(url: string): ReuseTabCached;
     private remove;
     /**
      * 根据URL移除标签
@@ -160,7 +160,7 @@ export declare class ReuseTabService implements OnDestroy {
     /**
      * 提取复用数据
      */
-    retrieve(route: ActivatedRouteSnapshot): {} | null;
+    retrieve(route: ActivatedRouteSnapshot): {};
     /**
      * 决定是否应该进行复用路由处理
      */

@@ -155,7 +155,7 @@
             /** @type {?} */
             var url = this.cog.url + "?name=" + this.cog.name;
             /** @type {?} */
-            var checkMaxCount = (/** @type {?} */ (this.cog.checkMaxCount));
+            var checkMaxCount = this.cog.checkMaxCount;
             /** @type {?} */
             var onResolve = (/**
              * @param {?} status
@@ -167,7 +167,7 @@
                     ok: status === 'ok',
                     status: status,
                     error: error,
-                    lodop: (/** @type {?} */ (_this._lodop)),
+                    lodop: _this._lodop,
                 });
             });
             /** @type {?} */
@@ -176,7 +176,7 @@
              */
             function () {
                 --checkMaxCount;
-                if ((/** @type {?} */ (_this._lodop)).webskt && (/** @type {?} */ (_this._lodop)).webskt.readyState === 1) {
+                if (_this._lodop.webskt && _this._lodop.webskt.readyState === 1) {
                     onResolve('ok');
                 }
                 else {
@@ -200,14 +200,12 @@
                     onResolve('script-load-error', res[0]);
                     return;
                 }
-                if (window.hasOwnProperty((/** @type {?} */ (_this.cog.name)))) {
-                    _this._lodop = (/** @type {?} */ (window[(/** @type {?} */ (_this.cog.name))]));
-                }
+                _this._lodop = window.hasOwnProperty(_this.cog.name) && ((/** @type {?} */ (window[_this.cog.name])));
                 if (_this._lodop === null) {
                     onResolve('load-variable-name-error', { name: _this.cog.name });
                     return;
                 }
-                _this._lodop.SET_LICENSES((/** @type {?} */ (_this.cog.companyName)), _this.cog.license, _this.cog.licenseA, _this.cog.licenseB);
+                _this._lodop.SET_LICENSES(_this.cog.companyName, _this.cog.license, _this.cog.licenseA, _this.cog.licenseB);
                 checkStatus();
             }));
         };
@@ -253,9 +251,9 @@
                 /** @type {?} */
                 var ret = [];
                 /** @type {?} */
-                var count = (/** @type {?} */ (this._lodop)).GET_PRINTER_COUNT();
+                var count = this._lodop.GET_PRINTER_COUNT();
                 for (var index = 0; index < count; index++) {
-                    ret.push((/** @type {?} */ (this._lodop)).GET_PRINTER_NAME(index));
+                    ret.push(this._lodop.GET_PRINTER_NAME(index));
                 }
                 return ret;
             },
@@ -302,21 +300,21 @@
              */
             function (line) {
                 /** @type {?} */
-                var res = (/** @type {?} */ (parser)).exec(line.trim());
+                var res = parser.exec(line.trim());
                 if (!res)
                     return;
                 /** @type {?} */
-                var fn = (/** @type {?} */ (_this._lodop))[res[1]];
+                var fn = _this._lodop[res[1]];
                 if (fn) {
                     /** @type {?} */
-                    var arr = null;
+                    var arr = void 0;
                     try {
                         /** @type {?} */
                         var fakeFn = new Function("return [" + res[2] + "]");
                         arr = fakeFn();
                     }
                     catch (_a) { }
-                    if (arr != null && Array.isArray(arr) && contextObj) {
+                    if (Array.isArray(arr) && contextObj) {
                         for (var i = 0; i < arr.length; i++) {
                             if (typeof arr[i] === 'string') {
                                 arr[i] = arr[i].replace(/{{(.*?)}}/g, (/**
@@ -328,7 +326,7 @@
                             }
                         }
                     }
-                    fn.apply(_this._lodop, (/** @type {?} */ (arr)));
+                    fn.apply(_this._lodop, arr);
                 }
             }));
         };
@@ -353,13 +351,13 @@
             var _this = this;
             this.check();
             /** @type {?} */
-            var tid = (/** @type {?} */ (this._lodop)).PRINT_DESIGN();
+            var tid = this._lodop.PRINT_DESIGN();
             return new Promise((/**
              * @param {?} resolve
              * @return {?}
              */
             function (resolve) {
-                (/** @type {?} */ (_this._lodop)).On_Return = (/**
+                _this._lodop.On_Return = (/**
                  * @param {?} taskID
                  * @param {?} value
                  * @return {?}
@@ -367,7 +365,7 @@
                 function (taskID, value) {
                     if (tid !== taskID)
                         return;
-                    (/** @type {?} */ (_this._lodop)).On_Return = null;
+                    _this._lodop.On_Return = null;
                     resolve('' + value);
                 });
             }));
@@ -388,8 +386,8 @@
                 return;
             this.attachCode(data.code, data.item, data.parser);
             /** @type {?} */
-            var tid = (/** @type {?} */ (this._lodop)).PRINT();
-            (/** @type {?} */ (this._lodop)).On_Return = (/**
+            var tid = this._lodop.PRINT();
+            this._lodop.On_Return = (/**
              * @param {?} taskID
              * @param {?} value
              * @return {?}
@@ -397,7 +395,7 @@
             function (taskID, value) {
                 if (tid !== taskID)
                     return;
-                (/** @type {?} */ (_this._lodop)).On_Return = null;
+                _this._lodop.On_Return = null;
                 _this._events.next(__assign({ ok: value === true, error: value === true ? null : value }, data));
                 _this.printDo();
             });

@@ -4,9 +4,9 @@ import { ArrayLayoutWidget } from '../../widget';
 export declare class ArrayWidget extends ArrayLayoutWidget implements OnInit {
     addTitle: string;
     addType: string;
-    removeTitle: string | null;
+    removeTitle: string;
     arraySpan: number;
-    readonly addDisabled: boolean | 0 | undefined;
+    readonly addDisabled: boolean;
     readonly l: LocaleData;
     ngOnInit(): void;
     addItem(): void;

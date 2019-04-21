@@ -267,7 +267,7 @@ var MockService = /** @class */ (function () {
         if (ret.martcher) {
             /** @type {?} */
             var execArr = ret.martcher.exec(url);
-            (/** @type {?} */ (execArr)).slice(1).map((/**
+            execArr.slice(1).map((/**
              * @param {?} value
              * @param {?} index
              * @return {?}
@@ -361,7 +361,7 @@ var MockInterceptor = /** @class */ (function () {
         /** @type {?} */
         var src = this.injector.get(MockService);
         /** @type {?} */
-        var config = __assign({ delay: 300, force: false, log: true, executeOtherInterceptors: true }, this.injector.get(DelonMockConfig));
+        var config = __assign({ delay: 300, force: false, log: true, executeOtherInterceptors: true }, this.injector.get(DelonMockConfig, null));
         /** @type {?} */
         var rule = src.getRule(req.method, req.url.split('?')[0]);
         if (!rule && !config.force) {
@@ -369,7 +369,7 @@ var MockInterceptor = /** @class */ (function () {
         }
         /** @type {?} */
         var res;
-        switch (typeof (/** @type {?} */ (rule)).callback) {
+        switch (typeof rule.callback) {
             case 'function':
                 /** @type {?} */
                 var mockRequest_1 = {
@@ -377,7 +377,7 @@ var MockInterceptor = /** @class */ (function () {
                     body: req.body,
                     queryString: {},
                     headers: {},
-                    params: (/** @type {?} */ (rule)).params,
+                    params: rule.params,
                 };
                 /** @type {?} */
                 var urlParams = req.url.split('?');
@@ -416,7 +416,7 @@ var MockInterceptor = /** @class */ (function () {
                  */
                 function (key) { return (mockRequest_1.headers[key] = req.headers.get(key)); }));
                 try {
-                    res = (/** @type {?} */ (rule)).callback.call(this, mockRequest_1);
+                    res = rule.callback.call(this, mockRequest_1);
                 }
                 catch (e) {
                     res = new HttpErrorResponse({
@@ -432,7 +432,7 @@ var MockInterceptor = /** @class */ (function () {
                 }
                 break;
             default:
-                res = (/** @type {?} */ (rule)).callback;
+                res = rule.callback;
                 break;
         }
         if (!(res instanceof HttpResponseBase)) {

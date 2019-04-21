@@ -1,8 +1,8 @@
-import { __spread, __values } from 'tslib';
-import { defineInjectable, Injectable, inject, Directive, ElementRef, Renderer2, Input, NgModule } from '@angular/core';
+import { __spread, __values, __extends } from 'tslib';
+import { defineInjectable, Injectable, inject, Directive, ElementRef, Renderer2, Input, ViewContainerRef, TemplateRef, NgModule } from '@angular/core';
 import { BehaviorSubject, Observable, of } from 'rxjs';
+import { filter, map, tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { map, tap } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
 
 /**
@@ -440,7 +440,11 @@ var ACLDirective = /** @class */ (function () {
         this.el = el;
         this.renderer = renderer;
         this.srv = srv;
-        this.change$ = this.srv.change.subscribe((/**
+        this.change$ = this.srv.change.pipe(filter((/**
+         * @param {?} r
+         * @return {?}
+         */
+        function (r) { return r != null; }))).subscribe((/**
          * @return {?}
          */
         function () { return _this.set(_this._value); }));
@@ -468,27 +472,38 @@ var ACLDirective = /** @class */ (function () {
         configurable: true
     });
     /**
-     * @private
+     * @protected
      * @param {?} value
      * @return {?}
      */
     ACLDirective.prototype.set = /**
-     * @private
+     * @protected
      * @param {?} value
      * @return {?}
      */
     function (value) {
+        this._value = value;
+        this._updateView();
+    };
+    /**
+     * @protected
+     * @return {?}
+     */
+    ACLDirective.prototype._updateView = /**
+     * @protected
+     * @return {?}
+     */
+    function () {
         /** @type {?} */
         var CLS = 'acl__hide';
         /** @type {?} */
         var el = this.el.nativeElement;
-        if (this.srv.can(value)) {
+        if (this.srv.can(this._value)) {
             this.renderer.removeClass(el, CLS);
         }
         else {
             this.renderer.addClass(el, CLS);
         }
-        this._value = value;
     };
     /**
      * @return {?}
@@ -514,6 +529,60 @@ var ACLDirective = /** @class */ (function () {
     };
     return ACLDirective;
 }());
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var ACLIfDirective = /** @class */ (function (_super) {
+    __extends(ACLIfDirective, _super);
+    function ACLIfDirective(_viewContainer, templateRef, el, renderer, srv) {
+        var _this = _super.call(this, el, renderer, srv) || this;
+        _this._viewContainer = _viewContainer;
+        _this.templateRef = templateRef;
+        return _this;
+    }
+    Object.defineProperty(ACLIfDirective.prototype, "acl", {
+        set: /**
+         * @param {?} value
+         * @return {?}
+         */
+        function (value) {
+            this.set(value);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    /**
+     * @protected
+     * @return {?}
+     */
+    ACLIfDirective.prototype._updateView = /**
+     * @protected
+     * @return {?}
+     */
+    function () {
+        this._viewContainer.clear();
+        if (this.srv.can(this._value)) {
+            this._viewContainer.createEmbeddedView(this.templateRef);
+        }
+    };
+    ACLIfDirective.decorators = [
+        { type: Directive, args: [{ selector: '[aclIf]' },] }
+    ];
+    /** @nocollapse */
+    ACLIfDirective.ctorParameters = function () { return [
+        { type: ViewContainerRef },
+        { type: TemplateRef },
+        { type: ElementRef },
+        { type: Renderer2 },
+        { type: ACLService }
+    ]; };
+    ACLIfDirective.propDecorators = {
+        acl: [{ type: Input, args: ['aclIf',] }]
+    };
+    return ACLIfDirective;
+}(ACLDirective));
 
 /**
  * @fileoverview added by tsickle
@@ -555,7 +624,7 @@ var ACLGuard = /** @class */ (function () {
         function (v) {
             if (v)
                 return;
-            _this.router.navigateByUrl((/** @type {?} */ (_this.options.guard_url)));
+            _this.router.navigateByUrl(_this.options.guard_url);
         })));
     };
     // lazy loading
@@ -625,7 +694,7 @@ var ACLGuard = /** @class */ (function () {
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-var COMPONENTS = [ACLDirective];
+var COMPONENTS = [ACLDirective, ACLIfDirective];
 var DelonACLModule = /** @class */ (function () {
     function DelonACLModule() {
     }
@@ -649,5 +718,5 @@ var DelonACLModule = /** @class */ (function () {
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { ACLDirective, ACLGuard, ACLService, DelonACLConfig, DelonACLModule };
+export { ACLDirective, ACLGuard, ACLIfDirective, ACLService, DelonACLConfig, DelonACLModule };
 //# sourceMappingURL=acl.js.map

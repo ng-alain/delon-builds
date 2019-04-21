@@ -3,7 +3,7 @@ import { SFValue } from '../../interface';
 import { ControlWidget } from '../../widget';
 export declare class DateWidget extends ControlWidget implements OnInit {
     mode: string;
-    displayValue: Date | Date[] | null;
+    displayValue: Date | Date[];
     displayFormat: string;
     format: string;
     i: any;
@@ -11,7 +11,7 @@ export declare class DateWidget extends ControlWidget implements OnInit {
     ngOnInit(): void;
     private compCd;
     reset(value: SFValue): void;
-    _change(value: Date | Date[] | null): void;
+    _change(value: Date | Date[]): void;
     _openChange(status: boolean): void;
     _ok(value: any): void;
     private readonly endProperty;

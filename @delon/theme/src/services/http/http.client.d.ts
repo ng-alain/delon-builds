@@ -19,6 +19,18 @@ export declare class _HttpClient {
     begin(): void;
     end(): void;
     /**
+     * GET：返回一个 `T` 类型
+     */
+    get<T>(url: string, params?: any, options?: {
+        headers?: HttpHeaders | {
+            [header: string]: string | string[];
+        };
+        observe?: 'body';
+        reportProgress?: boolean;
+        responseType: 'json';
+        withCredentials?: boolean;
+    }): Observable<T>;
+    /**
      * GET：返回一个 `string` 类型
      */
     get(url: string, params: any, options: {
@@ -43,18 +55,6 @@ export declare class _HttpClient {
         withCredentials?: boolean;
     }): Observable<HttpResponse<{}>>;
     /**
-     * GET：返回一个 `any` 类型
-     */
-    get(url: string, params?: any, options?: {
-        headers?: HttpHeaders | {
-            [header: string]: string | string[];
-        };
-        observe?: 'body' | 'events' | 'response';
-        reportProgress?: boolean;
-        responseType?: 'arraybuffer' | 'blob' | 'json' | 'text';
-        withCredentials?: boolean;
-    }): Observable<any>;
-    /**
      * GET：返回一个 `JSON` 类型
      */
     get<T>(url: string, params: any, options: {
@@ -66,6 +66,18 @@ export declare class _HttpClient {
         responseType?: 'json';
         withCredentials?: boolean;
     }): Observable<HttpResponse<T>>;
+    /**
+     * GET：返回一个 `any` 类型
+     */
+    get(url: string, params?: any, options?: {
+        headers?: HttpHeaders | {
+            [header: string]: string | string[];
+        };
+        observe?: 'body' | 'events' | 'response';
+        reportProgress?: boolean;
+        responseType?: 'arraybuffer' | 'blob' | 'json' | 'text';
+        withCredentials?: boolean;
+    }): Observable<any>;
     /**
      * POST：返回一个 `string` 类型
      */
@@ -91,18 +103,6 @@ export declare class _HttpClient {
         withCredentials?: boolean;
     }): Observable<HttpResponse<{}>>;
     /**
-     * POST：返回一个 `any` 类型
-     */
-    post(url: string, body?: any, params?: any, options?: {
-        headers?: HttpHeaders | {
-            [header: string]: string | string[];
-        };
-        observe?: 'body' | 'events' | 'response';
-        reportProgress?: boolean;
-        responseType?: 'arraybuffer' | 'blob' | 'json' | 'text';
-        withCredentials?: boolean;
-    }): Observable<any>;
-    /**
      * POST：返回一个 `JSON` 类型
      */
     post<T>(url: string, body?: any, params?: any, options?: {
@@ -114,6 +114,18 @@ export declare class _HttpClient {
         responseType?: 'json';
         withCredentials?: boolean;
     }): Observable<T>;
+    /**
+     * POST：返回一个 `any` 类型
+     */
+    post(url: string, body?: any, params?: any, options?: {
+        headers?: HttpHeaders | {
+            [header: string]: string | string[];
+        };
+        observe?: 'body' | 'events' | 'response';
+        reportProgress?: boolean;
+        responseType?: 'arraybuffer' | 'blob' | 'json' | 'text';
+        withCredentials?: boolean;
+    }): Observable<any>;
     /**
      * DELETE：返回一个 `string` 类型
      */
@@ -183,18 +195,6 @@ export declare class _HttpClient {
         withCredentials?: boolean;
     }): Observable<HttpResponse<{}>>;
     /**
-     * PATCH：返回一个 `any` 类型
-     */
-    patch(url: string, body?: any, params?: any, options?: {
-        headers?: HttpHeaders | {
-            [header: string]: string | string[];
-        };
-        observe?: 'body' | 'events' | 'response';
-        reportProgress?: boolean;
-        responseType?: 'arraybuffer' | 'blob' | 'json' | 'text';
-        withCredentials?: boolean;
-    }): Observable<any>;
-    /**
      * PATCH：返回一个 `JSON` 类型
      */
     patch<T>(url: string, body?: any, params?: any, options?: {
@@ -206,6 +206,18 @@ export declare class _HttpClient {
         responseType?: 'json';
         withCredentials?: boolean;
     }): Observable<T>;
+    /**
+     * PATCH：返回一个 `any` 类型
+     */
+    patch(url: string, body?: any, params?: any, options?: {
+        headers?: HttpHeaders | {
+            [header: string]: string | string[];
+        };
+        observe?: 'body' | 'events' | 'response';
+        reportProgress?: boolean;
+        responseType?: 'arraybuffer' | 'blob' | 'json' | 'text';
+        withCredentials?: boolean;
+    }): Observable<any>;
     /**
      * PUT：返回一个 `string` 类型
      */
@@ -231,18 +243,6 @@ export declare class _HttpClient {
         withCredentials?: boolean;
     }): Observable<HttpResponse<{}>>;
     /**
-     * PUT：返回一个 `any` 类型
-     */
-    put(url: string, body?: any, params?: any, options?: {
-        headers?: HttpHeaders | {
-            [header: string]: string | string[];
-        };
-        observe?: 'body' | 'events' | 'response';
-        reportProgress?: boolean;
-        responseType?: 'arraybuffer' | 'blob' | 'json' | 'text';
-        withCredentials?: boolean;
-    }): Observable<any>;
-    /**
      * PUT：返回一个 `JSON` 类型
      */
     put<T>(url: string, body?: any, params?: any, options?: {
@@ -255,13 +255,25 @@ export declare class _HttpClient {
         withCredentials?: boolean;
     }): Observable<T>;
     /**
+     * PUT：返回一个 `any` 类型
+     */
+    put(url: string, body?: any, params?: any, options?: {
+        headers?: HttpHeaders | {
+            [header: string]: string | string[];
+        };
+        observe?: 'body' | 'events' | 'response';
+        reportProgress?: boolean;
+        responseType?: 'arraybuffer' | 'blob' | 'json' | 'text';
+        withCredentials?: boolean;
+    }): Observable<any>;
+    /**
      * `request` 请求
      *
      * @param method 请求方法类型
      * @param url URL地址
      * @param options 参数
      */
-    request(method: string, url: string, options?: {
+    request<R>(method: string, url: string, options?: {
         body?: any;
         headers?: HttpHeaders | {
             [header: string]: string | string[];
@@ -273,5 +285,5 @@ export declare class _HttpClient {
         responseType?: 'arraybuffer' | 'blob' | 'json' | 'text';
         reportProgress?: boolean;
         withCredentials?: boolean;
-    }): Observable<any>;
+    }): Observable<R>;
 }

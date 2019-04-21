@@ -91,10 +91,10 @@ var PageHeaderComponent = /** @class */ (function () {
          * @return {?}
          */
         function () { return _this.inited; }))), router.events.pipe(filter((/**
-         * @param {?} e
+         * @param {?} event
          * @return {?}
          */
-        function (e) { return e instanceof NavigationEnd; }))), i18nSrv.change)
+        function (event) { return event instanceof NavigationEnd; }))), i18nSrv.change)
             .pipe(takeUntil(this.unsubscribe$))
             .subscribe((/**
          * @return {?}
@@ -128,12 +128,11 @@ var PageHeaderComponent = /** @class */ (function () {
             if (value instanceof TemplateRef) {
                 this._title = null;
                 this._titleTpl = value;
-                this._titleVal = '';
             }
             else {
                 this._title = value;
-                this._titleVal = this._title;
             }
+            this._titleVal = this._title;
         },
         enumerable: true,
         configurable: true
@@ -150,21 +149,25 @@ var PageHeaderComponent = /** @class */ (function () {
     };
     /**
      * @private
-     * @return {?}
+     * @template THIS
+     * @this {THIS}
+     * @return {THIS}
      */
     PageHeaderComponent.prototype.genBreadcrumb = /**
      * @private
-     * @return {?}
+     * @template THIS
+     * @this {THIS}
+     * @return {THIS}
      */
     function () {
         var _this = this;
-        if (this.breadcrumb || !this.autoBreadcrumb || this.menus.length <= 0) {
-            this.paths = [];
+        if ((/** @type {?} */ (this)).breadcrumb || !(/** @type {?} */ (this)).autoBreadcrumb || (/** @type {?} */ (this)).menus.length <= 0) {
+            (/** @type {?} */ (this)).paths = [];
             return;
         }
         /** @type {?} */
         var paths = [];
-        this.menus.forEach((/**
+        (/** @type {?} */ (this)).menus.forEach((/**
          * @param {?} item
          * @return {?}
          */
@@ -173,19 +176,19 @@ var PageHeaderComponent = /** @class */ (function () {
                 return;
             /** @type {?} */
             var title = item.text;
-            if (item.i18n && _this.i18nSrv)
-                title = _this.i18nSrv.fanyi(item.i18n);
-            paths.push({ title: title, link: (/** @type {?} */ ((item.link && [item.link]))) });
+            if (item.i18n && (/** @type {?} */ (_this)).i18nSrv)
+                title = (/** @type {?} */ (_this)).i18nSrv.fanyi(item.i18n);
+            paths.push({ title: title, link: item.link && [item.link] });
         }));
         // add home
-        if (this.home) {
+        if ((/** @type {?} */ (this)).home) {
             paths.splice(0, 0, {
-                title: (this.homeI18n && this.i18nSrv && this.i18nSrv.fanyi(this.homeI18n)) || this.home,
-                link: [this.homeLink],
+                title: ((/** @type {?} */ (this)).homeI18n && (/** @type {?} */ (this)).i18nSrv && (/** @type {?} */ (this)).i18nSrv.fanyi((/** @type {?} */ (this)).homeI18n)) || (/** @type {?} */ (this)).home,
+                link: [(/** @type {?} */ (this)).homeLink],
             });
         }
-        this.paths = paths;
-        return this;
+        (/** @type {?} */ (this)).paths = paths;
+        return (/** @type {?} */ (this));
     };
     /**
      * @private

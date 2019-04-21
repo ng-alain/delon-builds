@@ -6,6 +6,6 @@ export declare class ReuseTabStrategy implements RouteReuseStrategy {
     shouldDetach(route: ActivatedRouteSnapshot): boolean;
     store(route: ActivatedRouteSnapshot, handle: {}): void;
     shouldAttach(route: ActivatedRouteSnapshot): boolean;
-    retrieve(route: ActivatedRouteSnapshot): {} | null;
+    retrieve(route: ActivatedRouteSnapshot): {};
     shouldReuseRoute(future: ActivatedRouteSnapshot, curr: ActivatedRouteSnapshot): boolean;
 }

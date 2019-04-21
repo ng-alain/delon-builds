@@ -2,29 +2,29 @@ import { Observable } from 'rxjs';
 import { ErrorSchema } from '../errors';
 import { SFSchemaEnumType } from './index';
 export interface SFGridSizeSchema {
-    span?: number | null;
-    order?: number | null;
-    offset?: number | null;
-    push?: number | null;
-    pull?: number | null;
+    span?: number;
+    order?: number;
+    offset?: number;
+    push?: number;
+    pull?: number;
 }
 export interface SFGridSchema {
     /**
      * 栅格间隔
      */
-    gutter?: number | null;
+    gutter?: number;
     /**
      * 栅格占位格数，为 `0` 时相当于 `display: none`
      */
-    span?: number | null;
+    span?: number;
     /**
      * 数据栅格占位格数，为 `0` 时相当于 `display: none`
      */
-    arraySpan?: number | null;
+    arraySpan?: number;
     /**
      * 栅格左侧的间隔格数，间隔内不可以有栅格
      */
-    offset?: number | null;
+    offset?: number;
     xs?: number | SFGridSizeSchema;
     sm?: number | SFGridSizeSchema;
     md?: number | SFGridSizeSchema;
@@ -64,23 +64,23 @@ export interface SFHorizontalLayoutSchema {
      * - `0` 时相当于 `display: none`
      * - 限 `horizontal` 水平布局有效
      */
-    spanLabel?: number | null;
+    spanLabel?: number;
     /**
      * `control` 栅格占位格数，默认：`19`
      * - `0` 时相当于 `display: none`
      * - 限 `horizontal` 水平布局有效
      */
-    spanControl?: number | null;
+    spanControl?: number;
     /**
      * `control` 栅格左侧的间隔格数，间隔内不可以有栅格
      * - 限 `horizontal` 水平布局有效
      */
-    offsetControl?: number | null;
+    offsetControl?: number;
     /**
      * `label` 固定宽度
      * - 限 `horizontal` 水平布局有效
      */
-    spanLabelFixed?: number | null;
+    spanLabelFixed?: number;
 }
 export interface SFArraySchema {
     /** **限array** 指定添加按钮文本，默认：添加 */

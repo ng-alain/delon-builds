@@ -247,7 +247,7 @@
                     throw new Error('Ellipsis content must be string.');
                 }
                 /** @type {?} */
-                var text = (/** @type {?} */ (el.textContent));
+                var text = el.textContent;
                 /** @type {?} */
                 var textLength = fullWidthRecognition ? this.getStrFullLength(text) : text.length;
                 if (textLength <= length || length < 0) {
@@ -273,9 +273,9 @@
                 /** @type {?} */
                 var orgNode = (/** @type {?} */ (shadowOrgEl.nativeElement));
                 /** @type {?} */
-                var text = orgNode.innerText || (/** @type {?} */ (orgNode.textContent));
+                var text = orgNode.innerText || orgNode.textContent;
                 /** @type {?} */
-                var lineHeight = parseInt((/** @type {?} */ (getComputedStyle(this.getEl('.ellipsis')).lineHeight)), 10);
+                var lineHeight = parseInt(getComputedStyle(this.getEl('.ellipsis')).lineHeight, 10);
                 /** @type {?} */
                 var targetHeight = lines * lineHeight;
                 this.getEl('.ellipsis__handle').style.height = targetHeight + "px";

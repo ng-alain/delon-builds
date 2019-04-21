@@ -228,7 +228,7 @@
          */
         function (data) {
             this.change$.next(data);
-            return this.store.set((/** @type {?} */ (this.options.store_key)), data);
+            return this.store.set(this.options.store_key, data);
         };
         /**
          * @template T
@@ -242,7 +242,7 @@
          */
         function (type) {
             /** @type {?} */
-            var data = this.store.get((/** @type {?} */ (this.options.store_key)));
+            var data = this.store.get(this.options.store_key);
             return type ? ((/** @type {?} */ (Object.assign(new type(), data)))) : ((/** @type {?} */ (data)));
         };
         /**
@@ -253,7 +253,7 @@
          */
         function () {
             this.change$.next(null);
-            this.store.remove((/** @type {?} */ (this.options.store_key)));
+            this.store.remove(this.options.store_key);
         };
         /**
          * @return {?}
@@ -322,7 +322,7 @@
             if (callback === void 0) { callback = '/'; }
             if (options === void 0) { options = {}; }
             options = __assign({ type: 'window', windowFeatures: 'location=yes,height=570,width=520,scrollbars=yes,status=yes' }, options);
-            localStorage.setItem(OPENTYPE, (/** @type {?} */ (options.type)));
+            localStorage.setItem(OPENTYPE, options.type);
             localStorage.setItem(HREFCALLBACK, callback);
             if (options.type === 'href') {
                 this.doc.location.href = url;
@@ -386,7 +386,7 @@
                 data = (/** @type {?} */ (this.router.parseUrl('./?' + rightUrl).queryParams));
             }
             else {
-                data = (/** @type {?} */ (rawData));
+                data = rawData;
             }
             if (!data || !data.token)
                 throw new Error("invalide token data");
@@ -537,7 +537,7 @@
      * @return {?}
      */
     function CheckJwt(model, offset) {
-        return model != null && !!model.token && !model.isExpired(offset);
+        return model != null && model.token && !model.isExpired(offset);
     }
     /**
      * @param {?} options
@@ -546,14 +546,14 @@
      * @return {?}
      */
     function ToLogin(options, injector, url) {
-        (/** @type {?} */ (((/** @type {?} */ (injector.get(DA_SERVICE_TOKEN)))).referrer)).url = url;
+        ((/** @type {?} */ (injector.get(DA_SERVICE_TOKEN)))).referrer.url = url;
         if (options.token_invalid_redirect === true) {
             setTimeout((/**
              * @return {?}
              */
             function () {
-                if (/^https?:\/\//g.test((/** @type {?} */ (options.login_url)))) {
-                    injector.get(common.DOCUMENT).location.href = (/** @type {?} */ (options.login_url));
+                if (/^https?:\/\//g.test(options.login_url)) {
+                    injector.get(common.DOCUMENT).location.href = options.login_url;
                 }
                 else {
                     injector.get(router.Router).navigate([options.login_url]);
@@ -830,7 +830,7 @@
          */
         function (options) {
             this.model = this.injector.get(DA_SERVICE_TOKEN).get(JWTTokenModel);
-            return CheckJwt((/** @type {?} */ (this.model)), (/** @type {?} */ (options.token_exp_offset)));
+            return CheckJwt((/** @type {?} */ (this.model)), options.token_exp_offset);
         };
         /**
          * @param {?} req
@@ -875,7 +875,7 @@
          */
         function () {
             /** @type {?} */
-            var res = CheckJwt(this.srv.get(JWTTokenModel), (/** @type {?} */ (this.cog.token_exp_offset)));
+            var res = CheckJwt(this.srv.get(JWTTokenModel), this.cog.token_exp_offset);
             if (!res) {
                 ToLogin(this.cog, this.injector, this.url);
             }
@@ -991,9 +991,8 @@
          */
         function (req, options) {
             var _this = this;
-            var token_send_template = options.token_send_template, token_send_key = options.token_send_key;
             /** @type {?} */
-            var token = (/** @type {?} */ (token_send_template)).replace(/\$\{([\w]+)\}/g, (/**
+            var token = options.token_send_template.replace(/\$\{([\w]+)\}/g, (/**
              * @param {?} _
              * @param {?} g
              * @return {?}
@@ -1003,7 +1002,7 @@
                 case 'header':
                     /** @type {?} */
                     var obj = {};
-                    obj[(/** @type {?} */ (token_send_key))] = token;
+                    obj[options.token_send_key] = token;
                     req = req.clone({
                         setHeaders: obj,
                     });
@@ -1011,14 +1010,14 @@
                 case 'body':
                     /** @type {?} */
                     var body = req.body || {};
-                    body[(/** @type {?} */ (token_send_key))] = token;
+                    body[options.token_send_key] = token;
                     req = req.clone({
                         body: body,
                     });
                     break;
                 case 'url':
                     req = req.clone({
-                        params: req.params.append((/** @type {?} */ (token_send_key)), token),
+                        params: req.params.append(options.token_send_key, token),
                     });
                     break;
             }
@@ -1050,7 +1049,7 @@
          */
         function () {
             /** @type {?} */
-            var res = CheckSimple((/** @type {?} */ (this.srv.get())));
+            var res = CheckSimple(this.srv.get());
             if (!res) {
                 ToLogin(this.cog, this.injector, this.url);
             }

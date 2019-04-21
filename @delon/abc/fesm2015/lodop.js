@@ -77,7 +77,7 @@ class LodopService {
         /** @type {?} */
         const url = `${this.cog.url}?name=${this.cog.name}`;
         /** @type {?} */
-        let checkMaxCount = (/** @type {?} */ (this.cog.checkMaxCount));
+        let checkMaxCount = this.cog.checkMaxCount;
         /** @type {?} */
         const onResolve = (/**
          * @param {?} status
@@ -89,7 +89,7 @@ class LodopService {
                 ok: status === 'ok',
                 status,
                 error,
-                lodop: (/** @type {?} */ (this._lodop)),
+                lodop: this._lodop,
             });
         });
         /** @type {?} */
@@ -98,7 +98,7 @@ class LodopService {
          */
         () => {
             --checkMaxCount;
-            if ((/** @type {?} */ (this._lodop)).webskt && (/** @type {?} */ (this._lodop)).webskt.readyState === 1) {
+            if (this._lodop.webskt && this._lodop.webskt.readyState === 1) {
                 onResolve('ok');
             }
             else {
@@ -122,14 +122,12 @@ class LodopService {
                 onResolve('script-load-error', res[0]);
                 return;
             }
-            if (window.hasOwnProperty((/** @type {?} */ (this.cog.name)))) {
-                this._lodop = (/** @type {?} */ (window[(/** @type {?} */ (this.cog.name))]));
-            }
+            this._lodop = window.hasOwnProperty(this.cog.name) && ((/** @type {?} */ (window[this.cog.name])));
             if (this._lodop === null) {
                 onResolve('load-variable-name-error', { name: this.cog.name });
                 return;
             }
-            this._lodop.SET_LICENSES((/** @type {?} */ (this.cog.companyName)), this.cog.license, this.cog.licenseA, this.cog.licenseB);
+            this._lodop.SET_LICENSES(this.cog.companyName, this.cog.license, this.cog.licenseA, this.cog.licenseB);
             checkStatus();
         }));
     }
@@ -163,9 +161,9 @@ class LodopService {
         /** @type {?} */
         const ret = [];
         /** @type {?} */
-        const count = (/** @type {?} */ (this._lodop)).GET_PRINTER_COUNT();
+        const count = this._lodop.GET_PRINTER_COUNT();
         for (let index = 0; index < count; index++) {
-            ret.push((/** @type {?} */ (this._lodop)).GET_PRINTER_NAME(index));
+            ret.push(this._lodop.GET_PRINTER_NAME(index));
         }
         return ret;
     }
@@ -189,21 +187,21 @@ class LodopService {
          */
         line => {
             /** @type {?} */
-            const res = (/** @type {?} */ (parser)).exec(line.trim());
+            const res = parser.exec(line.trim());
             if (!res)
                 return;
             /** @type {?} */
-            const fn = (/** @type {?} */ (this._lodop))[res[1]];
+            const fn = this._lodop[res[1]];
             if (fn) {
                 /** @type {?} */
-                let arr = null;
+                let arr;
                 try {
                     /** @type {?} */
                     const fakeFn = new Function(`return [${res[2]}]`);
                     arr = fakeFn();
                 }
                 catch (_a) { }
-                if (arr != null && Array.isArray(arr) && contextObj) {
+                if (Array.isArray(arr) && contextObj) {
                     for (let i = 0; i < arr.length; i++) {
                         if (typeof arr[i] === 'string') {
                             arr[i] = arr[i].replace(/{{(.*?)}}/g, (/**
@@ -215,7 +213,7 @@ class LodopService {
                         }
                     }
                 }
-                fn.apply(this._lodop, (/** @type {?} */ (arr)));
+                fn.apply(this._lodop, arr);
             }
         }));
     }
@@ -228,13 +226,13 @@ class LodopService {
     design() {
         this.check();
         /** @type {?} */
-        const tid = (/** @type {?} */ (this._lodop)).PRINT_DESIGN();
+        const tid = this._lodop.PRINT_DESIGN();
         return new Promise((/**
          * @param {?} resolve
          * @return {?}
          */
         resolve => {
-            (/** @type {?} */ (this._lodop)).On_Return = (/**
+            this._lodop.On_Return = (/**
              * @param {?} taskID
              * @param {?} value
              * @return {?}
@@ -242,7 +240,7 @@ class LodopService {
             (taskID, value) => {
                 if (tid !== taskID)
                     return;
-                (/** @type {?} */ (this._lodop)).On_Return = null;
+                this._lodop.On_Return = null;
                 resolve('' + value);
             });
         }));
@@ -258,8 +256,8 @@ class LodopService {
             return;
         this.attachCode(data.code, data.item, data.parser);
         /** @type {?} */
-        const tid = (/** @type {?} */ (this._lodop)).PRINT();
-        (/** @type {?} */ (this._lodop)).On_Return = (/**
+        const tid = this._lodop.PRINT();
+        this._lodop.On_Return = (/**
          * @param {?} taskID
          * @param {?} value
          * @return {?}
@@ -267,7 +265,7 @@ class LodopService {
         (taskID, value) => {
             if (tid !== taskID)
                 return;
-            (/** @type {?} */ (this._lodop)).On_Return = null;
+            this._lodop.On_Return = null;
             this._events.next(Object.assign({ ok: value === true, error: value === true ? null : value }, data));
             this.printDo();
         });

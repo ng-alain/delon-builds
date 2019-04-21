@@ -1,7 +1,7 @@
-import { Injectable, defineInjectable, inject, Directive, ElementRef, Renderer2, Input, NgModule } from '@angular/core';
+import { Injectable, defineInjectable, inject, Directive, ElementRef, Renderer2, Input, ViewContainerRef, TemplateRef, NgModule } from '@angular/core';
 import { BehaviorSubject, Observable, of } from 'rxjs';
+import { filter, map, tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { map, tap } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
 
 /**
@@ -283,7 +283,11 @@ class ACLDirective {
         this.el = el;
         this.renderer = renderer;
         this.srv = srv;
-        this.change$ = this.srv.change.subscribe((/**
+        this.change$ = this.srv.change.pipe(filter((/**
+         * @param {?} r
+         * @return {?}
+         */
+        r => r != null))).subscribe((/**
          * @return {?}
          */
         () => this.set(this._value)));
@@ -303,22 +307,29 @@ class ACLDirective {
         this.set(this.srv.parseAbility(value));
     }
     /**
-     * @private
+     * @protected
      * @param {?} value
      * @return {?}
      */
     set(value) {
+        this._value = value;
+        this._updateView();
+    }
+    /**
+     * @protected
+     * @return {?}
+     */
+    _updateView() {
         /** @type {?} */
         const CLS = 'acl__hide';
         /** @type {?} */
         const el = this.el.nativeElement;
-        if (this.srv.can(value)) {
+        if (this.srv.can(this._value)) {
             this.renderer.removeClass(el, CLS);
         }
         else {
             this.renderer.addClass(el, CLS);
         }
-        this._value = value;
     }
     /**
      * @return {?}
@@ -339,6 +350,56 @@ ACLDirective.ctorParameters = () => [
 ACLDirective.propDecorators = {
     acl: [{ type: Input, args: ['acl',] }],
     ability: [{ type: Input, args: ['acl-ability',] }]
+};
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class ACLIfDirective extends ACLDirective {
+    /**
+     * @param {?} _viewContainer
+     * @param {?} templateRef
+     * @param {?} el
+     * @param {?} renderer
+     * @param {?} srv
+     */
+    constructor(_viewContainer, templateRef, el, renderer, srv) {
+        super(el, renderer, srv);
+        this._viewContainer = _viewContainer;
+        this.templateRef = templateRef;
+    }
+    /**
+     * @param {?} value
+     * @return {?}
+     */
+    set acl(value) {
+        this.set(value);
+    }
+    /**
+     * @protected
+     * @return {?}
+     */
+    _updateView() {
+        this._viewContainer.clear();
+        if (this.srv.can(this._value)) {
+            this._viewContainer.createEmbeddedView(this.templateRef);
+        }
+    }
+}
+ACLIfDirective.decorators = [
+    { type: Directive, args: [{ selector: '[aclIf]' },] }
+];
+/** @nocollapse */
+ACLIfDirective.ctorParameters = () => [
+    { type: ViewContainerRef },
+    { type: TemplateRef },
+    { type: ElementRef },
+    { type: Renderer2 },
+    { type: ACLService }
+];
+ACLIfDirective.propDecorators = {
+    acl: [{ type: Input, args: ['aclIf',] }]
 };
 
 /**
@@ -380,7 +441,7 @@ class ACLGuard {
         v => {
             if (v)
                 return;
-            this.router.navigateByUrl((/** @type {?} */ (this.options.guard_url)));
+            this.router.navigateByUrl(this.options.guard_url);
         })));
     }
     // lazy loading
@@ -426,7 +487,7 @@ ACLGuard.ctorParameters = () => [
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-const COMPONENTS = [ACLDirective];
+const COMPONENTS = [ACLDirective, ACLIfDirective];
 class DelonACLModule {
 }
 DelonACLModule.decorators = [
@@ -447,5 +508,5 @@ DelonACLModule.decorators = [
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { ACLDirective, ACLGuard, ACLService, DelonACLConfig, DelonACLModule };
+export { ACLDirective, ACLGuard, ACLIfDirective, ACLService, DelonACLConfig, DelonACLModule };
 //# sourceMappingURL=acl.js.map

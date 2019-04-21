@@ -37,9 +37,9 @@ const WINDOW = new InjectionToken('Window', {
  */
 function preloaderFinished() {
     /** @type {?} */
-    const body = (/** @type {?} */ (document.querySelector('body')));
+    const body = document.querySelector('body');
     /** @type {?} */
-    const preloader = (/** @type {?} */ (document.querySelector('.preloader')));
+    const preloader = document.querySelector('.preloader');
     body.style.overflow = 'hidden';
     /**
      * @return {?}
@@ -98,11 +98,11 @@ class AlainI18NServiceFake {
      * @return {?}
      */
     get change() {
-        return (/** @type {?} */ (this.change$.asObservable().pipe(filter((/**
+        return this.change$.asObservable().pipe(filter((/**
          * @param {?} w
          * @return {?}
          */
-        w => w != null)))));
+        w => w != null)));
     }
     /**
      * @param {?} lang
@@ -282,7 +282,7 @@ class MenuService {
             return;
         }
         /** @type {?} */
-        const ls = (/** @type {?} */ (this.data[0].children));
+        const ls = this.data[0].children;
         /** @type {?} */
         let pos = ls.findIndex((/**
          * @param {?} w
@@ -294,7 +294,7 @@ class MenuService {
              * @param {?} w
              * @return {?}
              */
-            w => (/** @type {?} */ (w.link)).includes('dashboard')));
+            w => w.link.includes('dashboard')));
             pos = (pos !== -1 ? pos : -1) + 1;
             /** @type {?} */
             const shortcutMenu = (/** @type {?} */ ({
@@ -303,10 +303,10 @@ class MenuService {
                 icon: 'icon-rocket',
                 children: [],
             }));
-            (/** @type {?} */ (this.data[0].children)).splice(pos, 0, shortcutMenu);
+            this.data[0].children.splice(pos, 0, shortcutMenu);
         }
         /** @type {?} */
-        let _data = (/** @type {?} */ (this.data[0].children))[pos];
+        let _data = this.data[0].children[pos];
         if (_data.i18n && this.i18nSrv)
             _data.text = this.i18nSrv.fanyi(_data.i18n);
         // tslint:disable-next-line:prefer-object-spread
@@ -393,7 +393,7 @@ class MenuService {
             i._selected = false;
             i._open = false;
         }));
-        if (findItem == null)
+        if (!findItem)
             return;
         do {
             findItem._selected = true;
@@ -484,11 +484,11 @@ class ScrollService {
     scrollToElement(element, topOffset = 0) {
         if (!element)
             element = this.doc.body;
-        (/** @type {?} */ (element)).scrollIntoView();
+        element.scrollIntoView();
         /** @type {?} */
         const w = this.win;
         if (w && w.scrollBy) {
-            w.scrollBy(0, (/** @type {?} */ (element)).getBoundingClientRect().top - topOffset);
+            w.scrollBy(0, element.getBoundingClientRect().top - topOffset);
             if (w.pageYOffset < 20) {
                 w.scrollBy(0, -w.pageYOffset);
             }
@@ -560,7 +560,7 @@ class SettingsService {
             this._layout = Object.assign({ fixed: true, collapsed: false, boxed: false, lang: null }, this.get(LAYOUT));
             this.set(LAYOUT, this._layout);
         }
-        return (/** @type {?} */ (this._layout));
+        return this._layout;
     }
     /**
      * @return {?}
@@ -570,7 +570,7 @@ class SettingsService {
             this._app = Object.assign({ year: new Date().getFullYear() }, this.get(APP));
             this.set(APP, this._app);
         }
-        return (/** @type {?} */ (this._app));
+        return this._app;
     }
     /**
      * @return {?}
@@ -580,7 +580,7 @@ class SettingsService {
             this._user = Object.assign({}, this.get(USER));
             this.set(USER, this._user);
         }
-        return (/** @type {?} */ (this._user));
+        return this._user;
     }
     /**
      * @return {?}
@@ -1329,15 +1329,15 @@ class ModalHelper {
             let cls = '';
             /** @type {?} */
             let width = '';
-            if ((/** @type {?} */ (options)).size) {
-                if (typeof (/** @type {?} */ (options)).size === 'number') {
-                    width = `${(/** @type {?} */ (options)).size}px`;
+            if (options.size) {
+                if (typeof options.size === 'number') {
+                    width = `${options.size}px`;
                 }
                 else {
-                    cls = `modal-${(/** @type {?} */ (options)).size}`;
+                    cls = `modal-${options.size}`;
                 }
             }
-            if ((/** @type {?} */ (options)).includeTabs) {
+            if (options.includeTabs) {
                 cls += ' modal-include-tabs';
             }
             /** @type {?} */
@@ -1350,14 +1350,14 @@ class ModalHelper {
                 nzZIndex: ++this.zIndex,
             };
             /** @type {?} */
-            const subject = this.srv.create(Object.assign({}, defaultOptions, (/** @type {?} */ (options)).modalOptions));
+            const subject = this.srv.create(Object.assign({}, defaultOptions, options.modalOptions));
             /** @type {?} */
             const afterClose$ = subject.afterClose.subscribe((/**
              * @param {?} res
              * @return {?}
              */
             (res) => {
-                if ((/** @type {?} */ (options)).exact === true) {
+                if (options.exact === true) {
                     if (res != null) {
                         observer.next(res);
                     }
@@ -1500,7 +1500,7 @@ class DrawerHelper {
          * @return {?}
          */
         (observer) => {
-            const { size, footer, footerHeight, drawerOptions } = (/** @type {?} */ (options));
+            const { size, footer, footerHeight, drawerOptions } = options;
             /** @type {?} */
             const defaultOptions = {
                 nzContent: comp,
@@ -1509,19 +1509,19 @@ class DrawerHelper {
                 nzTitle: title,
             };
             if (typeof size === 'number') {
-                defaultOptions[(/** @type {?} */ (drawerOptions)).nzPlacement === 'top' || (/** @type {?} */ (drawerOptions)).nzPlacement === 'bottom'
+                defaultOptions[drawerOptions.nzPlacement === 'top' || drawerOptions.nzPlacement === 'bottom'
                     ? 'nzHeight'
-                    : 'nzWidth'] = (/** @type {?} */ (options)).size;
+                    : 'nzWidth'] = options.size;
             }
             else {
-                defaultOptions.nzWrapClassName = ((/** @type {?} */ (drawerOptions)).nzWrapClassName + ` drawer-${(/** @type {?} */ (options)).size}`).trim();
-                delete (/** @type {?} */ (drawerOptions)).nzWrapClassName;
+                defaultOptions.nzWrapClassName = (drawerOptions.nzWrapClassName + ` drawer-${options.size}`).trim();
+                delete drawerOptions.nzWrapClassName;
             }
             if (footer) {
-                const { nzPlacement, nzHeight } = (/** @type {?} */ (drawerOptions));
+                const { nzPlacement, nzHeight } = drawerOptions;
                 // Should be header * footer, because of includes header
                 /** @type {?} */
-                const reduceHeight = ((/** @type {?} */ (footerHeight)) * 2) - 2;
+                const reduceHeight = (footerHeight * 2) - 2;
                 if (nzPlacement === 'left' || nzPlacement === 'right') {
                     defaultOptions.nzBodyStyle = {
                         height: `calc(100% - ${reduceHeight}px)`,
@@ -1647,6 +1647,7 @@ class _HttpClient {
      * @return {?}
      */
     begin() {
+        // console.time('http');
         setTimeout((/**
          * @return {?}
          */
@@ -1656,6 +1657,7 @@ class _HttpClient {
      * @return {?}
      */
     end() {
+        // console.timeEnd('http');
         setTimeout((/**
          * @return {?}
          */
@@ -1665,10 +1667,10 @@ class _HttpClient {
      * GET 请求
      * @param {?} url
      * @param {?} params
-     * @param {?=} options
+     * @param {?} options
      * @return {?}
      */
-    get(url, params, options = {}) {
+    get(url, params, options) {
         return this.request('GET', url, Object.assign({ params }, options));
     }
     /**
@@ -1676,10 +1678,10 @@ class _HttpClient {
      * @param {?} url
      * @param {?} body
      * @param {?} params
-     * @param {?=} options
+     * @param {?} options
      * @return {?}
      */
-    post(url, body, params, options = {}) {
+    post(url, body, params, options) {
         return this.request('POST', url, Object.assign({ body,
             params }, options));
     }
@@ -1687,10 +1689,10 @@ class _HttpClient {
      * DELETE 请求
      * @param {?} url
      * @param {?} params
-     * @param {?=} options
+     * @param {?} options
      * @return {?}
      */
-    delete(url, params, options = {}) {
+    delete(url, params, options) {
         return this.request('DELETE', url, Object.assign({ params }, options));
     }
     // #endregion
@@ -1722,10 +1724,10 @@ class _HttpClient {
      * @param {?} url
      * @param {?} body
      * @param {?} params
-     * @param {?=} options
+     * @param {?} options
      * @return {?}
      */
-    patch(url, body, params, options = {}) {
+    patch(url, body, params, options) {
         return this.request('PATCH', url, Object.assign({ body,
             params }, options));
     }
@@ -1734,14 +1736,13 @@ class _HttpClient {
      * @param {?} url
      * @param {?} body
      * @param {?} params
-     * @param {?=} options
+     * @param {?} options
      * @return {?}
      */
-    put(url, body, params, options = {}) {
+    put(url, body, params, options) {
         return this.request('PUT', url, Object.assign({ body,
             params }, options));
     }
-    // #endregion
     /**
      * `request` 请求
      *
@@ -1759,7 +1760,9 @@ class _HttpClient {
         return this.http.request(method, url, options).pipe(tap((/**
          * @return {?}
          */
-        () => this.end())), catchError((/**
+        () => {
+            this.end();
+        })), catchError((/**
          * @param {?} res
          * @return {?}
          */
@@ -1924,7 +1927,7 @@ function makeMethod(method) {
          * @return {?}
          */
         (target, targetKey, descriptor) => {
-            (/** @type {?} */ (descriptor)).value = (/**
+            descriptor.value = (/**
              * @param {...?} args
              * @return {?}
              */
@@ -2303,7 +2306,7 @@ AlainThemeModule.ctorParameters = () => [
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-const VERSION = new Version('7.2.0-6fefb2fa');
+const VERSION = new Version('7.2.0-cf49779');
 
 /**
  * @fileoverview added by tsickle

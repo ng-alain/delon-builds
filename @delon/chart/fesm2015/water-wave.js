@@ -45,7 +45,7 @@ class G2WaterWaveComponent {
         /** @type {?} */
         const canvas = (/** @type {?} */ (node.nativeElement));
         /** @type {?} */
-        const ctx = (/** @type {?} */ (canvas.getContext('2d')));
+        const ctx = canvas.getContext('2d');
         /** @type {?} */
         const canvasWidth = canvas.width;
         /** @type {?} */
@@ -90,7 +90,7 @@ class G2WaterWaveComponent {
             arcStack.push([radius + bR * Math.cos(i), radius + bR * Math.sin(i)]);
         }
         /** @type {?} */
-        const cStartPoint = (/** @type {?} */ (arcStack.shift()));
+        const cStartPoint = arcStack.shift();
         ctx.strokeStyle = color;
         ctx.moveTo(cStartPoint[0], cStartPoint[1]);
         /**
@@ -115,7 +115,7 @@ class G2WaterWaveComponent {
                 sinStack.push([dx, dy]);
             }
             /** @type {?} */
-            const startPoint = (/** @type {?} */ (sinStack.shift()));
+            const startPoint = sinStack.shift();
             ctx.lineTo(xOffset + axisLength, canvasHeight);
             ctx.lineTo(xOffset, canvasHeight);
             ctx.lineTo(startPoint[0], startPoint[1]);
@@ -133,9 +133,9 @@ class G2WaterWaveComponent {
         function render() {
             ctx.clearRect(0, 0, canvasWidth, canvasHeight);
             if (circleLock && type !== 'update') {
-                if ((/** @type {?} */ (arcStack)).length) {
+                if (arcStack.length) {
                     /** @type {?} */
-                    const temp = (/** @type {?} */ ((/** @type {?} */ (arcStack)).shift()));
+                    const temp = arcStack.shift();
                     ctx.lineTo(temp[0], temp[1]);
                     ctx.stroke();
                 }
@@ -251,7 +251,7 @@ class G2WaterWaveComponent {
         if (this.timer) {
             cancelAnimationFrame(this.timer);
         }
-        (/** @type {?} */ (this.resize$)).unsubscribe();
+        this.resize$.unsubscribe();
     }
 }
 G2WaterWaveComponent.decorators = [

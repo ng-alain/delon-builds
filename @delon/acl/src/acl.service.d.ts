@@ -11,7 +11,7 @@ export declare class ACLService {
     private full;
     private aclChange;
     /** ACL变更通知 */
-    readonly change: Observable<ACLType | boolean | null>;
+    readonly change: Observable<ACLType | boolean>;
     /** 获取所有数据 */
     readonly data: {
         full: boolean;
@@ -62,7 +62,7 @@ export declare class ACLService {
      * - 当 `full: true` 或参数 `null` 时返回 `true`
      * - 若使用 `ACLType` 参数，可以指定 `mode` 校验模式
      */
-    can(roleOrAbility: ACLCanType | null): boolean;
+    can(roleOrAbility: ACLCanType): boolean;
     /** @inner */
     parseAbility(value: ACLCanType): ACLCanType;
     /**

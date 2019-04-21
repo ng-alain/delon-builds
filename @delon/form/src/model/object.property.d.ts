@@ -9,7 +9,7 @@ export declare class ObjectProperty extends PropertyGroup {
     private formPropertyFactory;
     private _propertiesId;
     readonly propertiesId: string[];
-    constructor(formPropertyFactory: FormPropertyFactory, schemaValidatorFactory: SchemaValidatorFactory, schema: SFSchema, ui: SFUISchema | SFUISchemaItem, formData: {}, parent: PropertyGroup | null, path: string, options: DelonFormConfig);
+    constructor(formPropertyFactory: FormPropertyFactory, schemaValidatorFactory: SchemaValidatorFactory, schema: SFSchema, ui: SFUISchema | SFUISchemaItem, formData: {}, parent: PropertyGroup, path: string, options: DelonFormConfig);
     private createProperties;
     setValue(value: SFValue, onlySelf: boolean): void;
     resetValue(value: SFValue, onlySelf: boolean): void;

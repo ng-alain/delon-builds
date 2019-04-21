@@ -80,7 +80,7 @@ class DownFileDirective {
          * @return {?}
          */
         (res) => {
-            if (res.status !== 200 || (/** @type {?} */ (res.body)).size <= 0) {
+            if (res.status !== 200 || res.body.size <= 0) {
                 this.error.emit(res);
                 return;
             }

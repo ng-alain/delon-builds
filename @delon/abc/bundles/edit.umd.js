@@ -424,7 +424,7 @@
             var _this = this;
             if (!this.ngControl || this.status$)
                 return;
-            this.status$ = (/** @type {?} */ (this.ngControl.statusChanges)).subscribe((/**
+            this.status$ = this.ngControl.statusChanges.subscribe((/**
              * @param {?} res
              * @return {?}
              */
@@ -453,7 +453,7 @@
             if (this.ngControl.disabled || this.ngControl.isDisabled) {
                 return;
             }
-            this.invalid = (/** @type {?} */ (((invalid && this.onceFlag) || (this.ngControl.dirty && invalid))));
+            this.invalid = (invalid && this.onceFlag) || (this.ngControl.dirty && invalid);
             this.cdr.detectChanges();
         };
         /**
@@ -509,7 +509,7 @@
                  * @return {?}
                  */
                 function () {
-                    _this.updateStatus((/** @type {?} */ (_this.ngControl.invalid)));
+                    _this.updateStatus(_this.ngControl.invalid);
                     _this.onceFlag = false;
                 }));
             }

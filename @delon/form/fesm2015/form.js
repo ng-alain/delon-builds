@@ -3,7 +3,7 @@ import { __rest, __decorate, __metadata } from 'tslib';
 import { DelonLocaleService, DelonLocaleModule } from '@delon/theme';
 import { deepCopy, toBoolean, InputBoolean, InputNumber, deepGet, DelonUtilModule } from '@delon/util';
 import { of, BehaviorSubject, Observable, combineLatest, Subject } from 'rxjs';
-import { map, distinctUntilChanged, takeUntil, debounceTime, startWith, flatMap, tap } from 'rxjs/operators';
+import { map, distinctUntilChanged, takeUntil, filter, debounceTime, startWith, flatMap, tap } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
 import { NgModel, FormsModule } from '@angular/forms';
 import { NzModalService, NgZorroAntdModule } from 'ng-zorro-antd';
@@ -207,7 +207,7 @@ function findSchemaDefinition($ref, definitions) {
 function retrieveSchema(schema, definitions = {}) {
     if (schema.hasOwnProperty('$ref')) {
         /** @type {?} */
-        const $refSchema = findSchemaDefinition((/** @type {?} */ (schema.$ref)), definitions);
+        const $refSchema = findSchemaDefinition(schema.$ref, definitions);
         // remove $ref property
         const localSchema = __rest(schema, ["$ref"]);
         return retrieveSchema(Object.assign({}, $refSchema, localSchema), definitions);
@@ -221,21 +221,21 @@ function retrieveSchema(schema, definitions = {}) {
  */
 function resolveIf(schema, ui) {
     if (!(schema.hasOwnProperty('if') && schema.hasOwnProperty('then')))
-        return null;
-    if (!(/** @type {?} */ (schema.if)).properties)
+        return;
+    if (!schema.if.properties)
         throw new Error(`if: does not contain 'properties'`);
     /** @type {?} */
-    const allKeys = Object.keys((/** @type {?} */ (schema.properties)));
+    const allKeys = Object.keys(schema.properties);
     /** @type {?} */
-    const ifKeys = Object.keys((/** @type {?} */ ((/** @type {?} */ (schema.if)).properties)));
+    const ifKeys = Object.keys(schema.if.properties);
     detectKey(allKeys, ifKeys);
-    detectKey(allKeys, (/** @type {?} */ ((/** @type {?} */ (schema.then)).required)));
-    schema.required = (/** @type {?} */ (schema.required)).concat((/** @type {?} */ ((/** @type {?} */ (schema.then)).required)));
+    detectKey(allKeys, schema.then.required);
+    schema.required = schema.required.concat(schema.then.required);
     /** @type {?} */
     const hasElse = schema.hasOwnProperty('else');
     if (hasElse) {
-        detectKey(allKeys, (/** @type {?} */ ((/** @type {?} */ (schema.else)).required)));
-        schema.required = schema.required.concat((/** @type {?} */ ((/** @type {?} */ (schema.else)).required)));
+        detectKey(allKeys, schema.else.required);
+        schema.required = schema.required.concat(schema.else.required);
     }
     /** @type {?} */
     const visibleIf = {};
@@ -247,22 +247,22 @@ function resolveIf(schema, ui) {
      */
     key => {
         /** @type {?} */
-        const cond = (/** @type {?} */ ((/** @type {?} */ (schema.if)).properties))[key].enum;
+        const cond = schema.if.properties[key].enum;
         visibleIf[key] = cond;
         if (hasElse)
             visibleElse[key] = (/**
              * @param {?} value
              * @return {?}
              */
-            (value) => !(/** @type {?} */ (cond)).includes(value));
+            (value) => !cond.includes(value));
     }));
-    (/** @type {?} */ ((/** @type {?} */ (schema.then)).required)).forEach((/**
+    schema.then.required.forEach((/**
      * @param {?} key
      * @return {?}
      */
     key => (ui[`$${key}`].visibleIf = visibleIf)));
     if (hasElse)
-        (/** @type {?} */ ((/** @type {?} */ (schema.else)).required)).forEach((/**
+        schema.else.required.forEach((/**
          * @param {?} key
          * @return {?}
          */
@@ -410,9 +410,9 @@ function getData(schema, ui, formData, asyncArgs) {
          * @param {?} list
          * @return {?}
          */
-        list => getEnum(list, formData, (/** @type {?} */ (schema.readOnly))))));
+        list => getEnum(list, formData, schema.readOnly))));
     }
-    return of(getCopyEnum((/** @type {?} */ (schema.enum)), formData, (/** @type {?} */ (schema.readOnly))));
+    return of(getCopyEnum(schema.enum, formData, schema.readOnly));
 }
 
 /**
@@ -445,7 +445,7 @@ class FormProperty {
         this.ui = ui;
         this.schemaValidator = schemaValidatorFactory.createValidatorFn(schema, {
             ingoreKeywords: (/** @type {?} */ (this.ui.ingoreKeywords)),
-            debug: (/** @type {?} */ ((/** @type {?} */ (((/** @type {?} */ (ui))))).debug)),
+            debug: (/** @type {?} */ (((/** @type {?} */ (ui))))).debug,
         });
         this.formData = formData || schema.default;
         this._parent = parent;
@@ -473,7 +473,7 @@ class FormProperty {
      * @return {?}
      */
     get type() {
-        return (/** @type {?} */ (this.schema.type));
+        return this.schema.type;
     }
     /**
      * @return {?}
@@ -696,7 +696,7 @@ class FormProperty {
                 /** @type {?} */
                 let message = err._custom === true && err.message
                     ? err.message
-                    : (this.ui.errors || {})[err.keyword] || (/** @type {?} */ (this._options.errors))[err.keyword] || ``;
+                    : (this.ui.errors || {})[err.keyword] || this._options.errors[err.keyword] || ``;
                 if (message && typeof message === 'function') {
                     message = (/** @type {?} */ (message(err)));
                 }
@@ -707,7 +707,7 @@ class FormProperty {
                          * @param {?} key
                          * @return {?}
                          */
-                        (v, key) => (/** @type {?} */ (err.params))[key] || ''));
+                        (v, key) => err.params[key] || ''));
                     }
                     err.message = (/** @type {?} */ (message));
                 }
@@ -838,7 +838,7 @@ class PropertyGroup extends FormProperty {
         /** @type {?} */
         const propertyId = subPathIdx !== -1 ? path.substr(0, subPathIdx) : path;
         /** @type {?} */
-        let property = (/** @type {?} */ (this.properties))[propertyId];
+        let property = this.properties[propertyId];
         if (property !== null && subPathIdx !== -1 && property instanceof PropertyGroup) {
             /** @type {?} */
             const subPath = path.substr(subPathIdx + 1);
@@ -991,7 +991,7 @@ class ArrayProperty extends PropertyGroup {
      */
     addProperty(formData) {
         /** @type {?} */
-        const newProperty = (/** @type {?} */ (this.formPropertyFactory.createProperty((/** @type {?} */ (this.schema.items)), this.ui.$items, formData, this)));
+        const newProperty = (/** @type {?} */ (this.formPropertyFactory.createProperty(this.schema.items, this.ui.$items, formData, this)));
         ((/** @type {?} */ (this.properties))).push(newProperty);
         return newProperty;
     }
@@ -1170,18 +1170,18 @@ class ObjectProperty extends PropertyGroup {
         /** @type {?} */
         let orderedProperties;
         try {
-            orderedProperties = orderProperties(Object.keys((/** @type {?} */ (this.schema.properties))), (/** @type {?} */ (this.ui
+            orderedProperties = orderProperties(Object.keys(this.schema.properties), (/** @type {?} */ (this.ui
                 .order)));
         }
         catch (e) {
             console.error(`Invalid ${this.schema.title || 'root'} object field configuration:`, e);
         }
-        (/** @type {?} */ (orderedProperties)).forEach((/**
+        orderedProperties.forEach((/**
          * @param {?} propertyId
          * @return {?}
          */
         propertyId => {
-            (/** @type {?} */ (this.properties))[propertyId] = this.formPropertyFactory.createProperty((/** @type {?} */ (this.schema.properties))[propertyId], this.ui['$' + propertyId], (this.formData || {})[propertyId], this, propertyId);
+            this.properties[propertyId] = this.formPropertyFactory.createProperty(this.schema.properties[propertyId], this.ui['$' + propertyId], (this.formData || {})[propertyId], this, propertyId);
             this._propertiesId.push(propertyId);
         }));
     }
@@ -1192,8 +1192,8 @@ class ObjectProperty extends PropertyGroup {
      */
     setValue(value, onlySelf) {
         for (const propertyId in value) {
-            if (value.hasOwnProperty(propertyId) && (/** @type {?} */ (this.properties))[propertyId]) {
-                (/** @type {?} */ (this.properties))[propertyId].setValue(value[propertyId], true);
+            if (value.hasOwnProperty(propertyId) && this.properties[propertyId]) {
+                this.properties[propertyId].setValue(value[propertyId], true);
             }
         }
         this.updateValueAndValidity(onlySelf, true);
@@ -1206,7 +1206,7 @@ class ObjectProperty extends PropertyGroup {
     resetValue(value, onlySelf) {
         value = value || this.schema.default || {};
         for (const propertyId in this.schema.properties) {
-            (/** @type {?} */ (this.properties))[propertyId].resetValue(value[propertyId], true);
+            this.properties[propertyId].resetValue(value[propertyId], true);
         }
         this.updateValueAndValidity(onlySelf, true);
     }
@@ -1306,12 +1306,12 @@ class FormPropertyFactory {
         }
         if (schema.$ref) {
             /** @type {?} */
-            const refSchema = retrieveSchema(schema, (/** @type {?} */ (parent)).root.schema.definitions);
+            const refSchema = retrieveSchema(schema, parent.root.schema.definitions);
             newProperty = this.createProperty(refSchema, ui, formData, parent, path);
         }
         else {
             // fix required
-            if (propertyId && ((/** @type {?} */ (((/** @type {?} */ (parent)).schema.required || [])))).indexOf((/** @type {?} */ (propertyId.split(SEQ).pop()))) !== -1) {
+            if (propertyId && ((/** @type {?} */ (((/** @type {?} */ (parent)).schema.required || [])))).indexOf(propertyId.split(SEQ).pop()) !== -1) {
                 ui._required = true;
             }
             // fix title
@@ -1415,10 +1415,9 @@ class AjvSchemaValidatorFactory extends SchemaValidatorFactory {
      */
     createValidatorFn(schema, extraOptions) {
         /** @type {?} */
-        const ingoreKeywords = [
-            ...(/** @type {?} */ (this.options.ingoreKeywords)),
-            ...(/** @type {?} */ (extraOptions.ingoreKeywords)),
-        ];
+        const ingoreKeywords = []
+            .concat(this.options.ingoreKeywords)
+            .concat(extraOptions.ingoreKeywords);
         return (/**
          * @param {?} value
          * @return {?}
@@ -1604,9 +1603,9 @@ class SFComponent {
          * 表单校验结果回调
          */
         this.formError = new EventEmitter();
-        this.liveValidate = (/** @type {?} */ (options.liveValidate));
-        this.firstVisual = (/** @type {?} */ (options.firstVisual));
-        this.autocomplete = (/** @type {?} */ (options.autocomplete));
+        this.liveValidate = options.liveValidate;
+        this.firstVisual = options.firstVisual;
+        this.autocomplete = options.autocomplete;
         this.i18n$ = this.i18n.change.subscribe((/**
          * @return {?}
          */
@@ -1671,7 +1670,7 @@ class SFComponent {
      * @return {?}
      */
     getProperty(path) {
-        return (/** @type {?} */ (this.rootProperty)).searchProperty(path);
+        return this.rootProperty.searchProperty(path);
     }
     /**
      * 根据路径获取表单元素当前值
@@ -1731,7 +1730,7 @@ class SFComponent {
          * @return {?}
          */
         (schema, parentSchema, uiSchema, parentUiSchema, uiRes) => {
-            Object.keys((/** @type {?} */ (schema.properties))).forEach((/**
+            Object.keys(schema.properties).forEach((/**
              * @param {?} key
              * @return {?}
              */
@@ -1739,7 +1738,7 @@ class SFComponent {
                 /** @type {?} */
                 const uiKey = `$${key}`;
                 /** @type {?} */
-                const property = retrieveSchema((/** @type {?} */ ((/** @type {?} */ (schema.properties))[key])), definitions);
+                const property = retrieveSchema((/** @type {?} */ (schema.properties[key])), definitions);
                 /** @type {?} */
                 const ui = (/** @type {?} */ (Object.assign({ widget: property.type }, (property.format && FORMATMAPS[property.format]), (typeof property.ui === 'string' ? { widget: property.ui } : null), (!property.format && !property.ui && Array.isArray(property.enum) && property.enum.length > 0
                     ? { widget: 'select' }
@@ -1772,7 +1771,7 @@ class SFComponent {
                 }
                 if (ui.widget === 'date' && ui.end != null) {
                     /** @type {?} */
-                    const dateEndProperty = (/** @type {?} */ (schema.properties))[ui.end];
+                    const dateEndProperty = schema.properties[ui.end];
                     if (dateEndProperty) {
                         dateEndProperty.ui = Object.assign({}, ((/** @type {?} */ (dateEndProperty.ui))), { hidden: true });
                     }
@@ -1799,13 +1798,13 @@ class SFComponent {
          * @return {?}
          */
         (schema, ui) => {
-            Object.keys((/** @type {?} */ (schema.properties))).forEach((/**
+            Object.keys(schema.properties).forEach((/**
              * @param {?} key
              * @return {?}
              */
             key => {
                 /** @type {?} */
-                const property = (/** @type {?} */ (schema.properties))[key];
+                const property = schema.properties[key];
                 /** @type {?} */
                 const uiKey = `$${key}`;
                 resolveIf(property, ui[uiKey]);
@@ -1847,24 +1846,24 @@ class SFComponent {
         if (this.layout === 'horizontal') {
             /** @type {?} */
             const btnUi = firstKey ? this._ui[firstKey] : this._defUi;
-            if (!(/** @type {?} */ (this._btn.render)).grid) {
-                (/** @type {?} */ (this._btn.render)).grid = {
+            if (!this._btn.render.grid) {
+                this._btn.render.grid = {
                     offset: btnUi.spanLabel,
                     span: btnUi.spanControl,
                 };
             }
             // fixed label
-            if ((/** @type {?} */ (this._btn.render)).spanLabelFixed == null) {
-                (/** @type {?} */ (this._btn.render)).spanLabelFixed = btnUi.spanLabelFixed;
+            if (this._btn.render.spanLabelFixed == null) {
+                this._btn.render.spanLabelFixed = btnUi.spanLabelFixed;
             }
             // 固定标签宽度时，若不指定样式，则默认居中
-            if (!(/** @type {?} */ (this._btn.render)).class &&
+            if (!this._btn.render.class &&
                 (typeof btnUi.spanLabelFixed === 'number' && btnUi.spanLabelFixed > 0)) {
-                (/** @type {?} */ (this._btn.render)).class = 'text-center';
+                this._btn.render.class = 'text-center';
             }
         }
         else {
-            (/** @type {?} */ (this._btn.render)).grid = {};
+            this._btn.render.grid = {};
         }
         if (this._mode) {
             this.mode = this._mode;
@@ -1915,7 +1914,7 @@ class SFComponent {
          */
         (tpl, path) => {
             /** @type {?} */
-            const property = (/** @type {?} */ (this.rootProperty)).searchProperty(path);
+            const property = this.rootProperty.searchProperty(path);
             if (property == null) {
                 return;
             }
@@ -1928,12 +1927,12 @@ class SFComponent {
      * @return {THIS}
      */
     validator() {
-        (/** @type {?} */ ((/** @type {?} */ (this)).rootProperty))._runValidation();
+        (/** @type {?} */ (this)).rootProperty._runValidation();
         /** @type {?} */
-        const errors = (/** @type {?} */ ((/** @type {?} */ (this)).rootProperty)).errors;
+        const errors = (/** @type {?} */ (this)).rootProperty.errors;
         (/** @type {?} */ (this))._valid = !(errors && errors.length);
         if (!(/** @type {?} */ (this))._valid)
-            (/** @type {?} */ (this)).formError.emit((/** @type {?} */ (errors)));
+            (/** @type {?} */ (this)).formError.emit(errors);
         (/** @type {?} */ (this)).cdr.detectChanges();
         return (/** @type {?} */ (this));
     }
@@ -1977,7 +1976,7 @@ class SFComponent {
          */
         errors => {
             (/** @type {?} */ (this))._valid = !(errors && errors.length);
-            (/** @type {?} */ (this)).formError.emit((/** @type {?} */ (errors)));
+            (/** @type {?} */ (this)).formError.emit(errors);
             (/** @type {?} */ (this)).cdr.detectChanges();
         }));
         return (/** @type {?} */ (this)).reset();
@@ -1990,7 +1989,7 @@ class SFComponent {
      * @return {THIS}
      */
     reset(emit = false) {
-        (/** @type {?} */ ((/** @type {?} */ (this)).rootProperty)).resetValue((/** @type {?} */ (this)).formData, false);
+        (/** @type {?} */ (this)).rootProperty.resetValue((/** @type {?} */ (this)).formData, false);
         Promise.resolve().then((/**
          * @return {?}
          */
@@ -2022,7 +2021,7 @@ class SFComponent {
 SFComponent.decorators = [
     { type: Component, args: [{
                 selector: 'sf, [sf]',
-                template: "<ng-template #con>\n  <ng-content></ng-content>\n</ng-template>\n<form nz-form\n      [nzLayout]=\"layout\"\n      (submit)=\"onSubmit($event)\"\n      [attr.autocomplete]=\"autocomplete\">\n  <sf-item [formProperty]=\"rootProperty\"></sf-item>\n  <ng-container *ngIf=\"button !== 'none'; else con\">\n    <nz-form-item [ngClass]=\"_btn.render!.class\"\n                  class=\"sf-btns\"\n                  [fixed-label]=\"_btn.render!.spanLabelFixed\">\n      <div nz-col\n           class=\"ant-form-item-control-wrapper\"\n           [nzSpan]=\"_btn.render!.grid!.span\"\n           [nzOffset]=\"_btn.render!.grid!.offset\"\n           [nzXs]=\"_btn.render!.grid!.xs\"\n           [nzSm]=\"_btn.render!.grid!.sm\"\n           [nzMd]=\"_btn.render!.grid!.md\"\n           [nzLg]=\"_btn.render!.grid!.lg\"\n           [nzXl]=\"_btn.render!.grid!.xl\"\n           [nzXXl]=\"_btn.render!.grid!.xxl\">\n        <div class=\"ant-form-item-control\">\n          <ng-container *ngIf=\"button; else con\">\n            <button type=\"submit\"\n                    nz-button\n                    [nzType]=\"_btn.submit_type\"\n                    [nzSize]=\"_btn.render!.size\"\n                    [nzLoading]=\"loading\"\n                    [disabled]=\"liveValidate && !valid\">{{_btn.submit}}</button>\n            <button *ngIf=\"_btn.reset\"\n                    type=\"button\"\n                    nz-button\n                    [nzType]=\"_btn.reset_type\"\n                    [nzSize]=\"_btn.render!.size\"\n                    [disabled]=\"loading\"\n                    (click)=\"reset(true)\">\n              {{_btn.reset}}\n            </button>\n          </ng-container>\n        </div>\n      </div>\n    </nz-form-item>\n  </ng-container>\n</form>\n",
+                template: "<ng-template #con>\n  <ng-content></ng-content>\n</ng-template>\n<form nz-form\n      [nzLayout]=\"layout\"\n      (submit)=\"onSubmit($event)\"\n      [attr.autocomplete]=\"autocomplete\">\n  <sf-item [formProperty]=\"rootProperty\"></sf-item>\n  <ng-container *ngIf=\"button !== 'none'; else con\">\n    <nz-form-item [ngClass]=\"_btn.render.class\"\n                  class=\"sf-btns\"\n                  [fixed-label]=\"_btn.render.spanLabelFixed\">\n      <div nz-col\n           class=\"ant-form-item-control-wrapper\"\n           [nzSpan]=\"_btn.render.grid.span\"\n           [nzOffset]=\"_btn.render.grid.offset\"\n           [nzXs]=\"_btn.render.grid.xs\"\n           [nzSm]=\"_btn.render.grid.sm\"\n           [nzMd]=\"_btn.render.grid.md\"\n           [nzLg]=\"_btn.render.grid.lg\"\n           [nzXl]=\"_btn.render.grid.xl\"\n           [nzXXl]=\"_btn.render.grid.xxl\">\n        <div class=\"ant-form-item-control\">\n          <ng-container *ngIf=\"button; else con\">\n            <button type=\"submit\"\n                    nz-button\n                    [nzType]=\"_btn.submit_type\"\n                    [nzSize]=\"_btn.render.size\"\n                    [nzLoading]=\"loading\"\n                    [disabled]=\"liveValidate && !valid\">{{_btn.submit}}</button>\n            <button *ngIf=\"_btn.reset\"\n                    type=\"button\"\n                    nz-button\n                    [nzType]=\"_btn.reset_type\"\n                    [nzSize]=\"_btn.render.size\"\n                    [disabled]=\"loading\"\n                    (click)=\"reset(true)\">\n              {{_btn.reset}}\n            </button>\n          </ng-container>\n        </div>\n      </div>\n    </nz-form-item>\n  </ng-container>\n</form>\n",
                 providers: [
                     WidgetFactory,
                     {
@@ -2115,7 +2114,7 @@ class SFItemComponent {
         this.widget.schema = this.formProperty.schema;
         this.widget.ui = ui;
         this.widget.id = id;
-        this.widget.firstVisual = (/** @type {?} */ (ui.firstVisual));
+        this.widget.firstVisual = ui.firstVisual;
         this.formProperty.widget = widget;
     }
     /**
@@ -2340,19 +2339,21 @@ class Widget {
      */
     ngAfterViewInit() {
         this.formProperty.errorsChanges
-            .pipe(takeUntil((/** @type {?} */ (this.sfItemComp)).unsubscribe$))
+            .pipe(takeUntil(this.sfItemComp.unsubscribe$), filter((/**
+         * @param {?} w
+         * @return {?}
+         */
+        w => w != null)))
             .subscribe((/**
          * @param {?} errors
          * @return {?}
          */
         (errors) => {
-            if (errors == null)
-                return;
             di(this.ui, 'errorsChanges', this.formProperty.path, errors);
             // 不显示首次校验视觉
             if (this.firstVisual) {
                 this.showError = errors.length > 0;
-                this.error = this.showError ? ((/** @type {?} */ (errors[0].message))) : '';
+                this.error = this.showError ? errors[0].message : '';
                 this.cd.detectChanges();
             }
             this.firstVisual = true;
@@ -2413,7 +2414,7 @@ class ArrayLayoutWidget extends Widget {
      */
     ngAfterViewInit() {
         this.formProperty.errorsChanges
-            .pipe(takeUntil((/** @type {?} */ (this.sfItemComp)).unsubscribe$))
+            .pipe(takeUntil(this.sfItemComp.unsubscribe$))
             .subscribe((/**
          * @return {?}
          */
@@ -2431,7 +2432,7 @@ class ObjectLayoutWidget extends Widget {
      */
     ngAfterViewInit() {
         this.formProperty.errorsChanges
-            .pipe(takeUntil((/** @type {?} */ (this.sfItemComp)).unsubscribe$))
+            .pipe(takeUntil(this.sfItemComp.unsubscribe$))
             .subscribe((/**
          * @return {?}
          */
@@ -2459,7 +2460,7 @@ class ArrayWidget extends ArrayLayoutWidget {
      * @return {?}
      */
     get l() {
-        return (/** @type {?} */ (this.formProperty.root.widget.sfComp)).locale;
+        return this.formProperty.root.widget.sfComp.locale;
     }
     /**
      * @return {?}
@@ -2477,7 +2478,7 @@ class ArrayWidget extends ArrayLayoutWidget {
      * @return {?}
      */
     addItem() {
-        this.formProperty.add((/** @type {?} */ (null)));
+        this.formProperty.add(null);
     }
     /**
      * @param {?} index
@@ -2537,15 +2538,15 @@ class AutoCompleteWidget extends ControlWidget {
         const orgTime = +(this.ui.debounceTime || 0);
         /** @type {?} */
         const time = Math.max(0, this.isAsync ? Math.max(50, orgTime) : orgTime);
-        this.list = (/** @type {?} */ (this.ngModel.valueChanges)).pipe(debounceTime(time), startWith(''), flatMap((/**
+        this.list = this.ngModel.valueChanges.pipe(debounceTime(time), startWith(''), flatMap((/**
          * @param {?} input
          * @return {?}
          */
-        input => (this.isAsync ? (/** @type {?} */ (this.ui.asyncData))(input) : this.filterData(input)))), map((/**
+        input => (this.isAsync ? this.ui.asyncData(input) : this.filterData(input)))), map((/**
          * @param {?} res
          * @return {?}
          */
-        res => getEnum(res, null, (/** @type {?} */ (this.schema.readOnly))))));
+        res => getEnum(res, null, this.schema.readOnly))));
     }
     /**
      * @param {?} value
@@ -2557,10 +2558,10 @@ class AutoCompleteWidget extends ControlWidget {
             return;
         switch (this.ui.type) {
             case 'email':
-                this.fixData = getCopyEnum((/** @type {?} */ (this.schema.enum)) || this.formProperty.options.uiEmailSuffixes, null, (/** @type {?} */ (this.schema.readOnly)));
+                this.fixData = getCopyEnum(this.schema.enum || this.formProperty.options.uiEmailSuffixes, null, this.schema.readOnly);
                 break;
             default:
-                this.fixData = getCopyEnum((/** @type {?} */ (this.schema.enum)), this.formProperty.formData, (/** @type {?} */ (this.schema.readOnly)));
+                this.fixData = getCopyEnum(this.schema.enum, this.formProperty.formData, this.schema.readOnly);
                 break;
         }
     }
@@ -2723,7 +2724,7 @@ class CheckboxWidget extends ControlWidget {
      * @return {?}
      */
     get l() {
-        return (/** @type {?} */ (this.formProperty.root.widget.sfComp)).locale;
+        return this.formProperty.root.widget.sfComp.locale;
     }
     /**
      * @param {?} value
@@ -2739,7 +2740,7 @@ class CheckboxWidget extends ControlWidget {
             this.data = list;
             this.allChecked = false;
             this.indeterminate = false;
-            this.labelTitle = list.length === 0 ? '' : (/** @type {?} */ (this.schema.title));
+            this.labelTitle = list.length === 0 ? '' : this.schema.title;
             this.grid_span = this.ui.span && this.ui.span > 0 ? this.ui.span : 0;
             this.updateAllChecked();
             this.inited = true;
@@ -2982,7 +2983,7 @@ class DateWidget extends ControlWidget {
      * @return {?}
      */
     get endProperty() {
-        return (/** @type {?} */ ((/** @type {?} */ (this.formProperty.parent)).properties))[this.ui.end];
+        return this.formProperty.parent.properties[this.ui.end];
     }
     /**
      * @private
@@ -3044,7 +3045,7 @@ class MentionWidget extends ControlWidget {
         /** @type {?} */
         const max = typeof this.schema.maximum !== 'undefined' ? this.schema.maximum : -1;
         if (!this.ui.validator && (min !== -1 || max !== -1)) {
-            this.ui.validator = (/** @type {?} */ (((/**
+            this.ui.validator = (/**
              * @return {?}
              */
             () => {
@@ -3057,7 +3058,7 @@ class MentionWidget extends ControlWidget {
                     return [{ keyword: 'mention', message: `最多提及 ${max} 次` }];
                 }
                 return null;
-            }))));
+            });
         }
     }
     /**
@@ -3098,7 +3099,7 @@ class MentionWidget extends ControlWidget {
          * @param {?} res
          * @return {?}
          */
-        res => getEnum(res, null, (/** @type {?} */ (this.schema.readOnly))))))
+        res => getEnum(res, null, this.schema.readOnly))))
             .subscribe((/**
          * @param {?} res
          * @return {?}
@@ -3214,14 +3215,14 @@ class ObjectWidget extends ObjectLayoutWidget {
         const { formProperty, ui } = this;
         const { grid, showTitle } = ui;
         if (!formProperty.isRoot() && !(formProperty.parent instanceof ArrayProperty) && showTitle === true) {
-            this.title = (/** @type {?} */ (this.schema.title));
+            this.title = this.schema.title;
         }
-        this.grid = (/** @type {?} */ (grid));
+        this.grid = grid;
         /** @type {?} */
         const list = [];
         for (const key of formProperty.propertiesId) {
             /** @type {?} */
-            const property = (/** @type {?} */ ((/** @type {?} */ (formProperty.properties))[key]));
+            const property = (/** @type {?} */ (formProperty.properties[key]));
             /** @type {?} */
             const item = {
                 property,
@@ -3870,8 +3871,8 @@ class TreeSelectWidget extends ControlWidget {
          * @return {?}
          */
         res => {
-            (/** @type {?} */ (e.node)).clearChildren();
-            (/** @type {?} */ (e.node)).addChildren(res);
+            e.node.clearChildren();
+            e.node.addChildren(res);
             this.detectChanges();
         }));
     }

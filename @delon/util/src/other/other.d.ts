@@ -6,7 +6,7 @@
  * @param path 若 `null`、`[]`、未定义及未找到时返回 `defaultValue` 值
  * @param defaultValue 默认值
  */
-export declare function deepGet(obj: any | null, path: string | string[] | null | undefined, defaultValue?: any): any;
+export declare function deepGet(obj: any, path: string | string[], defaultValue?: any): any;
 export declare function deepCopy(obj: any): any;
 /** 复制内容至剪贴板 */
 export declare function copy(value: string): Promise<string>;

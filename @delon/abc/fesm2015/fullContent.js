@@ -189,7 +189,7 @@ class FullContentComponent {
      */
     ngOnDestroy() {
         this.removeInBody();
-        (/** @type {?} */ (this.scroll$)).unsubscribe();
+        this.scroll$.unsubscribe();
         this.srv$.unsubscribe();
         this.route$.unsubscribe();
     }

@@ -256,7 +256,7 @@ PageG2 = /** @class */ (function () {
          * @return {?}
          */
         function () {
-            return (/** @type {?} */ (this.fixture)).debugElement;
+            return this.fixture.debugElement;
         },
         enumerable: true,
         configurable: true
@@ -266,7 +266,7 @@ PageG2 = /** @class */ (function () {
          * @return {?}
          */
         function () {
-            return (/** @type {?} */ (this.fixture)).componentInstance;
+            return this.fixture.componentInstance;
         },
         enumerable: true,
         configurable: true
@@ -385,8 +385,8 @@ PageG2 = /** @class */ (function () {
      * @return {THIS}
      */
     function () {
-        (/** @type {?} */ ((/** @type {?} */ (this)).fixture)).changeDetectorRef.markForCheck();
-        (/** @type {?} */ ((/** @type {?} */ (this)).fixture)).detectChanges();
+        (/** @type {?} */ (this)).fixture.changeDetectorRef.markForCheck();
+        (/** @type {?} */ (this)).fixture.detectChanges();
         return (/** @type {?} */ (this));
     };
     /**
@@ -452,7 +452,7 @@ PageG2 = /** @class */ (function () {
      * @return {?}
      */
     function (cls) {
-        return (/** @type {?} */ (((/** @type {?} */ (this.dl.nativeElement))).querySelector(cls)));
+        return ((/** @type {?} */ (this.dl.nativeElement))).querySelector(cls);
     };
     /**
      * @template THIS
@@ -488,7 +488,7 @@ PageG2 = /** @class */ (function () {
     function (cls, value) {
         /** @type {?} */
         var el = (/** @type {?} */ (this)).getEl(cls);
-        expect(el ? (/** @type {?} */ (el.textContent)).trim() : '').toBe(value);
+        expect(el ? el.textContent.trim() : '').toBe(value);
         return (/** @type {?} */ (this));
     };
     /**
@@ -640,7 +640,7 @@ PageG2 = /** @class */ (function () {
         else {
             expect(el != null).toBe(true, "Shoule be has g2-tooltip element");
             /** @type {?} */
-            var text = (/** @type {?} */ (el.textContent)).trim();
+            var text = el.textContent.trim();
             expect(text.includes(includeText)).toBe(true, "Shoule be include \"" + includeText + "\" text of tooltip text context \"" + text + "\"");
         }
         return (/** @type {?} */ (this));

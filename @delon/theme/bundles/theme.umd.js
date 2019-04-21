@@ -111,9 +111,9 @@
      */
     function preloaderFinished() {
         /** @type {?} */
-        var body = (/** @type {?} */ (document.querySelector('body')));
+        var body = document.querySelector('body');
         /** @type {?} */
-        var preloader = (/** @type {?} */ (document.querySelector('.preloader')));
+        var preloader = document.querySelector('.preloader');
         body.style.overflow = 'hidden';
         /**
          * @return {?}
@@ -173,11 +173,11 @@
              * @return {?}
              */
             function () {
-                return (/** @type {?} */ (this.change$.asObservable().pipe(operators.filter((/**
+                return this.change$.asObservable().pipe(operators.filter((/**
                  * @param {?} w
                  * @return {?}
                  */
-                function (w) { return w != null; })))));
+                function (w) { return w != null; })));
             },
             enumerable: true,
             configurable: true
@@ -419,7 +419,7 @@
                 return;
             }
             /** @type {?} */
-            var ls = (/** @type {?} */ (this.data[0].children));
+            var ls = this.data[0].children;
             /** @type {?} */
             var pos = ls.findIndex((/**
              * @param {?} w
@@ -431,7 +431,7 @@
                  * @param {?} w
                  * @return {?}
                  */
-                function (w) { return (/** @type {?} */ (w.link)).includes('dashboard'); }));
+                function (w) { return w.link.includes('dashboard'); }));
                 pos = (pos !== -1 ? pos : -1) + 1;
                 /** @type {?} */
                 var shortcutMenu = (/** @type {?} */ ({
@@ -440,10 +440,10 @@
                     icon: 'icon-rocket',
                     children: [],
                 }));
-                (/** @type {?} */ (this.data[0].children)).splice(pos, 0, shortcutMenu);
+                this.data[0].children.splice(pos, 0, shortcutMenu);
             }
             /** @type {?} */
-            var _data = (/** @type {?} */ (this.data[0].children))[pos];
+            var _data = this.data[0].children[pos];
             if (_data.i18n && this.i18nSrv)
                 _data.text = this.i18nSrv.fanyi(_data.i18n);
             // tslint:disable-next-line:prefer-object-spread
@@ -564,7 +564,7 @@
                 i._selected = false;
                 i._open = false;
             }));
-            if (findItem == null)
+            if (!findItem)
                 return;
             do {
                 findItem._selected = true;
@@ -700,11 +700,11 @@
             if (topOffset === void 0) { topOffset = 0; }
             if (!element)
                 element = this.doc.body;
-            (/** @type {?} */ (element)).scrollIntoView();
+            element.scrollIntoView();
             /** @type {?} */
             var w = this.win;
             if (w && w.scrollBy) {
-                w.scrollBy(0, (/** @type {?} */ (element)).getBoundingClientRect().top - topOffset);
+                w.scrollBy(0, element.getBoundingClientRect().top - topOffset);
                 if (w.pageYOffset < 20) {
                     w.scrollBy(0, -w.pageYOffset);
                 }
@@ -799,7 +799,7 @@
                     this._layout = __assign({ fixed: true, collapsed: false, boxed: false, lang: null }, this.get(LAYOUT));
                     this.set(LAYOUT, this._layout);
                 }
-                return (/** @type {?} */ (this._layout));
+                return this._layout;
             },
             enumerable: true,
             configurable: true
@@ -813,7 +813,7 @@
                     this._app = __assign({ year: new Date().getFullYear() }, this.get(APP));
                     this.set(APP, this._app);
                 }
-                return (/** @type {?} */ (this._app));
+                return this._app;
             },
             enumerable: true,
             configurable: true
@@ -827,7 +827,7 @@
                     this._user = __assign({}, this.get(USER));
                     this.set(USER, this._user);
                 }
-                return (/** @type {?} */ (this._user));
+                return this._user;
             },
             enumerable: true,
             configurable: true
@@ -1701,15 +1701,15 @@
                 var cls = '';
                 /** @type {?} */
                 var width = '';
-                if ((/** @type {?} */ (options)).size) {
-                    if (typeof (/** @type {?} */ (options)).size === 'number') {
-                        width = (/** @type {?} */ (options)).size + "px";
+                if (options.size) {
+                    if (typeof options.size === 'number') {
+                        width = options.size + "px";
                     }
                     else {
-                        cls = "modal-" + (/** @type {?} */ (options)).size;
+                        cls = "modal-" + options.size;
                     }
                 }
-                if ((/** @type {?} */ (options)).includeTabs) {
+                if (options.includeTabs) {
                     cls += ' modal-include-tabs';
                 }
                 /** @type {?} */
@@ -1722,14 +1722,14 @@
                     nzZIndex: ++_this.zIndex,
                 };
                 /** @type {?} */
-                var subject = _this.srv.create(__assign({}, defaultOptions, (/** @type {?} */ (options)).modalOptions));
+                var subject = _this.srv.create(__assign({}, defaultOptions, options.modalOptions));
                 /** @type {?} */
                 var afterClose$ = subject.afterClose.subscribe((/**
                  * @param {?} res
                  * @return {?}
                  */
                 function (res) {
-                    if ((/** @type {?} */ (options)).exact === true) {
+                    if (options.exact === true) {
                         if (res != null) {
                             observer.next(res);
                         }
@@ -1995,7 +1995,7 @@
              * @return {?}
              */
             function (observer) {
-                var _a = (/** @type {?} */ (options)), size = _a.size, footer = _a.footer, footerHeight = _a.footerHeight, drawerOptions = _a.drawerOptions;
+                var size = options.size, footer = options.footer, footerHeight = options.footerHeight, drawerOptions = options.drawerOptions;
                 /** @type {?} */
                 var defaultOptions = {
                     nzContent: comp,
@@ -2004,19 +2004,19 @@
                     nzTitle: title,
                 };
                 if (typeof size === 'number') {
-                    defaultOptions[(/** @type {?} */ (drawerOptions)).nzPlacement === 'top' || (/** @type {?} */ (drawerOptions)).nzPlacement === 'bottom'
+                    defaultOptions[drawerOptions.nzPlacement === 'top' || drawerOptions.nzPlacement === 'bottom'
                         ? 'nzHeight'
-                        : 'nzWidth'] = (/** @type {?} */ (options)).size;
+                        : 'nzWidth'] = options.size;
                 }
                 else {
-                    defaultOptions.nzWrapClassName = ((/** @type {?} */ (drawerOptions)).nzWrapClassName + (" drawer-" + (/** @type {?} */ (options)).size)).trim();
-                    delete (/** @type {?} */ (drawerOptions)).nzWrapClassName;
+                    defaultOptions.nzWrapClassName = (drawerOptions.nzWrapClassName + (" drawer-" + options.size)).trim();
+                    delete drawerOptions.nzWrapClassName;
                 }
                 if (footer) {
-                    var _b = (/** @type {?} */ (drawerOptions)), nzPlacement = _b.nzPlacement, nzHeight = _b.nzHeight;
+                    var nzPlacement = drawerOptions.nzPlacement, nzHeight = drawerOptions.nzHeight;
                     // Should be header * footer, because of includes header
                     /** @type {?} */
-                    var reduceHeight = ((/** @type {?} */ (footerHeight)) * 2) - 2;
+                    var reduceHeight = (footerHeight * 2) - 2;
                     if (nzPlacement === 'left' || nzPlacement === 'right') {
                         defaultOptions.nzBodyStyle = {
                             height: "calc(100% - " + reduceHeight + "px)",
@@ -2168,6 +2168,7 @@
          */
         function () {
             var _this = this;
+            // console.time('http');
             setTimeout((/**
              * @return {?}
              */
@@ -2181,6 +2182,7 @@
          */
         function () {
             var _this = this;
+            // console.timeEnd('http');
             setTimeout((/**
              * @return {?}
              */
@@ -2193,18 +2195,17 @@
          * GET 请求
          * @param {?} url
          * @param {?} params
-         * @param {?=} options
+         * @param {?} options
          * @return {?}
          */
         _HttpClient.prototype.get = /**
          * GET 请求
          * @param {?} url
          * @param {?} params
-         * @param {?=} options
+         * @param {?} options
          * @return {?}
          */
         function (url, params, options) {
-            if (options === void 0) { options = {}; }
             return this.request('GET', url, __assign({ params: params }, options));
         };
         /**
@@ -2215,7 +2216,7 @@
          * @param {?} url
          * @param {?} body
          * @param {?} params
-         * @param {?=} options
+         * @param {?} options
          * @return {?}
          */
         _HttpClient.prototype.post = /**
@@ -2223,11 +2224,10 @@
          * @param {?} url
          * @param {?} body
          * @param {?} params
-         * @param {?=} options
+         * @param {?} options
          * @return {?}
          */
         function (url, body, params, options) {
-            if (options === void 0) { options = {}; }
             return this.request('POST', url, __assign({ body: body,
                 params: params }, options));
         };
@@ -2238,18 +2238,17 @@
          * DELETE 请求
          * @param {?} url
          * @param {?} params
-         * @param {?=} options
+         * @param {?} options
          * @return {?}
          */
         _HttpClient.prototype.delete = /**
          * DELETE 请求
          * @param {?} url
          * @param {?} params
-         * @param {?=} options
+         * @param {?} options
          * @return {?}
          */
         function (url, params, options) {
-            if (options === void 0) { options = {}; }
             return this.request('DELETE', url, __assign({ params: params }, options));
         };
         // #endregion
@@ -2304,7 +2303,7 @@
          * @param {?} url
          * @param {?} body
          * @param {?} params
-         * @param {?=} options
+         * @param {?} options
          * @return {?}
          */
         _HttpClient.prototype.patch = /**
@@ -2312,11 +2311,10 @@
          * @param {?} url
          * @param {?} body
          * @param {?} params
-         * @param {?=} options
+         * @param {?} options
          * @return {?}
          */
         function (url, body, params, options) {
-            if (options === void 0) { options = {}; }
             return this.request('PATCH', url, __assign({ body: body,
                 params: params }, options));
         };
@@ -2328,7 +2326,7 @@
          * @param {?} url
          * @param {?} body
          * @param {?} params
-         * @param {?=} options
+         * @param {?} options
          * @return {?}
          */
         _HttpClient.prototype.put = /**
@@ -2336,15 +2334,13 @@
          * @param {?} url
          * @param {?} body
          * @param {?} params
-         * @param {?=} options
+         * @param {?} options
          * @return {?}
          */
         function (url, body, params, options) {
-            if (options === void 0) { options = {}; }
             return this.request('PUT', url, __assign({ body: body,
                 params: params }, options));
         };
-        // #endregion
         /**
          * `request` 请求
          *
@@ -2352,7 +2348,6 @@
          * @param url URL地址
          * @param options 参数
          */
-        // #endregion
         /**
          * `request` 请求
          *
@@ -2361,9 +2356,7 @@
          * @param {?=} options 参数
          * @return {?}
          */
-        _HttpClient.prototype.request = 
-        // #endregion
-        /**
+        _HttpClient.prototype.request = /**
          * `request` 请求
          *
          * @param {?} method 请求方法类型
@@ -2381,7 +2374,9 @@
             return this.http.request(method, url, options).pipe(operators.tap((/**
              * @return {?}
              */
-            function () { return _this.end(); })), operators.catchError((/**
+            function () {
+                _this.end();
+            })), operators.catchError((/**
              * @param {?} res
              * @return {?}
              */
@@ -2551,7 +2546,7 @@
              * @return {?}
              */
             function (target, targetKey, descriptor) {
-                (/** @type {?} */ (descriptor)).value = (/**
+                descriptor.value = (/**
                  * @param {...?} args
                  * @return {?}
                  */

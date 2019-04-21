@@ -10,8 +10,8 @@ import { SFComponent } from './sf.component';
 export declare abstract class Widget<T extends FormProperty> implements AfterViewInit {
     readonly cd: ChangeDetectorRef;
     readonly injector: Injector;
-    readonly sfItemComp?: SFItemComponent | undefined;
-    readonly sfComp?: SFComponent | undefined;
+    readonly sfItemComp?: SFItemComponent;
+    readonly sfComp?: SFComponent;
     formProperty: T;
     error: string;
     showError: boolean;
@@ -20,8 +20,8 @@ export declare abstract class Widget<T extends FormProperty> implements AfterVie
     ui: SFUISchemaItem;
     firstVisual: boolean;
     readonly cls: string | string[];
-    readonly disabled: boolean | null;
-    constructor(cd: ChangeDetectorRef, injector: Injector, sfItemComp?: SFItemComponent | undefined, sfComp?: SFComponent | undefined);
+    readonly disabled: boolean;
+    constructor(cd: ChangeDetectorRef, injector: Injector, sfItemComp?: SFItemComponent, sfComp?: SFComponent);
     ngAfterViewInit(): void;
     setValue(value: SFValue): void;
     readonly value: any;

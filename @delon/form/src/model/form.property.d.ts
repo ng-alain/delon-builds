@@ -25,15 +25,15 @@ export declare abstract class FormProperty {
     private _root;
     private _parent;
     private _path;
-    constructor(schemaValidatorFactory: SchemaValidatorFactory, schema: SFSchema, ui: SFUISchema | SFUISchemaItem, formData: {}, parent: PropertyGroup | null, path: string, _options: DelonFormConfig);
+    constructor(schemaValidatorFactory: SchemaValidatorFactory, schema: SFSchema, ui: SFUISchema | SFUISchemaItem, formData: {}, parent: PropertyGroup, path: string, _options: DelonFormConfig);
     readonly valueChanges: BehaviorSubject<any>;
-    readonly errorsChanges: BehaviorSubject<ErrorData[] | null>;
+    readonly errorsChanges: BehaviorSubject<ErrorData[]>;
     readonly type: string;
-    readonly parent: PropertyGroup | null;
+    readonly parent: PropertyGroup;
     readonly root: PropertyGroup;
     readonly path: string;
     readonly value: SFValue;
-    readonly errors: ErrorData[] | null;
+    readonly errors: ErrorData[];
     readonly visible: boolean;
     readonly valid: boolean;
     readonly options: DelonFormConfig;
@@ -57,7 +57,7 @@ export declare abstract class FormProperty {
      */
     updateValueAndValidity(onlySelf?: boolean, emitValueEvent?: boolean, emitValidator?: boolean): void;
     /** 根据路径搜索表单属性 */
-    searchProperty(path: string): FormProperty | null;
+    searchProperty(path: string): FormProperty;
     /** 查找根表单属性 */
     findRoot(): PropertyGroup;
     private isEmptyData;
@@ -71,7 +71,7 @@ export declare abstract class FormProperty {
 export declare abstract class PropertyGroup extends FormProperty {
     properties: {
         [key: string]: FormProperty;
-    } | FormProperty[] | null;
+    } | FormProperty[];
     getProperty(path: string): any;
     forEachChild(fn: (formProperty: FormProperty, str: string) => void): void;
     forEachChildRecursive(fn: (formProperty: FormProperty) => void): void;

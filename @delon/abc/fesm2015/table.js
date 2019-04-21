@@ -239,9 +239,9 @@ class STColumnSource {
                     item.modal = {
                         component: item.component,
                         params: item.params,
-                        paramsName: item.paramName || (/** @type {?} */ (modal)).paramsName,
-                        size: item.size || (/** @type {?} */ (modal)).size,
-                        modalOptions: item.modalOptions || (/** @type {?} */ (modal)).modalOptions,
+                        paramsName: item.paramName || modal.paramsName,
+                        size: item.size || modal.size,
+                        modalOptions: item.modalOptions || modal.modalOptions,
                     };
                 }
                 if (item.modal == null || item.modal.component == null) {
@@ -296,7 +296,7 @@ class STColumnSource {
                  * @return {?}
                  */
                 () => true);
-            if (item.children && item.children.length > 0) {
+            if (item.children.length > 0) {
                 this.btnCoerceIf(item.children);
             }
         }
@@ -313,7 +313,7 @@ class STColumnSource {
          * @param {?} b
          * @return {?}
          */
-        (a, b) => a + +(/** @type {?} */ (b.width)).toString().replace('px', ''));
+        (a, b) => a + +b.width.toString().replace('px', ''));
         // left width
         list
             .filter((/**
@@ -398,7 +398,7 @@ class STColumnSource {
             };
         }
         else {
-            res = (/** @type {?} */ (item.filter));
+            res = item.filter;
         }
         if (res == null || res.menus.length === 0) {
             return null;
@@ -422,7 +422,7 @@ class STColumnSource {
          * @param {?} w
          * @return {?}
          */
-        w => (/** @type {?} */ (w.checked)))) !== -1;
+        w => w.checked)) !== -1;
         if (this.acl) {
             res.menus = res.menus.filter((/**
              * @param {?} w
@@ -535,7 +535,7 @@ class STColumnSource {
                     number: 'text-right',
                     currency: 'text-right',
                     date: 'text-center',
-                }[(/** @type {?} */ (item.type))];
+                }[item.type];
             }
             // width
             if (typeof item.width === 'number') {
@@ -544,9 +544,9 @@ class STColumnSource {
             // sorter
             item._sort = this.sortCoerce(item);
             // filter
-            item.filter = (/** @type {?} */ (this.filterCoerce(item)));
+            item.filter = this.filterCoerce(item);
             // buttons
-            item.buttons = this.btnCoerce((/** @type {?} */ (item.buttons)));
+            item.buttons = this.btnCoerce(item.buttons);
             // restore custom row
             this.restoreRender(item);
             item.__point = point++;
@@ -652,13 +652,13 @@ class STDataSource {
                     }
                     else {
                         // list
-                        ret = deepGet(result, (/** @type {?} */ ((/** @type {?} */ (res.reName)).list)), []);
+                        ret = deepGet(result, (/** @type {?} */ (res.reName.list)), []);
                         if (ret == null || !Array.isArray(ret)) {
                             ret = [];
                         }
                         // total
                         /** @type {?} */
-                        const resultTotal = (/** @type {?} */ (res.reName)).total && deepGet(result, (/** @type {?} */ ((/** @type {?} */ (res.reName)).total)), null);
+                        const resultTotal = res.reName.total && deepGet(result, (/** @type {?} */ (res.reName.total)), null);
                         retTotal = resultTotal == null ? total || 0 : +resultTotal;
                     }
                     return deepCopy(ret);
@@ -714,7 +714,7 @@ class STDataSource {
                      */
                     c => {
                         /** @type {?} */
-                        const values = (/** @type {?} */ (c.filter)).menus.filter((/**
+                        const values = c.filter.menus.filter((/**
                          * @param {?} w
                          * @return {?}
                          */
@@ -722,7 +722,7 @@ class STDataSource {
                         if (values.length === 0)
                             return;
                         /** @type {?} */
-                        const onFilter = (/** @type {?} */ (c.filter)).fn;
+                        const onFilter = c.filter.fn;
                         if (typeof onFilter !== 'function') {
                             console.warn(`[st] Muse provide the fn function in filter`);
                             return;
@@ -763,7 +763,7 @@ class STDataSource {
                  * @param {?} result
                  * @return {?}
                  */
-                result => (/** @type {?} */ (res.process))(result))));
+                result => res.process(result))));
             }
             // data accelerator
             data$ = data$.pipe(map((/**
@@ -845,7 +845,7 @@ class STDataSource {
                 ret = this.datePipe.transform(value, col.dateFormat);
                 break;
             case 'yn':
-                ret = this.ynPipe.transform(value === (/** @type {?} */ (col.yn)).truth, (/** @type {?} */ ((/** @type {?} */ (col.yn)).yes)), (/** @type {?} */ ((/** @type {?} */ (col.yn)).no)));
+                ret = this.ynPipe.transform(value === col.yn.truth, col.yn.yes, col.yn.no);
                 break;
         }
         return { text: ret == null ? '' : ret, org: value };
@@ -862,18 +862,16 @@ class STDataSource {
         const method = (req.method || 'GET').toUpperCase();
         /** @type {?} */
         let params = {};
-        /** @type {?} */
-        const reName = (/** @type {?} */ (req.reName));
         if (req.type === 'page') {
             params = {
-                [(/** @type {?} */ (reName.pi))]: page.zeroIndexed ? pi - 1 : pi,
-                [(/** @type {?} */ (reName.ps))]: ps,
+                [req.reName.pi]: page.zeroIndexed ? pi - 1 : pi,
+                [req.reName.ps]: ps,
             };
         }
         else {
             params = {
-                [(/** @type {?} */ (reName.skip))]: (pi - 1) * ps,
-                [(/** @type {?} */ (reName.limit))]: ps,
+                [req.reName.skip]: (pi - 1) * ps,
+                [req.reName.limit]: ps,
             };
         }
         params = Object.assign({}, params, req.params, this.getReqSortMap(singleSort, multiSort, columns), this.getReqFilterMap(columns));
@@ -901,7 +899,7 @@ class STDataSource {
      * @return {?}
      */
     getNoIndex(item, col, idx) {
-        return typeof col.noIndex === 'function' ? col.noIndex(item, col, idx) : (/** @type {?} */ (col.noIndex)) + idx;
+        return typeof col.noIndex === 'function' ? col.noIndex(item, col, idx) : col.noIndex + idx;
     }
     // #region sort
     /**
@@ -944,7 +942,7 @@ class STDataSource {
          */
         (a, b) => {
             /** @type {?} */
-            const result = (/** @type {?} */ (sortList[0].compare))(a, b);
+            const result = sortList[0].compare(a, b);
             if (result !== 0) {
                 return sortList[0].default === 'descend' ? -result : result;
             }
@@ -984,7 +982,7 @@ class STDataSource {
                  * @param {?} item
                  * @return {?}
                  */
-                item => item.key + ms.nameSeparator + ((item.reName || {})[(/** @type {?} */ (item.default))] || item.default)))
+                item => item.key + ms.nameSeparator + ((item.reName || {})[item.default] || item.default)))
                     .join(ms.separator),
             };
         }
@@ -994,12 +992,12 @@ class STDataSource {
             /** @type {?} */
             let sortFiled = mapData.key;
             /** @type {?} */
-            let sortValue = (sortList[0].reName || {})[(/** @type {?} */ (mapData.default))] || mapData.default;
+            let sortValue = (sortList[0].reName || {})[mapData.default] || mapData.default;
             if (singleSort) {
                 sortValue = sortFiled + (singleSort.nameSeparator || '.') + sortValue;
                 sortFiled = singleSort.key || 'sort';
             }
-            ret[(/** @type {?} */ (sortFiled))] = (/** @type {?} */ (sortValue));
+            ret[sortFiled] = sortValue;
         }
         return ret;
     }
@@ -1025,18 +1023,18 @@ class STDataSource {
          */
         col => {
             /** @type {?} */
-            const values = (/** @type {?} */ (col.filter)).menus.filter((/**
+            const values = col.filter.menus.filter((/**
              * @param {?} f
              * @return {?}
              */
             f => f.checked === true));
             /** @type {?} */
             let obj = {};
-            if ((/** @type {?} */ (col.filter)).reName) {
-                obj = (/** @type {?} */ ((/** @type {?} */ (col.filter)).reName))((/** @type {?} */ (col.filter)).menus, col);
+            if (col.filter.reName) {
+                obj = col.filter.reName(col.filter.menus, col);
             }
             else {
-                obj[(/** @type {?} */ ((/** @type {?} */ (col.filter)).key))] = values.map((/**
+                obj[col.filter.key] = values.map((/**
                  * @param {?} i
                  * @return {?}
                  */
@@ -1081,7 +1079,7 @@ class STDataSource {
         /** @type {?} */
         const val = col.statistical;
         /** @type {?} */
-        const item = Object.assign({ digits: 2, currency: undefined }, (typeof val === 'string' ? { type: (/** @type {?} */ (val)) } : ((/** @type {?} */ (val)))));
+        const item = Object.assign({ digits: 2, currency: null }, (typeof val === 'string' ? { type: (/** @type {?} */ (val)) } : ((/** @type {?} */ (val)))));
         /** @type {?} */
         let res = { value: 0 };
         /** @type {?} */
@@ -1105,11 +1103,11 @@ class STDataSource {
                     (value, idx, self) => self.indexOf(value) === idx)).length;
                     break;
                 case 'sum':
-                    res.value = this.toFixed(this.getSum(index, list), (/** @type {?} */ (item.digits)));
+                    res.value = this.toFixed(this.getSum(index, list), item.digits);
                     currency = true;
                     break;
                 case 'average':
-                    res.value = this.toFixed(this.getSum(index, list) / list.length, (/** @type {?} */ (item.digits)));
+                    res.value = this.toFixed(this.getSum(index, list) / list.length, item.digits);
                     currency = true;
                     break;
                 case 'max':
@@ -1123,7 +1121,7 @@ class STDataSource {
             }
         }
         if (item.currency === true || (item.currency == null && currency === true)) {
-            res.text = (/** @type {?} */ (this.currentyPipe.transform(res.value)));
+            res.text = this.currentyPipe.transform(res.value);
         }
         else {
             res.text = String(res.value);
@@ -1239,7 +1237,7 @@ class STExport {
         /** @type {?} */
         const sheet = (sheets[opt.sheetname || 'Sheet1'] = {});
         /** @type {?} */
-        const colData = (/** @type {?} */ (opt._c)).filter((/**
+        const colData = opt._c.filter((/**
          * @param {?} w
          * @return {?}
          */
@@ -1247,7 +1245,7 @@ class STExport {
         /** @type {?} */
         const cc = colData.length;
         /** @type {?} */
-        const dc = (/** @type {?} */ (opt._d)).length;
+        const dc = opt._d.length;
         // column
         for (let i = 0; i < cc; i++) {
             sheet[`${String.fromCharCode(i + 65)}1`] = {
@@ -1258,7 +1256,7 @@ class STExport {
         // content
         for (let i = 0; i < dc; i++) {
             for (let j = 0; j < cc; j++) {
-                sheet[`${String.fromCharCode(j + 65)}${i + 2}`] = this._stGet((/** @type {?} */ (opt._d))[i], colData[j]);
+                sheet[`${String.fromCharCode(j + 65)}${i + 2}`] = this._stGet(opt._d[i], colData[j]);
             }
         }
         if (cc > 0 && dc > 0) {
@@ -1517,7 +1515,7 @@ class STComponent {
      * @return {?}
      */
     isTruncate(column) {
-        return !!column.width && this.widthMode.strictBehavior === 'truncate';
+        return column.width && this.widthMode.strictBehavior === 'truncate';
     }
     /**
      * @param {?} column
@@ -1593,8 +1591,8 @@ class STComponent {
             if (typeof result.pageShow !== 'undefined') {
                 this._isPagination = result.pageShow;
             }
-            this._data = (/** @type {?} */ (result.list));
-            this._statistical = (/** @type {?} */ (result.statistical));
+            this._data = result.list;
+            this._statistical = result.statistical;
             return this._data;
         }))
             .then((/**
@@ -1696,12 +1694,12 @@ class STComponent {
         /** @type {?} */
         const el = (/** @type {?} */ (this.el.nativeElement));
         if (this.scroll) {
-            (/** @type {?} */ (el.querySelector('.ant-table-body'))).scrollTo(0, 0);
+            el.querySelector('.ant-table-body').scrollTo(0, 0);
             return;
         }
         el.scrollIntoView();
         // fix header height
-        this.doc.documentElement.scrollTop -= (/** @type {?} */ (this.page.toTopOffset));
+        this.doc.documentElement.scrollTop -= this.page.toTopOffset;
     }
     /**
      * @param {?} type
@@ -1726,7 +1724,7 @@ class STComponent {
         e.preventDefault();
         e.stopPropagation();
         /** @type {?} */
-        const res = (/** @type {?} */ (col.click))(item, this);
+        const res = col.click(item, this);
         if (typeof res === 'string') {
             this.router.navigateByUrl(res, { state: this.routerState });
         }
@@ -1869,11 +1867,11 @@ class STComponent {
      * @return {?}
      */
     handleFilter(col) {
-        (/** @type {?} */ (col.filter)).default = (/** @type {?} */ (col.filter)).menus.findIndex((/**
+        col.filter.default = col.filter.menus.findIndex((/**
          * @param {?} w
          * @return {?}
          */
-        w => (/** @type {?} */ (w.checked)))) !== -1;
+        w => w.checked)) !== -1;
         this._load();
         this.changeEmit('filter', col);
     }
@@ -1889,7 +1887,7 @@ class STComponent {
      * @return {?}
      */
     _filterClear(col) {
-        (/** @type {?} */ (col.filter)).menus.forEach((/**
+        col.filter.menus.forEach((/**
          * @param {?} i
          * @return {?}
          */
@@ -1903,7 +1901,7 @@ class STComponent {
      * @return {?}
      */
     _filterRadio(col, item, checked) {
-        (/** @type {?} */ (col.filter)).menus.forEach((/**
+        col.filter.menus.forEach((/**
          * @param {?} i
          * @return {?}
          */
@@ -1927,8 +1925,8 @@ class STComponent {
          * @return {?}
          */
         col => {
-            (/** @type {?} */ (col.filter)).default = false;
-            (/** @type {?} */ (col.filter)).menus.forEach((/**
+            col.filter.default = false;
+            col.filter.menus.forEach((/**
              * @param {?} f
              * @return {?}
              */
@@ -2096,8 +2094,8 @@ class STComponent {
         if (btn.type === 'modal' || btn.type === 'static') {
             const { modal } = btn;
             /** @type {?} */
-            const obj = { [(/** @type {?} */ ((/** @type {?} */ (modal)).paramsName))]: record };
-            ((/** @type {?} */ (this.modalHelper[btn.type === 'modal' ? 'create' : 'createStatic'])))((/** @type {?} */ (modal)).component, Object.assign({}, obj, ((/** @type {?} */ (modal)).params != null ? (/** @type {?} */ ((/** @type {?} */ (modal)).params))(record) : {})), deepMergeKey({}, true, this.copyCog.modal, modal))
+            const obj = { [modal.paramsName]: record };
+            ((/** @type {?} */ (this.modalHelper[btn.type === 'modal' ? 'create' : 'createStatic'])))(modal.component, Object.assign({}, obj, (modal.params && modal.params(record))), deepMergeKey({}, true, this.copyCog.modal, modal))
                 .pipe(filter((/**
              * @param {?} w
              * @return {?}
@@ -2113,9 +2111,9 @@ class STComponent {
         else if (btn.type === 'drawer') {
             const { drawer } = btn;
             /** @type {?} */
-            const obj = { [(/** @type {?} */ ((/** @type {?} */ (drawer)).paramsName))]: record };
+            const obj = { [drawer.paramsName]: record };
             this.drawerHelper
-                .create((/** @type {?} */ ((/** @type {?} */ (drawer)).title)), (/** @type {?} */ (drawer)).component, Object.assign({}, obj, ((/** @type {?} */ (drawer)).params != null ? (/** @type {?} */ ((/** @type {?} */ (drawer)).params))(record) : {})), deepMergeKey({}, true, this.copyCog.drawer, drawer))
+                .create(drawer.title, drawer.component, Object.assign({}, obj, (drawer.params && drawer.params(record))), deepMergeKey({}, true, this.copyCog.drawer, drawer))
                 .pipe(filter((/**
              * @param {?} w
              * @return {?}
@@ -2178,11 +2176,11 @@ class STComponent {
      * @return {?}
      */
     _validBtns(item, col) {
-        return (/** @type {?} */ (col.buttons)).filter((/**
+        return col.buttons.filter((/**
          * @param {?} btn
          * @return {?}
          */
-        btn => (/** @type {?} */ (btn.iif))(item, btn, col)));
+        btn => btn.iif(item, btn, col)));
     }
     // #endregion
     // #region export

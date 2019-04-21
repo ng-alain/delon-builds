@@ -9,10 +9,10 @@ export declare class TokenService implements ITokenService {
     private change$;
     private _referrer;
     constructor(options: DelonAuthConfig, store: IStore);
-    readonly login_url: string | undefined;
+    readonly login_url: string;
     readonly referrer: AuthReferrer;
     set(data: ITokenModel): boolean;
     get(type?: any): any;
     clear(): void;
-    change(): Observable<ITokenModel | null>;
+    change(): Observable<ITokenModel>;
 }

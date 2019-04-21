@@ -7,6 +7,6 @@ export declare class SFItemWrapComponent {
     showError: boolean;
     error: string;
     showTitle: boolean;
-    title: string | null;
-    readonly t: string | null | undefined;
+    title: string;
+    readonly t: string;
 }

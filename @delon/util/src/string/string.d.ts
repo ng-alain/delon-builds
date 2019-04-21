@@ -7,4 +7,4 @@
  * // output: this is asdf
  * ```
  */
-export declare function format(str: string | null | undefined, obj: {} | null | undefined, needDeepGet?: boolean): string;
+export declare function format(str: string, obj: {}, needDeepGet?: boolean): string;
