@@ -133,6 +133,7 @@
             this.cdr = cdr;
             this.inited = false;
             this.unsubscribe$ = new rxjs.Subject();
+            this._titleVal = '';
             this.paths = [];
             this.loading = false;
             this.wide = false;
@@ -260,8 +261,8 @@
          * @return {THIS}
          */
         function () {
-            if (typeof (/** @type {?} */ (this))._title === 'undefined' &&
-                typeof (/** @type {?} */ (this))._titleTpl === 'undefined' &&
+            if ((/** @type {?} */ (this))._title == null &&
+                (/** @type {?} */ (this))._titleTpl == null &&
                 (/** @type {?} */ (this)).autoTitle &&
                 (/** @type {?} */ (this)).menus.length > 0) {
                 /** @type {?} */

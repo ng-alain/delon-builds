@@ -2097,7 +2097,7 @@ class STComponent {
             const { modal } = btn;
             /** @type {?} */
             const obj = { [(/** @type {?} */ ((/** @type {?} */ (modal)).paramsName))]: record };
-            ((/** @type {?} */ (this.modalHelper[btn.type === 'modal' ? 'create' : 'createStatic'])))((/** @type {?} */ (modal)).component, Object.assign({}, obj, ((/** @type {?} */ (modal)).params != null ? (/** @type {?} */ ((/** @type {?} */ (modal)).params))(record) : {})), deepMergeKey({}, true, this.copyCog.modal, modal))
+            ((/** @type {?} */ (this.modalHelper[btn.type === 'modal' ? 'create' : 'createStatic'])))((/** @type {?} */ (modal)).component, Object.assign({}, obj, ((/** @type {?} */ (modal)).params && (/** @type {?} */ ((/** @type {?} */ (modal)).params))(record))), deepMergeKey({}, true, this.copyCog.modal, modal))
                 .pipe(filter((/**
              * @param {?} w
              * @return {?}
@@ -2115,7 +2115,7 @@ class STComponent {
             /** @type {?} */
             const obj = { [(/** @type {?} */ ((/** @type {?} */ (drawer)).paramsName))]: record };
             this.drawerHelper
-                .create((/** @type {?} */ ((/** @type {?} */ (drawer)).title)), (/** @type {?} */ (drawer)).component, Object.assign({}, obj, ((/** @type {?} */ (drawer)).params != null ? (/** @type {?} */ ((/** @type {?} */ (drawer)).params))(record) : {})), deepMergeKey({}, true, this.copyCog.drawer, drawer))
+                .create((/** @type {?} */ ((/** @type {?} */ (drawer)).title)), (/** @type {?} */ (drawer)).component, Object.assign({}, obj, ((/** @type {?} */ (drawer)).params && (/** @type {?} */ ((/** @type {?} */ (drawer)).params))(record))), deepMergeKey({}, true, this.copyCog.drawer, drawer))
                 .pipe(filter((/**
              * @param {?} w
              * @return {?}
