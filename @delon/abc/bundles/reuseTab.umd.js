@@ -460,14 +460,17 @@
             this._inited = false;
             this._max = 10;
             this._keepingScroll = false;
-            this._debug = false;
-            this._mode = ReuseTabMatchMode.Menu;
-            this._excludes = [];
             this._cachedChange = new rxjs.BehaviorSubject(null);
             this._cached = [];
             this._titleCached = {};
             this._closableCached = {};
             this.positionBuffer = {};
+            this.debug = false;
+            this.mode = ReuseTabMatchMode.Menu;
+            /**
+             * 排除规则，限 `mode=URL`
+             */
+            this.excludes = [];
         }
         Object.defineProperty(ReuseTabService.prototype, "snapshot", {
             get: /**
@@ -521,44 +524,6 @@
             enumerable: true,
             configurable: true
         });
-        Object.defineProperty(ReuseTabService.prototype, "mode", {
-            get: /**
-             * @return {?}
-             */
-            function () {
-                return this._mode;
-            },
-            /** 设置匹配模式 */
-            set: /**
-             * 设置匹配模式
-             * @param {?} value
-             * @return {?}
-             */
-            function (value) {
-                this._mode = value;
-            },
-            enumerable: true,
-            configurable: true
-        });
-        Object.defineProperty(ReuseTabService.prototype, "debug", {
-            get: /**
-             * @return {?}
-             */
-            function () {
-                return this._debug;
-            },
-            /** 设置Debug模式 */
-            set: /**
-             * 设置Debug模式
-             * @param {?} value
-             * @return {?}
-             */
-            function (value) {
-                this._debug = value;
-            },
-            enumerable: true,
-            configurable: true
-        });
         Object.defineProperty(ReuseTabService.prototype, "keepingScroll", {
             get: /**
              * @return {?}
@@ -573,27 +538,6 @@
             function (value) {
                 this._keepingScroll = value;
                 this.initScroll();
-            },
-            enumerable: true,
-            configurable: true
-        });
-        Object.defineProperty(ReuseTabService.prototype, "excludes", {
-            get: /**
-             * @return {?}
-             */
-            function () {
-                return this._excludes;
-            },
-            /** 排除规则，限 `mode=URL` */
-            set: /**
-             * 排除规则，限 `mode=URL`
-             * @param {?} values
-             * @return {?}
-             */
-            function (values) {
-                if (!values)
-                    return;
-                this._excludes = values;
             },
             enumerable: true,
             configurable: true
@@ -1143,7 +1087,7 @@
                 }
                 return true;
             }
-            return this._excludes.findIndex((/**
+            return this.excludes.findIndex((/**
              * @param {?} r
              * @return {?}
              */

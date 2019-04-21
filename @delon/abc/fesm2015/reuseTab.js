@@ -363,14 +363,17 @@ class ReuseTabService {
         this._inited = false;
         this._max = 10;
         this._keepingScroll = false;
-        this._debug = false;
-        this._mode = ReuseTabMatchMode.Menu;
-        this._excludes = [];
         this._cachedChange = new BehaviorSubject(null);
         this._cached = [];
         this._titleCached = {};
         this._closableCached = {};
         this.positionBuffer = {};
+        this.debug = false;
+        this.mode = ReuseTabMatchMode.Menu;
+        /**
+         * 排除规则，限 `mode=URL`
+         */
+        this.excludes = [];
     }
     /**
      * @private
@@ -405,34 +408,6 @@ class ReuseTabService {
         }
     }
     /**
-     * 设置匹配模式
-     * @param {?} value
-     * @return {?}
-     */
-    set mode(value) {
-        this._mode = value;
-    }
-    /**
-     * @return {?}
-     */
-    get mode() {
-        return this._mode;
-    }
-    /**
-     * 设置Debug模式
-     * @param {?} value
-     * @return {?}
-     */
-    set debug(value) {
-        this._debug = value;
-    }
-    /**
-     * @return {?}
-     */
-    get debug() {
-        return this._debug;
-    }
-    /**
      * @param {?} value
      * @return {?}
      */
@@ -445,22 +420,6 @@ class ReuseTabService {
      */
     get keepingScroll() {
         return this._keepingScroll;
-    }
-    /**
-     * 排除规则，限 `mode=URL`
-     * @param {?} values
-     * @return {?}
-     */
-    set excludes(values) {
-        if (!values)
-            return;
-        this._excludes = values;
-    }
-    /**
-     * @return {?}
-     */
-    get excludes() {
-        return this._excludes;
     }
     /**
      * 获取已缓存的路由
@@ -800,7 +759,7 @@ class ReuseTabService {
             }
             return true;
         }
-        return this._excludes.findIndex((/**
+        return this.excludes.findIndex((/**
          * @param {?} r
          * @return {?}
          */
