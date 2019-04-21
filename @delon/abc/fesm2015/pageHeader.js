@@ -188,10 +188,7 @@ class PageHeaderComponent {
      * @return {THIS}
      */
     setTitle() {
-        if ((/** @type {?} */ (this))._title == null &&
-            (/** @type {?} */ (this))._titleTpl == null &&
-            (/** @type {?} */ (this)).autoTitle &&
-            (/** @type {?} */ (this)).menus.length > 0) {
+        if ((/** @type {?} */ (this))._title == null && (/** @type {?} */ (this))._titleTpl == null && (/** @type {?} */ (this)).autoTitle && (/** @type {?} */ (this)).menus.length > 0) {
             /** @type {?} */
             const item = (/** @type {?} */ (this)).menus[(/** @type {?} */ (this)).menus.length - 1];
             /** @type {?} */

@@ -18,17 +18,7 @@ function fixClass(host, src, classes) {
     host.overwrite(src, content);
 }
 function fixVersion(host, context) {
-    json_1.addPackageToPackageJson(host, [
-        'abc',
-        'acl',
-        'auth',
-        'cache',
-        'form',
-        'mock',
-        'theme',
-        'util',
-        'chart',
-    ].map(pkg => `@delon/${pkg}@${lib_versions_1.VERSION}`));
+    json_1.addPackageToPackageJson(host, ['abc', 'acl', 'auth', 'cache', 'form', 'mock', 'theme', 'util', 'chart'].map(pkg => `@delon/${pkg}@${lib_versions_1.VERSION}`));
 }
 function fixStyles(host, context) {
     const filePath = 'src/styles.less';

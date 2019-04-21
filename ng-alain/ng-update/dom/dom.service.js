@@ -181,9 +181,7 @@ class DomService {
     }
     /** 添加未指定属性名的 ng-template */
     resolveAddTemplateAtrr(dom, attrName, rule) {
-        const ngDom = dom.children.find(w => w.type === 'tag' &&
-            w.name === 'ng-template' &&
-            typeof w.attribs[`#${rule.value}`] !== 'undefined');
+        const ngDom = dom.children.find(w => w.type === 'tag' && w.name === 'ng-template' && typeof w.attribs[`#${rule.value}`] !== 'undefined');
         if (ngDom) {
             dom.attribs[`[${rule.extra_name || rule.value}]`] = rule.value;
         }
@@ -213,9 +211,7 @@ class DomService {
     /** 为所有 ng-template 名称增加一个前缀 */
     resolveAddPrefixToTemplate(dom, attrName, rule) {
         Object.keys(dom.attribs).forEach(k => {
-            const ngDom = dom.children.find(s => s.type === 'tag' &&
-                s.name === 'ng-template' &&
-                typeof s.attribs[`#${dom.attribs[k]}`] !== 'undefined');
+            const ngDom = dom.children.find(s => s.type === 'tag' && s.name === 'ng-template' && typeof s.attribs[`#${dom.attribs[k]}`] !== 'undefined');
             if (!ngDom)
                 return;
             const name = dom.attribs[k];

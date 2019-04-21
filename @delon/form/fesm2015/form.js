@@ -1170,8 +1170,7 @@ class ObjectProperty extends PropertyGroup {
         /** @type {?} */
         let orderedProperties;
         try {
-            orderedProperties = orderProperties(Object.keys((/** @type {?} */ (this.schema.properties))), (/** @type {?} */ (this.ui
-                .order)));
+            orderedProperties = orderProperties(Object.keys((/** @type {?} */ (this.schema.properties))), (/** @type {?} */ (this.ui.order)));
         }
         catch (e) {
             console.error(`Invalid ${this.schema.title || 'root'} object field configuration:`, e);
@@ -1319,19 +1318,11 @@ class FormPropertyFactory {
                 schema.title = propertyId;
             }
             // fix date
-            if ((schema.type === 'string' || schema.type === 'number') &&
-                !schema.format &&
-                !((/** @type {?} */ (ui))).format) {
+            if ((schema.type === 'string' || schema.type === 'number') && !schema.format && !((/** @type {?} */ (ui))).format) {
                 if (((/** @type {?} */ (ui))).widget === 'date')
-                    ui.format =
-                        schema.type === 'string'
-                            ? this.options.uiDateStringFormat
-                            : this.options.uiDateNumberFormat;
+                    ui.format = schema.type === 'string' ? this.options.uiDateStringFormat : this.options.uiDateNumberFormat;
                 else if (((/** @type {?} */ (ui))).widget === 'time')
-                    ui.format =
-                        schema.type === 'string'
-                            ? this.options.uiTimeStringFormat
-                            : this.options.uiTimeNumberFormat;
+                    ui.format = schema.type === 'string' ? this.options.uiTimeStringFormat : this.options.uiTimeNumberFormat;
             }
             switch (schema.type) {
                 case 'integer':
@@ -1416,8 +1407,8 @@ class AjvSchemaValidatorFactory extends SchemaValidatorFactory {
     createValidatorFn(schema, extraOptions) {
         /** @type {?} */
         const ingoreKeywords = [
-            ...(/** @type {?} */ (this.options.ingoreKeywords)),
-            ...(/** @type {?} */ (extraOptions.ingoreKeywords)),
+            ...((/** @type {?} */ (this.options.ingoreKeywords))),
+            ...((/** @type {?} */ (extraOptions.ingoreKeywords))),
         ];
         return (/**
          * @param {?} value
@@ -1753,16 +1744,12 @@ class SFComponent {
                     }
                     else {
                         if (!ui.spanLabel)
-                            ui.spanLabel =
-                                typeof parentUiSchema.spanLabel === 'undefined' ? 5 : parentUiSchema.spanLabel;
+                            ui.spanLabel = typeof parentUiSchema.spanLabel === 'undefined' ? 5 : parentUiSchema.spanLabel;
                         if (!ui.spanControl)
-                            ui.spanControl =
-                                typeof parentUiSchema.spanControl === 'undefined' ? 19 : parentUiSchema.spanControl;
+                            ui.spanControl = typeof parentUiSchema.spanControl === 'undefined' ? 19 : parentUiSchema.spanControl;
                         if (!ui.offsetControl)
                             ui.offsetControl =
-                                typeof parentUiSchema.offsetControl === 'undefined'
-                                    ? null
-                                    : parentUiSchema.offsetControl;
+                                typeof parentUiSchema.offsetControl === 'undefined' ? null : parentUiSchema.offsetControl;
                     }
                 }
                 else {
@@ -1858,8 +1845,7 @@ class SFComponent {
                 (/** @type {?} */ (this._btn.render)).spanLabelFixed = btnUi.spanLabelFixed;
             }
             // 固定标签宽度时，若不指定样式，则默认居中
-            if (!(/** @type {?} */ (this._btn.render)).class &&
-                (typeof btnUi.spanLabelFixed === 'number' && btnUi.spanLabelFixed > 0)) {
+            if (!(/** @type {?} */ (this._btn.render)).class && (typeof btnUi.spanLabelFixed === 'number' && btnUi.spanLabelFixed > 0)) {
                 (/** @type {?} */ (this._btn.render)).class = 'text-center';
             }
         }
@@ -2454,8 +2440,7 @@ class ArrayWidget extends ArrayLayoutWidget {
      * @return {?}
      */
     get addDisabled() {
-        return (this.schema.maxItems &&
-            ((/** @type {?} */ (this.formProperty.properties))).length >= this.schema.maxItems);
+        return this.schema.maxItems && ((/** @type {?} */ (this.formProperty.properties))).length >= this.schema.maxItems;
     }
     /**
      * @return {?}
@@ -2472,8 +2457,7 @@ class ArrayWidget extends ArrayLayoutWidget {
         }
         this.addTitle = this.ui.addTitle || this.l.addText;
         this.addType = this.ui.addType || 'dashed';
-        this.removeTitle =
-            this.ui.removable === false ? null : this.ui.removeTitle || this.l.removeText;
+        this.removeTitle = this.ui.removable === false ? null : this.ui.removeTitle || this.l.removeText;
     }
     /**
      * @return {?}
@@ -2741,7 +2725,7 @@ class CheckboxWidget extends ControlWidget {
             this.data = list;
             this.allChecked = false;
             this.indeterminate = false;
-            this.labelTitle = list.length === 0 ? '' : (/** @type {?} */ (this.schema.title));
+            this.labelTitle = list.length === 0 ? '' : ((/** @type {?} */ (this.schema.title)));
             this.grid_span = this.ui.span && this.ui.span > 0 ? this.ui.span : 0;
             this.updateAllChecked();
             this.inited = true;
@@ -2948,13 +2932,11 @@ class DateWidget extends ControlWidget {
             return;
         }
         /** @type {?} */
-        const res = Array.isArray(value)
-            ? value.map((/**
-             * @param {?} d
-             * @return {?}
-             */
-            d => format(d, this.format)))
-            : format(value, this.format);
+        const res = Array.isArray(value) ? value.map((/**
+         * @param {?} d
+         * @return {?}
+         */
+        d => format(d, this.format))) : format(value, this.format);
         if (this.flatRange) {
             this.setEnd(res[1]);
             this.setValue(res[0]);
@@ -3161,7 +3143,7 @@ class NumberWidget extends ControlWidget {
              * @param {?} value
              * @return {?}
              */
-            value => value == null ? '' : `${ui.prefix} ${value}`);
+            value => (value == null ? '' : `${ui.prefix} ${value}`));
             ui.parser = (/**
              * @param {?} value
              * @return {?}
@@ -3173,7 +3155,7 @@ class NumberWidget extends ControlWidget {
              * @param {?} value
              * @return {?}
              */
-            value => value == null ? '' : `${value} ${ui.unit}`);
+            value => (value == null ? '' : `${value} ${ui.unit}`));
             ui.parser = (/**
              * @param {?} value
              * @return {?}
@@ -3839,8 +3821,7 @@ class TreeSelectWidget extends ControlWidget {
      * @return {?}
      */
     reset(value) {
-        getData(this.schema, this.ui, this.formProperty.formData)
-            .subscribe((/**
+        getData(this.schema, this.ui, this.formProperty.formData).subscribe((/**
          * @param {?} list
          * @return {?}
          */
@@ -3866,8 +3847,7 @@ class TreeSelectWidget extends ControlWidget {
         const { ui } = this;
         if (typeof ui.expandChange !== 'function')
             return;
-        ui.expandChange(e)
-            .subscribe((/**
+        ui.expandChange(e).subscribe((/**
          * @param {?} res
          * @return {?}
          */
@@ -3915,9 +3895,7 @@ class UploadWidget extends ControlWidget {
             if (!_url) {
                 return;
             }
-            this.injector
-                .get(NzModalService)
-                .create({
+            this.injector.get(NzModalService).create({
                 nzContent: `<img src="${_url}" class="img-fluid" />`,
                 nzFooter: null,
             });
@@ -4000,11 +3978,13 @@ class UploadWidget extends ControlWidget {
      * @return {?}
      */
     _setValue(fileList) {
-        fileList.filter((/**
+        fileList
+            .filter((/**
          * @param {?} file
          * @return {?}
          */
-        file => !file.url)).forEach((/**
+        file => !file.url))
+            .forEach((/**
          * @param {?} file
          * @return {?}
          */
@@ -4070,13 +4050,7 @@ class NzWidgetRegistry extends WidgetRegistry {
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-const COMPONENTS = [
-    SFComponent,
-    SFItemComponent,
-    SFItemWrapComponent,
-    SFTemplateDirective,
-    SFFixedDirective,
-];
+const COMPONENTS = [SFComponent, SFItemComponent, SFItemWrapComponent, SFTemplateDirective, SFFixedDirective];
 /** @type {?} */
 const WIDGETS = [
     ObjectWidget,

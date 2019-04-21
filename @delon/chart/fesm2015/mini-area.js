@@ -93,7 +93,7 @@ class G2MiniAreaComponent {
      * @return {?}
      */
     attachChart() {
-        const { chart, line, fit, height, animate, padding, data, color, borderColor, borderWidth, } = this;
+        const { chart, line, fit, height, animate, padding, data, color, borderColor, borderWidth } = this;
         if (!chart || !data || data.length <= 0) {
             return;
         }

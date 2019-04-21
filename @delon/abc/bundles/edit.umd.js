@@ -399,9 +399,7 @@
             function (cls) { return ren.removeClass(el, cls); }));
             clsMap.length = 0;
             /** @type {?} */
-            var repCls = parent.nzLayout === 'horizontal'
-                ? rep.genCls(col != null ? col : parent.colInCon || parent.col)
-                : [];
+            var repCls = parent.nzLayout === 'horizontal' ? rep.genCls(col != null ? col : parent.colInCon || parent.col) : [];
             clsMap.push.apply(clsMap, __spread(["ant-form-item"], repCls, [prefixCls + "__item"]));
             if (line || parent.line) {
                 clsMap.push(prefixCls + "__line");
@@ -430,9 +428,7 @@
              * @param {?} res
              * @return {?}
              */
-            function (res) {
-                return _this.updateStatus(res === 'INVALID');
-            }));
+            function (res) { return _this.updateStatus(res === 'INVALID'); }));
             if (this._autoId) {
                 /** @type {?} */
                 var control = (/** @type {?} */ (util.deepGet(this.ngControl.valueAccessor, '_elementRef.nativeElement')));

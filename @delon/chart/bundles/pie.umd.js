@@ -120,9 +120,7 @@
                  * @param {?} value
                  * @return {?}
                  */
-                function (value) {
-                    return value === '占比' ? color || 'rgba(24, 144, 255, 0.85)' : '#F0F2F5';
-                });
+                function (value) { return (value === '占比' ? color || 'rgba(24, 144, 255, 0.85)' : '#F0F2F5'); });
                 this.data = [
                     {
                         x: '占比',

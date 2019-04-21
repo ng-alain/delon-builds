@@ -172,9 +172,7 @@
              * @param {?} v
              * @return {?}
              */
-            function (v) {
-                return render.setAttribute(_this.el.nativeElement, v, size.toString());
-            }));
+            function (v) { return render.setAttribute(_this.el.nativeElement, v, size.toString()); }));
         };
         /**
          * @private

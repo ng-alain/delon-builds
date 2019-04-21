@@ -92,7 +92,7 @@ class G2TimelineComponent {
      * @return {?}
      */
     attachChart() {
-        const { chart, _slider, slider, height, padding, data, mask, titleMap, position, colorMap, borderWidth, } = this;
+        const { chart, _slider, slider, height, padding, data, mask, titleMap, position, colorMap, borderWidth } = this;
         if (!chart || !data || data.length <= 0)
             return;
         chart.legend({

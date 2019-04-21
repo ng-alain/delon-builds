@@ -76,12 +76,7 @@ const RULES = [
             }, reqKeys, dom.attribs);
             // #endregion
             // #region res
-            const resKeys = Object.keys(dom.attribs).filter(key => ~[
-                `resReName`,
-                `[resReName]`,
-                `preDataChange`,
-                `[preDataChange]`,
-            ].indexOf(key));
+            const resKeys = Object.keys(dom.attribs).filter(key => ~[`resReName`, `[resReName]`, `preDataChange`, `[preDataChange]`].indexOf(key));
             bondingAttr('res', {
                 resReName: { value: 'reName', type: 'object' },
                 preDataChange: { value: 'process', type: 'fn' },
@@ -136,10 +131,7 @@ const RULES = [
     {
         type: 'tag',
         name: 'desc-list-item',
-        rules: [
-            { type: 'name', value: 'sv' },
-            { type: 'attr-name', value: 'term', newValue: 'label' },
-        ],
+        rules: [{ type: 'name', value: 'sv' }, { type: 'attr-name', value: 'term', newValue: 'label' }],
     },
     {
         type: 'tag',

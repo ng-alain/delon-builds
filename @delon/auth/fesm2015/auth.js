@@ -449,7 +449,7 @@ class BaseInterceptor {
      */
     intercept(req, next) {
         /** @type {?} */
-        const options = Object.assign({}, new DelonAuthConfig(), this.injector.get(DelonAuthConfig, null));
+        const options = Object.assign({}, new DelonAuthConfig(), this.injector.get(DelonAuthConfig, undefined));
         if (options.ignores) {
             for (const item of (/** @type {?} */ (options.ignores))) {
                 if (item.test(req.url))
