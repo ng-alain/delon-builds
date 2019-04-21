@@ -232,7 +232,6 @@ var FullContentComponent = /** @class */ (function () {
     FullContentComponent.decorators = [
         { type: Component, args: [{
                     selector: 'full-content',
-                    exportAs: 'fullContent',
                     template: "\n    <ng-content></ng-content>\n  ",
                     host: {
                         '[class.full-content]': 'true',
@@ -290,7 +289,6 @@ var FullContentToggleDirective = /** @class */ (function () {
     FullContentToggleDirective.decorators = [
         { type: Directive, args: [{
                     selector: '[full-toggle]',
-                    exportAs: 'fullToggle',
                     host: {
                         '(click)': '_click()',
                     },

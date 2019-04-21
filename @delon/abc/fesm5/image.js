@@ -106,9 +106,7 @@ var ImageDirective = /** @class */ (function () {
          * @param {?} v
          * @return {?}
          */
-        function (v) {
-            return render.setAttribute(_this.el.nativeElement, v, size.toString());
-        }));
+        function (v) { return render.setAttribute(_this.el.nativeElement, v, size.toString()); }));
     };
     /**
      * @private
@@ -124,7 +122,7 @@ var ImageDirective = /** @class */ (function () {
     ImageDirective.decorators = [
         { type: Directive, args: [{
                     selector: '[_src]',
-                    exportAs: '_src',
+                    exportAs: 'srcDirective',
                 },] }
     ];
     /** @nocollapse */

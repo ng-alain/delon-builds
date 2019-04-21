@@ -135,7 +135,6 @@ class ErrorCollectComponent {
 ErrorCollectComponent.decorators = [
     { type: Component, args: [{
                 selector: 'error-collect, [error-collect]',
-                exportAs: 'errorCollect',
                 template: `
     <i nz-icon type="exclamation-circle"></i>
     <span class="pl-sm">{{ count }}</span>
@@ -145,7 +144,8 @@ ErrorCollectComponent.decorators = [
                     '[class.d-none]': '_hiden',
                     '(click)': '_click()',
                 },
-                changeDetection: ChangeDetectionStrategy.OnPush
+                changeDetection: ChangeDetectionStrategy.OnPush,
+                exportAs: 'errorCollect'
             }] }
 ];
 /** @nocollapse */

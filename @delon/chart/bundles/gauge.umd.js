@@ -256,7 +256,6 @@
         G2GaugeComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'g2-gauge',
-                        exportAs: 'g2Gauge',
                         template: "",
                         host: {
                             '[class.g2-gauge]': 'true',

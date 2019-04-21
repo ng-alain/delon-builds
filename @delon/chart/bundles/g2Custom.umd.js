@@ -127,7 +127,6 @@
         G2CustomComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'g2,g2-custom',
-                        exportAs: 'g2Custom',
                         template: "\n    <ng-content></ng-content>\n  ",
                         host: {
                             '[style.height.px]': 'height',

@@ -48,7 +48,6 @@ class CountDownComponent {
 CountDownComponent.decorators = [
     { type: Component, args: [{
                 selector: 'count-down',
-                exportAs: 'countDown',
                 template: `
     <countdown
       *ngIf="config"

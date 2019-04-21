@@ -312,7 +312,6 @@
         G2TimelineComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'g2-timeline',
-                        exportAs: 'g2Timeline',
                         template: "<ng-container *stringTemplateOutlet=\"title\">\n  <h4>{{title}}</h4>\n</ng-container>\n<div #container></div>\n<div #sliderContainer\n     *ngIf=\"slider\"></div>\n",
                         changeDetection: core.ChangeDetectionStrategy.OnPush
                     }] }

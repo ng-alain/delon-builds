@@ -93,7 +93,7 @@ class G2MiniAreaComponent {
      * @return {?}
      */
     attachChart() {
-        const { chart, line, fit, height, animate, padding, data, color, borderColor, borderWidth, } = this;
+        const { chart, line, fit, height, animate, padding, data, color, borderColor, borderWidth } = this;
         if (!chart || !data || data.length <= 0) {
             return;
         }
@@ -149,7 +149,6 @@ class G2MiniAreaComponent {
 G2MiniAreaComponent.decorators = [
     { type: Component, args: [{
                 selector: 'g2-mini-area',
-                exportAs: 'g2MiniArea',
                 template: ``,
                 host: {
                     '[style.height.px]': 'height',

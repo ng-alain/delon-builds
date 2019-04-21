@@ -168,7 +168,6 @@ class QRComponent {
 QRComponent.decorators = [
     { type: Component, args: [{
                 selector: 'qr',
-                exportAs: 'qr',
                 template: `
     <img class="qr__img" src="{{ dataURL }}" />
   `,
