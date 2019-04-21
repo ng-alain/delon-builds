@@ -13,7 +13,7 @@ export declare class ErrorCollectComponent implements OnInit, OnDestroy {
     constructor(cog: ErrorCollectConfig, el: ElementRef, cdr: ChangeDetectorRef, doc: any);
     private readonly errEls;
     private update;
-    _click(): boolean;
+    _click(): false | undefined;
     private install;
     private uninstall;
     private findParent;

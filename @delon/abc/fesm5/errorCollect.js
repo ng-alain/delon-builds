@@ -45,7 +45,7 @@ var ErrorCollectComponent = /** @class */ (function () {
          * @return {?}
          */
         function () {
-            return this.formEl.querySelectorAll('.has-error');
+            return (/** @type {?} */ (this.formEl)).querySelectorAll('.has-error');
         },
         enumerable: true,
         configurable: true
@@ -111,7 +111,7 @@ var ErrorCollectComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        clearInterval(this.$time);
+        clearInterval((/** @type {?} */ (this.$time)));
     };
     /**
      * @private
@@ -130,12 +130,12 @@ var ErrorCollectComponent = /** @class */ (function () {
         var retEl = null;
         while (el) {
             if (el.querySelector(selector)) {
-                retEl = el;
+                retEl = (/** @type {?} */ (el));
                 break;
             }
-            el = el.parentElement;
+            el = (/** @type {?} */ (el.parentElement));
         }
-        return retEl;
+        return (/** @type {?} */ (retEl));
     };
     /**
      * @return {?}

@@ -174,7 +174,7 @@ class EllipsisComponent {
                 throw new Error('Ellipsis content must be string.');
             }
             /** @type {?} */
-            const text = el.textContent;
+            const text = (/** @type {?} */ (el.textContent));
             /** @type {?} */
             const textLength = fullWidthRecognition ? this.getStrFullLength(text) : text.length;
             if (textLength <= length || length < 0) {
@@ -200,9 +200,9 @@ class EllipsisComponent {
             /** @type {?} */
             const orgNode = (/** @type {?} */ (shadowOrgEl.nativeElement));
             /** @type {?} */
-            const text = orgNode.innerText || orgNode.textContent;
+            const text = orgNode.innerText || (/** @type {?} */ (orgNode.textContent));
             /** @type {?} */
-            const lineHeight = parseInt(getComputedStyle(this.getEl('.ellipsis')).lineHeight, 10);
+            const lineHeight = parseInt((/** @type {?} */ (getComputedStyle(this.getEl('.ellipsis')).lineHeight)), 10);
             /** @type {?} */
             const targetHeight = lines * lineHeight;
             this.getEl('.ellipsis__handle').style.height = `${targetHeight}px`;

@@ -362,7 +362,7 @@ var SEComponent = /** @class */ (function () {
         var _this = this;
         if (!this.ngControl || this.status$)
             return;
-        this.status$ = this.ngControl.statusChanges.subscribe((/**
+        this.status$ = (/** @type {?} */ (this.ngControl.statusChanges)).subscribe((/**
          * @param {?} res
          * @return {?}
          */
@@ -391,7 +391,7 @@ var SEComponent = /** @class */ (function () {
         if (this.ngControl.disabled || this.ngControl.isDisabled) {
             return;
         }
-        this.invalid = (invalid && this.onceFlag) || (this.ngControl.dirty && invalid);
+        this.invalid = (/** @type {?} */ (((invalid && this.onceFlag) || (this.ngControl.dirty && invalid))));
         this.cdr.detectChanges();
     };
     /**
@@ -447,7 +447,7 @@ var SEComponent = /** @class */ (function () {
              * @return {?}
              */
             function () {
-                _this.updateStatus(_this.ngControl.invalid);
+                _this.updateStatus((/** @type {?} */ (_this.ngControl.invalid)));
                 _this.onceFlag = false;
             }));
         }

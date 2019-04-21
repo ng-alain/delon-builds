@@ -148,7 +148,7 @@ class TokenService {
      */
     set(data) {
         this.change$.next(data);
-        return this.store.set(this.options.store_key, data);
+        return this.store.set((/** @type {?} */ (this.options.store_key)), data);
     }
     /**
      * @template T
@@ -157,7 +157,7 @@ class TokenService {
      */
     get(type) {
         /** @type {?} */
-        const data = this.store.get(this.options.store_key);
+        const data = this.store.get((/** @type {?} */ (this.options.store_key)));
         return type ? ((/** @type {?} */ (Object.assign(new type(), data)))) : ((/** @type {?} */ (data)));
     }
     /**
@@ -165,7 +165,7 @@ class TokenService {
      */
     clear() {
         this.change$.next(null);
-        this.store.remove(this.options.store_key);
+        this.store.remove((/** @type {?} */ (this.options.store_key)));
     }
     /**
      * @return {?}
@@ -218,7 +218,7 @@ class SocialService {
      */
     login(url, callback = '/', options = {}) {
         options = Object.assign({ type: 'window', windowFeatures: 'location=yes,height=570,width=520,scrollbars=yes,status=yes' }, options);
-        localStorage.setItem(OPENTYPE, options.type);
+        localStorage.setItem(OPENTYPE, (/** @type {?} */ (options.type)));
         localStorage.setItem(HREFCALLBACK, callback);
         if (options.type === 'href') {
             this.doc.location.href = url;
@@ -247,9 +247,7 @@ class SocialService {
          * @param {?} observer
          * @return {?}
          */
-        (observer) => {
-            this.observer = observer;
-        }));
+        (observer) => (this.observer = observer)));
     }
     /**
      * 授权成功后的回调处理
@@ -271,7 +269,7 @@ class SocialService {
             data = (/** @type {?} */ (this.router.parseUrl('./?' + rightUrl).queryParams));
         }
         else {
-            data = rawData;
+            data = (/** @type {?} */ (rawData));
         }
         if (!data || !data.token)
             throw new Error(`invalide token data`);
@@ -388,7 +386,7 @@ function CheckSimple(model) {
  * @return {?}
  */
 function CheckJwt(model, offset) {
-    return model != null && model.token && !model.isExpired(offset);
+    return model != null && !!model.token && !model.isExpired(offset);
 }
 /**
  * @param {?} options
@@ -397,14 +395,14 @@ function CheckJwt(model, offset) {
  * @return {?}
  */
 function ToLogin(options, injector, url) {
-    ((/** @type {?} */ (injector.get(DA_SERVICE_TOKEN)))).referrer.url = url;
+    (/** @type {?} */ (((/** @type {?} */ (injector.get(DA_SERVICE_TOKEN)))).referrer)).url = url;
     if (options.token_invalid_redirect === true) {
         setTimeout((/**
          * @return {?}
          */
         () => {
-            if (/^https?:\/\//g.test(options.login_url)) {
-                injector.get(DOCUMENT).location.href = options.login_url;
+            if (/^https?:\/\//g.test((/** @type {?} */ (options.login_url)))) {
+                injector.get(DOCUMENT).location.href = (/** @type {?} */ (options.login_url));
             }
             else {
                 injector.get(Router).navigate([options.login_url]);
@@ -636,7 +634,7 @@ class JWTInterceptor extends BaseInterceptor {
      */
     isAuth(options) {
         this.model = this.injector.get(DA_SERVICE_TOKEN).get(JWTTokenModel);
-        return CheckJwt((/** @type {?} */ (this.model)), options.token_exp_offset);
+        return CheckJwt((/** @type {?} */ (this.model)), (/** @type {?} */ (options.token_exp_offset)));
     }
     /**
      * @param {?} req
@@ -676,7 +674,7 @@ class JWTGuard {
      */
     process() {
         /** @type {?} */
-        const res = CheckJwt(this.srv.get(JWTTokenModel), this.cog.token_exp_offset);
+        const res = CheckJwt(this.srv.get(JWTTokenModel), (/** @type {?} */ (this.cog.token_exp_offset)));
         if (!res) {
             ToLogin(this.cog, this.injector, this.url);
         }
@@ -750,8 +748,9 @@ class SimpleInterceptor extends BaseInterceptor {
      * @return {?}
      */
     setReq(req, options) {
+        const { token_send_template, token_send_key } = options;
         /** @type {?} */
-        const token = options.token_send_template.replace(/\$\{([\w]+)\}/g, (/**
+        const token = (/** @type {?} */ (token_send_template)).replace(/\$\{([\w]+)\}/g, (/**
          * @param {?} _
          * @param {?} g
          * @return {?}
@@ -761,7 +760,7 @@ class SimpleInterceptor extends BaseInterceptor {
             case 'header':
                 /** @type {?} */
                 const obj = {};
-                obj[options.token_send_key] = token;
+                obj[(/** @type {?} */ (token_send_key))] = token;
                 req = req.clone({
                     setHeaders: obj,
                 });
@@ -769,14 +768,14 @@ class SimpleInterceptor extends BaseInterceptor {
             case 'body':
                 /** @type {?} */
                 const body = req.body || {};
-                body[options.token_send_key] = token;
+                body[(/** @type {?} */ (token_send_key))] = token;
                 req = req.clone({
                     body,
                 });
                 break;
             case 'url':
                 req = req.clone({
-                    params: req.params.append(options.token_send_key, token),
+                    params: req.params.append((/** @type {?} */ (token_send_key)), token),
                 });
                 break;
         }
@@ -808,7 +807,7 @@ class SimpleGuard {
      */
     process() {
         /** @type {?} */
-        const res = CheckSimple(this.srv.get());
+        const res = CheckSimple((/** @type {?} */ (this.srv.get())));
         if (!res) {
             ToLogin(this.cog, this.injector, this.url);
         }

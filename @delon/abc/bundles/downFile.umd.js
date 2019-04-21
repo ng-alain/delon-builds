@@ -130,7 +130,7 @@
              * @return {?}
              */
             function (res) {
-                if (res.status !== 200 || res.body.size <= 0) {
+                if (res.status !== 200 || (/** @type {?} */ (res.body)).size <= 0) {
                     _this.error.emit(res);
                     return;
                 }

@@ -50,7 +50,7 @@ class ZipService {
      * @return {?}
      */
     init() {
-        return this.lazy.load([this.cog.url].concat(this.cog.utils));
+        return this.lazy.load([(/** @type {?} */ (this.cog.url))].concat((/** @type {?} */ (this.cog.utils))));
     }
     /**
      * @private
@@ -178,7 +178,7 @@ class ZipService {
     save(zip, options) {
         this.check(zip);
         /** @type {?} */
-        const opt = Object.assign({}, options);
+        const opt = (/** @type {?} */ (Object.assign({}, options)));
         return new Promise((/**
          * @param {?} resolve
          * @param {?} reject

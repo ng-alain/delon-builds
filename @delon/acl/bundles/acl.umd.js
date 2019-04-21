@@ -691,7 +691,7 @@
             function (v) {
                 if (v)
                     return;
-                _this.router.navigateByUrl(_this.options.guard_url);
+                _this.router.navigateByUrl((/** @type {?} */ (_this.options.guard_url)));
             })));
         };
         // lazy loading

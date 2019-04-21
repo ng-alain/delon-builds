@@ -3,7 +3,7 @@ export interface MockCachedRule {
     [key: string]: any;
     method: string;
     url: string;
-    martcher: RegExp;
+    martcher: RegExp | null;
     segments: string[];
     callback(req: MockRequest): any;
 }

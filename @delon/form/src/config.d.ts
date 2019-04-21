@@ -21,7 +21,7 @@ export declare class DelonFormConfig {
     /**
      * 指定表单 `autocomplete` 值，默认：`on`
      */
-    autocomplete?: 'on' | 'off';
+    autocomplete?: 'on' | 'off' | null;
     /**
      * 是否立即呈现错误视觉，默认：`false`
      */

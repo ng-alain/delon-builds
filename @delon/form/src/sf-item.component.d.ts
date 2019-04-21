@@ -9,7 +9,7 @@ export declare class SFItemComponent implements OnInit, OnChanges, OnDestroy {
     private terminator;
     private ref;
     readonly unsubscribe$: Subject<void>;
-    widget: Widget<FormProperty>;
+    widget: Widget<FormProperty> | null;
     formProperty: FormProperty;
     container: ViewContainerRef;
     constructor(widgetFactory: WidgetFactory, terminator: TerminatorService);

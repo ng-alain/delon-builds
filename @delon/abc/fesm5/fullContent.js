@@ -225,7 +225,7 @@ var FullContentComponent = /** @class */ (function () {
      */
     function () {
         this.removeInBody();
-        this.scroll$.unsubscribe();
+        (/** @type {?} */ (this.scroll$)).unsubscribe();
         this.srv$.unsubscribe();
         this.route$.unsubscribe();
     };

@@ -34,6 +34,6 @@ export declare class SocialService implements OnDestroy {
      *
      * @param rawData 指定回调认证信息，为空时从根据当前URL解析
      */
-    callback(rawData?: string | ITokenModel): ITokenModel;
+    callback(rawData?: ITokenModel | string | null): ITokenModel;
     ngOnDestroy(): void;
 }

@@ -441,7 +441,7 @@ class ACLGuard {
         v => {
             if (v)
                 return;
-            this.router.navigateByUrl(this.options.guard_url);
+            this.router.navigateByUrl((/** @type {?} */ (this.options.guard_url)));
         })));
     }
     // lazy loading

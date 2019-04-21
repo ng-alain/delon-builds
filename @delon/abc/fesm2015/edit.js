@@ -329,7 +329,7 @@ class SEComponent {
     bindModel() {
         if (!this.ngControl || this.status$)
             return;
-        this.status$ = this.ngControl.statusChanges.subscribe((/**
+        this.status$ = (/** @type {?} */ (this.ngControl.statusChanges)).subscribe((/**
          * @param {?} res
          * @return {?}
          */
@@ -351,7 +351,7 @@ class SEComponent {
         if (this.ngControl.disabled || this.ngControl.isDisabled) {
             return;
         }
-        this.invalid = (invalid && this.onceFlag) || (this.ngControl.dirty && invalid);
+        this.invalid = (/** @type {?} */ (((invalid && this.onceFlag) || (this.ngControl.dirty && invalid))));
         this.cdr.detectChanges();
     }
     /**
@@ -394,7 +394,7 @@ class SEComponent {
              * @return {?}
              */
             () => {
-                this.updateStatus(this.ngControl.invalid);
+                this.updateStatus((/** @type {?} */ (this.ngControl.invalid)));
                 this.onceFlag = false;
             }));
         }

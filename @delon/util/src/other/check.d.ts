@@ -1,5 +1,5 @@
 export declare function isEmpty(element: HTMLElement): boolean;
-export declare function toBoolean(value: any, allowUndefined?: boolean): boolean;
+export declare function toBoolean(value: any, allowUndefined?: boolean | null): boolean | undefined;
 /**
  * Input decorator that handle a prop to do get/set automatically with toBoolean
  * @example
@@ -8,7 +8,7 @@ export declare function toBoolean(value: any, allowUndefined?: boolean): boolean
  * @Input() @InputBoolean(null) visible: boolean = false;
  * ```
  */
-export declare function InputBoolean(allowUndefined?: boolean): any;
+export declare function InputBoolean(allowUndefined?: boolean | null): any;
 export declare function toNumber(value: any): number;
 export declare function toNumber<D>(value: any, fallback: D): number | D;
 /**
@@ -19,4 +19,4 @@ export declare function toNumber<D>(value: any, fallback: D): number | D;
  * @Input() @InputNumber(null) visible: number = 2;
  * ```
  */
-export declare function InputNumber(fallback?: number): any;
+export declare function InputNumber(fallback?: number | null): any;

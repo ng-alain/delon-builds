@@ -11,13 +11,13 @@ export declare class ScrollService {
      * 设置滚动条位置
      * @param element 指定元素
      */
-    scrollToPosition(element: Element | Window, position: [number, number]): void;
+    scrollToPosition(element: Element | Window | null | undefined, position: [number, number]): void;
     /**
      * 设置滚动条至指定元素
      * @param element 指定元素，默认 `document.body`
      * @param topOffset 偏移值，默认 `0`
      */
-    scrollToElement(element?: Element, topOffset?: number): void;
+    scrollToElement(element?: Element | null, topOffset?: number): void;
     /**
      * 滚动至顶部
      * @param topOffset 偏移值，默认 `0`

@@ -151,10 +151,10 @@
              * @return {?}
              */
             function () { return _this.inited; }))), router$1.events.pipe(operators.filter((/**
-             * @param {?} event
+             * @param {?} e
              * @return {?}
              */
-            function (event) { return event instanceof router.NavigationEnd; }))), i18nSrv.change)
+            function (e) { return e instanceof router.NavigationEnd; }))), i18nSrv.change)
                 .pipe(operators.takeUntil(this.unsubscribe$))
                 .subscribe((/**
              * @return {?}
@@ -188,11 +188,12 @@
                 if (value instanceof core.TemplateRef) {
                     this._title = null;
                     this._titleTpl = value;
+                    this._titleVal = '';
                 }
                 else {
                     this._title = value;
+                    this._titleVal = this._title;
                 }
-                this._titleVal = this._title;
             },
             enumerable: true,
             configurable: true
@@ -209,25 +210,21 @@
         };
         /**
          * @private
-         * @template THIS
-         * @this {THIS}
-         * @return {THIS}
+         * @return {?}
          */
         PageHeaderComponent.prototype.genBreadcrumb = /**
          * @private
-         * @template THIS
-         * @this {THIS}
-         * @return {THIS}
+         * @return {?}
          */
         function () {
             var _this = this;
-            if ((/** @type {?} */ (this)).breadcrumb || !(/** @type {?} */ (this)).autoBreadcrumb || (/** @type {?} */ (this)).menus.length <= 0) {
-                (/** @type {?} */ (this)).paths = [];
+            if (this.breadcrumb || !this.autoBreadcrumb || this.menus.length <= 0) {
+                this.paths = [];
                 return;
             }
             /** @type {?} */
             var paths = [];
-            (/** @type {?} */ (this)).menus.forEach((/**
+            this.menus.forEach((/**
              * @param {?} item
              * @return {?}
              */
@@ -236,19 +233,19 @@
                     return;
                 /** @type {?} */
                 var title = item.text;
-                if (item.i18n && (/** @type {?} */ (_this)).i18nSrv)
-                    title = (/** @type {?} */ (_this)).i18nSrv.fanyi(item.i18n);
-                paths.push({ title: title, link: item.link && [item.link] });
+                if (item.i18n && _this.i18nSrv)
+                    title = _this.i18nSrv.fanyi(item.i18n);
+                paths.push({ title: title, link: (/** @type {?} */ ((item.link && [item.link]))) });
             }));
             // add home
-            if ((/** @type {?} */ (this)).home) {
+            if (this.home) {
                 paths.splice(0, 0, {
-                    title: ((/** @type {?} */ (this)).homeI18n && (/** @type {?} */ (this)).i18nSrv && (/** @type {?} */ (this)).i18nSrv.fanyi((/** @type {?} */ (this)).homeI18n)) || (/** @type {?} */ (this)).home,
-                    link: [(/** @type {?} */ (this)).homeLink],
+                    title: (this.homeI18n && this.i18nSrv && this.i18nSrv.fanyi(this.homeI18n)) || this.home,
+                    link: [this.homeLink],
                 });
             }
-            (/** @type {?} */ (this)).paths = paths;
-            return (/** @type {?} */ (this));
+            this.paths = paths;
+            return this;
         };
         /**
          * @private

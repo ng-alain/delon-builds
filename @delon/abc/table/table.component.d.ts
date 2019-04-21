@@ -64,7 +64,7 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
      * - 若不指定，则返回：`columnName=ascend|descend`
      * - 若指定，则返回：`sort=columnName.(ascend|descend)`
      */
-    singleSort: STSingleSort;
+    singleSort: STSingleSort | null;
     private _multiSort;
     /** 是否多排序，当 `sort` 多个相同值时自动合并，建议后端支持时使用 */
     multiSort: any;
@@ -100,7 +100,7 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     cd(): this;
     renderTotal(total: string, range: string[]): string;
     isTruncate(column: STColumn): boolean;
-    columnClass(column: STColumn): string;
+    columnClass(column: STColumn): string | null;
     private changeEmit;
     private readonly routerState;
     private _load;
