@@ -157,10 +157,10 @@
         DownFileDirective.decorators = [
             { type: core.Directive, args: [{
                         selector: '[down-file]',
-                        exportAs: 'downFile',
                         host: {
                             '(click)': '_click()',
                         },
+                        exportAs: 'downFileDirective',
                     },] }
         ];
         /** @nocollapse */

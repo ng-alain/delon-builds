@@ -159,9 +159,9 @@
         SEContainerComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'se-container, [se-container]',
-                        exportAs: 'seContainer',
                         template: "<div class=\"ant-row se__container se__{{nzLayout}} se__{{size}}\"\n     [ngStyle]=\"{'margin-left.px': -(gutter / 2), 'margin-right.px': -(gutter / 2)}\">\n  <se-title *ngIf=\"title\">\n    <ng-container *stringTemplateOutlet=\"title\">{{ title }}</ng-container>\n  </se-title>\n  <ng-content></ng-content>\n</div>\n",
-                        changeDetection: core.ChangeDetectionStrategy.OnPush
+                        changeDetection: core.ChangeDetectionStrategy.OnPush,
+                        exportAs: 'seContainer'
                     }] }
         ];
         /** @nocollapse */
@@ -212,7 +212,6 @@
         SEErrorComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'se-error',
-                        exportAs: 'seError',
                         animations: [
                             animations.trigger('errorAnt', [
                                 animations.transition('void => *', [
@@ -286,7 +285,6 @@
         SETitleComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'se-title, [se-title]',
-                        exportAs: 'seTitle',
                         template: '<ng-content></ng-content>',
                         host: {
                             '[class.se__title]': 'true',
@@ -399,9 +397,7 @@
             function (cls) { return ren.removeClass(el, cls); }));
             clsMap.length = 0;
             /** @type {?} */
-            var repCls = parent.nzLayout === 'horizontal'
-                ? rep.genCls(col != null ? col : parent.colInCon || parent.col)
-                : [];
+            var repCls = parent.nzLayout === 'horizontal' ? rep.genCls(col != null ? col : parent.colInCon || parent.col) : [];
             clsMap.push.apply(clsMap, __spread(["ant-form-item"], repCls, [prefixCls + "__item"]));
             if (line || parent.line) {
                 clsMap.push(prefixCls + "__line");
@@ -430,9 +426,7 @@
              * @param {?} res
              * @return {?}
              */
-            function (res) {
-                return _this.updateStatus(res === 'INVALID');
-            }));
+            function (res) { return _this.updateStatus(res === 'INVALID'); }));
             if (this._autoId) {
                 /** @type {?} */
                 var control = (/** @type {?} */ (util.deepGet(this.ngControl.valueAccessor, '_elementRef.nativeElement')));
@@ -530,7 +524,6 @@
         SEComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'se',
-                        exportAs: 'se',
                         template: "<div class=\"ant-form-item-label se__label\"\n     [class.se__nolabel]=\"!label\"\n     [style.width.px]=\"_labelWidth\">\n  <label *ngIf=\"label\"\n         [attr.for]=\"_id\"\n         [ngClass]=\"{'ant-form-item-required': required}\">\n    <ng-container *stringTemplateOutlet=\"label\">{{ label }}</ng-container>\n    <span class=\"se__label-optional\">\n      {{ optional }}\n      <nz-tooltip *ngIf=\"optionalHelp\"\n                  [nzTitle]=\"optionalHelp\">\n        <i nz-tooltip\n           nz-icon\n           type=\"question-circle\"></i>\n      </nz-tooltip>\n    </span>\n  </label>\n</div>\n<div class=\"ant-form-item-control-wrapper se__control\">\n  <div class=\"ant-form-item-control {{controlClass}}\"\n       [class.has-error]=\"invalid\">\n    <span (cdkObserveContent)=\"checkContent()\" #contentElement><ng-content></ng-content></span>\n    <se-error *ngIf=\"showErr\">{{error}}</se-error>\n    <div *ngIf=\"extra\"\n         class=\"ant-form-extra\">{{extra}}</div>\n  </div>\n</div>\n",
                         host: {
                             '[style.padding-left.px]': 'paddingValue',

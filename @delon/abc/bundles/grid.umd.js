@@ -115,7 +115,6 @@
         SGContainerComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'sg-container, [sg-container]',
-                        exportAs: 'sgContainer',
                         template: "\n    <ng-content></ng-content>\n  ",
                         host: {
                             '[style.margin-left.px]': 'marginValue',
@@ -123,7 +122,8 @@
                             '[class.ant-row]': 'true',
                             '[class.sg__wrap]': 'true',
                         },
-                        changeDetection: core.ChangeDetectionStrategy.OnPush
+                        changeDetection: core.ChangeDetectionStrategy.OnPush,
+                        exportAs: 'sgContainer'
                     }] }
         ];
         /** @nocollapse */
@@ -229,7 +229,6 @@
         SGComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'sg',
-                        exportAs: 'sg',
                         template: "\n    <ng-content></ng-content>\n  ",
                         host: {
                             '[style.padding-left.px]': 'paddingValue',

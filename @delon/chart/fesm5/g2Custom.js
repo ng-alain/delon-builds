@@ -74,7 +74,6 @@ var G2CustomComponent = /** @class */ (function () {
     G2CustomComponent.decorators = [
         { type: Component, args: [{
                     selector: 'g2,g2-custom',
-                    exportAs: 'g2Custom',
                     template: "\n    <ng-content></ng-content>\n  ",
                     host: {
                         '[style.height.px]': 'height',

@@ -199,9 +199,7 @@ class ACLService {
         if (typeof roleOrAbility === 'number') {
             t = { ability: [roleOrAbility] };
         }
-        else if (Array.isArray(roleOrAbility) &&
-            roleOrAbility.length > 0 &&
-            typeof roleOrAbility[0] === 'number') {
+        else if (Array.isArray(roleOrAbility) && roleOrAbility.length > 0 && typeof roleOrAbility[0] === 'number') {
             t = { ability: roleOrAbility };
         }
         else {
@@ -339,10 +337,7 @@ class ACLDirective {
     }
 }
 ACLDirective.decorators = [
-    { type: Directive, args: [{
-                selector: '[acl]',
-                exportAs: 'acl',
-            },] }
+    { type: Directive, args: [{ selector: '[acl]' },] }
 ];
 /** @nocollapse */
 ACLDirective.ctorParameters = () => [
@@ -391,10 +386,7 @@ class ACLIfDirective extends ACLDirective {
     }
 }
 ACLIfDirective.decorators = [
-    { type: Directive, args: [{
-                selector: '[aclIf]',
-                exportAs: 'aclIf',
-            },] }
+    { type: Directive, args: [{ selector: '[aclIf]' },] }
 ];
 /** @nocollapse */
 ACLIfDirective.ctorParameters = () => [

@@ -219,7 +219,6 @@
         G2MiniAreaComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'g2-mini-area',
-                        exportAs: 'g2MiniArea',
                         template: "",
                         host: {
                             '[style.height.px]': 'height',

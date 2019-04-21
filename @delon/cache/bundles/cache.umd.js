@@ -340,7 +340,7 @@
             var isPromise = options.mode !== 'none' && this.cog.mode === 'promise';
             /** @type {?} */
             var value = this.memory.has(key)
-                ? (/** @type {?} */ (this.memory.get(key)))
+                ? ((/** @type {?} */ (this.memory.get(key))))
                 : this.store.get(this.cog.prefix + key);
             if (!value || (value.e && value.e > 0 && value.e < new Date().valueOf())) {
                 if (isPromise) {

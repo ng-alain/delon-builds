@@ -172,9 +172,7 @@
              * @param {?} v
              * @return {?}
              */
-            function (v) {
-                return render.setAttribute(_this.el.nativeElement, v, size.toString());
-            }));
+            function (v) { return render.setAttribute(_this.el.nativeElement, v, size.toString()); }));
         };
         /**
          * @private
@@ -190,7 +188,7 @@
         ImageDirective.decorators = [
             { type: core.Directive, args: [{
                         selector: '[_src]',
-                        exportAs: '_src',
+                        exportAs: 'srcDirective',
                     },] }
         ];
         /** @nocollapse */

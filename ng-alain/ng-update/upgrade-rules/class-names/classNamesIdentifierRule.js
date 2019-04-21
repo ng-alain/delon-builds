@@ -46,22 +46,19 @@ class Walker extends tslint_1.RuleWalker {
         // For namespace imports that are referring to`@delon/*`, we store the
         // namespace name in order to be able to safely find identifiers that don't belong to the
         // developer's application.
-        if (imports_1.isNamespaceImportNode(identifier) &&
-            module_specifiers_1.isDelonImportDeclaration(identifier)) {
+        if (imports_1.isNamespaceImportNode(identifier) && module_specifiers_1.isDelonImportDeclaration(identifier)) {
             this.trustedNamespaces.add(identifier.text);
             return this._createFailureWithReplacement(identifier);
         }
         // For export declarations that are referring to`@delon/*`, the identifier
         // can be immediately updated to the new name.
-        if (imports_1.isExportSpecifierNode(identifier) &&
-            module_specifiers_1.isDelonExportDeclaration(identifier)) {
+        if (imports_1.isExportSpecifierNode(identifier) && module_specifiers_1.isDelonExportDeclaration(identifier)) {
             return this._createFailureWithReplacement(identifier);
         }
         // For import declarations that are referring to`@delon/*`, the name of
         // the import identifiers. This allows us to identify identifiers that belong to Material and
         // the CDK, and we won't accidentally touch a developer's identifier.
-        if (imports_1.isImportSpecifierNode(identifier) &&
-            module_specifiers_1.isDelonImportDeclaration(identifier)) {
+        if (imports_1.isImportSpecifierNode(identifier) && module_specifiers_1.isDelonImportDeclaration(identifier)) {
             this.trustedIdentifiers.add(identifier.text);
             return this._createFailureWithReplacement(identifier);
         }
@@ -69,8 +66,7 @@ class Walker extends tslint_1.RuleWalker {
         // property access originates from a namespace that has been imported from Material or the CDK.
         if (ts.isPropertyAccessExpression(identifier.parent)) {
             const expression = identifier.parent.expression;
-            if (ts.isIdentifier(expression) &&
-                this.trustedNamespaces.has(expression.text)) {
+            if (ts.isIdentifier(expression) && this.trustedNamespaces.has(expression.text)) {
                 return this._createFailureWithReplacement(identifier);
             }
         }

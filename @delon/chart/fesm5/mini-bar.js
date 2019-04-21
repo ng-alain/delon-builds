@@ -136,7 +136,6 @@ var G2MiniBarComponent = /** @class */ (function () {
     G2MiniBarComponent.decorators = [
         { type: Component, args: [{
                     selector: 'g2-mini-bar',
-                    exportAs: 'g2MiniBar',
                     template: "",
                     host: {
                         '[style.height.px]': 'height',
