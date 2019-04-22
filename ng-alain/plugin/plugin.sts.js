@@ -9,7 +9,9 @@ function fixPackage(options) {
     };
 }
 function fixFiles(options) {
-    return schematics_1.chain([schematics_1.mergeWith(schematics_1.apply(schematics_1.url('./files/sts'), [schematics_1.move('/_cli-tpl')]), schematics_1.MergeStrategy.Overwrite)]);
+    return schematics_1.chain([
+        schematics_1.mergeWith(schematics_1.apply(schematics_1.url('./files/sts'), [schematics_1.move('/_cli-tpl')]), schematics_1.MergeStrategy.Overwrite),
+    ]);
 }
 function installPackages() {
     return (host, context) => {
@@ -17,7 +19,11 @@ function installPackages() {
     };
 }
 function pluginSTS(options) {
-    return [fixPackage(options), fixFiles(options), installPackages()];
+    return [
+        fixPackage(options),
+        fixFiles(options),
+        installPackages(),
+    ];
 }
 exports.pluginSTS = pluginSTS;
 //# sourceMappingURL=plugin.sts.js.map

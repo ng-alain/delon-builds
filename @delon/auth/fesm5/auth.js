@@ -548,7 +548,7 @@ var BaseInterceptor = /** @class */ (function () {
     function (req, next) {
         var e_1, _a;
         /** @type {?} */
-        var options = __assign({}, new DelonAuthConfig(), this.injector.get(DelonAuthConfig, undefined));
+        var options = __assign({}, new DelonAuthConfig(), this.injector.get(DelonAuthConfig, null));
         if (options.ignores) {
             try {
                 for (var _b = __values((/** @type {?} */ (options.ignores))), _c = _b.next(); !_c.done; _c = _b.next()) {

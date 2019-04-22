@@ -45,7 +45,10 @@ class Walker extends component_walker_1.ComponentWalker {
                 message: `Found deprecated @Input() "${chalk_1.default.red('[sortReName]')}" which has been removed, Use "${chalk_1.default.green('STColumn.sort.reName')}" instead.`,
             });
         });
-        elements_1.findElementHasAttributes(content, 'sv', ['detailClass', '[detailClass]']).forEach(list => {
+        elements_1.findElementHasAttributes(content, 'sv', [
+            'detailClass',
+            '[detailClass]',
+        ]).forEach(list => {
             failures.push({
                 start: node.getStart() + list.offset,
                 end: node.getStart() + list.offset + list.attr.length,

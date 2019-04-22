@@ -1014,7 +1014,9 @@ class ReuseTabService {
                 const url = this.curUrl;
                 /** @type {?} */
                 const item = this.get(url);
-                if (item && item.position && this.getKeepingScroll(url, this.getTruthRoute(this.snapshot))) {
+                if (item &&
+                    item.position &&
+                    this.getKeepingScroll(url, this.getTruthRoute(this.snapshot))) {
                     if (this.isDisabledInRouter) {
                         this.ss.scrollToPosition(this.keepingScrollContainer, item.position);
                     }
@@ -1095,7 +1097,8 @@ class ReuseTabComponent {
      * @return {?}
      */
     set keepingScrollContainer(value) {
-        this._keepingScrollContainer = typeof value === 'string' ? this.doc.querySelector(value) : value;
+        this._keepingScrollContainer =
+            typeof value === 'string' ? this.doc.querySelector(value) : value;
     }
     /**
      * @private
@@ -1480,7 +1483,11 @@ class ReuseTabStrategy {
 /** @type {?} */
 const COMPONENTS = [ReuseTabComponent];
 /** @type {?} */
-const NOEXPORTS = [ReuseTabContextMenuComponent, ReuseTabContextComponent, ReuseTabContextDirective];
+const NOEXPORTS = [
+    ReuseTabContextMenuComponent,
+    ReuseTabContextComponent,
+    ReuseTabContextDirective,
+];
 class ReuseTabModule {
 }
 ReuseTabModule.decorators = [

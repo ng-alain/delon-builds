@@ -129,7 +129,8 @@ class ComponentWalker extends external_failure_walker_1.ExternalFailureWalker {
      * TypeScript node could not be resolved in the file system.
      */
     _createResourceNotFoundFailure(node, resourceUrl) {
-        this.addFailureAtNode(node, `Could not resolve resource file: "${resourceUrl}". ` + `Skipping automatic upgrade for this file.`);
+        this.addFailureAtNode(node, `Could not resolve resource file: "${resourceUrl}". ` +
+            `Skipping automatic upgrade for this file.`);
     }
     /** Reports the specified additional stylesheets. */
     _reportExtraStylesheetFiles(filePaths) {

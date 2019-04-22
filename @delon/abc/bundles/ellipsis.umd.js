@@ -260,7 +260,9 @@
                         displayText = '';
                     }
                     else {
-                        displayText = fullWidthRecognition ? this.cutStrByFullLength(text, length) : text.slice(0, length);
+                        displayText = fullWidthRecognition
+                            ? this.cutStrByFullLength(text, length)
+                            : text.slice(0, length);
                     }
                     this.text = displayText + tail;
                 }

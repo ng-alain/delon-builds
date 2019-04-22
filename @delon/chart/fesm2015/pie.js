@@ -66,7 +66,7 @@ class G2PieComponent {
              * @param {?} value
              * @return {?}
              */
-            value => (value === '占比' ? color || 'rgba(24, 144, 255, 0.85)' : '#F0F2F5'));
+            value => value === '占比' ? color || 'rgba(24, 144, 255, 0.85)' : '#F0F2F5');
             this.data = [
                 {
                     x: '占比',
@@ -134,7 +134,7 @@ class G2PieComponent {
      * @return {?}
      */
     attachChart() {
-        const { chart, height, padding, animate, data, lineWidth, isPercent, percentColor, colors } = this;
+        const { chart, height, padding, animate, data, lineWidth, isPercent, percentColor, colors, } = this;
         if (!chart)
             return;
         chart.set('height', height);
