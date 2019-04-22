@@ -65,8 +65,7 @@ function resolveSchema(host, project, schema) {
     }
     schema.routerModulePath = schema.importModulePath.replace('.module.ts', '-routing.module.ts');
     // html selector
-    schema.selector =
-        schema.selector || buildSelector(schema, project.prefix);
+    schema.selector = schema.selector || buildSelector(schema, project.prefix);
     validation_1.validateName(schema.name);
     validation_1.validateHtmlSelector(schema.selector);
 }

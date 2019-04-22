@@ -75,16 +75,7 @@
             this.hasLegend = true;
             this.tickCount = 4;
             this.data = [];
-            this.colors = [
-                '#1890FF',
-                '#FACC14',
-                '#2FC25B',
-                '#8543E0',
-                '#F04864',
-                '#13C2C2',
-                '#fa8c16',
-                '#a0d911',
-            ];
+            this.colors = ['#1890FF', '#FACC14', '#2FC25B', '#8543E0', '#F04864', '#13C2C2', '#fa8c16', '#a0d911'];
         }
         /**
          * @private

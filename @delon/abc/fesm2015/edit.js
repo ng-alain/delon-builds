@@ -309,9 +309,7 @@ class SEComponent {
         cls => ren.removeClass(el, cls)));
         clsMap.length = 0;
         /** @type {?} */
-        const repCls = parent.nzLayout === 'horizontal'
-            ? rep.genCls(col != null ? col : parent.colInCon || parent.col)
-            : [];
+        const repCls = parent.nzLayout === 'horizontal' ? rep.genCls(col != null ? col : parent.colInCon || parent.col) : [];
         clsMap.push(`ant-form-item`, ...repCls, `${prefixCls}__item`);
         if (line || parent.line) {
             clsMap.push(`${prefixCls}__line`);

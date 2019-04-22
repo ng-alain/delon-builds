@@ -345,9 +345,7 @@ var ACLService = /** @class */ (function () {
         if (typeof roleOrAbility === 'number') {
             t = { ability: [roleOrAbility] };
         }
-        else if (Array.isArray(roleOrAbility) &&
-            roleOrAbility.length > 0 &&
-            typeof roleOrAbility[0] === 'number') {
+        else if (Array.isArray(roleOrAbility) && roleOrAbility.length > 0 && typeof roleOrAbility[0] === 'number') {
             t = { ability: roleOrAbility };
         }
         else {

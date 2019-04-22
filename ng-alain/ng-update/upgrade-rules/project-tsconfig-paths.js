@@ -14,11 +14,7 @@ const config_1 = require("@schematics/angular/utility/config");
  */
 function getProjectTsConfigPaths(tree) {
     // Start with some tsconfig paths that are generally used within CLI projects.
-    const tsconfigPaths = new Set([
-        './tsconfig.json',
-        './src/tsconfig.json',
-        './src/tsconfig.app.json',
-    ]);
+    const tsconfigPaths = new Set(['./tsconfig.json', './src/tsconfig.json', './src/tsconfig.app.json']);
     // Add any tsconfig directly referenced in a build or test task of the angular.json workspace.
     const workspace = config_1.getWorkspace(tree);
     for (const project of Object.values(workspace.projects)) {

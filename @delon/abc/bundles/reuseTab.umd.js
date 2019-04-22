@@ -1464,9 +1464,7 @@
                     var url = _this.curUrl;
                     /** @type {?} */
                     var item_1 = _this.get(url);
-                    if (item_1 &&
-                        item_1.position &&
-                        _this.getKeepingScroll(url, _this.getTruthRoute(_this.snapshot))) {
+                    if (item_1 && item_1.position && _this.getKeepingScroll(url, _this.getTruthRoute(_this.snapshot))) {
                         if (_this.isDisabledInRouter) {
                             _this.ss.scrollToPosition(_this.keepingScrollContainer, item_1.position);
                         }
@@ -1545,8 +1543,7 @@
              * @return {?}
              */
             function (value) {
-                this._keepingScrollContainer =
-                    typeof value === 'string' ? this.doc.querySelector(value) : value;
+                this._keepingScrollContainer = typeof value === 'string' ? this.doc.querySelector(value) : value;
             },
             enumerable: true,
             configurable: true
@@ -2014,11 +2011,7 @@
     /** @type {?} */
     var COMPONENTS = [ReuseTabComponent];
     /** @type {?} */
-    var NOEXPORTS = [
-        ReuseTabContextMenuComponent,
-        ReuseTabContextComponent,
-        ReuseTabContextDirective,
-    ];
+    var NOEXPORTS = [ReuseTabContextMenuComponent, ReuseTabContextComponent, ReuseTabContextDirective];
     var ReuseTabModule = /** @class */ (function () {
         function ReuseTabModule() {
         }
