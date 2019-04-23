@@ -1407,8 +1407,8 @@ class AjvSchemaValidatorFactory extends SchemaValidatorFactory {
     createValidatorFn(schema, extraOptions) {
         /** @type {?} */
         const ingoreKeywords = [
-            ...((/** @type {?} */ (this.options.ingoreKeywords))),
-            ...((/** @type {?} */ (extraOptions.ingoreKeywords))),
+            ...((/** @type {?} */ (this.options.ingoreKeywords)) || []),
+            ...((/** @type {?} */ (extraOptions.ingoreKeywords)) || []),
         ];
         return (/**
          * @param {?} value

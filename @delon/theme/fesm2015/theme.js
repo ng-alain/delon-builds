@@ -6,6 +6,8 @@ import { DOCUMENT, CurrencyPipe, CommonModule } from '@angular/common';
 import { Title, DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { NzModalService, NzDrawerService, NzIconService } from 'ng-zorro-antd';
+import { NzModalService as NzModalService$1 } from 'ng-zorro-antd/modal';
+import { NzDrawerService as NzDrawerService$1 } from 'ng-zorro-antd/drawer';
 import { HttpParams, HttpClient } from '@angular/common/http';
 import distanceInWordsToNow from 'date-fns/distance_in_words_to_now';
 import format from 'date-fns/format';
@@ -1444,7 +1446,7 @@ ModalHelper.decorators = [
 ModalHelper.ctorParameters = () => [
     { type: NzModalService }
 ];
-/** @nocollapse */ ModalHelper.ngInjectableDef = defineInjectable({ factory: function ModalHelper_Factory() { return new ModalHelper(inject(NzModalService)); }, token: ModalHelper, providedIn: "root" });
+/** @nocollapse */ ModalHelper.ngInjectableDef = defineInjectable({ factory: function ModalHelper_Factory() { return new ModalHelper(inject(NzModalService$1)); }, token: ModalHelper, providedIn: "root" });
 
 /**
  * @fileoverview added by tsickle
@@ -1564,7 +1566,7 @@ DrawerHelper.decorators = [
 DrawerHelper.ctorParameters = () => [
     { type: NzDrawerService }
 ];
-/** @nocollapse */ DrawerHelper.ngInjectableDef = defineInjectable({ factory: function DrawerHelper_Factory() { return new DrawerHelper(inject(NzDrawerService)); }, token: DrawerHelper, providedIn: "root" });
+/** @nocollapse */ DrawerHelper.ngInjectableDef = defineInjectable({ factory: function DrawerHelper_Factory() { return new DrawerHelper(inject(NzDrawerService$1)); }, token: DrawerHelper, providedIn: "root" });
 
 /**
  * @fileoverview added by tsickle
@@ -2286,7 +2288,7 @@ AlainThemeModule.ctorParameters = () => [
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-const VERSION = new Version('7.2.0-c5218be');
+const VERSION = new Version('7.2.0-6a00dd1');
 
 /**
  * @fileoverview added by tsickle

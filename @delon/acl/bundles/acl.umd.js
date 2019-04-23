@@ -23,20 +23,6 @@
     See the Apache Version 2.0 License for specific language governing permissions
     and limitations under the License.
     ***************************************************************************** */
-    /* global Reflect, Promise */
-
-    var extendStatics = function(d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-
-    function __extends(d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    }
 
     function __values(o) {
         var m = typeof Symbol === "function" && o[Symbol.iterator], i = 0;
@@ -499,6 +485,124 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
+    var ACLIfDirective = /** @class */ (function () {
+        function ACLIfDirective(templateRef, srv, _viewContainer) {
+            var _this = this;
+            this.srv = srv;
+            this._viewContainer = _viewContainer;
+            this._thenTemplateRef = null;
+            this._elseTemplateRef = null;
+            this._thenViewRef = null;
+            this._elseViewRef = null;
+            this._change$ = this.srv.change.pipe(operators.filter((/**
+             * @param {?} r
+             * @return {?}
+             */
+            function (r) { return r != null; }))).subscribe((/**
+             * @return {?}
+             */
+            function () { return _this._updateView(); }));
+            this._thenTemplateRef = templateRef;
+        }
+        Object.defineProperty(ACLIfDirective.prototype, "aclIf", {
+            set: /**
+             * @param {?} value
+             * @return {?}
+             */
+            function (value) {
+                this._value = value;
+                this._updateView();
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(ACLIfDirective.prototype, "aclIfThen", {
+            set: /**
+             * @param {?} templateRef
+             * @return {?}
+             */
+            function (templateRef) {
+                this._thenTemplateRef = templateRef;
+                this._thenViewRef = null;
+                this._updateView();
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(ACLIfDirective.prototype, "aclIfElse", {
+            set: /**
+             * @param {?} templateRef
+             * @return {?}
+             */
+            function (templateRef) {
+                this._elseTemplateRef = templateRef;
+                this._elseViewRef = null;
+                this._updateView();
+            },
+            enumerable: true,
+            configurable: true
+        });
+        /**
+         * @protected
+         * @return {?}
+         */
+        ACLIfDirective.prototype._updateView = /**
+         * @protected
+         * @return {?}
+         */
+        function () {
+            if (this.srv.can(this._value)) {
+                if (!this._thenViewRef) {
+                    this._viewContainer.clear();
+                    this._elseViewRef = null;
+                    if (this._thenTemplateRef) {
+                        this._thenViewRef = this._viewContainer.createEmbeddedView(this._thenTemplateRef);
+                    }
+                }
+            }
+            else {
+                if (!this._elseViewRef) {
+                    this._viewContainer.clear();
+                    this._thenViewRef = null;
+                    if (this._elseTemplateRef) {
+                        this._elseViewRef = this._viewContainer.createEmbeddedView(this._elseTemplateRef);
+                    }
+                }
+            }
+        };
+        /**
+         * @return {?}
+         */
+        ACLIfDirective.prototype.ngOnDestroy = /**
+         * @return {?}
+         */
+        function () {
+            this._change$.unsubscribe();
+        };
+        ACLIfDirective.decorators = [
+            { type: core.Directive, args: [{
+                        selector: '[aclIf]',
+                        exportAs: 'aclIf',
+                    },] }
+        ];
+        /** @nocollapse */
+        ACLIfDirective.ctorParameters = function () { return [
+            { type: core.TemplateRef },
+            { type: ACLService },
+            { type: core.ViewContainerRef }
+        ]; };
+        ACLIfDirective.propDecorators = {
+            aclIf: [{ type: core.Input }],
+            aclIfThen: [{ type: core.Input }],
+            aclIfElse: [{ type: core.Input }]
+        };
+        return ACLIfDirective;
+    }());
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     var ACLDirective = /** @class */ (function () {
         function ACLDirective(el, renderer, srv) {
             var _this = this;
@@ -537,28 +641,17 @@
             configurable: true
         });
         /**
-         * @protected
+         * @private
          * @param {?} value
          * @return {?}
          */
         ACLDirective.prototype.set = /**
-         * @protected
+         * @private
          * @param {?} value
          * @return {?}
          */
         function (value) {
             this._value = value;
-            this._updateView();
-        };
-        /**
-         * @protected
-         * @return {?}
-         */
-        ACLDirective.prototype._updateView = /**
-         * @protected
-         * @return {?}
-         */
-        function () {
             /** @type {?} */
             var CLS = 'acl__hide';
             /** @type {?} */
@@ -597,63 +690,6 @@
         };
         return ACLDirective;
     }());
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var ACLIfDirective = /** @class */ (function (_super) {
-        __extends(ACLIfDirective, _super);
-        function ACLIfDirective(_viewContainer, templateRef, el, renderer, srv) {
-            var _this = _super.call(this, el, renderer, srv) || this;
-            _this._viewContainer = _viewContainer;
-            _this.templateRef = templateRef;
-            return _this;
-        }
-        Object.defineProperty(ACLIfDirective.prototype, "acl", {
-            set: /**
-             * @param {?} value
-             * @return {?}
-             */
-            function (value) {
-                this.set(value);
-            },
-            enumerable: true,
-            configurable: true
-        });
-        /**
-         * @protected
-         * @return {?}
-         */
-        ACLIfDirective.prototype._updateView = /**
-         * @protected
-         * @return {?}
-         */
-        function () {
-            this._viewContainer.clear();
-            if (this.srv.can(this._value)) {
-                this._viewContainer.createEmbeddedView(this.templateRef);
-            }
-        };
-        ACLIfDirective.decorators = [
-            { type: core.Directive, args: [{
-                        selector: '[aclIf]',
-                        exportAs: 'aclIf',
-                    },] }
-        ];
-        /** @nocollapse */
-        ACLIfDirective.ctorParameters = function () { return [
-            { type: core.ViewContainerRef },
-            { type: core.TemplateRef },
-            { type: core.ElementRef },
-            { type: core.Renderer2 },
-            { type: ACLService }
-        ]; };
-        ACLIfDirective.propDecorators = {
-            acl: [{ type: core.Input, args: ['aclIf',] }]
-        };
-        return ACLIfDirective;
-    }(ACLDirective));
 
     /**
      * @fileoverview added by tsickle

@@ -1,5 +1,5 @@
-import { __spread, __values, __extends } from 'tslib';
-import { defineInjectable, Injectable, inject, Directive, ElementRef, Renderer2, Input, ViewContainerRef, TemplateRef, NgModule } from '@angular/core';
+import { __spread, __values } from 'tslib';
+import { defineInjectable, Injectable, inject, Directive, TemplateRef, ViewContainerRef, Input, ElementRef, Renderer2, NgModule } from '@angular/core';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { filter, map, tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
@@ -432,6 +432,124 @@ var ACLService = /** @class */ (function () {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+var ACLIfDirective = /** @class */ (function () {
+    function ACLIfDirective(templateRef, srv, _viewContainer) {
+        var _this = this;
+        this.srv = srv;
+        this._viewContainer = _viewContainer;
+        this._thenTemplateRef = null;
+        this._elseTemplateRef = null;
+        this._thenViewRef = null;
+        this._elseViewRef = null;
+        this._change$ = this.srv.change.pipe(filter((/**
+         * @param {?} r
+         * @return {?}
+         */
+        function (r) { return r != null; }))).subscribe((/**
+         * @return {?}
+         */
+        function () { return _this._updateView(); }));
+        this._thenTemplateRef = templateRef;
+    }
+    Object.defineProperty(ACLIfDirective.prototype, "aclIf", {
+        set: /**
+         * @param {?} value
+         * @return {?}
+         */
+        function (value) {
+            this._value = value;
+            this._updateView();
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(ACLIfDirective.prototype, "aclIfThen", {
+        set: /**
+         * @param {?} templateRef
+         * @return {?}
+         */
+        function (templateRef) {
+            this._thenTemplateRef = templateRef;
+            this._thenViewRef = null;
+            this._updateView();
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(ACLIfDirective.prototype, "aclIfElse", {
+        set: /**
+         * @param {?} templateRef
+         * @return {?}
+         */
+        function (templateRef) {
+            this._elseTemplateRef = templateRef;
+            this._elseViewRef = null;
+            this._updateView();
+        },
+        enumerable: true,
+        configurable: true
+    });
+    /**
+     * @protected
+     * @return {?}
+     */
+    ACLIfDirective.prototype._updateView = /**
+     * @protected
+     * @return {?}
+     */
+    function () {
+        if (this.srv.can(this._value)) {
+            if (!this._thenViewRef) {
+                this._viewContainer.clear();
+                this._elseViewRef = null;
+                if (this._thenTemplateRef) {
+                    this._thenViewRef = this._viewContainer.createEmbeddedView(this._thenTemplateRef);
+                }
+            }
+        }
+        else {
+            if (!this._elseViewRef) {
+                this._viewContainer.clear();
+                this._thenViewRef = null;
+                if (this._elseTemplateRef) {
+                    this._elseViewRef = this._viewContainer.createEmbeddedView(this._elseTemplateRef);
+                }
+            }
+        }
+    };
+    /**
+     * @return {?}
+     */
+    ACLIfDirective.prototype.ngOnDestroy = /**
+     * @return {?}
+     */
+    function () {
+        this._change$.unsubscribe();
+    };
+    ACLIfDirective.decorators = [
+        { type: Directive, args: [{
+                    selector: '[aclIf]',
+                    exportAs: 'aclIf',
+                },] }
+    ];
+    /** @nocollapse */
+    ACLIfDirective.ctorParameters = function () { return [
+        { type: TemplateRef },
+        { type: ACLService },
+        { type: ViewContainerRef }
+    ]; };
+    ACLIfDirective.propDecorators = {
+        aclIf: [{ type: Input }],
+        aclIfThen: [{ type: Input }],
+        aclIfElse: [{ type: Input }]
+    };
+    return ACLIfDirective;
+}());
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 var ACLDirective = /** @class */ (function () {
     function ACLDirective(el, renderer, srv) {
         var _this = this;
@@ -470,28 +588,17 @@ var ACLDirective = /** @class */ (function () {
         configurable: true
     });
     /**
-     * @protected
+     * @private
      * @param {?} value
      * @return {?}
      */
     ACLDirective.prototype.set = /**
-     * @protected
+     * @private
      * @param {?} value
      * @return {?}
      */
     function (value) {
         this._value = value;
-        this._updateView();
-    };
-    /**
-     * @protected
-     * @return {?}
-     */
-    ACLDirective.prototype._updateView = /**
-     * @protected
-     * @return {?}
-     */
-    function () {
         /** @type {?} */
         var CLS = 'acl__hide';
         /** @type {?} */
@@ -530,63 +637,6 @@ var ACLDirective = /** @class */ (function () {
     };
     return ACLDirective;
 }());
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-var ACLIfDirective = /** @class */ (function (_super) {
-    __extends(ACLIfDirective, _super);
-    function ACLIfDirective(_viewContainer, templateRef, el, renderer, srv) {
-        var _this = _super.call(this, el, renderer, srv) || this;
-        _this._viewContainer = _viewContainer;
-        _this.templateRef = templateRef;
-        return _this;
-    }
-    Object.defineProperty(ACLIfDirective.prototype, "acl", {
-        set: /**
-         * @param {?} value
-         * @return {?}
-         */
-        function (value) {
-            this.set(value);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    /**
-     * @protected
-     * @return {?}
-     */
-    ACLIfDirective.prototype._updateView = /**
-     * @protected
-     * @return {?}
-     */
-    function () {
-        this._viewContainer.clear();
-        if (this.srv.can(this._value)) {
-            this._viewContainer.createEmbeddedView(this.templateRef);
-        }
-    };
-    ACLIfDirective.decorators = [
-        { type: Directive, args: [{
-                    selector: '[aclIf]',
-                    exportAs: 'aclIf',
-                },] }
-    ];
-    /** @nocollapse */
-    ACLIfDirective.ctorParameters = function () { return [
-        { type: ViewContainerRef },
-        { type: TemplateRef },
-        { type: ElementRef },
-        { type: Renderer2 },
-        { type: ACLService }
-    ]; };
-    ACLIfDirective.propDecorators = {
-        acl: [{ type: Input, args: ['aclIf',] }]
-    };
-    return ACLIfDirective;
-}(ACLDirective));
 
 /**
  * @fileoverview added by tsickle

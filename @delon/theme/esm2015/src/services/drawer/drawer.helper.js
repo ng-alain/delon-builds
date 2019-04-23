@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 import { NzDrawerService } from 'ng-zorro-antd';
 import { Observable } from 'rxjs';
 import * as i0 from "@angular/core";
-import * as i1 from "ng-zorro-antd";
+import * as i1 from "ng-zorro-antd/drawer";
 /**
  * @record
  */

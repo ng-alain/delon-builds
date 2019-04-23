@@ -1735,7 +1735,7 @@ var AjvSchemaValidatorFactory = /** @class */ (function (_super) {
     function (schema, extraOptions) {
         var _this = this;
         /** @type {?} */
-        var ingoreKeywords = __spread(((/** @type {?} */ (this.options.ingoreKeywords))), ((/** @type {?} */ (extraOptions.ingoreKeywords))));
+        var ingoreKeywords = __spread(((/** @type {?} */ (this.options.ingoreKeywords)) || []), ((/** @type {?} */ (extraOptions.ingoreKeywords)) || []));
         return (/**
          * @param {?} value
          * @return {?}
