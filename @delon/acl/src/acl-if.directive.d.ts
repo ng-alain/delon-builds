@@ -1,4 +1,4 @@
-import { TemplateRef, ViewContainerRef, OnDestroy } from '@angular/core';
+import { OnDestroy, TemplateRef, ViewContainerRef } from '@angular/core';
 import { ACLService } from './acl.service';
 import { ACLCanType } from './acl.type';
 export declare class ACLIfDirective implements OnDestroy {
