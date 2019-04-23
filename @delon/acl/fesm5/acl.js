@@ -1,6 +1,7 @@
-import { __spread, __values } from 'tslib';
+import { __spread, __values, __decorate, __metadata } from 'tslib';
 import { defineInjectable, Injectable, inject, Directive, TemplateRef, ViewContainerRef, Input, ElementRef, Renderer2, NgModule } from '@angular/core';
 import { BehaviorSubject, Observable, of } from 'rxjs';
+import { InputBoolean, DelonUtilModule } from '@delon/util';
 import { filter, map, tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -441,6 +442,7 @@ var ACLIfDirective = /** @class */ (function () {
         this._elseTemplateRef = null;
         this._thenViewRef = null;
         this._elseViewRef = null;
+        this.except = false;
         this._change$ = this.srv.change.pipe(filter((/**
          * @param {?} r
          * @return {?}
@@ -498,7 +500,9 @@ var ACLIfDirective = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        if (this.srv.can(this._value)) {
+        /** @type {?} */
+        var res = this.srv.can(this._value);
+        if ((res && !this.except) || (!res && this.except)) {
             if (!this._thenViewRef) {
                 this._viewContainer.clear();
                 this._elseViewRef = null;
@@ -541,8 +545,13 @@ var ACLIfDirective = /** @class */ (function () {
     ACLIfDirective.propDecorators = {
         aclIf: [{ type: Input }],
         aclIfThen: [{ type: Input }],
-        aclIfElse: [{ type: Input }]
+        aclIfElse: [{ type: Input }],
+        except: [{ type: Input }]
     };
+    __decorate([
+        InputBoolean(),
+        __metadata("design:type", Object)
+    ], ACLIfDirective.prototype, "except", void 0);
     return ACLIfDirective;
 }());
 
@@ -754,7 +763,7 @@ var DelonACLModule = /** @class */ (function () {
     }
     DelonACLModule.decorators = [
         { type: NgModule, args: [{
-                    imports: [CommonModule],
+                    imports: [CommonModule, DelonUtilModule],
                     declarations: __spread(COMPONENTS),
                     exports: __spread(COMPONENTS),
                 },] }

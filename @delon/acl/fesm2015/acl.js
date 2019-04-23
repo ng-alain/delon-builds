@@ -1,5 +1,7 @@
 import { Injectable, defineInjectable, inject, Directive, TemplateRef, ViewContainerRef, Input, ElementRef, Renderer2, NgModule } from '@angular/core';
 import { BehaviorSubject, Observable, of } from 'rxjs';
+import { __decorate, __metadata } from 'tslib';
+import { InputBoolean, DelonUtilModule } from '@delon/util';
 import { filter, map, tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -284,6 +286,7 @@ class ACLIfDirective {
         this._elseTemplateRef = null;
         this._thenViewRef = null;
         this._elseViewRef = null;
+        this.except = false;
         this._change$ = this.srv.change.pipe(filter((/**
          * @param {?} r
          * @return {?}
@@ -325,7 +328,9 @@ class ACLIfDirective {
      * @return {?}
      */
     _updateView() {
-        if (this.srv.can(this._value)) {
+        /** @type {?} */
+        const res = this.srv.can(this._value);
+        if ((res && !this.except) || (!res && this.except)) {
             if (!this._thenViewRef) {
                 this._viewContainer.clear();
                 this._elseViewRef = null;
@@ -366,8 +371,13 @@ ACLIfDirective.ctorParameters = () => [
 ACLIfDirective.propDecorators = {
     aclIf: [{ type: Input }],
     aclIfThen: [{ type: Input }],
-    aclIfElse: [{ type: Input }]
+    aclIfElse: [{ type: Input }],
+    except: [{ type: Input }]
 };
+__decorate([
+    InputBoolean(),
+    __metadata("design:type", Object)
+], ACLIfDirective.prototype, "except", void 0);
 
 /**
  * @fileoverview added by tsickle
@@ -538,7 +548,7 @@ class DelonACLModule {
 }
 DelonACLModule.decorators = [
     { type: NgModule, args: [{
-                imports: [CommonModule],
+                imports: [CommonModule, DelonUtilModule],
                 declarations: [...COMPONENTS],
                 exports: [...COMPONENTS],
             },] }

@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('rxjs'), require('rxjs/operators'), require('@angular/router'), require('@angular/common')) :
-    typeof define === 'function' && define.amd ? define('@delon/acl', ['exports', '@angular/core', 'rxjs', 'rxjs/operators', '@angular/router', '@angular/common'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.acl = {}), global.ng.core, global.rxjs, global.rxjs.operators, global.ng.router, global.ng.common));
-}(this, function (exports, core, rxjs, operators, router, common) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('rxjs'), require('@delon/util'), require('rxjs/operators'), require('@angular/router'), require('@angular/common')) :
+    typeof define === 'function' && define.amd ? define('@delon/acl', ['exports', '@angular/core', 'rxjs', '@delon/util', 'rxjs/operators', '@angular/router', '@angular/common'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.acl = {}), global.ng.core, global.rxjs, global.delon.util, global.rxjs.operators, global.ng.router, global.ng.common));
+}(this, function (exports, core, rxjs, util, operators, router, common) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -23,6 +23,17 @@
     See the Apache Version 2.0 License for specific language governing permissions
     and limitations under the License.
     ***************************************************************************** */
+
+    function __decorate(decorators, target, key, desc) {
+        var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+        if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+        else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+        return c > 3 && r && Object.defineProperty(target, key, r), r;
+    }
+
+    function __metadata(metadataKey, metadataValue) {
+        if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(metadataKey, metadataValue);
+    }
 
     function __values(o) {
         var m = typeof Symbol === "function" && o[Symbol.iterator], i = 0;
@@ -494,6 +505,7 @@
             this._elseTemplateRef = null;
             this._thenViewRef = null;
             this._elseViewRef = null;
+            this.except = false;
             this._change$ = this.srv.change.pipe(operators.filter((/**
              * @param {?} r
              * @return {?}
@@ -551,7 +563,9 @@
          * @return {?}
          */
         function () {
-            if (this.srv.can(this._value)) {
+            /** @type {?} */
+            var res = this.srv.can(this._value);
+            if ((res && !this.except) || (!res && this.except)) {
                 if (!this._thenViewRef) {
                     this._viewContainer.clear();
                     this._elseViewRef = null;
@@ -594,8 +608,13 @@
         ACLIfDirective.propDecorators = {
             aclIf: [{ type: core.Input }],
             aclIfThen: [{ type: core.Input }],
-            aclIfElse: [{ type: core.Input }]
+            aclIfElse: [{ type: core.Input }],
+            except: [{ type: core.Input }]
         };
+        __decorate([
+            util.InputBoolean(),
+            __metadata("design:type", Object)
+        ], ACLIfDirective.prototype, "except", void 0);
         return ACLIfDirective;
     }());
 
@@ -807,7 +826,7 @@
         }
         DelonACLModule.decorators = [
             { type: core.NgModule, args: [{
-                        imports: [common.CommonModule],
+                        imports: [common.CommonModule, util.DelonUtilModule],
                         declarations: __spread(COMPONENTS),
                         exports: __spread(COMPONENTS),
                     },] }
