@@ -1919,10 +1919,16 @@ var DrawerHelper = /** @class */ (function () {
      */
     function (title, comp, params, options) {
         var _this = this;
-        options = __assign({ size: 'md', footer: true, footerHeight: 55, drawerOptions: {
+        options = deepMerge({
+            size: 'md',
+            footer: true,
+            footerHeight: 55,
+            exact: true,
+            drawerOptions: {
                 nzPlacement: 'right',
                 nzWrapClassName: '',
-            } }, options);
+            },
+        }, options);
         return new Observable((/**
          * @param {?} observer
          * @return {?}
@@ -1969,7 +1975,12 @@ var DrawerHelper = /** @class */ (function () {
              * @return {?}
              */
             function (res) {
-                if (res != null && res !== false) {
+                if ((/** @type {?} */ (options)).exact === true) {
+                    if (res != null) {
+                        observer.next(res);
+                    }
+                }
+                else {
                     observer.next(res);
                 }
                 observer.complete();
@@ -2925,7 +2936,7 @@ var AlainThemeModule = /** @class */ (function () {
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-var VERSION = new Version('7.2.0-c7881c5');
+var VERSION = new Version('7.2.0-9c588eb');
 
 /**
  * @fileoverview added by tsickle

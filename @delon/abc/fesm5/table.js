@@ -2039,14 +2039,12 @@ var STComponent = /** @class */ (function () {
      */
     function (type) {
         var _this = this;
-        if (type === 'pi') {
-            this._load().then((/**
-             * @return {?}
-             */
-            function () {
-                _this._toTop();
-            }));
-        }
+        this._load().then((/**
+         * @return {?}
+         */
+        function () {
+            _this._toTop();
+        }));
         this.changeEmit(type);
     };
     /**
