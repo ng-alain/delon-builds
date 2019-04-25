@@ -1719,12 +1719,14 @@ class STComponent {
      * @return {?}
      */
     _change(type) {
-        this._load().then((/**
-         * @return {?}
-         */
-        () => {
-            this._toTop();
-        }));
+        if (type === 'pi') {
+            this._load().then((/**
+             * @return {?}
+             */
+            () => {
+                this._toTop();
+            }));
+        }
         this.changeEmit(type);
     }
     /**
