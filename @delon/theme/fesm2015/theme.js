@@ -5,9 +5,9 @@ import { ACLService } from '@delon/acl';
 import { DOCUMENT, CurrencyPipe, CommonModule } from '@angular/common';
 import { Title, DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { deepMerge } from '@delon/util';
 import { NzModalService, NzDrawerService, NzIconService } from 'ng-zorro-antd';
 import { NzModalService as NzModalService$1 } from 'ng-zorro-antd/modal';
-import { deepMerge } from '@delon/util';
 import { NzDrawerService as NzDrawerService$1 } from 'ng-zorro-antd/drawer';
 import { HttpParams, HttpClient } from '@angular/common/http';
 import distanceInWordsToNow from 'date-fns/distance_in_words_to_now';
@@ -1316,26 +1316,35 @@ class ModalHelper {
      * @return {?}
      */
     create(comp, params, options) {
-        options = Object.assign({ size: 'lg', exact: true, includeTabs: false }, options);
+        options = deepMerge({
+            size: 'lg',
+            exact: true,
+            includeTabs: false,
+        }, options);
         return new Observable((/**
          * @param {?} observer
          * @return {?}
          */
         (observer) => {
+            const { size, includeTabs, modalOptions } = (/** @type {?} */ (options));
             /** @type {?} */
             let cls = '';
             /** @type {?} */
             let width = '';
-            if ((/** @type {?} */ (options)).size) {
-                if (typeof (/** @type {?} */ (options)).size === 'number') {
-                    width = `${(/** @type {?} */ (options)).size}px`;
+            if (size) {
+                if (typeof size === 'number') {
+                    width = `${size}px`;
                 }
                 else {
-                    cls = `modal-${(/** @type {?} */ (options)).size}`;
+                    cls = `modal-${size}`;
                 }
             }
-            if ((/** @type {?} */ (options)).includeTabs) {
+            if (includeTabs) {
                 cls += ' modal-include-tabs';
+            }
+            if (modalOptions && modalOptions.nzWrapClassName) {
+                cls += ` ${modalOptions.nzWrapClassName}`;
+                delete modalOptions.nzWrapClassName;
             }
             /** @type {?} */
             const defaultOptions = {
@@ -1347,7 +1356,7 @@ class ModalHelper {
                 nzZIndex: ++this.zIndex,
             };
             /** @type {?} */
-            const subject = this.srv.create(Object.assign({}, defaultOptions, (/** @type {?} */ (options)).modalOptions));
+            const subject = this.srv.create(Object.assign({}, defaultOptions, modalOptions));
             /** @type {?} */
             const afterClose$ = subject.afterClose.subscribe((/**
              * @param {?} res
@@ -1488,16 +1497,10 @@ class DrawerHelper {
      * @return {?}
      */
     create(title, comp, params, options) {
-        options = deepMerge({
-            size: 'md',
-            footer: true,
-            footerHeight: 55,
-            exact: true,
-            drawerOptions: {
+        options = Object.assign({ size: 'md', footer: true, footerHeight: 55, drawerOptions: {
                 nzPlacement: 'right',
                 nzWrapClassName: '',
-            },
-        }, options);
+            } }, options);
         return new Observable((/**
          * @param {?} observer
          * @return {?}
@@ -1544,12 +1547,7 @@ class DrawerHelper {
              * @return {?}
              */
             (res) => {
-                if ((/** @type {?} */ (options)).exact === true) {
-                    if (res != null) {
-                        observer.next(res);
-                    }
-                }
-                else {
+                if (res != null && res !== false) {
                     observer.next(res);
                 }
                 observer.complete();
@@ -2320,7 +2318,7 @@ AlainThemeModule.ctorParameters = () => [
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-const VERSION = new Version('7.2.0-c6cf432');
+const VERSION = new Version('7.2.0-c0f6024');
 
 /**
  * @fileoverview added by tsickle
