@@ -6,7 +6,6 @@ import { ACLService } from '@delon/acl';
 import { DOCUMENT, CurrencyPipe, CommonModule } from '@angular/common';
 import { Title, DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { deepMerge } from '@delon/util';
 import { NzModalService, NzDrawerService, NzIconService } from 'ng-zorro-antd';
 import { NzModalService as NzModalService$1 } from 'ng-zorro-antd/modal';
 import { NzDrawerService as NzDrawerService$1 } from 'ng-zorro-antd/drawer';
@@ -1615,35 +1614,26 @@ var ModalHelper = /** @class */ (function () {
      */
     function (comp, params, options) {
         var _this = this;
-        options = deepMerge({
-            size: 'lg',
-            exact: true,
-            includeTabs: false,
-        }, options);
+        options = __assign({ size: 'lg', exact: true, includeTabs: false }, options);
         return new Observable((/**
          * @param {?} observer
          * @return {?}
          */
         function (observer) {
-            var _a = (/** @type {?} */ (options)), size = _a.size, includeTabs = _a.includeTabs, modalOptions = _a.modalOptions;
             /** @type {?} */
             var cls = '';
             /** @type {?} */
             var width = '';
-            if (size) {
-                if (typeof size === 'number') {
-                    width = size + "px";
+            if ((/** @type {?} */ (options)).size) {
+                if (typeof (/** @type {?} */ (options)).size === 'number') {
+                    width = (/** @type {?} */ (options)).size + "px";
                 }
                 else {
-                    cls = "modal-" + size;
+                    cls = "modal-" + (/** @type {?} */ (options)).size;
                 }
             }
-            if (includeTabs) {
+            if ((/** @type {?} */ (options)).includeTabs) {
                 cls += ' modal-include-tabs';
-            }
-            if (modalOptions && modalOptions.nzWrapClassName) {
-                cls += " " + modalOptions.nzWrapClassName;
-                delete modalOptions.nzWrapClassName;
             }
             /** @type {?} */
             var defaultOptions = {
@@ -1655,7 +1645,7 @@ var ModalHelper = /** @class */ (function () {
                 nzZIndex: ++_this.zIndex,
             };
             /** @type {?} */
-            var subject = _this.srv.create(__assign({}, defaultOptions, modalOptions));
+            var subject = _this.srv.create(__assign({}, defaultOptions, (/** @type {?} */ (options)).modalOptions));
             /** @type {?} */
             var afterClose$ = subject.afterClose.subscribe((/**
              * @param {?} res
@@ -2925,7 +2915,7 @@ var AlainThemeModule = /** @class */ (function () {
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-var VERSION = new Version('7.2.0-5f6c56a');
+var VERSION = new Version('7.2.0-2eb689d');
 
 /**
  * @fileoverview added by tsickle
