@@ -1989,16 +1989,10 @@
          */
         function (title, comp, params, options) {
             var _this = this;
-            options = util.deepMerge({
-                size: 'md',
-                footer: true,
-                footerHeight: 55,
-                exact: true,
-                drawerOptions: {
+            options = __assign({ size: 'md', footer: true, footerHeight: 55, drawerOptions: {
                     nzPlacement: 'right',
                     nzWrapClassName: '',
-                },
-            }, options);
+                } }, options);
             return new rxjs.Observable((/**
              * @param {?} observer
              * @return {?}
@@ -2045,12 +2039,7 @@
                  * @return {?}
                  */
                 function (res) {
-                    if ((/** @type {?} */ (options)).exact === true) {
-                        if (res != null) {
-                            observer.next(res);
-                        }
-                    }
-                    else {
+                    if (res != null && res !== false) {
                         observer.next(res);
                     }
                     observer.complete();

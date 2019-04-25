@@ -22,8 +22,6 @@ export interface DrawerHelperOptions {
      * 底部工具条高度，默认：`55`
      */
     footerHeight?: number;
-    /** 是否精准（默认：`true`），若返回值非空值（`null`或`undefined`）视为成功，否则视为错误 */
-    exact?: boolean;
     /** 抽屉 [NzDrawerOptions](https://ng.ant.design/components/drawer/zh#nzdraweroptions) 参数 */
     drawerOptions?: NzDrawerOptions;
 }

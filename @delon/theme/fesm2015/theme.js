@@ -1497,16 +1497,10 @@ class DrawerHelper {
      * @return {?}
      */
     create(title, comp, params, options) {
-        options = deepMerge({
-            size: 'md',
-            footer: true,
-            footerHeight: 55,
-            exact: true,
-            drawerOptions: {
+        options = Object.assign({ size: 'md', footer: true, footerHeight: 55, drawerOptions: {
                 nzPlacement: 'right',
                 nzWrapClassName: '',
-            },
-        }, options);
+            } }, options);
         return new Observable((/**
          * @param {?} observer
          * @return {?}
@@ -1553,12 +1547,7 @@ class DrawerHelper {
              * @return {?}
              */
             (res) => {
-                if ((/** @type {?} */ (options)).exact === true) {
-                    if (res != null) {
-                        observer.next(res);
-                    }
-                }
-                else {
+                if (res != null && res !== false) {
                     observer.next(res);
                 }
                 observer.complete();
@@ -2329,7 +2318,7 @@ AlainThemeModule.ctorParameters = () => [
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-const VERSION = new Version('7.2.0-647a4f42');
+const VERSION = new Version('7.2.0-0ef4281');
 
 /**
  * @fileoverview added by tsickle
