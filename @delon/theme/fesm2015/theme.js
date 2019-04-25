@@ -7,6 +7,7 @@ import { Title, DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { NzModalService, NzDrawerService, NzIconService } from 'ng-zorro-antd';
 import { NzModalService as NzModalService$1 } from 'ng-zorro-antd/modal';
+import { deepMerge } from '@delon/util';
 import { NzDrawerService as NzDrawerService$1 } from 'ng-zorro-antd/drawer';
 import { HttpParams, HttpClient } from '@angular/common/http';
 import distanceInWordsToNow from 'date-fns/distance_in_words_to_now';
@@ -1487,10 +1488,16 @@ class DrawerHelper {
      * @return {?}
      */
     create(title, comp, params, options) {
-        options = Object.assign({ size: 'md', footer: true, footerHeight: 55, drawerOptions: {
+        options = deepMerge({
+            size: 'md',
+            footer: true,
+            footerHeight: 55,
+            exact: true,
+            drawerOptions: {
                 nzPlacement: 'right',
                 nzWrapClassName: '',
-            } }, options);
+            },
+        }, options);
         return new Observable((/**
          * @param {?} observer
          * @return {?}
@@ -1537,7 +1544,12 @@ class DrawerHelper {
              * @return {?}
              */
             (res) => {
-                if (res != null && res !== false) {
+                if ((/** @type {?} */ (options)).exact === true) {
+                    if (res != null) {
+                        observer.next(res);
+                    }
+                }
+                else {
                     observer.next(res);
                 }
                 observer.complete();
@@ -2308,7 +2320,7 @@ AlainThemeModule.ctorParameters = () => [
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-const VERSION = new Version('7.2.0-ebd42be');
+const VERSION = new Version('7.2.0-c6cf432');
 
 /**
  * @fileoverview added by tsickle

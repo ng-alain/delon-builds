@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('rxjs'), require('rxjs/operators'), require('@delon/acl'), require('@angular/common'), require('@angular/platform-browser'), require('@angular/router'), require('ng-zorro-antd'), require('ng-zorro-antd/modal'), require('ng-zorro-antd/drawer'), require('@angular/common/http'), require('date-fns/distance_in_words_to_now'), require('date-fns/format'), require('@angular/cdk/overlay'), require('@ant-design/icons-angular/icons')) :
-    typeof define === 'function' && define.amd ? define('@delon/theme', ['exports', '@angular/core', 'rxjs', 'rxjs/operators', '@delon/acl', '@angular/common', '@angular/platform-browser', '@angular/router', 'ng-zorro-antd', 'ng-zorro-antd/modal', 'ng-zorro-antd/drawer', '@angular/common/http', 'date-fns/distance_in_words_to_now', 'date-fns/format', '@angular/cdk/overlay', '@ant-design/icons-angular/icons'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.theme = {}), global.ng.core, global.rxjs, global.rxjs.operators, global.delon.acl, global.ng.common, global.ng.platformBrowser, global.ng.router, global['ng-zorro-antd'], global.modal, global.drawer, global.ng.common.http, global.distanceInWordsToNow, global.format, global.ng.cdk.overlay, global.icons));
-}(this, function (exports, core, rxjs, operators, acl, common, platformBrowser, router, ngZorroAntd, modal, drawer, http, distanceInWordsToNow, format, overlay, icons) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('rxjs'), require('rxjs/operators'), require('@delon/acl'), require('@angular/common'), require('@angular/platform-browser'), require('@angular/router'), require('ng-zorro-antd'), require('ng-zorro-antd/modal'), require('@delon/util'), require('ng-zorro-antd/drawer'), require('@angular/common/http'), require('date-fns/distance_in_words_to_now'), require('date-fns/format'), require('@angular/cdk/overlay'), require('@ant-design/icons-angular/icons')) :
+    typeof define === 'function' && define.amd ? define('@delon/theme', ['exports', '@angular/core', 'rxjs', 'rxjs/operators', '@delon/acl', '@angular/common', '@angular/platform-browser', '@angular/router', 'ng-zorro-antd', 'ng-zorro-antd/modal', '@delon/util', 'ng-zorro-antd/drawer', '@angular/common/http', 'date-fns/distance_in_words_to_now', 'date-fns/format', '@angular/cdk/overlay', '@ant-design/icons-angular/icons'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.theme = {}), global.ng.core, global.rxjs, global.rxjs.operators, global.delon.acl, global.ng.common, global.ng.platformBrowser, global.ng.router, global['ng-zorro-antd'], global.modal, global.delon.util, global.drawer, global.ng.common.http, global.distanceInWordsToNow, global.format, global.ng.cdk.overlay, global.icons));
+}(this, function (exports, core, rxjs, operators, acl, common, platformBrowser, router, ngZorroAntd, modal, util, drawer, http, distanceInWordsToNow, format, overlay, icons) { 'use strict';
 
     distanceInWordsToNow = distanceInWordsToNow && distanceInWordsToNow.hasOwnProperty('default') ? distanceInWordsToNow['default'] : distanceInWordsToNow;
     format = format && format.hasOwnProperty('default') ? format['default'] : format;
@@ -1980,10 +1980,16 @@
          */
         function (title, comp, params, options) {
             var _this = this;
-            options = __assign({ size: 'md', footer: true, footerHeight: 55, drawerOptions: {
+            options = util.deepMerge({
+                size: 'md',
+                footer: true,
+                footerHeight: 55,
+                exact: true,
+                drawerOptions: {
                     nzPlacement: 'right',
                     nzWrapClassName: '',
-                } }, options);
+                },
+            }, options);
             return new rxjs.Observable((/**
              * @param {?} observer
              * @return {?}
@@ -2030,7 +2036,12 @@
                  * @return {?}
                  */
                 function (res) {
-                    if (res != null && res !== false) {
+                    if ((/** @type {?} */ (options)).exact === true) {
+                        if (res != null) {
+                            observer.next(res);
+                        }
+                    }
+                    else {
                         observer.next(res);
                     }
                     observer.complete();

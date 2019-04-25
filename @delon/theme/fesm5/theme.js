@@ -8,6 +8,7 @@ import { Title, DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { NzModalService, NzDrawerService, NzIconService } from 'ng-zorro-antd';
 import { NzModalService as NzModalService$1 } from 'ng-zorro-antd/modal';
+import { deepMerge } from '@delon/util';
 import { NzDrawerService as NzDrawerService$1 } from 'ng-zorro-antd/drawer';
 import { HttpParams, HttpClient } from '@angular/common/http';
 import distanceInWordsToNow from 'date-fns/distance_in_words_to_now';
@@ -1909,10 +1910,16 @@ var DrawerHelper = /** @class */ (function () {
      */
     function (title, comp, params, options) {
         var _this = this;
-        options = __assign({ size: 'md', footer: true, footerHeight: 55, drawerOptions: {
+        options = deepMerge({
+            size: 'md',
+            footer: true,
+            footerHeight: 55,
+            exact: true,
+            drawerOptions: {
                 nzPlacement: 'right',
                 nzWrapClassName: '',
-            } }, options);
+            },
+        }, options);
         return new Observable((/**
          * @param {?} observer
          * @return {?}
@@ -1959,7 +1966,12 @@ var DrawerHelper = /** @class */ (function () {
              * @return {?}
              */
             function (res) {
-                if (res != null && res !== false) {
+                if ((/** @type {?} */ (options)).exact === true) {
+                    if (res != null) {
+                        observer.next(res);
+                    }
+                }
+                else {
                     observer.next(res);
                 }
                 observer.complete();
@@ -2915,7 +2927,7 @@ var AlainThemeModule = /** @class */ (function () {
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-var VERSION = new Version('7.2.0-ebd42be');
+var VERSION = new Version('7.2.0-c6cf432');
 
 /**
  * @fileoverview added by tsickle
