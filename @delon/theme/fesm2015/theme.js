@@ -5,6 +5,7 @@ import { ACLService } from '@delon/acl';
 import { DOCUMENT, CurrencyPipe, CommonModule } from '@angular/common';
 import { Title, DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { deepMerge } from '@delon/util';
 import { NzModalService, NzDrawerService, NzIconService } from 'ng-zorro-antd';
 import { NzModalService as NzModalService$1 } from 'ng-zorro-antd/modal';
 import { NzDrawerService as NzDrawerService$1 } from 'ng-zorro-antd/drawer';
@@ -1315,26 +1316,35 @@ class ModalHelper {
      * @return {?}
      */
     create(comp, params, options) {
-        options = Object.assign({ size: 'lg', exact: true, includeTabs: false }, options);
+        options = deepMerge({
+            size: 'lg',
+            exact: true,
+            includeTabs: false,
+        }, options);
         return new Observable((/**
          * @param {?} observer
          * @return {?}
          */
         (observer) => {
+            const { size, includeTabs, modalOptions } = (/** @type {?} */ (options));
             /** @type {?} */
             let cls = '';
             /** @type {?} */
             let width = '';
-            if ((/** @type {?} */ (options)).size) {
-                if (typeof (/** @type {?} */ (options)).size === 'number') {
-                    width = `${(/** @type {?} */ (options)).size}px`;
+            if (size) {
+                if (typeof size === 'number') {
+                    width = `${size}px`;
                 }
                 else {
-                    cls = `modal-${(/** @type {?} */ (options)).size}`;
+                    cls = `modal-${size}`;
                 }
             }
-            if ((/** @type {?} */ (options)).includeTabs) {
+            if (includeTabs) {
                 cls += ' modal-include-tabs';
+            }
+            if (modalOptions && modalOptions.nzWrapClassName) {
+                cls += ` ${modalOptions.nzWrapClassName}`;
+                delete modalOptions.nzWrapClassName;
             }
             /** @type {?} */
             const defaultOptions = {
@@ -1346,7 +1356,7 @@ class ModalHelper {
                 nzZIndex: ++this.zIndex,
             };
             /** @type {?} */
-            const subject = this.srv.create(Object.assign({}, defaultOptions, (/** @type {?} */ (options)).modalOptions));
+            const subject = this.srv.create(Object.assign({}, defaultOptions, modalOptions));
             /** @type {?} */
             const afterClose$ = subject.afterClose.subscribe((/**
              * @param {?} res
@@ -2308,7 +2318,7 @@ AlainThemeModule.ctorParameters = () => [
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-const VERSION = new Version('7.2.0-2eb689d');
+const VERSION = new Version('7.2.0-c64834a');
 
 /**
  * @fileoverview added by tsickle
