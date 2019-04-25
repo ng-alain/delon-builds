@@ -21205,22 +21205,6 @@ fieldset {
   right: 500px;
   z-index: 1001;
 }
-.yn__yes,
-.yn__no {
-  display: inline-flex;
-  align-items: center;
-  font-style: normal;
-}
-.yn__yes span,
-.yn__no span {
-  margin-left: 4px;
-}
-.yn__yes {
-  color: #1890ff;
-}
-.yn__no {
-  color: #8c8c8c;
-}
 .align-baseline {
   vertical-align: baseline !important;
 }

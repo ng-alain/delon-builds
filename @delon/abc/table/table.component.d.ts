@@ -46,8 +46,9 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     /** 分页器配置 */
     page: STPage;
     private _page;
+    _loading: boolean;
     /** 是否显示Loading */
-    loading: boolean;
+    loading: boolean | null;
     /** 延迟显示加载效果的时间（防止闪烁） */
     loadingDelay: number;
     /** 是否显示边框 */
@@ -103,6 +104,7 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     columnClass(column: STColumn): string | null;
     private changeEmit;
     private readonly routerState;
+    private setLoading;
     private _load;
     /** 清空所有数据 */
     clear(cleanStatus?: boolean): this;
@@ -166,7 +168,7 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
      * @param opt 额外参数
      */
     export(newData?: STData[], opt?: STExportOptions): void;
-    resetColumns(): Promise<void | this>;
+    resetColumns(): Promise<this>;
     private refreshColumns;
     private setClass;
     ngAfterViewInit(): void;

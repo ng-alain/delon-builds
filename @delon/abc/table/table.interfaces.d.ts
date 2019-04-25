@@ -1,5 +1,5 @@
 import { HttpHeaders, HttpParams } from '@angular/common/http';
-import { DrawerHelperOptions, ModalHelperOptions, YNMode } from '@delon/theme';
+import { DrawerHelperOptions, ModalHelperOptions } from '@delon/theme';
 import { ModalOptionsForService, NzDrawerOptions } from 'ng-zorro-antd';
 import { STComponent } from './table.component';
 export interface STWidthMode {
@@ -434,13 +434,6 @@ export interface STColumnYn {
      * 徽章 `false` 时文本，（默认：`否`）
      */
     no?: string;
-    /**
-     * 徽章显示风格
-     * - `full` 图标和文本
-     * - `icon` 图标
-     * - `text` 文本
-     */
-    mode?: YNMode;
 }
 export interface STIcon {
     /** 图标类型 */
