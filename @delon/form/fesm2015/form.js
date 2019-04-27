@@ -3089,7 +3089,7 @@ class MentionWidget extends ControlWidget {
          */
         res => {
             this.data = res;
-            this.detectChanges();
+            this.cd.detectChanges();
         }));
     }
 }

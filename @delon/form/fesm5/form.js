@@ -3800,7 +3800,7 @@ var MentionWidget = /** @class */ (function (_super) {
          */
         function (res) {
             _this.data = res;
-            _this.detectChanges();
+            _this.cd.detectChanges();
         }));
     };
     MentionWidget.decorators = [
