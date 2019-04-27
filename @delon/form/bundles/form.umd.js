@@ -3458,7 +3458,7 @@
                 _this.grid_span = _this.ui.span && _this.ui.span > 0 ? _this.ui.span : 0;
                 _this.updateAllChecked();
                 _this.inited = true;
-                _this.cd.detectChanges();
+                _this.detectChanges();
             }));
         };
         /**
@@ -3897,7 +3897,7 @@
              */
             function (res) {
                 _this.data = res;
-                _this.cd.detectChanges();
+                _this.detectChanges();
             }));
         };
         MentionWidget.decorators = [
@@ -4748,7 +4748,7 @@
         function (options) {
             if (this.ui.searchChange)
                 this.ui.searchChange(options);
-            this.cd.detectChanges();
+            this.detectChanges();
         };
         /**
          * @param {?} options
@@ -4761,7 +4761,7 @@
         function (options) {
             if (this.ui.selectChange)
                 this.ui.selectChange(options);
-            this.cd.detectChanges();
+            this.detectChanges();
         };
         TransferWidget.decorators = [
             { type: core.Component, args: [{
