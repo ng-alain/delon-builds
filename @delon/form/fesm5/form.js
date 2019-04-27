@@ -3361,7 +3361,7 @@ var CheckboxWidget = /** @class */ (function (_super) {
             _this.grid_span = _this.ui.span && _this.ui.span > 0 ? _this.ui.span : 0;
             _this.updateAllChecked();
             _this.inited = true;
-            _this.detectChanges();
+            _this.cd.detectChanges();
         }));
     };
     /**
@@ -4651,7 +4651,7 @@ var TransferWidget = /** @class */ (function (_super) {
     function (options) {
         if (this.ui.searchChange)
             this.ui.searchChange(options);
-        this.detectChanges();
+        this.cd.detectChanges();
     };
     /**
      * @param {?} options
@@ -4664,7 +4664,7 @@ var TransferWidget = /** @class */ (function (_super) {
     function (options) {
         if (this.ui.selectChange)
             this.ui.selectChange(options);
-        this.detectChanges();
+        this.cd.detectChanges();
     };
     TransferWidget.decorators = [
         { type: Component, args: [{

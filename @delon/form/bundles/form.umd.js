@@ -3458,7 +3458,7 @@
                 _this.grid_span = _this.ui.span && _this.ui.span > 0 ? _this.ui.span : 0;
                 _this.updateAllChecked();
                 _this.inited = true;
-                _this.detectChanges();
+                _this.cd.detectChanges();
             }));
         };
         /**
@@ -4748,7 +4748,7 @@
         function (options) {
             if (this.ui.searchChange)
                 this.ui.searchChange(options);
-            this.detectChanges();
+            this.cd.detectChanges();
         };
         /**
          * @param {?} options
@@ -4761,7 +4761,7 @@
         function (options) {
             if (this.ui.selectChange)
                 this.ui.selectChange(options);
-            this.detectChanges();
+            this.cd.detectChanges();
         };
         TransferWidget.decorators = [
             { type: core.Component, args: [{
