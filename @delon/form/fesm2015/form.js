@@ -2729,7 +2729,7 @@ class CheckboxWidget extends ControlWidget {
             this.grid_span = this.ui.span && this.ui.span > 0 ? this.ui.span : 0;
             this.updateAllChecked();
             this.inited = true;
-            this.cd.detectChanges();
+            this.detectChanges();
         }));
     }
     /**
@@ -3765,7 +3765,7 @@ class TransferWidget extends ControlWidget {
     _searchChange(options) {
         if (this.ui.searchChange)
             this.ui.searchChange(options);
-        this.cd.detectChanges();
+        this.detectChanges();
     }
     /**
      * @param {?} options
@@ -3774,7 +3774,7 @@ class TransferWidget extends ControlWidget {
     _selectChange(options) {
         if (this.ui.selectChange)
             this.ui.selectChange(options);
-        this.cd.detectChanges();
+        this.detectChanges();
     }
 }
 TransferWidget.decorators = [
