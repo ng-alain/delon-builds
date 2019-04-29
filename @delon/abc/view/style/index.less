@@ -29,10 +29,10 @@
     &-fixed {
       display: flex;
       @{sv-prefix}__label {
-        flex: 0 0 auto;
-        overflow: hidden;
         text-align: right;
+        flex: 0 0 auto;
         text-overflow: ellipsis;
+        overflow: hidden;
       }
       @{sv-prefix}__detail {
         flex: 1 0 0;
@@ -41,33 +41,34 @@
   }
   &__title {
     display: block;
-    margin-bottom: @sv-bottom;
+    font-size: 14px;
     color: @heading-color;
     font-weight: 500;
-    font-size: 14px;
+    margin-bottom: @sv-bottom;
   }
   &__label {
-    display: table-cell;
-    // margin-right: 8px;
-    padding-bottom: @sv-bottom;
-    color: @sv-label-color;
     line-height: 22px;
+    padding-bottom: @sv-bottom;
+    margin-right: 8px;
+    color: @sv-label-color;
     white-space: nowrap;
+    display: table-cell;
     &:not(@{sv-prefix}__label-empty) {
-      &::after {
+      &:after {
+        content: ':';
+        margin: 0 8px 0 2px;
         position: relative;
         top: -0.5px;
-        margin: 0 8px 0 2px;
-        content: ':';
       }
     }
   }
   &__detail {
-    display: table-cell;
+    line-height: 22px;
     width: 100%;
     padding-bottom: @sv-bottom;
     color: @sv-detail-color;
-    line-height: 22px;
+    // contents 对 ie, edge 不支持，但对于子组件的支持会更友好
+    display: table-cell;
     word-break: break-all;
   }
   &__type {
@@ -85,7 +86,7 @@
     }
   }
   &__default {
-    &::before {
+    &:before {
       content: @sv-default-text;
     }
 

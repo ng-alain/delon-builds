@@ -7,9 +7,9 @@
 @{se-prefix} {
   &__title {
     display: block;
+    font-size: 14px;
     color: @heading-color;
     font-weight: 500;
-    font-size: 14px;
     line-height: @form-component-max-height - 0.0001px;
   }
   &__item {
@@ -18,9 +18,9 @@
       padding-bottom: 0;
     }
     &-empty {
-      &::before {
-        display: inline-block;
+      &:before {
         content: '';
+        display: inline-block;
       }
     }
     // fix angular & ng-zorro-antd
@@ -29,12 +29,12 @@
     }
   }
   &__label {
+    text-align: right;
+    color: @se-label-color;
+    white-space: nowrap;
     display: table-cell;
     flex: 0 0 auto;
     width: initial;
-    color: @se-label-color;
-    white-space: nowrap;
-    text-align: right;
     &-optional {
       color: rgba(0, 0, 0, 0.45);
     }
@@ -82,9 +82,9 @@
   &__inline {
     @{se-prefix}__label,
     @{se-prefix}__control {
-      flex: none;
-      width: initial;
       text-align: left;
+      width: initial;
+      flex: none;
     }
     @{se-prefix}__item {
       &:last-child {

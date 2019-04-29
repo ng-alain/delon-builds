@@ -6,11 +6,11 @@
 
 .search-form-mixin(@enabled) when(@enabled = true) {
   .search-form {
-    margin-bottom: @layout-gutter * 2;
-    padding: @layout-gutter;
     background: @search-form-bg;
+    padding: @layout-gutter;
     border: @border-width-base @border-style-base @border-color-split;
     border-radius: @search-form-radius;
+    margin-bottom: @layout-gutter * 2;
   }
 }
 .search-form-mixin(@search-form-enabled);
@@ -27,13 +27,13 @@
       //   }
       // }
       .@{ant-prefix}-form-item {
-        display: flex;
-        margin-right: 0;
         margin-bottom: 24px;
+        margin-right: 0;
+        display: flex;
         > .@{ant-prefix}-form-item-label {
           width: auto;
-          padding-right: 8px;
           line-height: 32px;
+          padding-right: 8px;
         }
         .@{ant-prefix}-form-item-control {
           line-height: 32px;
