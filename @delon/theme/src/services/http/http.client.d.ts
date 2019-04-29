@@ -57,7 +57,7 @@ export declare class _HttpClient {
     /**
      * GET：返回一个 `JSON` 类型
      */
-    get<T>(url: string, params: any, options: {
+    get<T>(url: string, params?: any, options?: {
         headers?: HttpHeaders | {
             [header: string]: string | string[];
         };
