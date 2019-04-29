@@ -25304,7 +25304,7 @@ body {
   line-height: 18px;
 }
 ellipsis {
-  display: inline-block;
+  display: inline;
 }
 .ellipsis {
   display: inline-block;
