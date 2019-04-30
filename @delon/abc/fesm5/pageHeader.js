@@ -1,13 +1,15 @@
 import { defineInjectable, Injectable, TemplateRef, Component, ChangeDetectionStrategy, Renderer2, Optional, Inject, ChangeDetectorRef, ViewChild, Input, NgModule } from '@angular/core';
 import { __decorate, __metadata, __assign, __spread } from 'tslib';
 import { Router, NavigationEnd, RouterModule } from '@angular/router';
-import { NgZorroAntdModule } from 'ng-zorro-antd';
+import { NzAffixModule } from 'ng-zorro-antd/affix';
 import { Subject, merge } from 'rxjs';
 import { takeUntil, filter } from 'rxjs/operators';
 import { ReuseTabService } from '@delon/abc/reuse-tab';
 import { SettingsService, MenuService, ALAIN_I18N_TOKEN, TitleService } from '@delon/theme';
 import { isEmpty, InputBoolean, InputNumber, DelonUtilModule } from '@delon/util';
 import { CommonModule } from '@angular/common';
+import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
+import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
 
 /**
  * @fileoverview added by tsickle
@@ -362,7 +364,7 @@ var PageHeaderModule = /** @class */ (function () {
     }
     PageHeaderModule.decorators = [
         { type: NgModule, args: [{
-                    imports: [CommonModule, RouterModule, DelonUtilModule, NgZorroAntdModule],
+                    imports: [CommonModule, RouterModule, DelonUtilModule, NzAffixModule, NzSkeletonModule, NzBreadCrumbModule],
                     declarations: __spread(COMPONENTS),
                     exports: __spread(COMPONENTS),
                 },] }

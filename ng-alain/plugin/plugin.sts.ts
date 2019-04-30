@@ -17,7 +17,7 @@ function fixPackage(options: PluginOptions) {
   return (host: Tree, context: SchematicContext) => {
     (options.type === 'add' ? addPackageToPackageJson : removePackageFromPackageJson)(
       host,
-      ['ng-alain-sts@DEP-7.3.1'],
+      ['ng-alain-sts@DEP-7.3.0'],
       'devDependencies',
     );
   };

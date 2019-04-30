@@ -1,13 +1,13 @@
 /**
- * @license ng-alain(cipchk@qq.com) v7.3.1
+ * @license ng-alain(cipchk@qq.com) v7.3.0
  * (c) 2019 cipchk https://ng-alain.com/
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/theme'), require('@delon/util'), require('@angular/common'), require('@angular/router'), require('ng-zorro-antd')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/exception', ['exports', '@angular/core', '@delon/theme', '@delon/util', '@angular/common', '@angular/router', 'ng-zorro-antd'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.exception = {}), global.ng.core, global.delon.theme, global.delon.util, global.ng.common, global.ng.router, global['ng-zorro-antd']));
-}(this, function (exports, core, theme, util, common, router, ngZorroAntd) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/theme'), require('@delon/util'), require('@angular/common'), require('@angular/router'), require('ng-zorro-antd/button')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/exception', ['exports', '@angular/core', '@delon/theme', '@delon/util', '@angular/common', '@angular/router', 'ng-zorro-antd/button'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.exception = {}), global.ng.core, global.delon.theme, global.delon.util, global.ng.common, global.ng.router, global['ng-zorro-antd/button']));
+}(this, function (exports, core, theme, util, common, router, button) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -188,7 +188,7 @@
         }
         ExceptionModule.decorators = [
             { type: core.NgModule, args: [{
-                        imports: [common.CommonModule, router.RouterModule, util.DelonUtilModule, theme.DelonLocaleModule, ngZorroAntd.NgZorroAntdModule],
+                        imports: [common.CommonModule, router.RouterModule, util.DelonUtilModule, theme.DelonLocaleModule, button.NzButtonModule],
                         declarations: __spread(COMPONENTS),
                         exports: __spread(COMPONENTS),
                     },] }

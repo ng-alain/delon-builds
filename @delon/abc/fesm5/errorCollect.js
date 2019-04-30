@@ -2,6 +2,7 @@ import { __decorate, __metadata, __assign, __spread } from 'tslib';
 import { DOCUMENT, CommonModule } from '@angular/common';
 import { defineInjectable, Injectable, Component, ChangeDetectionStrategy, ElementRef, ChangeDetectorRef, Inject, Input, NgModule } from '@angular/core';
 import { InputNumber, DelonUtilModule } from '@delon/util';
+import { NzIconModule } from 'ng-zorro-antd/icon';
 
 /**
  * @fileoverview added by tsickle
@@ -162,7 +163,7 @@ var ErrorCollectComponent = /** @class */ (function () {
         { type: Component, args: [{
                     selector: 'error-collect, [error-collect]',
                     exportAs: 'errorCollect',
-                    template: "\n    <i nz-icon type=\"exclamation-circle\"></i>\n    <span class=\"pl-sm\">{{ count }}</span>\n  ",
+                    template: "\n    <i nz-icon nzType=\"exclamation-circle\"></i>\n    <span class=\"pl-sm\">{{ count }}</span>\n  ",
                     host: {
                         '[class.error-collect]': 'true',
                         '[class.d-none]': '_hiden',
@@ -204,7 +205,7 @@ var ErrorCollectModule = /** @class */ (function () {
     }
     ErrorCollectModule.decorators = [
         { type: NgModule, args: [{
-                    imports: [CommonModule, DelonUtilModule],
+                    imports: [CommonModule, DelonUtilModule, NzIconModule],
                     declarations: __spread(COMPONENTS),
                     exports: __spread(COMPONENTS),
                 },] }

@@ -1,13 +1,13 @@
 /**
- * @license ng-alain(cipchk@qq.com) v7.3.1
+ * @license ng-alain(cipchk@qq.com) v7.3.0
  * (c) 2019 cipchk https://ng-alain.com/
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/theme'), require('@delon/util'), require('@angular/common'), require('ng-zorro-antd')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/notice-icon', ['exports', '@angular/core', '@delon/theme', '@delon/util', '@angular/common', 'ng-zorro-antd'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['notice-icon'] = {}), global.ng.core, global.delon.theme, global.delon.util, global.ng.common, global['ng-zorro-antd']));
-}(this, function (exports, core, theme, util, common, ngZorroAntd) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/theme'), require('@delon/util'), require('@angular/common'), require('ng-zorro-antd/badge'), require('ng-zorro-antd/dropdown'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/list'), require('ng-zorro-antd/spin'), require('ng-zorro-antd/tabs'), require('ng-zorro-antd/tag')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/notice-icon', ['exports', '@angular/core', '@delon/theme', '@delon/util', '@angular/common', 'ng-zorro-antd/badge', 'ng-zorro-antd/dropdown', 'ng-zorro-antd/icon', 'ng-zorro-antd/list', 'ng-zorro-antd/spin', 'ng-zorro-antd/tabs', 'ng-zorro-antd/tag'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['notice-icon'] = {}), global.ng.core, global.delon.theme, global.delon.util, global.ng.common, global['ng-zorro-antd/badge'], global['ng-zorro-antd/dropdown'], global['ng-zorro-antd/icon'], global['ng-zorro-antd/list'], global['ng-zorro-antd/spin'], global['ng-zorro-antd/tabs'], global['ng-zorro-antd/tag']));
+}(this, function (exports, core, theme, util, common, badge, dropdown, icon, list, spin, tabs, tag) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -245,7 +245,17 @@
         }
         NoticeIconModule.decorators = [
             { type: core.NgModule, args: [{
-                        imports: [common.CommonModule, theme.DelonLocaleModule, ngZorroAntd.NgZorroAntdModule],
+                        imports: [
+                            common.CommonModule,
+                            theme.DelonLocaleModule,
+                            badge.NzBadgeModule,
+                            dropdown.NzDropDownModule,
+                            icon.NzIconModule,
+                            list.NzListModule,
+                            spin.NzSpinModule,
+                            tabs.NzTabsModule,
+                            tag.NzTagModule,
+                        ],
                         declarations: __spread(COMPONENTS, [NoticeIconTabComponent]),
                         exports: __spread(COMPONENTS),
                     },] }
