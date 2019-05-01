@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/theme'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('@angular/common'), require('@angular/forms'), require('ng-zorro-antd'), require('date-fns/format')) :
-    typeof define === 'function' && define.amd ? define('@delon/form', ['exports', '@angular/core', '@delon/theme', '@delon/util', 'rxjs', 'rxjs/operators', '@angular/common', '@angular/forms', 'ng-zorro-antd', 'date-fns/format'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.form = {}), global.ng.core, global.delon.theme, global.delon.util, global.rxjs, global.rxjs.operators, global.ng.common, global.ng.forms, global['ng-zorro-antd'], global.format));
-}(this, function (exports, core, theme, util, rxjs, operators, common, forms, ngZorroAntd, format) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/theme'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('@angular/common'), require('@angular/forms'), require('ng-zorro-antd/auto-complete'), require('ng-zorro-antd/button'), require('ng-zorro-antd/card'), require('ng-zorro-antd/cascader'), require('ng-zorro-antd/checkbox'), require('ng-zorro-antd/date-picker'), require('ng-zorro-antd/form'), require('ng-zorro-antd/grid'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/input'), require('ng-zorro-antd/input-number'), require('ng-zorro-antd/mention'), require('ng-zorro-antd/radio'), require('ng-zorro-antd/rate'), require('ng-zorro-antd/select'), require('ng-zorro-antd/slider'), require('ng-zorro-antd/switch'), require('ng-zorro-antd/tag'), require('ng-zorro-antd/time-picker'), require('ng-zorro-antd/tooltip'), require('ng-zorro-antd/transfer'), require('ng-zorro-antd/tree-select'), require('ng-zorro-antd/upload'), require('date-fns/format'), require('ng-zorro-antd')) :
+    typeof define === 'function' && define.amd ? define('@delon/form', ['exports', '@angular/core', '@delon/theme', '@delon/util', 'rxjs', 'rxjs/operators', '@angular/common', '@angular/forms', 'ng-zorro-antd/auto-complete', 'ng-zorro-antd/button', 'ng-zorro-antd/card', 'ng-zorro-antd/cascader', 'ng-zorro-antd/checkbox', 'ng-zorro-antd/date-picker', 'ng-zorro-antd/form', 'ng-zorro-antd/grid', 'ng-zorro-antd/icon', 'ng-zorro-antd/input', 'ng-zorro-antd/input-number', 'ng-zorro-antd/mention', 'ng-zorro-antd/radio', 'ng-zorro-antd/rate', 'ng-zorro-antd/select', 'ng-zorro-antd/slider', 'ng-zorro-antd/switch', 'ng-zorro-antd/tag', 'ng-zorro-antd/time-picker', 'ng-zorro-antd/tooltip', 'ng-zorro-antd/transfer', 'ng-zorro-antd/tree-select', 'ng-zorro-antd/upload', 'date-fns/format', 'ng-zorro-antd'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.form = {}), global.ng.core, global.delon.theme, global.delon.util, global.rxjs, global.rxjs.operators, global.ng.common, global.ng.forms, global.autoComplete, global.button, global.card, global.cascader, global.checkbox, global.datePicker, global.form, global.grid, global.icon, global.input, global.inputNumber, global.mention, global.radio, global.rate, global.select, global.slider, global._switch, global.tag, global.timePicker, global.tooltip, global.transfer, global.treeSelect, global.upload, global.format, global['ng-zorro-antd']));
+}(this, function (exports, core, theme, util, rxjs, operators, common, forms, autoComplete, button, card, cascader, checkbox, datePicker, form, grid, icon, input, inputNumber, mention, radio, rate, select, slider, _switch, tag, timePicker, tooltip, transfer, treeSelect, upload, format, ngZorroAntd) { 'use strict';
 
     format = format && format.hasOwnProperty('default') ? format['default'] : format;
 
@@ -5087,6 +5087,32 @@
      * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
+    var ZORROS = [
+        autoComplete.NzAutocompleteModule,
+        button.NzButtonModule,
+        card.NzCardModule,
+        cascader.NzCascaderModule,
+        checkbox.NzCheckboxModule,
+        datePicker.NzDatePickerModule,
+        form.NzFormModule,
+        grid.NzGridModule,
+        icon.NzIconModule,
+        input.NzInputModule,
+        inputNumber.NzInputNumberModule,
+        mention.NzMentionModule,
+        radio.NzRadioModule,
+        rate.NzRateModule,
+        select.NzSelectModule,
+        slider.NzSliderModule,
+        _switch.NzSwitchModule,
+        tag.NzTagModule,
+        timePicker.NzTimePickerModule,
+        tooltip.NzToolTipModule,
+        transfer.NzTransferModule,
+        treeSelect.NzTreeSelectModule,
+        upload.NzUploadModule,
+    ];
+    /** @type {?} */
     var COMPONENTS = [SFComponent, SFItemComponent, SFItemWrapComponent, SFTemplateDirective, SFFixedDirective];
     /** @type {?} */
     var WIDGETS = [
@@ -5137,7 +5163,7 @@
         };
         DelonFormModule.decorators = [
             { type: core.NgModule, args: [{
-                        imports: [common.CommonModule, forms.FormsModule, util.DelonUtilModule, theme.DelonLocaleModule, ngZorroAntd.NgZorroAntdModule],
+                        imports: __spread([common.CommonModule, forms.FormsModule, util.DelonUtilModule, theme.DelonLocaleModule], ZORROS),
                         declarations: __spread(COMPONENTS, WIDGETS),
                         entryComponents: __spread(WIDGETS),
                         exports: __spread(COMPONENTS),

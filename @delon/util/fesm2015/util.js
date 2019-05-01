@@ -16,7 +16,7 @@ import subYears from 'date-fns/sub_years';
 import { DOCUMENT, CommonModule } from '@angular/common';
 import { BehaviorSubject } from 'rxjs';
 import { share, filter } from 'rxjs/operators';
-import { NzTreeNode } from 'ng-zorro-antd';
+import { NzTreeNode } from 'ng-zorro-antd/core';
 
 /**
  * @fileoverview added by tsickle

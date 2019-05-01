@@ -6,8 +6,31 @@ import { of, Observable, combineLatest, BehaviorSubject, Subject } from 'rxjs';
 import { map, distinctUntilChanged, takeUntil, debounceTime, startWith, flatMap, tap } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
 import { NgModel, FormsModule } from '@angular/forms';
-import { NzModalService, NgZorroAntdModule } from 'ng-zorro-antd';
+import { NzAutocompleteModule } from 'ng-zorro-antd/auto-complete';
+import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzCardModule } from 'ng-zorro-antd/card';
+import { NzCascaderModule } from 'ng-zorro-antd/cascader';
+import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
+import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
+import { NzFormModule } from 'ng-zorro-antd/form';
+import { NzGridModule } from 'ng-zorro-antd/grid';
+import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzInputModule } from 'ng-zorro-antd/input';
+import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
+import { NzMentionModule } from 'ng-zorro-antd/mention';
+import { NzRadioModule } from 'ng-zorro-antd/radio';
+import { NzRateModule } from 'ng-zorro-antd/rate';
+import { NzSelectModule } from 'ng-zorro-antd/select';
+import { NzSliderModule } from 'ng-zorro-antd/slider';
+import { NzSwitchModule } from 'ng-zorro-antd/switch';
+import { NzTagModule } from 'ng-zorro-antd/tag';
+import { NzTimePickerModule } from 'ng-zorro-antd/time-picker';
+import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
+import { NzTransferModule } from 'ng-zorro-antd/transfer';
+import { NzTreeSelectModule } from 'ng-zorro-antd/tree-select';
+import { NzUploadModule } from 'ng-zorro-antd/upload';
 import format from 'date-fns/format';
+import { NzModalService } from 'ng-zorro-antd';
 
 /**
  * @fileoverview added by tsickle
@@ -4990,6 +5013,32 @@ var NzWidgetRegistry = /** @class */ (function (_super) {
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
+var ZORROS = [
+    NzAutocompleteModule,
+    NzButtonModule,
+    NzCardModule,
+    NzCascaderModule,
+    NzCheckboxModule,
+    NzDatePickerModule,
+    NzFormModule,
+    NzGridModule,
+    NzIconModule,
+    NzInputModule,
+    NzInputNumberModule,
+    NzMentionModule,
+    NzRadioModule,
+    NzRateModule,
+    NzSelectModule,
+    NzSliderModule,
+    NzSwitchModule,
+    NzTagModule,
+    NzTimePickerModule,
+    NzToolTipModule,
+    NzTransferModule,
+    NzTreeSelectModule,
+    NzUploadModule,
+];
+/** @type {?} */
 var COMPONENTS = [SFComponent, SFItemComponent, SFItemWrapComponent, SFTemplateDirective, SFFixedDirective];
 /** @type {?} */
 var WIDGETS = [
@@ -5040,7 +5089,7 @@ var DelonFormModule = /** @class */ (function () {
     };
     DelonFormModule.decorators = [
         { type: NgModule, args: [{
-                    imports: [CommonModule, FormsModule, DelonUtilModule, DelonLocaleModule, NgZorroAntdModule],
+                    imports: __spread([CommonModule, FormsModule, DelonUtilModule, DelonLocaleModule], ZORROS),
                     declarations: __spread(COMPONENTS, WIDGETS),
                     entryComponents: __spread(WIDGETS),
                     exports: __spread(COMPONENTS),
