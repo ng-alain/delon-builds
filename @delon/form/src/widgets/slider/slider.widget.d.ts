@@ -1,5 +1,5 @@
 import { OnInit } from '@angular/core';
-import { Marks, SliderValue } from 'ng-zorro-antd';
+import { Marks, SliderValue } from 'ng-zorro-antd/slider';
 import { ControlWidget } from '../../widget';
 export declare class SliderWidget extends ControlWidget implements OnInit {
     min: number;

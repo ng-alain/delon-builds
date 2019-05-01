@@ -2,7 +2,7 @@ import { __decorate, __metadata } from 'tslib';
 import { Component, ChangeDetectionStrategy, ChangeDetectorRef, NgZone, ViewChild, Input, NgModule } from '@angular/core';
 import { InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
 import { CommonModule } from '@angular/common';
-import { NgZorroAntdModule } from 'ng-zorro-antd';
+import { NzGridModule } from 'ng-zorro-antd/grid';
 
 /**
  * @fileoverview added by tsickle
@@ -267,7 +267,7 @@ class G2RadarModule {
 }
 G2RadarModule.decorators = [
     { type: NgModule, args: [{
-                imports: [CommonModule, DelonUtilModule, NgZorroAntdModule],
+                imports: [CommonModule, DelonUtilModule, NzGridModule],
                 declarations: [...COMPONENTS],
                 exports: [...COMPONENTS],
             },] }

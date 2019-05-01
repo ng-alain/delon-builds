@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core/testing'), require('@angular/platform-browser'), require('ng-zorro-antd')) :
-    typeof define === 'function' && define.amd ? define('@delon/testing', ['exports', '@angular/core/testing', '@angular/platform-browser', 'ng-zorro-antd'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.testing = {}), global.ng.core.testing, global.ng.platformBrowser, global['ng-zorro-antd']));
-}(this, function (exports, testing, platformBrowser, ngZorroAntd) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core/testing'), require('@angular/platform-browser'), require('ng-zorro-antd/dropdown')) :
+    typeof define === 'function' && define.amd ? define('@delon/testing', ['exports', '@angular/core/testing', '@angular/platform-browser', 'ng-zorro-antd/dropdown'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.testing = {}), global.ng.core.testing, global.ng.platformBrowser, global['ng-zorro-antd/dropdown']));
+}(this, function (exports, testing, platformBrowser, dropdown) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -274,12 +274,12 @@
     function dispatchDropDown(dl, trigger, allowNull) {
         if (allowNull === void 0) { allowNull = true; }
         /** @type {?} */
-        var directive = dl.query(platformBrowser.By.directive(ngZorroAntd.NzDropDownDirective));
+        var directive = dl.query(platformBrowser.By.directive(dropdown.NzDropDownDirective));
         if (allowNull && directive == null) {
             return false;
         }
         /** @type {?} */
-        var el = (/** @type {?} */ (directive.injector.get(ngZorroAntd.NzDropDownDirective).elementRef.nativeElement));
+        var el = (/** @type {?} */ (directive.injector.get(dropdown.NzDropDownDirective).elementRef.nativeElement));
         if (trigger === 'click') {
             dispatchFakeEvent(el, 'click');
         }

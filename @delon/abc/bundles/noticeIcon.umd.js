@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/theme'), require('@delon/util'), require('@angular/common'), require('ng-zorro-antd')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/notice-icon', ['exports', '@angular/core', '@delon/theme', '@delon/util', '@angular/common', 'ng-zorro-antd'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['notice-icon'] = {}), global.ng.core, global.delon.theme, global.delon.util, global.ng.common, global['ng-zorro-antd']));
-}(this, function (exports, core, theme, util, common, ngZorroAntd) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/theme'), require('@delon/util'), require('@angular/common'), require('ng-zorro-antd/badge'), require('ng-zorro-antd/dropdown'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/list'), require('ng-zorro-antd/spin'), require('ng-zorro-antd/tabs'), require('ng-zorro-antd/tag')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/notice-icon', ['exports', '@angular/core', '@delon/theme', '@delon/util', '@angular/common', 'ng-zorro-antd/badge', 'ng-zorro-antd/dropdown', 'ng-zorro-antd/icon', 'ng-zorro-antd/list', 'ng-zorro-antd/spin', 'ng-zorro-antd/tabs', 'ng-zorro-antd/tag'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['notice-icon'] = {}), global.ng.core, global.delon.theme, global.delon.util, global.ng.common, global['ng-zorro-antd/badge'], global['ng-zorro-antd/dropdown'], global['ng-zorro-antd/icon'], global['ng-zorro-antd/list'], global['ng-zorro-antd/spin'], global['ng-zorro-antd/tabs'], global['ng-zorro-antd/tag']));
+}(this, function (exports, core, theme, util, common, badge, dropdown, icon, list, spin, tabs, tag) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -198,7 +198,7 @@
             { type: core.Component, args: [{
                         selector: 'notice-icon',
                         exportAs: 'noticeIcon',
-                        template: "<ng-template #badgeTpl>\n  <nz-badge [nzCount]=\"count\"\n            [ngClass]=\"btnClass\"\n            [nzStyle]=\"{ 'box-shadow': 'none' }\">\n    <i nz-icon\n       type=\"bell\"\n       [ngClass]=\"btnIconClass\"></i>\n  </nz-badge>\n</ng-template>\n<div *ngIf=\"data?.length === 0\">\n  <ng-template [ngTemplateOutlet]=\"badgeTpl\"></ng-template>\n</div>\n<nz-dropdown *ngIf=\"data?.length > 0\"\n             [nzVisible]=\"popoverVisible\"\n             (nzVisibleChange)=\"onVisibleChange($event)\"\n             nzTrigger=\"click\"\n             nzPlacement=\"bottomRight\"\n             [nzOverlayClassName]=\"['header-dropdown', 'notice-icon']\">\n  <div nz-dropdown>\n    <ng-template [ngTemplateOutlet]=\"badgeTpl\"></ng-template>\n  </div>\n  <nz-spin [nzSpinning]=\"loading\"\n           [nzDelay]=\"0\">\n    <nz-tabset nzSelectedIndex=\"0\">\n      <nz-tab *ngFor=\"let i of data\"\n              [nzTitle]=\"i.title\">\n        <notice-icon-tab [locale]=\"locale\"\n                         [data]=\"i\"\n                         (select)=\"onSelect($event)\"\n                         (clear)=\"onClear($event)\"></notice-icon-tab>\n      </nz-tab>\n    </nz-tabset>\n  </nz-spin>\n</nz-dropdown>\n",
+                        template: "<ng-template #badgeTpl>\n  <nz-badge [nzCount]=\"count\"\n            [ngClass]=\"btnClass\"\n            [nzStyle]=\"{ 'box-shadow': 'none' }\">\n    <i nz-icon nzType=\"bell\" [ngClass]=\"btnIconClass\"></i>\n  </nz-badge>\n</ng-template>\n<div *ngIf=\"data?.length === 0\">\n  <ng-template [ngTemplateOutlet]=\"badgeTpl\"></ng-template>\n</div>\n<nz-dropdown *ngIf=\"data?.length > 0\"\n             [nzVisible]=\"popoverVisible\"\n             (nzVisibleChange)=\"onVisibleChange($event)\"\n             nzTrigger=\"click\"\n             nzPlacement=\"bottomRight\"\n             [nzOverlayClassName]=\"['header-dropdown', 'notice-icon']\">\n  <div nz-dropdown>\n    <ng-template [ngTemplateOutlet]=\"badgeTpl\"></ng-template>\n  </div>\n  <nz-spin [nzSpinning]=\"loading\"\n           [nzDelay]=\"0\">\n    <nz-tabset nzSelectedIndex=\"0\">\n      <nz-tab *ngFor=\"let i of data\"\n              [nzTitle]=\"i.title\">\n        <notice-icon-tab [locale]=\"locale\"\n                         [data]=\"i\"\n                         (select)=\"onSelect($event)\"\n                         (clear)=\"onClear($event)\"></notice-icon-tab>\n      </nz-tab>\n    </nz-tabset>\n  </nz-spin>\n</nz-dropdown>\n",
                         host: { '[class.notice-icon__btn]': 'true' },
                         changeDetection: core.ChangeDetectionStrategy.OnPush
                     }] }
@@ -245,7 +245,17 @@
         }
         NoticeIconModule.decorators = [
             { type: core.NgModule, args: [{
-                        imports: [common.CommonModule, theme.DelonLocaleModule, ngZorroAntd.NgZorroAntdModule],
+                        imports: [
+                            common.CommonModule,
+                            theme.DelonLocaleModule,
+                            badge.NzBadgeModule,
+                            dropdown.NzDropDownModule,
+                            icon.NzIconModule,
+                            list.NzListModule,
+                            spin.NzSpinModule,
+                            tabs.NzTabsModule,
+                            tag.NzTagModule,
+                        ],
                         declarations: __spread(COMPONENTS, [NoticeIconTabComponent]),
                         exports: __spread(COMPONENTS),
                     },] }

@@ -2,7 +2,8 @@ import { Component, Input, ChangeDetectionStrategy, ChangeDetectorRef, ContentCh
 import { __decorate, __metadata } from 'tslib';
 import { InputNumber } from '@delon/util';
 import { CommonModule } from '@angular/common';
-import { NgZorroAntdModule } from 'ng-zorro-antd';
+import { NzAvatarModule } from 'ng-zorro-antd/avatar';
+import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 
 /**
  * @fileoverview added by tsickle
@@ -124,7 +125,7 @@ class AvatarListModule {
 }
 AvatarListModule.decorators = [
     { type: NgModule, args: [{
-                imports: [CommonModule, NgZorroAntdModule],
+                imports: [CommonModule, NzAvatarModule, NzToolTipModule],
                 declarations: [...COMPONENTS],
                 exports: [...COMPONENTS],
             },] }

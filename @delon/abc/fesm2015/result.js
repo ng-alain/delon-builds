@@ -1,7 +1,7 @@
 import { Component, Input, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DelonUtilModule } from '@delon/util';
-import { NgZorroAntdModule } from 'ng-zorro-antd';
+import { NzIconModule } from 'ng-zorro-antd/icon';
 
 /**
  * @fileoverview added by tsickle
@@ -56,7 +56,7 @@ class ResultModule {
 }
 ResultModule.decorators = [
     { type: NgModule, args: [{
-                imports: [CommonModule, NgZorroAntdModule, DelonUtilModule],
+                imports: [CommonModule, NzIconModule, DelonUtilModule],
                 declarations: [...COMPONENTS],
                 exports: [...COMPONENTS],
             },] }

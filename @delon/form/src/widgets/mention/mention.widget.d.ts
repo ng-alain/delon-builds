@@ -1,5 +1,5 @@
 import { OnInit } from '@angular/core';
-import { NzMentionComponent } from 'ng-zorro-antd';
+import { NzMentionComponent } from 'ng-zorro-antd/mention';
 import { SFValue } from '../../interface';
 import { SFSchemaEnum } from '../../schema';
 import { ControlWidget } from '../../widget';

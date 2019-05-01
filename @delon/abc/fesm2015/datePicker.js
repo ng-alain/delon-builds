@@ -3,7 +3,7 @@ import { Injectable, defineInjectable, EventEmitter, Component, forwardRef, View
 import { NG_VALUE_ACCESSOR, FormsModule } from '@angular/forms';
 import { getTimeDistance, deepMergeKey, fixEndTimeOfRange, InputBoolean } from '@delon/util';
 import { CommonModule } from '@angular/common';
-import { NgZorroAntdModule } from 'ng-zorro-antd';
+import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 
 /**
  * @fileoverview added by tsickle
@@ -256,7 +256,7 @@ class DatePickerModule {
 }
 DatePickerModule.decorators = [
     { type: NgModule, args: [{
-                imports: [CommonModule, FormsModule, NgZorroAntdModule],
+                imports: [CommonModule, FormsModule, NzDatePickerModule],
                 declarations: [...COMPONENTS],
                 exports: [...COMPONENTS],
             },] }
