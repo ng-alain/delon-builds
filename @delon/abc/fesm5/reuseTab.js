@@ -1124,18 +1124,18 @@ var ReuseTabService = /** @class */ (function () {
     /**
      * @private
      * @param {?} method
-     * @param {?} url
+     * @param {?} _url
      * @param {?} comp
      * @return {?}
      */
     ReuseTabService.prototype.runHook = /**
      * @private
      * @param {?} method
-     * @param {?} url
+     * @param {?} _url
      * @param {?} comp
      * @return {?}
      */
-    function (method, url, comp) {
+    function (method, _url, comp) {
         if (comp.instance && typeof comp.instance[method] === 'function')
             comp.instance[method]();
     };

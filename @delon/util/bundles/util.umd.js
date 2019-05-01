@@ -206,10 +206,9 @@
     function copy(value) {
         return new Promise((/**
          * @param {?} resolve
-         * @param {?} reject
          * @return {?}
          */
-        function (resolve, reject) {
+        function (resolve) {
             /** @type {?} */
             var copyTextArea = null;
             try {
@@ -327,11 +326,11 @@
     function format(str, obj, needDeepGet) {
         if (needDeepGet === void 0) { needDeepGet = false; }
         return (str || '').replace(/\${([^}]+)}/g, (/**
-         * @param {?} work
+         * @param {?} _work
          * @param {?} key
          * @return {?}
          */
-        function (work, key) {
+        function (_work, key) {
             return needDeepGet ? deepGet(obj, key.split('.'), '') : (obj || {})[key] || '';
         }));
     }

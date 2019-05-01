@@ -8,7 +8,7 @@ const operators_1 = require("rxjs/operators");
 const alain_1 = require("../utils/alain");
 const REFER = ', please refer to: https://ng-alain.com/cli/generate#%E8%87%AA%E5%AE%9A%E4%B9%89%E9%A1%B5';
 function genFiles(options) {
-    return (host, context) => {
+    return () => {
         options._tplDir = path.join(process.cwd(), './_cli-tpl');
         try {
             fs.accessSync(options._tplDir);
@@ -38,7 +38,7 @@ function parseExtraArgs(options) {
 }
 function runFixJS(options) {
     parseExtraArgs(options);
-    return (host, context) => {
+    return (host) => {
         return rxjs_1.of(host).pipe(operators_1.mergeMap(val => {
             const fixScriptPath = path.join(options._tplDir, '_fix.js');
             if (fs.existsSync(fixScriptPath)) {

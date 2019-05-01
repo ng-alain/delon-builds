@@ -778,15 +778,15 @@ var JWTInterceptor = /** @class */ (function (_super) {
     };
     /**
      * @param {?} req
-     * @param {?} options
+     * @param {?} _options
      * @return {?}
      */
     JWTInterceptor.prototype.setReq = /**
      * @param {?} req
-     * @param {?} options
+     * @param {?} _options
      * @return {?}
      */
-    function (req, options) {
+    function (req, _options) {
         return req.clone({
             setHeaders: {
                 Authorization: "Bearer " + this.model.token,
@@ -829,53 +829,53 @@ var JWTGuard = /** @class */ (function () {
     // lazy loading
     /**
      * @param {?} route
-     * @param {?} segments
+     * @param {?} _segments
      * @return {?}
      */
     JWTGuard.prototype.canLoad = 
     // lazy loading
     /**
      * @param {?} route
-     * @param {?} segments
+     * @param {?} _segments
      * @return {?}
      */
-    function (route, segments) {
+    function (route, _segments) {
         this.url = route.path;
         return this.process();
     };
     // all children route
     // all children route
     /**
-     * @param {?} childRoute
+     * @param {?} _childRoute
      * @param {?} state
      * @return {?}
      */
     JWTGuard.prototype.canActivateChild = 
     // all children route
     /**
-     * @param {?} childRoute
+     * @param {?} _childRoute
      * @param {?} state
      * @return {?}
      */
-    function (childRoute, state) {
+    function (_childRoute, state) {
         this.url = state.url;
         return this.process();
     };
     // route
     // route
     /**
-     * @param {?} route
+     * @param {?} _route
      * @param {?} state
      * @return {?}
      */
     JWTGuard.prototype.canActivate = 
     // route
     /**
-     * @param {?} route
+     * @param {?} _route
      * @param {?} state
      * @return {?}
      */
-    function (route, state) {
+    function (_route, state) {
         this.url = state.url;
         return this.process();
     };
@@ -912,14 +912,14 @@ var SimpleInterceptor = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     /**
-     * @param {?} options
+     * @param {?} _options
      * @return {?}
      */
     SimpleInterceptor.prototype.isAuth = /**
-     * @param {?} options
+     * @param {?} _options
      * @return {?}
      */
-    function (options) {
+    function (_options) {
         this.model = (/** @type {?} */ (this.injector.get(DA_SERVICE_TOKEN).get()));
         return CheckSimple((/** @type {?} */ (this.model)));
     };
@@ -1004,53 +1004,53 @@ var SimpleGuard = /** @class */ (function () {
     // lazy loading
     /**
      * @param {?} route
-     * @param {?} segments
+     * @param {?} _segments
      * @return {?}
      */
     SimpleGuard.prototype.canLoad = 
     // lazy loading
     /**
      * @param {?} route
-     * @param {?} segments
+     * @param {?} _segments
      * @return {?}
      */
-    function (route, segments) {
+    function (route, _segments) {
         this.url = route.path;
         return this.process();
     };
     // all children route
     // all children route
     /**
-     * @param {?} childRoute
+     * @param {?} _childRoute
      * @param {?} state
      * @return {?}
      */
     SimpleGuard.prototype.canActivateChild = 
     // all children route
     /**
-     * @param {?} childRoute
+     * @param {?} _childRoute
      * @param {?} state
      * @return {?}
      */
-    function (childRoute, state) {
+    function (_childRoute, state) {
         this.url = state.url;
         return this.process();
     };
     // route
     // route
     /**
-     * @param {?} route
+     * @param {?} _route
      * @param {?} state
      * @return {?}
      */
     SimpleGuard.prototype.canActivate = 
     // route
     /**
-     * @param {?} route
+     * @param {?} _route
      * @param {?} state
      * @return {?}
      */
-    function (route, state) {
+    function (_route, state) {
         this.url = state.url;
         return this.process();
     };

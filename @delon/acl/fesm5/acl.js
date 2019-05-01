@@ -726,17 +726,17 @@ var ACLGuard = /** @class */ (function () {
     // route
     /**
      * @param {?} route
-     * @param {?} state
+     * @param {?} _state
      * @return {?}
      */
     ACLGuard.prototype.canActivate = 
     // route
     /**
      * @param {?} route
-     * @param {?} state
+     * @param {?} _state
      * @return {?}
      */
-    function (route, state) {
+    function (route, _state) {
         return this.process((route.data && route.data.guard) || null);
     };
     ACLGuard.decorators = [
