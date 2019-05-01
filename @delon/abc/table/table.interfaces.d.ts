@@ -1,7 +1,6 @@
 import { HttpHeaders, HttpParams } from '@angular/common/http';
 import { DrawerHelperOptions, ModalHelperOptions, YNMode } from '@delon/theme';
-import { NzDrawerOptions } from 'ng-zorro-antd/drawer';
-import { ModalOptionsForService } from 'ng-zorro-antd/modal';
+import { ModalOptionsForService, NzDrawerOptions } from 'ng-zorro-antd';
 import { STComponent } from './table.component';
 export interface STWidthMode {
     /**
@@ -75,7 +74,7 @@ export interface STRes {
     /**
      * 数据预处理
      */
-    process?: (data: STData[]) => STData[];
+    process?: (data: STData[], rawData?: any) => STData[];
 }
 export interface STPage {
     /**

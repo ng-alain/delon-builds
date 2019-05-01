@@ -2,8 +2,7 @@ import { __decorate, __metadata } from 'tslib';
 import { Component, ChangeDetectionStrategy, ChangeDetectorRef, Input, NgModule } from '@angular/core';
 import { InputBoolean, DelonUtilModule } from '@delon/util';
 import { CommonModule } from '@angular/common';
-import { NzCardModule } from 'ng-zorro-antd/card';
-import { NzSpinModule } from 'ng-zorro-antd/spin';
+import { NgZorroAntdModule } from 'ng-zorro-antd';
 
 /**
  * @fileoverview added by tsickle
@@ -83,7 +82,7 @@ class G2CardModule {
 }
 G2CardModule.decorators = [
     { type: NgModule, args: [{
-                imports: [CommonModule, DelonUtilModule, NzCardModule, NzSpinModule],
+                imports: [CommonModule, DelonUtilModule, NgZorroAntdModule],
                 declarations: [...COMPONENTS],
                 exports: [...COMPONENTS],
             },] }

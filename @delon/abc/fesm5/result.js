@@ -2,7 +2,7 @@ import { Component, Input, NgModule } from '@angular/core';
 import { __spread } from 'tslib';
 import { CommonModule } from '@angular/common';
 import { DelonUtilModule } from '@delon/util';
-import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NgZorroAntdModule } from 'ng-zorro-antd';
 
 /**
  * @fileoverview added by tsickle
@@ -63,7 +63,7 @@ var ResultModule = /** @class */ (function () {
     }
     ResultModule.decorators = [
         { type: NgModule, args: [{
-                    imports: [CommonModule, NzIconModule, DelonUtilModule],
+                    imports: [CommonModule, NgZorroAntdModule, DelonUtilModule],
                     declarations: __spread(COMPONENTS),
                     exports: __spread(COMPONENTS),
                 },] }

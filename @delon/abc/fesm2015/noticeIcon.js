@@ -3,13 +3,7 @@ import { __decorate, __metadata } from 'tslib';
 import { DelonLocaleService, DelonLocaleModule } from '@delon/theme';
 import { InputNumber, InputBoolean } from '@delon/util';
 import { CommonModule } from '@angular/common';
-import { NzBadgeModule } from 'ng-zorro-antd/badge';
-import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
-import { NzIconModule } from 'ng-zorro-antd/icon';
-import { NzListModule } from 'ng-zorro-antd/list';
-import { NzSpinModule } from 'ng-zorro-antd/spin';
-import { NzTabsModule } from 'ng-zorro-antd/tabs';
-import { NzTagModule } from 'ng-zorro-antd/tag';
+import { NgZorroAntdModule } from 'ng-zorro-antd';
 
 /**
  * @fileoverview added by tsickle
@@ -126,7 +120,7 @@ NoticeIconComponent.decorators = [
     { type: Component, args: [{
                 selector: 'notice-icon',
                 exportAs: 'noticeIcon',
-                template: "<ng-template #badgeTpl>\n  <nz-badge [nzCount]=\"count\"\n            [ngClass]=\"btnClass\"\n            [nzStyle]=\"{ 'box-shadow': 'none' }\">\n    <i nz-icon nzType=\"bell\" [ngClass]=\"btnIconClass\"></i>\n  </nz-badge>\n</ng-template>\n<div *ngIf=\"data?.length === 0\">\n  <ng-template [ngTemplateOutlet]=\"badgeTpl\"></ng-template>\n</div>\n<nz-dropdown *ngIf=\"data?.length > 0\"\n             [nzVisible]=\"popoverVisible\"\n             (nzVisibleChange)=\"onVisibleChange($event)\"\n             nzTrigger=\"click\"\n             nzPlacement=\"bottomRight\"\n             [nzOverlayClassName]=\"['header-dropdown', 'notice-icon']\">\n  <div nz-dropdown>\n    <ng-template [ngTemplateOutlet]=\"badgeTpl\"></ng-template>\n  </div>\n  <nz-spin [nzSpinning]=\"loading\"\n           [nzDelay]=\"0\">\n    <nz-tabset nzSelectedIndex=\"0\">\n      <nz-tab *ngFor=\"let i of data\"\n              [nzTitle]=\"i.title\">\n        <notice-icon-tab [locale]=\"locale\"\n                         [data]=\"i\"\n                         (select)=\"onSelect($event)\"\n                         (clear)=\"onClear($event)\"></notice-icon-tab>\n      </nz-tab>\n    </nz-tabset>\n  </nz-spin>\n</nz-dropdown>\n",
+                template: "<ng-template #badgeTpl>\n  <nz-badge [nzCount]=\"count\"\n            [ngClass]=\"btnClass\"\n            [nzStyle]=\"{ 'box-shadow': 'none' }\">\n    <i nz-icon\n       type=\"bell\"\n       [ngClass]=\"btnIconClass\"></i>\n  </nz-badge>\n</ng-template>\n<div *ngIf=\"data?.length === 0\">\n  <ng-template [ngTemplateOutlet]=\"badgeTpl\"></ng-template>\n</div>\n<nz-dropdown *ngIf=\"data?.length > 0\"\n             [nzVisible]=\"popoverVisible\"\n             (nzVisibleChange)=\"onVisibleChange($event)\"\n             nzTrigger=\"click\"\n             nzPlacement=\"bottomRight\"\n             [nzOverlayClassName]=\"['header-dropdown', 'notice-icon']\">\n  <div nz-dropdown>\n    <ng-template [ngTemplateOutlet]=\"badgeTpl\"></ng-template>\n  </div>\n  <nz-spin [nzSpinning]=\"loading\"\n           [nzDelay]=\"0\">\n    <nz-tabset nzSelectedIndex=\"0\">\n      <nz-tab *ngFor=\"let i of data\"\n              [nzTitle]=\"i.title\">\n        <notice-icon-tab [locale]=\"locale\"\n                         [data]=\"i\"\n                         (select)=\"onSelect($event)\"\n                         (clear)=\"onClear($event)\"></notice-icon-tab>\n      </nz-tab>\n    </nz-tabset>\n  </nz-spin>\n</nz-dropdown>\n",
                 host: { '[class.notice-icon__btn]': 'true' },
                 changeDetection: ChangeDetectionStrategy.OnPush
             }] }
@@ -170,17 +164,7 @@ class NoticeIconModule {
 }
 NoticeIconModule.decorators = [
     { type: NgModule, args: [{
-                imports: [
-                    CommonModule,
-                    DelonLocaleModule,
-                    NzBadgeModule,
-                    NzDropDownModule,
-                    NzIconModule,
-                    NzListModule,
-                    NzSpinModule,
-                    NzTabsModule,
-                    NzTagModule,
-                ],
+                imports: [CommonModule, DelonLocaleModule, NgZorroAntdModule],
                 declarations: [...COMPONENTS, NoticeIconTabComponent],
                 exports: [...COMPONENTS],
             },] }

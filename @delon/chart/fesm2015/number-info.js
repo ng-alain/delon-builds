@@ -2,7 +2,7 @@ import { __decorate, __metadata } from 'tslib';
 import { Component, ChangeDetectionStrategy, ElementRef, Renderer2, Input, NgModule } from '@angular/core';
 import { updateHostClass, InputNumber, DelonUtilModule } from '@delon/util';
 import { CommonModule } from '@angular/common';
-import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NgZorroAntdModule } from 'ng-zorro-antd';
 
 /**
  * @fileoverview added by tsickle
@@ -46,7 +46,7 @@ NumberInfoComponent.decorators = [
     { type: Component, args: [{
                 selector: 'number-info',
                 exportAs: 'numberInfo',
-                template: "<div *ngIf=\"title\" class=\"number-info__title\">\n  <ng-container *stringTemplateOutlet=\"title\">{{title}}</ng-container>\n</div>\n<div *ngIf=\"subTitle\" class=\"number-info__title-sub\">\n  <ng-container *stringTemplateOutlet=\"subTitle\">{{subTitle}}</ng-container>\n</div>\n<div class=\"number-info__value\" [ngStyle]=\"{'margin-top.px': gap}\">\n  <span class=\"number-info__value-text\">\n    <ng-container *stringTemplateOutlet=\"total\">{{total}}</ng-container>\n    <em class=\"number-info__value-suffix\" *ngIf=\"suffix\">{{suffix}}</em>\n  </span>\n  <span *ngIf=\"status || subTotal\" class=\"number-info__value-text number-info__value-sub\">\n    <ng-container *stringTemplateOutlet=\"subTotal\">{{subTotal}}</ng-container>\n    <i *ngIf=\"status\" nz-icon nzType=\"caret-{{status}}\"></i>\n  </span>\n</div>\n",
+                template: "<div *ngIf=\"title\" class=\"number-info__title\">\n  <ng-container *stringTemplateOutlet=\"title\">{{title}}</ng-container>\n</div>\n<div *ngIf=\"subTitle\" class=\"number-info__title-sub\">\n  <ng-container *stringTemplateOutlet=\"subTitle\">{{subTitle}}</ng-container>\n</div>\n<div class=\"number-info__value\" [ngStyle]=\"{'margin-top.px': gap}\">\n  <span class=\"number-info__value-text\">\n    <ng-container *stringTemplateOutlet=\"total\">{{total}}</ng-container>\n    <em class=\"number-info__value-suffix\" *ngIf=\"suffix\">{{suffix}}</em>\n  </span>\n  <span *ngIf=\"status || subTotal\" class=\"number-info__value-text number-info__value-sub\">\n    <ng-container *stringTemplateOutlet=\"subTotal\">{{subTotal}}</ng-container>\n    <i *ngIf=\"status\" nz-icon type=\"caret-{{status}}\"></i>\n  </span>\n</div>\n",
                 changeDetection: ChangeDetectionStrategy.OnPush
             }] }
 ];
@@ -80,7 +80,7 @@ class NumberInfoModule {
 }
 NumberInfoModule.decorators = [
     { type: NgModule, args: [{
-                imports: [CommonModule, NzIconModule, DelonUtilModule],
+                imports: [CommonModule, NgZorroAntdModule, DelonUtilModule],
                 declarations: [...COMPONENTS],
                 exports: [...COMPONENTS],
             },] }

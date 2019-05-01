@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util'), require('@angular/common'), require('ng-zorro-antd/card'), require('ng-zorro-antd/spin')) :
-    typeof define === 'function' && define.amd ? define('@delon/chart/card', ['exports', '@angular/core', '@delon/util', '@angular/common', 'ng-zorro-antd/card', 'ng-zorro-antd/spin'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.card = {}), global.ng.core, global.delon.util, global.ng.common, global['ng-zorro-antd/card'], global['ng-zorro-antd/spin']));
-}(this, function (exports, core, util, common, card, spin) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util'), require('@angular/common'), require('ng-zorro-antd')) :
+    typeof define === 'function' && define.amd ? define('@delon/chart/card', ['exports', '@angular/core', '@delon/util', '@angular/common', 'ng-zorro-antd'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.card = {}), global.ng.core, global.delon.util, global.ng.common, global['ng-zorro-antd']));
+}(this, function (exports, core, util, common, ngZorroAntd) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -142,7 +142,7 @@
         }
         G2CardModule.decorators = [
             { type: core.NgModule, args: [{
-                        imports: [common.CommonModule, util.DelonUtilModule, card.NzCardModule, spin.NzSpinModule],
+                        imports: [common.CommonModule, util.DelonUtilModule, ngZorroAntd.NgZorroAntdModule],
                         declarations: __spread(COMPONENTS),
                         exports: __spread(COMPONENTS),
                     },] }

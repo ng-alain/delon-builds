@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/theme'), require('@delon/util'), require('@angular/common'), require('ng-zorro-antd/icon')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/tag-select', ['exports', '@angular/core', '@delon/theme', '@delon/util', '@angular/common', 'ng-zorro-antd/icon'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['tag-select'] = {}), global.ng.core, global.delon.theme, global.delon.util, global.ng.common, global['ng-zorro-antd/icon']));
-}(this, function (exports, core, theme, util, common, icon) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/theme'), require('@delon/util'), require('@angular/common'), require('ng-zorro-antd')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/tag-select', ['exports', '@angular/core', '@delon/theme', '@delon/util', '@angular/common', 'ng-zorro-antd'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['tag-select'] = {}), global.ng.core, global.delon.theme, global.delon.util, global.ng.common, global['ng-zorro-antd']));
+}(this, function (exports, core, theme, util, common, ngZorroAntd) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -113,7 +113,7 @@
             { type: core.Component, args: [{
                         selector: 'tag-select',
                         exportAs: 'tagSelect',
-                        template: "<ng-content></ng-content>\n<a *ngIf=\"expandable\" class=\"tag-select__trigger\" (click)=\"trigger()\">\n  {{expand ? locale.collapse : locale.expand}}<i nz-icon [nzType]=\"expand ? 'up' : 'down'\" class=\"tag-select__trigger-icon\"></i>\n</a>\n",
+                        template: "<ng-content></ng-content>\n<a *ngIf=\"expandable\" class=\"tag-select__trigger\" (click)=\"trigger()\">\n  {{expand ? locale.collapse : locale.expand}}<i nz-icon [type]=\"expand ? 'up' : 'down'\" class=\"tag-select__trigger-icon\"></i>\n</a>\n",
                         host: {
                             '[class.tag-select]': 'true',
                             '[class.tag-select__has-expand]': 'expandable',
@@ -149,7 +149,7 @@
         }
         TagSelectModule.decorators = [
             { type: core.NgModule, args: [{
-                        imports: [common.CommonModule, icon.NzIconModule, theme.DelonLocaleModule, util.DelonUtilModule],
+                        imports: [common.CommonModule, ngZorroAntd.NgZorroAntdModule, theme.DelonLocaleModule, util.DelonUtilModule],
                         declarations: __spread(COMPONENTS),
                         exports: __spread(COMPONENTS),
                     },] }

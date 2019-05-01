@@ -1,5 +1,5 @@
 import { OnInit } from '@angular/core';
-import { TransferCanMove, TransferChange, TransferItem, TransferSearchChange, TransferSelectChange } from 'ng-zorro-antd/transfer';
+import { TransferCanMove, TransferChange, TransferItem, TransferSearchChange, TransferSelectChange } from 'ng-zorro-antd';
 import { Observable } from 'rxjs';
 import { SFValue } from '../../interface';
 import { SFSchemaEnum } from '../../schema';

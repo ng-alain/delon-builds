@@ -5,7 +5,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { InputBoolean, InputNumber, DelonUtilModule } from '@delon/util';
 import { take } from 'rxjs/operators';
 import { ObserversModule } from '@angular/cdk/observers';
-import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
+import { NgZorroAntdModule } from 'ng-zorro-antd';
 
 /**
  * @fileoverview added by tsickle
@@ -383,7 +383,7 @@ var EllipsisModule = /** @class */ (function () {
     }
     EllipsisModule.decorators = [
         { type: NgModule, args: [{
-                    imports: [CommonModule, ObserversModule, DelonUtilModule, NzToolTipModule],
+                    imports: [CommonModule, ObserversModule, DelonUtilModule, NgZorroAntdModule],
                     declarations: __spread(COMPONENTS),
                     exports: __spread(COMPONENTS),
                 },] }

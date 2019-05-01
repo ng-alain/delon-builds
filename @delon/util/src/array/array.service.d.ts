@@ -1,4 +1,4 @@
-import { NzTreeNode } from 'ng-zorro-antd/core';
+import { NzTreeNode } from 'ng-zorro-antd';
 import { DelonUtilConfig } from '../util.config';
 export interface ArrayServiceTreeToArrOptions {
     /** 深度项名，默认：`'deep'` */

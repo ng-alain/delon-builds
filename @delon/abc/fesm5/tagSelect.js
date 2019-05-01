@@ -3,7 +3,7 @@ import { Component, ChangeDetectionStrategy, ChangeDetectorRef, Input, Output, E
 import { DelonLocaleService, DelonLocaleModule } from '@delon/theme';
 import { InputBoolean, DelonUtilModule } from '@delon/util';
 import { CommonModule } from '@angular/common';
-import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NgZorroAntdModule } from 'ng-zorro-antd';
 
 /**
  * @fileoverview added by tsickle
@@ -60,7 +60,7 @@ var TagSelectComponent = /** @class */ (function () {
         { type: Component, args: [{
                     selector: 'tag-select',
                     exportAs: 'tagSelect',
-                    template: "<ng-content></ng-content>\n<a *ngIf=\"expandable\" class=\"tag-select__trigger\" (click)=\"trigger()\">\n  {{expand ? locale.collapse : locale.expand}}<i nz-icon [nzType]=\"expand ? 'up' : 'down'\" class=\"tag-select__trigger-icon\"></i>\n</a>\n",
+                    template: "<ng-content></ng-content>\n<a *ngIf=\"expandable\" class=\"tag-select__trigger\" (click)=\"trigger()\">\n  {{expand ? locale.collapse : locale.expand}}<i nz-icon [type]=\"expand ? 'up' : 'down'\" class=\"tag-select__trigger-icon\"></i>\n</a>\n",
                     host: {
                         '[class.tag-select]': 'true',
                         '[class.tag-select__has-expand]': 'expandable',
@@ -96,7 +96,7 @@ var TagSelectModule = /** @class */ (function () {
     }
     TagSelectModule.decorators = [
         { type: NgModule, args: [{
-                    imports: [CommonModule, NzIconModule, DelonLocaleModule, DelonUtilModule],
+                    imports: [CommonModule, NgZorroAntdModule, DelonLocaleModule, DelonUtilModule],
                     declarations: __spread(COMPONENTS),
                     exports: __spread(COMPONENTS),
                 },] }

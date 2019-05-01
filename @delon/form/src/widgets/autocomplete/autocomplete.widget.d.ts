@@ -1,5 +1,5 @@
 import { AfterViewInit } from '@angular/core';
-import { NzAutocompleteOptionComponent } from 'ng-zorro-antd/auto-complete';
+import { NzAutocompleteOptionComponent } from 'ng-zorro-antd';
 import { Observable } from 'rxjs';
 import { SFValue } from '../../interface';
 import { SFSchemaEnum } from '../../schema';

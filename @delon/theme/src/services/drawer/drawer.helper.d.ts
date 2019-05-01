@@ -1,4 +1,4 @@
-import { NzDrawerOptions, NzDrawerService } from 'ng-zorro-antd/drawer';
+import { NzDrawerOptions, NzDrawerService } from 'ng-zorro-antd';
 import { Observable } from 'rxjs';
 export interface DrawerHelperOptions {
     /**

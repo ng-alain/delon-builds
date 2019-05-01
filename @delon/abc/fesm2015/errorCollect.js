@@ -2,7 +2,6 @@ import { __decorate, __metadata } from 'tslib';
 import { DOCUMENT, CommonModule } from '@angular/common';
 import { Injectable, defineInjectable, Component, ChangeDetectionStrategy, ElementRef, ChangeDetectorRef, Inject, Input, NgModule } from '@angular/core';
 import { InputNumber, DelonUtilModule } from '@delon/util';
-import { NzIconModule } from 'ng-zorro-antd/icon';
 
 /**
  * @fileoverview added by tsickle
@@ -138,7 +137,7 @@ ErrorCollectComponent.decorators = [
                 selector: 'error-collect, [error-collect]',
                 exportAs: 'errorCollect',
                 template: `
-    <i nz-icon nzType="exclamation-circle"></i>
+    <i nz-icon type="exclamation-circle"></i>
     <span class="pl-sm">{{ count }}</span>
   `,
                 host: {
@@ -179,7 +178,7 @@ class ErrorCollectModule {
 }
 ErrorCollectModule.decorators = [
     { type: NgModule, args: [{
-                imports: [CommonModule, DelonUtilModule, NzIconModule],
+                imports: [CommonModule, DelonUtilModule],
                 declarations: [...COMPONENTS],
                 exports: [...COMPONENTS],
             },] }

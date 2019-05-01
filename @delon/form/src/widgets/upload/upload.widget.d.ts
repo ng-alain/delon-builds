@@ -1,5 +1,5 @@
 import { OnInit } from '@angular/core';
-import { UploadChangeParam, UploadFile } from 'ng-zorro-antd/upload';
+import { UploadChangeParam, UploadFile } from 'ng-zorro-antd';
 import { SFValue } from '../../interface';
 import { ControlWidget } from '../../widget';
 export declare class UploadWidget extends ControlWidget implements OnInit {

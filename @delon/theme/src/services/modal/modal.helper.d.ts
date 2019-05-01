@@ -1,4 +1,4 @@
-import { ModalOptionsForService, NzModalService } from 'ng-zorro-antd/modal';
+import { ModalOptionsForService, NzModalService } from 'ng-zorro-antd';
 import { Observable } from 'rxjs';
 export interface ModalHelperOptions {
     /** 大小；例如：lg、600，默认：`lg` */

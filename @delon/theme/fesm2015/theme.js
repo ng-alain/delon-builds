@@ -6,14 +6,14 @@ import { DOCUMENT, CurrencyPipe, CommonModule } from '@angular/common';
 import { Title, DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { deepMerge } from '@delon/util';
-import { NzModalService } from 'ng-zorro-antd/modal';
-import { NzDrawerService } from 'ng-zorro-antd/drawer';
+import { NzModalService, NzDrawerService, NzIconService } from 'ng-zorro-antd';
+import { NzModalService as NzModalService$1 } from 'ng-zorro-antd/modal';
+import { NzDrawerService as NzDrawerService$1 } from 'ng-zorro-antd/drawer';
 import { HttpParams, HttpClient } from '@angular/common/http';
 import distanceInWordsToNow from 'date-fns/distance_in_words_to_now';
 import format from 'date-fns/format';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { BellOutline, CaretUpOutline, DeleteOutline, PlusOutline, InboxOutline } from '@ant-design/icons-angular/icons';
-import { NzIconService } from 'ng-zorro-antd/icon';
 
 /**
  * @fileoverview added by tsickle
@@ -1456,7 +1456,7 @@ ModalHelper.decorators = [
 ModalHelper.ctorParameters = () => [
     { type: NzModalService }
 ];
-/** @nocollapse */ ModalHelper.ngInjectableDef = defineInjectable({ factory: function ModalHelper_Factory() { return new ModalHelper(inject(NzModalService)); }, token: ModalHelper, providedIn: "root" });
+/** @nocollapse */ ModalHelper.ngInjectableDef = defineInjectable({ factory: function ModalHelper_Factory() { return new ModalHelper(inject(NzModalService$1)); }, token: ModalHelper, providedIn: "root" });
 
 /**
  * @fileoverview added by tsickle
@@ -1587,7 +1587,7 @@ DrawerHelper.decorators = [
 DrawerHelper.ctorParameters = () => [
     { type: NzDrawerService }
 ];
-/** @nocollapse */ DrawerHelper.ngInjectableDef = defineInjectable({ factory: function DrawerHelper_Factory() { return new DrawerHelper(inject(NzDrawerService)); }, token: DrawerHelper, providedIn: "root" });
+/** @nocollapse */ DrawerHelper.ngInjectableDef = defineInjectable({ factory: function DrawerHelper_Factory() { return new DrawerHelper(inject(NzDrawerService$1)); }, token: DrawerHelper, providedIn: "root" });
 
 /**
  * @fileoverview added by tsickle
@@ -2329,7 +2329,7 @@ AlainThemeModule.ctorParameters = () => [
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-const VERSION = new Version('7.3.1-a950e896');
+const VERSION = new Version('7.3.1-94f8ae7');
 
 /**
  * @fileoverview added by tsickle

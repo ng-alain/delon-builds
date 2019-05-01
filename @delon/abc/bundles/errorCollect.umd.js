@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common'), require('@angular/core'), require('@delon/util'), require('ng-zorro-antd/icon')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/error-collect', ['exports', '@angular/common', '@angular/core', '@delon/util', 'ng-zorro-antd/icon'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['error-collect'] = {}), global.ng.common, global.ng.core, global.delon.util, global['ng-zorro-antd/icon']));
-}(this, function (exports, common, core, util, icon) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common'), require('@angular/core'), require('@delon/util')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/error-collect', ['exports', '@angular/common', '@angular/core', '@delon/util'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['error-collect'] = {}), global.ng.common, global.ng.core, global.delon.util));
+}(this, function (exports, common, core, util) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -228,7 +228,7 @@
             { type: core.Component, args: [{
                         selector: 'error-collect, [error-collect]',
                         exportAs: 'errorCollect',
-                        template: "\n    <i nz-icon nzType=\"exclamation-circle\"></i>\n    <span class=\"pl-sm\">{{ count }}</span>\n  ",
+                        template: "\n    <i nz-icon type=\"exclamation-circle\"></i>\n    <span class=\"pl-sm\">{{ count }}</span>\n  ",
                         host: {
                             '[class.error-collect]': 'true',
                             '[class.d-none]': '_hiden',
@@ -270,7 +270,7 @@
         }
         ErrorCollectModule.decorators = [
             { type: core.NgModule, args: [{
-                        imports: [common.CommonModule, util.DelonUtilModule, icon.NzIconModule],
+                        imports: [common.CommonModule, util.DelonUtilModule],
                         declarations: __spread(COMPONENTS),
                         exports: __spread(COMPONENTS),
                     },] }

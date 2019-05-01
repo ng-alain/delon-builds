@@ -247,7 +247,7 @@ var G2TimelineComponent = /** @class */ (function () {
         { type: Component, args: [{
                     selector: 'g2-timeline',
                     exportAs: 'g2Timeline',
-                    template: "<ng-container *stringTemplateOutlet=\"title\">\n  <h4>{{title}}</h4>\n</ng-container>\n<div #container></div>\n<div #sliderContainer *ngIf=\"slider\"></div>\n",
+                    template: "<ng-container *stringTemplateOutlet=\"title\">\n  <h4>{{title}}</h4>\n</ng-container>\n<div #container></div>\n<div #sliderContainer\n     *ngIf=\"slider\"></div>\n",
                     changeDetection: ChangeDetectionStrategy.OnPush
                 }] }
     ];
