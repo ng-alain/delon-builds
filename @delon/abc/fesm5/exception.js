@@ -4,7 +4,7 @@ import { isEmpty, DelonUtilModule } from '@delon/util';
 import { __spread } from 'tslib';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { NgZorroAntdModule } from 'ng-zorro-antd';
+import { NzButtonModule } from 'ng-zorro-antd/button';
 
 /**
  * @fileoverview added by tsickle
@@ -147,7 +147,7 @@ var ExceptionModule = /** @class */ (function () {
     }
     ExceptionModule.decorators = [
         { type: NgModule, args: [{
-                    imports: [CommonModule, RouterModule, DelonUtilModule, DelonLocaleModule, NgZorroAntdModule],
+                    imports: [CommonModule, RouterModule, DelonUtilModule, DelonLocaleModule, NzButtonModule],
                     declarations: __spread(COMPONENTS),
                     exports: __spread(COMPONENTS),
                 },] }

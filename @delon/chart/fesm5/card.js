@@ -2,7 +2,8 @@ import { __decorate, __metadata, __spread } from 'tslib';
 import { Component, ChangeDetectionStrategy, ChangeDetectorRef, Input, NgModule } from '@angular/core';
 import { InputBoolean, DelonUtilModule } from '@delon/util';
 import { CommonModule } from '@angular/common';
-import { NgZorroAntdModule } from 'ng-zorro-antd';
+import { NzCardModule } from 'ng-zorro-antd/card';
+import { NzSpinModule } from 'ng-zorro-antd/spin';
 
 /**
  * @fileoverview added by tsickle
@@ -88,7 +89,7 @@ var G2CardModule = /** @class */ (function () {
     }
     G2CardModule.decorators = [
         { type: NgModule, args: [{
-                    imports: [CommonModule, DelonUtilModule, NgZorroAntdModule],
+                    imports: [CommonModule, DelonUtilModule, NzCardModule, NzSpinModule],
                     declarations: __spread(COMPONENTS),
                     exports: __spread(COMPONENTS),
                 },] }

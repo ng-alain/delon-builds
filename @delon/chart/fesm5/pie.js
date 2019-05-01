@@ -4,7 +4,7 @@ import { updateHostClass, InputNumber, InputBoolean, DelonUtilModule } from '@de
 import { fromEvent } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
-import { NgZorroAntdModule } from 'ng-zorro-antd';
+import { NzDividerModule } from 'ng-zorro-antd/divider';
 
 /**
  * @fileoverview added by tsickle
@@ -366,7 +366,7 @@ var G2PieModule = /** @class */ (function () {
     }
     G2PieModule.decorators = [
         { type: NgModule, args: [{
-                    imports: [CommonModule, DelonUtilModule, NgZorroAntdModule],
+                    imports: [CommonModule, DelonUtilModule, NzDividerModule],
                     declarations: __spread(COMPONENTS),
                     exports: __spread(COMPONENTS),
                 },] }

@@ -10,7 +10,16 @@ import { XlsxService } from '@delon/abc/xlsx';
 import { __decorate, __metadata } from 'tslib';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { NgZorroAntdModule } from 'ng-zorro-antd';
+import { NzBadgeModule } from 'ng-zorro-antd/badge';
+import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
+import { NzDividerModule } from 'ng-zorro-antd/divider';
+import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
+import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzMenuModule } from 'ng-zorro-antd/menu';
+import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
+import { NzRadioModule } from 'ng-zorro-antd/radio';
+import { NzTableModule } from 'ng-zorro-antd/table';
+import { NzTagModule } from 'ng-zorro-antd/tag';
 
 /**
  * @fileoverview added by tsickle
@@ -2377,7 +2386,22 @@ class STModule {
 STModule.decorators = [
     { type: NgModule, args: [{
                 schemas: [NO_ERRORS_SCHEMA],
-                imports: [CommonModule, FormsModule, DelonUtilModule, DelonACLModule, NgZorroAntdModule],
+                imports: [
+                    CommonModule,
+                    FormsModule,
+                    DelonUtilModule,
+                    DelonACLModule,
+                    NzPopconfirmModule,
+                    NzTableModule,
+                    NzIconModule,
+                    NzBadgeModule,
+                    NzCheckboxModule,
+                    NzDividerModule,
+                    NzDropDownModule,
+                    NzMenuModule,
+                    NzRadioModule,
+                    NzTagModule,
+                ],
                 declarations: [...COMPONENTS],
                 exports: [...COMPONENTS],
             },] }

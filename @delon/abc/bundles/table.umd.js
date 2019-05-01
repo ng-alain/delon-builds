@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/acl'), require('@delon/theme'), require('@delon/util'), require('@angular/common'), require('@angular/platform-browser'), require('rxjs'), require('rxjs/operators'), require('@delon/abc/xlsx'), require('@angular/router'), require('@angular/forms'), require('ng-zorro-antd')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/table', ['exports', '@angular/core', '@delon/acl', '@delon/theme', '@delon/util', '@angular/common', '@angular/platform-browser', 'rxjs', 'rxjs/operators', '@delon/abc/xlsx', '@angular/router', '@angular/forms', 'ng-zorro-antd'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.table = {}), global.ng.core, global.delon.acl, global.delon.theme, global.delon.util, global.ng.common, global.ng.platformBrowser, global.rxjs, global.rxjs.operators, global.delon.abc.xlsx, global.ng.router, global.ng.forms, global['ng-zorro-antd']));
-}(this, function (exports, core, acl, theme, util, common, platformBrowser, rxjs, operators, xlsx, router, forms, ngZorroAntd) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/acl'), require('@delon/theme'), require('@delon/util'), require('@angular/common'), require('@angular/platform-browser'), require('rxjs'), require('rxjs/operators'), require('@delon/abc/xlsx'), require('@angular/router'), require('@angular/forms'), require('ng-zorro-antd/badge'), require('ng-zorro-antd/checkbox'), require('ng-zorro-antd/divider'), require('ng-zorro-antd/dropdown'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/menu'), require('ng-zorro-antd/popconfirm'), require('ng-zorro-antd/radio'), require('ng-zorro-antd/table'), require('ng-zorro-antd/tag')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/table', ['exports', '@angular/core', '@delon/acl', '@delon/theme', '@delon/util', '@angular/common', '@angular/platform-browser', 'rxjs', 'rxjs/operators', '@delon/abc/xlsx', '@angular/router', '@angular/forms', 'ng-zorro-antd/badge', 'ng-zorro-antd/checkbox', 'ng-zorro-antd/divider', 'ng-zorro-antd/dropdown', 'ng-zorro-antd/icon', 'ng-zorro-antd/menu', 'ng-zorro-antd/popconfirm', 'ng-zorro-antd/radio', 'ng-zorro-antd/table', 'ng-zorro-antd/tag'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.table = {}), global.ng.core, global.delon.acl, global.delon.theme, global.delon.util, global.ng.common, global.ng.platformBrowser, global.rxjs, global.rxjs.operators, global.delon.abc.xlsx, global.ng.router, global.ng.forms, global['ng-zorro-antd/badge'], global['ng-zorro-antd/checkbox'], global['ng-zorro-antd/divider'], global['ng-zorro-antd/dropdown'], global['ng-zorro-antd/icon'], global['ng-zorro-antd/menu'], global['ng-zorro-antd/popconfirm'], global['ng-zorro-antd/radio'], global['ng-zorro-antd/table'], global['ng-zorro-antd/tag']));
+}(this, function (exports, core, acl, theme, util, common, platformBrowser, rxjs, operators, xlsx, router, forms, badge, checkbox, divider, dropdown, icon, menu, popconfirm, radio, table, tag) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -2977,7 +2977,22 @@
         STModule.decorators = [
             { type: core.NgModule, args: [{
                         schemas: [core.NO_ERRORS_SCHEMA],
-                        imports: [common.CommonModule, forms.FormsModule, util.DelonUtilModule, acl.DelonACLModule, ngZorroAntd.NgZorroAntdModule],
+                        imports: [
+                            common.CommonModule,
+                            forms.FormsModule,
+                            util.DelonUtilModule,
+                            acl.DelonACLModule,
+                            popconfirm.NzPopconfirmModule,
+                            table.NzTableModule,
+                            icon.NzIconModule,
+                            badge.NzBadgeModule,
+                            checkbox.NzCheckboxModule,
+                            divider.NzDividerModule,
+                            dropdown.NzDropDownModule,
+                            menu.NzMenuModule,
+                            radio.NzRadioModule,
+                            tag.NzTagModule,
+                        ],
                         declarations: __spread(COMPONENTS),
                         exports: __spread(COMPONENTS),
                     },] }

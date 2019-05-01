@@ -3,7 +3,7 @@ import { Component, ChangeDetectionStrategy, ChangeDetectorRef, Input, NgModule 
 import { DelonLocaleService, DelonLocaleModule } from '@delon/theme';
 import { toNumber, InputNumber, DelonUtilModule } from '@delon/util';
 import { CommonModule } from '@angular/common';
-import { NgZorroAntdModule } from 'ng-zorro-antd';
+import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 
 /**
  * @fileoverview added by tsickle
@@ -79,7 +79,7 @@ class G2MiniProgressModule {
 }
 G2MiniProgressModule.decorators = [
     { type: NgModule, args: [{
-                imports: [CommonModule, DelonUtilModule, DelonLocaleModule, NgZorroAntdModule],
+                imports: [CommonModule, DelonUtilModule, DelonLocaleModule, NzToolTipModule],
                 declarations: [...COMPONENTS],
                 exports: [...COMPONENTS],
             },] }
