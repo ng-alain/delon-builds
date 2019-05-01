@@ -18,6 +18,7 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
 import { NzMentionModule } from 'ng-zorro-antd/mention';
+import { NzModalService, NzModalModule } from 'ng-zorro-antd/modal';
 import { NzRadioModule } from 'ng-zorro-antd/radio';
 import { NzRateModule } from 'ng-zorro-antd/rate';
 import { NzSelectModule } from 'ng-zorro-antd/select';
@@ -30,7 +31,6 @@ import { NzTransferModule } from 'ng-zorro-antd/transfer';
 import { NzTreeSelectModule } from 'ng-zorro-antd/tree-select';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
 import format from 'date-fns/format';
-import { NzModalService } from 'ng-zorro-antd/modal';
 
 /**
  * @fileoverview added by tsickle
@@ -4086,6 +4086,7 @@ const ZORROS = [
     NzInputModule,
     NzInputNumberModule,
     NzMentionModule,
+    NzModalModule,
     NzRadioModule,
     NzRateModule,
     NzSelectModule,
