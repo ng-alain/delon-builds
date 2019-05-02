@@ -10,5 +10,5 @@ export declare class ACLGuard implements CanActivate, CanActivateChild, CanLoad 
     private process;
     canLoad(route: Route): Observable<boolean>;
     canActivateChild(childRoute: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean>;
-    canActivate(route: ActivatedRouteSnapshot, _state: RouterStateSnapshot | null): Observable<boolean>;
+    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot | null): Observable<boolean>;
 }

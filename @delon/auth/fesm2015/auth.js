@@ -638,10 +638,10 @@ class JWTInterceptor extends BaseInterceptor {
     }
     /**
      * @param {?} req
-     * @param {?} _options
+     * @param {?} options
      * @return {?}
      */
-    setReq(req, _options) {
+    setReq(req, options) {
         return req.clone({
             setHeaders: {
                 Authorization: `Bearer ${this.model.token}`,
@@ -683,30 +683,30 @@ class JWTGuard {
     // lazy loading
     /**
      * @param {?} route
-     * @param {?} _segments
+     * @param {?} segments
      * @return {?}
      */
-    canLoad(route, _segments) {
+    canLoad(route, segments) {
         this.url = route.path;
         return this.process();
     }
     // all children route
     /**
-     * @param {?} _childRoute
+     * @param {?} childRoute
      * @param {?} state
      * @return {?}
      */
-    canActivateChild(_childRoute, state) {
+    canActivateChild(childRoute, state) {
         this.url = state.url;
         return this.process();
     }
     // route
     /**
-     * @param {?} _route
+     * @param {?} route
      * @param {?} state
      * @return {?}
      */
-    canActivate(_route, state) {
+    canActivate(route, state) {
         this.url = state.url;
         return this.process();
     }
@@ -735,10 +735,10 @@ class SimpleTokenModel {
  */
 class SimpleInterceptor extends BaseInterceptor {
     /**
-     * @param {?} _options
+     * @param {?} options
      * @return {?}
      */
-    isAuth(_options) {
+    isAuth(options) {
         this.model = (/** @type {?} */ (this.injector.get(DA_SERVICE_TOKEN).get()));
         return CheckSimple((/** @type {?} */ (this.model)));
     }
@@ -816,30 +816,30 @@ class SimpleGuard {
     // lazy loading
     /**
      * @param {?} route
-     * @param {?} _segments
+     * @param {?} segments
      * @return {?}
      */
-    canLoad(route, _segments) {
+    canLoad(route, segments) {
         this.url = route.path;
         return this.process();
     }
     // all children route
     /**
-     * @param {?} _childRoute
+     * @param {?} childRoute
      * @param {?} state
      * @return {?}
      */
-    canActivateChild(_childRoute, state) {
+    canActivateChild(childRoute, state) {
         this.url = state.url;
         return this.process();
     }
     // route
     /**
-     * @param {?} _route
+     * @param {?} route
      * @param {?} state
      * @return {?}
      */
-    canActivate(_route, state) {
+    canActivate(route, state) {
         this.url = state.url;
         return this.process();
     }

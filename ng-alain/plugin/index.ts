@@ -16,7 +16,7 @@ import { pluginNetworkEnv } from './plugin.network-env';
 import { pluginSTS } from './plugin.sts';
 
 function installPackages() {
-  return (_host: Tree, context: SchematicContext) => {
+  return (host: Tree, context: SchematicContext) => {
     context.addTask(new NodePackageInstallTask());
   };
 }
@@ -65,7 +65,7 @@ export default function(options: PluginSchema): Rule {
         rules.push(...pluginSTS(pluginOptions));
         break;
       case 'asdf':
-        rules.push(pluginAsdf());
+        rules.push(pluginAsdf(pluginOptions));
         break;
       default:
         throw new SchematicsException(`Could not find plugin name: ${options.name}`);

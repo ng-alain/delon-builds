@@ -165,11 +165,11 @@
             chart.legend(false);
             chart.coord('theta', { innerRadius: inner });
             chart.filter('x', (/**
-             * @param {?} _val
+             * @param {?} val
              * @param {?} item
              * @return {?}
              */
-            function (_val, item) { return item.checked !== false; }));
+            function (val, item) { return item.checked !== false; }));
             chart
                 .intervalStack()
                 .position('y')

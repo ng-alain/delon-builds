@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const json_1 = require("../utils/json");
-function g2Typing(host) {
+function g2Typing(host, options) {
     const typingsPath = '/src/typings.d.ts';
     if (!host.exists(typingsPath)) {
         host.create(typingsPath, '');
@@ -16,9 +16,9 @@ declare var Slider: any;`;
     host.overwrite(typingsPath, content);
 }
 function pluginG2(options) {
-    return (host) => {
+    return (host, context) => {
         // typing
-        g2Typing(host);
+        g2Typing(host, options);
         // package
         (options.type === 'add' ? json_1.addPackageToPackageJson : json_1.removePackageFromPackageJson)(host, [
             '@antv/data-set@^0.10.2',

@@ -14,7 +14,7 @@ import { addPackageToPackageJson, removePackageFromPackageJson } from '../utils/
 import { PluginOptions } from './interface';
 
 function fixPackage(options: PluginOptions) {
-  return (host: Tree) => {
+  return (host: Tree, context: SchematicContext) => {
     (options.type === 'add' ? addPackageToPackageJson : removePackageFromPackageJson)(
       host,
       ['ng-alain-sts@DEP-7.3.1'],
@@ -23,16 +23,16 @@ function fixPackage(options: PluginOptions) {
   };
 }
 
-function fixFiles() {
+function fixFiles(options: PluginOptions) {
   return chain([mergeWith(apply(url('./files/sts'), [move('/_cli-tpl')]), MergeStrategy.Overwrite)]);
 }
 
 function installPackages() {
-  return (_host: Tree, context: SchematicContext) => {
+  return (host: Tree, context: SchematicContext) => {
     context.addTask(new NodePackageInstallTask());
   };
 }
 
 export function pluginSTS(options: PluginOptions): Rule[] {
-  return [fixPackage(options), fixFiles(), installPackages()];
+  return [fixPackage(options), fixFiles(options), installPackages()];
 }

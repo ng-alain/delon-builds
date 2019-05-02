@@ -111,7 +111,8 @@ function genByComp(node) {
     const themes = getNgValue(theme);
     if (themes == null || themes.length === 0)
         return types;
-    return [].concat(...types.map(a => themes.map(b => `${a}#${b}`)));
+    const res = [].concat(...types.map(a => themes.map(b => `${a}#${b}`)));
+    return res;
 }
 function genByAttribute(node) {
     if (!ATTRIBUTE_NAMES.includes(node.nodeName))

@@ -107,11 +107,11 @@ class G2PieComponent {
         chart.legend(false);
         chart.coord('theta', { innerRadius: inner });
         chart.filter('x', (/**
-         * @param {?} _val
+         * @param {?} val
          * @param {?} item
          * @return {?}
          */
-        (_val, item) => item.checked !== false));
+        (val, item) => item.checked !== false));
         chart
             .intervalStack()
             .position('y')

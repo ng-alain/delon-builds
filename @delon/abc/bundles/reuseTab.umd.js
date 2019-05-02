@@ -1181,18 +1181,18 @@
         /**
          * @private
          * @param {?} method
-         * @param {?} _url
+         * @param {?} url
          * @param {?} comp
          * @return {?}
          */
         ReuseTabService.prototype.runHook = /**
          * @private
          * @param {?} method
-         * @param {?} _url
+         * @param {?} url
          * @param {?} comp
          * @return {?}
          */
-        function (method, _url, comp) {
+        function (method, url, comp) {
             if (comp.instance && typeof comp.instance[method] === 'function')
                 comp.instance[method]();
         };

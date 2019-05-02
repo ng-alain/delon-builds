@@ -49,39 +49,39 @@ export declare const Headers: (key?: string | undefined, ...extraOptions: any[])
  * `OPTIONS` 请求
  * - 有效范围：方法
  */
-export declare const OPTIONS: (url?: string, options?: HttpOptions | undefined) => (_target: BaseApi, targetKey?: string | undefined, descriptor?: PropertyDescriptor | undefined) => PropertyDescriptor | undefined;
+export declare const OPTIONS: (url?: string, options?: HttpOptions | undefined) => (target: BaseApi, targetKey?: string | undefined, descriptor?: PropertyDescriptor | undefined) => PropertyDescriptor | undefined;
 /**
  * `GET` 请求
  * - 有效范围：方法
  */
-export declare const GET: (url?: string, options?: HttpOptions | undefined) => (_target: BaseApi, targetKey?: string | undefined, descriptor?: PropertyDescriptor | undefined) => PropertyDescriptor | undefined;
+export declare const GET: (url?: string, options?: HttpOptions | undefined) => (target: BaseApi, targetKey?: string | undefined, descriptor?: PropertyDescriptor | undefined) => PropertyDescriptor | undefined;
 /**
  * `POST` 请求
  * - 有效范围：方法
  */
-export declare const POST: (url?: string, options?: HttpOptions | undefined) => (_target: BaseApi, targetKey?: string | undefined, descriptor?: PropertyDescriptor | undefined) => PropertyDescriptor | undefined;
+export declare const POST: (url?: string, options?: HttpOptions | undefined) => (target: BaseApi, targetKey?: string | undefined, descriptor?: PropertyDescriptor | undefined) => PropertyDescriptor | undefined;
 /**
  * `DELETE` 请求
  * - 有效范围：方法
  */
-export declare const DELETE: (url?: string, options?: HttpOptions | undefined) => (_target: BaseApi, targetKey?: string | undefined, descriptor?: PropertyDescriptor | undefined) => PropertyDescriptor | undefined;
+export declare const DELETE: (url?: string, options?: HttpOptions | undefined) => (target: BaseApi, targetKey?: string | undefined, descriptor?: PropertyDescriptor | undefined) => PropertyDescriptor | undefined;
 /**
  * `PUT` 请求
  * - 有效范围：方法
  */
-export declare const PUT: (url?: string, options?: HttpOptions | undefined) => (_target: BaseApi, targetKey?: string | undefined, descriptor?: PropertyDescriptor | undefined) => PropertyDescriptor | undefined;
+export declare const PUT: (url?: string, options?: HttpOptions | undefined) => (target: BaseApi, targetKey?: string | undefined, descriptor?: PropertyDescriptor | undefined) => PropertyDescriptor | undefined;
 /**
  * `HEAD` 请求
  * - 有效范围：方法
  */
-export declare const HEAD: (url?: string, options?: HttpOptions | undefined) => (_target: BaseApi, targetKey?: string | undefined, descriptor?: PropertyDescriptor | undefined) => PropertyDescriptor | undefined;
+export declare const HEAD: (url?: string, options?: HttpOptions | undefined) => (target: BaseApi, targetKey?: string | undefined, descriptor?: PropertyDescriptor | undefined) => PropertyDescriptor | undefined;
 /**
  * `PATCH` 请求
  * - 有效范围：方法
  */
-export declare const PATCH: (url?: string, options?: HttpOptions | undefined) => (_target: BaseApi, targetKey?: string | undefined, descriptor?: PropertyDescriptor | undefined) => PropertyDescriptor | undefined;
+export declare const PATCH: (url?: string, options?: HttpOptions | undefined) => (target: BaseApi, targetKey?: string | undefined, descriptor?: PropertyDescriptor | undefined) => PropertyDescriptor | undefined;
 /**
  * `JSONP` 请求
  * - 有效范围：方法
  */
-export declare const JSONP: (url?: string, options?: HttpOptions | undefined) => (_target: BaseApi, targetKey?: string | undefined, descriptor?: PropertyDescriptor | undefined) => PropertyDescriptor | undefined;
+export declare const JSONP: (url?: string, options?: HttpOptions | undefined) => (target: BaseApi, targetKey?: string | undefined, descriptor?: PropertyDescriptor | undefined) => PropertyDescriptor | undefined;

@@ -104,11 +104,11 @@
                 return _a = {}, _a[strArr[0].trim()] = value, _a;
             }));
             return arr.reduce((/**
-             * @param {?} _o
+             * @param {?} o
              * @param {?} item
              * @return {?}
              */
-            function (_o, item) { return item; }), {});
+            function (o, item) { return item; }), {});
         };
         /**
          * @return {?}

@@ -226,9 +226,10 @@ class SidebarNavComponent {
         if (!this.openStrictly) {
             this.menuSrv.visit(this._d, (/**
              * @param {?} i
+             * @param {?} p
              * @return {?}
              */
-            i => {
+            (i, p) => {
                 if (i !== item)
                     i._open = false;
             }));

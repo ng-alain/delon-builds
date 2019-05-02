@@ -325,11 +325,11 @@ class CacheService {
      */
     clear() {
         this.notifyBuffer.forEach((/**
-         * @param {?} _v
+         * @param {?} v
          * @param {?} k
          * @return {?}
          */
-        (_v, k) => this.runNotify(k, 'remove')));
+        (v, k) => this.runNotify(k, 'remove')));
         this.memory.clear();
         this.meta.forEach((/**
          * @param {?} key
@@ -378,11 +378,11 @@ class CacheService {
         /** @type {?} */
         const removed = [];
         this.notifyBuffer.forEach((/**
-         * @param {?} _v
+         * @param {?} v
          * @param {?} key
          * @return {?}
          */
-        (_v, key) => {
+        (v, key) => {
             if (this.has(key) && this.getNone(key) === null)
                 removed.push(key);
         }));

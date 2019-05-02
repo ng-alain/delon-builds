@@ -58,11 +58,11 @@ class DownFileDirective {
             return { [strArr[0].trim()]: value };
         }));
         return arr.reduce((/**
-         * @param {?} _o
+         * @param {?} o
          * @param {?} item
          * @return {?}
          */
-        (_o, item) => item), {});
+        (o, item) => item), {});
     }
     /**
      * @return {?}

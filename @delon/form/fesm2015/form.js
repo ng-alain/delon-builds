@@ -674,9 +674,10 @@ class FormProperty {
         if (hasCustomError) {
             list.forEach((/**
              * @param {?} err
+             * @param {?} idx
              * @return {?}
              */
-            err => {
+            (err, idx) => {
                 if (!err.message)
                     throw new Error(`The custom validator must contain a 'message' attribute to viewed error text`);
                 err._custom = true;
@@ -725,11 +726,11 @@ class FormProperty {
                 if (message) {
                     if (~((/** @type {?} */ (message))).indexOf('{')) {
                         message = ((/** @type {?} */ (message))).replace(/{([\.a-z0-9]+)}/g, (/**
-                         * @param {?} _v
+                         * @param {?} v
                          * @param {?} key
                          * @return {?}
                          */
-                        (_v, key) => (/** @type {?} */ (err.params))[key] || ''));
+                        (v, key) => (/** @type {?} */ (err.params))[key] || ''));
                     }
                     err.message = (/** @type {?} */ (message));
                 }
@@ -1737,13 +1738,13 @@ class SFComponent {
         /** @type {?} */
         const inFn = (/**
          * @param {?} schema
-         * @param {?} _parentSchema
+         * @param {?} parentSchema
          * @param {?} uiSchema
          * @param {?} parentUiSchema
          * @param {?} uiRes
          * @return {?}
          */
-        (schema, _parentSchema, uiSchema, parentUiSchema, uiRes) => {
+        (schema, parentSchema, uiSchema, parentUiSchema, uiRes) => {
             Object.keys((/** @type {?} */ (schema.properties))).forEach((/**
              * @param {?} key
              * @return {?}
@@ -2407,17 +2408,17 @@ Widget.propDecorators = {
 };
 class ControlWidget extends Widget {
     /**
-     * @param {?} _value
+     * @param {?} value
      * @return {?}
      */
-    reset(_value) { }
+    reset(value) { }
 }
 class ArrayLayoutWidget extends Widget {
     /**
-     * @param {?} _value
+     * @param {?} value
      * @return {?}
      */
-    reset(_value) { }
+    reset(value) { }
     /**
      * @return {?}
      */
@@ -2432,10 +2433,10 @@ class ArrayLayoutWidget extends Widget {
 }
 class ObjectLayoutWidget extends Widget {
     /**
-     * @param {?} _value
+     * @param {?} value
      * @return {?}
      */
-    reset(_value) { }
+    reset(value) { }
     /**
      * @return {?}
      */
@@ -2556,10 +2557,10 @@ class AutoCompleteWidget extends ControlWidget {
         res => getEnum(res, null, (/** @type {?} */ (this.schema.readOnly))))));
     }
     /**
-     * @param {?} _value
+     * @param {?} value
      * @return {?}
      */
-    reset(_value) {
+    reset(value) {
         this.typing = this.value;
         if (this.isAsync)
             return;
@@ -2652,10 +2653,10 @@ class CascaderWidget extends ControlWidget {
         }
     }
     /**
-     * @param {?} _value
+     * @param {?} value
      * @return {?}
      */
-    reset(_value) {
+    reset(value) {
         getData(this.schema, {}, this.formProperty.formData).subscribe((/**
          * @param {?} list
          * @return {?}
@@ -2734,10 +2735,10 @@ class CheckboxWidget extends ControlWidget {
         return (/** @type {?} */ (this.formProperty.root.widget.sfComp)).locale;
     }
     /**
-     * @param {?} _value
+     * @param {?} value
      * @return {?}
      */
-    reset(_value) {
+    reset(value) {
         this.inited = false;
         getData(this.schema, this.ui, this.formProperty.formData).subscribe((/**
          * @param {?} list
@@ -3067,10 +3068,10 @@ class MentionWidget extends ControlWidget {
         }
     }
     /**
-     * @param {?} _value
+     * @param {?} value
      * @return {?}
      */
-    reset(_value) {
+    reset(value) {
         getData(this.schema, this.ui, null).subscribe((/**
          * @param {?} list
          * @return {?}
@@ -3257,10 +3258,10 @@ class RadioWidget extends ControlWidget {
         this.data = [];
     }
     /**
-     * @param {?} _value
+     * @param {?} value
      * @return {?}
      */
-    reset(_value) {
+    reset(value) {
         this.styleType = (this.ui.styleType || 'default') === 'default';
         getData(this.schema, this.ui, this.formProperty.formData).subscribe((/**
          * @param {?} list
@@ -3510,10 +3511,10 @@ StringWidget.decorators = [
  */
 class TagWidget extends ControlWidget {
     /**
-     * @param {?} _value
+     * @param {?} value
      * @return {?}
      */
-    reset(_value) {
+    reset(value) {
         getData(this.schema, this.ui, this.formProperty.formData).subscribe((/**
          * @param {?} list
          * @return {?}
@@ -3717,10 +3718,10 @@ class TransferWidget extends ControlWidget {
         };
     }
     /**
-     * @param {?} _value
+     * @param {?} value
      * @return {?}
      */
-    reset(_value) {
+    reset(value) {
         getData(this.schema, this.ui, null).subscribe((/**
          * @param {?} list
          * @return {?}
@@ -3839,10 +3840,10 @@ class TreeSelectWidget extends ControlWidget {
         };
     }
     /**
-     * @param {?} _value
+     * @param {?} value
      * @return {?}
      */
-    reset(_value) {
+    reset(value) {
         getData(this.schema, this.ui, this.formProperty.formData).subscribe((/**
          * @param {?} list
          * @return {?}
@@ -3971,10 +3972,10 @@ class UploadWidget extends ControlWidget {
         this._setValue(args.fileList);
     }
     /**
-     * @param {?} _value
+     * @param {?} value
      * @return {?}
      */
-    reset(_value) {
+    reset(value) {
         const { fileList } = this.ui;
         (fileList ? of(fileList) : getData(this.schema, this.ui, this.formProperty.formData)).subscribe((/**
          * @param {?} list

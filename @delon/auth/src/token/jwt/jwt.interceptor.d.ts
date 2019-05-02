@@ -3,5 +3,5 @@ import { DelonAuthConfig } from '../../auth.config';
 import { BaseInterceptor } from '../base.interceptor';
 export declare class JWTInterceptor extends BaseInterceptor {
     isAuth(options: DelonAuthConfig): boolean;
-    setReq(req: HttpRequest<any>, _options: DelonAuthConfig): HttpRequest<any>;
+    setReq(req: HttpRequest<any>, options: DelonAuthConfig): HttpRequest<any>;
 }
