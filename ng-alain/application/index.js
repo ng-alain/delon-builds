@@ -40,7 +40,7 @@ function fixMain() {
     };
 }
 function addDependenciesToPackageJson(options) {
-    return (host) => {
+    return (host, context) => {
         // 3rd
         json_1.addPackageToPackageJson(host, [
             // allow ignore ng-zorro-antd becauce of @delon/theme dependency
@@ -72,7 +72,7 @@ function addDependenciesToPackageJson(options) {
     };
 }
 function addRunScriptToPackageJson() {
-    return (host) => {
+    return (host, context) => {
         const json = json_1.getPackage(host, 'scripts');
         if (json == null)
             return host;
@@ -87,7 +87,7 @@ function addRunScriptToPackageJson() {
     };
 }
 function addPathsToTsConfig() {
-    return (host) => {
+    return (host, context) => {
         [
             {
                 path: 'tsconfig.json',
@@ -122,7 +122,7 @@ function addPathsToTsConfig() {
     };
 }
 function addCodeStylesToPackageJson() {
-    return (host) => {
+    return (host, context) => {
         const json = json_1.getPackage(host);
         if (json == null)
             return host;
@@ -189,7 +189,7 @@ function addCodeStylesToPackageJson() {
     };
 }
 function addSchematics() {
-    return (host) => {
+    return (host, context) => {
         const angularJsonFile = 'angular.json';
         const json = json_1.getJSON(host, angularJsonFile, 'schematics');
         if (json == null)
@@ -232,11 +232,11 @@ function addSchematics() {
     };
 }
 function forceLess() {
-    return (host) => {
+    return (host, context) => {
         json_1.scriptsToAngularJson(host, ['src/styles.less'], 'add', ['build'], null, true);
     };
 }
-function addStyle() {
+function addStyle(options) {
     return (host) => {
         html_1.addHeadStyle(host, project, `  <style type="text/css">.preloader{position:fixed;top:0;left:0;width:100%;height:100%;overflow:hidden;background:#49a9ee;z-index:9999;transition:opacity .65s}.preloader-hidden-add{opacity:1;display:block}.preloader-hidden-add-active{opacity:0}.preloader-hidden{display:none}.cs-loader{position:absolute;top:0;left:0;height:100%;width:100%}.cs-loader-inner{transform:translateY(-50%);top:50%;position:absolute;width:100%;color:#fff;text-align:center}.cs-loader-inner label{font-size:20px;opacity:0;display:inline-block}@keyframes lol{0%{opacity:0;transform:translateX(-300px)}33%{opacity:1;transform:translateX(0)}66%{opacity:1;transform:translateX(0)}100%{opacity:0;transform:translateX(300px)}}.cs-loader-inner label:nth-child(6){animation:lol 3s infinite ease-in-out}.cs-loader-inner label:nth-child(5){animation:lol 3s .1s infinite ease-in-out}.cs-loader-inner label:nth-child(4){animation:lol 3s .2s infinite ease-in-out}.cs-loader-inner label:nth-child(3){animation:lol 3s .3s infinite ease-in-out}.cs-loader-inner label:nth-child(2){animation:lol 3s .4s infinite ease-in-out}.cs-loader-inner label:nth-child(1){animation:lol 3s .5s infinite ease-in-out}</style>`);
         html_1.addHtmlToBody(host, project, `  <div class="preloader"><div class="cs-loader"><div class="cs-loader-inner"><label>	●</label><label>	●</label><label>	●</label><label>	●</label><label>	●</label><label>	●</label></div></div>\n`);
@@ -254,7 +254,7 @@ function mergeFiles(options, from, to) {
         schematics_1.move(to),
     ]));
 }
-function addCliTpl() {
+function addCliTpl(options) {
     const TPLS = {
         '__name@dasherize__.component.html': `<page-header></page-header>`,
         '__name@dasherize__.component.ts': `import { Component, OnInit<% if(!!viewEncapsulation) { %>, ViewEncapsulation<% }%><% if(changeDetection !== 'Default') { %>, ChangeDetectionStrategy<% }%> } from '@angular/core';
@@ -351,28 +351,28 @@ function fixLangInHtml(host, p, langs) {
     let html = host.get(p).content.toString('utf8');
     let matchCount = 0;
     // {{(status ? 'menu.fullscreen.exit' : 'menu.fullscreen') | translate }}
-    html = html.replace(/\{\{\(status \? '([^']+)' : '([^']+)'\) \| translate \}\}/g, (_word, key1, key2) => {
+    html = html.replace(/\{\{\(status \? '([^']+)' : '([^']+)'\) \| translate \}\}/g, (word, key1, key2) => {
         ++matchCount;
         return `{{ status ? '${langs[key1] || key1}' : '${langs[key2] || key2}' }}`;
     });
     // {{ 'app.register-result.msg' | translate:params }}
-    html = html.replace(/\{\{[ ]?'([^']+)'[ ]? \| translate:[^ ]+ \}\}/g, (_word, key) => {
+    html = html.replace(/\{\{[ ]?'([^']+)'[ ]? \| translate:[^ ]+ \}\}/g, (word, key) => {
         ++matchCount;
         return langs[key] || key;
     });
     // {{ 'Please enter mobile number!' | translate }}
-    html = html.replace(/\{\{[ ]?'([^']+)' \| translate[ ]?\}\}/g, (_word, key) => {
+    html = html.replace(/\{\{[ ]?'([^']+)' \| translate[ ]?\}\}/g, (word, key) => {
         ++matchCount;
         return langs[key] || key;
     });
     // [nzTitle]="'app.login.tab-login-credentials' | translate"
-    html = html.replace(/'([^']+)' \| translate[ ]?/g, (_word, key) => {
+    html = html.replace(/'([^']+)' \| translate[ ]?/g, (word, key) => {
         ++matchCount;
         const value = langs[key] || key;
         return `'${value}'`;
     });
     // 'app.register.get-verification-code' | translate
-    html = html.replace(/'([^']+)' \| translate/g, (_word, key) => {
+    html = html.replace(/'([^']+)' \| translate/g, (word, key) => {
         ++matchCount;
         return langs[key] || key;
     });
@@ -385,7 +385,7 @@ function fixLangInHtml(host, p, langs) {
         host.overwrite(p, html);
     }
 }
-function fixVsCode() {
+function fixVsCode(options) {
     return (host) => {
         const filePath = '.vscode/extensions.json';
         let json = json_1.getJSON(host, filePath);
@@ -398,7 +398,7 @@ function fixVsCode() {
     };
 }
 function installPackages() {
-    return (_host, context) => {
+    return (host, context) => {
         console.log(`Start installing dependencies, please wait...`);
         context.addTask(new tasks_1.NodePackageInstallTask());
     };
@@ -418,12 +418,12 @@ function default_1(options) {
             // files
             removeOrginalFiles(),
             addFilesToRoot(options),
-            addCliTpl(),
+            addCliTpl(options),
             fixMain(),
             forceLess(),
-            addStyle(),
+            addStyle(options),
             fixLang(options),
-            fixVsCode(),
+            fixVsCode(options),
             installPackages(),
         ])(host, context);
     };

@@ -4,7 +4,7 @@ const schematics_1 = require("@angular-devkit/schematics");
 const change_1 = require("@schematics/angular/utility/change");
 const parse5 = require("parse5");
 /** Gets the app index.html file */
-function getIndexHtmlPath(_host, project) {
+function getIndexHtmlPath(host, project) {
     const buildTarget = (project.targets || project.architect).build.options;
     if (buildTarget.index && buildTarget.index.endsWith('index.html')) {
         return buildTarget.index;
@@ -46,7 +46,7 @@ function getTag(host, src, tagName) {
     };
 }
 exports.getTag = getTag;
-function getTagInV4(_host, src, tagName) {
+function getTagInV4(host, src, tagName) {
     const document = parse5.parse(src, {
         locationInfo: true,
     });

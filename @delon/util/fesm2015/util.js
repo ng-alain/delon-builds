@@ -136,9 +136,10 @@ function deepCopy(obj) {
 function copy(value) {
     return new Promise((/**
      * @param {?} resolve
+     * @param {?} reject
      * @return {?}
      */
-    (resolve) => {
+    (resolve, reject) => {
         /** @type {?} */
         let copyTextArea = null;
         try {
@@ -247,11 +248,11 @@ function deepMerge(original, ...objects) {
  */
 function format(str, obj, needDeepGet = false) {
     return (str || '').replace(/\${([^}]+)}/g, (/**
-     * @param {?} _work
+     * @param {?} work
      * @param {?} key
      * @return {?}
      */
-    (_work, key) => needDeepGet ? deepGet(obj, key.split('.'), '') : (obj || {})[key] || ''));
+    (work, key) => needDeepGet ? deepGet(obj, key.split('.'), '') : (obj || {})[key] || ''));
 }
 
 /**

@@ -789,17 +789,17 @@
         // route
         /**
          * @param {?} route
-         * @param {?} _state
+         * @param {?} state
          * @return {?}
          */
         ACLGuard.prototype.canActivate = 
         // route
         /**
          * @param {?} route
-         * @param {?} _state
+         * @param {?} state
          * @return {?}
          */
-        function (route, _state) {
+        function (route, state) {
             return this.process((route.data && route.data.guard) || null);
         };
         ACLGuard.decorators = [

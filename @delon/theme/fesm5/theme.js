@@ -2195,6 +2195,7 @@ var _HttpClient = /** @class */ (function () {
         return this.request('DELETE', url, __assign({ params: params }, options));
     };
     // #endregion
+    // #region jsonp
     /**
      * `jsonp` 请求
      *
@@ -2203,6 +2204,7 @@ var _HttpClient = /** @class */ (function () {
      * @param callbackParam CALLBACK值，默认：JSONP_CALLBACK
      */
     // #endregion
+    // #region jsonp
     /**
      * `jsonp` 请求
      *
@@ -2213,6 +2215,7 @@ var _HttpClient = /** @class */ (function () {
      */
     _HttpClient.prototype.jsonp = 
     // #endregion
+    // #region jsonp
     /**
      * `jsonp` 请求
      *
@@ -2286,35 +2289,21 @@ var _HttpClient = /** @class */ (function () {
         return this.request('PUT', url, __assign({ body: body,
             params: params }, options));
     };
-    // #endregion
     /**
-     * `request` 请求
-     *
-     * @param method 请求方法类型
-     * @param url URL地址
-     * @param options 参数
-     */
-    // #endregion
-    /**
-     * `request` 请求
-     *
-     * @param {?} method 请求方法类型
-     * @param {?} url URL地址
-     * @param {?=} options 参数
+     * @param {?} method
+     * @param {?} url
+     * @param {?=} options
      * @return {?}
      */
-    _HttpClient.prototype.request = 
-    // #endregion
-    /**
-     * `request` 请求
-     *
-     * @param {?} method 请求方法类型
-     * @param {?} url URL地址
-     * @param {?=} options 参数
+    _HttpClient.prototype.request = /**
+     * @param {?} method
+     * @param {?} url
+     * @param {?=} options
      * @return {?}
      */
     function (method, url, options) {
         var _this = this;
+        if (options === void 0) { options = {}; }
         this.begin();
         if (options) {
             if (options.params)
@@ -2487,12 +2476,12 @@ function makeMethod(method) {
     function (url, options) {
         if (url === void 0) { url = ''; }
         return (/**
-         * @param {?} _target
+         * @param {?} target
          * @param {?=} targetKey
          * @param {?=} descriptor
          * @return {?}
          */
-        function (_target, targetKey, descriptor) {
+        function (target, targetKey, descriptor) {
             (/** @type {?} */ (descriptor)).value = (/**
              * @param {...?} args
              * @return {?}
@@ -2936,7 +2925,7 @@ var AlainThemeModule = /** @class */ (function () {
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-var VERSION = new Version('7.3.1-a5868c2');
+var VERSION = new Version('7.3.1-914b9679');
 
 /**
  * @fileoverview added by tsickle

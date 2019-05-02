@@ -180,7 +180,7 @@ class DomService {
         this.resolveExtra(dom, rule);
     }
     /** 添加未指定属性名的 ng-template */
-    resolveAddTemplateAtrr(dom, _attrName, rule) {
+    resolveAddTemplateAtrr(dom, attrName, rule) {
         const ngDom = dom.children.find(w => w.type === 'tag' && w.name === 'ng-template' && typeof w.attribs[`#${rule.value}`] !== 'undefined');
         if (ngDom) {
             dom.attribs[`[${rule.extra_name || rule.value}]`] = rule.value;
@@ -188,7 +188,7 @@ class DomService {
         this.resolveExtra(dom, rule);
     }
     /** 除 ng-template 以外所有子项都应该包裹至 rule.value 下面 */
-    resolveAddContentToTemplate(dom, _attrName, rule) {
+    resolveAddContentToTemplate(dom, attrName, rule) {
         if (dom.children.length === 0)
             return;
         const contentList = dom.children.filter(w => w.name !== 'ng-template');
@@ -209,7 +209,7 @@ class DomService {
         }
     }
     /** 为所有 ng-template 名称增加一个前缀 */
-    resolveAddPrefixToTemplate(dom, _attrName, rule) {
+    resolveAddPrefixToTemplate(dom, attrName, rule) {
         Object.keys(dom.attribs).forEach(k => {
             const ngDom = dom.children.find(s => s.type === 'tag' && s.name === 'ng-template' && typeof s.attribs[`#${dom.attribs[k]}`] !== 'undefined');
             if (!ngDom)
@@ -268,8 +268,6 @@ class DomService {
                 if (item.type === 'text') {
                     if (item.data.trim().length === 0)
                         continue;
-                    const a = this.genTab(deep);
-                    const b = item.data.trim();
                     result.push(`${this.genTab(deep)}${item.data.trim()}`);
                     continue;
                 }

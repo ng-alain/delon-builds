@@ -14,7 +14,7 @@ export declare class AutoCompleteWidget extends ControlWidget implements AfterVi
     private isAsync;
     updateValue(item: NzAutocompleteOptionComponent): void;
     ngAfterViewInit(): void;
-    reset(_value: SFValue): void;
+    reset(value: SFValue): void;
     private filterData;
     private addEmailSuffix;
 }

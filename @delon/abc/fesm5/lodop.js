@@ -264,12 +264,12 @@ var LodopService = /** @class */ (function () {
                 if (arr != null && Array.isArray(arr) && contextObj) {
                     for (var i = 0; i < arr.length; i++) {
                         if (typeof arr[i] === 'string') {
-                            arr[i] = ((/** @type {?} */ (arr[i]))).replace(/{{(.*?)}}/g, (/**
-                             * @param {?} _match
+                            arr[i] = arr[i].replace(/{{(.*?)}}/g, (/**
+                             * @param {?} match
                              * @param {?} key
                              * @return {?}
                              */
-                            function (_match, key) { return contextObj[key.trim()] || ''; }));
+                            function (match, key) { return contextObj[key.trim()] || ''; }));
                         }
                     }
                 }

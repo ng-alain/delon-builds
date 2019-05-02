@@ -478,11 +478,11 @@
         function () {
             var _this = this;
             this.notifyBuffer.forEach((/**
-             * @param {?} _v
+             * @param {?} v
              * @param {?} k
              * @return {?}
              */
-            function (_v, k) { return _this.runNotify(k, 'remove'); }));
+            function (v, k) { return _this.runNotify(k, 'remove'); }));
             this.memory.clear();
             this.meta.forEach((/**
              * @param {?} key
@@ -555,11 +555,11 @@
             /** @type {?} */
             var removed = [];
             this.notifyBuffer.forEach((/**
-             * @param {?} _v
+             * @param {?} v
              * @param {?} key
              * @return {?}
              */
-            function (_v, key) {
+            function (v, key) {
                 if (_this.has(key) && _this.getNone(key) === null)
                     removed.push(key);
             }));

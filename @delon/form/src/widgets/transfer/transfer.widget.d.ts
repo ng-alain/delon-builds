@@ -9,7 +9,7 @@ export declare class TransferWidget extends ControlWidget implements OnInit {
     i: any;
     private _data;
     ngOnInit(): void;
-    reset(_value: SFValue): void;
+    reset(value: SFValue): void;
     private notify;
     _canMove: (arg: TransferCanMove) => Observable<TransferItem[]>;
     _change(options: TransferChange): void;

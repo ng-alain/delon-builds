@@ -820,11 +820,11 @@ class ReuseTabService {
     /**
      * @private
      * @param {?} method
-     * @param {?} _url
+     * @param {?} url
      * @param {?} comp
      * @return {?}
      */
-    runHook(method, _url, comp) {
+    runHook(method, url, comp) {
         if (comp.instance && typeof comp.instance[method] === 'function')
             comp.instance[method]();
     }

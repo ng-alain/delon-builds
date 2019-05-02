@@ -94,7 +94,7 @@ function findIcons(html: string): string[] {
   return res;
 }
 
-function genByClass(node: DefaultTreeElement): string | null {
+function genByClass(node: DefaultTreeElement): string {
   const attr = node.attrs.find(a => a.name === 'class');
   if (!attr || !attr.value) return null;
   const match = (attr.value as string).match(/anticon(-\w+)+/g);
@@ -102,7 +102,7 @@ function genByClass(node: DefaultTreeElement): string | null {
   return match[0];
 }
 
-function genByComp(node: DefaultTreeElement): string[] | null {
+function genByComp(node: DefaultTreeElement): string[] {
   if (!node.attrs.find(attr => attr.name === 'nz-icon')) return null;
 
   const type = node.attrs.find(attr => attr.name === 'type' || attr.name === '[type]');
@@ -112,13 +112,15 @@ function genByComp(node: DefaultTreeElement): string[] | null {
   if (types == null) return null;
 
   const theme = node.attrs.find(attr => attr.name === 'theme' || attr.name === '[theme]');
-  const themes = getNgValue(theme!);
+  const themes = getNgValue(theme);
   if (themes == null || themes.length === 0) return types;
 
-  return [].concat(...types.map(a => themes.map(b => `${a}#${b}`)));
+  const res = [].concat(...types.map(a => themes.map(b => `${a}#${b}`)));
+
+  return res;
 }
 
-function genByAttribute(node: DefaultTreeElement): string[] | null {
+function genByAttribute(node: DefaultTreeElement): string[] {
   if (!ATTRIBUTE_NAMES.includes(node.nodeName)) return null;
 
   const attributes = ATTRIBUTES[node.nodeName];
@@ -131,7 +133,7 @@ function genByAttribute(node: DefaultTreeElement): string[] | null {
   return types;
 }
 
-function getNgValue(attr: Attribute): string[] | null {
+function getNgValue(attr: Attribute): string[] {
   if (!attr) return null;
 
   const str = attr.value.trim();
@@ -180,7 +182,7 @@ function fixTs(host: Tree, path: string) {
   return res;
 }
 
-function getIconNameByClassName(value: string): string | null {
+function getIconNameByClassName(value: string): string {
   let res = value.replace(/anticon anticon-/g, '').replace(/anticon-/g, '');
 
   if (value === 'anticon-spin' || value.indexOf('-o-') !== -1) {
@@ -219,7 +221,7 @@ function getIcons(host: Tree): string[] {
       res = fixTs(host, path);
     }
     if (path.endsWith('.html')) {
-      res = findIcons(host.read(path)!.toString());
+      res = findIcons(host.read(path).toString());
     }
     if (res.length > 0) {
       console.log(`found ${JSON.stringify(res)} icons in ${path}\n`);
@@ -256,7 +258,7 @@ export const ICONS = [ ];
     w.moduleSpecifier.getText().includes('@ant-design/icons-angular/icons'),
   ) as ts.ImportDeclaration;
   if (!iconImport) return;
-  (iconImport.importClause!.namedBindings as ts.NamedImports)!.elements!.forEach(v =>
+  (iconImport.importClause.namedBindings as ts.NamedImports)!.elements!.forEach(v =>
     WHITE_ICONS.push(v.getText().trim()),
   );
 }

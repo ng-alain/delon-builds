@@ -520,10 +520,10 @@ class ACLGuard {
     // route
     /**
      * @param {?} route
-     * @param {?} _state
+     * @param {?} state
      * @return {?}
      */
-    canActivate(route, _state) {
+    canActivate(route, state) {
         return this.process((route.data && route.data.guard) || null);
     }
 }

@@ -18,7 +18,7 @@ registry "https://registry.npm.taobao.org"`,
     },
 };
 function pluginNetworkEnv(options) {
-    return (host) => {
+    return (host, context) => {
         const item = CONFIG[options.packageManager || ''];
         if (item == null) {
             throw new schematics_1.SchematicsException(`Must be specified the "packageManager" parameter`);
