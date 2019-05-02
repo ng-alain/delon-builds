@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-function pluginAsdf(options) {
-    return (host, context) => {
+function pluginAsdf() {
+    return () => {
         console.log(`哈哈……什么都不做的！`);
     };
 }

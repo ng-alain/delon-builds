@@ -7,7 +7,7 @@ export declare class TreeSelectWidget extends ControlWidget implements OnInit {
     i: any;
     data: SFSchemaEnum[];
     ngOnInit(): void;
-    reset(value: SFValue): void;
+    reset(_value: SFValue): void;
     change(value: string[] | string): void;
     expandChange(e: NzFormatEmitEvent): void;
 }

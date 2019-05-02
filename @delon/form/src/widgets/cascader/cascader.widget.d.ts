@@ -10,7 +10,7 @@ export declare class CascaderWidget extends ControlWidget implements OnInit {
     data: SFSchemaEnum[];
     loadData: any;
     ngOnInit(): void;
-    reset(value: SFValue): void;
+    reset(_value: SFValue): void;
     _visibleChange(status: boolean): void;
     _change(value: string): void;
     _selectionChange(options: any): void;

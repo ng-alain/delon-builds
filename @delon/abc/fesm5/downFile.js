@@ -61,11 +61,11 @@ var DownFileDirective = /** @class */ (function () {
             return _a = {}, _a[strArr[0].trim()] = value, _a;
         }));
         return arr.reduce((/**
-         * @param {?} o
+         * @param {?} _o
          * @param {?} item
          * @return {?}
          */
-        function (o, item) { return item; }), {});
+        function (_o, item) { return item; }), {});
     };
     /**
      * @return {?}

@@ -32,7 +32,7 @@ function buildSelector(schema, projectPrefix) {
     ret.push(core_1.strings.dasherize(schema.name));
     return ret.join('-');
 }
-function buildComponentName(schema, projectPrefix) {
+function buildComponentName(schema, _projectPrefix) {
     const ret = [schema.module];
     if (schema.target && schema.target.length > 0) {
         ret.push(...schema.target.split('/'));

@@ -108,7 +108,7 @@ function setNginx(host, options) {
     }
 }
 function pluginDocker(options) {
-    return (host, context) => {
+    return (host) => {
         // 1. ignore file
         setIgnore(host, options);
         // 2. docker-compose

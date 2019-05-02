@@ -29,13 +29,13 @@ export declare abstract class Widget<T extends FormProperty> implements AfterVie
     abstract reset(value: SFValue): any;
 }
 export declare class ControlWidget extends Widget<FormProperty> {
-    reset(value: SFValue): void;
+    reset(_value: SFValue): void;
 }
 export declare class ArrayLayoutWidget extends Widget<ArrayProperty> implements AfterViewInit {
-    reset(value: SFValue): void;
+    reset(_value: SFValue): void;
     ngAfterViewInit(): void;
 }
 export declare class ObjectLayoutWidget extends Widget<ObjectProperty> implements AfterViewInit {
-    reset(value: SFValue): void;
+    reset(_value: SFValue): void;
     ngAfterViewInit(): void;
 }

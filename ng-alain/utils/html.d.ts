@@ -1,7 +1,7 @@
 import { Tree } from '@angular-devkit/schematics';
 import { Project } from './project';
 /** Gets the app index.html file */
-export declare function getIndexHtmlPath(host: Tree, project: Project): string;
+export declare function getIndexHtmlPath(_host: Tree, project: Project): string;
 /**
  * Parses the index.html file to get the HEAD tag position.
  */
@@ -9,7 +9,7 @@ export declare function getTag(host: Tree, src: string, tagName: string): {
     startOffset: any;
     endOffset: any;
 };
-export declare function getTagInV4(host: Tree, src: string, tagName: string): {
+export declare function getTagInV4(_host: Tree, src: string, tagName: string): {
     startOffset: any;
     endOffset: any;
 };
