@@ -271,10 +271,9 @@ var SidebarNavComponent = /** @class */ (function () {
         if (!this.openStrictly) {
             this.menuSrv.visit(this._d, (/**
              * @param {?} i
-             * @param {?} p
              * @return {?}
              */
-            function (i, p) {
+            function (i) {
                 if (i !== item)
                     i._open = false;
             }));

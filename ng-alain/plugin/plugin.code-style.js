@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const json_1 = require("../utils/json");
 function pluginCodeStyle(options) {
-    return (host, context) => {
+    return (host) => {
         const json = json_1.getJSON(host, 'package.json');
         if (json == null)
             return;

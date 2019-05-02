@@ -9,7 +9,7 @@ export declare class MentionWidget extends ControlWidget implements OnInit {
     i: any;
     loading: boolean;
     ngOnInit(): void;
-    reset(value: SFValue): void;
+    reset(_value: SFValue): void;
     _select(options: any): void;
     _search(option: any): void;
 }

@@ -446,11 +446,11 @@ var CacheService = /** @class */ (function () {
     function () {
         var _this = this;
         this.notifyBuffer.forEach((/**
-         * @param {?} v
+         * @param {?} _v
          * @param {?} k
          * @return {?}
          */
-        function (v, k) { return _this.runNotify(k, 'remove'); }));
+        function (_v, k) { return _this.runNotify(k, 'remove'); }));
         this.memory.clear();
         this.meta.forEach((/**
          * @param {?} key
@@ -523,11 +523,11 @@ var CacheService = /** @class */ (function () {
         /** @type {?} */
         var removed = [];
         this.notifyBuffer.forEach((/**
-         * @param {?} v
+         * @param {?} _v
          * @param {?} key
          * @return {?}
          */
-        function (v, key) {
+        function (_v, key) {
             if (_this.has(key) && _this.getNone(key) === null)
                 removed.push(key);
         }));

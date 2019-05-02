@@ -8,7 +8,7 @@ export declare class UploadWidget extends ControlWidget implements OnInit {
     btnType: string;
     ngOnInit(): void;
     change(args: UploadChangeParam): void;
-    reset(value: SFValue): void;
+    reset(_value: SFValue): void;
     private _getValue;
     private _setValue;
     handleRemove: () => boolean;

@@ -855,10 +855,9 @@
             if (hasCustomError) {
                 list.forEach((/**
                  * @param {?} err
-                 * @param {?} idx
                  * @return {?}
                  */
-                function (err, idx) {
+                function (err) {
                     if (!err.message)
                         throw new Error("The custom validator must contain a 'message' attribute to viewed error text");
                     err._custom = true;
@@ -921,11 +920,11 @@
                     if (message) {
                         if (~((/** @type {?} */ (message))).indexOf('{')) {
                             message = ((/** @type {?} */ (message))).replace(/{([\.a-z0-9]+)}/g, (/**
-                             * @param {?} v
+                             * @param {?} _v
                              * @param {?} key
                              * @return {?}
                              */
-                            function (v, key) { return (/** @type {?} */ (err.params))[key] || ''; }));
+                            function (_v, key) { return (/** @type {?} */ (err.params))[key] || ''; }));
                         }
                         err.message = (/** @type {?} */ (message));
                     }
@@ -2210,13 +2209,13 @@
             /** @type {?} */
             var inFn = (/**
              * @param {?} schema
-             * @param {?} parentSchema
+             * @param {?} _parentSchema
              * @param {?} uiSchema
              * @param {?} parentUiSchema
              * @param {?} uiRes
              * @return {?}
              */
-            function (schema, parentSchema, uiSchema, parentUiSchema, uiRes) {
+            function (schema, _parentSchema, uiSchema, parentUiSchema, uiRes) {
                 Object.keys((/** @type {?} */ (schema.properties))).forEach((/**
                  * @param {?} key
                  * @return {?}
@@ -2986,14 +2985,14 @@
             return _super !== null && _super.apply(this, arguments) || this;
         }
         /**
-         * @param {?} value
+         * @param {?} _value
          * @return {?}
          */
         ControlWidget.prototype.reset = /**
-         * @param {?} value
+         * @param {?} _value
          * @return {?}
          */
-        function (value) { };
+        function (_value) { };
         return ControlWidget;
     }(Widget));
     var ArrayLayoutWidget = /** @class */ (function (_super) {
@@ -3002,14 +3001,14 @@
             return _super !== null && _super.apply(this, arguments) || this;
         }
         /**
-         * @param {?} value
+         * @param {?} _value
          * @return {?}
          */
         ArrayLayoutWidget.prototype.reset = /**
-         * @param {?} value
+         * @param {?} _value
          * @return {?}
          */
-        function (value) { };
+        function (_value) { };
         /**
          * @return {?}
          */
@@ -3033,14 +3032,14 @@
             return _super !== null && _super.apply(this, arguments) || this;
         }
         /**
-         * @param {?} value
+         * @param {?} _value
          * @return {?}
          */
         ObjectLayoutWidget.prototype.reset = /**
-         * @param {?} value
+         * @param {?} _value
          * @return {?}
          */
-        function (value) { };
+        function (_value) { };
         /**
          * @return {?}
          */
@@ -3199,14 +3198,14 @@
             function (res) { return getEnum(res, null, (/** @type {?} */ (_this.schema.readOnly))); })));
         };
         /**
-         * @param {?} value
+         * @param {?} _value
          * @return {?}
          */
         AutoCompleteWidget.prototype.reset = /**
-         * @param {?} value
+         * @param {?} _value
          * @return {?}
          */
-        function (value) {
+        function (_value) {
             this.typing = this.value;
             if (this.isAsync)
                 return;
@@ -3322,14 +3321,14 @@
             }
         };
         /**
-         * @param {?} value
+         * @param {?} _value
          * @return {?}
          */
         CascaderWidget.prototype.reset = /**
-         * @param {?} value
+         * @param {?} _value
          * @return {?}
          */
-        function (value) {
+        function (_value) {
             var _this = this;
             getData(this.schema, {}, this.formProperty.formData).subscribe((/**
              * @param {?} list
@@ -3436,14 +3435,14 @@
             configurable: true
         });
         /**
-         * @param {?} value
+         * @param {?} _value
          * @return {?}
          */
         CheckboxWidget.prototype.reset = /**
-         * @param {?} value
+         * @param {?} _value
          * @return {?}
          */
-        function (value) {
+        function (_value) {
             var _this = this;
             this.inited = false;
             getData(this.schema, this.ui, this.formProperty.formData).subscribe((/**
@@ -3839,14 +3838,14 @@
             }
         };
         /**
-         * @param {?} value
+         * @param {?} _value
          * @return {?}
          */
         MentionWidget.prototype.reset = /**
-         * @param {?} value
+         * @param {?} _value
          * @return {?}
          */
-        function (value) {
+        function (_value) {
             var _this = this;
             getData(this.schema, this.ui, null).subscribe((/**
              * @param {?} list
@@ -4073,14 +4072,14 @@
             return _this;
         }
         /**
-         * @param {?} value
+         * @param {?} _value
          * @return {?}
          */
         RadioWidget.prototype.reset = /**
-         * @param {?} value
+         * @param {?} _value
          * @return {?}
          */
-        function (value) {
+        function (_value) {
             var _this = this;
             this.styleType = (this.ui.styleType || 'default') === 'default';
             getData(this.schema, this.ui, this.formProperty.formData).subscribe((/**
@@ -4399,14 +4398,14 @@
             return _super !== null && _super.apply(this, arguments) || this;
         }
         /**
-         * @param {?} value
+         * @param {?} _value
          * @return {?}
          */
         TagWidget.prototype.reset = /**
-         * @param {?} value
+         * @param {?} _value
          * @return {?}
          */
-        function (value) {
+        function (_value) {
             var _this = this;
             getData(this.schema, this.ui, this.formProperty.formData).subscribe((/**
              * @param {?} list
@@ -4660,14 +4659,14 @@
             };
         };
         /**
-         * @param {?} value
+         * @param {?} _value
          * @return {?}
          */
         TransferWidget.prototype.reset = /**
-         * @param {?} value
+         * @param {?} _value
          * @return {?}
          */
-        function (value) {
+        function (_value) {
             var _this = this;
             getData(this.schema, this.ui, null).subscribe((/**
              * @param {?} list
@@ -4810,14 +4809,14 @@
             };
         };
         /**
-         * @param {?} value
+         * @param {?} _value
          * @return {?}
          */
         TreeSelectWidget.prototype.reset = /**
-         * @param {?} value
+         * @param {?} _value
          * @return {?}
          */
-        function (value) {
+        function (_value) {
             var _this = this;
             getData(this.schema, this.ui, this.formProperty.formData).subscribe((/**
              * @param {?} list
@@ -4966,14 +4965,14 @@
             this._setValue(args.fileList);
         };
         /**
-         * @param {?} value
+         * @param {?} _value
          * @return {?}
          */
         UploadWidget.prototype.reset = /**
-         * @param {?} value
+         * @param {?} _value
          * @return {?}
          */
-        function (value) {
+        function (_value) {
             var _this = this;
             var fileList = this.ui.fileList;
             (fileList ? rxjs.of(fileList) : getData(this.schema, this.ui, this.formProperty.formData)).subscribe((/**

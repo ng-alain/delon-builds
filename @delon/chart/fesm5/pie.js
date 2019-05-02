@@ -113,11 +113,11 @@ var G2PieComponent = /** @class */ (function () {
         chart.legend(false);
         chart.coord('theta', { innerRadius: inner });
         chart.filter('x', (/**
-         * @param {?} val
+         * @param {?} _val
          * @param {?} item
          * @return {?}
          */
-        function (val, item) { return item.checked !== false; }));
+        function (_val, item) { return item.checked !== false; }));
         chart
             .intervalStack()
             .position('y')
