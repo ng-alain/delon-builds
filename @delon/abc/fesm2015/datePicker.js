@@ -167,11 +167,11 @@ class RangePickerComponent {
         this.onChangeFn = fn;
     }
     /**
-     * @param {?} fn
+     * @param {?} _fn
      * @return {?}
      */
-    registerOnTouched(fn) {
-        this.onTouchedFn = fn;
+    registerOnTouched(_fn) {
+        // this.onTouchedFn = fn;
     }
     /**
      * @param {?} disabled

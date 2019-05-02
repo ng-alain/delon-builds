@@ -3,7 +3,6 @@ import { ControlValueAccessor } from '@angular/forms';
 import { DatePickerConfig, DateRangePickerShortcutItem } from './date-picker.config';
 export declare class RangePickerComponent implements ControlValueAccessor {
     private onChangeFn;
-    private onTouchedFn;
     private _shortcut;
     private _cog;
     private comp;
@@ -40,7 +39,7 @@ export declare class RangePickerComponent implements ControlValueAccessor {
     valueChange(e: [Date, Date]): void;
     writeValue(value: Date): void;
     registerOnChange(fn: (val: Date) => void): void;
-    registerOnTouched(fn: () => void): void;
+    registerOnTouched(_fn: () => void): void;
     setDisabledState(disabled: boolean): void;
     clickShortcut(item: DateRangePickerShortcutItem): void;
 }
