@@ -205,8 +205,8 @@ function deepMergeKey(original, ingoreArray) {
             var oldValue = obj[key];
             /** @type {?} */
             var newValue = target[key];
-            if (!ingoreArray && Array.isArray(newValue)) {
-                target[key] = __spread(newValue, oldValue);
+            if (Array.isArray(newValue)) {
+                target[key] = ingoreArray ? oldValue : __spread(newValue, oldValue);
             }
             else if (oldValue != null && isObject(oldValue) && newValue != null && isObject(newValue)) {
                 target[key] = merge(newValue, oldValue);

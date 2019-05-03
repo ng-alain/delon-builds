@@ -1,5 +1,5 @@
 /**
- * @license ng-alain(cipchk@qq.com) v7.3.2
+ * @license ng-alain(cipchk@qq.com) v7.3.1
  * (c) 2019 cipchk https://ng-alain.com/
  * License: MIT
  */
@@ -270,8 +270,8 @@
                 var oldValue = obj[key];
                 /** @type {?} */
                 var newValue = target[key];
-                if (!ingoreArray && Array.isArray(newValue)) {
-                    target[key] = __spread(newValue, oldValue);
+                if (Array.isArray(newValue)) {
+                    target[key] = ingoreArray ? oldValue : __spread(newValue, oldValue);
                 }
                 else if (oldValue != null && isObject(oldValue) && newValue != null && isObject(newValue)) {
                     target[key] = merge(newValue, oldValue);

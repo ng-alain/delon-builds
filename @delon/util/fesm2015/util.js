@@ -196,8 +196,8 @@ function deepMergeKey(original, ingoreArray, ...objects) {
             const oldValue = obj[key];
             /** @type {?} */
             const newValue = target[key];
-            if (!ingoreArray && Array.isArray(newValue)) {
-                target[key] = [...newValue, ...oldValue];
+            if (Array.isArray(newValue)) {
+                target[key] = ingoreArray ? oldValue : [...newValue, ...oldValue];
             }
             else if (oldValue != null && isObject(oldValue) && newValue != null && isObject(newValue)) {
                 target[key] = merge(newValue, oldValue);
