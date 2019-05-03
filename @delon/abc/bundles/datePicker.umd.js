@@ -249,15 +249,15 @@
             this.onChangeFn = fn;
         };
         /**
-         * @param {?} _fn
+         * @param {?} fn
          * @return {?}
          */
         RangePickerComponent.prototype.registerOnTouched = /**
-         * @param {?} _fn
+         * @param {?} fn
          * @return {?}
          */
-        function (_fn) {
-            // this.onTouchedFn = fn;
+        function (fn) {
+            this.onTouchedFn = fn;
         };
         /**
          * @param {?} disabled
