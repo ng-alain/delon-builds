@@ -1709,6 +1709,7 @@ class _HttpClient {
         return this.request('DELETE', url, Object.assign({ params }, options));
     }
     // #endregion
+    // #region jsonp
     /**
      * `jsonp` 请求
      *
@@ -1756,16 +1757,13 @@ class _HttpClient {
         return this.request('PUT', url, Object.assign({ body,
             params }, options));
     }
-    // #endregion
     /**
-     * `request` 请求
-     *
-     * @param {?} method 请求方法类型
-     * @param {?} url URL地址
-     * @param {?=} options 参数
+     * @param {?} method
+     * @param {?} url
+     * @param {?=} options
      * @return {?}
      */
-    request(method, url, options) {
+    request(method, url, options = {}) {
         this.begin();
         if (options) {
             if (options.params)
@@ -2329,7 +2327,7 @@ AlainThemeModule.ctorParameters = () => [
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-const VERSION = new Version('7.3.1-1129da9');
+const VERSION = new Version('7.3.1-c59e326b');
 
 /**
  * @fileoverview added by tsickle

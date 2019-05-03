@@ -25245,7 +25245,7 @@ body {
 .se__inline .se__label,
 .se__inline .se__control {
   flex: none;
-  width: initial !important;
+  width: initial;
   text-align: left;
 }
 .se__inline .se__item:last-child {
