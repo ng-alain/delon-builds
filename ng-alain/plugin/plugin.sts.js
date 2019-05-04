@@ -5,7 +5,7 @@ const tasks_1 = require("@angular-devkit/schematics/tasks");
 const json_1 = require("../utils/json");
 function fixPackage(options) {
     return (host) => {
-        (options.type === 'add' ? json_1.addPackageToPackageJson : json_1.removePackageFromPackageJson)(host, ['ng-alain-sts@DEP-7.3.2'], 'devDependencies');
+        (options.type === 'add' ? json_1.addPackageToPackageJson : json_1.removePackageFromPackageJson)(host, ['ng-alain-sts@DEP-7.3.1'], 'devDependencies');
     };
 }
 function fixFiles() {
