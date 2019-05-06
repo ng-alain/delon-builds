@@ -351,7 +351,8 @@ function fixLangInHtml(host, p, langs) {
     let html = host.get(p).content.toString('utf8');
     let matchCount = 0;
     // {{(status ? 'menu.fullscreen.exit' : 'menu.fullscreen') | translate }}
-    html = html.replace(/\{\{\(status \? '([^']+)' : '([^']+)'\) \| translate \}\}/g, (_word, key1, key2) => {
+    // {{ (status ? 'menu.fullscreen.exit' : 'menu.fullscreen') | translate }}
+    html = html.replace(/\{\{[ ]?\(status \? '([^']+)' : '([^']+)'\) \| translate \}\}/g, (_word, key1, key2) => {
         ++matchCount;
         return `{{ status ? '${langs[key1] || key1}' : '${langs[key2] || key2}' }}`;
     });
