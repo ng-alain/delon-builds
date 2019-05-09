@@ -1662,19 +1662,13 @@ class _HttpClient {
      * @return {?}
      */
     begin() {
-        setTimeout((/**
-         * @return {?}
-         */
-        () => (this._loading = true)));
+        this._loading = true;
     }
     /**
      * @return {?}
      */
     end() {
-        setTimeout((/**
-         * @return {?}
-         */
-        () => (this._loading = false)));
+        this._loading = false;
     }
     /**
      * GET 请求
@@ -1719,12 +1713,11 @@ class _HttpClient {
      * @return {?}
      */
     jsonp(url, params, callbackParam = 'JSONP_CALLBACK') {
+        this.begin();
         return this.http.jsonp(this.appliedUrl(url, params), callbackParam).pipe(tap((/**
          * @return {?}
          */
-        () => {
-            this.end();
-        })), catchError((/**
+        () => this.end())), catchError((/**
          * @param {?} res
          * @return {?}
          */
@@ -2327,7 +2320,7 @@ AlainThemeModule.ctorParameters = () => [
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-const VERSION = new Version('7.3.2-375d605');
+const VERSION = new Version('7.3.2-9a8f21a');
 
 /**
  * @fileoverview added by tsickle

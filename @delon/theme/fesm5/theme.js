@@ -2109,11 +2109,7 @@ var _HttpClient = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        var _this = this;
-        setTimeout((/**
-         * @return {?}
-         */
-        function () { return (_this._loading = true); }));
+        this._loading = true;
     };
     /**
      * @return {?}
@@ -2122,11 +2118,7 @@ var _HttpClient = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        var _this = this;
-        setTimeout((/**
-         * @return {?}
-         */
-        function () { return (_this._loading = false); }));
+        this._loading = false;
     };
     /**
      * GET 请求
@@ -2227,12 +2219,11 @@ var _HttpClient = /** @class */ (function () {
     function (url, params, callbackParam) {
         var _this = this;
         if (callbackParam === void 0) { callbackParam = 'JSONP_CALLBACK'; }
+        this.begin();
         return this.http.jsonp(this.appliedUrl(url, params), callbackParam).pipe(tap((/**
          * @return {?}
          */
-        function () {
-            _this.end();
-        })), catchError((/**
+        function () { return _this.end(); })), catchError((/**
          * @param {?} res
          * @return {?}
          */
@@ -2925,7 +2916,7 @@ var AlainThemeModule = /** @class */ (function () {
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-var VERSION = new Version('7.3.2-375d605');
+var VERSION = new Version('7.3.2-9a8f21a');
 
 /**
  * @fileoverview added by tsickle

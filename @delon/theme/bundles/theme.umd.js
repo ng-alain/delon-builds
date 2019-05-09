@@ -2179,11 +2179,7 @@
          * @return {?}
          */
         function () {
-            var _this = this;
-            setTimeout((/**
-             * @return {?}
-             */
-            function () { return (_this._loading = true); }));
+            this._loading = true;
         };
         /**
          * @return {?}
@@ -2192,11 +2188,7 @@
          * @return {?}
          */
         function () {
-            var _this = this;
-            setTimeout((/**
-             * @return {?}
-             */
-            function () { return (_this._loading = false); }));
+            this._loading = false;
         };
         /**
          * GET 请求
@@ -2297,12 +2289,11 @@
         function (url, params, callbackParam) {
             var _this = this;
             if (callbackParam === void 0) { callbackParam = 'JSONP_CALLBACK'; }
+            this.begin();
             return this.http.jsonp(this.appliedUrl(url, params), callbackParam).pipe(operators.tap((/**
              * @return {?}
              */
-            function () {
-                _this.end();
-            })), operators.catchError((/**
+            function () { return _this.end(); })), operators.catchError((/**
              * @param {?} res
              * @return {?}
              */
