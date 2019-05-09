@@ -102,7 +102,11 @@ class STConfig {
          */
         this.size = 'default';
         /**
-         * 是否隐藏头和尾，当小屏幕下才显示，默认：`false`
+         * 是否开启响应式，默认：`true`
+         */
+        this.responsive = true;
+        /**
+         * 是否在小屏幕下才显示顶部与底部，默认：`false`
          */
         this.responsiveHideHeaderFooter = false;
         /**
@@ -1366,6 +1370,7 @@ class STComponent {
          * 行单击多少时长之类为双击（单位：毫秒），默认：`200`
          */
         this.rowClickTime = 200;
+        this.responsive = true;
         /**
          * 请求异常时回调
          */
@@ -2247,6 +2252,7 @@ class STComponent {
             [`st__p-${this.page.placement}`]: this.page.placement,
             [`st__width-${type}`]: true,
             [`st__width-strict-${strictBehavior}`]: type === 'strict',
+            [`ant-table-rep`]: this.responsive,
             [`ant-table-rep__hide-header-footer`]: this.responsiveHideHeaderFooter,
         });
     }
@@ -2333,6 +2339,7 @@ STComponent.propDecorators = {
     noResult: [{ type: Input }],
     widthConfig: [{ type: Input }],
     rowClickTime: [{ type: Input }],
+    responsive: [{ type: Input }],
     responsiveHideHeaderFooter: [{ type: Input }],
     error: [{ type: Output }],
     change: [{ type: Output }]
@@ -2365,6 +2372,10 @@ __decorate([
     InputNumber(),
     __metadata("design:type", Object)
 ], STComponent.prototype, "rowClickTime", void 0);
+__decorate([
+    InputBoolean(),
+    __metadata("design:type", Boolean)
+], STComponent.prototype, "responsive", void 0);
 __decorate([
     InputBoolean(),
     __metadata("design:type", Boolean)

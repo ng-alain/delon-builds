@@ -90,6 +90,7 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     widthConfig: string[];
     /** 行单击多少时长之类为双击（单位：毫秒），默认：`200` */
     rowClickTime: number;
+    responsive: boolean;
     responsiveHideHeaderFooter: boolean;
     /** 请求异常时回调 */
     readonly error: EventEmitter<STError>;

@@ -17,7 +17,11 @@ export declare class STConfig {
      */
     size?: 'small' | 'middle' | 'default';
     /**
-     * 是否隐藏头和尾，当小屏幕下才显示，默认：`false`
+     * 是否开启响应式，默认：`true`
+     */
+    responsive?: boolean;
+    /**
+     * 是否在小屏幕下才显示顶部与底部，默认：`false`
      */
     responsiveHideHeaderFooter?: boolean;
     /** 请求体配置 */
