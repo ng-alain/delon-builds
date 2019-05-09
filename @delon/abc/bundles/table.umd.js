@@ -2112,13 +2112,11 @@
          */
         function (type) {
             var _this = this;
-            if (type === 'pi') {
+            if (this.pi <= Math.ceil(this.total / this.ps)) {
                 this._load().then((/**
                  * @return {?}
                  */
-                function () {
-                    _this._toTop();
-                }));
+                function () { return _this._toTop(); }));
             }
             this.changeEmit(type);
         };
