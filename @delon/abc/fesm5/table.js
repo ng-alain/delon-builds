@@ -2053,11 +2053,13 @@ var STComponent = /** @class */ (function () {
      */
     function (type) {
         var _this = this;
-        if (this.pi <= Math.ceil(this.total / this.ps)) {
+        if (type === 'pi') {
             this._load().then((/**
              * @return {?}
              */
-            function () { return _this._toTop(); }));
+            function () {
+                _this._toTop();
+            }));
         }
         this.changeEmit(type);
     };

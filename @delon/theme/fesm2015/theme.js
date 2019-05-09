@@ -1765,10 +1765,8 @@ class _HttpClient {
      */
     request(method, url, options = {}) {
         this.begin();
-        if (options) {
-            if (options.params)
-                options.params = this.parseParams(options.params);
-        }
+        if (options.params)
+            options.params = this.parseParams(options.params);
         return this.http.request(method, url, options).pipe(tap((/**
          * @return {?}
          */
@@ -2327,7 +2325,7 @@ AlainThemeModule.ctorParameters = () => [
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-const VERSION = new Version('7.3.2-90b3f4a');
+const VERSION = new Version('7.3.2-a497285');
 
 /**
  * @fileoverview added by tsickle

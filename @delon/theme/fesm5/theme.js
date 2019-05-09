@@ -2305,10 +2305,8 @@ var _HttpClient = /** @class */ (function () {
         var _this = this;
         if (options === void 0) { options = {}; }
         this.begin();
-        if (options) {
-            if (options.params)
-                options.params = this.parseParams(options.params);
-        }
+        if (options.params)
+            options.params = this.parseParams(options.params);
         return this.http.request(method, url, options).pipe(tap((/**
          * @return {?}
          */
@@ -2925,7 +2923,7 @@ var AlainThemeModule = /** @class */ (function () {
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-var VERSION = new Version('7.3.2-90b3f4a');
+var VERSION = new Version('7.3.2-a497285');
 
 /**
  * @fileoverview added by tsickle
