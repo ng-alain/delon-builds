@@ -1733,13 +1733,11 @@ class STComponent {
      * @return {?}
      */
     _change(type) {
-        if (type === 'pi') {
+        if (this.pi <= Math.ceil(this.total / this.ps)) {
             this._load().then((/**
              * @return {?}
              */
-            () => {
-                this._toTop();
-            }));
+            () => this._toTop()));
         }
         this.changeEmit(type);
     }
