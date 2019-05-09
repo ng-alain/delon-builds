@@ -65,15 +65,24 @@ class ACLService {
      * @return {?}
      */
     parseACLType(val) {
-        if (typeof val !== 'string' && !Array.isArray(val)) {
-            return (/** @type {?} */ (val));
+        /** @type {?} */
+        let t;
+        if (typeof val === 'number') {
+            t = { ability: [val] };
         }
-        if (Array.isArray(val)) {
-            return (/** @type {?} */ ({ role: (/** @type {?} */ (val)) }));
+        else if (Array.isArray(val) && val.length > 0 && typeof val[0] === 'number') {
+            t = { ability: val };
         }
-        return (/** @type {?} */ ({
-            role: [val],
-        }));
+        else if (typeof val === 'object' && !Array.isArray(val)) {
+            t = Object.assign({}, val);
+        }
+        else if (Array.isArray(val)) {
+            t = { role: (/** @type {?} */ (val)) };
+        }
+        else {
+            t = { role: val == null ? [] : [val] };
+        }
+        return Object.assign({ except: false }, t);
     }
     /**
      * 设置当前用户角色或权限能力（会先清除所有）
@@ -189,56 +198,49 @@ class ACLService {
      * @return {?}
      */
     can(roleOrAbility) {
-        if (this.full === true || !roleOrAbility) {
-            return true;
-        }
         const { preCan } = this.options;
         if (preCan) {
-            roleOrAbility = preCan(roleOrAbility);
+            roleOrAbility = preCan((/** @type {?} */ (roleOrAbility)));
         }
         /** @type {?} */
-        let t = { except: false };
-        if (typeof roleOrAbility === 'number') {
-            t = Object.assign({}, t, { ability: [roleOrAbility] });
-        }
-        else if (Array.isArray(roleOrAbility) && roleOrAbility.length > 0 && typeof roleOrAbility[0] === 'number') {
-            t = Object.assign({}, t, { ability: roleOrAbility });
-        }
-        else {
-            t = Object.assign({}, t, this.parseACLType(roleOrAbility));
-        }
+        const t = this.parseACLType(roleOrAbility);
         /** @type {?} */
         let result = false;
-        if (t.role) {
-            if (t.mode === 'allOf') {
-                result = t.role.every((/**
-                 * @param {?} v
-                 * @return {?}
-                 */
-                v => this.roles.includes(v)));
-            }
-            else {
-                result = t.role.some((/**
-                 * @param {?} v
-                 * @return {?}
-                 */
-                v => this.roles.includes(v)));
-            }
+        if (this.full === true || !roleOrAbility) {
+            result = true;
         }
-        if (t.ability) {
-            if (t.mode === 'allOf') {
-                result = ((/** @type {?} */ (t.ability))).every((/**
-                 * @param {?} v
-                 * @return {?}
-                 */
-                v => this.abilities.includes(v)));
+        else {
+            if (t.role && t.role.length > 0) {
+                if (t.mode === 'allOf') {
+                    result = t.role.every((/**
+                     * @param {?} v
+                     * @return {?}
+                     */
+                    v => this.roles.includes(v)));
+                }
+                else {
+                    result = t.role.some((/**
+                     * @param {?} v
+                     * @return {?}
+                     */
+                    v => this.roles.includes(v)));
+                }
             }
-            else {
-                result = ((/** @type {?} */ (t.ability))).some((/**
-                 * @param {?} v
-                 * @return {?}
-                 */
-                v => this.abilities.includes(v)));
+            if (t.ability && t.ability.length > 0) {
+                if (t.mode === 'allOf') {
+                    result = ((/** @type {?} */ (t.ability))).every((/**
+                     * @param {?} v
+                     * @return {?}
+                     */
+                    v => this.abilities.includes(v)));
+                }
+                else {
+                    result = ((/** @type {?} */ (t.ability))).some((/**
+                     * @param {?} v
+                     * @return {?}
+                     */
+                    v => this.abilities.includes(v)));
+                }
             }
         }
         return t.except === true ? !result : result;
