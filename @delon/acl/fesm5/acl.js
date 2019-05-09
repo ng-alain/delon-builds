@@ -1,4 +1,4 @@
-import { __spread, __values, __decorate, __metadata } from 'tslib';
+import { __spread, __values, __assign, __decorate, __metadata } from 'tslib';
 import { defineInjectable, Injectable, inject, Directive, TemplateRef, ViewContainerRef, Input, ElementRef, Renderer2, NgModule } from '@angular/core';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { InputBoolean, DelonUtilModule } from '@delon/util';
@@ -342,47 +342,51 @@ var ACLService = /** @class */ (function () {
             roleOrAbility = preCan(roleOrAbility);
         }
         /** @type {?} */
-        var t = {};
+        var t = { except: false };
         if (typeof roleOrAbility === 'number') {
-            t = { ability: [roleOrAbility] };
+            t = __assign({}, t, { ability: [roleOrAbility] });
         }
         else if (Array.isArray(roleOrAbility) && roleOrAbility.length > 0 && typeof roleOrAbility[0] === 'number') {
-            t = { ability: roleOrAbility };
+            t = __assign({}, t, { ability: roleOrAbility });
         }
         else {
-            t = this.parseACLType(roleOrAbility);
+            t = __assign({}, t, this.parseACLType(roleOrAbility));
         }
+        /** @type {?} */
+        var result = false;
         if (t.role) {
-            if (t.mode === 'allOf')
-                return t.role.every((/**
+            if (t.mode === 'allOf') {
+                result = t.role.every((/**
                  * @param {?} v
                  * @return {?}
                  */
                 function (v) { return _this.roles.includes(v); }));
-            else
-                return t.role.some((/**
+            }
+            else {
+                result = t.role.some((/**
                  * @param {?} v
                  * @return {?}
                  */
                 function (v) { return _this.roles.includes(v); }));
+            }
         }
         if (t.ability) {
             if (t.mode === 'allOf') {
-                return ((/** @type {?} */ (t.ability))).every((/**
+                result = ((/** @type {?} */ (t.ability))).every((/**
                  * @param {?} v
                  * @return {?}
                  */
                 function (v) { return _this.abilities.includes(v); }));
             }
             else {
-                return ((/** @type {?} */ (t.ability))).some((/**
+                result = ((/** @type {?} */ (t.ability))).some((/**
                  * @param {?} v
                  * @return {?}
                  */
                 function (v) { return _this.abilities.includes(v); }));
             }
         }
-        return false;
+        return t.except === true ? !result : result;
     };
     /** @inner */
     /**

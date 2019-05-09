@@ -24,6 +24,17 @@
     and limitations under the License.
     ***************************************************************************** */
 
+    var __assign = function() {
+        __assign = Object.assign || function __assign(t) {
+            for (var s, i = 1, n = arguments.length; i < n; i++) {
+                s = arguments[i];
+                for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+            }
+            return t;
+        };
+        return __assign.apply(this, arguments);
+    };
+
     function __decorate(decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -405,47 +416,51 @@
                 roleOrAbility = preCan(roleOrAbility);
             }
             /** @type {?} */
-            var t = {};
+            var t = { except: false };
             if (typeof roleOrAbility === 'number') {
-                t = { ability: [roleOrAbility] };
+                t = __assign({}, t, { ability: [roleOrAbility] });
             }
             else if (Array.isArray(roleOrAbility) && roleOrAbility.length > 0 && typeof roleOrAbility[0] === 'number') {
-                t = { ability: roleOrAbility };
+                t = __assign({}, t, { ability: roleOrAbility });
             }
             else {
-                t = this.parseACLType(roleOrAbility);
+                t = __assign({}, t, this.parseACLType(roleOrAbility));
             }
+            /** @type {?} */
+            var result = false;
             if (t.role) {
-                if (t.mode === 'allOf')
-                    return t.role.every((/**
+                if (t.mode === 'allOf') {
+                    result = t.role.every((/**
                      * @param {?} v
                      * @return {?}
                      */
                     function (v) { return _this.roles.includes(v); }));
-                else
-                    return t.role.some((/**
+                }
+                else {
+                    result = t.role.some((/**
                      * @param {?} v
                      * @return {?}
                      */
                     function (v) { return _this.roles.includes(v); }));
+                }
             }
             if (t.ability) {
                 if (t.mode === 'allOf') {
-                    return ((/** @type {?} */ (t.ability))).every((/**
+                    result = ((/** @type {?} */ (t.ability))).every((/**
                      * @param {?} v
                      * @return {?}
                      */
                     function (v) { return _this.abilities.includes(v); }));
                 }
                 else {
-                    return ((/** @type {?} */ (t.ability))).some((/**
+                    result = ((/** @type {?} */ (t.ability))).some((/**
                      * @param {?} v
                      * @return {?}
                      */
                     function (v) { return _this.abilities.includes(v); }));
                 }
             }
-            return false;
+            return t.except === true ? !result : result;
         };
         /** @inner */
         /**

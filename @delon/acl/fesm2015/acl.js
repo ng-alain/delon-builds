@@ -197,47 +197,51 @@ class ACLService {
             roleOrAbility = preCan(roleOrAbility);
         }
         /** @type {?} */
-        let t = {};
+        let t = { except: false };
         if (typeof roleOrAbility === 'number') {
-            t = { ability: [roleOrAbility] };
+            t = Object.assign({}, t, { ability: [roleOrAbility] });
         }
         else if (Array.isArray(roleOrAbility) && roleOrAbility.length > 0 && typeof roleOrAbility[0] === 'number') {
-            t = { ability: roleOrAbility };
+            t = Object.assign({}, t, { ability: roleOrAbility });
         }
         else {
-            t = this.parseACLType(roleOrAbility);
+            t = Object.assign({}, t, this.parseACLType(roleOrAbility));
         }
+        /** @type {?} */
+        let result = false;
         if (t.role) {
-            if (t.mode === 'allOf')
-                return t.role.every((/**
+            if (t.mode === 'allOf') {
+                result = t.role.every((/**
                  * @param {?} v
                  * @return {?}
                  */
                 v => this.roles.includes(v)));
-            else
-                return t.role.some((/**
+            }
+            else {
+                result = t.role.some((/**
                  * @param {?} v
                  * @return {?}
                  */
                 v => this.roles.includes(v)));
+            }
         }
         if (t.ability) {
             if (t.mode === 'allOf') {
-                return ((/** @type {?} */ (t.ability))).every((/**
+                result = ((/** @type {?} */ (t.ability))).every((/**
                  * @param {?} v
                  * @return {?}
                  */
                 v => this.abilities.includes(v)));
             }
             else {
-                return ((/** @type {?} */ (t.ability))).some((/**
+                result = ((/** @type {?} */ (t.ability))).some((/**
                  * @param {?} v
                  * @return {?}
                  */
                 v => this.abilities.includes(v)));
             }
         }
-        return false;
+        return t.except === true ? !result : result;
     }
     /**
      * \@inner
