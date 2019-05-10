@@ -1733,7 +1733,7 @@ class STComponent {
      * @return {?}
      */
     _change(type) {
-        if (this.pi <= Math.ceil(this.total / this.ps)) {
+        if (type === 'pi' || (type === 'ps' && this.pi <= Math.ceil(this.total / this.ps))) {
             this._load().then((/**
              * @return {?}
              */
