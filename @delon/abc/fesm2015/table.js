@@ -943,7 +943,12 @@ class STDataSource {
         if (sortList.length === 0) {
             return;
         }
-        if (typeof sortList[0].compare !== 'function') {
+        /** @type {?} */
+        const sortItem = sortList[0];
+        if (sortItem.compare === null) {
+            return;
+        }
+        if (typeof sortItem.compare !== 'function') {
             console.warn(`[st] Muse provide the compare function in sort`);
             return;
         }
@@ -954,9 +959,9 @@ class STDataSource {
          */
         (a, b) => {
             /** @type {?} */
-            const result = (/** @type {?} */ (sortList[0].compare))(a, b);
+            const result = (/** @type {?} */ (sortItem.compare))(a, b);
             if (result !== 0) {
-                return sortList[0].default === 'descend' ? -result : result;
+                return sortItem.default === 'descend' ? -result : result;
             }
             return 0;
         });

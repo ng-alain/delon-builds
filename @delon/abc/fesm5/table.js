@@ -1061,7 +1061,12 @@ var STDataSource = /** @class */ (function () {
         if (sortList.length === 0) {
             return;
         }
-        if (typeof sortList[0].compare !== 'function') {
+        /** @type {?} */
+        var sortItem = sortList[0];
+        if (sortItem.compare === null) {
+            return;
+        }
+        if (typeof sortItem.compare !== 'function') {
             console.warn("[st] Muse provide the compare function in sort");
             return;
         }
@@ -1072,9 +1077,9 @@ var STDataSource = /** @class */ (function () {
          */
         function (a, b) {
             /** @type {?} */
-            var result = (/** @type {?} */ (sortList[0].compare))(a, b);
+            var result = (/** @type {?} */ (sortItem.compare))(a, b);
             if (result !== 0) {
-                return sortList[0].default === 'descend' ? -result : result;
+                return sortItem.default === 'descend' ? -result : result;
             }
             return 0;
         });
