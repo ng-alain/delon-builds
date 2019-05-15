@@ -4186,7 +4186,7 @@
                 notFoundContent: this.ui.notFoundContent,
                 showSearch: toBool(this.ui.showSearch, true),
                 tokenSeparators: this.ui.tokenSeparators || [],
-                maxTagCount: this.ui.maxTagCount || null,
+                maxTagCount: this.ui.maxTagCount || undefined,
             };
         };
         /**
