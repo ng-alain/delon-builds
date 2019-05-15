@@ -1,4 +1,4 @@
-import { InjectionToken, Injectable, defineInjectable, Optional, Inject, inject, Injector, INJECTOR, SkipSelf, NgModule, Pipe, Version } from '@angular/core';
+import { InjectionToken, Injectable, defineInjectable, Optional, Inject, inject, Injector, INJECTOR, SkipSelf, NgModule, ChangeDetectorRef, Pipe, Version } from '@angular/core';
 import { BehaviorSubject, Subject, Observable, throwError } from 'rxjs';
 import { filter, share, tap, catchError } from 'rxjs/operators';
 import { ACLService } from '@delon/acl';
@@ -1603,10 +1603,12 @@ DrawerHelper.ctorParameters = () => [
 class _HttpClient {
     /**
      * @param {?} http
+     * @param {?} cdr
      * @param {?} cog
      */
-    constructor(http, cog) {
+    constructor(http, cdr, cog) {
         this.http = http;
+        this.cdr = cdr;
         this._loading = false;
         this.cog = Object.assign({ nullValueHandling: 'include', dateValueHandling: 'timestamp' }, (/** @type {?} */ (cog)).http);
     }
@@ -1663,12 +1665,14 @@ class _HttpClient {
      */
     begin() {
         this._loading = true;
+        this.cdr.markForCheck();
     }
     /**
      * @return {?}
      */
     end() {
         this._loading = false;
+        this.cdr.markForCheck();
     }
     /**
      * GET 请求
@@ -1758,10 +1762,8 @@ class _HttpClient {
      */
     request(method, url, options = {}) {
         this.begin();
-        if (options) {
-            if (options.params)
-                options.params = this.parseParams(options.params);
-        }
+        if (options.params)
+            options.params = this.parseParams(options.params);
         return this.http.request(method, url, options).pipe(tap((/**
          * @return {?}
          */
@@ -1781,9 +1783,10 @@ _HttpClient.decorators = [
 /** @nocollapse */
 _HttpClient.ctorParameters = () => [
     { type: HttpClient },
+    { type: ChangeDetectorRef },
     { type: AlainThemeConfig }
 ];
-/** @nocollapse */ _HttpClient.ngInjectableDef = defineInjectable({ factory: function _HttpClient_Factory() { return new _HttpClient(inject(HttpClient), inject(AlainThemeConfig)); }, token: _HttpClient, providedIn: "root" });
+/** @nocollapse */ _HttpClient.ngInjectableDef = defineInjectable({ factory: function _HttpClient_Factory() { return new _HttpClient(inject(HttpClient), inject(ChangeDetectorRef), inject(AlainThemeConfig)); }, token: _HttpClient, providedIn: "root" });
 
 /**
  * @fileoverview added by tsickle
@@ -2320,7 +2323,7 @@ AlainThemeModule.ctorParameters = () => [
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-const VERSION = new Version('7.3.2-56abb18');
+const VERSION = new Version('7.3.2-22029b70');
 
 /**
  * @fileoverview added by tsickle

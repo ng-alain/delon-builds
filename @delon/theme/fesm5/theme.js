@@ -1,4 +1,4 @@
-import { InjectionToken, Injectable, defineInjectable, Optional, Inject, inject, Injector, INJECTOR, SkipSelf, NgModule, Pipe, Version } from '@angular/core';
+import { InjectionToken, Injectable, defineInjectable, Optional, Inject, inject, Injector, INJECTOR, SkipSelf, NgModule, ChangeDetectorRef, Pipe, Version } from '@angular/core';
 import { __assign, __values, __spread, __extends } from 'tslib';
 import { BehaviorSubject, Subject, Observable, throwError } from 'rxjs';
 import { filter, share, tap, catchError } from 'rxjs/operators';
@@ -2034,8 +2034,9 @@ var DrawerHelper = /** @class */ (function () {
  * + 统一处理时间格式问题
  */
 var _HttpClient = /** @class */ (function () {
-    function _HttpClient(http, cog) {
+    function _HttpClient(http, cdr, cog) {
         this.http = http;
+        this.cdr = cdr;
         this._loading = false;
         this.cog = __assign({ nullValueHandling: 'include', dateValueHandling: 'timestamp' }, (/** @type {?} */ (cog)).http);
     }
@@ -2110,6 +2111,7 @@ var _HttpClient = /** @class */ (function () {
      */
     function () {
         this._loading = true;
+        this.cdr.markForCheck();
     };
     /**
      * @return {?}
@@ -2119,6 +2121,7 @@ var _HttpClient = /** @class */ (function () {
      */
     function () {
         this._loading = false;
+        this.cdr.markForCheck();
     };
     /**
      * GET 请求
@@ -2296,10 +2299,8 @@ var _HttpClient = /** @class */ (function () {
         var _this = this;
         if (options === void 0) { options = {}; }
         this.begin();
-        if (options) {
-            if (options.params)
-                options.params = this.parseParams(options.params);
-        }
+        if (options.params)
+            options.params = this.parseParams(options.params);
         return this.http.request(method, url, options).pipe(tap((/**
          * @return {?}
          */
@@ -2318,9 +2319,10 @@ var _HttpClient = /** @class */ (function () {
     /** @nocollapse */
     _HttpClient.ctorParameters = function () { return [
         { type: HttpClient },
+        { type: ChangeDetectorRef },
         { type: AlainThemeConfig }
     ]; };
-    /** @nocollapse */ _HttpClient.ngInjectableDef = defineInjectable({ factory: function _HttpClient_Factory() { return new _HttpClient(inject(HttpClient), inject(AlainThemeConfig)); }, token: _HttpClient, providedIn: "root" });
+    /** @nocollapse */ _HttpClient.ngInjectableDef = defineInjectable({ factory: function _HttpClient_Factory() { return new _HttpClient(inject(HttpClient), inject(ChangeDetectorRef), inject(AlainThemeConfig)); }, token: _HttpClient, providedIn: "root" });
     return _HttpClient;
 }());
 
@@ -2916,7 +2918,7 @@ var AlainThemeModule = /** @class */ (function () {
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-var VERSION = new Version('7.3.2-56abb18');
+var VERSION = new Version('7.3.2-22029b70');
 
 /**
  * @fileoverview added by tsickle
