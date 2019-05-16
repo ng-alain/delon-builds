@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, NgModule } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Output, EventEmitter, NgModule } from '@angular/core';
 import addSeconds from 'date-fns/add_seconds';
 import format from 'date-fns/format';
 import { __spread } from 'tslib';
@@ -66,7 +66,10 @@ var CountDownComponent = /** @class */ (function () {
         { type: Component, args: [{
                     selector: 'count-down',
                     exportAs: 'countDown',
-                    template: "\n    <countdown\n      *ngIf=\"config\"\n      [config]=\"config\"\n      (start)=\"_start()\"\n      (finished)=\"_finished()\"\n      (notify)=\"_notify($event)\"\n    ></countdown>\n  "
+                    template: "\n    <countdown\n      *ngIf=\"config\"\n      [config]=\"config\"\n      (start)=\"_start()\"\n      (finished)=\"_finished()\"\n      (notify)=\"_notify($event)\"\n    ></countdown>\n  ",
+                    preserveWhitespaces: false,
+                    changeDetection: ChangeDetectionStrategy.OnPush,
+                    encapsulation: ViewEncapsulation.None
                 }] }
     ];
     CountDownComponent.propDecorators = {

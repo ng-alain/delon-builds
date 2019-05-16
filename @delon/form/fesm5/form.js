@@ -4353,8 +4353,9 @@ var TagWidget = /** @class */ (function (_super) {
     function (item) {
         item.checked = !item.checked;
         this.updateValue();
-        if (this.ui.checkedChange)
+        if (this.ui.checkedChange) {
             this.ui.checkedChange(item.checked);
+        }
     };
     /**
      * @return {?}

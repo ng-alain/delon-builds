@@ -1,4 +1,4 @@
-import { Component, Input, ChangeDetectionStrategy, ChangeDetectorRef, ContentChildren, NgModule } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input, ChangeDetectorRef, ContentChildren, NgModule } from '@angular/core';
 import { __decorate, __metadata, __spread } from 'tslib';
 import { InputNumber } from '@delon/util';
 import { CommonModule } from '@angular/common';
@@ -16,7 +16,10 @@ var AvatarListItemComponent = /** @class */ (function () {
         { type: Component, args: [{
                     selector: 'avatar-list-item, [avatar-list-item]',
                     exportAs: 'avatarListItem',
-                    template: "<ng-content></ng-content>"
+                    template: "\n    <ng-content></ng-content>\n  ",
+                    preserveWhitespaces: false,
+                    changeDetection: ChangeDetectionStrategy.OnPush,
+                    encapsulation: ViewEncapsulation.None
                 }] }
     ];
     AvatarListItemComponent.propDecorators = {
@@ -110,7 +113,9 @@ var AvatarListComponent = /** @class */ (function () {
                     exportAs: 'avatarList',
                     template: "<ul class=\"avatar-list__wrap\">\n  <li *ngFor=\"let i of items\"\n      [class]=\"cls\">\n    <nz-tooltip *ngIf=\"i.tips\"\n                [nzTitle]=\"i.tips\">\n      <nz-avatar nz-tooltip\n                 [nzSrc]=\"i.src\"\n                 [nzText]=\"i.text\"\n                 [nzIcon]=\"i.icon\"\n                 [nzSize]=\"avatarSize\"></nz-avatar>\n    </nz-tooltip>\n    <nz-avatar *ngIf=\"!i.tips\"\n               [nzSrc]=\"i.src\"\n               [nzText]=\"i.text\"\n               [nzIcon]=\"i.icon\"\n               [nzSize]=\"avatarSize\"></nz-avatar>\n  </li>\n  <li *ngIf=\"exceedCount > 0\"\n      [class]=\"cls\">\n    <nz-avatar [nzSize]=\"avatarSize\"\n               style=\"cursor: auto\"\n               [ngStyle]=\"excessItemsStyle\"\n               [nzText]=\"'+' + exceedCount\"></nz-avatar>\n  </li>\n</ul>\n",
                     host: { '[class.avatar-list]': 'true' },
-                    changeDetection: ChangeDetectionStrategy.OnPush
+                    preserveWhitespaces: false,
+                    changeDetection: ChangeDetectionStrategy.OnPush,
+                    encapsulation: ViewEncapsulation.None
                 }] }
     ];
     /** @nocollapse */

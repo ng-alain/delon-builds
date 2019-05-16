@@ -111,7 +111,10 @@
             { type: core.Component, args: [{
                         selector: 'count-down',
                         exportAs: 'countDown',
-                        template: "\n    <countdown\n      *ngIf=\"config\"\n      [config]=\"config\"\n      (start)=\"_start()\"\n      (finished)=\"_finished()\"\n      (notify)=\"_notify($event)\"\n    ></countdown>\n  "
+                        template: "\n    <countdown\n      *ngIf=\"config\"\n      [config]=\"config\"\n      (start)=\"_start()\"\n      (finished)=\"_finished()\"\n      (notify)=\"_notify($event)\"\n    ></countdown>\n  ",
+                        preserveWhitespaces: false,
+                        changeDetection: core.ChangeDetectionStrategy.OnPush,
+                        encapsulation: core.ViewEncapsulation.None
                     }] }
         ];
         CountDownComponent.propDecorators = {

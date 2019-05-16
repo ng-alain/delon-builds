@@ -65,10 +65,20 @@ class DownFileDirective {
         (_o, item) => item), {});
     }
     /**
+     * @private
+     * @param {?} val
+     * @return {?}
+     */
+    setDisabled(val) {
+        /** @type {?} */
+        const el = (/** @type {?} */ (this.el.nativeElement));
+        el.disabled = val;
+    }
+    /**
      * @return {?}
      */
     _click() {
-        this.el.nativeElement.disabled = true;
+        this.setDisabled(true);
         this._http
             .request(this.httpMethod, this.httpUrl, {
             params: this.httpData || {},
@@ -94,14 +104,14 @@ class DownFileDirective {
                 res.headers.get('x-filename');
             saveAs(res.body, decodeURI(fileName));
             this.success.emit(res);
-            this.el.nativeElement.disabled = false;
+            this.setDisabled(false);
         }), (/**
          * @param {?} err
          * @return {?}
          */
         err => {
             this.error.emit(err);
-            this.el.nativeElement.disabled = false;
+            this.setDisabled(false);
         }));
     }
 }

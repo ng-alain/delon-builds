@@ -111,6 +111,21 @@
             function (_o, item) { return item; }), {});
         };
         /**
+         * @private
+         * @param {?} val
+         * @return {?}
+         */
+        DownFileDirective.prototype.setDisabled = /**
+         * @private
+         * @param {?} val
+         * @return {?}
+         */
+        function (val) {
+            /** @type {?} */
+            var el = (/** @type {?} */ (this.el.nativeElement));
+            el.disabled = val;
+        };
+        /**
          * @return {?}
          */
         DownFileDirective.prototype._click = /**
@@ -118,7 +133,7 @@
          */
         function () {
             var _this = this;
-            this.el.nativeElement.disabled = true;
+            this.setDisabled(true);
             this._http
                 .request(this.httpMethod, this.httpUrl, {
                 params: this.httpData || {},
@@ -144,14 +159,14 @@
                     res.headers.get('x-filename');
                 fileSaver.saveAs(res.body, decodeURI(fileName));
                 _this.success.emit(res);
-                _this.el.nativeElement.disabled = false;
+                _this.setDisabled(false);
             }), (/**
              * @param {?} err
              * @return {?}
              */
             function (err) {
                 _this.error.emit(err);
-                _this.el.nativeElement.disabled = false;
+                _this.setDisabled(false);
             }));
         };
         DownFileDirective.decorators = [

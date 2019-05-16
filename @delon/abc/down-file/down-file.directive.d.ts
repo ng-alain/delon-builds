@@ -15,8 +15,9 @@ export declare class DownFileDirective {
     /** 成功回调 */
     readonly success: EventEmitter<HttpResponse<Blob>>;
     /** 错误回调 */
-    readonly error: EventEmitter<{}>;
+    readonly error: EventEmitter<any>;
     private getDisposition;
-    constructor(el: ElementRef, _http: _HttpClient);
+    constructor(el: ElementRef<Element>, _http: _HttpClient);
+    private setDisabled;
     _click(): void;
 }

@@ -1,4 +1,4 @@
-import { EventEmitter, Component, Input, Output, NgModule } from '@angular/core';
+import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Output, NgModule } from '@angular/core';
 import addSeconds from 'date-fns/add_seconds';
 import format from 'date-fns/format';
 import { CommonModule } from '@angular/common';
@@ -57,7 +57,10 @@ CountDownComponent.decorators = [
       (finished)="_finished()"
       (notify)="_notify($event)"
     ></countdown>
-  `
+  `,
+                preserveWhitespaces: false,
+                changeDetection: ChangeDetectionStrategy.OnPush,
+                encapsulation: ViewEncapsulation.None
             }] }
 ];
 CountDownComponent.propDecorators = {

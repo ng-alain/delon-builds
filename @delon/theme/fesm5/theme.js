@@ -2109,7 +2109,11 @@ var _HttpClient = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        this._loading = true;
+        var _this = this;
+        setTimeout((/**
+         * @return {?}
+         */
+        function () { return (_this._loading = true); }), 10);
     };
     /**
      * @return {?}
@@ -2118,7 +2122,11 @@ var _HttpClient = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        this._loading = false;
+        var _this = this;
+        setTimeout((/**
+         * @return {?}
+         */
+        function () { return (_this._loading = false); }), 10);
     };
     /**
      * GET 请求
@@ -2296,10 +2304,8 @@ var _HttpClient = /** @class */ (function () {
         var _this = this;
         if (options === void 0) { options = {}; }
         this.begin();
-        if (options) {
-            if (options.params)
-                options.params = this.parseParams(options.params);
-        }
+        if (options.params)
+            options.params = this.parseParams(options.params);
         return this.http.request(method, url, options).pipe(tap((/**
          * @return {?}
          */
@@ -2916,7 +2922,7 @@ var AlainThemeModule = /** @class */ (function () {
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-var VERSION = new Version('7.3.2-92e546c');
+var VERSION = new Version('7.3.2-71a24f4a');
 
 /**
  * @fileoverview added by tsickle
