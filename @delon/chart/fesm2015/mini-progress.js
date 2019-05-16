@@ -1,5 +1,5 @@
 import { __decorate, __metadata } from 'tslib';
-import { Component, ChangeDetectionStrategy, ChangeDetectorRef, Input, NgModule } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ViewEncapsulation, ChangeDetectorRef, Input, NgModule } from '@angular/core';
 import { DelonLocaleService, DelonLocaleModule } from '@delon/theme';
 import { toNumber, InputNumber, DelonUtilModule } from '@delon/util';
 import { CommonModule } from '@angular/common';
@@ -42,7 +42,9 @@ G2MiniProgressComponent.decorators = [
                 exportAs: 'g2MiniProgress',
                 template: "<nz-tooltip [nzTitle]=\"i18n.getData('miniProgress').target + target + '%'\">\n  <div nz-tooltip class=\"g2-mini-progress__target\" [ngStyle]=\"{'left.%': target}\">\n    <span class=\"g2-mini-progress__target-item\" [ngStyle]=\"{'background-color': color}\"></span>\n    <span class=\"g2-mini-progress__target-item\" [ngStyle]=\"{'background-color': color}\"></span>\n  </div>\n</nz-tooltip>\n<div class=\"g2-mini-progress__wrap\">\n  <div class=\"g2-mini-progress__value\" [ngStyle]=\"{'background-color': color, 'width.%': percent, 'height.px':strokeWidth}\"></div>\n</div>\n",
                 host: { '[class.g2-mini-progress]': 'true' },
-                changeDetection: ChangeDetectionStrategy.OnPush
+                preserveWhitespaces: false,
+                changeDetection: ChangeDetectionStrategy.OnPush,
+                encapsulation: ViewEncapsulation.None
             }] }
 ];
 /** @nocollapse */

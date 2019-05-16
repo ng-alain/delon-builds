@@ -1,4 +1,4 @@
-import { Component, ViewChild, Input, ChangeDetectionStrategy, Inject, ContentChildren, NgModule } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ViewEncapsulation, ViewChild, Input, Inject, ContentChildren, NgModule } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { WINDOW } from '@delon/theme';
 import { __decorate, __metadata } from 'tslib';
@@ -22,7 +22,10 @@ GlobalFooterItemComponent.decorators = [
                 exportAs: 'globalFooterItem',
                 template: `
     <ng-template #host><ng-content></ng-content></ng-template>
-  `
+  `,
+                preserveWhitespaces: false,
+                changeDetection: ChangeDetectionStrategy.OnPush,
+                encapsulation: ViewEncapsulation.None
             }] }
 ];
 GlobalFooterItemComponent.propDecorators = {
@@ -75,7 +78,9 @@ GlobalFooterComponent.decorators = [
                 exportAs: 'globalFooter',
                 template: "<div *ngIf=\"links.length > 0 || items.length > 0\" class=\"global-footer__links\">\n  <a *ngFor=\"let i of links\" class=\"global-footer__links-item\" (click)=\"to(i)\" [innerHTML]=\"i.title\"></a>\n  <a *ngFor=\"let i of items\" class=\"global-footer__links-item\" (click)=\"to(i)\">\n    <ng-container *ngTemplateOutlet=\"i.host\"></ng-container>\n  </a>\n</div>\n<div class=\"global-footer__copyright\">\n  <ng-content></ng-content>\n</div>\n",
                 host: { '[class.global-footer]': 'true' },
-                changeDetection: ChangeDetectionStrategy.OnPush
+                preserveWhitespaces: false,
+                changeDetection: ChangeDetectionStrategy.OnPush,
+                encapsulation: ViewEncapsulation.None
             }] }
 ];
 /** @nocollapse */

@@ -260,7 +260,9 @@
                             '[style.height.px]': 'size',
                             '[style.width.px]': 'size',
                         },
-                        changeDetection: core.ChangeDetectionStrategy.OnPush
+                        preserveWhitespaces: false,
+                        changeDetection: core.ChangeDetectionStrategy.OnPush,
+                        encapsulation: core.ViewEncapsulation.None
                     }] }
         ];
         /** @nocollapse */

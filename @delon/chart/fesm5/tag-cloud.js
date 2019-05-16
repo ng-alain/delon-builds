@@ -1,5 +1,5 @@
 import { __assign, __decorate, __metadata, __spread } from 'tslib';
-import { Component, ChangeDetectionStrategy, ElementRef, NgZone, Input, NgModule } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, NgZone, Input, NgModule } from '@angular/core';
 import { InputNumber, DelonUtilModule } from '@delon/util';
 import { fromEvent } from 'rxjs';
 import { filter, debounceTime } from 'rxjs/operators';
@@ -215,7 +215,9 @@ var G2TagCloudComponent = /** @class */ (function () {
                     host: {
                         '[style.height.px]': 'height',
                     },
-                    changeDetection: ChangeDetectionStrategy.OnPush
+                    preserveWhitespaces: false,
+                    changeDetection: ChangeDetectionStrategy.OnPush,
+                    encapsulation: ViewEncapsulation.None
                 }] }
     ];
     /** @nocollapse */

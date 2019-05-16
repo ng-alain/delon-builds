@@ -1,4 +1,4 @@
-import { Component, Input, NgModule } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input, NgModule } from '@angular/core';
 import { __spread } from 'tslib';
 import { CommonModule } from '@angular/common';
 import { DelonUtilModule } from '@delon/util';
@@ -40,7 +40,10 @@ var ResultComponent = /** @class */ (function () {
                     selector: 'result',
                     exportAs: 'result',
                     template: "<div class=\"result__icon\">\n  <i nz-icon\n     [nzType]=\"_icon\"\n     class=\"result__icon-{{_type}}\"></i>\n</div>\n<div class=\"result__title\">\n  <ng-container *stringTemplateOutlet=\"title\">{{title}}</ng-container>\n</div>\n<div *ngIf=\"description\"\n     class=\"result__desc\">\n  <ng-container *stringTemplateOutlet=\"description\">{{description}}</ng-container>\n</div>\n<div *ngIf=\"extra\"\n     class=\"result__extra\">\n  <ng-container *stringTemplateOutlet=\"extra\">{{extra}}</ng-container>\n</div>\n<div class=\"result__actions\">\n  <ng-content></ng-content>\n</div>\n",
-                    host: { '[class.result]': 'true' }
+                    host: { '[class.result]': 'true' },
+                    preserveWhitespaces: false,
+                    changeDetection: ChangeDetectionStrategy.OnPush,
+                    encapsulation: ViewEncapsulation.None
                 }] }
     ];
     ResultComponent.propDecorators = {

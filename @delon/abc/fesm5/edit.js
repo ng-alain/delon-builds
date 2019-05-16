@@ -1,5 +1,5 @@
 import { __decorate, __metadata, __assign, __spread } from 'tslib';
-import { defineInjectable, Injectable, Component, ChangeDetectionStrategy, Input, Host, Optional, ElementRef, Renderer2, ChangeDetectorRef, ContentChild, ViewChild, NgModule } from '@angular/core';
+import { defineInjectable, Injectable, Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Host, Optional, ElementRef, Renderer2, ChangeDetectorRef, ContentChild, ViewChild, NgModule } from '@angular/core';
 import { toNumber, InputNumber, InputBoolean, deepGet, isEmpty, DelonUtilModule } from '@delon/util';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { NgModel, FormControlName } from '@angular/forms';
@@ -99,7 +99,9 @@ var SEContainerComponent = /** @class */ (function () {
                     selector: 'se-container, [se-container]',
                     exportAs: 'seContainer',
                     template: "<div class=\"ant-row se__container se__{{nzLayout}} se__{{size}}\"\n     [ngStyle]=\"{'margin-left.px': -(gutter / 2), 'margin-right.px': -(gutter / 2)}\">\n  <se-title *ngIf=\"title\">\n    <ng-container *stringTemplateOutlet=\"title\">{{ title }}</ng-container>\n  </se-title>\n  <ng-content></ng-content>\n</div>\n",
-                    changeDetection: ChangeDetectionStrategy.OnPush
+                    preserveWhitespaces: false,
+                    changeDetection: ChangeDetectionStrategy.OnPush,
+                    encapsulation: ViewEncapsulation.None
                 }] }
     ];
     /** @nocollapse */
@@ -179,7 +181,9 @@ var SEErrorComponent = /** @class */ (function () {
                     host: {
                         '[class.ant-form-explain]': 'true',
                     },
-                    changeDetection: ChangeDetectionStrategy.OnPush
+                    preserveWhitespaces: false,
+                    changeDetection: ChangeDetectionStrategy.OnPush,
+                    encapsulation: ViewEncapsulation.None
                 }] }
     ];
     return SEErrorComponent;
@@ -229,7 +233,9 @@ var SETitleComponent = /** @class */ (function () {
                     host: {
                         '[class.se__title]': 'true',
                     },
-                    changeDetection: ChangeDetectionStrategy.OnPush
+                    preserveWhitespaces: false,
+                    changeDetection: ChangeDetectionStrategy.OnPush,
+                    encapsulation: ViewEncapsulation.None
                 }] }
     ];
     /** @nocollapse */
@@ -471,7 +477,9 @@ var SEComponent = /** @class */ (function () {
                         '[style.padding-right.px]': 'paddingValue',
                         '[class.ant-form-item-with-help]': 'showErr',
                     },
-                    changeDetection: ChangeDetectionStrategy.OnPush
+                    preserveWhitespaces: false,
+                    changeDetection: ChangeDetectionStrategy.OnPush,
+                    encapsulation: ViewEncapsulation.None
                 }] }
     ];
     /** @nocollapse */

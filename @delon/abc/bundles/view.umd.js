@@ -157,7 +157,9 @@
                         selector: 'sv-container, [sv-container]',
                         exportAs: 'svContainer',
                         template: "<div class=\"ant-row\"\n     [ngStyle]=\"{'margin-left.px': -(gutter / 2), 'margin-right.px': -(gutter / 2)}\">\n  <sv-title *ngIf=\"title\">\n    <ng-container *stringTemplateOutlet=\"title\">{{title}}</ng-container>\n  </sv-title>\n  <ng-content></ng-content>\n</div>\n",
-                        changeDetection: core.ChangeDetectionStrategy.OnPush
+                        preserveWhitespaces: false,
+                        changeDetection: core.ChangeDetectionStrategy.OnPush,
+                        encapsulation: core.ViewEncapsulation.None
                     }] }
         ];
         /** @nocollapse */
@@ -234,7 +236,9 @@
                         host: {
                             '[class.sv__title]': 'true',
                         },
-                        changeDetection: core.ChangeDetectionStrategy.OnPush
+                        preserveWhitespaces: false,
+                        changeDetection: core.ChangeDetectionStrategy.OnPush,
+                        encapsulation: core.ViewEncapsulation.None
                     }] }
         ];
         /** @nocollapse */
@@ -355,7 +359,9 @@
                             '[style.padding-left.px]': 'paddingValue',
                             '[style.padding-right.px]': 'paddingValue',
                         },
-                        changeDetection: core.ChangeDetectionStrategy.OnPush
+                        preserveWhitespaces: false,
+                        changeDetection: core.ChangeDetectionStrategy.OnPush,
+                        encapsulation: core.ViewEncapsulation.None
                     }] }
         ];
         /** @nocollapse */

@@ -119,7 +119,9 @@
                             '[class.tag-select__has-expand]': 'expandable',
                             '[class.tag-select__expanded]': 'expand',
                         },
-                        changeDetection: core.ChangeDetectionStrategy.OnPush
+                        preserveWhitespaces: false,
+                        changeDetection: core.ChangeDetectionStrategy.OnPush,
+                        encapsulation: core.ViewEncapsulation.None
                     }] }
         ];
         /** @nocollapse */

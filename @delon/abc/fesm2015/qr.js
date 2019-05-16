@@ -1,4 +1,4 @@
-import { Injectable, defineInjectable, inject, EventEmitter, Component, ChangeDetectionStrategy, ChangeDetectorRef, Input, Output, NgModule } from '@angular/core';
+import { Injectable, defineInjectable, inject, EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ChangeDetectorRef, Input, Output, NgModule } from '@angular/core';
 import { __decorate, __metadata } from 'tslib';
 import { InputNumber, DelonUtilModule } from '@delon/util';
 import { CommonModule } from '@angular/common';
@@ -177,7 +177,9 @@ QRComponent.decorators = [
                     '[style.height.px]': 'size',
                     '[style.width.px]': 'size',
                 },
-                changeDetection: ChangeDetectionStrategy.OnPush
+                preserveWhitespaces: false,
+                changeDetection: ChangeDetectionStrategy.OnPush,
+                encapsulation: ViewEncapsulation.None
             }] }
 ];
 /** @nocollapse */

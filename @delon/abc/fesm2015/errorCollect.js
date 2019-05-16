@@ -1,6 +1,6 @@
 import { __decorate, __metadata } from 'tslib';
 import { DOCUMENT, CommonModule } from '@angular/common';
-import { Injectable, defineInjectable, Component, ChangeDetectionStrategy, ElementRef, ChangeDetectorRef, Inject, Input, NgModule } from '@angular/core';
+import { Injectable, defineInjectable, Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, ChangeDetectorRef, Inject, Input, NgModule } from '@angular/core';
 import { InputNumber, DelonUtilModule } from '@delon/util';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 
@@ -146,7 +146,9 @@ ErrorCollectComponent.decorators = [
                     '[class.d-none]': '_hiden',
                     '(click)': '_click()',
                 },
-                changeDetection: ChangeDetectionStrategy.OnPush
+                preserveWhitespaces: false,
+                changeDetection: ChangeDetectionStrategy.OnPush,
+                encapsulation: ViewEncapsulation.None
             }] }
 ];
 /** @nocollapse */

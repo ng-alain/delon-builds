@@ -1,5 +1,5 @@
 import { __decorate, __metadata } from 'tslib';
-import { Component, ChangeDetectionStrategy, ElementRef, NgZone, Input, NgModule } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, NgZone, Input, NgModule } from '@angular/core';
 import { InputNumber, DelonUtilModule } from '@delon/util';
 import { CommonModule } from '@angular/common';
 
@@ -194,7 +194,9 @@ G2GaugeComponent.decorators = [
                 host: {
                     '[class.g2-gauge]': 'true',
                 },
-                changeDetection: ChangeDetectionStrategy.OnPush
+                preserveWhitespaces: false,
+                changeDetection: ChangeDetectionStrategy.OnPush,
+                encapsulation: ViewEncapsulation.None
             }] }
 ];
 /** @nocollapse */

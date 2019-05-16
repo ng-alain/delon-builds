@@ -1,5 +1,5 @@
 import { __decorate, __metadata } from 'tslib';
-import { Component, ChangeDetectionStrategy, ChangeDetectorRef, NgZone, ViewChild, Input, NgModule } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ViewEncapsulation, ChangeDetectorRef, NgZone, ViewChild, Input, NgModule } from '@angular/core';
 import { InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
 import { CommonModule } from '@angular/common';
 import { NzGridModule } from 'ng-zorro-antd/grid';
@@ -221,7 +221,9 @@ G2RadarComponent.decorators = [
                     '[style.height.px]': 'height',
                     '[class.g2-radar]': 'true',
                 },
-                changeDetection: ChangeDetectionStrategy.OnPush
+                preserveWhitespaces: false,
+                changeDetection: ChangeDetectionStrategy.OnPush,
+                encapsulation: ViewEncapsulation.None
             }] }
 ];
 /** @nocollapse */

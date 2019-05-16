@@ -1,5 +1,5 @@
 import { __decorate, __metadata } from 'tslib';
-import { EventEmitter, Component, ChangeDetectionStrategy, ChangeDetectorRef, Input, Output, NgModule } from '@angular/core';
+import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ChangeDetectorRef, Input, Output, NgModule } from '@angular/core';
 import { DelonLocaleService, DelonLocaleModule } from '@delon/theme';
 import { InputBoolean, DelonUtilModule } from '@delon/util';
 import { CommonModule } from '@angular/common';
@@ -61,7 +61,9 @@ TagSelectComponent.decorators = [
                     '[class.tag-select__has-expand]': 'expandable',
                     '[class.tag-select__expanded]': 'expand',
                 },
-                changeDetection: ChangeDetectionStrategy.OnPush
+                preserveWhitespaces: false,
+                changeDetection: ChangeDetectionStrategy.OnPush,
+                encapsulation: ViewEncapsulation.None
             }] }
 ];
 /** @nocollapse */

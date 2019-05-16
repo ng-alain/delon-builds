@@ -1,5 +1,5 @@
 import { __decorate, __metadata, __assign, __spread } from 'tslib';
-import { defineInjectable, Injectable, Component, ChangeDetectionStrategy, ElementRef, Renderer2, Input, Host, Optional, ViewChild, NgModule } from '@angular/core';
+import { defineInjectable, Injectable, Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, Renderer2, Input, Host, Optional, ViewChild, NgModule } from '@angular/core';
 import { updateHostClass, InputNumber, isEmpty, InputBoolean, DelonUtilModule } from '@delon/util';
 import { ResponsiveService } from '@delon/theme';
 import { ObserversModule } from '@angular/cdk/observers';
@@ -93,7 +93,9 @@ var SVContainerComponent = /** @class */ (function () {
                     selector: 'sv-container, [sv-container]',
                     exportAs: 'svContainer',
                     template: "<div class=\"ant-row\"\n     [ngStyle]=\"{'margin-left.px': -(gutter / 2), 'margin-right.px': -(gutter / 2)}\">\n  <sv-title *ngIf=\"title\">\n    <ng-container *stringTemplateOutlet=\"title\">{{title}}</ng-container>\n  </sv-title>\n  <ng-content></ng-content>\n</div>\n",
-                    changeDetection: ChangeDetectionStrategy.OnPush
+                    preserveWhitespaces: false,
+                    changeDetection: ChangeDetectionStrategy.OnPush,
+                    encapsulation: ViewEncapsulation.None
                 }] }
     ];
     /** @nocollapse */
@@ -170,7 +172,9 @@ var SVTitleComponent = /** @class */ (function () {
                     host: {
                         '[class.sv__title]': 'true',
                     },
-                    changeDetection: ChangeDetectionStrategy.OnPush
+                    preserveWhitespaces: false,
+                    changeDetection: ChangeDetectionStrategy.OnPush,
+                    encapsulation: ViewEncapsulation.None
                 }] }
     ];
     /** @nocollapse */
@@ -291,7 +295,9 @@ var SVComponent = /** @class */ (function () {
                         '[style.padding-left.px]': 'paddingValue',
                         '[style.padding-right.px]': 'paddingValue',
                     },
-                    changeDetection: ChangeDetectionStrategy.OnPush
+                    preserveWhitespaces: false,
+                    changeDetection: ChangeDetectionStrategy.OnPush,
+                    encapsulation: ViewEncapsulation.None
                 }] }
     ];
     /** @nocollapse */

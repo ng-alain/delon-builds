@@ -1,6 +1,6 @@
 import { __decorate, __metadata } from 'tslib';
 import { DOCUMENT, CommonModule } from '@angular/common';
-import { EventEmitter, Component, ChangeDetectionStrategy, Renderer2, ChangeDetectorRef, NgZone, Inject, Input, Output, NgModule } from '@angular/core';
+import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Renderer2, ChangeDetectorRef, NgZone, Inject, Input, Output, NgModule } from '@angular/core';
 import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { MenuService, SettingsService, WINDOW } from '@delon/theme';
 import { InputBoolean, DelonUtilModule } from '@delon/util';
@@ -353,7 +353,9 @@ SidebarNavComponent.decorators = [
                     '(click)': '_click()',
                     '(document:click)': '_docClick()',
                 },
-                changeDetection: ChangeDetectionStrategy.OnPush
+                preserveWhitespaces: false,
+                changeDetection: ChangeDetectionStrategy.OnPush,
+                encapsulation: ViewEncapsulation.None
             }] }
 ];
 /** @nocollapse */

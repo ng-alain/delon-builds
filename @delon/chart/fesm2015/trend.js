@@ -1,5 +1,5 @@
 import { __decorate, __metadata } from 'tslib';
-import { Component, ChangeDetectionStrategy, Input, NgModule } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input, NgModule } from '@angular/core';
 import { InputBoolean, DelonUtilModule } from '@delon/util';
 import { CommonModule } from '@angular/common';
 import { NzIconModule } from 'ng-zorro-antd/icon';
@@ -30,7 +30,9 @@ TrendComponent.decorators = [
                     '[class.trend__grey]': '!colorful',
                     '[class.trend__reverse]': 'colorful && reverseColor',
                 },
-                changeDetection: ChangeDetectionStrategy.OnPush
+                preserveWhitespaces: false,
+                changeDetection: ChangeDetectionStrategy.OnPush,
+                encapsulation: ViewEncapsulation.None
             }] }
 ];
 TrendComponent.propDecorators = {

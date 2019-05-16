@@ -123,7 +123,9 @@
                             '[class.ant-row]': 'true',
                             '[class.sg__wrap]': 'true',
                         },
-                        changeDetection: core.ChangeDetectionStrategy.OnPush
+                        preserveWhitespaces: false,
+                        changeDetection: core.ChangeDetectionStrategy.OnPush,
+                        encapsulation: core.ViewEncapsulation.None
                     }] }
         ];
         /** @nocollapse */
@@ -235,7 +237,9 @@
                             '[style.padding-left.px]': 'paddingValue',
                             '[style.padding-right.px]': 'paddingValue',
                         },
-                        changeDetection: core.ChangeDetectionStrategy.OnPush
+                        preserveWhitespaces: false,
+                        changeDetection: core.ChangeDetectionStrategy.OnPush,
+                        encapsulation: core.ViewEncapsulation.None
                     }] }
         ];
         /** @nocollapse */

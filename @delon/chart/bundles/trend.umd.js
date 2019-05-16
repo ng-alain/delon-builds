@@ -83,7 +83,9 @@
                             '[class.trend__grey]': '!colorful',
                             '[class.trend__reverse]': 'colorful && reverseColor',
                         },
-                        changeDetection: core.ChangeDetectionStrategy.OnPush
+                        preserveWhitespaces: false,
+                        changeDetection: core.ChangeDetectionStrategy.OnPush,
+                        encapsulation: core.ViewEncapsulation.None
                     }] }
         ];
         TrendComponent.propDecorators = {

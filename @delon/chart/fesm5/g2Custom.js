@@ -1,5 +1,5 @@
 import { __decorate, __metadata, __spread } from 'tslib';
-import { Component, ChangeDetectionStrategy, ElementRef, Input, Output, EventEmitter, NgModule } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, Input, Output, EventEmitter, NgModule } from '@angular/core';
 import { InputNumber, DelonUtilModule } from '@delon/util';
 import { fromEvent } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
@@ -79,7 +79,9 @@ var G2CustomComponent = /** @class */ (function () {
                     host: {
                         '[style.height.px]': 'height',
                     },
-                    changeDetection: ChangeDetectionStrategy.OnPush
+                    preserveWhitespaces: false,
+                    changeDetection: ChangeDetectionStrategy.OnPush,
+                    encapsulation: ViewEncapsulation.None
                 }] }
     ];
     /** @nocollapse */

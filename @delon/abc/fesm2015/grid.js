@@ -1,5 +1,5 @@
 import { __decorate, __metadata } from 'tslib';
-import { Injectable, defineInjectable, Component, ChangeDetectionStrategy, Input, ElementRef, Renderer2, Optional, Host, NgModule } from '@angular/core';
+import { Injectable, defineInjectable, Component, ChangeDetectionStrategy, ViewEncapsulation, Input, ElementRef, Renderer2, Optional, Host, NgModule } from '@angular/core';
 import { InputNumber, DelonUtilModule } from '@delon/util';
 import { ResponsiveService } from '@delon/theme';
 import { CommonModule } from '@angular/common';
@@ -57,7 +57,9 @@ SGContainerComponent.decorators = [
                     '[class.ant-row]': 'true',
                     '[class.sg__wrap]': 'true',
                 },
-                changeDetection: ChangeDetectionStrategy.OnPush
+                preserveWhitespaces: false,
+                changeDetection: ChangeDetectionStrategy.OnPush,
+                encapsulation: ViewEncapsulation.None
             }] }
 ];
 /** @nocollapse */
@@ -160,7 +162,9 @@ SGComponent.decorators = [
                     '[style.padding-left.px]': 'paddingValue',
                     '[style.padding-right.px]': 'paddingValue',
                 },
-                changeDetection: ChangeDetectionStrategy.OnPush
+                preserveWhitespaces: false,
+                changeDetection: ChangeDetectionStrategy.OnPush,
+                encapsulation: ViewEncapsulation.None
             }] }
 ];
 /** @nocollapse */

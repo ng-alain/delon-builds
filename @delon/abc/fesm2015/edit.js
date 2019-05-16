@@ -1,5 +1,5 @@
 import { __decorate, __metadata } from 'tslib';
-import { Injectable, defineInjectable, Component, ChangeDetectionStrategy, Input, Host, Optional, ElementRef, Renderer2, ChangeDetectorRef, ContentChild, ViewChild, NgModule } from '@angular/core';
+import { Injectable, defineInjectable, Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Host, Optional, ElementRef, Renderer2, ChangeDetectorRef, ContentChild, ViewChild, NgModule } from '@angular/core';
 import { toNumber, InputNumber, InputBoolean, deepGet, isEmpty, DelonUtilModule } from '@delon/util';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { NgModel, FormControlName } from '@angular/forms';
@@ -94,7 +94,9 @@ SEContainerComponent.decorators = [
                 selector: 'se-container, [se-container]',
                 exportAs: 'seContainer',
                 template: "<div class=\"ant-row se__container se__{{nzLayout}} se__{{size}}\"\n     [ngStyle]=\"{'margin-left.px': -(gutter / 2), 'margin-right.px': -(gutter / 2)}\">\n  <se-title *ngIf=\"title\">\n    <ng-container *stringTemplateOutlet=\"title\">{{ title }}</ng-container>\n  </se-title>\n  <ng-content></ng-content>\n</div>\n",
-                changeDetection: ChangeDetectionStrategy.OnPush
+                preserveWhitespaces: false,
+                changeDetection: ChangeDetectionStrategy.OnPush,
+                encapsulation: ViewEncapsulation.None
             }] }
 ];
 /** @nocollapse */
@@ -173,7 +175,9 @@ SEErrorComponent.decorators = [
                 host: {
                     '[class.ant-form-explain]': 'true',
                 },
-                changeDetection: ChangeDetectionStrategy.OnPush
+                preserveWhitespaces: false,
+                changeDetection: ChangeDetectionStrategy.OnPush,
+                encapsulation: ViewEncapsulation.None
             }] }
 ];
 
@@ -220,7 +224,9 @@ SETitleComponent.decorators = [
                 host: {
                     '[class.se__title]': 'true',
                 },
-                changeDetection: ChangeDetectionStrategy.OnPush
+                preserveWhitespaces: false,
+                changeDetection: ChangeDetectionStrategy.OnPush,
+                encapsulation: ViewEncapsulation.None
             }] }
 ];
 /** @nocollapse */
@@ -418,7 +424,9 @@ SEComponent.decorators = [
                     '[style.padding-right.px]': 'paddingValue',
                     '[class.ant-form-item-with-help]': 'showErr',
                 },
-                changeDetection: ChangeDetectionStrategy.OnPush
+                preserveWhitespaces: false,
+                changeDetection: ChangeDetectionStrategy.OnPush,
+                encapsulation: ViewEncapsulation.None
             }] }
 ];
 /** @nocollapse */

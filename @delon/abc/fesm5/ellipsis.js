@@ -1,6 +1,6 @@
 import { __decorate, __metadata, __spread } from 'tslib';
 import { DOCUMENT, CommonModule } from '@angular/common';
-import { Component, ChangeDetectionStrategy, ElementRef, NgZone, Inject, ChangeDetectorRef, ViewChild, Input, NgModule } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, NgZone, Inject, ChangeDetectorRef, ViewChild, Input, NgModule } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { InputBoolean, InputNumber, DelonUtilModule } from '@delon/util';
 import { take } from 'rxjs/operators';
@@ -332,7 +332,9 @@ var EllipsisComponent = /** @class */ (function () {
                     selector: 'ellipsis',
                     exportAs: 'ellipsis',
                     template: "<div (cdkObserveContent)=\"refresh()\"\n     #orgEl\n     style=\"display: none;\">\n  <ng-content></ng-content>\n</div>\n<ng-template #tooltipTpl\n             let-con>\n  <span *ngIf=\"tooltip; else con\"\n        nz-tooltip\n        [nzTitle]=\"titleTpl\"\n        [nzOverlayStyle]=\"{ 'overflow-wrap': 'break-word', 'word-wrap': 'break-word' }\">\n    <ng-container *ngTemplateOutlet=\"con\"></ng-container>\n    <ng-template #titleTpl>\n      <div [innerHTML]=\"orgHtml\"></div>\n    </ng-template>\n  </span>\n</ng-template>\n<ng-container [ngSwitch]=\"type\">\n  <span *ngSwitchCase=\"'default'\"\n        [ngClass]=\"cls\"></span>\n  <ng-container *ngSwitchCase=\"'length'\">\n    <ng-template [ngTemplateOutlet]=\"tooltipTpl\"\n                 [ngTemplateOutletContext]=\"{$implicit: lengthTpl}\"></ng-template>\n    <ng-template #lengthTpl>{{text}}</ng-template>\n  </ng-container>\n  <ng-container *ngSwitchCase=\"'line-clamp'\">\n    <ng-template [ngTemplateOutlet]=\"tooltipTpl\"\n                 [ngTemplateOutletContext]=\"{$implicit: lineClampTpl}\"></ng-template>\n    <ng-template #lineClampTpl>\n      <div [ngClass]=\"cls\"\n           [ngStyle]=\"{'-webkit-line-clamp': lines, '-webkit-box-orient': 'vertical'}\"></div>\n    </ng-template>\n  </ng-container>\n  <div *ngSwitchCase=\"'line'\"\n       [ngClass]=\"cls\">\n    <div class=\"ellipsis__handle\">\n      <ng-template [ngTemplateOutlet]=\"tooltipTpl\"\n                   [ngTemplateOutletContext]=\"{$implicit: lineTpl}\"></ng-template>\n      <ng-template #lineTpl>\n        {{ (targetCount > 0 ? text.substring(0, targetCount) : '') + (targetCount > 0 && targetCount < text.length\n          ?\n          tail\n          : ''\n          )\n          }}\n          </ng-template>\n          <div\n          class=\"ellipsis__shadow\"\n          #shadowOrgEl\n          [innerHTML]=\"orgHtml\">\n    </div>\n    <div class=\"ellipsis__shadow\"\n         #shadowTextEl><span>{{text}}</span></div>\n  </div>\n  </div>\n</ng-container>\n",
-                    changeDetection: ChangeDetectionStrategy.OnPush
+                    preserveWhitespaces: false,
+                    changeDetection: ChangeDetectionStrategy.OnPush,
+                    encapsulation: ViewEncapsulation.None
                 }] }
     ];
     /** @nocollapse */

@@ -1,6 +1,6 @@
 import { __decorate, __metadata } from 'tslib';
 import { DOCUMENT, CommonModule } from '@angular/common';
-import { Injectable, defineInjectable, EventEmitter, Component, ChangeDetectionStrategy, ElementRef, ChangeDetectorRef, Inject, Input, Output, Directive, NgModule } from '@angular/core';
+import { Injectable, defineInjectable, EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, ChangeDetectorRef, Inject, Input, Output, Directive, NgModule } from '@angular/core';
 import { ActivationStart, ActivationEnd, Router } from '@angular/router';
 import { InputBoolean, InputNumber, DelonUtilModule } from '@delon/util';
 import { BehaviorSubject, fromEvent } from 'rxjs';
@@ -205,7 +205,9 @@ FullContentComponent.decorators = [
                     '[class.full-content]': 'true',
                     '[style.height.px]': '_height',
                 },
-                changeDetection: ChangeDetectionStrategy.OnPush
+                preserveWhitespaces: false,
+                changeDetection: ChangeDetectionStrategy.OnPush,
+                encapsulation: ViewEncapsulation.None
             }] }
 ];
 /** @nocollapse */

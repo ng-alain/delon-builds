@@ -1,5 +1,5 @@
 import { __assign, __spread, __decorate, __metadata } from 'tslib';
-import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter, ElementRef, Injectable, Directive, Injector, defineInjectable, inject, INJECTOR, ChangeDetectorRef, Renderer2, Optional, Inject, NgModule } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Output, EventEmitter, ElementRef, Injectable, Directive, Injector, defineInjectable, inject, INJECTOR, ChangeDetectorRef, Renderer2, Optional, Inject, NgModule } from '@angular/core';
 import { DelonLocaleService, ScrollService, MenuService, ALAIN_I18N_TOKEN, DelonLocaleModule } from '@delon/theme';
 import { Subscription, Subject, BehaviorSubject } from 'rxjs';
 import { ConnectionPositionPair, Overlay, OverlayModule } from '@angular/cdk/overlay';
@@ -133,7 +133,9 @@ var ReuseTabContextMenuComponent = /** @class */ (function () {
                         '(document:click)': 'closeMenu($event)',
                         '(document:contextmenu)': 'closeMenu($event)',
                     },
-                    changeDetection: ChangeDetectionStrategy.OnPush
+                    preserveWhitespaces: false,
+                    changeDetection: ChangeDetectionStrategy.OnPush,
+                    encapsulation: ViewEncapsulation.None
                 }] }
     ];
     /** @nocollapse */
@@ -1819,11 +1821,13 @@ var ReuseTabComponent = /** @class */ (function () {
                     selector: 'reuse-tab',
                     exportAs: 'reuseTab',
                     template: "<nz-tabset [nzSelectedIndex]=\"pos\" [nzAnimated]=\"false\" nzType=\"line\"\n  [nzTabBarExtraContent]=\"tabBarExtraContent\"\n  [nzTabBarGutter]=\"tabBarGutter\"\n  [nzTabBarStyle]=\"tabBarStyle\">\n  <nz-tab *ngFor=\"let i of list; let index = index\" [nzTitle]=\"titleTemplate\">\n    <ng-template #titleTemplate>\n      <span [reuse-tab-context-menu]=\"i\" [customContextMenu]=\"customContextMenu\" (click)=\"to($event, index)\" class=\"reuse-tab__name\">{{i.title}}</span>\n      <i *ngIf=\"i.closable\" nz-icon nzType=\"close\" class=\"reuse-tab__op\" (click)=\"_close($event, index, false)\"></i>\n    </ng-template>\n  </nz-tab>\n</nz-tabset>\n<reuse-tab-context [i18n]=\"i18n\" (change)=\"cmChange($event)\"></reuse-tab-context>\n",
-                    changeDetection: ChangeDetectionStrategy.OnPush,
-                    providers: [ReuseTabContextService],
                     host: {
                         '[class.reuse-tab]': 'true',
-                    }
+                    },
+                    providers: [ReuseTabContextService],
+                    preserveWhitespaces: false,
+                    changeDetection: ChangeDetectionStrategy.OnPush,
+                    encapsulation: ViewEncapsulation.None
                 }] }
     ];
     /** @nocollapse */
