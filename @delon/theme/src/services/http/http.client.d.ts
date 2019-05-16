@@ -1,6 +1,5 @@
 import { HttpClient, HttpEvent, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
 import { HttpObserve } from '@angular/common/http/src/client';
-import { ChangeDetectorRef } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AlainThemeConfig } from '../../theme.config';
 export declare type _HttpHeaders = HttpHeaders | {
@@ -14,9 +13,8 @@ export declare type _HttpHeaders = HttpHeaders | {
  */
 export declare class _HttpClient {
     private http;
-    private cdr;
     private cog;
-    constructor(http: HttpClient, cdr: ChangeDetectorRef, cog: AlainThemeConfig);
+    constructor(http: HttpClient, cog: AlainThemeConfig);
     private _loading;
     /** 是否正在加载中 */
     readonly loading: boolean;

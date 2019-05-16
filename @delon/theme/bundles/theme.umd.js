@@ -2104,9 +2104,8 @@
      * + 统一处理时间格式问题
      */
     var _HttpClient = /** @class */ (function () {
-        function _HttpClient(http, cdr, cog) {
+        function _HttpClient(http, cog) {
             this.http = http;
-            this.cdr = cdr;
             this._loading = false;
             this.cog = __assign({ nullValueHandling: 'include', dateValueHandling: 'timestamp' }, (/** @type {?} */ (cog)).http);
         }
@@ -2181,7 +2180,6 @@
          */
         function () {
             this._loading = true;
-            this.cdr.markForCheck();
         };
         /**
          * @return {?}
@@ -2191,7 +2189,6 @@
          */
         function () {
             this._loading = false;
-            this.cdr.markForCheck();
         };
         /**
          * GET 请求
@@ -2369,8 +2366,10 @@
             var _this = this;
             if (options === void 0) { options = {}; }
             this.begin();
-            if (options.params)
-                options.params = this.parseParams(options.params);
+            if (options) {
+                if (options.params)
+                    options.params = this.parseParams(options.params);
+            }
             return this.http.request(method, url, options).pipe(operators.tap((/**
              * @return {?}
              */
@@ -2389,10 +2388,9 @@
         /** @nocollapse */
         _HttpClient.ctorParameters = function () { return [
             { type: http.HttpClient },
-            { type: core.ChangeDetectorRef },
             { type: AlainThemeConfig }
         ]; };
-        /** @nocollapse */ _HttpClient.ngInjectableDef = core.defineInjectable({ factory: function _HttpClient_Factory() { return new _HttpClient(core.inject(http.HttpClient), core.inject(core.ChangeDetectorRef), core.inject(AlainThemeConfig)); }, token: _HttpClient, providedIn: "root" });
+        /** @nocollapse */ _HttpClient.ngInjectableDef = core.defineInjectable({ factory: function _HttpClient_Factory() { return new _HttpClient(core.inject(http.HttpClient), core.inject(AlainThemeConfig)); }, token: _HttpClient, providedIn: "root" });
         return _HttpClient;
     }());
 

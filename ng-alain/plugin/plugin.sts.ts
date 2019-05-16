@@ -17,7 +17,7 @@ function fixPackage(options: PluginOptions) {
   return (host: Tree) => {
     (options.type === 'add' ? addPackageToPackageJson : removePackageFromPackageJson)(
       host,
-      ['ng-alain-sts@DEP-7.3.2'],
+      ['ng-alain-sts@^0.0.1'],
       'devDependencies',
     );
   };
