@@ -1,8 +1,9 @@
 import { ChangeDetectorRef, EventEmitter, OnChanges, OnDestroy, OnInit, SimpleChange, SimpleChanges } from '@angular/core';
+import { ACLService } from '@delon/acl';
 import { DelonLocaleService, LocaleData } from '@delon/theme';
 import { DelonFormConfig } from './config';
 import { ErrorData } from './errors';
-import { SFButton } from './interface';
+import { SFButton, SFLayout } from './interface';
 import { FormProperty } from './model/form.property';
 import { FormPropertyFactory } from './model/form.property.factory';
 import { SFSchema } from './schema/index';
@@ -14,9 +15,10 @@ export declare class SFComponent implements OnInit, OnChanges, OnDestroy {
     private formPropertyFactory;
     private terminator;
     private options;
+    private aclSrv;
     private cdr;
     private i18n;
-    private i18n$;
+    private unsubscribe$;
     private _renders;
     private _item;
     private _valid;
@@ -29,7 +31,7 @@ export declare class SFComponent implements OnInit, OnChanges, OnDestroy {
     _schema: SFSchema;
     _ui: SFUISchema;
     /** 表单布局，等同 `nzLayout`，默认：horizontal */
-    layout: 'horizontal' | 'vertical' | 'inline';
+    layout: SFLayout;
     /** JSON Schema */
     schema: SFSchema;
     /** UI Schema */
@@ -93,7 +95,7 @@ export declare class SFComponent implements OnInit, OnChanges, OnDestroy {
      */
     setValue(path: string, value: any): this;
     onSubmit(e: Event): void;
-    constructor(formPropertyFactory: FormPropertyFactory, terminator: TerminatorService, options: DelonFormConfig, cdr: ChangeDetectorRef, i18n: DelonLocaleService);
+    constructor(formPropertyFactory: FormPropertyFactory, terminator: TerminatorService, options: DelonFormConfig, aclSrv: ACLService, cdr: ChangeDetectorRef, i18n: DelonLocaleService);
     private coverProperty;
     private coverButtonProperty;
     ngOnInit(): void;
