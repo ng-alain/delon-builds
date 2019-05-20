@@ -1,6 +1,5 @@
 import { SFHorizontalLayoutSchema, SFRenderSchema } from './schema/ui';
 export declare type SFValue = any;
-export declare type SFLayout = 'horizontal' | 'vertical' | 'inline';
 export interface SFButton {
     /** 提交按钮文本，默认：`提交` */
     submit?: string;

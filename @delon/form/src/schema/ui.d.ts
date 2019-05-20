@@ -1,4 +1,3 @@
-import { ACLCanType } from '@delon/acl';
 import { Observable } from 'rxjs';
 import { ErrorSchema } from '../errors';
 import { SFSchemaEnumType } from './index';
@@ -147,10 +146,6 @@ export interface SFUISchemaItem extends SFRenderSchema, SFArraySchema, SFHorizon
     visibleIf?: {
         [key: string]: any[] | ((value: any) => boolean);
     };
-    /**
-     * ACL 配置
-     */
-    acl?: ACLCanType;
 }
 /**
  * UI Schema，KEY名**务必**是 `$` 开头（例如：`$name`、`$id`），以便能区分KEY值还是UI选项

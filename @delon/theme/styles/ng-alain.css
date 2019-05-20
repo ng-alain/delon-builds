@@ -19709,8 +19709,7 @@ li.ant-tree-treenode-disabled > .ant-tree-node-content-wrapper:hover {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://github.com/NG-ZORRO/ng-zorro-antd/blob/master/LICENSE
  */
-.ant-tree.ant-tree-show-line > nz-tree-node:not(:last-child) > li:before,
-.ant-tree.ant-tree-show-line .ant-tree-child-tree > nz-tree-node:not(:last-child) > li:before {
+.ant-tree.ant-tree-show-line nz-tree-node:not(:last-child) > li::before {
   content: ' ';
   width: 1px;
   border-left: 1px solid #d9d9d9;
@@ -19719,16 +19718,7 @@ li.ant-tree-treenode-disabled > .ant-tree-node-content-wrapper:hover {
   left: 12px;
   margin: 22px 0;
 }
-.ant-tree.ant-tree-show-line .ant-tree-child-tree > nz-tree-node:last-child > li:before {
-  content: ' ';
-  width: 1px;
-  border-left: 0px solid #d9d9d9;
-  height: 100%;
-  position: absolute;
-  left: 12px;
-  margin: 22px 0;
-}
-.ant-tree .font-highlight {
+.font-highlight {
   color: #f5222d;
 }
 .ant-select-tree-checkbox {
@@ -20125,6 +20115,15 @@ li.ant-select-tree-treenode-disabled > .ant-select-tree-node-content-wrapper:hov
   padding: 7px 16px;
   color: rgba(0, 0, 0, 0.25);
   cursor: not-allowed;
+}
+.ant-tree.ant-select-tree.ant-tree-show-line nz-tree-node:not(:last-child) > li::before {
+  content: ' ';
+  width: 1px;
+  border-left: 1px solid #d9d9d9;
+  height: calc(100% - 16px);
+  position: absolute;
+  left: 12px;
+  margin: 26px 0;
 }
 .ant-fullcalendar {
   box-sizing: border-box;
