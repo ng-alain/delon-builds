@@ -201,6 +201,10 @@ class STConfig {
          */
         this.expandRowByClick = false;
         /**
+         * 手风琴模式
+         */
+        this.expandAccordion = false;
+        /**
          * 指定 `width` 模式
          */
         this.widthMode = {
@@ -1371,6 +1375,7 @@ class STComponent {
          */
         this.singleSort = null;
         this.expandRowByClick = false;
+        this.expandAccordion = false;
         /**
          * 行单击多少时长之类为双击（单位：毫秒），默认：`200`
          */
@@ -1763,6 +1768,24 @@ class STComponent {
         return false;
     }
     /**
+     * @private
+     * @param {?} item
+     * @return {?}
+     */
+    closeOtherExpand(item) {
+        if (this.expandAccordion === false)
+            return;
+        this._data.filter((/**
+         * @param {?} i
+         * @return {?}
+         */
+        i => i !== item)).forEach((/**
+         * @param {?} i
+         * @return {?}
+         */
+        i => (i.expand = false)));
+    }
+    /**
      * @param {?} e
      * @param {?} item
      * @param {?} index
@@ -1774,6 +1797,7 @@ class STComponent {
         const { expand, expandRowByClick, rowClickTime } = this;
         if (!!expand && item.showExpand !== false && expandRowByClick) {
             item.expand = !item.expand;
+            this.closeOtherExpand(item);
             this.changeEmit('expand', item);
             return;
         }
@@ -1800,6 +1824,7 @@ class STComponent {
      * @return {?}
      */
     _expandChange(item) {
+        this.closeOtherExpand(item);
         this.changeEmit('expand', item);
     }
     /**
@@ -2340,6 +2365,7 @@ STComponent.propDecorators = {
     bodyHeader: [{ type: Input }],
     body: [{ type: Input }],
     expandRowByClick: [{ type: Input }],
+    expandAccordion: [{ type: Input }],
     expand: [{ type: Input }],
     noResult: [{ type: Input }],
     widthConfig: [{ type: Input }],
@@ -2373,6 +2399,10 @@ __decorate([
     InputBoolean(),
     __metadata("design:type", Object)
 ], STComponent.prototype, "expandRowByClick", void 0);
+__decorate([
+    InputBoolean(),
+    __metadata("design:type", Object)
+], STComponent.prototype, "expandAccordion", void 0);
 __decorate([
     InputNumber(),
     __metadata("design:type", Object)
