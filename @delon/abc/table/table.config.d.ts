@@ -89,10 +89,6 @@ export declare class STConfig {
      */
     expandRowByClick?: boolean;
     /**
-     * 手风琴模式
-     */
-    expandAccordion?: boolean;
-    /**
      * 指定 `width` 模式
      */
     widthMode?: STWidthMode;
