@@ -275,6 +275,10 @@
              */
             this.expandRowByClick = false;
             /**
+             * 手风琴模式
+             */
+            this.expandAccordion = false;
+            /**
              * 指定 `width` 模式
              */
             this.widthMode = {
@@ -1608,6 +1612,7 @@
              */
             this.singleSort = null;
             this.expandRowByClick = false;
+            this.expandAccordion = false;
             /**
              * 行单击多少时长之类为双击（单位：毫秒），默认：`200`
              */
@@ -2148,6 +2153,29 @@
             return false;
         };
         /**
+         * @private
+         * @param {?} item
+         * @return {?}
+         */
+        STComponent.prototype.closeOtherExpand = /**
+         * @private
+         * @param {?} item
+         * @return {?}
+         */
+        function (item) {
+            if (this.expandAccordion === false)
+                return;
+            this._data.filter((/**
+             * @param {?} i
+             * @return {?}
+             */
+            function (i) { return i !== item; })).forEach((/**
+             * @param {?} i
+             * @return {?}
+             */
+            function (i) { return (i.expand = false); }));
+        };
+        /**
          * @param {?} e
          * @param {?} item
          * @param {?} index
@@ -2166,6 +2194,7 @@
             var _a = this, expand = _a.expand, expandRowByClick = _a.expandRowByClick, rowClickTime = _a.rowClickTime;
             if (!!expand && item.showExpand !== false && expandRowByClick) {
                 item.expand = !item.expand;
+                this.closeOtherExpand(item);
                 this.changeEmit('expand', item);
                 return;
             }
@@ -2196,6 +2225,7 @@
          * @return {?}
          */
         function (item) {
+            this.closeOtherExpand(item);
             this.changeEmit('expand', item);
         };
         /** 移除某行数据 */
@@ -2927,6 +2957,7 @@
             bodyHeader: [{ type: core.Input }],
             body: [{ type: core.Input }],
             expandRowByClick: [{ type: core.Input }],
+            expandAccordion: [{ type: core.Input }],
             expand: [{ type: core.Input }],
             noResult: [{ type: core.Input }],
             widthConfig: [{ type: core.Input }],
@@ -2960,6 +2991,10 @@
             util.InputBoolean(),
             __metadata("design:type", Object)
         ], STComponent.prototype, "expandRowByClick", void 0);
+        __decorate([
+            util.InputBoolean(),
+            __metadata("design:type", Object)
+        ], STComponent.prototype, "expandAccordion", void 0);
         __decorate([
             util.InputNumber(),
             __metadata("design:type", Object)
