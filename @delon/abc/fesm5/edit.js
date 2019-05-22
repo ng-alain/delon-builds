@@ -5,7 +5,6 @@ import { trigger, transition, style, animate } from '@angular/animations';
 import { NgModel, FormControlName } from '@angular/forms';
 import { ResponsiveService } from '@delon/theme';
 import { CommonModule } from '@angular/common';
-import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 
 /**
@@ -537,7 +536,7 @@ var SEModule = /** @class */ (function () {
     }
     SEModule.decorators = [
         { type: NgModule, args: [{
-                    imports: [CommonModule, DelonUtilModule, NzToolTipModule, NzIconModule],
+                    imports: [CommonModule, DelonUtilModule, NzToolTipModule],
                     declarations: __spread(COMPONENTS),
                     exports: __spread(COMPONENTS),
                 },] }
