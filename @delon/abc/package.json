@@ -1,6 +1,6 @@
 {
   "name": "@delon/abc",
-  "version": "7.4.0-76e3854",
+  "version": "7.4.0-d9033dd",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -27,9 +27,9 @@
   },
   "peerDependencies": {
     "qrious": "^4.0.2",
-    "@delon/theme": "^7.4.0-76e3854",
-    "@delon/util": "^7.4.0-76e3854",
-    "@delon/acl": "^7.4.0-76e3854"
+    "@delon/theme": "^7.4.0-d9033dd",
+    "@delon/util": "^7.4.0-d9033dd",
+    "@delon/acl": "^7.4.0-d9033dd"
   },
   "sideEffects": false,
   "main": "bundles/abc.umd.js",

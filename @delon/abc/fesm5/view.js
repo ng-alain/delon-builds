@@ -4,8 +4,6 @@ import { updateHostClass, InputNumber, isEmpty, InputBoolean, DelonUtilModule } 
 import { ResponsiveService } from '@delon/theme';
 import { ObserversModule } from '@angular/cdk/observers';
 import { CommonModule } from '@angular/common';
-import { NzIconModule } from 'ng-zorro-antd/icon';
-import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 
 /**
  * @fileoverview added by tsickle
@@ -292,7 +290,7 @@ var SVComponent = /** @class */ (function () {
         { type: Component, args: [{
                     selector: 'sv, [sv]',
                     exportAs: 'sv',
-                    template: "<div class=\"sv__label\"\n     [class.sv__label-empty]=\"!label\"\n     [style.width.px]=\"parent.labelWidth\">\n  <ng-container *stringTemplateOutlet=\"label\">{{label}}</ng-container>\n  <span class=\"sv__label-optional\">\n    {{ optional }}\n    <nz-tooltip *ngIf=\"optionalHelp\" [nzTitle]=\"optionalHelp\">\n      <i nz-tooltip nz-icon nzType=\"question-circle\"></i>\n    </nz-tooltip>\n  </span>\n</div>\n<div class=\"sv__detail\">\n  <span (cdkObserveContent)=\"checkContent()\"\n        #conEl>\n    <ng-content></ng-content>\n  </span>\n  <ng-container *ngIf=\"!!unit\">\n    <span class=\"sv__unit\" *stringTemplateOutlet=\"unit\">{{unit}}</span>\n  </ng-container>\n</div>\n",
+                    template: "<div class=\"sv__label\"\n     [class.sv__label-empty]=\"!label\"\n     [style.width.px]=\"parent.labelWidth\">\n  <ng-container *stringTemplateOutlet=\"label\">{{label}}</ng-container>\n</div>\n<div class=\"sv__detail\">\n  <span (cdkObserveContent)=\"checkContent()\"\n        #conEl>\n    <ng-content></ng-content>\n  </span>\n  <ng-container *ngIf=\"!!unit\">\n    <span class=\"sv__unit\" *stringTemplateOutlet=\"unit\">{{unit}}</span>\n  </ng-container>\n</div>\n",
                     host: {
                         '[style.padding-left.px]': 'paddingValue',
                         '[style.padding-right.px]': 'paddingValue',
@@ -311,8 +309,6 @@ var SVComponent = /** @class */ (function () {
     ]; };
     SVComponent.propDecorators = {
         conEl: [{ type: ViewChild, args: ['conEl',] }],
-        optional: [{ type: Input }],
-        optionalHelp: [{ type: Input }],
         label: [{ type: Input }],
         unit: [{ type: Input }],
         col: [{ type: Input }],
@@ -341,7 +337,7 @@ var SVModule = /** @class */ (function () {
     }
     SVModule.decorators = [
         { type: NgModule, args: [{
-                    imports: [CommonModule, ObserversModule, DelonUtilModule, NzToolTipModule, NzIconModule],
+                    imports: [CommonModule, ObserversModule, DelonUtilModule],
                     declarations: __spread(COMPONENTS),
                     exports: __spread(COMPONENTS),
                 },] }

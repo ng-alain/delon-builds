@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util'), require('@delon/theme'), require('@angular/cdk/observers'), require('@angular/common'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/tooltip')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/view', ['exports', '@angular/core', '@delon/util', '@delon/theme', '@angular/cdk/observers', '@angular/common', 'ng-zorro-antd/icon', 'ng-zorro-antd/tooltip'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.view = {}), global.ng.core, global.delon.util, global.delon.theme, global.ng.cdk.observers, global.ng.common, global.icon, global.tooltip));
-}(this, function (exports, core, util, theme, observers, common, icon, tooltip) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util'), require('@delon/theme'), require('@angular/cdk/observers'), require('@angular/common')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/view', ['exports', '@angular/core', '@delon/util', '@delon/theme', '@angular/cdk/observers', '@angular/common'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.view = {}), global.ng.core, global.delon.util, global.delon.theme, global.ng.cdk.observers, global.ng.common));
+}(this, function (exports, core, util, theme, observers, common) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -354,7 +354,7 @@
             { type: core.Component, args: [{
                         selector: 'sv, [sv]',
                         exportAs: 'sv',
-                        template: "<div class=\"sv__label\"\n     [class.sv__label-empty]=\"!label\"\n     [style.width.px]=\"parent.labelWidth\">\n  <ng-container *stringTemplateOutlet=\"label\">{{label}}</ng-container>\n  <span class=\"sv__label-optional\">\n    {{ optional }}\n    <nz-tooltip *ngIf=\"optionalHelp\" [nzTitle]=\"optionalHelp\">\n      <i nz-tooltip nz-icon nzType=\"question-circle\"></i>\n    </nz-tooltip>\n  </span>\n</div>\n<div class=\"sv__detail\">\n  <span (cdkObserveContent)=\"checkContent()\"\n        #conEl>\n    <ng-content></ng-content>\n  </span>\n  <ng-container *ngIf=\"!!unit\">\n    <span class=\"sv__unit\" *stringTemplateOutlet=\"unit\">{{unit}}</span>\n  </ng-container>\n</div>\n",
+                        template: "<div class=\"sv__label\"\n     [class.sv__label-empty]=\"!label\"\n     [style.width.px]=\"parent.labelWidth\">\n  <ng-container *stringTemplateOutlet=\"label\">{{label}}</ng-container>\n</div>\n<div class=\"sv__detail\">\n  <span (cdkObserveContent)=\"checkContent()\"\n        #conEl>\n    <ng-content></ng-content>\n  </span>\n  <ng-container *ngIf=\"!!unit\">\n    <span class=\"sv__unit\" *stringTemplateOutlet=\"unit\">{{unit}}</span>\n  </ng-container>\n</div>\n",
                         host: {
                             '[style.padding-left.px]': 'paddingValue',
                             '[style.padding-right.px]': 'paddingValue',
@@ -373,8 +373,6 @@
         ]; };
         SVComponent.propDecorators = {
             conEl: [{ type: core.ViewChild, args: ['conEl',] }],
-            optional: [{ type: core.Input }],
-            optionalHelp: [{ type: core.Input }],
             label: [{ type: core.Input }],
             unit: [{ type: core.Input }],
             col: [{ type: core.Input }],
@@ -403,7 +401,7 @@
         }
         SVModule.decorators = [
             { type: core.NgModule, args: [{
-                        imports: [common.CommonModule, observers.ObserversModule, util.DelonUtilModule, tooltip.NzToolTipModule, icon.NzIconModule],
+                        imports: [common.CommonModule, observers.ObserversModule, util.DelonUtilModule],
                         declarations: __spread(COMPONENTS),
                         exports: __spread(COMPONENTS),
                     },] }

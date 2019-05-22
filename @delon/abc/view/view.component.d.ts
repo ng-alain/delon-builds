@@ -8,8 +8,6 @@ export declare class SVComponent implements AfterViewInit, OnChanges {
     private conEl;
     private el;
     private clsMap;
-    optional: string;
-    optionalHelp: string;
     label: string | TemplateRef<void>;
     unit: string | TemplateRef<void>;
     col: number;
