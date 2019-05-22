@@ -1,9 +1,10 @@
-import { defineInjectable, Injectable, Inject, ComponentFactoryResolver, Component, ChangeDetectionStrategy, ViewEncapsulation, ChangeDetectorRef, Input, Output, EventEmitter, ViewChild, ViewContainerRef, Directive, ElementRef, Renderer2, TemplateRef, Injector, HostBinding, NgModule } from '@angular/core';
+import { defineInjectable, Injectable, Inject, ComponentFactoryResolver, Component, ChangeDetectionStrategy, ViewEncapsulation, Optional, ChangeDetectorRef, Input, Output, EventEmitter, ViewChild, ViewContainerRef, Directive, ElementRef, Renderer2, TemplateRef, Injector, HostBinding, NgModule } from '@angular/core';
 import { __spread, __rest, __assign, __values, __extends, __decorate, __metadata } from 'tslib';
+import { ACLService } from '@delon/acl';
 import { DelonLocaleService, DelonLocaleModule } from '@delon/theme';
 import { deepCopy, toBoolean, InputBoolean, InputNumber, deepGet, DelonUtilModule } from '@delon/util';
 import { of, Observable, combineLatest, BehaviorSubject, Subject } from 'rxjs';
-import { map, distinctUntilChanged, takeUntil, debounceTime, startWith, flatMap, tap } from 'rxjs/operators';
+import { map, distinctUntilChanged, takeUntil, filter, debounceTime, startWith, flatMap, tap } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
 import { NgModel, FormsModule } from '@angular/forms';
 import { NzAutocompleteModule } from 'ng-zorro-antd/auto-complete';
@@ -1900,13 +1901,15 @@ function useFactory(schemaValidatorFactory, options) {
     return new FormPropertyFactory(schemaValidatorFactory, options);
 }
 var SFComponent = /** @class */ (function () {
-    function SFComponent(formPropertyFactory, terminator, options, cdr, i18n) {
+    function SFComponent(formPropertyFactory, terminator, options, aclSrv, cdr, i18n) {
         var _this = this;
         this.formPropertyFactory = formPropertyFactory;
         this.terminator = terminator;
         this.options = options;
+        this.aclSrv = aclSrv;
         this.cdr = cdr;
         this.i18n = i18n;
+        this.unsubscribe$ = new Subject();
         this._renders = new Map();
         this._valid = true;
         this._inited = false;
@@ -1961,7 +1964,7 @@ var SFComponent = /** @class */ (function () {
         this.liveValidate = (/** @type {?} */ (options.liveValidate));
         this.firstVisual = (/** @type {?} */ (options.firstVisual));
         this.autocomplete = (/** @type {?} */ (options.autocomplete));
-        this.i18n$ = this.i18n.change.subscribe((/**
+        this.i18n.change.pipe(takeUntil(this.unsubscribe$)).subscribe((/**
          * @return {?}
          */
         function () {
@@ -1971,6 +1974,17 @@ var SFComponent = /** @class */ (function () {
                 _this.cdr.detectChanges();
             }
         }));
+        this.aclSrv.change
+            .pipe(filter((/**
+         * @return {?}
+         */
+        function () { return _this._inited; })), takeUntil(this.unsubscribe$))
+            .subscribe((/**
+         * @template THIS
+         * @this {THIS}
+         * @return {THIS}
+         */
+        function () { return _this.refreshSchema(); }));
     }
     Object.defineProperty(SFComponent.prototype, "mode", {
         get: /**
@@ -2142,6 +2156,8 @@ var SFComponent = /** @class */ (function () {
          * @return {?}
          */
         function (schema, _parentSchema, uiSchema, parentUiSchema, uiRes) {
+            if (!Array.isArray(schema.required))
+                schema.required = [];
             Object.keys((/** @type {?} */ (schema.properties))).forEach((/**
              * @param {?} key
              * @return {?}
@@ -2188,8 +2204,18 @@ var SFComponent = /** @class */ (function () {
                     }
                 }
                 ui.hidden = typeof ui.hidden === 'boolean' ? ui.hidden : false;
+                if (ui.hidden === false && ui.acl && _this.aclSrv && !_this.aclSrv.can(ui.acl)) {
+                    ui.hidden = true;
+                }
                 uiRes[uiKey] = ui;
                 delete property.ui;
+                if (ui.hidden === true) {
+                    /** @type {?} */
+                    var idx = (/** @type {?} */ (schema.required)).indexOf(key);
+                    if (idx !== -1) {
+                        (/** @type {?} */ (schema.required)).splice(idx, 1);
+                    }
+                }
                 if (property.items) {
                     uiRes[uiKey].$items = uiRes[uiKey].$items || {};
                     inFn(property.items, property.items, (uiSchema[uiKey] || {}).$items || {}, ui, uiRes[uiKey].$items);
@@ -2482,7 +2508,9 @@ var SFComponent = /** @class */ (function () {
     function () {
         this.cleanRootSub();
         this.terminator.destroy();
-        this.i18n$.unsubscribe();
+        var unsubscribe$ = this.unsubscribe$;
+        unsubscribe$.next();
+        unsubscribe$.complete();
     };
     SFComponent.decorators = [
         { type: Component, args: [{
@@ -2515,6 +2543,7 @@ var SFComponent = /** @class */ (function () {
         { type: FormPropertyFactory },
         { type: TerminatorService },
         { type: DelonFormConfig },
+        { type: ACLService, decorators: [{ type: Optional }] },
         { type: ChangeDetectorRef },
         { type: DelonLocaleService }
     ]; };

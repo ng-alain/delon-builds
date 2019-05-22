@@ -2922,7 +2922,7 @@ var AlainThemeModule = /** @class */ (function () {
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-var VERSION = new Version('7.4.0-0998557f');
+var VERSION = new Version('7.4.0-54ddae9');
 
 /**
  * @fileoverview added by tsickle

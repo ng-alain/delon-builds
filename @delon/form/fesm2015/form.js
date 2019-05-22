@@ -1,9 +1,10 @@
-import { Injectable, defineInjectable, Inject, ComponentFactoryResolver, EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ChangeDetectorRef, Input, Output, ViewChild, ViewContainerRef, Directive, ElementRef, Renderer2, TemplateRef, Injector, HostBinding, NgModule } from '@angular/core';
+import { Injectable, defineInjectable, Inject, ComponentFactoryResolver, EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Optional, ChangeDetectorRef, Input, Output, ViewChild, ViewContainerRef, Directive, ElementRef, Renderer2, TemplateRef, Injector, HostBinding, NgModule } from '@angular/core';
 import { __rest, __decorate, __metadata } from 'tslib';
+import { ACLService } from '@delon/acl';
 import { DelonLocaleService, DelonLocaleModule } from '@delon/theme';
 import { deepCopy, toBoolean, InputBoolean, InputNumber, deepGet, DelonUtilModule } from '@delon/util';
 import { of, BehaviorSubject, Observable, combineLatest, Subject } from 'rxjs';
-import { map, distinctUntilChanged, takeUntil, debounceTime, startWith, flatMap, tap } from 'rxjs/operators';
+import { map, distinctUntilChanged, takeUntil, filter, debounceTime, startWith, flatMap, tap } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
 import { NgModel, FormsModule } from '@angular/forms';
 import { NzAutocompleteModule } from 'ng-zorro-antd/auto-complete';
@@ -1557,15 +1558,18 @@ class SFComponent {
      * @param {?} formPropertyFactory
      * @param {?} terminator
      * @param {?} options
+     * @param {?} aclSrv
      * @param {?} cdr
      * @param {?} i18n
      */
-    constructor(formPropertyFactory, terminator, options, cdr, i18n) {
+    constructor(formPropertyFactory, terminator, options, aclSrv, cdr, i18n) {
         this.formPropertyFactory = formPropertyFactory;
         this.terminator = terminator;
         this.options = options;
+        this.aclSrv = aclSrv;
         this.cdr = cdr;
         this.i18n = i18n;
+        this.unsubscribe$ = new Subject();
         this._renders = new Map();
         this._valid = true;
         this._inited = false;
@@ -1620,7 +1624,7 @@ class SFComponent {
         this.liveValidate = (/** @type {?} */ (options.liveValidate));
         this.firstVisual = (/** @type {?} */ (options.firstVisual));
         this.autocomplete = (/** @type {?} */ (options.autocomplete));
-        this.i18n$ = this.i18n.change.subscribe((/**
+        this.i18n.change.pipe(takeUntil(this.unsubscribe$)).subscribe((/**
          * @return {?}
          */
         () => {
@@ -1630,6 +1634,17 @@ class SFComponent {
                 this.cdr.detectChanges();
             }
         }));
+        this.aclSrv.change
+            .pipe(filter((/**
+         * @return {?}
+         */
+        () => this._inited)), takeUntil(this.unsubscribe$))
+            .subscribe((/**
+         * @template THIS
+         * @this {THIS}
+         * @return {THIS}
+         */
+        () => this.refreshSchema()));
     }
     /**
      * 表单模式
@@ -1744,6 +1759,8 @@ class SFComponent {
          * @return {?}
          */
         (schema, _parentSchema, uiSchema, parentUiSchema, uiRes) => {
+            if (!Array.isArray(schema.required))
+                schema.required = [];
             Object.keys((/** @type {?} */ (schema.properties))).forEach((/**
              * @param {?} key
              * @return {?}
@@ -1790,8 +1807,18 @@ class SFComponent {
                     }
                 }
                 ui.hidden = typeof ui.hidden === 'boolean' ? ui.hidden : false;
+                if (ui.hidden === false && ui.acl && this.aclSrv && !this.aclSrv.can(ui.acl)) {
+                    ui.hidden = true;
+                }
                 uiRes[uiKey] = ui;
                 delete property.ui;
+                if (ui.hidden === true) {
+                    /** @type {?} */
+                    const idx = (/** @type {?} */ (schema.required)).indexOf(key);
+                    if (idx !== -1) {
+                        (/** @type {?} */ (schema.required)).splice(idx, 1);
+                    }
+                }
                 if (property.items) {
                     uiRes[uiKey].$items = uiRes[uiKey].$items || {};
                     inFn(property.items, property.items, (uiSchema[uiKey] || {}).$items || {}, ui, uiRes[uiKey].$items);
@@ -2024,7 +2051,9 @@ class SFComponent {
     ngOnDestroy() {
         this.cleanRootSub();
         this.terminator.destroy();
-        this.i18n$.unsubscribe();
+        const { unsubscribe$ } = this;
+        unsubscribe$.next();
+        unsubscribe$.complete();
     }
 }
 SFComponent.decorators = [
@@ -2058,6 +2087,7 @@ SFComponent.ctorParameters = () => [
     { type: FormPropertyFactory },
     { type: TerminatorService },
     { type: DelonFormConfig },
+    { type: ACLService, decorators: [{ type: Optional }] },
     { type: ChangeDetectorRef },
     { type: DelonLocaleService }
 ];
