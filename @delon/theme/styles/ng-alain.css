@@ -25128,6 +25128,9 @@ body {
   margin: 0 8px 0 2px;
   content: ':';
 }
+.sv__label-optional {
+  color: rgba(0, 0, 0, 0.35);
+}
 .sv__detail {
   display: table-cell;
   width: 100%;
