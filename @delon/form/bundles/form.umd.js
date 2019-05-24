@@ -547,8 +547,8 @@
             this._value = null;
             this._errors = null;
             this._objErrors = {};
-            this._valueChanges = new rxjs.BehaviorSubject(null);
-            this._errorsChanges = new rxjs.BehaviorSubject(null);
+            this._valueChanges = new rxjs.Subject();
+            this._errorsChanges = new rxjs.Subject();
             this._visible = true;
             this._visibilityChanges = new rxjs.BehaviorSubject(true);
             this.schema = schema;
@@ -2508,6 +2508,8 @@
             (/** @type {?} */ (this)).coverButtonProperty();
             (/** @type {?} */ (this)).rootProperty = (/** @type {?} */ (this)).formPropertyFactory.createProperty((/** @type {?} */ (this))._schema, (/** @type {?} */ (this))._ui, (/** @type {?} */ (this)).formData);
             (/** @type {?} */ (this)).attachCustomRender();
+            (/** @type {?} */ (this)).cdr.detectChanges();
+            (/** @type {?} */ (this)).reset();
             (/** @type {?} */ (this)).rootProperty.valueChanges.subscribe((/**
              * @param {?} value
              * @return {?}
@@ -2525,7 +2527,7 @@
                 (/** @type {?} */ (_this)).formError.emit((/** @type {?} */ (errors)));
                 (/** @type {?} */ (_this)).cdr.detectChanges();
             }));
-            return (/** @type {?} */ (this)).reset();
+            return (/** @type {?} */ (this));
         };
         /**
          * 重置表单

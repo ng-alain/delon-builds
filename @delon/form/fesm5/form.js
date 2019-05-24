@@ -3,7 +3,7 @@ import { __spread, __rest, __assign, __values, __extends, __decorate, __metadata
 import { ACLService } from '@delon/acl';
 import { DelonLocaleService, DelonLocaleModule } from '@delon/theme';
 import { deepCopy, toBoolean, InputBoolean, InputNumber, deepGet, DelonUtilModule } from '@delon/util';
-import { of, Observable, combineLatest, BehaviorSubject, Subject } from 'rxjs';
+import { of, Observable, combineLatest, Subject, BehaviorSubject } from 'rxjs';
 import { map, distinctUntilChanged, takeUntil, filter, debounceTime, startWith, flatMap, tap } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
 import { NgModel, FormsModule } from '@angular/forms';
@@ -474,8 +474,8 @@ FormProperty = /** @class */ (function () {
         this._value = null;
         this._errors = null;
         this._objErrors = {};
-        this._valueChanges = new BehaviorSubject(null);
-        this._errorsChanges = new BehaviorSubject(null);
+        this._valueChanges = new Subject();
+        this._errorsChanges = new Subject();
         this._visible = true;
         this._visibilityChanges = new BehaviorSubject(true);
         this.schema = schema;
@@ -2435,6 +2435,8 @@ var SFComponent = /** @class */ (function () {
         (/** @type {?} */ (this)).coverButtonProperty();
         (/** @type {?} */ (this)).rootProperty = (/** @type {?} */ (this)).formPropertyFactory.createProperty((/** @type {?} */ (this))._schema, (/** @type {?} */ (this))._ui, (/** @type {?} */ (this)).formData);
         (/** @type {?} */ (this)).attachCustomRender();
+        (/** @type {?} */ (this)).cdr.detectChanges();
+        (/** @type {?} */ (this)).reset();
         (/** @type {?} */ (this)).rootProperty.valueChanges.subscribe((/**
          * @param {?} value
          * @return {?}
@@ -2452,7 +2454,7 @@ var SFComponent = /** @class */ (function () {
             (/** @type {?} */ (_this)).formError.emit((/** @type {?} */ (errors)));
             (/** @type {?} */ (_this)).cdr.detectChanges();
         }));
-        return (/** @type {?} */ (this)).reset();
+        return (/** @type {?} */ (this));
     };
     /**
      * 重置表单

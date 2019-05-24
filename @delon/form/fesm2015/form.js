@@ -3,7 +3,7 @@ import { __rest, __decorate, __metadata } from 'tslib';
 import { ACLService } from '@delon/acl';
 import { DelonLocaleService, DelonLocaleModule } from '@delon/theme';
 import { deepCopy, toBoolean, InputBoolean, InputNumber, deepGet, DelonUtilModule } from '@delon/util';
-import { of, BehaviorSubject, Observable, combineLatest, Subject } from 'rxjs';
+import { of, Subject, BehaviorSubject, Observable, combineLatest } from 'rxjs';
 import { map, distinctUntilChanged, takeUntil, filter, debounceTime, startWith, flatMap, tap } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
 import { NgModel, FormsModule } from '@angular/forms';
@@ -461,8 +461,8 @@ class FormProperty {
         this._value = null;
         this._errors = null;
         this._objErrors = {};
-        this._valueChanges = new BehaviorSubject(null);
-        this._errorsChanges = new BehaviorSubject(null);
+        this._valueChanges = new Subject();
+        this._errorsChanges = new Subject();
         this._visible = true;
         this._visibilityChanges = new BehaviorSubject(true);
         this.schema = schema;
@@ -1998,6 +1998,8 @@ class SFComponent {
         (/** @type {?} */ (this)).coverButtonProperty();
         (/** @type {?} */ (this)).rootProperty = (/** @type {?} */ (this)).formPropertyFactory.createProperty((/** @type {?} */ (this))._schema, (/** @type {?} */ (this))._ui, (/** @type {?} */ (this)).formData);
         (/** @type {?} */ (this)).attachCustomRender();
+        (/** @type {?} */ (this)).cdr.detectChanges();
+        (/** @type {?} */ (this)).reset();
         (/** @type {?} */ (this)).rootProperty.valueChanges.subscribe((/**
          * @param {?} value
          * @return {?}
@@ -2015,7 +2017,7 @@ class SFComponent {
             (/** @type {?} */ (this)).formError.emit((/** @type {?} */ (errors)));
             (/** @type {?} */ (this)).cdr.detectChanges();
         }));
-        return (/** @type {?} */ (this)).reset();
+        return (/** @type {?} */ (this));
     }
     /**
      * 重置表单
