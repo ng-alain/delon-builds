@@ -19,6 +19,7 @@ class QuickMenuComponent {
         this.cdr = cdr;
         this.el = el;
         this.render = render;
+        this.ctrlStyle = {};
         // #region fields
         this.icon = 'question-circle';
         this.top = 120;
@@ -26,7 +27,6 @@ class QuickMenuComponent {
         this.bgColor = '#fff';
         this.borderColor = '#ddd';
         this.show = false;
-        this.ctrlStyle = {};
         this.initFlag = false;
     }
     /**

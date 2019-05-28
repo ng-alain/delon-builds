@@ -559,6 +559,7 @@ function b64decode(str) {
     (buffer = str.charAt(idx++)); 
     // character found in table? initialize bit storage and add its ascii value;
     ~buffer &&
+        // tslint:disable-next-line: ban-comma-operator
         ((bs = bc % 4 ? bs * 64 + buffer : buffer),
             // and if not first of each 4 characters,
             // convert the first 8 bits to one ascii character

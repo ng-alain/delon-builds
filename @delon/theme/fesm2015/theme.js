@@ -54,7 +54,7 @@ function preloaderFinished() {
         preloader.addEventListener('transitionend', (/**
          * @return {?}
          */
-        function () {
+        () => {
             preloader.className = 'preloader-hidden';
         }));
         preloader.className += ' preloader-hidden-add preloader-hidden-add-active';
@@ -1299,12 +1299,7 @@ class ModalHelper {
     /**
      * 构建一个对话框
      *
-     * @param {?} comp 组件
-     * @param {?=} params 组件参数
-     * @param {?=} options 额外参数
-     *
-     * 示例：
-     * ```ts
+     * \@example
      * this.modalHelper.create(FormEditComponent, { i }).subscribe(res => this.load());
      * // 对于组件的成功&关闭的处理说明
      * // 成功
@@ -1312,7 +1307,10 @@ class ModalHelper {
      * this.NzModalRef.close();
      * // 关闭
      * this.NzModalRef.destroy();
-     * ```
+     * @param {?} comp 组件
+     * @param {?=} params 组件参数
+     * @param {?=} options 额外参数
+     *
      * @return {?}
      */
     create(comp, params, options) {
@@ -1379,12 +1377,7 @@ class ModalHelper {
     /**
      * 构建静态框，点击蒙层不允许关闭
      *
-     * @param {?} comp 组件
-     * @param {?=} params 组件参数
-     * @param {?=} options 额外参数
-     *
-     * 示例：
-     * ```ts
+     * \@example
      * this.modalHelper.open(FormEditComponent, { i }).subscribe(res => this.load());
      * // 对于组件的成功&关闭的处理说明
      * // 成功
@@ -1392,7 +1385,10 @@ class ModalHelper {
      * this.NzModalRef.close();
      * // 关闭
      * this.NzModalRef.destroy();
-     * ```
+     * @param {?} comp 组件
+     * @param {?=} params 组件参数
+     * @param {?=} options 额外参数
+     *
      * @return {?}
      */
     createStatic(comp, params, options) {
@@ -1402,13 +1398,7 @@ class ModalHelper {
     }
     /**
      * 打开对话框
-     * @param {?} comp 组件
-     * @param {?=} params 组件参数
-     * @param {?=} size 大小；例如：lg、600，默认：lg
-     * @param {?=} options 对话框 `ModalOptionsForService` 参数
-     *
-     * 示例：
-     * ```ts
+     * \@example
      * this.modalHelper.open(FormEditComponent, { i }).subscribe(res => this.load());
      * // 对于组件的成功&关闭的处理说明
      * // 成功
@@ -1416,7 +1406,11 @@ class ModalHelper {
      * this.NzModalRef.close();
      * // 关闭
      * this.NzModalRef.destroy();
-     * ```
+     * @param {?} comp 组件
+     * @param {?=} params 组件参数
+     * @param {?=} size 大小；例如：lg、600，默认：lg
+     * @param {?=} options 对话框 `ModalOptionsForService` 参数
+     *
      * @return {?}
      */
     open(comp, params, size = 'lg', options) {
@@ -1428,13 +1422,7 @@ class ModalHelper {
     }
     /**
      * 静态框，点击蒙层不允许关闭
-     * @param {?} comp 组件
-     * @param {?=} params 组件参数
-     * @param {?=} size 大小；例如：lg、600，默认：lg
-     * @param {?=} options 对话框 `ModalOptionsForService` 参数
-     *
-     * 示例：
-     * ```ts
+     * \@example
      * this.modalHelper.open(FormEditComponent, { i }).subscribe(res => this.load());
      * // 对于组件的成功&关闭的处理说明
      * // 成功
@@ -1442,7 +1430,11 @@ class ModalHelper {
      * this.NzModalRef.close();
      * // 关闭
      * this.NzModalRef.destroy();
-     * ```
+     * @param {?} comp 组件
+     * @param {?=} params 组件参数
+     * @param {?=} size 大小；例如：lg、600，默认：lg
+     * @param {?=} options 对话框 `ModalOptionsForService` 参数
+     *
      * @return {?}
      */
     static(comp, params, size = 'lg', options) {
@@ -1467,8 +1459,7 @@ ModalHelper.ctorParameters = () => [
  *
  * **注意：** 构建结果都可被订阅，但永远都不会触发 `observer.error`
  *
- * 示例：
- * ```ts
+ * \@example
  * this.drawerHelper.create('Edit', FormEditComponent, { i }).subscribe(res => this.load());
  * // 对于组件的成功&关闭的处理说明
  * // 成功
@@ -1477,7 +1468,6 @@ ModalHelper.ctorParameters = () => [
  * // 关闭
  * this.NzDrawerRef.close();
  * this.NzDrawerRef.close(false);
- * ```
  */
 class DrawerHelper {
     /**
@@ -1653,6 +1643,7 @@ class _HttpClient {
         url += ~url.indexOf('?') ? '' : '?';
         /** @type {?} */
         const arr = [];
+        // tslint:disable-next-line: forin
         for (const key in params) {
             arr.push(`${key}=${params[key]}`);
         }
@@ -2121,6 +2112,7 @@ class KeysPipe {
     transform(value, keyIsNumber = false) {
         /** @type {?} */
         const ret = [];
+        // tslint:disable-next-line: forin
         for (const key in value) {
             ret.push({ key: keyIsNumber ? +key : key, value: value[key] });
         }
@@ -2324,7 +2316,7 @@ AlainThemeModule.ctorParameters = () => [
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-const VERSION = new Version('7.5.0');
+const VERSION = new Version('7.5.0-5b19c3f');
 
 /**
  * @fileoverview added by tsickle

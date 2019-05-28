@@ -57,7 +57,7 @@ var StringTemplateOutletDirective = /** @class */ (function () {
      */
     function () {
         if (!this.isTemplate) {
-            /** use default template when input is string **/
+            // use default template when input is string
             if (!this.defaultViewRef) {
                 this.viewContainer.clear();
                 this.inputViewRef = null;
@@ -69,7 +69,7 @@ var StringTemplateOutletDirective = /** @class */ (function () {
             if (this.inputViewRef) {
                 this.inputViewRef = null;
             }
-            /** use input template when input is templateRef **/
+            // use input template when input is templateRef
             this.viewContainer.clear();
             this.defaultViewRef = null;
             this.inputViewRef = this.viewContainer.createEmbeddedView((/** @type {?} */ (this.inputTemplate)));
@@ -834,6 +834,7 @@ function InputNumber(fallback) {
  * @return {?}
  */
 function removeClass(el, classMap, renderer) {
+    // tslint:disable-next-line: forin
     for (var i in classMap) {
         renderer.removeClass(el, i);
     }

@@ -20,6 +20,17 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     private columnSource;
     private dataSource;
     private delonI18n;
+    /** 请求体配置 */
+    req: STReq;
+    /** 返回体配置 */
+    res: STRes;
+    /** 分页器配置 */
+    page: STPage;
+    /** 是否多排序，当 `sort` 多个相同值时自动合并，建议后端支持时使用 */
+    multiSort: any;
+    widthMode: STWidthMode;
+    constructor(i18nSrv: AlainI18NService, cdr: ChangeDetectorRef, cog: STConfig, router: Router, el: ElementRef, renderer: Renderer2, exportSrv: STExport, modalHelper: ModalHelper, drawerHelper: DrawerHelper, doc: any, columnSource: STColumnSource, dataSource: STDataSource, delonI18n: DelonLocaleService);
+    private readonly routerState;
     private unsubscribe$;
     private totalTpl;
     private locale;
@@ -33,18 +44,12 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     _indeterminate: boolean;
     _columns: STColumn[];
     data: string | STData[] | Observable<STData[]>;
-    /** 请求体配置 */
-    req: STReq;
     private _req;
-    /** 返回体配置 */
-    res: STRes;
     private _res;
     columns: STColumn[];
     ps: number;
     pi: number;
     total: number;
-    /** 分页器配置 */
-    page: STPage;
     private _page;
     _loading: boolean;
     /** 是否显示Loading */
@@ -67,10 +72,7 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
      */
     singleSort: STSingleSort | null;
     private _multiSort;
-    /** 是否多排序，当 `sort` 多个相同值时自动合并，建议后端支持时使用 */
-    multiSort: any;
     rowClassName: STRowClassName;
-    widthMode: STWidthMode;
     private _widthMode;
     /** `header` 标题 */
     header: string | TemplateRef<void>;
@@ -99,13 +101,12 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
      * 变化时回调，包括：`pi`、`ps`、`checkbox`、`radio`、`sort`、`filter`、`click`、`dblClick` 变动
      */
     readonly change: EventEmitter<STChange>;
-    constructor(i18nSrv: AlainI18NService, cdr: ChangeDetectorRef, cog: STConfig, router: Router, el: ElementRef, renderer: Renderer2, exportSrv: STExport, modalHelper: ModalHelper, drawerHelper: DrawerHelper, doc: any, columnSource: STColumnSource, dataSource: STDataSource, delonI18n: DelonLocaleService);
+    private rowClickCount;
     cd(): this;
     renderTotal(total: string, range: string[]): string;
     isTruncate(column: STColumn): boolean;
     columnClass(column: STColumn): string | null;
     private changeEmit;
-    private readonly routerState;
     private setLoading;
     private _load;
     /** 清空所有数据 */
@@ -138,7 +139,6 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     private _toTop;
     _change(type: 'pi' | 'ps'): void;
     _click(e: Event, item: STData, col: STColumn): boolean;
-    private rowClickCount;
     private closeOtherExpand;
     _rowClick(e: Event, item: STData, index: number): void;
     _expandChange(item: STData): void;

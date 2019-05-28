@@ -1513,6 +1513,14 @@ class STComponent {
         return this._widthMode;
     }
     /**
+     * @private
+     * @return {?}
+     */
+    get routerState() {
+        const { pi, ps, total } = this;
+        return { pi, ps, total };
+    }
+    /**
      * @template THIS
      * @this {THIS}
      * @return {THIS}
@@ -1566,14 +1574,6 @@ class STComponent {
             res[type] = data;
         }
         this.change.emit(res);
-    }
-    /**
-     * @private
-     * @return {?}
-     */
-    get routerState() {
-        const { pi, ps, total } = this;
-        return { pi, ps, total };
     }
     // #region data
     /**
@@ -2343,23 +2343,23 @@ STComponent.ctorParameters = () => [
     { type: DelonLocaleService }
 ];
 STComponent.propDecorators = {
-    data: [{ type: Input }],
     req: [{ type: Input }],
     res: [{ type: Input }],
+    page: [{ type: Input }],
+    multiSort: [{ type: Input }],
+    widthMode: [{ type: Input }],
+    data: [{ type: Input }],
     columns: [{ type: Input }],
     ps: [{ type: Input }],
     pi: [{ type: Input }],
     total: [{ type: Input }],
-    page: [{ type: Input }],
     loading: [{ type: Input }],
     loadingDelay: [{ type: Input }],
     bordered: [{ type: Input }],
     size: [{ type: Input }],
     scroll: [{ type: Input }],
     singleSort: [{ type: Input }],
-    multiSort: [{ type: Input }],
     rowClassName: [{ type: Input }],
-    widthMode: [{ type: Input }],
     header: [{ type: Input }],
     footer: [{ type: Input }],
     bodyHeader: [{ type: Input }],

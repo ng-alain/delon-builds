@@ -61,6 +61,33 @@ class LodopService {
         return this._events.asObservable();
     }
     /**
+     * 获取 lodop 对象
+     * @return {?}
+     */
+    get lodop() {
+        if (this._lodop)
+            return of((/** @type {?} */ ({ ok: true, lodop: this._lodop })));
+        if (this.pending)
+            return this._init.asObservable();
+        this.request();
+        return this._init.asObservable();
+    }
+    /**
+     * 获取打印机列表
+     * @return {?}
+     */
+    get printer() {
+        this.check();
+        /** @type {?} */
+        const ret = [];
+        /** @type {?} */
+        const count = (/** @type {?} */ (this._lodop)).GET_PRINTER_COUNT();
+        for (let index = 0; index < count; index++) {
+            ret.push((/** @type {?} */ (this._lodop)).GET_PRINTER_NAME(index));
+        }
+        return ret;
+    }
+    /**
      * @private
      * @return {?}
      */
@@ -141,33 +168,6 @@ class LodopService {
         this._lodop = null;
         this.pending = false;
         this.request();
-    }
-    /**
-     * 获取 lodop 对象
-     * @return {?}
-     */
-    get lodop() {
-        if (this._lodop)
-            return of((/** @type {?} */ ({ ok: true, lodop: this._lodop })));
-        if (this.pending)
-            return this._init.asObservable();
-        this.request();
-        return this._init.asObservable();
-    }
-    /**
-     * 获取打印机列表
-     * @return {?}
-     */
-    get printer() {
-        this.check();
-        /** @type {?} */
-        const ret = [];
-        /** @type {?} */
-        const count = (/** @type {?} */ (this._lodop)).GET_PRINTER_COUNT();
-        for (let index = 0; index < count; index++) {
-            ret.push((/** @type {?} */ (this._lodop)).GET_PRINTER_NAME(index));
-        }
-        return ret;
     }
     /**
      * 附加代码至 `lodop` 对象上，字符串类支持 `{{key}}` 的动态参数

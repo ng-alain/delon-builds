@@ -1564,26 +1564,7 @@ var ModalHelper = /** @class */ (function () {
      * @param params 组件参数
      * @param options 额外参数
      *
-     * 示例：
-    ```ts
-  this.modalHelper.create(FormEditComponent, { i }).subscribe(res => this.load());
-  // 对于组件的成功&关闭的处理说明
-  // 成功
-  this.NzModalRef.close(data);
-  this.NzModalRef.close();
-  // 关闭
-  this.NzModalRef.destroy();
-  ```
-     */
-    /**
-     * 构建一个对话框
-     *
-     * @param {?} comp 组件
-     * @param {?=} params 组件参数
-     * @param {?=} options 额外参数
-     *
-     * 示例：
-     * ```ts
+     * @example
      * this.modalHelper.create(FormEditComponent, { i }).subscribe(res => this.load());
      * // 对于组件的成功&关闭的处理说明
      * // 成功
@@ -1591,18 +1572,28 @@ var ModalHelper = /** @class */ (function () {
      * this.NzModalRef.close();
      * // 关闭
      * this.NzModalRef.destroy();
-     * ```
+     */
+    /**
+     * 构建一个对话框
+     *
+     * \@example
+     * this.modalHelper.create(FormEditComponent, { i }).subscribe(res => this.load());
+     * // 对于组件的成功&关闭的处理说明
+     * // 成功
+     * this.NzModalRef.close(data);
+     * this.NzModalRef.close();
+     * // 关闭
+     * this.NzModalRef.destroy();
+     * @param {?} comp 组件
+     * @param {?=} params 组件参数
+     * @param {?=} options 额外参数
+     *
      * @return {?}
      */
     ModalHelper.prototype.create = /**
      * 构建一个对话框
      *
-     * @param {?} comp 组件
-     * @param {?=} params 组件参数
-     * @param {?=} options 额外参数
-     *
-     * 示例：
-     * ```ts
+     * \@example
      * this.modalHelper.create(FormEditComponent, { i }).subscribe(res => this.load());
      * // 对于组件的成功&关闭的处理说明
      * // 成功
@@ -1610,7 +1601,10 @@ var ModalHelper = /** @class */ (function () {
      * this.NzModalRef.close();
      * // 关闭
      * this.NzModalRef.destroy();
-     * ```
+     * @param {?} comp 组件
+     * @param {?=} params 组件参数
+     * @param {?=} options 额外参数
+     *
      * @return {?}
      */
     function (comp, params, options) {
@@ -1682,26 +1676,7 @@ var ModalHelper = /** @class */ (function () {
      * @param params 组件参数
      * @param options 额外参数
      *
-     * 示例：
-    ```ts
-  this.modalHelper.open(FormEditComponent, { i }).subscribe(res => this.load());
-  // 对于组件的成功&关闭的处理说明
-  // 成功
-  this.NzModalRef.close(data);
-  this.NzModalRef.close();
-  // 关闭
-  this.NzModalRef.destroy();
-  ```
-     */
-    /**
-     * 构建静态框，点击蒙层不允许关闭
-     *
-     * @param {?} comp 组件
-     * @param {?=} params 组件参数
-     * @param {?=} options 额外参数
-     *
-     * 示例：
-     * ```ts
+     * @example
      * this.modalHelper.open(FormEditComponent, { i }).subscribe(res => this.load());
      * // 对于组件的成功&关闭的处理说明
      * // 成功
@@ -1709,18 +1684,28 @@ var ModalHelper = /** @class */ (function () {
      * this.NzModalRef.close();
      * // 关闭
      * this.NzModalRef.destroy();
-     * ```
+     */
+    /**
+     * 构建静态框，点击蒙层不允许关闭
+     *
+     * \@example
+     * this.modalHelper.open(FormEditComponent, { i }).subscribe(res => this.load());
+     * // 对于组件的成功&关闭的处理说明
+     * // 成功
+     * this.NzModalRef.close(data);
+     * this.NzModalRef.close();
+     * // 关闭
+     * this.NzModalRef.destroy();
+     * @param {?} comp 组件
+     * @param {?=} params 组件参数
+     * @param {?=} options 额外参数
+     *
      * @return {?}
      */
     ModalHelper.prototype.createStatic = /**
      * 构建静态框，点击蒙层不允许关闭
      *
-     * @param {?} comp 组件
-     * @param {?=} params 组件参数
-     * @param {?=} options 额外参数
-     *
-     * 示例：
-     * ```ts
+     * \@example
      * this.modalHelper.open(FormEditComponent, { i }).subscribe(res => this.load());
      * // 对于组件的成功&关闭的处理说明
      * // 成功
@@ -1728,7 +1713,10 @@ var ModalHelper = /** @class */ (function () {
      * this.NzModalRef.close();
      * // 关闭
      * this.NzModalRef.destroy();
-     * ```
+     * @param {?} comp 组件
+     * @param {?=} params 组件参数
+     * @param {?=} options 额外参数
+     *
      * @return {?}
      */
     function (comp, params, options) {
@@ -1743,26 +1731,7 @@ var ModalHelper = /** @class */ (function () {
      * @param size 大小；例如：lg、600，默认：lg
      * @param options 对话框 `ModalOptionsForService` 参数
      *
-     * 示例：
-    ```ts
-  this.modalHelper.open(FormEditComponent, { i }).subscribe(res => this.load());
-  // 对于组件的成功&关闭的处理说明
-  // 成功
-  this.NzModalRef.close(data);
-  this.NzModalRef.close();
-  // 关闭
-  this.NzModalRef.destroy();
-  ```
-     */
-    /**
-     * 打开对话框
-     * @param {?} comp 组件
-     * @param {?=} params 组件参数
-     * @param {?=} size 大小；例如：lg、600，默认：lg
-     * @param {?=} options 对话框 `ModalOptionsForService` 参数
-     *
-     * 示例：
-     * ```ts
+     * @example
      * this.modalHelper.open(FormEditComponent, { i }).subscribe(res => this.load());
      * // 对于组件的成功&关闭的处理说明
      * // 成功
@@ -1770,18 +1739,27 @@ var ModalHelper = /** @class */ (function () {
      * this.NzModalRef.close();
      * // 关闭
      * this.NzModalRef.destroy();
-     * ```
+     */
+    /**
+     * 打开对话框
+     * \@example
+     * this.modalHelper.open(FormEditComponent, { i }).subscribe(res => this.load());
+     * // 对于组件的成功&关闭的处理说明
+     * // 成功
+     * this.NzModalRef.close(data);
+     * this.NzModalRef.close();
+     * // 关闭
+     * this.NzModalRef.destroy();
+     * @param {?} comp 组件
+     * @param {?=} params 组件参数
+     * @param {?=} size 大小；例如：lg、600，默认：lg
+     * @param {?=} options 对话框 `ModalOptionsForService` 参数
+     *
      * @return {?}
      */
     ModalHelper.prototype.open = /**
      * 打开对话框
-     * @param {?} comp 组件
-     * @param {?=} params 组件参数
-     * @param {?=} size 大小；例如：lg、600，默认：lg
-     * @param {?=} options 对话框 `ModalOptionsForService` 参数
-     *
-     * 示例：
-     * ```ts
+     * \@example
      * this.modalHelper.open(FormEditComponent, { i }).subscribe(res => this.load());
      * // 对于组件的成功&关闭的处理说明
      * // 成功
@@ -1789,7 +1767,11 @@ var ModalHelper = /** @class */ (function () {
      * this.NzModalRef.close();
      * // 关闭
      * this.NzModalRef.destroy();
-     * ```
+     * @param {?} comp 组件
+     * @param {?=} params 组件参数
+     * @param {?=} size 大小；例如：lg、600，默认：lg
+     * @param {?=} options 对话框 `ModalOptionsForService` 参数
+     *
      * @return {?}
      */
     function (comp, params, size, options) {
@@ -1807,26 +1789,7 @@ var ModalHelper = /** @class */ (function () {
      * @param size 大小；例如：lg、600，默认：lg
      * @param options 对话框 `ModalOptionsForService` 参数
      *
-     * 示例：
-    ```ts
-  this.modalHelper.open(FormEditComponent, { i }).subscribe(res => this.load());
-  // 对于组件的成功&关闭的处理说明
-  // 成功
-  this.NzModalRef.close(data);
-  this.NzModalRef.close();
-  // 关闭
-  this.NzModalRef.destroy();
-  ```
-     */
-    /**
-     * 静态框，点击蒙层不允许关闭
-     * @param {?} comp 组件
-     * @param {?=} params 组件参数
-     * @param {?=} size 大小；例如：lg、600，默认：lg
-     * @param {?=} options 对话框 `ModalOptionsForService` 参数
-     *
-     * 示例：
-     * ```ts
+     * @example
      * this.modalHelper.open(FormEditComponent, { i }).subscribe(res => this.load());
      * // 对于组件的成功&关闭的处理说明
      * // 成功
@@ -1834,18 +1797,27 @@ var ModalHelper = /** @class */ (function () {
      * this.NzModalRef.close();
      * // 关闭
      * this.NzModalRef.destroy();
-     * ```
+     */
+    /**
+     * 静态框，点击蒙层不允许关闭
+     * \@example
+     * this.modalHelper.open(FormEditComponent, { i }).subscribe(res => this.load());
+     * // 对于组件的成功&关闭的处理说明
+     * // 成功
+     * this.NzModalRef.close(data);
+     * this.NzModalRef.close();
+     * // 关闭
+     * this.NzModalRef.destroy();
+     * @param {?} comp 组件
+     * @param {?=} params 组件参数
+     * @param {?=} size 大小；例如：lg、600，默认：lg
+     * @param {?=} options 对话框 `ModalOptionsForService` 参数
+     *
      * @return {?}
      */
     ModalHelper.prototype.static = /**
      * 静态框，点击蒙层不允许关闭
-     * @param {?} comp 组件
-     * @param {?=} params 组件参数
-     * @param {?=} size 大小；例如：lg、600，默认：lg
-     * @param {?=} options 对话框 `ModalOptionsForService` 参数
-     *
-     * 示例：
-     * ```ts
+     * \@example
      * this.modalHelper.open(FormEditComponent, { i }).subscribe(res => this.load());
      * // 对于组件的成功&关闭的处理说明
      * // 成功
@@ -1853,7 +1825,11 @@ var ModalHelper = /** @class */ (function () {
      * this.NzModalRef.close();
      * // 关闭
      * this.NzModalRef.destroy();
-     * ```
+     * @param {?} comp 组件
+     * @param {?=} params 组件参数
+     * @param {?=} size 大小；例如：lg、600，默认：lg
+     * @param {?=} options 对话框 `ModalOptionsForService` 参数
+     *
      * @return {?}
      */
     function (comp, params, size, options) {
@@ -1880,8 +1856,7 @@ var ModalHelper = /** @class */ (function () {
  *
  * **注意：** 构建结果都可被订阅，但永远都不会触发 `observer.error`
  *
- * 示例：
- * ```ts
+ * \@example
  * this.drawerHelper.create('Edit', FormEditComponent, { i }).subscribe(res => this.load());
  * // 对于组件的成功&关闭的处理说明
  * // 成功
@@ -1890,7 +1865,6 @@ var ModalHelper = /** @class */ (function () {
  * // 关闭
  * this.NzDrawerRef.close();
  * this.NzDrawerRef.close(false);
- * ```
  */
 var DrawerHelper = /** @class */ (function () {
     function DrawerHelper(srv) {
@@ -2097,6 +2071,7 @@ var _HttpClient = /** @class */ (function () {
         url += ~url.indexOf('?') ? '' : '?';
         /** @type {?} */
         var arr = [];
+        // tslint:disable-next-line: forin
         for (var key in params) {
             arr.push(key + "=" + params[key]);
         }
@@ -2701,6 +2676,7 @@ var KeysPipe = /** @class */ (function () {
         if (keyIsNumber === void 0) { keyIsNumber = false; }
         /** @type {?} */
         var ret = [];
+        // tslint:disable-next-line: forin
         for (var key in value) {
             ret.push({ key: keyIsNumber ? +key : key, value: value[key] });
         }
@@ -2922,7 +2898,7 @@ var AlainThemeModule = /** @class */ (function () {
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-var VERSION = new Version('7.5.0');
+var VERSION = new Version('7.5.0-5b19c3f');
 
 /**
  * @fileoverview added by tsickle

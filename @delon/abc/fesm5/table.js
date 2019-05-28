@@ -1714,6 +1714,18 @@ var STComponent = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
+    Object.defineProperty(STComponent.prototype, "routerState", {
+        get: /**
+         * @private
+         * @return {?}
+         */
+        function () {
+            var _a = this, pi = _a.pi, ps = _a.ps, total = _a.total;
+            return { pi: pi, ps: ps, total: total };
+        },
+        enumerable: true,
+        configurable: true
+    });
     /**
      * @template THIS
      * @this {THIS}
@@ -1793,18 +1805,6 @@ var STComponent = /** @class */ (function () {
         }
         this.change.emit(res);
     };
-    Object.defineProperty(STComponent.prototype, "routerState", {
-        get: /**
-         * @private
-         * @return {?}
-         */
-        function () {
-            var _a = this, pi = _a.pi, ps = _a.ps, total = _a.total;
-            return { pi: pi, ps: ps, total: total };
-        },
-        enumerable: true,
-        configurable: true
-    });
     // #region data
     // #region data
     /**
@@ -2876,23 +2876,23 @@ var STComponent = /** @class */ (function () {
         { type: DelonLocaleService }
     ]; };
     STComponent.propDecorators = {
-        data: [{ type: Input }],
         req: [{ type: Input }],
         res: [{ type: Input }],
+        page: [{ type: Input }],
+        multiSort: [{ type: Input }],
+        widthMode: [{ type: Input }],
+        data: [{ type: Input }],
         columns: [{ type: Input }],
         ps: [{ type: Input }],
         pi: [{ type: Input }],
         total: [{ type: Input }],
-        page: [{ type: Input }],
         loading: [{ type: Input }],
         loadingDelay: [{ type: Input }],
         bordered: [{ type: Input }],
         size: [{ type: Input }],
         scroll: [{ type: Input }],
         singleSort: [{ type: Input }],
-        multiSort: [{ type: Input }],
         rowClassName: [{ type: Input }],
-        widthMode: [{ type: Input }],
         header: [{ type: Input }],
         footer: [{ type: Input }],
         bodyHeader: [{ type: Input }],

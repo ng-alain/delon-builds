@@ -3,6 +3,10 @@ import { Observable } from 'rxjs';
 export interface AlainI18NService {
     [key: string]: any;
     /**
+     * 调用 `use` 触发变更通知
+     */
+    readonly change: Observable<string>;
+    /**
      * 变更语言
      * @param lang 语言代码
      * @param emit 是否触发 `change`，默认：true
@@ -18,10 +22,6 @@ export interface AlainI18NService {
      * - `isSafe` 是否返回安全字符，自动调用 `bypassSecurityTrustHtml`
      */
     fanyi(key: string, params?: {}, isSafe?: boolean): string;
-    /**
-     * 调用 `use` 触发变更通知
-     */
-    readonly change: Observable<string>;
 }
 export declare const ALAIN_I18N_TOKEN: InjectionToken<AlainI18NService>;
 export declare function ALAIN_I18N_TOKEN_FACTORY(): AlainI18NServiceFake;

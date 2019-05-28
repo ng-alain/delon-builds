@@ -1406,12 +1406,7 @@
          */
         function (value, onlySelf) {
             if (value == null) {
-                if (this.schema.default !== undefined) {
-                    value = this.schema.default;
-                }
-                else {
-                    value = this.fallbackValue();
-                }
+                value = this.schema.default !== undefined ? this.schema.default : this.fallbackValue();
             }
             this._value = value;
             this.updateValueAndValidity(onlySelf, true);
@@ -1583,6 +1578,7 @@
          */
         function (value, onlySelf) {
             value = value || this.schema.default || {};
+            // tslint:disable-next-line: forin
             for (var propertyId in this.schema.properties) {
                 (/** @type {?} */ (this.properties))[propertyId].resetValue(value[propertyId], true);
             }

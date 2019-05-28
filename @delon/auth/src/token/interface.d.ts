@@ -9,6 +9,10 @@ export interface AuthReferrer {
     url?: string | null | undefined;
 }
 export interface ITokenService {
+    /** 获取登录地址 */
+    readonly login_url: string | undefined;
+    /** 获取授权失败前路由信息 */
+    readonly referrer?: AuthReferrer;
     set(data: ITokenModel | null): boolean;
     /**
      * 获取Token，形式包括：
@@ -24,8 +28,4 @@ export interface ITokenService {
     get<T extends ITokenModel>(type?: any): T;
     clear(): void;
     change(): Observable<ITokenModel | null>;
-    /** 获取登录地址 */
-    readonly login_url: string | undefined;
-    /** 获取授权失败前路由信息 */
-    readonly referrer?: AuthReferrer;
 }

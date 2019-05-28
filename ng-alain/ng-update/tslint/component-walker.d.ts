@@ -13,16 +13,16 @@ import { ExternalFailureWalker } from './external-failure-walker';
  * the component metadata.
  */
 export declare class ComponentWalker extends ExternalFailureWalker {
-    visitInlineTemplate(_template: ts.StringLiteralLike): void;
-    visitInlineStylesheet(_stylesheet: ts.StringLiteralLike): void;
-    visitExternalTemplate(_template: ExternalResource): void;
-    visitExternalStylesheet(_stylesheet: ExternalResource): void;
     /**
      * We keep track of all visited stylesheet files because we allow manually reporting external
      * stylesheets which couldn't be detected by the component walker. Reporting these files multiple
      * times will result in duplicated TSLint failures and replacements.
      */
     private _visitedStylesheetFiles;
+    visitInlineTemplate(_template: ts.StringLiteralLike): void;
+    visitInlineStylesheet(_stylesheet: ts.StringLiteralLike): void;
+    visitExternalTemplate(_template: ExternalResource): void;
+    visitExternalStylesheet(_stylesheet: ExternalResource): void;
     visitNode(node: ts.Node): void;
     private _visitDirectiveCallExpression;
     private _reportExternalTemplate;

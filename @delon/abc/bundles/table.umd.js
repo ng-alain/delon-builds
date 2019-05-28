@@ -1773,6 +1773,18 @@
             enumerable: true,
             configurable: true
         });
+        Object.defineProperty(STComponent.prototype, "routerState", {
+            get: /**
+             * @private
+             * @return {?}
+             */
+            function () {
+                var _a = this, pi = _a.pi, ps = _a.ps, total = _a.total;
+                return { pi: pi, ps: ps, total: total };
+            },
+            enumerable: true,
+            configurable: true
+        });
         /**
          * @template THIS
          * @this {THIS}
@@ -1852,18 +1864,6 @@
             }
             this.change.emit(res);
         };
-        Object.defineProperty(STComponent.prototype, "routerState", {
-            get: /**
-             * @private
-             * @return {?}
-             */
-            function () {
-                var _a = this, pi = _a.pi, ps = _a.ps, total = _a.total;
-                return { pi: pi, ps: ps, total: total };
-            },
-            enumerable: true,
-            configurable: true
-        });
         // #region data
         // #region data
         /**
@@ -2935,23 +2935,23 @@
             { type: theme.DelonLocaleService }
         ]; };
         STComponent.propDecorators = {
-            data: [{ type: core.Input }],
             req: [{ type: core.Input }],
             res: [{ type: core.Input }],
+            page: [{ type: core.Input }],
+            multiSort: [{ type: core.Input }],
+            widthMode: [{ type: core.Input }],
+            data: [{ type: core.Input }],
             columns: [{ type: core.Input }],
             ps: [{ type: core.Input }],
             pi: [{ type: core.Input }],
             total: [{ type: core.Input }],
-            page: [{ type: core.Input }],
             loading: [{ type: core.Input }],
             loadingDelay: [{ type: core.Input }],
             bordered: [{ type: core.Input }],
             size: [{ type: core.Input }],
             scroll: [{ type: core.Input }],
             singleSort: [{ type: core.Input }],
-            multiSort: [{ type: core.Input }],
             rowClassName: [{ type: core.Input }],
-            widthMode: [{ type: core.Input }],
             header: [{ type: core.Input }],
             footer: [{ type: core.Input }],
             bodyHeader: [{ type: core.Input }],

@@ -1,8 +1,4 @@
 export interface CLodop {
-    /** 建立打印机名单 */
-    Create_Printer_List(el: Element): void;
-    /** 建立纸张类型名单 */
-    Create_PageSize_List(el: Element, iPrintIndex: number): void;
     /**
      * 判断是否支持https协议的属性
      *
@@ -11,10 +7,14 @@ export interface CLodop {
      * - 2 支持且已启动（https服务需单独启动)
      */
     readonly HTTPS_STATUS: number;
-    /** 结果回调函数 */
-    On_Return: ((taskID: string, value: boolean | string) => void) | null;
     /** 结果回调函数保留 */
     readonly On_Return_Remain: boolean;
+    /** 结果回调函数 */
+    On_Return: ((taskID: string, value: boolean | string) => void) | null;
+    /** 建立打印机名单 */
+    Create_Printer_List(el: Element): void;
+    /** 建立纸张类型名单 */
+    Create_PageSize_List(el: Element, iPrintIndex: number): void;
 }
 export interface Lodop extends CLodop {
     [key: string]: any;
@@ -34,11 +34,17 @@ export interface Lodop extends CLodop {
     SET_PRINT_PAGESIZE(intOrient: number, PageWidth: number | string, PageHeight: number | string, strPageName: string): void;
     /** 增加超文本打印项(普通模式) */
     ADD_PRINT_HTM(Top: number | string, Left: number | string, Width: number | string, Height: number | string, strHtmlContent: string): void;
-    /** 增加表格打印项（超文本模式）*/
+    /**
+     * 增加表格打印项（超文本模式）
+     */
     ADD_PRINT_TABLE(Top: number | string, Left: number | string, Width: number | string, Height: number | string, strHtml: string): void;
-    /** 增加表格打印项（超文本模式）*/
+    /**
+     * 增加表格打印项（超文本模式）
+     */
     ADD_PRINT_TABLE(Top: number | string, Left: number | string, Width: number | string, Height: number | string, strHtml: string): void;
-    /** 增加超文本打印项（URL模式）*/
+    /**
+     * 增加超文本打印项（URL模式）
+     */
     ADD_PRINT_URL(Top: number | string, Left: number | string, Width: number | string, Height: number | string, strURL: string): void;
     /** 增加纯文本打印项 */
     ADD_PRINT_TEXT(Top: number | string, Left: number | string, Width: number | string, Height: number | string, strContent: string): void;

@@ -32,17 +32,15 @@ export interface DrawerHelperOptions {
  *
  * **注意：** 构建结果都可被订阅，但永远都不会触发 `observer.error`
  *
- * 示例：
-```ts
-this.drawerHelper.create('Edit', FormEditComponent, { i }).subscribe(res => this.load());
-// 对于组件的成功&关闭的处理说明
-// 成功
-this.NzDrawerRef.close(data);
-this.NzDrawerRef.close(true);
-// 关闭
-this.NzDrawerRef.close();
-this.NzDrawerRef.close(false);
-```
+ * @example
+ * this.drawerHelper.create('Edit', FormEditComponent, { i }).subscribe(res => this.load());
+ * // 对于组件的成功&关闭的处理说明
+ * // 成功
+ * this.NzDrawerRef.close(data);
+ * this.NzDrawerRef.close(true);
+ * // 关闭
+ * this.NzDrawerRef.close();
+ * this.NzDrawerRef.close(false);
  */
 export declare class DrawerHelper {
     private srv;

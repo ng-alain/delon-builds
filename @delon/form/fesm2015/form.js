@@ -1089,12 +1089,7 @@ class AtomicProperty extends FormProperty {
      */
     resetValue(value, onlySelf) {
         if (value == null) {
-            if (this.schema.default !== undefined) {
-                value = this.schema.default;
-            }
-            else {
-                value = this.fallbackValue();
-            }
+            value = this.schema.default !== undefined ? this.schema.default : this.fallbackValue();
         }
         this._value = value;
         this.updateValueAndValidity(onlySelf, true);
@@ -1227,6 +1222,7 @@ class ObjectProperty extends PropertyGroup {
      */
     resetValue(value, onlySelf) {
         value = value || this.schema.default || {};
+        // tslint:disable-next-line: forin
         for (const propertyId in this.schema.properties) {
             (/** @type {?} */ (this.properties))[propertyId].resetValue(value[propertyId], true);
         }

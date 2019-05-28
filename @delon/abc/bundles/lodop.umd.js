@@ -129,6 +129,43 @@
             enumerable: true,
             configurable: true
         });
+        Object.defineProperty(LodopService.prototype, "lodop", {
+            /** 获取 lodop 对象 */
+            get: /**
+             * 获取 lodop 对象
+             * @return {?}
+             */
+            function () {
+                if (this._lodop)
+                    return rxjs.of((/** @type {?} */ ({ ok: true, lodop: this._lodop })));
+                if (this.pending)
+                    return this._init.asObservable();
+                this.request();
+                return this._init.asObservable();
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(LodopService.prototype, "printer", {
+            /** 获取打印机列表 */
+            get: /**
+             * 获取打印机列表
+             * @return {?}
+             */
+            function () {
+                this.check();
+                /** @type {?} */
+                var ret = [];
+                /** @type {?} */
+                var count = (/** @type {?} */ (this._lodop)).GET_PRINTER_COUNT();
+                for (var index = 0; index < count; index++) {
+                    ret.push((/** @type {?} */ (this._lodop)).GET_PRINTER_NAME(index));
+                }
+                return ret;
+            },
+            enumerable: true,
+            configurable: true
+        });
         /**
          * @private
          * @return {?}
@@ -225,43 +262,6 @@
             this.pending = false;
             this.request();
         };
-        Object.defineProperty(LodopService.prototype, "lodop", {
-            /** 获取 lodop 对象 */
-            get: /**
-             * 获取 lodop 对象
-             * @return {?}
-             */
-            function () {
-                if (this._lodop)
-                    return rxjs.of((/** @type {?} */ ({ ok: true, lodop: this._lodop })));
-                if (this.pending)
-                    return this._init.asObservable();
-                this.request();
-                return this._init.asObservable();
-            },
-            enumerable: true,
-            configurable: true
-        });
-        Object.defineProperty(LodopService.prototype, "printer", {
-            /** 获取打印机列表 */
-            get: /**
-             * 获取打印机列表
-             * @return {?}
-             */
-            function () {
-                this.check();
-                /** @type {?} */
-                var ret = [];
-                /** @type {?} */
-                var count = (/** @type {?} */ (this._lodop)).GET_PRINTER_COUNT();
-                for (var index = 0; index < count; index++) {
-                    ret.push((/** @type {?} */ (this._lodop)).GET_PRINTER_NAME(index));
-                }
-                return ret;
-            },
-            enumerable: true,
-            configurable: true
-        });
         /**
          * 附加代码至 `lodop` 对象上，字符串类支持 `{{key}}` 的动态参数
          *

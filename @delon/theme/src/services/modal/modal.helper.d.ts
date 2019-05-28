@@ -24,16 +24,14 @@ export declare class ModalHelper {
      * @param params 组件参数
      * @param options 额外参数
      *
-     * 示例：
-    ```ts
-  this.modalHelper.create(FormEditComponent, { i }).subscribe(res => this.load());
-  // 对于组件的成功&关闭的处理说明
-  // 成功
-  this.NzModalRef.close(data);
-  this.NzModalRef.close();
-  // 关闭
-  this.NzModalRef.destroy();
-  ```
+     * @example
+     * this.modalHelper.create(FormEditComponent, { i }).subscribe(res => this.load());
+     * // 对于组件的成功&关闭的处理说明
+     * // 成功
+     * this.NzModalRef.close(data);
+     * this.NzModalRef.close();
+     * // 关闭
+     * this.NzModalRef.destroy();
      */
     create(comp: any, params?: any, options?: ModalHelperOptions): Observable<any>;
     /**
@@ -43,16 +41,14 @@ export declare class ModalHelper {
      * @param params 组件参数
      * @param options 额外参数
      *
-     * 示例：
-    ```ts
-  this.modalHelper.open(FormEditComponent, { i }).subscribe(res => this.load());
-  // 对于组件的成功&关闭的处理说明
-  // 成功
-  this.NzModalRef.close(data);
-  this.NzModalRef.close();
-  // 关闭
-  this.NzModalRef.destroy();
-  ```
+     * @example
+     * this.modalHelper.open(FormEditComponent, { i }).subscribe(res => this.load());
+     * // 对于组件的成功&关闭的处理说明
+     * // 成功
+     * this.NzModalRef.close(data);
+     * this.NzModalRef.close();
+     * // 关闭
+     * this.NzModalRef.destroy();
      */
     createStatic(comp: any, params?: any, options?: ModalHelperOptions): Observable<any>;
     /**
@@ -62,16 +58,14 @@ export declare class ModalHelper {
      * @param size 大小；例如：lg、600，默认：lg
      * @param options 对话框 `ModalOptionsForService` 参数
      *
-     * 示例：
-    ```ts
-  this.modalHelper.open(FormEditComponent, { i }).subscribe(res => this.load());
-  // 对于组件的成功&关闭的处理说明
-  // 成功
-  this.NzModalRef.close(data);
-  this.NzModalRef.close();
-  // 关闭
-  this.NzModalRef.destroy();
-  ```
+     * @example
+     * this.modalHelper.open(FormEditComponent, { i }).subscribe(res => this.load());
+     * // 对于组件的成功&关闭的处理说明
+     * // 成功
+     * this.NzModalRef.close(data);
+     * this.NzModalRef.close();
+     * // 关闭
+     * this.NzModalRef.destroy();
      */
     open(comp: any, params?: any, size?: 'sm' | 'md' | 'lg' | 'xl' | '' | number, options?: ModalOptionsForService): Observable<any>;
     /**
@@ -81,16 +75,14 @@ export declare class ModalHelper {
      * @param size 大小；例如：lg、600，默认：lg
      * @param options 对话框 `ModalOptionsForService` 参数
      *
-     * 示例：
-    ```ts
-  this.modalHelper.open(FormEditComponent, { i }).subscribe(res => this.load());
-  // 对于组件的成功&关闭的处理说明
-  // 成功
-  this.NzModalRef.close(data);
-  this.NzModalRef.close();
-  // 关闭
-  this.NzModalRef.destroy();
-  ```
+     * @example
+     * this.modalHelper.open(FormEditComponent, { i }).subscribe(res => this.load());
+     * // 对于组件的成功&关闭的处理说明
+     * // 成功
+     * this.NzModalRef.close(data);
+     * this.NzModalRef.close();
+     * // 关闭
+     * this.NzModalRef.destroy();
      */
     static(comp: any, params?: any, size?: 'sm' | 'md' | 'lg' | 'xl' | '' | number, options?: any): Observable<any>;
 }

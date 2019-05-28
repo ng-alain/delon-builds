@@ -130,12 +130,7 @@ var EllipsisComponent = /** @class */ (function () {
                 return mid;
             }
             begin = mid;
-            if (end - begin === 1) {
-                mid = begin + 1;
-            }
-            else {
-                mid = Math.floor((end - begin) / 2) + begin;
-            }
+            mid = (end - begin) === 1 ? begin + 1 : Math.floor((end - begin) / 2) + begin;
             return this.bisection(th, mid, begin, end, text, shadowNode);
         }
         if (mid - 1 < 0) {
