@@ -25074,6 +25074,9 @@ body {
   float: none;
   text-align: center;
 }
+.st__btn-sub .ant-dropdown-menu-item > span {
+  display: block;
+}
 .st .ant-table-pagination.ant-pagination {
   margin-bottom: 0;
 }
