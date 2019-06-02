@@ -107,8 +107,15 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     isTruncate(column: STColumn): boolean;
     columnClass(column: STColumn): string | null;
     private changeEmit;
+    /**
+     * 获取过滤后所有数据
+     * - 本地数据：包含排序、过滤后不分页数据
+     * - 远程数据：不传递 `pi`、`ps` 两个参数
+     */
+    readonly filteredData: Promise<STData[]>;
     private setLoading;
-    private _load;
+    private loadData;
+    private loadPageData;
     /** 清空所有数据 */
     clear(cleanStatus?: boolean): this;
     /** 清空所有状态 */
@@ -167,10 +174,10 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     _validBtns(item: STData, col: STColumn): STColumnButton[];
     /**
      * 导出当前页，确保已经注册 `XlsxModule`
-     * @param newData 重新指定数据，例如希望导出所有数据非常有用
+     * @param newData 重新指定数据，例如希望导出所有数据非常有用；若为 `true` 表示使用 `filteredData` 数据
      * @param opt 额外参数
      */
-    export(newData?: STData[], opt?: STExportOptions): void;
+    export(newData?: STData[] | true, opt?: STExportOptions): void;
     resetColumns(): Promise<this>;
     private refreshColumns;
     private setClass;
