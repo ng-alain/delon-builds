@@ -778,7 +778,7 @@
                 var data$;
                 /** @type {?} */
                 var isRemote = false;
-                var data = options.data, res = options.res, total = options.total, page = options.page, pi = options.pi, ps = options.ps, paginator = options.paginator, columns = options.columns;
+                var data = options.data, res = options.res, total = options.total, page = options.page, pi = options.pi, ps = options.ps, columns = options.columns;
                 /** @type {?} */
                 var retTotal;
                 /** @type {?} */
@@ -902,7 +902,7 @@
                      * @return {?}
                      */
                     function (result) {
-                        if (paginator && page.front) {
+                        if (page.front) {
                             /** @type {?} */
                             var maxPageIndex = Math.ceil(result.length / ps);
                             retPi = Math.max(1, pi > maxPageIndex ? maxPageIndex : pi);
@@ -1031,26 +1031,24 @@
          */
         function (url, options) {
             var _a, _b;
-            var req = options.req, page = options.page, paginator = options.paginator, pi = options.pi, ps = options.ps, singleSort = options.singleSort, multiSort = options.multiSort, columns = options.columns;
+            var req = options.req, page = options.page, pi = options.pi, ps = options.ps, singleSort = options.singleSort, multiSort = options.multiSort, columns = options.columns;
             /** @type {?} */
             var method = (req.method || 'GET').toUpperCase();
             /** @type {?} */
             var params = {};
             /** @type {?} */
             var reName = (/** @type {?} */ (req.reName));
-            if (paginator) {
-                if (req.type === 'page') {
-                    params = (_a = {},
-                        _a[(/** @type {?} */ (reName.pi))] = page.zeroIndexed ? pi - 1 : pi,
-                        _a[(/** @type {?} */ (reName.ps))] = ps,
-                        _a);
-                }
-                else {
-                    params = (_b = {},
-                        _b[(/** @type {?} */ (reName.skip))] = (pi - 1) * ps,
-                        _b[(/** @type {?} */ (reName.limit))] = ps,
-                        _b);
-                }
+            if (req.type === 'page') {
+                params = (_a = {},
+                    _a[(/** @type {?} */ (reName.pi))] = page.zeroIndexed ? pi - 1 : pi,
+                    _a[(/** @type {?} */ (reName.ps))] = ps,
+                    _a);
+            }
+            else {
+                params = (_b = {},
+                    _b[(/** @type {?} */ (reName.skip))] = (pi - 1) * ps,
+                    _b[(/** @type {?} */ (reName.limit))] = ps,
+                    _b);
             }
             params = __assign({}, params, req.params, this.getReqSortMap(singleSort, multiSort, columns), this.getReqFilterMap(columns));
             /** @type {?} */
@@ -1866,37 +1864,16 @@
             }
             this.change.emit(res);
         };
-        Object.defineProperty(STComponent.prototype, "filteredData", {
-            // #region data
-            /**
-             * 获取过滤后所有数据
-             * - 本地数据：包含排序、过滤后不分页数据
-             * - 远程数据：不传递 `pi`、`ps` 两个参数
-             */
-            get: 
-            // #region data
-            /**
-             * 获取过滤后所有数据
-             * - 本地数据：包含排序、过滤后不分页数据
-             * - 远程数据：不传递 `pi`、`ps` 两个参数
-             * @return {?}
-             */
-            function () {
-                return this.loadData((/** @type {?} */ ({ paginator: false }))).then((/**
-                 * @param {?} res
-                 * @return {?}
-                 */
-                function (res) { return res.list; }));
-            },
-            enumerable: true,
-            configurable: true
-        });
+        // #region data
+        // #region data
         /**
          * @private
          * @param {?} val
          * @return {?}
          */
-        STComponent.prototype.setLoading = /**
+        STComponent.prototype.setLoading = 
+        // #region data
+        /**
          * @private
          * @param {?} val
          * @return {?}
@@ -1908,38 +1885,30 @@
         };
         /**
          * @private
-         * @param {?=} options
          * @return {?}
          */
-        STComponent.prototype.loadData = /**
-         * @private
-         * @param {?=} options
-         * @return {?}
-         */
-        function (options) {
-            var _a = this, pi = _a.pi, ps = _a.ps, data = _a.data, req = _a.req, res = _a.res, page = _a.page, total = _a.total, singleSort = _a.singleSort, multiSort = _a.multiSort, rowClassName = _a.rowClassName;
-            return this.dataSource.process(__assign({ pi: pi,
-                ps: ps,
-                total: total,
-                data: data,
-                req: req,
-                res: res,
-                page: page, columns: this._columns, singleSort: singleSort,
-                multiSort: multiSort,
-                rowClassName: rowClassName, paginator: true }, options));
-        };
-        /**
-         * @private
-         * @return {?}
-         */
-        STComponent.prototype.loadPageData = /**
+        STComponent.prototype._load = /**
          * @private
          * @return {?}
          */
         function () {
             var _this = this;
+            var _a = this, pi = _a.pi, ps = _a.ps, data = _a.data, req = _a.req, res = _a.res, page = _a.page, total = _a.total, singleSort = _a.singleSort, multiSort = _a.multiSort, rowClassName = _a.rowClassName;
             this.setLoading(true);
-            return this.loadData()
+            return this.dataSource
+                .process({
+                pi: pi,
+                ps: ps,
+                total: total,
+                data: data,
+                req: req,
+                res: res,
+                page: page,
+                columns: this._columns,
+                singleSort: singleSort,
+                multiSort: multiSort,
+                rowClassName: rowClassName,
+            })
                 .then((/**
              * @param {?} result
              * @return {?}
@@ -2154,7 +2123,7 @@
         function (type) {
             var _this = this;
             if (type === 'pi' || (type === 'ps' && this.pi <= Math.ceil(this.total / this.ps))) {
-                this.loadPageData().then((/**
+                this._load().then((/**
                  * @return {?}
                  */
                 function () { return _this._toTop(); }));
@@ -2346,7 +2315,7 @@
                  */
                 function (item, index) { return (item._sort.default = index === idx ? value : null); }));
             }
-            this.loadPageData();
+            this._load();
             /** @type {?} */
             var res = {
                 value: value,
@@ -2396,7 +2365,7 @@
              * @return {?}
              */
             function (w) { return (/** @type {?} */ (w.checked)); })) !== -1;
-            this.loadPageData();
+            this._load();
             this.changeEmit('filter', col);
         };
         /**
@@ -2817,14 +2786,14 @@
         // #region export
         /**
          * 导出当前页，确保已经注册 `XlsxModule`
-         * @param newData 重新指定数据；若为 `true` 表示使用 `filteredData` 数据
+         * @param newData 重新指定数据，例如希望导出所有数据非常有用
          * @param opt 额外参数
          */
         // #endregion
         // #region export
         /**
          * 导出当前页，确保已经注册 `XlsxModule`
-         * @param {?=} newData 重新指定数据；若为 `true` 表示使用 `filteredData` 数据
+         * @param {?=} newData 重新指定数据，例如希望导出所有数据非常有用
          * @param {?=} opt 额外参数
          * @return {?}
          */
@@ -2833,18 +2802,21 @@
         // #region export
         /**
          * 导出当前页，确保已经注册 `XlsxModule`
-         * @param {?=} newData 重新指定数据；若为 `true` 表示使用 `filteredData` 数据
+         * @param {?=} newData 重新指定数据，例如希望导出所有数据非常有用
          * @param {?=} opt 额外参数
          * @return {?}
          */
         function (newData, opt) {
             var _this = this;
-            (newData === true ? rxjs.from(this.filteredData) : rxjs.of(newData || this._data)).subscribe((/**
+            (newData ? rxjs.of(newData) : rxjs.of(this._data)).subscribe((/**
              * @param {?} res
              * @return {?}
              */
             function (res) {
-                return _this.exportSrv.export(__assign({}, opt, { _d: res, _c: _this._columns }));
+                return _this.exportSrv.export(__assign({}, opt, {
+                    _d: res,
+                    _c: _this._columns,
+                }));
             }));
         };
         // #endregion
@@ -2858,7 +2830,7 @@
          * @return {?}
          */
         function () {
-            return this.refreshColumns().loadPageData();
+            return this.refreshColumns()._load();
         };
         /**
          * @private
@@ -2918,7 +2890,7 @@
                 this.refreshColumns();
             }
             if (changes.data && changes.data.currentValue) {
-                this.loadPageData();
+                this._load();
             }
             if (changes.loading) {
                 this._loading = changes.loading.currentValue;
