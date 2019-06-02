@@ -4,7 +4,7 @@ import { ALAIN_I18N_TOKEN, _HttpClient, CNCurrencyPipe, DatePipe, YNPipe, ModalH
 import { deepCopy, deepGet, deepMergeKey, deepMerge, toBoolean, updateHostClass, InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
 import { DecimalPipe, DOCUMENT, CommonModule } from '@angular/common';
 import { DomSanitizer } from '@angular/platform-browser';
-import { of, Subject, from } from 'rxjs';
+import { of, Subject } from 'rxjs';
 import { map, catchError, takeUntil, filter } from 'rxjs/operators';
 import { XlsxService } from '@delon/abc/xlsx';
 import { __decorate, __metadata } from 'tslib';
@@ -637,7 +637,7 @@ class STDataSource {
             let data$;
             /** @type {?} */
             let isRemote = false;
-            const { data, res, total, page, pi, ps, paginator, columns } = options;
+            const { data, res, total, page, pi, ps, columns } = options;
             /** @type {?} */
             let retTotal;
             /** @type {?} */
@@ -761,7 +761,7 @@ class STDataSource {
                  * @return {?}
                  */
                 (result) => {
-                    if (paginator && page.front) {
+                    if (page.front) {
                         /** @type {?} */
                         const maxPageIndex = Math.ceil(result.length / ps);
                         retPi = Math.max(1, pi > maxPageIndex ? maxPageIndex : pi);
@@ -873,26 +873,24 @@ class STDataSource {
      * @return {?}
      */
     getByHttp(url, options) {
-        const { req, page, paginator, pi, ps, singleSort, multiSort, columns } = options;
+        const { req, page, pi, ps, singleSort, multiSort, columns } = options;
         /** @type {?} */
         const method = (req.method || 'GET').toUpperCase();
         /** @type {?} */
         let params = {};
         /** @type {?} */
         const reName = (/** @type {?} */ (req.reName));
-        if (paginator) {
-            if (req.type === 'page') {
-                params = {
-                    [(/** @type {?} */ (reName.pi))]: page.zeroIndexed ? pi - 1 : pi,
-                    [(/** @type {?} */ (reName.ps))]: ps,
-                };
-            }
-            else {
-                params = {
-                    [(/** @type {?} */ (reName.skip))]: (pi - 1) * ps,
-                    [(/** @type {?} */ (reName.limit))]: ps,
-                };
-            }
+        if (req.type === 'page') {
+            params = {
+                [(/** @type {?} */ (reName.pi))]: page.zeroIndexed ? pi - 1 : pi,
+                [(/** @type {?} */ (reName.ps))]: ps,
+            };
+        }
+        else {
+            params = {
+                [(/** @type {?} */ (reName.skip))]: (pi - 1) * ps,
+                [(/** @type {?} */ (reName.limit))]: ps,
+            };
         }
         params = Object.assign({}, params, req.params, this.getReqSortMap(singleSort, multiSort, columns), this.getReqFilterMap(columns));
         /** @type {?} */
@@ -1579,19 +1577,6 @@ class STComponent {
     }
     // #region data
     /**
-     * 获取过滤后所有数据
-     * - 本地数据：包含排序、过滤后不分页数据
-     * - 远程数据：不传递 `pi`、`ps` 两个参数
-     * @return {?}
-     */
-    get filteredData() {
-        return this.loadData((/** @type {?} */ ({ paginator: false }))).then((/**
-         * @param {?} res
-         * @return {?}
-         */
-        res => res.list));
-    }
-    /**
      * @private
      * @param {?} val
      * @return {?}
@@ -1603,28 +1588,25 @@ class STComponent {
     }
     /**
      * @private
-     * @param {?=} options
      * @return {?}
      */
-    loadData(options) {
+    _load() {
         const { pi, ps, data, req, res, page, total, singleSort, multiSort, rowClassName } = this;
-        return this.dataSource.process(Object.assign({ pi,
+        this.setLoading(true);
+        return this.dataSource
+            .process({
+            pi,
             ps,
             total,
             data,
             req,
             res,
-            page, columns: this._columns, singleSort,
+            page,
+            columns: this._columns,
+            singleSort,
             multiSort,
-            rowClassName, paginator: true }, options));
-    }
-    /**
-     * @private
-     * @return {?}
-     */
-    loadPageData() {
-        this.setLoading(true);
-        return this.loadData()
+            rowClassName,
+        })
             .then((/**
          * @param {?} result
          * @return {?}
@@ -1762,7 +1744,7 @@ class STComponent {
      */
     _change(type) {
         if (type === 'pi' || (type === 'ps' && this.pi <= Math.ceil(this.total / this.ps))) {
-            this.loadPageData().then((/**
+            this._load().then((/**
              * @return {?}
              */
             () => this._toTop()));
@@ -1912,7 +1894,7 @@ class STComponent {
              */
             (item, index) => (item._sort.default = index === idx ? value : null)));
         }
-        this.loadPageData();
+        this._load();
         /** @type {?} */
         const res = {
             value,
@@ -1947,7 +1929,7 @@ class STComponent {
          * @return {?}
          */
         w => (/** @type {?} */ (w.checked)))) !== -1;
-        this.loadPageData();
+        this._load();
         this.changeEmit('filter', col);
     }
     /**
@@ -2259,23 +2241,26 @@ class STComponent {
     // #region export
     /**
      * 导出当前页，确保已经注册 `XlsxModule`
-     * @param {?=} newData 重新指定数据，例如希望导出所有数据非常有用；若为 `true` 表示使用 `filteredData` 数据
+     * @param {?=} newData 重新指定数据，例如希望导出所有数据非常有用
      * @param {?=} opt 额外参数
      * @return {?}
      */
     export(newData, opt) {
-        (newData === true ? from(this.filteredData) : of(newData || this._data)).subscribe((/**
+        (newData ? of(newData) : of(this._data)).subscribe((/**
          * @param {?} res
          * @return {?}
          */
-        (res) => this.exportSrv.export(Object.assign({}, opt, { _d: res, _c: this._columns }))));
+        (res) => this.exportSrv.export(Object.assign({}, opt, {
+            _d: res,
+            _c: this._columns,
+        }))));
     }
     // #endregion
     /**
      * @return {?}
      */
     resetColumns() {
-        return this.refreshColumns().loadPageData();
+        return this.refreshColumns()._load();
     }
     /**
      * @private
@@ -2317,7 +2302,7 @@ class STComponent {
             this.refreshColumns();
         }
         if (changes.data && changes.data.currentValue) {
-            this.loadPageData();
+            this._load();
         }
         if (changes.loading) {
             this._loading = changes.loading.currentValue;
