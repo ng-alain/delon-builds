@@ -25077,7 +25077,7 @@ body {
 .st__btn-sub .ant-dropdown-menu-item > span {
   display: block;
 }
-.st .ant-table-pagination.ant-pagination {
+.st .ant-table ~ nz-pagination > .ant-pagination {
   margin-bottom: 0;
 }
 @media screen and (min-width: 768px) {

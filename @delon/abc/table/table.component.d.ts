@@ -7,6 +7,7 @@ import { STDataSource } from './table-data-source';
 import { STExport } from './table-export';
 import { STConfig } from './table.config';
 import { STChange, STColumn, STColumnButton, STColumnFilterMenu, STColumnSelection, STData, STError, STExportOptions, STLoadOptions, STPage, STReq, STRes, STRowClassName, STSingleSort, STStatisticalResults, STWidthMode } from './table.interfaces';
+import { NzTableComponent } from 'ng-zorro-antd';
 export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy {
     private cdr;
     private cog;
@@ -20,6 +21,7 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     private columnSource;
     private dataSource;
     private delonI18n;
+    orgTable: NzTableComponent;
     /** 请求体配置 */
     req: STReq;
     /** 返回体配置 */
@@ -56,6 +58,7 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     loading: boolean | null;
     /** 延迟显示加载效果的时间（防止闪烁） */
     loadingDelay: number;
+    loadingIndicator: TemplateRef<void>;
     /** 是否显示边框 */
     bordered: boolean;
     /** table大小 */
@@ -65,6 +68,10 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
         y?: string;
         x?: string;
     };
+    virtualScroll: boolean;
+    virtualItemSize: number;
+    virtualMaxBufferPx: number;
+    virtualMinBufferPx: number;
     /**
      * 单排序规则
      * - 若不指定，则返回：`columnName=ascend|descend`
@@ -178,6 +185,7 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
      * @param opt 额外参数
      */
     export(newData?: STData[] | true, opt?: STExportOptions): void;
+    readonly cdkVirtualScrollViewport: import("@angular/cdk/scrolling").CdkVirtualScrollViewport;
     resetColumns(): Promise<this>;
     private refreshColumns;
     private setClass;

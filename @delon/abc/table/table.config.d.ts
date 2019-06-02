@@ -96,4 +96,7 @@ export declare class STConfig {
      * 指定 `width` 模式
      */
     widthMode?: STWidthMode;
+    virtualItemSize?: number | undefined;
+    virtualMaxBufferPx?: number | undefined;
+    virtualMinBufferPx?: number | undefined;
 }
