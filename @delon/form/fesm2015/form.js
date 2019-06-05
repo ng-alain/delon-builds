@@ -3,7 +3,7 @@ import { __rest, __decorate, __metadata } from 'tslib';
 import { ACLService } from '@delon/acl';
 import { DelonLocaleService, DelonLocaleModule } from '@delon/theme';
 import { toBoolean, deepCopy, InputBoolean, InputNumber, deepGet, DelonUtilModule } from '@delon/util';
-import { of, Subject, BehaviorSubject, Observable, combineLatest } from 'rxjs';
+import { of, BehaviorSubject, Observable, combineLatest, Subject } from 'rxjs';
 import { map, distinctUntilChanged, takeUntil, filter, debounceTime, startWith, flatMap, tap } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
 import { NgModel, FormsModule } from '@angular/forms';
@@ -461,8 +461,8 @@ class FormProperty {
         this._value = null;
         this._errors = null;
         this._objErrors = {};
-        this._valueChanges = new Subject();
-        this._errorsChanges = new Subject();
+        this._valueChanges = new BehaviorSubject(null);
+        this._errorsChanges = new BehaviorSubject(null);
         this._visible = true;
         this._visibilityChanges = new BehaviorSubject(true);
         this.schema = schema;
@@ -678,8 +678,9 @@ class FormProperty {
              * @return {?}
              */
             err => {
-                if (!err.message)
+                if (!err.message) {
                     throw new Error(`The custom validator must contain a 'message' attribute to viewed error text`);
+                }
                 err._custom = true;
             }));
         }
@@ -1767,9 +1768,7 @@ class SFComponent {
                 /** @type {?} */
                 const property = retrieveSchema((/** @type {?} */ ((/** @type {?} */ (schema.properties))[key])), definitions);
                 /** @type {?} */
-                const ui = (/** @type {?} */ (Object.assign({ widget: property.type }, (property.format && FORMATMAPS[property.format]), (typeof property.ui === 'string' ? { widget: property.ui } : null), (!property.format && !property.ui && Array.isArray(property.enum) && property.enum.length > 0
-                    ? { widget: 'select' }
-                    : null), this._defUi, ((/** @type {?} */ (property.ui))), uiSchema[uiKey])));
+                const ui = (/** @type {?} */ (Object.assign({ widget: property.type }, (property.format && FORMATMAPS[property.format]), (typeof property.ui === 'string' ? { widget: property.ui } : null), (!property.format && !property.ui && Array.isArray(property.enum) && property.enum.length > 0 ? { widget: 'select' } : null), this._defUi, ((/** @type {?} */ (property.ui))), uiSchema[uiKey])));
                 // 继承父节点布局属性
                 if (isHorizontal) {
                     if (parentUiSchema.spanLabelFixed) {
@@ -1783,8 +1782,7 @@ class SFComponent {
                         if (!ui.spanControl)
                             ui.spanControl = typeof parentUiSchema.spanControl === 'undefined' ? 19 : parentUiSchema.spanControl;
                         if (!ui.offsetControl)
-                            ui.offsetControl =
-                                typeof parentUiSchema.offsetControl === 'undefined' ? null : parentUiSchema.offsetControl;
+                            ui.offsetControl = typeof parentUiSchema.offsetControl === 'undefined' ? null : parentUiSchema.offsetControl;
                     }
                 }
                 else {
@@ -1996,12 +1994,18 @@ class SFComponent {
         (/** @type {?} */ (this)).attachCustomRender();
         (/** @type {?} */ (this)).cdr.detectChanges();
         (/** @type {?} */ (this)).reset();
+        /** @type {?} */
+        let isFirst = true;
         (/** @type {?} */ (this)).rootProperty.valueChanges.subscribe((/**
          * @param {?} value
          * @return {?}
          */
         value => {
             (/** @type {?} */ (this))._item = Object.assign({}, (/** @type {?} */ (this)).formData, value);
+            if (isFirst) {
+                isFirst = false;
+                return;
+            }
             (/** @type {?} */ (this)).formChange.emit((/** @type {?} */ (this))._item);
         }));
         (/** @type {?} */ (this)).rootProperty.errorsChanges.subscribe((/**
