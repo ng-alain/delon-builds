@@ -1,4 +1,4 @@
-import { BehaviorSubject } from 'rxjs';
+import { Subject } from 'rxjs';
 import { DelonFormConfig } from '../config';
 import { ErrorData } from '../errors';
 import { SFValue } from '../interface';
@@ -26,8 +26,8 @@ export declare abstract class FormProperty {
     private _parent;
     private _path;
     constructor(schemaValidatorFactory: SchemaValidatorFactory, schema: SFSchema, ui: SFUISchema | SFUISchemaItem, formData: {}, parent: PropertyGroup | null, path: string, _options: DelonFormConfig);
-    readonly valueChanges: BehaviorSubject<any>;
-    readonly errorsChanges: BehaviorSubject<ErrorData[] | null>;
+    readonly valueChanges: Subject<any>;
+    readonly errorsChanges: Subject<ErrorData[]>;
     readonly type: string;
     readonly parent: PropertyGroup | null;
     readonly root: PropertyGroup;
