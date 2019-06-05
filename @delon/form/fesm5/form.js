@@ -3,7 +3,7 @@ import { __spread, __rest, __assign, __values, __extends, __decorate, __metadata
 import { ACLService } from '@delon/acl';
 import { DelonLocaleService, DelonLocaleModule } from '@delon/theme';
 import { toBoolean, deepCopy, InputBoolean, InputNumber, deepGet, DelonUtilModule } from '@delon/util';
-import { of, Observable, combineLatest, Subject, BehaviorSubject } from 'rxjs';
+import { of, Observable, combineLatest, BehaviorSubject, Subject } from 'rxjs';
 import { map, distinctUntilChanged, takeUntil, filter, debounceTime, startWith, flatMap, tap } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
 import { NgModel, FormsModule } from '@angular/forms';
@@ -474,8 +474,8 @@ FormProperty = /** @class */ (function () {
         this._value = null;
         this._errors = null;
         this._objErrors = {};
-        this._valueChanges = new Subject();
-        this._errorsChanges = new Subject();
+        this._valueChanges = new BehaviorSubject(null);
+        this._errorsChanges = new BehaviorSubject(null);
         this._visible = true;
         this._visibilityChanges = new BehaviorSubject(true);
         this.schema = schema;
@@ -785,8 +785,9 @@ FormProperty = /** @class */ (function () {
              * @return {?}
              */
             function (err) {
-                if (!err.message)
+                if (!err.message) {
                     throw new Error("The custom validator must contain a 'message' attribute to viewed error text");
+                }
                 err._custom = true;
             }));
         }
@@ -2164,9 +2165,7 @@ var SFComponent = /** @class */ (function () {
                 /** @type {?} */
                 var property = retrieveSchema((/** @type {?} */ ((/** @type {?} */ (schema.properties))[key])), definitions);
                 /** @type {?} */
-                var ui = (/** @type {?} */ (__assign({ widget: property.type }, (property.format && FORMATMAPS[property.format]), (typeof property.ui === 'string' ? { widget: property.ui } : null), (!property.format && !property.ui && Array.isArray(property.enum) && property.enum.length > 0
-                    ? { widget: 'select' }
-                    : null), _this._defUi, ((/** @type {?} */ (property.ui))), uiSchema[uiKey])));
+                var ui = (/** @type {?} */ (__assign({ widget: property.type }, (property.format && FORMATMAPS[property.format]), (typeof property.ui === 'string' ? { widget: property.ui } : null), (!property.format && !property.ui && Array.isArray(property.enum) && property.enum.length > 0 ? { widget: 'select' } : null), _this._defUi, ((/** @type {?} */ (property.ui))), uiSchema[uiKey])));
                 // 继承父节点布局属性
                 if (isHorizontal) {
                     if (parentUiSchema.spanLabelFixed) {
@@ -2180,8 +2179,7 @@ var SFComponent = /** @class */ (function () {
                         if (!ui.spanControl)
                             ui.spanControl = typeof parentUiSchema.spanControl === 'undefined' ? 19 : parentUiSchema.spanControl;
                         if (!ui.offsetControl)
-                            ui.offsetControl =
-                                typeof parentUiSchema.offsetControl === 'undefined' ? null : parentUiSchema.offsetControl;
+                            ui.offsetControl = typeof parentUiSchema.offsetControl === 'undefined' ? null : parentUiSchema.offsetControl;
                     }
                 }
                 else {
@@ -2433,12 +2431,18 @@ var SFComponent = /** @class */ (function () {
         (/** @type {?} */ (this)).attachCustomRender();
         (/** @type {?} */ (this)).cdr.detectChanges();
         (/** @type {?} */ (this)).reset();
+        /** @type {?} */
+        var isFirst = true;
         (/** @type {?} */ (this)).rootProperty.valueChanges.subscribe((/**
          * @param {?} value
          * @return {?}
          */
         function (value) {
             (/** @type {?} */ (_this))._item = __assign({}, (/** @type {?} */ (_this)).formData, value);
+            if (isFirst) {
+                isFirst = false;
+                return;
+            }
             (/** @type {?} */ (_this)).formChange.emit((/** @type {?} */ (_this))._item);
         }));
         (/** @type {?} */ (this)).rootProperty.errorsChanges.subscribe((/**

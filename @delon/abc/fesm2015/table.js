@@ -2287,21 +2287,9 @@ class STComponent {
         return this.orgTable.cdkVirtualScrollViewport;
     }
     /**
-     * @param {?=} options
      * @return {?}
      */
-    resetColumns(options) {
-        if (options) {
-            if (typeof options.columns !== 'undefined') {
-                this.columns = options.columns;
-            }
-            if (typeof options.pi !== 'undefined') {
-                this.pi = options.pi;
-            }
-            if (typeof options.ps !== 'undefined') {
-                this.ps = options.ps;
-            }
-        }
+    resetColumns() {
         return this.refreshColumns().loadPageData();
     }
     /**
