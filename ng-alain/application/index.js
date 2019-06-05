@@ -59,6 +59,7 @@ function addDependenciesToPackageJson(options) {
             `ng-alain-codelyzer@^0.0.1`,
             `@delon/testing@${lib_versions_1.VERSION}`,
             // color-less
+            `antd-theme-generator@DEP-7.6.0`,
             `less-bundle-promise@^1.0.7`,
         ], 'devDependencies');
         // i18n

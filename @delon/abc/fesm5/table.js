@@ -885,7 +885,7 @@ var STDataSource = /** @class */ (function () {
                     }
                 };
                 for (var i = 0, len = result.length; i < len; i++) {
-                    _loop_1(i, len);
+                    _loop_1(i);
                 }
                 return result;
             })));
