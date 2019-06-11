@@ -4233,6 +4233,23 @@
             return _this;
         }
         /**
+         * @private
+         * @param {?} list
+         * @return {?}
+         */
+        SelectWidget.prototype.checkGroup = /**
+         * @private
+         * @param {?} list
+         * @return {?}
+         */
+        function (list) {
+            this.hasGroup = list.filter((/**
+             * @param {?} w
+             * @return {?}
+             */
+            function (w) { return w.group === true; })).length > 0;
+        };
+        /**
          * @return {?}
          */
         SelectWidget.prototype.ngOnInit = /**
@@ -4278,11 +4295,7 @@
             function (list) {
                 _this._value = value;
                 _this.data = list;
-                _this.hasGroup = list.filter((/**
-                 * @param {?} w
-                 * @return {?}
-                 */
-                function (w) { return w.group === true; })).length > 0;
+                _this.checkGroup(list);
                 _this.detectChanges();
             }));
         };
@@ -4325,11 +4338,12 @@
             var _this = this;
             if (this.ui.onSearch) {
                 this.ui.onSearch(text).then((/**
-                 * @param {?} res
+                 * @param {?} list
                  * @return {?}
                  */
-                function (res) {
-                    _this.data = res;
+                function (list) {
+                    _this.data = list;
+                    _this.checkGroup(list);
                     _this.detectChanges();
                 }));
                 return;
