@@ -1294,6 +1294,7 @@ class ModalHelper {
      */
     constructor(srv) {
         this.srv = srv;
+        this.zIndex = 500;
     }
     /**
      * 构建一个对话框
@@ -1350,6 +1351,7 @@ class ModalHelper {
                 nzWidth: width ? width : undefined,
                 nzFooter: null,
                 nzComponentParams: params,
+                nzZIndex: ++this.zIndex,
             };
             /** @type {?} */
             const subject = this.srv.create(Object.assign({}, defaultOptions, modalOptions));
@@ -1473,6 +1475,8 @@ class DrawerHelper {
      */
     constructor(srv) {
         this.srv = srv;
+        // 大部分情况下抽屉的层级比 Modal 会更低一些
+        this.zIndex = 400;
     }
     /**
      * 构建一个抽屉
@@ -1503,6 +1507,7 @@ class DrawerHelper {
             const defaultOptions = {
                 nzContent: comp,
                 nzContentParams: params,
+                nzZIndex: ++this.zIndex,
                 nzTitle: title,
             };
             if (typeof size === 'number') {
@@ -2311,7 +2316,7 @@ AlainThemeModule.ctorParameters = () => [
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-const VERSION = new Version('7.6.1-8dd34be');
+const VERSION = new Version('7.6.1-e1a30558');
 
 /**
  * @fileoverview added by tsickle

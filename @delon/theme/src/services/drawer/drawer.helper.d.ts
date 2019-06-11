@@ -44,6 +44,7 @@ export interface DrawerHelperOptions {
  */
 export declare class DrawerHelper {
     private srv;
+    private zIndex;
     constructor(srv: NzDrawerService);
     /**
      * 构建一个抽屉

@@ -3396,6 +3396,18 @@ class SelectWidget extends ControlWidget {
         this.hasGroup = false;
     }
     /**
+     * @private
+     * @param {?} list
+     * @return {?}
+     */
+    checkGroup(list) {
+        this.hasGroup = list.filter((/**
+         * @param {?} w
+         * @return {?}
+         */
+        w => w.group === true)).length > 0;
+    }
+    /**
      * @return {?}
      */
     ngOnInit() {
@@ -3433,11 +3445,7 @@ class SelectWidget extends ControlWidget {
         list => {
             this._value = value;
             this.data = list;
-            this.hasGroup = list.filter((/**
-             * @param {?} w
-             * @return {?}
-             */
-            w => w.group === true)).length > 0;
+            this.checkGroup(list);
             this.detectChanges();
         }));
     }
@@ -3467,11 +3475,12 @@ class SelectWidget extends ControlWidget {
     searchChange(text) {
         if (this.ui.onSearch) {
             this.ui.onSearch(text).then((/**
-             * @param {?} res
+             * @param {?} list
              * @return {?}
              */
-            (res) => {
-                this.data = res;
+            (list) => {
+                this.data = list;
+                this.checkGroup(list);
                 this.detectChanges();
             }));
             return;
