@@ -1942,7 +1942,6 @@ var SFComponent = /** @class */ (function () {
          * Whether to load status，when `true` reset button is disabled status, submit button is loading status
          */
         this.loading = false;
-        this.disabled = false;
         /**
          * 数据变更时回调
          */
@@ -2321,7 +2320,7 @@ var SFComponent = /** @class */ (function () {
      * @return {?}
      */
     function (changes) {
-        if (Object.keys(changes).length === 1 && (changes.loading || changes.disabled)) {
+        if (changes.loading && Object.keys(changes).length === 1) {
             this.cdr.detectChanges();
             return;
         }
@@ -2562,7 +2561,6 @@ var SFComponent = /** @class */ (function () {
         onlyVisual: [{ type: Input }],
         mode: [{ type: Input }],
         loading: [{ type: Input }],
-        disabled: [{ type: Input }],
         formChange: [{ type: Output }],
         formSubmit: [{ type: Output }],
         formReset: [{ type: Output }],
@@ -2584,10 +2582,6 @@ var SFComponent = /** @class */ (function () {
         InputBoolean(),
         __metadata("design:type", Object)
     ], SFComponent.prototype, "loading", void 0);
-    __decorate([
-        InputBoolean(),
-        __metadata("design:type", Object)
-    ], SFComponent.prototype, "disabled", void 0);
     return SFComponent;
 }());
 
@@ -2863,9 +2857,8 @@ var Widget = /** @class */ (function () {
          * @return {?}
          */
         function () {
-            if (this.schema.readOnly === true || (/** @type {?} */ (this.sfComp)).disabled) {
+            if (this.schema.readOnly === true)
                 return true;
-            }
             return null;
         },
         enumerable: true,
@@ -2879,7 +2872,9 @@ var Widget = /** @class */ (function () {
      */
     function () {
         var _this = this;
-        this.formProperty.errorsChanges.pipe(takeUntil((/** @type {?} */ (this.sfItemComp)).unsubscribe$)).subscribe((/**
+        this.formProperty.errorsChanges
+            .pipe(takeUntil((/** @type {?} */ (this.sfItemComp)).unsubscribe$))
+            .subscribe((/**
          * @param {?} errors
          * @return {?}
          */
@@ -2985,7 +2980,9 @@ var ArrayLayoutWidget = /** @class */ (function (_super) {
      */
     function () {
         var _this = this;
-        this.formProperty.errorsChanges.pipe(takeUntil((/** @type {?} */ (this.sfItemComp)).unsubscribe$)).subscribe((/**
+        this.formProperty.errorsChanges
+            .pipe(takeUntil((/** @type {?} */ (this.sfItemComp)).unsubscribe$))
+            .subscribe((/**
          * @return {?}
          */
         function () { return _this.cd.detectChanges(); }));
@@ -3014,7 +3011,9 @@ var ObjectLayoutWidget = /** @class */ (function (_super) {
      */
     function () {
         var _this = this;
-        this.formProperty.errorsChanges.pipe(takeUntil((/** @type {?} */ (this.sfItemComp)).unsubscribe$)).subscribe((/**
+        this.formProperty.errorsChanges
+            .pipe(takeUntil((/** @type {?} */ (this.sfItemComp)).unsubscribe$))
+            .subscribe((/**
          * @return {?}
          */
         function () { return _this.cd.detectChanges(); }));
@@ -4169,7 +4168,7 @@ var SelectWidget = /** @class */ (function (_super) {
      * @return {?}
      */
     function (list) {
-        this.hasGroup = (list || []).filter((/**
+        this.hasGroup = list.filter((/**
          * @param {?} w
          * @return {?}
          */

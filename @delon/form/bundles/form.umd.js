@@ -2017,7 +2017,6 @@
              * Whether to load status，when `true` reset button is disabled status, submit button is loading status
              */
             this.loading = false;
-            this.disabled = false;
             /**
              * 数据变更时回调
              */
@@ -2396,7 +2395,7 @@
          * @return {?}
          */
         function (changes) {
-            if (Object.keys(changes).length === 1 && (changes.loading || changes.disabled)) {
+            if (changes.loading && Object.keys(changes).length === 1) {
                 this.cdr.detectChanges();
                 return;
             }
@@ -2637,7 +2636,6 @@
             onlyVisual: [{ type: core.Input }],
             mode: [{ type: core.Input }],
             loading: [{ type: core.Input }],
-            disabled: [{ type: core.Input }],
             formChange: [{ type: core.Output }],
             formSubmit: [{ type: core.Output }],
             formReset: [{ type: core.Output }],
@@ -2659,10 +2657,6 @@
             util.InputBoolean(),
             __metadata("design:type", Object)
         ], SFComponent.prototype, "loading", void 0);
-        __decorate([
-            util.InputBoolean(),
-            __metadata("design:type", Object)
-        ], SFComponent.prototype, "disabled", void 0);
         return SFComponent;
     }());
 
@@ -2938,9 +2932,8 @@
              * @return {?}
              */
             function () {
-                if (this.schema.readOnly === true || (/** @type {?} */ (this.sfComp)).disabled) {
+                if (this.schema.readOnly === true)
                     return true;
-                }
                 return null;
             },
             enumerable: true,
@@ -2954,7 +2947,9 @@
          */
         function () {
             var _this = this;
-            this.formProperty.errorsChanges.pipe(operators.takeUntil((/** @type {?} */ (this.sfItemComp)).unsubscribe$)).subscribe((/**
+            this.formProperty.errorsChanges
+                .pipe(operators.takeUntil((/** @type {?} */ (this.sfItemComp)).unsubscribe$))
+                .subscribe((/**
              * @param {?} errors
              * @return {?}
              */
@@ -3060,7 +3055,9 @@
          */
         function () {
             var _this = this;
-            this.formProperty.errorsChanges.pipe(operators.takeUntil((/** @type {?} */ (this.sfItemComp)).unsubscribe$)).subscribe((/**
+            this.formProperty.errorsChanges
+                .pipe(operators.takeUntil((/** @type {?} */ (this.sfItemComp)).unsubscribe$))
+                .subscribe((/**
              * @return {?}
              */
             function () { return _this.cd.detectChanges(); }));
@@ -3089,7 +3086,9 @@
          */
         function () {
             var _this = this;
-            this.formProperty.errorsChanges.pipe(operators.takeUntil((/** @type {?} */ (this.sfItemComp)).unsubscribe$)).subscribe((/**
+            this.formProperty.errorsChanges
+                .pipe(operators.takeUntil((/** @type {?} */ (this.sfItemComp)).unsubscribe$))
+                .subscribe((/**
              * @return {?}
              */
             function () { return _this.cd.detectChanges(); }));
@@ -4244,7 +4243,7 @@
          * @return {?}
          */
         function (list) {
-            this.hasGroup = (list || []).filter((/**
+            this.hasGroup = list.filter((/**
              * @param {?} w
              * @return {?}
              */

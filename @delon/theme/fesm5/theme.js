@@ -2893,7 +2893,7 @@ var AlainThemeModule = /** @class */ (function () {
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-var VERSION = new Version('7.6.1-0f971f60');
+var VERSION = new Version('7.6.1-2d3f51d');
 
 /**
  * @fileoverview added by tsickle
