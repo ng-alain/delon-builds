@@ -1555,7 +1555,6 @@ var koKR = (/** @type {?} */ ({
 var ModalHelper = /** @class */ (function () {
     function ModalHelper(srv) {
         this.srv = srv;
-        this.zIndex = 500;
     }
     /**
      * 构建一个对话框
@@ -1646,7 +1645,6 @@ var ModalHelper = /** @class */ (function () {
                 nzWidth: width ? width : undefined,
                 nzFooter: null,
                 nzComponentParams: params,
-                nzZIndex: ++_this.zIndex,
             };
             /** @type {?} */
             var subject = _this.srv.create(__assign({}, defaultOptions, modalOptions));
@@ -1869,8 +1867,6 @@ var ModalHelper = /** @class */ (function () {
 var DrawerHelper = /** @class */ (function () {
     function DrawerHelper(srv) {
         this.srv = srv;
-        // 大部分情况下抽屉的层级比 Modal 会更低一些
-        this.zIndex = 400;
     }
     /**
      * 构建一个抽屉
@@ -1913,7 +1909,6 @@ var DrawerHelper = /** @class */ (function () {
             var defaultOptions = {
                 nzContent: comp,
                 nzContentParams: params,
-                nzZIndex: ++_this.zIndex,
                 nzTitle: title,
             };
             if (typeof size === 'number') {
@@ -2898,7 +2893,7 @@ var AlainThemeModule = /** @class */ (function () {
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-var VERSION = new Version('7.6.1-5bc3b26');
+var VERSION = new Version('7.6.1-8dd34be');
 
 /**
  * @fileoverview added by tsickle
