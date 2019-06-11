@@ -15,7 +15,6 @@ export interface ModalHelperOptions {
  */
 export declare class ModalHelper {
     private srv;
-    private zIndex;
     constructor(srv: NzModalService);
     /**
      * 构建一个对话框

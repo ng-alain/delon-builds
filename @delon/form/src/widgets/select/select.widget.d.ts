@@ -7,7 +7,6 @@ export declare class SelectWidget extends ControlWidget implements OnInit {
     data: SFSchemaEnum[];
     _value: any;
     hasGroup: boolean;
-    private checkGroup;
     ngOnInit(): void;
     reset(value: SFValue): void;
     change(values: SFValue): void;
