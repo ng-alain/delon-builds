@@ -6,7 +6,7 @@ import { STColumnSource } from './table-column-source';
 import { STDataSource } from './table-data-source';
 import { STExport } from './table-export';
 import { STConfig } from './table.config';
-import { STChange, STColumn, STColumnButton, STColumnFilterMenu, STColumnSelection, STData, STError, STExportOptions, STLoadOptions, STPage, STReq, STRes, STRowClassName, STSingleSort, STStatisticalResults, STWidthMode } from './table.interfaces';
+import { STChange, STColumn, STColumnButton, STColumnFilterMenu, STColumnSelection, STData, STError, STExportOptions, STLoadOptions, STPage, STReq, STRes, STRowClassName, STSingleSort, STStatisticalResults, STWidthMode, STResetColumnsOption } from './table.interfaces';
 import { NzTableComponent } from 'ng-zorro-antd';
 export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy {
     private cdr;
@@ -186,7 +186,7 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
      */
     export(newData?: STData[] | true, opt?: STExportOptions): void;
     readonly cdkVirtualScrollViewport: import("@angular/cdk/scrolling").CdkVirtualScrollViewport;
-    resetColumns(): Promise<this>;
+    resetColumns(options?: STResetColumnsOption): Promise<this>;
     private refreshColumns;
     private setClass;
     ngAfterViewInit(): void;

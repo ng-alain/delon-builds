@@ -2869,12 +2869,25 @@
             configurable: true
         });
         /**
+         * @param {?=} options
          * @return {?}
          */
         STComponent.prototype.resetColumns = /**
+         * @param {?=} options
          * @return {?}
          */
-        function () {
+        function (options) {
+            if (options) {
+                if (typeof options.columns !== 'undefined') {
+                    this.columns = options.columns;
+                }
+                if (typeof options.pi !== 'undefined') {
+                    this.pi = options.pi;
+                }
+                if (typeof options.ps !== 'undefined') {
+                    this.ps = options.ps;
+                }
+            }
             return this.refreshColumns().loadPageData();
         };
         /**

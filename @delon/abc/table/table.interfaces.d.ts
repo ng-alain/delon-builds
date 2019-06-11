@@ -17,6 +17,11 @@ export interface STWidthMode {
      */
     strictBehavior?: 'wrap' | 'truncate';
 }
+export interface STResetColumnsOption {
+    pi?: number;
+    ps?: number;
+    columns?: STColumn[];
+}
 export interface STReq {
     /**
      * 分页类型，默认：`page`
