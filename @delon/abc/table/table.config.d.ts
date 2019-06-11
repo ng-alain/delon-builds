@@ -1,4 +1,4 @@
-import { STColumnButtonDrawerConfig, STColumnButtonModalConfig, STIcon, STMultiSort, STPage, STReq, STRes, STRowClassName, STSingleSort, STWidthMode } from './table.interfaces';
+import { STColumnButtonDrawerConfig, STColumnButtonModalConfig, STIcon, STMultiSort, STPage, STReq, STRes, STRowClassName, STSingleSort, STWidthMode, IifBehaviorType } from './table.interfaces';
 export declare class STConfig {
     /**
      * 起始页码，默认为：`1`
@@ -99,4 +99,8 @@ export declare class STConfig {
     virtualItemSize?: number | undefined;
     virtualMaxBufferPx?: number | undefined;
     virtualMinBufferPx?: number | undefined;
+    /**
+     * Conditional expression rendering behavior, can be set to `hide` (default) or `disabled`
+     */
+    iifBehavior?: IifBehaviorType;
 }
