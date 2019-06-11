@@ -25469,11 +25469,6 @@ body {
   float: none;
   text-align: center;
 }
-.st__btn-disabled,
-.st__btn-disabled > a {
-  color: rgba(0, 0, 0, 0.25);
-  pointer-events: none;
-}
 .st__btn-sub .ant-dropdown-menu-item > span {
   display: block;
 }
