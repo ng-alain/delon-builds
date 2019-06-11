@@ -1602,6 +1602,7 @@ class SFComponent {
          * Whether to load status，when `true` reset button is disabled status, submit button is loading status
          */
         this.loading = false;
+        this.disabled = false;
         /**
          * 数据变更时回调
          */
@@ -1912,7 +1913,7 @@ class SFComponent {
      * @return {?}
      */
     ngOnChanges(changes) {
-        if (changes.loading && Object.keys(changes).length === 1) {
+        if (Object.keys(changes).length === 1 && (changes.loading || changes.disabled)) {
             this.cdr.detectChanges();
             return;
         }
@@ -2105,6 +2106,7 @@ SFComponent.propDecorators = {
     onlyVisual: [{ type: Input }],
     mode: [{ type: Input }],
     loading: [{ type: Input }],
+    disabled: [{ type: Input }],
     formChange: [{ type: Output }],
     formSubmit: [{ type: Output }],
     formReset: [{ type: Output }],
@@ -2126,6 +2128,10 @@ __decorate([
     InputBoolean(),
     __metadata("design:type", Object)
 ], SFComponent.prototype, "loading", void 0);
+__decorate([
+    InputBoolean(),
+    __metadata("design:type", Object)
+], SFComponent.prototype, "disabled", void 0);
 
 /**
  * @fileoverview added by tsickle
@@ -2379,17 +2385,16 @@ class Widget {
      * @return {?}
      */
     get disabled() {
-        if (this.schema.readOnly === true)
+        if (this.schema.readOnly === true || (/** @type {?} */ (this.sfComp)).disabled) {
             return true;
+        }
         return null;
     }
     /**
      * @return {?}
      */
     ngAfterViewInit() {
-        this.formProperty.errorsChanges
-            .pipe(takeUntil((/** @type {?} */ (this.sfItemComp)).unsubscribe$))
-            .subscribe((/**
+        this.formProperty.errorsChanges.pipe(takeUntil((/** @type {?} */ (this.sfItemComp)).unsubscribe$)).subscribe((/**
          * @param {?} errors
          * @return {?}
          */
@@ -2460,9 +2465,7 @@ class ArrayLayoutWidget extends Widget {
      * @return {?}
      */
     ngAfterViewInit() {
-        this.formProperty.errorsChanges
-            .pipe(takeUntil((/** @type {?} */ (this.sfItemComp)).unsubscribe$))
-            .subscribe((/**
+        this.formProperty.errorsChanges.pipe(takeUntil((/** @type {?} */ (this.sfItemComp)).unsubscribe$)).subscribe((/**
          * @return {?}
          */
         () => this.cd.detectChanges()));
@@ -2478,9 +2481,7 @@ class ObjectLayoutWidget extends Widget {
      * @return {?}
      */
     ngAfterViewInit() {
-        this.formProperty.errorsChanges
-            .pipe(takeUntil((/** @type {?} */ (this.sfItemComp)).unsubscribe$))
-            .subscribe((/**
+        this.formProperty.errorsChanges.pipe(takeUntil((/** @type {?} */ (this.sfItemComp)).unsubscribe$)).subscribe((/**
          * @return {?}
          */
         () => this.cd.detectChanges()));
@@ -3401,7 +3402,7 @@ class SelectWidget extends ControlWidget {
      * @return {?}
      */
     checkGroup(list) {
-        this.hasGroup = list.filter((/**
+        this.hasGroup = (list || []).filter((/**
          * @param {?} w
          * @return {?}
          */

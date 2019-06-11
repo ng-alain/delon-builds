@@ -64,6 +64,7 @@ export declare class SFComponent implements OnInit, OnChanges, OnDestroy {
      * Whether to load status，when `true` reset button is disabled status, submit button is loading status
      */
     loading: boolean;
+    disabled: boolean;
     /** 数据变更时回调 */
     readonly formChange: EventEmitter<{}>;
     /** 提交表单时回调 */
