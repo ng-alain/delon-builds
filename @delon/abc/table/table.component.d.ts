@@ -178,7 +178,7 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     _btnClick(record: STData, btn: STColumnButton): void;
     private btnCallback;
     _btnText(record: STData, btn: STColumnButton): string;
-    _validBtns(item: STData, col: STColumn): STColumnButton[];
+    _validBtns(btns: STColumnButton[], item: STData, col: STColumn): STColumnButton[];
     /**
      * 导出当前页，确保已经注册 `XlsxModule`
      * @param newData 重新指定数据；若为 `true` 表示使用 `filteredData` 数据

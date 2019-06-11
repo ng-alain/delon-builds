@@ -526,15 +526,20 @@ export interface STColumnButton {
      */
     children?: STColumnButton[];
     /**
-     * 权限，等同 `can()` 参数值
+     * 权限，等同 [ACLCanType](https://ng-alain.com/acl/getting-started/#ACLCanType) 参数值
      */
     acl?: any;
     /**
-     * 条件表达式，较高调用频率，请勿过多复杂计算免得产生性能问题
+     * Conditional expression
      */
     iif?: (item: STData, btn: STColumnButton, column: STColumn) => boolean;
+    /**
+     * Conditional expression rendering behavior, can be set to `hide` (default) or `disabled`
+     */
+    iifBehavior?: IifBehaviorType;
     [key: string]: any;
 }
+export declare type IifBehaviorType = 'hide' | 'disabled';
 export interface STColumnButtonModal extends ModalHelperOptions {
     /**
      * 对话框组件对象，务必在 `entryComponents` 注册
