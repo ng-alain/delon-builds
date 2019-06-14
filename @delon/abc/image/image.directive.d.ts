@@ -1,4 +1,4 @@
-import { ElementRef, OnChanges, OnInit, Renderer2, SimpleChange, SimpleChanges } from '@angular/core';
+import { ElementRef, OnChanges, OnInit, SimpleChange, SimpleChanges } from '@angular/core';
 import { ImageConfig } from './image.config';
 /**
  * img标签
@@ -7,13 +7,12 @@ import { ImageConfig } from './image.config';
  * + 支持增加onerror事件
  */
 export declare class ImageDirective implements OnChanges, OnInit {
-    private el;
-    private render;
     src: string;
     size: number;
     error: string;
     private inited;
-    constructor(cog: ImageConfig, el: ElementRef, render: Renderer2);
+    private imgEl;
+    constructor(cog: ImageConfig, el: ElementRef<HTMLImageElement>);
     ngOnInit(): void;
     ngOnChanges(changes: {
         [P in keyof this]?: SimpleChange;

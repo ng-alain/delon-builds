@@ -1,5 +1,5 @@
 import { __decorate, __metadata, __assign, __spread } from 'tslib';
-import { defineInjectable, Injectable, Directive, ElementRef, Renderer2, Input, NgModule } from '@angular/core';
+import { defineInjectable, Injectable, Directive, ElementRef, Input, NgModule } from '@angular/core';
 import { InputNumber, DelonUtilModule } from '@delon/util';
 import { CommonModule } from '@angular/common';
 
@@ -36,13 +36,12 @@ var ImageConfig = /** @class */ (function () {
  * + 支持增加onerror事件
  */
 var ImageDirective = /** @class */ (function () {
-    function ImageDirective(cog, el, render) {
-        this.el = el;
-        this.render = render;
+    function ImageDirective(cog, el) {
         this.size = 64;
         this.error = './assets/img/logo.svg';
         this.inited = false;
         Object.assign(this, __assign({}, new ImageConfig(), cog));
+        this.imgEl = el.nativeElement;
     }
     /**
      * @return {?}
@@ -69,9 +68,7 @@ var ImageDirective = /** @class */ (function () {
         if (changes.error) {
             this.updateError();
         }
-        else {
-            this.update();
-        }
+        this.update();
     };
     /**
      * @private
@@ -82,10 +79,9 @@ var ImageDirective = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        var _this = this;
         /** @type {?} */
         var newSrc = this.src;
-        var _a = this, size = _a.size, render = _a.render, el = _a.el;
+        var _a = this, size = _a.size, imgEl = _a.imgEl;
         if (newSrc.includes('qlogo.cn')) {
             /** @type {?} */
             var arr = newSrc.split('/');
@@ -94,19 +90,10 @@ var ImageDirective = /** @class */ (function () {
             arr[arr.length - 1] = imgSize === '0' || +imgSize !== size ? size.toString() : imgSize;
             newSrc = arr.join('/');
         }
-        /** @type {?} */
-        var isHttp = newSrc.startsWith('http:');
-        /** @type {?} */
-        var isHttps = newSrc.startsWith('https:');
-        if (isHttp || isHttps) {
-            newSrc = newSrc.substr(isHttp ? 5 : 6);
-        }
-        render.setAttribute(el.nativeElement, 'src', newSrc);
-        ['height', 'width'].forEach((/**
-         * @param {?} v
-         * @return {?}
-         */
-        function (v) { return render.setAttribute(_this.el.nativeElement, v, size.toString()); }));
+        newSrc = newSrc.replace(/^(?:https?:)/i, '');
+        imgEl.src = newSrc;
+        imgEl.height = size;
+        imgEl.width = size;
     };
     /**
      * @private
@@ -117,7 +104,15 @@ var ImageDirective = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        this.render.setAttribute(this.el.nativeElement, 'onerror', "this.src='" + this.error + "'");
+        var _a = this, imgEl = _a.imgEl, error = _a.error;
+        // tslint:disable-next-line: only-arrow-functions
+        imgEl.onerror = (/**
+         * @return {?}
+         */
+        function () {
+            this.onerror = null;
+            this.src = error;
+        });
     };
     ImageDirective.decorators = [
         { type: Directive, args: [{
@@ -128,8 +123,7 @@ var ImageDirective = /** @class */ (function () {
     /** @nocollapse */
     ImageDirective.ctorParameters = function () { return [
         { type: ImageConfig },
-        { type: ElementRef },
-        { type: Renderer2 }
+        { type: ElementRef }
     ]; };
     ImageDirective.propDecorators = {
         src: [{ type: Input, args: ['_src',] }],
