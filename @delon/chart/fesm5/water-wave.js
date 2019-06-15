@@ -332,15 +332,5 @@ var G2WaterWaveModule = /** @class */ (function () {
     return G2WaterWaveModule;
 }());
 
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-
 export { G2WaterWaveComponent, G2WaterWaveModule };
 //# sourceMappingURL=water-wave.js.map

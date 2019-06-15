@@ -96,15 +96,5 @@ var NumberInfoModule = /** @class */ (function () {
     return NumberInfoModule;
 }());
 
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-
 export { NumberInfoComponent, NumberInfoModule };
 //# sourceMappingURL=number-info.js.map

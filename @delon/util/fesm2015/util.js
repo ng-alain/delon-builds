@@ -797,11 +797,6 @@ function updateHostClass(el, renderer, classMap, cleanAll = false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 class DelonUtilConfig {
 }
 DelonUtilConfig.decorators = [
@@ -1011,16 +1006,6 @@ DelonUtilModule.decorators = [
                 exports: [StringTemplateOutletDirective],
             },] }
 ];
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 
 export { ArrayService, DelonUtilConfig, DelonUtilModule, InputBoolean, InputNumber, LazyService, StringTemplateOutletDirective, _Validators, copy, deepCopy, deepGet, deepMerge, deepMergeKey, fixEndTimeOfRange, format, getTimeDistance, isDecimal, isEmpty, isIdCard, isInt, isMobile, isNum, isUrl, toBoolean, toNumber, updateHostClass };
 //# sourceMappingURL=util.js.map

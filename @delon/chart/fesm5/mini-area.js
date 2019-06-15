@@ -241,15 +241,5 @@ var G2MiniAreaModule = /** @class */ (function () {
     return G2MiniAreaModule;
 }());
 
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-
 export { G2MiniAreaComponent, G2MiniAreaModule };
 //# sourceMappingURL=mini-area.js.map

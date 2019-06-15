@@ -657,11 +657,6 @@ var ACLDirective = /** @class */ (function () {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 var ACLGuard = /** @class */ (function () {
     function ACLGuard(srv, router, options) {
         this.srv = srv;
@@ -776,16 +771,6 @@ var DelonACLModule = /** @class */ (function () {
     ];
     return DelonACLModule;
 }());
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 
 export { ACLDirective, ACLGuard, ACLIfDirective, ACLService, DelonACLConfig, DelonACLModule };
 //# sourceMappingURL=acl.js.map

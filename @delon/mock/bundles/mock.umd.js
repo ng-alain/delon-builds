@@ -1,5 +1,5 @@
 /**
- * @license ng-alain(cipchk@qq.com) v7.6.1
+ * @license ng-alain(cipchk@qq.com) v7.7.0
  * (c) 2019 cipchk https://ng-alain.com/
  * License: MIT
  */
@@ -34,11 +34,6 @@
         };
         return __assign.apply(this, arguments);
     };
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
 
     /**
      * @fileoverview added by tsickle

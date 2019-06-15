@@ -7,11 +7,6 @@ import { LazyService, DelonUtilModule } from '@delon/util';
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 var LodopConfig = /** @class */ (function () {
     function LodopConfig() {
     }
@@ -420,16 +415,6 @@ var LodopModule = /** @class */ (function () {
     ];
     return LodopModule;
 }());
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 
 export { LodopConfig, LodopModule, LodopService };
 //# sourceMappingURL=lodop.js.map

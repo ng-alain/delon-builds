@@ -175,15 +175,5 @@ G2MiniBarModule.decorators = [
             },] }
 ];
 
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-
 export { G2MiniBarComponent, G2MiniBarModule };
 //# sourceMappingURL=mini-bar.js.map

@@ -95,15 +95,5 @@ var G2MiniProgressModule = /** @class */ (function () {
     return G2MiniProgressModule;
 }());
 
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-
 export { G2MiniProgressComponent, G2MiniProgressModule };
 //# sourceMappingURL=mini-progress.js.map

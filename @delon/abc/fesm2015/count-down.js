@@ -87,15 +87,5 @@ CountDownModule.decorators = [
             },] }
 ];
 
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-
 export { CountDownComponent, CountDownModule };
 //# sourceMappingURL=count-down.js.map

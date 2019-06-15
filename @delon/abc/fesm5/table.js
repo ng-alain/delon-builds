@@ -26,11 +26,6 @@ import { NzTagModule } from 'ng-zorro-antd/tag';
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 var STRowSource = /** @class */ (function () {
     function STRowSource() {
         this.titles = {};
@@ -3085,16 +3080,6 @@ var STModule = /** @class */ (function () {
     ];
     return STModule;
 }());
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 
 export { STColumnSource, STComponent, STConfig, STDataSource, STExport, STModule, STRowDirective, STRowSource as ɵa };
 //# sourceMappingURL=table.js.map

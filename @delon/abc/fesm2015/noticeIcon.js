@@ -15,11 +15,6 @@ import { NzTagModule } from 'ng-zorro-antd/tag';
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 class NoticeIconTabComponent {
     constructor() {
         this.locale = {};
@@ -189,16 +184,6 @@ NoticeIconModule.decorators = [
                 exports: [...COMPONENTS],
             },] }
 ];
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 
 export { NoticeIconComponent, NoticeIconModule, NoticeIconTabComponent };
 //# sourceMappingURL=noticeIcon.js.map

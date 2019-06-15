@@ -243,15 +243,5 @@ G2GaugeModule.decorators = [
             },] }
 ];
 
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-
 export { G2GaugeComponent, G2GaugeModule };
 //# sourceMappingURL=gauge.js.map

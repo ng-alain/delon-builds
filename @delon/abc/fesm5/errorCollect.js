@@ -215,15 +215,5 @@ var ErrorCollectModule = /** @class */ (function () {
     return ErrorCollectModule;
 }());
 
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-
 export { ErrorCollectComponent, ErrorCollectConfig, ErrorCollectModule };
 //# sourceMappingURL=errorCollect.js.map

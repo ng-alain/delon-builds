@@ -261,15 +261,5 @@ var G2TagCloudModule = /** @class */ (function () {
     return G2TagCloudModule;
 }());
 
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-
 export { G2TagCloudComponent, G2TagCloudModule };
 //# sourceMappingURL=tag-cloud.js.map

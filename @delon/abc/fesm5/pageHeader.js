@@ -374,15 +374,5 @@ var PageHeaderModule = /** @class */ (function () {
     return PageHeaderModule;
 }());
 
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-
 export { PageHeaderComponent, PageHeaderConfig, PageHeaderModule };
 //# sourceMappingURL=pageHeader.js.map

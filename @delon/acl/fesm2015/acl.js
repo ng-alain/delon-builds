@@ -468,11 +468,6 @@ ACLDirective.propDecorators = {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 class ACLGuard {
     /**
      * @param {?} srv
@@ -559,16 +554,6 @@ DelonACLModule.decorators = [
                 exports: [...COMPONENTS],
             },] }
 ];
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 
 export { ACLDirective, ACLGuard, ACLIfDirective, ACLService, DelonACLConfig, DelonACLModule };
 //# sourceMappingURL=acl.js.map

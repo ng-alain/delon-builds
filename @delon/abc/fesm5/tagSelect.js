@@ -106,15 +106,5 @@ var TagSelectModule = /** @class */ (function () {
     return TagSelectModule;
 }());
 
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-
 export { TagSelectComponent, TagSelectModule };
 //# sourceMappingURL=tagSelect.js.map

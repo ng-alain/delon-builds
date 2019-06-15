@@ -7,11 +7,6 @@ import { delay } from 'rxjs/operators';
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 class MockStatusError {
     /**
      * @param {?} status
@@ -471,16 +466,6 @@ class DelonMockModule {
 DelonMockModule.decorators = [
     { type: NgModule, args: [{},] }
 ];
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 
 export { DelonMockConfig, DelonMockModule, MockInterceptor, MockService, MockStatusError };
 //# sourceMappingURL=mock.js.map

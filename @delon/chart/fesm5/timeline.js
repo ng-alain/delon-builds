@@ -310,15 +310,5 @@ var G2TimelineModule = /** @class */ (function () {
     return G2TimelineModule;
 }());
 
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-
 export { G2TimelineComponent, G2TimelineData, G2TimelineModule };
 //# sourceMappingURL=timeline.js.map

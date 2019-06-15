@@ -324,15 +324,5 @@ var FullContentModule = /** @class */ (function () {
     return FullContentModule;
 }());
 
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-
 export { FullContentComponent, FullContentModule, FullContentService, FullContentToggleDirective };
 //# sourceMappingURL=fullContent.js.map

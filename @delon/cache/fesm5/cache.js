@@ -9,11 +9,6 @@ import { tap, map } from 'rxjs/operators';
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 var DelonCacheConfig = /** @class */ (function () {
     function DelonCacheConfig() {
         /**
@@ -688,16 +683,6 @@ var DelonCacheModule = /** @class */ (function () {
     ];
     return DelonCacheModule;
 }());
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 
 export { CacheService, DelonCacheConfig, DelonCacheModule, DC_STORE_STORAGE_TOKEN as ɵa, DC_STORE_STORAGE_TOKEN_FACTORY as ɵb, LocalStorageCacheService as ɵc };
 //# sourceMappingURL=cache.js.map

@@ -260,15 +260,5 @@ var G2GaugeModule = /** @class */ (function () {
     return G2GaugeModule;
 }());
 
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-
 export { G2GaugeComponent, G2GaugeModule };
 //# sourceMappingURL=gauge.js.map

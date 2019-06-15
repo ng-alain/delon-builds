@@ -307,15 +307,5 @@ var DatePickerModule = /** @class */ (function () {
     return DatePickerModule;
 }());
 
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-
 export { DatePickerConfig, DatePickerModule, DateRangePickerConfig, RangePickerComponent };
 //# sourceMappingURL=datePicker.js.map

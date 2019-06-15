@@ -8,11 +8,6 @@ import { delay } from 'rxjs/operators';
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 var MockStatusError = /** @class */ (function () {
     function MockStatusError(status, error) {
         this.status = status;
@@ -523,16 +518,6 @@ var DelonMockModule = /** @class */ (function () {
     ];
     return DelonMockModule;
 }());
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 
 export { DelonMockConfig, DelonMockModule, MockInterceptor, MockService, MockStatusError };
 //# sourceMappingURL=mock.js.map

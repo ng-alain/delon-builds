@@ -9,11 +9,6 @@ import { CommonModule } from '@angular/common';
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 var GlobalFooterItemComponent = /** @class */ (function () {
     function GlobalFooterItemComponent() {
     }
@@ -113,16 +108,6 @@ var GlobalFooterModule = /** @class */ (function () {
     ];
     return GlobalFooterModule;
 }());
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 
 export { GlobalFooterComponent, GlobalFooterItemComponent, GlobalFooterModule };
 //# sourceMappingURL=globalFooter.js.map

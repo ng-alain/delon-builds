@@ -135,15 +135,5 @@ var QuickMenuModule = /** @class */ (function () {
     return QuickMenuModule;
 }());
 
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-
 export { QuickMenuComponent, QuickMenuModule };
 //# sourceMappingURL=quickMenu.js.map
