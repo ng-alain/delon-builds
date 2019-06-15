@@ -2,8 +2,11 @@ import { ComponentFactoryResolver, ComponentRef, ViewContainerRef } from '@angul
 import { FormProperty } from './model/form.property';
 import { Widget } from './widget';
 export declare class WidgetRegistry {
-    private widgets;
+    private _widgets;
     private defaultWidget;
+    readonly widgets: {
+        [type: string]: Widget<FormProperty>;
+    };
     setDefault(widget: any): void;
     register(type: string, widget: any): void;
     has(type: string): boolean;

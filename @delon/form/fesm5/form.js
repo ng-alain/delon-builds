@@ -1796,8 +1796,18 @@ var AjvSchemaValidatorFactory = /** @class */ (function (_super) {
  */
 var WidgetRegistry = /** @class */ (function () {
     function WidgetRegistry() {
-        this.widgets = {};
+        this._widgets = {};
     }
+    Object.defineProperty(WidgetRegistry.prototype, "widgets", {
+        get: /**
+         * @return {?}
+         */
+        function () {
+            return this._widgets;
+        },
+        enumerable: true,
+        configurable: true
+    });
     /**
      * @param {?} widget
      * @return {?}
@@ -1820,7 +1830,7 @@ var WidgetRegistry = /** @class */ (function () {
      * @return {?}
      */
     function (type, widget) {
-        this.widgets[type] = widget;
+        this._widgets[type] = widget;
     };
     /**
      * @param {?} type
@@ -1831,7 +1841,7 @@ var WidgetRegistry = /** @class */ (function () {
      * @return {?}
      */
     function (type) {
-        return this.widgets.hasOwnProperty(type);
+        return this._widgets.hasOwnProperty(type);
     };
     /**
      * @param {?} type
@@ -1843,7 +1853,7 @@ var WidgetRegistry = /** @class */ (function () {
      */
     function (type) {
         if (this.has(type)) {
-            return this.widgets[type];
+            return this._widgets[type];
         }
         return this.defaultWidget;
     };

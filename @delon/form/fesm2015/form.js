@@ -1469,7 +1469,13 @@ AjvSchemaValidatorFactory.ctorParameters = () => [
  */
 class WidgetRegistry {
     constructor() {
-        this.widgets = {};
+        this._widgets = {};
+    }
+    /**
+     * @return {?}
+     */
+    get widgets() {
+        return this._widgets;
     }
     /**
      * @param {?} widget
@@ -1484,14 +1490,14 @@ class WidgetRegistry {
      * @return {?}
      */
     register(type, widget) {
-        this.widgets[type] = widget;
+        this._widgets[type] = widget;
     }
     /**
      * @param {?} type
      * @return {?}
      */
     has(type) {
-        return this.widgets.hasOwnProperty(type);
+        return this._widgets.hasOwnProperty(type);
     }
     /**
      * @param {?} type
@@ -1499,7 +1505,7 @@ class WidgetRegistry {
      */
     getType(type) {
         if (this.has(type)) {
-            return this.widgets[type];
+            return this._widgets[type];
         }
         return this.defaultWidget;
     }
