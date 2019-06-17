@@ -25480,6 +25480,12 @@ body {
 .st .ant-table ~ nz-pagination > .ant-pagination {
   margin-bottom: 0;
 }
+.st__filter-keyword {
+  padding: 8px;
+}
+.st .ant-table-thead > tr > th .ant-table-filter-selected.ant-table-filter-icon {
+  color: #1890ff;
+}
 @media screen and (min-width: 768px) {
   .st__width-strict .ant-table-body > table {
     word-wrap: break-word;
