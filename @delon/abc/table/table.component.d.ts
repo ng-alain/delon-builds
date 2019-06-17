@@ -162,8 +162,8 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     clearSort(): this;
     private handleFilter;
     _filterConfirm(col: STColumn): void;
-    _filterClear(col: STColumn): void;
     _filterRadio(col: STColumn, item: STColumnFilterMenu, checked: boolean): void;
+    _filterClear(col: STColumn): void;
     clearFilter(): this;
     /** 清除所有 `checkbox` */
     clearCheck(): this;
