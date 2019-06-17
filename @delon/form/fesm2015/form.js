@@ -3464,7 +3464,7 @@ class SelectWidget extends ControlWidget {
         if (this.ui.change) {
             this.ui.change(values);
         }
-        this.setValue(values);
+        this.setValue(values == null ? undefined : values);
     }
     /**
      * @param {?} value
