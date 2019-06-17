@@ -50,7 +50,6 @@ export declare class STDataSource {
     getReqSortMap(singleSort: STSingleSort | null | undefined, multiSort: STMultiSort | null | undefined, columns: STColumn[]): {
         [key: string]: string;
     };
-    private getFilteredData;
     private getReqFilterMap;
     private genStatistical;
     private getStatistical;
