@@ -12,6 +12,7 @@ const tslint_1 = require("tslint");
  * Enhanced TSLint rule walker that makes it easier to create rule failures that don't belong to
  * the source file that has been passed to the rule walker.
  */
+// tslint:disable-next-line: deprecation
 class ExternalFailureWalker extends tslint_1.RuleWalker {
     /** Adds a failure for the external resource at the specified position with the given width. */
     addExternalFailureAt(node, start, width, message, fix) {

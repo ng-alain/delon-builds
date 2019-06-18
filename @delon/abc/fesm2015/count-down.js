@@ -50,13 +50,7 @@ CountDownComponent.decorators = [
                 selector: 'count-down',
                 exportAs: 'countDown',
                 template: `
-    <countdown
-      *ngIf="config"
-      [config]="config"
-      (start)="_start()"
-      (finished)="_finished()"
-      (notify)="_notify($event)"
-    ></countdown>
+    <countdown *ngIf="config" [config]="config" (start)="_start()" (finished)="_finished()" (notify)="_notify($event)"></countdown>
   `,
                 preserveWhitespaces: false,
                 changeDetection: ChangeDetectionStrategy.OnPush,

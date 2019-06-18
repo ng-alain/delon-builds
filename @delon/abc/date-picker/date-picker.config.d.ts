@@ -1,11 +1,11 @@
 export declare class DateRangePickerConfig {
-    nzFormat?: string;
+    nzFormat: string;
     nzClassName?: string;
     nzSize?: string;
     nzStyle?: string;
-    nzAllowClear?: boolean;
-    nzAutoFocus?: boolean;
-    nzDisabled?: boolean;
+    nzAllowClear: boolean;
+    nzAutoFocus: boolean;
+    nzDisabled: boolean;
     nzDisabledDate?: any;
     nzDisabledTime?: any;
     nzLocale?: any;

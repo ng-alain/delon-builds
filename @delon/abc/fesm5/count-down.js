@@ -66,7 +66,7 @@ var CountDownComponent = /** @class */ (function () {
         { type: Component, args: [{
                     selector: 'count-down',
                     exportAs: 'countDown',
-                    template: "\n    <countdown\n      *ngIf=\"config\"\n      [config]=\"config\"\n      (start)=\"_start()\"\n      (finished)=\"_finished()\"\n      (notify)=\"_notify($event)\"\n    ></countdown>\n  ",
+                    template: "\n    <countdown *ngIf=\"config\" [config]=\"config\" (start)=\"_start()\" (finished)=\"_finished()\" (notify)=\"_notify($event)\"></countdown>\n  ",
                     preserveWhitespaces: false,
                     changeDetection: ChangeDetectionStrategy.OnPush,
                     encapsulation: ViewEncapsulation.None

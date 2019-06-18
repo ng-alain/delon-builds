@@ -243,11 +243,13 @@ class SocialService {
                 this.observer.complete();
             }
         }), 100);
-        return Observable.create((/**
+        return new Observable((/**
          * @param {?} observer
          * @return {?}
          */
-        (observer) => (this.observer = observer)));
+        (observer) => {
+            this.observer = observer;
+        }));
     }
     /**
      * 授权成功后的回调处理

@@ -3153,7 +3153,9 @@ var AutoCompleteWidget = /** @class */ (function (_super) {
              * @param {?} option
              * @return {?}
              */
-            function (input, option) { return option.label.toLowerCase().indexOf((input || '').toLowerCase()) > -1; });
+            function (input, option) {
+                return option.label.toLowerCase().indexOf((input || '').toLowerCase()) > -1;
+            });
         }
         this.isAsync = !!this.ui.asyncData;
         /** @type {?} */

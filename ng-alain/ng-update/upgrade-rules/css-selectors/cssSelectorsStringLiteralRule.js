@@ -22,6 +22,7 @@ class Rule extends tslint_1.Rules.AbstractRule {
     }
 }
 exports.Rule = Rule;
+// tslint:disable-next-line: deprecation
 class Walker extends tslint_1.RuleWalker {
     constructor() {
         super(...arguments);

@@ -347,11 +347,13 @@
                     _this.observer.complete();
                 }
             }), 100);
-            return rxjs.Observable.create((/**
+            return new rxjs.Observable((/**
              * @param {?} observer
              * @return {?}
              */
-            function (observer) { return (_this.observer = observer); }));
+            function (observer) {
+                _this.observer = observer;
+            }));
         };
         /**
          * 授权成功后的回调处理

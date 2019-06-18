@@ -293,11 +293,13 @@ var SocialService = /** @class */ (function () {
                 _this.observer.complete();
             }
         }), 100);
-        return Observable.create((/**
+        return new Observable((/**
          * @param {?} observer
          * @return {?}
          */
-        function (observer) { return (_this.observer = observer); }));
+        function (observer) {
+            _this.observer = observer;
+        }));
     };
     /**
      * 授权成功后的回调处理

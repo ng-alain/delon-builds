@@ -41,7 +41,9 @@ exports.getAllChanges = getAllChanges;
  * The function reads out the target version and upgrade data object from the rule options and
  * resolves the specified data portion that is specifically tied to the target version.
  */
-function getUpgradeDataFromWalker(walker, dataName) {
+function getUpgradeDataFromWalker(
+// tslint:disable-next-line: deprecation
+walker, dataName) {
     return getChangesForTarget(walker.getOptions()[0], walker.getOptions()[1][dataName]);
 }
 exports.getUpgradeDataFromWalker = getUpgradeDataFromWalker;
