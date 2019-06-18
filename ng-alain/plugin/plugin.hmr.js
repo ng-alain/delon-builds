@@ -38,9 +38,11 @@ function envConfig(host, options) {
     alain_1.addValueToVariable(host, hmrEnvPath, 'environment', 'hmr: true');
 }
 function addNodeTypeToTsconfig(host, options) {
-    const tsConfigPath = `${options.sourceRoot}/tsconfig.app.json`;
-    if (!host.exists(tsConfigPath))
+    const tsConfigPath = `${options.root}/tsconfig.app.json`;
+    if (!host.exists(tsConfigPath)) {
+        console.warn(`Not found ${tsConfigPath} file`);
         return;
+    }
     const json = json_1.getJSON(host, tsConfigPath);
     const TYPENAME = 'node';
     if (options.type === 'add') {
@@ -48,8 +50,9 @@ function addNodeTypeToTsconfig(host, options) {
     }
     else {
         const idx = json.compilerOptions.types.findIndex(w => w === TYPENAME);
-        if (idx !== -1)
+        if (idx !== -1) {
             json.compilerOptions.types.splice(idx, 1);
+        }
     }
     json_1.overwriteJSON(host, tsConfigPath, json);
 }
