@@ -405,7 +405,9 @@
             function (cls) { return ren.removeClass(el, cls); }));
             clsMap.length = 0;
             /** @type {?} */
-            var repCls = parent.nzLayout === 'horizontal' ? rep.genCls(col != null ? col : parent.colInCon || parent.col) : [];
+            var repCls = parent.nzLayout === 'horizontal'
+                ? rep.genCls(col != null ? col : parent.colInCon || parent.col)
+                : [];
             clsMap.push.apply(clsMap, __spread(["ant-form-item"], repCls, [prefixCls + "__item"]));
             if (line || parent.line) {
                 clsMap.push(prefixCls + "__line");
@@ -434,7 +436,9 @@
              * @param {?} res
              * @return {?}
              */
-            function (res) { return _this.updateStatus(res === 'INVALID'); }));
+            function (res) {
+                return _this.updateStatus(res === 'INVALID');
+            }));
             if (this._autoId) {
                 /** @type {?} */
                 var control = (/** @type {?} */ (util.deepGet(this.ngControl.valueAccessor, '_elementRef.nativeElement')));
@@ -553,9 +557,9 @@
             { type: core.ChangeDetectorRef }
         ]; };
         SEComponent.propDecorators = {
-            ngModel: [{ type: core.ContentChild, args: [forms.NgModel, { static: false },] }],
-            formControlName: [{ type: core.ContentChild, args: [forms.FormControlName, { static: false },] }],
-            contentElement: [{ type: core.ViewChild, args: ['contentElement', { static: false },] }],
+            ngModel: [{ type: core.ContentChild, args: [forms.NgModel, { static: true },] }],
+            formControlName: [{ type: core.ContentChild, args: [forms.FormControlName, { static: true },] }],
+            contentElement: [{ type: core.ViewChild, args: ['contentElement', { static: true },] }],
             optional: [{ type: core.Input }],
             optionalHelp: [{ type: core.Input }],
             error: [{ type: core.Input }],

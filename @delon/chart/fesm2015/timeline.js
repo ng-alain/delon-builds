@@ -92,7 +92,7 @@ class G2TimelineComponent {
      * @return {?}
      */
     attachChart() {
-        const { chart, _slider, slider, height, padding, data, mask, titleMap, position, colorMap, borderWidth } = this;
+        const { chart, _slider, slider, height, padding, data, mask, titleMap, position, colorMap, borderWidth, } = this;
         if (!chart || !data || data.length <= 0)
             return;
         chart.legend({
@@ -238,8 +238,8 @@ G2TimelineComponent.ctorParameters = () => [
     { type: NgZone }
 ];
 G2TimelineComponent.propDecorators = {
-    node: [{ type: ViewChild, args: ['container', { static: true },] }],
-    sliderNode: [{ type: ViewChild, args: ['sliderContainer', { static: true },] }],
+    node: [{ type: ViewChild, args: ['container', { static: false },] }],
+    sliderNode: [{ type: ViewChild, args: ['sliderContainer', { static: false },] }],
     delay: [{ type: Input }],
     title: [{ type: Input }],
     data: [{ type: Input }],

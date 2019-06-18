@@ -316,7 +316,9 @@ class SEComponent {
         cls => ren.removeClass(el, cls)));
         clsMap.length = 0;
         /** @type {?} */
-        const repCls = parent.nzLayout === 'horizontal' ? rep.genCls(col != null ? col : parent.colInCon || parent.col) : [];
+        const repCls = parent.nzLayout === 'horizontal'
+            ? rep.genCls(col != null ? col : parent.colInCon || parent.col)
+            : [];
         clsMap.push(`ant-form-item`, ...repCls, `${prefixCls}__item`);
         if (line || parent.line) {
             clsMap.push(`${prefixCls}__line`);
@@ -439,9 +441,9 @@ SEComponent.ctorParameters = () => [
     { type: ChangeDetectorRef }
 ];
 SEComponent.propDecorators = {
-    ngModel: [{ type: ContentChild, args: [NgModel, { static: false },] }],
-    formControlName: [{ type: ContentChild, args: [FormControlName, { static: false },] }],
-    contentElement: [{ type: ViewChild, args: ['contentElement', { static: false },] }],
+    ngModel: [{ type: ContentChild, args: [NgModel, { static: true },] }],
+    formControlName: [{ type: ContentChild, args: [FormControlName, { static: true },] }],
+    contentElement: [{ type: ViewChild, args: ['contentElement', { static: true },] }],
     optional: [{ type: Input }],
     optionalHelp: [{ type: Input }],
     error: [{ type: Input }],

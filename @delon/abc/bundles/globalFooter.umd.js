@@ -76,7 +76,7 @@
                     }] }
         ];
         GlobalFooterItemComponent.propDecorators = {
-            host: [{ type: core.ViewChild, args: ['host', { static: false },] }],
+            host: [{ type: core.ViewChild, args: ['host', { static: true },] }],
             href: [{ type: core.Input }],
             blankTarget: [{ type: core.Input }]
         };

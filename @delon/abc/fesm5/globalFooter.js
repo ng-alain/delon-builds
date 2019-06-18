@@ -23,7 +23,7 @@ var GlobalFooterItemComponent = /** @class */ (function () {
                 }] }
     ];
     GlobalFooterItemComponent.propDecorators = {
-        host: [{ type: ViewChild, args: ['host', { static: false },] }],
+        host: [{ type: ViewChild, args: ['host', { static: true },] }],
         href: [{ type: Input }],
         blankTarget: [{ type: Input }]
     };

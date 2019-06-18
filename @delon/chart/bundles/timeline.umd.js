@@ -324,8 +324,8 @@
             { type: core.NgZone }
         ]; };
         G2TimelineComponent.propDecorators = {
-            node: [{ type: core.ViewChild, args: ['container', { static: true },] }],
-            sliderNode: [{ type: core.ViewChild, args: ['sliderContainer', { static: true },] }],
+            node: [{ type: core.ViewChild, args: ['container', { static: false },] }],
+            sliderNode: [{ type: core.ViewChild, args: ['sliderContainer', { static: false },] }],
             delay: [{ type: core.Input }],
             title: [{ type: core.Input }],
             data: [{ type: core.Input }],
