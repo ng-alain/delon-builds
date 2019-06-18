@@ -64,7 +64,10 @@ function addDependenciesToPackageJson(options) {
         ], 'devDependencies');
         // i18n
         if (options.i18n) {
-            json_1.addPackageToPackageJson(host, [`@ngx-translate/core@^11.0.1`, `@ngx-translate/http-loader@^4.0.0`]);
+            json_1.addPackageToPackageJson(host, [
+                `@ngx-translate/core@^11.0.1`,
+                `@ngx-translate/http-loader@^4.0.0`,
+            ]);
         }
         return host;
     };
@@ -75,8 +78,8 @@ function addRunScriptToPackageJson() {
         if (json == null)
             return host;
         json.scripts.start = `npm run color-less && ng serve -o`;
-        json.scripts.build = `npm run color-less && ng build --prod --build-optimizer`;
-        json.scripts.analyze = `npm run color-less && ng build --prod --build-optimizer --stats-json`;
+        json.scripts.build = `npm run color-less && ng build --prod`;
+        json.scripts.analyze = `npm run color-less && ng build --prod --stats-json`;
         json.scripts['test-coverage'] = `ng test --code-coverage --watch=false`;
         json.scripts['color-less'] = `node scripts/color-less.js`;
         json.scripts.icon = `ng g ng-alain:plugin icon`;
@@ -140,8 +143,18 @@ function addCodeStylesToPackageJson() {
         const tsLint = json_1.getJSON(host, 'tslint.json', 'rules');
         tsLint.rules.curly = false;
         tsLint.rules['use-host-property-decorator'] = false;
-        tsLint.rules['directive-selector'] = [true, 'attribute', [project.prefix, 'passport', 'exception', 'layout', 'header'], 'camelCase'];
-        tsLint.rules['component-selector'] = [true, 'element', [project.prefix, 'passport', 'exception', 'layout', 'header'], 'kebab-case'];
+        tsLint.rules['directive-selector'] = [
+            true,
+            'attribute',
+            [project.prefix, 'passport', 'exception', 'layout', 'header'],
+            'camelCase',
+        ];
+        tsLint.rules['component-selector'] = [
+            true,
+            'element',
+            [project.prefix, 'passport', 'exception', 'layout', 'header'],
+            'kebab-case',
+        ];
         json_1.overwriteJSON(host, 'tslint.json', tsLint);
         // app tslint
         const sourceTslint = `${project.sourceRoot}/tslint.json`;
