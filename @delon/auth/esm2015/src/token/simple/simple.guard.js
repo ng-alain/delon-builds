@@ -72,7 +72,7 @@ SimpleGuard.ctorParameters = () => [
     { type: Injector },
     { type: DelonAuthConfig }
 ];
-/** @nocollapse */ SimpleGuard.ngInjectableDef = i0.defineInjectable({ factory: function SimpleGuard_Factory() { return new SimpleGuard(i0.inject(i1.DA_SERVICE_TOKEN), i0.inject(i0.INJECTOR), i0.inject(i2.DelonAuthConfig)); }, token: SimpleGuard, providedIn: "root" });
+/** @nocollapse */ SimpleGuard.ngInjectableDef = i0.ɵɵdefineInjectable({ factory: function SimpleGuard_Factory() { return new SimpleGuard(i0.ɵɵinject(i1.DA_SERVICE_TOKEN), i0.ɵɵinject(i0.INJECTOR), i0.ɵɵinject(i2.DelonAuthConfig)); }, token: SimpleGuard, providedIn: "root" });
 if (false) {
     /**
      * @type {?}

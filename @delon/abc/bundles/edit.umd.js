@@ -105,7 +105,7 @@
         SEConfig.decorators = [
             { type: core.Injectable, args: [{ providedIn: 'root' },] }
         ];
-        /** @nocollapse */ SEConfig.ngInjectableDef = core.defineInjectable({ factory: function SEConfig_Factory() { return new SEConfig(); }, token: SEConfig, providedIn: "root" });
+        /** @nocollapse */ SEConfig.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function SEConfig_Factory() { return new SEConfig(); }, token: SEConfig, providedIn: "root" });
         return SEConfig;
     }());
 
@@ -553,9 +553,9 @@
             { type: core.ChangeDetectorRef }
         ]; };
         SEComponent.propDecorators = {
-            ngModel: [{ type: core.ContentChild, args: [forms.NgModel,] }],
-            formControlName: [{ type: core.ContentChild, args: [forms.FormControlName,] }],
-            contentElement: [{ type: core.ViewChild, args: ['contentElement',] }],
+            ngModel: [{ type: core.ContentChild, args: [forms.NgModel, { static: false },] }],
+            formControlName: [{ type: core.ContentChild, args: [forms.FormControlName, { static: false },] }],
+            contentElement: [{ type: core.ViewChild, args: ['contentElement', { static: false },] }],
             optional: [{ type: core.Input }],
             optionalHelp: [{ type: core.Input }],
             error: [{ type: core.Input }],

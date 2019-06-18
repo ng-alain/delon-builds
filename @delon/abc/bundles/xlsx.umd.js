@@ -78,7 +78,7 @@
         XlsxConfig.decorators = [
             { type: core.Injectable, args: [{ providedIn: 'root' },] }
         ];
-        /** @nocollapse */ XlsxConfig.ngInjectableDef = core.defineInjectable({ factory: function XlsxConfig_Factory() { return new XlsxConfig(); }, token: XlsxConfig, providedIn: "root" });
+        /** @nocollapse */ XlsxConfig.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function XlsxConfig_Factory() { return new XlsxConfig(); }, token: XlsxConfig, providedIn: "root" });
         return XlsxConfig;
     }());
 
@@ -241,7 +241,7 @@
             { type: http.HttpClient },
             { type: util.LazyService }
         ]; };
-        /** @nocollapse */ XlsxService.ngInjectableDef = core.defineInjectable({ factory: function XlsxService_Factory() { return new XlsxService(core.inject(XlsxConfig), core.inject(http.HttpClient), core.inject(util.LazyService)); }, token: XlsxService, providedIn: "root" });
+        /** @nocollapse */ XlsxService.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function XlsxService_Factory() { return new XlsxService(core.ɵɵinject(XlsxConfig), core.ɵɵinject(http.HttpClient), core.ɵɵinject(util.LazyService)); }, token: XlsxService, providedIn: "root" });
         return XlsxService;
     }());
 

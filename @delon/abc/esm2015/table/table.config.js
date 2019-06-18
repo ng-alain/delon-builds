@@ -133,7 +133,7 @@ export class STConfig {
 STConfig.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
-/** @nocollapse */ STConfig.ngInjectableDef = i0.defineInjectable({ factory: function STConfig_Factory() { return new STConfig(); }, token: STConfig, providedIn: "root" });
+/** @nocollapse */ STConfig.ngInjectableDef = i0.ɵɵdefineInjectable({ factory: function STConfig_Factory() { return new STConfig(); }, token: STConfig, providedIn: "root" });
 if (false) {
     /**
      * 起始页码，默认为：`1`

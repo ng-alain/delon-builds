@@ -130,7 +130,7 @@ var ExceptionComponent = /** @class */ (function () {
         { type: DelonLocaleService }
     ]; };
     ExceptionComponent.propDecorators = {
-        conTpl: [{ type: ViewChild, args: ['conTpl',] }],
+        conTpl: [{ type: ViewChild, args: ['conTpl', { static: true },] }],
         type: [{ type: Input }],
         img: [{ type: Input }],
         title: [{ type: Input }],

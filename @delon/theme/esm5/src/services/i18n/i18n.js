@@ -103,7 +103,7 @@ var AlainI18NServiceFake = /** @class */ (function () {
     AlainI18NServiceFake.decorators = [
         { type: Injectable, args: [{ providedIn: 'root' },] }
     ];
-    /** @nocollapse */ AlainI18NServiceFake.ngInjectableDef = i0.defineInjectable({ factory: function AlainI18NServiceFake_Factory() { return new AlainI18NServiceFake(); }, token: AlainI18NServiceFake, providedIn: "root" });
+    /** @nocollapse */ AlainI18NServiceFake.ngInjectableDef = i0.ɵɵdefineInjectable({ factory: function AlainI18NServiceFake_Factory() { return new AlainI18NServiceFake(); }, token: AlainI18NServiceFake, providedIn: "root" });
     return AlainI18NServiceFake;
 }());
 export { AlainI18NServiceFake };

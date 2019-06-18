@@ -1507,7 +1507,7 @@
             { type: core.Injector },
             { type: theme.MenuService }
         ]; };
-        /** @nocollapse */ ReuseTabService.ngInjectableDef = core.defineInjectable({ factory: function ReuseTabService_Factory() { return new ReuseTabService(core.inject(core.INJECTOR), core.inject(theme.MenuService)); }, token: ReuseTabService, providedIn: "root" });
+        /** @nocollapse */ ReuseTabService.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function ReuseTabService_Factory() { return new ReuseTabService(core.ɵɵinject(core.INJECTOR), core.ɵɵinject(theme.MenuService)); }, token: ReuseTabService, providedIn: "root" });
         return ReuseTabService;
     }());
 

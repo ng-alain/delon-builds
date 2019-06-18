@@ -43,7 +43,7 @@ export class QRConfig {
 QRConfig.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
-/** @nocollapse */ QRConfig.ngInjectableDef = i0.defineInjectable({ factory: function QRConfig_Factory() { return new QRConfig(); }, token: QRConfig, providedIn: "root" });
+/** @nocollapse */ QRConfig.ngInjectableDef = i0.ɵɵdefineInjectable({ factory: function QRConfig_Factory() { return new QRConfig(); }, token: QRConfig, providedIn: "root" });
 if (false) {
     /**
      * 背景，默认：`white`

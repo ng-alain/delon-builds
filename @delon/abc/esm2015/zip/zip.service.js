@@ -190,7 +190,7 @@ ZipService.ctorParameters = () => [
     { type: HttpClient },
     { type: LazyService }
 ];
-/** @nocollapse */ ZipService.ngInjectableDef = i0.defineInjectable({ factory: function ZipService_Factory() { return new ZipService(i0.inject(i1.ZipConfig), i0.inject(i2.HttpClient), i0.inject(i3.LazyService)); }, token: ZipService, providedIn: "root" });
+/** @nocollapse */ ZipService.ngInjectableDef = i0.ɵɵdefineInjectable({ factory: function ZipService_Factory() { return new ZipService(i0.ɵɵinject(i1.ZipConfig), i0.ɵɵinject(i2.HttpClient), i0.ɵɵinject(i3.LazyService)); }, token: ZipService, providedIn: "root" });
 if (false) {
     /**
      * @type {?}

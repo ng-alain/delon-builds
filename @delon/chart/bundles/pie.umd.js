@@ -356,7 +356,7 @@
             { type: core.ChangeDetectorRef }
         ]; };
         G2PieComponent.propDecorators = {
-            node: [{ type: core.ViewChild, args: ['container',] }],
+            node: [{ type: core.ViewChild, args: ['container', { static: true },] }],
             delay: [{ type: core.Input }],
             animate: [{ type: core.Input }],
             color: [{ type: core.Input }],

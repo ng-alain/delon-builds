@@ -55,7 +55,7 @@ var DelonAuthConfig = /** @class */ (function () {
     DelonAuthConfig.decorators = [
         { type: Injectable, args: [{ providedIn: 'root' },] }
     ];
-    /** @nocollapse */ DelonAuthConfig.ngInjectableDef = i0.defineInjectable({ factory: function DelonAuthConfig_Factory() { return new DelonAuthConfig(); }, token: DelonAuthConfig, providedIn: "root" });
+    /** @nocollapse */ DelonAuthConfig.ngInjectableDef = i0.ɵɵdefineInjectable({ factory: function DelonAuthConfig_Factory() { return new DelonAuthConfig(); }, token: DelonAuthConfig, providedIn: "root" });
     return DelonAuthConfig;
 }());
 export { DelonAuthConfig };

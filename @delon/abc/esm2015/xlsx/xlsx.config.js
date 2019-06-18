@@ -21,7 +21,7 @@ export class XlsxConfig {
 XlsxConfig.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
-/** @nocollapse */ XlsxConfig.ngInjectableDef = i0.defineInjectable({ factory: function XlsxConfig_Factory() { return new XlsxConfig(); }, token: XlsxConfig, providedIn: "root" });
+/** @nocollapse */ XlsxConfig.ngInjectableDef = i0.ɵɵdefineInjectable({ factory: function XlsxConfig_Factory() { return new XlsxConfig(); }, token: XlsxConfig, providedIn: "root" });
 if (false) {
     /**
      * Xlsx library path

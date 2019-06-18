@@ -1,4 +1,4 @@
-import { defineInjectable, Injectable, inject, Directive, Input, NgModule } from '@angular/core';
+import { ɵɵdefineInjectable, Injectable, ɵɵinject, Directive, Input, NgModule } from '@angular/core';
 import { __assign, __spread } from 'tslib';
 import { HttpClient } from '@angular/common/http';
 import { LazyService, DelonUtilModule } from '@delon/util';
@@ -25,7 +25,7 @@ var XlsxConfig = /** @class */ (function () {
     XlsxConfig.decorators = [
         { type: Injectable, args: [{ providedIn: 'root' },] }
     ];
-    /** @nocollapse */ XlsxConfig.ngInjectableDef = defineInjectable({ factory: function XlsxConfig_Factory() { return new XlsxConfig(); }, token: XlsxConfig, providedIn: "root" });
+    /** @nocollapse */ XlsxConfig.ngInjectableDef = ɵɵdefineInjectable({ factory: function XlsxConfig_Factory() { return new XlsxConfig(); }, token: XlsxConfig, providedIn: "root" });
     return XlsxConfig;
 }());
 
@@ -188,7 +188,7 @@ var XlsxService = /** @class */ (function () {
         { type: HttpClient },
         { type: LazyService }
     ]; };
-    /** @nocollapse */ XlsxService.ngInjectableDef = defineInjectable({ factory: function XlsxService_Factory() { return new XlsxService(inject(XlsxConfig), inject(HttpClient), inject(LazyService)); }, token: XlsxService, providedIn: "root" });
+    /** @nocollapse */ XlsxService.ngInjectableDef = ɵɵdefineInjectable({ factory: function XlsxService_Factory() { return new XlsxService(ɵɵinject(XlsxConfig), ɵɵinject(HttpClient), ɵɵinject(LazyService)); }, token: XlsxService, providedIn: "root" });
     return XlsxService;
 }());
 

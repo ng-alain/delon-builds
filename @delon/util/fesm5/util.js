@@ -1,4 +1,4 @@
-import { TemplateRef, Directive, ViewContainerRef, Input, Injectable, Inject, defineInjectable, inject, NgModule } from '@angular/core';
+import { TemplateRef, Directive, ViewContainerRef, Input, Injectable, Inject, ɵɵdefineInjectable, ɵɵinject, NgModule } from '@angular/core';
 import { __spread, __assign, __values } from 'tslib';
 import extend from 'extend';
 import addDays from 'date-fns/add_days';
@@ -533,7 +533,7 @@ var LazyService = /** @class */ (function () {
     LazyService.ctorParameters = function () { return [
         { type: undefined, decorators: [{ type: Inject, args: [DOCUMENT,] }] }
     ]; };
-    /** @nocollapse */ LazyService.ngInjectableDef = defineInjectable({ factory: function LazyService_Factory() { return new LazyService(inject(DOCUMENT)); }, token: LazyService, providedIn: "root" });
+    /** @nocollapse */ LazyService.ngInjectableDef = ɵɵdefineInjectable({ factory: function LazyService_Factory() { return new LazyService(ɵɵinject(DOCUMENT)); }, token: LazyService, providedIn: "root" });
     return LazyService;
 }());
 
@@ -895,7 +895,7 @@ var DelonUtilConfig = /** @class */ (function () {
     DelonUtilConfig.decorators = [
         { type: Injectable, args: [{ providedIn: 'root' },] }
     ];
-    /** @nocollapse */ DelonUtilConfig.ngInjectableDef = defineInjectable({ factory: function DelonUtilConfig_Factory() { return new DelonUtilConfig(); }, token: DelonUtilConfig, providedIn: "root" });
+    /** @nocollapse */ DelonUtilConfig.ngInjectableDef = ɵɵdefineInjectable({ factory: function DelonUtilConfig_Factory() { return new DelonUtilConfig(); }, token: DelonUtilConfig, providedIn: "root" });
     return DelonUtilConfig;
 }());
 
@@ -935,8 +935,8 @@ var ArrayService = /** @class */ (function () {
          * @return {?}
          */
         function (list, parent, deep) {
-            if (deep === void 0) { deep = 0; }
             var e_1, _a;
+            if (deep === void 0) { deep = 0; }
             try {
                 for (var list_1 = __values(list), list_1_1 = list_1.next(); !list_1_1.done; list_1_1 = list_1.next()) {
                     var i = list_1_1.value;
@@ -1162,7 +1162,7 @@ var ArrayService = /** @class */ (function () {
     ArrayService.ctorParameters = function () { return [
         { type: DelonUtilConfig }
     ]; };
-    /** @nocollapse */ ArrayService.ngInjectableDef = defineInjectable({ factory: function ArrayService_Factory() { return new ArrayService(inject(DelonUtilConfig)); }, token: ArrayService, providedIn: "root" });
+    /** @nocollapse */ ArrayService.ngInjectableDef = ɵɵdefineInjectable({ factory: function ArrayService_Factory() { return new ArrayService(ɵɵinject(DelonUtilConfig)); }, token: ArrayService, providedIn: "root" });
     return ArrayService;
 }());
 

@@ -217,7 +217,7 @@
         DelonFormConfig.decorators = [
             { type: core.Injectable, args: [{ providedIn: 'root' },] }
         ];
-        /** @nocollapse */ DelonFormConfig.ngInjectableDef = core.defineInjectable({ factory: function DelonFormConfig_Factory() { return new DelonFormConfig(); }, token: DelonFormConfig, providedIn: "root" });
+        /** @nocollapse */ DelonFormConfig.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function DelonFormConfig_Factory() { return new DelonFormConfig(); }, token: DelonFormConfig, providedIn: "root" });
         return DelonFormConfig;
     }());
 
@@ -2730,8 +2730,7 @@
          * @return {?}
          */
         function () {
-            this.ref = this.widgetFactory.createWidget(this.container, (/** @type {?} */ ((this.formProperty.ui.widget ||
-                this.formProperty.schema.type))));
+            this.ref = this.widgetFactory.createWidget(this.container, (/** @type {?} */ ((this.formProperty.ui.widget || this.formProperty.schema.type))));
             this.onWidgetInstanciated(this.ref.instance);
         };
         /**
@@ -2762,7 +2761,7 @@
         ]; };
         SFItemComponent.propDecorators = {
             formProperty: [{ type: core.Input }],
-            container: [{ type: core.ViewChild, args: ['target', { read: core.ViewContainerRef },] }]
+            container: [{ type: core.ViewChild, args: ['target', { read: core.ViewContainerRef, static: true },] }]
         };
         return SFItemComponent;
     }());
@@ -3229,9 +3228,7 @@
                  * @param {?} option
                  * @return {?}
                  */
-                function (input, option) {
-                    return option.label.toLowerCase().indexOf((input || '').toLowerCase()) > -1;
-                });
+                function (input, option) { return option.label.toLowerCase().indexOf((input || '').toLowerCase()) > -1; });
             }
             this.isAsync = !!this.ui.asyncData;
             /** @type {?} */
@@ -3318,7 +3315,7 @@
                     }] }
         ];
         AutoCompleteWidget.propDecorators = {
-            ngModel: [{ type: core.ViewChild, args: [forms.NgModel,] }]
+            ngModel: [{ type: core.ViewChild, args: [forms.NgModel, { static: false },] }]
         };
         return AutoCompleteWidget;
     }(ControlWidget));
@@ -3974,7 +3971,7 @@
                     }] }
         ];
         MentionWidget.propDecorators = {
-            mentionChild: [{ type: core.ViewChild, args: ['mentions',] }]
+            mentionChild: [{ type: core.ViewChild, args: ['mentions', { static: true },] }]
         };
         return MentionWidget;
     }(ControlWidget));

@@ -44,7 +44,7 @@ export class PageHeaderConfig {
 PageHeaderConfig.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
-/** @nocollapse */ PageHeaderConfig.ngInjectableDef = i0.defineInjectable({ factory: function PageHeaderConfig_Factory() { return new PageHeaderConfig(); }, token: PageHeaderConfig, providedIn: "root" });
+/** @nocollapse */ PageHeaderConfig.ngInjectableDef = i0.ɵɵdefineInjectable({ factory: function PageHeaderConfig_Factory() { return new PageHeaderConfig(); }, token: PageHeaderConfig, providedIn: "root" });
 if (false) {
     /**
      * 首页文本，若指定空表示不显示

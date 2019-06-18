@@ -1,10 +1,10 @@
 import { HttpClient, HttpEvent, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
-import { HttpObserve } from '@angular/common/http/src/client';
 import { Observable } from 'rxjs';
 import { AlainThemeConfig } from '../../theme.config';
 export declare type _HttpHeaders = HttpHeaders | {
     [header: string]: string | string[];
 };
+export declare type HttpObserve = 'body' | 'events' | 'response';
 /**
  * 封装HttpClient，主要解决：
  * + 优化HttpClient在参数上便利性

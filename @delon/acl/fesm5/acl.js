@@ -1,5 +1,5 @@
 import { __assign, __spread, __values, __decorate, __metadata } from 'tslib';
-import { defineInjectable, Injectable, inject, Directive, TemplateRef, ViewContainerRef, Input, ElementRef, Renderer2, NgModule } from '@angular/core';
+import { ɵɵdefineInjectable, Injectable, ɵɵinject, Directive, TemplateRef, ViewContainerRef, Input, ElementRef, Renderer2, NgModule } from '@angular/core';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { InputBoolean, DelonUtilModule } from '@delon/util';
 import { filter, map, tap } from 'rxjs/operators';
@@ -20,7 +20,7 @@ var DelonACLConfig = /** @class */ (function () {
     DelonACLConfig.decorators = [
         { type: Injectable, args: [{ providedIn: 'root' },] }
     ];
-    /** @nocollapse */ DelonACLConfig.ngInjectableDef = defineInjectable({ factory: function DelonACLConfig_Factory() { return new DelonACLConfig(); }, token: DelonACLConfig, providedIn: "root" });
+    /** @nocollapse */ DelonACLConfig.ngInjectableDef = ɵɵdefineInjectable({ factory: function DelonACLConfig_Factory() { return new DelonACLConfig(); }, token: DelonACLConfig, providedIn: "root" });
     return DelonACLConfig;
 }());
 
@@ -431,7 +431,7 @@ var ACLService = /** @class */ (function () {
     ACLService.ctorParameters = function () { return [
         { type: DelonACLConfig }
     ]; };
-    /** @nocollapse */ ACLService.ngInjectableDef = defineInjectable({ factory: function ACLService_Factory() { return new ACLService(inject(DelonACLConfig)); }, token: ACLService, providedIn: "root" });
+    /** @nocollapse */ ACLService.ngInjectableDef = ɵɵdefineInjectable({ factory: function ACLService_Factory() { return new ACLService(ɵɵinject(DelonACLConfig)); }, token: ACLService, providedIn: "root" });
     return ACLService;
 }());
 
@@ -749,7 +749,7 @@ var ACLGuard = /** @class */ (function () {
         { type: Router },
         { type: DelonACLConfig }
     ]; };
-    /** @nocollapse */ ACLGuard.ngInjectableDef = defineInjectable({ factory: function ACLGuard_Factory() { return new ACLGuard(inject(ACLService), inject(Router), inject(DelonACLConfig)); }, token: ACLGuard, providedIn: "root" });
+    /** @nocollapse */ ACLGuard.ngInjectableDef = ɵɵdefineInjectable({ factory: function ACLGuard_Factory() { return new ACLGuard(ɵɵinject(ACLService), ɵɵinject(Router), ɵɵinject(DelonACLConfig)); }, token: ACLGuard, providedIn: "root" });
     return ACLGuard;
 }());
 

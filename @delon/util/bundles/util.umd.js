@@ -598,7 +598,7 @@
         LazyService.ctorParameters = function () { return [
             { type: undefined, decorators: [{ type: core.Inject, args: [common.DOCUMENT,] }] }
         ]; };
-        /** @nocollapse */ LazyService.ngInjectableDef = core.defineInjectable({ factory: function LazyService_Factory() { return new LazyService(core.inject(common.DOCUMENT)); }, token: LazyService, providedIn: "root" });
+        /** @nocollapse */ LazyService.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function LazyService_Factory() { return new LazyService(core.ɵɵinject(common.DOCUMENT)); }, token: LazyService, providedIn: "root" });
         return LazyService;
     }());
 
@@ -960,7 +960,7 @@
         DelonUtilConfig.decorators = [
             { type: core.Injectable, args: [{ providedIn: 'root' },] }
         ];
-        /** @nocollapse */ DelonUtilConfig.ngInjectableDef = core.defineInjectable({ factory: function DelonUtilConfig_Factory() { return new DelonUtilConfig(); }, token: DelonUtilConfig, providedIn: "root" });
+        /** @nocollapse */ DelonUtilConfig.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function DelonUtilConfig_Factory() { return new DelonUtilConfig(); }, token: DelonUtilConfig, providedIn: "root" });
         return DelonUtilConfig;
     }());
 
@@ -1000,8 +1000,8 @@
              * @return {?}
              */
             function (list, parent, deep) {
-                if (deep === void 0) { deep = 0; }
                 var e_1, _a;
+                if (deep === void 0) { deep = 0; }
                 try {
                     for (var list_1 = __values(list), list_1_1 = list_1.next(); !list_1_1.done; list_1_1 = list_1.next()) {
                         var i = list_1_1.value;
@@ -1227,7 +1227,7 @@
         ArrayService.ctorParameters = function () { return [
             { type: DelonUtilConfig }
         ]; };
-        /** @nocollapse */ ArrayService.ngInjectableDef = core.defineInjectable({ factory: function ArrayService_Factory() { return new ArrayService(core.inject(DelonUtilConfig)); }, token: ArrayService, providedIn: "root" });
+        /** @nocollapse */ ArrayService.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function ArrayService_Factory() { return new ArrayService(core.ɵɵinject(DelonUtilConfig)); }, token: ArrayService, providedIn: "root" });
         return ArrayService;
     }());
 

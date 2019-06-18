@@ -1,6 +1,6 @@
 import { __assign, __values, __extends } from 'tslib';
 import { DOCUMENT } from '@angular/common';
-import { defineInjectable, Injectable, InjectionToken, inject, Inject, Injector, Optional, INJECTOR, NgModule } from '@angular/core';
+import { ɵɵdefineInjectable, Injectable, InjectionToken, inject, Inject, Injector, Optional, ɵɵinject, INJECTOR, NgModule } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { share } from 'rxjs/operators';
@@ -61,7 +61,7 @@ var DelonAuthConfig = /** @class */ (function () {
     DelonAuthConfig.decorators = [
         { type: Injectable, args: [{ providedIn: 'root' },] }
     ];
-    /** @nocollapse */ DelonAuthConfig.ngInjectableDef = defineInjectable({ factory: function DelonAuthConfig_Factory() { return new DelonAuthConfig(); }, token: DelonAuthConfig, providedIn: "root" });
+    /** @nocollapse */ DelonAuthConfig.ngInjectableDef = ɵɵdefineInjectable({ factory: function DelonAuthConfig_Factory() { return new DelonAuthConfig(); }, token: DelonAuthConfig, providedIn: "root" });
     return DelonAuthConfig;
 }());
 
@@ -889,7 +889,7 @@ var JWTGuard = /** @class */ (function () {
         { type: Injector },
         { type: DelonAuthConfig }
     ]; };
-    /** @nocollapse */ JWTGuard.ngInjectableDef = defineInjectable({ factory: function JWTGuard_Factory() { return new JWTGuard(inject(DA_SERVICE_TOKEN), inject(INJECTOR), inject(DelonAuthConfig)); }, token: JWTGuard, providedIn: "root" });
+    /** @nocollapse */ JWTGuard.ngInjectableDef = ɵɵdefineInjectable({ factory: function JWTGuard_Factory() { return new JWTGuard(ɵɵinject(DA_SERVICE_TOKEN), ɵɵinject(INJECTOR), ɵɵinject(DelonAuthConfig)); }, token: JWTGuard, providedIn: "root" });
     return JWTGuard;
 }());
 
@@ -1064,7 +1064,7 @@ var SimpleGuard = /** @class */ (function () {
         { type: Injector },
         { type: DelonAuthConfig }
     ]; };
-    /** @nocollapse */ SimpleGuard.ngInjectableDef = defineInjectable({ factory: function SimpleGuard_Factory() { return new SimpleGuard(inject(DA_SERVICE_TOKEN), inject(INJECTOR), inject(DelonAuthConfig)); }, token: SimpleGuard, providedIn: "root" });
+    /** @nocollapse */ SimpleGuard.ngInjectableDef = ɵɵdefineInjectable({ factory: function SimpleGuard_Factory() { return new SimpleGuard(ɵɵinject(DA_SERVICE_TOKEN), ɵɵinject(INJECTOR), ɵɵinject(DelonAuthConfig)); }, token: SimpleGuard, providedIn: "root" });
     return SimpleGuard;
 }());
 

@@ -67,7 +67,7 @@ var ResponsiveService = /** @class */ (function () {
     ResponsiveService.ctorParameters = function () { return [
         { type: AlainThemeConfig }
     ]; };
-    /** @nocollapse */ ResponsiveService.ngInjectableDef = i0.defineInjectable({ factory: function ResponsiveService_Factory() { return new ResponsiveService(i0.inject(i1.AlainThemeConfig)); }, token: ResponsiveService, providedIn: "root" });
+    /** @nocollapse */ ResponsiveService.ngInjectableDef = i0.ɵɵdefineInjectable({ factory: function ResponsiveService_Factory() { return new ResponsiveService(i0.ɵɵinject(i1.AlainThemeConfig)); }, token: ResponsiveService, providedIn: "root" });
     return ResponsiveService;
 }());
 export { ResponsiveService };

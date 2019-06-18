@@ -411,7 +411,7 @@ var ACLService = /** @class */ (function () {
     ACLService.ctorParameters = function () { return [
         { type: DelonACLConfig }
     ]; };
-    /** @nocollapse */ ACLService.ngInjectableDef = i0.defineInjectable({ factory: function ACLService_Factory() { return new ACLService(i0.inject(i1.DelonACLConfig)); }, token: ACLService, providedIn: "root" });
+    /** @nocollapse */ ACLService.ngInjectableDef = i0.ɵɵdefineInjectable({ factory: function ACLService_Factory() { return new ACLService(i0.ɵɵinject(i1.DelonACLConfig)); }, token: ACLService, providedIn: "root" });
     return ACLService;
 }());
 export { ACLService };

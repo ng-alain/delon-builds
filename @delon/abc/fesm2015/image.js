@@ -1,5 +1,5 @@
 import { __decorate, __metadata } from 'tslib';
-import { Injectable, defineInjectable, Directive, ElementRef, Input, NgModule } from '@angular/core';
+import { Injectable, ɵɵdefineInjectable, Directive, ElementRef, Input, NgModule } from '@angular/core';
 import { InputNumber, DelonUtilModule } from '@delon/util';
 import { CommonModule } from '@angular/common';
 
@@ -22,7 +22,7 @@ class ImageConfig {
 ImageConfig.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
-/** @nocollapse */ ImageConfig.ngInjectableDef = defineInjectable({ factory: function ImageConfig_Factory() { return new ImageConfig(); }, token: ImageConfig, providedIn: "root" });
+/** @nocollapse */ ImageConfig.ngInjectableDef = ɵɵdefineInjectable({ factory: function ImageConfig_Factory() { return new ImageConfig(); }, token: ImageConfig, providedIn: "root" });
 
 /**
  * @fileoverview added by tsickle

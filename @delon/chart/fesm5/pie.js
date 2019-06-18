@@ -304,7 +304,7 @@ var G2PieComponent = /** @class */ (function () {
         { type: ChangeDetectorRef }
     ]; };
     G2PieComponent.propDecorators = {
-        node: [{ type: ViewChild, args: ['container',] }],
+        node: [{ type: ViewChild, args: ['container', { static: true },] }],
         delay: [{ type: Input }],
         animate: [{ type: Input }],
         color: [{ type: Input }],

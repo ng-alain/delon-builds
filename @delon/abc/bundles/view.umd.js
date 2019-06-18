@@ -99,7 +99,7 @@
         SVConfig.decorators = [
             { type: core.Injectable, args: [{ providedIn: 'root' },] }
         ];
-        /** @nocollapse */ SVConfig.ngInjectableDef = core.defineInjectable({ factory: function SVConfig_Factory() { return new SVConfig(); }, token: SVConfig, providedIn: "root" });
+        /** @nocollapse */ SVConfig.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function SVConfig_Factory() { return new SVConfig(); }, token: SVConfig, providedIn: "root" });
         return SVConfig;
     }());
 
@@ -372,7 +372,7 @@
             { type: core.Renderer2 }
         ]; };
         SVComponent.propDecorators = {
-            conEl: [{ type: core.ViewChild, args: ['conEl',] }],
+            conEl: [{ type: core.ViewChild, args: ['conEl', { static: false },] }],
             optional: [{ type: core.Input }],
             optionalHelp: [{ type: core.Input }],
             label: [{ type: core.Input }],

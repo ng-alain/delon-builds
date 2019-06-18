@@ -1,5 +1,5 @@
 import { __decorate, __metadata, __assign, __spread } from 'tslib';
-import { defineInjectable, Injectable, Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, Renderer2, Input, Host, Optional, ViewChild, NgModule } from '@angular/core';
+import { ɵɵdefineInjectable, Injectable, Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, Renderer2, Input, Host, Optional, ViewChild, NgModule } from '@angular/core';
 import { updateHostClass, InputNumber, isEmpty, InputBoolean, DelonUtilModule } from '@delon/util';
 import { ResponsiveService } from '@delon/theme';
 import { ObserversModule } from '@angular/cdk/observers';
@@ -37,7 +37,7 @@ var SVConfig = /** @class */ (function () {
     SVConfig.decorators = [
         { type: Injectable, args: [{ providedIn: 'root' },] }
     ];
-    /** @nocollapse */ SVConfig.ngInjectableDef = defineInjectable({ factory: function SVConfig_Factory() { return new SVConfig(); }, token: SVConfig, providedIn: "root" });
+    /** @nocollapse */ SVConfig.ngInjectableDef = ɵɵdefineInjectable({ factory: function SVConfig_Factory() { return new SVConfig(); }, token: SVConfig, providedIn: "root" });
     return SVConfig;
 }());
 
@@ -310,7 +310,7 @@ var SVComponent = /** @class */ (function () {
         { type: Renderer2 }
     ]; };
     SVComponent.propDecorators = {
-        conEl: [{ type: ViewChild, args: ['conEl',] }],
+        conEl: [{ type: ViewChild, args: ['conEl', { static: false },] }],
         optional: [{ type: Input }],
         optionalHelp: [{ type: Input }],
         label: [{ type: Input }],

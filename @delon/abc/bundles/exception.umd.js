@@ -171,7 +171,7 @@
             { type: theme.DelonLocaleService }
         ]; };
         ExceptionComponent.propDecorators = {
-            conTpl: [{ type: core.ViewChild, args: ['conTpl',] }],
+            conTpl: [{ type: core.ViewChild, args: ['conTpl', { static: true },] }],
             type: [{ type: core.Input }],
             img: [{ type: core.Input }],
             title: [{ type: core.Input }],

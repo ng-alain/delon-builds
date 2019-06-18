@@ -173,7 +173,7 @@ TitleService.ctorParameters = () => [
     { type: undefined, decorators: [{ type: Optional }, { type: Inject, args: [ALAIN_I18N_TOKEN,] }] },
     { type: undefined, decorators: [{ type: Inject, args: [DOCUMENT,] }] }
 ];
-/** @nocollapse */ TitleService.ngInjectableDef = i0.defineInjectable({ factory: function TitleService_Factory() { return new TitleService(i0.inject(i0.INJECTOR), i0.inject(i1.Title), i0.inject(i2.MenuService), i0.inject(i3.ALAIN_I18N_TOKEN, 8), i0.inject(i4.DOCUMENT)); }, token: TitleService, providedIn: "root" });
+/** @nocollapse */ TitleService.ngInjectableDef = i0.ɵɵdefineInjectable({ factory: function TitleService_Factory() { return new TitleService(i0.ɵɵinject(i0.INJECTOR), i0.ɵɵinject(i1.Title), i0.ɵɵinject(i2.MenuService), i0.ɵɵinject(i3.ALAIN_I18N_TOKEN, 8), i0.ɵɵinject(i4.DOCUMENT)); }, token: TitleService, providedIn: "root" });
 if (false) {
     /**
      * @type {?}

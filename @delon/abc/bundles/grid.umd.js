@@ -87,7 +87,7 @@
         SGConfig.decorators = [
             { type: core.Injectable, args: [{ providedIn: 'root' },] }
         ];
-        /** @nocollapse */ SGConfig.ngInjectableDef = core.defineInjectable({ factory: function SGConfig_Factory() { return new SGConfig(); }, token: SGConfig, providedIn: "root" });
+        /** @nocollapse */ SGConfig.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function SGConfig_Factory() { return new SGConfig(); }, token: SGConfig, providedIn: "root" });
         return SGConfig;
     }());
 

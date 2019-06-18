@@ -1,4 +1,4 @@
-import { Injectable, defineInjectable, Inject, ComponentFactoryResolver, EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Optional, ChangeDetectorRef, Input, Output, ViewChild, ViewContainerRef, Directive, ElementRef, Renderer2, TemplateRef, Injector, HostBinding, NgModule } from '@angular/core';
+import { Injectable, ɵɵdefineInjectable, Inject, ComponentFactoryResolver, EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Optional, ChangeDetectorRef, Input, Output, ViewChild, ViewContainerRef, Directive, ElementRef, Renderer2, TemplateRef, Injector, HostBinding, NgModule } from '@angular/core';
 import { __rest, __decorate, __metadata } from 'tslib';
 import { ACLService } from '@delon/acl';
 import { DelonLocaleService, DelonLocaleModule } from '@delon/theme';
@@ -143,7 +143,7 @@ class DelonFormConfig {
 DelonFormConfig.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
-/** @nocollapse */ DelonFormConfig.ngInjectableDef = defineInjectable({ factory: function DelonFormConfig_Factory() { return new DelonFormConfig(); }, token: DelonFormConfig, providedIn: "root" });
+/** @nocollapse */ DelonFormConfig.ngInjectableDef = ɵɵdefineInjectable({ factory: function DelonFormConfig_Factory() { return new DelonFormConfig(); }, token: DelonFormConfig, providedIn: "root" });
 
 /**
  * @fileoverview added by tsickle
@@ -2186,8 +2186,7 @@ class SFItemComponent {
      * @return {?}
      */
     ngOnChanges() {
-        this.ref = this.widgetFactory.createWidget(this.container, (/** @type {?} */ ((this.formProperty.ui.widget ||
-            this.formProperty.schema.type))));
+        this.ref = this.widgetFactory.createWidget(this.container, (/** @type {?} */ ((this.formProperty.ui.widget || this.formProperty.schema.type))));
         this.onWidgetInstanciated(this.ref.instance);
     }
     /**
@@ -2218,7 +2217,7 @@ SFItemComponent.ctorParameters = () => [
 ];
 SFItemComponent.propDecorators = {
     formProperty: [{ type: Input }],
-    container: [{ type: ViewChild, args: ['target', { read: ViewContainerRef },] }]
+    container: [{ type: ViewChild, args: ['target', { read: ViewContainerRef, static: true },] }]
 };
 
 /**
@@ -2658,7 +2657,7 @@ AutoCompleteWidget.decorators = [
             }] }
 ];
 AutoCompleteWidget.propDecorators = {
-    ngModel: [{ type: ViewChild, args: [NgModel,] }]
+    ngModel: [{ type: ViewChild, args: [NgModel, { static: false },] }]
 };
 
 /**
@@ -3186,7 +3185,7 @@ MentionWidget.decorators = [
             }] }
 ];
 MentionWidget.propDecorators = {
-    mentionChild: [{ type: ViewChild, args: ['mentions',] }]
+    mentionChild: [{ type: ViewChild, args: ['mentions', { static: true },] }]
 };
 
 /**

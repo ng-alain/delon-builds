@@ -319,7 +319,7 @@ ArrayService.decorators = [
 ArrayService.ctorParameters = () => [
     { type: DelonUtilConfig }
 ];
-/** @nocollapse */ ArrayService.ngInjectableDef = i0.defineInjectable({ factory: function ArrayService_Factory() { return new ArrayService(i0.inject(i1.DelonUtilConfig)); }, token: ArrayService, providedIn: "root" });
+/** @nocollapse */ ArrayService.ngInjectableDef = i0.ɵɵdefineInjectable({ factory: function ArrayService_Factory() { return new ArrayService(i0.ɵɵinject(i1.DelonUtilConfig)); }, token: ArrayService, providedIn: "root" });
 if (false) {
     /**
      * @type {?}

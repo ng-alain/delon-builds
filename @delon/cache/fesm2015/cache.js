@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, defineInjectable, InjectionToken, Inject, inject, NgModule } from '@angular/core';
+import { Injectable, ɵɵdefineInjectable, InjectionToken, Inject, ɵɵinject, NgModule } from '@angular/core';
 import addSeconds from 'date-fns/add_seconds';
 import { Observable, of, BehaviorSubject } from 'rxjs';
 import { tap, map } from 'rxjs/operators';
@@ -36,7 +36,7 @@ class DelonCacheConfig {
 DelonCacheConfig.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
-/** @nocollapse */ DelonCacheConfig.ngInjectableDef = defineInjectable({ factory: function DelonCacheConfig_Factory() { return new DelonCacheConfig(); }, token: DelonCacheConfig, providedIn: "root" });
+/** @nocollapse */ DelonCacheConfig.ngInjectableDef = ɵɵdefineInjectable({ factory: function DelonCacheConfig_Factory() { return new DelonCacheConfig(); }, token: DelonCacheConfig, providedIn: "root" });
 
 /**
  * @fileoverview added by tsickle
@@ -474,7 +474,7 @@ CacheService.ctorParameters = () => [
     { type: undefined, decorators: [{ type: Inject, args: [DC_STORE_STORAGE_TOKEN,] }] },
     { type: HttpClient }
 ];
-/** @nocollapse */ CacheService.ngInjectableDef = defineInjectable({ factory: function CacheService_Factory() { return new CacheService(inject(DelonCacheConfig), inject(DC_STORE_STORAGE_TOKEN), inject(HttpClient)); }, token: CacheService, providedIn: "root" });
+/** @nocollapse */ CacheService.ngInjectableDef = ɵɵdefineInjectable({ factory: function CacheService_Factory() { return new CacheService(ɵɵinject(DelonCacheConfig), ɵɵinject(DC_STORE_STORAGE_TOKEN), ɵɵinject(HttpClient)); }, token: CacheService, providedIn: "root" });
 
 /**
  * @fileoverview added by tsickle

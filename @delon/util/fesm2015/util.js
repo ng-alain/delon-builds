@@ -1,4 +1,4 @@
-import { TemplateRef, Directive, ViewContainerRef, Input, Injectable, Inject, defineInjectable, inject, NgModule } from '@angular/core';
+import { TemplateRef, Directive, ViewContainerRef, Input, Injectable, Inject, ɵɵdefineInjectable, ɵɵinject, NgModule } from '@angular/core';
 import extend from 'extend';
 import addDays from 'date-fns/add_days';
 import endOfDay from 'date-fns/end_of_day';
@@ -491,7 +491,7 @@ LazyService.decorators = [
 LazyService.ctorParameters = () => [
     { type: undefined, decorators: [{ type: Inject, args: [DOCUMENT,] }] }
 ];
-/** @nocollapse */ LazyService.ngInjectableDef = defineInjectable({ factory: function LazyService_Factory() { return new LazyService(inject(DOCUMENT)); }, token: LazyService, providedIn: "root" });
+/** @nocollapse */ LazyService.ngInjectableDef = ɵɵdefineInjectable({ factory: function LazyService_Factory() { return new LazyService(ɵɵinject(DOCUMENT)); }, token: LazyService, providedIn: "root" });
 
 /**
  * @fileoverview added by tsickle
@@ -802,7 +802,7 @@ class DelonUtilConfig {
 DelonUtilConfig.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
-/** @nocollapse */ DelonUtilConfig.ngInjectableDef = defineInjectable({ factory: function DelonUtilConfig_Factory() { return new DelonUtilConfig(); }, token: DelonUtilConfig, providedIn: "root" });
+/** @nocollapse */ DelonUtilConfig.ngInjectableDef = ɵɵdefineInjectable({ factory: function DelonUtilConfig_Factory() { return new DelonUtilConfig(); }, token: DelonUtilConfig, providedIn: "root" });
 
 /**
  * @fileoverview added by tsickle
@@ -991,7 +991,7 @@ ArrayService.decorators = [
 ArrayService.ctorParameters = () => [
     { type: DelonUtilConfig }
 ];
-/** @nocollapse */ ArrayService.ngInjectableDef = defineInjectable({ factory: function ArrayService_Factory() { return new ArrayService(inject(DelonUtilConfig)); }, token: ArrayService, providedIn: "root" });
+/** @nocollapse */ ArrayService.ngInjectableDef = ɵɵdefineInjectable({ factory: function ArrayService_Factory() { return new ArrayService(ɵɵinject(DelonUtilConfig)); }, token: ArrayService, providedIn: "root" });
 
 /**
  * @fileoverview added by tsickle

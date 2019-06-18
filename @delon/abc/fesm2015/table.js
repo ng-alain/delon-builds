@@ -1,4 +1,4 @@
-import { Injectable, Directive, TemplateRef, Host, Input, defineInjectable, Optional, Inject, EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ChangeDetectorRef, ElementRef, Renderer2, ViewChild, Output, NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
+import { Injectable, Directive, TemplateRef, Host, Input, ɵɵdefineInjectable, Optional, Inject, EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ChangeDetectorRef, ElementRef, Renderer2, ViewChild, Output, NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { ACLService, DelonACLModule } from '@delon/acl';
 import { ALAIN_I18N_TOKEN, _HttpClient, CNCurrencyPipe, DatePipe, YNPipe, ModalHelper, DrawerHelper, DelonLocaleService } from '@delon/theme';
 import { deepCopy, deepGet, deepMergeKey, deepMerge, toBoolean, updateHostClass, InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
@@ -221,7 +221,7 @@ class STConfig {
 STConfig.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
-/** @nocollapse */ STConfig.ngInjectableDef = defineInjectable({ factory: function STConfig_Factory() { return new STConfig(); }, token: STConfig, providedIn: "root" });
+/** @nocollapse */ STConfig.ngInjectableDef = ɵɵdefineInjectable({ factory: function STConfig_Factory() { return new STConfig(); }, token: STConfig, providedIn: "root" });
 
 /**
  * @fileoverview added by tsickle
@@ -2451,7 +2451,7 @@ STComponent.ctorParameters = () => [
     { type: DelonLocaleService }
 ];
 STComponent.propDecorators = {
-    orgTable: [{ type: ViewChild, args: ['table',] }],
+    orgTable: [{ type: ViewChild, args: ['table', { static: false },] }],
     req: [{ type: Input }],
     res: [{ type: Input }],
     page: [{ type: Input }],

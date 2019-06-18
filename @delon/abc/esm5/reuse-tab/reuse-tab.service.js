@@ -1067,7 +1067,7 @@ var ReuseTabService = /** @class */ (function () {
         { type: Injector },
         { type: MenuService }
     ]; };
-    /** @nocollapse */ ReuseTabService.ngInjectableDef = i0.defineInjectable({ factory: function ReuseTabService_Factory() { return new ReuseTabService(i0.inject(i0.INJECTOR), i0.inject(i1.MenuService)); }, token: ReuseTabService, providedIn: "root" });
+    /** @nocollapse */ ReuseTabService.ngInjectableDef = i0.ɵɵdefineInjectable({ factory: function ReuseTabService_Factory() { return new ReuseTabService(i0.ɵɵinject(i0.INJECTOR), i0.ɵɵinject(i1.MenuService)); }, token: ReuseTabService, providedIn: "root" });
     return ReuseTabService;
 }());
 export { ReuseTabService };

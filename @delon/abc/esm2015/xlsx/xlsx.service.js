@@ -145,7 +145,7 @@ XlsxService.ctorParameters = () => [
     { type: HttpClient },
     { type: LazyService }
 ];
-/** @nocollapse */ XlsxService.ngInjectableDef = i0.defineInjectable({ factory: function XlsxService_Factory() { return new XlsxService(i0.inject(i1.XlsxConfig), i0.inject(i2.HttpClient), i0.inject(i3.LazyService)); }, token: XlsxService, providedIn: "root" });
+/** @nocollapse */ XlsxService.ngInjectableDef = i0.ɵɵdefineInjectable({ factory: function XlsxService_Factory() { return new XlsxService(i0.ɵɵinject(i1.XlsxConfig), i0.ɵɵinject(i2.HttpClient), i0.ɵɵinject(i3.LazyService)); }, token: XlsxService, providedIn: "root" });
 if (false) {
     /**
      * @type {?}

@@ -134,7 +134,7 @@
         DatePickerConfig.decorators = [
             { type: core.Injectable, args: [{ providedIn: 'root' },] }
         ];
-        /** @nocollapse */ DatePickerConfig.ngInjectableDef = core.defineInjectable({ factory: function DatePickerConfig_Factory() { return new DatePickerConfig(); }, token: DatePickerConfig, providedIn: "root" });
+        /** @nocollapse */ DatePickerConfig.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function DatePickerConfig_Factory() { return new DatePickerConfig(); }, token: DatePickerConfig, providedIn: "root" });
         return DatePickerConfig;
     }());
 
@@ -307,7 +307,7 @@
             { type: DatePickerConfig }
         ]; };
         RangePickerComponent.propDecorators = {
-            comp: [{ type: core.ViewChild, args: ['comp',] }],
+            comp: [{ type: core.ViewChild, args: ['comp', { static: false },] }],
             ngModelEnd: [{ type: core.Input }],
             shortcut: [{ type: core.Input }],
             ngModelEndChange: [{ type: core.Output }],

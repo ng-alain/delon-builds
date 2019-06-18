@@ -211,7 +211,7 @@
         AlainI18NServiceFake.decorators = [
             { type: core.Injectable, args: [{ providedIn: 'root' },] }
         ];
-        /** @nocollapse */ AlainI18NServiceFake.ngInjectableDef = core.defineInjectable({ factory: function AlainI18NServiceFake_Factory() { return new AlainI18NServiceFake(); }, token: AlainI18NServiceFake, providedIn: "root" });
+        /** @nocollapse */ AlainI18NServiceFake.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function AlainI18NServiceFake_Factory() { return new AlainI18NServiceFake(); }, token: AlainI18NServiceFake, providedIn: "root" });
         return AlainI18NServiceFake;
     }());
 
@@ -620,7 +620,7 @@
             { type: undefined, decorators: [{ type: core.Optional }, { type: core.Inject, args: [ALAIN_I18N_TOKEN,] }] },
             { type: acl.ACLService, decorators: [{ type: core.Optional }] }
         ]; };
-        /** @nocollapse */ MenuService.ngInjectableDef = core.defineInjectable({ factory: function MenuService_Factory() { return new MenuService(core.inject(ALAIN_I18N_TOKEN, 8), core.inject(acl.ACLService, 8)); }, token: MenuService, providedIn: "root" });
+        /** @nocollapse */ MenuService.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function MenuService_Factory() { return new MenuService(core.ɵɵinject(ALAIN_I18N_TOKEN, 8), core.ɵɵinject(acl.ACLService, 8)); }, token: MenuService, providedIn: "root" });
         return MenuService;
     }());
 
@@ -731,7 +731,7 @@
             { type: undefined, decorators: [{ type: core.Inject, args: [WINDOW,] }] },
             { type: undefined, decorators: [{ type: core.Inject, args: [common.DOCUMENT,] }] }
         ]; };
-        /** @nocollapse */ ScrollService.ngInjectableDef = core.defineInjectable({ factory: function ScrollService_Factory() { return new ScrollService(core.inject(WINDOW), core.inject(common.DOCUMENT)); }, token: ScrollService, providedIn: "root" });
+        /** @nocollapse */ ScrollService.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function ScrollService_Factory() { return new ScrollService(core.ɵɵinject(WINDOW), core.ɵɵinject(common.DOCUMENT)); }, token: ScrollService, providedIn: "root" });
         return ScrollService;
     }());
 
@@ -884,7 +884,7 @@
         SettingsService.decorators = [
             { type: core.Injectable, args: [{ providedIn: 'root' },] }
         ];
-        /** @nocollapse */ SettingsService.ngInjectableDef = core.defineInjectable({ factory: function SettingsService_Factory() { return new SettingsService(); }, token: SettingsService, providedIn: "root" });
+        /** @nocollapse */ SettingsService.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function SettingsService_Factory() { return new SettingsService(); }, token: SettingsService, providedIn: "root" });
         return SettingsService;
     }());
 
@@ -898,7 +898,7 @@
         AlainThemeConfig.decorators = [
             { type: core.Injectable, args: [{ providedIn: 'root' },] }
         ];
-        /** @nocollapse */ AlainThemeConfig.ngInjectableDef = core.defineInjectable({ factory: function AlainThemeConfig_Factory() { return new AlainThemeConfig(); }, token: AlainThemeConfig, providedIn: "root" });
+        /** @nocollapse */ AlainThemeConfig.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function AlainThemeConfig_Factory() { return new AlainThemeConfig(); }, token: AlainThemeConfig, providedIn: "root" });
         return AlainThemeConfig;
     }());
 
@@ -966,7 +966,7 @@
         ResponsiveService.ctorParameters = function () { return [
             { type: AlainThemeConfig }
         ]; };
-        /** @nocollapse */ ResponsiveService.ngInjectableDef = core.defineInjectable({ factory: function ResponsiveService_Factory() { return new ResponsiveService(core.inject(AlainThemeConfig)); }, token: ResponsiveService, providedIn: "root" });
+        /** @nocollapse */ ResponsiveService.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function ResponsiveService_Factory() { return new ResponsiveService(core.ɵɵinject(AlainThemeConfig)); }, token: ResponsiveService, providedIn: "root" });
         return ResponsiveService;
     }());
 
@@ -1178,7 +1178,7 @@
             { type: undefined, decorators: [{ type: core.Optional }, { type: core.Inject, args: [ALAIN_I18N_TOKEN,] }] },
             { type: undefined, decorators: [{ type: core.Inject, args: [common.DOCUMENT,] }] }
         ]; };
-        /** @nocollapse */ TitleService.ngInjectableDef = core.defineInjectable({ factory: function TitleService_Factory() { return new TitleService(core.inject(core.INJECTOR), core.inject(platformBrowser.Title), core.inject(MenuService), core.inject(ALAIN_I18N_TOKEN, 8), core.inject(common.DOCUMENT)); }, token: TitleService, providedIn: "root" });
+        /** @nocollapse */ TitleService.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function TitleService_Factory() { return new TitleService(core.ɵɵinject(core.INJECTOR), core.ɵɵinject(platformBrowser.Title), core.ɵɵinject(MenuService), core.ɵɵinject(ALAIN_I18N_TOKEN, 8), core.ɵɵinject(common.DOCUMENT)); }, token: TitleService, providedIn: "root" });
         return TitleService;
     }());
 
@@ -1881,7 +1881,7 @@
         ModalHelper.ctorParameters = function () { return [
             { type: modal.NzModalService }
         ]; };
-        /** @nocollapse */ ModalHelper.ngInjectableDef = core.defineInjectable({ factory: function ModalHelper_Factory() { return new ModalHelper(core.inject(modal.NzModalService)); }, token: ModalHelper, providedIn: "root" });
+        /** @nocollapse */ ModalHelper.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function ModalHelper_Factory() { return new ModalHelper(core.ɵɵinject(modal.NzModalService)); }, token: ModalHelper, providedIn: "root" });
         return ModalHelper;
     }());
 
@@ -2028,7 +2028,7 @@
         DrawerHelper.ctorParameters = function () { return [
             { type: drawer.NzDrawerService }
         ]; };
-        /** @nocollapse */ DrawerHelper.ngInjectableDef = core.defineInjectable({ factory: function DrawerHelper_Factory() { return new DrawerHelper(core.inject(drawer.NzDrawerService)); }, token: DrawerHelper, providedIn: "root" });
+        /** @nocollapse */ DrawerHelper.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function DrawerHelper_Factory() { return new DrawerHelper(core.ɵɵinject(drawer.NzDrawerService)); }, token: DrawerHelper, providedIn: "root" });
         return DrawerHelper;
     }());
 
@@ -2336,7 +2336,7 @@
             { type: http.HttpClient },
             { type: AlainThemeConfig }
         ]; };
-        /** @nocollapse */ _HttpClient.ngInjectableDef = core.defineInjectable({ factory: function _HttpClient_Factory() { return new _HttpClient(core.inject(http.HttpClient), core.inject(AlainThemeConfig)); }, token: _HttpClient, providedIn: "root" });
+        /** @nocollapse */ _HttpClient.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function _HttpClient_Factory() { return new _HttpClient(core.ɵɵinject(http.HttpClient), core.ɵɵinject(AlainThemeConfig)); }, token: _HttpClient, providedIn: "root" });
         return _HttpClient;
     }());
 

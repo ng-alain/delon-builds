@@ -68,7 +68,7 @@
         DelonCacheConfig.decorators = [
             { type: core.Injectable, args: [{ providedIn: 'root' },] }
         ];
-        /** @nocollapse */ DelonCacheConfig.ngInjectableDef = core.defineInjectable({ factory: function DelonCacheConfig_Factory() { return new DelonCacheConfig(); }, token: DelonCacheConfig, providedIn: "root" });
+        /** @nocollapse */ DelonCacheConfig.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function DelonCacheConfig_Factory() { return new DelonCacheConfig(); }, token: DelonCacheConfig, providedIn: "root" });
         return DelonCacheConfig;
     }());
 
@@ -699,7 +699,7 @@
             { type: undefined, decorators: [{ type: core.Inject, args: [DC_STORE_STORAGE_TOKEN,] }] },
             { type: http.HttpClient }
         ]; };
-        /** @nocollapse */ CacheService.ngInjectableDef = core.defineInjectable({ factory: function CacheService_Factory() { return new CacheService(core.inject(DelonCacheConfig), core.inject(DC_STORE_STORAGE_TOKEN), core.inject(http.HttpClient)); }, token: CacheService, providedIn: "root" });
+        /** @nocollapse */ CacheService.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function CacheService_Factory() { return new CacheService(core.ɵɵinject(DelonCacheConfig), core.ɵɵinject(DC_STORE_STORAGE_TOKEN), core.ɵɵinject(http.HttpClient)); }, token: CacheService, providedIn: "root" });
         return CacheService;
     }());
 

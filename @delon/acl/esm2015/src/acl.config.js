@@ -15,7 +15,7 @@ export class DelonACLConfig {
 DelonACLConfig.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
-/** @nocollapse */ DelonACLConfig.ngInjectableDef = i0.defineInjectable({ factory: function DelonACLConfig_Factory() { return new DelonACLConfig(); }, token: DelonACLConfig, providedIn: "root" });
+/** @nocollapse */ DelonACLConfig.ngInjectableDef = i0.ɵɵdefineInjectable({ factory: function DelonACLConfig_Factory() { return new DelonACLConfig(); }, token: DelonACLConfig, providedIn: "root" });
 if (false) {
     /**
      * 路由守卫失败后跳转，默认：`/403`

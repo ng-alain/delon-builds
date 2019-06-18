@@ -1,5 +1,5 @@
 import { __decorate, __metadata } from 'tslib';
-import { Injectable, defineInjectable, Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, Renderer2, Input, Host, Optional, ViewChild, NgModule } from '@angular/core';
+import { Injectable, ɵɵdefineInjectable, Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, Renderer2, Input, Host, Optional, ViewChild, NgModule } from '@angular/core';
 import { updateHostClass, InputNumber, isEmpty, InputBoolean, DelonUtilModule } from '@delon/util';
 import { ResponsiveService } from '@delon/theme';
 import { ObserversModule } from '@angular/cdk/observers';
@@ -38,7 +38,7 @@ class SVConfig {
 SVConfig.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
-/** @nocollapse */ SVConfig.ngInjectableDef = defineInjectable({ factory: function SVConfig_Factory() { return new SVConfig(); }, token: SVConfig, providedIn: "root" });
+/** @nocollapse */ SVConfig.ngInjectableDef = ɵɵdefineInjectable({ factory: function SVConfig_Factory() { return new SVConfig(); }, token: SVConfig, providedIn: "root" });
 
 /**
  * @fileoverview added by tsickle
@@ -287,7 +287,7 @@ SVComponent.ctorParameters = () => [
     { type: Renderer2 }
 ];
 SVComponent.propDecorators = {
-    conEl: [{ type: ViewChild, args: ['conEl',] }],
+    conEl: [{ type: ViewChild, args: ['conEl', { static: false },] }],
     optional: [{ type: Input }],
     optionalHelp: [{ type: Input }],
     label: [{ type: Input }],

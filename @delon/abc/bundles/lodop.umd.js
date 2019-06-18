@@ -68,7 +68,7 @@
         LodopConfig.decorators = [
             { type: core.Injectable, args: [{ providedIn: 'root' },] }
         ];
-        /** @nocollapse */ LodopConfig.ngInjectableDef = core.defineInjectable({ factory: function LodopConfig_Factory() { return new LodopConfig(); }, token: LodopConfig, providedIn: "root" });
+        /** @nocollapse */ LodopConfig.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function LodopConfig_Factory() { return new LodopConfig(); }, token: LodopConfig, providedIn: "root" });
         return LodopConfig;
     }());
 
@@ -306,6 +306,7 @@
                     /** @type {?} */
                     var arr = null;
                     try {
+                        // tslint:disable-next-line: function-constructor
                         /** @type {?} */
                         var fakeFn = new Function("return [" + res[2] + "]");
                         arr = fakeFn();
@@ -452,7 +453,7 @@
             { type: LodopConfig },
             { type: util.LazyService }
         ]; };
-        /** @nocollapse */ LodopService.ngInjectableDef = core.defineInjectable({ factory: function LodopService_Factory() { return new LodopService(core.inject(LodopConfig), core.inject(util.LazyService)); }, token: LodopService, providedIn: "root" });
+        /** @nocollapse */ LodopService.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function LodopService_Factory() { return new LodopService(core.ɵɵinject(LodopConfig), core.ɵɵinject(util.LazyService)); }, token: LodopService, providedIn: "root" });
         return LodopService;
     }());
 

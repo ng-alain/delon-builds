@@ -9,7 +9,7 @@ export class LodopConfig {
 LodopConfig.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
-/** @nocollapse */ LodopConfig.ngInjectableDef = i0.defineInjectable({ factory: function LodopConfig_Factory() { return new LodopConfig(); }, token: LodopConfig, providedIn: "root" });
+/** @nocollapse */ LodopConfig.ngInjectableDef = i0.ɵɵdefineInjectable({ factory: function LodopConfig_Factory() { return new LodopConfig(); }, token: LodopConfig, providedIn: "root" });
 if (false) {
     /**
      * 注册信息：主注册号

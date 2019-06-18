@@ -1,5 +1,5 @@
 import { __assign, __spread } from 'tslib';
-import { defineInjectable, Injectable, inject, NgModule } from '@angular/core';
+import { ɵɵdefineInjectable, Injectable, ɵɵinject, NgModule } from '@angular/core';
 import { of, Subject } from 'rxjs';
 import { LazyService, DelonUtilModule } from '@delon/util';
 
@@ -13,7 +13,7 @@ var LodopConfig = /** @class */ (function () {
     LodopConfig.decorators = [
         { type: Injectable, args: [{ providedIn: 'root' },] }
     ];
-    /** @nocollapse */ LodopConfig.ngInjectableDef = defineInjectable({ factory: function LodopConfig_Factory() { return new LodopConfig(); }, token: LodopConfig, providedIn: "root" });
+    /** @nocollapse */ LodopConfig.ngInjectableDef = ɵɵdefineInjectable({ factory: function LodopConfig_Factory() { return new LodopConfig(); }, token: LodopConfig, providedIn: "root" });
     return LodopConfig;
 }());
 
@@ -251,6 +251,7 @@ var LodopService = /** @class */ (function () {
                 /** @type {?} */
                 var arr = null;
                 try {
+                    // tslint:disable-next-line: function-constructor
                     /** @type {?} */
                     var fakeFn = new Function("return [" + res[2] + "]");
                     arr = fakeFn();
@@ -397,7 +398,7 @@ var LodopService = /** @class */ (function () {
         { type: LodopConfig },
         { type: LazyService }
     ]; };
-    /** @nocollapse */ LodopService.ngInjectableDef = defineInjectable({ factory: function LodopService_Factory() { return new LodopService(inject(LodopConfig), inject(LazyService)); }, token: LodopService, providedIn: "root" });
+    /** @nocollapse */ LodopService.ngInjectableDef = ɵɵdefineInjectable({ factory: function LodopService_Factory() { return new LodopService(ɵɵinject(LodopConfig), ɵɵinject(LazyService)); }, token: LodopService, providedIn: "root" });
     return LodopService;
 }());
 

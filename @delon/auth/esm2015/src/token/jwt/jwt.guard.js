@@ -73,7 +73,7 @@ JWTGuard.ctorParameters = () => [
     { type: Injector },
     { type: DelonAuthConfig }
 ];
-/** @nocollapse */ JWTGuard.ngInjectableDef = i0.defineInjectable({ factory: function JWTGuard_Factory() { return new JWTGuard(i0.inject(i1.DA_SERVICE_TOKEN), i0.inject(i0.INJECTOR), i0.inject(i2.DelonAuthConfig)); }, token: JWTGuard, providedIn: "root" });
+/** @nocollapse */ JWTGuard.ngInjectableDef = i0.ɵɵdefineInjectable({ factory: function JWTGuard_Factory() { return new JWTGuard(i0.ɵɵinject(i1.DA_SERVICE_TOKEN), i0.ɵɵinject(i0.INJECTOR), i0.ɵɵinject(i2.DelonAuthConfig)); }, token: JWTGuard, providedIn: "root" });
 if (false) {
     /**
      * @type {?}

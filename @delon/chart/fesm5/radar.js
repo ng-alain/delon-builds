@@ -261,7 +261,7 @@ var G2RadarComponent = /** @class */ (function () {
         { type: NgZone }
     ]; };
     G2RadarComponent.propDecorators = {
-        node: [{ type: ViewChild, args: ['container',] }],
+        node: [{ type: ViewChild, args: ['container', { static: true },] }],
         delay: [{ type: Input }],
         title: [{ type: Input }],
         height: [{ type: Input }],

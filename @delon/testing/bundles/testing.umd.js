@@ -731,6 +731,10 @@
         testing.discardPeriodicTasks();
     }
 
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     var _this = this;
     /**
      * @template T

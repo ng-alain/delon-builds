@@ -1,4 +1,4 @@
-import { defineInjectable, Injectable, TemplateRef, Component, ChangeDetectionStrategy, ViewEncapsulation, Renderer2, Optional, Inject, ChangeDetectorRef, ViewChild, Input, NgModule } from '@angular/core';
+import { ɵɵdefineInjectable, Injectable, TemplateRef, Component, ChangeDetectionStrategy, ViewEncapsulation, Renderer2, Optional, Inject, ChangeDetectorRef, ViewChild, Input, NgModule } from '@angular/core';
 import { __decorate, __metadata, __assign, __spread } from 'tslib';
 import { Router, NavigationEnd, RouterModule } from '@angular/router';
 import { NzAffixModule } from 'ng-zorro-antd/affix';
@@ -54,7 +54,7 @@ var PageHeaderConfig = /** @class */ (function () {
     PageHeaderConfig.decorators = [
         { type: Injectable, args: [{ providedIn: 'root' },] }
     ];
-    /** @nocollapse */ PageHeaderConfig.ngInjectableDef = defineInjectable({ factory: function PageHeaderConfig_Factory() { return new PageHeaderConfig(); }, token: PageHeaderConfig, providedIn: "root" });
+    /** @nocollapse */ PageHeaderConfig.ngInjectableDef = ɵɵdefineInjectable({ factory: function PageHeaderConfig_Factory() { return new PageHeaderConfig(); }, token: PageHeaderConfig, providedIn: "root" });
     return PageHeaderConfig;
 }());
 
@@ -299,8 +299,8 @@ var PageHeaderComponent = /** @class */ (function () {
         { type: ChangeDetectorRef }
     ]; };
     PageHeaderComponent.propDecorators = {
-        conTpl: [{ type: ViewChild, args: ['conTpl',] }],
-        affix: [{ type: ViewChild, args: ['affix',] }],
+        conTpl: [{ type: ViewChild, args: ['conTpl', { static: false },] }],
+        affix: [{ type: ViewChild, args: ['affix', { static: false },] }],
         title: [{ type: Input }],
         loading: [{ type: Input }],
         wide: [{ type: Input }],

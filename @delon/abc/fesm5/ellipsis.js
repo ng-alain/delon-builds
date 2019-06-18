@@ -130,7 +130,7 @@ var EllipsisComponent = /** @class */ (function () {
                 return mid;
             }
             begin = mid;
-            mid = (end - begin) === 1 ? begin + 1 : Math.floor((end - begin) / 2) + begin;
+            mid = end - begin === 1 ? begin + 1 : Math.floor((end - begin) / 2) + begin;
             return this.bisection(th, mid, begin, end, text, shadowNode);
         }
         if (mid - 1 < 0) {
@@ -341,9 +341,9 @@ var EllipsisComponent = /** @class */ (function () {
         { type: ChangeDetectorRef }
     ]; };
     EllipsisComponent.propDecorators = {
-        orgEl: [{ type: ViewChild, args: ['orgEl',] }],
-        shadowOrgEl: [{ type: ViewChild, args: ['shadowOrgEl',] }],
-        shadowTextEl: [{ type: ViewChild, args: ['shadowTextEl',] }],
+        orgEl: [{ type: ViewChild, args: ['orgEl', { static: false },] }],
+        shadowOrgEl: [{ type: ViewChild, args: ['shadowOrgEl', { static: false },] }],
+        shadowTextEl: [{ type: ViewChild, args: ['shadowTextEl', { static: false },] }],
         tooltip: [{ type: Input }],
         length: [{ type: Input }],
         lines: [{ type: Input }],

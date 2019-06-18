@@ -53,7 +53,7 @@
         ZipConfig.decorators = [
             { type: core.Injectable, args: [{ providedIn: 'root' },] }
         ];
-        /** @nocollapse */ ZipConfig.ngInjectableDef = core.defineInjectable({ factory: function ZipConfig_Factory() { return new ZipConfig(); }, token: ZipConfig, providedIn: "root" });
+        /** @nocollapse */ ZipConfig.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function ZipConfig_Factory() { return new ZipConfig(); }, token: ZipConfig, providedIn: "root" });
         return ZipConfig;
     }());
 
@@ -284,7 +284,7 @@
             { type: http.HttpClient },
             { type: util.LazyService }
         ]; };
-        /** @nocollapse */ ZipService.ngInjectableDef = core.defineInjectable({ factory: function ZipService_Factory() { return new ZipService(core.inject(ZipConfig), core.inject(http.HttpClient), core.inject(util.LazyService)); }, token: ZipService, providedIn: "root" });
+        /** @nocollapse */ ZipService.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function ZipService_Factory() { return new ZipService(core.ɵɵinject(ZipConfig), core.ɵɵinject(http.HttpClient), core.ɵɵinject(util.LazyService)); }, token: ZipService, providedIn: "root" });
         return ZipService;
     }());
 

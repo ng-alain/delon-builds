@@ -183,7 +183,7 @@ G2BarComponent.ctorParameters = () => [
     { type: NgZone }
 ];
 G2BarComponent.propDecorators = {
-    node: [{ type: ViewChild, args: ['container',] }],
+    node: [{ type: ViewChild, args: ['container', { static: true },] }],
     delay: [{ type: Input }],
     title: [{ type: Input }],
     color: [{ type: Input }],

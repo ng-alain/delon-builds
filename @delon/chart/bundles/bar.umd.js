@@ -265,7 +265,7 @@
             { type: core.NgZone }
         ]; };
         G2BarComponent.propDecorators = {
-            node: [{ type: core.ViewChild, args: ['container',] }],
+            node: [{ type: core.ViewChild, args: ['container', { static: true },] }],
             delay: [{ type: core.Input }],
             title: [{ type: core.Input }],
             color: [{ type: core.Input }],

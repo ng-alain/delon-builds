@@ -291,7 +291,7 @@ var G2WaterWaveComponent = /** @class */ (function () {
         { type: ChangeDetectorRef }
     ]; };
     G2WaterWaveComponent.propDecorators = {
-        node: [{ type: ViewChild, args: ['container',] }],
+        node: [{ type: ViewChild, args: ['container', { static: true },] }],
         delay: [{ type: Input }],
         title: [{ type: Input }],
         color: [{ type: Input }],

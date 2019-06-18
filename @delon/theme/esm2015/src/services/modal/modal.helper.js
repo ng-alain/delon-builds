@@ -195,7 +195,7 @@ ModalHelper.decorators = [
 ModalHelper.ctorParameters = () => [
     { type: NzModalService }
 ];
-/** @nocollapse */ ModalHelper.ngInjectableDef = i0.defineInjectable({ factory: function ModalHelper_Factory() { return new ModalHelper(i0.inject(i1.NzModalService)); }, token: ModalHelper, providedIn: "root" });
+/** @nocollapse */ ModalHelper.ngInjectableDef = i0.ɵɵdefineInjectable({ factory: function ModalHelper_Factory() { return new ModalHelper(i0.ɵɵinject(i1.NzModalService)); }, token: ModalHelper, providedIn: "root" });
 if (false) {
     /**
      * @type {?}

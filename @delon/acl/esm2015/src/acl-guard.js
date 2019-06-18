@@ -81,7 +81,7 @@ ACLGuard.ctorParameters = () => [
     { type: Router },
     { type: DelonACLConfig }
 ];
-/** @nocollapse */ ACLGuard.ngInjectableDef = i0.defineInjectable({ factory: function ACLGuard_Factory() { return new ACLGuard(i0.inject(i1.ACLService), i0.inject(i2.Router), i0.inject(i3.DelonACLConfig)); }, token: ACLGuard, providedIn: "root" });
+/** @nocollapse */ ACLGuard.ngInjectableDef = i0.ɵɵdefineInjectable({ factory: function ACLGuard_Factory() { return new ACLGuard(i0.ɵɵinject(i1.ACLService), i0.ɵɵinject(i2.Router), i0.ɵɵinject(i3.DelonACLConfig)); }, token: ACLGuard, providedIn: "root" });
 if (false) {
     /**
      * @type {?}

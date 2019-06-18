@@ -1,4 +1,4 @@
-import { Injectable, defineInjectable, inject, EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ChangeDetectorRef, Input, Output, NgModule } from '@angular/core';
+import { Injectable, ɵɵdefineInjectable, ɵɵinject, EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ChangeDetectorRef, Input, Output, NgModule } from '@angular/core';
 import { __decorate, __metadata } from 'tslib';
 import { InputNumber, DelonUtilModule } from '@delon/util';
 import { CommonModule } from '@angular/common';
@@ -46,7 +46,7 @@ class QRConfig {
 QRConfig.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
-/** @nocollapse */ QRConfig.ngInjectableDef = defineInjectable({ factory: function QRConfig_Factory() { return new QRConfig(); }, token: QRConfig, providedIn: "root" });
+/** @nocollapse */ QRConfig.ngInjectableDef = ɵɵdefineInjectable({ factory: function QRConfig_Factory() { return new QRConfig(); }, token: QRConfig, providedIn: "root" });
 
 /**
  * @fileoverview added by tsickle
@@ -127,7 +127,7 @@ QRService.decorators = [
 QRService.ctorParameters = () => [
     { type: QRConfig }
 ];
-/** @nocollapse */ QRService.ngInjectableDef = defineInjectable({ factory: function QRService_Factory() { return new QRService(inject(QRConfig)); }, token: QRService, providedIn: "root" });
+/** @nocollapse */ QRService.ngInjectableDef = ɵɵdefineInjectable({ factory: function QRService_Factory() { return new QRService(ɵɵinject(QRConfig)); }, token: QRService, providedIn: "root" });
 
 /**
  * @fileoverview added by tsickle

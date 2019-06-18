@@ -111,7 +111,7 @@
         QRConfig.decorators = [
             { type: core.Injectable, args: [{ providedIn: 'root' },] }
         ];
-        /** @nocollapse */ QRConfig.ngInjectableDef = core.defineInjectable({ factory: function QRConfig_Factory() { return new QRConfig(); }, token: QRConfig, providedIn: "root" });
+        /** @nocollapse */ QRConfig.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function QRConfig_Factory() { return new QRConfig(); }, token: QRConfig, providedIn: "root" });
         return QRConfig;
     }());
 
@@ -213,7 +213,7 @@
         QRService.ctorParameters = function () { return [
             { type: QRConfig }
         ]; };
-        /** @nocollapse */ QRService.ngInjectableDef = core.defineInjectable({ factory: function QRService_Factory() { return new QRService(core.inject(QRConfig)); }, token: QRService, providedIn: "root" });
+        /** @nocollapse */ QRService.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function QRService_Factory() { return new QRService(core.ɵɵinject(QRConfig)); }, token: QRService, providedIn: "root" });
         return QRService;
     }());
 

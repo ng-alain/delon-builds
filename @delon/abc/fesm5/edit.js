@@ -1,5 +1,5 @@
 import { __decorate, __metadata, __assign, __spread } from 'tslib';
-import { defineInjectable, Injectable, Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Host, Optional, ElementRef, Renderer2, ChangeDetectorRef, ContentChild, ViewChild, NgModule } from '@angular/core';
+import { ɵɵdefineInjectable, Injectable, Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Host, Optional, ElementRef, Renderer2, ChangeDetectorRef, ContentChild, ViewChild, NgModule } from '@angular/core';
 import { toNumber, InputNumber, InputBoolean, deepGet, isEmpty, DelonUtilModule } from '@delon/util';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { NgModel, FormControlName } from '@angular/forms';
@@ -44,7 +44,7 @@ var SEConfig = /** @class */ (function () {
     SEConfig.decorators = [
         { type: Injectable, args: [{ providedIn: 'root' },] }
     ];
-    /** @nocollapse */ SEConfig.ngInjectableDef = defineInjectable({ factory: function SEConfig_Factory() { return new SEConfig(); }, token: SEConfig, providedIn: "root" });
+    /** @nocollapse */ SEConfig.ngInjectableDef = ɵɵdefineInjectable({ factory: function SEConfig_Factory() { return new SEConfig(); }, token: SEConfig, providedIn: "root" });
     return SEConfig;
 }());
 
@@ -492,9 +492,9 @@ var SEComponent = /** @class */ (function () {
         { type: ChangeDetectorRef }
     ]; };
     SEComponent.propDecorators = {
-        ngModel: [{ type: ContentChild, args: [NgModel,] }],
-        formControlName: [{ type: ContentChild, args: [FormControlName,] }],
-        contentElement: [{ type: ViewChild, args: ['contentElement',] }],
+        ngModel: [{ type: ContentChild, args: [NgModel, { static: false },] }],
+        formControlName: [{ type: ContentChild, args: [FormControlName, { static: false },] }],
+        contentElement: [{ type: ViewChild, args: ['contentElement', { static: false },] }],
         optional: [{ type: Input }],
         optionalHelp: [{ type: Input }],
         error: [{ type: Input }],

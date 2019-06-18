@@ -13,8 +13,8 @@ import { CommonModule } from '@angular/common';
  * @return {?}
  */
 function numberToChinese(value, rmb, options) {
-    if (rmb === void 0) { rmb = true; }
     var _a;
+    if (rmb === void 0) { rmb = true; }
     options = __assign({ minusSymbol: '负', validThrow: false }, options);
     if (typeof value === 'number')
         value = value.toString();

@@ -19,7 +19,7 @@ export class ZipConfig {
 ZipConfig.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
-/** @nocollapse */ ZipConfig.ngInjectableDef = i0.defineInjectable({ factory: function ZipConfig_Factory() { return new ZipConfig(); }, token: ZipConfig, providedIn: "root" });
+/** @nocollapse */ ZipConfig.ngInjectableDef = i0.ɵɵdefineInjectable({ factory: function ZipConfig_Factory() { return new ZipConfig(); }, token: ZipConfig, providedIn: "root" });
 if (false) {
     /**
      * Zip library path

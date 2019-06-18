@@ -292,7 +292,7 @@
         STConfig.decorators = [
             { type: core.Injectable, args: [{ providedIn: 'root' },] }
         ];
-        /** @nocollapse */ STConfig.ngInjectableDef = core.defineInjectable({ factory: function STConfig_Factory() { return new STConfig(); }, token: STConfig, providedIn: "root" });
+        /** @nocollapse */ STConfig.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function STConfig_Factory() { return new STConfig(); }, token: STConfig, providedIn: "root" });
         return STConfig;
     }());
 
@@ -3076,7 +3076,7 @@
             { type: theme.DelonLocaleService }
         ]; };
         STComponent.propDecorators = {
-            orgTable: [{ type: core.ViewChild, args: ['table',] }],
+            orgTable: [{ type: core.ViewChild, args: ['table', { static: false },] }],
             req: [{ type: core.Input }],
             res: [{ type: core.Input }],
             page: [{ type: core.Input }],

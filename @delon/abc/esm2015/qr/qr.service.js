@@ -81,7 +81,7 @@ QRService.decorators = [
 QRService.ctorParameters = () => [
     { type: QRConfig }
 ];
-/** @nocollapse */ QRService.ngInjectableDef = i0.defineInjectable({ factory: function QRService_Factory() { return new QRService(i0.inject(i1.QRConfig)); }, token: QRService, providedIn: "root" });
+/** @nocollapse */ QRService.ngInjectableDef = i0.ɵɵdefineInjectable({ factory: function QRService_Factory() { return new QRService(i0.ɵɵinject(i1.QRConfig)); }, token: QRService, providedIn: "root" });
 if (false) {
     /**
      * 当前qr实例

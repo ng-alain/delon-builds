@@ -115,7 +115,7 @@
         DelonAuthConfig.decorators = [
             { type: core.Injectable, args: [{ providedIn: 'root' },] }
         ];
-        /** @nocollapse */ DelonAuthConfig.ngInjectableDef = core.defineInjectable({ factory: function DelonAuthConfig_Factory() { return new DelonAuthConfig(); }, token: DelonAuthConfig, providedIn: "root" });
+        /** @nocollapse */ DelonAuthConfig.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function DelonAuthConfig_Factory() { return new DelonAuthConfig(); }, token: DelonAuthConfig, providedIn: "root" });
         return DelonAuthConfig;
     }());
 
@@ -943,7 +943,7 @@
             { type: core.Injector },
             { type: DelonAuthConfig }
         ]; };
-        /** @nocollapse */ JWTGuard.ngInjectableDef = core.defineInjectable({ factory: function JWTGuard_Factory() { return new JWTGuard(core.inject(DA_SERVICE_TOKEN), core.inject(core.INJECTOR), core.inject(DelonAuthConfig)); }, token: JWTGuard, providedIn: "root" });
+        /** @nocollapse */ JWTGuard.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function JWTGuard_Factory() { return new JWTGuard(core.ɵɵinject(DA_SERVICE_TOKEN), core.ɵɵinject(core.INJECTOR), core.ɵɵinject(DelonAuthConfig)); }, token: JWTGuard, providedIn: "root" });
         return JWTGuard;
     }());
 
@@ -1118,7 +1118,7 @@
             { type: core.Injector },
             { type: DelonAuthConfig }
         ]; };
-        /** @nocollapse */ SimpleGuard.ngInjectableDef = core.defineInjectable({ factory: function SimpleGuard_Factory() { return new SimpleGuard(core.inject(DA_SERVICE_TOKEN), core.inject(core.INJECTOR), core.inject(DelonAuthConfig)); }, token: SimpleGuard, providedIn: "root" });
+        /** @nocollapse */ SimpleGuard.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function SimpleGuard_Factory() { return new SimpleGuard(core.ɵɵinject(DA_SERVICE_TOKEN), core.ɵɵinject(core.INJECTOR), core.ɵɵinject(DelonAuthConfig)); }, token: SimpleGuard, providedIn: "root" });
         return SimpleGuard;
     }());
 

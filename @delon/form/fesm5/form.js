@@ -1,4 +1,4 @@
-import { defineInjectable, Injectable, Inject, ComponentFactoryResolver, Component, ChangeDetectionStrategy, ViewEncapsulation, Optional, ChangeDetectorRef, Input, Output, EventEmitter, ViewChild, ViewContainerRef, Directive, ElementRef, Renderer2, TemplateRef, Injector, HostBinding, NgModule } from '@angular/core';
+import { ɵɵdefineInjectable, Injectable, Inject, ComponentFactoryResolver, Component, ChangeDetectionStrategy, ViewEncapsulation, Optional, ChangeDetectorRef, Input, Output, EventEmitter, ViewChild, ViewContainerRef, Directive, ElementRef, Renderer2, TemplateRef, Injector, HostBinding, NgModule } from '@angular/core';
 import { __spread, __rest, __assign, __values, __extends, __decorate, __metadata } from 'tslib';
 import { ACLService } from '@delon/acl';
 import { DelonLocaleService, DelonLocaleModule } from '@delon/theme';
@@ -142,7 +142,7 @@ var DelonFormConfig = /** @class */ (function () {
     DelonFormConfig.decorators = [
         { type: Injectable, args: [{ providedIn: 'root' },] }
     ];
-    /** @nocollapse */ DelonFormConfig.ngInjectableDef = defineInjectable({ factory: function DelonFormConfig_Factory() { return new DelonFormConfig(); }, token: DelonFormConfig, providedIn: "root" });
+    /** @nocollapse */ DelonFormConfig.ngInjectableDef = ɵɵdefineInjectable({ factory: function DelonFormConfig_Factory() { return new DelonFormConfig(); }, token: DelonFormConfig, providedIn: "root" });
     return DelonFormConfig;
 }());
 
@@ -2655,8 +2655,7 @@ var SFItemComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        this.ref = this.widgetFactory.createWidget(this.container, (/** @type {?} */ ((this.formProperty.ui.widget ||
-            this.formProperty.schema.type))));
+        this.ref = this.widgetFactory.createWidget(this.container, (/** @type {?} */ ((this.formProperty.ui.widget || this.formProperty.schema.type))));
         this.onWidgetInstanciated(this.ref.instance);
     };
     /**
@@ -2687,7 +2686,7 @@ var SFItemComponent = /** @class */ (function () {
     ]; };
     SFItemComponent.propDecorators = {
         formProperty: [{ type: Input }],
-        container: [{ type: ViewChild, args: ['target', { read: ViewContainerRef },] }]
+        container: [{ type: ViewChild, args: ['target', { read: ViewContainerRef, static: true },] }]
     };
     return SFItemComponent;
 }());
@@ -3154,9 +3153,7 @@ var AutoCompleteWidget = /** @class */ (function (_super) {
              * @param {?} option
              * @return {?}
              */
-            function (input, option) {
-                return option.label.toLowerCase().indexOf((input || '').toLowerCase()) > -1;
-            });
+            function (input, option) { return option.label.toLowerCase().indexOf((input || '').toLowerCase()) > -1; });
         }
         this.isAsync = !!this.ui.asyncData;
         /** @type {?} */
@@ -3243,7 +3240,7 @@ var AutoCompleteWidget = /** @class */ (function (_super) {
                 }] }
     ];
     AutoCompleteWidget.propDecorators = {
-        ngModel: [{ type: ViewChild, args: [NgModel,] }]
+        ngModel: [{ type: ViewChild, args: [NgModel, { static: false },] }]
     };
     return AutoCompleteWidget;
 }(ControlWidget));
@@ -3899,7 +3896,7 @@ var MentionWidget = /** @class */ (function (_super) {
                 }] }
     ];
     MentionWidget.propDecorators = {
-        mentionChild: [{ type: ViewChild, args: ['mentions',] }]
+        mentionChild: [{ type: ViewChild, args: ['mentions', { static: true },] }]
     };
     return MentionWidget;
 }(ControlWidget));

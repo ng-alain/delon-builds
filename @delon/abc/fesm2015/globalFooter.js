@@ -24,7 +24,7 @@ GlobalFooterItemComponent.decorators = [
             }] }
 ];
 GlobalFooterItemComponent.propDecorators = {
-    host: [{ type: ViewChild, args: ['host',] }],
+    host: [{ type: ViewChild, args: ['host', { static: false },] }],
     href: [{ type: Input }],
     blankTarget: [{ type: Input }]
 };

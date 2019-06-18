@@ -1,4 +1,4 @@
-import { Injectable, defineInjectable, inject, NgModule } from '@angular/core';
+import { Injectable, ɵɵdefineInjectable, ɵɵinject, NgModule } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { LazyService, DelonUtilModule } from '@delon/util';
 import { saveAs } from 'file-saver';
@@ -23,7 +23,7 @@ class ZipConfig {
 ZipConfig.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
-/** @nocollapse */ ZipConfig.ngInjectableDef = defineInjectable({ factory: function ZipConfig_Factory() { return new ZipConfig(); }, token: ZipConfig, providedIn: "root" });
+/** @nocollapse */ ZipConfig.ngInjectableDef = ɵɵdefineInjectable({ factory: function ZipConfig_Factory() { return new ZipConfig(); }, token: ZipConfig, providedIn: "root" });
 
 /**
  * @fileoverview added by tsickle
@@ -208,7 +208,7 @@ ZipService.ctorParameters = () => [
     { type: HttpClient },
     { type: LazyService }
 ];
-/** @nocollapse */ ZipService.ngInjectableDef = defineInjectable({ factory: function ZipService_Factory() { return new ZipService(inject(ZipConfig), inject(HttpClient), inject(LazyService)); }, token: ZipService, providedIn: "root" });
+/** @nocollapse */ ZipService.ngInjectableDef = ɵɵdefineInjectable({ factory: function ZipService_Factory() { return new ZipService(ɵɵinject(ZipConfig), ɵɵinject(HttpClient), ɵɵinject(LazyService)); }, token: ZipService, providedIn: "root" });
 
 /**
  * @fileoverview added by tsickle

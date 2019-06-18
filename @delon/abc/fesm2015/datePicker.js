@@ -1,5 +1,5 @@
 import { __decorate, __metadata } from 'tslib';
-import { Injectable, defineInjectable, EventEmitter, Component, forwardRef, ViewChild, Input, Output, NgModule } from '@angular/core';
+import { Injectable, ɵɵdefineInjectable, EventEmitter, Component, forwardRef, ViewChild, Input, Output, NgModule } from '@angular/core';
 import { NG_VALUE_ACCESSOR, FormsModule } from '@angular/forms';
 import { getTimeDistance, deepMergeKey, fixEndTimeOfRange, InputBoolean } from '@delon/util';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
@@ -79,7 +79,7 @@ class DatePickerConfig {
 DatePickerConfig.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
-/** @nocollapse */ DatePickerConfig.ngInjectableDef = defineInjectable({ factory: function DatePickerConfig_Factory() { return new DatePickerConfig(); }, token: DatePickerConfig, providedIn: "root" });
+/** @nocollapse */ DatePickerConfig.ngInjectableDef = ɵɵdefineInjectable({ factory: function DatePickerConfig_Factory() { return new DatePickerConfig(); }, token: DatePickerConfig, providedIn: "root" });
 
 /**
  * @fileoverview added by tsickle
@@ -214,7 +214,7 @@ RangePickerComponent.ctorParameters = () => [
     { type: DatePickerConfig }
 ];
 RangePickerComponent.propDecorators = {
-    comp: [{ type: ViewChild, args: ['comp',] }],
+    comp: [{ type: ViewChild, args: ['comp', { static: false },] }],
     ngModelEnd: [{ type: Input }],
     shortcut: [{ type: Input }],
     ngModelEndChange: [{ type: Output }],

@@ -132,7 +132,7 @@ var STConfig = /** @class */ (function () {
     STConfig.decorators = [
         { type: Injectable, args: [{ providedIn: 'root' },] }
     ];
-    /** @nocollapse */ STConfig.ngInjectableDef = i0.defineInjectable({ factory: function STConfig_Factory() { return new STConfig(); }, token: STConfig, providedIn: "root" });
+    /** @nocollapse */ STConfig.ngInjectableDef = i0.ɵɵdefineInjectable({ factory: function STConfig_Factory() { return new STConfig(); }, token: STConfig, providedIn: "root" });
     return STConfig;
 }());
 export { STConfig };

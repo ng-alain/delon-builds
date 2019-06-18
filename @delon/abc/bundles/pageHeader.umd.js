@@ -112,7 +112,7 @@
         PageHeaderConfig.decorators = [
             { type: core.Injectable, args: [{ providedIn: 'root' },] }
         ];
-        /** @nocollapse */ PageHeaderConfig.ngInjectableDef = core.defineInjectable({ factory: function PageHeaderConfig_Factory() { return new PageHeaderConfig(); }, token: PageHeaderConfig, providedIn: "root" });
+        /** @nocollapse */ PageHeaderConfig.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function PageHeaderConfig_Factory() { return new PageHeaderConfig(); }, token: PageHeaderConfig, providedIn: "root" });
         return PageHeaderConfig;
     }());
 
@@ -357,8 +357,8 @@
             { type: core.ChangeDetectorRef }
         ]; };
         PageHeaderComponent.propDecorators = {
-            conTpl: [{ type: core.ViewChild, args: ['conTpl',] }],
-            affix: [{ type: core.ViewChild, args: ['affix',] }],
+            conTpl: [{ type: core.ViewChild, args: ['conTpl', { static: false },] }],
+            affix: [{ type: core.ViewChild, args: ['affix', { static: false },] }],
             title: [{ type: core.Input }],
             loading: [{ type: core.Input }],
             wide: [{ type: core.Input }],

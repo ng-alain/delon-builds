@@ -19,7 +19,7 @@ export class ImageConfig {
 ImageConfig.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
-/** @nocollapse */ ImageConfig.ngInjectableDef = i0.defineInjectable({ factory: function ImageConfig_Factory() { return new ImageConfig(); }, token: ImageConfig, providedIn: "root" });
+/** @nocollapse */ ImageConfig.ngInjectableDef = i0.ɵɵdefineInjectable({ factory: function ImageConfig_Factory() { return new ImageConfig(); }, token: ImageConfig, providedIn: "root" });
 if (false) {
     /**
      * 默认大小，默认值：`64`，单位：px

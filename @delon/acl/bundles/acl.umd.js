@@ -94,7 +94,7 @@
         DelonACLConfig.decorators = [
             { type: core.Injectable, args: [{ providedIn: 'root' },] }
         ];
-        /** @nocollapse */ DelonACLConfig.ngInjectableDef = core.defineInjectable({ factory: function DelonACLConfig_Factory() { return new DelonACLConfig(); }, token: DelonACLConfig, providedIn: "root" });
+        /** @nocollapse */ DelonACLConfig.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function DelonACLConfig_Factory() { return new DelonACLConfig(); }, token: DelonACLConfig, providedIn: "root" });
         return DelonACLConfig;
     }());
 
@@ -505,7 +505,7 @@
         ACLService.ctorParameters = function () { return [
             { type: DelonACLConfig }
         ]; };
-        /** @nocollapse */ ACLService.ngInjectableDef = core.defineInjectable({ factory: function ACLService_Factory() { return new ACLService(core.inject(DelonACLConfig)); }, token: ACLService, providedIn: "root" });
+        /** @nocollapse */ ACLService.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function ACLService_Factory() { return new ACLService(core.ɵɵinject(DelonACLConfig)); }, token: ACLService, providedIn: "root" });
         return ACLService;
     }());
 
@@ -823,7 +823,7 @@
             { type: router.Router },
             { type: DelonACLConfig }
         ]; };
-        /** @nocollapse */ ACLGuard.ngInjectableDef = core.defineInjectable({ factory: function ACLGuard_Factory() { return new ACLGuard(core.inject(ACLService), core.inject(router.Router), core.inject(DelonACLConfig)); }, token: ACLGuard, providedIn: "root" });
+        /** @nocollapse */ ACLGuard.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function ACLGuard_Factory() { return new ACLGuard(core.ɵɵinject(ACLService), core.ɵɵinject(router.Router), core.ɵɵinject(DelonACLConfig)); }, token: ACLGuard, providedIn: "root" });
         return ACLGuard;
     }());
 

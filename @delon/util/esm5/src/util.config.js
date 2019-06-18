@@ -10,7 +10,7 @@ var DelonUtilConfig = /** @class */ (function () {
     DelonUtilConfig.decorators = [
         { type: Injectable, args: [{ providedIn: 'root' },] }
     ];
-    /** @nocollapse */ DelonUtilConfig.ngInjectableDef = i0.defineInjectable({ factory: function DelonUtilConfig_Factory() { return new DelonUtilConfig(); }, token: DelonUtilConfig, providedIn: "root" });
+    /** @nocollapse */ DelonUtilConfig.ngInjectableDef = i0.ɵɵdefineInjectable({ factory: function DelonUtilConfig_Factory() { return new DelonUtilConfig(); }, token: DelonUtilConfig, providedIn: "root" });
     return DelonUtilConfig;
 }());
 export { DelonUtilConfig };
