@@ -1,4 +1,4 @@
-import { Injectable, ɵɵdefineInjectable, ɵɵinject, Directive, TemplateRef, ViewContainerRef, Input, ElementRef, Renderer2, NgModule } from '@angular/core';
+import { Injectable, ɵɵdefineInjectable, Directive, TemplateRef, ViewContainerRef, Input, ElementRef, Renderer2, ɵɵinject, NgModule } from '@angular/core';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { __decorate, __metadata } from 'tslib';
 import { InputBoolean, DelonUtilModule } from '@delon/util';
@@ -267,13 +267,12 @@ class ACLService {
     }
 }
 ACLService.decorators = [
-    { type: Injectable, args: [{ providedIn: 'root' },] }
+    { type: Injectable }
 ];
 /** @nocollapse */
 ACLService.ctorParameters = () => [
     { type: DelonACLConfig }
 ];
-/** @nocollapse */ ACLService.ngInjectableDef = ɵɵdefineInjectable({ factory: function ACLService_Factory() { return new ACLService(ɵɵinject(DelonACLConfig)); }, token: ACLService, providedIn: "root" });
 
 /**
  * @fileoverview added by tsickle
@@ -546,6 +545,15 @@ ACLGuard.ctorParameters = () => [
 /** @type {?} */
 const COMPONENTS = [ACLDirective, ACLIfDirective];
 class DelonACLModule {
+    /**
+     * @return {?}
+     */
+    static forRoot() {
+        return {
+            ngModule: DelonACLModule,
+            providers: [ACLService],
+        };
+    }
 }
 DelonACLModule.decorators = [
     { type: NgModule, args: [{
