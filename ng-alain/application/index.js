@@ -118,7 +118,6 @@ function addCodeStylesToPackageJson() {
         json.scripts['lint-staged'] = `lint-staged`;
         json.scripts['tslint-check'] = `tslint-config-prettier-check ./tslint.json`;
         json['lint-staged'] = {
-            '*.{cmd,html,json,md,sh,txt,xml,yml}': ['editorconfig-tools fix', 'git add'],
             '*.ts': ['npm run lint:ts', 'git add'],
             '*.less': ['npm run lint:style', 'git add'],
             ignore: ['src/assets/*'],
@@ -128,7 +127,6 @@ function addCodeStylesToPackageJson() {
         json_1.addPackageToPackageJson(host, [
             `tslint-config-prettier@^1.18.0`,
             `tslint-language-service@^0.9.9`,
-            `editorconfig-tools@^0.1.1`,
             `lint-staged@^8.1.0`,
             `husky@^1.3.1`,
             `prettier@^1.16.1`,
