@@ -903,6 +903,8 @@ var zhCN = (/** @type {?} */ ({
     },
     st: {
         total: '共 {{total}} 条',
+        filterConfirm: '确定',
+        filterReset: '重置',
     },
     sf: {
         submit: '提交',
@@ -1024,6 +1026,8 @@ var enUS = (/** @type {?} */ ({
     },
     st: {
         total: '{{range[0]}} - {{range[1]}} of {{total}}',
+        filterConfirm: 'OK',
+        filterReset: 'Reset',
     },
     sf: {
         submit: 'Submit',
@@ -1067,6 +1071,8 @@ var zhTW = (/** @type {?} */ ({
     },
     st: {
         total: '共 {{total}} 條',
+        filterConfirm: '確定',
+        filterReset: '重置',
     },
     sf: {
         submit: '提交',
@@ -1110,6 +1116,8 @@ var trTR = (/** @type {?} */ ({
     },
     st: {
         total: '{{range[0]}} ile {{range[1]}} arasında {{total}}',
+        filterConfirm: 'Tamam',
+        filterReset: 'Sıfırla',
     },
     sf: {
         submit: 'Gönder',
@@ -1153,6 +1161,8 @@ var plPL = (/** @type {?} */ ({
     },
     st: {
         total: '{{range[0]}} - {{range[1]}} z {{total}}',
+        filterConfirm: 'OK',
+        filterReset: 'Wyczyść',
     },
     sf: {
         submit: 'Wyślij',
@@ -1196,6 +1206,8 @@ var elGR = (/** @type {?} */ ({
     },
     st: {
         total: '{{range[0]}} - {{range[1]}} από {{total}}',
+        filterConfirm: 'ΟΚ',
+        filterReset: 'Επαναφορά',
     },
     sf: {
         submit: 'Υποβολή',
@@ -1239,6 +1251,8 @@ var koKR = (/** @type {?} */ ({
     },
     st: {
         total: '전체 {{total}}건',
+        filterConfirm: '확인',
+        filterReset: '초기화',
     },
     sf: {
         submit: '제출',
@@ -2281,7 +2295,7 @@ AlainThemeModule.ctorParameters = () => [
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-const VERSION = new Version('7.7.1-a7c3677');
+const VERSION = new Version('7.7.1-970f174');
 
 export { ALAIN_I18N_TOKEN, APP, AlainI18NServiceFake, AlainThemeConfig, AlainThemeModule, BaseApi, BaseHeaders, BaseUrl, Body, CNCurrencyPipe, DELETE, DELON_LOCALE, DELON_LOCALE_SERVICE_PROVIDER, DELON_LOCALE_SERVICE_PROVIDER_FACTORY, DatePipe, DelonLocaleModule, DelonLocaleService, DrawerHelper, GET, HEAD, HTMLPipe, Headers, JSONP, KeysPipe, LAYOUT, MenuService, ModalHelper, OPTIONS, PATCH, POST, PUT, Path, Query, REP_MAX, ResponsiveService, ScrollService, SettingsService, TitleService, URLPipe, USER, VERSION, WINDOW, YNPipe, _HttpClient, elGR as el_GR, enUS as en_US, koKR as ko_KR, plPL as pl_PL, preloaderFinished, trTR as tr_TR, zhCN as zh_CN, zhTW as zh_TW, ALAIN_I18N_TOKEN_FACTORY as ɵa, I18nPipe as ɵb };
 //# sourceMappingURL=theme.js.map

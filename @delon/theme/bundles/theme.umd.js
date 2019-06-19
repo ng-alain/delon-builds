@@ -1220,6 +1220,8 @@
         },
         st: {
             total: '共 {{total}} 条',
+            filterConfirm: '确定',
+            filterReset: '重置',
         },
         sf: {
             submit: '提交',
@@ -1358,6 +1360,8 @@
         },
         st: {
             total: '{{range[0]}} - {{range[1]}} of {{total}}',
+            filterConfirm: 'OK',
+            filterReset: 'Reset',
         },
         sf: {
             submit: 'Submit',
@@ -1401,6 +1405,8 @@
         },
         st: {
             total: '共 {{total}} 條',
+            filterConfirm: '確定',
+            filterReset: '重置',
         },
         sf: {
             submit: '提交',
@@ -1444,6 +1450,8 @@
         },
         st: {
             total: '{{range[0]}} ile {{range[1]}} arasında {{total}}',
+            filterConfirm: 'Tamam',
+            filterReset: 'Sıfırla',
         },
         sf: {
             submit: 'Gönder',
@@ -1487,6 +1495,8 @@
         },
         st: {
             total: '{{range[0]}} - {{range[1]}} z {{total}}',
+            filterConfirm: 'OK',
+            filterReset: 'Wyczyść',
         },
         sf: {
             submit: 'Wyślij',
@@ -1530,6 +1540,8 @@
         },
         st: {
             total: '{{range[0]}} - {{range[1]}} από {{total}}',
+            filterConfirm: 'ΟΚ',
+            filterReset: 'Επαναφορά',
         },
         sf: {
             submit: 'Υποβολή',
@@ -1573,6 +1585,8 @@
         },
         st: {
             total: '전체 {{total}}건',
+            filterConfirm: '확인',
+            filterReset: '초기화',
         },
         sf: {
             submit: '제출',

@@ -1,6 +1,6 @@
 {
   "name": "@delon/chart",
-  "version": "7.7.1-a7c3677",
+  "version": "7.7.1-970f174",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -24,10 +24,9 @@
     "angular",
     "component"
   ],
-  "dependencies": {
-    "@delon/util": "^7.7.1-a7c3677",
-    "@delon/theme": "^7.7.1-a7c3677",
-    "tslib": "^1.9.0"
+  "peerDependencies": {
+    "@delon/util": "^7.7.1-970f174",
+    "@delon/theme": "^7.7.1-970f174"
   },
   "sideEffects": false,
   "main": "bundles/chart.umd.js",
@@ -38,5 +37,8 @@
   "fesm5": "fesm5/chart.js",
   "fesm2015": "fesm2015/chart.js",
   "typings": "chart.d.ts",
-  "metadata": "chart.metadata.json"
+  "metadata": "chart.metadata.json",
+  "dependencies": {
+    "tslib": "^1.9.0"
+  }
 }

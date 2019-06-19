@@ -64,11 +64,11 @@ export declare class STConfig {
      */
     rowClickTime?: number;
     /**
-     * 过滤按钮确认文本，默认：`确认`
+     * 过滤按钮确认文本
      */
     filterConfirmText?: string;
     /**
-     * 过滤按钮重置文本，默认：`重置`
+     * 过滤按钮重置文本
      */
     filterClearText?: string;
     /**

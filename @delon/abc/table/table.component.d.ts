@@ -1,6 +1,6 @@
 import { AfterViewInit, ChangeDetectorRef, ElementRef, EventEmitter, OnChanges, OnDestroy, Renderer2, SimpleChange, SimpleChanges, TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
-import { AlainI18NService, DelonLocaleService, DrawerHelper, ModalHelper } from '@delon/theme';
+import { AlainI18NService, DelonLocaleService, DrawerHelper, LocaleData, ModalHelper } from '@delon/theme';
 import { Observable } from 'rxjs';
 import { STColumnSource } from './table-column-source';
 import { STDataSource } from './table-data-source';
@@ -35,9 +35,9 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     private readonly routerState;
     private unsubscribe$;
     private totalTpl;
-    private locale;
     private clonePage;
     private copyCog;
+    locale: LocaleData;
     _data: STData[];
     _statistical: STStatisticalResults;
     _isPagination: boolean;
