@@ -81,7 +81,7 @@ function getIndexHtmlContent(host, project) {
     const indexPath = getIndexHtmlPath(host, project);
     const buffer = host.read(indexPath);
     if (!buffer) {
-        throw new schematics_1.SchematicsException(`Could not find file for path: ${indexPath}`);
+        throw new schematics_1.SchematicsException(`Could not find file for path '${indexPath}'`);
     }
     return {
         indexPath,
