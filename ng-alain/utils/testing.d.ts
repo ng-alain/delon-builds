@@ -1,5 +1,5 @@
 import { SchematicTestRunner, UnitTestTree } from '@angular-devkit/schematics/testing';
-import { Schema as NgAddSchema } from '../ng-add/schema.d';
+import { Schema as NgAddSchema } from '../ng-add/schema';
 export declare const APPNAME = "foo";
 export interface AppResult {
     runner: SchematicTestRunner;
