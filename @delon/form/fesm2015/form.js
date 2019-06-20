@@ -1638,17 +1638,19 @@ class SFComponent {
                 this.cdr.detectChanges();
             }
         }));
-        this.aclSrv.change
-            .pipe(filter((/**
-         * @return {?}
-         */
-        () => this._inited)), takeUntil(this.unsubscribe$))
-            .subscribe((/**
-         * @template THIS
-         * @this {THIS}
-         * @return {THIS}
-         */
-        () => this.refreshSchema()));
+        if (this.aclSrv) {
+            this.aclSrv.change
+                .pipe(filter((/**
+             * @return {?}
+             */
+            () => this._inited)), takeUntil(this.unsubscribe$))
+                .subscribe((/**
+             * @template THIS
+             * @this {THIS}
+             * @return {THIS}
+             */
+            () => this.refreshSchema()));
+        }
     }
     /**
      * 表单模式
@@ -1775,7 +1777,12 @@ class SFComponent {
                 /** @type {?} */
                 const property = retrieveSchema((/** @type {?} */ ((/** @type {?} */ (schema.properties))[key])), definitions);
                 /** @type {?} */
-                const ui = (/** @type {?} */ (Object.assign({ widget: property.type }, (property.format && FORMATMAPS[property.format]), (typeof property.ui === 'string' ? { widget: property.ui } : null), (!property.format && !property.ui && Array.isArray(property.enum) && property.enum.length > 0 ? { widget: 'select' } : null), this._defUi, ((/** @type {?} */ (property.ui))), uiSchema[uiKey])));
+                const ui = (/** @type {?} */ (Object.assign({ widget: property.type }, (property.format && FORMATMAPS[property.format]), (typeof property.ui === 'string' ? { widget: property.ui } : null), (!property.format &&
+                    !property.ui &&
+                    Array.isArray(property.enum) &&
+                    property.enum.length > 0
+                    ? { widget: 'select' }
+                    : null), this._defUi, ((/** @type {?} */ (property.ui))), uiSchema[uiKey])));
                 // 继承父节点布局属性
                 if (isHorizontal) {
                     if (parentUiSchema.spanLabelFixed) {
@@ -1785,11 +1792,16 @@ class SFComponent {
                     }
                     else {
                         if (!ui.spanLabel)
-                            ui.spanLabel = typeof parentUiSchema.spanLabel === 'undefined' ? 5 : parentUiSchema.spanLabel;
+                            ui.spanLabel =
+                                typeof parentUiSchema.spanLabel === 'undefined' ? 5 : parentUiSchema.spanLabel;
                         if (!ui.spanControl)
-                            ui.spanControl = typeof parentUiSchema.spanControl === 'undefined' ? 19 : parentUiSchema.spanControl;
+                            ui.spanControl =
+                                typeof parentUiSchema.spanControl === 'undefined' ? 19 : parentUiSchema.spanControl;
                         if (!ui.offsetControl)
-                            ui.offsetControl = typeof parentUiSchema.offsetControl === 'undefined' ? null : parentUiSchema.offsetControl;
+                            ui.offsetControl =
+                                typeof parentUiSchema.offsetControl === 'undefined'
+                                    ? null
+                                    : parentUiSchema.offsetControl;
                     }
                 }
                 else {
@@ -1895,7 +1907,8 @@ class SFComponent {
                 (/** @type {?} */ (this._btn.render)).spanLabelFixed = btnUi.spanLabelFixed;
             }
             // 固定标签宽度时，若不指定样式，则默认居中
-            if (!(/** @type {?} */ (this._btn.render)).class && (typeof btnUi.spanLabelFixed === 'number' && btnUi.spanLabelFixed > 0)) {
+            if (!(/** @type {?} */ (this._btn.render)).class &&
+                (typeof btnUi.spanLabelFixed === 'number' && btnUi.spanLabelFixed > 0)) {
                 (/** @type {?} */ (this._btn.render)).class = 'text-center';
             }
         }

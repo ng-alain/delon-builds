@@ -6,7 +6,7 @@
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('@angular/common')) :
     typeof define === 'function' && define.amd ? define('@delon/chart/bar', ['exports', '@angular/core', '@delon/util', 'rxjs', 'rxjs/operators', '@angular/common'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.bar = {}), global.ng.core, global.delon.util, global.rxjs, global.rxjs.operators, global.ng.common));
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.bar = {}), global.ng.core, global.util, global.rxjs, global.rxjs.operators, global.ng.common));
 }(this, function (exports, core, util, rxjs, operators, common) { 'use strict';
 
     /*! *****************************************************************************

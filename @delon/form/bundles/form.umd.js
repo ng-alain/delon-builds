@@ -2057,17 +2057,19 @@
                     _this.cdr.detectChanges();
                 }
             }));
-            this.aclSrv.change
-                .pipe(operators.filter((/**
-             * @return {?}
-             */
-            function () { return _this._inited; })), operators.takeUntil(this.unsubscribe$))
-                .subscribe((/**
-             * @template THIS
-             * @this {THIS}
-             * @return {THIS}
-             */
-            function () { return _this.refreshSchema(); }));
+            if (this.aclSrv) {
+                this.aclSrv.change
+                    .pipe(operators.filter((/**
+                 * @return {?}
+                 */
+                function () { return _this._inited; })), operators.takeUntil(this.unsubscribe$))
+                    .subscribe((/**
+                 * @template THIS
+                 * @this {THIS}
+                 * @return {THIS}
+                 */
+                function () { return _this.refreshSchema(); }));
+            }
         }
         Object.defineProperty(SFComponent.prototype, "mode", {
             get: /**
@@ -2251,7 +2253,12 @@
                     /** @type {?} */
                     var property = retrieveSchema((/** @type {?} */ ((/** @type {?} */ (schema.properties))[key])), definitions);
                     /** @type {?} */
-                    var ui = (/** @type {?} */ (__assign({ widget: property.type }, (property.format && FORMATMAPS[property.format]), (typeof property.ui === 'string' ? { widget: property.ui } : null), (!property.format && !property.ui && Array.isArray(property.enum) && property.enum.length > 0 ? { widget: 'select' } : null), _this._defUi, ((/** @type {?} */ (property.ui))), uiSchema[uiKey])));
+                    var ui = (/** @type {?} */ (__assign({ widget: property.type }, (property.format && FORMATMAPS[property.format]), (typeof property.ui === 'string' ? { widget: property.ui } : null), (!property.format &&
+                        !property.ui &&
+                        Array.isArray(property.enum) &&
+                        property.enum.length > 0
+                        ? { widget: 'select' }
+                        : null), _this._defUi, ((/** @type {?} */ (property.ui))), uiSchema[uiKey])));
                     // 继承父节点布局属性
                     if (isHorizontal) {
                         if (parentUiSchema.spanLabelFixed) {
@@ -2261,11 +2268,16 @@
                         }
                         else {
                             if (!ui.spanLabel)
-                                ui.spanLabel = typeof parentUiSchema.spanLabel === 'undefined' ? 5 : parentUiSchema.spanLabel;
+                                ui.spanLabel =
+                                    typeof parentUiSchema.spanLabel === 'undefined' ? 5 : parentUiSchema.spanLabel;
                             if (!ui.spanControl)
-                                ui.spanControl = typeof parentUiSchema.spanControl === 'undefined' ? 19 : parentUiSchema.spanControl;
+                                ui.spanControl =
+                                    typeof parentUiSchema.spanControl === 'undefined' ? 19 : parentUiSchema.spanControl;
                             if (!ui.offsetControl)
-                                ui.offsetControl = typeof parentUiSchema.offsetControl === 'undefined' ? null : parentUiSchema.offsetControl;
+                                ui.offsetControl =
+                                    typeof parentUiSchema.offsetControl === 'undefined'
+                                        ? null
+                                        : parentUiSchema.offsetControl;
                         }
                     }
                     else {
@@ -2375,7 +2387,8 @@
                     (/** @type {?} */ (this._btn.render)).spanLabelFixed = btnUi.spanLabelFixed;
                 }
                 // 固定标签宽度时，若不指定样式，则默认居中
-                if (!(/** @type {?} */ (this._btn.render)).class && (typeof btnUi.spanLabelFixed === 'number' && btnUi.spanLabelFixed > 0)) {
+                if (!(/** @type {?} */ (this._btn.render)).class &&
+                    (typeof btnUi.spanLabelFixed === 'number' && btnUi.spanLabelFixed > 0)) {
                     (/** @type {?} */ (this._btn.render)).class = 'text-center';
                 }
             }
