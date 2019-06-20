@@ -6,7 +6,7 @@
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util'), require('@angular/animations'), require('@angular/forms'), require('@delon/theme'), require('@angular/common'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/tooltip')) :
     typeof define === 'function' && define.amd ? define('@delon/abc/edit', ['exports', '@angular/core', '@delon/util', '@angular/animations', '@angular/forms', '@delon/theme', '@angular/common', 'ng-zorro-antd/icon', 'ng-zorro-antd/tooltip'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.edit = {}), global.ng.core, global.delon.util, global.ng.animations, global.ng.forms, global.delon.theme, global.ng.common, global['ng-zorro-antd/icon'], global['ng-zorro-antd/tooltip']));
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.edit = {}), global.ng.core, global.delon.util, global.ng.animations, global.ng.forms, global.delon.theme, global.ng.common, global.icon, global['ng-zorro-antd/tooltip']));
 }(this, function (exports, core, util, animations, forms, theme, common, icon, tooltip) { 'use strict';
 
     /*! *****************************************************************************

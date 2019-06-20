@@ -1638,19 +1638,17 @@ class SFComponent {
                 this.cdr.detectChanges();
             }
         }));
-        if (this.aclSrv) {
-            this.aclSrv.change
-                .pipe(filter((/**
-             * @return {?}
-             */
-            () => this._inited)), takeUntil(this.unsubscribe$))
-                .subscribe((/**
-             * @template THIS
-             * @this {THIS}
-             * @return {THIS}
-             */
-            () => this.refreshSchema()));
-        }
+        this.aclSrv.change
+            .pipe(filter((/**
+         * @return {?}
+         */
+        () => this._inited)), takeUntil(this.unsubscribe$))
+            .subscribe((/**
+         * @template THIS
+         * @this {THIS}
+         * @return {THIS}
+         */
+        () => this.refreshSchema()));
     }
     /**
      * 表单模式

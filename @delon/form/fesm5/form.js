@@ -1982,19 +1982,17 @@ var SFComponent = /** @class */ (function () {
                 _this.cdr.detectChanges();
             }
         }));
-        if (this.aclSrv) {
-            this.aclSrv.change
-                .pipe(filter((/**
-             * @return {?}
-             */
-            function () { return _this._inited; })), takeUntil(this.unsubscribe$))
-                .subscribe((/**
-             * @template THIS
-             * @this {THIS}
-             * @return {THIS}
-             */
-            function () { return _this.refreshSchema(); }));
-        }
+        this.aclSrv.change
+            .pipe(filter((/**
+         * @return {?}
+         */
+        function () { return _this._inited; })), takeUntil(this.unsubscribe$))
+            .subscribe((/**
+         * @template THIS
+         * @this {THIS}
+         * @return {THIS}
+         */
+        function () { return _this.refreshSchema(); }));
     }
     Object.defineProperty(SFComponent.prototype, "mode", {
         get: /**

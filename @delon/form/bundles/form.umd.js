@@ -2057,19 +2057,17 @@
                     _this.cdr.detectChanges();
                 }
             }));
-            if (this.aclSrv) {
-                this.aclSrv.change
-                    .pipe(operators.filter((/**
-                 * @return {?}
-                 */
-                function () { return _this._inited; })), operators.takeUntil(this.unsubscribe$))
-                    .subscribe((/**
-                 * @template THIS
-                 * @this {THIS}
-                 * @return {THIS}
-                 */
-                function () { return _this.refreshSchema(); }));
-            }
+            this.aclSrv.change
+                .pipe(operators.filter((/**
+             * @return {?}
+             */
+            function () { return _this._inited; })), operators.takeUntil(this.unsubscribe$))
+                .subscribe((/**
+             * @template THIS
+             * @this {THIS}
+             * @return {THIS}
+             */
+            function () { return _this.refreshSchema(); }));
         }
         Object.defineProperty(SFComponent.prototype, "mode", {
             get: /**
