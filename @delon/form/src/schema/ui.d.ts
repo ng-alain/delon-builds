@@ -2,6 +2,8 @@ import { ACLCanType } from '@delon/acl';
 import { Observable } from 'rxjs';
 import { ErrorSchema } from '../errors';
 import { SFSchemaEnumType } from './index';
+export declare type SFPlacement = 'top' | 'left' | 'right' | 'bottom' | 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight' | 'leftTop' | 'leftBottom' | 'rightTop' | 'rightBottom';
+export declare type SFTrigger = 'click' | 'focus' | 'hover';
 export interface SFGridSizeSchema {
     span?: number | null;
     order?: number | null;
@@ -57,7 +59,20 @@ export interface SFRenderSchema {
     /** 标签可选信息 */
     optional?: string;
     /** 标签可选帮助，使用 `nz-tooltip` 展示 */
-    optionalHelp?: string;
+    optionalHelp?: string | SFOptionalHelp;
+}
+export interface SFOptionalHelp {
+    text: string;
+    /** 图标，默认：`question-circle` */
+    icon?: string;
+    placement?: SFPlacement;
+    trigger?: SFTrigger;
+    mouseEnterDelay?: number;
+    mouseLeaveDelay?: number;
+    overlayClassName?: string;
+    overlayStyle?: {
+        [key: string]: string;
+    };
 }
 export interface SFHorizontalLayoutSchema {
     /**

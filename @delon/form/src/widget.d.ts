@@ -1,10 +1,11 @@
 import { AfterViewInit, ChangeDetectorRef, Injector } from '@angular/core';
+import { LocaleData } from '@delon/theme';
 import { SFValue } from './interface';
 import { ArrayProperty } from './model/array.property';
 import { FormProperty } from './model/form.property';
 import { ObjectProperty } from './model/object.property';
 import { SFSchema } from './schema';
-import { SFUISchemaItem } from './schema/ui';
+import { SFUISchemaItem, SFOptionalHelp } from './schema/ui';
 import { SFItemComponent } from './sf-item.component';
 import { SFComponent } from './sf.component';
 export declare abstract class Widget<T extends FormProperty> implements AfterViewInit {
@@ -21,6 +22,8 @@ export declare abstract class Widget<T extends FormProperty> implements AfterVie
     firstVisual: boolean;
     readonly cls: string | string[];
     readonly disabled: boolean | null;
+    readonly l: LocaleData;
+    readonly oh: SFOptionalHelp;
     constructor(cd: ChangeDetectorRef, injector: Injector, sfItemComp?: SFItemComponent | undefined, sfComp?: SFComponent | undefined);
     ngAfterViewInit(): void;
     setValue(value: SFValue): void;
