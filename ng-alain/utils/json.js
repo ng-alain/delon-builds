@@ -5,11 +5,17 @@ function getJSON(host, jsonFile, type) {
     if (!host.exists(jsonFile))
         return null;
     const sourceText = host.read(jsonFile).toString('utf-8');
-    const json = JSON.parse(sourceText);
-    if (type && !json[type]) {
-        json[type] = {};
+    try {
+        const json = JSON.parse(sourceText);
+        if (type && !json[type]) {
+            json[type] = {};
+        }
+        return json;
     }
-    return json;
+    catch (ex) {
+        console.log(`Can't parse json file (${jsonFile})`);
+        throw ex;
+    }
 }
 exports.getJSON = getJSON;
 function overwriteJSON(host, jsonFile, json) {

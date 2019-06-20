@@ -499,12 +499,13 @@
             return this.can(this.parseAbility(value));
         };
         ACLService.decorators = [
-            { type: core.Injectable }
+            { type: core.Injectable, args: [{ providedIn: 'root' },] }
         ];
         /** @nocollapse */
         ACLService.ctorParameters = function () { return [
             { type: DelonACLConfig }
         ]; };
+        /** @nocollapse */ ACLService.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function ACLService_Factory() { return new ACLService(core.ɵɵinject(DelonACLConfig)); }, token: ACLService, providedIn: "root" });
         return ACLService;
     }());
 
@@ -835,18 +836,6 @@
     var DelonACLModule = /** @class */ (function () {
         function DelonACLModule() {
         }
-        /**
-         * @return {?}
-         */
-        DelonACLModule.forRoot = /**
-         * @return {?}
-         */
-        function () {
-            return {
-                ngModule: DelonACLModule,
-                providers: [ACLService],
-            };
-        };
         DelonACLModule.decorators = [
             { type: core.NgModule, args: [{
                         imports: [common.CommonModule, util.DelonUtilModule],
