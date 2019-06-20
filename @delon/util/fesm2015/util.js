@@ -212,7 +212,7 @@ function deepMergeKey(original, ingoreArray, ...objects) {
      * @param {?} v
      * @return {?}
      */
-    v => isObject(v))).forEach((/**
+    v => v != null && isObject(v))).forEach((/**
      * @param {?} v
      * @return {?}
      */

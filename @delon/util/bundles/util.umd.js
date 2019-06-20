@@ -286,7 +286,7 @@
          * @param {?} v
          * @return {?}
          */
-        function (v) { return isObject(v); })).forEach((/**
+        function (v) { return v != null && isObject(v); })).forEach((/**
          * @param {?} v
          * @return {?}
          */
