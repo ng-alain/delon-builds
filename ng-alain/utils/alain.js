@@ -43,7 +43,15 @@ function buildComponentName(schema, _projectPrefix) {
 }
 function resolveSchema(host, project, schema) {
     if (!schema._filesPath) {
-        schema._filesPath = './files';
+        // 若基础页尝试从 `_cli-tpl/_${schema.schematicName!}` 下查找该目录，若存在则优先使用
+        if (['list', 'edit', 'view', 'empty'].includes(schema.schematicName)) {
+            const overrideDir = `/${project.root}/_cli-tpl/_${schema.schematicName}`;
+            const overridePath = `${overrideDir}/__path__/__name@dasherize@if-flat__/__name@dasherize__.component.ts`;
+            if (host.exists(overridePath)) {
+                schema._filesPath = `.${overrideDir}`;
+            }
+        }
+        schema._filesPath = schema._filesPath || './files';
     }
     // module name
     if (!schema.module) {
@@ -80,7 +88,7 @@ function addValueToVariable(host, path, variableName, text) {
     const source = ast_1.getSourceFile(host, path);
     const node = ast_utils_1.findNode(source, ts.SyntaxKind.Identifier, variableName);
     if (!node) {
-        throw new schematics_1.SchematicsException(`Could not find any [${variableName}] variable.`);
+        throw new schematics_1.SchematicsException(`Could not find any [${variableName}] variable in path: ${path}.`);
     }
     const arr = node.parent.initializer;
     const change = new change_1.InsertChange(path, arr.end - 1, `${arr.elements && arr.elements.length > 0 ? ',' : ''}\n  ${text}`);

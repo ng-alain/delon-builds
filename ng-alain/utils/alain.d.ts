@@ -2,6 +2,7 @@ import { Rule, Tree } from '@angular-devkit/schematics';
 export interface CommonSchema {
     [key: string]: any;
     _filesPath?: string;
+    schematicName?: string;
     name?: string;
     path?: string;
     module?: string;

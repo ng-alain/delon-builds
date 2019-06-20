@@ -26,6 +26,7 @@ import { getProject, Project } from './project';
 export interface CommonSchema {
   [key: string]: any;
   _filesPath?: string;
+  schematicName?: string;
   name?: string;
   path?: string;
   module?: string;
@@ -72,16 +73,26 @@ function buildComponentName(schema: CommonSchema, _projectPrefix: string) {
 
 function resolveSchema(host: Tree, project: Project, schema: CommonSchema) {
   if (!schema._filesPath) {
-    schema._filesPath = './files';
+    // 若基础页尝试从 `_cli-tpl/_${schema.schematicName!}` 下查找该目录，若存在则优先使用
+    if (['list', 'edit', 'view', 'empty'].includes(schema.schematicName!)) {
+      const overrideDir = `/${project.root}/_cli-tpl/_${schema.schematicName!}`;
+      const overridePath = `${overrideDir}/__path__/__name@dasherize@if-flat__/__name@dasherize__.component.ts`;
+      if (host.exists(overridePath)) {
+        schema._filesPath = `.${overrideDir}`;
+      }
+    }
+    schema._filesPath = schema._filesPath || './files';
   }
   // module name
   if (!schema.module) {
-    throw new SchematicsException(`Must specify module name. (e.g: ng g ng-alain:list <list name> -m=<module name>)`);
+    throw new SchematicsException(
+      `Must specify module name. (e.g: ng g ng-alain:list <list name> -m=<module name>)`,
+    );
   }
   // path
   if (schema.path === undefined) {
     const projectDirName = project.projectType === 'application' ? 'app' : 'lib';
-    schema.path = `/${(project as any).sourceRoot}/${projectDirName}/routes`;
+    schema.path = `/${project.sourceRoot}/${projectDirName}/routes`;
   }
 
   schema.path += `/${schema.module}`;
@@ -116,7 +127,9 @@ export function addValueToVariable(host: Tree, path: string, variableName: strin
   const source = getSourceFile(host, path);
   const node = findNode(source, ts.SyntaxKind.Identifier, variableName);
   if (!node) {
-    throw new SchematicsException(`Could not find any [${variableName}] variable.`);
+    throw new SchematicsException(
+      `Could not find any [${variableName}] variable in path: ${path}.`,
+    );
   }
   const arr = (node.parent as any).initializer as ts.ArrayLiteralExpression;
 
@@ -132,9 +145,9 @@ export function addValueToVariable(host: Tree, path: string, variableName: strin
 }
 
 function getRelativePath(path: string, schema: CommonSchema) {
-  const importPath = `/${schema.path}/${schema.flat ? '' : strings.dasherize(schema.name!) + '/'}${strings.dasherize(
-    schema.name!,
-  )}.component`;
+  const importPath = `/${schema.path}/${
+    schema.flat ? '' : strings.dasherize(schema.name!) + '/'
+  }${strings.dasherize(schema.name!)}.component`;
   return buildRelativePath(path, importPath);
 }
 
@@ -154,7 +167,12 @@ function addDeclaration(schema: CommonSchema) {
 
     // component
     if (schema.modal === true) {
-      addValueToVariable(host, schema.importModulePath!, 'COMPONENTS_NOROUNT', schema.componentName!);
+      addValueToVariable(
+        host,
+        schema.importModulePath!,
+        'COMPONENTS_NOROUNT',
+        schema.componentName!,
+      );
     } else {
       addValueToVariable(host, schema.importModulePath!, 'COMPONENTS', schema.componentName!);
       // routing
@@ -200,7 +218,10 @@ export function buildAlain(schema: CommonSchema): Rule {
       move(null!, schema.path + '/'),
     ]);
 
-    return chain([branchAndMerge(chain([addDeclaration(schema), mergeWith(templateSource)]))])(host, context);
+    return chain([branchAndMerge(chain([addDeclaration(schema), mergeWith(templateSource)]))])(
+      host,
+      context,
+    );
   };
 }
 

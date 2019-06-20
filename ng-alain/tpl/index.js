@@ -54,7 +54,11 @@ function runFixJS(options) {
     };
 }
 function default_1(options) {
-    return schematics_1.chain([genFiles(options), runFixJS(options), alain_1.buildAlain(options)]);
+    return schematics_1.chain([
+        genFiles(options),
+        runFixJS(options),
+        alain_1.buildAlain(Object.assign({ schematicName: 'tpl' }, options)),
+    ]);
 }
 exports.default = default_1;
 //# sourceMappingURL=index.js.map
