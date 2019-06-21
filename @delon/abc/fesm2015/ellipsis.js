@@ -177,11 +177,13 @@ class EllipsisComponent {
                 throw new Error('Ellipsis content must be string.');
             }
             /** @type {?} */
-            const text = (/** @type {?} */ (el.textContent));
+            const lengthText = (/** @type {?} */ (el.textContent));
             /** @type {?} */
-            const textLength = fullWidthRecognition ? this.getStrFullLength(text) : text.length;
+            const textLength = fullWidthRecognition
+                ? this.getStrFullLength(lengthText)
+                : lengthText.length;
             if (textLength <= length || length < 0) {
-                this.text = text;
+                this.text = lengthText;
             }
             else {
                 /** @type {?} */
@@ -191,8 +193,8 @@ class EllipsisComponent {
                 }
                 else {
                     displayText = fullWidthRecognition
-                        ? this.cutStrByFullLength(text, length)
-                        : text.slice(0, length);
+                        ? this.cutStrByFullLength(lengthText, length)
+                        : lengthText.slice(0, length);
                 }
                 this.text = displayText + tail;
             }
@@ -203,25 +205,25 @@ class EllipsisComponent {
             /** @type {?} */
             const orgNode = (/** @type {?} */ (shadowOrgEl.nativeElement));
             /** @type {?} */
-            const text = orgNode.innerText || (/** @type {?} */ (orgNode.textContent));
+            const lineText = orgNode.innerText || (/** @type {?} */ (orgNode.textContent));
             /** @type {?} */
             const lineHeight = parseInt((/** @type {?} */ (getComputedStyle(this.getEl('.ellipsis')).lineHeight)), 10);
             /** @type {?} */
             const targetHeight = lines * lineHeight;
             this.getEl('.ellipsis__handle').style.height = `${targetHeight}px`;
             if (orgNode.offsetHeight <= targetHeight) {
-                this.text = text;
-                this.targetCount = text.length;
+                this.text = lineText;
+                this.targetCount = lineText.length;
             }
             else {
                 // bisection
                 /** @type {?} */
-                const len = text.length;
+                const len = lineText.length;
                 /** @type {?} */
                 const mid = Math.ceil(len / 2);
                 /** @type {?} */
-                const count = this.bisection(targetHeight, mid, 0, len, text, shadowTextEl.nativeElement.firstChild);
-                this.text = text;
+                const count = this.bisection(targetHeight, mid, 0, len, lineText, shadowTextEl.nativeElement.firstChild);
+                this.text = lineText;
                 this.targetCount = count;
             }
             cdr.detectChanges();
