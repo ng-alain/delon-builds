@@ -3352,7 +3352,7 @@ ObjectWidget.decorators = [
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class RadioWidget extends ControlWidget {
+class RadioWidget extends ControlUIWidget {
     constructor() {
         super(...arguments);
         this.data = [];
@@ -3395,7 +3395,7 @@ RadioWidget.decorators = [
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class RateWidget extends ControlWidget {
+class RateWidget extends ControlUIWidget {
     constructor() {
         super(...arguments);
         this.hasText = false;
@@ -3410,11 +3410,12 @@ class RateWidget extends ControlWidget {
      * @return {?}
      */
     ngOnInit() {
-        this.count = this.schema.maximum || 5;
-        this.allowHalf = (this.schema.multipleOf || 0.5) === 0.5;
-        this.allowClear = toBool(this.ui.allowClear, true);
-        this.autoFocus = toBool(this.ui.autoFocus, false);
-        this.hasText = !!this.ui.text;
+        const { schema, ui } = this;
+        this.count = schema.maximum || 5;
+        this.allowHalf = (schema.multipleOf || 0.5) === 0.5;
+        this.allowClear = toBool(ui.allowClear, true);
+        this.autoFocus = toBool(ui.autoFocus, false);
+        this.hasText = !!ui.text;
     }
 }
 RateWidget.decorators = [
@@ -3430,7 +3431,7 @@ RateWidget.decorators = [
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class SelectWidget extends ControlWidget {
+class SelectWidget extends ControlUIWidget {
     constructor() {
         super(...arguments);
         this.hasGroup = false;
@@ -3500,12 +3501,12 @@ class SelectWidget extends ControlWidget {
         this.setValue(values == null ? undefined : values);
     }
     /**
-     * @param {?} value
+     * @param {?} status
      * @return {?}
      */
-    openChange(value) {
+    openChange(status) {
         if (this.ui.openChange) {
-            this.ui.openChange(value);
+            this.ui.openChange(status);
         }
     }
     /**

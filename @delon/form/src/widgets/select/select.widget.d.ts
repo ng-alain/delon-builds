@@ -1,8 +1,9 @@
 import { OnInit } from '@angular/core';
 import { SFValue } from '../../interface';
 import { SFSchemaEnum } from '../../schema';
-import { ControlWidget } from '../../widget';
-export declare class SelectWidget extends ControlWidget implements OnInit {
+import { ControlUIWidget } from '../../widget';
+import { SFSelectWidgetSchema } from './schema';
+export declare class SelectWidget extends ControlUIWidget<SFSelectWidgetSchema> implements OnInit {
     i: any;
     data: SFSchemaEnum[];
     _value: any;
@@ -11,7 +12,7 @@ export declare class SelectWidget extends ControlWidget implements OnInit {
     ngOnInit(): void;
     reset(value: SFValue): void;
     change(values: SFValue): void;
-    openChange(value: boolean): void;
+    openChange(status: boolean): void;
     searchChange(text: string): void;
     scrollToBottom(): void;
 }

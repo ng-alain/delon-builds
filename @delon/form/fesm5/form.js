@@ -4163,7 +4163,7 @@ var RadioWidget = /** @class */ (function (_super) {
                 }] }
     ];
     return RadioWidget;
-}(ControlWidget));
+}(ControlUIWidget));
 
 /**
  * @fileoverview added by tsickle
@@ -4193,11 +4193,12 @@ var RateWidget = /** @class */ (function (_super) {
      * @return {?}
      */
     function () {
-        this.count = this.schema.maximum || 5;
-        this.allowHalf = (this.schema.multipleOf || 0.5) === 0.5;
-        this.allowClear = toBool(this.ui.allowClear, true);
-        this.autoFocus = toBool(this.ui.autoFocus, false);
-        this.hasText = !!this.ui.text;
+        var _a = this, schema = _a.schema, ui = _a.ui;
+        this.count = schema.maximum || 5;
+        this.allowHalf = (schema.multipleOf || 0.5) === 0.5;
+        this.allowClear = toBool(ui.allowClear, true);
+        this.autoFocus = toBool(ui.autoFocus, false);
+        this.hasText = !!ui.text;
     };
     RateWidget.decorators = [
         { type: Component, args: [{
@@ -4208,7 +4209,7 @@ var RateWidget = /** @class */ (function (_super) {
                 }] }
     ];
     return RateWidget;
-}(ControlWidget));
+}(ControlUIWidget));
 
 /**
  * @fileoverview added by tsickle
@@ -4303,16 +4304,16 @@ var SelectWidget = /** @class */ (function (_super) {
         this.setValue(values == null ? undefined : values);
     };
     /**
-     * @param {?} value
+     * @param {?} status
      * @return {?}
      */
     SelectWidget.prototype.openChange = /**
-     * @param {?} value
+     * @param {?} status
      * @return {?}
      */
-    function (value) {
+    function (status) {
         if (this.ui.openChange) {
-            this.ui.openChange(value);
+            this.ui.openChange(status);
         }
     };
     /**
@@ -4359,7 +4360,7 @@ var SelectWidget = /** @class */ (function (_super) {
                 }] }
     ];
     return SelectWidget;
-}(ControlWidget));
+}(ControlUIWidget));
 
 /**
  * @fileoverview added by tsickle
