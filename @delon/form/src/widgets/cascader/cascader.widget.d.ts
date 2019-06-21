@@ -1,8 +1,9 @@
 import { OnInit } from '@angular/core';
+import { SFCascaderWidgetSchema } from './schema';
 import { SFValue } from '../../interface';
 import { SFSchemaEnum } from '../../schema';
-import { ControlWidget } from '../../widget';
-export declare class CascaderWidget extends ControlWidget implements OnInit {
+import { ControlUIWidget } from '../../widget';
+export declare class CascaderWidget extends ControlUIWidget<SFCascaderWidgetSchema> implements OnInit {
     clearText: string;
     showArrow: boolean;
     showInput: boolean;

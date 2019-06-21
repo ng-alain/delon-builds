@@ -434,7 +434,7 @@ function getData(schema, ui, formData, asyncArgs) {
          * @param {?} list
          * @return {?}
          */
-        list => getEnum(list, formData, (/** @type {?} */ (schema.readOnly))))));
+        (list) => getEnum(list, formData, (/** @type {?} */ (schema.readOnly))))));
     }
     return of(getCopyEnum((/** @type {?} */ (schema.enum)), formData, (/** @type {?} */ (schema.readOnly))));
 }
@@ -2381,7 +2381,7 @@ SFTemplateDirective.propDecorators = {
  */
 /**
  * @abstract
- * @template T
+ * @template T, UIT
  */
 class Widget {
     /**
@@ -2491,6 +2491,16 @@ class ControlWidget extends Widget {
      */
     reset(_value) { }
 }
+/**
+ * @template UIT
+ */
+class ControlUIWidget extends Widget {
+    /**
+     * @param {?} _value
+     * @return {?}
+     */
+    reset(_value) { }
+}
 class ArrayLayoutWidget extends Widget {
     /**
      * @param {?} _value
@@ -2543,12 +2553,13 @@ class ArrayWidget extends ArrayLayoutWidget {
      * @return {?}
      */
     ngOnInit() {
-        if (this.ui.grid && this.ui.grid.arraySpan) {
-            this.arraySpan = this.ui.grid.arraySpan;
+        const { grid, addTitle, addType, removable, removeTitle } = this.ui;
+        if (grid && grid.arraySpan) {
+            this.arraySpan = grid.arraySpan;
         }
-        this.addTitle = this.ui.addTitle || this.l.addText;
-        this.addType = this.ui.addType || 'dashed';
-        this.removeTitle = this.ui.removable === false ? null : this.ui.removeTitle || this.l.removeText;
+        this.addTitle = addTitle || this.l.addText;
+        this.addType = addType || 'dashed';
+        this.removeTitle = removable === false ? null : removeTitle || this.l.removeText;
     }
     /**
      * @return {?}
@@ -2577,7 +2588,7 @@ ArrayWidget.decorators = [
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class AutoCompleteWidget extends ControlWidget {
+class AutoCompleteWidget extends ControlUIWidget {
     constructor() {
         super(...arguments);
         this.i = {};
@@ -2597,21 +2608,24 @@ class AutoCompleteWidget extends ControlWidget {
      * @return {?}
      */
     ngAfterViewInit() {
+        const { backfill, defaultActiveFirstOption, nzWidth, filterOption, asyncData } = this.ui;
         this.i = {
-            backfill: toBool(this.ui.backfill, false),
-            defaultActiveFirstOption: toBool(this.ui.defaultActiveFirstOption, true),
-            width: this.ui.width || undefined,
+            backfill: toBool(backfill, false),
+            defaultActiveFirstOption: toBool(defaultActiveFirstOption, true),
+            width: nzWidth || undefined,
         };
-        this.filterOption = this.ui.filterOption == null ? true : this.ui.filterOption;
-        if (typeof this.filterOption === 'boolean') {
-            this.filterOption = (/**
+        /** @type {?} */
+        let filterOptionValue = filterOption == null ? true : filterOption;
+        if (typeof filterOptionValue === 'boolean') {
+            filterOptionValue = (/**
              * @param {?} input
              * @param {?} option
              * @return {?}
              */
             (input, option) => option.label.toLowerCase().indexOf((input || '').toLowerCase()) > -1);
         }
-        this.isAsync = !!this.ui.asyncData;
+        this.filterOption = filterOptionValue;
+        this.isAsync = !!asyncData;
         /** @type {?} */
         const orgTime = +(this.ui.debounceTime || 0);
         /** @type {?} */
@@ -2620,7 +2634,7 @@ class AutoCompleteWidget extends ControlWidget {
          * @param {?} input
          * @return {?}
          */
-        input => (this.isAsync ? (/** @type {?} */ (this.ui.asyncData))(input) : this.filterData(input)))), map((/**
+        input => (this.isAsync ? (/** @type {?} */ (asyncData))(input) : this.filterData(input)))), map((/**
          * @param {?} res
          * @return {?}
          */
@@ -2704,7 +2718,7 @@ BooleanWidget.decorators = [
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class CascaderWidget extends ControlWidget {
+class CascaderWidget extends ControlUIWidget {
     constructor() {
         super(...arguments);
         this.data = [];
@@ -4279,5 +4293,5 @@ DelonFormModule.decorators = [
             },] }
 ];
 
-export { AjvSchemaValidatorFactory, ArrayLayoutWidget, ArrayProperty, ArrayWidget, AtomicProperty, AutoCompleteWidget, BooleanProperty, BooleanWidget, CascaderWidget, CheckboxWidget, ControlWidget, CustomWidget, DateWidget, DelonFormConfig, DelonFormModule, ERRORSDEFAULT, FormProperty, FormPropertyFactory, MentionWidget, NumberProperty, NumberWidget, NzWidgetRegistry, ObjectLayoutWidget, ObjectProperty, ObjectWidget, PropertyGroup, RadioWidget, RateWidget, SFComponent, SFFixedDirective, SFItemComponent, SchemaValidatorFactory, SelectWidget, SliderWidget, StringProperty, StringWidget, TagWidget, TextareaWidget, TimeWidget, TransferWidget, TreeSelectWidget, UploadWidget, Widget, WidgetFactory, WidgetRegistry, useFactory, TerminatorService as ɵa, SFItemWrapComponent as ɵb, SFTemplateDirective as ɵc, TextWidget as ɵd };
+export { AjvSchemaValidatorFactory, ArrayLayoutWidget, ArrayProperty, ArrayWidget, AtomicProperty, AutoCompleteWidget, BooleanProperty, BooleanWidget, CascaderWidget, CheckboxWidget, ControlUIWidget, ControlWidget, CustomWidget, DateWidget, DelonFormConfig, DelonFormModule, ERRORSDEFAULT, FormProperty, FormPropertyFactory, MentionWidget, NumberProperty, NumberWidget, NzWidgetRegistry, ObjectLayoutWidget, ObjectProperty, ObjectWidget, PropertyGroup, RadioWidget, RateWidget, SFComponent, SFFixedDirective, SFItemComponent, SchemaValidatorFactory, SelectWidget, SliderWidget, StringProperty, StringWidget, TagWidget, TextareaWidget, TimeWidget, TransferWidget, TreeSelectWidget, UploadWidget, Widget, WidgetFactory, WidgetRegistry, useFactory, TerminatorService as ɵa, SFItemWrapComponent as ɵb, SFTemplateDirective as ɵc, TextWidget as ɵd };
 //# sourceMappingURL=form.js.map

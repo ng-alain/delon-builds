@@ -2868,7 +2868,7 @@ var SFTemplateDirective = /** @class */ (function () {
  */
 /**
  * @abstract
- * @template T
+ * @template T, UIT
  */
 var Widget = /** @class */ (function () {
     function Widget(cd, injector, sfItemComp, sfComp) {
@@ -3015,6 +3015,28 @@ var ControlWidget = /** @class */ (function (_super) {
     function (_value) { };
     return ControlWidget;
 }(Widget));
+/**
+ * @template UIT
+ */
+var  /**
+ * @template UIT
+ */
+ControlUIWidget = /** @class */ (function (_super) {
+    __extends(ControlUIWidget, _super);
+    function ControlUIWidget() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    /**
+     * @param {?} _value
+     * @return {?}
+     */
+    ControlUIWidget.prototype.reset = /**
+     * @param {?} _value
+     * @return {?}
+     */
+    function (_value) { };
+    return ControlUIWidget;
+}(Widget));
 var ArrayLayoutWidget = /** @class */ (function (_super) {
     __extends(ArrayLayoutWidget, _super);
     function ArrayLayoutWidget() {
@@ -3102,12 +3124,13 @@ var ArrayWidget = /** @class */ (function (_super) {
      * @return {?}
      */
     function () {
-        if (this.ui.grid && this.ui.grid.arraySpan) {
-            this.arraySpan = this.ui.grid.arraySpan;
+        var _a = this.ui, grid = _a.grid, addTitle = _a.addTitle, addType = _a.addType, removable = _a.removable, removeTitle = _a.removeTitle;
+        if (grid && grid.arraySpan) {
+            this.arraySpan = grid.arraySpan;
         }
-        this.addTitle = this.ui.addTitle || this.l.addText;
-        this.addType = this.ui.addType || 'dashed';
-        this.removeTitle = this.ui.removable === false ? null : this.ui.removeTitle || this.l.removeText;
+        this.addTitle = addTitle || this.l.addText;
+        this.addType = addType || 'dashed';
+        this.removeTitle = removable === false ? null : removeTitle || this.l.removeText;
     };
     /**
      * @return {?}
@@ -3174,21 +3197,24 @@ var AutoCompleteWidget = /** @class */ (function (_super) {
      */
     function () {
         var _this = this;
+        var _a = this.ui, backfill = _a.backfill, defaultActiveFirstOption = _a.defaultActiveFirstOption, nzWidth = _a.nzWidth, filterOption = _a.filterOption, asyncData = _a.asyncData;
         this.i = {
-            backfill: toBool(this.ui.backfill, false),
-            defaultActiveFirstOption: toBool(this.ui.defaultActiveFirstOption, true),
-            width: this.ui.width || undefined,
+            backfill: toBool(backfill, false),
+            defaultActiveFirstOption: toBool(defaultActiveFirstOption, true),
+            width: nzWidth || undefined,
         };
-        this.filterOption = this.ui.filterOption == null ? true : this.ui.filterOption;
-        if (typeof this.filterOption === 'boolean') {
-            this.filterOption = (/**
+        /** @type {?} */
+        var filterOptionValue = filterOption == null ? true : filterOption;
+        if (typeof filterOptionValue === 'boolean') {
+            filterOptionValue = (/**
              * @param {?} input
              * @param {?} option
              * @return {?}
              */
             function (input, option) { return option.label.toLowerCase().indexOf((input || '').toLowerCase()) > -1; });
         }
-        this.isAsync = !!this.ui.asyncData;
+        this.filterOption = filterOptionValue;
+        this.isAsync = !!asyncData;
         /** @type {?} */
         var orgTime = +(this.ui.debounceTime || 0);
         /** @type {?} */
@@ -3197,7 +3223,7 @@ var AutoCompleteWidget = /** @class */ (function (_super) {
          * @param {?} input
          * @return {?}
          */
-        function (input) { return (_this.isAsync ? (/** @type {?} */ (_this.ui.asyncData))(input) : _this.filterData(input)); })), map((/**
+        function (input) { return (_this.isAsync ? (/** @type {?} */ (asyncData))(input) : _this.filterData(input)); })), map((/**
          * @param {?} res
          * @return {?}
          */
@@ -3276,7 +3302,7 @@ var AutoCompleteWidget = /** @class */ (function (_super) {
         ngModel: [{ type: ViewChild, args: [NgModel, { static: false },] }]
     };
     return AutoCompleteWidget;
-}(ControlWidget));
+}(ControlUIWidget));
 
 /**
  * @fileoverview added by tsickle
@@ -3419,7 +3445,7 @@ var CascaderWidget = /** @class */ (function (_super) {
                 }] }
     ];
     return CascaderWidget;
-}(ControlWidget));
+}(ControlUIWidget));
 
 /**
  * @fileoverview added by tsickle
@@ -5235,5 +5261,5 @@ var DelonFormModule = /** @class */ (function () {
     return DelonFormModule;
 }());
 
-export { AjvSchemaValidatorFactory, ArrayLayoutWidget, ArrayProperty, ArrayWidget, AtomicProperty, AutoCompleteWidget, BooleanProperty, BooleanWidget, CascaderWidget, CheckboxWidget, ControlWidget, CustomWidget, DateWidget, DelonFormConfig, DelonFormModule, ERRORSDEFAULT, FormProperty, FormPropertyFactory, MentionWidget, NumberProperty, NumberWidget, NzWidgetRegistry, ObjectLayoutWidget, ObjectProperty, ObjectWidget, PropertyGroup, RadioWidget, RateWidget, SFComponent, SFFixedDirective, SFItemComponent, SchemaValidatorFactory, SelectWidget, SliderWidget, StringProperty, StringWidget, TagWidget, TextareaWidget, TimeWidget, TransferWidget, TreeSelectWidget, UploadWidget, Widget, WidgetFactory, WidgetRegistry, useFactory, TerminatorService as ɵa, SFItemWrapComponent as ɵb, SFTemplateDirective as ɵc, TextWidget as ɵd };
+export { AjvSchemaValidatorFactory, ArrayLayoutWidget, ArrayProperty, ArrayWidget, AtomicProperty, AutoCompleteWidget, BooleanProperty, BooleanWidget, CascaderWidget, CheckboxWidget, ControlUIWidget, ControlWidget, CustomWidget, DateWidget, DelonFormConfig, DelonFormModule, ERRORSDEFAULT, FormProperty, FormPropertyFactory, MentionWidget, NumberProperty, NumberWidget, NzWidgetRegistry, ObjectLayoutWidget, ObjectProperty, ObjectWidget, PropertyGroup, RadioWidget, RateWidget, SFComponent, SFFixedDirective, SFItemComponent, SchemaValidatorFactory, SelectWidget, SliderWidget, StringProperty, StringWidget, TagWidget, TextareaWidget, TimeWidget, TransferWidget, TreeSelectWidget, UploadWidget, Widget, WidgetFactory, WidgetRegistry, useFactory, TerminatorService as ɵa, SFItemWrapComponent as ɵb, SFTemplateDirective as ɵc, TextWidget as ɵd };
 //# sourceMappingURL=form.js.map
