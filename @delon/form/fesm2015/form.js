@@ -3550,7 +3550,7 @@ SelectWidget.decorators = [
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class SliderWidget extends ControlWidget {
+class SliderWidget extends ControlUIWidget {
     constructor() {
         super(...arguments);
         this._formatter = (/**
@@ -3558,8 +3558,9 @@ class SliderWidget extends ControlWidget {
          * @return {?}
          */
         (value) => {
-            if (this.ui.formatter)
-                return this.ui.formatter(value);
+            const { formatter } = this.ui;
+            if (formatter)
+                return formatter(value);
             return value;
         });
     }
@@ -3567,12 +3568,12 @@ class SliderWidget extends ControlWidget {
      * @return {?}
      */
     ngOnInit() {
-        this.min = this.schema.minimum || 0;
-        this.max = this.schema.maximum || 100;
-        this.step = this.schema.multipleOf || 1;
-        this.marks = this.ui.marks || null;
-        /** @type {?} */
-        const included = this.ui.included;
+        const { minimum, maximum, multipleOf } = this.schema;
+        this.min = minimum || 0;
+        this.max = maximum || 100;
+        this.step = multipleOf || 1;
+        const { marks, included } = this.ui;
+        this.marks = marks || null;
         this.included = typeof included === 'undefined' ? true : included;
     }
     /**
@@ -3580,8 +3581,9 @@ class SliderWidget extends ControlWidget {
      * @return {?}
      */
     _afterChange(value) {
-        if (this.ui.afterChange)
-            this.ui.afterChange(value);
+        const { afterChange } = this.ui;
+        if (afterChange)
+            return afterChange(value);
     }
 }
 SliderWidget.decorators = [
@@ -3597,19 +3599,13 @@ SliderWidget.decorators = [
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class StringWidget extends ControlWidget {
+class StringWidget extends ControlUIWidget {
     /**
      * @return {?}
      */
     ngOnInit() {
-        this.type = !!(this.ui.addOnAfter ||
-            this.ui.addOnBefore ||
-            this.ui.addOnAfterIcon ||
-            this.ui.addOnBeforeIcon ||
-            this.ui.prefix ||
-            this.ui.prefixIcon ||
-            this.ui.suffix ||
-            this.ui.suffixIcon)
+        const { addOnAfter, addOnAfterIcon, addOnBefore, addOnBeforeIcon, prefix, prefixIcon, suffix, suffixIcon } = this.ui;
+        this.type = !!(addOnAfter || addOnBefore || addOnAfterIcon || addOnBeforeIcon || prefix || prefixIcon || suffix || suffixIcon)
             ? 'addon'
             : '';
     }
@@ -3636,7 +3632,7 @@ StringWidget.decorators = [
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class TagWidget extends ControlWidget {
+class TagWidget extends ControlUIWidget {
     /**
      * @param {?} value
      * @return {?}
@@ -3706,7 +3702,7 @@ TagWidget.decorators = [
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class TextWidget extends ControlWidget {
+class TextWidget extends ControlUIWidget {
     /**
      * @return {?}
      */
@@ -3727,7 +3723,7 @@ TextWidget.decorators = [
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class TextareaWidget extends ControlWidget {
+class TextareaWidget extends ControlUIWidget {
     constructor() {
         super(...arguments);
         this.autosize = true;
@@ -3736,8 +3732,9 @@ class TextareaWidget extends ControlWidget {
      * @return {?}
      */
     ngOnInit() {
-        if (this.ui.autosize != null) {
-            this.autosize = this.ui.autosize;
+        const { autosize } = this.ui;
+        if (autosize != null) {
+            this.autosize = autosize;
         }
     }
 }
@@ -3754,7 +3751,7 @@ TextareaWidget.decorators = [
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class TimeWidget extends ControlWidget {
+class TimeWidget extends ControlUIWidget {
     constructor() {
         super(...arguments);
         this.displayValue = null;
@@ -3829,7 +3826,7 @@ TimeWidget.decorators = [
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class TransferWidget extends ControlWidget {
+class TransferWidget extends ControlUIWidget {
     constructor() {
         super(...arguments);
         this.list = [];
@@ -3846,11 +3843,12 @@ class TransferWidget extends ControlWidget {
      * @return {?}
      */
     ngOnInit() {
+        const { titles, operations, itemUnit, itemsUnit } = this.ui;
         this.i = {
-            titles: this.ui.titles || ['', ''],
-            operations: this.ui.operations || ['', ''],
-            itemUnit: this.ui.itemUnit || '项',
-            itemsUnit: this.ui.itemsUnit || '项',
+            titles: titles || ['', ''],
+            operations: operations || ['', ''],
+            itemUnit: itemUnit || '项',
+            itemsUnit: itemsUnit || '项',
         };
     }
     /**
@@ -3949,7 +3947,7 @@ TransferWidget.decorators = [
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class TreeSelectWidget extends ControlWidget {
+class TreeSelectWidget extends ControlUIWidget {
     constructor() {
         super(...arguments);
         this.data = [];
@@ -4032,7 +4030,7 @@ TreeSelectWidget.decorators = [
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class UploadWidget extends ControlWidget {
+class UploadWidget extends ControlUIWidget {
     constructor() {
         super(...arguments);
         this.fileList = [];
@@ -4295,5 +4293,5 @@ DelonFormModule.decorators = [
             },] }
 ];
 
-export { AjvSchemaValidatorFactory, ArrayLayoutWidget, ArrayProperty, ArrayWidget, AtomicProperty, AutoCompleteWidget, BooleanProperty, BooleanWidget, CascaderWidget, CheckboxWidget, ControlUIWidget, ControlWidget, CustomWidget, DateWidget, DelonFormConfig, DelonFormModule, ERRORSDEFAULT, FormProperty, FormPropertyFactory, MentionWidget, NumberProperty, NumberWidget, NzWidgetRegistry, ObjectLayoutWidget, ObjectProperty, ObjectWidget, PropertyGroup, RadioWidget, RateWidget, SFComponent, SFFixedDirective, SFItemComponent, SchemaValidatorFactory, SelectWidget, SliderWidget, StringProperty, StringWidget, TagWidget, TextareaWidget, TimeWidget, TransferWidget, TreeSelectWidget, UploadWidget, Widget, WidgetFactory, WidgetRegistry, useFactory, TerminatorService as ɵa, SFItemWrapComponent as ɵb, SFTemplateDirective as ɵc, TextWidget as ɵd };
+export { AjvSchemaValidatorFactory, ArrayLayoutWidget, ArrayProperty, ArrayWidget, AtomicProperty, AutoCompleteWidget, BooleanProperty, BooleanWidget, CascaderWidget, CheckboxWidget, ControlUIWidget, ControlWidget, CustomWidget, DateWidget, DelonFormConfig, DelonFormModule, ERRORSDEFAULT, FormProperty, FormPropertyFactory, MentionWidget, NumberProperty, NumberWidget, NzWidgetRegistry, ObjectLayoutWidget, ObjectProperty, ObjectWidget, PropertyGroup, RadioWidget, RateWidget, SFComponent, SFFixedDirective, SFItemComponent, SchemaValidatorFactory, SelectWidget, SliderWidget, StringProperty, StringWidget, TagWidget, TextWidget, TextareaWidget, TimeWidget, TransferWidget, TreeSelectWidget, UploadWidget, Widget, WidgetFactory, WidgetRegistry, useFactory, TerminatorService as ɵa, SFItemWrapComponent as ɵb, SFTemplateDirective as ɵc };
 //# sourceMappingURL=form.js.map

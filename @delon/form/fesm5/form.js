@@ -4375,8 +4375,9 @@ var SliderWidget = /** @class */ (function (_super) {
          * @return {?}
          */
         function (value) {
-            if (_this.ui.formatter)
-                return _this.ui.formatter(value);
+            var formatter = _this.ui.formatter;
+            if (formatter)
+                return formatter(value);
             return value;
         });
         return _this;
@@ -4388,12 +4389,12 @@ var SliderWidget = /** @class */ (function (_super) {
      * @return {?}
      */
     function () {
-        this.min = this.schema.minimum || 0;
-        this.max = this.schema.maximum || 100;
-        this.step = this.schema.multipleOf || 1;
-        this.marks = this.ui.marks || null;
-        /** @type {?} */
-        var included = this.ui.included;
+        var _a = this.schema, minimum = _a.minimum, maximum = _a.maximum, multipleOf = _a.multipleOf;
+        this.min = minimum || 0;
+        this.max = maximum || 100;
+        this.step = multipleOf || 1;
+        var _b = this.ui, marks = _b.marks, included = _b.included;
+        this.marks = marks || null;
         this.included = typeof included === 'undefined' ? true : included;
     };
     /**
@@ -4405,8 +4406,9 @@ var SliderWidget = /** @class */ (function (_super) {
      * @return {?}
      */
     function (value) {
-        if (this.ui.afterChange)
-            this.ui.afterChange(value);
+        var afterChange = this.ui.afterChange;
+        if (afterChange)
+            return afterChange(value);
     };
     SliderWidget.decorators = [
         { type: Component, args: [{
@@ -4417,7 +4419,7 @@ var SliderWidget = /** @class */ (function (_super) {
                 }] }
     ];
     return SliderWidget;
-}(ControlWidget));
+}(ControlUIWidget));
 
 /**
  * @fileoverview added by tsickle
@@ -4435,14 +4437,8 @@ var StringWidget = /** @class */ (function (_super) {
      * @return {?}
      */
     function () {
-        this.type = !!(this.ui.addOnAfter ||
-            this.ui.addOnBefore ||
-            this.ui.addOnAfterIcon ||
-            this.ui.addOnBeforeIcon ||
-            this.ui.prefix ||
-            this.ui.prefixIcon ||
-            this.ui.suffix ||
-            this.ui.suffixIcon)
+        var _a = this.ui, addOnAfter = _a.addOnAfter, addOnAfterIcon = _a.addOnAfterIcon, addOnBefore = _a.addOnBefore, addOnBeforeIcon = _a.addOnBeforeIcon, prefix = _a.prefix, prefixIcon = _a.prefixIcon, suffix = _a.suffix, suffixIcon = _a.suffixIcon;
+        this.type = !!(addOnAfter || addOnBefore || addOnAfterIcon || addOnBeforeIcon || prefix || prefixIcon || suffix || suffixIcon)
             ? 'addon'
             : '';
     };
@@ -4468,7 +4464,7 @@ var StringWidget = /** @class */ (function (_super) {
                 }] }
     ];
     return StringWidget;
-}(ControlWidget));
+}(ControlUIWidget));
 
 /**
  * @fileoverview added by tsickle
@@ -4563,7 +4559,7 @@ var TagWidget = /** @class */ (function (_super) {
                 }] }
     ];
     return TagWidget;
-}(ControlWidget));
+}(ControlUIWidget));
 
 /**
  * @fileoverview added by tsickle
@@ -4592,7 +4588,7 @@ var TextWidget = /** @class */ (function (_super) {
                 }] }
     ];
     return TextWidget;
-}(ControlWidget));
+}(ControlUIWidget));
 
 /**
  * @fileoverview added by tsickle
@@ -4612,8 +4608,9 @@ var TextareaWidget = /** @class */ (function (_super) {
      * @return {?}
      */
     function () {
-        if (this.ui.autosize != null) {
-            this.autosize = this.ui.autosize;
+        var autosize = this.ui.autosize;
+        if (autosize != null) {
+            this.autosize = autosize;
         }
     };
     TextareaWidget.decorators = [
@@ -4625,7 +4622,7 @@ var TextareaWidget = /** @class */ (function (_super) {
                 }] }
     ];
     return TextareaWidget;
-}(ControlWidget));
+}(ControlUIWidget));
 
 /**
  * @fileoverview added by tsickle
@@ -4714,7 +4711,7 @@ var TimeWidget = /** @class */ (function (_super) {
                 }] }
     ];
     return TimeWidget;
-}(ControlWidget));
+}(ControlUIWidget));
 
 /**
  * @fileoverview added by tsickle
@@ -4742,11 +4739,12 @@ var TransferWidget = /** @class */ (function (_super) {
      * @return {?}
      */
     function () {
+        var _a = this.ui, titles = _a.titles, operations = _a.operations, itemUnit = _a.itemUnit, itemsUnit = _a.itemsUnit;
         this.i = {
-            titles: this.ui.titles || ['', ''],
-            operations: this.ui.operations || ['', ''],
-            itemUnit: this.ui.itemUnit || '项',
-            itemsUnit: this.ui.itemsUnit || '项',
+            titles: titles || ['', ''],
+            operations: operations || ['', ''],
+            itemUnit: itemUnit || '项',
+            itemsUnit: itemsUnit || '项',
         };
     };
     /**
@@ -4862,7 +4860,7 @@ var TransferWidget = /** @class */ (function (_super) {
                 }] }
     ];
     return TransferWidget;
-}(ControlWidget));
+}(ControlUIWidget));
 
 /**
  * @fileoverview added by tsickle
@@ -4965,7 +4963,7 @@ var TreeSelectWidget = /** @class */ (function (_super) {
                 }] }
     ];
     return TreeSelectWidget;
-}(ControlWidget));
+}(ControlUIWidget));
 
 /**
  * @fileoverview added by tsickle
@@ -5139,7 +5137,7 @@ var UploadWidget = /** @class */ (function (_super) {
                 }] }
     ];
     return UploadWidget;
-}(ControlWidget));
+}(ControlUIWidget));
 
 /**
  * @fileoverview added by tsickle
@@ -5269,5 +5267,5 @@ var DelonFormModule = /** @class */ (function () {
     return DelonFormModule;
 }());
 
-export { AjvSchemaValidatorFactory, ArrayLayoutWidget, ArrayProperty, ArrayWidget, AtomicProperty, AutoCompleteWidget, BooleanProperty, BooleanWidget, CascaderWidget, CheckboxWidget, ControlUIWidget, ControlWidget, CustomWidget, DateWidget, DelonFormConfig, DelonFormModule, ERRORSDEFAULT, FormProperty, FormPropertyFactory, MentionWidget, NumberProperty, NumberWidget, NzWidgetRegistry, ObjectLayoutWidget, ObjectProperty, ObjectWidget, PropertyGroup, RadioWidget, RateWidget, SFComponent, SFFixedDirective, SFItemComponent, SchemaValidatorFactory, SelectWidget, SliderWidget, StringProperty, StringWidget, TagWidget, TextareaWidget, TimeWidget, TransferWidget, TreeSelectWidget, UploadWidget, Widget, WidgetFactory, WidgetRegistry, useFactory, TerminatorService as ɵa, SFItemWrapComponent as ɵb, SFTemplateDirective as ɵc, TextWidget as ɵd };
+export { AjvSchemaValidatorFactory, ArrayLayoutWidget, ArrayProperty, ArrayWidget, AtomicProperty, AutoCompleteWidget, BooleanProperty, BooleanWidget, CascaderWidget, CheckboxWidget, ControlUIWidget, ControlWidget, CustomWidget, DateWidget, DelonFormConfig, DelonFormModule, ERRORSDEFAULT, FormProperty, FormPropertyFactory, MentionWidget, NumberProperty, NumberWidget, NzWidgetRegistry, ObjectLayoutWidget, ObjectProperty, ObjectWidget, PropertyGroup, RadioWidget, RateWidget, SFComponent, SFFixedDirective, SFItemComponent, SchemaValidatorFactory, SelectWidget, SliderWidget, StringProperty, StringWidget, TagWidget, TextWidget, TextareaWidget, TimeWidget, TransferWidget, TreeSelectWidget, UploadWidget, Widget, WidgetFactory, WidgetRegistry, useFactory, TerminatorService as ɵa, SFItemWrapComponent as ɵb, SFTemplateDirective as ɵc };
 //# sourceMappingURL=form.js.map

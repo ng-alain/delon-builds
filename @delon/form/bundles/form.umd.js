@@ -4450,8 +4450,9 @@
              * @return {?}
              */
             function (value) {
-                if (_this.ui.formatter)
-                    return _this.ui.formatter(value);
+                var formatter = _this.ui.formatter;
+                if (formatter)
+                    return formatter(value);
                 return value;
             });
             return _this;
@@ -4463,12 +4464,12 @@
          * @return {?}
          */
         function () {
-            this.min = this.schema.minimum || 0;
-            this.max = this.schema.maximum || 100;
-            this.step = this.schema.multipleOf || 1;
-            this.marks = this.ui.marks || null;
-            /** @type {?} */
-            var included = this.ui.included;
+            var _a = this.schema, minimum = _a.minimum, maximum = _a.maximum, multipleOf = _a.multipleOf;
+            this.min = minimum || 0;
+            this.max = maximum || 100;
+            this.step = multipleOf || 1;
+            var _b = this.ui, marks = _b.marks, included = _b.included;
+            this.marks = marks || null;
             this.included = typeof included === 'undefined' ? true : included;
         };
         /**
@@ -4480,8 +4481,9 @@
          * @return {?}
          */
         function (value) {
-            if (this.ui.afterChange)
-                this.ui.afterChange(value);
+            var afterChange = this.ui.afterChange;
+            if (afterChange)
+                return afterChange(value);
         };
         SliderWidget.decorators = [
             { type: core.Component, args: [{
@@ -4492,7 +4494,7 @@
                     }] }
         ];
         return SliderWidget;
-    }(ControlWidget));
+    }(ControlUIWidget));
 
     /**
      * @fileoverview added by tsickle
@@ -4510,14 +4512,8 @@
          * @return {?}
          */
         function () {
-            this.type = !!(this.ui.addOnAfter ||
-                this.ui.addOnBefore ||
-                this.ui.addOnAfterIcon ||
-                this.ui.addOnBeforeIcon ||
-                this.ui.prefix ||
-                this.ui.prefixIcon ||
-                this.ui.suffix ||
-                this.ui.suffixIcon)
+            var _a = this.ui, addOnAfter = _a.addOnAfter, addOnAfterIcon = _a.addOnAfterIcon, addOnBefore = _a.addOnBefore, addOnBeforeIcon = _a.addOnBeforeIcon, prefix = _a.prefix, prefixIcon = _a.prefixIcon, suffix = _a.suffix, suffixIcon = _a.suffixIcon;
+            this.type = !!(addOnAfter || addOnBefore || addOnAfterIcon || addOnBeforeIcon || prefix || prefixIcon || suffix || suffixIcon)
                 ? 'addon'
                 : '';
         };
@@ -4543,7 +4539,7 @@
                     }] }
         ];
         return StringWidget;
-    }(ControlWidget));
+    }(ControlUIWidget));
 
     /**
      * @fileoverview added by tsickle
@@ -4638,7 +4634,7 @@
                     }] }
         ];
         return TagWidget;
-    }(ControlWidget));
+    }(ControlUIWidget));
 
     /**
      * @fileoverview added by tsickle
@@ -4667,7 +4663,7 @@
                     }] }
         ];
         return TextWidget;
-    }(ControlWidget));
+    }(ControlUIWidget));
 
     /**
      * @fileoverview added by tsickle
@@ -4687,8 +4683,9 @@
          * @return {?}
          */
         function () {
-            if (this.ui.autosize != null) {
-                this.autosize = this.ui.autosize;
+            var autosize = this.ui.autosize;
+            if (autosize != null) {
+                this.autosize = autosize;
             }
         };
         TextareaWidget.decorators = [
@@ -4700,7 +4697,7 @@
                     }] }
         ];
         return TextareaWidget;
-    }(ControlWidget));
+    }(ControlUIWidget));
 
     /**
      * @fileoverview added by tsickle
@@ -4789,7 +4786,7 @@
                     }] }
         ];
         return TimeWidget;
-    }(ControlWidget));
+    }(ControlUIWidget));
 
     /**
      * @fileoverview added by tsickle
@@ -4817,11 +4814,12 @@
          * @return {?}
          */
         function () {
+            var _a = this.ui, titles = _a.titles, operations = _a.operations, itemUnit = _a.itemUnit, itemsUnit = _a.itemsUnit;
             this.i = {
-                titles: this.ui.titles || ['', ''],
-                operations: this.ui.operations || ['', ''],
-                itemUnit: this.ui.itemUnit || '项',
-                itemsUnit: this.ui.itemsUnit || '项',
+                titles: titles || ['', ''],
+                operations: operations || ['', ''],
+                itemUnit: itemUnit || '项',
+                itemsUnit: itemsUnit || '项',
             };
         };
         /**
@@ -4937,7 +4935,7 @@
                     }] }
         ];
         return TransferWidget;
-    }(ControlWidget));
+    }(ControlUIWidget));
 
     /**
      * @fileoverview added by tsickle
@@ -5040,7 +5038,7 @@
                     }] }
         ];
         return TreeSelectWidget;
-    }(ControlWidget));
+    }(ControlUIWidget));
 
     /**
      * @fileoverview added by tsickle
@@ -5214,7 +5212,7 @@
                     }] }
         ];
         return UploadWidget;
-    }(ControlWidget));
+    }(ControlUIWidget));
 
     /**
      * @fileoverview added by tsickle
@@ -5382,6 +5380,7 @@
     exports.StringProperty = StringProperty;
     exports.StringWidget = StringWidget;
     exports.TagWidget = TagWidget;
+    exports.TextWidget = TextWidget;
     exports.TextareaWidget = TextareaWidget;
     exports.TimeWidget = TimeWidget;
     exports.TransferWidget = TransferWidget;
@@ -5394,7 +5393,6 @@
     exports.ɵa = TerminatorService;
     exports.ɵb = SFItemWrapComponent;
     exports.ɵc = SFTemplateDirective;
-    exports.ɵd = TextWidget;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 

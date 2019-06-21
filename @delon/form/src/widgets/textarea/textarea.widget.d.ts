@@ -1,6 +1,8 @@
 import { OnInit } from '@angular/core';
-import { ControlWidget } from '../../widget';
-export declare class TextareaWidget extends ControlWidget implements OnInit {
-    autosize: any;
+import { AutoSizeType } from 'ng-zorro-antd/input';
+import { ControlUIWidget } from '../../widget';
+import { SFTextareaWidgetSchema } from './schema';
+export declare class TextareaWidget extends ControlUIWidget<SFTextareaWidgetSchema> implements OnInit {
+    autosize: boolean | AutoSizeType;
     ngOnInit(): void;
 }
