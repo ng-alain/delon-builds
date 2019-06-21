@@ -2,6 +2,8 @@ import { ACLCanType } from '@delon/acl';
 import { ErrorSchema } from '../errors';
 export declare type SFPlacement = 'top' | 'left' | 'right' | 'bottom' | 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight' | 'leftTop' | 'leftBottom' | 'rightTop' | 'rightBottom';
 export declare type SFTrigger = 'click' | 'focus' | 'hover';
+export declare type SFLSSize = 'large' | 'small';
+export declare type SFDLSSize = 'default' | 'large' | 'small';
 export interface SFGridSizeSchema {
     span?: number | null;
     order?: number | null;
@@ -45,7 +47,7 @@ export interface SFRenderSchema {
     /**
      * 元素组件大小
      */
-    size?: 'default' | 'large' | 'small';
+    size?: SFDLSSize;
     /**
      * 指定宽度，单位：`px`
      */

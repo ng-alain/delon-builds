@@ -5,7 +5,7 @@ export interface SFCascaderWidgetSchema extends SFUISchemaItem {
     /**
      * 异步静态数据源
      */
-    asyncData?: (node: CascaderOption, index: number, me: CascaderWidget) => PromiseLike<any>;
+    asyncData?: (node: CascaderOption, index: number, me?: CascaderWidget) => PromiseLike<any>;
     /**
      * 在文字框中显示提示讯息
      */
@@ -26,6 +26,10 @@ export interface SFCascaderWidgetSchema extends SFUISchemaItem {
      * 是否显示箭头，默认：`true`
      */
     showArrow?: boolean;
+    /**
+     * 是否显示箭头，默认：`true`
+     */
+    showInput?: boolean;
     /**
      * 自定义浮层类名
      */
@@ -54,5 +58,39 @@ export interface SFCascaderWidgetSchema extends SFUISchemaItem {
      * 可通过自定义的函数来判断点击菜单选项是否应该发生变化，当函数返回 `true` 时，将发生变化
      */
     changeOn?: (option: CascaderOption, level: number) => boolean;
+    /**
+     * 触发菜单出现的行为，默认：`['click']`
+     */
     triggerAction?: Array<'click' | 'hover'>;
+    /**
+     * 值 `value` 的属性名称，默认：`value`
+     */
+    valueProperty?: string;
+    /**
+     * 值 `label` 的属性名称，默认：`label`
+     */
+    labelProperty?: string;
+    /**
+     * 异步加载事件
+     */
+    visibleChange?: (value: boolean) => void;
+    /**
+     * 选项值变更事件
+     */
+    change?: (values: any[] | null) => void;
+    /**
+     * 选项变更事件
+     */
+    selectionChange?: (values: CascaderOption[]) => void;
+    /**
+     * 选项被选中事件
+     */
+    select?: (values: {
+        option: CascaderOption;
+        index: number;
+    }) => void;
+    /**
+     * 内容被清空事件
+     */
+    clear?: () => void;
 }

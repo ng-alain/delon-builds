@@ -3343,17 +3343,21 @@ var CascaderWidget = /** @class */ (function (_super) {
      */
     function () {
         var _this = this;
-        this.clearText = this.ui.clearText || '清除';
-        this.showArrow = toBool(this.ui.showArrow, true);
-        this.showInput = toBool(this.ui.showInput, true);
-        this.triggerAction = this.ui.triggerAction || ['click'];
-        if (!!this.ui.asyncData) {
+        var _a = this.ui, clearText = _a.clearText, showArrow = _a.showArrow, showInput = _a.showInput, triggerAction = _a.triggerAction, asyncData = _a.asyncData;
+        this.clearText = clearText || '清除';
+        this.showArrow = toBool(showArrow, true);
+        this.showInput = toBool(showInput, true);
+        this.triggerAction = triggerAction || ['click'];
+        if (!!asyncData) {
             this.loadData = (/**
              * @param {?} node
              * @param {?} index
              * @return {?}
              */
-            function (node, index) { return ((/** @type {?} */ (_this.ui.asyncData)))(node, index, _this); });
+            function (node, index) { return asyncData(node, index, _this).then((/**
+             * @return {?}
+             */
+            function () { return _this.detectChanges(); })); });
         }
     };
     /**
@@ -3425,21 +3429,19 @@ var CascaderWidget = /** @class */ (function (_super) {
             this.ui.select(options);
     };
     /**
-     * @param {?} options
      * @return {?}
      */
     CascaderWidget.prototype._clear = /**
-     * @param {?} options
      * @return {?}
      */
-    function (options) {
+    function () {
         if (this.ui.clear)
-            this.ui.clear(options);
+            this.ui.clear();
     };
     CascaderWidget.decorators = [
         { type: Component, args: [{
                     selector: 'sf-cascader',
-                    template: "<sf-item-wrap [id]=\"id\"\n              [schema]=\"schema\"\n              [ui]=\"ui\"\n              [showError]=\"showError\"\n              [error]=\"error\"\n              [showTitle]=\"schema.title\">\n  <nz-cascader [nzDisabled]=\"disabled\"\n               [nzSize]=\"ui.size\"\n               [ngModel]=\"value\"\n               (ngModelChange)=\"_change($event)\"\n               [nzOptions]=\"data\"\n               [nzAllowClear]=\"ui.allowClear\"\n               [nzAutoFocus]=\"ui.autoFocus\"\n               [nzChangeOn]=\"ui.changeOn\"\n               [nzChangeOnSelect]=\"ui.changeOnSelect\"\n               [nzColumnClassName]=\"ui.columnClassName\"\n               [nzExpandTrigger]=\"ui.expandTrigger\"\n               [nzMenuClassName]=\"ui.menuClassName\"\n               [nzMenuStyle]=\"ui.menuStyle\"\n               [nzLabelProperty]=\"ui.labelProperty || 'label'\"\n               [nzValueProperty]=\"ui.valueProperty || 'value'\"\n               [nzLoadData]=\"loadData\"\n               [nzPlaceHolder]=\"ui.placeholder\"\n               [nzShowArrow]=\"showArrow\"\n               [nzShowInput]=\"showInput\"\n               [nzShowSearch]=\"ui.showSearch\"\n               (nzClear)=\"_clear($event)\"\n               (nzVisibleChange)=\"_visibleChange($event)\"\n               (nzSelect)=\"_select($event)\"\n               (nzSelectionChange)=\"_selectionChange($event)\">\n  </nz-cascader>\n</sf-item-wrap>\n",
+                    template: "<sf-item-wrap [id]=\"id\"\n              [schema]=\"schema\"\n              [ui]=\"ui\"\n              [showError]=\"showError\"\n              [error]=\"error\"\n              [showTitle]=\"schema.title\">\n  <nz-cascader [nzDisabled]=\"disabled\"\n               [nzSize]=\"ui.size\"\n               [ngModel]=\"value\"\n               (ngModelChange)=\"_change($event)\"\n               [nzOptions]=\"data\"\n               [nzAllowClear]=\"ui.allowClear\"\n               [nzAutoFocus]=\"ui.autoFocus\"\n               [nzChangeOn]=\"ui.changeOn\"\n               [nzChangeOnSelect]=\"ui.changeOnSelect\"\n               [nzColumnClassName]=\"ui.columnClassName\"\n               [nzExpandTrigger]=\"ui.expandTrigger\"\n               [nzMenuClassName]=\"ui.menuClassName\"\n               [nzMenuStyle]=\"ui.menuStyle\"\n               [nzLabelProperty]=\"ui.labelProperty || 'label'\"\n               [nzValueProperty]=\"ui.valueProperty || 'value'\"\n               [nzLoadData]=\"loadData\"\n               [nzPlaceHolder]=\"ui.placeholder\"\n               [nzShowArrow]=\"showArrow\"\n               [nzShowInput]=\"showInput\"\n               [nzShowSearch]=\"ui.showSearch\"\n               (nzClear)=\"_clear()\"\n               (nzVisibleChange)=\"_visibleChange($event)\"\n               (nzSelect)=\"_select($event)\"\n               (nzSelectionChange)=\"_selectionChange($event)\">\n  </nz-cascader>\n</sf-item-wrap>\n",
                     preserveWhitespaces: false,
                     encapsulation: ViewEncapsulation.None
                 }] }
@@ -3482,7 +3484,8 @@ var CheckboxWidget = /** @class */ (function (_super) {
             _this.allChecked = false;
             _this.indeterminate = false;
             _this.labelTitle = list.length === 0 ? '' : ((/** @type {?} */ (_this.schema.title)));
-            _this.grid_span = _this.ui.span && _this.ui.span > 0 ? _this.ui.span : 0;
+            var span = _this.ui.span;
+            _this.grid_span = span && span > 0 ? span : 0;
             _this.updateAllChecked();
             _this.inited = true;
             _this.detectChanges();
@@ -3608,7 +3611,7 @@ var CheckboxWidget = /** @class */ (function (_super) {
                 }] }
     ];
     return CheckboxWidget;
-}(ControlWidget));
+}(ControlUIWidget));
 
 /**
  * @fileoverview added by tsickle
@@ -3622,13 +3625,13 @@ var CustomWidget = /** @class */ (function (_super) {
     CustomWidget.decorators = [
         { type: Component, args: [{
                     selector: 'sf-custom',
-                    template: "\n    <sf-item-wrap\n      [id]=\"id\"\n      [schema]=\"schema\"\n      [ui]=\"ui\"\n      [showError]=\"showError\"\n      [error]=\"error\"\n      [showTitle]=\"schema.title\"\n    >\n      <ng-template\n        [ngTemplateOutlet]=\"$any(ui)._render\"\n        [ngTemplateOutletContext]=\"{$implicit: this, schema: schema, ui: ui }\"\n      ></ng-template>\n    </sf-item-wrap>\n  ",
+                    template: "\n    <sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n      <ng-template\n        [ngTemplateOutlet]=\"$any(ui)._render\"\n        [ngTemplateOutletContext]=\"{$implicit: this, schema: schema, ui: ui }\"\n      ></ng-template>\n    </sf-item-wrap>\n  ",
                     preserveWhitespaces: false,
                     encapsulation: ViewEncapsulation.None
                 }] }
     ];
     return CustomWidget;
-}(ControlWidget));
+}(ControlUIWidget));
 
 /**
  * @fileoverview added by tsickle
@@ -3649,14 +3652,14 @@ var DateWidget = /** @class */ (function (_super) {
      * @return {?}
      */
     function () {
-        /** @type {?} */
-        var ui = this.ui;
-        this.mode = ui.mode || 'date';
-        this.flatRange = ui.end != null;
+        // tslint:disable-next-line: no-shadowed-variable
+        var _a = this.ui, mode = _a.mode, end = _a.end, displayFormat = _a.displayFormat, format = _a.format, allowClear = _a.allowClear, showToday = _a.showToday;
+        this.mode = mode || 'date';
+        this.flatRange = end != null;
         if (this.flatRange) {
             this.mode = 'range';
         }
-        if (!ui.displayFormat) {
+        if (!displayFormat) {
             switch (this.mode) {
                 case 'year':
                     this.displayFormat = "yyyy";
@@ -3670,15 +3673,15 @@ var DateWidget = /** @class */ (function (_super) {
             }
         }
         else {
-            this.displayFormat = ui.displayFormat;
+            this.displayFormat = displayFormat;
         }
         // 构建属性对象时会对默认值进行校验，因此可以直接使用 format 作为格式化属性
-        this.format = ui.format;
+        this.format = (/** @type {?} */ (format));
         // 公共API
         this.i = {
-            allowClear: toBool(ui.allowClear, true),
+            allowClear: toBool(allowClear, true),
             // nz-date-picker
-            showToday: toBool(ui.showToday, true),
+            showToday: toBool(showToday, true),
         };
     };
     /**
@@ -3774,7 +3777,7 @@ var DateWidget = /** @class */ (function (_super) {
          * @return {?}
          */
         function () {
-            return (/** @type {?} */ ((/** @type {?} */ (this.formProperty.parent)).properties))[this.ui.end];
+            return (/** @type {?} */ ((/** @type {?} */ (this.formProperty.parent)).properties))[(/** @type {?} */ (this.ui.end))];
         },
         enumerable: true,
         configurable: true
@@ -3819,7 +3822,7 @@ var DateWidget = /** @class */ (function (_super) {
                 }] }
     ];
     return DateWidget;
-}(ControlWidget));
+}(ControlUIWidget));
 
 /**
  * @fileoverview added by tsickle
@@ -3853,10 +3856,11 @@ var MentionWidget = /** @class */ (function (_super) {
             prefix: prefix || '@',
             autosize: typeof autosize === 'undefined' ? true : this.ui.autosize,
         };
+        var _b = this.schema, minimum = _b.minimum, maximum = _b.maximum;
         /** @type {?} */
-        var min = typeof this.schema.minimum !== 'undefined' ? this.schema.minimum : -1;
+        var min = typeof minimum !== 'undefined' ? minimum : -1;
         /** @type {?} */
-        var max = typeof this.schema.maximum !== 'undefined' ? this.schema.maximum : -1;
+        var max = typeof maximum !== 'undefined' ? maximum : -1;
         if (!this.ui.validator && (min !== -1 || max !== -1)) {
             this.ui.validator = (/** @type {?} */ (((/**
              * @return {?}
@@ -3918,7 +3922,8 @@ var MentionWidget = /** @class */ (function (_super) {
         if (typeof this.ui.loadData !== 'function')
             return;
         this.loading = true;
-        ((/** @type {?} */ (this.ui.loadData(option))))
+        this.ui
+            .loadData(option)
             .pipe(tap((/**
          * @return {?}
          */
@@ -3933,7 +3938,7 @@ var MentionWidget = /** @class */ (function (_super) {
          */
         function (res) {
             _this.data = res;
-            _this.cd.detectChanges();
+            _this.detectChanges(true);
         }));
     };
     MentionWidget.decorators = [
@@ -3948,7 +3953,7 @@ var MentionWidget = /** @class */ (function (_super) {
         mentionChild: [{ type: ViewChild, args: ['mentions', { static: true },] }]
     };
     return MentionWidget;
-}(ControlWidget));
+}(ControlUIWidget));
 
 /**
  * @fileoverview added by tsickle
@@ -3977,19 +3982,21 @@ var NumberWidget = /** @class */ (function (_super) {
      * @return {?}
      */
     function () {
-        var _a = this, schema = _a.schema, ui = _a.ui;
-        if (typeof schema.minimum !== 'undefined') {
-            this.min = schema.exclusiveMinimum ? schema.minimum + 1 : schema.minimum;
+        var _a = this.schema, minimum = _a.minimum, exclusiveMinimum = _a.exclusiveMinimum, maximum = _a.maximum, exclusiveMaximum = _a.exclusiveMaximum, multipleOf = _a.multipleOf, type = _a.type;
+        if (typeof minimum !== 'undefined') {
+            this.min = exclusiveMinimum ? minimum + 1 : minimum;
         }
-        if (typeof schema.maximum !== 'undefined') {
-            this.max = schema.exclusiveMaximum ? schema.maximum - 1 : schema.maximum;
+        if (typeof maximum !== 'undefined') {
+            this.max = exclusiveMaximum ? maximum - 1 : maximum;
         }
-        this.step = schema.multipleOf || 1;
-        if (schema.type === 'integer') {
+        this.step = multipleOf || 1;
+        if (type === 'integer') {
             this.min = Math.trunc(this.min);
             this.max = Math.trunc(this.max);
             this.step = Math.trunc(this.step);
         }
+        /** @type {?} */
+        var ui = this.ui;
         if (ui.prefix != null) {
             ui.formatter = (/**
              * @param {?} value
@@ -4039,7 +4046,7 @@ var NumberWidget = /** @class */ (function (_super) {
                 }] }
     ];
     return NumberWidget;
-}(ControlWidget));
+}(ControlUIWidget));
 
 /**
  * @fileoverview added by tsickle

@@ -1,8 +1,10 @@
 import { OnInit } from '@angular/core';
+import { MentionOnSearchTypes } from 'ng-zorro-antd/mention';
 import { SFValue } from '../../interface';
 import { SFSchemaEnum } from '../../schema';
-import { ControlWidget } from '../../widget';
-export declare class MentionWidget extends ControlWidget implements OnInit {
+import { ControlUIWidget } from '../../widget';
+import { SFMentionWidgetSchema } from './schema';
+export declare class MentionWidget extends ControlUIWidget<SFMentionWidgetSchema> implements OnInit {
     private mentionChild;
     data: SFSchemaEnum[];
     i: any;
@@ -10,5 +12,5 @@ export declare class MentionWidget extends ControlWidget implements OnInit {
     ngOnInit(): void;
     reset(_value: SFValue): void;
     _select(options: any): void;
-    _search(option: any): void;
+    _search(option: MentionOnSearchTypes): void;
 }
