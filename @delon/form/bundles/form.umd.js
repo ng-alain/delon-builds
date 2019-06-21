@@ -1564,7 +1564,7 @@
         function (value, onlySelf) {
             for (var propertyId in value) {
                 if (value.hasOwnProperty(propertyId) && (/** @type {?} */ (this.properties))[propertyId]) {
-                    (/** @type {?} */ (this.properties))[propertyId].setValue(value[propertyId], true);
+                    ((/** @type {?} */ ((/** @type {?} */ (this.properties))[propertyId]))).setValue(value[propertyId], true);
                 }
             }
             this.updateValueAndValidity(onlySelf, true);
@@ -1583,7 +1583,7 @@
             value = value || this.schema.default || {};
             // tslint:disable-next-line: forin
             for (var propertyId in this.schema.properties) {
-                (/** @type {?} */ (this.properties))[propertyId].resetValue(value[propertyId], true);
+                ((/** @type {?} */ ((/** @type {?} */ (this.properties))[propertyId]))).resetValue(value[propertyId], true);
             }
             this.updateValueAndValidity(onlySelf, true);
         };
@@ -3224,9 +3224,9 @@
         function AutoCompleteWidget() {
             var _this = _super !== null && _super.apply(this, arguments) || this;
             _this.i = {};
-            _this.fixData = [];
             _this.typing = '';
             _this.isAsync = false;
+            _this.fixData = [];
             return _this;
         }
         /**
@@ -3261,9 +3261,7 @@
                  * @param {?} option
                  * @return {?}
                  */
-                function (input, option) {
-                    return option.label.toLowerCase().indexOf((input || '').toLowerCase()) > -1;
-                });
+                function (input, option) { return option.label.toLowerCase().indexOf((input || '').toLowerCase()) > -1; });
             }
             this.isAsync = !!this.ui.asyncData;
             /** @type {?} */
@@ -3281,14 +3279,14 @@
             function (res) { return getEnum(res, null, (/** @type {?} */ (_this.schema.readOnly))); })));
         };
         /**
-         * @param {?} _value
+         * @param {?} value
          * @return {?}
          */
         AutoCompleteWidget.prototype.reset = /**
-         * @param {?} _value
+         * @param {?} value
          * @return {?}
          */
-        function (_value) {
+        function (value) {
             this.typing = this.value;
             if (this.isAsync)
                 return;
@@ -3297,7 +3295,7 @@
                     this.fixData = getCopyEnum((/** @type {?} */ (this.schema.enum)) || this.formProperty.options.uiEmailSuffixes, null, (/** @type {?} */ (this.schema.readOnly)));
                     break;
                 default:
-                    this.fixData = getCopyEnum((/** @type {?} */ (this.schema.enum)), this.formProperty.formData, (/** @type {?} */ (this.schema.readOnly)));
+                    this.fixData = getCopyEnum((/** @type {?} */ (this.schema.enum)), value, (/** @type {?} */ (this.schema.readOnly)));
                     break;
             }
         };
@@ -3344,7 +3342,7 @@
         AutoCompleteWidget.decorators = [
             { type: core.Component, args: [{
                         selector: 'sf-autocomplete',
-                        template: "<sf-item-wrap [id]=\"id\"\n              [schema]=\"schema\"\n              [ui]=\"ui\"\n              [showError]=\"showError\"\n              [error]=\"error\"\n              [showTitle]=\"schema.title\">\n  <input nz-input\n         [nzAutocomplete]=\"auto\"\n         [attr.id]=\"id\"\n         [disabled]=\"disabled\"\n         [attr.disabled]=\"disabled\"\n         [nzSize]=\"ui.size\"\n         [(ngModel)]=\"typing\"\n         (ngModelChange)=\"setValue($event)\"\n         [attr.maxLength]=\"schema.maxLength || null\"\n         [attr.placeholder]=\"ui.placeholder\"\n         autocomplete=\"off\">\n  <nz-autocomplete #auto\n                   [nzBackfill]=\"i.backfill\"\n                   [nzDefaultActiveFirstOption]=\"i.defaultActiveFirstOption\"\n                   [nzWidth]=\"i.width\"\n                   (selectionChange)=\"updateValue($event)\">\n    <nz-auto-option *ngFor=\"let i of list | async\"\n                    [nzValue]=\"i.value\"\n                    [nzLabel]=\"i.label\">\n      {{i.label}}\n    </nz-auto-option>\n  </nz-autocomplete>\n</sf-item-wrap>\n",
+                        template: "<sf-item-wrap [id]=\"id\"\n              [schema]=\"schema\"\n              [ui]=\"ui\"\n              [showError]=\"showError\"\n              [error]=\"error\"\n              [showTitle]=\"schema.title\">\n  <input nz-input\n         [nzAutocomplete]=\"auto\"\n         [attr.id]=\"id\"\n         [disabled]=\"disabled\"\n         [attr.disabled]=\"disabled\"\n         [nzSize]=\"ui.size\"\n         [(ngModel)]=\"typing\"\n         (ngModelChange)=\"setValue($event)\"\n         [attr.maxLength]=\"schema.maxLength || null\"\n         [attr.placeholder]=\"ui.placeholder\"\n         autocomplete=\"off\">\n  <nz-autocomplete #auto\n                   [nzBackfill]=\"i.backfill\"\n                   [nzDefaultActiveFirstOption]=\"i.defaultActiveFirstOption\"\n                   [nzWidth]=\"i.width\"\n                   (selectionChange)=\"updateValue($event)\">\n    <nz-auto-option *ngFor=\"let i of list | async\" [nzValue]=\"i.value\" [nzLabel]=\"i.label\">\n      {{i.label}}\n    </nz-auto-option>\n  </nz-autocomplete>\n</sf-item-wrap>\n",
                         preserveWhitespaces: false,
                         encapsulation: core.ViewEncapsulation.None
                     }] }
@@ -3408,16 +3406,16 @@
             }
         };
         /**
-         * @param {?} _value
+         * @param {?} value
          * @return {?}
          */
         CascaderWidget.prototype.reset = /**
-         * @param {?} _value
+         * @param {?} value
          * @return {?}
          */
-        function (_value) {
+        function (value) {
             var _this = this;
-            getData(this.schema, {}, this.formProperty.formData).subscribe((/**
+            getData(this.schema, {}, value).subscribe((/**
              * @param {?} list
              * @return {?}
              */
@@ -3514,17 +3512,17 @@
             return _this;
         }
         /**
-         * @param {?} _value
+         * @param {?} value
          * @return {?}
          */
         CheckboxWidget.prototype.reset = /**
-         * @param {?} _value
+         * @param {?} value
          * @return {?}
          */
-        function (_value) {
+        function (value) {
             var _this = this;
             this.inited = false;
-            getData(this.schema, this.ui, this.formProperty.formData).subscribe((/**
+            getData(this.schema, this.ui, value).subscribe((/**
              * @param {?} list
              * @return {?}
              */
@@ -4166,17 +4164,17 @@
             return _this;
         }
         /**
-         * @param {?} _value
+         * @param {?} value
          * @return {?}
          */
         RadioWidget.prototype.reset = /**
-         * @param {?} _value
+         * @param {?} value
          * @return {?}
          */
-        function (_value) {
+        function (value) {
             var _this = this;
             this.styleType = (this.ui.styleType || 'default') === 'default';
-            getData(this.schema, this.ui, this.formProperty.formData).subscribe((/**
+            getData(this.schema, this.ui, value).subscribe((/**
              * @param {?} list
              * @return {?}
              */
@@ -4321,7 +4319,7 @@
          */
         function (value) {
             var _this = this;
-            getData(this.schema, this.ui, this.formProperty.formData).subscribe((/**
+            getData(this.schema, this.ui, value).subscribe((/**
              * @param {?} list
              * @return {?}
              */
@@ -4498,7 +4496,7 @@
          * @return {?}
          */
         function (value) {
-            if (this.schema.format === 'color' && !value) {
+            if (!value && this.schema.format === 'color') {
                 this.setValue('#000000');
             }
         };
@@ -4523,16 +4521,16 @@
             return _super !== null && _super.apply(this, arguments) || this;
         }
         /**
-         * @param {?} _value
+         * @param {?} value
          * @return {?}
          */
         TagWidget.prototype.reset = /**
-         * @param {?} _value
+         * @param {?} value
          * @return {?}
          */
-        function (_value) {
+        function (value) {
             var _this = this;
-            getData(this.schema, this.ui, this.formProperty.formData).subscribe((/**
+            getData(this.schema, this.ui, value).subscribe((/**
              * @param {?} list
              * @return {?}
              */
@@ -4793,14 +4791,14 @@
             };
         };
         /**
-         * @param {?} _value
+         * @param {?} value
          * @return {?}
          */
         TransferWidget.prototype.reset = /**
-         * @param {?} _value
+         * @param {?} value
          * @return {?}
          */
-        function (_value) {
+        function (value) {
             var _this = this;
             getData(this.schema, this.ui, null).subscribe((/**
              * @param {?} list
@@ -4808,7 +4806,7 @@
              */
             function (list) {
                 /** @type {?} */
-                var formData = _this.formProperty.formData;
+                var formData = value;
                 if (!Array.isArray(formData)) {
                     formData = [formData];
                 }
@@ -4945,16 +4943,16 @@
             };
         };
         /**
-         * @param {?} _value
+         * @param {?} value
          * @return {?}
          */
         TreeSelectWidget.prototype.reset = /**
-         * @param {?} _value
+         * @param {?} value
          * @return {?}
          */
-        function (_value) {
+        function (value) {
             var _this = this;
-            getData(this.schema, this.ui, this.formProperty.formData).subscribe((/**
+            getData(this.schema, this.ui, value).subscribe((/**
              * @param {?} list
              * @return {?}
              */
@@ -5103,17 +5101,17 @@
             this._setValue(args.fileList);
         };
         /**
-         * @param {?} _value
+         * @param {?} value
          * @return {?}
          */
         UploadWidget.prototype.reset = /**
-         * @param {?} _value
+         * @param {?} value
          * @return {?}
          */
-        function (_value) {
+        function (value) {
             var _this = this;
             var fileList = this.ui.fileList;
-            (fileList ? rxjs.of(fileList) : getData(this.schema, this.ui, this.formProperty.formData)).subscribe((/**
+            (fileList ? rxjs.of(fileList) : Array.isArray(value) ? rxjs.of(value) : getData(this.schema, this.ui, null)).subscribe((/**
              * @param {?} list
              * @return {?}
              */

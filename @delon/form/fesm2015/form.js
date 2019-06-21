@@ -1211,7 +1211,7 @@ class ObjectProperty extends PropertyGroup {
     setValue(value, onlySelf) {
         for (const propertyId in value) {
             if (value.hasOwnProperty(propertyId) && (/** @type {?} */ (this.properties))[propertyId]) {
-                (/** @type {?} */ (this.properties))[propertyId].setValue(value[propertyId], true);
+                ((/** @type {?} */ ((/** @type {?} */ (this.properties))[propertyId]))).setValue(value[propertyId], true);
             }
         }
         this.updateValueAndValidity(onlySelf, true);
@@ -1225,7 +1225,7 @@ class ObjectProperty extends PropertyGroup {
         value = value || this.schema.default || {};
         // tslint:disable-next-line: forin
         for (const propertyId in this.schema.properties) {
-            (/** @type {?} */ (this.properties))[propertyId].resetValue(value[propertyId], true);
+            ((/** @type {?} */ ((/** @type {?} */ (this.properties))[propertyId]))).resetValue(value[propertyId], true);
         }
         this.updateValueAndValidity(onlySelf, true);
     }
@@ -2581,9 +2581,9 @@ class AutoCompleteWidget extends ControlWidget {
     constructor() {
         super(...arguments);
         this.i = {};
-        this.fixData = [];
         this.typing = '';
         this.isAsync = false;
+        this.fixData = [];
     }
     /**
      * @param {?} item
@@ -2627,10 +2627,10 @@ class AutoCompleteWidget extends ControlWidget {
         res => getEnum(res, null, (/** @type {?} */ (this.schema.readOnly))))));
     }
     /**
-     * @param {?} _value
+     * @param {?} value
      * @return {?}
      */
-    reset(_value) {
+    reset(value) {
         this.typing = this.value;
         if (this.isAsync)
             return;
@@ -2639,7 +2639,7 @@ class AutoCompleteWidget extends ControlWidget {
                 this.fixData = getCopyEnum((/** @type {?} */ (this.schema.enum)) || this.formProperty.options.uiEmailSuffixes, null, (/** @type {?} */ (this.schema.readOnly)));
                 break;
             default:
-                this.fixData = getCopyEnum((/** @type {?} */ (this.schema.enum)), this.formProperty.formData, (/** @type {?} */ (this.schema.readOnly)));
+                this.fixData = getCopyEnum((/** @type {?} */ (this.schema.enum)), value, (/** @type {?} */ (this.schema.readOnly)));
                 break;
         }
     }
@@ -2676,7 +2676,7 @@ class AutoCompleteWidget extends ControlWidget {
 AutoCompleteWidget.decorators = [
     { type: Component, args: [{
                 selector: 'sf-autocomplete',
-                template: "<sf-item-wrap [id]=\"id\"\n              [schema]=\"schema\"\n              [ui]=\"ui\"\n              [showError]=\"showError\"\n              [error]=\"error\"\n              [showTitle]=\"schema.title\">\n  <input nz-input\n         [nzAutocomplete]=\"auto\"\n         [attr.id]=\"id\"\n         [disabled]=\"disabled\"\n         [attr.disabled]=\"disabled\"\n         [nzSize]=\"ui.size\"\n         [(ngModel)]=\"typing\"\n         (ngModelChange)=\"setValue($event)\"\n         [attr.maxLength]=\"schema.maxLength || null\"\n         [attr.placeholder]=\"ui.placeholder\"\n         autocomplete=\"off\">\n  <nz-autocomplete #auto\n                   [nzBackfill]=\"i.backfill\"\n                   [nzDefaultActiveFirstOption]=\"i.defaultActiveFirstOption\"\n                   [nzWidth]=\"i.width\"\n                   (selectionChange)=\"updateValue($event)\">\n    <nz-auto-option *ngFor=\"let i of list | async\"\n                    [nzValue]=\"i.value\"\n                    [nzLabel]=\"i.label\">\n      {{i.label}}\n    </nz-auto-option>\n  </nz-autocomplete>\n</sf-item-wrap>\n",
+                template: "<sf-item-wrap [id]=\"id\"\n              [schema]=\"schema\"\n              [ui]=\"ui\"\n              [showError]=\"showError\"\n              [error]=\"error\"\n              [showTitle]=\"schema.title\">\n  <input nz-input\n         [nzAutocomplete]=\"auto\"\n         [attr.id]=\"id\"\n         [disabled]=\"disabled\"\n         [attr.disabled]=\"disabled\"\n         [nzSize]=\"ui.size\"\n         [(ngModel)]=\"typing\"\n         (ngModelChange)=\"setValue($event)\"\n         [attr.maxLength]=\"schema.maxLength || null\"\n         [attr.placeholder]=\"ui.placeholder\"\n         autocomplete=\"off\">\n  <nz-autocomplete #auto\n                   [nzBackfill]=\"i.backfill\"\n                   [nzDefaultActiveFirstOption]=\"i.defaultActiveFirstOption\"\n                   [nzWidth]=\"i.width\"\n                   (selectionChange)=\"updateValue($event)\">\n    <nz-auto-option *ngFor=\"let i of list | async\" [nzValue]=\"i.value\" [nzLabel]=\"i.label\">\n      {{i.label}}\n    </nz-auto-option>\n  </nz-autocomplete>\n</sf-item-wrap>\n",
                 preserveWhitespaces: false,
                 encapsulation: ViewEncapsulation.None
             }] }
@@ -2727,11 +2727,11 @@ class CascaderWidget extends ControlWidget {
         }
     }
     /**
-     * @param {?} _value
+     * @param {?} value
      * @return {?}
      */
-    reset(_value) {
-        getData(this.schema, {}, this.formProperty.formData).subscribe((/**
+    reset(value) {
+        getData(this.schema, {}, value).subscribe((/**
          * @param {?} list
          * @return {?}
          */
@@ -2805,12 +2805,12 @@ class CheckboxWidget extends ControlWidget {
         this.inited = false;
     }
     /**
-     * @param {?} _value
+     * @param {?} value
      * @return {?}
      */
-    reset(_value) {
+    reset(value) {
         this.inited = false;
-        getData(this.schema, this.ui, this.formProperty.formData).subscribe((/**
+        getData(this.schema, this.ui, value).subscribe((/**
          * @param {?} list
          * @return {?}
          */
@@ -3343,12 +3343,12 @@ class RadioWidget extends ControlWidget {
         this.data = [];
     }
     /**
-     * @param {?} _value
+     * @param {?} value
      * @return {?}
      */
-    reset(_value) {
+    reset(value) {
         this.styleType = (this.ui.styleType || 'default') === 'default';
-        getData(this.schema, this.ui, this.formProperty.formData).subscribe((/**
+        getData(this.schema, this.ui, value).subscribe((/**
          * @param {?} list
          * @return {?}
          */
@@ -3463,7 +3463,7 @@ class SelectWidget extends ControlWidget {
      * @return {?}
      */
     reset(value) {
-        getData(this.schema, this.ui, this.formProperty.formData).subscribe((/**
+        getData(this.schema, this.ui, value).subscribe((/**
          * @param {?} list
          * @return {?}
          */
@@ -3602,7 +3602,7 @@ class StringWidget extends ControlWidget {
      * @return {?}
      */
     reset(value) {
-        if (this.schema.format === 'color' && !value) {
+        if (!value && this.schema.format === 'color') {
             this.setValue('#000000');
         }
     }
@@ -3622,11 +3622,11 @@ StringWidget.decorators = [
  */
 class TagWidget extends ControlWidget {
     /**
-     * @param {?} _value
+     * @param {?} value
      * @return {?}
      */
-    reset(_value) {
-        getData(this.schema, this.ui, this.formProperty.formData).subscribe((/**
+    reset(value) {
+        getData(this.schema, this.ui, value).subscribe((/**
          * @param {?} list
          * @return {?}
          */
@@ -3838,17 +3838,17 @@ class TransferWidget extends ControlWidget {
         };
     }
     /**
-     * @param {?} _value
+     * @param {?} value
      * @return {?}
      */
-    reset(_value) {
+    reset(value) {
         getData(this.schema, this.ui, null).subscribe((/**
          * @param {?} list
          * @return {?}
          */
         list => {
             /** @type {?} */
-            let formData = this.formProperty.formData;
+            let formData = value;
             if (!Array.isArray(formData)) {
                 formData = [formData];
             }
@@ -3962,11 +3962,11 @@ class TreeSelectWidget extends ControlWidget {
         };
     }
     /**
-     * @param {?} _value
+     * @param {?} value
      * @return {?}
      */
-    reset(_value) {
-        getData(this.schema, this.ui, this.formProperty.formData).subscribe((/**
+    reset(value) {
+        getData(this.schema, this.ui, value).subscribe((/**
          * @param {?} list
          * @return {?}
          */
@@ -4096,12 +4096,12 @@ class UploadWidget extends ControlWidget {
         this._setValue(args.fileList);
     }
     /**
-     * @param {?} _value
+     * @param {?} value
      * @return {?}
      */
-    reset(_value) {
+    reset(value) {
         const { fileList } = this.ui;
-        (fileList ? of(fileList) : getData(this.schema, this.ui, this.formProperty.formData)).subscribe((/**
+        (fileList ? of(fileList) : Array.isArray(value) ? of(value) : getData(this.schema, this.ui, null)).subscribe((/**
          * @param {?} list
          * @return {?}
          */

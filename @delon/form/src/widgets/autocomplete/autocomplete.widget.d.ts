@@ -6,15 +6,15 @@ import { SFSchemaEnum } from '../../schema';
 import { ControlWidget } from '../../widget';
 export declare class AutoCompleteWidget extends ControlWidget implements AfterViewInit {
     i: any;
-    fixData: SFSchemaEnum[];
     list: Observable<SFSchemaEnum[]>;
     typing: string;
     private ngModel;
     private filterOption;
     private isAsync;
+    private fixData;
     updateValue(item: NzAutocompleteOptionComponent): void;
     ngAfterViewInit(): void;
-    reset(_value: SFValue): void;
+    reset(value: SFValue): void;
     private filterData;
     private addEmailSuffix;
 }

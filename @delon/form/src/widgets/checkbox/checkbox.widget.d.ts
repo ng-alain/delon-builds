@@ -8,7 +8,7 @@ export declare class CheckboxWidget extends ControlWidget {
     grid_span: number;
     labelTitle: string;
     inited: boolean;
-    reset(_value: SFValue): void;
+    reset(value: SFValue): void;
     _setValue(value: SFValue): void;
     notifySet(): void;
     groupInGridChange(values: SFValue[]): void;
