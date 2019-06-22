@@ -1942,14 +1942,15 @@
         return new FormPropertyFactory(schemaValidatorFactory, options);
     }
     var SFComponent = /** @class */ (function () {
-        function SFComponent(formPropertyFactory, terminator, options, aclSrv, cdr, i18n) {
+        function SFComponent(formPropertyFactory, terminator, options, cdr, localeSrv, aclSrv, i18nSrv) {
             var _this = this;
             this.formPropertyFactory = formPropertyFactory;
             this.terminator = terminator;
             this.options = options;
-            this.aclSrv = aclSrv;
             this.cdr = cdr;
-            this.i18n = i18n;
+            this.localeSrv = localeSrv;
+            this.aclSrv = aclSrv;
+            this.i18nSrv = i18nSrv;
             this.unsubscribe$ = new rxjs.Subject();
             this._renders = new Map();
             this._valid = true;
@@ -2006,20 +2007,28 @@
             this.liveValidate = (/** @type {?} */ (options.liveValidate));
             this.firstVisual = (/** @type {?} */ (options.firstVisual));
             this.autocomplete = (/** @type {?} */ (options.autocomplete));
-            this.i18n.change.pipe(operators.takeUntil(this.unsubscribe$)).subscribe((/**
+            this.localeSrv.change.pipe(operators.takeUntil(this.unsubscribe$)).subscribe((/**
              * @return {?}
              */
             function () {
-                _this.locale = _this.i18n.getData('sf');
+                _this.locale = _this.localeSrv.getData('sf');
                 if (_this._inited) {
                     _this.validator({ emitError: false, onlyRoot: false });
                     _this.coverButtonProperty();
                     _this.cdr.markForCheck();
                 }
             }));
-            if (this.aclSrv) {
-                this.aclSrv.change
-                    .pipe(operators.filter((/**
+            /** @type {?} */
+            var refSchemas = [
+                this.aclSrv ? this.aclSrv.change : null,
+                this.i18nSrv ? this.i18nSrv.change : null,
+            ].filter((/**
+             * @param {?} o
+             * @return {?}
+             */
+            function (o) { return o != null; }));
+            if (refSchemas.length > 0) {
+                rxjs.merge.apply(void 0, __spread(((/** @type {?} */ (refSchemas))))).pipe(operators.filter((/**
                  * @return {?}
                  */
                 function () { return _this._inited; })), operators.takeUntil(this.unsubscribe$))
@@ -2177,6 +2186,19 @@
             this.formSubmit.emit(this.value);
         };
         /**
+         * @protected
+         * @param {?} key
+         * @return {?}
+         */
+        SFComponent.prototype.fanyi = /**
+         * @protected
+         * @param {?} key
+         * @return {?}
+         */
+        function (key) {
+            return (this.i18nSrv ? this.i18nSrv.fanyi(key) : '') || key;
+        };
+        /**
          * @private
          * @return {?}
          */
@@ -2251,10 +2273,20 @@
                                 text: ui.optionalHelp,
                             }));
                         }
-                        ui.optionalHelp = __assign({ text: '', icon: 'question-circle', placement: 'top', trigger: 'hover', mouseEnterDelay: 0.15, mouseLeaveDelay: 0.1 }, ui.optionalHelp);
-                        if (!ui.optionalHelp.text) {
+                        /** @type {?} */
+                        var oh = (ui.optionalHelp = __assign({ text: '', icon: 'question-circle', placement: 'top', trigger: 'hover', mouseEnterDelay: 0.15, mouseLeaveDelay: 0.1 }, ui.optionalHelp));
+                        if (oh.i18n) {
+                            oh.text = _this.fanyi(oh.i18n);
+                        }
+                        if (!oh.text) {
                             ui.optionalHelp = undefined;
                         }
+                    }
+                    if (ui.i18n) {
+                        property.title = _this.fanyi(ui.i18n);
+                    }
+                    if (ui.descriptionI18n) {
+                        property.description = _this.fanyi(ui.descriptionI18n);
                     }
                     ui.hidden = typeof ui.hidden === 'boolean' ? ui.hidden : false;
                     if (ui.hidden === false && ui.acl && _this.aclSrv && !_this.aclSrv.can(ui.acl)) {
@@ -2450,8 +2482,6 @@
              * @return {?}
              */
             function (property) {
-                if (property == null)
-                    return;
                 property._runValidation();
                 if (!(property instanceof PropertyGroup) || !property.properties)
                     return;
@@ -2638,9 +2668,10 @@
             { type: FormPropertyFactory },
             { type: TerminatorService },
             { type: DelonFormConfig },
-            { type: acl.ACLService, decorators: [{ type: core.Optional }] },
             { type: core.ChangeDetectorRef },
-            { type: theme.DelonLocaleService }
+            { type: theme.DelonLocaleService },
+            { type: acl.ACLService, decorators: [{ type: core.Optional }] },
+            { type: undefined, decorators: [{ type: core.Optional }, { type: core.Inject, args: [theme.ALAIN_I18N_TOKEN,] }] }
         ]; };
         SFComponent.propDecorators = {
             layout: [{ type: core.Input }],

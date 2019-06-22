@@ -1,9 +1,9 @@
-import { Injectable, ɵɵdefineInjectable, Inject, ComponentFactoryResolver, EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Optional, ChangeDetectorRef, Input, Output, ViewChild, ViewContainerRef, Directive, ElementRef, Renderer2, TemplateRef, Injector, HostBinding, NgModule } from '@angular/core';
+import { Injectable, ɵɵdefineInjectable, Inject, ComponentFactoryResolver, EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ChangeDetectorRef, Optional, Input, Output, ViewChild, ViewContainerRef, Directive, ElementRef, Renderer2, TemplateRef, Injector, HostBinding, NgModule } from '@angular/core';
 import { __rest, __decorate, __metadata } from 'tslib';
 import { ACLService } from '@delon/acl';
-import { DelonLocaleService, DelonLocaleModule } from '@delon/theme';
+import { DelonLocaleService, ALAIN_I18N_TOKEN, DelonLocaleModule } from '@delon/theme';
 import { deepCopy, toBoolean, InputBoolean, deepMergeKey, InputNumber, deepGet, DelonUtilModule } from '@delon/util';
-import { of, BehaviorSubject, Observable, combineLatest, Subject } from 'rxjs';
+import { of, BehaviorSubject, Observable, combineLatest, Subject, merge } from 'rxjs';
 import { map, distinctUntilChanged, takeUntil, filter, debounceTime, startWith, flatMap, tap } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
 import { NgModel, FormsModule } from '@angular/forms';
@@ -1517,17 +1517,19 @@ class SFComponent {
      * @param {?} formPropertyFactory
      * @param {?} terminator
      * @param {?} options
-     * @param {?} aclSrv
      * @param {?} cdr
-     * @param {?} i18n
+     * @param {?} localeSrv
+     * @param {?} aclSrv
+     * @param {?} i18nSrv
      */
-    constructor(formPropertyFactory, terminator, options, aclSrv, cdr, i18n) {
+    constructor(formPropertyFactory, terminator, options, cdr, localeSrv, aclSrv, i18nSrv) {
         this.formPropertyFactory = formPropertyFactory;
         this.terminator = terminator;
         this.options = options;
-        this.aclSrv = aclSrv;
         this.cdr = cdr;
-        this.i18n = i18n;
+        this.localeSrv = localeSrv;
+        this.aclSrv = aclSrv;
+        this.i18nSrv = i18nSrv;
         this.unsubscribe$ = new Subject();
         this._renders = new Map();
         this._valid = true;
@@ -1584,19 +1586,28 @@ class SFComponent {
         this.liveValidate = (/** @type {?} */ (options.liveValidate));
         this.firstVisual = (/** @type {?} */ (options.firstVisual));
         this.autocomplete = (/** @type {?} */ (options.autocomplete));
-        this.i18n.change.pipe(takeUntil(this.unsubscribe$)).subscribe((/**
+        this.localeSrv.change.pipe(takeUntil(this.unsubscribe$)).subscribe((/**
          * @return {?}
          */
         () => {
-            this.locale = this.i18n.getData('sf');
+            this.locale = this.localeSrv.getData('sf');
             if (this._inited) {
                 this.validator({ emitError: false, onlyRoot: false });
                 this.coverButtonProperty();
                 this.cdr.markForCheck();
             }
         }));
-        if (this.aclSrv) {
-            this.aclSrv.change
+        /** @type {?} */
+        const refSchemas = [
+            this.aclSrv ? this.aclSrv.change : null,
+            this.i18nSrv ? this.i18nSrv.change : null,
+        ].filter((/**
+         * @param {?} o
+         * @return {?}
+         */
+        o => o != null));
+        if (refSchemas.length > 0) {
+            merge(...((/** @type {?} */ (refSchemas))))
                 .pipe(filter((/**
              * @return {?}
              */
@@ -1703,6 +1714,14 @@ class SFComponent {
         this.formSubmit.emit(this.value);
     }
     /**
+     * @protected
+     * @param {?} key
+     * @return {?}
+     */
+    fanyi(key) {
+        return (this.i18nSrv ? this.i18nSrv.fanyi(key) : '') || key;
+    }
+    /**
      * @private
      * @return {?}
      */
@@ -1772,10 +1791,20 @@ class SFComponent {
                             text: ui.optionalHelp,
                         }));
                     }
-                    ui.optionalHelp = Object.assign({ text: '', icon: 'question-circle', placement: 'top', trigger: 'hover', mouseEnterDelay: 0.15, mouseLeaveDelay: 0.1 }, ui.optionalHelp);
-                    if (!ui.optionalHelp.text) {
+                    /** @type {?} */
+                    const oh = (ui.optionalHelp = Object.assign({ text: '', icon: 'question-circle', placement: 'top', trigger: 'hover', mouseEnterDelay: 0.15, mouseLeaveDelay: 0.1 }, ui.optionalHelp));
+                    if (oh.i18n) {
+                        oh.text = this.fanyi(oh.i18n);
+                    }
+                    if (!oh.text) {
                         ui.optionalHelp = undefined;
                     }
+                }
+                if (ui.i18n) {
+                    property.title = this.fanyi(ui.i18n);
+                }
+                if (ui.descriptionI18n) {
+                    property.description = this.fanyi(ui.descriptionI18n);
                 }
                 ui.hidden = typeof ui.hidden === 'boolean' ? ui.hidden : false;
                 if (ui.hidden === false && ui.acl && this.aclSrv && !this.aclSrv.can(ui.acl)) {
@@ -1941,8 +1970,6 @@ class SFComponent {
          * @return {?}
          */
         (property) => {
-            if (property == null)
-                return;
             property._runValidation();
             if (!(property instanceof PropertyGroup) || !property.properties)
                 return;
@@ -2098,9 +2125,10 @@ SFComponent.ctorParameters = () => [
     { type: FormPropertyFactory },
     { type: TerminatorService },
     { type: DelonFormConfig },
-    { type: ACLService, decorators: [{ type: Optional }] },
     { type: ChangeDetectorRef },
-    { type: DelonLocaleService }
+    { type: DelonLocaleService },
+    { type: ACLService, decorators: [{ type: Optional }] },
+    { type: undefined, decorators: [{ type: Optional }, { type: Inject, args: [ALAIN_I18N_TOKEN,] }] }
 ];
 SFComponent.propDecorators = {
     layout: [{ type: Input }],
