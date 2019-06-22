@@ -13,7 +13,7 @@ export declare abstract class FormProperty {
     ui: SFUISchema | SFUISchemaItemRun;
     formData: {};
     _value: SFValue;
-    widget: Widget<FormProperty>;
+    widget: Widget<FormProperty, SFUISchemaItem>;
     private _errors;
     protected _objErrors: {
         [key: string]: ErrorData[];

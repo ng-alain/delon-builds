@@ -1,5 +1,6 @@
 import { OnInit } from '@angular/core';
-import { ControlWidget } from '../../widget';
-export declare class TextWidget extends ControlWidget implements OnInit {
+import { ControlUIWidget } from '../../widget';
+import { SFTextWidgetSchema } from './schema';
+export declare class TextWidget extends ControlUIWidget<SFTextWidgetSchema> implements OnInit {
     ngOnInit(): void;
 }

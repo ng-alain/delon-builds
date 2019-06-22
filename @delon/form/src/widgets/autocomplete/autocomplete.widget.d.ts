@@ -3,8 +3,9 @@ import { NzAutocompleteOptionComponent } from 'ng-zorro-antd/auto-complete';
 import { Observable } from 'rxjs';
 import { SFValue } from '../../interface';
 import { SFSchemaEnum } from '../../schema';
-import { ControlWidget } from '../../widget';
-export declare class AutoCompleteWidget extends ControlWidget implements AfterViewInit {
+import { ControlUIWidget } from '../../widget';
+import { SFAutoCompleteWidgetSchema } from './schema';
+export declare class AutoCompleteWidget extends ControlUIWidget<SFAutoCompleteWidgetSchema> implements AfterViewInit {
     i: any;
     list: Observable<SFSchemaEnum[]>;
     typing: string;

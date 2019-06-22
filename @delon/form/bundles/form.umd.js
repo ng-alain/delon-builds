@@ -2943,7 +2943,7 @@
      */
     /**
      * @abstract
-     * @template T
+     * @template T, UIT
      */
     var Widget = /** @class */ (function () {
         function Widget(cd, injector, sfItemComp, sfComp) {
@@ -3090,6 +3090,28 @@
         function (_value) { };
         return ControlWidget;
     }(Widget));
+    /**
+     * @template UIT
+     */
+    var   /**
+     * @template UIT
+     */
+    ControlUIWidget = /** @class */ (function (_super) {
+        __extends(ControlUIWidget, _super);
+        function ControlUIWidget() {
+            return _super !== null && _super.apply(this, arguments) || this;
+        }
+        /**
+         * @param {?} _value
+         * @return {?}
+         */
+        ControlUIWidget.prototype.reset = /**
+         * @param {?} _value
+         * @return {?}
+         */
+        function (_value) { };
+        return ControlUIWidget;
+    }(Widget));
     var ArrayLayoutWidget = /** @class */ (function (_super) {
         __extends(ArrayLayoutWidget, _super);
         function ArrayLayoutWidget() {
@@ -3177,12 +3199,13 @@
          * @return {?}
          */
         function () {
-            if (this.ui.grid && this.ui.grid.arraySpan) {
-                this.arraySpan = this.ui.grid.arraySpan;
+            var _a = this.ui, grid = _a.grid, addTitle = _a.addTitle, addType = _a.addType, removable = _a.removable, removeTitle = _a.removeTitle;
+            if (grid && grid.arraySpan) {
+                this.arraySpan = grid.arraySpan;
             }
-            this.addTitle = this.ui.addTitle || this.l.addText;
-            this.addType = this.ui.addType || 'dashed';
-            this.removeTitle = this.ui.removable === false ? null : this.ui.removeTitle || this.l.removeText;
+            this.addTitle = addTitle || this.l.addText;
+            this.addType = addType || 'dashed';
+            this.removeTitle = removable === false ? null : removeTitle || this.l.removeText;
         };
         /**
          * @return {?}
@@ -3249,21 +3272,24 @@
          */
         function () {
             var _this = this;
+            var _a = this.ui, backfill = _a.backfill, defaultActiveFirstOption = _a.defaultActiveFirstOption, nzWidth = _a.nzWidth, filterOption = _a.filterOption, asyncData = _a.asyncData;
             this.i = {
-                backfill: toBool(this.ui.backfill, false),
-                defaultActiveFirstOption: toBool(this.ui.defaultActiveFirstOption, true),
-                width: this.ui.width || undefined,
+                backfill: toBool(backfill, false),
+                defaultActiveFirstOption: toBool(defaultActiveFirstOption, true),
+                width: nzWidth || undefined,
             };
-            this.filterOption = this.ui.filterOption == null ? true : this.ui.filterOption;
-            if (typeof this.filterOption === 'boolean') {
-                this.filterOption = (/**
+            /** @type {?} */
+            var filterOptionValue = filterOption == null ? true : filterOption;
+            if (typeof filterOptionValue === 'boolean') {
+                filterOptionValue = (/**
                  * @param {?} input
                  * @param {?} option
                  * @return {?}
                  */
                 function (input, option) { return option.label.toLowerCase().indexOf((input || '').toLowerCase()) > -1; });
             }
-            this.isAsync = !!this.ui.asyncData;
+            this.filterOption = filterOptionValue;
+            this.isAsync = !!asyncData;
             /** @type {?} */
             var orgTime = +(this.ui.debounceTime || 0);
             /** @type {?} */
@@ -3272,7 +3298,7 @@
              * @param {?} input
              * @return {?}
              */
-            function (input) { return (_this.isAsync ? (/** @type {?} */ (_this.ui.asyncData))(input) : _this.filterData(input)); })), operators.map((/**
+            function (input) { return (_this.isAsync ? (/** @type {?} */ (asyncData))(input) : _this.filterData(input)); })), operators.map((/**
              * @param {?} res
              * @return {?}
              */
@@ -3351,7 +3377,7 @@
             ngModel: [{ type: core.ViewChild, args: [forms.NgModel, { static: false },] }]
         };
         return AutoCompleteWidget;
-    }(ControlWidget));
+    }(ControlUIWidget));
 
     /**
      * @fileoverview added by tsickle
@@ -3392,17 +3418,21 @@
          */
         function () {
             var _this = this;
-            this.clearText = this.ui.clearText || '清除';
-            this.showArrow = toBool(this.ui.showArrow, true);
-            this.showInput = toBool(this.ui.showInput, true);
-            this.triggerAction = this.ui.triggerAction || ['click'];
-            if (!!this.ui.asyncData) {
+            var _a = this.ui, clearText = _a.clearText, showArrow = _a.showArrow, showInput = _a.showInput, triggerAction = _a.triggerAction, asyncData = _a.asyncData;
+            this.clearText = clearText || '清除';
+            this.showArrow = toBool(showArrow, true);
+            this.showInput = toBool(showInput, true);
+            this.triggerAction = triggerAction || ['click'];
+            if (!!asyncData) {
                 this.loadData = (/**
                  * @param {?} node
                  * @param {?} index
                  * @return {?}
                  */
-                function (node, index) { return ((/** @type {?} */ (_this.ui.asyncData)))(node, index, _this); });
+                function (node, index) { return asyncData(node, index, _this).then((/**
+                 * @return {?}
+                 */
+                function () { return _this.detectChanges(); })); });
             }
         };
         /**
@@ -3474,27 +3504,25 @@
                 this.ui.select(options);
         };
         /**
-         * @param {?} options
          * @return {?}
          */
         CascaderWidget.prototype._clear = /**
-         * @param {?} options
          * @return {?}
          */
-        function (options) {
+        function () {
             if (this.ui.clear)
-                this.ui.clear(options);
+                this.ui.clear();
         };
         CascaderWidget.decorators = [
             { type: core.Component, args: [{
                         selector: 'sf-cascader',
-                        template: "<sf-item-wrap [id]=\"id\"\n              [schema]=\"schema\"\n              [ui]=\"ui\"\n              [showError]=\"showError\"\n              [error]=\"error\"\n              [showTitle]=\"schema.title\">\n  <nz-cascader [nzDisabled]=\"disabled\"\n               [nzSize]=\"ui.size\"\n               [ngModel]=\"value\"\n               (ngModelChange)=\"_change($event)\"\n               [nzOptions]=\"data\"\n               [nzAllowClear]=\"ui.allowClear\"\n               [nzAutoFocus]=\"ui.autoFocus\"\n               [nzChangeOn]=\"ui.changeOn\"\n               [nzChangeOnSelect]=\"ui.changeOnSelect\"\n               [nzColumnClassName]=\"ui.columnClassName\"\n               [nzExpandTrigger]=\"ui.expandTrigger\"\n               [nzMenuClassName]=\"ui.menuClassName\"\n               [nzMenuStyle]=\"ui.menuStyle\"\n               [nzLabelProperty]=\"ui.labelProperty || 'label'\"\n               [nzValueProperty]=\"ui.valueProperty || 'value'\"\n               [nzLoadData]=\"loadData\"\n               [nzPlaceHolder]=\"ui.placeholder\"\n               [nzShowArrow]=\"showArrow\"\n               [nzShowInput]=\"showInput\"\n               [nzShowSearch]=\"ui.showSearch\"\n               (nzClear)=\"_clear($event)\"\n               (nzVisibleChange)=\"_visibleChange($event)\"\n               (nzSelect)=\"_select($event)\"\n               (nzSelectionChange)=\"_selectionChange($event)\">\n  </nz-cascader>\n</sf-item-wrap>\n",
+                        template: "<sf-item-wrap [id]=\"id\"\n              [schema]=\"schema\"\n              [ui]=\"ui\"\n              [showError]=\"showError\"\n              [error]=\"error\"\n              [showTitle]=\"schema.title\">\n  <nz-cascader [nzDisabled]=\"disabled\"\n               [nzSize]=\"ui.size\"\n               [ngModel]=\"value\"\n               (ngModelChange)=\"_change($event)\"\n               [nzOptions]=\"data\"\n               [nzAllowClear]=\"ui.allowClear\"\n               [nzAutoFocus]=\"ui.autoFocus\"\n               [nzChangeOn]=\"ui.changeOn\"\n               [nzChangeOnSelect]=\"ui.changeOnSelect\"\n               [nzColumnClassName]=\"ui.columnClassName\"\n               [nzExpandTrigger]=\"ui.expandTrigger\"\n               [nzMenuClassName]=\"ui.menuClassName\"\n               [nzMenuStyle]=\"ui.menuStyle\"\n               [nzLabelProperty]=\"ui.labelProperty || 'label'\"\n               [nzValueProperty]=\"ui.valueProperty || 'value'\"\n               [nzLoadData]=\"loadData\"\n               [nzPlaceHolder]=\"ui.placeholder\"\n               [nzShowArrow]=\"showArrow\"\n               [nzShowInput]=\"showInput\"\n               [nzShowSearch]=\"ui.showSearch\"\n               (nzClear)=\"_clear()\"\n               (nzVisibleChange)=\"_visibleChange($event)\"\n               (nzSelect)=\"_select($event)\"\n               (nzSelectionChange)=\"_selectionChange($event)\">\n  </nz-cascader>\n</sf-item-wrap>\n",
                         preserveWhitespaces: false,
                         encapsulation: core.ViewEncapsulation.None
                     }] }
         ];
         return CascaderWidget;
-    }(ControlWidget));
+    }(ControlUIWidget));
 
     /**
      * @fileoverview added by tsickle
@@ -3531,7 +3559,8 @@
                 _this.allChecked = false;
                 _this.indeterminate = false;
                 _this.labelTitle = list.length === 0 ? '' : ((/** @type {?} */ (_this.schema.title)));
-                _this.grid_span = _this.ui.span && _this.ui.span > 0 ? _this.ui.span : 0;
+                var span = _this.ui.span;
+                _this.grid_span = span && span > 0 ? span : 0;
                 _this.updateAllChecked();
                 _this.inited = true;
                 _this.detectChanges();
@@ -3657,7 +3686,7 @@
                     }] }
         ];
         return CheckboxWidget;
-    }(ControlWidget));
+    }(ControlUIWidget));
 
     /**
      * @fileoverview added by tsickle
@@ -3671,13 +3700,13 @@
         CustomWidget.decorators = [
             { type: core.Component, args: [{
                         selector: 'sf-custom',
-                        template: "\n    <sf-item-wrap\n      [id]=\"id\"\n      [schema]=\"schema\"\n      [ui]=\"ui\"\n      [showError]=\"showError\"\n      [error]=\"error\"\n      [showTitle]=\"schema.title\"\n    >\n      <ng-template\n        [ngTemplateOutlet]=\"$any(ui)._render\"\n        [ngTemplateOutletContext]=\"{$implicit: this, schema: schema, ui: ui }\"\n      ></ng-template>\n    </sf-item-wrap>\n  ",
+                        template: "\n    <sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n      <ng-template\n        [ngTemplateOutlet]=\"$any(ui)._render\"\n        [ngTemplateOutletContext]=\"{$implicit: this, schema: schema, ui: ui }\"\n      ></ng-template>\n    </sf-item-wrap>\n  ",
                         preserveWhitespaces: false,
                         encapsulation: core.ViewEncapsulation.None
                     }] }
         ];
         return CustomWidget;
-    }(ControlWidget));
+    }(ControlUIWidget));
 
     /**
      * @fileoverview added by tsickle
@@ -3698,14 +3727,14 @@
          * @return {?}
          */
         function () {
-            /** @type {?} */
-            var ui = this.ui;
-            this.mode = ui.mode || 'date';
-            this.flatRange = ui.end != null;
+            // tslint:disable-next-line: no-shadowed-variable
+            var _a = this.ui, mode = _a.mode, end = _a.end, displayFormat = _a.displayFormat, format = _a.format, allowClear = _a.allowClear, showToday = _a.showToday;
+            this.mode = mode || 'date';
+            this.flatRange = end != null;
             if (this.flatRange) {
                 this.mode = 'range';
             }
-            if (!ui.displayFormat) {
+            if (!displayFormat) {
                 switch (this.mode) {
                     case 'year':
                         this.displayFormat = "yyyy";
@@ -3719,15 +3748,15 @@
                 }
             }
             else {
-                this.displayFormat = ui.displayFormat;
+                this.displayFormat = displayFormat;
             }
             // 构建属性对象时会对默认值进行校验，因此可以直接使用 format 作为格式化属性
-            this.format = ui.format;
+            this.format = (/** @type {?} */ (format));
             // 公共API
             this.i = {
-                allowClear: toBool(ui.allowClear, true),
+                allowClear: toBool(allowClear, true),
                 // nz-date-picker
-                showToday: toBool(ui.showToday, true),
+                showToday: toBool(showToday, true),
             };
         };
         /**
@@ -3823,7 +3852,7 @@
              * @return {?}
              */
             function () {
-                return (/** @type {?} */ ((/** @type {?} */ (this.formProperty.parent)).properties))[this.ui.end];
+                return (/** @type {?} */ ((/** @type {?} */ (this.formProperty.parent)).properties))[(/** @type {?} */ (this.ui.end))];
             },
             enumerable: true,
             configurable: true
@@ -3868,7 +3897,7 @@
                     }] }
         ];
         return DateWidget;
-    }(ControlWidget));
+    }(ControlUIWidget));
 
     /**
      * @fileoverview added by tsickle
@@ -3902,10 +3931,11 @@
                 prefix: prefix || '@',
                 autosize: typeof autosize === 'undefined' ? true : this.ui.autosize,
             };
+            var _b = this.schema, minimum = _b.minimum, maximum = _b.maximum;
             /** @type {?} */
-            var min = typeof this.schema.minimum !== 'undefined' ? this.schema.minimum : -1;
+            var min = typeof minimum !== 'undefined' ? minimum : -1;
             /** @type {?} */
-            var max = typeof this.schema.maximum !== 'undefined' ? this.schema.maximum : -1;
+            var max = typeof maximum !== 'undefined' ? maximum : -1;
             if (!this.ui.validator && (min !== -1 || max !== -1)) {
                 this.ui.validator = (/** @type {?} */ (((/**
                  * @return {?}
@@ -3967,7 +3997,8 @@
             if (typeof this.ui.loadData !== 'function')
                 return;
             this.loading = true;
-            ((/** @type {?} */ (this.ui.loadData(option))))
+            this.ui
+                .loadData(option)
                 .pipe(operators.tap((/**
              * @return {?}
              */
@@ -3982,7 +4013,7 @@
              */
             function (res) {
                 _this.data = res;
-                _this.cd.detectChanges();
+                _this.detectChanges(true);
             }));
         };
         MentionWidget.decorators = [
@@ -3997,7 +4028,7 @@
             mentionChild: [{ type: core.ViewChild, args: ['mentions', { static: true },] }]
         };
         return MentionWidget;
-    }(ControlWidget));
+    }(ControlUIWidget));
 
     /**
      * @fileoverview added by tsickle
@@ -4026,19 +4057,21 @@
          * @return {?}
          */
         function () {
-            var _a = this, schema = _a.schema, ui = _a.ui;
-            if (typeof schema.minimum !== 'undefined') {
-                this.min = schema.exclusiveMinimum ? schema.minimum + 1 : schema.minimum;
+            var _a = this.schema, minimum = _a.minimum, exclusiveMinimum = _a.exclusiveMinimum, maximum = _a.maximum, exclusiveMaximum = _a.exclusiveMaximum, multipleOf = _a.multipleOf, type = _a.type;
+            if (typeof minimum !== 'undefined') {
+                this.min = exclusiveMinimum ? minimum + 1 : minimum;
             }
-            if (typeof schema.maximum !== 'undefined') {
-                this.max = schema.exclusiveMaximum ? schema.maximum - 1 : schema.maximum;
+            if (typeof maximum !== 'undefined') {
+                this.max = exclusiveMaximum ? maximum - 1 : maximum;
             }
-            this.step = schema.multipleOf || 1;
-            if (schema.type === 'integer') {
+            this.step = multipleOf || 1;
+            if (type === 'integer') {
                 this.min = Math.trunc(this.min);
                 this.max = Math.trunc(this.max);
                 this.step = Math.trunc(this.step);
             }
+            /** @type {?} */
+            var ui = this.ui;
             if (ui.prefix != null) {
                 ui.formatter = (/**
                  * @param {?} value
@@ -4088,7 +4121,7 @@
                     }] }
         ];
         return NumberWidget;
-    }(ControlWidget));
+    }(ControlUIWidget));
 
     /**
      * @fileoverview added by tsickle
@@ -4205,7 +4238,7 @@
                     }] }
         ];
         return RadioWidget;
-    }(ControlWidget));
+    }(ControlUIWidget));
 
     /**
      * @fileoverview added by tsickle
@@ -4235,11 +4268,12 @@
          * @return {?}
          */
         function () {
-            this.count = this.schema.maximum || 5;
-            this.allowHalf = (this.schema.multipleOf || 0.5) === 0.5;
-            this.allowClear = toBool(this.ui.allowClear, true);
-            this.autoFocus = toBool(this.ui.autoFocus, false);
-            this.hasText = !!this.ui.text;
+            var _a = this, schema = _a.schema, ui = _a.ui;
+            this.count = schema.maximum || 5;
+            this.allowHalf = (schema.multipleOf || 0.5) === 0.5;
+            this.allowClear = toBool(ui.allowClear, true);
+            this.autoFocus = toBool(ui.autoFocus, false);
+            this.hasText = !!ui.text;
         };
         RateWidget.decorators = [
             { type: core.Component, args: [{
@@ -4250,7 +4284,7 @@
                     }] }
         ];
         return RateWidget;
-    }(ControlWidget));
+    }(ControlUIWidget));
 
     /**
      * @fileoverview added by tsickle
@@ -4345,16 +4379,16 @@
             this.setValue(values == null ? undefined : values);
         };
         /**
-         * @param {?} value
+         * @param {?} status
          * @return {?}
          */
         SelectWidget.prototype.openChange = /**
-         * @param {?} value
+         * @param {?} status
          * @return {?}
          */
-        function (value) {
+        function (status) {
             if (this.ui.openChange) {
-                this.ui.openChange(value);
+                this.ui.openChange(status);
             }
         };
         /**
@@ -4401,7 +4435,7 @@
                     }] }
         ];
         return SelectWidget;
-    }(ControlWidget));
+    }(ControlUIWidget));
 
     /**
      * @fileoverview added by tsickle
@@ -4416,8 +4450,9 @@
              * @return {?}
              */
             function (value) {
-                if (_this.ui.formatter)
-                    return _this.ui.formatter(value);
+                var formatter = _this.ui.formatter;
+                if (formatter)
+                    return formatter(value);
                 return value;
             });
             return _this;
@@ -4429,12 +4464,12 @@
          * @return {?}
          */
         function () {
-            this.min = this.schema.minimum || 0;
-            this.max = this.schema.maximum || 100;
-            this.step = this.schema.multipleOf || 1;
-            this.marks = this.ui.marks || null;
-            /** @type {?} */
-            var included = this.ui.included;
+            var _a = this.schema, minimum = _a.minimum, maximum = _a.maximum, multipleOf = _a.multipleOf;
+            this.min = minimum || 0;
+            this.max = maximum || 100;
+            this.step = multipleOf || 1;
+            var _b = this.ui, marks = _b.marks, included = _b.included;
+            this.marks = marks || null;
             this.included = typeof included === 'undefined' ? true : included;
         };
         /**
@@ -4446,8 +4481,9 @@
          * @return {?}
          */
         function (value) {
-            if (this.ui.afterChange)
-                this.ui.afterChange(value);
+            var afterChange = this.ui.afterChange;
+            if (afterChange)
+                return afterChange(value);
         };
         SliderWidget.decorators = [
             { type: core.Component, args: [{
@@ -4458,7 +4494,7 @@
                     }] }
         ];
         return SliderWidget;
-    }(ControlWidget));
+    }(ControlUIWidget));
 
     /**
      * @fileoverview added by tsickle
@@ -4476,14 +4512,8 @@
          * @return {?}
          */
         function () {
-            this.type = !!(this.ui.addOnAfter ||
-                this.ui.addOnBefore ||
-                this.ui.addOnAfterIcon ||
-                this.ui.addOnBeforeIcon ||
-                this.ui.prefix ||
-                this.ui.prefixIcon ||
-                this.ui.suffix ||
-                this.ui.suffixIcon)
+            var _a = this.ui, addOnAfter = _a.addOnAfter, addOnAfterIcon = _a.addOnAfterIcon, addOnBefore = _a.addOnBefore, addOnBeforeIcon = _a.addOnBeforeIcon, prefix = _a.prefix, prefixIcon = _a.prefixIcon, suffix = _a.suffix, suffixIcon = _a.suffixIcon;
+            this.type = !!(addOnAfter || addOnBefore || addOnAfterIcon || addOnBeforeIcon || prefix || prefixIcon || suffix || suffixIcon)
                 ? 'addon'
                 : '';
         };
@@ -4509,7 +4539,7 @@
                     }] }
         ];
         return StringWidget;
-    }(ControlWidget));
+    }(ControlUIWidget));
 
     /**
      * @fileoverview added by tsickle
@@ -4604,7 +4634,7 @@
                     }] }
         ];
         return TagWidget;
-    }(ControlWidget));
+    }(ControlUIWidget));
 
     /**
      * @fileoverview added by tsickle
@@ -4633,7 +4663,7 @@
                     }] }
         ];
         return TextWidget;
-    }(ControlWidget));
+    }(ControlUIWidget));
 
     /**
      * @fileoverview added by tsickle
@@ -4653,8 +4683,9 @@
          * @return {?}
          */
         function () {
-            if (this.ui.autosize != null) {
-                this.autosize = this.ui.autosize;
+            var autosize = this.ui.autosize;
+            if (autosize != null) {
+                this.autosize = autosize;
             }
         };
         TextareaWidget.decorators = [
@@ -4666,7 +4697,7 @@
                     }] }
         ];
         return TextareaWidget;
-    }(ControlWidget));
+    }(ControlUIWidget));
 
     /**
      * @fileoverview added by tsickle
@@ -4755,7 +4786,7 @@
                     }] }
         ];
         return TimeWidget;
-    }(ControlWidget));
+    }(ControlUIWidget));
 
     /**
      * @fileoverview added by tsickle
@@ -4783,11 +4814,12 @@
          * @return {?}
          */
         function () {
+            var _a = this.ui, titles = _a.titles, operations = _a.operations, itemUnit = _a.itemUnit, itemsUnit = _a.itemsUnit;
             this.i = {
-                titles: this.ui.titles || ['', ''],
-                operations: this.ui.operations || ['', ''],
-                itemUnit: this.ui.itemUnit || '项',
-                itemsUnit: this.ui.itemsUnit || '项',
+                titles: titles || ['', ''],
+                operations: operations || ['', ''],
+                itemUnit: itemUnit || '项',
+                itemsUnit: itemsUnit || '项',
             };
         };
         /**
@@ -4903,7 +4935,7 @@
                     }] }
         ];
         return TransferWidget;
-    }(ControlWidget));
+    }(ControlUIWidget));
 
     /**
      * @fileoverview added by tsickle
@@ -5006,7 +5038,7 @@
                     }] }
         ];
         return TreeSelectWidget;
-    }(ControlWidget));
+    }(ControlUIWidget));
 
     /**
      * @fileoverview added by tsickle
@@ -5180,7 +5212,7 @@
                     }] }
         ];
         return UploadWidget;
-    }(ControlWidget));
+    }(ControlUIWidget));
 
     /**
      * @fileoverview added by tsickle
@@ -5320,6 +5352,7 @@
     exports.BooleanWidget = BooleanWidget;
     exports.CascaderWidget = CascaderWidget;
     exports.CheckboxWidget = CheckboxWidget;
+    exports.ControlUIWidget = ControlUIWidget;
     exports.ControlWidget = ControlWidget;
     exports.CustomWidget = CustomWidget;
     exports.DateWidget = DateWidget;
@@ -5347,6 +5380,7 @@
     exports.StringProperty = StringProperty;
     exports.StringWidget = StringWidget;
     exports.TagWidget = TagWidget;
+    exports.TextWidget = TextWidget;
     exports.TextareaWidget = TextareaWidget;
     exports.TimeWidget = TimeWidget;
     exports.TransferWidget = TransferWidget;
@@ -5359,7 +5393,6 @@
     exports.ɵa = TerminatorService;
     exports.ɵb = SFItemWrapComponent;
     exports.ɵc = SFTemplateDirective;
-    exports.ɵd = TextWidget;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 

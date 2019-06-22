@@ -12,7 +12,6 @@ var DownFileDirective = /** @class */ (function () {
     function DownFileDirective(el, _http) {
         this.el = el;
         this._http = _http;
-        this.isFileSaverSupported = true;
         /**
          * 请求类型
          */
@@ -25,16 +24,6 @@ var DownFileDirective = /** @class */ (function () {
          * 错误回调
          */
         this.error = new EventEmitter();
-        /** @type {?} */
-        var isFileSaverSupported = false;
-        try {
-            isFileSaverSupported = !!new Blob();
-        }
-        catch (_a) { }
-        this.isFileSaverSupported = isFileSaverSupported;
-        if (!isFileSaverSupported) {
-            el.nativeElement.classList.add("down-file__not-support");
-        }
     }
     /**
      * @private
@@ -80,19 +69,18 @@ var DownFileDirective = /** @class */ (function () {
     };
     /**
      * @private
-     * @param {?} status
+     * @param {?} val
      * @return {?}
      */
     DownFileDirective.prototype.setDisabled = /**
      * @private
-     * @param {?} status
+     * @param {?} val
      * @return {?}
      */
-    function (status) {
+    function (val) {
         /** @type {?} */
-        var el = this.el.nativeElement;
-        el.disabled = status;
-        el.classList[status ? 'add' : 'remove']("down-file__disabled");
+        var el = (/** @type {?} */ (this.el.nativeElement));
+        el.disabled = val;
     };
     /**
      * @return {?}
@@ -102,9 +90,6 @@ var DownFileDirective = /** @class */ (function () {
      */
     function () {
         var _this = this;
-        if (!this.isFileSaverSupported) {
-            return;
-        }
         this.setDisabled(true);
         this._http
             .request(this.httpMethod, this.httpUrl, {
@@ -131,14 +116,15 @@ var DownFileDirective = /** @class */ (function () {
                 res.headers.get('x-filename');
             saveAs(res.body, decodeURI(fileName));
             _this.success.emit(res);
+            _this.setDisabled(false);
         }), (/**
          * @param {?} err
          * @return {?}
          */
-        function (err) { return _this.error.emit(err); }), (/**
-         * @return {?}
-         */
-        function () { return _this.setDisabled(false); }));
+        function (err) {
+            _this.error.emit(err);
+            _this.setDisabled(false);
+        }));
     };
     DownFileDirective.decorators = [
         { type: Directive, args: [{

@@ -1,7 +1,8 @@
 import { OnInit } from '@angular/core';
 import { SFValue } from '../../interface';
-import { ControlWidget } from '../../widget';
-export declare class DateWidget extends ControlWidget implements OnInit {
+import { ControlUIWidget } from '../../widget';
+import { SFDateWidgetSchema } from './schema';
+export declare class DateWidget extends ControlUIWidget<SFDateWidgetSchema> implements OnInit {
     mode: string;
     displayValue: Date | Date[] | null;
     displayFormat: string;
