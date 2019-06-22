@@ -37,49 +37,6 @@ import format from 'date-fns/format';
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-/** @type {?} */
-var ERRORSDEFAULT = {
-    'false schema': "\u5E03\u5C14\u6A21\u5F0F\u51FA\u9519",
-    $ref: "\u65E0\u6CD5\u627E\u5230\u5F15\u7528{ref}",
-    additionalItems: "\u4E0D\u5141\u8BB8\u8D85\u8FC7{ref}",
-    additionalProperties: "\u4E0D\u5141\u8BB8\u6709\u989D\u5916\u7684\u5C5E\u6027",
-    anyOf: "\u6570\u636E\u5E94\u4E3A anyOf \u6240\u6307\u5B9A\u7684\u5176\u4E2D\u4E00\u4E2A",
-    dependencies: "\u5E94\u5F53\u62E5\u6709\u5C5E\u6027{property}\u7684\u4F9D\u8D56\u5C5E\u6027{deps}",
-    enum: "\u5E94\u5F53\u662F\u9884\u8BBE\u5B9A\u7684\u679A\u4E3E\u503C\u4E4B\u4E00",
-    format: "\u683C\u5F0F\u4E0D\u6B63\u786E",
-    // `应当匹配格式 "{format}"`,
-    type: "\u7C7B\u578B\u5E94\u5F53\u662F {type}",
-    required: "\u5FC5\u586B\u9879",
-    maxLength: "\u81F3\u591A {limit} \u4E2A\u5B57\u7B26",
-    minLength: "\u81F3\u5C11 {limit} \u4E2A\u5B57\u7B26\u4EE5\u4E0A",
-    minimum: "\u5FC5\u987B {comparison}{limit}",
-    formatMinimum: "\u5FC5\u987B {comparison}{limit}",
-    maximum: "\u5FC5\u987B {comparison}{limit}",
-    formatMaximum: "\u5FC5\u987B {comparison}{limit}",
-    maxItems: "\u4E0D\u5E94\u591A\u4E8E {limit} \u4E2A\u9879",
-    minItems: "\u4E0D\u5E94\u5C11\u4E8E {limit} \u4E2A\u9879",
-    maxProperties: "\u4E0D\u5E94\u591A\u4E8E {limit} \u4E2A\u5C5E\u6027",
-    minProperties: "\u4E0D\u5E94\u5C11\u4E8E {limit} \u4E2A\u5C5E\u6027",
-    multipleOf: "\u5E94\u5F53\u662F {multipleOf} \u7684\u6574\u6570\u500D",
-    not: "\u4E0D\u5E94\u5F53\u5339\u914D \"not\" schema",
-    oneOf: "\u53EA\u80FD\u5339\u914D\u4E00\u4E2A \"oneOf\" \u4E2D\u7684 schema",
-    pattern: "\u6570\u636E\u683C\u5F0F\u4E0D\u6B63\u786E",
-    uniqueItems: "\u4E0D\u5E94\u5F53\u542B\u6709\u91CD\u590D\u9879 (\u7B2C {j} \u9879\u4E0E\u7B2C {i} \u9879\u662F\u91CD\u590D\u7684)",
-    custom: "\u683C\u5F0F\u4E0D\u6B63\u786E",
-    propertyNames: "\u5C5E\u6027\u540D \"{propertyName}\" \u65E0\u6548",
-    patternRequired: "\u5E94\u5F53\u6709\u5C5E\u6027\u5339\u914D\u6A21\u5F0F {missingPattern}",
-    switch: "\u7531\u4E8E {caseIndex} \u5931\u8D25\uFF0C\u672A\u901A\u8FC7 \"switch\" \u6821\u9A8C",
-    const: "\u5E94\u5F53\u7B49\u4E8E\u5E38\u91CF",
-    contains: "\u5E94\u5F53\u5305\u542B\u4E00\u4E2A\u6709\u6548\u9879",
-    formatExclusiveMaximum: "formatExclusiveMaximum \u5E94\u5F53\u662F\u5E03\u5C14\u503C",
-    formatExclusiveMinimum: "formatExclusiveMinimum \u5E94\u5F53\u662F\u5E03\u5C14\u503C",
-    if: "\u5E94\u5F53\u5339\u914D\u6A21\u5F0F \"{failingKeyword}\"",
-};
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 var DelonFormConfig = /** @class */ (function () {
     function DelonFormConfig() {
         /**
@@ -110,7 +67,7 @@ var DelonFormConfig = /** @class */ (function () {
         /**
          * 自定义通用错误信息
          */
-        this.errors = ERRORSDEFAULT;
+        this.errors = {};
         /**
          * 按钮风格
          */
@@ -471,13 +428,13 @@ var  /**
 FormProperty = /** @class */ (function () {
     function FormProperty(schemaValidatorFactory, schema, ui, formData, parent, path, _options) {
         this._options = _options;
-        this._value = null;
         this._errors = null;
-        this._objErrors = {};
         this._valueChanges = new BehaviorSubject(null);
         this._errorsChanges = new BehaviorSubject(null);
         this._visible = true;
         this._visibilityChanges = new BehaviorSubject(true);
+        this._objErrors = {};
+        this._value = null;
         this.schema = schema;
         this.ui = ui;
         this.schemaValidator = schemaValidatorFactory.createValidatorFn(schema, {
@@ -833,6 +790,8 @@ FormProperty = /** @class */ (function () {
         var _this = this;
         if (emitFormat === void 0) { emitFormat = true; }
         if (emitFormat && errors && !this.ui.onlyVisual) {
+            /** @type {?} */
+            var l_1 = (this.widget && this.widget.l.error) || {};
             errors = errors.map((/**
              * @param {?} err
              * @return {?}
@@ -841,7 +800,7 @@ FormProperty = /** @class */ (function () {
                 /** @type {?} */
                 var message = err._custom === true && err.message
                     ? err.message
-                    : (_this.ui.errors || {})[err.keyword] || (/** @type {?} */ (_this._options.errors))[err.keyword] || "";
+                    : (_this.ui.errors || {})[err.keyword] || (/** @type {?} */ (_this._options.errors))[err.keyword] || l_1[err.keyword] || "";
                 if (message && typeof message === 'function') {
                     message = (/** @type {?} */ (message(err)));
                 }
@@ -1755,7 +1714,7 @@ var AjvSchemaValidatorFactory = /** @class */ (function (_super) {
     function (schema, extraOptions) {
         var _this = this;
         /** @type {?} */
-        var ingoreKeywords = __spread(((/** @type {?} */ (this.options.ingoreKeywords))), ((/** @type {?} */ (extraOptions.ingoreKeywords)) || []));
+        var ingoreKeywords = __spread(((/** @type {?} */ (this.options.ingoreKeywords))), (((/** @type {?} */ (extraOptions.ingoreKeywords))) || []));
         return (/**
          * @param {?} value
          * @return {?}
@@ -1978,8 +1937,9 @@ var SFComponent = /** @class */ (function () {
         function () {
             _this.locale = _this.i18n.getData('sf');
             if (_this._inited) {
+                _this.validator({ emitError: false, onlyRoot: false });
                 _this.coverButtonProperty();
-                _this.cdr.detectChanges();
+                _this.cdr.markForCheck();
             }
         }));
         if (this.aclSrv) {
@@ -2398,19 +2358,53 @@ var SFComponent = /** @class */ (function () {
     /**
      * @template THIS
      * @this {THIS}
+     * @param {?=} options
      * @return {THIS}
      */
     SFComponent.prototype.validator = /**
      * @template THIS
      * @this {THIS}
+     * @param {?=} options
      * @return {THIS}
      */
-    function () {
-        (/** @type {?} */ ((/** @type {?} */ (this)).rootProperty))._runValidation();
+    function (options) {
+        if (options === void 0) { options = { emitError: true, onlyRoot: true }; }
+        /** @type {?} */
+        var fn = (/**
+         * @param {?} property
+         * @return {?}
+         */
+        function (property) {
+            if (property == null)
+                return;
+            property._runValidation();
+            if (!(property instanceof PropertyGroup) || !property.properties)
+                return;
+            if (Array.isArray(property.properties)) {
+                property.properties.forEach((/**
+                 * @param {?} p
+                 * @return {?}
+                 */
+                function (p) { return fn(p); }));
+            }
+            else {
+                Object.keys(property.properties).forEach((/**
+                 * @param {?} key
+                 * @return {?}
+                 */
+                function (key) { return fn((/** @type {?} */ (property.properties))[key]); }));
+            }
+        });
+        if (options.onlyRoot) {
+            (/** @type {?} */ ((/** @type {?} */ (this)).rootProperty))._runValidation();
+        }
+        else {
+            fn((/** @type {?} */ ((/** @type {?} */ (this)).rootProperty)));
+        }
         /** @type {?} */
         var errors = (/** @type {?} */ ((/** @type {?} */ (this)).rootProperty)).errors;
         (/** @type {?} */ (this))._valid = !(errors && errors.length);
-        if (!(/** @type {?} */ (this))._valid)
+        if (options.emitError && !(/** @type {?} */ (this))._valid)
             (/** @type {?} */ (this)).formError.emit((/** @type {?} */ (errors)));
         (/** @type {?} */ (this)).cdr.detectChanges();
         return (/** @type {?} */ (this));
@@ -5266,6 +5260,49 @@ var DelonFormModule = /** @class */ (function () {
     ];
     return DelonFormModule;
 }());
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/** @type {?} */
+var ERRORSDEFAULT = {
+    'false schema': "\u5E03\u5C14\u6A21\u5F0F\u51FA\u9519",
+    $ref: "\u65E0\u6CD5\u627E\u5230\u5F15\u7528{ref}",
+    additionalItems: "\u4E0D\u5141\u8BB8\u8D85\u8FC7{ref}",
+    additionalProperties: "\u4E0D\u5141\u8BB8\u6709\u989D\u5916\u7684\u5C5E\u6027",
+    anyOf: "\u6570\u636E\u5E94\u4E3A anyOf \u6240\u6307\u5B9A\u7684\u5176\u4E2D\u4E00\u4E2A",
+    dependencies: "\u5E94\u5F53\u62E5\u6709\u5C5E\u6027{property}\u7684\u4F9D\u8D56\u5C5E\u6027{deps}",
+    enum: "\u5E94\u5F53\u662F\u9884\u8BBE\u5B9A\u7684\u679A\u4E3E\u503C\u4E4B\u4E00",
+    format: "\u683C\u5F0F\u4E0D\u6B63\u786E",
+    // `应当匹配格式 "{format}"`,
+    type: "\u7C7B\u578B\u5E94\u5F53\u662F {type}",
+    required: "\u5FC5\u586B\u9879",
+    maxLength: "\u81F3\u591A {limit} \u4E2A\u5B57\u7B26",
+    minLength: "\u81F3\u5C11 {limit} \u4E2A\u5B57\u7B26\u4EE5\u4E0A",
+    minimum: "\u5FC5\u987B {comparison}{limit}",
+    formatMinimum: "\u5FC5\u987B {comparison}{limit}",
+    maximum: "\u5FC5\u987B {comparison}{limit}",
+    formatMaximum: "\u5FC5\u987B {comparison}{limit}",
+    maxItems: "\u4E0D\u5E94\u591A\u4E8E {limit} \u4E2A\u9879",
+    minItems: "\u4E0D\u5E94\u5C11\u4E8E {limit} \u4E2A\u9879",
+    maxProperties: "\u4E0D\u5E94\u591A\u4E8E {limit} \u4E2A\u5C5E\u6027",
+    minProperties: "\u4E0D\u5E94\u5C11\u4E8E {limit} \u4E2A\u5C5E\u6027",
+    multipleOf: "\u5E94\u5F53\u662F {multipleOf} \u7684\u6574\u6570\u500D",
+    not: "\u4E0D\u5E94\u5F53\u5339\u914D \"not\" schema",
+    oneOf: "\u53EA\u80FD\u5339\u914D\u4E00\u4E2A \"oneOf\" \u4E2D\u7684 schema",
+    pattern: "\u6570\u636E\u683C\u5F0F\u4E0D\u6B63\u786E",
+    uniqueItems: "\u4E0D\u5E94\u5F53\u542B\u6709\u91CD\u590D\u9879 (\u7B2C {j} \u9879\u4E0E\u7B2C {i} \u9879\u662F\u91CD\u590D\u7684)",
+    custom: "\u683C\u5F0F\u4E0D\u6B63\u786E",
+    propertyNames: "\u5C5E\u6027\u540D \"{propertyName}\" \u65E0\u6548",
+    patternRequired: "\u5E94\u5F53\u6709\u5C5E\u6027\u5339\u914D\u6A21\u5F0F {missingPattern}",
+    switch: "\u7531\u4E8E {caseIndex} \u5931\u8D25\uFF0C\u672A\u901A\u8FC7 \"switch\" \u6821\u9A8C",
+    const: "\u5E94\u5F53\u7B49\u4E8E\u5E38\u91CF",
+    contains: "\u5E94\u5F53\u5305\u542B\u4E00\u4E2A\u6709\u6548\u9879",
+    formatExclusiveMaximum: "formatExclusiveMaximum \u5E94\u5F53\u662F\u5E03\u5C14\u503C",
+    formatExclusiveMinimum: "formatExclusiveMinimum \u5E94\u5F53\u662F\u5E03\u5C14\u503C",
+    if: "\u5E94\u5F53\u5339\u914D\u6A21\u5F0F \"{failingKeyword}\"",
+};
 
 export { AjvSchemaValidatorFactory, ArrayLayoutWidget, ArrayProperty, ArrayWidget, AtomicProperty, AutoCompleteWidget, BooleanProperty, BooleanWidget, CascaderWidget, CheckboxWidget, ControlUIWidget, ControlWidget, CustomWidget, DateWidget, DelonFormConfig, DelonFormModule, ERRORSDEFAULT, FormProperty, FormPropertyFactory, MentionWidget, NumberProperty, NumberWidget, NzWidgetRegistry, ObjectLayoutWidget, ObjectProperty, ObjectWidget, PropertyGroup, RadioWidget, RateWidget, SFComponent, SFFixedDirective, SFItemComponent, SchemaValidatorFactory, SelectWidget, SliderWidget, StringProperty, StringWidget, TagWidget, TextWidget, TextareaWidget, TimeWidget, TransferWidget, TreeSelectWidget, UploadWidget, Widget, WidgetFactory, WidgetRegistry, useFactory, TerminatorService as ɵa, SFItemWrapComponent as ɵb, SFTemplateDirective as ɵc };
 //# sourceMappingURL=form.js.map

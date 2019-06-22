@@ -8,16 +8,7 @@ import { SchemaValidatorFactory } from '../validator.factory';
 import { Widget } from '../widget';
 export declare abstract class FormProperty {
     private _options;
-    schemaValidator: (value: SFValue) => ErrorData[];
-    schema: SFSchema;
-    ui: SFUISchema | SFUISchemaItemRun;
-    formData: {};
-    _value: SFValue;
-    widget: Widget<FormProperty, SFUISchemaItem>;
     private _errors;
-    protected _objErrors: {
-        [key: string]: ErrorData[];
-    };
     private _valueChanges;
     private _errorsChanges;
     private _visible;
@@ -25,6 +16,15 @@ export declare abstract class FormProperty {
     private _root;
     private _parent;
     private _path;
+    protected _objErrors: {
+        [key: string]: ErrorData[];
+    };
+    schemaValidator: (value: SFValue) => ErrorData[];
+    schema: SFSchema;
+    ui: SFUISchema | SFUISchemaItemRun;
+    formData: {};
+    _value: SFValue;
+    widget: Widget<FormProperty, SFUISchemaItem>;
     constructor(schemaValidatorFactory: SchemaValidatorFactory, schema: SFSchema, ui: SFUISchema | SFUISchemaItem, formData: {}, parent: PropertyGroup | null, path: string, _options: DelonFormConfig);
     readonly valueChanges: BehaviorSubject<any>;
     readonly errorsChanges: BehaviorSubject<ErrorData[] | null>;

@@ -104,7 +104,10 @@ export declare class SFComponent implements OnInit, OnChanges, OnDestroy {
         [P in keyof this]?: SimpleChange;
     } & SimpleChanges): void;
     private attachCustomRender;
-    validator(): this;
+    validator(options?: {
+        emitError?: boolean;
+        onlyRoot?: boolean;
+    }): this;
     /**
      * 刷新 Schema，一般需要动态修改 Schema 某个值时可以方便调用
      */

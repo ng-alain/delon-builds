@@ -37,49 +37,6 @@ import format from 'date-fns/format';
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-/** @type {?} */
-const ERRORSDEFAULT = {
-    'false schema': `布尔模式出错`,
-    $ref: `无法找到引用{ref}`,
-    additionalItems: `不允许超过{ref}`,
-    additionalProperties: `不允许有额外的属性`,
-    anyOf: `数据应为 anyOf 所指定的其中一个`,
-    dependencies: `应当拥有属性{property}的依赖属性{deps}`,
-    enum: `应当是预设定的枚举值之一`,
-    format: `格式不正确`,
-    // `应当匹配格式 "{format}"`,
-    type: `类型应当是 {type}`,
-    required: `必填项`,
-    maxLength: `至多 {limit} 个字符`,
-    minLength: `至少 {limit} 个字符以上`,
-    minimum: `必须 {comparison}{limit}`,
-    formatMinimum: `必须 {comparison}{limit}`,
-    maximum: `必须 {comparison}{limit}`,
-    formatMaximum: `必须 {comparison}{limit}`,
-    maxItems: `不应多于 {limit} 个项`,
-    minItems: `不应少于 {limit} 个项`,
-    maxProperties: `不应多于 {limit} 个属性`,
-    minProperties: `不应少于 {limit} 个属性`,
-    multipleOf: `应当是 {multipleOf} 的整数倍`,
-    not: `不应当匹配 "not" schema`,
-    oneOf: `只能匹配一个 "oneOf" 中的 schema`,
-    pattern: `数据格式不正确`,
-    uniqueItems: `不应当含有重复项 (第 {j} 项与第 {i} 项是重复的)`,
-    custom: `格式不正确`,
-    propertyNames: `属性名 "{propertyName}" 无效`,
-    patternRequired: `应当有属性匹配模式 {missingPattern}`,
-    switch: `由于 {caseIndex} 失败，未通过 "switch" 校验`,
-    const: `应当等于常量`,
-    contains: `应当包含一个有效项`,
-    formatExclusiveMaximum: `formatExclusiveMaximum 应当是布尔值`,
-    formatExclusiveMinimum: `formatExclusiveMinimum 应当是布尔值`,
-    if: `应当匹配模式 "{failingKeyword}"`,
-};
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 class DelonFormConfig {
     constructor() {
         /**
@@ -110,7 +67,7 @@ class DelonFormConfig {
         /**
          * 自定义通用错误信息
          */
-        this.errors = ERRORSDEFAULT;
+        this.errors = {};
         /**
          * 按钮风格
          */
@@ -458,13 +415,13 @@ class FormProperty {
      */
     constructor(schemaValidatorFactory, schema, ui, formData, parent, path, _options) {
         this._options = _options;
-        this._value = null;
         this._errors = null;
-        this._objErrors = {};
         this._valueChanges = new BehaviorSubject(null);
         this._errorsChanges = new BehaviorSubject(null);
         this._visible = true;
         this._visibilityChanges = new BehaviorSubject(true);
+        this._objErrors = {};
+        this._value = null;
         this.schema = schema;
         this.ui = ui;
         this.schemaValidator = schemaValidatorFactory.createValidatorFn(schema, {
@@ -712,6 +669,8 @@ class FormProperty {
      */
     setErrors(errors, emitFormat = true) {
         if (emitFormat && errors && !this.ui.onlyVisual) {
+            /** @type {?} */
+            const l = (this.widget && this.widget.l.error) || {};
             errors = errors.map((/**
              * @param {?} err
              * @return {?}
@@ -720,7 +679,7 @@ class FormProperty {
                 /** @type {?} */
                 let message = err._custom === true && err.message
                     ? err.message
-                    : (this.ui.errors || {})[err.keyword] || (/** @type {?} */ (this._options.errors))[err.keyword] || ``;
+                    : (this.ui.errors || {})[err.keyword] || (/** @type {?} */ (this._options.errors))[err.keyword] || l[err.keyword] || ``;
                 if (message && typeof message === 'function') {
                     message = (/** @type {?} */ (message(err)));
                 }
@@ -1426,10 +1385,7 @@ class AjvSchemaValidatorFactory extends SchemaValidatorFactory {
      */
     createValidatorFn(schema, extraOptions) {
         /** @type {?} */
-        const ingoreKeywords = [
-            ...((/** @type {?} */ (this.options.ingoreKeywords))),
-            ...((/** @type {?} */ (extraOptions.ingoreKeywords)) || []),
-        ];
+        const ingoreKeywords = [...((/** @type {?} */ (this.options.ingoreKeywords))), ...(((/** @type {?} */ (extraOptions.ingoreKeywords))) || [])];
         return (/**
          * @param {?} value
          * @return {?}
@@ -1634,8 +1590,9 @@ class SFComponent {
         () => {
             this.locale = this.i18n.getData('sf');
             if (this._inited) {
+                this.validator({ emitError: false, onlyRoot: false });
                 this.coverButtonProperty();
-                this.cdr.detectChanges();
+                this.cdr.markForCheck();
             }
         }));
         if (this.aclSrv) {
@@ -1974,14 +1931,46 @@ class SFComponent {
     /**
      * @template THIS
      * @this {THIS}
+     * @param {?=} options
      * @return {THIS}
      */
-    validator() {
-        (/** @type {?} */ ((/** @type {?} */ (this)).rootProperty))._runValidation();
+    validator(options = { emitError: true, onlyRoot: true }) {
+        /** @type {?} */
+        const fn = (/**
+         * @param {?} property
+         * @return {?}
+         */
+        (property) => {
+            if (property == null)
+                return;
+            property._runValidation();
+            if (!(property instanceof PropertyGroup) || !property.properties)
+                return;
+            if (Array.isArray(property.properties)) {
+                property.properties.forEach((/**
+                 * @param {?} p
+                 * @return {?}
+                 */
+                p => fn(p)));
+            }
+            else {
+                Object.keys(property.properties).forEach((/**
+                 * @param {?} key
+                 * @return {?}
+                 */
+                key => fn((/** @type {?} */ (property.properties))[key])));
+            }
+        });
+        if (options.onlyRoot) {
+            (/** @type {?} */ ((/** @type {?} */ (this)).rootProperty))._runValidation();
+        }
+        else {
+            fn((/** @type {?} */ ((/** @type {?} */ (this)).rootProperty)));
+        }
         /** @type {?} */
         const errors = (/** @type {?} */ ((/** @type {?} */ (this)).rootProperty)).errors;
         (/** @type {?} */ (this))._valid = !(errors && errors.length);
-        if (!(/** @type {?} */ (this))._valid)
+        if (options.emitError && !(/** @type {?} */ (this))._valid)
             (/** @type {?} */ (this)).formError.emit((/** @type {?} */ (errors)));
         (/** @type {?} */ (this)).cdr.detectChanges();
         return (/** @type {?} */ (this));
@@ -4292,6 +4281,49 @@ DelonFormModule.decorators = [
                 exports: [...COMPONENTS],
             },] }
 ];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/** @type {?} */
+const ERRORSDEFAULT = {
+    'false schema': `布尔模式出错`,
+    $ref: `无法找到引用{ref}`,
+    additionalItems: `不允许超过{ref}`,
+    additionalProperties: `不允许有额外的属性`,
+    anyOf: `数据应为 anyOf 所指定的其中一个`,
+    dependencies: `应当拥有属性{property}的依赖属性{deps}`,
+    enum: `应当是预设定的枚举值之一`,
+    format: `格式不正确`,
+    // `应当匹配格式 "{format}"`,
+    type: `类型应当是 {type}`,
+    required: `必填项`,
+    maxLength: `至多 {limit} 个字符`,
+    minLength: `至少 {limit} 个字符以上`,
+    minimum: `必须 {comparison}{limit}`,
+    formatMinimum: `必须 {comparison}{limit}`,
+    maximum: `必须 {comparison}{limit}`,
+    formatMaximum: `必须 {comparison}{limit}`,
+    maxItems: `不应多于 {limit} 个项`,
+    minItems: `不应少于 {limit} 个项`,
+    maxProperties: `不应多于 {limit} 个属性`,
+    minProperties: `不应少于 {limit} 个属性`,
+    multipleOf: `应当是 {multipleOf} 的整数倍`,
+    not: `不应当匹配 "not" schema`,
+    oneOf: `只能匹配一个 "oneOf" 中的 schema`,
+    pattern: `数据格式不正确`,
+    uniqueItems: `不应当含有重复项 (第 {j} 项与第 {i} 项是重复的)`,
+    custom: `格式不正确`,
+    propertyNames: `属性名 "{propertyName}" 无效`,
+    patternRequired: `应当有属性匹配模式 {missingPattern}`,
+    switch: `由于 {caseIndex} 失败，未通过 "switch" 校验`,
+    const: `应当等于常量`,
+    contains: `应当包含一个有效项`,
+    formatExclusiveMaximum: `formatExclusiveMaximum 应当是布尔值`,
+    formatExclusiveMinimum: `formatExclusiveMinimum 应当是布尔值`,
+    if: `应当匹配模式 "{failingKeyword}"`,
+};
 
 export { AjvSchemaValidatorFactory, ArrayLayoutWidget, ArrayProperty, ArrayWidget, AtomicProperty, AutoCompleteWidget, BooleanProperty, BooleanWidget, CascaderWidget, CheckboxWidget, ControlUIWidget, ControlWidget, CustomWidget, DateWidget, DelonFormConfig, DelonFormModule, ERRORSDEFAULT, FormProperty, FormPropertyFactory, MentionWidget, NumberProperty, NumberWidget, NzWidgetRegistry, ObjectLayoutWidget, ObjectProperty, ObjectWidget, PropertyGroup, RadioWidget, RateWidget, SFComponent, SFFixedDirective, SFItemComponent, SchemaValidatorFactory, SelectWidget, SliderWidget, StringProperty, StringWidget, TagWidget, TextWidget, TextareaWidget, TimeWidget, TransferWidget, TreeSelectWidget, UploadWidget, Widget, WidgetFactory, WidgetRegistry, useFactory, TerminatorService as ɵa, SFItemWrapComponent as ɵb, SFTemplateDirective as ɵc };
 //# sourceMappingURL=form.js.map
