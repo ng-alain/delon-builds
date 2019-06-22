@@ -15,6 +15,7 @@ class DownFileDirective {
     constructor(el, _http) {
         this.el = el;
         this._http = _http;
+        this.isFileSaverSupported = true;
         /**
          * 请求类型
          */
@@ -27,6 +28,16 @@ class DownFileDirective {
          * 错误回调
          */
         this.error = new EventEmitter();
+        /** @type {?} */
+        let isFileSaverSupported = false;
+        try {
+            isFileSaverSupported = !!new Blob();
+        }
+        catch (_a) { }
+        this.isFileSaverSupported = isFileSaverSupported;
+        if (!isFileSaverSupported) {
+            el.nativeElement.classList.add(`down-file__not-support`);
+        }
     }
     /**
      * @private
@@ -66,18 +77,22 @@ class DownFileDirective {
     }
     /**
      * @private
-     * @param {?} val
+     * @param {?} status
      * @return {?}
      */
-    setDisabled(val) {
+    setDisabled(status) {
         /** @type {?} */
-        const el = (/** @type {?} */ (this.el.nativeElement));
-        el.disabled = val;
+        const el = this.el.nativeElement;
+        el.disabled = status;
+        el.classList[status ? 'add' : 'remove'](`down-file__disabled`);
     }
     /**
      * @return {?}
      */
     _click() {
+        if (!this.isFileSaverSupported) {
+            return;
+        }
         this.setDisabled(true);
         this._http
             .request(this.httpMethod, this.httpUrl, {
@@ -104,15 +119,14 @@ class DownFileDirective {
                 res.headers.get('x-filename');
             saveAs(res.body, decodeURI(fileName));
             this.success.emit(res);
-            this.setDisabled(false);
         }), (/**
          * @param {?} err
          * @return {?}
          */
-        err => {
-            this.error.emit(err);
-            this.setDisabled(false);
-        }));
+        err => this.error.emit(err)), (/**
+         * @return {?}
+         */
+        () => this.setDisabled(false)));
     }
 }
 DownFileDirective.decorators = [

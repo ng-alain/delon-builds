@@ -4,6 +4,7 @@ import { _HttpClient } from '@delon/theme';
 export declare class DownFileDirective {
     private el;
     private _http;
+    private isFileSaverSupported;
     /** URL请求参数 */
     httpData: {};
     /** 请求类型 */
@@ -17,7 +18,7 @@ export declare class DownFileDirective {
     /** 错误回调 */
     readonly error: EventEmitter<any>;
     private getDisposition;
-    constructor(el: ElementRef<Element>, _http: _HttpClient);
+    constructor(el: ElementRef<HTMLButtonElement>, _http: _HttpClient);
     private setDisabled;
     _click(): void;
 }
