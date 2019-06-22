@@ -434,7 +434,7 @@ function getData(schema, ui, formData, asyncArgs) {
          * @param {?} list
          * @return {?}
          */
-        (list) => getEnum(list, formData, (/** @type {?} */ (schema.readOnly))))));
+        list => getEnum(list, formData, (/** @type {?} */ (schema.readOnly))))));
     }
     return of(getCopyEnum((/** @type {?} */ (schema.enum)), formData, (/** @type {?} */ (schema.readOnly))));
 }
@@ -2381,7 +2381,7 @@ SFTemplateDirective.propDecorators = {
  */
 /**
  * @abstract
- * @template T, UIT
+ * @template T
  */
 class Widget {
     /**
@@ -2491,16 +2491,6 @@ class ControlWidget extends Widget {
      */
     reset(_value) { }
 }
-/**
- * @template UIT
- */
-class ControlUIWidget extends Widget {
-    /**
-     * @param {?} _value
-     * @return {?}
-     */
-    reset(_value) { }
-}
 class ArrayLayoutWidget extends Widget {
     /**
      * @param {?} _value
@@ -2553,13 +2543,12 @@ class ArrayWidget extends ArrayLayoutWidget {
      * @return {?}
      */
     ngOnInit() {
-        const { grid, addTitle, addType, removable, removeTitle } = this.ui;
-        if (grid && grid.arraySpan) {
-            this.arraySpan = grid.arraySpan;
+        if (this.ui.grid && this.ui.grid.arraySpan) {
+            this.arraySpan = this.ui.grid.arraySpan;
         }
-        this.addTitle = addTitle || this.l.addText;
-        this.addType = addType || 'dashed';
-        this.removeTitle = removable === false ? null : removeTitle || this.l.removeText;
+        this.addTitle = this.ui.addTitle || this.l.addText;
+        this.addType = this.ui.addType || 'dashed';
+        this.removeTitle = this.ui.removable === false ? null : this.ui.removeTitle || this.l.removeText;
     }
     /**
      * @return {?}
@@ -2588,7 +2577,7 @@ ArrayWidget.decorators = [
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class AutoCompleteWidget extends ControlUIWidget {
+class AutoCompleteWidget extends ControlWidget {
     constructor() {
         super(...arguments);
         this.i = {};
@@ -2608,24 +2597,21 @@ class AutoCompleteWidget extends ControlUIWidget {
      * @return {?}
      */
     ngAfterViewInit() {
-        const { backfill, defaultActiveFirstOption, nzWidth, filterOption, asyncData } = this.ui;
         this.i = {
-            backfill: toBool(backfill, false),
-            defaultActiveFirstOption: toBool(defaultActiveFirstOption, true),
-            width: nzWidth || undefined,
+            backfill: toBool(this.ui.backfill, false),
+            defaultActiveFirstOption: toBool(this.ui.defaultActiveFirstOption, true),
+            width: this.ui.width || undefined,
         };
-        /** @type {?} */
-        let filterOptionValue = filterOption == null ? true : filterOption;
-        if (typeof filterOptionValue === 'boolean') {
-            filterOptionValue = (/**
+        this.filterOption = this.ui.filterOption == null ? true : this.ui.filterOption;
+        if (typeof this.filterOption === 'boolean') {
+            this.filterOption = (/**
              * @param {?} input
              * @param {?} option
              * @return {?}
              */
             (input, option) => option.label.toLowerCase().indexOf((input || '').toLowerCase()) > -1);
         }
-        this.filterOption = filterOptionValue;
-        this.isAsync = !!asyncData;
+        this.isAsync = !!this.ui.asyncData;
         /** @type {?} */
         const orgTime = +(this.ui.debounceTime || 0);
         /** @type {?} */
@@ -2634,7 +2620,7 @@ class AutoCompleteWidget extends ControlUIWidget {
          * @param {?} input
          * @return {?}
          */
-        input => (this.isAsync ? (/** @type {?} */ (asyncData))(input) : this.filterData(input)))), map((/**
+        input => (this.isAsync ? (/** @type {?} */ (this.ui.asyncData))(input) : this.filterData(input)))), map((/**
          * @param {?} res
          * @return {?}
          */
@@ -2718,7 +2704,7 @@ BooleanWidget.decorators = [
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class CascaderWidget extends ControlUIWidget {
+class CascaderWidget extends ControlWidget {
     constructor() {
         super(...arguments);
         this.data = [];
@@ -2727,21 +2713,17 @@ class CascaderWidget extends ControlUIWidget {
      * @return {?}
      */
     ngOnInit() {
-        const { clearText, showArrow, showInput, triggerAction, asyncData } = this.ui;
-        this.clearText = clearText || '清除';
-        this.showArrow = toBool(showArrow, true);
-        this.showInput = toBool(showInput, true);
-        this.triggerAction = triggerAction || ['click'];
-        if (!!asyncData) {
+        this.clearText = this.ui.clearText || '清除';
+        this.showArrow = toBool(this.ui.showArrow, true);
+        this.showInput = toBool(this.ui.showInput, true);
+        this.triggerAction = this.ui.triggerAction || ['click'];
+        if (!!this.ui.asyncData) {
             this.loadData = (/**
              * @param {?} node
              * @param {?} index
              * @return {?}
              */
-            (node, index) => asyncData(node, index, this).then((/**
-             * @return {?}
-             */
-            () => this.detectChanges())));
+            (node, index) => ((/** @type {?} */ (this.ui.asyncData)))(node, index, this));
         }
     }
     /**
@@ -2792,17 +2774,18 @@ class CascaderWidget extends ControlUIWidget {
             this.ui.select(options);
     }
     /**
+     * @param {?} options
      * @return {?}
      */
-    _clear() {
+    _clear(options) {
         if (this.ui.clear)
-            this.ui.clear();
+            this.ui.clear(options);
     }
 }
 CascaderWidget.decorators = [
     { type: Component, args: [{
                 selector: 'sf-cascader',
-                template: "<sf-item-wrap [id]=\"id\"\n              [schema]=\"schema\"\n              [ui]=\"ui\"\n              [showError]=\"showError\"\n              [error]=\"error\"\n              [showTitle]=\"schema.title\">\n  <nz-cascader [nzDisabled]=\"disabled\"\n               [nzSize]=\"ui.size\"\n               [ngModel]=\"value\"\n               (ngModelChange)=\"_change($event)\"\n               [nzOptions]=\"data\"\n               [nzAllowClear]=\"ui.allowClear\"\n               [nzAutoFocus]=\"ui.autoFocus\"\n               [nzChangeOn]=\"ui.changeOn\"\n               [nzChangeOnSelect]=\"ui.changeOnSelect\"\n               [nzColumnClassName]=\"ui.columnClassName\"\n               [nzExpandTrigger]=\"ui.expandTrigger\"\n               [nzMenuClassName]=\"ui.menuClassName\"\n               [nzMenuStyle]=\"ui.menuStyle\"\n               [nzLabelProperty]=\"ui.labelProperty || 'label'\"\n               [nzValueProperty]=\"ui.valueProperty || 'value'\"\n               [nzLoadData]=\"loadData\"\n               [nzPlaceHolder]=\"ui.placeholder\"\n               [nzShowArrow]=\"showArrow\"\n               [nzShowInput]=\"showInput\"\n               [nzShowSearch]=\"ui.showSearch\"\n               (nzClear)=\"_clear()\"\n               (nzVisibleChange)=\"_visibleChange($event)\"\n               (nzSelect)=\"_select($event)\"\n               (nzSelectionChange)=\"_selectionChange($event)\">\n  </nz-cascader>\n</sf-item-wrap>\n",
+                template: "<sf-item-wrap [id]=\"id\"\n              [schema]=\"schema\"\n              [ui]=\"ui\"\n              [showError]=\"showError\"\n              [error]=\"error\"\n              [showTitle]=\"schema.title\">\n  <nz-cascader [nzDisabled]=\"disabled\"\n               [nzSize]=\"ui.size\"\n               [ngModel]=\"value\"\n               (ngModelChange)=\"_change($event)\"\n               [nzOptions]=\"data\"\n               [nzAllowClear]=\"ui.allowClear\"\n               [nzAutoFocus]=\"ui.autoFocus\"\n               [nzChangeOn]=\"ui.changeOn\"\n               [nzChangeOnSelect]=\"ui.changeOnSelect\"\n               [nzColumnClassName]=\"ui.columnClassName\"\n               [nzExpandTrigger]=\"ui.expandTrigger\"\n               [nzMenuClassName]=\"ui.menuClassName\"\n               [nzMenuStyle]=\"ui.menuStyle\"\n               [nzLabelProperty]=\"ui.labelProperty || 'label'\"\n               [nzValueProperty]=\"ui.valueProperty || 'value'\"\n               [nzLoadData]=\"loadData\"\n               [nzPlaceHolder]=\"ui.placeholder\"\n               [nzShowArrow]=\"showArrow\"\n               [nzShowInput]=\"showInput\"\n               [nzShowSearch]=\"ui.showSearch\"\n               (nzClear)=\"_clear($event)\"\n               (nzVisibleChange)=\"_visibleChange($event)\"\n               (nzSelect)=\"_select($event)\"\n               (nzSelectionChange)=\"_selectionChange($event)\">\n  </nz-cascader>\n</sf-item-wrap>\n",
                 preserveWhitespaces: false,
                 encapsulation: ViewEncapsulation.None
             }] }
@@ -2812,7 +2795,7 @@ CascaderWidget.decorators = [
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class CheckboxWidget extends ControlUIWidget {
+class CheckboxWidget extends ControlWidget {
     constructor() {
         super(...arguments);
         this.data = [];
@@ -2836,8 +2819,7 @@ class CheckboxWidget extends ControlUIWidget {
             this.allChecked = false;
             this.indeterminate = false;
             this.labelTitle = list.length === 0 ? '' : ((/** @type {?} */ (this.schema.title)));
-            const { span } = this.ui;
-            this.grid_span = span && span > 0 ? span : 0;
+            this.grid_span = this.ui.span && this.ui.span > 0 ? this.ui.span : 0;
             this.updateAllChecked();
             this.inited = true;
             this.detectChanges();
@@ -2943,13 +2925,20 @@ CheckboxWidget.decorators = [
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class CustomWidget extends ControlUIWidget {
+class CustomWidget extends ControlWidget {
 }
 CustomWidget.decorators = [
     { type: Component, args: [{
                 selector: 'sf-custom',
                 template: `
-    <sf-item-wrap [id]="id" [schema]="schema" [ui]="ui" [showError]="showError" [error]="error" [showTitle]="schema.title">
+    <sf-item-wrap
+      [id]="id"
+      [schema]="schema"
+      [ui]="ui"
+      [showError]="showError"
+      [error]="error"
+      [showTitle]="schema.title"
+    >
       <ng-template
         [ngTemplateOutlet]="$any(ui)._render"
         [ngTemplateOutletContext]="{$implicit: this, schema: schema, ui: ui }"
@@ -2965,7 +2954,7 @@ CustomWidget.decorators = [
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class DateWidget extends ControlUIWidget {
+class DateWidget extends ControlWidget {
     constructor() {
         super(...arguments);
         this.displayValue = null;
@@ -2975,14 +2964,14 @@ class DateWidget extends ControlUIWidget {
      * @return {?}
      */
     ngOnInit() {
-        // tslint:disable-next-line: no-shadowed-variable
-        const { mode, end, displayFormat, format, allowClear, showToday } = this.ui;
-        this.mode = mode || 'date';
-        this.flatRange = end != null;
+        /** @type {?} */
+        const ui = this.ui;
+        this.mode = ui.mode || 'date';
+        this.flatRange = ui.end != null;
         if (this.flatRange) {
             this.mode = 'range';
         }
-        if (!displayFormat) {
+        if (!ui.displayFormat) {
             switch (this.mode) {
                 case 'year':
                     this.displayFormat = `yyyy`;
@@ -2996,15 +2985,15 @@ class DateWidget extends ControlUIWidget {
             }
         }
         else {
-            this.displayFormat = displayFormat;
+            this.displayFormat = ui.displayFormat;
         }
         // 构建属性对象时会对默认值进行校验，因此可以直接使用 format 作为格式化属性
-        this.format = (/** @type {?} */ (format));
+        this.format = ui.format;
         // 公共API
         this.i = {
-            allowClear: toBool(allowClear, true),
+            allowClear: toBool(ui.allowClear, true),
             // nz-date-picker
-            showToday: toBool(showToday, true),
+            showToday: toBool(ui.showToday, true),
         };
     }
     /**
@@ -3077,7 +3066,7 @@ class DateWidget extends ControlUIWidget {
      * @return {?}
      */
     get endProperty() {
-        return (/** @type {?} */ ((/** @type {?} */ (this.formProperty.parent)).properties))[(/** @type {?} */ (this.ui.end))];
+        return (/** @type {?} */ ((/** @type {?} */ (this.formProperty.parent)).properties))[this.ui.end];
     }
     /**
      * @private
@@ -3114,7 +3103,7 @@ DateWidget.decorators = [
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class MentionWidget extends ControlUIWidget {
+class MentionWidget extends ControlWidget {
     constructor() {
         super(...arguments);
         this.data = [];
@@ -3136,11 +3125,10 @@ class MentionWidget extends ControlUIWidget {
             prefix: prefix || '@',
             autosize: typeof autosize === 'undefined' ? true : this.ui.autosize,
         };
-        const { minimum, maximum } = this.schema;
         /** @type {?} */
-        const min = typeof minimum !== 'undefined' ? minimum : -1;
+        const min = typeof this.schema.minimum !== 'undefined' ? this.schema.minimum : -1;
         /** @type {?} */
-        const max = typeof maximum !== 'undefined' ? maximum : -1;
+        const max = typeof this.schema.maximum !== 'undefined' ? this.schema.maximum : -1;
         if (!this.ui.validator && (min !== -1 || max !== -1)) {
             this.ui.validator = (/** @type {?} */ (((/**
              * @return {?}
@@ -3188,8 +3176,7 @@ class MentionWidget extends ControlUIWidget {
         if (typeof this.ui.loadData !== 'function')
             return;
         this.loading = true;
-        this.ui
-            .loadData(option)
+        ((/** @type {?} */ (this.ui.loadData(option))))
             .pipe(tap((/**
          * @return {?}
          */
@@ -3204,7 +3191,7 @@ class MentionWidget extends ControlUIWidget {
          */
         res => {
             this.data = res;
-            this.detectChanges(true);
+            this.cd.detectChanges();
         }));
     }
 }
@@ -3224,7 +3211,7 @@ MentionWidget.propDecorators = {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class NumberWidget extends ControlUIWidget {
+class NumberWidget extends ControlWidget {
     constructor() {
         super(...arguments);
         this.formatter = (/**
@@ -3242,21 +3229,19 @@ class NumberWidget extends ControlUIWidget {
      * @return {?}
      */
     ngOnInit() {
-        const { minimum, exclusiveMinimum, maximum, exclusiveMaximum, multipleOf, type } = this.schema;
-        if (typeof minimum !== 'undefined') {
-            this.min = exclusiveMinimum ? minimum + 1 : minimum;
+        const { schema, ui } = this;
+        if (typeof schema.minimum !== 'undefined') {
+            this.min = schema.exclusiveMinimum ? schema.minimum + 1 : schema.minimum;
         }
-        if (typeof maximum !== 'undefined') {
-            this.max = exclusiveMaximum ? maximum - 1 : maximum;
+        if (typeof schema.maximum !== 'undefined') {
+            this.max = schema.exclusiveMaximum ? schema.maximum - 1 : schema.maximum;
         }
-        this.step = multipleOf || 1;
-        if (type === 'integer') {
+        this.step = schema.multipleOf || 1;
+        if (schema.type === 'integer') {
             this.min = Math.trunc(this.min);
             this.max = Math.trunc(this.max);
             this.step = Math.trunc(this.step);
         }
-        /** @type {?} */
-        const ui = this.ui;
         if (ui.prefix != null) {
             ui.formatter = (/**
              * @param {?} value
@@ -3352,7 +3337,7 @@ ObjectWidget.decorators = [
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class RadioWidget extends ControlUIWidget {
+class RadioWidget extends ControlWidget {
     constructor() {
         super(...arguments);
         this.data = [];
@@ -3395,7 +3380,7 @@ RadioWidget.decorators = [
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class RateWidget extends ControlUIWidget {
+class RateWidget extends ControlWidget {
     constructor() {
         super(...arguments);
         this.hasText = false;
@@ -3410,12 +3395,11 @@ class RateWidget extends ControlUIWidget {
      * @return {?}
      */
     ngOnInit() {
-        const { schema, ui } = this;
-        this.count = schema.maximum || 5;
-        this.allowHalf = (schema.multipleOf || 0.5) === 0.5;
-        this.allowClear = toBool(ui.allowClear, true);
-        this.autoFocus = toBool(ui.autoFocus, false);
-        this.hasText = !!ui.text;
+        this.count = this.schema.maximum || 5;
+        this.allowHalf = (this.schema.multipleOf || 0.5) === 0.5;
+        this.allowClear = toBool(this.ui.allowClear, true);
+        this.autoFocus = toBool(this.ui.autoFocus, false);
+        this.hasText = !!this.ui.text;
     }
 }
 RateWidget.decorators = [
@@ -3431,7 +3415,7 @@ RateWidget.decorators = [
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class SelectWidget extends ControlUIWidget {
+class SelectWidget extends ControlWidget {
     constructor() {
         super(...arguments);
         this.hasGroup = false;
@@ -3501,12 +3485,12 @@ class SelectWidget extends ControlUIWidget {
         this.setValue(values == null ? undefined : values);
     }
     /**
-     * @param {?} status
+     * @param {?} value
      * @return {?}
      */
-    openChange(status) {
+    openChange(value) {
         if (this.ui.openChange) {
-            this.ui.openChange(status);
+            this.ui.openChange(value);
         }
     }
     /**
@@ -3550,7 +3534,7 @@ SelectWidget.decorators = [
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class SliderWidget extends ControlUIWidget {
+class SliderWidget extends ControlWidget {
     constructor() {
         super(...arguments);
         this._formatter = (/**
@@ -3558,9 +3542,8 @@ class SliderWidget extends ControlUIWidget {
          * @return {?}
          */
         (value) => {
-            const { formatter } = this.ui;
-            if (formatter)
-                return formatter(value);
+            if (this.ui.formatter)
+                return this.ui.formatter(value);
             return value;
         });
     }
@@ -3568,12 +3551,12 @@ class SliderWidget extends ControlUIWidget {
      * @return {?}
      */
     ngOnInit() {
-        const { minimum, maximum, multipleOf } = this.schema;
-        this.min = minimum || 0;
-        this.max = maximum || 100;
-        this.step = multipleOf || 1;
-        const { marks, included } = this.ui;
-        this.marks = marks || null;
+        this.min = this.schema.minimum || 0;
+        this.max = this.schema.maximum || 100;
+        this.step = this.schema.multipleOf || 1;
+        this.marks = this.ui.marks || null;
+        /** @type {?} */
+        const included = this.ui.included;
         this.included = typeof included === 'undefined' ? true : included;
     }
     /**
@@ -3581,9 +3564,8 @@ class SliderWidget extends ControlUIWidget {
      * @return {?}
      */
     _afterChange(value) {
-        const { afterChange } = this.ui;
-        if (afterChange)
-            return afterChange(value);
+        if (this.ui.afterChange)
+            this.ui.afterChange(value);
     }
 }
 SliderWidget.decorators = [
@@ -3599,13 +3581,19 @@ SliderWidget.decorators = [
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class StringWidget extends ControlUIWidget {
+class StringWidget extends ControlWidget {
     /**
      * @return {?}
      */
     ngOnInit() {
-        const { addOnAfter, addOnAfterIcon, addOnBefore, addOnBeforeIcon, prefix, prefixIcon, suffix, suffixIcon } = this.ui;
-        this.type = !!(addOnAfter || addOnBefore || addOnAfterIcon || addOnBeforeIcon || prefix || prefixIcon || suffix || suffixIcon)
+        this.type = !!(this.ui.addOnAfter ||
+            this.ui.addOnBefore ||
+            this.ui.addOnAfterIcon ||
+            this.ui.addOnBeforeIcon ||
+            this.ui.prefix ||
+            this.ui.prefixIcon ||
+            this.ui.suffix ||
+            this.ui.suffixIcon)
             ? 'addon'
             : '';
     }
@@ -3632,7 +3620,7 @@ StringWidget.decorators = [
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class TagWidget extends ControlUIWidget {
+class TagWidget extends ControlWidget {
     /**
      * @param {?} value
      * @return {?}
@@ -3702,7 +3690,7 @@ TagWidget.decorators = [
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class TextWidget extends ControlUIWidget {
+class TextWidget extends ControlWidget {
     /**
      * @return {?}
      */
@@ -3723,7 +3711,7 @@ TextWidget.decorators = [
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class TextareaWidget extends ControlUIWidget {
+class TextareaWidget extends ControlWidget {
     constructor() {
         super(...arguments);
         this.autosize = true;
@@ -3732,9 +3720,8 @@ class TextareaWidget extends ControlUIWidget {
      * @return {?}
      */
     ngOnInit() {
-        const { autosize } = this.ui;
-        if (autosize != null) {
-            this.autosize = autosize;
+        if (this.ui.autosize != null) {
+            this.autosize = this.ui.autosize;
         }
     }
 }
@@ -3751,7 +3738,7 @@ TextareaWidget.decorators = [
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class TimeWidget extends ControlUIWidget {
+class TimeWidget extends ControlWidget {
     constructor() {
         super(...arguments);
         this.displayValue = null;
@@ -3826,7 +3813,7 @@ TimeWidget.decorators = [
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class TransferWidget extends ControlUIWidget {
+class TransferWidget extends ControlWidget {
     constructor() {
         super(...arguments);
         this.list = [];
@@ -3843,12 +3830,11 @@ class TransferWidget extends ControlUIWidget {
      * @return {?}
      */
     ngOnInit() {
-        const { titles, operations, itemUnit, itemsUnit } = this.ui;
         this.i = {
-            titles: titles || ['', ''],
-            operations: operations || ['', ''],
-            itemUnit: itemUnit || '项',
-            itemsUnit: itemsUnit || '项',
+            titles: this.ui.titles || ['', ''],
+            operations: this.ui.operations || ['', ''],
+            itemUnit: this.ui.itemUnit || '项',
+            itemsUnit: this.ui.itemsUnit || '项',
         };
     }
     /**
@@ -3947,7 +3933,7 @@ TransferWidget.decorators = [
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class TreeSelectWidget extends ControlUIWidget {
+class TreeSelectWidget extends ControlWidget {
     constructor() {
         super(...arguments);
         this.data = [];
@@ -4030,7 +4016,7 @@ TreeSelectWidget.decorators = [
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class UploadWidget extends ControlUIWidget {
+class UploadWidget extends ControlWidget {
     constructor() {
         super(...arguments);
         this.fileList = [];
@@ -4293,5 +4279,5 @@ DelonFormModule.decorators = [
             },] }
 ];
 
-export { AjvSchemaValidatorFactory, ArrayLayoutWidget, ArrayProperty, ArrayWidget, AtomicProperty, AutoCompleteWidget, BooleanProperty, BooleanWidget, CascaderWidget, CheckboxWidget, ControlUIWidget, ControlWidget, CustomWidget, DateWidget, DelonFormConfig, DelonFormModule, ERRORSDEFAULT, FormProperty, FormPropertyFactory, MentionWidget, NumberProperty, NumberWidget, NzWidgetRegistry, ObjectLayoutWidget, ObjectProperty, ObjectWidget, PropertyGroup, RadioWidget, RateWidget, SFComponent, SFFixedDirective, SFItemComponent, SchemaValidatorFactory, SelectWidget, SliderWidget, StringProperty, StringWidget, TagWidget, TextWidget, TextareaWidget, TimeWidget, TransferWidget, TreeSelectWidget, UploadWidget, Widget, WidgetFactory, WidgetRegistry, useFactory, TerminatorService as ɵa, SFItemWrapComponent as ɵb, SFTemplateDirective as ɵc };
+export { AjvSchemaValidatorFactory, ArrayLayoutWidget, ArrayProperty, ArrayWidget, AtomicProperty, AutoCompleteWidget, BooleanProperty, BooleanWidget, CascaderWidget, CheckboxWidget, ControlWidget, CustomWidget, DateWidget, DelonFormConfig, DelonFormModule, ERRORSDEFAULT, FormProperty, FormPropertyFactory, MentionWidget, NumberProperty, NumberWidget, NzWidgetRegistry, ObjectLayoutWidget, ObjectProperty, ObjectWidget, PropertyGroup, RadioWidget, RateWidget, SFComponent, SFFixedDirective, SFItemComponent, SchemaValidatorFactory, SelectWidget, SliderWidget, StringProperty, StringWidget, TagWidget, TextareaWidget, TimeWidget, TransferWidget, TreeSelectWidget, UploadWidget, Widget, WidgetFactory, WidgetRegistry, useFactory, TerminatorService as ɵa, SFItemWrapComponent as ɵb, SFTemplateDirective as ɵc, TextWidget as ɵd };
 //# sourceMappingURL=form.js.map

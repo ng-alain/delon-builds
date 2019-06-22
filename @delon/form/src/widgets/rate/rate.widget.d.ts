@@ -1,7 +1,6 @@
 import { OnInit } from '@angular/core';
-import { ControlUIWidget } from '../../widget';
-import { SFRateWidgetSchema } from './schema';
-export declare class RateWidget extends ControlUIWidget<SFRateWidgetSchema> implements OnInit {
+import { ControlWidget } from '../../widget';
+export declare class RateWidget extends ControlWidget implements OnInit {
     count: number;
     allowHalf: boolean;
     allowClear: boolean;

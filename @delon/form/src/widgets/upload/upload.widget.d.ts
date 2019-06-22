@@ -1,9 +1,8 @@
 import { OnInit } from '@angular/core';
 import { UploadChangeParam, UploadFile } from 'ng-zorro-antd/upload';
 import { SFValue } from '../../interface';
-import { ControlUIWidget } from '../../widget';
-import { SFUploadWidgetSchema } from './schema';
-export declare class UploadWidget extends ControlUIWidget<SFUploadWidgetSchema> implements OnInit {
+import { ControlWidget } from '../../widget';
+export declare class UploadWidget extends ControlWidget implements OnInit {
     i: any;
     fileList: UploadFile[];
     btnType: string;

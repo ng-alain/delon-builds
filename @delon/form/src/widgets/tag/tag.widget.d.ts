@@ -1,8 +1,7 @@
 import { SFValue } from '../../interface';
 import { SFSchemaEnum } from '../../schema';
-import { ControlUIWidget } from '../../widget';
-import { SFTagWidgetSchema } from './schema';
-export declare class TagWidget extends ControlUIWidget<SFTagWidgetSchema> {
+import { ControlWidget } from '../../widget';
+export declare class TagWidget extends ControlWidget {
     data: SFSchemaEnum[];
     reset(value: SFValue): void;
     onChange(item: SFSchemaEnum): void;

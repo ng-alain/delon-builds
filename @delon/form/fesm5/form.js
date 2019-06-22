@@ -2868,7 +2868,7 @@ var SFTemplateDirective = /** @class */ (function () {
  */
 /**
  * @abstract
- * @template T, UIT
+ * @template T
  */
 var Widget = /** @class */ (function () {
     function Widget(cd, injector, sfItemComp, sfComp) {
@@ -3015,28 +3015,6 @@ var ControlWidget = /** @class */ (function (_super) {
     function (_value) { };
     return ControlWidget;
 }(Widget));
-/**
- * @template UIT
- */
-var  /**
- * @template UIT
- */
-ControlUIWidget = /** @class */ (function (_super) {
-    __extends(ControlUIWidget, _super);
-    function ControlUIWidget() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    /**
-     * @param {?} _value
-     * @return {?}
-     */
-    ControlUIWidget.prototype.reset = /**
-     * @param {?} _value
-     * @return {?}
-     */
-    function (_value) { };
-    return ControlUIWidget;
-}(Widget));
 var ArrayLayoutWidget = /** @class */ (function (_super) {
     __extends(ArrayLayoutWidget, _super);
     function ArrayLayoutWidget() {
@@ -3124,13 +3102,12 @@ var ArrayWidget = /** @class */ (function (_super) {
      * @return {?}
      */
     function () {
-        var _a = this.ui, grid = _a.grid, addTitle = _a.addTitle, addType = _a.addType, removable = _a.removable, removeTitle = _a.removeTitle;
-        if (grid && grid.arraySpan) {
-            this.arraySpan = grid.arraySpan;
+        if (this.ui.grid && this.ui.grid.arraySpan) {
+            this.arraySpan = this.ui.grid.arraySpan;
         }
-        this.addTitle = addTitle || this.l.addText;
-        this.addType = addType || 'dashed';
-        this.removeTitle = removable === false ? null : removeTitle || this.l.removeText;
+        this.addTitle = this.ui.addTitle || this.l.addText;
+        this.addType = this.ui.addType || 'dashed';
+        this.removeTitle = this.ui.removable === false ? null : this.ui.removeTitle || this.l.removeText;
     };
     /**
      * @return {?}
@@ -3197,24 +3174,21 @@ var AutoCompleteWidget = /** @class */ (function (_super) {
      */
     function () {
         var _this = this;
-        var _a = this.ui, backfill = _a.backfill, defaultActiveFirstOption = _a.defaultActiveFirstOption, nzWidth = _a.nzWidth, filterOption = _a.filterOption, asyncData = _a.asyncData;
         this.i = {
-            backfill: toBool(backfill, false),
-            defaultActiveFirstOption: toBool(defaultActiveFirstOption, true),
-            width: nzWidth || undefined,
+            backfill: toBool(this.ui.backfill, false),
+            defaultActiveFirstOption: toBool(this.ui.defaultActiveFirstOption, true),
+            width: this.ui.width || undefined,
         };
-        /** @type {?} */
-        var filterOptionValue = filterOption == null ? true : filterOption;
-        if (typeof filterOptionValue === 'boolean') {
-            filterOptionValue = (/**
+        this.filterOption = this.ui.filterOption == null ? true : this.ui.filterOption;
+        if (typeof this.filterOption === 'boolean') {
+            this.filterOption = (/**
              * @param {?} input
              * @param {?} option
              * @return {?}
              */
             function (input, option) { return option.label.toLowerCase().indexOf((input || '').toLowerCase()) > -1; });
         }
-        this.filterOption = filterOptionValue;
-        this.isAsync = !!asyncData;
+        this.isAsync = !!this.ui.asyncData;
         /** @type {?} */
         var orgTime = +(this.ui.debounceTime || 0);
         /** @type {?} */
@@ -3223,7 +3197,7 @@ var AutoCompleteWidget = /** @class */ (function (_super) {
          * @param {?} input
          * @return {?}
          */
-        function (input) { return (_this.isAsync ? (/** @type {?} */ (asyncData))(input) : _this.filterData(input)); })), map((/**
+        function (input) { return (_this.isAsync ? (/** @type {?} */ (_this.ui.asyncData))(input) : _this.filterData(input)); })), map((/**
          * @param {?} res
          * @return {?}
          */
@@ -3302,7 +3276,7 @@ var AutoCompleteWidget = /** @class */ (function (_super) {
         ngModel: [{ type: ViewChild, args: [NgModel, { static: false },] }]
     };
     return AutoCompleteWidget;
-}(ControlUIWidget));
+}(ControlWidget));
 
 /**
  * @fileoverview added by tsickle
@@ -3343,21 +3317,17 @@ var CascaderWidget = /** @class */ (function (_super) {
      */
     function () {
         var _this = this;
-        var _a = this.ui, clearText = _a.clearText, showArrow = _a.showArrow, showInput = _a.showInput, triggerAction = _a.triggerAction, asyncData = _a.asyncData;
-        this.clearText = clearText || '清除';
-        this.showArrow = toBool(showArrow, true);
-        this.showInput = toBool(showInput, true);
-        this.triggerAction = triggerAction || ['click'];
-        if (!!asyncData) {
+        this.clearText = this.ui.clearText || '清除';
+        this.showArrow = toBool(this.ui.showArrow, true);
+        this.showInput = toBool(this.ui.showInput, true);
+        this.triggerAction = this.ui.triggerAction || ['click'];
+        if (!!this.ui.asyncData) {
             this.loadData = (/**
              * @param {?} node
              * @param {?} index
              * @return {?}
              */
-            function (node, index) { return asyncData(node, index, _this).then((/**
-             * @return {?}
-             */
-            function () { return _this.detectChanges(); })); });
+            function (node, index) { return ((/** @type {?} */ (_this.ui.asyncData)))(node, index, _this); });
         }
     };
     /**
@@ -3429,25 +3399,27 @@ var CascaderWidget = /** @class */ (function (_super) {
             this.ui.select(options);
     };
     /**
+     * @param {?} options
      * @return {?}
      */
     CascaderWidget.prototype._clear = /**
+     * @param {?} options
      * @return {?}
      */
-    function () {
+    function (options) {
         if (this.ui.clear)
-            this.ui.clear();
+            this.ui.clear(options);
     };
     CascaderWidget.decorators = [
         { type: Component, args: [{
                     selector: 'sf-cascader',
-                    template: "<sf-item-wrap [id]=\"id\"\n              [schema]=\"schema\"\n              [ui]=\"ui\"\n              [showError]=\"showError\"\n              [error]=\"error\"\n              [showTitle]=\"schema.title\">\n  <nz-cascader [nzDisabled]=\"disabled\"\n               [nzSize]=\"ui.size\"\n               [ngModel]=\"value\"\n               (ngModelChange)=\"_change($event)\"\n               [nzOptions]=\"data\"\n               [nzAllowClear]=\"ui.allowClear\"\n               [nzAutoFocus]=\"ui.autoFocus\"\n               [nzChangeOn]=\"ui.changeOn\"\n               [nzChangeOnSelect]=\"ui.changeOnSelect\"\n               [nzColumnClassName]=\"ui.columnClassName\"\n               [nzExpandTrigger]=\"ui.expandTrigger\"\n               [nzMenuClassName]=\"ui.menuClassName\"\n               [nzMenuStyle]=\"ui.menuStyle\"\n               [nzLabelProperty]=\"ui.labelProperty || 'label'\"\n               [nzValueProperty]=\"ui.valueProperty || 'value'\"\n               [nzLoadData]=\"loadData\"\n               [nzPlaceHolder]=\"ui.placeholder\"\n               [nzShowArrow]=\"showArrow\"\n               [nzShowInput]=\"showInput\"\n               [nzShowSearch]=\"ui.showSearch\"\n               (nzClear)=\"_clear()\"\n               (nzVisibleChange)=\"_visibleChange($event)\"\n               (nzSelect)=\"_select($event)\"\n               (nzSelectionChange)=\"_selectionChange($event)\">\n  </nz-cascader>\n</sf-item-wrap>\n",
+                    template: "<sf-item-wrap [id]=\"id\"\n              [schema]=\"schema\"\n              [ui]=\"ui\"\n              [showError]=\"showError\"\n              [error]=\"error\"\n              [showTitle]=\"schema.title\">\n  <nz-cascader [nzDisabled]=\"disabled\"\n               [nzSize]=\"ui.size\"\n               [ngModel]=\"value\"\n               (ngModelChange)=\"_change($event)\"\n               [nzOptions]=\"data\"\n               [nzAllowClear]=\"ui.allowClear\"\n               [nzAutoFocus]=\"ui.autoFocus\"\n               [nzChangeOn]=\"ui.changeOn\"\n               [nzChangeOnSelect]=\"ui.changeOnSelect\"\n               [nzColumnClassName]=\"ui.columnClassName\"\n               [nzExpandTrigger]=\"ui.expandTrigger\"\n               [nzMenuClassName]=\"ui.menuClassName\"\n               [nzMenuStyle]=\"ui.menuStyle\"\n               [nzLabelProperty]=\"ui.labelProperty || 'label'\"\n               [nzValueProperty]=\"ui.valueProperty || 'value'\"\n               [nzLoadData]=\"loadData\"\n               [nzPlaceHolder]=\"ui.placeholder\"\n               [nzShowArrow]=\"showArrow\"\n               [nzShowInput]=\"showInput\"\n               [nzShowSearch]=\"ui.showSearch\"\n               (nzClear)=\"_clear($event)\"\n               (nzVisibleChange)=\"_visibleChange($event)\"\n               (nzSelect)=\"_select($event)\"\n               (nzSelectionChange)=\"_selectionChange($event)\">\n  </nz-cascader>\n</sf-item-wrap>\n",
                     preserveWhitespaces: false,
                     encapsulation: ViewEncapsulation.None
                 }] }
     ];
     return CascaderWidget;
-}(ControlUIWidget));
+}(ControlWidget));
 
 /**
  * @fileoverview added by tsickle
@@ -3484,8 +3456,7 @@ var CheckboxWidget = /** @class */ (function (_super) {
             _this.allChecked = false;
             _this.indeterminate = false;
             _this.labelTitle = list.length === 0 ? '' : ((/** @type {?} */ (_this.schema.title)));
-            var span = _this.ui.span;
-            _this.grid_span = span && span > 0 ? span : 0;
+            _this.grid_span = _this.ui.span && _this.ui.span > 0 ? _this.ui.span : 0;
             _this.updateAllChecked();
             _this.inited = true;
             _this.detectChanges();
@@ -3611,7 +3582,7 @@ var CheckboxWidget = /** @class */ (function (_super) {
                 }] }
     ];
     return CheckboxWidget;
-}(ControlUIWidget));
+}(ControlWidget));
 
 /**
  * @fileoverview added by tsickle
@@ -3625,13 +3596,13 @@ var CustomWidget = /** @class */ (function (_super) {
     CustomWidget.decorators = [
         { type: Component, args: [{
                     selector: 'sf-custom',
-                    template: "\n    <sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n      <ng-template\n        [ngTemplateOutlet]=\"$any(ui)._render\"\n        [ngTemplateOutletContext]=\"{$implicit: this, schema: schema, ui: ui }\"\n      ></ng-template>\n    </sf-item-wrap>\n  ",
+                    template: "\n    <sf-item-wrap\n      [id]=\"id\"\n      [schema]=\"schema\"\n      [ui]=\"ui\"\n      [showError]=\"showError\"\n      [error]=\"error\"\n      [showTitle]=\"schema.title\"\n    >\n      <ng-template\n        [ngTemplateOutlet]=\"$any(ui)._render\"\n        [ngTemplateOutletContext]=\"{$implicit: this, schema: schema, ui: ui }\"\n      ></ng-template>\n    </sf-item-wrap>\n  ",
                     preserveWhitespaces: false,
                     encapsulation: ViewEncapsulation.None
                 }] }
     ];
     return CustomWidget;
-}(ControlUIWidget));
+}(ControlWidget));
 
 /**
  * @fileoverview added by tsickle
@@ -3652,14 +3623,14 @@ var DateWidget = /** @class */ (function (_super) {
      * @return {?}
      */
     function () {
-        // tslint:disable-next-line: no-shadowed-variable
-        var _a = this.ui, mode = _a.mode, end = _a.end, displayFormat = _a.displayFormat, format = _a.format, allowClear = _a.allowClear, showToday = _a.showToday;
-        this.mode = mode || 'date';
-        this.flatRange = end != null;
+        /** @type {?} */
+        var ui = this.ui;
+        this.mode = ui.mode || 'date';
+        this.flatRange = ui.end != null;
         if (this.flatRange) {
             this.mode = 'range';
         }
-        if (!displayFormat) {
+        if (!ui.displayFormat) {
             switch (this.mode) {
                 case 'year':
                     this.displayFormat = "yyyy";
@@ -3673,15 +3644,15 @@ var DateWidget = /** @class */ (function (_super) {
             }
         }
         else {
-            this.displayFormat = displayFormat;
+            this.displayFormat = ui.displayFormat;
         }
         // 构建属性对象时会对默认值进行校验，因此可以直接使用 format 作为格式化属性
-        this.format = (/** @type {?} */ (format));
+        this.format = ui.format;
         // 公共API
         this.i = {
-            allowClear: toBool(allowClear, true),
+            allowClear: toBool(ui.allowClear, true),
             // nz-date-picker
-            showToday: toBool(showToday, true),
+            showToday: toBool(ui.showToday, true),
         };
     };
     /**
@@ -3777,7 +3748,7 @@ var DateWidget = /** @class */ (function (_super) {
          * @return {?}
          */
         function () {
-            return (/** @type {?} */ ((/** @type {?} */ (this.formProperty.parent)).properties))[(/** @type {?} */ (this.ui.end))];
+            return (/** @type {?} */ ((/** @type {?} */ (this.formProperty.parent)).properties))[this.ui.end];
         },
         enumerable: true,
         configurable: true
@@ -3822,7 +3793,7 @@ var DateWidget = /** @class */ (function (_super) {
                 }] }
     ];
     return DateWidget;
-}(ControlUIWidget));
+}(ControlWidget));
 
 /**
  * @fileoverview added by tsickle
@@ -3856,11 +3827,10 @@ var MentionWidget = /** @class */ (function (_super) {
             prefix: prefix || '@',
             autosize: typeof autosize === 'undefined' ? true : this.ui.autosize,
         };
-        var _b = this.schema, minimum = _b.minimum, maximum = _b.maximum;
         /** @type {?} */
-        var min = typeof minimum !== 'undefined' ? minimum : -1;
+        var min = typeof this.schema.minimum !== 'undefined' ? this.schema.minimum : -1;
         /** @type {?} */
-        var max = typeof maximum !== 'undefined' ? maximum : -1;
+        var max = typeof this.schema.maximum !== 'undefined' ? this.schema.maximum : -1;
         if (!this.ui.validator && (min !== -1 || max !== -1)) {
             this.ui.validator = (/** @type {?} */ (((/**
              * @return {?}
@@ -3922,8 +3892,7 @@ var MentionWidget = /** @class */ (function (_super) {
         if (typeof this.ui.loadData !== 'function')
             return;
         this.loading = true;
-        this.ui
-            .loadData(option)
+        ((/** @type {?} */ (this.ui.loadData(option))))
             .pipe(tap((/**
          * @return {?}
          */
@@ -3938,7 +3907,7 @@ var MentionWidget = /** @class */ (function (_super) {
          */
         function (res) {
             _this.data = res;
-            _this.detectChanges(true);
+            _this.cd.detectChanges();
         }));
     };
     MentionWidget.decorators = [
@@ -3953,7 +3922,7 @@ var MentionWidget = /** @class */ (function (_super) {
         mentionChild: [{ type: ViewChild, args: ['mentions', { static: true },] }]
     };
     return MentionWidget;
-}(ControlUIWidget));
+}(ControlWidget));
 
 /**
  * @fileoverview added by tsickle
@@ -3982,21 +3951,19 @@ var NumberWidget = /** @class */ (function (_super) {
      * @return {?}
      */
     function () {
-        var _a = this.schema, minimum = _a.minimum, exclusiveMinimum = _a.exclusiveMinimum, maximum = _a.maximum, exclusiveMaximum = _a.exclusiveMaximum, multipleOf = _a.multipleOf, type = _a.type;
-        if (typeof minimum !== 'undefined') {
-            this.min = exclusiveMinimum ? minimum + 1 : minimum;
+        var _a = this, schema = _a.schema, ui = _a.ui;
+        if (typeof schema.minimum !== 'undefined') {
+            this.min = schema.exclusiveMinimum ? schema.minimum + 1 : schema.minimum;
         }
-        if (typeof maximum !== 'undefined') {
-            this.max = exclusiveMaximum ? maximum - 1 : maximum;
+        if (typeof schema.maximum !== 'undefined') {
+            this.max = schema.exclusiveMaximum ? schema.maximum - 1 : schema.maximum;
         }
-        this.step = multipleOf || 1;
-        if (type === 'integer') {
+        this.step = schema.multipleOf || 1;
+        if (schema.type === 'integer') {
             this.min = Math.trunc(this.min);
             this.max = Math.trunc(this.max);
             this.step = Math.trunc(this.step);
         }
-        /** @type {?} */
-        var ui = this.ui;
         if (ui.prefix != null) {
             ui.formatter = (/**
              * @param {?} value
@@ -4046,7 +4013,7 @@ var NumberWidget = /** @class */ (function (_super) {
                 }] }
     ];
     return NumberWidget;
-}(ControlUIWidget));
+}(ControlWidget));
 
 /**
  * @fileoverview added by tsickle
@@ -4163,7 +4130,7 @@ var RadioWidget = /** @class */ (function (_super) {
                 }] }
     ];
     return RadioWidget;
-}(ControlUIWidget));
+}(ControlWidget));
 
 /**
  * @fileoverview added by tsickle
@@ -4193,12 +4160,11 @@ var RateWidget = /** @class */ (function (_super) {
      * @return {?}
      */
     function () {
-        var _a = this, schema = _a.schema, ui = _a.ui;
-        this.count = schema.maximum || 5;
-        this.allowHalf = (schema.multipleOf || 0.5) === 0.5;
-        this.allowClear = toBool(ui.allowClear, true);
-        this.autoFocus = toBool(ui.autoFocus, false);
-        this.hasText = !!ui.text;
+        this.count = this.schema.maximum || 5;
+        this.allowHalf = (this.schema.multipleOf || 0.5) === 0.5;
+        this.allowClear = toBool(this.ui.allowClear, true);
+        this.autoFocus = toBool(this.ui.autoFocus, false);
+        this.hasText = !!this.ui.text;
     };
     RateWidget.decorators = [
         { type: Component, args: [{
@@ -4209,7 +4175,7 @@ var RateWidget = /** @class */ (function (_super) {
                 }] }
     ];
     return RateWidget;
-}(ControlUIWidget));
+}(ControlWidget));
 
 /**
  * @fileoverview added by tsickle
@@ -4304,16 +4270,16 @@ var SelectWidget = /** @class */ (function (_super) {
         this.setValue(values == null ? undefined : values);
     };
     /**
-     * @param {?} status
+     * @param {?} value
      * @return {?}
      */
     SelectWidget.prototype.openChange = /**
-     * @param {?} status
+     * @param {?} value
      * @return {?}
      */
-    function (status) {
+    function (value) {
         if (this.ui.openChange) {
-            this.ui.openChange(status);
+            this.ui.openChange(value);
         }
     };
     /**
@@ -4360,7 +4326,7 @@ var SelectWidget = /** @class */ (function (_super) {
                 }] }
     ];
     return SelectWidget;
-}(ControlUIWidget));
+}(ControlWidget));
 
 /**
  * @fileoverview added by tsickle
@@ -4375,9 +4341,8 @@ var SliderWidget = /** @class */ (function (_super) {
          * @return {?}
          */
         function (value) {
-            var formatter = _this.ui.formatter;
-            if (formatter)
-                return formatter(value);
+            if (_this.ui.formatter)
+                return _this.ui.formatter(value);
             return value;
         });
         return _this;
@@ -4389,12 +4354,12 @@ var SliderWidget = /** @class */ (function (_super) {
      * @return {?}
      */
     function () {
-        var _a = this.schema, minimum = _a.minimum, maximum = _a.maximum, multipleOf = _a.multipleOf;
-        this.min = minimum || 0;
-        this.max = maximum || 100;
-        this.step = multipleOf || 1;
-        var _b = this.ui, marks = _b.marks, included = _b.included;
-        this.marks = marks || null;
+        this.min = this.schema.minimum || 0;
+        this.max = this.schema.maximum || 100;
+        this.step = this.schema.multipleOf || 1;
+        this.marks = this.ui.marks || null;
+        /** @type {?} */
+        var included = this.ui.included;
         this.included = typeof included === 'undefined' ? true : included;
     };
     /**
@@ -4406,9 +4371,8 @@ var SliderWidget = /** @class */ (function (_super) {
      * @return {?}
      */
     function (value) {
-        var afterChange = this.ui.afterChange;
-        if (afterChange)
-            return afterChange(value);
+        if (this.ui.afterChange)
+            this.ui.afterChange(value);
     };
     SliderWidget.decorators = [
         { type: Component, args: [{
@@ -4419,7 +4383,7 @@ var SliderWidget = /** @class */ (function (_super) {
                 }] }
     ];
     return SliderWidget;
-}(ControlUIWidget));
+}(ControlWidget));
 
 /**
  * @fileoverview added by tsickle
@@ -4437,8 +4401,14 @@ var StringWidget = /** @class */ (function (_super) {
      * @return {?}
      */
     function () {
-        var _a = this.ui, addOnAfter = _a.addOnAfter, addOnAfterIcon = _a.addOnAfterIcon, addOnBefore = _a.addOnBefore, addOnBeforeIcon = _a.addOnBeforeIcon, prefix = _a.prefix, prefixIcon = _a.prefixIcon, suffix = _a.suffix, suffixIcon = _a.suffixIcon;
-        this.type = !!(addOnAfter || addOnBefore || addOnAfterIcon || addOnBeforeIcon || prefix || prefixIcon || suffix || suffixIcon)
+        this.type = !!(this.ui.addOnAfter ||
+            this.ui.addOnBefore ||
+            this.ui.addOnAfterIcon ||
+            this.ui.addOnBeforeIcon ||
+            this.ui.prefix ||
+            this.ui.prefixIcon ||
+            this.ui.suffix ||
+            this.ui.suffixIcon)
             ? 'addon'
             : '';
     };
@@ -4464,7 +4434,7 @@ var StringWidget = /** @class */ (function (_super) {
                 }] }
     ];
     return StringWidget;
-}(ControlUIWidget));
+}(ControlWidget));
 
 /**
  * @fileoverview added by tsickle
@@ -4559,7 +4529,7 @@ var TagWidget = /** @class */ (function (_super) {
                 }] }
     ];
     return TagWidget;
-}(ControlUIWidget));
+}(ControlWidget));
 
 /**
  * @fileoverview added by tsickle
@@ -4588,7 +4558,7 @@ var TextWidget = /** @class */ (function (_super) {
                 }] }
     ];
     return TextWidget;
-}(ControlUIWidget));
+}(ControlWidget));
 
 /**
  * @fileoverview added by tsickle
@@ -4608,9 +4578,8 @@ var TextareaWidget = /** @class */ (function (_super) {
      * @return {?}
      */
     function () {
-        var autosize = this.ui.autosize;
-        if (autosize != null) {
-            this.autosize = autosize;
+        if (this.ui.autosize != null) {
+            this.autosize = this.ui.autosize;
         }
     };
     TextareaWidget.decorators = [
@@ -4622,7 +4591,7 @@ var TextareaWidget = /** @class */ (function (_super) {
                 }] }
     ];
     return TextareaWidget;
-}(ControlUIWidget));
+}(ControlWidget));
 
 /**
  * @fileoverview added by tsickle
@@ -4711,7 +4680,7 @@ var TimeWidget = /** @class */ (function (_super) {
                 }] }
     ];
     return TimeWidget;
-}(ControlUIWidget));
+}(ControlWidget));
 
 /**
  * @fileoverview added by tsickle
@@ -4739,12 +4708,11 @@ var TransferWidget = /** @class */ (function (_super) {
      * @return {?}
      */
     function () {
-        var _a = this.ui, titles = _a.titles, operations = _a.operations, itemUnit = _a.itemUnit, itemsUnit = _a.itemsUnit;
         this.i = {
-            titles: titles || ['', ''],
-            operations: operations || ['', ''],
-            itemUnit: itemUnit || '项',
-            itemsUnit: itemsUnit || '项',
+            titles: this.ui.titles || ['', ''],
+            operations: this.ui.operations || ['', ''],
+            itemUnit: this.ui.itemUnit || '项',
+            itemsUnit: this.ui.itemsUnit || '项',
         };
     };
     /**
@@ -4860,7 +4828,7 @@ var TransferWidget = /** @class */ (function (_super) {
                 }] }
     ];
     return TransferWidget;
-}(ControlUIWidget));
+}(ControlWidget));
 
 /**
  * @fileoverview added by tsickle
@@ -4963,7 +4931,7 @@ var TreeSelectWidget = /** @class */ (function (_super) {
                 }] }
     ];
     return TreeSelectWidget;
-}(ControlUIWidget));
+}(ControlWidget));
 
 /**
  * @fileoverview added by tsickle
@@ -5137,7 +5105,7 @@ var UploadWidget = /** @class */ (function (_super) {
                 }] }
     ];
     return UploadWidget;
-}(ControlUIWidget));
+}(ControlWidget));
 
 /**
  * @fileoverview added by tsickle
@@ -5267,5 +5235,5 @@ var DelonFormModule = /** @class */ (function () {
     return DelonFormModule;
 }());
 
-export { AjvSchemaValidatorFactory, ArrayLayoutWidget, ArrayProperty, ArrayWidget, AtomicProperty, AutoCompleteWidget, BooleanProperty, BooleanWidget, CascaderWidget, CheckboxWidget, ControlUIWidget, ControlWidget, CustomWidget, DateWidget, DelonFormConfig, DelonFormModule, ERRORSDEFAULT, FormProperty, FormPropertyFactory, MentionWidget, NumberProperty, NumberWidget, NzWidgetRegistry, ObjectLayoutWidget, ObjectProperty, ObjectWidget, PropertyGroup, RadioWidget, RateWidget, SFComponent, SFFixedDirective, SFItemComponent, SchemaValidatorFactory, SelectWidget, SliderWidget, StringProperty, StringWidget, TagWidget, TextWidget, TextareaWidget, TimeWidget, TransferWidget, TreeSelectWidget, UploadWidget, Widget, WidgetFactory, WidgetRegistry, useFactory, TerminatorService as ɵa, SFItemWrapComponent as ɵb, SFTemplateDirective as ɵc };
+export { AjvSchemaValidatorFactory, ArrayLayoutWidget, ArrayProperty, ArrayWidget, AtomicProperty, AutoCompleteWidget, BooleanProperty, BooleanWidget, CascaderWidget, CheckboxWidget, ControlWidget, CustomWidget, DateWidget, DelonFormConfig, DelonFormModule, ERRORSDEFAULT, FormProperty, FormPropertyFactory, MentionWidget, NumberProperty, NumberWidget, NzWidgetRegistry, ObjectLayoutWidget, ObjectProperty, ObjectWidget, PropertyGroup, RadioWidget, RateWidget, SFComponent, SFFixedDirective, SFItemComponent, SchemaValidatorFactory, SelectWidget, SliderWidget, StringProperty, StringWidget, TagWidget, TextareaWidget, TimeWidget, TransferWidget, TreeSelectWidget, UploadWidget, Widget, WidgetFactory, WidgetRegistry, useFactory, TerminatorService as ɵa, SFItemWrapComponent as ɵb, SFTemplateDirective as ɵc, TextWidget as ɵd };
 //# sourceMappingURL=form.js.map

@@ -1,10 +1,9 @@
 import { OnInit } from '@angular/core';
 import { SFValue } from '../../interface';
-import { ControlUIWidget } from '../../widget';
-import { SFTimeWidgetSchema } from './schema';
-export declare class TimeWidget extends ControlUIWidget<SFTimeWidgetSchema> implements OnInit {
+import { ControlWidget } from '../../widget';
+export declare class TimeWidget extends ControlWidget implements OnInit {
     displayValue: Date | null;
-    format: string | undefined;
+    format: string;
     i: any;
     ngOnInit(): void;
     reset(value: SFValue): void;

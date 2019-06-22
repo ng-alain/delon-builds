@@ -1,8 +1,7 @@
 import { SFValue } from '../../interface';
 import { SFSchemaEnum } from '../../schema';
-import { ControlUIWidget } from '../../widget';
-import { SFCheckboxWidgetSchema } from './schema';
-export declare class CheckboxWidget extends ControlUIWidget<SFCheckboxWidgetSchema> {
+import { ControlWidget } from '../../widget';
+export declare class CheckboxWidget extends ControlWidget {
     data: SFSchemaEnum[];
     allChecked: boolean;
     indeterminate: boolean;

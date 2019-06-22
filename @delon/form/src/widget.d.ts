@@ -8,8 +8,7 @@ import { SFSchema } from './schema';
 import { SFUISchemaItem, SFOptionalHelp } from './schema/ui';
 import { SFItemComponent } from './sf-item.component';
 import { SFComponent } from './sf.component';
-import { SFArrayWidgetSchema, SFObjectWidgetSchema } from './widgets';
-export declare abstract class Widget<T extends FormProperty, UIT extends SFUISchemaItem> implements AfterViewInit {
+export declare abstract class Widget<T extends FormProperty> implements AfterViewInit {
     readonly cd: ChangeDetectorRef;
     readonly injector: Injector;
     readonly sfItemComp?: SFItemComponent | undefined;
@@ -19,7 +18,7 @@ export declare abstract class Widget<T extends FormProperty, UIT extends SFUISch
     showError: boolean;
     id: string;
     schema: SFSchema;
-    ui: UIT;
+    ui: SFUISchemaItem;
     firstVisual: boolean;
     readonly cls: string | string[];
     readonly disabled: boolean | null;
@@ -30,19 +29,16 @@ export declare abstract class Widget<T extends FormProperty, UIT extends SFUISch
     setValue(value: SFValue): void;
     readonly value: any;
     detectChanges(onlySelf?: boolean): void;
-    abstract reset(value: SFValue): void;
+    abstract reset(value: SFValue): any;
 }
-export declare class ControlWidget extends Widget<FormProperty, SFUISchemaItem> {
+export declare class ControlWidget extends Widget<FormProperty> {
     reset(_value: SFValue): void;
 }
-export declare class ControlUIWidget<UIT extends SFUISchemaItem> extends Widget<FormProperty, UIT> {
-    reset(_value: SFValue): void;
-}
-export declare class ArrayLayoutWidget extends Widget<ArrayProperty, SFArrayWidgetSchema> implements AfterViewInit {
+export declare class ArrayLayoutWidget extends Widget<ArrayProperty> implements AfterViewInit {
     reset(_value: SFValue): void;
     ngAfterViewInit(): void;
 }
-export declare class ObjectLayoutWidget extends Widget<ObjectProperty, SFObjectWidgetSchema> implements AfterViewInit {
+export declare class ObjectLayoutWidget extends Widget<ObjectProperty> implements AfterViewInit {
     reset(_value: SFValue): void;
     ngAfterViewInit(): void;
 }

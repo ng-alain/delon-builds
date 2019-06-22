@@ -3,9 +3,8 @@ import { TransferCanMove, TransferChange, TransferItem, TransferSearchChange, Tr
 import { Observable } from 'rxjs';
 import { SFValue } from '../../interface';
 import { SFSchemaEnum } from '../../schema';
-import { ControlUIWidget } from '../../widget';
-import { SFTransferWidgetSchema } from './schema';
-export declare class TransferWidget extends ControlUIWidget<SFTransferWidgetSchema> implements OnInit {
+import { ControlWidget } from '../../widget';
+export declare class TransferWidget extends ControlWidget implements OnInit {
     list: SFSchemaEnum[];
     i: any;
     private _data;
