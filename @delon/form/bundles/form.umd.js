@@ -1,5 +1,5 @@
 /**
- * @license ng-alain(cipchk@qq.com) v8.0.0-rc.0
+ * @license ng-alain(cipchk@qq.com) v7.7.1
  * (c) 2019 cipchk https://ng-alain.com/
  * License: MIT
  */
@@ -183,6 +183,13 @@
      * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
+    var SF_SEQ = '/';
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /** @type {?} */
     var FORMATMAPS = {
         'date-time': {
             widget: 'date',
@@ -244,13 +251,13 @@
         if (match && match[1]) {
             // parser JSON Pointer
             /** @type {?} */
-            var parts = match[1].split('/');
+            var parts = match[1].split(SF_SEQ);
             /** @type {?} */
             var current = definitions;
             try {
                 for (var parts_1 = __values(parts), parts_1_1 = parts_1.next(); !parts_1_1.done; parts_1_1 = parts_1.next()) {
                     var part = parts_1_1.value;
-                    part = part.replace(/~1/g, '/').replace(/~0/g, '~');
+                    part = part.replace(/~1/g, SF_SEQ).replace(/~0/g, '~');
                     if (current.hasOwnProperty(part)) {
                         current = current[part];
                     }
@@ -524,7 +531,7 @@
             else if (this instanceof PropertyGroup) {
                 this._root = (/** @type {?} */ (this));
             }
-            this._path = path;
+            this.path = path;
         }
         Object.defineProperty(FormProperty.prototype, "valueChanges", {
             get: /**
@@ -572,16 +579,6 @@
              */
             function () {
                 return this._root || ((/** @type {?} */ (((/** @type {?} */ (this))))));
-            },
-            enumerable: true,
-            configurable: true
-        });
-        Object.defineProperty(FormProperty.prototype, "path", {
-            get: /**
-             * @return {?}
-             */
-            function () {
-                return this._path;
             },
             enumerable: true,
             configurable: true
@@ -692,7 +689,7 @@
             var base = null;
             /** @type {?} */
             var result = null;
-            if (path[0] === '/') {
+            if (path[0] === SF_SEQ) {
                 base = this.findRoot();
                 result = base.getProperty(path.substr(1));
             }
@@ -1050,7 +1047,7 @@
          */
         function (path) {
             /** @type {?} */
-            var subPathIdx = path.indexOf('/');
+            var subPathIdx = path.indexOf(SF_SEQ);
             /** @type {?} */
             var propertyId = subPathIdx !== -1 ? path.substr(0, subPathIdx) : path;
             /** @type {?} */
@@ -1147,7 +1144,6 @@
         function ArrayProperty(formPropertyFactory, schemaValidatorFactory, schema, ui, formData, parent, path, options) {
             var _this = _super.call(this, schemaValidatorFactory, schema, ui, formData, parent, path, options) || this;
             _this.formPropertyFactory = formPropertyFactory;
-            _this.tick = 1;
             _this.properties = [];
             return _this;
         }
@@ -1161,13 +1157,14 @@
          */
         function (path) {
             /** @type {?} */
-            var subPathIdx = path.indexOf('/');
+            var subPathIdx = path.indexOf(SF_SEQ);
             /** @type {?} */
             var pos = +(subPathIdx !== -1 ? path.substr(0, subPathIdx) : path);
             /** @type {?} */
             var list = (/** @type {?} */ (this.properties));
-            if (isNaN(pos) || pos >= list.length)
+            if (isNaN(pos) || pos >= list.length) {
                 return undefined;
+            }
             /** @type {?} */
             var subPath = path.substr(subPathIdx + 1);
             return list[pos].getProperty(subPath);
@@ -1286,10 +1283,30 @@
          * @return {?}
          */
         function (path) {
-            if (path)
+            if (path) {
                 delete this._objErrors[path];
-            else
+            }
+            else {
                 this._objErrors = {};
+            }
+        };
+        /**
+         * @private
+         * @return {?}
+         */
+        ArrayProperty.prototype.updatePaths = /**
+         * @private
+         * @return {?}
+         */
+        function () {
+            ((/** @type {?} */ (this.properties))).forEach((/**
+             * @param {?} p
+             * @param {?} idx
+             * @return {?}
+             */
+            function (p, idx) {
+                p.path = [(/** @type {?} */ (p.parent)).path, idx].join(SF_SEQ);
+            }));
         };
         // #region actions
         // #region actions
@@ -1322,6 +1339,7 @@
             var list = (/** @type {?} */ (this.properties));
             this.clearErrors(list[index].path);
             list.splice(index, 1);
+            this.updatePaths();
             this.updateValueAndValidity(false, true);
         };
         return ArrayProperty;
@@ -1618,8 +1636,6 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    /** @type {?} */
-    var SEQ = '/';
     var FormPropertyFactory = /** @class */ (function () {
         function FormPropertyFactory(schemaValidatorFactory, options) {
             this.schemaValidatorFactory = schemaValidatorFactory;
@@ -1650,20 +1666,20 @@
             if (parent) {
                 path += parent.path;
                 if (parent.parent !== null) {
-                    path += SEQ;
+                    path += SF_SEQ;
                 }
                 if (parent.type === 'object') {
                     path += propertyId;
                 }
                 else if (parent.type === 'array') {
-                    path += ((/** @type {?} */ (parent))).tick++;
+                    path += ((/** @type {?} */ (((/** @type {?} */ (parent))).properties))).length;
                 }
                 else {
                     throw new Error('Instanciation of a FormProperty with an unknown parent type: ' + parent.type);
                 }
             }
             else {
-                path = SEQ;
+                path = SF_SEQ;
             }
             if (schema.$ref) {
                 /** @type {?} */
@@ -1672,7 +1688,7 @@
             }
             else {
                 // fix required
-                if (propertyId && ((/** @type {?} */ (((/** @type {?} */ (parent)).schema.required || [])))).indexOf((/** @type {?} */ (propertyId.split(SEQ).pop()))) !== -1) {
+                if (propertyId && ((/** @type {?} */ (((/** @type {?} */ (parent)).schema.required || [])))).indexOf((/** @type {?} */ (propertyId.split(SF_SEQ).pop()))) !== -1) {
                     ui._required = true;
                 }
                 // fix title
@@ -2944,7 +2960,7 @@
          * @return {?}
          */
         function () {
-            this.table._addTpl(this.path.startsWith('/') ? this.path : "/" + this.path, this.templateRef);
+            this.table._addTpl(this.path.startsWith(SF_SEQ) ? this.path : SF_SEQ + this.path, this.templateRef);
         };
         SFTemplateDirective.decorators = [
             { type: core.Directive, args: [{
@@ -3255,7 +3271,7 @@
         ArrayWidget.decorators = [
             { type: core.Component, args: [{
                         selector: 'sf-array',
-                        template: "<nz-form-item>\n  <nz-col *ngIf=\"schema.title\"\n          [nzSpan]=\"ui.spanLabel\"\n          class=\"ant-form-item-label\">\n    <label>\n      {{ schema.title }}\n      <span class=\"sf__optional\">\n        {{ ui.optional }}\n        <nz-tooltip *ngIf=\"oh\"\n          [nzTitle]=\"oh.text\" [nzPlacement]=\"oh.placement\" [nzTrigger]=\"oh.trigger\"\n          [nzOverlayClassName]=\"oh.overlayClassName\" [nzOverlayStyle]=\"oh.overlayStyle\"\n          [nzMouseEnterDelay]=\"oh.mouseEnterDelay\" [nzMouseLeaveDelay]=\"oh.mouseLeaveDelay\">\n          <i nz-tooltip nz-icon [nzType]=\"oh.icon\"></i>\n        </nz-tooltip>\n      </span>\n    </label>\n    <div class=\"sf__array-add\">\n      <button type=\"button\"\n              nz-button\n              [nzType]=\"addType\"\n              [disabled]=\"addDisabled\"\n              (click)=\"addItem()\"\n              [innerHTML]=\"addTitle\"></button>\n    </div>\n  </nz-col>\n  <nz-col class=\"ant-form-item-control-wrapper\"\n          [nzSpan]=\"ui.spanControl\"\n          [nzOffset]=\"ui.offsetControl\">\n    <div class=\"ant-form-item-control\"\n         [class.has-error]=\"showError\">\n\n      <nz-row class=\"sf__array-container\">\n        <ng-container *ngFor=\"let i of formProperty.properties; let idx=index\">\n          <nz-col *ngIf=\"i.visible && !i.ui.hidden\"\n                  [nzSpan]=\"arraySpan\"\n                  [attr.data-index]=\"idx\"\n                  class=\"sf-array-item\">\n            <nz-card>\n              <sf-item [formProperty]=\"i\"></sf-item>\n              <span *ngIf=\"removeTitle\"\n                    class=\"remove\"\n                    (click)=\"removeItem(idx)\"\n                    [attr.title]=\"removeTitle\">\n                <i nz-icon nzType=\"delete\"></i>\n              </span>\n            </nz-card>\n          </nz-col>\n        </ng-container>\n      </nz-row>\n\n      <nz-form-extra *ngIf=\"schema.description\"\n                     [innerHTML]=\"schema.description\"></nz-form-extra>\n      <nz-form-explain *ngIf=\"!ui.onlyVisual && showError\">{{error}}</nz-form-explain>\n\n    </div>\n  </nz-col>\n</nz-form-item>\n",
+                        template: "<nz-form-item>\n  <nz-col *ngIf=\"schema.title\" [nzSpan]=\"ui.spanLabel\" class=\"ant-form-item-label\">\n    <label>\n      {{ schema.title }}\n      <span class=\"sf__optional\">\n        {{ ui.optional }}\n        <nz-tooltip *ngIf=\"oh\"\n          [nzTitle]=\"oh.text\" [nzPlacement]=\"oh.placement\" [nzTrigger]=\"oh.trigger\"\n          [nzOverlayClassName]=\"oh.overlayClassName\" [nzOverlayStyle]=\"oh.overlayStyle\"\n          [nzMouseEnterDelay]=\"oh.mouseEnterDelay\" [nzMouseLeaveDelay]=\"oh.mouseLeaveDelay\">\n          <i nz-tooltip nz-icon [nzType]=\"oh.icon\"></i>\n        </nz-tooltip>\n      </span>\n    </label>\n    <div class=\"sf__array-add\">\n      <button type=\"button\"\n              nz-button\n              [nzType]=\"addType\"\n              [disabled]=\"addDisabled\"\n              (click)=\"addItem()\"\n              [innerHTML]=\"addTitle\"></button>\n    </div>\n  </nz-col>\n  <nz-col class=\"ant-form-item-control-wrapper\" [nzSpan]=\"ui.spanControl\" [nzOffset]=\"ui.offsetControl\">\n    <div class=\"ant-form-item-control\" [class.has-error]=\"showError\">\n      <nz-row class=\"sf__array-container\">\n        <ng-container *ngFor=\"let i of formProperty.properties; let idx=index\">\n          <nz-col *ngIf=\"i.visible && !i.ui.hidden\" [nzSpan]=\"arraySpan\" [attr.data-index]=\"idx\" class=\"sf-array-item\">\n            <nz-card>\n              <sf-item [formProperty]=\"i\"></sf-item>\n              <span *ngIf=\"removeTitle\" class=\"remove\" (click)=\"removeItem(idx)\" [attr.title]=\"removeTitle\">\n                <i nz-icon nzType=\"delete\"></i>\n              </span>\n            </nz-card>\n          </nz-col>\n        </ng-container>\n      </nz-row>\n      <nz-form-extra *ngIf=\"schema.description\" [innerHTML]=\"schema.description\"></nz-form-extra>\n      <nz-form-explain *ngIf=\"!ui.onlyVisual && showError\">{{error}}</nz-form-explain>\n    </div>\n  </nz-col>\n</nz-form-item>\n",
                         preserveWhitespaces: false,
                         encapsulation: core.ViewEncapsulation.None
                     }] }

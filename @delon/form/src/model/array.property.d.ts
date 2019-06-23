@@ -7,7 +7,6 @@ import { FormProperty, PropertyGroup } from './form.property';
 import { FormPropertyFactory } from './form.property.factory';
 export declare class ArrayProperty extends PropertyGroup {
     private formPropertyFactory;
-    tick: number;
     constructor(formPropertyFactory: FormPropertyFactory, schemaValidatorFactory: SchemaValidatorFactory, schema: SFSchema, ui: SFUISchema | SFUISchemaItem, formData: {}, parent: PropertyGroup | null, path: string, options: DelonFormConfig);
     getProperty(path: string): any;
     setValue(value: SFValue, onlySelf: boolean): void;
@@ -17,6 +16,7 @@ export declare class ArrayProperty extends PropertyGroup {
     private addProperty;
     private resetProperties;
     private clearErrors;
+    private updatePaths;
     add(formData: {}): FormProperty;
     remove(index: number): void;
 }
