@@ -15,6 +15,7 @@ export declare abstract class FormProperty {
     private _visibilityChanges;
     private _root;
     private _parent;
+    private _path;
     protected _objErrors: {
         [key: string]: ErrorData[];
     };
@@ -24,13 +25,13 @@ export declare abstract class FormProperty {
     formData: {};
     _value: SFValue;
     widget: Widget<FormProperty, SFUISchemaItem>;
-    path: string;
     constructor(schemaValidatorFactory: SchemaValidatorFactory, schema: SFSchema, ui: SFUISchema | SFUISchemaItem, formData: {}, parent: PropertyGroup | null, path: string, _options: DelonFormConfig);
     readonly valueChanges: BehaviorSubject<any>;
     readonly errorsChanges: BehaviorSubject<ErrorData[] | null>;
     readonly type: string;
     readonly parent: PropertyGroup | null;
     readonly root: PropertyGroup;
+    readonly path: string;
     readonly value: SFValue;
     readonly errors: ErrorData[] | null;
     readonly visible: boolean;
