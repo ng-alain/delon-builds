@@ -25695,10 +25695,8 @@ body {
   font-size: 14px;
 }
 .alain-default__aside-user {
-  display: block !important;
-  width: 152px;
-  margin: 0 auto;
-  padding-top: 24px;
+  display: flex;
+  margin: 24px 24px 0 24px;
   cursor: pointer;
 }
 .alain-default__aside-user .ant-dropdown-trigger {
@@ -25706,8 +25704,11 @@ body {
   align-items: center;
 }
 .alain-default__aside-user-info {
-  width: 104px;
+  flex: 1;
+  overflow: hidden;
   color: rgba(0, 0, 0, 0.65);
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .alain-default__aside-user-avatar {
   margin-right: 8px;
@@ -25750,10 +25751,6 @@ body {
 .st {
   display: block;
 }
-.st__selection {
-  padding-left: 2px;
-  cursor: pointer;
-}
 .st__p-left .ant-table-pagination {
   display: block;
   float: none;
@@ -25780,6 +25777,9 @@ body {
 }
 .st .ant-table-thead > tr > th .ant-table-filter-selected.ant-table-filter-icon {
   color: #1890ff;
+}
+.st .ant-table-thead > tr > th .ant-table-filter-icon {
+  position: absolute !important;
 }
 @media screen and (min-width: 768px) {
   .st__width-strict .ant-table-body > table {
