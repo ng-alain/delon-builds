@@ -1593,14 +1593,15 @@ var FormPropertyFactory = /** @class */ (function () {
             if (parent.parent !== null) {
                 path += SF_SEQ;
             }
-            if (parent.type === 'object') {
-                path += propertyId;
-            }
-            else if (parent.type === 'array') {
-                path += ((/** @type {?} */ (((/** @type {?} */ (parent))).properties))).length;
-            }
-            else {
-                throw new Error('Instanciation of a FormProperty with an unknown parent type: ' + parent.type);
+            switch (parent.type) {
+                case 'object':
+                    path += propertyId;
+                    break;
+                case 'array':
+                    path += ((/** @type {?} */ (((/** @type {?} */ (parent))).properties))).length;
+                    break;
+                default:
+                    throw new Error('Instanciation of a FormProperty with an unknown parent type: ' + parent.type);
             }
         }
         else {

@@ -1,5 +1,5 @@
 import { DelonFormConfig } from '../config';
-import { SFSchema } from '../schema';
+import { SFSchema } from '../schema/index';
 import { SFUISchema, SFUISchemaItem } from '../schema/ui';
 import { SchemaValidatorFactory } from '../validator.factory';
 import { FormProperty, PropertyGroup } from './form.property';

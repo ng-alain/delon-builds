@@ -21,14 +21,7 @@ import { tryAddFile } from '../utils/alain';
 import { HMR_CONTENT } from '../utils/contents';
 import { addFiles } from '../utils/file';
 import { addHeadStyle, addHtmlToBody } from '../utils/html';
-import {
-  addPackageToPackageJson,
-  getJSON,
-  getPackage,
-  overwriteJSON,
-  overwritePackage,
-  scriptsToAngularJson,
-} from '../utils/json';
+import { addPackageToPackageJson, getJSON, getPackage, overwriteJSON, overwritePackage, scriptsToAngularJson } from '../utils/json';
 import { VERSION, ZORROVERSION } from '../utils/lib-versions';
 import { getProject, Project } from '../utils/project';
 import { Schema as ApplicationOptions } from './schema';
@@ -79,9 +72,7 @@ function addDependenciesToPackageJson(options: ApplicationOptions) {
     // @delon/*
     addPackageToPackageJson(
       host,
-      ['abc', 'acl', 'auth', 'cache', 'form', 'mock', 'theme', 'util', 'chart'].map(
-        pkg => `@delon/${pkg}@${VERSION}`,
-      ),
+      ['abc', 'acl', 'auth', 'cache', 'form', 'mock', 'theme', 'util', 'chart'].map(pkg => `@delon/${pkg}@${VERSION}`),
     );
     // ng-alain
     addPackageToPackageJson(
@@ -98,10 +89,7 @@ function addDependenciesToPackageJson(options: ApplicationOptions) {
     );
     // i18n
     if (options.i18n) {
-      addPackageToPackageJson(host, [
-        `@ngx-translate/core@^11.0.1`,
-        `@ngx-translate/http-loader@^4.0.0`,
-      ]);
+      addPackageToPackageJson(host, [`@ngx-translate/core@^11.0.1`, `@ngx-translate/http-loader@^4.0.0`]);
     }
     return host;
   };
@@ -155,16 +143,20 @@ function addCodeStylesToPackageJson() {
     };
     overwritePackage(host, json);
     // dependencies
-    addPackageToPackageJson(host, [
-      `tslint-config-prettier@^1.18.0`,
-      `tslint-language-service@^0.9.9`,
-      `lint-staged@^8.1.0`,
-      `husky@^1.3.1`,
-      `prettier@^1.16.1`,
-      `prettier-stylelint@^0.4.2`,
-      `stylelint@^10.0.1`,
-      `stylelint-config-standard@^18.3.0`,
-    ]);
+    addPackageToPackageJson(
+      host,
+      [
+        `tslint-config-prettier@^1.18.0`,
+        `tslint-language-service@^0.9.9`,
+        `lint-staged@^8.2.1`,
+        `husky@^2.4.1`,
+        `prettier@^1.18.2`,
+        `prettier-stylelint@^0.4.2`,
+        `stylelint@^10.1.0`,
+        `stylelint-config-standard@^18.3.0`,
+      ],
+      'devDependencies',
+    );
     return host;
   };
 }
@@ -231,11 +223,7 @@ function addStyle() {
       `  <div class="preloader"><div class="cs-loader"><div class="cs-loader-inner"><label>	●</label><label>	●</label><label>	●</label><label>	●</label><label>	●</label><label>	●</label></div></div>\n`,
     );
     // add styles
-    addFiles(
-      host,
-      [`${project.sourceRoot}/styles/index.less`, `${project.sourceRoot}/styles/theme.less`],
-      overwriteDataFileRoot,
-    );
+    addFiles(host, [`${project.sourceRoot}/styles/index.less`, `${project.sourceRoot}/styles/theme.less`], overwriteDataFileRoot);
 
     return host;
   };
@@ -374,13 +362,10 @@ function fixLangInHtml(host: Tree, p: string, langs: {}) {
   let matchCount = 0;
   // {{(status ? 'menu.fullscreen.exit' : 'menu.fullscreen') | translate }}
   // {{ (status ? 'menu.fullscreen.exit' : 'menu.fullscreen') | translate }}
-  html = html.replace(
-    /\{\{[ ]?\(status \? '([^']+)' : '([^']+)'\) \| translate \}\}/g,
-    (_word, key1, key2) => {
-      ++matchCount;
-      return `{{ status ? '${langs[key1] || key1}' : '${langs[key2] || key2}' }}`;
-    },
-  );
+  html = html.replace(/\{\{[ ]?\(status \? '([^']+)' : '([^']+)'\) \| translate \}\}/g, (_word, key1, key2) => {
+    ++matchCount;
+    return `{{ status ? '${langs[key1] || key1}' : '${langs[key2] || key2}' }}`;
+  });
   // {{ 'app.register-result.msg' | translate: params }}
   html = html.replace(/\{\{[ ]?'([^']+)'[ ]? \| translate: [^ ]+ \}\}/g, (_word, key) => {
     ++matchCount;

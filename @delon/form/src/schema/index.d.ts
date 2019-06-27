@@ -27,6 +27,7 @@ export interface SFSchemaEnum {
     /** 组对应的子类 */
     children?: SFSchemaEnum[];
 }
+export declare type SFSchemaType = 'number' | 'integer' | 'string' | 'boolean' | 'object' | 'array';
 export declare type SFSchemaEnumType = SFSchemaEnum | number | string | boolean;
 /**
  * JSON Schema Form 结构体
@@ -42,7 +43,7 @@ export interface SFSchema {
      * - 指定 `format` 标准参数可以自动适配渲染小部件
      * - 指定 `widget` 参数强制渲染小部件
      */
-    type?: 'number' | 'integer' | 'string' | 'boolean' | 'object' | 'array';
+    type?: SFSchemaType;
     /**
      * 枚举，静态数据源，例如：`radio`、`checkbox` 等
      *

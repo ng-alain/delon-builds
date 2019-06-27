@@ -11,7 +11,7 @@ export declare function overwritePackage(host: Tree, json: any): void;
  * addPackageToPackageJson(host, [ '＠delon/abc＠^1.0.0' ], 'devDependencies')
  * ```
  */
-export declare function addPackageToPackageJson(host: Tree, pkg: string | string[], type?: string): Tree;
+export declare function addPackageToPackageJson(host: Tree, pkg: string | string[], type?: 'dependencies' | 'devDependencies' | 'scripts'): Tree;
 /**
  * Removes a package to the package.json
  *
@@ -20,7 +20,7 @@ export declare function addPackageToPackageJson(host: Tree, pkg: string | string
  * addPackageToPackageJson(host, [ '＠delon/abc' ], 'devDependencies')
  * ```
  */
-export declare function removePackageFromPackageJson(host: Tree, pkg: string | string[], type?: string): Tree;
+export declare function removePackageFromPackageJson(host: Tree, pkg: string | string[], type?: 'dependencies' | 'devDependencies' | 'scripts'): Tree;
 export declare function getAngular(host: Tree, type?: string): any;
 export declare function overwriteAngular(host: Tree, json: any): void;
 export declare function scriptsToAngularJson(host: Tree, resources: string | string[], behavior: string, types?: string[], projectName?: string, clean?: boolean): Tree;

@@ -2,7 +2,7 @@ import { BehaviorSubject } from 'rxjs';
 import { DelonFormConfig } from '../config';
 import { ErrorData } from '../errors';
 import { SFValue } from '../interface';
-import { SFSchema } from '../schema';
+import { SFSchema, SFSchemaType } from '../schema';
 import { SFUISchema, SFUISchemaItem, SFUISchemaItemRun } from '../schema/ui';
 import { SchemaValidatorFactory } from '../validator.factory';
 import { Widget } from '../widget';
@@ -28,7 +28,7 @@ export declare abstract class FormProperty {
     constructor(schemaValidatorFactory: SchemaValidatorFactory, schema: SFSchema, ui: SFUISchema | SFUISchemaItem, formData: {}, parent: PropertyGroup | null, path: string, _options: DelonFormConfig);
     readonly valueChanges: BehaviorSubject<any>;
     readonly errorsChanges: BehaviorSubject<ErrorData[] | null>;
-    readonly type: string;
+    readonly type: SFSchemaType;
     readonly parent: PropertyGroup | null;
     readonly root: PropertyGroup;
     readonly value: SFValue;

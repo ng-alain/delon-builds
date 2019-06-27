@@ -65,10 +65,7 @@ function addDependenciesToPackageJson(options) {
         ], 'devDependencies');
         // i18n
         if (options.i18n) {
-            json_1.addPackageToPackageJson(host, [
-                `@ngx-translate/core@^11.0.1`,
-                `@ngx-translate/http-loader@^4.0.0`,
-            ]);
+            json_1.addPackageToPackageJson(host, [`@ngx-translate/core@^11.0.1`, `@ngx-translate/http-loader@^4.0.0`]);
         }
         return host;
     };
@@ -127,13 +124,13 @@ function addCodeStylesToPackageJson() {
         json_1.addPackageToPackageJson(host, [
             `tslint-config-prettier@^1.18.0`,
             `tslint-language-service@^0.9.9`,
-            `lint-staged@^8.1.0`,
-            `husky@^1.3.1`,
-            `prettier@^1.16.1`,
+            `lint-staged@^8.2.1`,
+            `husky@^2.4.1`,
+            `prettier@^1.18.2`,
             `prettier-stylelint@^0.4.2`,
-            `stylelint@^10.0.1`,
+            `stylelint@^10.1.0`,
             `stylelint-config-standard@^18.3.0`,
-        ]);
+        ], 'devDependencies');
         return host;
     };
 }

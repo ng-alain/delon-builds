@@ -42,7 +42,7 @@ export function overwritePackage(host: Tree, json: any) {
 export function addPackageToPackageJson(
   host: Tree,
   pkg: string | string[],
-  type = 'dependencies',
+  type: 'dependencies' | 'devDependencies' | 'scripts' = 'dependencies',
 ): Tree {
   const json = getJSON(host, 'package.json', type);
   if (json == null) return host;
@@ -70,7 +70,7 @@ export function addPackageToPackageJson(
 export function removePackageFromPackageJson(
   host: Tree,
   pkg: string | string[],
-  type = 'dependencies',
+  type: 'dependencies' | 'devDependencies' | 'scripts' = 'dependencies',
 ): Tree {
   const json = getJSON(host, 'package.json', type);
   if (json == null) return host;
