@@ -219,7 +219,6 @@ class EllipsisComponent {
                 const count = this.bisection(targetHeight, mid, 0, len, lineText, shadowTextEl.nativeElement.firstChild);
                 this.text = lineText;
                 this.targetCount = count;
-                console.log(lineHeight, targetHeight, len, mid, count);
             }
             cdr.detectChanges();
         }
