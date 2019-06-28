@@ -21997,7 +21997,7 @@ fieldset {
 .sf__array-container nz-card {
   margin: 0 16px 0 0;
 }
-.sf__array-container nz-card .sf__array-remove {
+.sf__array-container nz-card .remove {
   position: absolute;
   top: -16px;
   right: -16px;
@@ -22011,10 +22011,10 @@ fieldset {
   border-radius: 50%;
   cursor: pointer;
 }
-.sf__array-container nz-card .sf__array-remove i {
+.sf__array-container nz-card .remove i {
   color: #fff;
 }
-.sf__array-container nz-card:hover .sf__array-remove {
+.sf__array-container nz-card:hover .remove {
   display: block;
 }
 .sf__checkbox-list {
