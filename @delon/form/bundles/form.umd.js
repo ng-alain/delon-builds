@@ -5137,8 +5137,9 @@
          * @return {?}
          */
         function () {
-            var _a = this.ui, type = _a.type, text = _a.text, action = _a.action, accept = _a.accept, limit = _a.limit, filter = _a.filter, fileSize = _a.fileSize, fileType = _a.fileType, listType = _a.listType, multiple = _a.multiple, name = _a.name, showUploadList = _a.showUploadList, withCredentials = _a.withCredentials, resReName = _a.resReName, urlReName = _a.urlReName, beforeUpload = _a.beforeUpload, customRequest = _a.customRequest, directory = _a.directory, openFileDialogOnClick = _a.openFileDialogOnClick;
-            this.i = {
+            var _a = this.ui, type = _a.type, text = _a.text, hint = _a.hint, action = _a.action, accept = _a.accept, limit = _a.limit, filter = _a.filter, fileSize = _a.fileSize, fileType = _a.fileType, listType = _a.listType, multiple = _a.multiple, name = _a.name, showUploadList = _a.showUploadList, withCredentials = _a.withCredentials, resReName = _a.resReName, urlReName = _a.urlReName, beforeUpload = _a.beforeUpload, customRequest = _a.customRequest, directory = _a.directory, openFileDialogOnClick = _a.openFileDialogOnClick;
+            /** @type {?} */
+            var res = {
                 type: type || 'select',
                 text: text || '点击上传',
                 action: action || '',
@@ -5152,22 +5153,23 @@
                 listType: listType || 'text',
                 multiple: toBool(multiple, false),
                 name: name || 'file',
-                showUploadList: toBool(showUploadList, true),
+                showUploadList: showUploadList == null ? true : showUploadList,
                 withCredentials: toBool(withCredentials, false),
                 resReName: (resReName || '').split('.'),
                 urlReName: (urlReName || '').split('.'),
                 beforeUpload: typeof beforeUpload === 'function' ? beforeUpload : null,
                 customRequest: typeof customRequest === 'function' ? customRequest : null,
             };
-            if (this.i.listType === 'picture-card') {
+            if (res.listType === 'picture-card') {
                 this.btnType = 'plus';
             }
-            if (this.i.type === 'drag') {
-                this.i.listType = null;
+            if (res.type === 'drag') {
+                res.listType = null;
                 this.btnType = 'drag';
-                this.i.text = this.ui.text || "\u5355\u51FB\u6216\u62D6\u52A8\u6587\u4EF6\u5230\u8BE5\u533A\u57DF\u4E0A\u4F20";
-                this.i.hint = this.ui.hint || "\u652F\u6301\u5355\u4E2A\u6216\u6279\u91CF\uFF0C\u4E25\u7981\u4E0A\u4F20\u516C\u53F8\u6570\u636E\u6216\u5176\u4ED6\u5B89\u5168\u6587\u4EF6";
+                res.text = text || "\u5355\u51FB\u6216\u62D6\u52A8\u6587\u4EF6\u5230\u8BE5\u533A\u57DF\u4E0A\u4F20";
+                res.hint = hint || "\u652F\u6301\u5355\u4E2A\u6216\u6279\u91CF\uFF0C\u4E25\u7981\u4E0A\u4F20\u516C\u53F8\u6570\u636E\u6216\u5176\u4ED6\u5B89\u5168\u6587\u4EF6";
             }
+            this.i = res;
         };
         /**
          * @param {?} args
