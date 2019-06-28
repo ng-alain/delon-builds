@@ -13,7 +13,7 @@ import { HttpParams, HttpClient } from '@angular/common/http';
 import distanceInWordsToNow from 'date-fns/distance_in_words_to_now';
 import format from 'date-fns/format';
 import { OverlayModule } from '@angular/cdk/overlay';
-import { BellOutline, CaretUpOutline, DeleteOutline, PlusOutline, InboxOutline } from '@ant-design/icons-angular/icons';
+import { BellOutline, DeleteOutline, PlusOutline, InboxOutline } from '@ant-design/icons-angular/icons';
 import { NzIconService } from 'ng-zorro-antd/icon';
 
 /**
@@ -3080,7 +3080,7 @@ var COMPONENTS = [];
 /** @type {?} */
 var PIPES = [DatePipe, CNCurrencyPipe, KeysPipe, YNPipe, I18nPipe, HTMLPipe, URLPipe];
 /** @type {?} */
-var ICONS = [BellOutline, CaretUpOutline, DeleteOutline, PlusOutline, InboxOutline];
+var ICONS = [BellOutline, DeleteOutline, PlusOutline, InboxOutline];
 // #endregion
 var AlainThemeModule = /** @class */ (function () {
     function AlainThemeModule(iconSrv) {
@@ -3129,7 +3129,7 @@ var AlainThemeModule = /** @class */ (function () {
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-var VERSION = new Version('8.0.0-rc.0-b2f23ab');
+var VERSION = new Version('8.0.0-rc.0-0a0c0f5');
 
 export { ALAIN_I18N_TOKEN, APP, AlainI18NServiceFake, AlainThemeConfig, AlainThemeModule, BaseApi, BaseHeaders, BaseUrl, Body, CNCurrencyPipe, DELETE, DELON_LOCALE, DELON_LOCALE_SERVICE_PROVIDER, DELON_LOCALE_SERVICE_PROVIDER_FACTORY, DatePipe, DelonLocaleModule, DelonLocaleService, DrawerHelper, GET, HEAD, HTMLPipe, Headers, JSONP, KeysPipe, LAYOUT, MenuService, ModalHelper, OPTIONS, PATCH, POST, PUT, Path, Query, REP_MAX, ResponsiveService, ScrollService, SettingsService, TitleService, URLPipe, USER, VERSION, WINDOW, YNPipe, _HttpClient, elGR as el_GR, enUS as en_US, koKR as ko_KR, plPL as pl_PL, preloaderFinished, trTR as tr_TR, zhCN as zh_CN, zhTW as zh_TW, ALAIN_I18N_TOKEN_FACTORY as ɵa, I18nPipe as ɵb };
 //# sourceMappingURL=theme.js.map

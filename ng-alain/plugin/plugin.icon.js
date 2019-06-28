@@ -6,14 +6,14 @@ const parse5_1 = require("parse5");
 const ts = require("typescript");
 const ast_1 = require("../utils/ast");
 // includes ng-zorro-antd & @delon/*
-// - zorro: https://github.com/NG-ZORRO/ng-zorro-antd/blob/master/components/icon/nz-icon.service.ts#L6
-// - @delon: https://github.com/ng-alain/delon/blob/master/packages/theme/src/theme.module.ts#L33
 const WHITE_ICONS = [
-    // zorro
+    // - zorro: https://github.com/NG-ZORRO/ng-zorro-antd/blob/master/components/icon/nz-icon.service.ts
     'BarsOutline',
     'CalendarOutline',
     'CaretDownFill',
     'CaretDownOutline',
+    'CaretUpFill',
+    'CaretUpOutline',
     'CheckCircleFill',
     'CheckCircleOutline',
     'CheckOutline',
@@ -21,9 +21,11 @@ const WHITE_ICONS = [
     'CloseCircleFill',
     'CloseCircleOutline',
     'CloseOutline',
+    'CopyOutline',
     'DoubleLeftOutline',
     'DoubleRightOutline',
     'DownOutline',
+    'EditOutline',
     'EllipsisOutline',
     'ExclamationCircleFill',
     'ExclamationCircleOutline',
@@ -39,13 +41,11 @@ const WHITE_ICONS = [
     'QuestionCircleOutline',
     'RightOutline',
     'SearchOutline',
+    'StarFill',
     'UploadOutline',
     'UpOutline',
-    // delon
+    // - @delon: https://github.com/ng-alain/delon/blob/master/packages/theme/src/theme.module.ts#L33
     'BellOutline',
-    'FilterFill',
-    'CaretUpOutline',
-    'CaretDownOutline',
     'DeleteOutline',
     'PlusOutline',
     'InboxOutline',
@@ -68,8 +68,8 @@ ATTRIBUTE_NAMES.forEach(key => {
 function findIcons(html) {
     const res = [];
     const doc = parse5_1.parseFragment(html);
-    const visitNodes = nodes => {
-        nodes.forEach(node => {
+    const visitNodes = (nodes) => {
+        nodes.forEach((node) => {
             if (node.attrs) {
                 const classIcon = genByClass(node);
                 if (classIcon)
@@ -101,13 +101,13 @@ function genByClass(node) {
 function genByComp(node) {
     if (!node.attrs.find(attr => attr.name === 'nz-icon'))
         return null;
-    const type = node.attrs.find(attr => attr.name === 'type' || attr.name === '[type]');
+    const type = node.attrs.find(attr => ['type', '[type]', 'nztype', '[nztype]'].includes(attr.name));
     if (!type)
         return null;
     const types = getNgValue(type);
     if (types == null)
         return null;
-    const theme = node.attrs.find(attr => attr.name === 'theme' || attr.name === '[theme]');
+    const theme = node.attrs.find(attr => ['theme', '[theme]', 'nztheme', '[nztheme]'].includes(attr.name));
     const themes = getNgValue(theme);
     if (themes == null || themes.length === 0)
         return types;

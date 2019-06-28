@@ -3150,7 +3150,7 @@
     /** @type {?} */
     var PIPES = [DatePipe, CNCurrencyPipe, KeysPipe, YNPipe, I18nPipe, HTMLPipe, URLPipe];
     /** @type {?} */
-    var ICONS = [icons.BellOutline, icons.CaretUpOutline, icons.DeleteOutline, icons.PlusOutline, icons.InboxOutline];
+    var ICONS = [icons.BellOutline, icons.DeleteOutline, icons.PlusOutline, icons.InboxOutline];
     // #endregion
     var AlainThemeModule = /** @class */ (function () {
         function AlainThemeModule(iconSrv) {
