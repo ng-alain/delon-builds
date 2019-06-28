@@ -157,57 +157,51 @@
         };
         /**
          * @private
-         * @param {?} th
-         * @param {?} m
-         * @param {?} b
-         * @param {?} e
+         * @param {?} targetHeight
+         * @param {?} mid
+         * @param {?} begin
+         * @param {?} end
          * @param {?} text
-         * @param {?} shadowNode
+         * @param {?} node
          * @return {?}
          */
         EllipsisComponent.prototype.bisection = /**
          * @private
-         * @param {?} th
-         * @param {?} m
-         * @param {?} b
-         * @param {?} e
+         * @param {?} targetHeight
+         * @param {?} mid
+         * @param {?} begin
+         * @param {?} end
          * @param {?} text
-         * @param {?} shadowNode
+         * @param {?} node
          * @return {?}
          */
-        function (th, m, b, e, text, shadowNode) {
+        function (targetHeight, mid, begin, end, text, node) {
             /** @type {?} */
             var suffix = this.tail;
+            node.innerHTML = text.substring(0, mid) + suffix;
             /** @type {?} */
-            var mid = m;
-            /** @type {?} */
-            var end = e;
-            /** @type {?} */
-            var begin = b;
-            shadowNode.innerHTML = text.substring(0, mid) + suffix;
-            /** @type {?} */
-            var sh = shadowNode.offsetHeight;
-            if (sh <= th) {
-                shadowNode.innerHTML = text.substring(0, mid + 1) + suffix;
-                sh = shadowNode.offsetHeight;
-                if (sh > th || mid === begin) {
+            var sh = node.offsetHeight;
+            if (sh <= targetHeight) {
+                node.innerHTML = text.substring(0, mid + 1) + suffix;
+                sh = node.offsetHeight;
+                if (sh > targetHeight || mid === begin) {
                     return mid;
                 }
                 begin = mid;
                 mid = end - begin === 1 ? begin + 1 : Math.floor((end - begin) / 2) + begin;
-                return this.bisection(th, mid, begin, end, text, shadowNode);
+                return this.bisection(targetHeight, mid, begin, end, text, node);
             }
             if (mid - 1 < 0) {
                 return mid;
             }
-            shadowNode.innerHTML = text.substring(0, mid - 1) + suffix;
-            sh = shadowNode.offsetHeight;
-            if (sh <= th) {
+            node.innerHTML = text.substring(0, mid - 1) + suffix;
+            sh = node.offsetHeight;
+            if (sh <= targetHeight) {
                 return mid - 1;
             }
             end = mid;
             mid = Math.floor((end - begin) / 2) + begin;
-            return this.bisection(th, mid, begin, end, text, shadowNode);
+            return this.bisection(targetHeight, mid, begin, end, text, node);
         };
         /**
          * @private

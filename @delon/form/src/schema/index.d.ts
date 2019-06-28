@@ -194,7 +194,7 @@ export interface SFSchema {
      */
     title?: string | null;
     /**
-     * 属性目的性解释，采用 `nz-form-extra` 渲染
+     * 属性目的性解释
      */
     description?: string;
     /**
