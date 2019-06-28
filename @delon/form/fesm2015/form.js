@@ -4106,9 +4106,8 @@ class UploadWidget extends ControlUIWidget {
      * @return {?}
      */
     ngOnInit() {
-        const { type, text, hint, action, accept, limit, filter, fileSize, fileType, listType, multiple, name, showUploadList, withCredentials, resReName, urlReName, beforeUpload, customRequest, directory, openFileDialogOnClick, } = this.ui;
-        /** @type {?} */
-        const res = {
+        const { type, text, action, accept, limit, filter, fileSize, fileType, listType, multiple, name, showUploadList, withCredentials, resReName, urlReName, beforeUpload, customRequest, directory, openFileDialogOnClick, } = this.ui;
+        this.i = {
             type: type || 'select',
             text: text || '点击上传',
             action: action || '',
@@ -4122,23 +4121,22 @@ class UploadWidget extends ControlUIWidget {
             listType: listType || 'text',
             multiple: toBool(multiple, false),
             name: name || 'file',
-            showUploadList: showUploadList == null ? true : showUploadList,
+            showUploadList: toBool(showUploadList, true),
             withCredentials: toBool(withCredentials, false),
             resReName: (resReName || '').split('.'),
             urlReName: (urlReName || '').split('.'),
             beforeUpload: typeof beforeUpload === 'function' ? beforeUpload : null,
             customRequest: typeof customRequest === 'function' ? customRequest : null,
         };
-        if (res.listType === 'picture-card') {
+        if (this.i.listType === 'picture-card') {
             this.btnType = 'plus';
         }
-        if (res.type === 'drag') {
-            res.listType = null;
+        if (this.i.type === 'drag') {
+            this.i.listType = null;
             this.btnType = 'drag';
-            res.text = text || `单击或拖动文件到该区域上传`;
-            res.hint = hint || `支持单个或批量，严禁上传公司数据或其他安全文件`;
+            this.i.text = this.ui.text || `单击或拖动文件到该区域上传`;
+            this.i.hint = this.ui.hint || `支持单个或批量，严禁上传公司数据或其他安全文件`;
         }
-        this.i = res;
     }
     /**
      * @param {?} args

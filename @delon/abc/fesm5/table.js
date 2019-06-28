@@ -2889,18 +2889,24 @@ var STComponent = /** @class */ (function () {
      * @return {?}
      */
     function (options) {
-        if (options) {
-            if (typeof options.columns !== 'undefined') {
-                this.columns = options.columns;
-            }
-            if (typeof options.pi !== 'undefined') {
-                this.pi = options.pi;
-            }
-            if (typeof options.ps !== 'undefined') {
-                this.ps = options.ps;
-            }
+        options = __assign({ emitReload: true }, options);
+        if (typeof options.columns !== 'undefined') {
+            this.columns = options.columns;
         }
-        return this.refreshColumns().loadPageData();
+        if (typeof options.pi !== 'undefined') {
+            this.pi = options.pi;
+        }
+        if (typeof options.ps !== 'undefined') {
+            this.ps = options.ps;
+        }
+        this.refreshColumns();
+        if (options.emitReload === true) {
+            return this.loadPageData();
+        }
+        else {
+            this.cd();
+            return Promise.resolve(this);
+        }
     };
     /**
      * @private
