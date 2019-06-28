@@ -90,8 +90,7 @@
              */
             function () {
                 var _a = this, targetCount = _a.targetCount, text = _a.text, tail = _a.tail;
-                return ((targetCount > 0 ? text.substring(0, targetCount) : '') +
-                    (targetCount > 0 && targetCount < text.length ? tail : ''));
+                return (targetCount > 0 ? text.substring(0, targetCount) : '') + (targetCount > 0 && targetCount < text.length ? tail : '');
             },
             enumerable: true,
             configurable: true
@@ -219,7 +218,7 @@
          * @return {?}
          */
         function () {
-            var _a = this, lines = _a.lines, length = _a.length, isSupportLineClamp = _a.isSupportLineClamp, cdr = _a.cdr;
+            var _a = this, lines = _a.lines, length = _a.length, isSupportLineClamp = _a.isSupportLineClamp;
             this.cls = {
                 ellipsis: true,
                 ellipsis__lines: lines && !isSupportLineClamp,
@@ -237,7 +236,6 @@
             else {
                 this.type = 'line';
             }
-            cdr.detectChanges();
         };
         /**
          * @private
@@ -258,9 +256,7 @@
                 /** @type {?} */
                 var lengthText = (/** @type {?} */ (el.textContent));
                 /** @type {?} */
-                var textLength = fullWidthRecognition
-                    ? this.getStrFullLength(lengthText)
-                    : lengthText.length;
+                var textLength = fullWidthRecognition ? this.getStrFullLength(lengthText) : lengthText.length;
                 if (textLength <= length || length < 0) {
                     this.text = lengthText;
                 }
@@ -271,9 +267,7 @@
                         displayText = '';
                     }
                     else {
-                        displayText = fullWidthRecognition
-                            ? this.cutStrByFullLength(lengthText, length)
-                            : lengthText.slice(0, length);
+                        displayText = fullWidthRecognition ? this.cutStrByFullLength(lengthText, length) : lengthText.slice(0, length);
                     }
                     this.text = displayText + tail;
                 }
@@ -304,6 +298,7 @@
                     var count = this.bisection(targetHeight, mid, 0, len, lineText, shadowTextEl.nativeElement.firstChild);
                     this.text = lineText;
                     this.targetCount = count;
+                    console.log(lineHeight, targetHeight, len, mid, count);
                 }
                 cdr.detectChanges();
             }
@@ -351,15 +346,15 @@
         function () {
             var _this = this;
             this.genType();
+            var _a = this, type = _a.type, dom = _a.dom, orgEl = _a.orgEl, cdr = _a.cdr;
+            /** @type {?} */
+            var html = orgEl.nativeElement.innerHTML;
+            this.orgHtml = dom.bypassSecurityTrustHtml(html);
+            cdr.detectChanges();
             this.executeOnStable((/**
              * @return {?}
              */
             function () {
-                var _a = _this, type = _a.type, dom = _a.dom, orgEl = _a.orgEl, cdr = _a.cdr;
-                /** @type {?} */
-                var html = orgEl.nativeElement.innerHTML;
-                _this.orgHtml = dom.bypassSecurityTrustHtml(html);
-                cdr.detectChanges();
                 _this.gen();
                 if (type !== 'line') {
                     /** @type {?} */

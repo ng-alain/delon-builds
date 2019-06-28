@@ -43,8 +43,7 @@ class EllipsisComponent {
      */
     get linsWord() {
         const { targetCount, text, tail } = this;
-        return ((targetCount > 0 ? text.substring(0, targetCount) : '') +
-            (targetCount > 0 && targetCount < text.length ? tail : ''));
+        return (targetCount > 0 ? text.substring(0, targetCount) : '') + (targetCount > 0 && targetCount < text.length ? tail : '');
     }
     /**
      * @private
@@ -144,7 +143,7 @@ class EllipsisComponent {
      * @return {?}
      */
     genType() {
-        const { lines, length, isSupportLineClamp, cdr } = this;
+        const { lines, length, isSupportLineClamp } = this;
         this.cls = {
             ellipsis: true,
             ellipsis__lines: lines && !isSupportLineClamp,
@@ -162,7 +161,6 @@ class EllipsisComponent {
         else {
             this.type = 'line';
         }
-        cdr.detectChanges();
     }
     /**
      * @private
@@ -179,9 +177,7 @@ class EllipsisComponent {
             /** @type {?} */
             const lengthText = (/** @type {?} */ (el.textContent));
             /** @type {?} */
-            const textLength = fullWidthRecognition
-                ? this.getStrFullLength(lengthText)
-                : lengthText.length;
+            const textLength = fullWidthRecognition ? this.getStrFullLength(lengthText) : lengthText.length;
             if (textLength <= length || length < 0) {
                 this.text = lengthText;
             }
@@ -192,9 +188,7 @@ class EllipsisComponent {
                     displayText = '';
                 }
                 else {
-                    displayText = fullWidthRecognition
-                        ? this.cutStrByFullLength(lengthText, length)
-                        : lengthText.slice(0, length);
+                    displayText = fullWidthRecognition ? this.cutStrByFullLength(lengthText, length) : lengthText.slice(0, length);
                 }
                 this.text = displayText + tail;
             }
@@ -225,6 +219,7 @@ class EllipsisComponent {
                 const count = this.bisection(targetHeight, mid, 0, len, lineText, shadowTextEl.nativeElement.firstChild);
                 this.text = lineText;
                 this.targetCount = count;
+                console.log(lineHeight, targetHeight, len, mid, count);
             }
             cdr.detectChanges();
         }
@@ -258,15 +253,15 @@ class EllipsisComponent {
      */
     refresh() {
         this.genType();
+        const { type, dom, orgEl, cdr } = this;
+        /** @type {?} */
+        const html = orgEl.nativeElement.innerHTML;
+        this.orgHtml = dom.bypassSecurityTrustHtml(html);
+        cdr.detectChanges();
         this.executeOnStable((/**
          * @return {?}
          */
         () => {
-            const { type, dom, orgEl, cdr } = this;
-            /** @type {?} */
-            const html = orgEl.nativeElement.innerHTML;
-            this.orgHtml = dom.bypassSecurityTrustHtml(html);
-            cdr.detectChanges();
             this.gen();
             if (type !== 'line') {
                 /** @type {?} */
