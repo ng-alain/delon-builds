@@ -240,7 +240,7 @@
          * @return {?}
          */
         function () {
-            var _a = this, type = _a.type, lines = _a.lines, length = _a.length, fullWidthRecognition = _a.fullWidthRecognition, tail = _a.tail, orgEl = _a.orgEl, cdr = _a.cdr;
+            var _a = this, type = _a.type, lines = _a.lines, length = _a.length, fullWidthRecognition = _a.fullWidthRecognition, tail = _a.tail, orgEl = _a.orgEl, cdr = _a.cdr, ngZone = _a.ngZone;
             if (type === 'length') {
                 /** @type {?} */
                 var el = (/** @type {?} */ (orgEl.nativeElement));
@@ -265,7 +265,10 @@
                     }
                     this.text = displayText + tail;
                 }
-                cdr.detectChanges();
+                ngZone.run((/**
+                 * @return {?}
+                 */
+                function () { return cdr.detectChanges(); }));
             }
             else if (type === 'line') {
                 var _b = this, shadowOrgEl = _b.shadowOrgEl, shadowTextEl = _b.shadowTextEl;
@@ -293,7 +296,10 @@
                     this.text = lineText;
                     this.targetCount = count;
                 }
-                cdr.detectChanges();
+                ngZone.run((/**
+                 * @return {?}
+                 */
+                function () { return cdr.detectChanges(); }));
             }
         };
         /**

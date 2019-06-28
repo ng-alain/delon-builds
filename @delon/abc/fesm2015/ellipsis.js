@@ -161,7 +161,7 @@ class EllipsisComponent {
      * @return {?}
      */
     gen() {
-        const { type, lines, length, fullWidthRecognition, tail, orgEl, cdr } = this;
+        const { type, lines, length, fullWidthRecognition, tail, orgEl, cdr, ngZone } = this;
         if (type === 'length') {
             /** @type {?} */
             const el = (/** @type {?} */ (orgEl.nativeElement));
@@ -186,7 +186,10 @@ class EllipsisComponent {
                 }
                 this.text = displayText + tail;
             }
-            cdr.detectChanges();
+            ngZone.run((/**
+             * @return {?}
+             */
+            () => cdr.detectChanges()));
         }
         else if (type === 'line') {
             const { shadowOrgEl, shadowTextEl } = this;
@@ -214,7 +217,10 @@ class EllipsisComponent {
                 this.text = lineText;
                 this.targetCount = count;
             }
-            cdr.detectChanges();
+            ngZone.run((/**
+             * @return {?}
+             */
+            () => cdr.detectChanges()));
         }
     }
     /**
