@@ -115,8 +115,10 @@ function addCodeStylesToPackageJson() {
         json.scripts['lint-staged'] = `lint-staged`;
         json.scripts['tslint-check'] = `tslint-config-prettier-check ./tslint.json`;
         json['lint-staged'] = {
-            '*.ts': ['npm run lint:ts', 'git add'],
-            '*.less': ['npm run lint:style', 'git add'],
+            linters: {
+                '*.ts': ['npm run lint:ts', 'git add'],
+                '*.less': ['npm run lint:style', 'git add'],
+            },
             ignore: ['src/assets/*'],
         };
         json_1.overwritePackage(host, json);
