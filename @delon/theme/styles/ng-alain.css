@@ -25945,6 +25945,8 @@ body {
 }
 .alain-default__aside-user {
   display: flex;
+  align-items: center;
+  justify-content: center;
   margin: 24px 24px 0 24px;
   cursor: pointer;
 }
@@ -25965,6 +25967,7 @@ body {
 @media (min-width: 768px) {
   .alain-default__collapsed .alain-default__aside-user {
     width: 64px;
+    margin-left: 0;
   }
   .alain-default__collapsed .alain-default__aside-user-info {
     display: none;
