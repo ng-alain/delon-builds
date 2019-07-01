@@ -26013,13 +26013,12 @@ body {
   float: none;
   text-align: center;
 }
-.st__btn-disabled,
-.st__btn-disabled > a {
+.st__btn-sub .st__btn-text {
+  color: inherit;
+}
+.st__btn-disabled .st__btn-text {
   color: rgba(0, 0, 0, 0.25);
   pointer-events: none;
-}
-.st__btn-sub .ant-dropdown-menu-item > span {
-  display: block;
 }
 .st .ant-table ~ nz-pagination > .ant-pagination {
   margin-bottom: 0;

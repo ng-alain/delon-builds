@@ -555,6 +555,7 @@ export interface STColumnButton {
      * Conditional expression rendering behavior, can be set to `hide` (default) or `disabled`
      */
     iifBehavior?: IifBehaviorType;
+    tooltip?: string;
     [key: string]: any;
 }
 export declare type IifBehaviorType = 'hide' | 'disabled';
