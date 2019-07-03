@@ -126,16 +126,12 @@ function addCodeStylesToPackageJson() {
         json_1.addPackageToPackageJson(host, [
             `tslint-config-prettier@^1.18.0`,
             `tslint-language-service@^0.9.9`,
-            `lint-staged@^9.0.1`,
-            `husky@^3.0.0`,
+            `lint-staged@^8.2.1`,
+            `husky@^2.4.1`,
             `prettier@^1.18.2`,
             `prettier-stylelint@^0.4.2`,
             `stylelint@^10.1.0`,
-            `stylelint-config-prettier@^1.18.2`,
-            `stylelint-config-rational-order@^0.1.2`,
             `stylelint-config-standard@^18.3.0`,
-            `stylelint-declaration-block-no-ignored-properties@^2.1.0`,
-            `stylelint-order@^3.0.0`,
         ], 'devDependencies');
         return host;
     };

@@ -1,4 +1,3 @@
-// tslint:disable: no-duplicate-imports
 import { NgModule, LOCALE_ID, APP_INITIALIZER, Injector } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
@@ -72,7 +71,7 @@ const GLOBAL_THIRD_MODULES = [
 
 // #region Startup Service
 import { StartupService } from '@core/startup/startup.service';
-export function StartupServiceFactory(startupService: StartupService) {
+export function StartupServiceFactory(startupService: StartupService): Function {
   return () => startupService.load();
 }
 const APPINIT_PROVIDES = [
