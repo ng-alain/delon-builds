@@ -126,8 +126,8 @@ function addCodeStylesToPackageJson() {
         json_1.addPackageToPackageJson(host, [
             `tslint-config-prettier@^1.18.0`,
             `tslint-language-service@^0.9.9`,
-            `lint-staged@^8.2.1`,
-            `husky@^2.4.1`,
+            `lint-staged@^9.0.1`,
+            `husky@^3.0.0`,
             `prettier@^1.18.2`,
             `prettier-stylelint@^0.4.2`,
             `stylelint@^10.1.0`,
