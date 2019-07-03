@@ -3,25 +3,21 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const schematics_1 = require("@angular-devkit/schematics");
 const fs = require("fs");
 const path = require("path");
-const rxjs_1 = require("rxjs");
-const operators_1 = require("rxjs/operators");
 const alain_1 = require("../utils/alain");
 const REFER = `, please refer to: https://ng-alain.com/cli/generate/en#Custom-template-page`;
 function genFiles(options) {
-    return () => {
-        options._tplDir = path.join(process.cwd(), './_cli-tpl');
-        try {
-            fs.accessSync(options._tplDir);
-        }
-        catch (_a) {
-            throw new schematics_1.SchematicsException(`Invalid path [${options._tplDir}]${REFER}`);
-        }
-        const names = fs.readdirSync(options._tplDir);
-        if (names.indexOf(options.tplName) === -1) {
-            throw new schematics_1.SchematicsException(`Could not find name [${options.tplName}] templates${REFER}`);
-        }
-        options._filesPath = path.relative(__dirname, path.join(options._tplDir, options.tplName));
-    };
+    options._tplDir = path.join(process.cwd(), './_cli-tpl');
+    try {
+        fs.accessSync(options._tplDir);
+    }
+    catch (_a) {
+        throw new schematics_1.SchematicsException(`Invalid path [${options._tplDir}]${REFER}`);
+    }
+    const names = fs.readdirSync(options._tplDir);
+    if (names.indexOf(options.tplName) === -1) {
+        throw new schematics_1.SchematicsException(`Could not find name [${options.tplName}] templates${REFER}`);
+    }
+    options._filesPath = path.relative(__dirname, path.join(options._tplDir, options.tplName));
 }
 function parseExtraArgs(options) {
     const org = options['--'];
@@ -38,23 +34,22 @@ function parseExtraArgs(options) {
 }
 function runFixJS(options) {
     parseExtraArgs(options);
-    return (host) => {
-        return rxjs_1.of(host).pipe(operators_1.mergeMap(val => {
-            const fixScriptPath = path.join(options._tplDir, '_fix.js');
-            if (fs.existsSync(fixScriptPath)) {
-                return Promise.resolve().then(() => require(path.relative(__dirname, fixScriptPath))).then(a => {
-                    if (a.fix) {
-                        return a.fix(options).then(() => val);
-                    }
-                    return val;
-                });
+    const fixScriptPath = path.join(options._tplDir, '_fix.js');
+    if (fs.existsSync(fixScriptPath)) {
+        return Promise.resolve().then(() => require(path.relative(__dirname, fixScriptPath))).then(a => {
+            if (a.fix) {
+                return a.fix(options);
             }
-            return Promise.resolve(val);
-        }));
-    };
+            return Promise.resolve();
+        });
+    }
+    return Promise.resolve();
 }
 function default_1(options) {
-    return schematics_1.chain([genFiles(options), runFixJS(options), alain_1.buildAlain(Object.assign({ schematicName: 'tpl' }, options))]);
+    genFiles(options);
+    return () => {
+        return runFixJS(options).then(() => alain_1.buildAlain(Object.assign({ schematicName: 'tpl' }, options)));
+    };
 }
 exports.default = default_1;
 //# sourceMappingURL=index.js.map

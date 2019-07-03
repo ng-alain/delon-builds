@@ -110,14 +110,14 @@ function addCodeStylesToPackageJson() {
         if (json == null)
             return host;
         json.scripts.lint = `npm run lint:ts && npm run lint:style`;
-        json.scripts['lint:ts'] = `tslint -p tsconfig.app.json -c tslint.json \"src/**/*.ts\" --fix`;
+        json.scripts['lint:ts'] = `tslint -c tslint.json \"src/**/*.ts\" --fix`;
         json.scripts['lint:style'] = `stylelint \"src/**/*.less\" --syntax less --fix`;
         json.scripts['lint-staged'] = `lint-staged`;
         json.scripts['tslint-check'] = `tslint-config-prettier-check ./tslint.json`;
         json['lint-staged'] = {
             linters: {
-                '*.ts': ['npm run lint:ts', 'git add'],
-                '*.less': ['npm run lint:style', 'git add'],
+                'src/**/*.ts': ['npm run lint:ts', 'git add'],
+                'src/**/*.less': ['npm run lint:style', 'git add'],
             },
             ignore: ['src/assets/*'],
         };
@@ -126,7 +126,7 @@ function addCodeStylesToPackageJson() {
         json_1.addPackageToPackageJson(host, [
             `tslint-config-prettier@^1.18.0`,
             `tslint-language-service@^0.9.9`,
-            `lint-staged@^9.0.1`,
+            `lint-staged@^8.2.1`,
             `husky@^3.0.0`,
             `prettier@^1.18.2`,
             `prettier-stylelint@^0.4.2`,
