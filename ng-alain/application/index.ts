@@ -155,7 +155,11 @@ function addCodeStylesToPackageJson() {
         `prettier@^1.18.2`,
         `prettier-stylelint@^0.4.2`,
         `stylelint@^10.1.0`,
+        `stylelint-config-prettier@^1.18.2`,
+        `stylelint-config-rational-order@^0.1.2`,
         `stylelint-config-standard@^18.3.0`,
+        `stylelint-declaration-block-no-ignored-properties@^2.1.0`,
+        `stylelint-order@^3.0.0`,
       ],
       'devDependencies',
     );

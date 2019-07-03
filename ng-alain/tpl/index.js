@@ -6,7 +6,7 @@ const path = require("path");
 const rxjs_1 = require("rxjs");
 const operators_1 = require("rxjs/operators");
 const alain_1 = require("../utils/alain");
-const REFER = ', please refer to: https://ng-alain.com/cli/generate#%E8%87%AA%E5%AE%9A%E4%B9%89%E9%A1%B5';
+const REFER = `, please refer to: https://ng-alain.com/cli/generate/en#Custom-template-page`;
 function genFiles(options) {
     return () => {
         options._tplDir = path.join(process.cwd(), './_cli-tpl');
@@ -54,11 +54,7 @@ function runFixJS(options) {
     };
 }
 function default_1(options) {
-    return schematics_1.chain([
-        genFiles(options),
-        runFixJS(options),
-        alain_1.buildAlain(Object.assign({ schematicName: 'tpl' }, options)),
-    ]);
+    return schematics_1.chain([genFiles(options), runFixJS(options), alain_1.buildAlain(Object.assign({ schematicName: 'tpl' }, options))]);
 }
 exports.default = default_1;
 //# sourceMappingURL=index.js.map
