@@ -887,7 +887,7 @@ class STDataSource {
     get(item, col, idx) {
         if (col.format) {
             /** @type {?} */
-            const formatRes = col.format(item, col);
+            const formatRes = col.format(item, col, idx);
             if (formatRes && ~formatRes.indexOf('</')) {
                 return { text: this.dom.bypassSecurityTrustHtml(formatRes), org: formatRes };
             }
@@ -1286,13 +1286,14 @@ class STExport {
      * @private
      * @param {?} item
      * @param {?} col
+     * @param {?} index
      * @return {?}
      */
-    _stGet(item, col) {
+    _stGet(item, col, index) {
         /** @type {?} */
         const ret = { t: 's', v: '' };
         if (col.format) {
-            ret.v = col.format(item, col);
+            ret.v = col.format(item, col, index);
         }
         else {
             /** @type {?} */
@@ -1342,7 +1343,7 @@ class STExport {
         // content
         for (let i = 0; i < dc; i++) {
             for (let j = 0; j < cc; j++) {
-                sheet[`${String.fromCharCode(j + 65)}${i + 2}`] = this._stGet((/** @type {?} */ (opt._d))[i], colData[j]);
+                sheet[`${String.fromCharCode(j + 65)}${i + 2}`] = this._stGet((/** @type {?} */ (opt._d))[i], colData[j], i);
             }
         }
         if (cc > 0 && dc > 0) {

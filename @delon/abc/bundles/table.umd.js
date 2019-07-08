@@ -1049,7 +1049,7 @@
         function (item, col, idx) {
             if (col.format) {
                 /** @type {?} */
-                var formatRes = col.format(item, col);
+                var formatRes = col.format(item, col, idx);
                 if (formatRes && ~formatRes.indexOf('</')) {
                     return { text: this.dom.bypassSecurityTrustHtml(formatRes), org: formatRes };
                 }
@@ -1538,19 +1538,21 @@
          * @private
          * @param {?} item
          * @param {?} col
+         * @param {?} index
          * @return {?}
          */
         STExport.prototype._stGet = /**
          * @private
          * @param {?} item
          * @param {?} col
+         * @param {?} index
          * @return {?}
          */
-        function (item, col) {
+        function (item, col, index) {
             /** @type {?} */
             var ret = { t: 's', v: '' };
             if (col.format) {
-                ret.v = col.format(item, col);
+                ret.v = col.format(item, col, index);
             }
             else {
                 /** @type {?} */
@@ -1605,7 +1607,7 @@
             // content
             for (var i = 0; i < dc; i++) {
                 for (var j = 0; j < cc; j++) {
-                    sheet["" + String.fromCharCode(j + 65) + (i + 2)] = this._stGet((/** @type {?} */ (opt._d))[i], colData[j]);
+                    sheet["" + String.fromCharCode(j + 65) + (i + 2)] = this._stGet((/** @type {?} */ (opt._d))[i], colData[j], i);
                 }
             }
             if (cc > 0 && dc > 0) {
