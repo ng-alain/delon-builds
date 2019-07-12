@@ -32,7 +32,7 @@ export declare enum ReuseTabMatchMode {
     URL = 2
 }
 export interface ReuseTitle {
-    text: string;
+    text?: string;
     i18n?: string;
 }
 export interface ReuseTabCached {
