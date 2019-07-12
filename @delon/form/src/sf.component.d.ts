@@ -99,6 +99,7 @@ export declare class SFComponent implements OnInit, OnChanges, OnDestroy {
     onSubmit(e: Event): void;
     constructor(formPropertyFactory: FormPropertyFactory, terminator: TerminatorService, options: DelonFormConfig, cdr: ChangeDetectorRef, localeSrv: DelonLocaleService, aclSrv: ACLService, i18nSrv: AlainI18NService);
     protected fanyi(key: string): string;
+    private inheritUI;
     private coverProperty;
     private coverButtonProperty;
     ngOnInit(): void;

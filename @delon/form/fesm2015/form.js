@@ -2,7 +2,7 @@ import { Injectable, ɵɵdefineInjectable, Inject, ComponentFactoryResolver, Eve
 import { __rest, __decorate, __metadata } from 'tslib';
 import { ACLService } from '@delon/acl';
 import { DelonLocaleService, ALAIN_I18N_TOKEN, DelonLocaleModule } from '@delon/theme';
-import { deepCopy, toBoolean, InputBoolean, deepMergeKey, InputNumber, deepGet, DelonUtilModule } from '@delon/util';
+import { deepCopy, toBoolean, InputBoolean, InputNumber, deepGet, DelonUtilModule } from '@delon/util';
 import { of, BehaviorSubject, Observable, combineLatest, Subject, merge } from 'rxjs';
 import { map, distinctUntilChanged, takeUntil, filter, debounceTime, startWith, flatMap, tap } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
@@ -1740,6 +1740,22 @@ class SFComponent {
     }
     /**
      * @private
+     * @param {?} ui
+     * @return {?}
+     */
+    inheritUI(ui) {
+        ['optionalHelp'].filter((/**
+         * @param {?} key
+         * @return {?}
+         */
+        key => !!this._defUi[key])).forEach((/**
+         * @param {?} key
+         * @return {?}
+         */
+        key => (ui[key] = Object.assign({}, this._defUi[key], ui[key]))));
+    }
+    /**
+     * @private
      * @return {?}
      */
     coverProperty() {
@@ -1770,7 +1786,7 @@ class SFComponent {
                 /** @type {?} */
                 const property = retrieveSchema((/** @type {?} */ ((/** @type {?} */ (schema.properties))[key])), definitions);
                 /** @type {?} */
-                const ui = (/** @type {?} */ (deepMergeKey({}, true, { widget: property.type }, property.format && FORMATMAPS[property.format], typeof property.ui === 'string' ? { widget: property.ui } : null, !property.format && !property.ui && Array.isArray(property.enum) && property.enum.length > 0 ? { widget: 'select' } : null, this._defUi, property.ui, uiSchema[uiKey])));
+                const ui = (/** @type {?} */ (Object.assign({ widget: property.type }, (property.format && FORMATMAPS[property.format]), (typeof property.ui === 'string' ? { widget: property.ui } : null), (!property.format && !property.ui && Array.isArray(property.enum) && property.enum.length > 0 ? { widget: 'select' } : null), this._defUi, ((/** @type {?} */ (property.ui))), uiSchema[uiKey])));
                 // 继承父节点布局属性
                 if (isHorizontal) {
                     if (parentUiSchema.spanLabelFixed) {
@@ -1802,6 +1818,7 @@ class SFComponent {
                         ui.end = null;
                     }
                 }
+                this.inheritUI(ui);
                 if (ui.optionalHelp) {
                     if (typeof ui.optionalHelp === 'string') {
                         ui.optionalHelp = (/** @type {?} */ ({

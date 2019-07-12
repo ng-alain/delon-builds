@@ -2217,6 +2217,28 @@
         };
         /**
          * @private
+         * @param {?} ui
+         * @return {?}
+         */
+        SFComponent.prototype.inheritUI = /**
+         * @private
+         * @param {?} ui
+         * @return {?}
+         */
+        function (ui) {
+            var _this = this;
+            ['optionalHelp'].filter((/**
+             * @param {?} key
+             * @return {?}
+             */
+            function (key) { return !!_this._defUi[key]; })).forEach((/**
+             * @param {?} key
+             * @return {?}
+             */
+            function (key) { return (ui[key] = __assign({}, _this._defUi[key], ui[key])); }));
+        };
+        /**
+         * @private
          * @return {?}
          */
         SFComponent.prototype.coverProperty = /**
@@ -2252,7 +2274,7 @@
                     /** @type {?} */
                     var property = retrieveSchema((/** @type {?} */ ((/** @type {?} */ (schema.properties))[key])), definitions);
                     /** @type {?} */
-                    var ui = (/** @type {?} */ (util.deepMergeKey({}, true, { widget: property.type }, property.format && FORMATMAPS[property.format], typeof property.ui === 'string' ? { widget: property.ui } : null, !property.format && !property.ui && Array.isArray(property.enum) && property.enum.length > 0 ? { widget: 'select' } : null, _this._defUi, property.ui, uiSchema[uiKey])));
+                    var ui = (/** @type {?} */ (__assign({ widget: property.type }, (property.format && FORMATMAPS[property.format]), (typeof property.ui === 'string' ? { widget: property.ui } : null), (!property.format && !property.ui && Array.isArray(property.enum) && property.enum.length > 0 ? { widget: 'select' } : null), _this._defUi, ((/** @type {?} */ (property.ui))), uiSchema[uiKey])));
                     // 继承父节点布局属性
                     if (isHorizontal) {
                         if (parentUiSchema.spanLabelFixed) {
@@ -2284,6 +2306,7 @@
                             ui.end = null;
                         }
                     }
+                    _this.inheritUI(ui);
                     if (ui.optionalHelp) {
                         if (typeof ui.optionalHelp === 'string') {
                             ui.optionalHelp = (/** @type {?} */ ({

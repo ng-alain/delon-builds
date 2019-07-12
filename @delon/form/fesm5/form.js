@@ -2,7 +2,7 @@ import { ɵɵdefineInjectable, Injectable, Inject, ComponentFactoryResolver, Com
 import { __spread, __rest, __assign, __values, __extends, __decorate, __metadata } from 'tslib';
 import { ACLService } from '@delon/acl';
 import { DelonLocaleService, ALAIN_I18N_TOKEN, DelonLocaleModule } from '@delon/theme';
-import { deepCopy, toBoolean, InputBoolean, deepMergeKey, InputNumber, deepGet, DelonUtilModule } from '@delon/util';
+import { deepCopy, toBoolean, InputBoolean, InputNumber, deepGet, DelonUtilModule } from '@delon/util';
 import { of, Observable, combineLatest, BehaviorSubject, Subject, merge } from 'rxjs';
 import { map, distinctUntilChanged, takeUntil, filter, debounceTime, startWith, flatMap, tap } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
@@ -2142,6 +2142,28 @@ var SFComponent = /** @class */ (function () {
     };
     /**
      * @private
+     * @param {?} ui
+     * @return {?}
+     */
+    SFComponent.prototype.inheritUI = /**
+     * @private
+     * @param {?} ui
+     * @return {?}
+     */
+    function (ui) {
+        var _this = this;
+        ['optionalHelp'].filter((/**
+         * @param {?} key
+         * @return {?}
+         */
+        function (key) { return !!_this._defUi[key]; })).forEach((/**
+         * @param {?} key
+         * @return {?}
+         */
+        function (key) { return (ui[key] = __assign({}, _this._defUi[key], ui[key])); }));
+    };
+    /**
+     * @private
      * @return {?}
      */
     SFComponent.prototype.coverProperty = /**
@@ -2177,7 +2199,7 @@ var SFComponent = /** @class */ (function () {
                 /** @type {?} */
                 var property = retrieveSchema((/** @type {?} */ ((/** @type {?} */ (schema.properties))[key])), definitions);
                 /** @type {?} */
-                var ui = (/** @type {?} */ (deepMergeKey({}, true, { widget: property.type }, property.format && FORMATMAPS[property.format], typeof property.ui === 'string' ? { widget: property.ui } : null, !property.format && !property.ui && Array.isArray(property.enum) && property.enum.length > 0 ? { widget: 'select' } : null, _this._defUi, property.ui, uiSchema[uiKey])));
+                var ui = (/** @type {?} */ (__assign({ widget: property.type }, (property.format && FORMATMAPS[property.format]), (typeof property.ui === 'string' ? { widget: property.ui } : null), (!property.format && !property.ui && Array.isArray(property.enum) && property.enum.length > 0 ? { widget: 'select' } : null), _this._defUi, ((/** @type {?} */ (property.ui))), uiSchema[uiKey])));
                 // 继承父节点布局属性
                 if (isHorizontal) {
                     if (parentUiSchema.spanLabelFixed) {
@@ -2209,6 +2231,7 @@ var SFComponent = /** @class */ (function () {
                         ui.end = null;
                     }
                 }
+                _this.inheritUI(ui);
                 if (ui.optionalHelp) {
                     if (typeof ui.optionalHelp === 'string') {
                         ui.optionalHelp = (/** @type {?} */ ({
