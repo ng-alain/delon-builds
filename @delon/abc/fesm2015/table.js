@@ -1538,7 +1538,7 @@ class STComponent {
     set page(value) {
         this.clonePage = value;
         /** @type {?} */
-        const item = deepMergeKey({}, true, this.cog.page, value);
+        const item = deepMergeKey({}, true, new STConfig().page, this.cog.page, value);
         const { total } = item;
         if (typeof total === 'string' && total.length) {
             this.totalTpl = total;
