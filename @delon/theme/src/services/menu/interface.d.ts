@@ -1,55 +1,61 @@
 export interface MenuIcon {
-    /** Type for icon */
     type: 'class' | 'icon' | 'iconfont' | 'img';
-    /** Value for the icon, can be set Class Name, nz-icon of `nzType`, image */
+    /** 值，包含：类名、图标 `type`、图像 */
     value?: string;
-    /** Type of the ant design icon, default: `outline` */
+    /** 图标主题风格，默认：`outline` */
     theme?: 'outline' | 'twotone' | 'fill';
-    /** Rotate icon with animation, default: `false` */
+    /** 是否有旋转动画，默认：`false` */
     spin?: boolean;
-    /** Only support the two-tone icon. Specific the primary color */
+    /** 仅适用双色图标，设置双色图标的主要颜色，仅对当前 icon 生效 */
     twoToneColor?: string;
-    /** Type of the icon from iconfont */
+    /** 指定来自 IconFont 的图标类型 */
     iconfont?: string;
 }
 export interface Menu {
     [key: string]: any;
-    /** Text of menu item, can be choose one of  `text` or `i18n` */
-    text?: string;
-    /** I18n key of menu item, can be choose one of  `text` or `i18n` */
+    /** 文本 */
+    text: string;
+    /** i18n主键 */
     i18n?: string;
-    /** Whether to display the group name, default: `true` */
+    /** 是否显示分组名，默认：`true` */
     group?: boolean;
-    /** Routing for the menu item, can be choose one of `link` or `externalLink` */
+    /** 路由 */
     link?: string;
-    /** External link for the menu item, can be choose one of `link` or `externalLink` */
+    /**
+     * @deprecated
+     * 路由是否精准匹配，默认：`false`，see:
+     * - [#344](https://github.com/ng-alain/ng-alain/issues/344)
+     * - [RouterLinkActive](https://angular.io/api/router/RouterLinkActive#routerLinkActiveOptions)
+     */
+    linkExact?: boolean;
+    /** 外部链接 */
     externalLink?: string;
-    /** Specifies `externalLink` where to display the linked URL */
+    /** 链接 target */
     target?: '_blank' | '_self' | '_parent' | '_top';
-    /** Icon for the menu item, only valid for the first level menu */
+    /** 图标 */
     icon?: string | MenuIcon | null;
-    /** Badget for the menu item when `group` is `true` */
+    /** 徽标数，展示的数字。（注：`group:true` 无效） */
     badge?: number;
-    /** Whether to display a red dot instead of `badge` value */
+    /** 徽标数，显示小红点 */
     badgeDot?: boolean;
-    /** Badge [color](https://ng.ant.design/components/badge/en#nz-badge) */
+    /** 徽标 Badge 颜色 （默认：error， 所有颜色值见：https://github.com/ng-alain/ng-alain/blob/master/_documents/utils.md#色彩） */
     badgeStatus?: string;
-    /** Whether disable for the menu item */
+    /** 是否禁用 */
     disabled?: boolean;
-    /** Whether hidden for the menu item */
+    /** 是否隐藏菜单 */
     hide?: boolean;
-    /** Whether hide in breadcrumbs, which are valid when the `page-header` component automatically generates breadcrumbs */
+    /** 隐藏面包屑，指 `page-header` 组件的自动生成面包屑时有效 */
     hideInBreadcrumb?: boolean;
-    /** ACL configuration, it's equivalent to `ACLService.can(roleOrAbility: ACLCanType)` parameter value */
+    /** ACL配置，若导入 `@delon/acl` 时自动有效，等同于 `ACLService.can(roleOrAbility: ACLCanType)` 参数值 */
     acl?: any;
-    /** Whether shortcut menu item */
+    /** 是否快捷菜单项 */
     shortcut?: boolean;
-    /** Wheter shortcut menu root node */
+    /** 快捷菜单根节点 */
     shortcutRoot?: boolean;
-    /** Whether to allow reuse, need to cooperate with the `reuse-tab` component */
+    /** 是否允许复用，需配合 `reuse-tab` 组件 */
     reuse?: boolean;
-    /** Whether to expand, when `checkStrictly` is valid in `sidebar-nav` component */
+    /** 是否展开，当设置 `checkStrictly` 时有效 */
     open?: boolean;
-    /** Children menu of menu item */
+    /** 二级菜单 */
     children?: Menu[];
 }

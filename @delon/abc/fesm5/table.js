@@ -1749,7 +1749,7 @@ var STComponent = /** @class */ (function () {
         function (value) {
             this.clonePage = value;
             /** @type {?} */
-            var item = deepMergeKey({}, true, this.cog.page, value);
+            var item = deepMergeKey({}, true, new STConfig().page, this.cog.page, value);
             var total = item.total;
             if (typeof total === 'string' && total.length) {
                 this.totalTpl = total;

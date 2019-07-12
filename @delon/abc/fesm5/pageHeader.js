@@ -210,7 +210,7 @@ var PageHeaderComponent = /** @class */ (function () {
             var title = item.text;
             if (item.i18n && (/** @type {?} */ (this)).i18nSrv)
                 title = (/** @type {?} */ (this)).i18nSrv.fanyi(item.i18n);
-            (/** @type {?} */ (this))._titleVal = (/** @type {?} */ (title));
+            (/** @type {?} */ (this))._titleVal = title;
         }
         if ((/** @type {?} */ (this))._titleVal && (/** @type {?} */ (this)).syncTitle) {
             if ((/** @type {?} */ (this)).titleSrv) {

@@ -1504,7 +1504,7 @@ var ReuseTabComponent = /** @class */ (function () {
      * @return {?}
      */
     function (title) {
-        return title.i18n && this.i18nSrv ? this.i18nSrv.fanyi(title.i18n) : (/** @type {?} */ (title.text));
+        return title.i18n && this.i18nSrv ? this.i18nSrv.fanyi(title.i18n) : title.text;
     };
     /**
      * @private

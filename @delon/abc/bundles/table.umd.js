@@ -1805,7 +1805,7 @@
             function (value) {
                 this.clonePage = value;
                 /** @type {?} */
-                var item = util.deepMergeKey({}, true, this.cog.page, value);
+                var item = util.deepMergeKey({}, true, new STConfig().page, this.cog.page, value);
                 var total = item.total;
                 if (typeof total === 'string' && total.length) {
                     this.totalTpl = total;

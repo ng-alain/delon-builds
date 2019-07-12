@@ -7,33 +7,30 @@
  */
 export function MenuIcon() { }
 if (false) {
-    /**
-     * Type for icon
-     * @type {?}
-     */
+    /** @type {?} */
     MenuIcon.prototype.type;
     /**
-     * Value for the icon, can be set Class Name, nz-icon of `nzType`, image
+     * 值，包含：类名、图标 `type`、图像
      * @type {?|undefined}
      */
     MenuIcon.prototype.value;
     /**
-     * Type of the ant design icon, default: `outline`
+     * 图标主题风格，默认：`outline`
      * @type {?|undefined}
      */
     MenuIcon.prototype.theme;
     /**
-     * Rotate icon with animation, default: `false`
+     * 是否有旋转动画，默认：`false`
      * @type {?|undefined}
      */
     MenuIcon.prototype.spin;
     /**
-     * Only support the two-tone icon. Specific the primary color
+     * 仅适用双色图标，设置双色图标的主要颜色，仅对当前 icon 生效
      * @type {?|undefined}
      */
     MenuIcon.prototype.twoToneColor;
     /**
-     * Type of the icon from iconfont
+     * 指定来自 IconFont 的图标类型
      * @type {?|undefined}
      */
     MenuIcon.prototype.iconfont;
@@ -44,100 +41,108 @@ if (false) {
 export function Menu() { }
 if (false) {
     /**
-     * Text of menu item, can be choose one of  `text` or `i18n`
-     * @type {?|undefined}
+     * 文本
+     * @type {?}
      */
     Menu.prototype.text;
     /**
-     * I18n key of menu item, can be choose one of  `text` or `i18n`
+     * i18n主键
      * @type {?|undefined}
      */
     Menu.prototype.i18n;
     /**
-     * Whether to display the group name, default: `true`
+     * 是否显示分组名，默认：`true`
      * @type {?|undefined}
      */
     Menu.prototype.group;
     /**
-     * Routing for the menu item, can be choose one of `link` or `externalLink`
+     * 路由
      * @type {?|undefined}
      */
     Menu.prototype.link;
     /**
-     * External link for the menu item, can be choose one of `link` or `externalLink`
+     * @deprecated
+     * 路由是否精准匹配，默认：`false`，see:
+     * - [#344](https://github.com/ng-alain/ng-alain/issues/344)
+     * - [RouterLinkActive](https://angular.io/api/router/RouterLinkActive#routerLinkActiveOptions)
+     * @type {?|undefined}
+     */
+    Menu.prototype.linkExact;
+    /**
+     * 外部链接
      * @type {?|undefined}
      */
     Menu.prototype.externalLink;
     /**
-     * Specifies `externalLink` where to display the linked URL
+     * 链接 target
      * @type {?|undefined}
      */
     Menu.prototype.target;
     /**
-     * Icon for the menu item, only valid for the first level menu
+     * 图标
      * @type {?|undefined}
      */
     Menu.prototype.icon;
     /**
-     * Badget for the menu item when `group` is `true`
+     * 徽标数，展示的数字。（注：`group:true` 无效）
      * @type {?|undefined}
      */
     Menu.prototype.badge;
     /**
-     * Whether to display a red dot instead of `badge` value
+     * 徽标数，显示小红点
      * @type {?|undefined}
      */
     Menu.prototype.badgeDot;
     /**
-     * Badge [color](https://ng.ant.design/components/badge/en#nz-badge)
+     * 徽标 Badge 颜色 （默认：error， 所有颜色值见：https://github.com/ng-alain/ng-alain/blob/master/_documents/utils.md#色彩）
      * @type {?|undefined}
      */
     Menu.prototype.badgeStatus;
     /**
-     * Whether disable for the menu item
+     * 是否禁用
      * @type {?|undefined}
      */
     Menu.prototype.disabled;
     /**
-     * Whether hidden for the menu item
+     * 是否隐藏菜单
      * @type {?|undefined}
      */
     Menu.prototype.hide;
     /**
-     * Whether hide in breadcrumbs, which are valid when the `page-header` component automatically generates breadcrumbs
+     * 隐藏面包屑，指 `page-header` 组件的自动生成面包屑时有效
      * @type {?|undefined}
      */
     Menu.prototype.hideInBreadcrumb;
     /**
-     * ACL configuration, it's equivalent to `ACLService.can(roleOrAbility: ACLCanType)` parameter value
+     * ACL配置，若导入 `\@delon/acl` 时自动有效，等同于 `ACLService.can(roleOrAbility: ACLCanType)` 参数值
      * @type {?|undefined}
      */
     Menu.prototype.acl;
     /**
-     * Whether shortcut menu item
+     * 是否快捷菜单项
      * @type {?|undefined}
      */
     Menu.prototype.shortcut;
     /**
-     * Wheter shortcut menu root node
+     * 快捷菜单根节点
      * @type {?|undefined}
      */
     Menu.prototype.shortcutRoot;
     /**
-     * Whether to allow reuse, need to cooperate with the `reuse-tab` component
+     * 是否允许复用，需配合 `reuse-tab` 组件
      * @type {?|undefined}
      */
     Menu.prototype.reuse;
     /**
-     * Whether to expand, when `checkStrictly` is valid in `sidebar-nav` component
+     * 是否展开，当设置 `checkStrictly` 时有效
      * @type {?|undefined}
      */
     Menu.prototype.open;
     /**
-     * Children menu of menu item
+     * 二级菜单
      * @type {?|undefined}
      */
     Menu.prototype.children;
     /* Skipping unhandled member: [key: string]: any;*/
 }
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW50ZXJmYWNlLmpzIiwic291cmNlUm9vdCI6Im5nOi8vQGRlbG9uL3RoZW1lLyIsInNvdXJjZXMiOlsic3JjL3NlcnZpY2VzL21lbnUvaW50ZXJmYWNlLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7QUFBQSw4QkFhQzs7Ozs7O0lBWEMsd0JBQTRDOzs7OztJQUU1Qyx5QkFBZTs7Ozs7SUFFZix5QkFBdUM7Ozs7O0lBRXZDLHdCQUFlOzs7OztJQUVmLGdDQUFzQjs7Ozs7SUFFdEIsNEJBQWtCOzs7OztBQUdwQiwwQkF3Q0M7Ozs7OztJQXJDQyxvQkFBYzs7Ozs7SUFFZCxvQkFBYzs7Ozs7SUFFZCxxQkFBZ0I7Ozs7O0lBRWhCLG9CQUFjOzs7OztJQUVkLDRCQUFzQjs7Ozs7SUFFdEIsc0JBQWlEOzs7OztJQUVqRCxvQkFBZ0M7Ozs7O0lBRWhDLHFCQUFlOzs7OztJQUVmLHdCQUFtQjs7Ozs7SUFFbkIsMkJBQXFCOzs7OztJQUVyQix3QkFBbUI7Ozs7O0lBRW5CLG9CQUFlOzs7OztJQUVmLGdDQUEyQjs7Ozs7SUFFM0IsbUJBQVU7Ozs7O0lBRVYsd0JBQW1COzs7OztJQUVuQiw0QkFBdUI7Ozs7O0lBRXZCLHFCQUFnQjs7Ozs7SUFFaEIsb0JBQWU7Ozs7O0lBRWYsd0JBQWtCIiwic291cmNlc0NvbnRlbnQiOlsiZXhwb3J0IGludGVyZmFjZSBNZW51SWNvbiB7XG4gIC8qKiBUeXBlIGZvciBpY29uICovXG4gIHR5cGU6ICdjbGFzcycgfCAnaWNvbicgfCAnaWNvbmZvbnQnIHwgJ2ltZyc7XG4gIC8qKiBWYWx1ZSBmb3IgdGhlIGljb24sIGNhbiBiZSBzZXQgQ2xhc3MgTmFtZSwgbnotaWNvbiBvZiBgbnpUeXBlYCwgaW1hZ2UgKi9cbiAgdmFsdWU/OiBzdHJpbmc7XG4gIC8qKiBUeXBlIG9mIHRoZSBhbnQgZGVzaWduIGljb24sIGRlZmF1bHQ6IGBvdXRsaW5lYCAqL1xuICB0aGVtZT86ICdvdXRsaW5lJyB8ICd0d290b25lJyB8ICdmaWxsJztcbiAgLyoqIFJvdGF0ZSBpY29uIHdpdGggYW5pbWF0aW9uLCBkZWZhdWx0OiBgZmFsc2VgICovXG4gIHNwaW4/OiBib29sZWFuO1xuICAvKiogT25seSBzdXBwb3J0IHRoZSB0d28tdG9uZSBpY29uLiBTcGVjaWZpYyB0aGUgcHJpbWFyeSBjb2xvciAqL1xuICB0d29Ub25lQ29sb3I/OiBzdHJpbmc7XG4gIC8qKiBUeXBlIG9mIHRoZSBpY29uIGZyb20gaWNvbmZvbnQgKi9cbiAgaWNvbmZvbnQ/OiBzdHJpbmc7XG59XG5cbmV4cG9ydCBpbnRlcmZhY2UgTWVudSB7XG4gIFtrZXk6IHN0cmluZ106IGFueTtcbiAgLyoqIFRleHQgb2YgbWVudSBpdGVtLCBjYW4gYmUgY2hvb3NlIG9uZSBvZiAgYHRleHRgIG9yIGBpMThuYCAqL1xuICB0ZXh0Pzogc3RyaW5nO1xuICAvKiogSTE4biBrZXkgb2YgbWVudSBpdGVtLCBjYW4gYmUgY2hvb3NlIG9uZSBvZiAgYHRleHRgIG9yIGBpMThuYCAqL1xuICBpMThuPzogc3RyaW5nO1xuICAvKiogV2hldGhlciB0byBkaXNwbGF5IHRoZSBncm91cCBuYW1lLCBkZWZhdWx0OiBgdHJ1ZWAgKi9cbiAgZ3JvdXA/OiBib29sZWFuO1xuICAvKiogUm91dGluZyBmb3IgdGhlIG1lbnUgaXRlbSwgY2FuIGJlIGNob29zZSBvbmUgb2YgYGxpbmtgIG9yIGBleHRlcm5hbExpbmtgICovXG4gIGxpbms/OiBzdHJpbmc7XG4gIC8qKiBFeHRlcm5hbCBsaW5rIGZvciB0aGUgbWVudSBpdGVtLCBjYW4gYmUgY2hvb3NlIG9uZSBvZiBgbGlua2Agb3IgYGV4dGVybmFsTGlua2AgKi9cbiAgZXh0ZXJuYWxMaW5rPzogc3RyaW5nO1xuICAvKiogU3BlY2lmaWVzIGBleHRlcm5hbExpbmtgIHdoZXJlIHRvIGRpc3BsYXkgdGhlIGxpbmtlZCBVUkwgKi9cbiAgdGFyZ2V0PzogJ19ibGFuaycgfCAnX3NlbGYnIHwgJ19wYXJlbnQnIHwgJ190b3AnO1xuICAvKiogSWNvbiBmb3IgdGhlIG1lbnUgaXRlbSwgb25seSB2YWxpZCBmb3IgdGhlIGZpcnN0IGxldmVsIG1lbnUgKi9cbiAgaWNvbj86IHN0cmluZyB8IE1lbnVJY29uIHwgbnVsbDtcbiAgLyoqIEJhZGdldCBmb3IgdGhlIG1lbnUgaXRlbSB3aGVuIGBncm91cGAgaXMgYHRydWVgICovXG4gIGJhZGdlPzogbnVtYmVyO1xuICAvKiogV2hldGhlciB0byBkaXNwbGF5IGEgcmVkIGRvdCBpbnN0ZWFkIG9mIGBiYWRnZWAgdmFsdWUgKi9cbiAgYmFkZ2VEb3Q/OiBib29sZWFuO1xuICAvKiogQmFkZ2UgW2NvbG9yXShodHRwczovL25nLmFudC5kZXNpZ24vY29tcG9uZW50cy9iYWRnZS9lbiNuei1iYWRnZSkgKi9cbiAgYmFkZ2VTdGF0dXM/OiBzdHJpbmc7XG4gIC8qKiBXaGV0aGVyIGRpc2FibGUgZm9yIHRoZSBtZW51IGl0ZW0gKi9cbiAgZGlzYWJsZWQ/OiBib29sZWFuO1xuICAvKiogV2hldGhlciBoaWRkZW4gZm9yIHRoZSBtZW51IGl0ZW0gKi9cbiAgaGlkZT86IGJvb2xlYW47XG4gIC8qKiBXaGV0aGVyIGhpZGUgaW4gYnJlYWRjcnVtYnMsIHdoaWNoIGFyZSB2YWxpZCB3aGVuIHRoZSBgcGFnZS1oZWFkZXJgIGNvbXBvbmVudCBhdXRvbWF0aWNhbGx5IGdlbmVyYXRlcyBicmVhZGNydW1icyAqL1xuICBoaWRlSW5CcmVhZGNydW1iPzogYm9vbGVhbjtcbiAgLyoqIEFDTCBjb25maWd1cmF0aW9uLCBpdCdzIGVxdWl2YWxlbnQgdG8gYEFDTFNlcnZpY2UuY2FuKHJvbGVPckFiaWxpdHk6IEFDTENhblR5cGUpYCBwYXJhbWV0ZXIgdmFsdWUgKi9cbiAgYWNsPzogYW55O1xuICAvKiogV2hldGhlciBzaG9ydGN1dCBtZW51IGl0ZW0gKi9cbiAgc2hvcnRjdXQ/OiBib29sZWFuO1xuICAvKiogV2hldGVyIHNob3J0Y3V0IG1lbnUgcm9vdCBub2RlICovXG4gIHNob3J0Y3V0Um9vdD86IGJvb2xlYW47XG4gIC8qKiBXaGV0aGVyIHRvIGFsbG93IHJldXNlLCBuZWVkIHRvIGNvb3BlcmF0ZSB3aXRoIHRoZSBgcmV1c2UtdGFiYCBjb21wb25lbnQgKi9cbiAgcmV1c2U/OiBib29sZWFuO1xuICAvKiogV2hldGhlciB0byBleHBhbmQsIHdoZW4gYGNoZWNrU3RyaWN0bHlgIGlzIHZhbGlkIGluIGBzaWRlYmFyLW5hdmAgY29tcG9uZW50ICovXG4gIG9wZW4/OiBib29sZWFuO1xuICAvKiogQ2hpbGRyZW4gbWVudSBvZiBtZW51IGl0ZW0gKi9cbiAgY2hpbGRyZW4/OiBNZW51W107XG59XG4iXX0=
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW50ZXJmYWNlLmpzIiwic291cmNlUm9vdCI6Im5nOi8vQGRlbG9uL3RoZW1lLyIsInNvdXJjZXMiOlsic3JjL3NlcnZpY2VzL21lbnUvaW50ZXJmYWNlLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7QUFBQSw4QkFZQzs7O0lBWEMsd0JBQTRDOzs7OztJQUU1Qyx5QkFBZTs7Ozs7SUFFZix5QkFBdUM7Ozs7O0lBRXZDLHdCQUFlOzs7OztJQUVmLGdDQUFzQjs7Ozs7SUFFdEIsNEJBQWtCOzs7OztBQUdwQiwwQkErQ0M7Ozs7OztJQTVDQyxvQkFBYTs7Ozs7SUFFYixvQkFBYzs7Ozs7SUFFZCxxQkFBZ0I7Ozs7O0lBRWhCLG9CQUFjOzs7Ozs7OztJQU9kLHlCQUFvQjs7Ozs7SUFFcEIsNEJBQXNCOzs7OztJQUV0QixzQkFBaUQ7Ozs7O0lBRWpELG9CQUFnQzs7Ozs7SUFFaEMscUJBQWU7Ozs7O0lBRWYsd0JBQW1COzs7OztJQUVuQiwyQkFBcUI7Ozs7O0lBRXJCLHdCQUFtQjs7Ozs7SUFFbkIsb0JBQWU7Ozs7O0lBRWYsZ0NBQTJCOzs7OztJQUUzQixtQkFBVTs7Ozs7SUFFVix3QkFBbUI7Ozs7O0lBRW5CLDRCQUF1Qjs7Ozs7SUFFdkIscUJBQWdCOzs7OztJQUVoQixvQkFBZTs7Ozs7SUFFZix3QkFBa0IiLCJzb3VyY2VzQ29udGVudCI6WyJleHBvcnQgaW50ZXJmYWNlIE1lbnVJY29uIHtcbiAgdHlwZTogJ2NsYXNzJyB8ICdpY29uJyB8ICdpY29uZm9udCcgfCAnaW1nJztcbiAgLyoqIOWAvO+8jOWMheWQq++8muexu+WQjeOAgeWbvuaghyBgdHlwZWDjgIHlm77lg48gKi9cbiAgdmFsdWU/OiBzdHJpbmc7XG4gIC8qKiDlm77moIfkuLvpopjpo47moLzvvIzpu5jorqTvvJpgb3V0bGluZWAgKi9cbiAgdGhlbWU/OiAnb3V0bGluZScgfCAndHdvdG9uZScgfCAnZmlsbCc7XG4gIC8qKiDmmK/lkKbmnInml4vovazliqjnlLvvvIzpu5jorqTvvJpgZmFsc2VgICovXG4gIHNwaW4/OiBib29sZWFuO1xuICAvKiog5LuF6YCC55So5Y+M6Imy5Zu+5qCH77yM6K6+572u5Y+M6Imy5Zu+5qCH55qE5Li76KaB6aKc6Imy77yM5LuF5a+55b2T5YmNIGljb24g55Sf5pWIICovXG4gIHR3b1RvbmVDb2xvcj86IHN0cmluZztcbiAgLyoqIOaMh+WumuadpeiHqiBJY29uRm9udCDnmoTlm77moIfnsbvlnosgKi9cbiAgaWNvbmZvbnQ/OiBzdHJpbmc7XG59XG5cbmV4cG9ydCBpbnRlcmZhY2UgTWVudSB7XG4gIFtrZXk6IHN0cmluZ106IGFueTtcbiAgLyoqIOaWh+acrCAqL1xuICB0ZXh0OiBzdHJpbmc7XG4gIC8qKiBpMThu5Li76ZSuICovXG4gIGkxOG4/OiBzdHJpbmc7XG4gIC8qKiDmmK/lkKbmmL7npLrliIbnu4TlkI3vvIzpu5jorqTvvJpgdHJ1ZWAgKi9cbiAgZ3JvdXA/OiBib29sZWFuO1xuICAvKiog6Lev55SxICovXG4gIGxpbms/OiBzdHJpbmc7XG4gIC8qKlxuICAgKiBAZGVwcmVjYXRlZFxuICAgKiDot6/nlLHmmK/lkKbnsr7lh4bljLnphY3vvIzpu5jorqTvvJpgZmFsc2Vg77yMc2VlOlxuICAgKiAtIFsjMzQ0XShodHRwczovL2dpdGh1Yi5jb20vbmctYWxhaW4vbmctYWxhaW4vaXNzdWVzLzM0NClcbiAgICogLSBbUm91dGVyTGlua0FjdGl2ZV0oaHR0cHM6Ly9hbmd1bGFyLmlvL2FwaS9yb3V0ZXIvUm91dGVyTGlua0FjdGl2ZSNyb3V0ZXJMaW5rQWN0aXZlT3B0aW9ucylcbiAgICovXG4gIGxpbmtFeGFjdD86IGJvb2xlYW47XG4gIC8qKiDlpJbpg6jpk77mjqUgKi9cbiAgZXh0ZXJuYWxMaW5rPzogc3RyaW5nO1xuICAvKiog6ZO+5o6lIHRhcmdldCAqL1xuICB0YXJnZXQ/OiAnX2JsYW5rJyB8ICdfc2VsZicgfCAnX3BhcmVudCcgfCAnX3RvcCc7XG4gIC8qKiDlm77moIcgKi9cbiAgaWNvbj86IHN0cmluZyB8IE1lbnVJY29uIHwgbnVsbDtcbiAgLyoqIOW+veagh+aVsO+8jOWxleekuueahOaVsOWtl+OAgu+8iOazqO+8mmBncm91cDp0cnVlYCDml6DmlYjvvIkgKi9cbiAgYmFkZ2U/OiBudW1iZXI7XG4gIC8qKiDlvr3moIfmlbDvvIzmmL7npLrlsI/nuqLngrkgKi9cbiAgYmFkZ2VEb3Q/OiBib29sZWFuO1xuICAvKiog5b695qCHIEJhZGdlIOminOiJsiDvvIjpu5jorqTvvJplcnJvcu+8jCDmiYDmnInpopzoibLlgLzop4HvvJpodHRwczovL2dpdGh1Yi5jb20vbmctYWxhaW4vbmctYWxhaW4vYmxvYi9tYXN0ZXIvX2RvY3VtZW50cy91dGlscy5tZCPoibLlvanvvIkgKi9cbiAgYmFkZ2VTdGF0dXM/OiBzdHJpbmc7XG4gIC8qKiDmmK/lkKbnpoHnlKggKi9cbiAgZGlzYWJsZWQ/OiBib29sZWFuO1xuICAvKiog5piv5ZCm6ZqQ6JeP6I+c5Y2VICovXG4gIGhpZGU/OiBib29sZWFuO1xuICAvKiog6ZqQ6JeP6Z2i5YyF5bGR77yM5oyHIGBwYWdlLWhlYWRlcmAg57uE5Lu255qE6Ieq5Yqo55Sf5oiQ6Z2i5YyF5bGR5pe25pyJ5pWIICovXG4gIGhpZGVJbkJyZWFkY3J1bWI/OiBib29sZWFuO1xuICAvKiogQUNM6YWN572u77yM6Iul5a+85YWlIGBAZGVsb24vYWNsYCDml7boh6rliqjmnInmlYjvvIznrYnlkIzkuo4gYEFDTFNlcnZpY2UuY2FuKHJvbGVPckFiaWxpdHk6IEFDTENhblR5cGUpYCDlj4LmlbDlgLwgKi9cbiAgYWNsPzogYW55O1xuICAvKiog5piv5ZCm5b+r5o236I+c5Y2V6aG5ICovXG4gIHNob3J0Y3V0PzogYm9vbGVhbjtcbiAgLyoqIOW/q+aNt+iPnOWNleagueiKgueCuSAqL1xuICBzaG9ydGN1dFJvb3Q/OiBib29sZWFuO1xuICAvKiog5piv5ZCm5YWB6K645aSN55So77yM6ZyA6YWN5ZCIIGByZXVzZS10YWJgIOe7hOS7tiAqL1xuICByZXVzZT86IGJvb2xlYW47XG4gIC8qKiDmmK/lkKblsZXlvIDvvIzlvZPorr7nva4gYGNoZWNrU3RyaWN0bHlgIOaXtuacieaViCAqL1xuICBvcGVuPzogYm9vbGVhbjtcbiAgLyoqIOS6jOe6p+iPnOWNlSAqL1xuICBjaGlsZHJlbj86IE1lbnVbXTtcbn1cbiJdfQ==
