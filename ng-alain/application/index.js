@@ -40,6 +40,16 @@ function fixMain() {
         alain_1.tryAddFile(host, `${project.sourceRoot}/main.ts`, contents_1.HMR_CONTENT.NO_HMR_MAIN_DOT_TS);
     };
 }
+function fixAngularJson(options) {
+    return (host) => {
+        const json = json_1.getAngular(host);
+        const _project = project_1.getProjectFromWorkspace(json, options.project);
+        // Add proxy.conf.json
+        (_project.targets || _project.architect).serve.options.proxyConfig = 'proxy.conf.json';
+        json_1.overwriteAngular(host, json);
+        return host;
+    };
+}
 function addDependenciesToPackageJson(options) {
     return (host) => {
         // 3rd
@@ -67,9 +77,6 @@ function addDependenciesToPackageJson(options) {
         if (options.i18n) {
             json_1.addPackageToPackageJson(host, [`@ngx-translate/core@^11.0.1`, `@ngx-translate/http-loader@^4.0.0`]);
         }
-        // TODO: fix @angular-devkit/build-angular version
-        // https://github.com/ng-alain/ng-alain/issues/1183
-        json_1.addPackageToPackageJson(host, '@angular-devkit/build-angular@~0.800.6', 'devDependencies');
         return host;
     };
 }
@@ -379,6 +386,7 @@ function default_1(options) {
             addStyle(),
             fixLang(options),
             fixVsCode(),
+            fixAngularJson(options),
             installPackages(),
         ])(host, context);
     };
