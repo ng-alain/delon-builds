@@ -26623,8 +26623,6 @@ body {
 }
 .sv__title {
   display: block;
-  float: none;
-  clear: both;
   margin-bottom: 16px;
   color: rgba(0, 0, 0, 0.85);
   font-weight: 500;
@@ -26642,9 +26640,6 @@ body {
   top: -0.5px;
   margin: 0 8px 0 2px;
   content: ':';
-}
-.sv__label-text {
-  margin-right: 2px;
 }
 .sv__label-optional {
   color: rgba(0, 0, 0, 0.35);
@@ -26694,14 +26689,6 @@ body {
 .sv__large .sv__title {
   font-size: 16px;
 }
-.sv__horizontal .sv__label-width {
-  display: flex;
-  justify-content: flex-end;
-}
-.sv__horizontal .sv__label-width .sv__label-text {
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
 .sv__vertical .sv__label {
   padding-bottom: 8px;
 }
@@ -26711,10 +26698,8 @@ body {
 }
 .se__title {
   display: block;
-  float: none;
-  clear: both;
   color: rgba(0, 0, 0, 0.85);
-  font-weight: 700;
+  font-weight: 500;
   font-size: 14px;
   line-height: 39.9999px;
 }
@@ -26769,24 +26754,10 @@ body {
 .se__horizontal .se__item:last-child {
   margin-bottom: 0;
 }
-.se__horizontal .se__item .se__label {
-  display: flex;
-  justify-content: flex-end;
-}
-.se__horizontal .se__item .se__label-text {
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.se__horizontal .se__item .ant-form-item-required::before {
-  line-height: inherit;
-}
-.se__horizontal .se__item .ant-form-item-label > label::after {
-  margin-left: 4px;
-}
 .se__vertical .se__item {
   display: block;
 }
-.se__inline .ant-form-item-label,
+.se__inline .se__label,
 .se__inline .se__control {
   flex: none;
   width: initial !important;
@@ -27309,33 +27280,46 @@ ellipsis {
 }
 .reuse-tab {
   display: block;
-  padding: 8px;
   background-color: #fff;
-  border-bottom: 1px solid #d9d9d9;
   outline: none;
   user-select: none;
 }
-.reuse-tab .ant-tabs-bar {
+.reuse-tab__line {
+  padding: 8px;
+  border-bottom: 1px solid #d9d9d9;
+}
+.reuse-tab__line .ant-tabs-bar {
   margin-bottom: 0;
   border-bottom: none;
 }
-.reuse-tab .ant-tabs-nav .ant-tabs-tab {
+.reuse-tab__line .ant-tabs-nav .ant-tabs-tab {
   padding: 0;
 }
-.reuse-tab .ant-tabs-nav .ant-tabs-tab .reuse-tab__name {
-  display: inline-block;
-  padding: 8px 20px;
-}
-.reuse-tab .ant-tabs-nav .ant-tabs-tab .reuse-tab__op {
+.reuse-tab__line .ant-tabs-nav .ant-tabs-tab .reuse-tab__op {
   position: absolute;
-  top: 14px;
+  top: 12px;
   right: 2px;
   display: none;
   margin: 0;
   font-size: 10px;
 }
-.reuse-tab .ant-tabs-nav .ant-tabs-tab:hover .reuse-tab__op {
+.reuse-tab__line .ant-tabs-nav .ant-tabs-tab:hover .reuse-tab__op {
   display: block;
+}
+.reuse-tab__line .ant-tabs-nav .ant-tabs-tab .reuse-tab__name {
+  display: inline-block;
+  padding: 8px 20px;
+}
+.reuse-tab__card {
+  padding-top: 8px;
+}
+.reuse-tab__card .ant-tabs-nav-container {
+  padding: 0 8px;
+}
+.reuse-tab__card .ant-tabs-nav .ant-tabs-tab .reuse-tab__op {
+  margin-right: 0;
+  margin-left: 4px;
+  color: rgba(0, 0, 0, 0.45);
 }
 .reuse-tab__cm .ant-menu {
   border: 1px solid #e9e9e9;

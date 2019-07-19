@@ -55,8 +55,6 @@ class SVContainerComponent {
      */
     constructor(el, ren, cog) {
         this.ren = ren;
-        this.size = 'large';
-        this.layout = 'horizontal';
         this.el = el.nativeElement;
         Object.assign(this, Object.assign({}, new SVConfig(), cog));
     }
@@ -210,13 +208,6 @@ class SVComponent {
         return this.parent && this.parent.gutter / 2;
     }
     /**
-     * @return {?}
-     */
-    get labelWidth() {
-        const { labelWidth, layout } = this.parent;
-        return layout === 'horizontal' ? labelWidth : null;
-    }
-    /**
      * @private
      * @return {?}
      */
@@ -278,7 +269,7 @@ SVComponent.decorators = [
     { type: Component, args: [{
                 selector: 'sv, [sv]',
                 exportAs: 'sv',
-                template: "<div class=\"sv__label\"\n     [class.sv__label-empty]=\"!label\"\n     [class.sv__label-width]=\"labelWidth !== null\"\n     [style.width.px]=\"labelWidth\">\n  <span class=\"sv__label-text\">\n    <ng-container *stringTemplateOutlet=\"label\">{{label}}</ng-container>\n  </span>\n  <span *ngIf=\"optional || optionalHelp\" class=\"sv__label-optional\">\n    {{ optional }}\n    <nz-tooltip *ngIf=\"optionalHelp\" [nzTitle]=\"optionalHelp\">\n      <i nz-tooltip nz-icon nzType=\"question-circle\"></i>\n    </nz-tooltip>\n  </span>\n</div>\n<div class=\"sv__detail\">\n  <span (cdkObserveContent)=\"checkContent()\"\n        #conEl>\n    <ng-content></ng-content>\n  </span>\n  <ng-container *ngIf=\"!!unit\">\n    <span class=\"sv__unit\" *stringTemplateOutlet=\"unit\">{{unit}}</span>\n  </ng-container>\n</div>\n",
+                template: "<div class=\"sv__label\"\n     [class.sv__label-empty]=\"!label\"\n     [style.width.px]=\"parent.labelWidth\">\n  <ng-container *stringTemplateOutlet=\"label\">{{label}}</ng-container>\n  <span class=\"sv__label-optional\">\n    {{ optional }}\n    <nz-tooltip *ngIf=\"optionalHelp\" [nzTitle]=\"optionalHelp\">\n      <i nz-tooltip nz-icon nzType=\"question-circle\"></i>\n    </nz-tooltip>\n  </span>\n</div>\n<div class=\"sv__detail\">\n  <span (cdkObserveContent)=\"checkContent()\"\n        #conEl>\n    <ng-content></ng-content>\n  </span>\n  <ng-container *ngIf=\"!!unit\">\n    <span class=\"sv__unit\" *stringTemplateOutlet=\"unit\">{{unit}}</span>\n  </ng-container>\n</div>\n",
                 host: {
                     '[style.padding-left.px]': 'paddingValue',
                     '[style.padding-right.px]': 'paddingValue',
