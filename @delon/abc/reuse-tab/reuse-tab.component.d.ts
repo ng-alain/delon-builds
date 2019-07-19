@@ -32,7 +32,6 @@ export declare class ReuseTabComponent implements OnInit, OnChanges, OnDestroy {
     tabBarStyle: {
         [key: string]: string;
     };
-    tabType: 'line' | 'card';
     readonly change: EventEmitter<ReuseItem>;
     readonly close: EventEmitter<ReuseItem | null>;
     constructor(el: ElementRef, srv: ReuseTabService, cdr: ChangeDetectorRef, router: Router, route: ActivatedRoute, render: Renderer2, i18nSrv: AlainI18NService, doc: any);
@@ -42,7 +41,7 @@ export declare class ReuseTabComponent implements OnInit, OnChanges, OnDestroy {
     private readonly acitveIndex;
     cmChange(res: ReuseContextCloseEvent): void;
     refStatus(dc?: boolean): void;
-    to(index: number, cb?: () => void): void;
+    to(e: Event | null, index: number, cb?: () => void): void;
     _close(e: Event | null, idx: number, includeNonCloseable: boolean): boolean;
     ngOnInit(): void;
     ngOnChanges(changes: {
