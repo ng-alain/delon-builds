@@ -488,13 +488,11 @@ function CheckJwt(model, offset) {
 /**
  * @param {?} options
  * @param {?} injector
- * @param {?=} url
+ * @param {?} url
  * @return {?}
  */
 function ToLogin(options, injector, url) {
-    /** @type {?} */
-    var router = injector.get(Router);
-    (/** @type {?} */ (((/** @type {?} */ (injector.get(DA_SERVICE_TOKEN)))).referrer)).url = url || router.url;
+    (/** @type {?} */ (((/** @type {?} */ (injector.get(DA_SERVICE_TOKEN)))).referrer)).url = url;
     if (options.token_invalid_redirect === true) {
         setTimeout((/**
          * @return {?}
@@ -504,7 +502,7 @@ function ToLogin(options, injector, url) {
                 injector.get(DOCUMENT).location.href = (/** @type {?} */ (options.login_url));
             }
             else {
-                router.navigate([options.login_url]);
+                injector.get(Router).navigate([options.login_url]);
             }
         }));
     }
@@ -570,14 +568,15 @@ var BaseInterceptor = /** @class */ (function () {
             }
         }
         if (options.allow_anonymous_key &&
-            (req.params.has(options.allow_anonymous_key) || new RegExp("[?|&]" + options.allow_anonymous_key + "=[^&]+").test(req.urlWithParams))) {
+            (req.params.has(options.allow_anonymous_key) ||
+                new RegExp("[?|&]" + options.allow_anonymous_key + "=[^&]+").test(req.urlWithParams))) {
             return next.handle(req);
         }
         if (this.isAuth(options)) {
             req = this.setReq(req, options);
         }
         else {
-            ToLogin(options, this.injector);
+            ToLogin(options, this.injector, req.urlWithParams);
             // Interrupt Http request, so need to generate a new Observable
             /** @type {?} */
             var err$_1 = new Observable((/**
@@ -590,7 +589,7 @@ var BaseInterceptor = /** @class */ (function () {
                     url: req.url,
                     headers: req.headers,
                     status: 401,
-                    statusText: "\u6765\u81EA @delon/auth \u7684\u62E6\u622A\uFF0C\u6240\u8BF7\u6C42URL\u672A\u6388\u6743\uFF0C\u82E5\u662F\u767B\u5F55API\u53EF\u52A0\u5165 [url?_allow_anonymous=true] \u6765\u8868\u793A\u5FFD\u7565\u6821\u9A8C\uFF0C\u66F4\u591A\u65B9\u6CD5\u8BF7\u53C2\u8003\uFF1A https://ng-alain.com/auth/getting-started#DelonAuthConfig\nThe interception from @delon/auth, the requested URL is not authorized. If the login API can add [url?_allow_anonymous=true] to ignore the check, please refer to: https://ng-alain.com/auth/getting-started#DelonAuthConfig",
+                    statusText: "From Auth Intercept --> https://ng-alain.com/docs/auth",
                 });
                 observer.error(res);
             }));
@@ -606,13 +605,11 @@ var BaseInterceptor = /** @class */ (function () {
                      * @param {?} _interceptor
                      * @return {?}
                      */
-                    function (_next, _interceptor) { return new HttpAuthInterceptorHandler(_next, _interceptor); }), {
-                        handle: (/**
+                    function (_next, _interceptor) { return new HttpAuthInterceptorHandler(_next, _interceptor); }), { handle: (/**
                          * @param {?} _
                          * @return {?}
                          */
-                        function (_) { return err$_1; }),
-                    });
+                        function (_) { return err$_1; }) });
                     return chain.handle(req);
                 }
             }

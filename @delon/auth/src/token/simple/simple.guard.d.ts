@@ -6,7 +6,7 @@ export declare class SimpleGuard implements CanActivate, CanActivateChild, CanLo
     private srv;
     private injector;
     private cog;
-    private url?;
+    private url;
     constructor(srv: ITokenService, injector: Injector, cog: DelonAuthConfig);
     private process;
     canLoad(route: Route, _segments: UrlSegment[]): boolean;

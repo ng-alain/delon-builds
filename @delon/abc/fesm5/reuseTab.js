@@ -1478,6 +1478,7 @@ var ReuseTabComponent = /** @class */ (function () {
         this.showCurrent = true;
         this.keepingScroll = false;
         this.customContextMenu = [];
+        this.tabType = 'line';
         this.change = new EventEmitter();
         this.close = new EventEmitter();
         this.el = el.nativeElement;
@@ -1577,7 +1578,7 @@ var ReuseTabComponent = /** @class */ (function () {
         }
         this.list = ls;
         if (ls.length && isClosed) {
-            this.to(null, this.pos);
+            this.to(this.pos);
         }
         this.refStatus(false);
         this.visibility();
@@ -1654,7 +1655,7 @@ var ReuseTabComponent = /** @class */ (function () {
             return;
         }
         if (!res.item.active && res.item.index <= this.acitveIndex) {
-            this.to(null, res.item.index, fn);
+            this.to(res.item.index, fn);
         }
         else {
             fn();
@@ -1684,23 +1685,17 @@ var ReuseTabComponent = /** @class */ (function () {
             this.cdr.detectChanges();
     };
     /**
-     * @param {?} e
      * @param {?} index
      * @param {?=} cb
      * @return {?}
      */
     ReuseTabComponent.prototype.to = /**
-     * @param {?} e
      * @param {?} index
      * @param {?=} cb
      * @return {?}
      */
-    function (e, index, cb) {
+    function (index, cb) {
         var _this = this;
-        if (e != null) {
-            e.preventDefault();
-            e.stopPropagation();
-        }
         index = Math.max(0, Math.min(index, this.list.length - 1));
         /** @type {?} */
         var item = this.list[index];
@@ -1820,9 +1815,11 @@ var ReuseTabComponent = /** @class */ (function () {
         { type: Component, args: [{
                     selector: 'reuse-tab',
                     exportAs: 'reuseTab',
-                    template: "<nz-tabset [nzSelectedIndex]=\"pos\" [nzAnimated]=\"false\" nzType=\"line\"\n  [nzTabBarExtraContent]=\"tabBarExtraContent\"\n  [nzTabBarGutter]=\"tabBarGutter\"\n  [nzTabBarStyle]=\"tabBarStyle\">\n  <nz-tab *ngFor=\"let i of list; let index = index\" [nzTitle]=\"titleTemplate\">\n    <ng-template #titleTemplate>\n      <span [reuse-tab-context-menu]=\"i\" [customContextMenu]=\"customContextMenu\" (click)=\"to($event, index)\" class=\"reuse-tab__name\">{{i.title}}</span>\n      <i *ngIf=\"i.closable\" nz-icon nzType=\"close\" class=\"reuse-tab__op\" (click)=\"_close($event, index, false)\"></i>\n    </ng-template>\n  </nz-tab>\n</nz-tabset>\n<reuse-tab-context [i18n]=\"i18n\" (change)=\"cmChange($event)\"></reuse-tab-context>\n",
+                    template: "<nz-tabset [nzSelectedIndex]=\"pos\" (nzSelectedIndexChange)=\"to($event)\"\n  [nzAnimated]=\"false\" [nzType]=\"tabType\"\n  [nzTabBarExtraContent]=\"tabBarExtraContent\"\n  [nzTabBarGutter]=\"tabBarGutter\"\n  [nzTabBarStyle]=\"tabBarStyle\">\n  <nz-tab *ngFor=\"let i of list; let index = index\" [nzTitle]=\"titleTemplate\">\n    <ng-template #titleTemplate>\n      <span [reuse-tab-context-menu]=\"i\" [customContextMenu]=\"customContextMenu\" class=\"reuse-tab__name\">{{i.title}}</span>\n      <i *ngIf=\"i.closable\" nz-icon nzType=\"close\" class=\"reuse-tab__op\" (click)=\"_close($event, index, false)\"></i>\n    </ng-template>\n  </nz-tab>\n</nz-tabset>\n<reuse-tab-context [i18n]=\"i18n\" (change)=\"cmChange($event)\"></reuse-tab-context>\n",
                     host: {
                         '[class.reuse-tab]': 'true',
+                        '[class.reuse-tab__line]': "tabType === 'line'",
+                        '[class.reuse-tab__card]': "tabType === 'card'",
                     },
                     providers: [ReuseTabContextService],
                     preserveWhitespaces: false,
@@ -1855,6 +1852,7 @@ var ReuseTabComponent = /** @class */ (function () {
         tabBarExtraContent: [{ type: Input }],
         tabBarGutter: [{ type: Input }],
         tabBarStyle: [{ type: Input }],
+        tabType: [{ type: Input }],
         change: [{ type: Output }],
         close: [{ type: Output }]
     };

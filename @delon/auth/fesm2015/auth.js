@@ -393,13 +393,11 @@ function CheckJwt(model, offset) {
 /**
  * @param {?} options
  * @param {?} injector
- * @param {?=} url
+ * @param {?} url
  * @return {?}
  */
 function ToLogin(options, injector, url) {
-    /** @type {?} */
-    const router = injector.get(Router);
-    (/** @type {?} */ (((/** @type {?} */ (injector.get(DA_SERVICE_TOKEN)))).referrer)).url = url || router.url;
+    (/** @type {?} */ (((/** @type {?} */ (injector.get(DA_SERVICE_TOKEN)))).referrer)).url = url;
     if (options.token_invalid_redirect === true) {
         setTimeout((/**
          * @return {?}
@@ -409,7 +407,7 @@ function ToLogin(options, injector, url) {
                 injector.get(DOCUMENT).location.href = (/** @type {?} */ (options.login_url));
             }
             else {
-                router.navigate([options.login_url]);
+                injector.get(Router).navigate([options.login_url]);
             }
         }));
     }
@@ -461,14 +459,15 @@ class BaseInterceptor {
             }
         }
         if (options.allow_anonymous_key &&
-            (req.params.has(options.allow_anonymous_key) || new RegExp(`[\?|&]${options.allow_anonymous_key}=[^&]+`).test(req.urlWithParams))) {
+            (req.params.has(options.allow_anonymous_key) ||
+                new RegExp(`[\?|&]${options.allow_anonymous_key}=[^&]+`).test(req.urlWithParams))) {
             return next.handle(req);
         }
         if (this.isAuth(options)) {
             req = this.setReq(req, options);
         }
         else {
-            ToLogin(options, this.injector);
+            ToLogin(options, this.injector, req.urlWithParams);
             // Interrupt Http request, so need to generate a new Observable
             /** @type {?} */
             const err$ = new Observable((/**
@@ -481,7 +480,7 @@ class BaseInterceptor {
                     url: req.url,
                     headers: req.headers,
                     status: 401,
-                    statusText: `来自 @delon/auth 的拦截，所请求URL未授权，若是登录API可加入 [url?_allow_anonymous=true] 来表示忽略校验，更多方法请参考： https://ng-alain.com/auth/getting-started#DelonAuthConfig\nThe interception from @delon/auth, the requested URL is not authorized. If the login API can add [url?_allow_anonymous=true] to ignore the check, please refer to: https://ng-alain.com/auth/getting-started#DelonAuthConfig`,
+                    statusText: `From Auth Intercept --> https://ng-alain.com/docs/auth`,
                 });
                 observer.error(res);
             }));
@@ -497,13 +496,11 @@ class BaseInterceptor {
                      * @param {?} _interceptor
                      * @return {?}
                      */
-                    (_next, _interceptor) => new HttpAuthInterceptorHandler(_next, _interceptor)), {
-                        handle: (/**
+                    (_next, _interceptor) => new HttpAuthInterceptorHandler(_next, _interceptor)), { handle: (/**
                          * @param {?} _
                          * @return {?}
                          */
-                        (_) => err$),
-                    });
+                        (_) => err$) });
                     return chain.handle(req);
                 }
             }
