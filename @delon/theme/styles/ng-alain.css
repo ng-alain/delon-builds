@@ -26623,6 +26623,8 @@ body {
 }
 .sv__title {
   display: block;
+  float: none;
+  clear: both;
   margin-bottom: 16px;
   color: rgba(0, 0, 0, 0.85);
   font-weight: 500;
@@ -26640,6 +26642,9 @@ body {
   top: -0.5px;
   margin: 0 8px 0 2px;
   content: ':';
+}
+.sv__label-text {
+  margin-right: 2px;
 }
 .sv__label-optional {
   color: rgba(0, 0, 0, 0.35);
@@ -26689,6 +26694,14 @@ body {
 .sv__large .sv__title {
   font-size: 16px;
 }
+.sv__horizontal .sv__label-width {
+  display: flex;
+  justify-content: flex-end;
+}
+.sv__horizontal .sv__label-width .sv__label-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 .sv__vertical .sv__label {
   padding-bottom: 8px;
 }
@@ -26698,8 +26711,10 @@ body {
 }
 .se__title {
   display: block;
+  float: none;
+  clear: both;
   color: rgba(0, 0, 0, 0.85);
-  font-weight: 500;
+  font-weight: 700;
   font-size: 14px;
   line-height: 39.9999px;
 }
@@ -26754,10 +26769,24 @@ body {
 .se__horizontal .se__item:last-child {
   margin-bottom: 0;
 }
+.se__horizontal .se__item .se__label {
+  display: flex;
+  justify-content: flex-end;
+}
+.se__horizontal .se__item .se__label-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.se__horizontal .se__item .ant-form-item-required::before {
+  line-height: inherit;
+}
+.se__horizontal .se__item .ant-form-item-label > label::after {
+  margin-left: 4px;
+}
 .se__vertical .se__item {
   display: block;
 }
-.se__inline .se__label,
+.se__inline .ant-form-item-label,
 .se__inline .se__control {
   flex: none;
   width: initial !important;
