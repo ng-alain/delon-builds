@@ -185,6 +185,7 @@
                 type: 'page',
                 method: 'GET',
                 allInBody: false,
+                lazyLoad: false,
                 reName: { pi: 'pi', ps: 'ps', skip: 'skip', limit: 'limit' },
             };
             /**
@@ -1914,7 +1915,7 @@
          * @return {?}
          */
         function (column) {
-            return !!column.width && this.widthMode.strictBehavior === 'truncate';
+            return !!column.width && this.widthMode.strictBehavior === 'truncate' && column.type !== 'img';
         };
         /**
          * @param {?} column
@@ -3024,7 +3025,9 @@
             if (changes.columns) {
                 this.refreshColumns();
             }
-            if (changes.data && changes.data.currentValue) {
+            /** @type {?} */
+            var changeData = changes.data;
+            if (changeData && changeData.currentValue && !(this.req.lazyLoad && changeData.firstChange)) {
                 this.loadPageData();
             }
             if (changes.loading) {

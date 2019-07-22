@@ -114,6 +114,7 @@ class STConfig {
             type: 'page',
             method: 'GET',
             allInBody: false,
+            lazyLoad: false,
             reName: { pi: 'pi', ps: 'ps', skip: 'skip', limit: 'limit' },
         };
         /**
@@ -1617,7 +1618,7 @@ class STComponent {
      * @return {?}
      */
     isTruncate(column) {
-        return !!column.width && this.widthMode.strictBehavior === 'truncate';
+        return !!column.width && this.widthMode.strictBehavior === 'truncate' && column.type !== 'img';
     }
     /**
      * @param {?} column
@@ -2399,7 +2400,9 @@ class STComponent {
         if (changes.columns) {
             this.refreshColumns();
         }
-        if (changes.data && changes.data.currentValue) {
+        /** @type {?} */
+        const changeData = changes.data;
+        if (changeData && changeData.currentValue && !(this.req.lazyLoad && changeData.firstChange)) {
             this.loadPageData();
         }
         if (changes.loading) {

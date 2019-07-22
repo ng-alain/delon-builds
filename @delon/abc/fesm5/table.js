@@ -129,6 +129,7 @@ var STConfig = /** @class */ (function () {
             type: 'page',
             method: 'GET',
             allInBody: false,
+            lazyLoad: false,
             reName: { pi: 'pi', ps: 'ps', skip: 'skip', limit: 'limit' },
         };
         /**
@@ -1858,7 +1859,7 @@ var STComponent = /** @class */ (function () {
      * @return {?}
      */
     function (column) {
-        return !!column.width && this.widthMode.strictBehavior === 'truncate';
+        return !!column.width && this.widthMode.strictBehavior === 'truncate' && column.type !== 'img';
     };
     /**
      * @param {?} column
@@ -2968,7 +2969,9 @@ var STComponent = /** @class */ (function () {
         if (changes.columns) {
             this.refreshColumns();
         }
-        if (changes.data && changes.data.currentValue) {
+        /** @type {?} */
+        var changeData = changes.data;
+        if (changeData && changeData.currentValue && !(this.req.lazyLoad && changeData.firstChange)) {
             this.loadPageData();
         }
         if (changes.loading) {
