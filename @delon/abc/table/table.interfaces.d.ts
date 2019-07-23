@@ -181,9 +181,10 @@ export interface STColumn {
     /**
      * 列标题
      */
-    title?: string;
+    title?: string | STColumnTitle;
     /**
      * 列标题 i18n
+     * @deprecated 使用 `title: { i18n: 'value' }` 代替
      */
     i18n?: string;
     /**
@@ -322,6 +323,24 @@ export interface STColumn {
      */
     statistical?: STStatisticalType | STStatistical;
     [key: string]: any;
+}
+export interface STColumnTitle {
+    /**
+     * Text of header, can be choose one of `text` or `i18n`
+     */
+    text?: string;
+    /**
+     * I18n key of header, can be choose one of `text` or `i18n`
+     */
+    i18n?: string;
+    /**
+     * Optional information of header
+     */
+    optional?: string;
+    /**
+     * Optional help of header
+     */
+    optionalHelp?: string;
 }
 export declare type STStatisticalType = 'count' | 'distinctCount' | 'sum' | 'average' | 'max' | 'min';
 export declare type STStatisticalFn = (values: number[], col: STColumn, list: STData[], rawData?: any) => STStatisticalResult;

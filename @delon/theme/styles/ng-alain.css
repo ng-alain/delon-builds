@@ -26584,6 +26584,15 @@ body {
 .st__filter-keyword {
   padding: 8px;
 }
+.st .ant-table-column-title {
+  display: flex;
+  align-items: center;
+}
+.st__head-optional,
+.st__head-tip {
+  margin-left: 2px;
+  color: rgba(0, 0, 0, 0.35);
+}
 .st .ant-table-thead > tr > th .ant-table-filter-selected.ant-table-filter-icon {
   color: #1890ff;
 }
