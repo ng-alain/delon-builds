@@ -40,7 +40,7 @@ export declare class STDataSource {
     private dom;
     private sortTick;
     constructor(http: _HttpClient, currentyPipe: CNCurrencyPipe, datePipe: DatePipe, ynPipe: YNPipe, numberPipe: DecimalPipe, dom: DomSanitizer);
-    process(options: STDataSourceOptions): Observable<STDataSourceResult>;
+    process(options: STDataSourceOptions): Promise<STDataSourceResult>;
     private get;
     private getByHttp;
     getNoIndex(item: STData, col: STColumn, idx: number): number;
