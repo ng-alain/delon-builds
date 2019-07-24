@@ -722,7 +722,6 @@ class TitleService {
         this._suffix = '';
         this._separator = ' - ';
         this._reverse = false;
-        this.DELAY_TIME = 25;
         /**
          * 设置默认标题名
          */
@@ -812,11 +811,11 @@ class TitleService {
         return title || item.text;
     }
     /**
-     * @private
+     * 设置标题
      * @param {?=} title
      * @return {?}
      */
-    _setTitle(title) {
+    setTitle(title) {
         if (!title) {
             title = this.getByRoute() || this.getByMenu() || this.getByElement() || this.default;
         }
@@ -838,18 +837,7 @@ class TitleService {
         this.title.setTitle(newTitles.join(this._separator));
     }
     /**
-     * Set the document title, will be delay `25ms`, pls refer to [#1261](https://github.com/ng-alain/ng-alain/issues/1261)
-     * @param {?=} title
-     * @return {?}
-     */
-    setTitle(title) {
-        setTimeout((/**
-         * @return {?}
-         */
-        () => this._setTitle(title)), this.DELAY_TIME);
-    }
-    /**
-     * Set i18n key of the document title
+     * 设置国际化标题
      * @param {?} key
      * @param {?=} params
      * @return {?}
@@ -2559,7 +2547,7 @@ AlainThemeModule.ctorParameters = () => [
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-const VERSION = new Version('8.2.0-4df3d1b');
+const VERSION = new Version('8.2.0-7a5060e9');
 
 export { ALAIN_I18N_TOKEN, APP, AlainI18NServiceFake, AlainThemeConfig, AlainThemeModule, BaseApi, BaseHeaders, BaseUrl, Body, CNCurrencyPipe, DELETE, DELON_LOCALE, DELON_LOCALE_SERVICE_PROVIDER, DELON_LOCALE_SERVICE_PROVIDER_FACTORY, DatePipe, DelonLocaleModule, DelonLocaleService, DrawerHelper, GET, HEAD, HTMLPipe, Headers, JSONP, KeysPipe, LAYOUT, MenuService, ModalHelper, OPTIONS, PATCH, POST, PUT, Path, Query, REP_MAX, ResponsiveService, ScrollService, SettingsService, TitleService, URLPipe, USER, VERSION, WINDOW, YNPipe, _HttpClient, elGR as el_GR, enUS as en_US, koKR as ko_KR, plPL as pl_PL, preloaderFinished, trTR as tr_TR, zhCN as zh_CN, zhTW as zh_TW, ALAIN_I18N_TOKEN_FACTORY as ɵa, I18nPipe as ɵb };
 //# sourceMappingURL=theme.js.map

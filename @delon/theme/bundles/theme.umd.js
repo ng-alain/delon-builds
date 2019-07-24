@@ -986,7 +986,6 @@
             this._suffix = '';
             this._separator = ' - ';
             this._reverse = false;
-            this.DELAY_TIME = 25;
             /**
              * 设置默认标题名
              */
@@ -1108,12 +1107,15 @@
             return title || item.text;
         };
         /**
-         * @private
+         * 设置标题
+         */
+        /**
+         * 设置标题
          * @param {?=} title
          * @return {?}
          */
-        TitleService.prototype._setTitle = /**
-         * @private
+        TitleService.prototype.setTitle = /**
+         * 设置标题
          * @param {?=} title
          * @return {?}
          */
@@ -1139,36 +1141,16 @@
             this.title.setTitle(newTitles.join(this._separator));
         };
         /**
-         * Set the document title, will be delay `25ms`, pls refer to [#1261](https://github.com/ng-alain/ng-alain/issues/1261)
+         * 设置国际化标题
          */
         /**
-         * Set the document title, will be delay `25ms`, pls refer to [#1261](https://github.com/ng-alain/ng-alain/issues/1261)
-         * @param {?=} title
-         * @return {?}
-         */
-        TitleService.prototype.setTitle = /**
-         * Set the document title, will be delay `25ms`, pls refer to [#1261](https://github.com/ng-alain/ng-alain/issues/1261)
-         * @param {?=} title
-         * @return {?}
-         */
-        function (title) {
-            var _this = this;
-            setTimeout((/**
-             * @return {?}
-             */
-            function () { return _this._setTitle(title); }), this.DELAY_TIME);
-        };
-        /**
-         * Set i18n key of the document title
-         */
-        /**
-         * Set i18n key of the document title
+         * 设置国际化标题
          * @param {?} key
          * @param {?=} params
          * @return {?}
          */
         TitleService.prototype.setTitleByI18n = /**
-         * Set i18n key of the document title
+         * 设置国际化标题
          * @param {?} key
          * @param {?=} params
          * @return {?}

@@ -13,7 +13,6 @@ export declare class TitleService implements OnDestroy {
     private _separator;
     private _reverse;
     private i18n$;
-    readonly DELAY_TIME = 25;
     constructor(injector: Injector, title: Title, menuSrv: MenuService, i18nSrv: AlainI18NService, doc: any);
     /** 设置分隔符 */
     separator: string;
@@ -28,13 +27,12 @@ export declare class TitleService implements OnDestroy {
     private getByElement;
     private getByRoute;
     private getByMenu;
-    private _setTitle;
     /**
-     * Set the document title, will be delay `25ms`, pls refer to [#1261](https://github.com/ng-alain/ng-alain/issues/1261)
+     * 设置标题
      */
     setTitle(title?: string | string[]): void;
     /**
-     * Set i18n key of the document title
+     * 设置国际化标题
      */
     setTitleByI18n(key: string, params?: {}): void;
     ngOnDestroy(): void;
