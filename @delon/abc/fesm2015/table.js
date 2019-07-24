@@ -5,9 +5,9 @@ import { deepCopy, deepGet, deepMergeKey, deepMerge, toBoolean, updateHostClass,
 import { DecimalPipe, DOCUMENT, CommonModule } from '@angular/common';
 import { DomSanitizer } from '@angular/platform-browser';
 import { of, Subject, from } from 'rxjs';
-import { map, catchError, takeUntil, filter } from 'rxjs/operators';
+import { map, takeUntil, filter } from 'rxjs/operators';
 import { XlsxService } from '@delon/abc/xlsx';
-import { __decorate, __metadata } from 'tslib';
+import { __awaiter, __decorate, __metadata } from 'tslib';
 import { Router } from '@angular/router';
 import 'ng-zorro-antd';
 import { FormsModule } from '@angular/forms';
@@ -693,200 +693,182 @@ class STDataSource {
      * @return {?}
      */
     process(options) {
-        return new Promise((/**
-         * @param {?} resolvePromise
-         * @param {?} rejectPromise
-         * @return {?}
-         */
-        (resolvePromise, rejectPromise) => {
-            /** @type {?} */
-            let data$;
-            /** @type {?} */
-            let isRemote = false;
-            const { data, res, total, page, pi, ps, paginator, columns } = options;
-            /** @type {?} */
-            let retTotal;
-            /** @type {?} */
-            let retPs;
-            /** @type {?} */
-            let retList;
-            /** @type {?} */
-            let retPi;
-            /** @type {?} */
-            let rawData;
-            /** @type {?} */
-            let showPage = page.show;
-            if (typeof data === 'string') {
-                isRemote = true;
-                data$ = this.getByHttp(data, options).pipe(map((/**
-                 * @param {?} result
-                 * @return {?}
-                 */
-                result => {
-                    rawData = result;
-                    /** @type {?} */
-                    let ret;
-                    if (Array.isArray(result)) {
-                        ret = result;
-                        retTotal = ret.length;
-                        retPs = retTotal;
-                        showPage = false;
-                    }
-                    else {
-                        // list
-                        ret = deepGet(result, (/** @type {?} */ ((/** @type {?} */ (res.reName)).list)), []);
-                        if (ret == null || !Array.isArray(ret)) {
-                            ret = [];
-                        }
-                        // total
-                        /** @type {?} */
-                        const resultTotal = (/** @type {?} */ (res.reName)).total && deepGet(result, (/** @type {?} */ ((/** @type {?} */ (res.reName)).total)), null);
-                        retTotal = resultTotal == null ? total || 0 : +resultTotal;
-                    }
-                    return deepCopy(ret);
-                })), catchError((/**
-                 * @param {?} err
-                 * @return {?}
-                 */
-                err => {
-                    rejectPromise(err);
-                    return [];
-                })));
-            }
-            else if (Array.isArray(data)) {
-                data$ = of(data);
-            }
-            else {
-                // a cold observable
-                data$ = data;
-            }
-            if (!isRemote) {
-                data$ = data$.pipe(
-                // sort
-                map((/**
-                 * @param {?} result
-                 * @return {?}
-                 */
-                (result) => {
-                    rawData = result;
-                    /** @type {?} */
-                    let copyResult = deepCopy(result);
-                    /** @type {?} */
-                    const sorterFn = this.getSorterFn(columns);
-                    if (sorterFn) {
-                        copyResult = copyResult.sort(sorterFn);
-                    }
-                    return copyResult;
-                })), 
-                // filter
-                map((/**
-                 * @param {?} result
-                 * @return {?}
-                 */
-                (result) => {
-                    columns
-                        .filter((/**
-                     * @param {?} w
-                     * @return {?}
-                     */
-                    w => w.filter))
-                        .forEach((/**
-                     * @param {?} c
-                     * @return {?}
-                     */
-                    c => {
-                        /** @type {?} */
-                        const filter = (/** @type {?} */ (c.filter));
-                        /** @type {?} */
-                        const values = this.getFilteredData(filter);
-                        if (values.length === 0)
-                            return;
-                        /** @type {?} */
-                        const onFilter = filter.fn;
-                        if (typeof onFilter !== 'function') {
-                            console.warn(`[st] Muse provide the fn function in filter`);
-                            return;
-                        }
-                        result = result.filter((/**
-                         * @param {?} record
-                         * @return {?}
-                         */
-                        record => values.some((/**
-                         * @param {?} v
-                         * @return {?}
-                         */
-                        v => onFilter(v, record)))));
-                    }));
-                    return result;
-                })), 
-                // paging
-                map((/**
-                 * @param {?} result
-                 * @return {?}
-                 */
-                (result) => {
-                    if (paginator && page.front) {
-                        /** @type {?} */
-                        const maxPageIndex = Math.ceil(result.length / ps);
-                        retPi = Math.max(1, pi > maxPageIndex ? maxPageIndex : pi);
-                        retTotal = result.length;
-                        if (page.show === true) {
-                            return result.slice((retPi - 1) * ps, retPi * ps);
-                        }
-                    }
-                    return result;
-                })));
-            }
-            // pre-process
-            if (typeof res.process === 'function') {
-                data$ = data$.pipe(map((/**
-                 * @param {?} result
-                 * @return {?}
-                 */
-                result => (/** @type {?} */ (res.process))(result, rawData))));
-            }
-            // data accelerator
-            data$ = data$.pipe(map((/**
+        /** @type {?} */
+        let data$;
+        /** @type {?} */
+        let isRemote = false;
+        const { data, res, total, page, pi, ps, paginator, columns } = options;
+        /** @type {?} */
+        let retTotal;
+        /** @type {?} */
+        let retPs;
+        /** @type {?} */
+        let retList;
+        /** @type {?} */
+        let retPi;
+        /** @type {?} */
+        let rawData;
+        /** @type {?} */
+        let showPage = page.show;
+        if (typeof data === 'string') {
+            isRemote = true;
+            data$ = this.getByHttp(data, options).pipe(map((/**
              * @param {?} result
              * @return {?}
              */
             result => {
-                for (let i = 0, len = result.length; i < len; i++) {
-                    result[i]._values = columns.map((/**
-                     * @param {?} c
+                rawData = result;
+                /** @type {?} */
+                let ret;
+                if (Array.isArray(result)) {
+                    ret = result;
+                    retTotal = ret.length;
+                    retPs = retTotal;
+                    showPage = false;
+                }
+                else {
+                    // list
+                    ret = deepGet(result, (/** @type {?} */ ((/** @type {?} */ (res.reName)).list)), []);
+                    if (ret == null || !Array.isArray(ret)) {
+                        ret = [];
+                    }
+                    // total
+                    /** @type {?} */
+                    const resultTotal = (/** @type {?} */ (res.reName)).total && deepGet(result, (/** @type {?} */ ((/** @type {?} */ (res.reName)).total)), null);
+                    retTotal = resultTotal == null ? total || 0 : +resultTotal;
+                }
+                return deepCopy(ret);
+            })));
+        }
+        else if (Array.isArray(data)) {
+            data$ = of(data);
+        }
+        else {
+            // a cold observable
+            data$ = data;
+        }
+        if (!isRemote) {
+            data$ = data$.pipe(
+            // sort
+            map((/**
+             * @param {?} result
+             * @return {?}
+             */
+            (result) => {
+                rawData = result;
+                /** @type {?} */
+                let copyResult = deepCopy(result);
+                /** @type {?} */
+                const sorterFn = this.getSorterFn(columns);
+                if (sorterFn) {
+                    copyResult = copyResult.sort(sorterFn);
+                }
+                return copyResult;
+            })), 
+            // filter
+            map((/**
+             * @param {?} result
+             * @return {?}
+             */
+            (result) => {
+                columns
+                    .filter((/**
+                 * @param {?} w
+                 * @return {?}
+                 */
+                w => w.filter))
+                    .forEach((/**
+                 * @param {?} c
+                 * @return {?}
+                 */
+                c => {
+                    /** @type {?} */
+                    const filter = (/** @type {?} */ (c.filter));
+                    /** @type {?} */
+                    const values = this.getFilteredData(filter);
+                    if (values.length === 0)
+                        return;
+                    /** @type {?} */
+                    const onFilter = filter.fn;
+                    if (typeof onFilter !== 'function') {
+                        console.warn(`[st] Muse provide the fn function in filter`);
+                        return;
+                    }
+                    result = result.filter((/**
+                     * @param {?} record
                      * @return {?}
                      */
-                    c => this.get(result[i], c, i)));
-                    if (options.rowClassName) {
-                        result[i]._rowClassName = options.rowClassName(result[i], i);
+                    record => values.some((/**
+                     * @param {?} v
+                     * @return {?}
+                     */
+                    v => onFilter(v, record)))));
+                }));
+                return result;
+            })), 
+            // paging
+            map((/**
+             * @param {?} result
+             * @return {?}
+             */
+            (result) => {
+                if (paginator && page.front) {
+                    /** @type {?} */
+                    const maxPageIndex = Math.ceil(result.length / ps);
+                    retPi = Math.max(1, pi > maxPageIndex ? maxPageIndex : pi);
+                    retTotal = result.length;
+                    if (page.show === true) {
+                        return result.slice((retPi - 1) * ps, retPi * ps);
                     }
                 }
                 return result;
             })));
-            data$
-                .forEach((/**
+        }
+        // pre-process
+        if (typeof res.process === 'function') {
+            data$ = data$.pipe(map((/**
              * @param {?} result
              * @return {?}
              */
-            (result) => (retList = result)))
-                .then((/**
-             * @return {?}
-             */
-            () => {
-                /** @type {?} */
-                const realTotal = retTotal || total;
-                /** @type {?} */
-                const realPs = retPs || ps;
-                resolvePromise({
-                    pi: retPi,
-                    ps: retPs,
-                    total: retTotal,
-                    list: retList,
-                    statistical: this.genStatistical(columns, retList, rawData),
-                    pageShow: typeof showPage === 'undefined' ? realTotal > realPs : showPage,
-                });
+            result => (/** @type {?} */ (res.process))(result, rawData))));
+        }
+        // data accelerator
+        data$ = data$.pipe(map((/**
+         * @param {?} result
+         * @return {?}
+         */
+        result => {
+            for (let i = 0, len = result.length; i < len; i++) {
+                result[i]._values = columns.map((/**
+                 * @param {?} c
+                 * @return {?}
+                 */
+                c => this.get(result[i], c, i)));
+                if (options.rowClassName) {
+                    result[i]._rowClassName = options.rowClassName(result[i], i);
+                }
+            }
+            return result;
+        })));
+        return data$.pipe(map((/**
+         * @param {?} result
+         * @return {?}
+         */
+        result => {
+            retList = result;
+            /** @type {?} */
+            const realTotal = retTotal || total;
+            /** @type {?} */
+            const realPs = retPs || ps;
+            return (/** @type {?} */ ({
+                pi: retPi,
+                ps: retPs,
+                total: retTotal,
+                list: retList,
+                statistical: this.genStatistical(columns, retList, rawData),
+                pageShow: typeof showPage === 'undefined' ? realTotal > realPs : showPage,
             }));
-        }));
+        })));
     }
     /**
      * @private
@@ -1687,63 +1669,68 @@ class STComponent {
      */
     loadData(options) {
         const { pi, ps, data, req, res, page, total, singleSort, multiSort, rowClassName } = this;
-        return this.dataSource.process(Object.assign({ pi,
-            ps,
-            total,
-            data,
-            req,
-            res,
-            page, columns: this._columns, singleSort,
-            multiSort,
-            rowClassName, paginator: true }, options));
+        return new Promise((/**
+         * @param {?} resolvePromise
+         * @param {?} rejectPromise
+         * @return {?}
+         */
+        (resolvePromise, rejectPromise) => {
+            return this.dataSource
+                .process(Object.assign({ pi,
+                ps,
+                total,
+                data,
+                req,
+                res,
+                page, columns: this._columns, singleSort,
+                multiSort,
+                rowClassName, paginator: true }, options))
+                .pipe(takeUntil(this.unsubscribe$))
+                .subscribe((/**
+             * @param {?} result
+             * @return {?}
+             */
+            result => resolvePromise(result)), (/**
+             * @param {?} error
+             * @return {?}
+             */
+            error => rejectPromise(error)));
+        }));
     }
     /**
      * @private
      * @return {?}
      */
     loadPageData() {
-        this.setLoading(true);
-        return this.loadData()
-            .then((/**
-         * @param {?} result
-         * @return {?}
-         */
-        result => {
-            this.setLoading(false);
-            if (typeof result.pi !== 'undefined') {
-                this.pi = result.pi;
+        return __awaiter(this, void 0, void 0, function* () {
+            this.setLoading(true);
+            try {
+                /** @type {?} */
+                const result = yield this.loadData();
+                this.setLoading(false);
+                if (typeof result.pi !== 'undefined') {
+                    this.pi = result.pi;
+                }
+                if (typeof result.ps !== 'undefined') {
+                    this.ps = result.ps;
+                }
+                if (typeof result.total !== 'undefined') {
+                    this.total = result.total;
+                }
+                if (typeof result.pageShow !== 'undefined') {
+                    this._isPagination = result.pageShow;
+                }
+                this._data = (/** @type {?} */ (result.list));
+                this._statistical = (/** @type {?} */ (result.statistical));
+                return this._refCheck();
             }
-            if (typeof result.ps !== 'undefined') {
-                this.ps = result.ps;
+            catch (error) {
+                this.setLoading(false);
+                this.cdr.detectChanges();
+                this.error.emit({ type: 'req', error });
+                return this;
             }
-            if (typeof result.total !== 'undefined') {
-                this.total = result.total;
-            }
-            if (typeof result.pageShow !== 'undefined') {
-                this._isPagination = result.pageShow;
-            }
-            this._data = (/** @type {?} */ (result.list));
-            this._statistical = (/** @type {?} */ (result.statistical));
-            return this._data;
-        }))
-            .then((/**
-         * @template THIS
-         * @this {THIS}
-         * @return {THIS}
-         */
-        () => this._refCheck()))
-            .catch((/**
-         * @template THIS
-         * @this {THIS}
-         * @param {?} error
-         * @return {THIS}
-         */
-        error => {
-            this.setLoading(false);
-            this.cdr.detectChanges();
-            this.error.emit({ type: 'req', error });
-            return this;
-        }));
+        });
     }
     /**
      * 清空所有数据
