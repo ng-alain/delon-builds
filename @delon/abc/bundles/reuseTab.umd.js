@@ -903,15 +903,17 @@
          * @return {?}
          */
         function (url, route) {
-            if (this._titleCached[url])
+            if (this._titleCached[url]) {
                 return this._titleCached[url];
-            if (route && route.data && (route.data.titleI18n || route.data.title))
+            }
+            if (route && route.data && (route.data.titleI18n || route.data.title)) {
                 return (/** @type {?} */ ({
                     text: route.data.title,
                     i18n: route.data.titleI18n,
                 }));
+            }
             /** @type {?} */
-            var menu = this.mode !== ReuseTabMatchMode.URL ? this.getMenu(url) : null;
+            var menu = this.getMenu(url);
             return menu ? { text: menu.text, i18n: menu.i18n } : { text: url };
         };
         /**

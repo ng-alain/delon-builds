@@ -637,15 +637,17 @@ class ReuseTabService {
      * @return {?}
      */
     getTitle(url, route) {
-        if (this._titleCached[url])
+        if (this._titleCached[url]) {
             return this._titleCached[url];
-        if (route && route.data && (route.data.titleI18n || route.data.title))
+        }
+        if (route && route.data && (route.data.titleI18n || route.data.title)) {
             return (/** @type {?} */ ({
                 text: route.data.title,
                 i18n: route.data.titleI18n,
             }));
+        }
         /** @type {?} */
-        const menu = this.mode !== ReuseTabMatchMode.URL ? this.getMenu(url) : null;
+        const menu = this.getMenu(url);
         return menu ? { text: menu.text, i18n: menu.i18n } : { text: url };
     }
     /**
