@@ -550,8 +550,8 @@ var STColumnSource = /** @class */ (function () {
      * @return {?}
      */
     function (list) {
-        var _this = this;
         var e_3, _a;
+        var _this = this;
         if (!list || list.length === 0)
             throw new Error("[st]: the columns property muse be define!");
         var noIndex = this.cog.noIndex;
@@ -2718,8 +2718,8 @@ var STComponent = /** @class */ (function () {
      * @return {?}
      */
     function (record, btn) {
-        var _this = this;
         var _a, _b;
+        var _this = this;
         if (btn.type === 'modal' || btn.type === 'static') {
             var modal = btn.modal;
             /** @type {?} */

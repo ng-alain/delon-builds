@@ -1,5 +1,5 @@
 /**
- * @license ng-alain(cipchk@qq.com) v8.2.0
+ * @license ng-alain(cipchk@qq.com) v8.3.0
  * (c) 2019 cipchk https://ng-alain.com/
  * License: MIT
  */
@@ -643,8 +643,8 @@
          * @return {?}
          */
         function (list) {
-            var _this = this;
             var e_3, _a;
+            var _this = this;
             if (!list || list.length === 0)
                 throw new Error("[st]: the columns property muse be define!");
             var noIndex = this.cog.noIndex;
@@ -2811,8 +2811,8 @@
          * @return {?}
          */
         function (record, btn) {
-            var _this = this;
             var _a, _b;
+            var _this = this;
             if (btn.type === 'modal' || btn.type === 'static') {
                 var modal = btn.modal;
                 /** @type {?} */
