@@ -7,93 +7,89 @@
  */
 export function SFDateWidgetSchema() { }
 if (false) {
-    /** @type {?|undefined} */
+    /**
+     * 渲染模式，默认：`date`
+     * @type {?|undefined}
+     */
     SFDateWidgetSchema.prototype.mode;
     /** @type {?|undefined} */
     SFDateWidgetSchema.prototype.size;
     /** @type {?|undefined} */
     SFDateWidgetSchema.prototype.placeholder;
     /**
-     * **Just only support date-fns**
-     *
-     * Return the formatted date string in the given format, [Accepted tokens](https://date-fns.org/v1.30.1/docs/format), like this:
-     * - `YYYY-MM-DD HH:mm:ss` Date time
-     * - `X` Seconds timestamp
-     * - `x` Milliseconds timestamp
+     * 数据格式化
      * @type {?|undefined}
      */
     SFDateWidgetSchema.prototype.format;
     /**
-     * To set the date format (equar [nzFormat](https://ng.ant.design/components/date-picker/zh#api))
-     *
-     * **TIPS** [nzFormat special instructions](https://ng.ant.design/components/date-picker/en#api)
+     * 显示格式化，（等同 [nzFormat](https://ng.ant.design/components/date-picker/zh#api) 值），默认：`yyyy-MM-dd HH:mm:ss`
      * @type {?|undefined}
      */
     SFDateWidgetSchema.prototype.displayFormat;
     /**
-     * The end value corresponding to the date range `key`, a date range [demo](https://ng-alain.com/form/date/en#form-date-range).
+     * 日期范围所对应的结束值 `key`
      * @type {?|undefined}
      */
     SFDateWidgetSchema.prototype.end;
     /**
-     * Whether to show clear button, default: `true`
+     * 是否显示清除按钮，默认：`true`
      * @type {?|undefined}
      */
     SFDateWidgetSchema.prototype.allowClear;
     /**
-     * Picker className
+     * 选择器 className
      * @type {?|undefined}
      */
     SFDateWidgetSchema.prototype.className;
     /**
-     * Localization configuration
+     * 国际化配置
      * @type {?|undefined}
      */
     SFDateWidgetSchema.prototype.locale;
     /**
-     * To customize the style of the popup calendar
+     * 额外的弹出样式
      * @type {?|undefined}
      */
     SFDateWidgetSchema.prototype.popupStyle;
     /**
-     * To customize the className of the popup calendar
+     * 额外的弹出 className
      * @type {?|undefined}
      */
     SFDateWidgetSchema.prototype.dropdownClassName;
     /**
-     * A callback emitter, can be executed whether the popup calendar is popped up or closed
+     * 弹出日历和关闭日历的回调
      * @type {?|undefined}
      */
     SFDateWidgetSchema.prototype.onOpenChange;
     /**
-     * Specify the date that cannot be selected
+     * 不可选择的日期
      * @type {?|undefined}
      */
     SFDateWidgetSchema.prototype.disabledDate;
     /**
-     * To specify the time that cannot be selected, support components: `nz-date-picker`, `nz-range-picker`
+     * 不可选择的时间
      * @type {?|undefined}
      */
     SFDateWidgetSchema.prototype.disabledTime;
     /**
-     * Render extra footer in panel, support components: `nz-date-picker`, `nz-range-picker`, `nz-year-picker`, `nz-month-picker`
+     * 在面板中添加额外的页脚
      * @type {?|undefined}
      */
     SFDateWidgetSchema.prototype.renderExtraFooter;
     /**
-     * To provide an additional time selection
+     * 增加时间选择功能，`object` 类型为 [TimePickerOptions](https://ng.ant.design/components/time-picker/en#api)
      * @type {?|undefined}
      */
     SFDateWidgetSchema.prototype.showTime;
     /**
-     * Whether to show "Today" button, default: `true`
+     * 是否展示“今天”按钮，默认：`true`
      * @type {?|undefined}
      */
     SFDateWidgetSchema.prototype.showToday;
     /**
-     * Callback when click ok button
+     * 点击确定按钮的回调
      * @type {?|undefined}
      */
     SFDateWidgetSchema.prototype.onOk;
 }
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic2NoZW1hLmpzIiwic291cmNlUm9vdCI6Im5nOi8vQGRlbG9uL2Zvcm0vIiwic291cmNlcyI6WyJzcmMvd2lkZ2V0cy9kYXRlL3NjaGVtYS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7O0FBR0Esd0NBd0ZDOzs7SUF2RkMsa0NBQW9EOztJQUVwRCxrQ0FBaUI7O0lBRWpCLHlDQUFxQjs7Ozs7Ozs7OztJQVVyQixvQ0FBZ0I7Ozs7Ozs7SUFPaEIsMkNBQXVCOzs7OztJQUt2QixpQ0FBYTs7Ozs7SUFLYix3Q0FBcUI7Ozs7O0lBS3JCLHVDQUFtQjs7Ozs7SUFLbkIsb0NBQVk7Ozs7O0lBS1osd0NBQWdCOzs7OztJQUtoQiwrQ0FBMkI7Ozs7O0lBSzNCLDBDQUF5Qzs7Ozs7SUFLekMsMENBQThCOzs7OztJQUs5QiwwQ0FBOEI7Ozs7O0lBSzlCLCtDQUEyQjs7Ozs7SUFLM0Isc0NBQXdDOzs7OztJQUt4Qyx1Q0FBb0I7Ozs7O0lBS3BCLGtDQUFxQyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IERpc2FibGVkVGltZUZuLCBEaXNhYmxlZERhdGVGbiwgU3VwcG9ydFRpbWVPcHRpb25zIH0gZnJvbSAnbmctem9ycm8tYW50ZC9kYXRlLXBpY2tlci9zdGFuZGFyZC10eXBlcyc7XG5pbXBvcnQgeyBTRlVJU2NoZW1hSXRlbSwgU0ZETFNTaXplIH0gZnJvbSAnLi4vLi4vc2NoZW1hL3VpJztcblxuZXhwb3J0IGludGVyZmFjZSBTRkRhdGVXaWRnZXRTY2hlbWEgZXh0ZW5kcyBTRlVJU2NoZW1hSXRlbSB7XG4gIG1vZGU/OiAnZGF0ZScgfCAnd2VlaycgfCAnbW9udGgnIHwgJ3llYXInIHwgJ3JhbmdlJztcblxuICBzaXplPzogU0ZETFNTaXplO1xuXG4gIHBsYWNlaG9sZGVyPzogc3RyaW5nO1xuXG4gIC8qKlxuICAgKiAqKkp1c3Qgb25seSBzdXBwb3J0IGRhdGUtZm5zKipcbiAgICpcbiAgICogUmV0dXJuIHRoZSBmb3JtYXR0ZWQgZGF0ZSBzdHJpbmcgaW4gdGhlIGdpdmVuIGZvcm1hdCwgW0FjY2VwdGVkIHRva2Vuc10oaHR0cHM6Ly9kYXRlLWZucy5vcmcvdjEuMzAuMS9kb2NzL2Zvcm1hdCksIGxpa2UgdGhpczpcbiAgICogLSBgWVlZWS1NTS1ERCBISDptbTpzc2AgRGF0ZSB0aW1lXG4gICAqIC0gYFhgIFNlY29uZHMgdGltZXN0YW1wXG4gICAqIC0gYHhgIE1pbGxpc2Vjb25kcyB0aW1lc3RhbXBcbiAgICovXG4gIGZvcm1hdD86IHN0cmluZztcblxuICAvKipcbiAgICogVG8gc2V0IHRoZSBkYXRlIGZvcm1hdCAoZXF1YXIgW256Rm9ybWF0XShodHRwczovL25nLmFudC5kZXNpZ24vY29tcG9uZW50cy9kYXRlLXBpY2tlci96aCNhcGkpKVxuICAgKlxuICAgKiAqKlRJUFMqKiBbbnpGb3JtYXQgc3BlY2lhbCBpbnN0cnVjdGlvbnNdKGh0dHBzOi8vbmcuYW50LmRlc2lnbi9jb21wb25lbnRzL2RhdGUtcGlja2VyL2VuI2FwaSlcbiAgICovXG4gIGRpc3BsYXlGb3JtYXQ/OiBzdHJpbmc7XG5cbiAgLyoqXG4gICAqIFRoZSBlbmQgdmFsdWUgY29ycmVzcG9uZGluZyB0byB0aGUgZGF0ZSByYW5nZSBga2V5YCwgYSBkYXRlIHJhbmdlIFtkZW1vXShodHRwczovL25nLWFsYWluLmNvbS9mb3JtL2RhdGUvZW4jZm9ybS1kYXRlLXJhbmdlKS5cbiAgICovXG4gIGVuZD86IHN0cmluZztcblxuICAvKipcbiAgICogV2hldGhlciB0byBzaG93IGNsZWFyIGJ1dHRvbiwgZGVmYXVsdDogYHRydWVgXG4gICAqL1xuICBhbGxvd0NsZWFyPzogYm9vbGVhbjtcblxuICAvKipcbiAgICogUGlja2VyIGNsYXNzTmFtZVxuICAgKi9cbiAgY2xhc3NOYW1lPzogc3RyaW5nO1xuXG4gIC8qKlxuICAgKiBMb2NhbGl6YXRpb24gY29uZmlndXJhdGlvblxuICAgKi9cbiAgbG9jYWxlPzoge307XG5cbiAgLyoqXG4gICAqIFRvIGN1c3RvbWl6ZSB0aGUgc3R5bGUgb2YgdGhlIHBvcHVwIGNhbGVuZGFyXG4gICAqL1xuICBwb3B1cFN0eWxlPzoge307XG5cbiAgLyoqXG4gICAqIFRvIGN1c3RvbWl6ZSB0aGUgY2xhc3NOYW1lIG9mIHRoZSBwb3B1cCBjYWxlbmRhclxuICAgKi9cbiAgZHJvcGRvd25DbGFzc05hbWU/OiBzdHJpbmc7XG5cbiAgLyoqXG4gICAqIEEgY2FsbGJhY2sgZW1pdHRlciwgY2FuIGJlIGV4ZWN1dGVkIHdoZXRoZXIgdGhlIHBvcHVwIGNhbGVuZGFyIGlzIHBvcHBlZCB1cCBvciBjbG9zZWRcbiAgICovXG4gIG9uT3BlbkNoYW5nZT86IChzdGF0dXM6IGJvb2xlYW4pID0+IHZvaWQ7XG5cbiAgLyoqXG4gICAqIFNwZWNpZnkgdGhlIGRhdGUgdGhhdCBjYW5ub3QgYmUgc2VsZWN0ZWRcbiAgICovXG4gIGRpc2FibGVkRGF0ZT86IERpc2FibGVkRGF0ZUZuO1xuXG4gIC8qKlxuICAgKiBUbyBzcGVjaWZ5IHRoZSB0aW1lIHRoYXQgY2Fubm90IGJlIHNlbGVjdGVkLCBzdXBwb3J0IGNvbXBvbmVudHM6IGBuei1kYXRlLXBpY2tlcmAsIGBuei1yYW5nZS1waWNrZXJgXG4gICAqL1xuICBkaXNhYmxlZFRpbWU/OiBEaXNhYmxlZFRpbWVGbjtcblxuICAvKipcbiAgICogUmVuZGVyIGV4dHJhIGZvb3RlciBpbiBwYW5lbCwgc3VwcG9ydCBjb21wb25lbnRzOiBgbnotZGF0ZS1waWNrZXJgLCBgbnotcmFuZ2UtcGlja2VyYCwgYG56LXllYXItcGlja2VyYCwgYG56LW1vbnRoLXBpY2tlcmBcbiAgICovXG4gIHJlbmRlckV4dHJhRm9vdGVyPzogc3RyaW5nO1xuXG4gIC8qKlxuICAgKiBUbyBwcm92aWRlIGFuIGFkZGl0aW9uYWwgdGltZSBzZWxlY3Rpb25cbiAgICovXG4gIHNob3dUaW1lPzogU3VwcG9ydFRpbWVPcHRpb25zIHwgYm9vbGVhbjtcblxuICAvKipcbiAgICogV2hldGhlciB0byBzaG93IFwiVG9kYXlcIiBidXR0b24sIGRlZmF1bHQ6IGB0cnVlYFxuICAgKi9cbiAgc2hvd1RvZGF5PzogYm9vbGVhbjtcblxuICAvKipcbiAgICogQ2FsbGJhY2sgd2hlbiBjbGljayBvayBidXR0b25cbiAgICovXG4gIG9uT2s/OiAoZGF0YTogRGF0ZSB8IERhdGVbXSkgPT4gdm9pZDtcbn1cbiJdfQ==
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic2NoZW1hLmpzIiwic291cmNlUm9vdCI6Im5nOi8vQGRlbG9uL2Zvcm0vIiwic291cmNlcyI6WyJzcmMvd2lkZ2V0cy9kYXRlL3NjaGVtYS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7O0FBR0Esd0NBb0ZDOzs7Ozs7SUFoRkMsa0NBQW9EOztJQUVwRCxrQ0FBaUI7O0lBRWpCLHlDQUFxQjs7Ozs7SUFLckIsb0NBQWdCOzs7OztJQUtoQiwyQ0FBdUI7Ozs7O0lBS3ZCLGlDQUFhOzs7OztJQUtiLHdDQUFxQjs7Ozs7SUFLckIsdUNBQW1COzs7OztJQUtuQixvQ0FBWTs7Ozs7SUFLWix3Q0FBZ0I7Ozs7O0lBS2hCLCtDQUEyQjs7Ozs7SUFLM0IsMENBQXlDOzs7OztJQUt6QywwQ0FBOEI7Ozs7O0lBSzlCLDBDQUE4Qjs7Ozs7SUFLOUIsK0NBQTJCOzs7OztJQUszQixzQ0FBNEI7Ozs7O0lBSzVCLHVDQUFvQjs7Ozs7SUFLcEIsa0NBQXFDIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgRGlzYWJsZWRUaW1lRm4sIERpc2FibGVkRGF0ZUZuIH0gZnJvbSAnbmctem9ycm8tYW50ZC9kYXRlLXBpY2tlci9zdGFuZGFyZC10eXBlcyc7XG5pbXBvcnQgeyBTRlVJU2NoZW1hSXRlbSwgU0ZETFNTaXplIH0gZnJvbSAnLi4vLi4vc2NoZW1hL3VpJztcblxuZXhwb3J0IGludGVyZmFjZSBTRkRhdGVXaWRnZXRTY2hlbWEgZXh0ZW5kcyBTRlVJU2NoZW1hSXRlbSB7XG4gIC8qKlxuICAgKiDmuLLmn5PmqKHlvI/vvIzpu5jorqTvvJpgZGF0ZWBcbiAgICovXG4gIG1vZGU/OiAnZGF0ZScgfCAnd2VlaycgfCAnbW9udGgnIHwgJ3llYXInIHwgJ3JhbmdlJztcblxuICBzaXplPzogU0ZETFNTaXplO1xuXG4gIHBsYWNlaG9sZGVyPzogc3RyaW5nO1xuXG4gIC8qKlxuICAgKiDmlbDmja7moLzlvI/ljJZcbiAgICovXG4gIGZvcm1hdD86IHN0cmluZztcblxuICAvKipcbiAgICog5pi+56S65qC85byP5YyW77yM77yI562J5ZCMIFtuekZvcm1hdF0oaHR0cHM6Ly9uZy5hbnQuZGVzaWduL2NvbXBvbmVudHMvZGF0ZS1waWNrZXIvemgjYXBpKSDlgLzvvInvvIzpu5jorqTvvJpgeXl5eS1NTS1kZCBISDptbTpzc2BcbiAgICovXG4gIGRpc3BsYXlGb3JtYXQ/OiBzdHJpbmc7XG5cbiAgLyoqXG4gICAqIOaXpeacn+iMg+WbtOaJgOWvueW6lOeahOe7k+adn+WAvCBga2V5YFxuICAgKi9cbiAgZW5kPzogc3RyaW5nO1xuXG4gIC8qKlxuICAgKiDmmK/lkKbmmL7npLrmuIXpmaTmjInpkq7vvIzpu5jorqTvvJpgdHJ1ZWBcbiAgICovXG4gIGFsbG93Q2xlYXI/OiBib29sZWFuO1xuXG4gIC8qKlxuICAgKiDpgInmi6nlmaggY2xhc3NOYW1lXG4gICAqL1xuICBjbGFzc05hbWU/OiBzdHJpbmc7XG5cbiAgLyoqXG4gICAqIOWbvemZheWMlumFjee9rlxuICAgKi9cbiAgbG9jYWxlPzoge307XG5cbiAgLyoqXG4gICAqIOmineWklueahOW8ueWHuuagt+W8j1xuICAgKi9cbiAgcG9wdXBTdHlsZT86IHt9O1xuXG4gIC8qKlxuICAgKiDpop3lpJbnmoTlvLnlh7ogY2xhc3NOYW1lXG4gICAqL1xuICBkcm9wZG93bkNsYXNzTmFtZT86IHN0cmluZztcblxuICAvKipcbiAgICog5by55Ye65pel5Y6G5ZKM5YWz6Zet5pel5Y6G55qE5Zue6LCDXG4gICAqL1xuICBvbk9wZW5DaGFuZ2U/OiAoc3RhdHVzOiBib29sZWFuKSA9PiB2b2lkO1xuXG4gIC8qKlxuICAgKiDkuI3lj6/pgInmi6nnmoTml6XmnJ9cbiAgICovXG4gIGRpc2FibGVkRGF0ZT86IERpc2FibGVkRGF0ZUZuO1xuXG4gIC8qKlxuICAgKiDkuI3lj6/pgInmi6nnmoTml7bpl7RcbiAgICovXG4gIGRpc2FibGVkVGltZT86IERpc2FibGVkVGltZUZuO1xuXG4gIC8qKlxuICAgKiDlnKjpnaLmnb/kuK3mt7vliqDpop3lpJbnmoTpobXohJpcbiAgICovXG4gIHJlbmRlckV4dHJhRm9vdGVyPzogc3RyaW5nO1xuXG4gIC8qKlxuICAgKiDlop7liqDml7bpl7TpgInmi6nlip/og73vvIxgb2JqZWN0YCDnsbvlnovkuLogW1RpbWVQaWNrZXJPcHRpb25zXShodHRwczovL25nLmFudC5kZXNpZ24vY29tcG9uZW50cy90aW1lLXBpY2tlci9lbiNhcGkpXG4gICAqL1xuICBzaG93VGltZT86IG9iamVjdCB8IGJvb2xlYW47XG5cbiAgLyoqXG4gICAqIOaYr+WQpuWxleekuuKAnOS7iuWkqeKAneaMiemSru+8jOm7mOiupO+8mmB0cnVlYFxuICAgKi9cbiAgc2hvd1RvZGF5PzogYm9vbGVhbjtcblxuICAvKipcbiAgICog54K55Ye756Gu5a6a5oyJ6ZKu55qE5Zue6LCDXG4gICAqL1xuICBvbk9rPzogKGRhdGE6IERhdGUgfCBEYXRlW10pID0+IHZvaWQ7XG59XG4iXX0=

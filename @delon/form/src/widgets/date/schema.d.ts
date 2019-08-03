@@ -1,74 +1,70 @@
-import { DisabledTimeFn, DisabledDateFn, SupportTimeOptions } from 'ng-zorro-antd/date-picker/standard-types';
+import { DisabledTimeFn, DisabledDateFn } from 'ng-zorro-antd/date-picker/standard-types';
 import { SFUISchemaItem, SFDLSSize } from '../../schema/ui';
 export interface SFDateWidgetSchema extends SFUISchemaItem {
+    /**
+     * 渲染模式，默认：`date`
+     */
     mode?: 'date' | 'week' | 'month' | 'year' | 'range';
     size?: SFDLSSize;
     placeholder?: string;
     /**
-     * **Just only support date-fns**
-     *
-     * Return the formatted date string in the given format, [Accepted tokens](https://date-fns.org/v1.30.1/docs/format), like this:
-     * - `YYYY-MM-DD HH:mm:ss` Date time
-     * - `X` Seconds timestamp
-     * - `x` Milliseconds timestamp
+     * 数据格式化
      */
     format?: string;
     /**
-     * To set the date format (equar [nzFormat](https://ng.ant.design/components/date-picker/zh#api))
-     *
-     * **TIPS** [nzFormat special instructions](https://ng.ant.design/components/date-picker/en#api)
+     * 显示格式化，（等同 [nzFormat](https://ng.ant.design/components/date-picker/zh#api) 值），默认：`yyyy-MM-dd HH:mm:ss`
      */
     displayFormat?: string;
     /**
-     * The end value corresponding to the date range `key`, a date range [demo](https://ng-alain.com/form/date/en#form-date-range).
+     * 日期范围所对应的结束值 `key`
      */
     end?: string;
     /**
-     * Whether to show clear button, default: `true`
+     * 是否显示清除按钮，默认：`true`
      */
     allowClear?: boolean;
     /**
-     * Picker className
+     * 选择器 className
      */
     className?: string;
     /**
-     * Localization configuration
+     * 国际化配置
      */
     locale?: {};
     /**
-     * To customize the style of the popup calendar
+     * 额外的弹出样式
      */
     popupStyle?: {};
     /**
-     * To customize the className of the popup calendar
+     * 额外的弹出 className
      */
     dropdownClassName?: string;
     /**
-     * A callback emitter, can be executed whether the popup calendar is popped up or closed
+     * 弹出日历和关闭日历的回调
      */
     onOpenChange?: (status: boolean) => void;
     /**
-     * Specify the date that cannot be selected
+     * 不可选择的日期
      */
     disabledDate?: DisabledDateFn;
     /**
-     * To specify the time that cannot be selected, support components: `nz-date-picker`, `nz-range-picker`
+     * 不可选择的时间
      */
     disabledTime?: DisabledTimeFn;
     /**
-     * Render extra footer in panel, support components: `nz-date-picker`, `nz-range-picker`, `nz-year-picker`, `nz-month-picker`
+     * 在面板中添加额外的页脚
      */
     renderExtraFooter?: string;
     /**
-     * To provide an additional time selection
+     * 增加时间选择功能，`object` 类型为 [TimePickerOptions](https://ng.ant.design/components/time-picker/en#api)
      */
-    showTime?: SupportTimeOptions | boolean;
+    showTime?: object | boolean;
     /**
-     * Whether to show "Today" button, default: `true`
+     * 是否展示“今天”按钮，默认：`true`
      */
     showToday?: boolean;
     /**
-     * Callback when click ok button
+     * 点击确定按钮的回调
      */
     onOk?: (data: Date | Date[]) => void;
 }

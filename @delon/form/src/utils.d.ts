@@ -1,5 +1,4 @@
 import { Observable } from 'rxjs';
-import { NzI18nService } from 'ng-zorro-antd/i18n';
 import { SFSchema, SFSchemaDefinition, SFSchemaEnum } from './schema';
 import { SFUISchema, SFUISchemaItem, SFUISchemaItemRun } from './schema/ui';
 export declare const FORMATMAPS: {
@@ -59,7 +58,3 @@ export declare function orderProperties(properties: string[], order: string[]): 
 export declare function getEnum(list: any[], formData: any, readOnly: boolean): SFSchemaEnum[];
 export declare function getCopyEnum(list: any[], formData: any, readOnly: boolean): SFSchemaEnum[];
 export declare function getData(schema: SFSchema, ui: SFUISchemaItem, formData: any, asyncArgs?: any): Observable<SFSchemaEnum[]>;
-/**
- * Whether to using date-fns to format a date
- */
-export declare function isDateFns(srv: NzI18nService): boolean;
