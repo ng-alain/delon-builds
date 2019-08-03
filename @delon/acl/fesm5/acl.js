@@ -664,19 +664,20 @@ var ACLGuard = /** @class */ (function () {
     }
     /**
      * @private
-     * @param {?} guard
+     * @param {?} data
      * @return {?}
      */
     ACLGuard.prototype.process = /**
      * @private
-     * @param {?} guard
+     * @param {?} data
      * @return {?}
      */
-    function (guard) {
+    function (data) {
         var _this = this;
-        return (guard && guard instanceof Observable
-            ? guard
-            : of(typeof guard !== 'undefined' && guard !== null ? ((/** @type {?} */ (guard))) : null)).pipe(map((/**
+        data = __assign({ guard: null, guard_url: this.options.guard_url }, data);
+        /** @type {?} */
+        var guard = data.guard;
+        return (guard && guard instanceof Observable ? guard : of(guard != null ? ((/** @type {?} */ (guard))) : null)).pipe(map((/**
          * @param {?} v
          * @return {?}
          */
@@ -687,7 +688,7 @@ var ACLGuard = /** @class */ (function () {
         function (v) {
             if (v)
                 return;
-            _this.router.navigateByUrl((/** @type {?} */ (_this.options.guard_url)));
+            _this.router.navigateByUrl(data.guard_url);
         })));
     };
     // lazy loading
@@ -703,7 +704,7 @@ var ACLGuard = /** @class */ (function () {
      * @return {?}
      */
     function (route) {
-        return this.process((route.data && route.data.guard) || null);
+        return this.process((/** @type {?} */ (route.data)));
     };
     // all children route
     // all children route
@@ -737,7 +738,7 @@ var ACLGuard = /** @class */ (function () {
      * @return {?}
      */
     function (route, _state) {
-        return this.process((route.data && route.data.guard) || null);
+        return this.process(route.data);
     };
     ACLGuard.decorators = [
         { type: Injectable, args: [{ providedIn: 'root' },] }
