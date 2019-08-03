@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 // tslint:disable:no-string-literal
 const htmlparser2 = require("htmlparser2");
-const DOMHandler = require('domhandler');
+const domhandler_1 = require("domhandler");
 class DomService {
     constructor() {
         this.rules = [];
@@ -12,7 +12,7 @@ class DomService {
     replace(html, rules, callback) {
         this.rules = rules;
         this.count = 0;
-        const handler = new DOMHandler((error, dom) => {
+        const handler = new domhandler_1.DomHandler((error, dom) => {
             if (error) {
                 callback(null, 0);
                 return;
