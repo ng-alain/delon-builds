@@ -31,6 +31,7 @@ import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { NzTransferModule } from 'ng-zorro-antd/transfer';
 import { NzTreeSelectModule } from 'ng-zorro-antd/tree-select';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
+import { NzI18nService } from 'ng-zorro-antd/i18n';
 import format from 'date-fns/format';
 
 /**
@@ -401,6 +402,19 @@ function getData(schema, ui, formData, asyncArgs) {
         (list) => getEnum(list, formData, (/** @type {?} */ (schema.readOnly))))));
     }
     return of(getCopyEnum((/** @type {?} */ (schema.enum)), formData, (/** @type {?} */ (schema.readOnly))));
+}
+/**
+ * Whether to using date-fns to format a date
+ * @param {?} srv
+ * @return {?}
+ */
+function isDateFns(srv) {
+    if (!srv)
+        return false;
+    /** @type {?} */
+    const data = srv.getDateLocale();
+    // Compatible date-fns v1.x & v2.x
+    return data != null && (!!data.distanceInWords || !!data.formatDistance);
 }
 
 /**
@@ -3025,8 +3039,15 @@ CustomWidget.decorators = [
 class DateWidget extends ControlUIWidget {
     constructor() {
         super(...arguments);
-        this.displayValue = null;
         this.flatRange = false;
+        this.displayValue = null;
+    }
+    /**
+     * @private
+     * @return {?}
+     */
+    get zorroI18n() {
+        return this.injector.get(NzI18nService);
     }
     /**
      * @return {?}
@@ -3040,15 +3061,17 @@ class DateWidget extends ControlUIWidget {
             this.mode = 'range';
         }
         if (!displayFormat) {
+            /** @type {?} */
+            const usingDateFns = isDateFns(this.zorroI18n);
             switch (this.mode) {
                 case 'year':
-                    this.displayFormat = `yyyy`;
+                    this.displayFormat = usingDateFns ? `YYYY` : `yyyy`;
                     break;
                 case 'month':
-                    this.displayFormat = `yyyy-MM`;
+                    this.displayFormat = usingDateFns ? `YYYY-MM` : `yyyy-MM`;
                     break;
                 case 'week':
-                    this.displayFormat = `yyyy-ww`;
+                    this.displayFormat = usingDateFns ? `YYYY-WW` : `yyyy-ww`;
                     break;
             }
         }
@@ -3056,24 +3079,12 @@ class DateWidget extends ControlUIWidget {
             this.displayFormat = displayFormat;
         }
         // 构建属性对象时会对默认值进行校验，因此可以直接使用 format 作为格式化属性
-        this.format = (/** @type {?} */ (format));
-        // 公共API
+        this.valueFormat = (/** @type {?} */ (format));
         this.i = {
             allowClear: toBool(allowClear, true),
             // nz-date-picker
             showToday: toBool(showToday, true),
         };
-    }
-    /**
-     * @private
-     * @return {?}
-     */
-    compCd() {
-        // TODO: removed after nz-datepick support OnPush mode
-        setTimeout((/**
-         * @return {?}
-         */
-        () => this.detectChanges()));
     }
     /**
      * @param {?} value
@@ -3087,7 +3098,7 @@ class DateWidget extends ControlUIWidget {
         else {
             this.displayValue = value;
         }
-        this.compCd();
+        this.detectChanges();
     }
     /**
      * @param {?} value
@@ -3104,7 +3115,7 @@ class DateWidget extends ControlUIWidget {
          * @param {?} d
          * @return {?}
          */
-        d => format(d, this.format))) : format(value, this.format);
+        d => format(d, this.valueFormat))) : format(value, this.valueFormat);
         if (this.flatRange) {
             this.setEnd(res[1]);
             this.setValue(res[0]);
@@ -3820,17 +3831,23 @@ class TimeWidget extends ControlUIWidget {
         /** @type {?} */
         const ui = this.ui;
         // 构建属性对象时会对默认值进行校验，因此可以直接使用 format 作为格式化属性
-        this.format = ui.format;
-        this.i = {
+        this.valueFormat = ui.format;
+        /** @type {?} */
+        const opt = {
             displayFormat: ui.displayFormat || 'HH:mm:ss',
             allowEmpty: toBool(ui.allowEmpty, true),
             clearText: ui.clearText || '清除',
             defaultOpenValue: ui.defaultOpenValue || new Date(),
             hideDisabledOptions: toBool(ui.hideDisabledOptions, false),
+            use12Hours: toBool(ui.use12Hours, false),
             hourStep: ui.hourStep || 1,
             minuteStep: ui.nzMinuteStep || 1,
             secondStep: ui.secondStep || 1,
         };
+        if (opt.use12Hours && !ui.displayFormat) {
+            opt.displayFormat = `h:mm:ss a`;
+        }
+        this.i = opt;
     }
     /**
      * @param {?} value
@@ -3867,13 +3884,13 @@ class TimeWidget extends ControlUIWidget {
             this.setValue(Date.UTC(1970, 0, 1, value.getHours(), value.getMinutes(), value.getSeconds()));
             return;
         }
-        this.setValue(format(value, this.format));
+        this.setValue(format(value, this.valueFormat));
     }
 }
 TimeWidget.decorators = [
     { type: Component, args: [{
                 selector: 'sf-time',
-                template: "<sf-item-wrap [id]=\"id\"\n              [schema]=\"schema\"\n              [ui]=\"ui\"\n              [showError]=\"showError\"\n              [error]=\"error\"\n              [showTitle]=\"schema.title\">\n\n  <nz-time-picker [(ngModel)]=\"displayValue\"\n                  (ngModelChange)=\"_change($event)\"\n                  [nzDisabled]=\"disabled\"\n                  [nzSize]=\"ui.size\"\n                  [nzFormat]=\"i.displayFormat\"\n                  [nzAllowEmpty]=\"i.allowEmpty\"\n                  [nzClearText]=\"i.clearText\"\n                  [nzDefaultOpenValue]=\"i.defaultOpenValue\"\n                  [nzDisabledHours]=\"ui.disabledHours\"\n                  [nzDisabledMinutes]=\"ui.disabledMinutes\"\n                  [nzDisabledSeconds]=\"ui.disabledSeconds\"\n                  [nzHideDisabledOptions]=\"i.hideDisabledOptions\"\n                  [nzHourStep]=\"i.hourStep\"\n                  [nzMinuteStep]=\"i.minuteStep\"\n                  [nzSecondStep]=\"i.secondStep\"\n                  [nzPopupClassName]=\"ui.popupClassName\">\n  </nz-time-picker>\n\n</sf-item-wrap>\n",
+                template: "<sf-item-wrap [id]=\"id\"\n              [schema]=\"schema\"\n              [ui]=\"ui\"\n              [showError]=\"showError\"\n              [error]=\"error\"\n              [showTitle]=\"schema.title\">\n\n  <nz-time-picker [(ngModel)]=\"displayValue\"\n                  (ngModelChange)=\"_change($event)\"\n                  [nzDisabled]=\"disabled\"\n                  [nzSize]=\"ui.size\"\n                  [nzFormat]=\"i.displayFormat\"\n                  [nzAllowEmpty]=\"i.allowEmpty\"\n                  [nzClearText]=\"i.clearText\"\n                  [nzDefaultOpenValue]=\"i.defaultOpenValue\"\n                  [nzDisabledHours]=\"ui.disabledHours\"\n                  [nzDisabledMinutes]=\"ui.disabledMinutes\"\n                  [nzDisabledSeconds]=\"ui.disabledSeconds\"\n                  [nzHideDisabledOptions]=\"i.hideDisabledOptions\"\n                  [nzUse12Hours]=\"i.use12Hours\"\n                  [nzHourStep]=\"i.hourStep\"\n                  [nzMinuteStep]=\"i.minuteStep\"\n                  [nzSecondStep]=\"i.secondStep\"\n                  [nzPopupClassName]=\"ui.popupClassName\">\n  </nz-time-picker>\n\n</sf-item-wrap>\n",
                 preserveWhitespaces: false,
                 encapsulation: ViewEncapsulation.None
             }] }
