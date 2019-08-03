@@ -480,14 +480,13 @@ class ACLGuard {
     }
     /**
      * @private
-     * @param {?} data
+     * @param {?} guard
      * @return {?}
      */
-    process(data) {
-        data = Object.assign({ guard: null, guard_url: this.options.guard_url }, data);
-        /** @type {?} */
-        const guard = data.guard;
-        return (guard && guard instanceof Observable ? guard : of(guard != null ? ((/** @type {?} */ (guard))) : null)).pipe(map((/**
+    process(guard) {
+        return (guard && guard instanceof Observable
+            ? guard
+            : of(typeof guard !== 'undefined' && guard !== null ? ((/** @type {?} */ (guard))) : null)).pipe(map((/**
          * @param {?} v
          * @return {?}
          */
@@ -498,7 +497,7 @@ class ACLGuard {
         v => {
             if (v)
                 return;
-            this.router.navigateByUrl(data.guard_url);
+            this.router.navigateByUrl((/** @type {?} */ (this.options.guard_url)));
         })));
     }
     // lazy loading
@@ -507,7 +506,7 @@ class ACLGuard {
      * @return {?}
      */
     canLoad(route) {
-        return this.process((/** @type {?} */ (route.data)));
+        return this.process((route.data && route.data.guard) || null);
     }
     // all children route
     /**
@@ -525,7 +524,7 @@ class ACLGuard {
      * @return {?}
      */
     canActivate(route, _state) {
-        return this.process(route.data);
+        return this.process((route.data && route.data.guard) || null);
     }
 }
 ACLGuard.decorators = [
