@@ -1,5 +1,5 @@
 import { __decorate, __metadata, __spread } from 'tslib';
-import { Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, Input, Output, EventEmitter, NgModule } from '@angular/core';
+import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, Input, Output, NgModule } from '@angular/core';
 import { InputNumber, DelonUtilModule } from '@delon/util';
 import { fromEvent } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
@@ -105,6 +105,28 @@ var G2CustomComponent = /** @class */ (function () {
     ], G2CustomComponent.prototype, "resizeTime", void 0);
     return G2CustomComponent;
 }());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    G2CustomComponent.prototype.resize$;
+    /** @type {?} */
+    G2CustomComponent.prototype.height;
+    /** @type {?} */
+    G2CustomComponent.prototype.resizeTime;
+    /** @type {?} */
+    G2CustomComponent.prototype.render;
+    /** @type {?} */
+    G2CustomComponent.prototype.resize;
+    /** @type {?} */
+    G2CustomComponent.prototype.destroy;
+    /**
+     * @type {?}
+     * @private
+     */
+    G2CustomComponent.prototype.el;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -124,6 +146,16 @@ var G2CustomModule = /** @class */ (function () {
     ];
     return G2CustomModule;
 }());
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 
 export { G2CustomComponent, G2CustomModule };
 //# sourceMappingURL=g2Custom.js.map

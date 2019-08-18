@@ -115,6 +115,45 @@ var QuickMenuComponent = /** @class */ (function () {
     ], QuickMenuComponent.prototype, "width", void 0);
     return QuickMenuComponent;
 }());
+if (false) {
+    /** @type {?} */
+    QuickMenuComponent.prototype.ctrlStyle;
+    /** @type {?} */
+    QuickMenuComponent.prototype.icon;
+    /** @type {?} */
+    QuickMenuComponent.prototype.top;
+    /** @type {?} */
+    QuickMenuComponent.prototype.width;
+    /** @type {?} */
+    QuickMenuComponent.prototype.bgColor;
+    /** @type {?} */
+    QuickMenuComponent.prototype.borderColor;
+    /**
+     * @type {?}
+     * @private
+     */
+    QuickMenuComponent.prototype.show;
+    /**
+     * @type {?}
+     * @private
+     */
+    QuickMenuComponent.prototype.initFlag;
+    /**
+     * @type {?}
+     * @private
+     */
+    QuickMenuComponent.prototype.cdr;
+    /**
+     * @type {?}
+     * @private
+     */
+    QuickMenuComponent.prototype.el;
+    /**
+     * @type {?}
+     * @private
+     */
+    QuickMenuComponent.prototype.render;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -134,6 +173,16 @@ var QuickMenuModule = /** @class */ (function () {
     ];
     return QuickMenuModule;
 }());
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 
 export { QuickMenuComponent, QuickMenuModule };
 //# sourceMappingURL=quickMenu.js.map

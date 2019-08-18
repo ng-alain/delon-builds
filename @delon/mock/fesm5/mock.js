@@ -8,6 +8,77 @@ import { delay } from 'rxjs/operators';
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function MockCachedRule() { }
+if (false) {
+    /** @type {?} */
+    MockCachedRule.prototype.method;
+    /** @type {?} */
+    MockCachedRule.prototype.url;
+    /** @type {?} */
+    MockCachedRule.prototype.martcher;
+    /** @type {?} */
+    MockCachedRule.prototype.segments;
+    /* Skipping unhandled member: [key: string]: any;*/
+    /**
+     * @param {?} req
+     * @return {?}
+     */
+    MockCachedRule.prototype.callback = function (req) { };
+}
+/**
+ * @record
+ */
+function MockRule() { }
+if (false) {
+    /** @type {?} */
+    MockRule.prototype.method;
+    /** @type {?} */
+    MockRule.prototype.url;
+    /**
+     * 路由参数
+     * @type {?|undefined}
+     */
+    MockRule.prototype.params;
+    /* Skipping unhandled member: [key: string]: any;*/
+    /**
+     * @param {?} req
+     * @return {?}
+     */
+    MockRule.prototype.callback = function (req) { };
+}
+/**
+ * @record
+ */
+function MockRequest() { }
+if (false) {
+    /**
+     * 路由参数
+     * @type {?|undefined}
+     */
+    MockRequest.prototype.params;
+    /**
+     * URL参数
+     * @type {?|undefined}
+     */
+    MockRequest.prototype.queryString;
+    /** @type {?|undefined} */
+    MockRequest.prototype.headers;
+    /** @type {?|undefined} */
+    MockRequest.prototype.body;
+    /**
+     * 原始 `HttpRequest`
+     * @type {?}
+     */
+    MockRequest.prototype.original;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 var MockStatusError = /** @class */ (function () {
     function MockStatusError(status, error) {
         this.status = status;
@@ -15,6 +86,14 @@ var MockStatusError = /** @class */ (function () {
     }
     return MockStatusError;
 }());
+if (false) {
+    /** @type {?} */
+    MockStatusError.prototype.statusText;
+    /** @type {?} */
+    MockStatusError.prototype.status;
+    /** @type {?} */
+    MockStatusError.prototype.error;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -41,6 +120,33 @@ var DelonMockConfig = /** @class */ (function () {
     }
     return DelonMockConfig;
 }());
+if (false) {
+    /**
+     * 规则定义数据
+     * @type {?}
+     */
+    DelonMockConfig.prototype.data;
+    /**
+     * 请求延迟，单位：毫秒，默认：`300`
+     * @type {?}
+     */
+    DelonMockConfig.prototype.delay;
+    /**
+     * 是否强制所有请求都Mock，`true` 表示当请求的URL不存在时直接返回 404 错误，`false` 表示未命中时发送真实HTTP请求
+     * @type {?}
+     */
+    DelonMockConfig.prototype.force;
+    /**
+     * 是否打印 Mock 请求信息，弥补浏览器无Network信息
+     * @type {?}
+     */
+    DelonMockConfig.prototype.log;
+    /**
+     * 是否拦截命中后继续调用后续拦截器的 `intercept` 方法，默认：`true`
+     * @type {?}
+     */
+    DelonMockConfig.prototype.executeOtherInterceptors;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -315,6 +421,18 @@ var MockService = /** @class */ (function () {
     ]; };
     return MockService;
 }());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    MockService.prototype.cached;
+    /**
+     * @type {?}
+     * @private
+     */
+    MockService.prototype.config;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -338,6 +456,18 @@ var HttpMockInterceptorHandler = /** @class */ (function () {
     };
     return HttpMockInterceptorHandler;
 }());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    HttpMockInterceptorHandler.prototype.next;
+    /**
+     * @type {?}
+     * @private
+     */
+    HttpMockInterceptorHandler.prototype.interceptor;
+}
 var MockInterceptor = /** @class */ (function () {
     function MockInterceptor(injector) {
         this.injector = injector;
@@ -475,6 +605,13 @@ var MockInterceptor = /** @class */ (function () {
     ]; };
     return MockInterceptor;
 }());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    MockInterceptor.prototype.injector;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -518,6 +655,16 @@ var DelonMockModule = /** @class */ (function () {
     ];
     return DelonMockModule;
 }());
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 
 export { DelonMockConfig, DelonMockModule, MockInterceptor, MockService, MockStatusError };
 //# sourceMappingURL=mock.js.map

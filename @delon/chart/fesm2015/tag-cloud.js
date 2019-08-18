@@ -9,6 +9,19 @@ import { CommonModule } from '@angular/common';
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function G2TagCloudData() { }
+if (false) {
+    /** @type {?|undefined} */
+    G2TagCloudData.prototype.x;
+    /** @type {?|undefined} */
+    G2TagCloudData.prototype.value;
+    /** @type {?|undefined} */
+    G2TagCloudData.prototype.category;
+    /* Skipping unhandled member: [key: string]: any;*/
+}
 class G2TagCloudComponent {
     // #endregion
     /**
@@ -211,6 +224,36 @@ __decorate([
     InputNumber(),
     __metadata("design:type", Object)
 ], G2TagCloudComponent.prototype, "height", void 0);
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    G2TagCloudComponent.prototype.resize$;
+    /**
+     * @type {?}
+     * @private
+     */
+    G2TagCloudComponent.prototype.chart;
+    /** @type {?} */
+    G2TagCloudComponent.prototype.delay;
+    /** @type {?} */
+    G2TagCloudComponent.prototype.height;
+    /** @type {?} */
+    G2TagCloudComponent.prototype.padding;
+    /** @type {?} */
+    G2TagCloudComponent.prototype.data;
+    /**
+     * @type {?}
+     * @private
+     */
+    G2TagCloudComponent.prototype.el;
+    /**
+     * @type {?}
+     * @private
+     */
+    G2TagCloudComponent.prototype.ngZone;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -227,6 +270,16 @@ G2TagCloudModule.decorators = [
                 exports: [...COMPONENTS],
             },] }
 ];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 
 export { G2TagCloudComponent, G2TagCloudModule };
 //# sourceMappingURL=tag-cloud.js.map

@@ -48,6 +48,18 @@ ResultComponent.propDecorators = {
     description: [{ type: Input }],
     extra: [{ type: Input }]
 };
+if (false) {
+    /** @type {?} */
+    ResultComponent.prototype._type;
+    /** @type {?} */
+    ResultComponent.prototype._icon;
+    /** @type {?} */
+    ResultComponent.prototype.title;
+    /** @type {?} */
+    ResultComponent.prototype.description;
+    /** @type {?} */
+    ResultComponent.prototype.extra;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -64,6 +76,16 @@ ResultModule.decorators = [
                 exports: [...COMPONENTS],
             },] }
 ];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 
 export { ResultComponent, ResultModule };
 //# sourceMappingURL=result.js.map

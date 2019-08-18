@@ -1,6 +1,6 @@
-import { __decorate, __metadata, __assign, __spread } from 'tslib';
+import { __assign, __decorate, __metadata, __spread } from 'tslib';
 import { DOCUMENT, CommonModule } from '@angular/common';
-import { ɵɵdefineInjectable, Injectable, Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, ChangeDetectorRef, Inject, Input, NgModule } from '@angular/core';
+import { Injectable, ɵɵdefineInjectable, Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, ChangeDetectorRef, Inject, Input, NgModule } from '@angular/core';
 import { InputNumber, DelonUtilModule } from '@delon/util';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 
@@ -25,6 +25,18 @@ var ErrorCollectConfig = /** @class */ (function () {
     /** @nocollapse */ ErrorCollectConfig.ngInjectableDef = ɵɵdefineInjectable({ factory: function ErrorCollectConfig_Factory() { return new ErrorCollectConfig(); }, token: ErrorCollectConfig, providedIn: "root" });
     return ErrorCollectConfig;
 }());
+if (false) {
+    /**
+     * 监听频率
+     * @type {?}
+     */
+    ErrorCollectConfig.prototype.freq;
+    /**
+     * 顶部偏移值
+     * @type {?}
+     */
+    ErrorCollectConfig.prototype.offsetTop;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -195,6 +207,41 @@ var ErrorCollectComponent = /** @class */ (function () {
     ], ErrorCollectComponent.prototype, "offsetTop", void 0);
     return ErrorCollectComponent;
 }());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    ErrorCollectComponent.prototype.$time;
+    /**
+     * @type {?}
+     * @private
+     */
+    ErrorCollectComponent.prototype.formEl;
+    /** @type {?} */
+    ErrorCollectComponent.prototype.freq;
+    /** @type {?} */
+    ErrorCollectComponent.prototype.offsetTop;
+    /** @type {?} */
+    ErrorCollectComponent.prototype._hiden;
+    /** @type {?} */
+    ErrorCollectComponent.prototype.count;
+    /**
+     * @type {?}
+     * @private
+     */
+    ErrorCollectComponent.prototype.el;
+    /**
+     * @type {?}
+     * @private
+     */
+    ErrorCollectComponent.prototype.cdr;
+    /**
+     * @type {?}
+     * @private
+     */
+    ErrorCollectComponent.prototype.doc;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -214,6 +261,16 @@ var ErrorCollectModule = /** @class */ (function () {
     ];
     return ErrorCollectModule;
 }());
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 
 export { ErrorCollectComponent, ErrorCollectConfig, ErrorCollectModule };
 //# sourceMappingURL=errorCollect.js.map

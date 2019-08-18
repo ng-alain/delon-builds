@@ -73,6 +73,27 @@ var FooterToolbarComponent = /** @class */ (function () {
     ], FooterToolbarComponent.prototype, "errorCollect", void 0);
     return FooterToolbarComponent;
 }());
+if (false) {
+    /** @type {?} */
+    FooterToolbarComponent.prototype.errorCollect;
+    /** @type {?} */
+    FooterToolbarComponent.prototype.extra;
+    /**
+     * @type {?}
+     * @private
+     */
+    FooterToolbarComponent.prototype.el;
+    /**
+     * @type {?}
+     * @private
+     */
+    FooterToolbarComponent.prototype.renderer;
+    /**
+     * @type {?}
+     * @private
+     */
+    FooterToolbarComponent.prototype.doc;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -92,6 +113,16 @@ var FooterToolbarModule = /** @class */ (function () {
     ];
     return FooterToolbarModule;
 }());
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 
 export { FooterToolbarComponent, FooterToolbarModule };
 //# sourceMappingURL=footerToolbar.js.map

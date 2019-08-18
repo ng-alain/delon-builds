@@ -74,6 +74,37 @@ __decorate([
     InputBoolean(),
     __metadata("design:type", Object)
 ], G2CardComponent.prototype, "loading", void 0);
+if (false) {
+    /**
+     * 是否显示边框
+     * @type {?}
+     */
+    G2CardComponent.prototype.bordered;
+    /** @type {?} */
+    G2CardComponent.prototype.avatar;
+    /** @type {?} */
+    G2CardComponent.prototype.title;
+    /** @type {?} */
+    G2CardComponent.prototype.action;
+    /** @type {?} */
+    G2CardComponent.prototype.total;
+    /** @type {?} */
+    G2CardComponent.prototype._height;
+    /** @type {?} */
+    G2CardComponent.prototype._orgHeight;
+    /** @type {?} */
+    G2CardComponent.prototype.footer;
+    /**
+     * 是否显示Loading
+     * @type {?}
+     */
+    G2CardComponent.prototype.loading;
+    /**
+     * @type {?}
+     * @private
+     */
+    G2CardComponent.prototype.cdr;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -90,6 +121,16 @@ G2CardModule.decorators = [
                 exports: [...COMPONENTS],
             },] }
 ];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 
 export { G2CardComponent, G2CardModule };
 //# sourceMappingURL=card.js.map

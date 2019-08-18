@@ -1,7 +1,7 @@
 import { __assign, __spread, __decorate, __metadata } from 'tslib';
-import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Output, EventEmitter, ElementRef, Injectable, Directive, Injector, ɵɵdefineInjectable, ɵɵinject, INJECTOR, ChangeDetectorRef, Renderer2, Optional, Inject, NgModule } from '@angular/core';
+import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Output, ElementRef, Injectable, Directive, Injector, ɵɵdefineInjectable, ɵɵinject, INJECTOR, ChangeDetectorRef, Renderer2, Optional, Inject, NgModule } from '@angular/core';
 import { DelonLocaleService, ScrollService, MenuService, ALAIN_I18N_TOKEN, DelonLocaleModule } from '@delon/theme';
-import { Subscription, Subject, BehaviorSubject } from 'rxjs';
+import { Subject, Subscription, BehaviorSubject } from 'rxjs';
 import { ConnectionPositionPair, Overlay, OverlayModule } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
 import { DOCUMENT, CommonModule } from '@angular/common';
@@ -151,6 +151,26 @@ var ReuseTabContextMenuComponent = /** @class */ (function () {
     };
     return ReuseTabContextMenuComponent;
 }());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    ReuseTabContextMenuComponent.prototype._i18n;
+    /** @type {?} */
+    ReuseTabContextMenuComponent.prototype.item;
+    /** @type {?} */
+    ReuseTabContextMenuComponent.prototype.event;
+    /** @type {?} */
+    ReuseTabContextMenuComponent.prototype.customContextMenu;
+    /** @type {?} */
+    ReuseTabContextMenuComponent.prototype.close;
+    /**
+     * @type {?}
+     * @private
+     */
+    ReuseTabContextMenuComponent.prototype.i18nSrv;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -248,6 +268,24 @@ var ReuseTabContextService = /** @class */ (function () {
     ]; };
     return ReuseTabContextService;
 }());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    ReuseTabContextService.prototype.ref;
+    /** @type {?} */
+    ReuseTabContextService.prototype.i18n;
+    /** @type {?} */
+    ReuseTabContextService.prototype.show;
+    /** @type {?} */
+    ReuseTabContextService.prototype.close;
+    /**
+     * @type {?}
+     * @private
+     */
+    ReuseTabContextService.prototype.overlay;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -306,6 +344,20 @@ var ReuseTabContextComponent = /** @class */ (function () {
     };
     return ReuseTabContextComponent;
 }());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    ReuseTabContextComponent.prototype.sub$;
+    /** @type {?} */
+    ReuseTabContextComponent.prototype.change;
+    /**
+     * @type {?}
+     * @private
+     */
+    ReuseTabContextComponent.prototype.srv;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -351,6 +403,17 @@ var ReuseTabContextDirective = /** @class */ (function () {
     };
     return ReuseTabContextDirective;
 }());
+if (false) {
+    /** @type {?} */
+    ReuseTabContextDirective.prototype.item;
+    /** @type {?} */
+    ReuseTabContextDirective.prototype.customContextMenu;
+    /**
+     * @type {?}
+     * @private
+     */
+    ReuseTabContextDirective.prototype.srv;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -388,6 +451,124 @@ var ReuseTabMatchMode = {
 ReuseTabMatchMode[ReuseTabMatchMode.Menu] = 'Menu';
 ReuseTabMatchMode[ReuseTabMatchMode.MenuForce] = 'MenuForce';
 ReuseTabMatchMode[ReuseTabMatchMode.URL] = 'URL';
+/**
+ * @record
+ */
+function ReuseTitle() { }
+if (false) {
+    /** @type {?|undefined} */
+    ReuseTitle.prototype.text;
+    /** @type {?|undefined} */
+    ReuseTitle.prototype.i18n;
+}
+/**
+ * @record
+ */
+function ReuseTabCached() { }
+if (false) {
+    /** @type {?} */
+    ReuseTabCached.prototype.title;
+    /** @type {?} */
+    ReuseTabCached.prototype.url;
+    /**
+     * 是否允许关闭，默认：`true`
+     * @type {?|undefined}
+     */
+    ReuseTabCached.prototype.closable;
+    /**
+     * 当前滚动条位置
+     * @type {?|undefined}
+     */
+    ReuseTabCached.prototype.position;
+    /** @type {?} */
+    ReuseTabCached.prototype._snapshot;
+    /** @type {?} */
+    ReuseTabCached.prototype._handle;
+}
+/**
+ * @record
+ */
+function ReuseTabNotify() { }
+if (false) {
+    /**
+     * 事件类型
+     * @type {?}
+     */
+    ReuseTabNotify.prototype.active;
+    /* Skipping unhandled member: [key: string]: any;*/
+}
+/**
+ * @record
+ */
+function ReuseItem() { }
+if (false) {
+    /** @type {?} */
+    ReuseItem.prototype.url;
+    /** @type {?} */
+    ReuseItem.prototype.title;
+    /** @type {?} */
+    ReuseItem.prototype.closable;
+    /** @type {?} */
+    ReuseItem.prototype.index;
+    /** @type {?} */
+    ReuseItem.prototype.active;
+    /** @type {?} */
+    ReuseItem.prototype.last;
+}
+/**
+ * @record
+ */
+function ReuseContextEvent() { }
+if (false) {
+    /** @type {?} */
+    ReuseContextEvent.prototype.event;
+    /** @type {?} */
+    ReuseContextEvent.prototype.item;
+    /** @type {?|undefined} */
+    ReuseContextEvent.prototype.comp;
+    /** @type {?|undefined} */
+    ReuseContextEvent.prototype.customContextMenu;
+}
+/**
+ * @record
+ */
+function ReuseContextCloseEvent() { }
+if (false) {
+    /** @type {?} */
+    ReuseContextCloseEvent.prototype.type;
+    /** @type {?} */
+    ReuseContextCloseEvent.prototype.item;
+    /** @type {?} */
+    ReuseContextCloseEvent.prototype.includeNonCloseable;
+}
+/**
+ * @record
+ */
+function ReuseContextI18n() { }
+if (false) {
+    /** @type {?|undefined} */
+    ReuseContextI18n.prototype.close;
+    /** @type {?|undefined} */
+    ReuseContextI18n.prototype.closeOther;
+    /** @type {?|undefined} */
+    ReuseContextI18n.prototype.closeRight;
+    /** @type {?|undefined} */
+    ReuseContextI18n.prototype.clear;
+}
+/**
+ * @record
+ */
+function ReuseCustomContextMenu() { }
+if (false) {
+    /** @type {?} */
+    ReuseCustomContextMenu.prototype.id;
+    /** @type {?} */
+    ReuseCustomContextMenu.prototype.title;
+    /** @type {?} */
+    ReuseCustomContextMenu.prototype.fn;
+    /** @type {?|undefined} */
+    ReuseCustomContextMenu.prototype.disabled;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -1455,6 +1636,79 @@ var ReuseTabService = /** @class */ (function () {
     /** @nocollapse */ ReuseTabService.ngInjectableDef = ɵɵdefineInjectable({ factory: function ReuseTabService_Factory() { return new ReuseTabService(ɵɵinject(INJECTOR), ɵɵinject(MenuService)); }, token: ReuseTabService, providedIn: "root" });
     return ReuseTabService;
 }());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    ReuseTabService.prototype._inited;
+    /**
+     * @type {?}
+     * @private
+     */
+    ReuseTabService.prototype._max;
+    /**
+     * @type {?}
+     * @private
+     */
+    ReuseTabService.prototype._keepingScroll;
+    /**
+     * @type {?}
+     * @private
+     */
+    ReuseTabService.prototype._cachedChange;
+    /**
+     * @type {?}
+     * @private
+     */
+    ReuseTabService.prototype._cached;
+    /**
+     * @type {?}
+     * @private
+     */
+    ReuseTabService.prototype._titleCached;
+    /**
+     * @type {?}
+     * @private
+     */
+    ReuseTabService.prototype._closableCached;
+    /**
+     * @type {?}
+     * @private
+     */
+    ReuseTabService.prototype._router$;
+    /**
+     * @type {?}
+     * @private
+     */
+    ReuseTabService.prototype.removeUrlBuffer;
+    /**
+     * @type {?}
+     * @private
+     */
+    ReuseTabService.prototype.positionBuffer;
+    /** @type {?} */
+    ReuseTabService.prototype.debug;
+    /** @type {?} */
+    ReuseTabService.prototype.mode;
+    /**
+     * 排除规则，限 `mode=URL`
+     * @type {?}
+     */
+    ReuseTabService.prototype.excludes;
+    /** @type {?} */
+    ReuseTabService.prototype.keepingScrollContainer;
+    /**
+     * @type {?}
+     * @private
+     */
+    ReuseTabService.prototype.injector;
+    /**
+     * @type {?}
+     * @private
+     */
+    ReuseTabService.prototype.menuService;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -1880,6 +2134,94 @@ var ReuseTabComponent = /** @class */ (function () {
     ], ReuseTabComponent.prototype, "keepingScroll", void 0);
     return ReuseTabComponent;
 }());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    ReuseTabComponent.prototype.el;
+    /**
+     * @type {?}
+     * @private
+     */
+    ReuseTabComponent.prototype.unsubscribe$;
+    /**
+     * @type {?}
+     * @private
+     */
+    ReuseTabComponent.prototype._keepingScrollContainer;
+    /** @type {?} */
+    ReuseTabComponent.prototype.list;
+    /** @type {?} */
+    ReuseTabComponent.prototype.item;
+    /** @type {?} */
+    ReuseTabComponent.prototype.pos;
+    /** @type {?} */
+    ReuseTabComponent.prototype.mode;
+    /** @type {?} */
+    ReuseTabComponent.prototype.i18n;
+    /** @type {?} */
+    ReuseTabComponent.prototype.debug;
+    /** @type {?} */
+    ReuseTabComponent.prototype.max;
+    /** @type {?} */
+    ReuseTabComponent.prototype.excludes;
+    /** @type {?} */
+    ReuseTabComponent.prototype.allowClose;
+    /** @type {?} */
+    ReuseTabComponent.prototype.showCurrent;
+    /** @type {?} */
+    ReuseTabComponent.prototype.keepingScroll;
+    /** @type {?} */
+    ReuseTabComponent.prototype.customContextMenu;
+    /** @type {?} */
+    ReuseTabComponent.prototype.tabBarExtraContent;
+    /** @type {?} */
+    ReuseTabComponent.prototype.tabBarGutter;
+    /** @type {?} */
+    ReuseTabComponent.prototype.tabBarStyle;
+    /** @type {?} */
+    ReuseTabComponent.prototype.tabType;
+    /** @type {?} */
+    ReuseTabComponent.prototype.change;
+    /** @type {?} */
+    ReuseTabComponent.prototype.close;
+    /**
+     * @type {?}
+     * @private
+     */
+    ReuseTabComponent.prototype.srv;
+    /**
+     * @type {?}
+     * @private
+     */
+    ReuseTabComponent.prototype.cdr;
+    /**
+     * @type {?}
+     * @private
+     */
+    ReuseTabComponent.prototype.router;
+    /**
+     * @type {?}
+     * @private
+     */
+    ReuseTabComponent.prototype.route;
+    /**
+     * @type {?}
+     * @private
+     */
+    ReuseTabComponent.prototype.render;
+    /**
+     * @type {?}
+     * @private
+     */
+    ReuseTabComponent.prototype.i18nSrv;
+    /**
+     * @type {?}
+     * @private
+     */
+    ReuseTabComponent.prototype.doc;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -1950,6 +2292,13 @@ var ReuseTabStrategy = /** @class */ (function () {
     };
     return ReuseTabStrategy;
 }());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    ReuseTabStrategy.prototype.srv;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -1972,6 +2321,16 @@ var ReuseTabModule = /** @class */ (function () {
     ];
     return ReuseTabModule;
 }());
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 
 export { ReuseTabComponent, ReuseTabContextComponent, ReuseTabContextDirective, ReuseTabContextMenuComponent, ReuseTabContextService, ReuseTabMatchMode, ReuseTabModule, ReuseTabService, ReuseTabStrategy };
 //# sourceMappingURL=reuseTab.js.map

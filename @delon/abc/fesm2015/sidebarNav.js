@@ -394,6 +394,75 @@ __decorate([
     InputBoolean(),
     __metadata("design:type", Object)
 ], SidebarNavComponent.prototype, "openStrictly", void 0);
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    SidebarNavComponent.prototype.bodyEl;
+    /**
+     * @type {?}
+     * @private
+     */
+    SidebarNavComponent.prototype.unsubscribe$;
+    /**
+     * @type {?}
+     * @private
+     */
+    SidebarNavComponent.prototype.floatingEl;
+    /** @type {?} */
+    SidebarNavComponent.prototype.list;
+    /** @type {?} */
+    SidebarNavComponent.prototype.disabledAcl;
+    /** @type {?} */
+    SidebarNavComponent.prototype.autoCloseUnderPad;
+    /** @type {?} */
+    SidebarNavComponent.prototype.recursivePath;
+    /** @type {?} */
+    SidebarNavComponent.prototype.openStrictly;
+    /** @type {?} */
+    SidebarNavComponent.prototype.select;
+    /**
+     * @type {?}
+     * @private
+     */
+    SidebarNavComponent.prototype.menuSrv;
+    /**
+     * @type {?}
+     * @private
+     */
+    SidebarNavComponent.prototype.settings;
+    /**
+     * @type {?}
+     * @private
+     */
+    SidebarNavComponent.prototype.router;
+    /**
+     * @type {?}
+     * @private
+     */
+    SidebarNavComponent.prototype.render;
+    /**
+     * @type {?}
+     * @private
+     */
+    SidebarNavComponent.prototype.cdr;
+    /**
+     * @type {?}
+     * @private
+     */
+    SidebarNavComponent.prototype.ngZone;
+    /**
+     * @type {?}
+     * @private
+     */
+    SidebarNavComponent.prototype.doc;
+    /**
+     * @type {?}
+     * @private
+     */
+    SidebarNavComponent.prototype.win;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -408,6 +477,16 @@ SidebarNavModule.decorators = [
                 exports: [SidebarNavComponent],
             },] }
 ];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 
 export { SidebarNavComponent, SidebarNavModule };
 //# sourceMappingURL=sidebarNav.js.map

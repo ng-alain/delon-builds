@@ -24,6 +24,18 @@ ErrorCollectConfig.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
 /** @nocollapse */ ErrorCollectConfig.ngInjectableDef = ɵɵdefineInjectable({ factory: function ErrorCollectConfig_Factory() { return new ErrorCollectConfig(); }, token: ErrorCollectConfig, providedIn: "root" });
+if (false) {
+    /**
+     * 监听频率
+     * @type {?}
+     */
+    ErrorCollectConfig.prototype.freq;
+    /**
+     * 顶部偏移值
+     * @type {?}
+     */
+    ErrorCollectConfig.prototype.offsetTop;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -170,6 +182,41 @@ __decorate([
     InputNumber(),
     __metadata("design:type", Number)
 ], ErrorCollectComponent.prototype, "offsetTop", void 0);
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    ErrorCollectComponent.prototype.$time;
+    /**
+     * @type {?}
+     * @private
+     */
+    ErrorCollectComponent.prototype.formEl;
+    /** @type {?} */
+    ErrorCollectComponent.prototype.freq;
+    /** @type {?} */
+    ErrorCollectComponent.prototype.offsetTop;
+    /** @type {?} */
+    ErrorCollectComponent.prototype._hiden;
+    /** @type {?} */
+    ErrorCollectComponent.prototype.count;
+    /**
+     * @type {?}
+     * @private
+     */
+    ErrorCollectComponent.prototype.el;
+    /**
+     * @type {?}
+     * @private
+     */
+    ErrorCollectComponent.prototype.cdr;
+    /**
+     * @type {?}
+     * @private
+     */
+    ErrorCollectComponent.prototype.doc;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -186,6 +233,16 @@ ErrorCollectModule.decorators = [
                 exports: [...COMPONENTS],
             },] }
 ];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 
 export { ErrorCollectComponent, ErrorCollectConfig, ErrorCollectModule };
 //# sourceMappingURL=errorCollect.js.map

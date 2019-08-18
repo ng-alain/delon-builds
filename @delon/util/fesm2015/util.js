@@ -85,6 +85,38 @@ StringTemplateOutletDirective.ctorParameters = () => [
 StringTemplateOutletDirective.propDecorators = {
     stringTemplateOutlet: [{ type: Input }]
 };
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    StringTemplateOutletDirective.prototype.isTemplate;
+    /**
+     * @type {?}
+     * @private
+     */
+    StringTemplateOutletDirective.prototype.inputTemplate;
+    /**
+     * @type {?}
+     * @private
+     */
+    StringTemplateOutletDirective.prototype.inputViewRef;
+    /**
+     * @type {?}
+     * @private
+     */
+    StringTemplateOutletDirective.prototype.defaultViewRef;
+    /**
+     * @type {?}
+     * @private
+     */
+    StringTemplateOutletDirective.prototype.viewContainer;
+    /**
+     * @type {?}
+     * @private
+     */
+    StringTemplateOutletDirective.prototype.defaultTemplate;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -317,6 +349,20 @@ function fixEndTimeOfRange(dates) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function LazyResult() { }
+if (false) {
+    /** @type {?} */
+    LazyResult.prototype.path;
+    /** @type {?} */
+    LazyResult.prototype.loaded;
+    /** @type {?} */
+    LazyResult.prototype.status;
+    /** @type {?|undefined} */
+    LazyResult.prototype.error;
+}
 class LazyService {
     /**
      * @param {?} doc
@@ -492,6 +538,28 @@ LazyService.ctorParameters = () => [
     { type: undefined, decorators: [{ type: Inject, args: [DOCUMENT,] }] }
 ];
 /** @nocollapse */ LazyService.ngInjectableDef = ɵɵdefineInjectable({ factory: function LazyService_Factory() { return new LazyService(ɵɵinject(DOCUMENT)); }, token: LazyService, providedIn: "root" });
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    LazyService.prototype.list;
+    /**
+     * @type {?}
+     * @private
+     */
+    LazyService.prototype.cached;
+    /**
+     * @type {?}
+     * @private
+     */
+    LazyService.prototype._notify;
+    /**
+     * @type {?}
+     * @private
+     */
+    LazyService.prototype.doc;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -797,17 +865,211 @@ function updateHostClass(el, renderer, classMap, cleanAll = false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function ArrayConfig() { }
+if (false) {
+    /**
+     * 深度项名，默认：`'deep'`
+     * @type {?|undefined}
+     */
+    ArrayConfig.prototype.deepMapName;
+    /**
+     * 扁平后数组的父数据项名，默认：`'parent'`
+     * @type {?|undefined}
+     */
+    ArrayConfig.prototype.parentMapName;
+    /**
+     * 编号项名，默认：`'id'`
+     * @type {?|undefined}
+     */
+    ArrayConfig.prototype.idMapName;
+    /**
+     * 父编号项名，默认：`'parent_id'`
+     * @type {?|undefined}
+     */
+    ArrayConfig.prototype.parentIdMapName;
+    /**
+     * 源数据子项名，默认：`'children'`
+     * @type {?|undefined}
+     */
+    ArrayConfig.prototype.childrenMapName;
+    /**
+     * 标题项名，默认：`'title'`
+     * @type {?|undefined}
+     */
+    ArrayConfig.prototype.titleMapName;
+    /**
+     * 节点 Checkbox 是否选中项名，默认：`'checked'`
+     * @type {?|undefined}
+     */
+    ArrayConfig.prototype.checkedMapname;
+    /**
+     * 节点本身是否选中项名，默认：`'selected'`
+     * @type {?|undefined}
+     */
+    ArrayConfig.prototype.selectedMapname;
+    /**
+     * 节点是否展开(叶子节点无效)项名，默认：`'expanded'`
+     * @type {?|undefined}
+     */
+    ArrayConfig.prototype.expandedMapname;
+    /**
+     * 设置是否禁用节点(不可进行任何操作)项名，默认：`'disabled'`
+     * @type {?|undefined}
+     */
+    ArrayConfig.prototype.disabledMapname;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 class DelonUtilConfig {
 }
 DelonUtilConfig.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
 /** @nocollapse */ DelonUtilConfig.ngInjectableDef = ɵɵdefineInjectable({ factory: function DelonUtilConfig_Factory() { return new DelonUtilConfig(); }, token: DelonUtilConfig, providedIn: "root" });
+if (false) {
+    /** @type {?} */
+    DelonUtilConfig.prototype.array;
+}
 
 /**
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function ArrayServiceTreeToArrOptions() { }
+if (false) {
+    /**
+     * 深度项名，默认：`'deep'`
+     * @type {?|undefined}
+     */
+    ArrayServiceTreeToArrOptions.prototype.deepMapName;
+    /**
+     * 扁平后数组的父数据项名，默认：`'parent'`
+     * @type {?|undefined}
+     */
+    ArrayServiceTreeToArrOptions.prototype.parentMapName;
+    /**
+     * 源数据子项名，默认：`'children'`
+     * @type {?|undefined}
+     */
+    ArrayServiceTreeToArrOptions.prototype.childrenMapName;
+    /**
+     * 是否移除 `children` 节点，默认：`true`
+     * @type {?|undefined}
+     */
+    ArrayServiceTreeToArrOptions.prototype.clearChildren;
+    /**
+     * 转换成数组结构时回调
+     * @type {?|undefined}
+     */
+    ArrayServiceTreeToArrOptions.prototype.cb;
+}
+/**
+ * @record
+ */
+function ArrayServiceArrToTreeOptions() { }
+if (false) {
+    /**
+     * 编号项名，默认：`'id'`
+     * @type {?|undefined}
+     */
+    ArrayServiceArrToTreeOptions.prototype.idMapName;
+    /**
+     * 父编号项名，默认：`'parent_id'`
+     * @type {?|undefined}
+     */
+    ArrayServiceArrToTreeOptions.prototype.parentIdMapName;
+    /**
+     * 子项名，默认：`'children'`
+     * @type {?|undefined}
+     */
+    ArrayServiceArrToTreeOptions.prototype.childrenMapName;
+    /**
+     * 转换成树数据时回调
+     * @type {?|undefined}
+     */
+    ArrayServiceArrToTreeOptions.prototype.cb;
+}
+/**
+ * @record
+ */
+function ArrayServiceArrToTreeNodeOptions() { }
+if (false) {
+    /**
+     * 编号项名，默认：`'id'`
+     * @type {?|undefined}
+     */
+    ArrayServiceArrToTreeNodeOptions.prototype.idMapName;
+    /**
+     * 父编号项名，默认：`'parent_id'`
+     * @type {?|undefined}
+     */
+    ArrayServiceArrToTreeNodeOptions.prototype.parentIdMapName;
+    /**
+     * 标题项名，默认：`'title'`
+     * @type {?|undefined}
+     */
+    ArrayServiceArrToTreeNodeOptions.prototype.titleMapName;
+    /**
+     * 设置为叶子节点项名，若数据源不存在时自动根据 `children` 值决定是否为叶子节点，默认：`'isLeaf'`
+     * @type {?|undefined}
+     */
+    ArrayServiceArrToTreeNodeOptions.prototype.isLeafMapName;
+    /**
+     * 节点 Checkbox 是否选中项名，默认：`'checked'`
+     * @type {?|undefined}
+     */
+    ArrayServiceArrToTreeNodeOptions.prototype.checkedMapname;
+    /**
+     * 节点本身是否选中项名，默认：`'selected'`
+     * @type {?|undefined}
+     */
+    ArrayServiceArrToTreeNodeOptions.prototype.selectedMapname;
+    /**
+     * 节点是否展开(叶子节点无效)项名，默认：`'expanded'`
+     * @type {?|undefined}
+     */
+    ArrayServiceArrToTreeNodeOptions.prototype.expandedMapname;
+    /**
+     * 设置是否禁用节点(不可进行任何操作)项名，默认：`'disabled'`
+     * @type {?|undefined}
+     */
+    ArrayServiceArrToTreeNodeOptions.prototype.disabledMapname;
+    /**
+     * 转换成树数据后，执行的递归回调
+     * @type {?|undefined}
+     */
+    ArrayServiceArrToTreeNodeOptions.prototype.cb;
+}
+/**
+ * @record
+ */
+function ArrayServiceGetKeysByTreeNodeOptions() { }
+if (false) {
+    /**
+     * 是否包含半选状态的值，默认：`true`
+     * @type {?|undefined}
+     */
+    ArrayServiceGetKeysByTreeNodeOptions.prototype.includeHalfChecked;
+    /**
+     * 是否重新指定 `key` 键名，若不指定表示使用 `NzTreeNode.key` 值
+     * @type {?|undefined}
+     */
+    ArrayServiceGetKeysByTreeNodeOptions.prototype.keyMapName;
+    /**
+     * 回调，返回一个值 `key` 值，优先级高于其他
+     * @type {?|undefined}
+     */
+    ArrayServiceGetKeysByTreeNodeOptions.prototype.cb;
+}
 class ArrayService {
     /**
      * @param {?} cog
@@ -992,6 +1254,13 @@ ArrayService.ctorParameters = () => [
     { type: DelonUtilConfig }
 ];
 /** @nocollapse */ ArrayService.ngInjectableDef = ɵɵdefineInjectable({ factory: function ArrayService_Factory() { return new ArrayService(ɵɵinject(DelonUtilConfig)); }, token: ArrayService, providedIn: "root" });
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    ArrayService.prototype.c;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -1006,6 +1275,16 @@ DelonUtilModule.decorators = [
                 exports: [StringTemplateOutletDirective],
             },] }
 ];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 
 export { ArrayService, DelonUtilConfig, DelonUtilModule, InputBoolean, InputNumber, LazyService, StringTemplateOutletDirective, _Validators, copy, deepCopy, deepGet, deepMerge, deepMergeKey, fixEndTimeOfRange, format, getTimeDistance, isDecimal, isEmpty, isIdCard, isInt, isMobile, isNum, isUrl, toBoolean, toNumber, updateHostClass };
 //# sourceMappingURL=util.js.map

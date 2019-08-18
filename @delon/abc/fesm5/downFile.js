@@ -1,4 +1,4 @@
-import { Directive, ElementRef, Input, Output, EventEmitter, NgModule } from '@angular/core';
+import { EventEmitter, Directive, ElementRef, Input, Output, NgModule } from '@angular/core';
 import { _HttpClient, AlainThemeModule } from '@delon/theme';
 import { saveAs } from 'file-saver';
 import { __spread } from 'tslib';
@@ -164,6 +164,53 @@ var DownFileDirective = /** @class */ (function () {
     };
     return DownFileDirective;
 }());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    DownFileDirective.prototype.isFileSaverSupported;
+    /**
+     * URL请求参数
+     * @type {?}
+     */
+    DownFileDirective.prototype.httpData;
+    /**
+     * 请求类型
+     * @type {?}
+     */
+    DownFileDirective.prototype.httpMethod;
+    /**
+     * 下载地址
+     * @type {?}
+     */
+    DownFileDirective.prototype.httpUrl;
+    /**
+     * 指定文件名，若为空从服务端返回的 `header` 中获取 `filename`、`x-filename`
+     * @type {?}
+     */
+    DownFileDirective.prototype.fileName;
+    /**
+     * 成功回调
+     * @type {?}
+     */
+    DownFileDirective.prototype.success;
+    /**
+     * 错误回调
+     * @type {?}
+     */
+    DownFileDirective.prototype.error;
+    /**
+     * @type {?}
+     * @private
+     */
+    DownFileDirective.prototype.el;
+    /**
+     * @type {?}
+     * @private
+     */
+    DownFileDirective.prototype._http;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -183,6 +230,16 @@ var DownFileModule = /** @class */ (function () {
     ];
     return DownFileModule;
 }());
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 
 export { DownFileDirective, DownFileModule };
 //# sourceMappingURL=downFile.js.map

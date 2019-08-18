@@ -28,6 +28,1142 @@ import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function STWidthMode() { }
+if (false) {
+    /**
+     * 宽度类型
+     * - `default` 默认行为
+     * - `strict` 严格模式，即强制按 `width` 指定的宽度呈现，并根据 `strictBehavior` 类型处理
+     * @type {?|undefined}
+     */
+    STWidthMode.prototype.type;
+    /**
+     * 严格模式的处理行为
+     * - `wrap` 强制换行
+     * - `truncate` 截短
+     * @type {?|undefined}
+     */
+    STWidthMode.prototype.strictBehavior;
+}
+/**
+ * @record
+ */
+function STResetColumnsOption() { }
+if (false) {
+    /** @type {?|undefined} */
+    STResetColumnsOption.prototype.pi;
+    /** @type {?|undefined} */
+    STResetColumnsOption.prototype.ps;
+    /** @type {?|undefined} */
+    STResetColumnsOption.prototype.columns;
+    /**
+     * Whether to trigger a data load, default: `true`
+     * @type {?|undefined}
+     */
+    STResetColumnsOption.prototype.emitReload;
+}
+/**
+ * @record
+ */
+function STReq() { }
+if (false) {
+    /**
+     * 分页类型，默认：`page`
+     * - `page` 使用 `pi`，`ps` 组合
+     * - `skip` 使用 `skip`，`limit` 组合
+     * @type {?|undefined}
+     */
+    STReq.prototype.type;
+    /**
+     * 额外请求参数，默认自动附加 `pi`、`ps` 至URL
+     * - `{ status: 'new' }` => `url?pi=1&ps=10&status=new`
+     * @type {?|undefined}
+     */
+    STReq.prototype.params;
+    /**
+     * 请求方法，默认：`GET`
+     * @type {?|undefined}
+     */
+    STReq.prototype.method;
+    /**
+     * 请求体 `body`
+     * @type {?|undefined}
+     */
+    STReq.prototype.body;
+    /**
+     * 请求体 `Header`
+     * @type {?|undefined}
+     */
+    STReq.prototype.headers;
+    /**
+     * 重命名参数 `pi`、`ps`，默认：`{ pi: 'pi', ps: 'ps' }`
+     * - `{ pi: 'Page' }` => `pi` 会被替换成 Page
+     * @type {?|undefined}
+     */
+    STReq.prototype.reName;
+    /**
+     * 是否将请求所有参数数据都放入 `body` 当中（`url` 地址本身参数除外），仅当 `method: 'POST'` 时有效，默认：`false`
+     * @type {?|undefined}
+     */
+    STReq.prototype.allInBody;
+    /**
+     * 是否延迟加载数据，即渲染结束后不会主动发起请求，默认：`false`
+     * @type {?|undefined}
+     */
+    STReq.prototype.lazyLoad;
+    /**
+     * 请求前数据处理
+     * @type {?|undefined}
+     */
+    STReq.prototype.process;
+}
+/**
+ * @record
+ */
+function STRequestOptions() { }
+if (false) {
+    /** @type {?|undefined} */
+    STRequestOptions.prototype.body;
+    /** @type {?|undefined} */
+    STRequestOptions.prototype.headers;
+    /** @type {?|undefined} */
+    STRequestOptions.prototype.params;
+    /** @type {?|undefined} */
+    STRequestOptions.prototype.observe;
+    /** @type {?|undefined} */
+    STRequestOptions.prototype.reportProgress;
+    /** @type {?|undefined} */
+    STRequestOptions.prototype.responseType;
+    /** @type {?|undefined} */
+    STRequestOptions.prototype.withCredentials;
+}
+/**
+ * @record
+ */
+function STLoadOptions() { }
+if (false) {
+    /**
+     * 是否合并，默认：`false`
+     * @type {?|undefined}
+     */
+    STLoadOptions.prototype.merge;
+}
+/**
+ * @record
+ */
+function STRes() { }
+if (false) {
+    /**
+     * 重命名返回参数 `total`、`list`
+     * - `{ total: 'Total' }` => Total 会被当作 `total`
+     * @type {?|undefined}
+     */
+    STRes.prototype.reName;
+    /**
+     * 数据预处理
+     * @type {?|undefined}
+     */
+    STRes.prototype.process;
+}
+/**
+ * @record
+ */
+function STPage() { }
+if (false) {
+    /**
+     * 前端分页，当 `data` 为`any[]` 或 `Observable<any[]>` 有效，默认：`true`
+     * - `true` 由 `st` 根据 `data` 长度受控分页，包括：排序、过滤等
+     * - `false` 由用户通过 `total` 和 `data` 参数受控分页，并维护 `(change)` 当分页变更时重新加载数据
+     * @type {?|undefined}
+     */
+    STPage.prototype.front;
+    /**
+     * 后端分页是否采用`0`基索引，只在`data`类型为`string`时有效，默认：`false`
+     * @type {?|undefined}
+     */
+    STPage.prototype.zeroIndexed;
+    /**
+     * 指定分页显示的位置，默认：`bottom`
+     * @type {?|undefined}
+     */
+    STPage.prototype.position;
+    /**
+     * 指定分页分页方向，默认：`right`
+     * @type {?|undefined}
+     */
+    STPage.prototype.placement;
+    /**
+     * 是否显示分页器，默认：`true`
+     * @type {?|undefined}
+     */
+    STPage.prototype.show;
+    /**
+     * 是否显示分页器中改变页数，默认：`false`
+     * @type {?|undefined}
+     */
+    STPage.prototype.showSize;
+    /**
+     * 分页器中每页显示条目数下拉框值，默认：`[10, 20, 30, 40, 50]`
+     * @type {?|undefined}
+     */
+    STPage.prototype.pageSizes;
+    /**
+     * 是否显示分页器中快速跳转，默认：`false`
+     * @type {?|undefined}
+     */
+    STPage.prototype.showQuickJumper;
+    /**
+     * 是否显示总数据量
+     * - `boolean` 类型显示与否，默认模板：`共 {{total}} 条`
+     * - `string` 自定义模板，模板变量：
+     *  - `{{total}}` 表示数据总量
+     *  - `{{range[0]}}` 表示当前页开始数量值
+     *  - `{{range[1]}}` 表示当前页结束数量值
+     * @type {?|undefined}
+     */
+    STPage.prototype.total;
+    /**
+     * 数据变更后是否保留在数据变更前的页码，默认：`true`
+     * @deprecated
+     * @type {?|undefined}
+     */
+    STPage.prototype.indexReset;
+    /**
+     * 切换分页时返回顶部，默认：`true`
+     * @type {?|undefined}
+     */
+    STPage.prototype.toTop;
+    /**
+     * 返回顶部偏移值，默认：`100`
+     * @type {?|undefined}
+     */
+    STPage.prototype.toTopOffset;
+}
+/**
+ * 数据源
+ * @record
+ */
+function STData() { }
+if (false) {
+    /**
+     * 选择框或单选框状态值
+     * @type {?|undefined}
+     */
+    STData.prototype.checked;
+    /**
+     * 选择框或单选框 `disabled` 值
+     * @type {?|undefined}
+     */
+    STData.prototype.disabled;
+    /**
+     * 是否展开状态
+     * @type {?|undefined}
+     */
+    STData.prototype.expand;
+    /**
+     * 是否显示展开按钮
+     * @type {?|undefined}
+     */
+    STData.prototype.showExpand;
+    /* Skipping unhandled member: [key: string]: any;*/
+}
+/**
+ * 列描述
+ * @record
+ */
+function STColumn() { }
+if (false) {
+    /**
+     * 用于定义数据源主键，例如：`STStatistical`
+     * @type {?|undefined}
+     */
+    STColumn.prototype.key;
+    /**
+     * 列标题
+     * @type {?|undefined}
+     */
+    STColumn.prototype.title;
+    /**
+     * 列标题 i18n
+     * @deprecated 使用 `title: { i18n: 'value' }` 代替
+     * @type {?|undefined}
+     */
+    STColumn.prototype.i18n;
+    /**
+     * 列数据在数据项中对应的 key，支持 `a.b.c` 的嵌套写法，例如：
+     * - `id`
+     * - `price.market`
+     * - `[ 'price', 'market' ]`
+     * @type {?|undefined}
+     */
+    STColumn.prototype.index;
+    /**
+     * 类型
+     * - `no` 行号，计算规则：`index + noIndex`
+     * - `checkbox` 多选
+     * - `radio` 单选
+     * - `link` 链接，务必指定 `click`
+     * - `badge` [徽标](https://ng.ant.design/components/badge/zh)，务必指定 `badge` 参数配置徽标对应值
+     * - `tag` [标签](https://ng.ant.design/components/tag/zh)，务必指定 `tag` 参数配置标签对应值
+     * - `img` 图片且居中(若 `className` 存在则优先)
+     * - `number` 数字且居右(若 `className` 存在则优先)
+     * - `currency` 货币且居右(若 `className` 存在则优先)
+     * - `date` 日期格式且居中(若 `className` 存在则优先)，使用 `dateFormat` 自定义格式
+     * - `yn` 将`boolean`类型徽章化 [document](https://ng-alain.com/docs/data-render#yn)
+     * @type {?|undefined}
+     */
+    STColumn.prototype.type;
+    /**
+     * 链接回调，若返回一个字符串表示导航URL会自动触发 `router.navigateByUrl`
+     * @type {?|undefined}
+     */
+    STColumn.prototype.click;
+    /**
+     * 按钮组
+     * @type {?|undefined}
+     */
+    STColumn.prototype.buttons;
+    /**
+     * 自定义渲染ID
+     * \@example
+     * <ng-template st-row="custom" let-item let-index="index" let-column="column">
+     *  {{ c.title }}
+     * </ng-template>
+     * @type {?|undefined}
+     */
+    STColumn.prototype.render;
+    /**
+     * 标题自定义渲染ID
+     * \@example
+     * <ng-template st-row="custom" type="title" let-c>
+     *  {{ item | json }}
+     * </ng-template>
+     * @type {?|undefined}
+     */
+    STColumn.prototype.renderTitle;
+    /**
+     * 列宽（数字型表示 `px` 值），例如：`100`、`10%`、`100px`
+     *
+     * **注意：** 若固定列必须是数字
+     * @type {?|undefined}
+     */
+    STColumn.prototype.width;
+    /**
+     * 排序配置项，远程数据配置**优先**规则：
+     * - `true` 表示允许排序
+     * - `string` 表示远程数据排序相对应 `key` 值
+     * @type {?|undefined}
+     */
+    STColumn.prototype.sort;
+    /**
+     * 过滤配置项
+     * @type {?|undefined}
+     */
+    STColumn.prototype.filter;
+    /**
+     * 格式化列值
+     * @type {?|undefined}
+     */
+    STColumn.prototype.format;
+    /**
+     * 自定义全/反选选择项
+     * @type {?|undefined}
+     */
+    STColumn.prototype.selections;
+    /**
+     * 列 `class` 属性值（注：无须 `.` 点），例如：
+     * - `text-center` 居中
+     * - `text-right` 居右
+     * - `text-success` 成功色
+     * - `text-danger` 异常色
+     * @type {?|undefined}
+     */
+    STColumn.prototype.className;
+    /**
+     * 合并列
+     * @type {?|undefined}
+     */
+    STColumn.prototype.colSpan;
+    /**
+     * 数字格式，`type=number` 有效
+     * @type {?|undefined}
+     */
+    STColumn.prototype.numberDigits;
+    /**
+     * 日期格式，`type=date` 有效，（默认：`YYYY-MM-DD HH:mm`）
+     * @type {?|undefined}
+     */
+    STColumn.prototype.dateFormat;
+    /**
+     * 当 `type=yn` 有效
+     * @type {?|undefined}
+     */
+    STColumn.prototype.yn;
+    /**
+     * 是否允许导出，默认 `true`
+     * @type {?|undefined}
+     */
+    STColumn.prototype.exported;
+    /**
+     * 权限，等同 [ACLCanType](https://ng-alain.com/acl/getting-started/#ACLCanType) 参数值
+     * @type {?|undefined}
+     */
+    STColumn.prototype.acl;
+    /**
+     * 当不存在数据时以默认值替代
+     * @type {?|undefined}
+     */
+    STColumn.prototype.default;
+    /**
+     * 固定前后列，当指定时务必指定 `width` 否则视为无效，有若干 **注意：** 项：
+     *
+     * - 若列头与内容不对齐或出现列重复，请指定列的宽度 `width`
+     * - 建议指定 `scroll.x` 为大于表格宽度的固定值或百分比。注意，且非固定列宽度之和不要超过 `scroll.x`
+     * @type {?|undefined}
+     */
+    STColumn.prototype.fixed;
+    /**
+     * 徽标配置项
+     * @type {?|undefined}
+     */
+    STColumn.prototype.badge;
+    /**
+     * 标签配置项
+     * @type {?|undefined}
+     */
+    STColumn.prototype.tag;
+    /**
+     * 行号索引，默认：`1`
+     * - 计算规则为：`index + noIndex`
+     * - 支持自定义方法
+     * @type {?|undefined}
+     */
+    STColumn.prototype.noIndex;
+    /**
+     * 条件表达式
+     * - 仅赋值 `columns` 时执行一次
+     * - 可调用 `resetColumns()` 再一次触发
+     * @type {?|undefined}
+     */
+    STColumn.prototype.iif;
+    /**
+     * 统计
+     * @type {?|undefined}
+     */
+    STColumn.prototype.statistical;
+    /* Skipping unhandled member: [key: string]: any;*/
+}
+/**
+ * @record
+ */
+function STColumnTitle() { }
+if (false) {
+    /**
+     * Text of header, can be choose one of `text` or `i18n`
+     * @type {?|undefined}
+     */
+    STColumnTitle.prototype.text;
+    /**
+     * I18n key of header, can be choose one of `text` or `i18n`
+     * @type {?|undefined}
+     */
+    STColumnTitle.prototype.i18n;
+    /**
+     * Optional information of header
+     * @type {?|undefined}
+     */
+    STColumnTitle.prototype.optional;
+    /**
+     * Optional help of header
+     * @type {?|undefined}
+     */
+    STColumnTitle.prototype.optionalHelp;
+}
+/**
+ * @record
+ */
+function STStatistical() { }
+if (false) {
+    /** @type {?} */
+    STStatistical.prototype.type;
+    /**
+     * 保留小数位数，默认：`2`
+     * @type {?|undefined}
+     */
+    STStatistical.prototype.digits;
+    /**
+     * 是否需要货币格式化，默认以下情况为 `true`
+     * - `type` 为 `STStatisticalFn`、 `sum`、`average`、`max`、`min`
+     * @type {?|undefined}
+     */
+    STStatistical.prototype.currency;
+}
+/**
+ * @record
+ */
+function STStatisticalResults() { }
+/**
+ * @record
+ */
+function STStatisticalResult() { }
+if (false) {
+    /** @type {?} */
+    STStatisticalResult.prototype.value;
+    /** @type {?|undefined} */
+    STStatisticalResult.prototype.text;
+}
+/**
+ * @record
+ */
+function STColumnSort() { }
+if (false) {
+    /**
+     * 排序的默认受控属性
+     * @type {?|undefined}
+     */
+    STColumnSort.prototype.default;
+    /**
+     * 本地数据的排序函数，使用一个函数(参考 [Array.sort](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort) 的 compareFunction)
+     * - `null` 忽略本地排序，但保持排序功能
+     * @type {?|undefined}
+     */
+    STColumnSort.prototype.compare;
+    /**
+     * 远程数据的排序时后端相对应的KEY，默认使用 `index` 属性
+     * - 若 `multiSort: false` 时：`key: 'name' => ?name=1&pi=1`
+     * - 若 `multiSort: true` 允许多个排序 key 存在，或使用 `STMultiSort` 指定多列排序key合并规则
+     * @type {?|undefined}
+     */
+    STColumnSort.prototype.key;
+    /**
+     * 远程数据的排序时后端相对应的VALUE
+     * - `{ ascend: '0', descend: '1' }` 结果 `?name=1&pi=1`
+     * - `{ ascend: 'asc', descend: 'desc' }` 结果 `?name=desc&pi=1`
+     * @type {?|undefined}
+     */
+    STColumnSort.prototype.reName;
+}
+/**
+ * @record
+ */
+function STColumnFilter() { }
+if (false) {
+    /**
+     * 搜索方式
+     * - `defualt` 默认形式
+     * - `keyword` 文本框形式
+     * @type {?|undefined}
+     */
+    STColumnFilter.prototype.type;
+    /**
+     * 表头的筛选菜单项，至少一项才会生效
+     * - 当 `type='keyword'` 时可为空
+     * @type {?|undefined}
+     */
+    STColumnFilter.prototype.menus;
+    /**
+     * 本地数据的筛选函数
+     * @type {?|undefined}
+     */
+    STColumnFilter.prototype.fn;
+    /**
+     * 标识数据是否已过滤，筛选图标会高亮
+     * @type {?|undefined}
+     */
+    STColumnFilter.prototype.default;
+    /**
+     * 自定义 filter 图标
+     * - 当 `type='default'` 默认 `filter`
+     * - 当 `type='keyword'` 默认 `search`
+     * @type {?|undefined}
+     */
+    STColumnFilter.prototype.icon;
+    /**
+     * 确认按钮文本，默认 `确认`
+     * @type {?|undefined}
+     */
+    STColumnFilter.prototype.confirmText;
+    /**
+     * 清除按钮文本，默认 `重置`
+     * @type {?|undefined}
+     */
+    STColumnFilter.prototype.clearText;
+    /**
+     * 是否多选，默认 `true`
+     * @type {?|undefined}
+     */
+    STColumnFilter.prototype.multiple;
+    /**
+     * 远程数据的过滤时后端相对应的KEY，默认使用 `index` 属性
+     * `key: 'name'` 结果 `?name=1&pi=1`
+     * @type {?|undefined}
+     */
+    STColumnFilter.prototype.key;
+    /**
+     * 远程数据的过滤时后端相对应的VALUE
+     * - 默认当 `multiple: true` 时以英文逗号拼接的字符串
+     * \@return 返回为 Object 对象
+     * @type {?|undefined}
+     */
+    STColumnFilter.prototype.reName;
+}
+/**
+ * @record
+ */
+function STColumnFilterMenu() { }
+if (false) {
+    /**
+     * 文本
+     * - 当 `type: 'keyword'` 时表示 `placeholder`
+     * @type {?|undefined}
+     */
+    STColumnFilterMenu.prototype.text;
+    /**
+     * 值
+     * @type {?|undefined}
+     */
+    STColumnFilterMenu.prototype.value;
+    /**
+     * 是否选中
+     * @type {?|undefined}
+     */
+    STColumnFilterMenu.prototype.checked;
+    /**
+     * 权限，等同 [ACLCanType](https://ng-alain.com/acl/getting-started/#ACLCanType) 参数值
+     * @type {?|undefined}
+     */
+    STColumnFilterMenu.prototype.acl;
+    /* Skipping unhandled member: [key: string]: any;*/
+}
+/**
+ * @record
+ */
+function STColumnSelection() { }
+if (false) {
+    /**
+     * 选择项显示的文字
+     * @type {?}
+     */
+    STColumnSelection.prototype.text;
+    /**
+     * 选择项点击回调，允许对参数 `data.checked` 进行操作
+     * @type {?}
+     */
+    STColumnSelection.prototype.select;
+    /**
+     * 权限，等同 `can()` 参数值
+     * @type {?|undefined}
+     */
+    STColumnSelection.prototype.acl;
+}
+/**
+ * 当 `type=yn` 有效
+ * @record
+ */
+function STColumnYn() { }
+if (false) {
+    /**
+     * 真值条件，（默认：`true`）
+     * @type {?|undefined}
+     */
+    STColumnYn.prototype.truth;
+    /**
+     * 徽章 `true` 时文本，（默认：`是`）
+     * @type {?|undefined}
+     */
+    STColumnYn.prototype.yes;
+    /**
+     * 徽章 `false` 时文本，（默认：`否`）
+     * @type {?|undefined}
+     */
+    STColumnYn.prototype.no;
+    /**
+     * 徽章显示风格
+     * - `full` 图标和文本
+     * - `icon` 图标
+     * - `text` 文本
+     * @type {?|undefined}
+     */
+    STColumnYn.prototype.mode;
+}
+/**
+ * @record
+ */
+function STIcon() { }
+if (false) {
+    /**
+     * 图标类型
+     * @type {?}
+     */
+    STIcon.prototype.type;
+    /**
+     * 图标主题风格，默认：`outline`
+     * @type {?|undefined}
+     */
+    STIcon.prototype.theme;
+    /**
+     * 是否有旋转动画，默认：`false`
+     * @type {?|undefined}
+     */
+    STIcon.prototype.spin;
+    /**
+     * 仅适用双色图标，设置双色图标的主要颜色，仅对当前 icon 生效
+     * @type {?|undefined}
+     */
+    STIcon.prototype.twoToneColor;
+    /**
+     * 指定来自 IconFont 的图标类型
+     * @type {?|undefined}
+     */
+    STIcon.prototype.iconfont;
+}
+/**
+ * 按钮配置
+ * @record
+ */
+function STColumnButton() { }
+if (false) {
+    /**
+     * 文本
+     * @type {?|undefined}
+     */
+    STColumnButton.prototype.text;
+    /**
+     * 文本 i18n
+     * @type {?|undefined}
+     */
+    STColumnButton.prototype.i18n;
+    /**
+     * 图标
+     * @type {?|undefined}
+     */
+    STColumnButton.prototype.icon;
+    /**
+     * 格式化文本
+     * @deprecated 使用 `text` 代替
+     * @type {?|undefined}
+     */
+    STColumnButton.prototype.format;
+    /**
+     * 按钮类型
+     * - `none` 无任何互动
+     * - `del` 删除，默认开启 `pop: true`
+     * - `modal` 对话框，需要指定 `component` 才会生效
+     * - `static` 静态对话框，需要指定 `component` 才会生效
+     * - `drawer` 抽屉，需要指定 `component` 才会生效
+     * - `link` 链接，当 `click` 返回字符串时自动调用 `navigateByUrl` 导航
+     * @type {?|undefined}
+     */
+    STColumnButton.prototype.type;
+    /**
+     * 点击回调
+     * - Function
+     *  - `type=modal` 只会在当有传回值时才会触发回调
+     * - reload：重新刷新当前页
+     * - load：重新加载数据，并重置页码为：`1`
+     * @type {?|undefined}
+     */
+    STColumnButton.prototype.click;
+    /**
+     * 是否需要气泡确认框
+     * @type {?|undefined}
+     */
+    STColumnButton.prototype.pop;
+    /**
+     * 气泡确认框内容，默认 `确认删除吗？`
+     * @type {?|undefined}
+     */
+    STColumnButton.prototype.popTitle;
+    /**
+     * 对话框参数
+     * @type {?|undefined}
+     */
+    STColumnButton.prototype.modal;
+    /**
+     * 抽屉参数
+     * @type {?|undefined}
+     */
+    STColumnButton.prototype.drawer;
+    /**
+     * 下拉菜单，当存在时以 `dropdown` 形式渲染
+     * - 只支持一级
+     * @type {?|undefined}
+     */
+    STColumnButton.prototype.children;
+    /**
+     * 权限，等同 [ACLCanType](https://ng-alain.com/acl/getting-started/#ACLCanType) 参数值
+     * @type {?|undefined}
+     */
+    STColumnButton.prototype.acl;
+    /**
+     * Conditional expression
+     * @type {?|undefined}
+     */
+    STColumnButton.prototype.iif;
+    /**
+     * Conditional expression rendering behavior, can be set to `hide` (default) or `disabled`
+     * @type {?|undefined}
+     */
+    STColumnButton.prototype.iifBehavior;
+    /** @type {?|undefined} */
+    STColumnButton.prototype.tooltip;
+    /* Skipping unhandled member: [key: string]: any;*/
+}
+/**
+ * @record
+ */
+function STColumnButtonModal() { }
+if (false) {
+    /**
+     * 对话框组件对象，务必在 `entryComponents` 注册
+     * @type {?|undefined}
+     */
+    STColumnButtonModal.prototype.component;
+    /**
+     * 对话框参数
+     * @type {?|undefined}
+     */
+    STColumnButtonModal.prototype.params;
+    /**
+     * 对话框目标组件的接收参数名，默认：`record`
+     * @type {?|undefined}
+     */
+    STColumnButtonModal.prototype.paramsName;
+}
+/**
+ * @record
+ */
+function STColumnButtonModalConfig() { }
+if (false) {
+    /**
+     * 指定模态框目标组件的接收参数名，默认：`record`
+     * @type {?|undefined}
+     */
+    STColumnButtonModalConfig.prototype.paramsName;
+    /**
+     * 大小；例如：lg、600，默认：`lg`
+     * @type {?|undefined}
+     */
+    STColumnButtonModalConfig.prototype.size;
+    /**
+     * 对话框 [ModalOptionsForService](https://github.com/NG-ZORRO/ng-zorro-antd/blob/master/components/modal/nz-modal.type.ts) 参数
+     * @type {?|undefined}
+     */
+    STColumnButtonModalConfig.prototype.modalOptions;
+    /**
+     * 是否精准（默认：`true`），若返回值非空值（`null`或`undefined`）视为成功，否则视为错误
+     * @type {?|undefined}
+     */
+    STColumnButtonModalConfig.prototype.exact;
+}
+/**
+ * @record
+ */
+function STColumnButtonDrawer() { }
+if (false) {
+    /**
+     * 标题
+     * @type {?|undefined}
+     */
+    STColumnButtonDrawer.prototype.title;
+    /**
+     * 抽屉组件对象，务必在 `entryComponents` 注册
+     * @type {?|undefined}
+     */
+    STColumnButtonDrawer.prototype.component;
+    /**
+     * 抽屉参数
+     * @type {?|undefined}
+     */
+    STColumnButtonDrawer.prototype.params;
+    /**
+     * 抽屉目标组件的接收参数名，默认：`record`
+     * @type {?|undefined}
+     */
+    STColumnButtonDrawer.prototype.paramsName;
+}
+/**
+ * @record
+ */
+function STColumnButtonDrawerConfig() { }
+if (false) {
+    /**
+     * 抽屉目标组件的接收参数名，默认：`record`
+     * @type {?|undefined}
+     */
+    STColumnButtonDrawerConfig.prototype.paramsName;
+    /**
+     * 大小；例如：lg、600，默认：`md`
+     *
+     * | 类型 | 默认大小 |
+     * | --- | ------ |
+     * | `sm` | `300` |
+     * | `md` | `600` |
+     * | `lg` | `900` |
+     * | `xl` | `1200` |
+     *
+     * > 以上值，可通过覆盖相应的LESS参数自行调整
+     * @type {?|undefined}
+     */
+    STColumnButtonDrawerConfig.prototype.size;
+    /**
+     * 是否包含底部工具条，默认：`true`
+     * @type {?|undefined}
+     */
+    STColumnButtonDrawerConfig.prototype.footer;
+    /**
+     * 底部工具条高度，默认：`55`
+     * @type {?|undefined}
+     */
+    STColumnButtonDrawerConfig.prototype.footerHeight;
+    /**
+     * 抽屉 [NzDrawerOptions](https://ng.ant.design/components/drawer/zh#nzdraweroptions) 参数
+     * @type {?|undefined}
+     */
+    STColumnButtonDrawerConfig.prototype.drawerOptions;
+}
+/**
+ * @record
+ */
+function STReqReNameType() { }
+if (false) {
+    /** @type {?|undefined} */
+    STReqReNameType.prototype.pi;
+    /** @type {?|undefined} */
+    STReqReNameType.prototype.ps;
+    /** @type {?|undefined} */
+    STReqReNameType.prototype.skip;
+    /** @type {?|undefined} */
+    STReqReNameType.prototype.limit;
+}
+/**
+ * @record
+ */
+function STResReNameType() { }
+if (false) {
+    /** @type {?|undefined} */
+    STResReNameType.prototype.total;
+    /** @type {?|undefined} */
+    STResReNameType.prototype.list;
+}
+/**
+ * @record
+ */
+function STExportOptions() { }
+if (false) {
+    /** @type {?|undefined} */
+    STExportOptions.prototype._d;
+    /** @type {?|undefined} */
+    STExportOptions.prototype._c;
+    /**
+     * 工作溥名
+     * @type {?|undefined}
+     */
+    STExportOptions.prototype.sheetname;
+    /**
+     * 文件名
+     * @type {?|undefined}
+     */
+    STExportOptions.prototype.filename;
+    /**
+     * triggers when saveas
+     * @type {?|undefined}
+     */
+    STExportOptions.prototype.callback;
+}
+/**
+ * 单排序规则
+ * - 若不指定，则返回：`columnName=ascend|descend`
+ * - 若指定，则返回：`sort=columnName.(ascend|descend)`
+ * @record
+ */
+function STSingleSort() { }
+if (false) {
+    /**
+     * 请求参数名，默认：`sort`
+     * @type {?|undefined}
+     */
+    STSingleSort.prototype.key;
+    /**
+     * 列名与状态间分隔符，默认：`.`
+     * @type {?|undefined}
+     */
+    STSingleSort.prototype.nameSeparator;
+}
+/**
+ * 多排序相同排序 key 时合并规则
+ * @record
+ */
+function STMultiSort() { }
+if (false) {
+    /**
+     * 请求参数名，默认：`sort`
+     * @type {?|undefined}
+     */
+    STMultiSort.prototype.key;
+    /**
+     * 不同属性间分隔符，默认：`-`
+     * @type {?|undefined}
+     */
+    STMultiSort.prototype.separator;
+    /**
+     * 列名与状态间分隔符，默认：`.`
+     * @type {?|undefined}
+     */
+    STMultiSort.prototype.nameSeparator;
+    /**
+     * 是否全局多排序模式，默认：`true`
+     * - `true` 表示所有 `st` 默认为多排序
+     * - `false` 表示需要为每个 `st` 添加 `multiSort` 才会视为多排序模式
+     * @type {?|undefined}
+     */
+    STMultiSort.prototype.global;
+}
+/**
+ * 徽标信息
+ * @record
+ */
+function STColumnBadge() { }
+/**
+ * @record
+ */
+function STColumnBadgeValue() { }
+if (false) {
+    /**
+     * 文本
+     * @type {?|undefined}
+     */
+    STColumnBadgeValue.prototype.text;
+    /**
+     * 徽标颜色值
+     * @type {?|undefined}
+     */
+    STColumnBadgeValue.prototype.color;
+}
+/**
+ * 标签信息
+ * @record
+ */
+function STColumnTag() { }
+/**
+ * @record
+ */
+function STColumnTagValue() { }
+if (false) {
+    /**
+     * 文本
+     * @type {?|undefined}
+     */
+    STColumnTagValue.prototype.text;
+    /**
+     * 颜色值，支持预设和色值
+     * - 预设：geekblue,blue,purple,success,red,volcano,orange,gold,lime,green,cyan
+     * - 色值：#f50,#ff0
+     * @type {?|undefined}
+     */
+    STColumnTagValue.prototype.color;
+}
+/**
+ * 回调数据
+ * @record
+ */
+function STChange() { }
+if (false) {
+    /**
+     * 回调类型
+     * @type {?}
+     */
+    STChange.prototype.type;
+    /**
+     * 当前页码
+     * @type {?}
+     */
+    STChange.prototype.pi;
+    /**
+     * 每页数量
+     * @type {?}
+     */
+    STChange.prototype.ps;
+    /**
+     * 数据总量
+     * @type {?}
+     */
+    STChange.prototype.total;
+    /**
+     * `checkbox` 参数
+     * @type {?|undefined}
+     */
+    STChange.prototype.checkbox;
+    /**
+     * `radio` 参数
+     * @type {?|undefined}
+     */
+    STChange.prototype.radio;
+    /**
+     * 排序参数
+     * @type {?|undefined}
+     */
+    STChange.prototype.sort;
+    /**
+     * 过滤参数
+     * @type {?|undefined}
+     */
+    STChange.prototype.filter;
+    /**
+     * 行点击或双击参数
+     * @type {?|undefined}
+     */
+    STChange.prototype.click;
+    /**
+     * `expand` 参数
+     * @type {?|undefined}
+     */
+    STChange.prototype.expand;
+}
+/**
+ * 行单击参数
+ * @record
+ */
+function STChangeSort() { }
+if (false) {
+    /** @type {?|undefined} */
+    STChangeSort.prototype.value;
+    /** @type {?|undefined} */
+    STChangeSort.prototype.map;
+    /** @type {?|undefined} */
+    STChangeSort.prototype.column;
+}
+/**
+ * 行单击参数
+ * @record
+ */
+function STChangeRowClick() { }
+if (false) {
+    /** @type {?|undefined} */
+    STChangeRowClick.prototype.e;
+    /** @type {?|undefined} */
+    STChangeRowClick.prototype.item;
+    /** @type {?|undefined} */
+    STChangeRowClick.prototype.index;
+}
+/**
+ * @record
+ */
+function STError() { }
+if (false) {
+    /** @type {?|undefined} */
+    STError.prototype.type;
+    /** @type {?|undefined} */
+    STError.prototype.error;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 class STRowSource {
     constructor() {
         this.titles = {};
@@ -60,6 +1196,18 @@ class STRowSource {
 STRowSource.decorators = [
     { type: Injectable }
 ];
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    STRowSource.prototype.titles;
+    /**
+     * @type {?}
+     * @private
+     */
+    STRowSource.prototype.rows;
+}
 class STRowDirective {
     /**
      * @param {?} ref
@@ -88,6 +1236,22 @@ STRowDirective.propDecorators = {
     id: [{ type: Input, args: ['st-row',] }],
     type: [{ type: Input }]
 };
+if (false) {
+    /** @type {?} */
+    STRowDirective.prototype.id;
+    /** @type {?} */
+    STRowDirective.prototype.type;
+    /**
+     * @type {?}
+     * @private
+     */
+    STRowDirective.prototype.ref;
+    /**
+     * @type {?}
+     * @private
+     */
+    STRowDirective.prototype.source;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -216,11 +1380,159 @@ STConfig.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
 /** @nocollapse */ STConfig.ngInjectableDef = ɵɵdefineInjectable({ factory: function STConfig_Factory() { return new STConfig(); }, token: STConfig, providedIn: "root" });
+if (false) {
+    /**
+     * 起始页码，默认为：`1`
+     * @type {?}
+     */
+    STConfig.prototype.pi;
+    /**
+     * 每页数量，当设置为 `0` 表示不分页，默认：`10`
+     * @type {?}
+     */
+    STConfig.prototype.ps;
+    /**
+     * 是否显示边框
+     * @type {?}
+     */
+    STConfig.prototype.bordered;
+    /**
+     * table大小
+     * @type {?}
+     */
+    STConfig.prototype.size;
+    /**
+     * 是否开启响应式，默认：`true`
+     * @type {?}
+     */
+    STConfig.prototype.responsive;
+    /**
+     * 是否在小屏幕下才显示顶部与底部，默认：`false`
+     * @type {?}
+     */
+    STConfig.prototype.responsiveHideHeaderFooter;
+    /**
+     * 请求体配置
+     * @type {?}
+     */
+    STConfig.prototype.req;
+    /**
+     * 返回体配置
+     * @type {?}
+     */
+    STConfig.prototype.res;
+    /**
+     * 返回体配置
+     * @type {?}
+     */
+    STConfig.prototype.page;
+    /**
+     * 重命名排序值，`columns` 的重命名高于属性
+     * @type {?}
+     */
+    STConfig.prototype.sortReName;
+    /**
+     * 单排序规则
+     * - 若不指定，则返回：`columnName=ascend|descend`
+     * - 若指定，则返回：`sort=columnName.(ascend|descend)`
+     * @type {?}
+     */
+    STConfig.prototype.singleSort;
+    /**
+     * 是否多排序，当 `sort` 多个相同值时自动合并，建议后端支持时使用
+     * @type {?}
+     */
+    STConfig.prototype.multiSort;
+    /**
+     * 按钮模态框配置
+     * @type {?}
+     */
+    STConfig.prototype.modal;
+    /**
+     * 按钮抽屉配置
+     * @type {?}
+     */
+    STConfig.prototype.drawer;
+    /**
+     * 气泡确认框内容
+     * @type {?}
+     */
+    STConfig.prototype.popTitle;
+    /**
+     * 行单击多少时长之类为双击（单位：毫秒），默认：`200`
+     * @type {?}
+     */
+    STConfig.prototype.rowClickTime;
+    /**
+     * 过滤按钮确认文本
+     * @type {?}
+     */
+    STConfig.prototype.filterConfirmText;
+    /**
+     * 过滤按钮重置文本
+     * @type {?}
+     */
+    STConfig.prototype.filterClearText;
+    /**
+     * 按钮图标
+     * @type {?}
+     */
+    STConfig.prototype.btnIcon;
+    /**
+     * 行号索引，默认：`1`
+     * - 计算规则为：`index + noIndex`
+     * @type {?}
+     */
+    STConfig.prototype.noIndex;
+    /**
+     * 表格行的类名
+     * @type {?}
+     */
+    STConfig.prototype.rowClassName;
+    /**
+     * 通过点击行来展开子行
+     * @type {?}
+     */
+    STConfig.prototype.expandRowByClick;
+    /**
+     * 手风琴模式
+     * @type {?}
+     */
+    STConfig.prototype.expandAccordion;
+    /**
+     * 指定 `width` 模式
+     * @type {?}
+     */
+    STConfig.prototype.widthMode;
+    /** @type {?} */
+    STConfig.prototype.virtualItemSize;
+    /** @type {?} */
+    STConfig.prototype.virtualMaxBufferPx;
+    /** @type {?} */
+    STConfig.prototype.virtualMinBufferPx;
+    /**
+     * Conditional expression rendering behavior, can be set to `hide` (default) or `disabled`
+     * @type {?}
+     */
+    STConfig.prototype.iifBehavior;
+}
 
 /**
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function STSortMap() { }
+if (false) {
+    /**
+     * 是否启用排序
+     * @type {?|undefined}
+     */
+    STSortMap.prototype.enabled;
+    /* Skipping unhandled member: [key: string]: any;*/
+}
 class STColumnSource {
     /**
      * @param {?} rowSource
@@ -665,11 +1977,99 @@ STColumnSource.ctorParameters = () => [
     { type: undefined, decorators: [{ type: Optional }, { type: Inject, args: [ALAIN_I18N_TOKEN,] }] },
     { type: STConfig }
 ];
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    STColumnSource.prototype.rowSource;
+    /**
+     * @type {?}
+     * @private
+     */
+    STColumnSource.prototype.acl;
+    /**
+     * @type {?}
+     * @private
+     */
+    STColumnSource.prototype.i18nSrv;
+    /**
+     * @type {?}
+     * @private
+     */
+    STColumnSource.prototype.cog;
+}
 
 /**
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function STDataSourceOptions() { }
+if (false) {
+    /** @type {?} */
+    STDataSourceOptions.prototype.pi;
+    /** @type {?} */
+    STDataSourceOptions.prototype.ps;
+    /** @type {?} */
+    STDataSourceOptions.prototype.paginator;
+    /** @type {?} */
+    STDataSourceOptions.prototype.data;
+    /** @type {?} */
+    STDataSourceOptions.prototype.total;
+    /** @type {?} */
+    STDataSourceOptions.prototype.req;
+    /** @type {?} */
+    STDataSourceOptions.prototype.res;
+    /** @type {?} */
+    STDataSourceOptions.prototype.page;
+    /** @type {?} */
+    STDataSourceOptions.prototype.columns;
+    /** @type {?|undefined} */
+    STDataSourceOptions.prototype.singleSort;
+    /** @type {?|undefined} */
+    STDataSourceOptions.prototype.multiSort;
+    /** @type {?|undefined} */
+    STDataSourceOptions.prototype.rowClassName;
+}
+/**
+ * @record
+ */
+function STDataSourceResult() { }
+if (false) {
+    /**
+     * 是否需要显示分页器
+     * @type {?}
+     */
+    STDataSourceResult.prototype.pageShow;
+    /**
+     * 新 `pi`，若返回 `undefined` 表示用户受控
+     * @type {?}
+     */
+    STDataSourceResult.prototype.pi;
+    /**
+     * 新 `ps`，若返回 `undefined` 表示用户受控
+     * @type {?}
+     */
+    STDataSourceResult.prototype.ps;
+    /**
+     * 新 `total`，若返回 `undefined` 表示用户受控
+     * @type {?}
+     */
+    STDataSourceResult.prototype.total;
+    /**
+     * 数据
+     * @type {?}
+     */
+    STDataSourceResult.prototype.list;
+    /**
+     * 统计数据
+     * @type {?}
+     */
+    STDataSourceResult.prototype.statistical;
+}
 class STDataSource {
     /**
      * @param {?} http
@@ -1263,6 +2663,43 @@ STDataSource.ctorParameters = () => [
     { type: DecimalPipe, decorators: [{ type: Host }] },
     { type: DomSanitizer }
 ];
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    STDataSource.prototype.sortTick;
+    /**
+     * @type {?}
+     * @private
+     */
+    STDataSource.prototype.http;
+    /**
+     * @type {?}
+     * @private
+     */
+    STDataSource.prototype.currentyPipe;
+    /**
+     * @type {?}
+     * @private
+     */
+    STDataSource.prototype.datePipe;
+    /**
+     * @type {?}
+     * @private
+     */
+    STDataSource.prototype.ynPipe;
+    /**
+     * @type {?}
+     * @private
+     */
+    STDataSource.prototype.numberPipe;
+    /**
+     * @type {?}
+     * @private
+     */
+    STDataSource.prototype.dom;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -1365,6 +2802,13 @@ STExport.decorators = [
 STExport.ctorParameters = () => [
     { type: XlsxService, decorators: [{ type: Optional }] }
 ];
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    STExport.prototype.xlsxSrv;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -2538,6 +3982,244 @@ __decorate([
     InputBoolean(),
     __metadata("design:type", Boolean)
 ], STComponent.prototype, "responsiveHideHeaderFooter", void 0);
+if (false) {
+    /** @type {?} */
+    STComponent.prototype.orgTable;
+    /**
+     * @type {?}
+     * @private
+     */
+    STComponent.prototype.unsubscribe$;
+    /**
+     * @type {?}
+     * @private
+     */
+    STComponent.prototype.totalTpl;
+    /**
+     * @type {?}
+     * @private
+     */
+    STComponent.prototype.clonePage;
+    /**
+     * @type {?}
+     * @private
+     */
+    STComponent.prototype.copyCog;
+    /** @type {?} */
+    STComponent.prototype.locale;
+    /** @type {?} */
+    STComponent.prototype._data;
+    /** @type {?} */
+    STComponent.prototype._statistical;
+    /** @type {?} */
+    STComponent.prototype._isPagination;
+    /** @type {?} */
+    STComponent.prototype._allChecked;
+    /** @type {?} */
+    STComponent.prototype._allCheckedDisabled;
+    /** @type {?} */
+    STComponent.prototype._indeterminate;
+    /** @type {?} */
+    STComponent.prototype._columns;
+    /** @type {?} */
+    STComponent.prototype.data;
+    /**
+     * @type {?}
+     * @private
+     */
+    STComponent.prototype._req;
+    /**
+     * @type {?}
+     * @private
+     */
+    STComponent.prototype._res;
+    /** @type {?} */
+    STComponent.prototype.columns;
+    /** @type {?} */
+    STComponent.prototype.ps;
+    /** @type {?} */
+    STComponent.prototype.pi;
+    /** @type {?} */
+    STComponent.prototype.total;
+    /**
+     * @type {?}
+     * @private
+     */
+    STComponent.prototype._page;
+    /** @type {?} */
+    STComponent.prototype._loading;
+    /**
+     * 是否显示Loading
+     * @type {?}
+     */
+    STComponent.prototype.loading;
+    /**
+     * 延迟显示加载效果的时间（防止闪烁）
+     * @type {?}
+     */
+    STComponent.prototype.loadingDelay;
+    /** @type {?} */
+    STComponent.prototype.loadingIndicator;
+    /**
+     * 是否显示边框
+     * @type {?}
+     */
+    STComponent.prototype.bordered;
+    /**
+     * table大小
+     * @type {?}
+     */
+    STComponent.prototype.size;
+    /**
+     * 纵向支持滚动，也可用于指定滚动区域的高度：`{ y: '300px', x: '300px' }`
+     * @type {?}
+     */
+    STComponent.prototype.scroll;
+    /** @type {?} */
+    STComponent.prototype.virtualScroll;
+    /** @type {?} */
+    STComponent.prototype.virtualItemSize;
+    /** @type {?} */
+    STComponent.prototype.virtualMaxBufferPx;
+    /** @type {?} */
+    STComponent.prototype.virtualMinBufferPx;
+    /**
+     * 单排序规则
+     * - 若不指定，则返回：`columnName=ascend|descend`
+     * - 若指定，则返回：`sort=columnName.(ascend|descend)`
+     * @type {?}
+     */
+    STComponent.prototype.singleSort;
+    /**
+     * @type {?}
+     * @private
+     */
+    STComponent.prototype._multiSort;
+    /** @type {?} */
+    STComponent.prototype.rowClassName;
+    /**
+     * @type {?}
+     * @private
+     */
+    STComponent.prototype._widthMode;
+    /**
+     * `header` 标题
+     * @type {?}
+     */
+    STComponent.prototype.header;
+    /**
+     * `footer` 底部
+     * @type {?}
+     */
+    STComponent.prototype.footer;
+    /**
+     * 额外 `body` 顶部内容
+     * @type {?}
+     */
+    STComponent.prototype.bodyHeader;
+    /**
+     * 额外 `body` 内容
+     * @type {?}
+     */
+    STComponent.prototype.body;
+    /** @type {?} */
+    STComponent.prototype.expandRowByClick;
+    /** @type {?} */
+    STComponent.prototype.expandAccordion;
+    /**
+     * `expand` 可展开，当数据源中包括 `expand` 表示展开状态
+     * @type {?}
+     */
+    STComponent.prototype.expand;
+    /** @type {?} */
+    STComponent.prototype.noResult;
+    /** @type {?} */
+    STComponent.prototype.widthConfig;
+    /**
+     * 行单击多少时长之类为双击（单位：毫秒），默认：`200`
+     * @type {?}
+     */
+    STComponent.prototype.rowClickTime;
+    /** @type {?} */
+    STComponent.prototype.responsive;
+    /** @type {?} */
+    STComponent.prototype.responsiveHideHeaderFooter;
+    /**
+     * 请求异常时回调
+     * @type {?}
+     */
+    STComponent.prototype.error;
+    /**
+     * 变化时回调，包括：`pi`、`ps`、`checkbox`、`radio`、`sort`、`filter`、`click`、`dblClick` 变动
+     * @type {?}
+     */
+    STComponent.prototype.change;
+    /**
+     * @type {?}
+     * @private
+     */
+    STComponent.prototype.rowClickCount;
+    /**
+     * @type {?}
+     * @private
+     */
+    STComponent.prototype.cdr;
+    /**
+     * @type {?}
+     * @private
+     */
+    STComponent.prototype.cog;
+    /**
+     * @type {?}
+     * @private
+     */
+    STComponent.prototype.router;
+    /**
+     * @type {?}
+     * @private
+     */
+    STComponent.prototype.el;
+    /**
+     * @type {?}
+     * @private
+     */
+    STComponent.prototype.renderer;
+    /**
+     * @type {?}
+     * @private
+     */
+    STComponent.prototype.exportSrv;
+    /**
+     * @type {?}
+     * @private
+     */
+    STComponent.prototype.modalHelper;
+    /**
+     * @type {?}
+     * @private
+     */
+    STComponent.prototype.drawerHelper;
+    /**
+     * @type {?}
+     * @private
+     */
+    STComponent.prototype.doc;
+    /**
+     * @type {?}
+     * @private
+     */
+    STComponent.prototype.columnSource;
+    /**
+     * @type {?}
+     * @private
+     */
+    STComponent.prototype.dataSource;
+    /**
+     * @type {?}
+     * @private
+     */
+    STComponent.prototype.delonI18n;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -2572,6 +4254,16 @@ STModule.decorators = [
                 exports: [...COMPONENTS],
             },] }
 ];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 
 export { STColumnSource, STComponent, STConfig, STDataSource, STExport, STModule, STRowDirective, STRowSource as ɵa };
 //# sourceMappingURL=table.js.map

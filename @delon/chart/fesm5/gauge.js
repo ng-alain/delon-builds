@@ -240,6 +240,39 @@ var G2GaugeComponent = /** @class */ (function () {
     ], G2GaugeComponent.prototype, "percent", void 0);
     return G2GaugeComponent;
 }());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    G2GaugeComponent.prototype.chart;
+    /** @type {?} */
+    G2GaugeComponent.prototype.delay;
+    /** @type {?} */
+    G2GaugeComponent.prototype.title;
+    /** @type {?} */
+    G2GaugeComponent.prototype.height;
+    /** @type {?} */
+    G2GaugeComponent.prototype.color;
+    /** @type {?} */
+    G2GaugeComponent.prototype.bgColor;
+    /** @type {?} */
+    G2GaugeComponent.prototype.format;
+    /** @type {?} */
+    G2GaugeComponent.prototype.percent;
+    /** @type {?} */
+    G2GaugeComponent.prototype.padding;
+    /**
+     * @type {?}
+     * @private
+     */
+    G2GaugeComponent.prototype.el;
+    /**
+     * @type {?}
+     * @private
+     */
+    G2GaugeComponent.prototype.ngZone;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -259,6 +292,16 @@ var G2GaugeModule = /** @class */ (function () {
     ];
     return G2GaugeModule;
 }());
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 
 export { G2GaugeComponent, G2GaugeModule };
 //# sourceMappingURL=gauge.js.map

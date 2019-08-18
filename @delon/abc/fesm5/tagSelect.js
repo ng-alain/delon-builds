@@ -1,5 +1,5 @@
 import { __decorate, __metadata, __spread } from 'tslib';
-import { Component, ChangeDetectionStrategy, ViewEncapsulation, ChangeDetectorRef, Input, Output, EventEmitter, NgModule } from '@angular/core';
+import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ChangeDetectorRef, Input, Output, NgModule } from '@angular/core';
 import { DelonLocaleService, DelonLocaleModule } from '@delon/theme';
 import { InputBoolean, DelonUtilModule } from '@delon/util';
 import { CommonModule } from '@angular/common';
@@ -86,6 +86,34 @@ var TagSelectComponent = /** @class */ (function () {
     ], TagSelectComponent.prototype, "expandable", void 0);
     return TagSelectComponent;
 }());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    TagSelectComponent.prototype.i18n$;
+    /** @type {?} */
+    TagSelectComponent.prototype.locale;
+    /** @type {?} */
+    TagSelectComponent.prototype.expand;
+    /**
+     * 是否启用 `展开与收进`
+     * @type {?}
+     */
+    TagSelectComponent.prototype.expandable;
+    /** @type {?} */
+    TagSelectComponent.prototype.change;
+    /**
+     * @type {?}
+     * @private
+     */
+    TagSelectComponent.prototype.i18n;
+    /**
+     * @type {?}
+     * @private
+     */
+    TagSelectComponent.prototype.cdr;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -105,6 +133,16 @@ var TagSelectModule = /** @class */ (function () {
     ];
     return TagSelectModule;
 }());
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 
 export { TagSelectComponent, TagSelectModule };
 //# sourceMappingURL=tagSelect.js.map

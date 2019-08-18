@@ -48,6 +48,23 @@ __decorate([
     InputBoolean(),
     __metadata("design:type", Object)
 ], TrendComponent.prototype, "reverseColor", void 0);
+if (false) {
+    /**
+     * 上升下降标识
+     * @type {?}
+     */
+    TrendComponent.prototype.flag;
+    /**
+     * 是否彩色标记
+     * @type {?}
+     */
+    TrendComponent.prototype.colorful;
+    /**
+     * 颜色反转
+     * @type {?}
+     */
+    TrendComponent.prototype.reverseColor;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -64,6 +81,16 @@ TrendModule.decorators = [
                 exports: [...COMPONENTS],
             },] }
 ];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 
 export { TrendComponent, TrendModule };
 //# sourceMappingURL=trend.js.map

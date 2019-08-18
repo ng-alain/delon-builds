@@ -9,6 +9,23 @@ import { CommonModule } from '@angular/common';
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function GlobalFooterLink() { }
+if (false) {
+    /** @type {?} */
+    GlobalFooterLink.prototype.title;
+    /** @type {?} */
+    GlobalFooterLink.prototype.href;
+    /** @type {?|undefined} */
+    GlobalFooterLink.prototype.blankTarget;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 var GlobalFooterItemComponent = /** @class */ (function () {
     function GlobalFooterItemComponent() {
     }
@@ -33,6 +50,14 @@ var GlobalFooterItemComponent = /** @class */ (function () {
     ], GlobalFooterItemComponent.prototype, "blankTarget", void 0);
     return GlobalFooterItemComponent;
 }());
+if (false) {
+    /** @type {?} */
+    GlobalFooterItemComponent.prototype.host;
+    /** @type {?} */
+    GlobalFooterItemComponent.prototype.href;
+    /** @type {?} */
+    GlobalFooterItemComponent.prototype.blankTarget;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -89,6 +114,22 @@ var GlobalFooterComponent = /** @class */ (function () {
     };
     return GlobalFooterComponent;
 }());
+if (false) {
+    /** @type {?} */
+    GlobalFooterComponent.prototype.links;
+    /** @type {?} */
+    GlobalFooterComponent.prototype.items;
+    /**
+     * @type {?}
+     * @private
+     */
+    GlobalFooterComponent.prototype.router;
+    /**
+     * @type {?}
+     * @private
+     */
+    GlobalFooterComponent.prototype.win;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -108,6 +149,16 @@ var GlobalFooterModule = /** @class */ (function () {
     ];
     return GlobalFooterModule;
 }());
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 
 export { GlobalFooterComponent, GlobalFooterItemComponent, GlobalFooterModule };
 //# sourceMappingURL=globalFooter.js.map

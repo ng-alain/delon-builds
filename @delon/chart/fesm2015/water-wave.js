@@ -292,6 +292,53 @@ __decorate([
     InputNumber(),
     __metadata("design:type", Number)
 ], G2WaterWaveComponent.prototype, "percent", void 0);
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    G2WaterWaveComponent.prototype.resize$;
+    /**
+     * @type {?}
+     * @private
+     */
+    G2WaterWaveComponent.prototype.node;
+    /**
+     * @type {?}
+     * @private
+     */
+    G2WaterWaveComponent.prototype.timer;
+    /** @type {?} */
+    G2WaterWaveComponent.prototype.delay;
+    /** @type {?} */
+    G2WaterWaveComponent.prototype.title;
+    /** @type {?} */
+    G2WaterWaveComponent.prototype.color;
+    /** @type {?} */
+    G2WaterWaveComponent.prototype.height;
+    /** @type {?} */
+    G2WaterWaveComponent.prototype.percent;
+    /**
+     * @type {?}
+     * @private
+     */
+    G2WaterWaveComponent.prototype.el;
+    /**
+     * @type {?}
+     * @private
+     */
+    G2WaterWaveComponent.prototype.renderer;
+    /**
+     * @type {?}
+     * @private
+     */
+    G2WaterWaveComponent.prototype.ngZone;
+    /**
+     * @type {?}
+     * @private
+     */
+    G2WaterWaveComponent.prototype.cdr;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -308,6 +355,16 @@ G2WaterWaveModule.decorators = [
                 exports: [...COMPONENTS],
             },] }
 ];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 
 export { G2WaterWaveComponent, G2WaterWaveModule };
 //# sourceMappingURL=water-wave.js.map

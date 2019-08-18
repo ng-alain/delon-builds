@@ -30,6 +30,16 @@ var AvatarListItemComponent = /** @class */ (function () {
     };
     return AvatarListItemComponent;
 }());
+if (false) {
+    /** @type {?} */
+    AvatarListItemComponent.prototype.src;
+    /** @type {?} */
+    AvatarListItemComponent.prototype.text;
+    /** @type {?} */
+    AvatarListItemComponent.prototype.icon;
+    /** @type {?} */
+    AvatarListItemComponent.prototype.tips;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -134,6 +144,35 @@ var AvatarListComponent = /** @class */ (function () {
     ], AvatarListComponent.prototype, "maxLength", void 0);
     return AvatarListComponent;
 }());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    AvatarListComponent.prototype.inited;
+    /**
+     * @type {?}
+     * @private
+     */
+    AvatarListComponent.prototype._items;
+    /** @type {?} */
+    AvatarListComponent.prototype.items;
+    /** @type {?} */
+    AvatarListComponent.prototype.exceedCount;
+    /** @type {?} */
+    AvatarListComponent.prototype.cls;
+    /** @type {?} */
+    AvatarListComponent.prototype.avatarSize;
+    /** @type {?} */
+    AvatarListComponent.prototype.maxLength;
+    /** @type {?} */
+    AvatarListComponent.prototype.excessItemsStyle;
+    /**
+     * @type {?}
+     * @private
+     */
+    AvatarListComponent.prototype.cdr;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -153,6 +192,16 @@ var AvatarListModule = /** @class */ (function () {
     ];
     return AvatarListModule;
 }());
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 
 export { AvatarListComponent, AvatarListItemComponent, AvatarListModule };
 //# sourceMappingURL=avatarList.js.map

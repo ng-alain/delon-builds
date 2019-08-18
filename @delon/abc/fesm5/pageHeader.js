@@ -1,6 +1,6 @@
-import { ɵɵdefineInjectable, Injectable, TemplateRef, Component, ChangeDetectionStrategy, ViewEncapsulation, Renderer2, Optional, Inject, ChangeDetectorRef, ViewChild, Input, NgModule } from '@angular/core';
-import { __decorate, __metadata, __assign, __spread } from 'tslib';
-import { Router, NavigationEnd, RouterModule } from '@angular/router';
+import { Injectable, ɵɵdefineInjectable, TemplateRef, Component, ChangeDetectionStrategy, ViewEncapsulation, Renderer2, Optional, Inject, ChangeDetectorRef, ViewChild, Input, NgModule } from '@angular/core';
+import { __assign, __decorate, __metadata, __spread } from 'tslib';
+import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { NzAffixModule } from 'ng-zorro-antd/affix';
 import { Subject, merge } from 'rxjs';
 import { takeUntil, filter } from 'rxjs/operators';
@@ -57,11 +57,69 @@ var PageHeaderConfig = /** @class */ (function () {
     /** @nocollapse */ PageHeaderConfig.ngInjectableDef = ɵɵdefineInjectable({ factory: function PageHeaderConfig_Factory() { return new PageHeaderConfig(); }, token: PageHeaderConfig, providedIn: "root" });
     return PageHeaderConfig;
 }());
+if (false) {
+    /**
+     * 首页文本，若指定空表示不显示
+     * @type {?}
+     */
+    PageHeaderConfig.prototype.home;
+    /**
+     * 首页链接
+     * @type {?}
+     */
+    PageHeaderConfig.prototype.homeLink;
+    /**
+     * 首页链接国际化参数
+     * @type {?}
+     */
+    PageHeaderConfig.prototype.homeI18n;
+    /**
+     * 自动生成导航，以当前路由从主菜单中定位
+     * @type {?}
+     */
+    PageHeaderConfig.prototype.autoBreadcrumb;
+    /**
+     * 自动向上递归查找
+     *  - 菜单数据源包含 `/ware`，则 `/ware/1` 也视为 `/ware` 项
+     * @type {?}
+     */
+    PageHeaderConfig.prototype.recursiveBreadcrumb;
+    /**
+     * 自动生成标题，以当前路由从主菜单中定位
+     * @type {?}
+     */
+    PageHeaderConfig.prototype.autoTitle;
+    /**
+     * 是否自动将标准信息同步至 `TitleService`、`ReuseService` 下
+     * @type {?}
+     */
+    PageHeaderConfig.prototype.syncTitle;
+    /**
+     * 是否固定模式
+     * @type {?}
+     */
+    PageHeaderConfig.prototype.fixed;
+    /**
+     * 固定偏移值
+     * @type {?}
+     */
+    PageHeaderConfig.prototype.fixedOffsetTop;
+}
 
 /**
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function PageHeaderPath() { }
+if (false) {
+    /** @type {?|undefined} */
+    PageHeaderPath.prototype.title;
+    /** @type {?|undefined} */
+    PageHeaderPath.prototype.link;
+}
 var PageHeaderComponent = /** @class */ (function () {
     // #endregion
     function PageHeaderComponent(cog, settings, renderer, router, menuSrv, i18nSrv, titleSrv, reuseSrv, cdr) {
@@ -354,6 +412,110 @@ var PageHeaderComponent = /** @class */ (function () {
     ], PageHeaderComponent.prototype, "recursiveBreadcrumb", void 0);
     return PageHeaderComponent;
 }());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    PageHeaderComponent.prototype.inited;
+    /**
+     * @type {?}
+     * @private
+     */
+    PageHeaderComponent.prototype.unsubscribe$;
+    /**
+     * @type {?}
+     * @private
+     */
+    PageHeaderComponent.prototype.conTpl;
+    /**
+     * @type {?}
+     * @private
+     */
+    PageHeaderComponent.prototype.affix;
+    /**
+     * @type {?}
+     * @private
+     */
+    PageHeaderComponent.prototype._menus;
+    /** @type {?} */
+    PageHeaderComponent.prototype._titleVal;
+    /** @type {?} */
+    PageHeaderComponent.prototype.paths;
+    /** @type {?} */
+    PageHeaderComponent.prototype._title;
+    /** @type {?} */
+    PageHeaderComponent.prototype._titleTpl;
+    /** @type {?} */
+    PageHeaderComponent.prototype.loading;
+    /** @type {?} */
+    PageHeaderComponent.prototype.wide;
+    /** @type {?} */
+    PageHeaderComponent.prototype.home;
+    /** @type {?} */
+    PageHeaderComponent.prototype.homeLink;
+    /** @type {?} */
+    PageHeaderComponent.prototype.homeI18n;
+    /** @type {?} */
+    PageHeaderComponent.prototype.autoBreadcrumb;
+    /** @type {?} */
+    PageHeaderComponent.prototype.autoTitle;
+    /** @type {?} */
+    PageHeaderComponent.prototype.syncTitle;
+    /** @type {?} */
+    PageHeaderComponent.prototype.fixed;
+    /** @type {?} */
+    PageHeaderComponent.prototype.fixedOffsetTop;
+    /** @type {?} */
+    PageHeaderComponent.prototype.breadcrumb;
+    /** @type {?} */
+    PageHeaderComponent.prototype.recursiveBreadcrumb;
+    /** @type {?} */
+    PageHeaderComponent.prototype.logo;
+    /** @type {?} */
+    PageHeaderComponent.prototype.action;
+    /** @type {?} */
+    PageHeaderComponent.prototype.content;
+    /** @type {?} */
+    PageHeaderComponent.prototype.extra;
+    /** @type {?} */
+    PageHeaderComponent.prototype.tab;
+    /**
+     * @type {?}
+     * @private
+     */
+    PageHeaderComponent.prototype.renderer;
+    /**
+     * @type {?}
+     * @private
+     */
+    PageHeaderComponent.prototype.router;
+    /**
+     * @type {?}
+     * @private
+     */
+    PageHeaderComponent.prototype.menuSrv;
+    /**
+     * @type {?}
+     * @private
+     */
+    PageHeaderComponent.prototype.i18nSrv;
+    /**
+     * @type {?}
+     * @private
+     */
+    PageHeaderComponent.prototype.titleSrv;
+    /**
+     * @type {?}
+     * @private
+     */
+    PageHeaderComponent.prototype.reuseSrv;
+    /**
+     * @type {?}
+     * @private
+     */
+    PageHeaderComponent.prototype.cdr;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -373,6 +535,16 @@ var PageHeaderModule = /** @class */ (function () {
     ];
     return PageHeaderModule;
 }());
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 
 export { PageHeaderComponent, PageHeaderConfig, PageHeaderModule };
 //# sourceMappingURL=pageHeader.js.map

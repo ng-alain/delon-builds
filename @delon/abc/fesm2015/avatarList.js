@@ -29,6 +29,16 @@ AvatarListItemComponent.propDecorators = {
     icon: [{ type: Input }],
     tips: [{ type: Input }]
 };
+if (false) {
+    /** @type {?} */
+    AvatarListItemComponent.prototype.src;
+    /** @type {?} */
+    AvatarListItemComponent.prototype.text;
+    /** @type {?} */
+    AvatarListItemComponent.prototype.icon;
+    /** @type {?} */
+    AvatarListItemComponent.prototype.tips;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -121,6 +131,35 @@ __decorate([
     InputNumber(),
     __metadata("design:type", Object)
 ], AvatarListComponent.prototype, "maxLength", void 0);
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    AvatarListComponent.prototype.inited;
+    /**
+     * @type {?}
+     * @private
+     */
+    AvatarListComponent.prototype._items;
+    /** @type {?} */
+    AvatarListComponent.prototype.items;
+    /** @type {?} */
+    AvatarListComponent.prototype.exceedCount;
+    /** @type {?} */
+    AvatarListComponent.prototype.cls;
+    /** @type {?} */
+    AvatarListComponent.prototype.avatarSize;
+    /** @type {?} */
+    AvatarListComponent.prototype.maxLength;
+    /** @type {?} */
+    AvatarListComponent.prototype.excessItemsStyle;
+    /**
+     * @type {?}
+     * @private
+     */
+    AvatarListComponent.prototype.cdr;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -137,6 +176,16 @@ AvatarListModule.decorators = [
                 exports: [...COMPONENTS],
             },] }
 ];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 
 export { AvatarListComponent, AvatarListItemComponent, AvatarListModule };
 //# sourceMappingURL=avatarList.js.map

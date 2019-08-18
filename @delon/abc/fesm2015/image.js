@@ -23,6 +23,18 @@ ImageConfig.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
 /** @nocollapse */ ImageConfig.ngInjectableDef = ɵɵdefineInjectable({ factory: function ImageConfig_Factory() { return new ImageConfig(); }, token: ImageConfig, providedIn: "root" });
+if (false) {
+    /**
+     * 默认大小，默认值：`64`，单位：px
+     * @type {?}
+     */
+    ImageConfig.prototype.size;
+    /**
+     * 错误图片
+     * @type {?}
+     */
+    ImageConfig.prototype.error;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -123,6 +135,24 @@ __decorate([
     InputNumber(),
     __metadata("design:type", Object)
 ], ImageDirective.prototype, "size", void 0);
+if (false) {
+    /** @type {?} */
+    ImageDirective.prototype.src;
+    /** @type {?} */
+    ImageDirective.prototype.size;
+    /** @type {?} */
+    ImageDirective.prototype.error;
+    /**
+     * @type {?}
+     * @private
+     */
+    ImageDirective.prototype.inited;
+    /**
+     * @type {?}
+     * @private
+     */
+    ImageDirective.prototype.imgEl;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -139,6 +169,16 @@ ImageModule.decorators = [
                 exports: [...DIRECTIVES],
             },] }
 ];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 
 export { ImageConfig, ImageDirective, ImageModule };
 //# sourceMappingURL=image.js.map

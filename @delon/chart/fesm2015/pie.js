@@ -10,6 +10,17 @@ import { NzDividerModule } from 'ng-zorro-antd/divider';
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function G2PieData() { }
+if (false) {
+    /** @type {?} */
+    G2PieData.prototype.x;
+    /** @type {?} */
+    G2PieData.prototype.y;
+    /* Skipping unhandled member: [key: string]: any;*/
+}
 class G2PieComponent {
     // #endregion
     /**
@@ -319,6 +330,87 @@ __decorate([
     InputBoolean(),
     __metadata("design:type", Object)
 ], G2PieComponent.prototype, "select", void 0);
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    G2PieComponent.prototype.resize$;
+    /**
+     * @type {?}
+     * @private
+     */
+    G2PieComponent.prototype.node;
+    /**
+     * @type {?}
+     * @private
+     */
+    G2PieComponent.prototype.chart;
+    /**
+     * @type {?}
+     * @private
+     */
+    G2PieComponent.prototype.isPercent;
+    /**
+     * @type {?}
+     * @private
+     */
+    G2PieComponent.prototype.percentColor;
+    /** @type {?} */
+    G2PieComponent.prototype.legendData;
+    /** @type {?} */
+    G2PieComponent.prototype.delay;
+    /** @type {?} */
+    G2PieComponent.prototype.animate;
+    /** @type {?} */
+    G2PieComponent.prototype.color;
+    /** @type {?} */
+    G2PieComponent.prototype.subTitle;
+    /** @type {?} */
+    G2PieComponent.prototype.total;
+    /** @type {?} */
+    G2PieComponent.prototype.height;
+    /** @type {?} */
+    G2PieComponent.prototype.hasLegend;
+    /** @type {?} */
+    G2PieComponent.prototype.inner;
+    /** @type {?} */
+    G2PieComponent.prototype.padding;
+    /** @type {?} */
+    G2PieComponent.prototype.percent;
+    /** @type {?} */
+    G2PieComponent.prototype.tooltip;
+    /** @type {?} */
+    G2PieComponent.prototype.lineWidth;
+    /** @type {?} */
+    G2PieComponent.prototype.select;
+    /** @type {?} */
+    G2PieComponent.prototype.valueFormat;
+    /** @type {?} */
+    G2PieComponent.prototype.data;
+    /** @type {?} */
+    G2PieComponent.prototype.colors;
+    /**
+     * @type {?}
+     * @private
+     */
+    G2PieComponent.prototype.el;
+    /**
+     * @type {?}
+     * @private
+     */
+    G2PieComponent.prototype.rend;
+    /**
+     * @type {?}
+     * @private
+     */
+    G2PieComponent.prototype.ngZone;
+    /**
+     * @type {?}
+     * @private
+     */
+    G2PieComponent.prototype.cdr;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -335,6 +427,16 @@ G2PieModule.decorators = [
                 exports: [...COMPONENTS],
             },] }
 ];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 
 export { G2PieComponent, G2PieModule };
 //# sourceMappingURL=pie.js.map

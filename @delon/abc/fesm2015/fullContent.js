@@ -32,6 +32,13 @@ FullContentService.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
 /** @nocollapse */ FullContentService.ngInjectableDef = ɵɵdefineInjectable({ factory: function FullContentService_Factory() { return new FullContentService(); }, token: FullContentService, providedIn: "root" });
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    FullContentService.prototype._change;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -236,6 +243,73 @@ __decorate([
     InputNumber(),
     __metadata("design:type", Object)
 ], FullContentComponent.prototype, "padding", void 0);
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    FullContentComponent.prototype.bodyEl;
+    /**
+     * @type {?}
+     * @private
+     */
+    FullContentComponent.prototype.inited;
+    /**
+     * @type {?}
+     * @private
+     */
+    FullContentComponent.prototype.srv$;
+    /**
+     * @type {?}
+     * @private
+     */
+    FullContentComponent.prototype.route$;
+    /**
+     * @type {?}
+     * @private
+     */
+    FullContentComponent.prototype.id;
+    /**
+     * @type {?}
+     * @private
+     */
+    FullContentComponent.prototype.scroll$;
+    /** @type {?} */
+    FullContentComponent.prototype._height;
+    /** @type {?} */
+    FullContentComponent.prototype.fullscreen;
+    /** @type {?} */
+    FullContentComponent.prototype.hideTitle;
+    /** @type {?} */
+    FullContentComponent.prototype.padding;
+    /** @type {?} */
+    FullContentComponent.prototype.fullscreenChange;
+    /**
+     * @type {?}
+     * @private
+     */
+    FullContentComponent.prototype.el;
+    /**
+     * @type {?}
+     * @private
+     */
+    FullContentComponent.prototype.cdr;
+    /**
+     * @type {?}
+     * @private
+     */
+    FullContentComponent.prototype.srv;
+    /**
+     * @type {?}
+     * @private
+     */
+    FullContentComponent.prototype.router;
+    /**
+     * @type {?}
+     * @private
+     */
+    FullContentComponent.prototype.doc;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -268,6 +342,13 @@ FullContentToggleDirective.decorators = [
 FullContentToggleDirective.ctorParameters = () => [
     { type: FullContentComponent }
 ];
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    FullContentToggleDirective.prototype.parent;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -284,6 +365,16 @@ FullContentModule.decorators = [
                 exports: [...COMPONENTS],
             },] }
 ];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 
 export { FullContentComponent, FullContentModule, FullContentService, FullContentToggleDirective };
 //# sourceMappingURL=fullContent.js.map

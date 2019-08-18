@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Output, EventEmitter, NgModule } from '@angular/core';
+import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Output, NgModule } from '@angular/core';
 import addSeconds from 'date-fns/add_seconds';
 import format from 'date-fns/format';
 import { __spread } from 'tslib';
@@ -81,6 +81,16 @@ var CountDownComponent = /** @class */ (function () {
     };
     return CountDownComponent;
 }());
+if (false) {
+    /** @type {?} */
+    CountDownComponent.prototype.config;
+    /** @type {?} */
+    CountDownComponent.prototype.begin;
+    /** @type {?} */
+    CountDownComponent.prototype.notify;
+    /** @type {?} */
+    CountDownComponent.prototype.end;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -100,6 +110,16 @@ var CountDownModule = /** @class */ (function () {
     ];
     return CountDownModule;
 }());
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 
 export { CountDownComponent, CountDownModule };
 //# sourceMappingURL=count-down.js.map

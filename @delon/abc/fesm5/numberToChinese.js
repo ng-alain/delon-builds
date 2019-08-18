@@ -7,6 +7,28 @@ import { CommonModule } from '@angular/common';
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
+ * 额外参数选项
+ * @record
+ */
+function NumberToChineseOptions() { }
+if (false) {
+    /**
+     * 指定负数符号，默认：`负`
+     * @type {?|undefined}
+     */
+    NumberToChineseOptions.prototype.minusSymbol;
+    /**
+     * 当传递值无法数值时抛出异常，默认：`false`
+     * @type {?|undefined}
+     */
+    NumberToChineseOptions.prototype.validThrow;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
  * @param {?} value
  * @param {?=} rmb
  * @param {?=} options
@@ -209,6 +231,16 @@ var NumberToChineseModule = /** @class */ (function () {
     ];
     return NumberToChineseModule;
 }());
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 
 export { NaNumberToChinesePipe, NumberToChineseModule, numberToChinese };
 //# sourceMappingURL=numberToChinese.js.map

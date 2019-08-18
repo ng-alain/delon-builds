@@ -24,6 +24,18 @@ SGConfig.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
 /** @nocollapse */ SGConfig.ngInjectableDef = ɵɵdefineInjectable({ factory: function SGConfig_Factory() { return new SGConfig(); }, token: SGConfig, providedIn: "root" });
+if (false) {
+    /**
+     * 间距，默认：`32`
+     * @type {?}
+     */
+    SGConfig.prototype.gutter;
+    /**
+     * 列数，默认：`2`
+     * @type {?}
+     */
+    SGConfig.prototype.col;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -83,6 +95,14 @@ __decorate([
     InputNumber(null),
     __metadata("design:type", Number)
 ], SGContainerComponent.prototype, "col", void 0);
+if (false) {
+    /** @type {?} */
+    SGContainerComponent.prototype.gutter;
+    /** @type {?} */
+    SGContainerComponent.prototype.colInCon;
+    /** @type {?} */
+    SGContainerComponent.prototype.col;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -181,6 +201,40 @@ __decorate([
     InputNumber(null),
     __metadata("design:type", Number)
 ], SGComponent.prototype, "col", void 0);
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    SGComponent.prototype.el;
+    /**
+     * @type {?}
+     * @private
+     */
+    SGComponent.prototype.clsMap;
+    /**
+     * @type {?}
+     * @private
+     */
+    SGComponent.prototype.inited;
+    /** @type {?} */
+    SGComponent.prototype.col;
+    /**
+     * @type {?}
+     * @private
+     */
+    SGComponent.prototype.ren;
+    /**
+     * @type {?}
+     * @private
+     */
+    SGComponent.prototype.parent;
+    /**
+     * @type {?}
+     * @private
+     */
+    SGComponent.prototype.rep;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -197,6 +251,16 @@ SGModule.decorators = [
                 exports: [...COMPONENTS],
             },] }
 ];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 
 export { SGComponent, SGConfig, SGContainerComponent, SGModule };
 //# sourceMappingURL=grid.js.map

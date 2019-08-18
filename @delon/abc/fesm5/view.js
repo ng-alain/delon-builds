@@ -1,5 +1,5 @@
-import { __decorate, __metadata, __assign, __spread } from 'tslib';
-import { ɵɵdefineInjectable, Injectable, Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, Renderer2, Input, Host, Optional, ViewChild, NgModule } from '@angular/core';
+import { __assign, __decorate, __metadata, __spread } from 'tslib';
+import { Injectable, ɵɵdefineInjectable, Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, Renderer2, Input, Host, Optional, ViewChild, NgModule } from '@angular/core';
 import { updateHostClass, InputNumber, isEmpty, InputBoolean, DelonUtilModule } from '@delon/util';
 import { ResponsiveService } from '@delon/theme';
 import { ObserversModule } from '@angular/cdk/observers';
@@ -40,6 +40,38 @@ var SVConfig = /** @class */ (function () {
     /** @nocollapse */ SVConfig.ngInjectableDef = ɵɵdefineInjectable({ factory: function SVConfig_Factory() { return new SVConfig(); }, token: SVConfig, providedIn: "root" });
     return SVConfig;
 }());
+if (false) {
+    /**
+     * 大小
+     * @type {?}
+     */
+    SVConfig.prototype.size;
+    /**
+     * 间距，默认：`32`
+     * @type {?}
+     */
+    SVConfig.prototype.gutter;
+    /**
+     * 布局，默认：`horizontal`
+     * @type {?}
+     */
+    SVConfig.prototype.layout;
+    /**
+     * 列数，默认：`3`
+     * @type {?}
+     */
+    SVConfig.prototype.col;
+    /**
+     * 是否显示默认值，当内容为空值时显示 `-`，默认：`true`
+     * @type {?}
+     */
+    SVConfig.prototype.default;
+    /**
+     * `label` 固定宽度，若 `null` 或 `undefined` 表示非固定，默认：`null`
+     * @type {?}
+     */
+    SVConfig.prototype.labelWidth;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -131,6 +163,38 @@ var SVContainerComponent = /** @class */ (function () {
     ], SVContainerComponent.prototype, "col", void 0);
     return SVContainerComponent;
 }());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    SVContainerComponent.prototype.el;
+    /** @type {?} */
+    SVContainerComponent.prototype.title;
+    /** @type {?} */
+    SVContainerComponent.prototype.size;
+    /**
+     * 列表项间距，单位为 `px`
+     * @type {?}
+     */
+    SVContainerComponent.prototype.gutter;
+    /** @type {?} */
+    SVContainerComponent.prototype.layout;
+    /** @type {?} */
+    SVContainerComponent.prototype.labelWidth;
+    /**
+     * 指定信息最多分几列展示，最终一行几列由 col 配置结合响应式规则决定
+     * @type {?}
+     */
+    SVContainerComponent.prototype.col;
+    /** @type {?} */
+    SVContainerComponent.prototype.default;
+    /**
+     * @type {?}
+     * @private
+     */
+    SVContainerComponent.prototype.ren;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -189,6 +253,23 @@ var SVTitleComponent = /** @class */ (function () {
     ]; };
     return SVTitleComponent;
 }());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    SVTitleComponent.prototype.el;
+    /**
+     * @type {?}
+     * @private
+     */
+    SVTitleComponent.prototype.parent;
+    /**
+     * @type {?}
+     * @private
+     */
+    SVTitleComponent.prototype.ren;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -342,6 +423,49 @@ var SVComponent = /** @class */ (function () {
     ], SVComponent.prototype, "default", void 0);
     return SVComponent;
 }());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    SVComponent.prototype.conEl;
+    /**
+     * @type {?}
+     * @private
+     */
+    SVComponent.prototype.el;
+    /**
+     * @type {?}
+     * @private
+     */
+    SVComponent.prototype.clsMap;
+    /** @type {?} */
+    SVComponent.prototype.optional;
+    /** @type {?} */
+    SVComponent.prototype.optionalHelp;
+    /** @type {?} */
+    SVComponent.prototype.label;
+    /** @type {?} */
+    SVComponent.prototype.unit;
+    /** @type {?} */
+    SVComponent.prototype.col;
+    /** @type {?} */
+    SVComponent.prototype.default;
+    /** @type {?} */
+    SVComponent.prototype.type;
+    /** @type {?} */
+    SVComponent.prototype.parent;
+    /**
+     * @type {?}
+     * @private
+     */
+    SVComponent.prototype.rep;
+    /**
+     * @type {?}
+     * @private
+     */
+    SVComponent.prototype.ren;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -361,6 +485,16 @@ var SVModule = /** @class */ (function () {
     ];
     return SVModule;
 }());
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 
 export { SVComponent, SVConfig, SVContainerComponent, SVModule, SVTitleComponent };
 //# sourceMappingURL=view.js.map

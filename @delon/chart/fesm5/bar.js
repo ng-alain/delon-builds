@@ -11,6 +11,17 @@ import { CommonModule } from '@angular/common';
  */
 /** @type {?} */
 var TITLE_HEIGHT = 41;
+/**
+ * @record
+ */
+function G2BarData() { }
+if (false) {
+    /** @type {?} */
+    G2BarData.prototype.x;
+    /** @type {?} */
+    G2BarData.prototype.y;
+    /* Skipping unhandled member: [key: string]: any;*/
+}
 var G2BarComponent = /** @class */ (function () {
     // #endregion
     function G2BarComponent(ngZone) {
@@ -235,6 +246,42 @@ var G2BarComponent = /** @class */ (function () {
     ], G2BarComponent.prototype, "autoLabel", void 0);
     return G2BarComponent;
 }());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    G2BarComponent.prototype.resize$;
+    /**
+     * @type {?}
+     * @private
+     */
+    G2BarComponent.prototype.chart;
+    /**
+     * @type {?}
+     * @private
+     */
+    G2BarComponent.prototype.node;
+    /** @type {?} */
+    G2BarComponent.prototype.delay;
+    /** @type {?} */
+    G2BarComponent.prototype.title;
+    /** @type {?} */
+    G2BarComponent.prototype.color;
+    /** @type {?} */
+    G2BarComponent.prototype.height;
+    /** @type {?} */
+    G2BarComponent.prototype.padding;
+    /** @type {?} */
+    G2BarComponent.prototype.data;
+    /** @type {?} */
+    G2BarComponent.prototype.autoLabel;
+    /**
+     * @type {?}
+     * @private
+     */
+    G2BarComponent.prototype.ngZone;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -254,6 +301,16 @@ var G2BarModule = /** @class */ (function () {
     ];
     return G2BarModule;
 }());
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 
 export { G2BarComponent, G2BarModule };
 //# sourceMappingURL=bar.js.map

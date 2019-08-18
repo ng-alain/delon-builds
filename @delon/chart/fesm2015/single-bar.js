@@ -186,6 +186,47 @@ __decorate([
     InputBoolean(),
     __metadata("design:type", Object)
 ], G2SingleBarComponent.prototype, "line", void 0);
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    G2SingleBarComponent.prototype.chart;
+    /** @type {?} */
+    G2SingleBarComponent.prototype.delay;
+    /** @type {?} */
+    G2SingleBarComponent.prototype.plusColor;
+    /** @type {?} */
+    G2SingleBarComponent.prototype.minusColor;
+    /** @type {?} */
+    G2SingleBarComponent.prototype.height;
+    /** @type {?} */
+    G2SingleBarComponent.prototype.barSize;
+    /** @type {?} */
+    G2SingleBarComponent.prototype.min;
+    /** @type {?} */
+    G2SingleBarComponent.prototype.max;
+    /** @type {?} */
+    G2SingleBarComponent.prototype.value;
+    /** @type {?} */
+    G2SingleBarComponent.prototype.line;
+    /** @type {?} */
+    G2SingleBarComponent.prototype.format;
+    /** @type {?} */
+    G2SingleBarComponent.prototype.padding;
+    /** @type {?} */
+    G2SingleBarComponent.prototype.textStyle;
+    /**
+     * @type {?}
+     * @private
+     */
+    G2SingleBarComponent.prototype.el;
+    /**
+     * @type {?}
+     * @private
+     */
+    G2SingleBarComponent.prototype.ngZone;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -202,6 +243,16 @@ G2SingleBarModule.decorators = [
                 exports: [...COMPONENTS],
             },] }
 ];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 
 export { G2SingleBarComponent, G2SingleBarModule };
 //# sourceMappingURL=single-bar.js.map

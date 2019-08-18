@@ -380,6 +380,78 @@ var EllipsisComponent = /** @class */ (function () {
     ], EllipsisComponent.prototype, "fullWidthRecognition", void 0);
     return EllipsisComponent;
 }());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    EllipsisComponent.prototype.isSupportLineClamp;
+    /**
+     * @type {?}
+     * @private
+     */
+    EllipsisComponent.prototype.orgEl;
+    /**
+     * @type {?}
+     * @private
+     */
+    EllipsisComponent.prototype.shadowOrgEl;
+    /**
+     * @type {?}
+     * @private
+     */
+    EllipsisComponent.prototype.shadowTextEl;
+    /**
+     * @type {?}
+     * @private
+     */
+    EllipsisComponent.prototype.inited;
+    /** @type {?} */
+    EllipsisComponent.prototype.orgHtml;
+    /** @type {?} */
+    EllipsisComponent.prototype.type;
+    /** @type {?} */
+    EllipsisComponent.prototype.cls;
+    /** @type {?} */
+    EllipsisComponent.prototype.text;
+    /** @type {?} */
+    EllipsisComponent.prototype.targetCount;
+    /** @type {?} */
+    EllipsisComponent.prototype.tooltip;
+    /** @type {?} */
+    EllipsisComponent.prototype.length;
+    /** @type {?} */
+    EllipsisComponent.prototype.lines;
+    /** @type {?} */
+    EllipsisComponent.prototype.fullWidthRecognition;
+    /** @type {?} */
+    EllipsisComponent.prototype.tail;
+    /**
+     * @type {?}
+     * @private
+     */
+    EllipsisComponent.prototype.el;
+    /**
+     * @type {?}
+     * @private
+     */
+    EllipsisComponent.prototype.ngZone;
+    /**
+     * @type {?}
+     * @private
+     */
+    EllipsisComponent.prototype.dom;
+    /**
+     * @type {?}
+     * @private
+     */
+    EllipsisComponent.prototype.doc;
+    /**
+     * @type {?}
+     * @private
+     */
+    EllipsisComponent.prototype.cdr;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -399,6 +471,16 @@ var EllipsisModule = /** @class */ (function () {
     ];
     return EllipsisModule;
 }());
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 
 export { EllipsisComponent, EllipsisModule };
 //# sourceMappingURL=ellipsis.js.map

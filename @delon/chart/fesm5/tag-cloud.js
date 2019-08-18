@@ -9,6 +9,19 @@ import { CommonModule } from '@angular/common';
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function G2TagCloudData() { }
+if (false) {
+    /** @type {?|undefined} */
+    G2TagCloudData.prototype.x;
+    /** @type {?|undefined} */
+    G2TagCloudData.prototype.value;
+    /** @type {?|undefined} */
+    G2TagCloudData.prototype.category;
+    /* Skipping unhandled member: [key: string]: any;*/
+}
 var G2TagCloudComponent = /** @class */ (function () {
     // #endregion
     function G2TagCloudComponent(el, ngZone) {
@@ -241,6 +254,36 @@ var G2TagCloudComponent = /** @class */ (function () {
     ], G2TagCloudComponent.prototype, "height", void 0);
     return G2TagCloudComponent;
 }());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    G2TagCloudComponent.prototype.resize$;
+    /**
+     * @type {?}
+     * @private
+     */
+    G2TagCloudComponent.prototype.chart;
+    /** @type {?} */
+    G2TagCloudComponent.prototype.delay;
+    /** @type {?} */
+    G2TagCloudComponent.prototype.height;
+    /** @type {?} */
+    G2TagCloudComponent.prototype.padding;
+    /** @type {?} */
+    G2TagCloudComponent.prototype.data;
+    /**
+     * @type {?}
+     * @private
+     */
+    G2TagCloudComponent.prototype.el;
+    /**
+     * @type {?}
+     * @private
+     */
+    G2TagCloudComponent.prototype.ngZone;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -260,6 +303,16 @@ var G2TagCloudModule = /** @class */ (function () {
     ];
     return G2TagCloudModule;
 }());
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 
 export { G2TagCloudComponent, G2TagCloudModule };
 //# sourceMappingURL=tag-cloud.js.map

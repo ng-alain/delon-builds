@@ -47,6 +47,48 @@ QRConfig.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
 /** @nocollapse */ QRConfig.ngInjectableDef = ɵɵdefineInjectable({ factory: function QRConfig_Factory() { return new QRConfig(); }, token: QRConfig, providedIn: "root" });
+if (false) {
+    /**
+     * 背景，默认：`white`
+     * @type {?}
+     */
+    QRConfig.prototype.background;
+    /**
+     * 背景透明级别，范围：`0-1` 之间，默认：`1.0`
+     * @type {?}
+     */
+    QRConfig.prototype.backgroundAlpha;
+    /**
+     * 前景，默认：`black`
+     * @type {?}
+     */
+    QRConfig.prototype.foreground;
+    /**
+     * 前景透明级别，范围：`0-1` 之间，默认：`1.0`
+     * @type {?}
+     */
+    QRConfig.prototype.foregroundAlpha;
+    /**
+     * 误差校正级别，默认：`L`
+     * @type {?}
+     */
+    QRConfig.prototype.level;
+    /**
+     * 二维码输出图片MIME类型，默认：`image/png`
+     * @type {?}
+     */
+    QRConfig.prototype.mime;
+    /**
+     * 内边距（单位：px），默认：`10`
+     * @type {?}
+     */
+    QRConfig.prototype.padding;
+    /**
+     * 大小（单位：px），默认：`220`
+     * @type {?}
+     */
+    QRConfig.prototype.size;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -128,6 +170,58 @@ QRService.ctorParameters = () => [
     { type: QRConfig }
 ];
 /** @nocollapse */ QRService.ngInjectableDef = ɵɵdefineInjectable({ factory: function QRService_Factory() { return new QRService(ɵɵinject(QRConfig)); }, token: QRService, providedIn: "root" });
+if (false) {
+    /**
+     * 当前qr实例
+     * @type {?}
+     */
+    QRService.prototype.qr;
+    /**
+     * 背景
+     * @type {?}
+     */
+    QRService.prototype.background;
+    /**
+     * 背景透明级别，范围：`0-1` 之间
+     * @type {?}
+     */
+    QRService.prototype.backgroundAlpha;
+    /**
+     * 前景
+     * @type {?}
+     */
+    QRService.prototype.foreground;
+    /**
+     * 前景透明级别，范围：`0-1` 之间
+     * @type {?}
+     */
+    QRService.prototype.foregroundAlpha;
+    /**
+     * 误差校正级别
+     * @type {?}
+     */
+    QRService.prototype.level;
+    /**
+     * 二维码输出图片MIME类型
+     * @type {?}
+     */
+    QRService.prototype.mime;
+    /**
+     * 内边距（单位：px）
+     * @type {?}
+     */
+    QRService.prototype.padding;
+    /**
+     * 大小（单位：px）
+     * @type {?}
+     */
+    QRService.prototype.size;
+    /**
+     * 值
+     * @type {?}
+     */
+    QRService.prototype.value;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -208,6 +302,40 @@ __decorate([
     InputNumber(),
     __metadata("design:type", Number)
 ], QRComponent.prototype, "size", void 0);
+if (false) {
+    /** @type {?} */
+    QRComponent.prototype.dataURL;
+    /** @type {?} */
+    QRComponent.prototype.background;
+    /** @type {?} */
+    QRComponent.prototype.backgroundAlpha;
+    /** @type {?} */
+    QRComponent.prototype.foreground;
+    /** @type {?} */
+    QRComponent.prototype.foregroundAlpha;
+    /** @type {?} */
+    QRComponent.prototype.level;
+    /** @type {?} */
+    QRComponent.prototype.mime;
+    /** @type {?} */
+    QRComponent.prototype.padding;
+    /** @type {?} */
+    QRComponent.prototype.size;
+    /** @type {?} */
+    QRComponent.prototype.value;
+    /** @type {?} */
+    QRComponent.prototype.change;
+    /**
+     * @type {?}
+     * @private
+     */
+    QRComponent.prototype.srv;
+    /**
+     * @type {?}
+     * @private
+     */
+    QRComponent.prototype.cdr;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -224,6 +352,16 @@ QRModule.decorators = [
                 exports: [...COMPONENTS],
             },] }
 ];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 
 export { QRComponent, QRConfig, QRModule, QRService };
 //# sourceMappingURL=qr.js.map

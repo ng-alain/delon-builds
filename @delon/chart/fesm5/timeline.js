@@ -12,6 +12,24 @@ var G2TimelineData = /** @class */ (function () {
     }
     return G2TimelineData;
 }());
+if (false) {
+    /**
+     * 非 `Date` 格式，自动使用 `new Date` 转换，因此，支持时间格式字符串、数字型时间戳
+     * @type {?}
+     */
+    G2TimelineData.prototype.x;
+    /**
+     * 指标1数据
+     * @type {?}
+     */
+    G2TimelineData.prototype.y1;
+    /**
+     * 指标2数据
+     * @type {?}
+     */
+    G2TimelineData.prototype.y2;
+    /* Skipping unhandled member: [key: string]: any;*/
+}
 var G2TimelineComponent = /** @class */ (function () {
     // #endregion
     function G2TimelineComponent(ngZone) {
@@ -290,6 +308,55 @@ var G2TimelineComponent = /** @class */ (function () {
     ], G2TimelineComponent.prototype, "slider", void 0);
     return G2TimelineComponent;
 }());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    G2TimelineComponent.prototype.node;
+    /**
+     * @type {?}
+     * @private
+     */
+    G2TimelineComponent.prototype.sliderNode;
+    /**
+     * @type {?}
+     * @private
+     */
+    G2TimelineComponent.prototype.chart;
+    /**
+     * @type {?}
+     * @private
+     */
+    G2TimelineComponent.prototype._slider;
+    /** @type {?} */
+    G2TimelineComponent.prototype.delay;
+    /** @type {?} */
+    G2TimelineComponent.prototype.title;
+    /** @type {?} */
+    G2TimelineComponent.prototype.data;
+    /** @type {?} */
+    G2TimelineComponent.prototype.titleMap;
+    /** @type {?} */
+    G2TimelineComponent.prototype.colorMap;
+    /** @type {?} */
+    G2TimelineComponent.prototype.mask;
+    /** @type {?} */
+    G2TimelineComponent.prototype.position;
+    /** @type {?} */
+    G2TimelineComponent.prototype.height;
+    /** @type {?} */
+    G2TimelineComponent.prototype.padding;
+    /** @type {?} */
+    G2TimelineComponent.prototype.borderWidth;
+    /** @type {?} */
+    G2TimelineComponent.prototype.slider;
+    /**
+     * @type {?}
+     * @private
+     */
+    G2TimelineComponent.prototype.ngZone;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -309,6 +376,16 @@ var G2TimelineModule = /** @class */ (function () {
     ];
     return G2TimelineModule;
 }());
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 
 export { G2TimelineComponent, G2TimelineData, G2TimelineModule };
 //# sourceMappingURL=timeline.js.map

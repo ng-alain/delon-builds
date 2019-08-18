@@ -64,6 +64,16 @@ CountDownComponent.propDecorators = {
     notify: [{ type: Output }],
     end: [{ type: Output }]
 };
+if (false) {
+    /** @type {?} */
+    CountDownComponent.prototype.config;
+    /** @type {?} */
+    CountDownComponent.prototype.begin;
+    /** @type {?} */
+    CountDownComponent.prototype.notify;
+    /** @type {?} */
+    CountDownComponent.prototype.end;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -80,6 +90,16 @@ CountDownModule.decorators = [
                 exports: [...COMPONENTS],
             },] }
 ];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 
 export { CountDownComponent, CountDownModule };
 //# sourceMappingURL=count-down.js.map

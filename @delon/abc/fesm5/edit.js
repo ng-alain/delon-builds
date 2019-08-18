@@ -1,5 +1,5 @@
-import { __decorate, __metadata, __assign, __spread } from 'tslib';
-import { ɵɵdefineInjectable, Injectable, Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Host, Optional, ElementRef, Renderer2, ChangeDetectorRef, ContentChild, ViewChild, NgModule } from '@angular/core';
+import { __assign, __decorate, __metadata, __spread } from 'tslib';
+import { Injectable, ɵɵdefineInjectable, Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Host, Optional, ElementRef, Renderer2, ChangeDetectorRef, ContentChild, ViewChild, NgModule } from '@angular/core';
 import { toNumber, InputNumber, InputBoolean, deepGet, isEmpty, DelonUtilModule } from '@delon/util';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { NgModel, FormControlName } from '@angular/forms';
@@ -47,6 +47,40 @@ var SEConfig = /** @class */ (function () {
     /** @nocollapse */ SEConfig.ngInjectableDef = ɵɵdefineInjectable({ factory: function SEConfig_Factory() { return new SEConfig(); }, token: SEConfig, providedIn: "root" });
     return SEConfig;
 }());
+if (false) {
+    /**
+     * 大小，默认：`default`
+     * - `compact` 紧凑型，强制忽略 `error`、`extra` 展示
+     * @type {?}
+     */
+    SEConfig.prototype.size;
+    /**
+     * 布局类型，等同 `nzLayout`
+     * - `inline` 时强制大小为 `compact`
+     * @type {?}
+     */
+    SEConfig.prototype.nzLayout;
+    /**
+     * 间距，当 `nzLayout:horizontal` 时有效，默认：`32`
+     * @type {?}
+     */
+    SEConfig.prototype.gutter;
+    /**
+     * 列数，默认：`2`
+     * @type {?}
+     */
+    SEConfig.prototype.col;
+    /**
+     * 标签文本宽度，单位：`px`，默认：`150`
+     * @type {?}
+     */
+    SEConfig.prototype.labelWidth;
+    /**
+     * 是否立即呈现错误视觉
+     * @type {?}
+     */
+    SEConfig.prototype.firstVisual;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -142,6 +176,32 @@ var SEContainerComponent = /** @class */ (function () {
     ], SEContainerComponent.prototype, "line", void 0);
     return SEContainerComponent;
 }());
+if (false) {
+    /** @type {?} */
+    SEContainerComponent.prototype.colInCon;
+    /** @type {?} */
+    SEContainerComponent.prototype.col;
+    /** @type {?} */
+    SEContainerComponent.prototype.labelWidth;
+    /** @type {?} */
+    SEContainerComponent.prototype.title;
+    /**
+     * @type {?}
+     * @private
+     */
+    SEContainerComponent.prototype._gutter;
+    /**
+     * @type {?}
+     * @private
+     */
+    SEContainerComponent.prototype._nzLayout;
+    /** @type {?} */
+    SEContainerComponent.prototype.size;
+    /** @type {?} */
+    SEContainerComponent.prototype.firstVisual;
+    /** @type {?} */
+    SEContainerComponent.prototype.line;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -247,6 +307,23 @@ var SETitleComponent = /** @class */ (function () {
     ]; };
     return SETitleComponent;
 }());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    SETitleComponent.prototype.el;
+    /**
+     * @type {?}
+     * @private
+     */
+    SETitleComponent.prototype.parent;
+    /**
+     * @type {?}
+     * @private
+     */
+    SETitleComponent.prototype.ren;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -525,6 +602,96 @@ var SEComponent = /** @class */ (function () {
     ], SEComponent.prototype, "labelWidth", void 0);
     return SEComponent;
 }());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    SEComponent.prototype.el;
+    /**
+     * @type {?}
+     * @private
+     */
+    SEComponent.prototype.status$;
+    /**
+     * @type {?}
+     * @private
+     */
+    SEComponent.prototype.ngModel;
+    /**
+     * @type {?}
+     * @private
+     */
+    SEComponent.prototype.formControlName;
+    /**
+     * @type {?}
+     * @private
+     */
+    SEComponent.prototype.contentElement;
+    /**
+     * @type {?}
+     * @private
+     */
+    SEComponent.prototype.clsMap;
+    /**
+     * @type {?}
+     * @private
+     */
+    SEComponent.prototype.inited;
+    /**
+     * @type {?}
+     * @private
+     */
+    SEComponent.prototype.onceFlag;
+    /** @type {?} */
+    SEComponent.prototype.invalid;
+    /** @type {?} */
+    SEComponent.prototype._labelWidth;
+    /** @type {?} */
+    SEComponent.prototype.optional;
+    /** @type {?} */
+    SEComponent.prototype.optionalHelp;
+    /** @type {?} */
+    SEComponent.prototype.error;
+    /** @type {?} */
+    SEComponent.prototype.extra;
+    /** @type {?} */
+    SEComponent.prototype.label;
+    /** @type {?} */
+    SEComponent.prototype.col;
+    /** @type {?} */
+    SEComponent.prototype.required;
+    /** @type {?} */
+    SEComponent.prototype.controlClass;
+    /** @type {?} */
+    SEComponent.prototype.line;
+    /** @type {?} */
+    SEComponent.prototype.labelWidth;
+    /** @type {?} */
+    SEComponent.prototype._id;
+    /** @type {?} */
+    SEComponent.prototype._autoId;
+    /**
+     * @type {?}
+     * @private
+     */
+    SEComponent.prototype.parent;
+    /**
+     * @type {?}
+     * @private
+     */
+    SEComponent.prototype.rep;
+    /**
+     * @type {?}
+     * @private
+     */
+    SEComponent.prototype.ren;
+    /**
+     * @type {?}
+     * @private
+     */
+    SEComponent.prototype.cdr;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -544,6 +711,16 @@ var SEModule = /** @class */ (function () {
     ];
     return SEModule;
 }());
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 
 export { SEComponent, SEConfig, SEContainerComponent, SEErrorComponent, SEModule, SETitleComponent };
 //# sourceMappingURL=edit.js.map

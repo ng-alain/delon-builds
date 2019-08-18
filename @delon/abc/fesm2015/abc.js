@@ -94,5 +94,15 @@ DelonABCModule.decorators = [
     { type: NgModule, args: [{ exports: MODULES },] }
 ];
 
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
 export { DelonABCModule };
 //# sourceMappingURL=abc.js.map

@@ -1,9 +1,65 @@
-import { ɵɵdefineInjectable, Injectable, ɵɵinject, NgModule } from '@angular/core';
+import { Injectable, ɵɵdefineInjectable, ɵɵinject, NgModule } from '@angular/core';
 import { __assign } from 'tslib';
 import { HttpClient } from '@angular/common/http';
 import { LazyService, DelonUtilModule } from '@delon/util';
 import { saveAs } from 'file-saver';
 import { CommonModule } from '@angular/common';
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ */
+function ZipWriteOptions() { }
+if (false) {
+    /**
+     * save file name, default: `download.zip`
+     * @type {?|undefined}
+     */
+    ZipWriteOptions.prototype.filename;
+    /** @type {?|undefined} */
+    ZipWriteOptions.prototype.options;
+    /**
+     * The optional function called on each internal update with the metadata.
+     * @type {?|undefined}
+     */
+    ZipWriteOptions.prototype.update;
+    /**
+     * triggers when saveas
+     * @type {?|undefined}
+     */
+    ZipWriteOptions.prototype.callback;
+}
+/**
+ * @record
+ */
+function ZipSaveOptions() { }
+if (false) {
+    /**
+     * 指定保存文件名，默认 `download.zip`
+     * @type {?|undefined}
+     */
+    ZipSaveOptions.prototype.filename;
+    /**
+     * JSZip `generateAsync` 方法的 `options` 选项
+     * @see https://stuk.github.io/jszip/documentation/api_jszip/generate_async.html
+     * @type {?|undefined}
+     */
+    ZipSaveOptions.prototype.options;
+    /**
+     * JSZip `generateAsync` 方法的 `onUpdate` 回调
+     * @see https://stuk.github.io/jszip/documentation/api_jszip/generate_async.html
+     * @type {?|undefined}
+     */
+    ZipSaveOptions.prototype.update;
+    /**
+     * 保存前回调方法
+     * @type {?|undefined}
+     */
+    ZipSaveOptions.prototype.callback;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -26,6 +82,18 @@ var ZipConfig = /** @class */ (function () {
     /** @nocollapse */ ZipConfig.ngInjectableDef = ɵɵdefineInjectable({ factory: function ZipConfig_Factory() { return new ZipConfig(); }, token: ZipConfig, providedIn: "root" });
     return ZipConfig;
 }());
+if (false) {
+    /**
+     * Zip library path
+     * @type {?}
+     */
+    ZipConfig.prototype.url;
+    /**
+     * Defines which zip optional utils should get loaded
+     * @type {?}
+     */
+    ZipConfig.prototype.utils;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -257,6 +325,23 @@ var ZipService = /** @class */ (function () {
     /** @nocollapse */ ZipService.ngInjectableDef = ɵɵdefineInjectable({ factory: function ZipService_Factory() { return new ZipService(ɵɵinject(ZipConfig), ɵɵinject(HttpClient), ɵɵinject(LazyService)); }, token: ZipService, providedIn: "root" });
     return ZipService;
 }());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    ZipService.prototype.cog;
+    /**
+     * @type {?}
+     * @private
+     */
+    ZipService.prototype.http;
+    /**
+     * @type {?}
+     * @private
+     */
+    ZipService.prototype.lazy;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -272,6 +357,16 @@ var ZipModule = /** @class */ (function () {
     ];
     return ZipModule;
 }());
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 
 export { ZipConfig, ZipModule, ZipService };
 //# sourceMappingURL=zip.js.map

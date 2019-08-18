@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, Input, Output, EventEmitter, ChangeDetectionStrategy, ChangeDetectorRef, NgModule } from '@angular/core';
+import { EventEmitter, Component, ViewEncapsulation, Input, Output, ChangeDetectionStrategy, ChangeDetectorRef, NgModule } from '@angular/core';
 import { __decorate, __metadata, __spread } from 'tslib';
 import { DelonLocaleService, DelonLocaleModule } from '@delon/theme';
 import { InputNumber, InputBoolean } from '@delon/util';
@@ -10,6 +10,83 @@ import { NzListModule } from 'ng-zorro-antd/list';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { NzTabsModule } from 'ng-zorro-antd/tabs';
 import { NzTagModule } from 'ng-zorro-antd/tag';
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ */
+function NoticeItem() { }
+if (false) {
+    /** @type {?} */
+    NoticeItem.prototype.title;
+    /** @type {?} */
+    NoticeItem.prototype.list;
+    /**
+     * 空列表文本，默认：`无通知`
+     * @type {?|undefined}
+     */
+    NoticeItem.prototype.emptyText;
+    /**
+     * 空列表图像
+     * @type {?|undefined}
+     */
+    NoticeItem.prototype.emptyImage;
+    /**
+     * 清空文本，默认：`清空`
+     * @type {?|undefined}
+     */
+    NoticeItem.prototype.clearText;
+}
+/**
+ * @record
+ */
+function NoticeIconList() { }
+if (false) {
+    /**
+     * 头像图片链接
+     * @type {?|undefined}
+     */
+    NoticeIconList.prototype.avatar;
+    /**
+     * 标题
+     * @type {?|undefined}
+     */
+    NoticeIconList.prototype.title;
+    /**
+     * 描述信息
+     * @type {?|undefined}
+     */
+    NoticeIconList.prototype.description;
+    /**
+     * 时间戳
+     * @type {?|undefined}
+     */
+    NoticeIconList.prototype.datetime;
+    /**
+     * 额外信息，在列表项右上角
+     * @type {?|undefined}
+     */
+    NoticeIconList.prototype.extra;
+    /**
+     * 是否已读状态
+     * @type {?|undefined}
+     */
+    NoticeIconList.prototype.read;
+    /* Skipping unhandled member: [key: string]: any;*/
+}
+/**
+ * @record
+ */
+function NoticeIconSelect() { }
+if (false) {
+    /** @type {?} */
+    NoticeIconSelect.prototype.title;
+    /** @type {?} */
+    NoticeIconSelect.prototype.item;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -58,6 +135,16 @@ var NoticeIconTabComponent = /** @class */ (function () {
     };
     return NoticeIconTabComponent;
 }());
+if (false) {
+    /** @type {?} */
+    NoticeIconTabComponent.prototype.locale;
+    /** @type {?} */
+    NoticeIconTabComponent.prototype.data;
+    /** @type {?} */
+    NoticeIconTabComponent.prototype.select;
+    /** @type {?} */
+    NoticeIconTabComponent.prototype.clear;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -185,6 +272,43 @@ var NoticeIconComponent = /** @class */ (function () {
     ], NoticeIconComponent.prototype, "popoverVisible", void 0);
     return NoticeIconComponent;
 }());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    NoticeIconComponent.prototype.i18n$;
+    /** @type {?} */
+    NoticeIconComponent.prototype.locale;
+    /** @type {?} */
+    NoticeIconComponent.prototype.data;
+    /** @type {?} */
+    NoticeIconComponent.prototype.count;
+    /** @type {?} */
+    NoticeIconComponent.prototype.loading;
+    /** @type {?} */
+    NoticeIconComponent.prototype.popoverVisible;
+    /** @type {?} */
+    NoticeIconComponent.prototype.btnClass;
+    /** @type {?} */
+    NoticeIconComponent.prototype.btnIconClass;
+    /** @type {?} */
+    NoticeIconComponent.prototype.select;
+    /** @type {?} */
+    NoticeIconComponent.prototype.clear;
+    /** @type {?} */
+    NoticeIconComponent.prototype.popoverVisibleChange;
+    /**
+     * @type {?}
+     * @private
+     */
+    NoticeIconComponent.prototype.i18n;
+    /**
+     * @type {?}
+     * @private
+     */
+    NoticeIconComponent.prototype.cdr;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -214,6 +338,16 @@ var NoticeIconModule = /** @class */ (function () {
     ];
     return NoticeIconModule;
 }());
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 
 export { NoticeIconComponent, NoticeIconModule, NoticeIconTabComponent };
 //# sourceMappingURL=noticeIcon.js.map

@@ -79,6 +79,34 @@ __decorate([
     InputBoolean(),
     __metadata("design:type", Object)
 ], TagSelectComponent.prototype, "expandable", void 0);
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    TagSelectComponent.prototype.i18n$;
+    /** @type {?} */
+    TagSelectComponent.prototype.locale;
+    /** @type {?} */
+    TagSelectComponent.prototype.expand;
+    /**
+     * 是否启用 `展开与收进`
+     * @type {?}
+     */
+    TagSelectComponent.prototype.expandable;
+    /** @type {?} */
+    TagSelectComponent.prototype.change;
+    /**
+     * @type {?}
+     * @private
+     */
+    TagSelectComponent.prototype.i18n;
+    /**
+     * @type {?}
+     * @private
+     */
+    TagSelectComponent.prototype.cdr;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -95,6 +123,16 @@ TagSelectModule.decorators = [
                 exports: [...COMPONENTS],
             },] }
 ];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 
 export { TagSelectComponent, TagSelectModule };
 //# sourceMappingURL=tagSelect.js.map

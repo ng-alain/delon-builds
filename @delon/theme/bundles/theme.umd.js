@@ -52,6 +52,74 @@
         return __assign.apply(this, arguments);
     };
 
+    function __rest(s, e) {
+        var t = {};
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+            t[p] = s[p];
+        if (s != null && typeof Object.getOwnPropertySymbols === "function")
+            for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+                if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                    t[p[i]] = s[p[i]];
+            }
+        return t;
+    }
+
+    function __decorate(decorators, target, key, desc) {
+        var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+        if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+        else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+        return c > 3 && r && Object.defineProperty(target, key, r), r;
+    }
+
+    function __param(paramIndex, decorator) {
+        return function (target, key) { decorator(target, key, paramIndex); }
+    }
+
+    function __metadata(metadataKey, metadataValue) {
+        if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(metadataKey, metadataValue);
+    }
+
+    function __awaiter(thisArg, _arguments, P, generator) {
+        return new (P || (P = Promise))(function (resolve, reject) {
+            function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+            function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+            function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+            step((generator = generator.apply(thisArg, _arguments || [])).next());
+        });
+    }
+
+    function __generator(thisArg, body) {
+        var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+        return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+        function verb(n) { return function (v) { return step([n, v]); }; }
+        function step(op) {
+            if (f) throw new TypeError("Generator is already executing.");
+            while (_) try {
+                if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+                if (y = 0, t) op = [op[0] & 2, t.value];
+                switch (op[0]) {
+                    case 0: case 1: t = op; break;
+                    case 4: _.label++; return { value: op[1], done: false };
+                    case 5: _.label++; y = op[1]; op = [0]; continue;
+                    case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                    default:
+                        if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                        if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                        if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                        if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                        if (t[2]) _.ops.pop();
+                        _.trys.pop(); continue;
+                }
+                op = body.call(thisArg, _);
+            } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+            if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+        }
+    }
+
+    function __exportStar(m, exports) {
+        for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+    }
+
     function __values(o) {
         var m = typeof Symbol === "function" && o[Symbol.iterator], i = 0;
         if (m) return m.call(o);
@@ -84,6 +152,61 @@
         for (var ar = [], i = 0; i < arguments.length; i++)
             ar = ar.concat(__read(arguments[i]));
         return ar;
+    }
+
+    function __spreadArrays() {
+        for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
+        for (var r = Array(s), k = 0, i = 0; i < il; i++)
+            for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
+                r[k] = a[j];
+        return r;
+    };
+
+    function __await(v) {
+        return this instanceof __await ? (this.v = v, this) : new __await(v);
+    }
+
+    function __asyncGenerator(thisArg, _arguments, generator) {
+        if (!Symbol.asyncIterator) throw new TypeError("Symbol.asyncIterator is not defined.");
+        var g = generator.apply(thisArg, _arguments || []), i, q = [];
+        return i = {}, verb("next"), verb("throw"), verb("return"), i[Symbol.asyncIterator] = function () { return this; }, i;
+        function verb(n) { if (g[n]) i[n] = function (v) { return new Promise(function (a, b) { q.push([n, v, a, b]) > 1 || resume(n, v); }); }; }
+        function resume(n, v) { try { step(g[n](v)); } catch (e) { settle(q[0][3], e); } }
+        function step(r) { r.value instanceof __await ? Promise.resolve(r.value.v).then(fulfill, reject) : settle(q[0][2], r); }
+        function fulfill(value) { resume("next", value); }
+        function reject(value) { resume("throw", value); }
+        function settle(f, v) { if (f(v), q.shift(), q.length) resume(q[0][0], q[0][1]); }
+    }
+
+    function __asyncDelegator(o) {
+        var i, p;
+        return i = {}, verb("next"), verb("throw", function (e) { throw e; }), verb("return"), i[Symbol.iterator] = function () { return this; }, i;
+        function verb(n, f) { i[n] = o[n] ? function (v) { return (p = !p) ? { value: __await(o[n](v)), done: n === "return" } : f ? f(v) : v; } : f; }
+    }
+
+    function __asyncValues(o) {
+        if (!Symbol.asyncIterator) throw new TypeError("Symbol.asyncIterator is not defined.");
+        var m = o[Symbol.asyncIterator], i;
+        return m ? m.call(o) : (o = typeof __values === "function" ? __values(o) : o[Symbol.iterator](), i = {}, verb("next"), verb("throw"), verb("return"), i[Symbol.asyncIterator] = function () { return this; }, i);
+        function verb(n) { i[n] = o[n] && function (v) { return new Promise(function (resolve, reject) { v = o[n](v), settle(resolve, reject, v.done, v.value); }); }; }
+        function settle(resolve, reject, d, v) { Promise.resolve(v).then(function(v) { resolve({ value: v, done: d }); }, reject); }
+    }
+
+    function __makeTemplateObject(cooked, raw) {
+        if (Object.defineProperty) { Object.defineProperty(cooked, "raw", { value: raw }); } else { cooked.raw = raw; }
+        return cooked;
+    };
+
+    function __importStar(mod) {
+        if (mod && mod.__esModule) return mod;
+        var result = {};
+        if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
+        result.default = mod;
+        return result;
+    }
+
+    function __importDefault(mod) {
+        return (mod && mod.__esModule) ? mod : { default: mod };
     }
 
     /**
@@ -148,6 +271,183 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
+    /**
+     * @record
+     */
+    function MenuIcon() { }
+    if (false) {
+        /**
+         * Type for icon
+         * @type {?}
+         */
+        MenuIcon.prototype.type;
+        /**
+         * Value for the icon, can be set Class Name, nz-icon of `nzType`, image
+         * @type {?|undefined}
+         */
+        MenuIcon.prototype.value;
+        /**
+         * Type of the ant design icon, default: `outline`
+         * @type {?|undefined}
+         */
+        MenuIcon.prototype.theme;
+        /**
+         * Rotate icon with animation, default: `false`
+         * @type {?|undefined}
+         */
+        MenuIcon.prototype.spin;
+        /**
+         * Only support the two-tone icon. Specific the primary color
+         * @type {?|undefined}
+         */
+        MenuIcon.prototype.twoToneColor;
+        /**
+         * Type of the icon from iconfont
+         * @type {?|undefined}
+         */
+        MenuIcon.prototype.iconfont;
+    }
+    /**
+     * @record
+     */
+    function Menu() { }
+    if (false) {
+        /**
+         * Text of menu item, can be choose one of  `text` or `i18n`
+         * @type {?|undefined}
+         */
+        Menu.prototype.text;
+        /**
+         * I18n key of menu item, can be choose one of  `text` or `i18n`
+         * @type {?|undefined}
+         */
+        Menu.prototype.i18n;
+        /**
+         * Whether to display the group name, default: `true`
+         * @type {?|undefined}
+         */
+        Menu.prototype.group;
+        /**
+         * Routing for the menu item, can be choose one of `link` or `externalLink`
+         * @type {?|undefined}
+         */
+        Menu.prototype.link;
+        /**
+         * External link for the menu item, can be choose one of `link` or `externalLink`
+         * @type {?|undefined}
+         */
+        Menu.prototype.externalLink;
+        /**
+         * Specifies `externalLink` where to display the linked URL
+         * @type {?|undefined}
+         */
+        Menu.prototype.target;
+        /**
+         * Icon for the menu item, only valid for the first level menu
+         * @type {?|undefined}
+         */
+        Menu.prototype.icon;
+        /**
+         * Badget for the menu item when `group` is `true`
+         * @type {?|undefined}
+         */
+        Menu.prototype.badge;
+        /**
+         * Whether to display a red dot instead of `badge` value
+         * @type {?|undefined}
+         */
+        Menu.prototype.badgeDot;
+        /**
+         * Badge [color](https://ng.ant.design/components/badge/en#nz-badge)
+         * @type {?|undefined}
+         */
+        Menu.prototype.badgeStatus;
+        /**
+         * Whether disable for the menu item
+         * @type {?|undefined}
+         */
+        Menu.prototype.disabled;
+        /**
+         * Whether hidden for the menu item
+         * @type {?|undefined}
+         */
+        Menu.prototype.hide;
+        /**
+         * Whether hide in breadcrumbs, which are valid when the `page-header` component automatically generates breadcrumbs
+         * @type {?|undefined}
+         */
+        Menu.prototype.hideInBreadcrumb;
+        /**
+         * ACL configuration, it's equivalent to `ACLService.can(roleOrAbility: ACLCanType)` parameter value
+         * @type {?|undefined}
+         */
+        Menu.prototype.acl;
+        /**
+         * Whether shortcut menu item
+         * @type {?|undefined}
+         */
+        Menu.prototype.shortcut;
+        /**
+         * Wheter shortcut menu root node
+         * @type {?|undefined}
+         */
+        Menu.prototype.shortcutRoot;
+        /**
+         * Whether to allow reuse, need to cooperate with the `reuse-tab` component
+         * @type {?|undefined}
+         */
+        Menu.prototype.reuse;
+        /**
+         * Whether to expand, when `checkStrictly` is valid in `sidebar-nav` component
+         * @type {?|undefined}
+         */
+        Menu.prototype.open;
+        /**
+         * Children menu of menu item
+         * @type {?|undefined}
+         */
+        Menu.prototype.children;
+        /* Skipping unhandled member: [key: string]: any;*/
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /**
+     * @record
+     */
+    function AlainI18NService() { }
+    if (false) {
+        /**
+         * 调用 `use` 触发变更通知
+         * @type {?}
+         */
+        AlainI18NService.prototype.change;
+        /* Skipping unhandled member: [key: string]: any;*/
+        /**
+         * 变更语言
+         * @param {?} lang 语言代码
+         * @param {?=} emit 是否触发 `change`，默认：true
+         * @return {?}
+         */
+        AlainI18NService.prototype.use = function (lang, emit) { };
+        /**
+         * 返回当前语言列表
+         * @return {?}
+         */
+        AlainI18NService.prototype.getLangs = function () { };
+        /**
+         * 翻译
+         * - `params` 模板所需要的参数对象
+         * - `isSafe` 是否返回安全字符，自动调用 `bypassSecurityTrustHtml`
+         * @param {?} key
+         * @param {?=} params
+         * @param {?=} isSafe
+         * @return {?}
+         */
+        AlainI18NService.prototype.fanyi = function (key, params, isSafe) { };
+    }
     /** @type {?} */
     var ALAIN_I18N_TOKEN = new core.InjectionToken('alainTranslatorToken', {
         providedIn: 'root',
@@ -214,6 +514,13 @@
         /** @nocollapse */ AlainI18NServiceFake.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function AlainI18NServiceFake_Factory() { return new AlainI18NServiceFake(); }, token: AlainI18NServiceFake, providedIn: "root" });
         return AlainI18NServiceFake;
     }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        AlainI18NServiceFake.prototype.change$;
+    }
 
     /**
      * @fileoverview added by tsickle
@@ -623,6 +930,33 @@
         /** @nocollapse */ MenuService.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function MenuService_Factory() { return new MenuService(core.ɵɵinject(ALAIN_I18N_TOKEN, 8), core.ɵɵinject(acl.ACLService, 8)); }, token: MenuService, providedIn: "root" });
         return MenuService;
     }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        MenuService.prototype._change$;
+        /**
+         * @type {?}
+         * @private
+         */
+        MenuService.prototype.i18n$;
+        /**
+         * @type {?}
+         * @private
+         */
+        MenuService.prototype.data;
+        /**
+         * @type {?}
+         * @private
+         */
+        MenuService.prototype.i18nSrv;
+        /**
+         * @type {?}
+         * @private
+         */
+        MenuService.prototype.aclService;
+    }
 
     /**
      * @fileoverview added by tsickle
@@ -734,6 +1068,99 @@
         /** @nocollapse */ ScrollService.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function ScrollService_Factory() { return new ScrollService(core.ɵɵinject(WINDOW), core.ɵɵinject(common.DOCUMENT)); }, token: ScrollService, providedIn: "root" });
         return ScrollService;
     }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        ScrollService.prototype.win;
+        /**
+         * @type {?}
+         * @private
+         */
+        ScrollService.prototype.doc;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /**
+     * @record
+     */
+    function App() { }
+    if (false) {
+        /**
+         * Name for app
+         * @type {?|undefined}
+         */
+        App.prototype.name;
+        /**
+         * Description for app
+         * @type {?|undefined}
+         */
+        App.prototype.description;
+        /* Skipping unhandled member: [key: string]: any;*/
+    }
+    /**
+     * @record
+     */
+    function User() { }
+    if (false) {
+        /**
+         * Name for current user
+         * @type {?|undefined}
+         */
+        User.prototype.name;
+        /**
+         * Avatar for current user
+         * @type {?|undefined}
+         */
+        User.prototype.avatar;
+        /**
+         * Email for current user
+         * @type {?|undefined}
+         */
+        User.prototype.email;
+        /* Skipping unhandled member: [key: string]: any;*/
+    }
+    /**
+     * @record
+     */
+    function Layout() { }
+    if (false) {
+        /**
+         * Whether to fold menu
+         * @type {?}
+         */
+        Layout.prototype.collapsed;
+        /**
+         * Current language
+         * @type {?}
+         */
+        Layout.prototype.lang;
+        /**
+         * Color weak
+         * @type {?}
+         */
+        Layout.prototype.colorWeak;
+        /* Skipping unhandled member: [key: string]: any;*/
+    }
+    /**
+     * @record
+     */
+    function SettingsNotify() { }
+    if (false) {
+        /** @type {?} */
+        SettingsNotify.prototype.type;
+        /**
+         * Update `key` name, limited `layout` type
+         * @type {?|undefined}
+         */
+        SettingsNotify.prototype.name;
+        /** @type {?} */
+        SettingsNotify.prototype.value;
+    }
 
     /**
      * @fileoverview added by tsickle
@@ -887,6 +1314,59 @@
         /** @nocollapse */ SettingsService.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function SettingsService_Factory() { return new SettingsService(); }, token: SettingsService, providedIn: "root" });
         return SettingsService;
     }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        SettingsService.prototype.notify$;
+        /**
+         * @type {?}
+         * @private
+         */
+        SettingsService.prototype._app;
+        /**
+         * @type {?}
+         * @private
+         */
+        SettingsService.prototype._user;
+        /**
+         * @type {?}
+         * @private
+         */
+        SettingsService.prototype._layout;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /**
+     * @record
+     */
+    function ResponsiveConfig() { }
+    if (false) {
+        /** @type {?} */
+        ResponsiveConfig.prototype.rules;
+    }
+    /**
+     * @record
+     */
+    function ResponsiveConfigRule() { }
+    if (false) {
+        /** @type {?|undefined} */
+        ResponsiveConfigRule.prototype.xs;
+        /** @type {?|undefined} */
+        ResponsiveConfigRule.prototype.sm;
+        /** @type {?|undefined} */
+        ResponsiveConfigRule.prototype.md;
+        /** @type {?|undefined} */
+        ResponsiveConfigRule.prototype.lg;
+        /** @type {?|undefined} */
+        ResponsiveConfigRule.prototype.xl;
+        /** @type {?|undefined} */
+        ResponsiveConfigRule.prototype.xxl;
+    }
 
     /**
      * @fileoverview added by tsickle
@@ -901,6 +1381,12 @@
         /** @nocollapse */ AlainThemeConfig.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function AlainThemeConfig_Factory() { return new AlainThemeConfig(); }, token: AlainThemeConfig, providedIn: "root" });
         return AlainThemeConfig;
     }());
+    if (false) {
+        /** @type {?} */
+        AlainThemeConfig.prototype.http;
+        /** @type {?} */
+        AlainThemeConfig.prototype.responsive;
+    }
 
     /**
      * @fileoverview added by tsickle
@@ -969,6 +1455,13 @@
         /** @nocollapse */ ResponsiveService.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function ResponsiveService_Factory() { return new ResponsiveService(core.ɵɵinject(AlainThemeConfig)); }, token: ResponsiveService, providedIn: "root" });
         return ResponsiveService;
     }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        ResponsiveService.prototype.cog;
+    }
 
     /**
      * @fileoverview added by tsickle
@@ -1199,6 +1692,65 @@
         /** @nocollapse */ TitleService.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function TitleService_Factory() { return new TitleService(core.ɵɵinject(core.INJECTOR), core.ɵɵinject(platformBrowser.Title), core.ɵɵinject(MenuService), core.ɵɵinject(ALAIN_I18N_TOKEN, 8), core.ɵɵinject(common.DOCUMENT)); }, token: TitleService, providedIn: "root" });
         return TitleService;
     }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        TitleService.prototype._prefix;
+        /**
+         * @type {?}
+         * @private
+         */
+        TitleService.prototype._suffix;
+        /**
+         * @type {?}
+         * @private
+         */
+        TitleService.prototype._separator;
+        /**
+         * @type {?}
+         * @private
+         */
+        TitleService.prototype._reverse;
+        /**
+         * @type {?}
+         * @private
+         */
+        TitleService.prototype.i18n$;
+        /** @type {?} */
+        TitleService.prototype.DELAY_TIME;
+        /**
+         * 设置默认标题名
+         * @type {?}
+         */
+        TitleService.prototype.default;
+        /**
+         * @type {?}
+         * @private
+         */
+        TitleService.prototype.injector;
+        /**
+         * @type {?}
+         * @private
+         */
+        TitleService.prototype.title;
+        /**
+         * @type {?}
+         * @private
+         */
+        TitleService.prototype.menuSrv;
+        /**
+         * @type {?}
+         * @private
+         */
+        TitleService.prototype.i18nSrv;
+        /**
+         * @type {?}
+         * @private
+         */
+        TitleService.prototype.doc;
+    }
 
     /**
      * @fileoverview added by tsickle
@@ -1206,6 +1758,201 @@
      */
     /** @type {?} */
     var DELON_LOCALE = new core.InjectionToken('delon-locale');
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /**
+     * @record
+     */
+    function LocaleData() { }
+    /**
+     * @record
+     */
+    function ExceptionLocaleData() { }
+    if (false) {
+        /* Skipping unnamed member:
+        403: string;*/
+        /* Skipping unnamed member:
+        404: string;*/
+        /* Skipping unnamed member:
+        500: string;*/
+        /** @type {?} */
+        ExceptionLocaleData.prototype.backToHome;
+    }
+    /**
+     * @record
+     */
+    function NoticeIconLocaleData() { }
+    if (false) {
+        /** @type {?} */
+        NoticeIconLocaleData.prototype.emptyText;
+        /** @type {?} */
+        NoticeIconLocaleData.prototype.clearText;
+    }
+    /**
+     * @record
+     */
+    function ReuseTabLocaleData() { }
+    if (false) {
+        /** @type {?} */
+        ReuseTabLocaleData.prototype.close;
+        /** @type {?} */
+        ReuseTabLocaleData.prototype.closeOther;
+        /** @type {?} */
+        ReuseTabLocaleData.prototype.closeRight;
+        /** @type {?} */
+        ReuseTabLocaleData.prototype.clear;
+    }
+    /**
+     * @record
+     */
+    function TagSelectLocaleData() { }
+    if (false) {
+        /** @type {?} */
+        TagSelectLocaleData.prototype.expand;
+        /** @type {?} */
+        TagSelectLocaleData.prototype.collapse;
+    }
+    /**
+     * @record
+     */
+    function MiniProgressLocaleData() { }
+    if (false) {
+        /** @type {?} */
+        MiniProgressLocaleData.prototype.target;
+    }
+    /**
+     * @record
+     */
+    function STLocaleData() { }
+    if (false) {
+        /** @type {?} */
+        STLocaleData.prototype.total;
+        /** @type {?} */
+        STLocaleData.prototype.filterConfirm;
+        /** @type {?} */
+        STLocaleData.prototype.filterReset;
+    }
+    /**
+     * @record
+     */
+    function SFLocaleData() { }
+    if (false) {
+        /** @type {?} */
+        SFLocaleData.prototype.submit;
+        /** @type {?} */
+        SFLocaleData.prototype.reset;
+        /** @type {?} */
+        SFLocaleData.prototype.search;
+        /** @type {?} */
+        SFLocaleData.prototype.edit;
+        /** @type {?} */
+        SFLocaleData.prototype.addText;
+        /** @type {?} */
+        SFLocaleData.prototype.removeText;
+        /** @type {?} */
+        SFLocaleData.prototype.checkAllText;
+        /** @type {?} */
+        SFLocaleData.prototype.error;
+    }
+    /**
+     * @record
+     */
+    function SFErrorLocaleData() { }
+    if (false) {
+        /* Skipping unnamed member:
+        'false schema': string;*/
+        /** @type {?} */
+        SFErrorLocaleData.prototype.$ref;
+        /** @type {?} */
+        SFErrorLocaleData.prototype.additionalItems;
+        /** @type {?} */
+        SFErrorLocaleData.prototype.additionalProperties;
+        /** @type {?} */
+        SFErrorLocaleData.prototype.anyOf;
+        /** @type {?} */
+        SFErrorLocaleData.prototype.dependencies;
+        /** @type {?} */
+        SFErrorLocaleData.prototype.enum;
+        /** @type {?} */
+        SFErrorLocaleData.prototype.format;
+        /** @type {?} */
+        SFErrorLocaleData.prototype.type;
+        /** @type {?} */
+        SFErrorLocaleData.prototype.required;
+        /** @type {?} */
+        SFErrorLocaleData.prototype.maxLength;
+        /** @type {?} */
+        SFErrorLocaleData.prototype.minLength;
+        /** @type {?} */
+        SFErrorLocaleData.prototype.minimum;
+        /** @type {?} */
+        SFErrorLocaleData.prototype.formatMinimum;
+        /** @type {?} */
+        SFErrorLocaleData.prototype.maximum;
+        /** @type {?} */
+        SFErrorLocaleData.prototype.formatMaximum;
+        /** @type {?} */
+        SFErrorLocaleData.prototype.maxItems;
+        /** @type {?} */
+        SFErrorLocaleData.prototype.minItems;
+        /** @type {?} */
+        SFErrorLocaleData.prototype.maxProperties;
+        /** @type {?} */
+        SFErrorLocaleData.prototype.minProperties;
+        /** @type {?} */
+        SFErrorLocaleData.prototype.multipleOf;
+        /** @type {?} */
+        SFErrorLocaleData.prototype.not;
+        /** @type {?} */
+        SFErrorLocaleData.prototype.oneOf;
+        /** @type {?} */
+        SFErrorLocaleData.prototype.pattern;
+        /** @type {?} */
+        SFErrorLocaleData.prototype.uniqueItems;
+        /** @type {?} */
+        SFErrorLocaleData.prototype.custom;
+        /** @type {?} */
+        SFErrorLocaleData.prototype.propertyNames;
+        /** @type {?} */
+        SFErrorLocaleData.prototype.patternRequired;
+        /** @type {?} */
+        SFErrorLocaleData.prototype.switch;
+        /** @type {?} */
+        SFErrorLocaleData.prototype.const;
+        /** @type {?} */
+        SFErrorLocaleData.prototype.contains;
+        /** @type {?} */
+        SFErrorLocaleData.prototype.formatExclusiveMaximum;
+        /** @type {?} */
+        SFErrorLocaleData.prototype.formatExclusiveMinimum;
+        /** @type {?} */
+        SFErrorLocaleData.prototype.if;
+    }
+    /**
+     * @record
+     */
+    function FullLocaleData() { }
+    if (false) {
+        /** @type {?} */
+        FullLocaleData.prototype.abbr;
+        /** @type {?} */
+        FullLocaleData.prototype.exception;
+        /** @type {?} */
+        FullLocaleData.prototype.noticeIcon;
+        /** @type {?} */
+        FullLocaleData.prototype.reuseTab;
+        /** @type {?} */
+        FullLocaleData.prototype.tagSelect;
+        /** @type {?} */
+        FullLocaleData.prototype.miniProgress;
+        /** @type {?} */
+        FullLocaleData.prototype.st;
+        /** @type {?} */
+        FullLocaleData.prototype.sf;
+    }
 
     /**
      * @fileoverview added by tsickle
@@ -1352,6 +2099,18 @@
         ]; };
         return DelonLocaleService;
     }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        DelonLocaleService.prototype._locale;
+        /**
+         * @type {?}
+         * @private
+         */
+        DelonLocaleService.prototype.change$;
+    }
     /**
      * @param {?} exist
      * @param {?} locale
@@ -1873,6 +2632,42 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /**
+     * @record
+     */
+    function ModalHelperOptions() { }
+    if (false) {
+        /**
+         * 大小；例如：lg、600，默认：`lg`
+         * @type {?|undefined}
+         */
+        ModalHelperOptions.prototype.size;
+        /**
+         * 对话框 [ModalOptionsForService](https://github.com/NG-ZORRO/ng-zorro-antd/blob/master/components/modal/nz-modal.type.ts) 参数
+         * @type {?|undefined}
+         */
+        ModalHelperOptions.prototype.modalOptions;
+        /**
+         * 是否精准（默认：`true`），若返回值非空值（`null`或`undefined`）视为成功，否则视为错误
+         * @type {?|undefined}
+         */
+        ModalHelperOptions.prototype.exact;
+        /**
+         * 是否包裹标签页，修复模态包含标签间距问题
+         * @type {?|undefined}
+         */
+        ModalHelperOptions.prototype.includeTabs;
+    }
     /**
      * 对话框辅助类
      */
@@ -2168,11 +2963,58 @@
         /** @nocollapse */ ModalHelper.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function ModalHelper_Factory() { return new ModalHelper(core.ɵɵinject(modal.NzModalService)); }, token: ModalHelper, providedIn: "root" });
         return ModalHelper;
     }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        ModalHelper.prototype.srv;
+    }
 
     /**
      * @fileoverview added by tsickle
      * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
+    /**
+     * @record
+     */
+    function DrawerHelperOptions() { }
+    if (false) {
+        /**
+         * 大小，若值为数值类型，则根据 `nzPlacement` 自动转化为 `nzHeight` 或 `nzWidth`；例如：lg、600，默认：`md`
+         *
+         * | 类型 | 默认大小 |
+         * | --- | ------ |
+         * | `sm` | `300` |
+         * | `md` | `600` |
+         * | `lg` | `900` |
+         * | `xl` | `1200` |
+         *
+         * > 以上值，可通过覆盖相应的LESS参数自行调整
+         * @type {?|undefined}
+         */
+        DrawerHelperOptions.prototype.size;
+        /**
+         * 是否包含底部工具条，默认：`true`
+         * @type {?|undefined}
+         */
+        DrawerHelperOptions.prototype.footer;
+        /**
+         * 底部工具条高度，默认：`55`
+         * @type {?|undefined}
+         */
+        DrawerHelperOptions.prototype.footerHeight;
+        /**
+         * 是否精准（默认：`true`），若返回值非空值（`null`或`undefined`）视为成功，否则视为错误
+         * @type {?|undefined}
+         */
+        DrawerHelperOptions.prototype.exact;
+        /**
+         * 抽屉 [NzDrawerOptions](https://ng.ant.design/components/drawer/zh#nzdraweroptions) 参数
+         * @type {?|undefined}
+         */
+        DrawerHelperOptions.prototype.drawerOptions;
+    }
     /**
      * 抽屉辅助类
      *
@@ -2315,6 +3157,13 @@
         /** @nocollapse */ DrawerHelper.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function DrawerHelper_Factory() { return new DrawerHelper(core.ɵɵinject(drawer.NzDrawerService)); }, token: DrawerHelper, providedIn: "root" });
         return DrawerHelper;
     }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        DrawerHelper.prototype.srv;
+    }
 
     /**
      * @fileoverview added by tsickle
@@ -2623,6 +3472,23 @@
         /** @nocollapse */ _HttpClient.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function _HttpClient_Factory() { return new _HttpClient(core.ɵɵinject(http.HttpClient), core.ɵɵinject(AlainThemeConfig)); }, token: _HttpClient, providedIn: "root" });
         return _HttpClient;
     }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        _HttpClient.prototype.cog;
+        /**
+         * @type {?}
+         * @private
+         */
+        _HttpClient.prototype._loading;
+        /**
+         * @type {?}
+         * @private
+         */
+        _HttpClient.prototype.http;
+    }
 
     /**
      * @fileoverview added by tsickle
@@ -2641,6 +3507,44 @@
         ]; };
         return BaseApi;
     }());
+    if (false) {
+        /**
+         * @type {?}
+         * @protected
+         */
+        BaseApi.prototype.injector;
+    }
+    /**
+     * @record
+     */
+    function HttpOptions() { }
+    if (false) {
+        /**
+         * ACL配置，若导入 `\@delon/acl` 时自动有效，等同于 `ACLService.can(roleOrAbility: ACLCanType)` 参数值
+         * @type {?|undefined}
+         */
+        HttpOptions.prototype.acl;
+        /** @type {?|undefined} */
+        HttpOptions.prototype.observe;
+        /** @type {?|undefined} */
+        HttpOptions.prototype.responseType;
+        /** @type {?|undefined} */
+        HttpOptions.prototype.reportProgress;
+        /** @type {?|undefined} */
+        HttpOptions.prototype.withCredentials;
+    }
+    /**
+     * @record
+     */
+    function ParamType() { }
+    if (false) {
+        /** @type {?} */
+        ParamType.prototype.key;
+        /** @type {?} */
+        ParamType.prototype.index;
+        /* Skipping unhandled member: [key: string]: any;*/
+        /* Skipping unhandled member: [key: number]: any;*/
+    }
     /** @type {?} */
     var paramKey = "__api_params";
     /**
@@ -3064,6 +3968,13 @@
         ]; };
         return YNPipe;
     }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        YNPipe.prototype.dom;
+    }
 
     /**
      * @fileoverview added by tsickle
@@ -3093,6 +4004,13 @@
         ]; };
         return HTMLPipe;
     }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        HTMLPipe.prototype.dom;
+    }
 
     /**
      * @fileoverview added by tsickle
@@ -3122,6 +4040,13 @@
         ]; };
         return URLPipe;
     }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        URLPipe.prototype.dom;
+    }
 
     /**
      * @fileoverview added by tsickle
@@ -3155,6 +4080,13 @@
         ]; };
         return I18nPipe;
     }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        I18nPipe.prototype.i18n;
+    }
 
     /**
      * @fileoverview added by tsickle

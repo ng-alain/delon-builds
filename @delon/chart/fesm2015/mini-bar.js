@@ -7,6 +7,17 @@ import { CommonModule } from '@angular/common';
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function G2MiniBarData() { }
+if (false) {
+    /** @type {?} */
+    G2MiniBarData.prototype.x;
+    /** @type {?} */
+    G2MiniBarData.prototype.y;
+    /* Skipping unhandled member: [key: string]: any;*/
+}
 class G2MiniBarComponent {
     // #endregion
     /**
@@ -158,6 +169,39 @@ __decorate([
     InputNumber(),
     __metadata("design:type", Object)
 ], G2MiniBarComponent.prototype, "borderWidth", void 0);
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    G2MiniBarComponent.prototype.chart;
+    /** @type {?} */
+    G2MiniBarComponent.prototype.delay;
+    /** @type {?} */
+    G2MiniBarComponent.prototype.color;
+    /** @type {?} */
+    G2MiniBarComponent.prototype.height;
+    /** @type {?} */
+    G2MiniBarComponent.prototype.borderWidth;
+    /** @type {?} */
+    G2MiniBarComponent.prototype.padding;
+    /** @type {?} */
+    G2MiniBarComponent.prototype.data;
+    /** @type {?} */
+    G2MiniBarComponent.prototype.yTooltipSuffix;
+    /** @type {?} */
+    G2MiniBarComponent.prototype.tooltipType;
+    /**
+     * @type {?}
+     * @private
+     */
+    G2MiniBarComponent.prototype.el;
+    /**
+     * @type {?}
+     * @private
+     */
+    G2MiniBarComponent.prototype.ngZone;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -174,6 +218,16 @@ G2MiniBarModule.decorators = [
                 exports: [...COMPONENTS],
             },] }
 ];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 
 export { G2MiniBarComponent, G2MiniBarModule };
 //# sourceMappingURL=mini-bar.js.map

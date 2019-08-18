@@ -1,5 +1,5 @@
 import { __assign, __spread, __values, __decorate, __metadata } from 'tslib';
-import { ɵɵdefineInjectable, Injectable, Directive, TemplateRef, ViewContainerRef, Input, ElementRef, Renderer2, ɵɵinject, NgModule } from '@angular/core';
+import { Injectable, ɵɵdefineInjectable, Directive, TemplateRef, ViewContainerRef, Input, ElementRef, Renderer2, ɵɵinject, NgModule } from '@angular/core';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { InputBoolean, DelonUtilModule } from '@delon/util';
 import { filter, map, tap } from 'rxjs/operators';
@@ -23,6 +23,18 @@ var DelonACLConfig = /** @class */ (function () {
     /** @nocollapse */ DelonACLConfig.ngInjectableDef = ɵɵdefineInjectable({ factory: function DelonACLConfig_Factory() { return new DelonACLConfig(); }, token: DelonACLConfig, providedIn: "root" });
     return DelonACLConfig;
 }());
+if (false) {
+    /**
+     * 路由守卫失败后跳转，默认：`/403`
+     * @type {?}
+     */
+    DelonACLConfig.prototype.guard_url;
+    /**
+     * `can` 执行前回调
+     * @type {?}
+     */
+    DelonACLConfig.prototype.preCan;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -433,6 +445,33 @@ var ACLService = /** @class */ (function () {
     ]; };
     return ACLService;
 }());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    ACLService.prototype.roles;
+    /**
+     * @type {?}
+     * @private
+     */
+    ACLService.prototype.abilities;
+    /**
+     * @type {?}
+     * @private
+     */
+    ACLService.prototype.full;
+    /**
+     * @type {?}
+     * @private
+     */
+    ACLService.prototype.aclChange;
+    /**
+     * @type {?}
+     * @private
+     */
+    ACLService.prototype.options;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -559,6 +598,50 @@ var ACLIfDirective = /** @class */ (function () {
     ], ACLIfDirective.prototype, "except", void 0);
     return ACLIfDirective;
 }());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    ACLIfDirective.prototype._value;
+    /**
+     * @type {?}
+     * @private
+     */
+    ACLIfDirective.prototype._change$;
+    /**
+     * @type {?}
+     * @private
+     */
+    ACLIfDirective.prototype._thenTemplateRef;
+    /**
+     * @type {?}
+     * @private
+     */
+    ACLIfDirective.prototype._elseTemplateRef;
+    /**
+     * @type {?}
+     * @private
+     */
+    ACLIfDirective.prototype._thenViewRef;
+    /**
+     * @type {?}
+     * @private
+     */
+    ACLIfDirective.prototype._elseViewRef;
+    /** @type {?} */
+    ACLIfDirective.prototype.except;
+    /**
+     * @type {?}
+     * @private
+     */
+    ACLIfDirective.prototype.srv;
+    /**
+     * @type {?}
+     * @private
+     */
+    ACLIfDirective.prototype._viewContainer;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -651,6 +734,67 @@ var ACLDirective = /** @class */ (function () {
     };
     return ACLDirective;
 }());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    ACLDirective.prototype._value;
+    /**
+     * @type {?}
+     * @private
+     */
+    ACLDirective.prototype.change$;
+    /**
+     * @type {?}
+     * @private
+     */
+    ACLDirective.prototype.el;
+    /**
+     * @type {?}
+     * @private
+     */
+    ACLDirective.prototype.renderer;
+    /**
+     * @type {?}
+     * @protected
+     */
+    ACLDirective.prototype.srv;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ */
+function ACLType() { }
+if (false) {
+    /**
+     * 角色
+     * @type {?|undefined}
+     */
+    ACLType.prototype.role;
+    /**
+     * 权限点
+     * @type {?|undefined}
+     */
+    ACLType.prototype.ability;
+    /**
+     * 校验模式，默认：`oneOf`
+     * - `allOf` 表示必须满足所有角色或权限点数组算有效
+     * - `oneOf` 表示只须满足角色或权限点数组中的一项算有效
+     * @type {?|undefined}
+     */
+    ACLType.prototype.mode;
+    /**
+     * 是否取反，即结果为 `true` 时表示未授权
+     * @type {?|undefined}
+     */
+    ACLType.prototype.except;
+    /* Skipping unhandled member: [key: string]: any;*/
+}
 
 /**
  * @fileoverview added by tsickle
@@ -752,6 +896,23 @@ var ACLGuard = /** @class */ (function () {
     /** @nocollapse */ ACLGuard.ngInjectableDef = ɵɵdefineInjectable({ factory: function ACLGuard_Factory() { return new ACLGuard(ɵɵinject(ACLService), ɵɵinject(Router), ɵɵinject(DelonACLConfig)); }, token: ACLGuard, providedIn: "root" });
     return ACLGuard;
 }());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    ACLGuard.prototype.srv;
+    /**
+     * @type {?}
+     * @private
+     */
+    ACLGuard.prototype.router;
+    /**
+     * @type {?}
+     * @private
+     */
+    ACLGuard.prototype.options;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -783,6 +944,16 @@ var DelonACLModule = /** @class */ (function () {
     ];
     return DelonACLModule;
 }());
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 
 export { ACLDirective, ACLGuard, ACLIfDirective, ACLService, DelonACLConfig, DelonACLModule };
 //# sourceMappingURL=acl.js.map

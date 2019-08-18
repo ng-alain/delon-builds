@@ -8,6 +8,19 @@ import { NzGridModule } from 'ng-zorro-antd/grid';
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function G2RadarData() { }
+if (false) {
+    /** @type {?} */
+    G2RadarData.prototype.name;
+    /** @type {?} */
+    G2RadarData.prototype.label;
+    /** @type {?} */
+    G2RadarData.prototype.value;
+    /* Skipping unhandled member: [key: string]: any;*/
+}
 class G2RadarComponent {
     // #endregion
     /**
@@ -258,6 +271,46 @@ __decorate([
     InputNumber(),
     __metadata("design:type", Object)
 ], G2RadarComponent.prototype, "tickCount", void 0);
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    G2RadarComponent.prototype.node;
+    /**
+     * @type {?}
+     * @private
+     */
+    G2RadarComponent.prototype.chart;
+    /** @type {?} */
+    G2RadarComponent.prototype.legendData;
+    /** @type {?} */
+    G2RadarComponent.prototype.delay;
+    /** @type {?} */
+    G2RadarComponent.prototype.title;
+    /** @type {?} */
+    G2RadarComponent.prototype.height;
+    /** @type {?} */
+    G2RadarComponent.prototype.padding;
+    /** @type {?} */
+    G2RadarComponent.prototype.hasLegend;
+    /** @type {?} */
+    G2RadarComponent.prototype.tickCount;
+    /** @type {?} */
+    G2RadarComponent.prototype.data;
+    /** @type {?} */
+    G2RadarComponent.prototype.colors;
+    /**
+     * @type {?}
+     * @private
+     */
+    G2RadarComponent.prototype.cdr;
+    /**
+     * @type {?}
+     * @private
+     */
+    G2RadarComponent.prototype.ngZone;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -274,6 +327,16 @@ G2RadarModule.decorators = [
                 exports: [...COMPONENTS],
             },] }
 ];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 
 export { G2RadarComponent, G2RadarModule };
 //# sourceMappingURL=radar.js.map

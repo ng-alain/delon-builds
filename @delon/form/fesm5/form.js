@@ -1,9 +1,9 @@
-import { ɵɵdefineInjectable, Injectable, Inject, ComponentFactoryResolver, Component, ChangeDetectionStrategy, ViewEncapsulation, ChangeDetectorRef, Optional, Input, Output, EventEmitter, ViewChild, ViewContainerRef, Directive, ElementRef, Renderer2, TemplateRef, Injector, HostBinding, NgModule } from '@angular/core';
-import { __spread, __rest, __assign, __values, __extends, __decorate, __metadata } from 'tslib';
+import { Injectable, ɵɵdefineInjectable, Inject, ComponentFactoryResolver, EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ChangeDetectorRef, Optional, Input, Output, ViewChild, ViewContainerRef, Directive, ElementRef, Renderer2, TemplateRef, Injector, HostBinding, NgModule } from '@angular/core';
+import { __spread, __values, __rest, __assign, __extends, __decorate, __metadata } from 'tslib';
 import { ACLService } from '@delon/acl';
 import { DelonLocaleService, ALAIN_I18N_TOKEN, DelonLocaleModule } from '@delon/theme';
-import { deepCopy, toBoolean, InputBoolean, InputNumber, deepGet, DelonUtilModule } from '@delon/util';
-import { of, Observable, combineLatest, BehaviorSubject, Subject, merge } from 'rxjs';
+import { toBoolean, deepCopy, InputBoolean, InputNumber, deepGet, DelonUtilModule } from '@delon/util';
+import { of, BehaviorSubject, Observable, combineLatest, Subject, merge } from 'rxjs';
 import { map, distinctUntilChanged, takeUntil, filter, debounceTime, startWith, flatMap, tap } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
 import { NgModel, FormsModule } from '@angular/forms';
@@ -103,6 +103,88 @@ var DelonFormConfig = /** @class */ (function () {
     /** @nocollapse */ DelonFormConfig.ngInjectableDef = ɵɵdefineInjectable({ factory: function DelonFormConfig_Factory() { return new DelonFormConfig(); }, token: DelonFormConfig, providedIn: "root" });
     return DelonFormConfig;
 }());
+if (false) {
+    /**
+     * 是否忽略某些数据类型校验 `ERRORSDEFAULT`，默认：`[ 'type', 'enum' ]`
+     *
+     * - `type` 限定 Schema 中 `type` 类型
+     * - `enum` 限定应当是预设定的枚举值之一
+     * @type {?}
+     */
+    DelonFormConfig.prototype.ingoreKeywords;
+    /**
+     * [ajv](http://epoberezkin.github.io/ajv/#options) 参数
+     * @type {?}
+     */
+    DelonFormConfig.prototype.ajv;
+    /**
+     * 是否实时校验，默认：`true`
+     * - `true` 每一次都校验
+     * - `false` 提交时校验
+     * @type {?}
+     */
+    DelonFormConfig.prototype.liveValidate;
+    /**
+     * 指定表单 `autocomplete` 值，默认：`on`
+     * @type {?}
+     */
+    DelonFormConfig.prototype.autocomplete;
+    /**
+     * 是否立即呈现错误视觉，默认：`false`
+     * @type {?}
+     */
+    DelonFormConfig.prototype.firstVisual;
+    /**
+     * 是否只展示错误视觉不显示错误文本，默认：`false`
+     * @type {?}
+     */
+    DelonFormConfig.prototype.onlyVisual;
+    /**
+     * 自定义通用错误信息
+     * @type {?}
+     */
+    DelonFormConfig.prototype.errors;
+    /**
+     * 默认全局布局
+     * @type {?}
+     */
+    DelonFormConfig.prototype.ui;
+    /**
+     * 元素组件大小，用于 `nzSize` 值
+     * @type {?}
+     */
+    DelonFormConfig.prototype.size;
+    /**
+     * 按钮风格
+     * @type {?}
+     */
+    DelonFormConfig.prototype.button;
+    /**
+     * date小部件：`type="string"` 且不指定 `schema.format` 和 `ui.format` 时日期格式，默认：`YYYY-MM-DD HH:mm:ss`
+     * @type {?}
+     */
+    DelonFormConfig.prototype.uiDateStringFormat;
+    /**
+     * date小部件：`type="number"` 且不指定 `schema.format` 和 `ui.format` 时日期格式，默认：`x` 13位Unix Timestamp
+     * @type {?}
+     */
+    DelonFormConfig.prototype.uiDateNumberFormat;
+    /**
+     * time小部件：`type="string"` 且不指定 `schema.format` 和 `ui.format` 时日期格式，默认：`HH:mm:ss`
+     * @type {?}
+     */
+    DelonFormConfig.prototype.uiTimeStringFormat;
+    /**
+     * time小部件：`type="number"` 且不指定 `schema.format` 和 `ui.format` 时日期格式，默认：`x` 13位Unix Timestamp，日期统一使用 `1970-01-01`
+     * @type {?}
+     */
+    DelonFormConfig.prototype.uiTimeNumberFormat;
+    /**
+     * 指定 `format: 'email'` 的默认Email后缀
+     * @type {?}
+     */
+    DelonFormConfig.prototype.uiEmailSuffixes;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -963,6 +1045,97 @@ FormProperty = /** @class */ (function () {
     };
     return FormProperty;
 }());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    FormProperty.prototype._errors;
+    /**
+     * @type {?}
+     * @private
+     */
+    FormProperty.prototype._valueChanges;
+    /**
+     * @type {?}
+     * @private
+     */
+    FormProperty.prototype._errorsChanges;
+    /**
+     * @type {?}
+     * @private
+     */
+    FormProperty.prototype._visible;
+    /**
+     * @type {?}
+     * @private
+     */
+    FormProperty.prototype._visibilityChanges;
+    /**
+     * @type {?}
+     * @private
+     */
+    FormProperty.prototype._root;
+    /**
+     * @type {?}
+     * @private
+     */
+    FormProperty.prototype._parent;
+    /**
+     * @type {?}
+     * @protected
+     */
+    FormProperty.prototype._objErrors;
+    /** @type {?} */
+    FormProperty.prototype.schemaValidator;
+    /** @type {?} */
+    FormProperty.prototype.schema;
+    /** @type {?} */
+    FormProperty.prototype.ui;
+    /** @type {?} */
+    FormProperty.prototype.formData;
+    /** @type {?} */
+    FormProperty.prototype._value;
+    /** @type {?} */
+    FormProperty.prototype.widget;
+    /** @type {?} */
+    FormProperty.prototype.path;
+    /**
+     * @type {?}
+     * @private
+     */
+    FormProperty.prototype._options;
+    /**
+     * 设置值
+     *
+     * @abstract
+     * @param {?} value
+     * @param {?} onlySelf `true` 只对当前字段更新值和校验；`false` 包含上级字段
+     * @return {?}
+     */
+    FormProperty.prototype.setValue = function (value, onlySelf) { };
+    /**
+     * 重置值，默认值为 `schema.default`
+     *
+     * @abstract
+     * @param {?} value
+     * @param {?} onlySelf `true` 只对当前字段更新值和校验；`false` 包含上级字段
+     * @return {?}
+     */
+    FormProperty.prototype.resetValue = function (value, onlySelf) { };
+    /**
+     * \@internal
+     * @abstract
+     * @return {?}
+     */
+    FormProperty.prototype._hasValue = function () { };
+    /**
+     * \@internal
+     * @abstract
+     * @return {?}
+     */
+    FormProperty.prototype._updateValue = function () { };
+}
 /**
  * @abstract
  */
@@ -1073,6 +1246,10 @@ PropertyGroup = /** @class */ (function (_super) {
     };
     return PropertyGroup;
 }(FormProperty));
+if (false) {
+    /** @type {?} */
+    PropertyGroup.prototype.properties;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -1283,6 +1460,13 @@ var ArrayProperty = /** @class */ (function (_super) {
     };
     return ArrayProperty;
 }(PropertyGroup));
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    ArrayProperty.prototype.formPropertyFactory;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -1350,6 +1534,13 @@ AtomicProperty = /** @class */ (function (_super) {
     function () { };
     return AtomicProperty;
 }(FormProperty));
+if (false) {
+    /**
+     * @abstract
+     * @return {?}
+     */
+    AtomicProperty.prototype.fallbackValue = function () { };
+}
 
 /**
  * @fileoverview added by tsickle
@@ -1535,6 +1726,18 @@ var ObjectProperty = /** @class */ (function (_super) {
     };
     return ObjectProperty;
 }(PropertyGroup));
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    ObjectProperty.prototype._propertiesId;
+    /**
+     * @type {?}
+     * @private
+     */
+    ObjectProperty.prototype.formPropertyFactory;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -1684,6 +1887,18 @@ var FormPropertyFactory = /** @class */ (function () {
     };
     return FormPropertyFactory;
 }());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    FormPropertyFactory.prototype.schemaValidatorFactory;
+    /**
+     * @type {?}
+     * @private
+     */
+    FormPropertyFactory.prototype.options;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -1704,6 +1919,10 @@ var TerminatorService = /** @class */ (function () {
     };
     return TerminatorService;
 }());
+if (false) {
+    /** @type {?} */
+    TerminatorService.prototype.onDestroy;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -1720,6 +1939,15 @@ SchemaValidatorFactory = /** @class */ (function () {
     }
     return SchemaValidatorFactory;
 }());
+if (false) {
+    /**
+     * @abstract
+     * @param {?} schema
+     * @param {?} extraOptions
+     * @return {?}
+     */
+    SchemaValidatorFactory.prototype.createValidatorFn = function (schema, extraOptions) { };
+}
 var AjvSchemaValidatorFactory = /** @class */ (function (_super) {
     __extends(AjvSchemaValidatorFactory, _super);
     function AjvSchemaValidatorFactory(options) {
@@ -1779,6 +2007,18 @@ var AjvSchemaValidatorFactory = /** @class */ (function (_super) {
     ]; };
     return AjvSchemaValidatorFactory;
 }(SchemaValidatorFactory));
+if (false) {
+    /**
+     * @type {?}
+     * @protected
+     */
+    AjvSchemaValidatorFactory.prototype.ajv;
+    /**
+     * @type {?}
+     * @private
+     */
+    AjvSchemaValidatorFactory.prototype.options;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -1849,6 +2089,18 @@ var WidgetRegistry = /** @class */ (function () {
     };
     return WidgetRegistry;
 }());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    WidgetRegistry.prototype._widgets;
+    /**
+     * @type {?}
+     * @private
+     */
+    WidgetRegistry.prototype.defaultWidget;
+}
 var WidgetFactory = /** @class */ (function () {
     function WidgetFactory(registry, resolver) {
         this.registry = registry;
@@ -1884,6 +2136,18 @@ var WidgetFactory = /** @class */ (function () {
     ]; };
     return WidgetFactory;
 }());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    WidgetFactory.prototype.registry;
+    /**
+     * @type {?}
+     * @private
+     */
+    WidgetFactory.prototype.resolver;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -2692,6 +2956,167 @@ var SFComponent = /** @class */ (function () {
     ], SFComponent.prototype, "disabled", void 0);
     return SFComponent;
 }());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    SFComponent.prototype.unsubscribe$;
+    /**
+     * @type {?}
+     * @private
+     */
+    SFComponent.prototype._renders;
+    /**
+     * @type {?}
+     * @private
+     */
+    SFComponent.prototype._item;
+    /**
+     * @type {?}
+     * @private
+     */
+    SFComponent.prototype._valid;
+    /**
+     * @type {?}
+     * @private
+     */
+    SFComponent.prototype._defUi;
+    /**
+     * @type {?}
+     * @private
+     */
+    SFComponent.prototype._inited;
+    /** @type {?} */
+    SFComponent.prototype.locale;
+    /** @type {?} */
+    SFComponent.prototype.rootProperty;
+    /** @type {?} */
+    SFComponent.prototype._formData;
+    /** @type {?} */
+    SFComponent.prototype._btn;
+    /** @type {?} */
+    SFComponent.prototype._schema;
+    /** @type {?} */
+    SFComponent.prototype._ui;
+    /**
+     * 表单布局，等同 `nzLayout`，默认：horizontal
+     * @type {?}
+     */
+    SFComponent.prototype.layout;
+    /**
+     * JSON Schema
+     * @type {?}
+     */
+    SFComponent.prototype.schema;
+    /**
+     * UI Schema
+     * @type {?}
+     */
+    SFComponent.prototype.ui;
+    /**
+     * 表单默认值
+     * @type {?}
+     */
+    SFComponent.prototype.formData;
+    /**
+     * 按钮
+     * - 值为 `null` 或 `undefined` 表示手动添加按钮，但保留容器
+     * - 值为 `none` 表示手动添加按钮，且不保留容器
+     * - 使用 `spanLabelFixed` 固定标签宽度时，若无 `render.class` 则默认为居中状态
+     * @type {?}
+     */
+    SFComponent.prototype.button;
+    /**
+     * 是否实时校验，默认：`true`
+     * - `true` 每一次都校验
+     * - `false` 提交时校验
+     * @type {?}
+     */
+    SFComponent.prototype.liveValidate;
+    /**
+     * 指定表单 `autocomplete` 值
+     * @type {?}
+     */
+    SFComponent.prototype.autocomplete;
+    /**
+     * 立即显示错误视觉
+     * @type {?}
+     */
+    SFComponent.prototype.firstVisual;
+    /**
+     * 是否只展示错误视觉不显示错误文本
+     * @type {?}
+     */
+    SFComponent.prototype.onlyVisual;
+    /**
+     * @type {?}
+     * @private
+     */
+    SFComponent.prototype._mode;
+    /**
+     * Whether to load status，when `true` reset button is disabled status, submit button is loading status
+     * @type {?}
+     */
+    SFComponent.prototype.loading;
+    /** @type {?} */
+    SFComponent.prototype.disabled;
+    /**
+     * 数据变更时回调
+     * @type {?}
+     */
+    SFComponent.prototype.formChange;
+    /**
+     * 提交表单时回调
+     * @type {?}
+     */
+    SFComponent.prototype.formSubmit;
+    /**
+     * 重置表单时回调
+     * @type {?}
+     */
+    SFComponent.prototype.formReset;
+    /**
+     * 表单校验结果回调
+     * @type {?}
+     */
+    SFComponent.prototype.formError;
+    /**
+     * @type {?}
+     * @private
+     */
+    SFComponent.prototype.formPropertyFactory;
+    /**
+     * @type {?}
+     * @private
+     */
+    SFComponent.prototype.terminator;
+    /**
+     * @type {?}
+     * @private
+     */
+    SFComponent.prototype.options;
+    /**
+     * @type {?}
+     * @private
+     */
+    SFComponent.prototype.cdr;
+    /**
+     * @type {?}
+     * @private
+     */
+    SFComponent.prototype.localeSrv;
+    /**
+     * @type {?}
+     * @private
+     */
+    SFComponent.prototype.aclSrv;
+    /**
+     * @type {?}
+     * @private
+     */
+    SFComponent.prototype.i18nSrv;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -2782,6 +3207,31 @@ var SFItemComponent = /** @class */ (function () {
     };
     return SFItemComponent;
 }());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    SFItemComponent.prototype.ref;
+    /** @type {?} */
+    SFItemComponent.prototype.unsubscribe$;
+    /** @type {?} */
+    SFItemComponent.prototype.widget;
+    /** @type {?} */
+    SFItemComponent.prototype.formProperty;
+    /** @type {?} */
+    SFItemComponent.prototype.container;
+    /**
+     * @type {?}
+     * @private
+     */
+    SFItemComponent.prototype.widgetFactory;
+    /**
+     * @type {?}
+     * @private
+     */
+    SFItemComponent.prototype.terminator;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -2858,6 +3308,25 @@ var SFFixedDirective = /** @class */ (function () {
     ], SFFixedDirective.prototype, "num", void 0);
     return SFFixedDirective;
 }());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    SFFixedDirective.prototype.el;
+    /**
+     * @type {?}
+     * @private
+     */
+    SFFixedDirective.prototype._inited;
+    /** @type {?} */
+    SFFixedDirective.prototype.num;
+    /**
+     * @type {?}
+     * @private
+     */
+    SFFixedDirective.prototype.render;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -2906,6 +3375,22 @@ var SFItemWrapComponent = /** @class */ (function () {
     };
     return SFItemWrapComponent;
 }());
+if (false) {
+    /** @type {?} */
+    SFItemWrapComponent.prototype.id;
+    /** @type {?} */
+    SFItemWrapComponent.prototype.schema;
+    /** @type {?} */
+    SFItemWrapComponent.prototype.ui;
+    /** @type {?} */
+    SFItemWrapComponent.prototype.showError;
+    /** @type {?} */
+    SFItemWrapComponent.prototype.error;
+    /** @type {?} */
+    SFItemWrapComponent.prototype.showTitle;
+    /** @type {?} */
+    SFItemWrapComponent.prototype.title;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -2940,6 +3425,20 @@ var SFTemplateDirective = /** @class */ (function () {
     };
     return SFTemplateDirective;
 }());
+if (false) {
+    /** @type {?} */
+    SFTemplateDirective.prototype.path;
+    /**
+     * @type {?}
+     * @private
+     */
+    SFTemplateDirective.prototype.templateRef;
+    /**
+     * @type {?}
+     * @private
+     */
+    SFTemplateDirective.prototype.table;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -3078,6 +3577,36 @@ var Widget = /** @class */ (function () {
     };
     return Widget;
 }());
+if (false) {
+    /** @type {?} */
+    Widget.prototype.formProperty;
+    /** @type {?} */
+    Widget.prototype.error;
+    /** @type {?} */
+    Widget.prototype.showError;
+    /** @type {?} */
+    Widget.prototype.id;
+    /** @type {?} */
+    Widget.prototype.schema;
+    /** @type {?} */
+    Widget.prototype.ui;
+    /** @type {?} */
+    Widget.prototype.firstVisual;
+    /** @type {?} */
+    Widget.prototype.cd;
+    /** @type {?} */
+    Widget.prototype.injector;
+    /** @type {?} */
+    Widget.prototype.sfItemComp;
+    /** @type {?} */
+    Widget.prototype.sfComp;
+    /**
+     * @abstract
+     * @param {?} value
+     * @return {?}
+     */
+    Widget.prototype.reset = function (value) { };
+}
 var ControlWidget = /** @class */ (function (_super) {
     __extends(ControlWidget, _super);
     function ControlWidget() {
@@ -3251,6 +3780,16 @@ var ArrayWidget = /** @class */ (function (_super) {
     ];
     return ArrayWidget;
 }(ArrayLayoutWidget));
+if (false) {
+    /** @type {?} */
+    ArrayWidget.prototype.addTitle;
+    /** @type {?} */
+    ArrayWidget.prototype.addType;
+    /** @type {?} */
+    ArrayWidget.prototype.removeTitle;
+    /** @type {?} */
+    ArrayWidget.prototype.arraySpan;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -3392,6 +3931,34 @@ var AutoCompleteWidget = /** @class */ (function (_super) {
     };
     return AutoCompleteWidget;
 }(ControlUIWidget));
+if (false) {
+    /** @type {?} */
+    AutoCompleteWidget.prototype.i;
+    /** @type {?} */
+    AutoCompleteWidget.prototype.list;
+    /** @type {?} */
+    AutoCompleteWidget.prototype.typing;
+    /**
+     * @type {?}
+     * @private
+     */
+    AutoCompleteWidget.prototype.ngModel;
+    /**
+     * @type {?}
+     * @private
+     */
+    AutoCompleteWidget.prototype.filterOption;
+    /**
+     * @type {?}
+     * @private
+     */
+    AutoCompleteWidget.prototype.isAsync;
+    /**
+     * @type {?}
+     * @private
+     */
+    AutoCompleteWidget.prototype.fixData;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -3537,6 +4104,20 @@ var CascaderWidget = /** @class */ (function (_super) {
     ];
     return CascaderWidget;
 }(ControlUIWidget));
+if (false) {
+    /** @type {?} */
+    CascaderWidget.prototype.clearText;
+    /** @type {?} */
+    CascaderWidget.prototype.showArrow;
+    /** @type {?} */
+    CascaderWidget.prototype.showInput;
+    /** @type {?} */
+    CascaderWidget.prototype.triggerAction;
+    /** @type {?} */
+    CascaderWidget.prototype.data;
+    /** @type {?} */
+    CascaderWidget.prototype.loadData;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -3701,6 +4282,20 @@ var CheckboxWidget = /** @class */ (function (_super) {
     ];
     return CheckboxWidget;
 }(ControlUIWidget));
+if (false) {
+    /** @type {?} */
+    CheckboxWidget.prototype.data;
+    /** @type {?} */
+    CheckboxWidget.prototype.allChecked;
+    /** @type {?} */
+    CheckboxWidget.prototype.indeterminate;
+    /** @type {?} */
+    CheckboxWidget.prototype.grid_span;
+    /** @type {?} */
+    CheckboxWidget.prototype.labelTitle;
+    /** @type {?} */
+    CheckboxWidget.prototype.inited;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -3908,6 +4503,26 @@ var DateWidget = /** @class */ (function (_super) {
     ];
     return DateWidget;
 }(ControlUIWidget));
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    DateWidget.prototype.valueFormat;
+    /**
+     * @type {?}
+     * @private
+     */
+    DateWidget.prototype.flatRange;
+    /** @type {?} */
+    DateWidget.prototype.mode;
+    /** @type {?} */
+    DateWidget.prototype.displayValue;
+    /** @type {?} */
+    DateWidget.prototype.displayFormat;
+    /** @type {?} */
+    DateWidget.prototype.i;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -4039,6 +4654,19 @@ var MentionWidget = /** @class */ (function (_super) {
     };
     return MentionWidget;
 }(ControlUIWidget));
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    MentionWidget.prototype.mentionChild;
+    /** @type {?} */
+    MentionWidget.prototype.data;
+    /** @type {?} */
+    MentionWidget.prototype.i;
+    /** @type {?} */
+    MentionWidget.prototype.loading;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -4132,6 +4760,18 @@ var NumberWidget = /** @class */ (function (_super) {
     ];
     return NumberWidget;
 }(ControlUIWidget));
+if (false) {
+    /** @type {?} */
+    NumberWidget.prototype.min;
+    /** @type {?} */
+    NumberWidget.prototype.max;
+    /** @type {?} */
+    NumberWidget.prototype.step;
+    /** @type {?} */
+    NumberWidget.prototype.formatter;
+    /** @type {?} */
+    NumberWidget.prototype.parser;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -4194,6 +4834,14 @@ var ObjectWidget = /** @class */ (function (_super) {
     ];
     return ObjectWidget;
 }(ObjectLayoutWidget));
+if (false) {
+    /** @type {?} */
+    ObjectWidget.prototype.grid;
+    /** @type {?} */
+    ObjectWidget.prototype.list;
+    /** @type {?} */
+    ObjectWidget.prototype.title;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -4249,6 +4897,12 @@ var RadioWidget = /** @class */ (function (_super) {
     ];
     return RadioWidget;
 }(ControlUIWidget));
+if (false) {
+    /** @type {?} */
+    RadioWidget.prototype.data;
+    /** @type {?} */
+    RadioWidget.prototype.styleType;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -4295,6 +4949,18 @@ var RateWidget = /** @class */ (function (_super) {
     ];
     return RateWidget;
 }(ControlUIWidget));
+if (false) {
+    /** @type {?} */
+    RateWidget.prototype.count;
+    /** @type {?} */
+    RateWidget.prototype.allowHalf;
+    /** @type {?} */
+    RateWidget.prototype.allowClear;
+    /** @type {?} */
+    RateWidget.prototype.autoFocus;
+    /** @type {?} */
+    RateWidget.prototype.hasText;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -4446,6 +5112,16 @@ var SelectWidget = /** @class */ (function (_super) {
     ];
     return SelectWidget;
 }(ControlUIWidget));
+if (false) {
+    /** @type {?} */
+    SelectWidget.prototype.i;
+    /** @type {?} */
+    SelectWidget.prototype.data;
+    /** @type {?} */
+    SelectWidget.prototype._value;
+    /** @type {?} */
+    SelectWidget.prototype.hasGroup;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -4505,6 +5181,20 @@ var SliderWidget = /** @class */ (function (_super) {
     ];
     return SliderWidget;
 }(ControlUIWidget));
+if (false) {
+    /** @type {?} */
+    SliderWidget.prototype.min;
+    /** @type {?} */
+    SliderWidget.prototype.max;
+    /** @type {?} */
+    SliderWidget.prototype.step;
+    /** @type {?} */
+    SliderWidget.prototype.marks;
+    /** @type {?} */
+    SliderWidget.prototype.included;
+    /** @type {?} */
+    SliderWidget.prototype._formatter;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -4550,6 +5240,10 @@ var StringWidget = /** @class */ (function (_super) {
     ];
     return StringWidget;
 }(ControlUIWidget));
+if (false) {
+    /** @type {?} */
+    StringWidget.prototype.type;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -4645,6 +5339,10 @@ var TagWidget = /** @class */ (function (_super) {
     ];
     return TagWidget;
 }(ControlUIWidget));
+if (false) {
+    /** @type {?} */
+    TagWidget.prototype.data;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -4708,6 +5406,10 @@ var TextareaWidget = /** @class */ (function (_super) {
     ];
     return TextareaWidget;
 }(ControlUIWidget));
+if (false) {
+    /** @type {?} */
+    TextareaWidget.prototype.autosize;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -4803,6 +5505,17 @@ var TimeWidget = /** @class */ (function (_super) {
     ];
     return TimeWidget;
 }(ControlUIWidget));
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    TimeWidget.prototype.valueFormat;
+    /** @type {?} */
+    TimeWidget.prototype.displayValue;
+    /** @type {?} */
+    TimeWidget.prototype.i;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -4952,6 +5665,19 @@ var TransferWidget = /** @class */ (function (_super) {
     ];
     return TransferWidget;
 }(ControlUIWidget));
+if (false) {
+    /** @type {?} */
+    TransferWidget.prototype.list;
+    /** @type {?} */
+    TransferWidget.prototype.i;
+    /**
+     * @type {?}
+     * @private
+     */
+    TransferWidget.prototype._data;
+    /** @type {?} */
+    TransferWidget.prototype._canMove;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -5055,6 +5781,12 @@ var TreeSelectWidget = /** @class */ (function (_super) {
     ];
     return TreeSelectWidget;
 }(ControlUIWidget));
+if (false) {
+    /** @type {?} */
+    TreeSelectWidget.prototype.i;
+    /** @type {?} */
+    TreeSelectWidget.prototype.data;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -5231,6 +5963,18 @@ var UploadWidget = /** @class */ (function (_super) {
     ];
     return UploadWidget;
 }(ControlUIWidget));
+if (false) {
+    /** @type {?} */
+    UploadWidget.prototype.i;
+    /** @type {?} */
+    UploadWidget.prototype.fileList;
+    /** @type {?} */
+    UploadWidget.prototype.btnType;
+    /** @type {?} */
+    UploadWidget.prototype.handleRemove;
+    /** @type {?} */
+    UploadWidget.prototype.handlePreview;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -5364,6 +6108,628 @@ var DelonFormModule = /** @class */ (function () {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function SFSchemaDefinition() { }
+/**
+ * @record
+ */
+function SFSchemaEnum() { }
+if (false) {
+    /**
+     * 是否禁用状态
+     * @type {?|undefined}
+     */
+    SFSchemaEnum.prototype.disabled;
+    /**
+     * 文本
+     * @type {?|undefined}
+     */
+    SFSchemaEnum.prototype.label;
+    /**
+     * 文本
+     * @type {?|undefined}
+     */
+    SFSchemaEnum.prototype.title;
+    /**
+     * 值
+     * @type {?|undefined}
+     */
+    SFSchemaEnum.prototype.value;
+    /**
+     * 主键，适用部分小部件数据键名，例如：`tree-select`
+     * @type {?|undefined}
+     */
+    SFSchemaEnum.prototype.key;
+    /**
+     * 是否选中
+     * @type {?|undefined}
+     */
+    SFSchemaEnum.prototype.checked;
+    /**
+     * 组名，适用部分允许组列表的小部件，例如：`select`
+     * - 组对应的文本为 `label`
+     * - `children` 为子项
+     * @type {?|undefined}
+     */
+    SFSchemaEnum.prototype.group;
+    /**
+     * 组对应的子类
+     * @type {?|undefined}
+     */
+    SFSchemaEnum.prototype.children;
+    /* Skipping unhandled member: [key: string]: any;*/
+}
+/**
+ * JSON Schema Form 结构体
+ *
+ * **注意：** 所有结构都以标准为基准，除了 `ui` 属性为非标准单纯只是为了更好的开发
+ * @record
+ */
+function SFSchema() { }
+if (false) {
+    /**
+     * 数据类型，支持 JavaScript 基础类型；注意项：
+     *
+     * - `integer` 表示整型，`number` 表示浮点型
+     * - JSON 中 `date` 等同 `string` 类型
+     * - 指定 `format` 标准参数可以自动适配渲染小部件
+     * - 指定 `widget` 参数强制渲染小部件
+     * @type {?|undefined}
+     */
+    SFSchema.prototype.type;
+    /**
+     * 枚举，静态数据源，例如：`radio`、`checkbox` 等
+     *
+     * - `disabled` 属性表示：禁用状态
+     * - `label` 属性表示：文本
+     * - `value` 属性表示：返回值
+     * - 基础数据类型数组会自动转化成 `SFSchemaEnum` 数组格式
+     * @type {?|undefined}
+     */
+    SFSchema.prototype.enum;
+    /**
+     * 最小值
+     * @type {?|undefined}
+     */
+    SFSchema.prototype.minimum;
+    /**
+     * 约束是否包括 `minimum` 值
+     * @type {?|undefined}
+     */
+    SFSchema.prototype.exclusiveMinimum;
+    /**
+     * 最大值
+     * @type {?|undefined}
+     */
+    SFSchema.prototype.maximum;
+    /**
+     * 约束是否包括 `maximum` 值
+     * @type {?|undefined}
+     */
+    SFSchema.prototype.exclusiveMaximum;
+    /**
+     * 倍数
+     * @type {?|undefined}
+     */
+    SFSchema.prototype.multipleOf;
+    /**
+     * 定义字符串的最大长度
+     * @type {?|undefined}
+     */
+    SFSchema.prototype.maxLength;
+    /**
+     * 定义字符串的最小长度
+     * @type {?|undefined}
+     */
+    SFSchema.prototype.minLength;
+    /**
+     * 验证输入字段正则表达式字符串，若指定 `format: 'regex'` 时务必指定
+     * @type {?|undefined}
+     */
+    SFSchema.prototype.pattern;
+    /**
+     * 数组元素类型描述，只支持数组对象，若需要基础类型数组可通过其他部件支持
+     *
+     * ```json
+     * items: {
+     *   type: 'object',
+     *   properties: {
+     *     name: { type: 'string' },
+     *     age: { type: 'number' }
+     *   }
+     * }
+     * ```
+     *
+     * 结果
+     *
+     * ```json
+     * [
+     *   { "name": "cipchk1", "age": 18 },
+     *   { "name": "cipchk2", "age": 16 }
+     * ]
+     * ```
+     * @type {?|undefined}
+     */
+    SFSchema.prototype.items;
+    /**
+     * 约束数组最小的元素个数
+     * - `type="array"` 时有效
+     * @type {?|undefined}
+     */
+    SFSchema.prototype.minItems;
+    /**
+     * 约束数组最大的元素个数
+     * - `type="array"` 时有效
+     * @type {?|undefined}
+     */
+    SFSchema.prototype.maxItems;
+    /**
+     * 约束数组每个元素都不相同
+     * - `type="array"` 时有效
+     * @type {?|undefined}
+     */
+    SFSchema.prototype.uniqueItems;
+    /**
+     * 数组额外元素的校验规则
+     * @type {?|undefined}
+     */
+    SFSchema.prototype.additionalItems;
+    /**
+     * 最大属性个数，必须是非负整数
+     * @type {?|undefined}
+     */
+    SFSchema.prototype.maxProperties;
+    /**
+     * 最小属性个数，必须是非负整数
+     * @type {?|undefined}
+     */
+    SFSchema.prototype.minProperties;
+    /**
+     * 必填项属性
+     * @type {?|undefined}
+     */
+    SFSchema.prototype.required;
+    /**
+     * 定义属性
+     * @type {?|undefined}
+     */
+    SFSchema.prototype.properties;
+    /**
+     * 条件验证
+     * - 必须包含 `properties` 节点
+     *  - 键名必须是当前节点 `properties` 值之一
+     *  - 利用 `enum` 属性表示条件值，支持 `$ANY$` 表示任意值
+     * - 不支持跨 Schema 节点
+     * - 当条件成功会执行 `then` 否则执行 `else`
+     * - `if`和`then` 是必须同时出现，`else` 可选项
+     * @type {?|undefined}
+     */
+    SFSchema.prototype.if;
+    /**
+     * 条件成功时执行
+     * - 只支持 `required` 参数，用于表示显示
+     * @type {?|undefined}
+     */
+    SFSchema.prototype.then;
+    /**
+     * 条件失败时执行
+     * - 只支持 `required` 参数，用于表示显示
+     * @type {?|undefined}
+     */
+    SFSchema.prototype.else;
+    /**
+     * *不建议** 使用，可用 `required` 替代
+     * @type {?|undefined}
+     */
+    SFSchema.prototype.allOf;
+    /**
+     * *不建议** 使用，可用 `required` 和 `minProperties` 替代
+     * @type {?|undefined}
+     */
+    SFSchema.prototype.anyOf;
+    /**
+     * 值必须是其中之一
+     * @type {?|undefined}
+     */
+    SFSchema.prototype.oneOf;
+    /**
+     * 数据格式，[文档](http://json-schema.org/latest/json-schema-validation.html#rfc.section.7.3)
+     * - `date-time` 日期时间，渲染为 `date`，[RFC3339](https://tools.ietf.org/html/rfc3339#section-5.6)
+     * - `date`、`full-date` 日期，渲染为 `date`
+     * - `time`、`full-time` 时间，渲染为 `time`
+     * - `email` Email格式，渲染为 `autocomplete`
+     * - 非标准：`week`，渲染为 `nz-week-picker`
+     * - 非标准：`month`，渲染为 `nz-month-picker`
+     * - `ip` IP地址，渲染为 `input`
+     * - `uri` URL地址，渲染为 `upload`
+     * - `regex` 正则表达式，必须指定 `pattern` 属性，渲染为 `input`
+     * - `mobile` 手机号
+     * - `id-card` 身份证
+     * - `color` 颜色值
+     * @type {?|undefined}
+     */
+    SFSchema.prototype.format;
+    /**
+     * 属性描述，相当于 `label` 值，按以下规则展示：
+     * - 当值为 `null`、`undefined` 时使用 `key` 替代
+     * - 当值为 `''` 空字符串表示不展示 `label` 部分，例如：`checkbox` 可能需要
+     * @type {?|undefined}
+     */
+    SFSchema.prototype.title;
+    /**
+     * 属性目的性解释
+     * @type {?|undefined}
+     */
+    SFSchema.prototype.description;
+    /**
+     * 默认值
+     * @type {?|undefined}
+     */
+    SFSchema.prototype.default;
+    /**
+     * 是否只读状态
+     * @type {?|undefined}
+     */
+    SFSchema.prototype.readOnly;
+    /**
+     * 内部类型定义体
+     * @type {?|undefined}
+     */
+    SFSchema.prototype.definitions;
+    /**
+     * 引用定义体
+     * @type {?|undefined}
+     */
+    SFSchema.prototype.$ref;
+    /**
+     * 针对开发者的注释，无任何意义，也不会被校验
+     * @type {?|undefined}
+     */
+    SFSchema.prototype.$comment;
+    /**
+     * *唯一非标准：** 指定UI配置信息，优先级高于 `sf` 组件 `ui` 属性值
+     * @type {?|undefined}
+     */
+    SFSchema.prototype.ui;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ */
+function SFGridSizeSchema() { }
+if (false) {
+    /** @type {?|undefined} */
+    SFGridSizeSchema.prototype.span;
+    /** @type {?|undefined} */
+    SFGridSizeSchema.prototype.order;
+    /** @type {?|undefined} */
+    SFGridSizeSchema.prototype.offset;
+    /** @type {?|undefined} */
+    SFGridSizeSchema.prototype.push;
+    /** @type {?|undefined} */
+    SFGridSizeSchema.prototype.pull;
+}
+/**
+ * @record
+ */
+function SFGridSchema() { }
+if (false) {
+    /**
+     * 栅格间隔
+     * @type {?|undefined}
+     */
+    SFGridSchema.prototype.gutter;
+    /**
+     * 栅格占位格数，为 `0` 时相当于 `display: none`
+     * @type {?|undefined}
+     */
+    SFGridSchema.prototype.span;
+    /**
+     * 数据栅格占位格数，为 `0` 时相当于 `display: none`
+     * @type {?|undefined}
+     */
+    SFGridSchema.prototype.arraySpan;
+    /**
+     * 栅格左侧的间隔格数，间隔内不可以有栅格
+     * @type {?|undefined}
+     */
+    SFGridSchema.prototype.offset;
+    /** @type {?|undefined} */
+    SFGridSchema.prototype.xs;
+    /** @type {?|undefined} */
+    SFGridSchema.prototype.sm;
+    /** @type {?|undefined} */
+    SFGridSchema.prototype.md;
+    /** @type {?|undefined} */
+    SFGridSchema.prototype.lg;
+    /** @type {?|undefined} */
+    SFGridSchema.prototype.xl;
+    /** @type {?|undefined} */
+    SFGridSchema.prototype.xxl;
+}
+/**
+ * @record
+ */
+function SFRenderSchema() { }
+if (false) {
+    /**
+     * 指定采用什么小部件渲染，所有小部件名可[查阅文档](https://ng-alain.com/)
+     * @type {?|undefined}
+     */
+    SFRenderSchema.prototype.widget;
+    /**
+     * 自定义类，等同 `[ngClass]` 值
+     * @type {?|undefined}
+     */
+    SFRenderSchema.prototype.class;
+    /**
+     * 元素组件大小
+     * @type {?|undefined}
+     */
+    SFRenderSchema.prototype.size;
+    /**
+     * 指定宽度，单位：`px`
+     * @type {?|undefined}
+     */
+    SFRenderSchema.prototype.width;
+    /**
+     * 响应式属性
+     * @type {?|undefined}
+     */
+    SFRenderSchema.prototype.grid;
+    /**
+     * 标签可选信息
+     * @type {?|undefined}
+     */
+    SFRenderSchema.prototype.optional;
+    /**
+     * 标签可选帮助，使用 `nz-tooltip` 展示
+     * @type {?|undefined}
+     */
+    SFRenderSchema.prototype.optionalHelp;
+}
+/**
+ * @record
+ */
+function SFOptionalHelp() { }
+if (false) {
+    /** @type {?|undefined} */
+    SFOptionalHelp.prototype.text;
+    /** @type {?|undefined} */
+    SFOptionalHelp.prototype.i18n;
+    /**
+     * 图标，默认：`question-circle`
+     * @type {?|undefined}
+     */
+    SFOptionalHelp.prototype.icon;
+    /** @type {?|undefined} */
+    SFOptionalHelp.prototype.placement;
+    /** @type {?|undefined} */
+    SFOptionalHelp.prototype.trigger;
+    /** @type {?|undefined} */
+    SFOptionalHelp.prototype.mouseEnterDelay;
+    /** @type {?|undefined} */
+    SFOptionalHelp.prototype.mouseLeaveDelay;
+    /** @type {?|undefined} */
+    SFOptionalHelp.prototype.overlayClassName;
+    /** @type {?|undefined} */
+    SFOptionalHelp.prototype.overlayStyle;
+}
+/**
+ * @record
+ */
+function SFHorizontalLayoutSchema() { }
+if (false) {
+    /**
+     * `label` 栅格占位格数，默认：`5`
+     * - `0` 时相当于 `display: none`
+     * - 限 `horizontal` 水平布局有效
+     * @type {?|undefined}
+     */
+    SFHorizontalLayoutSchema.prototype.spanLabel;
+    /**
+     * `control` 栅格占位格数，默认：`19`
+     * - `0` 时相当于 `display: none`
+     * - 限 `horizontal` 水平布局有效
+     * @type {?|undefined}
+     */
+    SFHorizontalLayoutSchema.prototype.spanControl;
+    /**
+     * `control` 栅格左侧的间隔格数，间隔内不可以有栅格
+     * - 限 `horizontal` 水平布局有效
+     * @type {?|undefined}
+     */
+    SFHorizontalLayoutSchema.prototype.offsetControl;
+    /**
+     * `label` 固定宽度
+     * - 限 `horizontal` 水平布局有效
+     * @type {?|undefined}
+     */
+    SFHorizontalLayoutSchema.prototype.spanLabelFixed;
+}
+/**
+ * @record
+ */
+function SFSchemaI18n() { }
+if (false) {
+    /**
+     * 指 `schema.title` 的国际化键值
+     * @type {?|undefined}
+     */
+    SFSchemaI18n.prototype.i18n;
+    /**
+     * 对应 `schema.description` 国际化
+     * @type {?|undefined}
+     */
+    SFSchemaI18n.prototype.descriptionI18n;
+}
+/**
+ * 指定如何渲染 `Schema`
+ * @record
+ */
+function SFUISchemaItem() { }
+if (false) {
+    /**
+     * 是否开启调试模式，在数据变更、校验会打印出相信信息，不建议在生产环境中使用
+     * @type {?|undefined}
+     */
+    SFUISchemaItem.prototype.debug;
+    /**
+     * 属性顺序
+     *
+     * 当你只想某几个属性靠前时，则允许使用通配符 `*` 来表示剩余部分，且只允许出现一次
+     *
+     * \@example
+     *
+     * [ 'a', 'b', 'c', 'd' ] + [ 'c', 'b', '*' ] = [ 'c', 'b', 'a', 'd']
+     * @type {?|undefined}
+     */
+    SFUISchemaItem.prototype.order;
+    /**
+     * 是否隐藏
+     * @type {?|undefined}
+     */
+    SFUISchemaItem.prototype.hidden;
+    /**
+     * 指定条件时才显示，但需要**注意**：
+     * - 键值表示监听对象属性名
+     * - JSON Schema 校验是各属性独立运行，监听对象属性每一次值变化都会重新做一次整个JSON结构计算
+     *
+     * 有效格式包括：
+     * - `visibleIf: { shown: [ true ] }`：当 `shown: true` 时才显示当前属性
+     * - `visibleIf: { shown: [ '$ANY$' ] }`：当 `shown` 包括任意值时
+     * - `visibleIf: { shown: (value: any) => value > 0 }`：复杂表达式
+     * @type {?|undefined}
+     */
+    SFUISchemaItem.prototype.visibleIf;
+    /**
+     * ACL 配置
+     * @type {?|undefined}
+     */
+    SFUISchemaItem.prototype.acl;
+    /* Skipping unhandled member: [key: string]: any;*/
+}
+/**
+ * UI Schema，KEY名**务必**是 `$` 开头（例如：`$name`、`$id`），以便能区分KEY值还是UI选项
+ * - 结构层级应同 `SFSchema` 一致
+ * - 当KEY为 `*` 时表示对所有子表单元素都有效
+ * @record
+ */
+function SFUISchema() { }
+/**
+ * 内部运行时使用
+ * @record
+ */
+function SFUISchemaItemRun() { }
+if (false) {
+    /**
+     * \@internal 自定义模板
+     * @type {?|undefined}
+     */
+    SFUISchemaItemRun.prototype._render;
+    /**
+     * \@internal 是否必填
+     * @type {?|undefined}
+     */
+    SFUISchemaItemRun.prototype._required;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ */
+function SFButton() { }
+if (false) {
+    /**
+     * 提交按钮文本，默认：`提交`
+     * @type {?|undefined}
+     */
+    SFButton.prototype.submit;
+    /**
+     * 提交按钮类型，默认：`primary`
+     * @type {?|undefined}
+     */
+    SFButton.prototype.submit_type;
+    /**
+     * 提交按钮图标
+     * @type {?|undefined}
+     */
+    SFButton.prototype.submit_icon;
+    /**
+     * 重置按钮文本，`null `或 `undefined` 表示不需要该按钮，默认：`重置`
+     * @type {?|undefined}
+     */
+    SFButton.prototype.reset;
+    /**
+     * 重置按钮类型，默认：`default`
+     * @type {?|undefined}
+     */
+    SFButton.prototype.reset_type;
+    /**
+     * 重置按钮图标
+     * @type {?|undefined}
+     */
+    SFButton.prototype.reset_icon;
+    /**
+     * 按钮样式，主要用于指定按钮 `grid`、`class` 属性
+     * @type {?|undefined}
+     */
+    SFButton.prototype.render;
+    /**
+     * 搜索按钮文本，默认：`搜索`
+     * @type {?|undefined}
+     */
+    SFButton.prototype.search;
+    /**
+     * 编辑按钮文本，默认：`保存`
+     * @type {?|undefined}
+     */
+    SFButton.prototype.edit;
+}
+/**
+ * @record
+ */
+function SFButtonIcon() { }
+if (false) {
+    /**
+     * 等同 `nz-icon` 的 `nzType` 值
+     * @type {?|undefined}
+     */
+    SFButtonIcon.prototype.type;
+    /**
+     * 图标主题风格，默认：`outline`
+     * @type {?|undefined}
+     */
+    SFButtonIcon.prototype.theme;
+    /**
+     * 仅适用双色图标，设置双色图标的主要颜色，仅对当前 icon 生效
+     * @type {?|undefined}
+     */
+    SFButtonIcon.prototype.twoToneColor;
+    /**
+     * 指定来自 IconFont 的图标类型
+     * @type {?|undefined}
+     */
+    SFButtonIcon.prototype.iconfont;
+}
+/**
+ * @record
+ */
+function SFRenderButton() { }
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 /** @type {?} */
 var ERRORSDEFAULT = {
     'false schema': "\u5E03\u5C14\u6A21\u5F0F\u51FA\u9519",
@@ -5402,6 +6768,1315 @@ var ERRORSDEFAULT = {
     formatExclusiveMinimum: "formatExclusiveMinimum \u5E94\u5F53\u662F\u5E03\u5C14\u503C",
     if: "\u5E94\u5F53\u5339\u914D\u6A21\u5F0F \"{failingKeyword}\"",
 };
+/**
+ * @record
+ */
+function ErrorData() { }
+if (false) {
+    /** @type {?} */
+    ErrorData.prototype.keyword;
+    /** @type {?|undefined} */
+    ErrorData.prototype.dataPath;
+    /** @type {?|undefined} */
+    ErrorData.prototype.schemaPath;
+    /** @type {?|undefined} */
+    ErrorData.prototype.params;
+    /** @type {?|undefined} */
+    ErrorData.prototype.message;
+    /* Skipping unhandled member: [key: string]: any;*/
+}
+/**
+ * @record
+ */
+function ErrorSchema() { }
+if (false) {
+    /**
+     * 是否实时校验，默认：`true`
+     * - `true` 每一次都校验
+     * - `false` 提交时校验
+     * @type {?|undefined}
+     */
+    ErrorSchema.prototype.liveValidate;
+    /**
+     * 自定义错误信息文本，键名赞同 `ErrorData.keyword` 值
+     * @type {?|undefined}
+     */
+    ErrorSchema.prototype.errors;
+    /**
+     * 是否立即呈现错误视觉，默认：`false`
+     * @type {?|undefined}
+     */
+    ErrorSchema.prototype.firstVisual;
+    /**
+     * 是否只展示错误视觉不显示错误文本，默认：`false`
+     * @type {?|undefined}
+     */
+    ErrorSchema.prototype.onlyVisual;
+    /**
+     * 是否忽略某些数据类型校验 `ERRORSDEFAULT`
+     * - 值始终包含 `DelonSchemaFormConfig.ingoreKeywords`
+     * @type {?|undefined}
+     */
+    ErrorSchema.prototype.ingoreKeywords;
+    /**
+     * 自定义校验
+     * @type {?|undefined}
+     */
+    ErrorSchema.prototype.validator;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ */
+function SFObjectWidgetSchema() { }
+if (false) {
+    /**
+     * 是否显示标题，默认：`false`
+     * @type {?|undefined}
+     */
+    SFObjectWidgetSchema.prototype.showTitle;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ */
+function SFArrayWidgetSchema() { }
+if (false) {
+    /**
+     * 指定添加按钮文本，默认：添加
+     * @type {?|undefined}
+     */
+    SFArrayWidgetSchema.prototype.addTitle;
+    /**
+     * 指定添加按钮风格，等同按钮 `nzType`，默认：dashed
+     * @type {?|undefined}
+     */
+    SFArrayWidgetSchema.prototype.addType;
+    /**
+     * 指定是否显示移除按钮
+     * @type {?|undefined}
+     */
+    SFArrayWidgetSchema.prototype.removable;
+    /**
+     * 指定移除按钮文本，默认：移除
+     * @type {?|undefined}
+     */
+    SFArrayWidgetSchema.prototype.removeTitle;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ */
+function SFStringWidgetSchema() { }
+if (false) {
+    /**
+     * 指定 `input` 的 `type` 值，默认为：`text`
+     * @type {?|undefined}
+     */
+    SFStringWidgetSchema.prototype.type;
+    /**
+     * 文字框中显示提示信息
+     * @type {?|undefined}
+     */
+    SFStringWidgetSchema.prototype.placeholder;
+    /**
+     * 自动完成功能的表单
+     * @type {?|undefined}
+     */
+    SFStringWidgetSchema.prototype.autocomplete;
+    /**
+     * 加载时是否获得焦点
+     * @type {?|undefined}
+     */
+    SFStringWidgetSchema.prototype.autofocus;
+    /**
+     * 前置标签，等同 `nzAddOnBefore`
+     * @type {?|undefined}
+     */
+    SFStringWidgetSchema.prototype.addOnBefore;
+    /**
+     * 后置标签，等同 `nzAddOnAfter`
+     * @type {?|undefined}
+     */
+    SFStringWidgetSchema.prototype.addOnAfter;
+    /**
+     * 前置Icon，等同 `nzAddOnBeforeIcon`
+     * @type {?|undefined}
+     */
+    SFStringWidgetSchema.prototype.addOnBeforeIcon;
+    /**
+     * 后置Icon，等同 `nzAddOnAfterIcon`
+     * @type {?|undefined}
+     */
+    SFStringWidgetSchema.prototype.addOnAfterIcon;
+    /**
+     * 带有前缀图标的 input，等同 `nzPrefix`
+     * @type {?|undefined}
+     */
+    SFStringWidgetSchema.prototype.prefix;
+    /**
+     * 前缀图标，等同 `nzPrefixIcon`
+     * @type {?|undefined}
+     */
+    SFStringWidgetSchema.prototype.prefixIcon;
+    /**
+     * 带有后缀图标的 input，等同 `nzSuffix`
+     * @type {?|undefined}
+     */
+    SFStringWidgetSchema.prototype.suffix;
+    /**
+     * 后缀图标，等同 `nzSuffixIcon`
+     * @type {?|undefined}
+     */
+    SFStringWidgetSchema.prototype.suffixIcon;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ */
+function SFNumberWidgetSchema() { }
+if (false) {
+    /** @type {?|undefined} */
+    SFNumberWidgetSchema.prototype.size;
+    /**
+     * 前缀，简化 `nzFormatter`、`nzParser` 的使用
+     * @type {?|undefined}
+     */
+    SFNumberWidgetSchema.prototype.prefix;
+    /**
+     * 单位，简化 `nzFormatter`、`nzParser` 的使用
+     * @type {?|undefined}
+     */
+    SFNumberWidgetSchema.prototype.unit;
+    /**
+     * 指定输入框展示值的格式
+     * @type {?|undefined}
+     */
+    SFNumberWidgetSchema.prototype.formatter;
+    /**
+     * 指定从 nzFormatter 里转换回数字的方式，和 nzFormatter 搭配使用
+     * @type {?|undefined}
+     */
+    SFNumberWidgetSchema.prototype.parser;
+    /**
+     * 数值精度
+     * @type {?|undefined}
+     */
+    SFNumberWidgetSchema.prototype.precision;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ */
+function SFDateWidgetSchema() { }
+if (false) {
+    /** @type {?|undefined} */
+    SFDateWidgetSchema.prototype.mode;
+    /** @type {?|undefined} */
+    SFDateWidgetSchema.prototype.size;
+    /** @type {?|undefined} */
+    SFDateWidgetSchema.prototype.placeholder;
+    /**
+     * **Just only support date-fns**
+     *
+     * Return the formatted date string in the given format, [Accepted tokens](https://date-fns.org/v1.30.1/docs/format), like this:
+     * - `YYYY-MM-DD HH:mm:ss` Date time
+     * - `X` Seconds timestamp
+     * - `x` Milliseconds timestamp
+     * @type {?|undefined}
+     */
+    SFDateWidgetSchema.prototype.format;
+    /**
+     * To set the date format (equar [nzFormat](https://ng.ant.design/components/date-picker/zh#api))
+     *
+     * **TIPS** [nzFormat special instructions](https://ng.ant.design/components/date-picker/en#api)
+     * @type {?|undefined}
+     */
+    SFDateWidgetSchema.prototype.displayFormat;
+    /**
+     * The end value corresponding to the date range `key`, a date range [demo](https://ng-alain.com/form/date/en#form-date-range).
+     * @type {?|undefined}
+     */
+    SFDateWidgetSchema.prototype.end;
+    /**
+     * Whether to show clear button, default: `true`
+     * @type {?|undefined}
+     */
+    SFDateWidgetSchema.prototype.allowClear;
+    /**
+     * Picker className
+     * @type {?|undefined}
+     */
+    SFDateWidgetSchema.prototype.className;
+    /**
+     * Localization configuration
+     * @type {?|undefined}
+     */
+    SFDateWidgetSchema.prototype.locale;
+    /**
+     * To customize the style of the popup calendar
+     * @type {?|undefined}
+     */
+    SFDateWidgetSchema.prototype.popupStyle;
+    /**
+     * To customize the className of the popup calendar
+     * @type {?|undefined}
+     */
+    SFDateWidgetSchema.prototype.dropdownClassName;
+    /**
+     * A callback emitter, can be executed whether the popup calendar is popped up or closed
+     * @type {?|undefined}
+     */
+    SFDateWidgetSchema.prototype.onOpenChange;
+    /**
+     * Specify the date that cannot be selected
+     * @type {?|undefined}
+     */
+    SFDateWidgetSchema.prototype.disabledDate;
+    /**
+     * To specify the time that cannot be selected, support components: `nz-date-picker`, `nz-range-picker`
+     * @type {?|undefined}
+     */
+    SFDateWidgetSchema.prototype.disabledTime;
+    /**
+     * Render extra footer in panel, support components: `nz-date-picker`, `nz-range-picker`, `nz-year-picker`, `nz-month-picker`
+     * @type {?|undefined}
+     */
+    SFDateWidgetSchema.prototype.renderExtraFooter;
+    /**
+     * To provide an additional time selection
+     * @type {?|undefined}
+     */
+    SFDateWidgetSchema.prototype.showTime;
+    /**
+     * Whether to show "Today" button, default: `true`
+     * @type {?|undefined}
+     */
+    SFDateWidgetSchema.prototype.showToday;
+    /**
+     * Callback when click ok button
+     * @type {?|undefined}
+     */
+    SFDateWidgetSchema.prototype.onOk;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ */
+function SFTimeWidgetSchema() { }
+if (false) {
+    /** @type {?|undefined} */
+    SFTimeWidgetSchema.prototype.size;
+    /** @type {?|undefined} */
+    SFTimeWidgetSchema.prototype.placeholder;
+    /**
+     * **Just only support date-fns**
+     *
+     * Return the formatted date string in the given format, [Accepted tokens](https://date-fns.org/v1.30.1/docs/format), like this:
+     * - `YYYY-MM-DD HH:mm:ss` Date time
+     * - `X` Seconds timestamp
+     * - `x` Milliseconds timestamp
+     * @type {?|undefined}
+     */
+    SFTimeWidgetSchema.prototype.format;
+    /**
+     * To set the date format (equar [nzFormat](https://ng.ant.design/components/date-picker/zh#api))
+     *
+     * **TIPS** [nzFormat special instructions](https://ng.ant.design/components/date-picker/en#api)
+     * @type {?|undefined}
+     */
+    SFTimeWidgetSchema.prototype.displayFormat;
+    /**
+     * 是否UTC新纪元（表示从 `1970` 开始计毫秒数），当 `type='number'` 时有效，默认：`false`
+     * @type {?|undefined}
+     */
+    SFTimeWidgetSchema.prototype.utcEpoch;
+    /**
+     * Allow clearing text, default: `true`
+     * @type {?|undefined}
+     */
+    SFTimeWidgetSchema.prototype.allowEmpty;
+    /**
+     * Clear tooltip of icon, default: `清除`
+     * @type {?|undefined}
+     */
+    SFTimeWidgetSchema.prototype.clearText;
+    /**
+     * Default open panel value, default: `new Date()`
+     * @type {?|undefined}
+     */
+    SFTimeWidgetSchema.prototype.defaultOpenValue;
+    /**
+     * To specify the hours that cannot be selected
+     * @type {?|undefined}
+     */
+    SFTimeWidgetSchema.prototype.disabledHours;
+    /**
+     * To specify the minutes that cannot be selected
+     * @type {?|undefined}
+     */
+    SFTimeWidgetSchema.prototype.disabledMinutes;
+    /**
+     * To specify the seconds that cannot be selected
+     * @type {?|undefined}
+     */
+    SFTimeWidgetSchema.prototype.disabledSeconds;
+    /**
+     * Hide the options that can not be selected, default: `false`
+     * @type {?|undefined}
+     */
+    SFTimeWidgetSchema.prototype.hideDisabledOptions;
+    /**
+     * Display as 12 hours format, with default format, default: `h:mm:ss a`
+     * @type {?|undefined}
+     */
+    SFTimeWidgetSchema.prototype.use12Hours;
+    /**
+     * Interval between hours in picker, default: `1`
+     * @type {?|undefined}
+     */
+    SFTimeWidgetSchema.prototype.hourStep;
+    /**
+     * Interval between minutes in picker, default: `1`
+     * @type {?|undefined}
+     */
+    SFTimeWidgetSchema.prototype.minuteStep;
+    /**
+     * Interval between seconds in picker, default: `1`
+     * @type {?|undefined}
+     */
+    SFTimeWidgetSchema.prototype.secondStep;
+    /**
+     * ClassName of panel
+     * @type {?|undefined}
+     */
+    SFTimeWidgetSchema.prototype.popupClassName;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ */
+function SFRadioWidgetSchema() { }
+if (false) {
+    /**
+     * 异步数据源
+     * @type {?|undefined}
+     */
+    SFRadioWidgetSchema.prototype.asyncData;
+    /** @type {?|undefined} */
+    SFRadioWidgetSchema.prototype.size;
+    /**
+     * radio 的样式，默认：`default`
+     * @type {?|undefined}
+     */
+    SFRadioWidgetSchema.prototype.styleType;
+    /**
+     * RadioButton 的风格样式，目前有描边和填色两种风格，默认：`outline`
+     * @type {?|undefined}
+     */
+    SFRadioWidgetSchema.prototype.buttonStyle;
+    /**
+     * 值变更事件
+     * @type {?|undefined}
+     */
+    SFRadioWidgetSchema.prototype.change;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ */
+function SFCheckboxWidgetSchema() { }
+if (false) {
+    /**
+     * 异步静态数据源
+     * @type {?|undefined}
+     */
+    SFCheckboxWidgetSchema.prototype.asyncData;
+    /**
+     * 指定每个选框单元格数量，参考[布局](https://ng.ant.design/components/checkbox/zh#components-checkbox-demo-layout)
+     * @type {?|undefined}
+     */
+    SFCheckboxWidgetSchema.prototype.span;
+    /**
+     * radio的样式，默认：`default`
+     * @type {?|undefined}
+     */
+    SFCheckboxWidgetSchema.prototype.styleType;
+    /**
+     * 是否需要全选
+     * @type {?|undefined}
+     */
+    SFCheckboxWidgetSchema.prototype.checkAll;
+    /**
+     * 全选按钮文本
+     * @type {?|undefined}
+     */
+    SFCheckboxWidgetSchema.prototype.checkAllText;
+    /**
+     * 值变更事件，参数：单个多选框为 `boolean`，否则为 `SFSchemaEnum[]`
+     * @type {?|undefined}
+     */
+    SFCheckboxWidgetSchema.prototype.change;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ */
+function SFCascaderWidgetSchema() { }
+if (false) {
+    /**
+     * 异步静态数据源
+     * @type {?|undefined}
+     */
+    SFCascaderWidgetSchema.prototype.asyncData;
+    /**
+     * 在文字框中显示提示讯息
+     * @type {?|undefined}
+     */
+    SFCascaderWidgetSchema.prototype.placeholder;
+    /**
+     * 是否支持搜索，默认：`false`
+     * @type {?|undefined}
+     */
+    SFCascaderWidgetSchema.prototype.showSearch;
+    /**
+     * 是否显示清除按钮，默认：`true`
+     * @type {?|undefined}
+     */
+    SFCascaderWidgetSchema.prototype.allowClear;
+    /**
+     * 清除按钮的标题，默认：`清除`
+     * @type {?|undefined}
+     */
+    SFCascaderWidgetSchema.prototype.clearText;
+    /**
+     * 是否显示箭头，默认：`true`
+     * @type {?|undefined}
+     */
+    SFCascaderWidgetSchema.prototype.showArrow;
+    /**
+     * 是否显示箭头，默认：`true`
+     * @type {?|undefined}
+     */
+    SFCascaderWidgetSchema.prototype.showInput;
+    /**
+     * 自定义浮层类名
+     * @type {?|undefined}
+     */
+    SFCascaderWidgetSchema.prototype.menuClassName;
+    /**
+     * 自定义浮层样式
+     * @type {?|undefined}
+     */
+    SFCascaderWidgetSchema.prototype.menuStyle;
+    /**
+     * 弹出菜单中数据列的自定义样式
+     * @type {?|undefined}
+     */
+    SFCascaderWidgetSchema.prototype.columnClassName;
+    /**
+     * 是否缓存异步加载的数据，若每次异步加载的数据都是变化的，需将该值设置为 `false`，默认：`true`
+     * @type {?|undefined}
+     */
+    SFCascaderWidgetSchema.prototype.enableCache;
+    /**
+     * 次级菜单的展开方式，默认：`click`
+     * @type {?|undefined}
+     */
+    SFCascaderWidgetSchema.prototype.expandTrigger;
+    /**
+     * 当此项为 `true` 时，点选每级菜单选项值都会发生变化，具体见上面的演示，默认：`false`
+     * @type {?|undefined}
+     */
+    SFCascaderWidgetSchema.prototype.changeOnSelect;
+    /**
+     * 可通过自定义的函数来判断点击菜单选项是否应该发生变化，当函数返回 `true` 时，将发生变化
+     * @type {?|undefined}
+     */
+    SFCascaderWidgetSchema.prototype.changeOn;
+    /**
+     * 触发菜单出现的行为，默认：`['click']`
+     * @type {?|undefined}
+     */
+    SFCascaderWidgetSchema.prototype.triggerAction;
+    /**
+     * 值 `value` 的属性名称，默认：`value`
+     * @type {?|undefined}
+     */
+    SFCascaderWidgetSchema.prototype.valueProperty;
+    /**
+     * 值 `label` 的属性名称，默认：`label`
+     * @type {?|undefined}
+     */
+    SFCascaderWidgetSchema.prototype.labelProperty;
+    /**
+     * 异步加载事件
+     * @type {?|undefined}
+     */
+    SFCascaderWidgetSchema.prototype.visibleChange;
+    /**
+     * 选项值变更事件
+     * @type {?|undefined}
+     */
+    SFCascaderWidgetSchema.prototype.change;
+    /**
+     * 选项变更事件
+     * @type {?|undefined}
+     */
+    SFCascaderWidgetSchema.prototype.selectionChange;
+    /**
+     * 选项被选中事件
+     * @type {?|undefined}
+     */
+    SFCascaderWidgetSchema.prototype.select;
+    /**
+     * 内容被清空事件
+     * @type {?|undefined}
+     */
+    SFCascaderWidgetSchema.prototype.clear;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ */
+function SFTextareaWidgetSchema() { }
+if (false) {
+    /** @type {?|undefined} */
+    SFTextareaWidgetSchema.prototype.size;
+    /**
+     * 在文字框中显示提示讯息
+     * @type {?|undefined}
+     */
+    SFTextareaWidgetSchema.prototype.placeholder;
+    /**
+     * 自适应内容高度，可设置为 `true|false` 或对象：`{ minRows: 2, maxRows: 6 }`
+     * @type {?|undefined}
+     */
+    SFTextareaWidgetSchema.prototype.autosize;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ */
+function SFSelectWidgetSchema() { }
+if (false) {
+    /**
+     * 异步数据源
+     * @type {?|undefined}
+     */
+    SFSelectWidgetSchema.prototype.asyncData;
+    /** @type {?|undefined} */
+    SFSelectWidgetSchema.prototype.size;
+    /**
+     * 在文字框中显示提示讯息
+     * @type {?|undefined}
+     */
+    SFSelectWidgetSchema.prototype.placeholder;
+    /**
+     * 与 [SelectControlValueAccessor](https://angular.io/api/forms/SelectControlValueAccessor#caveat-option-selection) 相同
+     * @type {?|undefined}
+     */
+    SFSelectWidgetSchema.prototype.compareWith;
+    /**
+     * 是否在选中项后清空搜索框，只在 `mode` 为 `multiple` 或 `tags` 时有效，默认：`true`
+     * @type {?|undefined}
+     */
+    SFSelectWidgetSchema.prototype.autoClearSearchValue;
+    /**
+     * 支持清除，默认：`false`
+     * @type {?|undefined}
+     */
+    SFSelectWidgetSchema.prototype.allowClear;
+    /**
+     * 默认获取焦点，默认：`false`
+     * @type {?|undefined}
+     */
+    SFSelectWidgetSchema.prototype.autoFocus;
+    /**
+     * 下拉菜单的 className 属性
+     * @type {?|undefined}
+     */
+    SFSelectWidgetSchema.prototype.dropdownClassName;
+    /**
+     * 下拉菜单和选择器同宽，默认：`true`
+     * @type {?|undefined}
+     */
+    SFSelectWidgetSchema.prototype.dropdownMatchSelectWidth;
+    /**
+     * 下拉菜单的 style 属性
+     * @type {?|undefined}
+     */
+    SFSelectWidgetSchema.prototype.dropdownStyle;
+    /**
+     * 是否使用服务端搜索，当为 `true` 时，将不再在前端对 `nz-option` 进行过滤，默认：`false`
+     * @type {?|undefined}
+     */
+    SFSelectWidgetSchema.prototype.serverSearch;
+    /**
+     * 最多选中多少个标签，默认：`Infinity`
+     * @type {?|undefined}
+     */
+    SFSelectWidgetSchema.prototype.maxMultipleCount;
+    /**
+     * 设置 `nz-select` 的模式，`tags` 建议增加 `default: null`，否则可能会遇到初始化有一个空的标签
+     * @type {?|undefined}
+     */
+    SFSelectWidgetSchema.prototype.mode;
+    /**
+     * 当下拉列表为空时显示的内容
+     * @type {?|undefined}
+     */
+    SFSelectWidgetSchema.prototype.notFoundContent;
+    /**
+     * 使单选模式可搜索，默认：`false`
+     * @type {?|undefined}
+     */
+    SFSelectWidgetSchema.prototype.showSearch;
+    /**
+     * 搜索内容变化回调函数，参数为搜索内容，必须返回 `Promise` 对象
+     * @type {?|undefined}
+     */
+    SFSelectWidgetSchema.prototype.onSearch;
+    /**
+     * 在 `tags` 和 `multiple` 模式下自动分词的分隔符
+     * @type {?|undefined}
+     */
+    SFSelectWidgetSchema.prototype.tokenSeparators;
+    /**
+     * 最多显示多少个 tag
+     * @type {?|undefined}
+     */
+    SFSelectWidgetSchema.prototype.maxTagCount;
+    /**
+     * 选中的 `nz-option` 发生变化时，调用此函数
+     * @type {?|undefined}
+     */
+    SFSelectWidgetSchema.prototype.change;
+    /**
+     * 下拉菜单打开关闭回调函数
+     * @type {?|undefined}
+     */
+    SFSelectWidgetSchema.prototype.openChange;
+    /**
+     * 下拉菜单滚动到底部回调，可用于作为动态加载的触发条件
+     * @type {?|undefined}
+     */
+    SFSelectWidgetSchema.prototype.scrollToBottom;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ */
+function SFTreeSelectWidgetSchema() { }
+if (false) {
+    /**
+     * 异步数据源
+     * @type {?|undefined}
+     */
+    SFTreeSelectWidgetSchema.prototype.asyncData;
+    /** @type {?|undefined} */
+    SFTreeSelectWidgetSchema.prototype.size;
+    /** @type {?|undefined} */
+    SFTreeSelectWidgetSchema.prototype.placeholder;
+    /**
+     * 支持清除，默认：`false`
+     * @type {?|undefined}
+     */
+    SFTreeSelectWidgetSchema.prototype.allowClear;
+    /**
+     * 下拉菜单和选择器同宽，默认：`true`
+     * @type {?|undefined}
+     */
+    SFTreeSelectWidgetSchema.prototype.dropdownMatchSelectWidth;
+    /**
+     * 下拉菜单的 style 属性
+     * @type {?|undefined}
+     */
+    SFTreeSelectWidgetSchema.prototype.dropdownStyle;
+    /**
+     * 支持多选（当设置 `checkable` 时自动变为true），默认：`false`
+     * @type {?|undefined}
+     */
+    SFTreeSelectWidgetSchema.prototype.multiple;
+    /**
+     * 节点前添加 Checkbox 复选框，默认：`false`
+     * @type {?|undefined}
+     */
+    SFTreeSelectWidgetSchema.prototype.checkable;
+    /**
+     * 节点前添加展开图标，默认：`true`
+     * @type {?|undefined}
+     */
+    SFTreeSelectWidgetSchema.prototype.showExpand;
+    /**
+     * 节点前添加展开图标，默认：`false`
+     * @type {?|undefined}
+     */
+    SFTreeSelectWidgetSchema.prototype.showLine;
+    /**
+     * 默认展开所有树节点，默认：`false`
+     * @type {?|undefined}
+     */
+    SFTreeSelectWidgetSchema.prototype.defaultExpandAll;
+    /**
+     * 如何在输入框显示所选的节点值的方法
+     * @type {?|undefined}
+     */
+    SFTreeSelectWidgetSchema.prototype.displayWith;
+    /**
+     * 点击展开树节点图标调用
+     * @type {?|undefined}
+     */
+    SFTreeSelectWidgetSchema.prototype.expandChange;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ */
+function SFTagWidgetSchema() { }
+if (false) {
+    /**
+     * 异步数据源
+     * @type {?|undefined}
+     */
+    SFTagWidgetSchema.prototype.asyncData;
+    /**
+     * 设定标签工作的模式，默认：`checkable`
+     * @type {?|undefined}
+     */
+    SFTagWidgetSchema.prototype.mode;
+    /**
+     * 关闭动画完成后的回调
+     * @type {?|undefined}
+     */
+    SFTagWidgetSchema.prototype.afterClose;
+    /**
+     * 关闭时的回调，在 `nzMode="closable"` 时可用
+     * @type {?|undefined}
+     */
+    SFTagWidgetSchema.prototype.onClose;
+    /**
+     * 设置标签的选中状态的回调
+     * @type {?|undefined}
+     */
+    SFTagWidgetSchema.prototype.checkedChange;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ */
+function SFUploadWidgetSchema() { }
+if (false) {
+    /**
+     * 异步数据源
+     * @type {?|undefined}
+     */
+    SFUploadWidgetSchema.prototype.asyncData;
+    /**
+     * 上传类型，默认：`select`
+     * @type {?|undefined}
+     */
+    SFUploadWidgetSchema.prototype.type;
+    /**
+     * 按钮文本，默认：`点击上传`
+     * @type {?|undefined}
+     */
+    SFUploadWidgetSchema.prototype.text;
+    /**
+     * 提醒文本，drag 时有效，默认：`支持单个或批量，严禁上传公司数据或其他安全文件`
+     * @type {?|undefined}
+     */
+    SFUploadWidgetSchema.prototype.hint;
+    /**
+     * 重命名返回参数，支持 `a.b.c` 的嵌套写法，若不指定表示整个返回体
+     * @type {?|undefined}
+     */
+    SFUploadWidgetSchema.prototype.resReName;
+    /**
+     * 重命名预览图像URL返回参数，支持 `a.b.c` 的嵌套写法，若不指定表示使用文件对象的 `url`、`thumbUrl` 值
+     * @type {?|undefined}
+     */
+    SFUploadWidgetSchema.prototype.urlReName;
+    /**
+     * **必选参数** 上传的地址
+     * @type {?|undefined}
+     */
+    SFUploadWidgetSchema.prototype.action;
+    /**
+     * 接受上传的文件类型, 详见 [input accept Attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-accept)
+     * @type {?|undefined}
+     */
+    SFUploadWidgetSchema.prototype.accept;
+    /**
+     * 限制单次最多上传数量，`multiple` 打开时有效；`0` 表示不限，默认：`0`
+     * @type {?|undefined}
+     */
+    SFUploadWidgetSchema.prototype.limit;
+    /**
+     * 自定义过滤器
+     * @type {?|undefined}
+     */
+    SFUploadWidgetSchema.prototype.filter;
+    /**
+     * 文件列表
+     * @type {?|undefined}
+     */
+    SFUploadWidgetSchema.prototype.fileList;
+    /**
+     * 限制文件大小，单位：KB；`0` 表示不限，默认：`0`
+     * @type {?|undefined}
+     */
+    SFUploadWidgetSchema.prototype.fileSize;
+    /**
+     * 限制文件类型，例如：`image/png,image/jpeg,image/gif,image/bmp`
+     * @type {?|undefined}
+     */
+    SFUploadWidgetSchema.prototype.fileType;
+    /**
+     * 设置上传的请求头部
+     * @type {?|undefined}
+     */
+    SFUploadWidgetSchema.prototype.headers;
+    /**
+     * 上传列表的内建样式，默认：`text`
+     * @type {?|undefined}
+     */
+    SFUploadWidgetSchema.prototype.listType;
+    /**
+     * 是否展示列表, 可设为一个对象，用于单独设定 `showPreviewIcon` 和 `showRemoveIcon`，默认：`true`
+     * @type {?|undefined}
+     */
+    SFUploadWidgetSchema.prototype.showUploadList;
+    /**
+     * 是否支持多选文件，`IE10+` 支持。开启后按住 `ctrl` 可选择多个文件，默认：`false`
+     * @type {?|undefined}
+     */
+    SFUploadWidgetSchema.prototype.multiple;
+    /**
+     * 发到后台的文件参数名，默认：`file`
+     * @type {?|undefined}
+     */
+    SFUploadWidgetSchema.prototype.name;
+    /**
+     * 上传所需参数或返回上传参数的方法
+     * @type {?|undefined}
+     */
+    SFUploadWidgetSchema.prototype.data;
+    /**
+     * 上传请求时是否携带 cookie，默认：`false`
+     * @type {?|undefined}
+     */
+    SFUploadWidgetSchema.prototype.withCredentials;
+    /**
+     * 支持上传文件夹（[caniuse](https://caniuse.com/#feat=input-file-directory)），默认：`false`
+     * @type {?|undefined}
+     */
+    SFUploadWidgetSchema.prototype.directory;
+    /**
+     * 点击打开文件对话框，默认：`true`
+     * @type {?|undefined}
+     */
+    SFUploadWidgetSchema.prototype.openFileDialogOnClick;
+    /**
+     * 上传文件之前的钩子，参数为上传的文件，若返回 `false` 则停止上传
+     * @type {?|undefined}
+     */
+    SFUploadWidgetSchema.prototype.beforeUpload;
+    /**
+     * 通过覆盖默认的上传行为，可以自定义自己的上传实现
+     * @type {?|undefined}
+     */
+    SFUploadWidgetSchema.prototype.customRequest;
+    /**
+     * 点击移除文件时的回调，返回值为 `false` 时不移除
+     * @type {?|undefined}
+     */
+    SFUploadWidgetSchema.prototype.remove;
+    /**
+     * 点击文件链接或预览图标时的回调
+     * @type {?|undefined}
+     */
+    SFUploadWidgetSchema.prototype.preview;
+    /**
+     * 上传文件改变时的状态
+     * @type {?|undefined}
+     */
+    SFUploadWidgetSchema.prototype.change;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ */
+function SFTransferWidgetSchema() { }
+if (false) {
+    /**
+     * 异步数据源
+     * @type {?|undefined}
+     */
+    SFTransferWidgetSchema.prototype.asyncData;
+    /**
+     * 标题集合，顺序从左至右，默认：`['', '']`
+     * @type {?|undefined}
+     */
+    SFTransferWidgetSchema.prototype.titles;
+    /**
+     * 操作文案集合，顺序从下至上，默认：`['', '']`
+     * @type {?|undefined}
+     */
+    SFTransferWidgetSchema.prototype.operations;
+    /**
+     * 两个穿梭框的自定义样式，以`ngStyle`写法标题
+     * @type {?|undefined}
+     */
+    SFTransferWidgetSchema.prototype.listStyle;
+    /**
+     * 单数单位
+     * @type {?|undefined}
+     */
+    SFTransferWidgetSchema.prototype.itemUnit;
+    /**
+     * 复数单位
+     * @type {?|undefined}
+     */
+    SFTransferWidgetSchema.prototype.itemsUnit;
+    /**
+     * 是否显示搜索框，默认：`false`
+     * @type {?|undefined}
+     */
+    SFTransferWidgetSchema.prototype.showSearch;
+    /**
+     * 接收 `inputValueoption` 两个参数，当 `option` 符合筛选条件时，应返回 `true`，反之则返回 `false`
+     * @type {?|undefined}
+     */
+    SFTransferWidgetSchema.prototype.filterOption;
+    /**
+     * 搜索框的默认值
+     * @type {?|undefined}
+     */
+    SFTransferWidgetSchema.prototype.searchPlaceholder;
+    /**
+     * 当列表为空时显示的内容
+     * @type {?|undefined}
+     */
+    SFTransferWidgetSchema.prototype.notFoundContent;
+    /**
+     * 穿梭时二次校验
+     * @type {?|undefined}
+     */
+    SFTransferWidgetSchema.prototype.canMove;
+    /**
+     * 选项在两栏之间转移时的回调函数
+     * @type {?|undefined}
+     */
+    SFTransferWidgetSchema.prototype.change;
+    /**
+     * 搜索框内容时改变时的回调函数
+     * @type {?|undefined}
+     */
+    SFTransferWidgetSchema.prototype.searchChange;
+    /**
+     * 选中项发生改变时的回调函数
+     * @type {?|undefined}
+     */
+    SFTransferWidgetSchema.prototype.selectChange;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ */
+function SFSliderWidgetSchema() { }
+if (false) {
+    /**
+     * 当添加该属性时，启动双滑块模式
+     * @type {?|undefined}
+     */
+    SFSliderWidgetSchema.prototype.range;
+    /**
+     * 刻度标记
+     * @type {?|undefined}
+     */
+    SFSliderWidgetSchema.prototype.marks;
+    /**
+     * 是否只能拖拽到刻度上，默认：`false`
+     * @type {?|undefined}
+     */
+    SFSliderWidgetSchema.prototype.dots;
+    /**
+     * 是否包含。`marks` 不为空对象时有效，值为 `true` 时表示值为包含关系，`false` 表示并列
+     * @type {?|undefined}
+     */
+    SFSliderWidgetSchema.prototype.included;
+    /**
+     * 竖直显示。添加该属性时，Slider 为垂直方向
+     * @type {?|undefined}
+     */
+    SFSliderWidgetSchema.prototype.vertical;
+    /**
+     * 与 `onmouseup` 触发时机一致，把当前值作为参数传入
+     * @type {?|undefined}
+     */
+    SFSliderWidgetSchema.prototype.afterChange;
+    /**
+     * Slider 会把当前值传给 `nzTipFormatter`，并在 Tooltip 中显示 `nzTipFormatter` 的返回值，若为 null，则隐藏 Tooltip
+     * @type {?|undefined}
+     */
+    SFSliderWidgetSchema.prototype.formatter;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ */
+function SFRateWidgetSchema() { }
+if (false) {
+    /**
+     * 是否允许再次点击后清除，默认：`true`
+     * @type {?|undefined}
+     */
+    SFRateWidgetSchema.prototype.allowClear;
+    /**
+     * 自动获取焦点，默认：`false`
+     * @type {?|undefined}
+     */
+    SFRateWidgetSchema.prototype.autoFocus;
+    /**
+     * 提醒文本模板，`{{value}}` 表示当前值（注意无任何空格）
+     * @type {?|undefined}
+     */
+    SFRateWidgetSchema.prototype.text;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ */
+function SFAutoCompleteWidgetSchema() { }
+if (false) {
+    /**
+     * 异步静态数据源
+     * @type {?|undefined}
+     */
+    SFAutoCompleteWidgetSchema.prototype.asyncData;
+    /**
+     * 在文字框中显示提示讯息
+     * @type {?|undefined}
+     */
+    SFAutoCompleteWidgetSchema.prototype.placeholder;
+    /**
+     * 是否根据输入项进行筛选，默认只对 `label` 属性执行不区分大小定 `indexOf` 过滤
+     * 当其为一个函数时，会接收 `inputValue` `option` 两个参数，当 `option` 符合筛选条件时，应返回 `true`，反之则返回 `false`。
+     * @type {?|undefined}
+     */
+    SFAutoCompleteWidgetSchema.prototype.filterOption;
+    /**
+     * 模式，自动完成常见邮箱后缀，可以重新使用 `enum` 来指定新后缀
+     * @type {?|undefined}
+     */
+    SFAutoCompleteWidgetSchema.prototype.type;
+    /**
+     * 去抖时间，当实时数据源时默认最少 `50`，单位：毫秒
+     * @type {?|undefined}
+     */
+    SFAutoCompleteWidgetSchema.prototype.debounceTime;
+    /**
+     * 是否默认高亮第一个选项，默认：`true`
+     * @type {?|undefined}
+     */
+    SFAutoCompleteWidgetSchema.prototype.defaultActiveFirstOption;
+    /**
+     * 使用键盘选择选项的时候把选中项回填到输入框中，默认：`false`
+     * @type {?|undefined}
+     */
+    SFAutoCompleteWidgetSchema.prototype.backfill;
+    /**
+     * 自定义宽度单位 `px`，默认：触发元素宽度
+     * @type {?|undefined}
+     */
+    SFAutoCompleteWidgetSchema.prototype.nzWidth;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ */
+function SFMentionWidgetSchema() { }
+if (false) {
+    /**
+     * 异步静态数据源
+     * @type {?|undefined}
+     */
+    SFMentionWidgetSchema.prototype.asyncData;
+    /** @type {?|undefined} */
+    SFMentionWidgetSchema.prototype.size;
+    /**
+     * 在文字框中显示提示讯息
+     * @type {?|undefined}
+     */
+    SFMentionWidgetSchema.prototype.placeholder;
+    /**
+     * 实时数据
+     * @type {?|undefined}
+     */
+    SFMentionWidgetSchema.prototype.loadData;
+    /**
+     * 未找到时的内容，默认：`无匹配结果，轻敲空格完成输入`
+     * @type {?|undefined}
+     */
+    SFMentionWidgetSchema.prototype.notFoundContent;
+    /**
+     * 建议框位置，默认：`button`
+     * @type {?|undefined}
+     */
+    SFMentionWidgetSchema.prototype.placement;
+    /**
+     * 触发弹出下拉框的字符，默认：`\@`
+     * @type {?|undefined}
+     */
+    SFMentionWidgetSchema.prototype.prefix;
+    /**
+     * 建议选项的取值方法，默认：`item => item.label`
+     * @type {?|undefined}
+     */
+    SFMentionWidgetSchema.prototype.valueWith;
+    /**
+     * 下拉框选择建议时回调
+     * @type {?|undefined}
+     */
+    SFMentionWidgetSchema.prototype.select;
+    /**
+     * 文本框类型，默认：`text`
+     * @type {?|undefined}
+     */
+    SFMentionWidgetSchema.prototype.inputStyle;
+    /**
+     * 自适应内容高度，可设置为 `true|false` 或对象：`{ minRows: 2, maxRows: 6 }`
+     * @type {?|undefined}
+     */
+    SFMentionWidgetSchema.prototype.autosize;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ */
+function SFTextWidgetSchema() { }
+if (false) {
+    /**
+     * 当值不存在时所指定的文本，默认：`-`
+     * @type {?|undefined}
+     */
+    SFTextWidgetSchema.prototype.defaultText;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ */
+function SFCustomWidgetSchema() { }
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 
 export { AjvSchemaValidatorFactory, ArrayLayoutWidget, ArrayProperty, ArrayWidget, AtomicProperty, AutoCompleteWidget, BooleanProperty, BooleanWidget, CascaderWidget, CheckboxWidget, ControlUIWidget, ControlWidget, CustomWidget, DateWidget, DelonFormConfig, DelonFormModule, ERRORSDEFAULT, FormProperty, FormPropertyFactory, MentionWidget, NumberProperty, NumberWidget, NzWidgetRegistry, ObjectLayoutWidget, ObjectProperty, ObjectWidget, PropertyGroup, RadioWidget, RateWidget, SFComponent, SFFixedDirective, SFItemComponent, SchemaValidatorFactory, SelectWidget, SliderWidget, StringProperty, StringWidget, TagWidget, TextWidget, TextareaWidget, TimeWidget, TransferWidget, TreeSelectWidget, UploadWidget, Widget, WidgetFactory, WidgetRegistry, useFactory, TerminatorService as ɵa, SFItemWrapComponent as ɵb, SFTemplateDirective as ɵc };
 //# sourceMappingURL=form.js.map

@@ -113,6 +113,35 @@ ExceptionComponent.propDecorators = {
     title: [{ type: Input }],
     desc: [{ type: Input }]
 };
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    ExceptionComponent.prototype.i18n$;
+    /**
+     * @type {?}
+     * @private
+     */
+    ExceptionComponent.prototype.conTpl;
+    /** @type {?} */
+    ExceptionComponent.prototype._type;
+    /** @type {?} */
+    ExceptionComponent.prototype.locale;
+    /** @type {?} */
+    ExceptionComponent.prototype.hasCon;
+    /** @type {?} */
+    ExceptionComponent.prototype._img;
+    /** @type {?} */
+    ExceptionComponent.prototype._title;
+    /** @type {?} */
+    ExceptionComponent.prototype._desc;
+    /**
+     * @type {?}
+     * @private
+     */
+    ExceptionComponent.prototype.i18n;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -129,6 +158,16 @@ ExceptionModule.decorators = [
                 exports: [...COMPONENTS],
             },] }
 ];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 
 export { ExceptionComponent, ExceptionModule };
 //# sourceMappingURL=exception.js.map

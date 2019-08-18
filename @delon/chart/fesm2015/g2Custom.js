@@ -94,6 +94,28 @@ __decorate([
     InputNumber(),
     __metadata("design:type", Object)
 ], G2CustomComponent.prototype, "resizeTime", void 0);
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    G2CustomComponent.prototype.resize$;
+    /** @type {?} */
+    G2CustomComponent.prototype.height;
+    /** @type {?} */
+    G2CustomComponent.prototype.resizeTime;
+    /** @type {?} */
+    G2CustomComponent.prototype.render;
+    /** @type {?} */
+    G2CustomComponent.prototype.resize;
+    /** @type {?} */
+    G2CustomComponent.prototype.destroy;
+    /**
+     * @type {?}
+     * @private
+     */
+    G2CustomComponent.prototype.el;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -110,6 +132,16 @@ G2CustomModule.decorators = [
                 exports: [...COMPONENTS],
             },] }
 ];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 
 export { G2CustomComponent, G2CustomModule };
 //# sourceMappingURL=g2Custom.js.map

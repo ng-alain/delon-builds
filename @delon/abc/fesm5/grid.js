@@ -1,5 +1,5 @@
-import { __decorate, __metadata, __assign, __spread } from 'tslib';
-import { ɵɵdefineInjectable, Injectable, Component, ChangeDetectionStrategy, ViewEncapsulation, Input, ElementRef, Renderer2, Optional, Host, NgModule } from '@angular/core';
+import { __assign, __decorate, __metadata, __spread } from 'tslib';
+import { Injectable, ɵɵdefineInjectable, Component, ChangeDetectionStrategy, ViewEncapsulation, Input, ElementRef, Renderer2, Optional, Host, NgModule } from '@angular/core';
 import { InputNumber, DelonUtilModule } from '@delon/util';
 import { ResponsiveService } from '@delon/theme';
 import { CommonModule } from '@angular/common';
@@ -25,6 +25,18 @@ var SGConfig = /** @class */ (function () {
     /** @nocollapse */ SGConfig.ngInjectableDef = ɵɵdefineInjectable({ factory: function SGConfig_Factory() { return new SGConfig(); }, token: SGConfig, providedIn: "root" });
     return SGConfig;
 }());
+if (false) {
+    /**
+     * 间距，默认：`32`
+     * @type {?}
+     */
+    SGConfig.prototype.gutter;
+    /**
+     * 列数，默认：`2`
+     * @type {?}
+     */
+    SGConfig.prototype.col;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -86,6 +98,14 @@ var SGContainerComponent = /** @class */ (function () {
     ], SGContainerComponent.prototype, "col", void 0);
     return SGContainerComponent;
 }());
+if (false) {
+    /** @type {?} */
+    SGContainerComponent.prototype.gutter;
+    /** @type {?} */
+    SGContainerComponent.prototype.colInCon;
+    /** @type {?} */
+    SGContainerComponent.prototype.col;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -193,6 +213,40 @@ var SGComponent = /** @class */ (function () {
     ], SGComponent.prototype, "col", void 0);
     return SGComponent;
 }());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    SGComponent.prototype.el;
+    /**
+     * @type {?}
+     * @private
+     */
+    SGComponent.prototype.clsMap;
+    /**
+     * @type {?}
+     * @private
+     */
+    SGComponent.prototype.inited;
+    /** @type {?} */
+    SGComponent.prototype.col;
+    /**
+     * @type {?}
+     * @private
+     */
+    SGComponent.prototype.ren;
+    /**
+     * @type {?}
+     * @private
+     */
+    SGComponent.prototype.parent;
+    /**
+     * @type {?}
+     * @private
+     */
+    SGComponent.prototype.rep;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -212,6 +266,16 @@ var SGModule = /** @class */ (function () {
     ];
     return SGModule;
 }());
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 
 export { SGComponent, SGConfig, SGContainerComponent, SGModule };
 //# sourceMappingURL=grid.js.map

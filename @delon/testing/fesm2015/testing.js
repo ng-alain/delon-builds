@@ -499,6 +499,10 @@ class PageG2 {
         return (/** @type {?} */ (this));
     }
 }
+if (false) {
+    /** @type {?} */
+    PageG2.prototype.fixture;
+}
 /**
  * @template M, T
  * @param {?} module
@@ -577,6 +581,10 @@ class TestContext {
         return (/** @type {?} */ (this.fixture.debugElement.injector.get(component)));
     }
 }
+if (false) {
+    /** @type {?} */
+    TestContext.prototype.fixture;
+}
 /** @type {?} */
 const configureTestSuite = (/**
  * @param {?=} configureAction
@@ -640,6 +648,16 @@ const createTestContext = (/**
 (component) => {
     return new TestContext(TestBed.createComponent(component));
 });
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 
 export { DROPDOWN_MIN_TIME, PageG2, PageG2DataCount, PageG2Height, TestContext, checkDelay, configureTestSuite, createFakeEvent, createKeyboardEvent, createMouseEvent, createTestContext, createTouchEvent, dispatchDropDown, dispatchEvent, dispatchFakeEvent, dispatchKeyboardEvent, dispatchMouseEvent, dispatchTouchEvent, typeInElement };
 //# sourceMappingURL=testing.js.map

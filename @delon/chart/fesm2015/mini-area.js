@@ -7,6 +7,17 @@ import { CommonModule } from '@angular/common';
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function G2MiniAreaData() { }
+if (false) {
+    /** @type {?} */
+    G2MiniAreaData.prototype.x;
+    /** @type {?} */
+    G2MiniAreaData.prototype.y;
+    /* Skipping unhandled member: [key: string]: any;*/
+}
 class G2MiniAreaComponent {
     // #endregion
     /**
@@ -204,6 +215,51 @@ __decorate([
     InputBoolean(),
     __metadata("design:type", Object)
 ], G2MiniAreaComponent.prototype, "animate", void 0);
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    G2MiniAreaComponent.prototype.chart;
+    /** @type {?} */
+    G2MiniAreaComponent.prototype.delay;
+    /** @type {?} */
+    G2MiniAreaComponent.prototype.color;
+    /** @type {?} */
+    G2MiniAreaComponent.prototype.borderColor;
+    /** @type {?} */
+    G2MiniAreaComponent.prototype.borderWidth;
+    /** @type {?} */
+    G2MiniAreaComponent.prototype.height;
+    /** @type {?} */
+    G2MiniAreaComponent.prototype.fit;
+    /** @type {?} */
+    G2MiniAreaComponent.prototype.line;
+    /** @type {?} */
+    G2MiniAreaComponent.prototype.animate;
+    /** @type {?} */
+    G2MiniAreaComponent.prototype.xAxis;
+    /** @type {?} */
+    G2MiniAreaComponent.prototype.yAxis;
+    /** @type {?} */
+    G2MiniAreaComponent.prototype.padding;
+    /** @type {?} */
+    G2MiniAreaComponent.prototype.data;
+    /** @type {?} */
+    G2MiniAreaComponent.prototype.yTooltipSuffix;
+    /** @type {?} */
+    G2MiniAreaComponent.prototype.tooltipType;
+    /**
+     * @type {?}
+     * @private
+     */
+    G2MiniAreaComponent.prototype.el;
+    /**
+     * @type {?}
+     * @private
+     */
+    G2MiniAreaComponent.prototype.ngZone;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -220,6 +276,16 @@ G2MiniAreaModule.decorators = [
                 exports: [...COMPONENTS],
             },] }
 ];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 
 export { G2MiniAreaComponent, G2MiniAreaModule };
 //# sourceMappingURL=mini-area.js.map

@@ -38,6 +38,20 @@
     See the Apache Version 2.0 License for specific language governing permissions
     and limitations under the License.
     ***************************************************************************** */
+    /* global Reflect, Promise */
+
+    var extendStatics = function(d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+
+    function __extends(d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    }
 
     var __assign = function() {
         __assign = Object.assign || function __assign(t) {
@@ -49,6 +63,74 @@
         };
         return __assign.apply(this, arguments);
     };
+
+    function __rest(s, e) {
+        var t = {};
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+            t[p] = s[p];
+        if (s != null && typeof Object.getOwnPropertySymbols === "function")
+            for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+                if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                    t[p[i]] = s[p[i]];
+            }
+        return t;
+    }
+
+    function __decorate(decorators, target, key, desc) {
+        var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+        if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+        else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+        return c > 3 && r && Object.defineProperty(target, key, r), r;
+    }
+
+    function __param(paramIndex, decorator) {
+        return function (target, key) { decorator(target, key, paramIndex); }
+    }
+
+    function __metadata(metadataKey, metadataValue) {
+        if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(metadataKey, metadataValue);
+    }
+
+    function __awaiter(thisArg, _arguments, P, generator) {
+        return new (P || (P = Promise))(function (resolve, reject) {
+            function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+            function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+            function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+            step((generator = generator.apply(thisArg, _arguments || [])).next());
+        });
+    }
+
+    function __generator(thisArg, body) {
+        var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+        return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+        function verb(n) { return function (v) { return step([n, v]); }; }
+        function step(op) {
+            if (f) throw new TypeError("Generator is already executing.");
+            while (_) try {
+                if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+                if (y = 0, t) op = [op[0] & 2, t.value];
+                switch (op[0]) {
+                    case 0: case 1: t = op; break;
+                    case 4: _.label++; return { value: op[1], done: false };
+                    case 5: _.label++; y = op[1]; op = [0]; continue;
+                    case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                    default:
+                        if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                        if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                        if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                        if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                        if (t[2]) _.ops.pop();
+                        _.trys.pop(); continue;
+                }
+                op = body.call(thisArg, _);
+            } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+            if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+        }
+    }
+
+    function __exportStar(m, exports) {
+        for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+    }
 
     function __values(o) {
         var m = typeof Symbol === "function" && o[Symbol.iterator], i = 0;
@@ -82,6 +164,61 @@
         for (var ar = [], i = 0; i < arguments.length; i++)
             ar = ar.concat(__read(arguments[i]));
         return ar;
+    }
+
+    function __spreadArrays() {
+        for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
+        for (var r = Array(s), k = 0, i = 0; i < il; i++)
+            for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
+                r[k] = a[j];
+        return r;
+    };
+
+    function __await(v) {
+        return this instanceof __await ? (this.v = v, this) : new __await(v);
+    }
+
+    function __asyncGenerator(thisArg, _arguments, generator) {
+        if (!Symbol.asyncIterator) throw new TypeError("Symbol.asyncIterator is not defined.");
+        var g = generator.apply(thisArg, _arguments || []), i, q = [];
+        return i = {}, verb("next"), verb("throw"), verb("return"), i[Symbol.asyncIterator] = function () { return this; }, i;
+        function verb(n) { if (g[n]) i[n] = function (v) { return new Promise(function (a, b) { q.push([n, v, a, b]) > 1 || resume(n, v); }); }; }
+        function resume(n, v) { try { step(g[n](v)); } catch (e) { settle(q[0][3], e); } }
+        function step(r) { r.value instanceof __await ? Promise.resolve(r.value.v).then(fulfill, reject) : settle(q[0][2], r); }
+        function fulfill(value) { resume("next", value); }
+        function reject(value) { resume("throw", value); }
+        function settle(f, v) { if (f(v), q.shift(), q.length) resume(q[0][0], q[0][1]); }
+    }
+
+    function __asyncDelegator(o) {
+        var i, p;
+        return i = {}, verb("next"), verb("throw", function (e) { throw e; }), verb("return"), i[Symbol.iterator] = function () { return this; }, i;
+        function verb(n, f) { i[n] = o[n] ? function (v) { return (p = !p) ? { value: __await(o[n](v)), done: n === "return" } : f ? f(v) : v; } : f; }
+    }
+
+    function __asyncValues(o) {
+        if (!Symbol.asyncIterator) throw new TypeError("Symbol.asyncIterator is not defined.");
+        var m = o[Symbol.asyncIterator], i;
+        return m ? m.call(o) : (o = typeof __values === "function" ? __values(o) : o[Symbol.iterator](), i = {}, verb("next"), verb("throw"), verb("return"), i[Symbol.asyncIterator] = function () { return this; }, i);
+        function verb(n) { i[n] = o[n] && function (v) { return new Promise(function (resolve, reject) { v = o[n](v), settle(resolve, reject, v.done, v.value); }); }; }
+        function settle(resolve, reject, d, v) { Promise.resolve(v).then(function(v) { resolve({ value: v, done: d }); }, reject); }
+    }
+
+    function __makeTemplateObject(cooked, raw) {
+        if (Object.defineProperty) { Object.defineProperty(cooked, "raw", { value: raw }); } else { cooked.raw = raw; }
+        return cooked;
+    };
+
+    function __importStar(mod) {
+        if (mod && mod.__esModule) return mod;
+        var result = {};
+        if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
+        result.default = mod;
+        return result;
+    }
+
+    function __importDefault(mod) {
+        return (mod && mod.__esModule) ? mod : { default: mod };
     }
 
     /**
@@ -155,6 +292,38 @@
         };
         return StringTemplateOutletDirective;
     }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        StringTemplateOutletDirective.prototype.isTemplate;
+        /**
+         * @type {?}
+         * @private
+         */
+        StringTemplateOutletDirective.prototype.inputTemplate;
+        /**
+         * @type {?}
+         * @private
+         */
+        StringTemplateOutletDirective.prototype.inputViewRef;
+        /**
+         * @type {?}
+         * @private
+         */
+        StringTemplateOutletDirective.prototype.defaultViewRef;
+        /**
+         * @type {?}
+         * @private
+         */
+        StringTemplateOutletDirective.prototype.viewContainer;
+        /**
+         * @type {?}
+         * @private
+         */
+        StringTemplateOutletDirective.prototype.defaultTemplate;
+    }
 
     /**
      * @fileoverview added by tsickle
@@ -398,6 +567,20 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
+    /**
+     * @record
+     */
+    function LazyResult() { }
+    if (false) {
+        /** @type {?} */
+        LazyResult.prototype.path;
+        /** @type {?} */
+        LazyResult.prototype.loaded;
+        /** @type {?} */
+        LazyResult.prototype.status;
+        /** @type {?|undefined} */
+        LazyResult.prototype.error;
+    }
     var LazyService = /** @class */ (function () {
         function LazyService(doc) {
             this.doc = doc;
@@ -601,6 +784,28 @@
         /** @nocollapse */ LazyService.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function LazyService_Factory() { return new LazyService(core.ɵɵinject(common.DOCUMENT)); }, token: LazyService, providedIn: "root" });
         return LazyService;
     }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        LazyService.prototype.list;
+        /**
+         * @type {?}
+         * @private
+         */
+        LazyService.prototype.cached;
+        /**
+         * @type {?}
+         * @private
+         */
+        LazyService.prototype._notify;
+        /**
+         * @type {?}
+         * @private
+         */
+        LazyService.prototype.doc;
+    }
 
     /**
      * @fileoverview added by tsickle
@@ -954,6 +1159,67 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
+    /**
+     * @record
+     */
+    function ArrayConfig() { }
+    if (false) {
+        /**
+         * 深度项名，默认：`'deep'`
+         * @type {?|undefined}
+         */
+        ArrayConfig.prototype.deepMapName;
+        /**
+         * 扁平后数组的父数据项名，默认：`'parent'`
+         * @type {?|undefined}
+         */
+        ArrayConfig.prototype.parentMapName;
+        /**
+         * 编号项名，默认：`'id'`
+         * @type {?|undefined}
+         */
+        ArrayConfig.prototype.idMapName;
+        /**
+         * 父编号项名，默认：`'parent_id'`
+         * @type {?|undefined}
+         */
+        ArrayConfig.prototype.parentIdMapName;
+        /**
+         * 源数据子项名，默认：`'children'`
+         * @type {?|undefined}
+         */
+        ArrayConfig.prototype.childrenMapName;
+        /**
+         * 标题项名，默认：`'title'`
+         * @type {?|undefined}
+         */
+        ArrayConfig.prototype.titleMapName;
+        /**
+         * 节点 Checkbox 是否选中项名，默认：`'checked'`
+         * @type {?|undefined}
+         */
+        ArrayConfig.prototype.checkedMapname;
+        /**
+         * 节点本身是否选中项名，默认：`'selected'`
+         * @type {?|undefined}
+         */
+        ArrayConfig.prototype.selectedMapname;
+        /**
+         * 节点是否展开(叶子节点无效)项名，默认：`'expanded'`
+         * @type {?|undefined}
+         */
+        ArrayConfig.prototype.expandedMapname;
+        /**
+         * 设置是否禁用节点(不可进行任何操作)项名，默认：`'disabled'`
+         * @type {?|undefined}
+         */
+        ArrayConfig.prototype.disabledMapname;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     var DelonUtilConfig = /** @class */ (function () {
         function DelonUtilConfig() {
         }
@@ -963,11 +1229,144 @@
         /** @nocollapse */ DelonUtilConfig.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function DelonUtilConfig_Factory() { return new DelonUtilConfig(); }, token: DelonUtilConfig, providedIn: "root" });
         return DelonUtilConfig;
     }());
+    if (false) {
+        /** @type {?} */
+        DelonUtilConfig.prototype.array;
+    }
 
     /**
      * @fileoverview added by tsickle
      * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
+    /**
+     * @record
+     */
+    function ArrayServiceTreeToArrOptions() { }
+    if (false) {
+        /**
+         * 深度项名，默认：`'deep'`
+         * @type {?|undefined}
+         */
+        ArrayServiceTreeToArrOptions.prototype.deepMapName;
+        /**
+         * 扁平后数组的父数据项名，默认：`'parent'`
+         * @type {?|undefined}
+         */
+        ArrayServiceTreeToArrOptions.prototype.parentMapName;
+        /**
+         * 源数据子项名，默认：`'children'`
+         * @type {?|undefined}
+         */
+        ArrayServiceTreeToArrOptions.prototype.childrenMapName;
+        /**
+         * 是否移除 `children` 节点，默认：`true`
+         * @type {?|undefined}
+         */
+        ArrayServiceTreeToArrOptions.prototype.clearChildren;
+        /**
+         * 转换成数组结构时回调
+         * @type {?|undefined}
+         */
+        ArrayServiceTreeToArrOptions.prototype.cb;
+    }
+    /**
+     * @record
+     */
+    function ArrayServiceArrToTreeOptions() { }
+    if (false) {
+        /**
+         * 编号项名，默认：`'id'`
+         * @type {?|undefined}
+         */
+        ArrayServiceArrToTreeOptions.prototype.idMapName;
+        /**
+         * 父编号项名，默认：`'parent_id'`
+         * @type {?|undefined}
+         */
+        ArrayServiceArrToTreeOptions.prototype.parentIdMapName;
+        /**
+         * 子项名，默认：`'children'`
+         * @type {?|undefined}
+         */
+        ArrayServiceArrToTreeOptions.prototype.childrenMapName;
+        /**
+         * 转换成树数据时回调
+         * @type {?|undefined}
+         */
+        ArrayServiceArrToTreeOptions.prototype.cb;
+    }
+    /**
+     * @record
+     */
+    function ArrayServiceArrToTreeNodeOptions() { }
+    if (false) {
+        /**
+         * 编号项名，默认：`'id'`
+         * @type {?|undefined}
+         */
+        ArrayServiceArrToTreeNodeOptions.prototype.idMapName;
+        /**
+         * 父编号项名，默认：`'parent_id'`
+         * @type {?|undefined}
+         */
+        ArrayServiceArrToTreeNodeOptions.prototype.parentIdMapName;
+        /**
+         * 标题项名，默认：`'title'`
+         * @type {?|undefined}
+         */
+        ArrayServiceArrToTreeNodeOptions.prototype.titleMapName;
+        /**
+         * 设置为叶子节点项名，若数据源不存在时自动根据 `children` 值决定是否为叶子节点，默认：`'isLeaf'`
+         * @type {?|undefined}
+         */
+        ArrayServiceArrToTreeNodeOptions.prototype.isLeafMapName;
+        /**
+         * 节点 Checkbox 是否选中项名，默认：`'checked'`
+         * @type {?|undefined}
+         */
+        ArrayServiceArrToTreeNodeOptions.prototype.checkedMapname;
+        /**
+         * 节点本身是否选中项名，默认：`'selected'`
+         * @type {?|undefined}
+         */
+        ArrayServiceArrToTreeNodeOptions.prototype.selectedMapname;
+        /**
+         * 节点是否展开(叶子节点无效)项名，默认：`'expanded'`
+         * @type {?|undefined}
+         */
+        ArrayServiceArrToTreeNodeOptions.prototype.expandedMapname;
+        /**
+         * 设置是否禁用节点(不可进行任何操作)项名，默认：`'disabled'`
+         * @type {?|undefined}
+         */
+        ArrayServiceArrToTreeNodeOptions.prototype.disabledMapname;
+        /**
+         * 转换成树数据后，执行的递归回调
+         * @type {?|undefined}
+         */
+        ArrayServiceArrToTreeNodeOptions.prototype.cb;
+    }
+    /**
+     * @record
+     */
+    function ArrayServiceGetKeysByTreeNodeOptions() { }
+    if (false) {
+        /**
+         * 是否包含半选状态的值，默认：`true`
+         * @type {?|undefined}
+         */
+        ArrayServiceGetKeysByTreeNodeOptions.prototype.includeHalfChecked;
+        /**
+         * 是否重新指定 `key` 键名，若不指定表示使用 `NzTreeNode.key` 值
+         * @type {?|undefined}
+         */
+        ArrayServiceGetKeysByTreeNodeOptions.prototype.keyMapName;
+        /**
+         * 回调，返回一个值 `key` 值，优先级高于其他
+         * @type {?|undefined}
+         */
+        ArrayServiceGetKeysByTreeNodeOptions.prototype.cb;
+    }
     var ArrayService = /** @class */ (function () {
         function ArrayService(cog) {
             this.c = __assign({ deepMapName: 'deep', parentMapName: 'parent', idMapName: 'id', parentIdMapName: 'parent_id', childrenMapName: 'children', titleMapName: 'title', checkedMapname: 'checked', selectedMapname: 'selected', expandedMapname: 'expanded', disabledMapname: 'disabled' }, (cog && cog.array));
@@ -1230,6 +1629,13 @@
         /** @nocollapse */ ArrayService.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function ArrayService_Factory() { return new ArrayService(core.ɵɵinject(DelonUtilConfig)); }, token: ArrayService, providedIn: "root" });
         return ArrayService;
     }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        ArrayService.prototype.c;
+    }
 
     /**
      * @fileoverview added by tsickle

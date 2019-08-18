@@ -39,6 +39,38 @@ SVConfig.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
 /** @nocollapse */ SVConfig.ngInjectableDef = ɵɵdefineInjectable({ factory: function SVConfig_Factory() { return new SVConfig(); }, token: SVConfig, providedIn: "root" });
+if (false) {
+    /**
+     * 大小
+     * @type {?}
+     */
+    SVConfig.prototype.size;
+    /**
+     * 间距，默认：`32`
+     * @type {?}
+     */
+    SVConfig.prototype.gutter;
+    /**
+     * 布局，默认：`horizontal`
+     * @type {?}
+     */
+    SVConfig.prototype.layout;
+    /**
+     * 列数，默认：`3`
+     * @type {?}
+     */
+    SVConfig.prototype.col;
+    /**
+     * 是否显示默认值，当内容为空值时显示 `-`，默认：`true`
+     * @type {?}
+     */
+    SVConfig.prototype.default;
+    /**
+     * `label` 固定宽度，若 `null` 或 `undefined` 表示非固定，默认：`null`
+     * @type {?}
+     */
+    SVConfig.prototype.labelWidth;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -123,6 +155,38 @@ __decorate([
     InputNumber(),
     __metadata("design:type", Number)
 ], SVContainerComponent.prototype, "col", void 0);
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    SVContainerComponent.prototype.el;
+    /** @type {?} */
+    SVContainerComponent.prototype.title;
+    /** @type {?} */
+    SVContainerComponent.prototype.size;
+    /**
+     * 列表项间距，单位为 `px`
+     * @type {?}
+     */
+    SVContainerComponent.prototype.gutter;
+    /** @type {?} */
+    SVContainerComponent.prototype.layout;
+    /** @type {?} */
+    SVContainerComponent.prototype.labelWidth;
+    /**
+     * 指定信息最多分几列展示，最终一行几列由 col 配置结合响应式规则决定
+     * @type {?}
+     */
+    SVContainerComponent.prototype.col;
+    /** @type {?} */
+    SVContainerComponent.prototype.default;
+    /**
+     * @type {?}
+     * @private
+     */
+    SVContainerComponent.prototype.ren;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -178,6 +242,23 @@ SVTitleComponent.ctorParameters = () => [
     { type: SVContainerComponent, decorators: [{ type: Host }, { type: Optional }] },
     { type: Renderer2 }
 ];
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    SVTitleComponent.prototype.el;
+    /**
+     * @type {?}
+     * @private
+     */
+    SVTitleComponent.prototype.parent;
+    /**
+     * @type {?}
+     * @private
+     */
+    SVTitleComponent.prototype.ren;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -313,6 +394,49 @@ __decorate([
     InputBoolean(null),
     __metadata("design:type", Boolean)
 ], SVComponent.prototype, "default", void 0);
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    SVComponent.prototype.conEl;
+    /**
+     * @type {?}
+     * @private
+     */
+    SVComponent.prototype.el;
+    /**
+     * @type {?}
+     * @private
+     */
+    SVComponent.prototype.clsMap;
+    /** @type {?} */
+    SVComponent.prototype.optional;
+    /** @type {?} */
+    SVComponent.prototype.optionalHelp;
+    /** @type {?} */
+    SVComponent.prototype.label;
+    /** @type {?} */
+    SVComponent.prototype.unit;
+    /** @type {?} */
+    SVComponent.prototype.col;
+    /** @type {?} */
+    SVComponent.prototype.default;
+    /** @type {?} */
+    SVComponent.prototype.type;
+    /** @type {?} */
+    SVComponent.prototype.parent;
+    /**
+     * @type {?}
+     * @private
+     */
+    SVComponent.prototype.rep;
+    /**
+     * @type {?}
+     * @private
+     */
+    SVComponent.prototype.ren;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -329,6 +453,16 @@ SVModule.decorators = [
                 exports: [...COMPONENTS],
             },] }
 ];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 
 export { SVComponent, SVConfig, SVContainerComponent, SVModule, SVTitleComponent };
 //# sourceMappingURL=view.js.map

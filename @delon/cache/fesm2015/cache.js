@@ -8,27 +8,77 @@ import { tap, map } from 'rxjs/operators';
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function ICache() { }
+if (false) {
+    /** @type {?} */
+    ICache.prototype.v;
+    /**
+     * 过期时间戳，`0` 表示不过期
+     * @type {?}
+     */
+    ICache.prototype.e;
+}
+/**
+ * @record
+ */
+function ICacheStore() { }
+if (false) {
+    /**
+     * @param {?} key
+     * @return {?}
+     */
+    ICacheStore.prototype.get = function (key) { };
+    /**
+     * @param {?} key
+     * @param {?} value
+     * @return {?}
+     */
+    ICacheStore.prototype.set = function (key, value) { };
+    /**
+     * @param {?} key
+     * @return {?}
+     */
+    ICacheStore.prototype.remove = function (key) { };
+}
+/**
+ * @record
+ */
+function CacheNotifyResult() { }
+if (false) {
+    /** @type {?} */
+    CacheNotifyResult.prototype.type;
+    /** @type {?|undefined} */
+    CacheNotifyResult.prototype.value;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 class DelonCacheConfig {
     constructor() {
         /**
-         * 缓存模式，默认：`promise`
-         * - `promise` 约定模式，允许 `key` 作为 http 获取数据
-         * - `none` 正常模式
+         * Cache mode, default: `promise`
+         * - `promise` Convention mode, allowing `key` to get data as http
+         * - `none` Normal mode
          */
         this.mode = 'promise';
         /**
-         * 重命名返回参数，例如：
-         * - `null` 返回体为内容
-         * - `list` 返回体应 `{ list: [] }`
-         * - `result.list` 返回体应 `{ result: { list: [] } }`
+         * Rename the return parameters, for example:
+         * - `null` The response body is content
+         * - `list` The response body should be `{ list: [] }`
+         * - `result.list` The response body should be `{ result: { list: [] } }`
          */
         this.reName = '';
         /**
-         * 持久化数据键值前缀
+         * Key prefix of persistent data
          */
         this.prefix = '';
         /**
-         * 持久化数据元数据存储键名
+         * Key name of persistent data metadata storage
          */
         this.meta_key = '__cache_meta';
     }
@@ -37,6 +87,45 @@ DelonCacheConfig.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
 /** @nocollapse */ DelonCacheConfig.ngInjectableDef = ɵɵdefineInjectable({ factory: function DelonCacheConfig_Factory() { return new DelonCacheConfig(); }, token: DelonCacheConfig, providedIn: "root" });
+if (false) {
+    /**
+     * Cache mode, default: `promise`
+     * - `promise` Convention mode, allowing `key` to get data as http
+     * - `none` Normal mode
+     * @type {?}
+     */
+    DelonCacheConfig.prototype.mode;
+    /**
+     * Rename the return parameters, for example:
+     * - `null` The response body is content
+     * - `list` The response body should be `{ list: [] }`
+     * - `result.list` The response body should be `{ result: { list: [] } }`
+     * @type {?}
+     */
+    DelonCacheConfig.prototype.reName;
+    /**
+     * Set the default storage type
+     * - `m` Storage via memory
+     * - `s` Storage via `localStorage`
+     * @type {?}
+     */
+    DelonCacheConfig.prototype.type;
+    /**
+     * Set the default expire time (Unit: second)
+     * @type {?}
+     */
+    DelonCacheConfig.prototype.expire;
+    /**
+     * Key prefix of persistent data
+     * @type {?}
+     */
+    DelonCacheConfig.prototype.prefix;
+    /**
+     * Key name of persistent data metadata storage
+     * @type {?}
+     */
+    DelonCacheConfig.prototype.meta_key;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -102,12 +191,13 @@ class CacheService {
         this.startExpireNotify();
     }
     /**
+     * @private
      * @param {?} obj
      * @param {?} path
      * @param {?=} defaultValue
      * @return {?}
      */
-    _deepGet(obj, path, defaultValue) {
+    deepGet(obj, path, defaultValue) {
         if (!obj)
             return defaultValue;
         if (path.length <= 1) {
@@ -188,9 +278,11 @@ class CacheService {
      * @return {?}
      */
     set(key, data, options = {}) {
-        // expire
         /** @type {?} */
         let e = 0;
+        const { type, expire } = this.cog;
+        options = Object.assign({ type,
+            expire }, options);
         if (options.expire) {
             e = addSeconds(new Date(), options.expire).valueOf();
         }
@@ -232,16 +324,14 @@ class CacheService {
         /** @type {?} */
         const isPromise = options.mode !== 'none' && this.cog.mode === 'promise';
         /** @type {?} */
-        const value = this.memory.has(key)
-            ? ((/** @type {?} */ (this.memory.get(key))))
-            : this.store.get(this.cog.prefix + key);
+        const value = this.memory.has(key) ? ((/** @type {?} */ (this.memory.get(key)))) : this.store.get(this.cog.prefix + key);
         if (!value || (value.e && value.e > 0 && value.e < new Date().valueOf())) {
             if (isPromise) {
                 return this.http.get(key).pipe(map((/**
                  * @param {?} ret
                  * @return {?}
                  */
-                (ret) => this._deepGet(ret, (/** @type {?} */ (this.cog.reName)), null))), tap((/**
+                (ret) => this.deepGet(ret, (/** @type {?} */ (this.cog.reName)), null))), tap((/**
                  * @param {?} v
                  * @return {?}
                  */
@@ -475,6 +565,48 @@ CacheService.ctorParameters = () => [
     { type: HttpClient }
 ];
 /** @nocollapse */ CacheService.ngInjectableDef = ɵɵdefineInjectable({ factory: function CacheService_Factory() { return new CacheService(ɵɵinject(DelonCacheConfig), ɵɵinject(DC_STORE_STORAGE_TOKEN), ɵɵinject(HttpClient)); }, token: CacheService, providedIn: "root" });
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    CacheService.prototype.memory;
+    /**
+     * @type {?}
+     * @private
+     */
+    CacheService.prototype.notifyBuffer;
+    /**
+     * @type {?}
+     * @private
+     */
+    CacheService.prototype.meta;
+    /**
+     * @type {?}
+     * @private
+     */
+    CacheService.prototype.freqTick;
+    /**
+     * @type {?}
+     * @private
+     */
+    CacheService.prototype.freqTime;
+    /**
+     * @type {?}
+     * @private
+     */
+    CacheService.prototype.cog;
+    /**
+     * @type {?}
+     * @private
+     */
+    CacheService.prototype.store;
+    /**
+     * @type {?}
+     * @private
+     */
+    CacheService.prototype.http;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -485,6 +617,16 @@ class DelonCacheModule {
 DelonCacheModule.decorators = [
     { type: NgModule, args: [{},] }
 ];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 
 export { CacheService, DelonCacheConfig, DelonCacheModule, DC_STORE_STORAGE_TOKEN as ɵa, DC_STORE_STORAGE_TOKEN_FACTORY as ɵb, LocalStorageCacheService as ɵc };
 //# sourceMappingURL=cache.js.map

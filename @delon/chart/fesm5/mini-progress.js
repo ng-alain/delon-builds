@@ -75,6 +75,23 @@ var G2MiniProgressComponent = /** @class */ (function () {
     ], G2MiniProgressComponent.prototype, "strokeWidth", void 0);
     return G2MiniProgressComponent;
 }());
+if (false) {
+    /** @type {?} */
+    G2MiniProgressComponent.prototype.color;
+    /** @type {?} */
+    G2MiniProgressComponent.prototype.target;
+    /** @type {?} */
+    G2MiniProgressComponent.prototype.percent;
+    /** @type {?} */
+    G2MiniProgressComponent.prototype.strokeWidth;
+    /** @type {?} */
+    G2MiniProgressComponent.prototype.i18n;
+    /**
+     * @type {?}
+     * @private
+     */
+    G2MiniProgressComponent.prototype.cdr;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -94,6 +111,16 @@ var G2MiniProgressModule = /** @class */ (function () {
     ];
     return G2MiniProgressModule;
 }());
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 
 export { G2MiniProgressComponent, G2MiniProgressModule };
 //# sourceMappingURL=mini-progress.js.map

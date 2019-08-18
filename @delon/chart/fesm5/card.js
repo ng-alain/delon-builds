@@ -79,6 +79,37 @@ var G2CardComponent = /** @class */ (function () {
     ], G2CardComponent.prototype, "loading", void 0);
     return G2CardComponent;
 }());
+if (false) {
+    /**
+     * 是否显示边框
+     * @type {?}
+     */
+    G2CardComponent.prototype.bordered;
+    /** @type {?} */
+    G2CardComponent.prototype.avatar;
+    /** @type {?} */
+    G2CardComponent.prototype.title;
+    /** @type {?} */
+    G2CardComponent.prototype.action;
+    /** @type {?} */
+    G2CardComponent.prototype.total;
+    /** @type {?} */
+    G2CardComponent.prototype._height;
+    /** @type {?} */
+    G2CardComponent.prototype._orgHeight;
+    /** @type {?} */
+    G2CardComponent.prototype.footer;
+    /**
+     * 是否显示Loading
+     * @type {?}
+     */
+    G2CardComponent.prototype.loading;
+    /**
+     * @type {?}
+     * @private
+     */
+    G2CardComponent.prototype.cdr;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -98,6 +129,16 @@ var G2CardModule = /** @class */ (function () {
     ];
     return G2CardModule;
 }());
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 
 export { G2CardComponent, G2CardModule };
 //# sourceMappingURL=card.js.map
