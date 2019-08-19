@@ -13,14 +13,14 @@ export declare class CacheService implements OnDestroy {
     private freqTime;
     private cog;
     constructor(_: DelonCacheConfig, store: ICacheStore, http: HttpClient);
-    private deepGet;
+    _deepGet(obj: any, path: string[], defaultValue?: any): any;
     private pushMeta;
     private removeMeta;
     private loadMeta;
     private saveMeta;
     getMeta(): Set<string>;
     /**
-     * Persistent cached `Observable` object, for example:
+     * 持久化缓存 `Observable` 对象，例如：
      * - `set('data/1', this.http.get('data/1')).subscribe()`
      * - `set('data/1', this.http.get('data/1'), { expire: 10 }).subscribe()`
      */
@@ -29,7 +29,7 @@ export declare class CacheService implements OnDestroy {
         expire?: number;
     }): Observable<T>;
     /**
-     * Persistent cached `Observable` object, for example:
+     * 持久化缓存 `Observable` 对象，例如：
      * - `set('data/1', this.http.get('data/1')).subscribe()`
      * - `set('data/1', this.http.get('data/1'), { expire: 10 }).subscribe()`
      */
@@ -38,7 +38,7 @@ export declare class CacheService implements OnDestroy {
         expire?: number;
     }): Observable<any>;
     /**
-     * Persistent cached simple object, for example:
+     * 持久化缓存基础对象，例如：
      * - `set('data/1', 1)`
      * - `set('data/1', 1, { expire: 10 })`
      */
@@ -47,7 +47,7 @@ export declare class CacheService implements OnDestroy {
         expire?: number;
     }): void;
     /**
-     * Persistent cached simple object and specify storage type, for example caching in memory:
+     * 指定缓存类型进行缓存对象，例如内存缓存：
      * - `set('data/1', 1, { type: 'm' })`
      * - `set('data/1', 1, { type: 'm', expire: 10 })`
      */

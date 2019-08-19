@@ -1,33 +1,23 @@
 export declare class DelonCacheConfig {
     /**
-     * Cache mode, default: `promise`
-     * - `promise` Convention mode, allowing `key` to get data as http
-     * - `none` Normal mode
+     * 缓存模式，默认：`promise`
+     * - `promise` 约定模式，允许 `key` 作为 http 获取数据
+     * - `none` 正常模式
      */
     mode?: 'promise' | 'none';
     /**
-     * Rename the return parameters, for example:
-     * - `null` The response body is content
-     * - `list` The response body should be `{ list: [] }`
-     * - `result.list` The response body should be `{ result: { list: [] } }`
+     * 重命名返回参数，例如：
+     * - `null` 返回体为内容
+     * - `list` 返回体应 `{ list: [] }`
+     * - `result.list` 返回体应 `{ result: { list: [] } }`
      */
     reName?: string | string[];
     /**
-     * Set the default storage type
-     * - `m` Storage via memory
-     * - `s` Storage via `localStorage`
-     */
-    type?: 'm' | 's';
-    /**
-     * Set the default expire time (Unit: second)
-     */
-    expire?: number;
-    /**
-     * Key prefix of persistent data
+     * 持久化数据键值前缀
      */
     prefix?: string;
     /**
-     * Key name of persistent data metadata storage
+     * 持久化数据元数据存储键名
      */
     meta_key?: string;
 }

@@ -7,24 +7,24 @@ import * as i0 from "@angular/core";
 var DelonCacheConfig = /** @class */ (function () {
     function DelonCacheConfig() {
         /**
-         * Cache mode, default: `promise`
-         * - `promise` Convention mode, allowing `key` to get data as http
-         * - `none` Normal mode
+         * 缓存模式，默认：`promise`
+         * - `promise` 约定模式，允许 `key` 作为 http 获取数据
+         * - `none` 正常模式
          */
         this.mode = 'promise';
         /**
-         * Rename the return parameters, for example:
-         * - `null` The response body is content
-         * - `list` The response body should be `{ list: [] }`
-         * - `result.list` The response body should be `{ result: { list: [] } }`
+         * 重命名返回参数，例如：
+         * - `null` 返回体为内容
+         * - `list` 返回体应 `{ list: [] }`
+         * - `result.list` 返回体应 `{ result: { list: [] } }`
          */
         this.reName = '';
         /**
-         * Key prefix of persistent data
+         * 持久化数据键值前缀
          */
         this.prefix = '';
         /**
-         * Key name of persistent data metadata storage
+         * 持久化数据元数据存储键名
          */
         this.meta_key = '__cache_meta';
     }
@@ -37,41 +37,29 @@ var DelonCacheConfig = /** @class */ (function () {
 export { DelonCacheConfig };
 if (false) {
     /**
-     * Cache mode, default: `promise`
-     * - `promise` Convention mode, allowing `key` to get data as http
-     * - `none` Normal mode
+     * 缓存模式，默认：`promise`
+     * - `promise` 约定模式，允许 `key` 作为 http 获取数据
+     * - `none` 正常模式
      * @type {?}
      */
     DelonCacheConfig.prototype.mode;
     /**
-     * Rename the return parameters, for example:
-     * - `null` The response body is content
-     * - `list` The response body should be `{ list: [] }`
-     * - `result.list` The response body should be `{ result: { list: [] } }`
+     * 重命名返回参数，例如：
+     * - `null` 返回体为内容
+     * - `list` 返回体应 `{ list: [] }`
+     * - `result.list` 返回体应 `{ result: { list: [] } }`
      * @type {?}
      */
     DelonCacheConfig.prototype.reName;
     /**
-     * Set the default storage type
-     * - `m` Storage via memory
-     * - `s` Storage via `localStorage`
-     * @type {?}
-     */
-    DelonCacheConfig.prototype.type;
-    /**
-     * Set the default expire time (Unit: second)
-     * @type {?}
-     */
-    DelonCacheConfig.prototype.expire;
-    /**
-     * Key prefix of persistent data
+     * 持久化数据键值前缀
      * @type {?}
      */
     DelonCacheConfig.prototype.prefix;
     /**
-     * Key name of persistent data metadata storage
+     * 持久化数据元数据存储键名
      * @type {?}
      */
     DelonCacheConfig.prototype.meta_key;
 }
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY2FjaGUuY29uZmlnLmpzIiwic291cmNlUm9vdCI6Im5nOi8vQGRlbG9uL2NhY2hlLyIsInNvdXJjZXMiOlsic3JjL2NhY2hlLmNvbmZpZy50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7O0FBQUEsT0FBTyxFQUFFLFVBQVUsRUFBRSxNQUFNLGVBQWUsQ0FBQzs7QUFFM0M7SUFBQTs7Ozs7O1FBT0UsU0FBSSxHQUF3QixTQUFTLENBQUM7Ozs7Ozs7UUFPdEMsV0FBTSxHQUF1QixFQUFFLENBQUM7Ozs7UUFjaEMsV0FBTSxHQUFZLEVBQUUsQ0FBQzs7OztRQUlyQixhQUFRLEdBQVksY0FBYyxDQUFDO0tBQ3BDOztnQkFqQ0EsVUFBVSxTQUFDLEVBQUUsVUFBVSxFQUFFLE1BQU0sRUFBRTs7OzJCQUZsQztDQW1DQyxBQWpDRCxJQWlDQztTQWhDWSxnQkFBZ0I7Ozs7Ozs7O0lBTTNCLGdDQUFzQzs7Ozs7Ozs7SUFPdEMsa0NBQWdDOzs7Ozs7O0lBTWhDLGdDQUFpQjs7Ozs7SUFJakIsa0NBQWdCOzs7OztJQUloQixrQ0FBcUI7Ozs7O0lBSXJCLG9DQUFtQyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IEluamVjdGFibGUgfSBmcm9tICdAYW5ndWxhci9jb3JlJztcblxuQEluamVjdGFibGUoeyBwcm92aWRlZEluOiAncm9vdCcgfSlcbmV4cG9ydCBjbGFzcyBEZWxvbkNhY2hlQ29uZmlnIHtcbiAgLyoqXG4gICAqIENhY2hlIG1vZGUsIGRlZmF1bHQ6IGBwcm9taXNlYFxuICAgKiAtIGBwcm9taXNlYCBDb252ZW50aW9uIG1vZGUsIGFsbG93aW5nIGBrZXlgIHRvIGdldCBkYXRhIGFzIGh0dHBcbiAgICogLSBgbm9uZWAgTm9ybWFsIG1vZGVcbiAgICovXG4gIG1vZGU/OiAncHJvbWlzZScgfCAnbm9uZScgPSAncHJvbWlzZSc7XG4gIC8qKlxuICAgKiBSZW5hbWUgdGhlIHJldHVybiBwYXJhbWV0ZXJzLCBmb3IgZXhhbXBsZTpcbiAgICogLSBgbnVsbGAgVGhlIHJlc3BvbnNlIGJvZHkgaXMgY29udGVudFxuICAgKiAtIGBsaXN0YCBUaGUgcmVzcG9uc2UgYm9keSBzaG91bGQgYmUgYHsgbGlzdDogW10gfWBcbiAgICogLSBgcmVzdWx0Lmxpc3RgIFRoZSByZXNwb25zZSBib2R5IHNob3VsZCBiZSBgeyByZXN1bHQ6IHsgbGlzdDogW10gfSB9YFxuICAgKi9cbiAgcmVOYW1lPzogc3RyaW5nIHwgc3RyaW5nW10gPSAnJztcbiAgLyoqXG4gICAqIFNldCB0aGUgZGVmYXVsdCBzdG9yYWdlIHR5cGVcbiAgICogLSBgbWAgU3RvcmFnZSB2aWEgbWVtb3J5XG4gICAqIC0gYHNgIFN0b3JhZ2UgdmlhIGBsb2NhbFN0b3JhZ2VgXG4gICAqL1xuICB0eXBlPzogJ20nIHwgJ3MnO1xuICAvKipcbiAgICogU2V0IHRoZSBkZWZhdWx0IGV4cGlyZSB0aW1lIChVbml0OiBzZWNvbmQpXG4gICAqL1xuICBleHBpcmU/OiBudW1iZXI7XG4gIC8qKlxuICAgKiBLZXkgcHJlZml4IG9mIHBlcnNpc3RlbnQgZGF0YVxuICAgKi9cbiAgcHJlZml4Pzogc3RyaW5nID0gJyc7XG4gIC8qKlxuICAgKiBLZXkgbmFtZSBvZiBwZXJzaXN0ZW50IGRhdGEgbWV0YWRhdGEgc3RvcmFnZVxuICAgKi9cbiAgbWV0YV9rZXk/OiBzdHJpbmcgPSAnX19jYWNoZV9tZXRhJztcbn1cbiJdfQ==
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY2FjaGUuY29uZmlnLmpzIiwic291cmNlUm9vdCI6Im5nOi8vQGRlbG9uL2NhY2hlLyIsInNvdXJjZXMiOlsic3JjL2NhY2hlLmNvbmZpZy50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7O0FBQUEsT0FBTyxFQUFFLFVBQVUsRUFBRSxNQUFNLGVBQWUsQ0FBQzs7QUFFM0M7SUFBQTs7Ozs7O1FBT0UsU0FBSSxHQUF3QixTQUFTLENBQUM7Ozs7Ozs7UUFPdEMsV0FBTSxHQUF1QixFQUFFLENBQUM7Ozs7UUFJaEMsV0FBTSxHQUFZLEVBQUUsQ0FBQzs7OztRQUlyQixhQUFRLEdBQVksY0FBYyxDQUFDO0tBQ3BDOztnQkF2QkEsVUFBVSxTQUFDLEVBQUUsVUFBVSxFQUFFLE1BQU0sRUFBRTs7OzJCQUZsQztDQXlCQyxBQXZCRCxJQXVCQztTQXRCWSxnQkFBZ0I7Ozs7Ozs7O0lBTTNCLGdDQUFzQzs7Ozs7Ozs7SUFPdEMsa0NBQWdDOzs7OztJQUloQyxrQ0FBcUI7Ozs7O0lBSXJCLG9DQUFtQyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IEluamVjdGFibGUgfSBmcm9tICdAYW5ndWxhci9jb3JlJztcblxuQEluamVjdGFibGUoeyBwcm92aWRlZEluOiAncm9vdCcgfSlcbmV4cG9ydCBjbGFzcyBEZWxvbkNhY2hlQ29uZmlnIHtcbiAgLyoqXG4gICAqIOe8k+WtmOaooeW8j++8jOm7mOiupO+8mmBwcm9taXNlYFxuICAgKiAtIGBwcm9taXNlYCDnuqblrprmqKHlvI/vvIzlhYHorrggYGtleWAg5L2c5Li6IGh0dHAg6I635Y+W5pWw5o2uXG4gICAqIC0gYG5vbmVgIOato+W4uOaooeW8j1xuICAgKi9cbiAgbW9kZT86ICdwcm9taXNlJyB8ICdub25lJyA9ICdwcm9taXNlJztcbiAgLyoqXG4gICAqIOmHjeWRveWQjei/lOWbnuWPguaVsO+8jOS+i+Wmgu+8mlxuICAgKiAtIGBudWxsYCDov5Tlm57kvZPkuLrlhoXlrrlcbiAgICogLSBgbGlzdGAg6L+U5Zue5L2T5bqUIGB7IGxpc3Q6IFtdIH1gXG4gICAqIC0gYHJlc3VsdC5saXN0YCDov5Tlm57kvZPlupQgYHsgcmVzdWx0OiB7IGxpc3Q6IFtdIH0gfWBcbiAgICovXG4gIHJlTmFtZT86IHN0cmluZyB8IHN0cmluZ1tdID0gJyc7XG4gIC8qKlxuICAgKiDmjIHkuYXljJbmlbDmja7plK7lgLzliY3nvIBcbiAgICovXG4gIHByZWZpeD86IHN0cmluZyA9ICcnO1xuICAvKipcbiAgICog5oyB5LmF5YyW5pWw5o2u5YWD5pWw5o2u5a2Y5YKo6ZSu5ZCNXG4gICAqL1xuICBtZXRhX2tleT86IHN0cmluZyA9ICdfX2NhY2hlX21ldGEnO1xufVxuIl19
