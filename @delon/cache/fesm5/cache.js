@@ -62,24 +62,24 @@ if (false) {
 var DelonCacheConfig = /** @class */ (function () {
     function DelonCacheConfig() {
         /**
-         * 缓存模式，默认：`promise`
-         * - `promise` 约定模式，允许 `key` 作为 http 获取数据
-         * - `none` 正常模式
+         * Cache mode, default: `promise`
+         * - `promise` Convention mode, allowing `key` to get data as http
+         * - `none` Normal mode
          */
         this.mode = 'promise';
         /**
-         * 重命名返回参数，例如：
-         * - `null` 返回体为内容
-         * - `list` 返回体应 `{ list: [] }`
-         * - `result.list` 返回体应 `{ result: { list: [] } }`
+         * Rename the return parameters, for example:
+         * - `null` The response body is content
+         * - `list` The response body should be `{ list: [] }`
+         * - `result.list` The response body should be `{ result: { list: [] } }`
          */
         this.reName = '';
         /**
-         * 持久化数据键值前缀
+         * Key prefix of persistent data
          */
         this.prefix = '';
         /**
-         * 持久化数据元数据存储键名
+         * Key name of persistent data metadata storage
          */
         this.meta_key = '__cache_meta';
     }
@@ -91,27 +91,39 @@ var DelonCacheConfig = /** @class */ (function () {
 }());
 if (false) {
     /**
-     * 缓存模式，默认：`promise`
-     * - `promise` 约定模式，允许 `key` 作为 http 获取数据
-     * - `none` 正常模式
+     * Cache mode, default: `promise`
+     * - `promise` Convention mode, allowing `key` to get data as http
+     * - `none` Normal mode
      * @type {?}
      */
     DelonCacheConfig.prototype.mode;
     /**
-     * 重命名返回参数，例如：
-     * - `null` 返回体为内容
-     * - `list` 返回体应 `{ list: [] }`
-     * - `result.list` 返回体应 `{ result: { list: [] } }`
+     * Rename the return parameters, for example:
+     * - `null` The response body is content
+     * - `list` The response body should be `{ list: [] }`
+     * - `result.list` The response body should be `{ result: { list: [] } }`
      * @type {?}
      */
     DelonCacheConfig.prototype.reName;
     /**
-     * 持久化数据键值前缀
+     * Set the default storage type
+     * - `m` Storage via memory
+     * - `s` Storage via `localStorage`
+     * @type {?}
+     */
+    DelonCacheConfig.prototype.type;
+    /**
+     * Set the default expire time (Unit: second)
+     * @type {?}
+     */
+    DelonCacheConfig.prototype.expire;
+    /**
+     * Key prefix of persistent data
      * @type {?}
      */
     DelonCacheConfig.prototype.prefix;
     /**
-     * 持久化数据元数据存储键名
+     * Key name of persistent data metadata storage
      * @type {?}
      */
     DelonCacheConfig.prototype.meta_key;
@@ -192,12 +204,14 @@ var CacheService = /** @class */ (function () {
         this.startExpireNotify();
     }
     /**
+     * @private
      * @param {?} obj
      * @param {?} path
      * @param {?=} defaultValue
      * @return {?}
      */
-    CacheService.prototype._deepGet = /**
+    CacheService.prototype.deepGet = /**
+     * @private
      * @param {?} obj
      * @param {?} path
      * @param {?=} defaultValue
@@ -321,9 +335,11 @@ var CacheService = /** @class */ (function () {
     function (key, data, options) {
         var _this = this;
         if (options === void 0) { options = {}; }
-        // expire
         /** @type {?} */
         var e = 0;
+        var _a = this.cog, type = _a.type, expire = _a.expire;
+        options = __assign({ type: type,
+            expire: expire }, options);
         if (options.expire) {
             e = addSeconds(new Date(), options.expire).valueOf();
         }
@@ -379,16 +395,14 @@ var CacheService = /** @class */ (function () {
         /** @type {?} */
         var isPromise = options.mode !== 'none' && this.cog.mode === 'promise';
         /** @type {?} */
-        var value = this.memory.has(key)
-            ? ((/** @type {?} */ (this.memory.get(key))))
-            : this.store.get(this.cog.prefix + key);
+        var value = this.memory.has(key) ? ((/** @type {?} */ (this.memory.get(key)))) : this.store.get(this.cog.prefix + key);
         if (!value || (value.e && value.e > 0 && value.e < new Date().valueOf())) {
             if (isPromise) {
                 return this.http.get(key).pipe(map((/**
                  * @param {?} ret
                  * @return {?}
                  */
-                function (ret) { return _this._deepGet(ret, (/** @type {?} */ (_this.cog.reName)), null); })), tap((/**
+                function (ret) { return _this.deepGet(ret, (/** @type {?} */ (_this.cog.reName)), null); })), tap((/**
                  * @param {?} v
                  * @return {?}
                  */
