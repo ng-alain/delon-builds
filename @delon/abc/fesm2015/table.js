@@ -2765,9 +2765,11 @@ class STExport {
         const dc = (/** @type {?} */ (opt._d)).length;
         // column
         for (let i = 0; i < cc; i++) {
+            /** @type {?} */
+            const tit = colData[i].title;
             sheet[`${String.fromCharCode(i + 65)}1`] = {
                 t: 's',
-                v: colData[i].title,
+                v: typeof tit === 'object' ? tit.text : tit,
             };
         }
         // content
