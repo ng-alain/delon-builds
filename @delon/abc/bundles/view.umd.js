@@ -208,7 +208,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var SVConfig = /** @class */ (function () {
         function SVConfig() {
@@ -274,7 +274,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
     var prefixCls = "sv";
@@ -397,7 +397,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var SVTitleComponent = /** @class */ (function () {
         function SVTitleComponent(el, parent, ren) {
@@ -472,7 +472,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
     var prefixCls$1 = "sv";
@@ -585,7 +585,7 @@
             { type: core.Component, args: [{
                         selector: 'sv, [sv]',
                         exportAs: 'sv',
-                        template: "<div class=\"sv__label\"\n     [class.sv__label-empty]=\"!label\"\n     [class.sv__label-width]=\"labelWidth !== null\"\n     [style.width.px]=\"labelWidth\">\n  <span class=\"sv__label-text\">\n    <ng-container *stringTemplateOutlet=\"label\">{{label}}</ng-container>\n  </span>\n  <span *ngIf=\"optional || optionalHelp\" class=\"sv__label-optional\">\n    {{ optional }}\n    <nz-tooltip *ngIf=\"optionalHelp\" [nzTitle]=\"optionalHelp\">\n      <i nz-tooltip nz-icon nzType=\"question-circle\"></i>\n    </nz-tooltip>\n  </span>\n</div>\n<div class=\"sv__detail\">\n  <span (cdkObserveContent)=\"checkContent()\"\n        #conEl>\n    <ng-content></ng-content>\n  </span>\n  <ng-container *ngIf=\"!!unit\">\n    <span class=\"sv__unit\" *stringTemplateOutlet=\"unit\">{{unit}}</span>\n  </ng-container>\n</div>\n",
+                        template: "<div class=\"sv__label\"\n     [class.sv__label-empty]=\"!label\"\n     [class.sv__label-width]=\"labelWidth !== null\"\n     [style.width.px]=\"labelWidth\">\n  <span class=\"sv__label-text\">\n    <ng-container *stringTemplateOutlet=\"label\">{{label}}</ng-container>\n  </span>\n  <span *ngIf=\"optional || optionalHelp\" class=\"sv__label-optional\">\n    {{ optional }}\n    <i *ngIf=\"optionalHelp\" nz-tooltip [nzTooltipTitle]=\"optionalHelp\" nz-icon nzType=\"question-circle\"></i>\n  </span>\n</div>\n<div class=\"sv__detail\">\n  <span (cdkObserveContent)=\"checkContent()\"\n        #conEl>\n    <ng-content></ng-content>\n  </span>\n  <ng-container *ngIf=\"!!unit\">\n    <span class=\"sv__unit\" *stringTemplateOutlet=\"unit\">{{unit}}</span>\n  </ng-container>\n</div>\n",
                         host: {
                             '[style.padding-left.px]': 'paddingValue',
                             '[style.padding-right.px]': 'paddingValue',
@@ -668,7 +668,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
     var COMPONENTS = [SVContainerComponent, SVComponent, SVTitleComponent];

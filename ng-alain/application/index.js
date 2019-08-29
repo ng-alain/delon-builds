@@ -137,7 +137,7 @@ function addCodeStylesToPackageJson() {
             `tslint-config-prettier@^1.18.0`,
             `tslint-language-service@^0.9.9`,
             `lint-staged@^8.2.1`,
-            `husky@^3.0.0`,
+            `husky@^3.0.4`,
             `prettier@^1.18.2`,
             `prettier-stylelint@^0.4.2`,
             `stylelint@^10.1.0`,
