@@ -1,6 +1,6 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 import * as tslib_1 from "tslib";
 import { DecimalPipe, DOCUMENT } from '@angular/common';
@@ -348,7 +348,7 @@ export class STComponent {
      * @return {?}
      */
     loadPageData() {
-        return tslib_1.__awaiter(this, void 0, void 0, function* () {
+        return tslib_1.__awaiter(this, void 0, void 0, /** @this {!STComponent} */ function* () {
             this.setLoading(true);
             try {
                 /** @type {?} */
