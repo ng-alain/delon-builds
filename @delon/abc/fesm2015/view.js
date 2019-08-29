@@ -9,7 +9,7 @@ import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class SVConfig {
     constructor() {
@@ -74,7 +74,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const prefixCls = `sv`;
@@ -190,7 +190,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class SVTitleComponent {
     /**
@@ -262,7 +262,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const prefixCls$1 = `sv`;
@@ -359,7 +359,7 @@ SVComponent.decorators = [
     { type: Component, args: [{
                 selector: 'sv, [sv]',
                 exportAs: 'sv',
-                template: "<div class=\"sv__label\"\n     [class.sv__label-empty]=\"!label\"\n     [class.sv__label-width]=\"labelWidth !== null\"\n     [style.width.px]=\"labelWidth\">\n  <span class=\"sv__label-text\">\n    <ng-container *stringTemplateOutlet=\"label\">{{label}}</ng-container>\n  </span>\n  <span *ngIf=\"optional || optionalHelp\" class=\"sv__label-optional\">\n    {{ optional }}\n    <i *ngIf=\"optionalHelp\" nz-tooltip [nzTooltipTitle]=\"optionalHelp\" nz-icon nzType=\"question-circle\"></i>\n  </span>\n</div>\n<div class=\"sv__detail\">\n  <span (cdkObserveContent)=\"checkContent()\"\n        #conEl>\n    <ng-content></ng-content>\n  </span>\n  <ng-container *ngIf=\"!!unit\">\n    <span class=\"sv__unit\" *stringTemplateOutlet=\"unit\">{{unit}}</span>\n  </ng-container>\n</div>\n",
+                template: "<div class=\"sv__label\"\n     [class.sv__label-empty]=\"!label\"\n     [class.sv__label-width]=\"labelWidth !== null\"\n     [style.width.px]=\"labelWidth\">\n  <span class=\"sv__label-text\">\n    <ng-container *stringTemplateOutlet=\"label\">{{label}}</ng-container>\n  </span>\n  <span *ngIf=\"optional || optionalHelp\" class=\"sv__label-optional\">\n    {{ optional }}\n    <nz-tooltip *ngIf=\"optionalHelp\" [nzTitle]=\"optionalHelp\">\n      <i nz-tooltip nz-icon nzType=\"question-circle\"></i>\n    </nz-tooltip>\n  </span>\n</div>\n<div class=\"sv__detail\">\n  <span (cdkObserveContent)=\"checkContent()\"\n        #conEl>\n    <ng-content></ng-content>\n  </span>\n  <ng-container *ngIf=\"!!unit\">\n    <span class=\"sv__unit\" *stringTemplateOutlet=\"unit\">{{unit}}</span>\n  </ng-container>\n</div>\n",
                 host: {
                     '[style.padding-left.px]': 'paddingValue',
                     '[style.padding-right.px]': 'paddingValue',
@@ -440,7 +440,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const COMPONENTS = [SVContainerComponent, SVComponent, SVTitleComponent];
@@ -456,12 +456,12 @@ SVModule.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 export { SVComponent, SVConfig, SVContainerComponent, SVModule, SVTitleComponent };
