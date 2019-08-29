@@ -272,6 +272,10 @@
             }
             /** @type {?} */
             var id = +(/** @type {?} */ ((/** @type {?} */ (linkNode.dataset)).id));
+            // Should be ingore children title trigger event
+            if (isNaN(id)) {
+                return false;
+            }
             /** @type {?} */
             var item;
             this.menuSrv.visit(this._d, (/**

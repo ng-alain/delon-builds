@@ -72,6 +72,10 @@ class SidebarNavComponent {
         }
         /** @type {?} */
         const id = +(/** @type {?} */ ((/** @type {?} */ (linkNode.dataset)).id));
+        // Should be ingore children title trigger event
+        if (isNaN(id)) {
+            return false;
+        }
         /** @type {?} */
         let item;
         this.menuSrv.visit(this._d, (/**
