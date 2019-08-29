@@ -3153,9 +3153,11 @@
             var dc = (/** @type {?} */ (opt._d)).length;
             // column
             for (var i = 0; i < cc; i++) {
+                /** @type {?} */
+                var tit = colData[i].title;
                 sheet[String.fromCharCode(i + 65) + "1"] = {
                     t: 's',
-                    v: colData[i].title,
+                    v: typeof tit === 'object' ? tit.text : tit,
                 };
             }
             // content
