@@ -135,8 +135,8 @@ export interface STPage {
      */
     total?: string | boolean;
     /**
+     * @deprecated 9.0.0. This is deprecated and going to be removed in 9.0.0.
      * 数据变更后是否保留在数据变更前的页码，默认：`true`
-     * @deprecated
      */
     indexReset?: boolean;
     /**
@@ -185,6 +185,7 @@ export interface STColumn {
     /**
      * 列标题 i18n
      * @deprecated 使用 `title: { i18n: 'value' }` 代替
+     * @deprecated 9.0.0. This is deprecated and going to be removed in 9.0.0.
      */
     i18n?: string;
     /**
@@ -525,6 +526,7 @@ export interface STColumnButton {
     /**
      * 格式化文本
      * @deprecated 使用 `text` 代替
+     * @deprecated 9.0.0. This is deprecated and going to be removed in 9.0.0.
      */
     format?: (record: STData, btn: STColumnButton) => string;
     /**
@@ -546,11 +548,14 @@ export interface STColumnButton {
      */
     click?: 'reload' | 'load' | ((record: STData, modal?: any, instance?: STComponent) => any);
     /**
-     * 是否需要气泡确认框
+     * 气泡确认框参数，若 `string` 类型表示标题
      */
-    pop?: boolean;
+    pop?: boolean | string | STColumnButtonPop;
     /**
      * 气泡确认框内容，默认 `确认删除吗？`
+     *
+     * @deprecated 已过期，请使用 `pop.title` 替代
+     * @deprecated 9.0.0. This is deprecated and going to be removed in 9.0.0.
      */
     popTitle?: string;
     /**
@@ -579,6 +584,10 @@ export interface STColumnButton {
      */
     iifBehavior?: IifBehaviorType;
     tooltip?: string;
+    /**
+     * @deprecated 9.0.0. This is deprecated and going to be removed in 9.0.0.
+     */
+    component?: any;
     [key: string]: any;
 }
 export declare type IifBehaviorType = 'hide' | 'disabled';
@@ -654,6 +663,48 @@ export interface STColumnButtonDrawerConfig {
     footerHeight?: number;
     /** 抽屉 [NzDrawerOptions](https://ng.ant.design/components/drawer/zh#nzdraweroptions) 参数 */
     drawerOptions?: NzDrawerOptions;
+}
+export interface STColumnButtonPop {
+    /**
+     * Title of the popover, default: `确认删除吗？`
+     */
+    title?: string;
+    /**
+     * Popover trigger mode, default: `click`
+     */
+    trigger?: 'click' | 'focus' | 'hover';
+    /**
+     * The position of the popover relative to the target, default: `top`
+     */
+    placement?: 'top' | 'left' | 'right' | 'bottom' | 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight' | 'leftTop' | 'leftBottom' | 'rightTop' | 'rightBottom';
+    /**
+     * Class name of the popover card
+     */
+    overlayClassName?: string;
+    /**
+     * Style of the popover card
+     */
+    overlayStyle?: {};
+    /**
+     * Text of the Cancel button
+     */
+    cancelText?: string;
+    /**
+     * Text of the Confirm button
+     */
+    okText?: string;
+    /**
+     * Button `type` of the Confirm button
+     */
+    okType?: 'primary' | 'ghost' | 'dashed' | 'danger' | 'default';
+    /**
+     * Customize icon of confirmation
+     */
+    icon?: string;
+    /**
+     * Whether to directly emit `onConfirm` without showing Popconfirm, default: `() => false`
+     */
+    condition?: (item: STData) => boolean;
 }
 export interface STReqReNameType {
     pi?: string;
