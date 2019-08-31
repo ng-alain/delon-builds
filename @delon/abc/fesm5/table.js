@@ -3496,7 +3496,10 @@ var STComponent = /** @class */ (function () {
          * @return {?}
          */
         function (resolvePromise, rejectPromise) {
-            return _this.dataSource
+            if (_this.data$) {
+                _this.data$.unsubscribe();
+            }
+            _this.data$ = _this.dataSource
                 .process(__assign({ pi: pi,
                 ps: ps,
                 total: total,
@@ -4676,6 +4679,11 @@ if (false) {
      * @private
      */
     STComponent.prototype.unsubscribe$;
+    /**
+     * @type {?}
+     * @private
+     */
+    STComponent.prototype.data$;
     /**
      * @type {?}
      * @private

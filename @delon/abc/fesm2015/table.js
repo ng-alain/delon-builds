@@ -3219,7 +3219,10 @@ class STComponent {
          * @return {?}
          */
         (resolvePromise, rejectPromise) => {
-            return this.dataSource
+            if (this.data$) {
+                this.data$.unsubscribe();
+            }
+            this.data$ = this.dataSource
                 .process(Object.assign({ pi,
                 ps,
                 total,
@@ -4090,6 +4093,11 @@ if (false) {
      * @private
      */
     STComponent.prototype.unsubscribe$;
+    /**
+     * @type {?}
+     * @private
+     */
+    STComponent.prototype.data$;
     /**
      * @type {?}
      * @private
