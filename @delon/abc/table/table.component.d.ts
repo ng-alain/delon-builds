@@ -34,7 +34,6 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     constructor(i18nSrv: AlainI18NService, cdr: ChangeDetectorRef, cog: STConfig, router: Router, el: ElementRef, renderer: Renderer2, exportSrv: STExport, modalHelper: ModalHelper, drawerHelper: DrawerHelper, doc: any, columnSource: STColumnSource, dataSource: STDataSource, delonI18n: DelonLocaleService);
     private readonly routerState;
     private unsubscribe$;
-    private data$;
     private totalTpl;
     private clonePage;
     private copyCog;

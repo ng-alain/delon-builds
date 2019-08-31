@@ -1,4 +1,4 @@
-import { STColumnButtonDrawerConfig, STColumnButtonModalConfig, STIcon, STMultiSort, STPage, STReq, STRes, STRowClassName, STSingleSort, STWidthMode, IifBehaviorType } from './table.interfaces';
+import { STColumnButtonDrawerConfig, STColumnButtonModalConfig, STIcon, STMultiSort, STPage, STReq, STRes, STRowClassName, STSingleSort, STWidthMode, IifBehaviorType, STColumnButtonPop } from './table.interfaces';
 export declare class STConfig {
     /**
      * 起始页码，默认为：`1`
@@ -56,9 +56,9 @@ export declare class STConfig {
      */
     drawer?: STColumnButtonDrawerConfig;
     /**
-     * 气泡确认框内容
+     * 气泡参数
      */
-    popTitle?: string;
+    pop?: STColumnButtonPop;
     /**
      * 行单击多少时长之类为双击（单位：毫秒），默认：`200`
      */

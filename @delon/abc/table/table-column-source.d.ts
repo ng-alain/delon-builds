@@ -14,6 +14,7 @@ export declare class STColumnSource {
     private i18nSrv;
     private cog;
     constructor(rowSource: STRowSource, acl: ACLService, i18nSrv: AlainI18NService, cog: STConfig);
+    private fixPop;
     private btnCoerce;
     private btnCoerceIf;
     private fixedCoerce;
