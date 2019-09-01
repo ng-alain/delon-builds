@@ -26485,7 +26485,7 @@ body {
 .sidebar-nav__item-link {
   position: relative;
   display: block;
-  padding: 8px 16px;
+  padding: 8px 32px 8px 16px;
   overflow: hidden;
   color: rgba(0, 0, 0, 0.65);
   white-space: nowrap;
