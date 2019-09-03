@@ -1,6 +1,6 @@
 {
   "name": "@delon/chart",
-  "version": "8.4.0-919afcb",
+  "version": "8.4.0-db4151d",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -25,8 +25,8 @@
     "component"
   ],
   "dependencies": {
-    "@delon/util": "^8.4.0-919afcb",
-    "@delon/theme": "^8.4.0-919afcb",
+    "@delon/util": "^8.4.0-db4151d",
+    "@delon/theme": "^8.4.0-db4151d",
     "tslib": "^1.9.0"
   },
   "sideEffects": false,
