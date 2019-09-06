@@ -91,14 +91,14 @@ function addImportToModule(host, filePath, symbolName, fileName) {
     declarationRecorder.insertLeft(change.pos, change.toAdd);
     host.commitUpdate(declarationRecorder);
 }
-function addValueToVariable(host, filePath, variableName, text, needWrap = true) {
+function addValueToVariable(host, filePath, variableName, text) {
     const source = ast_1.getSourceFile(host, filePath);
     const node = ast_utils_1.findNode(source, ts.SyntaxKind.Identifier, variableName);
     if (!node) {
         throw new schematics_1.SchematicsException(`Could not find any [${variableName}] variable in path '${filePath}'.`);
     }
     const arr = node.parent.initializer;
-    const change = new change_1.InsertChange(filePath, arr.end - 1, `${arr.elements && arr.elements.length > 0 ? ',' : ''}${needWrap ? '\n  ' : ''}${text}`);
+    const change = new change_1.InsertChange(filePath, arr.end - 1, `${arr.elements && arr.elements.length > 0 ? ',' : ''}\n  ${text}`);
     const declarationRecorder = host.beginUpdate(filePath);
     declarationRecorder.insertLeft(change.pos, change.toAdd);
     host.commitUpdate(declarationRecorder);
