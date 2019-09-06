@@ -1,8 +1,6 @@
-import { EventEmitter, OnInit } from '@angular/core';
-import { CountdownEvent, CountdownConfig, CountdownComponent } from 'ngx-countdown';
-export declare class CountDownComponent implements OnInit {
-    readonly instance: CountdownComponent;
-    config: CountdownConfig;
+import { EventEmitter } from '@angular/core';
+export declare class CountDownComponent {
+    config: {};
     /**
      * 目标时间
      */
@@ -10,7 +8,7 @@ export declare class CountDownComponent implements OnInit {
     readonly begin: EventEmitter<void>;
     readonly notify: EventEmitter<number>;
     readonly end: EventEmitter<void>;
-    readonly event: EventEmitter<CountdownEvent>;
-    ngOnInit(): void;
-    handleEvent(e: CountdownEvent): void;
+    _start(): void;
+    _notify(time: number): void;
+    _finished(): void;
 }
