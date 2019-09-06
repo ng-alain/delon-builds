@@ -15,7 +15,6 @@ export declare class CascaderWidget extends ControlUIWidget<SFCascaderWidgetSche
     reset(value: SFValue): void;
     _visibleChange(status: boolean): void;
     _change(value: any[] | null): void;
-    _selectionChange(options: any): void;
-    _select(options: any): void;
+    _selectionChange(options: CascaderOption[]): void;
     _clear(): void;
 }
