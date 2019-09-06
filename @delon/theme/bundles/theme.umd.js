@@ -3606,14 +3606,9 @@
     function makeParam(paramName) {
         return (/**
          * @param {?=} key
-         * @param {...?} extraOptions
          * @return {?}
          */
         function (key) {
-            var extraOptions = [];
-            for (var _i = 1; _i < arguments.length; _i++) {
-                extraOptions[_i - 1] = arguments[_i];
-            }
             return (/**
              * @param {?} target
              * @param {?} propertyKey
@@ -3628,8 +3623,10 @@
                 if (typeof tParams === 'undefined') {
                     tParams = params[paramName] = [];
                 }
-                tParams.push(__assign({ key: key,
-                    index: index }, extraOptions));
+                tParams.push({
+                    key: key,
+                    index: index,
+                });
             });
         });
     }
@@ -3658,6 +3655,25 @@
      * @type {?}
      */
     var Headers = makeParam('headers');
+    /**
+     * Request Payload
+     * - Supported body (like`POST`, `PUT`) as a body data, equivalent to `\@Body`
+     * - Not supported body (like `GET`, `DELETE` etc) as a `QueryString`
+     * @type {?}
+     */
+    var Payload = makeParam('payload')();
+    /**
+     * @param {?} data
+     * @param {?} key
+     * @param {?} args
+     * @return {?}
+     */
+    function getValidArgs(data, key, args) {
+        if (!data[key] || !Array.isArray(data[key]) || data[key].length <= 0) {
+            return {};
+        }
+        return args[data[key][0].index];
+    }
     /**
      * @param {?} method
      * @return {?}
@@ -3688,7 +3704,7 @@
                     }
                     options = options || {};
                     /** @type {?} */
-                    var http = this.injector.get(_HttpClient, null);
+                    var http = (/** @type {?} */ (this.injector.get(_HttpClient, null)));
                     if (http == null) {
                         throw new TypeError("Not found '_HttpClient', You can import 'AlainThemeModule' && 'HttpClientModule' in your root module.");
                     }
@@ -3715,13 +3731,21 @@
                         }
                         delete options.acl;
                     }
-                    (data.path || []).forEach((/**
+                    requestUrl = requestUrl.replace(/::/g, '^^');
+                    (((/** @type {?} */ (data.path))) || [])
+                        .filter((/**
+                     * @param {?} w
+                     * @return {?}
+                     */
+                    function (w) { return typeof args[w.index] !== 'undefined'; }))
+                        .forEach((/**
                      * @param {?} i
                      * @return {?}
                      */
                     function (i) {
                         requestUrl = requestUrl.replace(new RegExp(":" + i.key, 'g'), encodeURIComponent(args[i.index]));
                     }));
+                    requestUrl = requestUrl.replace(/\^\^/g, ":");
                     /** @type {?} */
                     var params = (data.query || []).reduce((/**
                      * @param {?} p
@@ -3742,7 +3766,11 @@
                         p[i.key] = args[i.index];
                         return p;
                     }), {});
-                    return http.request(method, requestUrl, __assign({ body: data.body && data.body.length > 0 ? args[data.body[0].index] : null, params: params, headers: __assign({}, baseData.baseHeaders, headers) }, options));
+                    /** @type {?} */
+                    var payload = getValidArgs(data, 'payload', args);
+                    /** @type {?} */
+                    var supportedBody = method === 'POST' || method === 'PUT';
+                    return http.request(method, requestUrl, __assign({ body: supportedBody ? __assign({}, getValidArgs(data, 'body', args), payload) : null, params: !supportedBody ? __assign({}, params, payload) : params, headers: __assign({}, baseData.baseHeaders, headers) }, options));
                 });
                 return descriptor;
             });
@@ -4183,6 +4211,7 @@
     exports.POST = POST;
     exports.PUT = PUT;
     exports.Path = Path;
+    exports.Payload = Payload;
     exports.Query = Query;
     exports.REP_MAX = REP_MAX;
     exports.ResponsiveService = ResponsiveService;
