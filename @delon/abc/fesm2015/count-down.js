@@ -1,9 +1,9 @@
 import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ViewChild, Input, Output, NgModule } from '@angular/core';
 import addSeconds from 'date-fns/add_seconds';
 import format from 'date-fns/format';
+import { CountdownModule } from 'ngx-countdown';
 import { warnDeprecation } from 'ng-zorro-antd/core';
 import { CommonModule } from '@angular/common';
-import { CountdownModule } from 'ngx-countdown';
 
 /**
  * @fileoverview added by tsickle
