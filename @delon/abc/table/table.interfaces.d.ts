@@ -546,6 +546,8 @@ export interface STColumnButton {
      *  - `type=modal` 只会在当有传回值时才会触发回调
      * - reload：重新刷新当前页
      * - load：重新加载数据，并重置页码为：`1`
+     *
+     * @todo Bad parameter design
      */
     click?: 'reload' | 'load' | ((record: STData, modal?: any, instance?: STComponent) => any);
     /**
@@ -578,6 +580,8 @@ export interface STColumnButton {
     acl?: any;
     /**
      * Conditional expression
+     *
+     * @todo Bad parameter design
      */
     iif?: (item: STData, btn: STColumnButton, column: STColumn) => boolean;
     /**
@@ -590,6 +594,15 @@ export interface STColumnButton {
      */
     component?: any;
     [key: string]: any;
+}
+export interface STColumnButtonOK {
+    record: STData;
+    /**
+     * Modal or drawer return value when trigger confirm.
+     */
+    ret?: any;
+    instance?: STComponent;
+    event: Event;
 }
 export declare type IifBehaviorType = 'hide' | 'disabled';
 export interface STColumnButtonModal extends ModalHelperOptions {

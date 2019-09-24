@@ -176,7 +176,7 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     /** 清除所有 `radio` */
     clearRadio(): this;
     _refRadio(checked: boolean, item: STData): this;
-    _btnClick(record: STData, btn: STColumnButton): void;
+    _btnClick(record: STData, btn: STColumnButton, e?: Event): void;
     private btnCallback;
     _btnText(record: STData, btn: STColumnButton): string;
     _validBtns(btns: STColumnButton[], item: STData, col: STColumn): STColumnButton[];
