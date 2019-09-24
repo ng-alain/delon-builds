@@ -3816,8 +3816,6 @@ var AutoCompleteWidget = /** @class */ (function (_super) {
     function (item) {
         this.typing = item.nzLabel;
         this.setValue(item.nzValue);
-        if (this.ui.change)
-            this.ui.change(item);
     };
     /**
      * @return {?}
@@ -7961,11 +7959,6 @@ if (false) {
      * @type {?|undefined}
      */
     SFAutoCompleteWidgetSchema.prototype.nzWidth;
-    /**
-     * 变更回调
-     * @type {?|undefined}
-     */
-    SFAutoCompleteWidgetSchema.prototype.change;
 }
 
 /**
