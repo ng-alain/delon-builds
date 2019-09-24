@@ -28,12 +28,12 @@ export declare function BaseHeaders(headers: HttpHeaders | {
  * URL路由参数
  * - 有效范围：方法参数
  */
-export declare const Path: (key?: string | undefined, ...extraOptions: any[]) => (target: BaseApi, propertyKey: string, index: number) => void;
+export declare const Path: (key?: string | undefined) => (target: BaseApi, propertyKey: string, index: number) => void;
 /**
  * URL 参数 `QueryString`
  * - 有效范围：方法参数
  */
-export declare const Query: (key?: string | undefined, ...extraOptions: any[]) => (target: BaseApi, propertyKey: string, index: number) => void;
+export declare const Query: (key?: string | undefined) => (target: BaseApi, propertyKey: string, index: number) => void;
 /**
  * 参数 `Body`
  * - 有效范围：方法参数
@@ -44,7 +44,13 @@ export declare const Body: (target: BaseApi, propertyKey: string, index: number)
  * - 有效范围：方法参数
  * - 合并 `BaseHeaders`
  */
-export declare const Headers: (key?: string | undefined, ...extraOptions: any[]) => (target: BaseApi, propertyKey: string, index: number) => void;
+export declare const Headers: (key?: string | undefined) => (target: BaseApi, propertyKey: string, index: number) => void;
+/**
+ * Request Payload
+ * - Supported body (like`POST`, `PUT`) as a body data, equivalent to `@Body`
+ * - Not supported body (like `GET`, `DELETE` etc) as a `QueryString`
+ */
+export declare const Payload: (target: BaseApi, propertyKey: string, index: number) => void;
 /**
  * `OPTIONS` 请求
  * - 有效范围：方法
