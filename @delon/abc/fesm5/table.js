@@ -3047,7 +3047,6 @@ var STExport = /** @class */ (function () {
                     break;
             }
         }
-        ret.v = ret.v || '';
         return ret;
     };
     /**
