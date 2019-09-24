@@ -2265,7 +2265,7 @@
             { type: core.Component, args: [{
                         selector: 'reuse-tab',
                         exportAs: 'reuseTab',
-                        template: "<nz-tabset [nzSelectedIndex]=\"pos\" (nzSelectedIndexChange)=\"to($event)\"\n  [nzAnimated]=\"false\" [nzType]=\"tabType\"\n  [nzTabBarExtraContent]=\"tabBarExtraContent\"\n  [nzTabBarGutter]=\"tabBarGutter\"\n  [nzTabBarStyle]=\"tabBarStyle\">\n  <nz-tab *ngFor=\"let i of list; let index = index\" [nzTitle]=\"titleTemplate\">\n    <ng-template #titleTemplate>\n      <span [reuse-tab-context-menu]=\"i\" [customContextMenu]=\"customContextMenu\" class=\"reuse-tab__name\">{{i.title}}</span>\n      <i *ngIf=\"i.closable\" nz-icon nzType=\"close\" class=\"reuse-tab__op\" (click)=\"_close($event, index, false)\"></i>\n    </ng-template>\n  </nz-tab>\n</nz-tabset>\n<reuse-tab-context [i18n]=\"i18n\" (change)=\"cmChange($event)\"></reuse-tab-context>\n",
+                        template: "<nz-tabset [nzSelectedIndex]=\"pos\" (nzSelectedIndexChange)=\"to($event)\"\n  [nzAnimated]=\"false\" [nzType]=\"tabType\"\n  [nzTabBarExtraContent]=\"tabBarExtraContent\"\n  [nzTabBarGutter]=\"tabBarGutter\"\n  [nzTabBarStyle]=\"tabBarStyle\">\n  <nz-tab *ngFor=\"let i of list; let index = index\" [nzTitle]=\"titleTemplate\">\n    <ng-template #titleTemplate>\n      <div [reuse-tab-context-menu]=\"i\" [customContextMenu]=\"customContextMenu\" class=\"reuse-tab__name\" [attr.title]=\"i.title\">\n        <span [class.reuse-tab__name-width]=\"tabMaxWidth\" [style.max-width.px]=\"tabMaxWidth\">\n          {{i.title}}\n        </span>\n      </div>\n      <i *ngIf=\"i.closable\" nz-icon nzType=\"close\" class=\"reuse-tab__op\" (click)=\"_close($event, index, false)\"></i>\n    </ng-template>\n  </nz-tab>\n</nz-tabset>\n<reuse-tab-context [i18n]=\"i18n\" (change)=\"cmChange($event)\"></reuse-tab-context>\n",
                         host: {
                             '[class.reuse-tab]': 'true',
                             '[class.reuse-tab__line]': "tabType === 'line'",
@@ -2293,6 +2293,7 @@
             i18n: [{ type: core.Input }],
             debug: [{ type: core.Input }],
             max: [{ type: core.Input }],
+            tabMaxWidth: [{ type: core.Input }],
             excludes: [{ type: core.Input }],
             allowClose: [{ type: core.Input }],
             showCurrent: [{ type: core.Input }],
@@ -2314,6 +2315,10 @@
             util.InputNumber(),
             __metadata("design:type", Number)
         ], ReuseTabComponent.prototype, "max", void 0);
+        __decorate([
+            util.InputNumber(),
+            __metadata("design:type", Number)
+        ], ReuseTabComponent.prototype, "tabMaxWidth", void 0);
         __decorate([
             util.InputBoolean(),
             __metadata("design:type", Object)
@@ -2358,6 +2363,8 @@
         ReuseTabComponent.prototype.debug;
         /** @type {?} */
         ReuseTabComponent.prototype.max;
+        /** @type {?} */
+        ReuseTabComponent.prototype.tabMaxWidth;
         /** @type {?} */
         ReuseTabComponent.prototype.excludes;
         /** @type {?} */
