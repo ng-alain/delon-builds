@@ -2840,6 +2840,7 @@ class STExport {
                     break;
             }
         }
+        ret.v = ret.v || '';
         return ret;
     }
     /**
