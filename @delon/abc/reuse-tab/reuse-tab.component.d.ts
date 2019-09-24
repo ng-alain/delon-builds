@@ -21,7 +21,6 @@ export declare class ReuseTabComponent implements OnInit, OnChanges, OnDestroy {
     i18n: ReuseContextI18n;
     debug: boolean;
     max: number;
-    tabMaxWidth: number;
     excludes: RegExp[];
     allowClose: boolean;
     showCurrent: boolean;

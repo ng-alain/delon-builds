@@ -27681,11 +27681,6 @@ ellipsis {
   display: inline-block;
   padding: 8px 20px;
 }
-.reuse-tab__line .ant-tabs-nav .ant-tabs-tab .reuse-tab__name-width {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: inline-block;
-}
 .reuse-tab__card {
   padding-top: 8px;
 }
