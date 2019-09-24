@@ -2883,9 +2883,10 @@ function BaseHeaders(headers) {
 function makeParam(paramName) {
     return (/**
      * @param {?=} key
+     * @param {...?} extraOptions
      * @return {?}
      */
-    function (key) {
+    function (key, ...extraOptions) {
         return (/**
          * @param {?} target
          * @param {?} propertyKey
@@ -2900,10 +2901,8 @@ function makeParam(paramName) {
             if (typeof tParams === 'undefined') {
                 tParams = params[paramName] = [];
             }
-            tParams.push({
-                key,
-                index,
-            });
+            tParams.push(Object.assign({ key,
+                index }, extraOptions));
         });
     });
 }
@@ -2933,25 +2932,6 @@ const Body = makeParam('body')();
  */
 const Headers = makeParam('headers');
 /**
- * Request Payload
- * - Supported body (like`POST`, `PUT`) as a body data, equivalent to `\@Body`
- * - Not supported body (like `GET`, `DELETE` etc) as a `QueryString`
- * @type {?}
- */
-const Payload = makeParam('payload')();
-/**
- * @param {?} data
- * @param {?} key
- * @param {?} args
- * @return {?}
- */
-function getValidArgs(data, key, args) {
-    if (!data[key] || !Array.isArray(data[key]) || data[key].length <= 0) {
-        return {};
-    }
-    return args[data[key][0].index];
-}
-/**
  * @param {?} method
  * @return {?}
  */
@@ -2976,7 +2956,7 @@ function makeMethod(method) {
             function (...args) {
                 options = options || {};
                 /** @type {?} */
-                const http = (/** @type {?} */ (this.injector.get(_HttpClient, null)));
+                const http = this.injector.get(_HttpClient, null);
                 if (http == null) {
                     throw new TypeError(`Not found '_HttpClient', You can import 'AlainThemeModule' && 'HttpClientModule' in your root module.`);
                 }
@@ -3003,21 +2983,13 @@ function makeMethod(method) {
                     }
                     delete options.acl;
                 }
-                requestUrl = requestUrl.replace(/::/g, '^^');
-                (((/** @type {?} */ (data.path))) || [])
-                    .filter((/**
-                 * @param {?} w
-                 * @return {?}
-                 */
-                w => typeof args[w.index] !== 'undefined'))
-                    .forEach((/**
+                (data.path || []).forEach((/**
                  * @param {?} i
                  * @return {?}
                  */
                 (i) => {
                     requestUrl = requestUrl.replace(new RegExp(`:${i.key}`, 'g'), encodeURIComponent(args[i.index]));
                 }));
-                requestUrl = requestUrl.replace(/\^\^/g, `:`);
                 /** @type {?} */
                 const params = (data.query || []).reduce((/**
                  * @param {?} p
@@ -3038,11 +3010,7 @@ function makeMethod(method) {
                     p[i.key] = args[i.index];
                     return p;
                 }), {});
-                /** @type {?} */
-                const payload = getValidArgs(data, 'payload', args);
-                /** @type {?} */
-                const supportedBody = method === 'POST' || method === 'PUT';
-                return http.request(method, requestUrl, Object.assign({ body: supportedBody ? Object.assign({}, getValidArgs(data, 'body', args), payload) : null, params: !supportedBody ? Object.assign({}, params, payload) : params, headers: Object.assign({}, baseData.baseHeaders, headers) }, options));
+                return http.request(method, requestUrl, Object.assign({ body: data.body && data.body.length > 0 ? args[data.body[0].index] : null, params, headers: Object.assign({}, baseData.baseHeaders, headers) }, options));
             });
             return descriptor;
         });
@@ -3400,7 +3368,7 @@ AlainThemeModule.ctorParameters = () => [
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-const VERSION = new Version('8.4.0-39245c2');
+const VERSION = new Version('8.4.0-e1ece04');
 
 /**
  * @fileoverview added by tsickle
@@ -3412,5 +3380,5 @@ const VERSION = new Version('8.4.0-39245c2');
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { ALAIN_I18N_TOKEN, APP, AlainI18NServiceFake, AlainThemeConfig, AlainThemeModule, BaseApi, BaseHeaders, BaseUrl, Body, CNCurrencyPipe, DELETE, DELON_LOCALE, DELON_LOCALE_SERVICE_PROVIDER, DELON_LOCALE_SERVICE_PROVIDER_FACTORY, DatePipe, DelonLocaleModule, DelonLocaleService, DrawerHelper, GET, HEAD, HTMLPipe, Headers, JSONP, KeysPipe, LAYOUT, MenuService, ModalHelper, OPTIONS, PATCH, POST, PUT, Path, Payload, Query, REP_MAX, ResponsiveService, ScrollService, SettingsService, TitleService, URLPipe, USER, VERSION, WINDOW, YNPipe, _HttpClient, elGR as el_GR, enUS as en_US, koKR as ko_KR, plPL as pl_PL, preloaderFinished, trTR as tr_TR, zhCN as zh_CN, zhTW as zh_TW, ALAIN_I18N_TOKEN_FACTORY as ɵa, I18nPipe as ɵb };
+export { ALAIN_I18N_TOKEN, APP, AlainI18NServiceFake, AlainThemeConfig, AlainThemeModule, BaseApi, BaseHeaders, BaseUrl, Body, CNCurrencyPipe, DELETE, DELON_LOCALE, DELON_LOCALE_SERVICE_PROVIDER, DELON_LOCALE_SERVICE_PROVIDER_FACTORY, DatePipe, DelonLocaleModule, DelonLocaleService, DrawerHelper, GET, HEAD, HTMLPipe, Headers, JSONP, KeysPipe, LAYOUT, MenuService, ModalHelper, OPTIONS, PATCH, POST, PUT, Path, Query, REP_MAX, ResponsiveService, ScrollService, SettingsService, TitleService, URLPipe, USER, VERSION, WINDOW, YNPipe, _HttpClient, elGR as el_GR, enUS as en_US, koKR as ko_KR, plPL as pl_PL, preloaderFinished, trTR as tr_TR, zhCN as zh_CN, zhTW as zh_TW, ALAIN_I18N_TOKEN_FACTORY as ɵa, I18nPipe as ɵb };
 //# sourceMappingURL=theme.js.map
