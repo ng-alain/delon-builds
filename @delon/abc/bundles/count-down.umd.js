@@ -1,13 +1,13 @@
 /**
- * @license ng-alain(cipchk@qq.com) v8.4.0
+ * @license ng-alain(cipchk@qq.com) v8.5.0
  * (c) 2019 cipchk https://ng-alain.com/
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('date-fns/add_seconds'), require('date-fns/format'), require('ngx-countdown'), require('ng-zorro-antd/core'), require('@angular/common')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/count-down', ['exports', '@angular/core', 'date-fns/add_seconds', 'date-fns/format', 'ngx-countdown', 'ng-zorro-antd/core', '@angular/common'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['count-down'] = {}), global.ng.core, global.addSeconds, global.format, global.ngxCountDown, global.core$1, global.ng.common));
-}(this, function (exports, core, addSeconds, format, ngxCountdown, core$1, common) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('date-fns/add_seconds'), require('date-fns/format'), require('@angular/common'), require('ngx-countdown')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/count-down', ['exports', '@angular/core', 'date-fns/add_seconds', 'date-fns/format', '@angular/common', 'ngx-countdown'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['count-down'] = {}), global.ng.core, global.addSeconds, global.format, global.ng.common, global.ngxCountDown));
+}(this, function (exports, core, addSeconds, format, common, ngxCountdown) { 'use strict';
 
     addSeconds = addSeconds && addSeconds.hasOwnProperty('default') ? addSeconds['default'] : addSeconds;
     format = format && format.hasOwnProperty('default') ? format['default'] : format;
@@ -218,7 +218,6 @@
             this.begin = new core.EventEmitter();
             this.notify = new core.EventEmitter();
             this.end = new core.EventEmitter();
-            this.event = new core.EventEmitter();
         }
         Object.defineProperty(CountDownComponent.prototype, "target", {
             /**
@@ -231,8 +230,8 @@
              */
             function (value) {
                 this.config = {
-                    format: "HH:mm:ss",
-                    stopTime: typeof value === 'number' ? addSeconds(new Date(), value).valueOf() : +format(value, 'x'),
+                    template: "$!h!:$!m!:$!s!",
+                    stopTime: typeof value === 'number' ? addSeconds(new Date(), value).valueOf() : format(value, 'x'),
                 };
             },
             enumerable: true,
@@ -241,60 +240,52 @@
         /**
          * @return {?}
          */
-        CountDownComponent.prototype.ngOnInit = /**
+        CountDownComponent.prototype._start = /**
          * @return {?}
          */
         function () {
-            if (this.begin.observers.length > 0 || this.notify.observers.length > 0 || this.end.observers.length > 0) {
-                core$1.warnDeprecation("begin, notify, end events is deprecated and will be removed in 9.0.0. Please use 'event' instead.");
-            }
+            this.begin.emit();
         };
         /**
-         * @param {?} e
+         * @param {?} time
          * @return {?}
          */
-        CountDownComponent.prototype.handleEvent = /**
-         * @param {?} e
+        CountDownComponent.prototype._notify = /**
+         * @param {?} time
          * @return {?}
          */
-        function (e) {
-            switch (e.action) {
-                case 'start':
-                    this.begin.emit();
-                    break;
-                case 'notify':
-                    this.notify.emit(e.left);
-                    break;
-                case 'done':
-                    this.end.emit();
-                    break;
-            }
-            this.event.emit(e);
+        function (time) {
+            this.notify.emit(time);
+        };
+        /**
+         * @return {?}
+         */
+        CountDownComponent.prototype._finished = /**
+         * @return {?}
+         */
+        function () {
+            this.end.emit();
         };
         CountDownComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'count-down',
                         exportAs: 'countDown',
-                        template: "\n    <countdown #cd *ngIf=\"config\" [config]=\"config\" (event)=\"handleEvent($event)\"></countdown>\n  ",
+                        template: "\n    <countdown *ngIf=\"config\" [config]=\"config\" (start)=\"_start()\" (finished)=\"_finished()\" (notify)=\"_notify($event)\"></countdown>\n  ",
                         preserveWhitespaces: false,
                         changeDetection: core.ChangeDetectionStrategy.OnPush,
                         encapsulation: core.ViewEncapsulation.None
                     }] }
         ];
         CountDownComponent.propDecorators = {
-            instance: [{ type: core.ViewChild, args: ['cd', { static: false },] }],
             config: [{ type: core.Input }],
             target: [{ type: core.Input }],
             begin: [{ type: core.Output }],
             notify: [{ type: core.Output }],
-            end: [{ type: core.Output }],
-            event: [{ type: core.Output }]
+            end: [{ type: core.Output }]
         };
         return CountDownComponent;
     }());
     if (false) {
-        /** @type {?} */
-        CountDownComponent.prototype.instance;
         /** @type {?} */
         CountDownComponent.prototype.config;
         /** @type {?} */
@@ -303,8 +294,6 @@
         CountDownComponent.prototype.notify;
         /** @type {?} */
         CountDownComponent.prototype.end;
-        /** @type {?} */
-        CountDownComponent.prototype.event;
     }
 
     /**
