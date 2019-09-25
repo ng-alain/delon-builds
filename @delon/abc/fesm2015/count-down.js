@@ -1,8 +1,9 @@
-import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Output, NgModule } from '@angular/core';
+import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ViewChild, Input, Output, NgModule } from '@angular/core';
 import addSeconds from 'date-fns/add_seconds';
 import format from 'date-fns/format';
-import { CommonModule } from '@angular/common';
 import { CountdownModule } from 'ngx-countdown';
+import { warnDeprecation } from 'ng-zorro-antd/core';
+import { CommonModule } from '@angular/common';
 
 /**
  * @fileoverview added by tsickle
@@ -13,6 +14,7 @@ class CountDownComponent {
         this.begin = new EventEmitter();
         this.notify = new EventEmitter();
         this.end = new EventEmitter();
+        this.event = new EventEmitter();
     }
     /**
      * 目标时间
@@ -21,28 +23,35 @@ class CountDownComponent {
      */
     set target(value) {
         this.config = {
-            template: `$!h!:$!m!:$!s!`,
-            stopTime: typeof value === 'number' ? addSeconds(new Date(), value).valueOf() : format(value, 'x'),
+            format: `HH:mm:ss`,
+            stopTime: typeof value === 'number' ? addSeconds(new Date(), value).valueOf() : +format(value, 'x'),
         };
     }
     /**
      * @return {?}
      */
-    _start() {
-        this.begin.emit();
+    ngOnInit() {
+        if (this.begin.observers.length > 0 || this.notify.observers.length > 0 || this.end.observers.length > 0) {
+            warnDeprecation(`begin, notify, end events is deprecated and will be removed in 9.0.0. Please use 'event' instead.`);
+        }
     }
     /**
-     * @param {?} time
+     * @param {?} e
      * @return {?}
      */
-    _notify(time) {
-        this.notify.emit(time);
-    }
-    /**
-     * @return {?}
-     */
-    _finished() {
-        this.end.emit();
+    handleEvent(e) {
+        switch (e.action) {
+            case 'start':
+                this.begin.emit();
+                break;
+            case 'notify':
+                this.notify.emit(e.left);
+                break;
+            case 'done':
+                this.end.emit();
+                break;
+        }
+        this.event.emit(e);
     }
 }
 CountDownComponent.decorators = [
@@ -50,7 +59,7 @@ CountDownComponent.decorators = [
                 selector: 'count-down',
                 exportAs: 'countDown',
                 template: `
-    <countdown *ngIf="config" [config]="config" (start)="_start()" (finished)="_finished()" (notify)="_notify($event)"></countdown>
+    <countdown #cd *ngIf="config" [config]="config" (event)="handleEvent($event)"></countdown>
   `,
                 preserveWhitespaces: false,
                 changeDetection: ChangeDetectionStrategy.OnPush,
@@ -58,13 +67,17 @@ CountDownComponent.decorators = [
             }] }
 ];
 CountDownComponent.propDecorators = {
+    instance: [{ type: ViewChild, args: ['cd', { static: false },] }],
     config: [{ type: Input }],
     target: [{ type: Input }],
     begin: [{ type: Output }],
     notify: [{ type: Output }],
-    end: [{ type: Output }]
+    end: [{ type: Output }],
+    event: [{ type: Output }]
 };
 if (false) {
+    /** @type {?} */
+    CountDownComponent.prototype.instance;
     /** @type {?} */
     CountDownComponent.prototype.config;
     /** @type {?} */
@@ -73,6 +86,8 @@ if (false) {
     CountDownComponent.prototype.notify;
     /** @type {?} */
     CountDownComponent.prototype.end;
+    /** @type {?} */
+    CountDownComponent.prototype.event;
 }
 
 /**
