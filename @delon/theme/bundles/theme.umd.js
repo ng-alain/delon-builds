@@ -1,5 +1,5 @@
 /**
- * @license ng-alain(cipchk@qq.com) v8.5.0
+ * @license ng-alain(cipchk@qq.com) v8.4.0
  * (c) 2019 cipchk https://ng-alain.com/
  * License: MIT
  */
@@ -2632,6 +2632,51 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
+    var hrHR = (/** @type {?} */ ({
+        abbr: 'hr-HR',
+        exception: {
+            403: "Na\u017Ealost, nemate pristup ovoj lokaciji",
+            404: "Na\u017Ealost, lokacija ne postoji",
+            500: "Na\u017Ealost, server je javio pogre\u0161ku",
+            backToHome: 'Nazad na početnu stranicu',
+        },
+        noticeIcon: {
+            emptyText: 'Nema podataka',
+            clearText: 'Obriši',
+        },
+        reuseTab: {
+            close: 'Zatvori karticu',
+            closeOther: 'Zatvori druge kartice',
+            closeRight: 'Zatvori kartice desno',
+            clear: 'Obriši kartice',
+        },
+        tagSelect: {
+            expand: 'Proširi',
+            collapse: 'Skupi',
+        },
+        miniProgress: {
+            target: 'Cilj: ',
+        },
+        st: {
+            total: '{{range[0]}} - {{range[1]}} od {{total}}',
+            filterConfirm: 'U redu',
+            filterReset: 'Poništi',
+        },
+        sf: {
+            submit: 'Pošalji',
+            reset: 'Poništi',
+            search: 'Pretraži',
+            edit: 'Spremi',
+            addText: 'Dodaj',
+            removeText: 'Ukloni',
+            checkAllText: 'Označi sve',
+        },
+    }));
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
 
     /**
      * @fileoverview added by tsickle
@@ -4177,7 +4222,7 @@
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
-    var VERSION = new core.Version('8.5.0');
+    var VERSION = new core.Version('8.4.0');
 
     exports.ALAIN_I18N_TOKEN = ALAIN_I18N_TOKEN;
     exports.APP = APP;
@@ -4226,6 +4271,7 @@
     exports._HttpClient = _HttpClient;
     exports.el_GR = elGR;
     exports.en_US = enUS;
+    exports.hr_HR = hrHR;
     exports.ko_KR = koKR;
     exports.pl_PL = plPL;
     exports.preloaderFinished = preloaderFinished;
