@@ -66,7 +66,6 @@ export declare class SFComponent implements OnInit, OnChanges, OnDestroy {
      */
     loading: boolean;
     disabled: boolean;
-    noColon: boolean;
     /** 数据变更时回调 */
     readonly formChange: EventEmitter<{}>;
     /** 提交表单时回调 */
