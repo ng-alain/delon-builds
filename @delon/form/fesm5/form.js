@@ -2208,7 +2208,6 @@ var SFComponent = /** @class */ (function () {
          */
         this.loading = false;
         this.disabled = false;
-        this.noColon = false;
         /**
          * 数据变更时回调
          */
@@ -2901,7 +2900,6 @@ var SFComponent = /** @class */ (function () {
                         '[class.sf__search]': "mode === 'search'",
                         '[class.sf__edit]': "mode === 'edit'",
                         '[class.sf__no-error]': "onlyVisual",
-                        '[class.sf__no-colon]': "noColon",
                     },
                     preserveWhitespaces: false,
                     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -2931,7 +2929,6 @@ var SFComponent = /** @class */ (function () {
         mode: [{ type: Input }],
         loading: [{ type: Input }],
         disabled: [{ type: Input }],
-        noColon: [{ type: Input }],
         formChange: [{ type: Output }],
         formSubmit: [{ type: Output }],
         formReset: [{ type: Output }],
@@ -2957,10 +2954,6 @@ var SFComponent = /** @class */ (function () {
         InputBoolean(),
         __metadata("design:type", Object)
     ], SFComponent.prototype, "disabled", void 0);
-    __decorate([
-        InputBoolean(),
-        __metadata("design:type", Object)
-    ], SFComponent.prototype, "noColon", void 0);
     return SFComponent;
 }());
 if (false) {
@@ -3068,8 +3061,6 @@ if (false) {
     SFComponent.prototype.loading;
     /** @type {?} */
     SFComponent.prototype.disabled;
-    /** @type {?} */
-    SFComponent.prototype.noColon;
     /**
      * 数据变更时回调
      * @type {?}
