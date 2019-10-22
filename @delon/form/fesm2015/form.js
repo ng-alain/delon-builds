@@ -1862,6 +1862,7 @@ class SFComponent {
          */
         this.loading = false;
         this.disabled = false;
+        this.noColon = false;
         /**
          * 数据变更时回调
          */
@@ -2426,6 +2427,7 @@ SFComponent.decorators = [
                     '[class.sf__search]': `mode === 'search'`,
                     '[class.sf__edit]': `mode === 'edit'`,
                     '[class.sf__no-error]': `onlyVisual`,
+                    '[class.sf__no-colon]': `noColon`,
                 },
                 preserveWhitespaces: false,
                 changeDetection: ChangeDetectionStrategy.OnPush,
@@ -2455,6 +2457,7 @@ SFComponent.propDecorators = {
     mode: [{ type: Input }],
     loading: [{ type: Input }],
     disabled: [{ type: Input }],
+    noColon: [{ type: Input }],
     formChange: [{ type: Output }],
     formSubmit: [{ type: Output }],
     formReset: [{ type: Output }],
@@ -2480,6 +2483,10 @@ __decorate([
     InputBoolean(),
     __metadata("design:type", Object)
 ], SFComponent.prototype, "disabled", void 0);
+__decorate([
+    InputBoolean(),
+    __metadata("design:type", Object)
+], SFComponent.prototype, "noColon", void 0);
 if (false) {
     /**
      * @type {?}
@@ -2585,6 +2592,8 @@ if (false) {
     SFComponent.prototype.loading;
     /** @type {?} */
     SFComponent.prototype.disabled;
+    /** @type {?} */
+    SFComponent.prototype.noColon;
     /**
      * 数据变更时回调
      * @type {?}

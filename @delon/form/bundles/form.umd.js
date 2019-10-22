@@ -2382,6 +2382,7 @@
              */
             this.loading = false;
             this.disabled = false;
+            this.noColon = false;
             /**
              * 数据变更时回调
              */
@@ -3074,6 +3075,7 @@
                             '[class.sf__search]': "mode === 'search'",
                             '[class.sf__edit]': "mode === 'edit'",
                             '[class.sf__no-error]': "onlyVisual",
+                            '[class.sf__no-colon]': "noColon",
                         },
                         preserveWhitespaces: false,
                         changeDetection: core.ChangeDetectionStrategy.OnPush,
@@ -3103,6 +3105,7 @@
             mode: [{ type: core.Input }],
             loading: [{ type: core.Input }],
             disabled: [{ type: core.Input }],
+            noColon: [{ type: core.Input }],
             formChange: [{ type: core.Output }],
             formSubmit: [{ type: core.Output }],
             formReset: [{ type: core.Output }],
@@ -3128,6 +3131,10 @@
             util.InputBoolean(),
             __metadata("design:type", Object)
         ], SFComponent.prototype, "disabled", void 0);
+        __decorate([
+            util.InputBoolean(),
+            __metadata("design:type", Object)
+        ], SFComponent.prototype, "noColon", void 0);
         return SFComponent;
     }());
     if (false) {
@@ -3235,6 +3242,8 @@
         SFComponent.prototype.loading;
         /** @type {?} */
         SFComponent.prototype.disabled;
+        /** @type {?} */
+        SFComponent.prototype.noColon;
         /**
          * 数据变更时回调
          * @type {?}
