@@ -16234,19 +16234,23 @@ textarea.ant-mention-wrapper .ant-mention-editor {
   list-style: none;
   font-feature-settings: 'tnum';
   position: relative;
-  padding: 24px;
+  padding: 16px 24px;
+  background-color: #fff;
+}
+.ant-page-header-ghost {
+  background-color: inherit;
 }
 .ant-page-header.has-breadcrumb {
   padding-top: 12px;
 }
 .ant-page-header.has-footer {
-  padding-bottom: 16px;
+  padding-bottom: 0;
 }
 .ant-page-header-back {
   float: left;
-  margin: 6px 0;
+  margin: 8px 0;
   margin-right: 16px;
-  font-size: 20px;
+  font-size: 16px;
   line-height: 1;
 }
 .ant-page-header-back-button {
@@ -16290,7 +16294,7 @@ textarea.ant-mention-wrapper .ant-mention-editor {
   padding-right: 12px;
   color: rgba(0, 0, 0, 0.85);
   font-weight: 600;
-  font-size: 24px;
+  font-size: 20px;
   line-height: 32px;
 }
 .ant-page-header-heading .ant-avatar {
@@ -16319,7 +16323,7 @@ textarea.ant-mention-wrapper .ant-mention-editor {
   margin-left: 0;
 }
 .ant-page-header-content {
-  padding-top: 16px;
+  padding-top: 12px;
   overflow: hidden;
 }
 .ant-page-header-footer {
@@ -27716,6 +27720,21 @@ ellipsis {
   outline: none;
   user-select: none;
 }
+.reuse-tab .ant-tabs-nav .ant-tabs-tab .reuse-tab__op {
+  position: absolute;
+  display: none;
+  margin: 0;
+  font-size: 10px;
+  color: rgba(0, 0, 0, 0.45);
+}
+.reuse-tab .ant-tabs-nav .ant-tabs-tab:hover .reuse-tab__op {
+  display: block;
+}
+.reuse-tab .ant-tabs-nav .ant-tabs-tab .reuse-tab__name-width {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-block;
+}
 .reuse-tab__line {
   padding: 8px;
   border-bottom: 1px solid #d9d9d9;
@@ -27728,24 +27747,12 @@ ellipsis {
   padding: 0;
 }
 .reuse-tab__line .ant-tabs-nav .ant-tabs-tab .reuse-tab__op {
-  position: absolute;
   top: 12px;
   right: 2px;
-  display: none;
-  margin: 0;
-  font-size: 10px;
-}
-.reuse-tab__line .ant-tabs-nav .ant-tabs-tab:hover .reuse-tab__op {
-  display: block;
 }
 .reuse-tab__line .ant-tabs-nav .ant-tabs-tab .reuse-tab__name {
   display: inline-block;
   padding: 8px 20px;
-}
-.reuse-tab__line .ant-tabs-nav .ant-tabs-tab .reuse-tab__name-width {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: inline-block;
 }
 .reuse-tab__card {
   padding-top: 8px;
@@ -27754,9 +27761,8 @@ ellipsis {
   padding: 0 8px;
 }
 .reuse-tab__card .ant-tabs-nav .ant-tabs-tab .reuse-tab__op {
-  margin-right: 0;
-  margin-left: 4px;
-  color: rgba(0, 0, 0, 0.45);
+  top: 4px;
+  right: 4px;
 }
 .reuse-tab__cm .ant-menu {
   border: 1px solid #e9e9e9;

@@ -7,7 +7,7 @@
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util'), require('@angular/common'), require('ng-zorro-antd/card'), require('ng-zorro-antd/spin')) :
     typeof define === 'function' && define.amd ? define('@delon/chart/card', ['exports', '@angular/core', '@delon/util', '@angular/common', 'ng-zorro-antd/card', 'ng-zorro-antd/spin'], factory) :
     (global = global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.card = {}), global.ng.core, global.delon.util, global.ng.common, global['ng-zorro-antd/card'], global['ng-zorro-antd/spin']));
-}(this, function (exports, core, util, common, card, spin) { 'use strict';
+}(this, (function (exports, core, util, common, card, spin) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -336,5 +336,5 @@
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
-}));
+})));
 //# sourceMappingURL=card.umd.js.map

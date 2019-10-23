@@ -7,7 +7,7 @@
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('extend'), require('date-fns/add_days'), require('date-fns/end_of_day'), require('date-fns/end_of_month'), require('date-fns/end_of_week'), require('date-fns/end_of_year'), require('date-fns/parse'), require('date-fns/start_of_day'), require('date-fns/start_of_month'), require('date-fns/start_of_week'), require('date-fns/start_of_year'), require('date-fns/sub_months'), require('date-fns/sub_weeks'), require('date-fns/sub_years'), require('@angular/common'), require('rxjs'), require('rxjs/operators'), require('ng-zorro-antd/core')) :
     typeof define === 'function' && define.amd ? define('@delon/util', ['exports', '@angular/core', 'extend', 'date-fns/add_days', 'date-fns/end_of_day', 'date-fns/end_of_month', 'date-fns/end_of_week', 'date-fns/end_of_year', 'date-fns/parse', 'date-fns/start_of_day', 'date-fns/start_of_month', 'date-fns/start_of_week', 'date-fns/start_of_year', 'date-fns/sub_months', 'date-fns/sub_weeks', 'date-fns/sub_years', '@angular/common', 'rxjs', 'rxjs/operators', 'ng-zorro-antd/core'], factory) :
     (global = global || self, factory((global.delon = global.delon || {}, global.delon.util = {}), global.ng.core, global.Extend, global.addDays, global.endOfDay, global.endOfMonth, global.endOfWeek, global.endOfYear, global.parse, global.startOfDay, global.startOfMonth, global.startOfWeek, global.startOfYear, global.subMonths, global.subWeeks, global.subYears, global.ng.common, global.rxjs, global.rxjs.operators, global['ng-zorro-antd/core']));
-}(this, function (exports, core, extend, addDays, endOfDay, endOfMonth, endOfWeek, endOfYear, parse, startOfDay, startOfMonth, startOfWeek, startOfYear, subMonths, subWeeks, subYears, common, rxjs, operators, core$1) { 'use strict';
+}(this, (function (exports, core, extend, addDays, endOfDay, endOfMonth, endOfWeek, endOfYear, parse, startOfDay, startOfMonth, startOfWeek, startOfYear, subMonths, subWeeks, subYears, common, rxjs, operators, core$1) { 'use strict';
 
     extend = extend && extend.hasOwnProperty('default') ? extend['default'] : extend;
     addDays = addDays && addDays.hasOwnProperty('default') ? addDays['default'] : addDays;
@@ -1683,5 +1683,5 @@
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
-}));
+})));
 //# sourceMappingURL=util.umd.js.map

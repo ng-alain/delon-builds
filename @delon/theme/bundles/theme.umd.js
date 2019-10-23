@@ -7,7 +7,7 @@
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('rxjs'), require('rxjs/operators'), require('@delon/acl'), require('@angular/common'), require('@angular/platform-browser'), require('@angular/router'), require('@delon/util'), require('ng-zorro-antd/modal'), require('ng-zorro-antd/drawer'), require('@angular/common/http'), require('date-fns/distance_in_words_to_now'), require('date-fns/format'), require('@angular/cdk/overlay'), require('@ant-design/icons-angular/icons'), require('ng-zorro-antd/icon')) :
     typeof define === 'function' && define.amd ? define('@delon/theme', ['exports', '@angular/core', 'rxjs', 'rxjs/operators', '@delon/acl', '@angular/common', '@angular/platform-browser', '@angular/router', '@delon/util', 'ng-zorro-antd/modal', 'ng-zorro-antd/drawer', '@angular/common/http', 'date-fns/distance_in_words_to_now', 'date-fns/format', '@angular/cdk/overlay', '@ant-design/icons-angular/icons', 'ng-zorro-antd/icon'], factory) :
     (global = global || self, factory((global.delon = global.delon || {}, global.delon.theme = {}), global.ng.core, global.rxjs, global.rxjs.operators, global.delon.acl, global.ng.common, global.ng.platformBrowser, global.ng.router, global.delon.util, global['ng-zorro-antd/modal'], global['ng-zorro-antd/drawer'], global.ng.common.http, global.distanceInWordsToNow, global.format, global.ng.cdk.overlay, global.icons, global['ng-zorro-antd/icon']));
-}(this, function (exports, core, rxjs, operators, acl, common, platformBrowser, router, util, modal, drawer, http, distanceInWordsToNow, format, overlay, icons, icon) { 'use strict';
+}(this, (function (exports, core, rxjs, operators, acl, common, platformBrowser, router, util, modal, drawer, http, distanceInWordsToNow, format, overlay, icons, icon) { 'use strict';
 
     distanceInWordsToNow = distanceInWordsToNow && distanceInWordsToNow.hasOwnProperty('default') ? distanceInWordsToNow['default'] : distanceInWordsToNow;
     format = format && format.hasOwnProperty('default') ? format['default'] : format;
@@ -4283,5 +4283,5 @@
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
-}));
+})));
 //# sourceMappingURL=theme.umd.js.map

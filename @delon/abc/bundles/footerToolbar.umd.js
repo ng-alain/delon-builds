@@ -7,7 +7,7 @@
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common'), require('@angular/core'), require('@delon/util'), require('@delon/abc/error-collect')) :
     typeof define === 'function' && define.amd ? define('@delon/abc/footer-toolbar', ['exports', '@angular/common', '@angular/core', '@delon/util', '@delon/abc/error-collect'], factory) :
     (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['footer-toolbar'] = {}), global.ng.common, global.ng.core, global.delon.util, global.delon.abc['error-collect']));
-}(this, function (exports, common, core, util, errorCollect) { 'use strict';
+}(this, (function (exports, common, core, util, errorCollect) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -321,5 +321,5 @@
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
-}));
+})));
 //# sourceMappingURL=footerToolbar.umd.js.map

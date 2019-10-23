@@ -7,7 +7,7 @@
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/common/http'), require('rxjs'), require('rxjs/operators')) :
     typeof define === 'function' && define.amd ? define('@delon/mock', ['exports', '@angular/core', '@angular/common/http', 'rxjs', 'rxjs/operators'], factory) :
     (global = global || self, factory((global.delon = global.delon || {}, global.delon.mock = {}), global.ng.core, global.ng.common.http, global.rxjs, global.rxjs.operators));
-}(this, function (exports, core, http, rxjs, operators) { 'use strict';
+}(this, (function (exports, core, http, rxjs, operators) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -866,5 +866,5 @@
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
-}));
+})));
 //# sourceMappingURL=mock.umd.js.map

@@ -7,7 +7,7 @@
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util'), require('@angular/common'), require('ng-zorro-antd/avatar'), require('ng-zorro-antd/tooltip')) :
     typeof define === 'function' && define.amd ? define('@delon/abc/avatar-list', ['exports', '@angular/core', '@delon/util', '@angular/common', 'ng-zorro-antd/avatar', 'ng-zorro-antd/tooltip'], factory) :
     (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['avatar-list'] = {}), global.ng.core, global.delon.util, global.ng.common, global['ng-zorro-antd/avatar'], global['ng-zorro-antd/tooltip']));
-}(this, function (exports, core, util, common, avatar, tooltip) { 'use strict';
+}(this, (function (exports, core, util, common, avatar, tooltip) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -400,5 +400,5 @@
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
-}));
+})));
 //# sourceMappingURL=avatarList.umd.js.map

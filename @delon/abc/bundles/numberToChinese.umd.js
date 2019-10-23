@@ -7,7 +7,7 @@
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/common')) :
     typeof define === 'function' && define.amd ? define('@delon/abc/number-to-chinese', ['exports', '@angular/core', '@angular/common'], factory) :
     (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['number-to-chinese'] = {}), global.ng.core, global.ng.common));
-}(this, function (exports, core, common) { 'use strict';
+}(this, (function (exports, core, common) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -442,5 +442,5 @@
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
-}));
+})));
 //# sourceMappingURL=numberToChinese.umd.js.map

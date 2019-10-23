@@ -7,7 +7,7 @@
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common/http'), require('@angular/core'), require('date-fns/add_seconds'), require('rxjs'), require('rxjs/operators')) :
     typeof define === 'function' && define.amd ? define('@delon/cache', ['exports', '@angular/common/http', '@angular/core', 'date-fns/add_seconds', 'rxjs', 'rxjs/operators'], factory) :
     (global = global || self, factory((global.delon = global.delon || {}, global.delon.cache = {}), global.ng.common.http, global.ng.core, global.addSeconds, global.rxjs, global.rxjs.operators));
-}(this, function (exports, http, core, addSeconds, rxjs, operators) { 'use strict';
+}(this, (function (exports, http, core, addSeconds, rxjs, operators) { 'use strict';
 
     addSeconds = addSeconds && addSeconds.hasOwnProperty('default') ? addSeconds['default'] : addSeconds;
 
@@ -1029,5 +1029,5 @@
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
-}));
+})));
 //# sourceMappingURL=cache.umd.js.map

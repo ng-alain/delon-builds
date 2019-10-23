@@ -7,7 +7,7 @@
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/common/http'), require('@delon/util'), require('file-saver'), require('@angular/common')) :
     typeof define === 'function' && define.amd ? define('@delon/abc/xlsx', ['exports', '@angular/core', '@angular/common/http', '@delon/util', 'file-saver', '@angular/common'], factory) :
     (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.xlsx = {}), global.ng.core, global.ng.common.http, global.delon.util, global.saveAs, global.ng.common));
-}(this, function (exports, core, http, util, fileSaver, common) { 'use strict';
+}(this, (function (exports, core, http, util, fileSaver, common) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -541,5 +541,5 @@
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
-}));
+})));
 //# sourceMappingURL=xlsx.umd.js.map

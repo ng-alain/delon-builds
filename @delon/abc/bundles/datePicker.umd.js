@@ -7,7 +7,7 @@
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/forms'), require('@delon/util'), require('ng-zorro-antd/date-picker'), require('@angular/common')) :
     typeof define === 'function' && define.amd ? define('@delon/abc/date-picker', ['exports', '@angular/core', '@angular/forms', '@delon/util', 'ng-zorro-antd/date-picker', '@angular/common'], factory) :
     (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['date-picker'] = {}), global.ng.core, global.ng.forms, global.delon.util, global['ng-zorro-antd/date-picker'], global.ng.common));
-}(this, function (exports, core, forms, util, datePicker, common) { 'use strict';
+}(this, (function (exports, core, forms, util, datePicker, common) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -662,5 +662,5 @@
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
-}));
+})));
 //# sourceMappingURL=datePicker.umd.js.map

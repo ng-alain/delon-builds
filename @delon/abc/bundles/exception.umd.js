@@ -7,7 +7,7 @@
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/theme'), require('@delon/util'), require('@angular/common'), require('@angular/router'), require('ng-zorro-antd/button')) :
     typeof define === 'function' && define.amd ? define('@delon/abc/exception', ['exports', '@angular/core', '@delon/theme', '@delon/util', '@angular/common', '@angular/router', 'ng-zorro-antd/button'], factory) :
     (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.exception = {}), global.ng.core, global.delon.theme, global.delon.util, global.ng.common, global.ng.router, global['ng-zorro-antd/button']));
-}(this, function (exports, core, theme, util, common, router, button) { 'use strict';
+}(this, (function (exports, core, theme, util, common, router, button) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -392,5 +392,5 @@
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
-}));
+})));
 //# sourceMappingURL=exception.umd.js.map

@@ -7,7 +7,7 @@
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('rxjs'), require('@delon/util'), require('rxjs/operators'), require('@angular/router'), require('@angular/common')) :
     typeof define === 'function' && define.amd ? define('@delon/acl', ['exports', '@angular/core', 'rxjs', '@delon/util', 'rxjs/operators', '@angular/router', '@angular/common'], factory) :
     (global = global || self, factory((global.delon = global.delon || {}, global.delon.acl = {}), global.ng.core, global.rxjs, global.delon.util, global.rxjs.operators, global.ng.router, global.ng.common));
-}(this, function (exports, core, rxjs, util, operators, router, common) { 'use strict';
+}(this, (function (exports, core, rxjs, util, operators, router, common) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -1154,5 +1154,5 @@
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
-}));
+})));
 //# sourceMappingURL=acl.umd.js.map

@@ -7,7 +7,7 @@
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('date-fns/add_seconds'), require('date-fns/format'), require('ngx-countdown'), require('ng-zorro-antd/core'), require('@angular/common')) :
     typeof define === 'function' && define.amd ? define('@delon/abc/count-down', ['exports', '@angular/core', 'date-fns/add_seconds', 'date-fns/format', 'ngx-countdown', 'ng-zorro-antd/core', '@angular/common'], factory) :
     (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['count-down'] = {}), global.ng.core, global.addSeconds, global.format, global.ngxCountDown, global.core$1, global.ng.common));
-}(this, function (exports, core, addSeconds, format, ngxCountdown, core$1, common) { 'use strict';
+}(this, (function (exports, core, addSeconds, format, ngxCountdown, core$1, common) { 'use strict';
 
     addSeconds = addSeconds && addSeconds.hasOwnProperty('default') ? addSeconds['default'] : addSeconds;
     format = format && format.hasOwnProperty('default') ? format['default'] : format;
@@ -331,5 +331,5 @@
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
-}));
+})));
 //# sourceMappingURL=count-down.umd.js.map
