@@ -57,7 +57,7 @@ function addDependenciesToPackageJson(options) {
             // allow ignore ng-zorro-antd becauce of @delon/theme dependency
             `ng-zorro-antd@${lib_versions_1.ZORROVERSION}`,
             // ng-zorro-antd need
-            'screenfull@^4.2.1',
+            'screenfull@^5.0.0',
             'ajv@^6.10.2',
         ]);
         // add ajv
@@ -137,15 +137,15 @@ function addCodeStylesToPackageJson() {
             `tslint-config-prettier@^1.18.0`,
             `tslint-language-service@^0.9.9`,
             `lint-staged@^8.2.1`,
-            `husky@^3.0.4`,
+            `husky@^3.0.9`,
             `prettier@^1.18.2`,
             `prettier-stylelint@^0.4.2`,
-            `stylelint@^10.1.0`,
-            `stylelint-config-prettier@^5.2.0`,
+            `stylelint@^11.1.1`,
+            `stylelint-config-prettier@^6.0.0`,
             `stylelint-config-rational-order@^0.1.2`,
-            `stylelint-config-standard@^18.3.0`,
+            `stylelint-config-standard@^19.0.0`,
             `stylelint-declaration-block-no-ignored-properties@^2.1.0`,
-            `stylelint-order@^3.0.0`,
+            `stylelint-order@^3.1.1`,
         ], 'devDependencies');
         return host;
     };
