@@ -107,7 +107,7 @@ class XlsxService {
      * @return {?}
      */
     init() {
-        return this.lazy.load([(/** @type {?} */ (this.cog.url))].concat((/** @type {?} */ (this.cog.modules))));
+        return typeof XLSX !== 'undefined' ? Promise.resolve([]) : this.lazy.load([(/** @type {?} */ (this.cog.url))].concat((/** @type {?} */ (this.cog.modules))));
     }
     /**
      * @private
@@ -136,12 +136,13 @@ class XlsxService {
      */
     import(fileOrUrl, rABS = 'readAsBinaryString') {
         return new Promise((/**
-         * @param {?} resolver
+         * @param {?} resolve
          * @param {?} reject
          * @return {?}
          */
-        (resolver, reject) => {
-            this.init().then((/**
+        (resolve, reject) => {
+            this.init()
+                .then((/**
              * @return {?}
              */
             () => {
@@ -154,7 +155,7 @@ class XlsxService {
                     (res) => {
                         /** @type {?} */
                         const wb = XLSX.read(new Uint8Array(res), { type: 'array' });
-                        resolver(this.read(wb));
+                        resolve(this.read(wb));
                     }), (/**
                      * @param {?} err
                      * @return {?}
@@ -174,10 +175,14 @@ class XlsxService {
                 (e) => {
                     /** @type {?} */
                     const wb = XLSX.read(e.target.result, { type: 'binary' });
-                    resolver(this.read(wb));
+                    resolve(this.read(wb));
                 });
                 reader[rABS](fileOrUrl);
-            }));
+            }))
+                .catch((/**
+             * @return {?}
+             */
+            () => reject(`Unable to load xlsx.js`)));
         }));
     }
     /**

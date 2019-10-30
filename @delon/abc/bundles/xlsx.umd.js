@@ -309,7 +309,7 @@
          * @return {?}
          */
         function () {
-            return this.lazy.load([(/** @type {?} */ (this.cog.url))].concat((/** @type {?} */ (this.cog.modules))));
+            return typeof XLSX !== 'undefined' ? Promise.resolve([]) : this.lazy.load([(/** @type {?} */ (this.cog.url))].concat((/** @type {?} */ (this.cog.modules))));
         };
         /**
          * @private
@@ -355,12 +355,13 @@
             var _this = this;
             if (rABS === void 0) { rABS = 'readAsBinaryString'; }
             return new Promise((/**
-             * @param {?} resolver
+             * @param {?} resolve
              * @param {?} reject
              * @return {?}
              */
-            function (resolver, reject) {
-                _this.init().then((/**
+            function (resolve, reject) {
+                _this.init()
+                    .then((/**
                  * @return {?}
                  */
                 function () {
@@ -373,7 +374,7 @@
                         function (res) {
                             /** @type {?} */
                             var wb = XLSX.read(new Uint8Array(res), { type: 'array' });
-                            resolver(_this.read(wb));
+                            resolve(_this.read(wb));
                         }), (/**
                          * @param {?} err
                          * @return {?}
@@ -393,10 +394,14 @@
                     function (e) {
                         /** @type {?} */
                         var wb = XLSX.read(e.target.result, { type: 'binary' });
-                        resolver(_this.read(wb));
+                        resolve(_this.read(wb));
                     });
                     reader[rABS](fileOrUrl);
-                }));
+                }))
+                    .catch((/**
+                 * @return {?}
+                 */
+                function () { return reject("Unable to load xlsx.js"); }));
             }));
         };
         /** 导出 */
