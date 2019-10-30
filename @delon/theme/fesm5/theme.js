@@ -4029,7 +4029,7 @@ var AlainThemeModule = /** @class */ (function () {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-var VERSION = new Version('8.5.1-607fe55');
+var VERSION = new Version('8.5.1-88e63a2');
 
 /**
  * @fileoverview added by tsickle
