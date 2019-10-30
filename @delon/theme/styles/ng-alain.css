@@ -23031,6 +23031,9 @@ fieldset {
     text-align: left;
   }
 }
+.sf__no-colon .ant-form-item-label label:after {
+  content: ' ';
+}
 .acl__hide {
   display: none !important;
 }
