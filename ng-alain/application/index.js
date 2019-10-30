@@ -365,6 +365,11 @@ function installPackages() {
         context.addTask(new tasks_1.NodePackageInstallTask());
     };
 }
+function cnpmTips() {
+    return (_host) => {
+        console.warn(`Don't use cnpm to install dependencies, pls refer to: https://ng-alain.com/docs/faq#Installation`);
+    };
+}
 function default_1(options) {
     return (host, context) => {
         project = project_1.getProject(host, options.project);
@@ -388,6 +393,7 @@ function default_1(options) {
             fixVsCode(),
             fixAngularJson(options),
             installPackages(),
+            cnpmTips(),
         ])(host, context);
     };
 }
