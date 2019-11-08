@@ -27057,6 +27057,7 @@ body {
   margin-right: 2px;
 }
 .sv__label-optional {
+  margin-left: -2px;
   color: rgba(0, 0, 0, 0.35);
 }
 .sv__detail {
@@ -27148,7 +27149,11 @@ body {
   text-align: right;
 }
 .se__label-optional {
+  margin-left: 2px;
   color: rgba(0, 0, 0, 0.35);
+}
+.se__label-optional > .anticon {
+  margin-left: 2px;
 }
 .se__control {
   flex: 1 0 0;
