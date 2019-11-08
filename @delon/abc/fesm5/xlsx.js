@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: xlsx.types.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
@@ -53,6 +54,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: xlsx.config.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var XlsxConfig = /** @class */ (function () {
@@ -91,6 +93,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: xlsx.service.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var XlsxService = /** @class */ (function () {
@@ -276,6 +279,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: xlsx.directive.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var XlsxDirective = /** @class */ (function () {
@@ -321,6 +325,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: xlsx.module.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
@@ -340,11 +345,13 @@ var XlsxModule = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: public_api.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: xlsx.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 

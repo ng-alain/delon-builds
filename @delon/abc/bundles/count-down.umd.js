@@ -211,6 +211,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: count-down.component.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var CountDownComponent = /** @class */ (function () {
@@ -309,6 +310,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: count-down.module.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */

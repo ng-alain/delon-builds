@@ -208,6 +208,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: src/auth.config.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var DelonAuthConfig = /** @class */ (function () {
@@ -323,6 +324,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: src/store/local-storage.service.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /**
@@ -375,6 +377,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: src/store/interface.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
@@ -407,6 +410,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: src/token/token.service.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /**
@@ -520,6 +524,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: src/token/interface.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
@@ -593,6 +598,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: src/social/social.service.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
@@ -770,6 +776,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: src/store/memory.service.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var MemoryStore = /** @class */ (function () {
@@ -824,6 +831,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: src/store/session-storage.service.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var SessionStorageStore = /** @class */ (function () {
@@ -870,6 +878,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: src/token/helper.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /**
@@ -914,6 +923,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: src/token/base.interceptor.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var HttpAuthInterceptorHandler = /** @class */ (function () {
@@ -1068,6 +1078,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: src/token/jwt/jwt.helper.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /**
@@ -1144,6 +1155,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: src/token/jwt/jwt.model.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var JWTTokenModel = /** @class */ (function () {
@@ -1207,6 +1219,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: src/token/jwt/jwt.interceptor.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var JWTInterceptor = /** @class */ (function (_super) {
@@ -1251,6 +1264,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: src/token/jwt/jwt.guard.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var JWTGuard = /** @class */ (function () {
@@ -1366,6 +1380,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: src/token/simple/simple.model.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var SimpleTokenModel = /** @class */ (function () {
@@ -1381,6 +1396,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: src/token/simple/simple.interceptor.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var SimpleInterceptor = /** @class */ (function (_super) {
@@ -1453,6 +1469,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: src/token/simple/simple.guard.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var SimpleGuard = /** @class */ (function () {
@@ -1568,6 +1585,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: src/auth.module.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var DelonAuthModule = /** @class */ (function () {

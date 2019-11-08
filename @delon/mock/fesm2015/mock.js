@@ -5,6 +5,7 @@ import { delay } from 'rxjs/operators';
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: src/interface.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
@@ -76,6 +77,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: src/status.error.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class MockStatusError {
@@ -99,6 +101,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: src/mock.config.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class DelonMockConfig {
@@ -151,6 +154,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: src/mock.service.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class MockService {
@@ -398,6 +402,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: src/mock.interceptor.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class HttpMockInterceptorHandler {
@@ -573,6 +578,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: src/mock.module.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class DelonMockModule {
@@ -606,11 +612,13 @@ DelonMockModule.decorators = [
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: public_api.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: mock.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 

@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: down-file.directive.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var DownFileDirective = /** @class */ (function () {
@@ -214,6 +215,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: down-file.module.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
@@ -233,11 +235,13 @@ var DownFileModule = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: public_api.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: downFile.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 

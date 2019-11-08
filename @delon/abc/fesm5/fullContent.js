@@ -8,6 +8,7 @@ import { share, debounceTime, filter } from 'rxjs/operators';
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: full-content.service.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var FullContentService = /** @class */ (function () {
@@ -52,6 +53,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: full-content.component.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
@@ -348,6 +350,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: full-content-toggle.directive.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var FullContentToggleDirective = /** @class */ (function () {
@@ -388,6 +391,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: full-content.module.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
@@ -407,11 +411,13 @@ var FullContentModule = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: public_api.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: fullContent.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 

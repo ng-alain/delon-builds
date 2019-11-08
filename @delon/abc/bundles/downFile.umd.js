@@ -208,6 +208,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: down-file.directive.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var DownFileDirective = /** @class */ (function () {
@@ -416,6 +417,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: down-file.module.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */

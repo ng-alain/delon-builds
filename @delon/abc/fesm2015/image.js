@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: image.config.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class ImageConfig {
@@ -38,6 +39,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: image.directive.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
@@ -156,6 +158,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: image.module.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
@@ -172,11 +175,13 @@ ImageModule.decorators = [
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: public_api.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: image.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 

@@ -208,6 +208,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: mini-bar.component.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /**
@@ -425,6 +426,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: mini-bar.module.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */

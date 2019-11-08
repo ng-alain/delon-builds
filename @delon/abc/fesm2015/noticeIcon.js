@@ -13,6 +13,7 @@ import { NzTagModule } from 'ng-zorro-antd/tag';
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: notice-icon.types.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
@@ -90,6 +91,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: notice-icon-tab.component.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class NoticeIconTabComponent {
@@ -140,6 +142,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: notice-icon.component.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class NoticeIconComponent {
@@ -285,6 +288,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: notice-icon.module.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
@@ -311,11 +315,13 @@ NoticeIconModule.decorators = [
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: public_api.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: noticeIcon.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 

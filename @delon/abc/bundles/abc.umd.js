@@ -11,6 +11,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: abc.module.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */

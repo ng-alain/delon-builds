@@ -208,6 +208,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: src/event-objects.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /**
@@ -321,6 +322,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: src/dispatch-events.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /**
@@ -385,6 +387,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: src/type-in-element.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /**
@@ -402,6 +405,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: src/zorro.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /**
@@ -437,6 +441,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: src/g2.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
@@ -882,6 +887,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: src/suite.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var _this = this;

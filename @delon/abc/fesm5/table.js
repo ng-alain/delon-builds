@@ -26,6 +26,7 @@ import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: table.interfaces.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
@@ -1178,6 +1179,11 @@ if (false) {
      */
     STChange.prototype.total;
     /**
+     * `loaded` 参数
+     * @type {?|undefined}
+     */
+    STChange.prototype.loaded;
+    /**
      * `checkbox` 参数
      * @type {?|undefined}
      */
@@ -1247,6 +1253,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: table-row.directive.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var STRowSource = /** @class */ (function () {
@@ -1355,6 +1362,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: table.config.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var STConfig = /** @class */ (function () {
@@ -1622,6 +1630,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: table-column-source.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
@@ -2242,6 +2251,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: table-data-source.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
@@ -3059,6 +3069,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: table-export.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var STExport = /** @class */ (function () {
@@ -3185,6 +3196,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: table.component.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var STComponent = /** @class */ (function () {
@@ -3613,6 +3625,7 @@ var STComponent = /** @class */ (function () {
                         }
                         this._data = (/** @type {?} */ (result.list));
                         this._statistical = (/** @type {?} */ (result.statistical));
+                        this.changeEmit('loaded', result.list);
                         return [2 /*return*/, this._refCheck()];
                     case 3:
                         error_1 = _a.sent();
@@ -4979,6 +4992,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: table.module.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
@@ -5016,11 +5030,13 @@ var STModule = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: public_api.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: table.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 

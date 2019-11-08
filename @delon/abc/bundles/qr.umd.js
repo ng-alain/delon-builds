@@ -208,6 +208,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: qr.config.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var QRConfig = /** @class */ (function () {
@@ -296,6 +297,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: qr.service.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var QRService = /** @class */ (function () {
@@ -450,6 +452,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: qr.component.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var QRComponent = /** @class */ (function () {
@@ -561,6 +564,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: qr.module.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */

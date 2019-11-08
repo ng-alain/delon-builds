@@ -26,6 +26,7 @@ import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: table.interfaces.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
@@ -1178,6 +1179,11 @@ if (false) {
      */
     STChange.prototype.total;
     /**
+     * `loaded` 参数
+     * @type {?|undefined}
+     */
+    STChange.prototype.loaded;
+    /**
      * `checkbox` 参数
      * @type {?|undefined}
      */
@@ -1247,6 +1253,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: table-row.directive.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class STRowSource {
@@ -1340,6 +1347,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: table.config.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class STConfig {
@@ -1606,6 +1614,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: table-column-source.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
@@ -2139,6 +2148,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: table-data-source.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
@@ -2856,6 +2866,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: table-export.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class STExport {
@@ -2968,6 +2979,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: table.component.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class STComponent {
@@ -3305,7 +3317,7 @@ class STComponent {
      * @return {?}
      */
     loadPageData() {
-        return __awaiter(this, void 0, void 0, /** @this {!STComponent} */ function* () {
+        return __awaiter(this, void 0, void 0, function* () {
             this.setLoading(true);
             try {
                 /** @type {?} */
@@ -3325,6 +3337,7 @@ class STComponent {
                 }
                 this._data = (/** @type {?} */ (result.list));
                 this._statistical = (/** @type {?} */ (result.statistical));
+                this.changeEmit('loaded', result.list);
                 return this._refCheck();
             }
             catch (error) {
@@ -4392,6 +4405,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: table.module.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
@@ -4426,11 +4440,13 @@ STModule.decorators = [
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: public_api.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: table.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 

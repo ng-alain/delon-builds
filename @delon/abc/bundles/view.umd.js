@@ -208,6 +208,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: view.config.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var SVConfig = /** @class */ (function () {
@@ -274,6 +275,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: view-container.component.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
@@ -397,6 +399,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: view-title.component.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var SVTitleComponent = /** @class */ (function () {
@@ -472,6 +475,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: view.component.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
@@ -668,6 +672,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: view.module.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */

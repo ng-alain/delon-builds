@@ -8,6 +8,7 @@ import { CommonModule } from '@angular/common';
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: src/acl.config.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var DelonACLConfig = /** @class */ (function () {
@@ -38,6 +39,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: src/acl.service.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
@@ -475,6 +477,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: src/acl-if.directive.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var ACLIfDirective = /** @class */ (function () {
@@ -645,6 +648,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: src/acl.directive.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var ACLDirective = /** @class */ (function () {
@@ -764,6 +768,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: src/acl.type.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
@@ -798,6 +803,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: src/acl-guard.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var ACLGuard = /** @class */ (function () {
@@ -916,6 +922,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: src/acl.module.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
@@ -947,11 +954,13 @@ var DelonACLModule = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: public_api.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: acl.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 

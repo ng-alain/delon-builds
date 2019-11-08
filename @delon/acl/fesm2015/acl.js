@@ -8,6 +8,7 @@ import { CommonModule } from '@angular/common';
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: src/acl.config.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class DelonACLConfig {
@@ -37,6 +38,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: src/acl.service.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
@@ -315,6 +317,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: src/acl-if.directive.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class ACLIfDirective {
@@ -469,6 +472,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: src/acl.directive.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class ACLDirective {
@@ -575,6 +579,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: src/acl.type.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
@@ -609,6 +614,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: src/acl-guard.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class ACLGuard {
@@ -702,6 +708,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: src/acl.module.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
@@ -727,11 +734,13 @@ DelonACLModule.decorators = [
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: public_api.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: acl.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 

@@ -6,6 +6,7 @@ import { delay } from 'rxjs/operators';
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: src/interface.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
@@ -77,6 +78,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: src/status.error.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var MockStatusError = /** @class */ (function () {
@@ -97,6 +99,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: src/mock.config.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var DelonMockConfig = /** @class */ (function () {
@@ -150,6 +153,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: src/mock.service.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var MockService = /** @class */ (function () {
@@ -436,6 +440,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: src/mock.interceptor.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var HttpMockInterceptorHandler = /** @class */ (function () {
@@ -615,6 +620,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: src/mock.module.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var DelonMockModule = /** @class */ (function () {
@@ -658,11 +664,13 @@ var DelonMockModule = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: public_api.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: mock.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 

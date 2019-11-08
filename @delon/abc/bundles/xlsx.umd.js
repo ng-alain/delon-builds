@@ -208,6 +208,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: xlsx.types.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /**
@@ -254,6 +255,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: xlsx.config.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var XlsxConfig = /** @class */ (function () {
@@ -292,6 +294,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: xlsx.service.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var XlsxService = /** @class */ (function () {
@@ -477,6 +480,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: xlsx.directive.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var XlsxDirective = /** @class */ (function () {
@@ -522,6 +526,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: xlsx.module.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */

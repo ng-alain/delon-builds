@@ -208,6 +208,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: src/interface.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /**
@@ -279,6 +280,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: src/status.error.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var MockStatusError = /** @class */ (function () {
@@ -299,6 +301,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: src/mock.config.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var DelonMockConfig = /** @class */ (function () {
@@ -352,6 +355,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: src/mock.service.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var MockService = /** @class */ (function () {
@@ -638,6 +642,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: src/mock.interceptor.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var HttpMockInterceptorHandler = /** @class */ (function () {
@@ -817,6 +822,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: src/mock.module.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var DelonMockModule = /** @class */ (function () {

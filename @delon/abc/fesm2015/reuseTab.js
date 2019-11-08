@@ -14,6 +14,7 @@ import { NzTabsModule } from 'ng-zorro-antd/tabs';
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: reuse-tab-context-menu.component.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class ReuseTabContextMenuComponent {
@@ -146,6 +147,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: reuse-tab-context.service.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class ReuseTabContextService {
@@ -255,6 +257,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: reuse-tab-context.component.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class ReuseTabContextComponent {
@@ -321,6 +324,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: reuse-tab-context.directive.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class ReuseTabContextDirective {
@@ -375,6 +379,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: reuse-tab.interfaces.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @enum {number} */
@@ -530,6 +535,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: reuse-tab.service.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
@@ -1314,6 +1320,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: reuse-tab.component.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class ReuseTabComponent {
@@ -1781,6 +1788,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: reuse-tab.strategy.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class ReuseTabStrategy {
@@ -1838,6 +1846,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: reuse-tab.module.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
@@ -1857,11 +1866,13 @@ ReuseTabModule.decorators = [
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: public_api.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: reuseTab.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 

@@ -208,6 +208,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: src/acl.config.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var DelonACLConfig = /** @class */ (function () {
@@ -238,6 +239,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: src/acl.service.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /**
@@ -675,6 +677,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: src/acl-if.directive.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var ACLIfDirective = /** @class */ (function () {
@@ -845,6 +848,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: src/acl.directive.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var ACLDirective = /** @class */ (function () {
@@ -964,6 +968,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: src/acl.type.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /**
@@ -998,6 +1003,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: src/acl-guard.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var ACLGuard = /** @class */ (function () {
@@ -1116,6 +1122,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: src/acl.module.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */

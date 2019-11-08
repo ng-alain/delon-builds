@@ -208,6 +208,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: full-content.service.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var FullContentService = /** @class */ (function () {
@@ -252,6 +253,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: full-content.component.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
@@ -548,6 +550,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: full-content-toggle.directive.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var FullContentToggleDirective = /** @class */ (function () {
@@ -588,6 +591,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: full-content.module.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */

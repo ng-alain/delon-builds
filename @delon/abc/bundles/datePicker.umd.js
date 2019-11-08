@@ -208,6 +208,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: date-picker.config.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var DateRangePickerConfig = /** @class */ (function () {
@@ -363,6 +364,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: range.component.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var RangePickerComponent = /** @class */ (function () {
@@ -638,6 +640,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: date-picker.module.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */

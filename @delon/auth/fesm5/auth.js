@@ -8,6 +8,7 @@ import { HttpErrorResponse, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: src/auth.config.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var DelonAuthConfig = /** @class */ (function () {
@@ -123,6 +124,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: src/store/local-storage.service.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
@@ -175,6 +177,7 @@ var LocalStorageStore = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: src/store/interface.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
@@ -207,6 +210,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: src/token/token.service.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
@@ -320,6 +324,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: src/token/interface.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
@@ -393,6 +398,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: src/social/social.service.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
@@ -570,6 +576,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: src/store/memory.service.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var MemoryStore = /** @class */ (function () {
@@ -624,6 +631,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: src/store/session-storage.service.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var SessionStorageStore = /** @class */ (function () {
@@ -670,6 +678,7 @@ var SessionStorageStore = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: src/token/helper.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
@@ -714,6 +723,7 @@ function ToLogin(options, injector, url) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: src/token/base.interceptor.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var HttpAuthInterceptorHandler = /** @class */ (function () {
@@ -868,6 +878,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: src/token/jwt/jwt.helper.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
@@ -944,6 +955,7 @@ function b64DecodeUnicode(str) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: src/token/jwt/jwt.model.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var JWTTokenModel = /** @class */ (function () {
@@ -1007,6 +1019,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: src/token/jwt/jwt.interceptor.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var JWTInterceptor = /** @class */ (function (_super) {
@@ -1051,6 +1064,7 @@ var JWTInterceptor = /** @class */ (function (_super) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: src/token/jwt/jwt.guard.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var JWTGuard = /** @class */ (function () {
@@ -1166,6 +1180,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: src/token/simple/simple.model.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var SimpleTokenModel = /** @class */ (function () {
@@ -1181,6 +1196,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: src/token/simple/simple.interceptor.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var SimpleInterceptor = /** @class */ (function (_super) {
@@ -1253,6 +1269,7 @@ var SimpleInterceptor = /** @class */ (function (_super) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: src/token/simple/simple.guard.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var SimpleGuard = /** @class */ (function () {
@@ -1368,6 +1385,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: src/auth.module.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var DelonAuthModule = /** @class */ (function () {
@@ -1381,11 +1399,13 @@ var DelonAuthModule = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: public_api.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: auth.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 

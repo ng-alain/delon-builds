@@ -208,6 +208,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: notice-icon.types.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /**
@@ -285,6 +286,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: notice-icon-tab.component.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var NoticeIconTabComponent = /** @class */ (function () {
@@ -343,6 +345,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: notice-icon.component.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var NoticeIconComponent = /** @class */ (function () {
@@ -507,6 +510,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: notice-icon.module.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */

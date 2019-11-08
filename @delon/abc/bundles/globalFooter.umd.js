@@ -208,6 +208,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: global-footer.types.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /**
@@ -225,6 +226,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: global-footer-item.component.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var GlobalFooterItemComponent = /** @class */ (function () {
@@ -262,6 +264,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: global-footer.component.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var GlobalFooterComponent = /** @class */ (function () {
@@ -334,6 +337,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: global-footer.module.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */

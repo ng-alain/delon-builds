@@ -208,6 +208,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: error-collect.config.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var ErrorCollectConfig = /** @class */ (function () {
@@ -242,6 +243,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: error-collect.component.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var ErrorCollectComponent = /** @class */ (function () {
@@ -447,6 +449,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: error-collect.module.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */

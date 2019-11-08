@@ -208,6 +208,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: avatar-list-item.component.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var AvatarListItemComponent = /** @class */ (function () {
@@ -244,6 +245,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: avatar-list.component.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var AvatarListComponent = /** @class */ (function () {
@@ -377,6 +379,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: avatar-list.module.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */

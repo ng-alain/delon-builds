@@ -8,6 +8,7 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: exception.component.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var ExceptionComponent = /** @class */ (function () {
@@ -170,6 +171,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: exception.module.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
@@ -189,11 +191,13 @@ var ExceptionModule = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: public_api.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: exception.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 

@@ -208,6 +208,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: grid.config.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var SGConfig = /** @class */ (function () {
@@ -242,6 +243,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: grid-container.component.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var SGContainerComponent = /** @class */ (function () {
@@ -311,6 +313,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: grid.component.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
@@ -452,6 +455,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: grid.module.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */

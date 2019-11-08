@@ -208,6 +208,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: reuse-tab-context-menu.component.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var ReuseTabContextMenuComponent = /** @class */ (function () {
@@ -368,6 +369,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: reuse-tab-context.service.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var ReuseTabContextService = /** @class */ (function () {
@@ -483,6 +485,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: reuse-tab-context.component.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var ReuseTabContextComponent = /** @class */ (function () {
@@ -555,6 +558,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: reuse-tab-context.directive.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var ReuseTabContextDirective = /** @class */ (function () {
@@ -611,6 +615,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: reuse-tab.interfaces.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @enum {number} */
@@ -766,6 +771,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: reuse-tab.service.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /**
@@ -1906,6 +1912,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: reuse-tab.component.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var ReuseTabComponent = /** @class */ (function () {
@@ -2426,6 +2433,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: reuse-tab.strategy.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var ReuseTabStrategy = /** @class */ (function () {
@@ -2503,6 +2511,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: reuse-tab.module.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */

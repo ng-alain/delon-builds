@@ -21,6 +21,7 @@ import { NzTreeNode } from 'ng-zorro-antd/core';
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: src/addon/string_template_outlet.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var StringTemplateOutletDirective = /** @class */ (function () {
@@ -125,6 +126,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: src/other/other.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
@@ -275,6 +277,7 @@ function deepMerge(original) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: src/string/string.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
@@ -304,6 +307,7 @@ function format(str, obj, needDeepGet) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: src/time/time.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
@@ -363,6 +367,7 @@ function fixEndTimeOfRange(dates) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: src/lazy/lazy.service.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
@@ -607,6 +612,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: src/validate/validate.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
@@ -661,6 +667,7 @@ function isUrl(url) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: src/validate/validators.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
@@ -763,6 +770,7 @@ _Validators = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: src/other/check.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
@@ -893,6 +901,7 @@ function InputNumber(fallback) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: src/other/style.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
@@ -955,6 +964,7 @@ function updateHostClass(el, renderer, classMap, cleanAll) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: src/array/array.config.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
@@ -1016,6 +1026,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: src/util.config.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var DelonUtilConfig = /** @class */ (function () {
@@ -1034,6 +1045,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: src/array/array.service.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
@@ -1437,6 +1449,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: src/util.module.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var DelonUtilModule = /** @class */ (function () {
@@ -1454,11 +1467,13 @@ var DelonUtilModule = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: public_api.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: util.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 

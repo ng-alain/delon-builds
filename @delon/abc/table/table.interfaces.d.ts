@@ -804,7 +804,7 @@ export interface STColumnTagValue {
      */
     color?: 'geekblue' | 'blue' | 'purple' | 'success' | 'red' | 'volcano' | 'orange' | 'gold' | 'lime' | 'green' | 'cyan' | string;
 }
-export declare type STChangeType = 'pi' | 'ps' | 'checkbox' | 'radio' | 'sort' | 'filter' | 'click' | 'dblClick' | 'expand';
+export declare type STChangeType = 'loaded' | 'pi' | 'ps' | 'checkbox' | 'radio' | 'sort' | 'filter' | 'click' | 'dblClick' | 'expand';
 /**
  * 回调数据
  */
@@ -825,6 +825,10 @@ export interface STChange {
      * 数据总量
      */
     total: number;
+    /**
+     * `loaded` 参数
+     */
+    loaded?: STData[];
     /**
      * `checkbox` 参数
      */

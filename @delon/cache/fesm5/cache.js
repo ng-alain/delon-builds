@@ -7,6 +7,7 @@ import { tap, map } from 'rxjs/operators';
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: src/interface.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
@@ -57,6 +58,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: src/cache.config.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var DelonCacheConfig = /** @class */ (function () {
@@ -131,6 +133,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: src/local-storage-cache.service.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
@@ -188,6 +191,7 @@ var LocalStorageCacheService = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: src/cache.service.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var CacheService = /** @class */ (function () {
@@ -806,6 +810,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: src/cache.module.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var DelonCacheModule = /** @class */ (function () {
@@ -819,11 +824,13 @@ var DelonCacheModule = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: public_api.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: cache.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 

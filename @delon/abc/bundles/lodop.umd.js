@@ -208,6 +208,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: lodop.types.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /**
@@ -774,6 +775,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: lodop.config.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var LodopConfig = /** @class */ (function () {
@@ -828,6 +830,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: lodop.service.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var LodopService = /** @class */ (function () {
@@ -1255,6 +1258,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: lodop.module.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var LodopModule = /** @class */ (function () {

@@ -5,6 +5,7 @@ import { __awaiter } from 'tslib';
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: src/event-objects.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
@@ -112,6 +113,7 @@ function createFakeEvent(type, canBubble = true, cancelable = true) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: src/dispatch-events.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
@@ -171,6 +173,7 @@ function dispatchTouchEvent(node, type, x = 0, y = 0) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: src/type-in-element.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
@@ -188,6 +191,7 @@ function typeInElement(value, element) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: src/zorro.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
@@ -222,6 +226,7 @@ function dispatchDropDown(dl, trigger, allowNull = true) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: src/g2.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
@@ -530,6 +535,7 @@ function checkDelay(module, comp, page = null) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: src/suite.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
@@ -651,11 +657,13 @@ const createTestContext = (/**
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: public_api.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: testing.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 

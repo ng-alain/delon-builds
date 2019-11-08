@@ -208,6 +208,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: zip.types.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /**
@@ -264,6 +265,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: zip.config.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var ZipConfig = /** @class */ (function () {
@@ -298,6 +300,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: zip.service.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var ZipService = /** @class */ (function () {
@@ -546,6 +549,7 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: zip.module.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var ZipModule = /** @class */ (function () {
