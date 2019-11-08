@@ -2398,6 +2398,7 @@
             this.loading = false;
             this.disabled = false;
             this.noColon = false;
+            this.cleanValue = false;
             /**
              * 数据变更时回调
              */
@@ -2994,7 +2995,7 @@
              * @return {?}
              */
             function (value) {
-                (/** @type {?} */ (_this))._item = __assign({}, (/** @type {?} */ (_this)).formData, value);
+                (/** @type {?} */ (_this))._item = __assign({}, ((/** @type {?} */ (_this)).cleanValue ? null : (/** @type {?} */ (_this)).formData), value);
                 if (isFirst) {
                     isFirst = false;
                     return;
@@ -3121,6 +3122,7 @@
             loading: [{ type: core.Input }],
             disabled: [{ type: core.Input }],
             noColon: [{ type: core.Input }],
+            cleanValue: [{ type: core.Input }],
             formChange: [{ type: core.Output }],
             formSubmit: [{ type: core.Output }],
             formReset: [{ type: core.Output }],
@@ -3150,6 +3152,10 @@
             util.InputBoolean(),
             __metadata("design:type", Object)
         ], SFComponent.prototype, "noColon", void 0);
+        __decorate([
+            util.InputBoolean(),
+            __metadata("design:type", Object)
+        ], SFComponent.prototype, "cleanValue", void 0);
         return SFComponent;
     }());
     if (false) {
@@ -3259,6 +3265,8 @@
         SFComponent.prototype.disabled;
         /** @type {?} */
         SFComponent.prototype.noColon;
+        /** @type {?} */
+        SFComponent.prototype.cleanValue;
         /**
          * 数据变更时回调
          * @type {?}
