@@ -1179,6 +1179,11 @@ if (false) {
      */
     STChange.prototype.total;
     /**
+     * `loaded` 参数
+     * @type {?|undefined}
+     */
+    STChange.prototype.loaded;
+    /**
      * `checkbox` 参数
      * @type {?|undefined}
      */
@@ -3332,6 +3337,7 @@ class STComponent {
                 }
                 this._data = (/** @type {?} */ (result.list));
                 this._statistical = (/** @type {?} */ (result.statistical));
+                this.changeEmit('loaded', result.list);
                 return this._refCheck();
             }
             catch (error) {

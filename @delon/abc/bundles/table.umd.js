@@ -1361,6 +1361,11 @@
          */
         STChange.prototype.total;
         /**
+         * `loaded` 参数
+         * @type {?|undefined}
+         */
+        STChange.prototype.loaded;
+        /**
          * `checkbox` 参数
          * @type {?|undefined}
          */
@@ -3802,6 +3807,7 @@
                             }
                             this._data = (/** @type {?} */ (result.list));
                             this._statistical = (/** @type {?} */ (result.statistical));
+                            this.changeEmit('loaded', result.list);
                             return [2 /*return*/, this._refCheck()];
                         case 3:
                             error_1 = _a.sent();
