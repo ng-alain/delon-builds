@@ -16,8 +16,8 @@ export declare class SEComponent implements OnChanges, AfterContentInit, AfterVi
     private onceFlag;
     invalid: boolean;
     _labelWidth: number | null;
-    optional: string;
-    optionalHelp: string;
+    optional: string | TemplateRef<void>;
+    optionalHelp: string | TemplateRef<void>;
     error: string;
     extra: string;
     label: string | TemplateRef<void>;
