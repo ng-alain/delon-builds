@@ -323,6 +323,8 @@ export interface STColumn {
      * 统计
      */
     statistical?: STStatisticalType | STStatistical;
+    /** @ignore internal property */
+    _sort?: STSortMap;
     [key: string]: any;
 }
 export interface STColumnTitle {
@@ -369,7 +371,7 @@ export interface STColumnSort {
     /**
      * 排序的默认受控属性
      */
-    default?: 'ascend' | 'descend';
+    default?: 'ascend' | 'descend' | null;
     /**
      * 本地数据的排序函数，使用一个函数(参考 [Array.sort](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort) 的 compareFunction)
      * - `null` 忽略本地排序，但保持排序功能
@@ -390,6 +392,11 @@ export interface STColumnSort {
         ascend?: string;
         descend?: string;
     };
+}
+export interface STSortMap extends STColumnSort {
+    [key: string]: any;
+    /** 是否启用排序 */
+    enabled?: boolean;
 }
 export interface STColumnFilter {
     /**
@@ -731,7 +738,9 @@ export interface STResReNameType {
     list?: string | string[];
 }
 export interface STExportOptions {
+    /** @ignore internal property */
     _d?: any[];
+    /** @ignore internal property */
     _c?: STColumn[];
     /** 工作溥名 */
     sheetname?: string;
@@ -767,6 +776,12 @@ export interface STMultiSort {
      * - `false` 表示需要为每个 `st` 添加 `multiSort` 才会视为多排序模式
      */
     global?: boolean;
+    /**
+     * 是否保持空值的键名，默认：`true`
+     * - `true` 表示不管是否有排序都会发送 `key` 键名
+     * - `false` 表示无排序动作时不会发送 `key` 键名
+     */
+    keepEmptyKey?: boolean;
 }
 /**
  * 徽标信息

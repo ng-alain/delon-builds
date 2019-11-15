@@ -455,6 +455,11 @@ if (false) {
      * @type {?|undefined}
      */
     STColumn.prototype.statistical;
+    /**
+     * @ignore internal property
+     * @type {?|undefined}
+     */
+    STColumn.prototype._sort;
     /* Skipping unhandled member: [key: string]: any;*/
 }
 /**
@@ -546,6 +551,18 @@ if (false) {
      * @type {?|undefined}
      */
     STColumnSort.prototype.reName;
+}
+/**
+ * @record
+ */
+function STSortMap() { }
+if (false) {
+    /**
+     * 是否启用排序
+     * @type {?|undefined}
+     */
+    STSortMap.prototype.enabled;
+    /* Skipping unhandled member: [key: string]: any;*/
 }
 /**
  * @record
@@ -1040,9 +1057,15 @@ if (false) {
  */
 function STExportOptions() { }
 if (false) {
-    /** @type {?|undefined} */
+    /**
+     * @ignore internal property
+     * @type {?|undefined}
+     */
     STExportOptions.prototype._d;
-    /** @type {?|undefined} */
+    /**
+     * @ignore internal property
+     * @type {?|undefined}
+     */
     STExportOptions.prototype._c;
     /**
      * 工作溥名
@@ -1107,6 +1130,13 @@ if (false) {
      * @type {?|undefined}
      */
     STMultiSort.prototype.global;
+    /**
+     * 是否保持空值的键名，默认：`true`
+     * - `true` 表示不管是否有排序都会发送 `key` 键名
+     * - `false` 表示无排序动作时不会发送 `key` 键名
+     * @type {?|undefined}
+     */
+    STMultiSort.prototype.keepEmptyKey;
 }
 /**
  * 徽标信息
@@ -1617,18 +1647,6 @@ if (false) {
  * Generated from: table-column-source.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-/**
- * @record
- */
-function STSortMap() { }
-if (false) {
-    /**
-     * 是否启用排序
-     * @type {?|undefined}
-     */
-    STSortMap.prototype.enabled;
-    /* Skipping unhandled member: [key: string]: any;*/
-}
 class STColumnSource {
     /**
      * @param {?} rowSource
@@ -1806,6 +1824,17 @@ class STColumnSource {
      * @return {?}
      */
     sortCoerce(item) {
+        /** @type {?} */
+        const res = this.fixCoerce(item);
+        res.reName = Object.assign({}, this.cog.sortReName, res.reName);
+        return res;
+    }
+    /**
+     * @private
+     * @param {?} item
+     * @return {?}
+     */
+    fixCoerce(item) {
         // compatible
         if (item.sorter && typeof item.sorter === 'function') {
             return {
@@ -2545,7 +2574,7 @@ class STDataSource {
          * @param {?} item
          * @return {?}
          */
-        item => item._sort));
+        item => (/** @type {?} */ (item._sort))));
     }
     /**
      * @private
@@ -2618,6 +2647,9 @@ class STDataSource {
                 item => item.key + ms.nameSeparator + ((item.reName || {})[(/** @type {?} */ (item.default))] || item.default)))
                     .join(ms.separator),
             };
+            if (multiSort.keepEmptyKey === false && ret[ms.key].length === 0) {
+                ret = {};
+            }
         }
         else {
             /** @type {?} */
@@ -3583,8 +3615,8 @@ class STComponent {
      */
     sort(col, idx, value) {
         if (this.multiSort) {
-            col._sort.default = value;
-            col._sort.tick = this.dataSource.nextSortTick;
+            (/** @type {?} */ (col._sort)).default = value;
+            (/** @type {?} */ (col._sort)).tick = this.dataSource.nextSortTick;
         }
         else {
             this._columns.forEach((/**
@@ -3592,7 +3624,7 @@ class STComponent {
              * @param {?} index
              * @return {?}
              */
-            (item, index) => (item._sort.default = index === idx ? value : null)));
+            (item, index) => ((/** @type {?} */ (item._sort)).default = index === idx ? value : null)));
         }
         this.loadPageData();
         /** @type {?} */
@@ -3613,7 +3645,7 @@ class STComponent {
          * @param {?} item
          * @return {?}
          */
-        item => (item._sort.default = null)));
+        item => ((/** @type {?} */ (item._sort)).default = null)));
         return (/** @type {?} */ (this));
     }
     // #endregion
