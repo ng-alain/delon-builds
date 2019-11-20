@@ -12232,6 +12232,7 @@ textarea.ant-time-picker-input {
 .ant-drawer-content {
   position: relative;
   z-index: 1;
+  overflow: auto;
   background-color: #fff;
   background-clip: padding-box;
   border: 0;
