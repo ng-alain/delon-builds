@@ -545,7 +545,6 @@
             this.clsMap = [];
             this.inited = false;
             this.onceFlag = false;
-            this.errorData = {};
             this.invalid = false;
             this._labelWidth = null;
             this.required = false;
@@ -557,17 +556,6 @@
             }
             this.el = el.nativeElement;
         }
-        Object.defineProperty(SEComponent.prototype, "error", {
-            set: /**
-             * @param {?} val
-             * @return {?}
-             */
-            function (val) {
-                this.errorData = typeof val === 'string' ? { '': val } : val;
-            },
-            enumerable: true,
-            configurable: true
-        });
         Object.defineProperty(SEComponent.prototype, "id", {
             set: /**
              * @param {?} value
@@ -598,7 +586,7 @@
              * @return {?}
              */
             function () {
-                return this.invalid && this.parent.size !== 'compact' && !!this._error;
+                return this.invalid && this.parent.size !== 'compact' && !!this.error;
             },
             enumerable: true,
             configurable: true
@@ -689,15 +677,6 @@
                 return;
             }
             this.invalid = (/** @type {?} */ (((invalid && this.onceFlag) || (this.ngControl.dirty && invalid))));
-            /** @type {?} */
-            var errors = this.ngControl.errors;
-            if (errors != null && Object.keys(errors).length > 0) {
-                /** @type {?} */
-                var key = Object.keys(errors)[0] || '';
-                /** @type {?} */
-                var err = this.errorData[key];
-                this._error = err != null ? err : this.errorData[''] || '';
-            }
             this.cdr.detectChanges();
         };
         /**
@@ -773,7 +752,7 @@
             { type: core.Component, args: [{
                         selector: 'se',
                         exportAs: 'se',
-                        template: "<div class=\"ant-form-item-label\" [class.se__nolabel]=\"!label\" [style.width.px]=\"_labelWidth\">\n  <label *ngIf=\"label\" [attr.for]=\"_id\" class=\"se__label\" [ngClass]=\"{'ant-form-item-required': required}\">\n    <span class=\"se__label-text\">\n      <ng-container *stringTemplateOutlet=\"label\">{{ label }}</ng-container>\n    </span>\n    <span class=\"se__label-optional\" *ngIf=\"optional || optionalHelp\">\n      <ng-container *stringTemplateOutlet=\"optional\">{{ optional }}</ng-container>\n      <i *ngIf=\"optionalHelp\" nz-tooltip [nzTooltipTitle]=\"optionalHelp\" nz-icon nzType=\"question-circle\"></i>\n    </span>\n  </label>\n</div>\n<div class=\"ant-form-item-control-wrapper se__control\">\n  <div class=\"ant-form-item-control {{controlClass}}\" [class.has-error]=\"invalid\">\n    <span (cdkObserveContent)=\"checkContent()\" #contentElement>\n      <ng-content></ng-content>\n    </span>\n    <se-error *ngIf=\"showErr\">{{_error}}</se-error>\n    <div *ngIf=\"extra\" class=\"ant-form-extra\">{{extra}}</div>\n  </div>\n</div>\n",
+                        template: "<div class=\"ant-form-item-label\" [class.se__nolabel]=\"!label\" [style.width.px]=\"_labelWidth\">\n  <label *ngIf=\"label\" [attr.for]=\"_id\" class=\"se__label\" [ngClass]=\"{'ant-form-item-required': required}\">\n    <span class=\"se__label-text\">\n      <ng-container *stringTemplateOutlet=\"label\">{{ label }}</ng-container>\n    </span>\n    <span class=\"se__label-optional\" *ngIf=\"optional || optionalHelp\">\n      <ng-container *stringTemplateOutlet=\"optional\">{{ optional }}</ng-container>\n      <i *ngIf=\"optionalHelp\" nz-tooltip [nzTooltipTitle]=\"optionalHelp\" nz-icon nzType=\"question-circle\"></i>\n    </span>\n  </label>\n</div>\n<div class=\"ant-form-item-control-wrapper se__control\">\n  <div class=\"ant-form-item-control {{controlClass}}\" [class.has-error]=\"invalid\">\n    <span (cdkObserveContent)=\"checkContent()\" #contentElement><ng-content></ng-content></span>\n    <se-error *ngIf=\"showErr\">{{error}}</se-error>\n    <div *ngIf=\"extra\" class=\"ant-form-extra\">{{extra}}</div>\n  </div>\n</div>\n",
                         host: {
                             '[style.padding-left.px]': 'paddingValue',
                             '[style.padding-right.px]': 'paddingValue',
@@ -867,21 +846,16 @@
          * @private
          */
         SEComponent.prototype.onceFlag;
-        /**
-         * @type {?}
-         * @private
-         */
-        SEComponent.prototype.errorData;
         /** @type {?} */
         SEComponent.prototype.invalid;
         /** @type {?} */
         SEComponent.prototype._labelWidth;
         /** @type {?} */
-        SEComponent.prototype._error;
-        /** @type {?} */
         SEComponent.prototype.optional;
         /** @type {?} */
         SEComponent.prototype.optionalHelp;
+        /** @type {?} */
+        SEComponent.prototype.error;
         /** @type {?} */
         SEComponent.prototype.extra;
         /** @type {?} */

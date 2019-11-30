@@ -14,15 +14,11 @@ export declare class SEComponent implements OnChanges, AfterContentInit, AfterVi
     private clsMap;
     private inited;
     private onceFlag;
-    private errorData;
     invalid: boolean;
     _labelWidth: number | null;
-    _error: string;
     optional: string | TemplateRef<void>;
     optionalHelp: string | TemplateRef<void>;
-    error: string | {
-        [key: string]: string;
-    };
+    error: string;
     extra: string;
     label: string | TemplateRef<void>;
     col: number;
