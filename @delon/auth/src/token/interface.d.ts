@@ -26,11 +26,6 @@ export interface ITokenService {
      * - `get<JWTTokenModel>(JWTTokenModel)` 获取 JWT Token
      */
     get<T extends ITokenModel>(type?: any): T;
-    /**
-     * Clean authorization data
-     */
-    clear(options?: {
-        onlyToken: boolean;
-    }): void;
+    clear(): void;
     change(): Observable<ITokenModel | null>;
 }

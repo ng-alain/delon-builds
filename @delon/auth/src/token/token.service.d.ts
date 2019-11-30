@@ -13,8 +13,6 @@ export declare class TokenService implements ITokenService {
     readonly referrer: AuthReferrer;
     set(data: ITokenModel): boolean;
     get(type?: any): any;
-    clear(options?: {
-        onlyToken: boolean;
-    }): void;
+    clear(): void;
     change(): Observable<ITokenModel | null>;
 }

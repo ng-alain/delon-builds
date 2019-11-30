@@ -2226,12 +2226,6 @@
             var columns = [];
             /** @type {?} */
             var copyColumens = (/** @type {?} */ (util.deepCopy(list)));
-            /** @type {?} */
-            var specifiedWidth = copyColumens.findIndex((/**
-             * @param {?} w
-             * @return {?}
-             */
-            function (w) { return w.width != null; })) !== -1;
             try {
                 for (var copyColumens_1 = __values(copyColumens), copyColumens_1_1 = copyColumens_1.next(); !copyColumens_1_1.done; copyColumens_1_1 = copyColumens_1.next()) {
                     var item = copyColumens_1_1.value;
@@ -2346,17 +2340,6 @@
             }
             if (radioCount > 1) {
                 throw new Error("[st]: just only one column radio");
-            }
-            if (specifiedWidth) {
-                columns.filter((/**
-                 * @param {?} w
-                 * @return {?}
-                 */
-                function (w) { return w.width == null; })).forEach((/**
-                 * @param {?} i
-                 * @return {?}
-                 */
-                function (i) { return (i.width = '100%'); }));
             }
             this.fixedCoerce(columns);
             return columns;

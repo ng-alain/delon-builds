@@ -243,21 +243,11 @@ class TokenService {
         return type ? ((/** @type {?} */ (Object.assign(new type(), data)))) : ((/** @type {?} */ (data)));
     }
     /**
-     * @param {?=} options
      * @return {?}
      */
-    clear(options = { onlyToken: false }) {
-        /** @type {?} */
-        let data = null;
-        if (options.onlyToken === true) {
-            data = (/** @type {?} */ (this.get()));
-            data.token = ``;
-            this.set(data);
-        }
-        else {
-            this.store.remove((/** @type {?} */ (this.options.store_key)));
-        }
-        this.change$.next(data);
+    clear() {
+        this.change$.next(null);
+        this.store.remove((/** @type {?} */ (this.options.store_key)));
     }
     /**
      * @return {?}
@@ -359,11 +349,9 @@ if (false) {
      */
     ITokenService.prototype.get = function (type) { };
     /**
-     * Clean authorization data
-     * @param {?=} options
      * @return {?}
      */
-    ITokenService.prototype.clear = function (options) { };
+    ITokenService.prototype.clear = function () { };
     /**
      * @return {?}
      */
