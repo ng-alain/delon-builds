@@ -1,3 +1,4 @@
+import { DomSanitizer } from '@angular/platform-browser';
 import { ChangeDetectorRef, EventEmitter, NgZone, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
 import { Menu, MenuService, SettingsService } from '@delon/theme';
@@ -9,6 +10,7 @@ export declare class SidebarNavComponent implements OnInit, OnDestroy {
     private render;
     private cdr;
     private ngZone;
+    private sanitizer;
     private doc;
     private win;
     private bodyEl;
@@ -22,7 +24,7 @@ export declare class SidebarNavComponent implements OnInit, OnDestroy {
     readonly select: EventEmitter<Menu>;
     readonly collapsed: boolean;
     private readonly _d;
-    constructor(menuSrv: MenuService, settings: SettingsService, router: Router, render: Renderer2, cdr: ChangeDetectorRef, ngZone: NgZone, doc: any, win: Window);
+    constructor(menuSrv: MenuService, settings: SettingsService, router: Router, render: Renderer2, cdr: ChangeDetectorRef, ngZone: NgZone, sanitizer: DomSanitizer, doc: any, win: Window);
     private floatingAreaClickHandle;
     private clearFloatingContainer;
     private genFloatingContainer;
