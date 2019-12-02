@@ -212,6 +212,11 @@ if (false) {
      */
     Menu.prototype.open;
     /**
+     * Unique identifier of the menu item, can be used in `getItem`,` setItem` to update a menu
+     * @type {?|undefined}
+     */
+    Menu.prototype.key;
+    /**
      * Children menu of menu item
      * @type {?|undefined}
      */
@@ -608,6 +613,45 @@ class MenuService {
             item = item.__parent;
         } while (item);
         return ret;
+    }
+    /**
+     * Get menu based on `key`
+     * @param {?} key
+     * @return {?}
+     */
+    getItem(key) {
+        /** @type {?} */
+        let res = null;
+        this.visit(this.data, (/**
+         * @param {?} item
+         * @return {?}
+         */
+        (item) => {
+            if (res == null && item.key === key) {
+                res = item;
+            }
+        }));
+        return res;
+    }
+    /**
+     * Set menu based on `key`
+     * @param {?} key
+     * @param {?} value
+     * @return {?}
+     */
+    setItem(key, value) {
+        /** @type {?} */
+        const item = this.getItem(key);
+        if (item == null)
+            return;
+        Object.keys(value).forEach((/**
+         * @param {?} k
+         * @return {?}
+         */
+        k => {
+            item[k] = value[k];
+        }));
+        this._change$.next(this.data);
     }
     /**
      * @return {?}
@@ -3484,7 +3528,7 @@ AlainThemeModule.ctorParameters = () => [
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-const VERSION = new Version('8.6.0-436a4e5');
+const VERSION = new Version('8.6.0-45db936');
 
 /**
  * @fileoverview added by tsickle

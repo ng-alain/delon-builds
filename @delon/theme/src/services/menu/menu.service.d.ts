@@ -43,5 +43,13 @@ export declare class MenuService implements OnDestroy {
      *  - 菜单数据源包含 `/ware`，则 `/ware/1` 也视为 `/ware` 项
      */
     getPathByUrl(url: string, recursive?: boolean): Menu[];
+    /**
+     * Get menu based on `key`
+     */
+    getItem(key: string): Menu | null;
+    /**
+     * Set menu based on `key`
+     */
+    setItem(key: string, value: Menu): void;
     ngOnDestroy(): void;
 }

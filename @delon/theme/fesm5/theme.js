@@ -213,6 +213,11 @@ if (false) {
      */
     Menu.prototype.open;
     /**
+     * Unique identifier of the menu item, can be used in `getItem`,` setItem` to update a menu
+     * @type {?|undefined}
+     */
+    Menu.prototype.key;
+    /**
      * Children menu of menu item
      * @type {?|undefined}
      */
@@ -720,6 +725,62 @@ var MenuService = /** @class */ (function () {
             item = item.__parent;
         } while (item);
         return ret;
+    };
+    /**
+     * Get menu based on `key`
+     */
+    /**
+     * Get menu based on `key`
+     * @param {?} key
+     * @return {?}
+     */
+    MenuService.prototype.getItem = /**
+     * Get menu based on `key`
+     * @param {?} key
+     * @return {?}
+     */
+    function (key) {
+        /** @type {?} */
+        var res = null;
+        this.visit(this.data, (/**
+         * @param {?} item
+         * @return {?}
+         */
+        function (item) {
+            if (res == null && item.key === key) {
+                res = item;
+            }
+        }));
+        return res;
+    };
+    /**
+     * Set menu based on `key`
+     */
+    /**
+     * Set menu based on `key`
+     * @param {?} key
+     * @param {?} value
+     * @return {?}
+     */
+    MenuService.prototype.setItem = /**
+     * Set menu based on `key`
+     * @param {?} key
+     * @param {?} value
+     * @return {?}
+     */
+    function (key, value) {
+        /** @type {?} */
+        var item = this.getItem(key);
+        if (item == null)
+            return;
+        Object.keys(value).forEach((/**
+         * @param {?} k
+         * @return {?}
+         */
+        function (k) {
+            item[k] = value[k];
+        }));
+        this._change$.next(this.data);
     };
     /**
      * @return {?}
@@ -4068,7 +4129,7 @@ var AlainThemeModule = /** @class */ (function () {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-var VERSION = new Version('8.6.0-436a4e5');
+var VERSION = new Version('8.6.0-45db936');
 
 /**
  * @fileoverview added by tsickle
