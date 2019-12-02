@@ -122,12 +122,12 @@ if (false) {
 function Menu() { }
 if (false) {
     /**
-     * Text of menu item, can be choose one of  `text` or `i18n`
+     * Text of menu item, can be choose one of  `text` or `i18n` (Support HTML)
      * @type {?|undefined}
      */
     Menu.prototype.text;
     /**
-     * I18n key of menu item, can be choose one of  `text` or `i18n`
+     * I18n key of menu item, can be choose one of  `text` or `i18n` (Support HTML)
      * @type {?|undefined}
      */
     Menu.prototype.i18n;
@@ -3528,7 +3528,7 @@ AlainThemeModule.ctorParameters = () => [
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-const VERSION = new Version('8.6.0-7ea99e53');
+const VERSION = new Version('8.6.0-ab16b49c');
 
 /**
  * @fileoverview added by tsickle

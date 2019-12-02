@@ -316,12 +316,12 @@
     function Menu() { }
     if (false) {
         /**
-         * Text of menu item, can be choose one of  `text` or `i18n`
+         * Text of menu item, can be choose one of  `text` or `i18n` (Support HTML)
          * @type {?|undefined}
          */
         Menu.prototype.text;
         /**
-         * I18n key of menu item, can be choose one of  `text` or `i18n`
+         * I18n key of menu item, can be choose one of  `text` or `i18n` (Support HTML)
          * @type {?|undefined}
          */
         Menu.prototype.i18n;
