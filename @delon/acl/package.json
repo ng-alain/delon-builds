@@ -1,6 +1,6 @@
 {
   "name": "@delon/acl",
-  "version": "8.6.0-a59ce69d",
+  "version": "8.6.0-5803239b",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -26,7 +26,7 @@
     "component"
   ],
   "dependencies": {
-    "@delon/util": "^8.6.0-a59ce69d",
+    "@delon/util": "^8.6.0-5803239b",
     "tslib": "^1.9.0"
   },
   "sideEffects": false,
