@@ -47,16 +47,25 @@ class ExceptionComponent {
         }[value];
         if (!item)
             return;
+        this.fixImg(item.img);
         this._type = value;
-        this._img = item.img;
         this._title = item.title;
+        this._desc = '';
+    }
+    /**
+     * @private
+     * @param {?} src
+     * @return {?}
+     */
+    fixImg(src) {
+        this._img = this.dom.bypassSecurityTrustStyle(`url('${src}')`);
     }
     /**
      * @param {?} value
      * @return {?}
      */
     set img(value) {
-        this._img = this.dom.bypassSecurityTrustUrl(value);
+        this.fixImg(value);
     }
     /**
      * @param {?} value
@@ -99,7 +108,7 @@ ExceptionComponent.decorators = [
     { type: Component, args: [{
                 selector: 'exception',
                 exportAs: 'exception',
-                template: "<div class=\"exception__img-block\">\n  <div class=\"exception__img\"\n       [ngStyle]=\"{'background-image': 'url(' + _img + ')'}\"></div>\n</div>\n<div class=\"exception__cont\">\n  <h1 class=\"exception__cont-title\"\n      [innerHTML]=\"_title\"></h1>\n  <div class=\"exception__cont-desc\"\n       [innerHTML]=\"_desc || locale[_type]\"></div>\n  <div class=\"exception__cont-actions\">\n    <div (cdkObserveContent)=\"checkContent()\"\n         #conTpl>\n      <ng-content></ng-content>\n    </div>\n    <button *ngIf=\"!hasCon\"\n            nz-button\n            [routerLink]=\"['/']\"\n            [nzType]=\"'primary'\">{{locale.backToHome}}</button>\n  </div>\n</div>\n",
+                template: "<div class=\"exception__img-block\">\n  <div class=\"exception__img\" [style.backgroundImage]=\"_img\"></div>\n</div>\n<div class=\"exception__cont\">\n  <h1 class=\"exception__cont-title\"\n      [innerHTML]=\"_title\"></h1>\n  <div class=\"exception__cont-desc\"\n       [innerHTML]=\"_desc || locale[_type]\"></div>\n  <div class=\"exception__cont-actions\">\n    <div (cdkObserveContent)=\"checkContent()\"\n         #conTpl>\n      <ng-content></ng-content>\n    </div>\n    <button *ngIf=\"!hasCon\"\n            nz-button\n            [routerLink]=\"['/']\"\n            [nzType]=\"'primary'\">{{locale.backToHome}}</button>\n  </div>\n</div>\n",
                 host: { '[class.exception]': 'true' },
                 preserveWhitespaces: false,
                 changeDetection: ChangeDetectionStrategy.OnPush,

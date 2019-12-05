@@ -14,6 +14,7 @@ export declare class ExceptionComponent implements OnInit, OnDestroy {
     _title: SafeHtml;
     _desc: SafeHtml;
     type: ExceptionType;
+    private fixImg;
     img: string;
     title: string;
     desc: string;
