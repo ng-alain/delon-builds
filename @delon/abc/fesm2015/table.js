@@ -2391,24 +2391,11 @@ class STDataSource {
              */
             result => (/** @type {?} */ (res.process))(result, rawData))));
         }
-        // data accelerator
         data$ = data$.pipe(map((/**
          * @param {?} result
          * @return {?}
          */
-        result => {
-            for (let i = 0, len = result.length; i < len; i++) {
-                result[i]._values = columns.map((/**
-                 * @param {?} c
-                 * @return {?}
-                 */
-                c => this.get(result[i], c, i)));
-                if (options.rowClassName) {
-                    result[i]._rowClassName = options.rowClassName(result[i], i);
-                }
-            }
-            return result;
-        })));
+        result => this.optimizeData({ result, columns, rowClassName: options.rowClassName }))));
         return data$.pipe(map((/**
          * @param {?} result
          * @return {?}
@@ -2532,6 +2519,24 @@ class STDataSource {
             reqOptions = req.process(reqOptions);
         }
         return this.http.request(method, url, reqOptions);
+    }
+    /**
+     * @param {?} options
+     * @return {?}
+     */
+    optimizeData(options) {
+        const { result, columns, rowClassName } = options;
+        for (let i = 0, len = result.length; i < len; i++) {
+            result[i]._values = columns.map((/**
+             * @param {?} c
+             * @return {?}
+             */
+            c => this.get(result[i], c, i)));
+            if (rowClassName) {
+                result[i]._rowClassName = rowClassName(result[i], i);
+            }
+        }
+        return result;
     }
     /**
      * @param {?} item
@@ -3543,32 +3548,42 @@ class STComponent {
         this.changeEmit('expand', item);
     }
     /**
-     * 移除某行数据
+     * Remove a row in the table, like this:
+     *
+     * ```
+     * this.st.removeRow(0)
+     * this.st.removeRow(stDataItem)
+     * ```
      * @template THIS
      * @this {THIS}
      * @param {?} data
      * @return {THIS}
      */
     removeRow(data) {
-        if (!Array.isArray(data)) {
-            data = [data];
+        if (typeof data === 'number') {
+            (/** @type {?} */ (this))._data.splice(data, 1);
         }
-        ((/** @type {?} */ (data)))
-            .map((/**
-         * @param {?} item
-         * @return {?}
-         */
-        item => (/** @type {?} */ (this))._data.indexOf(item)))
-            .filter((/**
-         * @param {?} pos
-         * @return {?}
-         */
-        pos => pos !== -1))
-            .forEach((/**
-         * @param {?} pos
-         * @return {?}
-         */
-        pos => (/** @type {?} */ (this))._data.splice(pos, 1)));
+        else {
+            if (!Array.isArray(data)) {
+                data = [data];
+            }
+            ((/** @type {?} */ (data)))
+                .map((/**
+             * @param {?} item
+             * @return {?}
+             */
+            item => (/** @type {?} */ (this))._data.indexOf(item)))
+                .filter((/**
+             * @param {?} pos
+             * @return {?}
+             */
+            pos => pos !== -1))
+                .forEach((/**
+             * @param {?} pos
+             * @return {?}
+             */
+            pos => (/** @type {?} */ (this))._data.splice(pos, 1)));
+        }
         // recalculate no
         (/** @type {?} */ (this))._columns
             .filter((/**
@@ -3587,6 +3602,25 @@ class STComponent {
          */
         (i, idx) => (i._values[c.__point] = { text: (/** @type {?} */ (this)).dataSource.getNoIndex(i, c, idx), org: idx })))));
         return (/** @type {?} */ (this)).cd();
+    }
+    /**
+     * Sets the row value for the `index` in the table, like this:
+     *
+     * ```
+     * this.st.setRow(0, { price: 100 })
+     * this.st.setRow(0, { price: 100, name: 'asdf' })
+     * ```
+     * @template THIS
+     * @this {THIS}
+     * @param {?} index
+     * @param {?} item
+     * @return {THIS}
+     */
+    setRow(index, item) {
+        (/** @type {?} */ (this))._data[index] = deepMergeKey((/** @type {?} */ (this))._data[index], false, item);
+        (/** @type {?} */ (this))._data = (/** @type {?} */ (this)).dataSource.optimizeData({ columns: (/** @type {?} */ (this))._columns, result: (/** @type {?} */ (this))._data, rowClassName: (/** @type {?} */ (this)).rowClassName });
+        (/** @type {?} */ (this)).cdr.detectChanges();
+        return (/** @type {?} */ (this));
     }
     // #endregion
     // #region sort
