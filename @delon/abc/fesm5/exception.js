@@ -1,3 +1,4 @@
+import { DomSanitizer } from '@angular/platform-browser';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, ViewChild, Input, NgModule } from '@angular/core';
 import { DelonLocaleService, DelonLocaleModule } from '@delon/theme';
 import { isEmpty, DelonUtilModule } from '@delon/util';
@@ -12,8 +13,9 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var ExceptionComponent = /** @class */ (function () {
-    function ExceptionComponent(i18n) {
+    function ExceptionComponent(i18n, dom) {
         this.i18n = i18n;
+        this.dom = dom;
         this.locale = {};
         this.hasCon = false;
         this._img = '';
@@ -56,7 +58,7 @@ var ExceptionComponent = /** @class */ (function () {
          * @return {?}
          */
         function (value) {
-            this._img = value;
+            this._img = this.dom.bypassSecurityTrustUrl(value);
         },
         enumerable: true,
         configurable: true
@@ -67,7 +69,7 @@ var ExceptionComponent = /** @class */ (function () {
          * @return {?}
          */
         function (value) {
-            this._title = value;
+            this._title = this.dom.bypassSecurityTrustHtml(value);
         },
         enumerable: true,
         configurable: true
@@ -78,7 +80,7 @@ var ExceptionComponent = /** @class */ (function () {
          * @return {?}
          */
         function (value) {
-            this._desc = value;
+            this._desc = this.dom.bypassSecurityTrustHtml(value);
         },
         enumerable: true,
         configurable: true
@@ -128,7 +130,8 @@ var ExceptionComponent = /** @class */ (function () {
     ];
     /** @nocollapse */
     ExceptionComponent.ctorParameters = function () { return [
-        { type: DelonLocaleService }
+        { type: DelonLocaleService },
+        { type: DomSanitizer }
     ]; };
     ExceptionComponent.propDecorators = {
         conTpl: [{ type: ViewChild, args: ['conTpl', { static: true },] }],
@@ -167,6 +170,11 @@ if (false) {
      * @private
      */
     ExceptionComponent.prototype.i18n;
+    /**
+     * @type {?}
+     * @private
+     */
+    ExceptionComponent.prototype.dom;
 }
 
 /**

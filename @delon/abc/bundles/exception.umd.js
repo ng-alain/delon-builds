@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/theme'), require('@delon/util'), require('@angular/common'), require('@angular/router'), require('ng-zorro-antd/button')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/exception', ['exports', '@angular/core', '@delon/theme', '@delon/util', '@angular/common', '@angular/router', 'ng-zorro-antd/button'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.exception = {}), global.ng.core, global.delon.theme, global.delon.util, global.ng.common, global.ng.router, global['ng-zorro-antd/button']));
-}(this, (function (exports, core, theme, util, common, router, button) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/platform-browser'), require('@angular/core'), require('@delon/theme'), require('@delon/util'), require('@angular/common'), require('@angular/router'), require('ng-zorro-antd/button')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/exception', ['exports', '@angular/platform-browser', '@angular/core', '@delon/theme', '@delon/util', '@angular/common', '@angular/router', 'ng-zorro-antd/button'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.exception = {}), global.ng.platformBrowser, global.ng.core, global.delon.theme, global.delon.util, global.ng.common, global.ng.router, global['ng-zorro-antd/button']));
+}(this, (function (exports, platformBrowser, core, theme, util, common, router, button) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -212,8 +212,9 @@
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var ExceptionComponent = /** @class */ (function () {
-        function ExceptionComponent(i18n) {
+        function ExceptionComponent(i18n, dom) {
             this.i18n = i18n;
+            this.dom = dom;
             this.locale = {};
             this.hasCon = false;
             this._img = '';
@@ -256,7 +257,7 @@
              * @return {?}
              */
             function (value) {
-                this._img = value;
+                this._img = this.dom.bypassSecurityTrustUrl(value);
             },
             enumerable: true,
             configurable: true
@@ -267,7 +268,7 @@
              * @return {?}
              */
             function (value) {
-                this._title = value;
+                this._title = this.dom.bypassSecurityTrustHtml(value);
             },
             enumerable: true,
             configurable: true
@@ -278,7 +279,7 @@
              * @return {?}
              */
             function (value) {
-                this._desc = value;
+                this._desc = this.dom.bypassSecurityTrustHtml(value);
             },
             enumerable: true,
             configurable: true
@@ -328,7 +329,8 @@
         ];
         /** @nocollapse */
         ExceptionComponent.ctorParameters = function () { return [
-            { type: theme.DelonLocaleService }
+            { type: theme.DelonLocaleService },
+            { type: platformBrowser.DomSanitizer }
         ]; };
         ExceptionComponent.propDecorators = {
             conTpl: [{ type: core.ViewChild, args: ['conTpl', { static: true },] }],
@@ -367,6 +369,11 @@
          * @private
          */
         ExceptionComponent.prototype.i18n;
+        /**
+         * @type {?}
+         * @private
+         */
+        ExceptionComponent.prototype.dom;
     }
 
     /**

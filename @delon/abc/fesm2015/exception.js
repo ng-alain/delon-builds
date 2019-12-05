@@ -1,3 +1,4 @@
+import { DomSanitizer } from '@angular/platform-browser';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, ViewChild, Input, NgModule } from '@angular/core';
 import { DelonLocaleService, DelonLocaleModule } from '@delon/theme';
 import { isEmpty, DelonUtilModule } from '@delon/util';
@@ -13,9 +14,11 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 class ExceptionComponent {
     /**
      * @param {?} i18n
+     * @param {?} dom
      */
-    constructor(i18n) {
+    constructor(i18n, dom) {
         this.i18n = i18n;
+        this.dom = dom;
         this.locale = {};
         this.hasCon = false;
         this._img = '';
@@ -53,21 +56,21 @@ class ExceptionComponent {
      * @return {?}
      */
     set img(value) {
-        this._img = value;
+        this._img = this.dom.bypassSecurityTrustUrl(value);
     }
     /**
      * @param {?} value
      * @return {?}
      */
     set title(value) {
-        this._title = value;
+        this._title = this.dom.bypassSecurityTrustHtml(value);
     }
     /**
      * @param {?} value
      * @return {?}
      */
     set desc(value) {
-        this._desc = value;
+        this._desc = this.dom.bypassSecurityTrustHtml(value);
     }
     /**
      * @return {?}
@@ -105,7 +108,8 @@ ExceptionComponent.decorators = [
 ];
 /** @nocollapse */
 ExceptionComponent.ctorParameters = () => [
-    { type: DelonLocaleService }
+    { type: DelonLocaleService },
+    { type: DomSanitizer }
 ];
 ExceptionComponent.propDecorators = {
     conTpl: [{ type: ViewChild, args: ['conTpl', { static: true },] }],
@@ -142,6 +146,11 @@ if (false) {
      * @private
      */
     ExceptionComponent.prototype.i18n;
+    /**
+     * @type {?}
+     * @private
+     */
+    ExceptionComponent.prototype.dom;
 }
 
 /**
