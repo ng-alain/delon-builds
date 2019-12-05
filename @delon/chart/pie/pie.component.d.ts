@@ -31,6 +31,8 @@ export declare class G2PieComponent implements OnInit, OnDestroy, OnChanges {
     valueFormat: (y: number) => string;
     data: G2PieData[];
     colors: any[];
+    legendWidth: number;
+    readonly chartWidth: string | null;
     constructor(el: ElementRef, rend: Renderer2, ngZone: NgZone, cdr: ChangeDetectorRef);
     private setCls;
     private fixData;

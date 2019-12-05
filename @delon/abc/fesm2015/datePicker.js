@@ -1,5 +1,4 @@
 import { __decorate, __metadata } from 'tslib';
-import { DomSanitizer } from '@angular/platform-browser';
 import { Injectable, ɵɵdefineInjectable, EventEmitter, Component, forwardRef, ViewChild, Input, Output, NgModule } from '@angular/core';
 import { NG_VALUE_ACCESSOR, FormsModule } from '@angular/forms';
 import { getTimeDistance, deepMergeKey, fixEndTimeOfRange, InputBoolean } from '@delon/util';
@@ -146,7 +145,6 @@ if (false) {
     DateRangePickerShortcutItem.prototype.text;
     /** @type {?} */
     DateRangePickerShortcutItem.prototype.fn;
-    /* Skipping unhandled member: [key: string]: any;*/
 }
 class DatePickerConfig {
 }
@@ -168,10 +166,8 @@ class RangePickerComponent {
     // #endregion
     /**
      * @param {?} cog
-     * @param {?} dom
      */
-    constructor(cog, dom) {
-        this.dom = dom;
+    constructor(cog) {
         this.value = [];
         this.ngModelEndChange = new EventEmitter();
         // #region Native properties
@@ -194,13 +190,6 @@ class RangePickerComponent {
         if (typeof val === 'boolean') {
             item.enabled = val;
         }
-        (item.list || []).forEach((/**
-         * @param {?} i
-         * @return {?}
-         */
-        i => {
-            i._text = this.dom.bypassSecurityTrustHtml(i.text);
-        }));
         this._shortcut = item;
     }
     /**
@@ -284,7 +273,7 @@ RangePickerComponent.decorators = [
     { type: Component, args: [{
                 selector: 'range-picker',
                 exportAs: 'rangePicker',
-                template: "<nz-range-picker #comp\n                 [ngModel]=\"value\"\n                 (ngModelChange)=\"valueChange($event)\"\n                 [nzAllowClear]=\"nzAllowClear\"\n                 [nzAutoFocus]=\"nzAutoFocus\"\n                 [nzClassName]=\"nzClassName\"\n                 [nzDisabled]=\"nzDisabled\"\n                 [nzSize]=\"nzSize\"\n                 [nzDisabledDate]=\"nzDisabledDate\"\n                 [nzLocale]=\"nzLocale\"\n                 [nzPopupStyle]=\"nzPopupStyle\"\n                 [nzDropdownClassName]=\"nzDropdownClassName\"\n                 [nzStyle]=\"nzStyle\"\n                 [nzPlaceHolder]=\"nzPlaceHolder\"\n                 (nzOnOpenChange)=\"_nzOnOpenChange($event)\"\n                 [nzDateRender]=\"nzDateRender\"\n                 [nzDisabledTime]=\"nzDisabledTime\"\n                 [nzFormat]=\"nzFormat\"\n                 [nzRenderExtraFooter]=\"nzRenderExtraFooter || (shortcut?.enabled ? shortcutTpl : null)\"\n                 [nzShowTime]=\"nzShowTime\"\n                 [nzShowToday]=\"nzShowToday\"\n                 [nzMode]=\"nzMode\"\n                 [nzRanges]=\"nzRanges\"\n                 (nzOnPanelChange)=\"_nzOnPanelChange($event)\"\n                 (nzOnOk)=\"_nzOnOk($event)\"></nz-range-picker>\n<ng-template #shortcutTpl>\n  <a *ngFor=\"let i of shortcut?.list;let first=first\"\n     (click)=\"clickShortcut(i)\"\n     [innerHTML]=\"i._text\"\n     [ngClass]=\"{'ml-sm': !first}\"></a>\n</ng-template>\n",
+                template: "<nz-range-picker #comp\n                 [ngModel]=\"value\"\n                 (ngModelChange)=\"valueChange($event)\"\n                 [nzAllowClear]=\"nzAllowClear\"\n                 [nzAutoFocus]=\"nzAutoFocus\"\n                 [nzClassName]=\"nzClassName\"\n                 [nzDisabled]=\"nzDisabled\"\n                 [nzSize]=\"nzSize\"\n                 [nzDisabledDate]=\"nzDisabledDate\"\n                 [nzLocale]=\"nzLocale\"\n                 [nzPopupStyle]=\"nzPopupStyle\"\n                 [nzDropdownClassName]=\"nzDropdownClassName\"\n                 [nzStyle]=\"nzStyle\"\n                 [nzPlaceHolder]=\"nzPlaceHolder\"\n                 (nzOnOpenChange)=\"_nzOnOpenChange($event)\"\n                 [nzDateRender]=\"nzDateRender\"\n                 [nzDisabledTime]=\"nzDisabledTime\"\n                 [nzFormat]=\"nzFormat\"\n                 [nzRenderExtraFooter]=\"nzRenderExtraFooter || (shortcut?.enabled ? shortcutTpl : null)\"\n                 [nzShowTime]=\"nzShowTime\"\n                 [nzShowToday]=\"nzShowToday\"\n                 [nzMode]=\"nzMode\"\n                 [nzRanges]=\"nzRanges\"\n                 (nzOnPanelChange)=\"_nzOnPanelChange($event)\"\n                 (nzOnOk)=\"_nzOnOk($event)\"></nz-range-picker>\n<ng-template #shortcutTpl>\n  <a *ngFor=\"let i of shortcut?.list;let first=first\"\n     (click)=\"clickShortcut(i)\"\n     [innerHTML]=\"i.text\"\n     [ngClass]=\"{'ml-sm': !first}\"></a>\n</ng-template>\n",
                 providers: [
                     {
                         provide: NG_VALUE_ACCESSOR,
@@ -299,8 +288,7 @@ RangePickerComponent.decorators = [
 ];
 /** @nocollapse */
 RangePickerComponent.ctorParameters = () => [
-    { type: DatePickerConfig },
-    { type: DomSanitizer }
+    { type: DatePickerConfig }
 ];
 RangePickerComponent.propDecorators = {
     comp: [{ type: ViewChild, args: ['comp', { static: false },] }],
@@ -405,11 +393,6 @@ if (false) {
     RangePickerComponent.prototype.nzOnPanelChange;
     /** @type {?} */
     RangePickerComponent.prototype.nzOnOk;
-    /**
-     * @type {?}
-     * @private
-     */
-    RangePickerComponent.prototype.dom;
 }
 
 /**

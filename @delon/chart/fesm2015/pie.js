@@ -23,7 +23,6 @@ if (false) {
     /* Skipping unhandled member: [key: string]: any;*/
 }
 class G2PieComponent {
-    // #endregion
     /**
      * @param {?} el
      * @param {?} rend
@@ -48,19 +47,28 @@ class G2PieComponent {
         this.lineWidth = 0;
         this.select = true;
         this.data = [];
+        this.legendWidth = 240;
+    }
+    // #endregion
+    /**
+     * @return {?}
+     */
+    get chartWidth() {
+        const { hasLegend, legendWidth } = this;
+        // Must be add spacing width 32px
+        return hasLegend ? 'calc(100% - ' + (legendWidth + 32) + 'px)' : null;
     }
     /**
      * @private
      * @return {?}
      */
     setCls() {
-        const { el, rend, hasLegend, isPercent } = this;
+        const { el, rend, hasLegend, isPercent, legendWidth } = this;
         /** @type {?} */
         const ne = (/** @type {?} */ (el.nativeElement));
         updateHostClass(ne, rend, {
             'g2-pie': true,
-            'g2-pie__legend-has': hasLegend,
-            'g2-pie__legend-block': hasLegend && ne.clientWidth <= 380,
+            'g2-pie__legend-block': hasLegend && ne.clientWidth <= legendWidth + 380,
             'g2-pie__mini': isPercent,
         }, true);
     }
@@ -267,7 +275,7 @@ G2PieComponent.decorators = [
     { type: Component, args: [{
                 selector: 'g2-pie',
                 exportAs: 'g2Pie',
-                template: "<div class=\"g2-pie__chart\">\n  <div #container></div>\n  <div *ngIf=\"subTitle || total\"\n       class=\"g2-pie__total\">\n    <h4 *ngIf=\"subTitle\"\n        class=\"g2-pie__total-title\">\n      <ng-container *stringTemplateOutlet=\"subTitle\">\n        <div [innerHTML]=\"subTitle\"></div>\n      </ng-container>\n    </h4>\n    <div *ngIf=\"total\"\n         class=\"g2-pie__total-stat\">\n      <ng-container *stringTemplateOutlet=\"total\">\n        <div [innerHTML]=\"total\"></div>\n      </ng-container>\n    </div>\n  </div>\n</div>\n<ul *ngIf=\"hasLegend && legendData?.length\"\n    class=\"g2-pie__legend\">\n  <li *ngFor=\"let item of legendData; let index = index\"\n      (click)=\"_click(index)\"\n      class=\"g2-pie__legend-item\">\n    <span class=\"g2-pie__legend-dot\"\n          [ngStyle]=\"{'background-color': !item.checked ? '#aaa' : item.color}\"></span>\n    <span class=\"g2-pie__legend-title\">{{item.x}}</span>\n    <nz-divider nzType=\"vertical\"></nz-divider>\n    <span class=\"g2-pie__legend-percent\">{{item.percent}}%</span>\n    <span class=\"g2-pie__legend-value\"\n          [innerHTML]=\"valueFormat ? valueFormat(item.y) : item.y\"></span>\n  </li>\n</ul>\n",
+                template: "<div class=\"g2-pie__chart\" [style.width]=\"chartWidth\">\n  <div #container></div>\n  <div *ngIf=\"subTitle || total\" class=\"g2-pie__total\">\n    <h4 *ngIf=\"subTitle\" class=\"g2-pie__total-title\">\n      <ng-container *stringTemplateOutlet=\"subTitle\">\n        <div [innerHTML]=\"subTitle\"></div>\n      </ng-container>\n    </h4>\n    <div *ngIf=\"total\" class=\"g2-pie__total-stat\">\n      <ng-container *stringTemplateOutlet=\"total\">\n        <div [innerHTML]=\"total\"></div>\n      </ng-container>\n    </div>\n  </div>\n</div>\n<ul *ngIf=\"hasLegend && legendData?.length\" class=\"g2-pie__legend\" [style.width.px]=\"legendWidth\">\n  <li *ngFor=\"let item of legendData; let index = index\" (click)=\"_click(index)\" class=\"g2-pie__legend-item\">\n    <span class=\"g2-pie__legend-dot\" [ngStyle]=\"{'background-color': !item.checked ? '#aaa' : item.color}\"></span>\n    <span class=\"g2-pie__legend-title\">{{item.x}}</span>\n    <nz-divider nzType=\"vertical\"></nz-divider>\n    <span class=\"g2-pie__legend-percent\">{{item.percent}}%</span>\n    <span class=\"g2-pie__legend-value\" [innerHTML]=\"valueFormat ? valueFormat(item.y) : item.y\"></span>\n  </li>\n</ul>\n",
                 preserveWhitespaces: false,
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None
@@ -297,7 +305,8 @@ G2PieComponent.propDecorators = {
     select: [{ type: Input }],
     valueFormat: [{ type: Input }],
     data: [{ type: Input }],
-    colors: [{ type: Input }]
+    colors: [{ type: Input }],
+    legendWidth: [{ type: Input }]
 };
 __decorate([
     InputNumber(),
@@ -331,6 +340,10 @@ __decorate([
     InputBoolean(),
     __metadata("design:type", Object)
 ], G2PieComponent.prototype, "select", void 0);
+__decorate([
+    InputNumber(),
+    __metadata("design:type", Object)
+], G2PieComponent.prototype, "legendWidth", void 0);
 if (false) {
     /**
      * @type {?}
@@ -391,6 +404,8 @@ if (false) {
     G2PieComponent.prototype.data;
     /** @type {?} */
     G2PieComponent.prototype.colors;
+    /** @type {?} */
+    G2PieComponent.prototype.legendWidth;
     /**
      * @type {?}
      * @private
