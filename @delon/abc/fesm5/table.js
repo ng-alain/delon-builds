@@ -2496,11 +2496,27 @@ var STDataSource = /** @class */ (function () {
              */
             function (result) { return (/** @type {?} */ (res.process))(result, rawData); })));
         }
+        // data accelerator
         data$ = data$.pipe(map((/**
          * @param {?} result
          * @return {?}
          */
-        function (result) { return _this.optimizeData({ result: result, columns: columns, rowClassName: options.rowClassName }); })));
+        function (result) {
+            var _loop_1 = function (i, len) {
+                result[i]._values = columns.map((/**
+                 * @param {?} c
+                 * @return {?}
+                 */
+                function (c) { return _this.get(result[i], c, i); }));
+                if (options.rowClassName) {
+                    result[i]._rowClassName = options.rowClassName(result[i], i);
+                }
+            };
+            for (var i = 0, len = result.length; i < len; i++) {
+                _loop_1(i, len);
+            }
+            return result;
+        })));
         return data$.pipe(map((/**
          * @param {?} result
          * @return {?}
@@ -2638,32 +2654,6 @@ var STDataSource = /** @class */ (function () {
             reqOptions = req.process(reqOptions);
         }
         return this.http.request(method, url, reqOptions);
-    };
-    /**
-     * @param {?} options
-     * @return {?}
-     */
-    STDataSource.prototype.optimizeData = /**
-     * @param {?} options
-     * @return {?}
-     */
-    function (options) {
-        var _this = this;
-        var result = options.result, columns = options.columns, rowClassName = options.rowClassName;
-        var _loop_1 = function (i, len) {
-            result[i]._values = columns.map((/**
-             * @param {?} c
-             * @return {?}
-             */
-            function (c) { return _this.get(result[i], c, i); }));
-            if (rowClassName) {
-                result[i]._rowClassName = rowClassName(result[i], i);
-            }
-        };
-        for (var i = 0, len = result.length; i < len; i++) {
-            _loop_1(i, len);
-        }
-        return result;
     };
     /**
      * @param {?} item
@@ -3946,33 +3936,16 @@ var STComponent = /** @class */ (function () {
         this.closeOtherExpand(item);
         this.changeEmit('expand', item);
     };
+    /** 移除某行数据 */
     /**
-     * Remove a row in the table, like this:
-     *
-     * ```
-     * this.st.removeRow(0)
-     * this.st.removeRow(stDataItem)
-     * ```
-     */
-    /**
-     * Remove a row in the table, like this:
-     *
-     * ```
-     * this.st.removeRow(0)
-     * this.st.removeRow(stDataItem)
-     * ```
+     * 移除某行数据
      * @template THIS
      * @this {THIS}
      * @param {?} data
      * @return {THIS}
      */
     STComponent.prototype.removeRow = /**
-     * Remove a row in the table, like this:
-     *
-     * ```
-     * this.st.removeRow(0)
-     * this.st.removeRow(stDataItem)
-     * ```
+     * 移除某行数据
      * @template THIS
      * @this {THIS}
      * @param {?} data
@@ -3980,30 +3953,25 @@ var STComponent = /** @class */ (function () {
      */
     function (data) {
         var _this = this;
-        if (typeof data === 'number') {
-            (/** @type {?} */ (this))._data.splice(data, 1);
+        if (!Array.isArray(data)) {
+            data = [data];
         }
-        else {
-            if (!Array.isArray(data)) {
-                data = [data];
-            }
-            ((/** @type {?} */ (data)))
-                .map((/**
-             * @param {?} item
-             * @return {?}
-             */
-            function (item) { return (/** @type {?} */ (_this))._data.indexOf(item); }))
-                .filter((/**
-             * @param {?} pos
-             * @return {?}
-             */
-            function (pos) { return pos !== -1; }))
-                .forEach((/**
-             * @param {?} pos
-             * @return {?}
-             */
-            function (pos) { return (/** @type {?} */ (_this))._data.splice(pos, 1); }));
-        }
+        ((/** @type {?} */ (data)))
+            .map((/**
+         * @param {?} item
+         * @return {?}
+         */
+        function (item) { return (/** @type {?} */ (_this))._data.indexOf(item); }))
+            .filter((/**
+         * @param {?} pos
+         * @return {?}
+         */
+        function (pos) { return pos !== -1; }))
+            .forEach((/**
+         * @param {?} pos
+         * @return {?}
+         */
+        function (pos) { return (/** @type {?} */ (_this))._data.splice(pos, 1); }));
         // recalculate no
         (/** @type {?} */ (this))._columns
             .filter((/**
@@ -4022,46 +3990,6 @@ var STComponent = /** @class */ (function () {
          */
         function (i, idx) { return (i._values[c.__point] = { text: (/** @type {?} */ (_this)).dataSource.getNoIndex(i, c, idx), org: idx }); })); }));
         return (/** @type {?} */ (this)).cd();
-    };
-    /**
-     * Sets the row value for the `index` in the table, like this:
-     *
-     * ```
-     * this.st.setRow(0, { price: 100 })
-     * this.st.setRow(0, { price: 100, name: 'asdf' })
-     * ```
-     */
-    /**
-     * Sets the row value for the `index` in the table, like this:
-     *
-     * ```
-     * this.st.setRow(0, { price: 100 })
-     * this.st.setRow(0, { price: 100, name: 'asdf' })
-     * ```
-     * @template THIS
-     * @this {THIS}
-     * @param {?} index
-     * @param {?} item
-     * @return {THIS}
-     */
-    STComponent.prototype.setRow = /**
-     * Sets the row value for the `index` in the table, like this:
-     *
-     * ```
-     * this.st.setRow(0, { price: 100 })
-     * this.st.setRow(0, { price: 100, name: 'asdf' })
-     * ```
-     * @template THIS
-     * @this {THIS}
-     * @param {?} index
-     * @param {?} item
-     * @return {THIS}
-     */
-    function (index, item) {
-        (/** @type {?} */ (this))._data[index] = deepMergeKey((/** @type {?} */ (this))._data[index], false, item);
-        (/** @type {?} */ (this))._data = (/** @type {?} */ (this)).dataSource.optimizeData({ columns: (/** @type {?} */ (this))._columns, result: (/** @type {?} */ (this))._data, rowClassName: (/** @type {?} */ (this)).rowClassName });
-        (/** @type {?} */ (this)).cdr.detectChanges();
-        return (/** @type {?} */ (this));
     };
     // #endregion
     // #region sort

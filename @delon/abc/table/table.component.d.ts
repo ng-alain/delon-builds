@@ -157,24 +157,8 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     private closeOtherExpand;
     _rowClick(e: Event, item: STData, index: number): void;
     _expandChange(item: STData): void;
-    /**
-     * Remove a row in the table, like this:
-     *
-     * ```
-     * this.st.removeRow(0)
-     * this.st.removeRow(stDataItem)
-     * ```
-     */
-    removeRow(data: STData | STData[] | number): this;
-    /**
-     * Sets the row value for the `index` in the table, like this:
-     *
-     * ```
-     * this.st.setRow(0, { price: 100 })
-     * this.st.setRow(0, { price: 100, name: 'asdf' })
-     * ```
-     */
-    setRow(index: number, item: STData): this;
+    /** 移除某行数据 */
+    removeRow(data: STData | STData[]): this;
     sort(col: STColumn, idx: number, value: any): void;
     clearSort(): this;
     private handleFilter;

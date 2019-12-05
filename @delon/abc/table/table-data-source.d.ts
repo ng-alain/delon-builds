@@ -43,11 +43,6 @@ export declare class STDataSource {
     process(options: STDataSourceOptions): Observable<STDataSourceResult>;
     private get;
     private getByHttp;
-    optimizeData(options: {
-        columns: STColumn[];
-        result: STData[];
-        rowClassName?: STRowClassName;
-    }): STData[];
     getNoIndex(item: STData, col: STColumn, idx: number): number;
     private getValidSort;
     private getSorterFn;
