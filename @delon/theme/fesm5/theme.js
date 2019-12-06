@@ -4129,7 +4129,7 @@ var AlainThemeModule = /** @class */ (function () {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-var VERSION = new Version('8.7.0-37a80cb');
+var VERSION = new Version('8.7.0-a5cf766');
 
 /**
  * @fileoverview added by tsickle
