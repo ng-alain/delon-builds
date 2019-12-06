@@ -27946,7 +27946,8 @@ g2-tag-cloud {
   position: absolute;
   top: 50%;
   right: 0;
-  margin: 0 16px;
+  min-width: 200px;
+  margin: 0 20px;
   padding: 0;
   list-style: none;
   transform: translateY(-50%);
@@ -27979,14 +27980,16 @@ g2-tag-cloud {
   position: absolute;
   right: 0;
 }
+.g2-pie__legend-has .g2-pie__chart {
+  width: calc(100% - 240px);
+}
 .g2-pie__legend-block .g2-pie__chart {
-  width: 100% !important;
+  width: 100%;
   margin: 0 0 32px;
 }
 .g2-pie__legend-block .g2-pie__legend {
   position: relative;
   transform: none;
-  margin: 0 auto;
 }
 .g2-pie__total {
   position: absolute;
