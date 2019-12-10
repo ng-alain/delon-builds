@@ -20,5 +20,6 @@ export interface Nav extends Menu {
      */
     _open?: boolean;
     _depth?: number;
+    _needIcon?: boolean;
     [key: string]: any;
 }

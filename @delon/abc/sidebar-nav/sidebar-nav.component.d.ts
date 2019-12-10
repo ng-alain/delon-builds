@@ -23,7 +23,6 @@ export declare class SidebarNavComponent implements OnInit, OnDestroy {
     openStrictly: boolean;
     readonly select: EventEmitter<Menu>;
     readonly collapsed: boolean;
-    private readonly _d;
     constructor(menuSrv: MenuService, settings: SettingsService, router: Router, render: Renderer2, cdr: ChangeDetectorRef, ngZone: NgZone, sanitizer: DomSanitizer, doc: any, win: Window);
     private floatingAreaClickHandle;
     private clearFloatingContainer;
@@ -32,7 +31,7 @@ export declare class SidebarNavComponent implements OnInit, OnDestroy {
     private hideAll;
     private calPos;
     showSubMenu(e: MouseEvent, item: Nav): void;
-    to(item: Menu): false | undefined;
+    to(item: Menu): void;
     toggleOpen(item: Nav): void;
     _click(): void;
     _docClick(): void;
