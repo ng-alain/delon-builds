@@ -21,18 +21,6 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     private columnSource;
     private dataSource;
     private delonI18n;
-    orgTable: NzTableComponent;
-    /** 请求体配置 */
-    req: STReq;
-    /** 返回体配置 */
-    res: STRes;
-    /** 分页器配置 */
-    page: STPage;
-    /** 是否多排序，当 `sort` 多个相同值时自动合并，建议后端支持时使用 */
-    multiSort: any;
-    widthMode: STWidthMode;
-    constructor(i18nSrv: AlainI18NService, cdr: ChangeDetectorRef, cog: STConfig, router: Router, el: ElementRef, renderer: Renderer2, exportSrv: STExport, modalHelper: ModalHelper, drawerHelper: DrawerHelper, doc: any, columnSource: STColumnSource, dataSource: STDataSource, delonI18n: DelonLocaleService);
-    private readonly routerState;
     private unsubscribe$;
     private data$;
     private totalTpl;
@@ -46,6 +34,17 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     _allCheckedDisabled: boolean;
     _indeterminate: boolean;
     _columns: STColumn[];
+    orgTable: NzTableComponent;
+    /** 请求体配置 */
+    req: STReq;
+    /** 返回体配置 */
+    res: STRes;
+    /** 分页器配置 */
+    page: STPage;
+    /** 是否多排序，当 `sort` 多个相同值时自动合并，建议后端支持时使用 */
+    multiSort: any;
+    widthMode: STWidthMode;
+    private readonly routerState;
     data: string | STData[] | Observable<STData[]>;
     private _req;
     private _res;
@@ -110,6 +109,7 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
      */
     readonly change: EventEmitter<STChange>;
     private rowClickCount;
+    constructor(i18nSrv: AlainI18NService, cdr: ChangeDetectorRef, cog: STConfig, router: Router, el: ElementRef, renderer: Renderer2, exportSrv: STExport, modalHelper: ModalHelper, drawerHelper: DrawerHelper, doc: any, columnSource: STColumnSource, dataSource: STDataSource, delonI18n: DelonLocaleService);
     cd(): this;
     renderTotal(total: string, range: string[]): string;
     isTruncate(column: STColumn): boolean;
