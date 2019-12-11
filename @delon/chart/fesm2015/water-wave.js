@@ -37,6 +37,7 @@ class G2WaterWaveComponent {
     renderChart(type) {
         if (!this.resize$)
             return;
+        this.updateRadio();
         const { percent, color, node } = this;
         /** @type {?} */
         const data = Math.min(Math.max(percent / 100, 0), 100);
@@ -225,7 +226,6 @@ class G2WaterWaveComponent {
      * @return {?}
      */
     ngOnInit() {
-        this.updateRadio();
         this.installResizeEvent();
         this.ngZone.runOutsideAngular((/**
          * @return {?}
