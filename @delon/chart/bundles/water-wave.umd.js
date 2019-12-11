@@ -237,6 +237,7 @@
         function (type) {
             if (!this.resize$)
                 return;
+            this.updateRadio();
             var _a = this, percent = _a.percent, color = _a.color, node = _a.node;
             /** @type {?} */
             var data = Math.min(Math.max(percent / 100, 0), 100);
@@ -438,7 +439,6 @@
          */
         function () {
             var _this = this;
-            this.updateRadio();
             this.installResizeEvent();
             this.ngZone.runOutsideAngular((/**
              * @return {?}
