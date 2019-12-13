@@ -1,7 +1,8 @@
+import { SafeHtml } from '@angular/platform-browser';
 import { OnInit } from '@angular/core';
 import { ArrayLayoutWidget } from '../../widget';
 export declare class ArrayWidget extends ArrayLayoutWidget implements OnInit {
-    addTitle: string;
+    addTitle: SafeHtml;
     addType: string;
     removeTitle: string | null;
     arraySpan: number;
