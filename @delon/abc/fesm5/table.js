@@ -2597,7 +2597,8 @@ var STDataSource = /** @class */ (function () {
                 }
                 break;
         }
-        text = text || '';
+        if (text == null)
+            text = '';
         return { text: text, _text: this.dom.bypassSecurityTrustHtml(text), org: value, color: color };
     };
     /**
