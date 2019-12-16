@@ -2,6 +2,16 @@ import { Injector } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, CanActivateChild, CanLoad, Route, RouterStateSnapshot, UrlSegment } from '@angular/router';
 import { DelonAuthConfig } from '../../auth.config';
 import { ITokenService } from '../interface';
+/**
+ * Simple 路由守卫, [ACL Document](https://ng-alain.com/auth/guard).
+ *
+ * ```ts
+ * data: {
+ *  path: 'home',
+ *  canActivate: [ SimpleGuard ]
+ * }
+ * ```
+ */
 export declare class SimpleGuard implements CanActivate, CanActivateChild, CanLoad {
     private srv;
     private injector;

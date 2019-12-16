@@ -14,7 +14,7 @@ import { CommonModule } from '@angular/common';
 class DelonACLConfig {
     constructor() {
         /**
-         * 路由守卫失败后跳转，默认：`/403`
+         * Router URL when guard fail, default: `/403`
          */
         this.guard_url = '/403';
     }
@@ -25,12 +25,12 @@ DelonACLConfig.decorators = [
 /** @nocollapse */ DelonACLConfig.ngInjectableDef = ɵɵdefineInjectable({ factory: function DelonACLConfig_Factory() { return new DelonACLConfig(); }, token: DelonACLConfig, providedIn: "root" });
 if (false) {
     /**
-     * 路由守卫失败后跳转，默认：`/403`
+     * Router URL when guard fail, default: `/403`
      * @type {?}
      */
     DelonACLConfig.prototype.guard_url;
     /**
-     * `can` 执行前回调
+     * `can` before execution callback
      * @type {?}
      */
     DelonACLConfig.prototype.preCan;
@@ -42,7 +42,9 @@ if (false) {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
- * 访问控制服务
+ * ACL 控制服务，[在线文档](https://ng-alain.com/acl)
+ *
+ * 务必在根目录注册 `DelonACLModule.forRoot()` 才能使用服务
  */
 class ACLService {
     /**
@@ -616,6 +618,17 @@ if (false) {
  * @fileoverview added by tsickle
  * Generated from: src/acl-guard.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * Routing guard prevent unauthorized users visit the page, [ACL Document](https://ng-alain.com/acl).
+ *
+ * ```ts
+ * data: {
+ *  path: 'home',
+ *  canActivate: [ ACLGuard ],
+ *  data: { guard: 'user1' }
+ * }
+ * ```
  */
 class ACLGuard {
     /**

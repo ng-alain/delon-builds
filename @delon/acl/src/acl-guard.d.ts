@@ -2,6 +2,17 @@ import { ActivatedRouteSnapshot, CanActivate, CanActivateChild, CanLoad, Route, 
 import { Observable } from 'rxjs';
 import { DelonACLConfig } from './acl.config';
 import { ACLService } from './acl.service';
+/**
+ * Routing guard prevent unauthorized users visit the page, [ACL Document](https://ng-alain.com/acl).
+ *
+ * ```ts
+ * data: {
+ *  path: 'home',
+ *  canActivate: [ ACLGuard ],
+ *  data: { guard: 'user1' }
+ * }
+ * ```
+ */
 export declare class ACLGuard implements CanActivate, CanActivateChild, CanLoad {
     private srv;
     private router;

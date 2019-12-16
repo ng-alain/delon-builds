@@ -131,6 +131,9 @@ if (false) {
 function DA_STORE_TOKEN_LOCAL_FACTORY() {
     return new LocalStorageStore();
 }
+/**
+ * `localStorage` storage, **not lost after closing the browser**.
+ */
 class LocalStorageStore {
     /**
      * @param {?} key
@@ -201,6 +204,9 @@ if (false) {
 function DA_SERVICE_TOKEN_FACTORY() {
     return new TokenService(inject(DelonAuthConfig), inject(DA_STORE_TOKEN));
 }
+/**
+ * 维护Token信息服务，[在线文档](https://ng-alain.com/auth)
+ */
 class TokenService {
     /**
      * @param {?} options
@@ -213,18 +219,21 @@ class TokenService {
         this._referrer = {};
     }
     /**
+     * 授权失败后跳转路由路径（支持外部链接地址），通过设置全局 `DelonAuthConfig.login_url` 来改变
      * @return {?}
      */
     get login_url() {
         return this.options.login_url;
     }
     /**
+     * 当前请求页面的来源页面的地址
      * @return {?}
      */
     get referrer() {
         return this._referrer;
     }
     /**
+     * 设置 Token 信息
      * @param {?} data
      * @return {?}
      */
@@ -243,6 +252,13 @@ class TokenService {
         return type ? ((/** @type {?} */ (Object.assign(new type(), data)))) : ((/** @type {?} */ (data)));
     }
     /**
+     * 清除 Token 信息，例如：
+     * ```
+     * // 清除所有 Token 信息
+     * tokenService.clear();
+     * // 只清除 token 字段
+     * tokenService.clear({ onlyToken: true });
+     * ```
      * @param {?=} options
      * @return {?}
      */
@@ -260,6 +276,7 @@ class TokenService {
         this.change$.next(data);
     }
     /**
+     * 订阅 Token 对象变更通知
      * @return {?}
      */
     change() {
@@ -526,6 +543,9 @@ if (false) {
  * Generated from: src/store/memory.service.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * 内存存储，关掉浏览器标签后**丢失**。
+ */
 class MemoryStore {
     constructor() {
         this.cache = {};
@@ -566,6 +586,9 @@ if (false) {
  * @fileoverview added by tsickle
  * Generated from: src/store/session-storage.service.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * `sessionStorage` storage, **lost after closing the browser**.
  */
 class SessionStorageStore {
     /**
@@ -902,6 +925,9 @@ if (false) {
  * Generated from: src/token/jwt/jwt.interceptor.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * JWT 拦截器
+ */
 class JWTInterceptor extends BaseInterceptor {
     /**
      * @param {?} options
@@ -932,6 +958,16 @@ JWTInterceptor.decorators = [
  * @fileoverview added by tsickle
  * Generated from: src/token/jwt/jwt.guard.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * JWT 路由守卫, [ACL Document](https://ng-alain.com/auth/guard).
+ *
+ * ```ts
+ * data: {
+ *  path: 'home',
+ *  canActivate: [ JWTGuard ]
+ * }
+ * ```
  */
 class JWTGuard {
     /**
@@ -1038,6 +1074,9 @@ if (false) {
  * Generated from: src/token/simple/simple.interceptor.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * Simple 拦截器
+ */
 class SimpleInterceptor extends BaseInterceptor {
     /**
      * @param {?} _options
@@ -1095,6 +1134,16 @@ SimpleInterceptor.decorators = [
  * @fileoverview added by tsickle
  * Generated from: src/token/simple/simple.guard.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * Simple 路由守卫, [ACL Document](https://ng-alain.com/auth/guard).
+ *
+ * ```ts
+ * data: {
+ *  path: 'home',
+ *  canActivate: [ SimpleGuard ]
+ * }
+ * ```
  */
 class SimpleGuard {
     /**

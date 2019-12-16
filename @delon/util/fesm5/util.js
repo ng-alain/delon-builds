@@ -159,6 +159,7 @@ function deepGet(obj, path, defaultValue) {
     return typeof res === 'undefined' ? defaultValue : res;
 }
 /**
+ * 基于 [extend](https://github.com/justmoon/node-extend) 的深度拷贝
  * @param {?} obj
  * @return {?}
  */
@@ -168,7 +169,7 @@ function deepCopy(obj) {
     return result._;
 }
 /**
- * 复制内容至剪贴板
+ * 复制字符串文档至剪贴板
  * @param {?} value
  * @return {?}
  */
@@ -199,9 +200,11 @@ function copy(value) {
     }));
 }
 /**
- * @param {?} original
- * @param {?} ingoreArray
- * @param {...?} objects
+ * 深度合并对象
+ *
+ * @param {?} original 原始对象
+ * @param {?} ingoreArray 是否忽略数组，`true` 表示忽略数组的合并，`false` 表示会合并整个数组
+ * @param {...?} objects 要合并的对象
  * @return {?}
  */
 function deepMergeKey(original, ingoreArray) {
@@ -263,8 +266,10 @@ function deepMergeKey(original, ingoreArray) {
     return original;
 }
 /**
- * @param {?} original
- * @param {...?} objects
+ * 深度合并对象
+ *
+ * @param {?} original 原始对象
+ * @param {...?} objects 要合并的对象
  * @return {?}
  */
 function deepMerge(original) {
@@ -384,6 +389,9 @@ if (false) {
     /** @type {?|undefined} */
     LazyResult.prototype.error;
 }
+/**
+ * 延迟加载资源（js 或 css）服务
+ */
 var LazyService = /** @class */ (function () {
     function LazyService(doc) {
         this.doc = doc;
@@ -803,9 +811,9 @@ function toBoolean(value, allowUndefined) {
 }
 /**
  * Input decorator that handle a prop to do get/set automatically with toBoolean
- * \@example
- * ```typescript
- * \@Input() \@InputBoolean() visible: boolean = false; / \@InputBoolean(null) visible: boolean = false;
+ *
+ * ```ts
+ * \@Input() InputBoolean() visible: boolean = false; / \@InputBoolean(null) visible: boolean = false;
  * ```
  * @param {?=} allowUndefined
  * @return {?}
@@ -856,8 +864,8 @@ function toNumber(value, fallbackValue) {
 }
 /**
  * Input decorator that handle a prop to do get/set automatically with toNumber
- * \@example
- * ```typescript
+ *
+ * ```ts
  * \@Input() \@InputNumber() visible: number = 1; / \@InputNumber(null) visible: number = 2;
  * ```
  * @param {?=} fallback

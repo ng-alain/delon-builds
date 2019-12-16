@@ -3,6 +3,9 @@ import { Observable } from 'rxjs';
 import { ACLService } from '@delon/acl';
 import { AlainI18NService } from '../i18n/i18n';
 import { Menu } from './interface';
+/**
+ * 菜单服务，[在线文档](https://ng-alain.com/theme/menu)
+ */
 export declare class MenuService implements OnDestroy {
     private i18nSrv;
     private aclService;

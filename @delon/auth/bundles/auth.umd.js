@@ -333,7 +333,13 @@
     function DA_STORE_TOKEN_LOCAL_FACTORY() {
         return new LocalStorageStore();
     }
-    var LocalStorageStore = /** @class */ (function () {
+    /**
+     * `localStorage` storage, **not lost after closing the browser**.
+     */
+    var   /**
+     * `localStorage` storage, **not lost after closing the browser**.
+     */
+    LocalStorageStore = /** @class */ (function () {
         function LocalStorageStore() {
         }
         /**
@@ -419,6 +425,9 @@
     function DA_SERVICE_TOKEN_FACTORY() {
         return new TokenService(core.inject(DelonAuthConfig), core.inject(DA_STORE_TOKEN));
     }
+    /**
+     * 维护Token信息服务，[在线文档](https://ng-alain.com/auth)
+     */
     var TokenService = /** @class */ (function () {
         function TokenService(options, store) {
             this.options = options;
@@ -427,7 +436,11 @@
             this._referrer = {};
         }
         Object.defineProperty(TokenService.prototype, "login_url", {
+            /**
+             * 授权失败后跳转路由路径（支持外部链接地址），通过设置全局 `DelonAuthConfig.login_url` 来改变
+             */
             get: /**
+             * 授权失败后跳转路由路径（支持外部链接地址），通过设置全局 `DelonAuthConfig.login_url` 来改变
              * @return {?}
              */
             function () {
@@ -437,7 +450,11 @@
             configurable: true
         });
         Object.defineProperty(TokenService.prototype, "referrer", {
+            /**
+             * 当前请求页面的来源页面的地址
+             */
             get: /**
+             * 当前请求页面的来源页面的地址
              * @return {?}
              */
             function () {
@@ -447,10 +464,15 @@
             configurable: true
         });
         /**
+         * 设置 Token 信息
+         */
+        /**
+         * 设置 Token 信息
          * @param {?} data
          * @return {?}
          */
         TokenService.prototype.set = /**
+         * 设置 Token 信息
          * @param {?} data
          * @return {?}
          */
@@ -474,10 +496,33 @@
             return type ? ((/** @type {?} */ (Object.assign(new type(), data)))) : ((/** @type {?} */ (data)));
         };
         /**
+         * 清除 Token 信息，例如：
+         * ```
+         * // 清除所有 Token 信息
+         * tokenService.clear();
+         * // 只清除 token 字段
+         * tokenService.clear({ onlyToken: true });
+         * ```
+         */
+        /**
+         * 清除 Token 信息，例如：
+         * ```
+         * // 清除所有 Token 信息
+         * tokenService.clear();
+         * // 只清除 token 字段
+         * tokenService.clear({ onlyToken: true });
+         * ```
          * @param {?=} options
          * @return {?}
          */
         TokenService.prototype.clear = /**
+         * 清除 Token 信息，例如：
+         * ```
+         * // 清除所有 Token 信息
+         * tokenService.clear();
+         * // 只清除 token 字段
+         * tokenService.clear({ onlyToken: true });
+         * ```
          * @param {?=} options
          * @return {?}
          */
@@ -496,9 +541,14 @@
             this.change$.next(data);
         };
         /**
+         * 订阅 Token 对象变更通知
+         */
+        /**
+         * 订阅 Token 对象变更通知
          * @return {?}
          */
         TokenService.prototype.change = /**
+         * 订阅 Token 对象变更通知
          * @return {?}
          */
         function () {
@@ -793,7 +843,13 @@
      * Generated from: src/store/memory.service.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var MemoryStore = /** @class */ (function () {
+    /**
+     * 内存存储，关掉浏览器标签后**丢失**。
+     */
+    var   /**
+     * 内存存储，关掉浏览器标签后**丢失**。
+     */
+    MemoryStore = /** @class */ (function () {
         function MemoryStore() {
             this.cache = {};
         }
@@ -848,7 +904,13 @@
      * Generated from: src/store/session-storage.service.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var SessionStorageStore = /** @class */ (function () {
+    /**
+     * `sessionStorage` storage, **lost after closing the browser**.
+     */
+    var   /**
+     * `sessionStorage` storage, **lost after closing the browser**.
+     */
+    SessionStorageStore = /** @class */ (function () {
         function SessionStorageStore() {
         }
         /**
@@ -1236,6 +1298,9 @@
      * Generated from: src/token/jwt/jwt.interceptor.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
+    /**
+     * JWT 拦截器
+     */
     var JWTInterceptor = /** @class */ (function (_super) {
         __extends(JWTInterceptor, _super);
         function JWTInterceptor() {
@@ -1280,6 +1345,16 @@
      * @fileoverview added by tsickle
      * Generated from: src/token/jwt/jwt.guard.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /**
+     * JWT 路由守卫, [ACL Document](https://ng-alain.com/auth/guard).
+     *
+     * ```ts
+     * data: {
+     *  path: 'home',
+     *  canActivate: [ JWTGuard ]
+     * }
+     * ```
      */
     var JWTGuard = /** @class */ (function () {
         function JWTGuard(srv, injector, cog) {
@@ -1413,6 +1488,9 @@
      * Generated from: src/token/simple/simple.interceptor.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
+    /**
+     * Simple 拦截器
+     */
     var SimpleInterceptor = /** @class */ (function (_super) {
         __extends(SimpleInterceptor, _super);
         function SimpleInterceptor() {
@@ -1485,6 +1563,16 @@
      * @fileoverview added by tsickle
      * Generated from: src/token/simple/simple.guard.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /**
+     * Simple 路由守卫, [ACL Document](https://ng-alain.com/auth/guard).
+     *
+     * ```ts
+     * data: {
+     *  path: 'home',
+     *  canActivate: [ SimpleGuard ]
+     * }
+     * ```
      */
     var SimpleGuard = /** @class */ (function () {
         function SimpleGuard(srv, injector, cog) {

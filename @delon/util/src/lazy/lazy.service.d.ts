@@ -5,6 +5,9 @@ export interface LazyResult {
     status: 'ok' | 'error';
     error?: {};
 }
+/**
+ * 延迟加载资源（js 或 css）服务
+ */
 export declare class LazyService {
     private doc;
     private list;

@@ -343,6 +343,9 @@ if (false) {
  * Generated from: src/services/menu/menu.service.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * 菜单服务，[在线文档](https://ng-alain.com/theme/menu)
+ */
 var MenuService = /** @class */ (function () {
     function MenuService(i18nSrv, aclService) {
         var _this = this;
@@ -4129,7 +4132,7 @@ var AlainThemeModule = /** @class */ (function () {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-var VERSION = new Version('8.7.1-ba0cfd8');
+var VERSION = new Version('8.7.1-eb11d58');
 
 /**
  * @fileoverview added by tsickle
