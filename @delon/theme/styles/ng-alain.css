@@ -27055,12 +27055,15 @@ body {
   margin: 0 8px 0 2px;
   content: ':';
 }
-.sv__label-text {
-  margin-right: 2px;
-}
 .sv__label-optional {
-  margin-left: -2px;
+  margin-left: 2px;
   color: rgba(0, 0, 0, 0.35);
+}
+.sv__label-optional-no-text {
+  margin-left: 0;
+}
+.sv__label-optional > .anticon {
+  margin-left: 2px;
 }
 .sv__detail {
   display: table-cell;
@@ -27153,6 +27156,9 @@ body {
 .se__label-optional {
   margin-left: 2px;
   color: rgba(0, 0, 0, 0.35);
+}
+.se__label-optional-no-text {
+  margin-left: 0;
 }
 .se__label-optional > .anticon {
   margin-left: 2px;
