@@ -27222,6 +27222,13 @@ body {
   .se__horizontal .se__item {
     display: block;
   }
+  .se__horizontal .se__item .ant-form-item-label {
+    width: 100% !important;
+    text-align: left;
+  }
+  .se__horizontal .se__item .se__label {
+    justify-content: normal;
+  }
   .se__horizontal .se__label,
   .se__vertical .se__label,
   .se__horizontal .se__control,
