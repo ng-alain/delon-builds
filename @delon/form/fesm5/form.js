@@ -2562,11 +2562,13 @@ var SFComponent = /** @class */ (function () {
                     }
                 }
                 if (property.items) {
-                    uiRes[uiKey].$items = uiRes[uiKey].$items || {};
-                    inFn(property.items, property.items, (uiSchema[uiKey] || {}).$items || {}, ui, uiRes[uiKey].$items);
+                    /** @type {?} */
+                    var uiSchemaInArr = (uiSchema[uiKey] || {}).$items || {};
+                    ui.$items = __assign({}, _this._defUi, ((/** @type {?} */ (property.items.ui))), uiSchemaInArr[uiKey], ui.$items);
+                    inFn(property.items, property.items, uiSchemaInArr, ui.$items, ui.$items);
                 }
                 if (property.properties && Object.keys(property.properties).length) {
-                    inFn(property, schema, uiSchema[uiKey] || {}, ui, uiRes[uiKey]);
+                    inFn(property, schema, uiSchema[uiKey] || {}, ui, ui);
                 }
             }));
         });
