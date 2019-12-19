@@ -3616,9 +3616,22 @@ var Payload = makeParam('payload')();
  */
 function getValidArgs(data, key, args) {
     if (!data[key] || !Array.isArray(data[key]) || data[key].length <= 0) {
-        return {};
+        return undefined;
     }
     return args[data[key][0].index];
+}
+/**
+ * @param {?=} data
+ * @param {?=} payload
+ * @return {?}
+ */
+function genBody(data, payload) {
+    if (Array.isArray(data) || Array.isArray(payload)) {
+        // tslint:disable-next-line:prefer-object-spread
+        return Object.assign([], data, payload);
+    }
+    // tslint:disable-next-line:prefer-object-spread
+    return Object.assign({}, data, payload);
 }
 /**
  * @param {?} method
@@ -3716,7 +3729,7 @@ function makeMethod(method) {
                 var payload = getValidArgs(data, 'payload', args);
                 /** @type {?} */
                 var supportedBody = method === 'POST' || method === 'PUT';
-                return http.request(method, requestUrl, __assign({ body: supportedBody ? __assign({}, getValidArgs(data, 'body', args), payload) : null, params: !supportedBody ? __assign({}, params, payload) : params, headers: __assign({}, baseData.baseHeaders, headers) }, options));
+                return http.request(method, requestUrl, __assign({ body: supportedBody ? genBody(getValidArgs(data, 'body', args), payload) : null, params: !supportedBody ? __assign({}, params, payload) : params, headers: __assign({}, baseData.baseHeaders, headers) }, options));
             });
             return descriptor;
         });
@@ -4132,7 +4145,7 @@ var AlainThemeModule = /** @class */ (function () {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-var VERSION = new Version('8.7.2-1f141a5');
+var VERSION = new Version('8.7.2-375948d');
 
 /**
  * @fileoverview added by tsickle

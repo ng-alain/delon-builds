@@ -3069,9 +3069,22 @@ const Payload = makeParam('payload')();
  */
 function getValidArgs(data, key, args) {
     if (!data[key] || !Array.isArray(data[key]) || data[key].length <= 0) {
-        return {};
+        return undefined;
     }
     return args[data[key][0].index];
+}
+/**
+ * @param {?=} data
+ * @param {?=} payload
+ * @return {?}
+ */
+function genBody(data, payload) {
+    if (Array.isArray(data) || Array.isArray(payload)) {
+        // tslint:disable-next-line:prefer-object-spread
+        return Object.assign([], data, payload);
+    }
+    // tslint:disable-next-line:prefer-object-spread
+    return Object.assign({}, data, payload);
 }
 /**
  * @param {?} method
@@ -3164,7 +3177,7 @@ function makeMethod(method) {
                 const payload = getValidArgs(data, 'payload', args);
                 /** @type {?} */
                 const supportedBody = method === 'POST' || method === 'PUT';
-                return http.request(method, requestUrl, Object.assign({ body: supportedBody ? Object.assign({}, getValidArgs(data, 'body', args), payload) : null, params: !supportedBody ? Object.assign({}, params, payload) : params, headers: Object.assign({}, baseData.baseHeaders, headers) }, options));
+                return http.request(method, requestUrl, Object.assign({ body: supportedBody ? genBody(getValidArgs(data, 'body', args), payload) : null, params: !supportedBody ? Object.assign({}, params, payload) : params, headers: Object.assign({}, baseData.baseHeaders, headers) }, options));
             });
             return descriptor;
         });
@@ -3531,7 +3544,7 @@ AlainThemeModule.ctorParameters = () => [
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-const VERSION = new Version('8.7.2-1f141a5');
+const VERSION = new Version('8.7.2-375948d');
 
 /**
  * @fileoverview added by tsickle

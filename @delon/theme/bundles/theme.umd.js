@@ -3809,9 +3809,22 @@
      */
     function getValidArgs(data, key, args) {
         if (!data[key] || !Array.isArray(data[key]) || data[key].length <= 0) {
-            return {};
+            return undefined;
         }
         return args[data[key][0].index];
+    }
+    /**
+     * @param {?=} data
+     * @param {?=} payload
+     * @return {?}
+     */
+    function genBody(data, payload) {
+        if (Array.isArray(data) || Array.isArray(payload)) {
+            // tslint:disable-next-line:prefer-object-spread
+            return Object.assign([], data, payload);
+        }
+        // tslint:disable-next-line:prefer-object-spread
+        return Object.assign({}, data, payload);
     }
     /**
      * @param {?} method
@@ -3909,7 +3922,7 @@
                     var payload = getValidArgs(data, 'payload', args);
                     /** @type {?} */
                     var supportedBody = method === 'POST' || method === 'PUT';
-                    return http.request(method, requestUrl, __assign({ body: supportedBody ? __assign({}, getValidArgs(data, 'body', args), payload) : null, params: !supportedBody ? __assign({}, params, payload) : params, headers: __assign({}, baseData.baseHeaders, headers) }, options));
+                    return http.request(method, requestUrl, __assign({ body: supportedBody ? genBody(getValidArgs(data, 'body', args), payload) : null, params: !supportedBody ? __assign({}, params, payload) : params, headers: __assign({}, baseData.baseHeaders, headers) }, options));
                 });
                 return descriptor;
             });
