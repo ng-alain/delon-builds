@@ -2151,7 +2151,7 @@ class SFComponent {
                 if (property.items) {
                     /** @type {?} */
                     const uiSchemaInArr = (uiSchema[uiKey] || {}).$items || {};
-                    ui.$items = Object.assign({}, this._defUi, ((/** @type {?} */ (property.items.ui))), uiSchemaInArr[uiKey], ui.$items);
+                    ui.$items = Object.assign({}, ((/** @type {?} */ (property.items.ui))), uiSchemaInArr[uiKey], ui.$items);
                     inFn(property.items, property.items, uiSchemaInArr, ui.$items, ui.$items);
                 }
                 if (property.properties && Object.keys(property.properties).length) {
