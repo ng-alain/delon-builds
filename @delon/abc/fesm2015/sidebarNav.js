@@ -57,14 +57,23 @@ class SidebarNavComponent {
     }
     /**
      * @private
+     * @param {?} node
+     * @return {?}
+     */
+    getLinkNode(node) {
+        node = node.nodeName === 'A' ? node : ((/** @type {?} */ (node.parentNode)));
+        return node.nodeName !== 'A' ? null : node;
+    }
+    /**
+     * @private
      * @param {?} e
      * @return {?}
      */
     floatingAreaClickHandle(e) {
         e.stopPropagation();
         /** @type {?} */
-        const linkNode = (/** @type {?} */ (e.target));
-        if (linkNode.nodeName !== 'A') {
+        const linkNode = this.getLinkNode((/** @type {?} */ (e.target)));
+        if (linkNode == null) {
             return false;
         }
         /** @type {?} */

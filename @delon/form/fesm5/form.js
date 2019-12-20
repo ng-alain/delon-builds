@@ -7435,6 +7435,12 @@ if (false) {
      */
     SFCascaderWidgetSchema.prototype.selectionChange;
     /**
+     * 选项被选中事件
+     * @deprecated `select` is deprecated and will be removed, Please use `selectionChange` instead.
+     * @type {?|undefined}
+     */
+    SFCascaderWidgetSchema.prototype.select;
+    /**
      * 内容被清空事件
      * @type {?|undefined}
      */
