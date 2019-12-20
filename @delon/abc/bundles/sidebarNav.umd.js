@@ -246,6 +246,20 @@
         });
         /**
          * @private
+         * @param {?} node
+         * @return {?}
+         */
+        SidebarNavComponent.prototype.getLinkNode = /**
+         * @private
+         * @param {?} node
+         * @return {?}
+         */
+        function (node) {
+            node = node.nodeName === 'A' ? node : ((/** @type {?} */ (node.parentNode)));
+            return node.nodeName !== 'A' ? null : node;
+        };
+        /**
+         * @private
          * @param {?} e
          * @return {?}
          */
@@ -257,8 +271,8 @@
         function (e) {
             e.stopPropagation();
             /** @type {?} */
-            var linkNode = (/** @type {?} */ (e.target));
-            if (linkNode.nodeName !== 'A') {
+            var linkNode = this.getLinkNode((/** @type {?} */ (e.target)));
+            if (linkNode == null) {
                 return false;
             }
             /** @type {?} */
