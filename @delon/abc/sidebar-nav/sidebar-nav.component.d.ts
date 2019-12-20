@@ -24,7 +24,6 @@ export declare class SidebarNavComponent implements OnInit, OnDestroy {
     readonly select: EventEmitter<Menu>;
     readonly collapsed: boolean;
     constructor(menuSrv: MenuService, settings: SettingsService, router: Router, render: Renderer2, cdr: ChangeDetectorRef, ngZone: NgZone, sanitizer: DomSanitizer, doc: any, win: Window);
-    private getLinkNode;
     private floatingAreaClickHandle;
     private clearFloatingContainer;
     private genFloatingContainer;
