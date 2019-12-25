@@ -42,7 +42,7 @@ function setDockerfile(host, options) {
     const filePath = `${options.root}/Dockerfile`;
     if (options.type === 'add') {
         alain_1.tryAddFile(host, filePath, `# STEP 1: Build
-FROM node:8-alpine as builder
+FROM node:10 as builder
 
 LABEL authors="cipchk <cipchk@qq.com>"
 
