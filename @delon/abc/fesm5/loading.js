@@ -2,6 +2,8 @@ import { Injectable, ɵɵdefineInjectable, Component, ChangeDetectionStrategy, V
 import { __assign } from 'tslib';
 import { Overlay, OverlayModule } from '@angular/cdk/overlay';
 import { ComponentPortal, PortalModule } from '@angular/cdk/portal';
+import { Subject, timer } from 'rxjs';
+import { debounce } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
@@ -95,32 +97,45 @@ if (false) {
  */
 var LoadingService = /** @class */ (function () {
     function LoadingService(cog, overlay) {
+        var _this = this;
         this.cog = cog;
         this.overlay = overlay;
         this.compRef = null;
+        this.opt = null;
+        this.n$ = new Subject();
+        this.loading$ = this.n$
+            .asObservable()
+            .pipe(debounce((/**
+         * @return {?}
+         */
+        function () { return timer((/** @type {?} */ (_this.opt)).delay); })))
+            .subscribe((/**
+         * @return {?}
+         */
+        function () { return _this.create(); }));
     }
     Object.defineProperty(LoadingService.prototype, "instance", {
         get: /**
          * @return {?}
          */
         function () {
-            return (/** @type {?} */ (this.compRef)).instance;
+            return this.compRef != null ? this.compRef.instance : null;
         },
         enumerable: true,
         configurable: true
     });
     /**
-     * @param {?=} options
+     * @private
      * @return {?}
      */
-    LoadingService.prototype.open = /**
-     * @param {?=} options
+    LoadingService.prototype.create = /**
+     * @private
      * @return {?}
      */
-    function (options) {
-        if (this.compRef)
+    function () {
+        if (this.opt == null)
             return;
-        options = __assign({}, this.cog, options);
+        this._close(false);
         this._overlayRef = this.overlay.create({
             positionStrategy: this.overlay
                 .position()
@@ -134,8 +149,38 @@ var LoadingService = /** @class */ (function () {
         /** @type {?} */
         var comp = new ComponentPortal(LoadingDefaultComponent);
         this.compRef = this._overlayRef.attach(comp);
-        Object.assign(this.instance, { options: options });
-        this.compRef.changeDetectorRef.detectChanges();
+        Object.assign(this.instance, { options: this.opt });
+        this.compRef.changeDetectorRef.markForCheck();
+    };
+    /**
+     * @param {?=} options
+     * @return {?}
+     */
+    LoadingService.prototype.open = /**
+     * @param {?=} options
+     * @return {?}
+     */
+    function (options) {
+        this.opt = __assign({}, this.cog, options);
+        this.n$.next();
+    };
+    /**
+     * @private
+     * @param {?} cleanOpt
+     * @return {?}
+     */
+    LoadingService.prototype._close = /**
+     * @private
+     * @param {?} cleanOpt
+     * @return {?}
+     */
+    function (cleanOpt) {
+        if (cleanOpt)
+            this.opt = null;
+        if (!this._overlayRef)
+            return;
+        this._overlayRef.detach();
+        this.compRef = null;
     };
     /**
      * @return {?}
@@ -144,11 +189,16 @@ var LoadingService = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        if (!this._overlayRef)
-            return;
-        (/** @type {?} */ (this.compRef)).destroy();
-        this._overlayRef.detach();
-        this.compRef = null;
+        this._close(true);
+    };
+    /**
+     * @return {?}
+     */
+    LoadingService.prototype.ngOnDestroy = /**
+     * @return {?}
+     */
+    function () {
+        this.loading$.unsubscribe();
     };
     LoadingService.decorators = [
         { type: Injectable, args: [{ providedIn: 'root' },] }
@@ -172,6 +222,21 @@ if (false) {
      * @private
      */
     LoadingService.prototype.compRef;
+    /**
+     * @type {?}
+     * @private
+     */
+    LoadingService.prototype.opt;
+    /**
+     * @type {?}
+     * @private
+     */
+    LoadingService.prototype.n$;
+    /**
+     * @type {?}
+     * @private
+     */
+    LoadingService.prototype.loading$;
     /**
      * @type {?}
      * @private
@@ -235,15 +300,30 @@ if (false) {
  */
 function LoadingShowOptions() { }
 if (false) {
-    /** @type {?|undefined} */
+    /**
+     * Display type of loading indicator
+     * @type {?|undefined}
+     */
     LoadingShowOptions.prototype.type;
-    /** @type {?|undefined} */
+    /**
+     * Customized description content
+     * @type {?|undefined}
+     */
     LoadingShowOptions.prototype.text;
-    /** @type {?|undefined} */
+    /**
+     * Custom icon
+     * @type {?|undefined}
+     */
     LoadingShowOptions.prototype.icon;
-    /** @type {?|undefined} */
+    /**
+     * Custom loading indicator
+     * @type {?|undefined}
+     */
     LoadingShowOptions.prototype.custom;
-    /** @type {?|undefined} */
+    /**
+     * Specifies a delay in milliseconds for loading state (prevent flush), unit: milliseconds
+     * @type {?|undefined}
+     */
     LoadingShowOptions.prototype.delay;
 }
 

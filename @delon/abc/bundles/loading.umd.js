@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/cdk/overlay'), require('@angular/cdk/portal'), require('@angular/common'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/spin')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/loading', ['exports', '@angular/core', '@angular/cdk/overlay', '@angular/cdk/portal', '@angular/common', 'ng-zorro-antd/icon', 'ng-zorro-antd/spin'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.loading = {}), global.ng.core, global.ng.cdk.overlay, global.ng.cdk.portal, global.ng.common, global['ng-zorro-antd/icon'], global['ng-zorro-antd/spin']));
-}(this, (function (exports, core, overlay, portal, common, icon, spin) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/cdk/overlay'), require('@angular/cdk/portal'), require('rxjs'), require('rxjs/operators'), require('@angular/common'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/spin')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/loading', ['exports', '@angular/core', '@angular/cdk/overlay', '@angular/cdk/portal', 'rxjs', 'rxjs/operators', '@angular/common', 'ng-zorro-antd/icon', 'ng-zorro-antd/spin'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.loading = {}), global.ng.core, global.ng.cdk.overlay, global.ng.cdk.portal, global.rxjs, global.rxjs.operators, global.ng.common, global['ng-zorro-antd/icon'], global['ng-zorro-antd/spin']));
+}(this, (function (exports, core, overlay, portal, rxjs, operators, common, icon, spin) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -295,32 +295,45 @@
      */
     var LoadingService = /** @class */ (function () {
         function LoadingService(cog, overlay) {
+            var _this = this;
             this.cog = cog;
             this.overlay = overlay;
             this.compRef = null;
+            this.opt = null;
+            this.n$ = new rxjs.Subject();
+            this.loading$ = this.n$
+                .asObservable()
+                .pipe(operators.debounce((/**
+             * @return {?}
+             */
+            function () { return rxjs.timer((/** @type {?} */ (_this.opt)).delay); })))
+                .subscribe((/**
+             * @return {?}
+             */
+            function () { return _this.create(); }));
         }
         Object.defineProperty(LoadingService.prototype, "instance", {
             get: /**
              * @return {?}
              */
             function () {
-                return (/** @type {?} */ (this.compRef)).instance;
+                return this.compRef != null ? this.compRef.instance : null;
             },
             enumerable: true,
             configurable: true
         });
         /**
-         * @param {?=} options
+         * @private
          * @return {?}
          */
-        LoadingService.prototype.open = /**
-         * @param {?=} options
+        LoadingService.prototype.create = /**
+         * @private
          * @return {?}
          */
-        function (options) {
-            if (this.compRef)
+        function () {
+            if (this.opt == null)
                 return;
-            options = __assign({}, this.cog, options);
+            this._close(false);
             this._overlayRef = this.overlay.create({
                 positionStrategy: this.overlay
                     .position()
@@ -334,8 +347,38 @@
             /** @type {?} */
             var comp = new portal.ComponentPortal(LoadingDefaultComponent);
             this.compRef = this._overlayRef.attach(comp);
-            Object.assign(this.instance, { options: options });
-            this.compRef.changeDetectorRef.detectChanges();
+            Object.assign(this.instance, { options: this.opt });
+            this.compRef.changeDetectorRef.markForCheck();
+        };
+        /**
+         * @param {?=} options
+         * @return {?}
+         */
+        LoadingService.prototype.open = /**
+         * @param {?=} options
+         * @return {?}
+         */
+        function (options) {
+            this.opt = __assign({}, this.cog, options);
+            this.n$.next();
+        };
+        /**
+         * @private
+         * @param {?} cleanOpt
+         * @return {?}
+         */
+        LoadingService.prototype._close = /**
+         * @private
+         * @param {?} cleanOpt
+         * @return {?}
+         */
+        function (cleanOpt) {
+            if (cleanOpt)
+                this.opt = null;
+            if (!this._overlayRef)
+                return;
+            this._overlayRef.detach();
+            this.compRef = null;
         };
         /**
          * @return {?}
@@ -344,11 +387,16 @@
          * @return {?}
          */
         function () {
-            if (!this._overlayRef)
-                return;
-            (/** @type {?} */ (this.compRef)).destroy();
-            this._overlayRef.detach();
-            this.compRef = null;
+            this._close(true);
+        };
+        /**
+         * @return {?}
+         */
+        LoadingService.prototype.ngOnDestroy = /**
+         * @return {?}
+         */
+        function () {
+            this.loading$.unsubscribe();
         };
         LoadingService.decorators = [
             { type: core.Injectable, args: [{ providedIn: 'root' },] }
@@ -372,6 +420,21 @@
          * @private
          */
         LoadingService.prototype.compRef;
+        /**
+         * @type {?}
+         * @private
+         */
+        LoadingService.prototype.opt;
+        /**
+         * @type {?}
+         * @private
+         */
+        LoadingService.prototype.n$;
+        /**
+         * @type {?}
+         * @private
+         */
+        LoadingService.prototype.loading$;
         /**
          * @type {?}
          * @private
@@ -435,15 +498,30 @@
      */
     function LoadingShowOptions() { }
     if (false) {
-        /** @type {?|undefined} */
+        /**
+         * Display type of loading indicator
+         * @type {?|undefined}
+         */
         LoadingShowOptions.prototype.type;
-        /** @type {?|undefined} */
+        /**
+         * Customized description content
+         * @type {?|undefined}
+         */
         LoadingShowOptions.prototype.text;
-        /** @type {?|undefined} */
+        /**
+         * Custom icon
+         * @type {?|undefined}
+         */
         LoadingShowOptions.prototype.icon;
-        /** @type {?|undefined} */
+        /**
+         * Custom loading indicator
+         * @type {?|undefined}
+         */
         LoadingShowOptions.prototype.custom;
-        /** @type {?|undefined} */
+        /**
+         * Specifies a delay in milliseconds for loading state (prevent flush), unit: milliseconds
+         * @type {?|undefined}
+         */
         LoadingShowOptions.prototype.delay;
     }
 
