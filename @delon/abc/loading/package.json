@@ -1,0 +1,13 @@
+{
+  "main": "../bundles/loading.umd.js",
+  "module": "../fesm5/loading.js",
+  "es2015": "../fesm2015/loading.js",
+  "esm5": "../esm5/loading/loading.js",
+  "esm2015": "../esm2015/loading/loading.js",
+  "fesm5": "../fesm5/loading.js",
+  "fesm2015": "../fesm2015/loading.js",
+  "typings": "loading.d.ts",
+  "metadata": "loading.metadata.json",
+  "sideEffects": false,
+  "name": "@delon/abc/loading"
+}

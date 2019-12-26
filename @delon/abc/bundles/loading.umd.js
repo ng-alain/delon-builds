@@ -1,0 +1,458 @@
+/**
+ * @license ng-alain(cipchk@qq.com) v8.7.3
+ * (c) 2019 cipchk https://ng-alain.com/
+ * License: MIT
+ */
+(function (global, factory) {
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/cdk/overlay'), require('@angular/cdk/portal'), require('@angular/common'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/spin')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/loading', ['exports', '@angular/core', '@angular/cdk/overlay', '@angular/cdk/portal', '@angular/common', 'ng-zorro-antd/icon', 'ng-zorro-antd/spin'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.loading = {}), global.ng.core, global.ng.cdk.overlay, global.ng.cdk.portal, global.ng.common, global['ng-zorro-antd/icon'], global['ng-zorro-antd/spin']));
+}(this, (function (exports, core, overlay, portal, common, icon, spin) { 'use strict';
+
+    /*! *****************************************************************************
+    Copyright (c) Microsoft Corporation. All rights reserved.
+    Licensed under the Apache License, Version 2.0 (the "License"); you may not use
+    this file except in compliance with the License. You may obtain a copy of the
+    License at http://www.apache.org/licenses/LICENSE-2.0
+
+    THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+    KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
+    WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
+    MERCHANTABLITY OR NON-INFRINGEMENT.
+
+    See the Apache Version 2.0 License for specific language governing permissions
+    and limitations under the License.
+    ***************************************************************************** */
+    /* global Reflect, Promise */
+
+    var extendStatics = function(d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+
+    function __extends(d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    }
+
+    var __assign = function() {
+        __assign = Object.assign || function __assign(t) {
+            for (var s, i = 1, n = arguments.length; i < n; i++) {
+                s = arguments[i];
+                for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+            }
+            return t;
+        };
+        return __assign.apply(this, arguments);
+    };
+
+    function __rest(s, e) {
+        var t = {};
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+            t[p] = s[p];
+        if (s != null && typeof Object.getOwnPropertySymbols === "function")
+            for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+                if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                    t[p[i]] = s[p[i]];
+            }
+        return t;
+    }
+
+    function __decorate(decorators, target, key, desc) {
+        var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+        if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+        else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+        return c > 3 && r && Object.defineProperty(target, key, r), r;
+    }
+
+    function __param(paramIndex, decorator) {
+        return function (target, key) { decorator(target, key, paramIndex); }
+    }
+
+    function __metadata(metadataKey, metadataValue) {
+        if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(metadataKey, metadataValue);
+    }
+
+    function __awaiter(thisArg, _arguments, P, generator) {
+        return new (P || (P = Promise))(function (resolve, reject) {
+            function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+            function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+            function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+            step((generator = generator.apply(thisArg, _arguments || [])).next());
+        });
+    }
+
+    function __generator(thisArg, body) {
+        var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+        return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+        function verb(n) { return function (v) { return step([n, v]); }; }
+        function step(op) {
+            if (f) throw new TypeError("Generator is already executing.");
+            while (_) try {
+                if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+                if (y = 0, t) op = [op[0] & 2, t.value];
+                switch (op[0]) {
+                    case 0: case 1: t = op; break;
+                    case 4: _.label++; return { value: op[1], done: false };
+                    case 5: _.label++; y = op[1]; op = [0]; continue;
+                    case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                    default:
+                        if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                        if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                        if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                        if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                        if (t[2]) _.ops.pop();
+                        _.trys.pop(); continue;
+                }
+                op = body.call(thisArg, _);
+            } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+            if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+        }
+    }
+
+    function __exportStar(m, exports) {
+        for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+    }
+
+    function __values(o) {
+        var m = typeof Symbol === "function" && o[Symbol.iterator], i = 0;
+        if (m) return m.call(o);
+        return {
+            next: function () {
+                if (o && i >= o.length) o = void 0;
+                return { value: o && o[i++], done: !o };
+            }
+        };
+    }
+
+    function __read(o, n) {
+        var m = typeof Symbol === "function" && o[Symbol.iterator];
+        if (!m) return o;
+        var i = m.call(o), r, ar = [], e;
+        try {
+            while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
+        }
+        catch (error) { e = { error: error }; }
+        finally {
+            try {
+                if (r && !r.done && (m = i["return"])) m.call(i);
+            }
+            finally { if (e) throw e.error; }
+        }
+        return ar;
+    }
+
+    function __spread() {
+        for (var ar = [], i = 0; i < arguments.length; i++)
+            ar = ar.concat(__read(arguments[i]));
+        return ar;
+    }
+
+    function __spreadArrays() {
+        for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
+        for (var r = Array(s), k = 0, i = 0; i < il; i++)
+            for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
+                r[k] = a[j];
+        return r;
+    };
+
+    function __await(v) {
+        return this instanceof __await ? (this.v = v, this) : new __await(v);
+    }
+
+    function __asyncGenerator(thisArg, _arguments, generator) {
+        if (!Symbol.asyncIterator) throw new TypeError("Symbol.asyncIterator is not defined.");
+        var g = generator.apply(thisArg, _arguments || []), i, q = [];
+        return i = {}, verb("next"), verb("throw"), verb("return"), i[Symbol.asyncIterator] = function () { return this; }, i;
+        function verb(n) { if (g[n]) i[n] = function (v) { return new Promise(function (a, b) { q.push([n, v, a, b]) > 1 || resume(n, v); }); }; }
+        function resume(n, v) { try { step(g[n](v)); } catch (e) { settle(q[0][3], e); } }
+        function step(r) { r.value instanceof __await ? Promise.resolve(r.value.v).then(fulfill, reject) : settle(q[0][2], r); }
+        function fulfill(value) { resume("next", value); }
+        function reject(value) { resume("throw", value); }
+        function settle(f, v) { if (f(v), q.shift(), q.length) resume(q[0][0], q[0][1]); }
+    }
+
+    function __asyncDelegator(o) {
+        var i, p;
+        return i = {}, verb("next"), verb("throw", function (e) { throw e; }), verb("return"), i[Symbol.iterator] = function () { return this; }, i;
+        function verb(n, f) { i[n] = o[n] ? function (v) { return (p = !p) ? { value: __await(o[n](v)), done: n === "return" } : f ? f(v) : v; } : f; }
+    }
+
+    function __asyncValues(o) {
+        if (!Symbol.asyncIterator) throw new TypeError("Symbol.asyncIterator is not defined.");
+        var m = o[Symbol.asyncIterator], i;
+        return m ? m.call(o) : (o = typeof __values === "function" ? __values(o) : o[Symbol.iterator](), i = {}, verb("next"), verb("throw"), verb("return"), i[Symbol.asyncIterator] = function () { return this; }, i);
+        function verb(n) { i[n] = o[n] && function (v) { return new Promise(function (resolve, reject) { v = o[n](v), settle(resolve, reject, v.done, v.value); }); }; }
+        function settle(resolve, reject, d, v) { Promise.resolve(v).then(function(v) { resolve({ value: v, done: d }); }, reject); }
+    }
+
+    function __makeTemplateObject(cooked, raw) {
+        if (Object.defineProperty) { Object.defineProperty(cooked, "raw", { value: raw }); } else { cooked.raw = raw; }
+        return cooked;
+    };
+
+    function __importStar(mod) {
+        if (mod && mod.__esModule) return mod;
+        var result = {};
+        if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
+        result.default = mod;
+        return result;
+    }
+
+    function __importDefault(mod) {
+        return (mod && mod.__esModule) ? mod : { default: mod };
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: loading.config.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var LoadingConfig = /** @class */ (function () {
+        function LoadingConfig() {
+            this.type = 'spin';
+            this.text = '加载中...';
+            this.icon = {
+                type: 'loading',
+                theme: 'outline',
+                spin: true,
+            };
+            this.delay = 0;
+        }
+        LoadingConfig.decorators = [
+            { type: core.Injectable, args: [{ providedIn: 'root' },] }
+        ];
+        /** @nocollapse */ LoadingConfig.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function LoadingConfig_Factory() { return new LoadingConfig(); }, token: LoadingConfig, providedIn: "root" });
+        return LoadingConfig;
+    }());
+    if (false) {
+        /** @type {?} */
+        LoadingConfig.prototype.type;
+        /** @type {?} */
+        LoadingConfig.prototype.text;
+        /** @type {?} */
+        LoadingConfig.prototype.icon;
+        /** @type {?} */
+        LoadingConfig.prototype.custom;
+        /** @type {?} */
+        LoadingConfig.prototype.delay;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: loading.component.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var LoadingDefaultComponent = /** @class */ (function () {
+        function LoadingDefaultComponent() {
+        }
+        Object.defineProperty(LoadingDefaultComponent.prototype, "icon", {
+            get: /**
+             * @return {?}
+             */
+            function () {
+                return (/** @type {?} */ (this.options.icon));
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(LoadingDefaultComponent.prototype, "custom", {
+            get: /**
+             * @return {?}
+             */
+            function () {
+                return (/** @type {?} */ (this.options.custom));
+            },
+            enumerable: true,
+            configurable: true
+        });
+        LoadingDefaultComponent.decorators = [
+            { type: core.Component, args: [{
+                        selector: 'loading-default',
+                        template: "<div class=\"loading-default__icon\" *ngIf=\"options.type !== 'text'\">\n  <ng-container [ngSwitch]=\"options.type\">\n    <nz-spin *ngSwitchCase=\"'spin'\" nzSimple></nz-spin>\n    <i *ngSwitchCase=\"'icon'\" nz-icon [nzType]=\"icon.type\" [nzTheme]=\"icon.theme\" [nzSpin]=\"icon.spin\"></i>\n    <div *ngSwitchDefault class=\"loading-default__custom\" [ngStyle]=\"custom.style\" [innerHTML]=\"custom.html\"></div>\n  </ng-container>\n</div>\n<div *ngIf=\"options.text\" class=\"loading-default__text\">{{ options.text }}</div>",
+                        host: {
+                            '[class.loading-default]': 'true',
+                        },
+                        preserveWhitespaces: false,
+                        changeDetection: core.ChangeDetectionStrategy.OnPush,
+                        encapsulation: core.ViewEncapsulation.None
+                    }] }
+        ];
+        return LoadingDefaultComponent;
+    }());
+    if (false) {
+        /** @type {?} */
+        LoadingDefaultComponent.prototype.options;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: loading.service.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var LoadingService = /** @class */ (function () {
+        function LoadingService(cog, overlay) {
+            this.cog = cog;
+            this.overlay = overlay;
+            this.compRef = null;
+        }
+        Object.defineProperty(LoadingService.prototype, "instance", {
+            get: /**
+             * @return {?}
+             */
+            function () {
+                return (/** @type {?} */ (this.compRef)).instance;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        /**
+         * @param {?=} options
+         * @return {?}
+         */
+        LoadingService.prototype.open = /**
+         * @param {?=} options
+         * @return {?}
+         */
+        function (options) {
+            if (this.compRef)
+                return;
+            options = __assign({}, this.cog, options);
+            this._overlayRef = this.overlay.create({
+                positionStrategy: this.overlay
+                    .position()
+                    .global()
+                    .centerHorizontally()
+                    .centerVertically(),
+                scrollStrategy: this.overlay.scrollStrategies.block(),
+                hasBackdrop: true,
+                backdropClass: 'loading-backdrop',
+            });
+            /** @type {?} */
+            var comp = new portal.ComponentPortal(LoadingDefaultComponent);
+            this.compRef = this._overlayRef.attach(comp);
+            Object.assign(this.instance, { options: options });
+            this.compRef.changeDetectorRef.detectChanges();
+        };
+        /**
+         * @return {?}
+         */
+        LoadingService.prototype.close = /**
+         * @return {?}
+         */
+        function () {
+            if (!this._overlayRef)
+                return;
+            (/** @type {?} */ (this.compRef)).destroy();
+            this._overlayRef.detach();
+            this.compRef = null;
+        };
+        LoadingService.decorators = [
+            { type: core.Injectable, args: [{ providedIn: 'root' },] }
+        ];
+        /** @nocollapse */
+        LoadingService.ctorParameters = function () { return [
+            { type: LoadingConfig },
+            { type: overlay.Overlay }
+        ]; };
+        /** @nocollapse */ LoadingService.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function LoadingService_Factory() { return new LoadingService(core.ɵɵinject(LoadingConfig), core.ɵɵinject(overlay.Overlay)); }, token: LoadingService, providedIn: "root" });
+        return LoadingService;
+    }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        LoadingService.prototype._overlayRef;
+        /**
+         * @type {?}
+         * @private
+         */
+        LoadingService.prototype.compRef;
+        /**
+         * @type {?}
+         * @private
+         */
+        LoadingService.prototype.cog;
+        /**
+         * @type {?}
+         * @private
+         */
+        LoadingService.prototype.overlay;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: loading.module.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var LoadingModule = /** @class */ (function () {
+        function LoadingModule() {
+        }
+        LoadingModule.decorators = [
+            { type: core.NgModule, args: [{
+                        imports: [common.CommonModule, overlay.OverlayModule, portal.PortalModule, icon.NzIconModule, spin.NzSpinModule],
+                        declarations: [LoadingDefaultComponent],
+                        entryComponents: [LoadingDefaultComponent],
+                        exports: [LoadingDefaultComponent],
+                    },] }
+        ];
+        return LoadingModule;
+    }());
+
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: loading.interfaces.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /**
+     * @record
+     */
+    function LoadingIcon() { }
+    if (false) {
+        /** @type {?|undefined} */
+        LoadingIcon.prototype.type;
+        /** @type {?|undefined} */
+        LoadingIcon.prototype.theme;
+        /** @type {?|undefined} */
+        LoadingIcon.prototype.spin;
+    }
+    /**
+     * @record
+     */
+    function LoadingCustom() { }
+    if (false) {
+        /** @type {?|undefined} */
+        LoadingCustom.prototype.html;
+        /** @type {?|undefined} */
+        LoadingCustom.prototype.style;
+    }
+    /**
+     * @record
+     */
+    function LoadingShowOptions() { }
+    if (false) {
+        /** @type {?|undefined} */
+        LoadingShowOptions.prototype.type;
+        /** @type {?|undefined} */
+        LoadingShowOptions.prototype.text;
+        /** @type {?|undefined} */
+        LoadingShowOptions.prototype.icon;
+        /** @type {?|undefined} */
+        LoadingShowOptions.prototype.custom;
+        /** @type {?|undefined} */
+        LoadingShowOptions.prototype.delay;
+    }
+
+    exports.LoadingConfig = LoadingConfig;
+    exports.LoadingDefaultComponent = LoadingDefaultComponent;
+    exports.LoadingModule = LoadingModule;
+    exports.LoadingService = LoadingService;
+
+    Object.defineProperty(exports, '__esModule', { value: true });
+
+})));
+//# sourceMappingURL=loading.umd.js.map

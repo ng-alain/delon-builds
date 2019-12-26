@@ -27823,6 +27823,36 @@ ellipsis {
 .down-file__not-support {
   display: none;
 }
+.loading-backdrop {
+  z-index: 9999;
+  background-color: rgba(0, 0, 0, 0.15);
+  opacity: 1;
+}
+.loading-default {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.loading-default__icon {
+  margin-bottom: 8px;
+  color: #1890ff;
+  font-size: 24px;
+}
+.loading-default__text {
+  color: #1890ff;
+}
+.loading-default__custom {
+  width: 64px;
+  height: 64px;
+  fill: #ffffff;
+}
 g2-chart,
 g2-bar,
 g2-gauge,

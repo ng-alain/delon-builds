@@ -52,6 +52,8 @@ import { QRModule } from '@delon/abc/qr';
 export { QRComponent, QRConfig, QRModule, QRService } from '@delon/abc/qr';
 import { DatePickerModule } from '@delon/abc/date-picker';
 export { DatePickerConfig, DatePickerModule, DateRangePickerConfig, RangePickerComponent } from '@delon/abc/date-picker';
+import { LoadingModule } from '@delon/abc/loading';
+export { LoadingConfig, LoadingDefaultComponent, LoadingModule, LoadingService } from '@delon/abc/loading';
 import { NgModule } from '@angular/core';
 
 /**
@@ -88,6 +90,7 @@ const MODULES = [
     SEModule,
     SGModule,
     DatePickerModule,
+    LoadingModule,
 ];
 class DelonABCModule {
 }

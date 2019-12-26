@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@delon/abc/avatar-list'), require('@delon/abc/count-down'), require('@delon/abc/table'), require('@delon/abc/view'), require('@delon/abc/edit'), require('@delon/abc/grid'), require('@delon/abc/error-collect'), require('@delon/abc/footer-toolbar'), require('@delon/abc/sidebar-nav'), require('@delon/abc/down-file'), require('@delon/abc/image'), require('@delon/abc/ellipsis'), require('@delon/abc/global-footer'), require('@delon/abc/exception'), require('@delon/abc/notice-icon'), require('@delon/abc/page-header'), require('@delon/abc/result'), require('@delon/abc/tag-select'), require('@delon/abc/reuse-tab'), require('@delon/abc/full-content'), require('@delon/abc/xlsx'), require('@delon/abc/zip'), require('@delon/abc/number-to-chinese'), require('@delon/abc/lodop'), require('@delon/abc/quick-menu'), require('@delon/abc/qr'), require('@delon/abc/date-picker'), require('@angular/core')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc', ['exports', '@delon/abc/avatar-list', '@delon/abc/count-down', '@delon/abc/table', '@delon/abc/view', '@delon/abc/edit', '@delon/abc/grid', '@delon/abc/error-collect', '@delon/abc/footer-toolbar', '@delon/abc/sidebar-nav', '@delon/abc/down-file', '@delon/abc/image', '@delon/abc/ellipsis', '@delon/abc/global-footer', '@delon/abc/exception', '@delon/abc/notice-icon', '@delon/abc/page-header', '@delon/abc/result', '@delon/abc/tag-select', '@delon/abc/reuse-tab', '@delon/abc/full-content', '@delon/abc/xlsx', '@delon/abc/zip', '@delon/abc/number-to-chinese', '@delon/abc/lodop', '@delon/abc/quick-menu', '@delon/abc/qr', '@delon/abc/date-picker', '@angular/core'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = {}), global.delon.abc['avatar-list'], global.delon.abc['count-down'], global.delon.abc.table, global.delon.abc.view, global.delon.abc.edit, global.delon.abc.grid, global.delon.abc['error-collect'], global.delon.abc['footer-toolbar'], global.delon.abc['sidebar-nav'], global.delon.abc['down-file'], global.delon.abc.image, global.delon.abc.ellipsis, global.delon.abc['global-footer'], global.delon.abc.exception, global.delon.abc['notice-icon'], global.delon.abc['page-header'], global.delon.abc.result, global.delon.abc['tag-select'], global.delon.abc['reuse-tab'], global.delon.abc['full-content'], global.delon.abc.xlsx, global.delon.abc.zip, global.delon.abc['number-to-chinese'], global.delon.abc.lodop, global.delon.abc['quick-menu'], global.delon.abc.qr, global.delon.abc['date-picker'], global.ng.core));
-}(this, (function (exports, avatarList, countDown, table, view, edit, grid, errorCollect, footerToolbar, sidebarNav, downFile, image, ellipsis, globalFooter, exception, noticeIcon, pageHeader, result, tagSelect, reuseTab, fullContent, xlsx, zip, numberToChinese, lodop, quickMenu, qr, datePicker, core) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@delon/abc/avatar-list'), require('@delon/abc/count-down'), require('@delon/abc/table'), require('@delon/abc/view'), require('@delon/abc/edit'), require('@delon/abc/grid'), require('@delon/abc/error-collect'), require('@delon/abc/footer-toolbar'), require('@delon/abc/sidebar-nav'), require('@delon/abc/down-file'), require('@delon/abc/image'), require('@delon/abc/ellipsis'), require('@delon/abc/global-footer'), require('@delon/abc/exception'), require('@delon/abc/notice-icon'), require('@delon/abc/page-header'), require('@delon/abc/result'), require('@delon/abc/tag-select'), require('@delon/abc/reuse-tab'), require('@delon/abc/full-content'), require('@delon/abc/xlsx'), require('@delon/abc/zip'), require('@delon/abc/number-to-chinese'), require('@delon/abc/lodop'), require('@delon/abc/quick-menu'), require('@delon/abc/qr'), require('@delon/abc/date-picker'), require('@delon/abc/loading'), require('@angular/core')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc', ['exports', '@delon/abc/avatar-list', '@delon/abc/count-down', '@delon/abc/table', '@delon/abc/view', '@delon/abc/edit', '@delon/abc/grid', '@delon/abc/error-collect', '@delon/abc/footer-toolbar', '@delon/abc/sidebar-nav', '@delon/abc/down-file', '@delon/abc/image', '@delon/abc/ellipsis', '@delon/abc/global-footer', '@delon/abc/exception', '@delon/abc/notice-icon', '@delon/abc/page-header', '@delon/abc/result', '@delon/abc/tag-select', '@delon/abc/reuse-tab', '@delon/abc/full-content', '@delon/abc/xlsx', '@delon/abc/zip', '@delon/abc/number-to-chinese', '@delon/abc/lodop', '@delon/abc/quick-menu', '@delon/abc/qr', '@delon/abc/date-picker', '@delon/abc/loading', '@angular/core'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = {}), global.delon.abc['avatar-list'], global.delon.abc['count-down'], global.delon.abc.table, global.delon.abc.view, global.delon.abc.edit, global.delon.abc.grid, global.delon.abc['error-collect'], global.delon.abc['footer-toolbar'], global.delon.abc['sidebar-nav'], global.delon.abc['down-file'], global.delon.abc.image, global.delon.abc.ellipsis, global.delon.abc['global-footer'], global.delon.abc.exception, global.delon.abc['notice-icon'], global.delon.abc['page-header'], global.delon.abc.result, global.delon.abc['tag-select'], global.delon.abc['reuse-tab'], global.delon.abc['full-content'], global.delon.abc.xlsx, global.delon.abc.zip, global.delon.abc['number-to-chinese'], global.delon.abc.lodop, global.delon.abc['quick-menu'], global.delon.abc.qr, global.delon.abc['date-picker'], global.delon.abc.loading, global.ng.core));
+}(this, (function (exports, avatarList, countDown, table, view, edit, grid, errorCollect, footerToolbar, sidebarNav, downFile, image, ellipsis, globalFooter, exception, noticeIcon, pageHeader, result, tagSelect, reuseTab, fullContent, xlsx, zip, numberToChinese, lodop, quickMenu, qr, datePicker, loading, core) { 'use strict';
 
     /**
      * @fileoverview added by tsickle
@@ -43,6 +43,7 @@
         edit.SEModule,
         grid.SGModule,
         datePicker.DatePickerModule,
+        loading.LoadingModule,
     ];
     var DelonABCModule = /** @class */ (function () {
         function DelonABCModule() {
@@ -609,6 +610,30 @@
         enumerable: true,
         get: function () {
             return datePicker.RangePickerComponent;
+        }
+    });
+    Object.defineProperty(exports, 'LoadingConfig', {
+        enumerable: true,
+        get: function () {
+            return loading.LoadingConfig;
+        }
+    });
+    Object.defineProperty(exports, 'LoadingDefaultComponent', {
+        enumerable: true,
+        get: function () {
+            return loading.LoadingDefaultComponent;
+        }
+    });
+    Object.defineProperty(exports, 'LoadingModule', {
+        enumerable: true,
+        get: function () {
+            return loading.LoadingModule;
+        }
+    });
+    Object.defineProperty(exports, 'LoadingService', {
+        enumerable: true,
+        get: function () {
+            return loading.LoadingService;
         }
     });
     exports.DelonABCModule = DelonABCModule;
