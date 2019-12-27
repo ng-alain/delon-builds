@@ -7,7 +7,7 @@ import { STDataSource } from './table-data-source';
 import { STExport } from './table-export';
 import { STConfig } from './table.config';
 import { STChange, STColumn, STColumnButton, STColumnFilterMenu, STColumnSelection, STData, STError, STExportOptions, STLoadOptions, STPage, STReq, STRes, STRowClassName, STSingleSort, STStatisticalResults, STWidthMode, STResetColumnsOption } from './table.interfaces';
-import { NzTableComponent } from 'ng-zorro-antd/table';
+import { NzTableComponent } from 'ng-zorro-antd';
 export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy {
     private cdr;
     private cog;

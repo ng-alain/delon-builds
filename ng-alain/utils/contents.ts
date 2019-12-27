@@ -1,7 +1,7 @@
 export const HMR_CONTENT = {
   HMR_DOT_TS: `import { NgModuleRef, ApplicationRef } from '@angular/core';
 import { createNewHosts } from '@angularclass/hmr';
-import { NzModalService } from 'ng-zorro-antd/modal';
+import { NzModalService } from 'ng-zorro-antd';
 
 export const hmrBootstrap = (
   module: any,
