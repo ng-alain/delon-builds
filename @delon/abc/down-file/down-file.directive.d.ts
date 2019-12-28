@@ -12,7 +12,7 @@ export declare class DownFileDirective {
     /** 下载地址 */
     httpUrl: string;
     /** 指定文件名，若为空从服务端返回的 `header` 中获取 `filename`、`x-filename` */
-    fileName: string;
+    fileName: string | ((rep: HttpResponse<Blob>) => string);
     /** 成功回调 */
     readonly success: EventEmitter<HttpResponse<Blob>>;
     /** 错误回调 */

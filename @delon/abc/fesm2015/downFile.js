@@ -113,12 +113,12 @@ class DownFileDirective {
             /** @type {?} */
             const disposition = this.getDisposition(res.headers.get('content-disposition'));
             /** @type {?} */
-            const fileName = this.fileName ||
-                disposition[`filename*`] ||
-                disposition[`filename`] ||
-                res.headers.get('filename') ||
-                res.headers.get('x-filename');
-            saveAs(res.body, decodeURI(fileName));
+            let fileName = this.fileName;
+            if (typeof fileName === 'function')
+                fileName = fileName(res);
+            fileName =
+                fileName || disposition[`filename*`] || disposition[`filename`] || res.headers.get('filename') || res.headers.get('x-filename');
+            saveAs(res.body, decodeURI((/** @type {?} */ (fileName))));
             this.success.emit(res);
         }), (/**
          * @param {?} err
