@@ -36,6 +36,7 @@ export declare class SidebarNavComponent implements OnInit, OnDestroy {
     toggleOpen(item: Nav): void;
     _click(): void;
     _docClick(): void;
+    private openedByUrl;
     ngOnInit(): void;
     ngOnDestroy(): void;
     private readonly isPad;

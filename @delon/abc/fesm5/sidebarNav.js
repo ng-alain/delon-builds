@@ -318,7 +318,42 @@ var SidebarNavComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        this.hideAll();
+        if (this.collapsed) {
+            this.hideAll();
+        }
+    };
+    /**
+     * @private
+     * @param {?} url
+     * @return {?}
+     */
+    SidebarNavComponent.prototype.openedByUrl = /**
+     * @private
+     * @param {?} url
+     * @return {?}
+     */
+    function (url) {
+        var _a = this, menuSrv = _a.menuSrv, recursivePath = _a.recursivePath, openStrictly = _a.openStrictly;
+        /** @type {?} */
+        var findItem = menuSrv.getHit(this.menuSrv.menus, (/** @type {?} */ (url)), recursivePath, (/**
+         * @param {?} i
+         * @return {?}
+         */
+        function (i) {
+            i._selected = false;
+            if (!openStrictly) {
+                i._open = false;
+            }
+        }));
+        if (findItem == null)
+            return;
+        do {
+            findItem._selected = true;
+            if (!openStrictly) {
+                findItem._open = true;
+            }
+            findItem = findItem.__parent;
+        } while (findItem);
     };
     /**
      * @return {?}
@@ -330,7 +365,7 @@ var SidebarNavComponent = /** @class */ (function () {
         var _this = this;
         var _a = this, doc = _a.doc, router = _a.router, unsubscribe$ = _a.unsubscribe$, menuSrv = _a.menuSrv, cdr = _a.cdr;
         this.bodyEl = doc.querySelector('body');
-        menuSrv.openedByUrl(router.url, this.recursivePath);
+        this.openedByUrl(router.url);
         this.ngZone.runOutsideAngular((/**
          * @return {?}
          */
@@ -370,7 +405,7 @@ var SidebarNavComponent = /** @class */ (function () {
          */
         function (e) {
             if (e instanceof NavigationEnd) {
-                _this.menuSrv.openedByUrl(e.urlAfterRedirects, _this.recursivePath);
+                _this.openedByUrl(e.urlAfterRedirects);
                 _this.underPad();
                 _this.cdr.detectChanges();
             }
