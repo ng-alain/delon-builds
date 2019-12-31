@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/schema",
-  "id": "SchematicsNgAlainTplComponent",
-  "title": "Ng Alain Tpl Options Schema",
+  "id": "SchematicsNgAlainViewComponent",
+  "title": "Ng Alain View Component Options Schema",
   "type": "object",
   "properties": {
     "path": {
@@ -140,6 +140,5 @@
     "name",
     "module",
     "modal"
-  ],
-  "additionalProperties": true
+  ]
 }

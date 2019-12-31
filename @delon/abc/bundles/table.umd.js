@@ -1416,10 +1416,15 @@
          */
         STChange.prototype.filter;
         /**
-         * 行点击或双击参数
+         * 行点击参数
          * @type {?|undefined}
          */
         STChange.prototype.click;
+        /**
+         * 行双击参数
+         * @type {?|undefined}
+         */
+        STChange.prototype.dblClick;
         /**
          * `expand` 参数
          * @type {?|undefined}
