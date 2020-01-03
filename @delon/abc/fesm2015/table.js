@@ -2457,7 +2457,7 @@ class STDataSource {
                 text = this.currentyPipe.transform(value);
                 break;
             case 'date':
-                text = value === col.default ? col.default : this.datePipe.transform(value, col.dateFormat);
+                text = this.datePipe.transform(value, col.dateFormat);
                 break;
             case 'yn':
                 text = this.ynPipe.transform(value === (/** @type {?} */ (col.yn)).truth, (/** @type {?} */ ((/** @type {?} */ (col.yn)).yes)), (/** @type {?} */ ((/** @type {?} */ (col.yn)).no)), (/** @type {?} */ ((/** @type {?} */ (col.yn)).mode)));
