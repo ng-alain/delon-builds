@@ -9765,11 +9765,10 @@ a.ant-btn-sm {
 }
 .ant-calendar-range .ant-calendar-input-disabled,
 .ant-calendar-range .ant-calendar-time-picker-input-disabled {
+  color: rgba(0, 0, 0, 0.25);
   background-color: #f5f5f5;
   cursor: not-allowed;
   opacity: 1;
-  color: rgba(0, 0, 0, 0.25);
-  pointer-events: none;
 }
 .ant-calendar-range .ant-calendar-input-disabled:hover,
 .ant-calendar-range .ant-calendar-time-picker-input-disabled:hover {
@@ -9778,11 +9777,10 @@ a.ant-btn-sm {
 }
 .ant-calendar-range .ant-calendar-input[disabled],
 .ant-calendar-range .ant-calendar-time-picker-input[disabled] {
+  color: rgba(0, 0, 0, 0.25);
   background-color: #f5f5f5;
   cursor: not-allowed;
   opacity: 1;
-  color: rgba(0, 0, 0, 0.25);
-  pointer-events: none;
 }
 .ant-calendar-range .ant-calendar-input[disabled]:hover,
 .ant-calendar-range .ant-calendar-time-picker-input[disabled]:hover {
@@ -10934,22 +10932,20 @@ li.ant-calendar-time-picker-select-option-disabled:hover {
   box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
 }
 .ant-input-disabled {
+  color: rgba(0, 0, 0, 0.25);
   background-color: #f5f5f5;
   cursor: not-allowed;
   opacity: 1;
-  color: rgba(0, 0, 0, 0.25);
-  pointer-events: none;
 }
 .ant-input-disabled:hover {
   border-color: #d9d9d9;
   border-right-width: 1px !important;
 }
 .ant-input[disabled] {
+  color: rgba(0, 0, 0, 0.25);
   background-color: #f5f5f5;
   cursor: not-allowed;
   opacity: 1;
-  color: rgba(0, 0, 0, 0.25);
-  pointer-events: none;
 }
 .ant-input[disabled]:hover {
   border-color: #d9d9d9;
@@ -11610,22 +11606,20 @@ li.ant-time-picker-panel-select-option-disabled:hover {
   box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
 }
 .ant-time-picker-input-disabled {
+  color: rgba(0, 0, 0, 0.25);
   background-color: #f5f5f5;
   cursor: not-allowed;
   opacity: 1;
-  color: rgba(0, 0, 0, 0.25);
-  pointer-events: none;
 }
 .ant-time-picker-input-disabled:hover {
   border-color: #d9d9d9;
   border-right-width: 1px !important;
 }
 .ant-time-picker-input[disabled] {
+  color: rgba(0, 0, 0, 0.25);
   background-color: #f5f5f5;
   cursor: not-allowed;
   opacity: 1;
-  color: rgba(0, 0, 0, 0.25);
-  pointer-events: none;
 }
 .ant-time-picker-input[disabled]:hover {
   border-color: #d9d9d9;
@@ -11649,11 +11643,10 @@ textarea.ant-time-picker-input {
   padding: 1px 7px;
 }
 .ant-time-picker-input[disabled] {
+  color: rgba(0, 0, 0, 0.25);
   background-color: #f5f5f5;
   cursor: not-allowed;
   opacity: 1;
-  color: rgba(0, 0, 0, 0.25);
-  pointer-events: none;
 }
 .ant-time-picker-input[disabled]:hover {
   border-color: #d9d9d9;
@@ -12674,22 +12667,20 @@ textarea.ant-time-picker-input {
   box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
 }
 .ant-input-number-disabled {
+  color: rgba(0, 0, 0, 0.25);
   background-color: #f5f5f5;
   cursor: not-allowed;
   opacity: 1;
-  color: rgba(0, 0, 0, 0.25);
-  pointer-events: none;
 }
 .ant-input-number-disabled:hover {
   border-color: #d9d9d9;
   border-right-width: 1px !important;
 }
 .ant-input-number[disabled] {
+  color: rgba(0, 0, 0, 0.25);
   background-color: #f5f5f5;
   cursor: not-allowed;
   opacity: 1;
-  color: rgba(0, 0, 0, 0.25);
-  pointer-events: none;
 }
 .ant-input-number[disabled]:hover {
   border-color: #d9d9d9;
@@ -12799,11 +12790,10 @@ textarea.ant-input-number {
   box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
 }
 .ant-input-number-disabled {
+  color: rgba(0, 0, 0, 0.25);
   background-color: #f5f5f5;
   cursor: not-allowed;
   opacity: 1;
-  color: rgba(0, 0, 0, 0.25);
-  pointer-events: none;
 }
 .ant-input-number-disabled:hover {
   border-color: #d9d9d9;
@@ -14520,22 +14510,20 @@ form .ant-input-group-wrapper {
   box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
 }
 .ant-pagination-options-quick-jumper input-disabled {
+  color: rgba(0, 0, 0, 0.25);
   background-color: #f5f5f5;
   cursor: not-allowed;
   opacity: 1;
-  color: rgba(0, 0, 0, 0.25);
-  pointer-events: none;
 }
 .ant-pagination-options-quick-jumper input-disabled:hover {
   border-color: #d9d9d9;
   border-right-width: 1px !important;
 }
 .ant-pagination-options-quick-jumper input[disabled] {
+  color: rgba(0, 0, 0, 0.25);
   background-color: #f5f5f5;
   cursor: not-allowed;
   opacity: 1;
-  color: rgba(0, 0, 0, 0.25);
-  pointer-events: none;
 }
 .ant-pagination-options-quick-jumper input[disabled]:hover {
   border-color: #d9d9d9;
@@ -15611,22 +15599,20 @@ textarea.ant-pagination-options-quick-jumper input {
   box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
 }
 .ant-mention-wrapper .ant-mention-editor-disabled {
+  color: rgba(0, 0, 0, 0.25);
   background-color: #f5f5f5;
   cursor: not-allowed;
   opacity: 1;
-  color: rgba(0, 0, 0, 0.25);
-  pointer-events: none;
 }
 .ant-mention-wrapper .ant-mention-editor-disabled:hover {
   border-color: #d9d9d9;
   border-right-width: 1px !important;
 }
 .ant-mention-wrapper .ant-mention-editor[disabled] {
+  color: rgba(0, 0, 0, 0.25);
   background-color: #f5f5f5;
   cursor: not-allowed;
   opacity: 1;
-  color: rgba(0, 0, 0, 0.25);
-  pointer-events: none;
 }
 .ant-mention-wrapper .ant-mention-editor[disabled]:hover {
   border-color: #d9d9d9;
@@ -15660,11 +15646,10 @@ textarea.ant-mention-wrapper .ant-mention-editor {
   box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
 }
 .ant-mention-wrapper.disabled .ant-mention-editor {
+  color: rgba(0, 0, 0, 0.25);
   background-color: #f5f5f5;
   cursor: not-allowed;
   opacity: 1;
-  color: rgba(0, 0, 0, 0.25);
-  pointer-events: none;
 }
 .ant-mention-wrapper.disabled .ant-mention-editor:hover {
   border-color: #d9d9d9;
@@ -20783,11 +20768,10 @@ div.ant-typography-edit-content {
   border-right-width: 1px !important;
 }
 .ant-select-auto-complete.ant-select .ant-input[disabled] {
+  color: rgba(0, 0, 0, 0.25);
   background-color: #f5f5f5;
   cursor: not-allowed;
   opacity: 1;
-  color: rgba(0, 0, 0, 0.25);
-  pointer-events: none;
   background-color: transparent;
 }
 .ant-select-auto-complete.ant-select .ant-input[disabled]:hover {
@@ -25612,15 +25596,6 @@ code {
 .flex-grow-1 {
   flex-grow: 1 !important;
 }
-.flex-center {
-  display: flex;
-  align-items: center;
-}
-.flex-center-between {
-  display: flex;
-  align-content: space-between;
-  align-items: center;
-}
 .float-none {
   float: none !important;
 }
@@ -25684,10 +25659,6 @@ code {
 .color-weak {
   display: block;
   filter: invert(80%);
-}
-.disabled {
-  color: rgba(0, 0, 0, 0.25);
-  pointer-events: none;
 }
 .position-static {
   position: static !important;
