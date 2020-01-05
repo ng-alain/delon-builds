@@ -328,6 +328,7 @@ export interface STColumn {
     [key: string]: any;
 }
 export interface STColumnTitle {
+    [key: string]: any;
     /**
      * Text of header, can be choose one of `text` or `i18n`
      */

@@ -1,3 +1,4 @@
+import { DomSanitizer } from '@angular/platform-browser';
 import { ChangeDetectorRef, EventEmitter, OnChanges, OnDestroy, OnInit, SimpleChange, SimpleChanges } from '@angular/core';
 import { ACLService } from '@delon/acl';
 import { DelonLocaleService, LocaleData, AlainI18NService } from '@delon/theme';
@@ -15,6 +16,7 @@ export declare class SFComponent implements OnInit, OnChanges, OnDestroy {
     private formPropertyFactory;
     private terminator;
     private options;
+    private dom;
     private cdr;
     private localeSrv;
     private aclSrv;
@@ -99,7 +101,7 @@ export declare class SFComponent implements OnInit, OnChanges, OnDestroy {
      */
     setValue(path: string, value: any): this;
     onSubmit(e: Event): void;
-    constructor(formPropertyFactory: FormPropertyFactory, terminator: TerminatorService, options: DelonFormConfig, cdr: ChangeDetectorRef, localeSrv: DelonLocaleService, aclSrv: ACLService, i18nSrv: AlainI18NService);
+    constructor(formPropertyFactory: FormPropertyFactory, terminator: TerminatorService, options: DelonFormConfig, dom: DomSanitizer, cdr: ChangeDetectorRef, localeSrv: DelonLocaleService, aclSrv: ACLService, i18nSrv: AlainI18NService);
     protected fanyi(key: string): string;
     private inheritUI;
     private coverProperty;
