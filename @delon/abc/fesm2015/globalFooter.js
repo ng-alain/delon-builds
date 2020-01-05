@@ -1,4 +1,3 @@
-import { DomSanitizer } from '@angular/platform-browser';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, ViewChild, Input, Inject, ContentChildren, NgModule } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { WINDOW } from '@delon/theme';
@@ -22,7 +21,6 @@ if (false) {
     GlobalFooterLink.prototype.href;
     /** @type {?|undefined} */
     GlobalFooterLink.prototype.blankTarget;
-    /* Skipping unhandled member: [key: string]: any;*/
 }
 
 /**
@@ -71,31 +69,11 @@ class GlobalFooterComponent {
     /**
      * @param {?} router
      * @param {?} win
-     * @param {?} dom
      */
-    constructor(router, win, dom) {
+    constructor(router, win) {
         this.router = router;
         this.win = win;
-        this.dom = dom;
-        this._links = [];
-    }
-    /**
-     * @param {?} val
-     * @return {?}
-     */
-    set links(val) {
-        val.forEach((/**
-         * @param {?} i
-         * @return {?}
-         */
-        i => i._title = this.dom.bypassSecurityTrustHtml(i.title)));
-        this._links = val;
-    }
-    /**
-     * @return {?}
-     */
-    get links() {
-        return this._links;
+        this.links = [];
     }
     /**
      * @param {?} item
@@ -121,7 +99,7 @@ GlobalFooterComponent.decorators = [
     { type: Component, args: [{
                 selector: 'global-footer',
                 exportAs: 'globalFooter',
-                template: "<div *ngIf=\"links.length > 0 || items.length > 0\" class=\"global-footer__links\">\n  <a *ngFor=\"let i of links\" class=\"global-footer__links-item\" (click)=\"to(i)\" [innerHTML]=\"i._title\"></a>\n  <a *ngFor=\"let i of items\" class=\"global-footer__links-item\" (click)=\"to(i)\">\n    <ng-container *ngTemplateOutlet=\"i.host\"></ng-container>\n  </a>\n</div>\n<div class=\"global-footer__copyright\">\n  <ng-content></ng-content>\n</div>\n",
+                template: "<div *ngIf=\"links.length > 0 || items.length > 0\" class=\"global-footer__links\">\n  <a *ngFor=\"let i of links\" class=\"global-footer__links-item\" (click)=\"to(i)\" [innerHTML]=\"i.title\"></a>\n  <a *ngFor=\"let i of items\" class=\"global-footer__links-item\" (click)=\"to(i)\">\n    <ng-container *ngTemplateOutlet=\"i.host\"></ng-container>\n  </a>\n</div>\n<div class=\"global-footer__copyright\">\n  <ng-content></ng-content>\n</div>\n",
                 host: { '[class.global-footer]': 'true' },
                 preserveWhitespaces: false,
                 changeDetection: ChangeDetectionStrategy.OnPush,
@@ -131,19 +109,15 @@ GlobalFooterComponent.decorators = [
 /** @nocollapse */
 GlobalFooterComponent.ctorParameters = () => [
     { type: Router },
-    { type: Window, decorators: [{ type: Inject, args: [WINDOW,] }] },
-    { type: DomSanitizer }
+    { type: Window, decorators: [{ type: Inject, args: [WINDOW,] }] }
 ];
 GlobalFooterComponent.propDecorators = {
     links: [{ type: Input }],
     items: [{ type: ContentChildren, args: [GlobalFooterItemComponent,] }]
 };
 if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    GlobalFooterComponent.prototype._links;
+    /** @type {?} */
+    GlobalFooterComponent.prototype.links;
     /** @type {?} */
     GlobalFooterComponent.prototype.items;
     /**
@@ -156,11 +130,6 @@ if (false) {
      * @private
      */
     GlobalFooterComponent.prototype.win;
-    /**
-     * @type {?}
-     * @private
-     */
-    GlobalFooterComponent.prototype.dom;
 }
 
 /**
