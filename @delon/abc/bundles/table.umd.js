@@ -3642,6 +3642,34 @@
             enumerable: true,
             configurable: true
         });
+        Object.defineProperty(STComponent.prototype, "count", {
+            /**
+             * Get the number of the current page
+             */
+            get: /**
+             * Get the number of the current page
+             * @return {?}
+             */
+            function () {
+                return this._data.length;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(STComponent.prototype, "list", {
+            /**
+             * Get the data of the current page
+             */
+            get: /**
+             * Get the data of the current page
+             * @return {?}
+             */
+            function () {
+                return this._data;
+            },
+            enumerable: true,
+            configurable: true
+        });
         /**
          * @template THIS
          * @this {THIS}

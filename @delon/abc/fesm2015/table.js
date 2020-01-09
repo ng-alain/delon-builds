@@ -3219,6 +3219,20 @@ class STComponent {
         return { pi, ps, total };
     }
     /**
+     * Get the number of the current page
+     * @return {?}
+     */
+    get count() {
+        return this._data.length;
+    }
+    /**
+     * Get the data of the current page
+     * @return {?}
+     */
+    get list() {
+        return this._data;
+    }
+    /**
      * @template THIS
      * @this {THIS}
      * @return {THIS}
