@@ -7,6 +7,8 @@ export declare class DownFileDirective {
     private isFileSaverSupported;
     /** URL请求参数 */
     httpData: {};
+    /** URL请求参数 */
+    httpBody: {};
     /** 请求类型 */
     httpMethod: string;
     /** 下载地址 */

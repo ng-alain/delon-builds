@@ -108,14 +108,6 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
      * 变化时回调，包括：`pi`、`ps`、`checkbox`、`radio`、`sort`、`filter`、`click`、`dblClick` 变动
      */
     readonly change: EventEmitter<STChange>;
-    /**
-     * Get the number of the current page
-     */
-    readonly count: number;
-    /**
-     * Get the data of the current page
-     */
-    readonly list: STData[];
     private rowClickCount;
     constructor(i18nSrv: AlainI18NService, cdr: ChangeDetectorRef, cog: STConfig, router: Router, el: ElementRef, renderer: Renderer2, exportSrv: STExport, modalHelper: ModalHelper, drawerHelper: DrawerHelper, doc: any, columnSource: STColumnSource, dataSource: STDataSource, delonI18n: DelonLocaleService);
     cd(): this;

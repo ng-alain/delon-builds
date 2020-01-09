@@ -314,6 +314,7 @@
                 params: this.httpData || {},
                 responseType: 'blob',
                 observe: 'response',
+                body: this.httpBody,
             })
                 .subscribe((/**
              * @param {?} res
@@ -359,6 +360,7 @@
         ]; };
         DownFileDirective.propDecorators = {
             httpData: [{ type: core.Input, args: ['http-data',] }],
+            httpBody: [{ type: core.Input, args: ['http-body',] }],
             httpMethod: [{ type: core.Input, args: ['http-method',] }],
             httpUrl: [{ type: core.Input, args: ['http-url',] }],
             fileName: [{ type: core.Input, args: ['file-name',] }],
@@ -378,6 +380,11 @@
          * @type {?}
          */
         DownFileDirective.prototype.httpData;
+        /**
+         * URL请求参数
+         * @type {?}
+         */
+        DownFileDirective.prototype.httpBody;
         /**
          * 请求类型
          * @type {?}

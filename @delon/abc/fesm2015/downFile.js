@@ -100,6 +100,7 @@ class DownFileDirective {
             params: this.httpData || {},
             responseType: 'blob',
             observe: 'response',
+            body: this.httpBody,
         })
             .subscribe((/**
          * @param {?} res
@@ -146,6 +147,7 @@ DownFileDirective.ctorParameters = () => [
 ];
 DownFileDirective.propDecorators = {
     httpData: [{ type: Input, args: ['http-data',] }],
+    httpBody: [{ type: Input, args: ['http-body',] }],
     httpMethod: [{ type: Input, args: ['http-method',] }],
     httpUrl: [{ type: Input, args: ['http-url',] }],
     fileName: [{ type: Input, args: ['file-name',] }],
@@ -163,6 +165,11 @@ if (false) {
      * @type {?}
      */
     DownFileDirective.prototype.httpData;
+    /**
+     * URL请求参数
+     * @type {?}
+     */
+    DownFileDirective.prototype.httpBody;
     /**
      * 请求类型
      * @type {?}
