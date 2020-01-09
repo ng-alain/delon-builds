@@ -459,8 +459,6 @@ if (false) {
      * @type {?|undefined}
      */
     STColumn.prototype._sort;
-    /** @type {?|undefined} */
-    STColumn.prototype.children;
     /* Skipping unhandled member: [key: string]: any;*/
 }
 /**
@@ -3219,6 +3217,20 @@ class STComponent {
     get routerState() {
         const { pi, ps, total } = this;
         return { pi, ps, total };
+    }
+    /**
+     * Get the number of the current page
+     * @return {?}
+     */
+    get count() {
+        return this._data.length;
+    }
+    /**
+     * Get the data of the current page
+     * @return {?}
+     */
+    get list() {
+        return this._data;
     }
     /**
      * @template THIS

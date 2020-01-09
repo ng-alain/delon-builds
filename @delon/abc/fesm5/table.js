@@ -459,8 +459,6 @@ if (false) {
      * @type {?|undefined}
      */
     STColumn.prototype._sort;
-    /** @type {?|undefined} */
-    STColumn.prototype.children;
     /* Skipping unhandled member: [key: string]: any;*/
 }
 /**
@@ -3457,6 +3455,34 @@ var STComponent = /** @class */ (function () {
         function () {
             var _a = this, pi = _a.pi, ps = _a.ps, total = _a.total;
             return { pi: pi, ps: ps, total: total };
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(STComponent.prototype, "count", {
+        /**
+         * Get the number of the current page
+         */
+        get: /**
+         * Get the number of the current page
+         * @return {?}
+         */
+        function () {
+            return this._data.length;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(STComponent.prototype, "list", {
+        /**
+         * Get the data of the current page
+         */
+        get: /**
+         * Get the data of the current page
+         * @return {?}
+         */
+        function () {
+            return this._data;
         },
         enumerable: true,
         configurable: true

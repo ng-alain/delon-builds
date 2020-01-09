@@ -325,7 +325,6 @@ export interface STColumn {
     statistical?: STStatisticalType | STStatistical;
     /** @ignore internal property */
     _sort?: STSortMap;
-    children?: STColumn[];
     [key: string]: any;
 }
 export interface STColumnTitle {
