@@ -2026,12 +2026,9 @@
                 // fix date
                 if ((schema.type === 'string' || schema.type === 'number') && !schema.format && !((/** @type {?} */ (ui))).format) {
                     if (((/** @type {?} */ (ui))).widget === 'date')
-                        ui._format = schema.type === 'string' ? this.options.uiDateStringFormat : this.options.uiDateNumberFormat;
+                        ui.format = schema.type === 'string' ? this.options.uiDateStringFormat : this.options.uiDateNumberFormat;
                     else if (((/** @type {?} */ (ui))).widget === 'time')
-                        ui._format = schema.type === 'string' ? this.options.uiTimeStringFormat : this.options.uiTimeNumberFormat;
-                }
-                else {
-                    ui._format = ui.format;
+                        ui.format = schema.type === 'string' ? this.options.uiTimeStringFormat : this.options.uiTimeNumberFormat;
                 }
                 switch (schema.type) {
                     case 'integer':
@@ -4562,16 +4559,12 @@
          * @return {?}
          */
         function () {
-            var _a = this.ui, mode = _a.mode, end = _a.end, displayFormat = _a.displayFormat, allowClear = _a.allowClear, showToday = _a.showToday;
+            // tslint:disable-next-line: no-shadowed-variable
+            var _a = this.ui, mode = _a.mode, end = _a.end, displayFormat = _a.displayFormat, format = _a.format, allowClear = _a.allowClear, showToday = _a.showToday;
             this.mode = mode || 'date';
             this.flatRange = end != null;
-            // 构建属性对象时会对默认值进行校验，因此可以直接使用 format 作为格式化属性
-            this.startFormat = (/** @type {?} */ (this.ui._format));
             if (this.flatRange) {
                 this.mode = 'range';
-                /** @type {?} */
-                var endUi = (/** @type {?} */ (this.endProperty.ui));
-                this.endFormat = endUi.format ? endUi._format : this.startFormat;
             }
             if (!displayFormat) {
                 /** @type {?} */
@@ -4591,6 +4584,8 @@
             else {
                 this.displayFormat = displayFormat;
             }
+            // 构建属性对象时会对默认值进行校验，因此可以直接使用 format 作为格式化属性
+            this.valueFormat = (/** @type {?} */ (format));
             this.i = {
                 allowClear: toBool(allowClear, true),
                 // nz-date-picker
@@ -4624,15 +4619,18 @@
          * @return {?}
          */
         function (value) {
+            var _this = this;
             if (value == null) {
                 this.setValue(null);
                 this.setEnd(null);
                 return;
             }
             /** @type {?} */
-            var res = Array.isArray(value)
-                ? [format(value[0], this.startFormat), format(value[1], this.endFormat)]
-                : format(value, this.startFormat);
+            var res = Array.isArray(value) ? value.map((/**
+             * @param {?} d
+             * @return {?}
+             */
+            function (d) { return format(d, _this.valueFormat); })) : format(value, this.valueFormat);
             if (this.flatRange) {
                 this.setEnd(res[1]);
                 this.setValue(res[0]);
@@ -4687,9 +4685,9 @@
          * @return {?}
          */
         function (value) {
-            if (!this.flatRange)
-                return;
-            this.endProperty.setValue(value, true);
+            if (this.flatRange) {
+                this.endProperty.setValue(value, true);
+            }
         };
         /**
          * @private
@@ -4722,12 +4720,7 @@
          * @type {?}
          * @private
          */
-        DateWidget.prototype.startFormat;
-        /**
-         * @type {?}
-         * @private
-         */
-        DateWidget.prototype.endFormat;
+        DateWidget.prototype.valueFormat;
         /**
          * @type {?}
          * @private
@@ -5662,7 +5655,8 @@
         function () {
             /** @type {?} */
             var ui = this.ui;
-            this.valueFormat = ui._format;
+            // 构建属性对象时会对默认值进行校验，因此可以直接使用 format 作为格式化属性
+            this.valueFormat = ui.format;
             /** @type {?} */
             var opt = {
                 displayFormat: ui.displayFormat || 'HH:mm:ss',
