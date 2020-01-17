@@ -940,10 +940,7 @@ if (false) {
      * @private
      */
     FormProperty.prototype._parent;
-    /**
-     * @type {?}
-     * @protected
-     */
+    /** @type {?} */
     FormProperty.prototype._objErrors;
     /** @type {?} */
     FormProperty.prototype.schemaValidator;
@@ -1084,266 +1081,6 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
- * Generated from: src/model/array.property.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class ArrayProperty extends PropertyGroup {
-    /**
-     * @param {?} formPropertyFactory
-     * @param {?} schemaValidatorFactory
-     * @param {?} schema
-     * @param {?} ui
-     * @param {?} formData
-     * @param {?} parent
-     * @param {?} path
-     * @param {?} options
-     */
-    constructor(formPropertyFactory, schemaValidatorFactory, schema, ui, formData, parent, path, options) {
-        super(schemaValidatorFactory, schema, ui, formData, parent, path, options);
-        this.formPropertyFactory = formPropertyFactory;
-        this.properties = [];
-    }
-    /**
-     * @param {?} path
-     * @return {?}
-     */
-    getProperty(path) {
-        /** @type {?} */
-        const subPathIdx = path.indexOf(SF_SEQ);
-        /** @type {?} */
-        const pos = +(subPathIdx !== -1 ? path.substr(0, subPathIdx) : path);
-        /** @type {?} */
-        const list = (/** @type {?} */ (this.properties));
-        if (isNaN(pos) || pos >= list.length) {
-            return undefined;
-        }
-        /** @type {?} */
-        const subPath = path.substr(subPathIdx + 1);
-        return list[pos].getProperty(subPath);
-    }
-    /**
-     * @param {?} value
-     * @param {?} onlySelf
-     * @return {?}
-     */
-    setValue(value, onlySelf) {
-        this.properties = [];
-        this.clearErrors();
-        this.resetProperties(value);
-        this.updateValueAndValidity(onlySelf, true);
-    }
-    /**
-     * @param {?} value
-     * @param {?} onlySelf
-     * @return {?}
-     */
-    resetValue(value, onlySelf) {
-        this._value = value || this.schema.default || [];
-        this.setValue(this._value, onlySelf);
-    }
-    /**
-     * @return {?}
-     */
-    _hasValue() {
-        return true;
-    }
-    /**
-     * @return {?}
-     */
-    _updateValue() {
-        /** @type {?} */
-        const value = [];
-        this.forEachChild((/**
-         * @param {?} property
-         * @return {?}
-         */
-        (property) => {
-            if (property.visible && property._hasValue()) {
-                value.push(Object.assign({}, property.formData, property.value));
-            }
-        }));
-        this._value = value;
-    }
-    /**
-     * @private
-     * @param {?} formData
-     * @return {?}
-     */
-    addProperty(formData) {
-        /** @type {?} */
-        const newProperty = (/** @type {?} */ (this.formPropertyFactory.createProperty((/** @type {?} */ (this.schema.items)), this.ui.$items, formData, this)));
-        ((/** @type {?} */ (this.properties))).push(newProperty);
-        return newProperty;
-    }
-    /**
-     * @private
-     * @param {?} formDatas
-     * @return {?}
-     */
-    resetProperties(formDatas) {
-        for (const item of formDatas) {
-            /** @type {?} */
-            const property = this.addProperty(item);
-            property.resetValue(item, true);
-        }
-    }
-    /**
-     * @private
-     * @param {?=} path
-     * @return {?}
-     */
-    clearErrors(path) {
-        if (path) {
-            delete this._objErrors[path];
-        }
-        else {
-            this._objErrors = {};
-        }
-    }
-    /**
-     * @private
-     * @return {?}
-     */
-    updatePaths() {
-        ((/** @type {?} */ (this.properties))).forEach((/**
-         * @param {?} p
-         * @param {?} idx
-         * @return {?}
-         */
-        (p, idx) => {
-            p.path = [(/** @type {?} */ (p.parent)).path, idx].join(SF_SEQ);
-        }));
-    }
-    // #region actions
-    /**
-     * @param {?} formData
-     * @return {?}
-     */
-    add(formData) {
-        /** @type {?} */
-        const newProperty = this.addProperty(formData);
-        newProperty.resetValue(formData, false);
-        return newProperty;
-    }
-    /**
-     * @param {?} index
-     * @return {?}
-     */
-    remove(index) {
-        /** @type {?} */
-        const list = (/** @type {?} */ (this.properties));
-        this.clearErrors(list[index].path);
-        list.splice(index, 1);
-        this.updatePaths();
-        this.updateValueAndValidity(false, true);
-    }
-}
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    ArrayProperty.prototype.formPropertyFactory;
-}
-
-/**
- * @fileoverview added by tsickle
- * Generated from: src/model/atomic.property.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
- * @abstract
- */
-class AtomicProperty extends FormProperty {
-    /**
-     * @param {?} value
-     * @param {?} onlySelf
-     * @return {?}
-     */
-    setValue(value, onlySelf) {
-        this._value = value;
-        this.updateValueAndValidity(onlySelf, true);
-    }
-    /**
-     * @param {?} value
-     * @param {?} onlySelf
-     * @return {?}
-     */
-    resetValue(value, onlySelf) {
-        if (value == null) {
-            value = this.schema.default !== undefined ? this.schema.default : this.fallbackValue();
-        }
-        this._value = value;
-        this.updateValueAndValidity(onlySelf, true);
-        if (this.widget)
-            this.widget.reset(value);
-    }
-    /**
-     * @return {?}
-     */
-    _hasValue() {
-        return this.fallbackValue() !== this.value;
-    }
-    /**
-     * @return {?}
-     */
-    _updateValue() { }
-}
-if (false) {
-    /**
-     * @abstract
-     * @return {?}
-     */
-    AtomicProperty.prototype.fallbackValue = function () { };
-}
-
-/**
- * @fileoverview added by tsickle
- * Generated from: src/model/boolean.property.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class BooleanProperty extends AtomicProperty {
-    /**
-     * @return {?}
-     */
-    fallbackValue() {
-        return null;
-    }
-}
-
-/**
- * @fileoverview added by tsickle
- * Generated from: src/model/number.property.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class NumberProperty extends AtomicProperty {
-    /**
-     * @return {?}
-     */
-    fallbackValue() {
-        return null;
-    }
-    /**
-     * @param {?} value
-     * @param {?} onlySelf
-     * @return {?}
-     */
-    setValue(value, onlySelf) {
-        if (typeof value === 'string') {
-            if (value.length) {
-                value = value.indexOf('.') > -1 ? parseFloat(value) : parseInt(value, 10);
-            }
-            else {
-                value = undefined;
-            }
-        }
-        this._value = value;
-        this.updateValueAndValidity(onlySelf, true);
-    }
-}
-
-/**
- * @fileoverview added by tsickle
  * Generated from: src/model/object.property.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
@@ -1456,6 +1193,264 @@ if (false) {
      * @private
      */
     ObjectProperty.prototype.formPropertyFactory;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * Generated from: src/model/array.property.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class ArrayProperty extends PropertyGroup {
+    /**
+     * @param {?} formPropertyFactory
+     * @param {?} schemaValidatorFactory
+     * @param {?} schema
+     * @param {?} ui
+     * @param {?} formData
+     * @param {?} parent
+     * @param {?} path
+     * @param {?} options
+     */
+    constructor(formPropertyFactory, schemaValidatorFactory, schema, ui, formData, parent, path, options) {
+        super(schemaValidatorFactory, schema, ui, formData, parent, path, options);
+        this.formPropertyFactory = formPropertyFactory;
+        this.properties = [];
+    }
+    /**
+     * @param {?} path
+     * @return {?}
+     */
+    getProperty(path) {
+        /** @type {?} */
+        const subPathIdx = path.indexOf(SF_SEQ);
+        /** @type {?} */
+        const pos = +(subPathIdx !== -1 ? path.substr(0, subPathIdx) : path);
+        /** @type {?} */
+        const list = (/** @type {?} */ (this.properties));
+        if (isNaN(pos) || pos >= list.length) {
+            return undefined;
+        }
+        /** @type {?} */
+        const subPath = path.substr(subPathIdx + 1);
+        return list[pos].getProperty(subPath);
+    }
+    /**
+     * @param {?} value
+     * @param {?} onlySelf
+     * @return {?}
+     */
+    setValue(value, onlySelf) {
+        this.properties = [];
+        this.clearErrors();
+        this.resetProperties(value);
+        this.updateValueAndValidity(onlySelf, true);
+    }
+    /**
+     * @param {?} value
+     * @param {?} onlySelf
+     * @return {?}
+     */
+    resetValue(value, onlySelf) {
+        this._value = value || this.schema.default || [];
+        this.setValue(this._value, onlySelf);
+    }
+    /**
+     * @return {?}
+     */
+    _hasValue() {
+        return true;
+    }
+    /**
+     * @return {?}
+     */
+    _updateValue() {
+        /** @type {?} */
+        const value = [];
+        this.forEachChild((/**
+         * @param {?} property
+         * @return {?}
+         */
+        (property) => {
+            if (property.visible && property._hasValue()) {
+                value.push(Object.assign({}, property.formData, property.value));
+            }
+        }));
+        this._value = value;
+    }
+    /**
+     * @private
+     * @param {?} formData
+     * @return {?}
+     */
+    addProperty(formData) {
+        /** @type {?} */
+        const newProperty = (/** @type {?} */ (this.formPropertyFactory.createProperty((/** @type {?} */ (this.schema.items)), this.ui.$items, formData, this)));
+        ((/** @type {?} */ (this.properties))).push(newProperty);
+        return newProperty;
+    }
+    /**
+     * @private
+     * @param {?} formDatas
+     * @return {?}
+     */
+    resetProperties(formDatas) {
+        for (const item of formDatas) {
+            /** @type {?} */
+            const property = this.addProperty(item);
+            property.resetValue(item, true);
+        }
+    }
+    /**
+     * @private
+     * @param {?=} property
+     * @return {?}
+     */
+    clearErrors(property) {
+        (property || this)._objErrors = {};
+    }
+    // #region actions
+    /**
+     * @param {?} formData
+     * @return {?}
+     */
+    add(formData) {
+        /** @type {?} */
+        const newProperty = this.addProperty(formData);
+        newProperty.resetValue(formData, false);
+        return newProperty;
+    }
+    /**
+     * @param {?} index
+     * @return {?}
+     */
+    remove(index) {
+        /** @type {?} */
+        const list = (/** @type {?} */ (this.properties));
+        this.clearErrors();
+        list.splice(index, 1);
+        list.forEach((/**
+         * @param {?} property
+         * @param {?} idx
+         * @return {?}
+         */
+        (property, idx) => {
+            property.path = [(/** @type {?} */ (property.parent)).path, idx].join(SF_SEQ);
+            this.clearErrors(property);
+            // TODO: 受限于 sf 的设计思路，对于移除数组项需要重新对每个子项进行校验，防止错误被父级合并后引起始终是错误的现象
+            if (property instanceof ObjectProperty) {
+                property.forEachChild((/**
+                 * @param {?} p
+                 * @return {?}
+                 */
+                p => {
+                    p.updateValueAndValidity();
+                }));
+            }
+        }));
+    }
+}
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    ArrayProperty.prototype.formPropertyFactory;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * Generated from: src/model/atomic.property.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @abstract
+ */
+class AtomicProperty extends FormProperty {
+    /**
+     * @param {?} value
+     * @param {?} onlySelf
+     * @return {?}
+     */
+    setValue(value, onlySelf) {
+        this._value = value;
+        this.updateValueAndValidity(onlySelf, true);
+    }
+    /**
+     * @param {?} value
+     * @param {?} onlySelf
+     * @return {?}
+     */
+    resetValue(value, onlySelf) {
+        if (value == null) {
+            value = this.schema.default !== undefined ? this.schema.default : this.fallbackValue();
+        }
+        this._value = value;
+        this.updateValueAndValidity(onlySelf, true);
+        if (this.widget)
+            this.widget.reset(value);
+    }
+    /**
+     * @return {?}
+     */
+    _hasValue() {
+        return this.fallbackValue() !== this.value;
+    }
+    /**
+     * @return {?}
+     */
+    _updateValue() { }
+}
+if (false) {
+    /**
+     * @abstract
+     * @return {?}
+     */
+    AtomicProperty.prototype.fallbackValue = function () { };
+}
+
+/**
+ * @fileoverview added by tsickle
+ * Generated from: src/model/boolean.property.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class BooleanProperty extends AtomicProperty {
+    /**
+     * @return {?}
+     */
+    fallbackValue() {
+        return null;
+    }
+}
+
+/**
+ * @fileoverview added by tsickle
+ * Generated from: src/model/number.property.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class NumberProperty extends AtomicProperty {
+    /**
+     * @return {?}
+     */
+    fallbackValue() {
+        return null;
+    }
+    /**
+     * @param {?} value
+     * @param {?} onlySelf
+     * @return {?}
+     */
+    setValue(value, onlySelf) {
+        if (typeof value === 'string') {
+            if (value.length) {
+                value = value.indexOf('.') > -1 ? parseFloat(value) : parseInt(value, 10);
+            }
+            else {
+                value = undefined;
+            }
+        }
+        this._value = value;
+        this.updateValueAndValidity(onlySelf, true);
+    }
 }
 
 /**

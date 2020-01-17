@@ -15,7 +15,7 @@ export declare abstract class FormProperty {
     private _visibilityChanges;
     private _root;
     private _parent;
-    protected _objErrors: {
+    _objErrors: {
         [key: string]: ErrorData[];
     };
     schemaValidator: (value: SFValue) => ErrorData[];

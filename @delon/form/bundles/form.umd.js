@@ -1259,10 +1259,7 @@
          * @private
          */
         FormProperty.prototype._parent;
-        /**
-         * @type {?}
-         * @protected
-         */
+        /** @type {?} */
         FormProperty.prototype._objErrors;
         /** @type {?} */
         FormProperty.prototype.schemaValidator;
@@ -1431,6 +1428,140 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: src/model/object.property.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var ObjectProperty = /** @class */ (function (_super) {
+        __extends(ObjectProperty, _super);
+        function ObjectProperty(formPropertyFactory, schemaValidatorFactory, schema, ui, formData, parent, path, options) {
+            var _this = _super.call(this, schemaValidatorFactory, schema, ui, formData, parent, path, options) || this;
+            _this.formPropertyFactory = formPropertyFactory;
+            _this._propertiesId = [];
+            _this.createProperties();
+            return _this;
+        }
+        Object.defineProperty(ObjectProperty.prototype, "propertiesId", {
+            get: /**
+             * @return {?}
+             */
+            function () {
+                return this._propertiesId;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        /**
+         * @private
+         * @return {?}
+         */
+        ObjectProperty.prototype.createProperties = /**
+         * @private
+         * @return {?}
+         */
+        function () {
+            var _this = this;
+            this.properties = {};
+            this._propertiesId = [];
+            /** @type {?} */
+            var orderedProperties;
+            try {
+                orderedProperties = orderProperties(Object.keys((/** @type {?} */ (this.schema.properties))), (/** @type {?} */ (this.ui.order)));
+            }
+            catch (e) {
+                console.error("Invalid " + (this.schema.title || 'root') + " object field configuration:", e);
+            }
+            (/** @type {?} */ (orderedProperties)).forEach((/**
+             * @param {?} propertyId
+             * @return {?}
+             */
+            function (propertyId) {
+                (/** @type {?} */ (_this.properties))[propertyId] = _this.formPropertyFactory.createProperty((/** @type {?} */ (_this.schema.properties))[propertyId], _this.ui['$' + propertyId], (_this.formData || {})[propertyId], _this, propertyId);
+                _this._propertiesId.push(propertyId);
+            }));
+        };
+        /**
+         * @param {?} value
+         * @param {?} onlySelf
+         * @return {?}
+         */
+        ObjectProperty.prototype.setValue = /**
+         * @param {?} value
+         * @param {?} onlySelf
+         * @return {?}
+         */
+        function (value, onlySelf) {
+            for (var propertyId in value) {
+                if (value.hasOwnProperty(propertyId) && (/** @type {?} */ (this.properties))[propertyId]) {
+                    ((/** @type {?} */ ((/** @type {?} */ (this.properties))[propertyId]))).setValue(value[propertyId], true);
+                }
+            }
+            this.updateValueAndValidity(onlySelf, true);
+        };
+        /**
+         * @param {?} value
+         * @param {?} onlySelf
+         * @return {?}
+         */
+        ObjectProperty.prototype.resetValue = /**
+         * @param {?} value
+         * @param {?} onlySelf
+         * @return {?}
+         */
+        function (value, onlySelf) {
+            value = value || this.schema.default || {};
+            // tslint:disable-next-line: forin
+            for (var propertyId in this.schema.properties) {
+                ((/** @type {?} */ ((/** @type {?} */ (this.properties))[propertyId]))).resetValue(value[propertyId], true);
+            }
+            this.updateValueAndValidity(onlySelf, true);
+        };
+        /**
+         * @return {?}
+         */
+        ObjectProperty.prototype._hasValue = /**
+         * @return {?}
+         */
+        function () {
+            return this.value != null && !!Object.keys(this.value).length;
+        };
+        /**
+         * @return {?}
+         */
+        ObjectProperty.prototype._updateValue = /**
+         * @return {?}
+         */
+        function () {
+            /** @type {?} */
+            var value = {};
+            this.forEachChild((/**
+             * @param {?} property
+             * @param {?} propertyId
+             * @return {?}
+             */
+            function (property, propertyId) {
+                if (property.visible && property._hasValue()) {
+                    value[propertyId] = property.value;
+                }
+            }));
+            this._value = value;
+        };
+        return ObjectProperty;
+    }(PropertyGroup));
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        ObjectProperty.prototype._propertiesId;
+        /**
+         * @type {?}
+         * @private
+         */
+        ObjectProperty.prototype.formPropertyFactory;
+    }
+
+    /**
+     * @fileoverview added by tsickle
      * Generated from: src/model/array.property.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
@@ -1569,39 +1700,16 @@
         };
         /**
          * @private
-         * @param {?=} path
+         * @param {?=} property
          * @return {?}
          */
         ArrayProperty.prototype.clearErrors = /**
          * @private
-         * @param {?=} path
+         * @param {?=} property
          * @return {?}
          */
-        function (path) {
-            if (path) {
-                delete this._objErrors[path];
-            }
-            else {
-                this._objErrors = {};
-            }
-        };
-        /**
-         * @private
-         * @return {?}
-         */
-        ArrayProperty.prototype.updatePaths = /**
-         * @private
-         * @return {?}
-         */
-        function () {
-            ((/** @type {?} */ (this.properties))).forEach((/**
-             * @param {?} p
-             * @param {?} idx
-             * @return {?}
-             */
-            function (p, idx) {
-                p.path = [(/** @type {?} */ (p.parent)).path, idx].join(SF_SEQ);
-            }));
+        function (property) {
+            (property || this)._objErrors = {};
         };
         // #region actions
         // #region actions
@@ -1630,12 +1738,30 @@
          * @return {?}
          */
         function (index) {
+            var _this = this;
             /** @type {?} */
             var list = (/** @type {?} */ (this.properties));
-            this.clearErrors(list[index].path);
+            this.clearErrors();
             list.splice(index, 1);
-            this.updatePaths();
-            this.updateValueAndValidity(false, true);
+            list.forEach((/**
+             * @param {?} property
+             * @param {?} idx
+             * @return {?}
+             */
+            function (property, idx) {
+                property.path = [(/** @type {?} */ (property.parent)).path, idx].join(SF_SEQ);
+                _this.clearErrors(property);
+                // TODO: 受限于 sf 的设计思路，对于移除数组项需要重新对每个子项进行校验，防止错误被父级合并后引起始终是错误的现象
+                if (property instanceof ObjectProperty) {
+                    property.forEachChild((/**
+                     * @param {?} p
+                     * @return {?}
+                     */
+                    function (p) {
+                        p.updateValueAndValidity();
+                    }));
+                }
+            }));
         };
         return ArrayProperty;
     }(PropertyGroup));
@@ -1787,140 +1913,6 @@
         };
         return NumberProperty;
     }(AtomicProperty));
-
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: src/model/object.property.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var ObjectProperty = /** @class */ (function (_super) {
-        __extends(ObjectProperty, _super);
-        function ObjectProperty(formPropertyFactory, schemaValidatorFactory, schema, ui, formData, parent, path, options) {
-            var _this = _super.call(this, schemaValidatorFactory, schema, ui, formData, parent, path, options) || this;
-            _this.formPropertyFactory = formPropertyFactory;
-            _this._propertiesId = [];
-            _this.createProperties();
-            return _this;
-        }
-        Object.defineProperty(ObjectProperty.prototype, "propertiesId", {
-            get: /**
-             * @return {?}
-             */
-            function () {
-                return this._propertiesId;
-            },
-            enumerable: true,
-            configurable: true
-        });
-        /**
-         * @private
-         * @return {?}
-         */
-        ObjectProperty.prototype.createProperties = /**
-         * @private
-         * @return {?}
-         */
-        function () {
-            var _this = this;
-            this.properties = {};
-            this._propertiesId = [];
-            /** @type {?} */
-            var orderedProperties;
-            try {
-                orderedProperties = orderProperties(Object.keys((/** @type {?} */ (this.schema.properties))), (/** @type {?} */ (this.ui.order)));
-            }
-            catch (e) {
-                console.error("Invalid " + (this.schema.title || 'root') + " object field configuration:", e);
-            }
-            (/** @type {?} */ (orderedProperties)).forEach((/**
-             * @param {?} propertyId
-             * @return {?}
-             */
-            function (propertyId) {
-                (/** @type {?} */ (_this.properties))[propertyId] = _this.formPropertyFactory.createProperty((/** @type {?} */ (_this.schema.properties))[propertyId], _this.ui['$' + propertyId], (_this.formData || {})[propertyId], _this, propertyId);
-                _this._propertiesId.push(propertyId);
-            }));
-        };
-        /**
-         * @param {?} value
-         * @param {?} onlySelf
-         * @return {?}
-         */
-        ObjectProperty.prototype.setValue = /**
-         * @param {?} value
-         * @param {?} onlySelf
-         * @return {?}
-         */
-        function (value, onlySelf) {
-            for (var propertyId in value) {
-                if (value.hasOwnProperty(propertyId) && (/** @type {?} */ (this.properties))[propertyId]) {
-                    ((/** @type {?} */ ((/** @type {?} */ (this.properties))[propertyId]))).setValue(value[propertyId], true);
-                }
-            }
-            this.updateValueAndValidity(onlySelf, true);
-        };
-        /**
-         * @param {?} value
-         * @param {?} onlySelf
-         * @return {?}
-         */
-        ObjectProperty.prototype.resetValue = /**
-         * @param {?} value
-         * @param {?} onlySelf
-         * @return {?}
-         */
-        function (value, onlySelf) {
-            value = value || this.schema.default || {};
-            // tslint:disable-next-line: forin
-            for (var propertyId in this.schema.properties) {
-                ((/** @type {?} */ ((/** @type {?} */ (this.properties))[propertyId]))).resetValue(value[propertyId], true);
-            }
-            this.updateValueAndValidity(onlySelf, true);
-        };
-        /**
-         * @return {?}
-         */
-        ObjectProperty.prototype._hasValue = /**
-         * @return {?}
-         */
-        function () {
-            return this.value != null && !!Object.keys(this.value).length;
-        };
-        /**
-         * @return {?}
-         */
-        ObjectProperty.prototype._updateValue = /**
-         * @return {?}
-         */
-        function () {
-            /** @type {?} */
-            var value = {};
-            this.forEachChild((/**
-             * @param {?} property
-             * @param {?} propertyId
-             * @return {?}
-             */
-            function (property, propertyId) {
-                if (property.visible && property._hasValue()) {
-                    value[propertyId] = property.value;
-                }
-            }));
-            this._value = value;
-        };
-        return ObjectProperty;
-    }(PropertyGroup));
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        ObjectProperty.prototype._propertiesId;
-        /**
-         * @type {?}
-         * @private
-         */
-        ObjectProperty.prototype.formPropertyFactory;
-    }
 
     /**
      * @fileoverview added by tsickle

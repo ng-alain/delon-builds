@@ -16,7 +16,6 @@ export declare class ArrayProperty extends PropertyGroup {
     private addProperty;
     private resetProperties;
     private clearErrors;
-    private updatePaths;
     add(formData: {}): FormProperty;
     remove(index: number): void;
 }
