@@ -1544,9 +1544,12 @@ class FormPropertyFactory {
             // fix date
             if ((schema.type === 'string' || schema.type === 'number') && !schema.format && !((/** @type {?} */ (ui))).format) {
                 if (((/** @type {?} */ (ui))).widget === 'date')
-                    ui.format = schema.type === 'string' ? this.options.uiDateStringFormat : this.options.uiDateNumberFormat;
+                    ui._format = schema.type === 'string' ? this.options.uiDateStringFormat : this.options.uiDateNumberFormat;
                 else if (((/** @type {?} */ (ui))).widget === 'time')
-                    ui.format = schema.type === 'string' ? this.options.uiTimeStringFormat : this.options.uiTimeNumberFormat;
+                    ui._format = schema.type === 'string' ? this.options.uiTimeStringFormat : this.options.uiTimeNumberFormat;
+            }
+            else {
+                ui._format = ui.format;
             }
             switch (schema.type) {
                 case 'integer':
@@ -3690,12 +3693,16 @@ class DateWidget extends ControlUIWidget {
      * @return {?}
      */
     ngOnInit() {
-        // tslint:disable-next-line: no-shadowed-variable
-        const { mode, end, displayFormat, format, allowClear, showToday } = this.ui;
+        const { mode, end, displayFormat, allowClear, showToday } = this.ui;
         this.mode = mode || 'date';
         this.flatRange = end != null;
+        // 构建属性对象时会对默认值进行校验，因此可以直接使用 format 作为格式化属性
+        this.startFormat = (/** @type {?} */ (this.ui._format));
         if (this.flatRange) {
             this.mode = 'range';
+            /** @type {?} */
+            const endUi = (/** @type {?} */ (this.endProperty.ui));
+            this.endFormat = endUi.format ? endUi._format : this.startFormat;
         }
         if (!displayFormat) {
             /** @type {?} */
@@ -3715,8 +3722,6 @@ class DateWidget extends ControlUIWidget {
         else {
             this.displayFormat = displayFormat;
         }
-        // 构建属性对象时会对默认值进行校验，因此可以直接使用 format 作为格式化属性
-        this.valueFormat = (/** @type {?} */ (format));
         this.i = {
             allowClear: toBool(allowClear, true),
             // nz-date-picker
@@ -3748,11 +3753,9 @@ class DateWidget extends ControlUIWidget {
             return;
         }
         /** @type {?} */
-        const res = Array.isArray(value) ? value.map((/**
-         * @param {?} d
-         * @return {?}
-         */
-        d => format(d, this.valueFormat))) : format(value, this.valueFormat);
+        const res = Array.isArray(value)
+            ? [format(value[0], this.startFormat), format(value[1], this.endFormat)]
+            : format(value, this.startFormat);
         if (this.flatRange) {
             this.setEnd(res[1]);
             this.setValue(res[0]);
@@ -3790,9 +3793,9 @@ class DateWidget extends ControlUIWidget {
      * @return {?}
      */
     setEnd(value) {
-        if (this.flatRange) {
-            this.endProperty.setValue(value, true);
-        }
+        if (!this.flatRange)
+            return;
+        this.endProperty.setValue(value, true);
     }
     /**
      * @private
@@ -3819,7 +3822,12 @@ if (false) {
      * @type {?}
      * @private
      */
-    DateWidget.prototype.valueFormat;
+    DateWidget.prototype.startFormat;
+    /**
+     * @type {?}
+     * @private
+     */
+    DateWidget.prototype.endFormat;
     /**
      * @type {?}
      * @private
@@ -4586,8 +4594,7 @@ class TimeWidget extends ControlUIWidget {
     ngOnInit() {
         /** @type {?} */
         const ui = this.ui;
-        // 构建属性对象时会对默认值进行校验，因此可以直接使用 format 作为格式化属性
-        this.valueFormat = ui.format;
+        this.valueFormat = ui._format;
         /** @type {?} */
         const opt = {
             displayFormat: ui.displayFormat || 'HH:mm:ss',
