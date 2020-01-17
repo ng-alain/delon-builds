@@ -3,7 +3,8 @@ import { SFValue } from '../../interface';
 import { ControlUIWidget } from '../../widget';
 import { SFDateWidgetSchema } from './schema';
 export declare class DateWidget extends ControlUIWidget<SFDateWidgetSchema> implements OnInit {
-    private valueFormat;
+    private startFormat;
+    private endFormat;
     private flatRange;
     mode: string;
     displayValue: Date | Date[] | null;
