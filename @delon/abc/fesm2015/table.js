@@ -459,6 +459,8 @@ if (false) {
      * @type {?|undefined}
      */
     STColumn.prototype._sort;
+    /** @type {?|undefined} */
+    STColumn.prototype.children;
     /* Skipping unhandled member: [key: string]: any;*/
 }
 /**
