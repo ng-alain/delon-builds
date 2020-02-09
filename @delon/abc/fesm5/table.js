@@ -226,12 +226,6 @@ if (false) {
      */
     STPage.prototype.total;
     /**
-     * @deprecated 9.0.0. This is deprecated and going to be removed in 9.0.0.
-     * 数据变更后是否保留在数据变更前的页码，默认：`true`
-     * @type {?|undefined}
-     */
-    STPage.prototype.indexReset;
-    /**
      * 切换分页时返回顶部，默认：`true`
      * @type {?|undefined}
      */
@@ -286,12 +280,6 @@ if (false) {
      * @type {?|undefined}
      */
     STColumn.prototype.title;
-    /**
-     * 列标题 i18n
-     * @deprecated 使用 `title: { i18n: 'value' }` 代替
-     * @type {?|undefined}
-     */
-    STColumn.prototype.i18n;
     /**
      * 列数据在数据项中对应的 key，支持 `a.b.c` 的嵌套写法，例如：
      * - `id`
@@ -459,8 +447,6 @@ if (false) {
      * @type {?|undefined}
      */
     STColumn.prototype._sort;
-    /** @type {?|undefined} */
-    STColumn.prototype.children;
     /* Skipping unhandled member: [key: string]: any;*/
 }
 /**
@@ -761,12 +747,6 @@ if (false) {
      */
     STColumnButton.prototype.icon;
     /**
-     * 格式化文本
-     * @deprecated 使用 `text` 代替
-     * @type {?|undefined}
-     */
-    STColumnButton.prototype.format;
-    /**
      * 按钮类型
      * - `none` 无任何互动
      * - `del` 删除，默认开启 `pop: true`
@@ -794,13 +774,6 @@ if (false) {
      * @type {?|undefined}
      */
     STColumnButton.prototype.pop;
-    /**
-     * 气泡确认框内容，默认 `确认删除吗？`
-     *
-     * @deprecated 已过期，请使用 `pop.title` 替代
-     * @type {?|undefined}
-     */
-    STColumnButton.prototype.popTitle;
     /**
      * 对话框参数
      * @type {?|undefined}
@@ -836,11 +809,6 @@ if (false) {
     STColumnButton.prototype.iifBehavior;
     /** @type {?|undefined} */
     STColumnButton.prototype.tooltip;
-    /**
-     * @deprecated 9.0.0. This is deprecated and going to be removed in 9.0.0.
-     * @type {?|undefined}
-     */
-    STColumnButton.prototype.component;
     /* Skipping unhandled member: [key: string]: any;*/
 }
 /**
@@ -1444,7 +1412,6 @@ var STConfig = /** @class */ (function () {
             pageSizes: [10, 20, 30, 40, 50],
             showQuickJumper: false,
             total: true,
-            indexReset: true,
             toTop: true,
             toTopOffset: 100,
         };
@@ -1695,13 +1662,7 @@ var STColumnSource = /** @class */ (function () {
         }
         /** @type {?} */
         var pop = __assign({}, def);
-        // compatible
-        // tslint:disable-next-line: deprecation
-        if (i.popTitle) {
-            // tslint:disable-next-line: deprecation
-            pop.title = i.popTitle;
-        }
-        else if (typeof i.pop === 'string') {
+        if (typeof i.pop === 'string') {
             pop.title = i.pop;
         }
         else if (typeof i.pop === 'object') {
@@ -1739,18 +1700,6 @@ var STColumnSource = /** @class */ (function () {
                     continue;
                 }
                 if (item.type === 'modal' || item.type === 'static') {
-                    // compatible
-                    // tslint:disable-next-line: deprecation
-                    if (item.component != null) {
-                        item.modal = {
-                            // tslint:disable-next-line: deprecation
-                            component: item.component,
-                            params: item.params,
-                            paramsName: item.paramName || (/** @type {?} */ (modal)).paramsName,
-                            size: item.size || (/** @type {?} */ (modal)).size,
-                            modalOptions: item.modalOptions || (/** @type {?} */ (modal)).modalOptions,
-                        };
-                    }
                     if (item.modal == null || item.modal.component == null) {
                         console.warn("[st] Should specify modal parameter");
                         item.type = 'none';
@@ -1904,16 +1853,6 @@ var STColumnSource = /** @class */ (function () {
      * @return {?}
      */
     function (item) {
-        // compatible
-        if (item.sorter && typeof item.sorter === 'function') {
-            return {
-                enabled: true,
-                default: (/** @type {?} */ (item.sort)),
-                compare: item.sorter,
-                key: item.sortKey || item.indexKey,
-                reName: item.sortReName,
-            };
-        }
         if (typeof item.sort === 'undefined') {
             return { enabled: false };
         }
@@ -1943,28 +1882,11 @@ var STColumnSource = /** @class */ (function () {
      */
     function (item) {
         var _this = this;
-        /** @type {?} */
-        var res = null;
-        // compatible
-        if (item.filters && item.filters.length > 0) {
-            res = {
-                confirmText: item.filterConfirmText,
-                clearText: item.filterClearText,
-                default: item.filtered,
-                fn: (/** @type {?} */ (item.filter)),
-                icon: item.filterIcon,
-                key: item.filterKey || item.indexKey,
-                menus: item.filters,
-                multiple: item.filterMultiple,
-                reName: item.filterReName,
-            };
-        }
-        else {
-            res = (/** @type {?} */ (item.filter));
-        }
-        if (res == null) {
+        if (item.filter == null) {
             return null;
         }
+        /** @type {?} */
+        var res = item.filter;
         res.type = res.type || 'default';
         /** @type {?} */
         var icon = 'filter';
@@ -2073,12 +1995,6 @@ var STColumnSource = /** @class */ (function () {
                 if (!item.title) {
                     item.title = {};
                 }
-                // Compatible
-                // tslint:disable-next-line: deprecation
-                if (item.i18n) {
-                    // tslint:disable-next-line: deprecation
-                    (/** @type {?} */ (item.title)).i18n = item.i18n;
-                }
                 if ((/** @type {?} */ (item.title)).i18n && this.i18nSrv) {
                     (/** @type {?} */ (item.title)).text = this.i18nSrv.fanyi((/** @type {?} */ (item.title)).i18n);
                 }
@@ -2115,13 +2031,6 @@ var STColumnSource = /** @class */ (function () {
                 // types
                 if (item.type === 'yn') {
                     item.yn = __assign({ truth: true }, item.yn);
-                    // compatible
-                    if (item.ynTruth != null)
-                        item.yn.truth = item.ynTruth;
-                    if (item.ynYes != null)
-                        item.yn.yes = item.ynYes;
-                    if (item.ynNo != null)
-                        item.yn.no = item.ynNo;
                 }
                 if ((item.type === 'link' && typeof item.click !== 'function') ||
                     (item.type === 'badge' && item.badge == null) ||
@@ -4560,11 +4469,6 @@ var STComponent = /** @class */ (function () {
      * @return {?}
      */
     function (record, btn) {
-        // tslint:disable-next-line: deprecation
-        if (btn.format) {
-            // tslint:disable-next-line: deprecation
-            return btn.format(record, btn);
-        }
         return typeof btn.text === 'function' ? btn.text(record, btn) : btn.text || '';
     };
     /**

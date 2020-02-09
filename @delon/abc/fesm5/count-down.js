@@ -2,7 +2,6 @@ import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Vi
 import addSeconds from 'date-fns/add_seconds';
 import format from 'date-fns/format';
 import { CountdownModule } from 'ngx-countdown';
-import { warnDeprecation } from 'ng-zorro-antd/core';
 import { __spread } from 'tslib';
 import { CommonModule } from '@angular/common';
 
@@ -13,9 +12,6 @@ import { CommonModule } from '@angular/common';
  */
 var CountDownComponent = /** @class */ (function () {
     function CountDownComponent() {
-        this.begin = new EventEmitter();
-        this.notify = new EventEmitter();
-        this.end = new EventEmitter();
         this.event = new EventEmitter();
     }
     Object.defineProperty(CountDownComponent.prototype, "target", {
@@ -37,17 +33,6 @@ var CountDownComponent = /** @class */ (function () {
         configurable: true
     });
     /**
-     * @return {?}
-     */
-    CountDownComponent.prototype.ngOnInit = /**
-     * @return {?}
-     */
-    function () {
-        if (this.begin.observers.length > 0 || this.notify.observers.length > 0 || this.end.observers.length > 0) {
-            warnDeprecation("begin, notify, end events is deprecated and will be removed in 9.0.0. Please use 'event' instead.");
-        }
-    };
-    /**
      * @param {?} e
      * @return {?}
      */
@@ -56,17 +41,6 @@ var CountDownComponent = /** @class */ (function () {
      * @return {?}
      */
     function (e) {
-        switch (e.action) {
-            case 'start':
-                this.begin.emit();
-                break;
-            case 'notify':
-                this.notify.emit(e.left);
-                break;
-            case 'done':
-                this.end.emit();
-                break;
-        }
         this.event.emit(e);
     };
     CountDownComponent.decorators = [
@@ -83,9 +57,6 @@ var CountDownComponent = /** @class */ (function () {
         instance: [{ type: ViewChild, args: ['cd', { static: false },] }],
         config: [{ type: Input }],
         target: [{ type: Input }],
-        begin: [{ type: Output }],
-        notify: [{ type: Output }],
-        end: [{ type: Output }],
         event: [{ type: Output }]
     };
     return CountDownComponent;
@@ -95,12 +66,6 @@ if (false) {
     CountDownComponent.prototype.instance;
     /** @type {?} */
     CountDownComponent.prototype.config;
-    /** @type {?} */
-    CountDownComponent.prototype.begin;
-    /** @type {?} */
-    CountDownComponent.prototype.notify;
-    /** @type {?} */
-    CountDownComponent.prototype.end;
     /** @type {?} */
     CountDownComponent.prototype.event;
 }
