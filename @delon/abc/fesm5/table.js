@@ -1,10 +1,10 @@
 import { __assign, __values, __spread, __awaiter, __generator, __decorate, __metadata } from 'tslib';
+import { DomSanitizer } from '@angular/platform-browser';
 import { Injectable, Directive, TemplateRef, Host, Input, ɵɵdefineInjectable, Optional, Inject, EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ChangeDetectorRef, ElementRef, Renderer2, ViewChild, Output, NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { ACLService, DelonACLModule } from '@delon/acl';
 import { ALAIN_I18N_TOKEN, _HttpClient, CNCurrencyPipe, DatePipe, YNPipe, ModalHelper, DrawerHelper, DelonLocaleService } from '@delon/theme';
 import { deepCopy, deepGet, deepMergeKey, deepMerge, toBoolean, updateHostClass, InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
 import { DecimalPipe, DOCUMENT, CommonModule } from '@angular/common';
-import { DomSanitizer } from '@angular/platform-browser';
 import { of, Subject, from } from 'rxjs';
 import { map, takeUntil, filter } from 'rxjs/operators';
 import { XlsxService } from '@delon/abc/xlsx';
@@ -1638,7 +1638,8 @@ if (false) {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var STColumnSource = /** @class */ (function () {
-    function STColumnSource(rowSource, acl, i18nSrv, cog) {
+    function STColumnSource(dom, rowSource, acl, i18nSrv, cog) {
+        this.dom = dom;
         this.rowSource = rowSource;
         this.acl = acl;
         this.i18nSrv = i18nSrv;
@@ -1990,15 +1991,15 @@ var STColumnSource = /** @class */ (function () {
                     item.indexKey = item.index.join('.');
                 }
                 // #region title
-                if (typeof item.title === 'string') {
-                    item.title = { text: item.title };
+                /** @type {?} */
+                var tit = (typeof item.title === 'string' ? { text: item.title } : item.title) || {};
+                if (tit.i18n && this.i18nSrv) {
+                    tit.text = this.i18nSrv.fanyi(tit.i18n);
                 }
-                if (!item.title) {
-                    item.title = {};
+                if (tit.text) {
+                    tit._text = this.dom.bypassSecurityTrustHtml(tit.text);
                 }
-                if ((/** @type {?} */ (item.title)).i18n && this.i18nSrv) {
-                    (/** @type {?} */ (item.title)).text = this.i18nSrv.fanyi((/** @type {?} */ (item.title)).i18n);
-                }
+                item.title = tit;
                 // #endregion
                 // no
                 if (item.type === 'no') {
@@ -2152,6 +2153,7 @@ var STColumnSource = /** @class */ (function () {
     ];
     /** @nocollapse */
     STColumnSource.ctorParameters = function () { return [
+        { type: DomSanitizer },
         { type: STRowSource, decorators: [{ type: Host }] },
         { type: ACLService, decorators: [{ type: Optional }] },
         { type: undefined, decorators: [{ type: Optional }, { type: Inject, args: [ALAIN_I18N_TOKEN,] }] },
@@ -2160,6 +2162,11 @@ var STColumnSource = /** @class */ (function () {
     return STColumnSource;
 }());
 if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    STColumnSource.prototype.dom;
     /**
      * @type {?}
      * @private
@@ -3605,8 +3612,10 @@ var STComponent = /** @class */ (function () {
                     case 3:
                         error_1 = _a.sent();
                         this.setLoading(false);
-                        this.cdr.detectChanges();
-                        this.error.emit({ type: 'req', error: error_1 });
+                        if (!this.unsubscribe$.isStopped) {
+                            this.cdr.detectChanges();
+                            this.error.emit({ type: 'req', error: error_1 });
+                        }
                         return [2 /*return*/, this];
                     case 4: return [2 /*return*/];
                 }

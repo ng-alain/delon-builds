@@ -1,9 +1,9 @@
+import { DomSanitizer } from '@angular/platform-browser';
 import { Injectable, Directive, TemplateRef, Host, Input, ɵɵdefineInjectable, Optional, Inject, EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ChangeDetectorRef, ElementRef, Renderer2, ViewChild, Output, NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { ACLService, DelonACLModule } from '@delon/acl';
 import { ALAIN_I18N_TOKEN, _HttpClient, CNCurrencyPipe, DatePipe, YNPipe, ModalHelper, DrawerHelper, DelonLocaleService } from '@delon/theme';
 import { deepCopy, deepGet, deepMergeKey, deepMerge, toBoolean, updateHostClass, InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
 import { DecimalPipe, DOCUMENT, CommonModule } from '@angular/common';
-import { DomSanitizer } from '@angular/platform-browser';
 import { of, Subject, from } from 'rxjs';
 import { map, takeUntil, filter } from 'rxjs/operators';
 import { XlsxService } from '@delon/abc/xlsx';
@@ -1623,12 +1623,14 @@ if (false) {
  */
 class STColumnSource {
     /**
+     * @param {?} dom
      * @param {?} rowSource
      * @param {?} acl
      * @param {?} i18nSrv
      * @param {?} cog
      */
-    constructor(rowSource, acl, i18nSrv, cog) {
+    constructor(dom, rowSource, acl, i18nSrv, cog) {
+        this.dom = dom;
         this.rowSource = rowSource;
         this.acl = acl;
         this.i18nSrv = i18nSrv;
@@ -1908,15 +1910,15 @@ class STColumnSource {
                 item.indexKey = item.index.join('.');
             }
             // #region title
-            if (typeof item.title === 'string') {
-                item.title = { text: item.title };
+            /** @type {?} */
+            const tit = (typeof item.title === 'string' ? { text: item.title } : item.title) || {};
+            if (tit.i18n && this.i18nSrv) {
+                tit.text = this.i18nSrv.fanyi(tit.i18n);
             }
-            if (!item.title) {
-                item.title = {};
+            if (tit.text) {
+                tit._text = this.dom.bypassSecurityTrustHtml(tit.text);
             }
-            if ((/** @type {?} */ (item.title)).i18n && this.i18nSrv) {
-                (/** @type {?} */ (item.title)).text = this.i18nSrv.fanyi((/** @type {?} */ (item.title)).i18n);
-            }
+            item.title = tit;
             // #endregion
             // no
             if (item.type === 'no') {
@@ -2046,12 +2048,18 @@ STColumnSource.decorators = [
 ];
 /** @nocollapse */
 STColumnSource.ctorParameters = () => [
+    { type: DomSanitizer },
     { type: STRowSource, decorators: [{ type: Host }] },
     { type: ACLService, decorators: [{ type: Optional }] },
     { type: undefined, decorators: [{ type: Optional }, { type: Inject, args: [ALAIN_I18N_TOKEN,] }] },
     { type: STConfig }
 ];
 if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    STColumnSource.prototype.dom;
     /**
      * @type {?}
      * @private
@@ -3293,8 +3301,10 @@ class STComponent {
             }
             catch (error) {
                 this.setLoading(false);
-                this.cdr.detectChanges();
-                this.error.emit({ type: 'req', error });
+                if (!this.unsubscribe$.isStopped) {
+                    this.cdr.detectChanges();
+                    this.error.emit({ type: 'req', error });
+                }
                 return this;
             }
         });

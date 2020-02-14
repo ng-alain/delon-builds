@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/acl'), require('@delon/theme'), require('@delon/util'), require('@angular/common'), require('@angular/platform-browser'), require('rxjs'), require('rxjs/operators'), require('@delon/abc/xlsx'), require('@angular/router'), require('ng-zorro-antd/table'), require('@angular/forms'), require('ng-zorro-antd/badge'), require('ng-zorro-antd/checkbox'), require('ng-zorro-antd/divider'), require('ng-zorro-antd/dropdown'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/menu'), require('ng-zorro-antd/popconfirm'), require('ng-zorro-antd/radio'), require('ng-zorro-antd/tag'), require('ng-zorro-antd/input'), require('ng-zorro-antd/tooltip')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/table', ['exports', '@angular/core', '@delon/acl', '@delon/theme', '@delon/util', '@angular/common', '@angular/platform-browser', 'rxjs', 'rxjs/operators', '@delon/abc/xlsx', '@angular/router', 'ng-zorro-antd/table', '@angular/forms', 'ng-zorro-antd/badge', 'ng-zorro-antd/checkbox', 'ng-zorro-antd/divider', 'ng-zorro-antd/dropdown', 'ng-zorro-antd/icon', 'ng-zorro-antd/menu', 'ng-zorro-antd/popconfirm', 'ng-zorro-antd/radio', 'ng-zorro-antd/tag', 'ng-zorro-antd/input', 'ng-zorro-antd/tooltip'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.table = {}), global.ng.core, global.delon.acl, global.delon.theme, global.delon.util, global.ng.common, global.ng.platformBrowser, global.rxjs, global.rxjs.operators, global.delon.abc.xlsx, global.ng.router, global['ng-zorro-antd/table'], global.ng.forms, global['ng-zorro-antd/badge'], global['ng-zorro-antd/checkbox'], global['ng-zorro-antd/divider'], global['ng-zorro-antd/dropdown'], global['ng-zorro-antd/icon'], global['ng-zorro-antd/menu'], global['ng-zorro-antd/popconfirm'], global['ng-zorro-antd/radio'], global['ng-zorro-antd/tag'], global['ng-zorro-antd/input'], global['ng-zorro-antd/tooltip']));
-}(this, (function (exports, core, acl, theme, util, common, platformBrowser, rxjs, operators, xlsx, router, table, forms, badge, checkbox, divider, dropdown, icon, menu, popconfirm, radio, tag, input, tooltip) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/platform-browser'), require('@angular/core'), require('@delon/acl'), require('@delon/theme'), require('@delon/util'), require('@angular/common'), require('rxjs'), require('rxjs/operators'), require('@delon/abc/xlsx'), require('@angular/router'), require('ng-zorro-antd/table'), require('@angular/forms'), require('ng-zorro-antd/badge'), require('ng-zorro-antd/checkbox'), require('ng-zorro-antd/divider'), require('ng-zorro-antd/dropdown'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/menu'), require('ng-zorro-antd/popconfirm'), require('ng-zorro-antd/radio'), require('ng-zorro-antd/tag'), require('ng-zorro-antd/input'), require('ng-zorro-antd/tooltip')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/table', ['exports', '@angular/platform-browser', '@angular/core', '@delon/acl', '@delon/theme', '@delon/util', '@angular/common', 'rxjs', 'rxjs/operators', '@delon/abc/xlsx', '@angular/router', 'ng-zorro-antd/table', '@angular/forms', 'ng-zorro-antd/badge', 'ng-zorro-antd/checkbox', 'ng-zorro-antd/divider', 'ng-zorro-antd/dropdown', 'ng-zorro-antd/icon', 'ng-zorro-antd/menu', 'ng-zorro-antd/popconfirm', 'ng-zorro-antd/radio', 'ng-zorro-antd/tag', 'ng-zorro-antd/input', 'ng-zorro-antd/tooltip'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.table = {}), global.ng.platformBrowser, global.ng.core, global.delon.acl, global.delon.theme, global.delon.util, global.ng.common, global.rxjs, global.rxjs.operators, global.delon.abc.xlsx, global.ng.router, global['ng-zorro-antd/table'], global.ng.forms, global['ng-zorro-antd/badge'], global['ng-zorro-antd/checkbox'], global['ng-zorro-antd/divider'], global['ng-zorro-antd/dropdown'], global['ng-zorro-antd/icon'], global['ng-zorro-antd/menu'], global['ng-zorro-antd/popconfirm'], global['ng-zorro-antd/radio'], global['ng-zorro-antd/tag'], global['ng-zorro-antd/input'], global['ng-zorro-antd/tooltip']));
+}(this, (function (exports, platformBrowser, core, acl, theme, util, common, rxjs, operators, xlsx, router, table, forms, badge, checkbox, divider, dropdown, icon, menu, popconfirm, radio, tag, input, tooltip) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -1821,7 +1821,8 @@
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var STColumnSource = /** @class */ (function () {
-        function STColumnSource(rowSource, acl, i18nSrv, cog) {
+        function STColumnSource(dom, rowSource, acl, i18nSrv, cog) {
+            this.dom = dom;
             this.rowSource = rowSource;
             this.acl = acl;
             this.i18nSrv = i18nSrv;
@@ -2173,15 +2174,15 @@
                         item.indexKey = item.index.join('.');
                     }
                     // #region title
-                    if (typeof item.title === 'string') {
-                        item.title = { text: item.title };
+                    /** @type {?} */
+                    var tit = (typeof item.title === 'string' ? { text: item.title } : item.title) || {};
+                    if (tit.i18n && this.i18nSrv) {
+                        tit.text = this.i18nSrv.fanyi(tit.i18n);
                     }
-                    if (!item.title) {
-                        item.title = {};
+                    if (tit.text) {
+                        tit._text = this.dom.bypassSecurityTrustHtml(tit.text);
                     }
-                    if ((/** @type {?} */ (item.title)).i18n && this.i18nSrv) {
-                        (/** @type {?} */ (item.title)).text = this.i18nSrv.fanyi((/** @type {?} */ (item.title)).i18n);
-                    }
+                    item.title = tit;
                     // #endregion
                     // no
                     if (item.type === 'no') {
@@ -2335,6 +2336,7 @@
         ];
         /** @nocollapse */
         STColumnSource.ctorParameters = function () { return [
+            { type: platformBrowser.DomSanitizer },
             { type: STRowSource, decorators: [{ type: core.Host }] },
             { type: acl.ACLService, decorators: [{ type: core.Optional }] },
             { type: undefined, decorators: [{ type: core.Optional }, { type: core.Inject, args: [theme.ALAIN_I18N_TOKEN,] }] },
@@ -2343,6 +2345,11 @@
         return STColumnSource;
     }());
     if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        STColumnSource.prototype.dom;
         /**
          * @type {?}
          * @private
@@ -3788,8 +3795,10 @@
                         case 3:
                             error_1 = _a.sent();
                             this.setLoading(false);
-                            this.cdr.detectChanges();
-                            this.error.emit({ type: 'req', error: error_1 });
+                            if (!this.unsubscribe$.isStopped) {
+                                this.cdr.detectChanges();
+                                this.error.emit({ type: 'req', error: error_1 });
+                            }
                             return [2 /*return*/, this];
                         case 4: return [2 /*return*/];
                     }
