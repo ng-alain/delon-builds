@@ -1,16 +1,14 @@
-import { DomSanitizer } from '@angular/platform-browser';
 import { ACLService } from '@delon/acl';
 import { AlainI18NService } from '@delon/theme';
 import { STRowSource } from './table-row.directive';
 import { STConfig } from './table.config';
 import { STColumn, STColumnFilter } from './table.interfaces';
 export declare class STColumnSource {
-    private dom;
     private rowSource;
     private acl;
     private i18nSrv;
     private cog;
-    constructor(dom: DomSanitizer, rowSource: STRowSource, acl: ACLService, i18nSrv: AlainI18NService, cog: STConfig);
+    constructor(rowSource: STRowSource, acl: ACLService, i18nSrv: AlainI18NService, cog: STConfig);
     private fixPop;
     private btnCoerce;
     private btnCoerceIf;

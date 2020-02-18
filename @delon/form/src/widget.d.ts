@@ -1,4 +1,3 @@
-import { DomSanitizer } from '@angular/platform-browser';
 import { AfterViewInit, ChangeDetectorRef, Injector } from '@angular/core';
 import { LocaleData } from '@delon/theme';
 import { SFValue } from './interface';
@@ -26,7 +25,6 @@ export declare abstract class Widget<T extends FormProperty, UIT extends SFUISch
     readonly disabled: boolean | null;
     readonly l: LocaleData;
     readonly oh: SFOptionalHelp;
-    readonly dom: DomSanitizer;
     constructor(cd: ChangeDetectorRef, injector: Injector, sfItemComp?: SFItemComponent | undefined, sfComp?: SFComponent | undefined);
     ngAfterViewInit(): void;
     setValue(value: SFValue): void;
