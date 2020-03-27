@@ -3760,14 +3760,14 @@ class DateWidget extends ControlUIWidget {
      * @return {?}
      */
     _change(value) {
-        if (value == null) {
+        if (value == null || ((/** @type {?} */ (value))).length < 2) {
             this.setValue(null);
             this.setEnd(null);
             return;
         }
         /** @type {?} */
         const res = Array.isArray(value)
-            ? [format(value[0], this.startFormat), format(value[1], this.endFormat)]
+            ? [format(value[0], this.startFormat), format(value[1], this.endFormat || this.startFormat)]
             : format(value, this.startFormat);
         if (this.flatRange) {
             this.setEnd(res[1]);

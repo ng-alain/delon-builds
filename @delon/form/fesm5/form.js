@@ -4463,14 +4463,14 @@ var DateWidget = /** @class */ (function (_super) {
      * @return {?}
      */
     function (value) {
-        if (value == null) {
+        if (value == null || ((/** @type {?} */ (value))).length < 2) {
             this.setValue(null);
             this.setEnd(null);
             return;
         }
         /** @type {?} */
         var res = Array.isArray(value)
-            ? [format(value[0], this.startFormat), format(value[1], this.endFormat)]
+            ? [format(value[0], this.startFormat), format(value[1], this.endFormat || this.startFormat)]
             : format(value, this.startFormat);
         if (this.flatRange) {
             this.setEnd(res[1]);
