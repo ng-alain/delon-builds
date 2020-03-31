@@ -561,10 +561,15 @@ class MenuService {
             }));
             if (!recursive)
                 break;
-            url = url
-                .split('/')
-                .slice(0, -1)
-                .join('/');
+            if (url.includes('?')) {
+                url = url.split('?')[0];
+            }
+            else {
+                url = url
+                    .split('/')
+                    .slice(0, -1)
+                    .join('/');
+            }
         }
         return item;
     }
@@ -629,7 +634,7 @@ class MenuService {
          * @param {?} item
          * @return {?}
          */
-        (item) => {
+        item => {
             if (res == null && item.key === key) {
                 res = item;
             }
@@ -3549,7 +3554,7 @@ AlainThemeModule.ctorParameters = () => [
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-const VERSION = new Version('8.9.0-a055b93');
+const VERSION = new Version('8.9.0-30c2b242');
 
 /**
  * @fileoverview added by tsickle

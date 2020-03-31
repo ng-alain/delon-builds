@@ -645,10 +645,15 @@ var MenuService = /** @class */ (function () {
             }));
             if (!recursive)
                 break;
-            url = url
-                .split('/')
-                .slice(0, -1)
-                .join('/');
+            if (url.includes('?')) {
+                url = url.split('?')[0];
+            }
+            else {
+                url = url
+                    .split('/')
+                    .slice(0, -1)
+                    .join('/');
+            }
         }
         return item;
     };
@@ -4150,7 +4155,7 @@ var AlainThemeModule = /** @class */ (function () {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-var VERSION = new Version('8.9.0-a055b93');
+var VERSION = new Version('8.9.0-30c2b242');
 
 /**
  * @fileoverview added by tsickle
