@@ -22474,11 +22474,13 @@ a:focus {
     align-items: center;
     width: 100%;
     padding: 8px 8px;
+    white-space: inherit;
     text-align: left !important;
     border-bottom: none;
   }
   .ant-table-rep .ant-table-tbody > tr > td .ant-table-rep__title + *:not(.ant-avatar) {
     flex: 1;
+    word-break: break-all;
   }
 }
 .ant-tag__plus .ant-tag {
