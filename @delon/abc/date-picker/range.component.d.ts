@@ -1,7 +1,9 @@
+import { DomSanitizer } from '@angular/platform-browser';
 import { EventEmitter } from '@angular/core';
 import { ControlValueAccessor } from '@angular/forms';
 import { DatePickerConfig, DateRangePickerShortcut, DateRangePickerShortcutItem } from './date-picker.config';
 export declare class RangePickerComponent implements ControlValueAccessor {
+    private dom;
     private onChangeFn;
     private _shortcut;
     private _cog;
@@ -32,7 +34,7 @@ export declare class RangePickerComponent implements ControlValueAccessor {
     nzRanges: any;
     readonly nzOnPanelChange: EventEmitter<any>;
     readonly nzOnOk: EventEmitter<any>;
-    constructor(cog: DatePickerConfig);
+    constructor(cog: DatePickerConfig, dom: DomSanitizer);
     _nzOnOpenChange(e: any): void;
     _nzOnPanelChange(e: any): void;
     _nzOnOk(e: any): void;

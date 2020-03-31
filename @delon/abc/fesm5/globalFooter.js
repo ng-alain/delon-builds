@@ -1,3 +1,4 @@
+import { DomSanitizer } from '@angular/platform-browser';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, ViewChild, Input, Inject, ContentChildren, NgModule } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { WINDOW } from '@delon/theme';
@@ -21,6 +22,7 @@ if (false) {
     GlobalFooterLink.prototype.href;
     /** @type {?|undefined} */
     GlobalFooterLink.prototype.blankTarget;
+    /* Skipping unhandled member: [key: string]: any;*/
 }
 
 /**
@@ -67,11 +69,35 @@ if (false) {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var GlobalFooterComponent = /** @class */ (function () {
-    function GlobalFooterComponent(router, win) {
+    function GlobalFooterComponent(router, win, dom) {
         this.router = router;
         this.win = win;
-        this.links = [];
+        this.dom = dom;
+        this._links = [];
     }
+    Object.defineProperty(GlobalFooterComponent.prototype, "links", {
+        get: /**
+         * @return {?}
+         */
+        function () {
+            return this._links;
+        },
+        set: /**
+         * @param {?} val
+         * @return {?}
+         */
+        function (val) {
+            var _this = this;
+            val.forEach((/**
+             * @param {?} i
+             * @return {?}
+             */
+            function (i) { return i._title = _this.dom.bypassSecurityTrustHtml(i.title); }));
+            this._links = val;
+        },
+        enumerable: true,
+        configurable: true
+    });
     /**
      * @param {?} item
      * @return {?}
@@ -99,7 +125,7 @@ var GlobalFooterComponent = /** @class */ (function () {
         { type: Component, args: [{
                     selector: 'global-footer',
                     exportAs: 'globalFooter',
-                    template: "<div *ngIf=\"links.length > 0 || items.length > 0\" class=\"global-footer__links\">\n  <a *ngFor=\"let i of links\" class=\"global-footer__links-item\" (click)=\"to(i)\" [innerHTML]=\"i.title\"></a>\n  <a *ngFor=\"let i of items\" class=\"global-footer__links-item\" (click)=\"to(i)\">\n    <ng-container *ngTemplateOutlet=\"i.host\"></ng-container>\n  </a>\n</div>\n<div class=\"global-footer__copyright\">\n  <ng-content></ng-content>\n</div>\n",
+                    template: "<div *ngIf=\"links.length > 0 || items.length > 0\" class=\"global-footer__links\">\n  <a *ngFor=\"let i of links\" class=\"global-footer__links-item\" (click)=\"to(i)\" [innerHTML]=\"i._title\"></a>\n  <a *ngFor=\"let i of items\" class=\"global-footer__links-item\" (click)=\"to(i)\">\n    <ng-container *ngTemplateOutlet=\"i.host\"></ng-container>\n  </a>\n</div>\n<div class=\"global-footer__copyright\">\n  <ng-content></ng-content>\n</div>\n",
                     host: { '[class.global-footer]': 'true' },
                     preserveWhitespaces: false,
                     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -109,7 +135,8 @@ var GlobalFooterComponent = /** @class */ (function () {
     /** @nocollapse */
     GlobalFooterComponent.ctorParameters = function () { return [
         { type: Router },
-        { type: Window, decorators: [{ type: Inject, args: [WINDOW,] }] }
+        { type: Window, decorators: [{ type: Inject, args: [WINDOW,] }] },
+        { type: DomSanitizer }
     ]; };
     GlobalFooterComponent.propDecorators = {
         links: [{ type: Input }],
@@ -118,8 +145,11 @@ var GlobalFooterComponent = /** @class */ (function () {
     return GlobalFooterComponent;
 }());
 if (false) {
-    /** @type {?} */
-    GlobalFooterComponent.prototype.links;
+    /**
+     * @type {?}
+     * @private
+     */
+    GlobalFooterComponent.prototype._links;
     /** @type {?} */
     GlobalFooterComponent.prototype.items;
     /**
@@ -132,6 +162,11 @@ if (false) {
      * @private
      */
     GlobalFooterComponent.prototype.win;
+    /**
+     * @type {?}
+     * @private
+     */
+    GlobalFooterComponent.prototype.dom;
 }
 
 /**

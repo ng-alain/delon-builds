@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/theme'), require('@delon/util'), require('@angular/common'), require('@angular/router'), require('ng-zorro-antd/button')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/exception', ['exports', '@angular/core', '@delon/theme', '@delon/util', '@angular/common', '@angular/router', 'ng-zorro-antd/button'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.exception = {}), global.ng.core, global.delon.theme, global.delon.util, global.ng.common, global.ng.router, global['ng-zorro-antd/button']));
-}(this, (function (exports, core, theme, util, common, router, button) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/platform-browser'), require('@angular/core'), require('@delon/theme'), require('@delon/util'), require('@angular/common'), require('@angular/router'), require('ng-zorro-antd/button')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/exception', ['exports', '@angular/platform-browser', '@angular/core', '@delon/theme', '@delon/util', '@angular/common', '@angular/router', 'ng-zorro-antd/button'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.exception = {}), global.ng.platformBrowser, global.ng.core, global.delon.theme, global.delon.util, global.ng.common, global.ng.router, global['ng-zorro-antd/button']));
+}(this, (function (exports, platformBrowser, core, theme, util, common, router, button) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -77,10 +77,11 @@
     }
 
     function __awaiter(thisArg, _arguments, P, generator) {
+        function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
         return new (P || (P = Promise))(function (resolve, reject) {
             function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
             function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-            function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+            function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
             step((generator = generator.apply(thisArg, _arguments || [])).next());
         });
     }
@@ -118,14 +119,15 @@
     }
 
     function __values(o) {
-        var m = typeof Symbol === "function" && o[Symbol.iterator], i = 0;
+        var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
         if (m) return m.call(o);
-        return {
+        if (o && typeof o.length === "number") return {
             next: function () {
                 if (o && i >= o.length) o = void 0;
                 return { value: o && o[i++], done: !o };
             }
         };
+        throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
     }
 
     function __read(o, n) {
@@ -206,14 +208,30 @@
         return (mod && mod.__esModule) ? mod : { default: mod };
     }
 
+    function __classPrivateFieldGet(receiver, privateMap) {
+        if (!privateMap.has(receiver)) {
+            throw new TypeError("attempted to get private field on non-instance");
+        }
+        return privateMap.get(receiver);
+    }
+
+    function __classPrivateFieldSet(receiver, privateMap, value) {
+        if (!privateMap.has(receiver)) {
+            throw new TypeError("attempted to set private field on non-instance");
+        }
+        privateMap.set(receiver, value);
+        return value;
+    }
+
     /**
      * @fileoverview added by tsickle
      * Generated from: exception.component.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var ExceptionComponent = /** @class */ (function () {
-        function ExceptionComponent(i18n) {
+        function ExceptionComponent(i18n, dom) {
             this.i18n = i18n;
+            this.dom = dom;
             this.locale = {};
             this.hasCon = false;
             this._img = '';
@@ -243,20 +261,34 @@
                 }[value];
                 if (!item)
                     return;
+                this.fixImg(item.img);
                 this._type = value;
-                this._img = item.img;
                 this._title = item.title;
+                this._desc = '';
             },
             enumerable: true,
             configurable: true
         });
+        /**
+         * @private
+         * @param {?} src
+         * @return {?}
+         */
+        ExceptionComponent.prototype.fixImg = /**
+         * @private
+         * @param {?} src
+         * @return {?}
+         */
+        function (src) {
+            this._img = this.dom.bypassSecurityTrustStyle("url('" + src + "')");
+        };
         Object.defineProperty(ExceptionComponent.prototype, "img", {
             set: /**
              * @param {?} value
              * @return {?}
              */
             function (value) {
-                this._img = value;
+                this.fixImg(value);
             },
             enumerable: true,
             configurable: true
@@ -267,7 +299,7 @@
              * @return {?}
              */
             function (value) {
-                this._title = value;
+                this._title = this.dom.bypassSecurityTrustHtml(value);
             },
             enumerable: true,
             configurable: true
@@ -278,7 +310,7 @@
              * @return {?}
              */
             function (value) {
-                this._desc = value;
+                this._desc = this.dom.bypassSecurityTrustHtml(value);
             },
             enumerable: true,
             configurable: true
@@ -319,7 +351,7 @@
             { type: core.Component, args: [{
                         selector: 'exception',
                         exportAs: 'exception',
-                        template: "<div class=\"exception__img-block\">\n  <div class=\"exception__img\"\n       [ngStyle]=\"{'background-image': 'url(' + _img + ')'}\"></div>\n</div>\n<div class=\"exception__cont\">\n  <h1 class=\"exception__cont-title\"\n      [innerHTML]=\"_title\"></h1>\n  <div class=\"exception__cont-desc\"\n       [innerHTML]=\"_desc || locale[_type]\"></div>\n  <div class=\"exception__cont-actions\">\n    <div (cdkObserveContent)=\"checkContent()\"\n         #conTpl>\n      <ng-content></ng-content>\n    </div>\n    <button *ngIf=\"!hasCon\"\n            nz-button\n            [routerLink]=\"['/']\"\n            [nzType]=\"'primary'\">{{locale.backToHome}}</button>\n  </div>\n</div>\n",
+                        template: "<div class=\"exception__img-block\">\n  <div class=\"exception__img\" [style.backgroundImage]=\"_img\"></div>\n</div>\n<div class=\"exception__cont\">\n  <h1 class=\"exception__cont-title\"\n      [innerHTML]=\"_title\"></h1>\n  <div class=\"exception__cont-desc\"\n       [innerHTML]=\"_desc || locale[_type]\"></div>\n  <div class=\"exception__cont-actions\">\n    <div (cdkObserveContent)=\"checkContent()\"\n         #conTpl>\n      <ng-content></ng-content>\n    </div>\n    <button *ngIf=\"!hasCon\"\n            nz-button\n            [routerLink]=\"['/']\"\n            [nzType]=\"'primary'\">{{locale.backToHome}}</button>\n  </div>\n</div>\n",
                         host: { '[class.exception]': 'true' },
                         preserveWhitespaces: false,
                         changeDetection: core.ChangeDetectionStrategy.OnPush,
@@ -328,7 +360,8 @@
         ];
         /** @nocollapse */
         ExceptionComponent.ctorParameters = function () { return [
-            { type: theme.DelonLocaleService }
+            { type: theme.DelonLocaleService },
+            { type: platformBrowser.DomSanitizer }
         ]; };
         ExceptionComponent.propDecorators = {
             conTpl: [{ type: core.ViewChild, args: ['conTpl', { static: true },] }],
@@ -367,6 +400,11 @@
          * @private
          */
         ExceptionComponent.prototype.i18n;
+        /**
+         * @type {?}
+         * @private
+         */
+        ExceptionComponent.prototype.dom;
     }
 
     /**

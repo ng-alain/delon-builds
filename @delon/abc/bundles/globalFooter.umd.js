@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/router'), require('@delon/theme'), require('@delon/util'), require('@angular/common')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/global-footer', ['exports', '@angular/core', '@angular/router', '@delon/theme', '@delon/util', '@angular/common'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['global-footer'] = {}), global.ng.core, global.ng.router, global.delon.theme, global.delon.util, global.ng.common));
-}(this, (function (exports, core, router, theme, util, common) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/platform-browser'), require('@angular/core'), require('@angular/router'), require('@delon/theme'), require('@delon/util'), require('@angular/common')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/global-footer', ['exports', '@angular/platform-browser', '@angular/core', '@angular/router', '@delon/theme', '@delon/util', '@angular/common'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['global-footer'] = {}), global.ng.platformBrowser, global.ng.core, global.ng.router, global.delon.theme, global.delon.util, global.ng.common));
+}(this, (function (exports, platformBrowser, core, router, theme, util, common) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -77,10 +77,11 @@
     }
 
     function __awaiter(thisArg, _arguments, P, generator) {
+        function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
         return new (P || (P = Promise))(function (resolve, reject) {
             function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
             function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-            function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+            function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
             step((generator = generator.apply(thisArg, _arguments || [])).next());
         });
     }
@@ -118,14 +119,15 @@
     }
 
     function __values(o) {
-        var m = typeof Symbol === "function" && o[Symbol.iterator], i = 0;
+        var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
         if (m) return m.call(o);
-        return {
+        if (o && typeof o.length === "number") return {
             next: function () {
                 if (o && i >= o.length) o = void 0;
                 return { value: o && o[i++], done: !o };
             }
         };
+        throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
     }
 
     function __read(o, n) {
@@ -206,6 +208,21 @@
         return (mod && mod.__esModule) ? mod : { default: mod };
     }
 
+    function __classPrivateFieldGet(receiver, privateMap) {
+        if (!privateMap.has(receiver)) {
+            throw new TypeError("attempted to get private field on non-instance");
+        }
+        return privateMap.get(receiver);
+    }
+
+    function __classPrivateFieldSet(receiver, privateMap, value) {
+        if (!privateMap.has(receiver)) {
+            throw new TypeError("attempted to set private field on non-instance");
+        }
+        privateMap.set(receiver, value);
+        return value;
+    }
+
     /**
      * @fileoverview added by tsickle
      * Generated from: global-footer.types.ts
@@ -222,6 +239,7 @@
         GlobalFooterLink.prototype.href;
         /** @type {?|undefined} */
         GlobalFooterLink.prototype.blankTarget;
+        /* Skipping unhandled member: [key: string]: any;*/
     }
 
     /**
@@ -268,11 +286,35 @@
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var GlobalFooterComponent = /** @class */ (function () {
-        function GlobalFooterComponent(router, win) {
+        function GlobalFooterComponent(router, win, dom) {
             this.router = router;
             this.win = win;
-            this.links = [];
+            this.dom = dom;
+            this._links = [];
         }
+        Object.defineProperty(GlobalFooterComponent.prototype, "links", {
+            get: /**
+             * @return {?}
+             */
+            function () {
+                return this._links;
+            },
+            set: /**
+             * @param {?} val
+             * @return {?}
+             */
+            function (val) {
+                var _this = this;
+                val.forEach((/**
+                 * @param {?} i
+                 * @return {?}
+                 */
+                function (i) { return i._title = _this.dom.bypassSecurityTrustHtml(i.title); }));
+                this._links = val;
+            },
+            enumerable: true,
+            configurable: true
+        });
         /**
          * @param {?} item
          * @return {?}
@@ -300,7 +342,7 @@
             { type: core.Component, args: [{
                         selector: 'global-footer',
                         exportAs: 'globalFooter',
-                        template: "<div *ngIf=\"links.length > 0 || items.length > 0\" class=\"global-footer__links\">\n  <a *ngFor=\"let i of links\" class=\"global-footer__links-item\" (click)=\"to(i)\" [innerHTML]=\"i.title\"></a>\n  <a *ngFor=\"let i of items\" class=\"global-footer__links-item\" (click)=\"to(i)\">\n    <ng-container *ngTemplateOutlet=\"i.host\"></ng-container>\n  </a>\n</div>\n<div class=\"global-footer__copyright\">\n  <ng-content></ng-content>\n</div>\n",
+                        template: "<div *ngIf=\"links.length > 0 || items.length > 0\" class=\"global-footer__links\">\n  <a *ngFor=\"let i of links\" class=\"global-footer__links-item\" (click)=\"to(i)\" [innerHTML]=\"i._title\"></a>\n  <a *ngFor=\"let i of items\" class=\"global-footer__links-item\" (click)=\"to(i)\">\n    <ng-container *ngTemplateOutlet=\"i.host\"></ng-container>\n  </a>\n</div>\n<div class=\"global-footer__copyright\">\n  <ng-content></ng-content>\n</div>\n",
                         host: { '[class.global-footer]': 'true' },
                         preserveWhitespaces: false,
                         changeDetection: core.ChangeDetectionStrategy.OnPush,
@@ -310,7 +352,8 @@
         /** @nocollapse */
         GlobalFooterComponent.ctorParameters = function () { return [
             { type: router.Router },
-            { type: Window, decorators: [{ type: core.Inject, args: [theme.WINDOW,] }] }
+            { type: Window, decorators: [{ type: core.Inject, args: [theme.WINDOW,] }] },
+            { type: platformBrowser.DomSanitizer }
         ]; };
         GlobalFooterComponent.propDecorators = {
             links: [{ type: core.Input }],
@@ -319,8 +362,11 @@
         return GlobalFooterComponent;
     }());
     if (false) {
-        /** @type {?} */
-        GlobalFooterComponent.prototype.links;
+        /**
+         * @type {?}
+         * @private
+         */
+        GlobalFooterComponent.prototype._links;
         /** @type {?} */
         GlobalFooterComponent.prototype.items;
         /**
@@ -333,6 +379,11 @@
          * @private
          */
         GlobalFooterComponent.prototype.win;
+        /**
+         * @type {?}
+         * @private
+         */
+        GlobalFooterComponent.prototype.dom;
     }
 
     /**
