@@ -855,15 +855,10 @@
                 }));
                 if (!recursive)
                     break;
-                if (url.includes('?')) {
-                    url = url.split('?')[0];
-                }
-                else {
-                    url = url
-                        .split('/')
-                        .slice(0, -1)
-                        .join('/');
-                }
+                url = url
+                    .split('/')
+                    .slice(0, -1)
+                    .join('/');
             }
             return item;
         };
