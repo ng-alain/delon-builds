@@ -1,6 +1,6 @@
 import { InjectionToken, Injectable, ɵɵdefineInjectable, Optional, Inject, ɵɵinject, Injector, INJECTOR, SkipSelf, NgModule, Pipe, Version } from '@angular/core';
-import { BehaviorSubject, Subject, Observable, throwError } from 'rxjs';
-import { filter, share, tap, catchError } from 'rxjs/operators';
+import { BehaviorSubject, Subject, Observable, throwError, of } from 'rxjs';
+import { filter, share, tap, catchError, switchMap } from 'rxjs/operators';
 import { ACLService } from '@delon/acl';
 import { DOCUMENT, CurrencyPipe, CommonModule } from '@angular/common';
 import { Title, DomSanitizer } from '@angular/platform-browser';
@@ -561,10 +561,15 @@ class MenuService {
             }));
             if (!recursive)
                 break;
-            url = url
-                .split('/')
-                .slice(0, -1)
-                .join('/');
+            if (url.includes('?')) {
+                url = url.split('?')[0];
+            }
+            else {
+                url = url
+                    .split('/')
+                    .slice(0, -1)
+                    .join('/');
+            }
         }
         return item;
     }
@@ -629,7 +634,7 @@ class MenuService {
          * @param {?} item
          * @return {?}
          */
-        (item) => {
+        item => {
             if (res == null && item.key === key) {
                 res = item;
             }
@@ -2743,19 +2748,19 @@ class _HttpClient {
      * @return {?}
      */
     begin() {
-        setTimeout((/**
+        Promise.resolve(null).then((/**
          * @return {?}
          */
-        () => (this._loading = true)), 10);
+        () => (this._loading = true)));
     }
     /**
      * @return {?}
      */
     end() {
-        setTimeout((/**
+        Promise.resolve(null).then((/**
          * @return {?}
          */
-        () => (this._loading = false)), 10);
+        () => (this._loading = false)));
     }
     /**
      * GET 请求
@@ -2844,10 +2849,15 @@ class _HttpClient {
      * @return {?}
      */
     request(method, url, options = {}) {
-        this.begin();
         if (options.params)
             options.params = this.parseParams(options.params);
-        return this.http.request(method, url, options).pipe(tap((/**
+        return of(null).pipe(tap((/**
+         * @return {?}
+         */
+        () => this.begin())), switchMap((/**
+         * @return {?}
+         */
+        () => this.http.request(method, url, options))), tap((/**
          * @return {?}
          */
         () => this.end())), catchError((/**
@@ -3544,7 +3554,7 @@ AlainThemeModule.ctorParameters = () => [
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-const VERSION = new Version('8.8.0-44fb498');
+const VERSION = new Version('8.9.1');
 
 /**
  * @fileoverview added by tsickle

@@ -1,7 +1,7 @@
 import { InjectionToken, Injectable, ɵɵdefineInjectable, Optional, Inject, ɵɵinject, Injector, INJECTOR, SkipSelf, NgModule, Pipe, Version } from '@angular/core';
 import { __values, __assign, __spread, __extends } from 'tslib';
-import { BehaviorSubject, Subject, Observable, throwError } from 'rxjs';
-import { filter, share, tap, catchError } from 'rxjs/operators';
+import { BehaviorSubject, Subject, Observable, throwError, of } from 'rxjs';
+import { filter, share, tap, catchError, switchMap } from 'rxjs/operators';
 import { ACLService } from '@delon/acl';
 import { DOCUMENT, CurrencyPipe, CommonModule } from '@angular/common';
 import { Title, DomSanitizer } from '@angular/platform-browser';
@@ -645,10 +645,15 @@ var MenuService = /** @class */ (function () {
             }));
             if (!recursive)
                 break;
-            url = url
-                .split('/')
-                .slice(0, -1)
-                .join('/');
+            if (url.includes('?')) {
+                url = url.split('?')[0];
+            }
+            else {
+                url = url
+                    .split('/')
+                    .slice(0, -1)
+                    .join('/');
+            }
         }
         return item;
     };
@@ -3198,10 +3203,10 @@ var _HttpClient = /** @class */ (function () {
      */
     function () {
         var _this = this;
-        setTimeout((/**
+        Promise.resolve(null).then((/**
          * @return {?}
          */
-        function () { return (_this._loading = true); }), 10);
+        function () { return (_this._loading = true); }));
     };
     /**
      * @return {?}
@@ -3211,10 +3216,10 @@ var _HttpClient = /** @class */ (function () {
      */
     function () {
         var _this = this;
-        setTimeout((/**
+        Promise.resolve(null).then((/**
          * @return {?}
          */
-        function () { return (_this._loading = false); }), 10);
+        function () { return (_this._loading = false); }));
     };
     /**
      * GET 请求
@@ -3391,10 +3396,15 @@ var _HttpClient = /** @class */ (function () {
     function (method, url, options) {
         var _this = this;
         if (options === void 0) { options = {}; }
-        this.begin();
         if (options.params)
             options.params = this.parseParams(options.params);
-        return this.http.request(method, url, options).pipe(tap((/**
+        return of(null).pipe(tap((/**
+         * @return {?}
+         */
+        function () { return _this.begin(); })), switchMap((/**
+         * @return {?}
+         */
+        function () { return _this.http.request(method, url, options); })), tap((/**
          * @return {?}
          */
         function () { return _this.end(); })), catchError((/**
@@ -4145,7 +4155,7 @@ var AlainThemeModule = /** @class */ (function () {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-var VERSION = new Version('8.8.0-44fb498');
+var VERSION = new Version('8.9.1');
 
 /**
  * @fileoverview added by tsickle

@@ -1,5 +1,5 @@
 /**
- * @license ng-alain(cipchk@qq.com) v8.8.0
+ * @license ng-alain(cipchk@qq.com) v8.9.1
  * (c) 2019 cipchk https://ng-alain.com/
  * License: MIT
  */
@@ -855,10 +855,15 @@
                 }));
                 if (!recursive)
                     break;
-                url = url
-                    .split('/')
-                    .slice(0, -1)
-                    .join('/');
+                if (url.includes('?')) {
+                    url = url.split('?')[0];
+                }
+                else {
+                    url = url
+                        .split('/')
+                        .slice(0, -1)
+                        .join('/');
+                }
             }
             return item;
         };
@@ -3408,10 +3413,10 @@
          */
         function () {
             var _this = this;
-            setTimeout((/**
+            Promise.resolve(null).then((/**
              * @return {?}
              */
-            function () { return (_this._loading = true); }), 10);
+            function () { return (_this._loading = true); }));
         };
         /**
          * @return {?}
@@ -3421,10 +3426,10 @@
          */
         function () {
             var _this = this;
-            setTimeout((/**
+            Promise.resolve(null).then((/**
              * @return {?}
              */
-            function () { return (_this._loading = false); }), 10);
+            function () { return (_this._loading = false); }));
         };
         /**
          * GET 请求
@@ -3601,10 +3606,15 @@
         function (method, url, options) {
             var _this = this;
             if (options === void 0) { options = {}; }
-            this.begin();
             if (options.params)
                 options.params = this.parseParams(options.params);
-            return this.http.request(method, url, options).pipe(operators.tap((/**
+            return rxjs.of(null).pipe(operators.tap((/**
+             * @return {?}
+             */
+            function () { return _this.begin(); })), operators.switchMap((/**
+             * @return {?}
+             */
+            function () { return _this.http.request(method, url, options); })), operators.tap((/**
              * @return {?}
              */
             function () { return _this.end(); })), operators.catchError((/**
@@ -4355,7 +4365,7 @@
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
-    var VERSION = new core.Version('8.8.0');
+    var VERSION = new core.Version('8.9.1');
 
     exports.ALAIN_I18N_TOKEN = ALAIN_I18N_TOKEN;
     exports.APP = APP;
