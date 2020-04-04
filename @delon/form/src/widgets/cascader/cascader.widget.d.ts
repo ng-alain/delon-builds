@@ -1,5 +1,5 @@
 import { OnInit } from '@angular/core';
-import { CascaderOption } from 'ng-zorro-antd/cascader';
+import { NzCascaderOption } from 'ng-zorro-antd/cascader';
 import { SFValue } from '../../interface';
 import { SFSchemaEnum } from '../../schema';
 import { ControlUIWidget } from '../../widget';
@@ -10,11 +10,11 @@ export declare class CascaderWidget extends ControlUIWidget<SFCascaderWidgetSche
     showInput: boolean;
     triggerAction: string[];
     data: SFSchemaEnum[];
-    loadData: (node: CascaderOption, index: number) => PromiseLike<any>;
+    loadData: (node: NzCascaderOption, index: number) => PromiseLike<any>;
     ngOnInit(): void;
     reset(value: SFValue): void;
     _visibleChange(status: boolean): void;
     _change(value: any[] | null): void;
-    _selectionChange(options: CascaderOption[]): void;
+    _selectionChange(options: NzCascaderOption[]): void;
     _clear(): void;
 }

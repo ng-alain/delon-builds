@@ -1019,7 +1019,7 @@ FormProperty = /** @class */ (function () {
                         /** @type {?} */
                         var visibilityCheck = property._visibilityChanges;
                         /** @type {?} */
-                        var and = combineLatest(valueCheck, visibilityCheck).pipe(map((/**
+                        var and = combineLatest([valueCheck, visibilityCheck]).pipe(map((/**
                          * @param {?} results
                          * @return {?}
                          */

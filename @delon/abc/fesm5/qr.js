@@ -257,6 +257,7 @@ var QRComponent = /** @class */ (function () {
     function QRComponent(cog, srv, cdr) {
         this.srv = srv;
         this.cdr = cdr;
+        // tslint:disable-next-line:no-output-native
         this.change = new EventEmitter();
         Object.assign(this, __assign(__assign({}, new QRConfig()), cog));
     }

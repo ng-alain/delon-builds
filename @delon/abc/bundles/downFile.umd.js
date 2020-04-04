@@ -240,10 +240,12 @@
             /**
              * 成功回调
              */
+            // tslint:disable-next-line:no-output-native
             this.success = new core.EventEmitter();
             /**
              * 错误回调
              */
+            // tslint:disable-next-line:no-output-native
             this.error = new core.EventEmitter();
             /** @type {?} */
             var isFileSaverSupported = false;

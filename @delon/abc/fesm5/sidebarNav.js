@@ -36,6 +36,7 @@ var SidebarNavComponent = /** @class */ (function () {
         this.autoCloseUnderPad = true;
         this.recursivePath = true;
         this.openStrictly = false;
+        // tslint:disable-next-line:no-output-native
         this.select = new EventEmitter();
     }
     Object.defineProperty(SidebarNavComponent.prototype, "collapsed", {

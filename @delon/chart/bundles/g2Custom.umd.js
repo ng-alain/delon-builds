@@ -235,6 +235,7 @@
             this.resize$ = null;
             this.resizeTime = 0;
             this.render = new core.EventEmitter();
+            // tslint:disable-next-line:no-output-native
             this.resize = new core.EventEmitter();
             this.destroy = new core.EventEmitter();
         }
@@ -294,7 +295,7 @@
             { type: core.Component, args: [{
                         selector: 'g2,g2-custom',
                         exportAs: 'g2Custom',
-                        template: "\n    <ng-content></ng-content>\n  ",
+                        template: " <ng-content></ng-content> ",
                         host: {
                             '[style.height.px]': 'height',
                         },

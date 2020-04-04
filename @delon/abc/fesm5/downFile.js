@@ -21,10 +21,12 @@ var DownFileDirective = /** @class */ (function () {
         /**
          * 成功回调
          */
+        // tslint:disable-next-line:no-output-native
         this.success = new EventEmitter();
         /**
          * 错误回调
          */
+        // tslint:disable-next-line:no-output-native
         this.error = new EventEmitter();
         /** @type {?} */
         var isFileSaverSupported = false;

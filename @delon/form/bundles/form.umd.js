@@ -1209,7 +1209,7 @@
                             /** @type {?} */
                             var visibilityCheck = property._visibilityChanges;
                             /** @type {?} */
-                            var and = rxjs.combineLatest(valueCheck, visibilityCheck).pipe(operators.map((/**
+                            var and = rxjs.combineLatest([valueCheck, visibilityCheck]).pipe(operators.map((/**
                              * @param {?} results
                              * @return {?}
                              */

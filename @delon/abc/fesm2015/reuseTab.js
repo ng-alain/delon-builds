@@ -23,6 +23,7 @@ class ReuseTabContextMenuComponent {
      */
     constructor(i18nSrv) {
         this.i18nSrv = i18nSrv;
+        // tslint:disable-next-line:no-output-native
         this.close = new EventEmitter();
     }
     /**
@@ -264,6 +265,7 @@ class ReuseTabContextComponent {
     constructor(srv) {
         this.srv = srv;
         this.sub$ = new Subscription();
+        // tslint:disable-next-line:no-output-native
         this.change = new EventEmitter();
         this.sub$.add(srv.show.subscribe((/**
          * @param {?} context
@@ -1351,7 +1353,9 @@ class ReuseTabComponent {
         this.keepingScroll = false;
         this.customContextMenu = [];
         this.tabType = 'line';
+        // tslint:disable-next-line:no-output-native
         this.change = new EventEmitter();
+        // tslint:disable-next-line:no-output-native
         this.close = new EventEmitter();
         this.el = el.nativeElement;
     }

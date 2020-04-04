@@ -20,6 +20,7 @@ import { NzTabsModule } from 'ng-zorro-antd/tabs';
 var ReuseTabContextMenuComponent = /** @class */ (function () {
     function ReuseTabContextMenuComponent(i18nSrv) {
         this.i18nSrv = i18nSrv;
+        // tslint:disable-next-line:no-output-native
         this.close = new EventEmitter();
     }
     Object.defineProperty(ReuseTabContextMenuComponent.prototype, "i18n", {
@@ -296,6 +297,7 @@ var ReuseTabContextComponent = /** @class */ (function () {
         var _this = this;
         this.srv = srv;
         this.sub$ = new Subscription();
+        // tslint:disable-next-line:no-output-native
         this.change = new EventEmitter();
         this.sub$.add(srv.show.subscribe((/**
          * @param {?} context
@@ -1739,7 +1741,9 @@ var ReuseTabComponent = /** @class */ (function () {
         this.keepingScroll = false;
         this.customContextMenu = [];
         this.tabType = 'line';
+        // tslint:disable-next-line:no-output-native
         this.change = new EventEmitter();
+        // tslint:disable-next-line:no-output-native
         this.close = new EventEmitter();
         this.el = el.nativeElement;
     }

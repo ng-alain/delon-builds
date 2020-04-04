@@ -3216,10 +3216,12 @@ var STComponent = /** @class */ (function () {
         /**
          * 请求异常时回调
          */
+        // tslint:disable-next-line:no-output-native
         this.error = new EventEmitter();
         /**
          * 变化时回调，包括：`pi`、`ps`、`checkbox`、`radio`、`sort`、`filter`、`click`、`dblClick` 变动
          */
+        // tslint:disable-next-line:no-output-native
         this.change = new EventEmitter();
         this.rowClickCount = 0;
         this.delonI18n.change.pipe(takeUntil(this.unsubscribe$)).subscribe((/**

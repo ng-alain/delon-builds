@@ -20,6 +20,7 @@ class G2CustomComponent {
         this.resize$ = null;
         this.resizeTime = 0;
         this.render = new EventEmitter();
+        // tslint:disable-next-line:no-output-native
         this.resize = new EventEmitter();
         this.destroy = new EventEmitter();
     }
@@ -65,9 +66,7 @@ G2CustomComponent.decorators = [
     { type: Component, args: [{
                 selector: 'g2,g2-custom',
                 exportAs: 'g2Custom',
-                template: `
-    <ng-content></ng-content>
-  `,
+                template: ` <ng-content></ng-content> `,
                 host: {
                     '[style.height.px]': 'height',
                 },

@@ -231,6 +231,7 @@
     var ReuseTabContextMenuComponent = /** @class */ (function () {
         function ReuseTabContextMenuComponent(i18nSrv) {
             this.i18nSrv = i18nSrv;
+            // tslint:disable-next-line:no-output-native
             this.close = new core.EventEmitter();
         }
         Object.defineProperty(ReuseTabContextMenuComponent.prototype, "i18n", {
@@ -507,6 +508,7 @@
             var _this = this;
             this.srv = srv;
             this.sub$ = new rxjs.Subscription();
+            // tslint:disable-next-line:no-output-native
             this.change = new core.EventEmitter();
             this.sub$.add(srv.show.subscribe((/**
              * @param {?} context
@@ -1950,7 +1952,9 @@
             this.keepingScroll = false;
             this.customContextMenu = [];
             this.tabType = 'line';
+            // tslint:disable-next-line:no-output-native
             this.change = new core.EventEmitter();
+            // tslint:disable-next-line:no-output-native
             this.close = new core.EventEmitter();
             this.el = el.nativeElement;
         }

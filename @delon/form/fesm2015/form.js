@@ -879,7 +879,7 @@ class FormProperty {
                         /** @type {?} */
                         const visibilityCheck = property._visibilityChanges;
                         /** @type {?} */
-                        const and = combineLatest(valueCheck, visibilityCheck).pipe(map((/**
+                        const and = combineLatest([valueCheck, visibilityCheck]).pipe(map((/**
                          * @param {?} results
                          * @return {?}
                          */

@@ -240,6 +240,7 @@ class QRComponent {
     constructor(cog, srv, cdr) {
         this.srv = srv;
         this.cdr = cdr;
+        // tslint:disable-next-line:no-output-native
         this.change = new EventEmitter();
         Object.assign(this, Object.assign(Object.assign({}, new QRConfig()), cog));
     }
