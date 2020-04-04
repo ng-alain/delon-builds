@@ -7,6 +7,6 @@ export declare class StringTemplateOutletDirective {
     private inputViewRef;
     private defaultViewRef;
     constructor(viewContainer: ViewContainerRef, defaultTemplate: TemplateRef<void>);
-    stringTemplateOutlet: string | TemplateRef<void>;
+    set stringTemplateOutlet(value: string | TemplateRef<void>);
     updateView(): void;
 }

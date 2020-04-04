@@ -3,7 +3,7 @@
  * Generated from: card.component.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-import * as tslib_1 from "tslib";
+import { __decorate, __metadata } from "tslib";
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, ViewEncapsulation, } from '@angular/core';
 import { InputBoolean } from '@delon/util';
 var G2CardComponent = /** @class */ (function () {
@@ -66,13 +66,13 @@ var G2CardComponent = /** @class */ (function () {
         footer: [{ type: Input }],
         loading: [{ type: Input }]
     };
-    tslib_1.__decorate([
+    __decorate([
         InputBoolean(),
-        tslib_1.__metadata("design:type", Object)
+        __metadata("design:type", Object)
     ], G2CardComponent.prototype, "bordered", void 0);
-    tslib_1.__decorate([
+    __decorate([
         InputBoolean(),
-        tslib_1.__metadata("design:type", Object)
+        __metadata("design:type", Object)
     ], G2CardComponent.prototype, "loading", void 0);
     return G2CardComponent;
 }());

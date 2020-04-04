@@ -7,7 +7,7 @@
  * found in the LICENSE file at https://angular.io/license
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-const chalk_1 = require("chalk");
+const chalk = require("chalk");
 const tslint_1 = require("tslint");
 const ts = require("typescript");
 const literal_1 = require("../../typescript/literal");
@@ -46,8 +46,7 @@ class Walker extends tslint_1.RuleWalker {
     }
     /** Adds a css selector failure with the given replacement at the specified node. */
     _addFailureWithReplacement(node, replacement, data) {
-        this.addFailureAtNode(node, `Found deprecated CSS selector "${chalk_1.default.red(data.replace)}" which has ` +
-            `been renamed to "${chalk_1.default.green(data.replaceWith)}"`, replacement);
+        this.addFailureAtNode(node, `Found deprecated CSS selector "${chalk.red(data.replace)}" which has ` + `been renamed to "${chalk.green(data.replaceWith)}"`, replacement);
     }
 }
 exports.Walker = Walker;

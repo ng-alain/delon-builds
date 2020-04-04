@@ -1,5 +1,5 @@
-import { DomSanitizer } from '@angular/platform-browser';
 import { ChangeDetectorRef, EventEmitter, NgZone, OnDestroy, OnInit, Renderer2 } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { Menu, MenuService, SettingsService } from '@delon/theme';
 import { Nav } from './sidebar-nav.types';
@@ -22,7 +22,7 @@ export declare class SidebarNavComponent implements OnInit, OnDestroy {
     recursivePath: boolean;
     openStrictly: boolean;
     readonly select: EventEmitter<Menu>;
-    readonly collapsed: boolean;
+    get collapsed(): boolean;
     constructor(menuSrv: MenuService, settings: SettingsService, router: Router, render: Renderer2, cdr: ChangeDetectorRef, ngZone: NgZone, sanitizer: DomSanitizer, doc: any, win: Window);
     private getLinkNode;
     private floatingAreaClickHandle;
@@ -39,7 +39,7 @@ export declare class SidebarNavComponent implements OnInit, OnDestroy {
     private openedByUrl;
     ngOnInit(): void;
     ngOnDestroy(): void;
-    private readonly isPad;
+    private get isPad();
     private underPad;
     private openAside;
 }

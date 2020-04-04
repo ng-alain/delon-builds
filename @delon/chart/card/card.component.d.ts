@@ -9,7 +9,7 @@ export declare class G2CardComponent implements OnChanges {
     total: string;
     _height: string;
     _orgHeight: number | string;
-    contentHeight: number | string;
+    set contentHeight(value: number | string);
     footer: string | TemplateRef<void>;
     /** 是否显示Loading */
     loading: boolean;

@@ -77,11 +77,7 @@ class G2GaugeComponent {
             height,
             padding,
         }));
-        chart
-            .point({ generatePoints: true })
-            .position('value*1')
-            .shape('pointer')
-            .active(false);
+        chart.point({ generatePoints: true }).position('value*1').shape('pointer').active(false);
         chart.coord('polar', {
             startAngle: Math.PI * -1.2,
             endAngle: Math.PI * 0.2,
@@ -221,7 +217,7 @@ __decorate([
 ], G2GaugeComponent.prototype, "delay", void 0);
 __decorate([
     InputNumber(),
-    __metadata("design:type", Object)
+    __metadata("design:type", Number)
 ], G2GaugeComponent.prototype, "height", void 0);
 __decorate([
     InputNumber(),

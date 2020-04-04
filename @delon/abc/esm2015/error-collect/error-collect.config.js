@@ -20,7 +20,7 @@ export class ErrorCollectConfig {
 ErrorCollectConfig.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
-/** @nocollapse */ ErrorCollectConfig.ngInjectableDef = i0.ɵɵdefineInjectable({ factory: function ErrorCollectConfig_Factory() { return new ErrorCollectConfig(); }, token: ErrorCollectConfig, providedIn: "root" });
+/** @nocollapse */ ErrorCollectConfig.ɵprov = i0.ɵɵdefineInjectable({ factory: function ErrorCollectConfig_Factory() { return new ErrorCollectConfig(); }, token: ErrorCollectConfig, providedIn: "root" });
 if (false) {
     /**
      * 监听频率

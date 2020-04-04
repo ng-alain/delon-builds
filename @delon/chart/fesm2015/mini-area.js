@@ -90,12 +90,7 @@ class G2MiniAreaComponent {
             .shape('smooth')
             .opacity(1);
         if (line) {
-            chart
-                .line()
-                .position('x*y')
-                .shape('smooth')
-                .opacity(1)
-                .tooltip(false);
+            chart.line().position('x*y').shape('smooth').opacity(1).tooltip(false);
         }
         chart.render();
         this.attachChart();
@@ -115,7 +110,7 @@ class G2MiniAreaComponent {
          * @param {?} g
          * @return {?}
          */
-        g => g.color(color)));
+        (g) => g.color(color)));
         if (line) {
             geoms[1].color(borderColor).size(borderWidth);
         }

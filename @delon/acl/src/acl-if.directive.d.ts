@@ -11,9 +11,9 @@ export declare class ACLIfDirective implements OnDestroy {
     private _thenViewRef;
     private _elseViewRef;
     constructor(templateRef: TemplateRef<void>, srv: ACLService, _viewContainer: ViewContainerRef);
-    aclIf: ACLCanType;
-    aclIfThen: TemplateRef<void> | null;
-    aclIfElse: TemplateRef<void> | null;
+    set aclIf(value: ACLCanType);
+    set aclIfThen(templateRef: TemplateRef<void> | null);
+    set aclIfElse(templateRef: TemplateRef<void> | null);
     except: boolean;
     protected _updateView(): void;
     ngOnDestroy(): void;

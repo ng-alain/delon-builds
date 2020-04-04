@@ -1,15 +1,15 @@
 /**
- * @license ng-alain(cipchk@qq.com) v8.8.0
+ * @license ng-alain(cipchk@qq.com) v9.0.0-rc.1
  * (c) 2019 cipchk https://ng-alain.com/
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/platform-browser'), require('@delon/acl'), require('@delon/theme'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('@angular/common'), require('@angular/forms'), require('ng-zorro-antd/auto-complete'), require('ng-zorro-antd/button'), require('ng-zorro-antd/card'), require('ng-zorro-antd/cascader'), require('ng-zorro-antd/checkbox'), require('ng-zorro-antd/date-picker'), require('ng-zorro-antd/form'), require('ng-zorro-antd/grid'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/input'), require('ng-zorro-antd/input-number'), require('ng-zorro-antd/mention'), require('ng-zorro-antd/modal'), require('ng-zorro-antd/radio'), require('ng-zorro-antd/rate'), require('ng-zorro-antd/select'), require('ng-zorro-antd/slider'), require('ng-zorro-antd/switch'), require('ng-zorro-antd/tag'), require('ng-zorro-antd/time-picker'), require('ng-zorro-antd/tooltip'), require('ng-zorro-antd/transfer'), require('ng-zorro-antd/tree-select'), require('ng-zorro-antd/upload'), require('ng-zorro-antd/i18n'), require('date-fns/format')) :
-    typeof define === 'function' && define.amd ? define('@delon/form', ['exports', '@angular/core', '@angular/platform-browser', '@delon/acl', '@delon/theme', '@delon/util', 'rxjs', 'rxjs/operators', '@angular/common', '@angular/forms', 'ng-zorro-antd/auto-complete', 'ng-zorro-antd/button', 'ng-zorro-antd/card', 'ng-zorro-antd/cascader', 'ng-zorro-antd/checkbox', 'ng-zorro-antd/date-picker', 'ng-zorro-antd/form', 'ng-zorro-antd/grid', 'ng-zorro-antd/icon', 'ng-zorro-antd/input', 'ng-zorro-antd/input-number', 'ng-zorro-antd/mention', 'ng-zorro-antd/modal', 'ng-zorro-antd/radio', 'ng-zorro-antd/rate', 'ng-zorro-antd/select', 'ng-zorro-antd/slider', 'ng-zorro-antd/switch', 'ng-zorro-antd/tag', 'ng-zorro-antd/time-picker', 'ng-zorro-antd/tooltip', 'ng-zorro-antd/transfer', 'ng-zorro-antd/tree-select', 'ng-zorro-antd/upload', 'ng-zorro-antd/i18n', 'date-fns/format'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.form = {}), global.ng.core, global.ng.platformBrowser, global.delon.acl, global.delon.theme, global.delon.util, global.rxjs, global.rxjs.operators, global.ng.common, global.ng.forms, global['ng-zorro-antd/auto-complete'], global['ng-zorro-antd/button'], global['ng-zorro-antd/card'], global['ng-zorro-antd/cascader'], global['ng-zorro-antd/checkbox'], global['ng-zorro-antd/date-picker'], global['ng-zorro-antd/form'], global['ng-zorro-antd/grid'], global['ng-zorro-antd/icon'], global['ng-zorro-antd/input'], global['ng-zorro-antd/input-number'], global['ng-zorro-antd/mention'], global['ng-zorro-antd/modal'], global['ng-zorro-antd/radio'], global['ng-zorro-antd/rate'], global['ng-zorro-antd/select'], global['ng-zorro-antd/slider'], global['ng-zorro-antd/switch'], global['ng-zorro-antd/tag'], global['ng-zorro-antd/time-picker'], global['ng-zorro-antd/tooltip'], global['ng-zorro-antd/transfer'], global['ng-zorro-antd/tree-select'], global['ng-zorro-antd/upload'], global['ng-zorro-antd/i18n'], global.format));
-}(this, (function (exports, core, platformBrowser, acl, theme, util, rxjs, operators, common, forms, autoComplete, button, card, cascader, checkbox, datePicker, form, grid, icon, input, inputNumber, mention, modal, radio, rate, select, slider, _switch, tag, timePicker, tooltip, transfer, treeSelect, upload, i18n, format) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/platform-browser'), require('@delon/acl'), require('@delon/theme'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('@angular/common'), require('@angular/forms'), require('ng-zorro-antd/auto-complete'), require('ng-zorro-antd/button'), require('ng-zorro-antd/card'), require('ng-zorro-antd/cascader'), require('ng-zorro-antd/checkbox'), require('ng-zorro-antd/date-picker'), require('ng-zorro-antd/form'), require('ng-zorro-antd/grid'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/input'), require('ng-zorro-antd/input-number'), require('ng-zorro-antd/mention'), require('ng-zorro-antd/modal'), require('ng-zorro-antd/radio'), require('ng-zorro-antd/rate'), require('ng-zorro-antd/select'), require('ng-zorro-antd/slider'), require('ng-zorro-antd/switch'), require('ng-zorro-antd/tag'), require('ng-zorro-antd/time-picker'), require('ng-zorro-antd/tooltip'), require('ng-zorro-antd/transfer'), require('ng-zorro-antd/tree-select'), require('ng-zorro-antd/upload'), require('date-fns/format'), require('ng-zorro-antd/i18n')) :
+    typeof define === 'function' && define.amd ? define('@delon/form', ['exports', '@angular/core', '@angular/platform-browser', '@delon/acl', '@delon/theme', '@delon/util', 'rxjs', 'rxjs/operators', '@angular/common', '@angular/forms', 'ng-zorro-antd/auto-complete', 'ng-zorro-antd/button', 'ng-zorro-antd/card', 'ng-zorro-antd/cascader', 'ng-zorro-antd/checkbox', 'ng-zorro-antd/date-picker', 'ng-zorro-antd/form', 'ng-zorro-antd/grid', 'ng-zorro-antd/icon', 'ng-zorro-antd/input', 'ng-zorro-antd/input-number', 'ng-zorro-antd/mention', 'ng-zorro-antd/modal', 'ng-zorro-antd/radio', 'ng-zorro-antd/rate', 'ng-zorro-antd/select', 'ng-zorro-antd/slider', 'ng-zorro-antd/switch', 'ng-zorro-antd/tag', 'ng-zorro-antd/time-picker', 'ng-zorro-antd/tooltip', 'ng-zorro-antd/transfer', 'ng-zorro-antd/tree-select', 'ng-zorro-antd/upload', 'date-fns/format', 'ng-zorro-antd/i18n'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.form = {}), global.ng.core, global.ng.platformBrowser, global.delon.acl, global.delon.theme, global.delon.util, global.rxjs, global.rxjs.operators, global.ng.common, global.ng.forms, global['ng-zorro-antd/auto-complete'], global['ng-zorro-antd/button'], global['ng-zorro-antd/card'], global['ng-zorro-antd/cascader'], global['ng-zorro-antd/checkbox'], global['ng-zorro-antd/date-picker'], global['ng-zorro-antd/form'], global['ng-zorro-antd/grid'], global['ng-zorro-antd/icon'], global['ng-zorro-antd/input'], global['ng-zorro-antd/input-number'], global['ng-zorro-antd/mention'], global['ng-zorro-antd/modal'], global['ng-zorro-antd/radio'], global['ng-zorro-antd/rate'], global['ng-zorro-antd/select'], global['ng-zorro-antd/slider'], global['ng-zorro-antd/switch'], global['ng-zorro-antd/tag'], global['ng-zorro-antd/time-picker'], global['ng-zorro-antd/tooltip'], global['ng-zorro-antd/transfer'], global['ng-zorro-antd/tree-select'], global['ng-zorro-antd/upload'], global.format, global['ng-zorro-antd/i18n']));
+}(this, (function (exports, core, platformBrowser, acl, theme, util, rxjs, operators, common, forms, autoComplete, button, card, cascader, checkbox, datePicker, form, grid, icon, input, inputNumber, mention, modal, radio, rate, select, slider, _switch, tag, timePicker, tooltip, transfer, treeSelect, upload, format, i18n) { 'use strict';
 
-    format = format && format.hasOwnProperty('default') ? format['default'] : format;
+    format = format && Object.prototype.hasOwnProperty.call(format, 'default') ? format['default'] : format;
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -292,7 +292,7 @@
         DelonFormConfig.decorators = [
             { type: core.Injectable, args: [{ providedIn: 'root' },] }
         ];
-        /** @nocollapse */ DelonFormConfig.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function DelonFormConfig_Factory() { return new DelonFormConfig(); }, token: DelonFormConfig, providedIn: "root" });
+        /** @nocollapse */ DelonFormConfig.ɵprov = core["ɵɵdefineInjectable"]({ factory: function DelonFormConfig_Factory() { return new DelonFormConfig(); }, token: DelonFormConfig, providedIn: "root" });
         return DelonFormConfig;
     }());
     if (false) {
@@ -492,7 +492,7 @@
             var $refSchema = findSchemaDefinition((/** @type {?} */ (schema.$ref)), definitions);
             // remove $ref property
             var $ref = schema.$ref, localSchema = __rest(schema, ["$ref"]);
-            return retrieveSchema(__assign({}, $refSchema, localSchema), definitions);
+            return retrieveSchema(__assign(__assign({}, $refSchema), localSchema), definitions);
         }
         return schema;
     }
@@ -709,7 +709,7 @@
         /** @type {?} */
         var data = srv.getDateLocale();
         // Compatible date-fns v1.x & v2.x
-        return data != null && (!!data.distanceInWords || !!data.formatDistance);
+        return data != null && !!data.formatDistance; // (!!data.distanceInWords || !!data.formatDistance);
     }
 
     /**
@@ -915,7 +915,7 @@
                     result = base.getProperty(path);
                 }
             }
-            return result;
+            return (/** @type {?} */ (result));
         };
         /** 查找根表单属性 */
         /**
@@ -1355,11 +1355,11 @@
             /** @type {?} */
             var propertyId = subPathIdx !== -1 ? path.substr(0, subPathIdx) : path;
             /** @type {?} */
-            var property = (/** @type {?} */ (this.properties))[propertyId];
+            var property = ((/** @type {?} */ (this.properties)))[propertyId];
             if (property !== null && subPathIdx !== -1 && property instanceof PropertyGroup) {
                 /** @type {?} */
                 var subPath = path.substr(subPathIdx + 1);
-                property = ((/** @type {?} */ (property))).getProperty(subPath);
+                property = (/** @type {?} */ (((/** @type {?} */ (property))).getProperty(subPath)));
             }
             return property;
         };
@@ -1375,7 +1375,7 @@
             for (var propertyId in this.properties) {
                 if (this.properties.hasOwnProperty(propertyId)) {
                     /** @type {?} */
-                    var property = this.properties[propertyId];
+                    var property = ((/** @type {?} */ (this.properties)))[propertyId];
                     fn(property, propertyId);
                 }
             }
@@ -1492,7 +1492,7 @@
              * @return {?}
              */
             function (propertyId) {
-                (/** @type {?} */ (_this.properties))[propertyId] = _this.formPropertyFactory.createProperty((/** @type {?} */ (_this.schema.properties))[propertyId], _this.ui['$' + propertyId], (_this.formData || {})[propertyId], _this, propertyId);
+                ((/** @type {?} */ (_this.properties)))[propertyId] = _this.formPropertyFactory.createProperty((/** @type {?} */ (_this.schema.properties))[propertyId], _this.ui['$' + propertyId], ((/** @type {?} */ ((_this.formData || {}))))[propertyId], _this, propertyId);
                 _this._propertiesId.push(propertyId);
             }));
         };
@@ -1507,9 +1507,11 @@
          * @return {?}
          */
         function (value, onlySelf) {
+            /** @type {?} */
+            var properties = (/** @type {?} */ (this.properties));
             for (var propertyId in value) {
-                if (value.hasOwnProperty(propertyId) && (/** @type {?} */ (this.properties))[propertyId]) {
-                    ((/** @type {?} */ ((/** @type {?} */ (this.properties))[propertyId]))).setValue(value[propertyId], true);
+                if (value.hasOwnProperty(propertyId) && properties[propertyId]) {
+                    ((/** @type {?} */ (properties[propertyId]))).setValue(value[propertyId], true);
                 }
             }
             this.updateValueAndValidity(onlySelf, true);
@@ -1526,9 +1528,11 @@
          */
         function (value, onlySelf) {
             value = value || this.schema.default || {};
+            /** @type {?} */
+            var properties = (/** @type {?} */ (this.properties));
             // tslint:disable-next-line: forin
             for (var propertyId in this.schema.properties) {
-                ((/** @type {?} */ ((/** @type {?} */ (this.properties))[propertyId]))).resetValue(value[propertyId], true);
+                properties[propertyId].resetValue(value[propertyId], true);
             }
             this.updateValueAndValidity(onlySelf, true);
         };
@@ -1666,7 +1670,7 @@
              */
             function (property) {
                 if (property.visible && property._hasValue()) {
-                    value.push(__assign({}, property.formData, property.value));
+                    value.push(__assign(__assign({}, property.formData), property.value));
                 }
             }));
             this._value = value;
@@ -1683,7 +1687,7 @@
          */
         function (formData) {
             /** @type {?} */
-            var newProperty = (/** @type {?} */ (this.formPropertyFactory.createProperty((/** @type {?} */ (this.schema.items)), this.ui.$items, formData, this)));
+            var newProperty = (/** @type {?} */ (this.formPropertyFactory.createProperty((/** @type {?} */ (this.schema.items)), this.ui.$items, formData, (/** @type {?} */ (this)))));
             ((/** @type {?} */ (this.properties))).push(newProperty);
             return newProperty;
         };
@@ -2130,12 +2134,12 @@
     /**
      * @abstract
      */
-    var   /**
-     * @abstract
-     */
-    SchemaValidatorFactory = /** @class */ (function () {
+    var SchemaValidatorFactory = /** @class */ (function () {
         function SchemaValidatorFactory() {
         }
+        SchemaValidatorFactory.decorators = [
+            { type: core.Injectable }
+        ];
         return SchemaValidatorFactory;
     }());
     if (false) {
@@ -2152,7 +2156,7 @@
         function AjvSchemaValidatorFactory(options) {
             var _this = _super.call(this) || this;
             _this.options = options;
-            _this.ajv = new Ajv(__assign({}, options.ajv, { errorDataPath: 'property', allErrors: true, jsonPointers: true }));
+            _this.ajv = new Ajv(__assign(__assign({}, options.ajv), { errorDataPath: 'property', allErrors: true, jsonPointers: true }));
             _this.ajv.addFormat('data-url', /^data:([a-z]+\/[a-z0-9-+.]+)?;name=(.*);base64,(.*)$/);
             _this.ajv.addFormat('color', /^(#?([0-9A-Fa-f]{3}){1,2}\b|aqua|black|blue|fuchsia|gray|green|lime|maroon|navy|olive|orange|purple|red|silver|teal|white|yellow|(rgb\(\s*\b([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\b\s*,\s*\b([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\b\s*,\s*\b([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\b\s*\))|(rgb\(\s*(\d?\d%|100%)+\s*,\s*(\d?\d%|100%)+\s*,\s*(\d?\d%|100%)+\s*\)))$/);
             _this.ajv.addFormat('mobile', /^(0|\+?86|17951)?1[0-9]{10}$/);
@@ -2200,6 +2204,9 @@
                 return errors;
             });
         };
+        AjvSchemaValidatorFactory.decorators = [
+            { type: core.Injectable }
+        ];
         /** @nocollapse */
         AjvSchemaValidatorFactory.ctorParameters = function () { return [
             { type: DelonFormConfig, decorators: [{ type: core.Inject, args: [DelonFormConfig,] }] }
@@ -2642,7 +2649,7 @@
              * @param {?} key
              * @return {?}
              */
-            function (key) { return (ui[key] = __assign({}, _this._defUi[key], ui[key])); }));
+            function (key) { return (ui[key] = __assign(__assign({}, _this._defUi[key]), ui[key])); }));
         };
         /**
          * @private
@@ -2681,7 +2688,7 @@
                     /** @type {?} */
                     var property = retrieveSchema((/** @type {?} */ ((/** @type {?} */ (schema.properties))[key])), definitions);
                     /** @type {?} */
-                    var ui = (/** @type {?} */ (__assign({ widget: property.type }, (property.format && FORMATMAPS[property.format]), (typeof property.ui === 'string' ? { widget: property.ui } : null), (!property.format && !property.ui && Array.isArray(property.enum) && property.enum.length > 0 ? { widget: 'select' } : null), _this._defUi, ((/** @type {?} */ (property.ui))), uiSchema[uiKey])));
+                    var ui = (/** @type {?} */ (__assign(__assign(__assign(__assign(__assign(__assign({ widget: property.type }, (property.format && ((/** @type {?} */ (FORMATMAPS)))[property.format])), (typeof property.ui === 'string' ? { widget: property.ui } : null)), (!property.format && !property.ui && Array.isArray(property.enum) && property.enum.length > 0 ? { widget: 'select' } : null)), _this._defUi), ((/** @type {?} */ (property.ui)))), uiSchema[uiKey])));
                     // 继承父节点布局属性
                     if (isHorizontal) {
                         if (parentUiSchema.spanLabelFixed) {
@@ -2707,7 +2714,7 @@
                         /** @type {?} */
                         var dateEndProperty = (/** @type {?} */ (schema.properties))[ui.end];
                         if (dateEndProperty) {
-                            dateEndProperty.ui = __assign({}, ((/** @type {?} */ (dateEndProperty.ui))), { hidden: true });
+                            dateEndProperty.ui = __assign(__assign({}, ((/** @type {?} */ (dateEndProperty.ui)))), { hidden: true });
                         }
                         else {
                             ui.end = null;
@@ -2754,7 +2761,7 @@
                     if (property.items) {
                         /** @type {?} */
                         var uiSchemaInArr = (uiSchema[uiKey] || {}).$items || {};
-                        ui.$items = __assign({}, ((/** @type {?} */ (property.items.ui))), uiSchemaInArr[uiKey], ui.$items);
+                        ui.$items = __assign(__assign(__assign({}, ((/** @type {?} */ (property.items.ui)))), uiSchemaInArr[uiKey]), ui.$items);
                         inFn(property.items, property.items, uiSchemaInArr, ui.$items, ui.$items);
                     }
                     if (property.properties && Object.keys(property.properties).length) {
@@ -2789,7 +2796,7 @@
             });
             if (this.ui == null)
                 this.ui = {};
-            this._defUi = __assign({ onlyVisual: this.options.onlyVisual, size: this.options.size, liveValidate: this.liveValidate, firstVisual: this.firstVisual }, this.options.ui, _schema.ui, this.ui['*']);
+            this._defUi = __assign(__assign(__assign({ onlyVisual: this.options.onlyVisual, size: this.options.size, liveValidate: this.liveValidate, firstVisual: this.firstVisual }, this.options.ui), _schema.ui), this.ui['*']);
             if (this.onlyVisual === true) {
                 this._defUi.onlyVisual = true;
             }
@@ -2811,7 +2818,7 @@
          * @return {?}
          */
         function () {
-            this._btn = __assign({ render: { size: 'default' } }, this.locale, this.options.button, ((/** @type {?} */ (this.button))));
+            this._btn = __assign(__assign(__assign({ render: { size: 'default' } }, this.locale), this.options.button), ((/** @type {?} */ (this.button))));
             /** @type {?} */
             var firstKey = Object.keys(this._ui).find((/**
              * @param {?} w
@@ -2832,7 +2839,7 @@
                     (/** @type {?} */ (this._btn.render)).spanLabelFixed = btnUi.spanLabelFixed;
                 }
                 // 固定标签宽度时，若不指定样式，则默认居中
-                if (!(/** @type {?} */ (this._btn.render)).class && (typeof btnUi.spanLabelFixed === 'number' && btnUi.spanLabelFixed > 0)) {
+                if (!(/** @type {?} */ (this._btn.render)).class && typeof btnUi.spanLabelFixed === 'number' && btnUi.spanLabelFixed > 0) {
                     (/** @type {?} */ (this._btn.render)).class = 'text-center';
                 }
             }
@@ -2949,7 +2956,7 @@
                      * @param {?} key
                      * @return {?}
                      */
-                    function (key) { return fn((/** @type {?} */ (property.properties))[key]); }));
+                    function (key) { return fn(((/** @type {?} */ (property.properties)))[key]); }));
                 }
             });
             if (options.onlyRoot) {
@@ -3013,7 +3020,7 @@
              * @return {?}
              */
             function (value) {
-                (/** @type {?} */ (_this))._item = __assign({}, ((/** @type {?} */ (_this)).cleanValue ? null : (/** @type {?} */ (_this)).formData), value);
+                (/** @type {?} */ (_this))._item = __assign(__assign({}, ((/** @type {?} */ (_this)).cleanValue ? null : (/** @type {?} */ (_this)).formData)), value);
                 if (isFirst) {
                     isFirst = false;
                     return;
@@ -3093,7 +3100,7 @@
             { type: core.Component, args: [{
                         selector: 'sf, [sf]',
                         exportAs: 'sf',
-                        template: "<ng-template #con>\n  <ng-content></ng-content>\n</ng-template>\n<form nz-form\n      [nzLayout]=\"layout\"\n      (submit)=\"onSubmit($event)\"\n      [attr.autocomplete]=\"autocomplete\">\n  <sf-item [formProperty]=\"rootProperty\"></sf-item>\n  <ng-container *ngIf=\"button !== 'none'; else con\">\n    <nz-form-item [ngClass]=\"_btn.render!.class\"\n                  class=\"sf-btns\"\n                  [fixed-label]=\"_btn.render!.spanLabelFixed\">\n      <div nz-col\n           class=\"ant-form-item-control-wrapper\"\n           [nzSpan]=\"_btn.render!.grid!.span\"\n           [nzOffset]=\"_btn.render!.grid!.offset\"\n           [nzXs]=\"_btn.render!.grid!.xs\"\n           [nzSm]=\"_btn.render!.grid!.sm\"\n           [nzMd]=\"_btn.render!.grid!.md\"\n           [nzLg]=\"_btn.render!.grid!.lg\"\n           [nzXl]=\"_btn.render!.grid!.xl\"\n           [nzXXl]=\"_btn.render!.grid!.xxl\">\n        <div class=\"ant-form-item-control\">\n          <ng-container *ngIf=\"button; else con\">\n            <button type=\"submit\"\n                    nz-button\n                    [nzType]=\"_btn.submit_type\"\n                    [nzSize]=\"_btn.render!.size\"\n                    [nzLoading]=\"loading\"\n                    [disabled]=\"liveValidate && !valid\">\n              <i *ngIf=\"_btn.submit_icon\"\n                  nz-icon\n                  [nzType]=\"_btn.submit_icon.type\"\n                  [nzTheme]=\"_btn.submit_icon.theme\"\n                  [nzTwotoneColor]=\"_btn.submit_icon.twoToneColor\"\n                  [nzIconfont]=\"_btn.submit_icon.iconfont\"></i>\n              {{_btn.submit}}\n            </button>\n            <button *ngIf=\"_btn.reset\"\n                    type=\"button\"\n                    nz-button\n                    [nzType]=\"_btn.reset_type\"\n                    [nzSize]=\"_btn.render!.size\"\n                    [disabled]=\"loading\"\n                    (click)=\"reset(true)\">\n              <i *ngIf=\"_btn.reset_icon\"\n                  nz-icon\n                  [nzType]=\"_btn.reset_icon.type\"\n                  [nzTheme]=\"_btn.reset_icon.theme\"\n                  [nzTwotoneColor]=\"_btn.reset_icon.twoToneColor\"\n                  [nzIconfont]=\"_btn.reset_icon.iconfont\"></i>\n              {{_btn.reset}}\n            </button>\n          </ng-container>\n        </div>\n      </div>\n    </nz-form-item>\n  </ng-container>\n</form>\n",
+                        template: "<ng-template #con>\n  <ng-content></ng-content>\n</ng-template>\n<form nz-form [nzLayout]=\"layout\" (submit)=\"onSubmit($event)\" [attr.autocomplete]=\"autocomplete\">\n  <sf-item [formProperty]=\"rootProperty\"></sf-item>\n  <ng-container *ngIf=\"button !== 'none'; else con\">\n    <nz-form-item [ngClass]=\"_btn.render!.class\" class=\"sf-btns\" [fixed-label]=\"_btn.render!.spanLabelFixed\">\n      <div nz-col\n           class=\"ant-form-item-control-wrapper\"\n           [nzSpan]=\"_btn.render!.grid!.span\"\n           [nzOffset]=\"_btn.render!.grid!.offset\"\n           [nzXs]=\"_btn.render!.grid!.xs\"\n           [nzSm]=\"_btn.render!.grid!.sm\"\n           [nzMd]=\"_btn.render!.grid!.md\"\n           [nzLg]=\"_btn.render!.grid!.lg\"\n           [nzXl]=\"_btn.render!.grid!.xl\"\n           [nzXXl]=\"_btn.render!.grid!.xxl\">\n        <div class=\"ant-form-item-control\">\n          <ng-container *ngIf=\"button; else con\">\n            <button type=\"submit\"\n                    nz-button\n                    [nzType]=\"_btn.submit_type\"\n                    [nzSize]=\"_btn.render!.size\"\n                    [nzLoading]=\"loading\"\n                    [disabled]=\"liveValidate && !valid\">\n              <i *ngIf=\"_btn.submit_icon\"\n                  nz-icon\n                  [nzType]=\"_btn.submit_icon.type\"\n                  [nzTheme]=\"_btn.submit_icon.theme\"\n                  [nzTwotoneColor]=\"_btn.submit_icon.twoToneColor\"\n                  [nzIconfont]=\"_btn.submit_icon.iconfont\"></i>\n              {{_btn.submit}}\n            </button>\n            <button *ngIf=\"_btn.reset\"\n                    type=\"button\"\n                    nz-button\n                    [nzType]=\"_btn.reset_type\"\n                    [nzSize]=\"_btn.render!.size\"\n                    [disabled]=\"loading\"\n                    (click)=\"reset(true)\">\n              <i *ngIf=\"_btn.reset_icon\"\n                  nz-icon\n                  [nzType]=\"_btn.reset_icon.type\"\n                  [nzTheme]=\"_btn.reset_icon.theme\"\n                  [nzTwotoneColor]=\"_btn.reset_icon.twoToneColor\"\n                  [nzIconfont]=\"_btn.reset_icon.iconfont\"></i>\n              {{_btn.reset}}\n            </button>\n          </ng-container>\n        </div>\n      </div>\n    </nz-form-item>\n  </ng-container>\n</form>\n",
                         providers: [
                             WidgetFactory,
                             {
@@ -3422,7 +3429,7 @@
             { type: core.Component, args: [{
                         selector: 'sf-item',
                         exportAs: 'sfItem',
-                        template: "\n    <ng-template #target></ng-template>\n  ",
+                        template: " <ng-template #target></ng-template> ",
                         preserveWhitespaces: false,
                         encapsulation: core.ViewEncapsulation.None
                     }] }
@@ -4700,7 +4707,7 @@
              * @return {?}
              */
             function () {
-                return (/** @type {?} */ ((/** @type {?} */ (this.formProperty.parent)).properties))[(/** @type {?} */ (this.ui.end))];
+                return ((/** @type {?} */ ((/** @type {?} */ (this.formProperty.parent)).properties)))[(/** @type {?} */ (this.ui.end))];
             },
             enumerable: true,
             configurable: true
@@ -5055,7 +5062,7 @@
                 for (var _c = __values(formProperty.propertiesId), _d = _c.next(); !_d.done; _d = _c.next()) {
                     var key = _d.value;
                     /** @type {?} */
-                    var property = (/** @type {?} */ ((/** @type {?} */ (formProperty.properties))[key]));
+                    var property = (/** @type {?} */ (((/** @type {?} */ (formProperty.properties)))[key]));
                     /** @type {?} */
                     var item = {
                         property: property,
@@ -5759,7 +5766,7 @@
                 this.setValue(Date.UTC(1970, 0, 1, value.getHours(), value.getMinutes(), value.getSeconds()));
                 return;
             }
-            this.setValue(format(value, this.valueFormat));
+            this.setValue(format(value, (/** @type {?} */ (this.valueFormat))));
         };
         TimeWidget.decorators = [
             { type: core.Component, args: [{
@@ -5976,7 +5983,6 @@
                 showLine: toBool(ui.showLine, false),
                 asyncData: typeof ui.expandChange === 'function',
                 defaultExpandAll: toBool(ui.defaultExpandAll, false),
-                defaultExpandedKeys: ui.defaultExpandedKeys || [],
                 displayWith: ui.displayWith || ((/**
                  * @param {?} node
                  * @return {?}
@@ -6042,7 +6048,7 @@
         TreeSelectWidget.decorators = [
             { type: core.Component, args: [{
                         selector: 'sf-tree-select',
-                        template: "<sf-item-wrap [id]=\"id\"\n              [schema]=\"schema\"\n              [ui]=\"ui\"\n              [showError]=\"showError\"\n              [error]=\"error\"\n              [showTitle]=\"schema.title\">\n  <nz-tree-select [nzAllowClear]=\"i.allowClear\"\n                  [nzPlaceHolder]=\"ui.placeholder\"\n                  [nzDisabled]=\"disabled\"\n                  [nzShowSearch]=\"i.showSearch\"\n                  [nzDropdownMatchSelectWidth]=\"i.dropdownMatchSelectWidth\"\n                  [nzDropdownStyle]=\"ui.dropdownStyle\"\n                  [nzMultiple]=\"i.multiple\"\n                  [nzSize]=\"ui.size\"\n                  [nzCheckable]=\"i.checkable\"\n                  [nzShowExpand]=\"i.showExpand\"\n                  [nzShowLine]=\"i.showLine\"\n                  [nzAsyncData]=\"i.asyncData\"\n                  [nzNodes]=\"data\"\n                  [nzDefaultExpandAll]=\"i.defaultExpandAll\"\n                  [nzDefaultExpandedKeys]=\"i.defaultExpandedKeys\"\n                  [nzDisplayWith]=\"i.displayWith\"\n                  [ngModel]=\"value\"\n                  (ngModelChange)=\"change($event)\"\n                  (nzExpandChange)=\"expandChange($event)\">\n  </nz-tree-select>\n\n</sf-item-wrap>\n",
+                        template: "<sf-item-wrap [id]=\"id\"\n              [schema]=\"schema\"\n              [ui]=\"ui\"\n              [showError]=\"showError\"\n              [error]=\"error\"\n              [showTitle]=\"schema.title\">\n  <nz-tree-select [nzAllowClear]=\"i.allowClear\"\n                  [nzPlaceHolder]=\"ui.placeholder\"\n                  [nzDisabled]=\"disabled\"\n                  [nzShowSearch]=\"i.showSearch\"\n                  [nzDropdownMatchSelectWidth]=\"i.dropdownMatchSelectWidth\"\n                  [nzDropdownStyle]=\"ui.dropdownStyle\"\n                  [nzMultiple]=\"i.multiple\"\n                  [nzSize]=\"ui.size\"\n                  [nzCheckable]=\"i.checkable\"\n                  [nzShowExpand]=\"i.showExpand\"\n                  [nzShowLine]=\"i.showLine\"\n                  [nzAsyncData]=\"i.asyncData\"\n                  [nzNodes]=\"data\"\n                  [nzDefaultExpandAll]=\"i.defaultExpandAll\"\n                  [nzDisplayWith]=\"i.displayWith\"\n                  [ngModel]=\"value\"\n                  (ngModelChange)=\"change($event)\"\n                  (nzExpandChange)=\"expandChange($event)\">\n  </nz-tree-select>\n\n</sf-item-wrap>\n",
                         preserveWhitespaces: false,
                         encapsulation: core.ViewEncapsulation.None
                     }] }

@@ -58,7 +58,7 @@ var G2SingleBarComponent = /** @class */ (function () {
         function (val) { return ({
             formatter: format,
             offset: val > 0 ? 10 : -10,
-            textStyle: __assign({}, textStyle, { textAlign: val > 0 ? 'start' : 'end' }),
+            textStyle: __assign(__assign({}, textStyle), { textAlign: val > 0 ? 'start' : 'end' }),
         }); }));
         if (line) {
             chart.guide().line({

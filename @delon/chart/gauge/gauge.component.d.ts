@@ -5,7 +5,7 @@ export declare class G2GaugeComponent implements OnInit, OnDestroy, OnChanges {
     private chart;
     delay: number;
     title: string;
-    height: any;
+    height: number;
     color: string;
     bgColor: string;
     format: (text: string, item: {}, index: number) => string;

@@ -1,7 +1,7 @@
 import { Injector, OnDestroy } from '@angular/core';
 import { ActivatedRouteSnapshot } from '@angular/router';
-import { Observable } from 'rxjs';
 import { MenuService } from '@delon/theme';
+import { Observable } from 'rxjs';
 import { ReuseTabCached, ReuseTabMatchMode, ReuseTabNotify, ReuseTitle } from './reuse-tab.interfaces';
 /**
  * 路由复用类，提供复用所需要一些基本接口
@@ -25,22 +25,23 @@ export declare class ReuseTabService implements OnDestroy {
     mode: ReuseTabMatchMode;
     /** 排除规则，限 `mode=URL` */
     excludes: RegExp[];
-    private readonly snapshot;
-    readonly inited: boolean;
+    private get snapshot();
+    get inited(): boolean;
     /** 当前路由地址 */
-    readonly curUrl: string;
+    get curUrl(): string;
     /** 允许最多复用多少个页面，取值范围 `2-100`，值发生变更时会强制关闭且忽略可关闭条件 */
-    max: number;
-    keepingScroll: boolean;
+    set max(value: number);
+    set keepingScroll(value: boolean);
+    get keepingScroll(): boolean;
     keepingScrollContainer: Element;
     /** 获取已缓存的路由 */
-    readonly items: ReuseTabCached[];
+    get items(): ReuseTabCached[];
     /** 获取当前缓存的路由总数 */
-    readonly count: number;
+    get count(): number;
     /** 订阅缓存变更通知 */
-    readonly change: Observable<ReuseTabNotify | null>;
+    get change(): Observable<ReuseTabNotify | null>;
     /** 自定义当前标题 */
-    title: string | ReuseTitle;
+    set title(value: string | ReuseTitle);
     /** 获取指定路径缓存所在位置，`-1` 表示无缓存 */
     index(url: string): number;
     /** 获取指定路径缓存是否存在 */
@@ -104,7 +105,7 @@ export declare class ReuseTabService implements OnDestroy {
      */
     clearTitleCached(): void;
     /** 自定义当前 `closable` 状态 */
-    closable: boolean;
+    set closable(value: boolean);
     /**
      * 获取 `closable` 状态，顺序如下：
      *
@@ -168,8 +169,8 @@ export declare class ReuseTabService implements OnDestroy {
      * 3. 组件 `keepingScroll` 值
      */
     getKeepingScroll(url: string, route?: ActivatedRouteSnapshot): boolean;
-    private readonly isDisabledInRouter;
-    private readonly ss;
+    private get isDisabledInRouter();
+    private get ss();
     private initScroll;
     ngOnDestroy(): void;
 }

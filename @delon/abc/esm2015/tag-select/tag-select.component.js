@@ -3,7 +3,7 @@
  * Generated from: tag-select.component.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-import * as tslib_1 from "tslib";
+import { __decorate, __metadata } from "tslib";
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, Output, ViewEncapsulation, } from '@angular/core';
 import { DelonLocaleService } from '@delon/theme';
 import { InputBoolean } from '@delon/util';
@@ -73,9 +73,9 @@ TagSelectComponent.propDecorators = {
     expandable: [{ type: Input }],
     change: [{ type: Output }]
 };
-tslib_1.__decorate([
+__decorate([
     InputBoolean(),
-    tslib_1.__metadata("design:type", Object)
+    __metadata("design:type", Object)
 ], TagSelectComponent.prototype, "expandable", void 0);
 if (false) {
     /**

@@ -62,7 +62,7 @@ class DelonAuthConfig {
 DelonAuthConfig.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
-/** @nocollapse */ DelonAuthConfig.ngInjectableDef = ɵɵdefineInjectable({ factory: function DelonAuthConfig_Factory() { return new DelonAuthConfig(); }, token: DelonAuthConfig, providedIn: "root" });
+/** @nocollapse */ DelonAuthConfig.ɵprov = ɵɵdefineInjectable({ factory: function DelonAuthConfig_Factory() { return new DelonAuthConfig(); }, token: DelonAuthConfig, providedIn: "root" });
 if (false) {
     /**
      * 存储KEY值
@@ -712,7 +712,7 @@ class BaseInterceptor {
      */
     intercept(req, next) {
         /** @type {?} */
-        const options = Object.assign({}, new DelonAuthConfig(), this.injector.get(DelonAuthConfig, undefined));
+        const options = Object.assign(Object.assign({}, new DelonAuthConfig()), this.injector.get(DelonAuthConfig, undefined));
         if (options.ignores) {
             for (const item of (/** @type {?} */ (options.ignores))) {
                 if (item.test(req.url))
@@ -771,6 +771,9 @@ class BaseInterceptor {
         return next.handle(req);
     }
 }
+BaseInterceptor.decorators = [
+    { type: Injectable }
+];
 /** @nocollapse */
 BaseInterceptor.ctorParameters = () => [
     { type: Injector, decorators: [{ type: Optional }] }
@@ -917,7 +920,7 @@ class JWTTokenModel {
 if (false) {
     /** @type {?} */
     JWTTokenModel.prototype.token;
-    /* Skipping unhandled member: [key: string]: any;*/
+    /* Skipping unhandled member: [key: string]: NzSafeAny;*/
 }
 
 /**
@@ -978,7 +981,7 @@ class JWTGuard {
     constructor(srv, injector, cog) {
         this.srv = srv;
         this.injector = injector;
-        this.cog = Object.assign({}, new DelonAuthConfig(), cog);
+        this.cog = Object.assign(Object.assign({}, new DelonAuthConfig()), cog);
     }
     /**
      * @private
@@ -1032,7 +1035,7 @@ JWTGuard.ctorParameters = () => [
     { type: Injector },
     { type: DelonAuthConfig }
 ];
-/** @nocollapse */ JWTGuard.ngInjectableDef = ɵɵdefineInjectable({ factory: function JWTGuard_Factory() { return new JWTGuard(ɵɵinject(DA_SERVICE_TOKEN), ɵɵinject(INJECTOR), ɵɵinject(DelonAuthConfig)); }, token: JWTGuard, providedIn: "root" });
+/** @nocollapse */ JWTGuard.ɵprov = ɵɵdefineInjectable({ factory: function JWTGuard_Factory() { return new JWTGuard(ɵɵinject(DA_SERVICE_TOKEN), ɵɵinject(INJECTOR), ɵɵinject(DelonAuthConfig)); }, token: JWTGuard, providedIn: "root" });
 if (false) {
     /**
      * @type {?}
@@ -1066,7 +1069,7 @@ class SimpleTokenModel {
 if (false) {
     /** @type {?} */
     SimpleTokenModel.prototype.token;
-    /* Skipping unhandled member: [key: string]: any;*/
+    /* Skipping unhandled member: [key: string]: NzSafeAny;*/
 }
 
 /**
@@ -1154,7 +1157,7 @@ class SimpleGuard {
     constructor(srv, injector, cog) {
         this.srv = srv;
         this.injector = injector;
-        this.cog = Object.assign({}, new DelonAuthConfig(), cog);
+        this.cog = Object.assign(Object.assign({}, new DelonAuthConfig()), cog);
     }
     /**
      * @private
@@ -1208,7 +1211,7 @@ SimpleGuard.ctorParameters = () => [
     { type: Injector },
     { type: DelonAuthConfig }
 ];
-/** @nocollapse */ SimpleGuard.ngInjectableDef = ɵɵdefineInjectable({ factory: function SimpleGuard_Factory() { return new SimpleGuard(ɵɵinject(DA_SERVICE_TOKEN), ɵɵinject(INJECTOR), ɵɵinject(DelonAuthConfig)); }, token: SimpleGuard, providedIn: "root" });
+/** @nocollapse */ SimpleGuard.ɵprov = ɵɵdefineInjectable({ factory: function SimpleGuard_Factory() { return new SimpleGuard(ɵɵinject(DA_SERVICE_TOKEN), ɵɵinject(INJECTOR), ɵɵinject(DelonAuthConfig)); }, token: SimpleGuard, providedIn: "root" });
 if (false) {
     /**
      * @type {?}

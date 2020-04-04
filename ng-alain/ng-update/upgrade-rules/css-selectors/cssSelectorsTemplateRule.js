@@ -7,7 +7,7 @@
  * found in the LICENSE file at https://angular.io/license
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-const chalk_1 = require("chalk");
+const chalk = require("chalk");
 const tslint_1 = require("tslint");
 const component_walker_1 = require("../../tslint/component-walker");
 const literal_1 = require("../../typescript/literal");
@@ -48,8 +48,7 @@ class Walker extends component_walker_1.ComponentWalker {
             if (data.whitelist && !data.whitelist.html) {
                 return;
             }
-            const failureMessage = `Found deprecated CSS selector "${chalk_1.default.red(data.replace)}"` +
-                ` which has been renamed to "${chalk_1.default.green(data.replaceWith)}"`;
+            const failureMessage = `Found deprecated CSS selector "${chalk.red(data.replace)}"` + ` which has been renamed to "${chalk.green(data.replaceWith)}"`;
             literal_1.findAllSubstringIndices(templateContent, data.replace)
                 .map(offset => node.getStart() + offset)
                 .map(start => new tslint_1.Replacement(start, data.replace.length, data.replaceWith))

@@ -16,7 +16,7 @@ export class DelonACLConfig {
 DelonACLConfig.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
-/** @nocollapse */ DelonACLConfig.ngInjectableDef = i0.ɵɵdefineInjectable({ factory: function DelonACLConfig_Factory() { return new DelonACLConfig(); }, token: DelonACLConfig, providedIn: "root" });
+/** @nocollapse */ DelonACLConfig.ɵprov = i0.ɵɵdefineInjectable({ factory: function DelonACLConfig_Factory() { return new DelonACLConfig(); }, token: DelonACLConfig, providedIn: "root" });
 if (false) {
     /**
      * Router URL when guard fail, default: `/403`

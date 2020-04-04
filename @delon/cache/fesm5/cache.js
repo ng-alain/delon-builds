@@ -1,7 +1,7 @@
 import { __assign } from 'tslib';
 import { HttpClient } from '@angular/common/http';
 import { Injectable, ɵɵdefineInjectable, InjectionToken, Inject, ɵɵinject, NgModule } from '@angular/core';
-import addSeconds from 'date-fns/add_seconds';
+import addSeconds from 'date-fns/addSeconds';
 import { Observable, of, BehaviorSubject } from 'rxjs';
 import { tap, map } from 'rxjs/operators';
 
@@ -88,7 +88,7 @@ var DelonCacheConfig = /** @class */ (function () {
     DelonCacheConfig.decorators = [
         { type: Injectable, args: [{ providedIn: 'root' },] }
     ];
-    /** @nocollapse */ DelonCacheConfig.ngInjectableDef = ɵɵdefineInjectable({ factory: function DelonCacheConfig_Factory() { return new DelonCacheConfig(); }, token: DelonCacheConfig, providedIn: "root" });
+    /** @nocollapse */ DelonCacheConfig.ɵprov = ɵɵdefineInjectable({ factory: function DelonCacheConfig_Factory() { return new DelonCacheConfig(); }, token: DelonCacheConfig, providedIn: "root" });
     return DelonCacheConfig;
 }());
 if (false) {
@@ -203,7 +203,7 @@ var CacheService = /** @class */ (function () {
         this.meta = new Set();
         this.freqTick = 3000;
         this.cog = {};
-        Object.assign(this.cog, __assign({}, new DelonCacheConfig(), _));
+        Object.assign(this.cog, __assign(__assign({}, new DelonCacheConfig()), _));
         this.loadMeta();
         this.startExpireNotify();
     }
@@ -762,7 +762,7 @@ var CacheService = /** @class */ (function () {
         { type: undefined, decorators: [{ type: Inject, args: [DC_STORE_STORAGE_TOKEN,] }] },
         { type: HttpClient }
     ]; };
-    /** @nocollapse */ CacheService.ngInjectableDef = ɵɵdefineInjectable({ factory: function CacheService_Factory() { return new CacheService(ɵɵinject(DelonCacheConfig), ɵɵinject(DC_STORE_STORAGE_TOKEN), ɵɵinject(HttpClient)); }, token: CacheService, providedIn: "root" });
+    /** @nocollapse */ CacheService.ɵprov = ɵɵdefineInjectable({ factory: function CacheService_Factory() { return new CacheService(ɵɵinject(DelonCacheConfig), ɵɵinject(DC_STORE_STORAGE_TOKEN), ɵɵinject(HttpClient)); }, token: CacheService, providedIn: "root" });
     return CacheService;
 }());
 if (false) {

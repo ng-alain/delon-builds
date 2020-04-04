@@ -14,7 +14,7 @@ export declare class LazyService {
     private cached;
     private _notify;
     constructor(doc: any);
-    readonly change: Observable<LazyResult[]>;
+    get change(): Observable<LazyResult[]>;
     clear(): void;
     load(paths: string | string[]): Promise<LazyResult[]>;
     loadScript(path: string, innerContent?: string): Promise<LazyResult>;

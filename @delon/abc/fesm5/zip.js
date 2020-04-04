@@ -81,7 +81,7 @@ var ZipConfig = /** @class */ (function () {
     ZipConfig.decorators = [
         { type: Injectable, args: [{ providedIn: 'root' },] }
     ];
-    /** @nocollapse */ ZipConfig.ngInjectableDef = ɵɵdefineInjectable({ factory: function ZipConfig_Factory() { return new ZipConfig(); }, token: ZipConfig, providedIn: "root" });
+    /** @nocollapse */ ZipConfig.ɵprov = ɵɵdefineInjectable({ factory: function ZipConfig_Factory() { return new ZipConfig(); }, token: ZipConfig, providedIn: "root" });
     return ZipConfig;
 }());
 if (false) {
@@ -325,7 +325,7 @@ var ZipService = /** @class */ (function () {
         { type: HttpClient },
         { type: LazyService }
     ]; };
-    /** @nocollapse */ ZipService.ngInjectableDef = ɵɵdefineInjectable({ factory: function ZipService_Factory() { return new ZipService(ɵɵinject(ZipConfig), ɵɵinject(HttpClient), ɵɵinject(LazyService)); }, token: ZipService, providedIn: "root" });
+    /** @nocollapse */ ZipService.ɵprov = ɵɵdefineInjectable({ factory: function ZipService_Factory() { return new ZipService(ɵɵinject(ZipConfig), ɵɵinject(HttpClient), ɵɵinject(LazyService)); }, token: ZipService, providedIn: "root" });
     return ZipService;
 }());
 if (false) {

@@ -1,5 +1,5 @@
 /**
- * @license ng-alain(cipchk@qq.com) v8.8.0
+ * @license ng-alain(cipchk@qq.com) v9.0.0-rc.1
  * (c) 2019 cipchk https://ng-alain.com/
  * License: MIT
  */
@@ -537,7 +537,7 @@
             /** @type {?} */
             var filePath = error.message.split(': ')[0];
             /** @type {?} */
-            var errors = error.stack
+            var errors = ((/** @type {?} */ (error.stack)))
                 .split('\n')
                 .filter((/**
              * @param {?} line
@@ -549,7 +549,7 @@
              * @return {?}
              */
             function (line) { return line.replace(filePath + ": ", ''); }));
-            errors.splice(1, 0, ['']);
+            errors.splice(1, 0, '');
             console.group();
             console.warn("==========Failed to parse mock config.==========");
             console.log(errors.join('\n'));

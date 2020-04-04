@@ -16,13 +16,13 @@ export declare class TitleService implements OnDestroy {
     readonly DELAY_TIME = 25;
     constructor(injector: Injector, title: Title, menuSrv: MenuService, i18nSrv: AlainI18NService, doc: any);
     /** 设置分隔符 */
-    separator: string;
+    set separator(value: string);
     /** 设置前缀 */
-    prefix: string;
+    set prefix(value: string);
     /** 设置后缀 */
-    suffix: string;
+    set suffix(value: string);
     /** 设置是否反转 */
-    reverse: boolean;
+    set reverse(value: boolean);
     /** 设置默认标题名 */
     default: string;
     private getByElement;

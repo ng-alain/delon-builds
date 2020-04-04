@@ -23,7 +23,7 @@ class ImageConfig {
 ImageConfig.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
-/** @nocollapse */ ImageConfig.ngInjectableDef = ɵɵdefineInjectable({ factory: function ImageConfig_Factory() { return new ImageConfig(); }, token: ImageConfig, providedIn: "root" });
+/** @nocollapse */ ImageConfig.ɵprov = ɵɵdefineInjectable({ factory: function ImageConfig_Factory() { return new ImageConfig(); }, token: ImageConfig, providedIn: "root" });
 if (false) {
     /**
      * 默认大小，默认值：`64`，单位：px
@@ -57,7 +57,7 @@ class ImageDirective {
         this.size = 64;
         this.error = './assets/img/logo.svg';
         this.inited = false;
-        Object.assign(this, Object.assign({}, new ImageConfig(), cog));
+        Object.assign(this, Object.assign(Object.assign({}, new ImageConfig()), cog));
         this.imgEl = el.nativeElement;
     }
     /**

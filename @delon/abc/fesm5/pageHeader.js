@@ -1,12 +1,12 @@
 import { Injectable, ɵɵdefineInjectable, TemplateRef, Component, ChangeDetectionStrategy, ViewEncapsulation, Renderer2, Optional, Inject, ChangeDetectorRef, ViewChild, Input, NgModule } from '@angular/core';
 import { __assign, __decorate, __metadata, __spread } from 'tslib';
 import { NavigationEnd, Router, RouterModule } from '@angular/router';
-import { NzAffixModule } from 'ng-zorro-antd/affix';
-import { Subject, merge } from 'rxjs';
-import { takeUntil, filter } from 'rxjs/operators';
 import { ReuseTabService } from '@delon/abc/reuse-tab';
 import { SettingsService, MenuService, ALAIN_I18N_TOKEN, TitleService } from '@delon/theme';
 import { isEmpty, InputBoolean, InputNumber, DelonUtilModule } from '@delon/util';
+import { NzAffixModule } from 'ng-zorro-antd/affix';
+import { Subject, merge } from 'rxjs';
+import { takeUntil, filter } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
 import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
 import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
@@ -55,7 +55,7 @@ var PageHeaderConfig = /** @class */ (function () {
     PageHeaderConfig.decorators = [
         { type: Injectable, args: [{ providedIn: 'root' },] }
     ];
-    /** @nocollapse */ PageHeaderConfig.ngInjectableDef = ɵɵdefineInjectable({ factory: function PageHeaderConfig_Factory() { return new PageHeaderConfig(); }, token: PageHeaderConfig, providedIn: "root" });
+    /** @nocollapse */ PageHeaderConfig.ɵprov = ɵɵdefineInjectable({ factory: function PageHeaderConfig_Factory() { return new PageHeaderConfig(); }, token: PageHeaderConfig, providedIn: "root" });
     return PageHeaderConfig;
 }());
 if (false) {
@@ -139,7 +139,7 @@ var PageHeaderComponent = /** @class */ (function () {
         this.paths = [];
         this.loading = false;
         this.wide = false;
-        Object.assign(this, __assign({}, new PageHeaderConfig(), cog));
+        Object.assign(this, __assign(__assign({}, new PageHeaderConfig()), cog));
         settings.notify
             .pipe(takeUntil(this.unsubscribe$), filter((/**
          * @param {?} w

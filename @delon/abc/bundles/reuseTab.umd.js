@@ -1,5 +1,5 @@
 /**
- * @license ng-alain(cipchk@qq.com) v8.8.0
+ * @license ng-alain(cipchk@qq.com) v9.0.0-rc.1
  * (c) 2019 cipchk https://ng-alain.com/
  * License: MIT
  */
@@ -245,7 +245,7 @@
              * @return {?}
              */
             function (value) {
-                this._i18n = __assign({}, this.i18nSrv.getData('reuseTab'), value);
+                this._i18n = __assign(__assign({}, this.i18nSrv.getData('reuseTab')), value);
             },
             enumerable: true,
             configurable: true
@@ -440,10 +440,7 @@
                 new overlay.ConnectionPositionPair({ originX: 'start', originY: 'top' }, { overlayX: 'start', overlayY: 'bottom' }),
             ];
             /** @type {?} */
-            var positionStrategy = this.overlay
-                .position()
-                .flexibleConnectedTo(fakeElement)
-                .withPositions(positions);
+            var positionStrategy = this.overlay.position().flexibleConnectedTo(fakeElement).withPositions(positions);
             this.ref = this.overlay.create({
                 positionStrategy: positionStrategy,
                 panelClass: 'reuse-tab__cm',
@@ -1850,7 +1847,7 @@
             { type: core.Injector },
             { type: theme.MenuService }
         ]; };
-        /** @nocollapse */ ReuseTabService.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function ReuseTabService_Factory() { return new ReuseTabService(core.ɵɵinject(core.INJECTOR), core.ɵɵinject(theme.MenuService)); }, token: ReuseTabService, providedIn: "root" });
+        /** @nocollapse */ ReuseTabService.ɵprov = core["ɵɵdefineInjectable"]({ factory: function ReuseTabService_Factory() { return new ReuseTabService(core["ɵɵinject"](core.INJECTOR), core["ɵɵinject"](theme.MenuService)); }, token: ReuseTabService, providedIn: "root" });
         return ReuseTabService;
     }());
     if (false) {

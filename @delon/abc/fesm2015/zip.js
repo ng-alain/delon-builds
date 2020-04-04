@@ -81,7 +81,7 @@ class ZipConfig {
 ZipConfig.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
-/** @nocollapse */ ZipConfig.ngInjectableDef = ɵɵdefineInjectable({ factory: function ZipConfig_Factory() { return new ZipConfig(); }, token: ZipConfig, providedIn: "root" });
+/** @nocollapse */ ZipConfig.ɵprov = ɵɵdefineInjectable({ factory: function ZipConfig_Factory() { return new ZipConfig(); }, token: ZipConfig, providedIn: "root" });
 if (false) {
     /**
      * Zip library path
@@ -155,7 +155,7 @@ class ZipService {
                          * @param {?} ret
                          * @return {?}
                          */
-                        ret => resolve(ret)));
+                        (ret) => resolve(ret)));
                     }), (/**
                      * @param {?} err
                      * @return {?}
@@ -177,7 +177,7 @@ class ZipService {
                      * @param {?} ret
                      * @return {?}
                      */
-                    ret => resolve(ret)));
+                    (ret) => resolve(ret)));
                 });
                 reader.readAsBinaryString((/** @type {?} */ (fileOrUrl)));
             }));
@@ -264,7 +264,7 @@ class ZipService {
              * @param {?} err
              * @return {?}
              */
-            err => {
+            (err) => {
                 reject(err);
             }));
         }));
@@ -279,7 +279,7 @@ ZipService.ctorParameters = () => [
     { type: HttpClient },
     { type: LazyService }
 ];
-/** @nocollapse */ ZipService.ngInjectableDef = ɵɵdefineInjectable({ factory: function ZipService_Factory() { return new ZipService(ɵɵinject(ZipConfig), ɵɵinject(HttpClient), ɵɵinject(LazyService)); }, token: ZipService, providedIn: "root" });
+/** @nocollapse */ ZipService.ɵprov = ɵɵdefineInjectable({ factory: function ZipService_Factory() { return new ZipService(ɵɵinject(ZipConfig), ɵɵinject(HttpClient), ɵɵinject(LazyService)); }, token: ZipService, providedIn: "root" });
 if (false) {
     /**
      * @type {?}

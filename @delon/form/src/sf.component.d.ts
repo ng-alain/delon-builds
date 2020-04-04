@@ -1,7 +1,7 @@
-import { DomSanitizer } from '@angular/platform-browser';
 import { ChangeDetectorRef, EventEmitter, OnChanges, OnDestroy, OnInit, SimpleChange, SimpleChanges } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { ACLService } from '@delon/acl';
-import { DelonLocaleService, LocaleData, AlainI18NService } from '@delon/theme';
+import { AlainI18NService, DelonLocaleService, LocaleData } from '@delon/theme';
 import { DelonFormConfig } from './config';
 import { ErrorData } from './errors';
 import { SFButton, SFLayout } from './interface';
@@ -61,7 +61,8 @@ export declare class SFComponent implements OnInit, OnChanges, OnDestroy {
     /** 是否只展示错误视觉不显示错误文本 */
     onlyVisual: boolean;
     /** 表单模式 */
-    mode: 'default' | 'search' | 'edit';
+    set mode(value: 'default' | 'search' | 'edit');
+    get mode(): 'default' | 'search' | 'edit';
     private _mode;
     /**
      * Whether to load status，when `true` reset button is disabled status, submit button is loading status
@@ -79,9 +80,9 @@ export declare class SFComponent implements OnInit, OnChanges, OnDestroy {
     /** 表单校验结果回调 */
     readonly formError: EventEmitter<ErrorData[]>;
     /** 表单校验状态 */
-    readonly valid: boolean;
+    get valid(): boolean;
     /** 表单值 */
-    readonly value: {
+    get value(): {
         [key: string]: any;
     };
     /**

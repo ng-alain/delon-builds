@@ -3,7 +3,7 @@
  * Generated from: footer-toolbar.component.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-import * as tslib_1 from "tslib";
+import { __decorate, __metadata } from "tslib";
 import { DOCUMENT } from '@angular/common';
 import { ChangeDetectionStrategy, Component, ElementRef, Inject, Input, Renderer2, ViewEncapsulation, } from '@angular/core';
 import { InputBoolean } from '@delon/util';
@@ -66,9 +66,9 @@ var FooterToolbarComponent = /** @class */ (function () {
         errorCollect: [{ type: Input }],
         extra: [{ type: Input }]
     };
-    tslib_1.__decorate([
+    __decorate([
         InputBoolean(),
-        tslib_1.__metadata("design:type", Object)
+        __metadata("design:type", Object)
     ], FooterToolbarComponent.prototype, "errorCollect", void 0);
     return FooterToolbarComponent;
 }());

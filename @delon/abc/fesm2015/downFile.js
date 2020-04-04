@@ -119,7 +119,7 @@ class DownFileDirective {
                 fileName = fileName(res);
             fileName =
                 fileName || disposition[`filename*`] || disposition[`filename`] || res.headers.get('filename') || res.headers.get('x-filename');
-            saveAs(res.body, decodeURI((/** @type {?} */ (fileName))));
+            saveAs((/** @type {?} */ (res.body)), decodeURI((/** @type {?} */ (fileName))));
             this.success.emit(res);
         }), (/**
          * @param {?} err

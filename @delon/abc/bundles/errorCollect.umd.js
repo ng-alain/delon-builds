@@ -1,5 +1,5 @@
 /**
- * @license ng-alain(cipchk@qq.com) v8.8.0
+ * @license ng-alain(cipchk@qq.com) v9.0.0-rc.1
  * (c) 2019 cipchk https://ng-alain.com/
  * License: MIT
  */
@@ -242,7 +242,7 @@
         ErrorCollectConfig.decorators = [
             { type: core.Injectable, args: [{ providedIn: 'root' },] }
         ];
-        /** @nocollapse */ ErrorCollectConfig.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function ErrorCollectConfig_Factory() { return new ErrorCollectConfig(); }, token: ErrorCollectConfig, providedIn: "root" });
+        /** @nocollapse */ ErrorCollectConfig.ɵprov = core["ɵɵdefineInjectable"]({ factory: function ErrorCollectConfig_Factory() { return new ErrorCollectConfig(); }, token: ErrorCollectConfig, providedIn: "root" });
         return ErrorCollectConfig;
     }());
     if (false) {
@@ -271,7 +271,7 @@
             this.$time = null;
             this._hiden = true;
             this.count = 0;
-            Object.assign(this, __assign({}, new ErrorCollectConfig(), cog));
+            Object.assign(this, __assign(__assign({}, new ErrorCollectConfig()), cog));
         }
         Object.defineProperty(ErrorCollectComponent.prototype, "errEls", {
             get: /**
@@ -318,6 +318,7 @@
             formItemEl.scrollIntoView(true);
             // fix header height
             this.doc.documentElement.scrollTop -= this.offsetTop;
+            return true;
         };
         /**
          * @private
@@ -369,7 +370,7 @@
                 }
                 el = (/** @type {?} */ (el.parentElement));
             }
-            return (/** @type {?} */ (retEl));
+            return retEl;
         };
         /**
          * @return {?}

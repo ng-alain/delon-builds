@@ -1,23 +1,23 @@
 import { TemplateRef, Directive, ViewContainerRef, Input, Injectable, Inject, ɵɵdefineInjectable, ɵɵinject, NgModule } from '@angular/core';
 import { __spread, __assign, __values } from 'tslib';
 import extend from 'extend';
-import addDays from 'date-fns/add_days';
-import endOfDay from 'date-fns/end_of_day';
-import endOfMonth from 'date-fns/end_of_month';
-import endOfWeek from 'date-fns/end_of_week';
-import endOfYear from 'date-fns/end_of_year';
-import parse from 'date-fns/parse';
-import startOfDay from 'date-fns/start_of_day';
-import startOfMonth from 'date-fns/start_of_month';
-import startOfWeek from 'date-fns/start_of_week';
-import startOfYear from 'date-fns/start_of_year';
-import subMonths from 'date-fns/sub_months';
-import subWeeks from 'date-fns/sub_weeks';
-import subYears from 'date-fns/sub_years';
+import addDays from 'date-fns/addDays';
+import endOfDay from 'date-fns/endOfDay';
+import endOfMonth from 'date-fns/endOfMonth';
+import endOfWeek from 'date-fns/endOfWeek';
+import endOfYear from 'date-fns/endOfYear';
+import parseISO from 'date-fns/parseISO';
+import startOfDay from 'date-fns/startOfDay';
+import startOfMonth from 'date-fns/startOfMonth';
+import startOfWeek from 'date-fns/startOfWeek';
+import startOfYear from 'date-fns/startOfYear';
+import subMonths from 'date-fns/subMonths';
+import subWeeks from 'date-fns/subWeeks';
+import subYears from 'date-fns/subYears';
 import { DOCUMENT, CommonModule } from '@angular/common';
 import { BehaviorSubject } from 'rxjs';
 import { share, filter } from 'rxjs/operators';
-import { NzTreeNode } from 'ng-zorro-antd/core';
+import { NzTreeNode } from 'ng-zorro-antd/core/tree';
 
 /**
  * @fileoverview added by tsickle
@@ -322,7 +322,7 @@ function format(str, obj, needDeepGet) {
  * @return {?}
  */
 function getTimeDistance(type, time) {
-    time = parse(time || new Date());
+    time = time ? (typeof time === 'string' ? parseISO(time) : new Date(time)) : new Date();
     /** @type {?} */
     var options = { weekStartsOn: 1 };
     /** @type {?} */
@@ -592,7 +592,7 @@ var LazyService = /** @class */ (function () {
     LazyService.ctorParameters = function () { return [
         { type: undefined, decorators: [{ type: Inject, args: [DOCUMENT,] }] }
     ]; };
-    /** @nocollapse */ LazyService.ngInjectableDef = ɵɵdefineInjectable({ factory: function LazyService_Factory() { return new LazyService(ɵɵinject(DOCUMENT)); }, token: LazyService, providedIn: "root" });
+    /** @nocollapse */ LazyService.ɵprov = ɵɵdefineInjectable({ factory: function LazyService_Factory() { return new LazyService(ɵɵinject(DOCUMENT)); }, token: LazyService, providedIn: "root" });
     return LazyService;
 }());
 if (false) {
@@ -637,8 +637,7 @@ function isNum(value) {
  * @return {?}
  */
 function isInt(value) {
-    // tslint:disable-next-line:triple-equals
-    return isNum(value) && parseInt(value.toString(), 10) == value;
+    return isNum(value) && parseInt(value.toString(), 10) === value;
 }
 /**
  * 是否为小数
@@ -1043,7 +1042,7 @@ var DelonUtilConfig = /** @class */ (function () {
     DelonUtilConfig.decorators = [
         { type: Injectable, args: [{ providedIn: 'root' },] }
     ];
-    /** @nocollapse */ DelonUtilConfig.ngInjectableDef = ɵɵdefineInjectable({ factory: function DelonUtilConfig_Factory() { return new DelonUtilConfig(); }, token: DelonUtilConfig, providedIn: "root" });
+    /** @nocollapse */ DelonUtilConfig.ɵprov = ɵɵdefineInjectable({ factory: function DelonUtilConfig_Factory() { return new DelonUtilConfig(); }, token: DelonUtilConfig, providedIn: "root" });
     return DelonUtilConfig;
 }());
 if (false) {
@@ -1444,7 +1443,7 @@ var ArrayService = /** @class */ (function () {
     ArrayService.ctorParameters = function () { return [
         { type: DelonUtilConfig }
     ]; };
-    /** @nocollapse */ ArrayService.ngInjectableDef = ɵɵdefineInjectable({ factory: function ArrayService_Factory() { return new ArrayService(ɵɵinject(DelonUtilConfig)); }, token: ArrayService, providedIn: "root" });
+    /** @nocollapse */ ArrayService.ɵprov = ɵɵdefineInjectable({ factory: function ArrayService_Factory() { return new ArrayService(ɵɵinject(DelonUtilConfig)); }, token: ArrayService, providedIn: "root" });
     return ArrayService;
 }());
 if (false) {

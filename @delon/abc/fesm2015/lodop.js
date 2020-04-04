@@ -1,6 +1,6 @@
 import { Injectable, ɵɵdefineInjectable, ɵɵinject, NgModule } from '@angular/core';
-import { Subject, of } from 'rxjs';
 import { LazyService, DelonUtilModule } from '@delon/util';
+import { Subject, of } from 'rxjs';
 
 /**
  * @fileoverview added by tsickle
@@ -579,7 +579,7 @@ class LodopConfig {
 LodopConfig.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
-/** @nocollapse */ LodopConfig.ngInjectableDef = ɵɵdefineInjectable({ factory: function LodopConfig_Factory() { return new LodopConfig(); }, token: LodopConfig, providedIn: "root" });
+/** @nocollapse */ LodopConfig.ɵprov = ɵɵdefineInjectable({ factory: function LodopConfig_Factory() { return new LodopConfig(); }, token: LodopConfig, providedIn: "root" });
 if (false) {
     /**
      * 注册信息：主注册号
@@ -655,7 +655,7 @@ class LodopService {
      * @return {?}
      */
     set cog(value) {
-        this._cog = Object.assign({ url: 'https://localhost:8443/CLodopfuncs.js', name: 'CLODOP', companyName: '', checkMaxCount: 100 }, this.defCog, value);
+        this._cog = Object.assign(Object.assign({ url: 'https://localhost:8443/CLodopfuncs.js', name: 'CLODOP', companyName: '', checkMaxCount: 100 }, this.defCog), value);
     }
     /**
      * 事件变更通知
@@ -747,14 +747,16 @@ class LodopService {
          * @param {?} res
          * @return {?}
          */
-        res => {
+        (res) => {
             if (res.status !== 'ok') {
                 this.pending = false;
                 onResolve('script-load-error', res[0]);
                 return;
             }
-            if (window.hasOwnProperty((/** @type {?} */ (this.cog.name)))) {
-                this._lodop = (/** @type {?} */ (window[(/** @type {?} */ (this.cog.name))]));
+            /** @type {?} */
+            const win = (/** @type {?} */ (window));
+            if (win.hasOwnProperty((/** @type {?} */ (this.cog.name)))) {
+                this._lodop = (/** @type {?} */ (win[(/** @type {?} */ (this.cog.name))]));
             }
             if (this._lodop === null) {
                 onResolve('load-variable-name-error', { name: this.cog.name });
@@ -914,7 +916,7 @@ LodopService.ctorParameters = () => [
     { type: LodopConfig },
     { type: LazyService }
 ];
-/** @nocollapse */ LodopService.ngInjectableDef = ɵɵdefineInjectable({ factory: function LodopService_Factory() { return new LodopService(ɵɵinject(LodopConfig), ɵɵinject(LazyService)); }, token: LodopService, providedIn: "root" });
+/** @nocollapse */ LodopService.ɵprov = ɵɵdefineInjectable({ factory: function LodopService_Factory() { return new LodopService(ɵɵinject(LodopConfig), ɵɵinject(LazyService)); }, token: LodopService, providedIn: "root" });
 if (false) {
     /**
      * @type {?}

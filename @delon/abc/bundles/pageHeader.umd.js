@@ -1,13 +1,13 @@
 /**
- * @license ng-alain(cipchk@qq.com) v8.8.0
+ * @license ng-alain(cipchk@qq.com) v9.0.0-rc.1
  * (c) 2019 cipchk https://ng-alain.com/
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/router'), require('ng-zorro-antd/affix'), require('rxjs'), require('rxjs/operators'), require('@delon/abc/reuse-tab'), require('@delon/theme'), require('@delon/util'), require('@angular/common'), require('ng-zorro-antd/breadcrumb'), require('ng-zorro-antd/skeleton')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/page-header', ['exports', '@angular/core', '@angular/router', 'ng-zorro-antd/affix', 'rxjs', 'rxjs/operators', '@delon/abc/reuse-tab', '@delon/theme', '@delon/util', '@angular/common', 'ng-zorro-antd/breadcrumb', 'ng-zorro-antd/skeleton'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['page-header'] = {}), global.ng.core, global.ng.router, global['ng-zorro-antd/affix'], global.rxjs, global.rxjs.operators, global.delon.abc['reuse-tab'], global.delon.theme, global.delon.util, global.ng.common, global['ng-zorro-antd/breadcrumb'], global['ng-zorro-antd/skeleton']));
-}(this, (function (exports, core, router, affix, rxjs, operators, reuseTab, theme, util, common, breadcrumb, skeleton) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/router'), require('@delon/abc/reuse-tab'), require('@delon/theme'), require('@delon/util'), require('ng-zorro-antd/affix'), require('rxjs'), require('rxjs/operators'), require('@angular/common'), require('ng-zorro-antd/breadcrumb'), require('ng-zorro-antd/skeleton')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/page-header', ['exports', '@angular/core', '@angular/router', '@delon/abc/reuse-tab', '@delon/theme', '@delon/util', 'ng-zorro-antd/affix', 'rxjs', 'rxjs/operators', '@angular/common', 'ng-zorro-antd/breadcrumb', 'ng-zorro-antd/skeleton'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['page-header'] = {}), global.ng.core, global.ng.router, global.delon.abc['reuse-tab'], global.delon.theme, global.delon.util, global['ng-zorro-antd/affix'], global.rxjs, global.rxjs.operators, global.ng.common, global['ng-zorro-antd/breadcrumb'], global['ng-zorro-antd/skeleton']));
+}(this, (function (exports, core, router, reuseTab, theme, util, affix, rxjs, operators, common, breadcrumb, skeleton) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -267,7 +267,7 @@
         PageHeaderConfig.decorators = [
             { type: core.Injectable, args: [{ providedIn: 'root' },] }
         ];
-        /** @nocollapse */ PageHeaderConfig.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function PageHeaderConfig_Factory() { return new PageHeaderConfig(); }, token: PageHeaderConfig, providedIn: "root" });
+        /** @nocollapse */ PageHeaderConfig.ɵprov = core["ɵɵdefineInjectable"]({ factory: function PageHeaderConfig_Factory() { return new PageHeaderConfig(); }, token: PageHeaderConfig, providedIn: "root" });
         return PageHeaderConfig;
     }());
     if (false) {
@@ -351,7 +351,7 @@
             this.paths = [];
             this.loading = false;
             this.wide = false;
-            Object.assign(this, __assign({}, new PageHeaderConfig(), cog));
+            Object.assign(this, __assign(__assign({}, new PageHeaderConfig()), cog));
             settings.notify
                 .pipe(operators.takeUntil(this.unsubscribe$), operators.filter((/**
              * @param {?} w

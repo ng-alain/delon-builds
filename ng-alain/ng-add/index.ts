@@ -1,8 +1,8 @@
-import { chain, schematic, Rule } from '@angular-devkit/schematics';
+import { chain, Rule, schematic } from '@angular-devkit/schematics';
 import { Schema as ApplicationOptions } from '../application/schema';
 import { Schema as NgAddOptions } from './schema';
 
-export default function(options: NgAddOptions): Rule {
+export default function (options: NgAddOptions): Rule {
   const rules: Rule[] = [];
 
   const applicationOptions: ApplicationOptions = { ...options };

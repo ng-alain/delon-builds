@@ -34,7 +34,7 @@ var ReuseTabContextMenuComponent = /** @class */ (function () {
          * @return {?}
          */
         function (value) {
-            this._i18n = __assign({}, this.i18nSrv.getData('reuseTab'), value);
+            this._i18n = __assign(__assign({}, this.i18nSrv.getData('reuseTab')), value);
         },
         enumerable: true,
         configurable: true
@@ -229,10 +229,7 @@ var ReuseTabContextService = /** @class */ (function () {
             new ConnectionPositionPair({ originX: 'start', originY: 'top' }, { overlayX: 'start', overlayY: 'bottom' }),
         ];
         /** @type {?} */
-        var positionStrategy = this.overlay
-            .position()
-            .flexibleConnectedTo(fakeElement)
-            .withPositions(positions);
+        var positionStrategy = this.overlay.position().flexibleConnectedTo(fakeElement).withPositions(positions);
         this.ref = this.overlay.create({
             positionStrategy: positionStrategy,
             panelClass: 'reuse-tab__cm',
@@ -1639,7 +1636,7 @@ var ReuseTabService = /** @class */ (function () {
         { type: Injector },
         { type: MenuService }
     ]; };
-    /** @nocollapse */ ReuseTabService.ngInjectableDef = ɵɵdefineInjectable({ factory: function ReuseTabService_Factory() { return new ReuseTabService(ɵɵinject(INJECTOR), ɵɵinject(MenuService)); }, token: ReuseTabService, providedIn: "root" });
+    /** @nocollapse */ ReuseTabService.ɵprov = ɵɵdefineInjectable({ factory: function ReuseTabService_Factory() { return new ReuseTabService(ɵɵinject(INJECTOR), ɵɵinject(MenuService)); }, token: ReuseTabService, providedIn: "root" });
     return ReuseTabService;
 }());
 if (false) {

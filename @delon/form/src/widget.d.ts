@@ -1,12 +1,12 @@
-import { DomSanitizer } from '@angular/platform-browser';
 import { AfterViewInit, ChangeDetectorRef, Injector } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { LocaleData } from '@delon/theme';
 import { SFValue } from './interface';
 import { ArrayProperty } from './model/array.property';
 import { FormProperty } from './model/form.property';
 import { ObjectProperty } from './model/object.property';
 import { SFSchema } from './schema';
-import { SFUISchemaItem, SFOptionalHelp } from './schema/ui';
+import { SFOptionalHelp, SFUISchemaItem } from './schema/ui';
 import { SFItemComponent } from './sf-item.component';
 import { SFComponent } from './sf.component';
 import { SFArrayWidgetSchema, SFObjectWidgetSchema } from './widgets';
@@ -22,15 +22,15 @@ export declare abstract class Widget<T extends FormProperty, UIT extends SFUISch
     schema: SFSchema;
     ui: UIT;
     firstVisual: boolean;
-    readonly cls: string | string[];
-    readonly disabled: boolean | null;
-    readonly l: LocaleData;
-    readonly oh: SFOptionalHelp;
-    readonly dom: DomSanitizer;
+    get cls(): string | string[];
+    get disabled(): boolean | null;
+    get l(): LocaleData;
+    get oh(): SFOptionalHelp;
+    get dom(): DomSanitizer;
     constructor(cd: ChangeDetectorRef, injector: Injector, sfItemComp?: SFItemComponent | undefined, sfComp?: SFComponent | undefined);
     ngAfterViewInit(): void;
     setValue(value: SFValue): void;
-    readonly value: any;
+    get value(): any;
     detectChanges(onlySelf?: boolean): void;
     abstract reset(value: SFValue): void;
 }

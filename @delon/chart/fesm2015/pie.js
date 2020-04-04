@@ -78,7 +78,7 @@ class G2PieComponent {
              * @param {?} value
              * @return {?}
              */
-            value => (value === '占比' ? color || 'rgba(24, 144, 255, 0.85)' : '#F0F2F5'));
+            (value) => (value === '占比' ? color || 'rgba(24, 144, 255, 0.85)' : '#F0F2F5'));
             this.data = [
                 {
                     x: '占比',

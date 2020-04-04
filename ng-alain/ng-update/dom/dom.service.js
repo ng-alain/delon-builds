@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 // tslint:disable:no-string-literal
-const htmlparser2 = require("htmlparser2");
 const domhandler_1 = require("domhandler");
+const htmlparser2 = require("htmlparser2");
 class DomService {
     constructor() {
         this.rules = [];
@@ -241,7 +241,7 @@ class DomService {
     }
     resolveExtra(dom, rule) {
         if (rule.extra_insert_attrs) {
-            dom.attribs = Object.assign({}, dom.attribs, rule.extra_insert_attrs);
+            dom.attribs = Object.assign(Object.assign({}, dom.attribs), rule.extra_insert_attrs);
         }
         if (rule.extra_replace_attrs) {
             Object.keys(dom.attribs).forEach(key => {
@@ -319,9 +319,7 @@ class DomService {
         return ' ' + result.join(' ');
     }
     genTab(count) {
-        return Array(count)
-            .fill('  ')
-            .join('');
+        return Array(count).fill('  ').join('');
     }
 }
 exports.DomService = DomService;

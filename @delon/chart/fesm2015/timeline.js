@@ -78,7 +78,7 @@ class G2TimelineComponent {
         chart.line().position('x*y2');
         chart.render();
         /** @type {?} */
-        const sliderPadding = Object.assign({}, [], padding);
+        const sliderPadding = Object.assign(Object.assign({}, []), padding);
         sliderPadding[0] = 0;
         if (slider) {
             /** @type {?} */
@@ -111,14 +111,17 @@ class G2TimelineComponent {
      * @return {?}
      */
     attachChart() {
-        const { chart, _slider, slider, height, padding, data, mask, titleMap, position, colorMap, borderWidth, } = this;
+        const { chart, _slider, slider, height, padding, data, mask, titleMap, position, colorMap, borderWidth } = this;
         if (!chart || !data || data.length <= 0)
             return;
         chart.legend({
             position,
             custom: true,
             clickable: false,
-            items: [{ value: titleMap.y1, fill: colorMap.y1 }, { value: titleMap.y2, fill: colorMap.y2 }],
+            items: [
+                { value: titleMap.y1, fill: colorMap.y1 },
+                { value: titleMap.y2, fill: colorMap.y2 },
+            ],
         });
         // border
         chart.get('geoms').forEach((/**
@@ -127,7 +130,7 @@ class G2TimelineComponent {
          * @return {?}
          */
         (v, idx) => {
-            v.color(colorMap[`y${idx + 1}`]).size(borderWidth);
+            v.color(((/** @type {?} */ (colorMap)))[`y${idx + 1}`]).size(borderWidth);
         }));
         chart.set('height', height);
         chart.set('padding', padding);
@@ -205,12 +208,12 @@ class G2TimelineComponent {
             _slider.start = ds.state.start;
             _slider.end = ds.state.end;
             _slider.onChange = (/**
-             * @param {?} __0
+             * @param {?} res
              * @return {?}
              */
-            ({ startValue, endValue }) => {
-                ds.setState('start', startValue);
-                ds.setState('end', endValue);
+            (res) => {
+                ds.setState('start', res.startValue);
+                ds.setState('end', res.endValue);
             });
             _slider.changeData(data);
         }

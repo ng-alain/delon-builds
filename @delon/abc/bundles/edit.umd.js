@@ -1,5 +1,5 @@
 /**
- * @license ng-alain(cipchk@qq.com) v8.8.0
+ * @license ng-alain(cipchk@qq.com) v9.0.0-rc.1
  * (c) 2019 cipchk https://ng-alain.com/
  * License: MIT
  */
@@ -260,7 +260,7 @@
         SEConfig.decorators = [
             { type: core.Injectable, args: [{ providedIn: 'root' },] }
         ];
-        /** @nocollapse */ SEConfig.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function SEConfig_Factory() { return new SEConfig(); }, token: SEConfig, providedIn: "root" });
+        /** @nocollapse */ SEConfig.ɵprov = core["ɵɵdefineInjectable"]({ factory: function SEConfig_Factory() { return new SEConfig(); }, token: SEConfig, providedIn: "root" });
         return SEConfig;
     }());
     if (false) {
@@ -307,7 +307,7 @@
         // #endregion
         function SEContainerComponent(cog) {
             this.line = false;
-            Object.assign(this, __assign({}, new SEConfig(), cog));
+            Object.assign(this, __assign(__assign({}, new SEConfig()), cog));
         }
         Object.defineProperty(SEContainerComponent.prototype, "gutter", {
             get: /**
@@ -456,7 +456,7 @@
                                 ]),
                             ]),
                         ],
-                        template: "\n    <div [@errorAnt]><ng-content></ng-content></div>\n  ",
+                        template: " <div [@errorAnt]><ng-content></ng-content></div> ",
                         host: {
                             '[class.ant-form-explain]': 'true',
                         },

@@ -47,7 +47,7 @@ class QRConfig {
 QRConfig.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
-/** @nocollapse */ QRConfig.ngInjectableDef = ɵɵdefineInjectable({ factory: function QRConfig_Factory() { return new QRConfig(); }, token: QRConfig, providedIn: "root" });
+/** @nocollapse */ QRConfig.ɵprov = ɵɵdefineInjectable({ factory: function QRConfig_Factory() { return new QRConfig(); }, token: QRConfig, providedIn: "root" });
 if (false) {
     /**
      * 背景，默认：`white`
@@ -171,7 +171,7 @@ QRService.decorators = [
 QRService.ctorParameters = () => [
     { type: QRConfig }
 ];
-/** @nocollapse */ QRService.ngInjectableDef = ɵɵdefineInjectable({ factory: function QRService_Factory() { return new QRService(ɵɵinject(QRConfig)); }, token: QRService, providedIn: "root" });
+/** @nocollapse */ QRService.ɵprov = ɵɵdefineInjectable({ factory: function QRService_Factory() { return new QRService(ɵɵinject(QRConfig)); }, token: QRService, providedIn: "root" });
 if (false) {
     /**
      * 当前qr实例
@@ -241,7 +241,7 @@ class QRComponent {
         this.srv = srv;
         this.cdr = cdr;
         this.change = new EventEmitter();
-        Object.assign(this, Object.assign({}, new QRConfig(), cog));
+        Object.assign(this, Object.assign(Object.assign({}, new QRConfig()), cog));
     }
     /**
      * @return {?}
@@ -266,9 +266,7 @@ QRComponent.decorators = [
     { type: Component, args: [{
                 selector: 'qr',
                 exportAs: 'qr',
-                template: `
-    <img class="qr__img" src="{{ dataURL }}" />
-  `,
+                template: ` <img class="qr__img" src="{{ dataURL }}" /> `,
                 host: {
                     '[class.qr]': 'true',
                     '[style.height.px]': 'size',

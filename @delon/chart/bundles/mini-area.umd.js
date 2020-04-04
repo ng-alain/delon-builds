@@ -1,5 +1,5 @@
 /**
- * @license ng-alain(cipchk@qq.com) v8.8.0
+ * @license ng-alain(cipchk@qq.com) v9.0.0-rc.1
  * (c) 2019 cipchk https://ng-alain.com/
  * License: MIT
  */
@@ -310,12 +310,7 @@
                 .shape('smooth')
                 .opacity(1);
             if (line) {
-                chart
-                    .line()
-                    .position('x*y')
-                    .shape('smooth')
-                    .opacity(1)
-                    .tooltip(false);
+                chart.line().position('x*y').shape('smooth').opacity(1).tooltip(false);
             }
             chart.render();
             this.attachChart();

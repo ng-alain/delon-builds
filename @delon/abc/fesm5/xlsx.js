@@ -73,7 +73,7 @@ var XlsxConfig = /** @class */ (function () {
     XlsxConfig.decorators = [
         { type: Injectable, args: [{ providedIn: 'root' },] }
     ];
-    /** @nocollapse */ XlsxConfig.ngInjectableDef = ɵɵdefineInjectable({ factory: function XlsxConfig_Factory() { return new XlsxConfig(); }, token: XlsxConfig, providedIn: "root" });
+    /** @nocollapse */ XlsxConfig.ɵprov = ɵɵdefineInjectable({ factory: function XlsxConfig_Factory() { return new XlsxConfig(); }, token: XlsxConfig, providedIn: "root" });
     return XlsxConfig;
 }());
 if (false) {
@@ -256,7 +256,7 @@ var XlsxService = /** @class */ (function () {
         { type: HttpClient },
         { type: LazyService }
     ]; };
-    /** @nocollapse */ XlsxService.ngInjectableDef = ɵɵdefineInjectable({ factory: function XlsxService_Factory() { return new XlsxService(ɵɵinject(XlsxConfig), ɵɵinject(HttpClient), ɵɵinject(LazyService)); }, token: XlsxService, providedIn: "root" });
+    /** @nocollapse */ XlsxService.ɵprov = ɵɵdefineInjectable({ factory: function XlsxService_Factory() { return new XlsxService(ɵɵinject(XlsxConfig), ɵɵinject(HttpClient), ɵɵinject(LazyService)); }, token: XlsxService, providedIn: "root" });
     return XlsxService;
 }());
 if (false) {

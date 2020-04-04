@@ -1,6 +1,6 @@
 import { OnDestroy } from '@angular/core';
-import { Observable } from 'rxjs';
 import { ACLService } from '@delon/acl';
+import { Observable } from 'rxjs';
 import { AlainI18NService } from '../i18n/i18n';
 import { Menu } from './interface';
 /**
@@ -13,7 +13,7 @@ export declare class MenuService implements OnDestroy {
     private i18n$;
     private data;
     constructor(i18nSrv: AlainI18NService, aclService: ACLService);
-    readonly change: Observable<Menu[]>;
+    get change(): Observable<Menu[]>;
     visit(data: Menu[], callback: (item: Menu, parentMenum: Menu | null, depth?: number) => void): void;
     add(items: Menu[]): void;
     /**
@@ -28,7 +28,7 @@ export declare class MenuService implements OnDestroy {
      *      3、否则放在0节点位置
      */
     private loadShortcut;
-    readonly menus: Menu[];
+    get menus(): Menu[];
     /**
      * 清空菜单
      */

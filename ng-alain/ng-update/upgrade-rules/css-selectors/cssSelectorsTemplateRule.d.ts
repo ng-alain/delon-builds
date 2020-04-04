@@ -5,7 +5,7 @@
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-import { Rules, RuleFailure } from 'tslint';
+import { RuleFailure, Rules } from 'tslint';
 import * as ts from 'typescript';
 import { ExternalResource } from '../../tslint/component-file';
 import { ComponentWalker } from '../../tslint/component-walker';

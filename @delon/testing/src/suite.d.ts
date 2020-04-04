@@ -3,10 +3,10 @@ import { ComponentFixture } from '@angular/core/testing';
 export declare class TestContext<T> {
     fixture: ComponentFixture<T>;
     constructor(fixture: ComponentFixture<T>);
-    readonly component: T;
-    readonly el: HTMLElement;
-    readonly dl: import("@angular/core").DebugElement;
-    readonly context: T;
+    get component(): T;
+    get el(): HTMLElement;
+    get dl(): import("@angular/core").DebugElement;
+    get context(): T;
     detectChanges(): void;
     resolve<T1>(component: Type<T1>): T1;
 }

@@ -1,5 +1,5 @@
 /**
- * @license ng-alain(cipchk@qq.com) v8.8.0
+ * @license ng-alain(cipchk@qq.com) v9.0.0-rc.1
  * (c) 2019 cipchk https://ng-alain.com/
  * License: MIT
  */
@@ -238,7 +238,7 @@
         DelonACLConfig.decorators = [
             { type: core.Injectable, args: [{ providedIn: 'root' },] }
         ];
-        /** @nocollapse */ DelonACLConfig.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function DelonACLConfig_Factory() { return new DelonACLConfig(); }, token: DelonACLConfig, providedIn: "root" });
+        /** @nocollapse */ DelonACLConfig.ɵprov = core["ɵɵdefineInjectable"]({ factory: function DelonACLConfig_Factory() { return new DelonACLConfig(); }, token: DelonACLConfig, providedIn: "root" });
         return DelonACLConfig;
     }());
     if (false) {
@@ -1017,7 +1017,7 @@
          * @type {?|undefined}
          */
         ACLType.prototype.except;
-        /* Skipping unhandled member: [key: string]: any;*/
+        /* Skipping unhandled member: [key: string]: NzSafeAny;*/
     }
 
     /**
@@ -1129,7 +1129,7 @@
             { type: router.Router },
             { type: DelonACLConfig }
         ]; };
-        /** @nocollapse */ ACLGuard.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function ACLGuard_Factory() { return new ACLGuard(core.ɵɵinject(ACLService), core.ɵɵinject(router.Router), core.ɵɵinject(DelonACLConfig)); }, token: ACLGuard, providedIn: "root" });
+        /** @nocollapse */ ACLGuard.ɵprov = core["ɵɵdefineInjectable"]({ factory: function ACLGuard_Factory() { return new ACLGuard(core["ɵɵinject"](ACLService), core["ɵɵinject"](router.Router), core["ɵɵinject"](DelonACLConfig)); }, token: ACLGuard, providedIn: "root" });
         return ACLGuard;
     }());
     if (false) {

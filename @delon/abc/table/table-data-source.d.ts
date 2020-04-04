@@ -51,7 +51,7 @@ export declare class STDataSource {
     getNoIndex(item: STData, col: STColumn, idx: number): number;
     private getValidSort;
     private getSorterFn;
-    readonly nextSortTick: number;
+    get nextSortTick(): number;
     getReqSortMap(singleSort: STSingleSort | null | undefined, multiSort: STMultiSort | null | undefined, columns: STColumn[]): {
         [key: string]: string;
     };

@@ -1,5 +1,6 @@
-import { Observable } from 'rxjs';
+import { NzSafeAny } from 'ng-zorro-antd/core/types/any';
 import { NzI18nService } from 'ng-zorro-antd/i18n';
+import { Observable } from 'rxjs';
 import { SFSchema, SFSchemaDefinition, SFSchemaEnum } from './schema';
 import { SFUISchema, SFUISchemaItem, SFUISchemaItemRun } from './schema/ui';
 export declare const FORMATMAPS: {
@@ -49,7 +50,7 @@ export declare const FORMATMAPS: {
 };
 export declare function isBlank(o: any): boolean;
 export declare function toBool(value: any, defaultValue: boolean): any;
-export declare function di(ui: SFUISchema, ...args: any[]): void;
+export declare function di(ui: SFUISchema, ...args: NzSafeAny[]): void;
 /**
  * 取回Schema，并处理 `$ref` 的关系
  */

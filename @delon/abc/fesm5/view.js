@@ -38,7 +38,7 @@ var SVConfig = /** @class */ (function () {
     SVConfig.decorators = [
         { type: Injectable, args: [{ providedIn: 'root' },] }
     ];
-    /** @nocollapse */ SVConfig.ngInjectableDef = ɵɵdefineInjectable({ factory: function SVConfig_Factory() { return new SVConfig(); }, token: SVConfig, providedIn: "root" });
+    /** @nocollapse */ SVConfig.ɵprov = ɵɵdefineInjectable({ factory: function SVConfig_Factory() { return new SVConfig(); }, token: SVConfig, providedIn: "root" });
     return SVConfig;
 }());
 if (false) {
@@ -88,7 +88,7 @@ var SVContainerComponent = /** @class */ (function () {
         this.size = 'large';
         this.layout = 'horizontal';
         this.el = el.nativeElement;
-        Object.assign(this, __assign({}, new SVConfig(), cog));
+        Object.assign(this, __assign(__assign({}, new SVConfig()), cog));
     }
     /**
      * @private

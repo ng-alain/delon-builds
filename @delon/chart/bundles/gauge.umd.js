@@ -1,5 +1,5 @@
 /**
- * @license ng-alain(cipchk@qq.com) v8.8.0
+ * @license ng-alain(cipchk@qq.com) v9.0.0-rc.1
  * (c) 2019 cipchk https://ng-alain.com/
  * License: MIT
  */
@@ -297,11 +297,7 @@
                 height: height,
                 padding: padding,
             }));
-            chart
-                .point({ generatePoints: true })
-                .position('value*1')
-                .shape('pointer')
-                .active(false);
+            chart.point({ generatePoints: true }).position('value*1').shape('pointer').active(false);
             chart.coord('polar', {
                 startAngle: Math.PI * -1.2,
                 endAngle: Math.PI * 0.2,
@@ -453,7 +449,7 @@
         ], G2GaugeComponent.prototype, "delay", void 0);
         __decorate([
             util.InputNumber(),
-            __metadata("design:type", Object)
+            __metadata("design:type", Number)
         ], G2GaugeComponent.prototype, "height", void 0);
         __decorate([
             util.InputNumber(),

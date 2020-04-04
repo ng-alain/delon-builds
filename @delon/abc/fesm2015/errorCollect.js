@@ -24,7 +24,7 @@ class ErrorCollectConfig {
 ErrorCollectConfig.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
-/** @nocollapse */ ErrorCollectConfig.ngInjectableDef = ɵɵdefineInjectable({ factory: function ErrorCollectConfig_Factory() { return new ErrorCollectConfig(); }, token: ErrorCollectConfig, providedIn: "root" });
+/** @nocollapse */ ErrorCollectConfig.ɵprov = ɵɵdefineInjectable({ factory: function ErrorCollectConfig_Factory() { return new ErrorCollectConfig(); }, token: ErrorCollectConfig, providedIn: "root" });
 if (false) {
     /**
      * 监听频率
@@ -57,7 +57,7 @@ class ErrorCollectComponent {
         this.$time = null;
         this._hiden = true;
         this.count = 0;
-        Object.assign(this, Object.assign({}, new ErrorCollectConfig(), cog));
+        Object.assign(this, Object.assign(Object.assign({}, new ErrorCollectConfig()), cog));
     }
     /**
      * @private
@@ -93,6 +93,7 @@ class ErrorCollectComponent {
         formItemEl.scrollIntoView(true);
         // fix header height
         this.doc.documentElement.scrollTop -= this.offsetTop;
+        return true;
     }
     /**
      * @private
@@ -129,7 +130,7 @@ class ErrorCollectComponent {
             }
             el = (/** @type {?} */ (el.parentElement));
         }
-        return (/** @type {?} */ (retEl));
+        return retEl;
     }
     /**
      * @return {?}

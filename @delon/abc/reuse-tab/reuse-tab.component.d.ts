@@ -26,7 +26,7 @@ export declare class ReuseTabComponent implements OnInit, OnChanges, OnDestroy {
     allowClose: boolean;
     showCurrent: boolean;
     keepingScroll: boolean;
-    keepingScrollContainer: string | Element;
+    set keepingScrollContainer(value: string | Element);
     customContextMenu: ReuseCustomContextMenu[];
     tabBarExtraContent: TemplateRef<void>;
     tabBarGutter: number;
@@ -40,7 +40,7 @@ export declare class ReuseTabComponent implements OnInit, OnChanges, OnDestroy {
     private genTit;
     private genList;
     private visibility;
-    private readonly acitveIndex;
+    private get acitveIndex();
     cmChange(res: ReuseContextCloseEvent): void;
     refStatus(dc?: boolean): void;
     to(index: number, cb?: () => void): void;

@@ -62,7 +62,7 @@ var DelonAuthConfig = /** @class */ (function () {
     DelonAuthConfig.decorators = [
         { type: Injectable, args: [{ providedIn: 'root' },] }
     ];
-    /** @nocollapse */ DelonAuthConfig.ngInjectableDef = ɵɵdefineInjectable({ factory: function DelonAuthConfig_Factory() { return new DelonAuthConfig(); }, token: DelonAuthConfig, providedIn: "root" });
+    /** @nocollapse */ DelonAuthConfig.ɵprov = ɵɵdefineInjectable({ factory: function DelonAuthConfig_Factory() { return new DelonAuthConfig(); }, token: DelonAuthConfig, providedIn: "root" });
     return DelonAuthConfig;
 }());
 if (false) {
@@ -852,7 +852,7 @@ var BaseInterceptor = /** @class */ (function () {
     function (req, next) {
         var e_1, _a;
         /** @type {?} */
-        var options = __assign({}, new DelonAuthConfig(), this.injector.get(DelonAuthConfig, undefined));
+        var options = __assign(__assign({}, new DelonAuthConfig()), this.injector.get(DelonAuthConfig, undefined));
         if (options.ignores) {
             try {
                 for (var _b = __values((/** @type {?} */ (options.ignores))), _c = _b.next(); !_c.done; _c = _b.next()) {
@@ -920,6 +920,9 @@ var BaseInterceptor = /** @class */ (function () {
         }
         return next.handle(req);
     };
+    BaseInterceptor.decorators = [
+        { type: Injectable }
+    ];
     /** @nocollapse */
     BaseInterceptor.ctorParameters = function () { return [
         { type: Injector, decorators: [{ type: Optional }] }
@@ -1090,7 +1093,7 @@ var JWTTokenModel = /** @class */ (function () {
 if (false) {
     /** @type {?} */
     JWTTokenModel.prototype.token;
-    /* Skipping unhandled member: [key: string]: any;*/
+    /* Skipping unhandled member: [key: string]: NzSafeAny;*/
 }
 
 /**
@@ -1160,7 +1163,7 @@ var JWTGuard = /** @class */ (function () {
     function JWTGuard(srv, injector, cog) {
         this.srv = srv;
         this.injector = injector;
-        this.cog = __assign({}, new DelonAuthConfig(), cog);
+        this.cog = __assign(__assign({}, new DelonAuthConfig()), cog);
     }
     /**
      * @private
@@ -1241,7 +1244,7 @@ var JWTGuard = /** @class */ (function () {
         { type: Injector },
         { type: DelonAuthConfig }
     ]; };
-    /** @nocollapse */ JWTGuard.ngInjectableDef = ɵɵdefineInjectable({ factory: function JWTGuard_Factory() { return new JWTGuard(ɵɵinject(DA_SERVICE_TOKEN), ɵɵinject(INJECTOR), ɵɵinject(DelonAuthConfig)); }, token: JWTGuard, providedIn: "root" });
+    /** @nocollapse */ JWTGuard.ɵprov = ɵɵdefineInjectable({ factory: function JWTGuard_Factory() { return new JWTGuard(ɵɵinject(DA_SERVICE_TOKEN), ɵɵinject(INJECTOR), ɵɵinject(DelonAuthConfig)); }, token: JWTGuard, providedIn: "root" });
     return JWTGuard;
 }());
 if (false) {
@@ -1280,7 +1283,7 @@ var SimpleTokenModel = /** @class */ (function () {
 if (false) {
     /** @type {?} */
     SimpleTokenModel.prototype.token;
-    /* Skipping unhandled member: [key: string]: any;*/
+    /* Skipping unhandled member: [key: string]: NzSafeAny;*/
 }
 
 /**
@@ -1378,7 +1381,7 @@ var SimpleGuard = /** @class */ (function () {
     function SimpleGuard(srv, injector, cog) {
         this.srv = srv;
         this.injector = injector;
-        this.cog = __assign({}, new DelonAuthConfig(), cog);
+        this.cog = __assign(__assign({}, new DelonAuthConfig()), cog);
     }
     /**
      * @private
@@ -1459,7 +1462,7 @@ var SimpleGuard = /** @class */ (function () {
         { type: Injector },
         { type: DelonAuthConfig }
     ]; };
-    /** @nocollapse */ SimpleGuard.ngInjectableDef = ɵɵdefineInjectable({ factory: function SimpleGuard_Factory() { return new SimpleGuard(ɵɵinject(DA_SERVICE_TOKEN), ɵɵinject(INJECTOR), ɵɵinject(DelonAuthConfig)); }, token: SimpleGuard, providedIn: "root" });
+    /** @nocollapse */ SimpleGuard.ɵprov = ɵɵdefineInjectable({ factory: function SimpleGuard_Factory() { return new SimpleGuard(ɵɵinject(DA_SERVICE_TOKEN), ɵɵinject(INJECTOR), ɵɵinject(DelonAuthConfig)); }, token: SimpleGuard, providedIn: "root" });
     return SimpleGuard;
 }());
 if (false) {

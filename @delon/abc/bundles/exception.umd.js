@@ -1,13 +1,13 @@
 /**
- * @license ng-alain(cipchk@qq.com) v8.8.0
+ * @license ng-alain(cipchk@qq.com) v9.0.0-rc.1
  * (c) 2019 cipchk https://ng-alain.com/
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/platform-browser'), require('@angular/core'), require('@delon/theme'), require('@delon/util'), require('@angular/common'), require('@angular/router'), require('ng-zorro-antd/button')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/exception', ['exports', '@angular/platform-browser', '@angular/core', '@delon/theme', '@delon/util', '@angular/common', '@angular/router', 'ng-zorro-antd/button'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.exception = {}), global.ng.platformBrowser, global.ng.core, global.delon.theme, global.delon.util, global.ng.common, global.ng.router, global['ng-zorro-antd/button']));
-}(this, (function (exports, platformBrowser, core, theme, util, common, router, button) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/platform-browser'), require('@delon/theme'), require('@delon/util'), require('@angular/common'), require('@angular/router'), require('ng-zorro-antd/button')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/exception', ['exports', '@angular/core', '@angular/platform-browser', '@delon/theme', '@delon/util', '@angular/common', '@angular/router', 'ng-zorro-antd/button'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.exception = {}), global.ng.core, global.ng.platformBrowser, global.delon.theme, global.delon.util, global.ng.common, global.ng.router, global['ng-zorro-antd/button']));
+}(this, (function (exports, core, platformBrowser, theme, util, common, router, button) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.

@@ -1,13 +1,13 @@
 /**
- * @license ng-alain(cipchk@qq.com) v8.8.0
+ * @license ng-alain(cipchk@qq.com) v9.0.0-rc.1
  * (c) 2019 cipchk https://ng-alain.com/
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/platform-browser'), require('@angular/core'), require('@angular/forms'), require('@delon/util'), require('ng-zorro-antd/date-picker'), require('@angular/common')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/date-picker', ['exports', '@angular/platform-browser', '@angular/core', '@angular/forms', '@delon/util', 'ng-zorro-antd/date-picker', '@angular/common'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['date-picker'] = {}), global.ng.platformBrowser, global.ng.core, global.ng.forms, global.delon.util, global['ng-zorro-antd/date-picker'], global.ng.common));
-}(this, (function (exports, platformBrowser, core, forms, util, datePicker, common) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/forms'), require('@angular/platform-browser'), require('@delon/util'), require('ng-zorro-antd/date-picker'), require('@angular/common')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/date-picker', ['exports', '@angular/core', '@angular/forms', '@angular/platform-browser', '@delon/util', 'ng-zorro-antd/date-picker', '@angular/common'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['date-picker'] = {}), global.ng.core, global.ng.forms, global.ng.platformBrowser, global.delon.util, global['ng-zorro-antd/date-picker'], global.ng.common));
+}(this, (function (exports, core, forms, platformBrowser, util, datePicker, common) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -364,7 +364,7 @@
         DateRangePickerShortcutItem.prototype.text;
         /** @type {?} */
         DateRangePickerShortcutItem.prototype.fn;
-        /* Skipping unhandled member: [key: string]: any;*/
+        /* Skipping unhandled member: [key: string]: NzSafeAny;*/
     }
     var DatePickerConfig = /** @class */ (function () {
         function DatePickerConfig() {
@@ -372,7 +372,7 @@
         DatePickerConfig.decorators = [
             { type: core.Injectable, args: [{ providedIn: 'root' },] }
         ];
-        /** @nocollapse */ DatePickerConfig.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function DatePickerConfig_Factory() { return new DatePickerConfig(); }, token: DatePickerConfig, providedIn: "root" });
+        /** @nocollapse */ DatePickerConfig.ɵprov = core["ɵɵdefineInjectable"]({ factory: function DatePickerConfig_Factory() { return new DatePickerConfig(); }, token: DatePickerConfig, providedIn: "root" });
         return DatePickerConfig;
     }());
     if (false) {
@@ -534,7 +534,8 @@
             this.value = item.fn((/** @type {?} */ (this.value)));
             this.valueChange((/** @type {?} */ (this.value)));
             if (this._shortcut.closed) {
-                this.comp.closeOverlay();
+                // tslint:disable-next-line:no-string-literal
+                ((/** @type {?} */ (this.comp.datePicker)))['picker'].hideOverlay();
             }
         };
         RangePickerComponent.decorators = [

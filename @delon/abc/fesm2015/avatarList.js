@@ -16,9 +16,7 @@ AvatarListItemComponent.decorators = [
     { type: Component, args: [{
                 selector: 'avatar-list-item, [avatar-list-item]',
                 exportAs: 'avatarListItem',
-                template: `
-    <ng-content></ng-content>
-  `,
+                template: `<ng-content></ng-content>`,
                 preserveWhitespaces: false,
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None
@@ -112,7 +110,8 @@ AvatarListComponent.decorators = [
     { type: Component, args: [{
                 selector: 'avatar-list',
                 exportAs: 'avatarList',
-                template: "<ul class=\"avatar-list__wrap\">\n  <li *ngFor=\"let i of items\"\n      [class]=\"cls\">\n    <nz-avatar *ngIf=\"i.tips\"\n                nz-tooltip [nzTooltipTitle]=\"i.tips\"\n                [nzSrc]=\"i.src\"\n                [nzText]=\"i.text\"\n                [nzIcon]=\"i.icon\"\n                [nzSize]=\"avatarSize\"></nz-avatar>\n    <nz-avatar *ngIf=\"!i.tips\"\n               [nzSrc]=\"i.src\"\n               [nzText]=\"i.text\"\n               [nzIcon]=\"i.icon\"\n               [nzSize]=\"avatarSize\"></nz-avatar>\n  </li>\n  <li *ngIf=\"exceedCount > 0\"\n      [class]=\"cls\">\n    <nz-avatar [nzSize]=\"avatarSize\"\n               style=\"cursor: auto\"\n               [ngStyle]=\"excessItemsStyle\"\n               [nzText]=\"'+' + exceedCount\"></nz-avatar>\n  </li>\n</ul>\n",
+                // templateUrl: './avatar-list.component.html',
+                template: '',
                 host: { '[class.avatar-list]': 'true' },
                 preserveWhitespaces: false,
                 changeDetection: ChangeDetectionStrategy.OnPush,

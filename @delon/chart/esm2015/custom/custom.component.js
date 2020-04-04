@@ -3,7 +3,7 @@
  * Generated from: custom.component.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-import * as tslib_1 from "tslib";
+import { __decorate, __metadata } from "tslib";
 import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, Output, ViewEncapsulation, } from '@angular/core';
 import { InputNumber } from '@delon/util';
 import { fromEvent } from 'rxjs';
@@ -85,13 +85,13 @@ G2CustomComponent.propDecorators = {
     resize: [{ type: Output }],
     destroy: [{ type: Output }]
 };
-tslib_1.__decorate([
+__decorate([
     InputNumber(),
-    tslib_1.__metadata("design:type", Number)
+    __metadata("design:type", Number)
 ], G2CustomComponent.prototype, "height", void 0);
-tslib_1.__decorate([
+__decorate([
     InputNumber(),
-    tslib_1.__metadata("design:type", Object)
+    __metadata("design:type", Object)
 ], G2CustomComponent.prototype, "resizeTime", void 0);
 if (false) {
     /**

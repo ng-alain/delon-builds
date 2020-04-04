@@ -44,7 +44,7 @@ var PageHeaderConfig = /** @class */ (function () {
     PageHeaderConfig.decorators = [
         { type: Injectable, args: [{ providedIn: 'root' },] }
     ];
-    /** @nocollapse */ PageHeaderConfig.ngInjectableDef = i0.ɵɵdefineInjectable({ factory: function PageHeaderConfig_Factory() { return new PageHeaderConfig(); }, token: PageHeaderConfig, providedIn: "root" });
+    /** @nocollapse */ PageHeaderConfig.ɵprov = i0.ɵɵdefineInjectable({ factory: function PageHeaderConfig_Factory() { return new PageHeaderConfig(); }, token: PageHeaderConfig, providedIn: "root" });
     return PageHeaderConfig;
 }());
 export { PageHeaderConfig };

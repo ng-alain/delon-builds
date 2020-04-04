@@ -1,7 +1,7 @@
 import { __decorate, __metadata } from 'tslib';
-import { DomSanitizer } from '@angular/platform-browser';
 import { Injectable, ɵɵdefineInjectable, EventEmitter, Component, forwardRef, ViewChild, Input, Output, NgModule } from '@angular/core';
 import { NG_VALUE_ACCESSOR, FormsModule } from '@angular/forms';
+import { DomSanitizer } from '@angular/platform-browser';
 import { getTimeDistance, deepMergeKey, fixEndTimeOfRange, InputBoolean } from '@delon/util';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { CommonModule } from '@angular/common';
@@ -146,14 +146,14 @@ if (false) {
     DateRangePickerShortcutItem.prototype.text;
     /** @type {?} */
     DateRangePickerShortcutItem.prototype.fn;
-    /* Skipping unhandled member: [key: string]: any;*/
+    /* Skipping unhandled member: [key: string]: NzSafeAny;*/
 }
 class DatePickerConfig {
 }
 DatePickerConfig.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
-/** @nocollapse */ DatePickerConfig.ngInjectableDef = ɵɵdefineInjectable({ factory: function DatePickerConfig_Factory() { return new DatePickerConfig(); }, token: DatePickerConfig, providedIn: "root" });
+/** @nocollapse */ DatePickerConfig.ɵprov = ɵɵdefineInjectable({ factory: function DatePickerConfig_Factory() { return new DatePickerConfig(); }, token: DatePickerConfig, providedIn: "root" });
 if (false) {
     /** @type {?} */
     DatePickerConfig.prototype.range;
@@ -276,7 +276,8 @@ class RangePickerComponent {
         this.value = item.fn((/** @type {?} */ (this.value)));
         this.valueChange((/** @type {?} */ (this.value)));
         if (this._shortcut.closed) {
-            this.comp.closeOverlay();
+            // tslint:disable-next-line:no-string-literal
+            ((/** @type {?} */ (this.comp.datePicker)))['picker'].hideOverlay();
         }
     }
 }

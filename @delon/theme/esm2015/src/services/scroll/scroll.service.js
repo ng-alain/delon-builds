@@ -76,7 +76,7 @@ ScrollService.ctorParameters = () => [
     { type: undefined, decorators: [{ type: Inject, args: [WINDOW,] }] },
     { type: undefined, decorators: [{ type: Inject, args: [DOCUMENT,] }] }
 ];
-/** @nocollapse */ ScrollService.ngInjectableDef = i0.ɵɵdefineInjectable({ factory: function ScrollService_Factory() { return new ScrollService(i0.ɵɵinject(i1.WINDOW), i0.ɵɵinject(i2.DOCUMENT)); }, token: ScrollService, providedIn: "root" });
+/** @nocollapse */ ScrollService.ɵprov = i0.ɵɵdefineInjectable({ factory: function ScrollService_Factory() { return new ScrollService(i0.ɵɵinject(i1.WINDOW), i0.ɵɵinject(i2.DOCUMENT)); }, token: ScrollService, providedIn: "root" });
 if (false) {
     /**
      * @type {?}

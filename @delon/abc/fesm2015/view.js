@@ -39,7 +39,7 @@ class SVConfig {
 SVConfig.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
-/** @nocollapse */ SVConfig.ngInjectableDef = ɵɵdefineInjectable({ factory: function SVConfig_Factory() { return new SVConfig(); }, token: SVConfig, providedIn: "root" });
+/** @nocollapse */ SVConfig.ɵprov = ɵɵdefineInjectable({ factory: function SVConfig_Factory() { return new SVConfig(); }, token: SVConfig, providedIn: "root" });
 if (false) {
     /**
      * 大小
@@ -92,7 +92,7 @@ class SVContainerComponent {
         this.size = 'large';
         this.layout = 'horizontal';
         this.el = el.nativeElement;
-        Object.assign(this, Object.assign({}, new SVConfig(), cog));
+        Object.assign(this, Object.assign(Object.assign({}, new SVConfig()), cog));
     }
     /**
      * @private

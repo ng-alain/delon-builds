@@ -108,11 +108,7 @@ class G2RadarComponent {
             return legendItem ? legendItem.checked !== false : true;
         }));
         chart.line().position('label*value');
-        chart
-            .point()
-            .position('label*value')
-            .shape('circle')
-            .size(3);
+        chart.point().position('label*value').shape('circle').size(3);
         chart.render();
         this.attachChart();
     }
@@ -136,7 +132,7 @@ class G2RadarComponent {
          * @param {?} g
          * @return {?}
          */
-        g => {
+        (g) => {
             g.color('name', colors);
         }));
         chart.repaint();

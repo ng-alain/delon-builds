@@ -1,12 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-/**
- * @license
- * Copyright Google Inc. All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
 const core_1 = require("@angular-devkit/core");
 const schematics_1 = require("@angular-devkit/schematics");
 const ast_utils_1 = require("@schematics/angular/utility/ast-utils");
@@ -63,7 +56,7 @@ function default_1(schema) {
         schema.flat = false;
         const templateSource = schematics_1.apply(schematics_1.url('./files'), [
             schema.routing ? schematics_1.noop() : schematics_1.filter(path => !path.endsWith('-routing.module.ts')),
-            schematics_1.template(Object.assign({}, core_1.strings, { 'if-flat': (s) => (schema.flat ? '' : s) }, schema)),
+            schematics_1.template(Object.assign(Object.assign(Object.assign({}, core_1.strings), { 'if-flat': (s) => (schema.flat ? '' : s) }), schema)),
             schematics_1.move(parsedPath.path),
         ]);
         return schematics_1.chain([schematics_1.branchAndMerge(schematics_1.chain([addDeclarationToNgModule(schema), schematics_1.mergeWith(templateSource)]))])(host, context);

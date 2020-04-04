@@ -1,13 +1,13 @@
 import { AfterViewInit, ChangeDetectorRef, ElementRef, EventEmitter, OnChanges, OnDestroy, Renderer2, SimpleChange, SimpleChanges, TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlainI18NService, DelonLocaleService, DrawerHelper, LocaleData, ModalHelper } from '@delon/theme';
+import { NzTableComponent } from 'ng-zorro-antd/table';
 import { Observable } from 'rxjs';
 import { STColumnSource } from './table-column-source';
 import { STDataSource } from './table-data-source';
 import { STExport } from './table-export';
 import { STConfig } from './table.config';
-import { STChange, STColumn, STColumnButton, STColumnFilterMenu, STColumnSelection, STData, STError, STExportOptions, STLoadOptions, STPage, STReq, STRes, STRowClassName, STSingleSort, STStatisticalResults, STWidthMode, STResetColumnsOption } from './table.interfaces';
-import { NzTableComponent } from 'ng-zorro-antd/table';
+import { STChange, STColumn, STColumnButton, STColumnFilterMenu, STColumnSelection, STData, STError, STExportOptions, STLoadOptions, STPage, STReq, STRes, STResetColumnsOption, STRowClassName, STSingleSort, STStatisticalResults, STWidthMode } from './table.interfaces';
 export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy {
     private cdr;
     private cog;
@@ -36,15 +36,20 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     _columns: STColumn[];
     orgTable: NzTableComponent;
     /** 请求体配置 */
-    req: STReq;
+    get req(): STReq;
+    set req(value: STReq);
     /** 返回体配置 */
-    res: STRes;
+    get res(): STRes;
+    set res(value: STRes);
     /** 分页器配置 */
-    page: STPage;
+    get page(): STPage;
+    set page(value: STPage);
     /** 是否多排序，当 `sort` 多个相同值时自动合并，建议后端支持时使用 */
-    multiSort: any;
-    widthMode: STWidthMode;
-    private readonly routerState;
+    get multiSort(): any;
+    set multiSort(value: any);
+    set widthMode(value: STWidthMode);
+    get widthMode(): STWidthMode;
+    private get routerState();
     data: string | STData[] | Observable<STData[]>;
     private _req;
     private _res;
@@ -111,11 +116,11 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     /**
      * Get the number of the current page
      */
-    readonly count: number;
+    get count(): number;
     /**
      * Get the data of the current page
      */
-    readonly list: STData[];
+    get list(): STData[];
     private rowClickCount;
     constructor(i18nSrv: AlainI18NService, cdr: ChangeDetectorRef, cog: STConfig, router: Router, el: ElementRef, renderer: Renderer2, exportSrv: STExport, modalHelper: ModalHelper, drawerHelper: DrawerHelper, doc: any, columnSource: STColumnSource, dataSource: STDataSource, delonI18n: DelonLocaleService);
     cd(): this;
@@ -128,7 +133,7 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
      * - 本地数据：包含排序、过滤后不分页数据
      * - 远程数据：不传递 `pi`、`ps` 两个参数
      */
-    readonly filteredData: Promise<STData[]>;
+    get filteredData(): Promise<STData[]>;
     private setLoading;
     private loadData;
     private loadPageData;
@@ -210,7 +215,7 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
      * @param opt 额外参数
      */
     export(newData?: STData[] | true, opt?: STExportOptions): void;
-    readonly cdkVirtualScrollViewport: import("@angular/cdk/scrolling").CdkVirtualScrollViewport;
+    get cdkVirtualScrollViewport(): import("@angular/cdk/scrolling").CdkVirtualScrollViewport;
     resetColumns(options?: STResetColumnsOption): Promise<this>;
     private refreshColumns;
     private setClass;

@@ -1,4 +1,4 @@
-import { Rules, RuleFailure } from 'tslint';
+import { RuleFailure, Rules } from 'tslint';
 import * as ts from 'typescript';
 import { ExternalResource } from '../../tslint/component-file';
 import { ComponentWalker } from '../../tslint/component-walker';

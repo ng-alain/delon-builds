@@ -1,5 +1,5 @@
-import { DisabledTimeFn, DisabledDateFn, SupportTimeOptions } from 'ng-zorro-antd/date-picker/standard-types';
-import { SFUISchemaItem, SFDLSSize } from '../../schema/ui';
+import { DisabledDateFn, DisabledTimeFn, SupportTimeOptions } from 'ng-zorro-antd/date-picker/standard-types';
+import { SFDLSSize, SFUISchemaItem } from '../../schema/ui';
 export interface SFDateWidgetSchema extends SFUISchemaItem {
     mode?: 'date' | 'week' | 'month' | 'year' | 'range';
     size?: SFDLSSize;

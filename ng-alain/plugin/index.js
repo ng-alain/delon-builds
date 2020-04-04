@@ -37,7 +37,7 @@ function default_1(options) {
                 rules.push(plugin_code_style_1.pluginCodeStyle(pluginOptions), installPackages());
                 break;
             case 'networkEnv':
-                rules.push(plugin_network_env_1.pluginNetworkEnv(Object.assign({}, pluginOptions, { packageManager: options.packageManager })));
+                rules.push(plugin_network_env_1.pluginNetworkEnv(Object.assign(Object.assign({}, pluginOptions), { packageManager: options.packageManager })));
                 break;
             case 'hmr':
                 rules.push(plugin_hmr_1.pluginHmr(pluginOptions), installPackages());
@@ -46,7 +46,7 @@ function default_1(options) {
                 rules.push(plugin_docker_1.pluginDocker(pluginOptions));
                 break;
             case 'defaultLanguage':
-                rules.push(plugin_default_language_1.pluginDefaultLanguage(Object.assign({}, pluginOptions, { defaultLanguage: options.defaultLanguage })));
+                rules.push(plugin_default_language_1.pluginDefaultLanguage(Object.assign(Object.assign({}, pluginOptions), { defaultLanguage: options.defaultLanguage })));
                 break;
             case 'icon':
                 rules.push(plugin_icon_1.pluginIcon(pluginOptions));

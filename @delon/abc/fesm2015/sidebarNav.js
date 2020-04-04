@@ -1,7 +1,7 @@
 import { __decorate, __metadata } from 'tslib';
-import { DomSanitizer } from '@angular/platform-browser';
 import { DOCUMENT, CommonModule } from '@angular/common';
 import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Renderer2, ChangeDetectorRef, NgZone, Inject, Input, Output, NgModule } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { MenuService, SettingsService, WINDOW } from '@delon/theme';
 import { InputBoolean, DelonUtilModule } from '@delon/util';

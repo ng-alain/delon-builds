@@ -1,5 +1,5 @@
 /**
- * @license ng-alain(cipchk@qq.com) v8.8.0
+ * @license ng-alain(cipchk@qq.com) v9.0.0-rc.1
  * (c) 2019 cipchk https://ng-alain.com/
  * License: MIT
  */
@@ -350,7 +350,7 @@
                     fileName = fileName(res);
                 fileName =
                     fileName || disposition["filename*"] || disposition["filename"] || res.headers.get('filename') || res.headers.get('x-filename');
-                fileSaver.saveAs(res.body, decodeURI((/** @type {?} */ (fileName))));
+                fileSaver.saveAs((/** @type {?} */ (res.body)), decodeURI((/** @type {?} */ (fileName))));
                 _this.success.emit(res);
             }), (/**
              * @param {?} err

@@ -1,5 +1,5 @@
 /**
- * @license ng-alain(cipchk@qq.com) v8.8.0
+ * @license ng-alain(cipchk@qq.com) v9.0.0-rc.1
  * (c) 2019 cipchk https://ng-alain.com/
  * License: MIT
  */
@@ -278,7 +278,7 @@
             function (val) { return ({
                 formatter: format,
                 offset: val > 0 ? 10 : -10,
-                textStyle: __assign({}, textStyle, { textAlign: val > 0 ? 'start' : 'end' }),
+                textStyle: __assign(__assign({}, textStyle), { textAlign: val > 0 ? 'start' : 'end' }),
             }); }));
             if (line) {
                 chart.guide().line({

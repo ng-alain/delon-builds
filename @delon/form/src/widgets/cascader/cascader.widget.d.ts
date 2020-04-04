@@ -1,9 +1,9 @@
 import { OnInit } from '@angular/core';
 import { CascaderOption } from 'ng-zorro-antd/cascader';
-import { SFCascaderWidgetSchema } from './schema';
 import { SFValue } from '../../interface';
 import { SFSchemaEnum } from '../../schema';
 import { ControlUIWidget } from '../../widget';
+import { SFCascaderWidgetSchema } from './schema';
 export declare class CascaderWidget extends ControlUIWidget<SFCascaderWidgetSchema> implements OnInit {
     clearText: string;
     showArrow: boolean;

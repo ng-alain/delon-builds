@@ -1,5 +1,5 @@
 /**
- * @license ng-alain(cipchk@qq.com) v8.8.0
+ * @license ng-alain(cipchk@qq.com) v9.0.0-rc.1
  * (c) 2019 cipchk https://ng-alain.com/
  * License: MIT
  */
@@ -306,7 +306,7 @@
             chart.line().position('x*y2');
             chart.render();
             /** @type {?} */
-            var sliderPadding = __assign({}, [], padding);
+            var sliderPadding = __assign(__assign({}, []), padding);
             sliderPadding[0] = 0;
             if (slider) {
                 /** @type {?} */
@@ -350,7 +350,10 @@
                 position: position,
                 custom: true,
                 clickable: false,
-                items: [{ value: titleMap.y1, fill: colorMap.y1 }, { value: titleMap.y2, fill: colorMap.y2 }],
+                items: [
+                    { value: titleMap.y1, fill: colorMap.y1 },
+                    { value: titleMap.y2, fill: colorMap.y2 },
+                ],
             });
             // border
             chart.get('geoms').forEach((/**
@@ -359,7 +362,7 @@
              * @return {?}
              */
             function (v, idx) {
-                v.color(colorMap["y" + (idx + 1)]).size(borderWidth);
+                v.color(((/** @type {?} */ (colorMap)))["y" + (idx + 1)]).size(borderWidth);
             }));
             chart.set('height', height);
             chart.set('padding', padding);
@@ -437,13 +440,12 @@
                 _slider.start = ds.state.start;
                 _slider.end = ds.state.end;
                 _slider.onChange = (/**
-                 * @param {?} __0
+                 * @param {?} res
                  * @return {?}
                  */
-                function (_a) {
-                    var startValue = _a.startValue, endValue = _a.endValue;
-                    ds.setState('start', startValue);
-                    ds.setState('end', endValue);
+                function (res) {
+                    ds.setState('start', res.startValue);
+                    ds.setState('end', res.endValue);
                 });
                 _slider.changeData(data);
             }

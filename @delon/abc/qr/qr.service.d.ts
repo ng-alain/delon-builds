@@ -31,5 +31,5 @@ export declare class QRService {
     /**
      * 返回当前二维码Base64编码
      */
-    readonly dataURL: string;
+    get dataURL(): string;
 }

@@ -1,6 +1,6 @@
 {
   "name": "@delon/form",
-  "version": "8.8.0-44fb498",
+  "version": "9.0.0-rc.1-381cb529",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -28,10 +28,9 @@
     "component"
   ],
   "dependencies": {
-    "@delon/theme": "^8.8.0-44fb498",
-    "@delon/acl": "^8.8.0-44fb498",
-    "@delon/util": "^8.8.0-44fb498",
-    "tslib": "^1.9.0"
+    "@delon/theme": "^9.0.0-rc.1-381cb529",
+    "@delon/acl": "^9.0.0-rc.1-381cb529",
+    "@delon/util": "^9.0.0-rc.1-381cb529"
   },
   "sideEffects": false,
   "main": "bundles/form.umd.js",
@@ -42,5 +41,8 @@
   "fesm5": "fesm5/form.js",
   "fesm2015": "fesm2015/form.js",
   "typings": "form.d.ts",
-  "metadata": "form.metadata.json"
+  "metadata": "form.metadata.json",
+  "peerDependencies": {
+    "tslib": "^1.10.0"
+  }
 }

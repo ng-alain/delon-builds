@@ -54,7 +54,7 @@ class G2TagCloudComponent {
                 /** @type {?} */
                 const attrs = Object.assign({ fillOpacity: cfg.opacity, fontSize: cfg.origin._origin.size, rotate: cfg.origin._origin.rotate, text: cfg.origin._origin.text, textAlign: 'center', fontFamily: cfg.origin._origin.font, fill: cfg.color, textBaseline: 'Alphabetic' }, cfg.style);
                 return container.addShape('text', {
-                    attrs: Object.assign({}, attrs, { x: cfg.x, y: cfg.y }),
+                    attrs: Object.assign(Object.assign({}, attrs), { x: cfg.x, y: cfg.y }),
                 });
             },
         });
@@ -77,12 +77,7 @@ class G2TagCloudComponent {
             showTitle: false,
         });
         chart.coord().reflect();
-        chart
-            .point()
-            .position('x*y')
-            .color('category')
-            .shape('cloud')
-            .tooltip('value*category');
+        chart.point().position('x*y').color('category').shape('cloud').tooltip('value*category');
         chart.render();
         this.attachChart();
     }
@@ -127,7 +122,7 @@ class G2TagCloudComponent {
              * @param {?} d
              * @return {?}
              */
-            d => (d.value ? ((d.value - min) / (max - min)) * (80 - 24) + 24 : 0)),
+            (d) => (d.value ? ((d.value - min) / (max - min)) * (80 - 24) + 24 : 0)),
         });
         chart.source(dv, {
             x: { nice: false },

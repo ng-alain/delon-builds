@@ -4,12 +4,13 @@ import { CloseType, ReuseContextCloseEvent, ReuseContextI18n, ReuseCustomContext
 export declare class ReuseTabContextMenuComponent implements OnInit {
     private i18nSrv;
     private _i18n;
-    i18n: ReuseContextI18n;
+    set i18n(value: ReuseContextI18n);
+    get i18n(): ReuseContextI18n;
     item: ReuseItem;
     event: MouseEvent;
     customContextMenu: ReuseCustomContextMenu[];
     readonly close: EventEmitter<ReuseContextCloseEvent>;
-    readonly includeNonCloseable: boolean;
+    get includeNonCloseable(): boolean;
     constructor(i18nSrv: DelonLocaleService);
     private notify;
     ngOnInit(): void;

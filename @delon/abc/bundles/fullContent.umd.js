@@ -1,5 +1,5 @@
 /**
- * @license ng-alain(cipchk@qq.com) v8.8.0
+ * @license ng-alain(cipchk@qq.com) v9.0.0-rc.1
  * (c) 2019 cipchk https://ng-alain.com/
  * License: MIT
  */
@@ -257,7 +257,7 @@
         FullContentService.decorators = [
             { type: core.Injectable, args: [{ providedIn: 'root' },] }
         ];
-        /** @nocollapse */ FullContentService.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function FullContentService_Factory() { return new FullContentService(); }, token: FullContentService, providedIn: "root" });
+        /** @nocollapse */ FullContentService.ɵprov = core["ɵɵdefineInjectable"]({ factory: function FullContentService_Factory() { return new FullContentService(); }, token: FullContentService, providedIn: "root" });
         return FullContentService;
     }());
     if (false) {
@@ -288,9 +288,7 @@
             this.router = router;
             this.doc = doc;
             this.inited = false;
-            this.id = "_full-content-" + Math.random()
-                .toString(36)
-                .substring(2);
+            this.id = "_full-content-" + Math.random().toString(36).substring(2);
             this.scroll$ = null;
             this._height = 0;
             this.hideTitle = true;
@@ -344,9 +342,7 @@
          */
         function () {
             this._height =
-                this.bodyEl.getBoundingClientRect().height -
-                    ((/** @type {?} */ (this.el.nativeElement))).getBoundingClientRect().top -
-                    this.padding;
+                this.bodyEl.getBoundingClientRect().height - ((/** @type {?} */ (this.el.nativeElement))).getBoundingClientRect().top - this.padding;
             this.cdr.detectChanges();
         };
         /**
@@ -459,7 +455,7 @@
             { type: core.Component, args: [{
                         selector: 'full-content',
                         exportAs: 'fullContent',
-                        template: "\n    <ng-content></ng-content>\n  ",
+                        template: " <ng-content></ng-content> ",
                         host: {
                             '[class.full-content]': 'true',
                             '[style.height.px]': '_height',

@@ -5,7 +5,7 @@
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-import { Rules, RuleFailure, RuleWalker } from 'tslint';
+import { RuleFailure, Rules, RuleWalker } from 'tslint';
 import * as ts from 'typescript';
 /**
  * Rule that walks through every identifier that is part of Angular Material or thr CDK

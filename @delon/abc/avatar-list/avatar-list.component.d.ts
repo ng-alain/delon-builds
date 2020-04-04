@@ -8,7 +8,7 @@ export declare class AvatarListComponent implements AfterViewInit, OnChanges {
     exceedCount: number;
     cls: string;
     avatarSize: string;
-    size: 'large' | 'small' | 'mini' | 'default';
+    set size(value: 'large' | 'small' | 'mini' | 'default');
     maxLength: number;
     excessItemsStyle: {};
     constructor(cdr: ChangeDetectorRef);

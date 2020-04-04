@@ -27,7 +27,7 @@ export declare const ALAIN_I18N_TOKEN: InjectionToken<AlainI18NService>;
 export declare function ALAIN_I18N_TOKEN_FACTORY(): AlainI18NServiceFake;
 export declare class AlainI18NServiceFake implements AlainI18NService {
     private change$;
-    readonly change: Observable<string>;
+    get change(): Observable<string>;
     use(lang: string): void;
     getLangs(): any[];
     fanyi(key: string): string;

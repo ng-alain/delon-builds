@@ -1,15 +1,16 @@
 import { Type } from '@angular/core';
 import { ComponentFixture } from '@angular/core/testing';
+import { NzSafeAny } from 'ng-zorro-antd/core/types/any';
 export declare type PageG2Type = 'geoms' | 'views';
 export declare const PageG2DataCount = 2;
 export declare const PageG2Height = 100;
 export declare class PageG2<T> {
     fixture: ComponentFixture<T> | null;
     constructor(fixture?: ComponentFixture<T> | null);
-    readonly dl: import("@angular/core").DebugElement;
-    readonly context: T;
-    readonly comp: any;
-    readonly chart: any;
+    get dl(): import("@angular/core").DebugElement;
+    get context(): NzSafeAny;
+    get comp(): any;
+    get chart(): any;
     genModule<M>(module: M, comp: Type<T>): this;
     genComp(comp: Type<T>, dc?: boolean): this;
     makeModule<M>(module: M, comp: Type<T>, options?: {

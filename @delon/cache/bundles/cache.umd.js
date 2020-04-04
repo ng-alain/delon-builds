@@ -1,15 +1,15 @@
 /**
- * @license ng-alain(cipchk@qq.com) v8.8.0
+ * @license ng-alain(cipchk@qq.com) v9.0.0-rc.1
  * (c) 2019 cipchk https://ng-alain.com/
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common/http'), require('@angular/core'), require('date-fns/add_seconds'), require('rxjs'), require('rxjs/operators')) :
-    typeof define === 'function' && define.amd ? define('@delon/cache', ['exports', '@angular/common/http', '@angular/core', 'date-fns/add_seconds', 'rxjs', 'rxjs/operators'], factory) :
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common/http'), require('@angular/core'), require('date-fns/addSeconds'), require('rxjs'), require('rxjs/operators')) :
+    typeof define === 'function' && define.amd ? define('@delon/cache', ['exports', '@angular/common/http', '@angular/core', 'date-fns/addSeconds', 'rxjs', 'rxjs/operators'], factory) :
     (global = global || self, factory((global.delon = global.delon || {}, global.delon.cache = {}), global.ng.common.http, global.ng.core, global.addSeconds, global.rxjs, global.rxjs.operators));
 }(this, (function (exports, http, core, addSeconds, rxjs, operators) { 'use strict';
 
-    addSeconds = addSeconds && addSeconds.hasOwnProperty('default') ? addSeconds['default'] : addSeconds;
+    addSeconds = addSeconds && Object.prototype.hasOwnProperty.call(addSeconds, 'default') ? addSeconds['default'] : addSeconds;
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -308,7 +308,7 @@
         DelonCacheConfig.decorators = [
             { type: core.Injectable, args: [{ providedIn: 'root' },] }
         ];
-        /** @nocollapse */ DelonCacheConfig.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function DelonCacheConfig_Factory() { return new DelonCacheConfig(); }, token: DelonCacheConfig, providedIn: "root" });
+        /** @nocollapse */ DelonCacheConfig.ɵprov = core["ɵɵdefineInjectable"]({ factory: function DelonCacheConfig_Factory() { return new DelonCacheConfig(); }, token: DelonCacheConfig, providedIn: "root" });
         return DelonCacheConfig;
     }());
     if (false) {
@@ -423,7 +423,7 @@
             this.meta = new Set();
             this.freqTick = 3000;
             this.cog = {};
-            Object.assign(this.cog, __assign({}, new DelonCacheConfig(), _));
+            Object.assign(this.cog, __assign(__assign({}, new DelonCacheConfig()), _));
             this.loadMeta();
             this.startExpireNotify();
         }
@@ -982,7 +982,7 @@
             { type: undefined, decorators: [{ type: core.Inject, args: [DC_STORE_STORAGE_TOKEN,] }] },
             { type: http.HttpClient }
         ]; };
-        /** @nocollapse */ CacheService.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function CacheService_Factory() { return new CacheService(core.ɵɵinject(DelonCacheConfig), core.ɵɵinject(DC_STORE_STORAGE_TOKEN), core.ɵɵinject(http.HttpClient)); }, token: CacheService, providedIn: "root" });
+        /** @nocollapse */ CacheService.ɵprov = core["ɵɵdefineInjectable"]({ factory: function CacheService_Factory() { return new CacheService(core["ɵɵinject"](DelonCacheConfig), core["ɵɵinject"](DC_STORE_STORAGE_TOKEN), core["ɵɵinject"](http.HttpClient)); }, token: CacheService, providedIn: "root" });
         return CacheService;
     }());
     if (false) {

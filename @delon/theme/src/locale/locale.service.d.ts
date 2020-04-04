@@ -5,10 +5,10 @@ export declare class DelonLocaleService {
     private _locale;
     private change$;
     constructor(locale: FullLocaleData | null);
-    readonly change: Observable<FullLocaleData>;
+    get change(): Observable<FullLocaleData>;
     setLocale(locale: FullLocaleData): void;
-    readonly locale: FullLocaleData;
-    getData(path: string): LocaleData;
+    get locale(): FullLocaleData;
+    getData(path: keyof FullLocaleData): LocaleData;
 }
 export declare function DELON_LOCALE_SERVICE_PROVIDER_FACTORY(exist: DelonLocaleService, locale: FullLocaleData): DelonLocaleService;
 export declare const DELON_LOCALE_SERVICE_PROVIDER: Provider;

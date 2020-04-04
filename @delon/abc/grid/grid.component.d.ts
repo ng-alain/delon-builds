@@ -9,7 +9,7 @@ export declare class SGComponent implements OnChanges, AfterViewInit {
     private clsMap;
     private inited;
     col: number;
-    readonly paddingValue: number;
+    get paddingValue(): number;
     constructor(el: ElementRef, ren: Renderer2, parent: SGContainerComponent, rep: ResponsiveService);
     private setClass;
     ngOnChanges(): void;

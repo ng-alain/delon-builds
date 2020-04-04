@@ -20,12 +20,12 @@ export declare class PageHeaderComponent implements OnInit, OnChanges, AfterView
     private conTpl;
     private affix;
     private _menus;
-    private readonly menus;
+    private get menus();
     _titleVal: string;
     paths: PageHeaderPath[];
     _title: string | null;
     _titleTpl: TemplateRef<void>;
-    title: string | TemplateRef<void>;
+    set title(value: string | TemplateRef<void>);
     loading: boolean;
     wide: boolean;
     home: string;

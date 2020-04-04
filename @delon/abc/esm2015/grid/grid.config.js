@@ -20,7 +20,7 @@ export class SGConfig {
 SGConfig.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
-/** @nocollapse */ SGConfig.ngInjectableDef = i0.ɵɵdefineInjectable({ factory: function SGConfig_Factory() { return new SGConfig(); }, token: SGConfig, providedIn: "root" });
+/** @nocollapse */ SGConfig.ɵprov = i0.ɵɵdefineInjectable({ factory: function SGConfig_Factory() { return new SGConfig(); }, token: SGConfig, providedIn: "root" });
 if (false) {
     /**
      * 间距，默认：`32`

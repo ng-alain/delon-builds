@@ -6,9 +6,11 @@ export declare class SEContainerComponent {
     col: REP_TYPE;
     labelWidth: number;
     title: string | TemplateRef<void>;
-    gutter: number;
+    get gutter(): number;
+    set gutter(value: number);
     private _gutter;
-    nzLayout: string;
+    get nzLayout(): string;
+    set nzLayout(value: string);
     private _nzLayout;
     size: 'default' | 'compact';
     firstVisual: boolean;

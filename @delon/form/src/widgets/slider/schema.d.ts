@@ -1,5 +1,5 @@
+import { NzMarks, NzSliderValue } from 'ng-zorro-antd/slider';
 import { SFUISchemaItem } from '../../schema/ui';
-import { Marks, SliderValue } from 'ng-zorro-antd/slider';
 export interface SFSliderWidgetSchema extends SFUISchemaItem {
     /**
      * 当添加该属性时，启动双滑块模式
@@ -8,7 +8,7 @@ export interface SFSliderWidgetSchema extends SFUISchemaItem {
     /**
      * 刻度标记
      */
-    marks?: Marks | null;
+    marks?: NzMarks | null;
     /**
      * 是否只能拖拽到刻度上，默认：`false`
      */
@@ -24,7 +24,7 @@ export interface SFSliderWidgetSchema extends SFUISchemaItem {
     /**
      * 与 `onmouseup` 触发时机一致，把当前值作为参数传入
      */
-    afterChange?: (value: SliderValue) => void;
+    afterChange?: (value: NzSliderValue) => void;
     /**
      * Slider 会把当前值传给 `nzTipFormatter`，并在 Tooltip 中显示 `nzTipFormatter` 的返回值，若为 null，则隐藏 Tooltip
      */

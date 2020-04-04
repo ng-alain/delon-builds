@@ -67,7 +67,7 @@ var DelonFormConfig = /** @class */ (function () {
     DelonFormConfig.decorators = [
         { type: Injectable, args: [{ providedIn: 'root' },] }
     ];
-    /** @nocollapse */ DelonFormConfig.ngInjectableDef = i0.ɵɵdefineInjectable({ factory: function DelonFormConfig_Factory() { return new DelonFormConfig(); }, token: DelonFormConfig, providedIn: "root" });
+    /** @nocollapse */ DelonFormConfig.ɵprov = i0.ɵɵdefineInjectable({ factory: function DelonFormConfig_Factory() { return new DelonFormConfig(); }, token: DelonFormConfig, providedIn: "root" });
     return DelonFormConfig;
 }());
 export { DelonFormConfig };

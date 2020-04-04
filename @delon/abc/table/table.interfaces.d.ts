@@ -1,7 +1,7 @@
 import { HttpHeaders, HttpParams } from '@angular/common/http';
 import { DrawerHelperOptions, ModalHelperOptions, YNMode } from '@delon/theme';
 import { NzDrawerOptions } from 'ng-zorro-antd/drawer';
-import { ModalOptionsForService } from 'ng-zorro-antd/modal';
+import { ModalOptions } from 'ng-zorro-antd/modal';
 import { STComponent } from './table.component';
 export interface STWidthMode {
     /**
@@ -248,7 +248,7 @@ export interface STColumn {
      */
     selections?: STColumnSelection[];
     /**
-     * 列 `class` 属性值（注：无须 `.` 点），例如：
+     * 列 `class` 属性值（注：无须 `.` 点）多个用空格隔开，例如：
      * - `text-center` 居中
      * - `text-right` 居右
      * - `text-success` 成功色
@@ -606,8 +606,8 @@ export interface STColumnButtonModalConfig {
     paramsName?: string;
     /** 大小；例如：lg、600，默认：`lg` */
     size?: 'sm' | 'md' | 'lg' | 'xl' | '' | number;
-    /** 对话框 [ModalOptionsForService](https://github.com/NG-ZORRO/ng-zorro-antd/blob/master/components/modal/nz-modal.type.ts) 参数 */
-    modalOptions?: ModalOptionsForService;
+    /** 对话框 [ModalOptions](https://github.com/NG-ZORRO/ng-zorro-antd/blob/master/components/modal/modal-types.ts) 参数 */
+    modalOptions?: ModalOptions;
     /** 是否精准（默认：`true`），若返回值非空值（`null`或`undefined`）视为成功，否则视为错误 */
     exact?: boolean;
 }

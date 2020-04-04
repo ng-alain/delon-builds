@@ -3,7 +3,7 @@
  * Generated from: src/sf-fixed.directive.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-import * as tslib_1 from "tslib";
+import { __decorate, __metadata } from "tslib";
 import { Directive, ElementRef, Input, Renderer2 } from '@angular/core';
 import { InputNumber } from '@delon/util';
 export class SFFixedDirective {
@@ -66,9 +66,9 @@ SFFixedDirective.ctorParameters = () => [
 SFFixedDirective.propDecorators = {
     num: [{ type: Input, args: ['fixed-label',] }]
 };
-tslib_1.__decorate([
+__decorate([
     InputNumber(),
-    tslib_1.__metadata("design:type", Number)
+    __metadata("design:type", Number)
 ], SFFixedDirective.prototype, "num", void 0);
 if (false) {
     /**

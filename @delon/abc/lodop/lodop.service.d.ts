@@ -1,6 +1,7 @@
 import { OnDestroy } from '@angular/core';
-import { Observable } from 'rxjs';
 import { LazyService } from '@delon/util';
+import { NzSafeAny } from 'ng-zorro-antd/core/types/any';
+import { Observable } from 'rxjs';
 import { LodopConfig } from './lodop.config';
 import { LodopPrintResult, LodopResult } from './lodop.types';
 export declare class LodopService implements OnDestroy {
@@ -12,13 +13,14 @@ export declare class LodopService implements OnDestroy {
      *
      * **注：**重新设置会倒置重新加载脚本资源
      */
-    cog: LodopConfig;
+    get cog(): LodopConfig;
+    set cog(value: LodopConfig);
     /** 事件变更通知 */
-    readonly events: Observable<LodopPrintResult>;
+    get events(): Observable<LodopPrintResult>;
     /** 获取 lodop 对象 */
-    readonly lodop: Observable<LodopResult>;
+    get lodop(): Observable<LodopResult>;
     /** 获取打印机列表 */
-    readonly printer: string[];
+    get printer(): string[];
     private _cog;
     private pending;
     private _lodop;
@@ -38,7 +40,7 @@ export declare class LodopService implements OnDestroy {
      * @param contextObj 动态参数上下文对象
      * @param parser 自定义解析表达式，默认：`/LODOP\.([^(]+)\(([^\n]+)\);/i`
      */
-    attachCode(code: string, contextObj?: {}, parser?: RegExp): void;
+    attachCode(code: string, contextObj?: NzSafeAny, parser?: RegExp): void;
     /**
      * 打开打印设计关闭后自动返回代码
      *

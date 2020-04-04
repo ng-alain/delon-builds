@@ -7,6 +7,6 @@ export declare class RateWidget extends ControlUIWidget<SFRateWidgetSchema> impl
     allowClear: boolean;
     autoFocus: boolean;
     hasText: boolean;
-    readonly text: string;
+    get text(): string;
     ngOnInit(): void;
 }

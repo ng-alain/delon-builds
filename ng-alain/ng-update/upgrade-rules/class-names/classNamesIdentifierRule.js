@@ -7,7 +7,7 @@
  * found in the LICENSE file at https://angular.io/license
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-const chalk_1 = require("chalk");
+const chalk = require("chalk");
 const tslint_1 = require("tslint");
 const ts = require("typescript");
 const imports_1 = require("../../typescript/imports");
@@ -79,13 +79,12 @@ class Walker extends tslint_1.RuleWalker {
     _createFailureWithReplacement(identifier) {
         const classData = this.data.find(data => data.replace === identifier.text);
         if (!classData) {
-            console.error(`Could not find updated name for identifier "${identifier.text}" in ` +
-                ` in file ${this.getSourceFile().fileName}.`);
+            console.error(`Could not find updated name for identifier "${identifier.text}" in ` + ` in file ${this.getSourceFile().fileName}.`);
             return;
         }
         const replacement = this.createReplacement(identifier.getStart(), identifier.getWidth(), classData.replaceWith);
-        this.addFailureAtNode(identifier, `Found deprecated identifier "${chalk_1.default.red(classData.replace)}" which has been renamed to` +
-            ` "${chalk_1.default.green(classData.replaceWith)}"`, replacement);
+        this.addFailureAtNode(identifier, `Found deprecated identifier "${chalk.red(classData.replace)}" which has been renamed to` +
+            ` "${chalk.green(classData.replaceWith)}"`, replacement);
     }
 }
 exports.Walker = Walker;

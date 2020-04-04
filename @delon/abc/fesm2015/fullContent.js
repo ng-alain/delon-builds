@@ -32,7 +32,7 @@ class FullContentService {
 FullContentService.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
-/** @nocollapse */ FullContentService.ngInjectableDef = ɵɵdefineInjectable({ factory: function FullContentService_Factory() { return new FullContentService(); }, token: FullContentService, providedIn: "root" });
+/** @nocollapse */ FullContentService.ɵprov = ɵɵdefineInjectable({ factory: function FullContentService_Factory() { return new FullContentService(); }, token: FullContentService, providedIn: "root" });
 if (false) {
     /**
      * @type {?}
@@ -68,9 +68,7 @@ class FullContentComponent {
         this.router = router;
         this.doc = doc;
         this.inited = false;
-        this.id = `_full-content-${Math.random()
-            .toString(36)
-            .substring(2)}`;
+        this.id = `_full-content-${Math.random().toString(36).substring(2)}`;
         this.scroll$ = null;
         this._height = 0;
         this.hideTitle = true;
@@ -112,9 +110,7 @@ class FullContentComponent {
      */
     updateHeight() {
         this._height =
-            this.bodyEl.getBoundingClientRect().height -
-                ((/** @type {?} */ (this.el.nativeElement))).getBoundingClientRect().top -
-                this.padding;
+            this.bodyEl.getBoundingClientRect().height - ((/** @type {?} */ (this.el.nativeElement))).getBoundingClientRect().top - this.padding;
         this.cdr.detectChanges();
     }
     /**
@@ -207,9 +203,7 @@ FullContentComponent.decorators = [
     { type: Component, args: [{
                 selector: 'full-content',
                 exportAs: 'fullContent',
-                template: `
-    <ng-content></ng-content>
-  `,
+                template: ` <ng-content></ng-content> `,
                 host: {
                     '[class.full-content]': 'true',
                     '[style.height.px]': '_height',
