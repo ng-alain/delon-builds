@@ -4143,6 +4143,7 @@
          * @param {?} yes
          * @param {?} no
          * @param {?} mode
+         * @param {?=} isSafeHtml
          * @return {?}
          */
         YNPipe.prototype.transform = /**
@@ -4150,9 +4151,11 @@
          * @param {?} yes
          * @param {?} no
          * @param {?} mode
+         * @param {?=} isSafeHtml
          * @return {?}
          */
-        function (value, yes, no, mode) {
+        function (value, yes, no, mode, isSafeHtml) {
+            if (isSafeHtml === void 0) { isSafeHtml = true; }
             /** @type {?} */
             var html = '';
             yes = yes || '是';
@@ -4168,7 +4171,7 @@
                     html = value ? "<i " + CLS_YES + " title=\"" + yes + "\">" + ICON_YES + "</i>" : "<i " + CLS_NO + " title=\"" + no + "\">" + ICON_NO + "</i>";
                     break;
             }
-            return this.dom.bypassSecurityTrustHtml(html);
+            return isSafeHtml ? this.dom.bypassSecurityTrustHtml(html) : html;
         };
         YNPipe.decorators = [
             { type: core.Pipe, args: [{ name: 'yn' },] }

@@ -3933,6 +3933,7 @@ var YNPipe = /** @class */ (function () {
      * @param {?} yes
      * @param {?} no
      * @param {?} mode
+     * @param {?=} isSafeHtml
      * @return {?}
      */
     YNPipe.prototype.transform = /**
@@ -3940,9 +3941,11 @@ var YNPipe = /** @class */ (function () {
      * @param {?} yes
      * @param {?} no
      * @param {?} mode
+     * @param {?=} isSafeHtml
      * @return {?}
      */
-    function (value, yes, no, mode) {
+    function (value, yes, no, mode, isSafeHtml) {
+        if (isSafeHtml === void 0) { isSafeHtml = true; }
         /** @type {?} */
         var html = '';
         yes = yes || '是';
@@ -3958,7 +3961,7 @@ var YNPipe = /** @class */ (function () {
                 html = value ? "<i " + CLS_YES + " title=\"" + yes + "\">" + ICON_YES + "</i>" : "<i " + CLS_NO + " title=\"" + no + "\">" + ICON_NO + "</i>";
                 break;
         }
-        return this.dom.bypassSecurityTrustHtml(html);
+        return isSafeHtml ? this.dom.bypassSecurityTrustHtml(html) : html;
     };
     YNPipe.decorators = [
         { type: Pipe, args: [{ name: 'yn' },] }
@@ -4155,7 +4158,7 @@ var AlainThemeModule = /** @class */ (function () {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-var VERSION = new Version('8.9.1-3d1e8ad3');
+var VERSION = new Version('8.9.1-f44c255d');
 
 /**
  * @fileoverview added by tsickle
