@@ -4193,7 +4193,7 @@ var AlainThemeModule = /** @class */ (function () {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-var VERSION = new Version('8.9.1-965e6e6');
+var VERSION = new Version('8.9.1-7612e7e');
 
 /**
  * @fileoverview added by tsickle
