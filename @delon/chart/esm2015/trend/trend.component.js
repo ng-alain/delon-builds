@@ -3,7 +3,7 @@
  * Generated from: trend.component.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-import { __decorate, __metadata } from "tslib";
+import * as tslib_1 from "tslib";
 import { ChangeDetectionStrategy, Component, Input, ViewEncapsulation } from '@angular/core';
 import { InputBoolean } from '@delon/util';
 export class TrendComponent {
@@ -38,13 +38,13 @@ TrendComponent.propDecorators = {
     colorful: [{ type: Input }],
     reverseColor: [{ type: Input }]
 };
-__decorate([
+tslib_1.__decorate([
     InputBoolean(),
-    __metadata("design:type", Object)
+    tslib_1.__metadata("design:type", Object)
 ], TrendComponent.prototype, "colorful", void 0);
-__decorate([
+tslib_1.__decorate([
     InputBoolean(),
-    __metadata("design:type", Object)
+    tslib_1.__metadata("design:type", Object)
 ], TrendComponent.prototype, "reverseColor", void 0);
 if (false) {
     /**

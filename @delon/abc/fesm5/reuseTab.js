@@ -20,7 +20,6 @@ import { NzTabsModule } from 'ng-zorro-antd/tabs';
 var ReuseTabContextMenuComponent = /** @class */ (function () {
     function ReuseTabContextMenuComponent(i18nSrv) {
         this.i18nSrv = i18nSrv;
-        // tslint:disable-next-line:no-output-native
         this.close = new EventEmitter();
     }
     Object.defineProperty(ReuseTabContextMenuComponent.prototype, "i18n", {
@@ -35,7 +34,7 @@ var ReuseTabContextMenuComponent = /** @class */ (function () {
          * @return {?}
          */
         function (value) {
-            this._i18n = __assign(__assign({}, this.i18nSrv.getData('reuseTab')), value);
+            this._i18n = __assign({}, this.i18nSrv.getData('reuseTab'), value);
         },
         enumerable: true,
         configurable: true
@@ -230,7 +229,10 @@ var ReuseTabContextService = /** @class */ (function () {
             new ConnectionPositionPair({ originX: 'start', originY: 'top' }, { overlayX: 'start', overlayY: 'bottom' }),
         ];
         /** @type {?} */
-        var positionStrategy = this.overlay.position().flexibleConnectedTo(fakeElement).withPositions(positions);
+        var positionStrategy = this.overlay
+            .position()
+            .flexibleConnectedTo(fakeElement)
+            .withPositions(positions);
         this.ref = this.overlay.create({
             positionStrategy: positionStrategy,
             panelClass: 'reuse-tab__cm',
@@ -297,7 +299,6 @@ var ReuseTabContextComponent = /** @class */ (function () {
         var _this = this;
         this.srv = srv;
         this.sub$ = new Subscription();
-        // tslint:disable-next-line:no-output-native
         this.change = new EventEmitter();
         this.sub$.add(srv.show.subscribe((/**
          * @param {?} context
@@ -1638,7 +1639,7 @@ var ReuseTabService = /** @class */ (function () {
         { type: Injector },
         { type: MenuService }
     ]; };
-    /** @nocollapse */ ReuseTabService.ɵprov = ɵɵdefineInjectable({ factory: function ReuseTabService_Factory() { return new ReuseTabService(ɵɵinject(INJECTOR), ɵɵinject(MenuService)); }, token: ReuseTabService, providedIn: "root" });
+    /** @nocollapse */ ReuseTabService.ngInjectableDef = ɵɵdefineInjectable({ factory: function ReuseTabService_Factory() { return new ReuseTabService(ɵɵinject(INJECTOR), ɵɵinject(MenuService)); }, token: ReuseTabService, providedIn: "root" });
     return ReuseTabService;
 }());
 if (false) {
@@ -1741,9 +1742,7 @@ var ReuseTabComponent = /** @class */ (function () {
         this.keepingScroll = false;
         this.customContextMenu = [];
         this.tabType = 'line';
-        // tslint:disable-next-line:no-output-native
         this.change = new EventEmitter();
-        // tslint:disable-next-line:no-output-native
         this.close = new EventEmitter();
         this.el = el.nativeElement;
     }

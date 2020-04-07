@@ -21,7 +21,7 @@ var DelonACLConfig = /** @class */ (function () {
     DelonACLConfig.decorators = [
         { type: Injectable, args: [{ providedIn: 'root' },] }
     ];
-    /** @nocollapse */ DelonACLConfig.ɵprov = ɵɵdefineInjectable({ factory: function DelonACLConfig_Factory() { return new DelonACLConfig(); }, token: DelonACLConfig, providedIn: "root" });
+    /** @nocollapse */ DelonACLConfig.ngInjectableDef = ɵɵdefineInjectable({ factory: function DelonACLConfig_Factory() { return new DelonACLConfig(); }, token: DelonACLConfig, providedIn: "root" });
     return DelonACLConfig;
 }());
 if (false) {
@@ -800,7 +800,7 @@ if (false) {
      * @type {?|undefined}
      */
     ACLType.prototype.except;
-    /* Skipping unhandled member: [key: string]: NzSafeAny;*/
+    /* Skipping unhandled member: [key: string]: any;*/
 }
 
 /**
@@ -912,7 +912,7 @@ var ACLGuard = /** @class */ (function () {
         { type: Router },
         { type: DelonACLConfig }
     ]; };
-    /** @nocollapse */ ACLGuard.ɵprov = ɵɵdefineInjectable({ factory: function ACLGuard_Factory() { return new ACLGuard(ɵɵinject(ACLService), ɵɵinject(Router), ɵɵinject(DelonACLConfig)); }, token: ACLGuard, providedIn: "root" });
+    /** @nocollapse */ ACLGuard.ngInjectableDef = ɵɵdefineInjectable({ factory: function ACLGuard_Factory() { return new ACLGuard(ɵɵinject(ACLService), ɵɵinject(Router), ɵɵinject(DelonACLConfig)); }, token: ACLGuard, providedIn: "root" });
     return ACLGuard;
 }());
 if (false) {

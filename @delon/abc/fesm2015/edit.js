@@ -46,7 +46,7 @@ class SEConfig {
 SEConfig.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
-/** @nocollapse */ SEConfig.ɵprov = ɵɵdefineInjectable({ factory: function SEConfig_Factory() { return new SEConfig(); }, token: SEConfig, providedIn: "root" });
+/** @nocollapse */ SEConfig.ngInjectableDef = ɵɵdefineInjectable({ factory: function SEConfig_Factory() { return new SEConfig(); }, token: SEConfig, providedIn: "root" });
 if (false) {
     /**
      * 大小，默认：`default`
@@ -94,7 +94,7 @@ class SEContainerComponent {
      */
     constructor(cog) {
         this.line = false;
-        Object.assign(this, Object.assign(Object.assign({}, new SEConfig()), cog));
+        Object.assign(this, Object.assign({}, new SEConfig(), cog));
     }
     /**
      * @return {?}
@@ -233,7 +233,9 @@ SEErrorComponent.decorators = [
                         ]),
                     ]),
                 ],
-                template: ` <div [@errorAnt]><ng-content></ng-content></div> `,
+                template: `
+    <div [@errorAnt]><ng-content></ng-content></div>
+  `,
                 host: {
                     '[class.ant-form-explain]': 'true',
                 },

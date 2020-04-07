@@ -1,3 +1,10 @@
+/**
+ * @license
+ * Copyright Google Inc. All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
 import { basename, dirname, normalize, relative, strings } from '@angular-devkit/core';
 import {
   apply,
@@ -7,12 +14,12 @@ import {
   mergeWith,
   move,
   noop,
-  Rule,
-  SchematicContext,
-  SchematicsException,
   template,
-  Tree,
   url,
+  Rule,
+  SchematicsException,
+  SchematicContext,
+  Tree,
 } from '@angular-devkit/schematics';
 import { addImportToModule } from '@schematics/angular/utility/ast-utils';
 import { InsertChange } from '@schematics/angular/utility/change';
@@ -38,12 +45,16 @@ function addDeclarationToNgModule(options: ModuleSchema): Rule {
     const source = ts.createSourceFile(modulePath, sourceText, ts.ScriptTarget.Latest, true);
 
     const importModulePath = normalize(
-      `/${options.path}/${options.flat ? '' : strings.dasherize(options.name) + '/'}${strings.dasherize(options.name)}.module`,
+      `/${options.path}/${options.flat ? '' : strings.dasherize(options.name) + '/'}${strings.dasherize(
+        options.name,
+      )}.module`,
     );
     const relativeDir = relative(dirname(modulePath), dirname(importModulePath));
 
     // tslint:disable-next-line:prefer-template
-    const relativePath = `${relativeDir.startsWith('.') ? relativeDir : './' + relativeDir}/${basename(importModulePath)}`;
+    const relativePath = `${relativeDir.startsWith('.') ? relativeDir : './' + relativeDir}/${basename(
+      importModulePath,
+    )}`;
     const changes = addImportToModule(source, modulePath, strings.classify(`${options.name}Module`), relativePath);
 
     const recorder = host.beginUpdate(modulePath);
@@ -58,7 +69,7 @@ function addDeclarationToNgModule(options: ModuleSchema): Rule {
   };
 }
 
-export default function (schema: ModuleSchema): Rule {
+export default function(schema: ModuleSchema): Rule {
   return (host: Tree, context: SchematicContext) => {
     const workspace = getWorkspace(host);
     if (!schema.project) {

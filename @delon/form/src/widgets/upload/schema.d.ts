@@ -1,7 +1,7 @@
-import { ShowUploadListInterface, UploadChangeParam, UploadFile, UploadFilter, UploadXHRArgs } from 'ng-zorro-antd/upload';
 import { Observable, Subscription } from 'rxjs';
-import { SFSchemaEnumType } from '../../schema';
+import { UploadFilter, UploadFile, UploadXHRArgs, UploadChangeParam, ShowUploadListInterface } from 'ng-zorro-antd/upload';
 import { SFUISchemaItem } from '../../schema/ui';
+import { SFSchemaEnumType } from '../../schema';
 export interface SFUploadWidgetSchema extends SFUISchemaItem {
     /**
      * 异步数据源
@@ -111,4 +111,8 @@ export interface SFUploadWidgetSchema extends SFUISchemaItem {
      * 上传文件改变时的状态
      */
     change?: (args: UploadChangeParam) => void;
+    /**
+     * 限制上传文件数量，超过数量隐藏上传按钮
+     */
+    limitFileCount?: number;
 }

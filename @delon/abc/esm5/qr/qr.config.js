@@ -43,7 +43,7 @@ var QRConfig = /** @class */ (function () {
     QRConfig.decorators = [
         { type: Injectable, args: [{ providedIn: 'root' },] }
     ];
-    /** @nocollapse */ QRConfig.ɵprov = i0.ɵɵdefineInjectable({ factory: function QRConfig_Factory() { return new QRConfig(); }, token: QRConfig, providedIn: "root" });
+    /** @nocollapse */ QRConfig.ngInjectableDef = i0.ɵɵdefineInjectable({ factory: function QRConfig_Factory() { return new QRConfig(); }, token: QRConfig, providedIn: "root" });
     return QRConfig;
 }());
 export { QRConfig };

@@ -3,7 +3,7 @@
  * Generated from: src/acl-if.directive.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-import { __decorate, __metadata } from "tslib";
+import * as tslib_1 from "tslib";
 import { Directive, Input, TemplateRef, ViewContainerRef } from '@angular/core';
 import { InputBoolean } from '@delon/util';
 import { filter } from 'rxjs/operators';
@@ -123,9 +123,9 @@ var ACLIfDirective = /** @class */ (function () {
         aclIfElse: [{ type: Input }],
         except: [{ type: Input }]
     };
-    __decorate([
+    tslib_1.__decorate([
         InputBoolean(),
-        __metadata("design:type", Object)
+        tslib_1.__metadata("design:type", Object)
     ], ACLIfDirective.prototype, "except", void 0);
     return ACLIfDirective;
 }());

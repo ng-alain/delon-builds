@@ -38,7 +38,7 @@ export class SEConfig {
 SEConfig.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
-/** @nocollapse */ SEConfig.ɵprov = i0.ɵɵdefineInjectable({ factory: function SEConfig_Factory() { return new SEConfig(); }, token: SEConfig, providedIn: "root" });
+/** @nocollapse */ SEConfig.ngInjectableDef = i0.ɵɵdefineInjectable({ factory: function SEConfig_Factory() { return new SEConfig(); }, token: SEConfig, providedIn: "root" });
 if (false) {
     /**
      * 大小，默认：`default`

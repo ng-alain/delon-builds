@@ -32,8 +32,8 @@ import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { NzTransferModule } from 'ng-zorro-antd/transfer';
 import { NzTreeSelectModule } from 'ng-zorro-antd/tree-select';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
-import format from 'date-fns/format';
 import { NzI18nService } from 'ng-zorro-antd/i18n';
+import format from 'date-fns/format';
 
 /**
  * @fileoverview added by tsickle
@@ -102,7 +102,7 @@ var DelonFormConfig = /** @class */ (function () {
     DelonFormConfig.decorators = [
         { type: Injectable, args: [{ providedIn: 'root' },] }
     ];
-    /** @nocollapse */ DelonFormConfig.ɵprov = ɵɵdefineInjectable({ factory: function DelonFormConfig_Factory() { return new DelonFormConfig(); }, token: DelonFormConfig, providedIn: "root" });
+    /** @nocollapse */ DelonFormConfig.ngInjectableDef = ɵɵdefineInjectable({ factory: function DelonFormConfig_Factory() { return new DelonFormConfig(); }, token: DelonFormConfig, providedIn: "root" });
     return DelonFormConfig;
 }());
 if (false) {
@@ -302,7 +302,7 @@ function retrieveSchema(schema, definitions) {
         var $refSchema = findSchemaDefinition((/** @type {?} */ (schema.$ref)), definitions);
         // remove $ref property
         var $ref = schema.$ref, localSchema = __rest(schema, ["$ref"]);
-        return retrieveSchema(__assign(__assign({}, $refSchema), localSchema), definitions);
+        return retrieveSchema(__assign({}, $refSchema, localSchema), definitions);
     }
     return schema;
 }
@@ -519,7 +519,7 @@ function isDateFns(srv) {
     /** @type {?} */
     var data = srv.getDateLocale();
     // Compatible date-fns v1.x & v2.x
-    return data != null && !!data.formatDistance; // (!!data.distanceInWords || !!data.formatDistance);
+    return data != null && (!!data.distanceInWords || !!data.formatDistance);
 }
 
 /**
@@ -725,7 +725,7 @@ FormProperty = /** @class */ (function () {
                 result = base.getProperty(path);
             }
         }
-        return (/** @type {?} */ (result));
+        return result;
     };
     /** 查找根表单属性 */
     /**
@@ -1019,7 +1019,7 @@ FormProperty = /** @class */ (function () {
                         /** @type {?} */
                         var visibilityCheck = property._visibilityChanges;
                         /** @type {?} */
-                        var and = combineLatest([valueCheck, visibilityCheck]).pipe(map((/**
+                        var and = combineLatest(valueCheck, visibilityCheck).pipe(map((/**
                          * @param {?} results
                          * @return {?}
                          */
@@ -1165,11 +1165,11 @@ PropertyGroup = /** @class */ (function (_super) {
         /** @type {?} */
         var propertyId = subPathIdx !== -1 ? path.substr(0, subPathIdx) : path;
         /** @type {?} */
-        var property = ((/** @type {?} */ (this.properties)))[propertyId];
+        var property = (/** @type {?} */ (this.properties))[propertyId];
         if (property !== null && subPathIdx !== -1 && property instanceof PropertyGroup) {
             /** @type {?} */
             var subPath = path.substr(subPathIdx + 1);
-            property = (/** @type {?} */ (((/** @type {?} */ (property))).getProperty(subPath)));
+            property = ((/** @type {?} */ (property))).getProperty(subPath);
         }
         return property;
     };
@@ -1185,7 +1185,7 @@ PropertyGroup = /** @class */ (function (_super) {
         for (var propertyId in this.properties) {
             if (this.properties.hasOwnProperty(propertyId)) {
                 /** @type {?} */
-                var property = ((/** @type {?} */ (this.properties)))[propertyId];
+                var property = this.properties[propertyId];
                 fn(property, propertyId);
             }
         }
@@ -1302,7 +1302,7 @@ var ObjectProperty = /** @class */ (function (_super) {
          * @return {?}
          */
         function (propertyId) {
-            ((/** @type {?} */ (_this.properties)))[propertyId] = _this.formPropertyFactory.createProperty((/** @type {?} */ (_this.schema.properties))[propertyId], _this.ui['$' + propertyId], ((/** @type {?} */ ((_this.formData || {}))))[propertyId], _this, propertyId);
+            (/** @type {?} */ (_this.properties))[propertyId] = _this.formPropertyFactory.createProperty((/** @type {?} */ (_this.schema.properties))[propertyId], _this.ui['$' + propertyId], (_this.formData || {})[propertyId], _this, propertyId);
             _this._propertiesId.push(propertyId);
         }));
     };
@@ -1317,11 +1317,9 @@ var ObjectProperty = /** @class */ (function (_super) {
      * @return {?}
      */
     function (value, onlySelf) {
-        /** @type {?} */
-        var properties = (/** @type {?} */ (this.properties));
         for (var propertyId in value) {
-            if (value.hasOwnProperty(propertyId) && properties[propertyId]) {
-                ((/** @type {?} */ (properties[propertyId]))).setValue(value[propertyId], true);
+            if (value.hasOwnProperty(propertyId) && (/** @type {?} */ (this.properties))[propertyId]) {
+                ((/** @type {?} */ ((/** @type {?} */ (this.properties))[propertyId]))).setValue(value[propertyId], true);
             }
         }
         this.updateValueAndValidity(onlySelf, true);
@@ -1338,11 +1336,9 @@ var ObjectProperty = /** @class */ (function (_super) {
      */
     function (value, onlySelf) {
         value = value || this.schema.default || {};
-        /** @type {?} */
-        var properties = (/** @type {?} */ (this.properties));
         // tslint:disable-next-line: forin
         for (var propertyId in this.schema.properties) {
-            properties[propertyId].resetValue(value[propertyId], true);
+            ((/** @type {?} */ ((/** @type {?} */ (this.properties))[propertyId]))).resetValue(value[propertyId], true);
         }
         this.updateValueAndValidity(onlySelf, true);
     };
@@ -1480,7 +1476,7 @@ var ArrayProperty = /** @class */ (function (_super) {
          */
         function (property) {
             if (property.visible && property._hasValue()) {
-                value.push(__assign(__assign({}, property.formData), property.value));
+                value.push(__assign({}, property.formData, property.value));
             }
         }));
         this._value = value;
@@ -1497,7 +1493,7 @@ var ArrayProperty = /** @class */ (function (_super) {
      */
     function (formData) {
         /** @type {?} */
-        var newProperty = (/** @type {?} */ (this.formPropertyFactory.createProperty((/** @type {?} */ (this.schema.items)), this.ui.$items, formData, (/** @type {?} */ (this)))));
+        var newProperty = (/** @type {?} */ (this.formPropertyFactory.createProperty((/** @type {?} */ (this.schema.items)), this.ui.$items, formData, this)));
         ((/** @type {?} */ (this.properties))).push(newProperty);
         return newProperty;
     };
@@ -1944,12 +1940,12 @@ if (false) {
 /**
  * @abstract
  */
-var SchemaValidatorFactory = /** @class */ (function () {
+var  /**
+ * @abstract
+ */
+SchemaValidatorFactory = /** @class */ (function () {
     function SchemaValidatorFactory() {
     }
-    SchemaValidatorFactory.decorators = [
-        { type: Injectable }
-    ];
     return SchemaValidatorFactory;
 }());
 if (false) {
@@ -1966,7 +1962,7 @@ var AjvSchemaValidatorFactory = /** @class */ (function (_super) {
     function AjvSchemaValidatorFactory(options) {
         var _this = _super.call(this) || this;
         _this.options = options;
-        _this.ajv = new Ajv(__assign(__assign({}, options.ajv), { errorDataPath: 'property', allErrors: true, jsonPointers: true }));
+        _this.ajv = new Ajv(__assign({}, options.ajv, { errorDataPath: 'property', allErrors: true, jsonPointers: true }));
         _this.ajv.addFormat('data-url', /^data:([a-z]+\/[a-z0-9-+.]+)?;name=(.*);base64,(.*)$/);
         _this.ajv.addFormat('color', /^(#?([0-9A-Fa-f]{3}){1,2}\b|aqua|black|blue|fuchsia|gray|green|lime|maroon|navy|olive|orange|purple|red|silver|teal|white|yellow|(rgb\(\s*\b([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\b\s*,\s*\b([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\b\s*,\s*\b([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\b\s*\))|(rgb\(\s*(\d?\d%|100%)+\s*,\s*(\d?\d%|100%)+\s*,\s*(\d?\d%|100%)+\s*\)))$/);
         _this.ajv.addFormat('mobile', /^(0|\+?86|17951)?1[0-9]{10}$/);
@@ -2014,9 +2010,6 @@ var AjvSchemaValidatorFactory = /** @class */ (function (_super) {
             return errors;
         });
     };
-    AjvSchemaValidatorFactory.decorators = [
-        { type: Injectable }
-    ];
     /** @nocollapse */
     AjvSchemaValidatorFactory.ctorParameters = function () { return [
         { type: DelonFormConfig, decorators: [{ type: Inject, args: [DelonFormConfig,] }] }
@@ -2459,7 +2452,7 @@ var SFComponent = /** @class */ (function () {
          * @param {?} key
          * @return {?}
          */
-        function (key) { return (ui[key] = __assign(__assign({}, _this._defUi[key]), ui[key])); }));
+        function (key) { return (ui[key] = __assign({}, _this._defUi[key], ui[key])); }));
     };
     /**
      * @private
@@ -2498,7 +2491,7 @@ var SFComponent = /** @class */ (function () {
                 /** @type {?} */
                 var property = retrieveSchema((/** @type {?} */ ((/** @type {?} */ (schema.properties))[key])), definitions);
                 /** @type {?} */
-                var ui = (/** @type {?} */ (__assign(__assign(__assign(__assign(__assign(__assign({ widget: property.type }, (property.format && ((/** @type {?} */ (FORMATMAPS)))[property.format])), (typeof property.ui === 'string' ? { widget: property.ui } : null)), (!property.format && !property.ui && Array.isArray(property.enum) && property.enum.length > 0 ? { widget: 'select' } : null)), _this._defUi), ((/** @type {?} */ (property.ui)))), uiSchema[uiKey])));
+                var ui = (/** @type {?} */ (__assign({ widget: property.type }, (property.format && FORMATMAPS[property.format]), (typeof property.ui === 'string' ? { widget: property.ui } : null), (!property.format && !property.ui && Array.isArray(property.enum) && property.enum.length > 0 ? { widget: 'select' } : null), _this._defUi, ((/** @type {?} */ (property.ui))), uiSchema[uiKey])));
                 // 继承父节点布局属性
                 if (isHorizontal) {
                     if (parentUiSchema.spanLabelFixed) {
@@ -2524,7 +2517,7 @@ var SFComponent = /** @class */ (function () {
                     /** @type {?} */
                     var dateEndProperty = (/** @type {?} */ (schema.properties))[ui.end];
                     if (dateEndProperty) {
-                        dateEndProperty.ui = __assign(__assign({}, ((/** @type {?} */ (dateEndProperty.ui)))), { hidden: true });
+                        dateEndProperty.ui = __assign({}, ((/** @type {?} */ (dateEndProperty.ui))), { hidden: true });
                     }
                     else {
                         ui.end = null;
@@ -2571,7 +2564,7 @@ var SFComponent = /** @class */ (function () {
                 if (property.items) {
                     /** @type {?} */
                     var uiSchemaInArr = (uiSchema[uiKey] || {}).$items || {};
-                    ui.$items = __assign(__assign(__assign({}, ((/** @type {?} */ (property.items.ui)))), uiSchemaInArr[uiKey]), ui.$items);
+                    ui.$items = __assign({}, ((/** @type {?} */ (property.items.ui))), uiSchemaInArr[uiKey], ui.$items);
                     inFn(property.items, property.items, uiSchemaInArr, ui.$items, ui.$items);
                 }
                 if (property.properties && Object.keys(property.properties).length) {
@@ -2606,7 +2599,7 @@ var SFComponent = /** @class */ (function () {
         });
         if (this.ui == null)
             this.ui = {};
-        this._defUi = __assign(__assign(__assign({ onlyVisual: this.options.onlyVisual, size: this.options.size, liveValidate: this.liveValidate, firstVisual: this.firstVisual }, this.options.ui), _schema.ui), this.ui['*']);
+        this._defUi = __assign({ onlyVisual: this.options.onlyVisual, size: this.options.size, liveValidate: this.liveValidate, firstVisual: this.firstVisual }, this.options.ui, _schema.ui, this.ui['*']);
         if (this.onlyVisual === true) {
             this._defUi.onlyVisual = true;
         }
@@ -2628,7 +2621,7 @@ var SFComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        this._btn = __assign(__assign(__assign({ render: { size: 'default' } }, this.locale), this.options.button), ((/** @type {?} */ (this.button))));
+        this._btn = __assign({ render: { size: 'default' } }, this.locale, this.options.button, ((/** @type {?} */ (this.button))));
         /** @type {?} */
         var firstKey = Object.keys(this._ui).find((/**
          * @param {?} w
@@ -2649,7 +2642,7 @@ var SFComponent = /** @class */ (function () {
                 (/** @type {?} */ (this._btn.render)).spanLabelFixed = btnUi.spanLabelFixed;
             }
             // 固定标签宽度时，若不指定样式，则默认居中
-            if (!(/** @type {?} */ (this._btn.render)).class && typeof btnUi.spanLabelFixed === 'number' && btnUi.spanLabelFixed > 0) {
+            if (!(/** @type {?} */ (this._btn.render)).class && (typeof btnUi.spanLabelFixed === 'number' && btnUi.spanLabelFixed > 0)) {
                 (/** @type {?} */ (this._btn.render)).class = 'text-center';
             }
         }
@@ -2766,7 +2759,7 @@ var SFComponent = /** @class */ (function () {
                  * @param {?} key
                  * @return {?}
                  */
-                function (key) { return fn(((/** @type {?} */ (property.properties)))[key]); }));
+                function (key) { return fn((/** @type {?} */ (property.properties))[key]); }));
             }
         });
         if (options.onlyRoot) {
@@ -2830,7 +2823,7 @@ var SFComponent = /** @class */ (function () {
          * @return {?}
          */
         function (value) {
-            (/** @type {?} */ (_this))._item = __assign(__assign({}, ((/** @type {?} */ (_this)).cleanValue ? null : (/** @type {?} */ (_this)).formData)), value);
+            (/** @type {?} */ (_this))._item = __assign({}, ((/** @type {?} */ (_this)).cleanValue ? null : (/** @type {?} */ (_this)).formData), value);
             if (isFirst) {
                 isFirst = false;
                 return;
@@ -2910,7 +2903,7 @@ var SFComponent = /** @class */ (function () {
         { type: Component, args: [{
                     selector: 'sf, [sf]',
                     exportAs: 'sf',
-                    template: "<ng-template #con>\n  <ng-content></ng-content>\n</ng-template>\n<form nz-form [nzLayout]=\"layout\" (submit)=\"onSubmit($event)\" [attr.autocomplete]=\"autocomplete\">\n  <sf-item [formProperty]=\"rootProperty\"></sf-item>\n  <ng-container *ngIf=\"button !== 'none'; else con\">\n    <nz-form-item [ngClass]=\"_btn.render!.class\" class=\"sf-btns\" [fixed-label]=\"_btn.render!.spanLabelFixed\">\n      <div nz-col\n           class=\"ant-form-item-control-wrapper\"\n           [nzSpan]=\"_btn.render!.grid!.span\"\n           [nzOffset]=\"_btn.render!.grid!.offset\"\n           [nzXs]=\"_btn.render!.grid!.xs\"\n           [nzSm]=\"_btn.render!.grid!.sm\"\n           [nzMd]=\"_btn.render!.grid!.md\"\n           [nzLg]=\"_btn.render!.grid!.lg\"\n           [nzXl]=\"_btn.render!.grid!.xl\"\n           [nzXXl]=\"_btn.render!.grid!.xxl\">\n        <div class=\"ant-form-item-control\">\n          <ng-container *ngIf=\"button; else con\">\n            <button type=\"submit\"\n                    nz-button\n                    [nzType]=\"_btn.submit_type\"\n                    [nzSize]=\"_btn.render!.size\"\n                    [nzLoading]=\"loading\"\n                    [disabled]=\"liveValidate && !valid\">\n              <i *ngIf=\"_btn.submit_icon\"\n                  nz-icon\n                  [nzType]=\"_btn.submit_icon.type\"\n                  [nzTheme]=\"_btn.submit_icon.theme\"\n                  [nzTwotoneColor]=\"_btn.submit_icon.twoToneColor\"\n                  [nzIconfont]=\"_btn.submit_icon.iconfont\"></i>\n              {{_btn.submit}}\n            </button>\n            <button *ngIf=\"_btn.reset\"\n                    type=\"button\"\n                    nz-button\n                    [nzType]=\"_btn.reset_type\"\n                    [nzSize]=\"_btn.render!.size\"\n                    [disabled]=\"loading\"\n                    (click)=\"reset(true)\">\n              <i *ngIf=\"_btn.reset_icon\"\n                  nz-icon\n                  [nzType]=\"_btn.reset_icon.type\"\n                  [nzTheme]=\"_btn.reset_icon.theme\"\n                  [nzTwotoneColor]=\"_btn.reset_icon.twoToneColor\"\n                  [nzIconfont]=\"_btn.reset_icon.iconfont\"></i>\n              {{_btn.reset}}\n            </button>\n          </ng-container>\n        </div>\n      </div>\n    </nz-form-item>\n  </ng-container>\n</form>\n",
+                    template: "<ng-template #con>\n  <ng-content></ng-content>\n</ng-template>\n<form nz-form\n      [nzLayout]=\"layout\"\n      (submit)=\"onSubmit($event)\"\n      [attr.autocomplete]=\"autocomplete\">\n  <sf-item [formProperty]=\"rootProperty\"></sf-item>\n  <ng-container *ngIf=\"button !== 'none'; else con\">\n    <nz-form-item [ngClass]=\"_btn.render!.class\"\n                  class=\"sf-btns\"\n                  [fixed-label]=\"_btn.render!.spanLabelFixed\">\n      <div nz-col\n           class=\"ant-form-item-control-wrapper\"\n           [nzSpan]=\"_btn.render!.grid!.span\"\n           [nzOffset]=\"_btn.render!.grid!.offset\"\n           [nzXs]=\"_btn.render!.grid!.xs\"\n           [nzSm]=\"_btn.render!.grid!.sm\"\n           [nzMd]=\"_btn.render!.grid!.md\"\n           [nzLg]=\"_btn.render!.grid!.lg\"\n           [nzXl]=\"_btn.render!.grid!.xl\"\n           [nzXXl]=\"_btn.render!.grid!.xxl\">\n        <div class=\"ant-form-item-control\">\n          <ng-container *ngIf=\"button; else con\">\n            <button type=\"submit\"\n                    nz-button\n                    [nzType]=\"_btn.submit_type\"\n                    [nzSize]=\"_btn.render!.size\"\n                    [nzLoading]=\"loading\"\n                    [disabled]=\"liveValidate && !valid\">\n              <i *ngIf=\"_btn.submit_icon\"\n                  nz-icon\n                  [nzType]=\"_btn.submit_icon.type\"\n                  [nzTheme]=\"_btn.submit_icon.theme\"\n                  [nzTwotoneColor]=\"_btn.submit_icon.twoToneColor\"\n                  [nzIconfont]=\"_btn.submit_icon.iconfont\"></i>\n              {{_btn.submit}}\n            </button>\n            <button *ngIf=\"_btn.reset\"\n                    type=\"button\"\n                    nz-button\n                    [nzType]=\"_btn.reset_type\"\n                    [nzSize]=\"_btn.render!.size\"\n                    [disabled]=\"loading\"\n                    (click)=\"reset(true)\">\n              <i *ngIf=\"_btn.reset_icon\"\n                  nz-icon\n                  [nzType]=\"_btn.reset_icon.type\"\n                  [nzTheme]=\"_btn.reset_icon.theme\"\n                  [nzTwotoneColor]=\"_btn.reset_icon.twoToneColor\"\n                  [nzIconfont]=\"_btn.reset_icon.iconfont\"></i>\n              {{_btn.reset}}\n            </button>\n          </ng-container>\n        </div>\n      </div>\n    </nz-form-item>\n  </ng-container>\n</form>\n",
                     providers: [
                         WidgetFactory,
                         {
@@ -3239,7 +3232,7 @@ var SFItemComponent = /** @class */ (function () {
         { type: Component, args: [{
                     selector: 'sf-item',
                     exportAs: 'sfItem',
-                    template: " <ng-template #target></ng-template> ",
+                    template: "\n    <ng-template #target></ng-template>\n  ",
                     preserveWhitespaces: false,
                     encapsulation: ViewEncapsulation.None
                 }] }
@@ -4517,7 +4510,7 @@ var DateWidget = /** @class */ (function (_super) {
          * @return {?}
          */
         function () {
-            return ((/** @type {?} */ ((/** @type {?} */ (this.formProperty.parent)).properties)))[(/** @type {?} */ (this.ui.end))];
+            return (/** @type {?} */ ((/** @type {?} */ (this.formProperty.parent)).properties))[(/** @type {?} */ (this.ui.end))];
         },
         enumerable: true,
         configurable: true
@@ -4820,7 +4813,7 @@ var NumberWidget = /** @class */ (function (_super) {
     NumberWidget.decorators = [
         { type: Component, args: [{
                     selector: 'sf-number',
-                    template: "<sf-item-wrap [id]=\"id\"\n              [schema]=\"schema\"\n              [ui]=\"ui\"\n              [showError]=\"showError\"\n              [error]=\"error\"\n              [showTitle]=\"schema.title\">\n  <nz-input-number [ngModel]=\"value\"\n                   (ngModelChange)=\"_setValue($event)\"\n                   [nzDisabled]=\"disabled\"\n                   [nzSize]=\"ui.size\"\n                   [nzMin]=\"min\"\n                   [nzMax]=\"max\"\n                   [nzStep]=\"step\"\n                   [nzFormatter]=\"formatter\"\n                   [nzParser]=\"parser\"\n                   [nzPrecision]=\"ui.precision\"\n                   [nzPlaceHolder]=\"ui.placeholder || ''\">\n  </nz-input-number>\n</sf-item-wrap>\n",
+                    template: "<sf-item-wrap [id]=\"id\"\n              [schema]=\"schema\"\n              [ui]=\"ui\"\n              [showError]=\"showError\"\n              [error]=\"error\"\n              [showTitle]=\"schema.title\">\n  <nz-input-number [ngModel]=\"value\"\n                   (ngModelChange)=\"_setValue($event)\"\n                   [nzDisabled]=\"disabled\"\n                   [nzSize]=\"ui.size\"\n                   [nzMin]=\"min\"\n                   [nzMax]=\"max\"\n                   [nzStep]=\"step\"\n                   [nzFormatter]=\"formatter\"\n                   [nzParser]=\"parser\"\n                   [nzPrecision]=\"ui.precision\"\n                   [nzPlaceHolder]=\"ui.placeholder || ''\"\n                   [style.width.px]=\"ui.widgetWidth || 90\">\n  </nz-input-number>\n</sf-item-wrap>\n",
                     preserveWhitespaces: false,
                     encapsulation: ViewEncapsulation.None
                 }] }
@@ -4872,7 +4865,7 @@ var ObjectWidget = /** @class */ (function (_super) {
             for (var _c = __values(formProperty.propertiesId), _d = _c.next(); !_d.done; _d = _c.next()) {
                 var key = _d.value;
                 /** @type {?} */
-                var property = (/** @type {?} */ (((/** @type {?} */ (formProperty.properties)))[key]));
+                var property = (/** @type {?} */ ((/** @type {?} */ (formProperty.properties))[key]));
                 /** @type {?} */
                 var item = {
                     property: property,
@@ -5310,10 +5303,59 @@ var StringWidget = /** @class */ (function (_super) {
             this.setValue('#000000');
         }
     };
+    /**
+     * @param {?} val
+     * @return {?}
+     */
+    StringWidget.prototype.change = /**
+     * @param {?} val
+     * @return {?}
+     */
+    function (val) {
+        this.setValue(val);
+        if (this.ui.change)
+            this.ui.change(val);
+    };
+    /**
+     * @param {?} e
+     * @return {?}
+     */
+    StringWidget.prototype.focus = /**
+     * @param {?} e
+     * @return {?}
+     */
+    function (e) {
+        if (this.ui.focus)
+            this.ui.focus(e);
+    };
+    /**
+     * @param {?} e
+     * @return {?}
+     */
+    StringWidget.prototype.blur = /**
+     * @param {?} e
+     * @return {?}
+     */
+    function (e) {
+        if (this.ui.blur)
+            this.ui.blur(e);
+    };
+    /**
+     * @param {?} e
+     * @return {?}
+     */
+    StringWidget.prototype.enter = /**
+     * @param {?} e
+     * @return {?}
+     */
+    function (e) {
+        if (this.ui.enter)
+            this.ui.enter(e);
+    };
     StringWidget.decorators = [
         { type: Component, args: [{
                     selector: 'sf-string',
-                    template: "<sf-item-wrap [id]=\"id\"\n              [schema]=\"schema\"\n              [ui]=\"ui\"\n              [showError]=\"showError\"\n              [error]=\"error\"\n              [showTitle]=\"schema.title\">\n\n  <ng-template #ipt>\n    <input nz-input\n           [attr.id]=\"id\"\n           [disabled]=\"disabled\"\n           [attr.disabled]=\"disabled\"\n           [nzSize]=\"ui.size\"\n           [ngModel]=\"value\"\n           (ngModelChange)=\"setValue($event)\"\n           [attr.maxLength]=\"schema.maxLength || null\"\n           [attr.type]=\"ui.type || 'text'\"\n           [attr.placeholder]=\"ui.placeholder\"\n           [attr.autocomplete]=\"ui.autocomplete\"\n           [attr.autoFocus]=\"ui.autofocus\">\n  </ng-template>\n\n  <ng-container *ngIf=\"type === 'addon'; else ipt\">\n    <nz-input-group [nzAddOnBefore]=\"ui.addOnBefore\"\n                    [nzAddOnAfter]=\"ui.addOnAfter\"\n                    [nzAddOnBeforeIcon]=\"ui.addOnBeforeIcon\"\n                    [nzAddOnAfterIcon]=\"ui.addOnAfterIcon\"\n                    [nzPrefix]=\"ui.prefix\"\n                    [nzPrefixIcon]=\"ui.prefixIcon\"\n                    [nzSuffix]=\"ui.suffix\"\n                    [nzSuffixIcon]=\"ui.suffixIcon\">\n      <ng-template [ngTemplateOutlet]=\"ipt\"></ng-template>\n    </nz-input-group>\n  </ng-container>\n</sf-item-wrap>\n",
+                    template: "<sf-item-wrap [id]=\"id\"\n              [schema]=\"schema\"\n              [ui]=\"ui\"\n              [showError]=\"showError\"\n              [error]=\"error\"\n              [showTitle]=\"schema.title\">\n\n  <ng-template #ipt>\n    <input nz-input\n           [attr.id]=\"id\"\n           [disabled]=\"disabled\"\n           [attr.disabled]=\"disabled\"\n           [nzSize]=\"ui.size\"\n           [ngModel]=\"value\"\n           (ngModelChange)=\"change($event)\"\n           [attr.maxLength]=\"schema.maxLength || null\"\n           [attr.type]=\"ui.type || 'text'\"\n           [attr.placeholder]=\"ui.placeholder\"\n           [attr.autocomplete]=\"ui.autocomplete\"\n           [attr.autoFocus]=\"ui.autofocus\"\n           (keyup.enter)=\"enter($event)\"\n           (focus)=\"focus($event)\"\n           (blur)=\"blur($event)\">\n  </ng-template>\n\n  <ng-container *ngIf=\"type === 'addon'; else ipt\">\n    <nz-input-group [nzAddOnBefore]=\"ui.addOnBefore\"\n                    [nzAddOnAfter]=\"ui.addOnAfter\"\n                    [nzAddOnBeforeIcon]=\"ui.addOnBeforeIcon\"\n                    [nzAddOnAfterIcon]=\"ui.addOnAfterIcon\"\n                    [nzPrefix]=\"ui.prefix\"\n                    [nzPrefixIcon]=\"ui.prefixIcon\"\n                    [nzSuffix]=\"ui.suffix\"\n                    [nzSuffixIcon]=\"ui.suffixIcon\">\n      <ng-template [ngTemplateOutlet]=\"ipt\"></ng-template>\n    </nz-input-group>\n  </ng-container>\n</sf-item-wrap>\n",
                     preserveWhitespaces: false,
                     encapsulation: ViewEncapsulation.None
                 }] }
@@ -5576,7 +5618,7 @@ var TimeWidget = /** @class */ (function (_super) {
             this.setValue(Date.UTC(1970, 0, 1, value.getHours(), value.getMinutes(), value.getSeconds()));
             return;
         }
-        this.setValue(format(value, (/** @type {?} */ (this.valueFormat))));
+        this.setValue(format(value, this.valueFormat));
     };
     TimeWidget.decorators = [
         { type: Component, args: [{
@@ -5793,6 +5835,7 @@ var TreeSelectWidget = /** @class */ (function (_super) {
             showLine: toBool(ui.showLine, false),
             asyncData: typeof ui.expandChange === 'function',
             defaultExpandAll: toBool(ui.defaultExpandAll, false),
+            defaultExpandedKeys: ui.defaultExpandedKeys || [],
             displayWith: ui.displayWith || ((/**
              * @param {?} node
              * @return {?}
@@ -5858,7 +5901,7 @@ var TreeSelectWidget = /** @class */ (function (_super) {
     TreeSelectWidget.decorators = [
         { type: Component, args: [{
                     selector: 'sf-tree-select',
-                    template: "<sf-item-wrap [id]=\"id\"\n              [schema]=\"schema\"\n              [ui]=\"ui\"\n              [showError]=\"showError\"\n              [error]=\"error\"\n              [showTitle]=\"schema.title\">\n  <nz-tree-select [nzAllowClear]=\"i.allowClear\"\n                  [nzPlaceHolder]=\"ui.placeholder\"\n                  [nzDisabled]=\"disabled\"\n                  [nzShowSearch]=\"i.showSearch\"\n                  [nzDropdownMatchSelectWidth]=\"i.dropdownMatchSelectWidth\"\n                  [nzDropdownStyle]=\"ui.dropdownStyle\"\n                  [nzMultiple]=\"i.multiple\"\n                  [nzSize]=\"ui.size\"\n                  [nzCheckable]=\"i.checkable\"\n                  [nzShowExpand]=\"i.showExpand\"\n                  [nzShowLine]=\"i.showLine\"\n                  [nzAsyncData]=\"i.asyncData\"\n                  [nzNodes]=\"data\"\n                  [nzDefaultExpandAll]=\"i.defaultExpandAll\"\n                  [nzDisplayWith]=\"i.displayWith\"\n                  [ngModel]=\"value\"\n                  (ngModelChange)=\"change($event)\"\n                  (nzExpandChange)=\"expandChange($event)\">\n  </nz-tree-select>\n\n</sf-item-wrap>\n",
+                    template: "<sf-item-wrap [id]=\"id\"\n              [schema]=\"schema\"\n              [ui]=\"ui\"\n              [showError]=\"showError\"\n              [error]=\"error\"\n              [showTitle]=\"schema.title\">\n  <nz-tree-select [nzAllowClear]=\"i.allowClear\"\n                  [nzPlaceHolder]=\"ui.placeholder\"\n                  [nzDisabled]=\"disabled\"\n                  [nzShowSearch]=\"i.showSearch\"\n                  [nzDropdownMatchSelectWidth]=\"i.dropdownMatchSelectWidth\"\n                  [nzDropdownStyle]=\"ui.dropdownStyle\"\n                  [nzMultiple]=\"i.multiple\"\n                  [nzSize]=\"ui.size\"\n                  [nzCheckable]=\"i.checkable\"\n                  [nzShowExpand]=\"i.showExpand\"\n                  [nzShowLine]=\"i.showLine\"\n                  [nzAsyncData]=\"i.asyncData\"\n                  [nzNodes]=\"data\"\n                  [nzDefaultExpandAll]=\"i.defaultExpandAll\"\n                  [nzDefaultExpandedKeys]=\"i.defaultExpandedKeys\"\n                  [nzDisplayWith]=\"i.displayWith\"\n                  [ngModel]=\"value\"\n                  (ngModelChange)=\"change($event)\"\n                  (nzExpandChange)=\"expandChange($event)\">\n  </nz-tree-select>\n\n</sf-item-wrap>\n",
                     preserveWhitespaces: false,
                     encapsulation: ViewEncapsulation.None
                 }] }
@@ -5918,7 +5961,7 @@ var UploadWidget = /** @class */ (function (_super) {
      * @return {?}
      */
     function () {
-        var _a = this.ui, type = _a.type, text = _a.text, hint = _a.hint, action = _a.action, accept = _a.accept, limit = _a.limit, filter = _a.filter, fileSize = _a.fileSize, fileType = _a.fileType, listType = _a.listType, multiple = _a.multiple, name = _a.name, showUploadList = _a.showUploadList, withCredentials = _a.withCredentials, resReName = _a.resReName, urlReName = _a.urlReName, beforeUpload = _a.beforeUpload, customRequest = _a.customRequest, directory = _a.directory, openFileDialogOnClick = _a.openFileDialogOnClick;
+        var _a = this.ui, type = _a.type, text = _a.text, hint = _a.hint, action = _a.action, accept = _a.accept, limit = _a.limit, filter = _a.filter, fileSize = _a.fileSize, fileType = _a.fileType, listType = _a.listType, multiple = _a.multiple, name = _a.name, showUploadList = _a.showUploadList, withCredentials = _a.withCredentials, resReName = _a.resReName, urlReName = _a.urlReName, beforeUpload = _a.beforeUpload, customRequest = _a.customRequest, directory = _a.directory, openFileDialogOnClick = _a.openFileDialogOnClick, limitFileCount = _a.limitFileCount;
         /** @type {?} */
         var res = {
             type: type || 'select',
@@ -5940,6 +5983,7 @@ var UploadWidget = /** @class */ (function (_super) {
             urlReName: (urlReName || '').split('.'),
             beforeUpload: typeof beforeUpload === 'function' ? beforeUpload : null,
             customRequest: typeof customRequest === 'function' ? customRequest : null,
+            limitFileCount: limitFileCount || 999
         };
         if (res.listType === 'picture-card') {
             this.btnType = 'plus';
@@ -6041,7 +6085,7 @@ var UploadWidget = /** @class */ (function (_super) {
     UploadWidget.decorators = [
         { type: Component, args: [{
                     selector: 'sf-upload',
-                    template: "<sf-item-wrap [id]=\"id\"\n              [schema]=\"schema\"\n              [ui]=\"ui\"\n              [showError]=\"showError\"\n              [error]=\"error\"\n              [showTitle]=\"schema.title\">\n  <nz-upload [nzType]=\"i.type\"\n             [(nzFileList)]=\"fileList\"\n             [nzDisabled]=\"disabled\"\n             [nzAction]=\"i.action\"\n             [nzDirectory]=\"i.directory\"\n             [nzOpenFileDialogOnClick]=\"i.openFileDialogOnClick\"\n             [nzAccept]=\"i.accept\"\n             [nzLimit]=\"i.limit\"\n             [nzFilter]=\"i.filter\"\n             [nzSize]=\"i.size\"\n             [nzFileType]=\"i.fileType\"\n             [nzHeaders]=\"ui.headers\"\n             [nzData]=\"ui.data\"\n             [nzListType]=\"i.listType\"\n             [nzMultiple]=\"i.multiple\"\n             [nzName]=\"i.name\"\n             [nzShowUploadList]=\"i.showUploadList\"\n             [nzWithCredentials]=\"i.withCredentials\"\n             [nzBeforeUpload]=\"i.beforeUpload\"\n             [nzCustomRequest]=\"i.customRequest\"\n             [nzRemove]=\"ui.remove || handleRemove\"\n             [nzPreview]=\"handlePreview\"\n             (nzChange)=\"change($event)\">\n    <ng-container [ngSwitch]=\"btnType\">\n      <ng-container *ngSwitchCase=\"'plus'\">\n        <i nz-icon nzType=\"plus\"></i>\n        <div class=\"ant-upload-text\" [innerHTML]=\"i.text\"></div>\n      </ng-container>\n      <ng-container *ngSwitchCase=\"'drag'\">\n        <p class=\"ant-upload-drag-icon\"><i nz-icon nzType=\"inbox\"></i></p>\n        <p class=\"ant-upload-text\" [innerHTML]=\"i.text\"></p>\n        <p class=\"ant-upload-hint\" [innerHTML]=\"i.hint\"></p>\n      </ng-container>\n      <ng-container *ngSwitchDefault>\n        <button type=\"button\" nz-button>\n          <i nz-icon nzType=\"upload\"></i><span [innerHTML]=\"i.text\"></span>\n        </button>\n      </ng-container>\n    </ng-container>\n  </nz-upload>\n</sf-item-wrap>\n",
+                    template: "<sf-item-wrap [id]=\"id\"\n              [schema]=\"schema\"\n              [ui]=\"ui\"\n              [showError]=\"showError\"\n              [error]=\"error\"\n              [showTitle]=\"schema.title\">\n  <nz-upload [nzType]=\"i.type\"\n             [(nzFileList)]=\"fileList\"\n             [nzDisabled]=\"disabled\"\n             [nzAction]=\"i.action\"\n             [nzDirectory]=\"i.directory\"\n             [nzOpenFileDialogOnClick]=\"i.openFileDialogOnClick\"\n             [nzAccept]=\"i.accept\"\n             [nzLimit]=\"i.limit\"\n             [nzFilter]=\"i.filter\"\n             [nzSize]=\"i.size\"\n             [nzFileType]=\"i.fileType\"\n             [nzHeaders]=\"ui.headers\"\n             [nzData]=\"ui.data\"\n             [nzListType]=\"i.listType\"\n             [nzMultiple]=\"i.multiple\"\n             [nzName]=\"i.name\"\n             [nzShowUploadList]=\"i.showUploadList\"\n             [nzWithCredentials]=\"i.withCredentials\"\n             [nzBeforeUpload]=\"i.beforeUpload\"\n             [nzCustomRequest]=\"i.customRequest\"\n             [nzRemove]=\"ui.remove || handleRemove\"\n             [nzPreview]=\"handlePreview\"\n             (nzChange)=\"change($event)\"\n             [nzShowButton]=\"fileList.length < i.limitFileCount\">\n    <ng-container [ngSwitch]=\"btnType\">\n      <ng-container *ngSwitchCase=\"'plus'\">\n        <i nz-icon nzType=\"plus\"></i>\n        <div class=\"ant-upload-text\" [innerHTML]=\"i.text\"></div>\n      </ng-container>\n      <ng-container *ngSwitchCase=\"'drag'\">\n        <p class=\"ant-upload-drag-icon\"><i nz-icon nzType=\"inbox\"></i></p>\n        <p class=\"ant-upload-text\" [innerHTML]=\"i.text\"></p>\n        <p class=\"ant-upload-hint\" [innerHTML]=\"i.hint\"></p>\n      </ng-container>\n      <ng-container *ngSwitchDefault>\n        <button type=\"button\" nz-button>\n          <i nz-icon nzType=\"upload\"></i><span [innerHTML]=\"i.text\"></span>\n        </button>\n      </ng-container>\n    </ng-container>\n  </nz-upload>\n</sf-item-wrap>\n",
                     preserveWhitespaces: false,
                     encapsulation: ViewEncapsulation.None
                 }] }
@@ -7042,6 +7086,26 @@ if (false) {
      * @type {?|undefined}
      */
     SFStringWidgetSchema.prototype.suffixIcon;
+    /**
+     * 内容变更事件
+     * @type {?|undefined}
+     */
+    SFStringWidgetSchema.prototype.change;
+    /**
+     * 焦点事件
+     * @type {?|undefined}
+     */
+    SFStringWidgetSchema.prototype.focus;
+    /**
+     * 失焦事件
+     * @type {?|undefined}
+     */
+    SFStringWidgetSchema.prototype.blur;
+    /**
+     * 回车事件
+     * @type {?|undefined}
+     */
+    SFStringWidgetSchema.prototype.enter;
 }
 
 /**
@@ -7081,6 +7145,11 @@ if (false) {
      * @type {?|undefined}
      */
     SFNumberWidgetSchema.prototype.precision;
+    /**
+     * 指定 `nz-number` 宽度
+     * @type {?|undefined}
+     */
+    SFNumberWidgetSchema.prototype.widgetWidth;
 }
 
 /**
@@ -7865,6 +7934,11 @@ if (false) {
      * @type {?|undefined}
      */
     SFUploadWidgetSchema.prototype.change;
+    /**
+     * 限制上传文件数量，超过数量隐藏上传按钮
+     * @type {?|undefined}
+     */
+    SFUploadWidgetSchema.prototype.limitFileCount;
 }
 
 /**

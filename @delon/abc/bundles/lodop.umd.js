@@ -1,13 +1,13 @@
 /**
- * @license ng-alain(cipchk@qq.com) v9.0.0-rc.1
+ * @license ng-alain(cipchk@qq.com) v8.9.1
  * (c) 2019 cipchk https://ng-alain.com/
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util'), require('rxjs')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/lodop', ['exports', '@angular/core', '@delon/util', 'rxjs'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.lodop = {}), global.ng.core, global.delon.util, global.rxjs));
-}(this, (function (exports, core, util, rxjs) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('rxjs'), require('@delon/util')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/lodop', ['exports', '@angular/core', 'rxjs', '@delon/util'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.lodop = {}), global.ng.core, global.rxjs, global.delon.util));
+}(this, (function (exports, core, rxjs, util) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -801,7 +801,7 @@
         LodopConfig.decorators = [
             { type: core.Injectable, args: [{ providedIn: 'root' },] }
         ];
-        /** @nocollapse */ LodopConfig.ɵprov = core["ɵɵdefineInjectable"]({ factory: function LodopConfig_Factory() { return new LodopConfig(); }, token: LodopConfig, providedIn: "root" });
+        /** @nocollapse */ LodopConfig.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function LodopConfig_Factory() { return new LodopConfig(); }, token: LodopConfig, providedIn: "root" });
         return LodopConfig;
     }());
     if (false) {
@@ -881,7 +881,7 @@
              * @return {?}
              */
             function (value) {
-                this._cog = __assign(__assign({ url: 'https://localhost:8443/CLodopfuncs.js', name: 'CLODOP', companyName: '', checkMaxCount: 100 }, this.defCog), value);
+                this._cog = __assign({ url: 'https://localhost:8443/CLodopfuncs.js', name: 'CLODOP', companyName: '', checkMaxCount: 100 }, this.defCog, value);
             },
             enumerable: true,
             configurable: true
@@ -1006,10 +1006,8 @@
                     onResolve('script-load-error', res[0]);
                     return;
                 }
-                /** @type {?} */
-                var win = (/** @type {?} */ (window));
-                if (win.hasOwnProperty((/** @type {?} */ (_this.cog.name)))) {
-                    _this._lodop = (/** @type {?} */ (win[(/** @type {?} */ (_this.cog.name))]));
+                if (window.hasOwnProperty((/** @type {?} */ (_this.cog.name)))) {
+                    _this._lodop = (/** @type {?} */ (window[(/** @type {?} */ (_this.cog.name))]));
                 }
                 if (_this._lodop === null) {
                     onResolve('load-variable-name-error', { name: _this.cog.name });
@@ -1229,7 +1227,7 @@
             { type: LodopConfig },
             { type: util.LazyService }
         ]; };
-        /** @nocollapse */ LodopService.ɵprov = core["ɵɵdefineInjectable"]({ factory: function LodopService_Factory() { return new LodopService(core["ɵɵinject"](LodopConfig), core["ɵɵinject"](util.LazyService)); }, token: LodopService, providedIn: "root" });
+        /** @nocollapse */ LodopService.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function LodopService_Factory() { return new LodopService(core.ɵɵinject(LodopConfig), core.ɵɵinject(util.LazyService)); }, token: LodopService, providedIn: "root" });
         return LodopService;
     }());
     if (false) {
