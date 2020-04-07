@@ -3592,32 +3592,6 @@
                 params: params }, options));
         };
         /**
-         * 发送传统表单请求（即：`application/x-www-form-urlencoded`）
-         */
-        /**
-         * 发送传统表单请求（即：`application/x-www-form-urlencoded`）
-         * @param {?} url
-         * @param {?} body
-         * @param {?} params
-         * @param {?=} options
-         * @return {?}
-         */
-        _HttpClient.prototype.form = /**
-         * 发送传统表单请求（即：`application/x-www-form-urlencoded`）
-         * @param {?} url
-         * @param {?} body
-         * @param {?} params
-         * @param {?=} options
-         * @return {?}
-         */
-        function (url, body, params, options) {
-            if (options === void 0) { options = {}; }
-            return this.request('POST', url, __assign({ body: body,
-                params: params }, options, { headers: {
-                    'content-type': "application/x-www-form-urlencoded",
-                } }));
-        };
-        /**
          * @param {?} method
          * @param {?} url
          * @param {?=} options
@@ -3971,9 +3945,6 @@
                         p[i.key] = args[i.index];
                         return p;
                     }), {});
-                    if (method === 'FORM') {
-                        headers['content-type'] = 'application/x-www-form-urlencoded';
-                    }
                     /** @type {?} */
                     var payload = getValidArgs(data, 'payload', args);
                     /** @type {?} */
@@ -4032,12 +4003,6 @@
      * @type {?}
      */
     var JSONP = makeMethod('JSONP');
-    /**
-     * `FORM` 请求
-     * - 有效范围：方法
-     * @type {?}
-     */
-    var FORM = makeMethod('FORM');
 
     /**
      * @fileoverview added by tsickle
@@ -4420,7 +4385,6 @@
     exports.DelonLocaleModule = DelonLocaleModule;
     exports.DelonLocaleService = DelonLocaleService;
     exports.DrawerHelper = DrawerHelper;
-    exports.FORM = FORM;
     exports.GET = GET;
     exports.HEAD = HEAD;
     exports.HTMLPipe = HTMLPipe;

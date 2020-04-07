@@ -51,7 +51,6 @@ export declare const Headers: (key?: string | undefined) => (target: BaseApi, pr
  * - Not supported body (like `GET`, `DELETE` etc) as a `QueryString`
  */
 export declare const Payload: (target: BaseApi, propertyKey: string, index: number) => void;
-export declare type METHOD_TYPE = 'OPTIONS' | 'GET' | 'POST' | 'DELETE' | 'PUT' | 'HEAD' | 'PATCH' | 'JSONP' | 'FORM';
 /**
  * `OPTIONS` 请求
  * - 有效范围：方法
@@ -92,8 +91,3 @@ export declare const PATCH: (url?: string, options?: HttpOptions | undefined) =>
  * - 有效范围：方法
  */
 export declare const JSONP: (url?: string, options?: HttpOptions | undefined) => (_target: BaseApi, targetKey?: string | undefined, descriptor?: PropertyDescriptor | undefined) => PropertyDescriptor | undefined;
-/**
- * `FORM` 请求
- * - 有效范围：方法
- */
-export declare const FORM: (url?: string, options?: HttpOptions | undefined) => (_target: BaseApi, targetKey?: string | undefined, descriptor?: PropertyDescriptor | undefined) => PropertyDescriptor | undefined;
