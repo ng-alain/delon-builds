@@ -3382,6 +3382,32 @@ var _HttpClient = /** @class */ (function () {
             params: params }, options));
     };
     /**
+     * 发送传统表单请求（即：`application/x-www-form-urlencoded`）
+     */
+    /**
+     * 发送传统表单请求（即：`application/x-www-form-urlencoded`）
+     * @param {?} url
+     * @param {?} body
+     * @param {?} params
+     * @param {?=} options
+     * @return {?}
+     */
+    _HttpClient.prototype.form = /**
+     * 发送传统表单请求（即：`application/x-www-form-urlencoded`）
+     * @param {?} url
+     * @param {?} body
+     * @param {?} params
+     * @param {?=} options
+     * @return {?}
+     */
+    function (url, body, params, options) {
+        if (options === void 0) { options = {}; }
+        return this.request('POST', url, __assign({ body: body,
+            params: params }, options, { headers: {
+                'content-type': "application/x-www-form-urlencoded",
+            } }));
+    };
+    /**
      * @param {?} method
      * @param {?} url
      * @param {?=} options
@@ -3735,6 +3761,9 @@ function makeMethod(method) {
                     p[i.key] = args[i.index];
                     return p;
                 }), {});
+                if (method === 'FORM') {
+                    headers['content-type'] = 'application/x-www-form-urlencoded';
+                }
                 /** @type {?} */
                 var payload = getValidArgs(data, 'payload', args);
                 /** @type {?} */
@@ -3793,6 +3822,12 @@ var PATCH = makeMethod('PATCH');
  * @type {?}
  */
 var JSONP = makeMethod('JSONP');
+/**
+ * `FORM` 请求
+ * - 有效范围：方法
+ * @type {?}
+ */
+var FORM = makeMethod('FORM');
 
 /**
  * @fileoverview added by tsickle
@@ -3933,7 +3968,6 @@ var YNPipe = /** @class */ (function () {
      * @param {?} yes
      * @param {?} no
      * @param {?} mode
-     * @param {?=} isSafeHtml
      * @return {?}
      */
     YNPipe.prototype.transform = /**
@@ -3941,11 +3975,9 @@ var YNPipe = /** @class */ (function () {
      * @param {?} yes
      * @param {?} no
      * @param {?} mode
-     * @param {?=} isSafeHtml
      * @return {?}
      */
-    function (value, yes, no, mode, isSafeHtml) {
-        if (isSafeHtml === void 0) { isSafeHtml = true; }
+    function (value, yes, no, mode) {
         /** @type {?} */
         var html = '';
         yes = yes || '是';
@@ -3961,7 +3993,7 @@ var YNPipe = /** @class */ (function () {
                 html = value ? "<i " + CLS_YES + " title=\"" + yes + "\">" + ICON_YES + "</i>" : "<i " + CLS_NO + " title=\"" + no + "\">" + ICON_NO + "</i>";
                 break;
         }
-        return isSafeHtml ? this.dom.bypassSecurityTrustHtml(html) : html;
+        return this.dom.bypassSecurityTrustHtml(html);
     };
     YNPipe.decorators = [
         { type: Pipe, args: [{ name: 'yn' },] }
@@ -4158,7 +4190,7 @@ var AlainThemeModule = /** @class */ (function () {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-var VERSION = new Version('8.9.1-703c4e5c');
+var VERSION = new Version('8.9.1-1733f5d3');
 
 /**
  * @fileoverview added by tsickle
@@ -4172,5 +4204,5 @@ var VERSION = new Version('8.9.1-703c4e5c');
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { ALAIN_I18N_TOKEN, APP, AlainI18NServiceFake, AlainThemeConfig, AlainThemeModule, BaseApi, BaseHeaders, BaseUrl, Body, CNCurrencyPipe, DELETE, DELON_LOCALE, DELON_LOCALE_SERVICE_PROVIDER, DELON_LOCALE_SERVICE_PROVIDER_FACTORY, DatePipe, DelonLocaleModule, DelonLocaleService, DrawerHelper, GET, HEAD, HTMLPipe, Headers, JSONP, KeysPipe, LAYOUT, MenuService, ModalHelper, OPTIONS, PATCH, POST, PUT, Path, Payload, Query, REP_MAX, ResponsiveService, ScrollService, SettingsService, TitleService, URLPipe, USER, VERSION, WINDOW, YNPipe, _HttpClient, elGR as el_GR, enUS as en_US, hrHR as hr_HR, koKR as ko_KR, plPL as pl_PL, preloaderFinished, trTR as tr_TR, zhCN as zh_CN, zhTW as zh_TW, ALAIN_I18N_TOKEN_FACTORY as ɵa, I18nPipe as ɵb };
+export { ALAIN_I18N_TOKEN, APP, AlainI18NServiceFake, AlainThemeConfig, AlainThemeModule, BaseApi, BaseHeaders, BaseUrl, Body, CNCurrencyPipe, DELETE, DELON_LOCALE, DELON_LOCALE_SERVICE_PROVIDER, DELON_LOCALE_SERVICE_PROVIDER_FACTORY, DatePipe, DelonLocaleModule, DelonLocaleService, DrawerHelper, FORM, GET, HEAD, HTMLPipe, Headers, JSONP, KeysPipe, LAYOUT, MenuService, ModalHelper, OPTIONS, PATCH, POST, PUT, Path, Payload, Query, REP_MAX, ResponsiveService, ScrollService, SettingsService, TitleService, URLPipe, USER, VERSION, WINDOW, YNPipe, _HttpClient, elGR as el_GR, enUS as en_US, hrHR as hr_HR, koKR as ko_KR, plPL as pl_PL, preloaderFinished, trTR as tr_TR, zhCN as zh_CN, zhTW as zh_TW, ALAIN_I18N_TOKEN_FACTORY as ɵa, I18nPipe as ɵb };
 //# sourceMappingURL=theme.js.map
