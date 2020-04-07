@@ -3352,9 +3352,10 @@ class YNPipe {
      * @param {?} yes
      * @param {?} no
      * @param {?} mode
+     * @param {?=} isSafeHtml
      * @return {?}
      */
-    transform(value, yes, no, mode) {
+    transform(value, yes, no, mode, isSafeHtml = true) {
         /** @type {?} */
         let html = '';
         yes = yes || '是';
@@ -3370,7 +3371,7 @@ class YNPipe {
                 html = value ? `<i ${CLS_YES} title="${yes}">${ICON_YES}</i>` : `<i ${CLS_NO} title="${no}">${ICON_NO}</i>`;
                 break;
         }
-        return this.dom.bypassSecurityTrustHtml(html);
+        return isSafeHtml ? this.dom.bypassSecurityTrustHtml(html) : html;
     }
 }
 YNPipe.decorators = [
@@ -3554,7 +3555,7 @@ AlainThemeModule.ctorParameters = () => [
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-const VERSION = new Version('8.9.1');
+const VERSION = new Version('8.9.1-703c4e5c');
 
 /**
  * @fileoverview added by tsickle

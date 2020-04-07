@@ -4,5 +4,5 @@ export declare type YNMode = 'full' | 'icon' | 'text';
 export declare class YNPipe implements PipeTransform {
     private dom;
     constructor(dom: DomSanitizer);
-    transform(value: boolean, yes: string, no: string, mode: YNMode): SafeHtml;
+    transform(value: boolean, yes: string, no: string, mode: YNMode, isSafeHtml?: boolean): SafeHtml;
 }
