@@ -1,7 +1,6 @@
-import { EventEmitter, TemplateRef } from '@angular/core';
-import { ControlValueAccessor } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
-import { FunctionProp } from 'ng-zorro-antd/core/types';
+import { EventEmitter } from '@angular/core';
+import { ControlValueAccessor } from '@angular/forms';
 import { DatePickerConfig, DateRangePickerShortcut, DateRangePickerShortcutItem } from './date-picker.config';
 export declare class RangePickerComponent implements ControlValueAccessor {
     private dom;
@@ -11,8 +10,7 @@ export declare class RangePickerComponent implements ControlValueAccessor {
     private comp;
     value: Date[];
     ngModelEnd: Date;
-    set shortcut(val: DateRangePickerShortcut | null);
-    get shortcut(): DateRangePickerShortcut | null;
+    shortcut: DateRangePickerShortcut | null;
     readonly ngModelEndChange: EventEmitter<Date>;
     nzAllowClear: boolean;
     nzAutoFocus: boolean;
@@ -29,7 +27,7 @@ export declare class RangePickerComponent implements ControlValueAccessor {
     nzDateRender: any;
     nzFormat: any;
     nzDisabledTime: any;
-    nzRenderExtraFooter: FunctionProp<TemplateRef<void> | string>;
+    nzRenderExtraFooter: any;
     nzShowTime: any;
     nzShowToday: boolean;
     nzMode: any;

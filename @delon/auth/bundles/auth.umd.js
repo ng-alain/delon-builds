@@ -1,5 +1,5 @@
 /**
- * @license ng-alain(cipchk@qq.com) v9.0.0-rc.1
+ * @license ng-alain(cipchk@qq.com) v8.9.2
  * (c) 2019 cipchk https://ng-alain.com/
  * License: MIT
  */
@@ -279,7 +279,7 @@
         DelonAuthConfig.decorators = [
             { type: core.Injectable, args: [{ providedIn: 'root' },] }
         ];
-        /** @nocollapse */ DelonAuthConfig.ɵprov = core["ɵɵdefineInjectable"]({ factory: function DelonAuthConfig_Factory() { return new DelonAuthConfig(); }, token: DelonAuthConfig, providedIn: "root" });
+        /** @nocollapse */ DelonAuthConfig.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function DelonAuthConfig_Factory() { return new DelonAuthConfig(); }, token: DelonAuthConfig, providedIn: "root" });
         return DelonAuthConfig;
     }());
     if (false) {
@@ -1069,7 +1069,7 @@
         function (req, next) {
             var e_1, _a;
             /** @type {?} */
-            var options = __assign(__assign({}, new DelonAuthConfig()), this.injector.get(DelonAuthConfig, undefined));
+            var options = __assign({}, new DelonAuthConfig(), this.injector.get(DelonAuthConfig, undefined));
             if (options.ignores) {
                 try {
                     for (var _b = __values((/** @type {?} */ (options.ignores))), _c = _b.next(); !_c.done; _c = _b.next()) {
@@ -1137,9 +1137,6 @@
             }
             return next.handle(req);
         };
-        BaseInterceptor.decorators = [
-            { type: core.Injectable }
-        ];
         /** @nocollapse */
         BaseInterceptor.ctorParameters = function () { return [
             { type: core.Injector, decorators: [{ type: core.Optional }] }
@@ -1310,7 +1307,7 @@
     if (false) {
         /** @type {?} */
         JWTTokenModel.prototype.token;
-        /* Skipping unhandled member: [key: string]: NzSafeAny;*/
+        /* Skipping unhandled member: [key: string]: any;*/
     }
 
     /**
@@ -1380,7 +1377,7 @@
         function JWTGuard(srv, injector, cog) {
             this.srv = srv;
             this.injector = injector;
-            this.cog = __assign(__assign({}, new DelonAuthConfig()), cog);
+            this.cog = __assign({}, new DelonAuthConfig(), cog);
         }
         /**
          * @private
@@ -1461,7 +1458,7 @@
             { type: core.Injector },
             { type: DelonAuthConfig }
         ]; };
-        /** @nocollapse */ JWTGuard.ɵprov = core["ɵɵdefineInjectable"]({ factory: function JWTGuard_Factory() { return new JWTGuard(core["ɵɵinject"](DA_SERVICE_TOKEN), core["ɵɵinject"](core.INJECTOR), core["ɵɵinject"](DelonAuthConfig)); }, token: JWTGuard, providedIn: "root" });
+        /** @nocollapse */ JWTGuard.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function JWTGuard_Factory() { return new JWTGuard(core.ɵɵinject(DA_SERVICE_TOKEN), core.ɵɵinject(core.INJECTOR), core.ɵɵinject(DelonAuthConfig)); }, token: JWTGuard, providedIn: "root" });
         return JWTGuard;
     }());
     if (false) {
@@ -1500,7 +1497,7 @@
     if (false) {
         /** @type {?} */
         SimpleTokenModel.prototype.token;
-        /* Skipping unhandled member: [key: string]: NzSafeAny;*/
+        /* Skipping unhandled member: [key: string]: any;*/
     }
 
     /**
@@ -1598,7 +1595,7 @@
         function SimpleGuard(srv, injector, cog) {
             this.srv = srv;
             this.injector = injector;
-            this.cog = __assign(__assign({}, new DelonAuthConfig()), cog);
+            this.cog = __assign({}, new DelonAuthConfig(), cog);
         }
         /**
          * @private
@@ -1679,7 +1676,7 @@
             { type: core.Injector },
             { type: DelonAuthConfig }
         ]; };
-        /** @nocollapse */ SimpleGuard.ɵprov = core["ɵɵdefineInjectable"]({ factory: function SimpleGuard_Factory() { return new SimpleGuard(core["ɵɵinject"](DA_SERVICE_TOKEN), core["ɵɵinject"](core.INJECTOR), core["ɵɵinject"](DelonAuthConfig)); }, token: SimpleGuard, providedIn: "root" });
+        /** @nocollapse */ SimpleGuard.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function SimpleGuard_Factory() { return new SimpleGuard(core.ɵɵinject(DA_SERVICE_TOKEN), core.ɵɵinject(core.INJECTOR), core.ɵɵinject(DelonAuthConfig)); }, token: SimpleGuard, providedIn: "root" });
         return SimpleGuard;
     }());
     if (false) {

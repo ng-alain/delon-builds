@@ -101,7 +101,7 @@ var QRService = /** @class */ (function () {
     QRService.ctorParameters = function () { return [
         { type: QRConfig }
     ]; };
-    /** @nocollapse */ QRService.ɵprov = i0.ɵɵdefineInjectable({ factory: function QRService_Factory() { return new QRService(i0.ɵɵinject(i1.QRConfig)); }, token: QRService, providedIn: "root" });
+    /** @nocollapse */ QRService.ngInjectableDef = i0.ɵɵdefineInjectable({ factory: function QRService_Factory() { return new QRService(i0.ɵɵinject(i1.QRConfig)); }, token: QRService, providedIn: "root" });
     return QRService;
 }());
 export { QRService };

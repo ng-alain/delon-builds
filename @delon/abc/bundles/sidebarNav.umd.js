@@ -1,13 +1,13 @@
 /**
- * @license ng-alain(cipchk@qq.com) v9.0.0-rc.1
+ * @license ng-alain(cipchk@qq.com) v8.9.2
  * (c) 2019 cipchk https://ng-alain.com/
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common'), require('@angular/core'), require('@angular/platform-browser'), require('@angular/router'), require('@delon/theme'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/tooltip')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/sidebar-nav', ['exports', '@angular/common', '@angular/core', '@angular/platform-browser', '@angular/router', '@delon/theme', '@delon/util', 'rxjs', 'rxjs/operators', 'ng-zorro-antd/icon', 'ng-zorro-antd/tooltip'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['sidebar-nav'] = {}), global.ng.common, global.ng.core, global.ng.platformBrowser, global.ng.router, global.delon.theme, global.delon.util, global.rxjs, global.rxjs.operators, global['ng-zorro-antd/icon'], global['ng-zorro-antd/tooltip']));
-}(this, (function (exports, common, core, platformBrowser, router, theme, util, rxjs, operators, icon, tooltip) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/platform-browser'), require('@angular/common'), require('@angular/core'), require('@angular/router'), require('@delon/theme'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/tooltip')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/sidebar-nav', ['exports', '@angular/platform-browser', '@angular/common', '@angular/core', '@angular/router', '@delon/theme', '@delon/util', 'rxjs', 'rxjs/operators', 'ng-zorro-antd/icon', 'ng-zorro-antd/tooltip'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['sidebar-nav'] = {}), global.ng.platformBrowser, global.ng.common, global.ng.core, global.ng.router, global.delon.theme, global.delon.util, global.rxjs, global.rxjs.operators, global['ng-zorro-antd/icon'], global['ng-zorro-antd/tooltip']));
+}(this, (function (exports, platformBrowser, common, core, router, theme, util, rxjs, operators, icon, tooltip) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -249,7 +249,6 @@
             this.autoCloseUnderPad = true;
             this.recursivePath = true;
             this.openStrictly = false;
-            // tslint:disable-next-line:no-output-native
             this.select = new core.EventEmitter();
         }
         Object.defineProperty(SidebarNavComponent.prototype, "collapsed", {

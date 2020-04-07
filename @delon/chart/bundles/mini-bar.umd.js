@@ -1,5 +1,5 @@
 /**
- * @license ng-alain(cipchk@qq.com) v9.0.0-rc.1
+ * @license ng-alain(cipchk@qq.com) v8.9.2
  * (c) 2019 cipchk https://ng-alain.com/
  * License: MIT
  */
@@ -313,7 +313,10 @@
             var _a = this, chart = _a.chart, height = _a.height, padding = _a.padding, data = _a.data, color = _a.color, borderWidth = _a.borderWidth;
             if (!chart || !data || data.length <= 0)
                 return;
-            chart.get('geoms')[0].size(borderWidth).color(color);
+            chart
+                .get('geoms')[0]
+                .size(borderWidth)
+                .color(color);
             chart.set('height', height);
             chart.set('padding', padding);
             chart.changeData(data);

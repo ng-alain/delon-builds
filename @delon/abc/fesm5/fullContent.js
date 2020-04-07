@@ -40,7 +40,7 @@ var FullContentService = /** @class */ (function () {
     FullContentService.decorators = [
         { type: Injectable, args: [{ providedIn: 'root' },] }
     ];
-    /** @nocollapse */ FullContentService.ɵprov = ɵɵdefineInjectable({ factory: function FullContentService_Factory() { return new FullContentService(); }, token: FullContentService, providedIn: "root" });
+    /** @nocollapse */ FullContentService.ngInjectableDef = ɵɵdefineInjectable({ factory: function FullContentService_Factory() { return new FullContentService(); }, token: FullContentService, providedIn: "root" });
     return FullContentService;
 }());
 if (false) {
@@ -71,7 +71,9 @@ var FullContentComponent = /** @class */ (function () {
         this.router = router;
         this.doc = doc;
         this.inited = false;
-        this.id = "_full-content-" + Math.random().toString(36).substring(2);
+        this.id = "_full-content-" + Math.random()
+            .toString(36)
+            .substring(2);
         this.scroll$ = null;
         this._height = 0;
         this.hideTitle = true;
@@ -125,7 +127,9 @@ var FullContentComponent = /** @class */ (function () {
      */
     function () {
         this._height =
-            this.bodyEl.getBoundingClientRect().height - ((/** @type {?} */ (this.el.nativeElement))).getBoundingClientRect().top - this.padding;
+            this.bodyEl.getBoundingClientRect().height -
+                ((/** @type {?} */ (this.el.nativeElement))).getBoundingClientRect().top -
+                this.padding;
         this.cdr.detectChanges();
     };
     /**
@@ -238,7 +242,7 @@ var FullContentComponent = /** @class */ (function () {
         { type: Component, args: [{
                     selector: 'full-content',
                     exportAs: 'fullContent',
-                    template: " <ng-content></ng-content> ",
+                    template: "\n    <ng-content></ng-content>\n  ",
                     host: {
                         '[class.full-content]': 'true',
                         '[style.height.px]': '_height',

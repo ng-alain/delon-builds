@@ -1,5 +1,5 @@
 /**
- * @license ng-alain(cipchk@qq.com) v9.0.0-rc.1
+ * @license ng-alain(cipchk@qq.com) v8.9.2
  * (c) 2019 cipchk https://ng-alain.com/
  * License: MIT
  */
@@ -238,7 +238,6 @@
              * 是否启用 `展开与收进`
              */
             this.expandable = true;
-            // tslint:disable-next-line:no-output-native
             this.change = new core.EventEmitter();
         }
         /**

@@ -113,7 +113,11 @@ var G2RadarComponent = /** @class */ (function () {
             return legendItem ? legendItem.checked !== false : true;
         }));
         chart.line().position('label*value');
-        chart.point().position('label*value').shape('circle').size(3);
+        chart
+            .point()
+            .position('label*value')
+            .shape('circle')
+            .size(3);
         chart.render();
         this.attachChart();
     };

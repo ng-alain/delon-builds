@@ -1,7 +1,7 @@
 import { __decorate, __metadata } from 'tslib';
+import { DomSanitizer } from '@angular/platform-browser';
 import { DOCUMENT, CommonModule } from '@angular/common';
 import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Renderer2, ChangeDetectorRef, NgZone, Inject, Input, Output, NgModule } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
 import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { MenuService, SettingsService, WINDOW } from '@delon/theme';
 import { InputBoolean, DelonUtilModule } from '@delon/util';
@@ -36,7 +36,6 @@ var SidebarNavComponent = /** @class */ (function () {
         this.autoCloseUnderPad = true;
         this.recursivePath = true;
         this.openStrictly = false;
-        // tslint:disable-next-line:no-output-native
         this.select = new EventEmitter();
     }
     Object.defineProperty(SidebarNavComponent.prototype, "collapsed", {

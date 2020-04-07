@@ -23,7 +23,7 @@ var ErrorCollectConfig = /** @class */ (function () {
     ErrorCollectConfig.decorators = [
         { type: Injectable, args: [{ providedIn: 'root' },] }
     ];
-    /** @nocollapse */ ErrorCollectConfig.ɵprov = ɵɵdefineInjectable({ factory: function ErrorCollectConfig_Factory() { return new ErrorCollectConfig(); }, token: ErrorCollectConfig, providedIn: "root" });
+    /** @nocollapse */ ErrorCollectConfig.ngInjectableDef = ɵɵdefineInjectable({ factory: function ErrorCollectConfig_Factory() { return new ErrorCollectConfig(); }, token: ErrorCollectConfig, providedIn: "root" });
     return ErrorCollectConfig;
 }());
 if (false) {
@@ -52,7 +52,7 @@ var ErrorCollectComponent = /** @class */ (function () {
         this.$time = null;
         this._hiden = true;
         this.count = 0;
-        Object.assign(this, __assign(__assign({}, new ErrorCollectConfig()), cog));
+        Object.assign(this, __assign({}, new ErrorCollectConfig(), cog));
     }
     Object.defineProperty(ErrorCollectComponent.prototype, "errEls", {
         get: /**
@@ -99,7 +99,6 @@ var ErrorCollectComponent = /** @class */ (function () {
         formItemEl.scrollIntoView(true);
         // fix header height
         this.doc.documentElement.scrollTop -= this.offsetTop;
-        return true;
     };
     /**
      * @private
@@ -151,7 +150,7 @@ var ErrorCollectComponent = /** @class */ (function () {
             }
             el = (/** @type {?} */ (el.parentElement));
         }
-        return retEl;
+        return (/** @type {?} */ (retEl));
     };
     /**
      * @return {?}

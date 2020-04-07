@@ -1,5 +1,5 @@
 /**
- * @license ng-alain(cipchk@qq.com) v9.0.0-rc.1
+ * @license ng-alain(cipchk@qq.com) v8.9.2
  * (c) 2019 cipchk https://ng-alain.com/
  * License: MIT
  */
@@ -496,7 +496,10 @@
                 fn();
             }
             else {
-                this.ngZone.onStable.asObservable().pipe(operators.take(1)).subscribe(fn);
+                this.ngZone.onStable
+                    .asObservable()
+                    .pipe(operators.take(1))
+                    .subscribe(fn);
             }
         };
         /**

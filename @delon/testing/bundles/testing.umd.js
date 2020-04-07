@@ -1,5 +1,5 @@
 /**
- * @license ng-alain(cipchk@qq.com) v9.0.0-rc.1
+ * @license ng-alain(cipchk@qq.com) v8.9.2
  * (c) 2019 cipchk https://ng-alain.com/
  * License: MIT
  */
@@ -236,6 +236,45 @@
      * found in the LICENSE file at https://angular.io/license
      */
     /**
+     * Creates a browser MouseEvent with the specified options.
+     * @param {?} type
+     * @param {?=} x
+     * @param {?=} y
+     * @return {?}
+     */
+    function createMouseEvent(type, x, y) {
+        if (x === void 0) { x = 0; }
+        if (y === void 0) { y = 0; }
+        /** @type {?} */
+        var event = document.createEvent('MouseEvent');
+        event.initMouseEvent(type, false /* canBubble */, false /* cancelable */, window /* view */, 0 /* detail */, x /* screenX */, y /* screenY */, x /* clientX */, y /* clientY */, false /* ctrlKey */, false /* altKey */, false /* shiftKey */, false /* metaKey */, 0 /* button */, null /* relatedTarget */);
+        return event;
+    }
+    /**
+     * Creates a browser TouchEvent with the specified pointer coordinates.
+     * @param {?} type
+     * @param {?=} pageX
+     * @param {?=} pageY
+     * @return {?}
+     */
+    function createTouchEvent(type, pageX, pageY) {
+        if (pageX === void 0) { pageX = 0; }
+        if (pageY === void 0) { pageY = 0; }
+        // In favor of creating events that work for most of the browsers, the event is created
+        // as a basic UI Event. The necessary details for the event will be set manually.
+        /** @type {?} */
+        var event = document.createEvent('UIEvent');
+        /** @type {?} */
+        var touchDetails = { pageX: pageX, pageY: pageY };
+        event.initUIEvent(type, true, true, window, 0);
+        // Most of the browsers don't have a "initTouchEvent" method that can be used to define
+        // the touch details.
+        Object.defineProperties(event, {
+            touches: { value: [touchDetails] },
+        });
+        return event;
+    }
+    /**
      * Dispatches a keydown event from an element.
      * @param {?} type
      * @param {?} keyCode
@@ -334,6 +373,34 @@
     function dispatchKeyboardEvent(node, type, keyCode, target) {
         return (/** @type {?} */ (dispatchEvent(node, createKeyboardEvent(type, keyCode, target))));
     }
+    /**
+     * Shorthand to dispatch a mouse event on the specified coordinates.
+     * @param {?} node
+     * @param {?} type
+     * @param {?=} x
+     * @param {?=} y
+     * @param {?=} event
+     * @return {?}
+     */
+    function dispatchMouseEvent(node, type, x, y, event) {
+        if (x === void 0) { x = 0; }
+        if (y === void 0) { y = 0; }
+        if (event === void 0) { event = createMouseEvent(type, x, y); }
+        return (/** @type {?} */ (dispatchEvent(node, event)));
+    }
+    /**
+     * Shorthand to dispatch a touch event on the specified coordinates.
+     * @param {?} node
+     * @param {?} type
+     * @param {?=} x
+     * @param {?=} y
+     * @return {?}
+     */
+    function dispatchTouchEvent(node, type, x, y) {
+        if (x === void 0) { x = 0; }
+        if (y === void 0) { y = 0; }
+        return dispatchEvent(node, createTouchEvent(type, x, y));
+    }
 
     /**
      * @fileoverview added by tsickle
@@ -358,8 +425,11 @@
      * Generated from: src/zorro.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    /** @type {?} */
-    var DROPDOWN_MIN_TIME = 1000;
+    /**
+     * [nz-dropdown](https://github.com/NG-ZORRO/ng-zorro-antd/blob/master/components/dropdown/nz-dropdown.component.ts#L88) 抖动合理值
+     * @type {?}
+     */
+    var DROPDOWN_MIN_TIME = 51;
     /**
      * 触发 dropdown
      * @param {?} dl
@@ -837,6 +907,7 @@
      * Generated from: src/suite.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
+    var _this = this;
     /**
      * @template T
      */
@@ -944,7 +1015,7 @@
                 return ((/**
                  * @return {?}
                  */
-                function () { return __awaiter(void 0, void 0, void 0, function () {
+                function () { return __awaiter(_this, void 0, void 0, function () {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
@@ -998,11 +1069,15 @@
     exports.configureTestSuite = configureTestSuite;
     exports.createFakeEvent = createFakeEvent;
     exports.createKeyboardEvent = createKeyboardEvent;
+    exports.createMouseEvent = createMouseEvent;
     exports.createTestContext = createTestContext;
+    exports.createTouchEvent = createTouchEvent;
     exports.dispatchDropDown = dispatchDropDown;
     exports.dispatchEvent = dispatchEvent;
     exports.dispatchFakeEvent = dispatchFakeEvent;
     exports.dispatchKeyboardEvent = dispatchKeyboardEvent;
+    exports.dispatchMouseEvent = dispatchMouseEvent;
+    exports.dispatchTouchEvent = dispatchTouchEvent;
     exports.typeInElement = typeInElement;
 
     Object.defineProperty(exports, '__esModule', { value: true });

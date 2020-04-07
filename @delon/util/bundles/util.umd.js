@@ -1,28 +1,28 @@
 /**
- * @license ng-alain(cipchk@qq.com) v9.0.0-rc.1
+ * @license ng-alain(cipchk@qq.com) v8.9.2
  * (c) 2019 cipchk https://ng-alain.com/
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('extend'), require('date-fns/addDays'), require('date-fns/endOfDay'), require('date-fns/endOfMonth'), require('date-fns/endOfWeek'), require('date-fns/endOfYear'), require('date-fns/parseISO'), require('date-fns/startOfDay'), require('date-fns/startOfMonth'), require('date-fns/startOfWeek'), require('date-fns/startOfYear'), require('date-fns/subMonths'), require('date-fns/subWeeks'), require('date-fns/subYears'), require('@angular/common'), require('rxjs'), require('rxjs/operators'), require('ng-zorro-antd/core/tree')) :
-    typeof define === 'function' && define.amd ? define('@delon/util', ['exports', '@angular/core', 'extend', 'date-fns/addDays', 'date-fns/endOfDay', 'date-fns/endOfMonth', 'date-fns/endOfWeek', 'date-fns/endOfYear', 'date-fns/parseISO', 'date-fns/startOfDay', 'date-fns/startOfMonth', 'date-fns/startOfWeek', 'date-fns/startOfYear', 'date-fns/subMonths', 'date-fns/subWeeks', 'date-fns/subYears', '@angular/common', 'rxjs', 'rxjs/operators', 'ng-zorro-antd/core/tree'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.util = {}), global.ng.core, global.Extend, global.addDays, global.endOfDay, global.endOfMonth, global.endOfWeek, global.endOfYear, global.parseISO, global.startOfDay, global.startOfMonth, global.startOfWeek, global.startOfYear, global.subMonths, global.subWeeks, global.subYears, global.ng.common, global.rxjs, global.rxjs.operators, global.tree));
-}(this, (function (exports, core, extend, addDays, endOfDay, endOfMonth, endOfWeek, endOfYear, parseISO, startOfDay, startOfMonth, startOfWeek, startOfYear, subMonths, subWeeks, subYears, common, rxjs, operators, tree) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('extend'), require('date-fns/add_days'), require('date-fns/end_of_day'), require('date-fns/end_of_month'), require('date-fns/end_of_week'), require('date-fns/end_of_year'), require('date-fns/parse'), require('date-fns/start_of_day'), require('date-fns/start_of_month'), require('date-fns/start_of_week'), require('date-fns/start_of_year'), require('date-fns/sub_months'), require('date-fns/sub_weeks'), require('date-fns/sub_years'), require('@angular/common'), require('rxjs'), require('rxjs/operators'), require('ng-zorro-antd/core')) :
+    typeof define === 'function' && define.amd ? define('@delon/util', ['exports', '@angular/core', 'extend', 'date-fns/add_days', 'date-fns/end_of_day', 'date-fns/end_of_month', 'date-fns/end_of_week', 'date-fns/end_of_year', 'date-fns/parse', 'date-fns/start_of_day', 'date-fns/start_of_month', 'date-fns/start_of_week', 'date-fns/start_of_year', 'date-fns/sub_months', 'date-fns/sub_weeks', 'date-fns/sub_years', '@angular/common', 'rxjs', 'rxjs/operators', 'ng-zorro-antd/core'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.util = {}), global.ng.core, global.Extend, global.addDays, global.endOfDay, global.endOfMonth, global.endOfWeek, global.endOfYear, global.parse, global.startOfDay, global.startOfMonth, global.startOfWeek, global.startOfYear, global.subMonths, global.subWeeks, global.subYears, global.ng.common, global.rxjs, global.rxjs.operators, global['ng-zorro-antd/core']));
+}(this, (function (exports, core, extend, addDays, endOfDay, endOfMonth, endOfWeek, endOfYear, parse, startOfDay, startOfMonth, startOfWeek, startOfYear, subMonths, subWeeks, subYears, common, rxjs, operators, core$1) { 'use strict';
 
-    extend = extend && Object.prototype.hasOwnProperty.call(extend, 'default') ? extend['default'] : extend;
-    addDays = addDays && Object.prototype.hasOwnProperty.call(addDays, 'default') ? addDays['default'] : addDays;
-    endOfDay = endOfDay && Object.prototype.hasOwnProperty.call(endOfDay, 'default') ? endOfDay['default'] : endOfDay;
-    endOfMonth = endOfMonth && Object.prototype.hasOwnProperty.call(endOfMonth, 'default') ? endOfMonth['default'] : endOfMonth;
-    endOfWeek = endOfWeek && Object.prototype.hasOwnProperty.call(endOfWeek, 'default') ? endOfWeek['default'] : endOfWeek;
-    endOfYear = endOfYear && Object.prototype.hasOwnProperty.call(endOfYear, 'default') ? endOfYear['default'] : endOfYear;
-    parseISO = parseISO && Object.prototype.hasOwnProperty.call(parseISO, 'default') ? parseISO['default'] : parseISO;
-    startOfDay = startOfDay && Object.prototype.hasOwnProperty.call(startOfDay, 'default') ? startOfDay['default'] : startOfDay;
-    startOfMonth = startOfMonth && Object.prototype.hasOwnProperty.call(startOfMonth, 'default') ? startOfMonth['default'] : startOfMonth;
-    startOfWeek = startOfWeek && Object.prototype.hasOwnProperty.call(startOfWeek, 'default') ? startOfWeek['default'] : startOfWeek;
-    startOfYear = startOfYear && Object.prototype.hasOwnProperty.call(startOfYear, 'default') ? startOfYear['default'] : startOfYear;
-    subMonths = subMonths && Object.prototype.hasOwnProperty.call(subMonths, 'default') ? subMonths['default'] : subMonths;
-    subWeeks = subWeeks && Object.prototype.hasOwnProperty.call(subWeeks, 'default') ? subWeeks['default'] : subWeeks;
-    subYears = subYears && Object.prototype.hasOwnProperty.call(subYears, 'default') ? subYears['default'] : subYears;
+    extend = extend && extend.hasOwnProperty('default') ? extend['default'] : extend;
+    addDays = addDays && addDays.hasOwnProperty('default') ? addDays['default'] : addDays;
+    endOfDay = endOfDay && endOfDay.hasOwnProperty('default') ? endOfDay['default'] : endOfDay;
+    endOfMonth = endOfMonth && endOfMonth.hasOwnProperty('default') ? endOfMonth['default'] : endOfMonth;
+    endOfWeek = endOfWeek && endOfWeek.hasOwnProperty('default') ? endOfWeek['default'] : endOfWeek;
+    endOfYear = endOfYear && endOfYear.hasOwnProperty('default') ? endOfYear['default'] : endOfYear;
+    parse = parse && parse.hasOwnProperty('default') ? parse['default'] : parse;
+    startOfDay = startOfDay && startOfDay.hasOwnProperty('default') ? startOfDay['default'] : startOfDay;
+    startOfMonth = startOfMonth && startOfMonth.hasOwnProperty('default') ? startOfMonth['default'] : startOfMonth;
+    startOfWeek = startOfWeek && startOfWeek.hasOwnProperty('default') ? startOfWeek['default'] : startOfWeek;
+    startOfYear = startOfYear && startOfYear.hasOwnProperty('default') ? startOfYear['default'] : startOfYear;
+    subMonths = subMonths && subMonths.hasOwnProperty('default') ? subMonths['default'] : subMonths;
+    subWeeks = subWeeks && subWeeks.hasOwnProperty('default') ? subWeeks['default'] : subWeeks;
+    subYears = subYears && subYears.hasOwnProperty('default') ? subYears['default'] : subYears;
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -541,7 +541,7 @@
      * @return {?}
      */
     function getTimeDistance(type, time) {
-        time = time ? (typeof time === 'string' ? parseISO(time) : new Date(time)) : new Date();
+        time = parse(time || new Date());
         /** @type {?} */
         var options = { weekStartsOn: 1 };
         /** @type {?} */
@@ -811,7 +811,7 @@
         LazyService.ctorParameters = function () { return [
             { type: undefined, decorators: [{ type: core.Inject, args: [common.DOCUMENT,] }] }
         ]; };
-        /** @nocollapse */ LazyService.ɵprov = core["ɵɵdefineInjectable"]({ factory: function LazyService_Factory() { return new LazyService(core["ɵɵinject"](common.DOCUMENT)); }, token: LazyService, providedIn: "root" });
+        /** @nocollapse */ LazyService.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function LazyService_Factory() { return new LazyService(core.ɵɵinject(common.DOCUMENT)); }, token: LazyService, providedIn: "root" });
         return LazyService;
     }());
     if (false) {
@@ -856,7 +856,8 @@
      * @return {?}
      */
     function isInt(value) {
-        return isNum(value) && parseInt(value.toString(), 10) === value;
+        // tslint:disable-next-line:triple-equals
+        return isNum(value) && parseInt(value.toString(), 10) == value;
     }
     /**
      * 是否为小数
@@ -1261,7 +1262,7 @@
         DelonUtilConfig.decorators = [
             { type: core.Injectable, args: [{ providedIn: 'root' },] }
         ];
-        /** @nocollapse */ DelonUtilConfig.ɵprov = core["ɵɵdefineInjectable"]({ factory: function DelonUtilConfig_Factory() { return new DelonUtilConfig(); }, token: DelonUtilConfig, providedIn: "root" });
+        /** @nocollapse */ DelonUtilConfig.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function DelonUtilConfig_Factory() { return new DelonUtilConfig(); }, token: DelonUtilConfig, providedIn: "root" });
         return DelonUtilConfig;
     }());
     if (false) {
@@ -1539,12 +1540,12 @@
             /** @type {?} */
             var opt = (/** @type {?} */ (__assign({ idMapName: this.c.idMapName, parentIdMapName: this.c.parentIdMapName, titleMapName: this.c.titleMapName, isLeafMapName: 'isLeaf', checkedMapname: this.c.checkedMapname, selectedMapname: this.c.selectedMapname, expandedMapname: this.c.expandedMapname, disabledMapname: this.c.disabledMapname, cb: null }, options)));
             /** @type {?} */
-            var tree$1 = this.arrToTree(arr, {
+            var tree = this.arrToTree(arr, {
                 idMapName: opt.idMapName,
                 parentIdMapName: opt.parentIdMapName,
                 childrenMapName: 'children',
             });
-            this.visitTree(tree$1, (/**
+            this.visitTree(tree, (/**
              * @param {?} item
              * @param {?} parent
              * @param {?} deep
@@ -1567,11 +1568,11 @@
                     opt.cb(item, parent, deep);
                 }
             }));
-            return tree$1.map((/**
+            return tree.map((/**
              * @param {?} node
              * @return {?}
              */
-            function (node) { return new tree.NzTreeNode(node); }));
+            function (node) { return new core$1.NzTreeNode(node); }));
         };
         /**
          * 递归访问整个树
@@ -1662,7 +1663,7 @@
         ArrayService.ctorParameters = function () { return [
             { type: DelonUtilConfig }
         ]; };
-        /** @nocollapse */ ArrayService.ɵprov = core["ɵɵdefineInjectable"]({ factory: function ArrayService_Factory() { return new ArrayService(core["ɵɵinject"](DelonUtilConfig)); }, token: ArrayService, providedIn: "root" });
+        /** @nocollapse */ ArrayService.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function ArrayService_Factory() { return new ArrayService(core.ɵɵinject(DelonUtilConfig)); }, token: ArrayService, providedIn: "root" });
         return ArrayService;
     }());
     if (false) {

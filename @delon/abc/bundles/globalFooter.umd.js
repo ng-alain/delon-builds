@@ -1,13 +1,13 @@
 /**
- * @license ng-alain(cipchk@qq.com) v9.0.0-rc.1
+ * @license ng-alain(cipchk@qq.com) v8.9.2
  * (c) 2019 cipchk https://ng-alain.com/
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/platform-browser'), require('@angular/router'), require('@delon/theme'), require('@delon/util'), require('@angular/common')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/global-footer', ['exports', '@angular/core', '@angular/platform-browser', '@angular/router', '@delon/theme', '@delon/util', '@angular/common'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['global-footer'] = {}), global.ng.core, global.ng.platformBrowser, global.ng.router, global.delon.theme, global.delon.util, global.ng.common));
-}(this, (function (exports, core, platformBrowser, router, theme, util, common) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/platform-browser'), require('@angular/core'), require('@angular/router'), require('@delon/theme'), require('@delon/util'), require('@angular/common')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/global-footer', ['exports', '@angular/platform-browser', '@angular/core', '@angular/router', '@delon/theme', '@delon/util', '@angular/common'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['global-footer'] = {}), global.ng.platformBrowser, global.ng.core, global.ng.router, global.delon.theme, global.delon.util, global.ng.common));
+}(this, (function (exports, platformBrowser, core, router, theme, util, common) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -254,7 +254,7 @@
             { type: core.Component, args: [{
                         selector: 'global-footer-item',
                         exportAs: 'globalFooterItem',
-                        template: " <ng-template #host><ng-content></ng-content></ng-template> ",
+                        template: "\n    <ng-template #host><ng-content></ng-content></ng-template>\n  ",
                         preserveWhitespaces: false,
                         changeDetection: core.ChangeDetectionStrategy.OnPush,
                         encapsulation: core.ViewEncapsulation.None
@@ -309,7 +309,7 @@
                  * @param {?} i
                  * @return {?}
                  */
-                function (i) { return (i._title = _this.dom.bypassSecurityTrustHtml(i.title)); }));
+                function (i) { return i._title = _this.dom.bypassSecurityTrustHtml(i.title); }));
                 this._links = val;
             },
             enumerable: true,
