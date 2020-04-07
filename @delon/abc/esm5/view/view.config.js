@@ -31,7 +31,7 @@ var SVConfig = /** @class */ (function () {
     SVConfig.decorators = [
         { type: Injectable, args: [{ providedIn: 'root' },] }
     ];
-    /** @nocollapse */ SVConfig.ɵprov = i0.ɵɵdefineInjectable({ factory: function SVConfig_Factory() { return new SVConfig(); }, token: SVConfig, providedIn: "root" });
+    /** @nocollapse */ SVConfig.ngInjectableDef = i0.ɵɵdefineInjectable({ factory: function SVConfig_Factory() { return new SVConfig(); }, token: SVConfig, providedIn: "root" });
     return SVConfig;
 }());
 export { SVConfig };

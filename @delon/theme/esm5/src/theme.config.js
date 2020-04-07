@@ -11,7 +11,7 @@ var AlainThemeConfig = /** @class */ (function () {
     AlainThemeConfig.decorators = [
         { type: Injectable, args: [{ providedIn: 'root' },] }
     ];
-    /** @nocollapse */ AlainThemeConfig.ɵprov = i0.ɵɵdefineInjectable({ factory: function AlainThemeConfig_Factory() { return new AlainThemeConfig(); }, token: AlainThemeConfig, providedIn: "root" });
+    /** @nocollapse */ AlainThemeConfig.ngInjectableDef = i0.ɵɵdefineInjectable({ factory: function AlainThemeConfig_Factory() { return new AlainThemeConfig(); }, token: AlainThemeConfig, providedIn: "root" });
     return AlainThemeConfig;
 }());
 export { AlainThemeConfig };

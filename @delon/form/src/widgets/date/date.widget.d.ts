@@ -10,13 +10,13 @@ export declare class DateWidget extends ControlUIWidget<SFDateWidgetSchema> impl
     displayValue: Date | Date[] | null;
     displayFormat: string;
     i: any;
-    private get zorroI18n();
+    private readonly zorroI18n;
     ngOnInit(): void;
     reset(value: SFValue): void;
     _change(value: Date | Date[] | null): void;
     _openChange(status: boolean): void;
     _ok(value: any): void;
-    private get endProperty();
+    private readonly endProperty;
     private setEnd;
     private toDate;
 }

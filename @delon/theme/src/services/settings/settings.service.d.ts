@@ -10,10 +10,10 @@ export declare class SettingsService {
     private _layout;
     private get;
     private set;
-    get layout(): Layout;
-    get app(): App;
-    get user(): User;
-    get notify(): Observable<SettingsNotify>;
+    readonly layout: Layout;
+    readonly app: App;
+    readonly user: User;
+    readonly notify: Observable<SettingsNotify>;
     setLayout(name: string | Layout, value?: any): boolean;
     setApp(value: App): boolean;
     setUser(value: User): boolean;

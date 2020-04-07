@@ -90,7 +90,12 @@ var G2MiniAreaComponent = /** @class */ (function () {
             .shape('smooth')
             .opacity(1);
         if (line) {
-            chart.line().position('x*y').shape('smooth').opacity(1).tooltip(false);
+            chart
+                .line()
+                .position('x*y')
+                .shape('smooth')
+                .opacity(1)
+                .tooltip(false);
         }
         chart.render();
         this.attachChart();

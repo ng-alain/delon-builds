@@ -1,5 +1,5 @@
 import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ViewChild, Input, Output, NgModule } from '@angular/core';
-import addSeconds from 'date-fns/addSeconds';
+import addSeconds from 'date-fns/add_seconds';
 import format from 'date-fns/format';
 import { CountdownModule } from 'ngx-countdown';
 import { CommonModule } from '@angular/common';
@@ -36,7 +36,9 @@ CountDownComponent.decorators = [
     { type: Component, args: [{
                 selector: 'count-down',
                 exportAs: 'countDown',
-                template: ` <countdown #cd *ngIf="config" [config]="config" (event)="handleEvent($event)"></countdown> `,
+                template: `
+    <countdown #cd *ngIf="config" [config]="config" (event)="handleEvent($event)"></countdown>
+  `,
                 preserveWhitespaces: false,
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None

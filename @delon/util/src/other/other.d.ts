@@ -1,4 +1,3 @@
-import { NzSafeAny } from 'ng-zorro-antd/core/types';
 /**
  * 类似 `_.get`，根据 `path` 获取安全值
  * jsperf: https://jsperf.com/es-deep-getttps://jsperf.com/es-deep-get
@@ -7,11 +6,11 @@ import { NzSafeAny } from 'ng-zorro-antd/core/types';
  * @param path 若 `null`、`[]`、未定义及未找到时返回 `defaultValue` 值
  * @param defaultValue 默认值
  */
-export declare function deepGet(obj: NzSafeAny | null, path: string | string[] | null | undefined, defaultValue?: NzSafeAny): NzSafeAny;
+export declare function deepGet(obj: any | null, path: string | string[] | null | undefined, defaultValue?: any): any;
 /**
  * 基于 [extend](https://github.com/justmoon/node-extend) 的深度拷贝
  */
-export declare function deepCopy(obj: NzSafeAny): NzSafeAny;
+export declare function deepCopy(obj: any): any;
 /**
  * 复制字符串文档至剪贴板
  */

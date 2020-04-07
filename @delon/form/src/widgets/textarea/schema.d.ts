@@ -1,5 +1,5 @@
 import { AutoSizeType } from 'ng-zorro-antd/input';
-import { SFDLSSize, SFUISchemaItem } from '../../schema/ui';
+import { SFUISchemaItem, SFDLSSize } from '../../schema/ui';
 export interface SFTextareaWidgetSchema extends SFUISchemaItem {
     size?: SFDLSSize;
     /**

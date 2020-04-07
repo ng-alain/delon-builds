@@ -22,7 +22,7 @@ var ImageConfig = /** @class */ (function () {
     ImageConfig.decorators = [
         { type: Injectable, args: [{ providedIn: 'root' },] }
     ];
-    /** @nocollapse */ ImageConfig.ɵprov = ɵɵdefineInjectable({ factory: function ImageConfig_Factory() { return new ImageConfig(); }, token: ImageConfig, providedIn: "root" });
+    /** @nocollapse */ ImageConfig.ngInjectableDef = ɵɵdefineInjectable({ factory: function ImageConfig_Factory() { return new ImageConfig(); }, token: ImageConfig, providedIn: "root" });
     return ImageConfig;
 }());
 if (false) {
@@ -54,7 +54,7 @@ var ImageDirective = /** @class */ (function () {
         this.size = 64;
         this.error = './assets/img/logo.svg';
         this.inited = false;
-        Object.assign(this, __assign(__assign({}, new ImageConfig()), cog));
+        Object.assign(this, __assign({}, new ImageConfig(), cog));
         this.imgEl = el.nativeElement;
     }
     /**

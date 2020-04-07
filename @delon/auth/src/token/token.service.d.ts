@@ -15,11 +15,11 @@ export declare class TokenService implements ITokenService {
     /**
      * 授权失败后跳转路由路径（支持外部链接地址），通过设置全局 `DelonAuthConfig.login_url` 来改变
      */
-    get login_url(): string | undefined;
+    readonly login_url: string | undefined;
     /**
      * 当前请求页面的来源页面的地址
      */
-    get referrer(): AuthReferrer;
+    readonly referrer: AuthReferrer;
     /**
      * 设置 Token 信息
      */

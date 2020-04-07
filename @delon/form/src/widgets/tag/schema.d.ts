@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
-import { SFSchemaEnumType } from '../../schema';
 import { SFUISchemaItem } from '../../schema/ui';
+import { SFSchemaEnumType } from '../../schema';
 export interface SFTagWidgetSchema extends SFUISchemaItem {
     /**
      * 异步数据源

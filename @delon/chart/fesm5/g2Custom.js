@@ -17,7 +17,6 @@ var G2CustomComponent = /** @class */ (function () {
         this.resize$ = null;
         this.resizeTime = 0;
         this.render = new EventEmitter();
-        // tslint:disable-next-line:no-output-native
         this.resize = new EventEmitter();
         this.destroy = new EventEmitter();
     }
@@ -77,7 +76,7 @@ var G2CustomComponent = /** @class */ (function () {
         { type: Component, args: [{
                     selector: 'g2,g2-custom',
                     exportAs: 'g2Custom',
-                    template: " <ng-content></ng-content> ",
+                    template: "\n    <ng-content></ng-content>\n  ",
                     host: {
                         '[style.height.px]': 'height',
                     },

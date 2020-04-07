@@ -1,7 +1,7 @@
 import { __decorate, __metadata, __spread } from 'tslib';
+import { DomSanitizer } from '@angular/platform-browser';
 import { Injectable, ɵɵdefineInjectable, EventEmitter, Component, forwardRef, ViewChild, Input, Output, NgModule } from '@angular/core';
 import { NG_VALUE_ACCESSOR, FormsModule } from '@angular/forms';
-import { DomSanitizer } from '@angular/platform-browser';
 import { getTimeDistance, deepMergeKey, fixEndTimeOfRange, InputBoolean } from '@delon/util';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { CommonModule } from '@angular/common';
@@ -147,7 +147,7 @@ if (false) {
     DateRangePickerShortcutItem.prototype.text;
     /** @type {?} */
     DateRangePickerShortcutItem.prototype.fn;
-    /* Skipping unhandled member: [key: string]: NzSafeAny;*/
+    /* Skipping unhandled member: [key: string]: any;*/
 }
 var DatePickerConfig = /** @class */ (function () {
     function DatePickerConfig() {
@@ -155,7 +155,7 @@ var DatePickerConfig = /** @class */ (function () {
     DatePickerConfig.decorators = [
         { type: Injectable, args: [{ providedIn: 'root' },] }
     ];
-    /** @nocollapse */ DatePickerConfig.ɵprov = ɵɵdefineInjectable({ factory: function DatePickerConfig_Factory() { return new DatePickerConfig(); }, token: DatePickerConfig, providedIn: "root" });
+    /** @nocollapse */ DatePickerConfig.ngInjectableDef = ɵɵdefineInjectable({ factory: function DatePickerConfig_Factory() { return new DatePickerConfig(); }, token: DatePickerConfig, providedIn: "root" });
     return DatePickerConfig;
 }());
 if (false) {
@@ -317,8 +317,7 @@ var RangePickerComponent = /** @class */ (function () {
         this.value = item.fn((/** @type {?} */ (this.value)));
         this.valueChange((/** @type {?} */ (this.value)));
         if (this._shortcut.closed) {
-            // tslint:disable-next-line:no-string-literal
-            ((/** @type {?} */ (this.comp.datePicker)))['picker'].hideOverlay();
+            this.comp.closeOverlay();
         }
     };
     RangePickerComponent.decorators = [

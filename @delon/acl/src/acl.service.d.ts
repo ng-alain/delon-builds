@@ -13,9 +13,9 @@ export declare class ACLService {
     private full;
     private aclChange;
     /** ACL变更通知 */
-    get change(): Observable<ACLType | boolean | null>;
+    readonly change: Observable<ACLType | boolean | null>;
     /** 获取所有数据 */
-    get data(): {
+    readonly data: {
         full: boolean;
         roles: string[];
         abilities: (string | number)[];

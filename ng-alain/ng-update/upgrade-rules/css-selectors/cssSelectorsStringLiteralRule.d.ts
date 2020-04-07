@@ -5,7 +5,7 @@
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-import { RuleFailure, Rules, RuleWalker } from 'tslint';
+import { Rules, RuleFailure, RuleWalker } from 'tslint';
 import * as ts from 'typescript';
 import { CssSelectorUpgradeData } from '../../data/css-selectors';
 /**

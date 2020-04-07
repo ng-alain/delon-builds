@@ -1,6 +1,6 @@
 {
   "name": "@delon/acl",
-  "version": "9.0.0-rc.1-bdf4e3a7",
+  "version": "8.9.1-064b7b1",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -26,7 +26,8 @@
     "component"
   ],
   "dependencies": {
-    "@delon/util": "^9.0.0-rc.1-bdf4e3a7"
+    "@delon/util": "^8.9.1-064b7b1",
+    "tslib": "^1.9.0"
   },
   "sideEffects": false,
   "main": "bundles/acl.umd.js",
@@ -37,8 +38,5 @@
   "fesm5": "fesm5/acl.js",
   "fesm2015": "fesm2015/acl.js",
   "typings": "acl.d.ts",
-  "metadata": "acl.metadata.json",
-  "peerDependencies": {
-    "tslib": "^1.10.0"
-  }
+  "metadata": "acl.metadata.json"
 }
