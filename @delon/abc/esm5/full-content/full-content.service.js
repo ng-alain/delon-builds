@@ -36,7 +36,7 @@ var FullContentService = /** @class */ (function () {
     FullContentService.decorators = [
         { type: Injectable, args: [{ providedIn: 'root' },] }
     ];
-    /** @nocollapse */ FullContentService.ɵprov = i0.ɵɵdefineInjectable({ factory: function FullContentService_Factory() { return new FullContentService(); }, token: FullContentService, providedIn: "root" });
+    /** @nocollapse */ FullContentService.ngInjectableDef = i0.ɵɵdefineInjectable({ factory: function FullContentService_Factory() { return new FullContentService(); }, token: FullContentService, providedIn: "root" });
     return FullContentService;
 }());
 export { FullContentService };

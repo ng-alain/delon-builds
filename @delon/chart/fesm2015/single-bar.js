@@ -55,10 +55,10 @@ class G2SingleBarComponent {
          * @param {?} val
          * @return {?}
          */
-        (val) => ({
+        val => ({
             formatter: format,
             offset: val > 0 ? 10 : -10,
-            textStyle: Object.assign(Object.assign({}, textStyle), { textAlign: val > 0 ? 'start' : 'end' }),
+            textStyle: Object.assign({}, textStyle, { textAlign: val > 0 ? 'start' : 'end' }),
         })));
         if (line) {
             chart.guide().line({
@@ -90,7 +90,7 @@ class G2SingleBarComponent {
          * @param {?} val
          * @return {?}
          */
-        (val) => (val > 0 ? plusColor : minusColor)))
+        val => (val > 0 ? plusColor : minusColor)))
             .size(barSize);
         chart.repaint();
     }

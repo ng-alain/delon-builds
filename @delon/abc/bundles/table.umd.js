@@ -1,13 +1,13 @@
 /**
- * @license ng-alain(cipchk@qq.com) v9.0.0-rc.1
+ * @license ng-alain(cipchk@qq.com) v8.9.1
  * (c) 2019 cipchk https://ng-alain.com/
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/platform-browser'), require('@delon/acl'), require('@delon/theme'), require('@delon/util'), require('@angular/common'), require('rxjs'), require('rxjs/operators'), require('@delon/abc/xlsx'), require('@angular/router'), require('ng-zorro-antd/table'), require('@angular/forms'), require('ng-zorro-antd/badge'), require('ng-zorro-antd/checkbox'), require('ng-zorro-antd/divider'), require('ng-zorro-antd/dropdown'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/input'), require('ng-zorro-antd/menu'), require('ng-zorro-antd/popconfirm'), require('ng-zorro-antd/radio'), require('ng-zorro-antd/tag'), require('ng-zorro-antd/tooltip')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/table', ['exports', '@angular/core', '@angular/platform-browser', '@delon/acl', '@delon/theme', '@delon/util', '@angular/common', 'rxjs', 'rxjs/operators', '@delon/abc/xlsx', '@angular/router', 'ng-zorro-antd/table', '@angular/forms', 'ng-zorro-antd/badge', 'ng-zorro-antd/checkbox', 'ng-zorro-antd/divider', 'ng-zorro-antd/dropdown', 'ng-zorro-antd/icon', 'ng-zorro-antd/input', 'ng-zorro-antd/menu', 'ng-zorro-antd/popconfirm', 'ng-zorro-antd/radio', 'ng-zorro-antd/tag', 'ng-zorro-antd/tooltip'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.table = {}), global.ng.core, global.ng.platformBrowser, global.delon.acl, global.delon.theme, global.delon.util, global.ng.common, global.rxjs, global.rxjs.operators, global.delon.abc.xlsx, global.ng.router, global['ng-zorro-antd/table'], global.ng.forms, global['ng-zorro-antd/badge'], global['ng-zorro-antd/checkbox'], global['ng-zorro-antd/divider'], global['ng-zorro-antd/dropdown'], global['ng-zorro-antd/icon'], global['ng-zorro-antd/input'], global['ng-zorro-antd/menu'], global['ng-zorro-antd/popconfirm'], global['ng-zorro-antd/radio'], global['ng-zorro-antd/tag'], global['ng-zorro-antd/tooltip']));
-}(this, (function (exports, core, platformBrowser, acl, theme, util, common, rxjs, operators, xlsx, router, table, forms, badge, checkbox, divider, dropdown, icon, input, menu, popconfirm, radio, tag, tooltip) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/platform-browser'), require('@angular/core'), require('@delon/acl'), require('@delon/theme'), require('@delon/util'), require('@angular/common'), require('rxjs'), require('rxjs/operators'), require('@delon/abc/xlsx'), require('@angular/router'), require('ng-zorro-antd/table'), require('@angular/forms'), require('ng-zorro-antd/badge'), require('ng-zorro-antd/checkbox'), require('ng-zorro-antd/divider'), require('ng-zorro-antd/dropdown'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/menu'), require('ng-zorro-antd/popconfirm'), require('ng-zorro-antd/radio'), require('ng-zorro-antd/tag'), require('ng-zorro-antd/input'), require('ng-zorro-antd/tooltip')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/table', ['exports', '@angular/platform-browser', '@angular/core', '@delon/acl', '@delon/theme', '@delon/util', '@angular/common', 'rxjs', 'rxjs/operators', '@delon/abc/xlsx', '@angular/router', 'ng-zorro-antd/table', '@angular/forms', 'ng-zorro-antd/badge', 'ng-zorro-antd/checkbox', 'ng-zorro-antd/divider', 'ng-zorro-antd/dropdown', 'ng-zorro-antd/icon', 'ng-zorro-antd/menu', 'ng-zorro-antd/popconfirm', 'ng-zorro-antd/radio', 'ng-zorro-antd/tag', 'ng-zorro-antd/input', 'ng-zorro-antd/tooltip'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.table = {}), global.ng.platformBrowser, global.ng.core, global.delon.acl, global.delon.theme, global.delon.util, global.ng.common, global.rxjs, global.rxjs.operators, global.delon.abc.xlsx, global.ng.router, global['ng-zorro-antd/table'], global.ng.forms, global['ng-zorro-antd/badge'], global['ng-zorro-antd/checkbox'], global['ng-zorro-antd/divider'], global['ng-zorro-antd/dropdown'], global['ng-zorro-antd/icon'], global['ng-zorro-antd/menu'], global['ng-zorro-antd/popconfirm'], global['ng-zorro-antd/radio'], global['ng-zorro-antd/tag'], global['ng-zorro-antd/input'], global['ng-zorro-antd/tooltip']));
+}(this, (function (exports, platformBrowser, core, acl, theme, util, common, rxjs, operators, xlsx, router, table, forms, badge, checkbox, divider, dropdown, icon, menu, popconfirm, radio, tag, input, tooltip) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -562,7 +562,7 @@
          */
         STColumn.prototype.selections;
         /**
-         * 列 `class` 属性值（注：无须 `.` 点）多个用空格隔开，例如：
+         * 列 `class` 属性值（注：无须 `.` 点），例如：
          * - `text-center` 居中
          * - `text-right` 居右
          * - `text-success` 成功色
@@ -1066,7 +1066,7 @@
          */
         STColumnButtonModalConfig.prototype.size;
         /**
-         * 对话框 [ModalOptions](https://github.com/NG-ZORRO/ng-zorro-antd/blob/master/components/modal/modal-types.ts) 参数
+         * 对话框 [ModalOptionsForService](https://github.com/NG-ZORRO/ng-zorro-antd/blob/master/components/modal/nz-modal.type.ts) 参数
          * @type {?|undefined}
          */
         STColumnButtonModalConfig.prototype.modalOptions;
@@ -1692,7 +1692,7 @@
         STConfig.decorators = [
             { type: core.Injectable, args: [{ providedIn: 'root' },] }
         ];
-        /** @nocollapse */ STConfig.ɵprov = core["ɵɵdefineInjectable"]({ factory: function STConfig_Factory() { return new STConfig(); }, token: STConfig, providedIn: "root" });
+        /** @nocollapse */ STConfig.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function STConfig_Factory() { return new STConfig(); }, token: STConfig, providedIn: "root" });
         return STConfig;
     }());
     if (false) {
@@ -1868,7 +1868,7 @@
                 pop.title = i.pop;
             }
             else if (typeof i.pop === 'object') {
-                pop = __assign(__assign({}, pop), i.pop);
+                pop = __assign({}, pop, i.pop);
             }
             if (typeof pop.condition !== 'function') {
                 pop.condition = (/**
@@ -1907,7 +1907,7 @@
                             item.type = 'none';
                         }
                         else {
-                            item.modal = __assign(__assign({ paramsName: 'record', size: 'lg' }, modal), item.modal);
+                            item.modal = __assign({ paramsName: 'record', size: 'lg' }, modal, item.modal);
                         }
                     }
                     if (item.type === 'drawer') {
@@ -1916,7 +1916,7 @@
                             item.type = 'none';
                         }
                         else {
-                            item.drawer = __assign(__assign({ paramsName: 'record', size: 'lg' }, drawer), item.drawer);
+                            item.drawer = __assign({ paramsName: 'record', size: 'lg' }, drawer, item.drawer);
                         }
                     }
                     if (item.type === 'del' && typeof item.pop === 'undefined') {
@@ -1925,7 +1925,7 @@
                     // pop
                     this.fixPop(item, (/** @type {?} */ (pop)));
                     if (item.icon) {
-                        item.icon = __assign(__assign({}, btnIcon), (typeof item.icon === 'string' ? { type: item.icon } : item.icon));
+                        item.icon = __assign({}, btnIcon, (typeof item.icon === 'string' ? { type: item.icon } : item.icon));
                     }
                     item.children = item.children && item.children.length > 0 ? this.btnCoerce(item.children) : [];
                     // i18n
@@ -2041,7 +2041,7 @@
         function (item) {
             /** @type {?} */
             var res = this.fixCoerce(item);
-            res.reName = __assign(__assign({}, this.cog.sortReName), res.reName);
+            res.reName = __assign({}, this.cog.sortReName, res.reName);
             return res;
         };
         /**
@@ -2114,10 +2114,10 @@
             /** @type {?} */
             var baseIcon = (/** @type {?} */ ({ type: icon, theme: iconTheme }));
             if (typeof res.icon === 'string') {
-                res.icon = (/** @type {?} */ (__assign(__assign({}, baseIcon), { type: res.icon })));
+                res.icon = (/** @type {?} */ (__assign({}, baseIcon, { type: res.icon })));
             }
             else {
-                res.icon = __assign(__assign({}, baseIcon), res.icon);
+                res.icon = __assign({}, baseIcon, res.icon);
             }
             this.updateDefault(res);
             if (this.acl) {
@@ -2241,11 +2241,11 @@
                     }
                     // className
                     if (!item.className) {
-                        item.className = ((/** @type {?} */ ({
+                        item.className = {
                             number: 'text-right',
                             currency: 'text-right',
                             date: 'text-center',
-                        })))[(/** @type {?} */ (item.type))];
+                        }[(/** @type {?} */ (item.type))];
                     }
                     // width
                     if (typeof item.width === 'number') {
@@ -2746,7 +2746,7 @@
                         _b);
                 }
             }
-            params = __assign(__assign(__assign(__assign({}, params), req.params), this.getReqSortMap(singleSort, multiSort, columns)), this.getReqFilterMap(columns));
+            params = __assign({}, params, req.params, this.getReqSortMap(singleSort, multiSort, columns), this.getReqFilterMap(columns));
             /** @type {?} */
             var reqOptions = {
                 params: params,
@@ -2755,7 +2755,7 @@
             };
             if (method === 'POST' && req.allInBody === true) {
                 reqOptions = {
-                    body: __assign(__assign({}, req.body), params),
+                    body: __assign({}, req.body, params),
                     headers: req.headers,
                 };
             }
@@ -3001,7 +3001,7 @@
                      */
                     function (i) { return i.value; })).join(',');
                 }
-                ret = __assign(__assign({}, ret), obj);
+                ret = __assign({}, ret, obj);
             }));
             return ret;
         };
@@ -3416,12 +3416,10 @@
             /**
              * 请求异常时回调
              */
-            // tslint:disable-next-line:no-output-native
             this.error = new core.EventEmitter();
             /**
              * 变化时回调，包括：`pi`、`ps`、`checkbox`、`radio`、`sort`、`filter`、`click`、`dblClick` 变动
              */
-            // tslint:disable-next-line:no-output-native
             this.change = new core.EventEmitter();
             this.rowClickCount = 0;
             this.delonI18n.change.pipe(operators.takeUntil(this.unsubscribe$)).subscribe((/**
@@ -3636,7 +3634,10 @@
          */
         function (total, range) {
             return this.totalTpl
-                ? this.totalTpl.replace('{{total}}', total).replace('{{range[0]}}', range[0]).replace('{{range[1]}}', range[1])
+                ? this.totalTpl
+                    .replace('{{total}}', total)
+                    .replace('{{range[0]}}', range[0])
+                    .replace('{{range[1]}}', range[1])
                 : '';
         };
         /**
@@ -3858,7 +3859,10 @@
          * @return {THIS}
          */
         function () {
-            return (/** @type {?} */ (this)).clearCheck().clearRadio().clearFilter().clearSort();
+            return (/** @type {?} */ (this)).clearCheck()
+                .clearRadio()
+                .clearFilter()
+                .clearSort();
         };
         /**
          * 根据页码重新加载数据
@@ -3892,7 +3896,7 @@
             if (pi !== -1)
                 (/** @type {?} */ (this)).pi = pi;
             if (typeof extraParams !== 'undefined') {
-                (/** @type {?} */ (this))._req.params = options && options.merge ? __assign(__assign({}, (/** @type {?} */ (this))._req.params), extraParams) : extraParams;
+                (/** @type {?} */ (this))._req.params = options && options.merge ? __assign({}, (/** @type {?} */ (this))._req.params, extraParams) : extraParams;
             }
             (/** @type {?} */ (this))._change('pi');
             return (/** @type {?} */ (this));
@@ -4594,7 +4598,7 @@
                 var modal = btn.modal;
                 /** @type {?} */
                 var obj = (_a = {}, _a[(/** @type {?} */ ((/** @type {?} */ (modal)).paramsName))] = record, _a);
-                ((/** @type {?} */ (this.modalHelper[btn.type === 'modal' ? 'create' : 'createStatic'])))((/** @type {?} */ (modal)).component, __assign(__assign({}, obj), ((/** @type {?} */ (modal)).params && (/** @type {?} */ ((/** @type {?} */ (modal)).params))(record))), util.deepMergeKey({}, true, this.copyCog.modal, modal))
+                ((/** @type {?} */ (this.modalHelper[btn.type === 'modal' ? 'create' : 'createStatic'])))((/** @type {?} */ (modal)).component, __assign({}, obj, ((/** @type {?} */ (modal)).params && (/** @type {?} */ ((/** @type {?} */ (modal)).params))(record))), util.deepMergeKey({}, true, this.copyCog.modal, modal))
                     .pipe(operators.filter((/**
                  * @param {?} w
                  * @return {?}
@@ -4612,7 +4616,7 @@
                 /** @type {?} */
                 var obj = (_b = {}, _b[(/** @type {?} */ ((/** @type {?} */ (drawer)).paramsName))] = record, _b);
                 this.drawerHelper
-                    .create((/** @type {?} */ ((/** @type {?} */ (drawer)).title)), (/** @type {?} */ (drawer)).component, __assign(__assign({}, obj), ((/** @type {?} */ (drawer)).params && (/** @type {?} */ ((/** @type {?} */ (drawer)).params))(record))), util.deepMergeKey({}, true, this.copyCog.drawer, drawer))
+                    .create((/** @type {?} */ ((/** @type {?} */ (drawer)).title)), (/** @type {?} */ (drawer)).component, __assign({}, obj, ((/** @type {?} */ (drawer)).params && (/** @type {?} */ ((/** @type {?} */ (drawer)).params))(record))), util.deepMergeKey({}, true, this.copyCog.drawer, drawer))
                     .pipe(operators.filter((/**
                  * @param {?} w
                  * @return {?}
@@ -4737,7 +4741,7 @@
              * @return {?}
              */
             function (res) {
-                return _this.exportSrv.export(__assign(__assign({}, opt), { _d: res, _c: _this._columns }));
+                return _this.exportSrv.export(__assign({}, opt, { _d: res, _c: _this._columns }));
             }));
         };
         Object.defineProperty(STComponent.prototype, "cdkVirtualScrollViewport", {

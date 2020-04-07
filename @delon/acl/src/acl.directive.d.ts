@@ -7,8 +7,8 @@ export declare class ACLDirective implements OnDestroy {
     protected srv: ACLService;
     private _value;
     private change$;
-    set acl(value: ACLCanType);
-    set ability(value: ACLCanType);
+    acl: ACLCanType;
+    ability: ACLCanType;
     private set;
     constructor(el: ElementRef, renderer: Renderer2, srv: ACLService);
     ngOnDestroy(): void;

@@ -19,7 +19,7 @@ var ZipConfig = /** @class */ (function () {
     ZipConfig.decorators = [
         { type: Injectable, args: [{ providedIn: 'root' },] }
     ];
-    /** @nocollapse */ ZipConfig.ɵprov = i0.ɵɵdefineInjectable({ factory: function ZipConfig_Factory() { return new ZipConfig(); }, token: ZipConfig, providedIn: "root" });
+    /** @nocollapse */ ZipConfig.ngInjectableDef = i0.ɵɵdefineInjectable({ factory: function ZipConfig_Factory() { return new ZipConfig(); }, token: ZipConfig, providedIn: "root" });
     return ZipConfig;
 }());
 export { ZipConfig };

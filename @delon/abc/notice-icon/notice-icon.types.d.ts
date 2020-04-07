@@ -17,7 +17,7 @@ export interface NoticeIconList {
     /** 描述信息 */
     description?: string;
     /** 时间戳 */
-    datetime?: string | Date | number;
+    datetime?: string;
     /** 额外信息，在列表项右上角 */
     extra?: string;
     /** 是否已读状态 */

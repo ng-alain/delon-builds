@@ -1,7 +1,7 @@
 import { InjectionToken, Injectable, ɵɵdefineInjectable, Optional, Inject, ɵɵinject, Injector, INJECTOR, SkipSelf, NgModule, Pipe, Version } from '@angular/core';
+import { BehaviorSubject, Subject, Observable, throwError, of } from 'rxjs';
+import { filter, share, tap, catchError, switchMap } from 'rxjs/operators';
 import { ACLService } from '@delon/acl';
-import { BehaviorSubject, Subject, Observable, throwError } from 'rxjs';
-import { filter, share, tap, catchError } from 'rxjs/operators';
 import { DOCUMENT, CurrencyPipe, CommonModule } from '@angular/common';
 import { Title, DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
@@ -9,9 +9,8 @@ import { deepMerge } from '@delon/util';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { NzDrawerService } from 'ng-zorro-antd/drawer';
 import { HttpParams, HttpClient } from '@angular/common/http';
+import distanceInWordsToNow from 'date-fns/distance_in_words_to_now';
 import format from 'date-fns/format';
-import formatDistanceToNow from 'date-fns/formatDistanceToNow';
-import parseISO from 'date-fns/parseISO';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { BellOutline, DeleteOutline, PlusOutline, InboxOutline } from '@ant-design/icons-angular/icons';
 import { NzIconService } from 'ng-zorro-antd/icon';
@@ -313,7 +312,7 @@ class AlainI18NServiceFake {
 AlainI18NServiceFake.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
-/** @nocollapse */ AlainI18NServiceFake.ɵprov = ɵɵdefineInjectable({ factory: function AlainI18NServiceFake_Factory() { return new AlainI18NServiceFake(); }, token: AlainI18NServiceFake, providedIn: "root" });
+/** @nocollapse */ AlainI18NServiceFake.ngInjectableDef = ɵɵdefineInjectable({ factory: function AlainI18NServiceFake_Factory() { return new AlainI18NServiceFake(); }, token: AlainI18NServiceFake, providedIn: "root" });
 if (false) {
     /**
      * @type {?}
@@ -431,7 +430,10 @@ class MenuService {
                 // compatible `anticon anticon-user`
                 if (~item.icon.indexOf(`anticon-`)) {
                     type = 'icon';
-                    value = value.split('-').slice(1).join('-');
+                    value = value
+                        .split('-')
+                        .slice(1)
+                        .join('-');
                 }
                 else if (/^https?:\/\//.test(item.icon)) {
                     type = 'img';
@@ -559,7 +561,15 @@ class MenuService {
             }));
             if (!recursive)
                 break;
-            url = url.split('/').slice(0, -1).join('/');
+            if (url.includes('?')) {
+                url = url.split('?')[0];
+            }
+            else {
+                url = url
+                    .split('/')
+                    .slice(0, -1)
+                    .join('/');
+            }
         }
         return item;
     }
@@ -667,7 +677,7 @@ MenuService.ctorParameters = () => [
     { type: undefined, decorators: [{ type: Optional }, { type: Inject, args: [ALAIN_I18N_TOKEN,] }] },
     { type: ACLService, decorators: [{ type: Optional }] }
 ];
-/** @nocollapse */ MenuService.ɵprov = ɵɵdefineInjectable({ factory: function MenuService_Factory() { return new MenuService(ɵɵinject(ALAIN_I18N_TOKEN, 8), ɵɵinject(ACLService, 8)); }, token: MenuService, providedIn: "root" });
+/** @nocollapse */ MenuService.ngInjectableDef = ɵɵdefineInjectable({ factory: function MenuService_Factory() { return new MenuService(ɵɵinject(ALAIN_I18N_TOKEN, 8), ɵɵinject(ACLService, 8)); }, token: MenuService, providedIn: "root" });
 if (false) {
     /**
      * @type {?}
@@ -768,7 +778,7 @@ ScrollService.ctorParameters = () => [
     { type: undefined, decorators: [{ type: Inject, args: [WINDOW,] }] },
     { type: undefined, decorators: [{ type: Inject, args: [DOCUMENT,] }] }
 ];
-/** @nocollapse */ ScrollService.ɵprov = ɵɵdefineInjectable({ factory: function ScrollService_Factory() { return new ScrollService(ɵɵinject(WINDOW), ɵɵinject(DOCUMENT)); }, token: ScrollService, providedIn: "root" });
+/** @nocollapse */ ScrollService.ngInjectableDef = ɵɵdefineInjectable({ factory: function ScrollService_Factory() { return new ScrollService(ɵɵinject(WINDOW), ɵɵinject(DOCUMENT)); }, token: ScrollService, providedIn: "root" });
 if (false) {
     /**
      * @type {?}
@@ -975,7 +985,7 @@ class SettingsService {
 SettingsService.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
-/** @nocollapse */ SettingsService.ɵprov = ɵɵdefineInjectable({ factory: function SettingsService_Factory() { return new SettingsService(); }, token: SettingsService, providedIn: "root" });
+/** @nocollapse */ SettingsService.ngInjectableDef = ɵɵdefineInjectable({ factory: function SettingsService_Factory() { return new SettingsService(); }, token: SettingsService, providedIn: "root" });
 if (false) {
     /**
      * @type {?}
@@ -1041,7 +1051,7 @@ class AlainThemeConfig {
 AlainThemeConfig.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
-/** @nocollapse */ AlainThemeConfig.ɵprov = ɵɵdefineInjectable({ factory: function AlainThemeConfig_Factory() { return new AlainThemeConfig(); }, token: AlainThemeConfig, providedIn: "root" });
+/** @nocollapse */ AlainThemeConfig.ngInjectableDef = ɵɵdefineInjectable({ factory: function AlainThemeConfig_Factory() { return new AlainThemeConfig(); }, token: AlainThemeConfig, providedIn: "root" });
 if (false) {
     /** @type {?} */
     AlainThemeConfig.prototype.http;
@@ -1114,7 +1124,7 @@ ResponsiveService.decorators = [
 ResponsiveService.ctorParameters = () => [
     { type: AlainThemeConfig }
 ];
-/** @nocollapse */ ResponsiveService.ɵprov = ɵɵdefineInjectable({ factory: function ResponsiveService_Factory() { return new ResponsiveService(ɵɵinject(AlainThemeConfig)); }, token: ResponsiveService, providedIn: "root" });
+/** @nocollapse */ ResponsiveService.ngInjectableDef = ɵɵdefineInjectable({ factory: function ResponsiveService_Factory() { return new ResponsiveService(ɵɵinject(AlainThemeConfig)); }, token: ResponsiveService, providedIn: "root" });
 if (false) {
     /**
      * @type {?}
@@ -1233,7 +1243,7 @@ class TitleService {
         let title;
         if (item.i18n && this.i18nSrv)
             title = this.i18nSrv.fanyi(item.i18n);
-        return title || (/** @type {?} */ (item.text));
+        return title || item.text;
     }
     /**
      * @private
@@ -1299,7 +1309,7 @@ TitleService.ctorParameters = () => [
     { type: undefined, decorators: [{ type: Optional }, { type: Inject, args: [ALAIN_I18N_TOKEN,] }] },
     { type: undefined, decorators: [{ type: Inject, args: [DOCUMENT,] }] }
 ];
-/** @nocollapse */ TitleService.ɵprov = ɵɵdefineInjectable({ factory: function TitleService_Factory() { return new TitleService(ɵɵinject(INJECTOR), ɵɵinject(Title), ɵɵinject(MenuService), ɵɵinject(ALAIN_I18N_TOKEN, 8), ɵɵinject(DOCUMENT)); }, token: TitleService, providedIn: "root" });
+/** @nocollapse */ TitleService.ngInjectableDef = ɵɵdefineInjectable({ factory: function TitleService_Factory() { return new TitleService(ɵɵinject(INJECTOR), ɵɵinject(Title), ɵɵinject(MenuService), ɵɵinject(ALAIN_I18N_TOKEN, 8), ɵɵinject(DOCUMENT)); }, token: TitleService, providedIn: "root" });
 if (false) {
     /**
      * @type {?}
@@ -1687,7 +1697,7 @@ class DelonLocaleService {
      * @return {?}
      */
     getData(path) {
-        return (/** @type {?} */ ((this._locale[path] || {})));
+        return this._locale[path] || {};
     }
 }
 DelonLocaleService.decorators = [
@@ -2304,7 +2314,7 @@ if (false) {
      */
     ModalHelperOptions.prototype.size;
     /**
-     * 对话框 [ModalOptions](https://github.com/NG-ZORRO/ng-zorro-antd/blob/master/components/modal/modal-types.ts) 参数
+     * 对话框 [ModalOptionsForService](https://github.com/NG-ZORRO/ng-zorro-antd/blob/master/components/modal/nz-modal.type.ts) 参数
      * @type {?|undefined}
      */
     ModalHelperOptions.prototype.modalOptions;
@@ -2386,7 +2396,7 @@ class ModalHelper {
                 nzComponentParams: params,
             };
             /** @type {?} */
-            const subject = this.srv.create(Object.assign(Object.assign({}, defaultOptions), modalOptions));
+            const subject = this.srv.create(Object.assign({}, defaultOptions, modalOptions));
             /** @type {?} */
             const afterClose$ = subject.afterClose.subscribe((/**
              * @param {?} res
@@ -2426,7 +2436,7 @@ class ModalHelper {
     createStatic(comp, params, options) {
         /** @type {?} */
         const modalOptions = Object.assign({ nzMaskClosable: false }, (options && options.modalOptions));
-        return this.create(comp, params, Object.assign(Object.assign({}, options), { modalOptions }));
+        return this.create(comp, params, Object.assign({}, options, { modalOptions }));
     }
     /**
      * 打开对话框
@@ -2441,8 +2451,8 @@ class ModalHelper {
      * @param {?} comp 组件
      * @param {?=} params 组件参数
      * @param {?=} size 大小；例如：lg、600，默认：lg
+     * @param {?=} options 对话框 `ModalOptionsForService` 参数
      *
-     * @param {?=} options
      * @return {?}
      */
     open(comp, params, size = 'lg', options) {
@@ -2465,8 +2475,8 @@ class ModalHelper {
      * @param {?} comp 组件
      * @param {?=} params 组件参数
      * @param {?=} size 大小；例如：lg、600，默认：lg
+     * @param {?=} options 对话框 `ModalOptionsForService` 参数
      *
-     * @param {?=} options
      * @return {?}
      */
     static(comp, params, size = 'lg', options) {
@@ -2480,7 +2490,7 @@ ModalHelper.decorators = [
 ModalHelper.ctorParameters = () => [
     { type: NzModalService }
 ];
-/** @nocollapse */ ModalHelper.ɵprov = ɵɵdefineInjectable({ factory: function ModalHelper_Factory() { return new ModalHelper(ɵɵinject(NzModalService)); }, token: ModalHelper, providedIn: "root" });
+/** @nocollapse */ ModalHelper.ngInjectableDef = ɵɵdefineInjectable({ factory: function ModalHelper_Factory() { return new ModalHelper(ɵɵinject(NzModalService)); }, token: ModalHelper, providedIn: "root" });
 if (false) {
     /**
      * @type {?}
@@ -2613,7 +2623,7 @@ class DrawerHelper {
                 }
             }
             /** @type {?} */
-            const subject = this.srv.create(Object.assign(Object.assign({}, defaultOptions), drawerOptions));
+            const subject = this.srv.create(Object.assign({}, defaultOptions, drawerOptions));
             /** @type {?} */
             const afterClose$ = subject.afterClose.subscribe((/**
              * @param {?} res
@@ -2644,7 +2654,7 @@ class DrawerHelper {
     static(title, comp, params, options) {
         /** @type {?} */
         const drawerOptions = Object.assign({ nzMaskClosable: false }, (options && options.drawerOptions));
-        return this.create(title, comp, params, Object.assign(Object.assign({}, options), { drawerOptions }));
+        return this.create(title, comp, params, Object.assign({}, options, { drawerOptions }));
     }
 }
 DrawerHelper.decorators = [
@@ -2654,7 +2664,7 @@ DrawerHelper.decorators = [
 DrawerHelper.ctorParameters = () => [
     { type: NzDrawerService }
 ];
-/** @nocollapse */ DrawerHelper.ɵprov = ɵɵdefineInjectable({ factory: function DrawerHelper_Factory() { return new DrawerHelper(ɵɵinject(NzDrawerService)); }, token: DrawerHelper, providedIn: "root" });
+/** @nocollapse */ DrawerHelper.ngInjectableDef = ɵɵdefineInjectable({ factory: function DrawerHelper_Factory() { return new DrawerHelper(ɵɵinject(NzDrawerService)); }, token: DrawerHelper, providedIn: "root" });
 if (false) {
     /**
      * @type {?}
@@ -2738,19 +2748,19 @@ class _HttpClient {
      * @return {?}
      */
     begin() {
-        setTimeout((/**
+        Promise.resolve(null).then((/**
          * @return {?}
          */
-        () => (this._loading = true)), 10);
+        () => (this._loading = true)));
     }
     /**
      * @return {?}
      */
     end() {
-        setTimeout((/**
+        Promise.resolve(null).then((/**
          * @return {?}
          */
-        () => (this._loading = false)), 10);
+        () => (this._loading = false)));
     }
     /**
      * GET 请求
@@ -2839,10 +2849,15 @@ class _HttpClient {
      * @return {?}
      */
     request(method, url, options = {}) {
-        this.begin();
         if (options.params)
             options.params = this.parseParams(options.params);
-        return this.http.request(method, url, options).pipe(tap((/**
+        return of(null).pipe(tap((/**
+         * @return {?}
+         */
+        () => this.begin())), switchMap((/**
+         * @return {?}
+         */
+        () => this.http.request(method, url, options))), tap((/**
          * @return {?}
          */
         () => this.end())), catchError((/**
@@ -2863,7 +2878,7 @@ _HttpClient.ctorParameters = () => [
     { type: HttpClient },
     { type: AlainThemeConfig }
 ];
-/** @nocollapse */ _HttpClient.ɵprov = ɵɵdefineInjectable({ factory: function _HttpClient_Factory() { return new _HttpClient(ɵɵinject(HttpClient), ɵɵinject(AlainThemeConfig)); }, token: _HttpClient, providedIn: "root" });
+/** @nocollapse */ _HttpClient.ngInjectableDef = ɵɵdefineInjectable({ factory: function _HttpClient_Factory() { return new _HttpClient(ɵɵinject(HttpClient), ɵɵinject(AlainThemeConfig)); }, token: _HttpClient, providedIn: "root" });
 if (false) {
     /**
      * @type {?}
@@ -3106,9 +3121,7 @@ function makeMethod(method) {
             function (...args) {
                 options = options || {};
                 /** @type {?} */
-                const injector = (/** @type {?} */ (((/** @type {?} */ (this))).injector));
-                /** @type {?} */
-                const http = (/** @type {?} */ (injector.get(_HttpClient, null)));
+                const http = (/** @type {?} */ (this.injector.get(_HttpClient, null)));
                 if (http == null) {
                     throw new TypeError(`Not found '_HttpClient', You can import 'AlainThemeModule' && 'HttpClientModule' in your root module.`);
                 }
@@ -3125,7 +3138,7 @@ function makeMethod(method) {
                 }
                 if (options.acl) {
                     /** @type {?} */
-                    const aclSrv = injector.get(ACLService, null);
+                    const aclSrv = this.injector.get(ACLService, null);
                     if (aclSrv && !aclSrv.can(options.acl)) {
                         return throwError({
                             url: requestUrl,
@@ -3174,7 +3187,7 @@ function makeMethod(method) {
                 const payload = getValidArgs(data, 'payload', args);
                 /** @type {?} */
                 const supportedBody = method === 'POST' || method === 'PUT';
-                return http.request(method, requestUrl, Object.assign({ body: supportedBody ? genBody(getValidArgs(data, 'body', args), payload) : null, params: !supportedBody ? Object.assign(Object.assign({}, params), payload) : params, headers: Object.assign(Object.assign({}, baseData.baseHeaders), headers) }, options));
+                return http.request(method, requestUrl, Object.assign({ body: supportedBody ? genBody(getValidArgs(data, 'body', args), payload) : null, params: !supportedBody ? Object.assign({}, params, payload) : params, headers: Object.assign({}, baseData.baseHeaders, headers) }, options));
             });
             return descriptor;
         });
@@ -3241,10 +3254,9 @@ class DatePipe {
      * @return {?}
      */
     transform(value, formatString = 'YYYY-MM-DD HH:mm') {
-        value = typeof value === 'string' ? parseISO(value) : value;
         if (value) {
             if (formatString === 'fn') {
-                return formatDistanceToNow(value, {
+                return distanceInWordsToNow(value, {
                     locale: ((/** @type {?} */ (window))).__locale__,
                 });
             }
@@ -3490,6 +3502,9 @@ if (false) {
  */
 /** @type {?} */
 const HELPERS = [ModalHelper, DrawerHelper];
+// components
+/** @type {?} */
+const COMPONENTS = [];
 /** @type {?} */
 const PIPES = [DatePipe, CNCurrencyPipe, KeysPipe, YNPipe, I18nPipe, HTMLPipe, URLPipe];
 /** @type {?} */
@@ -3524,8 +3539,8 @@ class AlainThemeModule {
 AlainThemeModule.decorators = [
     { type: NgModule, args: [{
                 imports: [CommonModule, RouterModule, OverlayModule],
-                declarations: [...PIPES],
-                exports: [...PIPES, DelonLocaleModule],
+                declarations: [...COMPONENTS, ...PIPES],
+                exports: [...COMPONENTS, ...PIPES, DelonLocaleModule],
             },] }
 ];
 /** @nocollapse */
@@ -3539,7 +3554,7 @@ AlainThemeModule.ctorParameters = () => [
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-const VERSION = new Version('9.0.0-rc.1-bdf4e3a7');
+const VERSION = new Version('8.9.1-2e5563c');
 
 /**
  * @fileoverview added by tsickle

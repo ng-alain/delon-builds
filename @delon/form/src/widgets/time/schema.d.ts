@@ -1,4 +1,4 @@
-import { SFDLSSize, SFUISchemaItem } from '../../schema/ui';
+import { SFUISchemaItem, SFDLSSize } from '../../schema/ui';
 export interface SFTimeWidgetSchema extends SFUISchemaItem {
     size?: SFDLSSize;
     placeholder?: string;

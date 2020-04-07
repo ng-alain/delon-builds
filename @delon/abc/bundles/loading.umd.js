@@ -1,5 +1,5 @@
 /**
- * @license ng-alain(cipchk@qq.com) v9.0.0-rc.1
+ * @license ng-alain(cipchk@qq.com) v8.9.1
  * (c) 2019 cipchk https://ng-alain.com/
  * License: MIT
  */
@@ -242,7 +242,7 @@
         LoadingConfig.decorators = [
             { type: core.Injectable, args: [{ providedIn: 'root' },] }
         ];
-        /** @nocollapse */ LoadingConfig.ɵprov = core["ɵɵdefineInjectable"]({ factory: function LoadingConfig_Factory() { return new LoadingConfig(); }, token: LoadingConfig, providedIn: "root" });
+        /** @nocollapse */ LoadingConfig.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function LoadingConfig_Factory() { return new LoadingConfig(); }, token: LoadingConfig, providedIn: "root" });
         return LoadingConfig;
     }());
     if (false) {
@@ -289,7 +289,7 @@
         LoadingDefaultComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'loading-default',
-                        template: "<div class=\"loading-default__icon\" *ngIf=\"options.type !== 'text'\">\n  <ng-container [ngSwitch]=\"options.type\">\n    <nz-spin *ngSwitchCase=\"'spin'\" nzSimple></nz-spin>\n    <i *ngSwitchCase=\"'icon'\" nz-icon [nzType]=\"icon.type\" [nzTheme]=\"icon.theme\" [nzSpin]=\"icon.spin\"></i>\n    <div *ngSwitchDefault class=\"loading-default__custom\" [ngStyle]=\"custom.style\" [innerHTML]=\"custom.html\"></div>\n  </ng-container>\n</div>\n<div *ngIf=\"options.text\" class=\"loading-default__text\">{{ options.text }}</div>\n",
+                        template: "<div class=\"loading-default__icon\" *ngIf=\"options.type !== 'text'\">\n  <ng-container [ngSwitch]=\"options.type\">\n    <nz-spin *ngSwitchCase=\"'spin'\" nzSimple></nz-spin>\n    <i *ngSwitchCase=\"'icon'\" nz-icon [nzType]=\"icon.type\" [nzTheme]=\"icon.theme\" [nzSpin]=\"icon.spin\"></i>\n    <div *ngSwitchDefault class=\"loading-default__custom\" [ngStyle]=\"custom.style\" [innerHTML]=\"custom.html\"></div>\n  </ng-container>\n</div>\n<div *ngIf=\"options.text\" class=\"loading-default__text\">{{ options.text }}</div>",
                         host: {
                             '[class.loading-default]': 'true',
                         },
@@ -352,7 +352,11 @@
                 return;
             this._close(false);
             this._overlayRef = this.overlay.create({
-                positionStrategy: this.overlay.position().global().centerHorizontally().centerVertically(),
+                positionStrategy: this.overlay
+                    .position()
+                    .global()
+                    .centerHorizontally()
+                    .centerVertically(),
                 scrollStrategy: this.overlay.scrollStrategies.block(),
                 hasBackdrop: true,
                 backdropClass: 'loading-backdrop',
@@ -372,7 +376,7 @@
          * @return {?}
          */
         function (options) {
-            this.opt = __assign(__assign({}, this.cog), options);
+            this.opt = __assign({}, this.cog, options);
             this.n$.next();
         };
         /**
@@ -419,7 +423,7 @@
             { type: LoadingConfig },
             { type: overlay.Overlay }
         ]; };
-        /** @nocollapse */ LoadingService.ɵprov = core["ɵɵdefineInjectable"]({ factory: function LoadingService_Factory() { return new LoadingService(core["ɵɵinject"](LoadingConfig), core["ɵɵinject"](overlay.Overlay)); }, token: LoadingService, providedIn: "root" });
+        /** @nocollapse */ LoadingService.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function LoadingService_Factory() { return new LoadingService(core.ɵɵinject(LoadingConfig), core.ɵɵinject(overlay.Overlay)); }, token: LoadingService, providedIn: "root" });
         return LoadingService;
     }());
     if (false) {

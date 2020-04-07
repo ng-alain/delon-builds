@@ -1,5 +1,5 @@
-import { Injectable, Directive, TemplateRef, Host, Input, ɵɵdefineInjectable, Optional, Inject, EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ChangeDetectorRef, ElementRef, Renderer2, ViewChild, Output, NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Injectable, Directive, TemplateRef, Host, Input, ɵɵdefineInjectable, Optional, Inject, EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ChangeDetectorRef, ElementRef, Renderer2, ViewChild, Output, NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { ACLService, DelonACLModule } from '@delon/acl';
 import { ALAIN_I18N_TOKEN, _HttpClient, CNCurrencyPipe, DatePipe, YNPipe, ModalHelper, DrawerHelper, DelonLocaleService } from '@delon/theme';
 import { deepCopy, deepGet, deepMergeKey, deepMerge, toBoolean, updateHostClass, InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
@@ -16,11 +16,11 @@ import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzIconModule } from 'ng-zorro-antd/icon';
-import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
 import { NzRadioModule } from 'ng-zorro-antd/radio';
 import { NzTagModule } from 'ng-zorro-antd/tag';
+import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 
 /**
@@ -362,7 +362,7 @@ if (false) {
      */
     STColumn.prototype.selections;
     /**
-     * 列 `class` 属性值（注：无须 `.` 点）多个用空格隔开，例如：
+     * 列 `class` 属性值（注：无须 `.` 点），例如：
      * - `text-center` 居中
      * - `text-right` 居右
      * - `text-success` 成功色
@@ -866,7 +866,7 @@ if (false) {
      */
     STColumnButtonModalConfig.prototype.size;
     /**
-     * 对话框 [ModalOptions](https://github.com/NG-ZORRO/ng-zorro-antd/blob/master/components/modal/modal-types.ts) 参数
+     * 对话框 [ModalOptionsForService](https://github.com/NG-ZORRO/ng-zorro-antd/blob/master/components/modal/nz-modal.type.ts) 参数
      * @type {?|undefined}
      */
     STColumnButtonModalConfig.prototype.modalOptions;
@@ -1478,7 +1478,7 @@ class STConfig {
 STConfig.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
-/** @nocollapse */ STConfig.ɵprov = ɵɵdefineInjectable({ factory: function STConfig_Factory() { return new STConfig(); }, token: STConfig, providedIn: "root" });
+/** @nocollapse */ STConfig.ngInjectableDef = ɵɵdefineInjectable({ factory: function STConfig_Factory() { return new STConfig(); }, token: STConfig, providedIn: "root" });
 if (false) {
     /**
      * 起始页码，默认为：`1`
@@ -1653,7 +1653,7 @@ class STColumnSource {
             pop.title = i.pop;
         }
         else if (typeof i.pop === 'object') {
-            pop = Object.assign(Object.assign({}, pop), i.pop);
+            pop = Object.assign({}, pop, i.pop);
         }
         if (typeof pop.condition !== 'function') {
             pop.condition = (/**
@@ -1684,7 +1684,7 @@ class STColumnSource {
                     item.type = 'none';
                 }
                 else {
-                    item.modal = Object.assign(Object.assign({ paramsName: 'record', size: 'lg' }, modal), item.modal);
+                    item.modal = Object.assign({ paramsName: 'record', size: 'lg' }, modal, item.modal);
                 }
             }
             if (item.type === 'drawer') {
@@ -1693,7 +1693,7 @@ class STColumnSource {
                     item.type = 'none';
                 }
                 else {
-                    item.drawer = Object.assign(Object.assign({ paramsName: 'record', size: 'lg' }, drawer), item.drawer);
+                    item.drawer = Object.assign({ paramsName: 'record', size: 'lg' }, drawer, item.drawer);
                 }
             }
             if (item.type === 'del' && typeof item.pop === 'undefined') {
@@ -1702,7 +1702,7 @@ class STColumnSource {
             // pop
             this.fixPop(item, (/** @type {?} */ (pop)));
             if (item.icon) {
-                item.icon = Object.assign(Object.assign({}, btnIcon), (typeof item.icon === 'string' ? { type: item.icon } : item.icon));
+                item.icon = Object.assign({}, btnIcon, (typeof item.icon === 'string' ? { type: item.icon } : item.icon));
             }
             item.children = item.children && item.children.length > 0 ? this.btnCoerce(item.children) : [];
             // i18n
@@ -1784,7 +1784,7 @@ class STColumnSource {
     sortCoerce(item) {
         /** @type {?} */
         const res = this.fixCoerce(item);
-        res.reName = Object.assign(Object.assign({}, this.cog.sortReName), res.reName);
+        res.reName = Object.assign({}, this.cog.sortReName, res.reName);
         return res;
     }
     /**
@@ -1846,10 +1846,10 @@ class STColumnSource {
         /** @type {?} */
         const baseIcon = (/** @type {?} */ ({ type: icon, theme: iconTheme }));
         if (typeof res.icon === 'string') {
-            res.icon = (/** @type {?} */ (Object.assign(Object.assign({}, baseIcon), { type: res.icon })));
+            res.icon = (/** @type {?} */ (Object.assign({}, baseIcon, { type: res.icon })));
         }
         else {
-            res.icon = Object.assign(Object.assign({}, baseIcon), res.icon);
+            res.icon = Object.assign({}, baseIcon, res.icon);
         }
         this.updateDefault(res);
         if (this.acl) {
@@ -1960,11 +1960,11 @@ class STColumnSource {
             }
             // className
             if (!item.className) {
-                item.className = ((/** @type {?} */ ({
+                item.className = {
                     number: 'text-right',
                     currency: 'text-right',
                     date: 'text-center',
-                })))[(/** @type {?} */ (item.type))];
+                }[(/** @type {?} */ (item.type))];
             }
             // width
             if (typeof item.width === 'number') {
@@ -2428,7 +2428,7 @@ class STDataSource {
                 };
             }
         }
-        params = Object.assign(Object.assign(Object.assign(Object.assign({}, params), req.params), this.getReqSortMap(singleSort, multiSort, columns)), this.getReqFilterMap(columns));
+        params = Object.assign({}, params, req.params, this.getReqSortMap(singleSort, multiSort, columns), this.getReqFilterMap(columns));
         /** @type {?} */
         let reqOptions = {
             params,
@@ -2437,7 +2437,7 @@ class STDataSource {
         };
         if (method === 'POST' && req.allInBody === true) {
             reqOptions = {
-                body: Object.assign(Object.assign({}, req.body), params),
+                body: Object.assign({}, req.body, params),
                 headers: req.headers,
             };
         }
@@ -2629,7 +2629,7 @@ class STDataSource {
                  */
                 i => i.value)).join(',');
             }
-            ret = Object.assign(Object.assign({}, ret), obj);
+            ret = Object.assign({}, ret, obj);
         }));
         return ret;
     }
@@ -3004,12 +3004,10 @@ class STComponent {
         /**
          * 请求异常时回调
          */
-        // tslint:disable-next-line:no-output-native
         this.error = new EventEmitter();
         /**
          * 变化时回调，包括：`pi`、`ps`、`checkbox`、`radio`、`sort`、`filter`、`click`、`dblClick` 变动
          */
-        // tslint:disable-next-line:no-output-native
         this.change = new EventEmitter();
         this.rowClickCount = 0;
         this.delonI18n.change.pipe(takeUntil(this.unsubscribe$)).subscribe((/**
@@ -3172,7 +3170,10 @@ class STComponent {
      */
     renderTotal(total, range) {
         return this.totalTpl
-            ? this.totalTpl.replace('{{total}}', total).replace('{{range[0]}}', range[0]).replace('{{range[1]}}', range[1])
+            ? this.totalTpl
+                .replace('{{total}}', total)
+                .replace('{{range[0]}}', range[0])
+                .replace('{{range[1]}}', range[1])
             : '';
     }
     /**
@@ -3329,7 +3330,10 @@ class STComponent {
      * @return {THIS}
      */
     clearStatus() {
-        return (/** @type {?} */ (this)).clearCheck().clearRadio().clearFilter().clearSort();
+        return (/** @type {?} */ (this)).clearCheck()
+            .clearRadio()
+            .clearFilter()
+            .clearSort();
     }
     /**
      * 根据页码重新加载数据
@@ -3345,7 +3349,7 @@ class STComponent {
         if (pi !== -1)
             (/** @type {?} */ (this)).pi = pi;
         if (typeof extraParams !== 'undefined') {
-            (/** @type {?} */ (this))._req.params = options && options.merge ? Object.assign(Object.assign({}, (/** @type {?} */ (this))._req.params), extraParams) : extraParams;
+            (/** @type {?} */ (this))._req.params = options && options.merge ? Object.assign({}, (/** @type {?} */ (this))._req.params, extraParams) : extraParams;
         }
         (/** @type {?} */ (this))._change('pi');
         return (/** @type {?} */ (this));
@@ -3820,7 +3824,7 @@ class STComponent {
             const { modal } = btn;
             /** @type {?} */
             const obj = { [(/** @type {?} */ ((/** @type {?} */ (modal)).paramsName))]: record };
-            ((/** @type {?} */ (this.modalHelper[btn.type === 'modal' ? 'create' : 'createStatic'])))((/** @type {?} */ (modal)).component, Object.assign(Object.assign({}, obj), ((/** @type {?} */ (modal)).params && (/** @type {?} */ ((/** @type {?} */ (modal)).params))(record))), deepMergeKey({}, true, this.copyCog.modal, modal))
+            ((/** @type {?} */ (this.modalHelper[btn.type === 'modal' ? 'create' : 'createStatic'])))((/** @type {?} */ (modal)).component, Object.assign({}, obj, ((/** @type {?} */ (modal)).params && (/** @type {?} */ ((/** @type {?} */ (modal)).params))(record))), deepMergeKey({}, true, this.copyCog.modal, modal))
                 .pipe(filter((/**
              * @param {?} w
              * @return {?}
@@ -3830,7 +3834,7 @@ class STComponent {
              * @param {?} res
              * @return {?}
              */
-            (res) => this.btnCallback(record, btn, res)));
+            res => this.btnCallback(record, btn, res)));
             return;
         }
         else if (btn.type === 'drawer') {
@@ -3838,7 +3842,7 @@ class STComponent {
             /** @type {?} */
             const obj = { [(/** @type {?} */ ((/** @type {?} */ (drawer)).paramsName))]: record };
             this.drawerHelper
-                .create((/** @type {?} */ ((/** @type {?} */ (drawer)).title)), (/** @type {?} */ (drawer)).component, Object.assign(Object.assign({}, obj), ((/** @type {?} */ (drawer)).params && (/** @type {?} */ ((/** @type {?} */ (drawer)).params))(record))), deepMergeKey({}, true, this.copyCog.drawer, drawer))
+                .create((/** @type {?} */ ((/** @type {?} */ (drawer)).title)), (/** @type {?} */ (drawer)).component, Object.assign({}, obj, ((/** @type {?} */ (drawer)).params && (/** @type {?} */ ((/** @type {?} */ (drawer)).params))(record))), deepMergeKey({}, true, this.copyCog.drawer, drawer))
                 .pipe(filter((/**
              * @param {?} w
              * @return {?}
@@ -3927,7 +3931,7 @@ class STComponent {
          * @param {?} res
          * @return {?}
          */
-        (res) => this.exportSrv.export(Object.assign(Object.assign({}, opt), { _d: res, _c: this._columns }))));
+        (res) => this.exportSrv.export(Object.assign({}, opt, { _d: res, _c: this._columns }))));
     }
     // #endregion
     /**

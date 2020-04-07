@@ -1,4 +1,3 @@
-import { NzSafeAny } from 'ng-zorro-antd/core/types/any';
 /**
  * 字符串格式化
  * ```
@@ -8,4 +7,4 @@ import { NzSafeAny } from 'ng-zorro-antd/core/types/any';
  * // output: this is asdf
  * ```
  */
-export declare function format(str: string | null | undefined, obj: NzSafeAny | null | undefined, needDeepGet?: boolean): string;
+export declare function format(str: string | null | undefined, obj: {} | null | undefined, needDeepGet?: boolean): string;

@@ -23,7 +23,6 @@ class ReuseTabContextMenuComponent {
      */
     constructor(i18nSrv) {
         this.i18nSrv = i18nSrv;
-        // tslint:disable-next-line:no-output-native
         this.close = new EventEmitter();
     }
     /**
@@ -31,7 +30,7 @@ class ReuseTabContextMenuComponent {
      * @return {?}
      */
     set i18n(value) {
-        this._i18n = Object.assign(Object.assign({}, this.i18nSrv.getData('reuseTab')), value);
+        this._i18n = Object.assign({}, this.i18nSrv.getData('reuseTab'), value);
     }
     /**
      * @return {?}
@@ -197,7 +196,10 @@ class ReuseTabContextService {
             new ConnectionPositionPair({ originX: 'start', originY: 'top' }, { overlayX: 'start', overlayY: 'bottom' }),
         ];
         /** @type {?} */
-        const positionStrategy = this.overlay.position().flexibleConnectedTo(fakeElement).withPositions(positions);
+        const positionStrategy = this.overlay
+            .position()
+            .flexibleConnectedTo(fakeElement)
+            .withPositions(positions);
         this.ref = this.overlay.create({
             positionStrategy,
             panelClass: 'reuse-tab__cm',
@@ -265,7 +267,6 @@ class ReuseTabContextComponent {
     constructor(srv) {
         this.srv = srv;
         this.sub$ = new Subscription();
-        // tslint:disable-next-line:no-output-native
         this.change = new EventEmitter();
         this.sub$.add(srv.show.subscribe((/**
          * @param {?} context
@@ -1242,7 +1243,7 @@ ReuseTabService.ctorParameters = () => [
     { type: Injector },
     { type: MenuService }
 ];
-/** @nocollapse */ ReuseTabService.ɵprov = ɵɵdefineInjectable({ factory: function ReuseTabService_Factory() { return new ReuseTabService(ɵɵinject(INJECTOR), ɵɵinject(MenuService)); }, token: ReuseTabService, providedIn: "root" });
+/** @nocollapse */ ReuseTabService.ngInjectableDef = ɵɵdefineInjectable({ factory: function ReuseTabService_Factory() { return new ReuseTabService(ɵɵinject(INJECTOR), ɵɵinject(MenuService)); }, token: ReuseTabService, providedIn: "root" });
 if (false) {
     /**
      * @type {?}
@@ -1353,9 +1354,7 @@ class ReuseTabComponent {
         this.keepingScroll = false;
         this.customContextMenu = [];
         this.tabType = 'line';
-        // tslint:disable-next-line:no-output-native
         this.change = new EventEmitter();
-        // tslint:disable-next-line:no-output-native
         this.close = new EventEmitter();
         this.el = el.nativeElement;
     }

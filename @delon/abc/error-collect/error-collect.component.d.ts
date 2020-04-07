@@ -11,9 +11,9 @@ export declare class ErrorCollectComponent implements OnInit, OnDestroy {
     _hiden: boolean;
     count: number;
     constructor(cog: ErrorCollectConfig, el: ElementRef, cdr: ChangeDetectorRef, doc: any);
-    private get errEls();
+    private readonly errEls;
     private update;
-    _click(): boolean;
+    _click(): false | undefined;
     private install;
     private uninstall;
     private findParent;

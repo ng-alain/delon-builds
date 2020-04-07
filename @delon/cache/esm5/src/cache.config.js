@@ -32,7 +32,7 @@ var DelonCacheConfig = /** @class */ (function () {
     DelonCacheConfig.decorators = [
         { type: Injectable, args: [{ providedIn: 'root' },] }
     ];
-    /** @nocollapse */ DelonCacheConfig.ɵprov = i0.ɵɵdefineInjectable({ factory: function DelonCacheConfig_Factory() { return new DelonCacheConfig(); }, token: DelonCacheConfig, providedIn: "root" });
+    /** @nocollapse */ DelonCacheConfig.ngInjectableDef = i0.ɵɵdefineInjectable({ factory: function DelonCacheConfig_Factory() { return new DelonCacheConfig(); }, token: DelonCacheConfig, providedIn: "root" });
     return DelonCacheConfig;
 }());
 export { DelonCacheConfig };

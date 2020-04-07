@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { OnDestroy } from '@angular/core';
-import { NzSafeAny } from 'ng-zorro-antd/core/types/any';
 import { Observable } from 'rxjs';
 import { DelonCacheConfig } from './cache.config';
 import { CacheNotifyResult, ICacheStore } from './interface';
@@ -34,10 +33,10 @@ export declare class CacheService implements OnDestroy {
      * - `set('data/1', this.http.get('data/1')).subscribe()`
      * - `set('data/1', this.http.get('data/1'), { expire: 10 }).subscribe()`
      */
-    set(key: string, data: Observable<NzSafeAny>, options?: {
+    set(key: string, data: Observable<any>, options?: {
         type?: 's';
         expire?: number;
-    }): Observable<NzSafeAny>;
+    }): Observable<any>;
     /**
      * Persistent cached simple object, for example:
      * - `set('data/1', 1)`
@@ -68,13 +67,13 @@ export declare class CacheService implements OnDestroy {
         mode: 'promise';
         type?: 'm' | 's';
         expire?: number;
-    }): Observable<NzSafeAny>;
+    }): Observable<any>;
     /** 获取缓存数据，若 `key` 不存在或已过期则返回 null */
     get(key: string, options: {
         mode: 'none';
         type?: 'm' | 's';
         expire?: number;
-    }): NzSafeAny;
+    }): any;
     /** 获取缓存数据，若 `key` 不存在或已过期则返回 null */
     getNone<T>(key: string): T;
     /**
@@ -87,24 +86,24 @@ export declare class CacheService implements OnDestroy {
     /**
      * 获取缓存，若不存在则设置持久化缓存 `Observable` 对象
      */
-    tryGet(key: string, data: Observable<NzSafeAny>, options?: {
+    tryGet(key: string, data: Observable<any>, options?: {
         type?: 's';
         expire?: number;
-    }): Observable<NzSafeAny>;
+    }): Observable<any>;
     /**
      * 获取缓存，若不存在则设置持久化缓存基础对象
      */
     tryGet(key: string, data: {}, options?: {
         type?: 's';
         expire?: number;
-    }): NzSafeAny;
+    }): any;
     /**
      * 获取缓存，若不存在则设置指定缓存类型进行缓存对象
      */
     tryGet(key: string, data: {}, options: {
         type: 'm' | 's';
         expire?: number;
-    }): NzSafeAny;
+    }): any;
     /** 是否缓存 `key` */
     has(key: string): boolean;
     private _remove;
@@ -115,7 +114,7 @@ export declare class CacheService implements OnDestroy {
     /**
      * 设置监听频率，单位：毫秒且最低 `20ms`，默认：`3000ms`
      */
-    set freq(value: number);
+    freq: number;
     private startExpireNotify;
     private runExpireNotify;
     private checkExpireNotify;

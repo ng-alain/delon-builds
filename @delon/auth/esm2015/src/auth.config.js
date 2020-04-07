@@ -57,7 +57,7 @@ export class DelonAuthConfig {
 DelonAuthConfig.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
-/** @nocollapse */ DelonAuthConfig.ɵprov = i0.ɵɵdefineInjectable({ factory: function DelonAuthConfig_Factory() { return new DelonAuthConfig(); }, token: DelonAuthConfig, providedIn: "root" });
+/** @nocollapse */ DelonAuthConfig.ngInjectableDef = i0.ɵɵdefineInjectable({ factory: function DelonAuthConfig_Factory() { return new DelonAuthConfig(); }, token: DelonAuthConfig, providedIn: "root" });
 if (false) {
     /**
      * 存储KEY值
