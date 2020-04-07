@@ -4454,11 +4454,44 @@ class StringWidget extends ControlUIWidget {
             this.setValue('#000000');
         }
     }
+    /**
+     * @param {?} val
+     * @return {?}
+     */
+    change(val) {
+        this.setValue(val);
+        if (this.ui.change)
+            this.ui.change(val);
+    }
+    /**
+     * @param {?} e
+     * @return {?}
+     */
+    focus(e) {
+        if (this.ui.focus)
+            this.ui.focus(e);
+    }
+    /**
+     * @param {?} e
+     * @return {?}
+     */
+    blur(e) {
+        if (this.ui.blur)
+            this.ui.blur(e);
+    }
+    /**
+     * @param {?} e
+     * @return {?}
+     */
+    enter(e) {
+        if (this.ui.enter)
+            this.ui.enter(e);
+    }
 }
 StringWidget.decorators = [
     { type: Component, args: [{
                 selector: 'sf-string',
-                template: "<sf-item-wrap [id]=\"id\"\n              [schema]=\"schema\"\n              [ui]=\"ui\"\n              [showError]=\"showError\"\n              [error]=\"error\"\n              [showTitle]=\"schema.title\">\n\n  <ng-template #ipt>\n    <input nz-input\n           [attr.id]=\"id\"\n           [disabled]=\"disabled\"\n           [attr.disabled]=\"disabled\"\n           [nzSize]=\"ui.size\"\n           [ngModel]=\"value\"\n           (ngModelChange)=\"setValue($event)\"\n           [attr.maxLength]=\"schema.maxLength || null\"\n           [attr.type]=\"ui.type || 'text'\"\n           [attr.placeholder]=\"ui.placeholder\"\n           [attr.autocomplete]=\"ui.autocomplete\"\n           [attr.autoFocus]=\"ui.autofocus\">\n  </ng-template>\n\n  <ng-container *ngIf=\"type === 'addon'; else ipt\">\n    <nz-input-group [nzAddOnBefore]=\"ui.addOnBefore\"\n                    [nzAddOnAfter]=\"ui.addOnAfter\"\n                    [nzAddOnBeforeIcon]=\"ui.addOnBeforeIcon\"\n                    [nzAddOnAfterIcon]=\"ui.addOnAfterIcon\"\n                    [nzPrefix]=\"ui.prefix\"\n                    [nzPrefixIcon]=\"ui.prefixIcon\"\n                    [nzSuffix]=\"ui.suffix\"\n                    [nzSuffixIcon]=\"ui.suffixIcon\">\n      <ng-template [ngTemplateOutlet]=\"ipt\"></ng-template>\n    </nz-input-group>\n  </ng-container>\n</sf-item-wrap>\n",
+                template: "<sf-item-wrap [id]=\"id\"\n              [schema]=\"schema\"\n              [ui]=\"ui\"\n              [showError]=\"showError\"\n              [error]=\"error\"\n              [showTitle]=\"schema.title\">\n\n  <ng-template #ipt>\n    <input nz-input\n           [attr.id]=\"id\"\n           [disabled]=\"disabled\"\n           [attr.disabled]=\"disabled\"\n           [nzSize]=\"ui.size\"\n           [ngModel]=\"value\"\n           (ngModelChange)=\"change($event)\"\n           [attr.maxLength]=\"schema.maxLength || null\"\n           [attr.type]=\"ui.type || 'text'\"\n           [attr.placeholder]=\"ui.placeholder\"\n           [attr.autocomplete]=\"ui.autocomplete\"\n           [attr.autoFocus]=\"ui.autofocus\"\n           (keyup.enter)=\"enter($event)\"\n           (focus)=\"focus($event)\"\n           (blur)=\"blur($event)\">\n  </ng-template>\n\n  <ng-container *ngIf=\"type === 'addon'; else ipt\">\n    <nz-input-group [nzAddOnBefore]=\"ui.addOnBefore\"\n                    [nzAddOnAfter]=\"ui.addOnAfter\"\n                    [nzAddOnBeforeIcon]=\"ui.addOnBeforeIcon\"\n                    [nzAddOnAfterIcon]=\"ui.addOnAfterIcon\"\n                    [nzPrefix]=\"ui.prefix\"\n                    [nzPrefixIcon]=\"ui.prefixIcon\"\n                    [nzSuffix]=\"ui.suffix\"\n                    [nzSuffixIcon]=\"ui.suffixIcon\">\n      <ng-template [ngTemplateOutlet]=\"ipt\"></ng-template>\n    </nz-input-group>\n  </ng-container>\n</sf-item-wrap>\n",
                 preserveWhitespaces: false,
                 encapsulation: ViewEncapsulation.None
             }] }
@@ -6051,6 +6084,26 @@ if (false) {
      * @type {?|undefined}
      */
     SFStringWidgetSchema.prototype.suffixIcon;
+    /**
+     * 内容变更事件
+     * @type {?|undefined}
+     */
+    SFStringWidgetSchema.prototype.change;
+    /**
+     * 焦点事件
+     * @type {?|undefined}
+     */
+    SFStringWidgetSchema.prototype.focus;
+    /**
+     * 失焦事件
+     * @type {?|undefined}
+     */
+    SFStringWidgetSchema.prototype.blur;
+    /**
+     * 回车事件
+     * @type {?|undefined}
+     */
+    SFStringWidgetSchema.prototype.enter;
 }
 
 /**

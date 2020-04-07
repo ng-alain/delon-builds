@@ -2843,20 +2843,6 @@ class _HttpClient {
             params }, options));
     }
     /**
-     * 发送传统表单请求（即：`application/x-www-form-urlencoded`）
-     * @param {?} url
-     * @param {?} body
-     * @param {?} params
-     * @param {?=} options
-     * @return {?}
-     */
-    form(url, body, params, options = {}) {
-        return this.request('POST', url, Object.assign({ body,
-            params }, options, { headers: {
-                'content-type': `application/x-www-form-urlencoded`,
-            } }));
-    }
-    /**
      * @param {?} method
      * @param {?} url
      * @param {?=} options
@@ -3197,9 +3183,6 @@ function makeMethod(method) {
                     p[i.key] = args[i.index];
                     return p;
                 }), {});
-                if (method === 'FORM') {
-                    headers['content-type'] = 'application/x-www-form-urlencoded';
-                }
                 /** @type {?} */
                 const payload = getValidArgs(data, 'payload', args);
                 /** @type {?} */
@@ -3258,12 +3241,6 @@ const PATCH = makeMethod('PATCH');
  * @type {?}
  */
 const JSONP = makeMethod('JSONP');
-/**
- * `FORM` 请求
- * - 有效范围：方法
- * @type {?}
- */
-const FORM = makeMethod('FORM');
 
 /**
  * @fileoverview added by tsickle
@@ -3577,7 +3554,7 @@ AlainThemeModule.ctorParameters = () => [
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-const VERSION = new Version('8.9.1-f1f9fbd8');
+const VERSION = new Version('8.9.1-aabc15ec');
 
 /**
  * @fileoverview added by tsickle
@@ -3591,5 +3568,5 @@ const VERSION = new Version('8.9.1-f1f9fbd8');
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { ALAIN_I18N_TOKEN, APP, AlainI18NServiceFake, AlainThemeConfig, AlainThemeModule, BaseApi, BaseHeaders, BaseUrl, Body, CNCurrencyPipe, DELETE, DELON_LOCALE, DELON_LOCALE_SERVICE_PROVIDER, DELON_LOCALE_SERVICE_PROVIDER_FACTORY, DatePipe, DelonLocaleModule, DelonLocaleService, DrawerHelper, FORM, GET, HEAD, HTMLPipe, Headers, JSONP, KeysPipe, LAYOUT, MenuService, ModalHelper, OPTIONS, PATCH, POST, PUT, Path, Payload, Query, REP_MAX, ResponsiveService, ScrollService, SettingsService, TitleService, URLPipe, USER, VERSION, WINDOW, YNPipe, _HttpClient, elGR as el_GR, enUS as en_US, hrHR as hr_HR, koKR as ko_KR, plPL as pl_PL, preloaderFinished, trTR as tr_TR, zhCN as zh_CN, zhTW as zh_TW, ALAIN_I18N_TOKEN_FACTORY as ɵa, I18nPipe as ɵb };
+export { ALAIN_I18N_TOKEN, APP, AlainI18NServiceFake, AlainThemeConfig, AlainThemeModule, BaseApi, BaseHeaders, BaseUrl, Body, CNCurrencyPipe, DELETE, DELON_LOCALE, DELON_LOCALE_SERVICE_PROVIDER, DELON_LOCALE_SERVICE_PROVIDER_FACTORY, DatePipe, DelonLocaleModule, DelonLocaleService, DrawerHelper, GET, HEAD, HTMLPipe, Headers, JSONP, KeysPipe, LAYOUT, MenuService, ModalHelper, OPTIONS, PATCH, POST, PUT, Path, Payload, Query, REP_MAX, ResponsiveService, ScrollService, SettingsService, TitleService, URLPipe, USER, VERSION, WINDOW, YNPipe, _HttpClient, elGR as el_GR, enUS as en_US, hrHR as hr_HR, koKR as ko_KR, plPL as pl_PL, preloaderFinished, trTR as tr_TR, zhCN as zh_CN, zhTW as zh_TW, ALAIN_I18N_TOKEN_FACTORY as ɵa, I18nPipe as ɵb };
 //# sourceMappingURL=theme.js.map
