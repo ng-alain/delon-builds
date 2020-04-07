@@ -4155,7 +4155,7 @@ var AlainThemeModule = /** @class */ (function () {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-var VERSION = new Version('8.9.1-aabc15ec');
+var VERSION = new Version('8.9.1-d4566d7');
 
 /**
  * @fileoverview added by tsickle
