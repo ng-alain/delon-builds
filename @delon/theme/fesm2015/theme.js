@@ -1207,9 +1207,20 @@ class TitleService {
      */
     getByElement() {
         /** @type {?} */
-        const el = this.doc.querySelector('.alain-default__content-title h1') || this.doc.querySelector('.page-header__title');
+        const el = (/** @type {?} */ ((this.doc.querySelector('.alain-default__content-title h1') || this.doc.querySelector('.page-header__title'))));
         if (el) {
-            return el.firstChild.textContent.trim();
+            /** @type {?} */
+            let text = '';
+            el.childNodes.forEach((/**
+             * @param {?} val
+             * @return {?}
+             */
+            val => {
+                if (!text && val.nodeType === 3) {
+                    text = (/** @type {?} */ (val.textContent)).trim();
+                }
+            }));
+            return text || (/** @type {?} */ ((/** @type {?} */ (el.firstChild)).textContent)).trim();
         }
         return '';
     }
@@ -3578,7 +3589,7 @@ AlainThemeModule.ctorParameters = () => [
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-const VERSION = new Version('8.9.1-7612e7e');
+const VERSION = new Version('8.9.2-587665a7');
 
 /**
  * @fileoverview added by tsickle

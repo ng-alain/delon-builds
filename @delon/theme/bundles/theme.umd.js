@@ -1,5 +1,5 @@
 /**
- * @license ng-alain(cipchk@qq.com) v8.9.1
+ * @license ng-alain(cipchk@qq.com) v8.9.2
  * (c) 2019 cipchk https://ng-alain.com/
  * License: MIT
  */
@@ -1652,9 +1652,20 @@
          */
         function () {
             /** @type {?} */
-            var el = this.doc.querySelector('.alain-default__content-title h1') || this.doc.querySelector('.page-header__title');
+            var el = (/** @type {?} */ ((this.doc.querySelector('.alain-default__content-title h1') || this.doc.querySelector('.page-header__title'))));
             if (el) {
-                return el.firstChild.textContent.trim();
+                /** @type {?} */
+                var text_1 = '';
+                el.childNodes.forEach((/**
+                 * @param {?} val
+                 * @return {?}
+                 */
+                function (val) {
+                    if (!text_1 && val.nodeType === 3) {
+                        text_1 = (/** @type {?} */ (val.textContent)).trim();
+                    }
+                }));
+                return text_1 || (/** @type {?} */ ((/** @type {?} */ (el.firstChild)).textContent)).trim();
             }
             return '';
         };
@@ -4403,7 +4414,7 @@
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
-    var VERSION = new core.Version('8.9.1');
+    var VERSION = new core.Version('8.9.2');
 
     exports.ALAIN_I18N_TOKEN = ALAIN_I18N_TOKEN;
     exports.APP = APP;
