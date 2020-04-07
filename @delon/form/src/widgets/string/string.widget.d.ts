@@ -6,4 +6,8 @@ export declare class StringWidget extends ControlUIWidget<SFStringWidgetSchema> 
     type: string;
     ngOnInit(): void;
     reset(value: SFValue): void;
+    change(val: string): void;
+    focus(e: FocusEvent): void;
+    blur(e: FocusEvent): void;
+    enter(e: KeyboardEvent): void;
 }
