@@ -1,5 +1,4 @@
 import { HttpClient, HttpEvent, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
-import { NzSafeAny } from 'ng-zorro-antd/core/types/any';
 import { Observable } from 'rxjs';
 import { AlainThemeConfig } from '../../theme.config';
 export declare type _HttpHeaders = HttpHeaders | {
@@ -18,9 +17,9 @@ export declare class _HttpClient {
     constructor(http: HttpClient, cog: AlainThemeConfig);
     private _loading;
     /** 是否正在加载中 */
-    get loading(): boolean;
-    parseParams(params: NzSafeAny): HttpParams;
-    appliedUrl(url: string, params?: NzSafeAny): string;
+    readonly loading: boolean;
+    parseParams(params: {}): HttpParams;
+    appliedUrl(url: string, params?: {}): string;
     begin(): void;
     end(): void;
     /**

@@ -1,4 +1,4 @@
-import { IifBehaviorType, STColumnButtonDrawerConfig, STColumnButtonModalConfig, STColumnButtonPop, STIcon, STMultiSort, STPage, STReq, STRes, STRowClassName, STSingleSort, STWidthMode } from './table.interfaces';
+import { STColumnButtonDrawerConfig, STColumnButtonModalConfig, STIcon, STMultiSort, STPage, STReq, STRes, STRowClassName, STSingleSort, STWidthMode, IifBehaviorType, STColumnButtonPop } from './table.interfaces';
 export declare class STConfig {
     /**
      * 起始页码，默认为：`1`

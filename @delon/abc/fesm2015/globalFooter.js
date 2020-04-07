@@ -1,5 +1,5 @@
-import { Component, ChangeDetectionStrategy, ViewEncapsulation, ViewChild, Input, Inject, ContentChildren, NgModule } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Component, ChangeDetectionStrategy, ViewEncapsulation, ViewChild, Input, Inject, ContentChildren, NgModule } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { WINDOW } from '@delon/theme';
 import { __decorate, __metadata } from 'tslib';
@@ -36,7 +36,9 @@ GlobalFooterItemComponent.decorators = [
     { type: Component, args: [{
                 selector: 'global-footer-item',
                 exportAs: 'globalFooterItem',
-                template: ` <ng-template #host><ng-content></ng-content></ng-template> `,
+                template: `
+    <ng-template #host><ng-content></ng-content></ng-template>
+  `,
                 preserveWhitespaces: false,
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None
@@ -86,7 +88,7 @@ class GlobalFooterComponent {
          * @param {?} i
          * @return {?}
          */
-        i => (i._title = this.dom.bypassSecurityTrustHtml(i.title))));
+        i => i._title = this.dom.bypassSecurityTrustHtml(i.title)));
         this._links = val;
     }
     /**

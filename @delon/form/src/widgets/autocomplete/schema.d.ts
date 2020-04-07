@@ -1,7 +1,7 @@
-import { NzAutocompleteOptionComponent } from 'ng-zorro-antd/auto-complete';
 import { Observable } from 'rxjs';
-import { SFSchemaEnum, SFSchemaEnumType } from '../../schema';
+import { NzAutocompleteOptionComponent } from 'ng-zorro-antd/auto-complete';
 import { SFUISchemaItem } from '../../schema/ui';
+import { SFSchemaEnum, SFSchemaEnumType } from '../../schema';
 export interface SFAutoCompleteWidgetSchema extends SFUISchemaItem {
     /**
      * 异步静态数据源

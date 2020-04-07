@@ -21,14 +21,14 @@ function pluginG2(options) {
         g2Typing(host);
         // package
         (options.type === 'add' ? json_1.addPackageToPackageJson : json_1.removePackageFromPackageJson)(host, [
-            '@antv/data-set@^0.11.1',
-            '@antv/g2@^4.0.3',
+            '@antv/data-set@^0.10.2',
+            '@antv/g2@^3.5.11',
             '@antv/g2-plugin-slider@^2.1.1',
         ]);
         // angular
         json_1.scriptsToAngularJson(host, [
             'node_modules/@antv/g2/dist/g2.min.js',
-            'node_modules/@antv/data-set/dist/data-set.js',
+            'node_modules/@antv/data-set/dist/data-set.min.js',
             'node_modules/@antv/g2-plugin-slider/dist/g2-plugin-slider.min.js',
         ], options.type, ['build', 'test'], options.project);
     };

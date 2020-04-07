@@ -54,7 +54,7 @@ var G2TagCloudComponent = /** @class */ (function () {
                 /** @type {?} */
                 var attrs = __assign({ fillOpacity: cfg.opacity, fontSize: cfg.origin._origin.size, rotate: cfg.origin._origin.rotate, text: cfg.origin._origin.text, textAlign: 'center', fontFamily: cfg.origin._origin.font, fill: cfg.color, textBaseline: 'Alphabetic' }, cfg.style);
                 return container.addShape('text', {
-                    attrs: __assign(__assign({}, attrs), { x: cfg.x, y: cfg.y }),
+                    attrs: __assign({}, attrs, { x: cfg.x, y: cfg.y }),
                 });
             },
         });
@@ -81,7 +81,12 @@ var G2TagCloudComponent = /** @class */ (function () {
             showTitle: false,
         });
         chart.coord().reflect();
-        chart.point().position('x*y').color('category').shape('cloud').tooltip('value*category');
+        chart
+            .point()
+            .position('x*y')
+            .color('category')
+            .shape('cloud')
+            .tooltip('value*category');
         chart.render();
         this.attachChart();
     };

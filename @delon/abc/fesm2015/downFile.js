@@ -24,12 +24,10 @@ class DownFileDirective {
         /**
          * 成功回调
          */
-        // tslint:disable-next-line:no-output-native
         this.success = new EventEmitter();
         /**
          * 错误回调
          */
-        // tslint:disable-next-line:no-output-native
         this.error = new EventEmitter();
         /** @type {?} */
         let isFileSaverSupported = false;
@@ -121,7 +119,7 @@ class DownFileDirective {
                 fileName = fileName(res);
             fileName =
                 fileName || disposition[`filename*`] || disposition[`filename`] || res.headers.get('filename') || res.headers.get('x-filename');
-            saveAs((/** @type {?} */ (res.body)), decodeURI((/** @type {?} */ (fileName))));
+            saveAs(res.body, decodeURI((/** @type {?} */ (fileName))));
             this.success.emit(res);
         }), (/**
          * @param {?} err

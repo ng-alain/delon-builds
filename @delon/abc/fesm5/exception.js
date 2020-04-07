@@ -1,5 +1,5 @@
-import { Component, ChangeDetectionStrategy, ViewEncapsulation, ViewChild, Input, NgModule } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Component, ChangeDetectionStrategy, ViewEncapsulation, ViewChild, Input, NgModule } from '@angular/core';
 import { DelonLocaleService, DelonLocaleModule } from '@delon/theme';
 import { isEmpty, DelonUtilModule } from '@delon/util';
 import { __spread } from 'tslib';

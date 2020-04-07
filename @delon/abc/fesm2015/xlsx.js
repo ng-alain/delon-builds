@@ -73,7 +73,7 @@ class XlsxConfig {
 XlsxConfig.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
-/** @nocollapse */ XlsxConfig.ɵprov = ɵɵdefineInjectable({ factory: function XlsxConfig_Factory() { return new XlsxConfig(); }, token: XlsxConfig, providedIn: "root" });
+/** @nocollapse */ XlsxConfig.ngInjectableDef = ɵɵdefineInjectable({ factory: function XlsxConfig_Factory() { return new XlsxConfig(); }, token: XlsxConfig, providedIn: "root" });
 if (false) {
     /**
      * Xlsx library path
@@ -124,7 +124,7 @@ class XlsxService {
          * @param {?} name
          * @return {?}
          */
-        (name) => {
+        name => {
             /** @type {?} */
             const sheet = wb.Sheets[name];
             ret[name] = XLSX.utils.sheet_to_json(sheet, { header: 1 });
@@ -233,7 +233,7 @@ XlsxService.ctorParameters = () => [
     { type: HttpClient },
     { type: LazyService }
 ];
-/** @nocollapse */ XlsxService.ɵprov = ɵɵdefineInjectable({ factory: function XlsxService_Factory() { return new XlsxService(ɵɵinject(XlsxConfig), ɵɵinject(HttpClient), ɵɵinject(LazyService)); }, token: XlsxService, providedIn: "root" });
+/** @nocollapse */ XlsxService.ngInjectableDef = ɵɵdefineInjectable({ factory: function XlsxService_Factory() { return new XlsxService(ɵɵinject(XlsxConfig), ɵɵinject(HttpClient), ɵɵinject(LazyService)); }, token: XlsxService, providedIn: "root" });
 if (false) {
     /**
      * @type {?}

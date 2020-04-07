@@ -4,6 +4,6 @@ export declare class SGContainerComponent {
     gutter: number;
     colInCon: REP_TYPE;
     col: REP_TYPE;
-    get marginValue(): number;
+    readonly marginValue: number;
     constructor(cog: SGConfig);
 }

@@ -10,7 +10,10 @@ export interface AppResult {
 }
 
 export function createNgRunner() {
-  return new SchematicTestRunner('schematics', join('./node_modules/@schematics/angular/collection.json'));
+  return new SchematicTestRunner(
+    'schematics',
+    join('./node_modules/@schematics/angular/collection.json'),
+  );
 }
 
 export function createAlainRunner() {
@@ -55,9 +58,14 @@ export async function createAlainApp(ngAddOptions?: NgAddSchema): Promise<AppRes
   return { runner: alainRunner, tree };
 }
 
-export async function createAlainAndModuleApp(name = 'trade', ngAddOptions?: object): Promise<AppResult> {
+export async function createAlainAndModuleApp(
+  name = 'trade',
+  ngAddOptions?: object,
+): Promise<AppResult> {
   const res = await createAlainApp(ngAddOptions);
-  res.tree = await res.runner.runSchematicAsync('module', { name, project: APPNAME, routing: true }, res.tree).toPromise();
+  res.tree = await res.runner
+    .runSchematicAsync('module', { name, project: APPNAME, routing: true }, res.tree)
+    .toPromise();
   return res;
 }
 

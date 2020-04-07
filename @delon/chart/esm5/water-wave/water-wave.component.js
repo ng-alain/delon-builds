@@ -3,7 +3,7 @@
  * Generated from: water-wave.component.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-import { __decorate, __metadata } from "tslib";
+import * as tslib_1 from "tslib";
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Input, NgZone, Renderer2, ViewChild, ViewEncapsulation, } from '@angular/core';
 import { InputNumber } from '@delon/util';
 import { fromEvent } from 'rxjs';
@@ -297,17 +297,17 @@ var G2WaterWaveComponent = /** @class */ (function () {
         height: [{ type: Input }],
         percent: [{ type: Input }]
     };
-    __decorate([
+    tslib_1.__decorate([
         InputNumber(),
-        __metadata("design:type", Object)
+        tslib_1.__metadata("design:type", Object)
     ], G2WaterWaveComponent.prototype, "delay", void 0);
-    __decorate([
+    tslib_1.__decorate([
         InputNumber(),
-        __metadata("design:type", Object)
+        tslib_1.__metadata("design:type", Object)
     ], G2WaterWaveComponent.prototype, "height", void 0);
-    __decorate([
+    tslib_1.__decorate([
         InputNumber(),
-        __metadata("design:type", Number)
+        tslib_1.__metadata("design:type", Number)
     ], G2WaterWaveComponent.prototype, "percent", void 0);
     return G2WaterWaveComponent;
 }());

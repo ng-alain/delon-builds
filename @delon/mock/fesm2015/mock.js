@@ -299,7 +299,7 @@ class MockService {
         /** @type {?} */
         const filePath = error.message.split(': ')[0];
         /** @type {?} */
-        const errors = ((/** @type {?} */ (error.stack)))
+        const errors = error.stack
             .split('\n')
             .filter((/**
          * @param {?} line
@@ -311,7 +311,7 @@ class MockService {
          * @return {?}
          */
         line => line.replace(`${filePath}: `, '')));
-        errors.splice(1, 0, '');
+        errors.splice(1, 0, ['']);
         console.group();
         console.warn(`==========Failed to parse mock config.==========`);
         console.log(errors.join('\n'));

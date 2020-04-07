@@ -24,7 +24,6 @@ class TagSelectComponent {
          * 是否启用 `展开与收进`
          */
         this.expandable = true;
-        // tslint:disable-next-line:no-output-native
         this.change = new EventEmitter();
     }
     /**

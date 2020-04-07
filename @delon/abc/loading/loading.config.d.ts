@@ -1,4 +1,4 @@
-import { LoadingCustom, LoadingIcon, LoadingType } from './loading.interfaces';
+import { LoadingType, LoadingIcon, LoadingCustom } from './loading.interfaces';
 export declare class LoadingConfig {
     type?: LoadingType;
     text?: string;

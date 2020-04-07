@@ -1,5 +1,5 @@
 /**
- * @license ng-alain(cipchk@qq.com) v9.0.0-rc.1
+ * @license ng-alain(cipchk@qq.com) v8.9.1
  * (c) 2019 cipchk https://ng-alain.com/
  * License: MIT
  */
@@ -235,7 +235,6 @@
             this.resize$ = null;
             this.resizeTime = 0;
             this.render = new core.EventEmitter();
-            // tslint:disable-next-line:no-output-native
             this.resize = new core.EventEmitter();
             this.destroy = new core.EventEmitter();
         }
@@ -295,7 +294,7 @@
             { type: core.Component, args: [{
                         selector: 'g2,g2-custom',
                         exportAs: 'g2Custom',
-                        template: " <ng-content></ng-content> ",
+                        template: "\n    <ng-content></ng-content>\n  ",
                         host: {
                             '[style.height.px]': 'height',
                         },

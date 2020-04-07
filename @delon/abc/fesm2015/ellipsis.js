@@ -242,7 +242,10 @@ class EllipsisComponent {
             fn();
         }
         else {
-            this.ngZone.onStable.asObservable().pipe(take(1)).subscribe(fn);
+            this.ngZone.onStable
+                .asObservable()
+                .pipe(take(1))
+                .subscribe(fn);
         }
     }
     /**

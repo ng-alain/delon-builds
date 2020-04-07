@@ -61,8 +61,50 @@ function numberToChinese(value, rmb = true, options) {
             ? ['', '壹', '贰', '叁', '肆', '伍', '陆', '柒', '捌', '玖', '点']
             : ['', '一', '二', '三', '四', '五', '六', '七', '八', '九', '点'],
         radice: rmb
-            ? ['', '拾', '佰', '仟', '万', '拾', '佰', '仟', '亿', '拾', '佰', '仟', '万亿', '拾', '佰', '仟', '兆', '拾', '佰', '仟']
-            : ['', '十', '百', '千', '万', '十', '百', '千', '亿', '十', '百', '千', '万亿', '十', '百', '千', '兆', '十', '百', '千'],
+            ? [
+                '',
+                '拾',
+                '佰',
+                '仟',
+                '万',
+                '拾',
+                '佰',
+                '仟',
+                '亿',
+                '拾',
+                '佰',
+                '仟',
+                '万亿',
+                '拾',
+                '佰',
+                '仟',
+                '兆',
+                '拾',
+                '佰',
+                '仟',
+            ]
+            : [
+                '',
+                '十',
+                '百',
+                '千',
+                '万',
+                '十',
+                '百',
+                '千',
+                '亿',
+                '十',
+                '百',
+                '千',
+                '万亿',
+                '十',
+                '百',
+                '千',
+                '兆',
+                '十',
+                '百',
+                '千',
+            ],
         dec: ['角', '分', '厘', '毫'],
     };
     if (rmb)
@@ -126,7 +168,7 @@ function numberToChinese(value, rmb = true, options) {
             /** @type {?} */
             const cnZero = n === '0' ? '零' : '';
             /** @type {?} */
-            const cnNum = ((/** @type {?} */ (unit.num)))[n];
+            const cnNum = unit.num[n];
             /** @type {?} */
             const cnDesc = rmb ? unit.dec[i] : '';
             decimalRes += cnZero + cnNum + cnDesc;
@@ -134,7 +176,9 @@ function numberToChinese(value, rmb = true, options) {
     }
     /** @type {?} */
     const ret = symbol +
-        (rmb ? integerRes + (decimalRes === '零' ? '元整' : `元${decimalRes}`) : integerRes + (decimalRes === '' ? '' : `点${decimalRes}`));
+        (rmb
+            ? integerRes + (decimalRes === '零' ? '元整' : `元${decimalRes}`)
+            : integerRes + (decimalRes === '' ? '' : `点${decimalRes}`));
     return ret;
 }
 

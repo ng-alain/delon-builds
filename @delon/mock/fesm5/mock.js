@@ -318,7 +318,7 @@ var MockService = /** @class */ (function () {
         /** @type {?} */
         var filePath = error.message.split(': ')[0];
         /** @type {?} */
-        var errors = ((/** @type {?} */ (error.stack)))
+        var errors = error.stack
             .split('\n')
             .filter((/**
          * @param {?} line
@@ -330,7 +330,7 @@ var MockService = /** @class */ (function () {
          * @return {?}
          */
         function (line) { return line.replace(filePath + ": ", ''); }));
-        errors.splice(1, 0, '');
+        errors.splice(1, 0, ['']);
         console.group();
         console.warn("==========Failed to parse mock config.==========");
         console.log(errors.join('\n'));
