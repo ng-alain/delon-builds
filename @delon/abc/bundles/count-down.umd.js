@@ -1,16 +1,16 @@
 /**
- * @license ng-alain(cipchk@qq.com) v9.0.0-rc.1
+ * @license ng-alain(cipchk@qq.com) v8.9.1
  * (c) 2019 cipchk https://ng-alain.com/
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('date-fns/addSeconds'), require('date-fns/format'), require('ngx-countdown'), require('@angular/common')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/count-down', ['exports', '@angular/core', 'date-fns/addSeconds', 'date-fns/format', 'ngx-countdown', '@angular/common'], factory) :
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('date-fns/add_seconds'), require('date-fns/format'), require('ngx-countdown'), require('@angular/common')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/count-down', ['exports', '@angular/core', 'date-fns/add_seconds', 'date-fns/format', 'ngx-countdown', '@angular/common'], factory) :
     (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['count-down'] = {}), global.ng.core, global.addSeconds, global.format, global.ngxCountDown, global.ng.common));
 }(this, (function (exports, core, addSeconds, format, ngxCountdown, common) { 'use strict';
 
-    addSeconds = addSeconds && Object.prototype.hasOwnProperty.call(addSeconds, 'default') ? addSeconds['default'] : addSeconds;
-    format = format && Object.prototype.hasOwnProperty.call(format, 'default') ? format['default'] : format;
+    addSeconds = addSeconds && addSeconds.hasOwnProperty('default') ? addSeconds['default'] : addSeconds;
+    format = format && format.hasOwnProperty('default') ? format['default'] : format;
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -268,7 +268,7 @@
             { type: core.Component, args: [{
                         selector: 'count-down',
                         exportAs: 'countDown',
-                        template: " <countdown #cd *ngIf=\"config\" [config]=\"config\" (event)=\"handleEvent($event)\"></countdown> ",
+                        template: "\n    <countdown #cd *ngIf=\"config\" [config]=\"config\" (event)=\"handleEvent($event)\"></countdown>\n  ",
                         preserveWhitespaces: false,
                         changeDetection: core.ChangeDetectionStrategy.OnPush,
                         encapsulation: core.ViewEncapsulation.None

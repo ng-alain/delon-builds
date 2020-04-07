@@ -7,9 +7,9 @@ const change_1 = require("@schematics/angular/utility/change");
 const find_module_1 = require("@schematics/angular/utility/find-module");
 const parse_name_1 = require("@schematics/angular/utility/parse-name");
 const validation_1 = require("@schematics/angular/utility/validation");
+const ts = require("typescript");
 const fs = require("fs");
 const path = require("path");
-const ts = require("typescript");
 const ast_1 = require("./ast");
 const project_1 = require("./project");
 function buildSelector(schema, projectPrefix) {
@@ -140,7 +140,7 @@ function buildAlain(schema) {
             schema.spec ? schematics_1.noop() : schematics_1.filter(filePath => !filePath.endsWith('.spec.ts')),
             schema.inlineStyle ? schematics_1.filter(filePath => !filePath.endsWith('.__styleext__')) : schematics_1.noop(),
             schema.inlineTemplate ? schematics_1.filter(filePath => !filePath.endsWith('.html')) : schematics_1.noop(),
-            schematics_1.template(Object.assign(Object.assign(Object.assign({}, core_1.strings), { 'if-flat': (s) => (schema.flat ? '' : s) }), schema)),
+            schematics_1.template(Object.assign({}, core_1.strings, { 'if-flat': (s) => (schema.flat ? '' : s) }, schema)),
             schematics_1.move(null, schema.path + '/'),
         ]);
         return schematics_1.chain([schematics_1.branchAndMerge(schematics_1.chain([addDeclaration(schema), schematics_1.mergeWith(templateSource)]))])(host, context);

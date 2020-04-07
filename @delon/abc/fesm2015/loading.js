@@ -27,7 +27,7 @@ class LoadingConfig {
 LoadingConfig.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
-/** @nocollapse */ LoadingConfig.ɵprov = ɵɵdefineInjectable({ factory: function LoadingConfig_Factory() { return new LoadingConfig(); }, token: LoadingConfig, providedIn: "root" });
+/** @nocollapse */ LoadingConfig.ngInjectableDef = ɵɵdefineInjectable({ factory: function LoadingConfig_Factory() { return new LoadingConfig(); }, token: LoadingConfig, providedIn: "root" });
 if (false) {
     /** @type {?} */
     LoadingConfig.prototype.type;
@@ -63,7 +63,7 @@ class LoadingDefaultComponent {
 LoadingDefaultComponent.decorators = [
     { type: Component, args: [{
                 selector: 'loading-default',
-                template: "<div class=\"loading-default__icon\" *ngIf=\"options.type !== 'text'\">\n  <ng-container [ngSwitch]=\"options.type\">\n    <nz-spin *ngSwitchCase=\"'spin'\" nzSimple></nz-spin>\n    <i *ngSwitchCase=\"'icon'\" nz-icon [nzType]=\"icon.type\" [nzTheme]=\"icon.theme\" [nzSpin]=\"icon.spin\"></i>\n    <div *ngSwitchDefault class=\"loading-default__custom\" [ngStyle]=\"custom.style\" [innerHTML]=\"custom.html\"></div>\n  </ng-container>\n</div>\n<div *ngIf=\"options.text\" class=\"loading-default__text\">{{ options.text }}</div>\n",
+                template: "<div class=\"loading-default__icon\" *ngIf=\"options.type !== 'text'\">\n  <ng-container [ngSwitch]=\"options.type\">\n    <nz-spin *ngSwitchCase=\"'spin'\" nzSimple></nz-spin>\n    <i *ngSwitchCase=\"'icon'\" nz-icon [nzType]=\"icon.type\" [nzTheme]=\"icon.theme\" [nzSpin]=\"icon.spin\"></i>\n    <div *ngSwitchDefault class=\"loading-default__custom\" [ngStyle]=\"custom.style\" [innerHTML]=\"custom.html\"></div>\n  </ng-container>\n</div>\n<div *ngIf=\"options.text\" class=\"loading-default__text\">{{ options.text }}</div>",
                 host: {
                     '[class.loading-default]': 'true',
                 },
@@ -119,7 +119,11 @@ class LoadingService {
             return;
         this._close(false);
         this._overlayRef = this.overlay.create({
-            positionStrategy: this.overlay.position().global().centerHorizontally().centerVertically(),
+            positionStrategy: this.overlay
+                .position()
+                .global()
+                .centerHorizontally()
+                .centerVertically(),
             scrollStrategy: this.overlay.scrollStrategies.block(),
             hasBackdrop: true,
             backdropClass: 'loading-backdrop',
@@ -135,7 +139,7 @@ class LoadingService {
      * @return {?}
      */
     open(options) {
-        this.opt = Object.assign(Object.assign({}, this.cog), options);
+        this.opt = Object.assign({}, this.cog, options);
         this.n$.next();
     }
     /**
@@ -172,7 +176,7 @@ LoadingService.ctorParameters = () => [
     { type: LoadingConfig },
     { type: Overlay }
 ];
-/** @nocollapse */ LoadingService.ɵprov = ɵɵdefineInjectable({ factory: function LoadingService_Factory() { return new LoadingService(ɵɵinject(LoadingConfig), ɵɵinject(Overlay)); }, token: LoadingService, providedIn: "root" });
+/** @nocollapse */ LoadingService.ngInjectableDef = ɵɵdefineInjectable({ factory: function LoadingService_Factory() { return new LoadingService(ɵɵinject(LoadingConfig), ɵɵinject(Overlay)); }, token: LoadingService, providedIn: "root" });
 if (false) {
     /**
      * @type {?}

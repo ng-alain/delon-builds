@@ -1,5 +1,5 @@
 /**
- * @license ng-alain(cipchk@qq.com) v9.0.0-rc.1
+ * @license ng-alain(cipchk@qq.com) v8.9.1
  * (c) 2019 cipchk https://ng-alain.com/
  * License: MIT
  */
@@ -332,7 +332,11 @@
                 return legendItem ? legendItem.checked !== false : true;
             }));
             chart.line().position('label*value');
-            chart.point().position('label*value').shape('circle').size(3);
+            chart
+                .point()
+                .position('label*value')
+                .shape('circle')
+                .size(3);
             chart.render();
             this.attachChart();
         };

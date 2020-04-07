@@ -24,7 +24,7 @@ class SGConfig {
 SGConfig.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
-/** @nocollapse */ SGConfig.ɵprov = ɵɵdefineInjectable({ factory: function SGConfig_Factory() { return new SGConfig(); }, token: SGConfig, providedIn: "root" });
+/** @nocollapse */ SGConfig.ngInjectableDef = ɵɵdefineInjectable({ factory: function SGConfig_Factory() { return new SGConfig(); }, token: SGConfig, providedIn: "root" });
 if (false) {
     /**
      * 间距，默认：`32`
@@ -48,7 +48,7 @@ class SGContainerComponent {
      * @param {?} cog
      */
     constructor(cog) {
-        Object.assign(this, Object.assign(Object.assign({}, new SGConfig()), cog));
+        Object.assign(this, Object.assign({}, new SGConfig(), cog));
     }
     // #endregion
     /**
@@ -62,7 +62,9 @@ SGContainerComponent.decorators = [
     { type: Component, args: [{
                 selector: 'sg-container, [sg-container]',
                 exportAs: 'sgContainer',
-                template: ` <ng-content></ng-content> `,
+                template: `
+    <ng-content></ng-content>
+  `,
                 host: {
                     '[style.margin-left.px]': 'marginValue',
                     '[style.margin-right.px]': 'marginValue',
@@ -176,7 +178,9 @@ SGComponent.decorators = [
     { type: Component, args: [{
                 selector: 'sg',
                 exportAs: 'sg',
-                template: ` <ng-content></ng-content> `,
+                template: `
+    <ng-content></ng-content>
+  `,
                 host: {
                     '[style.padding-left.px]': 'paddingValue',
                     '[style.padding-right.px]': 'paddingValue',

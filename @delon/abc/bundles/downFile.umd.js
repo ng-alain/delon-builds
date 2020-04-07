@@ -1,5 +1,5 @@
 /**
- * @license ng-alain(cipchk@qq.com) v9.0.0-rc.1
+ * @license ng-alain(cipchk@qq.com) v8.9.1
  * (c) 2019 cipchk https://ng-alain.com/
  * License: MIT
  */
@@ -240,12 +240,10 @@
             /**
              * 成功回调
              */
-            // tslint:disable-next-line:no-output-native
             this.success = new core.EventEmitter();
             /**
              * 错误回调
              */
-            // tslint:disable-next-line:no-output-native
             this.error = new core.EventEmitter();
             /** @type {?} */
             var isFileSaverSupported = false;
@@ -352,7 +350,7 @@
                     fileName = fileName(res);
                 fileName =
                     fileName || disposition["filename*"] || disposition["filename"] || res.headers.get('filename') || res.headers.get('x-filename');
-                fileSaver.saveAs((/** @type {?} */ (res.body)), decodeURI((/** @type {?} */ (fileName))));
+                fileSaver.saveAs(res.body, decodeURI((/** @type {?} */ (fileName))));
                 _this.success.emit(res);
             }), (/**
              * @param {?} err

@@ -20,9 +20,9 @@ export declare class SEComponent implements OnChanges, AfterContentInit, AfterVi
     _error: string;
     optional: string | TemplateRef<void>;
     optionalHelp: string | TemplateRef<void>;
-    set error(val: string | {
+    error: string | {
         [key: string]: string;
-    });
+    };
     extra: string;
     label: string | TemplateRef<void>;
     col: number;
@@ -30,12 +30,12 @@ export declare class SEComponent implements OnChanges, AfterContentInit, AfterVi
     controlClass: string;
     line: boolean;
     labelWidth: number;
-    set id(value: string);
+    id: string;
     _id: string;
     _autoId: boolean;
-    get paddingValue(): number;
-    get showErr(): boolean;
-    private get ngControl();
+    readonly paddingValue: number;
+    readonly showErr: boolean;
+    private readonly ngControl;
     constructor(el: ElementRef, parent: SEContainerComponent, rep: ResponsiveService, ren: Renderer2, cdr: ChangeDetectorRef);
     private setClass;
     private bindModel;

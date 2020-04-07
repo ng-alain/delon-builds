@@ -1,5 +1,5 @@
 /**
- * @license ng-alain(cipchk@qq.com) v9.0.0-rc.1
+ * @license ng-alain(cipchk@qq.com) v8.9.1
  * (c) 2019 cipchk https://ng-alain.com/
  * License: MIT
  */
@@ -266,7 +266,7 @@
         QRConfig.decorators = [
             { type: core.Injectable, args: [{ providedIn: 'root' },] }
         ];
-        /** @nocollapse */ QRConfig.ɵprov = core["ɵɵdefineInjectable"]({ factory: function QRConfig_Factory() { return new QRConfig(); }, token: QRConfig, providedIn: "root" });
+        /** @nocollapse */ QRConfig.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function QRConfig_Factory() { return new QRConfig(); }, token: QRConfig, providedIn: "root" });
         return QRConfig;
     }());
     if (false) {
@@ -411,7 +411,7 @@
         QRService.ctorParameters = function () { return [
             { type: QRConfig }
         ]; };
-        /** @nocollapse */ QRService.ɵprov = core["ɵɵdefineInjectable"]({ factory: function QRService_Factory() { return new QRService(core["ɵɵinject"](QRConfig)); }, token: QRService, providedIn: "root" });
+        /** @nocollapse */ QRService.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function QRService_Factory() { return new QRService(core.ɵɵinject(QRConfig)); }, token: QRService, providedIn: "root" });
         return QRService;
     }());
     if (false) {
@@ -477,9 +477,8 @@
         function QRComponent(cog, srv, cdr) {
             this.srv = srv;
             this.cdr = cdr;
-            // tslint:disable-next-line:no-output-native
             this.change = new core.EventEmitter();
-            Object.assign(this, __assign(__assign({}, new QRConfig()), cog));
+            Object.assign(this, __assign({}, new QRConfig(), cog));
         }
         /**
          * @return {?}
@@ -506,7 +505,7 @@
             { type: core.Component, args: [{
                         selector: 'qr',
                         exportAs: 'qr',
-                        template: " <img class=\"qr__img\" src=\"{{ dataURL }}\" /> ",
+                        template: "\n    <img class=\"qr__img\" src=\"{{ dataURL }}\" />\n  ",
                         host: {
                             '[class.qr]': 'true',
                             '[style.height.px]': 'size',

@@ -45,7 +45,7 @@ var SEConfig = /** @class */ (function () {
     SEConfig.decorators = [
         { type: Injectable, args: [{ providedIn: 'root' },] }
     ];
-    /** @nocollapse */ SEConfig.ɵprov = ɵɵdefineInjectable({ factory: function SEConfig_Factory() { return new SEConfig(); }, token: SEConfig, providedIn: "root" });
+    /** @nocollapse */ SEConfig.ngInjectableDef = ɵɵdefineInjectable({ factory: function SEConfig_Factory() { return new SEConfig(); }, token: SEConfig, providedIn: "root" });
     return SEConfig;
 }());
 if (false) {
@@ -92,7 +92,7 @@ var SEContainerComponent = /** @class */ (function () {
     // #endregion
     function SEContainerComponent(cog) {
         this.line = false;
-        Object.assign(this, __assign(__assign({}, new SEConfig()), cog));
+        Object.assign(this, __assign({}, new SEConfig(), cog));
     }
     Object.defineProperty(SEContainerComponent.prototype, "gutter", {
         get: /**
@@ -241,7 +241,7 @@ var SEErrorComponent = /** @class */ (function () {
                             ]),
                         ]),
                     ],
-                    template: " <div [@errorAnt]><ng-content></ng-content></div> ",
+                    template: "\n    <div [@errorAnt]><ng-content></ng-content></div>\n  ",
                     host: {
                         '[class.ant-form-explain]': 'true',
                     },

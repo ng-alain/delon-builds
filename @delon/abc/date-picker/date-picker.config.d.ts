@@ -1,6 +1,3 @@
-import { NzSafeAny } from 'ng-zorro-antd/core/types/any';
-import { DisabledTimeFn, PanelMode, PresetRanges, SupportTimeOptions } from 'ng-zorro-antd/date-picker/standard-types';
-import { NzDatePickerI18nInterface } from 'ng-zorro-antd/i18n';
 export declare class DateRangePickerConfig {
     nzFormat?: string;
     nzClassName?: string;
@@ -9,17 +6,17 @@ export declare class DateRangePickerConfig {
     nzAllowClear?: boolean;
     nzAutoFocus?: boolean;
     nzDisabled?: boolean;
-    nzDisabledDate?: (d: Date) => boolean;
-    nzDisabledTime?: DisabledTimeFn;
-    nzLocale?: NzDatePickerI18nInterface;
-    nzPopupStyle?: object;
-    nzDropdownClassName?: string;
-    nzRenderExtraFooter?: string;
-    nzPlaceHolder?: string | string[];
-    nzShowTime?: SupportTimeOptions | boolean;
+    nzDisabledDate?: any;
+    nzDisabledTime?: any;
+    nzLocale?: any;
+    nzPopupStyle?: any;
+    nzDropdownClassName?: any;
+    nzRenderExtraFooter?: any;
+    nzPlaceHolder?: any;
+    nzShowTime?: any;
     nzShowToday?: boolean;
-    nzMode?: PanelMode | PanelMode[];
-    nzRanges?: PresetRanges;
+    nzMode?: any;
+    nzRanges?: any;
     shortcuts?: DateRangePickerShortcut;
 }
 export interface DateRangePickerShortcut {
@@ -33,7 +30,7 @@ export interface DateRangePickerShortcut {
     list?: DateRangePickerShortcutItem[];
 }
 export interface DateRangePickerShortcutItem {
-    [key: string]: NzSafeAny;
+    [key: string]: any;
     text: string;
     fn: (value: [Date, Date]) => [Date, Date];
 }

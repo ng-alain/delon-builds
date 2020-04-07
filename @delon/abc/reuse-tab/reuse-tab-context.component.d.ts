@@ -4,7 +4,7 @@ import { ReuseContextCloseEvent, ReuseContextI18n } from './reuse-tab.interfaces
 export declare class ReuseTabContextComponent implements OnDestroy {
     private srv;
     private sub$;
-    set i18n(value: ReuseContextI18n);
+    i18n: ReuseContextI18n;
     readonly change: EventEmitter<ReuseContextCloseEvent>;
     constructor(srv: ReuseTabContextService);
     ngOnDestroy(): void;

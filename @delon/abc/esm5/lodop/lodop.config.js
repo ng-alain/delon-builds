@@ -11,7 +11,7 @@ var LodopConfig = /** @class */ (function () {
     LodopConfig.decorators = [
         { type: Injectable, args: [{ providedIn: 'root' },] }
     ];
-    /** @nocollapse */ LodopConfig.ɵprov = i0.ɵɵdefineInjectable({ factory: function LodopConfig_Factory() { return new LodopConfig(); }, token: LodopConfig, providedIn: "root" });
+    /** @nocollapse */ LodopConfig.ngInjectableDef = i0.ɵɵdefineInjectable({ factory: function LodopConfig_Factory() { return new LodopConfig(); }, token: LodopConfig, providedIn: "root" });
     return LodopConfig;
 }());
 export { LodopConfig };

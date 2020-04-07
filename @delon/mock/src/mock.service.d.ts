@@ -11,6 +11,6 @@ export declare class MockService implements OnDestroy {
     private outputError;
     getRule(method: string, url: string): MockRule | null;
     clearCache(): void;
-    get rules(): MockCachedRule[];
+    readonly rules: MockCachedRule[];
     ngOnDestroy(): void;
 }

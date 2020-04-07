@@ -1,6 +1,6 @@
 {
   "name": "@delon/util",
-  "version": "9.0.0-rc.1-bdf4e3a7",
+  "version": "8.9.1-3588e90",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -20,7 +20,8 @@
     "angular"
   ],
   "dependencies": {
-    "extend": "^3.0.0"
+    "extend": "^3.0.0",
+    "tslib": "^1.9.0"
   },
   "sideEffects": false,
   "main": "bundles/util.umd.js",
@@ -31,8 +32,5 @@
   "fesm5": "fesm5/util.js",
   "fesm2015": "fesm2015/util.js",
   "typings": "util.d.ts",
-  "metadata": "util.metadata.json",
-  "peerDependencies": {
-    "tslib": "^1.10.0"
-  }
+  "metadata": "util.metadata.json"
 }

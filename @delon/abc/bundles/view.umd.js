@@ -1,5 +1,5 @@
 /**
- * @license ng-alain(cipchk@qq.com) v9.0.0-rc.1
+ * @license ng-alain(cipchk@qq.com) v8.9.1
  * (c) 2019 cipchk https://ng-alain.com/
  * License: MIT
  */
@@ -254,7 +254,7 @@
         SVConfig.decorators = [
             { type: core.Injectable, args: [{ providedIn: 'root' },] }
         ];
-        /** @nocollapse */ SVConfig.ɵprov = core["ɵɵdefineInjectable"]({ factory: function SVConfig_Factory() { return new SVConfig(); }, token: SVConfig, providedIn: "root" });
+        /** @nocollapse */ SVConfig.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function SVConfig_Factory() { return new SVConfig(); }, token: SVConfig, providedIn: "root" });
         return SVConfig;
     }());
     if (false) {
@@ -304,7 +304,7 @@
             this.size = 'large';
             this.layout = 'horizontal';
             this.el = el.nativeElement;
-            Object.assign(this, __assign(__assign({}, new SVConfig()), cog));
+            Object.assign(this, __assign({}, new SVConfig(), cog));
         }
         /**
          * @private
