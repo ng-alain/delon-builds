@@ -21,8 +21,8 @@ function pluginG2(options) {
         g2Typing(host);
         // package
         (options.type === 'add' ? json_1.addPackageToPackageJson : json_1.removePackageFromPackageJson)(host, [
-            '@antv/data-set@^0.11.1',
-            '@antv/g2@^4.0.3',
+            '@antv/data-set@^0.11.4',
+            '@antv/g2@^4.0.5',
             '@antv/g2-plugin-slider@^2.1.1',
         ]);
         // angular
