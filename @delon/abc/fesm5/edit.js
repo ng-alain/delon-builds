@@ -1,9 +1,9 @@
 import { __assign, __decorate, __metadata, __spread } from 'tslib';
 import { Injectable, ɵɵdefineInjectable, Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Host, Optional, ElementRef, Renderer2, ChangeDetectorRef, ContentChild, ViewChild, NgModule } from '@angular/core';
 import { toNumber, InputNumber, InputBoolean, deepGet, isEmpty, DelonUtilModule } from '@delon/util';
-import { trigger, transition, style, animate } from '@angular/animations';
 import { NgModel, FormControlName } from '@angular/forms';
 import { ResponsiveService } from '@delon/theme';
+import { helpMotion } from 'ng-zorro-antd/core/animation';
 import { CommonModule } from '@angular/common';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
@@ -207,54 +207,6 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
- * Generated from: edit-error.component.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-var SEErrorComponent = /** @class */ (function () {
-    function SEErrorComponent() {
-    }
-    SEErrorComponent.decorators = [
-        { type: Component, args: [{
-                    selector: 'se-error',
-                    exportAs: 'seError',
-                    animations: [
-                        trigger('errorAnt', [
-                            transition('void => *', [
-                                style({
-                                    opacity: 0,
-                                    transform: 'translateY(-5px)',
-                                }),
-                                animate('0.3s cubic-bezier(0.645, 0.045, 0.355, 1)', style({
-                                    opacity: 1,
-                                    transform: 'translateY(0)',
-                                })),
-                            ]),
-                            transition('* => void', [
-                                style({
-                                    opacity: 1,
-                                    transform: 'translateY(0)',
-                                }),
-                                animate('0.3s cubic-bezier(0.645, 0.045, 0.355, 1)', style({
-                                    opacity: 0,
-                                    transform: 'translateY(-5px)',
-                                })),
-                            ]),
-                        ]),
-                    ],
-                    template: " <div [@errorAnt]><ng-content></ng-content></div> ",
-                    host: {
-                        '[class.ant-form-explain]': 'true',
-                    },
-                    preserveWhitespaces: false,
-                    changeDetection: ChangeDetectionStrategy.OnPush,
-                    encapsulation: ViewEncapsulation.None
-                }] }
-    ];
-    return SEErrorComponent;
-}());
-
-/**
- * @fileoverview added by tsickle
  * Generated from: edit-title.component.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
@@ -400,7 +352,17 @@ var SEComponent = /** @class */ (function () {
          * @return {?}
          */
         function () {
-            return this.invalid && this.parent.size !== 'compact' && !!this._error;
+            return this.invalid && !!this._error;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(SEComponent.prototype, "compact", {
+        get: /**
+         * @return {?}
+         */
+        function () {
+            return this.parent.size === 'compact';
         },
         enumerable: true,
         configurable: true
@@ -575,13 +537,15 @@ var SEComponent = /** @class */ (function () {
         { type: Component, args: [{
                     selector: 'se',
                     exportAs: 'se',
-                    template: "<div class=\"ant-form-item-label\" [class.se__nolabel]=\"!label\" [style.width.px]=\"_labelWidth\">\n  <label *ngIf=\"label\" [attr.for]=\"_id\" class=\"se__label\" [ngClass]=\"{'ant-form-item-required': required}\">\n    <span class=\"se__label-text\">\n      <ng-container *stringTemplateOutlet=\"label\">{{ label }}</ng-container>\n    </span>\n    <span *ngIf=\"optional || optionalHelp\" class=\"se__label-optional\" [class.se__label-optional-no-text]=\"!optional\">\n      <ng-container *stringTemplateOutlet=\"optional\">{{ optional }}</ng-container>\n      <i *ngIf=\"optionalHelp\" nz-tooltip [nzTooltipTitle]=\"optionalHelp\" nz-icon nzType=\"question-circle\"></i>\n    </span>\n  </label>\n</div>\n<div class=\"ant-form-item-control-wrapper se__control\">\n  <div class=\"ant-form-item-control {{controlClass}}\" [class.has-error]=\"invalid\">\n    <span (cdkObserveContent)=\"checkContent()\" #contentElement>\n      <ng-content></ng-content>\n    </span>\n    <se-error *ngIf=\"showErr\">{{_error}}</se-error>\n    <div *ngIf=\"extra\" class=\"ant-form-extra\">{{extra}}</div>\n  </div>\n</div>\n",
+                    template: "<div class=\"ant-form-item-label\" [class.se__nolabel]=\"!label\" [style.width.px]=\"_labelWidth\">\n  <label *ngIf=\"label\" [attr.for]=\"_id\" class=\"se__label\" [ngClass]=\"{'ant-form-item-required': required}\">\n    <span class=\"se__label-text\">\n      <ng-container *stringTemplateOutlet=\"label\">{{ label }}</ng-container>\n    </span>\n    <span *ngIf=\"optional || optionalHelp\" class=\"se__label-optional\" [class.se__label-optional-no-text]=\"!optional\">\n      <ng-container *stringTemplateOutlet=\"optional\">{{ optional }}</ng-container>\n      <i *ngIf=\"optionalHelp\" nz-tooltip [nzTooltipTitle]=\"optionalHelp\" nz-icon nzType=\"question-circle\"></i>\n    </span>\n  </label>\n</div>\n<div class=\"ant-form-item-control se__control\">\n  <div class=\"ant-form-item-control-input {{controlClass}}\">\n    <div class=\"ant-form-item-control-input-content\" (cdkObserveContent)=\"checkContent()\" #contentElement>\n      <ng-content></ng-content>\n    </div>\n  </div>\n  <div class=\"ant-form-item-explain\" *ngIf=\"showErr && !compact\">\n    <div @helpMotion>{{_error}}</div>\n  </div>\n  <div *ngIf=\"extra && !compact \" class=\"ant-form-item-extra\">{{extra}}</div>\n</div>\n",
                     host: {
                         '[style.padding-left.px]': 'paddingValue',
                         '[style.padding-right.px]': 'paddingValue',
-                        '[class.ant-form-item-with-help]': 'showErr',
+                        '[class.ant-form-item-has-error]': 'showErr',
+                        '[class.ant-form-item-with-help]': 'showErr && !compact',
                     },
                     preserveWhitespaces: false,
+                    animations: [helpMotion],
                     changeDetection: ChangeDetectionStrategy.OnPush,
                     encapsulation: ViewEncapsulation.None
                 }] }
@@ -730,7 +694,7 @@ if (false) {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-var COMPONENTS = [SEContainerComponent, SEComponent, SEErrorComponent, SETitleComponent];
+var COMPONENTS = [SEContainerComponent, SEComponent, SETitleComponent];
 var SEModule = /** @class */ (function () {
     function SEModule() {
     }
@@ -756,5 +720,5 @@ var SEModule = /** @class */ (function () {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { SEComponent, SEConfig, SEContainerComponent, SEErrorComponent, SEModule, SETitleComponent };
+export { SEComponent, SEConfig, SEContainerComponent, SEModule, SETitleComponent };
 //# sourceMappingURL=edit.js.map

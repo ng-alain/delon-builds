@@ -29588,9 +29588,6 @@ body {
   display: inline-block;
   content: '';
 }
-.se__item .ant-form-explain {
-  display: block;
-}
 .se__label {
   display: table-cell;
   flex: 0 0 auto;
@@ -29617,15 +29614,11 @@ body {
 .se__compact .se__item {
   margin-bottom: 8px;
 }
-.se__compact .ant-form-extra {
+.se__compact .ant-form-item-extra {
   display: none;
 }
 .se__line {
   border-bottom: 1px dashed #e8e8e8;
-}
-.se__line .se__label,
-.se__line .se__control {
-  padding-bottom: 8px;
 }
 .se__hide-label .se__nolabel,
 .se__inline .se__nolabel,
@@ -29654,6 +29647,7 @@ body {
 }
 .se__vertical .se__item {
   display: block;
+  width: 100%;
 }
 .se__inline .ant-form-item-label,
 .se__inline .se__control {

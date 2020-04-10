@@ -35,6 +35,7 @@ export declare class SEComponent implements OnChanges, AfterContentInit, AfterVi
     _autoId: boolean;
     get paddingValue(): number;
     get showErr(): boolean;
+    get compact(): boolean;
     private get ngControl();
     constructor(el: ElementRef, parent: SEContainerComponent, rep: ResponsiveService, ren: Renderer2, cdr: ChangeDetectorRef);
     private setClass;

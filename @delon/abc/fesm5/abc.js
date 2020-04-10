@@ -7,7 +7,7 @@ export { STColumnSource, STComponent, STConfig, STDataSource, STExport, STModule
 import { SVModule } from '@delon/abc/view';
 export { SVComponent, SVConfig, SVContainerComponent, SVModule, SVTitleComponent } from '@delon/abc/view';
 import { SEModule } from '@delon/abc/edit';
-export { SEComponent, SEConfig, SEContainerComponent, SEErrorComponent, SEModule, SETitleComponent } from '@delon/abc/edit';
+export { SEComponent, SEConfig, SEContainerComponent, SEModule, SETitleComponent } from '@delon/abc/edit';
 import { SGModule } from '@delon/abc/grid';
 export { SGComponent, SGConfig, SGContainerComponent, SGModule } from '@delon/abc/grid';
 import { ErrorCollectModule } from '@delon/abc/error-collect';

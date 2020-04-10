@@ -180,12 +180,6 @@
             return edit.SEContainerComponent;
         }
     });
-    Object.defineProperty(exports, 'SEErrorComponent', {
-        enumerable: true,
-        get: function () {
-            return edit.SEErrorComponent;
-        }
-    });
     Object.defineProperty(exports, 'SEModule', {
         enumerable: true,
         get: function () {

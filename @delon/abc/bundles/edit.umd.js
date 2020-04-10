@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util'), require('@angular/animations'), require('@angular/forms'), require('@delon/theme'), require('@angular/common'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/tooltip')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/edit', ['exports', '@angular/core', '@delon/util', '@angular/animations', '@angular/forms', '@delon/theme', '@angular/common', 'ng-zorro-antd/icon', 'ng-zorro-antd/tooltip'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.edit = {}), global.ng.core, global.delon.util, global.ng.animations, global.ng.forms, global.delon.theme, global.ng.common, global['ng-zorro-antd/icon'], global['ng-zorro-antd/tooltip']));
-}(this, (function (exports, core, util, animations, forms, theme, common, icon, tooltip) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util'), require('@angular/forms'), require('@delon/theme'), require('ng-zorro-antd/core/animation'), require('@angular/common'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/tooltip')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/edit', ['exports', '@angular/core', '@delon/util', '@angular/forms', '@delon/theme', 'ng-zorro-antd/core/animation', '@angular/common', 'ng-zorro-antd/icon', 'ng-zorro-antd/tooltip'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.edit = {}), global.ng.core, global.delon.util, global.ng.forms, global.delon.theme, global.animation, global.ng.common, global['ng-zorro-antd/icon'], global['ng-zorro-antd/tooltip']));
+}(this, (function (exports, core, util, forms, theme, animation, common, icon, tooltip) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -422,54 +422,6 @@
 
     /**
      * @fileoverview added by tsickle
-     * Generated from: edit-error.component.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var SEErrorComponent = /** @class */ (function () {
-        function SEErrorComponent() {
-        }
-        SEErrorComponent.decorators = [
-            { type: core.Component, args: [{
-                        selector: 'se-error',
-                        exportAs: 'seError',
-                        animations: [
-                            animations.trigger('errorAnt', [
-                                animations.transition('void => *', [
-                                    animations.style({
-                                        opacity: 0,
-                                        transform: 'translateY(-5px)',
-                                    }),
-                                    animations.animate('0.3s cubic-bezier(0.645, 0.045, 0.355, 1)', animations.style({
-                                        opacity: 1,
-                                        transform: 'translateY(0)',
-                                    })),
-                                ]),
-                                animations.transition('* => void', [
-                                    animations.style({
-                                        opacity: 1,
-                                        transform: 'translateY(0)',
-                                    }),
-                                    animations.animate('0.3s cubic-bezier(0.645, 0.045, 0.355, 1)', animations.style({
-                                        opacity: 0,
-                                        transform: 'translateY(-5px)',
-                                    })),
-                                ]),
-                            ]),
-                        ],
-                        template: " <div [@errorAnt]><ng-content></ng-content></div> ",
-                        host: {
-                            '[class.ant-form-explain]': 'true',
-                        },
-                        preserveWhitespaces: false,
-                        changeDetection: core.ChangeDetectionStrategy.OnPush,
-                        encapsulation: core.ViewEncapsulation.None
-                    }] }
-        ];
-        return SEErrorComponent;
-    }());
-
-    /**
-     * @fileoverview added by tsickle
      * Generated from: edit-title.component.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
@@ -615,7 +567,17 @@
              * @return {?}
              */
             function () {
-                return this.invalid && this.parent.size !== 'compact' && !!this._error;
+                return this.invalid && !!this._error;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(SEComponent.prototype, "compact", {
+            get: /**
+             * @return {?}
+             */
+            function () {
+                return this.parent.size === 'compact';
             },
             enumerable: true,
             configurable: true
@@ -790,13 +752,15 @@
             { type: core.Component, args: [{
                         selector: 'se',
                         exportAs: 'se',
-                        template: "<div class=\"ant-form-item-label\" [class.se__nolabel]=\"!label\" [style.width.px]=\"_labelWidth\">\n  <label *ngIf=\"label\" [attr.for]=\"_id\" class=\"se__label\" [ngClass]=\"{'ant-form-item-required': required}\">\n    <span class=\"se__label-text\">\n      <ng-container *stringTemplateOutlet=\"label\">{{ label }}</ng-container>\n    </span>\n    <span *ngIf=\"optional || optionalHelp\" class=\"se__label-optional\" [class.se__label-optional-no-text]=\"!optional\">\n      <ng-container *stringTemplateOutlet=\"optional\">{{ optional }}</ng-container>\n      <i *ngIf=\"optionalHelp\" nz-tooltip [nzTooltipTitle]=\"optionalHelp\" nz-icon nzType=\"question-circle\"></i>\n    </span>\n  </label>\n</div>\n<div class=\"ant-form-item-control-wrapper se__control\">\n  <div class=\"ant-form-item-control {{controlClass}}\" [class.has-error]=\"invalid\">\n    <span (cdkObserveContent)=\"checkContent()\" #contentElement>\n      <ng-content></ng-content>\n    </span>\n    <se-error *ngIf=\"showErr\">{{_error}}</se-error>\n    <div *ngIf=\"extra\" class=\"ant-form-extra\">{{extra}}</div>\n  </div>\n</div>\n",
+                        template: "<div class=\"ant-form-item-label\" [class.se__nolabel]=\"!label\" [style.width.px]=\"_labelWidth\">\n  <label *ngIf=\"label\" [attr.for]=\"_id\" class=\"se__label\" [ngClass]=\"{'ant-form-item-required': required}\">\n    <span class=\"se__label-text\">\n      <ng-container *stringTemplateOutlet=\"label\">{{ label }}</ng-container>\n    </span>\n    <span *ngIf=\"optional || optionalHelp\" class=\"se__label-optional\" [class.se__label-optional-no-text]=\"!optional\">\n      <ng-container *stringTemplateOutlet=\"optional\">{{ optional }}</ng-container>\n      <i *ngIf=\"optionalHelp\" nz-tooltip [nzTooltipTitle]=\"optionalHelp\" nz-icon nzType=\"question-circle\"></i>\n    </span>\n  </label>\n</div>\n<div class=\"ant-form-item-control se__control\">\n  <div class=\"ant-form-item-control-input {{controlClass}}\">\n    <div class=\"ant-form-item-control-input-content\" (cdkObserveContent)=\"checkContent()\" #contentElement>\n      <ng-content></ng-content>\n    </div>\n  </div>\n  <div class=\"ant-form-item-explain\" *ngIf=\"showErr && !compact\">\n    <div @helpMotion>{{_error}}</div>\n  </div>\n  <div *ngIf=\"extra && !compact \" class=\"ant-form-item-extra\">{{extra}}</div>\n</div>\n",
                         host: {
                             '[style.padding-left.px]': 'paddingValue',
                             '[style.padding-right.px]': 'paddingValue',
-                            '[class.ant-form-item-with-help]': 'showErr',
+                            '[class.ant-form-item-has-error]': 'showErr',
+                            '[class.ant-form-item-with-help]': 'showErr && !compact',
                         },
                         preserveWhitespaces: false,
+                        animations: [animation.helpMotion],
                         changeDetection: core.ChangeDetectionStrategy.OnPush,
                         encapsulation: core.ViewEncapsulation.None
                     }] }
@@ -945,7 +909,7 @@
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
-    var COMPONENTS = [SEContainerComponent, SEComponent, SEErrorComponent, SETitleComponent];
+    var COMPONENTS = [SEContainerComponent, SEComponent, SETitleComponent];
     var SEModule = /** @class */ (function () {
         function SEModule() {
         }
@@ -962,7 +926,6 @@
     exports.SEComponent = SEComponent;
     exports.SEConfig = SEConfig;
     exports.SEContainerComponent = SEContainerComponent;
-    exports.SEErrorComponent = SEErrorComponent;
     exports.SEModule = SEModule;
     exports.SETitleComponent = SETitleComponent;
 
