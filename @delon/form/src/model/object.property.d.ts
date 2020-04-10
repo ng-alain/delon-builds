@@ -1,4 +1,4 @@
-import { NzSafeAny } from 'ng-zorro-antd/core/types/any';
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { DelonFormConfig } from '../config';
 import { SFValue } from '../interface';
 import { SFSchema } from '../schema/index';

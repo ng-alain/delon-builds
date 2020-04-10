@@ -1,5 +1,5 @@
 import { NzTreeNode } from 'ng-zorro-antd/core/tree';
-import { NzSafeAny } from 'ng-zorro-antd/core/types/any';
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { DelonUtilConfig } from '../util.config';
 export interface ArrayServiceTreeToArrOptions {
     /** 深度项名，默认：`'deep'` */

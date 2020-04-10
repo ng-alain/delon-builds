@@ -1,6 +1,6 @@
 import { Type } from '@angular/core';
 import { ComponentFixture } from '@angular/core/testing';
-import { NzSafeAny } from 'ng-zorro-antd/core/types/any';
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
 export declare type PageG2Type = 'geoms' | 'views';
 export declare const PageG2DataCount = 2;
 export declare const PageG2Height = 100;

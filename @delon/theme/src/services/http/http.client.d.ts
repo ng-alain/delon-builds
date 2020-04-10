@@ -1,5 +1,5 @@
 import { HttpClient, HttpEvent, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
-import { NzSafeAny } from 'ng-zorro-antd/core/types/any';
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { Observable } from 'rxjs';
 import { AlainThemeConfig } from '../../theme.config';
 export declare type _HttpHeaders = HttpHeaders | {

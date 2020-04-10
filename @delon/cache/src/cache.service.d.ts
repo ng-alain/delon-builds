@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { OnDestroy } from '@angular/core';
-import { NzSafeAny } from 'ng-zorro-antd/core/types/any';
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { Observable } from 'rxjs';
 import { DelonCacheConfig } from './cache.config';
 import { CacheNotifyResult, ICacheStore } from './interface';
