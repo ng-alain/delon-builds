@@ -16,6 +16,41 @@ import { __awaiter } from 'tslib';
  * found in the LICENSE file at https://angular.io/license
  */
 /**
+ * Creates a browser MouseEvent with the specified options.
+ * @param {?} type
+ * @param {?=} x
+ * @param {?=} y
+ * @return {?}
+ */
+function createMouseEvent(type, x = 0, y = 0) {
+    /** @type {?} */
+    const event = document.createEvent('MouseEvent');
+    event.initMouseEvent(type, false /* canBubble */, false /* cancelable */, window /* view */, 0 /* detail */, x /* screenX */, y /* screenY */, x /* clientX */, y /* clientY */, false /* ctrlKey */, false /* altKey */, false /* shiftKey */, false /* metaKey */, 0 /* button */, null /* relatedTarget */);
+    return event;
+}
+/**
+ * Creates a browser TouchEvent with the specified pointer coordinates.
+ * @param {?} type
+ * @param {?=} pageX
+ * @param {?=} pageY
+ * @return {?}
+ */
+function createTouchEvent(type, pageX = 0, pageY = 0) {
+    // In favor of creating events that work for most of the browsers, the event is created
+    // as a basic UI Event. The necessary details for the event will be set manually.
+    /** @type {?} */
+    const event = document.createEvent('UIEvent');
+    /** @type {?} */
+    const touchDetails = { pageX, pageY };
+    ((/** @type {?} */ (event))).initUIEvent(type, true, true, window, 0);
+    // Most of the browsers don't have a "initTouchEvent" method that can be used to define
+    // the touch details.
+    Object.defineProperties(event, {
+        touches: { value: [touchDetails] },
+    });
+    return event;
+}
+/**
  * Dispatches a keydown event from an element.
  * @param {?} type
  * @param {?} keyCode
@@ -111,6 +146,29 @@ function dispatchFakeEvent(node, type, canBubble) {
  */
 function dispatchKeyboardEvent(node, type, keyCode, target) {
     return (/** @type {?} */ (dispatchEvent(node, createKeyboardEvent(type, keyCode, target))));
+}
+/**
+ * Shorthand to dispatch a mouse event on the specified coordinates.
+ * @param {?} node
+ * @param {?} type
+ * @param {?=} x
+ * @param {?=} y
+ * @param {?=} event
+ * @return {?}
+ */
+function dispatchMouseEvent(node, type, x = 0, y = 0, event = createMouseEvent(type, x, y)) {
+    return (/** @type {?} */ (dispatchEvent(node, event)));
+}
+/**
+ * Shorthand to dispatch a touch event on the specified coordinates.
+ * @param {?} node
+ * @param {?} type
+ * @param {?=} x
+ * @param {?=} y
+ * @return {?}
+ */
+function dispatchTouchEvent(node, type, x = 0, y = 0) {
+    return dispatchEvent(node, createTouchEvent(type, x, y));
 }
 
 /**
@@ -606,5 +664,5 @@ const createTestContext = (/**
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { DROPDOWN_MIN_TIME, PageG2, PageG2DataCount, PageG2Height, TestContext, checkDelay, configureTestSuite, createFakeEvent, createKeyboardEvent, createTestContext, dispatchDropDown, dispatchEvent, dispatchFakeEvent, dispatchKeyboardEvent, typeInElement };
+export { DROPDOWN_MIN_TIME, PageG2, PageG2DataCount, PageG2Height, TestContext, checkDelay, configureTestSuite, createFakeEvent, createKeyboardEvent, createMouseEvent, createTestContext, createTouchEvent, dispatchDropDown, dispatchEvent, dispatchFakeEvent, dispatchKeyboardEvent, dispatchMouseEvent, dispatchTouchEvent, typeInElement };
 //# sourceMappingURL=testing.js.map
