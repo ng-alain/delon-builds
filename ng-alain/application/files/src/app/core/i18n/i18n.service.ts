@@ -1,26 +1,24 @@
 // 请参考：https://ng-alain.com/docs/i18n
-import { Injectable } from '@angular/core';
-import { Observable, BehaviorSubject } from 'rxjs';
-import { filter } from 'rxjs/operators';
-
 import { registerLocaleData } from '@angular/common';
-import ngZh from '@angular/common/locales/zh';
 import ngEn from '@angular/common/locales/en';
+import ngZh from '@angular/common/locales/zh';
 import ngZhTw from '@angular/common/locales/zh-Hant';
-
-import { en_US, zh_CN, zh_TW, NzI18nService } from 'ng-zorro-antd';
-import * as df_en from 'date-fns/locale/en-US';
-import * as df_zh_cn from 'date-fns/locale/zh-CN';
-import * as df_zh_tw from 'date-fns/locale/zh-TW';
-import { TranslateService } from '@ngx-translate/core';
+import { Injectable } from '@angular/core';
 import {
-  SettingsService,
   AlainI18NService,
   DelonLocaleService,
   en_US as delonEnUS,
+  SettingsService,
   zh_CN as delonZhCn,
   zh_TW as delonZhTw,
 } from '@delon/theme';
+import { TranslateService } from '@ngx-translate/core';
+import * as dfEn from 'date-fns/locale/en-US';
+import * as dfZhCn from 'date-fns/locale/zh-CN';
+import * as dfZhTw from 'date-fns/locale/zh-TW';
+import { en_US as zorroEnUS, NzI18nService, zh_CN as zorroZhCN, zh_TW as zorroZhTW } from 'ng-zorro-antd/i18n';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { filter } from 'rxjs/operators';
 
 interface LangData {
   text: string;
@@ -36,24 +34,24 @@ const LANGS: { [key: string]: LangData } = {
   'zh-CN': {
     text: '简体中文',
     ng: ngZh,
-    zorro: zh_CN,
-    dateFns: df_zh_cn,
+    zorro: zorroZhCN,
+    dateFns: dfZhCn,
     delon: delonZhCn,
     abbr: '🇨🇳',
   },
   'zh-TW': {
     text: '繁体中文',
     ng: ngZhTw,
-    zorro: zh_TW,
-    dateFns: df_zh_tw,
+    zorro: zorroZhTW,
+    dateFns: dfZhTw,
     delon: delonZhTw,
     abbr: '🇭🇰',
   },
   'en-US': {
     text: 'English',
     ng: ngEn,
-    zorro: en_US,
-    dateFns: df_en,
+    zorro: zorroEnUS,
+    dateFns: dfEn,
     delon: delonEnUS,
     abbr: '🇬🇧',
   },
@@ -102,7 +100,9 @@ export class I18NService implements AlainI18NService {
 
   use(lang: string): void {
     lang = lang || this.translate.getDefaultLang();
-    if (this.currentLang === lang) return;
+    if (this.currentLang === lang) {
+      return;
+    }
     this.updateLangData(lang);
     this.translate.use(lang).subscribe(() => this.change$.next(lang));
   }

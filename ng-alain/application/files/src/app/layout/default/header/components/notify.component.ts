@@ -1,8 +1,8 @@
-import { Component, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
-import parseISO from 'date-fns/parseISO';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
+import { NoticeIconList, NoticeItem } from '@delon/abc/notice-icon';
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
-import { NzMessageService } from 'ng-zorro-antd';
-import { NoticeItem, NoticeIconList } from '@delon/abc';
+import parseISO from 'date-fns/parseISO';
+import { NzMessageService } from 'ng-zorro-antd/message';
 
 /**
  * 菜单通知
@@ -58,7 +58,11 @@ export class HeaderNotifyComponent {
 
     notices.forEach((item) => {
       const newItem = { ...item };
-      if (newItem.datetime) if (typeof item.datetime === 'string') item.datetime = parseISO(item.datetime);
+      if (newItem.datetime) {
+        if (typeof item.datetime === 'string') {
+          item.datetime = parseISO(item.datetime);
+        }
+      }
       newItem.datetime = formatDistanceToNow(item.datetime as Date, {
         locale: (window as any).__locale__,
       });
@@ -70,13 +74,15 @@ export class HeaderNotifyComponent {
           doing: 'gold',
         }[newItem.status];
       }
-      data.find((w) => w.title === newItem.type)!.list.push(newItem);
+      data.find((w) => w.title === newItem.type).list.push(newItem);
     });
     return data;
   }
 
   loadData() {
-    if (this.loading) return;
+    if (this.loading) {
+      return;
+    }
     this.loading = true;
     setTimeout(() => {
       this.data = this.updateNoticeData([
