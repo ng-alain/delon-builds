@@ -33,7 +33,6 @@ import { NzTransferModule } from 'ng-zorro-antd/transfer';
 import { NzTreeSelectModule } from 'ng-zorro-antd/tree-select';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
 import format from 'date-fns/format';
-import { NzI18nService } from 'ng-zorro-antd/i18n';
 
 /**
  * @fileoverview added by tsickle
@@ -206,14 +205,14 @@ var FORMATMAPS = {
     'date-time': {
         widget: 'date',
         showTime: true,
-        format: 'YYYY-MM-DDTHH:mm:ssZ',
+        format: 'yyyy-MM-ddTHH:mm:ssZ',
     },
     date: { widget: 'date', format: 'yyyy-MM-dd' },
     'full-date': { widget: 'date', format: 'yyyy-MM-dd' },
     time: { widget: 'time' },
     'full-time': { widget: 'time' },
-    week: { widget: 'date', mode: 'week', format: 'YYYY-WW' },
-    month: { widget: 'date', mode: 'month', format: 'YYYY-MM' },
+    week: { widget: 'date', mode: 'week', format: 'yyyy-WW' },
+    month: { widget: 'date', mode: 'month', format: 'yyyy-MM' },
     uri: { widget: 'upload' },
     email: { widget: 'autocomplete', type: 'email' },
     color: { widget: 'string', type: 'color' },
@@ -4390,17 +4389,6 @@ var DateWidget = /** @class */ (function (_super) {
         _this.displayValue = null;
         return _this;
     }
-    Object.defineProperty(DateWidget.prototype, "zorroI18n", {
-        get: /**
-         * @private
-         * @return {?}
-         */
-        function () {
-            return this.injector.get(NzI18nService);
-        },
-        enumerable: true,
-        configurable: true
-    });
     /**
      * @return {?}
      */
@@ -4420,17 +4408,15 @@ var DateWidget = /** @class */ (function (_super) {
             this.endFormat = endUi.format ? endUi._format : this.startFormat;
         }
         if (!displayFormat) {
-            /** @type {?} */
-            var usingDateFns = isDateFns(this.zorroI18n);
             switch (this.mode) {
                 case 'year':
-                    this.displayFormat = usingDateFns ? "YYYY" : "yyyy";
+                    this.displayFormat = "yyyy";
                     break;
                 case 'month':
-                    this.displayFormat = usingDateFns ? "YYYY-MM" : "yyyy-MM";
+                    this.displayFormat = "yyyy-MM";
                     break;
                 case 'week':
-                    this.displayFormat = usingDateFns ? "YYYY-WW" : "yyyy-ww";
+                    this.displayFormat = "yyyy-ww";
                     break;
             }
         }
