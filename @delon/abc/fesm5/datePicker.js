@@ -318,7 +318,7 @@ var RangePickerComponent = /** @class */ (function () {
         this.valueChange((/** @type {?} */ (this.value)));
         if (this._shortcut.closed) {
             // tslint:disable-next-line:no-string-literal
-            ((/** @type {?} */ (this.comp.datePicker)))['picker'].hideOverlay();
+            ((/** @type {?} */ (this.comp)))['picker'].hideOverlay();
         }
     };
     RangePickerComponent.decorators = [

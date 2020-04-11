@@ -3798,7 +3798,7 @@ var DatePipe = /** @class */ (function () {
      * @return {?}
      */
     function (value, formatString) {
-        if (formatString === void 0) { formatString = 'YYYY-MM-DD HH:mm'; }
+        if (formatString === void 0) { formatString = 'yyyy-MM-dd HH:mm'; }
         value = typeof value === 'string' ? parseISO(value) : value;
         if (value) {
             if (formatString === 'fn') {
@@ -4138,7 +4138,7 @@ var AlainThemeModule = /** @class */ (function () {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-var VERSION = new Version('9.0.0-alpha.1-36058c91');
+var VERSION = new Version('9.0.0-alpha.1-938e045c');
 
 /**
  * @fileoverview added by tsickle

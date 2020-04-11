@@ -1,6 +1,6 @@
 import { __assign, __decorate, __metadata, __spread } from 'tslib';
 import { Injectable, ɵɵdefineInjectable, Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Host, Optional, ElementRef, Renderer2, ChangeDetectorRef, ContentChild, ViewChild, NgModule } from '@angular/core';
-import { toNumber, InputNumber, InputBoolean, deepGet, isEmpty, DelonUtilModule } from '@delon/util';
+import { toNumber, InputNumber, InputBoolean, isEmpty, DelonUtilModule } from '@delon/util';
 import { NgModel, FormControlName } from '@angular/forms';
 import { ResponsiveService } from '@delon/theme';
 import { helpMotion } from 'ng-zorro-antd/core/animation';
@@ -423,6 +423,7 @@ var SEComponent = /** @class */ (function () {
      */
     function () {
         var _this = this;
+        var _a;
         if (!this.ngControl || this.status$)
             return;
         this.status$ = (/** @type {?} */ (this.ngControl.statusChanges)).subscribe((/**
@@ -432,7 +433,7 @@ var SEComponent = /** @class */ (function () {
         function (res) { return _this.updateStatus(res === 'INVALID'); }));
         if (this._autoId) {
             /** @type {?} */
-            var control = (/** @type {?} */ (deepGet(this.ngControl.valueAccessor, '_elementRef.nativeElement')));
+            var control = (/** @type {?} */ ((_a = ((/** @type {?} */ (this.ngControl.valueAccessor)))) === null || _a === void 0 ? void 0 : _a._elementRef.nativeElement));
             if (control) {
                 control.id = this._id;
             }

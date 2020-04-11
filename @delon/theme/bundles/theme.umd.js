@@ -4008,7 +4008,7 @@
          * @return {?}
          */
         function (value, formatString) {
-            if (formatString === void 0) { formatString = 'YYYY-MM-DD HH:mm'; }
+            if (formatString === void 0) { formatString = 'yyyy-MM-dd HH:mm'; }
             value = typeof value === 'string' ? parseISO(value) : value;
             if (value) {
                 if (formatString === 'fn') {

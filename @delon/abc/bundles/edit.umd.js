@@ -638,6 +638,7 @@
          */
         function () {
             var _this = this;
+            var _a;
             if (!this.ngControl || this.status$)
                 return;
             this.status$ = (/** @type {?} */ (this.ngControl.statusChanges)).subscribe((/**
@@ -647,7 +648,7 @@
             function (res) { return _this.updateStatus(res === 'INVALID'); }));
             if (this._autoId) {
                 /** @type {?} */
-                var control = (/** @type {?} */ (util.deepGet(this.ngControl.valueAccessor, '_elementRef.nativeElement')));
+                var control = (/** @type {?} */ ((_a = ((/** @type {?} */ (this.ngControl.valueAccessor)))) === null || _a === void 0 ? void 0 : _a._elementRef.nativeElement));
                 if (control) {
                     control.id = this._id;
                 }

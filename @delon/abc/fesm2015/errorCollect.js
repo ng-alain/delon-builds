@@ -64,7 +64,7 @@ class ErrorCollectComponent {
      * @return {?}
      */
     get errEls() {
-        return (/** @type {?} */ (this.formEl)).querySelectorAll('.has-error');
+        return (/** @type {?} */ (this.formEl)).querySelectorAll('.ant-form-item-has-error');
     }
     /**
      * @private

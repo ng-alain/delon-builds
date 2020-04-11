@@ -264,7 +264,7 @@ export interface STColumn {
      */
     numberDigits?: string;
     /**
-     * 日期格式，`type=date` 有效，（默认：`YYYY-MM-DD HH:mm`）
+     * 日期格式，`type=date` 有效，（默认：`yyyy-MM-dd HH:mm`）
      */
     dateFormat?: string;
     /**
