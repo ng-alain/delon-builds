@@ -12,7 +12,7 @@ import { NzDrawerService } from 'ng-zorro-antd/drawer';
 import { HttpParams, HttpClient } from '@angular/common/http';
 import format from 'date-fns/format';
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
-import parseISO from 'date-fns/parseISO';
+import parse from 'date-fns/parse';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { BellOutline, DeleteOutline, PlusOutline, InboxOutline } from '@ant-design/icons-angular/icons';
 import { NzIconService } from 'ng-zorro-antd/icon';
@@ -3799,21 +3799,12 @@ var DatePipe = /** @class */ (function () {
      */
     function (value, formatString) {
         if (formatString === void 0) { formatString = 'yyyy-MM-dd HH:mm'; }
-        value = typeof value === 'string' ? parseISO(value) : value;
-        if (value) {
-            if (formatString === 'fn') {
-                return formatDistanceToNow(value, {
-                    locale: ((/** @type {?} */ (window))).__locale__,
-                });
-            }
-            if (typeof value === 'string' && !isNaN(+value)) {
-                value = +value;
-            }
-            return format(value, formatString);
-        }
-        else {
+        /** @type {?} */
+        var options = { locale: ((/** @type {?} */ (window))).__locale__ };
+        value = typeof value === 'string' ? (!isNaN(+value) ? +value : parse(value, formatString, new Date(), options)) : value;
+        if (!value)
             return '';
-        }
+        return formatString === 'fn' ? formatDistanceToNow(value, options) : format(value, formatString, options);
     };
     DatePipe.decorators = [
         { type: Pipe, args: [{ name: '_date' },] }
@@ -4138,7 +4129,7 @@ var AlainThemeModule = /** @class */ (function () {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-var VERSION = new Version('9.0.0-alpha.1-938e045c');
+var VERSION = new Version('9.0.0-alpha.1-c3447a13');
 
 /**
  * @fileoverview added by tsickle
