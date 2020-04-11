@@ -49,7 +49,7 @@ export declare class DelonFormConfig {
      */
     button?: SFButton;
     /**
-     * date小部件：`type="string"` 且不指定 `schema.format` 和 `ui.format` 时日期格式，默认：`YYYY-MM-DD HH:mm:ss`
+     * date小部件：`type="string"` 且不指定 `schema.format` 和 `ui.format` 时日期格式，默认：`yyyy-MM-dd HH:mm:ss`
      */
     uiDateStringFormat?: string;
     /**

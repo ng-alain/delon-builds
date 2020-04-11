@@ -1,4 +1,4 @@
-import { TemplateRef, Directive, ViewContainerRef, Input, Injectable, Inject, ɵɵdefineInjectable, ɵɵinject, NgModule } from '@angular/core';
+import { TemplateRef, Directive, ViewContainerRef, Input, Injectable, Inject, ɵɵdefineInjectable, ɵɵinject, isDevMode, NgModule } from '@angular/core';
 import extend from 'extend';
 import addDays from 'date-fns/addDays';
 import endOfDay from 'date-fns/endOfDay';
@@ -16,6 +16,7 @@ import subYears from 'date-fns/subYears';
 import { DOCUMENT, CommonModule } from '@angular/common';
 import { BehaviorSubject } from 'rxjs';
 import { share, filter } from 'rxjs/operators';
+import { environment } from 'ng-zorro-antd/core/environments';
 import { NzTreeNode } from 'ng-zorro-antd/core/tree';
 
 /**
@@ -593,7 +594,7 @@ function isNum(value) {
  * @return {?}
  */
 function isInt(value) {
-    return isNum(value) && parseInt(value.toString(), 10) === value;
+    return isNum(value) && parseInt(value.toString(), 10).toString() === value.toString();
 }
 /**
  * 是否为小数
@@ -690,6 +691,90 @@ class _Validators {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: src/logger/logger.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/** @type {?} */
+const record = {};
+/** @type {?} */
+const PREFIX = '[@DELON]:';
+/**
+ * @param {...?} args
+ * @return {?}
+ */
+function notRecorded(...args) {
+    /** @type {?} */
+    const asRecord = args.reduce((/**
+     * @param {?} acc
+     * @param {?} c
+     * @return {?}
+     */
+    (acc, c) => acc + c.toString()), '');
+    if (record[asRecord]) {
+        return false;
+    }
+    else {
+        record[asRecord] = true;
+        return true;
+    }
+}
+/**
+ * @param {?} consoleFunc
+ * @param {...?} args
+ * @return {?}
+ */
+function consoleCommonBehavior(consoleFunc, ...args) {
+    if (environment.isTestMode || (isDevMode() && notRecorded(...args))) {
+        consoleFunc(...args);
+    }
+}
+// Warning should only be printed in dev mode and only once.
+/** @type {?} */
+const warn = (/**
+ * @param {...?} args
+ * @return {?}
+ */
+(...args) => consoleCommonBehavior((/**
+ * @param {...?} arg
+ * @return {?}
+ */
+(...arg) => console.warn(PREFIX, ...arg)), ...args));
+/** @type {?} */
+const warnDeprecation = (/**
+ * @param {...?} args
+ * @return {?}
+ */
+(...args) => {
+    if (!environment.isTestMode) {
+        /** @type {?} */
+        const stack = new Error().stack;
+        return consoleCommonBehavior((/**
+         * @param {...?} arg
+         * @return {?}
+         */
+        (...arg) => console.warn(PREFIX, 'deprecated:', ...arg, stack)), ...args);
+    }
+    else {
+        return (/**
+         * @return {?}
+         */
+        () => { });
+    }
+});
+// Log should only be printed in dev mode.
+/** @type {?} */
+const log = (/**
+ * @param {...?} args
+ * @return {?}
+ */
+(...args) => {
+    if (isDevMode()) {
+        console.log(PREFIX, ...args);
+    }
+});
+
+/**
+ * @fileoverview added by tsickle
  * Generated from: src/other/check.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
@@ -713,6 +798,51 @@ function isEmpty(element) {
     return true;
 }
 /**
+ * @template T, D
+ * @param {?} name
+ * @param {?} fallback
+ * @param {?} defaultValue
+ * @return {?}
+ */
+function propDecoratorFactory(name, fallback, defaultValue) {
+    /**
+     * @param {?} target
+     * @param {?} propName
+     * @param {?=} originalDescriptor
+     * @return {?}
+     */
+    function propDecorator(target, propName, originalDescriptor) {
+        /** @type {?} */
+        const privatePropName = `$$__${propName}`;
+        if (Object.prototype.hasOwnProperty.call(target, privatePropName)) {
+            warn(`The prop "${privatePropName}" is already exist, it will be overrided by ${name} decorator.`);
+        }
+        Object.defineProperty(target, privatePropName, {
+            configurable: true,
+            writable: true,
+        });
+        return {
+            /**
+             * @return {?}
+             */
+            get() {
+                return originalDescriptor && originalDescriptor.get ? originalDescriptor.get.bind(this)() : this[privatePropName];
+            },
+            /**
+             * @param {?} value
+             * @return {?}
+             */
+            set(value) {
+                if (originalDescriptor && originalDescriptor.set) {
+                    originalDescriptor.set.bind(this)(fallback(value, defaultValue));
+                }
+                this[privatePropName] = fallback(value, defaultValue);
+            },
+        };
+    }
+    return propDecorator;
+}
+/**
  * @param {?} value
  * @param {?=} allowUndefined
  * @return {?}
@@ -726,42 +856,11 @@ function toBoolean(value, allowUndefined = false) {
  * ```ts
  * \@Input() InputBoolean() visible: boolean = false; / \@InputBoolean(null) visible: boolean = false;
  * ```
- * @param {?=} allowUndefined
+ * @param {?=} defaultValue
  * @return {?}
  */
-function InputBoolean(allowUndefined = false) {
-    return (/**
-     * @param {?} target
-     * @param {?} name
-     * @return {?}
-     */
-    function InputBooleanPropDecorator(target, name) {
-        // Add our own private prop
-        /** @type {?} */
-        const privatePropName = `$$__${name}`;
-        if (Object.prototype.hasOwnProperty.call(target, privatePropName)) {
-            console.warn(`The prop "${privatePropName}" is already exist, it will be overrided by InputBoolean decorator.`);
-        }
-        Object.defineProperty(target, privatePropName, {
-            configurable: true,
-            writable: true,
-        });
-        Object.defineProperty(target, name, {
-            /**
-             * @return {?}
-             */
-            get() {
-                return this[privatePropName]; // tslint:disable-line:no-invalid-this
-            },
-            /**
-             * @param {?} value
-             * @return {?}
-             */
-            set(value) {
-                this[privatePropName] = toBoolean(value, allowUndefined); // tslint:disable-line:no-invalid-this
-            },
-        });
-    });
+function InputBoolean(defaultValue = false) {
+    return propDecoratorFactory('InputNumber', toBoolean, defaultValue);
 }
 /**
  * @param {?} value
@@ -777,42 +876,11 @@ function toNumber(value, fallbackValue = 0) {
  * ```ts
  * \@Input() \@InputNumber() visible: number = 1; / \@InputNumber(null) visible: number = 2;
  * ```
- * @param {?=} fallback
+ * @param {?=} defaultValue
  * @return {?}
  */
-function InputNumber(fallback = 0) {
-    return (/**
-     * @param {?} target
-     * @param {?} name
-     * @return {?}
-     */
-    function InputBooleanPropDecorator(target, name) {
-        // Add our own private prop
-        /** @type {?} */
-        const privatePropName = `$$__${name}`;
-        if (Object.prototype.hasOwnProperty.call(target, privatePropName)) {
-            console.warn(`The prop "${privatePropName}" is already exist, it will be overrided by InputNumber decorator.`);
-        }
-        Object.defineProperty(target, privatePropName, {
-            configurable: true,
-            writable: true,
-        });
-        Object.defineProperty(target, name, {
-            /**
-             * @return {?}
-             */
-            get() {
-                return this[privatePropName]; // tslint:disable-line:no-invalid-this
-            },
-            /**
-             * @param {?} value
-             * @return {?}
-             */
-            set(value) {
-                this[privatePropName] = toNumber(value, fallback); // tslint:disable-line:no-invalid-this
-            },
-        });
-    });
+function InputNumber(defaultValue = 0) {
+    return propDecoratorFactory('InputNumber', toNumber, defaultValue);
 }
 
 /**

@@ -1,6 +1,6 @@
 {
   "name": "@delon/form",
-  "version": "9.0.0-alpha.1-c3447a13",
+  "version": "9.0.0-alpha.1-8ead55da",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -28,9 +28,9 @@
     "component"
   ],
   "dependencies": {
-    "@delon/theme": "^9.0.0-alpha.1-c3447a13",
-    "@delon/acl": "^9.0.0-alpha.1-c3447a13",
-    "@delon/util": "^9.0.0-alpha.1-c3447a13"
+    "@delon/theme": "^9.0.0-alpha.1-8ead55da",
+    "@delon/acl": "^9.0.0-alpha.1-8ead55da",
+    "@delon/util": "^9.0.0-alpha.1-8ead55da"
   },
   "sideEffects": false,
   "main": "bundles/form.umd.js",

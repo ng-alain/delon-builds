@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('extend'), require('date-fns/addDays'), require('date-fns/endOfDay'), require('date-fns/endOfMonth'), require('date-fns/endOfWeek'), require('date-fns/endOfYear'), require('date-fns/parseISO'), require('date-fns/startOfDay'), require('date-fns/startOfMonth'), require('date-fns/startOfWeek'), require('date-fns/startOfYear'), require('date-fns/subMonths'), require('date-fns/subWeeks'), require('date-fns/subYears'), require('@angular/common'), require('rxjs'), require('rxjs/operators'), require('ng-zorro-antd/core/tree')) :
-    typeof define === 'function' && define.amd ? define('@delon/util', ['exports', '@angular/core', 'extend', 'date-fns/addDays', 'date-fns/endOfDay', 'date-fns/endOfMonth', 'date-fns/endOfWeek', 'date-fns/endOfYear', 'date-fns/parseISO', 'date-fns/startOfDay', 'date-fns/startOfMonth', 'date-fns/startOfWeek', 'date-fns/startOfYear', 'date-fns/subMonths', 'date-fns/subWeeks', 'date-fns/subYears', '@angular/common', 'rxjs', 'rxjs/operators', 'ng-zorro-antd/core/tree'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.util = {}), global.ng.core, global.Extend, global.addDays, global.endOfDay, global.endOfMonth, global.endOfWeek, global.endOfYear, global.parseISO, global.startOfDay, global.startOfMonth, global.startOfWeek, global.startOfYear, global.subMonths, global.subWeeks, global.subYears, global.ng.common, global.rxjs, global.rxjs.operators, global.tree));
-}(this, (function (exports, core, extend, addDays, endOfDay, endOfMonth, endOfWeek, endOfYear, parseISO, startOfDay, startOfMonth, startOfWeek, startOfYear, subMonths, subWeeks, subYears, common, rxjs, operators, tree) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('extend'), require('date-fns/addDays'), require('date-fns/endOfDay'), require('date-fns/endOfMonth'), require('date-fns/endOfWeek'), require('date-fns/endOfYear'), require('date-fns/parseISO'), require('date-fns/startOfDay'), require('date-fns/startOfMonth'), require('date-fns/startOfWeek'), require('date-fns/startOfYear'), require('date-fns/subMonths'), require('date-fns/subWeeks'), require('date-fns/subYears'), require('@angular/common'), require('rxjs'), require('rxjs/operators'), require('ng-zorro-antd/core/environments'), require('ng-zorro-antd/core/tree')) :
+    typeof define === 'function' && define.amd ? define('@delon/util', ['exports', '@angular/core', 'extend', 'date-fns/addDays', 'date-fns/endOfDay', 'date-fns/endOfMonth', 'date-fns/endOfWeek', 'date-fns/endOfYear', 'date-fns/parseISO', 'date-fns/startOfDay', 'date-fns/startOfMonth', 'date-fns/startOfWeek', 'date-fns/startOfYear', 'date-fns/subMonths', 'date-fns/subWeeks', 'date-fns/subYears', '@angular/common', 'rxjs', 'rxjs/operators', 'ng-zorro-antd/core/environments', 'ng-zorro-antd/core/tree'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.util = {}), global.ng.core, global.Extend, global.addDays, global.endOfDay, global.endOfMonth, global.endOfWeek, global.endOfYear, global.parseISO, global.startOfDay, global.startOfMonth, global.startOfWeek, global.startOfYear, global.subMonths, global.subWeeks, global.subYears, global.ng.common, global.rxjs, global.rxjs.operators, global.environments, global.tree));
+}(this, (function (exports, core, extend, addDays, endOfDay, endOfMonth, endOfWeek, endOfYear, parseISO, startOfDay, startOfMonth, startOfWeek, startOfYear, subMonths, subWeeks, subYears, common, rxjs, operators, environments, tree) { 'use strict';
 
     extend = extend && Object.prototype.hasOwnProperty.call(extend, 'default') ? extend['default'] : extend;
     addDays = addDays && Object.prototype.hasOwnProperty.call(addDays, 'default') ? addDays['default'] : addDays;
@@ -856,7 +856,7 @@
      * @return {?}
      */
     function isInt(value) {
-        return isNum(value) && parseInt(value.toString(), 10) === value;
+        return isNum(value) && parseInt(value.toString(), 10).toString() === value.toString();
     }
     /**
      * 是否为小数
@@ -996,6 +996,124 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: src/logger/logger.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /** @type {?} */
+    var record = {};
+    /** @type {?} */
+    var PREFIX = '[@DELON]:';
+    /**
+     * @param {...?} args
+     * @return {?}
+     */
+    function notRecorded() {
+        var args = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            args[_i] = arguments[_i];
+        }
+        /** @type {?} */
+        var asRecord = args.reduce((/**
+         * @param {?} acc
+         * @param {?} c
+         * @return {?}
+         */
+        function (acc, c) { return acc + c.toString(); }), '');
+        if (record[asRecord]) {
+            return false;
+        }
+        else {
+            record[asRecord] = true;
+            return true;
+        }
+    }
+    /**
+     * @param {?} consoleFunc
+     * @param {...?} args
+     * @return {?}
+     */
+    function consoleCommonBehavior(consoleFunc) {
+        var args = [];
+        for (var _i = 1; _i < arguments.length; _i++) {
+            args[_i - 1] = arguments[_i];
+        }
+        if (environments.environment.isTestMode || (core.isDevMode() && notRecorded.apply(void 0, __spread(args)))) {
+            consoleFunc.apply(void 0, __spread(args));
+        }
+    }
+    // Warning should only be printed in dev mode and only once.
+    /** @type {?} */
+    var warn = (/**
+     * @param {...?} args
+     * @return {?}
+     */
+    function () {
+        var args = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            args[_i] = arguments[_i];
+        }
+        return consoleCommonBehavior.apply(void 0, __spread([(/**
+             * @param {...?} arg
+             * @return {?}
+             */
+            function () {
+                var arg = [];
+                for (var _i = 0; _i < arguments.length; _i++) {
+                    arg[_i] = arguments[_i];
+                }
+                return console.warn.apply(console, __spread([PREFIX], arg));
+            })], args));
+    });
+    /** @type {?} */
+    var warnDeprecation = (/**
+     * @param {...?} args
+     * @return {?}
+     */
+    function () {
+        var args = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            args[_i] = arguments[_i];
+        }
+        if (!environments.environment.isTestMode) {
+            /** @type {?} */
+            var stack_1 = new Error().stack;
+            return consoleCommonBehavior.apply(void 0, __spread([(/**
+                 * @param {...?} arg
+                 * @return {?}
+                 */
+                function () {
+                    var arg = [];
+                    for (var _i = 0; _i < arguments.length; _i++) {
+                        arg[_i] = arguments[_i];
+                    }
+                    return console.warn.apply(console, __spread([PREFIX, 'deprecated:'], arg, [stack_1]));
+                })], args));
+        }
+        else {
+            return (/**
+             * @return {?}
+             */
+            function () { });
+        }
+    });
+    // Log should only be printed in dev mode.
+    /** @type {?} */
+    var log = (/**
+     * @param {...?} args
+     * @return {?}
+     */
+    function () {
+        var args = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            args[_i] = arguments[_i];
+        }
+        if (core.isDevMode()) {
+            console.log.apply(console, __spread([PREFIX], args));
+        }
+    });
+
+    /**
+     * @fileoverview added by tsickle
      * Generated from: src/other/check.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
@@ -1019,6 +1137,51 @@
         return true;
     }
     /**
+     * @template T, D
+     * @param {?} name
+     * @param {?} fallback
+     * @param {?} defaultValue
+     * @return {?}
+     */
+    function propDecoratorFactory(name, fallback, defaultValue) {
+        /**
+         * @param {?} target
+         * @param {?} propName
+         * @param {?=} originalDescriptor
+         * @return {?}
+         */
+        function propDecorator(target, propName, originalDescriptor) {
+            /** @type {?} */
+            var privatePropName = "$$__" + propName;
+            if (Object.prototype.hasOwnProperty.call(target, privatePropName)) {
+                warn("The prop \"" + privatePropName + "\" is already exist, it will be overrided by " + name + " decorator.");
+            }
+            Object.defineProperty(target, privatePropName, {
+                configurable: true,
+                writable: true,
+            });
+            return {
+                get: /**
+                 * @return {?}
+                 */
+                function () {
+                    return originalDescriptor && originalDescriptor.get ? originalDescriptor.get.bind(this)() : this[privatePropName];
+                },
+                set: /**
+                 * @param {?} value
+                 * @return {?}
+                 */
+                function (value) {
+                    if (originalDescriptor && originalDescriptor.set) {
+                        originalDescriptor.set.bind(this)(fallback(value, defaultValue));
+                    }
+                    this[privatePropName] = fallback(value, defaultValue);
+                },
+            };
+        }
+        return propDecorator;
+    }
+    /**
      * @param {?} value
      * @param {?=} allowUndefined
      * @return {?}
@@ -1033,43 +1196,12 @@
      * ```ts
      * \@Input() InputBoolean() visible: boolean = false; / \@InputBoolean(null) visible: boolean = false;
      * ```
-     * @param {?=} allowUndefined
+     * @param {?=} defaultValue
      * @return {?}
      */
-    function InputBoolean(allowUndefined) {
-        if (allowUndefined === void 0) { allowUndefined = false; }
-        return (/**
-         * @param {?} target
-         * @param {?} name
-         * @return {?}
-         */
-        function InputBooleanPropDecorator(target, name) {
-            // Add our own private prop
-            /** @type {?} */
-            var privatePropName = "$$__" + name;
-            if (Object.prototype.hasOwnProperty.call(target, privatePropName)) {
-                console.warn("The prop \"" + privatePropName + "\" is already exist, it will be overrided by InputBoolean decorator.");
-            }
-            Object.defineProperty(target, privatePropName, {
-                configurable: true,
-                writable: true,
-            });
-            Object.defineProperty(target, name, {
-                get: /**
-                 * @return {?}
-                 */
-                function () {
-                    return this[privatePropName]; // tslint:disable-line:no-invalid-this
-                },
-                set: /**
-                 * @param {?} value
-                 * @return {?}
-                 */
-                function (value) {
-                    this[privatePropName] = toBoolean(value, allowUndefined); // tslint:disable-line:no-invalid-this
-                },
-            });
-        });
+    function InputBoolean(defaultValue) {
+        if (defaultValue === void 0) { defaultValue = false; }
+        return propDecoratorFactory('InputNumber', toBoolean, defaultValue);
     }
     /**
      * @param {?} value
@@ -1086,43 +1218,12 @@
      * ```ts
      * \@Input() \@InputNumber() visible: number = 1; / \@InputNumber(null) visible: number = 2;
      * ```
-     * @param {?=} fallback
+     * @param {?=} defaultValue
      * @return {?}
      */
-    function InputNumber(fallback) {
-        if (fallback === void 0) { fallback = 0; }
-        return (/**
-         * @param {?} target
-         * @param {?} name
-         * @return {?}
-         */
-        function InputBooleanPropDecorator(target, name) {
-            // Add our own private prop
-            /** @type {?} */
-            var privatePropName = "$$__" + name;
-            if (Object.prototype.hasOwnProperty.call(target, privatePropName)) {
-                console.warn("The prop \"" + privatePropName + "\" is already exist, it will be overrided by InputNumber decorator.");
-            }
-            Object.defineProperty(target, privatePropName, {
-                configurable: true,
-                writable: true,
-            });
-            Object.defineProperty(target, name, {
-                get: /**
-                 * @return {?}
-                 */
-                function () {
-                    return this[privatePropName]; // tslint:disable-line:no-invalid-this
-                },
-                set: /**
-                 * @param {?} value
-                 * @return {?}
-                 */
-                function (value) {
-                    this[privatePropName] = toNumber(value, fallback); // tslint:disable-line:no-invalid-this
-                },
-            });
-        });
+    function InputNumber(defaultValue) {
+        if (defaultValue === void 0) { defaultValue = 0; }
+        return propDecoratorFactory('InputNumber', toNumber, defaultValue);
     }
 
     /**
