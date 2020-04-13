@@ -3761,6 +3761,7 @@
          */
         function () {
             var _this = this;
+            console.log('this.sfItemComp', typeof this.sfItemComp, 'this.sfItemComp!.unsubscribe$', typeof (/** @type {?} */ (this.sfItemComp)).unsubscribe$);
             this.formProperty.errorsChanges.pipe(operators.takeUntil((/** @type {?} */ (this.sfItemComp)).unsubscribe$)).subscribe((/**
              * @param {?} errors
              * @return {?}
