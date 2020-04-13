@@ -5,9 +5,6 @@ function default_1(options) {
     const rules = [];
     const applicationOptions = Object.assign({}, options);
     rules.push(schematics_1.schematic('application', applicationOptions));
-    if (options.g2) {
-        rules.push(schematics_1.schematic('plugin', { name: 'g2', type: 'add' }));
-    }
     if (options.codeStyle) {
         rules.push(schematics_1.schematic('plugin', { name: 'codeStyle', type: 'add' }));
     }

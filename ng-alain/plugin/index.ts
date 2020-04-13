@@ -6,7 +6,6 @@ import { pluginAsdf } from './plugin.asdf';
 import { pluginCodeStyle } from './plugin.code-style';
 import { pluginDefaultLanguage } from './plugin.default-language';
 import { pluginDocker } from './plugin.docker';
-import { pluginG2 } from './plugin.g2';
 import { pluginHmr } from './plugin.hmr';
 import { pluginIcon } from './plugin.icon';
 import { pluginNetworkEnv } from './plugin.network-env';
@@ -33,9 +32,6 @@ export default function (options: PluginSchema): Rule {
 
     const rules: Rule[] = [];
     switch (options.name) {
-      case 'g2':
-        rules.push(pluginG2(pluginOptions), installPackages());
-        break;
       case 'codeStyle':
         rules.push(pluginCodeStyle(pluginOptions), installPackages());
         break;

@@ -3570,8 +3570,7 @@ var Widget = /** @class */ (function () {
      */
     function () {
         var _this = this;
-        console.log('this.sfItemComp', typeof this.sfItemComp, 'this.sfItemComp!.unsubscribe$', typeof (/** @type {?} */ (this.sfItemComp)).unsubscribe$);
-        this.formProperty.errorsChanges.pipe(takeUntil((/** @type {?} */ (this.sfItemComp)).unsubscribe$)).subscribe((/**
+        this.error$ = this.formProperty.errorsChanges.subscribe((/**
          * @param {?} errors
          * @return {?}
          */
@@ -3587,6 +3586,17 @@ var Widget = /** @class */ (function () {
             }
             _this.firstVisual = true;
         }));
+    };
+    /**
+     * @return {?}
+     */
+    Widget.prototype.ngOnDestroy = /**
+     * @return {?}
+     */
+    function () {
+        if (this.error$) {
+            this.error$.unsubscribe();
+        }
     };
     /**
      * @param {?} value
@@ -3654,6 +3664,8 @@ if (false) {
     Widget.prototype.ui;
     /** @type {?} */
     Widget.prototype.firstVisual;
+    /** @type {?} */
+    Widget.prototype.error$;
     /** @type {?} */
     Widget.prototype.cd;
     /** @type {?} */

@@ -8,10 +8,6 @@ export default function (options: NgAddOptions): Rule {
   const applicationOptions: ApplicationOptions = { ...options };
   rules.push(schematic('application', applicationOptions));
 
-  if (options.g2) {
-    rules.push(schematic('plugin', { name: 'g2', type: 'add' }));
-  }
-
   if (options.codeStyle) {
     rules.push(schematic('plugin', { name: 'codeStyle', type: 'add' }));
   }
