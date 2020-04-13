@@ -4,10 +4,12 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util'), require('@angular/common')) :
-    typeof define === 'function' && define.amd ? define('@delon/chart/timeline', ['exports', '@angular/core', '@delon/util', '@angular/common'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.timeline = {}), global.ng.core, global.delon.util, global.ng.common));
-}(this, (function (exports, core, util, common) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@antv/data-set'), require('@antv/g2'), require('@delon/util'), require('@angular/common')) :
+    typeof define === 'function' && define.amd ? define('@delon/chart/timeline', ['exports', '@angular/core', '@antv/data-set', '@antv/g2', '@delon/util', '@angular/common'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.timeline = {}), global.ng.core, global.DataSet, global.g2, global.delon.util, global.ng.common));
+}(this, (function (exports, core, DataSet, g2, util, common) { 'use strict';
+
+    DataSet = DataSet && Object.prototype.hasOwnProperty.call(DataSet, 'default') ? DataSet['default'] : DataSet;
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -261,8 +263,8 @@
             this.colorMap = { y1: '#1890FF', y2: '#2FC25B' };
             this.mask = 'HH:mm';
             this.position = 'top';
-            this.height = 400;
-            this.padding = [60, 20, 40, 40];
+            this.height = 450;
+            this.padding = [60, 20, 64, 40];
             this.borderWidth = 2;
             this.slider = true;
         }
@@ -291,46 +293,32 @@
          * @return {?}
          */
         function () {
-            var _a = this, node = _a.node, sliderNode = _a.sliderNode, height = _a.height, padding = _a.padding, mask = _a.mask, slider = _a.slider;
+            var _a = this, node = _a.node, height = _a.height, padding = _a.padding, mask = _a.mask, slider = _a.slider;
             /** @type {?} */
-            var chart = (this.chart = new G2.Chart({
+            var chart = (this.chart = new g2.Chart({
                 container: node.nativeElement,
-                forceFit: true,
+                autoFit: true,
                 height: height,
                 padding: padding,
             }));
-            chart.axis('x', { title: false });
-            chart.axis('y1', { title: false });
+            chart.axis('x', { title: null });
+            chart.axis('y1', { title: null });
             chart.axis('y2', false);
             chart.line().position('x*y1');
             chart.line().position('x*y2');
-            chart.render();
             /** @type {?} */
             var sliderPadding = __assign(__assign({}, []), padding);
             sliderPadding[0] = 0;
             if (slider) {
-                /** @type {?} */
-                var _slider = (this._slider = new Slider({
-                    container: sliderNode.nativeElement,
-                    width: 'auto',
+                chart.option('slider', {
                     height: 26,
-                    padding: sliderPadding,
-                    scales: {
-                        x: {
-                            type: 'time',
-                            tickInterval: 60 * 60 * 1000,
-                            range: [0, 1],
-                            mask: mask,
-                        },
+                    start: 0.1,
+                    end: 0.8,
+                    trendCfg: {
+                        isArea: false,
                     },
-                    backgroundChart: {
-                        type: 'line',
-                    },
-                    xAxis: 'x',
-                    yAxis: 'y1',
-                    data: [],
-                }));
-                _slider.render();
+                    mask: mask,
+                });
             }
             this.attachChart();
         };
@@ -343,20 +331,20 @@
          * @return {?}
          */
         function () {
-            var _a = this, chart = _a.chart, _slider = _a._slider, slider = _a.slider, height = _a.height, padding = _a.padding, data = _a.data, mask = _a.mask, titleMap = _a.titleMap, position = _a.position, colorMap = _a.colorMap, borderWidth = _a.borderWidth;
+            var _a = this, chart = _a.chart, height = _a.height, padding = _a.padding, data = _a.data, mask = _a.mask, titleMap = _a.titleMap, position = _a.position, colorMap = _a.colorMap, borderWidth = _a.borderWidth;
             if (!chart || !data || data.length <= 0)
                 return;
             chart.legend({
                 position: position,
                 custom: true,
-                clickable: false,
+                // clickable: false,
                 items: [
-                    { value: titleMap.y1, fill: colorMap.y1 },
-                    { value: titleMap.y2, fill: colorMap.y2 },
+                    { name: titleMap.y1, value: titleMap.y1, marker: { style: { fill: colorMap.y1 } } },
+                    { name: titleMap.y1, value: titleMap.y2, marker: { style: { fill: colorMap.y2 } } },
                 ],
             });
             // border
-            chart.get('geoms').forEach((/**
+            chart.geometries.forEach((/**
              * @param {?} v
              * @param {?} idx
              * @return {?}
@@ -364,8 +352,8 @@
             function (v, idx) {
                 v.color(((/** @type {?} */ (colorMap)))["y" + (idx + 1)]).size(borderWidth);
             }));
-            chart.set('height', height);
-            chart.set('padding', padding);
+            chart.height = height;
+            chart.padding = padding;
             data
                 .filter((/**
              * @param {?} v
@@ -405,8 +393,8 @@
                 },
             });
             /** @type {?} */
-            var dv = ds.createView();
-            dv.source(data).transform({
+            var dv = ds.createView('origin').source(data);
+            dv.transform({
                 type: 'filter',
                 callback: (/**
                  * @param {?} val
@@ -418,7 +406,7 @@
                     return time >= ds.state.start && time <= ds.state.end;
                 }),
             });
-            chart.source(dv, {
+            chart.scale({
                 x: {
                     type: 'timeCat',
                     mask: mask,
@@ -435,20 +423,7 @@
                     min: 0,
                 },
             });
-            chart.repaint();
-            if (slider) {
-                _slider.start = ds.state.start;
-                _slider.end = ds.state.end;
-                _slider.onChange = (/**
-                 * @param {?} res
-                 * @return {?}
-                 */
-                function (res) {
-                    ds.setState('start', res.startValue);
-                    ds.setState('end', res.endValue);
-                });
-                _slider.changeData(data);
-            }
+            chart.changeData(dv.rows);
         };
         /**
          * @return {?}
@@ -477,18 +452,12 @@
                  */
                 function () { return _this.chart.destroy(); }));
             }
-            if (this._slider) {
-                this.ngZone.runOutsideAngular((/**
-                 * @return {?}
-                 */
-                function () { return _this._slider.destroy(); }));
-            }
         };
         G2TimelineComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'g2-timeline',
                         exportAs: 'g2Timeline',
-                        template: "<ng-container *stringTemplateOutlet=\"title\">\n  <h4>{{title}}</h4>\n</ng-container>\n<div #container></div>\n<div #sliderContainer *ngIf=\"slider\"></div>\n",
+                        template: "<ng-container *stringTemplateOutlet=\"title\">\n  <h4>{{title}}</h4>\n</ng-container>\n<div #container></div>\n",
                         preserveWhitespaces: false,
                         changeDetection: core.ChangeDetectionStrategy.OnPush,
                         encapsulation: core.ViewEncapsulation.None
@@ -500,7 +469,6 @@
         ]; };
         G2TimelineComponent.propDecorators = {
             node: [{ type: core.ViewChild, args: ['container', { static: false },] }],
-            sliderNode: [{ type: core.ViewChild, args: ['sliderContainer', { static: false },] }],
             delay: [{ type: core.Input }],
             title: [{ type: core.Input }],
             data: [{ type: core.Input }],
@@ -541,17 +509,7 @@
          * @type {?}
          * @private
          */
-        G2TimelineComponent.prototype.sliderNode;
-        /**
-         * @type {?}
-         * @private
-         */
         G2TimelineComponent.prototype.chart;
-        /**
-         * @type {?}
-         * @private
-         */
-        G2TimelineComponent.prototype._slider;
         /** @type {?} */
         G2TimelineComponent.prototype.delay;
         /** @type {?} */

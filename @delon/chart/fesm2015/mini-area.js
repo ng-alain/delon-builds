@@ -1,5 +1,6 @@
 import { __decorate, __metadata } from 'tslib';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, NgZone, Input, NgModule } from '@angular/core';
+import { Chart } from '@antv/g2';
 import { InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
 import { CommonModule } from '@angular/common';
 
@@ -49,9 +50,9 @@ class G2MiniAreaComponent {
     install() {
         const { el, fit, height, padding, xAxis, yAxis, yTooltipSuffix, tooltipType, line } = this;
         /** @type {?} */
-        const chart = (this.chart = new G2.Chart({
+        const chart = (this.chart = new Chart({
             container: el.nativeElement,
-            forceFit: fit,
+            autoFit: fit,
             height,
             padding,
         }));
@@ -71,13 +72,24 @@ class G2MiniAreaComponent {
             chart.axis('y', false);
         }
         chart.legend(false);
-        chart.tooltip({
-            type: tooltipType === 'mini' ? 'mini' : null,
+        /** @type {?} */
+        const tooltipOption = {
             showTitle: false,
-            hideMarkders: false,
-            'g2-tooltip': { padding: 4 },
-            'g2-tooltip-list-item': { margin: `0px 4px` },
-        });
+            showMarkers: true,
+            enterable: true,
+            domStyles: {
+                'g2-tooltip': { padding: '0px' },
+                'g2-tooltip-title': { display: 'none' },
+                'g2-tooltip-list-item': { margin: '4px' },
+            },
+        };
+        if (tooltipType === 'mini') {
+            tooltipOption.position = 'top';
+            (/** @type {?} */ (tooltipOption.domStyles))['g2-tooltip'] = { padding: '0px', backgroundColor: 'transparent', boxShadow: 'none' };
+            tooltipOption.itemTpl = `<li>{value}</li>`;
+            tooltipOption.offset = 0;
+        }
+        chart.tooltip(tooltipOption);
         chart
             .area()
             .position('x*y')
@@ -87,10 +99,9 @@ class G2MiniAreaComponent {
          * @return {?}
          */
         (x, y) => ({ name: x, value: y + yTooltipSuffix })))
-            .shape('smooth')
-            .opacity(1);
+            .shape('smooth');
         if (line) {
-            chart.line().position('x*y').shape('smooth').opacity(1).tooltip(false);
+            chart.line().position('x*y').shape('smooth').tooltip(false);
         }
         chart.render();
         this.attachChart();
@@ -105,19 +116,19 @@ class G2MiniAreaComponent {
             return;
         }
         /** @type {?} */
-        const geoms = chart.get('geoms');
+        const geoms = chart.geometries;
         geoms.forEach((/**
          * @param {?} g
          * @return {?}
          */
-        (g) => g.color(color)));
+        g => g.color(color)));
         if (line) {
             geoms[1].color(borderColor).size(borderWidth);
         }
-        chart.set('forceFit', fit);
-        chart.set('height', height);
-        chart.set('animate', animate);
-        chart.set('padding', padding);
+        chart.autoFit = fit;
+        chart.height = height;
+        chart.animate(animate);
+        chart.padding = padding;
         chart.changeData(data);
     }
     /**

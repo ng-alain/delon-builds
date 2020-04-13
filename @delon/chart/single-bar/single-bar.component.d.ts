@@ -13,7 +13,7 @@ export declare class G2SingleBarComponent implements OnInit, OnChanges, OnDestro
     value: number;
     line: boolean;
     format: (value: number, item: {}, index: number) => string;
-    padding: any;
+    padding: number | number[] | 'auto';
     textStyle: any;
     constructor(el: ElementRef, ngZone: NgZone);
     private install;

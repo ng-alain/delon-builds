@@ -1,5 +1,6 @@
 import { __decorate, __metadata } from 'tslib';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, NgZone, ViewChild, Input, NgModule } from '@angular/core';
+import { Chart } from '@antv/g2';
 import { InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
 import { fromEvent } from 'rxjs';
 import { filter, debounceTime } from 'rxjs/operators';
@@ -21,6 +22,8 @@ if (false) {
     G2BarData.prototype.x;
     /** @type {?} */
     G2BarData.prototype.y;
+    /** @type {?|undefined} */
+    G2BarData.prototype.color;
     /* Skipping unhandled member: [key: string]: any;*/
 }
 class G2BarComponent {
@@ -37,6 +40,7 @@ class G2BarComponent {
         this.padding = 'auto';
         this.data = [];
         this.autoLabel = true;
+        this.interaction = 'none';
     }
     /**
      * @private
@@ -50,24 +54,23 @@ class G2BarComponent {
      * @return {?}
      */
     install() {
-        const { node, padding } = this;
+        const { node, padding, interaction } = this;
         /** @type {?} */
         const container = (/** @type {?} */ (node.nativeElement));
         /** @type {?} */
-        const chart = (this.chart = new G2.Chart({
+        const chart = (this.chart = new Chart({
             container,
-            forceFit: true,
-            legend: null,
+            autoFit: true,
             height: this.getHeight(),
             padding,
         }));
         this.updatelabel();
         chart.axis('y', {
-            title: false,
-            line: false,
-            tickLine: false,
+            title: null,
+            line: null,
+            tickLine: null,
         });
-        chart.source([], {
+        chart.scale({
             x: {
                 type: 'cat',
             },
@@ -78,16 +81,33 @@ class G2BarComponent {
         chart.tooltip({
             showTitle: false,
         });
+        if (interaction !== 'none') {
+            chart.interaction(interaction);
+        }
+        chart.legend(false);
         chart
             .interval()
             .position('x*y')
+            .color('x*y', (/**
+         * @param {?} x
+         * @param {?} y
+         * @return {?}
+         */
+        (x, y) => {
+            /** @type {?} */
+            const colorItem = this.data.find((/**
+             * @param {?} w
+             * @return {?}
+             */
+            w => w.x === x && w.y === y));
+            return colorItem && colorItem.color ? colorItem.color : this.color;
+        }))
             .tooltip('x*y', (/**
          * @param {?} x
          * @param {?} y
          * @return {?}
          */
         (x, y) => ({ name: x, value: y })));
-        chart.render();
         this.attachChart();
     }
     /**
@@ -95,19 +115,18 @@ class G2BarComponent {
      * @return {?}
      */
     attachChart() {
-        const { chart, padding, data, color } = this;
+        const { chart, padding, data } = this;
         if (!chart || !data || data.length <= 0)
             return;
         this.installResizeEvent();
         /** @type {?} */
         const height = this.getHeight();
-        if (chart.get('height') !== height) {
-            chart.changeHeight(height);
+        if (chart.height !== height) {
+            chart.height = height;
         }
-        // color
-        chart.get('geoms')[0].color(color);
-        chart.set('padding', padding);
-        chart.changeData(data);
+        chart.padding = padding;
+        chart.data(data);
+        chart.render();
     }
     /**
      * @private
@@ -119,7 +138,7 @@ class G2BarComponent {
         const canvasWidth = node.nativeElement.clientWidth;
         /** @type {?} */
         const minWidth = data.length * 30;
-        chart.axis('x', canvasWidth > minWidth).repaint();
+        chart.axis('x', canvasWidth > minWidth).render();
     }
     /**
      * @private
@@ -132,7 +151,7 @@ class G2BarComponent {
             .pipe(filter((/**
          * @return {?}
          */
-        () => this.chart)), debounceTime(200))
+        () => !!this.chart)), debounceTime(200))
             .subscribe((/**
          * @return {?}
          */
@@ -202,7 +221,8 @@ G2BarComponent.propDecorators = {
     height: [{ type: Input }],
     padding: [{ type: Input }],
     data: [{ type: Input }],
-    autoLabel: [{ type: Input }]
+    autoLabel: [{ type: Input }],
+    interaction: [{ type: Input }]
 };
 __decorate([
     InputNumber(),
@@ -246,6 +266,8 @@ if (false) {
     G2BarComponent.prototype.data;
     /** @type {?} */
     G2BarComponent.prototype.autoLabel;
+    /** @type {?} */
+    G2BarComponent.prototype.interaction;
     /**
      * @type {?}
      * @private

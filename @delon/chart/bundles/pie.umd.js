@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('@angular/common'), require('ng-zorro-antd/divider')) :
-    typeof define === 'function' && define.amd ? define('@delon/chart/pie', ['exports', '@angular/core', '@delon/util', 'rxjs', 'rxjs/operators', '@angular/common', 'ng-zorro-antd/divider'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.pie = {}), global.ng.core, global.delon.util, global.rxjs, global.rxjs.operators, global.ng.common, global['ng-zorro-antd/divider']));
-}(this, (function (exports, core, util, rxjs, operators, common, divider) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@antv/g2'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('@angular/common'), require('ng-zorro-antd/divider')) :
+    typeof define === 'function' && define.amd ? define('@delon/chart/pie', ['exports', '@angular/core', '@antv/g2', '@delon/util', 'rxjs', 'rxjs/operators', '@angular/common', 'ng-zorro-antd/divider'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.pie = {}), global.ng.core, global.g2, global.delon.util, global.rxjs, global.rxjs.operators, global.ng.common, global['ng-zorro-antd/divider']));
+}(this, (function (exports, core, g2, util, rxjs, operators, common, divider) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -259,6 +259,7 @@
             this.lineWidth = 0;
             this.select = true;
             this.data = [];
+            this.interaction = 'none';
         }
         /**
          * @private
@@ -320,14 +321,13 @@
          */
         function () {
             this.setCls();
-            var _a = this, node = _a.node, height = _a.height, padding = _a.padding, animate = _a.animate, tooltip = _a.tooltip, inner = _a.inner, hasLegend = _a.hasLegend;
+            var _a = this, node = _a.node, height = _a.height, padding = _a.padding, tooltip = _a.tooltip, inner = _a.inner, hasLegend = _a.hasLegend, interaction = _a.interaction;
             /** @type {?} */
-            var chart = (this.chart = new G2.Chart({
+            var chart = (this.chart = new g2.Chart({
                 container: node.nativeElement,
-                forceFit: true,
+                autoFit: true,
                 height: height,
                 padding: padding,
-                animate: animate,
             }));
             if (!tooltip) {
                 chart.tooltip(false);
@@ -335,12 +335,13 @@
             else {
                 chart.tooltip({
                     showTitle: false,
-                    itemTpl: '<li><span style="background-color:{color};" class="g2-tooltip-marker"></span>{name}: {value} %</li>',
+                    showMarkers: false,
                 });
             }
-            chart.axis(false);
-            chart.legend(false);
-            chart.coord('theta', { innerRadius: inner });
+            if (interaction !== 'none') {
+                chart.interaction(interaction);
+            }
+            chart.axis(false).legend(false).coordinate('theta', { innerRadius: inner });
             chart.filter('x', (/**
              * @param {?} _val
              * @param {?} item
@@ -348,7 +349,8 @@
              */
             function (_val, item) { return item.checked !== false; }));
             chart
-                .intervalStack()
+                .interval()
+                .adjust('stack')
                 .position('y')
                 .tooltip('x*percent', (/**
              * @param {?} name
@@ -357,11 +359,9 @@
              */
             function (name, p) { return ({
                 name: name,
-                // 由于 hasLegend 会优先处理为百分比格式，因此无需要在 tooltip 中重新转换
-                value: hasLegend ? p : (p * 100).toFixed(2),
+                value: (hasLegend ? p : (p * 100).toFixed(2)) + " %",
             }); }))
-                .select(this.select);
-            chart.render();
+                .state({});
             this.attachChart();
         };
         /**
@@ -373,32 +373,43 @@
          * @return {?}
          */
         function () {
+            var e_1, _a;
             var _this = this;
-            var _a = this, chart = _a.chart, height = _a.height, padding = _a.padding, animate = _a.animate, data = _a.data, lineWidth = _a.lineWidth, isPercent = _a.isPercent, percentColor = _a.percentColor, colors = _a.colors;
+            var _b = this, chart = _b.chart, height = _b.height, padding = _b.padding, animate = _b.animate, data = _b.data, lineWidth = _b.lineWidth, isPercent = _b.isPercent, percentColor = _b.percentColor, colors = _b.colors;
             if (!chart)
                 return;
-            chart.set('height', height);
-            chart.set('padding', padding);
-            chart.set('animate', animate);
-            chart
-                .get('geoms')[0]
-                .style({ lineWidth: lineWidth, stroke: '#fff' })
-                .color('x', isPercent ? percentColor : colors);
-            /** @type {?} */
-            var dv = new DataSet.DataView();
-            dv.source(data).transform({
-                type: 'percent',
-                field: 'y',
-                dimension: 'x',
-                as: 'percent',
-            });
-            chart.source(dv, {
+            chart.height = height;
+            chart.padding = padding;
+            chart.animate(animate);
+            chart.geometries[0].style({ lineWidth: lineWidth, stroke: '#fff' }).color('x', isPercent ? percentColor : colors);
+            chart.scale({
                 x: {
                     type: 'cat',
                     range: [0, 1],
                 },
             });
-            chart.repaint();
+            // 转化 percent
+            /** @type {?} */
+            var totalSum = data.reduce((/**
+             * @param {?} cur
+             * @param {?} item
+             * @return {?}
+             */
+            function (cur, item) { return cur + item.y; }), 0);
+            try {
+                for (var data_1 = __values(data), data_1_1 = data_1.next(); !data_1_1.done; data_1_1 = data_1.next()) {
+                    var item = data_1_1.value;
+                    item.percent = totalSum === 0 ? 0 : item.y / totalSum;
+                }
+            }
+            catch (e_1_1) { e_1 = { error: e_1_1 }; }
+            finally {
+                try {
+                    if (data_1_1 && !data_1_1.done && (_a = data_1.return)) _a.call(data_1);
+                }
+                finally { if (e_1) throw e_1.error; }
+            }
+            chart.changeData(data);
             this.ngZone.run((/**
              * @return {?}
              */
@@ -416,10 +427,7 @@
             var _a = this, hasLegend = _a.hasLegend, isPercent = _a.isPercent, cdr = _a.cdr, chart = _a.chart;
             if (!hasLegend || isPercent)
                 return;
-            this.legendData = chart
-                .get('geoms')[0]
-                .get('dataArray')
-                .map((/**
+            this.legendData = chart.geometries[0].dataArray.map((/**
              * @param {?} item
              * @return {?}
              */
@@ -444,7 +452,7 @@
         function (i) {
             var _a = this, legendData = _a.legendData, chart = _a.chart;
             legendData[i].checked = !legendData[i].checked;
-            chart.repaint();
+            chart.render();
         };
         /**
          * @private
@@ -519,7 +527,7 @@
             { type: core.Component, args: [{
                         selector: 'g2-pie',
                         exportAs: 'g2Pie',
-                        template: "<div class=\"g2-pie__chart\">\n  <div #container></div>\n  <div *ngIf=\"subTitle || total\"\n       class=\"g2-pie__total\">\n    <h4 *ngIf=\"subTitle\"\n        class=\"g2-pie__total-title\">\n      <ng-container *stringTemplateOutlet=\"subTitle\">\n        <div [innerHTML]=\"subTitle\"></div>\n      </ng-container>\n    </h4>\n    <div *ngIf=\"total\"\n         class=\"g2-pie__total-stat\">\n      <ng-container *stringTemplateOutlet=\"total\">\n        <div [innerHTML]=\"total\"></div>\n      </ng-container>\n    </div>\n  </div>\n</div>\n<ul *ngIf=\"hasLegend && legendData?.length\"\n    class=\"g2-pie__legend\">\n  <li *ngFor=\"let item of legendData; let index = index\"\n      (click)=\"_click(index)\"\n      class=\"g2-pie__legend-item\">\n    <span class=\"g2-pie__legend-dot\"\n          [ngStyle]=\"{'background-color': !item.checked ? '#aaa' : item.color}\"></span>\n    <span class=\"g2-pie__legend-title\">{{item.x}}</span>\n    <nz-divider nzType=\"vertical\"></nz-divider>\n    <span class=\"g2-pie__legend-percent\">{{item.percent}}%</span>\n    <span class=\"g2-pie__legend-value\"\n          [innerHTML]=\"valueFormat ? valueFormat(item.y) : item.y\"></span>\n  </li>\n</ul>\n",
+                        template: "<div class=\"g2-pie__chart\">\n  <div #container></div>\n  <div *ngIf=\"subTitle || total\"\n       class=\"g2-pie__total\">\n    <h4 *ngIf=\"subTitle\"\n        class=\"g2-pie__total-title\">\n      <ng-container *stringTemplateOutlet=\"subTitle\">\n        <div [innerHTML]=\"subTitle\"></div>\n      </ng-container>\n    </h4>\n    <div *ngIf=\"total\" class=\"g2-pie__total-stat\">\n      <ng-container *stringTemplateOutlet=\"total\">\n        <div [innerHTML]=\"total\"></div>\n      </ng-container>\n    </div>\n  </div>\n</div>\n<ul *ngIf=\"hasLegend && legendData?.length\"\n    class=\"g2-pie__legend\">\n  <li *ngFor=\"let item of legendData; let index = index\" (click)=\"_click(index)\" class=\"g2-pie__legend-item\">\n    <span class=\"g2-pie__legend-dot\" [ngStyle]=\"{'background-color': !item.checked ? '#aaa' : item.color}\"></span>\n    <span class=\"g2-pie__legend-title\">{{item.x}}</span>\n    <nz-divider nzType=\"vertical\"></nz-divider>\n    <span class=\"g2-pie__legend-percent\">{{item.percent}}%</span>\n    <span class=\"g2-pie__legend-value\" [innerHTML]=\"valueFormat ? valueFormat(item.y) : item.y\"></span>\n  </li>\n</ul>\n",
                         preserveWhitespaces: false,
                         changeDetection: core.ChangeDetectionStrategy.OnPush,
                         encapsulation: core.ViewEncapsulation.None
@@ -549,7 +557,8 @@
             select: [{ type: core.Input }],
             valueFormat: [{ type: core.Input }],
             data: [{ type: core.Input }],
-            colors: [{ type: core.Input }]
+            colors: [{ type: core.Input }],
+            interaction: [{ type: core.Input }]
         };
         __decorate([
             util.InputNumber(),
@@ -645,6 +654,8 @@
         G2PieComponent.prototype.data;
         /** @type {?} */
         G2PieComponent.prototype.colors;
+        /** @type {?} */
+        G2PieComponent.prototype.interaction;
         /**
          * @type {?}
          * @private

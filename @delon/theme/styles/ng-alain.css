@@ -30372,19 +30372,6 @@ g2-tag-cloud {
 .g2-card__footer > * {
   position: relative;
 }
-.g2-gauge__desc {
-  width: 300px;
-  font-size: 12px;
-  text-align: center;
-}
-.g2-gauge__title {
-  color: rgba(0, 0, 0, 0.43);
-  font-size: 14px;
-}
-.g2-gauge__percent {
-  color: rgba(0, 0, 0, 0.85);
-  font-size: 24px;
-}
 .g2-mini-progress {
   position: relative;
   display: block;
@@ -30430,7 +30417,7 @@ g2-tag-cloud {
   position: absolute;
   top: 50%;
   right: 0;
-  min-width: 200px;
+  min-width: 250px;
   margin: 0 20px;
   padding: 0;
   list-style: none;
@@ -30474,6 +30461,7 @@ g2-tag-cloud {
 .g2-pie__legend-block .g2-pie__legend {
   position: relative;
   transform: none;
+  min-width: auto;
 }
 .g2-pie__total {
   position: absolute;

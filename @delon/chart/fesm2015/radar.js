@@ -1,5 +1,6 @@
 import { __decorate, __metadata } from 'tslib';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, ChangeDetectorRef, NgZone, ViewChild, Input, NgModule } from '@angular/core';
+import { Chart } from '@antv/g2';
 import { InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
 import { CommonModule } from '@angular/common';
 import { NzGridModule } from 'ng-zorro-antd/grid';
@@ -55,41 +56,45 @@ class G2RadarComponent {
     install() {
         const { node, padding } = this;
         /** @type {?} */
-        const chart = (this.chart = new G2.Chart({
+        const chart = (this.chart = new Chart({
             container: node.nativeElement,
-            forceFit: true,
+            autoFit: true,
             height: this.getHeight(),
             padding,
         }));
-        chart.coord('polar');
+        chart.coordinate('polar');
         chart.legend(false);
         chart.axis('label', {
             line: null,
-            labelOffset: 8,
-            labels: {
-                label: {
+            label: {
+                offset: 8,
+                style: {
                     fill: 'rgba(0, 0, 0, .65)',
                 },
             },
             grid: {
                 line: {
-                    stroke: '#e9e9e9',
-                    lineWidth: 1,
-                    lineDash: [0, 0],
+                    style: {
+                        stroke: '#e9e9e9',
+                        lineWidth: 1,
+                        lineDash: [0, 0],
+                    },
                 },
             },
         });
         chart.axis('value', {
             grid: {
-                type: 'polygon',
                 line: {
-                    stroke: '#e9e9e9',
-                    lineWidth: 1,
-                    lineDash: [0, 0],
+                    type: 'polygon',
+                    style: {
+                        stroke: '#e9e9e9',
+                        lineWidth: 1,
+                        lineDash: [0, 0],
+                    },
                 },
             },
-            labels: {
-                label: {
+            label: {
+                style: {
                     fill: 'rgba(0, 0, 0, .65)',
                 },
             },
@@ -120,22 +125,20 @@ class G2RadarComponent {
         const { chart, padding, data, colors, tickCount } = this;
         if (!chart || !data || data.length <= 0)
             return;
-        chart.set('height', this.getHeight());
-        chart.set('padding', padding);
-        chart.source(data, {
+        chart.height = this.getHeight();
+        chart.padding = padding;
+        chart.scale({
             value: {
                 min: 0,
                 tickCount,
             },
         });
-        chart.get('geoms').forEach((/**
+        chart.geometries.forEach((/**
          * @param {?} g
          * @return {?}
          */
-        (g) => {
-            g.color('name', colors);
-        }));
-        chart.repaint();
+        g => g.color('name', colors)));
+        chart.changeData(data);
         this.ngZone.run((/**
          * @return {?}
          */
@@ -149,14 +152,11 @@ class G2RadarComponent {
         const { hasLegend, cdr, chart } = this;
         if (!hasLegend)
             return;
-        this.legendData = chart
-            .get('geoms')[0]
-            .get('dataArray')
-            .map((/**
+        this.legendData = chart.geometries[0].dataArray.map((/**
          * @param {?} item
          * @return {?}
          */
-        (item) => {
+        item => {
             /** @type {?} */
             const origin = item[0]._origin;
             /** @type {?} */
@@ -182,7 +182,7 @@ class G2RadarComponent {
     _click(i) {
         const { legendData, chart } = this;
         legendData[i].checked = !legendData[i].checked;
-        chart.repaint();
+        chart.render();
     }
     /**
      * @return {?}

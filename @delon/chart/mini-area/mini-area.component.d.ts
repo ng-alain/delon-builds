@@ -18,7 +18,7 @@ export declare class G2MiniAreaComponent implements OnInit, OnChanges, OnDestroy
     animate: boolean;
     xAxis: any;
     yAxis: any;
-    padding: number[];
+    padding: number | number[] | 'auto';
     data: G2MiniAreaData[];
     yTooltipSuffix: string;
     tooltipType: 'mini' | 'default';

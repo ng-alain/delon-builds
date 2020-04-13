@@ -1,5 +1,6 @@
 import { __decorate, __metadata, __spread } from 'tslib';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, ChangeDetectorRef, NgZone, ViewChild, Input, NgModule } from '@angular/core';
+import { Chart } from '@antv/g2';
 import { InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
 import { CommonModule } from '@angular/common';
 import { NzGridModule } from 'ng-zorro-antd/grid';
@@ -60,41 +61,45 @@ var G2RadarComponent = /** @class */ (function () {
         var _this = this;
         var _a = this, node = _a.node, padding = _a.padding;
         /** @type {?} */
-        var chart = (this.chart = new G2.Chart({
+        var chart = (this.chart = new Chart({
             container: node.nativeElement,
-            forceFit: true,
+            autoFit: true,
             height: this.getHeight(),
             padding: padding,
         }));
-        chart.coord('polar');
+        chart.coordinate('polar');
         chart.legend(false);
         chart.axis('label', {
             line: null,
-            labelOffset: 8,
-            labels: {
-                label: {
+            label: {
+                offset: 8,
+                style: {
                     fill: 'rgba(0, 0, 0, .65)',
                 },
             },
             grid: {
                 line: {
-                    stroke: '#e9e9e9',
-                    lineWidth: 1,
-                    lineDash: [0, 0],
+                    style: {
+                        stroke: '#e9e9e9',
+                        lineWidth: 1,
+                        lineDash: [0, 0],
+                    },
                 },
             },
         });
         chart.axis('value', {
             grid: {
-                type: 'polygon',
                 line: {
-                    stroke: '#e9e9e9',
-                    lineWidth: 1,
-                    lineDash: [0, 0],
+                    type: 'polygon',
+                    style: {
+                        stroke: '#e9e9e9',
+                        lineWidth: 1,
+                        lineDash: [0, 0],
+                    },
                 },
             },
-            labels: {
-                label: {
+            label: {
+                style: {
                     fill: 'rgba(0, 0, 0, .65)',
                 },
             },
@@ -130,22 +135,20 @@ var G2RadarComponent = /** @class */ (function () {
         var _a = this, chart = _a.chart, padding = _a.padding, data = _a.data, colors = _a.colors, tickCount = _a.tickCount;
         if (!chart || !data || data.length <= 0)
             return;
-        chart.set('height', this.getHeight());
-        chart.set('padding', padding);
-        chart.source(data, {
+        chart.height = this.getHeight();
+        chart.padding = padding;
+        chart.scale({
             value: {
                 min: 0,
                 tickCount: tickCount,
             },
         });
-        chart.get('geoms').forEach((/**
+        chart.geometries.forEach((/**
          * @param {?} g
          * @return {?}
          */
-        function (g) {
-            g.color('name', colors);
-        }));
-        chart.repaint();
+        function (g) { return g.color('name', colors); }));
+        chart.changeData(data);
         this.ngZone.run((/**
          * @return {?}
          */
@@ -163,10 +166,7 @@ var G2RadarComponent = /** @class */ (function () {
         var _a = this, hasLegend = _a.hasLegend, cdr = _a.cdr, chart = _a.chart;
         if (!hasLegend)
             return;
-        this.legendData = chart
-            .get('geoms')[0]
-            .get('dataArray')
-            .map((/**
+        this.legendData = chart.geometries[0].dataArray.map((/**
          * @param {?} item
          * @return {?}
          */
@@ -200,7 +200,7 @@ var G2RadarComponent = /** @class */ (function () {
     function (i) {
         var _a = this, legendData = _a.legendData, chart = _a.chart;
         legendData[i].checked = !legendData[i].checked;
-        chart.repaint();
+        chart.render();
     };
     /**
      * @return {?}

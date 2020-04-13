@@ -1,0 +1,13 @@
+{
+  "main": "../../bundles/delon-chart-core-types.umd.js",
+  "module": "../../fesm5/delon-chart-core-types.js",
+  "es2015": "../../fesm2015/delon-chart-core-types.js",
+  "esm5": "../../esm5/core/types/delon-chart-core-types.js",
+  "esm2015": "../../esm2015/core/types/delon-chart-core-types.js",
+  "fesm5": "../../fesm5/delon-chart-core-types.js",
+  "fesm2015": "../../fesm2015/delon-chart-core-types.js",
+  "typings": "delon-chart-core-types.d.ts",
+  "metadata": "delon-chart-core-types.metadata.json",
+  "sideEffects": false,
+  "name": "@delon/chart/core/types"
+}

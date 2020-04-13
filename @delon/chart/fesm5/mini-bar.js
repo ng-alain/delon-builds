@@ -1,5 +1,6 @@
 import { __decorate, __metadata, __spread } from 'tslib';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, NgZone, Input, NgModule } from '@angular/core';
+import { Chart } from '@antv/g2';
 import { InputNumber, DelonUtilModule } from '@delon/util';
 import { CommonModule } from '@angular/common';
 
@@ -45,13 +46,13 @@ var G2MiniBarComponent = /** @class */ (function () {
     function () {
         var _a = this, el = _a.el, height = _a.height, padding = _a.padding, yTooltipSuffix = _a.yTooltipSuffix, tooltipType = _a.tooltipType;
         /** @type {?} */
-        var chart = (this.chart = new G2.Chart({
+        var chart = (this.chart = new Chart({
             container: el.nativeElement,
-            forceFit: true,
+            autoFit: true,
             height: height,
             padding: padding,
         }));
-        chart.source([], {
+        chart.scale({
             x: {
                 type: 'cat',
             },
@@ -61,14 +62,25 @@ var G2MiniBarComponent = /** @class */ (function () {
         });
         chart.legend(false);
         chart.axis(false);
-        chart.tooltip({
-            type: tooltipType === 'mini' ? 'mini' : null,
+        /** @type {?} */
+        var tooltipOption = {
             showTitle: false,
-            hideMarkders: false,
-            crosshairs: false,
-            'g2-tooltip': { padding: 4 },
-            'g2-tooltip-list-item': { margin: "0px 4px" },
-        });
+            showMarkers: true,
+            showCrosshairs: false,
+            enterable: true,
+            domStyles: {
+                'g2-tooltip': { padding: '0px' },
+                'g2-tooltip-title': { display: 'none' },
+                'g2-tooltip-list-item': { margin: '4px' },
+            },
+        };
+        if (tooltipType === 'mini') {
+            tooltipOption.position = 'top';
+            (/** @type {?} */ (tooltipOption.domStyles))['g2-tooltip'] = { padding: '0px', backgroundColor: 'transparent', boxShadow: 'none' };
+            tooltipOption.itemTpl = "<li>{value}</li>";
+            tooltipOption.offset = 0;
+        }
+        chart.tooltip(tooltipOption);
         chart
             .interval()
             .position('x*y')
@@ -93,9 +105,9 @@ var G2MiniBarComponent = /** @class */ (function () {
         var _a = this, chart = _a.chart, height = _a.height, padding = _a.padding, data = _a.data, color = _a.color, borderWidth = _a.borderWidth;
         if (!chart || !data || data.length <= 0)
             return;
-        chart.get('geoms')[0].size(borderWidth).color(color);
-        chart.set('height', height);
-        chart.set('padding', padding);
+        chart.geometries[0].size(borderWidth).color(color);
+        chart.height = height;
+        chart.padding = padding;
         chart.changeData(data);
     };
     /**

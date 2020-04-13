@@ -11,9 +11,7 @@ export declare class G2TimelineData {
 export declare class G2TimelineComponent implements OnInit, OnDestroy, OnChanges {
     private ngZone;
     private node;
-    private sliderNode;
     private chart;
-    private _slider;
     delay: number;
     title: string | TemplateRef<void>;
     data: G2TimelineData[];

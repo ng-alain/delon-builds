@@ -1,4 +1,5 @@
 import { ChangeDetectorRef, ElementRef, NgZone, OnChanges, OnDestroy, OnInit, Renderer2, TemplateRef } from '@angular/core';
+import { InteractionType } from '@delon/chart/core/types';
 export interface G2PieData {
     x: any;
     y: number;
@@ -23,7 +24,7 @@ export declare class G2PieComponent implements OnInit, OnDestroy, OnChanges {
     height: number;
     hasLegend: boolean;
     inner: number;
-    padding: number[];
+    padding: number | number[] | 'auto';
     percent: number;
     tooltip: boolean;
     lineWidth: number;
@@ -31,6 +32,7 @@ export declare class G2PieComponent implements OnInit, OnDestroy, OnChanges {
     valueFormat: (y: number) => string;
     data: G2PieData[];
     colors: any[];
+    interaction: InteractionType;
     constructor(el: ElementRef, rend: Renderer2, ngZone: NgZone, cdr: ChangeDetectorRef);
     private setCls;
     private fixData;

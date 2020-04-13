@@ -1,5 +1,7 @@
 import { __assign, __decorate, __metadata, __spread } from 'tslib';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, NgZone, Input, NgModule } from '@angular/core';
+import DataSet from '@antv/data-set';
+import { registerShape, Util, Chart } from '@antv/g2';
 import { InputNumber, DelonUtilModule } from '@delon/util';
 import { fromEvent } from 'rxjs';
 import { filter, debounceTime } from 'rxjs/operators';
@@ -44,18 +46,23 @@ var G2TagCloudComponent = /** @class */ (function () {
      */
     function () {
         // 给point注册一个词云的shape
-        G2.Shape.registerShape('point', 'cloud', {
-            drawShape: /**
+        registerShape('point', 'cloud', {
+            draw: /**
              * @param {?} cfg
              * @param {?} container
              * @return {?}
              */
             function (cfg, container) {
                 /** @type {?} */
-                var attrs = __assign({ fillOpacity: cfg.opacity, fontSize: cfg.origin._origin.size, rotate: cfg.origin._origin.rotate, text: cfg.origin._origin.text, textAlign: 'center', fontFamily: cfg.origin._origin.font, fill: cfg.color, textBaseline: 'Alphabetic' }, cfg.style);
-                return container.addShape('text', {
-                    attrs: __assign(__assign({}, attrs), { x: cfg.x, y: cfg.y }),
+                var data = (/** @type {?} */ (cfg.data));
+                /** @type {?} */
+                var textShape = container.addShape('text', {
+                    attrs: __assign(__assign(__assign({}, cfg.defaultStyle), cfg.style), { fontSize: data.size, text: data.text, textAlign: 'center', fontFamily: data.font, fill: cfg.color, textBaseline: 'Alphabetic', x: cfg.x, y: cfg.y }),
                 });
+                if (data.rotate) {
+                    Util.rotate(textShape, (data.rotate * Math.PI) / 180);
+                }
+                return textShape;
             },
         });
     };
@@ -70,7 +77,7 @@ var G2TagCloudComponent = /** @class */ (function () {
     function () {
         var _a = this, el = _a.el, padding = _a.padding, height = _a.height;
         /** @type {?} */
-        var chart = (this.chart = new G2.Chart({
+        var chart = (this.chart = new Chart({
             container: el.nativeElement,
             padding: padding,
             height: height,
@@ -79,10 +86,11 @@ var G2TagCloudComponent = /** @class */ (function () {
         chart.axis(false);
         chart.tooltip({
             showTitle: false,
+            showMarkers: false,
         });
-        chart.coord().reflect();
+        chart.coordinate().reflect('x');
         chart.point().position('x*y').color('category').shape('cloud').tooltip('value*category');
-        chart.render();
+        chart.interaction('element-active');
         this.attachChart();
     };
     /**
@@ -97,8 +105,8 @@ var G2TagCloudComponent = /** @class */ (function () {
         var _a = this, chart = _a.chart, height = _a.height, padding = _a.padding, data = _a.data;
         if (!chart || !data || data.length <= 0)
             return;
-        chart.set('height', height);
-        chart.set('padding', padding);
+        chart.height = height;
+        chart.padding = padding;
         chart.forceFit();
         /** @type {?} */
         var dv = new DataSet.View().source(data);
@@ -108,11 +116,11 @@ var G2TagCloudComponent = /** @class */ (function () {
         var min = range[0];
         /** @type {?} */
         var max = range[1];
-        dv.transform({
+        dv.transform((/** @type {?} */ ({
             type: 'tag-cloud',
             fields: ['x', 'value'],
-            size: [chart.get('width'), chart.get('height')],
-            padding: padding,
+            size: [chart.width, chart.height],
+            padding: typeof padding === 'number' ? padding : undefined,
             timeInterval: 5000,
             // max execute time
             rotate: (/**
@@ -126,17 +134,23 @@ var G2TagCloudComponent = /** @class */ (function () {
                 }
                 return random * 90; // 0, 90, 270
             }),
-            fontSize: (/**
+            fontSize: /**
              * @param {?} d
              * @return {?}
              */
-            function (d) { return (d.value ? ((d.value - min) / (max - min)) * (80 - 24) + 24 : 0); }),
-        });
-        chart.source(dv, {
+            function (d) {
+                if (d.value) {
+                    return ((d.value - min) / (max - min)) * (80 - 24) + 24;
+                }
+                return 0;
+            },
+        })));
+        chart.scale({
             x: { nice: false },
             y: { nice: false },
         });
-        chart.repaint();
+        chart.changeData(dv.rows);
+        chart.render();
     };
     /**
      * @private
@@ -167,7 +181,7 @@ var G2TagCloudComponent = /** @class */ (function () {
             .pipe(filter((/**
          * @return {?}
          */
-        function () { return _this.chart; })), debounceTime(200))
+        function () { return !!_this.chart; })), debounceTime(200))
             .subscribe((/**
          * @return {?}
          */

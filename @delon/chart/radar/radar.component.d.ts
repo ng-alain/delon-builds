@@ -14,7 +14,7 @@ export declare class G2RadarComponent implements OnInit, OnDestroy, OnChanges {
     delay: number;
     title: string | TemplateRef<void>;
     height: number;
-    padding: number[];
+    padding: number | number[] | 'auto';
     hasLegend: boolean;
     tickCount: number;
     data: G2RadarData[];

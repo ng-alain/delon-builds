@@ -1,5 +1,6 @@
 import { __decorate, __metadata } from 'tslib';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, NgZone, Input, NgModule } from '@angular/core';
+import { Chart } from '@antv/g2';
 import { InputNumber, DelonUtilModule } from '@delon/util';
 import { CommonModule } from '@angular/common';
 
@@ -45,13 +46,13 @@ class G2MiniBarComponent {
     install() {
         const { el, height, padding, yTooltipSuffix, tooltipType } = this;
         /** @type {?} */
-        const chart = (this.chart = new G2.Chart({
+        const chart = (this.chart = new Chart({
             container: el.nativeElement,
-            forceFit: true,
+            autoFit: true,
             height,
             padding,
         }));
-        chart.source([], {
+        chart.scale({
             x: {
                 type: 'cat',
             },
@@ -61,14 +62,25 @@ class G2MiniBarComponent {
         });
         chart.legend(false);
         chart.axis(false);
-        chart.tooltip({
-            type: tooltipType === 'mini' ? 'mini' : null,
+        /** @type {?} */
+        const tooltipOption = {
             showTitle: false,
-            hideMarkders: false,
-            crosshairs: false,
-            'g2-tooltip': { padding: 4 },
-            'g2-tooltip-list-item': { margin: `0px 4px` },
-        });
+            showMarkers: true,
+            showCrosshairs: false,
+            enterable: true,
+            domStyles: {
+                'g2-tooltip': { padding: '0px' },
+                'g2-tooltip-title': { display: 'none' },
+                'g2-tooltip-list-item': { margin: '4px' },
+            },
+        };
+        if (tooltipType === 'mini') {
+            tooltipOption.position = 'top';
+            (/** @type {?} */ (tooltipOption.domStyles))['g2-tooltip'] = { padding: '0px', backgroundColor: 'transparent', boxShadow: 'none' };
+            tooltipOption.itemTpl = `<li>{value}</li>`;
+            tooltipOption.offset = 0;
+        }
+        chart.tooltip(tooltipOption);
         chart
             .interval()
             .position('x*y')
@@ -89,9 +101,9 @@ class G2MiniBarComponent {
         const { chart, height, padding, data, color, borderWidth } = this;
         if (!chart || !data || data.length <= 0)
             return;
-        chart.get('geoms')[0].size(borderWidth).color(color);
-        chart.set('height', height);
-        chart.set('padding', padding);
+        chart.geometries[0].size(borderWidth).color(color);
+        chart.height = height;
+        chart.padding = padding;
         chart.changeData(data);
     }
     /**

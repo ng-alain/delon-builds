@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util'), require('@angular/common'), require('ng-zorro-antd/grid')) :
-    typeof define === 'function' && define.amd ? define('@delon/chart/radar', ['exports', '@angular/core', '@delon/util', '@angular/common', 'ng-zorro-antd/grid'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.radar = {}), global.ng.core, global.delon.util, global.ng.common, global['ng-zorro-antd/grid']));
-}(this, (function (exports, core, util, common, grid) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@antv/g2'), require('@delon/util'), require('@angular/common'), require('ng-zorro-antd/grid')) :
+    typeof define === 'function' && define.amd ? define('@delon/chart/radar', ['exports', '@angular/core', '@antv/g2', '@delon/util', '@angular/common', 'ng-zorro-antd/grid'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.radar = {}), global.ng.core, global.g2, global.delon.util, global.ng.common, global['ng-zorro-antd/grid']));
+}(this, (function (exports, core, g2, util, common, grid) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -279,41 +279,45 @@
             var _this = this;
             var _a = this, node = _a.node, padding = _a.padding;
             /** @type {?} */
-            var chart = (this.chart = new G2.Chart({
+            var chart = (this.chart = new g2.Chart({
                 container: node.nativeElement,
-                forceFit: true,
+                autoFit: true,
                 height: this.getHeight(),
                 padding: padding,
             }));
-            chart.coord('polar');
+            chart.coordinate('polar');
             chart.legend(false);
             chart.axis('label', {
                 line: null,
-                labelOffset: 8,
-                labels: {
-                    label: {
+                label: {
+                    offset: 8,
+                    style: {
                         fill: 'rgba(0, 0, 0, .65)',
                     },
                 },
                 grid: {
                     line: {
-                        stroke: '#e9e9e9',
-                        lineWidth: 1,
-                        lineDash: [0, 0],
+                        style: {
+                            stroke: '#e9e9e9',
+                            lineWidth: 1,
+                            lineDash: [0, 0],
+                        },
                     },
                 },
             });
             chart.axis('value', {
                 grid: {
-                    type: 'polygon',
                     line: {
-                        stroke: '#e9e9e9',
-                        lineWidth: 1,
-                        lineDash: [0, 0],
+                        type: 'polygon',
+                        style: {
+                            stroke: '#e9e9e9',
+                            lineWidth: 1,
+                            lineDash: [0, 0],
+                        },
                     },
                 },
-                labels: {
-                    label: {
+                label: {
+                    style: {
                         fill: 'rgba(0, 0, 0, .65)',
                     },
                 },
@@ -349,22 +353,20 @@
             var _a = this, chart = _a.chart, padding = _a.padding, data = _a.data, colors = _a.colors, tickCount = _a.tickCount;
             if (!chart || !data || data.length <= 0)
                 return;
-            chart.set('height', this.getHeight());
-            chart.set('padding', padding);
-            chart.source(data, {
+            chart.height = this.getHeight();
+            chart.padding = padding;
+            chart.scale({
                 value: {
                     min: 0,
                     tickCount: tickCount,
                 },
             });
-            chart.get('geoms').forEach((/**
+            chart.geometries.forEach((/**
              * @param {?} g
              * @return {?}
              */
-            function (g) {
-                g.color('name', colors);
-            }));
-            chart.repaint();
+            function (g) { return g.color('name', colors); }));
+            chart.changeData(data);
             this.ngZone.run((/**
              * @return {?}
              */
@@ -382,10 +384,7 @@
             var _a = this, hasLegend = _a.hasLegend, cdr = _a.cdr, chart = _a.chart;
             if (!hasLegend)
                 return;
-            this.legendData = chart
-                .get('geoms')[0]
-                .get('dataArray')
-                .map((/**
+            this.legendData = chart.geometries[0].dataArray.map((/**
              * @param {?} item
              * @return {?}
              */
@@ -419,7 +418,7 @@
         function (i) {
             var _a = this, legendData = _a.legendData, chart = _a.chart;
             legendData[i].checked = !legendData[i].checked;
-            chart.repaint();
+            chart.render();
         };
         /**
          * @return {?}

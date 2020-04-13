@@ -10,7 +10,7 @@ export declare class G2GaugeComponent implements OnInit, OnDestroy, OnChanges {
     bgColor: string;
     format: (text: string, item: {}, index: number) => string;
     percent: number;
-    padding: Array<number | string>;
+    padding: number | number[] | 'auto';
     constructor(el: ElementRef, ngZone: NgZone);
     private install;
     private attachChart;

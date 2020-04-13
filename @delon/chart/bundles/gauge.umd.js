@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util'), require('@angular/common')) :
-    typeof define === 'function' && define.amd ? define('@delon/chart/gauge', ['exports', '@angular/core', '@delon/util', '@angular/common'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.gauge = {}), global.ng.core, global.delon.util, global.ng.common));
-}(this, (function (exports, core, util, common) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@antv/g2'), require('@delon/util'), require('@angular/common')) :
+    typeof define === 'function' && define.amd ? define('@delon/chart/gauge', ['exports', '@angular/core', '@antv/g2', '@delon/util', '@angular/common'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.gauge = {}), global.ng.core, global.g2, global.delon.util, global.ng.common));
+}(this, (function (exports, core, g2, util, common) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -248,22 +248,19 @@
          * @return {?}
          */
         function () {
-            /** @type {?} */
-            var Shape = G2.Shape;
             // 自定义Shape 部分
-            Shape.registerShape('point', 'pointer', {
-                drawShape: /**
+            g2.registerShape('point', 'pointer', {
+                draw: /**
                  * @param {?} cfg
-                 * @param {?} group
+                 * @param {?} container
                  * @return {?}
                  */
-                function (cfg, group) {
+                function (cfg, container) {
                     /** @type {?} */
-                    var center = this.parsePoint({
-                        // 获取极坐标系下画布中心点
-                        x: 0,
-                        y: 0,
-                    });
+                    var group = container.addGroup({});
+                    // 获取极坐标系下画布中心点
+                    /** @type {?} */
+                    var center = ((/** @type {?} */ (this))).parsePoint({ x: 0, y: 0 });
                     // 绘制指针
                     group.addShape('line', {
                         attrs: {
@@ -276,31 +273,34 @@
                             lineCap: 'round',
                         },
                     });
-                    return group.addShape('circle', {
+                    group.addShape('circle', {
                         attrs: {
                             x: center.x,
                             y: center.y,
-                            r: 9.75,
+                            r: 5.75,
                             stroke: cfg.color,
                             lineWidth: 2,
                             fill: '#fff',
                         },
                     });
+                    return group;
                 },
             });
             var _a = this, el = _a.el, height = _a.height, padding = _a.padding, format = _a.format;
             /** @type {?} */
-            var chart = (this.chart = new G2.Chart({
+            var chart = (this.chart = new g2.Chart({
                 container: el.nativeElement,
-                animate: false,
-                forceFit: true,
+                autoFit: true,
                 height: height,
                 padding: padding,
             }));
-            chart.point({ generatePoints: true }).position('value*1').shape('pointer').active(false);
-            chart.coord('polar', {
-                startAngle: Math.PI * -1.2,
-                endAngle: Math.PI * 0.2,
+            chart.legend(false);
+            chart.animate(false);
+            chart.tooltip(false);
+            chart.coordinate('polar', {
+                startAngle: (-9 / 8) * Math.PI,
+                endAngle: (1 / 8) * Math.PI,
+                radius: 0.75,
             });
             chart.scale('value', {
                 min: 0,
@@ -309,9 +309,7 @@
                 tickCount: 6,
             });
             chart.axis('1', false);
-            // 刻度值
             chart.axis('value', {
-                zIndex: 2,
                 line: null,
                 label: {
                     offset: -12,
@@ -320,8 +318,7 @@
                 tickLine: null,
                 grid: null,
             });
-            chart.legend(false);
-            chart.render();
+            chart.point().position('value*1').shape('pointer');
             this.attachChart();
         };
         /**
@@ -333,41 +330,54 @@
          * @return {?}
          */
         function () {
-            var _a = this, chart = _a.chart, bgColor = _a.bgColor, color = _a.color, title = _a.title, percent = _a.percent;
+            var _a = this, chart = _a.chart, percent = _a.percent, color = _a.color, bgColor = _a.bgColor, title = _a.title;
             if (!chart)
                 return;
-            chart.get('geoms')[0].color(color);
-            /** @type {?} */
-            var guide = chart.guide();
-            guide.clear();
             /** @type {?} */
             var data = [{ name: title, value: percent }];
+            /** @type {?} */
+            var val = data[0].value;
+            chart.annotation().clear(true);
+            chart.geometries[0].color(color);
             // 绘制仪表盘背景
-            guide.arc({
-                zIndex: 0,
+            chart.annotation().arc({
                 top: false,
                 start: [0, 0.95],
                 end: [100, 0.95],
                 style: {
-                    // 底灰色
                     stroke: bgColor,
                     lineWidth: 12,
+                    lineDash: null,
                 },
             });
-            // 绘制指标
-            guide.arc({
-                zIndex: 1,
+            chart.annotation().arc({
                 start: [0, 0.95],
                 end: [data[0].value, 0.95],
                 style: {
                     stroke: color,
                     lineWidth: 12,
+                    lineDash: null,
                 },
             });
-            // 绘制数字
-            guide.html({
-                position: ['50%', '95%'],
-                html: "<div class=\"g2-gauge__desc\">\n        <div class=\"g2-gauge__title\">" + title + "</div>\n        <div class=\"g2-gauge__percent\">" + data[0].value + "%</div>\n      </div>",
+            // 绘制指标数字
+            chart.annotation().text({
+                position: ['50%', '85%'],
+                content: title,
+                style: {
+                    fontSize: 12,
+                    fill: 'rgba(0, 0, 0, 0.43)',
+                    textAlign: 'center',
+                },
+            });
+            chart.annotation().text({
+                position: ['50%', '90%'],
+                content: val + " %",
+                style: {
+                    fontSize: 24,
+                    fill: 'rgba(0, 0, 0, 0.85)',
+                    textAlign: 'center',
+                },
+                offsetY: 15,
             });
             chart.changeData(data);
         };

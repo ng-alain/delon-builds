@@ -1,5 +1,7 @@
 import { __decorate, __metadata } from 'tslib';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, NgZone, ViewChild, Input, NgModule } from '@angular/core';
+import DataSet from '@antv/data-set';
+import { Chart } from '@antv/g2';
 import { InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
 import { CommonModule } from '@angular/common';
 
@@ -41,8 +43,8 @@ class G2TimelineComponent {
         this.colorMap = { y1: '#1890FF', y2: '#2FC25B' };
         this.mask = 'HH:mm';
         this.position = 'top';
-        this.height = 400;
-        this.padding = [60, 20, 40, 40];
+        this.height = 450;
+        this.padding = [60, 20, 64, 40];
         this.borderWidth = 2;
         this.slider = true;
     }
@@ -63,46 +65,32 @@ class G2TimelineComponent {
      * @return {?}
      */
     install() {
-        const { node, sliderNode, height, padding, mask, slider } = this;
+        const { node, height, padding, mask, slider } = this;
         /** @type {?} */
-        const chart = (this.chart = new G2.Chart({
+        const chart = (this.chart = new Chart({
             container: node.nativeElement,
-            forceFit: true,
+            autoFit: true,
             height,
             padding,
         }));
-        chart.axis('x', { title: false });
-        chart.axis('y1', { title: false });
+        chart.axis('x', { title: null });
+        chart.axis('y1', { title: null });
         chart.axis('y2', false);
         chart.line().position('x*y1');
         chart.line().position('x*y2');
-        chart.render();
         /** @type {?} */
         const sliderPadding = Object.assign(Object.assign({}, []), padding);
         sliderPadding[0] = 0;
         if (slider) {
-            /** @type {?} */
-            const _slider = (this._slider = new Slider({
-                container: sliderNode.nativeElement,
-                width: 'auto',
+            chart.option('slider', {
                 height: 26,
-                padding: sliderPadding,
-                scales: {
-                    x: {
-                        type: 'time',
-                        tickInterval: 60 * 60 * 1000,
-                        range: [0, 1],
-                        mask,
-                    },
+                start: 0.1,
+                end: 0.8,
+                trendCfg: {
+                    isArea: false,
                 },
-                backgroundChart: {
-                    type: 'line',
-                },
-                xAxis: 'x',
-                yAxis: 'y1',
-                data: [],
-            }));
-            _slider.render();
+                mask,
+            });
         }
         this.attachChart();
     }
@@ -111,20 +99,20 @@ class G2TimelineComponent {
      * @return {?}
      */
     attachChart() {
-        const { chart, _slider, slider, height, padding, data, mask, titleMap, position, colorMap, borderWidth } = this;
+        const { chart, height, padding, data, mask, titleMap, position, colorMap, borderWidth } = this;
         if (!chart || !data || data.length <= 0)
             return;
         chart.legend({
             position,
             custom: true,
-            clickable: false,
+            // clickable: false,
             items: [
-                { value: titleMap.y1, fill: colorMap.y1 },
-                { value: titleMap.y2, fill: colorMap.y2 },
+                { name: titleMap.y1, value: titleMap.y1, marker: { style: { fill: colorMap.y1 } } },
+                { name: titleMap.y1, value: titleMap.y2, marker: { style: { fill: colorMap.y2 } } },
             ],
         });
         // border
-        chart.get('geoms').forEach((/**
+        chart.geometries.forEach((/**
          * @param {?} v
          * @param {?} idx
          * @return {?}
@@ -132,8 +120,8 @@ class G2TimelineComponent {
         (v, idx) => {
             v.color(((/** @type {?} */ (colorMap)))[`y${idx + 1}`]).size(borderWidth);
         }));
-        chart.set('height', height);
-        chart.set('padding', padding);
+        chart.height = height;
+        chart.padding = padding;
         data
             .filter((/**
          * @param {?} v
@@ -173,8 +161,8 @@ class G2TimelineComponent {
             },
         });
         /** @type {?} */
-        const dv = ds.createView();
-        dv.source(data).transform({
+        const dv = ds.createView('origin').source(data);
+        dv.transform({
             type: 'filter',
             callback: (/**
              * @param {?} val
@@ -186,7 +174,7 @@ class G2TimelineComponent {
                 return time >= ds.state.start && time <= ds.state.end;
             }),
         });
-        chart.source(dv, {
+        chart.scale({
             x: {
                 type: 'timeCat',
                 mask,
@@ -203,20 +191,7 @@ class G2TimelineComponent {
                 min: 0,
             },
         });
-        chart.repaint();
-        if (slider) {
-            _slider.start = ds.state.start;
-            _slider.end = ds.state.end;
-            _slider.onChange = (/**
-             * @param {?} res
-             * @return {?}
-             */
-            (res) => {
-                ds.setState('start', res.startValue);
-                ds.setState('end', res.endValue);
-            });
-            _slider.changeData(data);
-        }
+        chart.changeData(dv.rows);
     }
     /**
      * @return {?}
@@ -237,19 +212,13 @@ class G2TimelineComponent {
              */
             () => this.chart.destroy()));
         }
-        if (this._slider) {
-            this.ngZone.runOutsideAngular((/**
-             * @return {?}
-             */
-            () => this._slider.destroy()));
-        }
     }
 }
 G2TimelineComponent.decorators = [
     { type: Component, args: [{
                 selector: 'g2-timeline',
                 exportAs: 'g2Timeline',
-                template: "<ng-container *stringTemplateOutlet=\"title\">\n  <h4>{{title}}</h4>\n</ng-container>\n<div #container></div>\n<div #sliderContainer *ngIf=\"slider\"></div>\n",
+                template: "<ng-container *stringTemplateOutlet=\"title\">\n  <h4>{{title}}</h4>\n</ng-container>\n<div #container></div>\n",
                 preserveWhitespaces: false,
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None
@@ -261,7 +230,6 @@ G2TimelineComponent.ctorParameters = () => [
 ];
 G2TimelineComponent.propDecorators = {
     node: [{ type: ViewChild, args: ['container', { static: false },] }],
-    sliderNode: [{ type: ViewChild, args: ['sliderContainer', { static: false },] }],
     delay: [{ type: Input }],
     title: [{ type: Input }],
     data: [{ type: Input }],
@@ -300,17 +268,7 @@ if (false) {
      * @type {?}
      * @private
      */
-    G2TimelineComponent.prototype.sliderNode;
-    /**
-     * @type {?}
-     * @private
-     */
     G2TimelineComponent.prototype.chart;
-    /**
-     * @type {?}
-     * @private
-     */
-    G2TimelineComponent.prototype._slider;
     /** @type {?} */
     G2TimelineComponent.prototype.delay;
     /** @type {?} */

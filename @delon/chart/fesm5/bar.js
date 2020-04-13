@@ -1,5 +1,6 @@
 import { __decorate, __metadata, __spread } from 'tslib';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, NgZone, ViewChild, Input, NgModule } from '@angular/core';
+import { Chart } from '@antv/g2';
 import { InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
 import { fromEvent } from 'rxjs';
 import { filter, debounceTime } from 'rxjs/operators';
@@ -21,6 +22,8 @@ if (false) {
     G2BarData.prototype.x;
     /** @type {?} */
     G2BarData.prototype.y;
+    /** @type {?|undefined} */
+    G2BarData.prototype.color;
     /* Skipping unhandled member: [key: string]: any;*/
 }
 var G2BarComponent = /** @class */ (function () {
@@ -34,6 +37,7 @@ var G2BarComponent = /** @class */ (function () {
         this.padding = 'auto';
         this.data = [];
         this.autoLabel = true;
+        this.interaction = 'none';
     }
     /**
      * @private
@@ -55,24 +59,24 @@ var G2BarComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        var _a = this, node = _a.node, padding = _a.padding;
+        var _this = this;
+        var _a = this, node = _a.node, padding = _a.padding, interaction = _a.interaction;
         /** @type {?} */
         var container = (/** @type {?} */ (node.nativeElement));
         /** @type {?} */
-        var chart = (this.chart = new G2.Chart({
+        var chart = (this.chart = new Chart({
             container: container,
-            forceFit: true,
-            legend: null,
+            autoFit: true,
             height: this.getHeight(),
             padding: padding,
         }));
         this.updatelabel();
         chart.axis('y', {
-            title: false,
-            line: false,
-            tickLine: false,
+            title: null,
+            line: null,
+            tickLine: null,
         });
-        chart.source([], {
+        chart.scale({
             x: {
                 type: 'cat',
             },
@@ -83,16 +87,33 @@ var G2BarComponent = /** @class */ (function () {
         chart.tooltip({
             showTitle: false,
         });
+        if (interaction !== 'none') {
+            chart.interaction(interaction);
+        }
+        chart.legend(false);
         chart
             .interval()
             .position('x*y')
+            .color('x*y', (/**
+         * @param {?} x
+         * @param {?} y
+         * @return {?}
+         */
+        function (x, y) {
+            /** @type {?} */
+            var colorItem = _this.data.find((/**
+             * @param {?} w
+             * @return {?}
+             */
+            function (w) { return w.x === x && w.y === y; }));
+            return colorItem && colorItem.color ? colorItem.color : _this.color;
+        }))
             .tooltip('x*y', (/**
          * @param {?} x
          * @param {?} y
          * @return {?}
          */
         function (x, y) { return ({ name: x, value: y }); }));
-        chart.render();
         this.attachChart();
     };
     /**
@@ -104,19 +125,18 @@ var G2BarComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        var _a = this, chart = _a.chart, padding = _a.padding, data = _a.data, color = _a.color;
+        var _a = this, chart = _a.chart, padding = _a.padding, data = _a.data;
         if (!chart || !data || data.length <= 0)
             return;
         this.installResizeEvent();
         /** @type {?} */
         var height = this.getHeight();
-        if (chart.get('height') !== height) {
-            chart.changeHeight(height);
+        if (chart.height !== height) {
+            chart.height = height;
         }
-        // color
-        chart.get('geoms')[0].color(color);
-        chart.set('padding', padding);
-        chart.changeData(data);
+        chart.padding = padding;
+        chart.data(data);
+        chart.render();
     };
     /**
      * @private
@@ -132,7 +152,7 @@ var G2BarComponent = /** @class */ (function () {
         var canvasWidth = node.nativeElement.clientWidth;
         /** @type {?} */
         var minWidth = data.length * 30;
-        chart.axis('x', canvasWidth > minWidth).repaint();
+        chart.axis('x', canvasWidth > minWidth).render();
     };
     /**
      * @private
@@ -150,7 +170,7 @@ var G2BarComponent = /** @class */ (function () {
             .pipe(filter((/**
          * @return {?}
          */
-        function () { return _this.chart; })), debounceTime(200))
+        function () { return !!_this.chart; })), debounceTime(200))
             .subscribe((/**
          * @return {?}
          */
@@ -231,7 +251,8 @@ var G2BarComponent = /** @class */ (function () {
         height: [{ type: Input }],
         padding: [{ type: Input }],
         data: [{ type: Input }],
-        autoLabel: [{ type: Input }]
+        autoLabel: [{ type: Input }],
+        interaction: [{ type: Input }]
     };
     __decorate([
         InputNumber(),
@@ -277,6 +298,8 @@ if (false) {
     G2BarComponent.prototype.data;
     /** @type {?} */
     G2BarComponent.prototype.autoLabel;
+    /** @type {?} */
+    G2BarComponent.prototype.interaction;
     /**
      * @type {?}
      * @private

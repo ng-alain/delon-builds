@@ -12,7 +12,7 @@ export declare class G2MiniBarComponent implements OnInit, OnChanges, OnDestroy 
     color: string;
     height: number;
     borderWidth: number;
-    padding: Array<string | number>;
+    padding: number | number[] | 'auto';
     data: G2MiniBarData[];
     yTooltipSuffix: string;
     tooltipType: 'mini' | 'default';

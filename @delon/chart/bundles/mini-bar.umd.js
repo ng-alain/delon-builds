@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util'), require('@angular/common')) :
-    typeof define === 'function' && define.amd ? define('@delon/chart/mini-bar', ['exports', '@angular/core', '@delon/util', '@angular/common'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart['mini-bar'] = {}), global.ng.core, global.delon.util, global.ng.common));
-}(this, (function (exports, core, util, common) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@antv/g2'), require('@delon/util'), require('@angular/common')) :
+    typeof define === 'function' && define.amd ? define('@delon/chart/mini-bar', ['exports', '@angular/core', '@antv/g2', '@delon/util', '@angular/common'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart['mini-bar'] = {}), global.ng.core, global.g2, global.delon.util, global.ng.common));
+}(this, (function (exports, core, g2, util, common) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -265,13 +265,13 @@
         function () {
             var _a = this, el = _a.el, height = _a.height, padding = _a.padding, yTooltipSuffix = _a.yTooltipSuffix, tooltipType = _a.tooltipType;
             /** @type {?} */
-            var chart = (this.chart = new G2.Chart({
+            var chart = (this.chart = new g2.Chart({
                 container: el.nativeElement,
-                forceFit: true,
+                autoFit: true,
                 height: height,
                 padding: padding,
             }));
-            chart.source([], {
+            chart.scale({
                 x: {
                     type: 'cat',
                 },
@@ -281,14 +281,25 @@
             });
             chart.legend(false);
             chart.axis(false);
-            chart.tooltip({
-                type: tooltipType === 'mini' ? 'mini' : null,
+            /** @type {?} */
+            var tooltipOption = {
                 showTitle: false,
-                hideMarkders: false,
-                crosshairs: false,
-                'g2-tooltip': { padding: 4 },
-                'g2-tooltip-list-item': { margin: "0px 4px" },
-            });
+                showMarkers: true,
+                showCrosshairs: false,
+                enterable: true,
+                domStyles: {
+                    'g2-tooltip': { padding: '0px' },
+                    'g2-tooltip-title': { display: 'none' },
+                    'g2-tooltip-list-item': { margin: '4px' },
+                },
+            };
+            if (tooltipType === 'mini') {
+                tooltipOption.position = 'top';
+                (/** @type {?} */ (tooltipOption.domStyles))['g2-tooltip'] = { padding: '0px', backgroundColor: 'transparent', boxShadow: 'none' };
+                tooltipOption.itemTpl = "<li>{value}</li>";
+                tooltipOption.offset = 0;
+            }
+            chart.tooltip(tooltipOption);
             chart
                 .interval()
                 .position('x*y')
@@ -313,9 +324,9 @@
             var _a = this, chart = _a.chart, height = _a.height, padding = _a.padding, data = _a.data, color = _a.color, borderWidth = _a.borderWidth;
             if (!chart || !data || data.length <= 0)
                 return;
-            chart.get('geoms')[0].size(borderWidth).color(color);
-            chart.set('height', height);
-            chart.set('padding', padding);
+            chart.geometries[0].size(borderWidth).color(color);
+            chart.height = height;
+            chart.padding = padding;
             chart.changeData(data);
         };
         /**

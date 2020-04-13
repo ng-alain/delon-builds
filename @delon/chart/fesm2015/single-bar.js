@@ -1,5 +1,6 @@
 import { __decorate, __metadata } from 'tslib';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, NgZone, Input, NgModule } from '@angular/core';
+import { Chart } from '@antv/g2';
 import { InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
 import { CommonModule } from '@angular/common';
 
@@ -37,34 +38,31 @@ class G2SingleBarComponent {
     install() {
         const { el, height, padding, textStyle, line, format } = this;
         /** @type {?} */
-        const chart = (this.chart = new G2.Chart({
+        const chart = (this.chart = new Chart({
             container: el.nativeElement,
-            forceFit: true,
+            autoFit: true,
             height,
             padding,
         }));
         chart.legend(false);
         chart.axis(false);
-        chart.tooltip({ type: 'mini' });
-        chart.coord().transpose();
+        chart.tooltip(false);
+        chart.coordinate().transpose();
         chart
             .interval()
             .position('1*value')
-            .opacity(1)
             .label('value', (/**
-         * @param {?} val
          * @return {?}
          */
-        (val) => ({
+        () => ({
             formatter: format,
-            offset: val > 0 ? 10 : -10,
-            textStyle: Object.assign(Object.assign({}, textStyle), { textAlign: val > 0 ? 'start' : 'end' }),
+            style: Object.assign({}, textStyle),
         })));
         if (line) {
             chart.guide().line({
                 start: ['50%', '0%'],
                 end: ['50%', '100%'],
-                lineStyle: {
+                style: {
                     stroke: '#e8e8e8',
                     lineDash: [0, 0],
                 },
@@ -81,18 +79,15 @@ class G2SingleBarComponent {
         const { chart, height, padding, value, min, max, plusColor, minusColor, barSize } = this;
         if (!chart)
             return;
-        chart.source([{ value }], { value: { max, min } });
-        chart.set('height', height);
-        chart.set('padding', padding);
-        chart
-            .get('geoms')[0]
-            .color('value', (/**
+        chart.scale({ value: { max, min } });
+        chart.height = height;
+        chart.padding = padding;
+        chart.geometries[0].color('value', (/**
          * @param {?} val
          * @return {?}
          */
-        (val) => (val > 0 ? plusColor : minusColor)))
-            .size(barSize);
-        chart.repaint();
+        (val) => (val > 0 ? plusColor : minusColor))).size(barSize);
+        chart.changeData([{ value }]);
     }
     /**
      * @return {?}

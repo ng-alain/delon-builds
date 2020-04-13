@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util'), require('@angular/common')) :
-    typeof define === 'function' && define.amd ? define('@delon/chart/mini-area', ['exports', '@angular/core', '@delon/util', '@angular/common'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart['mini-area'] = {}), global.ng.core, global.delon.util, global.ng.common));
-}(this, (function (exports, core, util, common) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@antv/g2'), require('@delon/util'), require('@angular/common')) :
+    typeof define === 'function' && define.amd ? define('@delon/chart/mini-area', ['exports', '@angular/core', '@antv/g2', '@delon/util', '@angular/common'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart['mini-area'] = {}), global.ng.core, global.g2, global.delon.util, global.ng.common));
+}(this, (function (exports, core, g2, util, common) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -269,9 +269,9 @@
         function () {
             var _a = this, el = _a.el, fit = _a.fit, height = _a.height, padding = _a.padding, xAxis = _a.xAxis, yAxis = _a.yAxis, yTooltipSuffix = _a.yTooltipSuffix, tooltipType = _a.tooltipType, line = _a.line;
             /** @type {?} */
-            var chart = (this.chart = new G2.Chart({
+            var chart = (this.chart = new g2.Chart({
                 container: el.nativeElement,
-                forceFit: fit,
+                autoFit: fit,
                 height: height,
                 padding: padding,
             }));
@@ -291,13 +291,24 @@
                 chart.axis('y', false);
             }
             chart.legend(false);
-            chart.tooltip({
-                type: tooltipType === 'mini' ? 'mini' : null,
+            /** @type {?} */
+            var tooltipOption = {
                 showTitle: false,
-                hideMarkders: false,
-                'g2-tooltip': { padding: 4 },
-                'g2-tooltip-list-item': { margin: "0px 4px" },
-            });
+                showMarkers: true,
+                enterable: true,
+                domStyles: {
+                    'g2-tooltip': { padding: '0px' },
+                    'g2-tooltip-title': { display: 'none' },
+                    'g2-tooltip-list-item': { margin: '4px' },
+                },
+            };
+            if (tooltipType === 'mini') {
+                tooltipOption.position = 'top';
+                (/** @type {?} */ (tooltipOption.domStyles))['g2-tooltip'] = { padding: '0px', backgroundColor: 'transparent', boxShadow: 'none' };
+                tooltipOption.itemTpl = "<li>{value}</li>";
+                tooltipOption.offset = 0;
+            }
+            chart.tooltip(tooltipOption);
             chart
                 .area()
                 .position('x*y')
@@ -307,10 +318,9 @@
              * @return {?}
              */
             function (x, y) { return ({ name: x, value: y + yTooltipSuffix }); }))
-                .shape('smooth')
-                .opacity(1);
+                .shape('smooth');
             if (line) {
-                chart.line().position('x*y').shape('smooth').opacity(1).tooltip(false);
+                chart.line().position('x*y').shape('smooth').tooltip(false);
             }
             chart.render();
             this.attachChart();
@@ -329,7 +339,7 @@
                 return;
             }
             /** @type {?} */
-            var geoms = chart.get('geoms');
+            var geoms = chart.geometries;
             geoms.forEach((/**
              * @param {?} g
              * @return {?}
@@ -338,10 +348,10 @@
             if (line) {
                 geoms[1].color(borderColor).size(borderWidth);
             }
-            chart.set('forceFit', fit);
-            chart.set('height', height);
-            chart.set('animate', animate);
-            chart.set('padding', padding);
+            chart.autoFit = fit;
+            chart.height = height;
+            chart.animate(animate);
+            chart.padding = padding;
             chart.changeData(data);
         };
         /**

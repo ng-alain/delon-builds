@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util'), require('@angular/common')) :
-    typeof define === 'function' && define.amd ? define('@delon/chart/single-bar', ['exports', '@angular/core', '@delon/util', '@angular/common'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart['single-bar'] = {}), global.ng.core, global.delon.util, global.ng.common));
-}(this, (function (exports, core, util, common) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@antv/g2'), require('@delon/util'), require('@angular/common')) :
+    typeof define === 'function' && define.amd ? define('@delon/chart/single-bar', ['exports', '@angular/core', '@antv/g2', '@delon/util', '@angular/common'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart['single-bar'] = {}), global.ng.core, global.g2, global.delon.util, global.ng.common));
+}(this, (function (exports, core, g2, util, common) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -257,34 +257,31 @@
         function () {
             var _a = this, el = _a.el, height = _a.height, padding = _a.padding, textStyle = _a.textStyle, line = _a.line, format = _a.format;
             /** @type {?} */
-            var chart = (this.chart = new G2.Chart({
+            var chart = (this.chart = new g2.Chart({
                 container: el.nativeElement,
-                forceFit: true,
+                autoFit: true,
                 height: height,
                 padding: padding,
             }));
             chart.legend(false);
             chart.axis(false);
-            chart.tooltip({ type: 'mini' });
-            chart.coord().transpose();
+            chart.tooltip(false);
+            chart.coordinate().transpose();
             chart
                 .interval()
                 .position('1*value')
-                .opacity(1)
                 .label('value', (/**
-             * @param {?} val
              * @return {?}
              */
-            function (val) { return ({
+            function () { return ({
                 formatter: format,
-                offset: val > 0 ? 10 : -10,
-                textStyle: __assign(__assign({}, textStyle), { textAlign: val > 0 ? 'start' : 'end' }),
+                style: __assign({}, textStyle),
             }); }));
             if (line) {
                 chart.guide().line({
                     start: ['50%', '0%'],
                     end: ['50%', '100%'],
-                    lineStyle: {
+                    style: {
                         stroke: '#e8e8e8',
                         lineDash: [0, 0],
                     },
@@ -305,18 +302,15 @@
             var _a = this, chart = _a.chart, height = _a.height, padding = _a.padding, value = _a.value, min = _a.min, max = _a.max, plusColor = _a.plusColor, minusColor = _a.minusColor, barSize = _a.barSize;
             if (!chart)
                 return;
-            chart.source([{ value: value }], { value: { max: max, min: min } });
-            chart.set('height', height);
-            chart.set('padding', padding);
-            chart
-                .get('geoms')[0]
-                .color('value', (/**
+            chart.scale({ value: { max: max, min: min } });
+            chart.height = height;
+            chart.padding = padding;
+            chart.geometries[0].color('value', (/**
              * @param {?} val
              * @return {?}
              */
-            function (val) { return (val > 0 ? plusColor : minusColor); }))
-                .size(barSize);
-            chart.repaint();
+            function (val) { return (val > 0 ? plusColor : minusColor); })).size(barSize);
+            chart.changeData([{ value: value }]);
         };
         /**
          * @return {?}

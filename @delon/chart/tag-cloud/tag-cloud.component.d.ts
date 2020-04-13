@@ -12,7 +12,7 @@ export declare class G2TagCloudComponent implements OnDestroy, OnChanges, OnInit
     private chart;
     delay: number;
     height: number;
-    padding: number;
+    padding: number | number[] | 'auto';
     data: G2TagCloudData[];
     constructor(el: ElementRef, ngZone: NgZone);
     private initTagCloud;
