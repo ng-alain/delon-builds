@@ -4498,13 +4498,6 @@ class TagWidget extends ControlUIWidget {
         }
     }
     /**
-     * @return {?}
-     */
-    _afterClose() {
-        if (this.ui.afterClose)
-            this.ui.afterClose();
-    }
-    /**
      * @param {?} e
      * @return {?}
      */
@@ -4531,7 +4524,7 @@ class TagWidget extends ControlUIWidget {
 TagWidget.decorators = [
     { type: Component, args: [{
                 selector: 'sf-tag',
-                template: "<sf-item-wrap [id]=\"id\"\n              [schema]=\"schema\"\n              [ui]=\"ui\"\n              [showError]=\"showError\"\n              [error]=\"error\"\n              [showTitle]=\"schema.title\">\n\n  <nz-tag *ngFor=\"let i of data\"\n          [nzMode]=\"ui.mode || 'checkable'\"\n          [nzChecked]=\"i.checked\"\n          (nzAfterClose)=\"_afterClose()\"\n          (nzOnClose)=\"_close($event)\"\n          (nzCheckedChange)=\"onChange(i)\">\n    {{i.label}}\n  </nz-tag>\n\n</sf-item-wrap>\n",
+                template: "<sf-item-wrap [id]=\"id\"\n              [schema]=\"schema\"\n              [ui]=\"ui\"\n              [showError]=\"showError\"\n              [error]=\"error\"\n              [showTitle]=\"schema.title\">\n\n  <nz-tag *ngFor=\"let i of data\"\n          [nzMode]=\"ui.mode || 'checkable'\"\n          [nzChecked]=\"i.checked\"\n          (nzOnClose)=\"_close($event)\"\n          (nzCheckedChange)=\"onChange(i)\">\n    {{i.label}}\n  </nz-tag>\n\n</sf-item-wrap>\n",
                 preserveWhitespaces: false,
                 encapsulation: ViewEncapsulation.None
             }] }
@@ -6708,11 +6701,6 @@ if (false) {
      * @type {?|undefined}
      */
     SFTagWidgetSchema.prototype.mode;
-    /**
-     * 关闭动画完成后的回调
-     * @type {?|undefined}
-     */
-    SFTagWidgetSchema.prototype.afterClose;
     /**
      * 关闭时的回调，在 `nzMode="closable"` 时可用
      * @type {?|undefined}

@@ -11,10 +11,6 @@ export interface SFTagWidgetSchema extends SFUISchemaItem {
      */
     mode?: 'closeable' | 'default' | 'checkable';
     /**
-     * 关闭动画完成后的回调
-     */
-    afterClose?: () => void;
-    /**
      * 关闭时的回调，在 `nzMode="closable"` 时可用
      */
     onClose?: (e: MouseEvent) => void;
