@@ -3056,7 +3056,7 @@ class Widget {
      * @return {?}
      */
     ngAfterViewInit() {
-        this.error$ = this.formProperty.errorsChanges.subscribe((/**
+        this.formProperty.errorsChanges.pipe(takeUntil((/** @type {?} */ (this.sfItemComp)).unsubscribe$)).subscribe((/**
          * @param {?} errors
          * @return {?}
          */
@@ -3072,14 +3072,6 @@ class Widget {
             }
             this.firstVisual = true;
         }));
-    }
-    /**
-     * @return {?}
-     */
-    ngOnDestroy() {
-        if (this.error$) {
-            this.error$.unsubscribe();
-        }
     }
     /**
      * @param {?} value
@@ -3133,8 +3125,6 @@ if (false) {
     Widget.prototype.ui;
     /** @type {?} */
     Widget.prototype.firstVisual;
-    /** @type {?} */
-    Widget.prototype.error$;
     /** @type {?} */
     Widget.prototype.cd;
     /** @type {?} */

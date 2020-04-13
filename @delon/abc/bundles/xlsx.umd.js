@@ -291,7 +291,7 @@
         XlsxConfig.decorators = [
             { type: core.Injectable, args: [{ providedIn: 'root' },] }
         ];
-        /** @nocollapse */ XlsxConfig.ɵprov = core["ɵɵdefineInjectable"]({ factory: function XlsxConfig_Factory() { return new XlsxConfig(); }, token: XlsxConfig, providedIn: "root" });
+        /** @nocollapse */ XlsxConfig.ɵprov = core.ɵɵdefineInjectable({ factory: function XlsxConfig_Factory() { return new XlsxConfig(); }, token: XlsxConfig, providedIn: "root" });
         return XlsxConfig;
     }());
     if (false) {
@@ -474,7 +474,7 @@
             { type: http.HttpClient },
             { type: util.LazyService }
         ]; };
-        /** @nocollapse */ XlsxService.ɵprov = core["ɵɵdefineInjectable"]({ factory: function XlsxService_Factory() { return new XlsxService(core["ɵɵinject"](XlsxConfig), core["ɵɵinject"](http.HttpClient), core["ɵɵinject"](util.LazyService)); }, token: XlsxService, providedIn: "root" });
+        /** @nocollapse */ XlsxService.ɵprov = core.ɵɵdefineInjectable({ factory: function XlsxService_Factory() { return new XlsxService(core.ɵɵinject(XlsxConfig), core.ɵɵinject(http.HttpClient), core.ɵɵinject(util.LazyService)); }, token: XlsxService, providedIn: "root" });
         return XlsxService;
     }());
     if (false) {

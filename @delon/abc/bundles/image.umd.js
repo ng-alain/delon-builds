@@ -242,7 +242,7 @@
         ImageConfig.decorators = [
             { type: core.Injectable, args: [{ providedIn: 'root' },] }
         ];
-        /** @nocollapse */ ImageConfig.ɵprov = core["ɵɵdefineInjectable"]({ factory: function ImageConfig_Factory() { return new ImageConfig(); }, token: ImageConfig, providedIn: "root" });
+        /** @nocollapse */ ImageConfig.ɵprov = core.ɵɵdefineInjectable({ factory: function ImageConfig_Factory() { return new ImageConfig(); }, token: ImageConfig, providedIn: "root" });
         return ImageConfig;
     }());
     if (false) {

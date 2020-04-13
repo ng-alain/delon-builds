@@ -372,7 +372,7 @@
         DatePickerConfig.decorators = [
             { type: core.Injectable, args: [{ providedIn: 'root' },] }
         ];
-        /** @nocollapse */ DatePickerConfig.ɵprov = core["ɵɵdefineInjectable"]({ factory: function DatePickerConfig_Factory() { return new DatePickerConfig(); }, token: DatePickerConfig, providedIn: "root" });
+        /** @nocollapse */ DatePickerConfig.ɵprov = core.ɵɵdefineInjectable({ factory: function DatePickerConfig_Factory() { return new DatePickerConfig(); }, token: DatePickerConfig, providedIn: "root" });
         return DatePickerConfig;
     }());
     if (false) {

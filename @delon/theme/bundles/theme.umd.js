@@ -538,7 +538,7 @@
         AlainI18NServiceFake.decorators = [
             { type: core.Injectable, args: [{ providedIn: 'root' },] }
         ];
-        /** @nocollapse */ AlainI18NServiceFake.ɵprov = core["ɵɵdefineInjectable"]({ factory: function AlainI18NServiceFake_Factory() { return new AlainI18NServiceFake(); }, token: AlainI18NServiceFake, providedIn: "root" });
+        /** @nocollapse */ AlainI18NServiceFake.ɵprov = core.ɵɵdefineInjectable({ factory: function AlainI18NServiceFake_Factory() { return new AlainI18NServiceFake(); }, token: AlainI18NServiceFake, providedIn: "root" });
         return AlainI18NServiceFake;
     }());
     if (false) {
@@ -1008,7 +1008,7 @@
             { type: undefined, decorators: [{ type: core.Optional }, { type: core.Inject, args: [ALAIN_I18N_TOKEN,] }] },
             { type: acl.ACLService, decorators: [{ type: core.Optional }] }
         ]; };
-        /** @nocollapse */ MenuService.ɵprov = core["ɵɵdefineInjectable"]({ factory: function MenuService_Factory() { return new MenuService(core["ɵɵinject"](ALAIN_I18N_TOKEN, 8), core["ɵɵinject"](acl.ACLService, 8)); }, token: MenuService, providedIn: "root" });
+        /** @nocollapse */ MenuService.ɵprov = core.ɵɵdefineInjectable({ factory: function MenuService_Factory() { return new MenuService(core.ɵɵinject(ALAIN_I18N_TOKEN, 8), core.ɵɵinject(acl.ACLService, 8)); }, token: MenuService, providedIn: "root" });
         return MenuService;
     }());
     if (false) {
@@ -1147,7 +1147,7 @@
             { type: undefined, decorators: [{ type: core.Inject, args: [WINDOW,] }] },
             { type: undefined, decorators: [{ type: core.Inject, args: [common.DOCUMENT,] }] }
         ]; };
-        /** @nocollapse */ ScrollService.ɵprov = core["ɵɵdefineInjectable"]({ factory: function ScrollService_Factory() { return new ScrollService(core["ɵɵinject"](WINDOW), core["ɵɵinject"](common.DOCUMENT)); }, token: ScrollService, providedIn: "root" });
+        /** @nocollapse */ ScrollService.ɵprov = core.ɵɵdefineInjectable({ factory: function ScrollService_Factory() { return new ScrollService(core.ɵɵinject(WINDOW), core.ɵɵinject(common.DOCUMENT)); }, token: ScrollService, providedIn: "root" });
         return ScrollService;
     }());
     if (false) {
@@ -1395,7 +1395,7 @@
         SettingsService.decorators = [
             { type: core.Injectable, args: [{ providedIn: 'root' },] }
         ];
-        /** @nocollapse */ SettingsService.ɵprov = core["ɵɵdefineInjectable"]({ factory: function SettingsService_Factory() { return new SettingsService(); }, token: SettingsService, providedIn: "root" });
+        /** @nocollapse */ SettingsService.ɵprov = core.ɵɵdefineInjectable({ factory: function SettingsService_Factory() { return new SettingsService(); }, token: SettingsService, providedIn: "root" });
         return SettingsService;
     }());
     if (false) {
@@ -1464,7 +1464,7 @@
         AlainThemeConfig.decorators = [
             { type: core.Injectable, args: [{ providedIn: 'root' },] }
         ];
-        /** @nocollapse */ AlainThemeConfig.ɵprov = core["ɵɵdefineInjectable"]({ factory: function AlainThemeConfig_Factory() { return new AlainThemeConfig(); }, token: AlainThemeConfig, providedIn: "root" });
+        /** @nocollapse */ AlainThemeConfig.ɵprov = core.ɵɵdefineInjectable({ factory: function AlainThemeConfig_Factory() { return new AlainThemeConfig(); }, token: AlainThemeConfig, providedIn: "root" });
         return AlainThemeConfig;
     }());
     if (false) {
@@ -1539,7 +1539,7 @@
         ResponsiveService.ctorParameters = function () { return [
             { type: AlainThemeConfig }
         ]; };
-        /** @nocollapse */ ResponsiveService.ɵprov = core["ɵɵdefineInjectable"]({ factory: function ResponsiveService_Factory() { return new ResponsiveService(core["ɵɵinject"](AlainThemeConfig)); }, token: ResponsiveService, providedIn: "root" });
+        /** @nocollapse */ ResponsiveService.ɵprov = core.ɵɵdefineInjectable({ factory: function ResponsiveService_Factory() { return new ResponsiveService(core.ɵɵinject(AlainThemeConfig)); }, token: ResponsiveService, providedIn: "root" });
         return ResponsiveService;
     }());
     if (false) {
@@ -1777,7 +1777,7 @@
             { type: undefined, decorators: [{ type: core.Optional }, { type: core.Inject, args: [ALAIN_I18N_TOKEN,] }] },
             { type: undefined, decorators: [{ type: core.Inject, args: [common.DOCUMENT,] }] }
         ]; };
-        /** @nocollapse */ TitleService.ɵprov = core["ɵɵdefineInjectable"]({ factory: function TitleService_Factory() { return new TitleService(core["ɵɵinject"](core.INJECTOR), core["ɵɵinject"](platformBrowser.Title), core["ɵɵinject"](MenuService), core["ɵɵinject"](ALAIN_I18N_TOKEN, 8), core["ɵɵinject"](common.DOCUMENT)); }, token: TitleService, providedIn: "root" });
+        /** @nocollapse */ TitleService.ɵprov = core.ɵɵdefineInjectable({ factory: function TitleService_Factory() { return new TitleService(core.ɵɵinject(core.INJECTOR), core.ɵɵinject(platformBrowser.Title), core.ɵɵinject(MenuService), core.ɵɵinject(ALAIN_I18N_TOKEN, 8), core.ɵɵinject(common.DOCUMENT)); }, token: TitleService, providedIn: "root" });
         return TitleService;
     }());
     if (false) {
@@ -3106,7 +3106,7 @@
         ModalHelper.ctorParameters = function () { return [
             { type: modal.NzModalService }
         ]; };
-        /** @nocollapse */ ModalHelper.ɵprov = core["ɵɵdefineInjectable"]({ factory: function ModalHelper_Factory() { return new ModalHelper(core["ɵɵinject"](modal.NzModalService)); }, token: ModalHelper, providedIn: "root" });
+        /** @nocollapse */ ModalHelper.ɵprov = core.ɵɵdefineInjectable({ factory: function ModalHelper_Factory() { return new ModalHelper(core.ɵɵinject(modal.NzModalService)); }, token: ModalHelper, providedIn: "root" });
         return ModalHelper;
     }());
     if (false) {
@@ -3301,7 +3301,7 @@
         DrawerHelper.ctorParameters = function () { return [
             { type: drawer.NzDrawerService }
         ]; };
-        /** @nocollapse */ DrawerHelper.ɵprov = core["ɵɵdefineInjectable"]({ factory: function DrawerHelper_Factory() { return new DrawerHelper(core["ɵɵinject"](drawer.NzDrawerService)); }, token: DrawerHelper, providedIn: "root" });
+        /** @nocollapse */ DrawerHelper.ɵprov = core.ɵɵdefineInjectable({ factory: function DrawerHelper_Factory() { return new DrawerHelper(core.ɵɵinject(drawer.NzDrawerService)); }, token: DrawerHelper, providedIn: "root" });
         return DrawerHelper;
     }());
     if (false) {
@@ -3617,7 +3617,7 @@
             { type: http.HttpClient },
             { type: AlainThemeConfig }
         ]; };
-        /** @nocollapse */ _HttpClient.ɵprov = core["ɵɵdefineInjectable"]({ factory: function _HttpClient_Factory() { return new _HttpClient(core["ɵɵinject"](http.HttpClient), core["ɵɵinject"](AlainThemeConfig)); }, token: _HttpClient, providedIn: "root" });
+        /** @nocollapse */ _HttpClient.ɵprov = core.ɵɵdefineInjectable({ factory: function _HttpClient_Factory() { return new _HttpClient(core.ɵɵinject(http.HttpClient), core.ɵɵinject(AlainThemeConfig)); }, token: _HttpClient, providedIn: "root" });
         return _HttpClient;
     }());
     if (false) {

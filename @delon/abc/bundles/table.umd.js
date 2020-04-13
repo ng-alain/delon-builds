@@ -1692,7 +1692,7 @@
         STConfig.decorators = [
             { type: core.Injectable, args: [{ providedIn: 'root' },] }
         ];
-        /** @nocollapse */ STConfig.ɵprov = core["ɵɵdefineInjectable"]({ factory: function STConfig_Factory() { return new STConfig(); }, token: STConfig, providedIn: "root" });
+        /** @nocollapse */ STConfig.ɵprov = core.ɵɵdefineInjectable({ factory: function STConfig_Factory() { return new STConfig(); }, token: STConfig, providedIn: "root" });
         return STConfig;
     }());
     if (false) {

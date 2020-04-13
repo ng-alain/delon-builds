@@ -242,7 +242,7 @@
         SGConfig.decorators = [
             { type: core.Injectable, args: [{ providedIn: 'root' },] }
         ];
-        /** @nocollapse */ SGConfig.ɵprov = core["ɵɵdefineInjectable"]({ factory: function SGConfig_Factory() { return new SGConfig(); }, token: SGConfig, providedIn: "root" });
+        /** @nocollapse */ SGConfig.ɵprov = core.ɵɵdefineInjectable({ factory: function SGConfig_Factory() { return new SGConfig(); }, token: SGConfig, providedIn: "root" });
         return SGConfig;
     }());
     if (false) {

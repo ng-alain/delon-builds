@@ -1,7 +1,6 @@
-import { AfterViewInit, ChangeDetectorRef, Injector, OnDestroy } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Injector } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { LocaleData } from '@delon/theme';
-import { Subscription } from 'rxjs';
 import { SFValue } from './interface';
 import { ArrayProperty } from './model/array.property';
 import { FormProperty } from './model/form.property';
@@ -11,7 +10,7 @@ import { SFOptionalHelp, SFUISchemaItem } from './schema/ui';
 import { SFItemComponent } from './sf-item.component';
 import { SFComponent } from './sf.component';
 import { SFArrayWidgetSchema, SFObjectWidgetSchema } from './widgets';
-export declare abstract class Widget<T extends FormProperty, UIT extends SFUISchemaItem> implements AfterViewInit, OnDestroy {
+export declare abstract class Widget<T extends FormProperty, UIT extends SFUISchemaItem> implements AfterViewInit {
     readonly cd: ChangeDetectorRef;
     readonly injector: Injector;
     readonly sfItemComp?: SFItemComponent | undefined;
@@ -23,7 +22,6 @@ export declare abstract class Widget<T extends FormProperty, UIT extends SFUISch
     schema: SFSchema;
     ui: UIT;
     firstVisual: boolean;
-    error$: Subscription;
     get cls(): string | string[];
     get disabled(): boolean | null;
     get l(): LocaleData;
@@ -31,7 +29,6 @@ export declare abstract class Widget<T extends FormProperty, UIT extends SFUISch
     get dom(): DomSanitizer;
     constructor(cd: ChangeDetectorRef, injector: Injector, sfItemComp?: SFItemComponent | undefined, sfComp?: SFComponent | undefined);
     ngAfterViewInit(): void;
-    ngOnDestroy(): void;
     setValue(value: SFValue): void;
     get value(): any;
     detectChanges(onlySelf?: boolean): void;

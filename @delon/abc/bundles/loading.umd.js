@@ -242,7 +242,7 @@
         LoadingConfig.decorators = [
             { type: core.Injectable, args: [{ providedIn: 'root' },] }
         ];
-        /** @nocollapse */ LoadingConfig.ɵprov = core["ɵɵdefineInjectable"]({ factory: function LoadingConfig_Factory() { return new LoadingConfig(); }, token: LoadingConfig, providedIn: "root" });
+        /** @nocollapse */ LoadingConfig.ɵprov = core.ɵɵdefineInjectable({ factory: function LoadingConfig_Factory() { return new LoadingConfig(); }, token: LoadingConfig, providedIn: "root" });
         return LoadingConfig;
     }());
     if (false) {
@@ -419,7 +419,7 @@
             { type: LoadingConfig },
             { type: overlay.Overlay }
         ]; };
-        /** @nocollapse */ LoadingService.ɵprov = core["ɵɵdefineInjectable"]({ factory: function LoadingService_Factory() { return new LoadingService(core["ɵɵinject"](LoadingConfig), core["ɵɵinject"](overlay.Overlay)); }, token: LoadingService, providedIn: "root" });
+        /** @nocollapse */ LoadingService.ɵprov = core.ɵɵdefineInjectable({ factory: function LoadingService_Factory() { return new LoadingService(core.ɵɵinject(LoadingConfig), core.ɵɵinject(overlay.Overlay)); }, token: LoadingService, providedIn: "root" });
         return LoadingService;
     }());
     if (false) {

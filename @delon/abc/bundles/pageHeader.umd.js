@@ -267,7 +267,7 @@
         PageHeaderConfig.decorators = [
             { type: core.Injectable, args: [{ providedIn: 'root' },] }
         ];
-        /** @nocollapse */ PageHeaderConfig.ɵprov = core["ɵɵdefineInjectable"]({ factory: function PageHeaderConfig_Factory() { return new PageHeaderConfig(); }, token: PageHeaderConfig, providedIn: "root" });
+        /** @nocollapse */ PageHeaderConfig.ɵprov = core.ɵɵdefineInjectable({ factory: function PageHeaderConfig_Factory() { return new PageHeaderConfig(); }, token: PageHeaderConfig, providedIn: "root" });
         return PageHeaderConfig;
     }());
     if (false) {

@@ -242,7 +242,7 @@
         ErrorCollectConfig.decorators = [
             { type: core.Injectable, args: [{ providedIn: 'root' },] }
         ];
-        /** @nocollapse */ ErrorCollectConfig.ɵprov = core["ɵɵdefineInjectable"]({ factory: function ErrorCollectConfig_Factory() { return new ErrorCollectConfig(); }, token: ErrorCollectConfig, providedIn: "root" });
+        /** @nocollapse */ ErrorCollectConfig.ɵprov = core.ɵɵdefineInjectable({ factory: function ErrorCollectConfig_Factory() { return new ErrorCollectConfig(); }, token: ErrorCollectConfig, providedIn: "root" });
         return ErrorCollectConfig;
     }());
     if (false) {

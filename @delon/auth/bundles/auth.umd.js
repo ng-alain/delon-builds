@@ -279,7 +279,7 @@
         DelonAuthConfig.decorators = [
             { type: core.Injectable, args: [{ providedIn: 'root' },] }
         ];
-        /** @nocollapse */ DelonAuthConfig.ɵprov = core["ɵɵdefineInjectable"]({ factory: function DelonAuthConfig_Factory() { return new DelonAuthConfig(); }, token: DelonAuthConfig, providedIn: "root" });
+        /** @nocollapse */ DelonAuthConfig.ɵprov = core.ɵɵdefineInjectable({ factory: function DelonAuthConfig_Factory() { return new DelonAuthConfig(); }, token: DelonAuthConfig, providedIn: "root" });
         return DelonAuthConfig;
     }());
     if (false) {
@@ -1461,7 +1461,7 @@
             { type: core.Injector },
             { type: DelonAuthConfig }
         ]; };
-        /** @nocollapse */ JWTGuard.ɵprov = core["ɵɵdefineInjectable"]({ factory: function JWTGuard_Factory() { return new JWTGuard(core["ɵɵinject"](DA_SERVICE_TOKEN), core["ɵɵinject"](core.INJECTOR), core["ɵɵinject"](DelonAuthConfig)); }, token: JWTGuard, providedIn: "root" });
+        /** @nocollapse */ JWTGuard.ɵprov = core.ɵɵdefineInjectable({ factory: function JWTGuard_Factory() { return new JWTGuard(core.ɵɵinject(DA_SERVICE_TOKEN), core.ɵɵinject(core.INJECTOR), core.ɵɵinject(DelonAuthConfig)); }, token: JWTGuard, providedIn: "root" });
         return JWTGuard;
     }());
     if (false) {
@@ -1679,7 +1679,7 @@
             { type: core.Injector },
             { type: DelonAuthConfig }
         ]; };
-        /** @nocollapse */ SimpleGuard.ɵprov = core["ɵɵdefineInjectable"]({ factory: function SimpleGuard_Factory() { return new SimpleGuard(core["ɵɵinject"](DA_SERVICE_TOKEN), core["ɵɵinject"](core.INJECTOR), core["ɵɵinject"](DelonAuthConfig)); }, token: SimpleGuard, providedIn: "root" });
+        /** @nocollapse */ SimpleGuard.ɵprov = core.ɵɵdefineInjectable({ factory: function SimpleGuard_Factory() { return new SimpleGuard(core.ɵɵinject(DA_SERVICE_TOKEN), core.ɵɵinject(core.INJECTOR), core.ɵɵinject(DelonAuthConfig)); }, token: SimpleGuard, providedIn: "root" });
         return SimpleGuard;
     }());
     if (false) {

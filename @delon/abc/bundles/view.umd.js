@@ -254,7 +254,7 @@
         SVConfig.decorators = [
             { type: core.Injectable, args: [{ providedIn: 'root' },] }
         ];
-        /** @nocollapse */ SVConfig.ɵprov = core["ɵɵdefineInjectable"]({ factory: function SVConfig_Factory() { return new SVConfig(); }, token: SVConfig, providedIn: "root" });
+        /** @nocollapse */ SVConfig.ɵprov = core.ɵɵdefineInjectable({ factory: function SVConfig_Factory() { return new SVConfig(); }, token: SVConfig, providedIn: "root" });
         return SVConfig;
     }());
     if (false) {

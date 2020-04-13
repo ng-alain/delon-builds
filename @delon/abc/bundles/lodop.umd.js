@@ -801,7 +801,7 @@
         LodopConfig.decorators = [
             { type: core.Injectable, args: [{ providedIn: 'root' },] }
         ];
-        /** @nocollapse */ LodopConfig.ɵprov = core["ɵɵdefineInjectable"]({ factory: function LodopConfig_Factory() { return new LodopConfig(); }, token: LodopConfig, providedIn: "root" });
+        /** @nocollapse */ LodopConfig.ɵprov = core.ɵɵdefineInjectable({ factory: function LodopConfig_Factory() { return new LodopConfig(); }, token: LodopConfig, providedIn: "root" });
         return LodopConfig;
     }());
     if (false) {
@@ -1229,7 +1229,7 @@
             { type: LodopConfig },
             { type: util.LazyService }
         ]; };
-        /** @nocollapse */ LodopService.ɵprov = core["ɵɵdefineInjectable"]({ factory: function LodopService_Factory() { return new LodopService(core["ɵɵinject"](LodopConfig), core["ɵɵinject"](util.LazyService)); }, token: LodopService, providedIn: "root" });
+        /** @nocollapse */ LodopService.ɵprov = core.ɵɵdefineInjectable({ factory: function LodopService_Factory() { return new LodopService(core.ɵɵinject(LodopConfig), core.ɵɵinject(util.LazyService)); }, token: LodopService, providedIn: "root" });
         return LodopService;
     }());
     if (false) {

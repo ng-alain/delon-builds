@@ -811,7 +811,7 @@
         LazyService.ctorParameters = function () { return [
             { type: undefined, decorators: [{ type: core.Inject, args: [common.DOCUMENT,] }] }
         ]; };
-        /** @nocollapse */ LazyService.ɵprov = core["ɵɵdefineInjectable"]({ factory: function LazyService_Factory() { return new LazyService(core["ɵɵinject"](common.DOCUMENT)); }, token: LazyService, providedIn: "root" });
+        /** @nocollapse */ LazyService.ɵprov = core.ɵɵdefineInjectable({ factory: function LazyService_Factory() { return new LazyService(core.ɵɵinject(common.DOCUMENT)); }, token: LazyService, providedIn: "root" });
         return LazyService;
     }());
     if (false) {
@@ -1362,7 +1362,7 @@
         DelonUtilConfig.decorators = [
             { type: core.Injectable, args: [{ providedIn: 'root' },] }
         ];
-        /** @nocollapse */ DelonUtilConfig.ɵprov = core["ɵɵdefineInjectable"]({ factory: function DelonUtilConfig_Factory() { return new DelonUtilConfig(); }, token: DelonUtilConfig, providedIn: "root" });
+        /** @nocollapse */ DelonUtilConfig.ɵprov = core.ɵɵdefineInjectable({ factory: function DelonUtilConfig_Factory() { return new DelonUtilConfig(); }, token: DelonUtilConfig, providedIn: "root" });
         return DelonUtilConfig;
     }());
     if (false) {
@@ -1763,7 +1763,7 @@
         ArrayService.ctorParameters = function () { return [
             { type: DelonUtilConfig }
         ]; };
-        /** @nocollapse */ ArrayService.ɵprov = core["ɵɵdefineInjectable"]({ factory: function ArrayService_Factory() { return new ArrayService(core["ɵɵinject"](DelonUtilConfig)); }, token: ArrayService, providedIn: "root" });
+        /** @nocollapse */ ArrayService.ɵprov = core.ɵɵdefineInjectable({ factory: function ArrayService_Factory() { return new ArrayService(core.ɵɵinject(DelonUtilConfig)); }, token: ArrayService, providedIn: "root" });
         return ArrayService;
     }());
     if (false) {

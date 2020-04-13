@@ -292,7 +292,7 @@
         DelonFormConfig.decorators = [
             { type: core.Injectable, args: [{ providedIn: 'root' },] }
         ];
-        /** @nocollapse */ DelonFormConfig.ɵprov = core["ɵɵdefineInjectable"]({ factory: function DelonFormConfig_Factory() { return new DelonFormConfig(); }, token: DelonFormConfig, providedIn: "root" });
+        /** @nocollapse */ DelonFormConfig.ɵprov = core.ɵɵdefineInjectable({ factory: function DelonFormConfig_Factory() { return new DelonFormConfig(); }, token: DelonFormConfig, providedIn: "root" });
         return DelonFormConfig;
     }());
     if (false) {
@@ -3761,7 +3761,7 @@
          */
         function () {
             var _this = this;
-            this.error$ = this.formProperty.errorsChanges.subscribe((/**
+            this.formProperty.errorsChanges.pipe(operators.takeUntil((/** @type {?} */ (this.sfItemComp)).unsubscribe$)).subscribe((/**
              * @param {?} errors
              * @return {?}
              */
@@ -3777,17 +3777,6 @@
                 }
                 _this.firstVisual = true;
             }));
-        };
-        /**
-         * @return {?}
-         */
-        Widget.prototype.ngOnDestroy = /**
-         * @return {?}
-         */
-        function () {
-            if (this.error$) {
-                this.error$.unsubscribe();
-            }
         };
         /**
          * @param {?} value
@@ -3855,8 +3844,6 @@
         Widget.prototype.ui;
         /** @type {?} */
         Widget.prototype.firstVisual;
-        /** @type {?} */
-        Widget.prototype.error$;
         /** @type {?} */
         Widget.prototype.cd;
         /** @type {?} */

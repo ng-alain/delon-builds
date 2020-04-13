@@ -260,7 +260,7 @@
         SEConfig.decorators = [
             { type: core.Injectable, args: [{ providedIn: 'root' },] }
         ];
-        /** @nocollapse */ SEConfig.ɵprov = core["ɵɵdefineInjectable"]({ factory: function SEConfig_Factory() { return new SEConfig(); }, token: SEConfig, providedIn: "root" });
+        /** @nocollapse */ SEConfig.ɵprov = core.ɵɵdefineInjectable({ factory: function SEConfig_Factory() { return new SEConfig(); }, token: SEConfig, providedIn: "root" });
         return SEConfig;
     }());
     if (false) {

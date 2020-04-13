@@ -266,7 +266,7 @@
         QRConfig.decorators = [
             { type: core.Injectable, args: [{ providedIn: 'root' },] }
         ];
-        /** @nocollapse */ QRConfig.ɵprov = core["ɵɵdefineInjectable"]({ factory: function QRConfig_Factory() { return new QRConfig(); }, token: QRConfig, providedIn: "root" });
+        /** @nocollapse */ QRConfig.ɵprov = core.ɵɵdefineInjectable({ factory: function QRConfig_Factory() { return new QRConfig(); }, token: QRConfig, providedIn: "root" });
         return QRConfig;
     }());
     if (false) {
@@ -411,7 +411,7 @@
         QRService.ctorParameters = function () { return [
             { type: QRConfig }
         ]; };
-        /** @nocollapse */ QRService.ɵprov = core["ɵɵdefineInjectable"]({ factory: function QRService_Factory() { return new QRService(core["ɵɵinject"](QRConfig)); }, token: QRService, providedIn: "root" });
+        /** @nocollapse */ QRService.ɵprov = core.ɵɵdefineInjectable({ factory: function QRService_Factory() { return new QRService(core.ɵɵinject(QRConfig)); }, token: QRService, providedIn: "root" });
         return QRService;
     }());
     if (false) {
