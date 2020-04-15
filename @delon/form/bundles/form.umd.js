@@ -3845,13 +3845,25 @@
         Widget.prototype.ui;
         /** @type {?} */
         Widget.prototype.firstVisual;
-        /** @type {?} */
+        /**
+         * @type {?}
+         * @protected
+         */
         Widget.prototype.cd;
-        /** @type {?} */
+        /**
+         * @type {?}
+         * @protected
+         */
         Widget.prototype.injector;
-        /** @type {?} */
+        /**
+         * @type {?}
+         * @protected
+         */
         Widget.prototype.sfItemComp;
-        /** @type {?} */
+        /**
+         * @type {?}
+         * @protected
+         */
         Widget.prototype.sfComp;
         /**
          * @abstract
