@@ -383,7 +383,7 @@ class SEComponent {
      * @return {?}
      */
     bindModel() {
-        var _a;
+        var _a, _b;
         if (!this.ngControl || this.status$)
             return;
         this.status$ = (/** @type {?} */ (this.ngControl.statusChanges)).subscribe((/**
@@ -393,7 +393,7 @@ class SEComponent {
         res => this.updateStatus(res === 'INVALID')));
         if (this._autoId) {
             /** @type {?} */
-            const control = (/** @type {?} */ ((_a = ((/** @type {?} */ (this.ngControl.valueAccessor)))) === null || _a === void 0 ? void 0 : _a._elementRef.nativeElement));
+            const control = (/** @type {?} */ ((_b = (_a = ((/** @type {?} */ (this.ngControl.valueAccessor)))) === null || _a === void 0 ? void 0 : _a._elementRef) === null || _b === void 0 ? void 0 : _b.nativeElement));
             if (control) {
                 control.id = this._id;
             }
@@ -478,7 +478,7 @@ SEComponent.decorators = [
     { type: Component, args: [{
                 selector: 'se',
                 exportAs: 'se',
-                template: "<div class=\"ant-form-item-label\" [class.se__nolabel]=\"!label\" [style.width.px]=\"_labelWidth\">\n  <label *ngIf=\"label\" [attr.for]=\"_id\" class=\"se__label\" [ngClass]=\"{'ant-form-item-required': required}\">\n    <span class=\"se__label-text\">\n      <ng-container *stringTemplateOutlet=\"label\">{{ label }}</ng-container>\n    </span>\n    <span *ngIf=\"optional || optionalHelp\" class=\"se__label-optional\" [class.se__label-optional-no-text]=\"!optional\">\n      <ng-container *stringTemplateOutlet=\"optional\">{{ optional }}</ng-container>\n      <i *ngIf=\"optionalHelp\" nz-tooltip [nzTooltipTitle]=\"optionalHelp\" nz-icon nzType=\"question-circle\"></i>\n    </span>\n  </label>\n</div>\n<div class=\"ant-form-item-control se__control\">\n  <div class=\"ant-form-item-control-input {{controlClass}}\">\n    <div class=\"ant-form-item-control-input-content\" (cdkObserveContent)=\"checkContent()\" #contentElement>\n      <ng-content></ng-content>\n    </div>\n  </div>\n  <div class=\"ant-form-item-explain\" *ngIf=\"showErr && !compact\">\n    <div @helpMotion>{{_error}}</div>\n  </div>\n  <div *ngIf=\"extra && !compact \" class=\"ant-form-item-extra\">{{extra}}</div>\n</div>\n",
+                template: "<div class=\"ant-form-item-label\" [class.se__nolabel]=\"!label\" [style.width.px]=\"_labelWidth\">\n  <label *ngIf=\"label\" [attr.for]=\"_id\" class=\"se__label\" [ngClass]=\"{'ant-form-item-required': required}\">\n    <span class=\"se__label-text\">\n      <ng-container *stringTemplateOutlet=\"label\">{{ label }}</ng-container>\n    </span>\n    <span *ngIf=\"optional || optionalHelp\" class=\"se__label-optional\" [class.se__label-optional-no-text]=\"!optional\">\n      <ng-container *stringTemplateOutlet=\"optional\">{{ optional }}</ng-container>\n      <i *ngIf=\"optionalHelp\" nz-tooltip [nzTooltipTitle]=\"optionalHelp\" nz-icon nzType=\"question-circle\"></i>\n    </span>\n  </label>\n</div>\n<div class=\"ant-form-item-control se__control\">\n  <div class=\"ant-form-item-control-input {{controlClass}}\">\n    <div class=\"ant-form-item-control-input-content\" (cdkObserveContent)=\"checkContent()\" #contentElement>\n      <ng-content></ng-content>\n    </div>\n  </div>\n  <div class=\"ant-form-item-explain\" *ngIf=\"showErr && !compact\">\n    <div @helpMotion>{{_error}}</div>\n  </div>\n  <div *ngIf=\"extra && !compact\" class=\"ant-form-item-extra\">{{extra}}</div>\n</div>\n",
                 host: {
                     '[style.padding-left.px]': 'paddingValue',
                     '[style.padding-right.px]': 'paddingValue',

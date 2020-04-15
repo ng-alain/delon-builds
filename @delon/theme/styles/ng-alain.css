@@ -29769,8 +29769,9 @@ body {
 .st .ant-table-thead > tr > th .ant-table-filter-selected.ant-table-filter-icon {
   color: #1890ff;
 }
-.st .ant-table-thead > tr > th .ant-table-filter-icon {
-  position: absolute !important;
+.st__checkall-selection {
+  display: inline-block;
+  margin-left: 4px;
 }
 @media screen and (min-width: 768px) {
   .st__width-strict .ant-table-body > table {
@@ -29811,6 +29812,7 @@ body {
   color: rgba(0, 0, 0, 0.85);
   font-weight: 500;
   font-size: 14px;
+  width: 100%;
 }
 .sv__label {
   display: table-cell;
@@ -30557,10 +30559,10 @@ ellipsis {
 .tag-select {
   position: relative;
   display: block;
-  max-height: 1.5715;
+  max-height: 24px;
+  line-height: 1.5715;
   margin-left: -8px;
   overflow: hidden;
-  line-height: 1.5715;
   transition: all 0.3s;
   user-select: none;
 }
