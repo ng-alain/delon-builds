@@ -324,7 +324,7 @@ class SidebarNavComponent {
              */
             (i, _p, depth) => {
                 i._text = this.sanitizer.bypassSecurityTrustHtml((/** @type {?} */ (i.text)));
-                i._needIcon = (/** @type {?} */ (depth)) <= 1;
+                i._needIcon = (/** @type {?} */ (depth)) <= 3 && !!i.icon;
                 if (!i._aclResult) {
                     if (this.disabledAcl) {
                         i.disabled = true;
