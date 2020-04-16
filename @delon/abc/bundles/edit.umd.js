@@ -638,7 +638,7 @@
          */
         function () {
             var _this = this;
-            var _a, _b;
+            var _a, _b, _c;
             if (!this.ngControl || this.status$)
                 return;
             this.status$ = (/** @type {?} */ (this.ngControl.statusChanges)).subscribe((/**
@@ -652,6 +652,17 @@
                 if (control) {
                     control.id = this._id;
                 }
+            }
+            // auto required
+            if (this.required !== true) {
+                /** @type {?} */
+                var rawValidators = (/** @type {?} */ ((_c = ((/** @type {?} */ (this.ngControl)))) === null || _c === void 0 ? void 0 : _c._rawValidators));
+                this.required = rawValidators.find((/**
+                 * @param {?} w
+                 * @return {?}
+                 */
+                function (w) { return w instanceof forms.RequiredValidator; })) != null;
+                this.cdr.detectChanges();
             }
         };
         /**
