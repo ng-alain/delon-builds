@@ -12,6 +12,7 @@ import { HttpParams, HttpClient } from '@angular/common/http';
 import format from 'date-fns/format';
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 import parse from 'date-fns/parse';
+import { NzI18nService, NzI18nModule } from 'ng-zorro-antd/i18n';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { BellOutline, DeleteOutline, PlusOutline, InboxOutline } from '@ant-design/icons-angular/icons';
 import { NzIconService } from 'ng-zorro-antd/icon';
@@ -3363,13 +3364,19 @@ const FORM = makeMethod('FORM');
  */
 class DatePipe {
     /**
+     * @param {?} nzI18n
+     */
+    constructor(nzI18n) {
+        this.nzI18n = nzI18n;
+    }
+    /**
      * @param {?} value
      * @param {?=} formatString
      * @return {?}
      */
     transform(value, formatString = 'yyyy-MM-dd HH:mm') {
         /** @type {?} */
-        const options = { locale: ((/** @type {?} */ (window))).__locale__ };
+        const options = { locale: this.nzI18n.getDateLocale() };
         value = typeof value === 'string' ? (!isNaN(+value) ? +value : parse(value, formatString, new Date(), options)) : value;
         if (!value)
             return '';
@@ -3379,6 +3386,17 @@ class DatePipe {
 DatePipe.decorators = [
     { type: Pipe, args: [{ name: '_date' },] }
 ];
+/** @nocollapse */
+DatePipe.ctorParameters = () => [
+    { type: NzI18nService }
+];
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    DatePipe.prototype.nzI18n;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -3642,7 +3660,7 @@ class AlainThemeModule {
 }
 AlainThemeModule.decorators = [
     { type: NgModule, args: [{
-                imports: [CommonModule, RouterModule, OverlayModule],
+                imports: [CommonModule, RouterModule, OverlayModule, NzI18nModule],
                 declarations: [...PIPES],
                 exports: [...PIPES, DelonLocaleModule],
             },] }
@@ -3658,7 +3676,7 @@ AlainThemeModule.ctorParameters = () => [
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-const VERSION = new Version('9.0.0-alpha.1-eb131704');
+const VERSION = new Version('9.0.0-alpha.1-d381eada');
 
 /**
  * @fileoverview added by tsickle

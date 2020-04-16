@@ -13,6 +13,7 @@ import { HttpParams, HttpClient } from '@angular/common/http';
 import format from 'date-fns/format';
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 import parse from 'date-fns/parse';
+import { NzI18nService, NzI18nModule } from 'ng-zorro-antd/i18n';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { BellOutline, DeleteOutline, PlusOutline, InboxOutline } from '@ant-design/icons-angular/icons';
 import { NzIconService } from 'ng-zorro-antd/icon';
@@ -3924,7 +3925,8 @@ var FORM = makeMethod('FORM');
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var DatePipe = /** @class */ (function () {
-    function DatePipe() {
+    function DatePipe(nzI18n) {
+        this.nzI18n = nzI18n;
     }
     /**
      * @param {?} value
@@ -3939,7 +3941,7 @@ var DatePipe = /** @class */ (function () {
     function (value, formatString) {
         if (formatString === void 0) { formatString = 'yyyy-MM-dd HH:mm'; }
         /** @type {?} */
-        var options = { locale: ((/** @type {?} */ (window))).__locale__ };
+        var options = { locale: this.nzI18n.getDateLocale() };
         value = typeof value === 'string' ? (!isNaN(+value) ? +value : parse(value, formatString, new Date(), options)) : value;
         if (!value)
             return '';
@@ -3948,8 +3950,19 @@ var DatePipe = /** @class */ (function () {
     DatePipe.decorators = [
         { type: Pipe, args: [{ name: '_date' },] }
     ];
+    /** @nocollapse */
+    DatePipe.ctorParameters = function () { return [
+        { type: NzI18nService }
+    ]; };
     return DatePipe;
 }());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    DatePipe.prototype.nzI18n;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -4253,7 +4266,7 @@ var AlainThemeModule = /** @class */ (function () {
     };
     AlainThemeModule.decorators = [
         { type: NgModule, args: [{
-                    imports: [CommonModule, RouterModule, OverlayModule],
+                    imports: [CommonModule, RouterModule, OverlayModule, NzI18nModule],
                     declarations: __spread(PIPES),
                     exports: __spread(PIPES, [DelonLocaleModule]),
                 },] }
@@ -4271,7 +4284,7 @@ var AlainThemeModule = /** @class */ (function () {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-var VERSION = new Version('9.0.0-alpha.1-eb131704');
+var VERSION = new Version('9.0.0-alpha.1-d381eada');
 
 /**
  * @fileoverview added by tsickle

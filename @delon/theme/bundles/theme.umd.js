@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/acl'), require('rxjs'), require('rxjs/operators'), require('@angular/common'), require('@angular/platform-browser'), require('@angular/router'), require('@delon/util'), require('ng-zorro-antd/modal'), require('ng-zorro-antd/drawer'), require('@angular/common/http'), require('date-fns/format'), require('date-fns/formatDistanceToNow'), require('date-fns/parse'), require('@angular/cdk/overlay'), require('@ant-design/icons-angular/icons'), require('ng-zorro-antd/icon')) :
-    typeof define === 'function' && define.amd ? define('@delon/theme', ['exports', '@angular/core', '@delon/acl', 'rxjs', 'rxjs/operators', '@angular/common', '@angular/platform-browser', '@angular/router', '@delon/util', 'ng-zorro-antd/modal', 'ng-zorro-antd/drawer', '@angular/common/http', 'date-fns/format', 'date-fns/formatDistanceToNow', 'date-fns/parse', '@angular/cdk/overlay', '@ant-design/icons-angular/icons', 'ng-zorro-antd/icon'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.theme = {}), global.ng.core, global.delon.acl, global.rxjs, global.rxjs.operators, global.ng.common, global.ng.platformBrowser, global.ng.router, global.delon.util, global['ng-zorro-antd/modal'], global['ng-zorro-antd/drawer'], global.ng.common.http, global.format, global.formatDistanceToNow, global.parse, global.ng.cdk.overlay, global.icons, global['ng-zorro-antd/icon']));
-}(this, (function (exports, core, acl, rxjs, operators, common, platformBrowser, router, util, modal, drawer, http, format, formatDistanceToNow, parse, overlay, icons, icon) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/acl'), require('rxjs'), require('rxjs/operators'), require('@angular/common'), require('@angular/platform-browser'), require('@angular/router'), require('@delon/util'), require('ng-zorro-antd/modal'), require('ng-zorro-antd/drawer'), require('@angular/common/http'), require('date-fns/format'), require('date-fns/formatDistanceToNow'), require('date-fns/parse'), require('ng-zorro-antd/i18n'), require('@angular/cdk/overlay'), require('@ant-design/icons-angular/icons'), require('ng-zorro-antd/icon')) :
+    typeof define === 'function' && define.amd ? define('@delon/theme', ['exports', '@angular/core', '@delon/acl', 'rxjs', 'rxjs/operators', '@angular/common', '@angular/platform-browser', '@angular/router', '@delon/util', 'ng-zorro-antd/modal', 'ng-zorro-antd/drawer', '@angular/common/http', 'date-fns/format', 'date-fns/formatDistanceToNow', 'date-fns/parse', 'ng-zorro-antd/i18n', '@angular/cdk/overlay', '@ant-design/icons-angular/icons', 'ng-zorro-antd/icon'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.theme = {}), global.ng.core, global.delon.acl, global.rxjs, global.rxjs.operators, global.ng.common, global.ng.platformBrowser, global.ng.router, global.delon.util, global['ng-zorro-antd/modal'], global['ng-zorro-antd/drawer'], global.ng.common.http, global.format, global.formatDistanceToNow, global.parse, global['ng-zorro-antd/i18n'], global.ng.cdk.overlay, global.icons, global['ng-zorro-antd/icon']));
+}(this, (function (exports, core, acl, rxjs, operators, common, platformBrowser, router, util, modal, drawer, http, format, formatDistanceToNow, parse, i18n, overlay, icons, icon) { 'use strict';
 
     format = format && Object.prototype.hasOwnProperty.call(format, 'default') ? format['default'] : format;
     formatDistanceToNow = formatDistanceToNow && Object.prototype.hasOwnProperty.call(formatDistanceToNow, 'default') ? formatDistanceToNow['default'] : formatDistanceToNow;
@@ -4134,7 +4134,8 @@
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var DatePipe = /** @class */ (function () {
-        function DatePipe() {
+        function DatePipe(nzI18n) {
+            this.nzI18n = nzI18n;
         }
         /**
          * @param {?} value
@@ -4149,7 +4150,7 @@
         function (value, formatString) {
             if (formatString === void 0) { formatString = 'yyyy-MM-dd HH:mm'; }
             /** @type {?} */
-            var options = { locale: ((/** @type {?} */ (window))).__locale__ };
+            var options = { locale: this.nzI18n.getDateLocale() };
             value = typeof value === 'string' ? (!isNaN(+value) ? +value : parse(value, formatString, new Date(), options)) : value;
             if (!value)
                 return '';
@@ -4158,8 +4159,19 @@
         DatePipe.decorators = [
             { type: core.Pipe, args: [{ name: '_date' },] }
         ];
+        /** @nocollapse */
+        DatePipe.ctorParameters = function () { return [
+            { type: i18n.NzI18nService }
+        ]; };
         return DatePipe;
     }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        DatePipe.prototype.nzI18n;
+    }
 
     /**
      * @fileoverview added by tsickle
@@ -4463,7 +4475,7 @@
         };
         AlainThemeModule.decorators = [
             { type: core.NgModule, args: [{
-                        imports: [common.CommonModule, router.RouterModule, overlay.OverlayModule],
+                        imports: [common.CommonModule, router.RouterModule, overlay.OverlayModule, i18n.NzI18nModule],
                         declarations: __spread(PIPES),
                         exports: __spread(PIPES, [DelonLocaleModule]),
                     },] }
