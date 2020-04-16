@@ -17,13 +17,13 @@ export declare class SEComponent implements OnChanges, AfterContentInit, AfterVi
     private errorData;
     invalid: boolean;
     _labelWidth: number | null;
-    _error: string;
+    _error: string | TemplateRef<void>;
     optional: string | TemplateRef<void>;
     optionalHelp: string | TemplateRef<void>;
-    set error(val: string | {
-        [key: string]: string;
+    set error(val: string | TemplateRef<void> | {
+        [key: string]: string | TemplateRef<void>;
     });
-    extra: string;
+    extra: string | TemplateRef<void>;
     label: string | TemplateRef<void>;
     col: number;
     required: boolean;
