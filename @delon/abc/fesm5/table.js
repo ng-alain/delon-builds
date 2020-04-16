@@ -150,6 +150,11 @@ if (false) {
      * @type {?|undefined}
      */
     STLoadOptions.prototype.merge;
+    /**
+     * 是否跳转至顶部，若不指定由 `page.toTop` 来决定
+     * @type {?|undefined}
+     */
+    STLoadOptions.prototype.toTop;
 }
 /**
  * @record
@@ -3694,7 +3699,7 @@ var STComponent = /** @class */ (function () {
         if (typeof extraParams !== 'undefined') {
             (/** @type {?} */ (this))._req.params = options && options.merge ? __assign(__assign({}, (/** @type {?} */ (this))._req.params), extraParams) : extraParams;
         }
-        (/** @type {?} */ (this))._change('pi');
+        (/** @type {?} */ (this))._change('pi', options);
         return (/** @type {?} */ (this));
     };
     /**
@@ -3761,14 +3766,16 @@ var STComponent = /** @class */ (function () {
     };
     /**
      * @private
+     * @param {?=} enforce
      * @return {?}
      */
     STComponent.prototype._toTop = /**
      * @private
+     * @param {?=} enforce
      * @return {?}
      */
-    function () {
-        if (!this.page.toTop)
+    function (enforce) {
+        if (!(enforce == null ? this.page.toTop : enforce))
             return;
         /** @type {?} */
         var el = (/** @type {?} */ (this.el.nativeElement));
@@ -3782,19 +3789,21 @@ var STComponent = /** @class */ (function () {
     };
     /**
      * @param {?} type
+     * @param {?=} options
      * @return {?}
      */
     STComponent.prototype._change = /**
      * @param {?} type
+     * @param {?=} options
      * @return {?}
      */
-    function (type) {
+    function (type, options) {
         var _this = this;
         if (type === 'pi' || (type === 'ps' && this.pi <= Math.ceil(this.total / this.ps))) {
             this.loadPageData().then((/**
              * @return {?}
              */
-            function () { return _this._toTop(); }));
+            function () { return _this._toTop(options === null || options === void 0 ? void 0 : options.toTop); }));
         }
         this.changeEmit(type);
     };
