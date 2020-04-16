@@ -150,6 +150,11 @@ if (false) {
      * @type {?|undefined}
      */
     STLoadOptions.prototype.merge;
+    /**
+     * 是否跳转至顶部，若不指定由 `page.toTop` 来决定
+     * @type {?|undefined}
+     */
+    STLoadOptions.prototype.toTop;
 }
 /**
  * @record
@@ -3347,7 +3352,7 @@ class STComponent {
         if (typeof extraParams !== 'undefined') {
             (/** @type {?} */ (this))._req.params = options && options.merge ? Object.assign(Object.assign({}, (/** @type {?} */ (this))._req.params), extraParams) : extraParams;
         }
-        (/** @type {?} */ (this))._change('pi');
+        (/** @type {?} */ (this))._change('pi', options);
         return (/** @type {?} */ (this));
     }
     /**
@@ -3380,10 +3385,11 @@ class STComponent {
     }
     /**
      * @private
+     * @param {?=} enforce
      * @return {?}
      */
-    _toTop() {
-        if (!this.page.toTop)
+    _toTop(enforce) {
+        if (!(enforce == null ? this.page.toTop : enforce))
             return;
         /** @type {?} */
         const el = (/** @type {?} */ (this.el.nativeElement));
@@ -3397,14 +3403,15 @@ class STComponent {
     }
     /**
      * @param {?} type
+     * @param {?=} options
      * @return {?}
      */
-    _change(type) {
+    _change(type, options) {
         if (type === 'pi' || (type === 'ps' && this.pi <= Math.ceil(this.total / this.ps))) {
             this.loadPageData().then((/**
              * @return {?}
              */
-            () => this._toTop()));
+            () => this._toTop(options === null || options === void 0 ? void 0 : options.toTop)));
         }
         this.changeEmit(type);
     }

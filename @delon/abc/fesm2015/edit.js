@@ -1,7 +1,7 @@
 import { __decorate, __metadata } from 'tslib';
 import { Injectable, ɵɵdefineInjectable, Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Host, Optional, ElementRef, Renderer2, ChangeDetectorRef, ContentChild, ViewChild, NgModule } from '@angular/core';
 import { toNumber, InputNumber, InputBoolean, isEmpty, DelonUtilModule } from '@delon/util';
-import { RequiredValidator, NgModel, FormControlName } from '@angular/forms';
+import { NgModel, FormControlName } from '@angular/forms';
 import { ResponsiveService } from '@delon/theme';
 import { helpMotion } from 'ng-zorro-antd/core/animation';
 import { CommonModule } from '@angular/common';
@@ -383,7 +383,7 @@ class SEComponent {
      * @return {?}
      */
     bindModel() {
-        var _a, _b, _c;
+        var _a, _b;
         if (!this.ngControl || this.status$)
             return;
         this.status$ = (/** @type {?} */ (this.ngControl.statusChanges)).subscribe((/**
@@ -397,17 +397,6 @@ class SEComponent {
             if (control) {
                 control.id = this._id;
             }
-        }
-        // auto required
-        if (this.required !== true) {
-            /** @type {?} */
-            const rawValidators = (/** @type {?} */ ((_c = ((/** @type {?} */ (this.ngControl)))) === null || _c === void 0 ? void 0 : _c._rawValidators));
-            this.required = rawValidators.find((/**
-             * @param {?} w
-             * @return {?}
-             */
-            w => w instanceof RequiredValidator)) != null;
-            this.cdr.detectChanges();
         }
     }
     /**
