@@ -5,6 +5,7 @@ import { InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
 import { fromEvent } from 'rxjs';
 import { filter, debounceTime } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
+import { NzOutletModule } from 'ng-zorro-antd/core/outlet';
 
 /**
  * @fileoverview added by tsickle
@@ -230,7 +231,7 @@ var G2BarComponent = /** @class */ (function () {
         { type: Component, args: [{
                     selector: 'g2-bar',
                     exportAs: 'g2Bar',
-                    template: "<ng-container *stringTemplateOutlet=\"title\">\n  <h4 style=\"margin-bottom:20px\">{{title}}</h4>\n</ng-container>\n<div #container></div>\n",
+                    template: "<ng-container *nzStringTemplateOutlet=\"title\">\n  <h4 style=\"margin-bottom:20px\">{{title}}</h4>\n</ng-container>\n<div #container></div>\n",
                     host: {
                         '[style.height.px]': 'height',
                     },
@@ -319,7 +320,7 @@ var G2BarModule = /** @class */ (function () {
     }
     G2BarModule.decorators = [
         { type: NgModule, args: [{
-                    imports: [CommonModule, DelonUtilModule],
+                    imports: [CommonModule, DelonUtilModule, NzOutletModule],
                     declarations: __spread(COMPONENTS),
                     exports: __spread(COMPONENTS),
                 },] }

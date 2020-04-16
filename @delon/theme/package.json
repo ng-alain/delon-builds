@@ -1,6 +1,6 @@
 {
   "name": "@delon/theme",
-  "version": "9.0.0-alpha.1-087b8e9a",
+  "version": "9.0.0-alpha.1-5dba9007",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -22,8 +22,8 @@
   ],
   "dependencies": {
     "ng-zorro-antd": "^9.0.1",
-    "@delon/acl": "^9.0.0-alpha.1-087b8e9a",
-    "@delon/util": "^9.0.0-alpha.1-087b8e9a"
+    "@delon/acl": "^9.0.0-alpha.1-5dba9007",
+    "@delon/util": "^9.0.0-alpha.1-5dba9007"
   },
   "sideEffects": false,
   "main": "bundles/theme.umd.js",

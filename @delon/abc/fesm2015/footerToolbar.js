@@ -3,6 +3,7 @@ import { DOCUMENT, CommonModule } from '@angular/common';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, Renderer2, Inject, Input, NgModule } from '@angular/core';
 import { InputBoolean, DelonUtilModule } from '@delon/util';
 import { ErrorCollectModule } from '@delon/abc/error-collect';
+import { NzOutletModule } from 'ng-zorro-antd/core/outlet';
 
 /**
  * @fileoverview added by tsickle
@@ -48,7 +49,7 @@ FooterToolbarComponent.decorators = [
     { type: Component, args: [{
                 selector: 'footer-toolbar',
                 exportAs: 'footerToolbar',
-                template: "<div class=\"footer-toolbar__left\">\n  <ng-container *stringTemplateOutlet=\"extra\">{{ extra }}</ng-container>\n</div>\n<div class=\"footer-toolbar__right\">\n  <error-collect *ngIf=\"errorCollect\"></error-collect>\n  <ng-content></ng-content>\n</div>\n",
+                template: "<div class=\"footer-toolbar__left\">\n  <ng-container *nzStringTemplateOutlet=\"extra\">{{ extra }}</ng-container>\n</div>\n<div class=\"footer-toolbar__right\">\n  <error-collect *ngIf=\"errorCollect\"></error-collect>\n  <ng-content></ng-content>\n</div>\n",
                 preserveWhitespaces: false,
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None
@@ -101,7 +102,7 @@ class FooterToolbarModule {
 }
 FooterToolbarModule.decorators = [
     { type: NgModule, args: [{
-                imports: [CommonModule, ErrorCollectModule, DelonUtilModule],
+                imports: [CommonModule, ErrorCollectModule, DelonUtilModule, NzOutletModule],
                 declarations: [...COMPONENTS],
                 exports: [...COMPONENTS],
             },] }

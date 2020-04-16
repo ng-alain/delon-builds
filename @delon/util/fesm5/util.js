@@ -1,4 +1,3 @@
-import { TemplateRef, Directive, ViewContainerRef, Input, Injectable, Inject, ɵɵdefineInjectable, ɵɵinject, isDevMode, NgModule } from '@angular/core';
 import { __spread, __assign, __values } from 'tslib';
 import extend from 'extend';
 import addDays from 'date-fns/addDays';
@@ -15,115 +14,11 @@ import subMonths from 'date-fns/subMonths';
 import subWeeks from 'date-fns/subWeeks';
 import subYears from 'date-fns/subYears';
 import { DOCUMENT, CommonModule } from '@angular/common';
+import { Injectable, Inject, ɵɵdefineInjectable, ɵɵinject, isDevMode, NgModule } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { share, filter } from 'rxjs/operators';
 import { environment } from 'ng-zorro-antd/core/environments';
 import { NzTreeNode } from 'ng-zorro-antd/core/tree';
-
-/**
- * @fileoverview added by tsickle
- * Generated from: src/addon/string_template_outlet.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-var StringTemplateOutletDirective = /** @class */ (function () {
-    function StringTemplateOutletDirective(viewContainer, defaultTemplate) {
-        this.viewContainer = viewContainer;
-        this.defaultTemplate = defaultTemplate;
-        this.inputTemplate = null;
-        this.inputViewRef = null;
-        this.defaultViewRef = null;
-    }
-    Object.defineProperty(StringTemplateOutletDirective.prototype, "stringTemplateOutlet", {
-        set: /**
-         * @param {?} value
-         * @return {?}
-         */
-        function (value) {
-            if (value instanceof TemplateRef) {
-                this.isTemplate = true;
-                this.inputTemplate = value;
-            }
-            else {
-                this.isTemplate = false;
-            }
-            this.updateView();
-        },
-        enumerable: true,
-        configurable: true
-    });
-    /**
-     * @return {?}
-     */
-    StringTemplateOutletDirective.prototype.updateView = /**
-     * @return {?}
-     */
-    function () {
-        if (!this.isTemplate) {
-            // use default template when input is string
-            if (!this.defaultViewRef) {
-                this.viewContainer.clear();
-                this.inputViewRef = null;
-                this.defaultViewRef = this.viewContainer.createEmbeddedView(this.defaultTemplate);
-            }
-        }
-        else {
-            // clear previous view if any.
-            if (this.inputViewRef) {
-                this.inputViewRef = null;
-            }
-            // use input template when input is templateRef
-            this.viewContainer.clear();
-            this.defaultViewRef = null;
-            this.inputViewRef = this.viewContainer.createEmbeddedView((/** @type {?} */ (this.inputTemplate)));
-        }
-    };
-    StringTemplateOutletDirective.decorators = [
-        { type: Directive, args: [{
-                    selector: '[stringTemplateOutlet]',
-                },] }
-    ];
-    /** @nocollapse */
-    StringTemplateOutletDirective.ctorParameters = function () { return [
-        { type: ViewContainerRef },
-        { type: TemplateRef }
-    ]; };
-    StringTemplateOutletDirective.propDecorators = {
-        stringTemplateOutlet: [{ type: Input }]
-    };
-    return StringTemplateOutletDirective;
-}());
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    StringTemplateOutletDirective.prototype.isTemplate;
-    /**
-     * @type {?}
-     * @private
-     */
-    StringTemplateOutletDirective.prototype.inputTemplate;
-    /**
-     * @type {?}
-     * @private
-     */
-    StringTemplateOutletDirective.prototype.inputViewRef;
-    /**
-     * @type {?}
-     * @private
-     */
-    StringTemplateOutletDirective.prototype.defaultViewRef;
-    /**
-     * @type {?}
-     * @private
-     */
-    StringTemplateOutletDirective.prototype.viewContainer;
-    /**
-     * @type {?}
-     * @private
-     */
-    StringTemplateOutletDirective.prototype.defaultTemplate;
-}
 
 /**
  * @fileoverview added by tsickle
@@ -1567,8 +1462,6 @@ var DelonUtilModule = /** @class */ (function () {
     DelonUtilModule.decorators = [
         { type: NgModule, args: [{
                     imports: [CommonModule],
-                    declarations: [StringTemplateOutletDirective],
-                    exports: [StringTemplateOutletDirective],
                 },] }
     ];
     return DelonUtilModule;
@@ -1586,5 +1479,5 @@ var DelonUtilModule = /** @class */ (function () {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { ArrayService, DelonUtilConfig, DelonUtilModule, InputBoolean, InputNumber, LazyService, StringTemplateOutletDirective, _Validators, copy, deepCopy, deepGet, deepMerge, deepMergeKey, fixEndTimeOfRange, format, getTimeDistance, isDecimal, isEmpty, isIdCard, isInt, isMobile, isNum, isUrl, toBoolean, toNumber, updateHostClass };
+export { ArrayService, DelonUtilConfig, DelonUtilModule, InputBoolean, InputNumber, LazyService, _Validators, copy, deepCopy, deepGet, deepMerge, deepMergeKey, fixEndTimeOfRange, format, getTimeDistance, isDecimal, isEmpty, isIdCard, isInt, isMobile, isNum, isUrl, toBoolean, toNumber, updateHostClass };
 //# sourceMappingURL=util.js.map

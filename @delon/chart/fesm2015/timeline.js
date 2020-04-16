@@ -4,6 +4,7 @@ import DataSet from '@antv/data-set';
 import { Chart } from '@antv/g2';
 import { InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
 import { CommonModule } from '@angular/common';
+import { NzOutletModule } from 'ng-zorro-antd/core/outlet';
 
 /**
  * @fileoverview added by tsickle
@@ -218,7 +219,7 @@ G2TimelineComponent.decorators = [
     { type: Component, args: [{
                 selector: 'g2-timeline',
                 exportAs: 'g2Timeline',
-                template: "<ng-container *stringTemplateOutlet=\"title\">\n  <h4>{{title}}</h4>\n</ng-container>\n<div #container></div>\n",
+                template: "<ng-container *nzStringTemplateOutlet=\"title\">\n  <h4>{{title}}</h4>\n</ng-container>\n<div #container></div>\n",
                 preserveWhitespaces: false,
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None
@@ -309,7 +310,7 @@ class G2TimelineModule {
 }
 G2TimelineModule.decorators = [
     { type: NgModule, args: [{
-                imports: [CommonModule, DelonUtilModule],
+                imports: [CommonModule, DelonUtilModule, NzOutletModule],
                 declarations: [...COMPONENTS],
                 exports: [...COMPONENTS],
             },] }

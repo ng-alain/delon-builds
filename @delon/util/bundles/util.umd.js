@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('extend'), require('date-fns/addDays'), require('date-fns/endOfDay'), require('date-fns/endOfMonth'), require('date-fns/endOfWeek'), require('date-fns/endOfYear'), require('date-fns/parseISO'), require('date-fns/startOfDay'), require('date-fns/startOfMonth'), require('date-fns/startOfWeek'), require('date-fns/startOfYear'), require('date-fns/subMonths'), require('date-fns/subWeeks'), require('date-fns/subYears'), require('@angular/common'), require('rxjs'), require('rxjs/operators'), require('ng-zorro-antd/core/environments'), require('ng-zorro-antd/core/tree')) :
-    typeof define === 'function' && define.amd ? define('@delon/util', ['exports', '@angular/core', 'extend', 'date-fns/addDays', 'date-fns/endOfDay', 'date-fns/endOfMonth', 'date-fns/endOfWeek', 'date-fns/endOfYear', 'date-fns/parseISO', 'date-fns/startOfDay', 'date-fns/startOfMonth', 'date-fns/startOfWeek', 'date-fns/startOfYear', 'date-fns/subMonths', 'date-fns/subWeeks', 'date-fns/subYears', '@angular/common', 'rxjs', 'rxjs/operators', 'ng-zorro-antd/core/environments', 'ng-zorro-antd/core/tree'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.util = {}), global.ng.core, global.Extend, global.addDays, global.endOfDay, global.endOfMonth, global.endOfWeek, global.endOfYear, global.parseISO, global.startOfDay, global.startOfMonth, global.startOfWeek, global.startOfYear, global.subMonths, global.subWeeks, global.subYears, global.ng.common, global.rxjs, global.rxjs.operators, global.environments, global.tree));
-}(this, (function (exports, core, extend, addDays, endOfDay, endOfMonth, endOfWeek, endOfYear, parseISO, startOfDay, startOfMonth, startOfWeek, startOfYear, subMonths, subWeeks, subYears, common, rxjs, operators, environments, tree) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('extend'), require('date-fns/addDays'), require('date-fns/endOfDay'), require('date-fns/endOfMonth'), require('date-fns/endOfWeek'), require('date-fns/endOfYear'), require('date-fns/parseISO'), require('date-fns/startOfDay'), require('date-fns/startOfMonth'), require('date-fns/startOfWeek'), require('date-fns/startOfYear'), require('date-fns/subMonths'), require('date-fns/subWeeks'), require('date-fns/subYears'), require('@angular/common'), require('@angular/core'), require('rxjs'), require('rxjs/operators'), require('ng-zorro-antd/core/environments'), require('ng-zorro-antd/core/tree')) :
+    typeof define === 'function' && define.amd ? define('@delon/util', ['exports', 'extend', 'date-fns/addDays', 'date-fns/endOfDay', 'date-fns/endOfMonth', 'date-fns/endOfWeek', 'date-fns/endOfYear', 'date-fns/parseISO', 'date-fns/startOfDay', 'date-fns/startOfMonth', 'date-fns/startOfWeek', 'date-fns/startOfYear', 'date-fns/subMonths', 'date-fns/subWeeks', 'date-fns/subYears', '@angular/common', '@angular/core', 'rxjs', 'rxjs/operators', 'ng-zorro-antd/core/environments', 'ng-zorro-antd/core/tree'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.util = {}), global.Extend, global.addDays, global.endOfDay, global.endOfMonth, global.endOfWeek, global.endOfYear, global.parseISO, global.startOfDay, global.startOfMonth, global.startOfWeek, global.startOfYear, global.subMonths, global.subWeeks, global.subYears, global.ng.common, global.ng.core, global.rxjs, global.rxjs.operators, global.environments, global.tree));
+}(this, (function (exports, extend, addDays, endOfDay, endOfMonth, endOfWeek, endOfYear, parseISO, startOfDay, startOfMonth, startOfWeek, startOfYear, subMonths, subWeeks, subYears, common, core, rxjs, operators, environments, tree) { 'use strict';
 
     extend = extend && Object.prototype.hasOwnProperty.call(extend, 'default') ? extend['default'] : extend;
     addDays = addDays && Object.prototype.hasOwnProperty.call(addDays, 'default') ? addDays['default'] : addDays;
@@ -236,111 +236,6 @@
         }
         privateMap.set(receiver, value);
         return value;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: src/addon/string_template_outlet.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var StringTemplateOutletDirective = /** @class */ (function () {
-        function StringTemplateOutletDirective(viewContainer, defaultTemplate) {
-            this.viewContainer = viewContainer;
-            this.defaultTemplate = defaultTemplate;
-            this.inputTemplate = null;
-            this.inputViewRef = null;
-            this.defaultViewRef = null;
-        }
-        Object.defineProperty(StringTemplateOutletDirective.prototype, "stringTemplateOutlet", {
-            set: /**
-             * @param {?} value
-             * @return {?}
-             */
-            function (value) {
-                if (value instanceof core.TemplateRef) {
-                    this.isTemplate = true;
-                    this.inputTemplate = value;
-                }
-                else {
-                    this.isTemplate = false;
-                }
-                this.updateView();
-            },
-            enumerable: true,
-            configurable: true
-        });
-        /**
-         * @return {?}
-         */
-        StringTemplateOutletDirective.prototype.updateView = /**
-         * @return {?}
-         */
-        function () {
-            if (!this.isTemplate) {
-                // use default template when input is string
-                if (!this.defaultViewRef) {
-                    this.viewContainer.clear();
-                    this.inputViewRef = null;
-                    this.defaultViewRef = this.viewContainer.createEmbeddedView(this.defaultTemplate);
-                }
-            }
-            else {
-                // clear previous view if any.
-                if (this.inputViewRef) {
-                    this.inputViewRef = null;
-                }
-                // use input template when input is templateRef
-                this.viewContainer.clear();
-                this.defaultViewRef = null;
-                this.inputViewRef = this.viewContainer.createEmbeddedView((/** @type {?} */ (this.inputTemplate)));
-            }
-        };
-        StringTemplateOutletDirective.decorators = [
-            { type: core.Directive, args: [{
-                        selector: '[stringTemplateOutlet]',
-                    },] }
-        ];
-        /** @nocollapse */
-        StringTemplateOutletDirective.ctorParameters = function () { return [
-            { type: core.ViewContainerRef },
-            { type: core.TemplateRef }
-        ]; };
-        StringTemplateOutletDirective.propDecorators = {
-            stringTemplateOutlet: [{ type: core.Input }]
-        };
-        return StringTemplateOutletDirective;
-    }());
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        StringTemplateOutletDirective.prototype.isTemplate;
-        /**
-         * @type {?}
-         * @private
-         */
-        StringTemplateOutletDirective.prototype.inputTemplate;
-        /**
-         * @type {?}
-         * @private
-         */
-        StringTemplateOutletDirective.prototype.inputViewRef;
-        /**
-         * @type {?}
-         * @private
-         */
-        StringTemplateOutletDirective.prototype.defaultViewRef;
-        /**
-         * @type {?}
-         * @private
-         */
-        StringTemplateOutletDirective.prototype.viewContainer;
-        /**
-         * @type {?}
-         * @private
-         */
-        StringTemplateOutletDirective.prototype.defaultTemplate;
     }
 
     /**
@@ -1785,8 +1680,6 @@
         DelonUtilModule.decorators = [
             { type: core.NgModule, args: [{
                         imports: [common.CommonModule],
-                        declarations: [StringTemplateOutletDirective],
-                        exports: [StringTemplateOutletDirective],
                     },] }
         ];
         return DelonUtilModule;
@@ -1798,7 +1691,6 @@
     exports.InputBoolean = InputBoolean;
     exports.InputNumber = InputNumber;
     exports.LazyService = LazyService;
-    exports.StringTemplateOutletDirective = StringTemplateOutletDirective;
     exports._Validators = _Validators;
     exports.copy = copy;
     exports.deepCopy = deepCopy;
