@@ -1,7 +1,7 @@
 import { __assign, __decorate, __metadata, __spread } from 'tslib';
 import { Injectable, ɵɵdefineInjectable, Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Host, Optional, ElementRef, Renderer2, ChangeDetectorRef, ContentChild, ViewChild, NgModule } from '@angular/core';
 import { toNumber, InputNumber, InputBoolean, isEmpty, DelonUtilModule } from '@delon/util';
-import { NgModel, FormControlName } from '@angular/forms';
+import { RequiredValidator, NgModel, FormControlName } from '@angular/forms';
 import { ResponsiveService } from '@delon/theme';
 import { helpMotion } from 'ng-zorro-antd/core/animation';
 import { CommonModule } from '@angular/common';
@@ -423,7 +423,7 @@ var SEComponent = /** @class */ (function () {
      */
     function () {
         var _this = this;
-        var _a, _b;
+        var _a, _b, _c;
         if (!this.ngControl || this.status$)
             return;
         this.status$ = (/** @type {?} */ (this.ngControl.statusChanges)).subscribe((/**
@@ -437,6 +437,17 @@ var SEComponent = /** @class */ (function () {
             if (control) {
                 control.id = this._id;
             }
+        }
+        // auto required
+        if (this.required !== true) {
+            /** @type {?} */
+            var rawValidators = (/** @type {?} */ ((_c = ((/** @type {?} */ (this.ngControl)))) === null || _c === void 0 ? void 0 : _c._rawValidators));
+            this.required = rawValidators.find((/**
+             * @param {?} w
+             * @return {?}
+             */
+            function (w) { return w instanceof RequiredValidator; })) != null;
+            this.cdr.detectChanges();
         }
     };
     /**
