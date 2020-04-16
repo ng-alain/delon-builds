@@ -5,8 +5,8 @@
  */
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/platform-browser'), require('@delon/acl'), require('@delon/theme'), require('@delon/util'), require('@angular/common'), require('rxjs'), require('rxjs/operators'), require('@delon/abc/xlsx'), require('@angular/router'), require('ng-zorro-antd/table'), require('@angular/forms'), require('ng-zorro-antd/badge'), require('ng-zorro-antd/checkbox'), require('ng-zorro-antd/divider'), require('ng-zorro-antd/dropdown'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/input'), require('ng-zorro-antd/menu'), require('ng-zorro-antd/popconfirm'), require('ng-zorro-antd/radio'), require('ng-zorro-antd/tag'), require('ng-zorro-antd/tooltip')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/table', ['exports', '@angular/core', '@angular/platform-browser', '@delon/acl', '@delon/theme', '@delon/util', '@angular/common', 'rxjs', 'rxjs/operators', '@delon/abc/xlsx', '@angular/router', 'ng-zorro-antd/table', '@angular/forms', 'ng-zorro-antd/badge', 'ng-zorro-antd/checkbox', 'ng-zorro-antd/divider', 'ng-zorro-antd/dropdown', 'ng-zorro-antd/icon', 'ng-zorro-antd/input', 'ng-zorro-antd/menu', 'ng-zorro-antd/popconfirm', 'ng-zorro-antd/radio', 'ng-zorro-antd/tag', 'ng-zorro-antd/tooltip'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.table = {}), global.ng.core, global.ng.platformBrowser, global.delon.acl, global.delon.theme, global.delon.util, global.ng.common, global.rxjs, global.rxjs.operators, global.delon.abc.xlsx, global.ng.router, global['ng-zorro-antd/table'], global.ng.forms, global['ng-zorro-antd/badge'], global['ng-zorro-antd/checkbox'], global['ng-zorro-antd/divider'], global['ng-zorro-antd/dropdown'], global['ng-zorro-antd/icon'], global['ng-zorro-antd/input'], global['ng-zorro-antd/menu'], global['ng-zorro-antd/popconfirm'], global['ng-zorro-antd/radio'], global['ng-zorro-antd/tag'], global['ng-zorro-antd/tooltip']));
+    typeof define === 'function' && define.amd ? define('@delon/abc/st', ['exports', '@angular/core', '@angular/platform-browser', '@delon/acl', '@delon/theme', '@delon/util', '@angular/common', 'rxjs', 'rxjs/operators', '@delon/abc/xlsx', '@angular/router', 'ng-zorro-antd/table', '@angular/forms', 'ng-zorro-antd/badge', 'ng-zorro-antd/checkbox', 'ng-zorro-antd/divider', 'ng-zorro-antd/dropdown', 'ng-zorro-antd/icon', 'ng-zorro-antd/input', 'ng-zorro-antd/menu', 'ng-zorro-antd/popconfirm', 'ng-zorro-antd/radio', 'ng-zorro-antd/tag', 'ng-zorro-antd/tooltip'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.st = {}), global.ng.core, global.ng.platformBrowser, global.delon.acl, global.delon.theme, global.delon.util, global.ng.common, global.rxjs, global.rxjs.operators, global.delon.abc.xlsx, global.ng.router, global['ng-zorro-antd/table'], global.ng.forms, global['ng-zorro-antd/badge'], global['ng-zorro-antd/checkbox'], global['ng-zorro-antd/divider'], global['ng-zorro-antd/dropdown'], global['ng-zorro-antd/icon'], global['ng-zorro-antd/input'], global['ng-zorro-antd/menu'], global['ng-zorro-antd/popconfirm'], global['ng-zorro-antd/radio'], global['ng-zorro-antd/tag'], global['ng-zorro-antd/tooltip']));
 }(this, (function (exports, core, platformBrowser, acl, theme, util, common, rxjs, operators, xlsx, router, table, forms, badge, checkbox, divider, dropdown, icon, input, menu, popconfirm, radio, tag, tooltip) { 'use strict';
 
     /*! *****************************************************************************
@@ -225,7 +225,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * Generated from: table.interfaces.ts
+     * Generated from: st.interfaces.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /**
@@ -1458,7 +1458,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * Generated from: table-row.directive.ts
+     * Generated from: st-row.directive.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var STRowSource = /** @class */ (function () {
@@ -1567,7 +1567,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * Generated from: table.config.ts
+     * Generated from: st.config.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var STConfig = /** @class */ (function () {
@@ -1834,7 +1834,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * Generated from: table-column-source.ts
+     * Generated from: st-column-source.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var STColumnSource = /** @class */ (function () {
@@ -2391,7 +2391,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * Generated from: table-data-source.ts
+     * Generated from: st-data-source.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /**
@@ -3224,7 +3224,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * Generated from: table-export.ts
+     * Generated from: st-export.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var STExport = /** @class */ (function () {
@@ -3351,7 +3351,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * Generated from: table.component.ts
+     * Generated from: st.component.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var STComponent = /** @class */ (function () {
@@ -5229,7 +5229,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * Generated from: table.module.ts
+     * Generated from: st.module.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */

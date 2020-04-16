@@ -10,7 +10,7 @@ import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 
 /**
  * @fileoverview added by tsickle
- * Generated from: edit.config.ts
+ * Generated from: se.config.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class SEConfig {
@@ -84,7 +84,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
- * Generated from: edit-container.component.ts
+ * Generated from: se-container.component.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class SEContainerComponent {
@@ -200,7 +200,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
- * Generated from: edit-title.component.ts
+ * Generated from: se-title.component.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class SETitleComponent {
@@ -273,7 +273,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
- * Generated from: edit.component.ts
+ * Generated from: se.component.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
@@ -629,7 +629,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
- * Generated from: edit.module.ts
+ * Generated from: se.module.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */

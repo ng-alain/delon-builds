@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
 
 /**
  * @fileoverview added by tsickle
- * Generated from: grid.config.ts
+ * Generated from: sg.config.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var SGConfig = /** @class */ (function () {
@@ -41,7 +41,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
- * Generated from: grid-container.component.ts
+ * Generated from: sg-container.component.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var SGContainerComponent = /** @class */ (function () {
@@ -111,7 +111,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
- * Generated from: grid.component.ts
+ * Generated from: sg.component.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
@@ -253,7 +253,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
- * Generated from: grid.module.ts
+ * Generated from: sg.module.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */

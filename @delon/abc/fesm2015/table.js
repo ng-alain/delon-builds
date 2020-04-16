@@ -25,7 +25,7 @@ import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 
 /**
  * @fileoverview added by tsickle
- * Generated from: table.interfaces.ts
+ * Generated from: st.interfaces.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
@@ -1258,7 +1258,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
- * Generated from: table-row.directive.ts
+ * Generated from: st-row.directive.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class STRowSource {
@@ -1352,7 +1352,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
- * Generated from: table.config.ts
+ * Generated from: st.config.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class STConfig {
@@ -1618,7 +1618,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
- * Generated from: table-column-source.ts
+ * Generated from: st-column-source.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class STColumnSource {
@@ -2084,7 +2084,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
- * Generated from: table-data-source.ts
+ * Generated from: st-data-source.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
@@ -2812,7 +2812,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
- * Generated from: table-export.ts
+ * Generated from: st-export.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class STExport {
@@ -2925,7 +2925,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
- * Generated from: table.component.ts
+ * Generated from: st.component.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class STComponent {
@@ -4386,7 +4386,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
- * Generated from: table.module.ts
+ * Generated from: st.module.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */

@@ -9,7 +9,7 @@ import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 
 /**
  * @fileoverview added by tsickle
- * Generated from: view.config.ts
+ * Generated from: sv.config.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class SVConfig {
@@ -75,7 +75,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
- * Generated from: view-container.component.ts
+ * Generated from: sv-container.component.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
@@ -192,7 +192,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
- * Generated from: view-title.component.ts
+ * Generated from: sv-title.component.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class SVTitleComponent {
@@ -265,7 +265,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
- * Generated from: view.component.ts
+ * Generated from: sv.component.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
@@ -444,7 +444,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
- * Generated from: view.module.ts
+ * Generated from: sv.module.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
