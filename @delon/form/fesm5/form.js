@@ -4820,7 +4820,7 @@ var NumberWidget = /** @class */ (function (_super) {
     NumberWidget.decorators = [
         { type: Component, args: [{
                     selector: 'sf-number',
-                    template: "<sf-item-wrap [id]=\"id\"\n              [schema]=\"schema\"\n              [ui]=\"ui\"\n              [showError]=\"showError\"\n              [error]=\"error\"\n              [showTitle]=\"schema.title\">\n  <nz-input-number [ngModel]=\"value\"\n                   (ngModelChange)=\"_setValue($event)\"\n                   [nzDisabled]=\"disabled\"\n                   [nzSize]=\"ui.size\"\n                   [nzMin]=\"min\"\n                   [nzMax]=\"max\"\n                   [nzStep]=\"step\"\n                   [nzFormatter]=\"formatter\"\n                   [nzParser]=\"parser\"\n                   [nzPrecision]=\"ui.precision\"\n                   [nzPlaceHolder]=\"ui.placeholder || ''\">\n  </nz-input-number>\n</sf-item-wrap>\n",
+                    template: "<sf-item-wrap [id]=\"id\"\n              [schema]=\"schema\"\n              [ui]=\"ui\"\n              [showError]=\"showError\"\n              [error]=\"error\"\n              [showTitle]=\"schema.title\">\n  <nz-input-number [ngModel]=\"value\"\n                   (ngModelChange)=\"_setValue($event)\"\n                   [nzDisabled]=\"disabled\"\n                   [nzSize]=\"ui.size\"\n                   [nzMin]=\"min\"\n                   [nzMax]=\"max\"\n                   [nzStep]=\"step\"\n                   [nzFormatter]=\"formatter\"\n                   [nzParser]=\"parser\"\n                   [nzPrecision]=\"ui.precision\"\n                   [nzPlaceHolder]=\"ui.placeholder || ''\"\n                   [style.width.px]=\"ui.widgetWidth || 90\">\n  </nz-input-number>\n</sf-item-wrap>\n",
                     preserveWhitespaces: false,
                     encapsulation: ViewEncapsulation.None
                 }] }
@@ -5311,10 +5311,59 @@ var StringWidget = /** @class */ (function (_super) {
             this.setValue('#000000');
         }
     };
+    /**
+     * @param {?} val
+     * @return {?}
+     */
+    StringWidget.prototype.change = /**
+     * @param {?} val
+     * @return {?}
+     */
+    function (val) {
+        this.setValue(val);
+        if (this.ui.change)
+            this.ui.change(val);
+    };
+    /**
+     * @param {?} e
+     * @return {?}
+     */
+    StringWidget.prototype.focus = /**
+     * @param {?} e
+     * @return {?}
+     */
+    function (e) {
+        if (this.ui.focus)
+            this.ui.focus(e);
+    };
+    /**
+     * @param {?} e
+     * @return {?}
+     */
+    StringWidget.prototype.blur = /**
+     * @param {?} e
+     * @return {?}
+     */
+    function (e) {
+        if (this.ui.blur)
+            this.ui.blur(e);
+    };
+    /**
+     * @param {?} e
+     * @return {?}
+     */
+    StringWidget.prototype.enter = /**
+     * @param {?} e
+     * @return {?}
+     */
+    function (e) {
+        if (this.ui.enter)
+            this.ui.enter(e);
+    };
     StringWidget.decorators = [
         { type: Component, args: [{
                     selector: 'sf-string',
-                    template: "<sf-item-wrap [id]=\"id\"\n              [schema]=\"schema\"\n              [ui]=\"ui\"\n              [showError]=\"showError\"\n              [error]=\"error\"\n              [showTitle]=\"schema.title\">\n\n  <ng-template #ipt>\n    <input nz-input\n           [attr.id]=\"id\"\n           [disabled]=\"disabled\"\n           [attr.disabled]=\"disabled\"\n           [nzSize]=\"ui.size\"\n           [ngModel]=\"value\"\n           (ngModelChange)=\"setValue($event)\"\n           [attr.maxLength]=\"schema.maxLength || null\"\n           [attr.type]=\"ui.type || 'text'\"\n           [attr.placeholder]=\"ui.placeholder\"\n           [attr.autocomplete]=\"ui.autocomplete\"\n           [attr.autoFocus]=\"ui.autofocus\">\n  </ng-template>\n\n  <ng-container *ngIf=\"type === 'addon'; else ipt\">\n    <nz-input-group [nzAddOnBefore]=\"ui.addOnBefore\"\n                    [nzAddOnAfter]=\"ui.addOnAfter\"\n                    [nzAddOnBeforeIcon]=\"ui.addOnBeforeIcon\"\n                    [nzAddOnAfterIcon]=\"ui.addOnAfterIcon\"\n                    [nzPrefix]=\"ui.prefix\"\n                    [nzPrefixIcon]=\"ui.prefixIcon\"\n                    [nzSuffix]=\"ui.suffix\"\n                    [nzSuffixIcon]=\"ui.suffixIcon\">\n      <ng-template [ngTemplateOutlet]=\"ipt\"></ng-template>\n    </nz-input-group>\n  </ng-container>\n</sf-item-wrap>\n",
+                    template: "<sf-item-wrap [id]=\"id\"\n              [schema]=\"schema\"\n              [ui]=\"ui\"\n              [showError]=\"showError\"\n              [error]=\"error\"\n              [showTitle]=\"schema.title\">\n\n  <ng-template #ipt>\n    <input nz-input\n           [attr.id]=\"id\"\n           [disabled]=\"disabled\"\n           [attr.disabled]=\"disabled\"\n           [nzSize]=\"ui.size\"\n           [ngModel]=\"value\"\n           (ngModelChange)=\"change($event)\"\n           [attr.maxLength]=\"schema.maxLength || null\"\n           [attr.type]=\"ui.type || 'text'\"\n           [attr.placeholder]=\"ui.placeholder\"\n           [attr.autocomplete]=\"ui.autocomplete\"\n           [attr.autoFocus]=\"ui.autofocus\"\n           (keyup.enter)=\"enter($event)\"\n           (focus)=\"focus($event)\"\n           (blur)=\"blur($event)\">\n  </ng-template>\n\n  <ng-container *ngIf=\"type === 'addon'; else ipt\">\n    <nz-input-group [nzAddOnBefore]=\"ui.addOnBefore\"\n                    [nzAddOnAfter]=\"ui.addOnAfter\"\n                    [nzAddOnBeforeIcon]=\"ui.addOnBeforeIcon\"\n                    [nzAddOnAfterIcon]=\"ui.addOnAfterIcon\"\n                    [nzPrefix]=\"ui.prefix\"\n                    [nzPrefixIcon]=\"ui.prefixIcon\"\n                    [nzSuffix]=\"ui.suffix\"\n                    [nzSuffixIcon]=\"ui.suffixIcon\">\n      <ng-template [ngTemplateOutlet]=\"ipt\"></ng-template>\n    </nz-input-group>\n  </ng-container>\n</sf-item-wrap>\n",
                     preserveWhitespaces: false,
                     encapsulation: ViewEncapsulation.None
                 }] }
@@ -5909,7 +5958,7 @@ var UploadWidget = /** @class */ (function (_super) {
      * @return {?}
      */
     function () {
-        var _a = this.ui, type = _a.type, text = _a.text, hint = _a.hint, action = _a.action, accept = _a.accept, limit = _a.limit, filter = _a.filter, fileSize = _a.fileSize, fileType = _a.fileType, listType = _a.listType, multiple = _a.multiple, name = _a.name, showUploadList = _a.showUploadList, withCredentials = _a.withCredentials, resReName = _a.resReName, urlReName = _a.urlReName, beforeUpload = _a.beforeUpload, customRequest = _a.customRequest, directory = _a.directory, openFileDialogOnClick = _a.openFileDialogOnClick;
+        var _a = this.ui, type = _a.type, text = _a.text, hint = _a.hint, action = _a.action, accept = _a.accept, limit = _a.limit, filter = _a.filter, fileSize = _a.fileSize, fileType = _a.fileType, listType = _a.listType, multiple = _a.multiple, name = _a.name, showUploadList = _a.showUploadList, withCredentials = _a.withCredentials, resReName = _a.resReName, urlReName = _a.urlReName, beforeUpload = _a.beforeUpload, customRequest = _a.customRequest, directory = _a.directory, openFileDialogOnClick = _a.openFileDialogOnClick, limitFileCount = _a.limitFileCount;
         /** @type {?} */
         var res = {
             type: type || 'select',
@@ -5931,6 +5980,7 @@ var UploadWidget = /** @class */ (function (_super) {
             urlReName: (urlReName || '').split('.'),
             beforeUpload: typeof beforeUpload === 'function' ? beforeUpload : null,
             customRequest: typeof customRequest === 'function' ? customRequest : null,
+            limitFileCount: limitFileCount || 999,
         };
         if (res.listType === 'picture-card') {
             this.btnType = 'plus';
@@ -6032,7 +6082,7 @@ var UploadWidget = /** @class */ (function (_super) {
     UploadWidget.decorators = [
         { type: Component, args: [{
                     selector: 'sf-upload',
-                    template: "<sf-item-wrap [id]=\"id\"\n              [schema]=\"schema\"\n              [ui]=\"ui\"\n              [showError]=\"showError\"\n              [error]=\"error\"\n              [showTitle]=\"schema.title\">\n  <nz-upload [nzType]=\"i.type\"\n             [(nzFileList)]=\"fileList\"\n             [nzDisabled]=\"disabled\"\n             [nzAction]=\"i.action\"\n             [nzDirectory]=\"i.directory\"\n             [nzOpenFileDialogOnClick]=\"i.openFileDialogOnClick\"\n             [nzAccept]=\"i.accept\"\n             [nzLimit]=\"i.limit\"\n             [nzFilter]=\"i.filter\"\n             [nzSize]=\"i.size\"\n             [nzFileType]=\"i.fileType\"\n             [nzHeaders]=\"ui.headers\"\n             [nzData]=\"ui.data\"\n             [nzListType]=\"i.listType\"\n             [nzMultiple]=\"i.multiple\"\n             [nzName]=\"i.name\"\n             [nzShowUploadList]=\"i.showUploadList\"\n             [nzWithCredentials]=\"i.withCredentials\"\n             [nzBeforeUpload]=\"i.beforeUpload\"\n             [nzCustomRequest]=\"i.customRequest\"\n             [nzRemove]=\"ui.remove || handleRemove\"\n             [nzPreview]=\"handlePreview\"\n             (nzChange)=\"change($event)\">\n    <ng-container [ngSwitch]=\"btnType\">\n      <ng-container *ngSwitchCase=\"'plus'\">\n        <i nz-icon nzType=\"plus\"></i>\n        <div class=\"ant-upload-text\" [innerHTML]=\"i.text\"></div>\n      </ng-container>\n      <ng-container *ngSwitchCase=\"'drag'\">\n        <p class=\"ant-upload-drag-icon\"><i nz-icon nzType=\"inbox\"></i></p>\n        <p class=\"ant-upload-text\" [innerHTML]=\"i.text\"></p>\n        <p class=\"ant-upload-hint\" [innerHTML]=\"i.hint\"></p>\n      </ng-container>\n      <ng-container *ngSwitchDefault>\n        <button type=\"button\" nz-button>\n          <i nz-icon nzType=\"upload\"></i><span [innerHTML]=\"i.text\"></span>\n        </button>\n      </ng-container>\n    </ng-container>\n  </nz-upload>\n</sf-item-wrap>\n",
+                    template: "<sf-item-wrap [id]=\"id\"\n              [schema]=\"schema\"\n              [ui]=\"ui\"\n              [showError]=\"showError\"\n              [error]=\"error\"\n              [showTitle]=\"schema.title\">\n  <nz-upload [nzType]=\"i.type\"\n             [(nzFileList)]=\"fileList\"\n             [nzDisabled]=\"disabled\"\n             [nzAction]=\"i.action\"\n             [nzDirectory]=\"i.directory\"\n             [nzOpenFileDialogOnClick]=\"i.openFileDialogOnClick\"\n             [nzAccept]=\"i.accept\"\n             [nzLimit]=\"i.limit\"\n             [nzFilter]=\"i.filter\"\n             [nzSize]=\"i.size\"\n             [nzFileType]=\"i.fileType\"\n             [nzHeaders]=\"ui.headers\"\n             [nzData]=\"ui.data\"\n             [nzListType]=\"i.listType\"\n             [nzMultiple]=\"i.multiple\"\n             [nzName]=\"i.name\"\n             [nzShowUploadList]=\"i.showUploadList\"\n             [nzWithCredentials]=\"i.withCredentials\"\n             [nzBeforeUpload]=\"i.beforeUpload\"\n             [nzCustomRequest]=\"i.customRequest\"\n             [nzRemove]=\"ui.remove || handleRemove\"\n             [nzPreview]=\"handlePreview\"\n             (nzChange)=\"change($event)\"\n             [nzShowButton]=\"fileList.length < i.limitFileCount\">\n    <ng-container [ngSwitch]=\"btnType\">\n      <ng-container *ngSwitchCase=\"'plus'\">\n        <i nz-icon nzType=\"plus\"></i>\n        <div class=\"ant-upload-text\" [innerHTML]=\"i.text\"></div>\n      </ng-container>\n      <ng-container *ngSwitchCase=\"'drag'\">\n        <p class=\"ant-upload-drag-icon\"><i nz-icon nzType=\"inbox\"></i></p>\n        <p class=\"ant-upload-text\" [innerHTML]=\"i.text\"></p>\n        <p class=\"ant-upload-hint\" [innerHTML]=\"i.hint\"></p>\n      </ng-container>\n      <ng-container *ngSwitchDefault>\n        <button type=\"button\" nz-button>\n          <i nz-icon nzType=\"upload\"></i><span [innerHTML]=\"i.text\"></span>\n        </button>\n      </ng-container>\n    </ng-container>\n  </nz-upload>\n</sf-item-wrap>\n",
                     preserveWhitespaces: false,
                     encapsulation: ViewEncapsulation.None
                 }] }
@@ -7035,6 +7085,26 @@ if (false) {
      * @type {?|undefined}
      */
     SFStringWidgetSchema.prototype.suffixIcon;
+    /**
+     * 内容变更事件
+     * @type {?|undefined}
+     */
+    SFStringWidgetSchema.prototype.change;
+    /**
+     * 焦点事件
+     * @type {?|undefined}
+     */
+    SFStringWidgetSchema.prototype.focus;
+    /**
+     * 失焦事件
+     * @type {?|undefined}
+     */
+    SFStringWidgetSchema.prototype.blur;
+    /**
+     * 回车事件
+     * @type {?|undefined}
+     */
+    SFStringWidgetSchema.prototype.enter;
 }
 
 /**
@@ -7074,6 +7144,11 @@ if (false) {
      * @type {?|undefined}
      */
     SFNumberWidgetSchema.prototype.precision;
+    /**
+     * 指定 `nz-number` 宽度
+     * @type {?|undefined}
+     */
+    SFNumberWidgetSchema.prototype.widgetWidth;
 }
 
 /**
@@ -7763,6 +7838,11 @@ if (false) {
      * @type {?|undefined}
      */
     SFUploadWidgetSchema.prototype.limit;
+    /**
+     * 限制上传文件数量，超过数量隐藏上传按钮
+     * @type {?|undefined}
+     */
+    SFUploadWidgetSchema.prototype.limitFileCount;
     /**
      * 自定义过滤器
      * @type {?|undefined}

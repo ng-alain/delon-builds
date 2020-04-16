@@ -1,8 +1,8 @@
 import { InjectionToken, Injectable, ɵɵdefineInjectable, Optional, Inject, ɵɵinject, Injector, INJECTOR, SkipSelf, NgModule, Pipe, Version } from '@angular/core';
 import { __values, __assign, __spread, __extends } from 'tslib';
 import { ACLService } from '@delon/acl';
-import { BehaviorSubject, Subject, Observable, throwError } from 'rxjs';
-import { filter, share, tap, catchError } from 'rxjs/operators';
+import { BehaviorSubject, Subject, Observable, throwError, of } from 'rxjs';
+import { filter, share, tap, catchError, switchMap } from 'rxjs/operators';
 import { DOCUMENT, CurrencyPipe, CommonModule } from '@angular/common';
 import { Title, DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
@@ -643,7 +643,12 @@ var MenuService = /** @class */ (function () {
             }));
             if (!recursive)
                 break;
-            url = url.split('/').slice(0, -1).join('/');
+            if (url.includes('?')) {
+                url = url.split('?')[0];
+            }
+            else {
+                url = url.split('/').slice(0, -1).join('/');
+            }
         }
         return item;
     };
@@ -1432,9 +1437,20 @@ var TitleService = /** @class */ (function () {
      */
     function () {
         /** @type {?} */
-        var el = this.doc.querySelector('.alain-default__content-title h1') || this.doc.querySelector('.page-header__title');
+        var el = (/** @type {?} */ ((this.doc.querySelector('.alain-default__content-title h1') || this.doc.querySelector('.page-header__title'))));
         if (el) {
-            return el.firstChild.textContent.trim();
+            /** @type {?} */
+            var text_1 = '';
+            el.childNodes.forEach((/**
+             * @param {?} val
+             * @return {?}
+             */
+            function (val) {
+                if (!text_1 && val.nodeType === 3) {
+                    text_1 = (/** @type {?} */ (val.textContent)).trim();
+                }
+            }));
+            return text_1 || (/** @type {?} */ ((/** @type {?} */ (el.firstChild)).textContent)).trim();
         }
         return '';
     };
@@ -2565,6 +2581,88 @@ var hrHR = (/** @type {?} */ ({
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: src/locale/languages/ja-JP.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var jaJP = (/** @type {?} */ ({
+    abbr: 'ja-JP',
+    exception: {
+        403: 'ページへのアクセス権限がありません',
+        404: 'ページが存在しません',
+        500: 'サーバーエラーが発生しました',
+        backToHome: 'ホームに戻る',
+    },
+    noticeIcon: {
+        emptyText: 'データが有りません',
+        clearText: 'クリア',
+    },
+    reuseTab: {
+        close: 'タブを閉じる',
+        closeOther: '他のタブを閉じる',
+        closeRight: '右のタブを閉じる',
+        clear: 'クリア',
+    },
+    tagSelect: {
+        expand: '展開する',
+        collapse: '折りたたむ',
+    },
+    miniProgress: {
+        target: '設定値: ',
+    },
+    st: {
+        total: '{{range[0]}} - {{range[1]}} / {{total}}',
+        filterConfirm: '確定',
+        filterReset: 'リセット',
+    },
+    sf: {
+        submit: '送信',
+        reset: 'リセット',
+        search: '検索',
+        edit: '保存',
+        addText: '追加',
+        removeText: '削除',
+        checkAllText: '全選択',
+        error: {
+            'false schema': "\u771F\u507D\u5024\u30B9\u30AD\u30FC\u30DE\u304C\u4E0D\u6B63\u3067\u3059",
+            $ref: "\u53C2\u7167\u3092\u89E3\u6C7A\u3067\u304D\u307E\u305B\u3093: {ref}",
+            additionalItems: "{limit}\u500B\u3092\u8D85\u3048\u308B\u30A2\u30A4\u30C6\u30E0\u3092\u542B\u3081\u308B\u3053\u3068\u306F\u3067\u304D\u307E\u305B\u3093",
+            additionalProperties: "\u8FFD\u52A0\u306E\u30D7\u30ED\u30D1\u30C6\u30A3\u3092\u4F7F\u7528\u3057\u306A\u3044\u3067\u304F\u3060\u3055\u3044",
+            anyOf: "\"anyOf\"\u306E\u30B9\u30AD\u30FC\u30DE\u3068\u4E00\u81F4\u3059\u308B\u5FC5\u8981\u304C\u3042\u308A\u307E\u3059",
+            dependencies: "\u30D7\u30ED\u30D1\u30C6\u30A3 {property} \u3092\u6307\u5B9A\u3057\u305F\u5834\u5408\u3001\u6B21\u306E\u4F9D\u5B58\u95A2\u4FC2\u3092\u6E80\u305F\u3059\u5FC5\u8981\u304C\u3042\u308A\u307E\u3059: {deps}",
+            enum: "\u5B9A\u7FA9\u3055\u308C\u305F\u5024\u306E\u3044\u305A\u308C\u304B\u306B\u7B49\u3057\u304F\u306A\u3051\u308C\u3070\u306A\u308A\u307E\u305B\u3093",
+            format: "\u5165\u529B\u5F62\u5F0F\u306B\u4E00\u81F4\u3057\u307E\u305B\u3093: \"{format}\"",
+            type: "\u578B\u304C\u4E0D\u6B63\u3067\u3059: {type}",
+            required: "\u5FC5\u9808\u9805\u76EE\u3067\u3059",
+            maxLength: "\u6700\u5927\u6587\u5B57\u6570: {limit}",
+            minLength: "\u6700\u5C11\u6587\u5B57\u6570: {limit}",
+            minimum: "\u5024\u304C\u4E0D\u6B63\u3067\u3059: {comparison} {limit}",
+            formatMinimum: "\u5024\u304C\u4E0D\u6B63\u3067\u3059: {comparison} {limit}",
+            maximum: "\u5024\u304C\u4E0D\u6B63\u3067\u3059: {comparison} {limit}",
+            formatMaximum: "\u5024\u304C\u4E0D\u6B63\u3067\u3059: {comparison} {limit}",
+            maxItems: "\u6700\u5927\u9078\u629E\u6570\u306F {limit}\u3000\u3088\u308A\u5C0F\u3055\u3044\u5FC5\u8981\u304C\u3042\u308A\u307E\u3059",
+            minItems: "\u6700\u5C0F\u9078\u629E\u6570\u306F {limit}\u3000\u3088\u308A\u5927\u304D\u3044\u5FC5\u8981\u304C\u3042\u308A\u307E\u3059",
+            maxProperties: "\u5024\u3092{limit}\u3088\u308A\u5927\u304D\u304F\u3059\u308B\u3053\u3068\u306F\u3067\u304D\u307E\u305B\u3093",
+            minProperties: "\u5024\u3092{limit}\u3088\u308A\u5C0F\u3055\u304F\u3059\u308B\u3053\u3068\u306F\u3067\u304D\u307E\u305B\u3093",
+            multipleOf: "\u5024\u306F\u6B21\u306E\u6570\u306E\u500D\u6570\u3067\u3042\u308B\u5FC5\u8981\u304C\u3042\u308A\u307E\u3059: {multipleOf}",
+            not: "\u5024\u304C\u4E0D\u6B63\u3067\u3059:",
+            oneOf: "\u5024\u304C\u4E0D\u6B63\u3067\u3059:",
+            pattern: "\u6B21\u306E\u30D1\u30BF\u30FC\u30F3\u306B\u4E00\u81F4\u3059\u308B\u5FC5\u8981\u304C\u3042\u308A\u307E\u3059: \"{pattern}\"",
+            uniqueItems: "\u5024\u304C\u91CD\u8907\u3057\u3066\u3044\u307E\u3059: \u9078\u629E\u80A2: {j} \u3001{i}",
+            custom: "\u5F62\u5F0F\u3068\u4E00\u81F4\u3059\u308B\u5FC5\u8981\u304C\u3042\u308A\u307E\u3059",
+            propertyNames: "\u6B21\u306E\u30D7\u30ED\u30D1\u30C6\u30A3\u306E\u5024\u304C\u7121\u52B9\u3067\u3059: \"{propertyName}\"",
+            patternRequired: "\u6B21\u306E\u30D1\u30BF\u30FC\u30F3\u306B\u4E00\u81F4\u3059\u308B\u30D7\u30ED\u30D1\u30C6\u30A3\u304C\u5FC5\u9808\u3067\u3059: \"{missingPattern}\"",
+            switch: "\"switch\" \u30AD\u30FC\u30EF\u30FC\u30C9\u306E\u5024\u304C\u4E0D\u6B63\u3067\u3059: {caseIndex}",
+            const: "\u5024\u304C\u5B9A\u6570\u306B\u4E00\u81F4\u3057\u307E\u305B\u3093",
+            contains: "\u6709\u52B9\u306A\u30A2\u30A4\u30C6\u30E0\u3092\u542B\u3081\u308B\u5FC5\u8981\u304C\u3042\u308A\u307E\u3059",
+            formatExclusiveMaximum: "formatExclusiveMaximum \u306F\u771F\u507D\u5024\u3067\u3042\u308B\u5FC5\u8981\u304C\u3042\u308A\u307E\u3059",
+            formatExclusiveMinimum: "formatExclusiveMaximum \u306F\u771F\u507D\u5024\u3067\u3042\u308B\u5FC5\u8981\u304C\u3042\u308A\u307E\u3059",
+            if: "\u30D1\u30BF\u30FC\u30F3\u3068\u4E00\u81F4\u3059\u308B\u5FC5\u8981\u304C\u3042\u308A\u307E\u3059: \"{failingKeyword}\" ",
+        },
+    },
+}));
+
+/**
+ * @fileoverview added by tsickle
  * Generated from: src/locale/public_api.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
@@ -3191,10 +3289,10 @@ var _HttpClient = /** @class */ (function () {
      */
     function () {
         var _this = this;
-        setTimeout((/**
+        Promise.resolve(null).then((/**
          * @return {?}
          */
-        function () { return (_this._loading = true); }), 10);
+        function () { return (_this._loading = true); }));
     };
     /**
      * @return {?}
@@ -3204,10 +3302,10 @@ var _HttpClient = /** @class */ (function () {
      */
     function () {
         var _this = this;
-        setTimeout((/**
+        Promise.resolve(null).then((/**
          * @return {?}
          */
-        function () { return (_this._loading = false); }), 10);
+        function () { return (_this._loading = false); }));
     };
     /**
      * GET 请求
@@ -3370,6 +3468,32 @@ var _HttpClient = /** @class */ (function () {
             params: params }, options));
     };
     /**
+     * 发送传统表单请求（即：`application/x-www-form-urlencoded`）
+     */
+    /**
+     * 发送传统表单请求（即：`application/x-www-form-urlencoded`）
+     * @param {?} url
+     * @param {?} body
+     * @param {?} params
+     * @param {?=} options
+     * @return {?}
+     */
+    _HttpClient.prototype.form = /**
+     * 发送传统表单请求（即：`application/x-www-form-urlencoded`）
+     * @param {?} url
+     * @param {?} body
+     * @param {?} params
+     * @param {?=} options
+     * @return {?}
+     */
+    function (url, body, params, options) {
+        if (options === void 0) { options = {}; }
+        return this.request('POST', url, __assign(__assign({ body: body,
+            params: params }, options), { headers: {
+                'content-type': "application/x-www-form-urlencoded",
+            } }));
+    };
+    /**
      * @param {?} method
      * @param {?} url
      * @param {?=} options
@@ -3387,7 +3511,13 @@ var _HttpClient = /** @class */ (function () {
         this.begin();
         if (options.params)
             options.params = this.parseParams(options.params);
-        return this.http.request(method, url, options).pipe(tap((/**
+        return of(null).pipe(tap((/**
+         * @return {?}
+         */
+        function () { return _this.begin(); })), switchMap((/**
+         * @return {?}
+         */
+        function () { return _this.http.request(method, url, options); })), tap((/**
          * @return {?}
          */
         function () { return _this.end(); })), catchError((/**
@@ -3720,6 +3850,9 @@ function makeMethod(method) {
                     p[i.key] = args[i.index];
                     return p;
                 }), {});
+                if (method === 'FORM') {
+                    headers['content-type'] = 'application/x-www-form-urlencoded';
+                }
                 /** @type {?} */
                 var payload = getValidArgs(data, 'payload', args);
                 /** @type {?} */
@@ -3778,6 +3911,12 @@ var PATCH = makeMethod('PATCH');
  * @type {?}
  */
 var JSONP = makeMethod('JSONP');
+/**
+ * `FORM` 请求
+ * - 有效范围：方法
+ * @type {?}
+ */
+var FORM = makeMethod('FORM');
 
 /**
  * @fileoverview added by tsickle
@@ -3910,6 +4049,7 @@ var YNPipe = /** @class */ (function () {
      * @param {?} yes
      * @param {?} no
      * @param {?} mode
+     * @param {?=} isSafeHtml
      * @return {?}
      */
     YNPipe.prototype.transform = /**
@@ -3917,9 +4057,11 @@ var YNPipe = /** @class */ (function () {
      * @param {?} yes
      * @param {?} no
      * @param {?} mode
+     * @param {?=} isSafeHtml
      * @return {?}
      */
-    function (value, yes, no, mode) {
+    function (value, yes, no, mode, isSafeHtml) {
+        if (isSafeHtml === void 0) { isSafeHtml = true; }
         /** @type {?} */
         var html = '';
         yes = yes || '是';
@@ -3935,7 +4077,7 @@ var YNPipe = /** @class */ (function () {
                 html = value ? "<i " + CLS_YES + " title=\"" + yes + "\">" + ICON_YES + "</i>" : "<i " + CLS_NO + " title=\"" + no + "\">" + ICON_NO + "</i>";
                 break;
         }
-        return this.dom.bypassSecurityTrustHtml(html);
+        return isSafeHtml ? this.dom.bypassSecurityTrustHtml(html) : html;
     };
     YNPipe.decorators = [
         { type: Pipe, args: [{ name: 'yn' },] }
@@ -4129,7 +4271,7 @@ var AlainThemeModule = /** @class */ (function () {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-var VERSION = new Version('9.0.0-alpha.1-d0811ef3');
+var VERSION = new Version('9.0.0-alpha.1-ff93204c');
 
 /**
  * @fileoverview added by tsickle
@@ -4143,5 +4285,5 @@ var VERSION = new Version('9.0.0-alpha.1-d0811ef3');
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { ALAIN_I18N_TOKEN, APP, AlainI18NServiceFake, AlainThemeConfig, AlainThemeModule, BaseApi, BaseHeaders, BaseUrl, Body, CNCurrencyPipe, DELETE, DELON_LOCALE, DELON_LOCALE_SERVICE_PROVIDER, DELON_LOCALE_SERVICE_PROVIDER_FACTORY, DatePipe, DelonLocaleModule, DelonLocaleService, DrawerHelper, GET, HEAD, HTMLPipe, Headers, JSONP, KeysPipe, LAYOUT, MenuService, ModalHelper, OPTIONS, PATCH, POST, PUT, Path, Payload, Query, REP_MAX, ResponsiveService, ScrollService, SettingsService, TitleService, URLPipe, USER, VERSION, WINDOW, YNPipe, _HttpClient, elGR as el_GR, enUS as en_US, hrHR as hr_HR, koKR as ko_KR, plPL as pl_PL, preloaderFinished, trTR as tr_TR, zhCN as zh_CN, zhTW as zh_TW, ALAIN_I18N_TOKEN_FACTORY as ɵa, I18nPipe as ɵb };
+export { ALAIN_I18N_TOKEN, APP, AlainI18NServiceFake, AlainThemeConfig, AlainThemeModule, BaseApi, BaseHeaders, BaseUrl, Body, CNCurrencyPipe, DELETE, DELON_LOCALE, DELON_LOCALE_SERVICE_PROVIDER, DELON_LOCALE_SERVICE_PROVIDER_FACTORY, DatePipe, DelonLocaleModule, DelonLocaleService, DrawerHelper, FORM, GET, HEAD, HTMLPipe, Headers, JSONP, KeysPipe, LAYOUT, MenuService, ModalHelper, OPTIONS, PATCH, POST, PUT, Path, Payload, Query, REP_MAX, ResponsiveService, ScrollService, SettingsService, TitleService, URLPipe, USER, VERSION, WINDOW, YNPipe, _HttpClient, elGR as el_GR, enUS as en_US, hrHR as hr_HR, jaJP as ja_JP, koKR as ko_KR, plPL as pl_PL, preloaderFinished, trTR as tr_TR, zhCN as zh_CN, zhTW as zh_TW, ALAIN_I18N_TOKEN_FACTORY as ɵa, I18nPipe as ɵb };
 //# sourceMappingURL=theme.js.map

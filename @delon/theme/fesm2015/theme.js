@@ -1,7 +1,7 @@
 import { InjectionToken, Injectable, ɵɵdefineInjectable, Optional, Inject, ɵɵinject, Injector, INJECTOR, SkipSelf, NgModule, Pipe, Version } from '@angular/core';
 import { ACLService } from '@delon/acl';
-import { BehaviorSubject, Subject, Observable, throwError } from 'rxjs';
-import { filter, share, tap, catchError } from 'rxjs/operators';
+import { BehaviorSubject, Subject, Observable, throwError, of } from 'rxjs';
+import { filter, share, tap, catchError, switchMap } from 'rxjs/operators';
 import { DOCUMENT, CurrencyPipe, CommonModule } from '@angular/common';
 import { Title, DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
@@ -559,7 +559,12 @@ class MenuService {
             }));
             if (!recursive)
                 break;
-            url = url.split('/').slice(0, -1).join('/');
+            if (url.includes('?')) {
+                url = url.split('?')[0];
+            }
+            else {
+                url = url.split('/').slice(0, -1).join('/');
+            }
         }
         return item;
     }
@@ -1197,9 +1202,20 @@ class TitleService {
      */
     getByElement() {
         /** @type {?} */
-        const el = this.doc.querySelector('.alain-default__content-title h1') || this.doc.querySelector('.page-header__title');
+        const el = (/** @type {?} */ ((this.doc.querySelector('.alain-default__content-title h1') || this.doc.querySelector('.page-header__title'))));
         if (el) {
-            return el.firstChild.textContent.trim();
+            /** @type {?} */
+            let text = '';
+            el.childNodes.forEach((/**
+             * @param {?} val
+             * @return {?}
+             */
+            val => {
+                if (!text && val.nodeType === 3) {
+                    text = (/** @type {?} */ (val.textContent)).trim();
+                }
+            }));
+            return text || (/** @type {?} */ ((/** @type {?} */ (el.firstChild)).textContent)).trim();
         }
         return '';
     }
@@ -2278,6 +2294,88 @@ var hrHR = (/** @type {?} */ ({
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: src/locale/languages/ja-JP.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var jaJP = (/** @type {?} */ ({
+    abbr: 'ja-JP',
+    exception: {
+        403: 'ページへのアクセス権限がありません',
+        404: 'ページが存在しません',
+        500: 'サーバーエラーが発生しました',
+        backToHome: 'ホームに戻る',
+    },
+    noticeIcon: {
+        emptyText: 'データが有りません',
+        clearText: 'クリア',
+    },
+    reuseTab: {
+        close: 'タブを閉じる',
+        closeOther: '他のタブを閉じる',
+        closeRight: '右のタブを閉じる',
+        clear: 'クリア',
+    },
+    tagSelect: {
+        expand: '展開する',
+        collapse: '折りたたむ',
+    },
+    miniProgress: {
+        target: '設定値: ',
+    },
+    st: {
+        total: '{{range[0]}} - {{range[1]}} / {{total}}',
+        filterConfirm: '確定',
+        filterReset: 'リセット',
+    },
+    sf: {
+        submit: '送信',
+        reset: 'リセット',
+        search: '検索',
+        edit: '保存',
+        addText: '追加',
+        removeText: '削除',
+        checkAllText: '全選択',
+        error: {
+            'false schema': `真偽値スキーマが不正です`,
+            $ref: `参照を解決できません: {ref}`,
+            additionalItems: `{limit}個を超えるアイテムを含めることはできません`,
+            additionalProperties: `追加のプロパティを使用しないでください`,
+            anyOf: `"anyOf"のスキーマと一致する必要があります`,
+            dependencies: `プロパティ {property} を指定した場合、次の依存関係を満たす必要があります: {deps}`,
+            enum: `定義された値のいずれかに等しくなければなりません`,
+            format: `入力形式に一致しません: "{format}"`,
+            type: `型が不正です: {type}`,
+            required: `必須項目です`,
+            maxLength: `最大文字数: {limit}`,
+            minLength: `最少文字数: {limit}`,
+            minimum: `値が不正です: {comparison} {limit}`,
+            formatMinimum: `値が不正です: {comparison} {limit}`,
+            maximum: `値が不正です: {comparison} {limit}`,
+            formatMaximum: `値が不正です: {comparison} {limit}`,
+            maxItems: `最大選択数は {limit}　より小さい必要があります`,
+            minItems: `最小選択数は {limit}　より大きい必要があります`,
+            maxProperties: `値を{limit}より大きくすることはできません`,
+            minProperties: `値を{limit}より小さくすることはできません`,
+            multipleOf: `値は次の数の倍数である必要があります: {multipleOf}`,
+            not: `値が不正です:`,
+            oneOf: `値が不正です:`,
+            pattern: `次のパターンに一致する必要があります: "{pattern}"`,
+            uniqueItems: `値が重複しています: 選択肢: {j} 、{i}`,
+            custom: `形式と一致する必要があります`,
+            propertyNames: `次のプロパティの値が無効です: "{propertyName}"`,
+            patternRequired: `次のパターンに一致するプロパティが必須です: "{missingPattern}"`,
+            switch: `"switch" キーワードの値が不正です: {caseIndex}`,
+            const: `値が定数に一致しません`,
+            contains: `有効なアイテムを含める必要があります`,
+            formatExclusiveMaximum: `formatExclusiveMaximum は真偽値である必要があります`,
+            formatExclusiveMinimum: `formatExclusiveMaximum は真偽値である必要があります`,
+            if: `パターンと一致する必要があります: "{failingKeyword}" `,
+        },
+    },
+}));
+
+/**
+ * @fileoverview added by tsickle
  * Generated from: src/locale/public_api.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
@@ -2738,19 +2836,19 @@ class _HttpClient {
      * @return {?}
      */
     begin() {
-        setTimeout((/**
+        Promise.resolve(null).then((/**
          * @return {?}
          */
-        () => (this._loading = true)), 10);
+        () => (this._loading = true)));
     }
     /**
      * @return {?}
      */
     end() {
-        setTimeout((/**
+        Promise.resolve(null).then((/**
          * @return {?}
          */
-        () => (this._loading = false)), 10);
+        () => (this._loading = false)));
     }
     /**
      * GET 请求
@@ -2833,6 +2931,20 @@ class _HttpClient {
             params }, options));
     }
     /**
+     * 发送传统表单请求（即：`application/x-www-form-urlencoded`）
+     * @param {?} url
+     * @param {?} body
+     * @param {?} params
+     * @param {?=} options
+     * @return {?}
+     */
+    form(url, body, params, options = {}) {
+        return this.request('POST', url, Object.assign(Object.assign({ body,
+            params }, options), { headers: {
+                'content-type': `application/x-www-form-urlencoded`,
+            } }));
+    }
+    /**
      * @param {?} method
      * @param {?} url
      * @param {?=} options
@@ -2842,7 +2954,13 @@ class _HttpClient {
         this.begin();
         if (options.params)
             options.params = this.parseParams(options.params);
-        return this.http.request(method, url, options).pipe(tap((/**
+        return of(null).pipe(tap((/**
+         * @return {?}
+         */
+        () => this.begin())), switchMap((/**
+         * @return {?}
+         */
+        () => this.http.request(method, url, options))), tap((/**
          * @return {?}
          */
         () => this.end())), catchError((/**
@@ -3170,6 +3288,9 @@ function makeMethod(method) {
                     p[i.key] = args[i.index];
                     return p;
                 }), {});
+                if (method === 'FORM') {
+                    headers['content-type'] = 'application/x-www-form-urlencoded';
+                }
                 /** @type {?} */
                 const payload = getValidArgs(data, 'payload', args);
                 /** @type {?} */
@@ -3228,6 +3349,12 @@ const PATCH = makeMethod('PATCH');
  * @type {?}
  */
 const JSONP = makeMethod('JSONP');
+/**
+ * `FORM` 请求
+ * - 有效范围：方法
+ * @type {?}
+ */
+const FORM = makeMethod('FORM');
 
 /**
  * @fileoverview added by tsickle
@@ -3331,9 +3458,10 @@ class YNPipe {
      * @param {?} yes
      * @param {?} no
      * @param {?} mode
+     * @param {?=} isSafeHtml
      * @return {?}
      */
-    transform(value, yes, no, mode) {
+    transform(value, yes, no, mode, isSafeHtml = true) {
         /** @type {?} */
         let html = '';
         yes = yes || '是';
@@ -3349,7 +3477,7 @@ class YNPipe {
                 html = value ? `<i ${CLS_YES} title="${yes}">${ICON_YES}</i>` : `<i ${CLS_NO} title="${no}">${ICON_NO}</i>`;
                 break;
         }
-        return this.dom.bypassSecurityTrustHtml(html);
+        return isSafeHtml ? this.dom.bypassSecurityTrustHtml(html) : html;
     }
 }
 YNPipe.decorators = [
@@ -3530,7 +3658,7 @@ AlainThemeModule.ctorParameters = () => [
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-const VERSION = new Version('9.0.0-alpha.1-d0811ef3');
+const VERSION = new Version('9.0.0-alpha.1-ff93204c');
 
 /**
  * @fileoverview added by tsickle
@@ -3544,5 +3672,5 @@ const VERSION = new Version('9.0.0-alpha.1-d0811ef3');
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { ALAIN_I18N_TOKEN, APP, AlainI18NServiceFake, AlainThemeConfig, AlainThemeModule, BaseApi, BaseHeaders, BaseUrl, Body, CNCurrencyPipe, DELETE, DELON_LOCALE, DELON_LOCALE_SERVICE_PROVIDER, DELON_LOCALE_SERVICE_PROVIDER_FACTORY, DatePipe, DelonLocaleModule, DelonLocaleService, DrawerHelper, GET, HEAD, HTMLPipe, Headers, JSONP, KeysPipe, LAYOUT, MenuService, ModalHelper, OPTIONS, PATCH, POST, PUT, Path, Payload, Query, REP_MAX, ResponsiveService, ScrollService, SettingsService, TitleService, URLPipe, USER, VERSION, WINDOW, YNPipe, _HttpClient, elGR as el_GR, enUS as en_US, hrHR as hr_HR, koKR as ko_KR, plPL as pl_PL, preloaderFinished, trTR as tr_TR, zhCN as zh_CN, zhTW as zh_TW, ALAIN_I18N_TOKEN_FACTORY as ɵa, I18nPipe as ɵb };
+export { ALAIN_I18N_TOKEN, APP, AlainI18NServiceFake, AlainThemeConfig, AlainThemeModule, BaseApi, BaseHeaders, BaseUrl, Body, CNCurrencyPipe, DELETE, DELON_LOCALE, DELON_LOCALE_SERVICE_PROVIDER, DELON_LOCALE_SERVICE_PROVIDER_FACTORY, DatePipe, DelonLocaleModule, DelonLocaleService, DrawerHelper, FORM, GET, HEAD, HTMLPipe, Headers, JSONP, KeysPipe, LAYOUT, MenuService, ModalHelper, OPTIONS, PATCH, POST, PUT, Path, Payload, Query, REP_MAX, ResponsiveService, ScrollService, SettingsService, TitleService, URLPipe, USER, VERSION, WINDOW, YNPipe, _HttpClient, elGR as el_GR, enUS as en_US, hrHR as hr_HR, jaJP as ja_JP, koKR as ko_KR, plPL as pl_PL, preloaderFinished, trTR as tr_TR, zhCN as zh_CN, zhTW as zh_TW, ALAIN_I18N_TOKEN_FACTORY as ɵa, I18nPipe as ɵb };
 //# sourceMappingURL=theme.js.map
