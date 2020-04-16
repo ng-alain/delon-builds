@@ -1,7 +1,7 @@
-import { AfterViewInit, ChangeDetectorRef, ElementRef, EventEmitter, OnChanges, OnDestroy, Renderer2, SimpleChange, SimpleChanges, TemplateRef } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, ElementRef, EventEmitter, OnChanges, OnDestroy, Renderer2, SimpleChange, SimpleChanges, TemplateRef, TrackByFunction } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlainI18NService, DelonLocaleService, DrawerHelper, LocaleData, ModalHelper } from '@delon/theme';
-import { NzTableComponent } from 'ng-zorro-antd/table';
+import { NzTableComponent, NzTableData } from 'ng-zorro-antd/table';
 import { Observable } from 'rxjs';
 import { STColumnSource } from './st-column-source';
 import { STDataSource } from './st-data-source';
@@ -26,6 +26,7 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     private totalTpl;
     private clonePage;
     private copyCog;
+    private rowClickCount;
     locale: LocaleData;
     _data: STData[];
     _statistical: STStatisticalResults;
@@ -73,10 +74,6 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
         y?: string;
         x?: string;
     };
-    virtualScroll: boolean;
-    virtualItemSize: number;
-    virtualMaxBufferPx: number;
-    virtualMinBufferPx: number;
     /**
      * 单排序规则
      * - 若不指定，则返回：`columnName=ascend|descend`
@@ -113,6 +110,11 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
      * 变化时回调，包括：`pi`、`ps`、`checkbox`、`radio`、`sort`、`filter`、`click`、`dblClick` 变动
      */
     readonly change: EventEmitter<STChange>;
+    virtualScroll: boolean;
+    virtualItemSize: number;
+    virtualMaxBufferPx: number;
+    virtualMinBufferPx: number;
+    virtualForTrackBy: TrackByFunction<NzTableData>;
     /**
      * Get the number of the current page
      */
@@ -121,7 +123,6 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
      * Get the data of the current page
      */
     get list(): STData[];
-    private rowClickCount;
     constructor(i18nSrv: AlainI18NService, cdr: ChangeDetectorRef, cog: STConfig, router: Router, el: ElementRef, renderer: Renderer2, exportSrv: STExport, modalHelper: ModalHelper, drawerHelper: DrawerHelper, doc: any, columnSource: STColumnSource, dataSource: STDataSource, delonI18n: DelonLocaleService);
     cd(): this;
     renderTotal(total: string, range: string[]): string;
