@@ -71,7 +71,6 @@ function addDependenciesToPackageJson(options) {
             `@delon/testing@${lib_versions_1.VERSION}`,
             // color-less
             `antd-theme-generator@^1.1.9`,
-            `less-bundle-promise@^1.0.7`,
         ], 'devDependencies');
         // i18n
         if (options.i18n) {
@@ -106,9 +105,7 @@ function addPathsToTsConfig() {
             json.compilerOptions.paths = {};
         const paths = json.compilerOptions.paths;
         paths['@shared'] = ['src/app/shared/index'];
-        paths['@shared/*'] = ['src/app/shared/*'];
         paths['@core'] = ['src/app/core/index'];
-        paths['@core/*'] = ['src/app/core/*'];
         paths['@env/*'] = ['src/environments/*'];
         json_1.overwriteJSON(host, 'tsconfig.json', json);
         return host;
@@ -120,17 +117,10 @@ function addCodeStylesToPackageJson() {
         if (json == null)
             return host;
         json.scripts.lint = `npm run lint:ts && npm run lint:style`;
-        json.scripts['lint:ts'] = `tslint -c tslint.json \"src/**/*.ts\" --fix`;
+        json.scripts['lint:ts'] = `ng lint --fix`;
         json.scripts['lint:style'] = `stylelint \"src/**/*.less\" --syntax less --fix`;
         json.scripts['lint-staged'] = `lint-staged`;
         json.scripts['tslint-check'] = `tslint-config-prettier-check ./tslint.json`;
-        json['lint-staged'] = {
-            linters: {
-                'src/**/*.ts': ['npm run lint:ts', 'git add'],
-                'src/**/*.less': ['npm run lint:style', 'git add'],
-            },
-            ignore: ['src/assets/*'],
-        };
         json_1.overwritePackage(host, json);
         // dependencies
         json_1.addPackageToPackageJson(host, [
@@ -365,8 +355,10 @@ function installPackages() {
         context.addTask(new tasks_1.NodePackageInstallTask());
     };
 }
-function cnpmTips() {
+function tips() {
     return (_host) => {
+        console.warn(``);
+        console.warn(`Don't use cnpm to install dependencies, pls refer to: https://ng-alain.com/docs/faq#Installation`);
         console.warn(`Don't use cnpm to install dependencies, pls refer to: https://ng-alain.com/docs/faq#Installation`);
     };
 }
@@ -393,7 +385,7 @@ function default_1(options) {
             fixVsCode(),
             fixAngularJson(options),
             installPackages(),
-            cnpmTips(),
+            tips(),
         ])(host, context);
     };
 }
