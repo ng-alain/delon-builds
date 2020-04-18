@@ -6233,7 +6233,6 @@ var DelonFormModule = /** @class */ (function () {
         { type: NgModule, args: [{
                     imports: __spread([CommonModule, FormsModule, DelonUtilModule, DelonLocaleModule], ZORROS),
                     declarations: __spread(COMPONENTS, WIDGETS),
-                    entryComponents: __spread(WIDGETS),
                     exports: __spread(COMPONENTS),
                 },] }
     ];

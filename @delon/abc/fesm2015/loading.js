@@ -222,7 +222,6 @@ LoadingModule.decorators = [
     { type: NgModule, args: [{
                 imports: [CommonModule, OverlayModule, PortalModule, NzIconModule, NzSpinModule],
                 declarations: [LoadingDefaultComponent],
-                entryComponents: [LoadingDefaultComponent],
                 exports: [LoadingDefaultComponent],
             },] }
 ];
