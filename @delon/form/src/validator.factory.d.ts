@@ -7,7 +7,7 @@ export declare abstract class SchemaValidatorFactory {
     abstract createValidatorFn(schema: SFSchema, extraOptions: {
         ingoreKeywords: string[];
         debug: boolean;
-    }): (value: SFSchema) => ErrorData[];
+    }): (value: SFValue) => ErrorData[];
 }
 export declare class AjvSchemaValidatorFactory extends SchemaValidatorFactory {
     private options;
