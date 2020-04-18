@@ -472,7 +472,6 @@
             { type: core.NgModule, args: [{
                         imports: [common.CommonModule, overlay.OverlayModule, portal.PortalModule, icon.NzIconModule, spin.NzSpinModule],
                         declarations: [LoadingDefaultComponent],
-                        entryComponents: [LoadingDefaultComponent],
                         exports: [LoadingDefaultComponent],
                     },] }
         ];

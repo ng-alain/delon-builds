@@ -5240,7 +5240,6 @@ DelonFormModule.decorators = [
     { type: NgModule, args: [{
                 imports: [CommonModule, FormsModule, DelonUtilModule, DelonLocaleModule, ...ZORROS],
                 declarations: [...COMPONENTS, ...WIDGETS],
-                entryComponents: [...WIDGETS],
                 exports: [...COMPONENTS],
             },] }
 ];

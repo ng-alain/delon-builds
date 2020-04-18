@@ -257,7 +257,6 @@ var LoadingModule = /** @class */ (function () {
         { type: NgModule, args: [{
                     imports: [CommonModule, OverlayModule, PortalModule, NzIconModule, NzSpinModule],
                     declarations: [LoadingDefaultComponent],
-                    entryComponents: [LoadingDefaultComponent],
                     exports: [LoadingDefaultComponent],
                 },] }
     ];
