@@ -1,7 +1,14 @@
 import { NgZone, OnChanges, OnDestroy, OnInit, TemplateRef } from '@angular/core';
 export declare class G2TimelineData {
-    /** 非 `Date` 格式，自动使用 `new Date` 转换，因此，支持时间格式字符串、数字型时间戳 */
-    x: Date | string | number;
+    /**
+     * 时间值
+     * @deprecated Use `time` instead
+     */
+    x?: Date | string | number;
+    /**
+     * 时间值
+     */
+    time?: Date | string | number;
     /** 指标1数据 */
     y1: number;
     /** 指标2数据 */
@@ -29,6 +36,10 @@ export declare class G2TimelineComponent implements OnInit, OnDestroy, OnChanges
     padding: number[];
     borderWidth: number;
     slider: boolean;
+    initialRange: {
+        start: Date;
+        end: Date;
+    } | null;
     constructor(ngZone: NgZone);
     ngOnInit(): void;
     private install;

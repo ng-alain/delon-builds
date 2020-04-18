@@ -639,6 +639,15 @@ const warn = (/**
  */
 (...arg) => console.warn(PREFIX, ...arg)), ...args));
 /** @type {?} */
+const warnDeprecation10 = (/**
+ * @param {?} from
+ * @param {?} to
+ * @return {?}
+ */
+(from, to) => {
+    warnDeprecation(`'${from}' is going to be removed in 10.0.0. Please use '${to}' instead.`);
+});
+/** @type {?} */
 const warnDeprecation = (/**
  * @param {...?} args
  * @return {?}
@@ -1250,6 +1259,18 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: src/logger/public_api.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * Generated from: src/logger/index.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
  * Generated from: src/util.module.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
@@ -1273,5 +1294,5 @@ DelonUtilModule.decorators = [
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { ArrayService, DelonUtilConfig, DelonUtilModule, InputBoolean, InputNumber, LazyService, _Validators, copy, deepCopy, deepGet, deepMerge, deepMergeKey, fixEndTimeOfRange, format, getTimeDistance, isDecimal, isEmpty, isIdCard, isInt, isMobile, isNum, isUrl, toBoolean, toNumber, updateHostClass };
+export { ArrayService, DelonUtilConfig, DelonUtilModule, InputBoolean, InputNumber, LazyService, PREFIX, _Validators, copy, deepCopy, deepGet, deepMerge, deepMergeKey, fixEndTimeOfRange, format, getTimeDistance, isDecimal, isEmpty, isIdCard, isInt, isMobile, isNum, isUrl, log, toBoolean, toNumber, updateHostClass, warn, warnDeprecation, warnDeprecation10 };
 //# sourceMappingURL=util.js.map

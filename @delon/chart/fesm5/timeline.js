@@ -1,8 +1,7 @@
-import { __assign, __spread, __decorate, __metadata } from 'tslib';
+import { __assign, __decorate, __metadata, __spread } from 'tslib';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, NgZone, ViewChild, Input, NgModule } from '@angular/core';
-import DataSet from '@antv/data-set';
 import { Chart } from '@antv/g2';
-import { InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
+import { warnDeprecation10, InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
 import { CommonModule } from '@angular/common';
 import { NzOutletModule } from 'ng-zorro-antd/core/outlet';
 
@@ -18,10 +17,16 @@ var G2TimelineData = /** @class */ (function () {
 }());
 if (false) {
     /**
-     * 非 `Date` 格式，自动使用 `new Date` 转换，因此，支持时间格式字符串、数字型时间戳
+     * 时间值
+     * @deprecated Use `time` instead
      * @type {?}
      */
     G2TimelineData.prototype.x;
+    /**
+     * 时间值
+     * @type {?}
+     */
+    G2TimelineData.prototype.time;
     /**
      * 指标1数据
      * @type {?}
@@ -48,6 +53,7 @@ var G2TimelineComponent = /** @class */ (function () {
         this.padding = [60, 20, 64, 40];
         this.borderWidth = 2;
         this.slider = true;
+        this.initialRange = null;
     }
     /**
      * @return {?}
@@ -74,7 +80,7 @@ var G2TimelineComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        var _a = this, node = _a.node, height = _a.height, padding = _a.padding, mask = _a.mask, slider = _a.slider;
+        var _a = this, node = _a.node, height = _a.height, padding = _a.padding, slider = _a.slider;
         /** @type {?} */
         var chart = (this.chart = new Chart({
             container: node.nativeElement,
@@ -82,11 +88,11 @@ var G2TimelineComponent = /** @class */ (function () {
             height: height,
             padding: padding,
         }));
-        chart.axis('x', { title: null });
+        chart.axis('time', { title: null });
         chart.axis('y1', { title: null });
         chart.axis('y2', false);
-        chart.line().position('x*y1');
-        chart.line().position('x*y2');
+        chart.line().position('time*y1');
+        chart.line().position('time*y2');
         /** @type {?} */
         var sliderPadding = __assign(__assign({}, []), padding);
         sliderPadding[0] = 0;
@@ -98,7 +104,7 @@ var G2TimelineComponent = /** @class */ (function () {
                 trendCfg: {
                     isArea: false,
                 },
-                mask: mask,
+                minLimit: 2,
             });
         }
         this.attachChart();
@@ -118,7 +124,6 @@ var G2TimelineComponent = /** @class */ (function () {
         chart.legend({
             position: position,
             custom: true,
-            // clickable: false,
             items: [
                 { name: titleMap.y1, value: titleMap.y1, marker: { style: { fill: colorMap.y1 } } },
                 { name: titleMap.y1, value: titleMap.y2, marker: { style: { fill: colorMap.y2 } } },
@@ -135,61 +140,36 @@ var G2TimelineComponent = /** @class */ (function () {
         }));
         chart.height = height;
         chart.padding = padding;
-        data
-            .filter((/**
-         * @param {?} v
+        // TODO: compatible
+        if (data.find((/**
+         * @param {?} w
          * @return {?}
          */
-        function (v) { return !(v.x instanceof Number); }))
-            .forEach((/**
-         * @param {?} v
-         * @return {?}
-         */
-        function (v) {
-            v.x = +new Date(v.x);
-        }));
-        data.sort((/**
-         * @param {?} a
-         * @param {?} b
-         * @return {?}
-         */
-        function (a, b) { return +a.x - +b.x; }));
+        function (w) { return !!w.x; })) != null) {
+            warnDeprecation10('x', 'time');
+            data.forEach((/**
+             * @param {?} item
+             * @return {?}
+             */
+            function (item) {
+                item.time = new Date((/** @type {?} */ (item.x)));
+            }));
+        }
         /** @type {?} */
-        var max = Math.max(__spread(data).sort((/**
+        var max = Math.max(data.sort((/**
          * @param {?} a
          * @param {?} b
          * @return {?}
          */
-        function (a, b) { return b.y1 - a.y1; }))[0].y1, __spread(data).sort((/**
+        function (a, b) { return b.y1 - a.y1; }))[0].y1, data.sort((/**
          * @param {?} a
          * @param {?} b
          * @return {?}
          */
         function (a, b) { return b.y2 - a.y2; }))[0].y2);
-        /** @type {?} */
-        var ds = new DataSet({
-            state: {
-                start: data[0].x,
-                end: data[data.length - 1].x,
-            },
-        });
-        /** @type {?} */
-        var dv = ds.createView('origin').source(data);
-        dv.transform({
-            type: 'filter',
-            callback: (/**
-             * @param {?} val
-             * @return {?}
-             */
-            function (val) {
-                /** @type {?} */
-                var time = +val.x;
-                return time >= ds.state.start && time <= ds.state.end;
-            }),
-        });
         chart.scale({
-            x: {
-                type: 'timeCat',
+            time: {
+                type: 'time',
                 mask: mask,
                 range: [0, 1],
             },
@@ -204,7 +184,17 @@ var G2TimelineComponent = /** @class */ (function () {
                 min: 0,
             },
         });
-        chart.changeData(dv.rows);
+        /** @type {?} */
+        var initialRange = __assign({ start: new Date((/** @type {?} */ (data[0].time))), end: new Date((/** @type {?} */ (data[data.length - 1].time))) }, this.initialRange);
+        chart.changeData(data.filter((/**
+         * @param {?} val
+         * @return {?}
+         */
+        function (val) {
+            /** @type {?} */
+            var time = +new Date((/** @type {?} */ (val.time)));
+            return time >= +initialRange.start && time <= +initialRange.end;
+        })));
     };
     /**
      * @return {?}
@@ -260,7 +250,8 @@ var G2TimelineComponent = /** @class */ (function () {
         height: [{ type: Input }],
         padding: [{ type: Input }],
         borderWidth: [{ type: Input }],
-        slider: [{ type: Input }]
+        slider: [{ type: Input }],
+        initialRange: [{ type: Input }]
     };
     __decorate([
         InputNumber(),
@@ -313,6 +304,8 @@ if (false) {
     G2TimelineComponent.prototype.borderWidth;
     /** @type {?} */
     G2TimelineComponent.prototype.slider;
+    /** @type {?} */
+    G2TimelineComponent.prototype.initialRange;
     /**
      * @type {?}
      * @private

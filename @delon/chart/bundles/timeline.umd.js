@@ -4,12 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@antv/data-set'), require('@antv/g2'), require('@delon/util'), require('@angular/common'), require('ng-zorro-antd/core/outlet')) :
-    typeof define === 'function' && define.amd ? define('@delon/chart/timeline', ['exports', '@angular/core', '@antv/data-set', '@antv/g2', '@delon/util', '@angular/common', 'ng-zorro-antd/core/outlet'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.timeline = {}), global.ng.core, global.DataSet, global.g2, global.delon.util, global.ng.common, global['ng-zorro-antd/core/outlet']));
-}(this, (function (exports, core, DataSet, g2, util, common, outlet) { 'use strict';
-
-    DataSet = DataSet && Object.prototype.hasOwnProperty.call(DataSet, 'default') ? DataSet['default'] : DataSet;
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@antv/g2'), require('@delon/util'), require('@angular/common'), require('ng-zorro-antd/core/outlet')) :
+    typeof define === 'function' && define.amd ? define('@delon/chart/timeline', ['exports', '@angular/core', '@antv/g2', '@delon/util', '@angular/common', 'ng-zorro-antd/core/outlet'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.timeline = {}), global.ng.core, global.g2, global.delon.util, global.ng.common, global['ng-zorro-antd/core/outlet']));
+}(this, (function (exports, core, g2, util, common, outlet) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -237,10 +235,16 @@
     }());
     if (false) {
         /**
-         * 非 `Date` 格式，自动使用 `new Date` 转换，因此，支持时间格式字符串、数字型时间戳
+         * 时间值
+         * @deprecated Use `time` instead
          * @type {?}
          */
         G2TimelineData.prototype.x;
+        /**
+         * 时间值
+         * @type {?}
+         */
+        G2TimelineData.prototype.time;
         /**
          * 指标1数据
          * @type {?}
@@ -267,6 +271,7 @@
             this.padding = [60, 20, 64, 40];
             this.borderWidth = 2;
             this.slider = true;
+            this.initialRange = null;
         }
         /**
          * @return {?}
@@ -293,7 +298,7 @@
          * @return {?}
          */
         function () {
-            var _a = this, node = _a.node, height = _a.height, padding = _a.padding, mask = _a.mask, slider = _a.slider;
+            var _a = this, node = _a.node, height = _a.height, padding = _a.padding, slider = _a.slider;
             /** @type {?} */
             var chart = (this.chart = new g2.Chart({
                 container: node.nativeElement,
@@ -301,11 +306,11 @@
                 height: height,
                 padding: padding,
             }));
-            chart.axis('x', { title: null });
+            chart.axis('time', { title: null });
             chart.axis('y1', { title: null });
             chart.axis('y2', false);
-            chart.line().position('x*y1');
-            chart.line().position('x*y2');
+            chart.line().position('time*y1');
+            chart.line().position('time*y2');
             /** @type {?} */
             var sliderPadding = __assign(__assign({}, []), padding);
             sliderPadding[0] = 0;
@@ -317,7 +322,7 @@
                     trendCfg: {
                         isArea: false,
                     },
-                    mask: mask,
+                    minLimit: 2,
                 });
             }
             this.attachChart();
@@ -337,7 +342,6 @@
             chart.legend({
                 position: position,
                 custom: true,
-                // clickable: false,
                 items: [
                     { name: titleMap.y1, value: titleMap.y1, marker: { style: { fill: colorMap.y1 } } },
                     { name: titleMap.y1, value: titleMap.y2, marker: { style: { fill: colorMap.y2 } } },
@@ -354,61 +358,36 @@
             }));
             chart.height = height;
             chart.padding = padding;
-            data
-                .filter((/**
-             * @param {?} v
+            // TODO: compatible
+            if (data.find((/**
+             * @param {?} w
              * @return {?}
              */
-            function (v) { return !(v.x instanceof Number); }))
-                .forEach((/**
-             * @param {?} v
-             * @return {?}
-             */
-            function (v) {
-                v.x = +new Date(v.x);
-            }));
-            data.sort((/**
-             * @param {?} a
-             * @param {?} b
-             * @return {?}
-             */
-            function (a, b) { return +a.x - +b.x; }));
+            function (w) { return !!w.x; })) != null) {
+                util.warnDeprecation10('x', 'time');
+                data.forEach((/**
+                 * @param {?} item
+                 * @return {?}
+                 */
+                function (item) {
+                    item.time = new Date((/** @type {?} */ (item.x)));
+                }));
+            }
             /** @type {?} */
-            var max = Math.max(__spread(data).sort((/**
+            var max = Math.max(data.sort((/**
              * @param {?} a
              * @param {?} b
              * @return {?}
              */
-            function (a, b) { return b.y1 - a.y1; }))[0].y1, __spread(data).sort((/**
+            function (a, b) { return b.y1 - a.y1; }))[0].y1, data.sort((/**
              * @param {?} a
              * @param {?} b
              * @return {?}
              */
             function (a, b) { return b.y2 - a.y2; }))[0].y2);
-            /** @type {?} */
-            var ds = new DataSet({
-                state: {
-                    start: data[0].x,
-                    end: data[data.length - 1].x,
-                },
-            });
-            /** @type {?} */
-            var dv = ds.createView('origin').source(data);
-            dv.transform({
-                type: 'filter',
-                callback: (/**
-                 * @param {?} val
-                 * @return {?}
-                 */
-                function (val) {
-                    /** @type {?} */
-                    var time = +val.x;
-                    return time >= ds.state.start && time <= ds.state.end;
-                }),
-            });
             chart.scale({
-                x: {
-                    type: 'timeCat',
+                time: {
+                    type: 'time',
                     mask: mask,
                     range: [0, 1],
                 },
@@ -423,7 +402,17 @@
                     min: 0,
                 },
             });
-            chart.changeData(dv.rows);
+            /** @type {?} */
+            var initialRange = __assign({ start: new Date((/** @type {?} */ (data[0].time))), end: new Date((/** @type {?} */ (data[data.length - 1].time))) }, this.initialRange);
+            chart.changeData(data.filter((/**
+             * @param {?} val
+             * @return {?}
+             */
+            function (val) {
+                /** @type {?} */
+                var time = +new Date((/** @type {?} */ (val.time)));
+                return time >= +initialRange.start && time <= +initialRange.end;
+            })));
         };
         /**
          * @return {?}
@@ -479,7 +468,8 @@
             height: [{ type: core.Input }],
             padding: [{ type: core.Input }],
             borderWidth: [{ type: core.Input }],
-            slider: [{ type: core.Input }]
+            slider: [{ type: core.Input }],
+            initialRange: [{ type: core.Input }]
         };
         __decorate([
             util.InputNumber(),
@@ -532,6 +522,8 @@
         G2TimelineComponent.prototype.borderWidth;
         /** @type {?} */
         G2TimelineComponent.prototype.slider;
+        /** @type {?} */
+        G2TimelineComponent.prototype.initialRange;
         /**
          * @type {?}
          * @private

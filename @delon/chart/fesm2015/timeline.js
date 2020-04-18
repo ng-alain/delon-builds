@@ -1,8 +1,7 @@
 import { __decorate, __metadata } from 'tslib';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, NgZone, ViewChild, Input, NgModule } from '@angular/core';
-import DataSet from '@antv/data-set';
 import { Chart } from '@antv/g2';
-import { InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
+import { warnDeprecation10, InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
 import { CommonModule } from '@angular/common';
 import { NzOutletModule } from 'ng-zorro-antd/core/outlet';
 
@@ -15,10 +14,16 @@ class G2TimelineData {
 }
 if (false) {
     /**
-     * 非 `Date` 格式，自动使用 `new Date` 转换，因此，支持时间格式字符串、数字型时间戳
+     * 时间值
+     * @deprecated Use `time` instead
      * @type {?}
      */
     G2TimelineData.prototype.x;
+    /**
+     * 时间值
+     * @type {?}
+     */
+    G2TimelineData.prototype.time;
     /**
      * 指标1数据
      * @type {?}
@@ -48,6 +53,7 @@ class G2TimelineComponent {
         this.padding = [60, 20, 64, 40];
         this.borderWidth = 2;
         this.slider = true;
+        this.initialRange = null;
     }
     /**
      * @return {?}
@@ -66,7 +72,7 @@ class G2TimelineComponent {
      * @return {?}
      */
     install() {
-        const { node, height, padding, mask, slider } = this;
+        const { node, height, padding, slider } = this;
         /** @type {?} */
         const chart = (this.chart = new Chart({
             container: node.nativeElement,
@@ -74,11 +80,11 @@ class G2TimelineComponent {
             height,
             padding,
         }));
-        chart.axis('x', { title: null });
+        chart.axis('time', { title: null });
         chart.axis('y1', { title: null });
         chart.axis('y2', false);
-        chart.line().position('x*y1');
-        chart.line().position('x*y2');
+        chart.line().position('time*y1');
+        chart.line().position('time*y2');
         /** @type {?} */
         const sliderPadding = Object.assign(Object.assign({}, []), padding);
         sliderPadding[0] = 0;
@@ -90,7 +96,7 @@ class G2TimelineComponent {
                 trendCfg: {
                     isArea: false,
                 },
-                mask,
+                minLimit: 2,
             });
         }
         this.attachChart();
@@ -106,7 +112,6 @@ class G2TimelineComponent {
         chart.legend({
             position,
             custom: true,
-            // clickable: false,
             items: [
                 { name: titleMap.y1, value: titleMap.y1, marker: { style: { fill: colorMap.y1 } } },
                 { name: titleMap.y1, value: titleMap.y2, marker: { style: { fill: colorMap.y2 } } },
@@ -123,61 +128,36 @@ class G2TimelineComponent {
         }));
         chart.height = height;
         chart.padding = padding;
-        data
-            .filter((/**
-         * @param {?} v
+        // TODO: compatible
+        if (data.find((/**
+         * @param {?} w
          * @return {?}
          */
-        v => !(v.x instanceof Number)))
-            .forEach((/**
-         * @param {?} v
-         * @return {?}
-         */
-        v => {
-            v.x = +new Date(v.x);
-        }));
-        data.sort((/**
-         * @param {?} a
-         * @param {?} b
-         * @return {?}
-         */
-        (a, b) => +a.x - +b.x));
+        w => !!w.x)) != null) {
+            warnDeprecation10('x', 'time');
+            data.forEach((/**
+             * @param {?} item
+             * @return {?}
+             */
+            item => {
+                item.time = new Date((/** @type {?} */ (item.x)));
+            }));
+        }
         /** @type {?} */
-        const max = Math.max([...data].sort((/**
+        const max = Math.max(data.sort((/**
          * @param {?} a
          * @param {?} b
          * @return {?}
          */
-        (a, b) => b.y1 - a.y1))[0].y1, [...data].sort((/**
+        (a, b) => b.y1 - a.y1))[0].y1, data.sort((/**
          * @param {?} a
          * @param {?} b
          * @return {?}
          */
         (a, b) => b.y2 - a.y2))[0].y2);
-        /** @type {?} */
-        const ds = new DataSet({
-            state: {
-                start: data[0].x,
-                end: data[data.length - 1].x,
-            },
-        });
-        /** @type {?} */
-        const dv = ds.createView('origin').source(data);
-        dv.transform({
-            type: 'filter',
-            callback: (/**
-             * @param {?} val
-             * @return {?}
-             */
-            (val) => {
-                /** @type {?} */
-                const time = +val.x;
-                return time >= ds.state.start && time <= ds.state.end;
-            }),
-        });
         chart.scale({
-            x: {
-                type: 'timeCat',
+            time: {
+                type: 'time',
                 mask,
                 range: [0, 1],
             },
@@ -192,7 +172,17 @@ class G2TimelineComponent {
                 min: 0,
             },
         });
-        chart.changeData(dv.rows);
+        /** @type {?} */
+        const initialRange = Object.assign({ start: new Date((/** @type {?} */ (data[0].time))), end: new Date((/** @type {?} */ (data[data.length - 1].time))) }, this.initialRange);
+        chart.changeData(data.filter((/**
+         * @param {?} val
+         * @return {?}
+         */
+        (val) => {
+            /** @type {?} */
+            const time = +new Date((/** @type {?} */ (val.time)));
+            return time >= +initialRange.start && time <= +initialRange.end;
+        })));
     }
     /**
      * @return {?}
@@ -241,7 +231,8 @@ G2TimelineComponent.propDecorators = {
     height: [{ type: Input }],
     padding: [{ type: Input }],
     borderWidth: [{ type: Input }],
-    slider: [{ type: Input }]
+    slider: [{ type: Input }],
+    initialRange: [{ type: Input }]
 };
 __decorate([
     InputNumber(),
@@ -292,6 +283,8 @@ if (false) {
     G2TimelineComponent.prototype.borderWidth;
     /** @type {?} */
     G2TimelineComponent.prototype.slider;
+    /** @type {?} */
+    G2TimelineComponent.prototype.initialRange;
     /**
      * @type {?}
      * @private

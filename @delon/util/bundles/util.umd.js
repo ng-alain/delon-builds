@@ -960,6 +960,15 @@
             })], args));
     });
     /** @type {?} */
+    var warnDeprecation10 = (/**
+     * @param {?} from
+     * @param {?} to
+     * @return {?}
+     */
+    function (from, to) {
+        warnDeprecation("'" + from + "' is going to be removed in 10.0.0. Please use '" + to + "' instead.");
+    });
+    /** @type {?} */
     var warnDeprecation = (/**
      * @param {...?} args
      * @return {?}
@@ -1671,6 +1680,18 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: src/logger/public_api.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: src/logger/index.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+
+    /**
+     * @fileoverview added by tsickle
      * Generated from: src/util.module.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
@@ -1691,6 +1712,7 @@
     exports.InputBoolean = InputBoolean;
     exports.InputNumber = InputNumber;
     exports.LazyService = LazyService;
+    exports.PREFIX = PREFIX;
     exports._Validators = _Validators;
     exports.copy = copy;
     exports.deepCopy = deepCopy;
@@ -1707,9 +1729,13 @@
     exports.isMobile = isMobile;
     exports.isNum = isNum;
     exports.isUrl = isUrl;
+    exports.log = log;
     exports.toBoolean = toBoolean;
     exports.toNumber = toNumber;
     exports.updateHostClass = updateHostClass;
+    exports.warn = warn;
+    exports.warnDeprecation = warnDeprecation;
+    exports.warnDeprecation10 = warnDeprecation10;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
