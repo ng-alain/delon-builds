@@ -233,6 +233,8 @@
         function G2CustomComponent(el) {
             this.el = el;
             this.resize$ = null;
+            // #region fields
+            this.delay = 0;
             this.resizeTime = 0;
             this.render = new core.EventEmitter();
             // tslint:disable-next-line:no-output-native
@@ -278,7 +280,11 @@
          * @return {?}
          */
         function () {
-            this.renderChart();
+            var _this = this;
+            setTimeout((/**
+             * @return {?}
+             */
+            function () { return _this.renderChart(); }), this.delay);
         };
         /**
          * @return {?}
@@ -309,12 +315,17 @@
             { type: core.ElementRef }
         ]; };
         G2CustomComponent.propDecorators = {
+            delay: [{ type: core.Input }],
             height: [{ type: core.Input }],
             resizeTime: [{ type: core.Input }],
             render: [{ type: core.Output }],
             resize: [{ type: core.Output }],
             destroy: [{ type: core.Output }]
         };
+        __decorate([
+            util.InputNumber(),
+            __metadata("design:type", Object)
+        ], G2CustomComponent.prototype, "delay", void 0);
         __decorate([
             util.InputNumber(),
             __metadata("design:type", Number)
@@ -331,6 +342,8 @@
          * @private
          */
         G2CustomComponent.prototype.resize$;
+        /** @type {?} */
+        G2CustomComponent.prototype.delay;
         /** @type {?} */
         G2CustomComponent.prototype.height;
         /** @type {?} */
