@@ -2332,6 +2332,7 @@ var ReuseTabModule = /** @class */ (function () {
         { type: NgModule, args: [{
                     imports: [CommonModule, RouterModule, DelonLocaleModule, NzMenuModule, NzTabsModule, NzIconModule, OverlayModule],
                     declarations: __spread(COMPONENTS, NOEXPORTS),
+                    entryComponents: [ReuseTabContextMenuComponent],
                     exports: __spread(COMPONENTS),
                 },] }
     ];

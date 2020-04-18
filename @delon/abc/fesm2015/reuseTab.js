@@ -1860,6 +1860,7 @@ ReuseTabModule.decorators = [
     { type: NgModule, args: [{
                 imports: [CommonModule, RouterModule, DelonLocaleModule, NzMenuModule, NzTabsModule, NzIconModule, OverlayModule],
                 declarations: [...COMPONENTS, ...NOEXPORTS],
+                entryComponents: [ReuseTabContextMenuComponent],
                 exports: [...COMPONENTS],
             },] }
 ];

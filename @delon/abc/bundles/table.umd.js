@@ -1040,7 +1040,7 @@
     function STColumnButtonModal() { }
     if (false) {
         /**
-         * 对话框组件对象
+         * 对话框组件对象，务必在 `entryComponents` 注册
          * @type {?|undefined}
          */
         STColumnButtonModal.prototype.component;
@@ -1092,7 +1092,7 @@
          */
         STColumnButtonDrawer.prototype.title;
         /**
-         * 抽屉组件对象
+         * 抽屉组件对象，务必在 `entryComponents` 注册
          * @type {?|undefined}
          */
         STColumnButtonDrawer.prototype.component;

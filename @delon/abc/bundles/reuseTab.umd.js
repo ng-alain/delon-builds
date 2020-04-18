@@ -2543,6 +2543,7 @@
             { type: core.NgModule, args: [{
                         imports: [common.CommonModule, router.RouterModule, theme.DelonLocaleModule, menu.NzMenuModule, tabs.NzTabsModule, icon.NzIconModule, overlay.OverlayModule],
                         declarations: __spread(COMPONENTS, NOEXPORTS),
+                        entryComponents: [ReuseTabContextMenuComponent],
                         exports: __spread(COMPONENTS),
                     },] }
         ];
