@@ -18,10 +18,18 @@ import { CommonModule } from '@angular/common';
 function G2TagCloudData() { }
 if (false) {
     /** @type {?|undefined} */
-    G2TagCloudData.prototype.x;
-    /** @type {?|undefined} */
     G2TagCloudData.prototype.value;
     /** @type {?|undefined} */
+    G2TagCloudData.prototype.name;
+    /**
+     * @deprecated Use `name` instead
+     * @type {?|undefined}
+     */
+    G2TagCloudData.prototype.x;
+    /**
+     * @deprecated 10.0.0. This is deprecated and going to be removed in 10.0.0.
+     * @type {?|undefined}
+     */
     G2TagCloudData.prototype.category;
     /* Skipping unhandled member: [key: string]: any;*/
 }
@@ -35,8 +43,9 @@ class G2TagCloudComponent {
         this.el = el;
         this.ngZone = ngZone;
         // #region fields
-        this.delay = 0;
-        this.height = 100;
+        this.delay = 100;
+        this.width = 0;
+        this.height = 200;
         this.padding = 0;
         this.data = [];
     }
@@ -45,7 +54,6 @@ class G2TagCloudComponent {
      * @return {?}
      */
     initTagCloud() {
-        // 给point注册一个词云的shape
         registerShape('point', 'cloud', {
             /**
              * @param {?} cfg
@@ -57,7 +65,7 @@ class G2TagCloudComponent {
                 const data = (/** @type {?} */ (cfg.data));
                 /** @type {?} */
                 const textShape = container.addShape('text', {
-                    attrs: Object.assign(Object.assign(Object.assign({}, cfg.defaultStyle), cfg.style), { fontSize: data.size, text: data.text, textAlign: 'center', fontFamily: data.font, fill: cfg.color, textBaseline: 'Alphabetic', x: cfg.x, y: cfg.y }),
+                    attrs: Object.assign(Object.assign({}, cfg.style), { fontSize: data.size, text: data.text, textAlign: 'center', fontFamily: data.font, fill: cfg.color, textBaseline: 'Alphabetic', x: cfg.x, y: cfg.y }),
                 });
                 if (data.rotate) {
                     Util.rotate(textShape, (data.rotate * Math.PI) / 180);
@@ -71,21 +79,44 @@ class G2TagCloudComponent {
      * @return {?}
      */
     install() {
-        const { el, padding, height } = this;
+        const { el, padding } = this;
+        if (this.height === 0) {
+            this.height = this.el.nativeElement.clientHeight;
+        }
+        if (this.width === 0) {
+            this.width = this.el.nativeElement.clientWidth;
+        }
         /** @type {?} */
         const chart = (this.chart = new Chart({
             container: el.nativeElement,
+            autoFit: false,
             padding,
-            height,
+            height: this.height,
+            width: this.width,
         }));
+        chart.scale({
+            x: { nice: false },
+            y: { nice: false },
+        });
         chart.legend(false);
         chart.axis(false);
         chart.tooltip({
             showTitle: false,
             showMarkers: false,
         });
-        chart.coordinate().reflect('x');
-        chart.point().position('x*y').color('category').shape('cloud').tooltip('value*category');
+        ((/** @type {?} */ (chart.coordinate()))).reflect();
+        chart
+            .point()
+            .position('x*y')
+            .color('text')
+            .shape('cloud')
+            .state({
+            active: {
+                style: {
+                    fillOpacity: 0.4,
+                },
+            },
+        });
         chart.interaction('element-active');
         this.attachChart();
     }
@@ -94,12 +125,12 @@ class G2TagCloudComponent {
      * @return {?}
      */
     attachChart() {
-        const { chart, height, padding, data } = this;
+        const { chart, padding, data } = this;
         if (!chart || !data || data.length <= 0)
             return;
-        chart.height = height;
+        chart.height = this.height;
+        chart.width = this.width;
         chart.padding = padding;
-        chart.forceFit();
         /** @type {?} */
         const dv = new DataSet.View().source(data);
         /** @type {?} */
@@ -110,38 +141,34 @@ class G2TagCloudComponent {
         const max = range[1];
         dv.transform((/** @type {?} */ ({
             type: 'tag-cloud',
-            fields: ['x', 'value'],
-            size: [chart.width, chart.height],
-            padding: typeof padding === 'number' ? padding : undefined,
+            fields: ['name', 'value'],
+            // imageMask,
+            font: 'Verdana',
+            size: [this.width, this.height],
+            // 宽高设置最好根据 imageMask 做调整
+            padding: 0,
             timeInterval: 5000,
             // max execute time
-            rotate: (/**
+            /**
              * @return {?}
              */
-            () => {
+            rotate() {
                 /** @type {?} */
                 let random = ~~(Math.random() * 4) % 4;
                 if (random === 2) {
                     random = 0;
                 }
                 return random * 90; // 0, 90, 270
-            }),
+            },
             /**
              * @param {?} d
              * @return {?}
              */
             fontSize(d) {
-                if (d.value) {
-                    return ((d.value - min) / (max - min)) * (80 - 24) + 24;
-                }
-                return 0;
+                return ((d.value - min) / (max - min)) * (32 - 8) + 8;
             },
         })));
-        chart.scale({
-            x: { nice: false },
-            y: { nice: false },
-        });
-        chart.changeData(dv.rows);
+        chart.data(dv.rows);
         chart.render();
     }
     /**
@@ -207,9 +234,6 @@ G2TagCloudComponent.decorators = [
                 selector: 'g2-tag-cloud',
                 exportAs: 'g2TagCloud',
                 template: ``,
-                host: {
-                    '[style.height.px]': 'height',
-                },
                 preserveWhitespaces: false,
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None
@@ -222,6 +246,7 @@ G2TagCloudComponent.ctorParameters = () => [
 ];
 G2TagCloudComponent.propDecorators = {
     delay: [{ type: Input }],
+    width: [{ type: Input }],
     height: [{ type: Input }],
     padding: [{ type: Input }],
     data: [{ type: Input }]
@@ -230,6 +255,10 @@ __decorate([
     InputNumber(),
     __metadata("design:type", Object)
 ], G2TagCloudComponent.prototype, "delay", void 0);
+__decorate([
+    InputNumber(),
+    __metadata("design:type", Object)
+], G2TagCloudComponent.prototype, "width", void 0);
 __decorate([
     InputNumber(),
     __metadata("design:type", Object)
@@ -247,6 +276,8 @@ if (false) {
     G2TagCloudComponent.prototype.chart;
     /** @type {?} */
     G2TagCloudComponent.prototype.delay;
+    /** @type {?} */
+    G2TagCloudComponent.prototype.width;
     /** @type {?} */
     G2TagCloudComponent.prototype.height;
     /** @type {?} */

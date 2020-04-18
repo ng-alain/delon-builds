@@ -18,10 +18,18 @@ import { CommonModule } from '@angular/common';
 function G2TagCloudData() { }
 if (false) {
     /** @type {?|undefined} */
-    G2TagCloudData.prototype.x;
-    /** @type {?|undefined} */
     G2TagCloudData.prototype.value;
     /** @type {?|undefined} */
+    G2TagCloudData.prototype.name;
+    /**
+     * @deprecated Use `name` instead
+     * @type {?|undefined}
+     */
+    G2TagCloudData.prototype.x;
+    /**
+     * @deprecated 10.0.0. This is deprecated and going to be removed in 10.0.0.
+     * @type {?|undefined}
+     */
     G2TagCloudData.prototype.category;
     /* Skipping unhandled member: [key: string]: any;*/
 }
@@ -31,8 +39,9 @@ var G2TagCloudComponent = /** @class */ (function () {
         this.el = el;
         this.ngZone = ngZone;
         // #region fields
-        this.delay = 0;
-        this.height = 100;
+        this.delay = 100;
+        this.width = 0;
+        this.height = 200;
         this.padding = 0;
         this.data = [];
     }
@@ -45,7 +54,6 @@ var G2TagCloudComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        // 给point注册一个词云的shape
         registerShape('point', 'cloud', {
             draw: /**
              * @param {?} cfg
@@ -57,7 +65,7 @@ var G2TagCloudComponent = /** @class */ (function () {
                 var data = (/** @type {?} */ (cfg.data));
                 /** @type {?} */
                 var textShape = container.addShape('text', {
-                    attrs: __assign(__assign(__assign({}, cfg.defaultStyle), cfg.style), { fontSize: data.size, text: data.text, textAlign: 'center', fontFamily: data.font, fill: cfg.color, textBaseline: 'Alphabetic', x: cfg.x, y: cfg.y }),
+                    attrs: __assign(__assign({}, cfg.style), { fontSize: data.size, text: data.text, textAlign: 'center', fontFamily: data.font, fill: cfg.color, textBaseline: 'Alphabetic', x: cfg.x, y: cfg.y }),
                 });
                 if (data.rotate) {
                     Util.rotate(textShape, (data.rotate * Math.PI) / 180);
@@ -75,21 +83,44 @@ var G2TagCloudComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        var _a = this, el = _a.el, padding = _a.padding, height = _a.height;
+        var _a = this, el = _a.el, padding = _a.padding;
+        if (this.height === 0) {
+            this.height = this.el.nativeElement.clientHeight;
+        }
+        if (this.width === 0) {
+            this.width = this.el.nativeElement.clientWidth;
+        }
         /** @type {?} */
         var chart = (this.chart = new Chart({
             container: el.nativeElement,
+            autoFit: false,
             padding: padding,
-            height: height,
+            height: this.height,
+            width: this.width,
         }));
+        chart.scale({
+            x: { nice: false },
+            y: { nice: false },
+        });
         chart.legend(false);
         chart.axis(false);
         chart.tooltip({
             showTitle: false,
             showMarkers: false,
         });
-        chart.coordinate().reflect('x');
-        chart.point().position('x*y').color('category').shape('cloud').tooltip('value*category');
+        ((/** @type {?} */ (chart.coordinate()))).reflect();
+        chart
+            .point()
+            .position('x*y')
+            .color('text')
+            .shape('cloud')
+            .state({
+            active: {
+                style: {
+                    fillOpacity: 0.4,
+                },
+            },
+        });
         chart.interaction('element-active');
         this.attachChart();
     };
@@ -102,12 +133,12 @@ var G2TagCloudComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        var _a = this, chart = _a.chart, height = _a.height, padding = _a.padding, data = _a.data;
+        var _a = this, chart = _a.chart, padding = _a.padding, data = _a.data;
         if (!chart || !data || data.length <= 0)
             return;
-        chart.height = height;
+        chart.height = this.height;
+        chart.width = this.width;
         chart.padding = padding;
-        chart.forceFit();
         /** @type {?} */
         var dv = new DataSet.View().source(data);
         /** @type {?} */
@@ -118,12 +149,16 @@ var G2TagCloudComponent = /** @class */ (function () {
         var max = range[1];
         dv.transform((/** @type {?} */ ({
             type: 'tag-cloud',
-            fields: ['x', 'value'],
-            size: [chart.width, chart.height],
-            padding: typeof padding === 'number' ? padding : undefined,
+            fields: ['name', 'value'],
+            // imageMask,
+            font: 'Verdana',
+            size: [this.width, this.height],
+            // 宽高设置最好根据 imageMask 做调整
+            padding: 0,
             timeInterval: 5000,
+            rotate: 
             // max execute time
-            rotate: (/**
+            /**
              * @return {?}
              */
             function () {
@@ -133,23 +168,16 @@ var G2TagCloudComponent = /** @class */ (function () {
                     random = 0;
                 }
                 return random * 90; // 0, 90, 270
-            }),
+            },
             fontSize: /**
              * @param {?} d
              * @return {?}
              */
             function (d) {
-                if (d.value) {
-                    return ((d.value - min) / (max - min)) * (80 - 24) + 24;
-                }
-                return 0;
+                return ((d.value - min) / (max - min)) * (32 - 8) + 8;
             },
         })));
-        chart.scale({
-            x: { nice: false },
-            y: { nice: false },
-        });
-        chart.changeData(dv.rows);
+        chart.data(dv.rows);
         chart.render();
     };
     /**
@@ -235,9 +263,6 @@ var G2TagCloudComponent = /** @class */ (function () {
                     selector: 'g2-tag-cloud',
                     exportAs: 'g2TagCloud',
                     template: "",
-                    host: {
-                        '[style.height.px]': 'height',
-                    },
                     preserveWhitespaces: false,
                     changeDetection: ChangeDetectionStrategy.OnPush,
                     encapsulation: ViewEncapsulation.None
@@ -250,6 +275,7 @@ var G2TagCloudComponent = /** @class */ (function () {
     ]; };
     G2TagCloudComponent.propDecorators = {
         delay: [{ type: Input }],
+        width: [{ type: Input }],
         height: [{ type: Input }],
         padding: [{ type: Input }],
         data: [{ type: Input }]
@@ -258,6 +284,10 @@ var G2TagCloudComponent = /** @class */ (function () {
         InputNumber(),
         __metadata("design:type", Object)
     ], G2TagCloudComponent.prototype, "delay", void 0);
+    __decorate([
+        InputNumber(),
+        __metadata("design:type", Object)
+    ], G2TagCloudComponent.prototype, "width", void 0);
     __decorate([
         InputNumber(),
         __metadata("design:type", Object)
@@ -277,6 +307,8 @@ if (false) {
     G2TagCloudComponent.prototype.chart;
     /** @type {?} */
     G2TagCloudComponent.prototype.delay;
+    /** @type {?} */
+    G2TagCloudComponent.prototype.width;
     /** @type {?} */
     G2TagCloudComponent.prototype.height;
     /** @type {?} */
