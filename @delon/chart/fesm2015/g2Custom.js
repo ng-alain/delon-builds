@@ -18,8 +18,6 @@ class G2CustomComponent {
     constructor(el) {
         this.el = el;
         this.resize$ = null;
-        // #region fields
-        this.delay = 0;
         this.resizeTime = 0;
         this.render = new EventEmitter();
         // tslint:disable-next-line:no-output-native
@@ -53,10 +51,7 @@ class G2CustomComponent {
      * @return {?}
      */
     ngAfterViewInit() {
-        setTimeout((/**
-         * @return {?}
-         */
-        () => this.renderChart()), this.delay);
+        this.renderChart();
     }
     /**
      * @return {?}
@@ -85,17 +80,12 @@ G2CustomComponent.ctorParameters = () => [
     { type: ElementRef }
 ];
 G2CustomComponent.propDecorators = {
-    delay: [{ type: Input }],
     height: [{ type: Input }],
     resizeTime: [{ type: Input }],
     render: [{ type: Output }],
     resize: [{ type: Output }],
     destroy: [{ type: Output }]
 };
-__decorate([
-    InputNumber(),
-    __metadata("design:type", Object)
-], G2CustomComponent.prototype, "delay", void 0);
 __decorate([
     InputNumber(),
     __metadata("design:type", Number)
@@ -110,8 +100,6 @@ if (false) {
      * @private
      */
     G2CustomComponent.prototype.resize$;
-    /** @type {?} */
-    G2CustomComponent.prototype.delay;
     /** @type {?} */
     G2CustomComponent.prototype.height;
     /** @type {?} */

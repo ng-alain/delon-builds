@@ -2,7 +2,6 @@ import { AfterViewInit, ElementRef, EventEmitter, OnDestroy } from '@angular/cor
 export declare class G2CustomComponent implements AfterViewInit, OnDestroy {
     private el;
     private resize$;
-    delay: number;
     height: number;
     resizeTime: number;
     readonly render: EventEmitter<ElementRef<any>>;
