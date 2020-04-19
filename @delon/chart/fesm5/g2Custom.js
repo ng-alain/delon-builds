@@ -15,6 +15,8 @@ var G2CustomComponent = /** @class */ (function () {
     function G2CustomComponent(el) {
         this.el = el;
         this.resize$ = null;
+        // #region fields
+        this.delay = 0;
         this.resizeTime = 0;
         this.render = new EventEmitter();
         // tslint:disable-next-line:no-output-native
@@ -60,7 +62,11 @@ var G2CustomComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        this.renderChart();
+        var _this = this;
+        setTimeout((/**
+         * @return {?}
+         */
+        function () { return _this.renderChart(); }), this.delay);
     };
     /**
      * @return {?}
@@ -91,12 +97,17 @@ var G2CustomComponent = /** @class */ (function () {
         { type: ElementRef }
     ]; };
     G2CustomComponent.propDecorators = {
+        delay: [{ type: Input }],
         height: [{ type: Input }],
         resizeTime: [{ type: Input }],
         render: [{ type: Output }],
         resize: [{ type: Output }],
         destroy: [{ type: Output }]
     };
+    __decorate([
+        InputNumber(),
+        __metadata("design:type", Object)
+    ], G2CustomComponent.prototype, "delay", void 0);
     __decorate([
         InputNumber(),
         __metadata("design:type", Number)
@@ -113,6 +124,8 @@ if (false) {
      * @private
      */
     G2CustomComponent.prototype.resize$;
+    /** @type {?} */
+    G2CustomComponent.prototype.delay;
     /** @type {?} */
     G2CustomComponent.prototype.height;
     /** @type {?} */
