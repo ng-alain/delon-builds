@@ -3774,12 +3774,20 @@
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /**
+     * Every http decorator must be based on `BaseAPI`, Like this:
+     * ```ts
+     * \\@Injectable()
+     * class DataService extends BaseApi {}
+     * ```
      * @abstract
      */
     var BaseApi = /** @class */ (function () {
         function BaseApi(injector) {
             this.injector = injector;
         }
+        BaseApi.decorators = [
+            { type: core.Injectable }
+        ];
         /** @nocollapse */
         BaseApi.ctorParameters = function () { return [
             { type: core.Injector, decorators: [{ type: core.Inject, args: [core.Injector,] }] }

@@ -3007,6 +3007,11 @@ if (false) {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
+ * Every http decorator must be based on `BaseAPI`, Like this:
+ * ```ts
+ * \\@Injectable()
+ * class DataService extends BaseApi {}
+ * ```
  * @abstract
  */
 class BaseApi {
@@ -3017,6 +3022,9 @@ class BaseApi {
         this.injector = injector;
     }
 }
+BaseApi.decorators = [
+    { type: Injectable }
+];
 /** @nocollapse */
 BaseApi.ctorParameters = () => [
     { type: Injector, decorators: [{ type: Inject, args: [Injector,] }] }
@@ -3676,7 +3684,7 @@ AlainThemeModule.ctorParameters = () => [
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-const VERSION = new Version('9.0.0-rc.1-07e59fb5');
+const VERSION = new Version('9.0.0-rc.1-62462b25');
 
 /**
  * @fileoverview added by tsickle
