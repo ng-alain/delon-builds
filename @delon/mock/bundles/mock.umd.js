@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/common/http'), require('rxjs'), require('rxjs/operators')) :
-    typeof define === 'function' && define.amd ? define('@delon/mock', ['exports', '@angular/core', '@angular/common/http', 'rxjs', 'rxjs/operators'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.mock = {}), global.ng.core, global.ng.common.http, global.rxjs, global.rxjs.operators));
-}(this, (function (exports, core, http, rxjs, operators) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/common/http'), require('@delon/util'), require('rxjs'), require('rxjs/operators')) :
+    typeof define === 'function' && define.amd ? define('@delon/mock', ['exports', '@angular/core', '@angular/common/http', '@delon/util', 'rxjs', 'rxjs/operators'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.mock = {}), global.ng.core, global.ng.common.http, global.util, global.rxjs, global.rxjs.operators));
+}(this, (function (exports, core, http, util, rxjs, operators) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -336,6 +336,10 @@
              */
             this.log = true;
             /**
+             * 是否返回副本数据
+             */
+            this.copy = true;
+            /**
              * 是否拦截命中后继续调用后续拦截器的 `intercept` 方法，默认：`true`
              */
             this.executeOtherInterceptors = true;
@@ -363,6 +367,11 @@
          * @type {?}
          */
         DelonMockConfig.prototype.log;
+        /**
+         * 是否返回副本数据
+         * @type {?}
+         */
+        DelonMockConfig.prototype.copy;
         /**
          * 是否拦截命中后继续调用后续拦截器的 `intercept` 方法，默认：`true`
          * @type {?}
@@ -771,13 +780,10 @@
                         res = new http.HttpErrorResponse({
                             url: req.url,
                             headers: req.headers,
-                            status: 400,
+                            status: e instanceof MockStatusError ? e.status : 400,
                             statusText: e.statusText || 'Unknown Error',
                             error: e.error,
                         });
-                        if (e instanceof MockStatusError) {
-                            res.status = e.status;
-                        }
                     }
                     break;
                 default:
@@ -790,6 +796,9 @@
                     url: req.url,
                     body: res,
                 });
+            }
+            if (config.copy && res.body) {
+                res.body = util.deepCopy(res.body);
             }
             if (config.log) {
                 console.log("%c\uD83D\uDC7D" + req.method + "->" + req.url + "->request", 'background:#000;color:#bada55', req);

@@ -1,6 +1,7 @@
 import { Injectable, Injector, NgModule } from '@angular/core';
 import { __assign } from 'tslib';
 import { HttpErrorResponse, HttpResponseBase, HttpResponse, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { deepCopy } from '@delon/util';
 import { throwError, of } from 'rxjs';
 import { delay } from 'rxjs/operators';
 
@@ -117,6 +118,10 @@ var DelonMockConfig = /** @class */ (function () {
          */
         this.log = true;
         /**
+         * 是否返回副本数据
+         */
+        this.copy = true;
+        /**
          * 是否拦截命中后继续调用后续拦截器的 `intercept` 方法，默认：`true`
          */
         this.executeOtherInterceptors = true;
@@ -144,6 +149,11 @@ if (false) {
      * @type {?}
      */
     DelonMockConfig.prototype.log;
+    /**
+     * 是否返回副本数据
+     * @type {?}
+     */
+    DelonMockConfig.prototype.copy;
     /**
      * 是否拦截命中后继续调用后续拦截器的 `intercept` 方法，默认：`true`
      * @type {?}
@@ -552,13 +562,10 @@ var MockInterceptor = /** @class */ (function () {
                     res = new HttpErrorResponse({
                         url: req.url,
                         headers: req.headers,
-                        status: 400,
+                        status: e instanceof MockStatusError ? e.status : 400,
                         statusText: e.statusText || 'Unknown Error',
                         error: e.error,
                     });
-                    if (e instanceof MockStatusError) {
-                        res.status = e.status;
-                    }
                 }
                 break;
             default:
@@ -571,6 +578,9 @@ var MockInterceptor = /** @class */ (function () {
                 url: req.url,
                 body: res,
             });
+        }
+        if (config.copy && res.body) {
+            res.body = deepCopy(res.body);
         }
         if (config.log) {
             console.log("%c\uD83D\uDC7D" + req.method + "->" + req.url + "->request", 'background:#000;color:#bada55', req);

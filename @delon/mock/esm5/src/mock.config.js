@@ -18,6 +18,10 @@ var DelonMockConfig = /** @class */ (function () {
          */
         this.log = true;
         /**
+         * 是否返回副本数据
+         */
+        this.copy = true;
+        /**
          * 是否拦截命中后继续调用后续拦截器的 `intercept` 方法，默认：`true`
          */
         this.executeOtherInterceptors = true;
@@ -47,9 +51,14 @@ if (false) {
      */
     DelonMockConfig.prototype.log;
     /**
+     * 是否返回副本数据
+     * @type {?}
+     */
+    DelonMockConfig.prototype.copy;
+    /**
      * 是否拦截命中后继续调用后续拦截器的 `intercept` 方法，默认：`true`
      * @type {?}
      */
     DelonMockConfig.prototype.executeOtherInterceptors;
 }
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibW9jay5jb25maWcuanMiLCJzb3VyY2VSb290Ijoibmc6Ly9AZGVsb24vbW9jay8iLCJzb3VyY2VzIjpbInNyYy9tb2NrLmNvbmZpZy50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7OztBQUFBO0lBQUE7Ozs7UUFJRSxVQUFLLEdBQVksR0FBRyxDQUFDOzs7O1FBRXJCLFVBQUssR0FBYSxLQUFLLENBQUM7Ozs7UUFFeEIsUUFBRyxHQUFhLElBQUksQ0FBQzs7OztRQUlyQiw2QkFBd0IsR0FBYSxJQUFJLENBQUM7SUFDNUMsQ0FBQztJQUFELHNCQUFDO0FBQUQsQ0FBQyxBQWJELElBYUM7Ozs7Ozs7SUFYQywrQkFBVTs7Ozs7SUFFVixnQ0FBcUI7Ozs7O0lBRXJCLGdDQUF3Qjs7Ozs7SUFFeEIsOEJBQXFCOzs7OztJQUlyQixtREFBMEMiLCJzb3VyY2VzQ29udGVudCI6WyJleHBvcnQgY2xhc3MgRGVsb25Nb2NrQ29uZmlnIHtcbiAgLyoqIOinhOWImeWumuS5ieaVsOaNriAqL1xuICBkYXRhOiBhbnk7XG4gIC8qKiDor7fmsYLlu7bov5/vvIzljZXkvY3vvJrmr6vnp5LvvIzpu5jorqTvvJpgMzAwYCAqL1xuICBkZWxheT86IG51bWJlciA9IDMwMDtcbiAgLyoqIOaYr+WQpuW8uuWItuaJgOacieivt+axgumDvU1vY2vvvIxgdHJ1ZWAg6KGo56S65b2T6K+35rGC55qEVVJM5LiN5a2Y5Zyo5pe255u05o6l6L+U5ZueIDQwNCDplJnor6/vvIxgZmFsc2VgIOihqOekuuacquWRveS4reaXtuWPkemAgeecn+WunkhUVFDor7fmsYIgKi9cbiAgZm9yY2U/OiBib29sZWFuID0gZmFsc2U7XG4gIC8qKiDmmK/lkKbmiZPljbAgTW9jayDor7fmsYLkv6Hmga/vvIzlvKXooaXmtY/op4jlmajml6BOZXR3b3Jr5L+h5oGvICovXG4gIGxvZz86IGJvb2xlYW4gPSB0cnVlO1xuICAvKipcbiAgICog5piv5ZCm5oum5oiq5ZG95Lit5ZCO57un57ut6LCD55So5ZCO57ut5oum5oiq5Zmo55qEIGBpbnRlcmNlcHRgIOaWueazle+8jOm7mOiupO+8mmB0cnVlYFxuICAgKi9cbiAgZXhlY3V0ZU90aGVySW50ZXJjZXB0b3JzPzogYm9vbGVhbiA9IHRydWU7XG59XG4iXX0=
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibW9jay5jb25maWcuanMiLCJzb3VyY2VSb290Ijoibmc6Ly9AZGVsb24vbW9jay8iLCJzb3VyY2VzIjpbInNyYy9tb2NrLmNvbmZpZy50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7OztBQUFBO0lBQUE7Ozs7UUFRRSxVQUFLLEdBQVksR0FBRyxDQUFDOzs7O1FBSXJCLFVBQUssR0FBYSxLQUFLLENBQUM7Ozs7UUFJeEIsUUFBRyxHQUFhLElBQUksQ0FBQzs7OztRQUlyQixTQUFJLEdBQWEsSUFBSSxDQUFDOzs7O1FBSXRCLDZCQUF3QixHQUFhLElBQUksQ0FBQztJQUM1QyxDQUFDO0lBQUQsc0JBQUM7QUFBRCxDQUFDLEFBekJELElBeUJDOzs7Ozs7O0lBckJDLCtCQUFVOzs7OztJQUlWLGdDQUFxQjs7Ozs7SUFJckIsZ0NBQXdCOzs7OztJQUl4Qiw4QkFBcUI7Ozs7O0lBSXJCLCtCQUFzQjs7Ozs7SUFJdEIsbURBQTBDIiwic291cmNlc0NvbnRlbnQiOlsiZXhwb3J0IGNsYXNzIERlbG9uTW9ja0NvbmZpZyB7XG4gIC8qKlxuICAgKiDop4TliJnlrprkuYnmlbDmja5cbiAgICovXG4gIGRhdGE6IGFueTtcbiAgLyoqXG4gICAqIOivt+axguW7tui/n++8jOWNleS9je+8muavq+enku+8jOm7mOiupO+8mmAzMDBgXG4gICAqL1xuICBkZWxheT86IG51bWJlciA9IDMwMDtcbiAgLyoqXG4gICAqIOaYr+WQpuW8uuWItuaJgOacieivt+axgumDvU1vY2vvvIxgdHJ1ZWAg6KGo56S65b2T6K+35rGC55qEVVJM5LiN5a2Y5Zyo5pe255u05o6l6L+U5ZueIDQwNCDplJnor6/vvIxgZmFsc2VgIOihqOekuuacquWRveS4reaXtuWPkemAgeecn+WunkhUVFDor7fmsYJcbiAgICovXG4gIGZvcmNlPzogYm9vbGVhbiA9IGZhbHNlO1xuICAvKipcbiAgICog5piv5ZCm5omT5Y2wIE1vY2sg6K+35rGC5L+h5oGv77yM5byl6KGl5rWP6KeI5Zmo5pegTmV0d29ya+S/oeaBr1xuICAgKi9cbiAgbG9nPzogYm9vbGVhbiA9IHRydWU7XG4gIC8qKlxuICAgKiDmmK/lkKbov5Tlm57lia/mnKzmlbDmja5cbiAgICovXG4gIGNvcHk/OiBib29sZWFuID0gdHJ1ZTtcbiAgLyoqXG4gICAqIOaYr+WQpuaLpuaIquWRveS4reWQjue7p+e7reiwg+eUqOWQjue7reaLpuaIquWZqOeahCBgaW50ZXJjZXB0YCDmlrnms5XvvIzpu5jorqTvvJpgdHJ1ZWBcbiAgICovXG4gIGV4ZWN1dGVPdGhlckludGVyY2VwdG9ycz86IGJvb2xlYW4gPSB0cnVlO1xufVxuIl19
