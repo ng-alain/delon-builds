@@ -1,7 +1,7 @@
 import { __decorate, __metadata } from 'tslib';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, NgZone, ViewChild, Input, NgModule } from '@angular/core';
 import { Chart } from '@antv/g2';
-import { warnDeprecation10, InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
+import { deprecation10, InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
 import { CommonModule } from '@angular/common';
 import { NzOutletModule } from 'ng-zorro-antd/core/outlet';
 
@@ -134,7 +134,7 @@ class G2TimelineComponent {
          * @return {?}
          */
         w => !!w.x)) != null) {
-            warnDeprecation10('x', 'time');
+            deprecation10('g2-timeline', 'x', 'time');
             data.forEach((/**
              * @param {?} item
              * @return {?}

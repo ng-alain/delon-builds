@@ -2,7 +2,7 @@ import { __assign, __decorate, __metadata, __spread } from 'tslib';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, NgZone, Input, NgModule } from '@angular/core';
 import DataSet from '@antv/data-set';
 import { registerShape, Util, Chart } from '@antv/g2';
-import { InputNumber, DelonUtilModule } from '@delon/util';
+import { deprecation10, InputNumber, DelonUtilModule } from '@delon/util';
 import { fromEvent } from 'rxjs';
 import { filter, debounceTime } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
@@ -136,6 +136,28 @@ var G2TagCloudComponent = /** @class */ (function () {
         var _a = this, chart = _a.chart, padding = _a.padding, data = _a.data;
         if (!chart || !data || data.length <= 0)
             return;
+        // TODO: compatible
+        if (data.find((/**
+         * @param {?} w
+         * @return {?}
+         */
+        function (w) { return !!w.x; })) != null) {
+            deprecation10('g2-tag-cloud', 'x', 'name');
+            data.forEach((/**
+             * @param {?} item
+             * @return {?}
+             */
+            function (item) {
+                item.name = item.x;
+            }));
+        }
+        if (data.find((/**
+         * @param {?} w
+         * @return {?}
+         */
+        function (w) { return !!w.category; })) != null) {
+            deprecation10('g2-tag-cloud', 'category');
+        }
         chart.height = this.height;
         chart.width = this.width;
         chart.padding = padding;

@@ -960,13 +960,14 @@
             })], args));
     });
     /** @type {?} */
-    var warnDeprecation10 = (/**
+    var deprecation10 = (/**
+     * @param {?} comp
      * @param {?} from
-     * @param {?} to
+     * @param {?=} to
      * @return {?}
      */
-    function (from, to) {
-        warnDeprecation("'" + from + "' is going to be removed in 10.0.0. Please use '" + to + "' instead.");
+    function (comp, from, to) {
+        warnDeprecation(comp + " => '" + from + "' is going to be removed in 10.0.0" + (to ? ", Please use '" + to + "' instead" : "") + ".");
     });
     /** @type {?} */
     var warnDeprecation = (/**
@@ -1719,6 +1720,7 @@
     exports.deepGet = deepGet;
     exports.deepMerge = deepMerge;
     exports.deepMergeKey = deepMergeKey;
+    exports.deprecation10 = deprecation10;
     exports.fixEndTimeOfRange = fixEndTimeOfRange;
     exports.format = format;
     exports.getTimeDistance = getTimeDistance;
@@ -1735,7 +1737,6 @@
     exports.updateHostClass = updateHostClass;
     exports.warn = warn;
     exports.warnDeprecation = warnDeprecation;
-    exports.warnDeprecation10 = warnDeprecation10;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 

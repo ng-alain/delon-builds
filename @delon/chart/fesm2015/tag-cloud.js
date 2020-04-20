@@ -2,7 +2,7 @@ import { __decorate, __metadata } from 'tslib';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, NgZone, Input, NgModule } from '@angular/core';
 import DataSet from '@antv/data-set';
 import { registerShape, Util, Chart } from '@antv/g2';
-import { InputNumber, DelonUtilModule } from '@delon/util';
+import { deprecation10, InputNumber, DelonUtilModule } from '@delon/util';
 import { fromEvent } from 'rxjs';
 import { filter, debounceTime } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
@@ -128,6 +128,28 @@ class G2TagCloudComponent {
         const { chart, padding, data } = this;
         if (!chart || !data || data.length <= 0)
             return;
+        // TODO: compatible
+        if (data.find((/**
+         * @param {?} w
+         * @return {?}
+         */
+        w => !!w.x)) != null) {
+            deprecation10('g2-tag-cloud', 'x', 'name');
+            data.forEach((/**
+             * @param {?} item
+             * @return {?}
+             */
+            item => {
+                item.name = item.x;
+            }));
+        }
+        if (data.find((/**
+         * @param {?} w
+         * @return {?}
+         */
+        w => !!w.category)) != null) {
+            deprecation10('g2-tag-cloud', 'category');
+        }
         chart.height = this.height;
         chart.width = this.width;
         chart.padding = padding;

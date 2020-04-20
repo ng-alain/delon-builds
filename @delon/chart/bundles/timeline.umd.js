@@ -364,7 +364,7 @@
              * @return {?}
              */
             function (w) { return !!w.x; })) != null) {
-                util.warnDeprecation10('x', 'time');
+                util.deprecation10('g2-timeline', 'x', 'time');
                 data.forEach((/**
                  * @param {?} item
                  * @return {?}

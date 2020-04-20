@@ -354,6 +354,28 @@
             var _a = this, chart = _a.chart, padding = _a.padding, data = _a.data;
             if (!chart || !data || data.length <= 0)
                 return;
+            // TODO: compatible
+            if (data.find((/**
+             * @param {?} w
+             * @return {?}
+             */
+            function (w) { return !!w.x; })) != null) {
+                util.deprecation10('g2-tag-cloud', 'x', 'name');
+                data.forEach((/**
+                 * @param {?} item
+                 * @return {?}
+                 */
+                function (item) {
+                    item.name = item.x;
+                }));
+            }
+            if (data.find((/**
+             * @param {?} w
+             * @return {?}
+             */
+            function (w) { return !!w.category; })) != null) {
+                util.deprecation10('g2-tag-cloud', 'category');
+            }
             chart.height = this.height;
             chart.width = this.width;
             chart.padding = padding;

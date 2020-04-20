@@ -742,13 +742,14 @@ function () {
         })], args));
 });
 /** @type {?} */
-var warnDeprecation10 = (/**
+var deprecation10 = (/**
+ * @param {?} comp
  * @param {?} from
- * @param {?} to
+ * @param {?=} to
  * @return {?}
  */
-function (from, to) {
-    warnDeprecation("'" + from + "' is going to be removed in 10.0.0. Please use '" + to + "' instead.");
+function (comp, from, to) {
+    warnDeprecation(comp + " => '" + from + "' is going to be removed in 10.0.0" + (to ? ", Please use '" + to + "' instead" : "") + ".");
 });
 /** @type {?} */
 var warnDeprecation = (/**
@@ -1500,5 +1501,5 @@ var DelonUtilModule = /** @class */ (function () {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { ArrayService, DelonUtilConfig, DelonUtilModule, InputBoolean, InputNumber, LazyService, PREFIX, _Validators, copy, deepCopy, deepGet, deepMerge, deepMergeKey, fixEndTimeOfRange, format, getTimeDistance, isDecimal, isEmpty, isIdCard, isInt, isMobile, isNum, isUrl, log, toBoolean, toNumber, updateHostClass, warn, warnDeprecation, warnDeprecation10 };
+export { ArrayService, DelonUtilConfig, DelonUtilModule, InputBoolean, InputNumber, LazyService, PREFIX, _Validators, copy, deepCopy, deepGet, deepMerge, deepMergeKey, deprecation10, fixEndTimeOfRange, format, getTimeDistance, isDecimal, isEmpty, isIdCard, isInt, isMobile, isNum, isUrl, log, toBoolean, toNumber, updateHostClass, warn, warnDeprecation };
 //# sourceMappingURL=util.js.map
