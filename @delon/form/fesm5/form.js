@@ -3313,6 +3313,7 @@ var SFFixedDirective = /** @class */ (function () {
         var unit = this.num + 'px';
         if (labelEl) {
             this.render.setStyle(labelEl, 'width', unit);
+            this.render.setStyle(labelEl, 'max-width', unit);
             this.render.setStyle(labelEl, 'flex', "0 0 " + unit);
         }
         else {
