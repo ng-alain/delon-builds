@@ -414,10 +414,7 @@ if (false) {
     G2PieComponent.prototype.colors;
     /** @type {?} */
     G2PieComponent.prototype.interaction;
-    /**
-     * @type {?}
-     * @private
-     */
+    /** @type {?} */
     G2PieComponent.prototype.el;
     /**
      * @type {?}

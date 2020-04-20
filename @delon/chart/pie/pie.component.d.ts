@@ -1,19 +1,20 @@
 import { ChangeDetectorRef, ElementRef, NgZone, OnChanges, OnDestroy, OnInit, TemplateRef } from '@angular/core';
 import { InteractionType } from '@delon/chart/core/types';
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
 export interface G2PieData {
     x: any;
     y: number;
     [key: string]: any;
 }
 export declare class G2PieComponent implements OnInit, OnDestroy, OnChanges {
-    private el;
+    el: ElementRef<HTMLElement>;
     private ngZone;
     private cdr;
     private node;
     private chart;
     private isPercent;
     private percentColor;
-    legendData: any[];
+    legendData: NzSafeAny[];
     delay: number;
     animate: boolean;
     color: string;
