@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectorRef, ElementRef, EventEmitter, OnChanges, OnDestroy, Renderer2, SimpleChange, SimpleChanges, TemplateRef, TrackByFunction } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, ElementRef, EventEmitter, OnChanges, OnDestroy, SimpleChange, SimpleChanges, TemplateRef, TrackByFunction } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlainI18NService, DelonLocaleService, DrawerHelper, LocaleData, ModalHelper } from '@delon/theme';
 import { NzTableComponent, NzTableData } from 'ng-zorro-antd/table';
@@ -13,7 +13,6 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     private cog;
     private router;
     private el;
-    private renderer;
     private exportSrv;
     private modalHelper;
     private drawerHelper;
@@ -123,7 +122,7 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
      * Get the data of the current page
      */
     get list(): STData[];
-    constructor(i18nSrv: AlainI18NService, cdr: ChangeDetectorRef, cog: STConfig, router: Router, el: ElementRef, renderer: Renderer2, exportSrv: STExport, modalHelper: ModalHelper, drawerHelper: DrawerHelper, doc: any, columnSource: STColumnSource, dataSource: STDataSource, delonI18n: DelonLocaleService);
+    constructor(i18nSrv: AlainI18NService, cdr: ChangeDetectorRef, cog: STConfig, router: Router, el: ElementRef, exportSrv: STExport, modalHelper: ModalHelper, drawerHelper: DrawerHelper, doc: any, columnSource: STColumnSource, dataSource: STDataSource, delonI18n: DelonLocaleService);
     cd(): this;
     renderTotal(total: string, range: string[]): string;
     isTruncate(column: STColumn): boolean;
@@ -219,7 +218,6 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     get cdkVirtualScrollViewport(): import("@angular/cdk/scrolling").CdkVirtualScrollViewport;
     resetColumns(options?: STResetColumnsOption): Promise<this>;
     private refreshColumns;
-    private setClass;
     ngAfterViewInit(): void;
     ngOnChanges(changes: {
         [P in keyof this]?: SimpleChange;
