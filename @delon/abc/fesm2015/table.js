@@ -1373,8 +1373,6 @@ if (false) {
  * Generated from: st-widget.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class STWidget {
-}
 class STWidgetRegistry {
     constructor() {
         this._widgets = {};
@@ -4595,5 +4593,5 @@ STModule.decorators = [
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { STColumnSource, STComponent, STConfig, STDataSource, STExport, STModule, STRowDirective, STWidget, STWidgetRegistry, STRowSource as ɵa, STWidgetHostDirective as ɵb };
+export { STColumnSource, STComponent, STConfig, STDataSource, STExport, STModule, STRowDirective, STWidgetRegistry, STRowSource as ɵa, STWidgetHostDirective as ɵb };
 //# sourceMappingURL=table.js.map

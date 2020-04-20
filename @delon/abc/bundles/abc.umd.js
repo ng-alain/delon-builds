@@ -126,12 +126,6 @@
             return st.STRowDirective;
         }
     });
-    Object.defineProperty(exports, 'STWidget', {
-        enumerable: true,
-        get: function () {
-            return st.STWidget;
-        }
-    });
     Object.defineProperty(exports, 'STWidgetRegistry', {
         enumerable: true,
         get: function () {

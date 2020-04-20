@@ -1588,11 +1588,6 @@
      * Generated from: st-widget.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var STWidget = /** @class */ (function () {
-        function STWidget() {
-        }
-        return STWidget;
-    }());
     var STWidgetRegistry = /** @class */ (function () {
         function STWidgetRegistry() {
             this._widgets = {};
@@ -5458,7 +5453,6 @@
     exports.STExport = STExport;
     exports.STModule = STModule;
     exports.STRowDirective = STRowDirective;
-    exports.STWidget = STWidget;
     exports.STWidgetRegistry = STWidgetRegistry;
     exports.ɵa = STRowSource;
     exports.ɵb = STWidgetHostDirective;
