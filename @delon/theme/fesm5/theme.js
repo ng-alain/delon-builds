@@ -4292,7 +4292,7 @@ var AlainThemeModule = /** @class */ (function () {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-var VERSION = new Version('9.0.0-rc.2-6b4f1ac3');
+var VERSION = new Version('9.0.0-rc.2-68b56c42');
 
 /**
  * @fileoverview added by tsickle
