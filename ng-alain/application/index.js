@@ -11,7 +11,6 @@ const file_1 = require("../utils/file");
 const html_1 = require("../utils/html");
 const json_1 = require("../utils/json");
 const lib_versions_1 = require("../utils/lib-versions");
-const lint_fix_1 = require("../utils/lint-fix");
 const project_1 = require("../utils/project");
 const overwriteDataFileRoot = path.join(__dirname, 'overwrites');
 let project;
@@ -387,7 +386,6 @@ function default_1(options) {
             fixAngularJson(options),
             installPackages(),
             tips(),
-            lint_fix_1.applyLintFix(),
         ])(host, context);
     };
 }
