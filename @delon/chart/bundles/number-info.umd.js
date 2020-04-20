@@ -229,7 +229,9 @@
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var NumberInfoComponent = /** @class */ (function () {
-        function NumberInfoComponent() {
+        function NumberInfoComponent(el, renderer) {
+            this.el = el;
+            this.renderer = renderer;
             /**
              * 状态样式
              */
@@ -239,21 +241,45 @@
              */
             this.gap = 8;
         }
+        /**
+         * @return {?}
+         */
+        NumberInfoComponent.prototype.setClass = /**
+         * @return {?}
+         */
+        function () {
+            var _a;
+            var _b = this, el = _b.el, renderer = _b.renderer, theme = _b.theme;
+            util.updateHostClass(el.nativeElement, renderer, (_a = {
+                    'number-info': true
+                },
+                _a["number-info__" + theme] = true,
+                _a), true);
+        };
+        /**
+         * @return {?}
+         */
+        NumberInfoComponent.prototype.ngOnChanges = /**
+         * @return {?}
+         */
+        function () {
+            this.setClass();
+        };
         NumberInfoComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'number-info',
                         exportAs: 'numberInfo',
                         template: "<div *ngIf=\"title\" class=\"number-info__title\">\n  <ng-container *nzStringTemplateOutlet=\"title\">{{title}}</ng-container>\n</div>\n<div *ngIf=\"subTitle\" class=\"number-info__title-sub\">\n  <ng-container *nzStringTemplateOutlet=\"subTitle\">{{subTitle}}</ng-container>\n</div>\n<div class=\"number-info__value\" [ngStyle]=\"{'margin-top.px': gap}\">\n  <span class=\"number-info__value-text\">\n    <ng-container *nzStringTemplateOutlet=\"total\">{{total}}</ng-container>\n    <em class=\"number-info__value-suffix\" *ngIf=\"suffix\">{{suffix}}</em>\n  </span>\n  <span *ngIf=\"status || subTotal\" class=\"number-info__value-text number-info__value-sub\">\n    <ng-container *nzStringTemplateOutlet=\"subTotal\">{{subTotal}}</ng-container>\n    <i *ngIf=\"status\" nz-icon nzType=\"caret-{{status}}\"></i>\n  </span>\n</div>\n",
-                        host: {
-                            '[class.number-info]': "true",
-                            '[class.number-info__light]': "theme === 'light'",
-                            '[class.number-info__default]': "theme === 'default'",
-                        },
                         preserveWhitespaces: false,
                         changeDetection: core.ChangeDetectionStrategy.OnPush,
                         encapsulation: core.ViewEncapsulation.None
                     }] }
         ];
+        /** @nocollapse */
+        NumberInfoComponent.ctorParameters = function () { return [
+            { type: core.ElementRef },
+            { type: core.Renderer2 }
+        ]; };
         NumberInfoComponent.propDecorators = {
             title: [{ type: core.Input }],
             subTitle: [{ type: core.Input }],
@@ -311,6 +337,16 @@
          * @type {?}
          */
         NumberInfoComponent.prototype.gap;
+        /**
+         * @type {?}
+         * @private
+         */
+        NumberInfoComponent.prototype.el;
+        /**
+         * @type {?}
+         * @private
+         */
+        NumberInfoComponent.prototype.renderer;
     }
 
     /**

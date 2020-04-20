@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, ElementRef, NgZone, OnChanges, OnDestroy, OnInit, TemplateRef } from '@angular/core';
+import { ChangeDetectorRef, ElementRef, NgZone, OnChanges, OnDestroy, OnInit, Renderer2, TemplateRef } from '@angular/core';
 import { InteractionType } from '@delon/chart/core/types';
 export interface G2PieData {
     x: any;
@@ -7,8 +7,10 @@ export interface G2PieData {
 }
 export declare class G2PieComponent implements OnInit, OnDestroy, OnChanges {
     private el;
+    private rend;
     private ngZone;
     private cdr;
+    private resize$;
     private node;
     private chart;
     private isPercent;
@@ -26,19 +28,19 @@ export declare class G2PieComponent implements OnInit, OnDestroy, OnChanges {
     percent: number;
     tooltip: boolean;
     lineWidth: number;
-    blockMaxWidth: number;
     select: boolean;
     valueFormat: (y: number) => string;
     data: G2PieData[];
     colors: any[];
     interaction: InteractionType;
-    get block(): boolean;
-    constructor(el: ElementRef<HTMLElement>, ngZone: NgZone, cdr: ChangeDetectorRef);
+    constructor(el: ElementRef, rend: Renderer2, ngZone: NgZone, cdr: ChangeDetectorRef);
+    private setCls;
     private fixData;
     private install;
     private attachChart;
     private genLegend;
     _click(i: number): void;
+    private installResizeEvent;
     ngOnInit(): void;
     ngOnChanges(): void;
     ngOnDestroy(): void;
