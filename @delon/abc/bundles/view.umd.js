@@ -295,58 +295,25 @@
      * Generated from: sv-container.component.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    /** @type {?} */
-    var prefixCls = "sv";
     var SVContainerComponent = /** @class */ (function () {
-        // #endregion
-        function SVContainerComponent(el, ren, cog) {
-            this.ren = ren;
+        function SVContainerComponent(cog) {
             this.size = 'large';
             this.layout = 'horizontal';
-            this.el = el.nativeElement;
             Object.assign(this, __assign(__assign({}, new SVConfig()), cog));
         }
-        /**
-         * @private
-         * @return {?}
-         */
-        SVContainerComponent.prototype.setClass = /**
-         * @private
-         * @return {?}
-         */
-        function () {
-            var _a;
-            var _b = this, el = _b.el, ren = _b.ren, size = _b.size, layout = _b.layout;
-            util.updateHostClass(el, ren, (_a = {},
-                _a[prefixCls + "__container"] = true,
-                _a[prefixCls + "__" + size] = true,
-                _a[prefixCls + "__" + layout] = true,
-                _a["clearfix"] = true,
-                _a));
-        };
-        /**
-         * @return {?}
-         */
-        SVContainerComponent.prototype.ngOnInit = /**
-         * @return {?}
-         */
-        function () {
-            this.setClass();
-        };
-        /**
-         * @return {?}
-         */
-        SVContainerComponent.prototype.ngOnChanges = /**
-         * @return {?}
-         */
-        function () {
-            this.setClass();
-        };
         SVContainerComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'sv-container, [sv-container]',
                         exportAs: 'svContainer',
                         template: "<div class=\"ant-row\"\n     [ngStyle]=\"{'margin-left.px': -(gutter / 2), 'margin-right.px': -(gutter / 2)}\">\n  <sv-title *ngIf=\"title\">\n    <ng-container *nzStringTemplateOutlet=\"title\">{{title}}</ng-container>\n  </sv-title>\n  <ng-content></ng-content>\n</div>\n",
+                        host: {
+                            '[class.sv__container]': 'true',
+                            '[class.sv__horizontal]': "layout === 'horizontal'",
+                            '[class.sv__vertical]': "layout === 'vertical'",
+                            '[class.sv__small]': "size === 'small'",
+                            '[class.sv__large]': "size === 'large'",
+                            '[class.clearfix]': "true",
+                        },
                         preserveWhitespaces: false,
                         changeDetection: core.ChangeDetectionStrategy.OnPush,
                         encapsulation: core.ViewEncapsulation.None
@@ -354,8 +321,6 @@
         ];
         /** @nocollapse */
         SVContainerComponent.ctorParameters = function () { return [
-            { type: core.ElementRef },
-            { type: core.Renderer2 },
             { type: SVConfig }
         ]; };
         SVContainerComponent.propDecorators = {
@@ -382,11 +347,6 @@
         return SVContainerComponent;
     }());
     if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        SVContainerComponent.prototype.el;
         /** @type {?} */
         SVContainerComponent.prototype.title;
         /** @type {?} */
@@ -407,11 +367,6 @@
         SVContainerComponent.prototype.col;
         /** @type {?} */
         SVContainerComponent.prototype.default;
-        /**
-         * @type {?}
-         * @private
-         */
-        SVContainerComponent.prototype.ren;
     }
 
     /**
@@ -496,7 +451,7 @@
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
-    var prefixCls$1 = "sv";
+    var prefixCls = "sv";
     var SVComponent = /** @class */ (function () {
         function SVComponent(el, parent, rep, ren) {
             this.parent = parent;
@@ -549,11 +504,11 @@
             function (cls) { return ren.removeClass(el, cls); }));
             clsMap.length = 0;
             clsMap.push.apply(clsMap, __spread(rep.genCls(col != null ? col : this.parent.col)));
-            clsMap.push(prefixCls$1 + "__item");
+            clsMap.push(prefixCls + "__item");
             if (this.parent.labelWidth)
-                clsMap.push(prefixCls$1 + "__item-fixed");
+                clsMap.push(prefixCls + "__item-fixed");
             if (type)
-                clsMap.push(prefixCls$1 + "__type-" + type);
+                clsMap.push(prefixCls + "__type-" + type);
             clsMap.forEach((/**
              * @param {?} cls
              * @return {?}
