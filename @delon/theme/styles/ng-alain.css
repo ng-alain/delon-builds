@@ -20140,6 +20140,15 @@ span.ant-radio + * {
   margin-bottom: 4px;
   display: block;
 }
+.ant-select-dropdown .cdk-virtual-scroll-content-wrapper {
+  right: 0;
+}
+.ant-select-dropdown .full-width {
+  contain: initial;
+}
+.ant-select-dropdown .full-width .cdk-virtual-scroll-content-wrapper {
+  position: static;
+}
 .ant-skeleton {
   display: table;
   width: 100%;

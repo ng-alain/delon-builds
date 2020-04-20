@@ -3,7 +3,7 @@ export { AvatarListComponent, AvatarListItemComponent, AvatarListModule } from '
 import { CountDownModule } from '@delon/abc/count-down';
 export { CountDownComponent, CountDownModule } from '@delon/abc/count-down';
 import { STModule } from '@delon/abc/st';
-export { STColumnSource, STComponent, STConfig, STDataSource, STExport, STModule, STRowDirective, ɵa } from '@delon/abc/st';
+export { STColumnSource, STComponent, STConfig, STDataSource, STExport, STModule, STRowDirective, STWidget, STWidgetRegistry, ɵa, ɵb } from '@delon/abc/st';
 import { SVModule } from '@delon/abc/sv';
 export { SVComponent, SVConfig, SVContainerComponent, SVModule, SVTitleComponent } from '@delon/abc/sv';
 import { SEModule } from '@delon/abc/se';

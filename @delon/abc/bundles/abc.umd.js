@@ -126,10 +126,28 @@
             return st.STRowDirective;
         }
     });
+    Object.defineProperty(exports, 'STWidget', {
+        enumerable: true,
+        get: function () {
+            return st.STWidget;
+        }
+    });
+    Object.defineProperty(exports, 'STWidgetRegistry', {
+        enumerable: true,
+        get: function () {
+            return st.STWidgetRegistry;
+        }
+    });
     Object.defineProperty(exports, 'ɵa', {
         enumerable: true,
         get: function () {
             return st.ɵa;
+        }
+    });
+    Object.defineProperty(exports, 'ɵb', {
+        enumerable: true,
+        get: function () {
+            return st.ɵb;
         }
     });
     Object.defineProperty(exports, 'SVComponent', {
