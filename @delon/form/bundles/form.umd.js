@@ -6424,6 +6424,7 @@
             { type: core.NgModule, args: [{
                         imports: __spread([common.CommonModule, forms.FormsModule, util.DelonUtilModule, theme.DelonLocaleModule], ZORROS),
                         declarations: __spread(COMPONENTS, WIDGETS),
+                        entryComponents: __spread(WIDGETS),
                         exports: __spread(COMPONENTS),
                     },] }
         ];
