@@ -4144,7 +4144,7 @@ var STComponent = /** @class */ (function () {
         options = __assign({ refreshSchema: false, emitReload: false }, options);
         (/** @type {?} */ (this))._data[index] = deepMergeKey((/** @type {?} */ (this))._data[index], false, item);
         (/** @type {?} */ (this))._data = (/** @type {?} */ (this)).dataSource.optimizeData({ columns: (/** @type {?} */ (this))._columns, result: (/** @type {?} */ (this))._data, rowClassName: (/** @type {?} */ (this)).rowClassName });
-        if (!options.refreshSchema) {
+        if (options.refreshSchema) {
             (/** @type {?} */ (this)).resetColumns({ emitReload: options.emitReload });
             return (/** @type {?} */ (this));
         }
