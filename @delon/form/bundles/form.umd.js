@@ -1,5 +1,5 @@
 /**
- * @license ng-alain(cipchk@qq.com) v8.9.2
+ * @license ng-alain(cipchk@qq.com) v8.9.3
  * (c) 2019 cipchk https://ng-alain.com/
  * License: MIT
  */
@@ -1779,6 +1779,9 @@
                     }));
                 }
             }));
+            if (list.length === 0) {
+                this.updateValueAndValidity();
+            }
         };
         return ArrayProperty;
     }(PropertyGroup));
@@ -2040,7 +2043,7 @@
                         ui._format = schema.type === 'string' ? this.options.uiTimeStringFormat : this.options.uiTimeNumberFormat;
                 }
                 else {
-                    ui._format = ui.format;
+                    ui._format = schema.format || ui.format;
                 }
                 switch (schema.type) {
                     case 'integer':
@@ -2707,7 +2710,7 @@
                         /** @type {?} */
                         var dateEndProperty = (/** @type {?} */ (schema.properties))[ui.end];
                         if (dateEndProperty) {
-                            dateEndProperty.ui = __assign({}, ((/** @type {?} */ (dateEndProperty.ui))), { hidden: true });
+                            dateEndProperty.ui = __assign({}, ((/** @type {?} */ (dateEndProperty.ui))), { widget: ui.widget, hidden: true });
                         }
                         else {
                             ui.end = null;
@@ -2832,7 +2835,7 @@
                     (/** @type {?} */ (this._btn.render)).spanLabelFixed = btnUi.spanLabelFixed;
                 }
                 // 固定标签宽度时，若不指定样式，则默认居中
-                if (!(/** @type {?} */ (this._btn.render)).class && (typeof btnUi.spanLabelFixed === 'number' && btnUi.spanLabelFixed > 0)) {
+                if (!(/** @type {?} */ (this._btn.render)).class && typeof btnUi.spanLabelFixed === 'number' && btnUi.spanLabelFixed > 0) {
                     (/** @type {?} */ (this._btn.render)).class = 'text-center';
                 }
             }
@@ -4635,6 +4638,7 @@
          * @return {?}
          */
         function (value) {
+            var _this = this;
             value = this.toDate(value);
             if (this.flatRange) {
                 this.displayValue = value == null ? [] : [value, this.toDate(this.endProperty.formData)];
@@ -4643,6 +4647,11 @@
                 this.displayValue = value;
             }
             this.detectChanges();
+            // TODO: Need to wait for the rendering to complete, otherwise it will be overwritten of end widget
+            setTimeout((/**
+             * @return {?}
+             */
+            function () { return _this._change(_this.displayValue); }));
         };
         /**
          * @param {?} value
@@ -4653,7 +4662,7 @@
          * @return {?}
          */
         function (value) {
-            if (value == null || ((/** @type {?} */ (value))).length < 2) {
+            if (value == null || (Array.isArray(value) && value.length < 2)) {
                 this.setValue(null);
                 this.setEnd(null);
                 return;
@@ -4663,8 +4672,8 @@
                 ? [format(value[0], this.startFormat), format(value[1], this.endFormat || this.startFormat)]
                 : format(value, this.startFormat);
             if (this.flatRange) {
-                this.setEnd(res[1]);
                 this.setValue(res[0]);
+                this.setEnd(res[1]);
             }
             else {
                 this.setValue(res);
@@ -4719,6 +4728,7 @@
             if (!this.flatRange)
                 return;
             this.endProperty.setValue(value, true);
+            this.endProperty.updateValueAndValidity();
         };
         /**
          * @private

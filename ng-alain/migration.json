@@ -2,7 +2,7 @@
   "$schema": "./node_modules/@angular-devkit/schematics/collection-schema.json",
   "schematics": {
     "migration-v2": {
-      "version": "8.9.2",
+      "version": "8.9.3",
       "description": "Updates ng-alain to v2",
       "factory": "./ng-update/index#updateToV2"
     },

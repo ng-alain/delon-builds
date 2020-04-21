@@ -1348,6 +1348,9 @@ class ArrayProperty extends PropertyGroup {
                 }));
             }
         }));
+        if (list.length === 0) {
+            this.updateValueAndValidity();
+        }
     }
 }
 if (false) {
@@ -1545,7 +1548,7 @@ class FormPropertyFactory {
                     ui._format = schema.type === 'string' ? this.options.uiTimeStringFormat : this.options.uiTimeNumberFormat;
             }
             else {
-                ui._format = ui.format;
+                ui._format = schema.format || ui.format;
             }
             switch (schema.type) {
                 case 'integer':
@@ -2108,7 +2111,7 @@ class SFComponent {
                     /** @type {?} */
                     const dateEndProperty = (/** @type {?} */ (schema.properties))[ui.end];
                     if (dateEndProperty) {
-                        dateEndProperty.ui = Object.assign({}, ((/** @type {?} */ (dateEndProperty.ui))), { hidden: true });
+                        dateEndProperty.ui = Object.assign({}, ((/** @type {?} */ (dateEndProperty.ui))), { widget: ui.widget, hidden: true });
                     }
                     else {
                         ui.end = null;
@@ -2229,7 +2232,7 @@ class SFComponent {
                 (/** @type {?} */ (this._btn.render)).spanLabelFixed = btnUi.spanLabelFixed;
             }
             // 固定标签宽度时，若不指定样式，则默认居中
-            if (!(/** @type {?} */ (this._btn.render)).class && (typeof btnUi.spanLabelFixed === 'number' && btnUi.spanLabelFixed > 0)) {
+            if (!(/** @type {?} */ (this._btn.render)).class && typeof btnUi.spanLabelFixed === 'number' && btnUi.spanLabelFixed > 0) {
                 (/** @type {?} */ (this._btn.render)).class = 'text-center';
             }
         }
@@ -3754,13 +3757,18 @@ class DateWidget extends ControlUIWidget {
             this.displayValue = value;
         }
         this.detectChanges();
+        // TODO: Need to wait for the rendering to complete, otherwise it will be overwritten of end widget
+        setTimeout((/**
+         * @return {?}
+         */
+        () => this._change(this.displayValue)));
     }
     /**
      * @param {?} value
      * @return {?}
      */
     _change(value) {
-        if (value == null || ((/** @type {?} */ (value))).length < 2) {
+        if (value == null || (Array.isArray(value) && value.length < 2)) {
             this.setValue(null);
             this.setEnd(null);
             return;
@@ -3770,8 +3778,8 @@ class DateWidget extends ControlUIWidget {
             ? [format(value[0], this.startFormat), format(value[1], this.endFormat || this.startFormat)]
             : format(value, this.startFormat);
         if (this.flatRange) {
-            this.setEnd(res[1]);
             this.setValue(res[0]);
+            this.setEnd(res[1]);
         }
         else {
             this.setValue(res);
@@ -3809,6 +3817,7 @@ class DateWidget extends ControlUIWidget {
         if (!this.flatRange)
             return;
         this.endProperty.setValue(value, true);
+        this.endProperty.updateValueAndValidity();
     }
     /**
      * @private
