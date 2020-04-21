@@ -3771,6 +3771,11 @@ class DateWidget extends ControlUIWidget {
             this.displayValue = value;
         }
         this.detectChanges();
+        // TODO: Need to wait for the rendering to complete, otherwise it will be overwritten of end widget
+        setTimeout((/**
+         * @return {?}
+         */
+        () => this._change(this.displayValue)));
     }
     /**
      * @param {?} value
@@ -3787,8 +3792,8 @@ class DateWidget extends ControlUIWidget {
             ? [format(value[0], this.startFormat), format(value[1], this.endFormat || this.startFormat)]
             : format(value, this.startFormat);
         if (this.flatRange) {
-            this.setEnd(res[1]);
             this.setValue(res[0]);
+            this.setEnd(res[1]);
         }
         else {
             this.setValue(res);

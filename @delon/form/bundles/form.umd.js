@@ -4647,6 +4647,7 @@
          * @return {?}
          */
         function (value) {
+            var _this = this;
             value = this.toDate(value, this.startFormat);
             if (this.flatRange) {
                 this.displayValue = value == null ? [] : [value, this.toDate(this.endProperty.formData, this.endFormat || this.startFormat)];
@@ -4655,6 +4656,11 @@
                 this.displayValue = value;
             }
             this.detectChanges();
+            // TODO: Need to wait for the rendering to complete, otherwise it will be overwritten of end widget
+            setTimeout((/**
+             * @return {?}
+             */
+            function () { return _this._change(_this.displayValue); }));
         };
         /**
          * @param {?} value
@@ -4675,8 +4681,8 @@
                 ? [format(value[0], this.startFormat), format(value[1], this.endFormat || this.startFormat)]
                 : format(value, this.startFormat);
             if (this.flatRange) {
-                this.setEnd(res[1]);
                 this.setValue(res[0]);
+                this.setEnd(res[1]);
             }
             else {
                 this.setValue(res);
