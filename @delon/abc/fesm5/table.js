@@ -2048,11 +2048,12 @@ var STColumnSource = /** @class */ (function () {
      * @return {?}
      */
     function (item) {
+        var _a;
         if (item.type !== 'widget')
             return;
         if (item.widget == null || !this.stWidgetRegistry.has(item.widget.type)) {
             delete item.type;
-            warn("st: No widget for type \"" + (/** @type {?} */ (item.widget)).type + "\"");
+            warn("st: No widget for type \"" + ((_a = item.widget) === null || _a === void 0 ? void 0 : _a.type) + "\"");
         }
     };
     /**
@@ -4097,6 +4098,9 @@ var STComponent = /** @class */ (function () {
     /**
      * Sets the row value for the `index` in the table, like this:
      *
+     * - `optinos.refreshSchema` Whether to refresh of st schemas
+     * - `optinos.emitReload` Whether to trigger a reload http request when data is url
+     *
      * ```
      * this.st.setRow(0, { price: 100 })
      * this.st.setRow(0, { price: 100, name: 'asdf' })
@@ -4105,18 +4109,8 @@ var STComponent = /** @class */ (function () {
     /**
      * Sets the row value for the `index` in the table, like this:
      *
-     * ```
-     * this.st.setRow(0, { price: 100 })
-     * this.st.setRow(0, { price: 100, name: 'asdf' })
-     * ```
-     * @template THIS
-     * @this {THIS}
-     * @param {?} index
-     * @param {?} item
-     * @return {THIS}
-     */
-    STComponent.prototype.setRow = /**
-     * Sets the row value for the `index` in the table, like this:
+     * - `optinos.refreshSchema` Whether to refresh of st schemas
+     * - `optinos.emitReload` Whether to trigger a reload http request when data is url
      *
      * ```
      * this.st.setRow(0, { price: 100 })
@@ -4126,11 +4120,34 @@ var STComponent = /** @class */ (function () {
      * @this {THIS}
      * @param {?} index
      * @param {?} item
+     * @param {?=} options
      * @return {THIS}
      */
-    function (index, item) {
+    STComponent.prototype.setRow = /**
+     * Sets the row value for the `index` in the table, like this:
+     *
+     * - `optinos.refreshSchema` Whether to refresh of st schemas
+     * - `optinos.emitReload` Whether to trigger a reload http request when data is url
+     *
+     * ```
+     * this.st.setRow(0, { price: 100 })
+     * this.st.setRow(0, { price: 100, name: 'asdf' })
+     * ```
+     * @template THIS
+     * @this {THIS}
+     * @param {?} index
+     * @param {?} item
+     * @param {?=} options
+     * @return {THIS}
+     */
+    function (index, item, options) {
+        options = __assign({ refreshSchema: false, emitReload: false }, options);
         (/** @type {?} */ (this))._data[index] = deepMergeKey((/** @type {?} */ (this))._data[index], false, item);
         (/** @type {?} */ (this))._data = (/** @type {?} */ (this)).dataSource.optimizeData({ columns: (/** @type {?} */ (this))._columns, result: (/** @type {?} */ (this))._data, rowClassName: (/** @type {?} */ (this)).rowClassName });
+        if (!options.refreshSchema) {
+            (/** @type {?} */ (this)).resetColumns({ emitReload: options.emitReload });
+            return (/** @type {?} */ (this));
+        }
         (/** @type {?} */ (this)).cdr.detectChanges();
         return (/** @type {?} */ (this));
     };

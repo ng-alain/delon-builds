@@ -182,12 +182,18 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     /**
      * Sets the row value for the `index` in the table, like this:
      *
+     * - `optinos.refreshSchema` Whether to refresh of st schemas
+     * - `optinos.emitReload` Whether to trigger a reload http request when data is url
+     *
      * ```
      * this.st.setRow(0, { price: 100 })
      * this.st.setRow(0, { price: 100, name: 'asdf' })
      * ```
      */
-    setRow(index: number, item: STData): this;
+    setRow(index: number, item: STData, options?: {
+        refreshSchema?: boolean;
+        emitReload?: boolean;
+    }): this;
     sort(col: STColumn, idx: number, value: any): void;
     clearSort(): this;
     private handleFilter;
