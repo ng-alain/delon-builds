@@ -2048,7 +2048,7 @@
                         ui._format = schema.type === 'string' ? this.options.uiTimeStringFormat : this.options.uiTimeNumberFormat;
                 }
                 else {
-                    ui._format = ui.format;
+                    ui._format = schema.format || ui.format;
                 }
                 switch (schema.type) {
                     case 'integer':
@@ -2718,7 +2718,7 @@
                         /** @type {?} */
                         var dateEndProperty = (/** @type {?} */ (schema.properties))[ui.end];
                         if (dateEndProperty) {
-                            dateEndProperty.ui = __assign(__assign({}, ((/** @type {?} */ (dateEndProperty.ui)))), { hidden: true });
+                            dateEndProperty.ui = __assign(__assign({}, ((/** @type {?} */ (dateEndProperty.ui)))), { widget: ui.widget, hidden: true });
                         }
                         else {
                             ui.end = null;
@@ -4665,7 +4665,7 @@
          * @return {?}
          */
         function (value) {
-            if (value == null || ((/** @type {?} */ (value))).length < 2) {
+            if (value == null || (Array.isArray(value) && value.length < 2)) {
                 this.setValue(null);
                 this.setEnd(null);
                 return;
@@ -4731,6 +4731,7 @@
             if (!this.flatRange)
                 return;
             this.endProperty.setValue(value, true);
+            this.endProperty.updateValueAndValidity();
         };
         /**
          * @private
