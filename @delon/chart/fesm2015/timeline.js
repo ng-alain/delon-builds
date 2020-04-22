@@ -1,8 +1,7 @@
 import { __decorate, __metadata } from 'tslib';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, NgZone, ViewChild, Input, NgModule } from '@angular/core';
 import { Chart } from '@antv/g2';
-import { toDate } from '@delon/chart/core/time';
-import { deprecation10, InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
+import { deprecation10, toDate, InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
 import { CommonModule } from '@angular/common';
 import { NzOutletModule } from 'ng-zorro-antd/core/outlet';
 
@@ -101,19 +100,9 @@ class G2TimelineComponent {
         this.mask = 'HH:mm';
         this.position = 'top';
         this.height = 450;
-        this.padding = [60, 20, 64, 40];
+        this.padding = [40, 8, 64, 40];
         this.borderWidth = 2;
         this.slider = true;
-    }
-    /**
-     * @param {?} val
-     * @return {?}
-     */
-    set initialRange(val) {
-        this._initialRange = {
-            start: +toDate(val.start),
-            end: +toDate(val.end),
-        };
     }
     /**
      * @return {?}
@@ -159,8 +148,8 @@ class G2TimelineComponent {
         if (slider) {
             chart.option('slider', {
                 height: 26,
-                start: 0.1,
-                end: 0.8,
+                start: 0,
+                end: 1,
                 trendCfg: {
                     isArea: false,
                 },
@@ -274,7 +263,10 @@ class G2TimelineComponent {
                 range: [0, 1],
             } }, scaleOptions));
         /** @type {?} */
-        const initialRange = Object.assign({ start: data[0]._time, end: data[data.length - 1]._time }, this._initialRange);
+        const initialRange = {
+            start: data[0]._time,
+            end: data[data.length - 1]._time,
+        };
         /** @type {?} */
         const filterData = data.filter((/**
          * @param {?} val
@@ -331,8 +323,7 @@ G2TimelineComponent.propDecorators = {
     height: [{ type: Input }],
     padding: [{ type: Input }],
     borderWidth: [{ type: Input }],
-    slider: [{ type: Input }],
-    initialRange: [{ type: Input }]
+    slider: [{ type: Input }]
 };
 __decorate([
     InputNumber(),
@@ -389,11 +380,6 @@ if (false) {
     G2TimelineComponent.prototype.borderWidth;
     /** @type {?} */
     G2TimelineComponent.prototype.slider;
-    /**
-     * @type {?}
-     * @private
-     */
-    G2TimelineComponent.prototype._initialRange;
     /**
      * @type {?}
      * @private

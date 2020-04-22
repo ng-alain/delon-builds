@@ -5,6 +5,7 @@ import endOfDay from 'date-fns/endOfDay';
 import endOfMonth from 'date-fns/endOfMonth';
 import endOfWeek from 'date-fns/endOfWeek';
 import endOfYear from 'date-fns/endOfYear';
+import parse from 'date-fns/parse';
 import parseISO from 'date-fns/parseISO';
 import startOfDay from 'date-fns/startOfDay';
 import startOfMonth from 'date-fns/startOfMonth';
@@ -264,6 +265,19 @@ function getTimeDistance(type, time) {
  */
 function fixEndTimeOfRange(dates) {
     return [startOfDay(dates[0]), endOfDay(dates[1])];
+}
+/**
+ * @param {?} val
+ * @param {?=} formatString
+ * @return {?}
+ */
+function toDate(val, formatString) {
+    if (formatString === void 0) { formatString = 'yyyy-MM-dd HH:mm:ss'; }
+    if (val instanceof Date)
+        return val;
+    if (typeof val === 'number')
+        return new Date(val);
+    return parse(val, formatString, new Date());
 }
 
 /**
@@ -1501,5 +1515,5 @@ var DelonUtilModule = /** @class */ (function () {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { ArrayService, DelonUtilConfig, DelonUtilModule, InputBoolean, InputNumber, LazyService, PREFIX, _Validators, copy, deepCopy, deepGet, deepMerge, deepMergeKey, deprecation10, fixEndTimeOfRange, format, getTimeDistance, isDecimal, isEmpty, isIdCard, isInt, isMobile, isNum, isUrl, log, toBoolean, toNumber, updateHostClass, warn, warnDeprecation };
+export { ArrayService, DelonUtilConfig, DelonUtilModule, InputBoolean, InputNumber, LazyService, PREFIX, _Validators, copy, deepCopy, deepGet, deepMerge, deepMergeKey, deprecation10, fixEndTimeOfRange, format, getTimeDistance, isDecimal, isEmpty, isIdCard, isInt, isMobile, isNum, isUrl, log, toBoolean, toDate, toNumber, updateHostClass, warn, warnDeprecation };
 //# sourceMappingURL=util.js.map

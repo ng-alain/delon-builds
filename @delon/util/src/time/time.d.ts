@@ -8,3 +8,4 @@ export declare function getTimeDistance(type: 'today' | '-today' | 'yesterday' |
  * fix time is the most, big value
  */
 export declare function fixEndTimeOfRange(dates: [Date, Date]): [Date, Date];
+export declare function toDate(val: Date | string | number, formatString?: string): Date;

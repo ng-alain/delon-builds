@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@antv/g2'), require('@delon/chart/core/time'), require('@delon/util'), require('@angular/common'), require('ng-zorro-antd/core/outlet')) :
-    typeof define === 'function' && define.amd ? define('@delon/chart/timeline', ['exports', '@angular/core', '@antv/g2', '@delon/chart/core/time', '@delon/util', '@angular/common', 'ng-zorro-antd/core/outlet'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.timeline = {}), global.ng.core, global.g2, global.delon.chart.core.time, global.delon.util, global.ng.common, global['ng-zorro-antd/core/outlet']));
-}(this, (function (exports, core, g2, time, util, common, outlet) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@antv/g2'), require('@delon/util'), require('@angular/common'), require('ng-zorro-antd/core/outlet')) :
+    typeof define === 'function' && define.amd ? define('@delon/chart/timeline', ['exports', '@angular/core', '@antv/g2', '@delon/util', '@angular/common', 'ng-zorro-antd/core/outlet'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.timeline = {}), global.ng.core, global.g2, global.delon.util, global.ng.common, global['ng-zorro-antd/core/outlet']));
+}(this, (function (exports, core, g2, util, common, outlet) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -315,24 +315,10 @@
             this.mask = 'HH:mm';
             this.position = 'top';
             this.height = 450;
-            this.padding = [60, 20, 64, 40];
+            this.padding = [40, 8, 64, 40];
             this.borderWidth = 2;
             this.slider = true;
         }
-        Object.defineProperty(G2TimelineComponent.prototype, "initialRange", {
-            set: /**
-             * @param {?} val
-             * @return {?}
-             */
-            function (val) {
-                this._initialRange = {
-                    start: +time.toDate(val.start),
-                    end: +time.toDate(val.end),
-                };
-            },
-            enumerable: true,
-            configurable: true
-        });
         /**
          * @return {?}
          */
@@ -385,8 +371,8 @@
             if (slider) {
                 chart.option('slider', {
                     height: 26,
-                    start: 0.1,
-                    end: 0.8,
+                    start: 0,
+                    end: 1,
                     trendCfg: {
                         isArea: false,
                     },
@@ -462,7 +448,7 @@
              * @return {?}
              */
             function (item) {
-                item.time = time.toDate((/** @type {?} */ (item.time)));
+                item.time = util.toDate((/** @type {?} */ (item.time)));
                 item._time = +item.time;
                 return item;
             }))
@@ -504,7 +490,10 @@
                     range: [0, 1],
                 } }, scaleOptions));
             /** @type {?} */
-            var initialRange = __assign({ start: data[0]._time, end: data[data.length - 1]._time }, this._initialRange);
+            var initialRange = {
+                start: data[0]._time,
+                end: data[data.length - 1]._time,
+            };
             /** @type {?} */
             var filterData = data.filter((/**
              * @param {?} val
@@ -568,8 +557,7 @@
             height: [{ type: core.Input }],
             padding: [{ type: core.Input }],
             borderWidth: [{ type: core.Input }],
-            slider: [{ type: core.Input }],
-            initialRange: [{ type: core.Input }]
+            slider: [{ type: core.Input }]
         };
         __decorate([
             util.InputNumber(),
@@ -628,11 +616,6 @@
         G2TimelineComponent.prototype.borderWidth;
         /** @type {?} */
         G2TimelineComponent.prototype.slider;
-        /**
-         * @type {?}
-         * @private
-         */
-        G2TimelineComponent.prototype._initialRange;
         /**
          * @type {?}
          * @private

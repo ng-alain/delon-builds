@@ -1,1 +1,1 @@
-{"__symbolic":"module","version":4,"metadata":{"InteractionType":{"__symbolic":"interface"}},"origins":{"InteractionType":"./interaction"},"importAs":"@delon/chart/core/types"}
+{"__symbolic":"module","version":4,"metadata":{"InteractionType":{"__symbolic":"interface"},"G2Time":{"__symbolic":"interface"}},"origins":{"InteractionType":"./interaction","G2Time":"./time"},"importAs":"@delon/chart/core/types"}
