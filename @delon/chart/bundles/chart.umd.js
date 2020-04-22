@@ -168,6 +168,12 @@
             return timeline.G2TimelineComponent;
         }
     });
+    Object.defineProperty(exports, 'G2TimelineData', {
+        enumerable: true,
+        get: function () {
+            return timeline.G2TimelineData;
+        }
+    });
     Object.defineProperty(exports, 'G2TimelineModule', {
         enumerable: true,
         get: function () {

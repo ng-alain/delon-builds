@@ -1,1 +1,0 @@
-{"__symbolic":"module","version":4,"metadata":{"G2Time":{"__symbolic":"interface"},"toDate":{"__symbolic":"function"}},"origins":{"G2Time":"./time","toDate":"./time"},"importAs":"@delon/chart/core/time"}
