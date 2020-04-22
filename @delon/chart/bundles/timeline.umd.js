@@ -1,13 +1,13 @@
 /**
  * @license ng-alain(cipchk@qq.com) v9.0.0-rc.3
- * (c) 2019 cipchk https://ng-alain.com/
+ * (c) 2020 cipchk https://ng-alain.com/
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@antv/g2'), require('@delon/util'), require('@angular/common'), require('ng-zorro-antd/core/outlet')) :
-    typeof define === 'function' && define.amd ? define('@delon/chart/timeline', ['exports', '@angular/core', '@antv/g2', '@delon/util', '@angular/common', 'ng-zorro-antd/core/outlet'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.timeline = {}), global.ng.core, global.g2, global.delon.util, global.ng.common, global['ng-zorro-antd/core/outlet']));
-}(this, (function (exports, core, g2, util, common, outlet) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@antv/g2'), require('@delon/theme'), require('@delon/util'), require('@angular/common'), require('ng-zorro-antd/core/outlet')) :
+    typeof define === 'function' && define.amd ? define('@delon/chart/timeline', ['exports', '@angular/core', '@antv/g2', '@delon/theme', '@delon/util', '@angular/common', 'ng-zorro-antd/core/outlet'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.timeline = {}), global.ng.core, global.g2, global.delon.theme, global.delon.util, global.ng.common, global['ng-zorro-antd/core/outlet']));
+}(this, (function (exports, core, g2, theme, util, common, outlet) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -305,7 +305,7 @@
     }
     var G2TimelineComponent = /** @class */ (function () {
         // #endregion
-        function G2TimelineComponent(ngZone) {
+        function G2TimelineComponent(ngZone, configSrv) {
             this.ngZone = ngZone;
             // #region fields
             this.delay = 0;
@@ -318,6 +318,7 @@
             this.padding = [40, 8, 64, 40];
             this.borderWidth = 2;
             this.slider = true;
+            configSrv.attachKey(this, 'chart', 'theme');
         }
         /**
          * @return {?}
@@ -344,13 +345,14 @@
          * @return {?}
          */
         function () {
-            var _a = this, node = _a.node, height = _a.height, padding = _a.padding, slider = _a.slider, maxAxis = _a.maxAxis;
+            var _a = this, node = _a.node, height = _a.height, padding = _a.padding, slider = _a.slider, maxAxis = _a.maxAxis, theme = _a.theme;
             /** @type {?} */
             var chart = (this.chart = new g2.Chart({
                 container: node.nativeElement,
                 autoFit: true,
                 height: height,
                 padding: padding,
+                theme: theme,
             }));
             chart.axis('time', { title: null });
             chart.axis('y1', { title: null });
@@ -542,7 +544,8 @@
         ];
         /** @nocollapse */
         G2TimelineComponent.ctorParameters = function () { return [
-            { type: core.NgZone }
+            { type: core.NgZone },
+            { type: theme.AlainConfigService }
         ]; };
         G2TimelineComponent.propDecorators = {
             node: [{ type: core.ViewChild, args: ['container', { static: false },] }],
@@ -557,7 +560,8 @@
             height: [{ type: core.Input }],
             padding: [{ type: core.Input }],
             borderWidth: [{ type: core.Input }],
-            slider: [{ type: core.Input }]
+            slider: [{ type: core.Input }],
+            theme: [{ type: core.Input }]
         };
         __decorate([
             util.InputNumber(),
@@ -616,6 +620,8 @@
         G2TimelineComponent.prototype.borderWidth;
         /** @type {?} */
         G2TimelineComponent.prototype.slider;
+        /** @type {?} */
+        G2TimelineComponent.prototype.theme;
         /**
          * @type {?}
          * @private

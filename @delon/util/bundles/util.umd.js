@@ -1,6 +1,6 @@
 /**
  * @license ng-alain(cipchk@qq.com) v9.0.0-rc.3
- * (c) 2019 cipchk https://ng-alain.com/
+ * (c) 2020 cipchk https://ng-alain.com/
  * License: MIT
  */
 (function (global, factory) {
@@ -984,6 +984,14 @@
         warnDeprecation(comp + " => '" + from + "' is going to be removed in 10.0.0" + (to ? ", Please use '" + to + "' instead" : "") + ".");
     });
     /** @type {?} */
+    var deprecation10Cog = (/**
+     * @param {?} cogName
+     * @return {?}
+     */
+    function (cogName) {
+        warnDeprecation(cogName + " is going to be removed in 10.0.0. Please refer to https://ng-alain.com/docs/global-config");
+    });
+    /** @type {?} */
     var warnDeprecation = (/**
      * @param {...?} args
      * @return {?}
@@ -1735,6 +1743,7 @@
     exports.deepMerge = deepMerge;
     exports.deepMergeKey = deepMergeKey;
     exports.deprecation10 = deprecation10;
+    exports.deprecation10Cog = deprecation10Cog;
     exports.fixEndTimeOfRange = fixEndTimeOfRange;
     exports.format = format;
     exports.getTimeDistance = getTimeDistance;

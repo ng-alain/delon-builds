@@ -3680,11 +3680,128 @@ AlainThemeModule.ctorParameters = () => [
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: src/config/config.types.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ */
+function AlainConfig() { }
+if (false) {
+    /** @type {?|undefined} */
+    AlainConfig.prototype.errorCollect;
+    /** @type {?|undefined} */
+    AlainConfig.prototype.chart;
+}
+/**
+ * @record
+ */
+function AlainErrorCollectConfig() { }
+if (false) {
+    /**
+     * 监听频率，默认：`500`
+     * @type {?|undefined}
+     */
+    AlainErrorCollectConfig.prototype.freq;
+    /**
+     * 顶部偏移值，默认：`145`
+     * @type {?|undefined}
+     */
+    AlainErrorCollectConfig.prototype.offsetTop;
+}
+/**
+ * @record
+ */
+function AlainChartConfig() { }
+if (false) {
+    /** @type {?|undefined} */
+    AlainChartConfig.prototype.theme;
+}
+/** @type {?} */
+const ALAIN_CONFIG = new InjectionToken('alain-config');
+
+/**
+ * @fileoverview added by tsickle
+ * Generated from: src/config/config.service.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class AlainConfigService {
+    /**
+     * @param {?=} defaultConfig
+     */
+    constructor(defaultConfig) {
+        this.config = defaultConfig || {};
+    }
+    /**
+     * @template T
+     * @param {?} componentName
+     * @param {?=} key
+     * @return {?}
+     */
+    get(componentName, key) {
+        /** @type {?} */
+        const res = ((/** @type {?} */ (this.config[componentName]))) || {};
+        return key ? { [key]: res[key] } : res;
+    }
+    /**
+     * @template R, T
+     * @param {?} componentThis
+     * @param {?} componentName
+     * @param {?} defaultValues
+     * @return {?}
+     */
+    attach(componentThis, componentName, defaultValues) {
+        Object.assign(componentThis, Object.assign(Object.assign({}, defaultValues), this.get(componentName)));
+    }
+    /**
+     * @template T
+     * @param {?} componentThis
+     * @param {?} componentName
+     * @param {?} key
+     * @return {?}
+     */
+    attachKey(componentThis, componentName, key) {
+        Object.assign(componentThis, this.get(componentName, key));
+    }
+    /**
+     * @template T
+     * @param {?} componentName
+     * @param {?} value
+     * @return {?}
+     */
+    set(componentName, value) {
+        this.config[componentName] = Object.assign(Object.assign({}, this.config[componentName]), value);
+    }
+}
+AlainConfigService.decorators = [
+    { type: Injectable, args: [{ providedIn: 'root' },] }
+];
+/** @nocollapse */
+AlainConfigService.ctorParameters = () => [
+    { type: undefined, decorators: [{ type: Optional }, { type: Inject, args: [ALAIN_CONFIG,] }] }
+];
+/** @nocollapse */ AlainConfigService.ɵprov = ɵɵdefineInjectable({ factory: function AlainConfigService_Factory() { return new AlainConfigService(ɵɵinject(ALAIN_CONFIG, 8)); }, token: AlainConfigService, providedIn: "root" });
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    AlainConfigService.prototype.config;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * Generated from: src/config/index.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
  * Generated from: src/version.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-const VERSION = new Version('9.0.0-rc.3-fa408229');
+const VERSION = new Version('9.0.0-rc.3-1acbd734');
 
 /**
  * @fileoverview added by tsickle
@@ -3698,5 +3815,5 @@ const VERSION = new Version('9.0.0-rc.3-fa408229');
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { ALAIN_I18N_TOKEN, APP, AlainI18NServiceFake, AlainThemeConfig, AlainThemeModule, BaseApi, BaseHeaders, BaseUrl, Body, CNCurrencyPipe, DELETE, DELON_LOCALE, DELON_LOCALE_SERVICE_PROVIDER, DELON_LOCALE_SERVICE_PROVIDER_FACTORY, DatePipe, DelonLocaleModule, DelonLocaleService, DrawerHelper, FORM, GET, HEAD, HTMLPipe, Headers, JSONP, KeysPipe, LAYOUT, MenuService, ModalHelper, OPTIONS, PATCH, POST, PUT, Path, Payload, Query, REP_MAX, ResponsiveService, ScrollService, SettingsService, TitleService, URLPipe, USER, VERSION, WINDOW, YNPipe, _HttpClient, elGR as el_GR, enUS as en_US, hrHR as hr_HR, jaJP as ja_JP, koKR as ko_KR, plPL as pl_PL, preloaderFinished, trTR as tr_TR, zhCN as zh_CN, zhTW as zh_TW, ALAIN_I18N_TOKEN_FACTORY as ɵa, I18nPipe as ɵb };
+export { ALAIN_CONFIG, ALAIN_I18N_TOKEN, APP, AlainConfigService, AlainI18NServiceFake, AlainThemeConfig, AlainThemeModule, BaseApi, BaseHeaders, BaseUrl, Body, CNCurrencyPipe, DELETE, DELON_LOCALE, DELON_LOCALE_SERVICE_PROVIDER, DELON_LOCALE_SERVICE_PROVIDER_FACTORY, DatePipe, DelonLocaleModule, DelonLocaleService, DrawerHelper, FORM, GET, HEAD, HTMLPipe, Headers, JSONP, KeysPipe, LAYOUT, MenuService, ModalHelper, OPTIONS, PATCH, POST, PUT, Path, Payload, Query, REP_MAX, ResponsiveService, ScrollService, SettingsService, TitleService, URLPipe, USER, VERSION, WINDOW, YNPipe, _HttpClient, elGR as el_GR, enUS as en_US, hrHR as hr_HR, jaJP as ja_JP, koKR as ko_KR, plPL as pl_PL, preloaderFinished, trTR as tr_TR, zhCN as zh_CN, zhTW as zh_TW, ALAIN_I18N_TOKEN_FACTORY as ɵa, I18nPipe as ɵb };
 //# sourceMappingURL=theme.js.map

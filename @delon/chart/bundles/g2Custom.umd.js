@@ -1,13 +1,13 @@
 /**
  * @license ng-alain(cipchk@qq.com) v9.0.0-rc.3
- * (c) 2019 cipchk https://ng-alain.com/
+ * (c) 2020 cipchk https://ng-alain.com/
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('@angular/common')) :
-    typeof define === 'function' && define.amd ? define('@delon/chart/custom', ['exports', '@angular/core', '@delon/util', 'rxjs', 'rxjs/operators', '@angular/common'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.custom = {}), global.ng.core, global.delon.util, global.rxjs, global.rxjs.operators, global.ng.common));
-}(this, (function (exports, core, util, rxjs, operators, common) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/theme'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('@angular/common')) :
+    typeof define === 'function' && define.amd ? define('@delon/chart/custom', ['exports', '@angular/core', '@delon/theme', '@delon/util', 'rxjs', 'rxjs/operators', '@angular/common'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.custom = {}), global.ng.core, global.delon.theme, global.delon.util, global.rxjs, global.rxjs.operators, global.ng.common));
+}(this, (function (exports, core, theme, util, rxjs, operators, common) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -230,7 +230,7 @@
      */
     var G2CustomComponent = /** @class */ (function () {
         // #endregion
-        function G2CustomComponent(el) {
+        function G2CustomComponent(el, configSrv) {
             this.el = el;
             this.resize$ = null;
             // #region fields
@@ -240,6 +240,7 @@
             // tslint:disable-next-line:no-output-native
             this.resize = new core.EventEmitter();
             this.destroy = new core.EventEmitter();
+            configSrv.attachKey(this, 'chart', 'theme');
         }
         /**
          * @private
@@ -312,12 +313,14 @@
         ];
         /** @nocollapse */
         G2CustomComponent.ctorParameters = function () { return [
-            { type: core.ElementRef }
+            { type: core.ElementRef },
+            { type: theme.AlainConfigService }
         ]; };
         G2CustomComponent.propDecorators = {
             delay: [{ type: core.Input }],
             height: [{ type: core.Input }],
             resizeTime: [{ type: core.Input }],
+            theme: [{ type: core.Input }],
             render: [{ type: core.Output }],
             resize: [{ type: core.Output }],
             destroy: [{ type: core.Output }]
@@ -348,6 +351,8 @@
         G2CustomComponent.prototype.height;
         /** @type {?} */
         G2CustomComponent.prototype.resizeTime;
+        /** @type {?} */
+        G2CustomComponent.prototype.theme;
         /** @type {?} */
         G2CustomComponent.prototype.render;
         /** @type {?} */

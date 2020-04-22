@@ -1,13 +1,13 @@
 /**
  * @license ng-alain(cipchk@qq.com) v9.0.0-rc.3
- * (c) 2019 cipchk https://ng-alain.com/
+ * (c) 2020 cipchk https://ng-alain.com/
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@antv/data-set'), require('@antv/g2'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('@angular/common')) :
-    typeof define === 'function' && define.amd ? define('@delon/chart/tag-cloud', ['exports', '@angular/core', '@antv/data-set', '@antv/g2', '@delon/util', 'rxjs', 'rxjs/operators', '@angular/common'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart['tag-cloud'] = {}), global.ng.core, global.DataSet, global.g2, global.delon.util, global.rxjs, global.rxjs.operators, global.ng.common));
-}(this, (function (exports, core, DataSet, g2, util, rxjs, operators, common) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@antv/data-set'), require('@antv/g2'), require('@delon/theme'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('@angular/common')) :
+    typeof define === 'function' && define.amd ? define('@delon/chart/tag-cloud', ['exports', '@angular/core', '@antv/data-set', '@antv/g2', '@delon/theme', '@delon/util', 'rxjs', 'rxjs/operators', '@angular/common'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart['tag-cloud'] = {}), global.ng.core, global.DataSet, global.g2, global.delon.theme, global.delon.util, global.rxjs, global.rxjs.operators, global.ng.common));
+}(this, (function (exports, core, DataSet, g2, theme, util, rxjs, operators, common) { 'use strict';
 
     DataSet = DataSet && Object.prototype.hasOwnProperty.call(DataSet, 'default') ? DataSet['default'] : DataSet;
 
@@ -253,7 +253,7 @@
     }
     var G2TagCloudComponent = /** @class */ (function () {
         // #endregion
-        function G2TagCloudComponent(el, ngZone) {
+        function G2TagCloudComponent(el, ngZone, configSrv) {
             this.el = el;
             this.ngZone = ngZone;
             // #region fields
@@ -262,6 +262,7 @@
             this.height = 200;
             this.padding = 0;
             this.data = [];
+            configSrv.attachKey(this, 'chart', 'theme');
         }
         /**
          * @private
@@ -301,7 +302,7 @@
          * @return {?}
          */
         function () {
-            var _a = this, el = _a.el, padding = _a.padding;
+            var _a = this, el = _a.el, padding = _a.padding, theme = _a.theme;
             if (this.height === 0) {
                 this.height = this.el.nativeElement.clientHeight;
             }
@@ -315,6 +316,7 @@
                 padding: padding,
                 height: this.height,
                 width: this.width,
+                theme: theme,
             }));
             chart.scale({
                 x: { nice: false },
@@ -511,14 +513,16 @@
         /** @nocollapse */
         G2TagCloudComponent.ctorParameters = function () { return [
             { type: core.ElementRef },
-            { type: core.NgZone }
+            { type: core.NgZone },
+            { type: theme.AlainConfigService }
         ]; };
         G2TagCloudComponent.propDecorators = {
             delay: [{ type: core.Input }],
             width: [{ type: core.Input }],
             height: [{ type: core.Input }],
             padding: [{ type: core.Input }],
-            data: [{ type: core.Input }]
+            data: [{ type: core.Input }],
+            theme: [{ type: core.Input }]
         };
         __decorate([
             util.InputNumber(),
@@ -555,6 +559,8 @@
         G2TagCloudComponent.prototype.padding;
         /** @type {?} */
         G2TagCloudComponent.prototype.data;
+        /** @type {?} */
+        G2TagCloudComponent.prototype.theme;
         /**
          * @type {?}
          * @private

@@ -1,13 +1,13 @@
 /**
  * @license ng-alain(cipchk@qq.com) v9.0.0-rc.3
- * (c) 2019 cipchk https://ng-alain.com/
+ * (c) 2020 cipchk https://ng-alain.com/
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@antv/g2'), require('@delon/util'), require('@angular/common'), require('ng-zorro-antd/core/outlet'), require('ng-zorro-antd/divider')) :
-    typeof define === 'function' && define.amd ? define('@delon/chart/pie', ['exports', '@angular/core', '@antv/g2', '@delon/util', '@angular/common', 'ng-zorro-antd/core/outlet', 'ng-zorro-antd/divider'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.pie = {}), global.ng.core, global.g2, global.delon.util, global.ng.common, global['ng-zorro-antd/core/outlet'], global['ng-zorro-antd/divider']));
-}(this, (function (exports, core, g2, util, common, outlet, divider) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@antv/g2'), require('@delon/theme'), require('@delon/util'), require('@angular/common'), require('ng-zorro-antd/core/outlet'), require('ng-zorro-antd/divider')) :
+    typeof define === 'function' && define.amd ? define('@delon/chart/pie', ['exports', '@angular/core', '@antv/g2', '@delon/theme', '@delon/util', '@angular/common', 'ng-zorro-antd/core/outlet', 'ng-zorro-antd/divider'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.pie = {}), global.ng.core, global.g2, global.delon.theme, global.delon.util, global.ng.common, global['ng-zorro-antd/core/outlet'], global['ng-zorro-antd/divider']));
+}(this, (function (exports, core, g2, theme, util, common, outlet, divider) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -240,7 +240,7 @@
         /* Skipping unhandled member: [key: string]: any;*/
     }
     var G2PieComponent = /** @class */ (function () {
-        function G2PieComponent(el, ngZone, cdr) {
+        function G2PieComponent(el, ngZone, cdr, configSrv) {
             this.el = el;
             this.ngZone = ngZone;
             this.cdr = cdr;
@@ -259,6 +259,7 @@
             this.select = true;
             this.data = [];
             this.interaction = 'none';
+            configSrv.attachKey(this, 'chart', 'theme');
         }
         Object.defineProperty(G2PieComponent.prototype, "block", {
             // #endregion
@@ -313,13 +314,14 @@
          * @return {?}
          */
         function () {
-            var _a = this, node = _a.node, height = _a.height, padding = _a.padding, tooltip = _a.tooltip, inner = _a.inner, hasLegend = _a.hasLegend, interaction = _a.interaction;
+            var _a = this, node = _a.node, height = _a.height, padding = _a.padding, tooltip = _a.tooltip, inner = _a.inner, hasLegend = _a.hasLegend, interaction = _a.interaction, theme = _a.theme;
             /** @type {?} */
             var chart = (this.chart = new g2.Chart({
                 container: node.nativeElement,
                 autoFit: true,
                 height: height,
                 padding: padding,
+                theme: theme,
             }));
             if (!tooltip) {
                 chart.tooltip(false);
@@ -511,7 +513,8 @@
         G2PieComponent.ctorParameters = function () { return [
             { type: core.ElementRef },
             { type: core.NgZone },
-            { type: core.ChangeDetectorRef }
+            { type: core.ChangeDetectorRef },
+            { type: theme.AlainConfigService }
         ]; };
         G2PieComponent.propDecorators = {
             node: [{ type: core.ViewChild, args: ['container', { static: true },] }],
@@ -532,7 +535,8 @@
             valueFormat: [{ type: core.Input }],
             data: [{ type: core.Input }],
             colors: [{ type: core.Input }],
-            interaction: [{ type: core.Input }]
+            interaction: [{ type: core.Input }],
+            theme: [{ type: core.Input }]
         };
         __decorate([
             util.InputNumber(),
@@ -631,6 +635,8 @@
         G2PieComponent.prototype.colors;
         /** @type {?} */
         G2PieComponent.prototype.interaction;
+        /** @type {?} */
+        G2PieComponent.prototype.theme;
         /** @type {?} */
         G2PieComponent.prototype.el;
         /**

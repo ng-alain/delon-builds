@@ -2,6 +2,7 @@ import { __decorate, __metadata } from 'tslib';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, NgZone, Input, NgModule } from '@angular/core';
 import DataSet from '@antv/data-set';
 import { registerShape, Util, Chart } from '@antv/g2';
+import { AlainConfigService } from '@delon/theme';
 import { deprecation10, InputNumber, DelonUtilModule } from '@delon/util';
 import { fromEvent } from 'rxjs';
 import { filter, debounceTime } from 'rxjs/operators';
@@ -38,8 +39,9 @@ class G2TagCloudComponent {
     /**
      * @param {?} el
      * @param {?} ngZone
+     * @param {?} configSrv
      */
-    constructor(el, ngZone) {
+    constructor(el, ngZone, configSrv) {
         this.el = el;
         this.ngZone = ngZone;
         // #region fields
@@ -48,6 +50,7 @@ class G2TagCloudComponent {
         this.height = 200;
         this.padding = 0;
         this.data = [];
+        configSrv.attachKey(this, 'chart', 'theme');
     }
     /**
      * @private
@@ -79,7 +82,7 @@ class G2TagCloudComponent {
      * @return {?}
      */
     install() {
-        const { el, padding } = this;
+        const { el, padding, theme } = this;
         if (this.height === 0) {
             this.height = this.el.nativeElement.clientHeight;
         }
@@ -93,6 +96,7 @@ class G2TagCloudComponent {
             padding,
             height: this.height,
             width: this.width,
+            theme,
         }));
         chart.scale({
             x: { nice: false },
@@ -264,14 +268,16 @@ G2TagCloudComponent.decorators = [
 /** @nocollapse */
 G2TagCloudComponent.ctorParameters = () => [
     { type: ElementRef },
-    { type: NgZone }
+    { type: NgZone },
+    { type: AlainConfigService }
 ];
 G2TagCloudComponent.propDecorators = {
     delay: [{ type: Input }],
     width: [{ type: Input }],
     height: [{ type: Input }],
     padding: [{ type: Input }],
-    data: [{ type: Input }]
+    data: [{ type: Input }],
+    theme: [{ type: Input }]
 };
 __decorate([
     InputNumber(),
@@ -306,6 +312,8 @@ if (false) {
     G2TagCloudComponent.prototype.padding;
     /** @type {?} */
     G2TagCloudComponent.prototype.data;
+    /** @type {?} */
+    G2TagCloudComponent.prototype.theme;
     /**
      * @type {?}
      * @private

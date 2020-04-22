@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, ElementRef, OnDestroy, OnInit } from '@angular/core';
-import { ErrorCollectConfig } from './error-collect.config';
+import { AlainConfigService } from '@delon/theme';
 export declare class ErrorCollectComponent implements OnInit, OnDestroy {
     private el;
     private cdr;
@@ -10,7 +10,7 @@ export declare class ErrorCollectComponent implements OnInit, OnDestroy {
     offsetTop: number;
     _hiden: boolean;
     count: number;
-    constructor(cog: ErrorCollectConfig, el: ElementRef, cdr: ChangeDetectorRef, doc: any);
+    constructor(el: ElementRef, cdr: ChangeDetectorRef, doc: any, configSrv: AlainConfigService);
     private get errEls();
     private update;
     _click(): boolean;

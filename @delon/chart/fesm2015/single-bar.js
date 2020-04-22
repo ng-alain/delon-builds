@@ -1,6 +1,7 @@
 import { __decorate, __metadata } from 'tslib';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, NgZone, Input, NgModule } from '@angular/core';
 import { Chart } from '@antv/g2';
+import { AlainConfigService } from '@delon/theme';
 import { InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
 import { CommonModule } from '@angular/common';
 
@@ -14,8 +15,9 @@ class G2SingleBarComponent {
     /**
      * @param {?} el
      * @param {?} ngZone
+     * @param {?} configSrv
      */
-    constructor(el, ngZone) {
+    constructor(el, ngZone, configSrv) {
         this.el = el;
         this.ngZone = ngZone;
         // #region fields
@@ -30,19 +32,21 @@ class G2SingleBarComponent {
         this.line = false;
         this.padding = 0;
         this.textStyle = { fontSize: 12, color: '#595959' };
+        configSrv.attachKey(this, 'chart', 'theme');
     }
     /**
      * @private
      * @return {?}
      */
     install() {
-        const { el, height, padding, textStyle, line, format } = this;
+        const { el, height, padding, textStyle, line, format, theme } = this;
         /** @type {?} */
         const chart = (this.chart = new Chart({
             container: el.nativeElement,
             autoFit: true,
             height,
             padding,
+            theme,
         }));
         chart.legend(false);
         chart.axis(false);
@@ -138,7 +142,8 @@ G2SingleBarComponent.decorators = [
 /** @nocollapse */
 G2SingleBarComponent.ctorParameters = () => [
     { type: ElementRef },
-    { type: NgZone }
+    { type: NgZone },
+    { type: AlainConfigService }
 ];
 G2SingleBarComponent.propDecorators = {
     delay: [{ type: Input }],
@@ -152,7 +157,8 @@ G2SingleBarComponent.propDecorators = {
     line: [{ type: Input }],
     format: [{ type: Input }],
     padding: [{ type: Input }],
-    textStyle: [{ type: Input }]
+    textStyle: [{ type: Input }],
+    theme: [{ type: Input }]
 };
 __decorate([
     InputNumber(),
@@ -212,6 +218,8 @@ if (false) {
     G2SingleBarComponent.prototype.padding;
     /** @type {?} */
     G2SingleBarComponent.prototype.textStyle;
+    /** @type {?} */
+    G2SingleBarComponent.prototype.theme;
     /**
      * @type {?}
      * @private

@@ -1,4 +1,6 @@
 import { ElementRef, NgZone, OnChanges, OnDestroy, OnInit } from '@angular/core';
+import { LooseObject } from '@antv/g2/lib/interface';
+import { AlainConfigService } from '@delon/theme';
 export declare class G2GaugeComponent implements OnInit, OnDestroy, OnChanges {
     private el;
     private ngZone;
@@ -11,7 +13,8 @@ export declare class G2GaugeComponent implements OnInit, OnDestroy, OnChanges {
     format: (text: string, item: {}, index: number) => string;
     percent: number;
     padding: number | number[] | 'auto';
-    constructor(el: ElementRef, ngZone: NgZone);
+    theme: string | LooseObject;
+    constructor(el: ElementRef, ngZone: NgZone, configSrv: AlainConfigService);
     private install;
     private attachChart;
     ngOnInit(): void;

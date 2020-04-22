@@ -1,6 +1,7 @@
 import { __decorate, __metadata } from 'tslib';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, NgZone, Input, NgModule } from '@angular/core';
 import { Chart } from '@antv/g2';
+import { AlainConfigService } from '@delon/theme';
 import { InputNumber, DelonUtilModule } from '@delon/util';
 import { CommonModule } from '@angular/common';
 
@@ -25,8 +26,9 @@ class G2MiniBarComponent {
     /**
      * @param {?} el
      * @param {?} ngZone
+     * @param {?} configSrv
      */
-    constructor(el, ngZone) {
+    constructor(el, ngZone, configSrv) {
         this.el = el;
         this.ngZone = ngZone;
         // #region fields
@@ -38,19 +40,21 @@ class G2MiniBarComponent {
         this.data = [];
         this.yTooltipSuffix = '';
         this.tooltipType = 'default';
+        configSrv.attachKey(this, 'chart', 'theme');
     }
     /**
      * @private
      * @return {?}
      */
     install() {
-        const { el, height, padding, yTooltipSuffix, tooltipType } = this;
+        const { el, height, padding, yTooltipSuffix, tooltipType, theme } = this;
         /** @type {?} */
         const chart = (this.chart = new Chart({
             container: el.nativeElement,
             autoFit: true,
             height,
             padding,
+            theme,
         }));
         chart.scale({
             x: {
@@ -155,7 +159,8 @@ G2MiniBarComponent.decorators = [
 /** @nocollapse */
 G2MiniBarComponent.ctorParameters = () => [
     { type: ElementRef },
-    { type: NgZone }
+    { type: NgZone },
+    { type: AlainConfigService }
 ];
 G2MiniBarComponent.propDecorators = {
     delay: [{ type: Input }],
@@ -165,7 +170,8 @@ G2MiniBarComponent.propDecorators = {
     padding: [{ type: Input }],
     data: [{ type: Input }],
     yTooltipSuffix: [{ type: Input }],
-    tooltipType: [{ type: Input }]
+    tooltipType: [{ type: Input }],
+    theme: [{ type: Input }]
 };
 __decorate([
     InputNumber(),
@@ -201,6 +207,8 @@ if (false) {
     G2MiniBarComponent.prototype.yTooltipSuffix;
     /** @type {?} */
     G2MiniBarComponent.prototype.tooltipType;
+    /** @type {?} */
+    G2MiniBarComponent.prototype.theme;
     /**
      * @type {?}
      * @private

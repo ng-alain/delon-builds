@@ -1,6 +1,7 @@
 import { __decorate, __metadata } from 'tslib';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, NgZone, Input, NgModule } from '@angular/core';
 import { Chart } from '@antv/g2';
+import { AlainConfigService } from '@delon/theme';
 import { InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
 import { CommonModule } from '@angular/common';
 
@@ -25,8 +26,9 @@ class G2MiniAreaComponent {
     /**
      * @param {?} el
      * @param {?} ngZone
+     * @param {?} configSrv
      */
-    constructor(el, ngZone) {
+    constructor(el, ngZone, configSrv) {
         this.el = el;
         this.ngZone = ngZone;
         // #region fields
@@ -42,19 +44,21 @@ class G2MiniAreaComponent {
         this.data = [];
         this.yTooltipSuffix = '';
         this.tooltipType = 'default';
+        configSrv.attachKey(this, 'chart', 'theme');
     }
     /**
      * @private
      * @return {?}
      */
     install() {
-        const { el, fit, height, padding, xAxis, yAxis, yTooltipSuffix, tooltipType, line } = this;
+        const { el, fit, height, padding, xAxis, yAxis, yTooltipSuffix, tooltipType, line, theme } = this;
         /** @type {?} */
         const chart = (this.chart = new Chart({
             container: el.nativeElement,
             autoFit: fit,
             height,
             padding,
+            theme,
         }));
         if (!xAxis && !yAxis) {
             chart.axis(false);
@@ -180,7 +184,8 @@ G2MiniAreaComponent.decorators = [
 /** @nocollapse */
 G2MiniAreaComponent.ctorParameters = () => [
     { type: ElementRef },
-    { type: NgZone }
+    { type: NgZone },
+    { type: AlainConfigService }
 ];
 G2MiniAreaComponent.propDecorators = {
     delay: [{ type: Input }],
@@ -196,7 +201,8 @@ G2MiniAreaComponent.propDecorators = {
     padding: [{ type: Input }],
     data: [{ type: Input }],
     yTooltipSuffix: [{ type: Input }],
-    tooltipType: [{ type: Input }]
+    tooltipType: [{ type: Input }],
+    theme: [{ type: Input }]
 };
 __decorate([
     InputNumber(),
@@ -256,6 +262,8 @@ if (false) {
     G2MiniAreaComponent.prototype.yTooltipSuffix;
     /** @type {?} */
     G2MiniAreaComponent.prototype.tooltipType;
+    /** @type {?} */
+    G2MiniAreaComponent.prototype.theme;
     /**
      * @type {?}
      * @private

@@ -1,6 +1,7 @@
 import { __decorate, __metadata } from 'tslib';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, ChangeDetectorRef, NgZone, ViewChild, Input, NgModule } from '@angular/core';
 import { Chart } from '@antv/g2';
+import { AlainConfigService } from '@delon/theme';
 import { InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
 import { CommonModule } from '@angular/common';
 import { NzOutletModule } from 'ng-zorro-antd/core/outlet';
@@ -29,8 +30,9 @@ class G2RadarComponent {
     /**
      * @param {?} cdr
      * @param {?} ngZone
+     * @param {?} configSrv
      */
-    constructor(cdr, ngZone) {
+    constructor(cdr, ngZone, configSrv) {
         this.cdr = cdr;
         this.ngZone = ngZone;
         this.legendData = [];
@@ -42,6 +44,7 @@ class G2RadarComponent {
         this.tickCount = 4;
         this.data = [];
         this.colors = ['#1890FF', '#FACC14', '#2FC25B', '#8543E0', '#F04864', '#13C2C2', '#fa8c16', '#a0d911'];
+        configSrv.attachKey(this, 'chart', 'theme');
     }
     /**
      * @private
@@ -55,13 +58,14 @@ class G2RadarComponent {
      * @return {?}
      */
     install() {
-        const { node, padding } = this;
+        const { node, padding, theme } = this;
         /** @type {?} */
         const chart = (this.chart = new Chart({
             container: node.nativeElement,
             autoFit: true,
             height: this.getHeight(),
             padding,
+            theme,
         }));
         chart.coordinate('polar');
         chart.legend(false);
@@ -240,7 +244,8 @@ G2RadarComponent.decorators = [
 /** @nocollapse */
 G2RadarComponent.ctorParameters = () => [
     { type: ChangeDetectorRef },
-    { type: NgZone }
+    { type: NgZone },
+    { type: AlainConfigService }
 ];
 G2RadarComponent.propDecorators = {
     node: [{ type: ViewChild, args: ['container', { static: true },] }],
@@ -251,7 +256,8 @@ G2RadarComponent.propDecorators = {
     hasLegend: [{ type: Input }],
     tickCount: [{ type: Input }],
     data: [{ type: Input }],
-    colors: [{ type: Input }]
+    colors: [{ type: Input }],
+    theme: [{ type: Input }]
 };
 __decorate([
     InputNumber(),
@@ -298,6 +304,8 @@ if (false) {
     G2RadarComponent.prototype.data;
     /** @type {?} */
     G2RadarComponent.prototype.colors;
+    /** @type {?} */
+    G2RadarComponent.prototype.theme;
     /**
      * @type {?}
      * @private

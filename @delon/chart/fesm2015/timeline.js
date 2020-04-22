@@ -1,6 +1,7 @@
 import { __decorate, __metadata } from 'tslib';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, NgZone, ViewChild, Input, NgModule } from '@angular/core';
 import { Chart } from '@antv/g2';
+import { AlainConfigService } from '@delon/theme';
 import { deprecation10, toDate, InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
 import { CommonModule } from '@angular/common';
 import { NzOutletModule } from 'ng-zorro-antd/core/outlet';
@@ -89,8 +90,9 @@ class G2TimelineComponent {
     // #endregion
     /**
      * @param {?} ngZone
+     * @param {?} configSrv
      */
-    constructor(ngZone) {
+    constructor(ngZone, configSrv) {
         this.ngZone = ngZone;
         // #region fields
         this.delay = 0;
@@ -103,6 +105,7 @@ class G2TimelineComponent {
         this.padding = [40, 8, 64, 40];
         this.borderWidth = 2;
         this.slider = true;
+        configSrv.attachKey(this, 'chart', 'theme');
     }
     /**
      * @return {?}
@@ -121,13 +124,14 @@ class G2TimelineComponent {
      * @return {?}
      */
     install() {
-        const { node, height, padding, slider, maxAxis } = this;
+        const { node, height, padding, slider, maxAxis, theme } = this;
         /** @type {?} */
         const chart = (this.chart = new Chart({
             container: node.nativeElement,
             autoFit: true,
             height,
             padding,
+            theme,
         }));
         chart.axis('time', { title: null });
         chart.axis('y1', { title: null });
@@ -308,7 +312,8 @@ G2TimelineComponent.decorators = [
 ];
 /** @nocollapse */
 G2TimelineComponent.ctorParameters = () => [
-    { type: NgZone }
+    { type: NgZone },
+    { type: AlainConfigService }
 ];
 G2TimelineComponent.propDecorators = {
     node: [{ type: ViewChild, args: ['container', { static: false },] }],
@@ -323,7 +328,8 @@ G2TimelineComponent.propDecorators = {
     height: [{ type: Input }],
     padding: [{ type: Input }],
     borderWidth: [{ type: Input }],
-    slider: [{ type: Input }]
+    slider: [{ type: Input }],
+    theme: [{ type: Input }]
 };
 __decorate([
     InputNumber(),
@@ -380,6 +386,8 @@ if (false) {
     G2TimelineComponent.prototype.borderWidth;
     /** @type {?} */
     G2TimelineComponent.prototype.slider;
+    /** @type {?} */
+    G2TimelineComponent.prototype.theme;
     /**
      * @type {?}
      * @private

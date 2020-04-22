@@ -1,13 +1,13 @@
 /**
  * @license ng-alain(cipchk@qq.com) v9.0.0-rc.3
- * (c) 2019 cipchk https://ng-alain.com/
+ * (c) 2020 cipchk https://ng-alain.com/
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@antv/g2'), require('@delon/util'), require('@angular/common'), require('ng-zorro-antd/core/outlet'), require('ng-zorro-antd/grid')) :
-    typeof define === 'function' && define.amd ? define('@delon/chart/radar', ['exports', '@angular/core', '@antv/g2', '@delon/util', '@angular/common', 'ng-zorro-antd/core/outlet', 'ng-zorro-antd/grid'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.radar = {}), global.ng.core, global.g2, global.delon.util, global.ng.common, global['ng-zorro-antd/core/outlet'], global['ng-zorro-antd/grid']));
-}(this, (function (exports, core, g2, util, common, outlet, grid) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@antv/g2'), require('@delon/theme'), require('@delon/util'), require('@angular/common'), require('ng-zorro-antd/core/outlet'), require('ng-zorro-antd/grid')) :
+    typeof define === 'function' && define.amd ? define('@delon/chart/radar', ['exports', '@angular/core', '@antv/g2', '@delon/theme', '@delon/util', '@angular/common', 'ng-zorro-antd/core/outlet', 'ng-zorro-antd/grid'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.radar = {}), global.ng.core, global.g2, global.delon.theme, global.delon.util, global.ng.common, global['ng-zorro-antd/core/outlet'], global['ng-zorro-antd/grid']));
+}(this, (function (exports, core, g2, theme, util, common, outlet, grid) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -243,7 +243,7 @@
     }
     var G2RadarComponent = /** @class */ (function () {
         // #endregion
-        function G2RadarComponent(cdr, ngZone) {
+        function G2RadarComponent(cdr, ngZone, configSrv) {
             this.cdr = cdr;
             this.ngZone = ngZone;
             this.legendData = [];
@@ -255,6 +255,7 @@
             this.tickCount = 4;
             this.data = [];
             this.colors = ['#1890FF', '#FACC14', '#2FC25B', '#8543E0', '#F04864', '#13C2C2', '#fa8c16', '#a0d911'];
+            configSrv.attachKey(this, 'chart', 'theme');
         }
         /**
          * @private
@@ -277,13 +278,14 @@
          */
         function () {
             var _this = this;
-            var _a = this, node = _a.node, padding = _a.padding;
+            var _a = this, node = _a.node, padding = _a.padding, theme = _a.theme;
             /** @type {?} */
             var chart = (this.chart = new g2.Chart({
                 container: node.nativeElement,
                 autoFit: true,
                 height: this.getHeight(),
                 padding: padding,
+                theme: theme,
             }));
             chart.coordinate('polar');
             chart.legend(false);
@@ -486,7 +488,8 @@
         /** @nocollapse */
         G2RadarComponent.ctorParameters = function () { return [
             { type: core.ChangeDetectorRef },
-            { type: core.NgZone }
+            { type: core.NgZone },
+            { type: theme.AlainConfigService }
         ]; };
         G2RadarComponent.propDecorators = {
             node: [{ type: core.ViewChild, args: ['container', { static: true },] }],
@@ -497,7 +500,8 @@
             hasLegend: [{ type: core.Input }],
             tickCount: [{ type: core.Input }],
             data: [{ type: core.Input }],
-            colors: [{ type: core.Input }]
+            colors: [{ type: core.Input }],
+            theme: [{ type: core.Input }]
         };
         __decorate([
             util.InputNumber(),
@@ -546,6 +550,8 @@
         G2RadarComponent.prototype.data;
         /** @type {?} */
         G2RadarComponent.prototype.colors;
+        /** @type {?} */
+        G2RadarComponent.prototype.theme;
         /**
          * @type {?}
          * @private

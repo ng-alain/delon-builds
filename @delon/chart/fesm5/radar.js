@@ -1,6 +1,7 @@
 import { __decorate, __metadata, __spread } from 'tslib';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, ChangeDetectorRef, NgZone, ViewChild, Input, NgModule } from '@angular/core';
 import { Chart } from '@antv/g2';
+import { AlainConfigService } from '@delon/theme';
 import { InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
 import { CommonModule } from '@angular/common';
 import { NzOutletModule } from 'ng-zorro-antd/core/outlet';
@@ -26,7 +27,7 @@ if (false) {
 }
 var G2RadarComponent = /** @class */ (function () {
     // #endregion
-    function G2RadarComponent(cdr, ngZone) {
+    function G2RadarComponent(cdr, ngZone, configSrv) {
         this.cdr = cdr;
         this.ngZone = ngZone;
         this.legendData = [];
@@ -38,6 +39,7 @@ var G2RadarComponent = /** @class */ (function () {
         this.tickCount = 4;
         this.data = [];
         this.colors = ['#1890FF', '#FACC14', '#2FC25B', '#8543E0', '#F04864', '#13C2C2', '#fa8c16', '#a0d911'];
+        configSrv.attachKey(this, 'chart', 'theme');
     }
     /**
      * @private
@@ -60,13 +62,14 @@ var G2RadarComponent = /** @class */ (function () {
      */
     function () {
         var _this = this;
-        var _a = this, node = _a.node, padding = _a.padding;
+        var _a = this, node = _a.node, padding = _a.padding, theme = _a.theme;
         /** @type {?} */
         var chart = (this.chart = new Chart({
             container: node.nativeElement,
             autoFit: true,
             height: this.getHeight(),
             padding: padding,
+            theme: theme,
         }));
         chart.coordinate('polar');
         chart.legend(false);
@@ -269,7 +272,8 @@ var G2RadarComponent = /** @class */ (function () {
     /** @nocollapse */
     G2RadarComponent.ctorParameters = function () { return [
         { type: ChangeDetectorRef },
-        { type: NgZone }
+        { type: NgZone },
+        { type: AlainConfigService }
     ]; };
     G2RadarComponent.propDecorators = {
         node: [{ type: ViewChild, args: ['container', { static: true },] }],
@@ -280,7 +284,8 @@ var G2RadarComponent = /** @class */ (function () {
         hasLegend: [{ type: Input }],
         tickCount: [{ type: Input }],
         data: [{ type: Input }],
-        colors: [{ type: Input }]
+        colors: [{ type: Input }],
+        theme: [{ type: Input }]
     };
     __decorate([
         InputNumber(),
@@ -329,6 +334,8 @@ if (false) {
     G2RadarComponent.prototype.data;
     /** @type {?} */
     G2RadarComponent.prototype.colors;
+    /** @type {?} */
+    G2RadarComponent.prototype.theme;
     /**
      * @type {?}
      * @private

@@ -1,6 +1,7 @@
 import { __decorate, __metadata, __spread } from 'tslib';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, NgZone, Input, NgModule } from '@angular/core';
 import { registerShape, Chart } from '@antv/g2';
+import { AlainConfigService } from '@delon/theme';
 import { InputNumber, DelonUtilModule } from '@delon/util';
 import { CommonModule } from '@angular/common';
 
@@ -11,7 +12,7 @@ import { CommonModule } from '@angular/common';
  */
 var G2GaugeComponent = /** @class */ (function () {
     // #endregion
-    function G2GaugeComponent(el, ngZone) {
+    function G2GaugeComponent(el, ngZone, configSrv) {
         this.el = el;
         this.ngZone = ngZone;
         // #region fields
@@ -19,6 +20,7 @@ var G2GaugeComponent = /** @class */ (function () {
         this.color = '#2f9cff';
         this.bgColor = '#f0f2f5';
         this.padding = [10, 10, 30, 10];
+        configSrv.attachKey(this, 'chart', 'theme');
     }
     /**
      * @private
@@ -67,13 +69,14 @@ var G2GaugeComponent = /** @class */ (function () {
                 return group;
             },
         });
-        var _a = this, el = _a.el, height = _a.height, padding = _a.padding, format = _a.format;
+        var _a = this, el = _a.el, height = _a.height, padding = _a.padding, format = _a.format, theme = _a.theme;
         /** @type {?} */
         var chart = (this.chart = new Chart({
             container: el.nativeElement,
             autoFit: true,
             height: height,
             padding: padding,
+            theme: theme,
         }));
         chart.legend(false);
         chart.animate(false);
@@ -222,7 +225,8 @@ var G2GaugeComponent = /** @class */ (function () {
     /** @nocollapse */
     G2GaugeComponent.ctorParameters = function () { return [
         { type: ElementRef },
-        { type: NgZone }
+        { type: NgZone },
+        { type: AlainConfigService }
     ]; };
     G2GaugeComponent.propDecorators = {
         delay: [{ type: Input }],
@@ -232,7 +236,8 @@ var G2GaugeComponent = /** @class */ (function () {
         bgColor: [{ type: Input }],
         format: [{ type: Input }],
         percent: [{ type: Input }],
-        padding: [{ type: Input }]
+        padding: [{ type: Input }],
+        theme: [{ type: Input }]
     };
     __decorate([
         InputNumber(),
@@ -270,6 +275,8 @@ if (false) {
     G2GaugeComponent.prototype.percent;
     /** @type {?} */
     G2GaugeComponent.prototype.padding;
+    /** @type {?} */
+    G2GaugeComponent.prototype.theme;
     /**
      * @type {?}
      * @private

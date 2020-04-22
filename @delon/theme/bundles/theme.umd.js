@@ -1,6 +1,6 @@
 /**
  * @license ng-alain(cipchk@qq.com) v9.0.0-rc.3
- * (c) 2019 cipchk https://ng-alain.com/
+ * (c) 2020 cipchk https://ng-alain.com/
  * License: MIT
  */
 (function (global, factory) {
@@ -4497,14 +4497,158 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: src/config/config.types.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /**
+     * @record
+     */
+    function AlainConfig() { }
+    if (false) {
+        /** @type {?|undefined} */
+        AlainConfig.prototype.errorCollect;
+        /** @type {?|undefined} */
+        AlainConfig.prototype.chart;
+    }
+    /**
+     * @record
+     */
+    function AlainErrorCollectConfig() { }
+    if (false) {
+        /**
+         * 监听频率，默认：`500`
+         * @type {?|undefined}
+         */
+        AlainErrorCollectConfig.prototype.freq;
+        /**
+         * 顶部偏移值，默认：`145`
+         * @type {?|undefined}
+         */
+        AlainErrorCollectConfig.prototype.offsetTop;
+    }
+    /**
+     * @record
+     */
+    function AlainChartConfig() { }
+    if (false) {
+        /** @type {?|undefined} */
+        AlainChartConfig.prototype.theme;
+    }
+    /** @type {?} */
+    var ALAIN_CONFIG = new core.InjectionToken('alain-config');
+
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: src/config/config.service.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var AlainConfigService = /** @class */ (function () {
+        function AlainConfigService(defaultConfig) {
+            this.config = defaultConfig || {};
+        }
+        /**
+         * @template T
+         * @param {?} componentName
+         * @param {?=} key
+         * @return {?}
+         */
+        AlainConfigService.prototype.get = /**
+         * @template T
+         * @param {?} componentName
+         * @param {?=} key
+         * @return {?}
+         */
+        function (componentName, key) {
+            var _a;
+            /** @type {?} */
+            var res = ((/** @type {?} */ (this.config[componentName]))) || {};
+            return key ? (_a = {}, _a[key] = res[key], _a) : res;
+        };
+        /**
+         * @template R, T
+         * @param {?} componentThis
+         * @param {?} componentName
+         * @param {?} defaultValues
+         * @return {?}
+         */
+        AlainConfigService.prototype.attach = /**
+         * @template R, T
+         * @param {?} componentThis
+         * @param {?} componentName
+         * @param {?} defaultValues
+         * @return {?}
+         */
+        function (componentThis, componentName, defaultValues) {
+            Object.assign(componentThis, __assign(__assign({}, defaultValues), this.get(componentName)));
+        };
+        /**
+         * @template T
+         * @param {?} componentThis
+         * @param {?} componentName
+         * @param {?} key
+         * @return {?}
+         */
+        AlainConfigService.prototype.attachKey = /**
+         * @template T
+         * @param {?} componentThis
+         * @param {?} componentName
+         * @param {?} key
+         * @return {?}
+         */
+        function (componentThis, componentName, key) {
+            Object.assign(componentThis, this.get(componentName, key));
+        };
+        /**
+         * @template T
+         * @param {?} componentName
+         * @param {?} value
+         * @return {?}
+         */
+        AlainConfigService.prototype.set = /**
+         * @template T
+         * @param {?} componentName
+         * @param {?} value
+         * @return {?}
+         */
+        function (componentName, value) {
+            this.config[componentName] = __assign(__assign({}, this.config[componentName]), value);
+        };
+        AlainConfigService.decorators = [
+            { type: core.Injectable, args: [{ providedIn: 'root' },] }
+        ];
+        /** @nocollapse */
+        AlainConfigService.ctorParameters = function () { return [
+            { type: undefined, decorators: [{ type: core.Optional }, { type: core.Inject, args: [ALAIN_CONFIG,] }] }
+        ]; };
+        /** @nocollapse */ AlainConfigService.ɵprov = core.ɵɵdefineInjectable({ factory: function AlainConfigService_Factory() { return new AlainConfigService(core.ɵɵinject(ALAIN_CONFIG, 8)); }, token: AlainConfigService, providedIn: "root" });
+        return AlainConfigService;
+    }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        AlainConfigService.prototype.config;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: src/config/index.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+
+    /**
+     * @fileoverview added by tsickle
      * Generated from: src/version.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
     var VERSION = new core.Version('9.0.0-rc.3');
 
+    exports.ALAIN_CONFIG = ALAIN_CONFIG;
     exports.ALAIN_I18N_TOKEN = ALAIN_I18N_TOKEN;
     exports.APP = APP;
+    exports.AlainConfigService = AlainConfigService;
     exports.AlainI18NServiceFake = AlainI18NServiceFake;
     exports.AlainThemeConfig = AlainThemeConfig;
     exports.AlainThemeModule = AlainThemeModule;

@@ -1,6 +1,7 @@
 import { __assign, __spread, __decorate, __metadata } from 'tslib';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, NgZone, ViewChild, Input, NgModule } from '@angular/core';
 import { Chart } from '@antv/g2';
+import { AlainConfigService } from '@delon/theme';
 import { deprecation10, toDate, InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
 import { CommonModule } from '@angular/common';
 import { NzOutletModule } from 'ng-zorro-antd/core/outlet';
@@ -87,7 +88,7 @@ if (false) {
 }
 var G2TimelineComponent = /** @class */ (function () {
     // #endregion
-    function G2TimelineComponent(ngZone) {
+    function G2TimelineComponent(ngZone, configSrv) {
         this.ngZone = ngZone;
         // #region fields
         this.delay = 0;
@@ -100,6 +101,7 @@ var G2TimelineComponent = /** @class */ (function () {
         this.padding = [40, 8, 64, 40];
         this.borderWidth = 2;
         this.slider = true;
+        configSrv.attachKey(this, 'chart', 'theme');
     }
     /**
      * @return {?}
@@ -126,13 +128,14 @@ var G2TimelineComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        var _a = this, node = _a.node, height = _a.height, padding = _a.padding, slider = _a.slider, maxAxis = _a.maxAxis;
+        var _a = this, node = _a.node, height = _a.height, padding = _a.padding, slider = _a.slider, maxAxis = _a.maxAxis, theme = _a.theme;
         /** @type {?} */
         var chart = (this.chart = new Chart({
             container: node.nativeElement,
             autoFit: true,
             height: height,
             padding: padding,
+            theme: theme,
         }));
         chart.axis('time', { title: null });
         chart.axis('y1', { title: null });
@@ -324,7 +327,8 @@ var G2TimelineComponent = /** @class */ (function () {
     ];
     /** @nocollapse */
     G2TimelineComponent.ctorParameters = function () { return [
-        { type: NgZone }
+        { type: NgZone },
+        { type: AlainConfigService }
     ]; };
     G2TimelineComponent.propDecorators = {
         node: [{ type: ViewChild, args: ['container', { static: false },] }],
@@ -339,7 +343,8 @@ var G2TimelineComponent = /** @class */ (function () {
         height: [{ type: Input }],
         padding: [{ type: Input }],
         borderWidth: [{ type: Input }],
-        slider: [{ type: Input }]
+        slider: [{ type: Input }],
+        theme: [{ type: Input }]
     };
     __decorate([
         InputNumber(),
@@ -398,6 +403,8 @@ if (false) {
     G2TimelineComponent.prototype.borderWidth;
     /** @type {?} */
     G2TimelineComponent.prototype.slider;
+    /** @type {?} */
+    G2TimelineComponent.prototype.theme;
     /**
      * @type {?}
      * @private

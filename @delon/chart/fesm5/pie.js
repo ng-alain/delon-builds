@@ -1,6 +1,7 @@
 import { __values, __decorate, __metadata, __spread } from 'tslib';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, NgZone, ChangeDetectorRef, ViewChild, Input, NgModule } from '@angular/core';
 import { Chart } from '@antv/g2';
+import { AlainConfigService } from '@delon/theme';
 import { InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
 import { CommonModule } from '@angular/common';
 import { NzOutletModule } from 'ng-zorro-antd/core/outlet';
@@ -23,7 +24,7 @@ if (false) {
     /* Skipping unhandled member: [key: string]: any;*/
 }
 var G2PieComponent = /** @class */ (function () {
-    function G2PieComponent(el, ngZone, cdr) {
+    function G2PieComponent(el, ngZone, cdr, configSrv) {
         this.el = el;
         this.ngZone = ngZone;
         this.cdr = cdr;
@@ -42,6 +43,7 @@ var G2PieComponent = /** @class */ (function () {
         this.select = true;
         this.data = [];
         this.interaction = 'none';
+        configSrv.attachKey(this, 'chart', 'theme');
     }
     Object.defineProperty(G2PieComponent.prototype, "block", {
         // #endregion
@@ -96,13 +98,14 @@ var G2PieComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        var _a = this, node = _a.node, height = _a.height, padding = _a.padding, tooltip = _a.tooltip, inner = _a.inner, hasLegend = _a.hasLegend, interaction = _a.interaction;
+        var _a = this, node = _a.node, height = _a.height, padding = _a.padding, tooltip = _a.tooltip, inner = _a.inner, hasLegend = _a.hasLegend, interaction = _a.interaction, theme = _a.theme;
         /** @type {?} */
         var chart = (this.chart = new Chart({
             container: node.nativeElement,
             autoFit: true,
             height: height,
             padding: padding,
+            theme: theme,
         }));
         if (!tooltip) {
             chart.tooltip(false);
@@ -294,7 +297,8 @@ var G2PieComponent = /** @class */ (function () {
     G2PieComponent.ctorParameters = function () { return [
         { type: ElementRef },
         { type: NgZone },
-        { type: ChangeDetectorRef }
+        { type: ChangeDetectorRef },
+        { type: AlainConfigService }
     ]; };
     G2PieComponent.propDecorators = {
         node: [{ type: ViewChild, args: ['container', { static: true },] }],
@@ -315,7 +319,8 @@ var G2PieComponent = /** @class */ (function () {
         valueFormat: [{ type: Input }],
         data: [{ type: Input }],
         colors: [{ type: Input }],
-        interaction: [{ type: Input }]
+        interaction: [{ type: Input }],
+        theme: [{ type: Input }]
     };
     __decorate([
         InputNumber(),
@@ -414,6 +419,8 @@ if (false) {
     G2PieComponent.prototype.colors;
     /** @type {?} */
     G2PieComponent.prototype.interaction;
+    /** @type {?} */
+    G2PieComponent.prototype.theme;
     /** @type {?} */
     G2PieComponent.prototype.el;
     /**

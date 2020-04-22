@@ -1,6 +1,7 @@
 import { __decorate, __metadata } from 'tslib';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, NgZone, Input, NgModule } from '@angular/core';
 import { registerShape, Chart } from '@antv/g2';
+import { AlainConfigService } from '@delon/theme';
 import { InputNumber, DelonUtilModule } from '@delon/util';
 import { CommonModule } from '@angular/common';
 
@@ -14,8 +15,9 @@ class G2GaugeComponent {
     /**
      * @param {?} el
      * @param {?} ngZone
+     * @param {?} configSrv
      */
-    constructor(el, ngZone) {
+    constructor(el, ngZone, configSrv) {
         this.el = el;
         this.ngZone = ngZone;
         // #region fields
@@ -23,6 +25,7 @@ class G2GaugeComponent {
         this.color = '#2f9cff';
         this.bgColor = '#f0f2f5';
         this.padding = [10, 10, 30, 10];
+        configSrv.attachKey(this, 'chart', 'theme');
     }
     /**
      * @private
@@ -67,13 +70,14 @@ class G2GaugeComponent {
                 return group;
             },
         });
-        const { el, height, padding, format } = this;
+        const { el, height, padding, format, theme } = this;
         /** @type {?} */
         const chart = (this.chart = new Chart({
             container: el.nativeElement,
             autoFit: true,
             height,
             padding,
+            theme,
         }));
         chart.legend(false);
         chart.animate(false);
@@ -207,7 +211,8 @@ G2GaugeComponent.decorators = [
 /** @nocollapse */
 G2GaugeComponent.ctorParameters = () => [
     { type: ElementRef },
-    { type: NgZone }
+    { type: NgZone },
+    { type: AlainConfigService }
 ];
 G2GaugeComponent.propDecorators = {
     delay: [{ type: Input }],
@@ -217,7 +222,8 @@ G2GaugeComponent.propDecorators = {
     bgColor: [{ type: Input }],
     format: [{ type: Input }],
     percent: [{ type: Input }],
-    padding: [{ type: Input }]
+    padding: [{ type: Input }],
+    theme: [{ type: Input }]
 };
 __decorate([
     InputNumber(),
@@ -253,6 +259,8 @@ if (false) {
     G2GaugeComponent.prototype.percent;
     /** @type {?} */
     G2GaugeComponent.prototype.padding;
+    /** @type {?} */
+    G2GaugeComponent.prototype.theme;
     /**
      * @type {?}
      * @private

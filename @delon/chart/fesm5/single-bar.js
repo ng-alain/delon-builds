@@ -1,6 +1,7 @@
 import { __assign, __decorate, __metadata, __spread } from 'tslib';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, NgZone, Input, NgModule } from '@angular/core';
 import { Chart } from '@antv/g2';
+import { AlainConfigService } from '@delon/theme';
 import { InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
 import { CommonModule } from '@angular/common';
 
@@ -11,7 +12,7 @@ import { CommonModule } from '@angular/common';
  */
 var G2SingleBarComponent = /** @class */ (function () {
     // #endregion
-    function G2SingleBarComponent(el, ngZone) {
+    function G2SingleBarComponent(el, ngZone, configSrv) {
         this.el = el;
         this.ngZone = ngZone;
         // #region fields
@@ -26,6 +27,7 @@ var G2SingleBarComponent = /** @class */ (function () {
         this.line = false;
         this.padding = 0;
         this.textStyle = { fontSize: 12, color: '#595959' };
+        configSrv.attachKey(this, 'chart', 'theme');
     }
     /**
      * @private
@@ -36,13 +38,14 @@ var G2SingleBarComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        var _a = this, el = _a.el, height = _a.height, padding = _a.padding, textStyle = _a.textStyle, line = _a.line, format = _a.format;
+        var _a = this, el = _a.el, height = _a.height, padding = _a.padding, textStyle = _a.textStyle, line = _a.line, format = _a.format, theme = _a.theme;
         /** @type {?} */
         var chart = (this.chart = new Chart({
             container: el.nativeElement,
             autoFit: true,
             height: height,
             padding: padding,
+            theme: theme,
         }));
         chart.legend(false);
         chart.axis(false);
@@ -153,7 +156,8 @@ var G2SingleBarComponent = /** @class */ (function () {
     /** @nocollapse */
     G2SingleBarComponent.ctorParameters = function () { return [
         { type: ElementRef },
-        { type: NgZone }
+        { type: NgZone },
+        { type: AlainConfigService }
     ]; };
     G2SingleBarComponent.propDecorators = {
         delay: [{ type: Input }],
@@ -167,7 +171,8 @@ var G2SingleBarComponent = /** @class */ (function () {
         line: [{ type: Input }],
         format: [{ type: Input }],
         padding: [{ type: Input }],
-        textStyle: [{ type: Input }]
+        textStyle: [{ type: Input }],
+        theme: [{ type: Input }]
     };
     __decorate([
         InputNumber(),
@@ -229,6 +234,8 @@ if (false) {
     G2SingleBarComponent.prototype.padding;
     /** @type {?} */
     G2SingleBarComponent.prototype.textStyle;
+    /** @type {?} */
+    G2SingleBarComponent.prototype.theme;
     /**
      * @type {?}
      * @private

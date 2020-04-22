@@ -1,13 +1,13 @@
 /**
  * @license ng-alain(cipchk@qq.com) v9.0.0-rc.3
- * (c) 2019 cipchk https://ng-alain.com/
+ * (c) 2020 cipchk https://ng-alain.com/
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@antv/g2'), require('@delon/util'), require('@angular/common')) :
-    typeof define === 'function' && define.amd ? define('@delon/chart/single-bar', ['exports', '@angular/core', '@antv/g2', '@delon/util', '@angular/common'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart['single-bar'] = {}), global.ng.core, global.g2, global.delon.util, global.ng.common));
-}(this, (function (exports, core, g2, util, common) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@antv/g2'), require('@delon/theme'), require('@delon/util'), require('@angular/common')) :
+    typeof define === 'function' && define.amd ? define('@delon/chart/single-bar', ['exports', '@angular/core', '@antv/g2', '@delon/theme', '@delon/util', '@angular/common'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart['single-bar'] = {}), global.ng.core, global.g2, global.delon.theme, global.delon.util, global.ng.common));
+}(this, (function (exports, core, g2, theme, util, common) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -230,7 +230,7 @@
      */
     var G2SingleBarComponent = /** @class */ (function () {
         // #endregion
-        function G2SingleBarComponent(el, ngZone) {
+        function G2SingleBarComponent(el, ngZone, configSrv) {
             this.el = el;
             this.ngZone = ngZone;
             // #region fields
@@ -245,6 +245,7 @@
             this.line = false;
             this.padding = 0;
             this.textStyle = { fontSize: 12, color: '#595959' };
+            configSrv.attachKey(this, 'chart', 'theme');
         }
         /**
          * @private
@@ -255,13 +256,14 @@
          * @return {?}
          */
         function () {
-            var _a = this, el = _a.el, height = _a.height, padding = _a.padding, textStyle = _a.textStyle, line = _a.line, format = _a.format;
+            var _a = this, el = _a.el, height = _a.height, padding = _a.padding, textStyle = _a.textStyle, line = _a.line, format = _a.format, theme = _a.theme;
             /** @type {?} */
             var chart = (this.chart = new g2.Chart({
                 container: el.nativeElement,
                 autoFit: true,
                 height: height,
                 padding: padding,
+                theme: theme,
             }));
             chart.legend(false);
             chart.axis(false);
@@ -372,7 +374,8 @@
         /** @nocollapse */
         G2SingleBarComponent.ctorParameters = function () { return [
             { type: core.ElementRef },
-            { type: core.NgZone }
+            { type: core.NgZone },
+            { type: theme.AlainConfigService }
         ]; };
         G2SingleBarComponent.propDecorators = {
             delay: [{ type: core.Input }],
@@ -386,7 +389,8 @@
             line: [{ type: core.Input }],
             format: [{ type: core.Input }],
             padding: [{ type: core.Input }],
-            textStyle: [{ type: core.Input }]
+            textStyle: [{ type: core.Input }],
+            theme: [{ type: core.Input }]
         };
         __decorate([
             util.InputNumber(),
@@ -448,6 +452,8 @@
         G2SingleBarComponent.prototype.padding;
         /** @type {?} */
         G2SingleBarComponent.prototype.textStyle;
+        /** @type {?} */
+        G2SingleBarComponent.prototype.theme;
         /**
          * @type {?}
          * @private

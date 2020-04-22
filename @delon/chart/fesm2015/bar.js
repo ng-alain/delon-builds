@@ -1,6 +1,7 @@
 import { __decorate, __metadata } from 'tslib';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, NgZone, ViewChild, Input, NgModule } from '@angular/core';
 import { Chart } from '@antv/g2';
+import { AlainConfigService } from '@delon/theme';
 import { InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
 import { fromEvent } from 'rxjs';
 import { filter, debounceTime } from 'rxjs/operators';
@@ -25,14 +26,15 @@ if (false) {
     G2BarData.prototype.y;
     /** @type {?|undefined} */
     G2BarData.prototype.color;
-    /* Skipping unhandled member: [key: string]: any;*/
+    /* Skipping unhandled member: [key: string]: NzSafeAny;*/
 }
 class G2BarComponent {
     // #endregion
     /**
      * @param {?} ngZone
+     * @param {?} configSrv
      */
-    constructor(ngZone) {
+    constructor(ngZone, configSrv) {
         this.ngZone = ngZone;
         // #region fields
         this.delay = 0;
@@ -42,6 +44,7 @@ class G2BarComponent {
         this.data = [];
         this.autoLabel = true;
         this.interaction = 'none';
+        configSrv.attachKey(this, 'chart', 'theme');
     }
     /**
      * @private
@@ -55,7 +58,7 @@ class G2BarComponent {
      * @return {?}
      */
     install() {
-        const { node, padding, interaction } = this;
+        const { node, padding, interaction, theme } = this;
         /** @type {?} */
         const container = (/** @type {?} */ (node.nativeElement));
         /** @type {?} */
@@ -64,6 +67,7 @@ class G2BarComponent {
             autoFit: true,
             height: this.getHeight(),
             padding,
+            theme,
         }));
         this.updatelabel();
         chart.axis('y', {
@@ -212,7 +216,8 @@ G2BarComponent.decorators = [
 ];
 /** @nocollapse */
 G2BarComponent.ctorParameters = () => [
-    { type: NgZone }
+    { type: NgZone },
+    { type: AlainConfigService }
 ];
 G2BarComponent.propDecorators = {
     node: [{ type: ViewChild, args: ['container', { static: true },] }],
@@ -223,7 +228,8 @@ G2BarComponent.propDecorators = {
     padding: [{ type: Input }],
     data: [{ type: Input }],
     autoLabel: [{ type: Input }],
-    interaction: [{ type: Input }]
+    interaction: [{ type: Input }],
+    theme: [{ type: Input }]
 };
 __decorate([
     InputNumber(),
@@ -269,6 +275,8 @@ if (false) {
     G2BarComponent.prototype.autoLabel;
     /** @type {?} */
     G2BarComponent.prototype.interaction;
+    /** @type {?} */
+    G2BarComponent.prototype.theme;
     /**
      * @type {?}
      * @private

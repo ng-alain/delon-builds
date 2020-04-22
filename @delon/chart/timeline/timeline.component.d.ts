@@ -1,5 +1,7 @@
 import { NgZone, OnChanges, OnDestroy, OnInit, TemplateRef } from '@angular/core';
+import { LooseObject } from '@antv/g2/lib/interface';
 import { G2Time } from '@delon/chart/core/types';
+import { AlainConfigService } from '@delon/theme';
 export interface G2TimelineData {
     /**
      * 时间值
@@ -51,7 +53,8 @@ export declare class G2TimelineComponent implements OnInit, OnDestroy, OnChanges
     padding: number[];
     borderWidth: number;
     slider: boolean;
-    constructor(ngZone: NgZone);
+    theme: string | LooseObject;
+    constructor(ngZone: NgZone, configSrv: AlainConfigService);
     ngOnInit(): void;
     private install;
     private attachChart;

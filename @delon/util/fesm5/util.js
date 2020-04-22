@@ -766,6 +766,14 @@ function (comp, from, to) {
     warnDeprecation(comp + " => '" + from + "' is going to be removed in 10.0.0" + (to ? ", Please use '" + to + "' instead" : "") + ".");
 });
 /** @type {?} */
+var deprecation10Cog = (/**
+ * @param {?} cogName
+ * @return {?}
+ */
+function (cogName) {
+    warnDeprecation(cogName + " is going to be removed in 10.0.0. Please refer to https://ng-alain.com/docs/global-config");
+});
+/** @type {?} */
 var warnDeprecation = (/**
  * @param {...?} args
  * @return {?}
@@ -1515,5 +1523,5 @@ var DelonUtilModule = /** @class */ (function () {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { ArrayService, DelonUtilConfig, DelonUtilModule, InputBoolean, InputNumber, LazyService, PREFIX, _Validators, copy, deepCopy, deepGet, deepMerge, deepMergeKey, deprecation10, fixEndTimeOfRange, format, getTimeDistance, isDecimal, isEmpty, isIdCard, isInt, isMobile, isNum, isUrl, log, toBoolean, toDate, toNumber, updateHostClass, warn, warnDeprecation };
+export { ArrayService, DelonUtilConfig, DelonUtilModule, InputBoolean, InputNumber, LazyService, PREFIX, _Validators, copy, deepCopy, deepGet, deepMerge, deepMergeKey, deprecation10, deprecation10Cog, fixEndTimeOfRange, format, getTimeDistance, isDecimal, isEmpty, isIdCard, isInt, isMobile, isNum, isUrl, log, toBoolean, toDate, toNumber, updateHostClass, warn, warnDeprecation };
 //# sourceMappingURL=util.js.map

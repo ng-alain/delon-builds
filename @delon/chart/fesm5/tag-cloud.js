@@ -2,6 +2,7 @@ import { __assign, __decorate, __metadata, __spread } from 'tslib';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, NgZone, Input, NgModule } from '@angular/core';
 import DataSet from '@antv/data-set';
 import { registerShape, Util, Chart } from '@antv/g2';
+import { AlainConfigService } from '@delon/theme';
 import { deprecation10, InputNumber, DelonUtilModule } from '@delon/util';
 import { fromEvent } from 'rxjs';
 import { filter, debounceTime } from 'rxjs/operators';
@@ -35,7 +36,7 @@ if (false) {
 }
 var G2TagCloudComponent = /** @class */ (function () {
     // #endregion
-    function G2TagCloudComponent(el, ngZone) {
+    function G2TagCloudComponent(el, ngZone, configSrv) {
         this.el = el;
         this.ngZone = ngZone;
         // #region fields
@@ -44,6 +45,7 @@ var G2TagCloudComponent = /** @class */ (function () {
         this.height = 200;
         this.padding = 0;
         this.data = [];
+        configSrv.attachKey(this, 'chart', 'theme');
     }
     /**
      * @private
@@ -83,7 +85,7 @@ var G2TagCloudComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        var _a = this, el = _a.el, padding = _a.padding;
+        var _a = this, el = _a.el, padding = _a.padding, theme = _a.theme;
         if (this.height === 0) {
             this.height = this.el.nativeElement.clientHeight;
         }
@@ -97,6 +99,7 @@ var G2TagCloudComponent = /** @class */ (function () {
             padding: padding,
             height: this.height,
             width: this.width,
+            theme: theme,
         }));
         chart.scale({
             x: { nice: false },
@@ -293,14 +296,16 @@ var G2TagCloudComponent = /** @class */ (function () {
     /** @nocollapse */
     G2TagCloudComponent.ctorParameters = function () { return [
         { type: ElementRef },
-        { type: NgZone }
+        { type: NgZone },
+        { type: AlainConfigService }
     ]; };
     G2TagCloudComponent.propDecorators = {
         delay: [{ type: Input }],
         width: [{ type: Input }],
         height: [{ type: Input }],
         padding: [{ type: Input }],
-        data: [{ type: Input }]
+        data: [{ type: Input }],
+        theme: [{ type: Input }]
     };
     __decorate([
         InputNumber(),
@@ -337,6 +342,8 @@ if (false) {
     G2TagCloudComponent.prototype.padding;
     /** @type {?} */
     G2TagCloudComponent.prototype.data;
+    /** @type {?} */
+    G2TagCloudComponent.prototype.theme;
     /**
      * @type {?}
      * @private

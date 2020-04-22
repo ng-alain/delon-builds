@@ -1,13 +1,13 @@
 /**
  * @license ng-alain(cipchk@qq.com) v9.0.0-rc.3
- * (c) 2019 cipchk https://ng-alain.com/
+ * (c) 2020 cipchk https://ng-alain.com/
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@antv/g2'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('@angular/common'), require('ng-zorro-antd/core/outlet')) :
-    typeof define === 'function' && define.amd ? define('@delon/chart/bar', ['exports', '@angular/core', '@antv/g2', '@delon/util', 'rxjs', 'rxjs/operators', '@angular/common', 'ng-zorro-antd/core/outlet'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.bar = {}), global.ng.core, global.g2, global.delon.util, global.rxjs, global.rxjs.operators, global.ng.common, global['ng-zorro-antd/core/outlet']));
-}(this, (function (exports, core, g2, util, rxjs, operators, common, outlet) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@antv/g2'), require('@delon/theme'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('@angular/common'), require('ng-zorro-antd/core/outlet')) :
+    typeof define === 'function' && define.amd ? define('@delon/chart/bar', ['exports', '@angular/core', '@antv/g2', '@delon/theme', '@delon/util', 'rxjs', 'rxjs/operators', '@angular/common', 'ng-zorro-antd/core/outlet'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.bar = {}), global.ng.core, global.g2, global.delon.theme, global.delon.util, global.rxjs, global.rxjs.operators, global.ng.common, global['ng-zorro-antd/core/outlet']));
+}(this, (function (exports, core, g2, theme, util, rxjs, operators, common, outlet) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -241,11 +241,11 @@
         G2BarData.prototype.y;
         /** @type {?|undefined} */
         G2BarData.prototype.color;
-        /* Skipping unhandled member: [key: string]: any;*/
+        /* Skipping unhandled member: [key: string]: NzSafeAny;*/
     }
     var G2BarComponent = /** @class */ (function () {
         // #endregion
-        function G2BarComponent(ngZone) {
+        function G2BarComponent(ngZone, configSrv) {
             this.ngZone = ngZone;
             // #region fields
             this.delay = 0;
@@ -255,6 +255,7 @@
             this.data = [];
             this.autoLabel = true;
             this.interaction = 'none';
+            configSrv.attachKey(this, 'chart', 'theme');
         }
         /**
          * @private
@@ -277,7 +278,7 @@
          */
         function () {
             var _this = this;
-            var _a = this, node = _a.node, padding = _a.padding, interaction = _a.interaction;
+            var _a = this, node = _a.node, padding = _a.padding, interaction = _a.interaction, theme = _a.theme;
             /** @type {?} */
             var container = (/** @type {?} */ (node.nativeElement));
             /** @type {?} */
@@ -286,6 +287,7 @@
                 autoFit: true,
                 height: this.getHeight(),
                 padding: padding,
+                theme: theme,
             }));
             this.updatelabel();
             chart.axis('y', {
@@ -458,7 +460,8 @@
         ];
         /** @nocollapse */
         G2BarComponent.ctorParameters = function () { return [
-            { type: core.NgZone }
+            { type: core.NgZone },
+            { type: theme.AlainConfigService }
         ]; };
         G2BarComponent.propDecorators = {
             node: [{ type: core.ViewChild, args: ['container', { static: true },] }],
@@ -469,7 +472,8 @@
             padding: [{ type: core.Input }],
             data: [{ type: core.Input }],
             autoLabel: [{ type: core.Input }],
-            interaction: [{ type: core.Input }]
+            interaction: [{ type: core.Input }],
+            theme: [{ type: core.Input }]
         };
         __decorate([
             util.InputNumber(),
@@ -517,6 +521,8 @@
         G2BarComponent.prototype.autoLabel;
         /** @type {?} */
         G2BarComponent.prototype.interaction;
+        /** @type {?} */
+        G2BarComponent.prototype.theme;
         /**
          * @type {?}
          * @private

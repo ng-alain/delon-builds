@@ -1,6 +1,7 @@
 import { __decorate, __metadata } from 'tslib';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, NgZone, ChangeDetectorRef, ViewChild, Input, NgModule } from '@angular/core';
 import { Chart } from '@antv/g2';
+import { AlainConfigService } from '@delon/theme';
 import { InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
 import { CommonModule } from '@angular/common';
 import { NzOutletModule } from 'ng-zorro-antd/core/outlet';
@@ -27,8 +28,9 @@ class G2PieComponent {
      * @param {?} el
      * @param {?} ngZone
      * @param {?} cdr
+     * @param {?} configSrv
      */
-    constructor(el, ngZone, cdr) {
+    constructor(el, ngZone, cdr, configSrv) {
         this.el = el;
         this.ngZone = ngZone;
         this.cdr = cdr;
@@ -47,6 +49,7 @@ class G2PieComponent {
         this.select = true;
         this.data = [];
         this.interaction = 'none';
+        configSrv.attachKey(this, 'chart', 'theme');
     }
     // #endregion
     /**
@@ -87,13 +90,14 @@ class G2PieComponent {
      * @return {?}
      */
     install() {
-        const { node, height, padding, tooltip, inner, hasLegend, interaction } = this;
+        const { node, height, padding, tooltip, inner, hasLegend, interaction, theme } = this;
         /** @type {?} */
         const chart = (this.chart = new Chart({
             container: node.nativeElement,
             autoFit: true,
             height,
             padding,
+            theme,
         }));
         if (!tooltip) {
             chart.tooltip(false);
@@ -250,7 +254,8 @@ G2PieComponent.decorators = [
 G2PieComponent.ctorParameters = () => [
     { type: ElementRef },
     { type: NgZone },
-    { type: ChangeDetectorRef }
+    { type: ChangeDetectorRef },
+    { type: AlainConfigService }
 ];
 G2PieComponent.propDecorators = {
     node: [{ type: ViewChild, args: ['container', { static: true },] }],
@@ -271,7 +276,8 @@ G2PieComponent.propDecorators = {
     valueFormat: [{ type: Input }],
     data: [{ type: Input }],
     colors: [{ type: Input }],
-    interaction: [{ type: Input }]
+    interaction: [{ type: Input }],
+    theme: [{ type: Input }]
 };
 __decorate([
     InputNumber(),
@@ -368,6 +374,8 @@ if (false) {
     G2PieComponent.prototype.colors;
     /** @type {?} */
     G2PieComponent.prototype.interaction;
+    /** @type {?} */
+    G2PieComponent.prototype.theme;
     /** @type {?} */
     G2PieComponent.prototype.el;
     /**

@@ -1,5 +1,6 @@
 import { __decorate, __metadata } from 'tslib';
 import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, Input, Output, NgModule } from '@angular/core';
+import { AlainConfigService } from '@delon/theme';
 import { InputNumber, DelonUtilModule } from '@delon/util';
 import { fromEvent } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
@@ -14,8 +15,9 @@ class G2CustomComponent {
     // #endregion
     /**
      * @param {?} el
+     * @param {?} configSrv
      */
-    constructor(el) {
+    constructor(el, configSrv) {
         this.el = el;
         this.resize$ = null;
         // #region fields
@@ -25,6 +27,7 @@ class G2CustomComponent {
         // tslint:disable-next-line:no-output-native
         this.resize = new EventEmitter();
         this.destroy = new EventEmitter();
+        configSrv.attachKey(this, 'chart', 'theme');
     }
     /**
      * @private
@@ -82,12 +85,14 @@ G2CustomComponent.decorators = [
 ];
 /** @nocollapse */
 G2CustomComponent.ctorParameters = () => [
-    { type: ElementRef }
+    { type: ElementRef },
+    { type: AlainConfigService }
 ];
 G2CustomComponent.propDecorators = {
     delay: [{ type: Input }],
     height: [{ type: Input }],
     resizeTime: [{ type: Input }],
+    theme: [{ type: Input }],
     render: [{ type: Output }],
     resize: [{ type: Output }],
     destroy: [{ type: Output }]
@@ -116,6 +121,8 @@ if (false) {
     G2CustomComponent.prototype.height;
     /** @type {?} */
     G2CustomComponent.prototype.resizeTime;
+    /** @type {?} */
+    G2CustomComponent.prototype.theme;
     /** @type {?} */
     G2CustomComponent.prototype.render;
     /** @type {?} */
