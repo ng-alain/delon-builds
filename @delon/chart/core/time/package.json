@@ -1,0 +1,13 @@
+{
+  "main": "../../bundles/delon-chart-core-time.umd.js",
+  "module": "../../fesm5/delon-chart-core-time.js",
+  "es2015": "../../fesm2015/delon-chart-core-time.js",
+  "esm5": "../../esm5/core/time/delon-chart-core-time.js",
+  "esm2015": "../../esm2015/core/time/delon-chart-core-time.js",
+  "fesm5": "../../fesm5/delon-chart-core-time.js",
+  "fesm2015": "../../fesm2015/delon-chart-core-time.js",
+  "typings": "delon-chart-core-time.d.ts",
+  "metadata": "delon-chart-core-time.metadata.json",
+  "sideEffects": false,
+  "name": "@delon/chart/core/time"
+}
