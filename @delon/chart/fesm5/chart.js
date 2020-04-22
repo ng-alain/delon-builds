@@ -19,7 +19,7 @@ export { G2RadarComponent, G2RadarModule } from '@delon/chart/radar';
 import { G2TagCloudModule } from '@delon/chart/tag-cloud';
 export { G2TagCloudComponent, G2TagCloudModule } from '@delon/chart/tag-cloud';
 import { G2TimelineModule } from '@delon/chart/timeline';
-export { G2TimelineComponent, G2TimelineData, G2TimelineModule } from '@delon/chart/timeline';
+export { G2TimelineComponent, G2TimelineModule } from '@delon/chart/timeline';
 import { G2WaterWaveModule } from '@delon/chart/water-wave';
 export { G2WaterWaveComponent, G2WaterWaveModule } from '@delon/chart/water-wave';
 import { NumberInfoModule } from '@delon/chart/number-info';

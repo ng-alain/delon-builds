@@ -1,6 +1,7 @@
 import { __decorate, __metadata } from 'tslib';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, NgZone, ViewChild, Input, NgModule } from '@angular/core';
 import { Chart } from '@antv/g2';
+import { toDate } from '@delon/chart/core/time';
 import { deprecation10, InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
 import { CommonModule } from '@angular/common';
 import { NzOutletModule } from 'ng-zorro-antd/core/outlet';
@@ -10,18 +11,20 @@ import { NzOutletModule } from 'ng-zorro-antd/core/outlet';
  * Generated from: timeline.component.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class G2TimelineData {
-}
+/**
+ * @record
+ */
+function G2TimelineData() { }
 if (false) {
     /**
      * 时间值
      * @deprecated Use `time` instead
-     * @type {?}
+     * @type {?|undefined}
      */
     G2TimelineData.prototype.x;
     /**
      * 时间值
-     * @type {?}
+     * @type {?|undefined}
      */
     G2TimelineData.prototype.time;
     /**
@@ -34,7 +37,54 @@ if (false) {
      * @type {?}
      */
     G2TimelineData.prototype.y2;
+    /**
+     * 指标3数据
+     * @type {?|undefined}
+     */
+    G2TimelineData.prototype.y3;
+    /**
+     * 指标4数据
+     * @type {?|undefined}
+     */
+    G2TimelineData.prototype.y4;
+    /**
+     * 指标5数据
+     * @type {?|undefined}
+     */
+    G2TimelineData.prototype.y5;
     /* Skipping unhandled member: [key: string]: any;*/
+}
+/**
+ * @record
+ */
+function G2TimelineMap() { }
+if (false) {
+    /**
+     * 指标1
+     * @type {?}
+     */
+    G2TimelineMap.prototype.y1;
+    /**
+     * 指标
+     * @type {?}
+     */
+    G2TimelineMap.prototype.y2;
+    /**
+     * 指标3
+     * @type {?|undefined}
+     */
+    G2TimelineMap.prototype.y3;
+    /**
+     * 指标4
+     * @type {?|undefined}
+     */
+    G2TimelineMap.prototype.y4;
+    /**
+     * 指标5
+     * @type {?|undefined}
+     */
+    G2TimelineMap.prototype.y5;
+    /* Skipping unhandled member: [key: string]: string | undefined;*/
 }
 class G2TimelineComponent {
     // #endregion
@@ -45,15 +95,25 @@ class G2TimelineComponent {
         this.ngZone = ngZone;
         // #region fields
         this.delay = 0;
+        this.maxAxis = 2;
         this.data = [];
-        this.colorMap = { y1: '#1890FF', y2: '#2FC25B' };
+        this.colorMap = { y1: '#5B8FF9', y2: '#5AD8A6', y3: '#5D7092', y4: '#F6BD16', y5: '#E86452' };
         this.mask = 'HH:mm';
         this.position = 'top';
         this.height = 450;
         this.padding = [60, 20, 64, 40];
         this.borderWidth = 2;
         this.slider = true;
-        this.initialRange = null;
+    }
+    /**
+     * @param {?} val
+     * @return {?}
+     */
+    set initialRange(val) {
+        this._initialRange = {
+            start: +toDate(val.start),
+            end: +toDate(val.end),
+        };
     }
     /**
      * @return {?}
@@ -72,7 +132,7 @@ class G2TimelineComponent {
      * @return {?}
      */
     install() {
-        const { node, height, padding, slider } = this;
+        const { node, height, padding, slider, maxAxis } = this;
         /** @type {?} */
         const chart = (this.chart = new Chart({
             container: node.nativeElement,
@@ -82,9 +142,17 @@ class G2TimelineComponent {
         }));
         chart.axis('time', { title: null });
         chart.axis('y1', { title: null });
-        chart.axis('y2', false);
+        for (let i = 2; i <= maxAxis; i++) {
+            chart.axis(`y${i}`, false);
+        }
         chart.line().position('time*y1');
-        chart.line().position('time*y2');
+        for (let i = 2; i <= maxAxis; i++) {
+            chart.line().position(`time*y${i}`);
+        }
+        chart.tooltip({
+            showCrosshairs: true,
+            shared: true,
+        });
         /** @type {?} */
         const sliderPadding = Object.assign(Object.assign({}, []), padding);
         sliderPadding[0] = 0;
@@ -106,16 +174,30 @@ class G2TimelineComponent {
      * @return {?}
      */
     attachChart() {
-        const { chart, height, padding, data, mask, titleMap, position, colorMap, borderWidth } = this;
+        const { chart, height, padding, mask, titleMap, position, colorMap, borderWidth, maxAxis } = this;
+        /** @type {?} */
+        let data = [...this.data];
         if (!chart || !data || data.length <= 0)
             return;
+        /** @type {?} */
+        const arrAxis = [...Array(maxAxis)].map((/**
+         * @param {?} _
+         * @param {?} index
+         * @return {?}
+         */
+        (_, index) => index + 1));
         chart.legend({
             position,
             custom: true,
-            items: [
-                { name: titleMap.y1, value: titleMap.y1, marker: { style: { fill: colorMap.y1 } } },
-                { name: titleMap.y1, value: titleMap.y2, marker: { style: { fill: colorMap.y2 } } },
-            ],
+            items: arrAxis.map((/**
+             * @param {?} id
+             * @return {?}
+             */
+            id => {
+                /** @type {?} */
+                const key = `y${id}`;
+                return (/** @type {?} */ ({ name: titleMap[key], value: titleMap[key], marker: { style: { fill: colorMap[key] } } }));
+            })),
         });
         // border
         chart.geometries.forEach((/**
@@ -143,46 +225,63 @@ class G2TimelineComponent {
                 item.time = new Date((/** @type {?} */ (item.x)));
             }));
         }
+        // 转换成日期类型
+        data = data
+            .map((/**
+         * @param {?} item
+         * @return {?}
+         */
+        item => {
+            item.time = toDate((/** @type {?} */ (item.time)));
+            item._time = +item.time;
+            return item;
+        }))
+            .sort((/**
+         * @param {?} a
+         * @param {?} b
+         * @return {?}
+         */
+        (a, b) => a._time - b._time));
         /** @type {?} */
-        const max = Math.max(data.sort((/**
+        const max = Math.max(...arrAxis.map((/**
+         * @param {?} id
+         * @return {?}
+         */
+        id => [...data].sort((/**
          * @param {?} a
          * @param {?} b
          * @return {?}
          */
-        (a, b) => b.y1 - a.y1))[0].y1, data.sort((/**
-         * @param {?} a
-         * @param {?} b
+        (a, b) => b[`y${id}`] - a[`y${id}`]))[0][`y${id}`])));
+        /** @type {?} */
+        const scaleOptions = {};
+        arrAxis.forEach((/**
+         * @param {?} id
          * @return {?}
          */
-        (a, b) => b.y2 - a.y2))[0].y2);
-        chart.scale({
-            time: {
+        id => {
+            /** @type {?} */
+            const key = `y${id}`;
+            scaleOptions[key] = {
+                alias: titleMap[key],
+                max,
+                min: 0,
+            };
+        }));
+        chart.scale(Object.assign({ time: {
                 type: 'time',
                 mask,
                 range: [0, 1],
-            },
-            y1: {
-                alias: titleMap.y1,
-                max,
-                min: 0,
-            },
-            y2: {
-                alias: titleMap.y2,
-                max,
-                min: 0,
-            },
-        });
+            } }, scaleOptions));
         /** @type {?} */
-        const initialRange = Object.assign({ start: new Date((/** @type {?} */ (data[0].time))), end: new Date((/** @type {?} */ (data[data.length - 1].time))) }, this.initialRange);
-        chart.changeData(data.filter((/**
+        const initialRange = Object.assign({ start: data[0]._time, end: data[data.length - 1]._time }, this._initialRange);
+        /** @type {?} */
+        const filterData = data.filter((/**
          * @param {?} val
          * @return {?}
          */
-        (val) => {
-            /** @type {?} */
-            const time = +new Date((/** @type {?} */ (val.time)));
-            return time >= +initialRange.start && time <= +initialRange.end;
-        })));
+        val => val._time >= initialRange.start && val._time <= initialRange.end));
+        chart.changeData(filterData);
     }
     /**
      * @return {?}
@@ -223,6 +322,7 @@ G2TimelineComponent.propDecorators = {
     node: [{ type: ViewChild, args: ['container', { static: false },] }],
     delay: [{ type: Input }],
     title: [{ type: Input }],
+    maxAxis: [{ type: Input }],
     data: [{ type: Input }],
     titleMap: [{ type: Input }],
     colorMap: [{ type: Input }],
@@ -238,6 +338,10 @@ __decorate([
     InputNumber(),
     __metadata("design:type", Object)
 ], G2TimelineComponent.prototype, "delay", void 0);
+__decorate([
+    InputNumber(),
+    __metadata("design:type", Object)
+], G2TimelineComponent.prototype, "maxAxis", void 0);
 __decorate([
     InputNumber(),
     __metadata("design:type", Object)
@@ -266,6 +370,8 @@ if (false) {
     /** @type {?} */
     G2TimelineComponent.prototype.title;
     /** @type {?} */
+    G2TimelineComponent.prototype.maxAxis;
+    /** @type {?} */
     G2TimelineComponent.prototype.data;
     /** @type {?} */
     G2TimelineComponent.prototype.titleMap;
@@ -283,8 +389,11 @@ if (false) {
     G2TimelineComponent.prototype.borderWidth;
     /** @type {?} */
     G2TimelineComponent.prototype.slider;
-    /** @type {?} */
-    G2TimelineComponent.prototype.initialRange;
+    /**
+     * @type {?}
+     * @private
+     */
+    G2TimelineComponent.prototype._initialRange;
     /**
      * @type {?}
      * @private
@@ -321,5 +430,5 @@ G2TimelineModule.decorators = [
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { G2TimelineComponent, G2TimelineData, G2TimelineModule };
+export { G2TimelineComponent, G2TimelineModule };
 //# sourceMappingURL=timeline.js.map
