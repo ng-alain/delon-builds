@@ -1,4 +1,8 @@
+/**
+ * @deprecated `SVConfig` is going to be removed in 10.0.0. Please refer to https://ng-alain.com/docs/global-config
+ */
 export declare class SVConfig {
+    constructor();
     /** 大小 */
     size: 'small' | 'large';
     /** 间距，默认：`32` */

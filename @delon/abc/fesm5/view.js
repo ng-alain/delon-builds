@@ -1,7 +1,7 @@
-import { __assign, __decorate, __metadata, __spread } from 'tslib';
-import { Injectable, ɵɵdefineInjectable, Component, ChangeDetectionStrategy, ViewEncapsulation, Input, ElementRef, Host, Optional, Renderer2, ViewChild, NgModule } from '@angular/core';
-import { InputNumber, isEmpty, InputBoolean, DelonUtilModule } from '@delon/util';
-import { ResponsiveService } from '@delon/theme';
+import { __decorate, __metadata, __spread } from 'tslib';
+import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input, ElementRef, Host, Optional, Renderer2, ViewChild, Injectable, ɵɵdefineInjectable, NgModule } from '@angular/core';
+import { AlainConfigService, ResponsiveService } from '@delon/theme';
+import { InputNumber, isEmpty, InputBoolean, deprecation10Cog, DelonUtilModule } from '@delon/util';
 import { ObserversModule } from '@angular/cdk/observers';
 import { CommonModule } from '@angular/common';
 import { NzOutletModule } from 'ng-zorro-antd/core/outlet';
@@ -10,81 +10,18 @@ import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 
 /**
  * @fileoverview added by tsickle
- * Generated from: sv.config.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-var SVConfig = /** @class */ (function () {
-    function SVConfig() {
-        /**
-         * 间距，默认：`32`
-         */
-        this.gutter = 32;
-        /**
-         * 布局，默认：`horizontal`
-         */
-        this.layout = 'horizontal';
-        /**
-         * 列数，默认：`3`
-         */
-        this.col = 3;
-        /**
-         * 是否显示默认值，当内容为空值时显示 `-`，默认：`true`
-         */
-        this.default = true;
-        /**
-         * `label` 固定宽度，若 `null` 或 `undefined` 表示非固定，默认：`null`
-         */
-        this.labelWidth = null;
-    }
-    SVConfig.decorators = [
-        { type: Injectable, args: [{ providedIn: 'root' },] }
-    ];
-    /** @nocollapse */ SVConfig.ɵprov = ɵɵdefineInjectable({ factory: function SVConfig_Factory() { return new SVConfig(); }, token: SVConfig, providedIn: "root" });
-    return SVConfig;
-}());
-if (false) {
-    /**
-     * 大小
-     * @type {?}
-     */
-    SVConfig.prototype.size;
-    /**
-     * 间距，默认：`32`
-     * @type {?}
-     */
-    SVConfig.prototype.gutter;
-    /**
-     * 布局，默认：`horizontal`
-     * @type {?}
-     */
-    SVConfig.prototype.layout;
-    /**
-     * 列数，默认：`3`
-     * @type {?}
-     */
-    SVConfig.prototype.col;
-    /**
-     * 是否显示默认值，当内容为空值时显示 `-`，默认：`true`
-     * @type {?}
-     */
-    SVConfig.prototype.default;
-    /**
-     * `label` 固定宽度，若 `null` 或 `undefined` 表示非固定，默认：`null`
-     * @type {?}
-     */
-    SVConfig.prototype.labelWidth;
-}
-
-/**
- * @fileoverview added by tsickle
  * Generated from: sv-container.component.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var SVContainerComponent = /** @class */ (function () {
-    function SVContainerComponent(cog) {
-        this.size = 'large';
-        this.layout = 'horizontal';
-        Object.assign(this, __assign(__assign({}, new SVConfig()), cog));
+    function SVContainerComponent(configSrv) {
+        configSrv.attach(this, 'sv', {
+            size: 'large',
+            gutter: 32,
+            layout: 'horizontal',
+            col: 3,
+            default: true,
+        });
     }
     SVContainerComponent.decorators = [
         { type: Component, args: [{
@@ -106,7 +43,7 @@ var SVContainerComponent = /** @class */ (function () {
     ];
     /** @nocollapse */
     SVContainerComponent.ctorParameters = function () { return [
-        { type: SVConfig }
+        { type: AlainConfigService }
     ]; };
     SVContainerComponent.propDecorators = {
         title: [{ type: Input }],
@@ -425,6 +362,79 @@ if (false) {
      * @private
      */
     SVComponent.prototype.ren;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * Generated from: sv.config.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @deprecated `SVConfig` is going to be removed in 10.0.0. Please refer to https://ng-alain.com/docs/global-config
+ */
+var SVConfig = /** @class */ (function () {
+    function SVConfig() {
+        /**
+         * 间距，默认：`32`
+         */
+        this.gutter = 32;
+        /**
+         * 布局，默认：`horizontal`
+         */
+        this.layout = 'horizontal';
+        /**
+         * 列数，默认：`3`
+         */
+        this.col = 3;
+        /**
+         * 是否显示默认值，当内容为空值时显示 `-`，默认：`true`
+         */
+        this.default = true;
+        /**
+         * `label` 固定宽度，若 `null` 或 `undefined` 表示非固定，默认：`null`
+         */
+        this.labelWidth = null;
+        deprecation10Cog("SVConfig");
+    }
+    SVConfig.decorators = [
+        { type: Injectable, args: [{ providedIn: 'root' },] }
+    ];
+    /** @nocollapse */
+    SVConfig.ctorParameters = function () { return []; };
+    /** @nocollapse */ SVConfig.ɵprov = ɵɵdefineInjectable({ factory: function SVConfig_Factory() { return new SVConfig(); }, token: SVConfig, providedIn: "root" });
+    return SVConfig;
+}());
+if (false) {
+    /**
+     * 大小
+     * @type {?}
+     */
+    SVConfig.prototype.size;
+    /**
+     * 间距，默认：`32`
+     * @type {?}
+     */
+    SVConfig.prototype.gutter;
+    /**
+     * 布局，默认：`horizontal`
+     * @type {?}
+     */
+    SVConfig.prototype.layout;
+    /**
+     * 列数，默认：`3`
+     * @type {?}
+     */
+    SVConfig.prototype.col;
+    /**
+     * 是否显示默认值，当内容为空值时显示 `-`，默认：`true`
+     * @type {?}
+     */
+    SVConfig.prototype.default;
+    /**
+     * `label` 固定宽度，若 `null` 或 `undefined` 表示非固定，默认：`null`
+     * @type {?}
+     */
+    SVConfig.prototype.labelWidth;
 }
 
 /**

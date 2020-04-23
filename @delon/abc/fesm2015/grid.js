@@ -1,42 +1,8 @@
 import { __decorate, __metadata } from 'tslib';
-import { Injectable, ɵɵdefineInjectable, Component, ChangeDetectionStrategy, ViewEncapsulation, Input, ElementRef, Renderer2, Optional, Host, NgModule } from '@angular/core';
-import { InputNumber, DelonUtilModule } from '@delon/util';
-import { ResponsiveService } from '@delon/theme';
+import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input, ElementRef, Renderer2, Optional, Host, Injectable, ɵɵdefineInjectable, NgModule } from '@angular/core';
+import { AlainConfigService, ResponsiveService } from '@delon/theme';
+import { InputNumber, deprecation10Cog, DelonUtilModule } from '@delon/util';
 import { CommonModule } from '@angular/common';
-
-/**
- * @fileoverview added by tsickle
- * Generated from: sg.config.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class SGConfig {
-    constructor() {
-        /**
-         * 间距，默认：`32`
-         */
-        this.gutter = 32;
-        /**
-         * 列数，默认：`2`
-         */
-        this.col = 2;
-    }
-}
-SGConfig.decorators = [
-    { type: Injectable, args: [{ providedIn: 'root' },] }
-];
-/** @nocollapse */ SGConfig.ɵprov = ɵɵdefineInjectable({ factory: function SGConfig_Factory() { return new SGConfig(); }, token: SGConfig, providedIn: "root" });
-if (false) {
-    /**
-     * 间距，默认：`32`
-     * @type {?}
-     */
-    SGConfig.prototype.gutter;
-    /**
-     * 列数，默认：`2`
-     * @type {?}
-     */
-    SGConfig.prototype.col;
-}
 
 /**
  * @fileoverview added by tsickle
@@ -45,10 +11,13 @@ if (false) {
  */
 class SGContainerComponent {
     /**
-     * @param {?} cog
+     * @param {?} configSrv
      */
-    constructor(cog) {
-        Object.assign(this, Object.assign(Object.assign({}, new SGConfig()), cog));
+    constructor(configSrv) {
+        configSrv.attach(this, 'sg', {
+            gutter: 32,
+            col: 2,
+        });
     }
     // #endregion
     /**
@@ -76,7 +45,7 @@ SGContainerComponent.decorators = [
 ];
 /** @nocollapse */
 SGContainerComponent.ctorParameters = () => [
-    { type: SGConfig }
+    { type: AlainConfigService }
 ];
 SGContainerComponent.propDecorators = {
     gutter: [{ type: Input }],
@@ -233,6 +202,46 @@ if (false) {
      * @private
      */
     SGComponent.prototype.rep;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * Generated from: sg.config.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @deprecated `SGConfig` is going to be removed in 10.0.0. Please refer to https://ng-alain.com/docs/global-config
+ */
+class SGConfig {
+    constructor() {
+        /**
+         * 间距，默认：`32`
+         */
+        this.gutter = 32;
+        /**
+         * 列数，默认：`2`
+         */
+        this.col = 2;
+        deprecation10Cog(`SGConfig`);
+    }
+}
+SGConfig.decorators = [
+    { type: Injectable, args: [{ providedIn: 'root' },] }
+];
+/** @nocollapse */
+SGConfig.ctorParameters = () => [];
+/** @nocollapse */ SGConfig.ɵprov = ɵɵdefineInjectable({ factory: function SGConfig_Factory() { return new SGConfig(); }, token: SGConfig, providedIn: "root" });
+if (false) {
+    /**
+     * 间距，默认：`32`
+     * @type {?}
+     */
+    SGConfig.prototype.gutter;
+    /**
+     * 列数，默认：`2`
+     * @type {?}
+     */
+    SGConfig.prototype.col;
 }
 
 /**

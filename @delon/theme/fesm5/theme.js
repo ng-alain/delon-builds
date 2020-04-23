@@ -4313,6 +4313,10 @@ if (false) {
     /** @type {?|undefined} */
     AlainConfig.prototype.se;
     /** @type {?|undefined} */
+    AlainConfig.prototype.sg;
+    /** @type {?|undefined} */
+    AlainConfig.prototype.sv;
+    /** @type {?|undefined} */
     AlainConfig.prototype.chart;
 }
 /**
@@ -4555,6 +4559,59 @@ if (false) {
 /**
  * @record
  */
+function AlainSGConfig() { }
+if (false) {
+    /**
+     * 间距，默认：`32`
+     * @type {?|undefined}
+     */
+    AlainSGConfig.prototype.gutter;
+    /**
+     * 列数，默认：`2`
+     * @type {?|undefined}
+     */
+    AlainSGConfig.prototype.col;
+}
+var AlainSVConfig = /** @class */ (function () {
+    function AlainSVConfig() {
+    }
+    return AlainSVConfig;
+}());
+if (false) {
+    /**
+     * 大小，默认：`large`
+     * @type {?}
+     */
+    AlainSVConfig.prototype.size;
+    /**
+     * 间距，默认：`32`
+     * @type {?}
+     */
+    AlainSVConfig.prototype.gutter;
+    /**
+     * 布局，默认：`horizontal`
+     * @type {?}
+     */
+    AlainSVConfig.prototype.layout;
+    /**
+     * 列数，默认：`3`
+     * @type {?}
+     */
+    AlainSVConfig.prototype.col;
+    /**
+     * 是否显示默认值，当内容为空值时显示 `-`，默认：`true`
+     * @type {?}
+     */
+    AlainSVConfig.prototype.default;
+    /**
+     * `label` 固定宽度，若 `null` 或 `undefined` 表示非固定，默认：`null`
+     * @type {?}
+     */
+    AlainSVConfig.prototype.labelWidth;
+}
+/**
+ * @record
+ */
 function AlainChartConfig() { }
 if (false) {
     /** @type {?|undefined} */
@@ -4780,7 +4837,7 @@ if (false) {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-var VERSION = new Version('9.0.0-rc.3-96a2f16f');
+var VERSION = new Version('9.0.0-rc.3-97678a67');
 
 /**
  * @fileoverview added by tsickle
@@ -4794,5 +4851,5 @@ var VERSION = new Version('9.0.0-rc.3-96a2f16f');
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { ALAIN_CONFIG, ALAIN_I18N_TOKEN, APP, AlainConfigService, AlainI18NServiceFake, AlainThemeConfig, AlainThemeModule, BaseApi, BaseHeaders, BaseUrl, Body, CNCurrencyPipe, DELETE, DELON_LOCALE, DELON_LOCALE_SERVICE_PROVIDER, DELON_LOCALE_SERVICE_PROVIDER_FACTORY, DatePipe, DelonLocaleModule, DelonLocaleService, DrawerHelper, FORM, GET, HEAD, HTMLPipe, Headers, JSONP, KeysPipe, LAYOUT, MenuService, ModalHelper, OPTIONS, PATCH, POST, PUT, Path, Payload, Query, REP_MAX, ResponsiveService, ScrollService, SettingsService, TitleService, URLPipe, USER, VERSION, WINDOW, YNPipe, _HttpClient, elGR as el_GR, enUS as en_US, hrHR as hr_HR, jaJP as ja_JP, koKR as ko_KR, plPL as pl_PL, preloaderFinished, trTR as tr_TR, zhCN as zh_CN, zhTW as zh_TW, ALAIN_I18N_TOKEN_FACTORY as ɵa, I18nPipe as ɵb };
+export { ALAIN_CONFIG, ALAIN_I18N_TOKEN, APP, AlainConfigService, AlainI18NServiceFake, AlainSVConfig, AlainThemeConfig, AlainThemeModule, BaseApi, BaseHeaders, BaseUrl, Body, CNCurrencyPipe, DELETE, DELON_LOCALE, DELON_LOCALE_SERVICE_PROVIDER, DELON_LOCALE_SERVICE_PROVIDER_FACTORY, DatePipe, DelonLocaleModule, DelonLocaleService, DrawerHelper, FORM, GET, HEAD, HTMLPipe, Headers, JSONP, KeysPipe, LAYOUT, MenuService, ModalHelper, OPTIONS, PATCH, POST, PUT, Path, Payload, Query, REP_MAX, ResponsiveService, ScrollService, SettingsService, TitleService, URLPipe, USER, VERSION, WINDOW, YNPipe, _HttpClient, elGR as el_GR, enUS as en_US, hrHR as hr_HR, jaJP as ja_JP, koKR as ko_KR, plPL as pl_PL, preloaderFinished, trTR as tr_TR, zhCN as zh_CN, zhTW as zh_TW, ALAIN_I18N_TOKEN_FACTORY as ɵa, I18nPipe as ɵb };
 //# sourceMappingURL=theme.js.map

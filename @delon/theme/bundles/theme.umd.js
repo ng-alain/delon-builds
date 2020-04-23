@@ -4522,6 +4522,10 @@
         /** @type {?|undefined} */
         AlainConfig.prototype.se;
         /** @type {?|undefined} */
+        AlainConfig.prototype.sg;
+        /** @type {?|undefined} */
+        AlainConfig.prototype.sv;
+        /** @type {?|undefined} */
         AlainConfig.prototype.chart;
     }
     /**
@@ -4764,6 +4768,59 @@
     /**
      * @record
      */
+    function AlainSGConfig() { }
+    if (false) {
+        /**
+         * 间距，默认：`32`
+         * @type {?|undefined}
+         */
+        AlainSGConfig.prototype.gutter;
+        /**
+         * 列数，默认：`2`
+         * @type {?|undefined}
+         */
+        AlainSGConfig.prototype.col;
+    }
+    var AlainSVConfig = /** @class */ (function () {
+        function AlainSVConfig() {
+        }
+        return AlainSVConfig;
+    }());
+    if (false) {
+        /**
+         * 大小，默认：`large`
+         * @type {?}
+         */
+        AlainSVConfig.prototype.size;
+        /**
+         * 间距，默认：`32`
+         * @type {?}
+         */
+        AlainSVConfig.prototype.gutter;
+        /**
+         * 布局，默认：`horizontal`
+         * @type {?}
+         */
+        AlainSVConfig.prototype.layout;
+        /**
+         * 列数，默认：`3`
+         * @type {?}
+         */
+        AlainSVConfig.prototype.col;
+        /**
+         * 是否显示默认值，当内容为空值时显示 `-`，默认：`true`
+         * @type {?}
+         */
+        AlainSVConfig.prototype.default;
+        /**
+         * `label` 固定宽度，若 `null` 或 `undefined` 表示非固定，默认：`null`
+         * @type {?}
+         */
+        AlainSVConfig.prototype.labelWidth;
+    }
+    /**
+     * @record
+     */
     function AlainChartConfig() { }
     if (false) {
         /** @type {?|undefined} */
@@ -4996,6 +5053,7 @@
     exports.APP = APP;
     exports.AlainConfigService = AlainConfigService;
     exports.AlainI18NServiceFake = AlainI18NServiceFake;
+    exports.AlainSVConfig = AlainSVConfig;
     exports.AlainThemeConfig = AlainThemeConfig;
     exports.AlainThemeModule = AlainThemeModule;
     exports.BaseApi = BaseApi;

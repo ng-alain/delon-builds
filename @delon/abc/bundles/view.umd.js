@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util'), require('@delon/theme'), require('@angular/cdk/observers'), require('@angular/common'), require('ng-zorro-antd/core/outlet'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/tooltip')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/sv', ['exports', '@angular/core', '@delon/util', '@delon/theme', '@angular/cdk/observers', '@angular/common', 'ng-zorro-antd/core/outlet', 'ng-zorro-antd/icon', 'ng-zorro-antd/tooltip'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.sv = {}), global.ng.core, global.delon.util, global.delon.theme, global.ng.cdk.observers, global.ng.common, global['ng-zorro-antd/core/outlet'], global['ng-zorro-antd/icon'], global['ng-zorro-antd/tooltip']));
-}(this, (function (exports, core, util, theme, observers, common, outlet, icon, tooltip) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/theme'), require('@delon/util'), require('@angular/cdk/observers'), require('@angular/common'), require('ng-zorro-antd/core/outlet'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/tooltip')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/sv', ['exports', '@angular/core', '@delon/theme', '@delon/util', '@angular/cdk/observers', '@angular/common', 'ng-zorro-antd/core/outlet', 'ng-zorro-antd/icon', 'ng-zorro-antd/tooltip'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.sv = {}), global.ng.core, global.delon.theme, global.delon.util, global.ng.cdk.observers, global.ng.common, global['ng-zorro-antd/core/outlet'], global['ng-zorro-antd/icon'], global['ng-zorro-antd/tooltip']));
+}(this, (function (exports, core, theme, util, observers, common, outlet, icon, tooltip) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -225,81 +225,18 @@
 
     /**
      * @fileoverview added by tsickle
-     * Generated from: sv.config.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var SVConfig = /** @class */ (function () {
-        function SVConfig() {
-            /**
-             * 间距，默认：`32`
-             */
-            this.gutter = 32;
-            /**
-             * 布局，默认：`horizontal`
-             */
-            this.layout = 'horizontal';
-            /**
-             * 列数，默认：`3`
-             */
-            this.col = 3;
-            /**
-             * 是否显示默认值，当内容为空值时显示 `-`，默认：`true`
-             */
-            this.default = true;
-            /**
-             * `label` 固定宽度，若 `null` 或 `undefined` 表示非固定，默认：`null`
-             */
-            this.labelWidth = null;
-        }
-        SVConfig.decorators = [
-            { type: core.Injectable, args: [{ providedIn: 'root' },] }
-        ];
-        /** @nocollapse */ SVConfig.ɵprov = core.ɵɵdefineInjectable({ factory: function SVConfig_Factory() { return new SVConfig(); }, token: SVConfig, providedIn: "root" });
-        return SVConfig;
-    }());
-    if (false) {
-        /**
-         * 大小
-         * @type {?}
-         */
-        SVConfig.prototype.size;
-        /**
-         * 间距，默认：`32`
-         * @type {?}
-         */
-        SVConfig.prototype.gutter;
-        /**
-         * 布局，默认：`horizontal`
-         * @type {?}
-         */
-        SVConfig.prototype.layout;
-        /**
-         * 列数，默认：`3`
-         * @type {?}
-         */
-        SVConfig.prototype.col;
-        /**
-         * 是否显示默认值，当内容为空值时显示 `-`，默认：`true`
-         * @type {?}
-         */
-        SVConfig.prototype.default;
-        /**
-         * `label` 固定宽度，若 `null` 或 `undefined` 表示非固定，默认：`null`
-         * @type {?}
-         */
-        SVConfig.prototype.labelWidth;
-    }
-
-    /**
-     * @fileoverview added by tsickle
      * Generated from: sv-container.component.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var SVContainerComponent = /** @class */ (function () {
-        function SVContainerComponent(cog) {
-            this.size = 'large';
-            this.layout = 'horizontal';
-            Object.assign(this, __assign(__assign({}, new SVConfig()), cog));
+        function SVContainerComponent(configSrv) {
+            configSrv.attach(this, 'sv', {
+                size: 'large',
+                gutter: 32,
+                layout: 'horizontal',
+                col: 3,
+                default: true,
+            });
         }
         SVContainerComponent.decorators = [
             { type: core.Component, args: [{
@@ -321,7 +258,7 @@
         ];
         /** @nocollapse */
         SVContainerComponent.ctorParameters = function () { return [
-            { type: SVConfig }
+            { type: theme.AlainConfigService }
         ]; };
         SVContainerComponent.propDecorators = {
             title: [{ type: core.Input }],
@@ -640,6 +577,79 @@
          * @private
          */
         SVComponent.prototype.ren;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: sv.config.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /**
+     * @deprecated `SVConfig` is going to be removed in 10.0.0. Please refer to https://ng-alain.com/docs/global-config
+     */
+    var SVConfig = /** @class */ (function () {
+        function SVConfig() {
+            /**
+             * 间距，默认：`32`
+             */
+            this.gutter = 32;
+            /**
+             * 布局，默认：`horizontal`
+             */
+            this.layout = 'horizontal';
+            /**
+             * 列数，默认：`3`
+             */
+            this.col = 3;
+            /**
+             * 是否显示默认值，当内容为空值时显示 `-`，默认：`true`
+             */
+            this.default = true;
+            /**
+             * `label` 固定宽度，若 `null` 或 `undefined` 表示非固定，默认：`null`
+             */
+            this.labelWidth = null;
+            util.deprecation10Cog("SVConfig");
+        }
+        SVConfig.decorators = [
+            { type: core.Injectable, args: [{ providedIn: 'root' },] }
+        ];
+        /** @nocollapse */
+        SVConfig.ctorParameters = function () { return []; };
+        /** @nocollapse */ SVConfig.ɵprov = core.ɵɵdefineInjectable({ factory: function SVConfig_Factory() { return new SVConfig(); }, token: SVConfig, providedIn: "root" });
+        return SVConfig;
+    }());
+    if (false) {
+        /**
+         * 大小
+         * @type {?}
+         */
+        SVConfig.prototype.size;
+        /**
+         * 间距，默认：`32`
+         * @type {?}
+         */
+        SVConfig.prototype.gutter;
+        /**
+         * 布局，默认：`horizontal`
+         * @type {?}
+         */
+        SVConfig.prototype.layout;
+        /**
+         * 列数，默认：`3`
+         * @type {?}
+         */
+        SVConfig.prototype.col;
+        /**
+         * 是否显示默认值，当内容为空值时显示 `-`，默认：`true`
+         * @type {?}
+         */
+        SVConfig.prototype.default;
+        /**
+         * `label` 固定宽度，若 `null` 或 `undefined` 表示非固定，默认：`null`
+         * @type {?}
+         */
+        SVConfig.prototype.labelWidth;
     }
 
     /**

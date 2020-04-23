@@ -11,6 +11,8 @@ export interface AlainConfig {
     pageHeader?: AlainPageHeaderConfig;
     qr?: AlainQRConfig;
     se?: AlainSEConfig;
+    sg?: AlainSGConfig;
+    sv?: AlainSVConfig;
     chart?: AlainChartConfig;
 }
 export interface AlainErrorCollectConfig {
@@ -176,6 +178,30 @@ export interface AlainSEConfig {
      * 是否立即呈现错误视觉，默认：`false`
      */
     firstVisual?: boolean;
+}
+export interface AlainSGConfig {
+    /**
+     * 间距，默认：`32`
+     */
+    gutter?: number;
+    /**
+     * 列数，默认：`2`
+     */
+    col?: number;
+}
+export declare class AlainSVConfig {
+    /** 大小，默认：`large` */
+    size?: 'small' | 'large';
+    /** 间距，默认：`32` */
+    gutter?: number;
+    /** 布局，默认：`horizontal` */
+    layout?: 'horizontal' | 'vertical';
+    /** 列数，默认：`3` */
+    col?: number;
+    /** 是否显示默认值，当内容为空值时显示 `-`，默认：`true` */
+    default?: boolean;
+    /** `label` 固定宽度，若 `null` 或 `undefined` 表示非固定，默认：`null` */
+    labelWidth?: number;
 }
 export interface AlainChartConfig {
     theme?: string | {

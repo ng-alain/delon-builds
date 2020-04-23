@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util'), require('@delon/theme'), require('@angular/common')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/sg', ['exports', '@angular/core', '@delon/util', '@delon/theme', '@angular/common'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.sg = {}), global.ng.core, global.delon.util, global.delon.theme, global.ng.common));
-}(this, (function (exports, core, util, theme, common) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/theme'), require('@delon/util'), require('@angular/common')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/sg', ['exports', '@angular/core', '@delon/theme', '@delon/util', '@angular/common'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.sg = {}), global.ng.core, global.delon.theme, global.delon.util, global.ng.common));
+}(this, (function (exports, core, theme, util, common) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -225,47 +225,15 @@
 
     /**
      * @fileoverview added by tsickle
-     * Generated from: sg.config.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var SGConfig = /** @class */ (function () {
-        function SGConfig() {
-            /**
-             * 间距，默认：`32`
-             */
-            this.gutter = 32;
-            /**
-             * 列数，默认：`2`
-             */
-            this.col = 2;
-        }
-        SGConfig.decorators = [
-            { type: core.Injectable, args: [{ providedIn: 'root' },] }
-        ];
-        /** @nocollapse */ SGConfig.ɵprov = core.ɵɵdefineInjectable({ factory: function SGConfig_Factory() { return new SGConfig(); }, token: SGConfig, providedIn: "root" });
-        return SGConfig;
-    }());
-    if (false) {
-        /**
-         * 间距，默认：`32`
-         * @type {?}
-         */
-        SGConfig.prototype.gutter;
-        /**
-         * 列数，默认：`2`
-         * @type {?}
-         */
-        SGConfig.prototype.col;
-    }
-
-    /**
-     * @fileoverview added by tsickle
      * Generated from: sg-container.component.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var SGContainerComponent = /** @class */ (function () {
-        function SGContainerComponent(cog) {
-            Object.assign(this, __assign(__assign({}, new SGConfig()), cog));
+        function SGContainerComponent(configSrv) {
+            configSrv.attach(this, 'sg', {
+                gutter: 32,
+                col: 2,
+            });
         }
         Object.defineProperty(SGContainerComponent.prototype, "marginValue", {
             // #endregion
@@ -298,7 +266,7 @@
         ];
         /** @nocollapse */
         SGContainerComponent.ctorParameters = function () { return [
-            { type: SGConfig }
+            { type: theme.AlainConfigService }
         ]; };
         SGContainerComponent.propDecorators = {
             gutter: [{ type: core.Input }],
@@ -468,6 +436,47 @@
          * @private
          */
         SGComponent.prototype.rep;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: sg.config.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /**
+     * @deprecated `SGConfig` is going to be removed in 10.0.0. Please refer to https://ng-alain.com/docs/global-config
+     */
+    var SGConfig = /** @class */ (function () {
+        function SGConfig() {
+            /**
+             * 间距，默认：`32`
+             */
+            this.gutter = 32;
+            /**
+             * 列数，默认：`2`
+             */
+            this.col = 2;
+            util.deprecation10Cog("SGConfig");
+        }
+        SGConfig.decorators = [
+            { type: core.Injectable, args: [{ providedIn: 'root' },] }
+        ];
+        /** @nocollapse */
+        SGConfig.ctorParameters = function () { return []; };
+        /** @nocollapse */ SGConfig.ɵprov = core.ɵɵdefineInjectable({ factory: function SGConfig_Factory() { return new SGConfig(); }, token: SGConfig, providedIn: "root" });
+        return SGConfig;
+    }());
+    if (false) {
+        /**
+         * 间距，默认：`32`
+         * @type {?}
+         */
+        SGConfig.prototype.gutter;
+        /**
+         * 列数，默认：`2`
+         * @type {?}
+         */
+        SGConfig.prototype.col;
     }
 
     /**
