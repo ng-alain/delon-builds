@@ -1,12 +1,27 @@
 import { Injectable, ɵɵdefineInjectable, ɵɵinject, EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ChangeDetectorRef, Input, Output, NgModule } from '@angular/core';
+import { AlainConfigService } from '@delon/theme';
+import { deprecation10Cog, InputNumber, DelonUtilModule } from '@delon/util';
 import { __decorate, __metadata } from 'tslib';
-import { InputNumber, DelonUtilModule } from '@delon/util';
 import { CommonModule } from '@angular/common';
 
 /**
  * @fileoverview added by tsickle
  * Generated from: qr.config.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/** @type {?} */
+const DEFULAT_CONFIG = {
+    background: 'white',
+    backgroundAlpha: 1,
+    foreground: 'black',
+    foregroundAlpha: 1,
+    level: 'L',
+    mime: 'image/png',
+    padding: 10,
+    size: 220,
+};
+/**
+ * @deprecated `QRConfig` is going to be removed in 10.0.0. Please refer to https://ng-alain.com/docs/global-config
  */
 class QRConfig {
     constructor() {
@@ -42,11 +57,14 @@ class QRConfig {
          * 大小（单位：px），默认：`220`
          */
         this.size = 220;
+        deprecation10Cog(`QRConfig`);
     }
 }
 QRConfig.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
+/** @nocollapse */
+QRConfig.ctorParameters = () => [];
 /** @nocollapse */ QRConfig.ɵprov = ɵɵdefineInjectable({ factory: function QRConfig_Factory() { return new QRConfig(); }, token: QRConfig, providedIn: "root" });
 if (false) {
     /**
@@ -98,14 +116,14 @@ if (false) {
  */
 class QRService {
     /**
-     * @param {?} cog
+     * @param {?} configSrv
      */
-    constructor(cog) {
+    constructor(configSrv) {
         /**
          * 背景透明级别，范围：`0-1` 之间
          */
         this.backgroundAlpha = 1;
-        Object.assign(this, cog);
+        configSrv.attach(this, 'qr', DEFULAT_CONFIG);
         this.qr = new QRious();
     }
     /**
@@ -169,9 +187,9 @@ QRService.decorators = [
 ];
 /** @nocollapse */
 QRService.ctorParameters = () => [
-    { type: QRConfig }
+    { type: AlainConfigService }
 ];
-/** @nocollapse */ QRService.ɵprov = ɵɵdefineInjectable({ factory: function QRService_Factory() { return new QRService(ɵɵinject(QRConfig)); }, token: QRService, providedIn: "root" });
+/** @nocollapse */ QRService.ɵprov = ɵɵdefineInjectable({ factory: function QRService_Factory() { return new QRService(ɵɵinject(AlainConfigService)); }, token: QRService, providedIn: "root" });
 if (false) {
     /**
      * 当前qr实例
@@ -233,16 +251,16 @@ if (false) {
 class QRComponent {
     // #endregion
     /**
-     * @param {?} cog
      * @param {?} srv
      * @param {?} cdr
+     * @param {?} configSrv
      */
-    constructor(cog, srv, cdr) {
+    constructor(srv, cdr, configSrv) {
         this.srv = srv;
         this.cdr = cdr;
         // tslint:disable-next-line:no-output-native
         this.change = new EventEmitter();
-        Object.assign(this, Object.assign(Object.assign({}, new QRConfig()), cog));
+        configSrv.attach(this, 'qr', DEFULAT_CONFIG);
     }
     /**
      * @return {?}
@@ -280,9 +298,9 @@ QRComponent.decorators = [
 ];
 /** @nocollapse */
 QRComponent.ctorParameters = () => [
-    { type: QRConfig },
     { type: QRService },
-    { type: ChangeDetectorRef }
+    { type: ChangeDetectorRef },
+    { type: AlainConfigService }
 ];
 QRComponent.propDecorators = {
     background: [{ type: Input }],

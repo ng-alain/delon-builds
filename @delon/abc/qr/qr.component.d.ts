@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, EventEmitter, OnChanges } from '@angular/core';
-import { QRConfig } from './qr.config';
+import { AlainConfigService } from '@delon/theme';
 import { QRService } from './qr.service';
 export declare class QRComponent implements OnChanges {
     private srv;
@@ -15,6 +15,6 @@ export declare class QRComponent implements OnChanges {
     size: number;
     value: string;
     readonly change: EventEmitter<string>;
-    constructor(cog: QRConfig, srv: QRService, cdr: ChangeDetectorRef);
+    constructor(srv: QRService, cdr: ChangeDetectorRef, configSrv: AlainConfigService);
     ngOnChanges(): void;
 }

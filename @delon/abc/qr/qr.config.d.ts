@@ -1,4 +1,10 @@
+import { AlainQRConfig } from '@delon/theme';
+export declare const DEFULAT_CONFIG: AlainQRConfig;
+/**
+ * @deprecated `QRConfig` is going to be removed in 10.0.0. Please refer to https://ng-alain.com/docs/global-config
+ */
 export declare class QRConfig {
+    constructor();
     /** 背景，默认：`white` */
     background: string;
     /** 背景透明级别，范围：`0-1` 之间，默认：`1.0` */

@@ -4518,6 +4518,8 @@
         /** @type {?|undefined} */
         AlainConfig.prototype.pageHeader;
         /** @type {?|undefined} */
+        AlainConfig.prototype.qr;
+        /** @type {?|undefined} */
         AlainConfig.prototype.chart;
     }
     /**
@@ -4672,6 +4674,52 @@
          * @type {?|undefined}
          */
         AlainPageHeaderConfig.prototype.fixedOffsetTop;
+    }
+    /**
+     * @record
+     */
+    function AlainQRConfig() { }
+    if (false) {
+        /**
+         * 背景，默认：`white`
+         * @type {?|undefined}
+         */
+        AlainQRConfig.prototype.background;
+        /**
+         * 背景透明级别，范围：`0-1` 之间，默认：`1`
+         * @type {?|undefined}
+         */
+        AlainQRConfig.prototype.backgroundAlpha;
+        /**
+         * 前景，默认：`black`
+         * @type {?|undefined}
+         */
+        AlainQRConfig.prototype.foreground;
+        /**
+         * 前景透明级别，范围：`0-1` 之间，默认：`1`
+         * @type {?|undefined}
+         */
+        AlainQRConfig.prototype.foregroundAlpha;
+        /**
+         * 误差校正级别，默认：`L`
+         * @type {?|undefined}
+         */
+        AlainQRConfig.prototype.level;
+        /**
+         * 二维码输出图片MIME类型，默认：`image/png`
+         * @type {?|undefined}
+         */
+        AlainQRConfig.prototype.mime;
+        /**
+         * 内边距（单位：px），默认：`10`
+         * @type {?|undefined}
+         */
+        AlainQRConfig.prototype.padding;
+        /**
+         * 大小（单位：px），默认：`220`
+         * @type {?|undefined}
+         */
+        AlainQRConfig.prototype.size;
     }
     /**
      * @record

@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util'), require('rxjs'), require('@delon/theme')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/lodop', ['exports', '@angular/core', '@delon/util', 'rxjs', '@delon/theme'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.lodop = {}), global.ng.core, global.delon.util, global.rxjs, global.delon.theme));
-}(this, (function (exports, core, util, rxjs, theme) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/theme'), require('@delon/util'), require('rxjs')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/lodop', ['exports', '@angular/core', '@delon/theme', '@delon/util', 'rxjs'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.lodop = {}), global.ng.core, global.delon.theme, global.delon.util, global.rxjs));
+}(this, (function (exports, core, theme, util, rxjs) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -804,7 +804,7 @@
             this._events = new rxjs.Subject();
             this.printBuffer = [];
             this.defaultConfig = configSrv.merge('lodop', {
-                url: 'https://localhost:8443/CLodopfuncs.js',
+                url: '//localhost:8443/CLodopfuncs.js',
                 name: 'CLODOP',
                 companyName: '',
                 checkMaxCount: 100,

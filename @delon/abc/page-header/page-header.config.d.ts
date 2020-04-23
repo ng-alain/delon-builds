@@ -1,6 +1,7 @@
 /**
  * @deprecated `PageHeaderConfig` is going to be removed in 10.0.0. Please refer to https://ng-alain.com/docs/global-config
- */ export declare class PageHeaderConfig {
+ */
+export declare class PageHeaderConfig {
     constructor();
     /**
      * 首页文本，若指定空表示不显示

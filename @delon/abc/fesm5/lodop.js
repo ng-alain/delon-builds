@@ -1,8 +1,8 @@
 import { __assign, __spread } from 'tslib';
 import { Injectable, ɵɵdefineInjectable, ɵɵinject, NgModule } from '@angular/core';
+import { AlainConfigService } from '@delon/theme';
 import { LazyService, deprecation10Cog, DelonUtilModule } from '@delon/util';
 import { Subject, of } from 'rxjs';
-import { AlainConfigService } from '@delon/theme';
 
 /**
  * @fileoverview added by tsickle
@@ -585,7 +585,7 @@ var LodopService = /** @class */ (function () {
         this._events = new Subject();
         this.printBuffer = [];
         this.defaultConfig = configSrv.merge('lodop', {
-            url: 'https://localhost:8443/CLodopfuncs.js',
+            url: '//localhost:8443/CLodopfuncs.js',
             name: 'CLODOP',
             companyName: '',
             checkMaxCount: 100,

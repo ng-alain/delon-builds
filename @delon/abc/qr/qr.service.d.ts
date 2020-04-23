@@ -1,4 +1,4 @@
-import { QRConfig } from './qr.config';
+import { AlainConfigService } from '@delon/theme';
 export declare class QRService {
     /** 当前qr实例 */
     readonly qr: any;
@@ -20,7 +20,7 @@ export declare class QRService {
     size: number;
     /** 值 */
     value: string;
-    constructor(cog: QRConfig);
+    constructor(configSrv: AlainConfigService);
     /**
      * 生成二维码，并返回Base64编码
      *

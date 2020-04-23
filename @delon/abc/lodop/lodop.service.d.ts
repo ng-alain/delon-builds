@@ -1,9 +1,9 @@
 import { OnDestroy } from '@angular/core';
+import { AlainConfigService, AlainLodopConfig } from '@delon/theme';
 import { LazyService } from '@delon/util';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { Observable } from 'rxjs';
 import { LodopPrintResult, LodopResult } from './lodop.types';
-import { AlainLodopConfig, AlainConfigService } from '@delon/theme';
 export declare class LodopService implements OnDestroy {
     private scriptSrv;
     private defaultConfig;

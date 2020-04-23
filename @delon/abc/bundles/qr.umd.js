@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util'), require('@angular/common')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/qr', ['exports', '@angular/core', '@delon/util', '@angular/common'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.qr = {}), global.ng.core, global.delon.util, global.ng.common));
-}(this, (function (exports, core, util, common) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/theme'), require('@delon/util'), require('@angular/common')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/qr', ['exports', '@angular/core', '@delon/theme', '@delon/util', '@angular/common'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.qr = {}), global.ng.core, global.delon.theme, global.delon.util, global.ng.common));
+}(this, (function (exports, core, theme, util, common) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -228,6 +228,20 @@
      * Generated from: qr.config.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
+    /** @type {?} */
+    var DEFULAT_CONFIG = {
+        background: 'white',
+        backgroundAlpha: 1,
+        foreground: 'black',
+        foregroundAlpha: 1,
+        level: 'L',
+        mime: 'image/png',
+        padding: 10,
+        size: 220,
+    };
+    /**
+     * @deprecated `QRConfig` is going to be removed in 10.0.0. Please refer to https://ng-alain.com/docs/global-config
+     */
     var QRConfig = /** @class */ (function () {
         function QRConfig() {
             /**
@@ -262,10 +276,13 @@
              * 大小（单位：px），默认：`220`
              */
             this.size = 220;
+            util.deprecation10Cog("QRConfig");
         }
         QRConfig.decorators = [
             { type: core.Injectable, args: [{ providedIn: 'root' },] }
         ];
+        /** @nocollapse */
+        QRConfig.ctorParameters = function () { return []; };
         /** @nocollapse */ QRConfig.ɵprov = core.ɵɵdefineInjectable({ factory: function QRConfig_Factory() { return new QRConfig(); }, token: QRConfig, providedIn: "root" });
         return QRConfig;
     }());
@@ -318,12 +335,12 @@
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var QRService = /** @class */ (function () {
-        function QRService(cog) {
+        function QRService(configSrv) {
             /**
              * 背景透明级别，范围：`0-1` 之间
              */
             this.backgroundAlpha = 1;
-            Object.assign(this, cog);
+            configSrv.attach(this, 'qr', DEFULAT_CONFIG);
             this.qr = new QRious();
         }
         /**
@@ -409,9 +426,9 @@
         ];
         /** @nocollapse */
         QRService.ctorParameters = function () { return [
-            { type: QRConfig }
+            { type: theme.AlainConfigService }
         ]; };
-        /** @nocollapse */ QRService.ɵprov = core.ɵɵdefineInjectable({ factory: function QRService_Factory() { return new QRService(core.ɵɵinject(QRConfig)); }, token: QRService, providedIn: "root" });
+        /** @nocollapse */ QRService.ɵprov = core.ɵɵdefineInjectable({ factory: function QRService_Factory() { return new QRService(core.ɵɵinject(theme.AlainConfigService)); }, token: QRService, providedIn: "root" });
         return QRService;
     }());
     if (false) {
@@ -474,12 +491,12 @@
      */
     var QRComponent = /** @class */ (function () {
         // #endregion
-        function QRComponent(cog, srv, cdr) {
+        function QRComponent(srv, cdr, configSrv) {
             this.srv = srv;
             this.cdr = cdr;
             // tslint:disable-next-line:no-output-native
             this.change = new core.EventEmitter();
-            Object.assign(this, __assign(__assign({}, new QRConfig()), cog));
+            configSrv.attach(this, 'qr', DEFULAT_CONFIG);
         }
         /**
          * @return {?}
@@ -519,9 +536,9 @@
         ];
         /** @nocollapse */
         QRComponent.ctorParameters = function () { return [
-            { type: QRConfig },
             { type: QRService },
-            { type: core.ChangeDetectorRef }
+            { type: core.ChangeDetectorRef },
+            { type: theme.AlainConfigService }
         ]; };
         QRComponent.propDecorators = {
             background: [{ type: core.Input }],

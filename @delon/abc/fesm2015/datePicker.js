@@ -341,6 +341,7 @@ class DateRangePickerConfig {
         this.nzDisabled = false;
         this.nzPopupStyle = { position: 'relative' };
         this.nzShowToday = true;
+        // tslint:disable-next-line: deprecation
         this.shortcuts = {
             enabled: false,
             closed: true,

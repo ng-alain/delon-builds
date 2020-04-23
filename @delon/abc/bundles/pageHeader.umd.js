@@ -230,7 +230,8 @@
      */
     /**
      * @deprecated `PageHeaderConfig` is going to be removed in 10.0.0. Please refer to https://ng-alain.com/docs/global-config
-     */ var PageHeaderConfig = /** @class */ (function () {
+     */
+    var PageHeaderConfig = /** @class */ (function () {
         function PageHeaderConfig() {
             /**
              * 首页文本，若指定空表示不显示
