@@ -1,9 +1,9 @@
 import { Injectable, ɵɵdefineInjectable, TemplateRef, Component, ChangeDetectionStrategy, ViewEncapsulation, Renderer2, Optional, Inject, ChangeDetectorRef, ViewChild, Input, NgModule } from '@angular/core';
+import { deprecation10Cog, isEmpty, InputBoolean, InputNumber, DelonUtilModule } from '@delon/util';
 import { __decorate, __metadata } from 'tslib';
 import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { ReuseTabService } from '@delon/abc/reuse-tab';
-import { SettingsService, MenuService, ALAIN_I18N_TOKEN, TitleService } from '@delon/theme';
-import { isEmpty, InputBoolean, InputNumber, DelonUtilModule } from '@delon/util';
+import { SettingsService, MenuService, ALAIN_I18N_TOKEN, TitleService, AlainConfigService } from '@delon/theme';
 import { NzAffixModule } from 'ng-zorro-antd/affix';
 import { Subject, merge } from 'rxjs';
 import { takeUntil, filter } from 'rxjs/operators';
@@ -17,7 +17,9 @@ import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
  * Generated from: page-header.config.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class PageHeaderConfig {
+/**
+ * @deprecated `PageHeaderConfig` is going to be removed in 10.0.0. Please refer to https://ng-alain.com/docs/global-config
+ */ class PageHeaderConfig {
     constructor() {
         /**
          * 首页文本，若指定空表示不显示
@@ -52,11 +54,14 @@ class PageHeaderConfig {
          * 固定偏移值
          */
         this.fixedOffsetTop = 64;
+        deprecation10Cog(`PageHeaderConfig`);
     }
 }
 PageHeaderConfig.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
+/** @nocollapse */
+PageHeaderConfig.ctorParameters = () => [];
 /** @nocollapse */ PageHeaderConfig.ɵprov = ɵɵdefineInjectable({ factory: function PageHeaderConfig_Factory() { return new PageHeaderConfig(); }, token: PageHeaderConfig, providedIn: "root" });
 if (false) {
     /**
@@ -125,7 +130,6 @@ if (false) {
 class PageHeaderComponent {
     // #endregion
     /**
-     * @param {?} cog
      * @param {?} settings
      * @param {?} renderer
      * @param {?} router
@@ -134,8 +138,9 @@ class PageHeaderComponent {
      * @param {?} titleSrv
      * @param {?} reuseSrv
      * @param {?} cdr
+     * @param {?} configSrv
      */
-    constructor(cog, settings, renderer, router, menuSrv, i18nSrv, titleSrv, reuseSrv, cdr) {
+    constructor(settings, renderer, router, menuSrv, i18nSrv, titleSrv, reuseSrv, cdr, configSrv) {
         this.renderer = renderer;
         this.router = router;
         this.menuSrv = menuSrv;
@@ -149,7 +154,16 @@ class PageHeaderComponent {
         this.paths = [];
         this.loading = false;
         this.wide = false;
-        Object.assign(this, Object.assign(Object.assign({}, new PageHeaderConfig()), cog));
+        configSrv.attach(this, 'pageHeader', {
+            home: '首页',
+            homeLink: '/',
+            autoBreadcrumb: true,
+            recursiveBreadcrumb: false,
+            autoTitle: true,
+            syncTitle: true,
+            fixed: false,
+            fixedOffsetTop: 64,
+        });
         settings.notify
             .pipe(takeUntil(this.unsubscribe$), filter((/**
          * @param {?} w
@@ -322,7 +336,6 @@ PageHeaderComponent.decorators = [
 ];
 /** @nocollapse */
 PageHeaderComponent.ctorParameters = () => [
-    { type: PageHeaderConfig },
     { type: SettingsService },
     { type: Renderer2 },
     { type: Router },
@@ -330,7 +343,8 @@ PageHeaderComponent.ctorParameters = () => [
     { type: undefined, decorators: [{ type: Optional }, { type: Inject, args: [ALAIN_I18N_TOKEN,] }] },
     { type: TitleService, decorators: [{ type: Optional }, { type: Inject, args: [TitleService,] }] },
     { type: ReuseTabService, decorators: [{ type: Optional }, { type: Inject, args: [ReuseTabService,] }] },
-    { type: ChangeDetectorRef }
+    { type: ChangeDetectorRef },
+    { type: AlainConfigService }
 ];
 PageHeaderComponent.propDecorators = {
     conTpl: [{ type: ViewChild, args: ['conTpl', { static: false },] }],

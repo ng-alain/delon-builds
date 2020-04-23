@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/router'), require('@delon/abc/reuse-tab'), require('@delon/theme'), require('@delon/util'), require('ng-zorro-antd/affix'), require('rxjs'), require('rxjs/operators'), require('@angular/cdk/observers'), require('@angular/common'), require('ng-zorro-antd/breadcrumb'), require('ng-zorro-antd/skeleton')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/page-header', ['exports', '@angular/core', '@angular/router', '@delon/abc/reuse-tab', '@delon/theme', '@delon/util', 'ng-zorro-antd/affix', 'rxjs', 'rxjs/operators', '@angular/cdk/observers', '@angular/common', 'ng-zorro-antd/breadcrumb', 'ng-zorro-antd/skeleton'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['page-header'] = {}), global.ng.core, global.ng.router, global.delon.abc['reuse-tab'], global.delon.theme, global.delon.util, global['ng-zorro-antd/affix'], global.rxjs, global.rxjs.operators, global.ng.cdk.observers, global.ng.common, global['ng-zorro-antd/breadcrumb'], global['ng-zorro-antd/skeleton']));
-}(this, (function (exports, core, router, reuseTab, theme, util, affix, rxjs, operators, observers, common, breadcrumb, skeleton) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util'), require('@angular/router'), require('@delon/abc/reuse-tab'), require('@delon/theme'), require('ng-zorro-antd/affix'), require('rxjs'), require('rxjs/operators'), require('@angular/cdk/observers'), require('@angular/common'), require('ng-zorro-antd/breadcrumb'), require('ng-zorro-antd/skeleton')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/page-header', ['exports', '@angular/core', '@delon/util', '@angular/router', '@delon/abc/reuse-tab', '@delon/theme', 'ng-zorro-antd/affix', 'rxjs', 'rxjs/operators', '@angular/cdk/observers', '@angular/common', 'ng-zorro-antd/breadcrumb', 'ng-zorro-antd/skeleton'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['page-header'] = {}), global.ng.core, global.delon.util, global.ng.router, global.delon.abc['reuse-tab'], global.delon.theme, global['ng-zorro-antd/affix'], global.rxjs, global.rxjs.operators, global.ng.cdk.observers, global.ng.common, global['ng-zorro-antd/breadcrumb'], global['ng-zorro-antd/skeleton']));
+}(this, (function (exports, core, util, router, reuseTab, theme, affix, rxjs, operators, observers, common, breadcrumb, skeleton) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -228,7 +228,9 @@
      * Generated from: page-header.config.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var PageHeaderConfig = /** @class */ (function () {
+    /**
+     * @deprecated `PageHeaderConfig` is going to be removed in 10.0.0. Please refer to https://ng-alain.com/docs/global-config
+     */ var PageHeaderConfig = /** @class */ (function () {
         function PageHeaderConfig() {
             /**
              * 首页文本，若指定空表示不显示
@@ -263,10 +265,13 @@
              * 固定偏移值
              */
             this.fixedOffsetTop = 64;
+            util.deprecation10Cog("PageHeaderConfig");
         }
         PageHeaderConfig.decorators = [
             { type: core.Injectable, args: [{ providedIn: 'root' },] }
         ];
+        /** @nocollapse */
+        PageHeaderConfig.ctorParameters = function () { return []; };
         /** @nocollapse */ PageHeaderConfig.ɵprov = core.ɵɵdefineInjectable({ factory: function PageHeaderConfig_Factory() { return new PageHeaderConfig(); }, token: PageHeaderConfig, providedIn: "root" });
         return PageHeaderConfig;
     }());
@@ -336,7 +341,7 @@
     }
     var PageHeaderComponent = /** @class */ (function () {
         // #endregion
-        function PageHeaderComponent(cog, settings, renderer, router$1, menuSrv, i18nSrv, titleSrv, reuseSrv, cdr) {
+        function PageHeaderComponent(settings, renderer, router$1, menuSrv, i18nSrv, titleSrv, reuseSrv, cdr, configSrv) {
             var _this = this;
             this.renderer = renderer;
             this.router = router$1;
@@ -351,7 +356,16 @@
             this.paths = [];
             this.loading = false;
             this.wide = false;
-            Object.assign(this, __assign(__assign({}, new PageHeaderConfig()), cog));
+            configSrv.attach(this, 'pageHeader', {
+                home: '首页',
+                homeLink: '/',
+                autoBreadcrumb: true,
+                recursiveBreadcrumb: false,
+                autoTitle: true,
+                syncTitle: true,
+                fixed: false,
+                fixedOffsetTop: 64,
+            });
             settings.notify
                 .pipe(operators.takeUntil(this.unsubscribe$), operators.filter((/**
              * @param {?} w
@@ -560,7 +574,6 @@
         ];
         /** @nocollapse */
         PageHeaderComponent.ctorParameters = function () { return [
-            { type: PageHeaderConfig },
             { type: theme.SettingsService },
             { type: core.Renderer2 },
             { type: router.Router },
@@ -568,7 +581,8 @@
             { type: undefined, decorators: [{ type: core.Optional }, { type: core.Inject, args: [theme.ALAIN_I18N_TOKEN,] }] },
             { type: theme.TitleService, decorators: [{ type: core.Optional }, { type: core.Inject, args: [theme.TitleService,] }] },
             { type: reuseTab.ReuseTabService, decorators: [{ type: core.Optional }, { type: core.Inject, args: [reuseTab.ReuseTabService,] }] },
-            { type: core.ChangeDetectorRef }
+            { type: core.ChangeDetectorRef },
+            { type: theme.AlainConfigService }
         ]; };
         PageHeaderComponent.propDecorators = {
             conTpl: [{ type: core.ViewChild, args: ['conTpl', { static: false },] }],

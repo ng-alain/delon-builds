@@ -2,31 +2,31 @@ import { OnDestroy } from '@angular/core';
 import { LazyService } from '@delon/util';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { Observable } from 'rxjs';
-import { LodopConfig } from './lodop.config';
 import { LodopPrintResult, LodopResult } from './lodop.types';
+import { AlainLodopConfig, AlainConfigService } from '@delon/theme';
 export declare class LodopService implements OnDestroy {
-    private defCog;
     private scriptSrv;
-    constructor(defCog: LodopConfig, scriptSrv: LazyService);
-    /**
-     * 获取或重新设置配置
-     *
-     * **注：**重新设置会倒置重新加载脚本资源
-     */
-    get cog(): LodopConfig;
-    set cog(value: LodopConfig);
-    /** 事件变更通知 */
-    get events(): Observable<LodopPrintResult>;
-    /** 获取 lodop 对象 */
-    get lodop(): Observable<LodopResult>;
-    /** 获取打印机列表 */
-    get printer(): string[];
+    private defaultConfig;
     private _cog;
     private pending;
     private _lodop;
     private _init;
     private _events;
     private printBuffer;
+    constructor(scriptSrv: LazyService, configSrv: AlainConfigService);
+    /**
+     * 获取或重新设置配置
+     *
+     * **注：**重新设置会倒置重新加载脚本资源
+     */
+    get cog(): AlainLodopConfig;
+    set cog(value: AlainLodopConfig);
+    /** 事件变更通知 */
+    get events(): Observable<LodopPrintResult>;
+    /** 获取 lodop 对象 */
+    get lodop(): Observable<LodopResult>;
+    /** 获取打印机列表 */
+    get printer(): string[];
     private check;
     private request;
     /** 重置 lodop 对象 */

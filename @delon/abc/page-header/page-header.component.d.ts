@@ -1,8 +1,7 @@
 import { AfterViewInit, ChangeDetectorRef, OnChanges, OnDestroy, OnInit, Renderer2, TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { ReuseTabService } from '@delon/abc/reuse-tab';
-import { AlainI18NService, MenuService, SettingsService, TitleService } from '@delon/theme';
-import { PageHeaderConfig } from './page-header.config';
+import { AlainI18NService, MenuService, SettingsService, TitleService, AlainConfigService } from '@delon/theme';
 interface PageHeaderPath {
     title?: string;
     link?: string[];
@@ -43,7 +42,7 @@ export declare class PageHeaderComponent implements OnInit, OnChanges, AfterView
     content: TemplateRef<void>;
     extra: TemplateRef<void>;
     tab: TemplateRef<void>;
-    constructor(cog: PageHeaderConfig, settings: SettingsService, renderer: Renderer2, router: Router, menuSrv: MenuService, i18nSrv: AlainI18NService, titleSrv: TitleService, reuseSrv: ReuseTabService, cdr: ChangeDetectorRef);
+    constructor(settings: SettingsService, renderer: Renderer2, router: Router, menuSrv: MenuService, i18nSrv: AlainI18NService, titleSrv: TitleService, reuseSrv: ReuseTabService, cdr: ChangeDetectorRef, configSrv: AlainConfigService);
     refresh(): void;
     private genBreadcrumb;
     private setTitle;

@@ -1,4 +1,8 @@
+/**
+ * @deprecated `LodopConfig` is going to be removed in 10.0.0. Please refer to https://ng-alain.com/docs/global-config
+ */
 export declare class LodopConfig {
+    constructor();
     /**
      * 注册信息：主注册号
      */

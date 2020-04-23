@@ -1,6 +1,7 @@
 import { Injectable, ɵɵdefineInjectable, ɵɵinject, NgModule } from '@angular/core';
-import { LazyService, DelonUtilModule } from '@delon/util';
+import { LazyService, deprecation10Cog, DelonUtilModule } from '@delon/util';
 import { Subject, of } from 'rxjs';
+import { AlainConfigService } from '@delon/theme';
 
 /**
  * @fileoverview added by tsickle
@@ -571,75 +572,28 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
- * Generated from: lodop.config.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class LodopConfig {
-}
-LodopConfig.decorators = [
-    { type: Injectable, args: [{ providedIn: 'root' },] }
-];
-/** @nocollapse */ LodopConfig.ɵprov = ɵɵdefineInjectable({ factory: function LodopConfig_Factory() { return new LodopConfig(); }, token: LodopConfig, providedIn: "root" });
-if (false) {
-    /**
-     * 注册信息：主注册号
-     * @type {?}
-     */
-    LodopConfig.prototype.license;
-    /**
-     * 注册信息：附加注册号A
-     * @type {?}
-     */
-    LodopConfig.prototype.licenseA;
-    /**
-     * 注册信息：附加注册号B
-     * @type {?}
-     */
-    LodopConfig.prototype.licenseB;
-    /**
-     * 注册信息：注册单位名称
-     * @type {?}
-     */
-    LodopConfig.prototype.companyName;
-    /**
-     * Lodop 远程脚本URL地址，**注意**务必使用 `name` 属性指定变量值
-     *
-     * - http://localhost:18000/CLodopfuncs.js
-     * - https://localhost:8443/CLodopfuncs.js [默认]
-     * @type {?}
-     */
-    LodopConfig.prototype.url;
-    /**
-     * Lodop 变量名，默认：`CLODOP`
-     * @type {?}
-     */
-    LodopConfig.prototype.name;
-    /**
-     * 检查次数，默认 `100`，当检查超过时视为异常，这是因为 Lodop 需要连接 WebSocket
-     * @type {?}
-     */
-    LodopConfig.prototype.checkMaxCount;
-}
-
-/**
- * @fileoverview added by tsickle
  * Generated from: lodop.service.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class LodopService {
     /**
-     * @param {?} defCog
      * @param {?} scriptSrv
+     * @param {?} configSrv
      */
-    constructor(defCog, scriptSrv) {
-        this.defCog = defCog;
+    constructor(scriptSrv, configSrv) {
         this.scriptSrv = scriptSrv;
         this.pending = false;
         this._lodop = null;
         this._init = new Subject();
         this._events = new Subject();
         this.printBuffer = [];
-        this.cog = defCog;
+        this.defaultConfig = configSrv.merge('lodop', {
+            url: 'https://localhost:8443/CLodopfuncs.js',
+            name: 'CLODOP',
+            companyName: '',
+            checkMaxCount: 100,
+        });
+        this.cog = this.defaultConfig;
     }
     /**
      * 获取或重新设置配置
@@ -655,7 +609,7 @@ class LodopService {
      * @return {?}
      */
     set cog(value) {
-        this._cog = Object.assign(Object.assign({ url: 'https://localhost:8443/CLodopfuncs.js', name: 'CLODOP', companyName: '', checkMaxCount: 100 }, this.defCog), value);
+        this._cog = Object.assign(Object.assign({}, this.defaultConfig), value);
     }
     /**
      * 事件变更通知
@@ -762,7 +716,7 @@ class LodopService {
                 onResolve('load-variable-name-error', { name: this.cog.name });
                 return;
             }
-            this._lodop.SET_LICENSES((/** @type {?} */ (this.cog.companyName)), this.cog.license, this.cog.licenseA, this.cog.licenseB);
+            this._lodop.SET_LICENSES((/** @type {?} */ (this.cog.companyName)), (/** @type {?} */ (this.cog.license)), this.cog.licenseA, this.cog.licenseB);
             checkStatus();
         }));
     }
@@ -913,11 +867,16 @@ LodopService.decorators = [
 ];
 /** @nocollapse */
 LodopService.ctorParameters = () => [
-    { type: LodopConfig },
-    { type: LazyService }
+    { type: LazyService },
+    { type: AlainConfigService }
 ];
-/** @nocollapse */ LodopService.ɵprov = ɵɵdefineInjectable({ factory: function LodopService_Factory() { return new LodopService(ɵɵinject(LodopConfig), ɵɵinject(LazyService)); }, token: LodopService, providedIn: "root" });
+/** @nocollapse */ LodopService.ɵprov = ɵɵdefineInjectable({ factory: function LodopService_Factory() { return new LodopService(ɵɵinject(LazyService), ɵɵinject(AlainConfigService)); }, token: LodopService, providedIn: "root" });
 if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    LodopService.prototype.defaultConfig;
     /**
      * @type {?}
      * @private
@@ -952,12 +911,67 @@ if (false) {
      * @type {?}
      * @private
      */
-    LodopService.prototype.defCog;
-    /**
-     * @type {?}
-     * @private
-     */
     LodopService.prototype.scriptSrv;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * Generated from: lodop.config.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @deprecated `LodopConfig` is going to be removed in 10.0.0. Please refer to https://ng-alain.com/docs/global-config
+ */
+class LodopConfig {
+    constructor() {
+        deprecation10Cog(`LodopConfig`);
+    }
+}
+LodopConfig.decorators = [
+    { type: Injectable, args: [{ providedIn: 'root' },] }
+];
+/** @nocollapse */
+LodopConfig.ctorParameters = () => [];
+/** @nocollapse */ LodopConfig.ɵprov = ɵɵdefineInjectable({ factory: function LodopConfig_Factory() { return new LodopConfig(); }, token: LodopConfig, providedIn: "root" });
+if (false) {
+    /**
+     * 注册信息：主注册号
+     * @type {?}
+     */
+    LodopConfig.prototype.license;
+    /**
+     * 注册信息：附加注册号A
+     * @type {?}
+     */
+    LodopConfig.prototype.licenseA;
+    /**
+     * 注册信息：附加注册号B
+     * @type {?}
+     */
+    LodopConfig.prototype.licenseB;
+    /**
+     * 注册信息：注册单位名称
+     * @type {?}
+     */
+    LodopConfig.prototype.companyName;
+    /**
+     * Lodop 远程脚本URL地址，**注意**务必使用 `name` 属性指定变量值
+     *
+     * - http://localhost:18000/CLodopfuncs.js
+     * - https://localhost:8443/CLodopfuncs.js [默认]
+     * @type {?}
+     */
+    LodopConfig.prototype.url;
+    /**
+     * Lodop 变量名，默认：`CLODOP`
+     * @type {?}
+     */
+    LodopConfig.prototype.name;
+    /**
+     * 检查次数，默认 `100`，当检查超过时视为异常，这是因为 Lodop 需要连接 WebSocket
+     * @type {?}
+     */
+    LodopConfig.prototype.checkMaxCount;
 }
 
 /**

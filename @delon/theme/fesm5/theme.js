@@ -4305,6 +4305,10 @@ if (false) {
     /** @type {?|undefined} */
     AlainConfig.prototype.loading;
     /** @type {?|undefined} */
+    AlainConfig.prototype.lodop;
+    /** @type {?|undefined} */
+    AlainConfig.prototype.pageHeader;
+    /** @type {?|undefined} */
     AlainConfig.prototype.chart;
 }
 /**
@@ -4363,6 +4367,102 @@ if (false) {
      * @type {?|undefined}
      */
     AlainLoadingConfig.prototype.delay;
+}
+/**
+ * @record
+ */
+function AlainLodopConfig() { }
+if (false) {
+    /**
+     * 注册信息：主注册号
+     * @type {?|undefined}
+     */
+    AlainLodopConfig.prototype.license;
+    /**
+     * 注册信息：附加注册号A
+     * @type {?|undefined}
+     */
+    AlainLodopConfig.prototype.licenseA;
+    /**
+     * 注册信息：附加注册号B
+     * @type {?|undefined}
+     */
+    AlainLodopConfig.prototype.licenseB;
+    /**
+     * 注册信息：注册单位名称
+     * @type {?|undefined}
+     */
+    AlainLodopConfig.prototype.companyName;
+    /**
+     * Lodop 远程脚本URL地址，**注意**务必使用 `name` 属性指定变量值
+     *
+     * - http://localhost:18000/CLodopfuncs.js
+     * - https://localhost:8443/CLodopfuncs.js [默认]
+     * @type {?|undefined}
+     */
+    AlainLodopConfig.prototype.url;
+    /**
+     * Lodop 变量名，默认：`CLODOP`
+     * @type {?|undefined}
+     */
+    AlainLodopConfig.prototype.name;
+    /**
+     * 检查次数，默认 `100`，当检查超过时视为异常，这是因为 Lodop 需要连接 WebSocket
+     * @type {?|undefined}
+     */
+    AlainLodopConfig.prototype.checkMaxCount;
+}
+/**
+ * @record
+ */
+function AlainPageHeaderConfig() { }
+if (false) {
+    /**
+     * 首页文本，若指定空表示不显示，默认：`首页`
+     * @type {?|undefined}
+     */
+    AlainPageHeaderConfig.prototype.home;
+    /**
+     * 首页链接，默认：`/`
+     * @type {?|undefined}
+     */
+    AlainPageHeaderConfig.prototype.homeLink;
+    /**
+     * 首页链接国际化参数
+     * @type {?|undefined}
+     */
+    AlainPageHeaderConfig.prototype.homeI18n;
+    /**
+     * 自动生成导航，以当前路由从主菜单中定位，默认：`true`
+     * @type {?|undefined}
+     */
+    AlainPageHeaderConfig.prototype.autoBreadcrumb;
+    /**
+     * 自动向上递归查找，默认：`false`
+     *  - 菜单数据源包含 `/ware`，则 `/ware/1` 也视为 `/ware` 项
+     * @type {?|undefined}
+     */
+    AlainPageHeaderConfig.prototype.recursiveBreadcrumb;
+    /**
+     * 自动生成标题，以当前路由从主菜单中定位，默认：`true`
+     * @type {?|undefined}
+     */
+    AlainPageHeaderConfig.prototype.autoTitle;
+    /**
+     * 是否自动将标准信息同步至 `TitleService`、`ReuseService` 下，默认：`true`
+     * @type {?|undefined}
+     */
+    AlainPageHeaderConfig.prototype.syncTitle;
+    /**
+     * 是否固定模式，默认：`false`
+     * @type {?|undefined}
+     */
+    AlainPageHeaderConfig.prototype.fixed;
+    /**
+     * 固定偏移值，默认：`64`
+     * @type {?|undefined}
+     */
+    AlainPageHeaderConfig.prototype.fixedOffsetTop;
 }
 /**
  * @record
@@ -4592,7 +4692,7 @@ if (false) {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-var VERSION = new Version('9.0.0-rc.3-6c4d53d2');
+var VERSION = new Version('9.0.0-rc.3-e84de0db');
 
 /**
  * @fileoverview added by tsickle

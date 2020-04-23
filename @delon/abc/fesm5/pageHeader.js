@@ -1,9 +1,9 @@
 import { Injectable, ɵɵdefineInjectable, TemplateRef, Component, ChangeDetectionStrategy, ViewEncapsulation, Renderer2, Optional, Inject, ChangeDetectorRef, ViewChild, Input, NgModule } from '@angular/core';
-import { __assign, __decorate, __metadata, __spread } from 'tslib';
+import { deprecation10Cog, isEmpty, InputBoolean, InputNumber, DelonUtilModule } from '@delon/util';
+import { __decorate, __metadata, __spread } from 'tslib';
 import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { ReuseTabService } from '@delon/abc/reuse-tab';
-import { SettingsService, MenuService, ALAIN_I18N_TOKEN, TitleService } from '@delon/theme';
-import { isEmpty, InputBoolean, InputNumber, DelonUtilModule } from '@delon/util';
+import { SettingsService, MenuService, ALAIN_I18N_TOKEN, TitleService, AlainConfigService } from '@delon/theme';
 import { NzAffixModule } from 'ng-zorro-antd/affix';
 import { Subject, merge } from 'rxjs';
 import { takeUntil, filter } from 'rxjs/operators';
@@ -17,7 +17,9 @@ import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
  * Generated from: page-header.config.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-var PageHeaderConfig = /** @class */ (function () {
+/**
+ * @deprecated `PageHeaderConfig` is going to be removed in 10.0.0. Please refer to https://ng-alain.com/docs/global-config
+ */ var PageHeaderConfig = /** @class */ (function () {
     function PageHeaderConfig() {
         /**
          * 首页文本，若指定空表示不显示
@@ -52,10 +54,13 @@ var PageHeaderConfig = /** @class */ (function () {
          * 固定偏移值
          */
         this.fixedOffsetTop = 64;
+        deprecation10Cog("PageHeaderConfig");
     }
     PageHeaderConfig.decorators = [
         { type: Injectable, args: [{ providedIn: 'root' },] }
     ];
+    /** @nocollapse */
+    PageHeaderConfig.ctorParameters = function () { return []; };
     /** @nocollapse */ PageHeaderConfig.ɵprov = ɵɵdefineInjectable({ factory: function PageHeaderConfig_Factory() { return new PageHeaderConfig(); }, token: PageHeaderConfig, providedIn: "root" });
     return PageHeaderConfig;
 }());
@@ -125,7 +130,7 @@ if (false) {
 }
 var PageHeaderComponent = /** @class */ (function () {
     // #endregion
-    function PageHeaderComponent(cog, settings, renderer, router, menuSrv, i18nSrv, titleSrv, reuseSrv, cdr) {
+    function PageHeaderComponent(settings, renderer, router, menuSrv, i18nSrv, titleSrv, reuseSrv, cdr, configSrv) {
         var _this = this;
         this.renderer = renderer;
         this.router = router;
@@ -140,7 +145,16 @@ var PageHeaderComponent = /** @class */ (function () {
         this.paths = [];
         this.loading = false;
         this.wide = false;
-        Object.assign(this, __assign(__assign({}, new PageHeaderConfig()), cog));
+        configSrv.attach(this, 'pageHeader', {
+            home: '首页',
+            homeLink: '/',
+            autoBreadcrumb: true,
+            recursiveBreadcrumb: false,
+            autoTitle: true,
+            syncTitle: true,
+            fixed: false,
+            fixedOffsetTop: 64,
+        });
         settings.notify
             .pipe(takeUntil(this.unsubscribe$), filter((/**
          * @param {?} w
@@ -349,7 +363,6 @@ var PageHeaderComponent = /** @class */ (function () {
     ];
     /** @nocollapse */
     PageHeaderComponent.ctorParameters = function () { return [
-        { type: PageHeaderConfig },
         { type: SettingsService },
         { type: Renderer2 },
         { type: Router },
@@ -357,7 +370,8 @@ var PageHeaderComponent = /** @class */ (function () {
         { type: undefined, decorators: [{ type: Optional }, { type: Inject, args: [ALAIN_I18N_TOKEN,] }] },
         { type: TitleService, decorators: [{ type: Optional }, { type: Inject, args: [TitleService,] }] },
         { type: ReuseTabService, decorators: [{ type: Optional }, { type: Inject, args: [ReuseTabService,] }] },
-        { type: ChangeDetectorRef }
+        { type: ChangeDetectorRef },
+        { type: AlainConfigService }
     ]; };
     PageHeaderComponent.propDecorators = {
         conTpl: [{ type: ViewChild, args: ['conTpl', { static: false },] }],
