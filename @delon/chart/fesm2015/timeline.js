@@ -3,6 +3,7 @@ import { Component, ChangeDetectionStrategy, ViewEncapsulation, NgZone, ViewChil
 import { Chart } from '@antv/g2';
 import { AlainConfigService } from '@delon/theme';
 import { deprecation10, toDate, InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
+import format from 'date-fns/format';
 import { CommonModule } from '@angular/common';
 import { NzOutletModule } from 'ng-zorro-antd/core/outlet';
 
@@ -124,7 +125,7 @@ class G2TimelineComponent {
      * @return {?}
      */
     install() {
-        const { node, height, padding, slider, maxAxis, theme } = this;
+        const { node, height, padding, slider, maxAxis, theme, mask } = this;
         /** @type {?} */
         const chart = (this.chart = new Chart({
             container: node.nativeElement,
@@ -152,12 +153,15 @@ class G2TimelineComponent {
         if (slider) {
             chart.option('slider', {
                 height: 26,
-                start: 0,
-                end: 1,
                 trendCfg: {
                     isArea: false,
                 },
                 minLimit: 2,
+                formatMask: (/**
+                 * @param {?} val
+                 * @return {?}
+                 */
+                (val) => format(val, mask)),
             });
         }
         this.attachChart();
@@ -204,6 +208,7 @@ class G2TimelineComponent {
         chart.height = height;
         chart.padding = padding;
         // TODO: compatible
+        // tslint:disable-next-line: deprecation
         if (data.find((/**
          * @param {?} w
          * @return {?}
@@ -215,6 +220,7 @@ class G2TimelineComponent {
              * @return {?}
              */
             item => {
+                // tslint:disable-next-line: deprecation
                 item.time = new Date((/** @type {?} */ (item.x)));
             }));
         }
