@@ -1,5 +1,11 @@
+import { AlainSTConfig } from '@delon/theme';
 import { IifBehaviorType, STColumnButtonDrawerConfig, STColumnButtonModalConfig, STColumnButtonPop, STIcon, STMultiSort, STPage, STReq, STRes, STRowClassName, STSingleSort, STWidthMode } from './st.interfaces';
+export declare const ST_DEFULAT_CONFIG: AlainSTConfig;
+/**
+ * @deprecated `STConfig` is going to be removed in 10.0.0. Please refer to https://ng-alain.com/docs/global-config
+ */
 export declare class STConfig {
+    constructor();
     /**
      * 起始页码，默认为：`1`
      */

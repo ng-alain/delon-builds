@@ -1,12 +1,12 @@
 import { HttpClient } from '@angular/common/http';
+import { AlainConfigService } from '@delon/theme';
 import { LazyService } from '@delon/util';
-import { ZipConfig } from './zip.config';
 import { ZipSaveOptions } from './zip.types';
 export declare class ZipService {
-    private cog;
     private http;
     private lazy;
-    constructor(cog: ZipConfig, http: HttpClient, lazy: LazyService);
+    private cog;
+    constructor(http: HttpClient, lazy: LazyService, configSrv: AlainConfigService);
     private init;
     private check;
     /** 解压 */

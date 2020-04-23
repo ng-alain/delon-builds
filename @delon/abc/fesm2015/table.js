@@ -1,8 +1,8 @@
 import { Injectable, Directive, TemplateRef, Host, Input, ɵɵdefineInjectable, Optional, Inject, EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ChangeDetectorRef, ElementRef, ViewChild, Output, ViewContainerRef, ComponentFactoryResolver, NgModule } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ACLService, DelonACLModule } from '@delon/acl';
-import { ALAIN_I18N_TOKEN, _HttpClient, CNCurrencyPipe, DatePipe, YNPipe, ModalHelper, DrawerHelper, DelonLocaleService } from '@delon/theme';
-import { warn, deepCopy, deepGet, deepMergeKey, deepMerge, toBoolean, InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
+import { ALAIN_I18N_TOKEN, _HttpClient, CNCurrencyPipe, DatePipe, YNPipe, ModalHelper, DrawerHelper, DelonLocaleService, AlainConfigService } from '@delon/theme';
+import { warn, deepCopy, deepGet, deprecation10Cog, deepMergeKey, toBoolean, InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
 import { DecimalPipe, DOCUMENT, CommonModule } from '@angular/common';
 import { of, Subject, from } from 'rxjs';
 import { map, takeUntil, filter } from 'rxjs/operators';
@@ -1420,272 +1420,6 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
- * Generated from: st.config.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class STConfig {
-    constructor() {
-        /**
-         * table大小
-         */
-        this.size = 'default';
-        /**
-         * 是否开启响应式，默认：`true`
-         */
-        this.responsive = true;
-        /**
-         * 是否在小屏幕下才显示顶部与底部，默认：`false`
-         */
-        this.responsiveHideHeaderFooter = false;
-        /**
-         * 请求体配置
-         */
-        this.req = {
-            type: 'page',
-            method: 'GET',
-            allInBody: false,
-            lazyLoad: false,
-            reName: { pi: 'pi', ps: 'ps', skip: 'skip', limit: 'limit' },
-        };
-        /**
-         * 返回体配置
-         */
-        this.res = {
-            reName: { list: ['list'], total: ['total'] },
-        };
-        /**
-         * 返回体配置
-         */
-        this.page = {
-            front: true,
-            zeroIndexed: false,
-            position: 'bottom',
-            placement: 'right',
-            show: true,
-            showSize: false,
-            pageSizes: [10, 20, 30, 40, 50],
-            showQuickJumper: false,
-            total: true,
-            toTop: true,
-            toTopOffset: 100,
-        };
-        /**
-         * 单排序规则
-         * - 若不指定，则返回：`columnName=ascend|descend`
-         * - 若指定，则返回：`sort=columnName.(ascend|descend)`
-         */
-        this.singleSort = null;
-        /**
-         * 是否多排序，当 `sort` 多个相同值时自动合并，建议后端支持时使用
-         */
-        this.multiSort = null;
-        /**
-         * 按钮模态框配置
-         */
-        this.modal = {
-            paramsName: 'record',
-            size: 'lg',
-            exact: true,
-        };
-        /**
-         * 按钮抽屉配置
-         */
-        this.drawer = {
-            paramsName: 'record',
-            size: 'md',
-            footer: true,
-            footerHeight: 55,
-        };
-        /**
-         * 气泡参数
-         */
-        this.pop = {
-            title: '确认删除吗？',
-        };
-        /**
-         * 行单击多少时长之类为双击（单位：毫秒），默认：`200`
-         */
-        this.rowClickTime = 200;
-        /**
-         * 按钮图标
-         */
-        this.btnIcon = {
-            type: '',
-            theme: 'outline',
-            spin: false,
-        };
-        /**
-         * 行号索引，默认：`1`
-         * - 计算规则为：`index + noIndex`
-         */
-        this.noIndex = 1;
-        /**
-         * 通过点击行来展开子行
-         */
-        this.expandRowByClick = false;
-        /**
-         * 手风琴模式
-         */
-        this.expandAccordion = false;
-        /**
-         * 指定 `width` 模式
-         */
-        this.widthMode = {
-            type: 'default',
-            strictBehavior: 'truncate',
-        };
-        this.virtualItemSize = 54;
-        this.virtualMaxBufferPx = 200;
-        this.virtualMinBufferPx = 100;
-        /**
-         * Conditional expression rendering behavior, can be set to `hide` (default) or `disabled`
-         */
-        this.iifBehavior = 'hide';
-    }
-}
-STConfig.decorators = [
-    { type: Injectable, args: [{ providedIn: 'root' },] }
-];
-/** @nocollapse */ STConfig.ɵprov = ɵɵdefineInjectable({ factory: function STConfig_Factory() { return new STConfig(); }, token: STConfig, providedIn: "root" });
-if (false) {
-    /**
-     * 起始页码，默认为：`1`
-     * @type {?}
-     */
-    STConfig.prototype.pi;
-    /**
-     * 每页数量，当设置为 `0` 表示不分页，默认：`10`
-     * @type {?}
-     */
-    STConfig.prototype.ps;
-    /**
-     * 是否显示边框
-     * @type {?}
-     */
-    STConfig.prototype.bordered;
-    /**
-     * table大小
-     * @type {?}
-     */
-    STConfig.prototype.size;
-    /**
-     * 是否开启响应式，默认：`true`
-     * @type {?}
-     */
-    STConfig.prototype.responsive;
-    /**
-     * 是否在小屏幕下才显示顶部与底部，默认：`false`
-     * @type {?}
-     */
-    STConfig.prototype.responsiveHideHeaderFooter;
-    /**
-     * 请求体配置
-     * @type {?}
-     */
-    STConfig.prototype.req;
-    /**
-     * 返回体配置
-     * @type {?}
-     */
-    STConfig.prototype.res;
-    /**
-     * 返回体配置
-     * @type {?}
-     */
-    STConfig.prototype.page;
-    /**
-     * 重命名排序值，`columns` 的重命名高于属性
-     * @type {?}
-     */
-    STConfig.prototype.sortReName;
-    /**
-     * 单排序规则
-     * - 若不指定，则返回：`columnName=ascend|descend`
-     * - 若指定，则返回：`sort=columnName.(ascend|descend)`
-     * @type {?}
-     */
-    STConfig.prototype.singleSort;
-    /**
-     * 是否多排序，当 `sort` 多个相同值时自动合并，建议后端支持时使用
-     * @type {?}
-     */
-    STConfig.prototype.multiSort;
-    /**
-     * 按钮模态框配置
-     * @type {?}
-     */
-    STConfig.prototype.modal;
-    /**
-     * 按钮抽屉配置
-     * @type {?}
-     */
-    STConfig.prototype.drawer;
-    /**
-     * 气泡参数
-     * @type {?}
-     */
-    STConfig.prototype.pop;
-    /**
-     * 行单击多少时长之类为双击（单位：毫秒），默认：`200`
-     * @type {?}
-     */
-    STConfig.prototype.rowClickTime;
-    /**
-     * 过滤按钮确认文本
-     * @type {?}
-     */
-    STConfig.prototype.filterConfirmText;
-    /**
-     * 过滤按钮重置文本
-     * @type {?}
-     */
-    STConfig.prototype.filterClearText;
-    /**
-     * 按钮图标
-     * @type {?}
-     */
-    STConfig.prototype.btnIcon;
-    /**
-     * 行号索引，默认：`1`
-     * - 计算规则为：`index + noIndex`
-     * @type {?}
-     */
-    STConfig.prototype.noIndex;
-    /**
-     * 表格行的类名
-     * @type {?}
-     */
-    STConfig.prototype.rowClassName;
-    /**
-     * 通过点击行来展开子行
-     * @type {?}
-     */
-    STConfig.prototype.expandRowByClick;
-    /**
-     * 手风琴模式
-     * @type {?}
-     */
-    STConfig.prototype.expandAccordion;
-    /**
-     * 指定 `width` 模式
-     * @type {?}
-     */
-    STConfig.prototype.widthMode;
-    /** @type {?} */
-    STConfig.prototype.virtualItemSize;
-    /** @type {?} */
-    STConfig.prototype.virtualMaxBufferPx;
-    /** @type {?} */
-    STConfig.prototype.virtualMinBufferPx;
-    /**
-     * Conditional expression rendering behavior, can be set to `hide` (default) or `disabled`
-     * @type {?}
-     */
-    STConfig.prototype.iifBehavior;
-}
-
-/**
- * @fileoverview added by tsickle
  * Generated from: st-column-source.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
@@ -1695,16 +1429,21 @@ class STColumnSource {
      * @param {?} rowSource
      * @param {?} acl
      * @param {?} i18nSrv
-     * @param {?} cog
      * @param {?} stWidgetRegistry
      */
-    constructor(dom, rowSource, acl, i18nSrv, cog, stWidgetRegistry) {
+    constructor(dom, rowSource, acl, i18nSrv, stWidgetRegistry) {
         this.dom = dom;
         this.rowSource = rowSource;
         this.acl = acl;
         this.i18nSrv = i18nSrv;
-        this.cog = cog;
         this.stWidgetRegistry = stWidgetRegistry;
+    }
+    /**
+     * @param {?} val
+     * @return {?}
+     */
+    setCog(val) {
+        this.cog = val;
     }
     /**
      * @private
@@ -2138,10 +1877,14 @@ STColumnSource.ctorParameters = () => [
     { type: STRowSource, decorators: [{ type: Host }] },
     { type: ACLService, decorators: [{ type: Optional }] },
     { type: undefined, decorators: [{ type: Optional }, { type: Inject, args: [ALAIN_I18N_TOKEN,] }] },
-    { type: STConfig },
     { type: STWidgetRegistry }
 ];
 if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    STColumnSource.prototype.cog;
     /**
      * @type {?}
      * @private
@@ -2162,11 +1905,6 @@ if (false) {
      * @private
      */
     STColumnSource.prototype.i18nSrv;
-    /**
-     * @type {?}
-     * @private
-     */
-    STColumnSource.prototype.cog;
     /**
      * @type {?}
      * @private
@@ -3017,6 +2755,342 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: st.config.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/** @type {?} */
+const ST_DEFULAT_CONFIG = {
+    pi: 1,
+    ps: 10,
+    size: 'default',
+    responsive: true,
+    responsiveHideHeaderFooter: false,
+    req: {
+        type: 'page',
+        method: 'GET',
+        allInBody: false,
+        lazyLoad: false,
+        reName: { pi: 'pi', ps: 'ps', skip: 'skip', limit: 'limit' },
+    },
+    res: {
+        reName: { list: ['list'], total: ['total'] },
+    },
+    page: {
+        front: true,
+        zeroIndexed: false,
+        position: 'bottom',
+        placement: 'right',
+        show: true,
+        showSize: false,
+        pageSizes: [10, 20, 30, 40, 50],
+        showQuickJumper: false,
+        total: true,
+        toTop: true,
+        toTopOffset: 100,
+    },
+    modal: {
+        paramsName: 'record',
+        size: 'lg',
+        exact: true,
+    },
+    drawer: {
+        paramsName: 'record',
+        size: 'md',
+        footer: true,
+        footerHeight: 55,
+    },
+    pop: {
+        title: '确认删除吗？',
+        trigger: 'click',
+        placement: 'top',
+    },
+    rowClickTime: 200,
+    btnIcon: {
+        type: '',
+        theme: 'outline',
+        spin: false,
+    },
+    noIndex: 1,
+    expandRowByClick: false,
+    expandAccordion: false,
+    widthMode: {
+        type: 'default',
+        strictBehavior: 'truncate',
+    },
+    virtualItemSize: 54,
+    virtualMaxBufferPx: 200,
+    virtualMinBufferPx: 100,
+    iifBehavior: 'hide',
+};
+/**
+ * @deprecated `STConfig` is going to be removed in 10.0.0. Please refer to https://ng-alain.com/docs/global-config
+ */
+class STConfig {
+    constructor() {
+        /**
+         * table大小
+         */
+        this.size = 'default';
+        /**
+         * 是否开启响应式，默认：`true`
+         */
+        this.responsive = true;
+        /**
+         * 是否在小屏幕下才显示顶部与底部，默认：`false`
+         */
+        this.responsiveHideHeaderFooter = false;
+        /**
+         * 请求体配置
+         */
+        this.req = {
+            type: 'page',
+            method: 'GET',
+            allInBody: false,
+            lazyLoad: false,
+            reName: { pi: 'pi', ps: 'ps', skip: 'skip', limit: 'limit' },
+        };
+        /**
+         * 返回体配置
+         */
+        this.res = {
+            reName: { list: ['list'], total: ['total'] },
+        };
+        /**
+         * 返回体配置
+         */
+        this.page = {
+            front: true,
+            zeroIndexed: false,
+            position: 'bottom',
+            placement: 'right',
+            show: true,
+            showSize: false,
+            pageSizes: [10, 20, 30, 40, 50],
+            showQuickJumper: false,
+            total: true,
+            toTop: true,
+            toTopOffset: 100,
+        };
+        /**
+         * 单排序规则
+         * - 若不指定，则返回：`columnName=ascend|descend`
+         * - 若指定，则返回：`sort=columnName.(ascend|descend)`
+         */
+        this.singleSort = null;
+        /**
+         * 是否多排序，当 `sort` 多个相同值时自动合并，建议后端支持时使用
+         */
+        this.multiSort = null;
+        /**
+         * 按钮模态框配置
+         */
+        this.modal = {
+            paramsName: 'record',
+            size: 'lg',
+            exact: true,
+        };
+        /**
+         * 按钮抽屉配置
+         */
+        this.drawer = {
+            paramsName: 'record',
+            size: 'md',
+            footer: true,
+            footerHeight: 55,
+        };
+        /**
+         * 气泡参数
+         */
+        this.pop = {
+            title: '确认删除吗？',
+        };
+        /**
+         * 行单击多少时长之类为双击（单位：毫秒），默认：`200`
+         */
+        this.rowClickTime = 200;
+        /**
+         * 按钮图标
+         */
+        this.btnIcon = {
+            type: '',
+            theme: 'outline',
+            spin: false,
+        };
+        /**
+         * 行号索引，默认：`1`
+         * - 计算规则为：`index + noIndex`
+         */
+        this.noIndex = 1;
+        /**
+         * 通过点击行来展开子行
+         */
+        this.expandRowByClick = false;
+        /**
+         * 手风琴模式
+         */
+        this.expandAccordion = false;
+        /**
+         * 指定 `width` 模式
+         */
+        this.widthMode = {
+            type: 'default',
+            strictBehavior: 'truncate',
+        };
+        this.virtualItemSize = 54;
+        this.virtualMaxBufferPx = 200;
+        this.virtualMinBufferPx = 100;
+        /**
+         * Conditional expression rendering behavior, can be set to `hide` (default) or `disabled`
+         */
+        this.iifBehavior = 'hide';
+        deprecation10Cog(`STConfig`);
+    }
+}
+STConfig.decorators = [
+    { type: Injectable, args: [{ providedIn: 'root' },] }
+];
+/** @nocollapse */
+STConfig.ctorParameters = () => [];
+/** @nocollapse */ STConfig.ɵprov = ɵɵdefineInjectable({ factory: function STConfig_Factory() { return new STConfig(); }, token: STConfig, providedIn: "root" });
+if (false) {
+    /**
+     * 起始页码，默认为：`1`
+     * @type {?}
+     */
+    STConfig.prototype.pi;
+    /**
+     * 每页数量，当设置为 `0` 表示不分页，默认：`10`
+     * @type {?}
+     */
+    STConfig.prototype.ps;
+    /**
+     * 是否显示边框
+     * @type {?}
+     */
+    STConfig.prototype.bordered;
+    /**
+     * table大小
+     * @type {?}
+     */
+    STConfig.prototype.size;
+    /**
+     * 是否开启响应式，默认：`true`
+     * @type {?}
+     */
+    STConfig.prototype.responsive;
+    /**
+     * 是否在小屏幕下才显示顶部与底部，默认：`false`
+     * @type {?}
+     */
+    STConfig.prototype.responsiveHideHeaderFooter;
+    /**
+     * 请求体配置
+     * @type {?}
+     */
+    STConfig.prototype.req;
+    /**
+     * 返回体配置
+     * @type {?}
+     */
+    STConfig.prototype.res;
+    /**
+     * 返回体配置
+     * @type {?}
+     */
+    STConfig.prototype.page;
+    /**
+     * 重命名排序值，`columns` 的重命名高于属性
+     * @type {?}
+     */
+    STConfig.prototype.sortReName;
+    /**
+     * 单排序规则
+     * - 若不指定，则返回：`columnName=ascend|descend`
+     * - 若指定，则返回：`sort=columnName.(ascend|descend)`
+     * @type {?}
+     */
+    STConfig.prototype.singleSort;
+    /**
+     * 是否多排序，当 `sort` 多个相同值时自动合并，建议后端支持时使用
+     * @type {?}
+     */
+    STConfig.prototype.multiSort;
+    /**
+     * 按钮模态框配置
+     * @type {?}
+     */
+    STConfig.prototype.modal;
+    /**
+     * 按钮抽屉配置
+     * @type {?}
+     */
+    STConfig.prototype.drawer;
+    /**
+     * 气泡参数
+     * @type {?}
+     */
+    STConfig.prototype.pop;
+    /**
+     * 行单击多少时长之类为双击（单位：毫秒），默认：`200`
+     * @type {?}
+     */
+    STConfig.prototype.rowClickTime;
+    /**
+     * 过滤按钮确认文本
+     * @type {?}
+     */
+    STConfig.prototype.filterConfirmText;
+    /**
+     * 过滤按钮重置文本
+     * @type {?}
+     */
+    STConfig.prototype.filterClearText;
+    /**
+     * 按钮图标
+     * @type {?}
+     */
+    STConfig.prototype.btnIcon;
+    /**
+     * 行号索引，默认：`1`
+     * - 计算规则为：`index + noIndex`
+     * @type {?}
+     */
+    STConfig.prototype.noIndex;
+    /**
+     * 表格行的类名
+     * @type {?}
+     */
+    STConfig.prototype.rowClassName;
+    /**
+     * 通过点击行来展开子行
+     * @type {?}
+     */
+    STConfig.prototype.expandRowByClick;
+    /**
+     * 手风琴模式
+     * @type {?}
+     */
+    STConfig.prototype.expandAccordion;
+    /**
+     * 指定 `width` 模式
+     * @type {?}
+     */
+    STConfig.prototype.widthMode;
+    /** @type {?} */
+    STConfig.prototype.virtualItemSize;
+    /** @type {?} */
+    STConfig.prototype.virtualMaxBufferPx;
+    /** @type {?} */
+    STConfig.prototype.virtualMinBufferPx;
+    /**
+     * Conditional expression rendering behavior, can be set to `hide` (default) or `disabled`
+     * @type {?}
+     */
+    STConfig.prototype.iifBehavior;
+}
+
+/**
+ * @fileoverview added by tsickle
  * Generated from: st.component.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
@@ -3024,7 +3098,6 @@ class STComponent {
     /**
      * @param {?} i18nSrv
      * @param {?} cdr
-     * @param {?} cog
      * @param {?} router
      * @param {?} el
      * @param {?} exportSrv
@@ -3034,10 +3107,10 @@ class STComponent {
      * @param {?} columnSource
      * @param {?} dataSource
      * @param {?} delonI18n
+     * @param {?} configSrv
      */
-    constructor(i18nSrv, cdr, cog, router, el, exportSrv, modalHelper, drawerHelper, doc, columnSource, dataSource, delonI18n) {
+    constructor(i18nSrv, cdr, router, el, exportSrv, modalHelper, drawerHelper, doc, columnSource, dataSource, delonI18n, configSrv) {
         this.cdr = cdr;
-        this.cog = cog;
         this.router = router;
         this.el = el;
         this.exportSrv = exportSrv;
@@ -3051,6 +3124,7 @@ class STComponent {
         this.totalTpl = ``;
         this.rowClickCount = 0;
         this.locale = {};
+        this._loading = false;
         this._data = [];
         this._statistical = {};
         this._isPagination = true;
@@ -3062,40 +3136,15 @@ class STComponent {
         this.ps = 10;
         this.pi = 1;
         this.total = 0;
-        this._loading = false;
-        /**
-         * 是否显示Loading
-         */
         this.loading = null;
-        /**
-         * 延迟显示加载效果的时间（防止闪烁）
-         */
         this.loadingDelay = 0;
-        /**
-         * 是否显示边框
-         */
         this.bordered = false;
-        /**
-         * 单排序规则
-         * - 若不指定，则返回：`columnName=ascend|descend`
-         * - 若指定，则返回：`sort=columnName.(ascend|descend)`
-         */
-        this.singleSort = null;
         this.expandRowByClick = false;
         this.expandAccordion = false;
-        /**
-         * 行单击多少时长之类为双击（单位：毫秒），默认：`200`
-         */
         this.rowClickTime = 200;
         this.responsive = true;
-        /**
-         * 请求异常时回调
-         */
         // tslint:disable-next-line:no-output-native
         this.error = new EventEmitter();
-        /**
-         * 变化时回调，包括：`pi`、`ps`、`checkbox`、`radio`、`sort`、`filter`、`click`、`dblClick` 变动
-         */
         // tslint:disable-next-line:no-output-native
         this.change = new EventEmitter();
         this.virtualScroll = false;
@@ -3107,22 +3156,17 @@ class STComponent {
          * @return {?}
          */
         index => index);
+        this.setCog(configSrv.merge('st', ST_DEFULAT_CONFIG));
         this.delonI18n.change.pipe(takeUntil(this.unsubscribe$)).subscribe((/**
          * @return {?}
          */
         () => {
             this.locale = this.delonI18n.getData('st');
             if (this._columns.length > 0) {
-                this.page = this.clonePage;
+                this.updateTotalTpl();
                 this.cd();
             }
         }));
-        this.copyCog = deepMergeKey(new STConfig(), true, cog);
-        delete this.copyCog.multiSort;
-        Object.assign(this, this.copyCog);
-        if (cog.multiSort && cog.multiSort.global !== false) {
-            this.multiSort = Object.assign({}, cog.multiSort);
-        }
         i18nSrv.change
             .pipe(takeUntil(this.unsubscribe$), filter((/**
          * @return {?}
@@ -3136,7 +3180,6 @@ class STComponent {
         () => this.refreshColumns()));
     }
     /**
-     * 请求体配置
      * @return {?}
      */
     get req() {
@@ -3147,7 +3190,7 @@ class STComponent {
      * @return {?}
      */
     set req(value) {
-        this._req = deepMerge({}, this._req, this.cog.req, value);
+        this._req = deepMergeKey({}, true, this.cog.req, value);
     }
     /**
      * 返回体配置
@@ -3162,17 +3205,16 @@ class STComponent {
      */
     set res(value) {
         /** @type {?} */
-        const item = deepMergeKey({}, true, this.cog.res, value);
+        const item = (this._res = deepMergeKey({}, true, this.cog.res, value));
         /** @type {?} */
-        const reName = item.reName;
+        const reName = (/** @type {?} */ (item.reName));
         if (!Array.isArray(reName.list))
-            reName.list = reName.list.split('.');
+            reName.list = (/** @type {?} */ (reName.list)).split('.');
         if (!Array.isArray(reName.total))
-            reName.total = reName.total.split('.');
+            reName.total = (/** @type {?} */ (reName.total)).split('.');
         this._res = item;
     }
     /**
-     * 分页器配置
      * @return {?}
      */
     get page() {
@@ -3183,23 +3225,10 @@ class STComponent {
      * @return {?}
      */
     set page(value) {
-        this.clonePage = value;
-        /** @type {?} */
-        const item = deepMergeKey({}, true, new STConfig().page, this.cog.page, value);
-        const { total } = item;
-        if (typeof total === 'string' && total.length) {
-            this.totalTpl = total;
-        }
-        else if (toBoolean(total)) {
-            this.totalTpl = this.locale.total;
-        }
-        else {
-            this.totalTpl = '';
-        }
-        this._page = item;
+        this._page = Object.assign(Object.assign({}, this.cog.page), value);
+        this.updateTotalTpl();
     }
     /**
-     * 是否多排序，当 `sort` 多个相同值时自动合并，建议后端支持时使用
      * @return {?}
      */
     get multiSort() {
@@ -3211,7 +3240,7 @@ class STComponent {
      */
     set multiSort(value) {
         if (typeof value === 'boolean' && !toBoolean(value)) {
-            this._multiSort = null;
+            this._multiSort = undefined;
             return;
         }
         this._multiSort = Object.assign({}, (typeof value === 'object' ? value : {}));
@@ -3221,21 +3250,13 @@ class STComponent {
      * @return {?}
      */
     set widthMode(value) {
-        this._widthMode = Object.assign({ type: 'default', strictBehavior: 'truncate' }, value);
+        this._widthMode = Object.assign(Object.assign({}, this.cog.widthMode), value);
     }
     /**
      * @return {?}
      */
     get widthMode() {
         return this._widthMode;
-    }
-    /**
-     * @private
-     * @return {?}
-     */
-    get routerState() {
-        const { pi, ps, total } = this;
-        return { pi, ps, total };
     }
     /**
      * Get the number of the current page
@@ -3250,6 +3271,31 @@ class STComponent {
      */
     get list() {
         return this._data;
+    }
+    /**
+     * @private
+     * @return {?}
+     */
+    get routerState() {
+        const { pi, ps, total } = this;
+        return { pi, ps, total };
+    }
+    /**
+     * @private
+     * @param {?} cog
+     * @return {?}
+     */
+    setCog(cog) {
+        /** @type {?} */
+        const copyMultiSort = Object.assign({}, cog.multiSort);
+        // Because multiSort.global will affect the result, it should be removed first, and multiSort will be operated again after processing.
+        delete cog.multiSort;
+        this.cog = cog;
+        Object.assign(this, cog);
+        if (copyMultiSort.global !== false) {
+            this.multiSort = copyMultiSort;
+        }
+        this.columnSource.setCog(cog);
     }
     /**
      * @template THIS
@@ -3316,6 +3362,22 @@ class STComponent {
          * @return {?}
          */
         res => res.list));
+    }
+    /**
+     * @private
+     * @return {?}
+     */
+    updateTotalTpl() {
+        const { total } = this.page;
+        if (typeof total === 'string' && total.length) {
+            this.totalTpl = total;
+        }
+        else if (toBoolean(total)) {
+            this.totalTpl = this.locale.total;
+        }
+        else {
+            this.totalTpl = '';
+        }
     }
     /**
      * @private
@@ -3440,7 +3502,7 @@ class STComponent {
         if (pi !== -1)
             (/** @type {?} */ (this)).pi = pi;
         if (typeof extraParams !== 'undefined') {
-            (/** @type {?} */ (this))._req.params = options && options.merge ? Object.assign(Object.assign({}, (/** @type {?} */ (this))._req.params), extraParams) : extraParams;
+            (/** @type {?} */ (this)).req.params = options && options.merge ? Object.assign(Object.assign({}, (/** @type {?} */ (this)).req.params), extraParams) : extraParams;
         }
         (/** @type {?} */ (this))._change('pi', options);
         return (/** @type {?} */ (this));
@@ -3926,7 +3988,7 @@ class STComponent {
             const { modal } = btn;
             /** @type {?} */
             const obj = { [(/** @type {?} */ ((/** @type {?} */ (modal)).paramsName))]: record };
-            ((/** @type {?} */ (this.modalHelper[btn.type === 'modal' ? 'create' : 'createStatic'])))((/** @type {?} */ (modal)).component, Object.assign(Object.assign({}, obj), ((/** @type {?} */ (modal)).params && (/** @type {?} */ ((/** @type {?} */ (modal)).params))(record))), deepMergeKey({}, true, this.copyCog.modal, modal))
+            ((/** @type {?} */ (this.modalHelper[btn.type === 'modal' ? 'create' : 'createStatic'])))((/** @type {?} */ (modal)).component, Object.assign(Object.assign({}, obj), ((/** @type {?} */ (modal)).params && (/** @type {?} */ ((/** @type {?} */ (modal)).params))(record))), deepMergeKey({}, true, this.cog.modal, modal))
                 .pipe(filter((/**
              * @param {?} w
              * @return {?}
@@ -3944,7 +4006,7 @@ class STComponent {
             /** @type {?} */
             const obj = { [(/** @type {?} */ ((/** @type {?} */ (drawer)).paramsName))]: record };
             this.drawerHelper
-                .create((/** @type {?} */ ((/** @type {?} */ (drawer)).title)), (/** @type {?} */ (drawer)).component, Object.assign(Object.assign({}, obj), ((/** @type {?} */ (drawer)).params && (/** @type {?} */ ((/** @type {?} */ (drawer)).params))(record))), deepMergeKey({}, true, this.copyCog.drawer, drawer))
+                .create((/** @type {?} */ ((/** @type {?} */ (drawer)).title)), (/** @type {?} */ (drawer)).component, Object.assign(Object.assign({}, obj), ((/** @type {?} */ (drawer)).params && (/** @type {?} */ ((/** @type {?} */ (drawer)).params))(record))), deepMergeKey({}, true, this.cog.drawer, drawer))
                 .pipe(filter((/**
              * @param {?} w
              * @return {?}
@@ -4131,7 +4193,6 @@ STComponent.decorators = [
 STComponent.ctorParameters = () => [
     { type: undefined, decorators: [{ type: Optional }, { type: Inject, args: [ALAIN_I18N_TOKEN,] }] },
     { type: ChangeDetectorRef },
-    { type: STConfig },
     { type: Router },
     { type: ElementRef },
     { type: STExport },
@@ -4140,15 +4201,14 @@ STComponent.ctorParameters = () => [
     { type: undefined, decorators: [{ type: Inject, args: [DOCUMENT,] }] },
     { type: STColumnSource },
     { type: STDataSource },
-    { type: DelonLocaleService }
+    { type: DelonLocaleService },
+    { type: AlainConfigService }
 ];
 STComponent.propDecorators = {
     orgTable: [{ type: ViewChild, args: ['table', { static: false },] }],
     req: [{ type: Input }],
     res: [{ type: Input }],
     page: [{ type: Input }],
-    multiSort: [{ type: Input }],
-    widthMode: [{ type: Input }],
     data: [{ type: Input }],
     columns: [{ type: Input }],
     ps: [{ type: Input }],
@@ -4161,7 +4221,9 @@ STComponent.propDecorators = {
     size: [{ type: Input }],
     scroll: [{ type: Input }],
     singleSort: [{ type: Input }],
+    multiSort: [{ type: Input }],
     rowClassName: [{ type: Input }],
+    widthMode: [{ type: Input }],
     header: [{ type: Input }],
     footer: [{ type: Input }],
     bodyHeader: [{ type: Input }],
@@ -4258,19 +4320,36 @@ if (false) {
      * @type {?}
      * @private
      */
-    STComponent.prototype.clonePage;
-    /**
-     * @type {?}
-     * @private
-     */
-    STComponent.prototype.copyCog;
+    STComponent.prototype.cog;
     /**
      * @type {?}
      * @private
      */
     STComponent.prototype.rowClickCount;
+    /**
+     * @type {?}
+     * @private
+     */
+    STComponent.prototype._req;
+    /**
+     * @type {?}
+     * @private
+     */
+    STComponent.prototype._res;
+    /**
+     * @type {?}
+     * @private
+     */
+    STComponent.prototype._page;
+    /**
+     * @type {?}
+     * @private
+     */
+    STComponent.prototype._widthMode;
     /** @type {?} */
     STComponent.prototype.locale;
+    /** @type {?} */
+    STComponent.prototype._loading;
     /** @type {?} */
     STComponent.prototype._data;
     /** @type {?} */
@@ -4289,16 +4368,6 @@ if (false) {
     STComponent.prototype.orgTable;
     /** @type {?} */
     STComponent.prototype.data;
-    /**
-     * @type {?}
-     * @private
-     */
-    STComponent.prototype._req;
-    /**
-     * @type {?}
-     * @private
-     */
-    STComponent.prototype._res;
     /** @type {?} */
     STComponent.prototype.columns;
     /** @type {?} */
@@ -4307,46 +4376,19 @@ if (false) {
     STComponent.prototype.pi;
     /** @type {?} */
     STComponent.prototype.total;
-    /**
-     * @type {?}
-     * @private
-     */
-    STComponent.prototype._page;
     /** @type {?} */
-    STComponent.prototype._loading;
-    /**
-     * 是否显示Loading
-     * @type {?}
-     */
     STComponent.prototype.loading;
-    /**
-     * 延迟显示加载效果的时间（防止闪烁）
-     * @type {?}
-     */
+    /** @type {?} */
     STComponent.prototype.loadingDelay;
     /** @type {?} */
     STComponent.prototype.loadingIndicator;
-    /**
-     * 是否显示边框
-     * @type {?}
-     */
+    /** @type {?} */
     STComponent.prototype.bordered;
-    /**
-     * table大小
-     * @type {?}
-     */
+    /** @type {?} */
     STComponent.prototype.size;
-    /**
-     * 纵向支持滚动，也可用于指定滚动区域的高度：`{ y: '300px', x: '300px' }`
-     * @type {?}
-     */
+    /** @type {?} */
     STComponent.prototype.scroll;
-    /**
-     * 单排序规则
-     * - 若不指定，则返回：`columnName=ascend|descend`
-     * - 若指定，则返回：`sort=columnName.(ascend|descend)`
-     * @type {?}
-     */
+    /** @type {?} */
     STComponent.prototype.singleSort;
     /**
      * @type {?}
@@ -4355,62 +4397,33 @@ if (false) {
     STComponent.prototype._multiSort;
     /** @type {?} */
     STComponent.prototype.rowClassName;
-    /**
-     * @type {?}
-     * @private
-     */
-    STComponent.prototype._widthMode;
-    /**
-     * `header` 标题
-     * @type {?}
-     */
+    /** @type {?} */
     STComponent.prototype.header;
-    /**
-     * `footer` 底部
-     * @type {?}
-     */
+    /** @type {?} */
     STComponent.prototype.footer;
-    /**
-     * 额外 `body` 顶部内容
-     * @type {?}
-     */
+    /** @type {?} */
     STComponent.prototype.bodyHeader;
-    /**
-     * 额外 `body` 内容
-     * @type {?}
-     */
+    /** @type {?} */
     STComponent.prototype.body;
     /** @type {?} */
     STComponent.prototype.expandRowByClick;
     /** @type {?} */
     STComponent.prototype.expandAccordion;
-    /**
-     * `expand` 可展开，当数据源中包括 `expand` 表示展开状态
-     * @type {?}
-     */
+    /** @type {?} */
     STComponent.prototype.expand;
     /** @type {?} */
     STComponent.prototype.noResult;
     /** @type {?} */
     STComponent.prototype.widthConfig;
-    /**
-     * 行单击多少时长之类为双击（单位：毫秒），默认：`200`
-     * @type {?}
-     */
+    /** @type {?} */
     STComponent.prototype.rowClickTime;
     /** @type {?} */
     STComponent.prototype.responsive;
     /** @type {?} */
     STComponent.prototype.responsiveHideHeaderFooter;
-    /**
-     * 请求异常时回调
-     * @type {?}
-     */
+    /** @type {?} */
     STComponent.prototype.error;
-    /**
-     * 变化时回调，包括：`pi`、`ps`、`checkbox`、`radio`、`sort`、`filter`、`click`、`dblClick` 变动
-     * @type {?}
-     */
+    /** @type {?} */
     STComponent.prototype.change;
     /** @type {?} */
     STComponent.prototype.virtualScroll;
@@ -4427,11 +4440,6 @@ if (false) {
      * @private
      */
     STComponent.prototype.cdr;
-    /**
-     * @type {?}
-     * @private
-     */
-    STComponent.prototype.cog;
     /**
      * @type {?}
      * @private

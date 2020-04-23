@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-const DEFULAT_CONFIG = {
+const QR_DEFULAT_CONFIG = {
     background: 'white',
     backgroundAlpha: 1,
     foreground: 'black',
@@ -123,7 +123,7 @@ class QRService {
          * 背景透明级别，范围：`0-1` 之间
          */
         this.backgroundAlpha = 1;
-        configSrv.attach(this, 'qr', DEFULAT_CONFIG);
+        configSrv.attach(this, 'qr', QR_DEFULAT_CONFIG);
         this.qr = new QRious();
     }
     /**
@@ -260,7 +260,7 @@ class QRComponent {
         this.cdr = cdr;
         // tslint:disable-next-line:no-output-native
         this.change = new EventEmitter();
-        configSrv.attach(this, 'qr', DEFULAT_CONFIG);
+        configSrv.attach(this, 'qr', QR_DEFULAT_CONFIG);
     }
     /**
      * @return {?}

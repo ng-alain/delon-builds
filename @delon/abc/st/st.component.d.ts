@@ -1,16 +1,15 @@
 import { AfterViewInit, ChangeDetectorRef, ElementRef, EventEmitter, OnChanges, OnDestroy, SimpleChange, SimpleChanges, TemplateRef, TrackByFunction } from '@angular/core';
 import { Router } from '@angular/router';
-import { AlainI18NService, DelonLocaleService, DrawerHelper, LocaleData, ModalHelper } from '@delon/theme';
+import { AlainConfigService, AlainI18NService, DelonLocaleService, DrawerHelper, LocaleData, ModalHelper } from '@delon/theme';
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { NzTableComponent, NzTableData } from 'ng-zorro-antd/table';
 import { Observable } from 'rxjs';
 import { STColumnSource } from './st-column-source';
 import { STDataSource } from './st-data-source';
 import { STExport } from './st-export';
-import { STConfig } from './st.config';
 import { STChange, STColumn, STColumnButton, STColumnFilterMenu, STColumnSelection, STData, STError, STExportOptions, STLoadOptions, STPage, STReq, STRes, STResetColumnsOption, STRowClassName, STSingleSort, STStatisticalResults, STWidthMode } from './st.interfaces';
 export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy {
     private cdr;
-    private cog;
     private router;
     private el;
     private exportSrv;
@@ -23,10 +22,14 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     private unsubscribe$;
     private data$;
     private totalTpl;
-    private clonePage;
-    private copyCog;
+    private cog;
     private rowClickCount;
+    private _req;
+    private _res;
+    private _page;
+    private _widthMode;
     locale: LocaleData;
+    _loading: boolean;
     _data: STData[];
     _statistical: STStatisticalResults;
     _isPagination: boolean;
@@ -35,79 +38,50 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     _indeterminate: boolean;
     _columns: STColumn[];
     readonly orgTable: NzTableComponent;
-    /** 请求体配置 */
     get req(): STReq;
     set req(value: STReq);
     /** 返回体配置 */
     get res(): STRes;
     set res(value: STRes);
-    /** 分页器配置 */
     get page(): STPage;
     set page(value: STPage);
-    /** 是否多排序，当 `sort` 多个相同值时自动合并，建议后端支持时使用 */
-    get multiSort(): any;
-    set multiSort(value: any);
-    set widthMode(value: STWidthMode);
-    get widthMode(): STWidthMode;
-    private get routerState();
     data: string | STData[] | Observable<STData[]>;
-    private _req;
-    private _res;
     columns: STColumn[];
     ps: number;
     pi: number;
     total: number;
-    private _page;
-    _loading: boolean;
-    /** 是否显示Loading */
     loading: boolean | null;
-    /** 延迟显示加载效果的时间（防止闪烁） */
     loadingDelay: number;
     loadingIndicator: TemplateRef<void>;
-    /** 是否显示边框 */
     bordered: boolean;
-    /** table大小 */
     size: 'small' | 'middle' | 'default';
-    /** 纵向支持滚动，也可用于指定滚动区域的高度：`{ y: '300px', x: '300px' }` */
     scroll: {
         y?: string;
         x?: string;
     };
-    /**
-     * 单排序规则
-     * - 若不指定，则返回：`columnName=ascend|descend`
-     * - 若指定，则返回：`sort=columnName.(ascend|descend)`
-     */
-    singleSort: STSingleSort | null;
-    private _multiSort;
+    singleSort: STSingleSort;
+    private _multiSort?;
+    get multiSort(): NzSafeAny;
+    set multiSort(value: NzSafeAny);
     rowClassName: STRowClassName;
-    private _widthMode;
-    /** `header` 标题 */
+    set widthMode(value: STWidthMode);
+    get widthMode(): STWidthMode;
     header: string | TemplateRef<void>;
-    /** `footer` 底部 */
     footer: string | TemplateRef<void>;
-    /** 额外 `body` 顶部内容 */
     bodyHeader: TemplateRef<STStatisticalResults>;
-    /** 额外 `body` 内容 */
     body: TemplateRef<STStatisticalResults>;
     expandRowByClick: boolean;
     expandAccordion: boolean;
-    /** `expand` 可展开，当数据源中包括 `expand` 表示展开状态 */
     expand: TemplateRef<{
         $implicit: {};
         column: STColumn;
     }>;
     noResult: string | TemplateRef<void>;
     widthConfig: string[];
-    /** 行单击多少时长之类为双击（单位：毫秒），默认：`200` */
     rowClickTime: number;
     responsive: boolean;
     responsiveHideHeaderFooter: boolean;
-    /** 请求异常时回调 */
     readonly error: EventEmitter<STError>;
-    /**
-     * 变化时回调，包括：`pi`、`ps`、`checkbox`、`radio`、`sort`、`filter`、`click`、`dblClick` 变动
-     */
     readonly change: EventEmitter<STChange>;
     virtualScroll: boolean;
     virtualItemSize: number;
@@ -122,7 +96,9 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
      * Get the data of the current page
      */
     get list(): STData[];
-    constructor(i18nSrv: AlainI18NService, cdr: ChangeDetectorRef, cog: STConfig, router: Router, el: ElementRef, exportSrv: STExport, modalHelper: ModalHelper, drawerHelper: DrawerHelper, doc: any, columnSource: STColumnSource, dataSource: STDataSource, delonI18n: DelonLocaleService);
+    private get routerState();
+    constructor(i18nSrv: AlainI18NService, cdr: ChangeDetectorRef, router: Router, el: ElementRef, exportSrv: STExport, modalHelper: ModalHelper, drawerHelper: DrawerHelper, doc: any, columnSource: STColumnSource, dataSource: STDataSource, delonI18n: DelonLocaleService, configSrv: AlainConfigService);
+    private setCog;
     cd(): this;
     renderTotal(total: string, range: string[]): string;
     isTruncate(column: STColumn): boolean;
@@ -134,6 +110,7 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
      * - 远程数据：不传递 `pi`、`ps` 两个参数
      */
     get filteredData(): Promise<STData[]>;
+    private updateTotalTpl;
     private setLoading;
     private loadData;
     private loadPageData;

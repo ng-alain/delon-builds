@@ -1,7 +1,8 @@
 import { Injectable, ɵɵdefineInjectable, ɵɵinject, NgModule } from '@angular/core';
+import { deprecation10Cog, LazyService, DelonUtilModule } from '@delon/util';
 import { __assign } from 'tslib';
 import { HttpClient } from '@angular/common/http';
-import { LazyService, DelonUtilModule } from '@delon/util';
+import { AlainConfigService } from '@delon/theme';
 import { saveAs } from 'file-saver';
 import { CommonModule } from '@angular/common';
 
@@ -67,6 +68,9 @@ if (false) {
  * Generated from: zip.config.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @deprecated `ZipConfig` is going to be removed in 10.0.0. Please refer to https://ng-alain.com/docs/global-config
+ */
 var ZipConfig = /** @class */ (function () {
     function ZipConfig() {
         /**
@@ -77,10 +81,13 @@ var ZipConfig = /** @class */ (function () {
          * Defines which zip optional utils should get loaded
          */
         this.utils = [];
+        deprecation10Cog("ZipConfig");
     }
     ZipConfig.decorators = [
         { type: Injectable, args: [{ providedIn: 'root' },] }
     ];
+    /** @nocollapse */
+    ZipConfig.ctorParameters = function () { return []; };
     /** @nocollapse */ ZipConfig.ɵprov = ɵɵdefineInjectable({ factory: function ZipConfig_Factory() { return new ZipConfig(); }, token: ZipConfig, providedIn: "root" });
     return ZipConfig;
 }());
@@ -103,10 +110,13 @@ if (false) {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var ZipService = /** @class */ (function () {
-    function ZipService(cog, http, lazy) {
-        this.cog = cog;
+    function ZipService(http, lazy, configSrv) {
         this.http = http;
         this.lazy = lazy;
+        this.cog = configSrv.merge('zip', {
+            url: '//cdn.bootcss.com/jszip/3.3.0/jszip.min.js',
+            utils: [],
+        });
     }
     /**
      * @private
@@ -321,11 +331,11 @@ var ZipService = /** @class */ (function () {
     ];
     /** @nocollapse */
     ZipService.ctorParameters = function () { return [
-        { type: ZipConfig },
         { type: HttpClient },
-        { type: LazyService }
+        { type: LazyService },
+        { type: AlainConfigService }
     ]; };
-    /** @nocollapse */ ZipService.ɵprov = ɵɵdefineInjectable({ factory: function ZipService_Factory() { return new ZipService(ɵɵinject(ZipConfig), ɵɵinject(HttpClient), ɵɵinject(LazyService)); }, token: ZipService, providedIn: "root" });
+    /** @nocollapse */ ZipService.ɵprov = ɵɵdefineInjectable({ factory: function ZipService_Factory() { return new ZipService(ɵɵinject(HttpClient), ɵɵinject(LazyService), ɵɵinject(AlainConfigService)); }, token: ZipService, providedIn: "root" });
     return ZipService;
 }());
 if (false) {

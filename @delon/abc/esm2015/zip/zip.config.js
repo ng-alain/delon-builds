@@ -4,7 +4,11 @@
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 import { Injectable } from '@angular/core';
+import { deprecation10Cog } from '@delon/util';
 import * as i0 from "@angular/core";
+/**
+ * @deprecated `ZipConfig` is going to be removed in 10.0.0. Please refer to https://ng-alain.com/docs/global-config
+ */
 export class ZipConfig {
     constructor() {
         /**
@@ -15,11 +19,14 @@ export class ZipConfig {
          * Defines which zip optional utils should get loaded
          */
         this.utils = [];
+        deprecation10Cog(`ZipConfig`);
     }
 }
 ZipConfig.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
+/** @nocollapse */
+ZipConfig.ctorParameters = () => [];
 /** @nocollapse */ ZipConfig.ɵprov = i0.ɵɵdefineInjectable({ factory: function ZipConfig_Factory() { return new ZipConfig(); }, token: ZipConfig, providedIn: "root" });
 if (false) {
     /**
@@ -33,4 +40,4 @@ if (false) {
      */
     ZipConfig.prototype.utils;
 }
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiemlwLmNvbmZpZy5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0BkZWxvbi9hYmMvemlwLyIsInNvdXJjZXMiOlsiemlwLmNvbmZpZy50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7OztBQUFBLE9BQU8sRUFBRSxVQUFVLEVBQUUsTUFBTSxlQUFlLENBQUM7O0FBRzNDLE1BQU0sT0FBTyxTQUFTO0lBRHRCOzs7O1FBS0UsUUFBRyxHQUFZLDRDQUE0QyxDQUFDOzs7O1FBSTVELFVBQUssR0FBYyxFQUFFLENBQUM7S0FDdkI7OztZQVZBLFVBQVUsU0FBQyxFQUFFLFVBQVUsRUFBRSxNQUFNLEVBQUU7Ozs7Ozs7O0lBS2hDLHdCQUE0RDs7Ozs7SUFJNUQsMEJBQXNCIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgSW5qZWN0YWJsZSB9IGZyb20gJ0Bhbmd1bGFyL2NvcmUnO1xuXG5ASW5qZWN0YWJsZSh7IHByb3ZpZGVkSW46ICdyb290JyB9KVxuZXhwb3J0IGNsYXNzIFppcENvbmZpZyB7XG4gIC8qKlxuICAgKiBaaXAgbGlicmFyeSBwYXRoXG4gICAqL1xuICB1cmw/OiBzdHJpbmcgPSAnLy9jZG4uYm9vdGNzcy5jb20vanN6aXAvMy4xLjUvanN6aXAubWluLmpzJztcbiAgLyoqXG4gICAqIERlZmluZXMgd2hpY2ggemlwIG9wdGlvbmFsIHV0aWxzIHNob3VsZCBnZXQgbG9hZGVkXG4gICAqL1xuICB1dGlscz86IHN0cmluZ1tdID0gW107XG59XG4iXX0=
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiemlwLmNvbmZpZy5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0BkZWxvbi9hYmMvemlwLyIsInNvdXJjZXMiOlsiemlwLmNvbmZpZy50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7OztBQUFBLE9BQU8sRUFBRSxVQUFVLEVBQUUsTUFBTSxlQUFlLENBQUM7QUFDM0MsT0FBTyxFQUFFLGdCQUFnQixFQUFFLE1BQU0sYUFBYSxDQUFDOzs7OztBQU0vQyxNQUFNLE9BQU8sU0FBUztJQUNwQjs7OztRQU1BLFFBQUcsR0FBWSw0Q0FBNEMsQ0FBQzs7OztRQUk1RCxVQUFLLEdBQWMsRUFBRSxDQUFDO1FBVHBCLGdCQUFnQixDQUFDLFdBQVcsQ0FBQyxDQUFDO0lBQ2hDLENBQUM7OztZQUpGLFVBQVUsU0FBQyxFQUFFLFVBQVUsRUFBRSxNQUFNLEVBQUU7Ozs7Ozs7Ozs7SUFRaEMsd0JBQTREOzs7OztJQUk1RCwwQkFBc0IiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBJbmplY3RhYmxlIH0gZnJvbSAnQGFuZ3VsYXIvY29yZSc7XG5pbXBvcnQgeyBkZXByZWNhdGlvbjEwQ29nIH0gZnJvbSAnQGRlbG9uL3V0aWwnO1xuXG4vKipcbiAqIEBkZXByZWNhdGVkIGBaaXBDb25maWdgIGlzIGdvaW5nIHRvIGJlIHJlbW92ZWQgaW4gMTAuMC4wLiBQbGVhc2UgcmVmZXIgdG8gaHR0cHM6Ly9uZy1hbGFpbi5jb20vZG9jcy9nbG9iYWwtY29uZmlnXG4gKi9cbkBJbmplY3RhYmxlKHsgcHJvdmlkZWRJbjogJ3Jvb3QnIH0pXG5leHBvcnQgY2xhc3MgWmlwQ29uZmlnIHtcbiAgY29uc3RydWN0b3IoKSB7XG4gICAgZGVwcmVjYXRpb24xMENvZyhgWmlwQ29uZmlnYCk7XG4gIH1cbiAgLyoqXG4gICAqIFppcCBsaWJyYXJ5IHBhdGhcbiAgICovXG4gIHVybD86IHN0cmluZyA9ICcvL2Nkbi5ib290Y3NzLmNvbS9qc3ppcC8zLjEuNS9qc3ppcC5taW4uanMnO1xuICAvKipcbiAgICogRGVmaW5lcyB3aGljaCB6aXAgb3B0aW9uYWwgdXRpbHMgc2hvdWxkIGdldCBsb2FkZWRcbiAgICovXG4gIHV0aWxzPzogc3RyaW5nW10gPSBbXTtcbn1cbiJdfQ==

@@ -1,12 +1,12 @@
 import { HttpClient } from '@angular/common/http';
+import { AlainConfigService } from '@delon/theme';
 import { LazyService } from '@delon/util';
-import { XlsxConfig } from './xlsx.config';
 import { XlsxExportOptions } from './xlsx.types';
 export declare class XlsxService {
-    private cog;
     private http;
     private lazy;
-    constructor(cog: XlsxConfig, http: HttpClient, lazy: LazyService);
+    private cog;
+    constructor(http: HttpClient, lazy: LazyService, configSrv: AlainConfigService);
     private init;
     private read;
     /**

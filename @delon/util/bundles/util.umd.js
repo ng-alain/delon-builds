@@ -318,11 +318,13 @@
      * 深度合并对象
      *
      * @param {?} original 原始对象
-     * @param {?} ingoreArray 是否忽略数组，`true` 表示忽略数组的合并，`false` 表示会合并整个数组
+     * @param {?} arrayProcessMethod 数组处理方式
+     *  - `true` 表示替换新值，不管新值为哪种类型
+     *  - `false` 表示会合并整个数组（将旧数据与新数据合并成新数组）
      * @param {...?} objects 要合并的对象
      * @return {?}
      */
-    function deepMergeKey(original, ingoreArray) {
+    function deepMergeKey(original, arrayProcessMethod) {
         var objects = [];
         for (var _i = 2; _i < arguments.length; _i++) {
             objects[_i - 2] = arguments[_i];
@@ -354,17 +356,17 @@
              */
             function (key) {
                 /** @type {?} */
-                var oldValue = obj[key];
+                var fromValue = obj[key];
                 /** @type {?} */
-                var newValue = target[key];
-                if (Array.isArray(newValue)) {
-                    target[key] = ingoreArray ? oldValue : __spread(newValue, oldValue);
+                var toValue = target[key];
+                if (Array.isArray(toValue)) {
+                    target[key] = arrayProcessMethod ? fromValue : __spread(toValue, fromValue);
                 }
-                else if (oldValue != null && isObject(oldValue) && newValue != null && isObject(newValue)) {
-                    target[key] = merge(newValue, oldValue);
+                else if (fromValue != null && isObject(fromValue) && toValue != null && isObject(toValue)) {
+                    target[key] = merge(toValue, fromValue);
                 }
                 else {
-                    target[key] = deepCopy(oldValue);
+                    target[key] = deepCopy(fromValue);
                 }
             }));
             return target;

@@ -13,8 +13,8 @@ export interface STDataSourceOptions {
     res: STRes;
     page: STPage;
     columns: STColumn[];
-    singleSort?: STSingleSort | null;
-    multiSort?: STMultiSort | null;
+    singleSort?: STSingleSort;
+    multiSort?: STMultiSort;
     rowClassName?: STRowClassName;
 }
 export interface STDataSourceResult {
@@ -52,7 +52,7 @@ export declare class STDataSource {
     private getValidSort;
     private getSorterFn;
     get nextSortTick(): number;
-    getReqSortMap(singleSort: STSingleSort | null | undefined, multiSort: STMultiSort | null | undefined, columns: STColumn[]): {
+    getReqSortMap(singleSort: STSingleSort | undefined, multiSort: STMultiSort | undefined, columns: STColumn[]): {
         [key: string]: string;
     };
     private getFilteredData;

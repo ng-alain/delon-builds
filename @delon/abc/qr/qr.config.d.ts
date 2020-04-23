@@ -1,5 +1,5 @@
 import { AlainQRConfig } from '@delon/theme';
-export declare const DEFULAT_CONFIG: AlainQRConfig;
+export declare const QR_DEFULAT_CONFIG: AlainQRConfig;
 /**
  * @deprecated `QRConfig` is going to be removed in 10.0.0. Please refer to https://ng-alain.com/docs/global-config
  */

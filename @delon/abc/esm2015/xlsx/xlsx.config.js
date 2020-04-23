@@ -4,7 +4,11 @@
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 import { Injectable } from '@angular/core';
+import { deprecation10Cog } from '@delon/util';
 import * as i0 from "@angular/core";
+/**
+ * @deprecated `XlsxConfig` is going to be removed in 10.0.0. Please refer to https://ng-alain.com/docs/global-config
+ */
 export class XlsxConfig {
     constructor() {
         /**
@@ -17,11 +21,14 @@ export class XlsxConfig {
          * `[ '//cdn.bootcss.com/xlsx/0.12.13/cpexcel.js' ]`
          */
         this.modules = [];
+        deprecation10Cog(`XlsxConfig`);
     }
 }
 XlsxConfig.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
+/** @nocollapse */
+XlsxConfig.ctorParameters = () => [];
 /** @nocollapse */ XlsxConfig.ɵprov = i0.ɵɵdefineInjectable({ factory: function XlsxConfig_Factory() { return new XlsxConfig(); }, token: XlsxConfig, providedIn: "root" });
 if (false) {
     /**
@@ -37,4 +44,4 @@ if (false) {
      */
     XlsxConfig.prototype.modules;
 }
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoieGxzeC5jb25maWcuanMiLCJzb3VyY2VSb290Ijoibmc6Ly9AZGVsb24vYWJjL3hsc3gvIiwic291cmNlcyI6WyJ4bHN4LmNvbmZpZy50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7OztBQUFBLE9BQU8sRUFBRSxVQUFVLEVBQUUsTUFBTSxlQUFlLENBQUM7O0FBRzNDLE1BQU0sT0FBTyxVQUFVO0lBRHZCOzs7O1FBS0UsUUFBRyxHQUFZLGlEQUFpRCxDQUFDOzs7Ozs7UUFNakUsWUFBTyxHQUFjLEVBQUUsQ0FBQztLQUN6Qjs7O1lBWkEsVUFBVSxTQUFDLEVBQUUsVUFBVSxFQUFFLE1BQU0sRUFBRTs7Ozs7Ozs7SUFLaEMseUJBQWlFOzs7Ozs7O0lBTWpFLDZCQUF3QiIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IEluamVjdGFibGUgfSBmcm9tICdAYW5ndWxhci9jb3JlJztcblxuQEluamVjdGFibGUoeyBwcm92aWRlZEluOiAncm9vdCcgfSlcbmV4cG9ydCBjbGFzcyBYbHN4Q29uZmlnIHtcbiAgLyoqXG4gICAqIFhsc3ggbGlicmFyeSBwYXRoXG4gICAqL1xuICB1cmw/OiBzdHJpbmcgPSAnLy9jZG4uYm9vdGNzcy5jb20veGxzeC8wLjEyLjEzL3hsc3guZnVsbC5taW4uanMnO1xuICAvKipcbiAgICogRGVmaW5lcyB3aGljaCBYbHN4IG9wdGlvbmFsIG1vZHVsZXMgc2hvdWxkIGdldCBsb2FkZWQsIGUuZzpcbiAgICpcbiAgICogYFsgJy8vY2RuLmJvb3Rjc3MuY29tL3hsc3gvMC4xMi4xMy9jcGV4Y2VsLmpzJyBdYFxuICAgKi9cbiAgbW9kdWxlcz86IHN0cmluZ1tdID0gW107XG59XG4iXX0=
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoieGxzeC5jb25maWcuanMiLCJzb3VyY2VSb290Ijoibmc6Ly9AZGVsb24vYWJjL3hsc3gvIiwic291cmNlcyI6WyJ4bHN4LmNvbmZpZy50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7OztBQUFBLE9BQU8sRUFBRSxVQUFVLEVBQUUsTUFBTSxlQUFlLENBQUM7QUFDM0MsT0FBTyxFQUFFLGdCQUFnQixFQUFFLE1BQU0sYUFBYSxDQUFDOzs7OztBQU0vQyxNQUFNLE9BQU8sVUFBVTtJQUNyQjs7OztRQU1BLFFBQUcsR0FBWSxpREFBaUQsQ0FBQzs7Ozs7O1FBTWpFLFlBQU8sR0FBYyxFQUFFLENBQUM7UUFYdEIsZ0JBQWdCLENBQUMsWUFBWSxDQUFDLENBQUM7SUFDakMsQ0FBQzs7O1lBSkYsVUFBVSxTQUFDLEVBQUUsVUFBVSxFQUFFLE1BQU0sRUFBRTs7Ozs7Ozs7OztJQVFoQyx5QkFBaUU7Ozs7Ozs7SUFNakUsNkJBQXdCIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgSW5qZWN0YWJsZSB9IGZyb20gJ0Bhbmd1bGFyL2NvcmUnO1xuaW1wb3J0IHsgZGVwcmVjYXRpb24xMENvZyB9IGZyb20gJ0BkZWxvbi91dGlsJztcblxuLyoqXG4gKiBAZGVwcmVjYXRlZCBgWGxzeENvbmZpZ2AgaXMgZ29pbmcgdG8gYmUgcmVtb3ZlZCBpbiAxMC4wLjAuIFBsZWFzZSByZWZlciB0byBodHRwczovL25nLWFsYWluLmNvbS9kb2NzL2dsb2JhbC1jb25maWdcbiAqL1xuQEluamVjdGFibGUoeyBwcm92aWRlZEluOiAncm9vdCcgfSlcbmV4cG9ydCBjbGFzcyBYbHN4Q29uZmlnIHtcbiAgY29uc3RydWN0b3IoKSB7XG4gICAgZGVwcmVjYXRpb24xMENvZyhgWGxzeENvbmZpZ2ApO1xuICB9XG4gIC8qKlxuICAgKiBYbHN4IGxpYnJhcnkgcGF0aFxuICAgKi9cbiAgdXJsPzogc3RyaW5nID0gJy8vY2RuLmJvb3Rjc3MuY29tL3hsc3gvMC4xMi4xMy94bHN4LmZ1bGwubWluLmpzJztcbiAgLyoqXG4gICAqIERlZmluZXMgd2hpY2ggWGxzeCBvcHRpb25hbCBtb2R1bGVzIHNob3VsZCBnZXQgbG9hZGVkLCBlLmc6XG4gICAqXG4gICAqIGBbICcvL2Nkbi5ib290Y3NzLmNvbS94bHN4LzAuMTIuMTMvY3BleGNlbC5qcycgXWBcbiAgICovXG4gIG1vZHVsZXM/OiBzdHJpbmdbXSA9IFtdO1xufVxuIl19

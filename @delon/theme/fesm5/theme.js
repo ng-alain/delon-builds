@@ -6,7 +6,7 @@ import { filter, share, tap, catchError, switchMap } from 'rxjs/operators';
 import { DOCUMENT, CurrencyPipe, CommonModule } from '@angular/common';
 import { Title, DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { deepMerge } from '@delon/util';
+import { deepMerge, deepMergeKey } from '@delon/util';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { NzDrawerService } from 'ng-zorro-antd/drawer';
 import { HttpParams, HttpClient } from '@angular/common/http';
@@ -4317,6 +4317,12 @@ if (false) {
     /** @type {?|undefined} */
     AlainConfig.prototype.sv;
     /** @type {?|undefined} */
+    AlainConfig.prototype.st;
+    /** @type {?|undefined} */
+    AlainConfig.prototype.xlsx;
+    /** @type {?|undefined} */
+    AlainConfig.prototype.zip;
+    /** @type {?|undefined} */
     AlainConfig.prototype.chart;
 }
 /**
@@ -4612,6 +4618,40 @@ if (false) {
 /**
  * @record
  */
+function AlainXlsxConfig() { }
+if (false) {
+    /**
+     * Xlsx library path, default: `//cdn.bootcss.com/xlsx/0.15.6/xlsx.full.min.js`
+     * @type {?|undefined}
+     */
+    AlainXlsxConfig.prototype.url;
+    /**
+     * Defines which Xlsx optional modules should get loaded, e.g:
+     *
+     * `[ '//cdn.bootcss.com/xlsx/0.15.6/cpexcel.js' ]`
+     * @type {?|undefined}
+     */
+    AlainXlsxConfig.prototype.modules;
+}
+/**
+ * @record
+ */
+function AlainZipConfig() { }
+if (false) {
+    /**
+     * Zip library path, Default: `//cdn.bootcss.com/jszip/3.3.0/jszip.min.js`
+     * @type {?|undefined}
+     */
+    AlainZipConfig.prototype.url;
+    /**
+     * Defines which zip optional utils should get loaded
+     * @type {?|undefined}
+     */
+    AlainZipConfig.prototype.utils;
+}
+/**
+ * @record
+ */
 function AlainChartConfig() { }
 if (false) {
     /** @type {?|undefined} */
@@ -4660,7 +4700,7 @@ var AlainConfigService = /** @class */ (function () {
      * @return {?}
      */
     function (componentName, defaultValues) {
-        return __assign(__assign({}, defaultValues), this.get(componentName));
+        return deepMergeKey(defaultValues, true, this.get(componentName));
     };
     /**
      * @template R, T
@@ -4731,7 +4771,162 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
- * Generated from: src/config/types/date-picker.type.ts
+ * Generated from: src/config/st/st.type.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ */
+function AlainSTConfig() { }
+if (false) {
+    /**
+     * 起始页码，默认为：`1`
+     * @type {?|undefined}
+     */
+    AlainSTConfig.prototype.pi;
+    /**
+     * 每页数量，当设置为 `0` 表示不分页，默认：`10`
+     * @type {?|undefined}
+     */
+    AlainSTConfig.prototype.ps;
+    /**
+     * 是否显示边框，默认：`false`
+     * @type {?|undefined}
+     */
+    AlainSTConfig.prototype.bordered;
+    /**
+     * table大小，默认：`default`
+     * @type {?|undefined}
+     */
+    AlainSTConfig.prototype.size;
+    /**
+     * 是否开启响应式，默认：`true`
+     * @type {?|undefined}
+     */
+    AlainSTConfig.prototype.responsive;
+    /**
+     * 是否在小屏幕下才显示顶部与底部，默认：`false`
+     * @type {?|undefined}
+     */
+    AlainSTConfig.prototype.responsiveHideHeaderFooter;
+    /**
+     * 请求体配置
+     * @type {?|undefined}
+     */
+    AlainSTConfig.prototype.req;
+    /**
+     * 返回体配置
+     * @type {?|undefined}
+     */
+    AlainSTConfig.prototype.res;
+    /**
+     * 返回体配置
+     * @type {?|undefined}
+     */
+    AlainSTConfig.prototype.page;
+    /**
+     * 重命名排序值，`columns` 的重命名高于属性
+     * @type {?|undefined}
+     */
+    AlainSTConfig.prototype.sortReName;
+    /**
+     * 单排序规则
+     * - 若不指定，则返回：`columnName=ascend|descend`
+     * - 若指定，则返回：`sort=columnName.(ascend|descend)`
+     * @type {?|undefined}
+     */
+    AlainSTConfig.prototype.singleSort;
+    /**
+     * 是否多排序，当 `sort` 多个相同值时自动合并，建议后端支持时使用
+     * @type {?|undefined}
+     */
+    AlainSTConfig.prototype.multiSort;
+    /**
+     * 按钮模态框配置
+     * @type {?|undefined}
+     */
+    AlainSTConfig.prototype.modal;
+    /**
+     * 按钮抽屉配置
+     * @type {?|undefined}
+     */
+    AlainSTConfig.prototype.drawer;
+    /**
+     * 气泡参数
+     * @type {?|undefined}
+     */
+    AlainSTConfig.prototype.pop;
+    /**
+     * 行单击多少时长之类为双击（单位：毫秒），默认：`200`
+     * @type {?|undefined}
+     */
+    AlainSTConfig.prototype.rowClickTime;
+    /**
+     * 过滤按钮确认文本
+     * @type {?|undefined}
+     */
+    AlainSTConfig.prototype.filterConfirmText;
+    /**
+     * 过滤按钮重置文本
+     * @type {?|undefined}
+     */
+    AlainSTConfig.prototype.filterClearText;
+    /**
+     * 按钮图标
+     * @type {?|undefined}
+     */
+    AlainSTConfig.prototype.btnIcon;
+    /**
+     * 行号索引，默认：`1`
+     * - 计算规则为：`index + noIndex`
+     * @type {?|undefined}
+     */
+    AlainSTConfig.prototype.noIndex;
+    /**
+     * 表格行的类名
+     * @type {?|undefined}
+     */
+    AlainSTConfig.prototype.rowClassName;
+    /**
+     * 通过点击行来展开子行，Default: `false`
+     * @type {?|undefined}
+     */
+    AlainSTConfig.prototype.expandRowByClick;
+    /**
+     * 手风琴模式，Default: `false`
+     * @type {?|undefined}
+     */
+    AlainSTConfig.prototype.expandAccordion;
+    /**
+     * 指定 `width` 模式
+     * @type {?|undefined}
+     */
+    AlainSTConfig.prototype.widthMode;
+    /**
+     * Default: `54`
+     * @type {?|undefined}
+     */
+    AlainSTConfig.prototype.virtualItemSize;
+    /**
+     * Default: `200`
+     * @type {?|undefined}
+     */
+    AlainSTConfig.prototype.virtualMaxBufferPx;
+    /**
+     * Default: `100`
+     * @type {?|undefined}
+     */
+    AlainSTConfig.prototype.virtualMinBufferPx;
+    /**
+     * Conditional expression rendering behavior, can be set to `hide` (default) or `disabled`, Default: `hide`
+     * @type {?|undefined}
+     */
+    AlainSTConfig.prototype.iifBehavior;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * Generated from: src/config/date-picker/date-picker.type.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
@@ -4837,7 +5032,7 @@ if (false) {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-var VERSION = new Version('9.0.0-rc.3-97678a67');
+var VERSION = new Version('9.0.0-rc.3-e32609af');
 
 /**
  * @fileoverview added by tsickle

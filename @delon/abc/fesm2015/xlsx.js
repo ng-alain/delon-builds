@@ -1,6 +1,7 @@
 import { Injectable, ɵɵdefineInjectable, ɵɵinject, Directive, Input, NgModule } from '@angular/core';
+import { deprecation10Cog, LazyService, DelonUtilModule } from '@delon/util';
 import { HttpClient } from '@angular/common/http';
-import { LazyService, DelonUtilModule } from '@delon/util';
+import { AlainConfigService } from '@delon/theme';
 import { saveAs } from 'file-saver';
 import { CommonModule } from '@angular/common';
 
@@ -56,6 +57,9 @@ if (false) {
  * Generated from: xlsx.config.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @deprecated `XlsxConfig` is going to be removed in 10.0.0. Please refer to https://ng-alain.com/docs/global-config
+ */
 class XlsxConfig {
     constructor() {
         /**
@@ -68,11 +72,14 @@ class XlsxConfig {
          * `[ '//cdn.bootcss.com/xlsx/0.12.13/cpexcel.js' ]`
          */
         this.modules = [];
+        deprecation10Cog(`XlsxConfig`);
     }
 }
 XlsxConfig.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
+/** @nocollapse */
+XlsxConfig.ctorParameters = () => [];
 /** @nocollapse */ XlsxConfig.ɵprov = ɵɵdefineInjectable({ factory: function XlsxConfig_Factory() { return new XlsxConfig(); }, token: XlsxConfig, providedIn: "root" });
 if (false) {
     /**
@@ -96,14 +103,17 @@ if (false) {
  */
 class XlsxService {
     /**
-     * @param {?} cog
      * @param {?} http
      * @param {?} lazy
+     * @param {?} configSrv
      */
-    constructor(cog, http, lazy) {
-        this.cog = cog;
+    constructor(http, lazy, configSrv) {
         this.http = http;
         this.lazy = lazy;
+        this.cog = configSrv.merge('xlsx', {
+            url: '//cdn.bootcss.com/xlsx/0.15.6/xlsx.full.min.js',
+            modules: [],
+        });
     }
     /**
      * @private
@@ -229,11 +239,11 @@ XlsxService.decorators = [
 ];
 /** @nocollapse */
 XlsxService.ctorParameters = () => [
-    { type: XlsxConfig },
     { type: HttpClient },
-    { type: LazyService }
+    { type: LazyService },
+    { type: AlainConfigService }
 ];
-/** @nocollapse */ XlsxService.ɵprov = ɵɵdefineInjectable({ factory: function XlsxService_Factory() { return new XlsxService(ɵɵinject(XlsxConfig), ɵɵinject(HttpClient), ɵɵinject(LazyService)); }, token: XlsxService, providedIn: "root" });
+/** @nocollapse */ XlsxService.ɵprov = ɵɵdefineInjectable({ factory: function XlsxService_Factory() { return new XlsxService(ɵɵinject(HttpClient), ɵɵinject(LazyService), ɵɵinject(AlainConfigService)); }, token: XlsxService, providedIn: "root" });
 if (false) {
     /**
      * @type {?}
