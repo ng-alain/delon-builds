@@ -4390,7 +4390,7 @@ if (false) {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-const VERSION = new Version('9.0.0-rc.3-e32609af');
+const VERSION = new Version('9.0.0-rc.3-93869ead');
 
 /**
  * @fileoverview added by tsickle
