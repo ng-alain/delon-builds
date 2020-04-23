@@ -2,9 +2,9 @@ import { Injectable, ɵɵdefineInjectable, Component, ChangeDetectionStrategy, V
 import { deprecation10Cog } from '@delon/util';
 import { Overlay, OverlayModule } from '@angular/cdk/overlay';
 import { ComponentPortal, PortalModule } from '@angular/cdk/portal';
+import { AlainConfigService } from '@delon/theme';
 import { Subject, timer } from 'rxjs';
 import { debounce } from 'rxjs/operators';
-import { AlainConfigService } from '@delon/theme';
 import { CommonModule } from '@angular/common';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzSpinModule } from 'ng-zorro-antd/spin';

@@ -1,8 +1,8 @@
 import { Overlay } from '@angular/cdk/overlay';
 import { OnDestroy } from '@angular/core';
+import { AlainConfigService } from '@delon/theme';
 import { LoadingDefaultComponent } from './loading.component';
 import { LoadingShowOptions } from './loading.types';
-import { AlainConfigService } from '@delon/theme';
 export declare class LoadingService implements OnDestroy {
     private overlay;
     private _overlayRef;

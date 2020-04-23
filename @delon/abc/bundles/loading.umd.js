@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util'), require('@angular/cdk/overlay'), require('@angular/cdk/portal'), require('rxjs'), require('rxjs/operators'), require('@delon/theme'), require('@angular/common'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/spin')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/loading', ['exports', '@angular/core', '@delon/util', '@angular/cdk/overlay', '@angular/cdk/portal', 'rxjs', 'rxjs/operators', '@delon/theme', '@angular/common', 'ng-zorro-antd/icon', 'ng-zorro-antd/spin'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.loading = {}), global.ng.core, global.util, global.ng.cdk.overlay, global.ng.cdk.portal, global.rxjs, global.rxjs.operators, global.delon.theme, global.ng.common, global['ng-zorro-antd/icon'], global['ng-zorro-antd/spin']));
-}(this, (function (exports, core, util, overlay, portal, rxjs, operators, theme, common, icon, spin) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util'), require('@angular/cdk/overlay'), require('@angular/cdk/portal'), require('@delon/theme'), require('rxjs'), require('rxjs/operators'), require('@angular/common'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/spin')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/loading', ['exports', '@angular/core', '@delon/util', '@angular/cdk/overlay', '@angular/cdk/portal', '@delon/theme', 'rxjs', 'rxjs/operators', '@angular/common', 'ng-zorro-antd/icon', 'ng-zorro-antd/spin'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.loading = {}), global.ng.core, global.util, global.ng.cdk.overlay, global.ng.cdk.portal, global.delon.theme, global.rxjs, global.rxjs.operators, global.ng.common, global['ng-zorro-antd/icon'], global['ng-zorro-antd/spin']));
+}(this, (function (exports, core, util, overlay, portal, theme, rxjs, operators, common, icon, spin) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.

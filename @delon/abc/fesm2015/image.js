@@ -1,7 +1,7 @@
 import { __decorate, __metadata } from 'tslib';
 import { Directive, ElementRef, Input, Injectable, ɵɵdefineInjectable, NgModule } from '@angular/core';
-import { InputNumber, deprecation10Cog, DelonUtilModule } from '@delon/util';
 import { AlainConfigService } from '@delon/theme';
+import { InputNumber, deprecation10Cog, DelonUtilModule } from '@delon/util';
 import { CommonModule } from '@angular/common';
 
 /**

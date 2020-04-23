@@ -1,6 +1,5 @@
 import { TemplateRef } from '@angular/core';
-import { REP_TYPE } from '@delon/theme';
-import { SEConfig } from './se.config';
+import { AlainConfigService, REP_TYPE } from '@delon/theme';
 export declare class SEContainerComponent {
     colInCon: REP_TYPE;
     col: REP_TYPE;
@@ -15,5 +14,5 @@ export declare class SEContainerComponent {
     size: 'default' | 'compact';
     firstVisual: boolean;
     line: boolean;
-    constructor(cog: SEConfig);
+    constructor(configSrv: AlainConfigService);
 }

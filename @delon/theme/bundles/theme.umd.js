@@ -4520,6 +4520,8 @@
         /** @type {?|undefined} */
         AlainConfig.prototype.qr;
         /** @type {?|undefined} */
+        AlainConfig.prototype.se;
+        /** @type {?|undefined} */
         AlainConfig.prototype.chart;
     }
     /**
@@ -4720,6 +4722,44 @@
          * @type {?|undefined}
          */
         AlainQRConfig.prototype.size;
+    }
+    /**
+     * @record
+     */
+    function AlainSEConfig() { }
+    if (false) {
+        /**
+         * 大小，默认：`default`
+         * - `compact` 紧凑型，强制忽略 `error`、`extra` 展示
+         * @type {?|undefined}
+         */
+        AlainSEConfig.prototype.size;
+        /**
+         * 布局类型，等同 `nzLayout`，默认：`horizontal`
+         * - `inline` 时强制大小为 `compact`
+         * @type {?|undefined}
+         */
+        AlainSEConfig.prototype.nzLayout;
+        /**
+         * 间距，当 `nzLayout:horizontal` 时有效，默认：`32`
+         * @type {?|undefined}
+         */
+        AlainSEConfig.prototype.gutter;
+        /**
+         * 列数，默认：`2`
+         * @type {?|undefined}
+         */
+        AlainSEConfig.prototype.col;
+        /**
+         * 标签文本宽度，单位：`px`，默认：`150`
+         * @type {?|undefined}
+         */
+        AlainSEConfig.prototype.labelWidth;
+        /**
+         * 是否立即呈现错误视觉，默认：`false`
+         * @type {?|undefined}
+         */
+        AlainSEConfig.prototype.firstVisual;
     }
     /**
      * @record

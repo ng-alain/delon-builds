@@ -1,87 +1,13 @@
 import { __decorate, __metadata } from 'tslib';
-import { Injectable, ɵɵdefineInjectable, Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Host, Optional, ElementRef, Renderer2, TemplateRef, ChangeDetectorRef, ContentChild, ViewChild, NgModule } from '@angular/core';
-import { toNumber, InputNumber, InputBoolean, isEmpty, DelonUtilModule } from '@delon/util';
+import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Host, Optional, ElementRef, Renderer2, TemplateRef, ChangeDetectorRef, ContentChild, ViewChild, Injectable, ɵɵdefineInjectable, NgModule } from '@angular/core';
+import { AlainConfigService, ResponsiveService } from '@delon/theme';
+import { toNumber, InputNumber, InputBoolean, isEmpty, deprecation10Cog, DelonUtilModule } from '@delon/util';
 import { RequiredValidator, NgModel, FormControlName } from '@angular/forms';
-import { ResponsiveService } from '@delon/theme';
 import { helpMotion } from 'ng-zorro-antd/core/animation';
 import { CommonModule } from '@angular/common';
 import { NzOutletModule } from 'ng-zorro-antd/core/outlet';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
-
-/**
- * @fileoverview added by tsickle
- * Generated from: se.config.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class SEConfig {
-    constructor() {
-        /**
-         * 大小，默认：`default`
-         * - `compact` 紧凑型，强制忽略 `error`、`extra` 展示
-         */
-        this.size = 'default';
-        /**
-         * 布局类型，等同 `nzLayout`
-         * - `inline` 时强制大小为 `compact`
-         */
-        this.nzLayout = 'horizontal';
-        /**
-         * 间距，当 `nzLayout:horizontal` 时有效，默认：`32`
-         */
-        this.gutter = 32;
-        /**
-         * 列数，默认：`2`
-         */
-        this.col = 2;
-        /**
-         * 标签文本宽度，单位：`px`，默认：`150`
-         */
-        this.labelWidth = 150;
-        /**
-         * 是否立即呈现错误视觉
-         */
-        this.firstVisual = false;
-    }
-}
-SEConfig.decorators = [
-    { type: Injectable, args: [{ providedIn: 'root' },] }
-];
-/** @nocollapse */ SEConfig.ɵprov = ɵɵdefineInjectable({ factory: function SEConfig_Factory() { return new SEConfig(); }, token: SEConfig, providedIn: "root" });
-if (false) {
-    /**
-     * 大小，默认：`default`
-     * - `compact` 紧凑型，强制忽略 `error`、`extra` 展示
-     * @type {?}
-     */
-    SEConfig.prototype.size;
-    /**
-     * 布局类型，等同 `nzLayout`
-     * - `inline` 时强制大小为 `compact`
-     * @type {?}
-     */
-    SEConfig.prototype.nzLayout;
-    /**
-     * 间距，当 `nzLayout:horizontal` 时有效，默认：`32`
-     * @type {?}
-     */
-    SEConfig.prototype.gutter;
-    /**
-     * 列数，默认：`2`
-     * @type {?}
-     */
-    SEConfig.prototype.col;
-    /**
-     * 标签文本宽度，单位：`px`，默认：`150`
-     * @type {?}
-     */
-    SEConfig.prototype.labelWidth;
-    /**
-     * 是否立即呈现错误视觉
-     * @type {?}
-     */
-    SEConfig.prototype.firstVisual;
-}
 
 /**
  * @fileoverview added by tsickle
@@ -91,11 +17,18 @@ if (false) {
 class SEContainerComponent {
     // #endregion
     /**
-     * @param {?} cog
+     * @param {?} configSrv
      */
-    constructor(cog) {
+    constructor(configSrv) {
         this.line = false;
-        Object.assign(this, Object.assign(Object.assign({}, new SEConfig()), cog));
+        configSrv.attach(this, 'se', {
+            size: 'default',
+            nzLayout: 'horizontal',
+            gutter: 32,
+            col: 2,
+            labelWidth: 150,
+            firstVisual: false,
+        });
     }
     /**
      * @return {?}
@@ -139,7 +72,7 @@ SEContainerComponent.decorators = [
 ];
 /** @nocollapse */
 SEContainerComponent.ctorParameters = () => [
-    { type: SEConfig }
+    { type: AlainConfigService }
 ];
 SEContainerComponent.propDecorators = {
     colInCon: [{ type: Input, args: ['se-container',] }],
@@ -637,6 +570,86 @@ if (false) {
      * @private
      */
     SEComponent.prototype.cdr;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * Generated from: se.config.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @deprecated `SEConfig` is going to be removed in 10.0.0. Please refer to https://ng-alain.com/docs/global-config
+ */
+class SEConfig {
+    constructor() {
+        /**
+         * 大小，默认：`default`
+         * - `compact` 紧凑型，强制忽略 `error`、`extra` 展示
+         */
+        this.size = 'default';
+        /**
+         * 布局类型，等同 `nzLayout`
+         * - `inline` 时强制大小为 `compact`
+         */
+        this.nzLayout = 'horizontal';
+        /**
+         * 间距，当 `nzLayout:horizontal` 时有效，默认：`32`
+         */
+        this.gutter = 32;
+        /**
+         * 列数，默认：`2`
+         */
+        this.col = 2;
+        /**
+         * 标签文本宽度，单位：`px`，默认：`150`
+         */
+        this.labelWidth = 150;
+        /**
+         * 是否立即呈现错误视觉
+         */
+        this.firstVisual = false;
+        deprecation10Cog(`SEConfig`);
+    }
+}
+SEConfig.decorators = [
+    { type: Injectable, args: [{ providedIn: 'root' },] }
+];
+/** @nocollapse */
+SEConfig.ctorParameters = () => [];
+/** @nocollapse */ SEConfig.ɵprov = ɵɵdefineInjectable({ factory: function SEConfig_Factory() { return new SEConfig(); }, token: SEConfig, providedIn: "root" });
+if (false) {
+    /**
+     * 大小，默认：`default`
+     * - `compact` 紧凑型，强制忽略 `error`、`extra` 展示
+     * @type {?}
+     */
+    SEConfig.prototype.size;
+    /**
+     * 布局类型，等同 `nzLayout`
+     * - `inline` 时强制大小为 `compact`
+     * @type {?}
+     */
+    SEConfig.prototype.nzLayout;
+    /**
+     * 间距，当 `nzLayout:horizontal` 时有效，默认：`32`
+     * @type {?}
+     */
+    SEConfig.prototype.gutter;
+    /**
+     * 列数，默认：`2`
+     * @type {?}
+     */
+    SEConfig.prototype.col;
+    /**
+     * 标签文本宽度，单位：`px`，默认：`150`
+     * @type {?}
+     */
+    SEConfig.prototype.labelWidth;
+    /**
+     * 是否立即呈现错误视觉
+     * @type {?}
+     */
+    SEConfig.prototype.firstVisual;
 }
 
 /**
