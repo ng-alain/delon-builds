@@ -5164,11 +5164,6 @@
          * @type {?|undefined}
          */
         AlainDateRangePickerConfig.prototype.nzAutoFocus;
-        /**
-         * 默认：`false`
-         * @type {?|undefined}
-         */
-        AlainDateRangePickerConfig.prototype.nzDisabled;
         /** @type {?|undefined} */
         AlainDateRangePickerConfig.prototype.nzDisabledDate;
         /** @type {?|undefined} */

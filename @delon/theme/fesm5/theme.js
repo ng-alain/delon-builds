@@ -4955,11 +4955,6 @@ if (false) {
      * @type {?|undefined}
      */
     AlainDateRangePickerConfig.prototype.nzAutoFocus;
-    /**
-     * 默认：`false`
-     * @type {?|undefined}
-     */
-    AlainDateRangePickerConfig.prototype.nzDisabled;
     /** @type {?|undefined} */
     AlainDateRangePickerConfig.prototype.nzDisabledDate;
     /** @type {?|undefined} */
@@ -5032,7 +5027,7 @@ if (false) {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-var VERSION = new Version('9.0.0-rc.3-93869ead');
+var VERSION = new Version('9.0.0-rc.3-c1fcc59e');
 
 /**
  * @fileoverview added by tsickle

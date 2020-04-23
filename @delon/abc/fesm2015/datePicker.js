@@ -34,7 +34,6 @@ class RangePickerComponent {
             nzFormat: 'yyyy-MM-dd',
             nzAllowClear: true,
             nzAutoFocus: false,
-            nzDisabled: false,
             nzPopupStyle: { position: 'relative' },
             nzShowToday: true,
             shortcuts: {
