@@ -4101,7 +4101,7 @@ if (false) {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-const VERSION = new Version('9.0.0-rc.3-44dbeb81');
+const VERSION = new Version('9.0.0-rc.3-1b81a971');
 
 /**
  * @fileoverview added by tsickle
