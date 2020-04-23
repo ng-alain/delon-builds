@@ -29916,6 +29916,7 @@ body {
   font-weight: 700;
   font-size: 14px;
   line-height: 1.5715;
+  width: 100%;
 }
 .se__item:last-child {
   margin-bottom: 0;
