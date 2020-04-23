@@ -4,7 +4,11 @@
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 import { Injectable } from '@angular/core';
+import { deprecation10Cog } from '@delon/util';
 import * as i0 from "@angular/core";
+/**
+ * @deprecated `LoadingConfig` is going to be removed in 10.0.0. Please refer to https://ng-alain.com/docs/global-config
+ */
 export class LoadingConfig {
     constructor() {
         this.type = 'spin';
@@ -15,11 +19,14 @@ export class LoadingConfig {
             spin: true,
         };
         this.delay = 0;
+        deprecation10Cog(`LoadingConfig`);
     }
 }
 LoadingConfig.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
+/** @nocollapse */
+LoadingConfig.ctorParameters = () => [];
 /** @nocollapse */ LoadingConfig.ɵprov = i0.ɵɵdefineInjectable({ factory: function LoadingConfig_Factory() { return new LoadingConfig(); }, token: LoadingConfig, providedIn: "root" });
 if (false) {
     /** @type {?} */
@@ -33,4 +40,4 @@ if (false) {
     /** @type {?} */
     LoadingConfig.prototype.delay;
 }
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibG9hZGluZy5jb25maWcuanMiLCJzb3VyY2VSb290Ijoibmc6Ly9AZGVsb24vYWJjL2xvYWRpbmcvIiwic291cmNlcyI6WyJsb2FkaW5nLmNvbmZpZy50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7OztBQUFBLE9BQU8sRUFBRSxVQUFVLEVBQUUsTUFBTSxlQUFlLENBQUM7O0FBSTNDLE1BQU0sT0FBTyxhQUFhO0lBRDFCO1FBRUUsU0FBSSxHQUFpQixNQUFNLENBQUM7UUFDNUIsU0FBSSxHQUFZLFFBQVEsQ0FBQztRQUN6QixTQUFJLEdBQWlCO1lBQ25CLElBQUksRUFBRSxTQUFTO1lBQ2YsS0FBSyxFQUFFLFNBQVM7WUFDaEIsSUFBSSxFQUFFLElBQUk7U0FDWCxDQUFDO1FBRUYsVUFBSyxHQUFZLENBQUMsQ0FBQztLQUNwQjs7O1lBWEEsVUFBVSxTQUFDLEVBQUUsVUFBVSxFQUFFLE1BQU0sRUFBRTs7Ozs7SUFFaEMsNkJBQTRCOztJQUM1Qiw2QkFBeUI7O0lBQ3pCLDZCQUlFOztJQUNGLCtCQUF1Qjs7SUFDdkIsOEJBQW1CIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgSW5qZWN0YWJsZSB9IGZyb20gJ0Bhbmd1bGFyL2NvcmUnO1xuaW1wb3J0IHsgTG9hZGluZ0N1c3RvbSwgTG9hZGluZ0ljb24sIExvYWRpbmdUeXBlIH0gZnJvbSAnLi9sb2FkaW5nLmludGVyZmFjZXMnO1xuXG5ASW5qZWN0YWJsZSh7IHByb3ZpZGVkSW46ICdyb290JyB9KVxuZXhwb3J0IGNsYXNzIExvYWRpbmdDb25maWcge1xuICB0eXBlPzogTG9hZGluZ1R5cGUgPSAnc3Bpbic7XG4gIHRleHQ/OiBzdHJpbmcgPSAn5Yqg6L295LitLi4uJztcbiAgaWNvbj86IExvYWRpbmdJY29uID0ge1xuICAgIHR5cGU6ICdsb2FkaW5nJyxcbiAgICB0aGVtZTogJ291dGxpbmUnLFxuICAgIHNwaW46IHRydWUsXG4gIH07XG4gIGN1c3RvbT86IExvYWRpbmdDdXN0b207XG4gIGRlbGF5PzogbnVtYmVyID0gMDtcbn1cbiJdfQ==
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibG9hZGluZy5jb25maWcuanMiLCJzb3VyY2VSb290Ijoibmc6Ly9AZGVsb24vYWJjL2xvYWRpbmcvIiwic291cmNlcyI6WyJsb2FkaW5nLmNvbmZpZy50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7OztBQUFBLE9BQU8sRUFBRSxVQUFVLEVBQUUsTUFBTSxlQUFlLENBQUM7QUFFM0MsT0FBTyxFQUFFLGdCQUFnQixFQUFFLE1BQU0sYUFBYSxDQUFDOzs7OztBQU0vQyxNQUFNLE9BQU8sYUFBYTtJQUN4QjtRQUdBLFNBQUksR0FBaUIsTUFBTSxDQUFDO1FBQzVCLFNBQUksR0FBWSxRQUFRLENBQUM7UUFDekIsU0FBSSxHQUFpQjtZQUNuQixJQUFJLEVBQUUsU0FBUztZQUNmLEtBQUssRUFBRSxTQUFTO1lBQ2hCLElBQUksRUFBRSxJQUFJO1NBQ1gsQ0FBQztRQUVGLFVBQUssR0FBWSxDQUFDLENBQUM7UUFWakIsZ0JBQWdCLENBQUMsZUFBZSxDQUFDLENBQUM7SUFDcEMsQ0FBQzs7O1lBSkYsVUFBVSxTQUFDLEVBQUUsVUFBVSxFQUFFLE1BQU0sRUFBRTs7Ozs7OztJQUtoQyw2QkFBNEI7O0lBQzVCLDZCQUF5Qjs7SUFDekIsNkJBSUU7O0lBQ0YsK0JBQXVCOztJQUN2Qiw4QkFBbUIiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBJbmplY3RhYmxlIH0gZnJvbSAnQGFuZ3VsYXIvY29yZSc7XG5pbXBvcnQgeyBMb2FkaW5nQ3VzdG9tLCBMb2FkaW5nSWNvbiwgTG9hZGluZ1R5cGUgfSBmcm9tICcuL2xvYWRpbmcudHlwZXMnO1xuaW1wb3J0IHsgZGVwcmVjYXRpb24xMENvZyB9IGZyb20gJ0BkZWxvbi91dGlsJztcblxuLyoqXG4gKiBAZGVwcmVjYXRlZCBgTG9hZGluZ0NvbmZpZ2AgaXMgZ29pbmcgdG8gYmUgcmVtb3ZlZCBpbiAxMC4wLjAuIFBsZWFzZSByZWZlciB0byBodHRwczovL25nLWFsYWluLmNvbS9kb2NzL2dsb2JhbC1jb25maWdcbiAqL1xuQEluamVjdGFibGUoeyBwcm92aWRlZEluOiAncm9vdCcgfSlcbmV4cG9ydCBjbGFzcyBMb2FkaW5nQ29uZmlnIHtcbiAgY29uc3RydWN0b3IoKSB7XG4gICAgZGVwcmVjYXRpb24xMENvZyhgTG9hZGluZ0NvbmZpZ2ApO1xuICB9XG4gIHR5cGU/OiBMb2FkaW5nVHlwZSA9ICdzcGluJztcbiAgdGV4dD86IHN0cmluZyA9ICfliqDovb3kuK0uLi4nO1xuICBpY29uPzogTG9hZGluZ0ljb24gPSB7XG4gICAgdHlwZTogJ2xvYWRpbmcnLFxuICAgIHRoZW1lOiAnb3V0bGluZScsXG4gICAgc3BpbjogdHJ1ZSxcbiAgfTtcbiAgY3VzdG9tPzogTG9hZGluZ0N1c3RvbTtcbiAgZGVsYXk/OiBudW1iZXIgPSAwO1xufVxuIl19

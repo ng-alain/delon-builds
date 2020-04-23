@@ -1,5 +1,5 @@
 import { ElementRef, OnChanges, OnInit, SimpleChange, SimpleChanges } from '@angular/core';
-import { ImageConfig } from './image.config';
+import { AlainConfigService } from '@delon/theme';
 /**
  * img标签
  * + 支持微信、qq头像规则缩略图规则
@@ -12,7 +12,7 @@ export declare class ImageDirective implements OnChanges, OnInit {
     error: string;
     private inited;
     private imgEl;
-    constructor(cog: ImageConfig, el: ElementRef<HTMLImageElement>);
+    constructor(el: ElementRef<HTMLImageElement>, configSrv: AlainConfigService);
     ngOnInit(): void;
     ngOnChanges(changes: {
         [P in keyof this]?: SimpleChange;

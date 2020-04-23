@@ -1,8 +1,10 @@
 import { Injectable, ɵɵdefineInjectable, Component, ChangeDetectionStrategy, ViewEncapsulation, ɵɵinject, NgModule } from '@angular/core';
+import { deprecation10Cog } from '@delon/util';
 import { Overlay, OverlayModule } from '@angular/cdk/overlay';
 import { ComponentPortal, PortalModule } from '@angular/cdk/portal';
 import { Subject, timer } from 'rxjs';
 import { debounce } from 'rxjs/operators';
+import { AlainConfigService } from '@delon/theme';
 import { CommonModule } from '@angular/common';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
@@ -11,6 +13,9 @@ import { NzSpinModule } from 'ng-zorro-antd/spin';
  * @fileoverview added by tsickle
  * Generated from: loading.config.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @deprecated `LoadingConfig` is going to be removed in 10.0.0. Please refer to https://ng-alain.com/docs/global-config
  */
 class LoadingConfig {
     constructor() {
@@ -22,11 +27,14 @@ class LoadingConfig {
             spin: true,
         };
         this.delay = 0;
+        deprecation10Cog(`LoadingConfig`);
     }
 }
 LoadingConfig.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
+/** @nocollapse */
+LoadingConfig.ctorParameters = () => [];
 /** @nocollapse */ LoadingConfig.ɵprov = ɵɵdefineInjectable({ factory: function LoadingConfig_Factory() { return new LoadingConfig(); }, token: LoadingConfig, providedIn: "root" });
 if (false) {
     /** @type {?} */
@@ -84,15 +92,24 @@ if (false) {
  */
 class LoadingService {
     /**
-     * @param {?} cog
      * @param {?} overlay
+     * @param {?} configSrv
      */
-    constructor(cog, overlay) {
-        this.cog = cog;
+    constructor(overlay, configSrv) {
         this.overlay = overlay;
         this.compRef = null;
         this.opt = null;
         this.n$ = new Subject();
+        this.cog = configSrv.merge('loading', {
+            type: 'spin',
+            text: '加载中...',
+            icon: {
+                type: 'loading',
+                theme: 'outline',
+                spin: true,
+            },
+            delay: 0,
+        });
         this.loading$ = this.n$
             .asObservable()
             .pipe(debounce((/**
@@ -169,10 +186,10 @@ LoadingService.decorators = [
 ];
 /** @nocollapse */
 LoadingService.ctorParameters = () => [
-    { type: LoadingConfig },
-    { type: Overlay }
+    { type: Overlay },
+    { type: AlainConfigService }
 ];
-/** @nocollapse */ LoadingService.ɵprov = ɵɵdefineInjectable({ factory: function LoadingService_Factory() { return new LoadingService(ɵɵinject(LoadingConfig), ɵɵinject(Overlay)); }, token: LoadingService, providedIn: "root" });
+/** @nocollapse */ LoadingService.ɵprov = ɵɵdefineInjectable({ factory: function LoadingService_Factory() { return new LoadingService(ɵɵinject(Overlay), ɵɵinject(AlainConfigService)); }, token: LoadingService, providedIn: "root" });
 if (false) {
     /**
      * @type {?}
@@ -193,17 +210,17 @@ if (false) {
      * @type {?}
      * @private
      */
+    LoadingService.prototype.cog;
+    /**
+     * @type {?}
+     * @private
+     */
     LoadingService.prototype.n$;
     /**
      * @type {?}
      * @private
      */
     LoadingService.prototype.loading$;
-    /**
-     * @type {?}
-     * @private
-     */
-    LoadingService.prototype.cog;
     /**
      * @type {?}
      * @private
@@ -228,7 +245,7 @@ LoadingModule.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * Generated from: loading.interfaces.ts
+ * Generated from: loading.types.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**

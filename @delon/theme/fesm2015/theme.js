@@ -3689,7 +3689,13 @@ AlainThemeModule.ctorParameters = () => [
 function AlainConfig() { }
 if (false) {
     /** @type {?|undefined} */
+    AlainConfig.prototype.dataRange;
+    /** @type {?|undefined} */
     AlainConfig.prototype.errorCollect;
+    /** @type {?|undefined} */
+    AlainConfig.prototype.image;
+    /** @type {?|undefined} */
+    AlainConfig.prototype.loading;
     /** @type {?|undefined} */
     AlainConfig.prototype.chart;
 }
@@ -3708,6 +3714,47 @@ if (false) {
      * @type {?|undefined}
      */
     AlainErrorCollectConfig.prototype.offsetTop;
+}
+/**
+ * @record
+ */
+function AlainImageConfig() { }
+if (false) {
+    /**
+     * 默认大小，默认值：`64`，单位：px
+     * @type {?|undefined}
+     */
+    AlainImageConfig.prototype.size;
+    /**
+     * 错误图片，默认：`./assets/img/logo.svg`
+     * @type {?|undefined}
+     */
+    AlainImageConfig.prototype.error;
+}
+/**
+ * @record
+ */
+function AlainLoadingConfig() { }
+if (false) {
+    /**
+     * 类型，默认：`spin`
+     * @type {?|undefined}
+     */
+    AlainLoadingConfig.prototype.type;
+    /**
+     * 显示文本，默认：`加载中...`
+     * @type {?|undefined}
+     */
+    AlainLoadingConfig.prototype.text;
+    /** @type {?|undefined} */
+    AlainLoadingConfig.prototype.icon;
+    /** @type {?|undefined} */
+    AlainLoadingConfig.prototype.custom;
+    /**
+     * 延迟，默认：`0`
+     * @type {?|undefined}
+     */
+    AlainLoadingConfig.prototype.delay;
 }
 /**
  * @record
@@ -3745,13 +3792,22 @@ class AlainConfigService {
     }
     /**
      * @template R, T
+     * @param {?} componentName
+     * @param {?} defaultValues
+     * @return {?}
+     */
+    merge(componentName, defaultValues) {
+        return Object.assign(Object.assign({}, defaultValues), this.get(componentName));
+    }
+    /**
+     * @template R, T
      * @param {?} componentThis
      * @param {?} componentName
      * @param {?} defaultValues
      * @return {?}
      */
     attach(componentThis, componentName, defaultValues) {
-        Object.assign(componentThis, Object.assign(Object.assign({}, defaultValues), this.get(componentName)));
+        Object.assign(componentThis, this.merge(componentName, defaultValues));
     }
     /**
      * @template T
@@ -3791,6 +3847,102 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: src/config/types/date-picker.type.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ */
+function AlainDateRangePickerConfig() { }
+if (false) {
+    /**
+     * 默认：`yyyy-MM-dd`
+     * @type {?|undefined}
+     */
+    AlainDateRangePickerConfig.prototype.nzFormat;
+    /** @type {?|undefined} */
+    AlainDateRangePickerConfig.prototype.nzClassName;
+    /** @type {?|undefined} */
+    AlainDateRangePickerConfig.prototype.nzSize;
+    /** @type {?|undefined} */
+    AlainDateRangePickerConfig.prototype.nzStyle;
+    /**
+     * 默认：`true`
+     * @type {?|undefined}
+     */
+    AlainDateRangePickerConfig.prototype.nzAllowClear;
+    /**
+     * 默认：`false`
+     * @type {?|undefined}
+     */
+    AlainDateRangePickerConfig.prototype.nzAutoFocus;
+    /**
+     * 默认：`false`
+     * @type {?|undefined}
+     */
+    AlainDateRangePickerConfig.prototype.nzDisabled;
+    /** @type {?|undefined} */
+    AlainDateRangePickerConfig.prototype.nzDisabledDate;
+    /** @type {?|undefined} */
+    AlainDateRangePickerConfig.prototype.nzDisabledTime;
+    /**
+     * 默认：`{ position: 'relative' }`
+     * @type {?|undefined}
+     */
+    AlainDateRangePickerConfig.prototype.nzPopupStyle;
+    /** @type {?|undefined} */
+    AlainDateRangePickerConfig.prototype.nzDropdownClassName;
+    /** @type {?|undefined} */
+    AlainDateRangePickerConfig.prototype.nzRenderExtraFooter;
+    /** @type {?|undefined} */
+    AlainDateRangePickerConfig.prototype.nzShowTime;
+    /**
+     * 默认：`true`
+     * @type {?|undefined}
+     */
+    AlainDateRangePickerConfig.prototype.nzShowToday;
+    /** @type {?|undefined} */
+    AlainDateRangePickerConfig.prototype.nzMode;
+    /** @type {?|undefined} */
+    AlainDateRangePickerConfig.prototype.nzRanges;
+    /** @type {?|undefined} */
+    AlainDateRangePickerConfig.prototype.shortcuts;
+}
+/**
+ * @record
+ */
+function AlainDateRangePickerShortcut() { }
+if (false) {
+    /**
+     * Whether to enable, default: `false`
+     * @type {?|undefined}
+     */
+    AlainDateRangePickerShortcut.prototype.enabled;
+    /**
+     * Whether to close the panel after clicking, default: `true`
+     * @type {?|undefined}
+     */
+    AlainDateRangePickerShortcut.prototype.closed;
+    /**
+     * Shortcut list, default: `今天`, `昨天`, `近3天`, `近7天`, `本周`, `本月`, `全年`
+     * @type {?|undefined}
+     */
+    AlainDateRangePickerShortcut.prototype.list;
+}
+/**
+ * @record
+ */
+function AlainDateRangePickerShortcutItem() { }
+if (false) {
+    /** @type {?} */
+    AlainDateRangePickerShortcutItem.prototype.text;
+    /** @type {?} */
+    AlainDateRangePickerShortcutItem.prototype.fn;
+    /* Skipping unhandled member: [key: string]: NzSafeAny;*/
+}
+
+/**
+ * @fileoverview added by tsickle
  * Generated from: src/config/index.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
@@ -3801,7 +3953,7 @@ if (false) {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-const VERSION = new Version('9.0.0-rc.3-1acbd734');
+const VERSION = new Version('9.0.0-rc.3-6c4d53d2');
 
 /**
  * @fileoverview added by tsickle

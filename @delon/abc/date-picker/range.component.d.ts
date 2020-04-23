@@ -1,18 +1,18 @@
 import { EventEmitter, TemplateRef } from '@angular/core';
 import { ControlValueAccessor } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
+import { AlainConfigService, AlainDateRangePickerShortcut, AlainDateRangePickerShortcutItem } from '@delon/theme';
 import { FunctionProp } from 'ng-zorro-antd/core/types';
-import { DatePickerConfig, DateRangePickerShortcut, DateRangePickerShortcutItem } from './date-picker.config';
 export declare class RangePickerComponent implements ControlValueAccessor {
     private dom;
     private onChangeFn;
     private _shortcut;
-    private _cog;
+    private defaultShortcuts;
     private comp;
     value: Date[];
     ngModelEnd: Date;
-    set shortcut(val: DateRangePickerShortcut | null);
-    get shortcut(): DateRangePickerShortcut | null;
+    set shortcut(val: AlainDateRangePickerShortcut | null);
+    get shortcut(): AlainDateRangePickerShortcut | null;
     readonly ngModelEndChange: EventEmitter<Date>;
     nzAllowClear: boolean;
     nzAutoFocus: boolean;
@@ -36,7 +36,7 @@ export declare class RangePickerComponent implements ControlValueAccessor {
     nzRanges: any;
     readonly nzOnPanelChange: EventEmitter<any>;
     readonly nzOnOk: EventEmitter<any>;
-    constructor(cog: DatePickerConfig, dom: DomSanitizer);
+    constructor(dom: DomSanitizer, configSrv: AlainConfigService);
     _nzOnOpenChange(e: any): void;
     _nzOnPanelChange(e: any): void;
     _nzOnOk(e: any): void;
@@ -45,5 +45,5 @@ export declare class RangePickerComponent implements ControlValueAccessor {
     registerOnChange(fn: (val: Date) => void): void;
     registerOnTouched(_fn: () => void): void;
     setDisabledState(disabled: boolean): void;
-    clickShortcut(item: DateRangePickerShortcutItem): void;
+    clickShortcut(item: AlainDateRangePickerShortcutItem): void;
 }

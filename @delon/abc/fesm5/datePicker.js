@@ -1,167 +1,11 @@
-import { __decorate, __metadata, __spread } from 'tslib';
-import { Injectable, ɵɵdefineInjectable, EventEmitter, Component, forwardRef, ViewChild, Input, Output, NgModule } from '@angular/core';
+import { __assign, __decorate, __metadata, __spread } from 'tslib';
+import { EventEmitter, Component, forwardRef, ViewChild, Input, Output, Injectable, ɵɵdefineInjectable, NgModule } from '@angular/core';
 import { NG_VALUE_ACCESSOR, FormsModule } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
-import { getTimeDistance, deepMergeKey, fixEndTimeOfRange, InputBoolean } from '@delon/util';
+import { AlainConfigService } from '@delon/theme';
+import { getTimeDistance, deepMergeKey, fixEndTimeOfRange, InputBoolean, deprecation10Cog } from '@delon/util';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { CommonModule } from '@angular/common';
-
-/**
- * @fileoverview added by tsickle
- * Generated from: date-picker.config.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-var DateRangePickerConfig = /** @class */ (function () {
-    function DateRangePickerConfig() {
-        this.nzFormat = 'yyyy-MM-dd';
-        this.nzAllowClear = true;
-        this.nzAutoFocus = false;
-        this.nzDisabled = false;
-        this.nzPopupStyle = { position: 'relative' };
-        this.nzShowToday = true;
-        this.shortcuts = {
-            enabled: false,
-            closed: true,
-            list: [
-                {
-                    text: '今天',
-                    fn: (/**
-                     * @return {?}
-                     */
-                    function () { return getTimeDistance('today'); }),
-                },
-                {
-                    text: '昨天',
-                    fn: (/**
-                     * @return {?}
-                     */
-                    function () { return getTimeDistance('yesterday'); }),
-                },
-                {
-                    text: '近3天',
-                    fn: (/**
-                     * @return {?}
-                     */
-                    function () { return getTimeDistance(-2); }),
-                },
-                {
-                    text: '近7天',
-                    fn: (/**
-                     * @return {?}
-                     */
-                    function () { return getTimeDistance(-6); }),
-                },
-                {
-                    text: '本周',
-                    fn: (/**
-                     * @return {?}
-                     */
-                    function () { return getTimeDistance('week'); }),
-                },
-                {
-                    text: '本月',
-                    fn: (/**
-                     * @return {?}
-                     */
-                    function () { return getTimeDistance('month'); }),
-                },
-                {
-                    text: '全年',
-                    fn: (/**
-                     * @return {?}
-                     */
-                    function () { return getTimeDistance('year'); }),
-                },
-            ],
-        };
-    }
-    return DateRangePickerConfig;
-}());
-if (false) {
-    /** @type {?} */
-    DateRangePickerConfig.prototype.nzFormat;
-    /** @type {?} */
-    DateRangePickerConfig.prototype.nzClassName;
-    /** @type {?} */
-    DateRangePickerConfig.prototype.nzSize;
-    /** @type {?} */
-    DateRangePickerConfig.prototype.nzStyle;
-    /** @type {?} */
-    DateRangePickerConfig.prototype.nzAllowClear;
-    /** @type {?} */
-    DateRangePickerConfig.prototype.nzAutoFocus;
-    /** @type {?} */
-    DateRangePickerConfig.prototype.nzDisabled;
-    /** @type {?} */
-    DateRangePickerConfig.prototype.nzDisabledDate;
-    /** @type {?} */
-    DateRangePickerConfig.prototype.nzDisabledTime;
-    /** @type {?} */
-    DateRangePickerConfig.prototype.nzLocale;
-    /** @type {?} */
-    DateRangePickerConfig.prototype.nzPopupStyle;
-    /** @type {?} */
-    DateRangePickerConfig.prototype.nzDropdownClassName;
-    /** @type {?} */
-    DateRangePickerConfig.prototype.nzRenderExtraFooter;
-    /** @type {?} */
-    DateRangePickerConfig.prototype.nzPlaceHolder;
-    /** @type {?} */
-    DateRangePickerConfig.prototype.nzShowTime;
-    /** @type {?} */
-    DateRangePickerConfig.prototype.nzShowToday;
-    /** @type {?} */
-    DateRangePickerConfig.prototype.nzMode;
-    /** @type {?} */
-    DateRangePickerConfig.prototype.nzRanges;
-    /** @type {?} */
-    DateRangePickerConfig.prototype.shortcuts;
-}
-/**
- * @record
- */
-function DateRangePickerShortcut() { }
-if (false) {
-    /**
-     * Whether to enable, default: `false`
-     * @type {?|undefined}
-     */
-    DateRangePickerShortcut.prototype.enabled;
-    /**
-     * Whether to close the panel after clicking, default: `true`
-     * @type {?|undefined}
-     */
-    DateRangePickerShortcut.prototype.closed;
-    /**
-     * Shortcut list, default: `今天`, `昨天`, `近3天`, `近7天`, `本周`, `本月`, `全年`
-     * @type {?|undefined}
-     */
-    DateRangePickerShortcut.prototype.list;
-}
-/**
- * @record
- */
-function DateRangePickerShortcutItem() { }
-if (false) {
-    /** @type {?} */
-    DateRangePickerShortcutItem.prototype.text;
-    /** @type {?} */
-    DateRangePickerShortcutItem.prototype.fn;
-    /* Skipping unhandled member: [key: string]: NzSafeAny;*/
-}
-var DatePickerConfig = /** @class */ (function () {
-    function DatePickerConfig() {
-    }
-    DatePickerConfig.decorators = [
-        { type: Injectable, args: [{ providedIn: 'root' },] }
-    ];
-    /** @nocollapse */ DatePickerConfig.ɵprov = ɵɵdefineInjectable({ factory: function DatePickerConfig_Factory() { return new DatePickerConfig(); }, token: DatePickerConfig, providedIn: "root" });
-    return DatePickerConfig;
-}());
-if (false) {
-    /** @type {?} */
-    DatePickerConfig.prototype.range;
-}
 
 /**
  * @fileoverview added by tsickle
@@ -170,7 +14,7 @@ if (false) {
  */
 var RangePickerComponent = /** @class */ (function () {
     // #endregion
-    function RangePickerComponent(cog, dom) {
+    function RangePickerComponent(dom, configSrv) {
         this.dom = dom;
         this.value = [];
         this.ngModelEndChange = new EventEmitter();
@@ -181,8 +25,72 @@ var RangePickerComponent = /** @class */ (function () {
         this.nzShowToday = true;
         this.nzOnPanelChange = new EventEmitter();
         this.nzOnOk = new EventEmitter();
-        this._cog = deepMergeKey(new DateRangePickerConfig(), true, cog && cog.range);
-        Object.assign(this, this._cog);
+        /** @type {?} */
+        var cog = configSrv.merge('dataRange', {
+            nzFormat: 'yyyy-MM-dd',
+            nzAllowClear: true,
+            nzAutoFocus: false,
+            nzDisabled: false,
+            nzPopupStyle: { position: 'relative' },
+            nzShowToday: true,
+            shortcuts: {
+                enabled: false,
+                closed: true,
+                list: [
+                    {
+                        text: '今天',
+                        fn: (/**
+                         * @return {?}
+                         */
+                        function () { return getTimeDistance('today'); }),
+                    },
+                    {
+                        text: '昨天',
+                        fn: (/**
+                         * @return {?}
+                         */
+                        function () { return getTimeDistance('yesterday'); }),
+                    },
+                    {
+                        text: '近3天',
+                        fn: (/**
+                         * @return {?}
+                         */
+                        function () { return getTimeDistance(-2); }),
+                    },
+                    {
+                        text: '近7天',
+                        fn: (/**
+                         * @return {?}
+                         */
+                        function () { return getTimeDistance(-6); }),
+                    },
+                    {
+                        text: '本周',
+                        fn: (/**
+                         * @return {?}
+                         */
+                        function () { return getTimeDistance('week'); }),
+                    },
+                    {
+                        text: '本月',
+                        fn: (/**
+                         * @return {?}
+                         */
+                        function () { return getTimeDistance('month'); }),
+                    },
+                    {
+                        text: '全年',
+                        fn: (/**
+                         * @return {?}
+                         */
+                        function () { return getTimeDistance('year'); }),
+                    },
+                ],
+            },
+        });
+        this.defaultShortcuts = (/** @type {?} */ (__assign({}, cog.shortcuts)));
+        Object.assign(this, cog);
     }
     Object.defineProperty(RangePickerComponent.prototype, "shortcut", {
         get: /**
@@ -198,7 +106,7 @@ var RangePickerComponent = /** @class */ (function () {
         function (val) {
             var _this = this;
             /** @type {?} */
-            var item = (/** @type {?} */ (deepMergeKey({}, true, this._cog.shortcuts, val == null ? {} : val)));
+            var item = (/** @type {?} */ (deepMergeKey({}, true, this.defaultShortcuts, val == null ? {} : val)));
             if (typeof val === 'boolean') {
                 item.enabled = val;
             }
@@ -340,8 +248,8 @@ var RangePickerComponent = /** @class */ (function () {
     ];
     /** @nocollapse */
     RangePickerComponent.ctorParameters = function () { return [
-        { type: DatePickerConfig },
-        { type: DomSanitizer }
+        { type: DomSanitizer },
+        { type: AlainConfigService }
     ]; };
     RangePickerComponent.propDecorators = {
         comp: [{ type: ViewChild, args: ['comp', { static: false },] }],
@@ -392,7 +300,7 @@ if (false) {
      * @type {?}
      * @private
      */
-    RangePickerComponent.prototype._cog;
+    RangePickerComponent.prototype.defaultShortcuts;
     /**
      * @type {?}
      * @private
@@ -453,6 +361,177 @@ if (false) {
      * @private
      */
     RangePickerComponent.prototype.dom;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * Generated from: date-picker.config.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @deprecated `DateRangePickerConfig` is going to be removed in 10.0.0, Please use `AlainDateRangePickerConfig` instead
+ */
+var  /**
+ * @deprecated `DateRangePickerConfig` is going to be removed in 10.0.0, Please use `AlainDateRangePickerConfig` instead
+ */
+DateRangePickerConfig = /** @class */ (function () {
+    function DateRangePickerConfig() {
+        this.nzFormat = 'yyyy-MM-dd';
+        this.nzAllowClear = true;
+        this.nzAutoFocus = false;
+        this.nzDisabled = false;
+        this.nzPopupStyle = { position: 'relative' };
+        this.nzShowToday = true;
+        this.shortcuts = {
+            enabled: false,
+            closed: true,
+            list: [
+                {
+                    text: '今天',
+                    fn: (/**
+                     * @return {?}
+                     */
+                    function () { return getTimeDistance('today'); }),
+                },
+                {
+                    text: '昨天',
+                    fn: (/**
+                     * @return {?}
+                     */
+                    function () { return getTimeDistance('yesterday'); }),
+                },
+                {
+                    text: '近3天',
+                    fn: (/**
+                     * @return {?}
+                     */
+                    function () { return getTimeDistance(-2); }),
+                },
+                {
+                    text: '近7天',
+                    fn: (/**
+                     * @return {?}
+                     */
+                    function () { return getTimeDistance(-6); }),
+                },
+                {
+                    text: '本周',
+                    fn: (/**
+                     * @return {?}
+                     */
+                    function () { return getTimeDistance('week'); }),
+                },
+                {
+                    text: '本月',
+                    fn: (/**
+                     * @return {?}
+                     */
+                    function () { return getTimeDistance('month'); }),
+                },
+                {
+                    text: '全年',
+                    fn: (/**
+                     * @return {?}
+                     */
+                    function () { return getTimeDistance('year'); }),
+                },
+            ],
+        };
+    }
+    return DateRangePickerConfig;
+}());
+if (false) {
+    /** @type {?} */
+    DateRangePickerConfig.prototype.nzFormat;
+    /** @type {?} */
+    DateRangePickerConfig.prototype.nzClassName;
+    /** @type {?} */
+    DateRangePickerConfig.prototype.nzSize;
+    /** @type {?} */
+    DateRangePickerConfig.prototype.nzStyle;
+    /** @type {?} */
+    DateRangePickerConfig.prototype.nzAllowClear;
+    /** @type {?} */
+    DateRangePickerConfig.prototype.nzAutoFocus;
+    /** @type {?} */
+    DateRangePickerConfig.prototype.nzDisabled;
+    /** @type {?} */
+    DateRangePickerConfig.prototype.nzDisabledDate;
+    /** @type {?} */
+    DateRangePickerConfig.prototype.nzDisabledTime;
+    /** @type {?} */
+    DateRangePickerConfig.prototype.nzLocale;
+    /** @type {?} */
+    DateRangePickerConfig.prototype.nzPopupStyle;
+    /** @type {?} */
+    DateRangePickerConfig.prototype.nzDropdownClassName;
+    /** @type {?} */
+    DateRangePickerConfig.prototype.nzRenderExtraFooter;
+    /** @type {?} */
+    DateRangePickerConfig.prototype.nzPlaceHolder;
+    /** @type {?} */
+    DateRangePickerConfig.prototype.nzShowTime;
+    /** @type {?} */
+    DateRangePickerConfig.prototype.nzShowToday;
+    /** @type {?} */
+    DateRangePickerConfig.prototype.nzMode;
+    /** @type {?} */
+    DateRangePickerConfig.prototype.nzRanges;
+    /** @type {?} */
+    DateRangePickerConfig.prototype.shortcuts;
+}
+/**
+ * @deprecated `DateRangePickerShortcut` is going to be removed in 10.0.0, Please use `AlainDateRangePickerShortcut` instead
+ * @record
+ */
+function DateRangePickerShortcut() { }
+if (false) {
+    /**
+     * Whether to enable, default: `false`
+     * @type {?|undefined}
+     */
+    DateRangePickerShortcut.prototype.enabled;
+    /**
+     * Whether to close the panel after clicking, default: `true`
+     * @type {?|undefined}
+     */
+    DateRangePickerShortcut.prototype.closed;
+    /**
+     * Shortcut list, default: `今天`, `昨天`, `近3天`, `近7天`, `本周`, `本月`, `全年`
+     * @type {?|undefined}
+     */
+    DateRangePickerShortcut.prototype.list;
+}
+/**
+ * @deprecated `DateRangePickerShortcutItem` is going to be removed in 10.0.0, Please use `AlainDateRangePickerShortcutItem` instead
+ * @record
+ */
+function DateRangePickerShortcutItem() { }
+if (false) {
+    /** @type {?} */
+    DateRangePickerShortcutItem.prototype.text;
+    /** @type {?} */
+    DateRangePickerShortcutItem.prototype.fn;
+    /* Skipping unhandled member: [key: string]: NzSafeAny;*/
+}
+/**
+ * @deprecated `DatePickerConfig` is going to be removed in 10.0.0. Please refer to https://ng-alain.com/docs/global-config
+ */
+var DatePickerConfig = /** @class */ (function () {
+    function DatePickerConfig() {
+        deprecation10Cog("DatePickerConfig");
+    }
+    DatePickerConfig.decorators = [
+        { type: Injectable, args: [{ providedIn: 'root' },] }
+    ];
+    /** @nocollapse */
+    DatePickerConfig.ctorParameters = function () { return []; };
+    /** @nocollapse */ DatePickerConfig.ɵprov = ɵɵdefineInjectable({ factory: function DatePickerConfig_Factory() { return new DatePickerConfig(); }, token: DatePickerConfig, providedIn: "root" });
+    return DatePickerConfig;
+}());
+if (false) {
+    /** @type {?} */
+    DatePickerConfig.prototype.range;
 }
 
 /**

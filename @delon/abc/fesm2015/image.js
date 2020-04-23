@@ -1,41 +1,8 @@
 import { __decorate, __metadata } from 'tslib';
-import { Injectable, ɵɵdefineInjectable, Directive, ElementRef, Input, NgModule } from '@angular/core';
-import { InputNumber, DelonUtilModule } from '@delon/util';
+import { Directive, ElementRef, Input, Injectable, ɵɵdefineInjectable, NgModule } from '@angular/core';
+import { InputNumber, deprecation10Cog, DelonUtilModule } from '@delon/util';
+import { AlainConfigService } from '@delon/theme';
 import { CommonModule } from '@angular/common';
-
-/**
- * @fileoverview added by tsickle
- * Generated from: image.config.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class ImageConfig {
-    constructor() {
-        /**
-         * 默认大小，默认值：`64`，单位：px
-         */
-        this.size = 64;
-        /**
-         * 错误图片
-         */
-        this.error = './assets/img/logo.svg';
-    }
-}
-ImageConfig.decorators = [
-    { type: Injectable, args: [{ providedIn: 'root' },] }
-];
-/** @nocollapse */ ImageConfig.ɵprov = ɵɵdefineInjectable({ factory: function ImageConfig_Factory() { return new ImageConfig(); }, token: ImageConfig, providedIn: "root" });
-if (false) {
-    /**
-     * 默认大小，默认值：`64`，单位：px
-     * @type {?}
-     */
-    ImageConfig.prototype.size;
-    /**
-     * 错误图片
-     * @type {?}
-     */
-    ImageConfig.prototype.error;
-}
 
 /**
  * @fileoverview added by tsickle
@@ -50,14 +17,12 @@ if (false) {
  */
 class ImageDirective {
     /**
-     * @param {?} cog
      * @param {?} el
+     * @param {?} configSrv
      */
-    constructor(cog, el) {
-        this.size = 64;
-        this.error = './assets/img/logo.svg';
+    constructor(el, configSrv) {
         this.inited = false;
-        Object.assign(this, Object.assign(Object.assign({}, new ImageConfig()), cog));
+        configSrv.attach(this, 'image', { size: 64, error: `./assets/img/logo.svg` });
         this.imgEl = el.nativeElement;
     }
     /**
@@ -125,8 +90,8 @@ ImageDirective.decorators = [
 ];
 /** @nocollapse */
 ImageDirective.ctorParameters = () => [
-    { type: ImageConfig },
-    { type: ElementRef }
+    { type: ElementRef },
+    { type: AlainConfigService }
 ];
 ImageDirective.propDecorators = {
     src: [{ type: Input, args: ['_src',] }],
@@ -135,7 +100,7 @@ ImageDirective.propDecorators = {
 };
 __decorate([
     InputNumber(),
-    __metadata("design:type", Object)
+    __metadata("design:type", Number)
 ], ImageDirective.prototype, "size", void 0);
 if (false) {
     /** @type {?} */
@@ -154,6 +119,46 @@ if (false) {
      * @private
      */
     ImageDirective.prototype.imgEl;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * Generated from: image.config.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @deprecated `ImageConfig` is going to be removed in 10.0.0. Please refer to https://ng-alain.com/docs/global-config
+ */
+class ImageConfig {
+    constructor() {
+        /**
+         * 默认大小，默认值：`64`，单位：px
+         */
+        this.size = 64;
+        /**
+         * 错误图片
+         */
+        this.error = './assets/img/logo.svg';
+        deprecation10Cog(`ImageConfig`);
+    }
+}
+ImageConfig.decorators = [
+    { type: Injectable, args: [{ providedIn: 'root' },] }
+];
+/** @nocollapse */
+ImageConfig.ctorParameters = () => [];
+/** @nocollapse */ ImageConfig.ɵprov = ɵɵdefineInjectable({ factory: function ImageConfig_Factory() { return new ImageConfig(); }, token: ImageConfig, providedIn: "root" });
+if (false) {
+    /**
+     * 默认大小，默认值：`64`，单位：px
+     * @type {?}
+     */
+    ImageConfig.prototype.size;
+    /**
+     * 错误图片
+     * @type {?}
+     */
+    ImageConfig.prototype.error;
 }
 
 /**
