@@ -3,7 +3,6 @@ import { Component, ChangeDetectionStrategy, ViewEncapsulation, NgZone, ViewChil
 import { Chart } from '@antv/g2';
 import { AlainConfigService } from '@delon/theme';
 import { deprecation10, toDate, InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
-import format from 'date-fns/format';
 import { CommonModule } from '@angular/common';
 import { NzOutletModule } from 'ng-zorro-antd/core/outlet';
 
@@ -129,7 +128,7 @@ var G2TimelineComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        var _a = this, node = _a.node, height = _a.height, padding = _a.padding, slider = _a.slider, maxAxis = _a.maxAxis, theme = _a.theme, mask = _a.mask;
+        var _a = this, node = _a.node, height = _a.height, padding = _a.padding, slider = _a.slider, maxAxis = _a.maxAxis, theme = _a.theme;
         /** @type {?} */
         var chart = (this.chart = new Chart({
             container: node.nativeElement,
@@ -157,15 +156,12 @@ var G2TimelineComponent = /** @class */ (function () {
         if (slider) {
             chart.option('slider', {
                 height: 26,
+                start: 0,
+                end: 1,
                 trendCfg: {
                     isArea: false,
                 },
                 minLimit: 2,
-                mask: (/**
-                 * @param {?} val
-                 * @return {?}
-                 */
-                function (val) { return format(val, mask); }),
             });
         }
         this.attachChart();
@@ -216,7 +212,6 @@ var G2TimelineComponent = /** @class */ (function () {
         chart.height = height;
         chart.padding = padding;
         // TODO: compatible
-        // tslint:disable-next-line: deprecation
         if (data.find((/**
          * @param {?} w
          * @return {?}
@@ -228,7 +223,6 @@ var G2TimelineComponent = /** @class */ (function () {
              * @return {?}
              */
             function (item) {
-                // tslint:disable-next-line: deprecation
                 item.time = new Date((/** @type {?} */ (item.x)));
             }));
         }
