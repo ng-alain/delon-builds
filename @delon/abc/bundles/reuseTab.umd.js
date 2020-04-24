@@ -1593,6 +1593,8 @@
             /** @type {?} */
             var idx = this.index(url);
             /** @type {?} */
+            var isAdd = idx === -1;
+            /** @type {?} */
             var item = {
                 title: this.getTitle(url, _snapshot),
                 closable: this.getClosable(url, _snapshot),
@@ -1601,7 +1603,7 @@
                 _snapshot: _snapshot,
                 _handle: _handle,
             };
-            if (idx === -1) {
+            if (isAdd) {
                 if (this.count >= this._max) {
                     // Get the oldest closable location
                     /** @type {?} */
@@ -1619,11 +1621,11 @@
                 this._cached[idx] = item;
             }
             this.removeUrlBuffer = null;
-            this.di('#store', idx === -1 ? '[new]' : '[override]', url);
+            this.di('#store', isAdd ? '[new]' : '[override]', url);
             if (_handle && _handle.componentRef) {
                 this.runHook('_onReuseDestroy', url, _handle.componentRef);
             }
-            this._cachedChange.next({ active: 'add', item: item, list: this._cached });
+            this._cachedChange.next({ active: isAdd ? 'add' : 'override', item: item, list: this._cached });
         };
         /**
          * 决定是否允许应用缓存数据
