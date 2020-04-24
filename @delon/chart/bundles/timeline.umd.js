@@ -379,7 +379,7 @@
                         isArea: false,
                     },
                     minLimit: 2,
-                    formatMask: (/**
+                    mask: (/**
                      * @param {?} val
                      * @return {?}
                      */
