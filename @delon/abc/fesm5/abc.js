@@ -5,7 +5,7 @@ export { CountDownComponent, CountDownModule } from '@delon/abc/count-down';
 import { STModule } from '@delon/abc/st';
 export { STColumnSource, STComponent, STConfig, STDataSource, STExport, STModule, STRowDirective, STWidgetRegistry, ɵa, ɵb } from '@delon/abc/st';
 import { SVModule } from '@delon/abc/sv';
-export { SVComponent, SVConfig, SVContainerComponent, SVModule, SVTitleComponent } from '@delon/abc/sv';
+export { SVComponent, SVContainerComponent, SVModule, SVTitleComponent } from '@delon/abc/sv';
 import { SEModule } from '@delon/abc/se';
 export { SEComponent, SEConfig, SEContainerComponent, SEModule, SETitleComponent } from '@delon/abc/se';
 import { SGModule } from '@delon/abc/sg';

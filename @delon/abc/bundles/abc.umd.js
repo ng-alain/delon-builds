@@ -150,12 +150,6 @@
             return sv.SVComponent;
         }
     });
-    Object.defineProperty(exports, 'SVConfig', {
-        enumerable: true,
-        get: function () {
-            return sv.SVConfig;
-        }
-    });
     Object.defineProperty(exports, 'SVContainerComponent', {
         enumerable: true,
         get: function () {
