@@ -5027,7 +5027,7 @@ if (false) {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-var VERSION = new Version('9.0.0-rc.3-c4035b61');
+var VERSION = new Version('9.0.0-rc.3-151c02d6');
 
 /**
  * @fileoverview added by tsickle

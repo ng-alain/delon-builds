@@ -4,12 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@antv/g2'), require('@delon/theme'), require('@delon/util'), require('date-fns/format'), require('@angular/common'), require('ng-zorro-antd/core/outlet')) :
-    typeof define === 'function' && define.amd ? define('@delon/chart/timeline', ['exports', '@angular/core', '@antv/g2', '@delon/theme', '@delon/util', 'date-fns/format', '@angular/common', 'ng-zorro-antd/core/outlet'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.timeline = {}), global.ng.core, global.g2, global.delon.theme, global.delon.util, global.format, global.ng.common, global['ng-zorro-antd/core/outlet']));
-}(this, (function (exports, core, g2, theme, util, format, common, outlet) { 'use strict';
-
-    format = format && Object.prototype.hasOwnProperty.call(format, 'default') ? format['default'] : format;
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@antv/g2'), require('@delon/theme'), require('@delon/util'), require('@angular/common'), require('ng-zorro-antd/core/outlet')) :
+    typeof define === 'function' && define.amd ? define('@delon/chart/timeline', ['exports', '@angular/core', '@antv/g2', '@delon/theme', '@delon/util', '@angular/common', 'ng-zorro-antd/core/outlet'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.timeline = {}), global.ng.core, global.g2, global.delon.theme, global.delon.util, global.ng.common, global['ng-zorro-antd/core/outlet']));
+}(this, (function (exports, core, g2, theme, util, common, outlet) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -347,7 +345,7 @@
          * @return {?}
          */
         function () {
-            var _a = this, node = _a.node, height = _a.height, padding = _a.padding, slider = _a.slider, maxAxis = _a.maxAxis, theme = _a.theme, mask = _a.mask;
+            var _a = this, node = _a.node, height = _a.height, padding = _a.padding, slider = _a.slider, maxAxis = _a.maxAxis, theme = _a.theme;
             /** @type {?} */
             var chart = (this.chart = new g2.Chart({
                 container: node.nativeElement,
@@ -375,15 +373,12 @@
             if (slider) {
                 chart.option('slider', {
                     height: 26,
+                    start: 0,
+                    end: 1,
                     trendCfg: {
                         isArea: false,
                     },
                     minLimit: 2,
-                    mask: (/**
-                     * @param {?} options
-                     * @return {?}
-                     */
-                    function (options) { return format(options.val, mask); }),
                 });
             }
             this.attachChart();
@@ -434,7 +429,6 @@
             chart.height = height;
             chart.padding = padding;
             // TODO: compatible
-            // tslint:disable-next-line: deprecation
             if (data.find((/**
              * @param {?} w
              * @return {?}
@@ -446,7 +440,6 @@
                  * @return {?}
                  */
                 function (item) {
-                    // tslint:disable-next-line: deprecation
                     item.time = new Date((/** @type {?} */ (item.x)));
                 }));
             }
