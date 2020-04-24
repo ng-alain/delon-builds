@@ -146,7 +146,7 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     _click(e: Event, item: STData, col: STColumn): boolean;
     private closeOtherExpand;
     _rowClick(e: Event, item: STData, index: number): void;
-    _expandChange(item: STData): void;
+    _expandChange(item: STData, expand: boolean): void;
     /**
      * Remove a row in the table, like this:
      *
