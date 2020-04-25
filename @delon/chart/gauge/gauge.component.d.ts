@@ -1,6 +1,6 @@
 import { ElementRef, NgZone, OnChanges, OnDestroy, OnInit } from '@angular/core';
 import { LooseObject } from '@antv/g2/lib/interface';
-import { AlainConfigService } from '@delon/theme';
+import { AlainConfigService } from '@delon/util';
 export declare class G2GaugeComponent implements OnInit, OnDestroy, OnChanges {
     private el;
     private ngZone;

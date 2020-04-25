@@ -1,7 +1,8 @@
 import { AfterViewInit, ChangeDetectorRef, OnChanges, OnDestroy, OnInit, Renderer2, TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { ReuseTabService } from '@delon/abc/reuse-tab';
-import { AlainConfigService, AlainI18NService, MenuService, SettingsService, TitleService } from '@delon/theme';
+import { AlainI18NService, MenuService, SettingsService, TitleService } from '@delon/theme';
+import { AlainConfigService } from '@delon/util';
 interface PageHeaderPath {
     title?: string;
     link?: string[];

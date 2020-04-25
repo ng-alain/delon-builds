@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, NgZone, OnChanges, OnDestroy, OnInit, TemplateRef } from '@angular/core';
 import { LooseObject } from '@antv/g2/lib/interface';
-import { AlainConfigService } from '@delon/theme';
+import { AlainConfigService } from '@delon/util';
 export interface G2RadarData {
     name: string;
     label: string;

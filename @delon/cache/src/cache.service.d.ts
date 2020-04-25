@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { OnDestroy } from '@angular/core';
+import { AlainConfigService } from '@delon/util';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { Observable } from 'rxjs';
-import { DelonCacheConfig } from './cache.config';
 import { CacheNotifyResult, ICacheStore } from './interface';
 export declare class CacheService implements OnDestroy {
     private store;
@@ -13,7 +13,7 @@ export declare class CacheService implements OnDestroy {
     private freqTick;
     private freqTime;
     private cog;
-    constructor(_: DelonCacheConfig, store: ICacheStore, http: HttpClient);
+    constructor(cogSrv: AlainConfigService, store: ICacheStore, http: HttpClient);
     private deepGet;
     private pushMeta;
     private removeMeta;

@@ -1,7 +1,7 @@
 import { HttpClient, HttpEvent, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
+import { AlainConfigService } from '@delon/util';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { Observable } from 'rxjs';
-import { AlainThemeConfig } from '../../theme.config';
 export declare type _HttpHeaders = HttpHeaders | {
     [header: string]: string | string[];
 };
@@ -15,7 +15,7 @@ export declare type HttpObserve = 'body' | 'events' | 'response';
 export declare class _HttpClient {
     private http;
     private cog;
-    constructor(http: HttpClient, cog: AlainThemeConfig);
+    constructor(http: HttpClient, cogSrv: AlainConfigService);
     private _loading;
     /** 是否正在加载中 */
     get loading(): boolean;

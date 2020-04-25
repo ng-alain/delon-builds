@@ -1,7 +1,6 @@
-import { Injectable, ɵɵdefineInjectable, ɵɵinject, NgModule } from '@angular/core';
-import { deprecation10Cog, LazyService, DelonUtilModule } from '@delon/util';
 import { HttpClient } from '@angular/common/http';
-import { AlainConfigService } from '@delon/theme';
+import { Injectable, ɵɵdefineInjectable, ɵɵinject, NgModule } from '@angular/core';
+import { LazyService, AlainConfigService, DelonUtilModule } from '@delon/util';
 import { saveAs } from 'file-saver';
 import { CommonModule } from '@angular/common';
 
@@ -60,46 +59,6 @@ if (false) {
      * @type {?|undefined}
      */
     ZipSaveOptions.prototype.callback;
-}
-
-/**
- * @fileoverview added by tsickle
- * Generated from: zip.config.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
- * @deprecated `ZipConfig` is going to be removed in 10.0.0. Please refer to https://ng-alain.com/docs/global-config
- */
-class ZipConfig {
-    constructor() {
-        /**
-         * Zip library path
-         */
-        this.url = '//cdn.bootcss.com/jszip/3.1.5/jszip.min.js';
-        /**
-         * Defines which zip optional utils should get loaded
-         */
-        this.utils = [];
-        deprecation10Cog(`ZipConfig`);
-    }
-}
-ZipConfig.decorators = [
-    { type: Injectable, args: [{ providedIn: 'root' },] }
-];
-/** @nocollapse */
-ZipConfig.ctorParameters = () => [];
-/** @nocollapse */ ZipConfig.ɵprov = ɵɵdefineInjectable({ factory: function ZipConfig_Factory() { return new ZipConfig(); }, token: ZipConfig, providedIn: "root" });
-if (false) {
-    /**
-     * Zip library path
-     * @type {?}
-     */
-    ZipConfig.prototype.url;
-    /**
-     * Defines which zip optional utils should get loaded
-     * @type {?}
-     */
-    ZipConfig.prototype.utils;
 }
 
 /**
@@ -333,5 +292,5 @@ ZipModule.decorators = [
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { ZipConfig, ZipModule, ZipService };
+export { ZipModule, ZipService };
 //# sourceMappingURL=zip.js.map

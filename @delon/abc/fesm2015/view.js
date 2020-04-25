@@ -1,7 +1,7 @@
 import { __decorate, __metadata } from 'tslib';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input, ElementRef, Host, Optional, Renderer2, ViewChild, NgModule } from '@angular/core';
-import { AlainConfigService, ResponsiveService } from '@delon/theme';
-import { InputNumber, isEmpty, InputBoolean, DelonUtilModule } from '@delon/util';
+import { AlainConfigService, InputNumber, isEmpty, InputBoolean, DelonUtilModule } from '@delon/util';
+import { ResponsiveService } from '@delon/theme';
 import { ObserversModule } from '@angular/cdk/observers';
 import { CommonModule } from '@angular/common';
 import { NzOutletModule } from 'ng-zorro-antd/core/outlet';

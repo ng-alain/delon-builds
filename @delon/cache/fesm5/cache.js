@@ -1,6 +1,7 @@
 import { __assign } from 'tslib';
 import { HttpClient } from '@angular/common/http';
-import { Injectable, ɵɵdefineInjectable, InjectionToken, Inject, ɵɵinject, NgModule } from '@angular/core';
+import { InjectionToken, Injectable, Inject, ɵɵdefineInjectable, ɵɵinject, NgModule } from '@angular/core';
+import { AlainConfigService } from '@delon/util';
 import addSeconds from 'date-fns/addSeconds';
 import { Observable, of, BehaviorSubject } from 'rxjs';
 import { tap, map } from 'rxjs/operators';
@@ -54,81 +55,6 @@ if (false) {
     CacheNotifyResult.prototype.type;
     /** @type {?|undefined} */
     CacheNotifyResult.prototype.value;
-}
-
-/**
- * @fileoverview added by tsickle
- * Generated from: src/cache.config.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-var DelonCacheConfig = /** @class */ (function () {
-    function DelonCacheConfig() {
-        /**
-         * Cache mode, default: `promise`
-         * - `promise` Convention mode, allowing `key` to get data as http
-         * - `none` Normal mode
-         */
-        this.mode = 'promise';
-        /**
-         * Rename the return parameters, for example:
-         * - `null` The response body is content
-         * - `list` The response body should be `{ list: [] }`
-         * - `result.list` The response body should be `{ result: { list: [] } }`
-         */
-        this.reName = '';
-        /**
-         * Key prefix of persistent data
-         */
-        this.prefix = '';
-        /**
-         * Key name of persistent data metadata storage
-         */
-        this.meta_key = '__cache_meta';
-    }
-    DelonCacheConfig.decorators = [
-        { type: Injectable, args: [{ providedIn: 'root' },] }
-    ];
-    /** @nocollapse */ DelonCacheConfig.ɵprov = ɵɵdefineInjectable({ factory: function DelonCacheConfig_Factory() { return new DelonCacheConfig(); }, token: DelonCacheConfig, providedIn: "root" });
-    return DelonCacheConfig;
-}());
-if (false) {
-    /**
-     * Cache mode, default: `promise`
-     * - `promise` Convention mode, allowing `key` to get data as http
-     * - `none` Normal mode
-     * @type {?}
-     */
-    DelonCacheConfig.prototype.mode;
-    /**
-     * Rename the return parameters, for example:
-     * - `null` The response body is content
-     * - `list` The response body should be `{ list: [] }`
-     * - `result.list` The response body should be `{ result: { list: [] } }`
-     * @type {?}
-     */
-    DelonCacheConfig.prototype.reName;
-    /**
-     * Set the default storage type
-     * - `m` Storage via memory
-     * - `s` Storage via `localStorage`
-     * @type {?}
-     */
-    DelonCacheConfig.prototype.type;
-    /**
-     * Set the default expire time (Unit: second)
-     * @type {?}
-     */
-    DelonCacheConfig.prototype.expire;
-    /**
-     * Key prefix of persistent data
-     * @type {?}
-     */
-    DelonCacheConfig.prototype.prefix;
-    /**
-     * Key name of persistent data metadata storage
-     * @type {?}
-     */
-    DelonCacheConfig.prototype.meta_key;
 }
 
 /**
@@ -195,15 +121,19 @@ var LocalStorageCacheService = /** @class */ (function () {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var CacheService = /** @class */ (function () {
-    function CacheService(_, store, http) {
+    function CacheService(cogSrv, store, http) {
         this.store = store;
         this.http = http;
         this.memory = new Map();
         this.notifyBuffer = new Map();
         this.meta = new Set();
         this.freqTick = 3000;
-        this.cog = {};
-        Object.assign(this.cog, __assign(__assign({}, new DelonCacheConfig()), _));
+        this.cog = cogSrv.merge('cache', {
+            mode: 'promise',
+            reName: '',
+            prefix: '',
+            meta_key: '__cache_meta',
+        });
         this.loadMeta();
         this.startExpireNotify();
     }
@@ -758,11 +688,11 @@ var CacheService = /** @class */ (function () {
     ];
     /** @nocollapse */
     CacheService.ctorParameters = function () { return [
-        { type: DelonCacheConfig },
+        { type: AlainConfigService },
         { type: undefined, decorators: [{ type: Inject, args: [DC_STORE_STORAGE_TOKEN,] }] },
         { type: HttpClient }
     ]; };
-    /** @nocollapse */ CacheService.ɵprov = ɵɵdefineInjectable({ factory: function CacheService_Factory() { return new CacheService(ɵɵinject(DelonCacheConfig), ɵɵinject(DC_STORE_STORAGE_TOKEN), ɵɵinject(HttpClient)); }, token: CacheService, providedIn: "root" });
+    /** @nocollapse */ CacheService.ɵprov = ɵɵdefineInjectable({ factory: function CacheService_Factory() { return new CacheService(ɵɵinject(AlainConfigService), ɵɵinject(DC_STORE_STORAGE_TOKEN), ɵɵinject(HttpClient)); }, token: CacheService, providedIn: "root" });
     return CacheService;
 }());
 if (false) {
@@ -834,5 +764,5 @@ var DelonCacheModule = /** @class */ (function () {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { CacheService, DelonCacheConfig, DelonCacheModule, DC_STORE_STORAGE_TOKEN as ɵa, DC_STORE_STORAGE_TOKEN_FACTORY as ɵb, LocalStorageCacheService as ɵc };
+export { CacheService, DelonCacheModule, DC_STORE_STORAGE_TOKEN as ɵa, DC_STORE_STORAGE_TOKEN_FACTORY as ɵb, LocalStorageCacheService as ɵc };
 //# sourceMappingURL=cache.js.map

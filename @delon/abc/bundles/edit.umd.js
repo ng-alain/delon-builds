@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/theme'), require('@delon/util'), require('@angular/forms'), require('ng-zorro-antd/core/animation'), require('@angular/common'), require('ng-zorro-antd/core/outlet'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/tooltip')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/se', ['exports', '@angular/core', '@delon/theme', '@delon/util', '@angular/forms', 'ng-zorro-antd/core/animation', '@angular/common', 'ng-zorro-antd/core/outlet', 'ng-zorro-antd/icon', 'ng-zorro-antd/tooltip'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.se = {}), global.ng.core, global.delon.theme, global.delon.util, global.ng.forms, global.animation, global.ng.common, global['ng-zorro-antd/core/outlet'], global['ng-zorro-antd/icon'], global['ng-zorro-antd/tooltip']));
-}(this, (function (exports, core, theme, util, forms, animation, common, outlet, icon, tooltip) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util'), require('@angular/forms'), require('@delon/theme'), require('ng-zorro-antd/core/animation'), require('@angular/common'), require('ng-zorro-antd/core/outlet'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/tooltip')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/se', ['exports', '@angular/core', '@delon/util', '@angular/forms', '@delon/theme', 'ng-zorro-antd/core/animation', '@angular/common', 'ng-zorro-antd/core/outlet', 'ng-zorro-antd/icon', 'ng-zorro-antd/tooltip'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.se = {}), global.ng.core, global.delon.util, global.ng.forms, global.delon.theme, global.animation, global.ng.common, global['ng-zorro-antd/core/outlet'], global['ng-zorro-antd/icon'], global['ng-zorro-antd/tooltip']));
+}(this, (function (exports, core, util, forms, theme, animation, common, outlet, icon, tooltip) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -290,7 +290,7 @@
         ];
         /** @nocollapse */
         SEContainerComponent.ctorParameters = function () { return [
-            { type: theme.AlainConfigService }
+            { type: util.AlainConfigService }
         ]; };
         SEContainerComponent.propDecorators = {
             colInCon: [{ type: core.Input, args: ['se-container',] }],
@@ -849,87 +849,6 @@
 
     /**
      * @fileoverview added by tsickle
-     * Generated from: se.config.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @deprecated `SEConfig` is going to be removed in 10.0.0. Please refer to https://ng-alain.com/docs/global-config
-     */
-    var SEConfig = /** @class */ (function () {
-        function SEConfig() {
-            /**
-             * 大小，默认：`default`
-             * - `compact` 紧凑型，强制忽略 `error`、`extra` 展示
-             */
-            this.size = 'default';
-            /**
-             * 布局类型，等同 `nzLayout`
-             * - `inline` 时强制大小为 `compact`
-             */
-            this.nzLayout = 'horizontal';
-            /**
-             * 间距，当 `nzLayout:horizontal` 时有效，默认：`32`
-             */
-            this.gutter = 32;
-            /**
-             * 列数，默认：`2`
-             */
-            this.col = 2;
-            /**
-             * 标签文本宽度，单位：`px`，默认：`150`
-             */
-            this.labelWidth = 150;
-            /**
-             * 是否立即呈现错误视觉
-             */
-            this.firstVisual = false;
-            util.deprecation10Cog("SEConfig");
-        }
-        SEConfig.decorators = [
-            { type: core.Injectable, args: [{ providedIn: 'root' },] }
-        ];
-        /** @nocollapse */
-        SEConfig.ctorParameters = function () { return []; };
-        /** @nocollapse */ SEConfig.ɵprov = core.ɵɵdefineInjectable({ factory: function SEConfig_Factory() { return new SEConfig(); }, token: SEConfig, providedIn: "root" });
-        return SEConfig;
-    }());
-    if (false) {
-        /**
-         * 大小，默认：`default`
-         * - `compact` 紧凑型，强制忽略 `error`、`extra` 展示
-         * @type {?}
-         */
-        SEConfig.prototype.size;
-        /**
-         * 布局类型，等同 `nzLayout`
-         * - `inline` 时强制大小为 `compact`
-         * @type {?}
-         */
-        SEConfig.prototype.nzLayout;
-        /**
-         * 间距，当 `nzLayout:horizontal` 时有效，默认：`32`
-         * @type {?}
-         */
-        SEConfig.prototype.gutter;
-        /**
-         * 列数，默认：`2`
-         * @type {?}
-         */
-        SEConfig.prototype.col;
-        /**
-         * 标签文本宽度，单位：`px`，默认：`150`
-         * @type {?}
-         */
-        SEConfig.prototype.labelWidth;
-        /**
-         * 是否立即呈现错误视觉
-         * @type {?}
-         */
-        SEConfig.prototype.firstVisual;
-    }
-
-    /**
-     * @fileoverview added by tsickle
      * Generated from: se.module.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
@@ -949,7 +868,6 @@
     }());
 
     exports.SEComponent = SEComponent;
-    exports.SEConfig = SEConfig;
     exports.SEContainerComponent = SEContainerComponent;
     exports.SEModule = SEModule;
     exports.SETitleComponent = SETitleComponent;

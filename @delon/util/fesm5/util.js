@@ -15,7 +15,7 @@ import subMonths from 'date-fns/subMonths';
 import subWeeks from 'date-fns/subWeeks';
 import subYears from 'date-fns/subYears';
 import { DOCUMENT, CommonModule } from '@angular/common';
-import { Injectable, Inject, ɵɵdefineInjectable, ɵɵinject, isDevMode, NgModule } from '@angular/core';
+import { Injectable, Inject, ɵɵdefineInjectable, ɵɵinject, isDevMode, InjectionToken, Optional, NgModule } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { share, filter } from 'rxjs/operators';
 import { environment } from 'ng-zorro-antd/core/environments';
@@ -768,14 +768,6 @@ function (comp, from, to) {
     warnDeprecation(comp + " => '" + from + "' is going to be removed in 10.0.0" + (to ? ", Please use '" + to + "' instead" : "") + ".");
 });
 /** @type {?} */
-var deprecation10Cog = (/**
- * @param {?} cogName
- * @return {?}
- */
-function (cogName) {
-    warnDeprecation(cogName + " is going to be removed in 10.0.0. Please refer to https://ng-alain.com/docs/global-config");
-});
-/** @type {?} */
 var warnDeprecation = (/**
  * @param {...?} args
  * @return {?}
@@ -1002,84 +994,1147 @@ function updateHostClass(el, renderer, classMap, cleanAll) {
 
 /**
  * @fileoverview added by tsickle
- * Generated from: src/array/array.config.ts
+ * Generated from: src/other/index.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * Generated from: src/config/abc/error-collect.type.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * @record
  */
-function ArrayConfig() { }
+function AlainErrorCollectConfig() { }
+if (false) {
+    /**
+     * 监听频率，默认：`500`
+     * @type {?|undefined}
+     */
+    AlainErrorCollectConfig.prototype.freq;
+    /**
+     * 顶部偏移值，默认：`145`
+     * @type {?|undefined}
+     */
+    AlainErrorCollectConfig.prototype.offsetTop;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * Generated from: src/config/abc/image.type.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ */
+function AlainImageConfig() { }
+if (false) {
+    /**
+     * 默认大小，默认值：`64`，单位：px
+     * @type {?|undefined}
+     */
+    AlainImageConfig.prototype.size;
+    /**
+     * 错误图片，默认：`./assets/img/logo.svg`
+     * @type {?|undefined}
+     */
+    AlainImageConfig.prototype.error;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * Generated from: src/config/abc/date-picker.type.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ */
+function AlainDateRangePickerConfig() { }
+if (false) {
+    /**
+     * 默认：`yyyy-MM-dd`
+     * @type {?|undefined}
+     */
+    AlainDateRangePickerConfig.prototype.nzFormat;
+    /** @type {?|undefined} */
+    AlainDateRangePickerConfig.prototype.nzClassName;
+    /** @type {?|undefined} */
+    AlainDateRangePickerConfig.prototype.nzSize;
+    /** @type {?|undefined} */
+    AlainDateRangePickerConfig.prototype.nzStyle;
+    /**
+     * 默认：`true`
+     * @type {?|undefined}
+     */
+    AlainDateRangePickerConfig.prototype.nzAllowClear;
+    /**
+     * 默认：`false`
+     * @type {?|undefined}
+     */
+    AlainDateRangePickerConfig.prototype.nzAutoFocus;
+    /** @type {?|undefined} */
+    AlainDateRangePickerConfig.prototype.nzDisabledDate;
+    /** @type {?|undefined} */
+    AlainDateRangePickerConfig.prototype.nzDisabledTime;
+    /**
+     * 默认：`{ position: 'relative' }`
+     * @type {?|undefined}
+     */
+    AlainDateRangePickerConfig.prototype.nzPopupStyle;
+    /** @type {?|undefined} */
+    AlainDateRangePickerConfig.prototype.nzDropdownClassName;
+    /** @type {?|undefined} */
+    AlainDateRangePickerConfig.prototype.nzRenderExtraFooter;
+    /** @type {?|undefined} */
+    AlainDateRangePickerConfig.prototype.nzShowTime;
+    /**
+     * 默认：`true`
+     * @type {?|undefined}
+     */
+    AlainDateRangePickerConfig.prototype.nzShowToday;
+    /** @type {?|undefined} */
+    AlainDateRangePickerConfig.prototype.nzMode;
+    /** @type {?|undefined} */
+    AlainDateRangePickerConfig.prototype.nzRanges;
+    /** @type {?|undefined} */
+    AlainDateRangePickerConfig.prototype.shortcuts;
+}
+/**
+ * @record
+ */
+function AlainDateRangePickerShortcut() { }
+if (false) {
+    /**
+     * Whether to enable, default: `false`
+     * @type {?|undefined}
+     */
+    AlainDateRangePickerShortcut.prototype.enabled;
+    /**
+     * Whether to close the panel after clicking, default: `true`
+     * @type {?|undefined}
+     */
+    AlainDateRangePickerShortcut.prototype.closed;
+    /**
+     * Shortcut list, default: `今天`, `昨天`, `近3天`, `近7天`, `本周`, `本月`, `全年`
+     * @type {?|undefined}
+     */
+    AlainDateRangePickerShortcut.prototype.list;
+}
+/**
+ * @record
+ */
+function AlainDateRangePickerShortcutItem() { }
+if (false) {
+    /** @type {?} */
+    AlainDateRangePickerShortcutItem.prototype.text;
+    /** @type {?} */
+    AlainDateRangePickerShortcutItem.prototype.fn;
+    /* Skipping unhandled member: [key: string]: NzSafeAny;*/
+}
+
+/**
+ * @fileoverview added by tsickle
+ * Generated from: src/config/abc/loading.type.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ */
+function AlainLoadingConfig() { }
+if (false) {
+    /**
+     * 类型，默认：`spin`
+     * @type {?|undefined}
+     */
+    AlainLoadingConfig.prototype.type;
+    /**
+     * 显示文本，默认：`加载中...`
+     * @type {?|undefined}
+     */
+    AlainLoadingConfig.prototype.text;
+    /** @type {?|undefined} */
+    AlainLoadingConfig.prototype.icon;
+    /** @type {?|undefined} */
+    AlainLoadingConfig.prototype.custom;
+    /**
+     * 延迟，默认：`0`
+     * @type {?|undefined}
+     */
+    AlainLoadingConfig.prototype.delay;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * Generated from: src/config/abc/lodop.type.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ */
+function AlainLodopConfig() { }
+if (false) {
+    /**
+     * 注册信息：主注册号
+     * @type {?|undefined}
+     */
+    AlainLodopConfig.prototype.license;
+    /**
+     * 注册信息：附加注册号A
+     * @type {?|undefined}
+     */
+    AlainLodopConfig.prototype.licenseA;
+    /**
+     * 注册信息：附加注册号B
+     * @type {?|undefined}
+     */
+    AlainLodopConfig.prototype.licenseB;
+    /**
+     * 注册信息：注册单位名称
+     * @type {?|undefined}
+     */
+    AlainLodopConfig.prototype.companyName;
+    /**
+     * Lodop 远程脚本URL地址，**注意**务必使用 `name` 属性指定变量值
+     *
+     * - http://localhost:18000/CLodopfuncs.js
+     * - https://localhost:8443/CLodopfuncs.js [默认]
+     * @type {?|undefined}
+     */
+    AlainLodopConfig.prototype.url;
+    /**
+     * Lodop 变量名，默认：`CLODOP`
+     * @type {?|undefined}
+     */
+    AlainLodopConfig.prototype.name;
+    /**
+     * 检查次数，默认 `100`，当检查超过时视为异常，这是因为 Lodop 需要连接 WebSocket
+     * @type {?|undefined}
+     */
+    AlainLodopConfig.prototype.checkMaxCount;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * Generated from: src/config/abc/page-header.type.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ */
+function AlainPageHeaderConfig() { }
+if (false) {
+    /**
+     * 首页文本，若指定空表示不显示，默认：`首页`
+     * @type {?|undefined}
+     */
+    AlainPageHeaderConfig.prototype.home;
+    /**
+     * 首页链接，默认：`/`
+     * @type {?|undefined}
+     */
+    AlainPageHeaderConfig.prototype.homeLink;
+    /**
+     * 首页链接国际化参数
+     * @type {?|undefined}
+     */
+    AlainPageHeaderConfig.prototype.homeI18n;
+    /**
+     * 自动生成导航，以当前路由从主菜单中定位，默认：`true`
+     * @type {?|undefined}
+     */
+    AlainPageHeaderConfig.prototype.autoBreadcrumb;
+    /**
+     * 自动向上递归查找，默认：`false`
+     *  - 菜单数据源包含 `/ware`，则 `/ware/1` 也视为 `/ware` 项
+     * @type {?|undefined}
+     */
+    AlainPageHeaderConfig.prototype.recursiveBreadcrumb;
+    /**
+     * 自动生成标题，以当前路由从主菜单中定位，默认：`true`
+     * @type {?|undefined}
+     */
+    AlainPageHeaderConfig.prototype.autoTitle;
+    /**
+     * 是否自动将标准信息同步至 `TitleService`、`ReuseService` 下，默认：`true`
+     * @type {?|undefined}
+     */
+    AlainPageHeaderConfig.prototype.syncTitle;
+    /**
+     * 是否固定模式，默认：`false`
+     * @type {?|undefined}
+     */
+    AlainPageHeaderConfig.prototype.fixed;
+    /**
+     * 固定偏移值，默认：`64`
+     * @type {?|undefined}
+     */
+    AlainPageHeaderConfig.prototype.fixedOffsetTop;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * Generated from: src/config/abc/qr.type.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ */
+function AlainQRConfig() { }
+if (false) {
+    /**
+     * 背景，默认：`white`
+     * @type {?|undefined}
+     */
+    AlainQRConfig.prototype.background;
+    /**
+     * 背景透明级别，范围：`0-1` 之间，默认：`1`
+     * @type {?|undefined}
+     */
+    AlainQRConfig.prototype.backgroundAlpha;
+    /**
+     * 前景，默认：`black`
+     * @type {?|undefined}
+     */
+    AlainQRConfig.prototype.foreground;
+    /**
+     * 前景透明级别，范围：`0-1` 之间，默认：`1`
+     * @type {?|undefined}
+     */
+    AlainQRConfig.prototype.foregroundAlpha;
+    /**
+     * 误差校正级别，默认：`L`
+     * @type {?|undefined}
+     */
+    AlainQRConfig.prototype.level;
+    /**
+     * 二维码输出图片MIME类型，默认：`image/png`
+     * @type {?|undefined}
+     */
+    AlainQRConfig.prototype.mime;
+    /**
+     * 内边距（单位：px），默认：`10`
+     * @type {?|undefined}
+     */
+    AlainQRConfig.prototype.padding;
+    /**
+     * 大小（单位：px），默认：`220`
+     * @type {?|undefined}
+     */
+    AlainQRConfig.prototype.size;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * Generated from: src/config/abc/se.type.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ */
+function AlainSEConfig() { }
+if (false) {
+    /**
+     * 大小，默认：`default`
+     * - `compact` 紧凑型，强制忽略 `error`、`extra` 展示
+     * @type {?|undefined}
+     */
+    AlainSEConfig.prototype.size;
+    /**
+     * 布局类型，等同 `nzLayout`，默认：`horizontal`
+     * - `inline` 时强制大小为 `compact`
+     * @type {?|undefined}
+     */
+    AlainSEConfig.prototype.nzLayout;
+    /**
+     * 间距，当 `nzLayout:horizontal` 时有效，默认：`32`
+     * @type {?|undefined}
+     */
+    AlainSEConfig.prototype.gutter;
+    /**
+     * 列数，默认：`2`
+     * @type {?|undefined}
+     */
+    AlainSEConfig.prototype.col;
+    /**
+     * 标签文本宽度，单位：`px`，默认：`150`
+     * @type {?|undefined}
+     */
+    AlainSEConfig.prototype.labelWidth;
+    /**
+     * 是否立即呈现错误视觉，默认：`false`
+     * @type {?|undefined}
+     */
+    AlainSEConfig.prototype.firstVisual;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * Generated from: src/config/abc/sv.type.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var AlainSVConfig = /** @class */ (function () {
+    function AlainSVConfig() {
+    }
+    return AlainSVConfig;
+}());
+if (false) {
+    /**
+     * 大小，默认：`large`
+     * @type {?}
+     */
+    AlainSVConfig.prototype.size;
+    /**
+     * 间距，默认：`32`
+     * @type {?}
+     */
+    AlainSVConfig.prototype.gutter;
+    /**
+     * 布局，默认：`horizontal`
+     * @type {?}
+     */
+    AlainSVConfig.prototype.layout;
+    /**
+     * 列数，默认：`3`
+     * @type {?}
+     */
+    AlainSVConfig.prototype.col;
+    /**
+     * 是否显示默认值，当内容为空值时显示 `-`，默认：`true`
+     * @type {?}
+     */
+    AlainSVConfig.prototype.default;
+    /**
+     * `label` 固定宽度，若 `null` 或 `undefined` 表示非固定，默认：`null`
+     * @type {?}
+     */
+    AlainSVConfig.prototype.labelWidth;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * Generated from: src/config/abc/sg.type.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ */
+function AlainSGConfig() { }
+if (false) {
+    /**
+     * 间距，默认：`32`
+     * @type {?|undefined}
+     */
+    AlainSGConfig.prototype.gutter;
+    /**
+     * 列数，默认：`2`
+     * @type {?|undefined}
+     */
+    AlainSGConfig.prototype.col;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * Generated from: src/config/abc/st.type.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ */
+function AlainSTConfig() { }
+if (false) {
+    /**
+     * 起始页码，默认为：`1`
+     * @type {?|undefined}
+     */
+    AlainSTConfig.prototype.pi;
+    /**
+     * 每页数量，当设置为 `0` 表示不分页，默认：`10`
+     * @type {?|undefined}
+     */
+    AlainSTConfig.prototype.ps;
+    /**
+     * 是否显示边框，默认：`false`
+     * @type {?|undefined}
+     */
+    AlainSTConfig.prototype.bordered;
+    /**
+     * table大小，默认：`default`
+     * @type {?|undefined}
+     */
+    AlainSTConfig.prototype.size;
+    /**
+     * 是否开启响应式，默认：`true`
+     * @type {?|undefined}
+     */
+    AlainSTConfig.prototype.responsive;
+    /**
+     * 是否在小屏幕下才显示顶部与底部，默认：`false`
+     * @type {?|undefined}
+     */
+    AlainSTConfig.prototype.responsiveHideHeaderFooter;
+    /**
+     * 请求体配置
+     * @type {?|undefined}
+     */
+    AlainSTConfig.prototype.req;
+    /**
+     * 返回体配置
+     * @type {?|undefined}
+     */
+    AlainSTConfig.prototype.res;
+    /**
+     * 返回体配置
+     * @type {?|undefined}
+     */
+    AlainSTConfig.prototype.page;
+    /**
+     * 重命名排序值，`columns` 的重命名高于属性
+     * @type {?|undefined}
+     */
+    AlainSTConfig.prototype.sortReName;
+    /**
+     * 单排序规则
+     * - 若不指定，则返回：`columnName=ascend|descend`
+     * - 若指定，则返回：`sort=columnName.(ascend|descend)`
+     * @type {?|undefined}
+     */
+    AlainSTConfig.prototype.singleSort;
+    /**
+     * 是否多排序，当 `sort` 多个相同值时自动合并，建议后端支持时使用
+     * @type {?|undefined}
+     */
+    AlainSTConfig.prototype.multiSort;
+    /**
+     * 按钮模态框配置
+     * @type {?|undefined}
+     */
+    AlainSTConfig.prototype.modal;
+    /**
+     * 按钮抽屉配置
+     * @type {?|undefined}
+     */
+    AlainSTConfig.prototype.drawer;
+    /**
+     * 气泡参数
+     * @type {?|undefined}
+     */
+    AlainSTConfig.prototype.pop;
+    /**
+     * 行单击多少时长之类为双击（单位：毫秒），默认：`200`
+     * @type {?|undefined}
+     */
+    AlainSTConfig.prototype.rowClickTime;
+    /**
+     * 过滤按钮确认文本
+     * @type {?|undefined}
+     */
+    AlainSTConfig.prototype.filterConfirmText;
+    /**
+     * 过滤按钮重置文本
+     * @type {?|undefined}
+     */
+    AlainSTConfig.prototype.filterClearText;
+    /**
+     * 按钮图标
+     * @type {?|undefined}
+     */
+    AlainSTConfig.prototype.btnIcon;
+    /**
+     * 行号索引，默认：`1`
+     * - 计算规则为：`index + noIndex`
+     * @type {?|undefined}
+     */
+    AlainSTConfig.prototype.noIndex;
+    /**
+     * 表格行的类名
+     * @type {?|undefined}
+     */
+    AlainSTConfig.prototype.rowClassName;
+    /**
+     * 通过点击行来展开子行，Default: `false`
+     * @type {?|undefined}
+     */
+    AlainSTConfig.prototype.expandRowByClick;
+    /**
+     * 手风琴模式，Default: `false`
+     * @type {?|undefined}
+     */
+    AlainSTConfig.prototype.expandAccordion;
+    /**
+     * 指定 `width` 模式
+     * @type {?|undefined}
+     */
+    AlainSTConfig.prototype.widthMode;
+    /**
+     * Default: `54`
+     * @type {?|undefined}
+     */
+    AlainSTConfig.prototype.virtualItemSize;
+    /**
+     * Default: `200`
+     * @type {?|undefined}
+     */
+    AlainSTConfig.prototype.virtualMaxBufferPx;
+    /**
+     * Default: `100`
+     * @type {?|undefined}
+     */
+    AlainSTConfig.prototype.virtualMinBufferPx;
+    /**
+     * Conditional expression rendering behavior, can be set to `hide` (default) or `disabled`, Default: `hide`
+     * @type {?|undefined}
+     */
+    AlainSTConfig.prototype.iifBehavior;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * Generated from: src/config/abc/xlsx.type.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ */
+function AlainXlsxConfig() { }
+if (false) {
+    /**
+     * Xlsx library path, default: `//cdn.bootcss.com/xlsx/0.15.6/xlsx.full.min.js`
+     * @type {?|undefined}
+     */
+    AlainXlsxConfig.prototype.url;
+    /**
+     * Defines which Xlsx optional modules should get loaded, e.g:
+     *
+     * `[ '//cdn.bootcss.com/xlsx/0.15.6/cpexcel.js' ]`
+     * @type {?|undefined}
+     */
+    AlainXlsxConfig.prototype.modules;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * Generated from: src/config/abc/zip.type.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ */
+function AlainZipConfig() { }
+if (false) {
+    /**
+     * Zip library path, Default: `//cdn.bootcss.com/jszip/3.3.0/jszip.min.js`
+     * @type {?|undefined}
+     */
+    AlainZipConfig.prototype.url;
+    /**
+     * Defines which zip optional utils should get loaded
+     * @type {?|undefined}
+     */
+    AlainZipConfig.prototype.utils;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * Generated from: src/config/abc/index.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * Generated from: src/config/acl/acl.type.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ */
+function AlainACLConfig() { }
+if (false) {
+    /**
+     * Router URL when guard fail, default: `/403`
+     * @type {?|undefined}
+     */
+    AlainACLConfig.prototype.guard_url;
+    /**
+     * `can` before execution callback
+     * @type {?|undefined}
+     */
+    AlainACLConfig.prototype.preCan;
+}
+/**
+ * @record
+ */
+function AlainACLType() { }
+if (false) {
+    /**
+     * 角色
+     * @type {?|undefined}
+     */
+    AlainACLType.prototype.role;
+    /**
+     * 权限点
+     * @type {?|undefined}
+     */
+    AlainACLType.prototype.ability;
+    /**
+     * 校验模式，默认：`oneOf`
+     * - `allOf` 表示必须满足所有角色或权限点数组算有效
+     * - `oneOf` 表示只须满足角色或权限点数组中的一项算有效
+     * @type {?|undefined}
+     */
+    AlainACLType.prototype.mode;
+    /**
+     * 是否取反，即结果为 `true` 时表示未授权
+     * @type {?|undefined}
+     */
+    AlainACLType.prototype.except;
+    /* Skipping unhandled member: [key: string]: NzSafeAny;*/
+}
+
+/**
+ * @fileoverview added by tsickle
+ * Generated from: src/config/auth/auth.type.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ */
+function AlainAuthConfig() { }
+if (false) {
+    /**
+     * 存储KEY值，默认：`_token`
+     * @type {?|undefined}
+     */
+    AlainAuthConfig.prototype.store_key;
+    /**
+     * 无效时跳转至登录页，默认：`true`，包括：
+     * - 无效token值
+     * - token已过期（限JWT）
+     * @type {?|undefined}
+     */
+    AlainAuthConfig.prototype.token_invalid_redirect;
+    /**
+     * token过期时间偏移值，默认：`10` 秒（单位：秒）
+     * @type {?|undefined}
+     */
+    AlainAuthConfig.prototype.token_exp_offset;
+    /**
+     * 发送token参数名，默认：·
+     * @type {?|undefined}
+     */
+    AlainAuthConfig.prototype.token_send_key;
+    /**
+     * 发送token模板（默认为：`'${token}'`），使用 `${token}` 表示token点位符（**注意：**请务必使用 \`\` 包裹），例如：
+     *
+     * - `Bearer ${token}`
+     * @type {?|undefined}
+     */
+    AlainAuthConfig.prototype.token_send_template;
+    /**
+     * 发送token参数位置，默认：`header`
+     * @type {?|undefined}
+     */
+    AlainAuthConfig.prototype.token_send_place;
+    /**
+     * 登录页路由地址，默认：`/login`
+     * @type {?|undefined}
+     */
+    AlainAuthConfig.prototype.login_url;
+    /**
+     * 忽略TOKEN的URL地址列表，默认值为：`[/\/login/, /assets\//, /passport\//]`
+     * @type {?|undefined}
+     */
+    AlainAuthConfig.prototype.ignores;
+    /**
+     * 允许匿名登录KEY，若请求参数中带有该KEY表示忽略TOKEN，默认：`_allow_anonymous`
+     * @type {?|undefined}
+     */
+    AlainAuthConfig.prototype.allow_anonymous_key;
+    /**
+     * 是否校验失效时命中后继续调用后续拦截器的 `intercept` 方法，默认：`true`
+     * @type {?|undefined}
+     */
+    AlainAuthConfig.prototype.executeOtherInterceptors;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * Generated from: src/config/cache/cache.type.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ */
+function AlainCacheConfig() { }
+if (false) {
+    /**
+     * Cache mode, default: `promise`
+     * - `promise` Convention mode, allowing `key` to get data as http
+     * - `none` Normal mode
+     * @type {?|undefined}
+     */
+    AlainCacheConfig.prototype.mode;
+    /**
+     * Rename the return parameters, default: ``, for example:
+     * - `null` The response body is content
+     * - `list` The response body should be `{ list: [] }`
+     * - `result.list` The response body should be `{ result: { list: [] } }`
+     * @type {?|undefined}
+     */
+    AlainCacheConfig.prototype.reName;
+    /**
+     * Set the default storage type
+     * - `m` Storage via memory
+     * - `s` Storage via `localStorage`
+     * @type {?|undefined}
+     */
+    AlainCacheConfig.prototype.type;
+    /**
+     * Set the default expire time (Unit: second)
+     * @type {?|undefined}
+     */
+    AlainCacheConfig.prototype.expire;
+    /**
+     * Key prefix of persistent data, default: ``
+     * @type {?|undefined}
+     */
+    AlainCacheConfig.prototype.prefix;
+    /**
+     * Key name of persistent data metadata storage, default: `__cache_meta`
+     * @type {?|undefined}
+     */
+    AlainCacheConfig.prototype.meta_key;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * Generated from: src/config/chart/chart.type.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ */
+function AlainChartConfig() { }
+if (false) {
+    /** @type {?|undefined} */
+    AlainChartConfig.prototype.theme;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * Generated from: src/config/util/array.type.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ */
+function AlainUtilArrayConfig() { }
 if (false) {
     /**
      * 深度项名，默认：`'deep'`
      * @type {?|undefined}
      */
-    ArrayConfig.prototype.deepMapName;
+    AlainUtilArrayConfig.prototype.deepMapName;
     /**
      * 扁平后数组的父数据项名，默认：`'parent'`
      * @type {?|undefined}
      */
-    ArrayConfig.prototype.parentMapName;
+    AlainUtilArrayConfig.prototype.parentMapName;
     /**
      * 编号项名，默认：`'id'`
      * @type {?|undefined}
      */
-    ArrayConfig.prototype.idMapName;
+    AlainUtilArrayConfig.prototype.idMapName;
     /**
      * 父编号项名，默认：`'parent_id'`
      * @type {?|undefined}
      */
-    ArrayConfig.prototype.parentIdMapName;
+    AlainUtilArrayConfig.prototype.parentIdMapName;
     /**
      * 源数据子项名，默认：`'children'`
      * @type {?|undefined}
      */
-    ArrayConfig.prototype.childrenMapName;
+    AlainUtilArrayConfig.prototype.childrenMapName;
     /**
      * 标题项名，默认：`'title'`
      * @type {?|undefined}
      */
-    ArrayConfig.prototype.titleMapName;
+    AlainUtilArrayConfig.prototype.titleMapName;
     /**
      * 节点 Checkbox 是否选中项名，默认：`'checked'`
      * @type {?|undefined}
      */
-    ArrayConfig.prototype.checkedMapname;
+    AlainUtilArrayConfig.prototype.checkedMapname;
     /**
      * 节点本身是否选中项名，默认：`'selected'`
      * @type {?|undefined}
      */
-    ArrayConfig.prototype.selectedMapname;
+    AlainUtilArrayConfig.prototype.selectedMapname;
     /**
      * 节点是否展开(叶子节点无效)项名，默认：`'expanded'`
      * @type {?|undefined}
      */
-    ArrayConfig.prototype.expandedMapname;
+    AlainUtilArrayConfig.prototype.expandedMapname;
     /**
      * 设置是否禁用节点(不可进行任何操作)项名，默认：`'disabled'`
      * @type {?|undefined}
      */
-    ArrayConfig.prototype.disabledMapname;
+    AlainUtilArrayConfig.prototype.disabledMapname;
 }
 
 /**
  * @fileoverview added by tsickle
- * Generated from: src/util.config.ts
+ * Generated from: src/config/theme/http.type.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-var DelonUtilConfig = /** @class */ (function () {
-    function DelonUtilConfig() {
-    }
-    DelonUtilConfig.decorators = [
-        { type: Injectable, args: [{ providedIn: 'root' },] }
-    ];
-    /** @nocollapse */ DelonUtilConfig.ɵprov = ɵɵdefineInjectable({ factory: function DelonUtilConfig_Factory() { return new DelonUtilConfig(); }, token: DelonUtilConfig, providedIn: "root" });
-    return DelonUtilConfig;
-}());
+/**
+ * @record
+ */
+function AlainThemeHttpClientConfig() { }
+if (false) {
+    /**
+     * 空值处理，默认：`include`
+     * - include：包含
+     * - ignore：忽略
+     * @type {?|undefined}
+     */
+    AlainThemeHttpClientConfig.prototype.nullValueHandling;
+    /**
+     * 时间值处理，默认：`timestamp`
+     * - timestamp：时间戳
+     * - ignore：忽略处理，保持原始状态
+     * @type {?|undefined}
+     */
+    AlainThemeHttpClientConfig.prototype.dateValueHandling;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * Generated from: src/config/theme/responsive.type.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ */
+function AlainThemeResponsiveConfig() { }
 if (false) {
     /** @type {?} */
-    DelonUtilConfig.prototype.array;
+    AlainThemeResponsiveConfig.prototype.rules;
 }
+
+/**
+ * @fileoverview added by tsickle
+ * Generated from: src/config/theme/index.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * Generated from: src/config/mock/mock.type.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ */
+function AlainMockConfig() { }
+if (false) {
+    /**
+     * 规则定义数据
+     * @type {?}
+     */
+    AlainMockConfig.prototype.data;
+    /**
+     * 请求延迟，单位：毫秒，默认：`300`
+     * @type {?|undefined}
+     */
+    AlainMockConfig.prototype.delay;
+    /**
+     * 是否强制所有请求都Mock，默认：`false`，`true` 表示当请求的URL不存在时直接返回 404 错误，`false` 表示未命中时发送真实HTTP请求
+     * @type {?|undefined}
+     */
+    AlainMockConfig.prototype.force;
+    /**
+     * 是否打印 Mock 请求信息，弥补浏览器无Network信息，默认：`true`
+     * @type {?|undefined}
+     */
+    AlainMockConfig.prototype.log;
+    /**
+     * 是否拦截命中后继续调用后续拦截器的 `intercept` 方法，默认：`true`
+     * @type {?|undefined}
+     */
+    AlainMockConfig.prototype.executeOtherInterceptors;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * Generated from: src/config/config.types.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ */
+function AlainConfig() { }
+if (false) {
+    /** @type {?|undefined} */
+    AlainConfig.prototype.dataRange;
+    /** @type {?|undefined} */
+    AlainConfig.prototype.errorCollect;
+    /** @type {?|undefined} */
+    AlainConfig.prototype.image;
+    /** @type {?|undefined} */
+    AlainConfig.prototype.loading;
+    /** @type {?|undefined} */
+    AlainConfig.prototype.lodop;
+    /** @type {?|undefined} */
+    AlainConfig.prototype.pageHeader;
+    /** @type {?|undefined} */
+    AlainConfig.prototype.qr;
+    /** @type {?|undefined} */
+    AlainConfig.prototype.se;
+    /** @type {?|undefined} */
+    AlainConfig.prototype.sg;
+    /** @type {?|undefined} */
+    AlainConfig.prototype.sv;
+    /** @type {?|undefined} */
+    AlainConfig.prototype.st;
+    /** @type {?|undefined} */
+    AlainConfig.prototype.xlsx;
+    /** @type {?|undefined} */
+    AlainConfig.prototype.zip;
+    /** @type {?|undefined} */
+    AlainConfig.prototype.acl;
+    /** @type {?|undefined} */
+    AlainConfig.prototype.auth;
+    /** @type {?|undefined} */
+    AlainConfig.prototype.cache;
+    /** @type {?|undefined} */
+    AlainConfig.prototype.chart;
+    /** @type {?|undefined} */
+    AlainConfig.prototype.mock;
+    /** @type {?|undefined} */
+    AlainConfig.prototype.utilArray;
+    /** @type {?|undefined} */
+    AlainConfig.prototype.themeHttp;
+    /** @type {?|undefined} */
+    AlainConfig.prototype.themeResponsive;
+}
+/** @type {?} */
+var ALAIN_CONFIG = new InjectionToken('alain-config');
+
+/**
+ * @fileoverview added by tsickle
+ * Generated from: src/config/config.service.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var AlainConfigService = /** @class */ (function () {
+    function AlainConfigService$1(defaultConfig) {
+        this.config = defaultConfig || {};
+    }
+    /**
+     * @template T
+     * @param {?} componentName
+     * @param {?=} key
+     * @return {?}
+     */
+    AlainConfigService$1.prototype.get = /**
+     * @template T
+     * @param {?} componentName
+     * @param {?=} key
+     * @return {?}
+     */
+    function (componentName, key) {
+        var _a;
+        /** @type {?} */
+        var res = (/** @type {?} */ ((((/** @type {?} */ (this.config[componentName]))) || {})));
+        return key ? (_a = {}, _a[key] = res[key], _a) : res;
+    };
+    /**
+     * @template R, T
+     * @param {?} componentName
+     * @param {?} defaultValues
+     * @return {?}
+     */
+    AlainConfigService$1.prototype.merge = /**
+     * @template R, T
+     * @param {?} componentName
+     * @param {?} defaultValues
+     * @return {?}
+     */
+    function (componentName, defaultValues) {
+        return deepMergeKey({}, true, defaultValues, this.get(componentName));
+    };
+    /**
+     * @template R, T
+     * @param {?} componentThis
+     * @param {?} componentName
+     * @param {?} defaultValues
+     * @return {?}
+     */
+    AlainConfigService$1.prototype.attach = /**
+     * @template R, T
+     * @param {?} componentThis
+     * @param {?} componentName
+     * @param {?} defaultValues
+     * @return {?}
+     */
+    function (componentThis, componentName, defaultValues) {
+        Object.assign(componentThis, this.merge(componentName, defaultValues));
+    };
+    /**
+     * @template T
+     * @param {?} componentThis
+     * @param {?} componentName
+     * @param {?} key
+     * @return {?}
+     */
+    AlainConfigService$1.prototype.attachKey = /**
+     * @template T
+     * @param {?} componentThis
+     * @param {?} componentName
+     * @param {?} key
+     * @return {?}
+     */
+    function (componentThis, componentName, key) {
+        Object.assign(componentThis, this.get(componentName, key));
+    };
+    /**
+     * @template T
+     * @param {?} componentName
+     * @param {?} value
+     * @return {?}
+     */
+    AlainConfigService$1.prototype.set = /**
+     * @template T
+     * @param {?} componentName
+     * @param {?} value
+     * @return {?}
+     */
+    function (componentName, value) {
+        this.config[componentName] = __assign(__assign({}, this.config[componentName]), value);
+    };
+    AlainConfigService$1.decorators = [
+        { type: Injectable, args: [{ providedIn: 'root' },] }
+    ];
+    /** @nocollapse */
+    AlainConfigService$1.ctorParameters = function () { return [
+        { type: undefined, decorators: [{ type: Optional }, { type: Inject, args: [ALAIN_CONFIG,] }] }
+    ]; };
+    /** @nocollapse */ AlainConfigService$1.ɵprov = ɵɵdefineInjectable({ factory: function AlainConfigService_Factory() { return new AlainConfigService(ɵɵinject(ALAIN_CONFIG, 8)); }, token: AlainConfigService, providedIn: "root" });
+    return AlainConfigService$1;
+}());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    AlainConfigService.prototype.config;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * Generated from: src/config/index.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 
 /**
  * @fileoverview added by tsickle
@@ -1217,7 +2272,18 @@ if (false) {
 }
 var ArrayService = /** @class */ (function () {
     function ArrayService(cog) {
-        this.c = __assign({ deepMapName: 'deep', parentMapName: 'parent', idMapName: 'id', parentIdMapName: 'parent_id', childrenMapName: 'children', titleMapName: 'title', checkedMapname: 'checked', selectedMapname: 'selected', expandedMapname: 'expanded', disabledMapname: 'disabled' }, (cog && cog.array));
+        this.c = cog.merge('utilArray', {
+            deepMapName: 'deep',
+            parentMapName: 'parent',
+            idMapName: 'id',
+            parentIdMapName: 'parent_id',
+            childrenMapName: 'children',
+            titleMapName: 'title',
+            checkedMapname: 'checked',
+            selectedMapname: 'selected',
+            expandedMapname: 'expanded',
+            disabledMapname: 'disabled',
+        });
     }
     /**
      * 将树结构转换成数组结构
@@ -1472,9 +2538,9 @@ var ArrayService = /** @class */ (function () {
     ];
     /** @nocollapse */
     ArrayService.ctorParameters = function () { return [
-        { type: DelonUtilConfig }
+        { type: AlainConfigService }
     ]; };
-    /** @nocollapse */ ArrayService.ɵprov = ɵɵdefineInjectable({ factory: function ArrayService_Factory() { return new ArrayService(ɵɵinject(DelonUtilConfig)); }, token: ArrayService, providedIn: "root" });
+    /** @nocollapse */ ArrayService.ɵprov = ɵɵdefineInjectable({ factory: function ArrayService_Factory() { return new ArrayService(ɵɵinject(AlainConfigService)); }, token: ArrayService, providedIn: "root" });
     return ArrayService;
 }());
 if (false) {
@@ -1525,5 +2591,5 @@ var DelonUtilModule = /** @class */ (function () {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { ArrayService, DelonUtilConfig, DelonUtilModule, InputBoolean, InputNumber, LazyService, PREFIX, _Validators, copy, deepCopy, deepGet, deepMerge, deepMergeKey, deprecation10, deprecation10Cog, fixEndTimeOfRange, format, getTimeDistance, isDecimal, isEmpty, isIdCard, isInt, isMobile, isNum, isUrl, log, toBoolean, toDate, toNumber, updateHostClass, warn, warnDeprecation };
+export { ALAIN_CONFIG, AlainConfigService, AlainSVConfig, ArrayService, DelonUtilModule, InputBoolean, InputNumber, LazyService, PREFIX, _Validators, copy, deepCopy, deepGet, deepMerge, deepMergeKey, deprecation10, fixEndTimeOfRange, format, getTimeDistance, isDecimal, isEmpty, isIdCard, isInt, isMobile, isNum, isUrl, log, toBoolean, toDate, toNumber, updateHostClass, warn, warnDeprecation, AlainConfigService as ɵa };
 //# sourceMappingURL=util.js.map

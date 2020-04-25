@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@antv/data-set'), require('@antv/g2'), require('@delon/theme'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('@angular/common')) :
-    typeof define === 'function' && define.amd ? define('@delon/chart/tag-cloud', ['exports', '@angular/core', '@antv/data-set', '@antv/g2', '@delon/theme', '@delon/util', 'rxjs', 'rxjs/operators', '@angular/common'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart['tag-cloud'] = {}), global.ng.core, global.DataSet, global.g2, global.delon.theme, global.delon.util, global.rxjs, global.rxjs.operators, global.ng.common));
-}(this, (function (exports, core, DataSet, g2, theme, util, rxjs, operators, common) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@antv/data-set'), require('@antv/g2'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('@angular/common')) :
+    typeof define === 'function' && define.amd ? define('@delon/chart/tag-cloud', ['exports', '@angular/core', '@antv/data-set', '@antv/g2', '@delon/util', 'rxjs', 'rxjs/operators', '@angular/common'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart['tag-cloud'] = {}), global.ng.core, global.DataSet, global.g2, global.delon.util, global.rxjs, global.rxjs.operators, global.ng.common));
+}(this, (function (exports, core, DataSet, g2, util, rxjs, operators, common) { 'use strict';
 
     DataSet = DataSet && Object.prototype.hasOwnProperty.call(DataSet, 'default') ? DataSet['default'] : DataSet;
 
@@ -514,7 +514,7 @@
         G2TagCloudComponent.ctorParameters = function () { return [
             { type: core.ElementRef },
             { type: core.NgZone },
-            { type: theme.AlainConfigService }
+            { type: util.AlainConfigService }
         ]; };
         G2TagCloudComponent.propDecorators = {
             delay: [{ type: core.Input }],
