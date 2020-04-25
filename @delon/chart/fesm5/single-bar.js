@@ -1,8 +1,7 @@
 import { __assign, __decorate, __metadata, __spread } from 'tslib';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, NgZone, Input, NgModule } from '@angular/core';
 import { Chart } from '@antv/g2';
-import { AlainConfigService } from '@delon/theme';
-import { InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
+import { AlainConfigService, InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
 import { CommonModule } from '@angular/common';
 
 /**

@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { AlainConfigService } from '@delon/theme';
-import { LazyService } from '@delon/util';
+import { AlainConfigService, LazyService } from '@delon/util';
 import { XlsxExportOptions } from './xlsx.types';
 export declare class XlsxService {
     private http;

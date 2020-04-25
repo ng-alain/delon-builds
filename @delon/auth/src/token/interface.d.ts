@@ -1,4 +1,5 @@
 import { InjectionToken } from '@angular/core';
+import { AlainAuthConfig } from '@delon/util';
 import { Observable } from 'rxjs';
 export declare const DA_SERVICE_TOKEN: InjectionToken<ITokenService>;
 export interface ITokenModel {
@@ -13,6 +14,7 @@ export interface ITokenService {
     readonly login_url: string | undefined;
     /** 获取授权失败前路由信息 */
     readonly referrer?: AuthReferrer;
+    readonly options: AlainAuthConfig;
     set(data: ITokenModel | null): boolean;
     /**
      * 获取Token，形式包括：

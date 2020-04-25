@@ -1,8 +1,7 @@
 import { __decorate, __metadata } from 'tslib';
 import { DOCUMENT, CommonModule } from '@angular/common';
-import { Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, ChangeDetectorRef, Inject, Input, Injectable, ɵɵdefineInjectable, NgModule } from '@angular/core';
-import { AlainConfigService } from '@delon/theme';
-import { InputNumber, deprecation10Cog, DelonUtilModule } from '@delon/util';
+import { Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, ChangeDetectorRef, Inject, Input, NgModule } from '@angular/core';
+import { AlainConfigService, InputNumber, DelonUtilModule } from '@delon/util';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 
 /**
@@ -190,46 +189,6 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
- * Generated from: error-collect.config.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
- * @deprecated `ErrorCollectConfig` is going to be removed in 10.0.0. Please refer to https://ng-alain.com/docs/global-config
- */
-class ErrorCollectConfig {
-    constructor() {
-        /**
-         * 监听频率
-         */
-        this.freq = 500;
-        /**
-         * 顶部偏移值
-         */
-        this.offsetTop = 65 + 64 + 8 * 2;
-        deprecation10Cog(`ErrorCollectConfig`);
-    }
-}
-ErrorCollectConfig.decorators = [
-    { type: Injectable, args: [{ providedIn: 'root' },] }
-];
-/** @nocollapse */
-ErrorCollectConfig.ctorParameters = () => [];
-/** @nocollapse */ ErrorCollectConfig.ɵprov = ɵɵdefineInjectable({ factory: function ErrorCollectConfig_Factory() { return new ErrorCollectConfig(); }, token: ErrorCollectConfig, providedIn: "root" });
-if (false) {
-    /**
-     * 监听频率
-     * @type {?}
-     */
-    ErrorCollectConfig.prototype.freq;
-    /**
-     * 顶部偏移值
-     * @type {?}
-     */
-    ErrorCollectConfig.prototype.offsetTop;
-}
-
-/**
- * @fileoverview added by tsickle
  * Generated from: error-collect.module.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
@@ -257,5 +216,5 @@ ErrorCollectModule.decorators = [
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { ErrorCollectComponent, ErrorCollectConfig, ErrorCollectModule };
+export { ErrorCollectComponent, ErrorCollectModule };
 //# sourceMappingURL=errorCollect.js.map

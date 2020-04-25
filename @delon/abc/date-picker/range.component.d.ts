@@ -1,7 +1,7 @@
 import { EventEmitter, TemplateRef } from '@angular/core';
 import { ControlValueAccessor } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
-import { AlainConfigService, AlainDateRangePickerShortcut, AlainDateRangePickerShortcutItem } from '@delon/theme';
+import { AlainConfigService, AlainDateRangePickerShortcut, AlainDateRangePickerShortcutItem } from '@delon/util';
 import { FunctionProp } from 'ng-zorro-antd/core/types';
 export declare class RangePickerComponent implements ControlValueAccessor {
     private dom;

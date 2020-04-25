@@ -1,6 +1,5 @@
 import { Injectable, ɵɵdefineInjectable, ɵɵinject, EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ChangeDetectorRef, Input, Output, NgModule } from '@angular/core';
-import { AlainConfigService } from '@delon/theme';
-import { deprecation10Cog, InputNumber, DelonUtilModule } from '@delon/util';
+import { AlainConfigService, InputNumber, DelonUtilModule } from '@delon/util';
 import { __decorate, __metadata, __spread } from 'tslib';
 import { CommonModule } from '@angular/common';
 
@@ -20,95 +19,6 @@ var QR_DEFULAT_CONFIG = {
     padding: 10,
     size: 220,
 };
-/**
- * @deprecated `QRConfig` is going to be removed in 10.0.0. Please refer to https://ng-alain.com/docs/global-config
- */
-var QRConfig = /** @class */ (function () {
-    function QRConfig() {
-        /**
-         * 背景，默认：`white`
-         */
-        this.background = 'white';
-        /**
-         * 背景透明级别，范围：`0-1` 之间，默认：`1.0`
-         */
-        this.backgroundAlpha = 1;
-        /**
-         * 前景，默认：`black`
-         */
-        this.foreground = 'black';
-        /**
-         * 前景透明级别，范围：`0-1` 之间，默认：`1.0`
-         */
-        this.foregroundAlpha = 1;
-        /**
-         * 误差校正级别，默认：`L`
-         */
-        this.level = 'L';
-        /**
-         * 二维码输出图片MIME类型，默认：`image/png`
-         */
-        this.mime = 'image/png';
-        /**
-         * 内边距（单位：px），默认：`10`
-         */
-        this.padding = 10;
-        /**
-         * 大小（单位：px），默认：`220`
-         */
-        this.size = 220;
-        deprecation10Cog("QRConfig");
-    }
-    QRConfig.decorators = [
-        { type: Injectable, args: [{ providedIn: 'root' },] }
-    ];
-    /** @nocollapse */
-    QRConfig.ctorParameters = function () { return []; };
-    /** @nocollapse */ QRConfig.ɵprov = ɵɵdefineInjectable({ factory: function QRConfig_Factory() { return new QRConfig(); }, token: QRConfig, providedIn: "root" });
-    return QRConfig;
-}());
-if (false) {
-    /**
-     * 背景，默认：`white`
-     * @type {?}
-     */
-    QRConfig.prototype.background;
-    /**
-     * 背景透明级别，范围：`0-1` 之间，默认：`1.0`
-     * @type {?}
-     */
-    QRConfig.prototype.backgroundAlpha;
-    /**
-     * 前景，默认：`black`
-     * @type {?}
-     */
-    QRConfig.prototype.foreground;
-    /**
-     * 前景透明级别，范围：`0-1` 之间，默认：`1.0`
-     * @type {?}
-     */
-    QRConfig.prototype.foregroundAlpha;
-    /**
-     * 误差校正级别，默认：`L`
-     * @type {?}
-     */
-    QRConfig.prototype.level;
-    /**
-     * 二维码输出图片MIME类型，默认：`image/png`
-     * @type {?}
-     */
-    QRConfig.prototype.mime;
-    /**
-     * 内边距（单位：px），默认：`10`
-     * @type {?}
-     */
-    QRConfig.prototype.padding;
-    /**
-     * 大小（单位：px），默认：`220`
-     * @type {?}
-     */
-    QRConfig.prototype.size;
-}
 
 /**
  * @fileoverview added by tsickle
@@ -410,5 +320,5 @@ var QRModule = /** @class */ (function () {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { QRComponent, QRConfig, QRModule, QRService };
+export { QRComponent, QRModule, QRService, QR_DEFULAT_CONFIG };
 //# sourceMappingURL=qr.js.map

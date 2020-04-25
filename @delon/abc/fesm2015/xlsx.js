@@ -1,7 +1,6 @@
-import { Injectable, ɵɵdefineInjectable, ɵɵinject, Directive, Input, NgModule } from '@angular/core';
-import { deprecation10Cog, LazyService, DelonUtilModule } from '@delon/util';
 import { HttpClient } from '@angular/common/http';
-import { AlainConfigService } from '@delon/theme';
+import { Injectable, ɵɵdefineInjectable, ɵɵinject, Directive, Input, NgModule } from '@angular/core';
+import { LazyService, AlainConfigService, DelonUtilModule } from '@delon/util';
 import { saveAs } from 'file-saver';
 import { CommonModule } from '@angular/common';
 
@@ -50,50 +49,6 @@ if (false) {
      * @type {?|undefined}
      */
     XlsxExportSheet.prototype.name;
-}
-
-/**
- * @fileoverview added by tsickle
- * Generated from: xlsx.config.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
- * @deprecated `XlsxConfig` is going to be removed in 10.0.0. Please refer to https://ng-alain.com/docs/global-config
- */
-class XlsxConfig {
-    constructor() {
-        /**
-         * Xlsx library path
-         */
-        this.url = '//cdn.bootcss.com/xlsx/0.12.13/xlsx.full.min.js';
-        /**
-         * Defines which Xlsx optional modules should get loaded, e.g:
-         *
-         * `[ '//cdn.bootcss.com/xlsx/0.12.13/cpexcel.js' ]`
-         */
-        this.modules = [];
-        deprecation10Cog(`XlsxConfig`);
-    }
-}
-XlsxConfig.decorators = [
-    { type: Injectable, args: [{ providedIn: 'root' },] }
-];
-/** @nocollapse */
-XlsxConfig.ctorParameters = () => [];
-/** @nocollapse */ XlsxConfig.ɵprov = ɵɵdefineInjectable({ factory: function XlsxConfig_Factory() { return new XlsxConfig(); }, token: XlsxConfig, providedIn: "root" });
-if (false) {
-    /**
-     * Xlsx library path
-     * @type {?}
-     */
-    XlsxConfig.prototype.url;
-    /**
-     * Defines which Xlsx optional modules should get loaded, e.g:
-     *
-     * `[ '//cdn.bootcss.com/xlsx/0.12.13/cpexcel.js' ]`
-     * @type {?}
-     */
-    XlsxConfig.prototype.modules;
 }
 
 /**
@@ -336,5 +291,5 @@ XlsxModule.decorators = [
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { XlsxConfig, XlsxDirective, XlsxModule, XlsxService };
+export { XlsxDirective, XlsxModule, XlsxService };
 //# sourceMappingURL=xlsx.js.map

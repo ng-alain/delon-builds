@@ -1,5 +1,6 @@
 import { TemplateRef } from '@angular/core';
-import { AlainConfigService, REP_TYPE } from '@delon/theme';
+import { REP_TYPE } from '@delon/theme';
+import { AlainConfigService } from '@delon/util';
 export declare class SEContainerComponent {
     colInCon: REP_TYPE;
     col: REP_TYPE;

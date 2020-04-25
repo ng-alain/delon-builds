@@ -1,6 +1,6 @@
 import { AfterViewInit, ElementRef, EventEmitter, OnDestroy } from '@angular/core';
 import { LooseObject } from '@antv/g2/lib/interface';
-import { AlainConfigService } from '@delon/theme';
+import { AlainConfigService } from '@delon/util';
 export declare class G2CustomComponent implements AfterViewInit, OnDestroy {
     private el;
     private resize$;

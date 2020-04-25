@@ -1,5 +1,5 @@
 import { ElementRef, OnChanges, OnInit, SimpleChange, SimpleChanges } from '@angular/core';
-import { AlainConfigService } from '@delon/theme';
+import { AlainConfigService } from '@delon/util';
 /**
  * img标签
  * + 支持微信、qq头像规则缩略图规则

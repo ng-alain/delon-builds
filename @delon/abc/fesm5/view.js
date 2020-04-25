@@ -1,7 +1,7 @@
 import { __decorate, __metadata, __spread } from 'tslib';
-import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input, ElementRef, Host, Optional, Renderer2, ViewChild, Injectable, ɵɵdefineInjectable, NgModule } from '@angular/core';
-import { AlainConfigService, ResponsiveService } from '@delon/theme';
-import { InputNumber, isEmpty, InputBoolean, deprecation10Cog, DelonUtilModule } from '@delon/util';
+import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input, ElementRef, Host, Optional, Renderer2, ViewChild, NgModule } from '@angular/core';
+import { AlainConfigService, InputNumber, isEmpty, InputBoolean, DelonUtilModule } from '@delon/util';
+import { ResponsiveService } from '@delon/theme';
 import { ObserversModule } from '@angular/cdk/observers';
 import { CommonModule } from '@angular/common';
 import { NzOutletModule } from 'ng-zorro-antd/core/outlet';
@@ -59,7 +59,7 @@ var SVContainerComponent = /** @class */ (function () {
         __metadata("design:type", Number)
     ], SVContainerComponent.prototype, "gutter", void 0);
     __decorate([
-        InputNumber(null),
+        InputNumber(),
         __metadata("design:type", Number)
     ], SVContainerComponent.prototype, "labelWidth", void 0);
     __decorate([
@@ -283,7 +283,7 @@ var SVComponent = /** @class */ (function () {
         { type: Component, args: [{
                     selector: 'sv, [sv]',
                     exportAs: 'sv',
-                    template: "<div class=\"sv__label\" [class.sv__label-empty]=\"!label\" [class.sv__label-width]=\"labelWidth !== null\"\n  [style.width.px]=\"labelWidth\">\n  <span class=\"sv__label-text\">\n    <ng-container *nzStringTemplateOutlet=\"label\">{{label}}</ng-container>\n  </span>\n  <span *ngIf=\"optional || optionalHelp\" class=\"sv__label-optional\" [class.sv__label-optional-no-text]=\"!optional\">\n    <ng-container *nzStringTemplateOutlet=\"optional\">{{ optional }}</ng-container>\n    <i *ngIf=\"optionalHelp\" nz-tooltip [nzTooltipTitle]=\"optionalHelp\" nz-icon nzType=\"question-circle\"></i>\n  </span>\n</div>\n<div class=\"sv__detail\">\n  <span (cdkObserveContent)=\"checkContent()\" #conEl>\n    <ng-content></ng-content>\n  </span>\n  <ng-container *ngIf=\"!!unit\">\n    <span class=\"sv__unit\" *nzStringTemplateOutlet=\"unit\">{{unit}}</span>\n  </ng-container>\n</div>\n",
+                    template: "<div class=\"sv__label\" [class.sv__label-empty]=\"!label\" [class.sv__label-width]=\"labelWidth != null\" [style.width.px]=\"labelWidth\">\n  <span class=\"sv__label-text\">\n    <ng-container *nzStringTemplateOutlet=\"label\">{{label}}</ng-container>\n  </span>\n  <span *ngIf=\"optional || optionalHelp\" class=\"sv__label-optional\" [class.sv__label-optional-no-text]=\"!optional\">\n    <ng-container *nzStringTemplateOutlet=\"optional\">{{ optional }}</ng-container>\n    <i *ngIf=\"optionalHelp\" nz-tooltip [nzTooltipTitle]=\"optionalHelp\" nz-icon nzType=\"question-circle\"></i>\n  </span>\n</div>\n<div class=\"sv__detail\">\n  <span (cdkObserveContent)=\"checkContent()\" #conEl>\n    <ng-content></ng-content>\n  </span>\n  <ng-container *ngIf=\"!!unit\">\n    <span class=\"sv__unit\" *nzStringTemplateOutlet=\"unit\">{{unit}}</span>\n  </ng-container>\n</div>\n",
                     host: {
                         '[style.padding-left.px]': 'paddingValue',
                         '[style.padding-right.px]': 'paddingValue',
@@ -366,79 +366,6 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
- * Generated from: sv.config.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
- * @deprecated `SVConfig` is going to be removed in 10.0.0. Please refer to https://ng-alain.com/docs/global-config
- */
-var SVConfig = /** @class */ (function () {
-    function SVConfig() {
-        /**
-         * 间距，默认：`32`
-         */
-        this.gutter = 32;
-        /**
-         * 布局，默认：`horizontal`
-         */
-        this.layout = 'horizontal';
-        /**
-         * 列数，默认：`3`
-         */
-        this.col = 3;
-        /**
-         * 是否显示默认值，当内容为空值时显示 `-`，默认：`true`
-         */
-        this.default = true;
-        /**
-         * `label` 固定宽度，若 `null` 或 `undefined` 表示非固定，默认：`null`
-         */
-        this.labelWidth = null;
-        deprecation10Cog("SVConfig");
-    }
-    SVConfig.decorators = [
-        { type: Injectable, args: [{ providedIn: 'root' },] }
-    ];
-    /** @nocollapse */
-    SVConfig.ctorParameters = function () { return []; };
-    /** @nocollapse */ SVConfig.ɵprov = ɵɵdefineInjectable({ factory: function SVConfig_Factory() { return new SVConfig(); }, token: SVConfig, providedIn: "root" });
-    return SVConfig;
-}());
-if (false) {
-    /**
-     * 大小
-     * @type {?}
-     */
-    SVConfig.prototype.size;
-    /**
-     * 间距，默认：`32`
-     * @type {?}
-     */
-    SVConfig.prototype.gutter;
-    /**
-     * 布局，默认：`horizontal`
-     * @type {?}
-     */
-    SVConfig.prototype.layout;
-    /**
-     * 列数，默认：`3`
-     * @type {?}
-     */
-    SVConfig.prototype.col;
-    /**
-     * 是否显示默认值，当内容为空值时显示 `-`，默认：`true`
-     * @type {?}
-     */
-    SVConfig.prototype.default;
-    /**
-     * `label` 固定宽度，若 `null` 或 `undefined` 表示非固定，默认：`null`
-     * @type {?}
-     */
-    SVConfig.prototype.labelWidth;
-}
-
-/**
- * @fileoverview added by tsickle
  * Generated from: sv.module.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
@@ -469,5 +396,5 @@ var SVModule = /** @class */ (function () {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { SVComponent, SVConfig, SVContainerComponent, SVModule, SVTitleComponent };
+export { SVComponent, SVContainerComponent, SVModule, SVTitleComponent };
 //# sourceMappingURL=view.js.map

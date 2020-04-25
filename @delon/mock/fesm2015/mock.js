@@ -1,6 +1,6 @@
-import { Injectable, Injector, NgModule } from '@angular/core';
+import { Injectable, ɵɵdefineInjectable, ɵɵinject, Injector, NgModule } from '@angular/core';
+import { AlainConfigService, deepCopy } from '@delon/util';
 import { HttpErrorResponse, HttpResponseBase, HttpResponse, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { deepCopy } from '@delon/util';
 import { throwError, of } from 'rxjs';
 import { delay } from 'rxjs/operators';
 
@@ -105,62 +105,14 @@ if (false) {
  * Generated from: src/mock.config.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class DelonMockConfig {
-    constructor() {
-        /**
-         * 请求延迟，单位：毫秒，默认：`300`
-         */
-        this.delay = 300;
-        /**
-         * 是否强制所有请求都Mock，`true` 表示当请求的URL不存在时直接返回 404 错误，`false` 表示未命中时发送真实HTTP请求
-         */
-        this.force = false;
-        /**
-         * 是否打印 Mock 请求信息，弥补浏览器无Network信息
-         */
-        this.log = true;
-        /**
-         * 是否返回副本数据
-         */
-        this.copy = true;
-        /**
-         * 是否拦截命中后继续调用后续拦截器的 `intercept` 方法，默认：`true`
-         */
-        this.executeOtherInterceptors = true;
-    }
-}
-if (false) {
-    /**
-     * 规则定义数据
-     * @type {?}
-     */
-    DelonMockConfig.prototype.data;
-    /**
-     * 请求延迟，单位：毫秒，默认：`300`
-     * @type {?}
-     */
-    DelonMockConfig.prototype.delay;
-    /**
-     * 是否强制所有请求都Mock，`true` 表示当请求的URL不存在时直接返回 404 错误，`false` 表示未命中时发送真实HTTP请求
-     * @type {?}
-     */
-    DelonMockConfig.prototype.force;
-    /**
-     * 是否打印 Mock 请求信息，弥补浏览器无Network信息
-     * @type {?}
-     */
-    DelonMockConfig.prototype.log;
-    /**
-     * 是否返回副本数据
-     * @type {?}
-     */
-    DelonMockConfig.prototype.copy;
-    /**
-     * 是否拦截命中后继续调用后续拦截器的 `intercept` 方法，默认：`true`
-     * @type {?}
-     */
-    DelonMockConfig.prototype.executeOtherInterceptors;
-}
+/** @type {?} */
+const MOCK_DEFULAT_CONFIG = {
+    data: null,
+    delay: 300,
+    force: false,
+    log: true,
+    executeOtherInterceptors: true,
+};
 
 /**
  * @fileoverview added by tsickle
@@ -169,11 +121,11 @@ if (false) {
  */
 class MockService {
     /**
-     * @param {?} config
+     * @param {?} cogSrv
      */
-    constructor(config) {
-        this.config = config;
+    constructor(cogSrv) {
         this.cached = [];
+        this.config = cogSrv.merge('mock', MOCK_DEFULAT_CONFIG);
         this.applyMock();
         delete this.config.data;
     }
@@ -391,22 +343,20 @@ class MockService {
     }
 }
 MockService.decorators = [
-    { type: Injectable }
+    { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
 /** @nocollapse */
 MockService.ctorParameters = () => [
-    { type: DelonMockConfig }
+    { type: AlainConfigService }
 ];
+/** @nocollapse */ MockService.ɵprov = ɵɵdefineInjectable({ factory: function MockService_Factory() { return new MockService(ɵɵinject(AlainConfigService)); }, token: MockService, providedIn: "root" });
 if (false) {
     /**
      * @type {?}
      * @private
      */
     MockService.prototype.cached;
-    /**
-     * @type {?}
-     * @private
-     */
+    /** @type {?} */
     MockService.prototype.config;
 }
 
@@ -460,7 +410,7 @@ class MockInterceptor {
         /** @type {?} */
         const src = this.injector.get(MockService);
         /** @type {?} */
-        const config = Object.assign({ delay: 300, force: false, log: true, executeOtherInterceptors: true }, this.injector.get(DelonMockConfig));
+        const config = src.config;
         /** @type {?} */
         const rule = src.getRule(req.method, req.url.split('?')[0]);
         if (!rule && !config.force) {
@@ -538,7 +488,7 @@ class MockInterceptor {
                 body: res,
             });
         }
-        if (config.copy && res.body) {
+        if (res.body) {
             res.body = deepCopy(res.body);
         }
         if (config.log) {
@@ -565,10 +515,10 @@ class MockInterceptor {
                      */
                     () => res$),
                 })));
-                return chain.handle(req).pipe(delay(config.delay));
+                return chain.handle(req).pipe(delay((/** @type {?} */ (config.delay))));
             }
         }
-        return res$.pipe(delay(config.delay));
+        return res$.pipe(delay((/** @type {?} */ (config.delay))));
     }
 }
 MockInterceptor.decorators = [
@@ -593,17 +543,12 @@ if (false) {
  */
 class DelonMockModule {
     /**
-     * @param {?} config
      * @return {?}
      */
-    static forRoot(config) {
+    static forRoot() {
         return {
             ngModule: DelonMockModule,
-            providers: [
-                MockService,
-                { provide: DelonMockConfig, useValue: config },
-                { provide: HTTP_INTERCEPTORS, useClass: MockInterceptor, multi: true },
-            ],
+            providers: [{ provide: HTTP_INTERCEPTORS, useClass: MockInterceptor, multi: true }],
         };
     }
     /**
@@ -632,5 +577,5 @@ DelonMockModule.decorators = [
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { DelonMockConfig, DelonMockModule, MockInterceptor, MockService, MockStatusError };
+export { DelonMockModule, MockInterceptor, MockService, MockStatusError };
 //# sourceMappingURL=mock.js.map

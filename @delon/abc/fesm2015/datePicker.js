@@ -1,9 +1,8 @@
 import { __decorate, __metadata } from 'tslib';
-import { EventEmitter, Component, forwardRef, ViewChild, Input, Output, Injectable, ɵɵdefineInjectable, NgModule } from '@angular/core';
+import { EventEmitter, Component, forwardRef, ViewChild, Input, Output, NgModule } from '@angular/core';
 import { NG_VALUE_ACCESSOR, FormsModule } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
-import { AlainConfigService } from '@delon/theme';
-import { getTimeDistance, deepMergeKey, fixEndTimeOfRange, InputBoolean, deprecation10Cog } from '@delon/util';
+import { getTimeDistance, deepMergeKey, fixEndTimeOfRange, AlainConfigService, InputBoolean } from '@delon/util';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { CommonModule } from '@angular/common';
 
@@ -326,173 +325,6 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
- * Generated from: date-picker.config.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
- * @deprecated `DateRangePickerConfig` is going to be removed in 10.0.0, Please use `AlainDateRangePickerConfig` instead
- */
-class DateRangePickerConfig {
-    constructor() {
-        this.nzFormat = 'yyyy-MM-dd';
-        this.nzAllowClear = true;
-        this.nzAutoFocus = false;
-        this.nzDisabled = false;
-        this.nzPopupStyle = { position: 'relative' };
-        this.nzShowToday = true;
-        // tslint:disable-next-line: deprecation
-        this.shortcuts = {
-            enabled: false,
-            closed: true,
-            list: [
-                {
-                    text: '今天',
-                    fn: (/**
-                     * @return {?}
-                     */
-                    () => getTimeDistance('today')),
-                },
-                {
-                    text: '昨天',
-                    fn: (/**
-                     * @return {?}
-                     */
-                    () => getTimeDistance('yesterday')),
-                },
-                {
-                    text: '近3天',
-                    fn: (/**
-                     * @return {?}
-                     */
-                    () => getTimeDistance(-2)),
-                },
-                {
-                    text: '近7天',
-                    fn: (/**
-                     * @return {?}
-                     */
-                    () => getTimeDistance(-6)),
-                },
-                {
-                    text: '本周',
-                    fn: (/**
-                     * @return {?}
-                     */
-                    () => getTimeDistance('week')),
-                },
-                {
-                    text: '本月',
-                    fn: (/**
-                     * @return {?}
-                     */
-                    () => getTimeDistance('month')),
-                },
-                {
-                    text: '全年',
-                    fn: (/**
-                     * @return {?}
-                     */
-                    () => getTimeDistance('year')),
-                },
-            ],
-        };
-    }
-}
-if (false) {
-    /** @type {?} */
-    DateRangePickerConfig.prototype.nzFormat;
-    /** @type {?} */
-    DateRangePickerConfig.prototype.nzClassName;
-    /** @type {?} */
-    DateRangePickerConfig.prototype.nzSize;
-    /** @type {?} */
-    DateRangePickerConfig.prototype.nzStyle;
-    /** @type {?} */
-    DateRangePickerConfig.prototype.nzAllowClear;
-    /** @type {?} */
-    DateRangePickerConfig.prototype.nzAutoFocus;
-    /** @type {?} */
-    DateRangePickerConfig.prototype.nzDisabled;
-    /** @type {?} */
-    DateRangePickerConfig.prototype.nzDisabledDate;
-    /** @type {?} */
-    DateRangePickerConfig.prototype.nzDisabledTime;
-    /** @type {?} */
-    DateRangePickerConfig.prototype.nzLocale;
-    /** @type {?} */
-    DateRangePickerConfig.prototype.nzPopupStyle;
-    /** @type {?} */
-    DateRangePickerConfig.prototype.nzDropdownClassName;
-    /** @type {?} */
-    DateRangePickerConfig.prototype.nzRenderExtraFooter;
-    /** @type {?} */
-    DateRangePickerConfig.prototype.nzPlaceHolder;
-    /** @type {?} */
-    DateRangePickerConfig.prototype.nzShowTime;
-    /** @type {?} */
-    DateRangePickerConfig.prototype.nzShowToday;
-    /** @type {?} */
-    DateRangePickerConfig.prototype.nzMode;
-    /** @type {?} */
-    DateRangePickerConfig.prototype.nzRanges;
-    /** @type {?} */
-    DateRangePickerConfig.prototype.shortcuts;
-}
-/**
- * @deprecated `DateRangePickerShortcut` is going to be removed in 10.0.0, Please use `AlainDateRangePickerShortcut` instead
- * @record
- */
-function DateRangePickerShortcut() { }
-if (false) {
-    /**
-     * Whether to enable, default: `false`
-     * @type {?|undefined}
-     */
-    DateRangePickerShortcut.prototype.enabled;
-    /**
-     * Whether to close the panel after clicking, default: `true`
-     * @type {?|undefined}
-     */
-    DateRangePickerShortcut.prototype.closed;
-    /**
-     * Shortcut list, default: `今天`, `昨天`, `近3天`, `近7天`, `本周`, `本月`, `全年`
-     * @type {?|undefined}
-     */
-    DateRangePickerShortcut.prototype.list;
-}
-/**
- * @deprecated `DateRangePickerShortcutItem` is going to be removed in 10.0.0, Please use `AlainDateRangePickerShortcutItem` instead
- * @record
- */
-function DateRangePickerShortcutItem() { }
-if (false) {
-    /** @type {?} */
-    DateRangePickerShortcutItem.prototype.text;
-    /** @type {?} */
-    DateRangePickerShortcutItem.prototype.fn;
-    /* Skipping unhandled member: [key: string]: NzSafeAny;*/
-}
-/**
- * @deprecated `DatePickerConfig` is going to be removed in 10.0.0. Please refer to https://ng-alain.com/docs/global-config
- */
-class DatePickerConfig {
-    constructor() {
-        deprecation10Cog(`DatePickerConfig`);
-    }
-}
-DatePickerConfig.decorators = [
-    { type: Injectable, args: [{ providedIn: 'root' },] }
-];
-/** @nocollapse */
-DatePickerConfig.ctorParameters = () => [];
-/** @nocollapse */ DatePickerConfig.ɵprov = ɵɵdefineInjectable({ factory: function DatePickerConfig_Factory() { return new DatePickerConfig(); }, token: DatePickerConfig, providedIn: "root" });
-if (false) {
-    /** @type {?} */
-    DatePickerConfig.prototype.range;
-}
-
-/**
- * @fileoverview added by tsickle
  * Generated from: date-picker.module.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
@@ -520,5 +352,5 @@ DatePickerModule.decorators = [
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { DatePickerConfig, DatePickerModule, DateRangePickerConfig, RangePickerComponent };
+export { DatePickerModule, RangePickerComponent };
 //# sourceMappingURL=datePicker.js.map
