@@ -3274,6 +3274,273 @@
         virtualMinBufferPx: 100,
         iifBehavior: 'hide',
     };
+    /**
+     * @deprecated `STConfig` is going to be removed in 10.0.0. Please refer to https://ng-alain.com/docs/global-config
+     */
+    var STConfig = /** @class */ (function () {
+        function STConfig() {
+            /**
+             * table大小
+             */
+            this.size = 'default';
+            /**
+             * 是否开启响应式，默认：`true`
+             */
+            this.responsive = true;
+            /**
+             * 是否在小屏幕下才显示顶部与底部，默认：`false`
+             */
+            this.responsiveHideHeaderFooter = false;
+            /**
+             * 请求体配置
+             */
+            this.req = {
+                type: 'page',
+                method: 'GET',
+                allInBody: false,
+                lazyLoad: false,
+                reName: { pi: 'pi', ps: 'ps', skip: 'skip', limit: 'limit' },
+            };
+            /**
+             * 返回体配置
+             */
+            this.res = {
+                reName: { list: ['list'], total: ['total'] },
+            };
+            /**
+             * 返回体配置
+             */
+            this.page = {
+                front: true,
+                zeroIndexed: false,
+                position: 'bottom',
+                placement: 'right',
+                show: true,
+                showSize: false,
+                pageSizes: [10, 20, 30, 40, 50],
+                showQuickJumper: false,
+                total: true,
+                toTop: true,
+                toTopOffset: 100,
+            };
+            /**
+             * 单排序规则
+             * - 若不指定，则返回：`columnName=ascend|descend`
+             * - 若指定，则返回：`sort=columnName.(ascend|descend)`
+             */
+            this.singleSort = null;
+            /**
+             * 是否多排序，当 `sort` 多个相同值时自动合并，建议后端支持时使用
+             */
+            this.multiSort = null;
+            /**
+             * 按钮模态框配置
+             */
+            this.modal = {
+                paramsName: 'record',
+                size: 'lg',
+                exact: true,
+            };
+            /**
+             * 按钮抽屉配置
+             */
+            this.drawer = {
+                paramsName: 'record',
+                size: 'md',
+                footer: true,
+                footerHeight: 55,
+            };
+            /**
+             * 气泡参数
+             */
+            this.pop = {
+                title: '确认删除吗？',
+            };
+            /**
+             * 行单击多少时长之类为双击（单位：毫秒），默认：`200`
+             */
+            this.rowClickTime = 200;
+            /**
+             * 按钮图标
+             */
+            this.btnIcon = {
+                type: '',
+                theme: 'outline',
+                spin: false,
+            };
+            /**
+             * 行号索引，默认：`1`
+             * - 计算规则为：`index + noIndex`
+             */
+            this.noIndex = 1;
+            /**
+             * 通过点击行来展开子行
+             */
+            this.expandRowByClick = false;
+            /**
+             * 手风琴模式
+             */
+            this.expandAccordion = false;
+            /**
+             * 指定 `width` 模式
+             */
+            this.widthMode = {
+                type: 'default',
+                strictBehavior: 'truncate',
+            };
+            this.virtualItemSize = 54;
+            this.virtualMaxBufferPx = 200;
+            this.virtualMinBufferPx = 100;
+            /**
+             * Conditional expression rendering behavior, can be set to `hide` (default) or `disabled`
+             */
+            this.iifBehavior = 'hide';
+            util.deprecation10Cog("STConfig");
+        }
+        STConfig.decorators = [
+            { type: core.Injectable, args: [{ providedIn: 'root' },] }
+        ];
+        /** @nocollapse */
+        STConfig.ctorParameters = function () { return []; };
+        /** @nocollapse */ STConfig.ɵprov = core.ɵɵdefineInjectable({ factory: function STConfig_Factory() { return new STConfig(); }, token: STConfig, providedIn: "root" });
+        return STConfig;
+    }());
+    if (false) {
+        /**
+         * 起始页码，默认为：`1`
+         * @type {?}
+         */
+        STConfig.prototype.pi;
+        /**
+         * 每页数量，当设置为 `0` 表示不分页，默认：`10`
+         * @type {?}
+         */
+        STConfig.prototype.ps;
+        /**
+         * 是否显示边框
+         * @type {?}
+         */
+        STConfig.prototype.bordered;
+        /**
+         * table大小
+         * @type {?}
+         */
+        STConfig.prototype.size;
+        /**
+         * 是否开启响应式，默认：`true`
+         * @type {?}
+         */
+        STConfig.prototype.responsive;
+        /**
+         * 是否在小屏幕下才显示顶部与底部，默认：`false`
+         * @type {?}
+         */
+        STConfig.prototype.responsiveHideHeaderFooter;
+        /**
+         * 请求体配置
+         * @type {?}
+         */
+        STConfig.prototype.req;
+        /**
+         * 返回体配置
+         * @type {?}
+         */
+        STConfig.prototype.res;
+        /**
+         * 返回体配置
+         * @type {?}
+         */
+        STConfig.prototype.page;
+        /**
+         * 重命名排序值，`columns` 的重命名高于属性
+         * @type {?}
+         */
+        STConfig.prototype.sortReName;
+        /**
+         * 单排序规则
+         * - 若不指定，则返回：`columnName=ascend|descend`
+         * - 若指定，则返回：`sort=columnName.(ascend|descend)`
+         * @type {?}
+         */
+        STConfig.prototype.singleSort;
+        /**
+         * 是否多排序，当 `sort` 多个相同值时自动合并，建议后端支持时使用
+         * @type {?}
+         */
+        STConfig.prototype.multiSort;
+        /**
+         * 按钮模态框配置
+         * @type {?}
+         */
+        STConfig.prototype.modal;
+        /**
+         * 按钮抽屉配置
+         * @type {?}
+         */
+        STConfig.prototype.drawer;
+        /**
+         * 气泡参数
+         * @type {?}
+         */
+        STConfig.prototype.pop;
+        /**
+         * 行单击多少时长之类为双击（单位：毫秒），默认：`200`
+         * @type {?}
+         */
+        STConfig.prototype.rowClickTime;
+        /**
+         * 过滤按钮确认文本
+         * @type {?}
+         */
+        STConfig.prototype.filterConfirmText;
+        /**
+         * 过滤按钮重置文本
+         * @type {?}
+         */
+        STConfig.prototype.filterClearText;
+        /**
+         * 按钮图标
+         * @type {?}
+         */
+        STConfig.prototype.btnIcon;
+        /**
+         * 行号索引，默认：`1`
+         * - 计算规则为：`index + noIndex`
+         * @type {?}
+         */
+        STConfig.prototype.noIndex;
+        /**
+         * 表格行的类名
+         * @type {?}
+         */
+        STConfig.prototype.rowClassName;
+        /**
+         * 通过点击行来展开子行
+         * @type {?}
+         */
+        STConfig.prototype.expandRowByClick;
+        /**
+         * 手风琴模式
+         * @type {?}
+         */
+        STConfig.prototype.expandAccordion;
+        /**
+         * 指定 `width` 模式
+         * @type {?}
+         */
+        STConfig.prototype.widthMode;
+        /** @type {?} */
+        STConfig.prototype.virtualItemSize;
+        /** @type {?} */
+        STConfig.prototype.virtualMaxBufferPx;
+        /** @type {?} */
+        STConfig.prototype.virtualMinBufferPx;
+        /**
+         * Conditional expression rendering behavior, can be set to `hide` (default) or `disabled`
+         * @type {?}
+         */
+        STConfig.prototype.iifBehavior;
+    }
 
     /**
      * @fileoverview added by tsickle
@@ -4817,7 +5084,7 @@
             { type: STColumnSource },
             { type: STDataSource },
             { type: theme.DelonLocaleService },
-            { type: util.AlainConfigService }
+            { type: theme.AlainConfigService }
         ]; };
         STComponent.propDecorators = {
             orgTable: [{ type: core.ViewChild, args: ['table', { static: false },] }],
@@ -5220,12 +5487,12 @@
 
     exports.STColumnSource = STColumnSource;
     exports.STComponent = STComponent;
+    exports.STConfig = STConfig;
     exports.STDataSource = STDataSource;
     exports.STExport = STExport;
     exports.STModule = STModule;
     exports.STRowDirective = STRowDirective;
     exports.STWidgetRegistry = STWidgetRegistry;
-    exports.ST_DEFULAT_CONFIG = ST_DEFULAT_CONFIG;
     exports.ɵa = STRowSource;
     exports.ɵb = STWidgetHostDirective;
 

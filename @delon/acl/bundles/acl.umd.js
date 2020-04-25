@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('@angular/router'), require('@angular/common')) :
-    typeof define === 'function' && define.amd ? define('@delon/acl', ['exports', '@angular/core', '@delon/util', 'rxjs', 'rxjs/operators', '@angular/router', '@angular/common'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.acl = {}), global.ng.core, global.delon.util, global.rxjs, global.rxjs.operators, global.ng.router, global.ng.common));
-}(this, (function (exports, core, util, rxjs, operators, router, common) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('rxjs'), require('@delon/util'), require('rxjs/operators'), require('@angular/router'), require('@angular/common')) :
+    typeof define === 'function' && define.amd ? define('@delon/acl', ['exports', '@angular/core', 'rxjs', '@delon/util', 'rxjs/operators', '@angular/router', '@angular/common'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.acl = {}), global.ng.core, global.rxjs, global.delon.util, global.rxjs.operators, global.ng.router, global.ng.common));
+}(this, (function (exports, core, rxjs, util, operators, router, common) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -228,10 +228,31 @@
      * Generated from: src/acl.config.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    /** @type {?} */
-    var ACL_DEFAULT_CONFIG = {
-        guard_url: "/403",
-    };
+    var DelonACLConfig = /** @class */ (function () {
+        function DelonACLConfig() {
+            /**
+             * Router URL when guard fail, default: `/403`
+             */
+            this.guard_url = '/403';
+        }
+        DelonACLConfig.decorators = [
+            { type: core.Injectable, args: [{ providedIn: 'root' },] }
+        ];
+        /** @nocollapse */ DelonACLConfig.ɵprov = core.ɵɵdefineInjectable({ factory: function DelonACLConfig_Factory() { return new DelonACLConfig(); }, token: DelonACLConfig, providedIn: "root" });
+        return DelonACLConfig;
+    }());
+    if (false) {
+        /**
+         * Router URL when guard fail, default: `/403`
+         * @type {?}
+         */
+        DelonACLConfig.prototype.guard_url;
+        /**
+         * `can` before execution callback
+         * @type {?}
+         */
+        DelonACLConfig.prototype.preCan;
+    }
 
     /**
      * @fileoverview added by tsickle
@@ -244,12 +265,12 @@
      * 务必在根目录注册 `DelonACLModule.forRoot()` 才能使用服务
      */
     var ACLService = /** @class */ (function () {
-        function ACLService(configSrv) {
+        function ACLService(options) {
+            this.options = options;
             this.roles = [];
             this.abilities = [];
             this.full = false;
             this.aclChange = new rxjs.BehaviorSubject(null);
-            this.options = configSrv.merge('acl', ACL_DEFAULT_CONFIG);
         }
         Object.defineProperty(ACLService.prototype, "change", {
             /** ACL变更通知 */
@@ -275,16 +296,6 @@
                     roles: this.roles,
                     abilities: this.abilities,
                 };
-            },
-            enumerable: true,
-            configurable: true
-        });
-        Object.defineProperty(ACLService.prototype, "guard_url", {
-            get: /**
-             * @return {?}
-             */
-            function () {
-                return (/** @type {?} */ (this.options.guard_url));
             },
             enumerable: true,
             configurable: true
@@ -651,16 +662,11 @@
         ];
         /** @nocollapse */
         ACLService.ctorParameters = function () { return [
-            { type: util.AlainConfigService }
+            { type: DelonACLConfig }
         ]; };
         return ACLService;
     }());
     if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        ACLService.prototype.options;
         /**
          * @type {?}
          * @private
@@ -681,6 +687,11 @@
          * @private
          */
         ACLService.prototype.aclChange;
+        /**
+         * @type {?}
+         * @private
+         */
+        ACLService.prototype.options;
     }
 
     /**
@@ -1026,9 +1037,10 @@
      * ```
      */
     var ACLGuard = /** @class */ (function () {
-        function ACLGuard(srv, router) {
+        function ACLGuard(srv, router, options) {
             this.srv = srv;
             this.router = router;
+            this.options = options;
         }
         /**
          * @private
@@ -1042,7 +1054,7 @@
          */
         function (data) {
             var _this = this;
-            data = __assign({ guard: null, guard_url: this.srv.guard_url }, data);
+            data = __assign({ guard: null, guard_url: this.options.guard_url }, data);
             /** @type {?} */
             var guard = data.guard;
             return (guard && guard instanceof rxjs.Observable ? guard : rxjs.of(guard != null ? ((/** @type {?} */ (guard))) : null)).pipe(operators.map((/**
@@ -1114,9 +1126,10 @@
         /** @nocollapse */
         ACLGuard.ctorParameters = function () { return [
             { type: ACLService },
-            { type: router.Router }
+            { type: router.Router },
+            { type: DelonACLConfig }
         ]; };
-        /** @nocollapse */ ACLGuard.ɵprov = core.ɵɵdefineInjectable({ factory: function ACLGuard_Factory() { return new ACLGuard(core.ɵɵinject(ACLService), core.ɵɵinject(router.Router)); }, token: ACLGuard, providedIn: "root" });
+        /** @nocollapse */ ACLGuard.ɵprov = core.ɵɵdefineInjectable({ factory: function ACLGuard_Factory() { return new ACLGuard(core.ɵɵinject(ACLService), core.ɵɵinject(router.Router), core.ɵɵinject(DelonACLConfig)); }, token: ACLGuard, providedIn: "root" });
         return ACLGuard;
     }());
     if (false) {
@@ -1130,6 +1143,11 @@
          * @private
          */
         ACLGuard.prototype.router;
+        /**
+         * @type {?}
+         * @private
+         */
+        ACLGuard.prototype.options;
     }
 
     /**
@@ -1168,7 +1186,7 @@
     exports.ACLGuard = ACLGuard;
     exports.ACLIfDirective = ACLIfDirective;
     exports.ACLService = ACLService;
-    exports.ACL_DEFAULT_CONFIG = ACL_DEFAULT_CONFIG;
+    exports.DelonACLConfig = DelonACLConfig;
     exports.DelonACLModule = DelonACLModule;
 
     Object.defineProperty(exports, '__esModule', { value: true });

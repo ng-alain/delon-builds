@@ -3,25 +3,117 @@
  * Generated from: src/auth.config.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-/** @type {?} */
-export var AUTH_DEFAULT_CONFIG = {
-    store_key: "_token",
-    token_invalid_redirect: true,
-    token_exp_offset: 10,
-    token_send_key: "token",
-    // tslint:disable-next-line: no-invalid-template-strings
-    token_send_template: '${token}',
-    token_send_place: 'header',
-    login_url: '/login',
-    ignores: [/\/login/, /assets\//, /passport\//],
-    allow_anonymous_key: "_allow_anonymous",
-    executeOtherInterceptors: true,
-};
-/**
- * @param {?} srv
- * @return {?}
- */
-export function mergeConfig(srv) {
-    return srv.merge('auth', AUTH_DEFAULT_CONFIG);
+import { Injectable } from '@angular/core';
+import * as i0 from "@angular/core";
+var DelonAuthConfig = /** @class */ (function () {
+    function DelonAuthConfig() {
+        /**
+         * 存储KEY值
+         */
+        this.store_key = '_token';
+        /**
+         * 无效时跳转至登录页，包括：
+         * - 无效token值
+         * - token已过期（限JWT）
+         */
+        this.token_invalid_redirect = true;
+        /**
+         * token过期时间偏移值，默认：`10` 秒（单位：秒）
+         */
+        this.token_exp_offset = 10;
+        /**
+         * 发送token参数名，默认：token
+         */
+        this.token_send_key = 'token';
+        /**
+         * 发送token模板（默认为：`${token}`），使用 `${token}` 表示token点位符，例如：
+         *
+         * - `Bearer ${token}`
+         */
+        // tslint:disable-next-line:no-invalid-template-strings
+        this.token_send_template = '${token}';
+        /**
+         * 发送token参数位置，默认：header
+         */
+        this.token_send_place = 'header';
+        /**
+         * 登录页路由地址
+         */
+        this.login_url = "/login";
+        /**
+         * 忽略TOKEN的URL地址列表，默认值为：[ /\/login/, /assets\//, /passport\// ]
+         */
+        this.ignores = [/\/login/, /assets\//, /passport\//];
+        /**
+         * 允许匿名登录KEY，若请求参数中带有该KEY表示忽略TOKEN
+         */
+        this.allow_anonymous_key = "_allow_anonymous";
+        /**
+         * 是否校验失效时命中后继续调用后续拦截器的 `intercept` 方法，默认：`true`
+         */
+        this.executeOtherInterceptors = true;
+    }
+    DelonAuthConfig.decorators = [
+        { type: Injectable, args: [{ providedIn: 'root' },] }
+    ];
+    /** @nocollapse */ DelonAuthConfig.ɵprov = i0.ɵɵdefineInjectable({ factory: function DelonAuthConfig_Factory() { return new DelonAuthConfig(); }, token: DelonAuthConfig, providedIn: "root" });
+    return DelonAuthConfig;
+}());
+export { DelonAuthConfig };
+if (false) {
+    /**
+     * 存储KEY值
+     * @type {?}
+     */
+    DelonAuthConfig.prototype.store_key;
+    /**
+     * 无效时跳转至登录页，包括：
+     * - 无效token值
+     * - token已过期（限JWT）
+     * @type {?}
+     */
+    DelonAuthConfig.prototype.token_invalid_redirect;
+    /**
+     * token过期时间偏移值，默认：`10` 秒（单位：秒）
+     * @type {?}
+     */
+    DelonAuthConfig.prototype.token_exp_offset;
+    /**
+     * 发送token参数名，默认：token
+     * @type {?}
+     */
+    DelonAuthConfig.prototype.token_send_key;
+    /**
+     * 发送token模板（默认为：`${token}`），使用 `${token}` 表示token点位符，例如：
+     *
+     * - `Bearer ${token}`
+     * @type {?}
+     */
+    DelonAuthConfig.prototype.token_send_template;
+    /**
+     * 发送token参数位置，默认：header
+     * @type {?}
+     */
+    DelonAuthConfig.prototype.token_send_place;
+    /**
+     * 登录页路由地址
+     * @type {?}
+     */
+    DelonAuthConfig.prototype.login_url;
+    /**
+     * 忽略TOKEN的URL地址列表，默认值为：[ /\/login/, /assets\//, /passport\// ]
+     * @type {?}
+     */
+    DelonAuthConfig.prototype.ignores;
+    /**
+     * 允许匿名登录KEY，若请求参数中带有该KEY表示忽略TOKEN
+     * @type {?}
+     */
+    DelonAuthConfig.prototype.allow_anonymous_key;
+    /**
+     * 是否校验失效时命中后继续调用后续拦截器的 `intercept` 方法，默认：`true`
+     * @type {?}
+     */
+    DelonAuthConfig.prototype.executeOtherInterceptors;
 }
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYXV0aC5jb25maWcuanMiLCJzb3VyY2VSb290Ijoibmc6Ly9AZGVsb24vYXV0aC8iLCJzb3VyY2VzIjpbInNyYy9hdXRoLmNvbmZpZy50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7QUFFQSxNQUFNLEtBQU8sbUJBQW1CLEdBQW9CO0lBQ2xELFNBQVMsRUFBRSxRQUFRO0lBQ25CLHNCQUFzQixFQUFFLElBQUk7SUFDNUIsZ0JBQWdCLEVBQUUsRUFBRTtJQUNwQixjQUFjLEVBQUUsT0FBTzs7SUFFdkIsbUJBQW1CLEVBQUUsVUFBVTtJQUMvQixnQkFBZ0IsRUFBRSxRQUFRO0lBQzFCLFNBQVMsRUFBRSxRQUFRO0lBQ25CLE9BQU8sRUFBRSxDQUFDLFNBQVMsRUFBRSxVQUFVLEVBQUUsWUFBWSxDQUFDO0lBQzlDLG1CQUFtQixFQUFFLGtCQUFrQjtJQUN2Qyx3QkFBd0IsRUFBRSxJQUFJO0NBQy9COzs7OztBQUVELE1BQU0sVUFBVSxXQUFXLENBQUMsR0FBdUI7SUFDakQsT0FBTyxHQUFHLENBQUMsS0FBSyxDQUFDLE1BQU0sRUFBRSxtQkFBbUIsQ0FBQyxDQUFDO0FBQ2hELENBQUMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBBbGFpbkF1dGhDb25maWcsIEFsYWluQ29uZmlnU2VydmljZSB9IGZyb20gJ0BkZWxvbi91dGlsJztcblxuZXhwb3J0IGNvbnN0IEFVVEhfREVGQVVMVF9DT05GSUc6IEFsYWluQXV0aENvbmZpZyA9IHtcbiAgc3RvcmVfa2V5OiBgX3Rva2VuYCxcbiAgdG9rZW5faW52YWxpZF9yZWRpcmVjdDogdHJ1ZSxcbiAgdG9rZW5fZXhwX29mZnNldDogMTAsXG4gIHRva2VuX3NlbmRfa2V5OiBgdG9rZW5gLFxuICAvLyB0c2xpbnQ6ZGlzYWJsZS1uZXh0LWxpbmU6IG5vLWludmFsaWQtdGVtcGxhdGUtc3RyaW5nc1xuICB0b2tlbl9zZW5kX3RlbXBsYXRlOiAnJHt0b2tlbn0nLFxuICB0b2tlbl9zZW5kX3BsYWNlOiAnaGVhZGVyJyxcbiAgbG9naW5fdXJsOiAnL2xvZ2luJyxcbiAgaWdub3JlczogWy9cXC9sb2dpbi8sIC9hc3NldHNcXC8vLCAvcGFzc3BvcnRcXC8vXSxcbiAgYWxsb3dfYW5vbnltb3VzX2tleTogYF9hbGxvd19hbm9ueW1vdXNgLFxuICBleGVjdXRlT3RoZXJJbnRlcmNlcHRvcnM6IHRydWUsXG59O1xuXG5leHBvcnQgZnVuY3Rpb24gbWVyZ2VDb25maWcoc3J2OiBBbGFpbkNvbmZpZ1NlcnZpY2UpOiBBbGFpbkF1dGhDb25maWcge1xuICByZXR1cm4gc3J2Lm1lcmdlKCdhdXRoJywgQVVUSF9ERUZBVUxUX0NPTkZJRyk7XG59XG4iXX0=
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYXV0aC5jb25maWcuanMiLCJzb3VyY2VSb290Ijoibmc6Ly9AZGVsb24vYXV0aC8iLCJzb3VyY2VzIjpbInNyYy9hdXRoLmNvbmZpZy50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7OztBQUFBLE9BQU8sRUFBRSxVQUFVLEVBQUUsTUFBTSxlQUFlLENBQUM7O0FBRTNDO0lBQUE7Ozs7UUFLRSxjQUFTLEdBQVksUUFBUSxDQUFDOzs7Ozs7UUFNOUIsMkJBQXNCLEdBQWEsSUFBSSxDQUFDOzs7O1FBSXhDLHFCQUFnQixHQUFZLEVBQUUsQ0FBQzs7OztRQUkvQixtQkFBYyxHQUFZLE9BQU8sQ0FBQzs7Ozs7OztRQU9sQyx3QkFBbUIsR0FBWSxVQUFVLENBQUM7Ozs7UUFJMUMscUJBQWdCLEdBQStCLFFBQVEsQ0FBQzs7OztRQUl4RCxjQUFTLEdBQVksUUFBUSxDQUFDOzs7O1FBSTlCLFlBQU8sR0FBcUIsQ0FBQyxTQUFTLEVBQUUsVUFBVSxFQUFFLFlBQVksQ0FBQyxDQUFDOzs7O1FBSWxFLHdCQUFtQixHQUFZLGtCQUFrQixDQUFDOzs7O1FBSWxELDZCQUF3QixHQUFhLElBQUksQ0FBQztLQUMzQzs7Z0JBL0NBLFVBQVUsU0FBQyxFQUFFLFVBQVUsRUFBRSxNQUFNLEVBQUU7OzswQkFGbEM7Q0FpREMsQUEvQ0QsSUErQ0M7U0E5Q1ksZUFBZTs7Ozs7O0lBSTFCLG9DQUE4Qjs7Ozs7OztJQU05QixpREFBd0M7Ozs7O0lBSXhDLDJDQUErQjs7Ozs7SUFJL0IseUNBQWtDOzs7Ozs7O0lBT2xDLDhDQUEwQzs7Ozs7SUFJMUMsMkNBQXdEOzs7OztJQUl4RCxvQ0FBOEI7Ozs7O0lBSTlCLGtDQUFrRTs7Ozs7SUFJbEUsOENBQWtEOzs7OztJQUlsRCxtREFBMEMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBJbmplY3RhYmxlIH0gZnJvbSAnQGFuZ3VsYXIvY29yZSc7XG5cbkBJbmplY3RhYmxlKHsgcHJvdmlkZWRJbjogJ3Jvb3QnIH0pXG5leHBvcnQgY2xhc3MgRGVsb25BdXRoQ29uZmlnIHtcbiAgLyoqXG4gICAqIOWtmOWCqEtFWeWAvFxuICAgKi9cbiAgc3RvcmVfa2V5Pzogc3RyaW5nID0gJ190b2tlbic7XG4gIC8qKlxuICAgKiDml6DmlYjml7bot7Povazoh7PnmbvlvZXpobXvvIzljIXmi6zvvJpcbiAgICogLSDml6DmlYh0b2tlbuWAvFxuICAgKiAtIHRva2Vu5bey6L+H5pyf77yI6ZmQSldU77yJXG4gICAqL1xuICB0b2tlbl9pbnZhbGlkX3JlZGlyZWN0PzogYm9vbGVhbiA9IHRydWU7XG4gIC8qKlxuICAgKiB0b2tlbui/h+acn+aXtumXtOWBj+enu+WAvO+8jOm7mOiupO+8mmAxMGAg56eS77yI5Y2V5L2N77ya56eS77yJXG4gICAqL1xuICB0b2tlbl9leHBfb2Zmc2V0PzogbnVtYmVyID0gMTA7XG4gIC8qKlxuICAgKiDlj5HpgIF0b2tlbuWPguaVsOWQje+8jOm7mOiupO+8mnRva2VuXG4gICAqL1xuICB0b2tlbl9zZW5kX2tleT86IHN0cmluZyA9ICd0b2tlbic7XG4gIC8qKlxuICAgKiDlj5HpgIF0b2tlbuaooeadv++8iOm7mOiupOS4uu+8mmAke3Rva2VufWDvvInvvIzkvb/nlKggYCR7dG9rZW59YCDooajnpLp0b2tlbueCueS9jeespu+8jOS+i+Wmgu+8mlxuICAgKlxuICAgKiAtIGBCZWFyZXIgJHt0b2tlbn1gXG4gICAqL1xuICAvLyB0c2xpbnQ6ZGlzYWJsZS1uZXh0LWxpbmU6bm8taW52YWxpZC10ZW1wbGF0ZS1zdHJpbmdzXG4gIHRva2VuX3NlbmRfdGVtcGxhdGU/OiBzdHJpbmcgPSAnJHt0b2tlbn0nO1xuICAvKipcbiAgICog5Y+R6YCBdG9rZW7lj4LmlbDkvY3nva7vvIzpu5jorqTvvJpoZWFkZXJcbiAgICovXG4gIHRva2VuX3NlbmRfcGxhY2U/OiAnaGVhZGVyJyB8ICdib2R5JyB8ICd1cmwnID0gJ2hlYWRlcic7XG4gIC8qKlxuICAgKiDnmbvlvZXpobXot6/nlLHlnLDlnYBcbiAgICovXG4gIGxvZ2luX3VybD86IHN0cmluZyA9IGAvbG9naW5gO1xuICAvKipcbiAgICog5b+955WlVE9LRU7nmoRVUkzlnLDlnYDliJfooajvvIzpu5jorqTlgLzkuLrvvJpbIC9cXC9sb2dpbi8sIC9hc3NldHNcXC8vLCAvcGFzc3BvcnRcXC8vIF1cbiAgICovXG4gIGlnbm9yZXM/OiBSZWdFeHBbXSB8IG51bGwgPSBbL1xcL2xvZ2luLywgL2Fzc2V0c1xcLy8sIC9wYXNzcG9ydFxcLy9dO1xuICAvKipcbiAgICog5YWB6K645Yy/5ZCN55m75b2VS0VZ77yM6Iul6K+35rGC5Y+C5pWw5Lit5bim5pyJ6K+lS0VZ6KGo56S65b+955WlVE9LRU5cbiAgICovXG4gIGFsbG93X2Fub255bW91c19rZXk/OiBzdHJpbmcgPSBgX2FsbG93X2Fub255bW91c2A7XG4gIC8qKlxuICAgKiDmmK/lkKbmoKHpqozlpLHmlYjml7blkb3kuK3lkI7nu6fnu63osIPnlKjlkI7nu63mi6bmiKrlmajnmoQgYGludGVyY2VwdGAg5pa55rOV77yM6buY6K6k77yaYHRydWVgXG4gICAqL1xuICBleGVjdXRlT3RoZXJJbnRlcmNlcHRvcnM/OiBib29sZWFuID0gdHJ1ZTtcbn1cbiJdfQ==

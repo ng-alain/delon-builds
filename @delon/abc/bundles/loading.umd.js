@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/cdk/overlay'), require('@angular/cdk/portal'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('@angular/common'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/spin')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/loading', ['exports', '@angular/core', '@angular/cdk/overlay', '@angular/cdk/portal', '@delon/util', 'rxjs', 'rxjs/operators', '@angular/common', 'ng-zorro-antd/icon', 'ng-zorro-antd/spin'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.loading = {}), global.ng.core, global.ng.cdk.overlay, global.ng.cdk.portal, global.delon.util, global.rxjs, global.rxjs.operators, global.ng.common, global['ng-zorro-antd/icon'], global['ng-zorro-antd/spin']));
-}(this, (function (exports, core, overlay, portal, util, rxjs, operators, common, icon, spin) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util'), require('@angular/cdk/overlay'), require('@angular/cdk/portal'), require('@delon/theme'), require('rxjs'), require('rxjs/operators'), require('@angular/common'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/spin')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/loading', ['exports', '@angular/core', '@delon/util', '@angular/cdk/overlay', '@angular/cdk/portal', '@delon/theme', 'rxjs', 'rxjs/operators', '@angular/common', 'ng-zorro-antd/icon', 'ng-zorro-antd/spin'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.loading = {}), global.ng.core, global.util, global.ng.cdk.overlay, global.ng.cdk.portal, global.delon.theme, global.rxjs, global.rxjs.operators, global.ng.common, global['ng-zorro-antd/icon'], global['ng-zorro-antd/spin']));
+}(this, (function (exports, core, util, overlay, portal, theme, rxjs, operators, common, icon, spin) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -225,6 +225,47 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: loading.config.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /**
+     * @deprecated `LoadingConfig` is going to be removed in 10.0.0. Please refer to https://ng-alain.com/docs/global-config
+     */
+    var LoadingConfig = /** @class */ (function () {
+        function LoadingConfig() {
+            this.type = 'spin';
+            this.text = '加载中...';
+            this.icon = {
+                type: 'loading',
+                theme: 'outline',
+                spin: true,
+            };
+            this.delay = 0;
+            util.deprecation10Cog("LoadingConfig");
+        }
+        LoadingConfig.decorators = [
+            { type: core.Injectable, args: [{ providedIn: 'root' },] }
+        ];
+        /** @nocollapse */
+        LoadingConfig.ctorParameters = function () { return []; };
+        /** @nocollapse */ LoadingConfig.ɵprov = core.ɵɵdefineInjectable({ factory: function LoadingConfig_Factory() { return new LoadingConfig(); }, token: LoadingConfig, providedIn: "root" });
+        return LoadingConfig;
+    }());
+    if (false) {
+        /** @type {?} */
+        LoadingConfig.prototype.type;
+        /** @type {?} */
+        LoadingConfig.prototype.text;
+        /** @type {?} */
+        LoadingConfig.prototype.icon;
+        /** @type {?} */
+        LoadingConfig.prototype.custom;
+        /** @type {?} */
+        LoadingConfig.prototype.delay;
+    }
+
+    /**
+     * @fileoverview added by tsickle
      * Generated from: loading.component.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
@@ -391,9 +432,9 @@
         /** @nocollapse */
         LoadingService.ctorParameters = function () { return [
             { type: overlay.Overlay },
-            { type: util.AlainConfigService }
+            { type: theme.AlainConfigService }
         ]; };
-        /** @nocollapse */ LoadingService.ɵprov = core.ɵɵdefineInjectable({ factory: function LoadingService_Factory() { return new LoadingService(core.ɵɵinject(overlay.Overlay), core.ɵɵinject(util.AlainConfigService)); }, token: LoadingService, providedIn: "root" });
+        /** @nocollapse */ LoadingService.ɵprov = core.ɵɵdefineInjectable({ factory: function LoadingService_Factory() { return new LoadingService(core.ɵɵinject(overlay.Overlay), core.ɵɵinject(theme.AlainConfigService)); }, token: LoadingService, providedIn: "root" });
         return LoadingService;
     }());
     if (false) {
@@ -511,6 +552,7 @@
         LoadingShowOptions.prototype.delay;
     }
 
+    exports.LoadingConfig = LoadingConfig;
     exports.LoadingDefaultComponent = LoadingDefaultComponent;
     exports.LoadingModule = LoadingModule;
     exports.LoadingService = LoadingService;

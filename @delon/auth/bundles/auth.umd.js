@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common'), require('@angular/core'), require('@angular/router'), require('rxjs'), require('@delon/util'), require('rxjs/operators'), require('@angular/common/http')) :
-    typeof define === 'function' && define.amd ? define('@delon/auth', ['exports', '@angular/common', '@angular/core', '@angular/router', 'rxjs', '@delon/util', 'rxjs/operators', '@angular/common/http'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.auth = {}), global.ng.common, global.ng.core, global.ng.router, global.rxjs, global.util, global.rxjs.operators, global.ng.common.http));
-}(this, (function (exports, common, core, router, rxjs, util, operators, http) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common'), require('@angular/core'), require('@angular/router'), require('rxjs'), require('rxjs/operators'), require('@angular/common/http')) :
+    typeof define === 'function' && define.amd ? define('@delon/auth', ['exports', '@angular/common', '@angular/core', '@angular/router', 'rxjs', 'rxjs/operators', '@angular/common/http'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.auth = {}), global.ng.common, global.ng.core, global.ng.router, global.rxjs, global.rxjs.operators, global.ng.common.http));
+}(this, (function (exports, common, core, router, rxjs, operators, http) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -228,26 +228,115 @@
      * Generated from: src/auth.config.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    /** @type {?} */
-    var AUTH_DEFAULT_CONFIG = {
-        store_key: "_token",
-        token_invalid_redirect: true,
-        token_exp_offset: 10,
-        token_send_key: "token",
-        // tslint:disable-next-line: no-invalid-template-strings
-        token_send_template: '${token}',
-        token_send_place: 'header',
-        login_url: '/login',
-        ignores: [/\/login/, /assets\//, /passport\//],
-        allow_anonymous_key: "_allow_anonymous",
-        executeOtherInterceptors: true,
-    };
-    /**
-     * @param {?} srv
-     * @return {?}
-     */
-    function mergeConfig(srv) {
-        return srv.merge('auth', AUTH_DEFAULT_CONFIG);
+    var DelonAuthConfig = /** @class */ (function () {
+        function DelonAuthConfig() {
+            /**
+             * 存储KEY值
+             */
+            this.store_key = '_token';
+            /**
+             * 无效时跳转至登录页，包括：
+             * - 无效token值
+             * - token已过期（限JWT）
+             */
+            this.token_invalid_redirect = true;
+            /**
+             * token过期时间偏移值，默认：`10` 秒（单位：秒）
+             */
+            this.token_exp_offset = 10;
+            /**
+             * 发送token参数名，默认：token
+             */
+            this.token_send_key = 'token';
+            /**
+             * 发送token模板（默认为：`${token}`），使用 `${token}` 表示token点位符，例如：
+             *
+             * - `Bearer ${token}`
+             */
+            // tslint:disable-next-line:no-invalid-template-strings
+            this.token_send_template = '${token}';
+            /**
+             * 发送token参数位置，默认：header
+             */
+            this.token_send_place = 'header';
+            /**
+             * 登录页路由地址
+             */
+            this.login_url = "/login";
+            /**
+             * 忽略TOKEN的URL地址列表，默认值为：[ /\/login/, /assets\//, /passport\// ]
+             */
+            this.ignores = [/\/login/, /assets\//, /passport\//];
+            /**
+             * 允许匿名登录KEY，若请求参数中带有该KEY表示忽略TOKEN
+             */
+            this.allow_anonymous_key = "_allow_anonymous";
+            /**
+             * 是否校验失效时命中后继续调用后续拦截器的 `intercept` 方法，默认：`true`
+             */
+            this.executeOtherInterceptors = true;
+        }
+        DelonAuthConfig.decorators = [
+            { type: core.Injectable, args: [{ providedIn: 'root' },] }
+        ];
+        /** @nocollapse */ DelonAuthConfig.ɵprov = core.ɵɵdefineInjectable({ factory: function DelonAuthConfig_Factory() { return new DelonAuthConfig(); }, token: DelonAuthConfig, providedIn: "root" });
+        return DelonAuthConfig;
+    }());
+    if (false) {
+        /**
+         * 存储KEY值
+         * @type {?}
+         */
+        DelonAuthConfig.prototype.store_key;
+        /**
+         * 无效时跳转至登录页，包括：
+         * - 无效token值
+         * - token已过期（限JWT）
+         * @type {?}
+         */
+        DelonAuthConfig.prototype.token_invalid_redirect;
+        /**
+         * token过期时间偏移值，默认：`10` 秒（单位：秒）
+         * @type {?}
+         */
+        DelonAuthConfig.prototype.token_exp_offset;
+        /**
+         * 发送token参数名，默认：token
+         * @type {?}
+         */
+        DelonAuthConfig.prototype.token_send_key;
+        /**
+         * 发送token模板（默认为：`${token}`），使用 `${token}` 表示token点位符，例如：
+         *
+         * - `Bearer ${token}`
+         * @type {?}
+         */
+        DelonAuthConfig.prototype.token_send_template;
+        /**
+         * 发送token参数位置，默认：header
+         * @type {?}
+         */
+        DelonAuthConfig.prototype.token_send_place;
+        /**
+         * 登录页路由地址
+         * @type {?}
+         */
+        DelonAuthConfig.prototype.login_url;
+        /**
+         * 忽略TOKEN的URL地址列表，默认值为：[ /\/login/, /assets\//, /passport\// ]
+         * @type {?}
+         */
+        DelonAuthConfig.prototype.ignores;
+        /**
+         * 允许匿名登录KEY，若请求参数中带有该KEY表示忽略TOKEN
+         * @type {?}
+         */
+        DelonAuthConfig.prototype.allow_anonymous_key;
+        /**
+         * 是否校验失效时命中后继续调用后续拦截器的 `intercept` 方法，默认：`true`
+         * @type {?}
+         */
+        DelonAuthConfig.prototype.executeOtherInterceptors;
     }
 
     /**
@@ -351,28 +440,28 @@
      * @return {?}
      */
     function DA_SERVICE_TOKEN_FACTORY() {
-        return new TokenService(core.inject(util.AlainConfigService), core.inject(DA_STORE_TOKEN));
+        return new TokenService(core.inject(DelonAuthConfig), core.inject(DA_STORE_TOKEN));
     }
     /**
      * 维护Token信息服务，[在线文档](https://ng-alain.com/auth)
      */
     var TokenService = /** @class */ (function () {
-        function TokenService(configSrv, store) {
+        function TokenService(options, store) {
+            this.options = options;
             this.store = store;
             this.change$ = new rxjs.BehaviorSubject(null);
             this._referrer = {};
-            this._options = mergeConfig(configSrv);
         }
         Object.defineProperty(TokenService.prototype, "login_url", {
             /**
-             * 授权失败后跳转路由路径（支持外部链接地址），通过设置[全局配置](https://ng-alain.com/docs/global-config)来改变
+             * 授权失败后跳转路由路径（支持外部链接地址），通过设置全局 `DelonAuthConfig.login_url` 来改变
              */
             get: /**
-             * 授权失败后跳转路由路径（支持外部链接地址），通过设置[全局配置](https://ng-alain.com/docs/global-config)来改变
+             * 授权失败后跳转路由路径（支持外部链接地址），通过设置全局 `DelonAuthConfig.login_url` 来改变
              * @return {?}
              */
             function () {
-                return this._options.login_url;
+                return this.options.login_url;
             },
             enumerable: true,
             configurable: true
@@ -387,16 +476,6 @@
              */
             function () {
                 return this._referrer;
-            },
-            enumerable: true,
-            configurable: true
-        });
-        Object.defineProperty(TokenService.prototype, "options", {
-            get: /**
-             * @return {?}
-             */
-            function () {
-                return this._options;
             },
             enumerable: true,
             configurable: true
@@ -416,7 +495,7 @@
          */
         function (data) {
             this.change$.next(data);
-            return this.store.set((/** @type {?} */ (this._options.store_key)), data);
+            return this.store.set((/** @type {?} */ (this.options.store_key)), data);
         };
         /**
          * @template T
@@ -430,7 +509,7 @@
          */
         function (type) {
             /** @type {?} */
-            var data = this.store.get((/** @type {?} */ (this._options.store_key)));
+            var data = this.store.get((/** @type {?} */ (this.options.store_key)));
             return type ? ((/** @type {?} */ (Object.assign(new type(), data)))) : ((/** @type {?} */ (data)));
         };
         /**
@@ -474,7 +553,7 @@
                 this.set(data);
             }
             else {
-                this.store.remove((/** @type {?} */ (this._options.store_key)));
+                this.store.remove((/** @type {?} */ (this.options.store_key)));
             }
             this.change$.next(data);
         };
@@ -494,7 +573,7 @@
         };
         /** @nocollapse */
         TokenService.ctorParameters = function () { return [
-            { type: util.AlainConfigService },
+            { type: DelonAuthConfig },
             { type: undefined, decorators: [{ type: core.Inject, args: [DA_STORE_TOKEN,] }] }
         ]; };
         return TokenService;
@@ -514,7 +593,7 @@
          * @type {?}
          * @private
          */
-        TokenService.prototype._options;
+        TokenService.prototype.options;
         /**
          * @type {?}
          * @private
@@ -564,8 +643,6 @@
          * @type {?|undefined}
          */
         ITokenService.prototype.referrer;
-        /** @type {?} */
-        ITokenService.prototype.options;
         /**
          * @param {?} data
          * @return {?}
@@ -992,7 +1069,7 @@
         function (req, next) {
             var e_1, _a;
             /** @type {?} */
-            var options = mergeConfig(this.injector.get(util.AlainConfigService));
+            var options = __assign(__assign({}, new DelonAuthConfig()), this.injector.get(DelonAuthConfig, undefined));
             if (options.ignores) {
                 try {
                     for (var _b = __values((/** @type {?} */ (options.ignores))), _c = _b.next(); !_c.done; _c = _b.next()) {
@@ -1030,7 +1107,7 @@
                         url: req.url,
                         headers: req.headers,
                         status: 401,
-                        statusText: "\u6765\u81EA @delon/auth \u7684\u62E6\u622A\uFF0C\u6240\u8BF7\u6C42URL\u672A\u6388\u6743\uFF0C\u82E5\u662F\u767B\u5F55API\u53EF\u52A0\u5165 [url?_allow_anonymous=true] \u6765\u8868\u793A\u5FFD\u7565\u6821\u9A8C\uFF0C\u66F4\u591A\u65B9\u6CD5\u8BF7\u53C2\u8003\uFF1A https://ng-alain.com/auth/getting-started#AlainAuthConfig\nThe interception from @delon/auth, the requested URL is not authorized. If the login API can add [url?_allow_anonymous=true] to ignore the check, please refer to: https://ng-alain.com/auth/getting-started#AlainAuthConfig",
+                        statusText: "\u6765\u81EA @delon/auth \u7684\u62E6\u622A\uFF0C\u6240\u8BF7\u6C42URL\u672A\u6388\u6743\uFF0C\u82E5\u662F\u767B\u5F55API\u53EF\u52A0\u5165 [url?_allow_anonymous=true] \u6765\u8868\u793A\u5FFD\u7565\u6821\u9A8C\uFF0C\u66F4\u591A\u65B9\u6CD5\u8BF7\u53C2\u8003\uFF1A https://ng-alain.com/auth/getting-started#DelonAuthConfig\nThe interception from @delon/auth, the requested URL is not authorized. If the login API can add [url?_allow_anonymous=true] to ignore the check, please refer to: https://ng-alain.com/auth/getting-started#DelonAuthConfig",
                     });
                     observer.error(res);
                 }));
@@ -1300,21 +1377,11 @@
      * ```
      */
     var JWTGuard = /** @class */ (function () {
-        function JWTGuard(srv, injector) {
+        function JWTGuard(srv, injector, cog) {
             this.srv = srv;
             this.injector = injector;
+            this.cog = __assign(__assign({}, new DelonAuthConfig()), cog);
         }
-        Object.defineProperty(JWTGuard.prototype, "cog", {
-            get: /**
-             * @private
-             * @return {?}
-             */
-            function () {
-                return this.srv.options;
-            },
-            enumerable: true,
-            configurable: true
-        });
         /**
          * @private
          * @return {?}
@@ -1391,12 +1458,18 @@
         /** @nocollapse */
         JWTGuard.ctorParameters = function () { return [
             { type: undefined, decorators: [{ type: core.Inject, args: [DA_SERVICE_TOKEN,] }] },
-            { type: core.Injector }
+            { type: core.Injector },
+            { type: DelonAuthConfig }
         ]; };
-        /** @nocollapse */ JWTGuard.ɵprov = core.ɵɵdefineInjectable({ factory: function JWTGuard_Factory() { return new JWTGuard(core.ɵɵinject(DA_SERVICE_TOKEN), core.ɵɵinject(core.INJECTOR)); }, token: JWTGuard, providedIn: "root" });
+        /** @nocollapse */ JWTGuard.ɵprov = core.ɵɵdefineInjectable({ factory: function JWTGuard_Factory() { return new JWTGuard(core.ɵɵinject(DA_SERVICE_TOKEN), core.ɵɵinject(core.INJECTOR), core.ɵɵinject(DelonAuthConfig)); }, token: JWTGuard, providedIn: "root" });
         return JWTGuard;
     }());
     if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        JWTGuard.prototype.cog;
         /**
          * @type {?}
          * @private
@@ -1522,21 +1595,11 @@
      * ```
      */
     var SimpleGuard = /** @class */ (function () {
-        function SimpleGuard(srv, injector) {
+        function SimpleGuard(srv, injector, cog) {
             this.srv = srv;
             this.injector = injector;
+            this.cog = __assign(__assign({}, new DelonAuthConfig()), cog);
         }
-        Object.defineProperty(SimpleGuard.prototype, "cog", {
-            get: /**
-             * @private
-             * @return {?}
-             */
-            function () {
-                return this.srv.options;
-            },
-            enumerable: true,
-            configurable: true
-        });
         /**
          * @private
          * @return {?}
@@ -1613,12 +1676,18 @@
         /** @nocollapse */
         SimpleGuard.ctorParameters = function () { return [
             { type: undefined, decorators: [{ type: core.Inject, args: [DA_SERVICE_TOKEN,] }] },
-            { type: core.Injector }
+            { type: core.Injector },
+            { type: DelonAuthConfig }
         ]; };
-        /** @nocollapse */ SimpleGuard.ɵprov = core.ɵɵdefineInjectable({ factory: function SimpleGuard_Factory() { return new SimpleGuard(core.ɵɵinject(DA_SERVICE_TOKEN), core.ɵɵinject(core.INJECTOR)); }, token: SimpleGuard, providedIn: "root" });
+        /** @nocollapse */ SimpleGuard.ɵprov = core.ɵɵdefineInjectable({ factory: function SimpleGuard_Factory() { return new SimpleGuard(core.ɵɵinject(DA_SERVICE_TOKEN), core.ɵɵinject(core.INJECTOR), core.ɵɵinject(DelonAuthConfig)); }, token: SimpleGuard, providedIn: "root" });
         return SimpleGuard;
     }());
     if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        SimpleGuard.prototype.cog;
         /**
          * @type {?}
          * @private
@@ -1650,12 +1719,12 @@
         return DelonAuthModule;
     }());
 
-    exports.AUTH_DEFAULT_CONFIG = AUTH_DEFAULT_CONFIG;
     exports.BaseInterceptor = BaseInterceptor;
     exports.DA_SERVICE_TOKEN = DA_SERVICE_TOKEN;
     exports.DA_SERVICE_TOKEN_FACTORY = DA_SERVICE_TOKEN_FACTORY;
     exports.DA_STORE_TOKEN = DA_STORE_TOKEN;
     exports.DA_STORE_TOKEN_LOCAL_FACTORY = DA_STORE_TOKEN_LOCAL_FACTORY;
+    exports.DelonAuthConfig = DelonAuthConfig;
     exports.DelonAuthModule = DelonAuthModule;
     exports.JWTGuard = JWTGuard;
     exports.JWTInterceptor = JWTInterceptor;
@@ -1668,7 +1737,6 @@
     exports.SimpleTokenModel = SimpleTokenModel;
     exports.SocialService = SocialService;
     exports.TokenService = TokenService;
-    exports.mergeConfig = mergeConfig;
     exports.urlBase64Decode = urlBase64Decode;
 
     Object.defineProperty(exports, '__esModule', { value: true });

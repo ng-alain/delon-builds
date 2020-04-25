@@ -1,7 +1,8 @@
 import { __decorate, __metadata, __spread } from 'tslib';
 import { DOCUMENT, CommonModule } from '@angular/common';
-import { Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, ChangeDetectorRef, Inject, Input, NgModule } from '@angular/core';
-import { AlainConfigService, InputNumber, DelonUtilModule } from '@delon/util';
+import { Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, ChangeDetectorRef, Inject, Input, Injectable, ɵɵdefineInjectable, NgModule } from '@angular/core';
+import { AlainConfigService } from '@delon/theme';
+import { InputNumber, deprecation10Cog, DelonUtilModule } from '@delon/util';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 
 /**
@@ -213,6 +214,47 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: error-collect.config.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @deprecated `ErrorCollectConfig` is going to be removed in 10.0.0. Please refer to https://ng-alain.com/docs/global-config
+ */
+var ErrorCollectConfig = /** @class */ (function () {
+    function ErrorCollectConfig() {
+        /**
+         * 监听频率
+         */
+        this.freq = 500;
+        /**
+         * 顶部偏移值
+         */
+        this.offsetTop = 65 + 64 + 8 * 2;
+        deprecation10Cog("ErrorCollectConfig");
+    }
+    ErrorCollectConfig.decorators = [
+        { type: Injectable, args: [{ providedIn: 'root' },] }
+    ];
+    /** @nocollapse */
+    ErrorCollectConfig.ctorParameters = function () { return []; };
+    /** @nocollapse */ ErrorCollectConfig.ɵprov = ɵɵdefineInjectable({ factory: function ErrorCollectConfig_Factory() { return new ErrorCollectConfig(); }, token: ErrorCollectConfig, providedIn: "root" });
+    return ErrorCollectConfig;
+}());
+if (false) {
+    /**
+     * 监听频率
+     * @type {?}
+     */
+    ErrorCollectConfig.prototype.freq;
+    /**
+     * 顶部偏移值
+     * @type {?}
+     */
+    ErrorCollectConfig.prototype.offsetTop;
+}
+
+/**
+ * @fileoverview added by tsickle
  * Generated from: error-collect.module.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
@@ -243,5 +285,5 @@ var ErrorCollectModule = /** @class */ (function () {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { ErrorCollectComponent, ErrorCollectModule };
+export { ErrorCollectComponent, ErrorCollectConfig, ErrorCollectModule };
 //# sourceMappingURL=errorCollect.js.map

@@ -1,5 +1,5 @@
 import { TemplateRef } from '@angular/core';
-import { AlainConfigService } from '@delon/util';
+import { AlainConfigService } from '@delon/theme';
 export declare class SVContainerComponent {
     title: string | TemplateRef<void>;
     size: 'small' | 'large';

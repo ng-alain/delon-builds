@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, ElementRef, NgZone, OnChanges, OnDestroy, OnInit, TemplateRef } from '@angular/core';
 import { LooseObject } from '@antv/g2/lib/interface';
 import { InteractionType } from '@delon/chart/core/types';
-import { AlainConfigService } from '@delon/util';
+import { AlainConfigService } from '@delon/theme';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
 export interface G2PieData {
     x: any;

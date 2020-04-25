@@ -1,6 +1,6 @@
 import { NzTreeNode } from 'ng-zorro-antd/core/tree';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
-import { AlainConfigService } from '../config';
+import { DelonUtilConfig } from '../util.config';
 export interface ArrayServiceTreeToArrOptions {
     /** 深度项名，默认：`'deep'` */
     deepMapName?: string;
@@ -53,7 +53,7 @@ export interface ArrayServiceGetKeysByTreeNodeOptions {
 }
 export declare class ArrayService {
     private c;
-    constructor(cog: AlainConfigService);
+    constructor(cog: DelonUtilConfig);
     /**
      * 将树结构转换成数组结构
      */

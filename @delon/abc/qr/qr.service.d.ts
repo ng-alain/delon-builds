@@ -1,4 +1,4 @@
-import { AlainConfigService } from '@delon/util';
+import { AlainConfigService } from '@delon/theme';
 export declare class QRService {
     /** 当前qr实例 */
     readonly qr: any;

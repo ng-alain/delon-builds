@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, ElementRef, OnDestroy, OnInit } from '@angular/core';
-import { AlainConfigService } from '@delon/util';
+import { AlainConfigService } from '@delon/theme';
 export declare class ErrorCollectComponent implements OnInit, OnDestroy {
     private el;
     private cdr;

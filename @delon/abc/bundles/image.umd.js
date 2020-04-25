@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util'), require('@angular/common')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/image', ['exports', '@angular/core', '@delon/util', '@angular/common'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.image = {}), global.ng.core, global.delon.util, global.ng.common));
-}(this, (function (exports, core, util, common) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/theme'), require('@delon/util'), require('@angular/common')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/image', ['exports', '@angular/core', '@delon/theme', '@delon/util', '@angular/common'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.image = {}), global.ng.core, global.delon.theme, global.delon.util, global.ng.common));
+}(this, (function (exports, core, theme, util, common) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -320,7 +320,7 @@
         /** @nocollapse */
         ImageDirective.ctorParameters = function () { return [
             { type: core.ElementRef },
-            { type: util.AlainConfigService }
+            { type: theme.AlainConfigService }
         ]; };
         ImageDirective.propDecorators = {
             src: [{ type: core.Input, args: ['_src',] }],
@@ -354,6 +354,47 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: image.config.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /**
+     * @deprecated `ImageConfig` is going to be removed in 10.0.0. Please refer to https://ng-alain.com/docs/global-config
+     */
+    var ImageConfig = /** @class */ (function () {
+        function ImageConfig() {
+            /**
+             * 默认大小，默认值：`64`，单位：px
+             */
+            this.size = 64;
+            /**
+             * 错误图片
+             */
+            this.error = './assets/img/logo.svg';
+            util.deprecation10Cog("ImageConfig");
+        }
+        ImageConfig.decorators = [
+            { type: core.Injectable, args: [{ providedIn: 'root' },] }
+        ];
+        /** @nocollapse */
+        ImageConfig.ctorParameters = function () { return []; };
+        /** @nocollapse */ ImageConfig.ɵprov = core.ɵɵdefineInjectable({ factory: function ImageConfig_Factory() { return new ImageConfig(); }, token: ImageConfig, providedIn: "root" });
+        return ImageConfig;
+    }());
+    if (false) {
+        /**
+         * 默认大小，默认值：`64`，单位：px
+         * @type {?}
+         */
+        ImageConfig.prototype.size;
+        /**
+         * 错误图片
+         * @type {?}
+         */
+        ImageConfig.prototype.error;
+    }
+
+    /**
+     * @fileoverview added by tsickle
      * Generated from: image.module.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
@@ -372,6 +413,7 @@
         return ImageModule;
     }());
 
+    exports.ImageConfig = ImageConfig;
     exports.ImageDirective = ImageDirective;
     exports.ImageModule = ImageModule;
 

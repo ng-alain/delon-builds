@@ -1,6 +1,7 @@
 import { __assign, __spread } from 'tslib';
 import { Injectable, ɵɵdefineInjectable, ɵɵinject, NgModule } from '@angular/core';
-import { LazyService, AlainConfigService, DelonUtilModule } from '@delon/util';
+import { AlainConfigService } from '@delon/theme';
+import { LazyService, deprecation10Cog, DelonUtilModule } from '@delon/util';
 import { Subject, of } from 'rxjs';
 
 /**
@@ -1007,6 +1008,67 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: lodop.config.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @deprecated `LodopConfig` is going to be removed in 10.0.0. Please refer to https://ng-alain.com/docs/global-config
+ */
+var LodopConfig = /** @class */ (function () {
+    function LodopConfig() {
+        deprecation10Cog("LodopConfig");
+    }
+    LodopConfig.decorators = [
+        { type: Injectable, args: [{ providedIn: 'root' },] }
+    ];
+    /** @nocollapse */
+    LodopConfig.ctorParameters = function () { return []; };
+    /** @nocollapse */ LodopConfig.ɵprov = ɵɵdefineInjectable({ factory: function LodopConfig_Factory() { return new LodopConfig(); }, token: LodopConfig, providedIn: "root" });
+    return LodopConfig;
+}());
+if (false) {
+    /**
+     * 注册信息：主注册号
+     * @type {?}
+     */
+    LodopConfig.prototype.license;
+    /**
+     * 注册信息：附加注册号A
+     * @type {?}
+     */
+    LodopConfig.prototype.licenseA;
+    /**
+     * 注册信息：附加注册号B
+     * @type {?}
+     */
+    LodopConfig.prototype.licenseB;
+    /**
+     * 注册信息：注册单位名称
+     * @type {?}
+     */
+    LodopConfig.prototype.companyName;
+    /**
+     * Lodop 远程脚本URL地址，**注意**务必使用 `name` 属性指定变量值
+     *
+     * - http://localhost:18000/CLodopfuncs.js
+     * - https://localhost:8443/CLodopfuncs.js [默认]
+     * @type {?}
+     */
+    LodopConfig.prototype.url;
+    /**
+     * Lodop 变量名，默认：`CLODOP`
+     * @type {?}
+     */
+    LodopConfig.prototype.name;
+    /**
+     * 检查次数，默认 `100`，当检查超过时视为异常，这是因为 Lodop 需要连接 WebSocket
+     * @type {?}
+     */
+    LodopConfig.prototype.checkMaxCount;
+}
+
+/**
+ * @fileoverview added by tsickle
  * Generated from: lodop.module.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
@@ -1033,5 +1095,5 @@ var LodopModule = /** @class */ (function () {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { LodopModule, LodopService };
+export { LodopConfig, LodopModule, LodopService };
 //# sourceMappingURL=lodop.js.map

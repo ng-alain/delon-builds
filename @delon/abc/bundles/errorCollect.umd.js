@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common'), require('@angular/core'), require('@delon/util'), require('ng-zorro-antd/icon')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/error-collect', ['exports', '@angular/common', '@angular/core', '@delon/util', 'ng-zorro-antd/icon'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['error-collect'] = {}), global.ng.common, global.ng.core, global.delon.util, global['ng-zorro-antd/icon']));
-}(this, (function (exports, common, core, util, icon) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common'), require('@angular/core'), require('@delon/theme'), require('@delon/util'), require('ng-zorro-antd/icon')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/error-collect', ['exports', '@angular/common', '@angular/core', '@delon/theme', '@delon/util', 'ng-zorro-antd/icon'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['error-collect'] = {}), global.ng.common, global.ng.core, global.theme, global.delon.util, global['ng-zorro-antd/icon']));
+}(this, (function (exports, common, core, theme, util, icon) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -378,7 +378,7 @@
             { type: core.ElementRef },
             { type: core.ChangeDetectorRef },
             { type: undefined, decorators: [{ type: core.Inject, args: [common.DOCUMENT,] }] },
-            { type: util.AlainConfigService }
+            { type: theme.AlainConfigService }
         ]; };
         ErrorCollectComponent.propDecorators = {
             freq: [{ type: core.Input }],
@@ -432,6 +432,47 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: error-collect.config.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /**
+     * @deprecated `ErrorCollectConfig` is going to be removed in 10.0.0. Please refer to https://ng-alain.com/docs/global-config
+     */
+    var ErrorCollectConfig = /** @class */ (function () {
+        function ErrorCollectConfig() {
+            /**
+             * 监听频率
+             */
+            this.freq = 500;
+            /**
+             * 顶部偏移值
+             */
+            this.offsetTop = 65 + 64 + 8 * 2;
+            util.deprecation10Cog("ErrorCollectConfig");
+        }
+        ErrorCollectConfig.decorators = [
+            { type: core.Injectable, args: [{ providedIn: 'root' },] }
+        ];
+        /** @nocollapse */
+        ErrorCollectConfig.ctorParameters = function () { return []; };
+        /** @nocollapse */ ErrorCollectConfig.ɵprov = core.ɵɵdefineInjectable({ factory: function ErrorCollectConfig_Factory() { return new ErrorCollectConfig(); }, token: ErrorCollectConfig, providedIn: "root" });
+        return ErrorCollectConfig;
+    }());
+    if (false) {
+        /**
+         * 监听频率
+         * @type {?}
+         */
+        ErrorCollectConfig.prototype.freq;
+        /**
+         * 顶部偏移值
+         * @type {?}
+         */
+        ErrorCollectConfig.prototype.offsetTop;
+    }
+
+    /**
+     * @fileoverview added by tsickle
      * Generated from: error-collect.module.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
@@ -451,6 +492,7 @@
     }());
 
     exports.ErrorCollectComponent = ErrorCollectComponent;
+    exports.ErrorCollectConfig = ErrorCollectConfig;
     exports.ErrorCollectModule = ErrorCollectModule;
 
     Object.defineProperty(exports, '__esModule', { value: true });

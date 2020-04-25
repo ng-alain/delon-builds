@@ -1,5 +1,6 @@
 import { OnDestroy } from '@angular/core';
-import { AlainConfigService, AlainLodopConfig, LazyService } from '@delon/util';
+import { AlainConfigService, AlainLodopConfig } from '@delon/theme';
+import { LazyService } from '@delon/util';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { Observable } from 'rxjs';
 import { LodopPrintResult, LodopResult } from './lodop.types';

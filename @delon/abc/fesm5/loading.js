@@ -1,13 +1,55 @@
-import { Component, ChangeDetectionStrategy, ViewEncapsulation, Injectable, ɵɵdefineInjectable, ɵɵinject, NgModule } from '@angular/core';
+import { Injectable, ɵɵdefineInjectable, Component, ChangeDetectionStrategy, ViewEncapsulation, ɵɵinject, NgModule } from '@angular/core';
+import { deprecation10Cog } from '@delon/util';
 import { __assign } from 'tslib';
 import { Overlay, OverlayModule } from '@angular/cdk/overlay';
 import { ComponentPortal, PortalModule } from '@angular/cdk/portal';
-import { AlainConfigService } from '@delon/util';
+import { AlainConfigService } from '@delon/theme';
 import { Subject, timer } from 'rxjs';
 import { debounce } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
+
+/**
+ * @fileoverview added by tsickle
+ * Generated from: loading.config.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @deprecated `LoadingConfig` is going to be removed in 10.0.0. Please refer to https://ng-alain.com/docs/global-config
+ */
+var LoadingConfig = /** @class */ (function () {
+    function LoadingConfig() {
+        this.type = 'spin';
+        this.text = '加载中...';
+        this.icon = {
+            type: 'loading',
+            theme: 'outline',
+            spin: true,
+        };
+        this.delay = 0;
+        deprecation10Cog("LoadingConfig");
+    }
+    LoadingConfig.decorators = [
+        { type: Injectable, args: [{ providedIn: 'root' },] }
+    ];
+    /** @nocollapse */
+    LoadingConfig.ctorParameters = function () { return []; };
+    /** @nocollapse */ LoadingConfig.ɵprov = ɵɵdefineInjectable({ factory: function LoadingConfig_Factory() { return new LoadingConfig(); }, token: LoadingConfig, providedIn: "root" });
+    return LoadingConfig;
+}());
+if (false) {
+    /** @type {?} */
+    LoadingConfig.prototype.type;
+    /** @type {?} */
+    LoadingConfig.prototype.text;
+    /** @type {?} */
+    LoadingConfig.prototype.icon;
+    /** @type {?} */
+    LoadingConfig.prototype.custom;
+    /** @type {?} */
+    LoadingConfig.prototype.delay;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -309,5 +351,5 @@ if (false) {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { LoadingDefaultComponent, LoadingModule, LoadingService };
+export { LoadingConfig, LoadingDefaultComponent, LoadingModule, LoadingService };
 //# sourceMappingURL=loading.js.map

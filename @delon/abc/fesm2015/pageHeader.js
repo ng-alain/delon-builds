@@ -1,9 +1,9 @@
+import { Injectable, ɵɵdefineInjectable, TemplateRef, Component, ChangeDetectionStrategy, ViewEncapsulation, Renderer2, Optional, Inject, ChangeDetectorRef, ViewChild, Input, NgModule } from '@angular/core';
+import { deprecation10Cog, isEmpty, InputBoolean, InputNumber, DelonUtilModule } from '@delon/util';
 import { __decorate, __metadata } from 'tslib';
-import { TemplateRef, Component, ChangeDetectionStrategy, ViewEncapsulation, Renderer2, Optional, Inject, ChangeDetectorRef, ViewChild, Input, NgModule } from '@angular/core';
 import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { ReuseTabService } from '@delon/abc/reuse-tab';
-import { SettingsService, MenuService, ALAIN_I18N_TOKEN, TitleService } from '@delon/theme';
-import { isEmpty, AlainConfigService, InputBoolean, InputNumber, DelonUtilModule } from '@delon/util';
+import { SettingsService, MenuService, ALAIN_I18N_TOKEN, TitleService, AlainConfigService } from '@delon/theme';
 import { NzAffixModule } from 'ng-zorro-antd/affix';
 import { Subject, merge } from 'rxjs';
 import { takeUntil, filter } from 'rxjs/operators';
@@ -11,6 +11,107 @@ import { ObserversModule } from '@angular/cdk/observers';
 import { CommonModule } from '@angular/common';
 import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
 import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
+
+/**
+ * @fileoverview added by tsickle
+ * Generated from: page-header.config.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @deprecated `PageHeaderConfig` is going to be removed in 10.0.0. Please refer to https://ng-alain.com/docs/global-config
+ */
+class PageHeaderConfig {
+    constructor() {
+        /**
+         * 首页文本，若指定空表示不显示
+         */
+        this.home = '首页';
+        /**
+         * 首页链接
+         */
+        this.homeLink = '/';
+        /**
+         * 自动生成导航，以当前路由从主菜单中定位
+         */
+        this.autoBreadcrumb = true;
+        /**
+         * 自动向上递归查找
+         *  - 菜单数据源包含 `/ware`，则 `/ware/1` 也视为 `/ware` 项
+         */
+        this.recursiveBreadcrumb = false;
+        /**
+         * 自动生成标题，以当前路由从主菜单中定位
+         */
+        this.autoTitle = true;
+        /**
+         * 是否自动将标准信息同步至 `TitleService`、`ReuseService` 下
+         */
+        this.syncTitle = false;
+        /**
+         * 是否固定模式
+         */
+        this.fixed = false;
+        /**
+         * 固定偏移值
+         */
+        this.fixedOffsetTop = 64;
+        deprecation10Cog(`PageHeaderConfig`);
+    }
+}
+PageHeaderConfig.decorators = [
+    { type: Injectable, args: [{ providedIn: 'root' },] }
+];
+/** @nocollapse */
+PageHeaderConfig.ctorParameters = () => [];
+/** @nocollapse */ PageHeaderConfig.ɵprov = ɵɵdefineInjectable({ factory: function PageHeaderConfig_Factory() { return new PageHeaderConfig(); }, token: PageHeaderConfig, providedIn: "root" });
+if (false) {
+    /**
+     * 首页文本，若指定空表示不显示
+     * @type {?}
+     */
+    PageHeaderConfig.prototype.home;
+    /**
+     * 首页链接
+     * @type {?}
+     */
+    PageHeaderConfig.prototype.homeLink;
+    /**
+     * 首页链接国际化参数
+     * @type {?}
+     */
+    PageHeaderConfig.prototype.homeI18n;
+    /**
+     * 自动生成导航，以当前路由从主菜单中定位
+     * @type {?}
+     */
+    PageHeaderConfig.prototype.autoBreadcrumb;
+    /**
+     * 自动向上递归查找
+     *  - 菜单数据源包含 `/ware`，则 `/ware/1` 也视为 `/ware` 项
+     * @type {?}
+     */
+    PageHeaderConfig.prototype.recursiveBreadcrumb;
+    /**
+     * 自动生成标题，以当前路由从主菜单中定位
+     * @type {?}
+     */
+    PageHeaderConfig.prototype.autoTitle;
+    /**
+     * 是否自动将标准信息同步至 `TitleService`、`ReuseService` 下
+     * @type {?}
+     */
+    PageHeaderConfig.prototype.syncTitle;
+    /**
+     * 是否固定模式
+     * @type {?}
+     */
+    PageHeaderConfig.prototype.fixed;
+    /**
+     * 固定偏移值
+     * @type {?}
+     */
+    PageHeaderConfig.prototype.fixedOffsetTop;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -434,5 +535,5 @@ PageHeaderModule.decorators = [
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { PageHeaderComponent, PageHeaderModule };
+export { PageHeaderComponent, PageHeaderConfig, PageHeaderModule };
 //# sourceMappingURL=pageHeader.js.map

@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util'), require('@delon/theme'), require('@angular/cdk/observers'), require('@angular/common'), require('ng-zorro-antd/core/outlet'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/tooltip')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/sv', ['exports', '@angular/core', '@delon/util', '@delon/theme', '@angular/cdk/observers', '@angular/common', 'ng-zorro-antd/core/outlet', 'ng-zorro-antd/icon', 'ng-zorro-antd/tooltip'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.sv = {}), global.ng.core, global.delon.util, global.theme, global.ng.cdk.observers, global.ng.common, global['ng-zorro-antd/core/outlet'], global['ng-zorro-antd/icon'], global['ng-zorro-antd/tooltip']));
-}(this, (function (exports, core, util, theme, observers, common, outlet, icon, tooltip) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/theme'), require('@delon/util'), require('@angular/cdk/observers'), require('@angular/common'), require('ng-zorro-antd/core/outlet'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/tooltip')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/sv', ['exports', '@angular/core', '@delon/theme', '@delon/util', '@angular/cdk/observers', '@angular/common', 'ng-zorro-antd/core/outlet', 'ng-zorro-antd/icon', 'ng-zorro-antd/tooltip'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.sv = {}), global.ng.core, global.delon.theme, global.delon.util, global.ng.cdk.observers, global.ng.common, global['ng-zorro-antd/core/outlet'], global['ng-zorro-antd/icon'], global['ng-zorro-antd/tooltip']));
+}(this, (function (exports, core, theme, util, observers, common, outlet, icon, tooltip) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -258,7 +258,7 @@
         ];
         /** @nocollapse */
         SVContainerComponent.ctorParameters = function () { return [
-            { type: util.AlainConfigService }
+            { type: theme.AlainConfigService }
         ]; };
         SVContainerComponent.propDecorators = {
             title: [{ type: core.Input }],
@@ -274,7 +274,7 @@
             __metadata("design:type", Number)
         ], SVContainerComponent.prototype, "gutter", void 0);
         __decorate([
-            util.InputNumber(),
+            util.InputNumber(null),
             __metadata("design:type", Number)
         ], SVContainerComponent.prototype, "labelWidth", void 0);
         __decorate([
@@ -498,7 +498,7 @@
             { type: core.Component, args: [{
                         selector: 'sv, [sv]',
                         exportAs: 'sv',
-                        template: "<div class=\"sv__label\" [class.sv__label-empty]=\"!label\" [class.sv__label-width]=\"labelWidth != null\" [style.width.px]=\"labelWidth\">\n  <span class=\"sv__label-text\">\n    <ng-container *nzStringTemplateOutlet=\"label\">{{label}}</ng-container>\n  </span>\n  <span *ngIf=\"optional || optionalHelp\" class=\"sv__label-optional\" [class.sv__label-optional-no-text]=\"!optional\">\n    <ng-container *nzStringTemplateOutlet=\"optional\">{{ optional }}</ng-container>\n    <i *ngIf=\"optionalHelp\" nz-tooltip [nzTooltipTitle]=\"optionalHelp\" nz-icon nzType=\"question-circle\"></i>\n  </span>\n</div>\n<div class=\"sv__detail\">\n  <span (cdkObserveContent)=\"checkContent()\" #conEl>\n    <ng-content></ng-content>\n  </span>\n  <ng-container *ngIf=\"!!unit\">\n    <span class=\"sv__unit\" *nzStringTemplateOutlet=\"unit\">{{unit}}</span>\n  </ng-container>\n</div>\n",
+                        template: "<div class=\"sv__label\" [class.sv__label-empty]=\"!label\" [class.sv__label-width]=\"labelWidth !== null\"\n  [style.width.px]=\"labelWidth\">\n  <span class=\"sv__label-text\">\n    <ng-container *nzStringTemplateOutlet=\"label\">{{label}}</ng-container>\n  </span>\n  <span *ngIf=\"optional || optionalHelp\" class=\"sv__label-optional\" [class.sv__label-optional-no-text]=\"!optional\">\n    <ng-container *nzStringTemplateOutlet=\"optional\">{{ optional }}</ng-container>\n    <i *ngIf=\"optionalHelp\" nz-tooltip [nzTooltipTitle]=\"optionalHelp\" nz-icon nzType=\"question-circle\"></i>\n  </span>\n</div>\n<div class=\"sv__detail\">\n  <span (cdkObserveContent)=\"checkContent()\" #conEl>\n    <ng-content></ng-content>\n  </span>\n  <ng-container *ngIf=\"!!unit\">\n    <span class=\"sv__unit\" *nzStringTemplateOutlet=\"unit\">{{unit}}</span>\n  </ng-container>\n</div>\n",
                         host: {
                             '[style.padding-left.px]': 'paddingValue',
                             '[style.padding-right.px]': 'paddingValue',
@@ -581,6 +581,79 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: sv.config.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /**
+     * @deprecated `SVConfig` is going to be removed in 10.0.0. Please refer to https://ng-alain.com/docs/global-config
+     */
+    var SVConfig = /** @class */ (function () {
+        function SVConfig() {
+            /**
+             * 间距，默认：`32`
+             */
+            this.gutter = 32;
+            /**
+             * 布局，默认：`horizontal`
+             */
+            this.layout = 'horizontal';
+            /**
+             * 列数，默认：`3`
+             */
+            this.col = 3;
+            /**
+             * 是否显示默认值，当内容为空值时显示 `-`，默认：`true`
+             */
+            this.default = true;
+            /**
+             * `label` 固定宽度，若 `null` 或 `undefined` 表示非固定，默认：`null`
+             */
+            this.labelWidth = null;
+            util.deprecation10Cog("SVConfig");
+        }
+        SVConfig.decorators = [
+            { type: core.Injectable, args: [{ providedIn: 'root' },] }
+        ];
+        /** @nocollapse */
+        SVConfig.ctorParameters = function () { return []; };
+        /** @nocollapse */ SVConfig.ɵprov = core.ɵɵdefineInjectable({ factory: function SVConfig_Factory() { return new SVConfig(); }, token: SVConfig, providedIn: "root" });
+        return SVConfig;
+    }());
+    if (false) {
+        /**
+         * 大小
+         * @type {?}
+         */
+        SVConfig.prototype.size;
+        /**
+         * 间距，默认：`32`
+         * @type {?}
+         */
+        SVConfig.prototype.gutter;
+        /**
+         * 布局，默认：`horizontal`
+         * @type {?}
+         */
+        SVConfig.prototype.layout;
+        /**
+         * 列数，默认：`3`
+         * @type {?}
+         */
+        SVConfig.prototype.col;
+        /**
+         * 是否显示默认值，当内容为空值时显示 `-`，默认：`true`
+         * @type {?}
+         */
+        SVConfig.prototype.default;
+        /**
+         * `label` 固定宽度，若 `null` 或 `undefined` 表示非固定，默认：`null`
+         * @type {?}
+         */
+        SVConfig.prototype.labelWidth;
+    }
+
+    /**
+     * @fileoverview added by tsickle
      * Generated from: sv.module.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
@@ -600,6 +673,7 @@
     }());
 
     exports.SVComponent = SVComponent;
+    exports.SVConfig = SVConfig;
     exports.SVContainerComponent = SVContainerComponent;
     exports.SVModule = SVModule;
     exports.SVTitleComponent = SVTitleComponent;

@@ -96,6 +96,12 @@
             return st.STComponent;
         }
     });
+    Object.defineProperty(exports, 'STConfig', {
+        enumerable: true,
+        get: function () {
+            return st.STConfig;
+        }
+    });
     Object.defineProperty(exports, 'STDataSource', {
         enumerable: true,
         get: function () {
@@ -126,12 +132,6 @@
             return st.STWidgetRegistry;
         }
     });
-    Object.defineProperty(exports, 'ST_DEFULAT_CONFIG', {
-        enumerable: true,
-        get: function () {
-            return st.ST_DEFULAT_CONFIG;
-        }
-    });
     Object.defineProperty(exports, 'ɵa', {
         enumerable: true,
         get: function () {
@@ -148,6 +148,12 @@
         enumerable: true,
         get: function () {
             return sv.SVComponent;
+        }
+    });
+    Object.defineProperty(exports, 'SVConfig', {
+        enumerable: true,
+        get: function () {
+            return sv.SVConfig;
         }
     });
     Object.defineProperty(exports, 'SVContainerComponent', {
@@ -174,6 +180,12 @@
             return se.SEComponent;
         }
     });
+    Object.defineProperty(exports, 'SEConfig', {
+        enumerable: true,
+        get: function () {
+            return se.SEConfig;
+        }
+    });
     Object.defineProperty(exports, 'SEContainerComponent', {
         enumerable: true,
         get: function () {
@@ -198,6 +210,12 @@
             return sg.SGComponent;
         }
     });
+    Object.defineProperty(exports, 'SGConfig', {
+        enumerable: true,
+        get: function () {
+            return sg.SGConfig;
+        }
+    });
     Object.defineProperty(exports, 'SGContainerComponent', {
         enumerable: true,
         get: function () {
@@ -214,6 +232,12 @@
         enumerable: true,
         get: function () {
             return errorCollect.ErrorCollectComponent;
+        }
+    });
+    Object.defineProperty(exports, 'ErrorCollectConfig', {
+        enumerable: true,
+        get: function () {
+            return errorCollect.ErrorCollectConfig;
         }
     });
     Object.defineProperty(exports, 'ErrorCollectModule', {
@@ -256,6 +280,12 @@
         enumerable: true,
         get: function () {
             return downFile.DownFileModule;
+        }
+    });
+    Object.defineProperty(exports, 'ImageConfig', {
+        enumerable: true,
+        get: function () {
+            return image.ImageConfig;
         }
     });
     Object.defineProperty(exports, 'ImageDirective', {
@@ -334,6 +364,12 @@
         enumerable: true,
         get: function () {
             return pageHeader.PageHeaderComponent;
+        }
+    });
+    Object.defineProperty(exports, 'PageHeaderConfig', {
+        enumerable: true,
+        get: function () {
+            return pageHeader.PageHeaderConfig;
         }
     });
     Object.defineProperty(exports, 'PageHeaderModule', {
@@ -444,6 +480,12 @@
             return fullContent.FullContentToggleDirective;
         }
     });
+    Object.defineProperty(exports, 'XlsxConfig', {
+        enumerable: true,
+        get: function () {
+            return xlsx.XlsxConfig;
+        }
+    });
     Object.defineProperty(exports, 'XlsxDirective', {
         enumerable: true,
         get: function () {
@@ -460,6 +502,12 @@
         enumerable: true,
         get: function () {
             return xlsx.XlsxService;
+        }
+    });
+    Object.defineProperty(exports, 'ZipConfig', {
+        enumerable: true,
+        get: function () {
+            return zip.ZipConfig;
         }
     });
     Object.defineProperty(exports, 'ZipModule', {
@@ -492,6 +540,12 @@
             return numberToChinese.numberToChinese;
         }
     });
+    Object.defineProperty(exports, 'LodopConfig', {
+        enumerable: true,
+        get: function () {
+            return lodop.LodopConfig;
+        }
+    });
     Object.defineProperty(exports, 'LodopModule', {
         enumerable: true,
         get: function () {
@@ -522,6 +576,12 @@
             return qr.QRComponent;
         }
     });
+    Object.defineProperty(exports, 'QRConfig', {
+        enumerable: true,
+        get: function () {
+            return qr.QRConfig;
+        }
+    });
     Object.defineProperty(exports, 'QRModule', {
         enumerable: true,
         get: function () {
@@ -534,10 +594,10 @@
             return qr.QRService;
         }
     });
-    Object.defineProperty(exports, 'QR_DEFULAT_CONFIG', {
+    Object.defineProperty(exports, 'DatePickerConfig', {
         enumerable: true,
         get: function () {
-            return qr.QR_DEFULAT_CONFIG;
+            return datePicker.DatePickerConfig;
         }
     });
     Object.defineProperty(exports, 'DatePickerModule', {
@@ -546,10 +606,22 @@
             return datePicker.DatePickerModule;
         }
     });
+    Object.defineProperty(exports, 'DateRangePickerConfig', {
+        enumerable: true,
+        get: function () {
+            return datePicker.DateRangePickerConfig;
+        }
+    });
     Object.defineProperty(exports, 'RangePickerComponent', {
         enumerable: true,
         get: function () {
             return datePicker.RangePickerComponent;
+        }
+    });
+    Object.defineProperty(exports, 'LoadingConfig', {
+        enumerable: true,
+        get: function () {
+            return loading.LoadingConfig;
         }
     });
     Object.defineProperty(exports, 'LoadingDefaultComponent', {

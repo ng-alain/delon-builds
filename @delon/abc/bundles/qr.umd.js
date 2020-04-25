@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util'), require('@angular/common')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/qr', ['exports', '@angular/core', '@delon/util', '@angular/common'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.qr = {}), global.ng.core, global.delon.util, global.ng.common));
-}(this, (function (exports, core, util, common) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/theme'), require('@delon/util'), require('@angular/common')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/qr', ['exports', '@angular/core', '@delon/theme', '@delon/util', '@angular/common'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.qr = {}), global.ng.core, global.delon.theme, global.delon.util, global.ng.common));
+}(this, (function (exports, core, theme, util, common) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -239,6 +239,95 @@
         padding: 10,
         size: 220,
     };
+    /**
+     * @deprecated `QRConfig` is going to be removed in 10.0.0. Please refer to https://ng-alain.com/docs/global-config
+     */
+    var QRConfig = /** @class */ (function () {
+        function QRConfig() {
+            /**
+             * 背景，默认：`white`
+             */
+            this.background = 'white';
+            /**
+             * 背景透明级别，范围：`0-1` 之间，默认：`1.0`
+             */
+            this.backgroundAlpha = 1;
+            /**
+             * 前景，默认：`black`
+             */
+            this.foreground = 'black';
+            /**
+             * 前景透明级别，范围：`0-1` 之间，默认：`1.0`
+             */
+            this.foregroundAlpha = 1;
+            /**
+             * 误差校正级别，默认：`L`
+             */
+            this.level = 'L';
+            /**
+             * 二维码输出图片MIME类型，默认：`image/png`
+             */
+            this.mime = 'image/png';
+            /**
+             * 内边距（单位：px），默认：`10`
+             */
+            this.padding = 10;
+            /**
+             * 大小（单位：px），默认：`220`
+             */
+            this.size = 220;
+            util.deprecation10Cog("QRConfig");
+        }
+        QRConfig.decorators = [
+            { type: core.Injectable, args: [{ providedIn: 'root' },] }
+        ];
+        /** @nocollapse */
+        QRConfig.ctorParameters = function () { return []; };
+        /** @nocollapse */ QRConfig.ɵprov = core.ɵɵdefineInjectable({ factory: function QRConfig_Factory() { return new QRConfig(); }, token: QRConfig, providedIn: "root" });
+        return QRConfig;
+    }());
+    if (false) {
+        /**
+         * 背景，默认：`white`
+         * @type {?}
+         */
+        QRConfig.prototype.background;
+        /**
+         * 背景透明级别，范围：`0-1` 之间，默认：`1.0`
+         * @type {?}
+         */
+        QRConfig.prototype.backgroundAlpha;
+        /**
+         * 前景，默认：`black`
+         * @type {?}
+         */
+        QRConfig.prototype.foreground;
+        /**
+         * 前景透明级别，范围：`0-1` 之间，默认：`1.0`
+         * @type {?}
+         */
+        QRConfig.prototype.foregroundAlpha;
+        /**
+         * 误差校正级别，默认：`L`
+         * @type {?}
+         */
+        QRConfig.prototype.level;
+        /**
+         * 二维码输出图片MIME类型，默认：`image/png`
+         * @type {?}
+         */
+        QRConfig.prototype.mime;
+        /**
+         * 内边距（单位：px），默认：`10`
+         * @type {?}
+         */
+        QRConfig.prototype.padding;
+        /**
+         * 大小（单位：px），默认：`220`
+         * @type {?}
+         */
+        QRConfig.prototype.size;
+    }
 
     /**
      * @fileoverview added by tsickle
@@ -337,9 +426,9 @@
         ];
         /** @nocollapse */
         QRService.ctorParameters = function () { return [
-            { type: util.AlainConfigService }
+            { type: theme.AlainConfigService }
         ]; };
-        /** @nocollapse */ QRService.ɵprov = core.ɵɵdefineInjectable({ factory: function QRService_Factory() { return new QRService(core.ɵɵinject(util.AlainConfigService)); }, token: QRService, providedIn: "root" });
+        /** @nocollapse */ QRService.ɵprov = core.ɵɵdefineInjectable({ factory: function QRService_Factory() { return new QRService(core.ɵɵinject(theme.AlainConfigService)); }, token: QRService, providedIn: "root" });
         return QRService;
     }());
     if (false) {
@@ -449,7 +538,7 @@
         QRComponent.ctorParameters = function () { return [
             { type: QRService },
             { type: core.ChangeDetectorRef },
-            { type: util.AlainConfigService }
+            { type: theme.AlainConfigService }
         ]; };
         QRComponent.propDecorators = {
             background: [{ type: core.Input }],
@@ -529,9 +618,9 @@
     }());
 
     exports.QRComponent = QRComponent;
+    exports.QRConfig = QRConfig;
     exports.QRModule = QRModule;
     exports.QRService = QRService;
-    exports.QR_DEFULAT_CONFIG = QR_DEFULAT_CONFIG;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 

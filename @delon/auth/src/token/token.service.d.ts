@@ -1,5 +1,5 @@
-import { AlainAuthConfig, AlainConfigService } from '@delon/util';
 import { Observable } from 'rxjs';
+import { DelonAuthConfig } from '../auth.config';
 import { IStore } from '../store/interface';
 import { AuthReferrer, ITokenModel, ITokenService } from './interface';
 export declare function DA_SERVICE_TOKEN_FACTORY(): ITokenService;
@@ -7,20 +7,19 @@ export declare function DA_SERVICE_TOKEN_FACTORY(): ITokenService;
  * 维护Token信息服务，[在线文档](https://ng-alain.com/auth)
  */
 export declare class TokenService implements ITokenService {
+    private options;
     private store;
     private change$;
     private _referrer;
-    private _options;
-    constructor(configSrv: AlainConfigService, store: IStore);
+    constructor(options: DelonAuthConfig, store: IStore);
     /**
-     * 授权失败后跳转路由路径（支持外部链接地址），通过设置[全局配置](https://ng-alain.com/docs/global-config)来改变
+     * 授权失败后跳转路由路径（支持外部链接地址），通过设置全局 `DelonAuthConfig.login_url` 来改变
      */
     get login_url(): string | undefined;
     /**
      * 当前请求页面的来源页面的地址
      */
     get referrer(): AuthReferrer;
-    get options(): AlainAuthConfig;
     /**
      * 设置 Token 信息
      */

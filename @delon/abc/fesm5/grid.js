@@ -1,7 +1,7 @@
 import { __decorate, __metadata, __spread } from 'tslib';
-import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input, ElementRef, Renderer2, Optional, Host, NgModule } from '@angular/core';
-import { AlainConfigService, InputNumber, DelonUtilModule } from '@delon/util';
-import { ResponsiveService } from '@delon/theme';
+import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input, ElementRef, Renderer2, Optional, Host, Injectable, ɵɵdefineInjectable, NgModule } from '@angular/core';
+import { AlainConfigService, ResponsiveService } from '@delon/theme';
+import { InputNumber, deprecation10Cog, DelonUtilModule } from '@delon/util';
 import { CommonModule } from '@angular/common';
 
 /**
@@ -221,6 +221,47 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: sg.config.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @deprecated `SGConfig` is going to be removed in 10.0.0. Please refer to https://ng-alain.com/docs/global-config
+ */
+var SGConfig = /** @class */ (function () {
+    function SGConfig() {
+        /**
+         * 间距，默认：`32`
+         */
+        this.gutter = 32;
+        /**
+         * 列数，默认：`2`
+         */
+        this.col = 2;
+        deprecation10Cog("SGConfig");
+    }
+    SGConfig.decorators = [
+        { type: Injectable, args: [{ providedIn: 'root' },] }
+    ];
+    /** @nocollapse */
+    SGConfig.ctorParameters = function () { return []; };
+    /** @nocollapse */ SGConfig.ɵprov = ɵɵdefineInjectable({ factory: function SGConfig_Factory() { return new SGConfig(); }, token: SGConfig, providedIn: "root" });
+    return SGConfig;
+}());
+if (false) {
+    /**
+     * 间距，默认：`32`
+     * @type {?}
+     */
+    SGConfig.prototype.gutter;
+    /**
+     * 列数，默认：`2`
+     * @type {?}
+     */
+    SGConfig.prototype.col;
+}
+
+/**
+ * @fileoverview added by tsickle
  * Generated from: sg.module.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
@@ -251,5 +292,5 @@ var SGModule = /** @class */ (function () {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { SGComponent, SGContainerComponent, SGModule };
+export { SGComponent, SGConfig, SGContainerComponent, SGModule };
 //# sourceMappingURL=grid.js.map

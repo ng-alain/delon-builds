@@ -1,6 +1,6 @@
 import { ElementRef, NgZone, OnChanges, OnDestroy, OnInit } from '@angular/core';
 import { LooseObject } from '@antv/g2/lib/interface';
-import { AlainConfigService } from '@delon/util';
+import { AlainConfigService } from '@delon/theme';
 export declare class G2SingleBarComponent implements OnInit, OnChanges, OnDestroy {
     private el;
     private ngZone;

@@ -1,7 +1,8 @@
 import { __decorate, __metadata } from 'tslib';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, NgZone, ViewChild, Input, NgModule } from '@angular/core';
 import { Chart } from '@antv/g2';
-import { deprecation10, toDate, AlainConfigService, InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
+import { AlainConfigService } from '@delon/theme';
+import { deprecation10, toDate, InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
 import { CommonModule } from '@angular/common';
 import { NzOutletModule } from 'ng-zorro-antd/core/outlet';
 
