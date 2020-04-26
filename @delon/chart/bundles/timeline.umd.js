@@ -4,10 +4,12 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@antv/g2'), require('@delon/util'), require('@angular/common'), require('ng-zorro-antd/core/outlet')) :
-    typeof define === 'function' && define.amd ? define('@delon/chart/timeline', ['exports', '@angular/core', '@antv/g2', '@delon/util', '@angular/common', 'ng-zorro-antd/core/outlet'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.timeline = {}), global.ng.core, global.g2, global.delon.util, global.ng.common, global['ng-zorro-antd/core/outlet']));
-}(this, (function (exports, core, g2, util, common, outlet) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@antv/g2'), require('@delon/util'), require('date-fns/format'), require('@angular/common'), require('ng-zorro-antd/core/outlet')) :
+    typeof define === 'function' && define.amd ? define('@delon/chart/timeline', ['exports', '@angular/core', '@antv/g2', '@delon/util', 'date-fns/format', '@angular/common', 'ng-zorro-antd/core/outlet'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.timeline = {}), global.ng.core, global.g2, global.delon.util, global.format, global.ng.common, global['ng-zorro-antd/core/outlet']));
+}(this, (function (exports, core, g2, util, format, common, outlet) { 'use strict';
+
+    format = format && Object.prototype.hasOwnProperty.call(format, 'default') ? format['default'] : format;
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -345,7 +347,7 @@
          * @return {?}
          */
         function () {
-            var _a = this, node = _a.node, height = _a.height, padding = _a.padding, slider = _a.slider, maxAxis = _a.maxAxis, theme = _a.theme;
+            var _a = this, node = _a.node, height = _a.height, padding = _a.padding, slider = _a.slider, maxAxis = _a.maxAxis, theme = _a.theme, mask = _a.mask;
             /** @type {?} */
             var chart = (this.chart = new g2.Chart({
                 container: node.nativeElement,
@@ -379,6 +381,11 @@
                         isArea: false,
                     },
                     minLimit: 2,
+                    formatter: (/**
+                     * @param {?} val
+                     * @return {?}
+                     */
+                    function (val) { return format(val, mask); }),
                 });
             }
             this.attachChart();

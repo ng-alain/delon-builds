@@ -3158,7 +3158,10 @@ class STComponent {
              * @param {?} error
              * @return {?}
              */
-            error => rejectPromise(error)));
+            error => {
+                console.warn(error);
+                rejectPromise(error);
+            }));
         }));
     }
     /**
