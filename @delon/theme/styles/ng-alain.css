@@ -18475,8 +18475,6 @@ textarea.ant-mention-wrapper .ant-mention-editor {
   padding-bottom: 0;
 }
 .ant-page-header-back {
-  float: left;
-  margin: 8px 0;
   margin-right: 16px;
   font-size: 16px;
   line-height: 1;
@@ -18512,75 +18510,45 @@ textarea.ant-mention-wrapper .ant-mention-editor {
   margin-top: 8px;
 }
 .ant-page-header-heading {
-  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
-.ant-page-header-heading::before {
-  display: table;
-  content: '';
-}
-.ant-page-header-heading::after {
-  display: table;
-  clear: both;
-  content: '';
-}
-.ant-page-header-heading::before {
-  display: table;
-  content: '';
-}
-.ant-page-header-heading::after {
-  display: table;
-  clear: both;
-  content: '';
-}
-.ant-page-header-heading::before {
-  display: table;
-  content: '';
-}
-.ant-page-header-heading::after {
-  display: table;
-  clear: both;
-  content: '';
-}
-.ant-page-header-heading::before {
-  display: table;
-  content: '';
-}
-.ant-page-header-heading::after {
-  display: table;
-  clear: both;
-  content: '';
+.ant-page-header-heading-left {
+  display: flex;
+  align-items: center;
+  margin: 4px 0;
+  overflow: hidden;
 }
 .ant-page-header-heading-title {
-  display: block;
-  float: left;
+  margin-right: 12px;
   margin-bottom: 0;
-  padding-right: 12px;
   color: rgba(0, 0, 0, 0.85);
   font-weight: 600;
   font-size: 20px;
   line-height: 32px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .ant-page-header-heading .ant-avatar {
-  float: left;
   margin-right: 12px;
 }
 .ant-page-header-heading-sub-title {
-  float: left;
-  margin: 5px 0;
   margin-right: 12px;
   color: rgba(0, 0, 0, 0.45);
   font-size: 14px;
   line-height: 22px;
-}
-.ant-page-header-heading-tags {
-  float: left;
-  margin: 4px 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .ant-page-header-heading-extra {
-  float: right;
+  margin: 4px 0;
+  white-space: nowrap;
 }
 .ant-page-header-heading-extra > * {
-  margin-left: 8px;
+  margin-left: 12px;
+  white-space: unset;
 }
 .ant-page-header-heading-extra > *:first-child {
   margin-left: 0;
@@ -18599,14 +18567,8 @@ textarea.ant-mention-wrapper .ant-mention-editor {
   padding: 8px 0;
   font-size: 16px;
 }
-@media (max-width: 768px) {
-  .ant-page-header-heading-extra {
-    display: block;
-    float: unset;
-    clear: both;
-    width: 100%;
-    padding-top: 12px;
-  }
+.ant-page-header-compact .ant-page-header-heading {
+  flex-wrap: wrap;
 }
 .ant-page-header-rtl {
   direction: rtl;
@@ -23946,6 +23908,9 @@ div.ant-typography-edit-content.ant-typography-rtl {
 .ant-cascader-menu-rtl .ant-cascader-menu-item-loading-icon {
   right: auto;
   left: 12px;
+}
+.ant-cascader-menus {
+  position: relative;
 }
 .ant-tree.ant-tree-directory .ant-tree-treenode {
   position: relative;
