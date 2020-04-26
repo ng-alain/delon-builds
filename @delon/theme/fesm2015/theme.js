@@ -3340,8 +3340,8 @@ class DatePipe {
     transform(value, formatString = 'yyyy-MM-dd HH:mm') {
         /** @type {?} */
         const options = { locale: this.nzI18n.getDateLocale() };
-        value = typeof value === 'string' ? (!isNaN(+value) ? +value : parse(value, formatString, new Date(), options)) : value;
-        if (!value)
+        value = typeof value === 'string' ? (!isNaN(+value) ? +value : parse(value, 'yyyy-MM-dd HH:mm:ss', new Date(), options)) : value;
+        if (!value || value.toString() === 'Invalid Date')
             return '';
         return formatString === 'fn' ? formatDistanceToNow(value, options) : format(value, formatString, options);
     }
@@ -3639,7 +3639,7 @@ AlainThemeModule.ctorParameters = () => [
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-const VERSION = new Version('9.0.0-rc.4-b2a1d5f0');
+const VERSION = new Version('9.0.0-rc.4-0a19fcf9');
 
 /**
  * @fileoverview added by tsickle

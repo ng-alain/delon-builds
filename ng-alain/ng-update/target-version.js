@@ -3,6 +3,5 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var TargetVersion;
 (function (TargetVersion) {
     TargetVersion[TargetVersion["V2"] = 0] = "V2";
-    TargetVersion[TargetVersion["V9"] = 1] = "V9";
 })(TargetVersion = exports.TargetVersion || (exports.TargetVersion = {}));
 //# sourceMappingURL=target-version.js.map

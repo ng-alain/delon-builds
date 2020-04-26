@@ -2,14 +2,9 @@
   "$schema": "./node_modules/@angular-devkit/schematics/collection-schema.json",
   "schematics": {
     "migration-v2": {
-      "version": "2",
+      "version": "9.0.0-rc.4",
       "description": "Updates ng-alain to v2",
       "factory": "./ng-update/index#updateToV2"
-    },
-    "migration-v9": {
-      "version": "9.0.0-rc.4",
-      "description": "Updates ng-alain to v9 [https://github.com/ng-alain/ng-alain/issues/1569]",
-      "factory": "./ng-update/index#updateToV9"
     },
     "ng-post-update": {
       "description": "Performs cleanup after ng-update.",
