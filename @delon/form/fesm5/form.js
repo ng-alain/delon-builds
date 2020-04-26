@@ -52,9 +52,9 @@ var SF_DEFAULT_CONFIG = {
     ui: (/** @type {?} */ ({})),
     button: (/** @type {?} */ ({ submit_type: 'primary', reset_type: 'default' })),
     uiDateStringFormat: 'yyyy-MM-dd HH:mm:ss',
-    uiDateNumberFormat: 'x',
+    uiDateNumberFormat: 'T',
     uiTimeStringFormat: 'HH:mm:ss',
-    uiTimeNumberFormat: 'x',
+    uiTimeNumberFormat: 'T',
     uiEmailSuffixes: ['qq.com', '163.com', 'gmail.com', '126.com', 'aliyun.com'],
 };
 /**
@@ -7062,10 +7062,10 @@ if (false) {
     /**
      * **Just only support date-fns**
      *
-     * Return the formatted date string in the given format, [Accepted tokens](https://date-fns.org/v1.30.1/docs/format), like this:
+     * Return the formatted date string in the given format, [Accepted tokens](https://date-fns.org/v2.12.0/docs/format), like this:
      * - `yyyy-MM-dd HH:mm:ss` Date time
-     * - `X` Seconds timestamp
-     * - `x` Milliseconds timestamp
+     * - `t` Seconds timestamp
+     * - `T` Milliseconds timestamp
      * @type {?|undefined}
      */
     SFDateWidgetSchema.prototype.format;
@@ -7160,10 +7160,10 @@ if (false) {
     /**
      * **Just only support date-fns**
      *
-     * Return the formatted date string in the given format, [Accepted tokens](https://date-fns.org/v1.30.1/docs/format), like this:
+     * Return the formatted date string in the given format, [Accepted tokens](https://date-fns.org/v2.12.0/docs/format), like this:
      * - `yyyy-MM-dd HH:mm:ss` Date time
-     * - `X` Seconds timestamp
-     * - `x` Milliseconds timestamp
+     * - `t` Seconds timestamp
+     * - `T` Milliseconds timestamp
      * @type {?|undefined}
      */
     SFTimeWidgetSchema.prototype.format;
