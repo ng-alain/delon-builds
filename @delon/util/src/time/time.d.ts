@@ -8,4 +8,9 @@ export declare function getTimeDistance(type: 'today' | '-today' | 'yesterday' |
  * fix time is the most, big value
  */
 export declare function fixEndTimeOfRange(dates: [Date, Date]): [Date, Date];
-export declare function toDate(val: Date | string | number, formatString?: string): Date;
+/**
+ * Return the date parsed from string using the given format string
+ * - If the argument is a number, it is treated as a timestamp.
+ * @param formatString If parsing fails try to parse the date by pressing `formatString`
+ */
+export declare function toDate(value: Date | string | number, formatString?: string): Date;

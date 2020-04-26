@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('extend'), require('date-fns/addDays'), require('date-fns/endOfDay'), require('date-fns/endOfMonth'), require('date-fns/endOfWeek'), require('date-fns/endOfYear'), require('date-fns/parse'), require('date-fns/startOfDay'), require('date-fns/startOfMonth'), require('date-fns/startOfWeek'), require('date-fns/startOfYear'), require('date-fns/subMonths'), require('date-fns/subWeeks'), require('date-fns/subYears'), require('@angular/common'), require('@angular/core'), require('rxjs'), require('rxjs/operators'), require('ng-zorro-antd/core/environments'), require('ng-zorro-antd/core/tree')) :
-    typeof define === 'function' && define.amd ? define('@delon/util', ['exports', 'extend', 'date-fns/addDays', 'date-fns/endOfDay', 'date-fns/endOfMonth', 'date-fns/endOfWeek', 'date-fns/endOfYear', 'date-fns/parse', 'date-fns/startOfDay', 'date-fns/startOfMonth', 'date-fns/startOfWeek', 'date-fns/startOfYear', 'date-fns/subMonths', 'date-fns/subWeeks', 'date-fns/subYears', '@angular/common', '@angular/core', 'rxjs', 'rxjs/operators', 'ng-zorro-antd/core/environments', 'ng-zorro-antd/core/tree'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.util = {}), global.Extend, global.addDays, global.endOfDay, global.endOfMonth, global.endOfWeek, global.endOfYear, global.parse, global.startOfDay, global.startOfMonth, global.startOfWeek, global.startOfYear, global.subMonths, global.subWeeks, global.subYears, global.ng.common, global.ng.core, global.rxjs, global.rxjs.operators, global.environments, global.tree));
-}(this, (function (exports, extend, addDays, endOfDay, endOfMonth, endOfWeek, endOfYear, parse, startOfDay, startOfMonth, startOfWeek, startOfYear, subMonths, subWeeks, subYears, common, core, rxjs, operators, environments, tree) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('extend'), require('date-fns/addDays'), require('date-fns/endOfDay'), require('date-fns/endOfMonth'), require('date-fns/endOfWeek'), require('date-fns/endOfYear'), require('date-fns/parse'), require('date-fns/parseISO'), require('date-fns/startOfDay'), require('date-fns/startOfMonth'), require('date-fns/startOfWeek'), require('date-fns/startOfYear'), require('date-fns/subMonths'), require('date-fns/subWeeks'), require('date-fns/subYears'), require('@angular/common'), require('@angular/core'), require('rxjs'), require('rxjs/operators'), require('ng-zorro-antd/core/environments'), require('ng-zorro-antd/core/tree')) :
+    typeof define === 'function' && define.amd ? define('@delon/util', ['exports', 'extend', 'date-fns/addDays', 'date-fns/endOfDay', 'date-fns/endOfMonth', 'date-fns/endOfWeek', 'date-fns/endOfYear', 'date-fns/parse', 'date-fns/parseISO', 'date-fns/startOfDay', 'date-fns/startOfMonth', 'date-fns/startOfWeek', 'date-fns/startOfYear', 'date-fns/subMonths', 'date-fns/subWeeks', 'date-fns/subYears', '@angular/common', '@angular/core', 'rxjs', 'rxjs/operators', 'ng-zorro-antd/core/environments', 'ng-zorro-antd/core/tree'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.util = {}), global.Extend, global.addDays, global.endOfDay, global.endOfMonth, global.endOfWeek, global.endOfYear, global.parse, global.parseISO, global.startOfDay, global.startOfMonth, global.startOfWeek, global.startOfYear, global.subMonths, global.subWeeks, global.subYears, global.ng.common, global.ng.core, global.rxjs, global.rxjs.operators, global.environments, global.tree));
+}(this, (function (exports, extend, addDays, endOfDay, endOfMonth, endOfWeek, endOfYear, parse, parseISO, startOfDay, startOfMonth, startOfWeek, startOfYear, subMonths, subWeeks, subYears, common, core, rxjs, operators, environments, tree) { 'use strict';
 
     extend = extend && Object.prototype.hasOwnProperty.call(extend, 'default') ? extend['default'] : extend;
     addDays = addDays && Object.prototype.hasOwnProperty.call(addDays, 'default') ? addDays['default'] : addDays;
@@ -16,6 +16,7 @@
     endOfWeek = endOfWeek && Object.prototype.hasOwnProperty.call(endOfWeek, 'default') ? endOfWeek['default'] : endOfWeek;
     endOfYear = endOfYear && Object.prototype.hasOwnProperty.call(endOfYear, 'default') ? endOfYear['default'] : endOfYear;
     parse = parse && Object.prototype.hasOwnProperty.call(parse, 'default') ? parse['default'] : parse;
+    parseISO = parseISO && Object.prototype.hasOwnProperty.call(parseISO, 'default') ? parseISO['default'] : parseISO;
     startOfDay = startOfDay && Object.prototype.hasOwnProperty.call(startOfDay, 'default') ? startOfDay['default'] : startOfDay;
     startOfMonth = startOfMonth && Object.prototype.hasOwnProperty.call(startOfMonth, 'default') ? startOfMonth['default'] : startOfMonth;
     startOfWeek = startOfWeek && Object.prototype.hasOwnProperty.call(startOfWeek, 'default') ? startOfWeek['default'] : startOfWeek;
@@ -486,17 +487,26 @@
         return [startOfDay(dates[0]), endOfDay(dates[1])];
     }
     /**
-     * @param {?} val
-     * @param {?=} formatString
+     * Return the date parsed from string using the given format string
+     * - If the argument is a number, it is treated as a timestamp.
+     * @param {?} value
+     * @param {?=} formatString If parsing fails try to parse the date by pressing `formatString`
      * @return {?}
      */
-    function toDate(val, formatString) {
+    function toDate(value, formatString) {
         if (formatString === void 0) { formatString = 'yyyy-MM-dd HH:mm:ss'; }
-        if (val instanceof Date)
-            return val;
-        if (typeof val === 'number')
-            return new Date(val);
-        return parse(val, formatString, new Date());
+        if (value == null)
+            return new Date(NaN);
+        if (value instanceof Date)
+            return value;
+        if (typeof value === 'number')
+            return new Date(value);
+        /** @type {?} */
+        var tryDate = !isNaN(+value) ? new Date(+value) : parseISO(value);
+        if (isNaN((/** @type {?} */ (tryDate)))) {
+            return parse(value, formatString, new Date());
+        }
+        return tryDate;
     }
 
     /**

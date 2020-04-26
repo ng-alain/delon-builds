@@ -1,6 +1,6 @@
 import { DecimalPipe } from '@angular/common';
 import { DomSanitizer } from '@angular/platform-browser';
-import { CNCurrencyPipe, DatePipe, YNPipe, _HttpClient } from '@delon/theme';
+import { CNCurrencyPipe, YNPipe, _HttpClient } from '@delon/theme';
 import { Observable } from 'rxjs';
 import { STColumn, STData, STMultiSort, STPage, STReq, STRes, STRowClassName, STSingleSort, STStatisticalResults } from './st.interfaces';
 export interface STDataSourceOptions {
@@ -34,12 +34,11 @@ export interface STDataSourceResult {
 export declare class STDataSource {
     private http;
     private currentyPipe;
-    private datePipe;
     private ynPipe;
     private numberPipe;
     private dom;
     private sortTick;
-    constructor(http: _HttpClient, currentyPipe: CNCurrencyPipe, datePipe: DatePipe, ynPipe: YNPipe, numberPipe: DecimalPipe, dom: DomSanitizer);
+    constructor(http: _HttpClient, currentyPipe: CNCurrencyPipe, ynPipe: YNPipe, numberPipe: DecimalPipe, dom: DomSanitizer);
     process(options: STDataSourceOptions): Observable<STDataSourceResult>;
     private get;
     private getByHttp;
