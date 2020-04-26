@@ -3902,8 +3902,8 @@ var DatePipe = /** @class */ (function () {
         if (formatString === void 0) { formatString = 'yyyy-MM-dd HH:mm'; }
         /** @type {?} */
         var options = { locale: this.nzI18n.getDateLocale() };
-        value = typeof value === 'string' ? (!isNaN(+value) ? +value : parse(value, 'yyyy-MM-dd HH:mm:ss', new Date(), options)) : value;
-        if (!value || value.toString() === 'Invalid Date')
+        value = typeof value === 'string' ? (!isNaN(+value) ? +value : parse(value, formatString, new Date(), options)) : value;
+        if (!value)
             return '';
         return formatString === 'fn' ? formatDistanceToNow(value, options) : format(value, formatString, options);
     };
@@ -4244,7 +4244,7 @@ var AlainThemeModule = /** @class */ (function () {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-var VERSION = new Version('9.0.0-rc.4-304ca25b');
+var VERSION = new Version('9.0.0-rc.4-b2a1d5f0');
 
 /**
  * @fileoverview added by tsickle

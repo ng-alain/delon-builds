@@ -3691,10 +3691,7 @@
                  * @param {?} error
                  * @return {?}
                  */
-                function (error) {
-                    console.warn(error);
-                    rejectPromise(error);
-                }));
+                function (error) { return rejectPromise(error); }));
             }));
         };
         /**

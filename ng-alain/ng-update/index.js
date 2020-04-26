@@ -26,6 +26,10 @@ function updateToV2() {
     return schematics_1.chain([v2LayoutRule_1.v2LayoutRule, v2DomRule_1.v2DomRule, upgrade_rules_1.createUpgradeRule(target_version_1.TargetVersion.V2, tslintUpgradeConfig)]);
 }
 exports.updateToV2 = updateToV2;
+function updateToV9() {
+    return () => console.log(`本次升级请参考：https://github.com/ng-alain/ng-alain/issues/1569 \nPlease refer to https://github.com/ng-alain/ng-alain/issues/1569`);
+}
+exports.updateToV9 = updateToV9;
 function postUpdate() {
     return () => console.log('\nComplete! Please check the output above for any issues that were detected but could not be automatically fixed.');
 }
