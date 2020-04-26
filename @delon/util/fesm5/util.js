@@ -6,6 +6,7 @@ import endOfMonth from 'date-fns/endOfMonth';
 import endOfWeek from 'date-fns/endOfWeek';
 import endOfYear from 'date-fns/endOfYear';
 import parse from 'date-fns/parse';
+import parseISO from 'date-fns/parseISO';
 import startOfDay from 'date-fns/startOfDay';
 import startOfMonth from 'date-fns/startOfMonth';
 import startOfWeek from 'date-fns/startOfWeek';
@@ -220,7 +221,7 @@ function format(str, obj, needDeepGet) {
  * @return {?}
  */
 function getTimeDistance(type, time) {
-    time = time ? (typeof time === 'string' ? parse(time, 'yyyy-MM-dd HH:mm:ss', new Date()) : new Date(time)) : new Date();
+    time = time ? (typeof time === 'string' ? parseISO(time) : new Date(time)) : new Date();
     /** @type {?} */
     var options = { weekStartsOn: 1 };
     /** @type {?} */
@@ -2043,7 +2044,7 @@ if (false) {
      */
     AlainSFConfig.prototype.uiDateStringFormat;
     /**
-     * date小部件：`type="number"` 且不指定 `schema.format` 和 `ui.format` 时日期格式，默认：`T` 13位 Unix Timestamp
+     * date小部件：`type="number"` 且不指定 `schema.format` 和 `ui.format` 时日期格式，默认：`x` 13位Unix Timestamp
      * @type {?|undefined}
      */
     AlainSFConfig.prototype.uiDateNumberFormat;
@@ -2053,7 +2054,7 @@ if (false) {
      */
     AlainSFConfig.prototype.uiTimeStringFormat;
     /**
-     * time小部件：`type="number"` 且不指定 `schema.format` 和 `ui.format` 时日期格式，默认：`T` 13位 Unix Timestamp，日期统一使用 `1970-01-01`
+     * time小部件：`type="number"` 且不指定 `schema.format` 和 `ui.format` 时日期格式，默认：`x` 13位Unix Timestamp，日期统一使用 `1970-01-01`
      * @type {?|undefined}
      */
     AlainSFConfig.prototype.uiTimeNumberFormat;

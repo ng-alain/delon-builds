@@ -2,7 +2,6 @@ import { __decorate, __metadata } from 'tslib';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, NgZone, ViewChild, Input, NgModule } from '@angular/core';
 import { Chart } from '@antv/g2';
 import { deprecation10, toDate, AlainConfigService, InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
-import format from 'date-fns/format';
 import { CommonModule } from '@angular/common';
 import { NzOutletModule } from 'ng-zorro-antd/core/outlet';
 
@@ -124,7 +123,7 @@ class G2TimelineComponent {
      * @return {?}
      */
     install() {
-        const { node, height, padding, slider, maxAxis, theme, mask } = this;
+        const { node, height, padding, slider, maxAxis, theme } = this;
         /** @type {?} */
         const chart = (this.chart = new Chart({
             container: node.nativeElement,
@@ -158,11 +157,6 @@ class G2TimelineComponent {
                     isArea: false,
                 },
                 minLimit: 2,
-                formatter: (/**
-                 * @param {?} val
-                 * @return {?}
-                 */
-                (val) => format(val, mask)),
             });
         }
         this.attachChart();
