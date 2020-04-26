@@ -231,152 +231,28 @@
      * Generated from: src/config.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var DelonFormConfig = /** @class */ (function () {
-        function DelonFormConfig() {
-            /**
-             * 是否忽略某些数据类型校验 `ERRORSDEFAULT`，默认：`[ 'type', 'enum' ]`
-             *
-             * - `type` 限定 Schema 中 `type` 类型
-             * - `enum` 限定应当是预设定的枚举值之一
-             */
-            this.ingoreKeywords = ['type', 'enum'];
-            /**
-             * 是否实时校验，默认：`true`
-             * - `true` 每一次都校验
-             * - `false` 提交时校验
-             */
-            this.liveValidate = true;
-            /**
-             * 指定表单 `autocomplete` 值，默认：`on`
-             */
-            this.autocomplete = null;
-            /**
-             * 是否立即呈现错误视觉，默认：`false`
-             */
-            this.firstVisual = false;
-            /**
-             * 是否只展示错误视觉不显示错误文本，默认：`false`
-             */
-            this.onlyVisual = false;
-            /**
-             * 自定义通用错误信息
-             */
-            this.errors = {};
-            /**
-             * 按钮风格
-             */
-            this.button = {
-                submit_type: 'primary',
-                reset_type: 'default',
-            };
-            /**
-             * date小部件：`type="string"` 且不指定 `schema.format` 和 `ui.format` 时日期格式，默认：`yyyy-MM-dd HH:mm:ss`
-             */
-            this.uiDateStringFormat = 'yyyy-MM-dd HH:mm:ss';
-            /**
-             * date小部件：`type="number"` 且不指定 `schema.format` 和 `ui.format` 时日期格式，默认：`x` 13位Unix Timestamp
-             */
-            this.uiDateNumberFormat = 'x';
-            /**
-             * time小部件：`type="string"` 且不指定 `schema.format` 和 `ui.format` 时日期格式，默认：`HH:mm:ss`
-             */
-            this.uiTimeStringFormat = 'HH:mm:ss';
-            /**
-             * time小部件：`type="number"` 且不指定 `schema.format` 和 `ui.format` 时日期格式，默认：`x` 13位Unix Timestamp，日期统一使用 `1970-01-01`
-             */
-            this.uiTimeNumberFormat = 'x';
-            /**
-             * 指定 `format: 'email'` 的默认Email后缀
-             */
-            this.uiEmailSuffixes = ['qq.com', '163.com', 'gmail.com', '126.com', 'aliyun.com'];
-        }
-        DelonFormConfig.decorators = [
-            { type: core.Injectable, args: [{ providedIn: 'root' },] }
-        ];
-        /** @nocollapse */ DelonFormConfig.ɵprov = core.ɵɵdefineInjectable({ factory: function DelonFormConfig_Factory() { return new DelonFormConfig(); }, token: DelonFormConfig, providedIn: "root" });
-        return DelonFormConfig;
-    }());
-    if (false) {
-        /**
-         * 是否忽略某些数据类型校验 `ERRORSDEFAULT`，默认：`[ 'type', 'enum' ]`
-         *
-         * - `type` 限定 Schema 中 `type` 类型
-         * - `enum` 限定应当是预设定的枚举值之一
-         * @type {?}
-         */
-        DelonFormConfig.prototype.ingoreKeywords;
-        /**
-         * [ajv](http://epoberezkin.github.io/ajv/#options) 参数
-         * @type {?}
-         */
-        DelonFormConfig.prototype.ajv;
-        /**
-         * 是否实时校验，默认：`true`
-         * - `true` 每一次都校验
-         * - `false` 提交时校验
-         * @type {?}
-         */
-        DelonFormConfig.prototype.liveValidate;
-        /**
-         * 指定表单 `autocomplete` 值，默认：`on`
-         * @type {?}
-         */
-        DelonFormConfig.prototype.autocomplete;
-        /**
-         * 是否立即呈现错误视觉，默认：`false`
-         * @type {?}
-         */
-        DelonFormConfig.prototype.firstVisual;
-        /**
-         * 是否只展示错误视觉不显示错误文本，默认：`false`
-         * @type {?}
-         */
-        DelonFormConfig.prototype.onlyVisual;
-        /**
-         * 自定义通用错误信息
-         * @type {?}
-         */
-        DelonFormConfig.prototype.errors;
-        /**
-         * 默认全局布局
-         * @type {?}
-         */
-        DelonFormConfig.prototype.ui;
-        /**
-         * 元素组件大小，用于 `nzSize` 值
-         * @type {?}
-         */
-        DelonFormConfig.prototype.size;
-        /**
-         * 按钮风格
-         * @type {?}
-         */
-        DelonFormConfig.prototype.button;
-        /**
-         * date小部件：`type="string"` 且不指定 `schema.format` 和 `ui.format` 时日期格式，默认：`yyyy-MM-dd HH:mm:ss`
-         * @type {?}
-         */
-        DelonFormConfig.prototype.uiDateStringFormat;
-        /**
-         * date小部件：`type="number"` 且不指定 `schema.format` 和 `ui.format` 时日期格式，默认：`x` 13位Unix Timestamp
-         * @type {?}
-         */
-        DelonFormConfig.prototype.uiDateNumberFormat;
-        /**
-         * time小部件：`type="string"` 且不指定 `schema.format` 和 `ui.format` 时日期格式，默认：`HH:mm:ss`
-         * @type {?}
-         */
-        DelonFormConfig.prototype.uiTimeStringFormat;
-        /**
-         * time小部件：`type="number"` 且不指定 `schema.format` 和 `ui.format` 时日期格式，默认：`x` 13位Unix Timestamp，日期统一使用 `1970-01-01`
-         * @type {?}
-         */
-        DelonFormConfig.prototype.uiTimeNumberFormat;
-        /**
-         * 指定 `format: 'email'` 的默认Email后缀
-         * @type {?}
-         */
-        DelonFormConfig.prototype.uiEmailSuffixes;
+    /** @type {?} */
+    var SF_DEFAULT_CONFIG = {
+        ingoreKeywords: ['type', 'enum'],
+        liveValidate: true,
+        autocomplete: null,
+        firstVisual: false,
+        onlyVisual: false,
+        errors: {},
+        ui: (/** @type {?} */ ({})),
+        button: (/** @type {?} */ ({ submit_type: 'primary', reset_type: 'default' })),
+        uiDateStringFormat: 'yyyy-MM-dd HH:mm:ss',
+        uiDateNumberFormat: 'x',
+        uiTimeStringFormat: 'HH:mm:ss',
+        uiTimeNumberFormat: 'x',
+        uiEmailSuffixes: ['qq.com', '163.com', 'gmail.com', '126.com', 'aliyun.com'],
+    };
+    /**
+     * @param {?} srv
+     * @return {?}
+     */
+    function mergeConfig(srv) {
+        return srv.merge('sf', SF_DEFAULT_CONFIG);
     }
 
     /**
@@ -1981,9 +1857,9 @@
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var FormPropertyFactory = /** @class */ (function () {
-        function FormPropertyFactory(schemaValidatorFactory, options) {
+        function FormPropertyFactory(schemaValidatorFactory, cogSrv) {
             this.schemaValidatorFactory = schemaValidatorFactory;
-            this.options = options;
+            this.options = mergeConfig(cogSrv);
         }
         /**
          * @param {?} schema
@@ -2097,12 +1973,12 @@
          * @type {?}
          * @private
          */
-        FormPropertyFactory.prototype.schemaValidatorFactory;
+        FormPropertyFactory.prototype.options;
         /**
          * @type {?}
          * @private
          */
-        FormPropertyFactory.prototype.options;
+        FormPropertyFactory.prototype.schemaValidatorFactory;
     }
 
     /**
@@ -2157,10 +2033,10 @@
     }
     var AjvSchemaValidatorFactory = /** @class */ (function (_super) {
         __extends(AjvSchemaValidatorFactory, _super);
-        function AjvSchemaValidatorFactory(options) {
+        function AjvSchemaValidatorFactory(cogSrv) {
             var _this = _super.call(this) || this;
-            _this.options = options;
-            _this.ajv = new Ajv(__assign(__assign({}, options.ajv), { errorDataPath: 'property', allErrors: true, jsonPointers: true }));
+            _this.options = mergeConfig(cogSrv);
+            _this.ajv = new Ajv(__assign(__assign({}, _this.options.ajv), { errorDataPath: 'property', allErrors: true, jsonPointers: true }));
             _this.ajv.addFormat('data-url', /^data:([a-z]+\/[a-z0-9-+.]+)?;name=(.*);base64,(.*)$/);
             _this.ajv.addFormat('color', /^(#?([0-9A-Fa-f]{3}){1,2}\b|aqua|black|blue|fuchsia|gray|green|lime|maroon|navy|olive|orange|purple|red|silver|teal|white|yellow|(rgb\(\s*\b([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\b\s*,\s*\b([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\b\s*,\s*\b([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\b\s*\))|(rgb\(\s*(\d?\d%|100%)+\s*,\s*(\d?\d%|100%)+\s*,\s*(\d?\d%|100%)+\s*\)))$/);
             _this.ajv.addFormat('mobile', /^(0|\+?86|17951)?1[0-9]{10}$/);
@@ -2213,7 +2089,7 @@
         ];
         /** @nocollapse */
         AjvSchemaValidatorFactory.ctorParameters = function () { return [
-            { type: DelonFormConfig, decorators: [{ type: core.Inject, args: [DelonFormConfig,] }] }
+            { type: util.AlainConfigService, decorators: [{ type: core.Inject, args: [util.AlainConfigService,] }] }
         ]; };
         return AjvSchemaValidatorFactory;
     }(SchemaValidatorFactory));
@@ -2225,7 +2101,7 @@
         AjvSchemaValidatorFactory.prototype.ajv;
         /**
          * @type {?}
-         * @private
+         * @protected
          */
         AjvSchemaValidatorFactory.prototype.options;
     }
@@ -2367,18 +2243,17 @@
      */
     /**
      * @param {?} schemaValidatorFactory
-     * @param {?} options
+     * @param {?} cogSrv
      * @return {?}
      */
-    function useFactory(schemaValidatorFactory, options) {
-        return new FormPropertyFactory(schemaValidatorFactory, options);
+    function useFactory(schemaValidatorFactory, cogSrv) {
+        return new FormPropertyFactory(schemaValidatorFactory, cogSrv);
     }
     var SFComponent = /** @class */ (function () {
-        function SFComponent(formPropertyFactory, terminator, options, dom, cdr, localeSrv, aclSrv, i18nSrv) {
+        function SFComponent(formPropertyFactory, terminator, dom, cdr, localeSrv, aclSrv, i18nSrv, cogSrv) {
             var _this = this;
             this.formPropertyFactory = formPropertyFactory;
             this.terminator = terminator;
-            this.options = options;
             this.dom = dom;
             this.cdr = cdr;
             this.localeSrv = localeSrv;
@@ -2439,9 +2314,10 @@
              * 表单校验结果回调
              */
             this.formError = new core.EventEmitter();
-            this.liveValidate = (/** @type {?} */ (options.liveValidate));
-            this.firstVisual = (/** @type {?} */ (options.firstVisual));
-            this.autocomplete = (/** @type {?} */ (options.autocomplete));
+            this.options = mergeConfig(cogSrv);
+            this.liveValidate = (/** @type {?} */ (this.options.liveValidate));
+            this.firstVisual = (/** @type {?} */ (this.options.firstVisual));
+            this.autocomplete = (/** @type {?} */ (this.options.autocomplete));
             this.localeSrv.change.pipe(operators.takeUntil(this.unsubscribe$)).subscribe((/**
              * @return {?}
              */
@@ -3110,7 +2986,7 @@
                             {
                                 provide: FormPropertyFactory,
                                 useFactory: useFactory,
-                                deps: [SchemaValidatorFactory, DelonFormConfig],
+                                deps: [SchemaValidatorFactory, util.AlainConfigService],
                             },
                             TerminatorService,
                         ],
@@ -3131,12 +3007,12 @@
         SFComponent.ctorParameters = function () { return [
             { type: FormPropertyFactory },
             { type: TerminatorService },
-            { type: DelonFormConfig },
             { type: platformBrowser.DomSanitizer },
             { type: core.ChangeDetectorRef },
             { type: theme.DelonLocaleService },
             { type: acl.ACLService, decorators: [{ type: core.Optional }] },
-            { type: undefined, decorators: [{ type: core.Optional }, { type: core.Inject, args: [theme.ALAIN_I18N_TOKEN,] }] }
+            { type: undefined, decorators: [{ type: core.Optional }, { type: core.Inject, args: [theme.ALAIN_I18N_TOKEN,] }] },
+            { type: util.AlainConfigService }
         ]; };
         SFComponent.propDecorators = {
             layout: [{ type: core.Input }],
@@ -3219,6 +3095,8 @@
          * @private
          */
         SFComponent.prototype._inited;
+        /** @type {?} */
+        SFComponent.prototype.options;
         /** @type {?} */
         SFComponent.prototype.locale;
         /** @type {?} */
@@ -3327,11 +3205,6 @@
          * @private
          */
         SFComponent.prototype.terminator;
-        /**
-         * @type {?}
-         * @private
-         */
-        SFComponent.prototype.options;
         /**
          * @type {?}
          * @private
@@ -8463,7 +8336,6 @@
     exports.ControlWidget = ControlWidget;
     exports.CustomWidget = CustomWidget;
     exports.DateWidget = DateWidget;
-    exports.DelonFormConfig = DelonFormConfig;
     exports.DelonFormModule = DelonFormModule;
     exports.ERRORSDEFAULT = ERRORSDEFAULT;
     exports.FormProperty = FormProperty;
@@ -8481,6 +8353,7 @@
     exports.SFComponent = SFComponent;
     exports.SFFixedDirective = SFFixedDirective;
     exports.SFItemComponent = SFItemComponent;
+    exports.SF_DEFAULT_CONFIG = SF_DEFAULT_CONFIG;
     exports.SchemaValidatorFactory = SchemaValidatorFactory;
     exports.SelectWidget = SelectWidget;
     exports.SliderWidget = SliderWidget;
@@ -8496,6 +8369,7 @@
     exports.Widget = Widget;
     exports.WidgetFactory = WidgetFactory;
     exports.WidgetRegistry = WidgetRegistry;
+    exports.mergeConfig = mergeConfig;
     exports.useFactory = useFactory;
     exports.ɵa = TerminatorService;
     exports.ɵb = SFItemWrapComponent;

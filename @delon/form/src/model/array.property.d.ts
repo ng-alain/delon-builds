@@ -1,4 +1,4 @@
-import { DelonFormConfig } from '../config';
+import { AlainSFConfig } from '@delon/util';
 import { SFValue } from '../interface';
 import { SFSchema } from '../schema/index';
 import { SFUISchema, SFUISchemaItem } from '../schema/ui';
@@ -7,7 +7,7 @@ import { FormProperty, PropertyGroup } from './form.property';
 import { FormPropertyFactory } from './form.property.factory';
 export declare class ArrayProperty extends PropertyGroup {
     private formPropertyFactory;
-    constructor(formPropertyFactory: FormPropertyFactory, schemaValidatorFactory: SchemaValidatorFactory, schema: SFSchema, ui: SFUISchema | SFUISchemaItem, formData: {}, parent: PropertyGroup | null, path: string, options: DelonFormConfig);
+    constructor(formPropertyFactory: FormPropertyFactory, schemaValidatorFactory: SchemaValidatorFactory, schema: SFSchema, ui: SFUISchema | SFUISchemaItem, formData: {}, parent: PropertyGroup | null, path: string, options: AlainSFConfig);
     getProperty(path: string): FormProperty | undefined;
     setValue(value: SFValue, onlySelf: boolean): void;
     resetValue(value: SFValue, onlySelf: boolean): void;

@@ -2,7 +2,7 @@ import { ChangeDetectorRef, EventEmitter, OnChanges, OnDestroy, OnInit, SimpleCh
 import { DomSanitizer } from '@angular/platform-browser';
 import { ACLService } from '@delon/acl';
 import { AlainI18NService, DelonLocaleService, LocaleData } from '@delon/theme';
-import { DelonFormConfig } from './config';
+import { AlainConfigService, AlainSFConfig } from '@delon/util';
 import { ErrorData } from './errors';
 import { SFButton, SFLayout } from './interface';
 import { FormProperty } from './model/form.property';
@@ -11,11 +11,10 @@ import { SFSchema } from './schema/index';
 import { SFUISchema } from './schema/ui';
 import { TerminatorService } from './terminator.service';
 import { SchemaValidatorFactory } from './validator.factory';
-export declare function useFactory(schemaValidatorFactory: SchemaValidatorFactory, options: DelonFormConfig): FormPropertyFactory;
+export declare function useFactory(schemaValidatorFactory: SchemaValidatorFactory, cogSrv: AlainConfigService): FormPropertyFactory;
 export declare class SFComponent implements OnInit, OnChanges, OnDestroy {
     private formPropertyFactory;
     private terminator;
-    private options;
     private dom;
     private cdr;
     private localeSrv;
@@ -27,6 +26,7 @@ export declare class SFComponent implements OnInit, OnChanges, OnDestroy {
     private _valid;
     private _defUi;
     private _inited;
+    readonly options: AlainSFConfig;
     locale: LocaleData;
     rootProperty: FormProperty | null;
     _formData: {};
@@ -102,7 +102,7 @@ export declare class SFComponent implements OnInit, OnChanges, OnDestroy {
      */
     setValue(path: string, value: any): this;
     onSubmit(e: Event): void;
-    constructor(formPropertyFactory: FormPropertyFactory, terminator: TerminatorService, options: DelonFormConfig, dom: DomSanitizer, cdr: ChangeDetectorRef, localeSrv: DelonLocaleService, aclSrv: ACLService, i18nSrv: AlainI18NService);
+    constructor(formPropertyFactory: FormPropertyFactory, terminator: TerminatorService, dom: DomSanitizer, cdr: ChangeDetectorRef, localeSrv: DelonLocaleService, aclSrv: ACLService, i18nSrv: AlainI18NService, cogSrv: AlainConfigService);
     protected fanyi(key: string): string;
     private inheritUI;
     private coverProperty;

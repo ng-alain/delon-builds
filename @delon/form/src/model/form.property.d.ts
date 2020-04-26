@@ -1,5 +1,5 @@
+import { AlainSFConfig } from '@delon/util';
 import { BehaviorSubject } from 'rxjs';
-import { DelonFormConfig } from '../config';
 import { ErrorData } from '../errors';
 import { SFValue } from '../interface';
 import { SFSchema, SFSchemaType } from '../schema';
@@ -25,7 +25,7 @@ export declare abstract class FormProperty {
     _value: SFValue;
     widget: Widget<FormProperty, SFUISchemaItem>;
     path: string;
-    constructor(schemaValidatorFactory: SchemaValidatorFactory, schema: SFSchema, ui: SFUISchema | SFUISchemaItem, formData: {}, parent: PropertyGroup | null, path: string, _options: DelonFormConfig);
+    constructor(schemaValidatorFactory: SchemaValidatorFactory, schema: SFSchema, ui: SFUISchema | SFUISchemaItem, formData: {}, parent: PropertyGroup | null, path: string, _options: AlainSFConfig);
     get valueChanges(): BehaviorSubject<any>;
     get errorsChanges(): BehaviorSubject<ErrorData[] | null>;
     get type(): SFSchemaType;
@@ -35,7 +35,7 @@ export declare abstract class FormProperty {
     get errors(): ErrorData[] | null;
     get visible(): boolean;
     get valid(): boolean;
-    get options(): DelonFormConfig;
+    get options(): AlainSFConfig;
     /**
      * 设置值
      *

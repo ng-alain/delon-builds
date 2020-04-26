@@ -1841,6 +1841,106 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: src/config/sf/sf.type.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ */
+function AlainSFConfig() { }
+if (false) {
+    /**
+     * 是否忽略某些数据类型校验 `ERRORSDEFAULT`，默认：`[ 'type', 'enum' ]`
+     *
+     * - `type` 限定 Schema 中 `type` 类型
+     * - `enum` 限定应当是预设定的枚举值之一
+     * @type {?|undefined}
+     */
+    AlainSFConfig.prototype.ingoreKeywords;
+    /**
+     * [ajv](http://epoberezkin.github.io/ajv/#options) 参数
+     * @type {?|undefined}
+     */
+    AlainSFConfig.prototype.ajv;
+    /**
+     * 是否实时校验，默认：`true`
+     * - `true` 每一次都校验
+     * - `false` 提交时校验
+     * @type {?|undefined}
+     */
+    AlainSFConfig.prototype.liveValidate;
+    /**
+     * 指定表单 `autocomplete` 值，默认：`on`
+     * @type {?|undefined}
+     */
+    AlainSFConfig.prototype.autocomplete;
+    /**
+     * 是否立即呈现错误视觉，默认：`false`
+     * @type {?|undefined}
+     */
+    AlainSFConfig.prototype.firstVisual;
+    /**
+     * 是否只展示错误视觉不显示错误文本，默认：`false`
+     * @type {?|undefined}
+     */
+    AlainSFConfig.prototype.onlyVisual;
+    /**
+     * 自定义通用错误信息，默认：`{}`
+     * @type {?|undefined}
+     */
+    AlainSFConfig.prototype.errors;
+    /**
+     * 默认全局布局，类型为：`SFUISchemaItem`，使用时加上可智能提示，例如：
+     *
+     * ```ts
+     * ui: {} as SFUISchemaItem
+     * ```
+     * @type {?|undefined}
+     */
+    AlainSFConfig.prototype.ui;
+    /**
+     * 元素组件大小，用于 `nzSize` 值
+     * @type {?|undefined}
+     */
+    AlainSFConfig.prototype.size;
+    /**
+     * 按钮风格，类型为：`SFButton`，使用时加上可智能提示，例如：
+     *
+     * ```ts
+     * button: {} as SFButton
+     * ```
+     * @type {?|undefined}
+     */
+    AlainSFConfig.prototype.button;
+    /**
+     * date小部件：`type="string"` 且不指定 `schema.format` 和 `ui.format` 时日期格式，默认：`yyyy-MM-dd HH:mm:ss`
+     * @type {?|undefined}
+     */
+    AlainSFConfig.prototype.uiDateStringFormat;
+    /**
+     * date小部件：`type="number"` 且不指定 `schema.format` 和 `ui.format` 时日期格式，默认：`x` 13位Unix Timestamp
+     * @type {?|undefined}
+     */
+    AlainSFConfig.prototype.uiDateNumberFormat;
+    /**
+     * time小部件：`type="string"` 且不指定 `schema.format` 和 `ui.format` 时日期格式，默认：`HH:mm:ss`
+     * @type {?|undefined}
+     */
+    AlainSFConfig.prototype.uiTimeStringFormat;
+    /**
+     * time小部件：`type="number"` 且不指定 `schema.format` 和 `ui.format` 时日期格式，默认：`x` 13位Unix Timestamp，日期统一使用 `1970-01-01`
+     * @type {?|undefined}
+     */
+    AlainSFConfig.prototype.uiTimeNumberFormat;
+    /**
+     * 指定 `format: 'email'` 的默认Email后缀，默认：`['qq.com', '163.com', 'gmail.com', '126.com', 'aliyun.com']`
+     * @type {?|undefined}
+     */
+    AlainSFConfig.prototype.uiEmailSuffixes;
+}
+
+/**
+ * @fileoverview added by tsickle
  * Generated from: src/config/config.types.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
@@ -1871,6 +1971,8 @@ if (false) {
     AlainConfig.prototype.sv;
     /** @type {?|undefined} */
     AlainConfig.prototype.st;
+    /** @type {?|undefined} */
+    AlainConfig.prototype.sf;
     /** @type {?|undefined} */
     AlainConfig.prototype.xlsx;
     /** @type {?|undefined} */
