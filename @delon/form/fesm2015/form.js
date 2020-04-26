@@ -5114,6 +5114,7 @@ class DelonFormModule {
                 {
                     provide: SchemaValidatorFactory,
                     useClass: AjvSchemaValidatorFactory,
+                    deps: [AlainConfigService],
                 },
                 { provide: WidgetRegistry, useClass: NzWidgetRegistry },
             ],

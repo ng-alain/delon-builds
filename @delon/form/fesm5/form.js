@@ -6108,6 +6108,7 @@ var DelonFormModule = /** @class */ (function () {
                 {
                     provide: SchemaValidatorFactory,
                     useClass: AjvSchemaValidatorFactory,
+                    deps: [AlainConfigService],
                 },
                 { provide: WidgetRegistry, useClass: NzWidgetRegistry },
             ],

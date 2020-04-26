@@ -6298,6 +6298,7 @@
                     {
                         provide: SchemaValidatorFactory,
                         useClass: AjvSchemaValidatorFactory,
+                        deps: [util.AlainConfigService],
                     },
                     { provide: WidgetRegistry, useClass: NzWidgetRegistry },
                 ],
