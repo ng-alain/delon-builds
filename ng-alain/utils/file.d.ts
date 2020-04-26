@@ -4,7 +4,7 @@ import { Tree } from '@angular-devkit/schematics';
  *
  * @param [overwrite=false] `true` is force, default: `false`
  */
-export declare function overwriteFile(host: Tree, filePath: string, sourcePath?: string, overwrite?: boolean): Tree;
+export declare function overwriteFile(host: Tree, filePath: string, sourcePath?: string, overwrite?: boolean, sourcePathIsString?: boolean): Tree;
 /**
  * Overwrite files to the project
  *

@@ -7,12 +7,18 @@ const path_1 = require("path");
  *
  * @param [overwrite=false] `true` is force, default: `false`
  */
-function overwriteFile(host, filePath, sourcePath, overwrite = false) {
+function overwriteFile(host, filePath, sourcePath, overwrite = false, sourcePathIsString = false) {
     const isExists = host.exists(filePath);
     if (overwrite || isExists) {
         try {
-            const buffer = fs.readFileSync(sourcePath);
-            const content = buffer ? buffer.toString('utf-8') : '';
+            let content = '';
+            if (sourcePathIsString) {
+                content = sourcePath;
+            }
+            else {
+                const buffer = fs.readFileSync(sourcePath);
+                content = buffer ? buffer.toString('utf-8') : '';
+            }
             if (overwrite) {
                 if (isExists) {
                     host.delete(filePath);
