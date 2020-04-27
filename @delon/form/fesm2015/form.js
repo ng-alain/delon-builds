@@ -3,7 +3,7 @@ import { Injectable, Inject, ComponentFactoryResolver, EventEmitter, Component, 
 import { DomSanitizer } from '@angular/platform-browser';
 import { ACLService } from '@delon/acl';
 import { DelonLocaleService, ALAIN_I18N_TOKEN, DelonLocaleModule } from '@delon/theme';
-import { toBoolean, deepCopy, AlainConfigService, InputBoolean, InputNumber, toDate, deepGet, DelonUtilModule } from '@delon/util';
+import { toBoolean, deepCopy, AlainConfigService, InputBoolean, InputNumber, deepGet, DelonUtilModule } from '@delon/util';
 import { of, BehaviorSubject, Observable, combineLatest, Subject, merge } from 'rxjs';
 import { map, distinctUntilChanged, takeUntil, filter, debounceTime, startWith, flatMap, tap } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
@@ -34,6 +34,7 @@ import { NzTreeSelectModule } from 'ng-zorro-antd/tree-select';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
 import { helpMotion } from 'ng-zorro-antd/core/animation';
 import format from 'date-fns/format';
+import parse from 'date-fns/parse';
 
 /**
  * @fileoverview added by tsickle
@@ -3636,15 +3637,9 @@ class DateWidget extends ControlUIWidget {
      * @return {?}
      */
     reset(value) {
-        value = toDate(value, { formatString: this.startFormat, defaultValue: null });
+        value = this.toDate(value, this.startFormat);
         if (this.flatRange) {
-            this.displayValue =
-                value == null
-                    ? []
-                    : [
-                        value,
-                        toDate((/** @type {?} */ (this.endProperty.formData)), { formatString: this.endFormat || this.startFormat, defaultValue: null }),
-                    ];
+            this.displayValue = value == null ? [] : [value, this.toDate(this.endProperty.formData, this.endFormat || this.startFormat)];
         }
         else {
             this.displayValue = value;
@@ -3711,6 +3706,23 @@ class DateWidget extends ControlUIWidget {
             return;
         this.endProperty.setValue(value, true);
         this.endProperty.updateValueAndValidity();
+    }
+    /**
+     * @private
+     * @param {?} value
+     * @param {?} formatString
+     * @return {?}
+     */
+    toDate(value, formatString) {
+        if (value instanceof Date) {
+            return value;
+        }
+        if (typeof value === 'number' || (typeof value === 'string' && !isNaN(+value))) {
+            value = new Date(+value);
+        }
+        /** @type {?} */
+        const res = value ? parse(value, formatString, new Date()) : null;
+        return res != null && res.toString() === 'Invalid Date' ? new Date(value) : res;
     }
 }
 DateWidget.decorators = [

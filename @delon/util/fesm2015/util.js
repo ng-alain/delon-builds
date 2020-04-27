@@ -5,7 +5,6 @@ import endOfMonth from 'date-fns/endOfMonth';
 import endOfWeek from 'date-fns/endOfWeek';
 import endOfYear from 'date-fns/endOfYear';
 import parse from 'date-fns/parse';
-import parseISO from 'date-fns/parseISO';
 import startOfDay from 'date-fns/startOfDay';
 import startOfMonth from 'date-fns/startOfMonth';
 import startOfWeek from 'date-fns/startOfWeek';
@@ -257,28 +256,16 @@ function fixEndTimeOfRange(dates) {
     return [startOfDay(dates[0]), endOfDay(dates[1])];
 }
 /**
- * Return the date parsed from string using the given format string
- * - If the argument is a number, it is treated as a timestamp.
- * @param {?} value
- * @param {?=} options
+ * @param {?} val
+ * @param {?=} formatString
  * @return {?}
  */
-function toDate(value, options) {
-    if (typeof options === 'string')
-        options = { formatString: options };
-    const { formatString, defaultValue } = Object.assign({ formatString: 'yyyy-MM-dd HH:mm:ss', defaultValue: new Date(NaN) }, options);
-    if (value == null)
-        return defaultValue;
-    if (value instanceof Date)
-        return value;
-    if (typeof value === 'number')
-        return defaultValue;
-    /** @type {?} */
-    let tryDate = !isNaN(+value) ? new Date(+value) : parseISO(value);
-    if (isNaN((/** @type {?} */ (tryDate)))) {
-        tryDate = parse(value, (/** @type {?} */ (formatString)), defaultValue);
-    }
-    return isNaN((/** @type {?} */ (tryDate))) ? defaultValue : tryDate;
+function toDate(val, formatString = 'yyyy-MM-dd HH:mm:ss') {
+    if (val instanceof Date)
+        return val;
+    if (typeof val === 'number')
+        return new Date(val);
+    return parse(val, formatString, new Date());
 }
 
 /**
