@@ -3333,15 +3333,13 @@ class DatePipe {
     }
     /**
      * @param {?} value
-     * @param {?=} options
+     * @param {?=} formatString
      * @return {?}
      */
-    transform(value, options = 'yyyy-MM-dd HH:mm') {
-        value = toDate(value, options);
+    transform(value, formatString = 'yyyy-MM-dd HH:mm') {
+        value = toDate(value);
         if (isNaN((/** @type {?} */ (value))))
             return '';
-        /** @type {?} */
-        const formatString = typeof options === 'string' ? options : (/** @type {?} */ (options.formatString));
         /** @type {?} */
         const langOpt = { locale: this.nzI18n.getDateLocale() };
         return formatString === 'fn' ? formatDistanceToNow(value, langOpt) : format(value, formatString, langOpt);
@@ -3640,7 +3638,7 @@ AlainThemeModule.ctorParameters = () => [
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-const VERSION = new Version('9.0.0-0e54c051');
+const VERSION = new Version('9.0.0-4d3f6f04');
 
 /**
  * @fileoverview added by tsickle

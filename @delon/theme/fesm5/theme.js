@@ -3889,21 +3889,19 @@ var DatePipe = /** @class */ (function () {
     }
     /**
      * @param {?} value
-     * @param {?=} options
+     * @param {?=} formatString
      * @return {?}
      */
     DatePipe.prototype.transform = /**
      * @param {?} value
-     * @param {?=} options
+     * @param {?=} formatString
      * @return {?}
      */
-    function (value, options) {
-        if (options === void 0) { options = 'yyyy-MM-dd HH:mm'; }
-        value = toDate(value, options);
+    function (value, formatString) {
+        if (formatString === void 0) { formatString = 'yyyy-MM-dd HH:mm'; }
+        value = toDate(value);
         if (isNaN((/** @type {?} */ (value))))
             return '';
-        /** @type {?} */
-        var formatString = typeof options === 'string' ? options : (/** @type {?} */ (options.formatString));
         /** @type {?} */
         var langOpt = { locale: this.nzI18n.getDateLocale() };
         return formatString === 'fn' ? formatDistanceToNow(value, langOpt) : format(value, formatString, langOpt);
@@ -4245,7 +4243,7 @@ var AlainThemeModule = /** @class */ (function () {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-var VERSION = new Version('9.0.0-0e54c051');
+var VERSION = new Version('9.0.0-4d3f6f04');
 
 /**
  * @fileoverview added by tsickle

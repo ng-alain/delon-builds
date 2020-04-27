@@ -4098,21 +4098,19 @@
         }
         /**
          * @param {?} value
-         * @param {?=} options
+         * @param {?=} formatString
          * @return {?}
          */
         DatePipe.prototype.transform = /**
          * @param {?} value
-         * @param {?=} options
+         * @param {?=} formatString
          * @return {?}
          */
-        function (value, options) {
-            if (options === void 0) { options = 'yyyy-MM-dd HH:mm'; }
-            value = util.toDate(value, options);
+        function (value, formatString) {
+            if (formatString === void 0) { formatString = 'yyyy-MM-dd HH:mm'; }
+            value = util.toDate(value);
             if (isNaN((/** @type {?} */ (value))))
                 return '';
-            /** @type {?} */
-            var formatString = typeof options === 'string' ? options : (/** @type {?} */ (options.formatString));
             /** @type {?} */
             var langOpt = { locale: this.nzI18n.getDateLocale() };
             return formatString === 'fn' ? formatDistanceToNow(value, langOpt) : format(value, formatString, langOpt);
