@@ -4,7 +4,7 @@ import { ACLService } from '@delon/acl';
 import { BehaviorSubject, Subject, Observable, throwError, of } from 'rxjs';
 import { filter, share, tap, catchError, switchMap } from 'rxjs/operators';
 import { DOCUMENT, CurrencyPipe, CommonModule } from '@angular/common';
-import { AlainConfigService, deepMerge } from '@delon/util';
+import { AlainConfigService, deepMerge, toDate } from '@delon/util';
 import { Title, DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { NzModalService } from 'ng-zorro-antd/modal';
@@ -12,7 +12,6 @@ import { NzDrawerService } from 'ng-zorro-antd/drawer';
 import { HttpParams, HttpClient } from '@angular/common/http';
 import format from 'date-fns/format';
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
-import parse from 'date-fns/parse';
 import { NzI18nService, NzI18nModule } from 'ng-zorro-antd/i18n';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { BellOutline, DeleteOutline, PlusOutline, InboxOutline } from '@ant-design/icons-angular/icons';
@@ -3900,12 +3899,12 @@ var DatePipe = /** @class */ (function () {
      */
     function (value, formatString) {
         if (formatString === void 0) { formatString = 'yyyy-MM-dd HH:mm'; }
-        /** @type {?} */
-        var options = { locale: this.nzI18n.getDateLocale() };
-        value = typeof value === 'string' ? (!isNaN(+value) ? +value : parse(value, 'yyyy-MM-dd HH:mm:ss', new Date(), options)) : value;
-        if (!value || value.toString() === 'Invalid Date')
+        value = toDate(value);
+        if (isNaN((/** @type {?} */ (value))))
             return '';
-        return formatString === 'fn' ? formatDistanceToNow(value, options) : format(value, formatString, options);
+        /** @type {?} */
+        var langOpt = { locale: this.nzI18n.getDateLocale() };
+        return formatString === 'fn' ? formatDistanceToNow(value, langOpt) : format(value, formatString, langOpt);
     };
     DatePipe.decorators = [
         { type: Pipe, args: [{ name: '_date' },] }
@@ -4244,7 +4243,7 @@ var AlainThemeModule = /** @class */ (function () {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-var VERSION = new Version('9.0.0-cd0df52a');
+var VERSION = new Version('9.0.0-ff07adc1');
 
 /**
  * @fileoverview added by tsickle
