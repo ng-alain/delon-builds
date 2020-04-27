@@ -17,4 +17,5 @@ export declare class DateWidget extends ControlUIWidget<SFDateWidgetSchema> impl
     _ok(value: any): void;
     private get endProperty();
     private setEnd;
+    private toDate;
 }
