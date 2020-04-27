@@ -8,25 +8,25 @@ const tsconfig_es5_spec_1 = require("./files/ie/tsconfig-es5.spec");
 let project;
 function setAngularJson(host, options) {
     const json = json_1.getAngular(host);
-    const project = project_1.getProjectFromWorkspace(json, options.project);
+    const p = project_1.getProjectFromWorkspace(json, options.project);
     if (options.type === 'add') {
-        project.architect.build.configurations.es5 = { tsConfig: './tsconfig-es5.app.json' };
-        project.architect.serve.configurations.es5 = { browserTarget: `${project.name}:build:es5` };
-        project.architect.test.configurations = {
+        p.architect.build.configurations.es5 = { tsConfig: './tsconfig-es5.app.json' };
+        p.architect.serve.configurations.es5 = { browserTarget: `${p.name}:build:es5` };
+        p.architect.test.configurations = {
             es5: { tsConfig: './tsconfig-es5.app.json' },
         };
-        project.architect.e2e.configurations.es5 = { browserTarget: `${project.name}:build:es5` };
+        p.architect.e2e.configurations.es5 = { browserTarget: `${p.name}:build:es5` };
     }
     else {
-        delete project.architect.build.configurations.es5;
-        delete project.architect.serve.configurations.es5;
-        delete project.architect.test.configurations;
-        delete project.architect.e2e.configurations.es5;
+        delete p.architect.build.configurations.es5;
+        delete p.architect.serve.configurations.es5;
+        delete p.architect.test.configurations;
+        delete p.architect.e2e.configurations.es5;
     }
     json_1.overwriteAngular(host, json);
 }
 function setBrowserslist(host, options) {
-    const filePath = `/browserslist`;
+    const filePath = `${options.root}/browserslist`;
     let content = file_1.readContent(host, filePath);
     if (options.type === 'add') {
         content = content.replace(`not IE 9-11`, `not IE 9-10`);
@@ -58,14 +58,14 @@ import 'zone.js/dist/zone';`;
 }
 function setTsConfig(host, options) {
     // build
-    const buildFilePath = `/tsconfig-es5.app.json`;
+    const buildFilePath = `${options.root}/tsconfig-es5.app.json`;
     if (host.exists(buildFilePath))
         host.delete(buildFilePath);
     if (options.type === 'add') {
         file_1.overwriteFile(host, buildFilePath, JSON.stringify(tsconfig_es5_app_1.default, null, 2), true, true);
     }
     // spec
-    const specFilePath = `/tsconfig-es5.spec.json`;
+    const specFilePath = `${options.root}/tsconfig-es5.spec.json`;
     if (host.exists(specFilePath))
         host.delete(specFilePath);
     if (options.type === 'add') {
