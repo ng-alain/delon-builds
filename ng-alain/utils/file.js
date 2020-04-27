@@ -2,6 +2,12 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const fs = require("fs");
 const path_1 = require("path");
+function readContent(host, filePath) {
+    if (!host.exists(filePath))
+        return '';
+    return host.read(filePath).toString('utf-8');
+}
+exports.readContent = readContent;
 /**
  * Overwrite files to the project
  *

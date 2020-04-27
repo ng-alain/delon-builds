@@ -1,4 +1,5 @@
 import { Tree } from '@angular-devkit/schematics';
+export declare function readContent(host: Tree, filePath: string): string;
 /**
  * Overwrite files to the project
  *

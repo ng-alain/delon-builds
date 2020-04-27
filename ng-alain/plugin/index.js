@@ -9,6 +9,7 @@ const plugin_default_language_1 = require("./plugin.default-language");
 const plugin_docker_1 = require("./plugin.docker");
 const plugin_hmr_1 = require("./plugin.hmr");
 const plugin_icon_1 = require("./plugin.icon");
+const plugin_ie_1 = require("./plugin.ie");
 const plugin_network_env_1 = require("./plugin.network-env");
 const plugin_sts_1 = require("./plugin.sts");
 function installPackages() {
@@ -49,6 +50,9 @@ function default_1(options) {
                 break;
             case 'sts':
                 rules.push(...plugin_sts_1.pluginSTS(pluginOptions));
+                break;
+            case 'ie':
+                rules.push(plugin_ie_1.pluginIE(pluginOptions));
                 break;
             case 'asdf':
                 rules.push(plugin_asdf_1.pluginAsdf());
