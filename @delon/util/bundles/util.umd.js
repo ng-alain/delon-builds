@@ -490,23 +490,25 @@
      * Return the date parsed from string using the given format string
      * - If the argument is a number, it is treated as a timestamp.
      * @param {?} value
-     * @param {?=} formatString If parsing fails try to parse the date by pressing `formatString`
+     * @param {?=} options
      * @return {?}
      */
-    function toDate(value, formatString) {
-        if (formatString === void 0) { formatString = 'yyyy-MM-dd HH:mm:ss'; }
+    function toDate(value, options) {
+        if (typeof options === 'string')
+            options = { formatString: options };
+        var _a = __assign({ formatString: 'yyyy-MM-dd HH:mm:ss', defaultValue: new Date(NaN) }, options), formatString = _a.formatString, defaultValue = _a.defaultValue;
         if (value == null)
-            return new Date(NaN);
+            return defaultValue;
         if (value instanceof Date)
             return value;
         if (typeof value === 'number')
-            return new Date(value);
+            return defaultValue;
         /** @type {?} */
         var tryDate = !isNaN(+value) ? new Date(+value) : parseISO(value);
         if (isNaN((/** @type {?} */ (tryDate)))) {
-            return parse(value, formatString, new Date());
+            tryDate = parse(value, (/** @type {?} */ (formatString)), defaultValue);
         }
-        return tryDate;
+        return isNaN((/** @type {?} */ (tryDate))) ? defaultValue : tryDate;
     }
 
     /**

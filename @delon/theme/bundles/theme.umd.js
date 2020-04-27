@@ -4098,22 +4098,24 @@
         }
         /**
          * @param {?} value
-         * @param {?=} formatString
+         * @param {?=} options
          * @return {?}
          */
         DatePipe.prototype.transform = /**
          * @param {?} value
-         * @param {?=} formatString
+         * @param {?=} options
          * @return {?}
          */
-        function (value, formatString) {
-            if (formatString === void 0) { formatString = 'yyyy-MM-dd HH:mm'; }
-            value = util.toDate(value, formatString);
+        function (value, options) {
+            if (options === void 0) { options = 'yyyy-MM-dd HH:mm'; }
+            value = util.toDate(value, options);
             if (isNaN((/** @type {?} */ (value))))
                 return '';
             /** @type {?} */
-            var options = { locale: this.nzI18n.getDateLocale() };
-            return formatString === 'fn' ? formatDistanceToNow(value, options) : format(value, formatString, options);
+            var formatString = typeof options === 'string' ? options : (/** @type {?} */ (options.formatString));
+            /** @type {?} */
+            var langOpt = { locale: this.nzI18n.getDateLocale() };
+            return formatString === 'fn' ? formatDistanceToNow(value, langOpt) : format(value, formatString, langOpt);
         };
         DatePipe.decorators = [
             { type: core.Pipe, args: [{ name: '_date' },] }

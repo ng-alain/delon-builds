@@ -4520,9 +4520,15 @@
          */
         function (value) {
             var _this = this;
-            value = util.toDate(value, this.startFormat);
+            value = util.toDate(value, { formatString: this.startFormat, defaultValue: null });
             if (this.flatRange) {
-                this.displayValue = value == null ? [] : [value, util.toDate((/** @type {?} */ (this.endProperty.formData)), this.endFormat || this.startFormat)];
+                this.displayValue =
+                    value == null
+                        ? []
+                        : [
+                            value,
+                            util.toDate((/** @type {?} */ (this.endProperty.formData)), { formatString: this.endFormat || this.startFormat, defaultValue: null }),
+                        ];
             }
             else {
                 this.displayValue = value;

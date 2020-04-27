@@ -3889,22 +3889,24 @@ var DatePipe = /** @class */ (function () {
     }
     /**
      * @param {?} value
-     * @param {?=} formatString
+     * @param {?=} options
      * @return {?}
      */
     DatePipe.prototype.transform = /**
      * @param {?} value
-     * @param {?=} formatString
+     * @param {?=} options
      * @return {?}
      */
-    function (value, formatString) {
-        if (formatString === void 0) { formatString = 'yyyy-MM-dd HH:mm'; }
-        value = toDate(value, formatString);
+    function (value, options) {
+        if (options === void 0) { options = 'yyyy-MM-dd HH:mm'; }
+        value = toDate(value, options);
         if (isNaN((/** @type {?} */ (value))))
             return '';
         /** @type {?} */
-        var options = { locale: this.nzI18n.getDateLocale() };
-        return formatString === 'fn' ? formatDistanceToNow(value, options) : format(value, formatString, options);
+        var formatString = typeof options === 'string' ? options : (/** @type {?} */ (options.formatString));
+        /** @type {?} */
+        var langOpt = { locale: this.nzI18n.getDateLocale() };
+        return formatString === 'fn' ? formatDistanceToNow(value, langOpt) : format(value, formatString, langOpt);
     };
     DatePipe.decorators = [
         { type: Pipe, args: [{ name: '_date' },] }
@@ -4243,7 +4245,7 @@ var AlainThemeModule = /** @class */ (function () {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-var VERSION = new Version('9.0.0-89712bc4');
+var VERSION = new Version('9.0.0-18c5b769');
 
 /**
  * @fileoverview added by tsickle

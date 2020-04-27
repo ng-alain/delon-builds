@@ -3333,16 +3333,18 @@ class DatePipe {
     }
     /**
      * @param {?} value
-     * @param {?=} formatString
+     * @param {?=} options
      * @return {?}
      */
-    transform(value, formatString = 'yyyy-MM-dd HH:mm') {
-        value = toDate(value, formatString);
+    transform(value, options = 'yyyy-MM-dd HH:mm') {
+        value = toDate(value, options);
         if (isNaN((/** @type {?} */ (value))))
             return '';
         /** @type {?} */
-        const options = { locale: this.nzI18n.getDateLocale() };
-        return formatString === 'fn' ? formatDistanceToNow(value, options) : format(value, formatString, options);
+        const formatString = typeof options === 'string' ? options : (/** @type {?} */ (options.formatString));
+        /** @type {?} */
+        const langOpt = { locale: this.nzI18n.getDateLocale() };
+        return formatString === 'fn' ? formatDistanceToNow(value, langOpt) : format(value, formatString, langOpt);
     }
 }
 DatePipe.decorators = [
@@ -3638,7 +3640,7 @@ AlainThemeModule.ctorParameters = () => [
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-const VERSION = new Version('9.0.0-89712bc4');
+const VERSION = new Version('9.0.0-18c5b769');
 
 /**
  * @fileoverview added by tsickle
