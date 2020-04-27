@@ -4243,7 +4243,7 @@ var AlainThemeModule = /** @class */ (function () {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-var VERSION = new Version('9.0.0-116b1de8');
+var VERSION = new Version('9.0.0-b033c81e');
 
 /**
  * @fileoverview added by tsickle
