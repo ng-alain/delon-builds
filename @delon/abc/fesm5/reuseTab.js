@@ -1326,8 +1326,12 @@ var ReuseTabService = /** @class */ (function () {
      * @return {?}
      */
     function (method, _url, comp) {
-        if (comp.instance && typeof comp.instance[method] === 'function')
+        if (!comp.instance)
+            return;
+        console.log(comp.instance);
+        if (typeof comp.instance[method] === 'function') {
             comp.instance[method]();
+        }
     };
     /**
      * @private
