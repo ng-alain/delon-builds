@@ -29200,7 +29200,6 @@ body {
 }
 .alain-default__search .ant-input-group-addon i {
   color: #fff;
-  font-size: 18px;
   transition: color 300ms, transform 400ms;
 }
 .alain-default__search-focus .ant-input,
