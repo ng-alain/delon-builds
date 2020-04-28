@@ -1874,7 +1874,7 @@
     function AlainMediaConfig() { }
     if (false) {
         /**
-         * Plyr library path, default: `["https://cdn.bootcdn.net/ajax/libs/plyr/3.5.10/plyr.min.js", "https://cdn.bootcdn.net/ajax/libs/plyr/3.5.10/plyr.css", "https://cdn.bootcdn.net/ajax/libs/plyr/3.5.10/plyr.svg"]`
+         * Plyr library path, default: `["https://cdn.bootcdn.net/ajax/libs/plyr/3.5.10/plyr.min.js", "https://cdn.bootcdn.net/ajax/libs/plyr/3.5.10/plyr.css"]`
          * @type {?|undefined}
          */
         AlainMediaConfig.prototype.urls;
