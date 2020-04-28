@@ -3121,6 +3121,7 @@ class STComponent {
     setLoading(val) {
         if (this.loading == null) {
             this._loading = val;
+            this.cdr.detectChanges();
         }
     }
     /**
