@@ -55,6 +55,8 @@ export { DatePickerModule, RangePickerComponent } from '@delon/abc/date-picker';
 import { LoadingModule } from '@delon/abc/loading';
 export { LoadingDefaultComponent, LoadingModule, LoadingService } from '@delon/abc/loading';
 import { NgModule } from '@angular/core';
+import { warnDeprecation } from '@delon/util';
+import { MediaModule } from '@delon/abc/media';
 
 /**
  * @fileoverview added by tsickle
@@ -91,13 +93,20 @@ var MODULES = [
     SGModule,
     DatePickerModule,
     LoadingModule,
+    MediaModule,
 ];
+/**
+ * @deprecated Use secondary entry eg: `import { STModule } from 'ng-zorro-antd/st';`.
+ */
 var DelonABCModule = /** @class */ (function () {
     function DelonABCModule() {
+        warnDeprecation("The `DelonABCModule` has been deprecated and will be removed in 10.0.0. Please use secondary entry instead.\ne.g. `import { STModule } from 'ng-zorro-antd/st';`");
     }
     DelonABCModule.decorators = [
         { type: NgModule, args: [{ exports: MODULES },] }
     ];
+    /** @nocollapse */
+    DelonABCModule.ctorParameters = function () { return []; };
     return DelonABCModule;
 }());
 

@@ -1522,6 +1522,28 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: src/config/abc/media.type.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ */
+function AlainMediaConfig() { }
+if (false) {
+    /**
+     * Plyr library path, default: `["https://cdn.bootcdn.net/ajax/libs/plyr/3.5.10/plyr.min.js", "https://cdn.bootcdn.net/ajax/libs/plyr/3.5.10/plyr.css", "https://cdn.bootcdn.net/ajax/libs/plyr/3.5.10/plyr.svg"]`
+     * @type {?|undefined}
+     */
+    AlainMediaConfig.prototype.urls;
+    /**
+     * Please refer to [plyr options](https://github.com/sampotts/plyr#options)
+     * @type {?|undefined}
+     */
+    AlainMediaConfig.prototype.options;
+}
+
+/**
+ * @fileoverview added by tsickle
  * Generated from: src/config/abc/index.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
@@ -1990,6 +2012,8 @@ if (false) {
     /** @type {?|undefined} */
     AlainConfig.prototype.zip;
     /** @type {?|undefined} */
+    AlainConfig.prototype.media;
+    /** @type {?|undefined} */
     AlainConfig.prototype.acl;
     /** @type {?|undefined} */
     AlainConfig.prototype.auth;
@@ -2035,11 +2059,11 @@ class AlainConfigService {
     /**
      * @template R, T
      * @param {?} componentName
-     * @param {?} defaultValues
+     * @param {...?} defaultValues
      * @return {?}
      */
-    merge(componentName, defaultValues) {
-        return deepMergeKey({}, true, defaultValues, this.get(componentName));
+    merge(componentName, ...defaultValues) {
+        return deepMergeKey({}, true, ...defaultValues, this.get(componentName));
     }
     /**
      * @template R, T
