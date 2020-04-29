@@ -47,15 +47,15 @@ var MediaService = /** @class */ (function () {
      */
     function () {
         var _this = this;
-        if ((/** @type {?} */ (this)).loaded)
+        if ((/** @type {?} */ (this)).loaded) {
+            (/** @type {?} */ (this)).notify$.next();
             return (/** @type {?} */ (this));
+        }
         (/** @type {?} */ (this)).loaded = true;
         (/** @type {?} */ (this)).lazySrv.load((/** @type {?} */ ((/** @type {?} */ (this)).cog.urls))).then((/**
          * @return {?}
          */
-        function () {
-            (/** @type {?} */ (_this)).notify$.next();
-        }));
+        function () { return (/** @type {?} */ (_this)).notify$.next(); }));
         return (/** @type {?} */ (this));
     };
     /**
@@ -117,6 +117,7 @@ var MediaComponent = /** @class */ (function () {
         this.renderer = renderer;
         this.srv = srv;
         this.ngZone = ngZone;
+        // #region fields
         this.type = 'video';
         this.delay = 0;
         this.ready = new EventEmitter();
@@ -147,17 +148,10 @@ var MediaComponent = /** @class */ (function () {
         this.ngZone.runOutsideAngular((/**
          * @return {?}
          */
-        function () {
-            if (_this.delay > 0) {
-                setTimeout((/**
-                 * @return {?}
-                 */
-                function () { return _this.init(); }), _this.delay);
-            }
-            else {
-                _this.init();
-            }
-        }));
+        function () { return setTimeout((/**
+         * @return {?}
+         */
+        function () { return _this.init(); }), _this.delay); }));
     };
     /**
      * @private
@@ -169,12 +163,12 @@ var MediaComponent = /** @class */ (function () {
      */
     function () {
         var _this = this;
-        if (!Plyr) {
-            throw new Error("No Plyr object was found, please make sure that cdn or local path exists, the current referenced path is: " + JSON.stringify(this.srv.cog.urls));
+        if (!((/** @type {?} */ (window))).Plyr) {
+            throw new Error("No window.Plyr found, please make sure that cdn or local path exists, the current referenced path is: " + JSON.stringify(this.srv.cog.urls));
         }
         this.ensureElement();
         /** @type {?} */
-        var player = (this._p = new Plyr(this.videoEl, __assign({}, this.srv.cog.options)));
+        var player = (this._p = new Plyr(this.videoEl, __assign(__assign({}, this.srv.cog.options), { debug: true })));
         player.on('ready', (/**
          * @return {?}
          */
@@ -222,14 +216,8 @@ var MediaComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        var _this = this;
-        this.ngZone.runOutsideAngular((/**
-         * @return {?}
-         */
-        function () {
-            var _a = _this, source = _a.source, type = _a.type;
-            _this._p.source = typeof source === 'string' ? { type: type, sources: [{ source: source }] } : source;
-        }));
+        var _a = this, source = _a.source, type = _a.type;
+        this._p.source = typeof source === 'string' ? { type: type, sources: [{ src: source }] } : source;
     };
     /**
      * @return {?}
@@ -278,9 +266,9 @@ var MediaComponent = /** @class */ (function () {
         { type: Component, args: [{
                     selector: 'media',
                     exportAs: 'mediaComponent',
-                    template: "",
+                    template: "<ng-content></ng-content>",
                     host: {
-                        '[class.d-block]': 'true',
+                        '[style.display]': "'block'",
                     },
                     preserveWhitespaces: false,
                     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -295,8 +283,8 @@ var MediaComponent = /** @class */ (function () {
         { type: NgZone }
     ]; };
     MediaComponent.propDecorators = {
-        source: [{ type: Input }],
         type: [{ type: Input }],
+        source: [{ type: Input }],
         options: [{ type: Input }],
         delay: [{ type: Input }],
         ready: [{ type: Output }]
@@ -319,9 +307,9 @@ if (false) {
      */
     MediaComponent.prototype.videoEl;
     /** @type {?} */
-    MediaComponent.prototype.source;
-    /** @type {?} */
     MediaComponent.prototype.type;
+    /** @type {?} */
+    MediaComponent.prototype.source;
     /** @type {?} */
     MediaComponent.prototype.options;
     /** @type {?} */

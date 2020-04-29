@@ -41,15 +41,15 @@ class MediaService {
      * @return {THIS}
      */
     load() {
-        if ((/** @type {?} */ (this)).loaded)
+        if ((/** @type {?} */ (this)).loaded) {
+            (/** @type {?} */ (this)).notify$.next();
             return (/** @type {?} */ (this));
+        }
         (/** @type {?} */ (this)).loaded = true;
         (/** @type {?} */ (this)).lazySrv.load((/** @type {?} */ ((/** @type {?} */ (this)).cog.urls))).then((/**
          * @return {?}
          */
-        () => {
-            (/** @type {?} */ (this)).notify$.next();
-        }));
+        () => (/** @type {?} */ (this)).notify$.next()));
         return (/** @type {?} */ (this));
     }
     /**
@@ -113,6 +113,7 @@ class MediaComponent {
         this.renderer = renderer;
         this.srv = srv;
         this.ngZone = ngZone;
+        // #region fields
         this.type = 'video';
         this.delay = 0;
         this.ready = new EventEmitter();
@@ -132,29 +133,22 @@ class MediaComponent {
         this.ngZone.runOutsideAngular((/**
          * @return {?}
          */
-        () => {
-            if (this.delay > 0) {
-                setTimeout((/**
-                 * @return {?}
-                 */
-                () => this.init()), this.delay);
-            }
-            else {
-                this.init();
-            }
-        }));
+        () => setTimeout((/**
+         * @return {?}
+         */
+        () => this.init()), this.delay)));
     }
     /**
      * @private
      * @return {?}
      */
     init() {
-        if (!Plyr) {
-            throw new Error(`No Plyr object was found, please make sure that cdn or local path exists, the current referenced path is: ${JSON.stringify(this.srv.cog.urls)}`);
+        if (!((/** @type {?} */ (window))).Plyr) {
+            throw new Error(`No window.Plyr found, please make sure that cdn or local path exists, the current referenced path is: ${JSON.stringify(this.srv.cog.urls)}`);
         }
         this.ensureElement();
         /** @type {?} */
-        const player = (this._p = new Plyr(this.videoEl, Object.assign({}, this.srv.cog.options)));
+        const player = (this._p = new Plyr(this.videoEl, Object.assign(Object.assign({}, this.srv.cog.options), { debug: true })));
         player.on('ready', (/**
          * @return {?}
          */
@@ -190,13 +184,8 @@ class MediaComponent {
      * @return {?}
      */
     uploadSource() {
-        this.ngZone.runOutsideAngular((/**
-         * @return {?}
-         */
-        () => {
-            const { source, type } = this;
-            this._p.source = typeof source === 'string' ? { type, sources: [{ source }] } : source;
-        }));
+        const { source, type } = this;
+        this._p.source = typeof source === 'string' ? { type, sources: [{ src: source }] } : source;
     }
     /**
      * @return {?}
@@ -235,9 +224,9 @@ MediaComponent.decorators = [
     { type: Component, args: [{
                 selector: 'media',
                 exportAs: 'mediaComponent',
-                template: ``,
+                template: `<ng-content></ng-content>`,
                 host: {
-                    '[class.d-block]': 'true',
+                    '[style.display]': `'block'`,
                 },
                 preserveWhitespaces: false,
                 changeDetection: ChangeDetectionStrategy.OnPush,
@@ -252,8 +241,8 @@ MediaComponent.ctorParameters = () => [
     { type: NgZone }
 ];
 MediaComponent.propDecorators = {
-    source: [{ type: Input }],
     type: [{ type: Input }],
+    source: [{ type: Input }],
     options: [{ type: Input }],
     delay: [{ type: Input }],
     ready: [{ type: Output }]
@@ -274,9 +263,9 @@ if (false) {
      */
     MediaComponent.prototype.videoEl;
     /** @type {?} */
-    MediaComponent.prototype.source;
-    /** @type {?} */
     MediaComponent.prototype.type;
+    /** @type {?} */
+    MediaComponent.prototype.source;
     /** @type {?} */
     MediaComponent.prototype.options;
     /** @type {?} */
