@@ -4989,7 +4989,6 @@ var SelectWidget = /** @class */ (function (_super) {
             _this._value = value;
             _this.data = list;
             _this.checkGroup(list);
-            console.log(_this.data);
             _this.detectChanges();
         }));
     };
