@@ -47,7 +47,11 @@ export interface ReuseTabCached {
 }
 export interface ReuseTabNotify {
     /** 事件类型 */
-    active: string;
+    active: 'add' | 'override' | 'title' | 'closable' | 'close' | 'closeRight' | 'clear' | 'move' | 'refresh';
+    url?: string;
+    title?: ReuseTitle;
+    item?: ReuseTabCached;
+    list?: ReuseTabCached[];
     [key: string]: any;
 }
 export interface ReuseItem {

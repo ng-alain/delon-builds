@@ -11,8 +11,10 @@ export declare class ReuseTabComponent implements OnInit, OnChanges, OnDestroy {
     private render;
     private i18nSrv;
     private doc;
+    private tabset;
     private el;
     private unsubscribe$;
+    private updatePos$;
     private _keepingScrollContainer;
     list: ReuseItem[];
     item: ReuseItem;
@@ -39,10 +41,8 @@ export declare class ReuseTabComponent implements OnInit, OnChanges, OnDestroy {
     constructor(el: ElementRef, srv: ReuseTabService, cdr: ChangeDetectorRef, router: Router, route: ActivatedRoute, render: Renderer2, i18nSrv: AlainI18NService, doc: any);
     private genTit;
     private genList;
-    private visibility;
-    private get acitveIndex();
-    cmChange(res: ReuseContextCloseEvent): void;
-    refStatus(dc?: boolean): void;
+    private updateTitle;
+    contextMenuChange(res: ReuseContextCloseEvent): void;
     to(index: number, cb?: () => void): void;
     _close(e: Event | null, idx: number, includeNonCloseable: boolean): boolean;
     ngOnInit(): void;
