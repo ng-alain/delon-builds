@@ -168,7 +168,7 @@ var MediaComponent = /** @class */ (function () {
         }
         this.ensureElement();
         /** @type {?} */
-        var player = (this._p = new Plyr(this.videoEl, __assign(__assign({}, this.srv.cog.options), { debug: true })));
+        var player = (this._p = new Plyr(this.videoEl, __assign({}, this.srv.cog.options)));
         player.on('ready', (/**
          * @return {?}
          */
@@ -227,10 +227,6 @@ var MediaComponent = /** @class */ (function () {
      */
     function () {
         var _this = this;
-        if (((/** @type {?} */ (window))).Plyr) {
-            this.initDelay();
-            return;
-        }
         this.srv
             .load()
             .notify()

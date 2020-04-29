@@ -1,7 +1,7 @@
 import { AfterViewInit, ElementRef, EventEmitter, NgZone, OnChanges, OnDestroy, Renderer2, SimpleChange } from '@angular/core';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { MediaService } from './media.service';
-import { PlyrMediaType } from './plyr.types';
+import { PlyrMediaSource, PlyrMediaType } from './plyr.types';
 export declare class MediaComponent implements OnChanges, AfterViewInit, OnDestroy {
     private el;
     private renderer;
@@ -10,7 +10,7 @@ export declare class MediaComponent implements OnChanges, AfterViewInit, OnDestr
     private _p;
     private videoEl;
     type: PlyrMediaType;
-    source: string | MediaSource;
+    source: string | PlyrMediaSource;
     options: NzSafeAny;
     delay: number;
     readonly ready: EventEmitter<any>;

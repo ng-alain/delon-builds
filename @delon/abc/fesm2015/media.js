@@ -148,7 +148,7 @@ class MediaComponent {
         }
         this.ensureElement();
         /** @type {?} */
-        const player = (this._p = new Plyr(this.videoEl, Object.assign(Object.assign({}, this.srv.cog.options), { debug: true })));
+        const player = (this._p = new Plyr(this.videoEl, Object.assign({}, this.srv.cog.options)));
         player.on('ready', (/**
          * @return {?}
          */
@@ -191,10 +191,6 @@ class MediaComponent {
      * @return {?}
      */
     ngAfterViewInit() {
-        if (((/** @type {?} */ (window))).Plyr) {
-            this.initDelay();
-            return;
-        }
         this.srv
             .load()
             .notify()
