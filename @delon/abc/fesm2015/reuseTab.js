@@ -523,7 +523,7 @@ if (false) {
     /** @type {?|undefined} */
     ReuseContextI18n.prototype.closeRight;
     /** @type {?|undefined} */
-    ReuseContextI18n.prototype.clear;
+    ReuseContextI18n.prototype.refresh;
 }
 /**
  * @record
@@ -1017,13 +1017,16 @@ class ReuseTabService {
         return menus.pop();
     }
     /**
-     * @private
      * @param {?} method
-     * @param {?} _url
      * @param {?} comp
      * @return {?}
      */
-    runHook(method, _url, comp) {
+    runHook(method, comp) {
+        if (typeof comp === 'number') {
+            /** @type {?} */
+            const item = this._cached[comp];
+            comp = item._handle.componentRef;
+        }
         if (comp.instance && typeof comp.instance[method] === 'function')
             comp.instance[method]();
     }
@@ -1088,7 +1091,7 @@ class ReuseTabService {
         this.removeUrlBuffer = null;
         this.di('#store', isAdd ? '[new]' : '[override]', url);
         if (_handle && _handle.componentRef) {
-            this.runHook('_onReuseDestroy', url, _handle.componentRef);
+            this.runHook('_onReuseDestroy', _handle.componentRef);
         }
         if (!isAdd) {
             this._cachedChange.next({ active: 'override', item, list: this._cached });
@@ -1110,8 +1113,11 @@ class ReuseTabService {
         const ret = !!(data && data._handle);
         this.di('#shouldAttach', ret, url);
         if (ret) {
-            if ((/** @type {?} */ (data))._handle.componentRef) {
-                this.runHook('_onReuseInit', url, (/** @type {?} */ (data))._handle.componentRef);
+            /** @type {?} */
+            const compRef = (/** @type {?} */ (data))._handle.componentRef;
+            if (compRef) {
+                this.compInstance = compRef;
+                this.runHook('_onReuseInit', compRef);
             }
         }
         else {
@@ -1313,6 +1319,8 @@ if (false) {
      */
     ReuseTabService.prototype.positionBuffer;
     /** @type {?} */
+    ReuseTabService.prototype.compInstance;
+    /** @type {?} */
     ReuseTabService.prototype.debug;
     /** @type {?} */
     ReuseTabService.prototype.mode;
@@ -1496,6 +1504,14 @@ class ReuseTabComponent {
         item.title = this.genTit((/** @type {?} */ (res === null || res === void 0 ? void 0 : res.title)));
         this.cdr.detectChanges();
     }
+    /**
+     * @private
+     * @param {?} item
+     * @return {?}
+     */
+    refresh(item) {
+        this.srv.runHook('_onReuseInit', this.pos === item.index ? this.srv.compInstance : item.index);
+    }
     // #region UI
     /**
      * @param {?} res
@@ -1505,6 +1521,9 @@ class ReuseTabComponent {
         /** @type {?} */
         let fn = null;
         switch (res.type) {
+            case 'refresh':
+                this.refresh(res.item);
+                break;
             case 'close':
                 this._close(null, res.item.index, res.includeNonCloseable);
                 break;
@@ -1581,6 +1600,13 @@ class ReuseTabComponent {
         this.close.emit(item);
         this.cdr.detectChanges();
         return false;
+    }
+    /**
+     * @param {?} instance
+     * @return {?}
+     */
+    activate(instance) {
+        this.srv.compInstance = { instance };
     }
     // #endregion
     /**

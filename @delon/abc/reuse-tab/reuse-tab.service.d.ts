@@ -21,6 +21,7 @@ export declare class ReuseTabService implements OnDestroy {
     private _router$;
     private removeUrlBuffer;
     private positionBuffer;
+    compInstance: any;
     debug: boolean;
     mode: ReuseTabMatchMode;
     /** 排除规则，限 `mode=URL` */
@@ -139,7 +140,7 @@ export declare class ReuseTabService implements OnDestroy {
     constructor(injector: Injector, menuService: MenuService);
     init(): void;
     private getMenu;
-    private runHook;
+    runHook(method: '_onReuseInit' | '_onReuseDestroy', comp: any): void;
     private hasInValidRoute;
     /**
      * 决定是否允许路由复用，若 `true` 会触发 `store`

@@ -47,7 +47,7 @@ export interface ReuseTabCached {
 }
 export interface ReuseTabNotify {
     /** 事件类型 */
-    active: 'add' | 'override' | 'title' | 'closable' | 'close' | 'closeRight' | 'clear' | 'move' | 'refresh';
+    active: 'add' | 'override' | 'title' | 'clear' | 'closable' | 'close' | 'closeRight' | 'move' | 'refresh';
     url?: string;
     title?: ReuseTitle;
     item?: ReuseTabCached;
@@ -78,7 +78,7 @@ export interface ReuseContextI18n {
     close?: string;
     closeOther?: string;
     closeRight?: string;
-    clear?: string;
+    refresh?: string;
 }
 export interface ReuseCustomContextMenu {
     id: string;

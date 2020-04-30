@@ -2031,7 +2031,6 @@
             close: '关闭标签',
             closeOther: '关闭其它标签',
             closeRight: '关闭右侧标签',
-            clear: '清空',
             refresh: '刷新',
         },
         tagSelect: {
@@ -2223,7 +2222,6 @@
             close: 'Close tab',
             closeOther: 'Close other tabs',
             closeRight: 'Close tabs to right',
-            clear: 'Clear tabs',
             refresh: 'Refresh',
         },
         tagSelect: {
@@ -2306,7 +2304,6 @@
             close: '關閉標簽',
             closeOther: '關閉其它標簽',
             closeRight: '關閉右側標簽',
-            clear: '清空',
             refresh: '刷新',
         },
         tagSelect: {
@@ -2389,7 +2386,6 @@
             close: 'Sekmeyi Kapat',
             closeOther: 'Diğer sekmeleri kapat',
             closeRight: 'Sağdaki sekmeleri kapat',
-            clear: 'Sekmeleri temizle',
             refresh: 'täzele',
         },
         tagSelect: {
@@ -2472,7 +2468,6 @@
             close: 'Zamknij kartę',
             closeOther: 'Zamknij inne karty',
             closeRight: 'Zamknij karty po prawej',
-            clear: 'Wyczyść karty',
             refresh: 'Refresh',
         },
         tagSelect: {
@@ -2555,7 +2550,6 @@
             close: 'Κλείσιμο καρτέλας',
             closeOther: 'Κλείσιμο των άλλων καρτέλων',
             closeRight: 'Κλείσιμο των καρτελών δεξιά',
-            clear: 'Καθαρισμός καρτελών',
             refresh: 'φρεσκάρω',
         },
         tagSelect: {
@@ -2638,7 +2632,6 @@
             close: '탭 닫기',
             closeOther: '다른 탭 닫기',
             closeRight: '오른쪽 탭 닫기',
-            clear: '탭 지우기',
             refresh: '새롭게 하다',
         },
         tagSelect: {
@@ -2721,7 +2714,6 @@
             close: 'Zatvori karticu',
             closeOther: 'Zatvori druge kartice',
             closeRight: 'Zatvori kartice desno',
-            clear: 'Obriši kartice',
             refresh: 'Refresh',
         },
         tagSelect: {
@@ -2768,7 +2760,6 @@
             close: 'タブを閉じる',
             closeOther: '他のタブを閉じる',
             closeRight: '右のタブを閉じる',
-            clear: 'クリア',
             refresh: 'リフレッシュ',
         },
         tagSelect: {

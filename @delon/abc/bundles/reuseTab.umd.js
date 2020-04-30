@@ -776,7 +776,7 @@
         /** @type {?|undefined} */
         ReuseContextI18n.prototype.closeRight;
         /** @type {?|undefined} */
-        ReuseContextI18n.prototype.clear;
+        ReuseContextI18n.prototype.refresh;
     }
     /**
      * @record
@@ -1532,20 +1532,21 @@
             return menus.pop();
         };
         /**
-         * @private
          * @param {?} method
-         * @param {?} _url
          * @param {?} comp
          * @return {?}
          */
         ReuseTabService.prototype.runHook = /**
-         * @private
          * @param {?} method
-         * @param {?} _url
          * @param {?} comp
          * @return {?}
          */
-        function (method, _url, comp) {
+        function (method, comp) {
+            if (typeof comp === 'number') {
+                /** @type {?} */
+                var item = this._cached[comp];
+                comp = item._handle.componentRef;
+            }
             if (comp.instance && typeof comp.instance[method] === 'function')
                 comp.instance[method]();
         };
@@ -1632,7 +1633,7 @@
             this.removeUrlBuffer = null;
             this.di('#store', isAdd ? '[new]' : '[override]', url);
             if (_handle && _handle.componentRef) {
-                this.runHook('_onReuseDestroy', url, _handle.componentRef);
+                this.runHook('_onReuseDestroy', _handle.componentRef);
             }
             if (!isAdd) {
                 this._cachedChange.next({ active: 'override', item: item, list: this._cached });
@@ -1662,8 +1663,11 @@
             var ret = !!(data && data._handle);
             this.di('#shouldAttach', ret, url);
             if (ret) {
-                if ((/** @type {?} */ (data))._handle.componentRef) {
-                    this.runHook('_onReuseInit', url, (/** @type {?} */ (data))._handle.componentRef);
+                /** @type {?} */
+                var compRef = (/** @type {?} */ (data))._handle.componentRef;
+                if (compRef) {
+                    this.compInstance = compRef;
+                    this.runHook('_onReuseInit', compRef);
                 }
             }
             else {
@@ -1922,6 +1926,8 @@
          */
         ReuseTabService.prototype.positionBuffer;
         /** @type {?} */
+        ReuseTabService.prototype.compInstance;
+        /** @type {?} */
         ReuseTabService.prototype.debug;
         /** @type {?} */
         ReuseTabService.prototype.mode;
@@ -2127,6 +2133,19 @@
             item.title = this.genTit((/** @type {?} */ (res === null || res === void 0 ? void 0 : res.title)));
             this.cdr.detectChanges();
         };
+        /**
+         * @private
+         * @param {?} item
+         * @return {?}
+         */
+        ReuseTabComponent.prototype.refresh = /**
+         * @private
+         * @param {?} item
+         * @return {?}
+         */
+        function (item) {
+            this.srv.runHook('_onReuseInit', this.pos === item.index ? this.srv.compInstance : item.index);
+        };
         // #region UI
         // #region UI
         /**
@@ -2144,6 +2163,9 @@
             /** @type {?} */
             var fn = null;
             switch (res.type) {
+                case 'refresh':
+                    this.refresh(res.item);
+                    break;
                 case 'close':
                     this._close(null, res.item.index, res.includeNonCloseable);
                     break;
@@ -2232,6 +2254,17 @@
             this.close.emit(item);
             this.cdr.detectChanges();
             return false;
+        };
+        /**
+         * @param {?} instance
+         * @return {?}
+         */
+        ReuseTabComponent.prototype.activate = /**
+         * @param {?} instance
+         * @return {?}
+         */
+        function (instance) {
+            this.srv.compInstance = { instance: instance };
         };
         // #endregion
         // #endregion

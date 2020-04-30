@@ -40,9 +40,11 @@ export declare class ReuseTabComponent implements OnInit, OnChanges, OnDestroy {
     private genCurItem;
     private genList;
     private updateTitle;
+    private refresh;
     contextMenuChange(res: ReuseContextCloseEvent): void;
     _to(index: number, cb?: () => void): void;
     _close(e: Event | null, idx: number, includeNonCloseable: boolean): boolean;
+    activate(instance: any): void;
     ngOnInit(): void;
     ngOnChanges(changes: {
         [P in keyof this]?: SimpleChange;
