@@ -1,4 +1,4 @@
-import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Output, ElementRef, Injectable, Directive, Injector, ɵɵdefineInjectable, ɵɵinject, INJECTOR, ChangeDetectorRef, Renderer2, Optional, Inject, ViewChild, NgModule } from '@angular/core';
+import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Output, ElementRef, Injectable, Directive, Injector, ɵɵdefineInjectable, ɵɵinject, INJECTOR, ChangeDetectorRef, Optional, Inject, NgModule } from '@angular/core';
 import { DelonLocaleService, ScrollService, MenuService, ALAIN_I18N_TOKEN, DelonLocaleModule } from '@delon/theme';
 import { Subject, Subscription, BehaviorSubject } from 'rxjs';
 import { ConnectionPositionPair, Overlay, OverlayModule } from '@angular/cdk/overlay';
@@ -7,10 +7,10 @@ import { __decorate, __metadata } from 'tslib';
 import { DOCUMENT, CommonModule } from '@angular/common';
 import { ActivatedRoute, Router, ROUTER_CONFIGURATION, NavigationStart, NavigationEnd, RouterModule } from '@angular/router';
 import { InputBoolean, InputNumber } from '@delon/util';
-import { NzTabsModule } from 'ng-zorro-antd/tabs';
 import { takeUntil, debounceTime, filter } from 'rxjs/operators';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
+import { NzTabsModule } from 'ng-zorro-antd/tabs';
 
 /**
  * @fileoverview added by tsickle
@@ -104,7 +104,7 @@ class ReuseTabContextMenuComponent {
 ReuseTabContextMenuComponent.decorators = [
     { type: Component, args: [{
                 selector: 'reuse-tab-context-menu',
-                template: "<ul nz-menu>\n  <li nz-menu-item\n      (click)=\"click($event, 'close')\"\n      data-type=\"close\"\n      [nzDisabled]=\"!item.closable\"\n      [innerHTML]=\"i18n.close\"></li>\n  <li nz-menu-item\n      (click)=\"click($event, 'closeOther')\"\n      data-type=\"closeOther\"\n      [innerHTML]=\"i18n.closeOther\"></li>\n  <li nz-menu-item\n      (click)=\"click($event, 'closeRight')\"\n      data-type=\"closeRight\"\n      [nzDisabled]=\"item.last\"\n      [innerHTML]=\"i18n.closeRight\"></li>\n  <li nz-menu-item\n      (click)=\"click($event, 'clear')\"\n      data-type=\"clear\"\n      [innerHTML]=\"i18n.clear\"></li>\n  <ng-container *ngIf=\"customContextMenu!.length > 0\">\n    <li nz-menu-divider></li>\n    <li *ngFor=\"let i of customContextMenu\"\n        nz-menu-item\n        [attr.data-type]=\"i.id\"\n        [nzDisabled]=\"isDisabled(i)\"\n        (click)=\"click($event, 'custom', i)\"\n        [innerHTML]=\"i.title\"></li>\n  </ng-container>\n</ul>\n",
+                template: "<ul nz-menu>\n  <li nz-menu-item\n      (click)=\"click($event, 'refresh')\"\n      data-type=\"refresh\"\n      [innerHTML]=\"i18n.refresh\"></li>\n  <li nz-menu-item\n      (click)=\"click($event, 'close')\"\n      data-type=\"close\"\n      [nzDisabled]=\"!item.closable\"\n      [innerHTML]=\"i18n.close\"></li>\n  <li nz-menu-item\n      (click)=\"click($event, 'closeOther')\"\n      data-type=\"closeOther\"\n      [innerHTML]=\"i18n.closeOther\"></li>\n  <li nz-menu-item\n      (click)=\"click($event, 'closeRight')\"\n      data-type=\"closeRight\"\n      [nzDisabled]=\"item.last\"\n      [innerHTML]=\"i18n.closeRight\"></li>\n  <ng-container *ngIf=\"customContextMenu!.length > 0\">\n    <li nz-menu-divider></li>\n    <li *ngFor=\"let i of customContextMenu\"\n        nz-menu-item\n        [attr.data-type]=\"i.id\"\n        [nzDisabled]=\"isDisabled(i)\"\n        (click)=\"click($event, 'custom', i)\"\n        [innerHTML]=\"i.title\"></li>\n  </ng-container>\n</ul>\n",
                 host: {
                     '(document:click)': 'closeMenu($event)',
                     '(document:contextmenu)': 'closeMenu($event)',
@@ -1090,7 +1090,9 @@ class ReuseTabService {
         if (_handle && _handle.componentRef) {
             this.runHook('_onReuseDestroy', url, _handle.componentRef);
         }
-        this._cachedChange.next({ active: isAdd ? 'add' : 'override', item, list: this._cached });
+        if (!isAdd) {
+            this._cachedChange.next({ active: 'override', item, list: this._cached });
+        }
     }
     /**
      * 决定是否允许应用缓存数据
@@ -1341,21 +1343,18 @@ if (false) {
 class ReuseTabComponent {
     // #endregion
     /**
-     * @param {?} el
      * @param {?} srv
      * @param {?} cdr
      * @param {?} router
      * @param {?} route
-     * @param {?} render
      * @param {?} i18nSrv
      * @param {?} doc
      */
-    constructor(el, srv, cdr, router, route, render, i18nSrv, doc) {
+    constructor(srv, cdr, router, route, i18nSrv, doc) {
         this.srv = srv;
         this.cdr = cdr;
         this.router = router;
         this.route = route;
-        this.render = render;
         this.i18nSrv = i18nSrv;
         this.doc = doc;
         this.unsubscribe$ = new Subject();
@@ -1366,7 +1365,6 @@ class ReuseTabComponent {
         this.mode = ReuseTabMatchMode.Menu;
         this.debug = false;
         this.allowClose = true;
-        this.showCurrent = true;
         this.keepingScroll = false;
         this.customContextMenu = [];
         this.tabType = 'line';
@@ -1374,7 +1372,6 @@ class ReuseTabComponent {
         this.change = new EventEmitter();
         // tslint:disable-next-line:no-output-native
         this.close = new EventEmitter();
-        this.el = el.nativeElement;
     }
     /**
      * @param {?} value
@@ -1393,7 +1390,32 @@ class ReuseTabComponent {
     }
     /**
      * @private
-     * @param {?=} notify
+     * @return {?}
+     */
+    get curUrl() {
+        return this.srv.getUrl(this.route.snapshot);
+    }
+    /**
+     * @private
+     * @return {?}
+     */
+    genCurItem() {
+        /** @type {?} */
+        const url = this.curUrl;
+        /** @type {?} */
+        const snapshotTrue = this.srv.getTruthRoute(this.route.snapshot);
+        return {
+            url,
+            title: this.genTit(this.srv.getTitle(url, snapshotTrue)),
+            closable: this.allowClose && this.srv.count > 0 && this.srv.getClosable(url, snapshotTrue),
+            active: false,
+            last: false,
+            index: 0,
+        };
+    }
+    /**
+     * @private
+     * @param {?} notify
      * @return {?}
      */
     genList(notify) {
@@ -1403,68 +1425,53 @@ class ReuseTabComponent {
          * @param {?} index
          * @return {?}
          */
-        (item, index) => {
-            return (/** @type {?} */ ({
-                url: item.url,
-                title: this.genTit(item.title),
-                closable: this.allowClose && item.closable && this.srv.count > 0,
-                index,
-                active: false,
-                last: false,
-            }));
-        }));
+        (item, index) => ((/** @type {?} */ ({
+            url: item.url,
+            title: this.genTit(item.title),
+            closable: this.allowClose && item.closable && this.srv.count > 0,
+            index,
+            active: false,
+            last: false,
+        })))));
         /** @type {?} */
-        const isClosed = (notify === null || notify === void 0 ? void 0 : notify.active) === 'close';
+        const url = this.curUrl;
         /** @type {?} */
-        let goToPos = this.pos;
-        if (this.showCurrent) {
+        let addCurrent = ls.findIndex((/**
+         * @param {?} w
+         * @return {?}
+         */
+        w => w.url === url)) === -1;
+        if (notify.active === 'close' && notify.url === url) {
+            addCurrent = false;
             /** @type {?} */
-            const notifyUrl = notify === null || notify === void 0 ? void 0 : notify.url;
+            let toPos = 0;
             /** @type {?} */
-            const beforeClosePos = isClosed ? this.list.findIndex((/**
+            const curItem = (/** @type {?} */ (this.list.find((/**
              * @param {?} w
              * @return {?}
              */
-            w => w.url === notifyUrl)) : -1;
-            /** @type {?} */
-            const snapshot = this.route.snapshot;
-            /** @type {?} */
-            const url = this.srv.getUrl(snapshot);
-            /** @type {?} */
-            const idx = ls.findIndex((/**
-             * @param {?} w
-             * @return {?}
-             */
-            w => w.url === url));
-            // jump directly when the current exists in the list
-            // or create a new current item and jump
-            if (idx !== -1 || (isClosed && notifyUrl === url)) {
-                goToPos = isClosed ? (idx >= beforeClosePos ? goToPos - 1 : goToPos) : idx;
+            w => w.url === url))));
+            if (curItem.index === ls.length) {
+                // When closed is last
+                toPos = ls.length - 1;
             }
-            else {
-                /** @type {?} */
-                const snapshotTrue = this.srv.getTruthRoute(snapshot);
-                ls.push((/** @type {?} */ ({
-                    url,
-                    title: this.genTit(this.srv.getTitle(url, snapshotTrue)),
-                    closable: this.allowClose && this.srv.count > 0 && this.srv.getClosable(url, snapshotTrue),
-                    index: ls.length,
-                    active: false,
-                    last: false,
-                })));
-                goToPos = ls.length - 1;
+            else if (curItem.index < ls.length) {
+                // Should be actived next tab when closed is middle
+                toPos = Math.max(0, curItem.index);
             }
-            // fix unabled close last item
-            if (ls.length <= 1)
-                ls[0].closable = false;
+            this.router.navigateByUrl(ls[toPos].url);
         }
-        else {
-            this.render.setStyle(this.el, 'display', ls.length === 0 ? 'none' : 'block');
+        if (addCurrent) {
+            ls.push(this.genCurItem());
         }
-        // Muse be go to a valid page when is close operators
-        if (isClosed && goToPos !== null) {
-            this.to(goToPos);
-            return;
+        ls.forEach((/**
+         * @param {?} item
+         * @param {?} index
+         * @return {?}
+         */
+        (item, index) => (item.index = index)));
+        if (ls.length === 1) {
+            ls[0].closable = false;
         }
         this.list = ls;
         this.cdr.detectChanges();
@@ -1510,7 +1517,6 @@ class ReuseTabComponent {
                     this.close.emit(null);
                 });
                 break;
-            case 'clear':
             case 'closeOther':
                 fn = (/**
                  * @return {?}
@@ -1529,7 +1535,7 @@ class ReuseTabComponent {
          * @return {?}
          */
         w => w.active)))).index) {
-            this.to(res.item.index, fn);
+            this._to(res.item.index, fn);
         }
         else {
             fn();
@@ -1540,7 +1546,7 @@ class ReuseTabComponent {
      * @param {?=} cb
      * @return {?}
      */
-    to(index, cb) {
+    _to(index, cb) {
         index = Math.max(0, Math.min(index, this.list.length - 1));
         /** @type {?} */
         const item = this.list[index];
@@ -1585,13 +1591,12 @@ class ReuseTabComponent {
          * @return {?}
          */
         () => {
-            var _a, _b;
             /** @type {?} */
             const ls = this.list;
+            if (ls.length === 0)
+                return;
             /** @type {?} */
             const last = ls[ls.length - 1];
-            /** @type {?} */
-            let pos = ls.length - 1;
             /** @type {?} */
             const url = this.srv.getUrl(this.route.snapshot);
             /** @type {?} */
@@ -1600,13 +1605,9 @@ class ReuseTabComponent {
              * @return {?}
              */
             w => w.url === url));
-            if (item == null) {
-                pos = last.index;
-            }
-            else {
-                pos = item.index;
-            }
             last.last = true;
+            /** @type {?} */
+            const pos = item == null ? last.index : item.index;
             ls.forEach((/**
              * @param {?} i
              * @param {?} idx
@@ -1615,8 +1616,6 @@ class ReuseTabComponent {
             (i, idx) => (i.active = pos === idx)));
             this.pos = pos;
             this.cdr.detectChanges();
-            // TODO: A very bad way to fix the position force, ~_~, https://github.com/ng-alain/ng-alain/issues/1590
-            (_b = (_a = this.tabset) === null || _a === void 0 ? void 0 : _a.nzTabsNavComponent) === null || _b === void 0 ? void 0 : _b.scrollToLabel(pos);
         }));
         this.srv.change.pipe(takeUntil(this.unsubscribe$)).subscribe((/**
          * @param {?} res
@@ -1644,8 +1643,7 @@ class ReuseTabComponent {
             .subscribe((/**
          * @return {?}
          */
-        () => this.genList()));
-        this.genList();
+        () => this.genList({ active: 'title' })));
         this.srv.init();
     }
     /**
@@ -1679,7 +1677,7 @@ ReuseTabComponent.decorators = [
     { type: Component, args: [{
                 selector: 'reuse-tab, [reuse-tab]',
                 exportAs: 'reuseTab',
-                template: "<nz-tabset #tabset [nzSelectedIndex]=\"pos\" [nzAnimated]=\"false\" [nzType]=\"tabType\"\n  [nzTabBarExtraContent]=\"tabBarExtraContent\" [nzTabBarGutter]=\"tabBarGutter\" [nzTabBarStyle]=\"tabBarStyle\">\n  <nz-tab *ngFor=\"let i of list; let index = index\" [nzTitle]=\"titleTemplate\" (nzClick)=\"to(index)\">\n    <ng-template #titleTemplate>\n      <div [reuse-tab-context-menu]=\"i\" [customContextMenu]=\"customContextMenu\" class=\"reuse-tab__name\"\n        [attr.title]=\"i.title\">\n        <span [class.reuse-tab__name-width]=\"tabMaxWidth\" [style.max-width.px]=\"tabMaxWidth\">\n          {{i.title}}\n        </span>\n      </div>\n      <i *ngIf=\"i.closable\" nz-icon nzType=\"close\" class=\"reuse-tab__op\" (click)=\"_close($event, index, false)\"></i>\n    </ng-template>\n  </nz-tab>\n</nz-tabset>\n<reuse-tab-context [i18n]=\"i18n\" (change)=\"contextMenuChange($event)\"></reuse-tab-context>\n",
+                template: "<nz-tabset [nzSelectedIndex]=\"pos\" [nzAnimated]=\"false\" [nzType]=\"tabType\"\n  [nzTabBarExtraContent]=\"tabBarExtraContent\" [nzTabBarGutter]=\"tabBarGutter\" [nzTabBarStyle]=\"tabBarStyle\">\n  <nz-tab *ngFor=\"let i of list; let index = index\" [nzTitle]=\"titleTemplate\" (nzClick)=\"_to(index)\">\n    <ng-template #titleTemplate>\n      <div [reuse-tab-context-menu]=\"i\" [customContextMenu]=\"customContextMenu\" class=\"reuse-tab__name\"\n        [attr.title]=\"i.title\">\n        <span [class.reuse-tab__name-width]=\"tabMaxWidth\" [style.max-width.px]=\"tabMaxWidth\">\n          {{i.title}}\n        </span>\n      </div>\n      <i *ngIf=\"i.closable\" nz-icon nzType=\"close\" class=\"reuse-tab__op\" (click)=\"_close($event, index, false)\"></i>\n    </ng-template>\n  </nz-tab>\n</nz-tabset>\n<reuse-tab-context [i18n]=\"i18n\" (change)=\"contextMenuChange($event)\"></reuse-tab-context>\n",
                 host: {
                     '[class.reuse-tab]': 'true',
                     '[class.reuse-tab__line]': `tabType === 'line'`,
@@ -1693,17 +1691,14 @@ ReuseTabComponent.decorators = [
 ];
 /** @nocollapse */
 ReuseTabComponent.ctorParameters = () => [
-    { type: ElementRef },
     { type: ReuseTabService },
     { type: ChangeDetectorRef },
     { type: Router },
     { type: ActivatedRoute },
-    { type: Renderer2 },
     { type: undefined, decorators: [{ type: Optional }, { type: Inject, args: [ALAIN_I18N_TOKEN,] }] },
     { type: undefined, decorators: [{ type: Inject, args: [DOCUMENT,] }] }
 ];
 ReuseTabComponent.propDecorators = {
-    tabset: [{ type: ViewChild, args: ['tabset',] }],
     mode: [{ type: Input }],
     i18n: [{ type: Input }],
     debug: [{ type: Input }],
@@ -1711,7 +1706,6 @@ ReuseTabComponent.propDecorators = {
     tabMaxWidth: [{ type: Input }],
     excludes: [{ type: Input }],
     allowClose: [{ type: Input }],
-    showCurrent: [{ type: Input }],
     keepingScroll: [{ type: Input }],
     keepingScrollContainer: [{ type: Input }],
     customContextMenu: [{ type: Input }],
@@ -1741,22 +1735,8 @@ __decorate([
 __decorate([
     InputBoolean(),
     __metadata("design:type", Object)
-], ReuseTabComponent.prototype, "showCurrent", void 0);
-__decorate([
-    InputBoolean(),
-    __metadata("design:type", Object)
 ], ReuseTabComponent.prototype, "keepingScroll", void 0);
 if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    ReuseTabComponent.prototype.tabset;
-    /**
-     * @type {?}
-     * @private
-     */
-    ReuseTabComponent.prototype.el;
     /**
      * @type {?}
      * @private
@@ -1793,8 +1773,6 @@ if (false) {
     /** @type {?} */
     ReuseTabComponent.prototype.allowClose;
     /** @type {?} */
-    ReuseTabComponent.prototype.showCurrent;
-    /** @type {?} */
     ReuseTabComponent.prototype.keepingScroll;
     /** @type {?} */
     ReuseTabComponent.prototype.customContextMenu;
@@ -1830,11 +1808,6 @@ if (false) {
      * @private
      */
     ReuseTabComponent.prototype.route;
-    /**
-     * @type {?}
-     * @private
-     */
-    ReuseTabComponent.prototype.render;
     /**
      * @type {?}
      * @private

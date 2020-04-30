@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, ElementRef, EventEmitter, OnChanges, OnDestroy, OnInit, Renderer2, SimpleChange, SimpleChanges, TemplateRef } from '@angular/core';
+import { ChangeDetectorRef, EventEmitter, OnChanges, OnDestroy, OnInit, SimpleChange, SimpleChanges, TemplateRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlainI18NService } from '@delon/theme';
 import { ReuseContextCloseEvent, ReuseContextI18n, ReuseCustomContextMenu, ReuseItem, ReuseTabMatchMode } from './reuse-tab.interfaces';
@@ -8,11 +8,8 @@ export declare class ReuseTabComponent implements OnInit, OnChanges, OnDestroy {
     private cdr;
     private router;
     private route;
-    private render;
     private i18nSrv;
     private doc;
-    private tabset;
-    private el;
     private unsubscribe$;
     private updatePos$;
     private _keepingScrollContainer;
@@ -26,7 +23,6 @@ export declare class ReuseTabComponent implements OnInit, OnChanges, OnDestroy {
     tabMaxWidth: number;
     excludes: RegExp[];
     allowClose: boolean;
-    showCurrent: boolean;
     keepingScroll: boolean;
     set keepingScrollContainer(value: string | Element);
     customContextMenu: ReuseCustomContextMenu[];
@@ -38,12 +34,14 @@ export declare class ReuseTabComponent implements OnInit, OnChanges, OnDestroy {
     tabType: 'line' | 'card';
     readonly change: EventEmitter<ReuseItem>;
     readonly close: EventEmitter<ReuseItem | null>;
-    constructor(el: ElementRef, srv: ReuseTabService, cdr: ChangeDetectorRef, router: Router, route: ActivatedRoute, render: Renderer2, i18nSrv: AlainI18NService, doc: any);
+    constructor(srv: ReuseTabService, cdr: ChangeDetectorRef, router: Router, route: ActivatedRoute, i18nSrv: AlainI18NService, doc: any);
     private genTit;
+    private get curUrl();
+    private genCurItem;
     private genList;
     private updateTitle;
     contextMenuChange(res: ReuseContextCloseEvent): void;
-    to(index: number, cb?: () => void): void;
+    _to(index: number, cb?: () => void): void;
     _close(e: Event | null, idx: number, includeNonCloseable: boolean): boolean;
     ngOnInit(): void;
     ngOnChanges(changes: {

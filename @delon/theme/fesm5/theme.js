@@ -1649,6 +1649,8 @@ if (false) {
     ReuseTabLocaleData.prototype.closeRight;
     /** @type {?} */
     ReuseTabLocaleData.prototype.clear;
+    /** @type {?} */
+    ReuseTabLocaleData.prototype.refresh;
 }
 /**
  * @record
@@ -1821,6 +1823,7 @@ var zhCN = (/** @type {?} */ ({
         closeOther: '关闭其它标签',
         closeRight: '关闭右侧标签',
         clear: '清空',
+        refresh: '刷新',
     },
     tagSelect: {
         expand: '展开',
@@ -2012,6 +2015,7 @@ var enUS = (/** @type {?} */ ({
         closeOther: 'Close other tabs',
         closeRight: 'Close tabs to right',
         clear: 'Clear tabs',
+        refresh: 'Refresh',
     },
     tagSelect: {
         expand: 'Expand',
@@ -2094,6 +2098,7 @@ var zhTW = (/** @type {?} */ ({
         closeOther: '關閉其它標簽',
         closeRight: '關閉右側標簽',
         clear: '清空',
+        refresh: '刷新',
     },
     tagSelect: {
         expand: '展開',
@@ -2176,6 +2181,7 @@ var trTR = (/** @type {?} */ ({
         closeOther: 'Diğer sekmeleri kapat',
         closeRight: 'Sağdaki sekmeleri kapat',
         clear: 'Sekmeleri temizle',
+        refresh: 'täzele',
     },
     tagSelect: {
         expand: 'Genişlet',
@@ -2258,6 +2264,7 @@ var plPL = (/** @type {?} */ ({
         closeOther: 'Zamknij inne karty',
         closeRight: 'Zamknij karty po prawej',
         clear: 'Wyczyść karty',
+        refresh: 'Refresh',
     },
     tagSelect: {
         expand: 'Rozszerz',
@@ -2340,6 +2347,7 @@ var elGR = (/** @type {?} */ ({
         closeOther: 'Κλείσιμο των άλλων καρτέλων',
         closeRight: 'Κλείσιμο των καρτελών δεξιά',
         clear: 'Καθαρισμός καρτελών',
+        refresh: 'φρεσκάρω',
     },
     tagSelect: {
         expand: 'Επέκταση',
@@ -2422,6 +2430,7 @@ var koKR = (/** @type {?} */ ({
         closeOther: '다른 탭 닫기',
         closeRight: '오른쪽 탭 닫기',
         clear: '탭 지우기',
+        refresh: '새롭게 하다',
     },
     tagSelect: {
         expand: '펼치기',
@@ -2504,6 +2513,7 @@ var hrHR = (/** @type {?} */ ({
         closeOther: 'Zatvori druge kartice',
         closeRight: 'Zatvori kartice desno',
         clear: 'Obriši kartice',
+        refresh: 'Refresh',
     },
     tagSelect: {
         expand: 'Proširi',
@@ -2550,6 +2560,7 @@ var jaJP = (/** @type {?} */ ({
         closeOther: '他のタブを閉じる',
         closeRight: '右のタブを閉じる',
         clear: 'クリア',
+        refresh: 'リフレッシュ',
     },
     tagSelect: {
         expand: '展開する',
@@ -4243,7 +4254,7 @@ var AlainThemeModule = /** @class */ (function () {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-var VERSION = new Version('9.0.1-72fecdc1');
+var VERSION = new Version('9.0.1-cac83cc6');
 
 /**
  * @fileoverview added by tsickle

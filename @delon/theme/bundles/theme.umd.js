@@ -1858,6 +1858,8 @@
         ReuseTabLocaleData.prototype.closeRight;
         /** @type {?} */
         ReuseTabLocaleData.prototype.clear;
+        /** @type {?} */
+        ReuseTabLocaleData.prototype.refresh;
     }
     /**
      * @record
@@ -2030,6 +2032,7 @@
             closeOther: '关闭其它标签',
             closeRight: '关闭右侧标签',
             clear: '清空',
+            refresh: '刷新',
         },
         tagSelect: {
             expand: '展开',
@@ -2221,6 +2224,7 @@
             closeOther: 'Close other tabs',
             closeRight: 'Close tabs to right',
             clear: 'Clear tabs',
+            refresh: 'Refresh',
         },
         tagSelect: {
             expand: 'Expand',
@@ -2303,6 +2307,7 @@
             closeOther: '關閉其它標簽',
             closeRight: '關閉右側標簽',
             clear: '清空',
+            refresh: '刷新',
         },
         tagSelect: {
             expand: '展開',
@@ -2385,6 +2390,7 @@
             closeOther: 'Diğer sekmeleri kapat',
             closeRight: 'Sağdaki sekmeleri kapat',
             clear: 'Sekmeleri temizle',
+            refresh: 'täzele',
         },
         tagSelect: {
             expand: 'Genişlet',
@@ -2467,6 +2473,7 @@
             closeOther: 'Zamknij inne karty',
             closeRight: 'Zamknij karty po prawej',
             clear: 'Wyczyść karty',
+            refresh: 'Refresh',
         },
         tagSelect: {
             expand: 'Rozszerz',
@@ -2549,6 +2556,7 @@
             closeOther: 'Κλείσιμο των άλλων καρτέλων',
             closeRight: 'Κλείσιμο των καρτελών δεξιά',
             clear: 'Καθαρισμός καρτελών',
+            refresh: 'φρεσκάρω',
         },
         tagSelect: {
             expand: 'Επέκταση',
@@ -2631,6 +2639,7 @@
             closeOther: '다른 탭 닫기',
             closeRight: '오른쪽 탭 닫기',
             clear: '탭 지우기',
+            refresh: '새롭게 하다',
         },
         tagSelect: {
             expand: '펼치기',
@@ -2713,6 +2722,7 @@
             closeOther: 'Zatvori druge kartice',
             closeRight: 'Zatvori kartice desno',
             clear: 'Obriši kartice',
+            refresh: 'Refresh',
         },
         tagSelect: {
             expand: 'Proširi',
@@ -2759,6 +2769,7 @@
             closeOther: '他のタブを閉じる',
             closeRight: '右のタブを閉じる',
             clear: 'クリア',
+            refresh: 'リフレッシュ',
         },
         tagSelect: {
             expand: '展開する',
