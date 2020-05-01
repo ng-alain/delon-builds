@@ -539,6 +539,34 @@ if (false) {
     /** @type {?|undefined} */
     ReuseCustomContextMenu.prototype.disabled;
 }
+/**
+ * @record
+ */
+function ReuseComponentHandle() { }
+if (false) {
+    /** @type {?} */
+    ReuseComponentHandle.prototype.componentRef;
+}
+/**
+ * @record
+ */
+function ReuseComponentRef() { }
+if (false) {
+    /** @type {?} */
+    ReuseComponentRef.prototype.instance;
+}
+/**
+ * @record
+ */
+function ReuseComponentInstance() { }
+if (false) {
+    /** @type {?} */
+    ReuseComponentInstance.prototype._onReuseInit;
+    /** @type {?} */
+    ReuseComponentInstance.prototype._onReuseDestroy;
+    /** @type {?} */
+    ReuseComponentInstance.prototype.destroy;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -1027,6 +1055,9 @@ class ReuseTabService {
             const item = this._cached[comp];
             comp = item._handle.componentRef;
         }
+        if (comp == null) {
+            return;
+        }
         if (comp.instance && typeof comp.instance[method] === 'function')
             comp.instance[method]();
     }
@@ -1116,7 +1147,7 @@ class ReuseTabService {
             /** @type {?} */
             const compRef = (/** @type {?} */ (data))._handle.componentRef;
             if (compRef) {
-                this.compInstance = compRef;
+                this.componentRef = compRef;
                 this.runHook('_onReuseInit', compRef);
             }
         }
@@ -1319,7 +1350,7 @@ if (false) {
      */
     ReuseTabService.prototype.positionBuffer;
     /** @type {?} */
-    ReuseTabService.prototype.compInstance;
+    ReuseTabService.prototype.componentRef;
     /** @type {?} */
     ReuseTabService.prototype.debug;
     /** @type {?} */
@@ -1510,7 +1541,7 @@ class ReuseTabComponent {
      * @return {?}
      */
     refresh(item) {
-        this.srv.runHook('_onReuseInit', this.pos === item.index ? this.srv.compInstance : item.index);
+        this.srv.runHook('_onReuseInit', this.pos === item.index ? this.srv.componentRef : item.index);
     }
     // #region UI
     /**
@@ -1606,7 +1637,7 @@ class ReuseTabComponent {
      * @return {?}
      */
     activate(instance) {
-        this.srv.compInstance = { instance };
+        this.srv.componentRef = { instance };
     }
     // #endregion
     /**
@@ -1654,9 +1685,6 @@ class ReuseTabComponent {
                     return;
                 case 'override':
                     this.updatePos$.next();
-                    return;
-                case 'refresh':
-                    // 刷新页面
                     return;
             }
             this.genList((/** @type {?} */ (res)));

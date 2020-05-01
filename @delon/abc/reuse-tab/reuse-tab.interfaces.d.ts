@@ -43,7 +43,7 @@ export interface ReuseTabCached {
     /** 当前滚动条位置 */
     position?: [number, number] | null;
     _snapshot: ActivatedRouteSnapshot;
-    _handle: any;
+    _handle: ReuseComponentHandle;
 }
 export interface ReuseTabNotify {
     /** 事件类型 */
@@ -85,4 +85,16 @@ export interface ReuseCustomContextMenu {
     title: string;
     fn: (item: ReuseItem, menu: ReuseCustomContextMenu) => void;
     disabled?: (item: ReuseItem) => boolean;
+}
+export interface ReuseComponentHandle {
+    componentRef: ReuseComponentRef;
+}
+export interface ReuseComponentRef {
+    instance: ReuseComponentInstance;
+}
+export declare type ReuseHookTypes = '_onReuseInit' | '_onReuseDestroy';
+export interface ReuseComponentInstance {
+    _onReuseInit: () => void;
+    _onReuseDestroy: () => void;
+    destroy: () => void;
 }

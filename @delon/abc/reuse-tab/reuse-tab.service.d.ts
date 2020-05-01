@@ -2,7 +2,7 @@ import { Injector, OnDestroy } from '@angular/core';
 import { ActivatedRouteSnapshot } from '@angular/router';
 import { MenuService } from '@delon/theme';
 import { Observable } from 'rxjs';
-import { ReuseTabCached, ReuseTabMatchMode, ReuseTabNotify, ReuseTitle } from './reuse-tab.interfaces';
+import { ReuseComponentRef, ReuseHookTypes, ReuseTabCached, ReuseTabMatchMode, ReuseTabNotify, ReuseTitle } from './reuse-tab.interfaces';
 /**
  * 路由复用类，提供复用所需要一些基本接口
  *
@@ -21,7 +21,7 @@ export declare class ReuseTabService implements OnDestroy {
     private _router$;
     private removeUrlBuffer;
     private positionBuffer;
-    compInstance: any;
+    componentRef: ReuseComponentRef;
     debug: boolean;
     mode: ReuseTabMatchMode;
     /** 排除规则，限 `mode=URL` */
@@ -140,7 +140,7 @@ export declare class ReuseTabService implements OnDestroy {
     constructor(injector: Injector, menuService: MenuService);
     init(): void;
     private getMenu;
-    runHook(method: '_onReuseInit' | '_onReuseDestroy', comp: any): void;
+    runHook(method: ReuseHookTypes, comp: ReuseComponentRef | number): void;
     private hasInValidRoute;
     /**
      * 决定是否允许路由复用，若 `true` 会触发 `store`
