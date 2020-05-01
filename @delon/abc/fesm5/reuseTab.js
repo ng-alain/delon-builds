@@ -1942,16 +1942,14 @@ var ReuseTabComponent = /** @class */ (function () {
      */
     function (res) {
         /** @type {?} */
-        var url = res === null || res === void 0 ? void 0 : res.url;
-        /** @type {?} */
         var item = this.list.find((/**
          * @param {?} w
          * @return {?}
          */
-        function (w) { return w.url === url; }));
+        function (w) { return w.url === (/** @type {?} */ (res)).url; }));
         if (!item)
             return;
-        item.title = this.genTit((/** @type {?} */ (res === null || res === void 0 ? void 0 : res.title)));
+        item.title = this.genTit((/** @type {?} */ ((/** @type {?} */ (res)).title)));
         this.cdr.detectChanges();
     };
     /**
