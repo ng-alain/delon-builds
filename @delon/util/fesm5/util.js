@@ -2006,38 +2006,8 @@ if (false) {
 /**
  * @record
  */
-function AlainSFConfigFormatMap() { }
-if (false) {
-    /* Skipping unnamed member:
-    'date-time': { widget?: string; showTime?: boolean; format?: string };*/
-    /** @type {?} */
-    AlainSFConfigFormatMap.prototype.date;
-    /* Skipping unnamed member:
-    'full-date': { widget?: string; format?: string };*/
-    /** @type {?} */
-    AlainSFConfigFormatMap.prototype.time;
-    /* Skipping unnamed member:
-    'full-time': { widget?: string; format?: string };*/
-    /** @type {?} */
-    AlainSFConfigFormatMap.prototype.week;
-    /** @type {?} */
-    AlainSFConfigFormatMap.prototype.month;
-    /** @type {?} */
-    AlainSFConfigFormatMap.prototype.uri;
-    /** @type {?} */
-    AlainSFConfigFormatMap.prototype.email;
-    /** @type {?} */
-    AlainSFConfigFormatMap.prototype.color;
-    /* Skipping unnamed member:
-    '': { widget?: string };*/
-}
-/**
- * @record
- */
 function AlainSFConfig() { }
 if (false) {
-    /** @type {?|undefined} */
-    AlainSFConfig.prototype.formatMap;
     /**
      * 是否忽略某些数据类型校验 `ERRORSDEFAULT`，默认：`[ 'type', 'enum' ]`
      *

@@ -42,23 +42,6 @@ import format from 'date-fns/format';
  */
 /** @type {?} */
 var SF_DEFAULT_CONFIG = {
-    formatMap: {
-        'date-time': {
-            widget: 'date',
-            showTime: true,
-            format: "yyyy-MM-dd'T'HH:mm:ss.SSSxxx",
-        },
-        date: { widget: 'date', format: 'yyyy-MM-dd' },
-        'full-date': { widget: 'date', format: 'yyyy-MM-dd' },
-        time: { widget: 'time', format: 'HH:mm:ss.SSSxxx' },
-        'full-time': { widget: 'time' },
-        week: { widget: 'date', mode: 'week', format: 'yyyy-WW' },
-        month: { widget: 'date', mode: 'month', format: 'yyyy-MM' },
-        uri: { widget: 'upload' },
-        email: { widget: 'autocomplete', type: 'email' },
-        color: { widget: 'string', type: 'color' },
-        '': { widget: 'string' },
-    },
     ingoreKeywords: ['type', 'enum'],
     liveValidate: true,
     autocomplete: null,
@@ -94,6 +77,24 @@ var SF_SEQ = '/';
  * Generated from: src/utils.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/** @type {?} */
+var FORMATMAPS = {
+    'date-time': {
+        widget: 'date',
+        showTime: true,
+        format: 'yyyy-MM-ddTHH:mm:ssZ',
+    },
+    date: { widget: 'date', format: 'yyyy-MM-dd' },
+    'full-date': { widget: 'date', format: 'yyyy-MM-dd' },
+    time: { widget: 'time' },
+    'full-time': { widget: 'time' },
+    week: { widget: 'date', mode: 'week', format: 'yyyy-WW' },
+    month: { widget: 'date', mode: 'month', format: 'yyyy-MM' },
+    uri: { widget: 'upload' },
+    email: { widget: 'autocomplete', type: 'email' },
+    color: { widget: 'string', type: 'color' },
+    '': { widget: 'string' },
+};
 /**
  * @param {?} o
  * @return {?}
@@ -1732,7 +1733,7 @@ var FormPropertyFactory = /** @class */ (function () {
                     ui._format = schema.type === 'string' ? this.options.uiTimeStringFormat : this.options.uiTimeNumberFormat;
             }
             else {
-                ui._format = ui.format;
+                ui._format = schema.format || ui.format;
             }
             switch (schema.type) {
                 case 'integer':
@@ -2376,7 +2377,7 @@ var SFComponent = /** @class */ (function () {
                 /** @type {?} */
                 var property = retrieveSchema((/** @type {?} */ ((/** @type {?} */ (schema.properties))[key])), definitions);
                 /** @type {?} */
-                var ui = (/** @type {?} */ (__assign(__assign(__assign(__assign(__assign(__assign({ widget: property.type }, (property.format && ((/** @type {?} */ (_this.options.formatMap)))[property.format])), (typeof property.ui === 'string' ? { widget: property.ui } : null)), (!property.format && !property.ui && Array.isArray(property.enum) && property.enum.length > 0 ? { widget: 'select' } : null)), _this._defUi), ((/** @type {?} */ (property.ui)))), uiSchema[uiKey])));
+                var ui = (/** @type {?} */ (__assign(__assign(__assign(__assign(__assign(__assign({ widget: property.type }, (property.format && ((/** @type {?} */ (FORMATMAPS)))[property.format])), (typeof property.ui === 'string' ? { widget: property.ui } : null)), (!property.format && !property.ui && Array.isArray(property.enum) && property.enum.length > 0 ? { widget: 'select' } : null)), _this._defUi), ((/** @type {?} */ (property.ui)))), uiSchema[uiKey])));
                 // 继承父节点布局属性
                 if (isHorizontal) {
                     if (parentUiSchema.spanLabelFixed) {
