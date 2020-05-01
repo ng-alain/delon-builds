@@ -38,7 +38,7 @@ function setBrowserslist(host, options) {
 }
 function setPackage(host, options) {
     // libs
-    (options.type === 'add' ? json_1.addPackageToPackageJson : json_1.removePackageFromPackageJson)(host, ['classlist.js@DEP-9.0.1', 'web-animations-js@DEP-9.0.1'], 'dependencies');
+    (options.type === 'add' ? json_1.addPackageToPackageJson : json_1.removePackageFromPackageJson)(host, ['classlist.js@DEP-9.1.0', 'web-animations-js@DEP-9.1.0'], 'dependencies');
     // scripts
     (options.type === 'add' ? json_1.addPackageToPackageJson : json_1.removePackageFromPackageJson)(host, ['ie:start@npm run color-less && ng serve -o --configuration es5', 'ie:hmr@npm run color-less && ng serve -c=hmr --configuration es5'], 'scripts');
 }
