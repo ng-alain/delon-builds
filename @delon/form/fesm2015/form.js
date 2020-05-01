@@ -2951,6 +2951,7 @@ class Widget {
             }
             this.firstVisual = true;
         }));
+        this.afterViewInit();
     }
     /**
      * @param {?} value
@@ -3030,6 +3031,11 @@ if (false) {
      * @return {?}
      */
     Widget.prototype.reset = function (value) { };
+    /**
+     * @abstract
+     * @return {?}
+     */
+    Widget.prototype.afterViewInit = function () { };
 }
 class ControlWidget extends Widget {
     /**
@@ -3037,6 +3043,10 @@ class ControlWidget extends Widget {
      * @return {?}
      */
     reset(_value) { }
+    /**
+     * @return {?}
+     */
+    afterViewInit() { }
 }
 /**
  * @template UIT
@@ -3047,6 +3057,10 @@ class ControlUIWidget extends Widget {
      * @return {?}
      */
     reset(_value) { }
+    /**
+     * @return {?}
+     */
+    afterViewInit() { }
 }
 class ArrayLayoutWidget extends Widget {
     /**
@@ -3054,6 +3068,10 @@ class ArrayLayoutWidget extends Widget {
      * @return {?}
      */
     reset(_value) { }
+    /**
+     * @return {?}
+     */
+    afterViewInit() { }
     /**
      * @return {?}
      */
@@ -3070,6 +3088,10 @@ class ObjectLayoutWidget extends Widget {
      * @return {?}
      */
     reset(_value) { }
+    /**
+     * @return {?}
+     */
+    afterViewInit() { }
     /**
      * @return {?}
      */
@@ -3174,7 +3196,7 @@ class AutoCompleteWidget extends ControlUIWidget {
     /**
      * @return {?}
      */
-    ngAfterViewInit() {
+    afterViewInit() {
         const { backfill, defaultActiveFirstOption, nzWidth, filterOption, asyncData } = this.ui;
         this.i = {
             backfill: toBool(backfill, false),

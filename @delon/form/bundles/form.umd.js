@@ -3654,6 +3654,7 @@
                 }
                 _this.firstVisual = true;
             }));
+            this.afterViewInit();
         };
         /**
          * @param {?} value
@@ -3747,6 +3748,11 @@
          * @return {?}
          */
         Widget.prototype.reset = function (value) { };
+        /**
+         * @abstract
+         * @return {?}
+         */
+        Widget.prototype.afterViewInit = function () { };
     }
     var ControlWidget = /** @class */ (function (_super) {
         __extends(ControlWidget, _super);
@@ -3762,6 +3768,13 @@
          * @return {?}
          */
         function (_value) { };
+        /**
+         * @return {?}
+         */
+        ControlWidget.prototype.afterViewInit = /**
+         * @return {?}
+         */
+        function () { };
         return ControlWidget;
     }(Widget));
     /**
@@ -3784,6 +3797,13 @@
          * @return {?}
          */
         function (_value) { };
+        /**
+         * @return {?}
+         */
+        ControlUIWidget.prototype.afterViewInit = /**
+         * @return {?}
+         */
+        function () { };
         return ControlUIWidget;
     }(Widget));
     var ArrayLayoutWidget = /** @class */ (function (_super) {
@@ -3800,6 +3820,13 @@
          * @return {?}
          */
         function (_value) { };
+        /**
+         * @return {?}
+         */
+        ArrayLayoutWidget.prototype.afterViewInit = /**
+         * @return {?}
+         */
+        function () { };
         /**
          * @return {?}
          */
@@ -3829,6 +3856,13 @@
          * @return {?}
          */
         function (_value) { };
+        /**
+         * @return {?}
+         */
+        ObjectLayoutWidget.prototype.afterViewInit = /**
+         * @return {?}
+         */
+        function () { };
         /**
          * @return {?}
          */
@@ -3965,7 +3999,7 @@
         /**
          * @return {?}
          */
-        AutoCompleteWidget.prototype.ngAfterViewInit = /**
+        AutoCompleteWidget.prototype.afterViewInit = /**
          * @return {?}
          */
         function () {
