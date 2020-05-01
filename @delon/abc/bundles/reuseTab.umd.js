@@ -1578,8 +1578,9 @@
             if (comp == null) {
                 return;
             }
-            if (comp.instance && typeof comp.instance[method] === 'function')
+            if (comp.instance && typeof comp.instance[method] === 'function') {
                 comp.instance[method]();
+            }
         };
         /**
          * @private
