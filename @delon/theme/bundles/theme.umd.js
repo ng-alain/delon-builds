@@ -4229,17 +4229,17 @@
         }
         /**
          * @param {?} value
-         * @param {?} yes
-         * @param {?} no
-         * @param {?} mode
+         * @param {?=} yes
+         * @param {?=} no
+         * @param {?=} mode
          * @param {?=} isSafeHtml
          * @return {?}
          */
         YNPipe.prototype.transform = /**
          * @param {?} value
-         * @param {?} yes
-         * @param {?} no
-         * @param {?} mode
+         * @param {?=} yes
+         * @param {?=} no
+         * @param {?=} mode
          * @param {?=} isSafeHtml
          * @return {?}
          */
