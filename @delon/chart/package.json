@@ -1,6 +1,6 @@
 {
   "name": "@delon/chart",
-  "version": "9.0.1-ea588b2d",
+  "version": "9.0.1-0dadc643",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -26,8 +26,8 @@
   ],
   "dependencies": {
     "@antv/g2": "^4.0.5",
-    "@delon/util": "^9.0.1-ea588b2d",
-    "@delon/theme": "^9.0.1-ea588b2d"
+    "@delon/util": "^9.0.1-0dadc643",
+    "@delon/theme": "^9.0.1-0dadc643"
   },
   "sideEffects": false,
   "main": "bundles/chart.umd.js",

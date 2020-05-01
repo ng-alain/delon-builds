@@ -3,51 +3,6 @@ import { NzI18nService } from 'ng-zorro-antd/i18n';
 import { Observable } from 'rxjs';
 import { SFSchema, SFSchemaDefinition, SFSchemaEnum } from './schema';
 import { SFUISchema, SFUISchemaItem, SFUISchemaItemRun } from './schema/ui';
-export declare const FORMATMAPS: {
-    'date-time': {
-        widget: string;
-        showTime: boolean;
-        format: string;
-    };
-    date: {
-        widget: string;
-        format: string;
-    };
-    'full-date': {
-        widget: string;
-        format: string;
-    };
-    time: {
-        widget: string;
-    };
-    'full-time': {
-        widget: string;
-    };
-    week: {
-        widget: string;
-        mode: string;
-        format: string;
-    };
-    month: {
-        widget: string;
-        mode: string;
-        format: string;
-    };
-    uri: {
-        widget: string;
-    };
-    email: {
-        widget: string;
-        type: string;
-    };
-    color: {
-        widget: string;
-        type: string;
-    };
-    '': {
-        widget: string;
-    };
-};
 export declare function isBlank(o: any): boolean;
 export declare function toBool(value: any, defaultValue: boolean): any;
 export declare function di(ui: SFUISchema, ...args: NzSafeAny[]): void;
