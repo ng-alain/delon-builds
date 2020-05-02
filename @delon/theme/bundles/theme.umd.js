@@ -3253,7 +3253,7 @@
             options = util.deepMerge({
                 size: 'md',
                 footer: true,
-                footerHeight: 55,
+                footerHeight: 50,
                 exact: true,
                 drawerOptions: {
                     nzPlacement: 'right',
@@ -3280,22 +3280,10 @@
                     delete (/** @type {?} */ (drawerOptions)).nzWrapClassName;
                 }
                 if (footer) {
-                    var _b = (/** @type {?} */ (drawerOptions)), nzPlacement = _b.nzPlacement, nzHeight = _b.nzHeight;
-                    // Should be header * footer, because of includes header
-                    /** @type {?} */
-                    var reduceHeight = (/** @type {?} */ (footerHeight)) * 2 - 2;
-                    if (nzPlacement === 'left' || nzPlacement === 'right') {
-                        defaultOptions.nzBodyStyle = {
-                            height: "calc(100% - " + reduceHeight + "px)",
-                            overflow: 'auto',
-                        };
-                    }
-                    else {
-                        defaultOptions.nzBodyStyle = {
-                            height: +(nzHeight || 256) - reduceHeight + "px",
-                            overflow: 'auto',
-                        };
-                    }
+                    // The 24 value is @drawer-body-padding
+                    defaultOptions.nzBodyStyle = {
+                        'padding-bottom.px': (/** @type {?} */ (footerHeight)) + 24,
+                    };
                 }
                 /** @type {?} */
                 var subject = _this.srv.create(__assign(__assign({}, defaultOptions), drawerOptions));

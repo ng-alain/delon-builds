@@ -2620,7 +2620,7 @@ class DrawerHelper {
         options = deepMerge({
             size: 'md',
             footer: true,
-            footerHeight: 55,
+            footerHeight: 50,
             exact: true,
             drawerOptions: {
                 nzPlacement: 'right',
@@ -2647,22 +2647,10 @@ class DrawerHelper {
                 delete (/** @type {?} */ (drawerOptions)).nzWrapClassName;
             }
             if (footer) {
-                const { nzPlacement, nzHeight } = (/** @type {?} */ (drawerOptions));
-                // Should be header * footer, because of includes header
-                /** @type {?} */
-                const reduceHeight = (/** @type {?} */ (footerHeight)) * 2 - 2;
-                if (nzPlacement === 'left' || nzPlacement === 'right') {
-                    defaultOptions.nzBodyStyle = {
-                        height: `calc(100% - ${reduceHeight}px)`,
-                        overflow: 'auto',
-                    };
-                }
-                else {
-                    defaultOptions.nzBodyStyle = {
-                        height: `${+(nzHeight || 256) - reduceHeight}px`,
-                        overflow: 'auto',
-                    };
-                }
+                // The 24 value is @drawer-body-padding
+                defaultOptions.nzBodyStyle = {
+                    'padding-bottom.px': (/** @type {?} */ (footerHeight)) + 24,
+                };
             }
             /** @type {?} */
             const subject = this.srv.create(Object.assign(Object.assign({}, defaultOptions), drawerOptions));
@@ -3640,7 +3628,7 @@ AlainThemeModule.ctorParameters = () => [
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-const VERSION = new Version('9.1.0-10ef7e8b');
+const VERSION = new Version('9.1.0');
 
 /**
  * @fileoverview added by tsickle
