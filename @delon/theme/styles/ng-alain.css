@@ -29748,6 +29748,9 @@ body {
   display: inline-block;
   margin-left: 4px;
 }
+.st .ant-table-tbody > tr .ant-table-wrapper:only-child .ant-table-tbody > tr:last-child > td {
+  border-bottom: 1px solid #f0f0f0;
+}
 .st .ant-table-tbody > tr .ant-table-wrapper:only-child .ant-table {
   margin: 0;
 }
