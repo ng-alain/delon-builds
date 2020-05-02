@@ -3693,7 +3693,7 @@
                  * @return {?}
                  */
                 function (error) {
-                    console.warn(error);
+                    console.warn('st.loadDate', error);
                     rejectPromise(error);
                 }));
             }));
