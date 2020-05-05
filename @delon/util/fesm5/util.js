@@ -1344,6 +1344,8 @@ if (false) {
      * @type {?|undefined}
      */
     AlainQRConfig.prototype.size;
+    /** @type {?|undefined} */
+    AlainQRConfig.prototype.delay;
 }
 
 /**

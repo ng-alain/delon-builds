@@ -20,6 +20,7 @@ const QR_DEFULAT_CONFIG = {
     mime: 'image/png',
     padding: 10,
     size: 220,
+    delay: 0,
 };
 
 /**
@@ -40,7 +41,6 @@ class QRComponent {
         this.inited = false;
         // tslint:disable-next-line:no-output-native
         this.change = new EventEmitter();
-        this.delay = 100;
         this.cog = configSrv.merge('qr', QR_DEFULAT_CONFIG);
         Object.assign(this, this.cog);
     }
@@ -142,7 +142,9 @@ class QRComponent {
      * @return {?}
      */
     ngOnDestroy() {
-        this.lazy$.unsubscribe();
+        if (this.lazy$) {
+            this.lazy$.unsubscribe();
+        }
     }
 }
 QRComponent.decorators = [
@@ -176,8 +178,8 @@ QRComponent.propDecorators = {
     padding: [{ type: Input }],
     size: [{ type: Input }],
     value: [{ type: Input }],
-    change: [{ type: Output }],
-    delay: [{ type: Input }]
+    delay: [{ type: Input }],
+    change: [{ type: Output }]
 };
 __decorate([
     InputNumber(),
@@ -189,7 +191,7 @@ __decorate([
 ], QRComponent.prototype, "size", void 0);
 __decorate([
     InputNumber(),
-    __metadata("design:type", Object)
+    __metadata("design:type", Number)
 ], QRComponent.prototype, "delay", void 0);
 if (false) {
     /**
@@ -238,9 +240,9 @@ if (false) {
     /** @type {?} */
     QRComponent.prototype.value;
     /** @type {?} */
-    QRComponent.prototype.change;
-    /** @type {?} */
     QRComponent.prototype.delay;
+    /** @type {?} */
+    QRComponent.prototype.change;
     /**
      * @type {?}
      * @private

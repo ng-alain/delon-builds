@@ -239,6 +239,7 @@
         mime: 'image/png',
         padding: 10,
         size: 220,
+        delay: 0,
     };
 
     /**
@@ -254,7 +255,6 @@
             this.inited = false;
             // tslint:disable-next-line:no-output-native
             this.change = new core.EventEmitter();
-            this.delay = 100;
             this.cog = configSrv.merge('qr', QR_DEFULAT_CONFIG);
             Object.assign(this, this.cog);
         }
@@ -380,7 +380,9 @@
          * @return {?}
          */
         function () {
-            this.lazy$.unsubscribe();
+            if (this.lazy$) {
+                this.lazy$.unsubscribe();
+            }
         };
         QRComponent.decorators = [
             { type: core.Component, args: [{
@@ -413,8 +415,8 @@
             padding: [{ type: core.Input }],
             size: [{ type: core.Input }],
             value: [{ type: core.Input }],
-            change: [{ type: core.Output }],
-            delay: [{ type: core.Input }]
+            delay: [{ type: core.Input }],
+            change: [{ type: core.Output }]
         };
         __decorate([
             util.InputNumber(),
@@ -426,7 +428,7 @@
         ], QRComponent.prototype, "size", void 0);
         __decorate([
             util.InputNumber(),
-            __metadata("design:type", Object)
+            __metadata("design:type", Number)
         ], QRComponent.prototype, "delay", void 0);
         return QRComponent;
     }());
@@ -477,9 +479,9 @@
         /** @type {?} */
         QRComponent.prototype.value;
         /** @type {?} */
-        QRComponent.prototype.change;
-        /** @type {?} */
         QRComponent.prototype.delay;
+        /** @type {?} */
+        QRComponent.prototype.change;
         /**
          * @type {?}
          * @private

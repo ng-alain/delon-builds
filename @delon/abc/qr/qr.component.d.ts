@@ -18,8 +18,8 @@ export declare class QRComponent implements OnChanges, AfterViewInit, OnDestroy 
     padding: number;
     size: number;
     value: string;
-    readonly change: EventEmitter<string>;
     delay: number;
+    readonly change: EventEmitter<string>;
     constructor(cdr: ChangeDetectorRef, configSrv: AlainConfigService, lazySrv: LazyService);
     private init;
     private initDelay;
