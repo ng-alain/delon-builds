@@ -373,7 +373,7 @@ class LazyService {
          */
         resolve => {
             if (this.list[path] === true) {
-                resolve(this.cached[path]);
+                resolve(Object.assign(Object.assign({}, this.cached[path]), { status: 'loading' }));
                 return;
             }
             this.list[path] = true;
@@ -385,6 +385,7 @@ class LazyService {
             (item) => {
                 this.cached[path] = item;
                 resolve(item);
+                this._notify.next([Object.assign(Object.assign({}, item), { status: 'ok' })]);
             });
             /** @type {?} */
             const node = (/** @type {?} */ (this.doc.createElement('script')));

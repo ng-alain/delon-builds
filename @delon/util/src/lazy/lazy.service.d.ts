@@ -2,7 +2,7 @@ import { Observable } from 'rxjs';
 export interface LazyResult {
     path: string;
     loaded: boolean;
-    status: 'ok' | 'error';
+    status: 'ok' | 'error' | 'loading';
     error?: {};
 }
 /**

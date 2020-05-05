@@ -400,7 +400,7 @@ var LazyService = /** @class */ (function () {
          */
         function (resolve) {
             if (_this.list[path] === true) {
-                resolve(_this.cached[path]);
+                resolve(__assign(__assign({}, _this.cached[path]), { status: 'loading' }));
                 return;
             }
             _this.list[path] = true;
@@ -412,6 +412,7 @@ var LazyService = /** @class */ (function () {
             function (item) {
                 _this.cached[path] = item;
                 resolve(item);
+                _this._notify.next([__assign(__assign({}, item), { status: 'ok' })]);
             });
             /** @type {?} */
             var node = (/** @type {?} */ (_this.doc.createElement('script')));
