@@ -293,7 +293,10 @@ function LazyResult() { }
 if (false) {
     /** @type {?} */
     LazyResult.prototype.path;
-    /** @type {?} */
+    /**
+     * @deprecated Used `status === 'ok'`, This is deprecated and going to be removed in 10.0.0.
+     * @type {?}
+     */
     LazyResult.prototype.loaded;
     /** @type {?} */
     LazyResult.prototype.status;
@@ -385,7 +388,7 @@ class LazyService {
             (item) => {
                 this.cached[path] = item;
                 resolve(item);
-                this._notify.next([Object.assign(Object.assign({}, item), { status: 'ok' })]);
+                this._notify.next([item]);
             });
             /** @type {?} */
             const node = (/** @type {?} */ (this.doc.createElement('script')));
