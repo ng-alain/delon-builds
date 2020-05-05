@@ -2061,11 +2061,9 @@ var STColumnSource = /** @class */ (function () {
             try {
                 for (var data_1 = __values(data), data_1_1 = data_1.next(); !data_1_1.done; data_1_1 = data_1.next()) {
                     var item = data_1_1.value;
+                    columns.push(processItem(item));
                     if (Array.isArray(item.children)) {
                         processList(item.children);
-                    }
-                    else {
-                        columns.push(processItem(item));
                     }
                 }
             }

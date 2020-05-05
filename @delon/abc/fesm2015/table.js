@@ -1929,11 +1929,9 @@ class STColumnSource {
          */
         (data) => {
             for (const item of data) {
+                columns.push(processItem(item));
                 if (Array.isArray(item.children)) {
                     processList(item.children);
-                }
-                else {
-                    columns.push(processItem(item));
                 }
             }
         });
