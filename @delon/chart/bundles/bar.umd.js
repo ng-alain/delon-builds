@@ -449,7 +449,7 @@
             { type: core.Component, args: [{
                         selector: 'g2-bar',
                         exportAs: 'g2Bar',
-                        template: "<ng-container *nzStringTemplateOutlet=\"title\">\n  <h4 style=\"margin-bottom:20px\">{{title}}</h4>\n</ng-container>\n<div #container></div>\n",
+                        template: "<ng-container *nzStringTemplateOutlet=\"title\">\n  <h4 style=\"margin-bottom: 20px;\">{{ title }}</h4>\n</ng-container>\n<div #container></div>\n",
                         host: {
                             '[style.height.px]': 'height',
                         },

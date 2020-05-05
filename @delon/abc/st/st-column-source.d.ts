@@ -23,12 +23,7 @@ export declare class STColumnSource {
     private filterCoerce;
     private restoreRender;
     private widgetCoerce;
-    private genHeaders;
-    private cleanCond;
-    process(list: STColumn[]): {
-        columns: STColumn[];
-        headers: STColumn[][];
-    };
+    process(list: STColumn[]): STColumn[];
     restoreAllRender(columns: STColumn[]): void;
     updateDefault(filter: STColumnFilter): this;
     cleanFilter(col: STColumn): this;

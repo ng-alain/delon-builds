@@ -316,10 +316,6 @@ export interface STColumn {
      */
     statistical?: STStatisticalType | STStatistical;
     widget?: STWidgetColumn;
-    /**
-     * 分组表头
-     */
-    children?: STColumn[];
     /** @ignore internal property */
     _sort?: STSortMap;
     [key: string]: any;
@@ -880,11 +876,3 @@ export interface STError {
     error?: any;
 }
 export declare type STRowClassName = (record: STData, index: number) => string;
-export interface STColumnGroupType {
-    column: STColumn;
-    colStart: number;
-    colEnd?: number;
-    colSpan?: number;
-    rowSpan?: number;
-    hasSubColumns?: boolean;
-}
