@@ -678,6 +678,59 @@ SessionStorageStore = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: src/store/cookie-storage.service.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * `cookie` storage, muse be install [js-cookie](https://github.com/js-cookie/js-cookie) libary and import `"node_modules/js-cookie/src/js.cookie.js"` in `angular.json`
+ */
+var  /**
+ * `cookie` storage, muse be install [js-cookie](https://github.com/js-cookie/js-cookie) libary and import `"node_modules/js-cookie/src/js.cookie.js"` in `angular.json`
+ */
+CookieStorageStore = /** @class */ (function () {
+    function CookieStorageStore() {
+    }
+    /**
+     * @param {?} key
+     * @return {?}
+     */
+    CookieStorageStore.prototype.get = /**
+     * @param {?} key
+     * @return {?}
+     */
+    function (key) {
+        return JSON.parse(Cookies.get(key) || '{}') || {};
+    };
+    /**
+     * @param {?} key
+     * @param {?} value
+     * @return {?}
+     */
+    CookieStorageStore.prototype.set = /**
+     * @param {?} key
+     * @param {?} value
+     * @return {?}
+     */
+    function (key, value) {
+        Cookies.set(key, JSON.stringify(value));
+        return true;
+    };
+    /**
+     * @param {?} key
+     * @return {?}
+     */
+    CookieStorageStore.prototype.remove = /**
+     * @param {?} key
+     * @return {?}
+     */
+    function (key) {
+        Cookies.remove(key);
+    };
+    return CookieStorageStore;
+}());
+
+/**
+ * @fileoverview added by tsickle
  * Generated from: src/token/helper.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
@@ -1446,5 +1499,5 @@ var DelonAuthModule = /** @class */ (function () {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { AUTH_DEFAULT_CONFIG, BaseInterceptor, DA_SERVICE_TOKEN, DA_SERVICE_TOKEN_FACTORY, DA_STORE_TOKEN, DA_STORE_TOKEN_LOCAL_FACTORY, DelonAuthModule, JWTGuard, JWTInterceptor, JWTTokenModel, LocalStorageStore, MemoryStore, SessionStorageStore, SimpleGuard, SimpleInterceptor, SimpleTokenModel, SocialService, TokenService, mergeConfig, urlBase64Decode };
+export { AUTH_DEFAULT_CONFIG, BaseInterceptor, CookieStorageStore, DA_SERVICE_TOKEN, DA_SERVICE_TOKEN_FACTORY, DA_STORE_TOKEN, DA_STORE_TOKEN_LOCAL_FACTORY, DelonAuthModule, JWTGuard, JWTInterceptor, JWTTokenModel, LocalStorageStore, MemoryStore, SessionStorageStore, SimpleGuard, SimpleInterceptor, SimpleTokenModel, SocialService, TokenService, mergeConfig, urlBase64Decode };
 //# sourceMappingURL=auth.js.map

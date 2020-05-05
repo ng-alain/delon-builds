@@ -539,6 +539,40 @@ class SessionStorageStore {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: src/store/cookie-storage.service.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * `cookie` storage, muse be install [js-cookie](https://github.com/js-cookie/js-cookie) libary and import `"node_modules/js-cookie/src/js.cookie.js"` in `angular.json`
+ */
+class CookieStorageStore {
+    /**
+     * @param {?} key
+     * @return {?}
+     */
+    get(key) {
+        return JSON.parse(Cookies.get(key) || '{}') || {};
+    }
+    /**
+     * @param {?} key
+     * @param {?} value
+     * @return {?}
+     */
+    set(key, value) {
+        Cookies.set(key, JSON.stringify(value));
+        return true;
+    }
+    /**
+     * @param {?} key
+     * @return {?}
+     */
+    remove(key) {
+        Cookies.remove(key);
+    }
+}
+
+/**
+ * @fileoverview added by tsickle
  * Generated from: src/token/helper.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
@@ -1177,5 +1211,5 @@ DelonAuthModule.decorators = [
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { AUTH_DEFAULT_CONFIG, BaseInterceptor, DA_SERVICE_TOKEN, DA_SERVICE_TOKEN_FACTORY, DA_STORE_TOKEN, DA_STORE_TOKEN_LOCAL_FACTORY, DelonAuthModule, JWTGuard, JWTInterceptor, JWTTokenModel, LocalStorageStore, MemoryStore, SessionStorageStore, SimpleGuard, SimpleInterceptor, SimpleTokenModel, SocialService, TokenService, mergeConfig, urlBase64Decode };
+export { AUTH_DEFAULT_CONFIG, BaseInterceptor, CookieStorageStore, DA_SERVICE_TOKEN, DA_SERVICE_TOKEN_FACTORY, DA_STORE_TOKEN, DA_STORE_TOKEN_LOCAL_FACTORY, DelonAuthModule, JWTGuard, JWTInterceptor, JWTTokenModel, LocalStorageStore, MemoryStore, SessionStorageStore, SimpleGuard, SimpleInterceptor, SimpleTokenModel, SocialService, TokenService, mergeConfig, urlBase64Decode };
 //# sourceMappingURL=auth.js.map
