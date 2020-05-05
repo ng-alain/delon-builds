@@ -24,6 +24,7 @@ export declare class STColumnSource {
     private restoreRender;
     private widgetCoerce;
     private genHeaders;
+    private cleanCond;
     process(list: STColumn[]): {
         columns: STColumn[];
         headers: STColumn[][];

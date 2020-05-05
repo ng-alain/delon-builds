@@ -1799,6 +1799,27 @@ class STColumnSource {
         return rows;
     }
     /**
+     * @private
+     * @param {?} list
+     * @return {?}
+     */
+    cleanCond(list) {
+        /** @type {?} */
+        const res = [];
+        /** @type {?} */
+        const copyList = deepCopy(list);
+        for (const item of copyList) {
+            if (item.iif && !item.iif(item)) {
+                continue;
+            }
+            if (this.acl && item.acl && !this.acl.can(item.acl)) {
+                continue;
+            }
+            res.push(item);
+        }
+        return res;
+    }
+    /**
      * @param {?} list
      * @return {?}
      */
@@ -1820,12 +1841,6 @@ class STColumnSource {
          * @return {?}
          */
         (item) => {
-            if (item.iif && !item.iif(item)) {
-                return null;
-            }
-            if (this.acl && item.acl && !this.acl.can(item.acl)) {
-                return null;
-            }
             // index
             if (item.index) {
                 if (!Array.isArray(item.index)) {
@@ -1914,20 +1929,16 @@ class STColumnSource {
          */
         (data) => {
             for (const item of data) {
-                /** @type {?} */
-                const resItem = processItem(item);
-                if (resItem == null)
-                    continue;
                 if (Array.isArray(item.children)) {
                     processList(item.children);
                 }
                 else {
-                    columns.push(resItem);
+                    columns.push(processItem(item));
                 }
             }
         });
         /** @type {?} */
-        const copyList = deepCopy(list);
+        const copyList = this.cleanCond(list);
         processList(copyList);
         if (checkboxCount > 1) {
             throw new Error(`[st]: just only one column checkbox`);
@@ -4006,7 +4017,6 @@ class STComponent {
         const res = (/** @type {?} */ (this)).columnSource.process((/** @type {?} */ (this)).columns);
         (/** @type {?} */ (this))._columns = res.columns;
         (/** @type {?} */ (this))._headers = res.headers;
-        console.log(res);
         return (/** @type {?} */ (this));
     }
     /**

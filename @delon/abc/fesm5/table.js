@@ -1907,6 +1907,43 @@ var STColumnSource = /** @class */ (function () {
         return rows;
     };
     /**
+     * @private
+     * @param {?} list
+     * @return {?}
+     */
+    STColumnSource.prototype.cleanCond = /**
+     * @private
+     * @param {?} list
+     * @return {?}
+     */
+    function (list) {
+        var e_3, _a;
+        /** @type {?} */
+        var res = [];
+        /** @type {?} */
+        var copyList = deepCopy(list);
+        try {
+            for (var copyList_1 = __values(copyList), copyList_1_1 = copyList_1.next(); !copyList_1_1.done; copyList_1_1 = copyList_1.next()) {
+                var item = copyList_1_1.value;
+                if (item.iif && !item.iif(item)) {
+                    continue;
+                }
+                if (this.acl && item.acl && !this.acl.can(item.acl)) {
+                    continue;
+                }
+                res.push(item);
+            }
+        }
+        catch (e_3_1) { e_3 = { error: e_3_1 }; }
+        finally {
+            try {
+                if (copyList_1_1 && !copyList_1_1.done && (_a = copyList_1.return)) _a.call(copyList_1);
+            }
+            finally { if (e_3) throw e_3.error; }
+        }
+        return res;
+    };
+    /**
      * @param {?} list
      * @return {?}
      */
@@ -1933,12 +1970,6 @@ var STColumnSource = /** @class */ (function () {
          * @return {?}
          */
         function (item) {
-            if (item.iif && !item.iif(item)) {
-                return null;
-            }
-            if (_this.acl && item.acl && !_this.acl.can(item.acl)) {
-                return null;
-            }
             // index
             if (item.index) {
                 if (!Array.isArray(item.index)) {
@@ -2026,32 +2057,28 @@ var STColumnSource = /** @class */ (function () {
          * @return {?}
          */
         function (data) {
-            var e_3, _a;
+            var e_4, _a;
             try {
                 for (var data_1 = __values(data), data_1_1 = data_1.next(); !data_1_1.done; data_1_1 = data_1.next()) {
                     var item = data_1_1.value;
-                    /** @type {?} */
-                    var resItem = processItem(item);
-                    if (resItem == null)
-                        continue;
                     if (Array.isArray(item.children)) {
                         processList(item.children);
                     }
                     else {
-                        columns.push(resItem);
+                        columns.push(processItem(item));
                     }
                 }
             }
-            catch (e_3_1) { e_3 = { error: e_3_1 }; }
+            catch (e_4_1) { e_4 = { error: e_4_1 }; }
             finally {
                 try {
                     if (data_1_1 && !data_1_1.done && (_a = data_1.return)) _a.call(data_1);
                 }
-                finally { if (e_3) throw e_3.error; }
+                finally { if (e_4) throw e_4.error; }
             }
         });
         /** @type {?} */
-        var copyList = deepCopy(list);
+        var copyList = this.cleanCond(list);
         processList(copyList);
         if (checkboxCount > 1) {
             throw new Error("[st]: just only one column checkbox");
@@ -4685,7 +4712,6 @@ var STComponent = /** @class */ (function () {
         var res = (/** @type {?} */ (this)).columnSource.process((/** @type {?} */ (this)).columns);
         (/** @type {?} */ (this))._columns = res.columns;
         (/** @type {?} */ (this))._headers = res.headers;
-        console.log(res);
         return (/** @type {?} */ (this));
     };
     /**
