@@ -535,12 +535,6 @@
             return qr.QRModule;
         }
     });
-    Object.defineProperty(exports, 'QRService', {
-        enumerable: true,
-        get: function () {
-            return qr.QRService;
-        }
-    });
     Object.defineProperty(exports, 'QR_DEFULAT_CONFIG', {
         enumerable: true,
         get: function () {

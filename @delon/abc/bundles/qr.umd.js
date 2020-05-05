@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util'), require('@angular/common')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/qr', ['exports', '@angular/core', '@delon/util', '@angular/common'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.qr = {}), global.ng.core, global.delon.util, global.ng.common));
-}(this, (function (exports, core, util, common) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util'), require('rxjs/operators'), require('@angular/common')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/qr', ['exports', '@angular/core', '@delon/util', 'rxjs/operators', '@angular/common'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.qr = {}), global.ng.core, global.delon.util, global.rxjs.operators, global.ng.common));
+}(this, (function (exports, core, util, operators, common) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -230,6 +230,7 @@
      */
     /** @type {?} */
     var QR_DEFULAT_CONFIG = {
+        lib: "https://cdn.bootcdn.net/ajax/libs/qrious/4.0.2/qrious.min.js",
         background: 'white',
         backgroundAlpha: 1,
         foreground: 'black',
@@ -242,64 +243,118 @@
 
     /**
      * @fileoverview added by tsickle
-     * Generated from: qr.service.ts
+     * Generated from: qr.component.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var QRService = /** @class */ (function () {
-        function QRService(configSrv) {
-            /**
-             * 背景透明级别，范围：`0-1` 之间
-             */
-            this.backgroundAlpha = 1;
-            configSrv.attach(this, 'qr', QR_DEFULAT_CONFIG);
-            this.qr = new QRious();
+    var QRComponent = /** @class */ (function () {
+        // #endregion
+        function QRComponent(cdr, configSrv, lazySrv) {
+            this.cdr = cdr;
+            this.lazySrv = lazySrv;
+            this.inited = false;
+            // tslint:disable-next-line:no-output-native
+            this.change = new core.EventEmitter();
+            this.delay = 100;
+            this.cog = configSrv.merge('qr', QR_DEFULAT_CONFIG);
+            Object.assign(this, this.cog);
         }
         /**
-         * 生成二维码，并返回Base64编码
-         *
-         * @param [value] 重新指定值
+         * @private
+         * @return {?}
          */
+        QRComponent.prototype.init = /**
+         * @private
+         * @return {?}
+         */
+        function () {
+            if (!this.inited) {
+                return;
+            }
+            if (this.qr == null) {
+                this.qr = new ((/** @type {?} */ (window))).QRious();
+            }
+            this.qr.set(this.option);
+            this.dataURL = this.qr.toDataURL();
+            this.change.emit(this.dataURL);
+            this.cdr.detectChanges();
+        };
         /**
-         * 生成二维码，并返回Base64编码
-         *
-         * @param {?=} value
+         * @private
          * @return {?}
          */
-        QRService.prototype.refresh = /**
-         * 生成二维码，并返回Base64编码
-         *
-         * @param {?=} value
+        QRComponent.prototype.initDelay = /**
+         * @private
          * @return {?}
          */
-        function (value) {
+        function () {
+            var _this = this;
+            this.inited = true;
+            setTimeout((/**
+             * @return {?}
+             */
+            function () { return _this.init(); }), this.delay);
+        };
+        /**
+         * @return {?}
+         */
+        QRComponent.prototype.ngAfterViewInit = /**
+         * @return {?}
+         */
+        function () {
+            var _this = this;
+            if (((/** @type {?} */ (window))).QRious) {
+                this.initDelay();
+                return;
+            }
             /** @type {?} */
-            var option = typeof value === 'object'
-                ? value
-                : {
-                    background: this.background,
-                    backgroundAlpha: this.backgroundAlpha,
-                    foreground: this.foreground,
-                    foregroundAlpha: this.foregroundAlpha,
-                    level: this.level,
-                    padding: this.padding,
-                    size: this.size,
-                    value: value || this.value,
-                };
-            option.value = this.toUtf8ByteArray(option.value);
-            this.qr.set(option);
-            return this.dataURL;
+            var url = (/** @type {?} */ (this.cog.lib));
+            this.lazy$ = this.lazySrv.change
+                .pipe(operators.filter((/**
+             * @param {?} ls
+             * @return {?}
+             */
+            function (ls) { return ls.length === 1 && ls[0].path === url && ls[0].status === 'ok'; })))
+                .subscribe((/**
+             * @return {?}
+             */
+            function () { return _this.initDelay(); }));
+            this.lazySrv.load(url);
+        };
+        /**
+         * @return {?}
+         */
+        QRComponent.prototype.ngOnChanges = /**
+         * @return {?}
+         */
+        function () {
+            /** @type {?} */
+            var option = {
+                background: this.background,
+                backgroundAlpha: this.backgroundAlpha,
+                foreground: this.foreground,
+                foregroundAlpha: this.foregroundAlpha,
+                level: this.level,
+                mime: this.mime,
+                padding: this.padding,
+                size: this.size,
+                value: this.toUtf8ByteArray(this.value),
+            };
+            this.option = option;
+            this.init();
         };
         /**
          * @private
          * @param {?} str
          * @return {?}
          */
-        QRService.prototype.toUtf8ByteArray = /**
+        QRComponent.prototype.toUtf8ByteArray = /**
          * @private
          * @param {?} str
          * @return {?}
          */
         function (str) {
+            if (str == null)
+                return '';
             str = encodeURI(str);
             /** @type {?} */
             var result = [];
@@ -318,125 +373,22 @@
              */
             function (v) { return String.fromCharCode(v); })).join('');
         };
-        Object.defineProperty(QRService.prototype, "dataURL", {
-            /**
-             * 返回当前二维码Base64编码
-             */
-            get: /**
-             * 返回当前二维码Base64编码
-             * @return {?}
-             */
-            function () {
-                return this.qr.toDataURL();
-            },
-            enumerable: true,
-            configurable: true
-        });
-        QRService.decorators = [
-            { type: core.Injectable, args: [{ providedIn: 'root' },] }
-        ];
-        /** @nocollapse */
-        QRService.ctorParameters = function () { return [
-            { type: util.AlainConfigService }
-        ]; };
-        /** @nocollapse */ QRService.ɵprov = core.ɵɵdefineInjectable({ factory: function QRService_Factory() { return new QRService(core.ɵɵinject(util.AlainConfigService)); }, token: QRService, providedIn: "root" });
-        return QRService;
-    }());
-    if (false) {
-        /**
-         * 当前qr实例
-         * @type {?}
-         */
-        QRService.prototype.qr;
-        /**
-         * 背景
-         * @type {?}
-         */
-        QRService.prototype.background;
-        /**
-         * 背景透明级别，范围：`0-1` 之间
-         * @type {?}
-         */
-        QRService.prototype.backgroundAlpha;
-        /**
-         * 前景
-         * @type {?}
-         */
-        QRService.prototype.foreground;
-        /**
-         * 前景透明级别，范围：`0-1` 之间
-         * @type {?}
-         */
-        QRService.prototype.foregroundAlpha;
-        /**
-         * 误差校正级别
-         * @type {?}
-         */
-        QRService.prototype.level;
-        /**
-         * 二维码输出图片MIME类型
-         * @type {?}
-         */
-        QRService.prototype.mime;
-        /**
-         * 内边距（单位：px）
-         * @type {?}
-         */
-        QRService.prototype.padding;
-        /**
-         * 大小（单位：px）
-         * @type {?}
-         */
-        QRService.prototype.size;
-        /**
-         * 值
-         * @type {?}
-         */
-        QRService.prototype.value;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: qr.component.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var QRComponent = /** @class */ (function () {
-        // #endregion
-        function QRComponent(srv, cdr, configSrv) {
-            this.srv = srv;
-            this.cdr = cdr;
-            // tslint:disable-next-line:no-output-native
-            this.change = new core.EventEmitter();
-            configSrv.attach(this, 'qr', QR_DEFULAT_CONFIG);
-        }
         /**
          * @return {?}
          */
-        QRComponent.prototype.ngOnChanges = /**
+        QRComponent.prototype.ngOnDestroy = /**
          * @return {?}
          */
         function () {
-            this.dataURL = this.srv.refresh({
-                background: this.background,
-                backgroundAlpha: this.backgroundAlpha,
-                foreground: this.foreground,
-                foregroundAlpha: this.foregroundAlpha,
-                level: this.level,
-                mime: this.mime,
-                padding: this.padding,
-                size: this.size,
-                value: this.value,
-            });
-            this.cdr.detectChanges();
-            this.change.emit(this.dataURL);
+            this.lazy$.unsubscribe();
         };
         QRComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'qr',
                         exportAs: 'qr',
-                        template: " <img class=\"qr__img\" src=\"{{ dataURL }}\" /> ",
+                        template: " <img style=\"max-width: 100%; max-height: 100%;\" [src]=\"dataURL\" /> ",
                         host: {
-                            '[class.qr]': 'true',
+                            '[style.display]': "'inline-block'",
                             '[style.height.px]': 'size',
                             '[style.width.px]': 'size',
                         },
@@ -447,9 +399,9 @@
         ];
         /** @nocollapse */
         QRComponent.ctorParameters = function () { return [
-            { type: QRService },
             { type: core.ChangeDetectorRef },
-            { type: util.AlainConfigService }
+            { type: util.AlainConfigService },
+            { type: util.LazyService }
         ]; };
         QRComponent.propDecorators = {
             background: [{ type: core.Input }],
@@ -461,7 +413,8 @@
             padding: [{ type: core.Input }],
             size: [{ type: core.Input }],
             value: [{ type: core.Input }],
-            change: [{ type: core.Output }]
+            change: [{ type: core.Output }],
+            delay: [{ type: core.Input }]
         };
         __decorate([
             util.InputNumber(),
@@ -471,9 +424,38 @@
             util.InputNumber(),
             __metadata("design:type", Number)
         ], QRComponent.prototype, "size", void 0);
+        __decorate([
+            util.InputNumber(),
+            __metadata("design:type", Object)
+        ], QRComponent.prototype, "delay", void 0);
         return QRComponent;
     }());
     if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        QRComponent.prototype.lazy$;
+        /**
+         * @type {?}
+         * @private
+         */
+        QRComponent.prototype.qr;
+        /**
+         * @type {?}
+         * @private
+         */
+        QRComponent.prototype.cog;
+        /**
+         * @type {?}
+         * @private
+         */
+        QRComponent.prototype.option;
+        /**
+         * @type {?}
+         * @private
+         */
+        QRComponent.prototype.inited;
         /** @type {?} */
         QRComponent.prototype.dataURL;
         /** @type {?} */
@@ -496,16 +478,32 @@
         QRComponent.prototype.value;
         /** @type {?} */
         QRComponent.prototype.change;
-        /**
-         * @type {?}
-         * @private
-         */
-        QRComponent.prototype.srv;
+        /** @type {?} */
+        QRComponent.prototype.delay;
         /**
          * @type {?}
          * @private
          */
         QRComponent.prototype.cdr;
+        /**
+         * @type {?}
+         * @private
+         */
+        QRComponent.prototype.lazySrv;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: qr.types.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /**
+     * @record
+     */
+    function QROptions() { }
+    if (false) {
+        /** @type {?} */
+        QROptions.prototype.value;
     }
 
     /**
@@ -530,7 +528,6 @@
 
     exports.QRComponent = QRComponent;
     exports.QRModule = QRModule;
-    exports.QRService = QRService;
     exports.QR_DEFULAT_CONFIG = QR_DEFULAT_CONFIG;
 
     Object.defineProperty(exports, '__esModule', { value: true });

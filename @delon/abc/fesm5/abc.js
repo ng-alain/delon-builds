@@ -49,7 +49,7 @@ export { LodopModule, LodopService } from '@delon/abc/lodop';
 import { QuickMenuModule } from '@delon/abc/quick-menu';
 export { QuickMenuComponent, QuickMenuModule } from '@delon/abc/quick-menu';
 import { QRModule } from '@delon/abc/qr';
-export { QRComponent, QRModule, QRService, QR_DEFULAT_CONFIG } from '@delon/abc/qr';
+export { QRComponent, QRModule, QR_DEFULAT_CONFIG } from '@delon/abc/qr';
 import { DatePickerModule } from '@delon/abc/date-picker';
 export { DatePickerModule, RangePickerComponent } from '@delon/abc/date-picker';
 import { LoadingModule } from '@delon/abc/loading';
