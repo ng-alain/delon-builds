@@ -34,6 +34,7 @@ var QRComponent = /** @class */ (function () {
         this.cdr = cdr;
         this.lazySrv = lazySrv;
         this.inited = false;
+        this.value = '';
         // tslint:disable-next-line:no-output-native
         this.change = new EventEmitter();
         this.cog = configSrv.merge('qr', QR_DEFULAT_CONFIG);
@@ -134,8 +135,6 @@ var QRComponent = /** @class */ (function () {
      * @return {?}
      */
     function (str) {
-        if (str == null)
-            return '';
         str = encodeURI(str);
         /** @type {?} */
         var result = [];
