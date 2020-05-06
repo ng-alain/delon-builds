@@ -287,10 +287,7 @@
                 .subscribe((/**
              * @return {?}
              */
-            function () {
-                _this._menus = null;
-                _this.refresh();
-            }));
+            function () { return _this.refresh(); }));
         }
         Object.defineProperty(PageHeaderComponent.prototype, "menus", {
             get: /**
@@ -298,11 +295,7 @@
              * @return {?}
              */
             function () {
-                if (this._menus) {
-                    return this._menus;
-                }
-                this._menus = this.menuSrv.getPathByUrl(this.router.url.split('?')[0], this.recursiveBreadcrumb);
-                return this._menus;
+                return this.menuSrv.getPathByUrl(this.router.url, this.recursiveBreadcrumb);
             },
             enumerable: true,
             configurable: true
@@ -430,6 +423,7 @@
         function () {
             this.refresh();
             this.inited = true;
+            console.log('ngoninit', this.recursiveBreadcrumb);
         };
         /**
          * @return {?}
@@ -560,11 +554,6 @@
          * @private
          */
         PageHeaderComponent.prototype.affix;
-        /**
-         * @type {?}
-         * @private
-         */
-        PageHeaderComponent.prototype._menus;
         /** @type {?} */
         PageHeaderComponent.prototype._titleVal;
         /** @type {?} */

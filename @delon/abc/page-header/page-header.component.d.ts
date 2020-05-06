@@ -19,7 +19,6 @@ export declare class PageHeaderComponent implements OnInit, OnChanges, AfterView
     private unsubscribe$;
     private conTpl;
     private affix;
-    private _menus;
     private get menus();
     _titleVal: string;
     paths: PageHeaderPath[];

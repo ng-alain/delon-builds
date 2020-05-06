@@ -86,21 +86,14 @@ class PageHeaderComponent {
             .subscribe((/**
          * @return {?}
          */
-        () => {
-            this._menus = null;
-            this.refresh();
-        }));
+        () => this.refresh()));
     }
     /**
      * @private
      * @return {?}
      */
     get menus() {
-        if (this._menus) {
-            return this._menus;
-        }
-        this._menus = this.menuSrv.getPathByUrl(this.router.url.split('?')[0], this.recursiveBreadcrumb);
-        return this._menus;
+        return this.menuSrv.getPathByUrl(this.router.url, this.recursiveBreadcrumb);
     }
     /**
      * @param {?} value
@@ -201,6 +194,7 @@ class PageHeaderComponent {
     ngOnInit() {
         this.refresh();
         this.inited = true;
+        console.log('ngoninit', this.recursiveBreadcrumb);
     }
     /**
      * @return {?}
@@ -321,11 +315,6 @@ if (false) {
      * @private
      */
     PageHeaderComponent.prototype.affix;
-    /**
-     * @type {?}
-     * @private
-     */
-    PageHeaderComponent.prototype._menus;
     /** @type {?} */
     PageHeaderComponent.prototype._titleVal;
     /** @type {?} */
