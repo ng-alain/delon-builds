@@ -4946,6 +4946,7 @@
         __extends(ObjectWidget, _super);
         function ObjectWidget() {
             var _this = _super !== null && _super.apply(this, arguments) || this;
+            _this.type = 'default';
             _this.list = [];
             return _this;
         }
@@ -4958,8 +4959,9 @@
         function () {
             var e_1, _a;
             var _b = this, formProperty = _b.formProperty, ui = _b.ui;
-            var grid = ui.grid, showTitle = ui.showTitle;
-            if (!formProperty.isRoot() && !(formProperty.parent instanceof ArrayProperty) && showTitle === true) {
+            var grid = ui.grid, showTitle = ui.showTitle, type = ui.type;
+            this.type = type !== null && type !== void 0 ? type : 'default';
+            if (this.type === 'card' || (!formProperty.isRoot() && !(formProperty.parent instanceof ArrayProperty) && showTitle === true)) {
                 this.title = (/** @type {?} */ (this.schema.title));
             }
             this.grid = (/** @type {?} */ (grid));
@@ -4992,7 +4994,7 @@
         ObjectWidget.decorators = [
             { type: core.Component, args: [{
                         selector: 'sf-object',
-                        template: "<div *ngIf=\"title\" class=\"sf__title\">{{ title }}</div>\n<ng-container *ngIf=\"grid; else noGrid\">\n  <div nz-row [nzGutter]=\"grid.gutter\">\n    <ng-container *ngFor=\"let i of list\">\n      <ng-container *ngIf=\"i.property.visible && i.show\">\n        <div\n          nz-col\n          [nzSpan]=\"i.grid.span\"\n          [nzOffset]=\"i.grid.offset\"\n          [nzXs]=\"i.grid.xs\"\n          [nzSm]=\"i.grid.sm\"\n          [nzMd]=\"i.grid.md\"\n          [nzLg]=\"i.grid.lg\"\n          [nzXl]=\"i.grid.xl\"\n          [nzXXl]=\"i.grid.xxl\"\n        >\n          <sf-item [formProperty]=\"i.property\" [fixed-label]=\"i.spanLabelFixed\"></sf-item>\n        </div>\n      </ng-container>\n    </ng-container>\n  </div>\n</ng-container>\n<ng-template #noGrid>\n  <ng-container *ngFor=\"let i of list\">\n    <ng-container *ngIf=\"i.property.visible && i.show\">\n      <sf-item [formProperty]=\"i.property\" [fixed-label]=\"i.spanLabelFixed\"></sf-item>\n    </ng-container>\n  </ng-container>\n</ng-template>\n",
+                        template: "<ng-template #default let-noTitle>\n  <div *ngIf=\"!noTitle && title\" class=\"sf__title\">{{ title }}</div>\n  <ng-container *ngIf=\"grid; else noGrid\">\n    <div nz-row [nzGutter]=\"grid.gutter\">\n      <ng-container *ngFor=\"let i of list\">\n        <ng-container *ngIf=\"i.property.visible && i.show\">\n          <div\n            nz-col\n            [nzSpan]=\"i.grid.span\"\n            [nzOffset]=\"i.grid.offset\"\n            [nzXs]=\"i.grid.xs\"\n            [nzSm]=\"i.grid.sm\"\n            [nzMd]=\"i.grid.md\"\n            [nzLg]=\"i.grid.lg\"\n            [nzXl]=\"i.grid.xl\"\n            [nzXXl]=\"i.grid.xxl\"\n          >\n            <sf-item [formProperty]=\"i.property\" [fixed-label]=\"i.spanLabelFixed\"></sf-item>\n          </div>\n        </ng-container>\n      </ng-container>\n    </div>\n  </ng-container>\n  <ng-template #noGrid>\n    <ng-container *ngFor=\"let i of list\">\n      <ng-container *ngIf=\"i.property.visible && i.show\">\n        <sf-item [formProperty]=\"i.property\" [fixed-label]=\"i.spanLabelFixed\"></sf-item>\n      </ng-container>\n    </ng-container>\n  </ng-template>\n</ng-template>\n<nz-card\n  *ngIf=\"type === 'card'; else default\"\n  [nzTitle]=\"title\"\n  [nzExtra]=\"ui.cardExtra\"\n  [nzSize]=\"ui.cardSize || 'small'\"\n  [nzActions]=\"ui.cardActions || []\"\n  [nzBodyStyle]=\"cardBodyStyle\"\n  [nzBordered]=\"cardBordered || true\"\n  class=\"sf__object-card\"\n>\n  <ng-template [ngTemplateOutlet]=\"default\" [ngTemplateOutletContext]=\"{ $implicit: true }\"></ng-template>\n</nz-card>\n",
                         preserveWhitespaces: false,
                         encapsulation: core.ViewEncapsulation.None
                     }] }
@@ -5002,6 +5004,8 @@
     if (false) {
         /** @type {?} */
         ObjectWidget.prototype.grid;
+        /** @type {?} */
+        ObjectWidget.prototype.type;
         /** @type {?} */
         ObjectWidget.prototype.list;
         /** @type {?} */
@@ -7079,6 +7083,38 @@
          * @type {?|undefined}
          */
         SFObjectWidgetSchema.prototype.showTitle;
+        /**
+         * 渲染类型
+         * - `card` 使用 `nz-card` 渲染
+         * - `default` 使用默认渲染
+         * @type {?|undefined}
+         */
+        SFObjectWidgetSchema.prototype.type;
+        /**
+         * 等同 `nzSize` 属性，默认：`small`
+         * @type {?|undefined}
+         */
+        SFObjectWidgetSchema.prototype.cardSize;
+        /**
+         * 等同 `nzBodyStyle` 属性
+         * @type {?|undefined}
+         */
+        SFObjectWidgetSchema.prototype.cardBodyStyle;
+        /**
+         * 等同 `nzBordered` 属性，默认：`true`
+         * @type {?|undefined}
+         */
+        SFObjectWidgetSchema.prototype.cardBordered;
+        /**
+         * 等同 `nzExtra` 属性
+         * @type {?|undefined}
+         */
+        SFObjectWidgetSchema.prototype.cardExtra;
+        /**
+         * 等同 `nzActions` 属性
+         * @type {?|undefined}
+         */
+        SFObjectWidgetSchema.prototype.cardActions;
     }
 
     /**

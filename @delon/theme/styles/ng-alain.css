@@ -25682,6 +25682,9 @@ fieldset {
   font-weight: 700;
   text-align: left;
 }
+.sf__object-card .ant-card-body {
+  padding-left: 0;
+}
 .sf__array-add {
   margin-right: 16px;
 }
