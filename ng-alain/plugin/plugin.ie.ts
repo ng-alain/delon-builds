@@ -42,7 +42,7 @@ function setPackage(host: Tree, options: PluginOptions) {
   // libs
   (options.type === 'add' ? addPackageToPackageJson : removePackageFromPackageJson)(
     host,
-    ['classlist.js@DEP-9.1.0', 'web-animations-js@DEP-9.1.0'],
+    ['classlist.js@DEP-9.2.0', 'web-animations-js@DEP-9.2.0'],
     'dependencies',
   );
   // scripts
