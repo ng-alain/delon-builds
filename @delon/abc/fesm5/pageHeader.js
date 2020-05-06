@@ -212,7 +212,6 @@ var PageHeaderComponent = /** @class */ (function () {
     function () {
         this.refresh();
         this.inited = true;
-        console.log('ngoninit', this.recursiveBreadcrumb);
     };
     /**
      * @return {?}

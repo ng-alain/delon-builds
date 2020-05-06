@@ -194,7 +194,6 @@ class PageHeaderComponent {
     ngOnInit() {
         this.refresh();
         this.inited = true;
-        console.log('ngoninit', this.recursiveBreadcrumb);
     }
     /**
      * @return {?}
