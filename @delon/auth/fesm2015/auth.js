@@ -46,6 +46,11 @@ function DA_STORE_TOKEN_LOCAL_FACTORY() {
 }
 /**
  * `localStorage` storage, **not lost after closing the browser**.
+ *
+ * ```ts
+ * // global-config.module.ts
+ * { provide: DA_STORE_TOKEN, useClass: LocalStorageStore }
+ * ```
  */
 class LocalStorageStore {
     /**
@@ -152,7 +157,7 @@ class TokenService {
         return this._options;
     }
     /**
-     * 设置 Token 信息
+     * 设置 Token 信息，当用户 Token 发生变动时都需要调用此方法重新刷新
      * @param {?} data
      * @return {?}
      */
@@ -171,7 +176,7 @@ class TokenService {
         return type ? ((/** @type {?} */ (Object.assign(new type(), data)))) : ((/** @type {?} */ (data)));
     }
     /**
-     * 清除 Token 信息，例如：
+     * 清除 Token 信息，当用户退出登录时调用。
      * ```
      * // 清除所有 Token 信息
      * tokenService.clear();
@@ -466,6 +471,11 @@ if (false) {
  */
 /**
  * 内存存储，关掉浏览器标签后**丢失**。
+ *
+ * ```ts
+ * // global-config.module.ts
+ * { provide: DA_STORE_TOKEN, useClass: MemoryStore }
+ * ```
  */
 class MemoryStore {
     constructor() {
@@ -510,6 +520,11 @@ if (false) {
  */
 /**
  * `sessionStorage` storage, **lost after closing the browser**.
+ *
+ * ```ts
+ * // global-config.module.ts
+ * { provide: DA_STORE_TOKEN, useClass: SessionStorageStore }
+ * ```
  */
 class SessionStorageStore {
     /**
@@ -544,6 +559,11 @@ class SessionStorageStore {
  */
 /**
  * `cookie` storage, muse be install [js-cookie](https://github.com/js-cookie/js-cookie) libary and import `"node_modules/js-cookie/src/js.cookie.js"` in `angular.json`
+ *
+ * ```ts
+ * // global-config.module.ts
+ * { provide: DA_STORE_TOKEN, useClass: CookieStorageStore }
+ * ```
  */
 class CookieStorageStore {
     /**
@@ -841,6 +861,49 @@ function b64DecodeUnicode(str) {
  * Generated from: src/token/jwt/jwt.model.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function JWT() { }
+if (false) {
+    /**
+     * Issuerd
+     * @type {?}
+     */
+    JWT.prototype.iss;
+    /**
+     * Issued At
+     * @type {?}
+     */
+    JWT.prototype.iat;
+    /**
+     * Subject
+     * @type {?}
+     */
+    JWT.prototype.sub;
+    /**
+     * Expiration Time
+     * @type {?}
+     */
+    JWT.prototype.exp;
+    /**
+     * Audience
+     * @type {?}
+     */
+    JWT.prototype.aud;
+    /**
+     * Not Before
+     * @type {?}
+     */
+    JWT.prototype.nbf;
+    /**
+     * JWT ID
+     * @type {?}
+     */
+    JWT.prototype.jti;
+    /* Skipping unhandled member: [key: string]: any;*/
+    /* Skipping unhandled member: [key: number]: any;*/
+}
 class JWTTokenModel {
     /**
      * 获取载荷信息
@@ -856,12 +919,10 @@ class JWTTokenModel {
         return JSON.parse(decoded);
     }
     /**
-     * 检查Token是否过期，`payload` 必须包含 `exp` 时有效
-     *
-     * @param {?=} offsetSeconds 偏移量
+     * 获取过期时间戳（单位：ms）
      * @return {?}
      */
-    isExpired(offsetSeconds = 0) {
+    get exp() {
         /** @type {?} */
         const decoded = this.payload;
         if (!decoded.hasOwnProperty('exp'))
@@ -869,7 +930,20 @@ class JWTTokenModel {
         /** @type {?} */
         const date = new Date(0);
         date.setUTCSeconds(decoded.exp);
-        return !(date.valueOf() > new Date().valueOf() + offsetSeconds * 1000);
+        return date.valueOf();
+    }
+    /**
+     * 检查Token是否过期，当`payload` 包含 `exp` 字段时有效，若无 `exp` 字段直接返回 `null`
+     *
+     * @param {?=} offsetSeconds 偏移量
+     * @return {?}
+     */
+    isExpired(offsetSeconds = 0) {
+        /** @type {?} */
+        const exp = this.exp;
+        if (exp == null)
+            return null;
+        return !(exp > new Date().valueOf() + offsetSeconds * 1000);
     }
 }
 if (false) {
@@ -885,6 +959,11 @@ if (false) {
  */
 /**
  * JWT 拦截器
+ *
+ * ```
+ * // app.module.ts
+ * { provide: HTTP_INTERCEPTORS, useClass: JWTInterceptor, multi: true}
+ * ```
  */
 class JWTInterceptor extends BaseInterceptor {
     /**
@@ -924,7 +1003,14 @@ JWTInterceptor.decorators = [
  * data: {
  *  path: 'home',
  *  canActivate: [ JWTGuard ]
- * }
+ * },
+ * {
+ *   path: 'my',
+ *   canActivateChild: [JWTGuard],
+ *   children: [
+ *     { path: 'profile', component: MockComponent }
+ *   ],
+ * },
  * ```
  */
 class JWTGuard {
@@ -1033,6 +1119,11 @@ if (false) {
  */
 /**
  * Simple 拦截器
+ *
+ * ```
+ * // app.module.ts
+ * { provide: HTTP_INTERCEPTORS, useClass: SimpleInterceptor, multi: true}
+ * ```
  */
 class SimpleInterceptor extends BaseInterceptor {
     /**
@@ -1099,7 +1190,14 @@ SimpleInterceptor.decorators = [
  * data: {
  *  path: 'home',
  *  canActivate: [ SimpleGuard ]
- * }
+ * },
+ * {
+ *   path: 'my',
+ *   canActivateChild: [SimpleGuard],
+ *   children: [
+ *     { path: 'profile', component: MockComponent }
+ *   ],
+ * },
  * ```
  */
 class SimpleGuard {

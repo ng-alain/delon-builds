@@ -47,9 +47,19 @@ function DA_STORE_TOKEN_LOCAL_FACTORY() {
 }
 /**
  * `localStorage` storage, **not lost after closing the browser**.
+ *
+ * ```ts
+ * // global-config.module.ts
+ * { provide: DA_STORE_TOKEN, useClass: LocalStorageStore }
+ * ```
  */
 var  /**
  * `localStorage` storage, **not lost after closing the browser**.
+ *
+ * ```ts
+ * // global-config.module.ts
+ * { provide: DA_STORE_TOKEN, useClass: LocalStorageStore }
+ * ```
  */
 LocalStorageStore = /** @class */ (function () {
     function LocalStorageStore() {
@@ -186,15 +196,15 @@ var TokenService = /** @class */ (function () {
         configurable: true
     });
     /**
-     * 设置 Token 信息
+     * 设置 Token 信息，当用户 Token 发生变动时都需要调用此方法重新刷新
      */
     /**
-     * 设置 Token 信息
+     * 设置 Token 信息，当用户 Token 发生变动时都需要调用此方法重新刷新
      * @param {?} data
      * @return {?}
      */
     TokenService.prototype.set = /**
-     * 设置 Token 信息
+     * 设置 Token 信息，当用户 Token 发生变动时都需要调用此方法重新刷新
      * @param {?} data
      * @return {?}
      */
@@ -218,7 +228,7 @@ var TokenService = /** @class */ (function () {
         return type ? ((/** @type {?} */ (Object.assign(new type(), data)))) : ((/** @type {?} */ (data)));
     };
     /**
-     * 清除 Token 信息，例如：
+     * 清除 Token 信息，当用户退出登录时调用。
      * ```
      * // 清除所有 Token 信息
      * tokenService.clear();
@@ -227,7 +237,7 @@ var TokenService = /** @class */ (function () {
      * ```
      */
     /**
-     * 清除 Token 信息，例如：
+     * 清除 Token 信息，当用户退出登录时调用。
      * ```
      * // 清除所有 Token 信息
      * tokenService.clear();
@@ -238,7 +248,7 @@ var TokenService = /** @class */ (function () {
      * @return {?}
      */
     TokenService.prototype.clear = /**
-     * 清除 Token 信息，例如：
+     * 清除 Token 信息，当用户退出登录时调用。
      * ```
      * // 清除所有 Token 信息
      * tokenService.clear();
@@ -569,9 +579,19 @@ if (false) {
  */
 /**
  * 内存存储，关掉浏览器标签后**丢失**。
+ *
+ * ```ts
+ * // global-config.module.ts
+ * { provide: DA_STORE_TOKEN, useClass: MemoryStore }
+ * ```
  */
 var  /**
  * 内存存储，关掉浏览器标签后**丢失**。
+ *
+ * ```ts
+ * // global-config.module.ts
+ * { provide: DA_STORE_TOKEN, useClass: MemoryStore }
+ * ```
  */
 MemoryStore = /** @class */ (function () {
     function MemoryStore() {
@@ -630,9 +650,19 @@ if (false) {
  */
 /**
  * `sessionStorage` storage, **lost after closing the browser**.
+ *
+ * ```ts
+ * // global-config.module.ts
+ * { provide: DA_STORE_TOKEN, useClass: SessionStorageStore }
+ * ```
  */
 var  /**
  * `sessionStorage` storage, **lost after closing the browser**.
+ *
+ * ```ts
+ * // global-config.module.ts
+ * { provide: DA_STORE_TOKEN, useClass: SessionStorageStore }
+ * ```
  */
 SessionStorageStore = /** @class */ (function () {
     function SessionStorageStore() {
@@ -683,9 +713,19 @@ SessionStorageStore = /** @class */ (function () {
  */
 /**
  * `cookie` storage, muse be install [js-cookie](https://github.com/js-cookie/js-cookie) libary and import `"node_modules/js-cookie/src/js.cookie.js"` in `angular.json`
+ *
+ * ```ts
+ * // global-config.module.ts
+ * { provide: DA_STORE_TOKEN, useClass: CookieStorageStore }
+ * ```
  */
 var  /**
  * `cookie` storage, muse be install [js-cookie](https://github.com/js-cookie/js-cookie) libary and import `"node_modules/js-cookie/src/js.cookie.js"` in `angular.json`
+ *
+ * ```ts
+ * // global-config.module.ts
+ * { provide: DA_STORE_TOKEN, useClass: CookieStorageStore }
+ * ```
  */
 CookieStorageStore = /** @class */ (function () {
     function CookieStorageStore() {
@@ -1014,6 +1054,49 @@ function b64DecodeUnicode(str) {
  * Generated from: src/token/jwt/jwt.model.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function JWT() { }
+if (false) {
+    /**
+     * Issuerd
+     * @type {?}
+     */
+    JWT.prototype.iss;
+    /**
+     * Issued At
+     * @type {?}
+     */
+    JWT.prototype.iat;
+    /**
+     * Subject
+     * @type {?}
+     */
+    JWT.prototype.sub;
+    /**
+     * Expiration Time
+     * @type {?}
+     */
+    JWT.prototype.exp;
+    /**
+     * Audience
+     * @type {?}
+     */
+    JWT.prototype.aud;
+    /**
+     * Not Before
+     * @type {?}
+     */
+    JWT.prototype.nbf;
+    /**
+     * JWT ID
+     * @type {?}
+     */
+    JWT.prototype.jti;
+    /* Skipping unhandled member: [key: string]: any;*/
+    /* Skipping unhandled member: [key: number]: any;*/
+}
 var JWTTokenModel = /** @class */ (function () {
     function JWTTokenModel() {
     }
@@ -1037,19 +1120,40 @@ var JWTTokenModel = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
+    Object.defineProperty(JWTTokenModel.prototype, "exp", {
+        /**
+         * 获取过期时间戳（单位：ms）
+         */
+        get: /**
+         * 获取过期时间戳（单位：ms）
+         * @return {?}
+         */
+        function () {
+            /** @type {?} */
+            var decoded = this.payload;
+            if (!decoded.hasOwnProperty('exp'))
+                return null;
+            /** @type {?} */
+            var date = new Date(0);
+            date.setUTCSeconds(decoded.exp);
+            return date.valueOf();
+        },
+        enumerable: true,
+        configurable: true
+    });
     /**
-     * 检查Token是否过期，`payload` 必须包含 `exp` 时有效
+     * 检查Token是否过期，当`payload` 包含 `exp` 字段时有效，若无 `exp` 字段直接返回 `null`
      *
      * @param offsetSeconds 偏移量
      */
     /**
-     * 检查Token是否过期，`payload` 必须包含 `exp` 时有效
+     * 检查Token是否过期，当`payload` 包含 `exp` 字段时有效，若无 `exp` 字段直接返回 `null`
      *
      * @param {?=} offsetSeconds 偏移量
      * @return {?}
      */
     JWTTokenModel.prototype.isExpired = /**
-     * 检查Token是否过期，`payload` 必须包含 `exp` 时有效
+     * 检查Token是否过期，当`payload` 包含 `exp` 字段时有效，若无 `exp` 字段直接返回 `null`
      *
      * @param {?=} offsetSeconds 偏移量
      * @return {?}
@@ -1057,13 +1161,10 @@ var JWTTokenModel = /** @class */ (function () {
     function (offsetSeconds) {
         if (offsetSeconds === void 0) { offsetSeconds = 0; }
         /** @type {?} */
-        var decoded = this.payload;
-        if (!decoded.hasOwnProperty('exp'))
+        var exp = this.exp;
+        if (exp == null)
             return null;
-        /** @type {?} */
-        var date = new Date(0);
-        date.setUTCSeconds(decoded.exp);
-        return !(date.valueOf() > new Date().valueOf() + offsetSeconds * 1000);
+        return !(exp > new Date().valueOf() + offsetSeconds * 1000);
     };
     return JWTTokenModel;
 }());
@@ -1080,6 +1181,11 @@ if (false) {
  */
 /**
  * JWT 拦截器
+ *
+ * ```
+ * // app.module.ts
+ * { provide: HTTP_INTERCEPTORS, useClass: JWTInterceptor, multi: true}
+ * ```
  */
 var JWTInterceptor = /** @class */ (function (_super) {
     __extends(JWTInterceptor, _super);
@@ -1133,7 +1239,14 @@ var JWTInterceptor = /** @class */ (function (_super) {
  * data: {
  *  path: 'home',
  *  canActivate: [ JWTGuard ]
- * }
+ * },
+ * {
+ *   path: 'my',
+ *   canActivateChild: [JWTGuard],
+ *   children: [
+ *     { path: 'profile', component: MockComponent }
+ *   ],
+ * },
  * ```
  */
 var JWTGuard = /** @class */ (function () {
@@ -1274,6 +1387,11 @@ if (false) {
  */
 /**
  * Simple 拦截器
+ *
+ * ```
+ * // app.module.ts
+ * { provide: HTTP_INTERCEPTORS, useClass: SimpleInterceptor, multi: true}
+ * ```
  */
 var SimpleInterceptor = /** @class */ (function (_super) {
     __extends(SimpleInterceptor, _super);
@@ -1355,7 +1473,14 @@ var SimpleInterceptor = /** @class */ (function (_super) {
  * data: {
  *  path: 'home',
  *  canActivate: [ SimpleGuard ]
- * }
+ * },
+ * {
+ *   path: 'my',
+ *   canActivateChild: [SimpleGuard],
+ *   children: [
+ *     { path: 'profile', component: MockComponent }
+ *   ],
+ * },
  * ```
  */
 var SimpleGuard = /** @class */ (function () {

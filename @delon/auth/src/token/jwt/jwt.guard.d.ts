@@ -8,7 +8,14 @@ import { ITokenService } from '../interface';
  * data: {
  *  path: 'home',
  *  canActivate: [ JWTGuard ]
- * }
+ * },
+ * {
+ *   path: 'my',
+ *   canActivateChild: [JWTGuard],
+ *   children: [
+ *     { path: 'profile', component: MockComponent }
+ *   ],
+ * },
  * ```
  */
 export declare class JWTGuard implements CanActivate, CanActivateChild, CanLoad {

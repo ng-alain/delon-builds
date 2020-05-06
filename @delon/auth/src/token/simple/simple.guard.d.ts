@@ -8,7 +8,14 @@ import { ITokenService } from '../interface';
  * data: {
  *  path: 'home',
  *  canActivate: [ SimpleGuard ]
- * }
+ * },
+ * {
+ *   path: 'my',
+ *   canActivateChild: [SimpleGuard],
+ *   children: [
+ *     { path: 'profile', component: MockComponent }
+ *   ],
+ * },
  * ```
  */
 export declare class SimpleGuard implements CanActivate, CanActivateChild, CanLoad {

@@ -22,7 +22,7 @@ export declare class TokenService implements ITokenService {
     get referrer(): AuthReferrer;
     get options(): AlainAuthConfig;
     /**
-     * 设置 Token 信息
+     * 设置 Token 信息，当用户 Token 发生变动时都需要调用此方法重新刷新
      */
     set(data: ITokenModel): boolean;
     /**
@@ -38,7 +38,7 @@ export declare class TokenService implements ITokenService {
      */
     get(type?: any): any;
     /**
-     * 清除 Token 信息，例如：
+     * 清除 Token 信息，当用户退出登录时调用。
      * ```
      * // 清除所有 Token 信息
      * tokenService.clear();
