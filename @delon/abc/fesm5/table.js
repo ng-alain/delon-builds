@@ -301,6 +301,7 @@ if (false) {
      * - `link` 链接，务必指定 `click`
      * - `badge` [徽标](https://ng.ant.design/components/badge/zh)，务必指定 `badge` 参数配置徽标对应值
      * - `tag` [标签](https://ng.ant.design/components/tag/zh)，务必指定 `tag` 参数配置标签对应值
+     * - `enum` 枚举转换，务必指定 `enum` 参数配置标签对应值
      * - `img` 图片且居中(若 `className` 存在则优先)
      * - `number` 数字且居右(若 `className` 存在则优先)
      * - `currency` 货币且居右(若 `className` 存在则优先)
@@ -450,6 +451,8 @@ if (false) {
     STColumn.prototype.statistical;
     /** @type {?|undefined} */
     STColumn.prototype.widget;
+    /** @type {?|undefined} */
+    STColumn.prototype.enum;
     /**
      * 分组表头
      * @type {?|undefined}
@@ -2023,7 +2026,8 @@ var STColumnSource = /** @class */ (function () {
             }
             if ((item.type === 'link' && typeof item.click !== 'function') ||
                 (item.type === 'badge' && item.badge == null) ||
-                (item.type === 'tag' && item.tag == null)) {
+                (item.type === 'tag' && item.tag == null) ||
+                (item.type === 'enum' && item.enum == null)) {
                 ((/** @type {?} */ (item))).type = '';
             }
             // className
@@ -2508,6 +2512,9 @@ var STDataSource = /** @class */ (function () {
                 break;
             case 'yn':
                 text = this.ynPipe.transform(value === (/** @type {?} */ (col.yn)).truth, (/** @type {?} */ ((/** @type {?} */ (col.yn)).yes)), (/** @type {?} */ ((/** @type {?} */ (col.yn)).no)), (/** @type {?} */ ((/** @type {?} */ (col.yn)).mode)), false);
+                break;
+            case 'enum':
+                text = (/** @type {?} */ (col.enum))[value];
                 break;
             case 'tag':
             case 'badge':
