@@ -28339,7 +28339,7 @@ code {
 }
 .flex-center-between {
   display: flex;
-  justify-content: space-between;
+  align-content: space-between;
   align-items: center;
 }
 .float-none {
