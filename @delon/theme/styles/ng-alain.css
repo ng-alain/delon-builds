@@ -24989,7 +24989,7 @@ app-layout router-outlet + * {
 sf + st {
   margin-top: 16px;
 }
-.ant-btn + .ant-btn,
+.ant-btn + .ant-btn:not(.ant-btn-link),
 .ant-btn + nz-popconfirm,
 nz-popconfirm + .ant-btn,
 nz-popconfirm + nz-popconfirm,
@@ -28339,7 +28339,7 @@ code {
 }
 .flex-center-between {
   display: flex;
-  align-content: space-between;
+  justify-content: space-between;
   align-items: center;
 }
 .float-none {
