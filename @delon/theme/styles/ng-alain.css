@@ -29969,6 +29969,10 @@ body {
 .se__inline > .se__item {
   margin-right: 16px;
 }
+.se__inline > .se__item[col="1"] {
+  flex-basis: auto;
+  width: 100%;
+}
 .se__inline > .se__item:last-child {
   margin-right: 0;
 }
