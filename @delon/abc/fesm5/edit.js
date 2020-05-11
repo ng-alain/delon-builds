@@ -68,7 +68,17 @@ var SEContainerComponent = /** @class */ (function () {
         { type: Component, args: [{
                     selector: 'se-container, [se-container]',
                     exportAs: 'seContainer',
-                    template: "<div class=\"ant-row se__container se__{{ nzLayout }} se__{{ size }}\" [ngStyle]=\"{ 'margin-left.px': -(gutter / 2), 'margin-right.px': -(gutter / 2) }\">\n  <se-title *ngIf=\"title\">\n    <ng-container *nzStringTemplateOutlet=\"title\">{{ title }}</ng-container>\n  </se-title>\n  <ng-content></ng-content>\n</div>\n",
+                    template: "\n    <se-title *ngIf=\"title\">\n      <ng-container *nzStringTemplateOutlet=\"title\">{{ title }}</ng-container>\n    </se-title>\n    <ng-content></ng-content>\n  ",
+                    host: {
+                        '[class.ant-row]': "true",
+                        '[class.se__container]': "true",
+                        '[class.se__horizontal]': "nzLayout === 'horizontal'",
+                        '[class.se__vertical]': "nzLayout === 'vertical'",
+                        '[class.se__inline]': "nzLayout === 'inline'",
+                        '[class.se__compact]': "size === 'compact'",
+                        '[style.margin-left.px]': "-(gutter / 2)",
+                        '[style.margin-right.px]': "-(gutter / 2)",
+                    },
                     preserveWhitespaces: false,
                     changeDetection: ChangeDetectionStrategy.OnPush,
                     encapsulation: ViewEncapsulation.None

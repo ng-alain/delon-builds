@@ -29921,8 +29921,8 @@ body {
   flex: 1 0 0;
   width: 100%;
 }
-.se__compact .se__title,
-.se__compact .se__item {
+.se__compact > .se__title,
+.se__compact > .se__item {
   margin-bottom: 8px;
 }
 .se__compact .ant-form-item-extra {
@@ -29936,27 +29936,27 @@ body {
 .se__vertical .se__nolabel {
   display: none !important;
 }
-.se__horizontal .se__item {
+.se__horizontal > .se__item {
   display: flex;
 }
-.se__horizontal .se__item:last-child {
+.se__horizontal > .se__item:last-child {
   margin-bottom: 0;
 }
-.se__horizontal .se__item .se__label {
+.se__horizontal > .se__item .se__label {
   display: flex;
   justify-content: flex-end;
 }
-.se__horizontal .se__item .se__label-text {
+.se__horizontal > .se__item .se__label-text {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.se__horizontal .se__item .ant-form-item-required::before {
+.se__horizontal > .se__item .ant-form-item-required::before {
   line-height: inherit;
 }
-.se__horizontal .se__item .ant-form-item-label > label::after {
+.se__horizontal > .se__item .ant-form-item-label > label::after {
   margin-left: 4px;
 }
-.se__vertical .se__item {
+.se__vertical > .se__item {
   display: block;
   width: 100%;
 }
@@ -29966,18 +29966,21 @@ body {
   width: initial !important;
   text-align: left;
 }
-.se__inline .se__item:last-child {
+.se__inline > .se__item {
+  margin-right: 16px;
+}
+.se__inline > .se__item:last-child {
   margin-right: 0;
 }
 @media (max-width: 767px) {
-  .se__horizontal .se__item {
+  .se__horizontal > .se__item {
     display: block;
   }
-  .se__horizontal .se__item .ant-form-item-label {
+  .se__horizontal > .se__item .ant-form-item-label {
     width: 100% !important;
     text-align: left;
   }
-  .se__horizontal .se__item .se__label {
+  .se__horizontal > .se__item .se__label {
     justify-content: normal;
   }
   .se__horizontal .se__label,
