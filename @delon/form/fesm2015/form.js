@@ -3682,10 +3682,12 @@ class DateWidget extends ControlUIWidget {
         }
         this.detectChanges();
         // TODO: Need to wait for the rendering to complete, otherwise it will be overwritten of end widget
-        setTimeout((/**
-         * @return {?}
-         */
-        () => this._change(this.displayValue)));
+        if (this.displayValue) {
+            setTimeout((/**
+             * @return {?}
+             */
+            () => this._change(this.displayValue)));
+        }
     }
     /**
      * @param {?} value
