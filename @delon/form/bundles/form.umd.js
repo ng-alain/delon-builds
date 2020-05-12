@@ -4598,10 +4598,12 @@
             }
             this.detectChanges();
             // TODO: Need to wait for the rendering to complete, otherwise it will be overwritten of end widget
-            setTimeout((/**
-             * @return {?}
-             */
-            function () { return _this._change(_this.displayValue); }));
+            if (this.displayValue) {
+                setTimeout((/**
+                 * @return {?}
+                 */
+                function () { return _this._change(_this.displayValue); }));
+            }
         };
         /**
          * @param {?} value
