@@ -4021,7 +4021,7 @@
          * @return {?}
          */
         function (item) {
-            this.typing = item.nzLabel;
+            this.typing = (/** @type {?} */ (item.nzLabel));
             this.setValue(item.nzValue);
             if (this.ui.change)
                 this.ui.change(item);

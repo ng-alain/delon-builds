@@ -4871,7 +4871,7 @@
              * @return {?}
              */
             function () {
-                return this.orgTable.cdkVirtualScrollViewport;
+                return (/** @type {?} */ (this.orgTable.cdkVirtualScrollViewport));
             },
             enumerable: true,
             configurable: true

@@ -3989,7 +3989,7 @@ class STComponent {
      * @return {?}
      */
     get cdkVirtualScrollViewport() {
-        return this.orgTable.cdkVirtualScrollViewport;
+        return (/** @type {?} */ (this.orgTable.cdkVirtualScrollViewport));
     }
     /**
      * @param {?=} options
