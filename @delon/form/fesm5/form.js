@@ -4408,12 +4408,10 @@ var DateWidget = /** @class */ (function (_super) {
         }
         this.detectChanges();
         // TODO: Need to wait for the rendering to complete, otherwise it will be overwritten of end widget
-        if (this.displayValue) {
-            setTimeout((/**
-             * @return {?}
-             */
-            function () { return _this._change(_this.displayValue); }));
-        }
+        setTimeout((/**
+         * @return {?}
+         */
+        function () { return _this._change(_this.displayValue); }));
     };
     /**
      * @param {?} value
