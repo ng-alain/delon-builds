@@ -180,6 +180,7 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     _filterRadio(col: STColumn, item: STColumnFilterMenu, checked: boolean): void;
     _filterClear(col: STColumn): void;
     clearFilter(): this;
+    _filterClick($event: MouseEvent): void;
     /** 清除所有 `checkbox` */
     clearCheck(): this;
     private _refCheck;
