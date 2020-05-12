@@ -2,7 +2,7 @@ import { AfterViewInit, ChangeDetectorRef, OnChanges, OnDestroy, OnInit, Rendere
 import { Router } from '@angular/router';
 import { ReuseTabService } from '@delon/abc/reuse-tab';
 import { AlainI18NService, MenuService, SettingsService, TitleService } from '@delon/theme';
-import { AlainConfigService } from '@delon/util';
+import { PageHeaderConfig } from './page-header.config';
 interface PageHeaderPath {
     title?: string;
     link?: string[];
@@ -19,12 +19,13 @@ export declare class PageHeaderComponent implements OnInit, OnChanges, AfterView
     private unsubscribe$;
     private conTpl;
     private affix;
-    private get menus();
+    private _menus;
+    private readonly menus;
     _titleVal: string;
     paths: PageHeaderPath[];
     _title: string | null;
     _titleTpl: TemplateRef<void>;
-    set title(value: string | TemplateRef<void>);
+    title: string | TemplateRef<void>;
     loading: boolean;
     wide: boolean;
     home: string;
@@ -42,7 +43,7 @@ export declare class PageHeaderComponent implements OnInit, OnChanges, AfterView
     content: TemplateRef<void>;
     extra: TemplateRef<void>;
     tab: TemplateRef<void>;
-    constructor(settings: SettingsService, renderer: Renderer2, router: Router, menuSrv: MenuService, i18nSrv: AlainI18NService, titleSrv: TitleService, reuseSrv: ReuseTabService, cdr: ChangeDetectorRef, configSrv: AlainConfigService);
+    constructor(cog: PageHeaderConfig, settings: SettingsService, renderer: Renderer2, router: Router, menuSrv: MenuService, i18nSrv: AlainI18NService, titleSrv: TitleService, reuseSrv: ReuseTabService, cdr: ChangeDetectorRef);
     refresh(): void;
     private genBreadcrumb;
     private setTitle;

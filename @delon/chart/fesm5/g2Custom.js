@@ -1,6 +1,6 @@
 import { __decorate, __metadata, __spread } from 'tslib';
 import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, Input, Output, NgModule } from '@angular/core';
-import { AlainConfigService, InputNumber, DelonUtilModule } from '@delon/util';
+import { InputNumber, DelonUtilModule } from '@delon/util';
 import { fromEvent } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
@@ -12,17 +12,13 @@ import { CommonModule } from '@angular/common';
  */
 var G2CustomComponent = /** @class */ (function () {
     // #endregion
-    function G2CustomComponent(el, configSrv) {
+    function G2CustomComponent(el) {
         this.el = el;
         this.resize$ = null;
-        // #region fields
-        this.delay = 0;
         this.resizeTime = 0;
         this.render = new EventEmitter();
-        // tslint:disable-next-line:no-output-native
         this.resize = new EventEmitter();
         this.destroy = new EventEmitter();
-        configSrv.attachKey(this, 'chart', 'theme');
     }
     /**
      * @private
@@ -63,11 +59,7 @@ var G2CustomComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        var _this = this;
-        setTimeout((/**
-         * @return {?}
-         */
-        function () { return _this.renderChart(); }), this.delay);
+        this.renderChart();
     };
     /**
      * @return {?}
@@ -84,7 +76,7 @@ var G2CustomComponent = /** @class */ (function () {
         { type: Component, args: [{
                     selector: 'g2,g2-custom',
                     exportAs: 'g2Custom',
-                    template: " <ng-content></ng-content> ",
+                    template: "\n    <ng-content></ng-content>\n  ",
                     host: {
                         '[style.height.px]': 'height',
                     },
@@ -95,22 +87,15 @@ var G2CustomComponent = /** @class */ (function () {
     ];
     /** @nocollapse */
     G2CustomComponent.ctorParameters = function () { return [
-        { type: ElementRef },
-        { type: AlainConfigService }
+        { type: ElementRef }
     ]; };
     G2CustomComponent.propDecorators = {
-        delay: [{ type: Input }],
         height: [{ type: Input }],
         resizeTime: [{ type: Input }],
-        theme: [{ type: Input }],
         render: [{ type: Output }],
         resize: [{ type: Output }],
         destroy: [{ type: Output }]
     };
-    __decorate([
-        InputNumber(),
-        __metadata("design:type", Object)
-    ], G2CustomComponent.prototype, "delay", void 0);
     __decorate([
         InputNumber(),
         __metadata("design:type", Number)
@@ -128,13 +113,9 @@ if (false) {
      */
     G2CustomComponent.prototype.resize$;
     /** @type {?} */
-    G2CustomComponent.prototype.delay;
-    /** @type {?} */
     G2CustomComponent.prototype.height;
     /** @type {?} */
     G2CustomComponent.prototype.resizeTime;
-    /** @type {?} */
-    G2CustomComponent.prototype.theme;
     /** @type {?} */
     G2CustomComponent.prototype.render;
     /** @type {?} */

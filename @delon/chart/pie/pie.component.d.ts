@@ -1,22 +1,20 @@
-import { ChangeDetectorRef, ElementRef, NgZone, OnChanges, OnDestroy, OnInit, TemplateRef } from '@angular/core';
-import { LooseObject } from '@antv/g2/lib/interface';
-import { InteractionType } from '@delon/chart/core/types';
-import { AlainConfigService } from '@delon/util';
-import { NzSafeAny } from 'ng-zorro-antd/core/types';
+import { ChangeDetectorRef, ElementRef, NgZone, OnChanges, OnDestroy, OnInit, Renderer2, TemplateRef } from '@angular/core';
 export interface G2PieData {
     x: any;
     y: number;
     [key: string]: any;
 }
 export declare class G2PieComponent implements OnInit, OnDestroy, OnChanges {
-    el: ElementRef<HTMLElement>;
+    private el;
+    private rend;
     private ngZone;
     private cdr;
+    private resize$;
     private node;
     private chart;
     private isPercent;
     private percentColor;
-    legendData: NzSafeAny[];
+    legendData: any[];
     delay: number;
     animate: boolean;
     color: string;
@@ -25,24 +23,22 @@ export declare class G2PieComponent implements OnInit, OnDestroy, OnChanges {
     height: number;
     hasLegend: boolean;
     inner: number;
-    padding: number | number[] | 'auto';
+    padding: number[];
     percent: number;
     tooltip: boolean;
     lineWidth: number;
-    blockMaxWidth: number;
     select: boolean;
     valueFormat: (y: number) => string;
     data: G2PieData[];
     colors: any[];
-    interaction: InteractionType;
-    theme: string | LooseObject;
-    get block(): boolean;
-    constructor(el: ElementRef<HTMLElement>, ngZone: NgZone, cdr: ChangeDetectorRef, configSrv: AlainConfigService);
+    constructor(el: ElementRef, rend: Renderer2, ngZone: NgZone, cdr: ChangeDetectorRef);
+    private setCls;
     private fixData;
     private install;
     private attachChart;
     private genLegend;
     _click(i: number): void;
+    private installResizeEvent;
     ngOnInit(): void;
     ngOnChanges(): void;
     ngOnDestroy(): void;

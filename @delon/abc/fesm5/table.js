@@ -1,9 +1,9 @@
 import { __assign, __values, __spread, __awaiter, __generator, __decorate, __metadata } from 'tslib';
-import { Injectable, Directive, TemplateRef, Host, Input, ɵɵdefineInjectable, Optional, Inject, EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ChangeDetectorRef, ElementRef, ViewChild, Output, ViewContainerRef, ComponentFactoryResolver, NgModule } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Injectable, Directive, TemplateRef, Host, Input, ɵɵdefineInjectable, Optional, Inject, EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ChangeDetectorRef, ElementRef, Renderer2, ViewChild, Output, NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { ACLService, DelonACLModule } from '@delon/acl';
 import { ALAIN_I18N_TOKEN, _HttpClient, CNCurrencyPipe, DatePipe, YNPipe, ModalHelper, DrawerHelper, DelonLocaleService } from '@delon/theme';
-import { warn, deepCopy, deepGet, deepMergeKey, toBoolean, AlainConfigService, InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
+import { deepCopy, deepGet, deepMergeKey, deepMerge, toBoolean, updateHostClass, InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
 import { DecimalPipe, DOCUMENT, CommonModule } from '@angular/common';
 import { of, Subject, from } from 'rxjs';
 import { map, takeUntil, filter } from 'rxjs/operators';
@@ -16,16 +16,16 @@ import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzIconModule } from 'ng-zorro-antd/icon';
-import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
 import { NzRadioModule } from 'ng-zorro-antd/radio';
 import { NzTagModule } from 'ng-zorro-antd/tag';
+import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 
 /**
  * @fileoverview added by tsickle
- * Generated from: st.interfaces.ts
+ * Generated from: table.interfaces.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
@@ -150,11 +150,6 @@ if (false) {
      * @type {?|undefined}
      */
     STLoadOptions.prototype.merge;
-    /**
-     * 是否跳转至顶部，若不指定由 `page.toTop` 来决定
-     * @type {?|undefined}
-     */
-    STLoadOptions.prototype.toTop;
 }
 /**
  * @record
@@ -301,13 +296,11 @@ if (false) {
      * - `link` 链接，务必指定 `click`
      * - `badge` [徽标](https://ng.ant.design/components/badge/zh)，务必指定 `badge` 参数配置徽标对应值
      * - `tag` [标签](https://ng.ant.design/components/tag/zh)，务必指定 `tag` 参数配置标签对应值
-     * - `enum` 枚举转换，务必指定 `enum` 参数配置标签对应值
      * - `img` 图片且居中(若 `className` 存在则优先)
      * - `number` 数字且居右(若 `className` 存在则优先)
      * - `currency` 货币且居右(若 `className` 存在则优先)
      * - `date` 日期格式且居中(若 `className` 存在则优先)，使用 `dateFormat` 自定义格式
      * - `yn` 将`boolean`类型徽章化 [document](https://ng-alain.com/docs/data-render#yn)
-     * - `widget` 使用自定义小部件动态创建
      * @type {?|undefined}
      */
     STColumn.prototype.type;
@@ -369,7 +362,7 @@ if (false) {
      */
     STColumn.prototype.selections;
     /**
-     * 列 `class` 属性值（注：无须 `.` 点）多个用空格隔开，例如：
+     * 列 `class` 属性值（注：无须 `.` 点），例如：
      * - `text-center` 居中
      * - `text-right` 居右
      * - `text-success` 成功色
@@ -388,7 +381,7 @@ if (false) {
      */
     STColumn.prototype.numberDigits;
     /**
-     * 日期格式，`type=date` 有效，（默认：`yyyy-MM-dd HH:mm`）
+     * 日期格式，`type=date` 有效，（默认：`YYYY-MM-DD HH:mm`）
      * @type {?|undefined}
      */
     STColumn.prototype.dateFormat;
@@ -449,31 +442,12 @@ if (false) {
      * @type {?|undefined}
      */
     STColumn.prototype.statistical;
-    /** @type {?|undefined} */
-    STColumn.prototype.widget;
-    /** @type {?|undefined} */
-    STColumn.prototype.enum;
-    /**
-     * 分组表头
-     * @type {?|undefined}
-     */
-    STColumn.prototype.children;
     /**
      * @ignore internal property
      * @type {?|undefined}
      */
     STColumn.prototype._sort;
     /* Skipping unhandled member: [key: string]: any;*/
-}
-/**
- * @record
- */
-function STWidgetColumn() { }
-if (false) {
-    /** @type {?} */
-    STWidgetColumn.prototype.type;
-    /** @type {?|undefined} */
-    STWidgetColumn.prototype.params;
 }
 /**
  * @record
@@ -861,7 +835,7 @@ if (false) {
 function STColumnButtonModal() { }
 if (false) {
     /**
-     * 对话框组件对象
+     * 对话框组件对象，务必在 `entryComponents` 注册
      * @type {?|undefined}
      */
     STColumnButtonModal.prototype.component;
@@ -892,7 +866,7 @@ if (false) {
      */
     STColumnButtonModalConfig.prototype.size;
     /**
-     * 对话框 [ModalOptions](https://github.com/NG-ZORRO/ng-zorro-antd/blob/master/components/modal/modal-types.ts) 参数
+     * 对话框 [ModalOptionsForService](https://github.com/NG-ZORRO/ng-zorro-antd/blob/master/components/modal/nz-modal.type.ts) 参数
      * @type {?|undefined}
      */
     STColumnButtonModalConfig.prototype.modalOptions;
@@ -913,7 +887,7 @@ if (false) {
      */
     STColumnButtonDrawer.prototype.title;
     /**
-     * 抽屉组件对象
+     * 抽屉组件对象，务必在 `entryComponents` 注册
      * @type {?|undefined}
      */
     STColumnButtonDrawer.prototype.component;
@@ -1281,28 +1255,10 @@ if (false) {
     /** @type {?|undefined} */
     STError.prototype.error;
 }
-/**
- * @record
- */
-function STColumnGroupType() { }
-if (false) {
-    /** @type {?} */
-    STColumnGroupType.prototype.column;
-    /** @type {?} */
-    STColumnGroupType.prototype.colStart;
-    /** @type {?|undefined} */
-    STColumnGroupType.prototype.colEnd;
-    /** @type {?|undefined} */
-    STColumnGroupType.prototype.colSpan;
-    /** @type {?|undefined} */
-    STColumnGroupType.prototype.rowSpan;
-    /** @type {?|undefined} */
-    STColumnGroupType.prototype.hasSubColumns;
-}
 
 /**
  * @fileoverview added by tsickle
- * Generated from: st-row.directive.ts
+ * Generated from: table-row.directive.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var STRowSource = /** @class */ (function () {
@@ -1411,96 +1367,284 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
- * Generated from: st-widget.ts
+ * Generated from: table.config.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-var STWidgetRegistry = /** @class */ (function () {
-    function STWidgetRegistry() {
-        this._widgets = {};
-    }
-    Object.defineProperty(STWidgetRegistry.prototype, "widgets", {
-        get: /**
-         * @return {?}
+var STConfig = /** @class */ (function () {
+    function STConfig() {
+        /**
+         * table大小
          */
-        function () {
-            return this._widgets;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    /**
-     * @param {?} type
-     * @param {?} widget
-     * @return {?}
-     */
-    STWidgetRegistry.prototype.register = /**
-     * @param {?} type
-     * @param {?} widget
-     * @return {?}
-     */
-    function (type, widget) {
-        this._widgets[type] = widget;
-    };
-    /**
-     * @param {?} type
-     * @return {?}
-     */
-    STWidgetRegistry.prototype.has = /**
-     * @param {?} type
-     * @return {?}
-     */
-    function (type) {
-        return this._widgets.hasOwnProperty(type);
-    };
-    /**
-     * @param {?} type
-     * @return {?}
-     */
-    STWidgetRegistry.prototype.get = /**
-     * @param {?} type
-     * @return {?}
-     */
-    function (type) {
-        return this._widgets[type];
-    };
-    STWidgetRegistry.decorators = [
+        this.size = 'default';
+        /**
+         * 是否开启响应式，默认：`true`
+         */
+        this.responsive = true;
+        /**
+         * 是否在小屏幕下才显示顶部与底部，默认：`false`
+         */
+        this.responsiveHideHeaderFooter = false;
+        /**
+         * 请求体配置
+         */
+        this.req = {
+            type: 'page',
+            method: 'GET',
+            allInBody: false,
+            lazyLoad: false,
+            reName: { pi: 'pi', ps: 'ps', skip: 'skip', limit: 'limit' },
+        };
+        /**
+         * 返回体配置
+         */
+        this.res = {
+            reName: { list: ['list'], total: ['total'] },
+        };
+        /**
+         * 返回体配置
+         */
+        this.page = {
+            front: true,
+            zeroIndexed: false,
+            position: 'bottom',
+            placement: 'right',
+            show: true,
+            showSize: false,
+            pageSizes: [10, 20, 30, 40, 50],
+            showQuickJumper: false,
+            total: true,
+            toTop: true,
+            toTopOffset: 100,
+        };
+        /**
+         * 单排序规则
+         * - 若不指定，则返回：`columnName=ascend|descend`
+         * - 若指定，则返回：`sort=columnName.(ascend|descend)`
+         */
+        this.singleSort = null;
+        /**
+         * 是否多排序，当 `sort` 多个相同值时自动合并，建议后端支持时使用
+         */
+        this.multiSort = null;
+        /**
+         * 按钮模态框配置
+         */
+        this.modal = {
+            paramsName: 'record',
+            size: 'lg',
+            exact: true,
+        };
+        /**
+         * 按钮抽屉配置
+         */
+        this.drawer = {
+            paramsName: 'record',
+            size: 'md',
+            footer: true,
+            footerHeight: 55,
+        };
+        /**
+         * 气泡参数
+         */
+        this.pop = {
+            title: '确认删除吗？',
+        };
+        /**
+         * 行单击多少时长之类为双击（单位：毫秒），默认：`200`
+         */
+        this.rowClickTime = 200;
+        /**
+         * 按钮图标
+         */
+        this.btnIcon = {
+            type: '',
+            theme: 'outline',
+            spin: false,
+        };
+        /**
+         * 行号索引，默认：`1`
+         * - 计算规则为：`index + noIndex`
+         */
+        this.noIndex = 1;
+        /**
+         * 通过点击行来展开子行
+         */
+        this.expandRowByClick = false;
+        /**
+         * 手风琴模式
+         */
+        this.expandAccordion = false;
+        /**
+         * 指定 `width` 模式
+         */
+        this.widthMode = {
+            type: 'default',
+            strictBehavior: 'truncate',
+        };
+        this.virtualItemSize = 54;
+        this.virtualMaxBufferPx = 200;
+        this.virtualMinBufferPx = 100;
+        /**
+         * Conditional expression rendering behavior, can be set to `hide` (default) or `disabled`
+         */
+        this.iifBehavior = 'hide';
+    }
+    STConfig.decorators = [
         { type: Injectable, args: [{ providedIn: 'root' },] }
     ];
-    /** @nocollapse */ STWidgetRegistry.ɵprov = ɵɵdefineInjectable({ factory: function STWidgetRegistry_Factory() { return new STWidgetRegistry(); }, token: STWidgetRegistry, providedIn: "root" });
-    return STWidgetRegistry;
+    /** @nocollapse */ STConfig.ngInjectableDef = ɵɵdefineInjectable({ factory: function STConfig_Factory() { return new STConfig(); }, token: STConfig, providedIn: "root" });
+    return STConfig;
 }());
 if (false) {
     /**
+     * 起始页码，默认为：`1`
      * @type {?}
-     * @private
      */
-    STWidgetRegistry.prototype._widgets;
+    STConfig.prototype.pi;
+    /**
+     * 每页数量，当设置为 `0` 表示不分页，默认：`10`
+     * @type {?}
+     */
+    STConfig.prototype.ps;
+    /**
+     * 是否显示边框
+     * @type {?}
+     */
+    STConfig.prototype.bordered;
+    /**
+     * table大小
+     * @type {?}
+     */
+    STConfig.prototype.size;
+    /**
+     * 是否开启响应式，默认：`true`
+     * @type {?}
+     */
+    STConfig.prototype.responsive;
+    /**
+     * 是否在小屏幕下才显示顶部与底部，默认：`false`
+     * @type {?}
+     */
+    STConfig.prototype.responsiveHideHeaderFooter;
+    /**
+     * 请求体配置
+     * @type {?}
+     */
+    STConfig.prototype.req;
+    /**
+     * 返回体配置
+     * @type {?}
+     */
+    STConfig.prototype.res;
+    /**
+     * 返回体配置
+     * @type {?}
+     */
+    STConfig.prototype.page;
+    /**
+     * 重命名排序值，`columns` 的重命名高于属性
+     * @type {?}
+     */
+    STConfig.prototype.sortReName;
+    /**
+     * 单排序规则
+     * - 若不指定，则返回：`columnName=ascend|descend`
+     * - 若指定，则返回：`sort=columnName.(ascend|descend)`
+     * @type {?}
+     */
+    STConfig.prototype.singleSort;
+    /**
+     * 是否多排序，当 `sort` 多个相同值时自动合并，建议后端支持时使用
+     * @type {?}
+     */
+    STConfig.prototype.multiSort;
+    /**
+     * 按钮模态框配置
+     * @type {?}
+     */
+    STConfig.prototype.modal;
+    /**
+     * 按钮抽屉配置
+     * @type {?}
+     */
+    STConfig.prototype.drawer;
+    /**
+     * 气泡参数
+     * @type {?}
+     */
+    STConfig.prototype.pop;
+    /**
+     * 行单击多少时长之类为双击（单位：毫秒），默认：`200`
+     * @type {?}
+     */
+    STConfig.prototype.rowClickTime;
+    /**
+     * 过滤按钮确认文本
+     * @type {?}
+     */
+    STConfig.prototype.filterConfirmText;
+    /**
+     * 过滤按钮重置文本
+     * @type {?}
+     */
+    STConfig.prototype.filterClearText;
+    /**
+     * 按钮图标
+     * @type {?}
+     */
+    STConfig.prototype.btnIcon;
+    /**
+     * 行号索引，默认：`1`
+     * - 计算规则为：`index + noIndex`
+     * @type {?}
+     */
+    STConfig.prototype.noIndex;
+    /**
+     * 表格行的类名
+     * @type {?}
+     */
+    STConfig.prototype.rowClassName;
+    /**
+     * 通过点击行来展开子行
+     * @type {?}
+     */
+    STConfig.prototype.expandRowByClick;
+    /**
+     * 手风琴模式
+     * @type {?}
+     */
+    STConfig.prototype.expandAccordion;
+    /**
+     * 指定 `width` 模式
+     * @type {?}
+     */
+    STConfig.prototype.widthMode;
+    /** @type {?} */
+    STConfig.prototype.virtualItemSize;
+    /** @type {?} */
+    STConfig.prototype.virtualMaxBufferPx;
+    /** @type {?} */
+    STConfig.prototype.virtualMinBufferPx;
+    /**
+     * Conditional expression rendering behavior, can be set to `hide` (default) or `disabled`
+     * @type {?}
+     */
+    STConfig.prototype.iifBehavior;
 }
 
 /**
  * @fileoverview added by tsickle
- * Generated from: st-column-source.ts
+ * Generated from: table-column-source.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var STColumnSource = /** @class */ (function () {
-    function STColumnSource(dom, rowSource, acl, i18nSrv, stWidgetRegistry) {
+    function STColumnSource(dom, rowSource, acl, i18nSrv, cog) {
         this.dom = dom;
         this.rowSource = rowSource;
         this.acl = acl;
         this.i18nSrv = i18nSrv;
-        this.stWidgetRegistry = stWidgetRegistry;
+        this.cog = cog;
     }
-    /**
-     * @param {?} val
-     * @return {?}
-     */
-    STColumnSource.prototype.setCog = /**
-     * @param {?} val
-     * @return {?}
-     */
-    function (val) {
-        this.cog = val;
-    };
     /**
      * @private
      * @param {?} i
@@ -1524,7 +1668,7 @@ var STColumnSource = /** @class */ (function () {
             pop.title = i.pop;
         }
         else if (typeof i.pop === 'object') {
-            pop = __assign(__assign({}, pop), i.pop);
+            pop = __assign({}, pop, i.pop);
         }
         if (typeof pop.condition !== 'function') {
             pop.condition = (/**
@@ -1563,7 +1707,7 @@ var STColumnSource = /** @class */ (function () {
                         item.type = 'none';
                     }
                     else {
-                        item.modal = __assign(__assign({ paramsName: 'record', size: 'lg' }, modal), item.modal);
+                        item.modal = __assign({ paramsName: 'record', size: 'lg' }, modal, item.modal);
                     }
                 }
                 if (item.type === 'drawer') {
@@ -1572,7 +1716,7 @@ var STColumnSource = /** @class */ (function () {
                         item.type = 'none';
                     }
                     else {
-                        item.drawer = __assign(__assign({ paramsName: 'record', size: 'lg' }, drawer), item.drawer);
+                        item.drawer = __assign({ paramsName: 'record', size: 'lg' }, drawer, item.drawer);
                     }
                 }
                 if (item.type === 'del' && typeof item.pop === 'undefined') {
@@ -1581,7 +1725,7 @@ var STColumnSource = /** @class */ (function () {
                 // pop
                 this.fixPop(item, (/** @type {?} */ (pop)));
                 if (item.icon) {
-                    item.icon = __assign(__assign({}, btnIcon), (typeof item.icon === 'string' ? { type: item.icon } : item.icon));
+                    item.icon = __assign({}, btnIcon, (typeof item.icon === 'string' ? { type: item.icon } : item.icon));
                 }
                 item.children = item.children && item.children.length > 0 ? this.btnCoerce(item.children) : [];
                 // i18n
@@ -1697,7 +1841,7 @@ var STColumnSource = /** @class */ (function () {
     function (item) {
         /** @type {?} */
         var res = this.fixCoerce(item);
-        res.reName = __assign(__assign({}, this.cog.sortReName), res.reName);
+        res.reName = __assign({}, this.cog.sortReName, res.reName);
         return res;
     };
     /**
@@ -1770,10 +1914,10 @@ var STColumnSource = /** @class */ (function () {
         /** @type {?} */
         var baseIcon = (/** @type {?} */ ({ type: icon, theme: iconTheme }));
         if (typeof res.icon === 'string') {
-            res.icon = (/** @type {?} */ (__assign(__assign({}, baseIcon), { type: res.icon })));
+            res.icon = (/** @type {?} */ (__assign({}, baseIcon, { type: res.icon })));
         }
         else {
-            res.icon = __assign(__assign({}, baseIcon), res.icon);
+            res.icon = __assign({}, baseIcon, res.icon);
         }
         this.updateDefault(res);
         if (this.acl) {
@@ -1807,146 +1951,6 @@ var STColumnSource = /** @class */ (function () {
         }
     };
     /**
-     * @private
-     * @param {?} item
-     * @return {?}
-     */
-    STColumnSource.prototype.widgetCoerce = /**
-     * @private
-     * @param {?} item
-     * @return {?}
-     */
-    function (item) {
-        var _a;
-        if (item.type !== 'widget')
-            return;
-        if (item.widget == null || !this.stWidgetRegistry.has(item.widget.type)) {
-            delete item.type;
-            warn("st: No widget for type \"" + ((_a = item.widget) === null || _a === void 0 ? void 0 : _a.type) + "\"");
-        }
-    };
-    /**
-     * @private
-     * @param {?} rootColumns
-     * @return {?}
-     */
-    STColumnSource.prototype.genHeaders = /**
-     * @private
-     * @param {?} rootColumns
-     * @return {?}
-     */
-    function (rootColumns) {
-        /** @type {?} */
-        var rows = [];
-        /** @type {?} */
-        var fillRowCells = (/**
-         * @param {?} columns
-         * @param {?} colIndex
-         * @param {?=} rowIndex
-         * @return {?}
-         */
-        function (columns, colIndex, rowIndex) {
-            if (rowIndex === void 0) { rowIndex = 0; }
-            // Init rows
-            rows[rowIndex] = rows[rowIndex] || [];
-            /** @type {?} */
-            var currentColIndex = colIndex;
-            /** @type {?} */
-            var colSpans = columns.map((/**
-             * @param {?} column
-             * @return {?}
-             */
-            function (column) {
-                /** @type {?} */
-                var cell = {
-                    column: column,
-                    colStart: currentColIndex,
-                };
-                /** @type {?} */
-                var colSpan = 1;
-                /** @type {?} */
-                var subColumns = column.children;
-                if (Array.isArray(subColumns) && subColumns.length > 0) {
-                    colSpan = fillRowCells(subColumns, currentColIndex, rowIndex + 1).reduce((/**
-                     * @param {?} total
-                     * @param {?} count
-                     * @return {?}
-                     */
-                    function (total, count) { return total + count; }), 0);
-                    cell.hasSubColumns = true;
-                }
-                if ('colSpan' in column) {
-                    colSpan = (/** @type {?} */ (column.colSpan));
-                }
-                if ('rowSpan' in column) {
-                    cell.rowSpan = column.rowSpan;
-                }
-                cell.colSpan = colSpan;
-                cell.colEnd = cell.colStart + colSpan - 1;
-                rows[rowIndex].push(cell);
-                currentColIndex += colSpan;
-                return colSpan;
-            }));
-            return colSpans;
-        });
-        fillRowCells(rootColumns, 0);
-        // Handle `rowSpan`
-        /** @type {?} */
-        var rowCount = rows.length;
-        var _loop_1 = function (rowIndex) {
-            rows[rowIndex].forEach((/**
-             * @param {?} cell
-             * @return {?}
-             */
-            function (cell) {
-                if (!('rowSpan' in cell) && !cell.hasSubColumns) {
-                    cell.rowSpan = rowCount - rowIndex;
-                }
-            }));
-        };
-        for (var rowIndex = 0; rowIndex < rowCount; rowIndex += 1) {
-            _loop_1(rowIndex);
-        }
-        return rows;
-    };
-    /**
-     * @private
-     * @param {?} list
-     * @return {?}
-     */
-    STColumnSource.prototype.cleanCond = /**
-     * @private
-     * @param {?} list
-     * @return {?}
-     */
-    function (list) {
-        var e_3, _a;
-        /** @type {?} */
-        var res = [];
-        /** @type {?} */
-        var copyList = deepCopy(list);
-        try {
-            for (var copyList_1 = __values(copyList), copyList_1_1 = copyList_1.next(); !copyList_1_1.done; copyList_1_1 = copyList_1.next()) {
-                var item = copyList_1_1.value;
-                if (item.iif && !item.iif(item)) {
-                    continue;
-                }
-                if (this.acl && item.acl && !this.acl.can(item.acl)) {
-                    continue;
-                }
-                res.push(item);
-            }
-        }
-        catch (e_3_1) { e_3 = { error: e_3_1 }; }
-        finally {
-            try {
-                if (copyList_1_1 && !copyList_1_1.done && (_a = copyList_1.return)) _a.call(copyList_1);
-            }
-            finally { if (e_3) throw e_3.error; }
-        }
-        return res;
-    };
-    /**
      * @param {?} list
      * @return {?}
      */
@@ -1955,6 +1959,7 @@ var STColumnSource = /** @class */ (function () {
      * @return {?}
      */
     function (list) {
+        var e_3, _a;
         var _this = this;
         if (!list || list.length === 0)
             throw new Error("[st]: the columns property muse be define!");
@@ -1968,120 +1973,103 @@ var STColumnSource = /** @class */ (function () {
         /** @type {?} */
         var columns = [];
         /** @type {?} */
-        var processItem = (/**
-         * @param {?} item
-         * @return {?}
-         */
-        function (item) {
-            // index
-            if (item.index) {
-                if (!Array.isArray(item.index)) {
-                    item.index = item.index.split('.');
+        var copyColumens = (/** @type {?} */ (deepCopy(list)));
+        try {
+            for (var copyColumens_1 = __values(copyColumens), copyColumens_1_1 = copyColumens_1.next(); !copyColumens_1_1.done; copyColumens_1_1 = copyColumens_1.next()) {
+                var item = copyColumens_1_1.value;
+                if (item.iif && !item.iif(item)) {
+                    continue;
                 }
-                item.indexKey = item.index.join('.');
-            }
-            // #region title
-            /** @type {?} */
-            var tit = (typeof item.title === 'string' ? { text: item.title } : item.title) || {};
-            if (tit.i18n && _this.i18nSrv) {
-                tit.text = _this.i18nSrv.fanyi(tit.i18n);
-            }
-            if (tit.text) {
-                tit._text = _this.dom.bypassSecurityTrustHtml(tit.text);
-            }
-            item.title = tit;
-            // #endregion
-            // no
-            if (item.type === 'no') {
-                item.noIndex = item.noIndex == null ? noIndex : item.noIndex;
-            }
-            // checkbox
-            if (item.selections == null) {
-                item.selections = [];
-            }
-            if (item.type === 'checkbox') {
-                ++checkboxCount;
-                if (!item.width) {
-                    item.width = (item.selections.length > 0 ? 62 : 50) + "px";
+                if (this.acl && item.acl && !this.acl.can(item.acl)) {
+                    continue;
                 }
-            }
-            if (_this.acl) {
-                item.selections = item.selections.filter((/**
-                 * @param {?} w
-                 * @return {?}
-                 */
-                function (w) { return _this.acl.can(w.acl); }));
-            }
-            // radio
-            if (item.type === 'radio') {
-                ++radioCount;
-                item.selections = [];
-                if (!item.width) {
-                    item.width = '50px';
+                // index
+                if (item.index) {
+                    if (!Array.isArray(item.index)) {
+                        item.index = item.index.split('.');
+                    }
+                    item.indexKey = item.index.join('.');
                 }
-            }
-            // types
-            if (item.type === 'yn') {
-                item.yn = __assign({ truth: true }, item.yn);
-            }
-            if ((item.type === 'link' && typeof item.click !== 'function') ||
-                (item.type === 'badge' && item.badge == null) ||
-                (item.type === 'tag' && item.tag == null) ||
-                (item.type === 'enum' && item.enum == null)) {
-                ((/** @type {?} */ (item))).type = '';
-            }
-            // className
-            if (!item.className) {
-                item.className = ((/** @type {?} */ ({
-                    number: 'text-right',
-                    currency: 'text-right',
-                    date: 'text-center',
-                })))[(/** @type {?} */ (item.type))];
-            }
-            // width
-            if (typeof item.width === 'number') {
-                item.width = item.width + "px";
-            }
-            // sorter
-            item._sort = _this.sortCoerce(item);
-            // filter
-            item.filter = (/** @type {?} */ (_this.filterCoerce(item)));
-            // buttons
-            item.buttons = _this.btnCoerce((/** @type {?} */ (item.buttons)));
-            // widget
-            _this.widgetCoerce(item);
-            // restore custom row
-            _this.restoreRender(item);
-            item.__point = point++;
-            return item;
-        });
-        /** @type {?} */
-        var processList = (/**
-         * @param {?} data
-         * @return {?}
-         */
-        function (data) {
-            var e_4, _a;
-            try {
-                for (var data_1 = __values(data), data_1_1 = data_1.next(); !data_1_1.done; data_1_1 = data_1.next()) {
-                    var item = data_1_1.value;
-                    columns.push(processItem(item));
-                    if (Array.isArray(item.children)) {
-                        processList(item.children);
+                // #region title
+                /** @type {?} */
+                var tit = (typeof item.title === 'string' ? { text: item.title } : item.title) || {};
+                if (tit.i18n && this.i18nSrv) {
+                    tit.text = this.i18nSrv.fanyi(tit.i18n);
+                }
+                if (tit.text) {
+                    tit._text = this.dom.bypassSecurityTrustHtml(tit.text);
+                }
+                item.title = tit;
+                // #endregion
+                // no
+                if (item.type === 'no') {
+                    item.noIndex = item.noIndex == null ? noIndex : item.noIndex;
+                }
+                // checkbox
+                if (item.selections == null) {
+                    item.selections = [];
+                }
+                if (item.type === 'checkbox') {
+                    ++checkboxCount;
+                    if (!item.width) {
+                        item.width = (item.selections.length > 0 ? 62 : 50) + "px";
                     }
                 }
-            }
-            catch (e_4_1) { e_4 = { error: e_4_1 }; }
-            finally {
-                try {
-                    if (data_1_1 && !data_1_1.done && (_a = data_1.return)) _a.call(data_1);
+                if (this.acl) {
+                    item.selections = item.selections.filter((/**
+                     * @param {?} w
+                     * @return {?}
+                     */
+                    function (w) { return _this.acl.can(w.acl); }));
                 }
-                finally { if (e_4) throw e_4.error; }
+                // radio
+                if (item.type === 'radio') {
+                    ++radioCount;
+                    item.selections = [];
+                    if (!item.width) {
+                        item.width = '50px';
+                    }
+                }
+                // types
+                if (item.type === 'yn') {
+                    item.yn = __assign({ truth: true }, item.yn);
+                }
+                if ((item.type === 'link' && typeof item.click !== 'function') ||
+                    (item.type === 'badge' && item.badge == null) ||
+                    (item.type === 'tag' && item.tag == null)) {
+                    ((/** @type {?} */ (item))).type = '';
+                }
+                // className
+                if (!item.className) {
+                    item.className = {
+                        number: 'text-right',
+                        currency: 'text-right',
+                        date: 'text-center',
+                    }[(/** @type {?} */ (item.type))];
+                }
+                // width
+                if (typeof item.width === 'number') {
+                    item.width = item.width + "px";
+                }
+                // sorter
+                item._sort = this.sortCoerce(item);
+                // filter
+                item.filter = (/** @type {?} */ (this.filterCoerce(item)));
+                // buttons
+                item.buttons = this.btnCoerce((/** @type {?} */ (item.buttons)));
+                // restore custom row
+                this.restoreRender(item);
+                item.__point = point++;
+                columns.push(item);
             }
-        });
-        /** @type {?} */
-        var copyList = this.cleanCond(list);
-        processList(copyList);
+        }
+        catch (e_3_1) { e_3 = { error: e_3_1 }; }
+        finally {
+            try {
+                if (copyColumens_1_1 && !copyColumens_1_1.done && (_a = copyColumens_1.return)) _a.call(copyColumens_1);
+            }
+            finally { if (e_3) throw e_3.error; }
+        }
         if (checkboxCount > 1) {
             throw new Error("[st]: just only one column checkbox");
         }
@@ -2089,11 +2077,7 @@ var STColumnSource = /** @class */ (function () {
             throw new Error("[st]: just only one column radio");
         }
         this.fixedCoerce(columns);
-        return { columns: columns.filter((/**
-             * @param {?} w
-             * @return {?}
-             */
-            function (w) { return !Array.isArray(w.children); })), headers: this.genHeaders(copyList) };
+        return columns;
     };
     /**
      * @param {?} columns
@@ -2173,16 +2157,11 @@ var STColumnSource = /** @class */ (function () {
         { type: STRowSource, decorators: [{ type: Host }] },
         { type: ACLService, decorators: [{ type: Optional }] },
         { type: undefined, decorators: [{ type: Optional }, { type: Inject, args: [ALAIN_I18N_TOKEN,] }] },
-        { type: STWidgetRegistry }
+        { type: STConfig }
     ]; };
     return STColumnSource;
 }());
 if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    STColumnSource.prototype.cog;
     /**
      * @type {?}
      * @private
@@ -2207,12 +2186,12 @@ if (false) {
      * @type {?}
      * @private
      */
-    STColumnSource.prototype.stWidgetRegistry;
+    STColumnSource.prototype.cog;
 }
 
 /**
  * @fileoverview added by tsickle
- * Generated from: st-data-source.ts
+ * Generated from: table-data-source.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
@@ -2513,9 +2492,6 @@ var STDataSource = /** @class */ (function () {
             case 'yn':
                 text = this.ynPipe.transform(value === (/** @type {?} */ (col.yn)).truth, (/** @type {?} */ ((/** @type {?} */ (col.yn)).yes)), (/** @type {?} */ ((/** @type {?} */ (col.yn)).no)), (/** @type {?} */ ((/** @type {?} */ (col.yn)).mode)), false);
                 break;
-            case 'enum':
-                text = (/** @type {?} */ (col.enum))[value];
-                break;
             case 'tag':
             case 'badge':
                 /** @type {?} */
@@ -2570,7 +2546,7 @@ var STDataSource = /** @class */ (function () {
                     _b);
             }
         }
-        params = __assign(__assign(__assign(__assign({}, params), req.params), this.getReqSortMap(singleSort, multiSort, columns)), this.getReqFilterMap(columns));
+        params = __assign({}, params, req.params, this.getReqSortMap(singleSort, multiSort, columns), this.getReqFilterMap(columns));
         /** @type {?} */
         var reqOptions = {
             params: params,
@@ -2579,7 +2555,7 @@ var STDataSource = /** @class */ (function () {
         };
         if (method === 'POST' && req.allInBody === true) {
             reqOptions = {
-                body: __assign(__assign({}, req.body), params),
+                body: __assign({}, req.body, params),
                 headers: req.headers,
             };
         }
@@ -2825,7 +2801,7 @@ var STDataSource = /** @class */ (function () {
                  */
                 function (i) { return i.value; })).join(',');
             }
-            ret = __assign(__assign({}, ret), obj);
+            ret = __assign({}, ret, obj);
         }));
         return ret;
     };
@@ -3048,7 +3024,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
- * Generated from: st-export.ts
+ * Generated from: table-export.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var STExport = /** @class */ (function () {
@@ -3175,85 +3151,17 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
- * Generated from: st.config.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @type {?} */
-var ST_DEFULAT_CONFIG = {
-    pi: 1,
-    ps: 10,
-    size: 'default',
-    responsive: true,
-    responsiveHideHeaderFooter: false,
-    req: {
-        type: 'page',
-        method: 'GET',
-        allInBody: false,
-        lazyLoad: false,
-        reName: { pi: 'pi', ps: 'ps', skip: 'skip', limit: 'limit' },
-    },
-    res: {
-        reName: { list: ['list'], total: ['total'] },
-    },
-    page: {
-        front: true,
-        zeroIndexed: false,
-        position: 'bottom',
-        placement: 'right',
-        show: true,
-        showSize: false,
-        pageSizes: [10, 20, 30, 40, 50],
-        showQuickJumper: false,
-        total: true,
-        toTop: true,
-        toTopOffset: 100,
-    },
-    modal: {
-        paramsName: 'record',
-        size: 'lg',
-        exact: true,
-    },
-    drawer: {
-        paramsName: 'record',
-        size: 'md',
-        footer: true,
-        footerHeight: 55,
-    },
-    pop: {
-        title: '确认删除吗？',
-        trigger: 'click',
-        placement: 'top',
-    },
-    rowClickTime: 200,
-    btnIcon: {
-        type: '',
-        theme: 'outline',
-        spin: false,
-    },
-    noIndex: 1,
-    expandRowByClick: false,
-    expandAccordion: false,
-    widthMode: {
-        type: 'default',
-        strictBehavior: 'truncate',
-    },
-    virtualItemSize: 54,
-    virtualMaxBufferPx: 200,
-    virtualMinBufferPx: 100,
-    iifBehavior: 'hide',
-};
-
-/**
- * @fileoverview added by tsickle
- * Generated from: st.component.ts
+ * Generated from: table.component.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var STComponent = /** @class */ (function () {
-    function STComponent(i18nSrv, cdr, router, el, exportSrv, modalHelper, drawerHelper, doc, columnSource, dataSource, delonI18n, configSrv) {
+    function STComponent(i18nSrv, cdr, cog, router, el, renderer, exportSrv, modalHelper, drawerHelper, doc, columnSource, dataSource, delonI18n) {
         var _this = this;
         this.cdr = cdr;
+        this.cog = cog;
         this.router = router;
         this.el = el;
+        this.renderer = renderer;
         this.exportSrv = exportSrv;
         this.modalHelper = modalHelper;
         this.drawerHelper = drawerHelper;
@@ -3263,52 +3171,73 @@ var STComponent = /** @class */ (function () {
         this.delonI18n = delonI18n;
         this.unsubscribe$ = new Subject();
         this.totalTpl = "";
-        this.rowClickCount = 0;
         this.locale = {};
-        this._loading = false;
         this._data = [];
         this._statistical = {};
         this._isPagination = true;
         this._allChecked = false;
         this._allCheckedDisabled = false;
         this._indeterminate = false;
-        this._headers = [];
         this._columns = [];
         this.columns = [];
         this.ps = 10;
         this.pi = 1;
         this.total = 0;
+        this._loading = false;
+        /**
+         * 是否显示Loading
+         */
         this.loading = null;
+        /**
+         * 延迟显示加载效果的时间（防止闪烁）
+         */
         this.loadingDelay = 0;
+        /**
+         * 是否显示边框
+         */
         this.bordered = false;
-        this.expandRowByClick = false;
-        this.expandAccordion = false;
-        this.rowClickTime = 200;
-        this.responsive = true;
-        // tslint:disable-next-line:no-output-native
-        this.error = new EventEmitter();
-        // tslint:disable-next-line:no-output-native
-        this.change = new EventEmitter();
         this.virtualScroll = false;
         this.virtualItemSize = 54;
         this.virtualMaxBufferPx = 200;
         this.virtualMinBufferPx = 100;
-        this.virtualForTrackBy = (/**
-         * @param {?} index
-         * @return {?}
+        /**
+         * 单排序规则
+         * - 若不指定，则返回：`columnName=ascend|descend`
+         * - 若指定，则返回：`sort=columnName.(ascend|descend)`
          */
-        function (index) { return index; });
-        this.setCog(configSrv.merge('st', ST_DEFULAT_CONFIG));
+        this.singleSort = null;
+        this.expandRowByClick = false;
+        this.expandAccordion = false;
+        /**
+         * 行单击多少时长之类为双击（单位：毫秒），默认：`200`
+         */
+        this.rowClickTime = 200;
+        this.responsive = true;
+        /**
+         * 请求异常时回调
+         */
+        this.error = new EventEmitter();
+        /**
+         * 变化时回调，包括：`pi`、`ps`、`checkbox`、`radio`、`sort`、`filter`、`click`、`dblClick` 变动
+         */
+        this.change = new EventEmitter();
+        this.rowClickCount = 0;
         this.delonI18n.change.pipe(takeUntil(this.unsubscribe$)).subscribe((/**
          * @return {?}
          */
         function () {
             _this.locale = _this.delonI18n.getData('st');
             if (_this._columns.length > 0) {
-                _this.updateTotalTpl();
+                _this.page = _this.clonePage;
                 _this.cd();
             }
         }));
+        this.copyCog = deepMergeKey(new STConfig(), true, cog);
+        delete this.copyCog.multiSort;
+        Object.assign(this, this.copyCog);
+        if (cog.multiSort && cog.multiSort.global !== false) {
+            this.multiSort = __assign({}, cog.multiSort);
+        }
         i18nSrv.change
             .pipe(takeUntil(this.unsubscribe$), filter((/**
          * @return {?}
@@ -3322,7 +3251,9 @@ var STComponent = /** @class */ (function () {
         function () { return _this.refreshColumns(); }));
     }
     Object.defineProperty(STComponent.prototype, "req", {
+        /** 请求体配置 */
         get: /**
+         * 请求体配置
          * @return {?}
          */
         function () {
@@ -3333,7 +3264,7 @@ var STComponent = /** @class */ (function () {
          * @return {?}
          */
         function (value) {
-            this._req = deepMergeKey({}, true, this.cog.req, value);
+            this._req = deepMerge({}, this._req, this.cog.req, value);
         },
         enumerable: true,
         configurable: true
@@ -3353,20 +3284,22 @@ var STComponent = /** @class */ (function () {
          */
         function (value) {
             /** @type {?} */
-            var item = (this._res = deepMergeKey({}, true, this.cog.res, value));
+            var item = deepMergeKey({}, true, this.cog.res, value);
             /** @type {?} */
-            var reName = (/** @type {?} */ (item.reName));
+            var reName = item.reName;
             if (!Array.isArray(reName.list))
-                reName.list = (/** @type {?} */ (reName.list)).split('.');
+                reName.list = reName.list.split('.');
             if (!Array.isArray(reName.total))
-                reName.total = (/** @type {?} */ (reName.total)).split('.');
+                reName.total = reName.total.split('.');
             this._res = item;
         },
         enumerable: true,
         configurable: true
     });
     Object.defineProperty(STComponent.prototype, "page", {
+        /** 分页器配置 */
         get: /**
+         * 分页器配置
          * @return {?}
          */
         function () {
@@ -3377,14 +3310,28 @@ var STComponent = /** @class */ (function () {
          * @return {?}
          */
         function (value) {
-            this._page = __assign(__assign({}, this.cog.page), value);
-            this.updateTotalTpl();
+            this.clonePage = value;
+            /** @type {?} */
+            var item = deepMergeKey({}, true, new STConfig().page, this.cog.page, value);
+            var total = item.total;
+            if (typeof total === 'string' && total.length) {
+                this.totalTpl = total;
+            }
+            else if (toBoolean(total)) {
+                this.totalTpl = this.locale.total;
+            }
+            else {
+                this.totalTpl = '';
+            }
+            this._page = item;
         },
         enumerable: true,
         configurable: true
     });
     Object.defineProperty(STComponent.prototype, "multiSort", {
+        /** 是否多排序，当 `sort` 多个相同值时自动合并，建议后端支持时使用 */
         get: /**
+         * 是否多排序，当 `sort` 多个相同值时自动合并，建议后端支持时使用
          * @return {?}
          */
         function () {
@@ -3396,7 +3343,7 @@ var STComponent = /** @class */ (function () {
          */
         function (value) {
             if (typeof value === 'boolean' && !toBoolean(value)) {
-                this._multiSort = undefined;
+                this._multiSort = null;
                 return;
             }
             this._multiSort = __assign({}, (typeof value === 'object' ? value : {}));
@@ -3416,7 +3363,19 @@ var STComponent = /** @class */ (function () {
          * @return {?}
          */
         function (value) {
-            this._widthMode = __assign(__assign({}, this.cog.widthMode), value);
+            this._widthMode = __assign({ type: 'default', strictBehavior: 'truncate' }, value);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(STComponent.prototype, "routerState", {
+        get: /**
+         * @private
+         * @return {?}
+         */
+        function () {
+            var _a = this, pi = _a.pi, ps = _a.ps, total = _a.total;
+            return { pi: pi, ps: ps, total: total };
         },
         enumerable: true,
         configurable: true
@@ -3449,40 +3408,6 @@ var STComponent = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(STComponent.prototype, "routerState", {
-        get: /**
-         * @private
-         * @return {?}
-         */
-        function () {
-            var _a = this, pi = _a.pi, ps = _a.ps, total = _a.total;
-            return { pi: pi, ps: ps, total: total };
-        },
-        enumerable: true,
-        configurable: true
-    });
-    /**
-     * @private
-     * @param {?} cog
-     * @return {?}
-     */
-    STComponent.prototype.setCog = /**
-     * @private
-     * @param {?} cog
-     * @return {?}
-     */
-    function (cog) {
-        /** @type {?} */
-        var copyMultiSort = __assign({}, cog.multiSort);
-        // Because multiSort.global will affect the result, it should be removed first, and multiSort will be operated again after processing.
-        delete cog.multiSort;
-        this.cog = cog;
-        Object.assign(this, cog);
-        if (copyMultiSort.global !== false) {
-            this.multiSort = copyMultiSort;
-        }
-        this.columnSource.setCog(cog);
-    };
     /**
      * @template THIS
      * @this {THIS}
@@ -3509,7 +3434,10 @@ var STComponent = /** @class */ (function () {
      */
     function (total, range) {
         return this.totalTpl
-            ? this.totalTpl.replace('{{total}}', total).replace('{{range[0]}}', range[0]).replace('{{range[1]}}', range[1])
+            ? this.totalTpl
+                .replace('{{total}}', total)
+                .replace('{{range[0]}}', range[0])
+                .replace('{{range[1]}}', range[1])
             : '';
     };
     /**
@@ -3586,26 +3514,6 @@ var STComponent = /** @class */ (function () {
     });
     /**
      * @private
-     * @return {?}
-     */
-    STComponent.prototype.updateTotalTpl = /**
-     * @private
-     * @return {?}
-     */
-    function () {
-        var total = this.page.total;
-        if (typeof total === 'string' && total.length) {
-            this.totalTpl = total;
-        }
-        else if (toBoolean(total)) {
-            this.totalTpl = this.locale.total;
-        }
-        else {
-            this.totalTpl = '';
-        }
-    };
-    /**
-     * @private
      * @param {?} val
      * @return {?}
      */
@@ -3617,7 +3525,6 @@ var STComponent = /** @class */ (function () {
     function (val) {
         if (this.loading == null) {
             this._loading = val;
-            this.cdr.detectChanges();
         }
     };
     /**
@@ -3661,10 +3568,7 @@ var STComponent = /** @class */ (function () {
              * @param {?} error
              * @return {?}
              */
-            function (error) {
-                console.warn('st.loadDate', error);
-                rejectPromise(error);
-            }));
+            function (error) { return rejectPromise(error); }));
         }));
     };
     /**
@@ -3755,7 +3659,10 @@ var STComponent = /** @class */ (function () {
      * @return {THIS}
      */
     function () {
-        return (/** @type {?} */ (this)).clearCheck().clearRadio().clearFilter().clearSort();
+        return (/** @type {?} */ (this)).clearCheck()
+            .clearRadio()
+            .clearFilter()
+            .clearSort();
     };
     /**
      * 根据页码重新加载数据
@@ -3789,9 +3696,9 @@ var STComponent = /** @class */ (function () {
         if (pi !== -1)
             (/** @type {?} */ (this)).pi = pi;
         if (typeof extraParams !== 'undefined') {
-            (/** @type {?} */ (this)).req.params = options && options.merge ? __assign(__assign({}, (/** @type {?} */ (this)).req.params), extraParams) : extraParams;
+            (/** @type {?} */ (this))._req.params = options && options.merge ? __assign({}, (/** @type {?} */ (this))._req.params, extraParams) : extraParams;
         }
-        (/** @type {?} */ (this))._change('pi', options);
+        (/** @type {?} */ (this))._change('pi');
         return (/** @type {?} */ (this));
     };
     /**
@@ -3858,16 +3765,14 @@ var STComponent = /** @class */ (function () {
     };
     /**
      * @private
-     * @param {?=} enforce
      * @return {?}
      */
     STComponent.prototype._toTop = /**
      * @private
-     * @param {?=} enforce
      * @return {?}
      */
-    function (enforce) {
-        if (!(enforce == null ? this.page.toTop : enforce))
+    function () {
+        if (!this.page.toTop)
             return;
         /** @type {?} */
         var el = (/** @type {?} */ (this.el.nativeElement));
@@ -3881,21 +3786,19 @@ var STComponent = /** @class */ (function () {
     };
     /**
      * @param {?} type
-     * @param {?=} options
      * @return {?}
      */
     STComponent.prototype._change = /**
      * @param {?} type
-     * @param {?=} options
      * @return {?}
      */
-    function (type, options) {
+    function (type) {
         var _this = this;
         if (type === 'pi' || (type === 'ps' && this.pi <= Math.ceil(this.total / this.ps))) {
             this.loadPageData().then((/**
              * @return {?}
              */
-            function () { return _this._toTop(options === null || options === void 0 ? void 0 : options.toTop); }));
+            function () { return _this._toTop(); }));
         }
         this.changeEmit(type);
     };
@@ -3987,19 +3890,13 @@ var STComponent = /** @class */ (function () {
     };
     /**
      * @param {?} item
-     * @param {?} expand
      * @return {?}
      */
     STComponent.prototype._expandChange = /**
      * @param {?} item
-     * @param {?} expand
      * @return {?}
      */
-    function (item, expand) {
-        if (this.expandRowByClick) {
-            return;
-        }
-        item.expand = expand;
+    function (item) {
         this.closeOtherExpand(item);
         this.changeEmit('expand', item);
     };
@@ -4083,9 +3980,6 @@ var STComponent = /** @class */ (function () {
     /**
      * Sets the row value for the `index` in the table, like this:
      *
-     * - `optinos.refreshSchema` Whether to refresh of st schemas
-     * - `optinos.emitReload` Whether to trigger a reload http request when data is url
-     *
      * ```
      * this.st.setRow(0, { price: 100 })
      * this.st.setRow(0, { price: 100, name: 'asdf' })
@@ -4094,9 +3988,6 @@ var STComponent = /** @class */ (function () {
     /**
      * Sets the row value for the `index` in the table, like this:
      *
-     * - `optinos.refreshSchema` Whether to refresh of st schemas
-     * - `optinos.emitReload` Whether to trigger a reload http request when data is url
-     *
      * ```
      * this.st.setRow(0, { price: 100 })
      * this.st.setRow(0, { price: 100, name: 'asdf' })
@@ -4105,15 +3996,11 @@ var STComponent = /** @class */ (function () {
      * @this {THIS}
      * @param {?} index
      * @param {?} item
-     * @param {?=} options
      * @return {THIS}
      */
     STComponent.prototype.setRow = /**
      * Sets the row value for the `index` in the table, like this:
      *
-     * - `optinos.refreshSchema` Whether to refresh of st schemas
-     * - `optinos.emitReload` Whether to trigger a reload http request when data is url
-     *
      * ```
      * this.st.setRow(0, { price: 100 })
      * this.st.setRow(0, { price: 100, name: 'asdf' })
@@ -4122,17 +4009,11 @@ var STComponent = /** @class */ (function () {
      * @this {THIS}
      * @param {?} index
      * @param {?} item
-     * @param {?=} options
      * @return {THIS}
      */
-    function (index, item, options) {
-        options = __assign({ refreshSchema: false, emitReload: false }, options);
+    function (index, item) {
         (/** @type {?} */ (this))._data[index] = deepMergeKey((/** @type {?} */ (this))._data[index], false, item);
         (/** @type {?} */ (this))._data = (/** @type {?} */ (this)).dataSource.optimizeData({ columns: (/** @type {?} */ (this))._columns, result: (/** @type {?} */ (this))._data, rowClassName: (/** @type {?} */ (this)).rowClassName });
-        if (options.refreshSchema) {
-            (/** @type {?} */ (this)).resetColumns({ emitReload: options.emitReload });
-            return (/** @type {?} */ (this));
-        }
         (/** @type {?} */ (this)).cdr.detectChanges();
         return (/** @type {?} */ (this));
     };
@@ -4517,7 +4398,7 @@ var STComponent = /** @class */ (function () {
             var modal = btn.modal;
             /** @type {?} */
             var obj = (_a = {}, _a[(/** @type {?} */ ((/** @type {?} */ (modal)).paramsName))] = record, _a);
-            ((/** @type {?} */ (this.modalHelper[btn.type === 'modal' ? 'create' : 'createStatic'])))((/** @type {?} */ (modal)).component, __assign(__assign({}, obj), ((/** @type {?} */ (modal)).params && (/** @type {?} */ ((/** @type {?} */ (modal)).params))(record))), deepMergeKey({}, true, this.cog.modal, modal))
+            ((/** @type {?} */ (this.modalHelper[btn.type === 'modal' ? 'create' : 'createStatic'])))((/** @type {?} */ (modal)).component, __assign({}, obj, ((/** @type {?} */ (modal)).params && (/** @type {?} */ ((/** @type {?} */ (modal)).params))(record))), deepMergeKey({}, true, this.copyCog.modal, modal))
                 .pipe(filter((/**
              * @param {?} w
              * @return {?}
@@ -4535,7 +4416,7 @@ var STComponent = /** @class */ (function () {
             /** @type {?} */
             var obj = (_b = {}, _b[(/** @type {?} */ ((/** @type {?} */ (drawer)).paramsName))] = record, _b);
             this.drawerHelper
-                .create((/** @type {?} */ ((/** @type {?} */ (drawer)).title)), (/** @type {?} */ (drawer)).component, __assign(__assign({}, obj), ((/** @type {?} */ (drawer)).params && (/** @type {?} */ ((/** @type {?} */ (drawer)).params))(record))), deepMergeKey({}, true, this.cog.drawer, drawer))
+                .create((/** @type {?} */ ((/** @type {?} */ (drawer)).title)), (/** @type {?} */ (drawer)).component, __assign({}, obj, ((/** @type {?} */ (drawer)).params && (/** @type {?} */ ((/** @type {?} */ (drawer)).params))(record))), deepMergeKey({}, true, this.copyCog.drawer, drawer))
                 .pipe(filter((/**
              * @param {?} w
              * @return {?}
@@ -4660,7 +4541,7 @@ var STComponent = /** @class */ (function () {
          * @return {?}
          */
         function (res) {
-            return _this.exportSrv.export(__assign(__assign({}, opt), { _d: res, _c: _this._columns }));
+            return _this.exportSrv.export(__assign({}, opt, { _d: res, _c: _this._columns }));
         }));
     };
     Object.defineProperty(STComponent.prototype, "cdkVirtualScrollViewport", {
@@ -4671,7 +4552,7 @@ var STComponent = /** @class */ (function () {
          * @return {?}
          */
         function () {
-            return (/** @type {?} */ (this.orgTable.cdkVirtualScrollViewport));
+            return this.orgTable.cdkVirtualScrollViewport;
         },
         enumerable: true,
         configurable: true
@@ -4717,11 +4598,28 @@ var STComponent = /** @class */ (function () {
      * @return {THIS}
      */
     function () {
-        /** @type {?} */
-        var res = (/** @type {?} */ (this)).columnSource.process((/** @type {?} */ (this)).columns);
-        (/** @type {?} */ (this))._columns = res.columns;
-        (/** @type {?} */ (this))._headers = res.headers;
+        (/** @type {?} */ (this))._columns = (/** @type {?} */ (this)).columnSource.process((/** @type {?} */ (this)).columns);
         return (/** @type {?} */ (this));
+    };
+    /**
+     * @private
+     * @return {?}
+     */
+    STComponent.prototype.setClass = /**
+     * @private
+     * @return {?}
+     */
+    function () {
+        var _a;
+        var _b = this.widthMode, type = _b.type, strictBehavior = _b.strictBehavior;
+        updateHostClass(this.el.nativeElement, this.renderer, (_a = {},
+            _a["st"] = true,
+            _a["st__p-" + this.page.placement] = this.page.placement,
+            _a["st__width-" + type] = true,
+            _a["st__width-strict-" + strictBehavior] = type === 'strict',
+            _a["ant-table-rep"] = this.responsive,
+            _a["ant-table-rep__hide-header-footer"] = this.responsiveHideHeaderFooter,
+            _a));
     };
     /**
      * @return {?}
@@ -4752,6 +4650,7 @@ var STComponent = /** @class */ (function () {
         if (changes.loading) {
             this._loading = changes.loading.currentValue;
         }
+        this.setClass();
     };
     /**
      * @return {?}
@@ -4768,16 +4667,8 @@ var STComponent = /** @class */ (function () {
         { type: Component, args: [{
                     selector: 'st',
                     exportAs: 'st',
-                    template: "<ng-template #btnTpl let-i let-btn=\"btn\">\n  <ng-container *ngIf=\"!btn.tooltip\">\n    <ng-template [ngTemplateOutlet]=\"btnItemTpl\" [ngTemplateOutletContext]=\"{ $implicit: i, btn: btn }\"></ng-template>\n  </ng-container>\n  <span *ngIf=\"btn.tooltip\" nz-tooltip [nzTooltipTitle]=\"btn.tooltip\">\n    <ng-template [ngTemplateOutlet]=\"btnItemTpl\" [ngTemplateOutletContext]=\"{ $implicit: i, btn: btn }\"></ng-template>\n  </span>\n</ng-template>\n<ng-template #btnItemTpl let-i let-btn=\"btn\">\n  <a\n    *ngIf=\"btn.pop\"\n    nz-popconfirm\n    [nzPopconfirmTitle]=\"btn.pop.title\"\n    [nzIcon]=\"btn.pop.icon\"\n    [nzCondition]=\"btn.pop.condition(i)\"\n    [nzCancelText]=\"btn.pop.cancelText\"\n    [nzOkText]=\"btn.pop.okText\"\n    [nzOkType]=\"btn.pop.okType\"\n    (nzOnConfirm)=\"_btnClick(i, btn, $event)\"\n    class=\"st__btn-text\"\n  >\n    <ng-template [ngTemplateOutlet]=\"btnTextTpl\" [ngTemplateOutletContext]=\"{ $implicit: i, btn: btn }\"></ng-template>\n  </a>\n  <a *ngIf=\"!btn.pop\" (click)=\"_btnClick(i, btn, $event)\" class=\"st__btn-text\">\n    <ng-template [ngTemplateOutlet]=\"btnTextTpl\" [ngTemplateOutletContext]=\"{ $implicit: i, btn: btn }\"></ng-template>\n  </a>\n</ng-template>\n<ng-template #btnTextTpl let-i let-btn=\"btn\">\n  <ng-container *ngIf=\"btn.icon\">\n    <i\n      *ngIf=\"!btn.icon.iconfont\"\n      nz-icon\n      [nzType]=\"btn.icon.type\"\n      [nzTheme]=\"btn.icon.theme\"\n      [nzSpin]=\"btn.icon.spin\"\n      [nzTwotoneColor]=\"btn.icon.twoToneColor\"\n    ></i>\n    <i *ngIf=\"btn.icon.iconfont\" nz-icon [nzIconfont]=\"btn.icon.iconfont\"></i>\n  </ng-container>\n  <span [innerHTML]=\"_btnText(i, btn)\" [ngClass]=\"{ 'pl-xs': btn.icon }\"></span>\n</ng-template>\n<ng-template #titleTpl let-i>\n  <span [innerHTML]=\"i._text\"></span>\n  <small *ngIf=\"i.optional\" class=\"st__head-optional\" [innerHTML]=\"i.optional\"></small>\n  <i *ngIf=\"i.optionalHelp\" class=\"st__head-tip\" nz-tooltip [nzTooltipTitle]=\"i.optionalHelp\" nz-icon nzType=\"question-circle\"></i>\n</ng-template>\n<ng-template #chkAllTpl let-custom>\n  <label\n    nz-checkbox\n    class=\"st__checkall\"\n    [nzDisabled]=\"_allCheckedDisabled\"\n    [(ngModel)]=\"_allChecked\"\n    [nzIndeterminate]=\"_indeterminate\"\n    (ngModelChange)=\"_checkAll()\"\n    [class.ant-table-selection-select-all-custom]=\"custom\"\n  ></label>\n</ng-template>\n<nz-table\n  #table\n  [nzData]=\"_data\"\n  [(nzPageIndex)]=\"pi\"\n  (nzPageIndexChange)=\"_change('pi')\"\n  [(nzPageSize)]=\"ps\"\n  (nzPageSizeChange)=\"_change('ps')\"\n  [nzTotal]=\"total\"\n  [nzShowPagination]=\"_isPagination\"\n  [nzFrontPagination]=\"false\"\n  [nzBordered]=\"bordered\"\n  [nzSize]=\"size\"\n  [nzLoading]=\"_loading\"\n  [nzLoadingDelay]=\"loadingDelay\"\n  [nzLoadingIndicator]=\"loadingIndicator\"\n  [nzTitle]=\"header\"\n  [nzFooter]=\"footer\"\n  [nzScroll]=\"scroll\"\n  [nzVirtualItemSize]=\"virtualItemSize\"\n  [nzVirtualMaxBufferPx]=\"virtualMaxBufferPx\"\n  [nzVirtualMinBufferPx]=\"virtualMinBufferPx\"\n  [nzVirtualForTrackBy]=\"virtualForTrackBy\"\n  [nzNoResult]=\"noResult\"\n  [nzPageSizeOptions]=\"page.pageSizes\"\n  [nzShowQuickJumper]=\"page.showQuickJumper\"\n  [nzShowSizeChanger]=\"page.showSize\"\n  [nzPaginationPosition]=\"page.position\"\n  [nzShowTotal]=\"totalTpl\"\n>\n  <thead class=\"st__head\">\n    <tr *ngFor=\"let row of _headers; let rowFirst = first\">\n      <th *ngIf=\"rowFirst && expand\" nzWidth=\"50px\" [attr.rowspan]=\"_headers.length\"></th>\n      <th\n        *ngFor=\"let h of row; let index = index\"\n        [attr.colspan]=\"h.colSpan\"\n        [attr.rowspan]=\"h.rowSpan\"\n        [nzWidth]=\"h.column.width\"\n        [nzLeft]=\"h.column._left\"\n        [nzRight]=\"h.column._right\"\n        [ngClass]=\"h.column.className\"\n        [attr.data-col]=\"h.column.indexKey\"\n        [nzShowSort]=\"h.column._sort.enabled\"\n        [nzSortOrder]=\"h.column._sort.default\"\n        (nzSortOrderChange)=\"sort(h.column, index, $event)\"\n        [nzCustomFilter]=\"h.column.filter\"\n      >\n        <ng-template #renderTitle [ngTemplateOutlet]=\"h.column.__renderTitle\" [ngTemplateOutletContext]=\"{ $implicit: h.column, index: index }\"></ng-template>\n        <ng-container *ngIf=\"!h.column.__renderTitle; else renderTitle\">\n          <ng-container [ngSwitch]=\"h.column.type\">\n            <ng-container *ngSwitchCase=\"'checkbox'\">\n              <ng-container *ngIf=\"h.column.selections.length === 0\">\n                <ng-template [ngTemplateOutlet]=\"chkAllTpl\" [ngTemplateOutletContext]=\"{ $implicit: false }\"> </ng-template>\n              </ng-container>\n              <div *ngIf=\"h.column.selections.length > 0\" class=\"ant-table-selection\">\n                <ng-template [ngTemplateOutlet]=\"chkAllTpl\" [ngTemplateOutletContext]=\"{ $implicit: true }\"> </ng-template>\n                <div\n                  *ngIf=\"h.column.selections.length\"\n                  nz-dropdown\n                  nzPlacement=\"bottomLeft\"\n                  [nzDropdownMenu]=\"selectionMenu\"\n                  class=\"ant-table-selection-down st__checkall-selection\"\n                >\n                  <i nz-icon nzType=\"down\"></i>\n                </div>\n                <nz-dropdown-menu #selectionMenu=\"nzDropdownMenu\">\n                  <ul nz-menu class=\"ant-table-selection-menu\">\n                    <li nz-menu-item *ngFor=\"let rw of h.column.selections\" (click)=\"_rowSelection(rw)\" [innerHTML]=\"rw.text\"></li>\n                  </ul>\n                </nz-dropdown-menu>\n              </div>\n            </ng-container>\n            <ng-container *ngSwitchDefault>\n              <ng-template [ngTemplateOutlet]=\"titleTpl\" [ngTemplateOutletContext]=\"{ $implicit: h.column.title }\"></ng-template>\n            </ng-container>\n          </ng-container>\n        </ng-container>\n        <div\n          nz-th-extra\n          *ngIf=\"h.column.filter\"\n          class=\"ant-table-filter-trigger-container st__filter\"\n          [class.ant-table-filter-trigger-container-open]=\"h.column.filter.visible\"\n        >\n          <span\n            class=\"ant-table-filter-trigger\"\n            [class.ant-table-filter-open]=\"h.column.filter.default\"\n            [class.active]=\"h.column.filter.visible\"\n            nz-dropdown\n            [nzDropdownMenu]=\"filterMenu\"\n            nzTrigger=\"click\"\n            [nzClickHide]=\"false\"\n            [(nzVisible)]=\"h.column.filter.visible\"\n            nzOverlayClassName=\"st__filter-wrap\"\n          >\n            <i nz-icon [nzType]=\"h.column.filter.icon.type\" [nzTheme]=\"h.column.filter.icon.theme\"></i>\n          </span>\n          <nz-dropdown-menu #filterMenu=\"nzDropdownMenu\">\n            <div class=\"ant-table-filter-dropdown\">\n              <ng-container [ngSwitch]=\"h.column.filter.type\">\n                <div *ngSwitchCase=\"'keyword'\" class=\"st__filter-keyword\">\n                  <input type=\"text\" nz-input [attr.placeholder]=\"h.column.filter.menus[0].text\" [(ngModel)]=\"h.column.filter.menus[0].value\" />\n                </div>\n                <ul *ngSwitchDefault nz-menu>\n                  <ng-container *ngIf=\"h.column.filter.multiple\">\n                    <li nz-menu-item *ngFor=\"let filter of h.column.filter.menus\">\n                      <label nz-checkbox [(ngModel)]=\"filter.checked\">{{ filter.text }}</label>\n                    </li>\n                  </ng-container>\n                  <ng-container *ngIf=\"!h.column.filter.multiple\">\n                    <li nz-menu-item *ngFor=\"let filter of h.column.filter.menus\">\n                      <label nz-radio [ngModel]=\"filter.checked\" (ngModelChange)=\"_filterRadio(h.column, filter, $event)\">{{ filter.text }}</label>\n                    </li>\n                  </ng-container>\n                </ul>\n              </ng-container>\n              <div class=\"ant-table-filter-dropdown-btns\">\n                <a class=\"ant-table-filter-dropdown-link confirm\" (click)=\"h.column.filter.visible = false\">\n                  <span (click)=\"_filterConfirm(h.column)\">{{ h.column.filter.confirmText || locale.filterConfirm }}</span>\n                </a>\n                <a class=\"ant-table-filter-dropdown-link clear\" (click)=\"h.column.filter.visible = false\">\n                  <span (click)=\"_filterClear(h.column)\">{{ h.column.filter.clearText || locale.filterReset }}</span>\n                </a>\n              </div>\n            </div>\n          </nz-dropdown-menu>\n        </div>\n      </th>\n    </tr>\n  </thead>\n  <tbody class=\"st__body\">\n    <ng-container *ngIf=\"!_loading\">\n      <ng-template [ngTemplateOutlet]=\"bodyHeader\" [ngTemplateOutletContext]=\"{ $implicit: _statistical }\"></ng-template>\n    </ng-container>\n    <ng-template #bodyTpl let-i let-index=\"index\">\n      <tr [attr.data-index]=\"index\" (click)=\"_rowClick($event, i, index)\" [ngClass]=\"i._rowClassName\">\n        <td\n          *ngIf=\"expand\"\n          [nzShowExpand]=\"expand && i.showExpand !== false\"\n          [nzExpand]=\"i.expand\"\n          (nzExpandChange)=\"_expandChange(i, $event)\"\n          nzWidth=\"50px\"\n        ></td>\n        <td *ngFor=\"let c of _columns; let cIdx = index\" [nzLeft]=\"c._left\" [nzRight]=\"c._right\" [ngClass]=\"columnClass(c)\" [attr.colspan]=\"c.colSpan\">\n          <span *ngIf=\"responsive\" class=\"ant-table-rep__title\">\n            <ng-template [ngTemplateOutlet]=\"titleTpl\" [ngTemplateOutletContext]=\"{ $implicit: c.title }\"></ng-template>\n          </span>\n          <span>\n            <ng-template #render [ngTemplateOutlet]=\"c.__render\" [ngTemplateOutletContext]=\"{ $implicit: i, index: index, column: c }\"></ng-template>\n            <ng-container *ngIf=\"!c.__render; else render\">\n              <ng-container [ngSwitch]=\"c.type\">\n                <label\n                  *ngSwitchCase=\"'checkbox'\"\n                  nz-checkbox\n                  [nzDisabled]=\"i.disabled\"\n                  [ngModel]=\"i.checked\"\n                  (ngModelChange)=\"_checkSelection(i, $event)\"\n                ></label>\n                <label *ngSwitchCase=\"'radio'\" nz-radio [nzDisabled]=\"i.disabled\" [ngModel]=\"i.checked\" (ngModelChange)=\"_refRadio($event, i)\"></label>\n                <a *ngSwitchCase=\"'link'\" (click)=\"_click($event, i, c)\" [innerHTML]=\"i._values[cIdx]._text\"></a>\n                <ng-container *ngIf=\"i._values[cIdx].text\">\n                  <nz-tag *ngSwitchCase=\"'tag'\" [nzColor]=\"i._values[cIdx].color\">\n                    <span [innerHTML]=\"i._values[cIdx]._text\"></span>\n                  </nz-tag>\n                  <nz-badge *ngSwitchCase=\"'badge'\" [nzStatus]=\"i._values[cIdx].color\" [nzText]=\"i._values[cIdx].text\"></nz-badge>\n                </ng-container>\n                <ng-template *ngSwitchCase=\"'widget'\" st-widget-host [record]=\"i\" [column]=\"c\"></ng-template>\n                <span *ngSwitchDefault [innerHTML]=\"i._values[cIdx]._text\" [attr.title]=\"isTruncate(c) ? i._values[cIdx].text : null\"></span>\n              </ng-container>\n              <ng-container *ngFor=\"let btn of _validBtns(c.buttons, i, c); let last = last\">\n                <a *ngIf=\"btn.children.length > 0\" nz-dropdown [nzDropdownMenu]=\"btnMenu\" nzOverlayClassName=\"st__btn-sub\">\n                  <span [innerHTML]=\"_btnText(i, btn)\"></span>\n                  <i nz-icon nzType=\"down\"></i>\n                </a>\n                <nz-dropdown-menu #btnMenu=\"nzDropdownMenu\">\n                  <ul nz-menu>\n                    <ng-container *ngFor=\"let subBtn of _validBtns(btn.children, i, c)\">\n                      <li *ngIf=\"subBtn.type !== 'divider'\" nz-menu-item [class.st__btn-disabled]=\"subBtn._disabled\">\n                        <ng-template [ngTemplateOutlet]=\"btnTpl\" [ngTemplateOutletContext]=\"{ $implicit: i, btn: subBtn }\"> </ng-template>\n                      </li>\n                      <li *ngIf=\"subBtn.type === 'divider'\" nz-menu-divider></li>\n                    </ng-container>\n                  </ul>\n                </nz-dropdown-menu>\n                <span *ngIf=\"btn.children.length == 0\" [class.st__btn-disabled]=\"btn._disabled\">\n                  <ng-template [ngTemplateOutlet]=\"btnTpl\" [ngTemplateOutletContext]=\"{ $implicit: i, btn: btn }\"> </ng-template>\n                </span>\n                <nz-divider *ngIf=\"!last\" nzType=\"vertical\"></nz-divider>\n              </ng-container>\n              <ng-template\n                [ngIf]=\"!c.__renderExpanded\"\n                [ngTemplateOutlet]=\"c.__renderExpanded\"\n                [ngTemplateOutletContext]=\"{ $implicit: i, index: index, column: c }\"\n              ></ng-template>\n            </ng-container>\n          </span>\n        </td>\n      </tr>\n      <tr [nzExpand]=\"i.expand\">\n        <ng-template [ngTemplateOutlet]=\"expand\" [ngTemplateOutletContext]=\"{ $implicit: i, index: index }\"></ng-template>\n      </tr>\n    </ng-template>\n    <ng-container *ngIf=\"!virtualScroll\">\n      <ng-container *ngFor=\"let i of _data; let index = index\">\n        <ng-template [ngTemplateOutlet]=\"bodyTpl\" [ngTemplateOutletContext]=\"{ $implicit: i, index: index }\"> </ng-template>\n      </ng-container>\n    </ng-container>\n    <ng-container *ngIf=\"virtualScroll\">\n      <ng-template nz-virtual-scroll let-i let-index=\"index\">\n        <ng-template [ngTemplateOutlet]=\"bodyTpl\" [ngTemplateOutletContext]=\"{ $implicit: i, index: index }\"> </ng-template>\n      </ng-template>\n    </ng-container>\n    <ng-container *ngIf=\"!_loading\">\n      <ng-template [ngTemplateOutlet]=\"body\" [ngTemplateOutletContext]=\"{ $implicit: _statistical }\"></ng-template>\n    </ng-container>\n  </tbody>\n  <ng-template #totalTpl let-range=\"range\" let-total>{{ renderTotal(total, range) }}</ng-template>\n</nz-table>\n",
+                    template: "<ng-template #btnTpl let-i let-btn=\"btn\">\n  <ng-container *ngIf=\"!btn.tooltip\">\n    <ng-template [ngTemplateOutlet]=\"btnItemTpl\" [ngTemplateOutletContext]=\"{ $implicit: i, btn: btn }\"></ng-template>\n  </ng-container>\n  <span *ngIf=\"btn.tooltip\" nz-tooltip [nzTitle]=\"btn.tooltip\">\n    <ng-template [ngTemplateOutlet]=\"btnItemTpl\" [ngTemplateOutletContext]=\"{ $implicit: i, btn: btn }\"></ng-template>\n  </span>\n</ng-template>\n<ng-template #btnItemTpl let-i let-btn=\"btn\">\n  <a *ngIf=\"btn.pop\" nz-popconfirm [nzPopconfirmTitle]=\"btn.pop.title\" [nzIcon]=\"btn.pop.icon\"\n    [nzCondition]=\"btn.pop.condition(i)\" [nzCancelText]=\"btn.pop.cancelText\" [nzOkText]=\"btn.pop.okText\"\n    [nzOkType]=\"btn.pop.okType\" (nzOnConfirm)=\"_btnClick(i, btn, $event)\" class=\"st__btn-text\">\n    <ng-template [ngTemplateOutlet]=\"btnTextTpl\" [ngTemplateOutletContext]=\"{ $implicit: i, btn: btn }\"></ng-template>\n  </a>\n  <a *ngIf=\"!btn.pop\" (click)=\"_btnClick(i, btn, $event)\" class=\"st__btn-text\">\n    <ng-template [ngTemplateOutlet]=\"btnTextTpl\" [ngTemplateOutletContext]=\"{ $implicit: i, btn: btn }\"></ng-template>\n  </a>\n</ng-template>\n<ng-template #btnTextTpl let-i let-btn=\"btn\">\n  <ng-container *ngIf=\"btn.icon\">\n    <i *ngIf=\"!btn.icon.iconfont\" nz-icon [nzType]=\"btn.icon.type\" [nzTheme]=\"btn.icon.theme\" [nzSpin]=\"btn.icon.spin\"\n      [nzTwotoneColor]=\"btn.icon.twoToneColor\"></i>\n    <i *ngIf=\"btn.icon.iconfont\" nz-icon [nzIconfont]=\"btn.icon.iconfont\"></i>\n  </ng-container>\n  <span [innerHTML]=\"_btnText(i, btn)\" [ngClass]=\"{'pl-xs': btn.icon}\"></span>\n</ng-template>\n<ng-template #titleTpl let-i>\n  <span [innerHTML]=\"i._text\"></span>\n  <small *ngIf=\"i.optional\" class=\"st__head-optional\" [innerHTML]=\"i.optional\"></small>\n  <i *ngIf=\"i.optionalHelp\" class=\"st__head-tip\" nz-tooltip [nzTitle]=\"i.optionalHelp\" nz-icon nzType=\"question-circle\"></i>\n</ng-template>\n<ng-template #bodyTpl let-i let-index=\"index\">\n  <tr [attr.data-index]=\"index\" (click)=\"_rowClick($event, i, index)\" [class]=\"i._rowClassName\">\n    <td *ngIf=\"expand\" [nzShowExpand]=\"expand && i.showExpand !== false\" [(nzExpand)]=\"i.expand\"\n      (nzExpandChange)=\"_expandChange(i)\" nzWidth=\"50px\"></td>\n    <td *ngFor=\"let c of _columns; let cIdx=index\" [nzLeft]=\"c._left\" [nzRight]=\"c._right\"\n      [nzCheckbox]=\"c.type === 'checkbox'\" [ngClass]=\"columnClass(c)\" [attr.colspan]=\"c.colSpan\">\n      <span *ngIf=\"responsive\" class=\"ant-table-rep__title\">\n        <ng-template [ngTemplateOutlet]=\"titleTpl\" [ngTemplateOutletContext]=\"{$implicit: c.title }\"></ng-template>\n      </span>\n      <ng-template #render [ngTemplateOutlet]=\"c.__render\" [ngTemplateOutletContext]=\"{$implicit: i, index: index, column: c }\"></ng-template>\n      <ng-container *ngIf=\"!c.__render; else render\">\n        <ng-container [ngSwitch]=\"c.type\">\n          <label *ngSwitchCase=\"'checkbox'\" nz-checkbox [nzDisabled]=\"i.disabled\" [ngModel]=\"i.checked\" (ngModelChange)=\"_checkSelection(i, $event)\"></label>\n          <label *ngSwitchCase=\"'radio'\" nz-radio [nzDisabled]=\"i.disabled\" [ngModel]=\"i.checked\" (ngModelChange)=\"_refRadio($event, i)\"></label>\n          <a *ngSwitchCase=\"'link'\" (click)=\"_click($event, i, c)\" [innerHTML]=\"i._values[cIdx]._text\"></a>\n          <ng-conntainer *ngIf=\"i._values[cIdx].text\">\n            <nz-tag *ngSwitchCase=\"'tag'\" [nzColor]=\"i._values[cIdx].color\">\n              <span [innerHTML]=\"i._values[cIdx]._text\"></span>\n            </nz-tag>\n            <nz-badge *ngSwitchCase=\"'badge'\" [nzStatus]=\"i._values[cIdx].color\" [nzText]=\"i._values[cIdx].text\">\n            </nz-badge>\n          </ng-conntainer>\n          <span *ngSwitchDefault [innerHTML]=\"i._values[cIdx]._text\" [attr.title]=\"isTruncate(c) ? i._values[cIdx].text : null\"></span>\n        </ng-container>\n        <ng-container *ngFor=\"let btn of _validBtns(c.buttons, i, c); let last=last\">\n          <a *ngIf=\"btn.children.length > 0\" nz-dropdown [nzDropdownMenu]=\"btnMenu\" nzOverlayClassName=\"st__btn-sub\">\n            <span [innerHTML]=\"_btnText(i, btn)\"></span>\n            <i nz-icon nzType=\"down\"></i>\n          </a>\n          <nz-dropdown-menu #btnMenu=\"nzDropdownMenu\">\n            <ul nz-menu>\n              <ng-container *ngFor=\"let subBtn of _validBtns(btn.children, i, c)\">\n                <li *ngIf=\"subBtn.type !== 'divider'\" nz-menu-item [class.st__btn-disabled]=\"subBtn._disabled\">\n                  <ng-template [ngTemplateOutlet]=\"btnTpl\" [ngTemplateOutletContext]=\"{ $implicit: i, btn: subBtn }\">\n                  </ng-template>\n                </li>\n                <li *ngIf=\"subBtn.type === 'divider'\" nz-menu-divider></li>\n              </ng-container>\n            </ul>\n          </nz-dropdown-menu>\n          <span *ngIf=\"btn.children.length == 0\" [class.st__btn-disabled]=\"btn._disabled\">\n            <ng-template [ngTemplateOutlet]=\"btnTpl\" [ngTemplateOutletContext]=\"{ $implicit: i, btn: btn }\">\n            </ng-template>\n          </span>\n          <nz-divider *ngIf=\"!last\" nzType=\"vertical\"></nz-divider>\n        </ng-container>\n        <ng-template [ngIf]=\"!c.__renderExpanded\" [ngTemplateOutlet]=\"c.__renderExpanded\" [ngTemplateOutletContext]=\"{$implicit: i, index: index, column: c }\"></ng-template>\n      </ng-container>\n    </td>\n  </tr>\n  <tr [nzExpand]=\"i.expand\">\n    <td></td>\n    <td [attr.colspan]=\"_columns.length\">\n      <ng-template [ngTemplateOutlet]=\"expand\" [ngTemplateOutletContext]=\"{$implicit: i, index: index }\"></ng-template>\n    </td>\n  </tr>\n</ng-template>\n<ng-template #chkAllTpl let-custom>\n  <label nz-checkbox class=\"st__checkall\" [nzDisabled]=\"_allCheckedDisabled\" [(ngModel)]=\"_allChecked\"\n    [nzIndeterminate]=\"_indeterminate\" (ngModelChange)=\"_checkAll()\"\n    [class.ant-table-selection-select-all-custom]=\"custom\"></label>\n</ng-template>\n<nz-table #table [nzData]=\"_data\" [(nzPageIndex)]=\"pi\" (nzPageIndexChange)=\"_change('pi')\" [(nzPageSize)]=\"ps\"\n  (nzPageSizeChange)=\"_change('ps')\" [nzTotal]=\"total\" [nzShowPagination]=\"_isPagination\" [nzFrontPagination]=\"false\"\n  [nzBordered]=\"bordered\" [nzSize]=\"size\" [nzLoading]=\"_loading\" [nzLoadingDelay]=\"loadingDelay\"\n  [nzLoadingIndicator]=\"loadingIndicator\" [nzTitle]=\"header\" [nzFooter]=\"footer\" [nzScroll]=\"scroll\"\n  [nzVirtualScroll]=\"virtualScroll\" [nzVirtualItemSize]=\"virtualItemSize\" [nzVirtualMaxBufferPx]=\"virtualMaxBufferPx\"\n  [nzVirtualMinBufferPx]=\"virtualMinBufferPx\" [nzNoResult]=\"noResult\" [nzPageSizeOptions]=\"page.pageSizes\"\n  [nzShowQuickJumper]=\"page.showQuickJumper\" [nzShowSizeChanger]=\"page.showSize\" [nzPaginationPosition]=\"page.position\"\n  [nzShowTotal]=\"totalTpl\">\n  <thead class=\"st__head\">\n    <tr>\n      <th *ngIf=\"expand\" [nzShowExpand]=\"expand\" nzWidth=\"50px\"></th>\n      <th *ngFor=\"let c of _columns; let index=index\" [nzWidth]=\"c.width\" [nzLeft]=\"c._left\" [nzRight]=\"c._right\"\n        [ngClass]=\"c.className\" [attr.colspan]=\"c.colSpan\" [attr.data-col]=\"c.indexKey\" [nzShowSort]=\"c._sort.enabled\"\n        [nzSort]=\"c._sort.default\" (nzSortChange)=\"sort(c, index, $event)\" [nzCustomFilter]=\"c.filter\">\n        <ng-template #renderTitle [ngTemplateOutlet]=\"c.__renderTitle\"\n          [ngTemplateOutletContext]=\"{$implicit: c, index: index }\"></ng-template>\n        <ng-container *ngIf=\"!c.__renderTitle; else renderTitle\">\n          <ng-container [ngSwitch]=\"c.type\">\n            <ng-container *ngSwitchCase=\"'checkbox'\">\n              <ng-container *ngIf=\"c.selections.length === 0\">\n                <ng-template [ngTemplateOutlet]=\"chkAllTpl\" [ngTemplateOutletContext]=\"{$implicit: false }\">\n                </ng-template>\n              </ng-container>\n              <div *ngIf=\"c.selections.length > 0\" class=\"ant-table-selection\">\n                <ng-template [ngTemplateOutlet]=\"chkAllTpl\" [ngTemplateOutletContext]=\"{$implicit: true }\">\n                </ng-template>\n                <div *ngIf=\"c.selections.length\" nz-dropdown nzPlacement=\"bottomLeft\" [nzDropdownMenu]=\"selectionMenu\"\n                  class=\"ant-table-selection-down\">\n                  <i nz-icon nzType=\"down\"></i>\n                </div>\n                <nz-dropdown-menu #selectionMenu=\"nzDropdownMenu\">\n                  <ul nz-menu class=\"ant-table-selection-menu\">\n                    <li nz-menu-item *ngFor=\"let rw of c.selections\" (click)=\"_rowSelection(rw)\" [innerHTML]=\"rw.text\">\n                    </li>\n                  </ul>\n                </nz-dropdown-menu>\n              </div>\n            </ng-container>\n            <ng-container *ngSwitchDefault>\n              <ng-template [ngTemplateOutlet]=\"titleTpl\" [ngTemplateOutletContext]=\"{$implicit: c.title }\">\n              </ng-template>\n            </ng-container>\n          </ng-container>\n        </ng-container>\n        <div nz-th-extra *ngIf=\"c.filter\">\n          <i nz-icon [nzType]=\"c.filter.icon.type\" [nzTheme]=\"c.filter.icon.theme\"\n            class=\"st__filter ant-table-filter-icon\" [class.ant-table-filter-selected]=\"c.filter.default\"\n            [class.ant-table-filter-open]=\"c.filter.visible\" nz-dropdown [nzDropdownMenu]=\"filterMenu\"\n            nzTrigger=\"click\" nzTableFilter [hasFilterButton]=\"true\" [nzClickHide]=\"false\"\n            [(nzVisible)]=\"c.filter.visible\" nzOverlayClassName=\"st__filter-wrap\"></i>\n          <nz-dropdown-menu #filterMenu=\"nzDropdownMenu\">\n            <ng-container [ngSwitch]=\"c.filter.type\">\n              <div *ngSwitchCase=\"'keyword'\" class=\"st__filter-keyword\">\n                <input type=\"text\" nz-input [attr.placeholder]=\"c.filter.menus[0].text\"\n                  [(ngModel)]=\"c.filter.menus[0].value\" />\n              </div>\n              <ul *ngSwitchDefault nz-menu>\n                <ng-container *ngIf=\"c.filter.multiple\">\n                  <li nz-menu-item *ngFor=\"let filter of c.filter.menus\">\n                    <label nz-checkbox [(ngModel)]=\"filter.checked\">{{filter.text}}</label>\n                  </li>\n                </ng-container>\n                <ng-container *ngIf=\"!c.filter.multiple\">\n                  <li nz-menu-item *ngFor=\"let filter of c.filter.menus\">\n                    <label nz-radio [ngModel]=\"filter.checked\"\n                      (ngModelChange)=\"_filterRadio(c, filter, $event)\">{{filter.text}}</label>\n                  </li>\n                </ng-container>\n              </ul>\n            </ng-container>\n            <div class=\"ant-table-filter-dropdown-btns\">\n              <a class=\"ant-table-filter-dropdown-link confirm\" (click)=\"c.filter.visible = false\">\n                <span (click)=\"_filterConfirm(c)\">{{c.filter.confirmText || locale.filterConfirm}}</span>\n              </a>\n              <a class=\"ant-table-filter-dropdown-link clear\" (click)=\"c.filter.visible = false\">\n                <span (click)=\"_filterClear(c)\">{{c.filter.clearText || locale.filterReset}}</span>\n              </a>\n            </div>\n          </nz-dropdown-menu>\n        </div>\n      </th>\n    </tr>\n  </thead>\n  <tbody class=\"st__body\">\n    <ng-container *ngIf=\"!_loading\">\n      <ng-template [ngTemplateOutlet]=\"bodyHeader\" [ngTemplateOutletContext]=\"{$implicit: _statistical }\"></ng-template>\n    </ng-container>\n    <ng-container *ngIf=\"!virtualScroll\">\n      <ng-container *ngFor=\"let i of _data; let index=index\">\n        <ng-template [ngTemplateOutlet]=\"bodyTpl\" [ngTemplateOutletContext]=\"{$implicit: i, index: index }\">\n        </ng-template>\n      </ng-container>\n    </ng-container>\n    <ng-container *ngIf=\"virtualScroll\">\n      <ng-template nz-virtual-scroll let-i let-index=\"index\">\n        <ng-template [ngTemplateOutlet]=\"bodyTpl\" [ngTemplateOutletContext]=\"{$implicit: i, index: index }\">\n        </ng-template>\n      </ng-template>\n    </ng-container>\n    <ng-container *ngIf=\"!_loading\">\n      <ng-template [ngTemplateOutlet]=\"body\" [ngTemplateOutletContext]=\"{$implicit: _statistical }\"></ng-template>\n    </ng-container>\n  </tbody>\n  <ng-template #totalTpl let-range=\"range\" let-total>{{ renderTotal(total, range) }}</ng-template>\n</nz-table>\n",
                     providers: [STDataSource, STRowSource, STColumnSource, STExport, CNCurrencyPipe, DatePipe, YNPipe, DecimalPipe],
-                    host: {
-                        '[class.st]': "true",
-                        '[class.st__p-left]': "page.placement === 'left'",
-                        '[class.st__p-center]': "page.placement === 'center'",
-                        '[class.st__width-strict]': "widthMode.type === 'strict'",
-                        '[class.ant-table-rep]': "responsive",
-                        '[class.ant-table-rep__hide-header-footer]': "responsiveHideHeaderFooter",
-                    },
                     preserveWhitespaces: false,
                     changeDetection: ChangeDetectionStrategy.OnPush,
                     encapsulation: ViewEncapsulation.None
@@ -4787,22 +4678,25 @@ var STComponent = /** @class */ (function () {
     STComponent.ctorParameters = function () { return [
         { type: undefined, decorators: [{ type: Optional }, { type: Inject, args: [ALAIN_I18N_TOKEN,] }] },
         { type: ChangeDetectorRef },
+        { type: STConfig },
         { type: Router },
         { type: ElementRef },
+        { type: Renderer2 },
         { type: STExport },
         { type: ModalHelper },
         { type: DrawerHelper },
         { type: undefined, decorators: [{ type: Inject, args: [DOCUMENT,] }] },
         { type: STColumnSource },
         { type: STDataSource },
-        { type: DelonLocaleService },
-        { type: AlainConfigService }
+        { type: DelonLocaleService }
     ]; };
     STComponent.propDecorators = {
         orgTable: [{ type: ViewChild, args: ['table', { static: false },] }],
         req: [{ type: Input }],
         res: [{ type: Input }],
         page: [{ type: Input }],
+        multiSort: [{ type: Input }],
+        widthMode: [{ type: Input }],
         data: [{ type: Input }],
         columns: [{ type: Input }],
         ps: [{ type: Input }],
@@ -4814,10 +4708,12 @@ var STComponent = /** @class */ (function () {
         bordered: [{ type: Input }],
         size: [{ type: Input }],
         scroll: [{ type: Input }],
+        virtualScroll: [{ type: Input }],
+        virtualItemSize: [{ type: Input }],
+        virtualMaxBufferPx: [{ type: Input }],
+        virtualMinBufferPx: [{ type: Input }],
         singleSort: [{ type: Input }],
-        multiSort: [{ type: Input }],
         rowClassName: [{ type: Input }],
-        widthMode: [{ type: Input }],
         header: [{ type: Input }],
         footer: [{ type: Input }],
         bodyHeader: [{ type: Input }],
@@ -4831,12 +4727,7 @@ var STComponent = /** @class */ (function () {
         responsive: [{ type: Input }],
         responsiveHideHeaderFooter: [{ type: Input }],
         error: [{ type: Output }],
-        change: [{ type: Output }],
-        virtualScroll: [{ type: Input }],
-        virtualItemSize: [{ type: Input }],
-        virtualMaxBufferPx: [{ type: Input }],
-        virtualMinBufferPx: [{ type: Input }],
-        virtualForTrackBy: [{ type: Input }]
+        change: [{ type: Output }]
     };
     __decorate([
         InputNumber(),
@@ -4861,6 +4752,22 @@ var STComponent = /** @class */ (function () {
     __decorate([
         InputBoolean(),
         __metadata("design:type", Object)
+    ], STComponent.prototype, "virtualScroll", void 0);
+    __decorate([
+        InputNumber(),
+        __metadata("design:type", Object)
+    ], STComponent.prototype, "virtualItemSize", void 0);
+    __decorate([
+        InputNumber(),
+        __metadata("design:type", Object)
+    ], STComponent.prototype, "virtualMaxBufferPx", void 0);
+    __decorate([
+        InputNumber(),
+        __metadata("design:type", Object)
+    ], STComponent.prototype, "virtualMinBufferPx", void 0);
+    __decorate([
+        InputBoolean(),
+        __metadata("design:type", Object)
     ], STComponent.prototype, "expandRowByClick", void 0);
     __decorate([
         InputBoolean(),
@@ -4878,22 +4785,6 @@ var STComponent = /** @class */ (function () {
         InputBoolean(),
         __metadata("design:type", Boolean)
     ], STComponent.prototype, "responsiveHideHeaderFooter", void 0);
-    __decorate([
-        InputBoolean(),
-        __metadata("design:type", Object)
-    ], STComponent.prototype, "virtualScroll", void 0);
-    __decorate([
-        InputNumber(),
-        __metadata("design:type", Object)
-    ], STComponent.prototype, "virtualItemSize", void 0);
-    __decorate([
-        InputNumber(),
-        __metadata("design:type", Object)
-    ], STComponent.prototype, "virtualMaxBufferPx", void 0);
-    __decorate([
-        InputNumber(),
-        __metadata("design:type", Object)
-    ], STComponent.prototype, "virtualMinBufferPx", void 0);
     return STComponent;
 }());
 if (false) {
@@ -4916,36 +4807,14 @@ if (false) {
      * @type {?}
      * @private
      */
-    STComponent.prototype.cog;
+    STComponent.prototype.clonePage;
     /**
      * @type {?}
      * @private
      */
-    STComponent.prototype.rowClickCount;
-    /**
-     * @type {?}
-     * @private
-     */
-    STComponent.prototype._req;
-    /**
-     * @type {?}
-     * @private
-     */
-    STComponent.prototype._res;
-    /**
-     * @type {?}
-     * @private
-     */
-    STComponent.prototype._page;
-    /**
-     * @type {?}
-     * @private
-     */
-    STComponent.prototype._widthMode;
+    STComponent.prototype.copyCog;
     /** @type {?} */
     STComponent.prototype.locale;
-    /** @type {?} */
-    STComponent.prototype._loading;
     /** @type {?} */
     STComponent.prototype._data;
     /** @type {?} */
@@ -4959,13 +4828,21 @@ if (false) {
     /** @type {?} */
     STComponent.prototype._indeterminate;
     /** @type {?} */
-    STComponent.prototype._headers;
-    /** @type {?} */
     STComponent.prototype._columns;
     /** @type {?} */
     STComponent.prototype.orgTable;
     /** @type {?} */
     STComponent.prototype.data;
+    /**
+     * @type {?}
+     * @private
+     */
+    STComponent.prototype._req;
+    /**
+     * @type {?}
+     * @private
+     */
+    STComponent.prototype._res;
     /** @type {?} */
     STComponent.prototype.columns;
     /** @type {?} */
@@ -4974,55 +4851,40 @@ if (false) {
     STComponent.prototype.pi;
     /** @type {?} */
     STComponent.prototype.total;
-    /** @type {?} */
-    STComponent.prototype.loading;
-    /** @type {?} */
-    STComponent.prototype.loadingDelay;
-    /** @type {?} */
-    STComponent.prototype.loadingIndicator;
-    /** @type {?} */
-    STComponent.prototype.bordered;
-    /** @type {?} */
-    STComponent.prototype.size;
-    /** @type {?} */
-    STComponent.prototype.scroll;
-    /** @type {?} */
-    STComponent.prototype.singleSort;
     /**
      * @type {?}
      * @private
      */
-    STComponent.prototype._multiSort;
+    STComponent.prototype._page;
     /** @type {?} */
-    STComponent.prototype.rowClassName;
+    STComponent.prototype._loading;
+    /**
+     * 是否显示Loading
+     * @type {?}
+     */
+    STComponent.prototype.loading;
+    /**
+     * 延迟显示加载效果的时间（防止闪烁）
+     * @type {?}
+     */
+    STComponent.prototype.loadingDelay;
     /** @type {?} */
-    STComponent.prototype.header;
-    /** @type {?} */
-    STComponent.prototype.footer;
-    /** @type {?} */
-    STComponent.prototype.bodyHeader;
-    /** @type {?} */
-    STComponent.prototype.body;
-    /** @type {?} */
-    STComponent.prototype.expandRowByClick;
-    /** @type {?} */
-    STComponent.prototype.expandAccordion;
-    /** @type {?} */
-    STComponent.prototype.expand;
-    /** @type {?} */
-    STComponent.prototype.noResult;
-    /** @type {?} */
-    STComponent.prototype.widthConfig;
-    /** @type {?} */
-    STComponent.prototype.rowClickTime;
-    /** @type {?} */
-    STComponent.prototype.responsive;
-    /** @type {?} */
-    STComponent.prototype.responsiveHideHeaderFooter;
-    /** @type {?} */
-    STComponent.prototype.error;
-    /** @type {?} */
-    STComponent.prototype.change;
+    STComponent.prototype.loadingIndicator;
+    /**
+     * 是否显示边框
+     * @type {?}
+     */
+    STComponent.prototype.bordered;
+    /**
+     * table大小
+     * @type {?}
+     */
+    STComponent.prototype.size;
+    /**
+     * 纵向支持滚动，也可用于指定滚动区域的高度：`{ y: '300px', x: '300px' }`
+     * @type {?}
+     */
+    STComponent.prototype.scroll;
     /** @type {?} */
     STComponent.prototype.virtualScroll;
     /** @type {?} */
@@ -5031,13 +4893,92 @@ if (false) {
     STComponent.prototype.virtualMaxBufferPx;
     /** @type {?} */
     STComponent.prototype.virtualMinBufferPx;
+    /**
+     * 单排序规则
+     * - 若不指定，则返回：`columnName=ascend|descend`
+     * - 若指定，则返回：`sort=columnName.(ascend|descend)`
+     * @type {?}
+     */
+    STComponent.prototype.singleSort;
+    /**
+     * @type {?}
+     * @private
+     */
+    STComponent.prototype._multiSort;
     /** @type {?} */
-    STComponent.prototype.virtualForTrackBy;
+    STComponent.prototype.rowClassName;
+    /**
+     * @type {?}
+     * @private
+     */
+    STComponent.prototype._widthMode;
+    /**
+     * `header` 标题
+     * @type {?}
+     */
+    STComponent.prototype.header;
+    /**
+     * `footer` 底部
+     * @type {?}
+     */
+    STComponent.prototype.footer;
+    /**
+     * 额外 `body` 顶部内容
+     * @type {?}
+     */
+    STComponent.prototype.bodyHeader;
+    /**
+     * 额外 `body` 内容
+     * @type {?}
+     */
+    STComponent.prototype.body;
+    /** @type {?} */
+    STComponent.prototype.expandRowByClick;
+    /** @type {?} */
+    STComponent.prototype.expandAccordion;
+    /**
+     * `expand` 可展开，当数据源中包括 `expand` 表示展开状态
+     * @type {?}
+     */
+    STComponent.prototype.expand;
+    /** @type {?} */
+    STComponent.prototype.noResult;
+    /** @type {?} */
+    STComponent.prototype.widthConfig;
+    /**
+     * 行单击多少时长之类为双击（单位：毫秒），默认：`200`
+     * @type {?}
+     */
+    STComponent.prototype.rowClickTime;
+    /** @type {?} */
+    STComponent.prototype.responsive;
+    /** @type {?} */
+    STComponent.prototype.responsiveHideHeaderFooter;
+    /**
+     * 请求异常时回调
+     * @type {?}
+     */
+    STComponent.prototype.error;
+    /**
+     * 变化时回调，包括：`pi`、`ps`、`checkbox`、`radio`、`sort`、`filter`、`click`、`dblClick` 变动
+     * @type {?}
+     */
+    STComponent.prototype.change;
+    /**
+     * @type {?}
+     * @private
+     */
+    STComponent.prototype.rowClickCount;
     /**
      * @type {?}
      * @private
      */
     STComponent.prototype.cdr;
+    /**
+     * @type {?}
+     * @private
+     */
+    STComponent.prototype.cog;
     /**
      * @type {?}
      * @private
@@ -5048,6 +4989,11 @@ if (false) {
      * @private
      */
     STComponent.prototype.el;
+    /**
+     * @type {?}
+     * @private
+     */
+    STComponent.prototype.renderer;
     /**
      * @type {?}
      * @private
@@ -5087,93 +5033,17 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
- * Generated from: st-widget-host.directive.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-var STWidgetHostDirective = /** @class */ (function () {
-    function STWidgetHostDirective(stWidgetRegistry, viewContainerRef, componentFactoryResolver) {
-        this.stWidgetRegistry = stWidgetRegistry;
-        this.viewContainerRef = viewContainerRef;
-        this.componentFactoryResolver = componentFactoryResolver;
-    }
-    /**
-     * @return {?}
-     */
-    STWidgetHostDirective.prototype.ngOnInit = /**
-     * @return {?}
-     */
-    function () {
-        /** @type {?} */
-        var widget = (/** @type {?} */ (this.column.widget));
-        /** @type {?} */
-        var componentType = this.stWidgetRegistry.get(widget.type);
-        /** @type {?} */
-        var componentFactory = this.componentFactoryResolver.resolveComponentFactory((/** @type {?} */ (componentType)));
-        this.viewContainerRef.clear();
-        /** @type {?} */
-        var componentRef = this.viewContainerRef.createComponent(componentFactory);
-        var _a = this, record = _a.record, column = _a.column;
-        /** @type {?} */
-        var data = widget.params ? widget.params({ record: record, column: column }) : { record: record };
-        Object.keys(data).forEach((/**
-         * @param {?} key
-         * @return {?}
-         */
-        function (key) {
-            ((/** @type {?} */ (componentRef.instance)))[key] = data[key];
-        }));
-    };
-    STWidgetHostDirective.decorators = [
-        { type: Directive, args: [{ selector: '[st-widget-host]' },] }
-    ];
-    /** @nocollapse */
-    STWidgetHostDirective.ctorParameters = function () { return [
-        { type: STWidgetRegistry },
-        { type: ViewContainerRef },
-        { type: ComponentFactoryResolver }
-    ]; };
-    STWidgetHostDirective.propDecorators = {
-        record: [{ type: Input }],
-        column: [{ type: Input }]
-    };
-    return STWidgetHostDirective;
-}());
-if (false) {
-    /** @type {?} */
-    STWidgetHostDirective.prototype.record;
-    /** @type {?} */
-    STWidgetHostDirective.prototype.column;
-    /**
-     * @type {?}
-     * @private
-     */
-    STWidgetHostDirective.prototype.stWidgetRegistry;
-    /**
-     * @type {?}
-     * @private
-     */
-    STWidgetHostDirective.prototype.viewContainerRef;
-    /**
-     * @type {?}
-     * @private
-     */
-    STWidgetHostDirective.prototype.componentFactoryResolver;
-}
-
-/**
- * @fileoverview added by tsickle
- * Generated from: st.module.ts
+ * Generated from: table.module.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-var COMPONENTS = [STComponent];
-/** @type {?} */
-var DIRECTIVES = [STRowDirective, STWidgetHostDirective];
+var COMPONENTS = [STComponent, STRowDirective];
 var STModule = /** @class */ (function () {
     function STModule() {
     }
     STModule.decorators = [
         { type: NgModule, args: [{
+                    schemas: [NO_ERRORS_SCHEMA],
                     imports: [
                         CommonModule,
                         FormsModule,
@@ -5192,8 +5062,8 @@ var STModule = /** @class */ (function () {
                         NzInputModule,
                         NzToolTipModule,
                     ],
-                    declarations: __spread(COMPONENTS, DIRECTIVES),
-                    exports: __spread(COMPONENTS, DIRECTIVES),
+                    declarations: __spread(COMPONENTS),
+                    exports: __spread(COMPONENTS),
                 },] }
     ];
     return STModule;
@@ -5211,5 +5081,5 @@ var STModule = /** @class */ (function () {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { STColumnSource, STComponent, STDataSource, STExport, STModule, STRowDirective, STWidgetRegistry, ST_DEFULAT_CONFIG, STRowSource as ɵa, STWidgetHostDirective as ɵb };
+export { STColumnSource, STComponent, STConfig, STDataSource, STExport, STModule, STRowDirective, STRowSource as ɵa };
 //# sourceMappingURL=table.js.map

@@ -1,8 +1,8 @@
-import { ChangeDetectorRef, EventEmitter, OnChanges, OnDestroy, OnInit, SimpleChange, SimpleChanges } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { ChangeDetectorRef, EventEmitter, OnChanges, OnDestroy, OnInit, SimpleChange, SimpleChanges } from '@angular/core';
 import { ACLService } from '@delon/acl';
-import { AlainI18NService, DelonLocaleService, LocaleData } from '@delon/theme';
-import { AlainConfigService, AlainSFConfig } from '@delon/util';
+import { DelonLocaleService, LocaleData, AlainI18NService } from '@delon/theme';
+import { DelonFormConfig } from './config';
 import { ErrorData } from './errors';
 import { SFButton, SFLayout } from './interface';
 import { FormProperty } from './model/form.property';
@@ -11,10 +11,11 @@ import { SFSchema } from './schema/index';
 import { SFUISchema } from './schema/ui';
 import { TerminatorService } from './terminator.service';
 import { SchemaValidatorFactory } from './validator.factory';
-export declare function useFactory(schemaValidatorFactory: SchemaValidatorFactory, cogSrv: AlainConfigService): FormPropertyFactory;
+export declare function useFactory(schemaValidatorFactory: SchemaValidatorFactory, options: DelonFormConfig): FormPropertyFactory;
 export declare class SFComponent implements OnInit, OnChanges, OnDestroy {
     private formPropertyFactory;
     private terminator;
+    private options;
     private dom;
     private cdr;
     private localeSrv;
@@ -26,7 +27,6 @@ export declare class SFComponent implements OnInit, OnChanges, OnDestroy {
     private _valid;
     private _defUi;
     private _inited;
-    readonly options: AlainSFConfig;
     locale: LocaleData;
     rootProperty: FormProperty | null;
     _formData: {};
@@ -61,8 +61,7 @@ export declare class SFComponent implements OnInit, OnChanges, OnDestroy {
     /** 是否只展示错误视觉不显示错误文本 */
     onlyVisual: boolean;
     /** 表单模式 */
-    set mode(value: 'default' | 'search' | 'edit');
-    get mode(): 'default' | 'search' | 'edit';
+    mode: 'default' | 'search' | 'edit';
     private _mode;
     /**
      * Whether to load status，when `true` reset button is disabled status, submit button is loading status
@@ -80,9 +79,9 @@ export declare class SFComponent implements OnInit, OnChanges, OnDestroy {
     /** 表单校验结果回调 */
     readonly formError: EventEmitter<ErrorData[]>;
     /** 表单校验状态 */
-    get valid(): boolean;
+    readonly valid: boolean;
     /** 表单值 */
-    get value(): {
+    readonly value: {
         [key: string]: any;
     };
     /**
@@ -102,7 +101,7 @@ export declare class SFComponent implements OnInit, OnChanges, OnDestroy {
      */
     setValue(path: string, value: any): this;
     onSubmit(e: Event): void;
-    constructor(formPropertyFactory: FormPropertyFactory, terminator: TerminatorService, dom: DomSanitizer, cdr: ChangeDetectorRef, localeSrv: DelonLocaleService, aclSrv: ACLService, i18nSrv: AlainI18NService, cogSrv: AlainConfigService);
+    constructor(formPropertyFactory: FormPropertyFactory, terminator: TerminatorService, options: DelonFormConfig, dom: DomSanitizer, cdr: ChangeDetectorRef, localeSrv: DelonLocaleService, aclSrv: ACLService, i18nSrv: AlainI18NService);
     protected fanyi(key: string): string;
     private inheritUI;
     private coverProperty;
@@ -117,17 +116,7 @@ export declare class SFComponent implements OnInit, OnChanges, OnDestroy {
         onlyRoot?: boolean;
     }): this;
     /**
-     * 刷新整个 Schema，当指定 `newSchema` 表示替换当前的 Schema
-     *
-     * 若希望对某个表单元素进行刷新请使用：
-     * ```
-     * // 获取某个元素
-     * const statusProperty = this.sf.getProperty('/status')!;
-     * // 重置 `schema` 或 `ui` 参数
-     * statusProperty.schema.enum = ['1', '2', '3'];
-     * // 调用 `reset` 重置初始值
-     * statusProperty.widget.reset('2');
-     * ```
+     * 刷新 Schema，一般需要动态修改 Schema 某个值时可以方便调用
      */
     refreshSchema(newSchema?: SFSchema, newUI?: SFUISchema): this;
     /**

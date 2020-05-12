@@ -1,7 +1,6 @@
+import { Injectable, ɵɵdefineInjectable, ɵɵinject, EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ChangeDetectorRef, Input, Output, NgModule } from '@angular/core';
 import { __decorate, __metadata } from 'tslib';
-import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ChangeDetectorRef, Input, Output, NgModule } from '@angular/core';
-import { AlainConfigService, LazyService, InputNumber, DelonUtilModule } from '@delon/util';
-import { filter } from 'rxjs/operators';
+import { InputNumber, DelonUtilModule } from '@delon/util';
 import { CommonModule } from '@angular/common';
 
 /**
@@ -9,109 +8,129 @@ import { CommonModule } from '@angular/common';
  * Generated from: qr.config.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-/** @type {?} */
-const QR_DEFULAT_CONFIG = {
-    lib: `https://cdn.bootcdn.net/ajax/libs/qrious/4.0.2/qrious.min.js`,
-    background: 'white',
-    backgroundAlpha: 1,
-    foreground: 'black',
-    foregroundAlpha: 1,
-    level: 'L',
-    mime: 'image/png',
-    padding: 10,
-    size: 220,
-    delay: 0,
-};
+class QRConfig {
+    constructor() {
+        /**
+         * 背景，默认：`white`
+         */
+        this.background = 'white';
+        /**
+         * 背景透明级别，范围：`0-1` 之间，默认：`1.0`
+         */
+        this.backgroundAlpha = 1;
+        /**
+         * 前景，默认：`black`
+         */
+        this.foreground = 'black';
+        /**
+         * 前景透明级别，范围：`0-1` 之间，默认：`1.0`
+         */
+        this.foregroundAlpha = 1;
+        /**
+         * 误差校正级别，默认：`L`
+         */
+        this.level = 'L';
+        /**
+         * 二维码输出图片MIME类型，默认：`image/png`
+         */
+        this.mime = 'image/png';
+        /**
+         * 内边距（单位：px），默认：`10`
+         */
+        this.padding = 10;
+        /**
+         * 大小（单位：px），默认：`220`
+         */
+        this.size = 220;
+    }
+}
+QRConfig.decorators = [
+    { type: Injectable, args: [{ providedIn: 'root' },] }
+];
+/** @nocollapse */ QRConfig.ngInjectableDef = ɵɵdefineInjectable({ factory: function QRConfig_Factory() { return new QRConfig(); }, token: QRConfig, providedIn: "root" });
+if (false) {
+    /**
+     * 背景，默认：`white`
+     * @type {?}
+     */
+    QRConfig.prototype.background;
+    /**
+     * 背景透明级别，范围：`0-1` 之间，默认：`1.0`
+     * @type {?}
+     */
+    QRConfig.prototype.backgroundAlpha;
+    /**
+     * 前景，默认：`black`
+     * @type {?}
+     */
+    QRConfig.prototype.foreground;
+    /**
+     * 前景透明级别，范围：`0-1` 之间，默认：`1.0`
+     * @type {?}
+     */
+    QRConfig.prototype.foregroundAlpha;
+    /**
+     * 误差校正级别，默认：`L`
+     * @type {?}
+     */
+    QRConfig.prototype.level;
+    /**
+     * 二维码输出图片MIME类型，默认：`image/png`
+     * @type {?}
+     */
+    QRConfig.prototype.mime;
+    /**
+     * 内边距（单位：px），默认：`10`
+     * @type {?}
+     */
+    QRConfig.prototype.padding;
+    /**
+     * 大小（单位：px），默认：`220`
+     * @type {?}
+     */
+    QRConfig.prototype.size;
+}
 
 /**
  * @fileoverview added by tsickle
- * Generated from: qr.component.ts
+ * Generated from: qr.service.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class QRComponent {
-    // #endregion
+class QRService {
     /**
-     * @param {?} cdr
-     * @param {?} configSrv
-     * @param {?} lazySrv
+     * @param {?} cog
      */
-    constructor(cdr, configSrv, lazySrv) {
-        this.cdr = cdr;
-        this.lazySrv = lazySrv;
-        this.inited = false;
-        this.value = '';
-        // tslint:disable-next-line:no-output-native
-        this.change = new EventEmitter();
-        this.cog = configSrv.merge('qr', QR_DEFULAT_CONFIG);
-        Object.assign(this, this.cog);
-    }
-    /**
-     * @private
-     * @return {?}
-     */
-    init() {
-        if (!this.inited) {
-            return;
-        }
-        if (this.qr == null) {
-            this.qr = new ((/** @type {?} */ (window))).QRious();
-        }
-        this.qr.set(this.option);
-        this.dataURL = this.qr.toDataURL();
-        this.change.emit(this.dataURL);
-        this.cdr.detectChanges();
-    }
-    /**
-     * @private
-     * @return {?}
-     */
-    initDelay() {
-        this.inited = true;
-        setTimeout((/**
-         * @return {?}
+    constructor(cog) {
+        /**
+         * 背景透明级别，范围：`0-1` 之间
          */
-        () => this.init()), this.delay);
+        this.backgroundAlpha = 1;
+        Object.assign(this, cog);
+        this.qr = new QRious();
     }
     /**
+     * 生成二维码，并返回Base64编码
+     *
+     * @param {?=} value
      * @return {?}
      */
-    ngAfterViewInit() {
-        if (((/** @type {?} */ (window))).QRious) {
-            this.initDelay();
-            return;
-        }
+    refresh(value) {
         /** @type {?} */
-        const url = (/** @type {?} */ (this.cog.lib));
-        this.lazy$ = this.lazySrv.change
-            .pipe(filter((/**
-         * @param {?} ls
-         * @return {?}
-         */
-        ls => ls.length === 1 && ls[0].path === url && ls[0].status === 'ok')))
-            .subscribe((/**
-         * @return {?}
-         */
-        () => this.initDelay()));
-        this.lazySrv.load(url);
-    }
-    /**
-     * @return {?}
-     */
-    ngOnChanges() {
-        /** @type {?} */
-        const option = {
-            background: this.background,
-            backgroundAlpha: this.backgroundAlpha,
-            foreground: this.foreground,
-            foregroundAlpha: this.foregroundAlpha,
-            level: this.level,
-            mime: this.mime,
-            padding: this.padding,
-            size: this.size,
-            value: this.toUtf8ByteArray(this.value),
-        };
-        this.option = option;
-        this.init();
+        const option = typeof value === 'object'
+            ? value
+            : {
+                background: this.background,
+                backgroundAlpha: this.backgroundAlpha,
+                foreground: this.foreground,
+                foregroundAlpha: this.foregroundAlpha,
+                level: this.level,
+                padding: this.padding,
+                size: this.size,
+                value: value || this.value,
+            };
+        option.value = this.toUtf8ByteArray(option.value);
+        this.qr.set(option);
+        return this.dataURL;
     }
     /**
      * @private
@@ -138,21 +157,120 @@ class QRComponent {
         v => String.fromCharCode(v))).join('');
     }
     /**
+     * 返回当前二维码Base64编码
      * @return {?}
      */
-    ngOnDestroy() {
-        if (this.lazy$) {
-            this.lazy$.unsubscribe();
-        }
+    get dataURL() {
+        return this.qr.toDataURL();
+    }
+}
+QRService.decorators = [
+    { type: Injectable, args: [{ providedIn: 'root' },] }
+];
+/** @nocollapse */
+QRService.ctorParameters = () => [
+    { type: QRConfig }
+];
+/** @nocollapse */ QRService.ngInjectableDef = ɵɵdefineInjectable({ factory: function QRService_Factory() { return new QRService(ɵɵinject(QRConfig)); }, token: QRService, providedIn: "root" });
+if (false) {
+    /**
+     * 当前qr实例
+     * @type {?}
+     */
+    QRService.prototype.qr;
+    /**
+     * 背景
+     * @type {?}
+     */
+    QRService.prototype.background;
+    /**
+     * 背景透明级别，范围：`0-1` 之间
+     * @type {?}
+     */
+    QRService.prototype.backgroundAlpha;
+    /**
+     * 前景
+     * @type {?}
+     */
+    QRService.prototype.foreground;
+    /**
+     * 前景透明级别，范围：`0-1` 之间
+     * @type {?}
+     */
+    QRService.prototype.foregroundAlpha;
+    /**
+     * 误差校正级别
+     * @type {?}
+     */
+    QRService.prototype.level;
+    /**
+     * 二维码输出图片MIME类型
+     * @type {?}
+     */
+    QRService.prototype.mime;
+    /**
+     * 内边距（单位：px）
+     * @type {?}
+     */
+    QRService.prototype.padding;
+    /**
+     * 大小（单位：px）
+     * @type {?}
+     */
+    QRService.prototype.size;
+    /**
+     * 值
+     * @type {?}
+     */
+    QRService.prototype.value;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * Generated from: qr.component.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class QRComponent {
+    // #endregion
+    /**
+     * @param {?} cog
+     * @param {?} srv
+     * @param {?} cdr
+     */
+    constructor(cog, srv, cdr) {
+        this.srv = srv;
+        this.cdr = cdr;
+        this.change = new EventEmitter();
+        Object.assign(this, Object.assign({}, new QRConfig(), cog));
+    }
+    /**
+     * @return {?}
+     */
+    ngOnChanges() {
+        this.dataURL = this.srv.refresh({
+            background: this.background,
+            backgroundAlpha: this.backgroundAlpha,
+            foreground: this.foreground,
+            foregroundAlpha: this.foregroundAlpha,
+            level: this.level,
+            mime: this.mime,
+            padding: this.padding,
+            size: this.size,
+            value: this.value,
+        });
+        this.cdr.detectChanges();
+        this.change.emit(this.dataURL);
     }
 }
 QRComponent.decorators = [
     { type: Component, args: [{
                 selector: 'qr',
                 exportAs: 'qr',
-                template: ` <img style="max-width: 100%; max-height: 100%;" [src]="dataURL" /> `,
+                template: `
+    <img class="qr__img" src="{{ dataURL }}" />
+  `,
                 host: {
-                    '[style.display]': `'inline-block'`,
+                    '[class.qr]': 'true',
                     '[style.height.px]': 'size',
                     '[style.width.px]': 'size',
                 },
@@ -163,9 +281,9 @@ QRComponent.decorators = [
 ];
 /** @nocollapse */
 QRComponent.ctorParameters = () => [
-    { type: ChangeDetectorRef },
-    { type: AlainConfigService },
-    { type: LazyService }
+    { type: QRConfig },
+    { type: QRService },
+    { type: ChangeDetectorRef }
 ];
 QRComponent.propDecorators = {
     background: [{ type: Input }],
@@ -177,7 +295,6 @@ QRComponent.propDecorators = {
     padding: [{ type: Input }],
     size: [{ type: Input }],
     value: [{ type: Input }],
-    delay: [{ type: Input }],
     change: [{ type: Output }]
 };
 __decorate([
@@ -188,36 +305,7 @@ __decorate([
     InputNumber(),
     __metadata("design:type", Number)
 ], QRComponent.prototype, "size", void 0);
-__decorate([
-    InputNumber(),
-    __metadata("design:type", Number)
-], QRComponent.prototype, "delay", void 0);
 if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    QRComponent.prototype.lazy$;
-    /**
-     * @type {?}
-     * @private
-     */
-    QRComponent.prototype.qr;
-    /**
-     * @type {?}
-     * @private
-     */
-    QRComponent.prototype.cog;
-    /**
-     * @type {?}
-     * @private
-     */
-    QRComponent.prototype.option;
-    /**
-     * @type {?}
-     * @private
-     */
-    QRComponent.prototype.inited;
     /** @type {?} */
     QRComponent.prototype.dataURL;
     /** @type {?} */
@@ -239,33 +327,17 @@ if (false) {
     /** @type {?} */
     QRComponent.prototype.value;
     /** @type {?} */
-    QRComponent.prototype.delay;
-    /** @type {?} */
     QRComponent.prototype.change;
     /**
      * @type {?}
      * @private
      */
-    QRComponent.prototype.cdr;
+    QRComponent.prototype.srv;
     /**
      * @type {?}
      * @private
      */
-    QRComponent.prototype.lazySrv;
-}
-
-/**
- * @fileoverview added by tsickle
- * Generated from: qr.types.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
- * @record
- */
-function QROptions() { }
-if (false) {
-    /** @type {?} */
-    QROptions.prototype.value;
+    QRComponent.prototype.cdr;
 }
 
 /**
@@ -297,5 +369,5 @@ QRModule.decorators = [
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { QRComponent, QRModule, QR_DEFULAT_CONFIG };
+export { QRComponent, QRConfig, QRModule, QRService };
 //# sourceMappingURL=qr.js.map

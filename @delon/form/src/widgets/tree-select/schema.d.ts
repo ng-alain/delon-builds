@@ -1,7 +1,7 @@
-import { NzFormatEmitEvent, NzTreeNode } from 'ng-zorro-antd/core/tree';
 import { Observable } from 'rxjs';
-import { SFSchemaEnum, SFSchemaEnumType } from '../../schema';
-import { SFDLSSize, SFUISchemaItem } from '../../schema/ui';
+import { NzTreeNode, NzFormatEmitEvent } from 'ng-zorro-antd/core';
+import { SFUISchemaItem, SFDLSSize } from '../../schema/ui';
+import { SFSchemaEnumType, SFSchemaEnum } from '../../schema';
 export interface SFTreeSelectWidgetSchema extends SFUISchemaItem {
     /**
      * 异步数据源
@@ -41,10 +41,6 @@ export interface SFTreeSelectWidgetSchema extends SFUISchemaItem {
      * 默认展开所有树节点，默认：`false`
      */
     defaultExpandAll?: boolean;
-    /**
-     * 当下拉列表为空时显示的内容
-     */
-    notFoundContent?: string;
     /**
      * 如何在输入框显示所选的节点值的方法
      */

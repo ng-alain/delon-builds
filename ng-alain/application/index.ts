@@ -3,18 +3,19 @@ import {
   apply,
   chain,
   filter,
-  MergeStrategy,
   mergeWith,
   move,
   noop,
+  template,
+  url,
+  MergeStrategy,
   Rule,
   SchematicContext,
-  template,
   Tree,
-  url,
 } from '@angular-devkit/schematics';
 import { NodePackageInstallTask } from '@angular-devkit/schematics/tasks';
 import * as path from 'path';
+
 import { getLangData } from '../core/lang.config';
 import { tryAddFile } from '../utils/alain';
 import { HMR_CONTENT } from '../utils/contents';
@@ -22,16 +23,16 @@ import { addFiles } from '../utils/file';
 import { addHeadStyle, addHtmlToBody } from '../utils/html';
 import {
   addPackageToPackageJson,
-  getAngular,
   getJSON,
   getPackage,
-  overwriteAngular,
   overwriteJSON,
   overwritePackage,
   scriptsToAngularJson,
+  getAngular,
+  overwriteAngular,
 } from '../utils/json';
 import { VERSION, ZORROVERSION } from '../utils/lib-versions';
-import { getProject, getProjectFromWorkspace, Project } from '../utils/project';
+import { getProject, Project, getProjectFromWorkspace } from '../utils/project';
 import { Schema as ApplicationOptions } from './schema';
 
 const overwriteDataFileRoot = path.join(__dirname, 'overwrites');
@@ -85,8 +86,8 @@ function addDependenciesToPackageJson(options: ApplicationOptions) {
       // allow ignore ng-zorro-antd becauce of @delon/theme dependency
       `ng-zorro-antd@${ZORROVERSION}`,
       // ng-zorro-antd need
-      'screenfull@^5.0.2',
-      'ajv@^6.12.0',
+      'screenfull@^5.0.0',
+      'ajv@^6.10.2',
     ]);
     // add ajv
     scriptsToAngularJson(host, ['node_modules/ajv/dist/ajv.bundle.js'], 'add', ['build', 'test']);
@@ -103,13 +104,14 @@ function addDependenciesToPackageJson(options: ApplicationOptions) {
         `ng-alain-codelyzer@^0.0.1`,
         `@delon/testing@${VERSION}`,
         // color-less
-        `antd-theme-generator@^1.1.9`,
+        `antd-theme-generator@^1.1.7`,
+        `less-bundle-promise@^1.0.7`,
       ],
       'devDependencies',
     );
     // i18n
     if (options.i18n) {
-      addPackageToPackageJson(host, [`@ngx-translate/core@^12.1.2`, `@ngx-translate/http-loader@^4.0.0`]);
+      addPackageToPackageJson(host, [`@ngx-translate/core@^11.0.1`, `@ngx-translate/http-loader@^4.0.0`]);
     }
     return host;
   };
@@ -138,7 +140,9 @@ function addPathsToTsConfig() {
     if (!json.compilerOptions.paths) json.compilerOptions.paths = {};
     const paths = json.compilerOptions.paths;
     paths['@shared'] = ['src/app/shared/index'];
+    paths['@shared/*'] = ['src/app/shared/*'];
     paths['@core'] = ['src/app/core/index'];
+    paths['@core/*'] = ['src/app/core/*'];
     paths['@env/*'] = ['src/environments/*'];
     overwriteJSON(host, 'tsconfig.json', json);
     return host;
@@ -150,10 +154,17 @@ function addCodeStylesToPackageJson() {
     const json = getPackage(host);
     if (json == null) return host;
     json.scripts.lint = `npm run lint:ts && npm run lint:style`;
-    json.scripts['lint:ts'] = `ng lint --fix`;
+    json.scripts['lint:ts'] = `tslint -c tslint.json \"src/**/*.ts\" --fix`;
     json.scripts['lint:style'] = `stylelint \"src/**/*.less\" --syntax less --fix`;
     json.scripts['lint-staged'] = `lint-staged`;
     json.scripts['tslint-check'] = `tslint-config-prettier-check ./tslint.json`;
+    json['lint-staged'] = {
+      linters: {
+        'src/**/*.ts': ['npm run lint:ts', 'git add'],
+        'src/**/*.less': ['npm run lint:style', 'git add'],
+      },
+      ignore: ['src/assets/*'],
+    };
     overwritePackage(host, json);
     // dependencies
     addPackageToPackageJson(
@@ -161,16 +172,16 @@ function addCodeStylesToPackageJson() {
       [
         `tslint-config-prettier@^1.18.0`,
         `tslint-language-service@^0.9.9`,
-        `lint-staged@^10.1.2`,
-        `husky@^4.2.3`,
-        `prettier@^2.0.4`,
+        `lint-staged@^8.2.1`,
+        `husky@^3.0.9`,
+        `prettier@^1.18.2`,
         `prettier-stylelint@^0.4.2`,
-        `stylelint@^13.3.1`,
-        `stylelint-config-prettier@^8.0.1`,
+        `stylelint@^11.1.1`,
+        `stylelint-config-prettier@^6.0.0`,
         `stylelint-config-rational-order@^0.1.2`,
-        `stylelint-config-standard@^20.0.0`,
-        `stylelint-declaration-block-no-ignored-properties@^2.3.0`,
-        `stylelint-order@^4.0.0`,
+        `stylelint-config-standard@^19.0.0`,
+        `stylelint-declaration-block-no-ignored-properties@^2.1.0`,
+        `stylelint-order@^3.1.1`,
       ],
       'devDependencies',
     );
@@ -273,7 +284,7 @@ import { NzMessageService } from 'ng-zorro-antd/message';
 @Component({
   selector: '<%= selector %>',
   templateUrl: './<%= dasherize(name) %>.component.html',<% if(!inlineStyle) { %><% } else { %>
-  styleUrls: ['./<%= dasherize(name) %>.component.<%= style %>']<% } %><% if(!!viewEncapsulation) { %>,
+  styleUrls: ['./<%= dasherize(name) %>.component.<%= styleext %>']<% } %><% if(!!viewEncapsulation) { %>,
   encapsulation: ViewEncapsulation.<%= viewEncapsulation %><% } if (changeDetection !== 'Default') { %>,
   changeDetection: ChangeDetectionStrategy.<%= changeDetection %><% } %>
 })
@@ -433,15 +444,13 @@ function installPackages() {
   };
 }
 
-function tips() {
+function cnpmTips() {
   return (_host: Tree) => {
-    console.warn(``);
-    console.warn(`Don't use cnpm to install dependencies, pls refer to: https://ng-alain.com/docs/faq#Installation`);
     console.warn(`Don't use cnpm to install dependencies, pls refer to: https://ng-alain.com/docs/faq#Installation`);
   };
 }
 
-export default function (options: ApplicationOptions): Rule {
+export default function(options: ApplicationOptions): Rule {
   return (host: Tree, context: SchematicContext) => {
     project = getProject(host, options.project);
 
@@ -465,8 +474,7 @@ export default function (options: ApplicationOptions): Rule {
       fixVsCode(),
       fixAngularJson(options),
       installPackages(),
-      tips(),
-      // applyLintFix(),
+      cnpmTips(),
     ])(host, context);
   };
 }

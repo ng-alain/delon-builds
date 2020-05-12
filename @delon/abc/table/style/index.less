@@ -1,0 +1,77 @@
+@import '../../../theme/styles/default.less';
+@import './variable.less';
+
+@{st-prefix} {
+  display: block;
+  &__p-left {
+    .@{ant-prefix}-table-pagination {
+      display: block;
+      float: none;
+      text-align: left;
+    }
+  }
+  &__p-center {
+    .@{ant-prefix}-table-pagination {
+      display: block;
+      float: none;
+      text-align: center;
+    }
+  }
+  // 修复按钮block
+  &__btn {
+    &-sub {
+      @{st-prefix}__btn-text {
+        color: inherit;
+      }
+    }
+    &-disabled {
+      @{st-prefix}__btn-text {
+        color: @st-btn-disabled-color;
+        pointer-events: none;
+      }
+    }
+  }
+  // 清除页码底部间距，在大部分列表中会包裹 `nz-card` 导致底部间距过大，若有需求可自行使用 `mb-md` 来调整
+  .@{ant-prefix}-table ~ nz-pagination > .@{ant-prefix}-pagination {
+    margin-bottom: 0;
+  }
+
+  &__filter {
+    &-keyword {
+      padding: @layout-gutter;
+    }
+  }
+  // Title
+  .@{ant-prefix}-table-column-title {
+    display: flex;
+    align-items: center;
+  }
+  &__head {
+    &-optional,
+    &-tip {
+      margin-left: 2px;
+      color: @st-title-optional-color;
+    }
+  }
+  // 修复自动定义图标无法高亮问题
+  .@{ant-prefix}-table-thead > tr > th .@{ant-prefix}-table-filter-selected.@{ant-prefix}-table-filter-icon {
+    color: @primary-color;
+  }
+  // 修复过滤图标优先级问题
+  .@{ant-prefix}-table-thead > tr > th .@{ant-prefix}-table-filter-icon {
+    position: absolute !important;
+  }
+
+  @media screen and (min-width: @nz-table-rep-min-width) {
+    &__width {
+      &-strict {
+        .ant-table-body {
+          > table {
+            word-wrap: break-word;
+            table-layout: fixed;
+          }
+        }
+      }
+    }
+  }
+}

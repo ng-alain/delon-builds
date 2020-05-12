@@ -1,5 +1,5 @@
 import { SFSchema } from './schema/index';
-import { SFOptionalHelp, SFUISchemaItem } from './schema/ui';
+import { SFUISchemaItem, SFOptionalHelp } from './schema/ui';
 export declare class SFItemWrapComponent {
     id: string;
     schema: SFSchema;
@@ -8,6 +8,6 @@ export declare class SFItemWrapComponent {
     error: string;
     showTitle: boolean;
     title: string | null;
-    get t(): string | null | undefined;
-    get oh(): SFOptionalHelp;
+    readonly t: string | null | undefined;
+    readonly oh: SFOptionalHelp;
 }

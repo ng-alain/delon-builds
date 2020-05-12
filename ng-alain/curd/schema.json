@@ -63,17 +63,10 @@
         }
       ]
     },
-    "style": {
-      "description": "The file extension or preprocessor to use for style files.",
+    "styleext": {
+      "description": "The file extension to be used for style files.",
       "type": "string",
-      "default": "css",
-      "enum": [
-        "css",
-        "scss",
-        "sass",
-        "less",
-        "styl"
-      ]
+      "default": "css"
     },
     "spec": {
       "type": "boolean",

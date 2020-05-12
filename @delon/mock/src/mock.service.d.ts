@@ -1,16 +1,16 @@
 import { OnDestroy } from '@angular/core';
-import { AlainConfigService, AlainMockConfig } from '@delon/util';
 import { MockCachedRule, MockRule } from './interface';
+import { DelonMockConfig } from './mock.config';
 export declare class MockService implements OnDestroy {
+    private config;
     private cached;
-    readonly config: AlainMockConfig;
-    constructor(cogSrv: AlainConfigService);
+    constructor(config: DelonMockConfig);
     private applyMock;
     private realApplyMock;
     private genRule;
     private outputError;
     getRule(method: string, url: string): MockRule | null;
     clearCache(): void;
-    get rules(): MockCachedRule[];
+    readonly rules: MockCachedRule[];
     ngOnDestroy(): void;
 }

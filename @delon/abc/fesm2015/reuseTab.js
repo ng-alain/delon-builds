@@ -1,4 +1,4 @@
-import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Output, ElementRef, Injectable, Directive, Injector, ɵɵdefineInjectable, ɵɵinject, INJECTOR, ChangeDetectorRef, Optional, Inject, NgModule } from '@angular/core';
+import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Output, ElementRef, Injectable, Directive, Injector, ɵɵdefineInjectable, ɵɵinject, INJECTOR, ChangeDetectorRef, Renderer2, Optional, Inject, NgModule } from '@angular/core';
 import { DelonLocaleService, ScrollService, MenuService, ALAIN_I18N_TOKEN, DelonLocaleModule } from '@delon/theme';
 import { Subject, Subscription, BehaviorSubject } from 'rxjs';
 import { ConnectionPositionPair, Overlay, OverlayModule } from '@angular/cdk/overlay';
@@ -7,7 +7,7 @@ import { __decorate, __metadata } from 'tslib';
 import { DOCUMENT, CommonModule } from '@angular/common';
 import { ActivatedRoute, Router, ROUTER_CONFIGURATION, NavigationStart, NavigationEnd, RouterModule } from '@angular/router';
 import { InputBoolean, InputNumber } from '@delon/util';
-import { takeUntil, debounceTime, filter } from 'rxjs/operators';
+import { takeUntil, filter, debounceTime } from 'rxjs/operators';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzTabsModule } from 'ng-zorro-antd/tabs';
@@ -23,7 +23,6 @@ class ReuseTabContextMenuComponent {
      */
     constructor(i18nSrv) {
         this.i18nSrv = i18nSrv;
-        // tslint:disable-next-line:no-output-native
         this.close = new EventEmitter();
     }
     /**
@@ -31,7 +30,7 @@ class ReuseTabContextMenuComponent {
      * @return {?}
      */
     set i18n(value) {
-        this._i18n = Object.assign(Object.assign({}, this.i18nSrv.getData('reuseTab')), value);
+        this._i18n = Object.assign({}, this.i18nSrv.getData('reuseTab'), value);
     }
     /**
      * @return {?}
@@ -104,7 +103,7 @@ class ReuseTabContextMenuComponent {
 ReuseTabContextMenuComponent.decorators = [
     { type: Component, args: [{
                 selector: 'reuse-tab-context-menu',
-                template: "<ul nz-menu>\n  <li nz-menu-item (click)=\"click($event, 'refresh')\" data-type=\"refresh\" [innerHTML]=\"i18n.refresh\"></li>\n  <li nz-menu-item (click)=\"click($event, 'close')\" data-type=\"close\" [nzDisabled]=\"!item.closable\" [innerHTML]=\"i18n.close\"></li>\n  <li nz-menu-item (click)=\"click($event, 'closeOther')\" data-type=\"closeOther\" [innerHTML]=\"i18n.closeOther\"></li>\n  <li nz-menu-item (click)=\"click($event, 'closeRight')\" data-type=\"closeRight\" [nzDisabled]=\"item.last\" [innerHTML]=\"i18n.closeRight\"></li>\n  <ng-container *ngIf=\"customContextMenu!.length > 0\">\n    <li nz-menu-divider></li>\n    <li\n      *ngFor=\"let i of customContextMenu\"\n      nz-menu-item\n      [attr.data-type]=\"i.id\"\n      [nzDisabled]=\"isDisabled(i)\"\n      (click)=\"click($event, 'custom', i)\"\n      [innerHTML]=\"i.title\"\n    ></li>\n  </ng-container>\n</ul>\n",
+                template: "<ul nz-menu>\n  <li nz-menu-item\n      (click)=\"click($event, 'close')\"\n      data-type=\"close\"\n      [nzDisabled]=\"!item.closable\"\n      [innerHTML]=\"i18n.close\"></li>\n  <li nz-menu-item\n      (click)=\"click($event, 'closeOther')\"\n      data-type=\"closeOther\"\n      [innerHTML]=\"i18n.closeOther\"></li>\n  <li nz-menu-item\n      (click)=\"click($event, 'closeRight')\"\n      data-type=\"closeRight\"\n      [nzDisabled]=\"item.last\"\n      [innerHTML]=\"i18n.closeRight\"></li>\n  <li nz-menu-item\n      (click)=\"click($event, 'clear')\"\n      data-type=\"clear\"\n      [innerHTML]=\"i18n.clear\"></li>\n  <ng-container *ngIf=\"customContextMenu!.length > 0\">\n    <li nz-menu-divider></li>\n    <li *ngFor=\"let i of customContextMenu\"\n        nz-menu-item\n        [attr.data-type]=\"i.id\"\n        [nzDisabled]=\"isDisabled(i)\"\n        (click)=\"click($event, 'custom', i)\"\n        [innerHTML]=\"i.title\"></li>\n  </ng-container>\n</ul>\n",
                 host: {
                     '(document:click)': 'closeMenu($event)',
                     '(document:contextmenu)': 'closeMenu($event)',
@@ -197,7 +196,10 @@ class ReuseTabContextService {
             new ConnectionPositionPair({ originX: 'start', originY: 'top' }, { overlayX: 'start', overlayY: 'bottom' }),
         ];
         /** @type {?} */
-        const positionStrategy = this.overlay.position().flexibleConnectedTo(fakeElement).withPositions(positions);
+        const positionStrategy = this.overlay
+            .position()
+            .flexibleConnectedTo(fakeElement)
+            .withPositions(positions);
         this.ref = this.overlay.create({
             positionStrategy,
             panelClass: 'reuse-tab__cm',
@@ -265,7 +267,6 @@ class ReuseTabContextComponent {
     constructor(srv) {
         this.srv = srv;
         this.sub$ = new Subscription();
-        // tslint:disable-next-line:no-output-native
         this.change = new EventEmitter();
         this.sub$.add(srv.show.subscribe((/**
          * @param {?} context
@@ -457,14 +458,6 @@ if (false) {
      * @type {?}
      */
     ReuseTabNotify.prototype.active;
-    /** @type {?|undefined} */
-    ReuseTabNotify.prototype.url;
-    /** @type {?|undefined} */
-    ReuseTabNotify.prototype.title;
-    /** @type {?|undefined} */
-    ReuseTabNotify.prototype.item;
-    /** @type {?|undefined} */
-    ReuseTabNotify.prototype.list;
     /* Skipping unhandled member: [key: string]: any;*/
 }
 /**
@@ -523,7 +516,7 @@ if (false) {
     /** @type {?|undefined} */
     ReuseContextI18n.prototype.closeRight;
     /** @type {?|undefined} */
-    ReuseContextI18n.prototype.refresh;
+    ReuseContextI18n.prototype.clear;
 }
 /**
  * @record
@@ -538,34 +531,6 @@ if (false) {
     ReuseCustomContextMenu.prototype.fn;
     /** @type {?|undefined} */
     ReuseCustomContextMenu.prototype.disabled;
-}
-/**
- * @record
- */
-function ReuseComponentHandle() { }
-if (false) {
-    /** @type {?} */
-    ReuseComponentHandle.prototype.componentRef;
-}
-/**
- * @record
- */
-function ReuseComponentRef() { }
-if (false) {
-    /** @type {?} */
-    ReuseComponentRef.prototype.instance;
-}
-/**
- * @record
- */
-function ReuseComponentInstance() { }
-if (false) {
-    /** @type {?} */
-    ReuseComponentInstance.prototype._onReuseInit;
-    /** @type {?} */
-    ReuseComponentInstance.prototype._onReuseDestroy;
-    /** @type {?} */
-    ReuseComponentInstance.prototype.destroy;
 }
 
 /**
@@ -683,7 +648,6 @@ class ReuseTabService {
         this.di('update current tag title: ', value);
         this._cachedChange.next({
             active: 'title',
-            url,
             title: value,
             list: this._cached,
         });
@@ -1045,22 +1009,15 @@ class ReuseTabService {
         return menus.pop();
     }
     /**
+     * @private
      * @param {?} method
+     * @param {?} _url
      * @param {?} comp
      * @return {?}
      */
-    runHook(method, comp) {
-        if (typeof comp === 'number') {
-            /** @type {?} */
-            const item = this._cached[comp];
-            comp = item._handle.componentRef;
-        }
-        if (comp == null) {
-            return;
-        }
-        if (comp.instance && typeof comp.instance[method] === 'function') {
+    runHook(method, _url, comp) {
+        if (comp.instance && typeof comp.instance[method] === 'function')
             comp.instance[method]();
-        }
     }
     /**
      * @private
@@ -1093,8 +1050,6 @@ class ReuseTabService {
         /** @type {?} */
         const idx = this.index(url);
         /** @type {?} */
-        const isAdd = idx === -1;
-        /** @type {?} */
         const item = {
             title: this.getTitle(url, _snapshot),
             closable: this.getClosable(url, _snapshot),
@@ -1103,7 +1058,7 @@ class ReuseTabService {
             _snapshot,
             _handle,
         };
-        if (isAdd) {
+        if (idx === -1) {
             if (this.count >= this._max) {
                 // Get the oldest closable location
                 /** @type {?} */
@@ -1121,13 +1076,11 @@ class ReuseTabService {
             this._cached[idx] = item;
         }
         this.removeUrlBuffer = null;
-        this.di('#store', isAdd ? '[new]' : '[override]', url);
+        this.di('#store', idx === -1 ? '[new]' : '[override]', url);
         if (_handle && _handle.componentRef) {
-            this.runHook('_onReuseDestroy', _handle.componentRef);
+            this.runHook('_onReuseDestroy', url, _handle.componentRef);
         }
-        if (!isAdd) {
-            this._cachedChange.next({ active: 'override', item, list: this._cached });
-        }
+        this._cachedChange.next({ active: 'add', item, list: this._cached });
     }
     /**
      * 决定是否允许应用缓存数据
@@ -1144,16 +1097,8 @@ class ReuseTabService {
         /** @type {?} */
         const ret = !!(data && data._handle);
         this.di('#shouldAttach', ret, url);
-        if (ret) {
-            /** @type {?} */
-            const compRef = (/** @type {?} */ (data))._handle.componentRef;
-            if (compRef) {
-                this.componentRef = compRef;
-                this.runHook('_onReuseInit', compRef);
-            }
-        }
-        else {
-            this._cachedChange.next({ active: 'add', url, list: this._cached });
+        if (ret && (/** @type {?} */ (data))._handle.componentRef) {
+            this.runHook('_onReuseInit', url, (/** @type {?} */ (data))._handle.componentRef);
         }
         return ret;
     }
@@ -1298,7 +1243,7 @@ ReuseTabService.ctorParameters = () => [
     { type: Injector },
     { type: MenuService }
 ];
-/** @nocollapse */ ReuseTabService.ɵprov = ɵɵdefineInjectable({ factory: function ReuseTabService_Factory() { return new ReuseTabService(ɵɵinject(INJECTOR), ɵɵinject(MenuService)); }, token: ReuseTabService, providedIn: "root" });
+/** @nocollapse */ ReuseTabService.ngInjectableDef = ɵɵdefineInjectable({ factory: function ReuseTabService_Factory() { return new ReuseTabService(ɵɵinject(INJECTOR), ɵɵinject(MenuService)); }, token: ReuseTabService, providedIn: "root" });
 if (false) {
     /**
      * @type {?}
@@ -1351,8 +1296,6 @@ if (false) {
      */
     ReuseTabService.prototype.positionBuffer;
     /** @type {?} */
-    ReuseTabService.prototype.componentRef;
-    /** @type {?} */
     ReuseTabService.prototype.debug;
     /** @type {?} */
     ReuseTabService.prototype.mode;
@@ -1383,35 +1326,37 @@ if (false) {
 class ReuseTabComponent {
     // #endregion
     /**
+     * @param {?} el
      * @param {?} srv
      * @param {?} cdr
      * @param {?} router
      * @param {?} route
+     * @param {?} render
      * @param {?} i18nSrv
      * @param {?} doc
      */
-    constructor(srv, cdr, router, route, i18nSrv, doc) {
+    constructor(el, srv, cdr, router, route, render, i18nSrv, doc) {
         this.srv = srv;
         this.cdr = cdr;
         this.router = router;
         this.route = route;
+        this.render = render;
         this.i18nSrv = i18nSrv;
         this.doc = doc;
         this.unsubscribe$ = new Subject();
-        this.updatePos$ = new Subject();
         this.list = [];
         this.pos = 0;
         // #region fields
         this.mode = ReuseTabMatchMode.Menu;
         this.debug = false;
         this.allowClose = true;
+        this.showCurrent = true;
         this.keepingScroll = false;
         this.customContextMenu = [];
         this.tabType = 'line';
-        // tslint:disable-next-line:no-output-native
         this.change = new EventEmitter();
-        // tslint:disable-next-line:no-output-native
         this.close = new EventEmitter();
+        this.el = el.nativeElement;
     }
     /**
      * @param {?} value
@@ -1430,130 +1375,104 @@ class ReuseTabComponent {
     }
     /**
      * @private
-     * @return {?}
-     */
-    get curUrl() {
-        return this.srv.getUrl(this.route.snapshot);
-    }
-    /**
-     * @private
-     * @return {?}
-     */
-    genCurItem() {
-        /** @type {?} */
-        const url = this.curUrl;
-        /** @type {?} */
-        const snapshotTrue = this.srv.getTruthRoute(this.route.snapshot);
-        return {
-            url,
-            title: this.genTit(this.srv.getTitle(url, snapshotTrue)),
-            closable: this.allowClose && this.srv.count > 0 && this.srv.getClosable(url, snapshotTrue),
-            active: false,
-            last: false,
-            index: 0,
-        };
-    }
-    /**
-     * @private
-     * @param {?} notify
+     * @param {?=} notify
      * @return {?}
      */
     genList(notify) {
+        /** @type {?} */
+        const isClosed = notify && notify.active === 'close';
+        /** @type {?} */
+        const beforeClosePos = isClosed ? this.list.findIndex((/**
+         * @param {?} w
+         * @return {?}
+         */
+        w => w.url === (/** @type {?} */ (notify)).url)) : -1;
         /** @type {?} */
         const ls = this.srv.items.map((/**
          * @param {?} item
          * @param {?} index
          * @return {?}
          */
-        (item, index) => ((/** @type {?} */ ({
-            url: item.url,
-            title: this.genTit(item.title),
-            closable: this.allowClose && item.closable && this.srv.count > 0,
-            index,
-            active: false,
-            last: false,
-        })))));
-        /** @type {?} */
-        const url = this.curUrl;
-        /** @type {?} */
-        let addCurrent = ls.findIndex((/**
-         * @param {?} w
-         * @return {?}
-         */
-        w => w.url === url)) === -1;
-        if (notify.active === 'close' && notify.url === url) {
-            addCurrent = false;
+        (item, index) => {
+            return (/** @type {?} */ ({
+                url: item.url,
+                title: this.genTit(item.title),
+                closable: this.allowClose && item.closable && this.srv.count > 0,
+                index,
+                active: false,
+                last: false,
+            }));
+        }));
+        if (this.showCurrent) {
             /** @type {?} */
-            let toPos = 0;
+            const snapshot = this.route.snapshot;
             /** @type {?} */
-            const curItem = (/** @type {?} */ (this.list.find((/**
+            const url = this.srv.getUrl(snapshot);
+            /** @type {?} */
+            const idx = ls.findIndex((/**
              * @param {?} w
              * @return {?}
              */
-            w => w.url === url))));
-            if (curItem.index === ls.length) {
-                // When closed is last
-                toPos = ls.length - 1;
+            w => w.url === url));
+            // jump directly when the current exists in the list
+            // or create a new current item and jump
+            if (idx !== -1 || (isClosed && (/** @type {?} */ (notify)).url === url)) {
+                this.pos = isClosed ? (idx >= beforeClosePos ? this.pos - 1 : this.pos) : idx;
             }
-            else if (curItem.index < ls.length) {
-                // Should be actived next tab when closed is middle
-                toPos = Math.max(0, curItem.index);
+            else {
+                /** @type {?} */
+                const snapshotTrue = this.srv.getTruthRoute(snapshot);
+                ls.push((/** @type {?} */ ({
+                    url,
+                    title: this.genTit(this.srv.getTitle(url, snapshotTrue)),
+                    closable: this.allowClose && this.srv.count > 0 && this.srv.getClosable(url, snapshotTrue),
+                    index: ls.length,
+                    active: false,
+                    last: false,
+                })));
+                this.pos = ls.length - 1;
             }
-            this.router.navigateByUrl(ls[toPos].url);
-        }
-        if (addCurrent) {
-            ls.push(this.genCurItem());
-        }
-        ls.forEach((/**
-         * @param {?} item
-         * @param {?} index
-         * @return {?}
-         */
-        (item, index) => (item.index = index)));
-        if (ls.length === 1) {
-            ls[0].closable = false;
+            // fix unabled close last item
+            if (ls.length <= 1)
+                ls[0].closable = false;
         }
         this.list = ls;
+        if (ls.length && isClosed) {
+            this.to(this.pos);
+        }
+        this.refStatus(false);
+        this.visibility();
         this.cdr.detectChanges();
-        this.updatePos$.next();
     }
     /**
      * @private
-     * @param {?} res
      * @return {?}
      */
-    updateTitle(res) {
-        /** @type {?} */
-        const item = this.list.find((/**
-         * @param {?} w
-         * @return {?}
-         */
-        w => w.url === (/** @type {?} */ (res)).url));
-        if (!item)
+    visibility() {
+        if (this.showCurrent)
             return;
-        item.title = this.genTit((/** @type {?} */ ((/** @type {?} */ (res)).title)));
-        this.cdr.detectChanges();
-    }
-    /**
-     * @private
-     * @param {?} item
-     * @return {?}
-     */
-    refresh(item) {
-        this.srv.runHook('_onReuseInit', this.pos === item.index ? this.srv.componentRef : item.index);
+        this.render.setStyle(this.el, 'display', this.list.length === 0 ? 'none' : 'block');
     }
     // #region UI
     /**
+     * @private
+     * @return {?}
+     */
+    get acitveIndex() {
+        return (/** @type {?} */ (this.list.find((/**
+         * @param {?} w
+         * @return {?}
+         */
+        w => w.active)))).index;
+    }
+    /**
      * @param {?} res
      * @return {?}
      */
-    contextMenuChange(res) {
+    cmChange(res) {
         /** @type {?} */
         let fn = null;
         switch (res.type) {
-            case 'refresh':
-                this.refresh(res.item);
-                break;
             case 'close':
                 this._close(null, res.item.index, res.includeNonCloseable);
                 break;
@@ -1566,6 +1485,7 @@ class ReuseTabComponent {
                     this.close.emit(null);
                 });
                 break;
+            case 'clear':
             case 'closeOther':
                 fn = (/**
                  * @return {?}
@@ -1579,23 +1499,36 @@ class ReuseTabComponent {
         if (!fn) {
             return;
         }
-        if (!res.item.active && res.item.index <= (/** @type {?} */ (this.list.find((/**
-         * @param {?} w
-         * @return {?}
-         */
-        w => w.active)))).index) {
-            this._to(res.item.index, fn);
+        if (!res.item.active && res.item.index <= this.acitveIndex) {
+            this.to(res.item.index, fn);
         }
         else {
             fn();
         }
     }
     /**
+     * @param {?=} dc
+     * @return {?}
+     */
+    refStatus(dc = true) {
+        if (this.list.length) {
+            this.list[this.list.length - 1].last = true;
+            this.list.forEach((/**
+             * @param {?} i
+             * @param {?} idx
+             * @return {?}
+             */
+            (i, idx) => (i.active = this.pos === idx)));
+        }
+        if (dc)
+            this.cdr.detectChanges();
+    }
+    /**
      * @param {?} index
      * @param {?=} cb
      * @return {?}
      */
-    _to(index, cb) {
+    to(index, cb) {
         index = Math.max(0, Math.min(index, this.list.length - 1));
         /** @type {?} */
         const item = this.list[index];
@@ -1606,7 +1539,9 @@ class ReuseTabComponent {
         res => {
             if (!res)
                 return;
+            this.pos = index;
             this.item = item;
+            this.refStatus();
             this.change.emit(item);
             if (cb) {
                 cb();
@@ -1631,63 +1566,26 @@ class ReuseTabComponent {
         this.cdr.detectChanges();
         return false;
     }
-    /**
-     * @param {?} instance
-     * @return {?}
-     */
-    activate(instance) {
-        this.srv.componentRef = { instance };
-    }
     // #endregion
     /**
      * @return {?}
      */
     ngOnInit() {
-        this.updatePos$.pipe(takeUntil(this.unsubscribe$), debounceTime(100)).subscribe((/**
+        this.router.events
+            .pipe(takeUntil(this.unsubscribe$), filter((/**
+         * @param {?} evt
          * @return {?}
          */
-        () => {
-            /** @type {?} */
-            const ls = this.list;
-            if (ls.length === 0)
-                return;
-            /** @type {?} */
-            const last = ls[ls.length - 1];
-            /** @type {?} */
-            const url = this.srv.getUrl(this.route.snapshot);
-            /** @type {?} */
-            const item = ls.find((/**
-             * @param {?} w
-             * @return {?}
-             */
-            w => w.url === url));
-            last.last = true;
-            /** @type {?} */
-            const pos = item == null ? last.index : item.index;
-            ls.forEach((/**
-             * @param {?} i
-             * @param {?} idx
-             * @return {?}
-             */
-            (i, idx) => (i.active = pos === idx)));
-            this.pos = pos;
-            this.cdr.detectChanges();
-        }));
+        evt => evt instanceof NavigationEnd)))
+            .subscribe((/**
+         * @return {?}
+         */
+        () => this.genList()));
         this.srv.change.pipe(takeUntil(this.unsubscribe$)).subscribe((/**
          * @param {?} res
          * @return {?}
          */
-        res => {
-            switch (res === null || res === void 0 ? void 0 : res.active) {
-                case 'title':
-                    this.updateTitle(res);
-                    return;
-                case 'override':
-                    this.updatePos$.next();
-                    return;
-            }
-            this.genList((/** @type {?} */ (res)));
-        }));
+        res => this.genList((/** @type {?} */ (res)))));
         this.i18nSrv.change
             .pipe(filter((/**
          * @return {?}
@@ -1696,7 +1594,8 @@ class ReuseTabComponent {
             .subscribe((/**
          * @return {?}
          */
-        () => this.genList({ active: 'title' })));
+        () => this.genList()));
+        this.genList();
         this.srv.init();
     }
     /**
@@ -1728,9 +1627,9 @@ class ReuseTabComponent {
 }
 ReuseTabComponent.decorators = [
     { type: Component, args: [{
-                selector: 'reuse-tab, [reuse-tab]',
+                selector: 'reuse-tab',
                 exportAs: 'reuseTab',
-                template: "<nz-tabset\n  [nzSelectedIndex]=\"pos\"\n  [nzAnimated]=\"false\"\n  [nzType]=\"tabType\"\n  [nzTabBarExtraContent]=\"tabBarExtraContent\"\n  [nzTabBarGutter]=\"tabBarGutter\"\n  [nzTabBarStyle]=\"tabBarStyle\"\n>\n  <nz-tab *ngFor=\"let i of list; let index = index\" [nzTitle]=\"titleTemplate\" (nzClick)=\"_to(index)\">\n    <ng-template #titleTemplate>\n      <div [reuse-tab-context-menu]=\"i\" [customContextMenu]=\"customContextMenu\" class=\"reuse-tab__name\" [attr.title]=\"i.title\">\n        <span [class.reuse-tab__name-width]=\"tabMaxWidth\" [style.max-width.px]=\"tabMaxWidth\">\n          {{ i.title }}\n        </span>\n      </div>\n      <i *ngIf=\"i.closable\" nz-icon nzType=\"close\" class=\"reuse-tab__op\" (click)=\"_close($event, index, false)\"></i>\n    </ng-template>\n  </nz-tab>\n</nz-tabset>\n<reuse-tab-context [i18n]=\"i18n\" (change)=\"contextMenuChange($event)\"></reuse-tab-context>\n",
+                template: "<nz-tabset [nzSelectedIndex]=\"pos\"\n  [nzAnimated]=\"false\" [nzType]=\"tabType\"\n  [nzTabBarExtraContent]=\"tabBarExtraContent\"\n  [nzTabBarGutter]=\"tabBarGutter\"\n  [nzTabBarStyle]=\"tabBarStyle\">\n  <nz-tab *ngFor=\"let i of list; let index = index\" [nzTitle]=\"titleTemplate\" (nzClick)=\"to(index)\">\n    <ng-template #titleTemplate>\n      <div [reuse-tab-context-menu]=\"i\" [customContextMenu]=\"customContextMenu\" class=\"reuse-tab__name\" [attr.title]=\"i.title\">\n        <span [class.reuse-tab__name-width]=\"tabMaxWidth\" [style.max-width.px]=\"tabMaxWidth\">\n          {{i.title}}\n        </span>\n      </div>\n      <i *ngIf=\"i.closable\" nz-icon nzType=\"close\" class=\"reuse-tab__op\" (click)=\"_close($event, index, false)\"></i>\n    </ng-template>\n  </nz-tab>\n</nz-tabset>\n<reuse-tab-context [i18n]=\"i18n\" (change)=\"cmChange($event)\"></reuse-tab-context>\n",
                 host: {
                     '[class.reuse-tab]': 'true',
                     '[class.reuse-tab__line]': `tabType === 'line'`,
@@ -1744,10 +1643,12 @@ ReuseTabComponent.decorators = [
 ];
 /** @nocollapse */
 ReuseTabComponent.ctorParameters = () => [
+    { type: ElementRef },
     { type: ReuseTabService },
     { type: ChangeDetectorRef },
     { type: Router },
     { type: ActivatedRoute },
+    { type: Renderer2 },
     { type: undefined, decorators: [{ type: Optional }, { type: Inject, args: [ALAIN_I18N_TOKEN,] }] },
     { type: undefined, decorators: [{ type: Inject, args: [DOCUMENT,] }] }
 ];
@@ -1759,6 +1660,7 @@ ReuseTabComponent.propDecorators = {
     tabMaxWidth: [{ type: Input }],
     excludes: [{ type: Input }],
     allowClose: [{ type: Input }],
+    showCurrent: [{ type: Input }],
     keepingScroll: [{ type: Input }],
     keepingScrollContainer: [{ type: Input }],
     customContextMenu: [{ type: Input }],
@@ -1788,18 +1690,22 @@ __decorate([
 __decorate([
     InputBoolean(),
     __metadata("design:type", Object)
+], ReuseTabComponent.prototype, "showCurrent", void 0);
+__decorate([
+    InputBoolean(),
+    __metadata("design:type", Object)
 ], ReuseTabComponent.prototype, "keepingScroll", void 0);
 if (false) {
     /**
      * @type {?}
      * @private
      */
-    ReuseTabComponent.prototype.unsubscribe$;
+    ReuseTabComponent.prototype.el;
     /**
      * @type {?}
      * @private
      */
-    ReuseTabComponent.prototype.updatePos$;
+    ReuseTabComponent.prototype.unsubscribe$;
     /**
      * @type {?}
      * @private
@@ -1825,6 +1731,8 @@ if (false) {
     ReuseTabComponent.prototype.excludes;
     /** @type {?} */
     ReuseTabComponent.prototype.allowClose;
+    /** @type {?} */
+    ReuseTabComponent.prototype.showCurrent;
     /** @type {?} */
     ReuseTabComponent.prototype.keepingScroll;
     /** @type {?} */
@@ -1861,6 +1769,11 @@ if (false) {
      * @private
      */
     ReuseTabComponent.prototype.route;
+    /**
+     * @type {?}
+     * @private
+     */
+    ReuseTabComponent.prototype.render;
     /**
      * @type {?}
      * @private
@@ -1946,6 +1859,7 @@ ReuseTabModule.decorators = [
     { type: NgModule, args: [{
                 imports: [CommonModule, RouterModule, DelonLocaleModule, NzMenuModule, NzTabsModule, NzIconModule, OverlayModule],
                 declarations: [...COMPONENTS, ...NOEXPORTS],
+                entryComponents: [ReuseTabContextMenuComponent],
                 exports: [...COMPONENTS],
             },] }
 ];

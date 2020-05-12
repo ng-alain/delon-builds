@@ -1,30 +1,20 @@
-import { AfterViewInit, ChangeDetectorRef, EventEmitter, OnChanges, OnDestroy } from '@angular/core';
-import { AlainConfigService, LazyService } from '@delon/util';
-export declare class QRComponent implements OnChanges, AfterViewInit, OnDestroy {
+import { ChangeDetectorRef, EventEmitter, OnChanges } from '@angular/core';
+import { QRConfig } from './qr.config';
+import { QRService } from './qr.service';
+export declare class QRComponent implements OnChanges {
+    private srv;
     private cdr;
-    private lazySrv;
-    private lazy$;
-    private qr;
-    private cog;
-    private option;
-    private inited;
     dataURL: string;
     background: string;
     backgroundAlpha: number;
     foreground: string;
     foregroundAlpha: number;
-    level: 'L' | 'M' | 'Q' | 'H';
+    level: string;
     mime: string;
     padding: number;
     size: number;
     value: string;
-    delay: number;
     readonly change: EventEmitter<string>;
-    constructor(cdr: ChangeDetectorRef, configSrv: AlainConfigService, lazySrv: LazyService);
-    private init;
-    private initDelay;
-    ngAfterViewInit(): void;
+    constructor(cog: QRConfig, srv: QRService, cdr: ChangeDetectorRef);
     ngOnChanges(): void;
-    private toUtf8ByteArray;
-    ngOnDestroy(): void;
 }

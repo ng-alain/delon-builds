@@ -1,6 +1,5 @@
-import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { ITokenModel } from '../interface';
 export declare class SimpleTokenModel implements ITokenModel {
-    [key: string]: NzSafeAny;
+    [key: string]: any;
     token: string;
 }

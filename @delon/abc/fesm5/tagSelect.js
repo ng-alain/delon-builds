@@ -20,7 +20,6 @@ var TagSelectComponent = /** @class */ (function () {
          * 是否启用 `展开与收进`
          */
         this.expandable = true;
-        // tslint:disable-next-line:no-output-native
         this.change = new EventEmitter();
     }
     /**
@@ -62,7 +61,7 @@ var TagSelectComponent = /** @class */ (function () {
         { type: Component, args: [{
                     selector: 'tag-select',
                     exportAs: 'tagSelect',
-                    template: "<ng-content></ng-content>\n<a *ngIf=\"expandable\" class=\"tag-select__trigger\" (click)=\"trigger()\">\n  {{ expand ? locale.collapse : locale.expand }}<i nz-icon [nzType]=\"expand ? 'up' : 'down'\" class=\"tag-select__trigger-icon\"></i>\n</a>\n",
+                    template: "<ng-content></ng-content>\n<a *ngIf=\"expandable\" class=\"tag-select__trigger\" (click)=\"trigger()\">\n  {{expand ? locale.collapse : locale.expand}}<i nz-icon [nzType]=\"expand ? 'up' : 'down'\" class=\"tag-select__trigger-icon\"></i>\n</a>\n",
                     host: {
                         '[class.tag-select]': 'true',
                         '[class.tag-select__has-expand]': 'expandable',

@@ -1,9 +1,9 @@
 import { __decorate, __metadata } from 'tslib';
-import { Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, NgZone, ChangeDetectorRef, ViewChild, Input, NgModule } from '@angular/core';
-import { Chart } from '@antv/g2';
-import { AlainConfigService, InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
+import { Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, Renderer2, NgZone, ChangeDetectorRef, ViewChild, Input, NgModule } from '@angular/core';
+import { updateHostClass, InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
+import { fromEvent } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
-import { NzOutletModule } from 'ng-zorro-antd/core/outlet';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 
 /**
@@ -23,14 +23,16 @@ if (false) {
     /* Skipping unhandled member: [key: string]: any;*/
 }
 class G2PieComponent {
+    // #endregion
     /**
      * @param {?} el
+     * @param {?} rend
      * @param {?} ngZone
      * @param {?} cdr
-     * @param {?} configSrv
      */
-    constructor(el, ngZone, cdr, configSrv) {
+    constructor(el, rend, ngZone, cdr) {
         this.el = el;
+        this.rend = rend;
         this.ngZone = ngZone;
         this.cdr = cdr;
         this.legendData = [];
@@ -44,18 +46,23 @@ class G2PieComponent {
         this.padding = [12, 0, 12, 0];
         this.tooltip = true;
         this.lineWidth = 0;
-        this.blockMaxWidth = 380;
         this.select = true;
         this.data = [];
-        this.interaction = 'none';
-        configSrv.attachKey(this, 'chart', 'theme');
     }
-    // #endregion
     /**
+     * @private
      * @return {?}
      */
-    get block() {
-        return this.hasLegend && this.el.nativeElement.clientWidth <= this.blockMaxWidth;
+    setCls() {
+        const { el, rend, hasLegend, isPercent } = this;
+        /** @type {?} */
+        const ne = (/** @type {?} */ (el.nativeElement));
+        updateHostClass(ne, rend, {
+            'g2-pie': true,
+            'g2-pie__legend-has': hasLegend,
+            'g2-pie__legend-block': hasLegend && ne.clientWidth <= 380,
+            'g2-pie__mini': isPercent,
+        }, true);
     }
     /**
      * @private
@@ -71,7 +78,7 @@ class G2PieComponent {
              * @param {?} value
              * @return {?}
              */
-            (value) => (value === '占比' ? color || 'rgba(24, 144, 255, 0.85)' : '#F0F2F5'));
+            value => (value === '占比' ? color || 'rgba(24, 144, 255, 0.85)' : '#F0F2F5'));
             this.data = [
                 {
                     x: '占比',
@@ -89,14 +96,15 @@ class G2PieComponent {
      * @return {?}
      */
     install() {
-        const { node, height, padding, tooltip, inner, hasLegend, interaction, theme } = this;
+        this.setCls();
+        const { node, height, padding, animate, tooltip, inner, hasLegend } = this;
         /** @type {?} */
-        const chart = (this.chart = new Chart({
+        const chart = (this.chart = new G2.Chart({
             container: node.nativeElement,
-            autoFit: true,
+            forceFit: true,
             height,
             padding,
-            theme,
+            animate,
         }));
         if (!tooltip) {
             chart.tooltip(false);
@@ -104,13 +112,12 @@ class G2PieComponent {
         else {
             chart.tooltip({
                 showTitle: false,
-                showMarkers: false,
+                itemTpl: '<li><span style="background-color:{color};" class="g2-tooltip-marker"></span>{name}: {value} %</li>',
             });
         }
-        if (interaction !== 'none') {
-            chart.interaction(interaction);
-        }
-        chart.axis(false).legend(false).coordinate('theta', { innerRadius: inner });
+        chart.axis(false);
+        chart.legend(false);
+        chart.coord('theta', { innerRadius: inner });
         chart.filter('x', (/**
          * @param {?} _val
          * @param {?} item
@@ -118,8 +125,7 @@ class G2PieComponent {
          */
         (_val, item) => item.checked !== false));
         chart
-            .interval()
-            .adjust('stack')
+            .intervalStack()
             .position('y')
             .tooltip('x*percent', (/**
          * @param {?} name
@@ -128,9 +134,11 @@ class G2PieComponent {
          */
         (name, p) => ({
             name,
-            value: `${hasLegend ? p : (p * 100).toFixed(2)} %`,
+            // 由于 hasLegend 会优先处理为百分比格式，因此无需要在 tooltip 中重新转换
+            value: hasLegend ? p : (p * 100).toFixed(2),
         })))
-            .state({});
+            .select(this.select);
+        chart.render();
         this.attachChart();
     }
     /**
@@ -141,28 +149,28 @@ class G2PieComponent {
         const { chart, height, padding, animate, data, lineWidth, isPercent, percentColor, colors } = this;
         if (!chart)
             return;
-        chart.height = height;
-        chart.padding = padding;
-        chart.animate(animate);
-        chart.geometries[0].style({ lineWidth, stroke: '#fff' }).color('x', isPercent ? percentColor : colors);
-        chart.scale({
+        chart.set('height', height);
+        chart.set('padding', padding);
+        chart.set('animate', animate);
+        chart
+            .get('geoms')[0]
+            .style({ lineWidth, stroke: '#fff' })
+            .color('x', isPercent ? percentColor : colors);
+        /** @type {?} */
+        const dv = new DataSet.DataView();
+        dv.source(data).transform({
+            type: 'percent',
+            field: 'y',
+            dimension: 'x',
+            as: 'percent',
+        });
+        chart.source(dv, {
             x: {
                 type: 'cat',
                 range: [0, 1],
             },
         });
-        // 转化 percent
-        /** @type {?} */
-        const totalSum = data.reduce((/**
-         * @param {?} cur
-         * @param {?} item
-         * @return {?}
-         */
-        (cur, item) => cur + item.y), 0);
-        for (const item of data) {
-            item.percent = totalSum === 0 ? 0 : item.y / totalSum;
-        }
-        chart.changeData(data);
+        chart.repaint();
         this.ngZone.run((/**
          * @return {?}
          */
@@ -176,7 +184,10 @@ class G2PieComponent {
         const { hasLegend, isPercent, cdr, chart } = this;
         if (!hasLegend || isPercent)
             return;
-        this.legendData = chart.geometries[0].dataArray.map((/**
+        this.legendData = chart
+            .get('geoms')[0]
+            .get('dataArray')
+            .map((/**
          * @param {?} item
          * @return {?}
          */
@@ -197,7 +208,21 @@ class G2PieComponent {
     _click(i) {
         const { legendData, chart } = this;
         legendData[i].checked = !legendData[i].checked;
-        chart.render();
+        chart.repaint();
+    }
+    /**
+     * @private
+     * @return {?}
+     */
+    installResizeEvent() {
+        if (this.resize$ || !this.hasLegend)
+            return;
+        this.resize$ = fromEvent(window, 'resize')
+            .pipe(debounceTime(200))
+            .subscribe((/**
+         * @return {?}
+         */
+        () => this.setCls()));
     }
     /**
      * @return {?}
@@ -216,15 +241,20 @@ class G2PieComponent {
      */
     ngOnChanges() {
         this.fixData();
+        this.setCls();
         this.ngZone.runOutsideAngular((/**
          * @return {?}
          */
         () => this.attachChart()));
+        this.installResizeEvent();
     }
     /**
      * @return {?}
      */
     ngOnDestroy() {
+        if (this.resize$) {
+            this.resize$.unsubscribe();
+        }
         if (this.chart) {
             this.ngZone.runOutsideAngular((/**
              * @return {?}
@@ -237,13 +267,7 @@ G2PieComponent.decorators = [
     { type: Component, args: [{
                 selector: 'g2-pie',
                 exportAs: 'g2Pie',
-                template: "<div class=\"g2-pie__chart\">\n  <div #container></div>\n  <div *ngIf=\"subTitle || total\" class=\"g2-pie__total\">\n    <h4 *ngIf=\"subTitle\" class=\"g2-pie__total-title\">\n      <ng-container *nzStringTemplateOutlet=\"subTitle\">\n        <div [innerHTML]=\"subTitle\"></div>\n      </ng-container>\n    </h4>\n    <div *ngIf=\"total\" class=\"g2-pie__total-stat\">\n      <ng-container *nzStringTemplateOutlet=\"total\">\n        <div [innerHTML]=\"total\"></div>\n      </ng-container>\n    </div>\n  </div>\n</div>\n<ul *ngIf=\"hasLegend && legendData?.length\" class=\"g2-pie__legend\">\n  <li *ngFor=\"let item of legendData; let index = index\" (click)=\"_click(index)\" class=\"g2-pie__legend-item\">\n    <span class=\"g2-pie__legend-dot\" [ngStyle]=\"{ 'background-color': !item.checked ? '#aaa' : item.color }\"></span>\n    <span class=\"g2-pie__legend-title\">{{ item.x }}</span>\n    <nz-divider nzType=\"vertical\"></nz-divider>\n    <span class=\"g2-pie__legend-percent\">{{ item.percent }}%</span>\n    <span class=\"g2-pie__legend-value\" [innerHTML]=\"valueFormat ? valueFormat(item.y) : item.y\"></span>\n  </li>\n</ul>\n",
-                host: {
-                    '[class.g2-pie]': 'true',
-                    '[class.g2-pie__legend-has]': 'hasLegend',
-                    '[class.g2-pie__legend-block]': 'block',
-                    '[class.g2-pie__mini]': 'isPercent',
-                },
+                template: "<div class=\"g2-pie__chart\">\n  <div #container></div>\n  <div *ngIf=\"subTitle || total\"\n       class=\"g2-pie__total\">\n    <h4 *ngIf=\"subTitle\"\n        class=\"g2-pie__total-title\">\n      <ng-container *stringTemplateOutlet=\"subTitle\">\n        <div [innerHTML]=\"subTitle\"></div>\n      </ng-container>\n    </h4>\n    <div *ngIf=\"total\"\n         class=\"g2-pie__total-stat\">\n      <ng-container *stringTemplateOutlet=\"total\">\n        <div [innerHTML]=\"total\"></div>\n      </ng-container>\n    </div>\n  </div>\n</div>\n<ul *ngIf=\"hasLegend && legendData?.length\"\n    class=\"g2-pie__legend\">\n  <li *ngFor=\"let item of legendData; let index = index\"\n      (click)=\"_click(index)\"\n      class=\"g2-pie__legend-item\">\n    <span class=\"g2-pie__legend-dot\"\n          [ngStyle]=\"{'background-color': !item.checked ? '#aaa' : item.color}\"></span>\n    <span class=\"g2-pie__legend-title\">{{item.x}}</span>\n    <nz-divider nzType=\"vertical\"></nz-divider>\n    <span class=\"g2-pie__legend-percent\">{{item.percent}}%</span>\n    <span class=\"g2-pie__legend-value\"\n          [innerHTML]=\"valueFormat ? valueFormat(item.y) : item.y\"></span>\n  </li>\n</ul>\n",
                 preserveWhitespaces: false,
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None
@@ -252,9 +276,9 @@ G2PieComponent.decorators = [
 /** @nocollapse */
 G2PieComponent.ctorParameters = () => [
     { type: ElementRef },
+    { type: Renderer2 },
     { type: NgZone },
-    { type: ChangeDetectorRef },
-    { type: AlainConfigService }
+    { type: ChangeDetectorRef }
 ];
 G2PieComponent.propDecorators = {
     node: [{ type: ViewChild, args: ['container', { static: true },] }],
@@ -270,13 +294,10 @@ G2PieComponent.propDecorators = {
     percent: [{ type: Input }],
     tooltip: [{ type: Input }],
     lineWidth: [{ type: Input }],
-    blockMaxWidth: [{ type: Input }],
     select: [{ type: Input }],
     valueFormat: [{ type: Input }],
     data: [{ type: Input }],
-    colors: [{ type: Input }],
-    interaction: [{ type: Input }],
-    theme: [{ type: Input }]
+    colors: [{ type: Input }]
 };
 __decorate([
     InputNumber(),
@@ -307,14 +328,15 @@ __decorate([
     __metadata("design:type", Object)
 ], G2PieComponent.prototype, "lineWidth", void 0);
 __decorate([
-    InputNumber(),
-    __metadata("design:type", Object)
-], G2PieComponent.prototype, "blockMaxWidth", void 0);
-__decorate([
     InputBoolean(),
     __metadata("design:type", Object)
 ], G2PieComponent.prototype, "select", void 0);
 if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    G2PieComponent.prototype.resize$;
     /**
      * @type {?}
      * @private
@@ -362,8 +384,6 @@ if (false) {
     /** @type {?} */
     G2PieComponent.prototype.lineWidth;
     /** @type {?} */
-    G2PieComponent.prototype.blockMaxWidth;
-    /** @type {?} */
     G2PieComponent.prototype.select;
     /** @type {?} */
     G2PieComponent.prototype.valueFormat;
@@ -371,12 +391,16 @@ if (false) {
     G2PieComponent.prototype.data;
     /** @type {?} */
     G2PieComponent.prototype.colors;
-    /** @type {?} */
-    G2PieComponent.prototype.interaction;
-    /** @type {?} */
-    G2PieComponent.prototype.theme;
-    /** @type {?} */
+    /**
+     * @type {?}
+     * @private
+     */
     G2PieComponent.prototype.el;
+    /**
+     * @type {?}
+     * @private
+     */
+    G2PieComponent.prototype.rend;
     /**
      * @type {?}
      * @private
@@ -400,7 +424,7 @@ class G2PieModule {
 }
 G2PieModule.decorators = [
     { type: NgModule, args: [{
-                imports: [CommonModule, DelonUtilModule, NzDividerModule, NzOutletModule],
+                imports: [CommonModule, DelonUtilModule, NzDividerModule],
                 declarations: [...COMPONENTS],
                 exports: [...COMPONENTS],
             },] }

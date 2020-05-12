@@ -2,29 +2,17 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const fs = require("fs");
 const path_1 = require("path");
-function readContent(host, filePath) {
-    if (!host.exists(filePath))
-        return '';
-    return host.read(filePath).toString('utf-8');
-}
-exports.readContent = readContent;
 /**
  * Overwrite files to the project
  *
  * @param [overwrite=false] `true` is force, default: `false`
  */
-function overwriteFile(host, filePath, sourcePath, overwrite = false, sourcePathIsString = false) {
+function overwriteFile(host, filePath, sourcePath, overwrite = false) {
     const isExists = host.exists(filePath);
     if (overwrite || isExists) {
         try {
-            let content = '';
-            if (sourcePathIsString) {
-                content = sourcePath;
-            }
-            else {
-                const buffer = fs.readFileSync(sourcePath);
-                content = buffer ? buffer.toString('utf-8') : '';
-            }
+            const buffer = fs.readFileSync(sourcePath);
+            const content = buffer ? buffer.toString('utf-8') : '';
             if (overwrite) {
                 if (isExists) {
                     host.delete(filePath);

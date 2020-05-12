@@ -1,6 +1,6 @@
 /**
- * @license ng-alain(cipchk@qq.com) v9.2.1
- * (c) 2020 cipchk https://ng-alain.com/
+ * @license ng-alain(cipchk@qq.com) v8.9.3
+ * (c) 2019 cipchk https://ng-alain.com/
  * License: MIT
  */
 (function (global, factory) {
@@ -225,6 +225,41 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: image.config.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var ImageConfig = /** @class */ (function () {
+        function ImageConfig() {
+            /**
+             * 默认大小，默认值：`64`，单位：px
+             */
+            this.size = 64;
+            /**
+             * 错误图片
+             */
+            this.error = './assets/img/logo.svg';
+        }
+        ImageConfig.decorators = [
+            { type: core.Injectable, args: [{ providedIn: 'root' },] }
+        ];
+        /** @nocollapse */ ImageConfig.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function ImageConfig_Factory() { return new ImageConfig(); }, token: ImageConfig, providedIn: "root" });
+        return ImageConfig;
+    }());
+    if (false) {
+        /**
+         * 默认大小，默认值：`64`，单位：px
+         * @type {?}
+         */
+        ImageConfig.prototype.size;
+        /**
+         * 错误图片
+         * @type {?}
+         */
+        ImageConfig.prototype.error;
+    }
+
+    /**
+     * @fileoverview added by tsickle
      * Generated from: image.directive.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
@@ -235,9 +270,11 @@
      * + 支持增加onerror事件
      */
     var ImageDirective = /** @class */ (function () {
-        function ImageDirective(el, configSrv) {
+        function ImageDirective(cog, el) {
+            this.size = 64;
+            this.error = './assets/img/logo.svg';
             this.inited = false;
-            configSrv.attach(this, 'image', { size: 64, error: "./assets/img/logo.svg" });
+            Object.assign(this, __assign({}, new ImageConfig(), cog));
             this.imgEl = el.nativeElement;
         }
         /**
@@ -319,8 +356,8 @@
         ];
         /** @nocollapse */
         ImageDirective.ctorParameters = function () { return [
-            { type: core.ElementRef },
-            { type: util.AlainConfigService }
+            { type: ImageConfig },
+            { type: core.ElementRef }
         ]; };
         ImageDirective.propDecorators = {
             src: [{ type: core.Input, args: ['_src',] }],
@@ -329,7 +366,7 @@
         };
         __decorate([
             util.InputNumber(),
-            __metadata("design:type", Number)
+            __metadata("design:type", Object)
         ], ImageDirective.prototype, "size", void 0);
         return ImageDirective;
     }());
@@ -372,6 +409,7 @@
         return ImageModule;
     }());
 
+    exports.ImageConfig = ImageConfig;
     exports.ImageDirective = ImageDirective;
     exports.ImageModule = ImageModule;
 

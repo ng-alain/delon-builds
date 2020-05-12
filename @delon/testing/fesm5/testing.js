@@ -1,6 +1,7 @@
-import { tick, TestBed, flush, discardPeriodicTasks } from '@angular/core/testing';
+import { tick, TestBed, flush, discardPeriodicTasks, getTestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NzDropDownDirective } from 'ng-zorro-antd/dropdown';
+import { __awaiter, __generator } from 'tslib';
 
 /**
  * @fileoverview added by tsickle
@@ -45,7 +46,7 @@ function createTouchEvent(type, pageX, pageY) {
     var event = document.createEvent('UIEvent');
     /** @type {?} */
     var touchDetails = { pageX: pageX, pageY: pageY };
-    ((/** @type {?} */ (event))).initUIEvent(type, true, true, window, 0);
+    event.initUIEvent(type, true, true, window, 0);
     // Most of the browsers don't have a "initTouchEvent" method that can be used to define
     // the touch details.
     Object.defineProperties(event, {
@@ -204,8 +205,11 @@ function typeInElement(value, element) {
  * Generated from: src/zorro.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-/** @type {?} */
-var DROPDOWN_MIN_TIME = 1000;
+/**
+ * [nz-dropdown](https://github.com/NG-ZORRO/ng-zorro-antd/blob/master/components/dropdown/nz-dropdown.component.ts#L88) 抖动合理值
+ * @type {?}
+ */
+var DROPDOWN_MIN_TIME = 51;
 /**
  * 触发 dropdown
  * @param {?} dl
@@ -403,7 +407,6 @@ PageG2 = /** @class */ (function () {
     function () {
         // The 201 value is delay value
         tick(201);
-        flush();
         discardPeriodicTasks();
         return (/** @type {?} */ (this));
     };
@@ -455,17 +458,6 @@ PageG2 = /** @class */ (function () {
      */
     function (cls) {
         return (/** @type {?} */ (((/** @type {?} */ (this.dl.nativeElement))).querySelector(cls)));
-    };
-    /**
-     * @param {?} type
-     * @return {?}
-     */
-    PageG2.prototype.getController = /**
-     * @param {?} type
-     * @return {?}
-     */
-    function (type) {
-        return (/** @type {?} */ (this.chart.getController(type)));
     };
     /**
      * @template THIS
@@ -538,7 +530,7 @@ PageG2 = /** @class */ (function () {
      * @return {THIS}
      */
     function (key, value) {
-        expect(((/** @type {?} */ ((/** @type {?} */ (this)).chart)))[key]).toBe(value);
+        expect((/** @type {?} */ (this)).chart.get(key)).toBe(value);
         return (/** @type {?} */ (this));
     };
     /**
@@ -559,7 +551,7 @@ PageG2 = /** @class */ (function () {
      */
     function (type, key, value) {
         /** @type {?} */
-        var x = ((/** @type {?} */ ((/** @type {?} */ (this)).chart[type][0]))).attributeOption[key];
+        var x = (/** @type {?} */ (this)).chart.get(type)[0].get('attrOptions')[key];
         expect(x.field).toBe(value);
         return (/** @type {?} */ (this));
     };
@@ -577,8 +569,8 @@ PageG2 = /** @class */ (function () {
      */
     function (num) {
         /** @type {?} */
-        var x = (/** @type {?} */ (this)).chart.getXScale();
-        expect((/** @type {?} */ (x.values)).length).toBe(num);
+        var x = (/** @type {?} */ (this)).chart.getXScales();
+        expect(x[0].values.length).toBe(num);
         return (/** @type {?} */ (this));
     };
     /**
@@ -597,7 +589,7 @@ PageG2 = /** @class */ (function () {
         /** @type {?} */
         var y = (/** @type {?} */ (this)).chart.getYScales();
         expect(y.length).toBe(1);
-        expect((/** @type {?} */ (y[0].values)).length).toBe(num);
+        expect(y[0].values.length).toBe(num);
         return (/** @type {?} */ (this));
     };
     /**
@@ -616,9 +608,9 @@ PageG2 = /** @class */ (function () {
      */
     function (type, num) {
         /** @type {?} */
-        var results = (/** @type {?} */ (this)).chart[type];
+        var results = (/** @type {?} */ (this)).chart.get(type);
         expect(results.length).toBeGreaterThan(0);
-        expect(results[0].data.length).toBe(num);
+        expect(results[0].get('data').length).toBe(num);
         return (/** @type {?} */ (this));
     };
     /**
@@ -695,6 +687,7 @@ function checkDelay(module, comp, page) {
  * Generated from: src/suite.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+var _this = this;
 /**
  * @template T
  */
@@ -774,6 +767,70 @@ if (false) {
     TestContext.prototype.fixture;
 }
 /** @type {?} */
+var configureTestSuite = (/**
+ * @param {?=} configureAction
+ * @return {?}
+ */
+function (configureAction) {
+    /** @type {?} */
+    var testBedApi = getTestBed();
+    /** @type {?} */
+    var originReset = TestBed.resetTestingModule;
+    beforeAll((/**
+     * @return {?}
+     */
+    function () {
+        TestBed.resetTestingModule();
+        TestBed.resetTestingModule = (/**
+         * @return {?}
+         */
+        function () { return TestBed; });
+    }));
+    if (configureAction) {
+        beforeAll((/**
+         * @param {?} done
+         * @return {?}
+         */
+        function (done) {
+            return ((/**
+             * @return {?}
+             */
+            function () { return __awaiter(_this, void 0, void 0, function () {
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0:
+                            configureAction();
+                            return [4 /*yield*/, TestBed.compileComponents()];
+                        case 1:
+                            _a.sent();
+                            return [2 /*return*/];
+                    }
+                });
+            }); }))()
+                .then(done)
+                .catch(done.fail);
+        }));
+    }
+    afterEach((/**
+     * @return {?}
+     */
+    function () {
+        testBedApi._activeFixtures.forEach((/**
+         * @param {?} fixture
+         * @return {?}
+         */
+        function (fixture) { return fixture.destroy(); }));
+        testBedApi._instantiated = false;
+    }));
+    afterAll((/**
+     * @return {?}
+     */
+    function () {
+        TestBed.resetTestingModule = originReset;
+        TestBed.resetTestingModule();
+    }));
+});
+/** @type {?} */
 var createTestContext = (/**
  * @template T
  * @param {?} component
@@ -795,5 +852,5 @@ function (component) {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { DROPDOWN_MIN_TIME, PageG2, PageG2DataCount, PageG2Height, TestContext, checkDelay, createFakeEvent, createKeyboardEvent, createMouseEvent, createTestContext, createTouchEvent, dispatchDropDown, dispatchEvent, dispatchFakeEvent, dispatchKeyboardEvent, dispatchMouseEvent, dispatchTouchEvent, typeInElement };
+export { DROPDOWN_MIN_TIME, PageG2, PageG2DataCount, PageG2Height, TestContext, checkDelay, configureTestSuite, createFakeEvent, createKeyboardEvent, createMouseEvent, createTestContext, createTouchEvent, dispatchDropDown, dispatchEvent, dispatchFakeEvent, dispatchKeyboardEvent, dispatchMouseEvent, dispatchTouchEvent, typeInElement };
 //# sourceMappingURL=testing.js.map

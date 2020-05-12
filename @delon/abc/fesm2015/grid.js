@@ -1,23 +1,54 @@
 import { __decorate, __metadata } from 'tslib';
-import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input, ElementRef, Renderer2, Optional, Host, NgModule } from '@angular/core';
-import { AlainConfigService, InputNumber, DelonUtilModule } from '@delon/util';
+import { Injectable, ɵɵdefineInjectable, Component, ChangeDetectionStrategy, ViewEncapsulation, Input, ElementRef, Renderer2, Optional, Host, NgModule } from '@angular/core';
+import { InputNumber, DelonUtilModule } from '@delon/util';
 import { ResponsiveService } from '@delon/theme';
 import { CommonModule } from '@angular/common';
 
 /**
  * @fileoverview added by tsickle
- * Generated from: sg-container.component.ts
+ * Generated from: grid.config.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class SGConfig {
+    constructor() {
+        /**
+         * 间距，默认：`32`
+         */
+        this.gutter = 32;
+        /**
+         * 列数，默认：`2`
+         */
+        this.col = 2;
+    }
+}
+SGConfig.decorators = [
+    { type: Injectable, args: [{ providedIn: 'root' },] }
+];
+/** @nocollapse */ SGConfig.ngInjectableDef = ɵɵdefineInjectable({ factory: function SGConfig_Factory() { return new SGConfig(); }, token: SGConfig, providedIn: "root" });
+if (false) {
+    /**
+     * 间距，默认：`32`
+     * @type {?}
+     */
+    SGConfig.prototype.gutter;
+    /**
+     * 列数，默认：`2`
+     * @type {?}
+     */
+    SGConfig.prototype.col;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * Generated from: grid-container.component.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class SGContainerComponent {
     /**
-     * @param {?} configSrv
+     * @param {?} cog
      */
-    constructor(configSrv) {
-        configSrv.attach(this, 'sg', {
-            gutter: 32,
-            col: 2,
-        });
+    constructor(cog) {
+        Object.assign(this, Object.assign({}, new SGConfig(), cog));
     }
     // #endregion
     /**
@@ -31,7 +62,9 @@ SGContainerComponent.decorators = [
     { type: Component, args: [{
                 selector: 'sg-container, [sg-container]',
                 exportAs: 'sgContainer',
-                template: ` <ng-content></ng-content> `,
+                template: `
+    <ng-content></ng-content>
+  `,
                 host: {
                     '[style.margin-left.px]': 'marginValue',
                     '[style.margin-right.px]': 'marginValue',
@@ -45,7 +78,7 @@ SGContainerComponent.decorators = [
 ];
 /** @nocollapse */
 SGContainerComponent.ctorParameters = () => [
-    { type: AlainConfigService }
+    { type: SGConfig }
 ];
 SGContainerComponent.propDecorators = {
     gutter: [{ type: Input }],
@@ -75,7 +108,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
- * Generated from: sg.component.ts
+ * Generated from: grid.component.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
@@ -145,7 +178,9 @@ SGComponent.decorators = [
     { type: Component, args: [{
                 selector: 'sg',
                 exportAs: 'sg',
-                template: ` <ng-content></ng-content> `,
+                template: `
+    <ng-content></ng-content>
+  `,
                 host: {
                     '[style.padding-left.px]': 'paddingValue',
                     '[style.padding-right.px]': 'paddingValue',
@@ -206,7 +241,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
- * Generated from: sg.module.ts
+ * Generated from: grid.module.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
@@ -233,5 +268,5 @@ SGModule.decorators = [
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { SGComponent, SGContainerComponent, SGModule };
+export { SGComponent, SGConfig, SGContainerComponent, SGModule };
 //# sourceMappingURL=grid.js.map

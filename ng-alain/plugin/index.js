@@ -7,9 +7,9 @@ const plugin_asdf_1 = require("./plugin.asdf");
 const plugin_code_style_1 = require("./plugin.code-style");
 const plugin_default_language_1 = require("./plugin.default-language");
 const plugin_docker_1 = require("./plugin.docker");
+const plugin_g2_1 = require("./plugin.g2");
 const plugin_hmr_1 = require("./plugin.hmr");
 const plugin_icon_1 = require("./plugin.icon");
-const plugin_ie_1 = require("./plugin.ie");
 const plugin_network_env_1 = require("./plugin.network-env");
 const plugin_sts_1 = require("./plugin.sts");
 function installPackages() {
@@ -30,11 +30,14 @@ function default_1(options) {
         };
         const rules = [];
         switch (options.name) {
+            case 'g2':
+                rules.push(plugin_g2_1.pluginG2(pluginOptions), installPackages());
+                break;
             case 'codeStyle':
                 rules.push(plugin_code_style_1.pluginCodeStyle(pluginOptions), installPackages());
                 break;
             case 'networkEnv':
-                rules.push(plugin_network_env_1.pluginNetworkEnv(Object.assign(Object.assign({}, pluginOptions), { packageManager: options.packageManager })));
+                rules.push(plugin_network_env_1.pluginNetworkEnv(Object.assign({}, pluginOptions, { packageManager: options.packageManager })));
                 break;
             case 'hmr':
                 rules.push(plugin_hmr_1.pluginHmr(pluginOptions), installPackages());
@@ -43,16 +46,13 @@ function default_1(options) {
                 rules.push(plugin_docker_1.pluginDocker(pluginOptions));
                 break;
             case 'defaultLanguage':
-                rules.push(plugin_default_language_1.pluginDefaultLanguage(Object.assign(Object.assign({}, pluginOptions), { defaultLanguage: options.defaultLanguage })));
+                rules.push(plugin_default_language_1.pluginDefaultLanguage(Object.assign({}, pluginOptions, { defaultLanguage: options.defaultLanguage })));
                 break;
             case 'icon':
                 rules.push(plugin_icon_1.pluginIcon(pluginOptions));
                 break;
             case 'sts':
                 rules.push(...plugin_sts_1.pluginSTS(pluginOptions));
-                break;
-            case 'ie':
-                rules.push(plugin_ie_1.pluginIE(pluginOptions));
                 break;
             case 'asdf':
                 rules.push(plugin_asdf_1.pluginAsdf());

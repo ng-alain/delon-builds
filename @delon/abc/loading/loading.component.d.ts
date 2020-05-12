@@ -1,6 +1,6 @@
-import { LoadingShowOptions } from './loading.types';
+import { LoadingShowOptions } from './loading.interfaces';
 export declare class LoadingDefaultComponent {
     options: LoadingShowOptions;
-    get icon(): import("./loading.types").LoadingIcon;
-    get custom(): import("./loading.types").LoadingCustom;
+    readonly icon: import("./loading.interfaces").LoadingIcon;
+    readonly custom: import("./loading.interfaces").LoadingCustom;
 }

@@ -2,16 +2,16 @@ import { AvatarListModule } from '@delon/abc/avatar-list';
 export { AvatarListComponent, AvatarListItemComponent, AvatarListModule } from '@delon/abc/avatar-list';
 import { CountDownModule } from '@delon/abc/count-down';
 export { CountDownComponent, CountDownModule } from '@delon/abc/count-down';
-import { STModule } from '@delon/abc/st';
-export { STColumnSource, STComponent, STDataSource, STExport, STModule, STRowDirective, STWidgetRegistry, ST_DEFULAT_CONFIG, ɵa, ɵb } from '@delon/abc/st';
-import { SVModule } from '@delon/abc/sv';
-export { SVComponent, SVContainerComponent, SVModule, SVTitleComponent } from '@delon/abc/sv';
-import { SEModule } from '@delon/abc/se';
-export { SEComponent, SEContainerComponent, SEModule, SETitleComponent } from '@delon/abc/se';
-import { SGModule } from '@delon/abc/sg';
-export { SGComponent, SGContainerComponent, SGModule } from '@delon/abc/sg';
+import { STModule } from '@delon/abc/table';
+export { STColumnSource, STComponent, STConfig, STDataSource, STExport, STModule, STRowDirective, ɵa } from '@delon/abc/table';
+import { SVModule } from '@delon/abc/view';
+export { SVComponent, SVConfig, SVContainerComponent, SVModule, SVTitleComponent } from '@delon/abc/view';
+import { SEModule } from '@delon/abc/edit';
+export { SEComponent, SEConfig, SEContainerComponent, SEErrorComponent, SEModule, SETitleComponent } from '@delon/abc/edit';
+import { SGModule } from '@delon/abc/grid';
+export { SGComponent, SGConfig, SGContainerComponent, SGModule } from '@delon/abc/grid';
 import { ErrorCollectModule } from '@delon/abc/error-collect';
-export { ErrorCollectComponent, ErrorCollectModule } from '@delon/abc/error-collect';
+export { ErrorCollectComponent, ErrorCollectConfig, ErrorCollectModule } from '@delon/abc/error-collect';
 import { FooterToolbarModule } from '@delon/abc/footer-toolbar';
 export { FooterToolbarComponent, FooterToolbarModule } from '@delon/abc/footer-toolbar';
 import { SidebarNavModule } from '@delon/abc/sidebar-nav';
@@ -19,7 +19,7 @@ export { SidebarNavComponent, SidebarNavModule } from '@delon/abc/sidebar-nav';
 import { DownFileModule } from '@delon/abc/down-file';
 export { DownFileDirective, DownFileModule } from '@delon/abc/down-file';
 import { ImageModule } from '@delon/abc/image';
-export { ImageDirective, ImageModule } from '@delon/abc/image';
+export { ImageConfig, ImageDirective, ImageModule } from '@delon/abc/image';
 import { EllipsisModule } from '@delon/abc/ellipsis';
 export { EllipsisComponent, EllipsisModule } from '@delon/abc/ellipsis';
 import { GlobalFooterModule } from '@delon/abc/global-footer';
@@ -29,7 +29,7 @@ export { ExceptionComponent, ExceptionModule } from '@delon/abc/exception';
 import { NoticeIconModule } from '@delon/abc/notice-icon';
 export { NoticeIconComponent, NoticeIconModule, NoticeIconTabComponent } from '@delon/abc/notice-icon';
 import { PageHeaderModule } from '@delon/abc/page-header';
-export { PageHeaderComponent, PageHeaderModule } from '@delon/abc/page-header';
+export { PageHeaderComponent, PageHeaderConfig, PageHeaderModule } from '@delon/abc/page-header';
 import { ResultModule } from '@delon/abc/result';
 export { ResultComponent, ResultModule } from '@delon/abc/result';
 import { TagSelectModule } from '@delon/abc/tag-select';
@@ -39,24 +39,22 @@ export { ReuseTabComponent, ReuseTabContextComponent, ReuseTabContextDirective, 
 import { FullContentModule } from '@delon/abc/full-content';
 export { FullContentComponent, FullContentModule, FullContentService, FullContentToggleDirective } from '@delon/abc/full-content';
 import { XlsxModule } from '@delon/abc/xlsx';
-export { XlsxDirective, XlsxModule, XlsxService } from '@delon/abc/xlsx';
+export { XlsxConfig, XlsxDirective, XlsxModule, XlsxService } from '@delon/abc/xlsx';
 import { ZipModule } from '@delon/abc/zip';
-export { ZipModule, ZipService } from '@delon/abc/zip';
+export { ZipConfig, ZipModule, ZipService } from '@delon/abc/zip';
 import { NumberToChineseModule } from '@delon/abc/number-to-chinese';
 export { NaNumberToChinesePipe, NumberToChineseModule, numberToChinese } from '@delon/abc/number-to-chinese';
 import { LodopModule } from '@delon/abc/lodop';
-export { LodopModule, LodopService } from '@delon/abc/lodop';
+export { LodopConfig, LodopModule, LodopService } from '@delon/abc/lodop';
 import { QuickMenuModule } from '@delon/abc/quick-menu';
 export { QuickMenuComponent, QuickMenuModule } from '@delon/abc/quick-menu';
 import { QRModule } from '@delon/abc/qr';
-export { QRComponent, QRModule, QR_DEFULAT_CONFIG } from '@delon/abc/qr';
+export { QRComponent, QRConfig, QRModule, QRService } from '@delon/abc/qr';
 import { DatePickerModule } from '@delon/abc/date-picker';
-export { DatePickerModule, RangePickerComponent } from '@delon/abc/date-picker';
+export { DatePickerConfig, DatePickerModule, DateRangePickerConfig, RangePickerComponent } from '@delon/abc/date-picker';
 import { LoadingModule } from '@delon/abc/loading';
-export { LoadingDefaultComponent, LoadingModule, LoadingService } from '@delon/abc/loading';
+export { LoadingConfig, LoadingDefaultComponent, LoadingModule, LoadingService } from '@delon/abc/loading';
 import { NgModule } from '@angular/core';
-import { warnDeprecation } from '@delon/util';
-import { MediaModule } from '@delon/abc/media';
 
 /**
  * @fileoverview added by tsickle
@@ -93,20 +91,13 @@ var MODULES = [
     SGModule,
     DatePickerModule,
     LoadingModule,
-    MediaModule,
 ];
-/**
- * @deprecated Use secondary entry eg: `import { STModule } from 'ng-zorro-antd/st';`.
- */
 var DelonABCModule = /** @class */ (function () {
     function DelonABCModule() {
-        warnDeprecation("The `DelonABCModule` has been deprecated and will be removed in 10.0.0. Please use secondary entry instead.\ne.g. `import { STModule } from 'ng-zorro-antd/st';`");
     }
     DelonABCModule.decorators = [
         { type: NgModule, args: [{ exports: MODULES },] }
     ];
-    /** @nocollapse */
-    DelonABCModule.ctorParameters = function () { return []; };
     return DelonABCModule;
 }());
 

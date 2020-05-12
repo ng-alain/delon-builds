@@ -1,15 +1,15 @@
 /**
- * @license ng-alain(cipchk@qq.com) v9.2.1
- * (c) 2020 cipchk https://ng-alain.com/
+ * @license ng-alain(cipchk@qq.com) v8.9.3
+ * (c) 2019 cipchk https://ng-alain.com/
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/platform-browser'), require('@delon/acl'), require('@delon/theme'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('@angular/common'), require('@angular/forms'), require('ng-zorro-antd/auto-complete'), require('ng-zorro-antd/button'), require('ng-zorro-antd/card'), require('ng-zorro-antd/cascader'), require('ng-zorro-antd/checkbox'), require('ng-zorro-antd/date-picker'), require('ng-zorro-antd/form'), require('ng-zorro-antd/grid'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/input'), require('ng-zorro-antd/input-number'), require('ng-zorro-antd/mention'), require('ng-zorro-antd/modal'), require('ng-zorro-antd/radio'), require('ng-zorro-antd/rate'), require('ng-zorro-antd/select'), require('ng-zorro-antd/slider'), require('ng-zorro-antd/switch'), require('ng-zorro-antd/tag'), require('ng-zorro-antd/time-picker'), require('ng-zorro-antd/tooltip'), require('ng-zorro-antd/transfer'), require('ng-zorro-antd/tree-select'), require('ng-zorro-antd/upload'), require('ng-zorro-antd/core/animation'), require('date-fns/format')) :
-    typeof define === 'function' && define.amd ? define('@delon/form', ['exports', '@angular/core', '@angular/platform-browser', '@delon/acl', '@delon/theme', '@delon/util', 'rxjs', 'rxjs/operators', '@angular/common', '@angular/forms', 'ng-zorro-antd/auto-complete', 'ng-zorro-antd/button', 'ng-zorro-antd/card', 'ng-zorro-antd/cascader', 'ng-zorro-antd/checkbox', 'ng-zorro-antd/date-picker', 'ng-zorro-antd/form', 'ng-zorro-antd/grid', 'ng-zorro-antd/icon', 'ng-zorro-antd/input', 'ng-zorro-antd/input-number', 'ng-zorro-antd/mention', 'ng-zorro-antd/modal', 'ng-zorro-antd/radio', 'ng-zorro-antd/rate', 'ng-zorro-antd/select', 'ng-zorro-antd/slider', 'ng-zorro-antd/switch', 'ng-zorro-antd/tag', 'ng-zorro-antd/time-picker', 'ng-zorro-antd/tooltip', 'ng-zorro-antd/transfer', 'ng-zorro-antd/tree-select', 'ng-zorro-antd/upload', 'ng-zorro-antd/core/animation', 'date-fns/format'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.form = {}), global.ng.core, global.ng.platformBrowser, global.delon.acl, global.delon.theme, global.delon.util, global.rxjs, global.rxjs.operators, global.ng.common, global.ng.forms, global['ng-zorro-antd/auto-complete'], global['ng-zorro-antd/button'], global['ng-zorro-antd/card'], global['ng-zorro-antd/cascader'], global['ng-zorro-antd/checkbox'], global['ng-zorro-antd/date-picker'], global['ng-zorro-antd/form'], global['ng-zorro-antd/grid'], global['ng-zorro-antd/icon'], global['ng-zorro-antd/input'], global['ng-zorro-antd/input-number'], global['ng-zorro-antd/mention'], global['ng-zorro-antd/modal'], global['ng-zorro-antd/radio'], global['ng-zorro-antd/rate'], global['ng-zorro-antd/select'], global['ng-zorro-antd/slider'], global['ng-zorro-antd/switch'], global['ng-zorro-antd/tag'], global['ng-zorro-antd/time-picker'], global['ng-zorro-antd/tooltip'], global['ng-zorro-antd/transfer'], global['ng-zorro-antd/tree-select'], global['ng-zorro-antd/upload'], global['ng-zorro-antd/core/animation'], global.format));
-}(this, (function (exports, core, platformBrowser, acl, theme, util, rxjs, operators, common, forms, autoComplete, button, card, cascader, checkbox, datePicker, form, grid, icon, input, inputNumber, mention, modal, radio, rate, select, slider, _switch, tag, timePicker, tooltip, transfer, treeSelect, upload, animation, format) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/platform-browser'), require('@delon/acl'), require('@delon/theme'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('@angular/common'), require('@angular/forms'), require('ng-zorro-antd/auto-complete'), require('ng-zorro-antd/button'), require('ng-zorro-antd/card'), require('ng-zorro-antd/cascader'), require('ng-zorro-antd/checkbox'), require('ng-zorro-antd/date-picker'), require('ng-zorro-antd/form'), require('ng-zorro-antd/grid'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/input'), require('ng-zorro-antd/input-number'), require('ng-zorro-antd/mention'), require('ng-zorro-antd/modal'), require('ng-zorro-antd/radio'), require('ng-zorro-antd/rate'), require('ng-zorro-antd/select'), require('ng-zorro-antd/slider'), require('ng-zorro-antd/switch'), require('ng-zorro-antd/tag'), require('ng-zorro-antd/time-picker'), require('ng-zorro-antd/tooltip'), require('ng-zorro-antd/transfer'), require('ng-zorro-antd/tree-select'), require('ng-zorro-antd/upload'), require('ng-zorro-antd/i18n'), require('date-fns/format')) :
+    typeof define === 'function' && define.amd ? define('@delon/form', ['exports', '@angular/core', '@angular/platform-browser', '@delon/acl', '@delon/theme', '@delon/util', 'rxjs', 'rxjs/operators', '@angular/common', '@angular/forms', 'ng-zorro-antd/auto-complete', 'ng-zorro-antd/button', 'ng-zorro-antd/card', 'ng-zorro-antd/cascader', 'ng-zorro-antd/checkbox', 'ng-zorro-antd/date-picker', 'ng-zorro-antd/form', 'ng-zorro-antd/grid', 'ng-zorro-antd/icon', 'ng-zorro-antd/input', 'ng-zorro-antd/input-number', 'ng-zorro-antd/mention', 'ng-zorro-antd/modal', 'ng-zorro-antd/radio', 'ng-zorro-antd/rate', 'ng-zorro-antd/select', 'ng-zorro-antd/slider', 'ng-zorro-antd/switch', 'ng-zorro-antd/tag', 'ng-zorro-antd/time-picker', 'ng-zorro-antd/tooltip', 'ng-zorro-antd/transfer', 'ng-zorro-antd/tree-select', 'ng-zorro-antd/upload', 'ng-zorro-antd/i18n', 'date-fns/format'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.form = {}), global.ng.core, global.ng.platformBrowser, global.delon.acl, global.delon.theme, global.delon.util, global.rxjs, global.rxjs.operators, global.ng.common, global.ng.forms, global['ng-zorro-antd/auto-complete'], global['ng-zorro-antd/button'], global['ng-zorro-antd/card'], global['ng-zorro-antd/cascader'], global['ng-zorro-antd/checkbox'], global['ng-zorro-antd/date-picker'], global['ng-zorro-antd/form'], global['ng-zorro-antd/grid'], global['ng-zorro-antd/icon'], global['ng-zorro-antd/input'], global['ng-zorro-antd/input-number'], global['ng-zorro-antd/mention'], global['ng-zorro-antd/modal'], global['ng-zorro-antd/radio'], global['ng-zorro-antd/rate'], global['ng-zorro-antd/select'], global['ng-zorro-antd/slider'], global['ng-zorro-antd/switch'], global['ng-zorro-antd/tag'], global['ng-zorro-antd/time-picker'], global['ng-zorro-antd/tooltip'], global['ng-zorro-antd/transfer'], global['ng-zorro-antd/tree-select'], global['ng-zorro-antd/upload'], global['ng-zorro-antd/i18n'], global.format));
+}(this, (function (exports, core, platformBrowser, acl, theme, util, rxjs, operators, common, forms, autoComplete, button, card, cascader, checkbox, datePicker, form, grid, icon, input, inputNumber, mention, modal, radio, rate, select, slider, _switch, tag, timePicker, tooltip, transfer, treeSelect, upload, i18n, format) { 'use strict';
 
-    format = format && Object.prototype.hasOwnProperty.call(format, 'default') ? format['default'] : format;
+    format = format && format.hasOwnProperty('default') ? format['default'] : format;
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -230,45 +230,152 @@
      * Generated from: src/config.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    /** @type {?} */
-    var SF_DEFAULT_CONFIG = {
-        formatMap: {
-            'date-time': {
-                widget: 'date',
-                showTime: true,
-                format: "yyyy-MM-dd'T'HH:mm:ss.SSSxxx",
-            },
-            date: { widget: 'date', format: 'yyyy-MM-dd' },
-            'full-date': { widget: 'date', format: 'yyyy-MM-dd' },
-            time: { widget: 'time', format: 'HH:mm:ss.SSSxxx' },
-            'full-time': { widget: 'time' },
-            week: { widget: 'date', mode: 'week', format: 'yyyy-WW' },
-            month: { widget: 'date', mode: 'month', format: 'yyyy-MM' },
-            uri: { widget: 'upload' },
-            email: { widget: 'autocomplete', type: 'email' },
-            color: { widget: 'string', type: 'color' },
-            '': { widget: 'string' },
-        },
-        ingoreKeywords: ['type', 'enum'],
-        liveValidate: true,
-        autocomplete: null,
-        firstVisual: false,
-        onlyVisual: false,
-        errors: {},
-        ui: (/** @type {?} */ ({})),
-        button: (/** @type {?} */ ({ submit_type: 'primary', reset_type: 'default' })),
-        uiDateStringFormat: 'yyyy-MM-dd HH:mm:ss',
-        uiDateNumberFormat: 'T',
-        uiTimeStringFormat: 'HH:mm:ss',
-        uiTimeNumberFormat: 'T',
-        uiEmailSuffixes: ['qq.com', '163.com', 'gmail.com', '126.com', 'aliyun.com'],
-    };
-    /**
-     * @param {?} srv
-     * @return {?}
-     */
-    function mergeConfig(srv) {
-        return srv.merge('sf', SF_DEFAULT_CONFIG);
+    var DelonFormConfig = /** @class */ (function () {
+        function DelonFormConfig() {
+            /**
+             * 是否忽略某些数据类型校验 `ERRORSDEFAULT`，默认：`[ 'type', 'enum' ]`
+             *
+             * - `type` 限定 Schema 中 `type` 类型
+             * - `enum` 限定应当是预设定的枚举值之一
+             */
+            this.ingoreKeywords = ['type', 'enum'];
+            /**
+             * 是否实时校验，默认：`true`
+             * - `true` 每一次都校验
+             * - `false` 提交时校验
+             */
+            this.liveValidate = true;
+            /**
+             * 指定表单 `autocomplete` 值，默认：`on`
+             */
+            this.autocomplete = null;
+            /**
+             * 是否立即呈现错误视觉，默认：`false`
+             */
+            this.firstVisual = false;
+            /**
+             * 是否只展示错误视觉不显示错误文本，默认：`false`
+             */
+            this.onlyVisual = false;
+            /**
+             * 自定义通用错误信息
+             */
+            this.errors = {};
+            /**
+             * 按钮风格
+             */
+            this.button = {
+                submit_type: 'primary',
+                reset_type: 'default',
+            };
+            /**
+             * date小部件：`type="string"` 且不指定 `schema.format` 和 `ui.format` 时日期格式，默认：`YYYY-MM-DD HH:mm:ss`
+             */
+            this.uiDateStringFormat = 'YYYY-MM-DD HH:mm:ss';
+            /**
+             * date小部件：`type="number"` 且不指定 `schema.format` 和 `ui.format` 时日期格式，默认：`x` 13位Unix Timestamp
+             */
+            this.uiDateNumberFormat = 'x';
+            /**
+             * time小部件：`type="string"` 且不指定 `schema.format` 和 `ui.format` 时日期格式，默认：`HH:mm:ss`
+             */
+            this.uiTimeStringFormat = 'HH:mm:ss';
+            /**
+             * time小部件：`type="number"` 且不指定 `schema.format` 和 `ui.format` 时日期格式，默认：`x` 13位Unix Timestamp，日期统一使用 `1970-01-01`
+             */
+            this.uiTimeNumberFormat = 'x';
+            /**
+             * 指定 `format: 'email'` 的默认Email后缀
+             */
+            this.uiEmailSuffixes = ['qq.com', '163.com', 'gmail.com', '126.com', 'aliyun.com'];
+        }
+        DelonFormConfig.decorators = [
+            { type: core.Injectable, args: [{ providedIn: 'root' },] }
+        ];
+        /** @nocollapse */ DelonFormConfig.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function DelonFormConfig_Factory() { return new DelonFormConfig(); }, token: DelonFormConfig, providedIn: "root" });
+        return DelonFormConfig;
+    }());
+    if (false) {
+        /**
+         * 是否忽略某些数据类型校验 `ERRORSDEFAULT`，默认：`[ 'type', 'enum' ]`
+         *
+         * - `type` 限定 Schema 中 `type` 类型
+         * - `enum` 限定应当是预设定的枚举值之一
+         * @type {?}
+         */
+        DelonFormConfig.prototype.ingoreKeywords;
+        /**
+         * [ajv](http://epoberezkin.github.io/ajv/#options) 参数
+         * @type {?}
+         */
+        DelonFormConfig.prototype.ajv;
+        /**
+         * 是否实时校验，默认：`true`
+         * - `true` 每一次都校验
+         * - `false` 提交时校验
+         * @type {?}
+         */
+        DelonFormConfig.prototype.liveValidate;
+        /**
+         * 指定表单 `autocomplete` 值，默认：`on`
+         * @type {?}
+         */
+        DelonFormConfig.prototype.autocomplete;
+        /**
+         * 是否立即呈现错误视觉，默认：`false`
+         * @type {?}
+         */
+        DelonFormConfig.prototype.firstVisual;
+        /**
+         * 是否只展示错误视觉不显示错误文本，默认：`false`
+         * @type {?}
+         */
+        DelonFormConfig.prototype.onlyVisual;
+        /**
+         * 自定义通用错误信息
+         * @type {?}
+         */
+        DelonFormConfig.prototype.errors;
+        /**
+         * 默认全局布局
+         * @type {?}
+         */
+        DelonFormConfig.prototype.ui;
+        /**
+         * 元素组件大小，用于 `nzSize` 值
+         * @type {?}
+         */
+        DelonFormConfig.prototype.size;
+        /**
+         * 按钮风格
+         * @type {?}
+         */
+        DelonFormConfig.prototype.button;
+        /**
+         * date小部件：`type="string"` 且不指定 `schema.format` 和 `ui.format` 时日期格式，默认：`YYYY-MM-DD HH:mm:ss`
+         * @type {?}
+         */
+        DelonFormConfig.prototype.uiDateStringFormat;
+        /**
+         * date小部件：`type="number"` 且不指定 `schema.format` 和 `ui.format` 时日期格式，默认：`x` 13位Unix Timestamp
+         * @type {?}
+         */
+        DelonFormConfig.prototype.uiDateNumberFormat;
+        /**
+         * time小部件：`type="string"` 且不指定 `schema.format` 和 `ui.format` 时日期格式，默认：`HH:mm:ss`
+         * @type {?}
+         */
+        DelonFormConfig.prototype.uiTimeStringFormat;
+        /**
+         * time小部件：`type="number"` 且不指定 `schema.format` 和 `ui.format` 时日期格式，默认：`x` 13位Unix Timestamp，日期统一使用 `1970-01-01`
+         * @type {?}
+         */
+        DelonFormConfig.prototype.uiTimeNumberFormat;
+        /**
+         * 指定 `format: 'email'` 的默认Email后缀
+         * @type {?}
+         */
+        DelonFormConfig.prototype.uiEmailSuffixes;
     }
 
     /**
@@ -284,6 +391,24 @@
      * Generated from: src/utils.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
+    /** @type {?} */
+    var FORMATMAPS = {
+        'date-time': {
+            widget: 'date',
+            showTime: true,
+            format: 'YYYY-MM-DDTHH:mm:ssZ',
+        },
+        date: { widget: 'date', format: 'YYYY-MM-DD' },
+        'full-date': { widget: 'date', format: 'YYYY-MM-DD' },
+        time: { widget: 'time' },
+        'full-time': { widget: 'time' },
+        week: { widget: 'date', mode: 'week', format: 'YYYY-WW' },
+        month: { widget: 'date', mode: 'month', format: 'YYYY-MM' },
+        uri: { widget: 'upload' },
+        email: { widget: 'autocomplete', type: 'email' },
+        color: { widget: 'string', type: 'color' },
+        '': { widget: 'string' },
+    };
     /**
      * @param {?} o
      * @return {?}
@@ -367,7 +492,7 @@
             var $refSchema = findSchemaDefinition((/** @type {?} */ (schema.$ref)), definitions);
             // remove $ref property
             var $ref = schema.$ref, localSchema = __rest(schema, ["$ref"]);
-            return retrieveSchema(__assign(__assign({}, $refSchema), localSchema), definitions);
+            return retrieveSchema(__assign({}, $refSchema, localSchema), definitions);
         }
         return schema;
     }
@@ -584,7 +709,7 @@
         /** @type {?} */
         var data = srv.getDateLocale();
         // Compatible date-fns v1.x & v2.x
-        return data != null && !!data.formatDistance; // (!!data.distanceInWords || !!data.formatDistance);
+        return data != null && (!!data.distanceInWords || !!data.formatDistance);
     }
 
     /**
@@ -790,7 +915,7 @@
                     result = base.getProperty(path);
                 }
             }
-            return (/** @type {?} */ (result));
+            return result;
         };
         /** 查找根表单属性 */
         /**
@@ -1084,7 +1209,7 @@
                             /** @type {?} */
                             var visibilityCheck = property._visibilityChanges;
                             /** @type {?} */
-                            var and = rxjs.combineLatest([valueCheck, visibilityCheck]).pipe(operators.map((/**
+                            var and = rxjs.combineLatest(valueCheck, visibilityCheck).pipe(operators.map((/**
                              * @param {?} results
                              * @return {?}
                              */
@@ -1230,11 +1355,11 @@
             /** @type {?} */
             var propertyId = subPathIdx !== -1 ? path.substr(0, subPathIdx) : path;
             /** @type {?} */
-            var property = ((/** @type {?} */ (this.properties)))[propertyId];
+            var property = (/** @type {?} */ (this.properties))[propertyId];
             if (property !== null && subPathIdx !== -1 && property instanceof PropertyGroup) {
                 /** @type {?} */
                 var subPath = path.substr(subPathIdx + 1);
-                property = (/** @type {?} */ (((/** @type {?} */ (property))).getProperty(subPath)));
+                property = ((/** @type {?} */ (property))).getProperty(subPath);
             }
             return property;
         };
@@ -1250,7 +1375,7 @@
             for (var propertyId in this.properties) {
                 if (this.properties.hasOwnProperty(propertyId)) {
                     /** @type {?} */
-                    var property = ((/** @type {?} */ (this.properties)))[propertyId];
+                    var property = this.properties[propertyId];
                     fn(property, propertyId);
                 }
             }
@@ -1367,7 +1492,7 @@
              * @return {?}
              */
             function (propertyId) {
-                ((/** @type {?} */ (_this.properties)))[propertyId] = _this.formPropertyFactory.createProperty((/** @type {?} */ (_this.schema.properties))[propertyId], _this.ui['$' + propertyId], ((/** @type {?} */ ((_this.formData || {}))))[propertyId], _this, propertyId);
+                (/** @type {?} */ (_this.properties))[propertyId] = _this.formPropertyFactory.createProperty((/** @type {?} */ (_this.schema.properties))[propertyId], _this.ui['$' + propertyId], (_this.formData || {})[propertyId], _this, propertyId);
                 _this._propertiesId.push(propertyId);
             }));
         };
@@ -1382,11 +1507,9 @@
          * @return {?}
          */
         function (value, onlySelf) {
-            /** @type {?} */
-            var properties = (/** @type {?} */ (this.properties));
             for (var propertyId in value) {
-                if (value.hasOwnProperty(propertyId) && properties[propertyId]) {
-                    ((/** @type {?} */ (properties[propertyId]))).setValue(value[propertyId], true);
+                if (value.hasOwnProperty(propertyId) && (/** @type {?} */ (this.properties))[propertyId]) {
+                    ((/** @type {?} */ ((/** @type {?} */ (this.properties))[propertyId]))).setValue(value[propertyId], true);
                 }
             }
             this.updateValueAndValidity(onlySelf, true);
@@ -1403,11 +1526,9 @@
          */
         function (value, onlySelf) {
             value = value || this.schema.default || {};
-            /** @type {?} */
-            var properties = (/** @type {?} */ (this.properties));
             // tslint:disable-next-line: forin
             for (var propertyId in this.schema.properties) {
-                properties[propertyId].resetValue(value[propertyId], true);
+                ((/** @type {?} */ ((/** @type {?} */ (this.properties))[propertyId]))).resetValue(value[propertyId], true);
             }
             this.updateValueAndValidity(onlySelf, true);
         };
@@ -1545,7 +1666,7 @@
              */
             function (property) {
                 if (property.visible && property._hasValue()) {
-                    value.push(__assign(__assign({}, property.formData), property.value));
+                    value.push(__assign({}, property.formData, property.value));
                 }
             }));
             this._value = value;
@@ -1562,7 +1683,7 @@
          */
         function (formData) {
             /** @type {?} */
-            var newProperty = (/** @type {?} */ (this.formPropertyFactory.createProperty((/** @type {?} */ (this.schema.items)), this.ui.$items, formData, (/** @type {?} */ (this)))));
+            var newProperty = (/** @type {?} */ (this.formPropertyFactory.createProperty((/** @type {?} */ (this.schema.items)), this.ui.$items, formData, this)));
             ((/** @type {?} */ (this.properties))).push(newProperty);
             return newProperty;
         };
@@ -1855,9 +1976,9 @@
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var FormPropertyFactory = /** @class */ (function () {
-        function FormPropertyFactory(schemaValidatorFactory, cogSrv) {
+        function FormPropertyFactory(schemaValidatorFactory, options) {
             this.schemaValidatorFactory = schemaValidatorFactory;
-            this.options = mergeConfig(cogSrv);
+            this.options = options;
         }
         /**
          * @param {?} schema
@@ -1922,7 +2043,7 @@
                         ui._format = schema.type === 'string' ? this.options.uiTimeStringFormat : this.options.uiTimeNumberFormat;
                 }
                 else {
-                    ui._format = ui.format;
+                    ui._format = schema.format || ui.format;
                 }
                 switch (schema.type) {
                     case 'integer':
@@ -1971,12 +2092,12 @@
          * @type {?}
          * @private
          */
-        FormPropertyFactory.prototype.options;
+        FormPropertyFactory.prototype.schemaValidatorFactory;
         /**
          * @type {?}
          * @private
          */
-        FormPropertyFactory.prototype.schemaValidatorFactory;
+        FormPropertyFactory.prototype.options;
     }
 
     /**
@@ -2012,12 +2133,12 @@
     /**
      * @abstract
      */
-    var SchemaValidatorFactory = /** @class */ (function () {
+    var   /**
+     * @abstract
+     */
+    SchemaValidatorFactory = /** @class */ (function () {
         function SchemaValidatorFactory() {
         }
-        SchemaValidatorFactory.decorators = [
-            { type: core.Injectable }
-        ];
         return SchemaValidatorFactory;
     }());
     if (false) {
@@ -2031,10 +2152,10 @@
     }
     var AjvSchemaValidatorFactory = /** @class */ (function (_super) {
         __extends(AjvSchemaValidatorFactory, _super);
-        function AjvSchemaValidatorFactory(cogSrv) {
+        function AjvSchemaValidatorFactory(options) {
             var _this = _super.call(this) || this;
-            _this.options = mergeConfig(cogSrv);
-            _this.ajv = new Ajv(__assign(__assign({}, _this.options.ajv), { errorDataPath: 'property', allErrors: true, jsonPointers: true }));
+            _this.options = options;
+            _this.ajv = new Ajv(__assign({}, options.ajv, { errorDataPath: 'property', allErrors: true, jsonPointers: true }));
             _this.ajv.addFormat('data-url', /^data:([a-z]+\/[a-z0-9-+.]+)?;name=(.*);base64,(.*)$/);
             _this.ajv.addFormat('color', /^(#?([0-9A-Fa-f]{3}){1,2}\b|aqua|black|blue|fuchsia|gray|green|lime|maroon|navy|olive|orange|purple|red|silver|teal|white|yellow|(rgb\(\s*\b([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\b\s*,\s*\b([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\b\s*,\s*\b([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\b\s*\))|(rgb\(\s*(\d?\d%|100%)+\s*,\s*(\d?\d%|100%)+\s*,\s*(\d?\d%|100%)+\s*\)))$/);
             _this.ajv.addFormat('mobile', /^(0|\+?86|17951)?1[0-9]{10}$/);
@@ -2082,12 +2203,9 @@
                 return errors;
             });
         };
-        AjvSchemaValidatorFactory.decorators = [
-            { type: core.Injectable }
-        ];
         /** @nocollapse */
         AjvSchemaValidatorFactory.ctorParameters = function () { return [
-            { type: util.AlainConfigService, decorators: [{ type: core.Inject, args: [util.AlainConfigService,] }] }
+            { type: DelonFormConfig, decorators: [{ type: core.Inject, args: [DelonFormConfig,] }] }
         ]; };
         return AjvSchemaValidatorFactory;
     }(SchemaValidatorFactory));
@@ -2099,7 +2217,7 @@
         AjvSchemaValidatorFactory.prototype.ajv;
         /**
          * @type {?}
-         * @protected
+         * @private
          */
         AjvSchemaValidatorFactory.prototype.options;
     }
@@ -2241,17 +2359,18 @@
      */
     /**
      * @param {?} schemaValidatorFactory
-     * @param {?} cogSrv
+     * @param {?} options
      * @return {?}
      */
-    function useFactory(schemaValidatorFactory, cogSrv) {
-        return new FormPropertyFactory(schemaValidatorFactory, cogSrv);
+    function useFactory(schemaValidatorFactory, options) {
+        return new FormPropertyFactory(schemaValidatorFactory, options);
     }
     var SFComponent = /** @class */ (function () {
-        function SFComponent(formPropertyFactory, terminator, dom, cdr, localeSrv, aclSrv, i18nSrv, cogSrv) {
+        function SFComponent(formPropertyFactory, terminator, options, dom, cdr, localeSrv, aclSrv, i18nSrv) {
             var _this = this;
             this.formPropertyFactory = formPropertyFactory;
             this.terminator = terminator;
+            this.options = options;
             this.dom = dom;
             this.cdr = cdr;
             this.localeSrv = localeSrv;
@@ -2312,10 +2431,9 @@
              * 表单校验结果回调
              */
             this.formError = new core.EventEmitter();
-            this.options = mergeConfig(cogSrv);
-            this.liveValidate = (/** @type {?} */ (this.options.liveValidate));
-            this.firstVisual = (/** @type {?} */ (this.options.firstVisual));
-            this.autocomplete = (/** @type {?} */ (this.options.autocomplete));
+            this.liveValidate = (/** @type {?} */ (options.liveValidate));
+            this.firstVisual = (/** @type {?} */ (options.firstVisual));
+            this.autocomplete = (/** @type {?} */ (options.autocomplete));
             this.localeSrv.change.pipe(operators.takeUntil(this.unsubscribe$)).subscribe((/**
              * @return {?}
              */
@@ -2527,7 +2645,7 @@
              * @param {?} key
              * @return {?}
              */
-            function (key) { return (ui[key] = __assign(__assign({}, _this._defUi[key]), ui[key])); }));
+            function (key) { return (ui[key] = __assign({}, _this._defUi[key], ui[key])); }));
         };
         /**
          * @private
@@ -2566,7 +2684,7 @@
                     /** @type {?} */
                     var property = retrieveSchema((/** @type {?} */ ((/** @type {?} */ (schema.properties))[key])), definitions);
                     /** @type {?} */
-                    var ui = (/** @type {?} */ (__assign(__assign(__assign(__assign(__assign(__assign({ widget: property.type }, (property.format && ((/** @type {?} */ (_this.options.formatMap)))[property.format])), (typeof property.ui === 'string' ? { widget: property.ui } : null)), (!property.format && !property.ui && Array.isArray(property.enum) && property.enum.length > 0 ? { widget: 'select' } : null)), _this._defUi), ((/** @type {?} */ (property.ui)))), uiSchema[uiKey])));
+                    var ui = (/** @type {?} */ (__assign({ widget: property.type }, (property.format && FORMATMAPS[property.format]), (typeof property.ui === 'string' ? { widget: property.ui } : null), (!property.format && !property.ui && Array.isArray(property.enum) && property.enum.length > 0 ? { widget: 'select' } : null), _this._defUi, ((/** @type {?} */ (property.ui))), uiSchema[uiKey])));
                     // 继承父节点布局属性
                     if (isHorizontal) {
                         if (parentUiSchema.spanLabelFixed) {
@@ -2592,7 +2710,7 @@
                         /** @type {?} */
                         var dateEndProperty = (/** @type {?} */ (schema.properties))[ui.end];
                         if (dateEndProperty) {
-                            dateEndProperty.ui = __assign(__assign({}, ((/** @type {?} */ (dateEndProperty.ui)))), { widget: ui.widget, hidden: true });
+                            dateEndProperty.ui = __assign({}, ((/** @type {?} */ (dateEndProperty.ui))), { widget: ui.widget, hidden: true });
                         }
                         else {
                             ui.end = null;
@@ -2639,7 +2757,7 @@
                     if (property.items) {
                         /** @type {?} */
                         var uiSchemaInArr = (uiSchema[uiKey] || {}).$items || {};
-                        ui.$items = __assign(__assign(__assign({}, ((/** @type {?} */ (property.items.ui)))), uiSchemaInArr[uiKey]), ui.$items);
+                        ui.$items = __assign({}, ((/** @type {?} */ (property.items.ui))), uiSchemaInArr[uiKey], ui.$items);
                         inFn(property.items, property.items, uiSchemaInArr, ui.$items, ui.$items);
                     }
                     if (property.properties && Object.keys(property.properties).length) {
@@ -2674,7 +2792,7 @@
             });
             if (this.ui == null)
                 this.ui = {};
-            this._defUi = __assign(__assign(__assign({ onlyVisual: this.options.onlyVisual, size: this.options.size, liveValidate: this.liveValidate, firstVisual: this.firstVisual }, this.options.ui), _schema.ui), this.ui['*']);
+            this._defUi = __assign({ onlyVisual: this.options.onlyVisual, size: this.options.size, liveValidate: this.liveValidate, firstVisual: this.firstVisual }, this.options.ui, _schema.ui, this.ui['*']);
             if (this.onlyVisual === true) {
                 this._defUi.onlyVisual = true;
             }
@@ -2696,7 +2814,7 @@
          * @return {?}
          */
         function () {
-            this._btn = __assign(__assign(__assign({ render: { size: 'default' } }, this.locale), this.options.button), ((/** @type {?} */ (this.button))));
+            this._btn = __assign({ render: { size: 'default' } }, this.locale, this.options.button, ((/** @type {?} */ (this.button))));
             /** @type {?} */
             var firstKey = Object.keys(this._ui).find((/**
              * @param {?} w
@@ -2834,7 +2952,7 @@
                      * @param {?} key
                      * @return {?}
                      */
-                    function (key) { return fn(((/** @type {?} */ (property.properties)))[key]); }));
+                    function (key) { return fn((/** @type {?} */ (property.properties))[key]); }));
                 }
             });
             if (options.onlyRoot) {
@@ -2852,30 +2970,10 @@
             return (/** @type {?} */ (this));
         };
         /**
-         * 刷新整个 Schema，当指定 `newSchema` 表示替换当前的 Schema
-         *
-         * 若希望对某个表单元素进行刷新请使用：
-         * ```
-         * // 获取某个元素
-         * const statusProperty = this.sf.getProperty('/status')!;
-         * // 重置 `schema` 或 `ui` 参数
-         * statusProperty.schema.enum = ['1', '2', '3'];
-         * // 调用 `reset` 重置初始值
-         * statusProperty.widget.reset('2');
-         * ```
+         * 刷新 Schema，一般需要动态修改 Schema 某个值时可以方便调用
          */
         /**
-         * 刷新整个 Schema，当指定 `newSchema` 表示替换当前的 Schema
-         *
-         * 若希望对某个表单元素进行刷新请使用：
-         * ```
-         * // 获取某个元素
-         * const statusProperty = this.sf.getProperty('/status')!;
-         * // 重置 `schema` 或 `ui` 参数
-         * statusProperty.schema.enum = ['1', '2', '3'];
-         * // 调用 `reset` 重置初始值
-         * statusProperty.widget.reset('2');
-         * ```
+         * 刷新 Schema，一般需要动态修改 Schema 某个值时可以方便调用
          * @template THIS
          * @this {THIS}
          * @param {?=} newSchema
@@ -2883,17 +2981,7 @@
          * @return {THIS}
          */
         SFComponent.prototype.refreshSchema = /**
-         * 刷新整个 Schema，当指定 `newSchema` 表示替换当前的 Schema
-         *
-         * 若希望对某个表单元素进行刷新请使用：
-         * ```
-         * // 获取某个元素
-         * const statusProperty = this.sf.getProperty('/status')!;
-         * // 重置 `schema` 或 `ui` 参数
-         * statusProperty.schema.enum = ['1', '2', '3'];
-         * // 调用 `reset` 重置初始值
-         * statusProperty.widget.reset('2');
-         * ```
+         * 刷新 Schema，一般需要动态修改 Schema 某个值时可以方便调用
          * @template THIS
          * @this {THIS}
          * @param {?=} newSchema
@@ -2928,7 +3016,7 @@
              * @return {?}
              */
             function (value) {
-                (/** @type {?} */ (_this))._item = __assign(__assign({}, ((/** @type {?} */ (_this)).cleanValue ? null : (/** @type {?} */ (_this)).formData)), value);
+                (/** @type {?} */ (_this))._item = __assign({}, ((/** @type {?} */ (_this)).cleanValue ? null : (/** @type {?} */ (_this)).formData), value);
                 if (isFirst) {
                     isFirst = false;
                     return;
@@ -3008,13 +3096,13 @@
             { type: core.Component, args: [{
                         selector: 'sf, [sf]',
                         exportAs: 'sf',
-                        template: "<ng-template #con>\n  <ng-content></ng-content>\n</ng-template>\n<form nz-form [nzLayout]=\"layout\" (submit)=\"onSubmit($event)\" [attr.autocomplete]=\"autocomplete\">\n  <sf-item [formProperty]=\"rootProperty\"></sf-item>\n  <ng-container *ngIf=\"button !== 'none'; else con\">\n    <nz-form-item [ngClass]=\"_btn.render!.class\" class=\"sf-btns\" [fixed-label]=\"_btn.render!.spanLabelFixed\">\n      <div\n        nz-col\n        class=\"ant-form-item-control\"\n        [nzSpan]=\"_btn.render!.grid!.span\"\n        [nzOffset]=\"_btn.render!.grid!.offset\"\n        [nzXs]=\"_btn.render!.grid!.xs\"\n        [nzSm]=\"_btn.render!.grid!.sm\"\n        [nzMd]=\"_btn.render!.grid!.md\"\n        [nzLg]=\"_btn.render!.grid!.lg\"\n        [nzXl]=\"_btn.render!.grid!.xl\"\n        [nzXXl]=\"_btn.render!.grid!.xxl\"\n      >\n        <div class=\"ant-form-item-control-input\">\n          <div class=\"ant-form-item-control-input-content\">\n            <ng-container *ngIf=\"button; else con\">\n              <button\n                type=\"submit\"\n                nz-button\n                data-type=\"submit\"\n                [nzType]=\"_btn.submit_type\"\n                [nzSize]=\"_btn.render!.size\"\n                [nzLoading]=\"loading\"\n                [disabled]=\"liveValidate && !valid\"\n              >\n                <i\n                  *ngIf=\"_btn.submit_icon\"\n                  nz-icon\n                  [nzType]=\"_btn.submit_icon.type\"\n                  [nzTheme]=\"_btn.submit_icon.theme\"\n                  [nzTwotoneColor]=\"_btn.submit_icon.twoToneColor\"\n                  [nzIconfont]=\"_btn.submit_icon.iconfont\"\n                ></i>\n                {{ _btn.submit }}\n              </button>\n              <button\n                *ngIf=\"_btn.reset\"\n                type=\"button\"\n                nz-button\n                data-type=\"reset\"\n                [nzType]=\"_btn.reset_type\"\n                [nzSize]=\"_btn.render!.size\"\n                [disabled]=\"loading\"\n                (click)=\"reset(true)\"\n              >\n                <i\n                  *ngIf=\"_btn.reset_icon\"\n                  nz-icon\n                  [nzType]=\"_btn.reset_icon.type\"\n                  [nzTheme]=\"_btn.reset_icon.theme\"\n                  [nzTwotoneColor]=\"_btn.reset_icon.twoToneColor\"\n                  [nzIconfont]=\"_btn.reset_icon.iconfont\"\n                ></i>\n                {{ _btn.reset }}\n              </button>\n            </ng-container>\n          </div>\n        </div>\n      </div>\n    </nz-form-item>\n  </ng-container>\n</form>\n",
+                        template: "<ng-template #con>\n  <ng-content></ng-content>\n</ng-template>\n<form nz-form\n      [nzLayout]=\"layout\"\n      (submit)=\"onSubmit($event)\"\n      [attr.autocomplete]=\"autocomplete\">\n  <sf-item [formProperty]=\"rootProperty\"></sf-item>\n  <ng-container *ngIf=\"button !== 'none'; else con\">\n    <nz-form-item [ngClass]=\"_btn.render!.class\"\n                  class=\"sf-btns\"\n                  [fixed-label]=\"_btn.render!.spanLabelFixed\">\n      <div nz-col\n           class=\"ant-form-item-control-wrapper\"\n           [nzSpan]=\"_btn.render!.grid!.span\"\n           [nzOffset]=\"_btn.render!.grid!.offset\"\n           [nzXs]=\"_btn.render!.grid!.xs\"\n           [nzSm]=\"_btn.render!.grid!.sm\"\n           [nzMd]=\"_btn.render!.grid!.md\"\n           [nzLg]=\"_btn.render!.grid!.lg\"\n           [nzXl]=\"_btn.render!.grid!.xl\"\n           [nzXXl]=\"_btn.render!.grid!.xxl\">\n        <div class=\"ant-form-item-control\">\n          <ng-container *ngIf=\"button; else con\">\n            <button type=\"submit\"\n                    nz-button\n                    [nzType]=\"_btn.submit_type\"\n                    [nzSize]=\"_btn.render!.size\"\n                    [nzLoading]=\"loading\"\n                    [disabled]=\"liveValidate && !valid\">\n              <i *ngIf=\"_btn.submit_icon\"\n                  nz-icon\n                  [nzType]=\"_btn.submit_icon.type\"\n                  [nzTheme]=\"_btn.submit_icon.theme\"\n                  [nzTwotoneColor]=\"_btn.submit_icon.twoToneColor\"\n                  [nzIconfont]=\"_btn.submit_icon.iconfont\"></i>\n              {{_btn.submit}}\n            </button>\n            <button *ngIf=\"_btn.reset\"\n                    type=\"button\"\n                    nz-button\n                    [nzType]=\"_btn.reset_type\"\n                    [nzSize]=\"_btn.render!.size\"\n                    [disabled]=\"loading\"\n                    (click)=\"reset(true)\">\n              <i *ngIf=\"_btn.reset_icon\"\n                  nz-icon\n                  [nzType]=\"_btn.reset_icon.type\"\n                  [nzTheme]=\"_btn.reset_icon.theme\"\n                  [nzTwotoneColor]=\"_btn.reset_icon.twoToneColor\"\n                  [nzIconfont]=\"_btn.reset_icon.iconfont\"></i>\n              {{_btn.reset}}\n            </button>\n          </ng-container>\n        </div>\n      </div>\n    </nz-form-item>\n  </ng-container>\n</form>\n",
                         providers: [
                             WidgetFactory,
                             {
                                 provide: FormPropertyFactory,
                                 useFactory: useFactory,
-                                deps: [SchemaValidatorFactory, util.AlainConfigService],
+                                deps: [SchemaValidatorFactory, DelonFormConfig],
                             },
                             TerminatorService,
                         ],
@@ -3035,12 +3123,12 @@
         SFComponent.ctorParameters = function () { return [
             { type: FormPropertyFactory },
             { type: TerminatorService },
+            { type: DelonFormConfig },
             { type: platformBrowser.DomSanitizer },
             { type: core.ChangeDetectorRef },
             { type: theme.DelonLocaleService },
             { type: acl.ACLService, decorators: [{ type: core.Optional }] },
-            { type: undefined, decorators: [{ type: core.Optional }, { type: core.Inject, args: [theme.ALAIN_I18N_TOKEN,] }] },
-            { type: util.AlainConfigService }
+            { type: undefined, decorators: [{ type: core.Optional }, { type: core.Inject, args: [theme.ALAIN_I18N_TOKEN,] }] }
         ]; };
         SFComponent.propDecorators = {
             layout: [{ type: core.Input }],
@@ -3123,8 +3211,6 @@
          * @private
          */
         SFComponent.prototype._inited;
-        /** @type {?} */
-        SFComponent.prototype.options;
         /** @type {?} */
         SFComponent.prototype.locale;
         /** @type {?} */
@@ -3237,6 +3323,11 @@
          * @type {?}
          * @private
          */
+        SFComponent.prototype.options;
+        /**
+         * @type {?}
+         * @private
+         */
         SFComponent.prototype.dom;
         /**
          * @type {?}
@@ -3334,7 +3425,7 @@
             { type: core.Component, args: [{
                         selector: 'sf-item',
                         exportAs: 'sfItem',
-                        template: " <ng-template #target></ng-template> ",
+                        template: "\n    <ng-template #target></ng-template>\n  ",
                         preserveWhitespaces: false,
                         encapsulation: core.ViewEncapsulation.None
                     }] }
@@ -3407,12 +3498,11 @@
             var unit = this.num + 'px';
             if (labelEl) {
                 this.render.setStyle(labelEl, 'width', unit);
-                this.render.setStyle(labelEl, 'max-width', unit);
                 this.render.setStyle(labelEl, 'flex', "0 0 " + unit);
             }
             else {
                 /** @type {?} */
-                var controlEl = widgetEl.querySelector('.ant-form-item-control');
+                var controlEl = widgetEl.querySelector('.ant-form-item-control-wrapper');
                 this.render.setStyle(controlEl, 'margin-left', unit);
             }
         };
@@ -3505,8 +3595,7 @@
         SFItemWrapComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'sf-item-wrap',
-                        template: "<nz-form-item [style.width.px]=\"ui.width\" [class.ant-form-item-has-error]=\"showError\" [class.ant-form-item-with-help]=\"showError\">\n  <nz-col *ngIf=\"showTitle\" [nzSpan]=\"ui.spanLabel\" class=\"ant-form-item-label\">\n    <label *ngIf=\"t\" [attr.for]=\"id\" [class.ant-form-item-required]=\"ui._required\">\n      {{ t }}\n      <span class=\"sf__optional\">\n        {{ ui.optional }}\n        <i\n          *ngIf=\"oh\"\n          nz-tooltip\n          [nzTooltipTitle]=\"oh.text\"\n          [nzTooltipPlacement]=\"oh.placement\"\n          [nzTooltipTrigger]=\"oh.trigger\"\n          [nzOverlayClassName]=\"oh.overlayClassName\"\n          [nzOverlayStyle]=\"oh.overlayStyle\"\n          [nzMouseEnterDelay]=\"oh.mouseEnterDelay\"\n          [nzMouseLeaveDelay]=\"oh.mouseLeaveDelay\"\n          nz-icon\n          [nzType]=\"oh.icon\"\n        ></i>\n      </span>\n    </label>\n  </nz-col>\n  <nz-col class=\"ant-form-item-control\" [nzSpan]=\"ui.spanControl\" [nzOffset]=\"ui.offsetControl\">\n    <div class=\"ant-form-item-control-input\">\n      <div class=\"ant-form-item-control-input-content\">\n        <ng-content></ng-content>\n      </div>\n    </div>\n    <div *ngIf=\"!ui.onlyVisual && showError\" class=\"ant-form-item-explain\">\n      <div @helpMotion>{{ error }}</div>\n    </div>\n    <div *ngIf=\"schema.description\" class=\"ant-form-item-extra\" [innerHTML]=\"schema._description\"></div>\n  </nz-col>\n</nz-form-item>\n",
-                        animations: [animation.helpMotion],
+                        template: "<nz-form-item [style.width.px]=\"ui.width\" [class.ant-form-item-with-help]=\"showError\">\n  <nz-col *ngIf=\"showTitle\" [nzSpan]=\"ui.spanLabel\" class=\"ant-form-item-label\">\n    <label *ngIf=\"t\" [attr.for]=\"id\" [class.ant-form-item-required]=\"ui._required\">\n      {{ t }}\n      <span class=\"sf__optional\">\n        {{ ui.optional }}\n        <i *ngIf=\"oh\" nz-tooltip\n          [nzTooltipTitle]=\"oh.text\" [nzTooltipPlacement]=\"oh.placement\" [nzTooltipTrigger]=\"oh.trigger\"\n          [nzOverlayClassName]=\"oh.overlayClassName\" [nzOverlayStyle]=\"oh.overlayStyle\"\n          [nzMouseEnterDelay]=\"oh.mouseEnterDelay\" [nzMouseLeaveDelay]=\"oh.mouseLeaveDelay\"\n          nz-icon [nzType]=\"oh.icon\"></i>\n      </span>\n    </label>\n  </nz-col>\n  <nz-col class=\"ant-form-item-control-wrapper\" [nzSpan]=\"ui.spanControl\" [nzOffset]=\"ui.offsetControl\">\n    <div class=\"ant-form-item-control\" [class.has-error]=\"showError\">\n      <ng-content></ng-content>\n      <div *ngIf=\"!ui.onlyVisual && showError\" class=\"ant-form-explain\">{{error}}</div>\n      <div *ngIf=\"schema.description\" [innerHTML]=\"schema._description\" class=\"ant-form-extra\"></div>\n    </div>\n  </nz-col>\n</nz-form-item>\n",
                         preserveWhitespaces: false,
                         encapsulation: core.ViewEncapsulation.None
                     }] }
@@ -3684,7 +3773,6 @@
                 }
                 _this.firstVisual = true;
             }));
-            this.afterViewInit();
         };
         /**
          * @param {?} value
@@ -3752,25 +3840,13 @@
         Widget.prototype.ui;
         /** @type {?} */
         Widget.prototype.firstVisual;
-        /**
-         * @type {?}
-         * @protected
-         */
+        /** @type {?} */
         Widget.prototype.cd;
-        /**
-         * @type {?}
-         * @protected
-         */
+        /** @type {?} */
         Widget.prototype.injector;
-        /**
-         * @type {?}
-         * @protected
-         */
+        /** @type {?} */
         Widget.prototype.sfItemComp;
-        /**
-         * @type {?}
-         * @protected
-         */
+        /** @type {?} */
         Widget.prototype.sfComp;
         /**
          * @abstract
@@ -3778,11 +3854,6 @@
          * @return {?}
          */
         Widget.prototype.reset = function (value) { };
-        /**
-         * @abstract
-         * @return {?}
-         */
-        Widget.prototype.afterViewInit = function () { };
     }
     var ControlWidget = /** @class */ (function (_super) {
         __extends(ControlWidget, _super);
@@ -3798,13 +3869,6 @@
          * @return {?}
          */
         function (_value) { };
-        /**
-         * @return {?}
-         */
-        ControlWidget.prototype.afterViewInit = /**
-         * @return {?}
-         */
-        function () { };
         return ControlWidget;
     }(Widget));
     /**
@@ -3827,13 +3891,6 @@
          * @return {?}
          */
         function (_value) { };
-        /**
-         * @return {?}
-         */
-        ControlUIWidget.prototype.afterViewInit = /**
-         * @return {?}
-         */
-        function () { };
         return ControlUIWidget;
     }(Widget));
     var ArrayLayoutWidget = /** @class */ (function (_super) {
@@ -3850,13 +3907,6 @@
          * @return {?}
          */
         function (_value) { };
-        /**
-         * @return {?}
-         */
-        ArrayLayoutWidget.prototype.afterViewInit = /**
-         * @return {?}
-         */
-        function () { };
         /**
          * @return {?}
          */
@@ -3886,13 +3936,6 @@
          * @return {?}
          */
         function (_value) { };
-        /**
-         * @return {?}
-         */
-        ObjectLayoutWidget.prototype.afterViewInit = /**
-         * @return {?}
-         */
-        function () { };
         /**
          * @return {?}
          */
@@ -3979,7 +4022,7 @@
         ArrayWidget.decorators = [
             { type: core.Component, args: [{
                         selector: 'sf-array',
-                        template: "<nz-form-item [class.ant-form-item-with-help]=\"showError\">\n  <nz-col *ngIf=\"schema.title\" [nzSpan]=\"ui.spanLabel\" class=\"ant-form-item-label\">\n    <label>\n      {{ schema.title }}\n      <span class=\"sf__optional\">\n        {{ ui.optional }}\n        <i\n          *ngIf=\"oh\"\n          nz-tooltip\n          [nzTooltipTitle]=\"oh.text\"\n          [nzTooltipPlacement]=\"oh.placement\"\n          [nzTooltipTrigger]=\"oh.trigger\"\n          [nzOverlayClassName]=\"oh.overlayClassName\"\n          [nzOverlayStyle]=\"oh.overlayStyle\"\n          [nzMouseEnterDelay]=\"oh.mouseEnterDelay\"\n          [nzMouseLeaveDelay]=\"oh.mouseLeaveDelay\"\n          nz-icon\n          [nzType]=\"oh.icon\"\n        ></i>\n      </span>\n    </label>\n    <div class=\"sf__array-add\">\n      <button type=\"button\" nz-button [nzType]=\"addType\" [disabled]=\"addDisabled\" (click)=\"addItem()\" [innerHTML]=\"addTitle\"></button>\n    </div>\n  </nz-col>\n  <nz-col class=\"ant-form-item-control-wrapper\" [nzSpan]=\"ui.spanControl\" [nzOffset]=\"ui.offsetControl\">\n    <div class=\"ant-form-item-control\" [class.has-error]=\"showError\">\n      <nz-row class=\"sf__array-container\">\n        <ng-container *ngFor=\"let i of formProperty.properties; let idx=index\">\n          <nz-col *ngIf=\"i.visible && !i.ui.hidden\" [nzSpan]=\"arraySpan\" [attr.data-index]=\"idx\" class=\"sf-array-item\">\n            <nz-card>\n              <sf-item [formProperty]=\"i\"></sf-item>\n              <span *ngIf=\"showRemove\" class=\"sf__array-remove\" (click)=\"removeItem(idx)\" [attr.title]=\"removeTitle\">\n                <i nz-icon nzType=\"delete\"></i>\n              </span>\n            </nz-card>\n          </nz-col>\n        </ng-container>\n      </nz-row>\n      <div *ngIf=\"!ui.onlyVisual && showError\" class=\"ant-form-explain\">{{error}}</div>\n      <div *ngIf=\"schema.description\" [innerHTML]=\"schema._description\" class=\"ant-form-extra\"></div>\n    </div>\n  </nz-col>\n</nz-form-item>\n",
+                        template: "<nz-form-item [class.ant-form-item-with-help]=\"showError\">\n  <nz-col *ngIf=\"schema.title\" [nzSpan]=\"ui.spanLabel\" class=\"ant-form-item-label\">\n    <label>\n      {{ schema.title }}\n      <span class=\"sf__optional\">\n        {{ ui.optional }}\n        <i *ngIf=\"oh\" nz-tooltip\n          [nzTooltipTitle]=\"oh.text\" [nzTooltipPlacement]=\"oh.placement\" [nzTooltipTrigger]=\"oh.trigger\"\n          [nzOverlayClassName]=\"oh.overlayClassName\" [nzOverlayStyle]=\"oh.overlayStyle\"\n          [nzMouseEnterDelay]=\"oh.mouseEnterDelay\" [nzMouseLeaveDelay]=\"oh.mouseLeaveDelay\"\n          nz-icon [nzType]=\"oh.icon\"></i>\n      </span>\n    </label>\n    <div class=\"sf__array-add\">\n      <button type=\"button\"\n              nz-button\n              [nzType]=\"addType\"\n              [disabled]=\"addDisabled\"\n              (click)=\"addItem()\"\n              [innerHTML]=\"addTitle\"></button>\n    </div>\n  </nz-col>\n  <nz-col class=\"ant-form-item-control-wrapper\" [nzSpan]=\"ui.spanControl\" [nzOffset]=\"ui.offsetControl\">\n    <div class=\"ant-form-item-control\" [class.has-error]=\"showError\">\n      <nz-row class=\"sf__array-container\">\n        <ng-container *ngFor=\"let i of formProperty.properties; let idx=index\">\n          <nz-col *ngIf=\"i.visible && !i.ui.hidden\" [nzSpan]=\"arraySpan\" [attr.data-index]=\"idx\" class=\"sf-array-item\">\n            <nz-card>\n              <sf-item [formProperty]=\"i\"></sf-item>\n              <span *ngIf=\"showRemove\" class=\"sf__array-remove\" (click)=\"removeItem(idx)\" [attr.title]=\"removeTitle\">\n                <i nz-icon nzType=\"delete\"></i>\n              </span>\n            </nz-card>\n          </nz-col>\n        </ng-container>\n      </nz-row>\n      <div *ngIf=\"!ui.onlyVisual && showError\" class=\"ant-form-explain\">{{error}}</div>\n      <div *ngIf=\"schema.description\" [innerHTML]=\"schema._description\" class=\"ant-form-extra\"></div>\n    </div>\n  </nz-col>\n</nz-form-item>\n",
                         preserveWhitespaces: false,
                         encapsulation: core.ViewEncapsulation.None
                     }] }
@@ -4021,7 +4064,7 @@
          * @return {?}
          */
         function (item) {
-            this.typing = (/** @type {?} */ (item.nzLabel));
+            this.typing = item.nzLabel;
             this.setValue(item.nzValue);
             if (this.ui.change)
                 this.ui.change(item);
@@ -4029,7 +4072,7 @@
         /**
          * @return {?}
          */
-        AutoCompleteWidget.prototype.afterViewInit = /**
+        AutoCompleteWidget.prototype.ngAfterViewInit = /**
          * @return {?}
          */
         function () {
@@ -4130,7 +4173,7 @@
         AutoCompleteWidget.decorators = [
             { type: core.Component, args: [{
                         selector: 'sf-autocomplete',
-                        template: "<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n  <input\n    nz-input\n    [nzAutocomplete]=\"auto\"\n    [attr.id]=\"id\"\n    [disabled]=\"disabled\"\n    [attr.disabled]=\"disabled\"\n    [nzSize]=\"ui.size\"\n    [(ngModel)]=\"typing\"\n    (ngModelChange)=\"setValue($event)\"\n    [attr.maxLength]=\"schema.maxLength || null\"\n    [attr.placeholder]=\"ui.placeholder\"\n    autocomplete=\"off\"\n  />\n  <nz-autocomplete\n    #auto\n    [nzBackfill]=\"i.backfill\"\n    [nzDefaultActiveFirstOption]=\"i.defaultActiveFirstOption\"\n    [nzWidth]=\"i.width\"\n    (selectionChange)=\"updateValue($event)\"\n  >\n    <nz-auto-option *ngFor=\"let i of list | async\" [nzValue]=\"i.value\" [nzLabel]=\"i.label\">\n      {{i.label}}\n    </nz-auto-option>\n  </nz-autocomplete>\n</sf-item-wrap>\n",
+                        template: "<sf-item-wrap [id]=\"id\"\n              [schema]=\"schema\"\n              [ui]=\"ui\"\n              [showError]=\"showError\"\n              [error]=\"error\"\n              [showTitle]=\"schema.title\">\n  <input nz-input\n         [nzAutocomplete]=\"auto\"\n         [attr.id]=\"id\"\n         [disabled]=\"disabled\"\n         [attr.disabled]=\"disabled\"\n         [nzSize]=\"ui.size\"\n         [(ngModel)]=\"typing\"\n         (ngModelChange)=\"setValue($event)\"\n         [attr.maxLength]=\"schema.maxLength || null\"\n         [attr.placeholder]=\"ui.placeholder\"\n         autocomplete=\"off\">\n  <nz-autocomplete #auto\n                   [nzBackfill]=\"i.backfill\"\n                   [nzDefaultActiveFirstOption]=\"i.defaultActiveFirstOption\"\n                   [nzWidth]=\"i.width\"\n                   (selectionChange)=\"updateValue($event)\">\n    <nz-auto-option *ngFor=\"let i of list | async\" [nzValue]=\"i.value\" [nzLabel]=\"i.label\">\n      {{i.label}}\n    </nz-auto-option>\n  </nz-autocomplete>\n</sf-item-wrap>\n",
                         preserveWhitespaces: false,
                         encapsulation: core.ViewEncapsulation.None
                     }] }
@@ -4182,7 +4225,7 @@
         BooleanWidget.decorators = [
             { type: core.Component, args: [{
                         selector: 'sf-boolean',
-                        template: "<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n  <nz-switch\n    [ngModel]=\"value\"\n    (ngModelChange)=\"setValue($event)\"\n    [nzDisabled]=\"disabled\"\n    [nzSize]=\"ui.size\"\n    [nzCheckedChildren]=\"ui.checkedChildren\"\n    [nzUnCheckedChildren]=\"ui.unCheckedChildren\"\n  >\n  </nz-switch>\n</sf-item-wrap>\n",
+                        template: "<sf-item-wrap [id]=\"id\"\n              [schema]=\"schema\"\n              [ui]=\"ui\"\n              [showError]=\"showError\"\n              [error]=\"error\"\n              [showTitle]=\"schema.title\">\n  <nz-switch [ngModel]=\"value\"\n             (ngModelChange)=\"setValue($event)\"\n             [nzDisabled]=\"disabled\"\n             [nzSize]=\"ui.size\"\n             [nzCheckedChildren]=\"ui.checkedChildren\"\n             [nzUnCheckedChildren]=\"ui.unCheckedChildren\">\n  </nz-switch>\n</sf-item-wrap>\n",
                         preserveWhitespaces: false,
                         encapsulation: core.ViewEncapsulation.None
                     }] }
@@ -4298,7 +4341,7 @@
         CascaderWidget.decorators = [
             { type: core.Component, args: [{
                         selector: 'sf-cascader',
-                        template: "<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n  <nz-cascader\n    [nzDisabled]=\"disabled\"\n    [nzSize]=\"ui.size\"\n    [ngModel]=\"value\"\n    (ngModelChange)=\"_change($event)\"\n    [nzOptions]=\"data\"\n    [nzAllowClear]=\"ui.allowClear\"\n    [nzAutoFocus]=\"ui.autoFocus\"\n    [nzChangeOn]=\"ui.changeOn\"\n    [nzChangeOnSelect]=\"ui.changeOnSelect\"\n    [nzColumnClassName]=\"ui.columnClassName\"\n    [nzExpandTrigger]=\"ui.expandTrigger\"\n    [nzMenuClassName]=\"ui.menuClassName\"\n    [nzMenuStyle]=\"ui.menuStyle\"\n    [nzNotFoundContent]=\"ui.notFoundContent\"\n    [nzLabelProperty]=\"ui.labelProperty || 'label'\"\n    [nzValueProperty]=\"ui.valueProperty || 'value'\"\n    [nzLoadData]=\"loadData\"\n    [nzPlaceHolder]=\"ui.placeholder\"\n    [nzShowArrow]=\"showArrow\"\n    [nzShowInput]=\"showInput\"\n    [nzShowSearch]=\"ui.showSearch\"\n    (nzClear)=\"_clear()\"\n    (nzVisibleChange)=\"_visibleChange($event)\"\n    (nzSelectionChange)=\"_selectionChange($event)\"\n  >\n  </nz-cascader>\n</sf-item-wrap>\n",
+                        template: "<sf-item-wrap [id]=\"id\"\n              [schema]=\"schema\"\n              [ui]=\"ui\"\n              [showError]=\"showError\"\n              [error]=\"error\"\n              [showTitle]=\"schema.title\">\n  <nz-cascader [nzDisabled]=\"disabled\"\n               [nzSize]=\"ui.size\"\n               [ngModel]=\"value\"\n               (ngModelChange)=\"_change($event)\"\n               [nzOptions]=\"data\"\n               [nzAllowClear]=\"ui.allowClear\"\n               [nzAutoFocus]=\"ui.autoFocus\"\n               [nzChangeOn]=\"ui.changeOn\"\n               [nzChangeOnSelect]=\"ui.changeOnSelect\"\n               [nzColumnClassName]=\"ui.columnClassName\"\n               [nzExpandTrigger]=\"ui.expandTrigger\"\n               [nzMenuClassName]=\"ui.menuClassName\"\n               [nzMenuStyle]=\"ui.menuStyle\"\n               [nzLabelProperty]=\"ui.labelProperty || 'label'\"\n               [nzValueProperty]=\"ui.valueProperty || 'value'\"\n               [nzLoadData]=\"loadData\"\n               [nzPlaceHolder]=\"ui.placeholder\"\n               [nzShowArrow]=\"showArrow\"\n               [nzShowInput]=\"showInput\"\n               [nzShowSearch]=\"ui.showSearch\"\n               (nzClear)=\"_clear()\"\n               (nzVisibleChange)=\"_visibleChange($event)\"\n               (nzSelectionChange)=\"_selectionChange($event)\">\n  </nz-cascader>\n</sf-item-wrap>\n",
                         preserveWhitespaces: false,
                         encapsulation: core.ViewEncapsulation.None
                     }] }
@@ -4477,7 +4520,7 @@
         CheckboxWidget.decorators = [
             { type: core.Component, args: [{
                         selector: 'sf-checkbox',
-                        template: "<ng-template #all>\n  <label\n    *ngIf=\"ui.checkAll\"\n    nz-checkbox\n    class=\"sf__checkbox-all mr-sm\"\n    [(ngModel)]=\"allChecked\"\n    (ngModelChange)=\"onAllChecked()\"\n    [nzIndeterminate]=\"indeterminate\"\n    >{{ ui.checkAllText || l.checkAllText }}</label\n  >\n</ng-template>\n<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"true\" [title]=\"labelTitle\">\n  <ng-container *ngIf=\"inited && data.length === 0\">\n    <label nz-checkbox [nzDisabled]=\"disabled\" [ngModel]=\"value\" (ngModelChange)=\"_setValue($event)\">\n      {{schema.title}}\n      <span class=\"sf__optional\">\n        {{ ui.optional }}\n        <i\n          *ngIf=\"oh\"\n          nz-tooltip\n          [nzTooltipTitle]=\"oh.text\"\n          [nzTooltipPlacement]=\"oh.placement\"\n          [nzTooltipTrigger]=\"oh.trigger\"\n          [nzOverlayClassName]=\"oh.overlayClassName\"\n          [nzOverlayStyle]=\"oh.overlayStyle\"\n          [nzMouseEnterDelay]=\"oh.mouseEnterDelay\"\n          [nzMouseLeaveDelay]=\"oh.mouseLeaveDelay\"\n          nz-icon\n          [nzType]=\"oh.icon\"\n        ></i>\n      </span>\n    </label>\n  </ng-container>\n  <ng-container *ngIf=\"inited && data.length > 0\">\n    <ng-container *ngIf=\"grid_span === 0\">\n      <ng-template [ngTemplateOutlet]=\"all\"></ng-template>\n      <nz-checkbox-group [ngModel]=\"data\" (ngModelChange)=\"notifySet()\"></nz-checkbox-group>\n    </ng-container>\n    <ng-container *ngIf=\"grid_span !== 0\">\n      <nz-checkbox-wrapper class=\"sf__checkbox-list\" (nzOnChange)=\"groupInGridChange($event)\">\n        <nz-row>\n          <nz-col [nzSpan]=\"grid_span\" *ngIf=\"ui.checkAll\">\n            <ng-template [ngTemplateOutlet]=\"all\"></ng-template>\n          </nz-col>\n          <nz-col [nzSpan]=\"grid_span\" *ngFor=\"let i of data\">\n            <label nz-checkbox [nzValue]=\"i.value\" [ngModel]=\"i.checked\" [nzDisabled]=\"i.disabled\">{{i.label}}</label>\n          </nz-col>\n        </nz-row>\n      </nz-checkbox-wrapper>\n    </ng-container>\n  </ng-container>\n</sf-item-wrap>\n",
+                        template: "<ng-template #all>\n  <label *ngIf=\"ui.checkAll\"\n         nz-checkbox\n         class=\"sf__checkbox-all mr-sm\"\n         [(ngModel)]=\"allChecked\"\n         (ngModelChange)=\"onAllChecked()\"\n         [nzIndeterminate]=\"indeterminate\">{{ ui.checkAllText || l.checkAllText }}</label>\n</ng-template>\n<sf-item-wrap [id]=\"id\"\n              [schema]=\"schema\"\n              [ui]=\"ui\"\n              [showError]=\"showError\"\n              [error]=\"error\"\n              [showTitle]=\"true\"\n              [title]=\"labelTitle\">\n  <ng-container *ngIf=\"inited && data.length === 0\">\n    <label nz-checkbox\n           [nzDisabled]=\"disabled\"\n           [ngModel]=\"value\"\n           (ngModelChange)=\"_setValue($event)\">\n      {{schema.title}}\n      <span class=\"sf__optional\">\n        {{ ui.optional }}\n        <i *ngIf=\"oh\" nz-tooltip\n          [nzTooltipTitle]=\"oh.text\" [nzTooltipPlacement]=\"oh.placement\" [nzTooltipTrigger]=\"oh.trigger\"\n          [nzOverlayClassName]=\"oh.overlayClassName\" [nzOverlayStyle]=\"oh.overlayStyle\"\n          [nzMouseEnterDelay]=\"oh.mouseEnterDelay\" [nzMouseLeaveDelay]=\"oh.mouseLeaveDelay\"\n          nz-icon [nzType]=\"oh.icon\"></i>\n      </span>\n    </label>\n  </ng-container>\n  <ng-container *ngIf=\"inited && data.length > 0\">\n    <ng-container *ngIf=\"grid_span === 0\">\n      <ng-template [ngTemplateOutlet]=\"all\"></ng-template>\n      <nz-checkbox-group [ngModel]=\"data\"\n                         (ngModelChange)=\"notifySet()\"></nz-checkbox-group>\n    </ng-container>\n    <ng-container *ngIf=\"grid_span !== 0\">\n      <nz-checkbox-wrapper class=\"sf__checkbox-list\"\n                           (nzOnChange)=\"groupInGridChange($event)\">\n        <nz-row>\n          <nz-col [nzSpan]=\"grid_span\"\n                  *ngIf=\"ui.checkAll\">\n            <ng-template [ngTemplateOutlet]=\"all\"></ng-template>\n          </nz-col>\n          <nz-col [nzSpan]=\"grid_span\"\n                  *ngFor=\"let i of data\">\n            <label nz-checkbox\n                   [nzValue]=\"i.value\"\n                   [ngModel]=\"i.checked\"\n                   [nzDisabled]=\"i.disabled\">{{i.label}}</label>\n          </nz-col>\n        </nz-row>\n      </nz-checkbox-wrapper>\n    </ng-container>\n  </ng-container>\n</sf-item-wrap>\n",
                         preserveWhitespaces: false,
                         encapsulation: core.ViewEncapsulation.None
                     }] }
@@ -4533,6 +4576,17 @@
             _this.displayValue = null;
             return _this;
         }
+        Object.defineProperty(DateWidget.prototype, "zorroI18n", {
+            get: /**
+             * @private
+             * @return {?}
+             */
+            function () {
+                return this.injector.get(i18n.NzI18nService);
+            },
+            enumerable: true,
+            configurable: true
+        });
         /**
          * @return {?}
          */
@@ -4552,15 +4606,17 @@
                 this.endFormat = endUi.format ? endUi._format : this.startFormat;
             }
             if (!displayFormat) {
+                /** @type {?} */
+                var usingDateFns = isDateFns(this.zorroI18n);
                 switch (this.mode) {
                     case 'year':
-                        this.displayFormat = "yyyy";
+                        this.displayFormat = usingDateFns ? "YYYY" : "yyyy";
                         break;
                     case 'month':
-                        this.displayFormat = "yyyy-MM";
+                        this.displayFormat = usingDateFns ? "YYYY-MM" : "yyyy-MM";
                         break;
                     case 'week':
-                        this.displayFormat = "yyyy-ww";
+                        this.displayFormat = usingDateFns ? "YYYY-WW" : "yyyy-ww";
                         break;
                 }
             }
@@ -4583,15 +4639,9 @@
          */
         function (value) {
             var _this = this;
-            value = util.toDate(value, { formatString: this.startFormat, defaultValue: null });
+            value = this.toDate(value);
             if (this.flatRange) {
-                this.displayValue =
-                    value == null
-                        ? []
-                        : [
-                            value,
-                            util.toDate((/** @type {?} */ (this.endProperty.formData)), { formatString: this.endFormat || this.startFormat, defaultValue: null }),
-                        ];
+                this.displayValue = value == null ? [] : [value, this.toDate(this.endProperty.formData)];
             }
             else {
                 this.displayValue = value;
@@ -4661,7 +4711,7 @@
              * @return {?}
              */
             function () {
-                return ((/** @type {?} */ ((/** @type {?} */ (this.formProperty.parent)).properties)))[(/** @type {?} */ (this.ui.end))];
+                return (/** @type {?} */ ((/** @type {?} */ (this.formProperty.parent)).properties))[(/** @type {?} */ (this.ui.end))];
             },
             enumerable: true,
             configurable: true
@@ -4682,10 +4732,26 @@
             this.endProperty.setValue(value, true);
             this.endProperty.updateValueAndValidity();
         };
+        /**
+         * @private
+         * @param {?} value
+         * @return {?}
+         */
+        DateWidget.prototype.toDate = /**
+         * @private
+         * @param {?} value
+         * @return {?}
+         */
+        function (value) {
+            if (typeof value === 'number' || (typeof value === 'string' && !isNaN(+value))) {
+                value = new Date(+value);
+            }
+            return value;
+        };
         DateWidget.decorators = [
             { type: core.Component, args: [{
                         selector: 'sf-date',
-                        template: "<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n  <ng-container [ngSwitch]=\"mode\">\n    <nz-year-picker\n      *ngSwitchCase=\"'year'\"\n      [nzDisabled]=\"disabled\"\n      [nzSize]=\"ui.size\"\n      [nzFormat]=\"displayFormat\"\n      [(ngModel)]=\"displayValue\"\n      (ngModelChange)=\"_change($event)\"\n      [nzAllowClear]=\"i.allowClear\"\n      [ngClass]=\"ui.className\"\n      [nzDisabledDate]=\"ui.disabledDate\"\n      [nzLocale]=\"ui.locale\"\n      [nzPlaceHolder]=\"ui.placeholder\"\n      [nzPopupStyle]=\"ui.popupStyle\"\n      [nzDropdownClassName]=\"ui.dropdownClassName\"\n      (nzOnOpenChange)=\"_openChange($event)\"\n      [nzRenderExtraFooter]=\"ui.renderExtraFooter\"\n    ></nz-year-picker>\n\n    <nz-month-picker\n      *ngSwitchCase=\"'month'\"\n      [nzDisabled]=\"disabled\"\n      [nzSize]=\"ui.size\"\n      [nzFormat]=\"displayFormat\"\n      [(ngModel)]=\"displayValue\"\n      (ngModelChange)=\"_change($event)\"\n      [nzAllowClear]=\"i.allowClear\"\n      [ngClass]=\"ui.className\"\n      [nzDisabledDate]=\"ui.disabledDate\"\n      [nzLocale]=\"ui.locale\"\n      [nzPlaceHolder]=\"ui.placeholder\"\n      [nzPopupStyle]=\"ui.popupStyle\"\n      [nzDropdownClassName]=\"ui.dropdownClassName\"\n      (nzOnOpenChange)=\"_openChange($event)\"\n      [nzRenderExtraFooter]=\"ui.renderExtraFooter\"\n    ></nz-month-picker>\n\n    <nz-week-picker\n      *ngSwitchCase=\"'week'\"\n      [nzDisabled]=\"disabled\"\n      [nzSize]=\"ui.size\"\n      [nzFormat]=\"displayFormat\"\n      [(ngModel)]=\"displayValue\"\n      (ngModelChange)=\"_change($event)\"\n      [nzAllowClear]=\"i.allowClear\"\n      [ngClass]=\"ui.className\"\n      [nzDisabledDate]=\"ui.disabledDate\"\n      [nzLocale]=\"ui.locale\"\n      [nzPlaceHolder]=\"ui.placeholder\"\n      [nzPopupStyle]=\"ui.popupStyle\"\n      [nzDropdownClassName]=\"ui.dropdownClassName\"\n      (nzOnOpenChange)=\"_openChange($event)\"\n    ></nz-week-picker>\n\n    <nz-range-picker\n      *ngSwitchCase=\"'range'\"\n      [nzDisabled]=\"disabled\"\n      [nzSize]=\"ui.size\"\n      [nzFormat]=\"displayFormat\"\n      [(ngModel)]=\"displayValue\"\n      (ngModelChange)=\"_change($event)\"\n      [nzAllowClear]=\"i.allowClear\"\n      [ngClass]=\"ui.className\"\n      [nzDisabledDate]=\"ui.disabledDate\"\n      [nzLocale]=\"ui.locale\"\n      [nzPlaceHolder]=\"ui.placeholder\"\n      [nzPopupStyle]=\"ui.popupStyle\"\n      [nzDropdownClassName]=\"ui.dropdownClassName\"\n      (nzOnOpenChange)=\"_openChange($event)\"\n      [nzDisabledTime]=\"ui.disabledTime\"\n      [nzRenderExtraFooter]=\"ui.renderExtraFooter\"\n      [nzRanges]=\"ui.ranges\"\n      [nzShowTime]=\"ui.showTime\"\n      (nzOnOk)=\"_ok($event)\"\n    ></nz-range-picker>\n\n    <nz-date-picker\n      *ngSwitchDefault\n      [nzDisabled]=\"disabled\"\n      [nzSize]=\"ui.size\"\n      [nzFormat]=\"displayFormat\"\n      [(ngModel)]=\"displayValue\"\n      (ngModelChange)=\"_change($event)\"\n      [nzAllowClear]=\"i.allowClear\"\n      [ngClass]=\"ui.className\"\n      [nzDisabledDate]=\"ui.disabledDate\"\n      [nzLocale]=\"ui.locale\"\n      [nzPlaceHolder]=\"ui.placeholder\"\n      [nzPopupStyle]=\"ui.popupStyle\"\n      [nzDropdownClassName]=\"ui.dropdownClassName\"\n      (nzOnOpenChange)=\"_openChange($event)\"\n      [nzDisabledTime]=\"ui.disabledTime\"\n      [nzRenderExtraFooter]=\"ui.renderExtraFooter\"\n      [nzShowTime]=\"ui.showTime\"\n      [nzShowToday]=\"i.showToday\"\n      (nzOnOk)=\"_ok($event)\"\n    ></nz-date-picker>\n  </ng-container>\n</sf-item-wrap>\n",
+                        template: "<sf-item-wrap [id]=\"id\"\n              [schema]=\"schema\"\n              [ui]=\"ui\"\n              [showError]=\"showError\"\n              [error]=\"error\"\n              [showTitle]=\"schema.title\">\n  <ng-container [ngSwitch]=\"mode\">\n\n    <nz-year-picker *ngSwitchCase=\"'year'\"\n                    [nzDisabled]=\"disabled\"\n                    [nzSize]=\"ui.size\"\n                    [nzFormat]=\"displayFormat\"\n                    [(ngModel)]=\"displayValue\"\n                    (ngModelChange)=\"_change($event)\"\n                    [nzAllowClear]=\"i.allowClear\"\n                    [nzClassName]=\"ui.className\"\n                    [nzDisabledDate]=\"ui.disabledDate\"\n                    [nzLocale]=\"ui.locale\"\n                    [nzPlaceHolder]=\"ui.placeholder\"\n                    [nzPopupStyle]=\"ui.popupStyle\"\n                    [nzDropdownClassName]=\"ui.dropdownClassName\"\n                    (nzOnOpenChange)=\"_openChange($event)\"\n                    [nzRenderExtraFooter]=\"ui.renderExtraFooter\"></nz-year-picker>\n\n    <nz-month-picker *ngSwitchCase=\"'month'\"\n                     [nzDisabled]=\"disabled\"\n                     [nzSize]=\"ui.size\"\n                     [nzFormat]=\"displayFormat\"\n                     [(ngModel)]=\"displayValue\"\n                     (ngModelChange)=\"_change($event)\"\n                     [nzAllowClear]=\"i.allowClear\"\n                     [nzClassName]=\"ui.className\"\n                     [nzDisabledDate]=\"ui.disabledDate\"\n                     [nzLocale]=\"ui.locale\"\n                     [nzPlaceHolder]=\"ui.placeholder\"\n                     [nzPopupStyle]=\"ui.popupStyle\"\n                     [nzDropdownClassName]=\"ui.dropdownClassName\"\n                     (nzOnOpenChange)=\"_openChange($event)\"\n                     [nzRenderExtraFooter]=\"ui.renderExtraFooter\"></nz-month-picker>\n\n    <nz-week-picker *ngSwitchCase=\"'week'\"\n                    [nzDisabled]=\"disabled\"\n                    [nzSize]=\"ui.size\"\n                    [nzFormat]=\"displayFormat\"\n                    [(ngModel)]=\"displayValue\"\n                    (ngModelChange)=\"_change($event)\"\n                    [nzAllowClear]=\"i.allowClear\"\n                    [nzClassName]=\"ui.className\"\n                    [nzDisabledDate]=\"ui.disabledDate\"\n                    [nzLocale]=\"ui.locale\"\n                    [nzPlaceHolder]=\"ui.placeholder\"\n                    [nzPopupStyle]=\"ui.popupStyle\"\n                    [nzDropdownClassName]=\"ui.dropdownClassName\"\n                    (nzOnOpenChange)=\"_openChange($event)\"></nz-week-picker>\n\n    <nz-range-picker *ngSwitchCase=\"'range'\"\n                     [nzDisabled]=\"disabled\"\n                     [nzSize]=\"ui.size\"\n                     [nzFormat]=\"displayFormat\"\n                     [(ngModel)]=\"displayValue\"\n                     (ngModelChange)=\"_change($event)\"\n                     [nzAllowClear]=\"i.allowClear\"\n                     [nzClassName]=\"ui.className\"\n                     [nzDisabledDate]=\"ui.disabledDate\"\n                     [nzLocale]=\"ui.locale\"\n                     [nzPlaceHolder]=\"ui.placeholder\"\n                     [nzPopupStyle]=\"ui.popupStyle\"\n                     [nzDropdownClassName]=\"ui.dropdownClassName\"\n                     (nzOnOpenChange)=\"_openChange($event)\"\n                     [nzDisabledTime]=\"ui.disabledTime\"\n                     [nzRenderExtraFooter]=\"ui.renderExtraFooter\"\n                     [nzRanges]=\"ui.ranges\"\n                     [nzShowTime]=\"ui.showTime\"\n                     (nzOnOk)=\"_ok($event)\"></nz-range-picker>\n\n    <nz-date-picker *ngSwitchDefault\n                    [nzDisabled]=\"disabled\"\n                    [nzSize]=\"ui.size\"\n                    [nzFormat]=\"displayFormat\"\n                    [(ngModel)]=\"displayValue\"\n                    (ngModelChange)=\"_change($event)\"\n                    [nzAllowClear]=\"i.allowClear\"\n                    [nzClassName]=\"ui.className\"\n                    [nzDisabledDate]=\"ui.disabledDate\"\n                    [nzLocale]=\"ui.locale\"\n                    [nzPlaceHolder]=\"ui.placeholder\"\n                    [nzPopupStyle]=\"ui.popupStyle\"\n                    [nzDropdownClassName]=\"ui.dropdownClassName\"\n                    (nzOnOpenChange)=\"_openChange($event)\"\n                    [nzDisabledTime]=\"ui.disabledTime\"\n                    [nzRenderExtraFooter]=\"ui.renderExtraFooter\"\n                    [nzShowTime]=\"ui.showTime\"\n                    [nzShowToday]=\"i.showToday\"\n                    (nzOnOk)=\"_ok($event)\"></nz-date-picker>\n  </ng-container>\n\n</sf-item-wrap>\n",
                         preserveWhitespaces: false,
                         encapsulation: core.ViewEncapsulation.None
                     }] }
@@ -4839,7 +4905,7 @@
         MentionWidget.decorators = [
             { type: core.Component, args: [{
                         selector: 'sf-mention',
-                        template: "<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n  <nz-mention\n    #mentions\n    [nzSuggestions]=\"data\"\n    [nzValueWith]=\"i.valueWith\"\n    [nzLoading]=\"loading\"\n    [nzNotFoundContent]=\"i.notFoundContent\"\n    [nzPlacement]=\"i.placement\"\n    [nzPrefix]=\"i.prefix\"\n    (nzOnSelect)=\"_select($event)\"\n    (nzOnSearchChange)=\"_search($event)\"\n  >\n    <input\n      *ngIf=\"ui.inputStyle !== 'textarea'\"\n      nzMentionTrigger\n      nz-input\n      [attr.id]=\"id\"\n      [disabled]=\"disabled\"\n      [attr.disabled]=\"disabled\"\n      [nzSize]=\"ui.size\"\n      [ngModel]=\"value\"\n      (ngModelChange)=\"setValue($event)\"\n      [attr.maxLength]=\"schema.maxLength || null\"\n      [attr.placeholder]=\"ui.placeholder\"\n      autocomplete=\"off\"\n    />\n    <textarea\n      *ngIf=\"ui.inputStyle === 'textarea'\"\n      nzMentionTrigger\n      nz-input\n      [attr.id]=\"id\"\n      [disabled]=\"disabled\"\n      [attr.disabled]=\"disabled\"\n      [nzSize]=\"ui.size\"\n      [ngModel]=\"value\"\n      (ngModelChange)=\"setValue($event)\"\n      [attr.maxLength]=\"schema.maxLength || null\"\n      [attr.placeholder]=\"ui.placeholder\"\n      [nzAutosize]=\"i.autosize\"\n    >\n    </textarea>\n  </nz-mention>\n</sf-item-wrap>\n",
+                        template: "<sf-item-wrap [id]=\"id\"\n              [schema]=\"schema\"\n              [ui]=\"ui\"\n              [showError]=\"showError\"\n              [error]=\"error\"\n              [showTitle]=\"schema.title\">\n  <nz-mention #mentions\n              [nzSuggestions]=\"data\"\n              [nzValueWith]=\"i.valueWith\"\n              [nzLoading]=\"loading\"\n              [nzNotFoundContent]=\"i.notFoundContent\"\n              [nzPlacement]=\"i.placement\"\n              [nzPrefix]=\"i.prefix\"\n              (nzOnSelect)=\"_select($event)\"\n              (nzOnSearchChange)=\"_search($event)\">\n      <input *ngIf=\"ui.inputStyle !== 'textarea'\" nzMentionTrigger\n             nz-input\n             [attr.id]=\"id\"\n             [disabled]=\"disabled\"\n             [attr.disabled]=\"disabled\"\n             [nzSize]=\"ui.size\"\n             [ngModel]=\"value\"\n             (ngModelChange)=\"setValue($event)\"\n             [attr.maxLength]=\"schema.maxLength || null\"\n             [attr.placeholder]=\"ui.placeholder\"\n             autocomplete=\"off\" />\n      <textarea *ngIf=\"ui.inputStyle === 'textarea'\" nzMentionTrigger\n                nz-input\n                [attr.id]=\"id\"\n                [disabled]=\"disabled\"\n                [attr.disabled]=\"disabled\"\n                [nzSize]=\"ui.size\"\n                [ngModel]=\"value\"\n                (ngModelChange)=\"setValue($event)\"\n                [attr.maxLength]=\"schema.maxLength || null\"\n                [attr.placeholder]=\"ui.placeholder\"\n                [nzAutosize]=\"i.autosize\">\n        </textarea>\n  </nz-mention>\n</sf-item-wrap>\n",
                         preserveWhitespaces: false,
                         encapsulation: core.ViewEncapsulation.None
                     }] }
@@ -4949,7 +5015,7 @@
         NumberWidget.decorators = [
             { type: core.Component, args: [{
                         selector: 'sf-number',
-                        template: "<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n  <nz-input-number\n    [ngModel]=\"value\"\n    (ngModelChange)=\"_setValue($event)\"\n    [nzDisabled]=\"disabled\"\n    [nzSize]=\"ui.size\"\n    [nzMin]=\"min\"\n    [nzMax]=\"max\"\n    [nzStep]=\"step\"\n    [nzFormatter]=\"formatter\"\n    [nzParser]=\"parser\"\n    [nzPrecision]=\"ui.precision\"\n    [nzPlaceHolder]=\"ui.placeholder || ''\"\n    [style.width.px]=\"ui.widgetWidth || 90\"\n  >\n  </nz-input-number>\n</sf-item-wrap>\n",
+                        template: "<sf-item-wrap [id]=\"id\"\n              [schema]=\"schema\"\n              [ui]=\"ui\"\n              [showError]=\"showError\"\n              [error]=\"error\"\n              [showTitle]=\"schema.title\">\n  <nz-input-number [ngModel]=\"value\"\n                   (ngModelChange)=\"_setValue($event)\"\n                   [nzDisabled]=\"disabled\"\n                   [nzSize]=\"ui.size\"\n                   [nzMin]=\"min\"\n                   [nzMax]=\"max\"\n                   [nzStep]=\"step\"\n                   [nzFormatter]=\"formatter\"\n                   [nzParser]=\"parser\"\n                   [nzPrecision]=\"ui.precision\"\n                   [nzPlaceHolder]=\"ui.placeholder || ''\"\n                   [style.width.px]=\"ui.widgetWidth || 90\">\n  </nz-input-number>\n</sf-item-wrap>\n",
                         preserveWhitespaces: false,
                         encapsulation: core.ViewEncapsulation.None
                     }] }
@@ -4978,7 +5044,6 @@
         __extends(ObjectWidget, _super);
         function ObjectWidget() {
             var _this = _super !== null && _super.apply(this, arguments) || this;
-            _this.type = 'default';
             _this.list = [];
             return _this;
         }
@@ -4991,9 +5056,8 @@
         function () {
             var e_1, _a;
             var _b = this, formProperty = _b.formProperty, ui = _b.ui;
-            var grid = ui.grid, showTitle = ui.showTitle, type = ui.type;
-            this.type = type !== null && type !== void 0 ? type : 'default';
-            if (this.type === 'card' || (!formProperty.isRoot() && !(formProperty.parent instanceof ArrayProperty) && showTitle === true)) {
+            var grid = ui.grid, showTitle = ui.showTitle;
+            if (!formProperty.isRoot() && !(formProperty.parent instanceof ArrayProperty) && showTitle === true) {
                 this.title = (/** @type {?} */ (this.schema.title));
             }
             this.grid = (/** @type {?} */ (grid));
@@ -5003,7 +5067,7 @@
                 for (var _c = __values(formProperty.propertiesId), _d = _c.next(); !_d.done; _d = _c.next()) {
                     var key = _d.value;
                     /** @type {?} */
-                    var property = (/** @type {?} */ (((/** @type {?} */ (formProperty.properties)))[key]));
+                    var property = (/** @type {?} */ ((/** @type {?} */ (formProperty.properties))[key]));
                     /** @type {?} */
                     var item = {
                         property: property,
@@ -5026,7 +5090,7 @@
         ObjectWidget.decorators = [
             { type: core.Component, args: [{
                         selector: 'sf-object',
-                        template: "<ng-template #default let-noTitle>\n  <div *ngIf=\"!noTitle && title\" class=\"sf__title\">{{ title }}</div>\n  <ng-container *ngIf=\"grid; else noGrid\">\n    <div nz-row [nzGutter]=\"grid.gutter\">\n      <ng-container *ngFor=\"let i of list\">\n        <ng-container *ngIf=\"i.property.visible && i.show\">\n          <div\n            nz-col\n            [nzSpan]=\"i.grid.span\"\n            [nzOffset]=\"i.grid.offset\"\n            [nzXs]=\"i.grid.xs\"\n            [nzSm]=\"i.grid.sm\"\n            [nzMd]=\"i.grid.md\"\n            [nzLg]=\"i.grid.lg\"\n            [nzXl]=\"i.grid.xl\"\n            [nzXXl]=\"i.grid.xxl\"\n          >\n            <sf-item [formProperty]=\"i.property\" [fixed-label]=\"i.spanLabelFixed\"></sf-item>\n          </div>\n        </ng-container>\n      </ng-container>\n    </div>\n  </ng-container>\n  <ng-template #noGrid>\n    <ng-container *ngFor=\"let i of list\">\n      <ng-container *ngIf=\"i.property.visible && i.show\">\n        <sf-item [formProperty]=\"i.property\" [fixed-label]=\"i.spanLabelFixed\"></sf-item>\n      </ng-container>\n    </ng-container>\n  </ng-template>\n</ng-template>\n<nz-card\n  *ngIf=\"type === 'card'; else default\"\n  [nzTitle]=\"title\"\n  [nzExtra]=\"ui.cardExtra\"\n  [nzSize]=\"ui.cardSize || 'small'\"\n  [nzActions]=\"ui.cardActions || []\"\n  [nzBodyStyle]=\"cardBodyStyle\"\n  [nzBordered]=\"cardBordered || true\"\n  class=\"sf__object-card\"\n>\n  <ng-template [ngTemplateOutlet]=\"default\" [ngTemplateOutletContext]=\"{ $implicit: true }\"></ng-template>\n</nz-card>\n",
+                        template: "<div *ngIf=\"title\" class=\"sf__title\">{{ title }}</div>\n<ng-container *ngIf=\"grid; else noGrid\">\n  <div nz-row\n       [nzGutter]=\"grid.gutter\">\n    <ng-container *ngFor=\"let i of list\">\n      <ng-container *ngIf=\"i.property.visible && i.show\">\n        <div nz-col\n             [nzSpan]=\"i.grid.span\"\n             [nzOffset]=\"i.grid.offset\"\n             [nzXs]=\"i.grid.xs\"\n             [nzSm]=\"i.grid.sm\"\n             [nzMd]=\"i.grid.md\"\n             [nzLg]=\"i.grid.lg\"\n             [nzXl]=\"i.grid.xl\"\n             [nzXXl]=\"i.grid.xxl\">\n          <sf-item [formProperty]=\"i.property\"\n                   [fixed-label]=\"i.spanLabelFixed\"></sf-item>\n        </div>\n      </ng-container>\n    </ng-container>\n  </div>\n</ng-container>\n<ng-template #noGrid>\n  <ng-container *ngFor=\"let i of list\">\n    <ng-container *ngIf=\"i.property.visible && i.show\">\n      <sf-item [formProperty]=\"i.property\"\n               [fixed-label]=\"i.spanLabelFixed\"></sf-item>\n    </ng-container>\n  </ng-container>\n</ng-template>\n",
                         preserveWhitespaces: false,
                         encapsulation: core.ViewEncapsulation.None
                     }] }
@@ -5036,8 +5100,6 @@
     if (false) {
         /** @type {?} */
         ObjectWidget.prototype.grid;
-        /** @type {?} */
-        ObjectWidget.prototype.type;
         /** @type {?} */
         ObjectWidget.prototype.list;
         /** @type {?} */
@@ -5099,7 +5161,7 @@
         RadioWidget.decorators = [
             { type: core.Component, args: [{
                         selector: 'sf-radio',
-                        template: "<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n  <nz-radio-group\n    [nzDisabled]=\"disabled\"\n    [nzSize]=\"ui.size\"\n    [nzName]=\"id\"\n    [ngModel]=\"value\"\n    (ngModelChange)=\"_setValue($event)\"\n    [nzButtonStyle]=\"ui.buttonStyle || 'outline'\"\n  >\n    <ng-container *ngIf=\"styleType\">\n      <label *ngFor=\"let option of data\" nz-radio [nzValue]=\"option.value\" [nzDisabled]=\"option.disabled\">\n        <span [innerHTML]=\"option.label\"></span>\n      </label>\n    </ng-container>\n    <ng-container *ngIf=\"!styleType\">\n      <label *ngFor=\"let option of data\" nz-radio-button [nzValue]=\"option.value\" [nzDisabled]=\"option.disabled\">\n        <span [innerHTML]=\"option.label\"></span>\n      </label>\n    </ng-container>\n  </nz-radio-group>\n</sf-item-wrap>\n",
+                        template: "<sf-item-wrap [id]=\"id\"\n              [schema]=\"schema\"\n              [ui]=\"ui\"\n              [showError]=\"showError\"\n              [error]=\"error\"\n              [showTitle]=\"schema.title\">\n\n  <nz-radio-group [nzDisabled]=\"disabled\"\n                  [nzSize]=\"ui.size\"\n                  [nzName]=\"id\"\n                  [ngModel]=\"value\"\n                  (ngModelChange)=\"_setValue($event)\"\n                  [nzButtonStyle]=\"ui.buttonStyle || 'outline'\">\n    <ng-container *ngIf=\"styleType\">\n      <label *ngFor=\"let option of data\"\n             nz-radio\n             [nzValue]=\"option.value\"\n             [nzDisabled]=\"option.disabled\">\n        <span [innerHTML]=\"option.label\"></span>\n      </label>\n    </ng-container>\n    <ng-container *ngIf=\"!styleType\">\n      <label *ngFor=\"let option of data\"\n             nz-radio-button\n             [nzValue]=\"option.value\"\n             [nzDisabled]=\"option.disabled\">\n        <span [innerHTML]=\"option.label\"></span>\n      </label>\n    </ng-container>\n  </nz-radio-group>\n\n</sf-item-wrap>\n",
                         preserveWhitespaces: false,
                         encapsulation: core.ViewEncapsulation.None
                     }] }
@@ -5152,7 +5214,7 @@
         RateWidget.decorators = [
             { type: core.Component, args: [{
                         selector: 'sf-rate',
-                        template: "<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n  <nz-rate\n    [nzDisabled]=\"disabled\"\n    [ngModel]=\"value\"\n    (ngModelChange)=\"setValue($event)\"\n    [nzAllowClear]=\"allowClear\"\n    [nzAllowHalf]=\"allowHalf\"\n    [nzTooltips]=\"ui.tooltips || []\"\n    [nzAutoFocus]=\"autoFocus\"\n    [nzCount]=\"count\"\n  ></nz-rate>\n  <span *ngIf=\"hasText && formProperty.value\" class=\"ant-rate-text\">{{ text }}</span>\n</sf-item-wrap>\n",
+                        template: "<sf-item-wrap [id]=\"id\"\n              [schema]=\"schema\"\n              [ui]=\"ui\"\n              [showError]=\"showError\"\n              [error]=\"error\"\n              [showTitle]=\"schema.title\">\n  <nz-rate [nzDisabled]=\"disabled\"\n           [ngModel]=\"value\"\n           (ngModelChange)=\"setValue($event)\"\n           [nzAllowClear]=\"allowClear\"\n           [nzAllowHalf]=\"allowHalf\"\n           [nzAutoFocus]=\"autoFocus\"\n           [nzCount]=\"count\"></nz-rate>\n  <span *ngIf=\"hasText && formProperty.value\"\n        class=\"ant-rate-text\">{{ text }}</span>\n</sf-item-wrap>\n",
                         preserveWhitespaces: false,
                         encapsulation: core.ViewEncapsulation.None
                     }] }
@@ -5208,11 +5270,10 @@
          * @return {?}
          */
         function () {
-            var _a = this.ui, autoClearSearchValue = _a.autoClearSearchValue, allowClear = _a.allowClear, borderless = _a.borderless, autoFocus = _a.autoFocus, dropdownClassName = _a.dropdownClassName, dropdownMatchSelectWidth = _a.dropdownMatchSelectWidth, serverSearch = _a.serverSearch, maxMultipleCount = _a.maxMultipleCount, mode = _a.mode, notFoundContent = _a.notFoundContent, showSearch = _a.showSearch, tokenSeparators = _a.tokenSeparators, maxTagCount = _a.maxTagCount, compareWith = _a.compareWith;
+            var _a = this.ui, autoClearSearchValue = _a.autoClearSearchValue, allowClear = _a.allowClear, autoFocus = _a.autoFocus, dropdownClassName = _a.dropdownClassName, dropdownMatchSelectWidth = _a.dropdownMatchSelectWidth, serverSearch = _a.serverSearch, maxMultipleCount = _a.maxMultipleCount, mode = _a.mode, notFoundContent = _a.notFoundContent, showSearch = _a.showSearch, tokenSeparators = _a.tokenSeparators, maxTagCount = _a.maxTagCount, compareWith = _a.compareWith;
             this.i = {
                 autoClearSearchValue: toBool(autoClearSearchValue, true),
                 allowClear: allowClear,
-                borderless: toBool(borderless, false),
                 autoFocus: toBool(autoFocus, false),
                 dropdownClassName: dropdownClassName || null,
                 dropdownMatchSelectWidth: toBool(dropdownMatchSelectWidth, true),
@@ -5317,7 +5378,7 @@
         SelectWidget.decorators = [
             { type: core.Component, args: [{
                         selector: 'sf-select',
-                        template: "<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n  <nz-select\n    [nzDisabled]=\"disabled\"\n    [nzSize]=\"ui.size\"\n    [(ngModel)]=\"_value\"\n    (ngModelChange)=\"change($event)\"\n    [nzPlaceHolder]=\"ui.placeholder\"\n    [nzAutoClearSearchValue]=\"i.autoClearSearchValue\"\n    [nzAllowClear]=\"i.allowClear\"\n    [nzBorderless]=\"i.borderless\"\n    [nzAutoFocus]=\"i.autoFocus\"\n    [nzDropdownClassName]=\"i.dropdownClassName\"\n    [nzDropdownMatchSelectWidth]=\"i.dropdownMatchSelectWidth\"\n    [nzServerSearch]=\"i.serverSearch\"\n    [nzMaxMultipleCount]=\"i.maxMultipleCount\"\n    [nzMode]=\"i.mode\"\n    [nzNotFoundContent]=\"i.notFoundContent\"\n    [nzShowSearch]=\"i.showSearch\"\n    [nzTokenSeparators]=\"i.tokenSeparators\"\n    [nzMaxTagCount]=\"i.maxTagCount\"\n    [compareWith]=\"i.compareWith\"\n    (nzOpenChange)=\"openChange($event)\"\n    (nzOnSearch)=\"searchChange($event)\"\n    (nzScrollToBottom)=\"scrollToBottom()\"\n  >\n    <ng-container *ngIf=\"!hasGroup\">\n      <nz-option *ngFor=\"let o of data\" [nzLabel]=\"o.label\" [nzValue]=\"o.value\" [nzDisabled]=\"o.disabled\"></nz-option>\n    </ng-container>\n    <ng-container *ngIf=\"hasGroup\">\n      <nz-option-group *ngFor=\"let i of data\" [nzLabel]=\"i.label\">\n        <nz-option *ngFor=\"let o of i.children\" [nzLabel]=\"o.label\" [nzValue]=\"o.value\" [nzDisabled]=\"o.disabled\"></nz-option>\n      </nz-option-group>\n    </ng-container>\n  </nz-select>\n</sf-item-wrap>\n",
+                        template: "<sf-item-wrap [id]=\"id\"\n              [schema]=\"schema\"\n              [ui]=\"ui\"\n              [showError]=\"showError\"\n              [error]=\"error\"\n              [showTitle]=\"schema.title\">\n  <nz-select [nzDisabled]=\"disabled\"\n             [nzSize]=\"ui.size\"\n             [(ngModel)]=\"_value\"\n             (ngModelChange)=\"change($event)\"\n             [nzPlaceHolder]=\"ui.placeholder\"\n             [nzAutoClearSearchValue]=\"i.autoClearSearchValue\"\n             [nzAllowClear]=\"i.allowClear\"\n             [nzAutoFocus]=\"i.autoFocus\"\n             [nzDropdownClassName]=\"i.dropdownClassName\"\n             [nzDropdownMatchSelectWidth]=\"i.dropdownMatchSelectWidth\"\n             [nzServerSearch]=\"i.serverSearch\"\n             [nzMaxMultipleCount]=\"i.maxMultipleCount\"\n             [nzMode]=\"i.mode\"\n             [nzNotFoundContent]=\"i.notFoundContent\"\n             [nzShowSearch]=\"i.showSearch\"\n             [nzTokenSeparators]=\"i.tokenSeparators\"\n             [nzMaxTagCount]=\"i.maxTagCount\"\n             [compareWith]=\"i.compareWith\"\n             (nzOpenChange)=\"openChange($event)\"\n             (nzOnSearch)=\"searchChange($event)\"\n             (nzScrollToBottom)=\"scrollToBottom()\">\n    <ng-container *ngIf=\"!hasGroup\">\n      <nz-option *ngFor=\"let o of data\"\n                 [nzLabel]=\"o.label\"\n                 [nzValue]=\"o.value\"\n                 [nzDisabled]=\"o.disabled\">\n      </nz-option>\n    </ng-container>\n    <ng-container *ngIf=\"hasGroup\">\n      <nz-option-group *ngFor=\"let i of data\"\n                       [nzLabel]=\"i.label\">\n        <nz-option *ngFor=\"let o of i.children\"\n                   [nzLabel]=\"o.label\"\n                   [nzValue]=\"o.value\"\n                   [nzDisabled]=\"o.disabled\">\n        </nz-option>\n      </nz-option-group>\n    </ng-container>\n  </nz-select>\n</sf-item-wrap>\n",
                         preserveWhitespaces: false,
                         encapsulation: core.ViewEncapsulation.None
                     }] }
@@ -5387,7 +5448,7 @@
         SliderWidget.decorators = [
             { type: core.Component, args: [{
                         selector: 'sf-slider',
-                        template: "<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n  <nz-slider\n    [ngModel]=\"value\"\n    (ngModelChange)=\"setValue($event)\"\n    [nzDisabled]=\"disabled\"\n    [nzRange]=\"ui.range\"\n    [nzMin]=\"min\"\n    [nzMax]=\"max\"\n    [nzStep]=\"step\"\n    [nzMarks]=\"marks\"\n    [nzDots]=\"ui.dots\"\n    [nzIncluded]=\"included\"\n    [nzVertical]=\"ui.vertical\"\n    [nzTipFormatter]=\"_formatter\"\n    (nzOnAfterChange)=\"_afterChange($event)\"\n  >\n  </nz-slider>\n</sf-item-wrap>\n",
+                        template: "<sf-item-wrap [id]=\"id\"\n              [schema]=\"schema\"\n              [ui]=\"ui\"\n              [showError]=\"showError\"\n              [error]=\"error\"\n              [showTitle]=\"schema.title\">\n\n  <nz-slider [ngModel]=\"value\"\n             (ngModelChange)=\"setValue($event)\"\n             [nzDisabled]=\"disabled\"\n             [nzRange]=\"ui.range\"\n             [nzMin]=\"min\"\n             [nzMax]=\"max\"\n             [nzStep]=\"step\"\n             [nzMarks]=\"marks\"\n             [nzDots]=\"ui.dots\"\n             [nzIncluded]=\"included\"\n             [nzVertical]=\"ui.vertical\"\n             [nzTipFormatter]=\"_formatter\"\n             (nzOnAfterChange)=\"_afterChange($event)\">\n  </nz-slider>\n\n</sf-item-wrap>\n",
                         preserveWhitespaces: false,
                         encapsulation: core.ViewEncapsulation.None
                     }] }
@@ -5496,7 +5557,7 @@
         StringWidget.decorators = [
             { type: core.Component, args: [{
                         selector: 'sf-string',
-                        template: "<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n  <ng-template #ipt>\n    <input\n      nz-input\n      [attr.id]=\"id\"\n      [disabled]=\"disabled\"\n      [attr.disabled]=\"disabled\"\n      [nzSize]=\"ui.size\"\n      [ngModel]=\"value\"\n      (ngModelChange)=\"change($event)\"\n      [attr.maxLength]=\"schema.maxLength || null\"\n      [attr.type]=\"ui.type || 'text'\"\n      [attr.placeholder]=\"ui.placeholder\"\n      [attr.autocomplete]=\"ui.autocomplete\"\n      [attr.autoFocus]=\"ui.autofocus\"\n      (keyup.enter)=\"enter($event)\"\n      (focus)=\"focus($event)\"\n      (blur)=\"blur($event)\"\n    />\n  </ng-template>\n\n  <ng-container *ngIf=\"type === 'addon'; else ipt\">\n    <nz-input-group\n      [nzAddOnBefore]=\"ui.addOnBefore\"\n      [nzAddOnAfter]=\"ui.addOnAfter\"\n      [nzAddOnBeforeIcon]=\"ui.addOnBeforeIcon\"\n      [nzAddOnAfterIcon]=\"ui.addOnAfterIcon\"\n      [nzPrefix]=\"ui.prefix\"\n      [nzPrefixIcon]=\"ui.prefixIcon\"\n      [nzSuffix]=\"ui.suffix\"\n      [nzSuffixIcon]=\"ui.suffixIcon\"\n    >\n      <ng-template [ngTemplateOutlet]=\"ipt\"></ng-template>\n    </nz-input-group>\n  </ng-container>\n</sf-item-wrap>\n",
+                        template: "<sf-item-wrap [id]=\"id\"\n              [schema]=\"schema\"\n              [ui]=\"ui\"\n              [showError]=\"showError\"\n              [error]=\"error\"\n              [showTitle]=\"schema.title\">\n\n  <ng-template #ipt>\n    <input nz-input\n           [attr.id]=\"id\"\n           [disabled]=\"disabled\"\n           [attr.disabled]=\"disabled\"\n           [nzSize]=\"ui.size\"\n           [ngModel]=\"value\"\n           (ngModelChange)=\"change($event)\"\n           [attr.maxLength]=\"schema.maxLength || null\"\n           [attr.type]=\"ui.type || 'text'\"\n           [attr.placeholder]=\"ui.placeholder\"\n           [attr.autocomplete]=\"ui.autocomplete\"\n           [attr.autoFocus]=\"ui.autofocus\"\n           (keyup.enter)=\"enter($event)\"\n           (focus)=\"focus($event)\"\n           (blur)=\"blur($event)\">\n  </ng-template>\n\n  <ng-container *ngIf=\"type === 'addon'; else ipt\">\n    <nz-input-group [nzAddOnBefore]=\"ui.addOnBefore\"\n                    [nzAddOnAfter]=\"ui.addOnAfter\"\n                    [nzAddOnBeforeIcon]=\"ui.addOnBeforeIcon\"\n                    [nzAddOnAfterIcon]=\"ui.addOnAfterIcon\"\n                    [nzPrefix]=\"ui.prefix\"\n                    [nzPrefixIcon]=\"ui.prefixIcon\"\n                    [nzSuffix]=\"ui.suffix\"\n                    [nzSuffixIcon]=\"ui.suffixIcon\">\n      <ng-template [ngTemplateOutlet]=\"ipt\"></ng-template>\n    </nz-input-group>\n  </ng-container>\n</sf-item-wrap>\n",
                         preserveWhitespaces: false,
                         encapsulation: core.ViewEncapsulation.None
                     }] }
@@ -5553,6 +5614,16 @@
             }
         };
         /**
+         * @return {?}
+         */
+        TagWidget.prototype._afterClose = /**
+         * @return {?}
+         */
+        function () {
+            if (this.ui.afterClose)
+                this.ui.afterClose();
+        };
+        /**
          * @param {?} e
          * @return {?}
          */
@@ -5586,7 +5657,7 @@
         TagWidget.decorators = [
             { type: core.Component, args: [{
                         selector: 'sf-tag',
-                        template: "<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n  <nz-tag *ngFor=\"let i of data\" [nzMode]=\"ui.mode || 'checkable'\" [nzChecked]=\"i.checked\" (nzOnClose)=\"_close($event)\" (nzCheckedChange)=\"onChange(i)\">\n    {{i.label}}\n  </nz-tag>\n</sf-item-wrap>\n",
+                        template: "<sf-item-wrap [id]=\"id\"\n              [schema]=\"schema\"\n              [ui]=\"ui\"\n              [showError]=\"showError\"\n              [error]=\"error\"\n              [showTitle]=\"schema.title\">\n\n  <nz-tag *ngFor=\"let i of data\"\n          [nzMode]=\"ui.mode || 'checkable'\"\n          [nzChecked]=\"i.checked\"\n          (nzAfterClose)=\"_afterClose()\"\n          (nzOnClose)=\"_close($event)\"\n          (nzCheckedChange)=\"onChange(i)\">\n    {{i.label}}\n  </nz-tag>\n\n</sf-item-wrap>\n",
                         preserveWhitespaces: false,
                         encapsulation: core.ViewEncapsulation.None
                     }] }
@@ -5620,7 +5691,7 @@
         TextWidget.decorators = [
             { type: core.Component, args: [{
                         selector: 'sf-text',
-                        template: "<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n  {{ value || ui.defaultText || '-' }}\n</sf-item-wrap>\n",
+                        template: "<sf-item-wrap [id]=\"id\"\n              [schema]=\"schema\"\n              [ui]=\"ui\"\n              [showError]=\"showError\"\n              [error]=\"error\"\n              [showTitle]=\"schema.title\">\n  {{ value || ui.defaultText || '-' }}\n</sf-item-wrap>\n",
                         preserveWhitespaces: false,
                         encapsulation: core.ViewEncapsulation.None
                     }] }
@@ -5655,7 +5726,7 @@
         TextareaWidget.decorators = [
             { type: core.Component, args: [{
                         selector: 'sf-textarea',
-                        template: "<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n  <textarea\n    nz-input\n    [attr.id]=\"id\"\n    [disabled]=\"disabled\"\n    [attr.disabled]=\"disabled\"\n    [nzSize]=\"ui.size\"\n    [ngModel]=\"value\"\n    (ngModelChange)=\"setValue($event)\"\n    [attr.maxLength]=\"schema.maxLength || null\"\n    [attr.placeholder]=\"ui.placeholder\"\n    [nzAutosize]=\"autosize\"\n  >\n  </textarea>\n</sf-item-wrap>\n",
+                        template: "<sf-item-wrap [id]=\"id\"\n              [schema]=\"schema\"\n              [ui]=\"ui\"\n              [showError]=\"showError\"\n              [error]=\"error\"\n              [showTitle]=\"schema.title\">\n\n  <textarea nz-input\n            [attr.id]=\"id\"\n            [disabled]=\"disabled\"\n            [attr.disabled]=\"disabled\"\n            [nzSize]=\"ui.size\"\n            [ngModel]=\"value\"\n            (ngModelChange)=\"setValue($event)\"\n            [attr.maxLength]=\"schema.maxLength || null\"\n            [attr.placeholder]=\"ui.placeholder\"\n            [nzAutosize]=\"autosize\">\n    </textarea>\n\n</sf-item-wrap>\n",
                         preserveWhitespaces: false,
                         encapsulation: core.ViewEncapsulation.None
                     }] }
@@ -5749,12 +5820,12 @@
                 this.setValue(Date.UTC(1970, 0, 1, value.getHours(), value.getMinutes(), value.getSeconds()));
                 return;
             }
-            this.setValue(format(value, (/** @type {?} */ (this.valueFormat))));
+            this.setValue(format(value, this.valueFormat));
         };
         TimeWidget.decorators = [
             { type: core.Component, args: [{
                         selector: 'sf-time',
-                        template: "<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n  <nz-time-picker\n    [(ngModel)]=\"displayValue\"\n    (ngModelChange)=\"_change($event)\"\n    [nzDisabled]=\"disabled\"\n    [nzSize]=\"ui.size\"\n    [nzFormat]=\"i.displayFormat\"\n    [nzAllowEmpty]=\"i.allowEmpty\"\n    [nzClearText]=\"i.clearText\"\n    [nzDefaultOpenValue]=\"i.defaultOpenValue\"\n    [nzDisabledHours]=\"ui.disabledHours\"\n    [nzDisabledMinutes]=\"ui.disabledMinutes\"\n    [nzDisabledSeconds]=\"ui.disabledSeconds\"\n    [nzHideDisabledOptions]=\"i.hideDisabledOptions\"\n    [nzUse12Hours]=\"i.use12Hours\"\n    [nzHourStep]=\"i.hourStep\"\n    [nzMinuteStep]=\"i.minuteStep\"\n    [nzSecondStep]=\"i.secondStep\"\n    [nzPopupClassName]=\"ui.popupClassName\"\n  >\n  </nz-time-picker>\n</sf-item-wrap>\n",
+                        template: "<sf-item-wrap [id]=\"id\"\n              [schema]=\"schema\"\n              [ui]=\"ui\"\n              [showError]=\"showError\"\n              [error]=\"error\"\n              [showTitle]=\"schema.title\">\n\n  <nz-time-picker [(ngModel)]=\"displayValue\"\n                  (ngModelChange)=\"_change($event)\"\n                  [nzDisabled]=\"disabled\"\n                  [nzSize]=\"ui.size\"\n                  [nzFormat]=\"i.displayFormat\"\n                  [nzAllowEmpty]=\"i.allowEmpty\"\n                  [nzClearText]=\"i.clearText\"\n                  [nzDefaultOpenValue]=\"i.defaultOpenValue\"\n                  [nzDisabledHours]=\"ui.disabledHours\"\n                  [nzDisabledMinutes]=\"ui.disabledMinutes\"\n                  [nzDisabledSeconds]=\"ui.disabledSeconds\"\n                  [nzHideDisabledOptions]=\"i.hideDisabledOptions\"\n                  [nzUse12Hours]=\"i.use12Hours\"\n                  [nzHourStep]=\"i.hourStep\"\n                  [nzMinuteStep]=\"i.minuteStep\"\n                  [nzSecondStep]=\"i.secondStep\"\n                  [nzPopupClassName]=\"ui.popupClassName\">\n  </nz-time-picker>\n\n</sf-item-wrap>\n",
                         preserveWhitespaces: false,
                         encapsulation: core.ViewEncapsulation.None
                     }] }
@@ -5915,7 +5986,7 @@
         TransferWidget.decorators = [
             { type: core.Component, args: [{
                         selector: 'sf-transfer',
-                        template: "<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n  <nz-transfer\n    [nzDataSource]=\"list\"\n    [nzTitles]=\"i.titles\"\n    [nzOperations]=\"i.operations\"\n    [nzListStyle]=\"ui.listStyle\"\n    [nzItemUnit]=\"i.itemUnit\"\n    [nzItemsUnit]=\"i.itemsUnit\"\n    [nzShowSearch]=\"ui.showSearch\"\n    [nzFilterOption]=\"ui.filterOption\"\n    [nzSearchPlaceholder]=\"ui.searchPlaceholder\"\n    [nzNotFoundContent]=\"ui.notFoundContent\"\n    [nzCanMove]=\"_canMove\"\n    (nzChange)=\"_change($event)\"\n    (nzSearchChange)=\"_searchChange($event)\"\n    (nzSelectChange)=\"_selectChange($event)\"\n  >\n  </nz-transfer>\n</sf-item-wrap>\n",
+                        template: "<sf-item-wrap [id]=\"id\"\n              [schema]=\"schema\"\n              [ui]=\"ui\"\n              [showError]=\"showError\"\n              [error]=\"error\"\n              [showTitle]=\"schema.title\">\n\n  <nz-transfer [nzDataSource]=\"list\"\n               [nzTitles]=\"i.titles\"\n               [nzOperations]=\"i.operations\"\n               [nzListStyle]=\"ui.listStyle\"\n               [nzItemUnit]=\"i.itemUnit\"\n               [nzItemsUnit]=\"i.itemsUnit\"\n               [nzShowSearch]=\"ui.showSearch\"\n               [nzFilterOption]=\"ui.filterOption\"\n               [nzSearchPlaceholder]=\"ui.searchPlaceholder\"\n               [nzNotFoundContent]=\"ui.notFoundContent\"\n               [nzCanMove]=\"_canMove\"\n               (nzChange)=\"_change($event)\"\n               (nzSearchChange)=\"_searchChange($event)\"\n               (nzSelectChange)=\"_selectChange($event)\">\n  </nz-transfer>\n\n</sf-item-wrap>\n",
                         preserveWhitespaces: false,
                         encapsulation: core.ViewEncapsulation.None
                     }] }
@@ -5966,6 +6037,7 @@
                 showLine: toBool(ui.showLine, false),
                 asyncData: typeof ui.expandChange === 'function',
                 defaultExpandAll: toBool(ui.defaultExpandAll, false),
+                defaultExpandedKeys: ui.defaultExpandedKeys || [],
                 displayWith: ui.displayWith || ((/**
                  * @param {?} node
                  * @return {?}
@@ -6031,7 +6103,7 @@
         TreeSelectWidget.decorators = [
             { type: core.Component, args: [{
                         selector: 'sf-tree-select',
-                        template: "<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n  <nz-tree-select\n    [nzAllowClear]=\"i.allowClear\"\n    [nzPlaceHolder]=\"ui.placeholder\"\n    [nzDisabled]=\"disabled\"\n    [nzShowSearch]=\"i.showSearch\"\n    [nzDropdownMatchSelectWidth]=\"i.dropdownMatchSelectWidth\"\n    [nzDropdownStyle]=\"ui.dropdownStyle\"\n    [nzMultiple]=\"i.multiple\"\n    [nzSize]=\"ui.size\"\n    [nzCheckable]=\"i.checkable\"\n    [nzShowExpand]=\"i.showExpand\"\n    [nzShowLine]=\"i.showLine\"\n    [nzAsyncData]=\"i.asyncData\"\n    [nzNodes]=\"data\"\n    [nzDefaultExpandAll]=\"i.defaultExpandAll\"\n    [nzDisplayWith]=\"i.displayWith\"\n    [ngModel]=\"value\"\n    [nzNotFoundContent]=\"ui.notFoundContent\"\n    (ngModelChange)=\"change($event)\"\n    (nzExpandChange)=\"expandChange($event)\"\n  >\n  </nz-tree-select>\n</sf-item-wrap>\n",
+                        template: "<sf-item-wrap [id]=\"id\"\n              [schema]=\"schema\"\n              [ui]=\"ui\"\n              [showError]=\"showError\"\n              [error]=\"error\"\n              [showTitle]=\"schema.title\">\n  <nz-tree-select [nzAllowClear]=\"i.allowClear\"\n                  [nzPlaceHolder]=\"ui.placeholder\"\n                  [nzDisabled]=\"disabled\"\n                  [nzShowSearch]=\"i.showSearch\"\n                  [nzDropdownMatchSelectWidth]=\"i.dropdownMatchSelectWidth\"\n                  [nzDropdownStyle]=\"ui.dropdownStyle\"\n                  [nzMultiple]=\"i.multiple\"\n                  [nzSize]=\"ui.size\"\n                  [nzCheckable]=\"i.checkable\"\n                  [nzShowExpand]=\"i.showExpand\"\n                  [nzShowLine]=\"i.showLine\"\n                  [nzAsyncData]=\"i.asyncData\"\n                  [nzNodes]=\"data\"\n                  [nzDefaultExpandAll]=\"i.defaultExpandAll\"\n                  [nzDefaultExpandedKeys]=\"i.defaultExpandedKeys\"\n                  [nzDisplayWith]=\"i.displayWith\"\n                  [ngModel]=\"value\"\n                  (ngModelChange)=\"change($event)\"\n                  (nzExpandChange)=\"expandChange($event)\">\n  </nz-tree-select>\n\n</sf-item-wrap>\n",
                         preserveWhitespaces: false,
                         encapsulation: core.ViewEncapsulation.None
                     }] }
@@ -6113,7 +6185,7 @@
                 urlReName: (urlReName || '').split('.'),
                 beforeUpload: typeof beforeUpload === 'function' ? beforeUpload : null,
                 customRequest: typeof customRequest === 'function' ? customRequest : null,
-                limitFileCount: limitFileCount || 999,
+                limitFileCount: limitFileCount || 999
             };
             if (res.listType === 'picture-card') {
                 this.btnType = 'plus';
@@ -6215,7 +6287,7 @@
         UploadWidget.decorators = [
             { type: core.Component, args: [{
                         selector: 'sf-upload',
-                        template: "<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n  <nz-upload\n    [nzType]=\"i.type\"\n    [(nzFileList)]=\"fileList\"\n    [nzDisabled]=\"disabled\"\n    [nzAction]=\"i.action\"\n    [nzDirectory]=\"i.directory\"\n    [nzOpenFileDialogOnClick]=\"i.openFileDialogOnClick\"\n    [nzAccept]=\"i.accept\"\n    [nzLimit]=\"i.limit\"\n    [nzFilter]=\"i.filter\"\n    [nzSize]=\"i.size\"\n    [nzFileType]=\"i.fileType\"\n    [nzHeaders]=\"ui.headers\"\n    [nzData]=\"ui.data\"\n    [nzListType]=\"i.listType\"\n    [nzMultiple]=\"i.multiple\"\n    [nzName]=\"i.name\"\n    [nzShowUploadList]=\"i.showUploadList\"\n    [nzWithCredentials]=\"i.withCredentials\"\n    [nzBeforeUpload]=\"i.beforeUpload\"\n    [nzCustomRequest]=\"i.customRequest\"\n    [nzRemove]=\"ui.remove || handleRemove\"\n    [nzPreview]=\"handlePreview\"\n    [nzPreviewFile]=\"ui.previewFile\"\n    [nzDownload]=\"ui.download\"\n    [nzTransformFile]=\"ui.transformFile\"\n    (nzChange)=\"change($event)\"\n    [nzShowButton]=\"fileList.length < i.limitFileCount\"\n  >\n    <ng-container [ngSwitch]=\"btnType\">\n      <ng-container *ngSwitchCase=\"'plus'\">\n        <i nz-icon nzType=\"plus\"></i>\n        <div class=\"ant-upload-text\" [innerHTML]=\"i.text\"></div>\n      </ng-container>\n      <ng-container *ngSwitchCase=\"'drag'\">\n        <p class=\"ant-upload-drag-icon\"><i nz-icon nzType=\"inbox\"></i></p>\n        <p class=\"ant-upload-text\" [innerHTML]=\"i.text\"></p>\n        <p class=\"ant-upload-hint\" [innerHTML]=\"i.hint\"></p>\n      </ng-container>\n      <ng-container *ngSwitchDefault>\n        <button type=\"button\" nz-button><i nz-icon nzType=\"upload\"></i><span [innerHTML]=\"i.text\"></span></button>\n      </ng-container>\n    </ng-container>\n  </nz-upload>\n</sf-item-wrap>\n",
+                        template: "<sf-item-wrap [id]=\"id\"\n              [schema]=\"schema\"\n              [ui]=\"ui\"\n              [showError]=\"showError\"\n              [error]=\"error\"\n              [showTitle]=\"schema.title\">\n  <nz-upload [nzType]=\"i.type\"\n             [(nzFileList)]=\"fileList\"\n             [nzDisabled]=\"disabled\"\n             [nzAction]=\"i.action\"\n             [nzDirectory]=\"i.directory\"\n             [nzOpenFileDialogOnClick]=\"i.openFileDialogOnClick\"\n             [nzAccept]=\"i.accept\"\n             [nzLimit]=\"i.limit\"\n             [nzFilter]=\"i.filter\"\n             [nzSize]=\"i.size\"\n             [nzFileType]=\"i.fileType\"\n             [nzHeaders]=\"ui.headers\"\n             [nzData]=\"ui.data\"\n             [nzListType]=\"i.listType\"\n             [nzMultiple]=\"i.multiple\"\n             [nzName]=\"i.name\"\n             [nzShowUploadList]=\"i.showUploadList\"\n             [nzWithCredentials]=\"i.withCredentials\"\n             [nzBeforeUpload]=\"i.beforeUpload\"\n             [nzCustomRequest]=\"i.customRequest\"\n             [nzRemove]=\"ui.remove || handleRemove\"\n             [nzPreview]=\"handlePreview\"\n             (nzChange)=\"change($event)\"\n             [nzShowButton]=\"fileList.length < i.limitFileCount\">\n    <ng-container [ngSwitch]=\"btnType\">\n      <ng-container *ngSwitchCase=\"'plus'\">\n        <i nz-icon nzType=\"plus\"></i>\n        <div class=\"ant-upload-text\" [innerHTML]=\"i.text\"></div>\n      </ng-container>\n      <ng-container *ngSwitchCase=\"'drag'\">\n        <p class=\"ant-upload-drag-icon\"><i nz-icon nzType=\"inbox\"></i></p>\n        <p class=\"ant-upload-text\" [innerHTML]=\"i.text\"></p>\n        <p class=\"ant-upload-hint\" [innerHTML]=\"i.hint\"></p>\n      </ng-container>\n      <ng-container *ngSwitchDefault>\n        <button type=\"button\" nz-button>\n          <i nz-icon nzType=\"upload\"></i><span [innerHTML]=\"i.text\"></span>\n        </button>\n      </ng-container>\n    </ng-container>\n  </nz-upload>\n</sf-item-wrap>\n",
                         preserveWhitespaces: false,
                         encapsulation: core.ViewEncapsulation.None
                     }] }
@@ -6349,7 +6421,6 @@
                     {
                         provide: SchemaValidatorFactory,
                         useClass: AjvSchemaValidatorFactory,
-                        deps: [util.AlainConfigService],
                     },
                     { provide: WidgetRegistry, useClass: NzWidgetRegistry },
                 ],
@@ -6417,8 +6488,6 @@
          * @type {?|undefined}
          */
         SFSchemaEnum.prototype.group;
-        /** @type {?|undefined} */
-        SFSchemaEnum.prototype.isLeaf;
         /**
          * 组对应的子类
          * @type {?|undefined}
@@ -7115,38 +7184,6 @@
          * @type {?|undefined}
          */
         SFObjectWidgetSchema.prototype.showTitle;
-        /**
-         * 渲染类型
-         * - `card` 使用 `nz-card` 渲染
-         * - `default` 使用默认渲染
-         * @type {?|undefined}
-         */
-        SFObjectWidgetSchema.prototype.type;
-        /**
-         * 等同 `nzSize` 属性，默认：`small`
-         * @type {?|undefined}
-         */
-        SFObjectWidgetSchema.prototype.cardSize;
-        /**
-         * 等同 `nzBodyStyle` 属性
-         * @type {?|undefined}
-         */
-        SFObjectWidgetSchema.prototype.cardBodyStyle;
-        /**
-         * 等同 `nzBordered` 属性，默认：`true`
-         * @type {?|undefined}
-         */
-        SFObjectWidgetSchema.prototype.cardBordered;
-        /**
-         * 等同 `nzExtra` 属性
-         * @type {?|undefined}
-         */
-        SFObjectWidgetSchema.prototype.cardExtra;
-        /**
-         * 等同 `nzActions` 属性
-         * @type {?|undefined}
-         */
-        SFObjectWidgetSchema.prototype.cardActions;
     }
 
     /**
@@ -7336,10 +7373,10 @@
         /**
          * **Just only support date-fns**
          *
-         * Return the formatted date string in the given format, [Accepted tokens](https://date-fns.org/v2.12.0/docs/format), like this:
-         * - `yyyy-MM-dd HH:mm:ss` Date time
-         * - `t` Seconds timestamp
-         * - `T` Milliseconds timestamp
+         * Return the formatted date string in the given format, [Accepted tokens](https://date-fns.org/v1.30.1/docs/format), like this:
+         * - `YYYY-MM-DD HH:mm:ss` Date time
+         * - `X` Seconds timestamp
+         * - `x` Milliseconds timestamp
          * @type {?|undefined}
          */
         SFDateWidgetSchema.prototype.format;
@@ -7434,10 +7471,10 @@
         /**
          * **Just only support date-fns**
          *
-         * Return the formatted date string in the given format, [Accepted tokens](https://date-fns.org/v2.12.0/docs/format), like this:
-         * - `yyyy-MM-dd HH:mm:ss` Date time
-         * - `t` Seconds timestamp
-         * - `T` Milliseconds timestamp
+         * Return the formatted date string in the given format, [Accepted tokens](https://date-fns.org/v1.30.1/docs/format), like this:
+         * - `YYYY-MM-DD HH:mm:ss` Date time
+         * - `X` Seconds timestamp
+         * - `x` Milliseconds timestamp
          * @type {?|undefined}
          */
         SFTimeWidgetSchema.prototype.format;
@@ -7647,11 +7684,6 @@
          */
         SFCascaderWidgetSchema.prototype.menuStyle;
         /**
-         * 当下拉列表为空时显示的内容
-         * @type {?|undefined}
-         */
-        SFCascaderWidgetSchema.prototype.notFoundContent;
-        /**
          * 弹出菜单中数据列的自定义样式
          * @type {?|undefined}
          */
@@ -7774,11 +7806,6 @@
          * @type {?|undefined}
          */
         SFSelectWidgetSchema.prototype.allowClear;
-        /**
-         * 是否无边框，默认：`false`
-         * @type {?|undefined}
-         */
-        SFSelectWidgetSchema.prototype.borderless;
         /**
          * 默认获取焦点，默认：`false`
          * @type {?|undefined}
@@ -7916,11 +7943,6 @@
          */
         SFTreeSelectWidgetSchema.prototype.defaultExpandAll;
         /**
-         * 当下拉列表为空时显示的内容
-         * @type {?|undefined}
-         */
-        SFTreeSelectWidgetSchema.prototype.notFoundContent;
-        /**
          * 如何在输入框显示所选的节点值的方法
          * @type {?|undefined}
          */
@@ -7952,6 +7974,11 @@
          * @type {?|undefined}
          */
         SFTagWidgetSchema.prototype.mode;
+        /**
+         * 关闭动画完成后的回调
+         * @type {?|undefined}
+         */
+        SFTagWidgetSchema.prototype.afterClose;
         /**
          * 关闭时的回调，在 `nzMode="closable"` 时可用
          * @type {?|undefined}
@@ -8019,11 +8046,6 @@
          * @type {?|undefined}
          */
         SFUploadWidgetSchema.prototype.limit;
-        /**
-         * 限制上传文件数量，超过数量隐藏上传按钮
-         * @type {?|undefined}
-         */
-        SFUploadWidgetSchema.prototype.limitFileCount;
         /**
          * 自定义过滤器
          * @type {?|undefined}
@@ -8110,25 +8132,15 @@
          */
         SFUploadWidgetSchema.prototype.preview;
         /**
-         * 自定义文件预览逻辑
-         * @type {?|undefined}
-         */
-        SFUploadWidgetSchema.prototype.previewFile;
-        /**
-         * 点击下载文件时的回调，如果没有指定，则默认跳转到文件 url 对应的标签页
-         * @type {?|undefined}
-         */
-        SFUploadWidgetSchema.prototype.download;
-        /**
-         * 在上传之前转换文件。支持返回一个 Observable 对象
-         * @type {?|undefined}
-         */
-        SFUploadWidgetSchema.prototype.transformFile;
-        /**
          * 上传文件改变时的状态
          * @type {?|undefined}
          */
         SFUploadWidgetSchema.prototype.change;
+        /**
+         * 限制上传文件数量，超过数量隐藏上传按钮
+         * @type {?|undefined}
+         */
+        SFUploadWidgetSchema.prototype.limitFileCount;
     }
 
     /**
@@ -8285,11 +8297,6 @@
          * @type {?|undefined}
          */
         SFRateWidgetSchema.prototype.text;
-        /**
-         * 自定义每项的提示信息
-         * @type {?|undefined}
-         */
-        SFRateWidgetSchema.prototype.tooltips;
     }
 
     /**
@@ -8455,6 +8462,7 @@
     exports.ControlWidget = ControlWidget;
     exports.CustomWidget = CustomWidget;
     exports.DateWidget = DateWidget;
+    exports.DelonFormConfig = DelonFormConfig;
     exports.DelonFormModule = DelonFormModule;
     exports.ERRORSDEFAULT = ERRORSDEFAULT;
     exports.FormProperty = FormProperty;
@@ -8472,7 +8480,6 @@
     exports.SFComponent = SFComponent;
     exports.SFFixedDirective = SFFixedDirective;
     exports.SFItemComponent = SFItemComponent;
-    exports.SF_DEFAULT_CONFIG = SF_DEFAULT_CONFIG;
     exports.SchemaValidatorFactory = SchemaValidatorFactory;
     exports.SelectWidget = SelectWidget;
     exports.SliderWidget = SliderWidget;
@@ -8488,7 +8495,6 @@
     exports.Widget = Widget;
     exports.WidgetFactory = WidgetFactory;
     exports.WidgetRegistry = WidgetRegistry;
-    exports.mergeConfig = mergeConfig;
     exports.useFactory = useFactory;
     exports.ɵa = TerminatorService;
     exports.ɵb = SFItemWrapComponent;

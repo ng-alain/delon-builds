@@ -1,16 +1,112 @@
-import { __decorate, __metadata, __spread } from 'tslib';
-import { TemplateRef, Component, ChangeDetectionStrategy, ViewEncapsulation, Renderer2, Optional, Inject, ChangeDetectorRef, ViewChild, Input, NgModule } from '@angular/core';
+import { Injectable, ɵɵdefineInjectable, TemplateRef, Component, ChangeDetectionStrategy, ViewEncapsulation, Renderer2, Optional, Inject, ChangeDetectorRef, ViewChild, Input, NgModule } from '@angular/core';
+import { __assign, __decorate, __metadata, __spread } from 'tslib';
 import { NavigationEnd, Router, RouterModule } from '@angular/router';
-import { ReuseTabService } from '@delon/abc/reuse-tab';
-import { SettingsService, MenuService, ALAIN_I18N_TOKEN, TitleService } from '@delon/theme';
-import { isEmpty, AlainConfigService, InputBoolean, InputNumber, DelonUtilModule } from '@delon/util';
 import { NzAffixModule } from 'ng-zorro-antd/affix';
 import { Subject, merge } from 'rxjs';
 import { takeUntil, filter } from 'rxjs/operators';
-import { ObserversModule } from '@angular/cdk/observers';
+import { ReuseTabService } from '@delon/abc/reuse-tab';
+import { SettingsService, MenuService, ALAIN_I18N_TOKEN, TitleService } from '@delon/theme';
+import { isEmpty, InputBoolean, InputNumber, DelonUtilModule } from '@delon/util';
 import { CommonModule } from '@angular/common';
 import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
 import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
+import { ObserversModule } from '@angular/cdk/observers';
+
+/**
+ * @fileoverview added by tsickle
+ * Generated from: page-header.config.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var PageHeaderConfig = /** @class */ (function () {
+    function PageHeaderConfig() {
+        /**
+         * 首页文本，若指定空表示不显示
+         */
+        this.home = '首页';
+        /**
+         * 首页链接
+         */
+        this.homeLink = '/';
+        /**
+         * 自动生成导航，以当前路由从主菜单中定位
+         */
+        this.autoBreadcrumb = true;
+        /**
+         * 自动向上递归查找
+         *  - 菜单数据源包含 `/ware`，则 `/ware/1` 也视为 `/ware` 项
+         */
+        this.recursiveBreadcrumb = false;
+        /**
+         * 自动生成标题，以当前路由从主菜单中定位
+         */
+        this.autoTitle = true;
+        /**
+         * 是否自动将标准信息同步至 `TitleService`、`ReuseService` 下
+         */
+        this.syncTitle = false;
+        /**
+         * 是否固定模式
+         */
+        this.fixed = false;
+        /**
+         * 固定偏移值
+         */
+        this.fixedOffsetTop = 64;
+    }
+    PageHeaderConfig.decorators = [
+        { type: Injectable, args: [{ providedIn: 'root' },] }
+    ];
+    /** @nocollapse */ PageHeaderConfig.ngInjectableDef = ɵɵdefineInjectable({ factory: function PageHeaderConfig_Factory() { return new PageHeaderConfig(); }, token: PageHeaderConfig, providedIn: "root" });
+    return PageHeaderConfig;
+}());
+if (false) {
+    /**
+     * 首页文本，若指定空表示不显示
+     * @type {?}
+     */
+    PageHeaderConfig.prototype.home;
+    /**
+     * 首页链接
+     * @type {?}
+     */
+    PageHeaderConfig.prototype.homeLink;
+    /**
+     * 首页链接国际化参数
+     * @type {?}
+     */
+    PageHeaderConfig.prototype.homeI18n;
+    /**
+     * 自动生成导航，以当前路由从主菜单中定位
+     * @type {?}
+     */
+    PageHeaderConfig.prototype.autoBreadcrumb;
+    /**
+     * 自动向上递归查找
+     *  - 菜单数据源包含 `/ware`，则 `/ware/1` 也视为 `/ware` 项
+     * @type {?}
+     */
+    PageHeaderConfig.prototype.recursiveBreadcrumb;
+    /**
+     * 自动生成标题，以当前路由从主菜单中定位
+     * @type {?}
+     */
+    PageHeaderConfig.prototype.autoTitle;
+    /**
+     * 是否自动将标准信息同步至 `TitleService`、`ReuseService` 下
+     * @type {?}
+     */
+    PageHeaderConfig.prototype.syncTitle;
+    /**
+     * 是否固定模式
+     * @type {?}
+     */
+    PageHeaderConfig.prototype.fixed;
+    /**
+     * 固定偏移值
+     * @type {?}
+     */
+    PageHeaderConfig.prototype.fixedOffsetTop;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -29,7 +125,7 @@ if (false) {
 }
 var PageHeaderComponent = /** @class */ (function () {
     // #endregion
-    function PageHeaderComponent(settings, renderer, router, menuSrv, i18nSrv, titleSrv, reuseSrv, cdr, configSrv) {
+    function PageHeaderComponent(cog, settings, renderer, router, menuSrv, i18nSrv, titleSrv, reuseSrv, cdr) {
         var _this = this;
         this.renderer = renderer;
         this.router = router;
@@ -44,16 +140,7 @@ var PageHeaderComponent = /** @class */ (function () {
         this.paths = [];
         this.loading = false;
         this.wide = false;
-        configSrv.attach(this, 'pageHeader', {
-            home: '首页',
-            homeLink: '/',
-            autoBreadcrumb: true,
-            recursiveBreadcrumb: false,
-            autoTitle: true,
-            syncTitle: true,
-            fixed: false,
-            fixedOffsetTop: 64,
-        });
+        Object.assign(this, __assign({}, new PageHeaderConfig(), cog));
         settings.notify
             .pipe(takeUntil(this.unsubscribe$), filter((/**
          * @param {?} w
@@ -76,7 +163,10 @@ var PageHeaderComponent = /** @class */ (function () {
             .subscribe((/**
          * @return {?}
          */
-        function () { return _this.refresh(); }));
+        function () {
+            _this._menus = null;
+            _this.refresh();
+        }));
     }
     Object.defineProperty(PageHeaderComponent.prototype, "menus", {
         get: /**
@@ -84,7 +174,11 @@ var PageHeaderComponent = /** @class */ (function () {
          * @return {?}
          */
         function () {
-            return this.menuSrv.getPathByUrl(this.router.url, this.recursiveBreadcrumb);
+            if (this._menus) {
+                return this._menus;
+            }
+            this._menus = this.menuSrv.getPathByUrl(this.router.url.split('?')[0], this.recursiveBreadcrumb);
+            return this._menus;
         },
         enumerable: true,
         configurable: true
@@ -247,7 +341,7 @@ var PageHeaderComponent = /** @class */ (function () {
         { type: Component, args: [{
                     selector: 'page-header',
                     exportAs: 'pageHeader',
-                    template: "<nz-affix #affix *ngIf=\"fixed; else phTpl\" [nzOffsetTop]=\"fixedOffsetTop\">\n  <ng-template [ngTemplateOutlet]=\"phTpl\"></ng-template>\n</nz-affix>\n<ng-template #phTpl>\n  <div class=\"page-header\">\n    <div [ngClass]=\"{ 'page-header__wide': wide }\">\n      <nz-skeleton [nzLoading]=\"loading\" [nzTitle]=\"false\" [nzActive]=\"true\" [nzParagraph]=\"{ rows: 3 }\" [nzAvatar]=\"{ size: 'large', shape: 'circle' }\">\n        <ng-container *ngIf=\"!breadcrumb; else breadcrumb\">\n          <nz-breadcrumb *ngIf=\"paths && paths.length > 0\">\n            <nz-breadcrumb-item *ngFor=\"let i of paths\">\n              <ng-container *ngIf=\"i.link\">\n                <a [routerLink]=\"i.link\">{{ i.title }}</a>\n              </ng-container>\n              <ng-container *ngIf=\"!i.link\">{{ i.title }}</ng-container>\n            </nz-breadcrumb-item>\n          </nz-breadcrumb>\n        </ng-container>\n        <div class=\"page-header__detail\">\n          <div *ngIf=\"logo\" class=\"page-header__logo\">\n            <ng-template [ngTemplateOutlet]=\"logo\"></ng-template>\n          </div>\n          <div class=\"page-header__main\">\n            <div class=\"page-header__row\">\n              <h1 *ngIf=\"_titleVal || _titleTpl\" class=\"page-header__title\">\n                <ng-container *ngIf=\"_titleVal; else _titleTpl\">{{ _titleVal }}</ng-container>\n              </h1>\n              <div *ngIf=\"action\" class=\"page-header__action\">\n                <ng-template [ngTemplateOutlet]=\"action\"></ng-template>\n              </div>\n            </div>\n            <div class=\"page-header__row\">\n              <div class=\"page-header__desc\" (cdkObserveContent)=\"checkContent()\" #conTpl>\n                <ng-content></ng-content>\n                <ng-template [ngTemplateOutlet]=\"content\"></ng-template>\n              </div>\n              <div *ngIf=\"extra\" class=\"page-header__extra\">\n                <ng-template [ngTemplateOutlet]=\"extra\"></ng-template>\n              </div>\n            </div>\n          </div>\n        </div>\n        <ng-template [ngTemplateOutlet]=\"tab\"></ng-template>\n      </nz-skeleton>\n    </div>\n  </div>\n</ng-template>\n",
+                    template: "<nz-affix #affix\n          *ngIf=\"fixed;else phTpl\"\n          [nzOffsetTop]=\"fixedOffsetTop\">\n  <ng-template [ngTemplateOutlet]=\"phTpl\"></ng-template>\n</nz-affix>\n<ng-template #phTpl>\n  <div class=\"page-header\">\n    <div [ngClass]=\"{'page-header__wide': wide}\">\n      <nz-skeleton [nzLoading]=\"loading\"\n                   [nzTitle]=\"false\"\n                   [nzActive]=\"true\"\n                   [nzParagraph]=\"{rows: 3}\"\n                   [nzAvatar]=\"{ size: 'large', shape: 'circle' }\">\n        <ng-container *ngIf=\"!breadcrumb; else breadcrumb\">\n          <nz-breadcrumb *ngIf=\"paths && paths.length > 0\">\n            <nz-breadcrumb-item *ngFor=\"let i of paths\">\n              <ng-container *ngIf=\"i.link\">\n                <a [routerLink]=\"i.link\">{{i.title}}</a>\n              </ng-container>\n              <ng-container *ngIf=\"!i.link\">{{i.title}}</ng-container>\n            </nz-breadcrumb-item>\n          </nz-breadcrumb>\n        </ng-container>\n        <div class=\"page-header__detail\">\n          <div *ngIf=\"logo\"\n               class=\"page-header__logo\">\n            <ng-template [ngTemplateOutlet]=\"logo\"></ng-template>\n          </div>\n          <div class=\"page-header__main\">\n            <div class=\"page-header__row\">\n              <h1 *ngIf=\"_titleVal || _titleTpl\"\n                  class=\"page-header__title\">\n                <ng-container *ngIf=\"_titleVal; else _titleTpl\">{{_titleVal}}</ng-container>\n              </h1>\n              <div *ngIf=\"action\"\n                   class=\"page-header__action\">\n                <ng-template [ngTemplateOutlet]=\"action\"></ng-template>\n              </div>\n            </div>\n            <div class=\"page-header__row\">\n              <div class=\"page-header__desc\" (cdkObserveContent)=\"checkContent()\" #conTpl>\n                <ng-content></ng-content>\n                <ng-template [ngTemplateOutlet]=\"content\"></ng-template>\n              </div>\n              <div *ngIf=\"extra\"\n                   class=\"page-header__extra\">\n                <ng-template [ngTemplateOutlet]=\"extra\"></ng-template>\n              </div>\n            </div>\n          </div>\n        </div>\n        <ng-template [ngTemplateOutlet]=\"tab\"></ng-template>\n      </nz-skeleton>\n    </div>\n  </div>\n</ng-template>\n",
                     preserveWhitespaces: false,
                     changeDetection: ChangeDetectionStrategy.OnPush,
                     encapsulation: ViewEncapsulation.None
@@ -255,6 +349,7 @@ var PageHeaderComponent = /** @class */ (function () {
     ];
     /** @nocollapse */
     PageHeaderComponent.ctorParameters = function () { return [
+        { type: PageHeaderConfig },
         { type: SettingsService },
         { type: Renderer2 },
         { type: Router },
@@ -262,8 +357,7 @@ var PageHeaderComponent = /** @class */ (function () {
         { type: undefined, decorators: [{ type: Optional }, { type: Inject, args: [ALAIN_I18N_TOKEN,] }] },
         { type: TitleService, decorators: [{ type: Optional }, { type: Inject, args: [TitleService,] }] },
         { type: ReuseTabService, decorators: [{ type: Optional }, { type: Inject, args: [ReuseTabService,] }] },
-        { type: ChangeDetectorRef },
-        { type: AlainConfigService }
+        { type: ChangeDetectorRef }
     ]; };
     PageHeaderComponent.propDecorators = {
         conTpl: [{ type: ViewChild, args: ['conTpl', { static: false },] }],
@@ -342,6 +436,11 @@ if (false) {
      * @private
      */
     PageHeaderComponent.prototype.affix;
+    /**
+     * @type {?}
+     * @private
+     */
+    PageHeaderComponent.prototype._menus;
     /** @type {?} */
     PageHeaderComponent.prototype._titleVal;
     /** @type {?} */
@@ -433,7 +532,7 @@ var PageHeaderModule = /** @class */ (function () {
     }
     PageHeaderModule.decorators = [
         { type: NgModule, args: [{
-                    imports: [CommonModule, RouterModule, ObserversModule, DelonUtilModule, NzAffixModule, NzSkeletonModule, NzBreadCrumbModule],
+                    imports: [CommonModule, ObserversModule, RouterModule, DelonUtilModule, NzAffixModule, NzSkeletonModule, NzBreadCrumbModule],
                     declarations: __spread(COMPONENTS),
                     exports: __spread(COMPONENTS),
                 },] }
@@ -453,5 +552,5 @@ var PageHeaderModule = /** @class */ (function () {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { PageHeaderComponent, PageHeaderModule };
+export { PageHeaderComponent, PageHeaderConfig, PageHeaderModule };
 //# sourceMappingURL=pageHeader.js.map

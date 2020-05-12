@@ -1,13 +1,13 @@
 /**
- * @license ng-alain(cipchk@qq.com) v9.2.1
- * (c) 2020 cipchk https://ng-alain.com/
+ * @license ng-alain(cipchk@qq.com) v8.9.3
+ * (c) 2019 cipchk https://ng-alain.com/
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@antv/g2'), require('@delon/util'), require('@angular/common')) :
-    typeof define === 'function' && define.amd ? define('@delon/chart/mini-area', ['exports', '@angular/core', '@antv/g2', '@delon/util', '@angular/common'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart['mini-area'] = {}), global.ng.core, global.g2, global.delon.util, global.ng.common));
-}(this, (function (exports, core, g2, util, common) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util'), require('@angular/common')) :
+    typeof define === 'function' && define.amd ? define('@delon/chart/mini-area', ['exports', '@angular/core', '@delon/util', '@angular/common'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart['mini-area'] = {}), global.ng.core, global.delon.util, global.ng.common));
+}(this, (function (exports, core, util, common) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -241,7 +241,7 @@
     }
     var G2MiniAreaComponent = /** @class */ (function () {
         // #endregion
-        function G2MiniAreaComponent(el, ngZone, configSrv) {
+        function G2MiniAreaComponent(el, ngZone) {
             this.el = el;
             this.ngZone = ngZone;
             // #region fields
@@ -257,7 +257,6 @@
             this.data = [];
             this.yTooltipSuffix = '';
             this.tooltipType = 'default';
-            configSrv.attachKey(this, 'chart', 'theme');
         }
         /**
          * @private
@@ -268,14 +267,13 @@
          * @return {?}
          */
         function () {
-            var _a = this, el = _a.el, fit = _a.fit, height = _a.height, padding = _a.padding, xAxis = _a.xAxis, yAxis = _a.yAxis, yTooltipSuffix = _a.yTooltipSuffix, tooltipType = _a.tooltipType, line = _a.line, theme = _a.theme;
+            var _a = this, el = _a.el, fit = _a.fit, height = _a.height, padding = _a.padding, xAxis = _a.xAxis, yAxis = _a.yAxis, yTooltipSuffix = _a.yTooltipSuffix, tooltipType = _a.tooltipType, line = _a.line;
             /** @type {?} */
-            var chart = (this.chart = new g2.Chart({
+            var chart = (this.chart = new G2.Chart({
                 container: el.nativeElement,
-                autoFit: fit,
+                forceFit: fit,
                 height: height,
                 padding: padding,
-                theme: theme,
             }));
             if (!xAxis && !yAxis) {
                 chart.axis(false);
@@ -293,24 +291,13 @@
                 chart.axis('y', false);
             }
             chart.legend(false);
-            /** @type {?} */
-            var tooltipOption = {
+            chart.tooltip({
+                type: tooltipType === 'mini' ? 'mini' : null,
                 showTitle: false,
-                showMarkers: true,
-                enterable: true,
-                domStyles: {
-                    'g2-tooltip': { padding: '0px' },
-                    'g2-tooltip-title': { display: 'none' },
-                    'g2-tooltip-list-item': { margin: '4px' },
-                },
-            };
-            if (tooltipType === 'mini') {
-                tooltipOption.position = 'top';
-                (/** @type {?} */ (tooltipOption.domStyles))['g2-tooltip'] = { padding: '0px', backgroundColor: 'transparent', boxShadow: 'none' };
-                tooltipOption.itemTpl = "<li>{value}</li>";
-                tooltipOption.offset = 0;
-            }
-            chart.tooltip(tooltipOption);
+                hideMarkders: false,
+                'g2-tooltip': { padding: 4 },
+                'g2-tooltip-list-item': { margin: "0px 4px" },
+            });
             chart
                 .area()
                 .position('x*y')
@@ -320,9 +307,15 @@
              * @return {?}
              */
             function (x, y) { return ({ name: x, value: y + yTooltipSuffix }); }))
-                .shape('smooth');
+                .shape('smooth')
+                .opacity(1);
             if (line) {
-                chart.line().position('x*y').shape('smooth').tooltip(false);
+                chart
+                    .line()
+                    .position('x*y')
+                    .shape('smooth')
+                    .opacity(1)
+                    .tooltip(false);
             }
             chart.render();
             this.attachChart();
@@ -341,7 +334,7 @@
                 return;
             }
             /** @type {?} */
-            var geoms = chart.geometries;
+            var geoms = chart.get('geoms');
             geoms.forEach((/**
              * @param {?} g
              * @return {?}
@@ -350,10 +343,10 @@
             if (line) {
                 geoms[1].color(borderColor).size(borderWidth);
             }
-            chart.autoFit = fit;
-            chart.height = height;
-            chart.animate(animate);
-            chart.padding = padding;
+            chart.set('forceFit', fit);
+            chart.set('height', height);
+            chart.set('animate', animate);
+            chart.set('padding', padding);
             chart.changeData(data);
         };
         /**
@@ -416,8 +409,7 @@
         /** @nocollapse */
         G2MiniAreaComponent.ctorParameters = function () { return [
             { type: core.ElementRef },
-            { type: core.NgZone },
-            { type: util.AlainConfigService }
+            { type: core.NgZone }
         ]; };
         G2MiniAreaComponent.propDecorators = {
             delay: [{ type: core.Input }],
@@ -433,8 +425,7 @@
             padding: [{ type: core.Input }],
             data: [{ type: core.Input }],
             yTooltipSuffix: [{ type: core.Input }],
-            tooltipType: [{ type: core.Input }],
-            theme: [{ type: core.Input }]
+            tooltipType: [{ type: core.Input }]
         };
         __decorate([
             util.InputNumber(),
@@ -496,8 +487,6 @@
         G2MiniAreaComponent.prototype.yTooltipSuffix;
         /** @type {?} */
         G2MiniAreaComponent.prototype.tooltipType;
-        /** @type {?} */
-        G2MiniAreaComponent.prototype.theme;
         /**
          * @type {?}
          * @private

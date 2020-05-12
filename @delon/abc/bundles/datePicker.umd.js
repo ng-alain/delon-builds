@@ -1,13 +1,13 @@
 /**
- * @license ng-alain(cipchk@qq.com) v9.2.1
- * (c) 2020 cipchk https://ng-alain.com/
+ * @license ng-alain(cipchk@qq.com) v8.9.3
+ * (c) 2019 cipchk https://ng-alain.com/
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/forms'), require('@angular/platform-browser'), require('@delon/util'), require('ng-zorro-antd/date-picker'), require('@angular/common')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/date-picker', ['exports', '@angular/core', '@angular/forms', '@angular/platform-browser', '@delon/util', 'ng-zorro-antd/date-picker', '@angular/common'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['date-picker'] = {}), global.ng.core, global.ng.forms, global.ng.platformBrowser, global.delon.util, global['ng-zorro-antd/date-picker'], global.ng.common));
-}(this, (function (exports, core, forms, platformBrowser, util, datePicker, common) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/platform-browser'), require('@angular/core'), require('@angular/forms'), require('@delon/util'), require('ng-zorro-antd/date-picker'), require('@angular/common')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/date-picker', ['exports', '@angular/platform-browser', '@angular/core', '@angular/forms', '@delon/util', 'ng-zorro-antd/date-picker', '@angular/common'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['date-picker'] = {}), global.ng.platformBrowser, global.ng.core, global.ng.forms, global.delon.util, global['ng-zorro-antd/date-picker'], global.ng.common));
+}(this, (function (exports, platformBrowser, core, forms, util, datePicker, common) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -225,12 +225,169 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: date-picker.config.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var DateRangePickerConfig = /** @class */ (function () {
+        function DateRangePickerConfig() {
+            this.nzFormat = 'yyyy-MM-dd';
+            this.nzAllowClear = true;
+            this.nzAutoFocus = false;
+            this.nzDisabled = false;
+            this.nzPopupStyle = { position: 'relative' };
+            this.nzShowToday = true;
+            this.shortcuts = {
+                enabled: false,
+                closed: true,
+                list: [
+                    {
+                        text: '今天',
+                        fn: (/**
+                         * @return {?}
+                         */
+                        function () { return util.getTimeDistance('today'); }),
+                    },
+                    {
+                        text: '昨天',
+                        fn: (/**
+                         * @return {?}
+                         */
+                        function () { return util.getTimeDistance('yesterday'); }),
+                    },
+                    {
+                        text: '近3天',
+                        fn: (/**
+                         * @return {?}
+                         */
+                        function () { return util.getTimeDistance(-2); }),
+                    },
+                    {
+                        text: '近7天',
+                        fn: (/**
+                         * @return {?}
+                         */
+                        function () { return util.getTimeDistance(-6); }),
+                    },
+                    {
+                        text: '本周',
+                        fn: (/**
+                         * @return {?}
+                         */
+                        function () { return util.getTimeDistance('week'); }),
+                    },
+                    {
+                        text: '本月',
+                        fn: (/**
+                         * @return {?}
+                         */
+                        function () { return util.getTimeDistance('month'); }),
+                    },
+                    {
+                        text: '全年',
+                        fn: (/**
+                         * @return {?}
+                         */
+                        function () { return util.getTimeDistance('year'); }),
+                    },
+                ],
+            };
+        }
+        return DateRangePickerConfig;
+    }());
+    if (false) {
+        /** @type {?} */
+        DateRangePickerConfig.prototype.nzFormat;
+        /** @type {?} */
+        DateRangePickerConfig.prototype.nzClassName;
+        /** @type {?} */
+        DateRangePickerConfig.prototype.nzSize;
+        /** @type {?} */
+        DateRangePickerConfig.prototype.nzStyle;
+        /** @type {?} */
+        DateRangePickerConfig.prototype.nzAllowClear;
+        /** @type {?} */
+        DateRangePickerConfig.prototype.nzAutoFocus;
+        /** @type {?} */
+        DateRangePickerConfig.prototype.nzDisabled;
+        /** @type {?} */
+        DateRangePickerConfig.prototype.nzDisabledDate;
+        /** @type {?} */
+        DateRangePickerConfig.prototype.nzDisabledTime;
+        /** @type {?} */
+        DateRangePickerConfig.prototype.nzLocale;
+        /** @type {?} */
+        DateRangePickerConfig.prototype.nzPopupStyle;
+        /** @type {?} */
+        DateRangePickerConfig.prototype.nzDropdownClassName;
+        /** @type {?} */
+        DateRangePickerConfig.prototype.nzRenderExtraFooter;
+        /** @type {?} */
+        DateRangePickerConfig.prototype.nzPlaceHolder;
+        /** @type {?} */
+        DateRangePickerConfig.prototype.nzShowTime;
+        /** @type {?} */
+        DateRangePickerConfig.prototype.nzShowToday;
+        /** @type {?} */
+        DateRangePickerConfig.prototype.nzMode;
+        /** @type {?} */
+        DateRangePickerConfig.prototype.nzRanges;
+        /** @type {?} */
+        DateRangePickerConfig.prototype.shortcuts;
+    }
+    /**
+     * @record
+     */
+    function DateRangePickerShortcut() { }
+    if (false) {
+        /**
+         * Whether to enable, default: `false`
+         * @type {?|undefined}
+         */
+        DateRangePickerShortcut.prototype.enabled;
+        /**
+         * Whether to close the panel after clicking, default: `true`
+         * @type {?|undefined}
+         */
+        DateRangePickerShortcut.prototype.closed;
+        /**
+         * Shortcut list, default: `今天`, `昨天`, `近3天`, `近7天`, `本周`, `本月`, `全年`
+         * @type {?|undefined}
+         */
+        DateRangePickerShortcut.prototype.list;
+    }
+    /**
+     * @record
+     */
+    function DateRangePickerShortcutItem() { }
+    if (false) {
+        /** @type {?} */
+        DateRangePickerShortcutItem.prototype.text;
+        /** @type {?} */
+        DateRangePickerShortcutItem.prototype.fn;
+        /* Skipping unhandled member: [key: string]: any;*/
+    }
+    var DatePickerConfig = /** @class */ (function () {
+        function DatePickerConfig() {
+        }
+        DatePickerConfig.decorators = [
+            { type: core.Injectable, args: [{ providedIn: 'root' },] }
+        ];
+        /** @nocollapse */ DatePickerConfig.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function DatePickerConfig_Factory() { return new DatePickerConfig(); }, token: DatePickerConfig, providedIn: "root" });
+        return DatePickerConfig;
+    }());
+    if (false) {
+        /** @type {?} */
+        DatePickerConfig.prototype.range;
+    }
+
+    /**
+     * @fileoverview added by tsickle
      * Generated from: range.component.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var RangePickerComponent = /** @class */ (function () {
         // #endregion
-        function RangePickerComponent(dom, configSrv) {
+        function RangePickerComponent(cog, dom) {
             this.dom = dom;
             this.value = [];
             this.ngModelEndChange = new core.EventEmitter();
@@ -241,71 +398,8 @@
             this.nzShowToday = true;
             this.nzOnPanelChange = new core.EventEmitter();
             this.nzOnOk = new core.EventEmitter();
-            /** @type {?} */
-            var cog = configSrv.merge('dataRange', {
-                nzFormat: 'yyyy-MM-dd',
-                nzAllowClear: true,
-                nzAutoFocus: false,
-                nzPopupStyle: { position: 'relative' },
-                nzShowToday: true,
-                shortcuts: {
-                    enabled: false,
-                    closed: true,
-                    list: [
-                        {
-                            text: '今天',
-                            fn: (/**
-                             * @return {?}
-                             */
-                            function () { return util.getTimeDistance('today'); }),
-                        },
-                        {
-                            text: '昨天',
-                            fn: (/**
-                             * @return {?}
-                             */
-                            function () { return util.getTimeDistance('yesterday'); }),
-                        },
-                        {
-                            text: '近3天',
-                            fn: (/**
-                             * @return {?}
-                             */
-                            function () { return util.getTimeDistance(-2); }),
-                        },
-                        {
-                            text: '近7天',
-                            fn: (/**
-                             * @return {?}
-                             */
-                            function () { return util.getTimeDistance(-6); }),
-                        },
-                        {
-                            text: '本周',
-                            fn: (/**
-                             * @return {?}
-                             */
-                            function () { return util.getTimeDistance('week'); }),
-                        },
-                        {
-                            text: '本月',
-                            fn: (/**
-                             * @return {?}
-                             */
-                            function () { return util.getTimeDistance('month'); }),
-                        },
-                        {
-                            text: '全年',
-                            fn: (/**
-                             * @return {?}
-                             */
-                            function () { return util.getTimeDistance('year'); }),
-                        },
-                    ],
-                },
-            });
-            this.defaultShortcuts = (/** @type {?} */ (__assign({}, cog.shortcuts)));
-            Object.assign(this, cog);
+            this._cog = util.deepMergeKey(new DateRangePickerConfig(), true, cog && cog.range);
+            Object.assign(this, this._cog);
         }
         Object.defineProperty(RangePickerComponent.prototype, "shortcut", {
             get: /**
@@ -321,7 +415,7 @@
             function (val) {
                 var _this = this;
                 /** @type {?} */
-                var item = (/** @type {?} */ (util.deepMergeKey({}, true, this.defaultShortcuts, val == null ? {} : val)));
+                var item = (/** @type {?} */ (util.deepMergeKey({}, true, this._cog.shortcuts, val == null ? {} : val)));
                 if (typeof val === 'boolean') {
                     item.enabled = val;
                 }
@@ -440,15 +534,14 @@
             this.value = item.fn((/** @type {?} */ (this.value)));
             this.valueChange((/** @type {?} */ (this.value)));
             if (this._shortcut.closed) {
-                // tslint:disable-next-line:no-string-literal
-                ((/** @type {?} */ (this.comp)))['picker'].hideOverlay();
+                this.comp.closeOverlay();
             }
         };
         RangePickerComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'range-picker',
                         exportAs: 'rangePicker',
-                        template: "<nz-range-picker\n  #comp\n  [ngModel]=\"value\"\n  (ngModelChange)=\"valueChange($event)\"\n  [nzAllowClear]=\"nzAllowClear\"\n  [nzAutoFocus]=\"nzAutoFocus\"\n  [ngClass]=\"nzClassName\"\n  [nzDisabled]=\"nzDisabled\"\n  [nzSize]=\"nzSize\"\n  [nzDisabledDate]=\"nzDisabledDate\"\n  [nzLocale]=\"nzLocale\"\n  [nzPopupStyle]=\"nzPopupStyle\"\n  [nzDropdownClassName]=\"nzDropdownClassName\"\n  [ngStyle]=\"nzStyle\"\n  [nzPlaceHolder]=\"nzPlaceHolder\"\n  (nzOnOpenChange)=\"_nzOnOpenChange($event)\"\n  [nzDateRender]=\"nzDateRender\"\n  [nzDisabledTime]=\"nzDisabledTime\"\n  [nzFormat]=\"nzFormat\"\n  [nzRenderExtraFooter]=\"nzRenderExtraFooter || (shortcut?.enabled ? shortcutTpl : null)\"\n  [nzShowTime]=\"nzShowTime\"\n  [nzShowToday]=\"nzShowToday\"\n  [nzMode]=\"nzMode\"\n  [nzRanges]=\"nzRanges\"\n  (nzOnPanelChange)=\"_nzOnPanelChange($event)\"\n  (nzOnOk)=\"_nzOnOk($event)\"\n></nz-range-picker>\n<ng-template #shortcutTpl>\n  <a *ngFor=\"let i of shortcut?.list; let first = first\" (click)=\"clickShortcut(i)\" [innerHTML]=\"i._text\" [ngClass]=\"{ 'ml-sm': !first }\"></a>\n</ng-template>\n",
+                        template: "<nz-range-picker #comp\n                 [ngModel]=\"value\"\n                 (ngModelChange)=\"valueChange($event)\"\n                 [nzAllowClear]=\"nzAllowClear\"\n                 [nzAutoFocus]=\"nzAutoFocus\"\n                 [nzClassName]=\"nzClassName\"\n                 [nzDisabled]=\"nzDisabled\"\n                 [nzSize]=\"nzSize\"\n                 [nzDisabledDate]=\"nzDisabledDate\"\n                 [nzLocale]=\"nzLocale\"\n                 [nzPopupStyle]=\"nzPopupStyle\"\n                 [nzDropdownClassName]=\"nzDropdownClassName\"\n                 [nzStyle]=\"nzStyle\"\n                 [nzPlaceHolder]=\"nzPlaceHolder\"\n                 (nzOnOpenChange)=\"_nzOnOpenChange($event)\"\n                 [nzDateRender]=\"nzDateRender\"\n                 [nzDisabledTime]=\"nzDisabledTime\"\n                 [nzFormat]=\"nzFormat\"\n                 [nzRenderExtraFooter]=\"nzRenderExtraFooter || (shortcut?.enabled ? shortcutTpl : null)\"\n                 [nzShowTime]=\"nzShowTime\"\n                 [nzShowToday]=\"nzShowToday\"\n                 [nzMode]=\"nzMode\"\n                 [nzRanges]=\"nzRanges\"\n                 (nzOnPanelChange)=\"_nzOnPanelChange($event)\"\n                 (nzOnOk)=\"_nzOnOk($event)\"></nz-range-picker>\n<ng-template #shortcutTpl>\n  <a *ngFor=\"let i of shortcut?.list;let first=first\"\n     (click)=\"clickShortcut(i)\"\n     [innerHTML]=\"i._text\"\n     [ngClass]=\"{'ml-sm': !first}\"></a>\n</ng-template>\n",
                         providers: [
                             {
                                 provide: forms.NG_VALUE_ACCESSOR,
@@ -463,8 +556,8 @@
         ];
         /** @nocollapse */
         RangePickerComponent.ctorParameters = function () { return [
-            { type: platformBrowser.DomSanitizer },
-            { type: util.AlainConfigService }
+            { type: DatePickerConfig },
+            { type: platformBrowser.DomSanitizer }
         ]; };
         RangePickerComponent.propDecorators = {
             comp: [{ type: core.ViewChild, args: ['comp', { static: false },] }],
@@ -515,7 +608,7 @@
          * @type {?}
          * @private
          */
-        RangePickerComponent.prototype.defaultShortcuts;
+        RangePickerComponent.prototype._cog;
         /**
          * @type {?}
          * @private
@@ -598,7 +691,9 @@
         return DatePickerModule;
     }());
 
+    exports.DatePickerConfig = DatePickerConfig;
     exports.DatePickerModule = DatePickerModule;
+    exports.DateRangePickerConfig = DateRangePickerConfig;
     exports.RangePickerComponent = RangePickerComponent;
 
     Object.defineProperty(exports, '__esModule', { value: true });

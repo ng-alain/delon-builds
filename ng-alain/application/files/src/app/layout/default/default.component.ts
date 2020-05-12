@@ -1,21 +1,28 @@
+import {
+  Component,
+  ViewChild,
+  ComponentFactoryResolver,
+  ViewContainerRef,
+  AfterViewInit,
+  OnInit,
+  OnDestroy,
+  ElementRef,
+  Renderer2,
+  Inject,
+} from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import {
-  AfterViewInit,
-  Component,
-  ComponentFactoryResolver,
-  ElementRef,
-  Inject,
-  OnDestroy,
-  OnInit,
-  Renderer2,
-  ViewChild,
-  ViewContainerRef,
-} from '@angular/core';
-import { NavigationCancel, NavigationEnd, NavigationError, RouteConfigLoadEnd, RouteConfigLoadStart, Router } from '@angular/router';
-import { SettingsService } from '@delon/theme';
+  Router,
+  NavigationEnd,
+  RouteConfigLoadStart,
+  RouteConfigLoadEnd,
+  NavigationError,
+  NavigationCancel,
+} from '@angular/router';
+import { NzMessageService } from 'ng-zorro-antd';
 import { updateHostClass } from '@delon/util';
+import { SettingsService } from '@delon/theme';
 import { environment } from '@env/environment';
-import { NzMessageService } from 'ng-zorro-antd/message';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
@@ -33,7 +40,7 @@ export class LayoutDefaultComponent implements OnInit, AfterViewInit, OnDestroy 
 
   constructor(
     router: Router,
-    msgSrv: NzMessageService,
+    _message: NzMessageService,
     private resolver: ComponentFactoryResolver,
     private settings: SettingsService,
     private el: ElementRef,
@@ -41,14 +48,14 @@ export class LayoutDefaultComponent implements OnInit, AfterViewInit, OnDestroy 
     @Inject(DOCUMENT) private doc: any,
   ) {
     // scroll to top in change page
-    router.events.pipe(takeUntil(this.unsubscribe$)).subscribe((evt) => {
+    router.events.pipe(takeUntil(this.unsubscribe$)).subscribe(evt => {
       if (!this.isFetching && evt instanceof RouteConfigLoadStart) {
         this.isFetching = true;
       }
       if (evt instanceof NavigationError || evt instanceof NavigationCancel) {
         this.isFetching = false;
         if (evt instanceof NavigationError) {
-          msgSrv.error(`无法加载${evt.url}路由`, { nzDuration: 1000 * 3 });
+          _message.error(`无法加载${evt.url}路由`, { nzDuration: 1000 * 3 });
         }
         return;
       }
@@ -77,7 +84,7 @@ export class LayoutDefaultComponent implements OnInit, AfterViewInit, OnDestroy 
 
   ngAfterViewInit(): void {
     // Setting componet for only developer
-    if (true) {
+    if (!environment.production) {
       setTimeout(() => {
         const settingFactory = this.resolver.resolveComponentFactory(SettingDrawerComponent);
         this.settingHost.createComponent(settingFactory);

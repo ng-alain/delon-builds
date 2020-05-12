@@ -1,7 +1,6 @@
 import { __decorate, __metadata } from 'tslib';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, NgZone, Input, NgModule } from '@angular/core';
-import { Chart } from '@antv/g2';
-import { AlainConfigService, InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
+import { InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
 import { CommonModule } from '@angular/common';
 
 /**
@@ -14,9 +13,8 @@ class G2SingleBarComponent {
     /**
      * @param {?} el
      * @param {?} ngZone
-     * @param {?} configSrv
      */
-    constructor(el, ngZone, configSrv) {
+    constructor(el, ngZone) {
         this.el = el;
         this.ngZone = ngZone;
         // #region fields
@@ -31,41 +29,42 @@ class G2SingleBarComponent {
         this.line = false;
         this.padding = 0;
         this.textStyle = { fontSize: 12, color: '#595959' };
-        configSrv.attachKey(this, 'chart', 'theme');
     }
     /**
      * @private
      * @return {?}
      */
     install() {
-        const { el, height, padding, textStyle, line, format, theme } = this;
+        const { el, height, padding, textStyle, line, format } = this;
         /** @type {?} */
-        const chart = (this.chart = new Chart({
+        const chart = (this.chart = new G2.Chart({
             container: el.nativeElement,
-            autoFit: true,
+            forceFit: true,
             height,
             padding,
-            theme,
         }));
         chart.legend(false);
         chart.axis(false);
-        chart.tooltip(false);
-        chart.coordinate().transpose();
+        chart.tooltip({ type: 'mini' });
+        chart.coord().transpose();
         chart
             .interval()
             .position('1*value')
+            .opacity(1)
             .label('value', (/**
+         * @param {?} val
          * @return {?}
          */
-        () => ({
+        val => ({
             formatter: format,
-            style: Object.assign({}, textStyle),
+            offset: val > 0 ? 10 : -10,
+            textStyle: Object.assign({}, textStyle, { textAlign: val > 0 ? 'start' : 'end' }),
         })));
         if (line) {
-            chart.annotation().line({
+            chart.guide().line({
                 start: ['50%', '0%'],
                 end: ['50%', '100%'],
-                style: {
+                lineStyle: {
                     stroke: '#e8e8e8',
                     lineDash: [0, 0],
                 },
@@ -82,15 +81,18 @@ class G2SingleBarComponent {
         const { chart, height, padding, value, min, max, plusColor, minusColor, barSize } = this;
         if (!chart)
             return;
-        chart.scale({ value: { max, min } });
-        chart.height = height;
-        chart.padding = padding;
-        chart.geometries[0].color('value', (/**
+        chart.source([{ value }], { value: { max, min } });
+        chart.set('height', height);
+        chart.set('padding', padding);
+        chart
+            .get('geoms')[0]
+            .color('value', (/**
          * @param {?} val
          * @return {?}
          */
-        (val) => (val > 0 ? plusColor : minusColor))).size(barSize);
-        chart.changeData([{ value }]);
+        val => (val > 0 ? plusColor : minusColor)))
+            .size(barSize);
+        chart.repaint();
     }
     /**
      * @return {?}
@@ -141,8 +143,7 @@ G2SingleBarComponent.decorators = [
 /** @nocollapse */
 G2SingleBarComponent.ctorParameters = () => [
     { type: ElementRef },
-    { type: NgZone },
-    { type: AlainConfigService }
+    { type: NgZone }
 ];
 G2SingleBarComponent.propDecorators = {
     delay: [{ type: Input }],
@@ -156,8 +157,7 @@ G2SingleBarComponent.propDecorators = {
     line: [{ type: Input }],
     format: [{ type: Input }],
     padding: [{ type: Input }],
-    textStyle: [{ type: Input }],
-    theme: [{ type: Input }]
+    textStyle: [{ type: Input }]
 };
 __decorate([
     InputNumber(),
@@ -217,8 +217,6 @@ if (false) {
     G2SingleBarComponent.prototype.padding;
     /** @type {?} */
     G2SingleBarComponent.prototype.textStyle;
-    /** @type {?} */
-    G2SingleBarComponent.prototype.theme;
     /**
      * @type {?}
      * @private

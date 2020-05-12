@@ -1,15 +1,13 @@
 /**
- * @license ng-alain(cipchk@qq.com) v9.2.1
- * (c) 2020 cipchk https://ng-alain.com/
+ * @license ng-alain(cipchk@qq.com) v8.9.3
+ * (c) 2019 cipchk https://ng-alain.com/
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@antv/data-set'), require('@antv/g2'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('@angular/common')) :
-    typeof define === 'function' && define.amd ? define('@delon/chart/tag-cloud', ['exports', '@angular/core', '@antv/data-set', '@antv/g2', '@delon/util', 'rxjs', 'rxjs/operators', '@angular/common'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart['tag-cloud'] = {}), global.ng.core, global.DataSet, global.g2, global.delon.util, global.rxjs, global.rxjs.operators, global.ng.common));
-}(this, (function (exports, core, DataSet, g2, util, rxjs, operators, common) { 'use strict';
-
-    DataSet = DataSet && Object.prototype.hasOwnProperty.call(DataSet, 'default') ? DataSet['default'] : DataSet;
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('@angular/common')) :
+    typeof define === 'function' && define.amd ? define('@delon/chart/tag-cloud', ['exports', '@angular/core', '@delon/util', 'rxjs', 'rxjs/operators', '@angular/common'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart['tag-cloud'] = {}), global.ng.core, global.delon.util, global.rxjs, global.rxjs.operators, global.ng.common));
+}(this, (function (exports, core, util, rxjs, operators, common) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -236,33 +234,23 @@
     function G2TagCloudData() { }
     if (false) {
         /** @type {?|undefined} */
+        G2TagCloudData.prototype.x;
+        /** @type {?|undefined} */
         G2TagCloudData.prototype.value;
         /** @type {?|undefined} */
-        G2TagCloudData.prototype.name;
-        /**
-         * @deprecated Use `name` instead
-         * @type {?|undefined}
-         */
-        G2TagCloudData.prototype.x;
-        /**
-         * @deprecated 10.0.0. This is deprecated and going to be removed in 10.0.0.
-         * @type {?|undefined}
-         */
         G2TagCloudData.prototype.category;
         /* Skipping unhandled member: [key: string]: any;*/
     }
     var G2TagCloudComponent = /** @class */ (function () {
         // #endregion
-        function G2TagCloudComponent(el, ngZone, configSrv) {
+        function G2TagCloudComponent(el, ngZone) {
             this.el = el;
             this.ngZone = ngZone;
             // #region fields
-            this.delay = 100;
-            this.width = 0;
-            this.height = 200;
+            this.delay = 0;
+            this.height = 100;
             this.padding = 0;
             this.data = [];
-            configSrv.attachKey(this, 'chart', 'theme');
         }
         /**
          * @private
@@ -273,23 +261,19 @@
          * @return {?}
          */
         function () {
-            g2.registerShape('point', 'cloud', {
-                draw: /**
+            // 给point注册一个词云的shape
+            G2.Shape.registerShape('point', 'cloud', {
+                drawShape: /**
                  * @param {?} cfg
                  * @param {?} container
                  * @return {?}
                  */
                 function (cfg, container) {
                     /** @type {?} */
-                    var data = (/** @type {?} */ (cfg.data));
-                    /** @type {?} */
-                    var textShape = container.addShape('text', {
-                        attrs: __assign(__assign({}, cfg.style), { fontSize: data.size, text: data.text, textAlign: 'center', fontFamily: data.font, fill: cfg.color, textBaseline: 'Alphabetic', x: cfg.x, y: cfg.y }),
+                    var attrs = __assign({ fillOpacity: cfg.opacity, fontSize: cfg.origin._origin.size, rotate: cfg.origin._origin.rotate, text: cfg.origin._origin.text, textAlign: 'center', fontFamily: cfg.origin._origin.font, fill: cfg.color, textBaseline: 'Alphabetic' }, cfg.style);
+                    return container.addShape('text', {
+                        attrs: __assign({}, attrs, { x: cfg.x, y: cfg.y }),
                     });
-                    if (data.rotate) {
-                        g2.Util.rotate(textShape, (data.rotate * Math.PI) / 180);
-                    }
-                    return textShape;
                 },
             });
         };
@@ -302,46 +286,26 @@
          * @return {?}
          */
         function () {
-            var _a = this, el = _a.el, padding = _a.padding, theme = _a.theme;
-            if (this.height === 0) {
-                this.height = this.el.nativeElement.clientHeight;
-            }
-            if (this.width === 0) {
-                this.width = this.el.nativeElement.clientWidth;
-            }
+            var _a = this, el = _a.el, padding = _a.padding, height = _a.height;
             /** @type {?} */
-            var chart = (this.chart = new g2.Chart({
+            var chart = (this.chart = new G2.Chart({
                 container: el.nativeElement,
-                autoFit: false,
                 padding: padding,
-                height: this.height,
-                width: this.width,
-                theme: theme,
+                height: height,
             }));
-            chart.scale({
-                x: { nice: false },
-                y: { nice: false },
-            });
             chart.legend(false);
             chart.axis(false);
             chart.tooltip({
                 showTitle: false,
-                showMarkers: false,
             });
-            ((/** @type {?} */ (chart.coordinate()))).reflect();
+            chart.coord().reflect();
             chart
                 .point()
                 .position('x*y')
-                .color('text')
+                .color('category')
                 .shape('cloud')
-                .state({
-                active: {
-                    style: {
-                        fillOpacity: 0.4,
-                    },
-                },
-            });
-            chart.interaction('element-active');
+                .tooltip('value*category');
+            chart.render();
             this.attachChart();
         };
         /**
@@ -353,34 +317,12 @@
          * @return {?}
          */
         function () {
-            var _a = this, chart = _a.chart, padding = _a.padding, data = _a.data;
+            var _a = this, chart = _a.chart, height = _a.height, padding = _a.padding, data = _a.data;
             if (!chart || !data || data.length <= 0)
                 return;
-            // TODO: compatible
-            if (data.find((/**
-             * @param {?} w
-             * @return {?}
-             */
-            function (w) { return !!w.x; })) != null) {
-                util.deprecation10('g2-tag-cloud', 'x', 'name');
-                data.forEach((/**
-                 * @param {?} item
-                 * @return {?}
-                 */
-                function (item) {
-                    item.name = item.x;
-                }));
-            }
-            if (data.find((/**
-             * @param {?} w
-             * @return {?}
-             */
-            function (w) { return !!w.category; })) != null) {
-                util.deprecation10('g2-tag-cloud', 'category');
-            }
-            chart.height = this.height;
-            chart.width = this.width;
-            chart.padding = padding;
+            chart.set('height', height);
+            chart.set('padding', padding);
+            chart.forceFit();
             /** @type {?} */
             var dv = new DataSet.View().source(data);
             /** @type {?} */
@@ -389,18 +331,14 @@
             var min = range[0];
             /** @type {?} */
             var max = range[1];
-            dv.transform((/** @type {?} */ ({
+            dv.transform({
                 type: 'tag-cloud',
-                fields: ['name', 'value'],
-                // imageMask,
-                font: 'Verdana',
-                size: [this.width, this.height],
-                // 宽高设置最好根据 imageMask 做调整
-                padding: 0,
+                fields: ['x', 'value'],
+                size: [chart.get('width'), chart.get('height')],
+                padding: padding,
                 timeInterval: 5000,
-                rotate: 
                 // max execute time
-                /**
+                rotate: (/**
                  * @return {?}
                  */
                 function () {
@@ -410,17 +348,18 @@
                         random = 0;
                     }
                     return random * 90; // 0, 90, 270
-                },
-                fontSize: /**
+                }),
+                fontSize: (/**
                  * @param {?} d
                  * @return {?}
                  */
-                function (d) {
-                    return ((d.value - min) / (max - min)) * (32 - 8) + 8;
-                },
-            })));
-            chart.data(dv.rows);
-            chart.render();
+                function (d) { return (d.value ? ((d.value - min) / (max - min)) * (80 - 24) + 24 : 0); }),
+            });
+            chart.source(dv, {
+                x: { nice: false },
+                y: { nice: false },
+            });
+            chart.repaint();
         };
         /**
          * @private
@@ -451,7 +390,7 @@
                 .pipe(operators.filter((/**
              * @return {?}
              */
-            function () { return !!_this.chart; })), operators.debounceTime(200))
+            function () { return _this.chart; })), operators.debounceTime(200))
                 .subscribe((/**
              * @return {?}
              */
@@ -505,6 +444,9 @@
                         selector: 'g2-tag-cloud',
                         exportAs: 'g2TagCloud',
                         template: "",
+                        host: {
+                            '[style.height.px]': 'height',
+                        },
                         preserveWhitespaces: false,
                         changeDetection: core.ChangeDetectionStrategy.OnPush,
                         encapsulation: core.ViewEncapsulation.None
@@ -513,25 +455,18 @@
         /** @nocollapse */
         G2TagCloudComponent.ctorParameters = function () { return [
             { type: core.ElementRef },
-            { type: core.NgZone },
-            { type: util.AlainConfigService }
+            { type: core.NgZone }
         ]; };
         G2TagCloudComponent.propDecorators = {
             delay: [{ type: core.Input }],
-            width: [{ type: core.Input }],
             height: [{ type: core.Input }],
             padding: [{ type: core.Input }],
-            data: [{ type: core.Input }],
-            theme: [{ type: core.Input }]
+            data: [{ type: core.Input }]
         };
         __decorate([
             util.InputNumber(),
             __metadata("design:type", Object)
         ], G2TagCloudComponent.prototype, "delay", void 0);
-        __decorate([
-            util.InputNumber(),
-            __metadata("design:type", Object)
-        ], G2TagCloudComponent.prototype, "width", void 0);
         __decorate([
             util.InputNumber(),
             __metadata("design:type", Object)
@@ -552,15 +487,11 @@
         /** @type {?} */
         G2TagCloudComponent.prototype.delay;
         /** @type {?} */
-        G2TagCloudComponent.prototype.width;
-        /** @type {?} */
         G2TagCloudComponent.prototype.height;
         /** @type {?} */
         G2TagCloudComponent.prototype.padding;
         /** @type {?} */
         G2TagCloudComponent.prototype.data;
-        /** @type {?} */
-        G2TagCloudComponent.prototype.theme;
         /**
          * @type {?}
          * @private

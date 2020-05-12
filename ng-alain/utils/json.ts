@@ -93,7 +93,7 @@ export function overwriteAngular(host: Tree, json: any) {
 export function scriptsToAngularJson(
   host: Tree,
   resources: string | string[],
-  behavior: 'add' | 'delete',
+  behavior: string,
   types: string[] = ['build', 'test'],
   projectName?: string,
   clean = false,

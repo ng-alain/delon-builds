@@ -1,6 +1,6 @@
 /**
- * @license ng-alain(cipchk@qq.com) v9.2.1
- * (c) 2020 cipchk https://ng-alain.com/
+ * @license ng-alain(cipchk@qq.com) v8.9.3
+ * (c) 2019 cipchk https://ng-alain.com/
  * License: MIT
  */
 (function (global, factory) {
@@ -225,18 +225,53 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: error-collect.config.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var ErrorCollectConfig = /** @class */ (function () {
+        function ErrorCollectConfig() {
+            /**
+             * 监听频率
+             */
+            this.freq = 500;
+            /**
+             * 顶部偏移值
+             */
+            this.offsetTop = 65 + 64 + 8 * 2;
+        }
+        ErrorCollectConfig.decorators = [
+            { type: core.Injectable, args: [{ providedIn: 'root' },] }
+        ];
+        /** @nocollapse */ ErrorCollectConfig.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function ErrorCollectConfig_Factory() { return new ErrorCollectConfig(); }, token: ErrorCollectConfig, providedIn: "root" });
+        return ErrorCollectConfig;
+    }());
+    if (false) {
+        /**
+         * 监听频率
+         * @type {?}
+         */
+        ErrorCollectConfig.prototype.freq;
+        /**
+         * 顶部偏移值
+         * @type {?}
+         */
+        ErrorCollectConfig.prototype.offsetTop;
+    }
+
+    /**
+     * @fileoverview added by tsickle
      * Generated from: error-collect.component.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var ErrorCollectComponent = /** @class */ (function () {
-        function ErrorCollectComponent(el, cdr, doc, configSrv) {
+        function ErrorCollectComponent(cog, el, cdr, doc) {
             this.el = el;
             this.cdr = cdr;
             this.doc = doc;
             this.$time = null;
             this._hiden = true;
             this.count = 0;
-            configSrv.attach(this, 'errorCollect', { freq: 500, offsetTop: 65 + 64 + 8 * 2 });
+            Object.assign(this, __assign({}, new ErrorCollectConfig(), cog));
         }
         Object.defineProperty(ErrorCollectComponent.prototype, "errEls", {
             get: /**
@@ -244,7 +279,7 @@
              * @return {?}
              */
             function () {
-                return (/** @type {?} */ (this.formEl)).querySelectorAll('.ant-form-item-has-error');
+                return (/** @type {?} */ (this.formEl)).querySelectorAll('.has-error');
             },
             enumerable: true,
             configurable: true
@@ -283,7 +318,6 @@
             formItemEl.scrollIntoView(true);
             // fix header height
             this.doc.documentElement.scrollTop -= this.offsetTop;
-            return true;
         };
         /**
          * @private
@@ -335,7 +369,7 @@
                 }
                 el = (/** @type {?} */ (el.parentElement));
             }
-            return retEl;
+            return (/** @type {?} */ (retEl));
         };
         /**
          * @return {?}
@@ -375,10 +409,10 @@
         ];
         /** @nocollapse */
         ErrorCollectComponent.ctorParameters = function () { return [
+            { type: ErrorCollectConfig },
             { type: core.ElementRef },
             { type: core.ChangeDetectorRef },
-            { type: undefined, decorators: [{ type: core.Inject, args: [common.DOCUMENT,] }] },
-            { type: util.AlainConfigService }
+            { type: undefined, decorators: [{ type: core.Inject, args: [common.DOCUMENT,] }] }
         ]; };
         ErrorCollectComponent.propDecorators = {
             freq: [{ type: core.Input }],
@@ -451,6 +485,7 @@
     }());
 
     exports.ErrorCollectComponent = ErrorCollectComponent;
+    exports.ErrorCollectConfig = ErrorCollectConfig;
     exports.ErrorCollectModule = ErrorCollectModule;
 
     Object.defineProperty(exports, '__esModule', { value: true });

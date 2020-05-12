@@ -57,8 +57,8 @@ function addDependenciesToPackageJson(options) {
             // allow ignore ng-zorro-antd becauce of @delon/theme dependency
             `ng-zorro-antd@${lib_versions_1.ZORROVERSION}`,
             // ng-zorro-antd need
-            'screenfull@^5.0.2',
-            'ajv@^6.12.0',
+            'screenfull@^5.0.0',
+            'ajv@^6.10.2',
         ]);
         // add ajv
         json_1.scriptsToAngularJson(host, ['node_modules/ajv/dist/ajv.bundle.js'], 'add', ['build', 'test']);
@@ -70,11 +70,12 @@ function addDependenciesToPackageJson(options) {
             `ng-alain-codelyzer@^0.0.1`,
             `@delon/testing@${lib_versions_1.VERSION}`,
             // color-less
-            `antd-theme-generator@^1.1.9`,
+            `antd-theme-generator@^1.1.7`,
+            `less-bundle-promise@^1.0.7`,
         ], 'devDependencies');
         // i18n
         if (options.i18n) {
-            json_1.addPackageToPackageJson(host, [`@ngx-translate/core@^12.1.2`, `@ngx-translate/http-loader@^4.0.0`]);
+            json_1.addPackageToPackageJson(host, [`@ngx-translate/core@^11.0.1`, `@ngx-translate/http-loader@^4.0.0`]);
         }
         return host;
     };
@@ -105,7 +106,9 @@ function addPathsToTsConfig() {
             json.compilerOptions.paths = {};
         const paths = json.compilerOptions.paths;
         paths['@shared'] = ['src/app/shared/index'];
+        paths['@shared/*'] = ['src/app/shared/*'];
         paths['@core'] = ['src/app/core/index'];
+        paths['@core/*'] = ['src/app/core/*'];
         paths['@env/*'] = ['src/environments/*'];
         json_1.overwriteJSON(host, 'tsconfig.json', json);
         return host;
@@ -117,25 +120,32 @@ function addCodeStylesToPackageJson() {
         if (json == null)
             return host;
         json.scripts.lint = `npm run lint:ts && npm run lint:style`;
-        json.scripts['lint:ts'] = `ng lint --fix`;
+        json.scripts['lint:ts'] = `tslint -c tslint.json \"src/**/*.ts\" --fix`;
         json.scripts['lint:style'] = `stylelint \"src/**/*.less\" --syntax less --fix`;
         json.scripts['lint-staged'] = `lint-staged`;
         json.scripts['tslint-check'] = `tslint-config-prettier-check ./tslint.json`;
+        json['lint-staged'] = {
+            linters: {
+                'src/**/*.ts': ['npm run lint:ts', 'git add'],
+                'src/**/*.less': ['npm run lint:style', 'git add'],
+            },
+            ignore: ['src/assets/*'],
+        };
         json_1.overwritePackage(host, json);
         // dependencies
         json_1.addPackageToPackageJson(host, [
             `tslint-config-prettier@^1.18.0`,
             `tslint-language-service@^0.9.9`,
-            `lint-staged@^10.1.2`,
-            `husky@^4.2.3`,
-            `prettier@^2.0.4`,
+            `lint-staged@^8.2.1`,
+            `husky@^3.0.9`,
+            `prettier@^1.18.2`,
             `prettier-stylelint@^0.4.2`,
-            `stylelint@^13.3.1`,
-            `stylelint-config-prettier@^8.0.1`,
+            `stylelint@^11.1.1`,
+            `stylelint-config-prettier@^6.0.0`,
             `stylelint-config-rational-order@^0.1.2`,
-            `stylelint-config-standard@^20.0.0`,
-            `stylelint-declaration-block-no-ignored-properties@^2.3.0`,
-            `stylelint-order@^4.0.0`,
+            `stylelint-config-standard@^19.0.0`,
+            `stylelint-declaration-block-no-ignored-properties@^2.1.0`,
+            `stylelint-order@^3.1.1`,
         ], 'devDependencies');
         return host;
     };
@@ -201,7 +211,7 @@ function mergeFiles(options, from, to) {
     return schematics_1.mergeWith(schematics_1.apply(schematics_1.url(from), [
         options.i18n ? schematics_1.noop() : schematics_1.filter(p => p.indexOf('i18n') === -1),
         options.form ? schematics_1.noop() : schematics_1.filter(p => p.indexOf('json-schema') === -1),
-        schematics_1.template(Object.assign(Object.assign({ utils: core_1.strings }, options), { dot: '.', VERSION: lib_versions_1.VERSION,
+        schematics_1.template(Object.assign({ utils: core_1.strings }, options, { dot: '.', VERSION: lib_versions_1.VERSION,
             ZORROVERSION: lib_versions_1.ZORROVERSION })),
         schematics_1.move(to),
     ]));
@@ -216,7 +226,7 @@ import { NzMessageService } from 'ng-zorro-antd/message';
 @Component({
   selector: '<%= selector %>',
   templateUrl: './<%= dasherize(name) %>.component.html',<% if(!inlineStyle) { %><% } else { %>
-  styleUrls: ['./<%= dasherize(name) %>.component.<%= style %>']<% } %><% if(!!viewEncapsulation) { %>,
+  styleUrls: ['./<%= dasherize(name) %>.component.<%= styleext %>']<% } %><% if(!!viewEncapsulation) { %>,
   encapsulation: ViewEncapsulation.<%= viewEncapsulation %><% } if (changeDetection !== 'Default') { %>,
   changeDetection: ChangeDetectionStrategy.<%= changeDetection %><% } %>
 })
@@ -272,14 +282,14 @@ function addFilesToRoot(options) {
         schematics_1.mergeWith(schematics_1.apply(schematics_1.url('./files/src'), [
             options.i18n ? schematics_1.noop() : schematics_1.filter(p => p.indexOf('i18n') === -1),
             options.form ? schematics_1.noop() : schematics_1.filter(p => p.indexOf('json-schema') === -1),
-            schematics_1.template(Object.assign(Object.assign({ utils: core_1.strings }, options), { dot: '.', VERSION: lib_versions_1.VERSION,
+            schematics_1.template(Object.assign({ utils: core_1.strings }, options, { dot: '.', VERSION: lib_versions_1.VERSION,
                 ZORROVERSION: lib_versions_1.ZORROVERSION })),
             schematics_1.move(project.sourceRoot),
         ])),
         schematics_1.mergeWith(schematics_1.apply(schematics_1.url('./files/root'), [
             options.i18n ? schematics_1.noop() : schematics_1.filter(p => p.indexOf('i18n') === -1),
             options.form ? schematics_1.noop() : schematics_1.filter(p => p.indexOf('json-schema') === -1),
-            schematics_1.template(Object.assign(Object.assign({ utils: core_1.strings }, options), { dot: '.', VERSION: lib_versions_1.VERSION,
+            schematics_1.template(Object.assign({ utils: core_1.strings }, options, { dot: '.', VERSION: lib_versions_1.VERSION,
                 ZORROVERSION: lib_versions_1.ZORROVERSION })),
         ]), schematics_1.MergeStrategy.Overwrite),
     ]);
@@ -355,10 +365,8 @@ function installPackages() {
         context.addTask(new tasks_1.NodePackageInstallTask());
     };
 }
-function tips() {
+function cnpmTips() {
     return (_host) => {
-        console.warn(``);
-        console.warn(`Don't use cnpm to install dependencies, pls refer to: https://ng-alain.com/docs/faq#Installation`);
         console.warn(`Don't use cnpm to install dependencies, pls refer to: https://ng-alain.com/docs/faq#Installation`);
     };
 }
@@ -385,7 +393,7 @@ function default_1(options) {
             fixVsCode(),
             fixAngularJson(options),
             installPackages(),
-            tips(),
+            cnpmTips(),
         ])(host, context);
     };
 }

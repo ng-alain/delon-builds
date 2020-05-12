@@ -1,13 +1,13 @@
 /**
- * @license ng-alain(cipchk@qq.com) v9.2.1
- * (c) 2020 cipchk https://ng-alain.com/
+ * @license ng-alain(cipchk@qq.com) v8.9.3
+ * (c) 2019 cipchk https://ng-alain.com/
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@antv/g2'), require('@delon/util'), require('@angular/common')) :
-    typeof define === 'function' && define.amd ? define('@delon/chart/mini-bar', ['exports', '@angular/core', '@antv/g2', '@delon/util', '@angular/common'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart['mini-bar'] = {}), global.ng.core, global.g2, global.delon.util, global.ng.common));
-}(this, (function (exports, core, g2, util, common) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util'), require('@angular/common')) :
+    typeof define === 'function' && define.amd ? define('@delon/chart/mini-bar', ['exports', '@angular/core', '@delon/util', '@angular/common'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart['mini-bar'] = {}), global.ng.core, global.delon.util, global.ng.common));
+}(this, (function (exports, core, util, common) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -241,7 +241,7 @@
     }
     var G2MiniBarComponent = /** @class */ (function () {
         // #endregion
-        function G2MiniBarComponent(el, ngZone, configSrv) {
+        function G2MiniBarComponent(el, ngZone) {
             this.el = el;
             this.ngZone = ngZone;
             // #region fields
@@ -253,7 +253,6 @@
             this.data = [];
             this.yTooltipSuffix = '';
             this.tooltipType = 'default';
-            configSrv.attachKey(this, 'chart', 'theme');
         }
         /**
          * @private
@@ -264,16 +263,15 @@
          * @return {?}
          */
         function () {
-            var _a = this, el = _a.el, height = _a.height, padding = _a.padding, yTooltipSuffix = _a.yTooltipSuffix, tooltipType = _a.tooltipType, theme = _a.theme;
+            var _a = this, el = _a.el, height = _a.height, padding = _a.padding, yTooltipSuffix = _a.yTooltipSuffix, tooltipType = _a.tooltipType;
             /** @type {?} */
-            var chart = (this.chart = new g2.Chart({
+            var chart = (this.chart = new G2.Chart({
                 container: el.nativeElement,
-                autoFit: true,
+                forceFit: true,
                 height: height,
                 padding: padding,
-                theme: theme,
             }));
-            chart.scale({
+            chart.source([], {
                 x: {
                     type: 'cat',
                 },
@@ -283,25 +281,14 @@
             });
             chart.legend(false);
             chart.axis(false);
-            /** @type {?} */
-            var tooltipOption = {
+            chart.tooltip({
+                type: tooltipType === 'mini' ? 'mini' : null,
                 showTitle: false,
-                showMarkers: true,
-                showCrosshairs: false,
-                enterable: true,
-                domStyles: {
-                    'g2-tooltip': { padding: '0px' },
-                    'g2-tooltip-title': { display: 'none' },
-                    'g2-tooltip-list-item': { margin: '4px' },
-                },
-            };
-            if (tooltipType === 'mini') {
-                tooltipOption.position = 'top';
-                (/** @type {?} */ (tooltipOption.domStyles))['g2-tooltip'] = { padding: '0px', backgroundColor: 'transparent', boxShadow: 'none' };
-                tooltipOption.itemTpl = "<li>{value}</li>";
-                tooltipOption.offset = 0;
-            }
-            chart.tooltip(tooltipOption);
+                hideMarkders: false,
+                crosshairs: false,
+                'g2-tooltip': { padding: 4 },
+                'g2-tooltip-list-item': { margin: "0px 4px" },
+            });
             chart
                 .interval()
                 .position('x*y')
@@ -326,9 +313,12 @@
             var _a = this, chart = _a.chart, height = _a.height, padding = _a.padding, data = _a.data, color = _a.color, borderWidth = _a.borderWidth;
             if (!chart || !data || data.length <= 0)
                 return;
-            chart.geometries[0].size(borderWidth).color(color);
-            chart.height = height;
-            chart.padding = padding;
+            chart
+                .get('geoms')[0]
+                .size(borderWidth)
+                .color(color);
+            chart.set('height', height);
+            chart.set('padding', padding);
             chart.changeData(data);
         };
         /**
@@ -391,8 +381,7 @@
         /** @nocollapse */
         G2MiniBarComponent.ctorParameters = function () { return [
             { type: core.ElementRef },
-            { type: core.NgZone },
-            { type: util.AlainConfigService }
+            { type: core.NgZone }
         ]; };
         G2MiniBarComponent.propDecorators = {
             delay: [{ type: core.Input }],
@@ -402,8 +391,7 @@
             padding: [{ type: core.Input }],
             data: [{ type: core.Input }],
             yTooltipSuffix: [{ type: core.Input }],
-            tooltipType: [{ type: core.Input }],
-            theme: [{ type: core.Input }]
+            tooltipType: [{ type: core.Input }]
         };
         __decorate([
             util.InputNumber(),
@@ -441,8 +429,6 @@
         G2MiniBarComponent.prototype.yTooltipSuffix;
         /** @type {?} */
         G2MiniBarComponent.prototype.tooltipType;
-        /** @type {?} */
-        G2MiniBarComponent.prototype.theme;
         /**
          * @type {?}
          * @private

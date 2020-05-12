@@ -1,11 +1,11 @@
-import { NzCascaderOption } from 'ng-zorro-antd/cascader';
+import { CascaderOption } from 'ng-zorro-antd/cascader';
 import { SFUISchemaItem } from '../../schema/ui';
 import { CascaderWidget } from './cascader.widget';
 export interface SFCascaderWidgetSchema extends SFUISchemaItem {
     /**
      * 异步静态数据源
      */
-    asyncData?: (node: NzCascaderOption, index: number, me?: CascaderWidget) => PromiseLike<any>;
+    asyncData?: (node: CascaderOption, index: number, me?: CascaderWidget) => PromiseLike<any>;
     /**
      * 在文字框中显示提示讯息
      */
@@ -39,10 +39,6 @@ export interface SFCascaderWidgetSchema extends SFUISchemaItem {
      */
     menuStyle?: string;
     /**
-     * 当下拉列表为空时显示的内容
-     */
-    notFoundContent?: string;
-    /**
      * 弹出菜单中数据列的自定义样式
      */
     columnClassName?: string;
@@ -61,7 +57,7 @@ export interface SFCascaderWidgetSchema extends SFUISchemaItem {
     /**
      * 可通过自定义的函数来判断点击菜单选项是否应该发生变化，当函数返回 `true` 时，将发生变化
      */
-    changeOn?: (option: NzCascaderOption, level: number) => boolean;
+    changeOn?: (option: CascaderOption, level: number) => boolean;
     /**
      * 触发菜单出现的行为，默认：`['click']`
      */
@@ -85,7 +81,7 @@ export interface SFCascaderWidgetSchema extends SFUISchemaItem {
     /**
      * 选项变更事件
      */
-    selectionChange?: (values: NzCascaderOption[]) => void;
+    selectionChange?: (values: CascaderOption[]) => void;
     /**
      * 内容被清空事件
      */

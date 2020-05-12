@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable, ɵɵdefineInjectable, ɵɵinject, NgModule } from '@angular/core';
-import { LazyService, AlainConfigService, DelonUtilModule } from '@delon/util';
+import { HttpClient } from '@angular/common/http';
+import { LazyService, DelonUtilModule } from '@delon/util';
 import { saveAs } from 'file-saver';
 import { CommonModule } from '@angular/common';
 
@@ -63,22 +63,53 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: zip.config.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class ZipConfig {
+    constructor() {
+        /**
+         * Zip library path
+         */
+        this.url = '//cdn.bootcss.com/jszip/3.1.5/jszip.min.js';
+        /**
+         * Defines which zip optional utils should get loaded
+         */
+        this.utils = [];
+    }
+}
+ZipConfig.decorators = [
+    { type: Injectable, args: [{ providedIn: 'root' },] }
+];
+/** @nocollapse */ ZipConfig.ngInjectableDef = ɵɵdefineInjectable({ factory: function ZipConfig_Factory() { return new ZipConfig(); }, token: ZipConfig, providedIn: "root" });
+if (false) {
+    /**
+     * Zip library path
+     * @type {?}
+     */
+    ZipConfig.prototype.url;
+    /**
+     * Defines which zip optional utils should get loaded
+     * @type {?}
+     */
+    ZipConfig.prototype.utils;
+}
+
+/**
+ * @fileoverview added by tsickle
  * Generated from: zip.service.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class ZipService {
     /**
+     * @param {?} cog
      * @param {?} http
      * @param {?} lazy
-     * @param {?} configSrv
      */
-    constructor(http, lazy, configSrv) {
+    constructor(cog, http, lazy) {
+        this.cog = cog;
         this.http = http;
         this.lazy = lazy;
-        this.cog = configSrv.merge('zip', {
-            url: '//cdn.bootcss.com/jszip/3.3.0/jszip.min.js',
-            utils: [],
-        });
     }
     /**
      * @private
@@ -124,7 +155,7 @@ class ZipService {
                          * @param {?} ret
                          * @return {?}
                          */
-                        (ret) => resolve(ret)));
+                        ret => resolve(ret)));
                     }), (/**
                      * @param {?} err
                      * @return {?}
@@ -146,7 +177,7 @@ class ZipService {
                      * @param {?} ret
                      * @return {?}
                      */
-                    (ret) => resolve(ret)));
+                    ret => resolve(ret)));
                 });
                 reader.readAsBinaryString((/** @type {?} */ (fileOrUrl)));
             }));
@@ -233,7 +264,7 @@ class ZipService {
              * @param {?} err
              * @return {?}
              */
-            (err) => {
+            err => {
                 reject(err);
             }));
         }));
@@ -244,11 +275,11 @@ ZipService.decorators = [
 ];
 /** @nocollapse */
 ZipService.ctorParameters = () => [
+    { type: ZipConfig },
     { type: HttpClient },
-    { type: LazyService },
-    { type: AlainConfigService }
+    { type: LazyService }
 ];
-/** @nocollapse */ ZipService.ɵprov = ɵɵdefineInjectable({ factory: function ZipService_Factory() { return new ZipService(ɵɵinject(HttpClient), ɵɵinject(LazyService), ɵɵinject(AlainConfigService)); }, token: ZipService, providedIn: "root" });
+/** @nocollapse */ ZipService.ngInjectableDef = ɵɵdefineInjectable({ factory: function ZipService_Factory() { return new ZipService(ɵɵinject(ZipConfig), ɵɵinject(HttpClient), ɵɵinject(LazyService)); }, token: ZipService, providedIn: "root" });
 if (false) {
     /**
      * @type {?}
@@ -292,5 +323,5 @@ ZipModule.decorators = [
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { ZipModule, ZipService };
+export { ZipConfig, ZipModule, ZipService };
 //# sourceMappingURL=zip.js.map

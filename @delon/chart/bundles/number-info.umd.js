@@ -1,13 +1,13 @@
 /**
- * @license ng-alain(cipchk@qq.com) v9.2.1
- * (c) 2020 cipchk https://ng-alain.com/
+ * @license ng-alain(cipchk@qq.com) v8.9.3
+ * (c) 2019 cipchk https://ng-alain.com/
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util'), require('@angular/common'), require('ng-zorro-antd/core/outlet'), require('ng-zorro-antd/icon')) :
-    typeof define === 'function' && define.amd ? define('@delon/chart/number-info', ['exports', '@angular/core', '@delon/util', '@angular/common', 'ng-zorro-antd/core/outlet', 'ng-zorro-antd/icon'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart['number-info'] = {}), global.ng.core, global.delon.util, global.ng.common, global['ng-zorro-antd/core/outlet'], global['ng-zorro-antd/icon']));
-}(this, (function (exports, core, util, common, outlet, icon) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util'), require('@angular/common'), require('ng-zorro-antd/icon')) :
+    typeof define === 'function' && define.amd ? define('@delon/chart/number-info', ['exports', '@angular/core', '@delon/util', '@angular/common', 'ng-zorro-antd/icon'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart['number-info'] = {}), global.ng.core, global.delon.util, global.ng.common, global['ng-zorro-antd/icon']));
+}(this, (function (exports, core, util, common, icon) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -229,7 +229,9 @@
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var NumberInfoComponent = /** @class */ (function () {
-        function NumberInfoComponent() {
+        function NumberInfoComponent(el, renderer) {
+            this.el = el;
+            this.renderer = renderer;
             /**
              * 状态样式
              */
@@ -239,21 +241,45 @@
              */
             this.gap = 8;
         }
+        /**
+         * @return {?}
+         */
+        NumberInfoComponent.prototype.setClass = /**
+         * @return {?}
+         */
+        function () {
+            var _a;
+            var _b = this, el = _b.el, renderer = _b.renderer, theme = _b.theme;
+            util.updateHostClass(el.nativeElement, renderer, (_a = {
+                    'number-info': true
+                },
+                _a["number-info__" + theme] = true,
+                _a), true);
+        };
+        /**
+         * @return {?}
+         */
+        NumberInfoComponent.prototype.ngOnChanges = /**
+         * @return {?}
+         */
+        function () {
+            this.setClass();
+        };
         NumberInfoComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'number-info',
                         exportAs: 'numberInfo',
-                        template: "<div *ngIf=\"title\" class=\"number-info__title\">\n  <ng-container *nzStringTemplateOutlet=\"title\">{{ title }}</ng-container>\n</div>\n<div *ngIf=\"subTitle\" class=\"number-info__title-sub\">\n  <ng-container *nzStringTemplateOutlet=\"subTitle\">{{ subTitle }}</ng-container>\n</div>\n<div class=\"number-info__value\" [ngStyle]=\"{ 'margin-top.px': gap }\">\n  <span class=\"number-info__value-text\">\n    <ng-container *nzStringTemplateOutlet=\"total\">{{ total }}</ng-container>\n    <em class=\"number-info__value-suffix\" *ngIf=\"suffix\">{{ suffix }}</em>\n  </span>\n  <span *ngIf=\"status || subTotal\" class=\"number-info__value-text number-info__value-sub\">\n    <ng-container *nzStringTemplateOutlet=\"subTotal\">{{ subTotal }}</ng-container>\n    <i *ngIf=\"status\" nz-icon nzType=\"caret-{{ status }}\"></i>\n  </span>\n</div>\n",
-                        host: {
-                            '[class.number-info]': "true",
-                            '[class.number-info__light]': "theme === 'light'",
-                            '[class.number-info__default]': "theme === 'default'",
-                        },
+                        template: "<div *ngIf=\"title\" class=\"number-info__title\">\n  <ng-container *stringTemplateOutlet=\"title\">{{title}}</ng-container>\n</div>\n<div *ngIf=\"subTitle\" class=\"number-info__title-sub\">\n  <ng-container *stringTemplateOutlet=\"subTitle\">{{subTitle}}</ng-container>\n</div>\n<div class=\"number-info__value\" [ngStyle]=\"{'margin-top.px': gap}\">\n  <span class=\"number-info__value-text\">\n    <ng-container *stringTemplateOutlet=\"total\">{{total}}</ng-container>\n    <em class=\"number-info__value-suffix\" *ngIf=\"suffix\">{{suffix}}</em>\n  </span>\n  <span *ngIf=\"status || subTotal\" class=\"number-info__value-text number-info__value-sub\">\n    <ng-container *stringTemplateOutlet=\"subTotal\">{{subTotal}}</ng-container>\n    <i *ngIf=\"status\" nz-icon nzType=\"caret-{{status}}\"></i>\n  </span>\n</div>\n",
                         preserveWhitespaces: false,
                         changeDetection: core.ChangeDetectionStrategy.OnPush,
                         encapsulation: core.ViewEncapsulation.None
                     }] }
         ];
+        /** @nocollapse */
+        NumberInfoComponent.ctorParameters = function () { return [
+            { type: core.ElementRef },
+            { type: core.Renderer2 }
+        ]; };
         NumberInfoComponent.propDecorators = {
             title: [{ type: core.Input }],
             subTitle: [{ type: core.Input }],
@@ -311,6 +337,16 @@
          * @type {?}
          */
         NumberInfoComponent.prototype.gap;
+        /**
+         * @type {?}
+         * @private
+         */
+        NumberInfoComponent.prototype.el;
+        /**
+         * @type {?}
+         * @private
+         */
+        NumberInfoComponent.prototype.renderer;
     }
 
     /**
@@ -325,7 +361,7 @@
         }
         NumberInfoModule.decorators = [
             { type: core.NgModule, args: [{
-                        imports: [common.CommonModule, icon.NzIconModule, util.DelonUtilModule, outlet.NzOutletModule],
+                        imports: [common.CommonModule, icon.NzIconModule, util.DelonUtilModule],
                         declarations: __spread(COMPONENTS),
                         exports: __spread(COMPONENTS),
                     },] }

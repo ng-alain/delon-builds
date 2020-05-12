@@ -1,11 +1,10 @@
 import { Tree } from '@angular-devkit/schematics';
-export declare function readContent(host: Tree, filePath: string): string;
 /**
  * Overwrite files to the project
  *
  * @param [overwrite=false] `true` is force, default: `false`
  */
-export declare function overwriteFile(host: Tree, filePath: string, sourcePath?: string, overwrite?: boolean, sourcePathIsString?: boolean): Tree;
+export declare function overwriteFile(host: Tree, filePath: string, sourcePath?: string, overwrite?: boolean): Tree;
 /**
  * Overwrite files to the project
  *

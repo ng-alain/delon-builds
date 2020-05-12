@@ -1,12 +1,11 @@
-# @delon/cache module [![Build Status](https://dev.azure.com/ng-alain/delon/_apis/build/status/delon-CI?branchName=master)](https://dev.azure.com/ng-alain/delon/_build/latest?definitionId=1&branchName=master) [![NPM version](https://img.shields.io/npm/v/@delon/cache.svg?style=flat-square)](https://www.npmjs.com/package/@delon/cache)
+# @delon/cache module [![Build Status](https://img.shields.io/travis/ng-alain/delon/master.svg?style=flat-square)](https://travis-ci.org/ng-alain/delon) [![NPM version](https://img.shields.io/npm/v/@delon/cache.svg?style=flat-square)](https://www.npmjs.com/package/@delon/cache)
 
 Cache the dictionary, city data etc.
 
 ## Links
 
-+ [Document](https://ng-alain.com/cache) ([Surge Mirror](https://ng-alain-doc.surge.sh/cache))
-+ [@delon Source](https://github.com/ng-alain/delon)
-+ [DEMO](https://ng-alain.surge.sh) ([国内镜像](https://ng-alain.gitee.io/))
+- [Api Document](https://ng-alain.com/cache)
+- [Demo](//ng-alain.github.io/ng-alain/)
 
 ## Architecture
 

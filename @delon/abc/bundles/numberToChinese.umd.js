@@ -1,6 +1,6 @@
 /**
- * @license ng-alain(cipchk@qq.com) v9.2.1
- * (c) 2020 cipchk https://ng-alain.com/
+ * @license ng-alain(cipchk@qq.com) v8.9.3
+ * (c) 2019 cipchk https://ng-alain.com/
  * License: MIT
  */
 (function (global, factory) {
@@ -285,8 +285,50 @@
                 ? ['', '壹', '贰', '叁', '肆', '伍', '陆', '柒', '捌', '玖', '点']
                 : ['', '一', '二', '三', '四', '五', '六', '七', '八', '九', '点'],
             radice: rmb
-                ? ['', '拾', '佰', '仟', '万', '拾', '佰', '仟', '亿', '拾', '佰', '仟', '万亿', '拾', '佰', '仟', '兆', '拾', '佰', '仟']
-                : ['', '十', '百', '千', '万', '十', '百', '千', '亿', '十', '百', '千', '万亿', '十', '百', '千', '兆', '十', '百', '千'],
+                ? [
+                    '',
+                    '拾',
+                    '佰',
+                    '仟',
+                    '万',
+                    '拾',
+                    '佰',
+                    '仟',
+                    '亿',
+                    '拾',
+                    '佰',
+                    '仟',
+                    '万亿',
+                    '拾',
+                    '佰',
+                    '仟',
+                    '兆',
+                    '拾',
+                    '佰',
+                    '仟',
+                ]
+                : [
+                    '',
+                    '十',
+                    '百',
+                    '千',
+                    '万',
+                    '十',
+                    '百',
+                    '千',
+                    '亿',
+                    '十',
+                    '百',
+                    '千',
+                    '万亿',
+                    '十',
+                    '百',
+                    '千',
+                    '兆',
+                    '十',
+                    '百',
+                    '千',
+                ],
             dec: ['角', '分', '厘', '毫'],
         };
         if (rmb)
@@ -350,7 +392,7 @@
                 /** @type {?} */
                 var cnZero = n === '0' ? '零' : '';
                 /** @type {?} */
-                var cnNum = ((/** @type {?} */ (unit.num)))[n];
+                var cnNum = unit.num[n];
                 /** @type {?} */
                 var cnDesc = rmb ? unit.dec[i] : '';
                 decimalRes += cnZero + cnNum + cnDesc;
@@ -358,7 +400,9 @@
         }
         /** @type {?} */
         var ret = symbol +
-            (rmb ? integerRes + (decimalRes === '零' ? '元整' : "\u5143" + decimalRes) : integerRes + (decimalRes === '' ? '' : "\u70B9" + decimalRes));
+            (rmb
+                ? integerRes + (decimalRes === '零' ? '元整' : "\u5143" + decimalRes)
+                : integerRes + (decimalRes === '' ? '' : "\u70B9" + decimalRes));
         return ret;
     }
 

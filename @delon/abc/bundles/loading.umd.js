@@ -1,13 +1,13 @@
 /**
- * @license ng-alain(cipchk@qq.com) v9.2.1
- * (c) 2020 cipchk https://ng-alain.com/
+ * @license ng-alain(cipchk@qq.com) v8.9.3
+ * (c) 2019 cipchk https://ng-alain.com/
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/cdk/overlay'), require('@angular/cdk/portal'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('@angular/common'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/spin')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/loading', ['exports', '@angular/core', '@angular/cdk/overlay', '@angular/cdk/portal', '@delon/util', 'rxjs', 'rxjs/operators', '@angular/common', 'ng-zorro-antd/icon', 'ng-zorro-antd/spin'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.loading = {}), global.ng.core, global.ng.cdk.overlay, global.ng.cdk.portal, global.delon.util, global.rxjs, global.rxjs.operators, global.ng.common, global['ng-zorro-antd/icon'], global['ng-zorro-antd/spin']));
-}(this, (function (exports, core, overlay, portal, util, rxjs, operators, common, icon, spin) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/cdk/overlay'), require('@angular/cdk/portal'), require('rxjs'), require('rxjs/operators'), require('@angular/common'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/spin')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/loading', ['exports', '@angular/core', '@angular/cdk/overlay', '@angular/cdk/portal', 'rxjs', 'rxjs/operators', '@angular/common', 'ng-zorro-antd/icon', 'ng-zorro-antd/spin'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.loading = {}), global.ng.core, global.ng.cdk.overlay, global.ng.cdk.portal, global.rxjs, global.rxjs.operators, global.ng.common, global['ng-zorro-antd/icon'], global['ng-zorro-antd/spin']));
+}(this, (function (exports, core, overlay, portal, rxjs, operators, common, icon, spin) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -225,6 +225,41 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: loading.config.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var LoadingConfig = /** @class */ (function () {
+        function LoadingConfig() {
+            this.type = 'spin';
+            this.text = '加载中...';
+            this.icon = {
+                type: 'loading',
+                theme: 'outline',
+                spin: true,
+            };
+            this.delay = 0;
+        }
+        LoadingConfig.decorators = [
+            { type: core.Injectable, args: [{ providedIn: 'root' },] }
+        ];
+        /** @nocollapse */ LoadingConfig.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function LoadingConfig_Factory() { return new LoadingConfig(); }, token: LoadingConfig, providedIn: "root" });
+        return LoadingConfig;
+    }());
+    if (false) {
+        /** @type {?} */
+        LoadingConfig.prototype.type;
+        /** @type {?} */
+        LoadingConfig.prototype.text;
+        /** @type {?} */
+        LoadingConfig.prototype.icon;
+        /** @type {?} */
+        LoadingConfig.prototype.custom;
+        /** @type {?} */
+        LoadingConfig.prototype.delay;
+    }
+
+    /**
+     * @fileoverview added by tsickle
      * Generated from: loading.component.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
@@ -254,7 +289,7 @@
         LoadingDefaultComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'loading-default',
-                        template: "<div class=\"loading-default__icon\" *ngIf=\"options.type !== 'text'\">\n  <ng-container [ngSwitch]=\"options.type\">\n    <nz-spin *ngSwitchCase=\"'spin'\" nzSimple></nz-spin>\n    <i *ngSwitchCase=\"'icon'\" nz-icon [nzType]=\"icon.type\" [nzTheme]=\"icon.theme\" [nzSpin]=\"icon.spin\"></i>\n    <div *ngSwitchDefault class=\"loading-default__custom\" [ngStyle]=\"custom.style\" [innerHTML]=\"custom.html\"></div>\n  </ng-container>\n</div>\n<div *ngIf=\"options.text\" class=\"loading-default__text\">{{ options.text }}</div>\n",
+                        template: "<div class=\"loading-default__icon\" *ngIf=\"options.type !== 'text'\">\n  <ng-container [ngSwitch]=\"options.type\">\n    <nz-spin *ngSwitchCase=\"'spin'\" nzSimple></nz-spin>\n    <i *ngSwitchCase=\"'icon'\" nz-icon [nzType]=\"icon.type\" [nzTheme]=\"icon.theme\" [nzSpin]=\"icon.spin\"></i>\n    <div *ngSwitchDefault class=\"loading-default__custom\" [ngStyle]=\"custom.style\" [innerHTML]=\"custom.html\"></div>\n  </ng-container>\n</div>\n<div *ngIf=\"options.text\" class=\"loading-default__text\">{{ options.text }}</div>",
                         host: {
                             '[class.loading-default]': 'true',
                         },
@@ -276,22 +311,13 @@
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var LoadingService = /** @class */ (function () {
-        function LoadingService(overlay, configSrv) {
+        function LoadingService(cog, overlay) {
             var _this = this;
+            this.cog = cog;
             this.overlay = overlay;
             this.compRef = null;
             this.opt = null;
             this.n$ = new rxjs.Subject();
-            this.cog = configSrv.merge('loading', {
-                type: 'spin',
-                text: '加载中...',
-                icon: {
-                    type: 'loading',
-                    theme: 'outline',
-                    spin: true,
-                },
-                delay: 0,
-            });
             this.loading$ = this.n$
                 .asObservable()
                 .pipe(operators.debounce((/**
@@ -326,7 +352,11 @@
                 return;
             this._close(false);
             this._overlayRef = this.overlay.create({
-                positionStrategy: this.overlay.position().global().centerHorizontally().centerVertically(),
+                positionStrategy: this.overlay
+                    .position()
+                    .global()
+                    .centerHorizontally()
+                    .centerVertically(),
                 scrollStrategy: this.overlay.scrollStrategies.block(),
                 hasBackdrop: true,
                 backdropClass: 'loading-backdrop',
@@ -346,7 +376,7 @@
          * @return {?}
          */
         function (options) {
-            this.opt = __assign(__assign({}, this.cog), options);
+            this.opt = __assign({}, this.cog, options);
             this.n$.next();
         };
         /**
@@ -390,10 +420,10 @@
         ];
         /** @nocollapse */
         LoadingService.ctorParameters = function () { return [
-            { type: overlay.Overlay },
-            { type: util.AlainConfigService }
+            { type: LoadingConfig },
+            { type: overlay.Overlay }
         ]; };
-        /** @nocollapse */ LoadingService.ɵprov = core.ɵɵdefineInjectable({ factory: function LoadingService_Factory() { return new LoadingService(core.ɵɵinject(overlay.Overlay), core.ɵɵinject(util.AlainConfigService)); }, token: LoadingService, providedIn: "root" });
+        /** @nocollapse */ LoadingService.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function LoadingService_Factory() { return new LoadingService(core.ɵɵinject(LoadingConfig), core.ɵɵinject(overlay.Overlay)); }, token: LoadingService, providedIn: "root" });
         return LoadingService;
     }());
     if (false) {
@@ -416,17 +446,17 @@
          * @type {?}
          * @private
          */
-        LoadingService.prototype.cog;
-        /**
-         * @type {?}
-         * @private
-         */
         LoadingService.prototype.n$;
         /**
          * @type {?}
          * @private
          */
         LoadingService.prototype.loading$;
+        /**
+         * @type {?}
+         * @private
+         */
+        LoadingService.prototype.cog;
         /**
          * @type {?}
          * @private
@@ -446,6 +476,7 @@
             { type: core.NgModule, args: [{
                         imports: [common.CommonModule, overlay.OverlayModule, portal.PortalModule, icon.NzIconModule, spin.NzSpinModule],
                         declarations: [LoadingDefaultComponent],
+                        entryComponents: [LoadingDefaultComponent],
                         exports: [LoadingDefaultComponent],
                     },] }
         ];
@@ -454,7 +485,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * Generated from: loading.types.ts
+     * Generated from: loading.interfaces.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /**
@@ -511,6 +542,7 @@
         LoadingShowOptions.prototype.delay;
     }
 
+    exports.LoadingConfig = LoadingConfig;
     exports.LoadingDefaultComponent = LoadingDefaultComponent;
     exports.LoadingModule = LoadingModule;
     exports.LoadingService = LoadingService;

@@ -1,17 +1,16 @@
 import { InjectionToken, Injectable, ɵɵdefineInjectable, Optional, Inject, ɵɵinject, Injector, INJECTOR, SkipSelf, NgModule, Pipe, Version } from '@angular/core';
-import { ACLService } from '@delon/acl';
 import { BehaviorSubject, Subject, Observable, throwError, of } from 'rxjs';
 import { filter, share, tap, catchError, switchMap } from 'rxjs/operators';
+import { ACLService } from '@delon/acl';
 import { DOCUMENT, CurrencyPipe, CommonModule } from '@angular/common';
-import { AlainConfigService, deepMerge, toDate } from '@delon/util';
 import { Title, DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { deepMerge } from '@delon/util';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { NzDrawerService } from 'ng-zorro-antd/drawer';
 import { HttpParams, HttpClient } from '@angular/common/http';
+import distanceInWordsToNow from 'date-fns/distance_in_words_to_now';
 import format from 'date-fns/format';
-import formatDistanceToNow from 'date-fns/formatDistanceToNow';
-import { NzI18nService, NzI18nModule } from 'ng-zorro-antd/i18n';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { BellOutline, DeleteOutline, PlusOutline, InboxOutline } from '@ant-design/icons-angular/icons';
 import { NzIconService } from 'ng-zorro-antd/icon';
@@ -313,7 +312,7 @@ class AlainI18NServiceFake {
 AlainI18NServiceFake.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
-/** @nocollapse */ AlainI18NServiceFake.ɵprov = ɵɵdefineInjectable({ factory: function AlainI18NServiceFake_Factory() { return new AlainI18NServiceFake(); }, token: AlainI18NServiceFake, providedIn: "root" });
+/** @nocollapse */ AlainI18NServiceFake.ngInjectableDef = ɵɵdefineInjectable({ factory: function AlainI18NServiceFake_Factory() { return new AlainI18NServiceFake(); }, token: AlainI18NServiceFake, providedIn: "root" });
 if (false) {
     /**
      * @type {?}
@@ -431,7 +430,10 @@ class MenuService {
                 // compatible `anticon anticon-user`
                 if (~item.icon.indexOf(`anticon-`)) {
                     type = 'icon';
-                    value = value.split('-').slice(1).join('-');
+                    value = value
+                        .split('-')
+                        .slice(1)
+                        .join('-');
                 }
                 else if (/^https?:\/\//.test(item.icon)) {
                     type = 'img';
@@ -563,7 +565,10 @@ class MenuService {
                 url = url.split('?')[0];
             }
             else {
-                url = url.split('/').slice(0, -1).join('/');
+                url = url
+                    .split('/')
+                    .slice(0, -1)
+                    .join('/');
             }
         }
         return item;
@@ -672,7 +677,7 @@ MenuService.ctorParameters = () => [
     { type: undefined, decorators: [{ type: Optional }, { type: Inject, args: [ALAIN_I18N_TOKEN,] }] },
     { type: ACLService, decorators: [{ type: Optional }] }
 ];
-/** @nocollapse */ MenuService.ɵprov = ɵɵdefineInjectable({ factory: function MenuService_Factory() { return new MenuService(ɵɵinject(ALAIN_I18N_TOKEN, 8), ɵɵinject(ACLService, 8)); }, token: MenuService, providedIn: "root" });
+/** @nocollapse */ MenuService.ngInjectableDef = ɵɵdefineInjectable({ factory: function MenuService_Factory() { return new MenuService(ɵɵinject(ALAIN_I18N_TOKEN, 8), ɵɵinject(ACLService, 8)); }, token: MenuService, providedIn: "root" });
 if (false) {
     /**
      * @type {?}
@@ -773,7 +778,7 @@ ScrollService.ctorParameters = () => [
     { type: undefined, decorators: [{ type: Inject, args: [WINDOW,] }] },
     { type: undefined, decorators: [{ type: Inject, args: [DOCUMENT,] }] }
 ];
-/** @nocollapse */ ScrollService.ɵprov = ɵɵdefineInjectable({ factory: function ScrollService_Factory() { return new ScrollService(ɵɵinject(WINDOW), ɵɵinject(DOCUMENT)); }, token: ScrollService, providedIn: "root" });
+/** @nocollapse */ ScrollService.ngInjectableDef = ɵɵdefineInjectable({ factory: function ScrollService_Factory() { return new ScrollService(ɵɵinject(WINDOW), ɵɵinject(DOCUMENT)); }, token: ScrollService, providedIn: "root" });
 if (false) {
     /**
      * @type {?}
@@ -980,7 +985,7 @@ class SettingsService {
 SettingsService.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
-/** @nocollapse */ SettingsService.ɵprov = ɵɵdefineInjectable({ factory: function SettingsService_Factory() { return new SettingsService(); }, token: SettingsService, providedIn: "root" });
+/** @nocollapse */ SettingsService.ngInjectableDef = ɵɵdefineInjectable({ factory: function SettingsService_Factory() { return new SettingsService(); }, token: SettingsService, providedIn: "root" });
 if (false) {
     /**
      * @type {?}
@@ -1006,6 +1011,56 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: src/services/responsive/responsive.config.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ */
+function ResponsiveConfig() { }
+if (false) {
+    /** @type {?} */
+    ResponsiveConfig.prototype.rules;
+}
+/**
+ * @record
+ */
+function ResponsiveConfigRule() { }
+if (false) {
+    /** @type {?|undefined} */
+    ResponsiveConfigRule.prototype.xs;
+    /** @type {?|undefined} */
+    ResponsiveConfigRule.prototype.sm;
+    /** @type {?|undefined} */
+    ResponsiveConfigRule.prototype.md;
+    /** @type {?|undefined} */
+    ResponsiveConfigRule.prototype.lg;
+    /** @type {?|undefined} */
+    ResponsiveConfigRule.prototype.xl;
+    /** @type {?|undefined} */
+    ResponsiveConfigRule.prototype.xxl;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * Generated from: src/theme.config.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class AlainThemeConfig {
+}
+AlainThemeConfig.decorators = [
+    { type: Injectable, args: [{ providedIn: 'root' },] }
+];
+/** @nocollapse */ AlainThemeConfig.ngInjectableDef = ɵɵdefineInjectable({ factory: function AlainThemeConfig_Factory() { return new AlainThemeConfig(); }, token: AlainThemeConfig, providedIn: "root" });
+if (false) {
+    /** @type {?} */
+    AlainThemeConfig.prototype.http;
+    /** @type {?} */
+    AlainThemeConfig.prototype.responsive;
+}
+
+/**
+ * @fileoverview added by tsickle
  * Generated from: src/services/responsive/responsive.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
@@ -1013,19 +1068,17 @@ if (false) {
 const REP_MAX = 6;
 class ResponsiveService {
     /**
-     * @param {?} cogSrv
+     * @param {?} cog
      */
-    constructor(cogSrv) {
-        this.cog = cogSrv.merge('themeResponsive', {
-            rules: {
+    constructor(cog) {
+        this.cog = Object.assign({ rules: {
                 1: { xs: 24 },
                 2: { xs: 24, sm: 12 },
                 3: { xs: 24, sm: 12, md: 8 },
                 4: { xs: 24, sm: 12, md: 8, lg: 6 },
                 5: { xs: 24, sm: 12, md: 8, lg: 6, xl: 4 },
                 6: { xs: 24, sm: 12, md: 8, lg: 6, xl: 4, xxl: 2 },
-            },
-        });
+            } }, (/** @type {?} */ (cog)).responsive);
         if (Object.keys(this.cog.rules)
             .map((/**
          * @param {?} i
@@ -1069,9 +1122,9 @@ ResponsiveService.decorators = [
 ];
 /** @nocollapse */
 ResponsiveService.ctorParameters = () => [
-    { type: AlainConfigService }
+    { type: AlainThemeConfig }
 ];
-/** @nocollapse */ ResponsiveService.ɵprov = ɵɵdefineInjectable({ factory: function ResponsiveService_Factory() { return new ResponsiveService(ɵɵinject(AlainConfigService)); }, token: ResponsiveService, providedIn: "root" });
+/** @nocollapse */ ResponsiveService.ngInjectableDef = ɵɵdefineInjectable({ factory: function ResponsiveService_Factory() { return new ResponsiveService(ɵɵinject(AlainThemeConfig)); }, token: ResponsiveService, providedIn: "root" });
 if (false) {
     /**
      * @type {?}
@@ -1201,7 +1254,7 @@ class TitleService {
         let title;
         if (item.i18n && this.i18nSrv)
             title = this.i18nSrv.fanyi(item.i18n);
-        return title || (/** @type {?} */ (item.text));
+        return title || item.text;
     }
     /**
      * @private
@@ -1267,7 +1320,7 @@ TitleService.ctorParameters = () => [
     { type: undefined, decorators: [{ type: Optional }, { type: Inject, args: [ALAIN_I18N_TOKEN,] }] },
     { type: undefined, decorators: [{ type: Inject, args: [DOCUMENT,] }] }
 ];
-/** @nocollapse */ TitleService.ɵprov = ɵɵdefineInjectable({ factory: function TitleService_Factory() { return new TitleService(ɵɵinject(INJECTOR), ɵɵinject(Title), ɵɵinject(MenuService), ɵɵinject(ALAIN_I18N_TOKEN, 8), ɵɵinject(DOCUMENT)); }, token: TitleService, providedIn: "root" });
+/** @nocollapse */ TitleService.ngInjectableDef = ɵɵdefineInjectable({ factory: function TitleService_Factory() { return new TitleService(ɵɵinject(INJECTOR), ɵɵinject(Title), ɵɵinject(MenuService), ɵɵinject(ALAIN_I18N_TOKEN, 8), ɵɵinject(DOCUMENT)); }, token: TitleService, providedIn: "root" });
 if (false) {
     /**
      * @type {?}
@@ -1382,8 +1435,6 @@ if (false) {
     ReuseTabLocaleData.prototype.closeRight;
     /** @type {?} */
     ReuseTabLocaleData.prototype.clear;
-    /** @type {?} */
-    ReuseTabLocaleData.prototype.refresh;
 }
 /**
  * @record
@@ -1555,7 +1606,7 @@ var zhCN = (/** @type {?} */ ({
         close: '关闭标签',
         closeOther: '关闭其它标签',
         closeRight: '关闭右侧标签',
-        refresh: '刷新',
+        clear: '清空',
     },
     tagSelect: {
         expand: '展开',
@@ -1657,7 +1708,7 @@ class DelonLocaleService {
      * @return {?}
      */
     getData(path) {
-        return (/** @type {?} */ ((this._locale[path] || {})));
+        return this._locale[path] || {};
     }
 }
 DelonLocaleService.decorators = [
@@ -1729,7 +1780,7 @@ var enUS = (/** @type {?} */ ({
         close: 'Close tab',
         closeOther: 'Close other tabs',
         closeRight: 'Close tabs to right',
-        refresh: 'Refresh',
+        clear: 'Clear tabs',
     },
     tagSelect: {
         expand: 'Expand',
@@ -1811,7 +1862,7 @@ var zhTW = (/** @type {?} */ ({
         close: '關閉標簽',
         closeOther: '關閉其它標簽',
         closeRight: '關閉右側標簽',
-        refresh: '刷新',
+        clear: '清空',
     },
     tagSelect: {
         expand: '展開',
@@ -1893,7 +1944,7 @@ var trTR = (/** @type {?} */ ({
         close: 'Sekmeyi Kapat',
         closeOther: 'Diğer sekmeleri kapat',
         closeRight: 'Sağdaki sekmeleri kapat',
-        refresh: 'täzele',
+        clear: 'Sekmeleri temizle',
     },
     tagSelect: {
         expand: 'Genişlet',
@@ -1975,7 +2026,7 @@ var plPL = (/** @type {?} */ ({
         close: 'Zamknij kartę',
         closeOther: 'Zamknij inne karty',
         closeRight: 'Zamknij karty po prawej',
-        refresh: 'Refresh',
+        clear: 'Wyczyść karty',
     },
     tagSelect: {
         expand: 'Rozszerz',
@@ -2057,7 +2108,7 @@ var elGR = (/** @type {?} */ ({
         close: 'Κλείσιμο καρτέλας',
         closeOther: 'Κλείσιμο των άλλων καρτέλων',
         closeRight: 'Κλείσιμο των καρτελών δεξιά',
-        refresh: 'φρεσκάρω',
+        clear: 'Καθαρισμός καρτελών',
     },
     tagSelect: {
         expand: 'Επέκταση',
@@ -2139,7 +2190,7 @@ var koKR = (/** @type {?} */ ({
         close: '탭 닫기',
         closeOther: '다른 탭 닫기',
         closeRight: '오른쪽 탭 닫기',
-        refresh: '새롭게 하다',
+        clear: '탭 지우기',
     },
     tagSelect: {
         expand: '펼치기',
@@ -2221,7 +2272,7 @@ var hrHR = (/** @type {?} */ ({
         close: 'Zatvori karticu',
         closeOther: 'Zatvori druge kartice',
         closeRight: 'Zatvori kartice desno',
-        refresh: 'Refresh',
+        clear: 'Obriši kartice',
     },
     tagSelect: {
         expand: 'Proširi',
@@ -2243,88 +2294,6 @@ var hrHR = (/** @type {?} */ ({
         addText: 'Dodaj',
         removeText: 'Ukloni',
         checkAllText: 'Označi sve',
-    },
-}));
-
-/**
- * @fileoverview added by tsickle
- * Generated from: src/locale/languages/ja-JP.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-var jaJP = (/** @type {?} */ ({
-    abbr: 'ja-JP',
-    exception: {
-        403: 'ページへのアクセス権限がありません',
-        404: 'ページが存在しません',
-        500: 'サーバーエラーが発生しました',
-        backToHome: 'ホームに戻る',
-    },
-    noticeIcon: {
-        emptyText: 'データが有りません',
-        clearText: 'クリア',
-    },
-    reuseTab: {
-        close: 'タブを閉じる',
-        closeOther: '他のタブを閉じる',
-        closeRight: '右のタブを閉じる',
-        refresh: 'リフレッシュ',
-    },
-    tagSelect: {
-        expand: '展開する',
-        collapse: '折りたたむ',
-    },
-    miniProgress: {
-        target: '設定値: ',
-    },
-    st: {
-        total: '{{range[0]}} - {{range[1]}} / {{total}}',
-        filterConfirm: '確定',
-        filterReset: 'リセット',
-    },
-    sf: {
-        submit: '送信',
-        reset: 'リセット',
-        search: '検索',
-        edit: '保存',
-        addText: '追加',
-        removeText: '削除',
-        checkAllText: '全選択',
-        error: {
-            'false schema': `真偽値スキーマが不正です`,
-            $ref: `参照を解決できません: {ref}`,
-            additionalItems: `{limit}個を超えるアイテムを含めることはできません`,
-            additionalProperties: `追加のプロパティを使用しないでください`,
-            anyOf: `"anyOf"のスキーマと一致する必要があります`,
-            dependencies: `プロパティ {property} を指定した場合、次の依存関係を満たす必要があります: {deps}`,
-            enum: `定義された値のいずれかに等しくなければなりません`,
-            format: `入力形式に一致しません: "{format}"`,
-            type: `型が不正です: {type}`,
-            required: `必須項目です`,
-            maxLength: `最大文字数: {limit}`,
-            minLength: `最少文字数: {limit}`,
-            minimum: `値が不正です: {comparison} {limit}`,
-            formatMinimum: `値が不正です: {comparison} {limit}`,
-            maximum: `値が不正です: {comparison} {limit}`,
-            formatMaximum: `値が不正です: {comparison} {limit}`,
-            maxItems: `最大選択数は {limit}　より小さい必要があります`,
-            minItems: `最小選択数は {limit}　より大きい必要があります`,
-            maxProperties: `値を{limit}より大きくすることはできません`,
-            minProperties: `値を{limit}より小さくすることはできません`,
-            multipleOf: `値は次の数の倍数である必要があります: {multipleOf}`,
-            not: `値が不正です:`,
-            oneOf: `値が不正です:`,
-            pattern: `次のパターンに一致する必要があります: "{pattern}"`,
-            uniqueItems: `値が重複しています: 選択肢: {j} 、{i}`,
-            custom: `形式と一致する必要があります`,
-            propertyNames: `次のプロパティの値が無効です: "{propertyName}"`,
-            patternRequired: `次のパターンに一致するプロパティが必須です: "{missingPattern}"`,
-            switch: `"switch" キーワードの値が不正です: {caseIndex}`,
-            const: `値が定数に一致しません`,
-            contains: `有効なアイテムを含める必要があります`,
-            formatExclusiveMaximum: `formatExclusiveMaximum は真偽値である必要があります`,
-            formatExclusiveMinimum: `formatExclusiveMaximum は真偽値である必要があります`,
-            if: `パターンと一致する必要があります: "{failingKeyword}" `,
-        },
     },
 }));
 
@@ -2356,7 +2325,7 @@ if (false) {
      */
     ModalHelperOptions.prototype.size;
     /**
-     * 对话框 [ModalOptions](https://github.com/NG-ZORRO/ng-zorro-antd/blob/master/components/modal/modal-types.ts) 参数
+     * 对话框 [ModalOptionsForService](https://github.com/NG-ZORRO/ng-zorro-antd/blob/master/components/modal/nz-modal.type.ts) 参数
      * @type {?|undefined}
      */
     ModalHelperOptions.prototype.modalOptions;
@@ -2438,7 +2407,7 @@ class ModalHelper {
                 nzComponentParams: params,
             };
             /** @type {?} */
-            const subject = this.srv.create(Object.assign(Object.assign({}, defaultOptions), modalOptions));
+            const subject = this.srv.create(Object.assign({}, defaultOptions, modalOptions));
             /** @type {?} */
             const afterClose$ = subject.afterClose.subscribe((/**
              * @param {?} res
@@ -2478,7 +2447,7 @@ class ModalHelper {
     createStatic(comp, params, options) {
         /** @type {?} */
         const modalOptions = Object.assign({ nzMaskClosable: false }, (options && options.modalOptions));
-        return this.create(comp, params, Object.assign(Object.assign({}, options), { modalOptions }));
+        return this.create(comp, params, Object.assign({}, options, { modalOptions }));
     }
     /**
      * 打开对话框
@@ -2493,8 +2462,8 @@ class ModalHelper {
      * @param {?} comp 组件
      * @param {?=} params 组件参数
      * @param {?=} size 大小；例如：lg、600，默认：lg
+     * @param {?=} options 对话框 `ModalOptionsForService` 参数
      *
-     * @param {?=} options
      * @return {?}
      */
     open(comp, params, size = 'lg', options) {
@@ -2517,8 +2486,8 @@ class ModalHelper {
      * @param {?} comp 组件
      * @param {?=} params 组件参数
      * @param {?=} size 大小；例如：lg、600，默认：lg
+     * @param {?=} options 对话框 `ModalOptionsForService` 参数
      *
-     * @param {?=} options
      * @return {?}
      */
     static(comp, params, size = 'lg', options) {
@@ -2532,7 +2501,7 @@ ModalHelper.decorators = [
 ModalHelper.ctorParameters = () => [
     { type: NzModalService }
 ];
-/** @nocollapse */ ModalHelper.ɵprov = ɵɵdefineInjectable({ factory: function ModalHelper_Factory() { return new ModalHelper(ɵɵinject(NzModalService)); }, token: ModalHelper, providedIn: "root" });
+/** @nocollapse */ ModalHelper.ngInjectableDef = ɵɵdefineInjectable({ factory: function ModalHelper_Factory() { return new ModalHelper(ɵɵinject(NzModalService)); }, token: ModalHelper, providedIn: "root" });
 if (false) {
     /**
      * @type {?}
@@ -2620,7 +2589,7 @@ class DrawerHelper {
         options = deepMerge({
             size: 'md',
             footer: true,
-            footerHeight: 50,
+            footerHeight: 55,
             exact: true,
             drawerOptions: {
                 nzPlacement: 'right',
@@ -2647,13 +2616,25 @@ class DrawerHelper {
                 delete (/** @type {?} */ (drawerOptions)).nzWrapClassName;
             }
             if (footer) {
-                // The 24 value is @drawer-body-padding
-                defaultOptions.nzBodyStyle = {
-                    'padding-bottom.px': (/** @type {?} */ (footerHeight)) + 24,
-                };
+                const { nzPlacement, nzHeight } = (/** @type {?} */ (drawerOptions));
+                // Should be header * footer, because of includes header
+                /** @type {?} */
+                const reduceHeight = (/** @type {?} */ (footerHeight)) * 2 - 2;
+                if (nzPlacement === 'left' || nzPlacement === 'right') {
+                    defaultOptions.nzBodyStyle = {
+                        height: `calc(100% - ${reduceHeight}px)`,
+                        overflow: 'auto',
+                    };
+                }
+                else {
+                    defaultOptions.nzBodyStyle = {
+                        height: `${+(nzHeight || 256) - reduceHeight}px`,
+                        overflow: 'auto',
+                    };
+                }
             }
             /** @type {?} */
-            const subject = this.srv.create(Object.assign(Object.assign({}, defaultOptions), drawerOptions));
+            const subject = this.srv.create(Object.assign({}, defaultOptions, drawerOptions));
             /** @type {?} */
             const afterClose$ = subject.afterClose.subscribe((/**
              * @param {?} res
@@ -2684,7 +2665,7 @@ class DrawerHelper {
     static(title, comp, params, options) {
         /** @type {?} */
         const drawerOptions = Object.assign({ nzMaskClosable: false }, (options && options.drawerOptions));
-        return this.create(title, comp, params, Object.assign(Object.assign({}, options), { drawerOptions }));
+        return this.create(title, comp, params, Object.assign({}, options, { drawerOptions }));
     }
 }
 DrawerHelper.decorators = [
@@ -2694,7 +2675,7 @@ DrawerHelper.decorators = [
 DrawerHelper.ctorParameters = () => [
     { type: NzDrawerService }
 ];
-/** @nocollapse */ DrawerHelper.ɵprov = ɵɵdefineInjectable({ factory: function DrawerHelper_Factory() { return new DrawerHelper(ɵɵinject(NzDrawerService)); }, token: DrawerHelper, providedIn: "root" });
+/** @nocollapse */ DrawerHelper.ngInjectableDef = ɵɵdefineInjectable({ factory: function DrawerHelper_Factory() { return new DrawerHelper(ɵɵinject(NzDrawerService)); }, token: DrawerHelper, providedIn: "root" });
 if (false) {
     /**
      * @type {?}
@@ -2718,15 +2699,12 @@ if (false) {
 class _HttpClient {
     /**
      * @param {?} http
-     * @param {?} cogSrv
+     * @param {?} cog
      */
-    constructor(http, cogSrv) {
+    constructor(http, cog) {
         this.http = http;
         this._loading = false;
-        this.cog = cogSrv.merge('themeHttp', {
-            nullValueHandling: 'include',
-            dateValueHandling: 'timestamp',
-        });
+        this.cog = Object.assign({ nullValueHandling: 'include', dateValueHandling: 'timestamp' }, (/** @type {?} */ (cog)).http);
     }
     /**
      * 是否正在加载中
@@ -2884,8 +2862,8 @@ class _HttpClient {
      * @return {?}
      */
     form(url, body, params, options = {}) {
-        return this.request('POST', url, Object.assign(Object.assign({ body,
-            params }, options), { headers: {
+        return this.request('POST', url, Object.assign({ body,
+            params }, options, { headers: {
                 'content-type': `application/x-www-form-urlencoded`,
             } }));
     }
@@ -2896,7 +2874,6 @@ class _HttpClient {
      * @return {?}
      */
     request(method, url, options = {}) {
-        this.begin();
         if (options.params)
             options.params = this.parseParams(options.params);
         return of(null).pipe(tap((/**
@@ -2924,9 +2901,9 @@ _HttpClient.decorators = [
 /** @nocollapse */
 _HttpClient.ctorParameters = () => [
     { type: HttpClient },
-    { type: AlainConfigService }
+    { type: AlainThemeConfig }
 ];
-/** @nocollapse */ _HttpClient.ɵprov = ɵɵdefineInjectable({ factory: function _HttpClient_Factory() { return new _HttpClient(ɵɵinject(HttpClient), ɵɵinject(AlainConfigService)); }, token: _HttpClient, providedIn: "root" });
+/** @nocollapse */ _HttpClient.ngInjectableDef = ɵɵdefineInjectable({ factory: function _HttpClient_Factory() { return new _HttpClient(ɵɵinject(HttpClient), ɵɵinject(AlainThemeConfig)); }, token: _HttpClient, providedIn: "root" });
 if (false) {
     /**
      * @type {?}
@@ -2951,11 +2928,6 @@ if (false) {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
- * Every http decorator must be based on `BaseAPI`, Like this:
- * ```ts
- * \\@Injectable()
- * class DataService extends BaseApi {}
- * ```
  * @abstract
  */
 class BaseApi {
@@ -2966,9 +2938,6 @@ class BaseApi {
         this.injector = injector;
     }
 }
-BaseApi.decorators = [
-    { type: Injectable }
-];
 /** @nocollapse */
 BaseApi.ctorParameters = () => [
     { type: Injector, decorators: [{ type: Inject, args: [Injector,] }] }
@@ -3177,9 +3146,7 @@ function makeMethod(method) {
             function (...args) {
                 options = options || {};
                 /** @type {?} */
-                const injector = (/** @type {?} */ (((/** @type {?} */ (this))).injector));
-                /** @type {?} */
-                const http = (/** @type {?} */ (injector.get(_HttpClient, null)));
+                const http = (/** @type {?} */ (this.injector.get(_HttpClient, null)));
                 if (http == null) {
                     throw new TypeError(`Not found '_HttpClient', You can import 'AlainThemeModule' && 'HttpClientModule' in your root module.`);
                 }
@@ -3196,7 +3163,7 @@ function makeMethod(method) {
                 }
                 if (options.acl) {
                     /** @type {?} */
-                    const aclSrv = injector.get(ACLService, null);
+                    const aclSrv = this.injector.get(ACLService, null);
                     if (aclSrv && !aclSrv.can(options.acl)) {
                         return throwError({
                             url: requestUrl,
@@ -3248,7 +3215,7 @@ function makeMethod(method) {
                 const payload = getValidArgs(data, 'payload', args);
                 /** @type {?} */
                 const supportedBody = method === 'POST' || method === 'PUT';
-                return http.request(method, requestUrl, Object.assign({ body: supportedBody ? genBody(getValidArgs(data, 'body', args), payload) : null, params: !supportedBody ? Object.assign(Object.assign({}, params), payload) : params, headers: Object.assign(Object.assign({}, baseData.baseHeaders), headers) }, options));
+                return http.request(method, requestUrl, Object.assign({ body: supportedBody ? genBody(getValidArgs(data, 'body', args), payload) : null, params: !supportedBody ? Object.assign({}, params, payload) : params, headers: Object.assign({}, baseData.baseHeaders, headers) }, options));
             });
             return descriptor;
         });
@@ -3316,39 +3283,30 @@ const FORM = makeMethod('FORM');
  */
 class DatePipe {
     /**
-     * @param {?} nzI18n
-     */
-    constructor(nzI18n) {
-        this.nzI18n = nzI18n;
-    }
-    /**
      * @param {?} value
      * @param {?=} formatString
      * @return {?}
      */
-    transform(value, formatString = 'yyyy-MM-dd HH:mm') {
-        value = toDate(value);
-        if (isNaN((/** @type {?} */ (value))))
+    transform(value, formatString = 'YYYY-MM-DD HH:mm') {
+        if (value) {
+            if (formatString === 'fn') {
+                return distanceInWordsToNow(value, {
+                    locale: ((/** @type {?} */ (window))).__locale__,
+                });
+            }
+            if (typeof value === 'string' && !isNaN(+value)) {
+                value = +value;
+            }
+            return format(value, formatString);
+        }
+        else {
             return '';
-        /** @type {?} */
-        const langOpt = { locale: this.nzI18n.getDateLocale() };
-        return formatString === 'fn' ? formatDistanceToNow(value, langOpt) : format(value, formatString, langOpt);
+        }
     }
 }
 DatePipe.decorators = [
     { type: Pipe, args: [{ name: '_date' },] }
 ];
-/** @nocollapse */
-DatePipe.ctorParameters = () => [
-    { type: NzI18nService }
-];
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    DatePipe.prototype.nzI18n;
-}
 
 /**
  * @fileoverview added by tsickle
@@ -3409,7 +3367,7 @@ KeysPipe.decorators = [
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-const ICON_YES = `<svg viewBox="64 64 896 896" fill="currentColor" width="1em" height="1em" aria-hidden="true"><path d="M9.2.1-d56c07df90h-69.9c-9.8 0-19.1 4.5-25.1 12.2L404.7 724.5 207 474a32 32 0 0 0-25.1-12.2H112c-6.7 0-10.4 7.7-6.3 12.9l273.9 347c12.8 16.2 37.4 16.2 50.3 0l488.4-618.9c4.1-5.1.4-12.8-6.3-12.8z"></path></svg>`;
+const ICON_YES = `<svg viewBox="64 64 896 896" fill="currentColor" width="1em" height="1em" aria-hidden="true"><path d="M912 190h-69.9c-9.8 0-19.1 4.5-25.1 12.2L404.7 724.5 207 474a32 32 0 0 0-25.1-12.2H112c-6.7 0-10.4 7.7-6.3 12.9l273.9 347c12.8 16.2 37.4 16.2 50.3 0l488.4-618.9c4.1-5.1.4-12.8-6.3-12.8z"></path></svg>`;
 /** @type {?} */
 const ICON_NO = `<svg viewBox="64 64 896 896" fill="currentColor" width="1em" height="1em" aria-hidden="true"><path d="M563.8 512l262.5-312.9c4.4-5.2.7-13.1-6.1-13.1h-79.8c-4.7 0-9.2 2.1-12.3 5.7L511.6 449.8 295.1 191.7c-3-3.6-7.5-5.7-12.3-5.7H203c-6.8 0-10.5 7.9-6.1 13.1L459.4 512 196.9 824.9A7.95 7.95 0 0 0 203 838h79.8c4.7 0 9.2-2.1 12.3-5.7l216.5-258.1 216.5 258.1c3 3.6 7.5 5.7 12.3 5.7h79.8c6.8 0 10.5-7.9 6.1-13.1L563.8 512z"></path></svg>`;
 /** @type {?} */
@@ -3425,9 +3383,9 @@ class YNPipe {
     }
     /**
      * @param {?} value
-     * @param {?=} yes
-     * @param {?=} no
-     * @param {?=} mode
+     * @param {?} yes
+     * @param {?} no
+     * @param {?} mode
      * @param {?=} isSafeHtml
      * @return {?}
      */
@@ -3579,6 +3537,9 @@ if (false) {
  */
 /** @type {?} */
 const HELPERS = [ModalHelper, DrawerHelper];
+// components
+/** @type {?} */
+const COMPONENTS = [];
 /** @type {?} */
 const PIPES = [DatePipe, CNCurrencyPipe, KeysPipe, YNPipe, I18nPipe, HTMLPipe, URLPipe];
 /** @type {?} */
@@ -3612,9 +3573,9 @@ class AlainThemeModule {
 }
 AlainThemeModule.decorators = [
     { type: NgModule, args: [{
-                imports: [CommonModule, RouterModule, OverlayModule, NzI18nModule],
-                declarations: [...PIPES],
-                exports: [...PIPES, DelonLocaleModule],
+                imports: [CommonModule, RouterModule, OverlayModule],
+                declarations: [...COMPONENTS, ...PIPES],
+                exports: [...COMPONENTS, ...PIPES, DelonLocaleModule],
             },] }
 ];
 /** @nocollapse */
@@ -3628,7 +3589,7 @@ AlainThemeModule.ctorParameters = () => [
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-const VERSION = new Version('9.2.1-d56c07df');
+const VERSION = new Version('8.9.3-20c27c5');
 
 /**
  * @fileoverview added by tsickle
@@ -3642,5 +3603,5 @@ const VERSION = new Version('9.2.1-d56c07df');
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { ALAIN_I18N_TOKEN, APP, AlainI18NServiceFake, AlainThemeModule, BaseApi, BaseHeaders, BaseUrl, Body, CNCurrencyPipe, DELETE, DELON_LOCALE, DELON_LOCALE_SERVICE_PROVIDER, DELON_LOCALE_SERVICE_PROVIDER_FACTORY, DatePipe, DelonLocaleModule, DelonLocaleService, DrawerHelper, FORM, GET, HEAD, HTMLPipe, Headers, JSONP, KeysPipe, LAYOUT, MenuService, ModalHelper, OPTIONS, PATCH, POST, PUT, Path, Payload, Query, REP_MAX, ResponsiveService, ScrollService, SettingsService, TitleService, URLPipe, USER, VERSION, WINDOW, YNPipe, _HttpClient, elGR as el_GR, enUS as en_US, hrHR as hr_HR, jaJP as ja_JP, koKR as ko_KR, plPL as pl_PL, preloaderFinished, trTR as tr_TR, zhCN as zh_CN, zhTW as zh_TW, ALAIN_I18N_TOKEN_FACTORY as ɵa, I18nPipe as ɵb };
+export { ALAIN_I18N_TOKEN, APP, AlainI18NServiceFake, AlainThemeConfig, AlainThemeModule, BaseApi, BaseHeaders, BaseUrl, Body, CNCurrencyPipe, DELETE, DELON_LOCALE, DELON_LOCALE_SERVICE_PROVIDER, DELON_LOCALE_SERVICE_PROVIDER_FACTORY, DatePipe, DelonLocaleModule, DelonLocaleService, DrawerHelper, FORM, GET, HEAD, HTMLPipe, Headers, JSONP, KeysPipe, LAYOUT, MenuService, ModalHelper, OPTIONS, PATCH, POST, PUT, Path, Payload, Query, REP_MAX, ResponsiveService, ScrollService, SettingsService, TitleService, URLPipe, USER, VERSION, WINDOW, YNPipe, _HttpClient, elGR as el_GR, enUS as en_US, hrHR as hr_HR, koKR as ko_KR, plPL as pl_PL, preloaderFinished, trTR as tr_TR, zhCN as zh_CN, zhTW as zh_TW, ALAIN_I18N_TOKEN_FACTORY as ɵa, I18nPipe as ɵb };
 //# sourceMappingURL=theme.js.map

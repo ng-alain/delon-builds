@@ -1,9 +1,7 @@
 import { __decorate, __metadata, __spread } from 'tslib';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, ChangeDetectorRef, NgZone, ViewChild, Input, NgModule } from '@angular/core';
-import { Chart } from '@antv/g2';
-import { AlainConfigService, InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
+import { InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
 import { CommonModule } from '@angular/common';
-import { NzOutletModule } from 'ng-zorro-antd/core/outlet';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 
 /**
@@ -26,7 +24,7 @@ if (false) {
 }
 var G2RadarComponent = /** @class */ (function () {
     // #endregion
-    function G2RadarComponent(cdr, ngZone, configSrv) {
+    function G2RadarComponent(cdr, ngZone) {
         this.cdr = cdr;
         this.ngZone = ngZone;
         this.legendData = [];
@@ -38,7 +36,6 @@ var G2RadarComponent = /** @class */ (function () {
         this.tickCount = 4;
         this.data = [];
         this.colors = ['#1890FF', '#FACC14', '#2FC25B', '#8543E0', '#F04864', '#13C2C2', '#fa8c16', '#a0d911'];
-        configSrv.attachKey(this, 'chart', 'theme');
     }
     /**
      * @private
@@ -61,48 +58,43 @@ var G2RadarComponent = /** @class */ (function () {
      */
     function () {
         var _this = this;
-        var _a = this, node = _a.node, padding = _a.padding, theme = _a.theme;
+        var _a = this, node = _a.node, padding = _a.padding;
         /** @type {?} */
-        var chart = (this.chart = new Chart({
+        var chart = (this.chart = new G2.Chart({
             container: node.nativeElement,
-            autoFit: true,
+            forceFit: true,
             height: this.getHeight(),
             padding: padding,
-            theme: theme,
         }));
-        chart.coordinate('polar');
+        chart.coord('polar');
         chart.legend(false);
         chart.axis('label', {
             line: null,
-            label: {
-                offset: 8,
-                style: {
+            labelOffset: 8,
+            labels: {
+                label: {
                     fill: 'rgba(0, 0, 0, .65)',
                 },
             },
             grid: {
                 line: {
-                    style: {
-                        stroke: '#e9e9e9',
-                        lineWidth: 1,
-                        lineDash: [0, 0],
-                    },
+                    stroke: '#e9e9e9',
+                    lineWidth: 1,
+                    lineDash: [0, 0],
                 },
             },
         });
         chart.axis('value', {
             grid: {
+                type: 'polygon',
                 line: {
-                    type: 'polygon',
-                    style: {
-                        stroke: '#e9e9e9',
-                        lineWidth: 1,
-                        lineDash: [0, 0],
-                    },
+                    stroke: '#e9e9e9',
+                    lineWidth: 1,
+                    lineDash: [0, 0],
                 },
             },
-            label: {
-                style: {
+            labels: {
+                label: {
                     fill: 'rgba(0, 0, 0, .65)',
                 },
             },
@@ -121,7 +113,11 @@ var G2RadarComponent = /** @class */ (function () {
             return legendItem ? legendItem.checked !== false : true;
         }));
         chart.line().position('label*value');
-        chart.point().position('label*value').shape('circle').size(3);
+        chart
+            .point()
+            .position('label*value')
+            .shape('circle')
+            .size(3);
         chart.render();
         this.attachChart();
     };
@@ -138,20 +134,22 @@ var G2RadarComponent = /** @class */ (function () {
         var _a = this, chart = _a.chart, padding = _a.padding, data = _a.data, colors = _a.colors, tickCount = _a.tickCount;
         if (!chart || !data || data.length <= 0)
             return;
-        chart.height = this.getHeight();
-        chart.padding = padding;
-        chart.scale({
+        chart.set('height', this.getHeight());
+        chart.set('padding', padding);
+        chart.source(data, {
             value: {
                 min: 0,
                 tickCount: tickCount,
             },
         });
-        chart.geometries.forEach((/**
+        chart.get('geoms').forEach((/**
          * @param {?} g
          * @return {?}
          */
-        function (g) { return g.color('name', colors); }));
-        chart.changeData(data);
+        function (g) {
+            g.color('name', colors);
+        }));
+        chart.repaint();
         this.ngZone.run((/**
          * @return {?}
          */
@@ -169,7 +167,10 @@ var G2RadarComponent = /** @class */ (function () {
         var _a = this, hasLegend = _a.hasLegend, cdr = _a.cdr, chart = _a.chart;
         if (!hasLegend)
             return;
-        this.legendData = chart.geometries[0].dataArray.map((/**
+        this.legendData = chart
+            .get('geoms')[0]
+            .get('dataArray')
+            .map((/**
          * @param {?} item
          * @return {?}
          */
@@ -203,7 +204,7 @@ var G2RadarComponent = /** @class */ (function () {
     function (i) {
         var _a = this, legendData = _a.legendData, chart = _a.chart;
         legendData[i].checked = !legendData[i].checked;
-        chart.render();
+        chart.repaint();
     };
     /**
      * @return {?}
@@ -258,7 +259,7 @@ var G2RadarComponent = /** @class */ (function () {
         { type: Component, args: [{
                     selector: 'g2-radar',
                     exportAs: 'g2Radar',
-                    template: "<ng-container *nzStringTemplateOutlet=\"title\">\n  <h4>{{ title }}</h4>\n</ng-container>\n<div #container></div>\n<div nz-row class=\"g2-radar__legend\" *ngIf=\"hasLegend\">\n  <div nz-col [nzSpan]=\"24 / legendData.length\" *ngFor=\"let i of legendData; let idx = index\" (click)=\"_click(idx)\" class=\"g2-radar__legend-item\">\n    <i class=\"g2-radar__legend-dot\" [ngStyle]=\"{ 'background-color': !i.checked ? '#aaa' : i.color }\"></i>\n    {{ i.name }}\n    <h6 class=\"g2-radar__legend-title\">{{ i.value }}</h6>\n  </div>\n</div>\n",
+                    template: "<ng-container *stringTemplateOutlet=\"title\">\n  <h4>{{title}}</h4>\n</ng-container>\n<div #container></div>\n<div nz-row\n     class=\"g2-radar__legend\"\n     *ngIf=\"hasLegend\">\n  <div nz-col\n       [nzSpan]=\"24 / legendData.length\"\n       *ngFor=\"let i of legendData; let idx = index\"\n       (click)=\"_click(idx)\"\n       class=\"g2-radar__legend-item\">\n    <i class=\"g2-radar__legend-dot\"\n       [ngStyle]=\"{'background-color': !i.checked ? '#aaa' : i.color}\"></i>\n    {{i.name}}\n    <h6 class=\"g2-radar__legend-title\">{{i.value}}</h6>\n  </div>\n</div>\n",
                     host: {
                         '[style.height.px]': 'height',
                         '[class.g2-radar]': 'true',
@@ -271,8 +272,7 @@ var G2RadarComponent = /** @class */ (function () {
     /** @nocollapse */
     G2RadarComponent.ctorParameters = function () { return [
         { type: ChangeDetectorRef },
-        { type: NgZone },
-        { type: AlainConfigService }
+        { type: NgZone }
     ]; };
     G2RadarComponent.propDecorators = {
         node: [{ type: ViewChild, args: ['container', { static: true },] }],
@@ -283,8 +283,7 @@ var G2RadarComponent = /** @class */ (function () {
         hasLegend: [{ type: Input }],
         tickCount: [{ type: Input }],
         data: [{ type: Input }],
-        colors: [{ type: Input }],
-        theme: [{ type: Input }]
+        colors: [{ type: Input }]
     };
     __decorate([
         InputNumber(),
@@ -333,8 +332,6 @@ if (false) {
     G2RadarComponent.prototype.data;
     /** @type {?} */
     G2RadarComponent.prototype.colors;
-    /** @type {?} */
-    G2RadarComponent.prototype.theme;
     /**
      * @type {?}
      * @private
@@ -359,7 +356,7 @@ var G2RadarModule = /** @class */ (function () {
     }
     G2RadarModule.decorators = [
         { type: NgModule, args: [{
-                    imports: [CommonModule, DelonUtilModule, NzGridModule, NzOutletModule],
+                    imports: [CommonModule, DelonUtilModule, NzGridModule],
                     declarations: __spread(COMPONENTS),
                     exports: __spread(COMPONENTS),
                 },] }

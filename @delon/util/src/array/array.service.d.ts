@@ -1,6 +1,5 @@
-import { NzTreeNode } from 'ng-zorro-antd/core/tree';
-import { NzSafeAny } from 'ng-zorro-antd/core/types';
-import { AlainConfigService } from '../config';
+import { NzTreeNode } from 'ng-zorro-antd/core';
+import { DelonUtilConfig } from '../util.config';
 export interface ArrayServiceTreeToArrOptions {
     /** 深度项名，默认：`'deep'` */
     deepMapName?: string;
@@ -11,7 +10,7 @@ export interface ArrayServiceTreeToArrOptions {
     /** 是否移除 `children` 节点，默认：`true` */
     clearChildren?: boolean;
     /** 转换成数组结构时回调 */
-    cb?: (item: NzSafeAny, parent: NzSafeAny, deep: number) => void;
+    cb?: (item: any, parent: any, deep: number) => void;
 }
 export interface ArrayServiceArrToTreeOptions {
     /** 编号项名，默认：`'id'` */
@@ -21,7 +20,7 @@ export interface ArrayServiceArrToTreeOptions {
     /** 子项名，默认：`'children'` */
     childrenMapName?: string;
     /** 转换成树数据时回调 */
-    cb?: (item: NzSafeAny) => void;
+    cb?: (item: any) => void;
 }
 export interface ArrayServiceArrToTreeNodeOptions {
     /** 编号项名，默认：`'id'` */
@@ -41,7 +40,7 @@ export interface ArrayServiceArrToTreeNodeOptions {
     /** 设置是否禁用节点(不可进行任何操作)项名，默认：`'disabled'` */
     disabledMapname?: string;
     /** 转换成树数据后，执行的递归回调 */
-    cb?: (item: NzSafeAny, parent: NzSafeAny, deep: number) => void;
+    cb?: (item: any, parent: any, deep: number) => void;
 }
 export interface ArrayServiceGetKeysByTreeNodeOptions {
     /** 是否包含半选状态的值，默认：`true` */
@@ -49,32 +48,32 @@ export interface ArrayServiceGetKeysByTreeNodeOptions {
     /** 是否重新指定 `key` 键名，若不指定表示使用 `NzTreeNode.key` 值 */
     keyMapName?: string;
     /** 回调，返回一个值 `key` 值，优先级高于其他 */
-    cb?: (item: NzTreeNode, parent: NzTreeNode, deep: number) => NzSafeAny;
+    cb?: (item: NzTreeNode, parent: NzTreeNode, deep: number) => any;
 }
 export declare class ArrayService {
     private c;
-    constructor(cog: AlainConfigService);
+    constructor(cog: DelonUtilConfig);
     /**
      * 将树结构转换成数组结构
      */
-    treeToArr(tree: NzSafeAny[], options?: ArrayServiceTreeToArrOptions): NzSafeAny[];
+    treeToArr(tree: any[], options?: ArrayServiceTreeToArrOptions): any[];
     /**
      * 数组转换成树数据
      */
-    arrToTree(arr: NzSafeAny[], options?: ArrayServiceArrToTreeOptions): NzSafeAny[];
+    arrToTree(arr: any[], options?: ArrayServiceArrToTreeOptions): any[];
     /**
      * 数组转换成 `nz-tree` 数据源，通过 `options` 转化项名，也可以使用 `options.cb` 更高级决定数据项
      */
-    arrToTreeNode(arr: NzSafeAny[], options?: ArrayServiceArrToTreeNodeOptions): NzTreeNode[];
+    arrToTreeNode(arr: any[], options?: ArrayServiceArrToTreeNodeOptions): NzTreeNode[];
     /**
      * 递归访问整个树
      */
-    visitTree(tree: NzSafeAny[], cb: (item: NzSafeAny, parent: NzSafeAny, deep: number) => void, options?: {
+    visitTree(tree: any[], cb: (item: any, parent: any, deep: number) => void, options?: {
         /** 子项名，默认：`'children'` */
         childrenMapName?: string;
     }): void;
     /**
      * 获取所有已经选中的 `key` 值
      */
-    getKeysByTreeNode(tree: NzTreeNode[], options?: ArrayServiceGetKeysByTreeNodeOptions): NzSafeAny[];
+    getKeysByTreeNode(tree: NzTreeNode[], options?: ArrayServiceGetKeysByTreeNodeOptions): any[];
 }

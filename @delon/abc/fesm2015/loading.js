@@ -1,12 +1,45 @@
-import { Component, ChangeDetectionStrategy, ViewEncapsulation, Injectable, ɵɵdefineInjectable, ɵɵinject, NgModule } from '@angular/core';
+import { Injectable, ɵɵdefineInjectable, Component, ChangeDetectionStrategy, ViewEncapsulation, ɵɵinject, NgModule } from '@angular/core';
 import { Overlay, OverlayModule } from '@angular/cdk/overlay';
 import { ComponentPortal, PortalModule } from '@angular/cdk/portal';
-import { AlainConfigService } from '@delon/util';
 import { Subject, timer } from 'rxjs';
 import { debounce } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
+
+/**
+ * @fileoverview added by tsickle
+ * Generated from: loading.config.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class LoadingConfig {
+    constructor() {
+        this.type = 'spin';
+        this.text = '加载中...';
+        this.icon = {
+            type: 'loading',
+            theme: 'outline',
+            spin: true,
+        };
+        this.delay = 0;
+    }
+}
+LoadingConfig.decorators = [
+    { type: Injectable, args: [{ providedIn: 'root' },] }
+];
+/** @nocollapse */ LoadingConfig.ngInjectableDef = ɵɵdefineInjectable({ factory: function LoadingConfig_Factory() { return new LoadingConfig(); }, token: LoadingConfig, providedIn: "root" });
+if (false) {
+    /** @type {?} */
+    LoadingConfig.prototype.type;
+    /** @type {?} */
+    LoadingConfig.prototype.text;
+    /** @type {?} */
+    LoadingConfig.prototype.icon;
+    /** @type {?} */
+    LoadingConfig.prototype.custom;
+    /** @type {?} */
+    LoadingConfig.prototype.delay;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -30,7 +63,7 @@ class LoadingDefaultComponent {
 LoadingDefaultComponent.decorators = [
     { type: Component, args: [{
                 selector: 'loading-default',
-                template: "<div class=\"loading-default__icon\" *ngIf=\"options.type !== 'text'\">\n  <ng-container [ngSwitch]=\"options.type\">\n    <nz-spin *ngSwitchCase=\"'spin'\" nzSimple></nz-spin>\n    <i *ngSwitchCase=\"'icon'\" nz-icon [nzType]=\"icon.type\" [nzTheme]=\"icon.theme\" [nzSpin]=\"icon.spin\"></i>\n    <div *ngSwitchDefault class=\"loading-default__custom\" [ngStyle]=\"custom.style\" [innerHTML]=\"custom.html\"></div>\n  </ng-container>\n</div>\n<div *ngIf=\"options.text\" class=\"loading-default__text\">{{ options.text }}</div>\n",
+                template: "<div class=\"loading-default__icon\" *ngIf=\"options.type !== 'text'\">\n  <ng-container [ngSwitch]=\"options.type\">\n    <nz-spin *ngSwitchCase=\"'spin'\" nzSimple></nz-spin>\n    <i *ngSwitchCase=\"'icon'\" nz-icon [nzType]=\"icon.type\" [nzTheme]=\"icon.theme\" [nzSpin]=\"icon.spin\"></i>\n    <div *ngSwitchDefault class=\"loading-default__custom\" [ngStyle]=\"custom.style\" [innerHTML]=\"custom.html\"></div>\n  </ng-container>\n</div>\n<div *ngIf=\"options.text\" class=\"loading-default__text\">{{ options.text }}</div>",
                 host: {
                     '[class.loading-default]': 'true',
                 },
@@ -51,24 +84,15 @@ if (false) {
  */
 class LoadingService {
     /**
+     * @param {?} cog
      * @param {?} overlay
-     * @param {?} configSrv
      */
-    constructor(overlay, configSrv) {
+    constructor(cog, overlay) {
+        this.cog = cog;
         this.overlay = overlay;
         this.compRef = null;
         this.opt = null;
         this.n$ = new Subject();
-        this.cog = configSrv.merge('loading', {
-            type: 'spin',
-            text: '加载中...',
-            icon: {
-                type: 'loading',
-                theme: 'outline',
-                spin: true,
-            },
-            delay: 0,
-        });
         this.loading$ = this.n$
             .asObservable()
             .pipe(debounce((/**
@@ -95,7 +119,11 @@ class LoadingService {
             return;
         this._close(false);
         this._overlayRef = this.overlay.create({
-            positionStrategy: this.overlay.position().global().centerHorizontally().centerVertically(),
+            positionStrategy: this.overlay
+                .position()
+                .global()
+                .centerHorizontally()
+                .centerVertically(),
             scrollStrategy: this.overlay.scrollStrategies.block(),
             hasBackdrop: true,
             backdropClass: 'loading-backdrop',
@@ -111,7 +139,7 @@ class LoadingService {
      * @return {?}
      */
     open(options) {
-        this.opt = Object.assign(Object.assign({}, this.cog), options);
+        this.opt = Object.assign({}, this.cog, options);
         this.n$.next();
     }
     /**
@@ -145,10 +173,10 @@ LoadingService.decorators = [
 ];
 /** @nocollapse */
 LoadingService.ctorParameters = () => [
-    { type: Overlay },
-    { type: AlainConfigService }
+    { type: LoadingConfig },
+    { type: Overlay }
 ];
-/** @nocollapse */ LoadingService.ɵprov = ɵɵdefineInjectable({ factory: function LoadingService_Factory() { return new LoadingService(ɵɵinject(Overlay), ɵɵinject(AlainConfigService)); }, token: LoadingService, providedIn: "root" });
+/** @nocollapse */ LoadingService.ngInjectableDef = ɵɵdefineInjectable({ factory: function LoadingService_Factory() { return new LoadingService(ɵɵinject(LoadingConfig), ɵɵinject(Overlay)); }, token: LoadingService, providedIn: "root" });
 if (false) {
     /**
      * @type {?}
@@ -169,17 +197,17 @@ if (false) {
      * @type {?}
      * @private
      */
-    LoadingService.prototype.cog;
-    /**
-     * @type {?}
-     * @private
-     */
     LoadingService.prototype.n$;
     /**
      * @type {?}
      * @private
      */
     LoadingService.prototype.loading$;
+    /**
+     * @type {?}
+     * @private
+     */
+    LoadingService.prototype.cog;
     /**
      * @type {?}
      * @private
@@ -198,13 +226,14 @@ LoadingModule.decorators = [
     { type: NgModule, args: [{
                 imports: [CommonModule, OverlayModule, PortalModule, NzIconModule, NzSpinModule],
                 declarations: [LoadingDefaultComponent],
+                entryComponents: [LoadingDefaultComponent],
                 exports: [LoadingDefaultComponent],
             },] }
 ];
 
 /**
  * @fileoverview added by tsickle
- * Generated from: loading.types.ts
+ * Generated from: loading.interfaces.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
@@ -273,5 +302,5 @@ if (false) {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { LoadingDefaultComponent, LoadingModule, LoadingService };
+export { LoadingConfig, LoadingDefaultComponent, LoadingModule, LoadingService };
 //# sourceMappingURL=loading.js.map

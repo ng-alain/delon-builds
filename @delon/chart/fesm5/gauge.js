@@ -1,7 +1,6 @@
 import { __decorate, __metadata, __spread } from 'tslib';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, NgZone, Input, NgModule } from '@angular/core';
-import { registerShape, Chart } from '@antv/g2';
-import { AlainConfigService, InputNumber, DelonUtilModule } from '@delon/util';
+import { InputNumber, DelonUtilModule } from '@delon/util';
 import { CommonModule } from '@angular/common';
 
 /**
@@ -11,7 +10,7 @@ import { CommonModule } from '@angular/common';
  */
 var G2GaugeComponent = /** @class */ (function () {
     // #endregion
-    function G2GaugeComponent(el, ngZone, configSrv) {
+    function G2GaugeComponent(el, ngZone) {
         this.el = el;
         this.ngZone = ngZone;
         // #region fields
@@ -19,7 +18,6 @@ var G2GaugeComponent = /** @class */ (function () {
         this.color = '#2f9cff';
         this.bgColor = '#f0f2f5';
         this.padding = [10, 10, 30, 10];
-        configSrv.attachKey(this, 'chart', 'theme');
     }
     /**
      * @private
@@ -30,19 +28,22 @@ var G2GaugeComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
+        /** @type {?} */
+        var Shape = G2.Shape;
         // 自定义Shape 部分
-        registerShape('point', 'pointer', {
-            draw: /**
+        Shape.registerShape('point', 'pointer', {
+            drawShape: /**
              * @param {?} cfg
-             * @param {?} container
+             * @param {?} group
              * @return {?}
              */
-            function (cfg, container) {
+            function (cfg, group) {
                 /** @type {?} */
-                var group = container.addGroup({});
-                // 获取极坐标系下画布中心点
-                /** @type {?} */
-                var center = ((/** @type {?} */ (this))).parsePoint({ x: 0, y: 0 });
+                var center = this.parsePoint({
+                    // 获取极坐标系下画布中心点
+                    x: 0,
+                    y: 0,
+                });
                 // 绘制指针
                 group.addShape('line', {
                     attrs: {
@@ -55,35 +56,35 @@ var G2GaugeComponent = /** @class */ (function () {
                         lineCap: 'round',
                     },
                 });
-                group.addShape('circle', {
+                return group.addShape('circle', {
                     attrs: {
                         x: center.x,
                         y: center.y,
-                        r: 5.75,
+                        r: 9.75,
                         stroke: cfg.color,
                         lineWidth: 2,
                         fill: '#fff',
                     },
                 });
-                return group;
             },
         });
-        var _a = this, el = _a.el, height = _a.height, padding = _a.padding, format = _a.format, theme = _a.theme;
+        var _a = this, el = _a.el, height = _a.height, padding = _a.padding, format = _a.format;
         /** @type {?} */
-        var chart = (this.chart = new Chart({
+        var chart = (this.chart = new G2.Chart({
             container: el.nativeElement,
-            autoFit: true,
+            animate: false,
+            forceFit: true,
             height: height,
             padding: padding,
-            theme: theme,
         }));
-        chart.legend(false);
-        chart.animate(false);
-        chart.tooltip(false);
-        chart.coordinate('polar', {
-            startAngle: (-9 / 8) * Math.PI,
-            endAngle: (1 / 8) * Math.PI,
-            radius: 0.75,
+        chart
+            .point({ generatePoints: true })
+            .position('value*1')
+            .shape('pointer')
+            .active(false);
+        chart.coord('polar', {
+            startAngle: Math.PI * -1.2,
+            endAngle: Math.PI * 0.2,
         });
         chart.scale('value', {
             min: 0,
@@ -92,7 +93,9 @@ var G2GaugeComponent = /** @class */ (function () {
             tickCount: 6,
         });
         chart.axis('1', false);
+        // 刻度值
         chart.axis('value', {
+            zIndex: 2,
             line: null,
             label: {
                 offset: -12,
@@ -101,7 +104,8 @@ var G2GaugeComponent = /** @class */ (function () {
             tickLine: null,
             grid: null,
         });
-        chart.point().position('value*1').shape('pointer');
+        chart.legend(false);
+        chart.render();
         this.attachChart();
     };
     /**
@@ -113,54 +117,41 @@ var G2GaugeComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        var _a = this, chart = _a.chart, percent = _a.percent, color = _a.color, bgColor = _a.bgColor, title = _a.title;
+        var _a = this, chart = _a.chart, bgColor = _a.bgColor, color = _a.color, title = _a.title, percent = _a.percent;
         if (!chart)
             return;
+        chart.get('geoms')[0].color(color);
+        /** @type {?} */
+        var guide = chart.guide();
+        guide.clear();
         /** @type {?} */
         var data = [{ name: title, value: percent }];
-        /** @type {?} */
-        var val = data[0].value;
-        chart.annotation().clear(true);
-        chart.geometries[0].color(color);
         // 绘制仪表盘背景
-        chart.annotation().arc({
+        guide.arc({
+            zIndex: 0,
             top: false,
             start: [0, 0.95],
             end: [100, 0.95],
             style: {
+                // 底灰色
                 stroke: bgColor,
                 lineWidth: 12,
-                lineDash: null,
             },
         });
-        chart.annotation().arc({
+        // 绘制指标
+        guide.arc({
+            zIndex: 1,
             start: [0, 0.95],
             end: [data[0].value, 0.95],
             style: {
                 stroke: color,
                 lineWidth: 12,
-                lineDash: null,
             },
         });
-        // 绘制指标数字
-        chart.annotation().text({
-            position: ['50%', '85%'],
-            content: title,
-            style: {
-                fontSize: 12,
-                fill: 'rgba(0, 0, 0, 0.43)',
-                textAlign: 'center',
-            },
-        });
-        chart.annotation().text({
-            position: ['50%', '90%'],
-            content: val + " %",
-            style: {
-                fontSize: 24,
-                fill: 'rgba(0, 0, 0, 0.85)',
-                textAlign: 'center',
-            },
-            offsetY: 15,
+        // 绘制数字
+        guide.html({
+            position: ['50%', '95%'],
+            html: "<div class=\"g2-gauge__desc\">\n        <div class=\"g2-gauge__title\">" + title + "</div>\n        <div class=\"g2-gauge__percent\">" + data[0].value + "%</div>\n      </div>",
         });
         chart.changeData(data);
     };
@@ -224,8 +215,7 @@ var G2GaugeComponent = /** @class */ (function () {
     /** @nocollapse */
     G2GaugeComponent.ctorParameters = function () { return [
         { type: ElementRef },
-        { type: NgZone },
-        { type: AlainConfigService }
+        { type: NgZone }
     ]; };
     G2GaugeComponent.propDecorators = {
         delay: [{ type: Input }],
@@ -235,8 +225,7 @@ var G2GaugeComponent = /** @class */ (function () {
         bgColor: [{ type: Input }],
         format: [{ type: Input }],
         percent: [{ type: Input }],
-        padding: [{ type: Input }],
-        theme: [{ type: Input }]
+        padding: [{ type: Input }]
     };
     __decorate([
         InputNumber(),
@@ -244,7 +233,7 @@ var G2GaugeComponent = /** @class */ (function () {
     ], G2GaugeComponent.prototype, "delay", void 0);
     __decorate([
         InputNumber(),
-        __metadata("design:type", Number)
+        __metadata("design:type", Object)
     ], G2GaugeComponent.prototype, "height", void 0);
     __decorate([
         InputNumber(),
@@ -274,8 +263,6 @@ if (false) {
     G2GaugeComponent.prototype.percent;
     /** @type {?} */
     G2GaugeComponent.prototype.padding;
-    /** @type {?} */
-    G2GaugeComponent.prototype.theme;
     /**
      * @type {?}
      * @private

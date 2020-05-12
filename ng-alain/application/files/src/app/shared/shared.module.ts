@@ -2,25 +2,26 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+// delon
 import { AlainThemeModule } from '@delon/theme';
+import { DelonABCModule } from '@delon/abc';
 import { DelonACLModule } from '@delon/acl';
 <% if (form) { %>import { DelonFormModule } from '@delon/form';<% } %><% if (i18n) { %>
+// i18n
 import { TranslateModule } from '@ngx-translate/core';<% } %>
 
-import { SHARED_DELON_MODULES } from './shared-delon.module';
-import { SHARED_ZORRO_MODULES } from './shared-zorro.module';
-
 // #region third libs
-
-const THIRDMODULES = [ ];
-
+import { NgZorroAntdModule } from 'ng-zorro-antd';
+import { CountdownModule } from 'ngx-countdown';
+const THIRDMODULES = [
+  NgZorroAntdModule,
+  CountdownModule
+];
 // #endregion
 
 // #region your componets & directives
-
 const COMPONENTS = [];
 const DIRECTIVES = [];
-
 // #endregion
 
 @NgModule({
@@ -30,10 +31,9 @@ const DIRECTIVES = [];
     RouterModule,
     ReactiveFormsModule,
     AlainThemeModule.forChild(),
+    DelonABCModule,
     DelonACLModule,<% if (form) { %>
     DelonFormModule,<% } %>
-    ...SHARED_DELON_MODULES,
-    ...SHARED_ZORRO_MODULES,
     // third libs
     ...THIRDMODULES
   ],
@@ -48,11 +48,11 @@ const DIRECTIVES = [];
     ReactiveFormsModule,
     RouterModule,
     AlainThemeModule,
+    DelonABCModule,
     DelonACLModule,<% if (form) { %>
     DelonFormModule,<% } %><% if (i18n) { %>
+    // i18n
     TranslateModule,<% } %>
-    ...SHARED_DELON_MODULES,
-    ...SHARED_ZORRO_MODULES,
     // third libs
     ...THIRDMODULES,
     // your components

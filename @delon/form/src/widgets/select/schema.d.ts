@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs';
+import { SFUISchemaItem, SFDLSSize } from '../../schema/ui';
+import { SFSchemaEnumType, SFSchemaEnum } from '../../schema';
 import { SFValue } from '../../interface';
-import { SFSchemaEnum, SFSchemaEnumType } from '../../schema';
-import { SFDLSSize, SFUISchemaItem } from '../../schema/ui';
 export interface SFSelectWidgetSchema extends SFUISchemaItem {
     /**
      * 异步数据源
@@ -24,10 +24,6 @@ export interface SFSelectWidgetSchema extends SFUISchemaItem {
      * 支持清除，默认：`false`
      */
     allowClear?: boolean;
-    /**
-     * 是否无边框，默认：`false`
-     */
-    borderless?: boolean;
     /**
      * 默认获取焦点，默认：`false`
      */

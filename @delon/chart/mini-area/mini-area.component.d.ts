@@ -1,6 +1,4 @@
 import { ElementRef, NgZone, OnChanges, OnDestroy, OnInit } from '@angular/core';
-import { LooseObject } from '@antv/g2/lib/interface';
-import { AlainConfigService } from '@delon/util';
 export interface G2MiniAreaData {
     x: any;
     y: any;
@@ -20,12 +18,11 @@ export declare class G2MiniAreaComponent implements OnInit, OnChanges, OnDestroy
     animate: boolean;
     xAxis: any;
     yAxis: any;
-    padding: number | number[] | 'auto';
+    padding: number[];
     data: G2MiniAreaData[];
     yTooltipSuffix: string;
     tooltipType: 'mini' | 'default';
-    theme: string | LooseObject;
-    constructor(el: ElementRef, ngZone: NgZone, configSrv: AlainConfigService);
+    constructor(el: ElementRef, ngZone: NgZone);
     private install;
     private attachChart;
     ngOnInit(): void;

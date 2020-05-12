@@ -1,12 +1,5 @@
 import { HttpHeaders } from '@angular/common/http';
 import { Injector } from '@angular/core';
-/**
- * Every http decorator must be based on `BaseAPI`, Like this:
- * ```ts
- * \@Injectable()
- * class DataService extends BaseApi {}
- * ```
- */
 export declare abstract class BaseApi {
     protected injector: Injector;
     constructor(injector: Injector);

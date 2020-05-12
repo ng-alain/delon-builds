@@ -1,8 +1,42 @@
 import { __decorate, __metadata } from 'tslib';
 import { DOCUMENT, CommonModule } from '@angular/common';
-import { Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, ChangeDetectorRef, Inject, Input, NgModule } from '@angular/core';
-import { AlainConfigService, InputNumber, DelonUtilModule } from '@delon/util';
+import { Injectable, ɵɵdefineInjectable, Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, ChangeDetectorRef, Inject, Input, NgModule } from '@angular/core';
+import { InputNumber, DelonUtilModule } from '@delon/util';
 import { NzIconModule } from 'ng-zorro-antd/icon';
+
+/**
+ * @fileoverview added by tsickle
+ * Generated from: error-collect.config.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class ErrorCollectConfig {
+    constructor() {
+        /**
+         * 监听频率
+         */
+        this.freq = 500;
+        /**
+         * 顶部偏移值
+         */
+        this.offsetTop = 65 + 64 + 8 * 2;
+    }
+}
+ErrorCollectConfig.decorators = [
+    { type: Injectable, args: [{ providedIn: 'root' },] }
+];
+/** @nocollapse */ ErrorCollectConfig.ngInjectableDef = ɵɵdefineInjectable({ factory: function ErrorCollectConfig_Factory() { return new ErrorCollectConfig(); }, token: ErrorCollectConfig, providedIn: "root" });
+if (false) {
+    /**
+     * 监听频率
+     * @type {?}
+     */
+    ErrorCollectConfig.prototype.freq;
+    /**
+     * 顶部偏移值
+     * @type {?}
+     */
+    ErrorCollectConfig.prototype.offsetTop;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -11,26 +45,26 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
  */
 class ErrorCollectComponent {
     /**
+     * @param {?} cog
      * @param {?} el
      * @param {?} cdr
      * @param {?} doc
-     * @param {?} configSrv
      */
-    constructor(el, cdr, doc, configSrv) {
+    constructor(cog, el, cdr, doc) {
         this.el = el;
         this.cdr = cdr;
         this.doc = doc;
         this.$time = null;
         this._hiden = true;
         this.count = 0;
-        configSrv.attach(this, 'errorCollect', { freq: 500, offsetTop: 65 + 64 + 8 * 2 });
+        Object.assign(this, Object.assign({}, new ErrorCollectConfig(), cog));
     }
     /**
      * @private
      * @return {?}
      */
     get errEls() {
-        return (/** @type {?} */ (this.formEl)).querySelectorAll('.ant-form-item-has-error');
+        return (/** @type {?} */ (this.formEl)).querySelectorAll('.has-error');
     }
     /**
      * @private
@@ -59,7 +93,6 @@ class ErrorCollectComponent {
         formItemEl.scrollIntoView(true);
         // fix header height
         this.doc.documentElement.scrollTop -= this.offsetTop;
-        return true;
     }
     /**
      * @private
@@ -96,7 +129,7 @@ class ErrorCollectComponent {
             }
             el = (/** @type {?} */ (el.parentElement));
         }
-        return retEl;
+        return (/** @type {?} */ (retEl));
     }
     /**
      * @return {?}
@@ -134,10 +167,10 @@ ErrorCollectComponent.decorators = [
 ];
 /** @nocollapse */
 ErrorCollectComponent.ctorParameters = () => [
+    { type: ErrorCollectConfig },
     { type: ElementRef },
     { type: ChangeDetectorRef },
-    { type: undefined, decorators: [{ type: Inject, args: [DOCUMENT,] }] },
-    { type: AlainConfigService }
+    { type: undefined, decorators: [{ type: Inject, args: [DOCUMENT,] }] }
 ];
 ErrorCollectComponent.propDecorators = {
     freq: [{ type: Input }],
@@ -216,5 +249,5 @@ ErrorCollectModule.decorators = [
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { ErrorCollectComponent, ErrorCollectModule };
+export { ErrorCollectComponent, ErrorCollectConfig, ErrorCollectModule };
 //# sourceMappingURL=errorCollect.js.map

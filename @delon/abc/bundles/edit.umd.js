@@ -1,13 +1,13 @@
 /**
- * @license ng-alain(cipchk@qq.com) v9.2.1
- * (c) 2020 cipchk https://ng-alain.com/
+ * @license ng-alain(cipchk@qq.com) v8.9.3
+ * (c) 2019 cipchk https://ng-alain.com/
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util'), require('@angular/forms'), require('@delon/theme'), require('ng-zorro-antd/core/animation'), require('@angular/common'), require('ng-zorro-antd/core/outlet'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/tooltip')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/se', ['exports', '@angular/core', '@delon/util', '@angular/forms', '@delon/theme', 'ng-zorro-antd/core/animation', '@angular/common', 'ng-zorro-antd/core/outlet', 'ng-zorro-antd/icon', 'ng-zorro-antd/tooltip'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.se = {}), global.ng.core, global.delon.util, global.ng.forms, global.delon.theme, global.animation, global.ng.common, global['ng-zorro-antd/core/outlet'], global['ng-zorro-antd/icon'], global['ng-zorro-antd/tooltip']));
-}(this, (function (exports, core, util, forms, theme, animation, common, outlet, icon, tooltip) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util'), require('@angular/animations'), require('@angular/forms'), require('@delon/theme'), require('@angular/common'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/tooltip')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/edit', ['exports', '@angular/core', '@delon/util', '@angular/animations', '@angular/forms', '@delon/theme', '@angular/common', 'ng-zorro-antd/icon', 'ng-zorro-antd/tooltip'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.edit = {}), global.ng.core, global.delon.util, global.ng.animations, global.ng.forms, global.delon.theme, global.ng.common, global['ng-zorro-antd/icon'], global['ng-zorro-antd/tooltip']));
+}(this, (function (exports, core, util, animations, forms, theme, common, icon, tooltip) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -225,21 +225,89 @@
 
     /**
      * @fileoverview added by tsickle
-     * Generated from: se-container.component.ts
+     * Generated from: edit.config.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var SEConfig = /** @class */ (function () {
+        function SEConfig() {
+            /**
+             * 大小，默认：`default`
+             * - `compact` 紧凑型，强制忽略 `error`、`extra` 展示
+             */
+            this.size = 'default';
+            /**
+             * 布局类型，等同 `nzLayout`
+             * - `inline` 时强制大小为 `compact`
+             */
+            this.nzLayout = 'horizontal';
+            /**
+             * 间距，当 `nzLayout:horizontal` 时有效，默认：`32`
+             */
+            this.gutter = 32;
+            /**
+             * 列数，默认：`2`
+             */
+            this.col = 2;
+            /**
+             * 标签文本宽度，单位：`px`，默认：`150`
+             */
+            this.labelWidth = 150;
+            /**
+             * 是否立即呈现错误视觉
+             */
+            this.firstVisual = false;
+        }
+        SEConfig.decorators = [
+            { type: core.Injectable, args: [{ providedIn: 'root' },] }
+        ];
+        /** @nocollapse */ SEConfig.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function SEConfig_Factory() { return new SEConfig(); }, token: SEConfig, providedIn: "root" });
+        return SEConfig;
+    }());
+    if (false) {
+        /**
+         * 大小，默认：`default`
+         * - `compact` 紧凑型，强制忽略 `error`、`extra` 展示
+         * @type {?}
+         */
+        SEConfig.prototype.size;
+        /**
+         * 布局类型，等同 `nzLayout`
+         * - `inline` 时强制大小为 `compact`
+         * @type {?}
+         */
+        SEConfig.prototype.nzLayout;
+        /**
+         * 间距，当 `nzLayout:horizontal` 时有效，默认：`32`
+         * @type {?}
+         */
+        SEConfig.prototype.gutter;
+        /**
+         * 列数，默认：`2`
+         * @type {?}
+         */
+        SEConfig.prototype.col;
+        /**
+         * 标签文本宽度，单位：`px`，默认：`150`
+         * @type {?}
+         */
+        SEConfig.prototype.labelWidth;
+        /**
+         * 是否立即呈现错误视觉
+         * @type {?}
+         */
+        SEConfig.prototype.firstVisual;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: edit-container.component.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var SEContainerComponent = /** @class */ (function () {
         // #endregion
-        function SEContainerComponent(configSrv) {
+        function SEContainerComponent(cog) {
             this.line = false;
-            configSrv.attach(this, 'se', {
-                size: 'default',
-                nzLayout: 'horizontal',
-                gutter: 32,
-                col: 2,
-                labelWidth: 150,
-                firstVisual: false,
-            });
+            Object.assign(this, __assign({}, new SEConfig(), cog));
         }
         Object.defineProperty(SEContainerComponent.prototype, "gutter", {
             get: /**
@@ -282,17 +350,7 @@
             { type: core.Component, args: [{
                         selector: 'se-container, [se-container]',
                         exportAs: 'seContainer',
-                        template: "\n    <se-title *ngIf=\"title\">\n      <ng-container *nzStringTemplateOutlet=\"title\">{{ title }}</ng-container>\n    </se-title>\n    <ng-content></ng-content>\n  ",
-                        host: {
-                            '[class.ant-row]': "true",
-                            '[class.se__container]': "true",
-                            '[class.se__horizontal]': "nzLayout === 'horizontal'",
-                            '[class.se__vertical]': "nzLayout === 'vertical'",
-                            '[class.se__inline]': "nzLayout === 'inline'",
-                            '[class.se__compact]': "size === 'compact'",
-                            '[style.margin-left.px]': "-(gutter / 2)",
-                            '[style.margin-right.px]': "-(gutter / 2)",
-                        },
+                        template: "<div class=\"ant-row se__container se__{{nzLayout}} se__{{size}}\"\n     [ngStyle]=\"{'margin-left.px': -(gutter / 2), 'margin-right.px': -(gutter / 2)}\">\n  <se-title *ngIf=\"title\">\n    <ng-container *stringTemplateOutlet=\"title\">{{ title }}</ng-container>\n  </se-title>\n  <ng-content></ng-content>\n</div>\n",
                         preserveWhitespaces: false,
                         changeDetection: core.ChangeDetectionStrategy.OnPush,
                         encapsulation: core.ViewEncapsulation.None
@@ -300,7 +358,7 @@
         ];
         /** @nocollapse */
         SEContainerComponent.ctorParameters = function () { return [
-            { type: util.AlainConfigService }
+            { type: SEConfig }
         ]; };
         SEContainerComponent.propDecorators = {
             colInCon: [{ type: core.Input, args: ['se-container',] }],
@@ -364,7 +422,55 @@
 
     /**
      * @fileoverview added by tsickle
-     * Generated from: se-title.component.ts
+     * Generated from: edit-error.component.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var SEErrorComponent = /** @class */ (function () {
+        function SEErrorComponent() {
+        }
+        SEErrorComponent.decorators = [
+            { type: core.Component, args: [{
+                        selector: 'se-error',
+                        exportAs: 'seError',
+                        animations: [
+                            animations.trigger('errorAnt', [
+                                animations.transition('void => *', [
+                                    animations.style({
+                                        opacity: 0,
+                                        transform: 'translateY(-5px)',
+                                    }),
+                                    animations.animate('0.3s cubic-bezier(0.645, 0.045, 0.355, 1)', animations.style({
+                                        opacity: 1,
+                                        transform: 'translateY(0)',
+                                    })),
+                                ]),
+                                animations.transition('* => void', [
+                                    animations.style({
+                                        opacity: 1,
+                                        transform: 'translateY(0)',
+                                    }),
+                                    animations.animate('0.3s cubic-bezier(0.645, 0.045, 0.355, 1)', animations.style({
+                                        opacity: 0,
+                                        transform: 'translateY(-5px)',
+                                    })),
+                                ]),
+                            ]),
+                        ],
+                        template: "\n    <div [@errorAnt]><ng-content></ng-content></div>\n  ",
+                        host: {
+                            '[class.ant-form-explain]': 'true',
+                        },
+                        preserveWhitespaces: false,
+                        changeDetection: core.ChangeDetectionStrategy.OnPush,
+                        encapsulation: core.ViewEncapsulation.None
+                    }] }
+        ];
+        return SEErrorComponent;
+    }());
+
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: edit-title.component.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var SETitleComponent = /** @class */ (function () {
@@ -440,7 +546,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * Generated from: se.component.ts
+     * Generated from: edit.component.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
@@ -474,7 +580,7 @@
              * @return {?}
              */
             function (val) {
-                this.errorData = typeof val === 'string' || val instanceof core.TemplateRef ? { '': val } : val;
+                this.errorData = typeof val === 'string' ? { '': val } : val;
             },
             enumerable: true,
             configurable: true
@@ -509,17 +615,7 @@
              * @return {?}
              */
             function () {
-                return this.invalid && !!this._error;
-            },
-            enumerable: true,
-            configurable: true
-        });
-        Object.defineProperty(SEComponent.prototype, "compact", {
-            get: /**
-             * @return {?}
-             */
-            function () {
-                return this.parent.size === 'compact';
+                return this.invalid && this.parent.size !== 'compact' && !!this._error;
             },
             enumerable: true,
             configurable: true
@@ -580,7 +676,6 @@
          */
         function () {
             var _this = this;
-            var _a, _b, _c;
             if (!this.ngControl || this.status$)
                 return;
             this.status$ = (/** @type {?} */ (this.ngControl.statusChanges)).subscribe((/**
@@ -590,21 +685,10 @@
             function (res) { return _this.updateStatus(res === 'INVALID'); }));
             if (this._autoId) {
                 /** @type {?} */
-                var control = (/** @type {?} */ ((_b = (_a = ((/** @type {?} */ (this.ngControl.valueAccessor)))) === null || _a === void 0 ? void 0 : _a._elementRef) === null || _b === void 0 ? void 0 : _b.nativeElement));
+                var control = (/** @type {?} */ (util.deepGet(this.ngControl.valueAccessor, '_elementRef.nativeElement')));
                 if (control) {
                     control.id = this._id;
                 }
-            }
-            // auto required
-            if (this.required !== true) {
-                /** @type {?} */
-                var rawValidators = (/** @type {?} */ ((_c = ((/** @type {?} */ (this.ngControl)))) === null || _c === void 0 ? void 0 : _c._rawValidators));
-                this.required = rawValidators.find((/**
-                 * @param {?} w
-                 * @return {?}
-                 */
-                function (w) { return w instanceof forms.RequiredValidator; })) != null;
-                this.cdr.detectChanges();
             }
         };
         /**
@@ -706,15 +790,13 @@
             { type: core.Component, args: [{
                         selector: 'se',
                         exportAs: 'se',
-                        template: "<div class=\"ant-form-item-label\" [class.se__nolabel]=\"!label\" [style.width.px]=\"_labelWidth\">\n  <label *ngIf=\"label\" [attr.for]=\"_id\" class=\"se__label\" [ngClass]=\"{ 'ant-form-item-required': required }\">\n    <span class=\"se__label-text\">\n      <ng-container *nzStringTemplateOutlet=\"label\">{{ label }}</ng-container>\n    </span>\n    <span *ngIf=\"optional || optionalHelp\" class=\"se__label-optional\" [class.se__label-optional-no-text]=\"!optional\">\n      <ng-container *nzStringTemplateOutlet=\"optional\">{{ optional }}</ng-container>\n      <i *ngIf=\"optionalHelp\" nz-tooltip [nzTooltipTitle]=\"optionalHelp\" nz-icon nzType=\"question-circle\"></i>\n    </span>\n  </label>\n</div>\n<div class=\"ant-form-item-control se__control\">\n  <div class=\"ant-form-item-control-input {{ controlClass }}\">\n    <div class=\"ant-form-item-control-input-content\" (cdkObserveContent)=\"checkContent()\" #contentElement>\n      <ng-content></ng-content>\n    </div>\n  </div>\n  <div class=\"ant-form-item-explain\" *ngIf=\"showErr && !compact\">\n    <div @helpMotion>\n      <ng-container *nzStringTemplateOutlet=\"_error\">{{ _error }}</ng-container>\n    </div>\n  </div>\n  <div *ngIf=\"extra && !compact\" class=\"ant-form-item-extra\">\n    <ng-container *nzStringTemplateOutlet=\"extra\">{{ extra }}</ng-container>\n  </div>\n</div>\n",
+                        template: "<div class=\"ant-form-item-label\" [class.se__nolabel]=\"!label\" [style.width.px]=\"_labelWidth\">\n  <label *ngIf=\"label\" [attr.for]=\"_id\" class=\"se__label\" [ngClass]=\"{'ant-form-item-required': required}\">\n    <span class=\"se__label-text\">\n      <ng-container *stringTemplateOutlet=\"label\">{{ label }}</ng-container>\n    </span>\n    <span *ngIf=\"optional || optionalHelp\" class=\"se__label-optional\" [class.se__label-optional-no-text]=\"!optional\">\n      <ng-container *stringTemplateOutlet=\"optional\">{{ optional }}</ng-container>\n      <i *ngIf=\"optionalHelp\" nz-tooltip [nzTooltipTitle]=\"optionalHelp\" nz-icon nzType=\"question-circle\"></i>\n    </span>\n  </label>\n</div>\n<div class=\"ant-form-item-control-wrapper se__control\">\n  <div class=\"ant-form-item-control {{controlClass}}\" [class.has-error]=\"invalid\">\n    <span (cdkObserveContent)=\"checkContent()\" #contentElement>\n      <ng-content></ng-content>\n    </span>\n    <se-error *ngIf=\"showErr\">{{_error}}</se-error>\n    <div *ngIf=\"extra\" class=\"ant-form-extra\">{{extra}}</div>\n  </div>\n</div>\n",
                         host: {
                             '[style.padding-left.px]': 'paddingValue',
                             '[style.padding-right.px]': 'paddingValue',
-                            '[class.ant-form-item-has-error]': 'showErr',
-                            '[class.ant-form-item-with-help]': 'showErr && !compact',
+                            '[class.ant-form-item-with-help]': 'showErr',
                         },
                         preserveWhitespaces: false,
-                        animations: [animation.helpMotion],
                         changeDetection: core.ChangeDetectionStrategy.OnPush,
                         encapsulation: core.ViewEncapsulation.None
                     }] }
@@ -859,17 +941,17 @@
 
     /**
      * @fileoverview added by tsickle
-     * Generated from: se.module.ts
+     * Generated from: edit.module.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
-    var COMPONENTS = [SEContainerComponent, SEComponent, SETitleComponent];
+    var COMPONENTS = [SEContainerComponent, SEComponent, SEErrorComponent, SETitleComponent];
     var SEModule = /** @class */ (function () {
         function SEModule() {
         }
         SEModule.decorators = [
             { type: core.NgModule, args: [{
-                        imports: [common.CommonModule, util.DelonUtilModule, tooltip.NzToolTipModule, icon.NzIconModule, outlet.NzOutletModule],
+                        imports: [common.CommonModule, util.DelonUtilModule, tooltip.NzToolTipModule, icon.NzIconModule],
                         declarations: __spread(COMPONENTS),
                         exports: __spread(COMPONENTS),
                     },] }
@@ -878,7 +960,9 @@
     }());
 
     exports.SEComponent = SEComponent;
+    exports.SEConfig = SEConfig;
     exports.SEContainerComponent = SEContainerComponent;
+    exports.SEErrorComponent = SEErrorComponent;
     exports.SEModule = SEModule;
     exports.SETitleComponent = SETitleComponent;
 

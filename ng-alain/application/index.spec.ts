@@ -1,6 +1,6 @@
 import { SchematicTestRunner, UnitTestTree } from '@angular-devkit/schematics/testing';
 import * as LANG from '../core/lang.config';
-import { APPNAME, createAlainApp, createAlainRunner, createNgRunner } from '../utils/testing';
+import { createAlainApp, createAlainRunner, createNgRunner, APPNAME } from '../utils/testing';
 
 describe('NgAlainSchematic: application', () => {
   let runner: SchematicTestRunner;
@@ -32,7 +32,7 @@ describe('NgAlainSchematic: application', () => {
       beforeEach(async () => ({ runner, tree } = await createAlainApp({ i18n: true })));
       it(`can add i18n related`, () => {
         const specTs = tree.readContent('/projects/foo/src/app/app.module.ts');
-        expect(specTs).toContain(`import { I18NService } from '@core'`);
+        expect(specTs).toContain(`@core/i18n/`);
       });
     });
     describe('with false', () => {

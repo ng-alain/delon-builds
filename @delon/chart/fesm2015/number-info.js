@@ -1,8 +1,7 @@
 import { __decorate, __metadata } from 'tslib';
-import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input, NgModule } from '@angular/core';
-import { InputNumber, DelonUtilModule } from '@delon/util';
+import { Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, Renderer2, Input, NgModule } from '@angular/core';
+import { updateHostClass, InputNumber, DelonUtilModule } from '@delon/util';
 import { CommonModule } from '@angular/common';
-import { NzOutletModule } from 'ng-zorro-antd/core/outlet';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 
 /**
@@ -11,7 +10,13 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class NumberInfoComponent {
-    constructor() {
+    /**
+     * @param {?} el
+     * @param {?} renderer
+     */
+    constructor(el, renderer) {
+        this.el = el;
+        this.renderer = renderer;
         /**
          * 状态样式
          */
@@ -21,21 +26,37 @@ class NumberInfoComponent {
          */
         this.gap = 8;
     }
+    /**
+     * @return {?}
+     */
+    setClass() {
+        const { el, renderer, theme } = this;
+        updateHostClass(el.nativeElement, renderer, {
+            'number-info': true,
+            [`number-info__${theme}`]: true,
+        }, true);
+    }
+    /**
+     * @return {?}
+     */
+    ngOnChanges() {
+        this.setClass();
+    }
 }
 NumberInfoComponent.decorators = [
     { type: Component, args: [{
                 selector: 'number-info',
                 exportAs: 'numberInfo',
-                template: "<div *ngIf=\"title\" class=\"number-info__title\">\n  <ng-container *nzStringTemplateOutlet=\"title\">{{ title }}</ng-container>\n</div>\n<div *ngIf=\"subTitle\" class=\"number-info__title-sub\">\n  <ng-container *nzStringTemplateOutlet=\"subTitle\">{{ subTitle }}</ng-container>\n</div>\n<div class=\"number-info__value\" [ngStyle]=\"{ 'margin-top.px': gap }\">\n  <span class=\"number-info__value-text\">\n    <ng-container *nzStringTemplateOutlet=\"total\">{{ total }}</ng-container>\n    <em class=\"number-info__value-suffix\" *ngIf=\"suffix\">{{ suffix }}</em>\n  </span>\n  <span *ngIf=\"status || subTotal\" class=\"number-info__value-text number-info__value-sub\">\n    <ng-container *nzStringTemplateOutlet=\"subTotal\">{{ subTotal }}</ng-container>\n    <i *ngIf=\"status\" nz-icon nzType=\"caret-{{ status }}\"></i>\n  </span>\n</div>\n",
-                host: {
-                    '[class.number-info]': `true`,
-                    '[class.number-info__light]': `theme === 'light'`,
-                    '[class.number-info__default]': `theme === 'default'`,
-                },
+                template: "<div *ngIf=\"title\" class=\"number-info__title\">\n  <ng-container *stringTemplateOutlet=\"title\">{{title}}</ng-container>\n</div>\n<div *ngIf=\"subTitle\" class=\"number-info__title-sub\">\n  <ng-container *stringTemplateOutlet=\"subTitle\">{{subTitle}}</ng-container>\n</div>\n<div class=\"number-info__value\" [ngStyle]=\"{'margin-top.px': gap}\">\n  <span class=\"number-info__value-text\">\n    <ng-container *stringTemplateOutlet=\"total\">{{total}}</ng-container>\n    <em class=\"number-info__value-suffix\" *ngIf=\"suffix\">{{suffix}}</em>\n  </span>\n  <span *ngIf=\"status || subTotal\" class=\"number-info__value-text number-info__value-sub\">\n    <ng-container *stringTemplateOutlet=\"subTotal\">{{subTotal}}</ng-container>\n    <i *ngIf=\"status\" nz-icon nzType=\"caret-{{status}}\"></i>\n  </span>\n</div>\n",
                 preserveWhitespaces: false,
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None
             }] }
+];
+/** @nocollapse */
+NumberInfoComponent.ctorParameters = () => [
+    { type: ElementRef },
+    { type: Renderer2 }
 ];
 NumberInfoComponent.propDecorators = {
     title: [{ type: Input }],
@@ -92,6 +113,16 @@ if (false) {
      * @type {?}
      */
     NumberInfoComponent.prototype.gap;
+    /**
+     * @type {?}
+     * @private
+     */
+    NumberInfoComponent.prototype.el;
+    /**
+     * @type {?}
+     * @private
+     */
+    NumberInfoComponent.prototype.renderer;
 }
 
 /**
@@ -105,7 +136,7 @@ class NumberInfoModule {
 }
 NumberInfoModule.decorators = [
     { type: NgModule, args: [{
-                imports: [CommonModule, NzIconModule, DelonUtilModule, NzOutletModule],
+                imports: [CommonModule, NzIconModule, DelonUtilModule],
                 declarations: [...COMPONENTS],
                 exports: [...COMPONENTS],
             },] }

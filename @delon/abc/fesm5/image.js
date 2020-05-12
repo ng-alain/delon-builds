@@ -1,7 +1,42 @@
-import { __decorate, __metadata, __spread } from 'tslib';
-import { Directive, ElementRef, Input, NgModule } from '@angular/core';
-import { AlainConfigService, InputNumber, DelonUtilModule } from '@delon/util';
+import { __assign, __decorate, __metadata, __spread } from 'tslib';
+import { Injectable, ɵɵdefineInjectable, Directive, ElementRef, Input, NgModule } from '@angular/core';
+import { InputNumber, DelonUtilModule } from '@delon/util';
 import { CommonModule } from '@angular/common';
+
+/**
+ * @fileoverview added by tsickle
+ * Generated from: image.config.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var ImageConfig = /** @class */ (function () {
+    function ImageConfig() {
+        /**
+         * 默认大小，默认值：`64`，单位：px
+         */
+        this.size = 64;
+        /**
+         * 错误图片
+         */
+        this.error = './assets/img/logo.svg';
+    }
+    ImageConfig.decorators = [
+        { type: Injectable, args: [{ providedIn: 'root' },] }
+    ];
+    /** @nocollapse */ ImageConfig.ngInjectableDef = ɵɵdefineInjectable({ factory: function ImageConfig_Factory() { return new ImageConfig(); }, token: ImageConfig, providedIn: "root" });
+    return ImageConfig;
+}());
+if (false) {
+    /**
+     * 默认大小，默认值：`64`，单位：px
+     * @type {?}
+     */
+    ImageConfig.prototype.size;
+    /**
+     * 错误图片
+     * @type {?}
+     */
+    ImageConfig.prototype.error;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -15,9 +50,11 @@ import { CommonModule } from '@angular/common';
  * + 支持增加onerror事件
  */
 var ImageDirective = /** @class */ (function () {
-    function ImageDirective(el, configSrv) {
+    function ImageDirective(cog, el) {
+        this.size = 64;
+        this.error = './assets/img/logo.svg';
         this.inited = false;
-        configSrv.attach(this, 'image', { size: 64, error: "./assets/img/logo.svg" });
+        Object.assign(this, __assign({}, new ImageConfig(), cog));
         this.imgEl = el.nativeElement;
     }
     /**
@@ -99,8 +136,8 @@ var ImageDirective = /** @class */ (function () {
     ];
     /** @nocollapse */
     ImageDirective.ctorParameters = function () { return [
-        { type: ElementRef },
-        { type: AlainConfigService }
+        { type: ImageConfig },
+        { type: ElementRef }
     ]; };
     ImageDirective.propDecorators = {
         src: [{ type: Input, args: ['_src',] }],
@@ -109,7 +146,7 @@ var ImageDirective = /** @class */ (function () {
     };
     __decorate([
         InputNumber(),
-        __metadata("design:type", Number)
+        __metadata("design:type", Object)
     ], ImageDirective.prototype, "size", void 0);
     return ImageDirective;
 }());
@@ -164,5 +201,5 @@ var ImageModule = /** @class */ (function () {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { ImageDirective, ImageModule };
+export { ImageConfig, ImageDirective, ImageModule };
 //# sourceMappingURL=image.js.map

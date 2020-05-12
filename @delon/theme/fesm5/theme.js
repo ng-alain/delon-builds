@@ -1,18 +1,17 @@
 import { InjectionToken, Injectable, ɵɵdefineInjectable, Optional, Inject, ɵɵinject, Injector, INJECTOR, SkipSelf, NgModule, Pipe, Version } from '@angular/core';
 import { __values, __assign, __spread, __extends } from 'tslib';
-import { ACLService } from '@delon/acl';
 import { BehaviorSubject, Subject, Observable, throwError, of } from 'rxjs';
 import { filter, share, tap, catchError, switchMap } from 'rxjs/operators';
+import { ACLService } from '@delon/acl';
 import { DOCUMENT, CurrencyPipe, CommonModule } from '@angular/common';
-import { AlainConfigService, deepMerge, toDate } from '@delon/util';
 import { Title, DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { deepMerge } from '@delon/util';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { NzDrawerService } from 'ng-zorro-antd/drawer';
 import { HttpParams, HttpClient } from '@angular/common/http';
+import distanceInWordsToNow from 'date-fns/distance_in_words_to_now';
 import format from 'date-fns/format';
-import formatDistanceToNow from 'date-fns/formatDistanceToNow';
-import { NzI18nService, NzI18nModule } from 'ng-zorro-antd/i18n';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { BellOutline, DeleteOutline, PlusOutline, InboxOutline } from '@ant-design/icons-angular/icons';
 import { NzIconService } from 'ng-zorro-antd/icon';
@@ -328,7 +327,7 @@ var AlainI18NServiceFake = /** @class */ (function () {
     AlainI18NServiceFake.decorators = [
         { type: Injectable, args: [{ providedIn: 'root' },] }
     ];
-    /** @nocollapse */ AlainI18NServiceFake.ɵprov = ɵɵdefineInjectable({ factory: function AlainI18NServiceFake_Factory() { return new AlainI18NServiceFake(); }, token: AlainI18NServiceFake, providedIn: "root" });
+    /** @nocollapse */ AlainI18NServiceFake.ngInjectableDef = ɵɵdefineInjectable({ factory: function AlainI18NServiceFake_Factory() { return new AlainI18NServiceFake(); }, token: AlainI18NServiceFake, providedIn: "root" });
     return AlainI18NServiceFake;
 }());
 if (false) {
@@ -478,7 +477,10 @@ var MenuService = /** @class */ (function () {
                 // compatible `anticon anticon-user`
                 if (~item.icon.indexOf("anticon-")) {
                     type = 'icon';
-                    value = value.split('-').slice(1).join('-');
+                    value = value
+                        .split('-')
+                        .slice(1)
+                        .join('-');
                 }
                 else if (/^https?:\/\//.test(item.icon)) {
                     type = 'img';
@@ -647,7 +649,10 @@ var MenuService = /** @class */ (function () {
                 url = url.split('?')[0];
             }
             else {
-                url = url.split('/').slice(0, -1).join('/');
+                url = url
+                    .split('/')
+                    .slice(0, -1)
+                    .join('/');
             }
         }
         return item;
@@ -803,7 +808,7 @@ var MenuService = /** @class */ (function () {
         { type: undefined, decorators: [{ type: Optional }, { type: Inject, args: [ALAIN_I18N_TOKEN,] }] },
         { type: ACLService, decorators: [{ type: Optional }] }
     ]; };
-    /** @nocollapse */ MenuService.ɵprov = ɵɵdefineInjectable({ factory: function MenuService_Factory() { return new MenuService(ɵɵinject(ALAIN_I18N_TOKEN, 8), ɵɵinject(ACLService, 8)); }, token: MenuService, providedIn: "root" });
+    /** @nocollapse */ MenuService.ngInjectableDef = ɵɵdefineInjectable({ factory: function MenuService_Factory() { return new MenuService(ɵɵinject(ALAIN_I18N_TOKEN, 8), ɵɵinject(ACLService, 8)); }, token: MenuService, providedIn: "root" });
     return MenuService;
 }());
 if (false) {
@@ -942,7 +947,7 @@ var ScrollService = /** @class */ (function () {
         { type: undefined, decorators: [{ type: Inject, args: [WINDOW,] }] },
         { type: undefined, decorators: [{ type: Inject, args: [DOCUMENT,] }] }
     ]; };
-    /** @nocollapse */ ScrollService.ɵprov = ɵɵdefineInjectable({ factory: function ScrollService_Factory() { return new ScrollService(ɵɵinject(WINDOW), ɵɵinject(DOCUMENT)); }, token: ScrollService, providedIn: "root" });
+    /** @nocollapse */ ScrollService.ngInjectableDef = ɵɵdefineInjectable({ factory: function ScrollService_Factory() { return new ScrollService(ɵɵinject(WINDOW), ɵɵinject(DOCUMENT)); }, token: ScrollService, providedIn: "root" });
     return ScrollService;
 }());
 if (false) {
@@ -1190,7 +1195,7 @@ var SettingsService = /** @class */ (function () {
     SettingsService.decorators = [
         { type: Injectable, args: [{ providedIn: 'root' },] }
     ];
-    /** @nocollapse */ SettingsService.ɵprov = ɵɵdefineInjectable({ factory: function SettingsService_Factory() { return new SettingsService(); }, token: SettingsService, providedIn: "root" });
+    /** @nocollapse */ SettingsService.ngInjectableDef = ɵɵdefineInjectable({ factory: function SettingsService_Factory() { return new SettingsService(); }, token: SettingsService, providedIn: "root" });
     return SettingsService;
 }());
 if (false) {
@@ -1218,23 +1223,74 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: src/services/responsive/responsive.config.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ */
+function ResponsiveConfig() { }
+if (false) {
+    /** @type {?} */
+    ResponsiveConfig.prototype.rules;
+}
+/**
+ * @record
+ */
+function ResponsiveConfigRule() { }
+if (false) {
+    /** @type {?|undefined} */
+    ResponsiveConfigRule.prototype.xs;
+    /** @type {?|undefined} */
+    ResponsiveConfigRule.prototype.sm;
+    /** @type {?|undefined} */
+    ResponsiveConfigRule.prototype.md;
+    /** @type {?|undefined} */
+    ResponsiveConfigRule.prototype.lg;
+    /** @type {?|undefined} */
+    ResponsiveConfigRule.prototype.xl;
+    /** @type {?|undefined} */
+    ResponsiveConfigRule.prototype.xxl;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * Generated from: src/theme.config.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var AlainThemeConfig = /** @class */ (function () {
+    function AlainThemeConfig() {
+    }
+    AlainThemeConfig.decorators = [
+        { type: Injectable, args: [{ providedIn: 'root' },] }
+    ];
+    /** @nocollapse */ AlainThemeConfig.ngInjectableDef = ɵɵdefineInjectable({ factory: function AlainThemeConfig_Factory() { return new AlainThemeConfig(); }, token: AlainThemeConfig, providedIn: "root" });
+    return AlainThemeConfig;
+}());
+if (false) {
+    /** @type {?} */
+    AlainThemeConfig.prototype.http;
+    /** @type {?} */
+    AlainThemeConfig.prototype.responsive;
+}
+
+/**
+ * @fileoverview added by tsickle
  * Generated from: src/services/responsive/responsive.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 var REP_MAX = 6;
 var ResponsiveService = /** @class */ (function () {
-    function ResponsiveService(cogSrv) {
-        this.cog = cogSrv.merge('themeResponsive', {
-            rules: {
+    function ResponsiveService(cog) {
+        this.cog = __assign({ rules: {
                 1: { xs: 24 },
                 2: { xs: 24, sm: 12 },
                 3: { xs: 24, sm: 12, md: 8 },
                 4: { xs: 24, sm: 12, md: 8, lg: 6 },
                 5: { xs: 24, sm: 12, md: 8, lg: 6, xl: 4 },
                 6: { xs: 24, sm: 12, md: 8, lg: 6, xl: 4, xxl: 2 },
-            },
-        });
+            } }, (/** @type {?} */ (cog)).responsive);
         if (Object.keys(this.cog.rules)
             .map((/**
          * @param {?} i
@@ -1281,9 +1337,9 @@ var ResponsiveService = /** @class */ (function () {
     ];
     /** @nocollapse */
     ResponsiveService.ctorParameters = function () { return [
-        { type: AlainConfigService }
+        { type: AlainThemeConfig }
     ]; };
-    /** @nocollapse */ ResponsiveService.ɵprov = ɵɵdefineInjectable({ factory: function ResponsiveService_Factory() { return new ResponsiveService(ɵɵinject(AlainConfigService)); }, token: ResponsiveService, providedIn: "root" });
+    /** @nocollapse */ ResponsiveService.ngInjectableDef = ɵɵdefineInjectable({ factory: function ResponsiveService_Factory() { return new ResponsiveService(ɵɵinject(AlainThemeConfig)); }, token: ResponsiveService, providedIn: "root" });
     return ResponsiveService;
 }());
 if (false) {
@@ -1441,7 +1497,7 @@ var TitleService = /** @class */ (function () {
         var title;
         if (item.i18n && this.i18nSrv)
             title = this.i18nSrv.fanyi(item.i18n);
-        return title || (/** @type {?} */ (item.text));
+        return title || item.text;
     };
     /**
      * @private
@@ -1532,7 +1588,7 @@ var TitleService = /** @class */ (function () {
         { type: undefined, decorators: [{ type: Optional }, { type: Inject, args: [ALAIN_I18N_TOKEN,] }] },
         { type: undefined, decorators: [{ type: Inject, args: [DOCUMENT,] }] }
     ]; };
-    /** @nocollapse */ TitleService.ɵprov = ɵɵdefineInjectable({ factory: function TitleService_Factory() { return new TitleService(ɵɵinject(INJECTOR), ɵɵinject(Title), ɵɵinject(MenuService), ɵɵinject(ALAIN_I18N_TOKEN, 8), ɵɵinject(DOCUMENT)); }, token: TitleService, providedIn: "root" });
+    /** @nocollapse */ TitleService.ngInjectableDef = ɵɵdefineInjectable({ factory: function TitleService_Factory() { return new TitleService(ɵɵinject(INJECTOR), ɵɵinject(Title), ɵɵinject(MenuService), ɵɵinject(ALAIN_I18N_TOKEN, 8), ɵɵinject(DOCUMENT)); }, token: TitleService, providedIn: "root" });
     return TitleService;
 }());
 if (false) {
@@ -1649,8 +1705,6 @@ if (false) {
     ReuseTabLocaleData.prototype.closeRight;
     /** @type {?} */
     ReuseTabLocaleData.prototype.clear;
-    /** @type {?} */
-    ReuseTabLocaleData.prototype.refresh;
 }
 /**
  * @record
@@ -1822,7 +1876,7 @@ var zhCN = (/** @type {?} */ ({
         close: '关闭标签',
         closeOther: '关闭其它标签',
         closeRight: '关闭右侧标签',
-        refresh: '刷新',
+        clear: '清空',
     },
     tagSelect: {
         expand: '展开',
@@ -1937,7 +1991,7 @@ var DelonLocaleService = /** @class */ (function () {
      * @return {?}
      */
     function (path) {
-        return (/** @type {?} */ ((this._locale[path] || {})));
+        return this._locale[path] || {};
     };
     DelonLocaleService.decorators = [
         { type: Injectable }
@@ -2013,7 +2067,7 @@ var enUS = (/** @type {?} */ ({
         close: 'Close tab',
         closeOther: 'Close other tabs',
         closeRight: 'Close tabs to right',
-        refresh: 'Refresh',
+        clear: 'Clear tabs',
     },
     tagSelect: {
         expand: 'Expand',
@@ -2095,7 +2149,7 @@ var zhTW = (/** @type {?} */ ({
         close: '關閉標簽',
         closeOther: '關閉其它標簽',
         closeRight: '關閉右側標簽',
-        refresh: '刷新',
+        clear: '清空',
     },
     tagSelect: {
         expand: '展開',
@@ -2177,7 +2231,7 @@ var trTR = (/** @type {?} */ ({
         close: 'Sekmeyi Kapat',
         closeOther: 'Diğer sekmeleri kapat',
         closeRight: 'Sağdaki sekmeleri kapat',
-        refresh: 'täzele',
+        clear: 'Sekmeleri temizle',
     },
     tagSelect: {
         expand: 'Genişlet',
@@ -2259,7 +2313,7 @@ var plPL = (/** @type {?} */ ({
         close: 'Zamknij kartę',
         closeOther: 'Zamknij inne karty',
         closeRight: 'Zamknij karty po prawej',
-        refresh: 'Refresh',
+        clear: 'Wyczyść karty',
     },
     tagSelect: {
         expand: 'Rozszerz',
@@ -2341,7 +2395,7 @@ var elGR = (/** @type {?} */ ({
         close: 'Κλείσιμο καρτέλας',
         closeOther: 'Κλείσιμο των άλλων καρτέλων',
         closeRight: 'Κλείσιμο των καρτελών δεξιά',
-        refresh: 'φρεσκάρω',
+        clear: 'Καθαρισμός καρτελών',
     },
     tagSelect: {
         expand: 'Επέκταση',
@@ -2423,7 +2477,7 @@ var koKR = (/** @type {?} */ ({
         close: '탭 닫기',
         closeOther: '다른 탭 닫기',
         closeRight: '오른쪽 탭 닫기',
-        refresh: '새롭게 하다',
+        clear: '탭 지우기',
     },
     tagSelect: {
         expand: '펼치기',
@@ -2505,7 +2559,7 @@ var hrHR = (/** @type {?} */ ({
         close: 'Zatvori karticu',
         closeOther: 'Zatvori druge kartice',
         closeRight: 'Zatvori kartice desno',
-        refresh: 'Refresh',
+        clear: 'Obriši kartice',
     },
     tagSelect: {
         expand: 'Proširi',
@@ -2527,88 +2581,6 @@ var hrHR = (/** @type {?} */ ({
         addText: 'Dodaj',
         removeText: 'Ukloni',
         checkAllText: 'Označi sve',
-    },
-}));
-
-/**
- * @fileoverview added by tsickle
- * Generated from: src/locale/languages/ja-JP.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-var jaJP = (/** @type {?} */ ({
-    abbr: 'ja-JP',
-    exception: {
-        403: 'ページへのアクセス権限がありません',
-        404: 'ページが存在しません',
-        500: 'サーバーエラーが発生しました',
-        backToHome: 'ホームに戻る',
-    },
-    noticeIcon: {
-        emptyText: 'データが有りません',
-        clearText: 'クリア',
-    },
-    reuseTab: {
-        close: 'タブを閉じる',
-        closeOther: '他のタブを閉じる',
-        closeRight: '右のタブを閉じる',
-        refresh: 'リフレッシュ',
-    },
-    tagSelect: {
-        expand: '展開する',
-        collapse: '折りたたむ',
-    },
-    miniProgress: {
-        target: '設定値: ',
-    },
-    st: {
-        total: '{{range[0]}} - {{range[1]}} / {{total}}',
-        filterConfirm: '確定',
-        filterReset: 'リセット',
-    },
-    sf: {
-        submit: '送信',
-        reset: 'リセット',
-        search: '検索',
-        edit: '保存',
-        addText: '追加',
-        removeText: '削除',
-        checkAllText: '全選択',
-        error: {
-            'false schema': "\u771F\u507D\u5024\u30B9\u30AD\u30FC\u30DE\u304C\u4E0D\u6B63\u3067\u3059",
-            $ref: "\u53C2\u7167\u3092\u89E3\u6C7A\u3067\u304D\u307E\u305B\u3093: {ref}",
-            additionalItems: "{limit}\u500B\u3092\u8D85\u3048\u308B\u30A2\u30A4\u30C6\u30E0\u3092\u542B\u3081\u308B\u3053\u3068\u306F\u3067\u304D\u307E\u305B\u3093",
-            additionalProperties: "\u8FFD\u52A0\u306E\u30D7\u30ED\u30D1\u30C6\u30A3\u3092\u4F7F\u7528\u3057\u306A\u3044\u3067\u304F\u3060\u3055\u3044",
-            anyOf: "\"anyOf\"\u306E\u30B9\u30AD\u30FC\u30DE\u3068\u4E00\u81F4\u3059\u308B\u5FC5\u8981\u304C\u3042\u308A\u307E\u3059",
-            dependencies: "\u30D7\u30ED\u30D1\u30C6\u30A3 {property} \u3092\u6307\u5B9A\u3057\u305F\u5834\u5408\u3001\u6B21\u306E\u4F9D\u5B58\u95A2\u4FC2\u3092\u6E80\u305F\u3059\u5FC5\u8981\u304C\u3042\u308A\u307E\u3059: {deps}",
-            enum: "\u5B9A\u7FA9\u3055\u308C\u305F\u5024\u306E\u3044\u305A\u308C\u304B\u306B\u7B49\u3057\u304F\u306A\u3051\u308C\u3070\u306A\u308A\u307E\u305B\u3093",
-            format: "\u5165\u529B\u5F62\u5F0F\u306B\u4E00\u81F4\u3057\u307E\u305B\u3093: \"{format}\"",
-            type: "\u578B\u304C\u4E0D\u6B63\u3067\u3059: {type}",
-            required: "\u5FC5\u9808\u9805\u76EE\u3067\u3059",
-            maxLength: "\u6700\u5927\u6587\u5B57\u6570: {limit}",
-            minLength: "\u6700\u5C11\u6587\u5B57\u6570: {limit}",
-            minimum: "\u5024\u304C\u4E0D\u6B63\u3067\u3059: {comparison} {limit}",
-            formatMinimum: "\u5024\u304C\u4E0D\u6B63\u3067\u3059: {comparison} {limit}",
-            maximum: "\u5024\u304C\u4E0D\u6B63\u3067\u3059: {comparison} {limit}",
-            formatMaximum: "\u5024\u304C\u4E0D\u6B63\u3067\u3059: {comparison} {limit}",
-            maxItems: "\u6700\u5927\u9078\u629E\u6570\u306F {limit}\u3000\u3088\u308A\u5C0F\u3055\u3044\u5FC5\u8981\u304C\u3042\u308A\u307E\u3059",
-            minItems: "\u6700\u5C0F\u9078\u629E\u6570\u306F {limit}\u3000\u3088\u308A\u5927\u304D\u3044\u5FC5\u8981\u304C\u3042\u308A\u307E\u3059",
-            maxProperties: "\u5024\u3092{limit}\u3088\u308A\u5927\u304D\u304F\u3059\u308B\u3053\u3068\u306F\u3067\u304D\u307E\u305B\u3093",
-            minProperties: "\u5024\u3092{limit}\u3088\u308A\u5C0F\u3055\u304F\u3059\u308B\u3053\u3068\u306F\u3067\u304D\u307E\u305B\u3093",
-            multipleOf: "\u5024\u306F\u6B21\u306E\u6570\u306E\u500D\u6570\u3067\u3042\u308B\u5FC5\u8981\u304C\u3042\u308A\u307E\u3059: {multipleOf}",
-            not: "\u5024\u304C\u4E0D\u6B63\u3067\u3059:",
-            oneOf: "\u5024\u304C\u4E0D\u6B63\u3067\u3059:",
-            pattern: "\u6B21\u306E\u30D1\u30BF\u30FC\u30F3\u306B\u4E00\u81F4\u3059\u308B\u5FC5\u8981\u304C\u3042\u308A\u307E\u3059: \"{pattern}\"",
-            uniqueItems: "\u5024\u304C\u91CD\u8907\u3057\u3066\u3044\u307E\u3059: \u9078\u629E\u80A2: {j} \u3001{i}",
-            custom: "\u5F62\u5F0F\u3068\u4E00\u81F4\u3059\u308B\u5FC5\u8981\u304C\u3042\u308A\u307E\u3059",
-            propertyNames: "\u6B21\u306E\u30D7\u30ED\u30D1\u30C6\u30A3\u306E\u5024\u304C\u7121\u52B9\u3067\u3059: \"{propertyName}\"",
-            patternRequired: "\u6B21\u306E\u30D1\u30BF\u30FC\u30F3\u306B\u4E00\u81F4\u3059\u308B\u30D7\u30ED\u30D1\u30C6\u30A3\u304C\u5FC5\u9808\u3067\u3059: \"{missingPattern}\"",
-            switch: "\"switch\" \u30AD\u30FC\u30EF\u30FC\u30C9\u306E\u5024\u304C\u4E0D\u6B63\u3067\u3059: {caseIndex}",
-            const: "\u5024\u304C\u5B9A\u6570\u306B\u4E00\u81F4\u3057\u307E\u305B\u3093",
-            contains: "\u6709\u52B9\u306A\u30A2\u30A4\u30C6\u30E0\u3092\u542B\u3081\u308B\u5FC5\u8981\u304C\u3042\u308A\u307E\u3059",
-            formatExclusiveMaximum: "formatExclusiveMaximum \u306F\u771F\u507D\u5024\u3067\u3042\u308B\u5FC5\u8981\u304C\u3042\u308A\u307E\u3059",
-            formatExclusiveMinimum: "formatExclusiveMaximum \u306F\u771F\u507D\u5024\u3067\u3042\u308B\u5FC5\u8981\u304C\u3042\u308A\u307E\u3059",
-            if: "\u30D1\u30BF\u30FC\u30F3\u3068\u4E00\u81F4\u3059\u308B\u5FC5\u8981\u304C\u3042\u308A\u307E\u3059: \"{failingKeyword}\" ",
-        },
     },
 }));
 
@@ -2640,7 +2612,7 @@ if (false) {
      */
     ModalHelperOptions.prototype.size;
     /**
-     * 对话框 [ModalOptions](https://github.com/NG-ZORRO/ng-zorro-antd/blob/master/components/modal/modal-types.ts) 参数
+     * 对话框 [ModalOptionsForService](https://github.com/NG-ZORRO/ng-zorro-antd/blob/master/components/modal/nz-modal.type.ts) 参数
      * @type {?|undefined}
      */
     ModalHelperOptions.prototype.modalOptions;
@@ -2753,7 +2725,7 @@ var ModalHelper = /** @class */ (function () {
                 nzComponentParams: params,
             };
             /** @type {?} */
-            var subject = _this.srv.create(__assign(__assign({}, defaultOptions), modalOptions));
+            var subject = _this.srv.create(__assign({}, defaultOptions, modalOptions));
             /** @type {?} */
             var afterClose$ = subject.afterClose.subscribe((/**
              * @param {?} res
@@ -2826,13 +2798,14 @@ var ModalHelper = /** @class */ (function () {
     function (comp, params, options) {
         /** @type {?} */
         var modalOptions = __assign({ nzMaskClosable: false }, (options && options.modalOptions));
-        return this.create(comp, params, __assign(__assign({}, options), { modalOptions: modalOptions }));
+        return this.create(comp, params, __assign({}, options, { modalOptions: modalOptions }));
     };
     /**
      * 打开对话框
      * @param comp 组件
      * @param params 组件参数
      * @param size 大小；例如：lg、600，默认：lg
+     * @param options 对话框 `ModalOptionsForService` 参数
      *
      * @example
      * this.modalHelper.open(FormEditComponent, { i }).subscribe(res => this.load());
@@ -2856,8 +2829,8 @@ var ModalHelper = /** @class */ (function () {
      * @param {?} comp 组件
      * @param {?=} params 组件参数
      * @param {?=} size 大小；例如：lg、600，默认：lg
+     * @param {?=} options 对话框 `ModalOptionsForService` 参数
      *
-     * @param {?=} options
      * @return {?}
      */
     ModalHelper.prototype.open = /**
@@ -2873,8 +2846,8 @@ var ModalHelper = /** @class */ (function () {
      * @param {?} comp 组件
      * @param {?=} params 组件参数
      * @param {?=} size 大小；例如：lg、600，默认：lg
+     * @param {?=} options 对话框 `ModalOptionsForService` 参数
      *
-     * @param {?=} options
      * @return {?}
      */
     function (comp, params, size, options) {
@@ -2890,6 +2863,7 @@ var ModalHelper = /** @class */ (function () {
      * @param comp 组件
      * @param params 组件参数
      * @param size 大小；例如：lg、600，默认：lg
+     * @param options 对话框 `ModalOptionsForService` 参数
      *
      * @example
      * this.modalHelper.open(FormEditComponent, { i }).subscribe(res => this.load());
@@ -2913,8 +2887,8 @@ var ModalHelper = /** @class */ (function () {
      * @param {?} comp 组件
      * @param {?=} params 组件参数
      * @param {?=} size 大小；例如：lg、600，默认：lg
+     * @param {?=} options 对话框 `ModalOptionsForService` 参数
      *
-     * @param {?=} options
      * @return {?}
      */
     ModalHelper.prototype.static = /**
@@ -2930,8 +2904,8 @@ var ModalHelper = /** @class */ (function () {
      * @param {?} comp 组件
      * @param {?=} params 组件参数
      * @param {?=} size 大小；例如：lg、600，默认：lg
+     * @param {?=} options 对话框 `ModalOptionsForService` 参数
      *
-     * @param {?=} options
      * @return {?}
      */
     function (comp, params, size, options) {
@@ -2945,7 +2919,7 @@ var ModalHelper = /** @class */ (function () {
     ModalHelper.ctorParameters = function () { return [
         { type: NzModalService }
     ]; };
-    /** @nocollapse */ ModalHelper.ɵprov = ɵɵdefineInjectable({ factory: function ModalHelper_Factory() { return new ModalHelper(ɵɵinject(NzModalService)); }, token: ModalHelper, providedIn: "root" });
+    /** @nocollapse */ ModalHelper.ngInjectableDef = ɵɵdefineInjectable({ factory: function ModalHelper_Factory() { return new ModalHelper(ɵɵinject(NzModalService)); }, token: ModalHelper, providedIn: "root" });
     return ModalHelper;
 }());
 if (false) {
@@ -3044,7 +3018,7 @@ var DrawerHelper = /** @class */ (function () {
         options = deepMerge({
             size: 'md',
             footer: true,
-            footerHeight: 50,
+            footerHeight: 55,
             exact: true,
             drawerOptions: {
                 nzPlacement: 'right',
@@ -3071,13 +3045,25 @@ var DrawerHelper = /** @class */ (function () {
                 delete (/** @type {?} */ (drawerOptions)).nzWrapClassName;
             }
             if (footer) {
-                // The 24 value is @drawer-body-padding
-                defaultOptions.nzBodyStyle = {
-                    'padding-bottom.px': (/** @type {?} */ (footerHeight)) + 24,
-                };
+                var _b = (/** @type {?} */ (drawerOptions)), nzPlacement = _b.nzPlacement, nzHeight = _b.nzHeight;
+                // Should be header * footer, because of includes header
+                /** @type {?} */
+                var reduceHeight = (/** @type {?} */ (footerHeight)) * 2 - 2;
+                if (nzPlacement === 'left' || nzPlacement === 'right') {
+                    defaultOptions.nzBodyStyle = {
+                        height: "calc(100% - " + reduceHeight + "px)",
+                        overflow: 'auto',
+                    };
+                }
+                else {
+                    defaultOptions.nzBodyStyle = {
+                        height: +(nzHeight || 256) - reduceHeight + "px",
+                        overflow: 'auto',
+                    };
+                }
             }
             /** @type {?} */
-            var subject = _this.srv.create(__assign(__assign({}, defaultOptions), drawerOptions));
+            var subject = _this.srv.create(__assign({}, defaultOptions, drawerOptions));
             /** @type {?} */
             var afterClose$ = subject.afterClose.subscribe((/**
              * @param {?} res
@@ -3119,7 +3105,7 @@ var DrawerHelper = /** @class */ (function () {
     function (title, comp, params, options) {
         /** @type {?} */
         var drawerOptions = __assign({ nzMaskClosable: false }, (options && options.drawerOptions));
-        return this.create(title, comp, params, __assign(__assign({}, options), { drawerOptions: drawerOptions }));
+        return this.create(title, comp, params, __assign({}, options, { drawerOptions: drawerOptions }));
     };
     DrawerHelper.decorators = [
         { type: Injectable, args: [{ providedIn: 'root' },] }
@@ -3128,7 +3114,7 @@ var DrawerHelper = /** @class */ (function () {
     DrawerHelper.ctorParameters = function () { return [
         { type: NzDrawerService }
     ]; };
-    /** @nocollapse */ DrawerHelper.ɵprov = ɵɵdefineInjectable({ factory: function DrawerHelper_Factory() { return new DrawerHelper(ɵɵinject(NzDrawerService)); }, token: DrawerHelper, providedIn: "root" });
+    /** @nocollapse */ DrawerHelper.ngInjectableDef = ɵɵdefineInjectable({ factory: function DrawerHelper_Factory() { return new DrawerHelper(ɵɵinject(NzDrawerService)); }, token: DrawerHelper, providedIn: "root" });
     return DrawerHelper;
 }());
 if (false) {
@@ -3151,13 +3137,10 @@ if (false) {
  * + 统一处理时间格式问题
  */
 var _HttpClient = /** @class */ (function () {
-    function _HttpClient(http, cogSrv) {
+    function _HttpClient(http, cog) {
         this.http = http;
         this._loading = false;
-        this.cog = cogSrv.merge('themeHttp', {
-            nullValueHandling: 'include',
-            dateValueHandling: 'timestamp',
-        });
+        this.cog = __assign({ nullValueHandling: 'include', dateValueHandling: 'timestamp' }, (/** @type {?} */ (cog)).http);
     }
     Object.defineProperty(_HttpClient.prototype, "loading", {
         /** 是否正在加载中 */
@@ -3430,8 +3413,8 @@ var _HttpClient = /** @class */ (function () {
      */
     function (url, body, params, options) {
         if (options === void 0) { options = {}; }
-        return this.request('POST', url, __assign(__assign({ body: body,
-            params: params }, options), { headers: {
+        return this.request('POST', url, __assign({ body: body,
+            params: params }, options, { headers: {
                 'content-type': "application/x-www-form-urlencoded",
             } }));
     };
@@ -3450,7 +3433,6 @@ var _HttpClient = /** @class */ (function () {
     function (method, url, options) {
         var _this = this;
         if (options === void 0) { options = {}; }
-        this.begin();
         if (options.params)
             options.params = this.parseParams(options.params);
         return of(null).pipe(tap((/**
@@ -3477,9 +3459,9 @@ var _HttpClient = /** @class */ (function () {
     /** @nocollapse */
     _HttpClient.ctorParameters = function () { return [
         { type: HttpClient },
-        { type: AlainConfigService }
+        { type: AlainThemeConfig }
     ]; };
-    /** @nocollapse */ _HttpClient.ɵprov = ɵɵdefineInjectable({ factory: function _HttpClient_Factory() { return new _HttpClient(ɵɵinject(HttpClient), ɵɵinject(AlainConfigService)); }, token: _HttpClient, providedIn: "root" });
+    /** @nocollapse */ _HttpClient.ngInjectableDef = ɵɵdefineInjectable({ factory: function _HttpClient_Factory() { return new _HttpClient(ɵɵinject(HttpClient), ɵɵinject(AlainThemeConfig)); }, token: _HttpClient, providedIn: "root" });
     return _HttpClient;
 }());
 if (false) {
@@ -3506,20 +3488,12 @@ if (false) {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
- * Every http decorator must be based on `BaseAPI`, Like this:
- * ```ts
- * \\@Injectable()
- * class DataService extends BaseApi {}
- * ```
  * @abstract
  */
 var BaseApi = /** @class */ (function () {
     function BaseApi(injector) {
         this.injector = injector;
     }
-    BaseApi.decorators = [
-        { type: Injectable }
-    ];
     /** @nocollapse */
     BaseApi.ctorParameters = function () { return [
         { type: Injector, decorators: [{ type: Inject, args: [Injector,] }] }
@@ -3736,9 +3710,7 @@ function makeMethod(method) {
                 }
                 options = options || {};
                 /** @type {?} */
-                var injector = (/** @type {?} */ (((/** @type {?} */ (this))).injector));
-                /** @type {?} */
-                var http = (/** @type {?} */ (injector.get(_HttpClient, null)));
+                var http = (/** @type {?} */ (this.injector.get(_HttpClient, null)));
                 if (http == null) {
                     throw new TypeError("Not found '_HttpClient', You can import 'AlainThemeModule' && 'HttpClientModule' in your root module.");
                 }
@@ -3755,7 +3727,7 @@ function makeMethod(method) {
                 }
                 if (options.acl) {
                     /** @type {?} */
-                    var aclSrv = injector.get(ACLService, null);
+                    var aclSrv = this.injector.get(ACLService, null);
                     if (aclSrv && !aclSrv.can(options.acl)) {
                         return throwError({
                             url: requestUrl,
@@ -3807,7 +3779,7 @@ function makeMethod(method) {
                 var payload = getValidArgs(data, 'payload', args);
                 /** @type {?} */
                 var supportedBody = method === 'POST' || method === 'PUT';
-                return http.request(method, requestUrl, __assign({ body: supportedBody ? genBody(getValidArgs(data, 'body', args), payload) : null, params: !supportedBody ? __assign(__assign({}, params), payload) : params, headers: __assign(__assign({}, baseData.baseHeaders), headers) }, options));
+                return http.request(method, requestUrl, __assign({ body: supportedBody ? genBody(getValidArgs(data, 'body', args), payload) : null, params: !supportedBody ? __assign({}, params, payload) : params, headers: __assign({}, baseData.baseHeaders, headers) }, options));
             });
             return descriptor;
         });
@@ -3874,8 +3846,7 @@ var FORM = makeMethod('FORM');
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var DatePipe = /** @class */ (function () {
-    function DatePipe(nzI18n) {
-        this.nzI18n = nzI18n;
+    function DatePipe() {
     }
     /**
      * @param {?} value
@@ -3888,30 +3859,27 @@ var DatePipe = /** @class */ (function () {
      * @return {?}
      */
     function (value, formatString) {
-        if (formatString === void 0) { formatString = 'yyyy-MM-dd HH:mm'; }
-        value = toDate(value);
-        if (isNaN((/** @type {?} */ (value))))
+        if (formatString === void 0) { formatString = 'YYYY-MM-DD HH:mm'; }
+        if (value) {
+            if (formatString === 'fn') {
+                return distanceInWordsToNow(value, {
+                    locale: ((/** @type {?} */ (window))).__locale__,
+                });
+            }
+            if (typeof value === 'string' && !isNaN(+value)) {
+                value = +value;
+            }
+            return format(value, formatString);
+        }
+        else {
             return '';
-        /** @type {?} */
-        var langOpt = { locale: this.nzI18n.getDateLocale() };
-        return formatString === 'fn' ? formatDistanceToNow(value, langOpt) : format(value, formatString, langOpt);
+        }
     };
     DatePipe.decorators = [
         { type: Pipe, args: [{ name: '_date' },] }
     ];
-    /** @nocollapse */
-    DatePipe.ctorParameters = function () { return [
-        { type: NzI18nService }
-    ]; };
     return DatePipe;
 }());
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    DatePipe.prototype.nzI18n;
-}
 
 /**
  * @fileoverview added by tsickle
@@ -3995,7 +3963,7 @@ var KeysPipe = /** @class */ (function () {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-var ICON_YES = "<svg viewBox=\"64 64 896 896\" fill=\"currentColor\" width=\"1em\" height=\"1em\" aria-hidden=\"true\"><path d=\"M9.2.1-d56c07df90h-69.9c-9.8 0-19.1 4.5-25.1 12.2L404.7 724.5 207 474a32 32 0 0 0-25.1-12.2H112c-6.7 0-10.4 7.7-6.3 12.9l273.9 347c12.8 16.2 37.4 16.2 50.3 0l488.4-618.9c4.1-5.1.4-12.8-6.3-12.8z\"></path></svg>";
+var ICON_YES = "<svg viewBox=\"64 64 896 896\" fill=\"currentColor\" width=\"1em\" height=\"1em\" aria-hidden=\"true\"><path d=\"M912 190h-69.9c-9.8 0-19.1 4.5-25.1 12.2L404.7 724.5 207 474a32 32 0 0 0-25.1-12.2H112c-6.7 0-10.4 7.7-6.3 12.9l273.9 347c12.8 16.2 37.4 16.2 50.3 0l488.4-618.9c4.1-5.1.4-12.8-6.3-12.8z\"></path></svg>";
 /** @type {?} */
 var ICON_NO = "<svg viewBox=\"64 64 896 896\" fill=\"currentColor\" width=\"1em\" height=\"1em\" aria-hidden=\"true\"><path d=\"M563.8 512l262.5-312.9c4.4-5.2.7-13.1-6.1-13.1h-79.8c-4.7 0-9.2 2.1-12.3 5.7L511.6 449.8 295.1 191.7c-3-3.6-7.5-5.7-12.3-5.7H203c-6.8 0-10.5 7.9-6.1 13.1L459.4 512 196.9 824.9A7.95 7.95 0 0 0 203 838h79.8c4.7 0 9.2-2.1 12.3-5.7l216.5-258.1 216.5 258.1c3 3.6 7.5 5.7 12.3 5.7h79.8c6.8 0 10.5-7.9 6.1-13.1L563.8 512z\"></path></svg>";
 /** @type {?} */
@@ -4008,17 +3976,17 @@ var YNPipe = /** @class */ (function () {
     }
     /**
      * @param {?} value
-     * @param {?=} yes
-     * @param {?=} no
-     * @param {?=} mode
+     * @param {?} yes
+     * @param {?} no
+     * @param {?} mode
      * @param {?=} isSafeHtml
      * @return {?}
      */
     YNPipe.prototype.transform = /**
      * @param {?} value
-     * @param {?=} yes
-     * @param {?=} no
-     * @param {?=} mode
+     * @param {?} yes
+     * @param {?} no
+     * @param {?} mode
      * @param {?=} isSafeHtml
      * @return {?}
      */
@@ -4180,6 +4148,9 @@ if (false) {
  */
 /** @type {?} */
 var HELPERS = [ModalHelper, DrawerHelper];
+// components
+/** @type {?} */
+var COMPONENTS = [];
 /** @type {?} */
 var PIPES = [DatePipe, CNCurrencyPipe, KeysPipe, YNPipe, I18nPipe, HTMLPipe, URLPipe];
 /** @type {?} */
@@ -4215,9 +4186,9 @@ var AlainThemeModule = /** @class */ (function () {
     };
     AlainThemeModule.decorators = [
         { type: NgModule, args: [{
-                    imports: [CommonModule, RouterModule, OverlayModule, NzI18nModule],
-                    declarations: __spread(PIPES),
-                    exports: __spread(PIPES, [DelonLocaleModule]),
+                    imports: [CommonModule, RouterModule, OverlayModule],
+                    declarations: __spread(COMPONENTS, PIPES),
+                    exports: __spread(COMPONENTS, PIPES, [DelonLocaleModule]),
                 },] }
     ];
     /** @nocollapse */
@@ -4233,7 +4204,7 @@ var AlainThemeModule = /** @class */ (function () {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-var VERSION = new Version('9.2.1-d56c07df');
+var VERSION = new Version('8.9.3-20c27c5');
 
 /**
  * @fileoverview added by tsickle
@@ -4247,5 +4218,5 @@ var VERSION = new Version('9.2.1-d56c07df');
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { ALAIN_I18N_TOKEN, APP, AlainI18NServiceFake, AlainThemeModule, BaseApi, BaseHeaders, BaseUrl, Body, CNCurrencyPipe, DELETE, DELON_LOCALE, DELON_LOCALE_SERVICE_PROVIDER, DELON_LOCALE_SERVICE_PROVIDER_FACTORY, DatePipe, DelonLocaleModule, DelonLocaleService, DrawerHelper, FORM, GET, HEAD, HTMLPipe, Headers, JSONP, KeysPipe, LAYOUT, MenuService, ModalHelper, OPTIONS, PATCH, POST, PUT, Path, Payload, Query, REP_MAX, ResponsiveService, ScrollService, SettingsService, TitleService, URLPipe, USER, VERSION, WINDOW, YNPipe, _HttpClient, elGR as el_GR, enUS as en_US, hrHR as hr_HR, jaJP as ja_JP, koKR as ko_KR, plPL as pl_PL, preloaderFinished, trTR as tr_TR, zhCN as zh_CN, zhTW as zh_TW, ALAIN_I18N_TOKEN_FACTORY as ɵa, I18nPipe as ɵb };
+export { ALAIN_I18N_TOKEN, APP, AlainI18NServiceFake, AlainThemeConfig, AlainThemeModule, BaseApi, BaseHeaders, BaseUrl, Body, CNCurrencyPipe, DELETE, DELON_LOCALE, DELON_LOCALE_SERVICE_PROVIDER, DELON_LOCALE_SERVICE_PROVIDER_FACTORY, DatePipe, DelonLocaleModule, DelonLocaleService, DrawerHelper, FORM, GET, HEAD, HTMLPipe, Headers, JSONP, KeysPipe, LAYOUT, MenuService, ModalHelper, OPTIONS, PATCH, POST, PUT, Path, Payload, Query, REP_MAX, ResponsiveService, ScrollService, SettingsService, TitleService, URLPipe, USER, VERSION, WINDOW, YNPipe, _HttpClient, elGR as el_GR, enUS as en_US, hrHR as hr_HR, koKR as ko_KR, plPL as pl_PL, preloaderFinished, trTR as tr_TR, zhCN as zh_CN, zhTW as zh_TW, ALAIN_I18N_TOKEN_FACTORY as ɵa, I18nPipe as ɵb };
 //# sourceMappingURL=theme.js.map

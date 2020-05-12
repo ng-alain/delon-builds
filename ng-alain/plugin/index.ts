@@ -1,17 +1,19 @@
-import { chain, Rule, SchematicContext, SchematicsException, Tree } from '@angular-devkit/schematics';
+import { chain, Rule, SchematicsException, SchematicContext, Tree } from '@angular-devkit/schematics';
 import { NodePackageInstallTask } from '@angular-devkit/schematics/tasks';
+
 import { getProject } from '../utils/project';
 import { PluginOptions } from './interface';
+import { Schema as PluginSchema } from './schema';
+
 import { pluginAsdf } from './plugin.asdf';
 import { pluginCodeStyle } from './plugin.code-style';
 import { pluginDefaultLanguage } from './plugin.default-language';
 import { pluginDocker } from './plugin.docker';
+import { pluginG2 } from './plugin.g2';
 import { pluginHmr } from './plugin.hmr';
 import { pluginIcon } from './plugin.icon';
-import { pluginIE } from './plugin.ie';
 import { pluginNetworkEnv } from './plugin.network-env';
 import { pluginSTS } from './plugin.sts';
-import { Schema as PluginSchema } from './schema';
 
 function installPackages() {
   return (_host: Tree, context: SchematicContext) => {
@@ -19,7 +21,7 @@ function installPackages() {
   };
 }
 
-export default function (options: PluginSchema): Rule {
+export default function(options: PluginSchema): Rule {
   return (host: Tree, context: SchematicContext) => {
     const project = getProject(host, options.project);
     const pluginOptions: PluginOptions = {
@@ -33,6 +35,9 @@ export default function (options: PluginSchema): Rule {
 
     const rules: Rule[] = [];
     switch (options.name) {
+      case 'g2':
+        rules.push(pluginG2(pluginOptions), installPackages());
+        break;
       case 'codeStyle':
         rules.push(pluginCodeStyle(pluginOptions), installPackages());
         break;
@@ -58,9 +63,6 @@ export default function (options: PluginSchema): Rule {
         break;
       case 'sts':
         rules.push(...pluginSTS(pluginOptions));
-        break;
-      case 'ie':
-        rules.push(pluginIE(pluginOptions));
         break;
       case 'asdf':
         rules.push(pluginAsdf());

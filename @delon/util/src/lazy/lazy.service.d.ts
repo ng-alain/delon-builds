@@ -1,11 +1,8 @@
 import { Observable } from 'rxjs';
 export interface LazyResult {
     path: string;
-    /**
-     * @deprecated Used `status === 'ok'`, This is deprecated and going to be removed in 10.0.0.
-     */
     loaded: boolean;
-    status: 'ok' | 'error' | 'loading';
+    status: 'ok' | 'error';
     error?: {};
 }
 /**
@@ -17,7 +14,7 @@ export declare class LazyService {
     private cached;
     private _notify;
     constructor(doc: any);
-    get change(): Observable<LazyResult[]>;
+    readonly change: Observable<LazyResult[]>;
     clear(): void;
     load(paths: string | string[]): Promise<LazyResult[]>;
     loadScript(path: string, innerContent?: string): Promise<LazyResult>;

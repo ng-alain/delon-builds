@@ -1,13 +1,13 @@
 /**
- * @license ng-alain(cipchk@qq.com) v9.2.1
- * (c) 2020 cipchk https://ng-alain.com/
+ * @license ng-alain(cipchk@qq.com) v8.9.3
+ * (c) 2019 cipchk https://ng-alain.com/
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common/http'), require('@angular/core'), require('@delon/util'), require('file-saver'), require('@angular/common')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/xlsx', ['exports', '@angular/common/http', '@angular/core', '@delon/util', 'file-saver', '@angular/common'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.xlsx = {}), global.ng.common.http, global.ng.core, global.delon.util, global.saveAs, global.ng.common));
-}(this, (function (exports, http, core, util, fileSaver, common) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/common/http'), require('@delon/util'), require('file-saver'), require('@angular/common')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/xlsx', ['exports', '@angular/core', '@angular/common/http', '@delon/util', 'file-saver', '@angular/common'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.xlsx = {}), global.ng.core, global.ng.common.http, global.delon.util, global.saveAs, global.ng.common));
+}(this, (function (exports, core, http, util, fileSaver, common) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -272,17 +272,53 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: xlsx.config.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var XlsxConfig = /** @class */ (function () {
+        function XlsxConfig() {
+            /**
+             * Xlsx library path
+             */
+            this.url = '//cdn.bootcss.com/xlsx/0.12.13/xlsx.full.min.js';
+            /**
+             * Defines which Xlsx optional modules should get loaded, e.g:
+             *
+             * `[ '//cdn.bootcss.com/xlsx/0.12.13/cpexcel.js' ]`
+             */
+            this.modules = [];
+        }
+        XlsxConfig.decorators = [
+            { type: core.Injectable, args: [{ providedIn: 'root' },] }
+        ];
+        /** @nocollapse */ XlsxConfig.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function XlsxConfig_Factory() { return new XlsxConfig(); }, token: XlsxConfig, providedIn: "root" });
+        return XlsxConfig;
+    }());
+    if (false) {
+        /**
+         * Xlsx library path
+         * @type {?}
+         */
+        XlsxConfig.prototype.url;
+        /**
+         * Defines which Xlsx optional modules should get loaded, e.g:
+         *
+         * `[ '//cdn.bootcss.com/xlsx/0.12.13/cpexcel.js' ]`
+         * @type {?}
+         */
+        XlsxConfig.prototype.modules;
+    }
+
+    /**
+     * @fileoverview added by tsickle
      * Generated from: xlsx.service.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var XlsxService = /** @class */ (function () {
-        function XlsxService(http, lazy, configSrv) {
+        function XlsxService(cog, http, lazy) {
+            this.cog = cog;
             this.http = http;
             this.lazy = lazy;
-            this.cog = configSrv.merge('xlsx', {
-                url: '//cdn.bootcss.com/xlsx/0.15.6/xlsx.full.min.js',
-                modules: [],
-            });
         }
         /**
          * @private
@@ -434,11 +470,11 @@
         ];
         /** @nocollapse */
         XlsxService.ctorParameters = function () { return [
+            { type: XlsxConfig },
             { type: http.HttpClient },
-            { type: util.LazyService },
-            { type: util.AlainConfigService }
+            { type: util.LazyService }
         ]; };
-        /** @nocollapse */ XlsxService.ɵprov = core.ɵɵdefineInjectable({ factory: function XlsxService_Factory() { return new XlsxService(core.ɵɵinject(http.HttpClient), core.ɵɵinject(util.LazyService), core.ɵɵinject(util.AlainConfigService)); }, token: XlsxService, providedIn: "root" });
+        /** @nocollapse */ XlsxService.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function XlsxService_Factory() { return new XlsxService(core.ɵɵinject(XlsxConfig), core.ɵɵinject(http.HttpClient), core.ɵɵinject(util.LazyService)); }, token: XlsxService, providedIn: "root" });
         return XlsxService;
     }());
     if (false) {
@@ -525,6 +561,7 @@
         return XlsxModule;
     }());
 
+    exports.XlsxConfig = XlsxConfig;
     exports.XlsxDirective = XlsxDirective;
     exports.XlsxModule = XlsxModule;
     exports.XlsxService = XlsxService;

@@ -1,7 +1,6 @@
 import { __decorate, __metadata, __spread } from 'tslib';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, NgZone, Input, NgModule } from '@angular/core';
-import { Chart } from '@antv/g2';
-import { AlainConfigService, InputNumber, DelonUtilModule } from '@delon/util';
+import { InputNumber, DelonUtilModule } from '@delon/util';
 import { CommonModule } from '@angular/common';
 
 /**
@@ -22,7 +21,7 @@ if (false) {
 }
 var G2MiniBarComponent = /** @class */ (function () {
     // #endregion
-    function G2MiniBarComponent(el, ngZone, configSrv) {
+    function G2MiniBarComponent(el, ngZone) {
         this.el = el;
         this.ngZone = ngZone;
         // #region fields
@@ -34,7 +33,6 @@ var G2MiniBarComponent = /** @class */ (function () {
         this.data = [];
         this.yTooltipSuffix = '';
         this.tooltipType = 'default';
-        configSrv.attachKey(this, 'chart', 'theme');
     }
     /**
      * @private
@@ -45,16 +43,15 @@ var G2MiniBarComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        var _a = this, el = _a.el, height = _a.height, padding = _a.padding, yTooltipSuffix = _a.yTooltipSuffix, tooltipType = _a.tooltipType, theme = _a.theme;
+        var _a = this, el = _a.el, height = _a.height, padding = _a.padding, yTooltipSuffix = _a.yTooltipSuffix, tooltipType = _a.tooltipType;
         /** @type {?} */
-        var chart = (this.chart = new Chart({
+        var chart = (this.chart = new G2.Chart({
             container: el.nativeElement,
-            autoFit: true,
+            forceFit: true,
             height: height,
             padding: padding,
-            theme: theme,
         }));
-        chart.scale({
+        chart.source([], {
             x: {
                 type: 'cat',
             },
@@ -64,25 +61,14 @@ var G2MiniBarComponent = /** @class */ (function () {
         });
         chart.legend(false);
         chart.axis(false);
-        /** @type {?} */
-        var tooltipOption = {
+        chart.tooltip({
+            type: tooltipType === 'mini' ? 'mini' : null,
             showTitle: false,
-            showMarkers: true,
-            showCrosshairs: false,
-            enterable: true,
-            domStyles: {
-                'g2-tooltip': { padding: '0px' },
-                'g2-tooltip-title': { display: 'none' },
-                'g2-tooltip-list-item': { margin: '4px' },
-            },
-        };
-        if (tooltipType === 'mini') {
-            tooltipOption.position = 'top';
-            (/** @type {?} */ (tooltipOption.domStyles))['g2-tooltip'] = { padding: '0px', backgroundColor: 'transparent', boxShadow: 'none' };
-            tooltipOption.itemTpl = "<li>{value}</li>";
-            tooltipOption.offset = 0;
-        }
-        chart.tooltip(tooltipOption);
+            hideMarkders: false,
+            crosshairs: false,
+            'g2-tooltip': { padding: 4 },
+            'g2-tooltip-list-item': { margin: "0px 4px" },
+        });
         chart
             .interval()
             .position('x*y')
@@ -107,9 +93,12 @@ var G2MiniBarComponent = /** @class */ (function () {
         var _a = this, chart = _a.chart, height = _a.height, padding = _a.padding, data = _a.data, color = _a.color, borderWidth = _a.borderWidth;
         if (!chart || !data || data.length <= 0)
             return;
-        chart.geometries[0].size(borderWidth).color(color);
-        chart.height = height;
-        chart.padding = padding;
+        chart
+            .get('geoms')[0]
+            .size(borderWidth)
+            .color(color);
+        chart.set('height', height);
+        chart.set('padding', padding);
         chart.changeData(data);
     };
     /**
@@ -172,8 +161,7 @@ var G2MiniBarComponent = /** @class */ (function () {
     /** @nocollapse */
     G2MiniBarComponent.ctorParameters = function () { return [
         { type: ElementRef },
-        { type: NgZone },
-        { type: AlainConfigService }
+        { type: NgZone }
     ]; };
     G2MiniBarComponent.propDecorators = {
         delay: [{ type: Input }],
@@ -183,8 +171,7 @@ var G2MiniBarComponent = /** @class */ (function () {
         padding: [{ type: Input }],
         data: [{ type: Input }],
         yTooltipSuffix: [{ type: Input }],
-        tooltipType: [{ type: Input }],
-        theme: [{ type: Input }]
+        tooltipType: [{ type: Input }]
     };
     __decorate([
         InputNumber(),
@@ -222,8 +209,6 @@ if (false) {
     G2MiniBarComponent.prototype.yTooltipSuffix;
     /** @type {?} */
     G2MiniBarComponent.prototype.tooltipType;
-    /** @type {?} */
-    G2MiniBarComponent.prototype.theme;
     /**
      * @type {?}
      * @private

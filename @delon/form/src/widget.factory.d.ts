@@ -1,11 +1,11 @@
 import { ComponentFactoryResolver, ComponentRef, ViewContainerRef } from '@angular/core';
 import { FormProperty } from './model/form.property';
-import { SFUISchemaItem } from './schema/ui';
 import { Widget } from './widget';
+import { SFUISchemaItem } from './schema/ui';
 export declare class WidgetRegistry {
     private _widgets;
     private defaultWidget;
-    get widgets(): {
+    readonly widgets: {
         [type: string]: Widget<FormProperty, SFUISchemaItem>;
     };
     setDefault(widget: any): void;

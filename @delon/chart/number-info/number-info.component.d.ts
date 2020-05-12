@@ -1,5 +1,7 @@
-import { TemplateRef } from '@angular/core';
-export declare class NumberInfoComponent {
+import { ElementRef, OnChanges, Renderer2, TemplateRef } from '@angular/core';
+export declare class NumberInfoComponent implements OnChanges {
+    private el;
+    private renderer;
     /** 标题 */
     title: string | TemplateRef<void>;
     /** 子标题 */
@@ -16,4 +18,7 @@ export declare class NumberInfoComponent {
     theme: 'light' | 'default';
     /** 设置数字和描述直接的间距（像素） */
     gap: number;
+    constructor(el: ElementRef, renderer: Renderer2);
+    setClass(): void;
+    ngOnChanges(): void;
 }

@@ -1,5 +1,5 @@
-import { AlainSFConfig } from '@delon/util';
 import { BehaviorSubject } from 'rxjs';
+import { DelonFormConfig } from '../config';
 import { ErrorData } from '../errors';
 import { SFValue } from '../interface';
 import { SFSchema, SFSchemaType } from '../schema';
@@ -25,17 +25,17 @@ export declare abstract class FormProperty {
     _value: SFValue;
     widget: Widget<FormProperty, SFUISchemaItem>;
     path: string;
-    constructor(schemaValidatorFactory: SchemaValidatorFactory, schema: SFSchema, ui: SFUISchema | SFUISchemaItem, formData: {}, parent: PropertyGroup | null, path: string, _options: AlainSFConfig);
-    get valueChanges(): BehaviorSubject<any>;
-    get errorsChanges(): BehaviorSubject<ErrorData[] | null>;
-    get type(): SFSchemaType;
-    get parent(): PropertyGroup | null;
-    get root(): PropertyGroup;
-    get value(): SFValue;
-    get errors(): ErrorData[] | null;
-    get visible(): boolean;
-    get valid(): boolean;
-    get options(): AlainSFConfig;
+    constructor(schemaValidatorFactory: SchemaValidatorFactory, schema: SFSchema, ui: SFUISchema | SFUISchemaItem, formData: {}, parent: PropertyGroup | null, path: string, _options: DelonFormConfig);
+    readonly valueChanges: BehaviorSubject<any>;
+    readonly errorsChanges: BehaviorSubject<ErrorData[] | null>;
+    readonly type: SFSchemaType;
+    readonly parent: PropertyGroup | null;
+    readonly root: PropertyGroup;
+    readonly value: SFValue;
+    readonly errors: ErrorData[] | null;
+    readonly visible: boolean;
+    readonly valid: boolean;
+    readonly options: DelonFormConfig;
     /**
      * 设置值
      *
@@ -71,7 +71,7 @@ export declare abstract class PropertyGroup extends FormProperty {
     properties: {
         [key: string]: FormProperty;
     } | FormProperty[] | null;
-    getProperty(path: string): FormProperty | undefined;
+    getProperty(path: string): any;
     forEachChild(fn: (formProperty: FormProperty, str: string) => void): void;
     forEachChildRecursive(fn: (formProperty: FormProperty) => void): void;
     _bindVisibility(): void;

@@ -23,4 +23,4 @@ export declare function addPackageToPackageJson(host: Tree, pkg: string | string
 export declare function removePackageFromPackageJson(host: Tree, pkg: string | string[], type?: 'dependencies' | 'devDependencies' | 'scripts'): Tree;
 export declare function getAngular(host: Tree, type?: string): any;
 export declare function overwriteAngular(host: Tree, json: any): void;
-export declare function scriptsToAngularJson(host: Tree, resources: string | string[], behavior: 'add' | 'delete', types?: string[], projectName?: string, clean?: boolean): Tree;
+export declare function scriptsToAngularJson(host: Tree, resources: string | string[], behavior: string, types?: string[], projectName?: string, clean?: boolean): Tree;

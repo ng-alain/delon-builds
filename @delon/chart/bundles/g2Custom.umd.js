@@ -1,6 +1,6 @@
 /**
- * @license ng-alain(cipchk@qq.com) v9.2.1
- * (c) 2020 cipchk https://ng-alain.com/
+ * @license ng-alain(cipchk@qq.com) v8.9.3
+ * (c) 2019 cipchk https://ng-alain.com/
  * License: MIT
  */
 (function (global, factory) {
@@ -230,17 +230,13 @@
      */
     var G2CustomComponent = /** @class */ (function () {
         // #endregion
-        function G2CustomComponent(el, configSrv) {
+        function G2CustomComponent(el) {
             this.el = el;
             this.resize$ = null;
-            // #region fields
-            this.delay = 0;
             this.resizeTime = 0;
             this.render = new core.EventEmitter();
-            // tslint:disable-next-line:no-output-native
             this.resize = new core.EventEmitter();
             this.destroy = new core.EventEmitter();
-            configSrv.attachKey(this, 'chart', 'theme');
         }
         /**
          * @private
@@ -281,11 +277,7 @@
          * @return {?}
          */
         function () {
-            var _this = this;
-            setTimeout((/**
-             * @return {?}
-             */
-            function () { return _this.renderChart(); }), this.delay);
+            this.renderChart();
         };
         /**
          * @return {?}
@@ -302,7 +294,7 @@
             { type: core.Component, args: [{
                         selector: 'g2,g2-custom',
                         exportAs: 'g2Custom',
-                        template: " <ng-content></ng-content> ",
+                        template: "\n    <ng-content></ng-content>\n  ",
                         host: {
                             '[style.height.px]': 'height',
                         },
@@ -313,22 +305,15 @@
         ];
         /** @nocollapse */
         G2CustomComponent.ctorParameters = function () { return [
-            { type: core.ElementRef },
-            { type: util.AlainConfigService }
+            { type: core.ElementRef }
         ]; };
         G2CustomComponent.propDecorators = {
-            delay: [{ type: core.Input }],
             height: [{ type: core.Input }],
             resizeTime: [{ type: core.Input }],
-            theme: [{ type: core.Input }],
             render: [{ type: core.Output }],
             resize: [{ type: core.Output }],
             destroy: [{ type: core.Output }]
         };
-        __decorate([
-            util.InputNumber(),
-            __metadata("design:type", Object)
-        ], G2CustomComponent.prototype, "delay", void 0);
         __decorate([
             util.InputNumber(),
             __metadata("design:type", Number)
@@ -346,13 +331,9 @@
          */
         G2CustomComponent.prototype.resize$;
         /** @type {?} */
-        G2CustomComponent.prototype.delay;
-        /** @type {?} */
         G2CustomComponent.prototype.height;
         /** @type {?} */
         G2CustomComponent.prototype.resizeTime;
-        /** @type {?} */
-        G2CustomComponent.prototype.theme;
         /** @type {?} */
         G2CustomComponent.prototype.render;
         /** @type {?} */

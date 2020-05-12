@@ -1,5 +1,5 @@
-import { AlainConfigService } from '@delon/util';
 import { Observable } from 'rxjs';
+import { DelonACLConfig } from './acl.config';
 import { ACLCanType, ACLType } from './acl.type';
 /**
  * ACL 控制服务，[在线文档](https://ng-alain.com/acl)
@@ -13,15 +13,14 @@ export declare class ACLService {
     private full;
     private aclChange;
     /** ACL变更通知 */
-    get change(): Observable<ACLType | boolean | null>;
+    readonly change: Observable<ACLType | boolean | null>;
     /** 获取所有数据 */
-    get data(): {
+    readonly data: {
         full: boolean;
         roles: string[];
         abilities: (string | number)[];
     };
-    get guard_url(): string;
-    constructor(configSrv: AlainConfigService);
+    constructor(options: DelonACLConfig);
     private parseACLType;
     /**
      * 设置当前用户角色或权限能力（会先清除所有）

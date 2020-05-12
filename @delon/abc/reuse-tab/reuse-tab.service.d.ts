@@ -1,8 +1,8 @@
 import { Injector, OnDestroy } from '@angular/core';
 import { ActivatedRouteSnapshot } from '@angular/router';
-import { MenuService } from '@delon/theme';
 import { Observable } from 'rxjs';
-import { ReuseComponentRef, ReuseHookTypes, ReuseTabCached, ReuseTabMatchMode, ReuseTabNotify, ReuseTitle } from './reuse-tab.interfaces';
+import { MenuService } from '@delon/theme';
+import { ReuseTabCached, ReuseTabMatchMode, ReuseTabNotify, ReuseTitle } from './reuse-tab.interfaces';
 /**
  * 路由复用类，提供复用所需要一些基本接口
  *
@@ -21,28 +21,26 @@ export declare class ReuseTabService implements OnDestroy {
     private _router$;
     private removeUrlBuffer;
     private positionBuffer;
-    componentRef: ReuseComponentRef;
     debug: boolean;
     mode: ReuseTabMatchMode;
     /** 排除规则，限 `mode=URL` */
     excludes: RegExp[];
-    private get snapshot();
-    get inited(): boolean;
+    private readonly snapshot;
+    readonly inited: boolean;
     /** 当前路由地址 */
-    get curUrl(): string;
+    readonly curUrl: string;
     /** 允许最多复用多少个页面，取值范围 `2-100`，值发生变更时会强制关闭且忽略可关闭条件 */
-    set max(value: number);
-    set keepingScroll(value: boolean);
-    get keepingScroll(): boolean;
+    max: number;
+    keepingScroll: boolean;
     keepingScrollContainer: Element;
     /** 获取已缓存的路由 */
-    get items(): ReuseTabCached[];
+    readonly items: ReuseTabCached[];
     /** 获取当前缓存的路由总数 */
-    get count(): number;
+    readonly count: number;
     /** 订阅缓存变更通知 */
-    get change(): Observable<ReuseTabNotify | null>;
+    readonly change: Observable<ReuseTabNotify | null>;
     /** 自定义当前标题 */
-    set title(value: string | ReuseTitle);
+    title: string | ReuseTitle;
     /** 获取指定路径缓存所在位置，`-1` 表示无缓存 */
     index(url: string): number;
     /** 获取指定路径缓存是否存在 */
@@ -106,7 +104,7 @@ export declare class ReuseTabService implements OnDestroy {
      */
     clearTitleCached(): void;
     /** 自定义当前 `closable` 状态 */
-    set closable(value: boolean);
+    closable: boolean;
     /**
      * 获取 `closable` 状态，顺序如下：
      *
@@ -140,7 +138,7 @@ export declare class ReuseTabService implements OnDestroy {
     constructor(injector: Injector, menuService: MenuService);
     init(): void;
     private getMenu;
-    runHook(method: ReuseHookTypes, comp: ReuseComponentRef | number): void;
+    private runHook;
     private hasInValidRoute;
     /**
      * 决定是否允许路由复用，若 `true` 会触发 `store`
@@ -170,8 +168,8 @@ export declare class ReuseTabService implements OnDestroy {
      * 3. 组件 `keepingScroll` 值
      */
     getKeepingScroll(url: string, route?: ActivatedRouteSnapshot): boolean;
-    private get isDisabledInRouter();
-    private get ss();
+    private readonly isDisabledInRouter;
+    private readonly ss;
     private initScroll;
     ngOnDestroy(): void;
 }

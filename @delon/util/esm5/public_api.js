@@ -3,14 +3,17 @@
  * Generated from: public_api.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+export { StringTemplateOutletDirective } from './src/addon/string_template_outlet';
 export { format } from './src/string/string';
-export { getTimeDistance, fixEndTimeOfRange, toDate } from './src/time/time';
+export { getTimeDistance, fixEndTimeOfRange } from './src/time/time';
 export { LazyService } from './src/lazy/lazy.service';
 export { isNum, isInt, isDecimal, isIdCard, isMobile, isUrl } from './src/validate/validate';
 export { _Validators } from './src/validate/validators';
-export { isEmpty, toBoolean, InputBoolean, toNumber, InputNumber, deepGet, deepCopy, copy, deepMergeKey, deepMerge, updateHostClass } from './src/other/index';
+export { isEmpty, toBoolean, InputBoolean, toNumber, InputNumber } from './src/other/check';
+export { deepGet, deepCopy, copy, deepMergeKey, deepMerge } from './src/other/other';
+export { updateHostClass } from './src/other/style';
+export {} from './src/array/array.config';
 export { ArrayService } from './src/array/array.service';
-export { PREFIX, warn, deprecation10, warnDeprecation, log } from './src/logger/index';
-export { AlainSVConfig, ALAIN_CONFIG, AlainConfigService } from './src/config/index';
+export { DelonUtilConfig } from './src/util.config';
 export { DelonUtilModule } from './src/util.module';
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicHVibGljX2FwaS5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0BkZWxvbi91dGlsLyIsInNvdXJjZXMiOlsicHVibGljX2FwaS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7OztBQUFBLHVCQUFjLHFCQUFxQixDQUFDO0FBRXBDLDJEQUFjLGlCQUFpQixDQUFDO0FBRWhDLDRCQUFjLHlCQUF5QixDQUFDO0FBRXhDLG1FQUFjLHlCQUF5QixDQUFDO0FBQ3hDLE9BQU8sRUFBRSxXQUFXLEVBQUUsTUFBTSwyQkFBMkIsQ0FBQztBQUV4RCwySUFBYyxtQkFBbUIsQ0FBQztBQUNsQyw2QkFBYywyQkFBMkIsQ0FBQztBQUMxQyxrRUFBYyxvQkFBb0IsQ0FBQztBQUNuQyxnRUFBYyxvQkFBb0IsQ0FBQztBQUVuQyxnQ0FBYyxtQkFBbUIsQ0FBQyIsInNvdXJjZXNDb250ZW50IjpbImV4cG9ydCAqIGZyb20gJy4vc3JjL3N0cmluZy9zdHJpbmcnO1xuXG5leHBvcnQgKiBmcm9tICcuL3NyYy90aW1lL3RpbWUnO1xuXG5leHBvcnQgKiBmcm9tICcuL3NyYy9sYXp5L2xhenkuc2VydmljZSc7XG5cbmV4cG9ydCAqIGZyb20gJy4vc3JjL3ZhbGlkYXRlL3ZhbGlkYXRlJztcbmV4cG9ydCB7IF9WYWxpZGF0b3JzIH0gZnJvbSAnLi9zcmMvdmFsaWRhdGUvdmFsaWRhdG9ycyc7XG5cbmV4cG9ydCAqIGZyb20gJy4vc3JjL290aGVyL2luZGV4JztcbmV4cG9ydCAqIGZyb20gJy4vc3JjL2FycmF5L2FycmF5LnNlcnZpY2UnO1xuZXhwb3J0ICogZnJvbSAnLi9zcmMvbG9nZ2VyL2luZGV4JztcbmV4cG9ydCAqIGZyb20gJy4vc3JjL2NvbmZpZy9pbmRleCc7XG5cbmV4cG9ydCAqIGZyb20gJy4vc3JjL3V0aWwubW9kdWxlJztcbiJdfQ==
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicHVibGljX2FwaS5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0BkZWxvbi91dGlsLyIsInNvdXJjZXMiOlsicHVibGljX2FwaS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7OztBQUFBLDhDQUFjLG9DQUFvQyxDQUFDO0FBQ25ELHVCQUFjLHFCQUFxQixDQUFDO0FBRXBDLG1EQUFjLGlCQUFpQixDQUFDO0FBRWhDLDRCQUFjLHlCQUF5QixDQUFDO0FBRXhDLG1FQUFjLHlCQUF5QixDQUFDO0FBQ3hDLE9BQU8sRUFBRSxXQUFXLEVBQUUsTUFBTSwyQkFBMkIsQ0FBQztBQUV4RCx3RUFBYyxtQkFBbUIsQ0FBQztBQUNsQyxpRUFBYyxtQkFBbUIsQ0FBQztBQUNsQyxnQ0FBYyxtQkFBbUIsQ0FBQztBQUVsQyxlQUFjLDBCQUEwQixDQUFDO0FBQ3pDLDZCQUFjLDJCQUEyQixDQUFDO0FBRTFDLGdDQUFjLG1CQUFtQixDQUFDO0FBQ2xDLGdDQUFjLG1CQUFtQixDQUFDIiwic291cmNlc0NvbnRlbnQiOlsiZXhwb3J0ICogZnJvbSAnLi9zcmMvYWRkb24vc3RyaW5nX3RlbXBsYXRlX291dGxldCc7XG5leHBvcnQgKiBmcm9tICcuL3NyYy9zdHJpbmcvc3RyaW5nJztcblxuZXhwb3J0ICogZnJvbSAnLi9zcmMvdGltZS90aW1lJztcblxuZXhwb3J0ICogZnJvbSAnLi9zcmMvbGF6eS9sYXp5LnNlcnZpY2UnO1xuXG5leHBvcnQgKiBmcm9tICcuL3NyYy92YWxpZGF0ZS92YWxpZGF0ZSc7XG5leHBvcnQgeyBfVmFsaWRhdG9ycyB9IGZyb20gJy4vc3JjL3ZhbGlkYXRlL3ZhbGlkYXRvcnMnO1xuXG5leHBvcnQgKiBmcm9tICcuL3NyYy9vdGhlci9jaGVjayc7XG5leHBvcnQgKiBmcm9tICcuL3NyYy9vdGhlci9vdGhlcic7XG5leHBvcnQgKiBmcm9tICcuL3NyYy9vdGhlci9zdHlsZSc7XG5cbmV4cG9ydCAqIGZyb20gJy4vc3JjL2FycmF5L2FycmF5LmNvbmZpZyc7XG5leHBvcnQgKiBmcm9tICcuL3NyYy9hcnJheS9hcnJheS5zZXJ2aWNlJztcblxuZXhwb3J0ICogZnJvbSAnLi9zcmMvdXRpbC5jb25maWcnO1xuZXhwb3J0ICogZnJvbSAnLi9zcmMvdXRpbC5tb2R1bGUnO1xuIl19

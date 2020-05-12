@@ -1,6 +1,6 @@
 import { Injectable, ɵɵdefineInjectable, ɵɵinject, NgModule } from '@angular/core';
-import { LazyService, AlainConfigService, DelonUtilModule } from '@delon/util';
 import { Subject, of } from 'rxjs';
+import { LazyService, DelonUtilModule } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
@@ -571,28 +571,75 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: lodop.config.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class LodopConfig {
+}
+LodopConfig.decorators = [
+    { type: Injectable, args: [{ providedIn: 'root' },] }
+];
+/** @nocollapse */ LodopConfig.ngInjectableDef = ɵɵdefineInjectable({ factory: function LodopConfig_Factory() { return new LodopConfig(); }, token: LodopConfig, providedIn: "root" });
+if (false) {
+    /**
+     * 注册信息：主注册号
+     * @type {?}
+     */
+    LodopConfig.prototype.license;
+    /**
+     * 注册信息：附加注册号A
+     * @type {?}
+     */
+    LodopConfig.prototype.licenseA;
+    /**
+     * 注册信息：附加注册号B
+     * @type {?}
+     */
+    LodopConfig.prototype.licenseB;
+    /**
+     * 注册信息：注册单位名称
+     * @type {?}
+     */
+    LodopConfig.prototype.companyName;
+    /**
+     * Lodop 远程脚本URL地址，**注意**务必使用 `name` 属性指定变量值
+     *
+     * - http://localhost:18000/CLodopfuncs.js
+     * - https://localhost:8443/CLodopfuncs.js [默认]
+     * @type {?}
+     */
+    LodopConfig.prototype.url;
+    /**
+     * Lodop 变量名，默认：`CLODOP`
+     * @type {?}
+     */
+    LodopConfig.prototype.name;
+    /**
+     * 检查次数，默认 `100`，当检查超过时视为异常，这是因为 Lodop 需要连接 WebSocket
+     * @type {?}
+     */
+    LodopConfig.prototype.checkMaxCount;
+}
+
+/**
+ * @fileoverview added by tsickle
  * Generated from: lodop.service.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class LodopService {
     /**
+     * @param {?} defCog
      * @param {?} scriptSrv
-     * @param {?} configSrv
      */
-    constructor(scriptSrv, configSrv) {
+    constructor(defCog, scriptSrv) {
+        this.defCog = defCog;
         this.scriptSrv = scriptSrv;
         this.pending = false;
         this._lodop = null;
         this._init = new Subject();
         this._events = new Subject();
         this.printBuffer = [];
-        this.defaultConfig = configSrv.merge('lodop', {
-            url: '//localhost:8443/CLodopfuncs.js',
-            name: 'CLODOP',
-            companyName: '',
-            checkMaxCount: 100,
-        });
-        this.cog = this.defaultConfig;
+        this.cog = defCog;
     }
     /**
      * 获取或重新设置配置
@@ -608,7 +655,7 @@ class LodopService {
      * @return {?}
      */
     set cog(value) {
-        this._cog = Object.assign(Object.assign({}, this.defaultConfig), value);
+        this._cog = Object.assign({ url: 'https://localhost:8443/CLodopfuncs.js', name: 'CLODOP', companyName: '', checkMaxCount: 100 }, this.defCog, value);
     }
     /**
      * 事件变更通知
@@ -700,22 +747,20 @@ class LodopService {
          * @param {?} res
          * @return {?}
          */
-        (res) => {
+        res => {
             if (res.status !== 'ok') {
                 this.pending = false;
                 onResolve('script-load-error', res[0]);
                 return;
             }
-            /** @type {?} */
-            const win = (/** @type {?} */ (window));
-            if (win.hasOwnProperty((/** @type {?} */ (this.cog.name)))) {
-                this._lodop = (/** @type {?} */ (win[(/** @type {?} */ (this.cog.name))]));
+            if (window.hasOwnProperty((/** @type {?} */ (this.cog.name)))) {
+                this._lodop = (/** @type {?} */ (window[(/** @type {?} */ (this.cog.name))]));
             }
             if (this._lodop === null) {
                 onResolve('load-variable-name-error', { name: this.cog.name });
                 return;
             }
-            this._lodop.SET_LICENSES((/** @type {?} */ (this.cog.companyName)), (/** @type {?} */ (this.cog.license)), this.cog.licenseA, this.cog.licenseB);
+            this._lodop.SET_LICENSES((/** @type {?} */ (this.cog.companyName)), this.cog.license, this.cog.licenseA, this.cog.licenseB);
             checkStatus();
         }));
     }
@@ -866,16 +911,11 @@ LodopService.decorators = [
 ];
 /** @nocollapse */
 LodopService.ctorParameters = () => [
-    { type: LazyService },
-    { type: AlainConfigService }
+    { type: LodopConfig },
+    { type: LazyService }
 ];
-/** @nocollapse */ LodopService.ɵprov = ɵɵdefineInjectable({ factory: function LodopService_Factory() { return new LodopService(ɵɵinject(LazyService), ɵɵinject(AlainConfigService)); }, token: LodopService, providedIn: "root" });
+/** @nocollapse */ LodopService.ngInjectableDef = ɵɵdefineInjectable({ factory: function LodopService_Factory() { return new LodopService(ɵɵinject(LodopConfig), ɵɵinject(LazyService)); }, token: LodopService, providedIn: "root" });
 if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    LodopService.prototype.defaultConfig;
     /**
      * @type {?}
      * @private
@@ -910,6 +950,11 @@ if (false) {
      * @type {?}
      * @private
      */
+    LodopService.prototype.defCog;
+    /**
+     * @type {?}
+     * @private
+     */
     LodopService.prototype.scriptSrv;
 }
 
@@ -938,5 +983,5 @@ LodopModule.decorators = [
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { LodopModule, LodopService };
+export { LodopConfig, LodopModule, LodopService };
 //# sourceMappingURL=lodop.js.map

@@ -1,14 +1,14 @@
-import { SFDLSSize, SFUISchemaItem } from '../../schema/ui';
+import { SFUISchemaItem, SFDLSSize } from '../../schema/ui';
 export interface SFTimeWidgetSchema extends SFUISchemaItem {
     size?: SFDLSSize;
     placeholder?: string;
     /**
      * **Just only support date-fns**
      *
-     * Return the formatted date string in the given format, [Accepted tokens](https://date-fns.org/v2.12.0/docs/format), like this:
-     * - `yyyy-MM-dd HH:mm:ss` Date time
-     * - `t` Seconds timestamp
-     * - `T` Milliseconds timestamp
+     * Return the formatted date string in the given format, [Accepted tokens](https://date-fns.org/v1.30.1/docs/format), like this:
+     * - `YYYY-MM-DD HH:mm:ss` Date time
+     * - `X` Seconds timestamp
+     * - `x` Milliseconds timestamp
      */
     format?: string;
     /**

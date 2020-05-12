@@ -1,6 +1,6 @@
 /**
- * @license ng-alain(cipchk@qq.com) v9.2.1
- * (c) 2020 cipchk https://ng-alain.com/
+ * @license ng-alain(cipchk@qq.com) v8.9.3
+ * (c) 2019 cipchk https://ng-alain.com/
  * License: MIT
  */
 (function (global, factory) {
@@ -238,7 +238,6 @@
              * 是否启用 `展开与收进`
              */
             this.expandable = true;
-            // tslint:disable-next-line:no-output-native
             this.change = new core.EventEmitter();
         }
         /**
@@ -280,7 +279,7 @@
             { type: core.Component, args: [{
                         selector: 'tag-select',
                         exportAs: 'tagSelect',
-                        template: "<ng-content></ng-content>\n<a *ngIf=\"expandable\" class=\"tag-select__trigger\" (click)=\"trigger()\">\n  {{ expand ? locale.collapse : locale.expand }}<i nz-icon [nzType]=\"expand ? 'up' : 'down'\" class=\"tag-select__trigger-icon\"></i>\n</a>\n",
+                        template: "<ng-content></ng-content>\n<a *ngIf=\"expandable\" class=\"tag-select__trigger\" (click)=\"trigger()\">\n  {{expand ? locale.collapse : locale.expand}}<i nz-icon [nzType]=\"expand ? 'up' : 'down'\" class=\"tag-select__trigger-icon\"></i>\n</a>\n",
                         host: {
                             '[class.tag-select]': 'true',
                             '[class.tag-select__has-expand]': 'expandable',

@@ -1,13 +1,13 @@
 /**
- * @license ng-alain(cipchk@qq.com) v9.2.1
- * (c) 2020 cipchk https://ng-alain.com/
+ * @license ng-alain(cipchk@qq.com) v8.9.3
+ * (c) 2019 cipchk https://ng-alain.com/
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util'), require('@delon/theme'), require('@angular/cdk/observers'), require('@angular/common'), require('ng-zorro-antd/core/outlet'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/tooltip')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/sv', ['exports', '@angular/core', '@delon/util', '@delon/theme', '@angular/cdk/observers', '@angular/common', 'ng-zorro-antd/core/outlet', 'ng-zorro-antd/icon', 'ng-zorro-antd/tooltip'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.sv = {}), global.ng.core, global.delon.util, global.theme, global.ng.cdk.observers, global.ng.common, global['ng-zorro-antd/core/outlet'], global['ng-zorro-antd/icon'], global['ng-zorro-antd/tooltip']));
-}(this, (function (exports, core, util, theme, observers, common, outlet, icon, tooltip) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util'), require('@delon/theme'), require('@angular/cdk/observers'), require('@angular/common'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/tooltip')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/view', ['exports', '@angular/core', '@delon/util', '@delon/theme', '@angular/cdk/observers', '@angular/common', 'ng-zorro-antd/icon', 'ng-zorro-antd/tooltip'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.view = {}), global.ng.core, global.delon.util, global.delon.theme, global.ng.cdk.observers, global.ng.common, global['ng-zorro-antd/icon'], global['ng-zorro-antd/tooltip']));
+}(this, (function (exports, core, util, theme, observers, common, icon, tooltip) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -225,32 +225,128 @@
 
     /**
      * @fileoverview added by tsickle
-     * Generated from: sv-container.component.ts
+     * Generated from: view.config.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var SVContainerComponent = /** @class */ (function () {
-        function SVContainerComponent(configSrv) {
-            configSrv.attach(this, 'sv', {
-                size: 'large',
-                gutter: 32,
-                layout: 'horizontal',
-                col: 3,
-                default: true,
-            });
+    var SVConfig = /** @class */ (function () {
+        function SVConfig() {
+            /**
+             * 间距，默认：`32`
+             */
+            this.gutter = 32;
+            /**
+             * 布局，默认：`horizontal`
+             */
+            this.layout = 'horizontal';
+            /**
+             * 列数，默认：`3`
+             */
+            this.col = 3;
+            /**
+             * 是否显示默认值，当内容为空值时显示 `-`，默认：`true`
+             */
+            this.default = true;
+            /**
+             * `label` 固定宽度，若 `null` 或 `undefined` 表示非固定，默认：`null`
+             */
+            this.labelWidth = null;
         }
+        SVConfig.decorators = [
+            { type: core.Injectable, args: [{ providedIn: 'root' },] }
+        ];
+        /** @nocollapse */ SVConfig.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function SVConfig_Factory() { return new SVConfig(); }, token: SVConfig, providedIn: "root" });
+        return SVConfig;
+    }());
+    if (false) {
+        /**
+         * 大小
+         * @type {?}
+         */
+        SVConfig.prototype.size;
+        /**
+         * 间距，默认：`32`
+         * @type {?}
+         */
+        SVConfig.prototype.gutter;
+        /**
+         * 布局，默认：`horizontal`
+         * @type {?}
+         */
+        SVConfig.prototype.layout;
+        /**
+         * 列数，默认：`3`
+         * @type {?}
+         */
+        SVConfig.prototype.col;
+        /**
+         * 是否显示默认值，当内容为空值时显示 `-`，默认：`true`
+         * @type {?}
+         */
+        SVConfig.prototype.default;
+        /**
+         * `label` 固定宽度，若 `null` 或 `undefined` 表示非固定，默认：`null`
+         * @type {?}
+         */
+        SVConfig.prototype.labelWidth;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: view-container.component.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /** @type {?} */
+    var prefixCls = "sv";
+    var SVContainerComponent = /** @class */ (function () {
+        // #endregion
+        function SVContainerComponent(el, ren, cog) {
+            this.ren = ren;
+            this.size = 'large';
+            this.layout = 'horizontal';
+            this.el = el.nativeElement;
+            Object.assign(this, __assign({}, new SVConfig(), cog));
+        }
+        /**
+         * @private
+         * @return {?}
+         */
+        SVContainerComponent.prototype.setClass = /**
+         * @private
+         * @return {?}
+         */
+        function () {
+            var _a;
+            var _b = this, el = _b.el, ren = _b.ren, size = _b.size, layout = _b.layout;
+            util.updateHostClass(el, ren, (_a = {},
+                _a[prefixCls + "__container"] = true,
+                _a[prefixCls + "__" + size] = true,
+                _a[prefixCls + "__" + layout] = true,
+                _a["clearfix"] = true,
+                _a));
+        };
+        /**
+         * @return {?}
+         */
+        SVContainerComponent.prototype.ngOnInit = /**
+         * @return {?}
+         */
+        function () {
+            this.setClass();
+        };
+        /**
+         * @return {?}
+         */
+        SVContainerComponent.prototype.ngOnChanges = /**
+         * @return {?}
+         */
+        function () {
+            this.setClass();
+        };
         SVContainerComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'sv-container, [sv-container]',
                         exportAs: 'svContainer',
-                        template: "<div class=\"ant-row\" [ngStyle]=\"{ 'margin-left.px': -(gutter / 2), 'margin-right.px': -(gutter / 2) }\">\n  <sv-title *ngIf=\"title\">\n    <ng-container *nzStringTemplateOutlet=\"title\">{{ title }}</ng-container>\n  </sv-title>\n  <ng-content></ng-content>\n</div>\n",
-                        host: {
-                            '[class.sv__container]': 'true',
-                            '[class.sv__horizontal]': "layout === 'horizontal'",
-                            '[class.sv__vertical]': "layout === 'vertical'",
-                            '[class.sv__small]': "size === 'small'",
-                            '[class.sv__large]': "size === 'large'",
-                            '[class.clearfix]': "true",
-                        },
+                        template: "<div class=\"ant-row\"\n     [ngStyle]=\"{'margin-left.px': -(gutter / 2), 'margin-right.px': -(gutter / 2)}\">\n  <sv-title *ngIf=\"title\">\n    <ng-container *stringTemplateOutlet=\"title\">{{title}}</ng-container>\n  </sv-title>\n  <ng-content></ng-content>\n</div>\n",
                         preserveWhitespaces: false,
                         changeDetection: core.ChangeDetectionStrategy.OnPush,
                         encapsulation: core.ViewEncapsulation.None
@@ -258,7 +354,9 @@
         ];
         /** @nocollapse */
         SVContainerComponent.ctorParameters = function () { return [
-            { type: util.AlainConfigService }
+            { type: core.ElementRef },
+            { type: core.Renderer2 },
+            { type: SVConfig }
         ]; };
         SVContainerComponent.propDecorators = {
             title: [{ type: core.Input }],
@@ -274,7 +372,7 @@
             __metadata("design:type", Number)
         ], SVContainerComponent.prototype, "gutter", void 0);
         __decorate([
-            util.InputNumber(),
+            util.InputNumber(null),
             __metadata("design:type", Number)
         ], SVContainerComponent.prototype, "labelWidth", void 0);
         __decorate([
@@ -284,6 +382,11 @@
         return SVContainerComponent;
     }());
     if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        SVContainerComponent.prototype.el;
         /** @type {?} */
         SVContainerComponent.prototype.title;
         /** @type {?} */
@@ -304,11 +407,16 @@
         SVContainerComponent.prototype.col;
         /** @type {?} */
         SVContainerComponent.prototype.default;
+        /**
+         * @type {?}
+         * @private
+         */
+        SVContainerComponent.prototype.ren;
     }
 
     /**
      * @fileoverview added by tsickle
-     * Generated from: sv-title.component.ts
+     * Generated from: view-title.component.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var SVTitleComponent = /** @class */ (function () {
@@ -384,11 +492,11 @@
 
     /**
      * @fileoverview added by tsickle
-     * Generated from: sv.component.ts
+     * Generated from: view.component.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
-    var prefixCls = "sv";
+    var prefixCls$1 = "sv";
     var SVComponent = /** @class */ (function () {
         function SVComponent(el, parent, rep, ren) {
             this.parent = parent;
@@ -441,11 +549,11 @@
             function (cls) { return ren.removeClass(el, cls); }));
             clsMap.length = 0;
             clsMap.push.apply(clsMap, __spread(rep.genCls(col != null ? col : this.parent.col)));
-            clsMap.push(prefixCls + "__item");
+            clsMap.push(prefixCls$1 + "__item");
             if (this.parent.labelWidth)
-                clsMap.push(prefixCls + "__item-fixed");
+                clsMap.push(prefixCls$1 + "__item-fixed");
             if (type)
-                clsMap.push(prefixCls + "__type-" + type);
+                clsMap.push(prefixCls$1 + "__type-" + type);
             clsMap.forEach((/**
              * @param {?} cls
              * @return {?}
@@ -498,7 +606,7 @@
             { type: core.Component, args: [{
                         selector: 'sv, [sv]',
                         exportAs: 'sv',
-                        template: "<div class=\"sv__label\" [class.sv__label-empty]=\"!label\" [class.sv__label-width]=\"labelWidth != null\" [style.width.px]=\"labelWidth\">\n  <span class=\"sv__label-text\">\n    <ng-container *nzStringTemplateOutlet=\"label\">{{ label }}</ng-container>\n  </span>\n  <span *ngIf=\"optional || optionalHelp\" class=\"sv__label-optional\" [class.sv__label-optional-no-text]=\"!optional\">\n    <ng-container *nzStringTemplateOutlet=\"optional\">{{ optional }}</ng-container>\n    <i *ngIf=\"optionalHelp\" nz-tooltip [nzTooltipTitle]=\"optionalHelp\" nz-icon nzType=\"question-circle\"></i>\n  </span>\n</div>\n<div class=\"sv__detail\">\n  <span (cdkObserveContent)=\"checkContent()\" #conEl>\n    <ng-content></ng-content>\n  </span>\n  <ng-container *ngIf=\"!!unit\">\n    <span class=\"sv__unit\" *nzStringTemplateOutlet=\"unit\">{{ unit }}</span>\n  </ng-container>\n</div>\n",
+                        template: "<div class=\"sv__label\" [class.sv__label-empty]=\"!label\" [class.sv__label-width]=\"labelWidth !== null\"\n  [style.width.px]=\"labelWidth\">\n  <span class=\"sv__label-text\">\n    <ng-container *stringTemplateOutlet=\"label\">{{label}}</ng-container>\n  </span>\n  <span *ngIf=\"optional || optionalHelp\" class=\"sv__label-optional\" [class.sv__label-optional-no-text]=\"!optional\">\n    <ng-container *stringTemplateOutlet=\"optional\">{{ optional }}</ng-container>\n    <i *ngIf=\"optionalHelp\" nz-tooltip [nzTooltipTitle]=\"optionalHelp\" nz-icon nzType=\"question-circle\"></i>\n  </span>\n</div>\n<div class=\"sv__detail\">\n  <span (cdkObserveContent)=\"checkContent()\" #conEl>\n    <ng-content></ng-content>\n  </span>\n  <ng-container *ngIf=\"!!unit\">\n    <span class=\"sv__unit\" *stringTemplateOutlet=\"unit\">{{unit}}</span>\n  </ng-container>\n</div>\n",
                         host: {
                             '[style.padding-left.px]': 'paddingValue',
                             '[style.padding-right.px]': 'paddingValue',
@@ -581,7 +689,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * Generated from: sv.module.ts
+     * Generated from: view.module.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
@@ -591,7 +699,7 @@
         }
         SVModule.decorators = [
             { type: core.NgModule, args: [{
-                        imports: [common.CommonModule, observers.ObserversModule, util.DelonUtilModule, tooltip.NzToolTipModule, icon.NzIconModule, outlet.NzOutletModule],
+                        imports: [common.CommonModule, observers.ObserversModule, util.DelonUtilModule, tooltip.NzToolTipModule, icon.NzIconModule],
                         declarations: __spread(COMPONENTS),
                         exports: __spread(COMPONENTS),
                     },] }
@@ -600,6 +708,7 @@
     }());
 
     exports.SVComponent = SVComponent;
+    exports.SVConfig = SVConfig;
     exports.SVContainerComponent = SVContainerComponent;
     exports.SVModule = SVModule;
     exports.SVTitleComponent = SVTitleComponent;

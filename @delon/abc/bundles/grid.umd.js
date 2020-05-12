@@ -1,12 +1,12 @@
 /**
- * @license ng-alain(cipchk@qq.com) v9.2.1
- * (c) 2020 cipchk https://ng-alain.com/
+ * @license ng-alain(cipchk@qq.com) v8.9.3
+ * (c) 2019 cipchk https://ng-alain.com/
  * License: MIT
  */
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util'), require('@delon/theme'), require('@angular/common')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/sg', ['exports', '@angular/core', '@delon/util', '@delon/theme', '@angular/common'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.sg = {}), global.ng.core, global.delon.util, global.delon.theme, global.ng.common));
+    typeof define === 'function' && define.amd ? define('@delon/abc/grid', ['exports', '@angular/core', '@delon/util', '@delon/theme', '@angular/common'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.grid = {}), global.ng.core, global.delon.util, global.delon.theme, global.ng.common));
 }(this, (function (exports, core, util, theme, common) { 'use strict';
 
     /*! *****************************************************************************
@@ -225,15 +225,47 @@
 
     /**
      * @fileoverview added by tsickle
-     * Generated from: sg-container.component.ts
+     * Generated from: grid.config.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var SGConfig = /** @class */ (function () {
+        function SGConfig() {
+            /**
+             * 间距，默认：`32`
+             */
+            this.gutter = 32;
+            /**
+             * 列数，默认：`2`
+             */
+            this.col = 2;
+        }
+        SGConfig.decorators = [
+            { type: core.Injectable, args: [{ providedIn: 'root' },] }
+        ];
+        /** @nocollapse */ SGConfig.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function SGConfig_Factory() { return new SGConfig(); }, token: SGConfig, providedIn: "root" });
+        return SGConfig;
+    }());
+    if (false) {
+        /**
+         * 间距，默认：`32`
+         * @type {?}
+         */
+        SGConfig.prototype.gutter;
+        /**
+         * 列数，默认：`2`
+         * @type {?}
+         */
+        SGConfig.prototype.col;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: grid-container.component.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var SGContainerComponent = /** @class */ (function () {
-        function SGContainerComponent(configSrv) {
-            configSrv.attach(this, 'sg', {
-                gutter: 32,
-                col: 2,
-            });
+        function SGContainerComponent(cog) {
+            Object.assign(this, __assign({}, new SGConfig(), cog));
         }
         Object.defineProperty(SGContainerComponent.prototype, "marginValue", {
             // #endregion
@@ -252,7 +284,7 @@
             { type: core.Component, args: [{
                         selector: 'sg-container, [sg-container]',
                         exportAs: 'sgContainer',
-                        template: " <ng-content></ng-content> ",
+                        template: "\n    <ng-content></ng-content>\n  ",
                         host: {
                             '[style.margin-left.px]': 'marginValue',
                             '[style.margin-right.px]': 'marginValue',
@@ -266,7 +298,7 @@
         ];
         /** @nocollapse */
         SGContainerComponent.ctorParameters = function () { return [
-            { type: util.AlainConfigService }
+            { type: SGConfig }
         ]; };
         SGContainerComponent.propDecorators = {
             gutter: [{ type: core.Input }],
@@ -298,7 +330,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * Generated from: sg.component.ts
+     * Generated from: grid.component.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
@@ -377,7 +409,7 @@
             { type: core.Component, args: [{
                         selector: 'sg',
                         exportAs: 'sg',
-                        template: " <ng-content></ng-content> ",
+                        template: "\n    <ng-content></ng-content>\n  ",
                         host: {
                             '[style.padding-left.px]': 'paddingValue',
                             '[style.padding-right.px]': 'paddingValue',
@@ -440,7 +472,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * Generated from: sg.module.ts
+     * Generated from: grid.module.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
@@ -459,6 +491,7 @@
     }());
 
     exports.SGComponent = SGComponent;
+    exports.SGConfig = SGConfig;
     exports.SGContainerComponent = SGContainerComponent;
     exports.SGModule = SGModule;
 

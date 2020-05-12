@@ -1,6 +1,7 @@
-import { tick, TestBed, flush, discardPeriodicTasks } from '@angular/core/testing';
+import { tick, TestBed, flush, discardPeriodicTasks, getTestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NzDropDownDirective } from 'ng-zorro-antd/dropdown';
+import { __awaiter } from 'tslib';
 
 /**
  * @fileoverview added by tsickle
@@ -41,7 +42,7 @@ function createTouchEvent(type, pageX = 0, pageY = 0) {
     const event = document.createEvent('UIEvent');
     /** @type {?} */
     const touchDetails = { pageX, pageY };
-    ((/** @type {?} */ (event))).initUIEvent(type, true, true, window, 0);
+    event.initUIEvent(type, true, true, window, 0);
     // Most of the browsers don't have a "initTouchEvent" method that can be used to define
     // the touch details.
     Object.defineProperties(event, {
@@ -193,8 +194,11 @@ function typeInElement(value, element) {
  * Generated from: src/zorro.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-/** @type {?} */
-const DROPDOWN_MIN_TIME = 1000;
+/**
+ * [nz-dropdown](https://github.com/NG-ZORRO/ng-zorro-antd/blob/master/components/dropdown/nz-dropdown.component.ts#L88) 抖动合理值
+ * @type {?}
+ */
+const DROPDOWN_MIN_TIME = 51;
 /**
  * 触发 dropdown
  * @param {?} dl
@@ -336,7 +340,6 @@ class PageG2 {
     end() {
         // The 201 value is delay value
         tick(201);
-        flush();
         discardPeriodicTasks();
         return (/** @type {?} */ (this));
     }
@@ -371,13 +374,6 @@ class PageG2 {
      */
     getEl(cls) {
         return (/** @type {?} */ (((/** @type {?} */ (this.dl.nativeElement))).querySelector(cls)));
-    }
-    /**
-     * @param {?} type
-     * @return {?}
-     */
-    getController(type) {
-        return (/** @type {?} */ (this.chart.getController(type)));
     }
     /**
      * @template THIS
@@ -421,7 +417,7 @@ class PageG2 {
      * @return {THIS}
      */
     checkOptions(key, value) {
-        expect(((/** @type {?} */ ((/** @type {?} */ (this)).chart)))[key]).toBe(value);
+        expect((/** @type {?} */ (this)).chart.get(key)).toBe(value);
         return (/** @type {?} */ (this));
     }
     /**
@@ -434,7 +430,7 @@ class PageG2 {
      */
     checkAttrOptions(type, key, value) {
         /** @type {?} */
-        const x = ((/** @type {?} */ ((/** @type {?} */ (this)).chart[type][0]))).attributeOption[key];
+        const x = (/** @type {?} */ (this)).chart.get(type)[0].get('attrOptions')[key];
         expect(x.field).toBe(value);
         return (/** @type {?} */ (this));
     }
@@ -446,8 +442,8 @@ class PageG2 {
      */
     isXScalesCount(num) {
         /** @type {?} */
-        const x = (/** @type {?} */ (this)).chart.getXScale();
-        expect((/** @type {?} */ (x.values)).length).toBe(num);
+        const x = (/** @type {?} */ (this)).chart.getXScales();
+        expect(x[0].values.length).toBe(num);
         return (/** @type {?} */ (this));
     }
     /**
@@ -460,7 +456,7 @@ class PageG2 {
         /** @type {?} */
         const y = (/** @type {?} */ (this)).chart.getYScales();
         expect(y.length).toBe(1);
-        expect((/** @type {?} */ (y[0].values)).length).toBe(num);
+        expect(y[0].values.length).toBe(num);
         return (/** @type {?} */ (this));
     }
     /**
@@ -472,9 +468,9 @@ class PageG2 {
      */
     isDataCount(type, num) {
         /** @type {?} */
-        const results = (/** @type {?} */ (this)).chart[type];
+        const results = (/** @type {?} */ (this)).chart.get(type);
         expect(results.length).toBeGreaterThan(0);
-        expect(results[0].data.length).toBe(num);
+        expect(results[0].get('data').length).toBe(num);
         return (/** @type {?} */ (this));
     }
     /**
@@ -596,6 +592,60 @@ if (false) {
     TestContext.prototype.fixture;
 }
 /** @type {?} */
+const configureTestSuite = (/**
+ * @param {?=} configureAction
+ * @return {?}
+ */
+(configureAction) => {
+    /** @type {?} */
+    const testBedApi = getTestBed();
+    /** @type {?} */
+    const originReset = TestBed.resetTestingModule;
+    beforeAll((/**
+     * @return {?}
+     */
+    () => {
+        TestBed.resetTestingModule();
+        TestBed.resetTestingModule = (/**
+         * @return {?}
+         */
+        () => TestBed);
+    }));
+    if (configureAction) {
+        beforeAll((/**
+         * @param {?} done
+         * @return {?}
+         */
+        (done) => ((/**
+         * @return {?}
+         */
+        () => __awaiter(this, void 0, void 0, function* () {
+            configureAction();
+            yield TestBed.compileComponents();
+        })))()
+            .then(done)
+            .catch(done.fail)));
+    }
+    afterEach((/**
+     * @return {?}
+     */
+    () => {
+        testBedApi._activeFixtures.forEach((/**
+         * @param {?} fixture
+         * @return {?}
+         */
+        (fixture) => fixture.destroy()));
+        testBedApi._instantiated = false;
+    }));
+    afterAll((/**
+     * @return {?}
+     */
+    () => {
+        TestBed.resetTestingModule = originReset;
+        TestBed.resetTestingModule();
+    }));
+});
+/** @type {?} */
 const createTestContext = (/**
  * @template T
  * @param {?} component
@@ -617,5 +667,5 @@ const createTestContext = (/**
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { DROPDOWN_MIN_TIME, PageG2, PageG2DataCount, PageG2Height, TestContext, checkDelay, createFakeEvent, createKeyboardEvent, createMouseEvent, createTestContext, createTouchEvent, dispatchDropDown, dispatchEvent, dispatchFakeEvent, dispatchKeyboardEvent, dispatchMouseEvent, dispatchTouchEvent, typeInElement };
+export { DROPDOWN_MIN_TIME, PageG2, PageG2DataCount, PageG2Height, TestContext, checkDelay, configureTestSuite, createFakeEvent, createKeyboardEvent, createMouseEvent, createTestContext, createTouchEvent, dispatchDropDown, dispatchEvent, dispatchFakeEvent, dispatchKeyboardEvent, dispatchMouseEvent, dispatchTouchEvent, typeInElement };
 //# sourceMappingURL=testing.js.map

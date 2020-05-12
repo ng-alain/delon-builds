@@ -43,15 +43,11 @@ export interface ReuseTabCached {
     /** 当前滚动条位置 */
     position?: [number, number] | null;
     _snapshot: ActivatedRouteSnapshot;
-    _handle: ReuseComponentHandle;
+    _handle: any;
 }
 export interface ReuseTabNotify {
     /** 事件类型 */
-    active: 'add' | 'override' | 'title' | 'clear' | 'closable' | 'close' | 'closeRight' | 'move' | 'refresh';
-    url?: string;
-    title?: ReuseTitle;
-    item?: ReuseTabCached;
-    list?: ReuseTabCached[];
+    active: string;
     [key: string]: any;
 }
 export interface ReuseItem {
@@ -68,7 +64,7 @@ export interface ReuseContextEvent {
     comp?: ReuseTabContextComponent;
     customContextMenu?: ReuseCustomContextMenu[];
 }
-export declare type CloseType = 'close' | 'closeOther' | 'closeRight' | 'custom' | 'refresh' | null;
+export declare type CloseType = 'close' | 'closeOther' | 'closeRight' | 'clear' | 'custom' | null;
 export interface ReuseContextCloseEvent {
     type: CloseType;
     item: ReuseItem;
@@ -78,23 +74,11 @@ export interface ReuseContextI18n {
     close?: string;
     closeOther?: string;
     closeRight?: string;
-    refresh?: string;
+    clear?: string;
 }
 export interface ReuseCustomContextMenu {
     id: string;
     title: string;
     fn: (item: ReuseItem, menu: ReuseCustomContextMenu) => void;
     disabled?: (item: ReuseItem) => boolean;
-}
-export interface ReuseComponentHandle {
-    componentRef: ReuseComponentRef;
-}
-export interface ReuseComponentRef {
-    instance: ReuseComponentInstance;
-}
-export declare type ReuseHookTypes = '_onReuseInit' | '_onReuseDestroy';
-export interface ReuseComponentInstance {
-    _onReuseInit: () => void;
-    _onReuseDestroy: () => void;
-    destroy: () => void;
 }

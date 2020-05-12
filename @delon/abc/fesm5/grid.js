@@ -1,20 +1,52 @@
-import { __decorate, __metadata, __spread } from 'tslib';
-import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input, ElementRef, Renderer2, Optional, Host, NgModule } from '@angular/core';
-import { AlainConfigService, InputNumber, DelonUtilModule } from '@delon/util';
+import { __assign, __decorate, __metadata, __spread } from 'tslib';
+import { Injectable, ɵɵdefineInjectable, Component, ChangeDetectionStrategy, ViewEncapsulation, Input, ElementRef, Renderer2, Optional, Host, NgModule } from '@angular/core';
+import { InputNumber, DelonUtilModule } from '@delon/util';
 import { ResponsiveService } from '@delon/theme';
 import { CommonModule } from '@angular/common';
 
 /**
  * @fileoverview added by tsickle
- * Generated from: sg-container.component.ts
+ * Generated from: grid.config.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var SGConfig = /** @class */ (function () {
+    function SGConfig() {
+        /**
+         * 间距，默认：`32`
+         */
+        this.gutter = 32;
+        /**
+         * 列数，默认：`2`
+         */
+        this.col = 2;
+    }
+    SGConfig.decorators = [
+        { type: Injectable, args: [{ providedIn: 'root' },] }
+    ];
+    /** @nocollapse */ SGConfig.ngInjectableDef = ɵɵdefineInjectable({ factory: function SGConfig_Factory() { return new SGConfig(); }, token: SGConfig, providedIn: "root" });
+    return SGConfig;
+}());
+if (false) {
+    /**
+     * 间距，默认：`32`
+     * @type {?}
+     */
+    SGConfig.prototype.gutter;
+    /**
+     * 列数，默认：`2`
+     * @type {?}
+     */
+    SGConfig.prototype.col;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * Generated from: grid-container.component.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var SGContainerComponent = /** @class */ (function () {
-    function SGContainerComponent(configSrv) {
-        configSrv.attach(this, 'sg', {
-            gutter: 32,
-            col: 2,
-        });
+    function SGContainerComponent(cog) {
+        Object.assign(this, __assign({}, new SGConfig(), cog));
     }
     Object.defineProperty(SGContainerComponent.prototype, "marginValue", {
         // #endregion
@@ -33,7 +65,7 @@ var SGContainerComponent = /** @class */ (function () {
         { type: Component, args: [{
                     selector: 'sg-container, [sg-container]',
                     exportAs: 'sgContainer',
-                    template: " <ng-content></ng-content> ",
+                    template: "\n    <ng-content></ng-content>\n  ",
                     host: {
                         '[style.margin-left.px]': 'marginValue',
                         '[style.margin-right.px]': 'marginValue',
@@ -47,7 +79,7 @@ var SGContainerComponent = /** @class */ (function () {
     ];
     /** @nocollapse */
     SGContainerComponent.ctorParameters = function () { return [
-        { type: AlainConfigService }
+        { type: SGConfig }
     ]; };
     SGContainerComponent.propDecorators = {
         gutter: [{ type: Input }],
@@ -79,7 +111,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
- * Generated from: sg.component.ts
+ * Generated from: grid.component.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
@@ -158,7 +190,7 @@ var SGComponent = /** @class */ (function () {
         { type: Component, args: [{
                     selector: 'sg',
                     exportAs: 'sg',
-                    template: " <ng-content></ng-content> ",
+                    template: "\n    <ng-content></ng-content>\n  ",
                     host: {
                         '[style.padding-left.px]': 'paddingValue',
                         '[style.padding-right.px]': 'paddingValue',
@@ -221,7 +253,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
- * Generated from: sg.module.ts
+ * Generated from: grid.module.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
@@ -251,5 +283,5 @@ var SGModule = /** @class */ (function () {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { SGComponent, SGContainerComponent, SGModule };
+export { SGComponent, SGConfig, SGContainerComponent, SGModule };
 //# sourceMappingURL=grid.js.map

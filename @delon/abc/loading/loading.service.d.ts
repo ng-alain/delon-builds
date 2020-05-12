@@ -1,18 +1,18 @@
-import { Overlay } from '@angular/cdk/overlay';
 import { OnDestroy } from '@angular/core';
-import { AlainConfigService } from '@delon/util';
+import { Overlay } from '@angular/cdk/overlay';
+import { LoadingShowOptions } from './loading.interfaces';
+import { LoadingConfig } from './loading.config';
 import { LoadingDefaultComponent } from './loading.component';
-import { LoadingShowOptions } from './loading.types';
 export declare class LoadingService implements OnDestroy {
+    private cog;
     private overlay;
     private _overlayRef;
     private compRef;
     private opt;
-    private cog;
     private n$;
     private loading$;
-    get instance(): LoadingDefaultComponent | null;
-    constructor(overlay: Overlay, configSrv: AlainConfigService);
+    readonly instance: LoadingDefaultComponent | null;
+    constructor(cog: LoadingConfig, overlay: Overlay);
     private create;
     open(options?: LoadingShowOptions): void;
     private _close;

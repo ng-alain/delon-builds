@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable, ɵɵdefineInjectable, ɵɵinject, Directive, Input, NgModule } from '@angular/core';
-import { LazyService, AlainConfigService, DelonUtilModule } from '@delon/util';
+import { HttpClient } from '@angular/common/http';
+import { LazyService, DelonUtilModule } from '@delon/util';
 import { saveAs } from 'file-saver';
 import { CommonModule } from '@angular/common';
 
@@ -53,22 +53,57 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: xlsx.config.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class XlsxConfig {
+    constructor() {
+        /**
+         * Xlsx library path
+         */
+        this.url = '//cdn.bootcss.com/xlsx/0.12.13/xlsx.full.min.js';
+        /**
+         * Defines which Xlsx optional modules should get loaded, e.g:
+         *
+         * `[ '//cdn.bootcss.com/xlsx/0.12.13/cpexcel.js' ]`
+         */
+        this.modules = [];
+    }
+}
+XlsxConfig.decorators = [
+    { type: Injectable, args: [{ providedIn: 'root' },] }
+];
+/** @nocollapse */ XlsxConfig.ngInjectableDef = ɵɵdefineInjectable({ factory: function XlsxConfig_Factory() { return new XlsxConfig(); }, token: XlsxConfig, providedIn: "root" });
+if (false) {
+    /**
+     * Xlsx library path
+     * @type {?}
+     */
+    XlsxConfig.prototype.url;
+    /**
+     * Defines which Xlsx optional modules should get loaded, e.g:
+     *
+     * `[ '//cdn.bootcss.com/xlsx/0.12.13/cpexcel.js' ]`
+     * @type {?}
+     */
+    XlsxConfig.prototype.modules;
+}
+
+/**
+ * @fileoverview added by tsickle
  * Generated from: xlsx.service.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class XlsxService {
     /**
+     * @param {?} cog
      * @param {?} http
      * @param {?} lazy
-     * @param {?} configSrv
      */
-    constructor(http, lazy, configSrv) {
+    constructor(cog, http, lazy) {
+        this.cog = cog;
         this.http = http;
         this.lazy = lazy;
-        this.cog = configSrv.merge('xlsx', {
-            url: '//cdn.bootcss.com/xlsx/0.15.6/xlsx.full.min.js',
-            modules: [],
-        });
     }
     /**
      * @private
@@ -89,7 +124,7 @@ class XlsxService {
          * @param {?} name
          * @return {?}
          */
-        (name) => {
+        name => {
             /** @type {?} */
             const sheet = wb.Sheets[name];
             ret[name] = XLSX.utils.sheet_to_json(sheet, { header: 1 });
@@ -194,11 +229,11 @@ XlsxService.decorators = [
 ];
 /** @nocollapse */
 XlsxService.ctorParameters = () => [
+    { type: XlsxConfig },
     { type: HttpClient },
-    { type: LazyService },
-    { type: AlainConfigService }
+    { type: LazyService }
 ];
-/** @nocollapse */ XlsxService.ɵprov = ɵɵdefineInjectable({ factory: function XlsxService_Factory() { return new XlsxService(ɵɵinject(HttpClient), ɵɵinject(LazyService), ɵɵinject(AlainConfigService)); }, token: XlsxService, providedIn: "root" });
+/** @nocollapse */ XlsxService.ngInjectableDef = ɵɵdefineInjectable({ factory: function XlsxService_Factory() { return new XlsxService(ɵɵinject(XlsxConfig), ɵɵinject(HttpClient), ɵɵinject(LazyService)); }, token: XlsxService, providedIn: "root" });
 if (false) {
     /**
      * @type {?}
@@ -291,5 +326,5 @@ XlsxModule.decorators = [
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { XlsxDirective, XlsxModule, XlsxService };
+export { XlsxConfig, XlsxDirective, XlsxModule, XlsxService };
 //# sourceMappingURL=xlsx.js.map

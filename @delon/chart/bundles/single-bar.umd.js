@@ -1,13 +1,13 @@
 /**
- * @license ng-alain(cipchk@qq.com) v9.2.1
- * (c) 2020 cipchk https://ng-alain.com/
+ * @license ng-alain(cipchk@qq.com) v8.9.3
+ * (c) 2019 cipchk https://ng-alain.com/
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@antv/g2'), require('@delon/util'), require('@angular/common')) :
-    typeof define === 'function' && define.amd ? define('@delon/chart/single-bar', ['exports', '@angular/core', '@antv/g2', '@delon/util', '@angular/common'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart['single-bar'] = {}), global.ng.core, global.g2, global.delon.util, global.ng.common));
-}(this, (function (exports, core, g2, util, common) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util'), require('@angular/common')) :
+    typeof define === 'function' && define.amd ? define('@delon/chart/single-bar', ['exports', '@angular/core', '@delon/util', '@angular/common'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart['single-bar'] = {}), global.ng.core, global.delon.util, global.ng.common));
+}(this, (function (exports, core, util, common) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -230,7 +230,7 @@
      */
     var G2SingleBarComponent = /** @class */ (function () {
         // #endregion
-        function G2SingleBarComponent(el, ngZone, configSrv) {
+        function G2SingleBarComponent(el, ngZone) {
             this.el = el;
             this.ngZone = ngZone;
             // #region fields
@@ -245,7 +245,6 @@
             this.line = false;
             this.padding = 0;
             this.textStyle = { fontSize: 12, color: '#595959' };
-            configSrv.attachKey(this, 'chart', 'theme');
         }
         /**
          * @private
@@ -256,34 +255,36 @@
          * @return {?}
          */
         function () {
-            var _a = this, el = _a.el, height = _a.height, padding = _a.padding, textStyle = _a.textStyle, line = _a.line, format = _a.format, theme = _a.theme;
+            var _a = this, el = _a.el, height = _a.height, padding = _a.padding, textStyle = _a.textStyle, line = _a.line, format = _a.format;
             /** @type {?} */
-            var chart = (this.chart = new g2.Chart({
+            var chart = (this.chart = new G2.Chart({
                 container: el.nativeElement,
-                autoFit: true,
+                forceFit: true,
                 height: height,
                 padding: padding,
-                theme: theme,
             }));
             chart.legend(false);
             chart.axis(false);
-            chart.tooltip(false);
-            chart.coordinate().transpose();
+            chart.tooltip({ type: 'mini' });
+            chart.coord().transpose();
             chart
                 .interval()
                 .position('1*value')
+                .opacity(1)
                 .label('value', (/**
+             * @param {?} val
              * @return {?}
              */
-            function () { return ({
+            function (val) { return ({
                 formatter: format,
-                style: __assign({}, textStyle),
+                offset: val > 0 ? 10 : -10,
+                textStyle: __assign({}, textStyle, { textAlign: val > 0 ? 'start' : 'end' }),
             }); }));
             if (line) {
-                chart.annotation().line({
+                chart.guide().line({
                     start: ['50%', '0%'],
                     end: ['50%', '100%'],
-                    style: {
+                    lineStyle: {
                         stroke: '#e8e8e8',
                         lineDash: [0, 0],
                     },
@@ -304,15 +305,18 @@
             var _a = this, chart = _a.chart, height = _a.height, padding = _a.padding, value = _a.value, min = _a.min, max = _a.max, plusColor = _a.plusColor, minusColor = _a.minusColor, barSize = _a.barSize;
             if (!chart)
                 return;
-            chart.scale({ value: { max: max, min: min } });
-            chart.height = height;
-            chart.padding = padding;
-            chart.geometries[0].color('value', (/**
+            chart.source([{ value: value }], { value: { max: max, min: min } });
+            chart.set('height', height);
+            chart.set('padding', padding);
+            chart
+                .get('geoms')[0]
+                .color('value', (/**
              * @param {?} val
              * @return {?}
              */
-            function (val) { return (val > 0 ? plusColor : minusColor); })).size(barSize);
-            chart.changeData([{ value: value }]);
+            function (val) { return (val > 0 ? plusColor : minusColor); }))
+                .size(barSize);
+            chart.repaint();
         };
         /**
          * @return {?}
@@ -374,8 +378,7 @@
         /** @nocollapse */
         G2SingleBarComponent.ctorParameters = function () { return [
             { type: core.ElementRef },
-            { type: core.NgZone },
-            { type: util.AlainConfigService }
+            { type: core.NgZone }
         ]; };
         G2SingleBarComponent.propDecorators = {
             delay: [{ type: core.Input }],
@@ -389,8 +392,7 @@
             line: [{ type: core.Input }],
             format: [{ type: core.Input }],
             padding: [{ type: core.Input }],
-            textStyle: [{ type: core.Input }],
-            theme: [{ type: core.Input }]
+            textStyle: [{ type: core.Input }]
         };
         __decorate([
             util.InputNumber(),
@@ -452,8 +454,6 @@
         G2SingleBarComponent.prototype.padding;
         /** @type {?} */
         G2SingleBarComponent.prototype.textStyle;
-        /** @type {?} */
-        G2SingleBarComponent.prototype.theme;
         /**
          * @type {?}
          * @private

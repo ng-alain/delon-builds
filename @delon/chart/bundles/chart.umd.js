@@ -1,6 +1,6 @@
 /**
- * @license ng-alain(cipchk@qq.com) v9.2.1
- * (c) 2020 cipchk https://ng-alain.com/
+ * @license ng-alain(cipchk@qq.com) v8.9.3
+ * (c) 2019 cipchk https://ng-alain.com/
  * License: MIT
  */
 (function (global, factory) {
@@ -166,6 +166,12 @@
         enumerable: true,
         get: function () {
             return timeline.G2TimelineComponent;
+        }
+    });
+    Object.defineProperty(exports, 'G2TimelineData', {
+        enumerable: true,
+        get: function () {
+            return timeline.G2TimelineData;
         }
     });
     Object.defineProperty(exports, 'G2TimelineModule', {

@@ -2,27 +2,17 @@ import { Tree } from '@angular-devkit/schematics';
 import * as fs from 'fs';
 import { join } from 'path';
 
-export function readContent(host: Tree, filePath: string) {
-  if (!host.exists(filePath)) return '';
-  return host.read(filePath).toString('utf-8');
-}
-
 /**
  * Overwrite files to the project
  *
  * @param [overwrite=false] `true` is force, default: `false`
  */
-export function overwriteFile(host: Tree, filePath: string, sourcePath?: string, overwrite = false, sourcePathIsString = false): Tree {
+export function overwriteFile(host: Tree, filePath: string, sourcePath?: string, overwrite = false): Tree {
   const isExists = host.exists(filePath);
   if (overwrite || isExists) {
     try {
-      let content = '';
-      if (sourcePathIsString) {
-        content = sourcePath;
-      } else {
-        const buffer = fs.readFileSync(sourcePath);
-        content = buffer ? buffer.toString('utf-8') : '';
-      }
+      const buffer = fs.readFileSync(sourcePath);
+      const content = buffer ? buffer.toString('utf-8') : '';
       if (overwrite) {
         if (isExists) {
           host.delete(filePath);

@@ -28,6 +28,19 @@ ng g ng-alain:plugin [plugin name] -t=[add | remove]
 
 ## 插件列表
 
+### g2
+
+G2 图表。
+
+```bash
+# add
+ng g ng-alain:plugin g2
+# remove
+ng g ng-alain:plugin g2 -t=remove
+```
+
+> 更多请参考G2[开发文档](/chart)。
+
 ### codeStyle
 
 代码风格，有几个规则：
@@ -62,19 +75,6 @@ ng g ng-alain:plugin hmr -t=remove
 ```bash
 npm run hmr
 ```
-
-### ie
-
-IE 浏览器只能在 ES5 下使用，有关更多细节请参考[支持IE11](/docs/ie11)。
-
-```bash
-# add
-ng g ng-alain:plugin ie
-# remove
-ng g ng-alain:plugin ie -t=remove
-```
-
-安装后可使用 `npm run ie:start` 或 `npm run ie:hmr` 进入IE11的开发环境。
 
 ### docker
 

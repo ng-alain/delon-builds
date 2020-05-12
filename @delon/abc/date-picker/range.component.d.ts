@@ -1,18 +1,16 @@
-import { EventEmitter, TemplateRef } from '@angular/core';
-import { ControlValueAccessor } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
-import { AlainConfigService, AlainDateRangePickerShortcut, AlainDateRangePickerShortcutItem } from '@delon/util';
-import { FunctionProp } from 'ng-zorro-antd/core/types';
+import { EventEmitter } from '@angular/core';
+import { ControlValueAccessor } from '@angular/forms';
+import { DatePickerConfig, DateRangePickerShortcut, DateRangePickerShortcutItem } from './date-picker.config';
 export declare class RangePickerComponent implements ControlValueAccessor {
     private dom;
     private onChangeFn;
     private _shortcut;
-    private defaultShortcuts;
+    private _cog;
     private comp;
     value: Date[];
     ngModelEnd: Date;
-    set shortcut(val: AlainDateRangePickerShortcut | null);
-    get shortcut(): AlainDateRangePickerShortcut | null;
+    shortcut: DateRangePickerShortcut | null;
     readonly ngModelEndChange: EventEmitter<Date>;
     nzAllowClear: boolean;
     nzAutoFocus: boolean;
@@ -29,14 +27,14 @@ export declare class RangePickerComponent implements ControlValueAccessor {
     nzDateRender: any;
     nzFormat: any;
     nzDisabledTime: any;
-    nzRenderExtraFooter: FunctionProp<TemplateRef<void> | string>;
+    nzRenderExtraFooter: any;
     nzShowTime: any;
     nzShowToday: boolean;
     nzMode: any;
     nzRanges: any;
     readonly nzOnPanelChange: EventEmitter<any>;
     readonly nzOnOk: EventEmitter<any>;
-    constructor(dom: DomSanitizer, configSrv: AlainConfigService);
+    constructor(cog: DatePickerConfig, dom: DomSanitizer);
     _nzOnOpenChange(e: any): void;
     _nzOnPanelChange(e: any): void;
     _nzOnOk(e: any): void;
@@ -45,5 +43,5 @@ export declare class RangePickerComponent implements ControlValueAccessor {
     registerOnChange(fn: (val: Date) => void): void;
     registerOnTouched(_fn: () => void): void;
     setDisabledState(disabled: boolean): void;
-    clickShortcut(item: AlainDateRangePickerShortcutItem): void;
+    clickShortcut(item: DateRangePickerShortcutItem): void;
 }

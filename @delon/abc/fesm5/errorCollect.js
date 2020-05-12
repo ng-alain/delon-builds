@@ -1,8 +1,43 @@
-import { __decorate, __metadata, __spread } from 'tslib';
+import { __assign, __decorate, __metadata, __spread } from 'tslib';
 import { DOCUMENT, CommonModule } from '@angular/common';
-import { Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, ChangeDetectorRef, Inject, Input, NgModule } from '@angular/core';
-import { AlainConfigService, InputNumber, DelonUtilModule } from '@delon/util';
+import { Injectable, ɵɵdefineInjectable, Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, ChangeDetectorRef, Inject, Input, NgModule } from '@angular/core';
+import { InputNumber, DelonUtilModule } from '@delon/util';
 import { NzIconModule } from 'ng-zorro-antd/icon';
+
+/**
+ * @fileoverview added by tsickle
+ * Generated from: error-collect.config.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var ErrorCollectConfig = /** @class */ (function () {
+    function ErrorCollectConfig() {
+        /**
+         * 监听频率
+         */
+        this.freq = 500;
+        /**
+         * 顶部偏移值
+         */
+        this.offsetTop = 65 + 64 + 8 * 2;
+    }
+    ErrorCollectConfig.decorators = [
+        { type: Injectable, args: [{ providedIn: 'root' },] }
+    ];
+    /** @nocollapse */ ErrorCollectConfig.ngInjectableDef = ɵɵdefineInjectable({ factory: function ErrorCollectConfig_Factory() { return new ErrorCollectConfig(); }, token: ErrorCollectConfig, providedIn: "root" });
+    return ErrorCollectConfig;
+}());
+if (false) {
+    /**
+     * 监听频率
+     * @type {?}
+     */
+    ErrorCollectConfig.prototype.freq;
+    /**
+     * 顶部偏移值
+     * @type {?}
+     */
+    ErrorCollectConfig.prototype.offsetTop;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -10,14 +45,14 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var ErrorCollectComponent = /** @class */ (function () {
-    function ErrorCollectComponent(el, cdr, doc, configSrv) {
+    function ErrorCollectComponent(cog, el, cdr, doc) {
         this.el = el;
         this.cdr = cdr;
         this.doc = doc;
         this.$time = null;
         this._hiden = true;
         this.count = 0;
-        configSrv.attach(this, 'errorCollect', { freq: 500, offsetTop: 65 + 64 + 8 * 2 });
+        Object.assign(this, __assign({}, new ErrorCollectConfig(), cog));
     }
     Object.defineProperty(ErrorCollectComponent.prototype, "errEls", {
         get: /**
@@ -25,7 +60,7 @@ var ErrorCollectComponent = /** @class */ (function () {
          * @return {?}
          */
         function () {
-            return (/** @type {?} */ (this.formEl)).querySelectorAll('.ant-form-item-has-error');
+            return (/** @type {?} */ (this.formEl)).querySelectorAll('.has-error');
         },
         enumerable: true,
         configurable: true
@@ -64,7 +99,6 @@ var ErrorCollectComponent = /** @class */ (function () {
         formItemEl.scrollIntoView(true);
         // fix header height
         this.doc.documentElement.scrollTop -= this.offsetTop;
-        return true;
     };
     /**
      * @private
@@ -116,7 +150,7 @@ var ErrorCollectComponent = /** @class */ (function () {
             }
             el = (/** @type {?} */ (el.parentElement));
         }
-        return retEl;
+        return (/** @type {?} */ (retEl));
     };
     /**
      * @return {?}
@@ -156,10 +190,10 @@ var ErrorCollectComponent = /** @class */ (function () {
     ];
     /** @nocollapse */
     ErrorCollectComponent.ctorParameters = function () { return [
+        { type: ErrorCollectConfig },
         { type: ElementRef },
         { type: ChangeDetectorRef },
-        { type: undefined, decorators: [{ type: Inject, args: [DOCUMENT,] }] },
-        { type: AlainConfigService }
+        { type: undefined, decorators: [{ type: Inject, args: [DOCUMENT,] }] }
     ]; };
     ErrorCollectComponent.propDecorators = {
         freq: [{ type: Input }],
@@ -243,5 +277,5 @@ var ErrorCollectModule = /** @class */ (function () {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { ErrorCollectComponent, ErrorCollectModule };
+export { ErrorCollectComponent, ErrorCollectConfig, ErrorCollectModule };
 //# sourceMappingURL=errorCollect.js.map
