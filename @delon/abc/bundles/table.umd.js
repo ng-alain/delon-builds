@@ -4932,7 +4932,6 @@
             var res = (/** @type {?} */ (this)).columnSource.process((/** @type {?} */ (this)).columns);
             (/** @type {?} */ (this))._columns = res.columns;
             (/** @type {?} */ (this))._headers = res.headers;
-            console.log(res);
             return (/** @type {?} */ (this));
         };
         /**
