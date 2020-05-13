@@ -25220,22 +25220,22 @@ a:focus {
   font-size: 75%;
 }
 .h1 {
-  font-size: 34px !important;
+  font-size: 34px;
 }
 .h2 {
-  font-size: 26px !important;
+  font-size: 26px;
 }
 .h3 {
-  font-size: 22px !important;
+  font-size: 22px;
 }
 .h4 {
-  font-size: 18px !important;
+  font-size: 18px;
 }
 .h5 {
-  font-size: 16px !important;
+  font-size: 16px;
 }
 .h6 {
-  font-size: 14px !important;
+  font-size: 14px;
 }
 .list-styled {
   padding-left: 18px;
@@ -28339,8 +28339,8 @@ code {
 }
 .flex-center-between {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
 }
 .float-none {
   float: none !important;
