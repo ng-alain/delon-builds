@@ -1993,6 +1993,19 @@ class SFComponent {
                     ui.spanControl = null;
                     ui.offsetControl = null;
                 }
+                // 内联强制清理 `grid` 参数
+                if (this.layout === 'inline') {
+                    delete ui.grid;
+                }
+                // 非水平布局强制清理 `spanLabelFixed` 值
+                if (this.layout !== 'horizontal') {
+                    ui.spanLabelFixed = null;
+                }
+                // 当指定标签为固定宽度时无须指定 `spanLabel`，`spanControl`
+                if (ui.spanLabelFixed != null && ui.spanLabelFixed > 0) {
+                    ui.spanLabel = null;
+                    ui.spanControl = null;
+                }
                 if (ui.widget === 'date' && ui.end != null) {
                     /** @type {?} */
                     const dateEndProperty = (/** @type {?} */ (schema.properties))[ui.end];
@@ -2083,6 +2096,10 @@ class SFComponent {
         if (this.onlyVisual === true) {
             this._defUi.onlyVisual = true;
         }
+        // 内联强制清理 `grid` 参数
+        if (this.layout === 'inline') {
+            delete this._defUi.grid;
+        }
         // root
         this._ui = Object.assign({}, this._defUi);
         inFn(_schema, _schema, this.ui, this.ui, this._ui);
@@ -2104,26 +2121,28 @@ class SFComponent {
          * @return {?}
          */
         w => w.startsWith('$')));
+        /** @type {?} */
+        const btnRender = (/** @type {?} */ (this._btn.render));
         if (this.layout === 'horizontal') {
             /** @type {?} */
             const btnUi = firstKey ? this._ui[firstKey] : this._defUi;
-            if (!(/** @type {?} */ (this._btn.render)).grid) {
-                (/** @type {?} */ (this._btn.render)).grid = {
+            if (!btnRender.grid) {
+                btnRender.grid = {
                     offset: btnUi.spanLabel,
                     span: btnUi.spanControl,
                 };
             }
             // fixed label
-            if ((/** @type {?} */ (this._btn.render)).spanLabelFixed == null) {
-                (/** @type {?} */ (this._btn.render)).spanLabelFixed = btnUi.spanLabelFixed;
+            if (btnRender.spanLabelFixed == null) {
+                btnRender.spanLabelFixed = btnUi.spanLabelFixed;
             }
             // 固定标签宽度时，若不指定样式，则默认居中
-            if (!(/** @type {?} */ (this._btn.render)).class && typeof btnUi.spanLabelFixed === 'number' && btnUi.spanLabelFixed > 0) {
-                (/** @type {?} */ (this._btn.render)).class = 'text-center';
+            if (!btnRender.class && typeof btnUi.spanLabelFixed === 'number' && btnUi.spanLabelFixed > 0) {
+                btnRender.class = 'text-center';
             }
         }
         else {
-            (/** @type {?} */ (this._btn.render)).grid = {};
+            btnRender.grid = {};
         }
         if (this._mode) {
             this.mode = this._mode;
@@ -2715,15 +2734,14 @@ class SFFixedDirective {
         /** @type {?} */
         const labelEl = widgetEl.querySelector('.ant-form-item-label');
         /** @type {?} */
+        const controlEl = widgetEl.querySelector('.ant-form-item-control');
+        /** @type {?} */
         const unit = this.num + 'px';
         if (labelEl) {
-            this.render.setStyle(labelEl, 'width', unit);
-            this.render.setStyle(labelEl, 'max-width', unit);
             this.render.setStyle(labelEl, 'flex', `0 0 ${unit}`);
+            this.render.setStyle(controlEl, 'max-width', `calc(100% - ${unit})`);
         }
         else {
-            /** @type {?} */
-            const controlEl = widgetEl.querySelector('.ant-form-item-control');
             this.render.setStyle(controlEl, 'margin-left', unit);
         }
     }

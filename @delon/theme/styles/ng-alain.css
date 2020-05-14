@@ -25082,7 +25082,7 @@ a:focus {
 .ant-form-item-label em {
   color: #bfbfbf;
 }
-.ant-form-item-children em {
+.ant-form-item-control em {
   margin-left: 8px;
 }
 @media (min-width: 576px) {
@@ -25398,10 +25398,10 @@ fieldset {
   padding-right: 8px;
   line-height: 32px;
 }
-.search__form .ant-form-item .ant-form-item-control {
+.search__form .ant-form-item .ant-form-item-control-content {
   line-height: 32px;
 }
-.search__form .ant-form-item-control-wrapper {
+.search__form .ant-form-item-control {
   flex: 1;
 }
 .half-float {
@@ -25670,11 +25670,8 @@ fieldset {
   color: rgba(0, 0, 0, 0.45);
 }
 .sf__fixed {
-  display: flex !important;
-}
-.sf__fixed nz-form-control,
-.sf__fixed .ant-form-item-control-wrapper {
-  flex: 1;
+  display: flex;
+  flex-flow: row;
 }
 .sf__title {
   margin-bottom: 8px;
@@ -25745,23 +25742,33 @@ fieldset {
 .sf__no-error .ant-form-item {
   margin-bottom: 8px;
 }
-.sf__inline sf-item-wrap .ant-form-item {
-  display: inline-flex;
+.sf__inline sf-item {
+  display: inline-block;
+  margin-bottom: 8px;
 }
-.sf__inline sf-item-wrap .ant-form-item .ant-form-item-control-wrapper {
-  flex: 1;
+.sf__inline .ant-form-inline {
+  display: block;
+}
+.sf__inline .ant-form-inline > sf-item {
+  margin-bottom: 0;
+}
+.sf__inline .ant-form-inline .ant-form-item {
+  display: inline;
 }
 .sf__inline .sf-btns {
   margin-right: 0;
 }
 @media (max-width: 767px) {
-  .sf__inline sf-item-wrap .ant-form-item {
+  .sf__inline sf-item {
+    display: block;
+  }
+  .sf__inline sf-item .ant-form-item {
     display: block !important;
     width: initial !important;
     margin-right: 0;
   }
   .sf__inline .ant-form-item-label,
-  .sf__inline .ant-form-item-control-wrapper {
+  .sf__inline .ant-form-item-control {
     display: block !important;
     width: 100% !important;
     padding: inherit;
