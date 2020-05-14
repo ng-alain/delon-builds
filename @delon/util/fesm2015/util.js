@@ -2515,6 +2515,15 @@ if (false) {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class DelonUtilModule {
+    /**
+     * @return {?}
+     */
+    static forRoot() {
+        return {
+            ngModule: DelonUtilModule,
+            providers: [AlainConfigService],
+        };
+    }
 }
 DelonUtilModule.decorators = [
     { type: NgModule, args: [{
