@@ -1,5 +1,5 @@
 /**
- * @license ng-alain(cipchk@qq.com) v9.2.2
+ * @license ng-alain(cipchk@qq.com) v9.2.3
  * (c) 2020 cipchk https://ng-alain.com/
  * License: MIT
  */
@@ -4447,7 +4447,7 @@
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
-    var VERSION = new core.Version('9.2.2');
+    var VERSION = new core.Version('9.2.3');
 
     exports.ALAIN_I18N_TOKEN = ALAIN_I18N_TOKEN;
     exports.APP = APP;
