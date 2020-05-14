@@ -164,7 +164,6 @@ function addCodeStylesToPackageJson() {
         `lint-staged@^10.1.2`,
         `husky@^4.2.3`,
         `prettier@^2.0.5`,
-        `prettier-stylelint@undefined`,
         `stylelint@^13.3.1`,
         `stylelint-config-prettier@^8.0.1`,
         `stylelint-config-rational-order@^0.1.2`,
