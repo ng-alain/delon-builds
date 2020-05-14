@@ -54,7 +54,7 @@ function setPackage(host: Tree, options: PluginOptions) {
 }
 
 function setPolyfills(host: Tree, options: PluginOptions) {
-  const filePath = `${project.sourceRoot}/polyfills.ts`;
+  const filePath = `${project.sourceRoot}/app/app.module.ts`;
   let content = '';
   if (options.type === 'add') {
     content = `import 'core-js/modules/es.array.includes';
