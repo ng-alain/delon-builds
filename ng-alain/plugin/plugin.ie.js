@@ -43,7 +43,7 @@ function setPackage(host, options) {
     (options.type === 'add' ? json_1.addPackageToPackageJson : json_1.removePackageFromPackageJson)(host, ['ie:start@npm run color-less && ng serve -o --configuration es5', 'ie:hmr@npm run color-less && ng serve -c=hmr --configuration es5'], 'scripts');
 }
 function setPolyfills(host, options) {
-    const filePath = `${project.sourceRoot}/app/app.module.ts`;
+    const filePath = `${project.sourceRoot}/polyfills.ts`;
     let content = '';
     if (options.type === 'add') {
         content = `import 'core-js/modules/es.array.includes';
