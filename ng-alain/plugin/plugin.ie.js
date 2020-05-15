@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const colors = require("ansi-colors");
 const file_1 = require("../utils/file");
 const json_1 = require("../utils/json");
 const project_1 = require("../utils/project");
@@ -44,7 +43,7 @@ function setPackage(host, options) {
     (options.type === 'add' ? json_1.addPackageToPackageJson : json_1.removePackageFromPackageJson)(host, ['ie:start@npm run color-less && ng serve -o --configuration es5', 'ie:hmr@npm run color-less && ng serve -c=hmr --configuration es5'], 'scripts');
 }
 function setPolyfills(host, options) {
-    const filePath = `${project.sourceRoot}/polyfills.ts`;
+    const filePath = `${project.sourceRoot}/app/app.module.ts`;
     let content = '';
     if (options.type === 'add') {
         content = `import 'core-js/modules/es.array.includes';
@@ -74,14 +73,13 @@ function setTsConfig(host, options) {
     }
 }
 function pluginIE(options) {
-    return (host, context) => {
+    return (host) => {
         project = project_1.getProject(host, options.project);
         setAngularJson(host, options);
         setBrowserslist(host, options);
         setPackage(host, options);
         setPolyfills(host, options);
         setTsConfig(host, options);
-        context.logger.info(colors.yellow(`  ⚠  If you encounter [No provider for AlainConfigService], please refer to https://github.com/ng-alain/ng-alain/issues/1624#issuecomment-623071468`));
     };
 }
 exports.pluginIE = pluginIE;
