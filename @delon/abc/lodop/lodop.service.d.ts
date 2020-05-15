@@ -37,7 +37,7 @@ export declare class LodopService implements OnDestroy {
      *
      * @param code 代码
      * @param contextObj 动态参数上下文对象
-     * @param parser 自定义解析表达式，默认：`/LODOP\.([^(]+)\(([^\n]+)?\);/i`
+     * @param parser 自定义解析表达式，默认：`/LODOP\.([^(]+)\(([^\n]+)\);/i`
      */
     attachCode(code: string, contextObj?: NzSafeAny, parser?: RegExp): void;
     /**
@@ -52,7 +52,7 @@ export declare class LodopService implements OnDestroy {
      *
      * @param code 代码
      * @param contextObj 动态参数上下文对象
-     * @param parser 自定义解析表达式，默认：`/LODOP\.([^(]+)\(([^\n]+)?\);/i`
+     * @param parser 自定义解析表达式，默认：`/LODOP\.([^(]+)\(([^\n]+)\);/i`
      */
     print(code: string, contextObj: {} | Array<{}>, parser?: RegExp): void;
     ngOnDestroy(): void;
