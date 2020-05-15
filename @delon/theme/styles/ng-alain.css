@@ -29773,9 +29773,9 @@ body {
   transform: translateX(-80%);
 }
 @media screen and (min-width: 768px) {
-  .st__width-strict .ant-table-content > table {
-    word-wrap: break-word !important;
-    table-layout: fixed !important;
+  .st__width-strict .ant-table-body > table {
+    word-wrap: break-word;
+    table-layout: fixed;
   }
 }
 .sv {
