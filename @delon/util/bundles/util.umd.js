@@ -2978,18 +2978,6 @@
     var DelonUtilModule = /** @class */ (function () {
         function DelonUtilModule() {
         }
-        /**
-         * @return {?}
-         */
-        DelonUtilModule.forRoot = /**
-         * @return {?}
-         */
-        function () {
-            return {
-                ngModule: DelonUtilModule,
-                providers: [AlainConfigService],
-            };
-        };
         DelonUtilModule.decorators = [
             { type: core.NgModule, args: [{
                         imports: [common.CommonModule],
