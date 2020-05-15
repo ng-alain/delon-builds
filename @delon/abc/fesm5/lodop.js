@@ -770,7 +770,7 @@ var LodopService = /** @class */ (function () {
      *
      * @param code 代码
      * @param contextObj 动态参数上下文对象
-     * @param parser 自定义解析表达式，默认：`/LODOP\.([^(]+)\(([^\n]+)\);/i`
+     * @param parser 自定义解析表达式，默认：`/LODOP\.([^(]+)\(([^\n]+)?\);/i`
      */
     /**
      * 附加代码至 `lodop` 对象上，字符串类支持 `{{key}}` 的动态参数
@@ -779,7 +779,7 @@ var LodopService = /** @class */ (function () {
      *
      * @param {?} code 代码
      * @param {?=} contextObj 动态参数上下文对象
-     * @param {?=} parser 自定义解析表达式，默认：`/LODOP\.([^(]+)\(([^\n]+)\);/i`
+     * @param {?=} parser 自定义解析表达式，默认：`/LODOP\.([^(]+)\(([^\n]+)?\);/i`
      * @return {?}
      */
     LodopService.prototype.attachCode = /**
@@ -789,14 +789,14 @@ var LodopService = /** @class */ (function () {
      *
      * @param {?} code 代码
      * @param {?=} contextObj 动态参数上下文对象
-     * @param {?=} parser 自定义解析表达式，默认：`/LODOP\.([^(]+)\(([^\n]+)\);/i`
+     * @param {?=} parser 自定义解析表达式，默认：`/LODOP\.([^(]+)\(([^\n]+)?\);/i`
      * @return {?}
      */
     function (code, contextObj, parser) {
         var _this = this;
         this.check();
         if (!parser)
-            parser = /LODOP\.([^(]+)\(([^\n]+)\);/i;
+            parser = /LODOP\.([^(]+)\(([^\n]+)?\);/i;
         code.split('\n').forEach((/**
          * @param {?} line
          * @return {?}
@@ -909,14 +909,14 @@ var LodopService = /** @class */ (function () {
      *
      * @param code 代码
      * @param contextObj 动态参数上下文对象
-     * @param parser 自定义解析表达式，默认：`/LODOP\.([^(]+)\(([^\n]+)\);/i`
+     * @param parser 自定义解析表达式，默认：`/LODOP\.([^(]+)\(([^\n]+)?\);/i`
      */
     /**
      * 立即打印，一般用于批量套打
      *
      * @param {?} code 代码
      * @param {?} contextObj 动态参数上下文对象
-     * @param {?=} parser 自定义解析表达式，默认：`/LODOP\.([^(]+)\(([^\n]+)\);/i`
+     * @param {?=} parser 自定义解析表达式，默认：`/LODOP\.([^(]+)\(([^\n]+)?\);/i`
      * @return {?}
      */
     LodopService.prototype.print = /**
@@ -924,7 +924,7 @@ var LodopService = /** @class */ (function () {
      *
      * @param {?} code 代码
      * @param {?} contextObj 动态参数上下文对象
-     * @param {?=} parser 自定义解析表达式，默认：`/LODOP\.([^(]+)\(([^\n]+)\);/i`
+     * @param {?=} parser 自定义解析表达式，默认：`/LODOP\.([^(]+)\(([^\n]+)?\);/i`
      * @return {?}
      */
     function (code, contextObj, parser) {

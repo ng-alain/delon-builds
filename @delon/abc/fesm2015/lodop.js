@@ -735,13 +735,13 @@ class LodopService {
      *
      * @param {?} code 代码
      * @param {?=} contextObj 动态参数上下文对象
-     * @param {?=} parser 自定义解析表达式，默认：`/LODOP\.([^(]+)\(([^\n]+)\);/i`
+     * @param {?=} parser 自定义解析表达式，默认：`/LODOP\.([^(]+)\(([^\n]+)?\);/i`
      * @return {?}
      */
     attachCode(code, contextObj, parser) {
         this.check();
         if (!parser)
-            parser = /LODOP\.([^(]+)\(([^\n]+)\);/i;
+            parser = /LODOP\.([^(]+)\(([^\n]+)?\);/i;
         code.split('\n').forEach((/**
          * @param {?} line
          * @return {?}
@@ -837,7 +837,7 @@ class LodopService {
      *
      * @param {?} code 代码
      * @param {?} contextObj 动态参数上下文对象
-     * @param {?=} parser 自定义解析表达式，默认：`/LODOP\.([^(]+)\(([^\n]+)\);/i`
+     * @param {?=} parser 自定义解析表达式，默认：`/LODOP\.([^(]+)\(([^\n]+)?\);/i`
      * @return {?}
      */
     print(code, contextObj, parser) {
