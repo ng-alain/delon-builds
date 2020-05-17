@@ -25733,12 +25733,6 @@ fieldset {
 .sf .ant-transfer .ant-btn + .ant-btn {
   margin-left: 0;
 }
-.sf .ant-form-inline sf-select .ant-form-item {
-  display: inline-flex;
-}
-.sf .ant-form-inline sf-select .ant-form-item > .ant-form-item-control-wrapper {
-  flex: 1 0 0;
-}
 .sf__no-error .ant-form-item {
   margin-bottom: 8px;
 }
@@ -25746,14 +25740,14 @@ fieldset {
   display: inline-block;
   margin-bottom: 8px;
 }
-.sf__inline .ant-form-inline {
-  display: block;
-}
 .sf__inline .ant-form-inline > sf-item {
   margin-bottom: 0;
 }
 .sf__inline .ant-form-inline .ant-form-item {
   display: inline;
+}
+.sf__inline .ant-form-inline .ant-select {
+  min-width: 100px;
 }
 .sf__inline .sf-btns {
   margin-right: 0;
