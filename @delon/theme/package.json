@@ -1,6 +1,6 @@
 {
   "name": "@delon/theme",
-  "version": "9.2.4-31b031d3",
+  "version": "9.2.4-8e1657ac",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -22,8 +22,9 @@
   ],
   "dependencies": {
     "ng-zorro-antd": "^9.1.2",
-    "@delon/acl": "^9.2.4-31b031d3",
-    "@delon/util": "^9.2.4-31b031d3"
+    "@delon/acl": "^9.2.4-8e1657ac",
+    "@delon/util": "^9.2.4-8e1657ac",
+    "tslib": "^1.10.0"
   },
   "sideEffects": false,
   "main": "bundles/theme.umd.js",
@@ -34,8 +35,5 @@
   "fesm5": "fesm5/theme.js",
   "fesm2015": "fesm2015/theme.js",
   "typings": "theme.d.ts",
-  "metadata": "theme.metadata.json",
-  "peerDependencies": {
-    "tslib": "^1.10.0"
-  }
+  "metadata": "theme.metadata.json"
 }

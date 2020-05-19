@@ -1,6 +1,6 @@
 {
   "name": "@delon/testing",
-  "version": "9.2.4-31b031d3",
+  "version": "9.2.4-8e1657ac",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -27,7 +27,7 @@
   "fesm2015": "fesm2015/testing.js",
   "typings": "testing.d.ts",
   "metadata": "testing.metadata.json",
-  "peerDependencies": {
+  "dependencies": {
     "tslib": "^1.10.0"
   }
 }
