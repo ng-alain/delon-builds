@@ -3169,7 +3169,11 @@ class ArrayWidget extends ArrayLayoutWidget {
      * @return {?}
      */
     addItem() {
-        this.formProperty.add({});
+        /** @type {?} */
+        const property = this.formProperty.add({});
+        if (this.ui.add) {
+            this.ui.add(property);
+        }
     }
     /**
      * @param {?} index
@@ -3177,6 +3181,9 @@ class ArrayWidget extends ArrayLayoutWidget {
      */
     removeItem(index) {
         this.formProperty.remove(index);
+        if (this.ui.remove) {
+            this.ui.remove(index);
+        }
     }
 }
 ArrayWidget.decorators = [
@@ -5986,6 +5993,16 @@ if (false) {
      * @type {?|undefined}
      */
     SFArrayWidgetSchema.prototype.removeTitle;
+    /**
+     * 添加回调，`property` 表示添加后的表单属性
+     * @type {?}
+     */
+    SFArrayWidgetSchema.prototype.add;
+    /**
+     * 移除回调
+     * @type {?}
+     */
+    SFArrayWidgetSchema.prototype.remove;
 }
 
 /**
