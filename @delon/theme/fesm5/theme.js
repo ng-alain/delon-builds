@@ -643,8 +643,8 @@ var MenuService = /** @class */ (function () {
             }));
             if (!recursive)
                 break;
-            if (url.includes('?')) {
-                url = url.split('?')[0];
+            if (/[?;]/g.test(url)) {
+                url = url.split(/[?;]/g)[0];
             }
             else {
                 url = url.split('/').slice(0, -1).join('/');
@@ -4233,7 +4233,7 @@ var AlainThemeModule = /** @class */ (function () {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-var VERSION = new Version('9.2.4-24ecf1ff');
+var VERSION = new Version('9.2.4-94ef1e01');
 
 /**
  * @fileoverview added by tsickle

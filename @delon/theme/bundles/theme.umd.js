@@ -857,8 +857,8 @@
                 }));
                 if (!recursive)
                     break;
-                if (url.includes('?')) {
-                    url = url.split('?')[0];
+                if (/[?;]/g.test(url)) {
+                    url = url.split(/[?;]/g)[0];
                 }
                 else {
                     url = url.split('/').slice(0, -1).join('/');

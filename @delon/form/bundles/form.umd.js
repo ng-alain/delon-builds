@@ -3986,11 +3986,7 @@
          * @return {?}
          */
         function () {
-            /** @type {?} */
-            var property = this.formProperty.add({});
-            if (this.ui.add) {
-                this.ui.add(property);
-            }
+            this.formProperty.add({});
         };
         /**
          * @param {?} index
@@ -4002,9 +3998,6 @@
          */
         function (index) {
             this.formProperty.remove(index);
-            if (this.ui.remove) {
-                this.ui.remove(index);
-            }
         };
         ArrayWidget.decorators = [
             { type: core.Component, args: [{
@@ -7209,16 +7202,6 @@
          * @type {?|undefined}
          */
         SFArrayWidgetSchema.prototype.removeTitle;
-        /**
-         * 添加回调，`property` 表示添加后的表单属性
-         * @type {?}
-         */
-        SFArrayWidgetSchema.prototype.add;
-        /**
-         * 移除回调
-         * @type {?}
-         */
-        SFArrayWidgetSchema.prototype.remove;
     }
 
     /**

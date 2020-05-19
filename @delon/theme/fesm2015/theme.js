@@ -559,8 +559,8 @@ class MenuService {
             }));
             if (!recursive)
                 break;
-            if (url.includes('?')) {
-                url = url.split('?')[0];
+            if (/[?;]/g.test(url)) {
+                url = url.split(/[?;]/g)[0];
             }
             else {
                 url = url.split('/').slice(0, -1).join('/');
@@ -3628,7 +3628,7 @@ AlainThemeModule.ctorParameters = () => [
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-const VERSION = new Version('9.2.4-24ecf1ff');
+const VERSION = new Version('9.2.4-94ef1e01');
 
 /**
  * @fileoverview added by tsickle
