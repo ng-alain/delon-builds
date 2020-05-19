@@ -19,7 +19,7 @@ export declare class STColumnSource {
     private btnCoerceIf;
     private fixedCoerce;
     private sortCoerce;
-    private fixSortCoerce;
+    private fixCoerce;
     private filterCoerce;
     private restoreRender;
     private widgetCoerce;

@@ -553,7 +553,7 @@
         STColumn.prototype.width;
         /**
          * 排序配置项，远程数据配置**优先**规则：
-         * - `true` 表示允许排序，且若数据源为本地时自动生成 `compare: (a, b) => a[index] - b[index]` 方法
+         * - `true` 表示允许排序
          * - `string` 表示远程数据排序相对应 `key` 值
          * @type {?|undefined}
          */
@@ -753,7 +753,6 @@
         /**
          * 本地数据的排序函数，使用一个函数(参考 [Array.sort](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort) 的 compareFunction)
          * - `null` 忽略本地排序，但保持排序功能
-         * - 若数据源为本地时自动生成 `(a, b) => a[index] - b[index]` 方法
          * @type {?|undefined}
          */
         STColumnSort.prototype.compare;
@@ -1326,21 +1325,19 @@
          */
         STMultiSort.prototype.nameSeparator;
         /**
-         * 是否保持空值的键名，默认：`true`
-         * - `true` 表示不管是否有排序都会发送 `key` 键名
-         * - `false` 表示无排序动作时不会发送 `key` 键名
-         * @type {?|undefined}
-         */
-        STMultiSort.prototype.keepEmptyKey;
-        /**
-         * ## 仅限全局配置项有效
-         *
          * 是否全局多排序模式，默认：`true`
          * - `true` 表示所有 `st` 默认为多排序
          * - `false` 表示需要为每个 `st` 添加 `multiSort` 才会视为多排序模式
          * @type {?|undefined}
          */
         STMultiSort.prototype.global;
+        /**
+         * 是否保持空值的键名，默认：`true`
+         * - `true` 表示不管是否有排序都会发送 `key` 键名
+         * - `false` 表示无排序动作时不会发送 `key` 键名
+         * @type {?|undefined}
+         */
+        STMultiSort.prototype.keepEmptyKey;
     }
     /**
      * 徽标信息
@@ -1904,7 +1901,7 @@
          */
         function (item) {
             /** @type {?} */
-            var res = this.fixSortCoerce(item);
+            var res = this.fixCoerce(item);
             res.reName = __assign(__assign({}, this.cog.sortReName), res.reName);
             return res;
         };
@@ -1913,7 +1910,7 @@
          * @param {?} item
          * @return {?}
          */
-        STColumnSource.prototype.fixSortCoerce = /**
+        STColumnSource.prototype.fixCoerce = /**
          * @private
          * @param {?} item
          * @return {?}
@@ -1929,14 +1926,6 @@
             }
             else if (typeof item.sort !== 'boolean') {
                 res = item.sort;
-            }
-            else if (typeof item.sort === 'boolean') {
-                res.compare = (/**
-                 * @param {?} a
-                 * @param {?} b
-                 * @return {?}
-                 */
-                function (a, b) { return a[item.indexKey] - b[item.indexKey]; });
             }
             if (!res.key) {
                 res.key = item.indexKey;
@@ -3611,7 +3600,7 @@
              * @return {?}
              */
             function (value) {
-                if ((typeof value === 'boolean' && !util.toBoolean(value)) || (typeof value === 'object' && Object.keys(value).length === 0)) {
+                if (typeof value === 'boolean' && !util.toBoolean(value)) {
                     this._multiSort = undefined;
                     return;
                 }
@@ -4372,7 +4361,6 @@
          * @return {?}
          */
         function (col, idx, value) {
-            console.log(this.multiSort);
             if (this.multiSort) {
                 (/** @type {?} */ (col._sort)).default = value;
                 (/** @type {?} */ (col._sort)).tick = this.dataSource.nextSortTick;
@@ -4385,7 +4373,6 @@
                  */
                 function (item, index) { return ((/** @type {?} */ (item._sort)).default = index === idx ? value : null); }));
             }
-            this.cdr.detectChanges();
             this.loadPageData();
             /** @type {?} */
             var res = {
