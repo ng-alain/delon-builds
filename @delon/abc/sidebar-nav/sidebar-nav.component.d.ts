@@ -21,7 +21,6 @@ export declare class SidebarNavComponent implements OnInit, OnDestroy {
     autoCloseUnderPad: boolean;
     recursivePath: boolean;
     openStrictly: boolean;
-    maxLevelIcon: number;
     readonly select: EventEmitter<Menu>;
     get collapsed(): boolean;
     constructor(menuSrv: MenuService, settings: SettingsService, router: Router, render: Renderer2, cdr: ChangeDetectorRef, ngZone: NgZone, sanitizer: DomSanitizer, doc: any, win: Window);
