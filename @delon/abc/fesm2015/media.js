@@ -117,10 +117,6 @@ class MediaComponent {
         this.type = 'video';
         this.delay = 0;
         this.ready = new EventEmitter();
-        this.notify$ = this.srv.notify().subscribe((/**
-         * @return {?}
-         */
-        () => this.initDelay()));
     }
     // #endregion
     /**
@@ -137,12 +133,10 @@ class MediaComponent {
         this.ngZone.runOutsideAngular((/**
          * @return {?}
          */
-        () => {
-            this.time = setTimeout((/**
-             * @return {?}
-             */
-            () => this.init()), this.delay);
-        }));
+        () => setTimeout((/**
+         * @return {?}
+         */
+        () => this.init()), this.delay)));
     }
     /**
      * @private
@@ -197,7 +191,13 @@ class MediaComponent {
      * @return {?}
      */
     ngAfterViewInit() {
-        this.srv.load();
+        this.srv
+            .load()
+            .notify()
+            .subscribe((/**
+         * @return {?}
+         */
+        () => this.initDelay()));
     }
     /**
      * @param {?} changes
@@ -213,10 +213,7 @@ class MediaComponent {
      * @return {?}
      */
     ngOnDestroy() {
-        clearTimeout(this.time);
         this.destroy();
-        this._p = null;
-        this.notify$.unsubscribe();
     }
 }
 MediaComponent.decorators = [
@@ -261,16 +258,6 @@ if (false) {
      * @private
      */
     MediaComponent.prototype.videoEl;
-    /**
-     * @type {?}
-     * @private
-     */
-    MediaComponent.prototype.time;
-    /**
-     * @type {?}
-     * @private
-     */
-    MediaComponent.prototype.notify$;
     /** @type {?} */
     MediaComponent.prototype.type;
     /** @type {?} */

@@ -113,7 +113,6 @@ if (false) {
  */
 var MediaComponent = /** @class */ (function () {
     function MediaComponent(el, renderer, srv, ngZone) {
-        var _this = this;
         this.el = el;
         this.renderer = renderer;
         this.srv = srv;
@@ -122,10 +121,6 @@ var MediaComponent = /** @class */ (function () {
         this.type = 'video';
         this.delay = 0;
         this.ready = new EventEmitter();
-        this.notify$ = this.srv.notify().subscribe((/**
-         * @return {?}
-         */
-        function () { return _this.initDelay(); }));
     }
     Object.defineProperty(MediaComponent.prototype, "player", {
         // #endregion
@@ -153,12 +148,10 @@ var MediaComponent = /** @class */ (function () {
         this.ngZone.runOutsideAngular((/**
          * @return {?}
          */
-        function () {
-            _this.time = setTimeout((/**
-             * @return {?}
-             */
-            function () { return _this.init(); }), _this.delay);
-        }));
+        function () { return setTimeout((/**
+         * @return {?}
+         */
+        function () { return _this.init(); }), _this.delay); }));
     };
     /**
      * @private
@@ -233,7 +226,14 @@ var MediaComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        this.srv.load();
+        var _this = this;
+        this.srv
+            .load()
+            .notify()
+            .subscribe((/**
+         * @return {?}
+         */
+        function () { return _this.initDelay(); }));
     };
     /**
      * @param {?} changes
@@ -256,10 +256,7 @@ var MediaComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        clearTimeout(this.time);
         this.destroy();
-        this._p = null;
-        this.notify$.unsubscribe();
     };
     MediaComponent.decorators = [
         { type: Component, args: [{
@@ -305,16 +302,6 @@ if (false) {
      * @private
      */
     MediaComponent.prototype.videoEl;
-    /**
-     * @type {?}
-     * @private
-     */
-    MediaComponent.prototype.time;
-    /**
-     * @type {?}
-     * @private
-     */
-    MediaComponent.prototype.notify$;
     /** @type {?} */
     MediaComponent.prototype.type;
     /** @type {?} */

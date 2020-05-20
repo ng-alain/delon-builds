@@ -437,6 +437,41 @@
          * @type {?|undefined}
          */
         Menu.prototype.children;
+        /**
+         * \@inner Not recommended
+         * @type {?|undefined}
+         */
+        Menu.prototype._id;
+        /**
+         * \@inner Not recommended
+         * @type {?|undefined}
+         */
+        Menu.prototype._parent;
+        /**
+         * \@inner Not recommended
+         * @type {?|undefined}
+         */
+        Menu.prototype._depth;
+        /**
+         * \@inner Not recommended
+         * @type {?|undefined}
+         */
+        Menu.prototype._hidden;
+        /**
+         * \@inner Not recommended
+         * @type {?|undefined}
+         */
+        Menu.prototype._selected;
+        /**
+         * \@inner Not recommended
+         * @type {?|undefined}
+         */
+        Menu.prototype._open;
+        /**
+         * \@inner Not recommended
+         * @type {?|undefined}
+         */
+        Menu.prototype._aclResult;
         /* Skipping unhandled member: [key: string]: any;*/
     }
 
@@ -663,8 +698,9 @@
              * @return {?}
              */
             function (item, parent, depth) {
-                item.__id = i++;
-                item.__parent = parent;
+                item._aclResult = true;
+                item._id = i++;
+                item._parent = parent;
                 item._depth = depth;
                 if (!item.link)
                     item.link = '';
@@ -679,9 +715,8 @@
                         item.badgeStatus = 'error';
                     }
                 }
-                item._type = item.externalLink ? 2 : 1;
-                if (item.children && item.children.length > 0) {
-                    item._type = 3;
+                if (!Array.isArray(item.children)) {
+                    item.children = [];
                 }
                 // icon
                 if (typeof item.icon === 'string') {
@@ -781,20 +816,19 @@
             if (_data.i18n && this.i18nSrv)
                 _data.text = this.i18nSrv.fanyi(_data.i18n);
             // tslint:disable-next-line:prefer-object-spread
-            _data = Object.assign(_data, {
+            _data = Object.assign(_data, (/** @type {?} */ ({
                 shortcutRoot: true,
-                __id: -1,
-                __parent: null,
-                _type: 3,
+                _id: -1,
+                _parent: null,
                 _depth: 1,
-            });
+            })));
             _data.children = shortcuts.map((/**
              * @param {?} i
              * @return {?}
              */
             function (i) {
                 i._depth = 2;
-                i.__parent = _data;
+                i._parent = _data;
                 return i;
             }));
         };
@@ -905,7 +939,7 @@
             do {
                 findItem._selected = true;
                 findItem._open = true;
-                findItem = findItem.__parent;
+                findItem = (/** @type {?} */ (findItem._parent));
             } while (findItem);
         };
         /**
@@ -939,7 +973,7 @@
                 return ret;
             do {
                 ret.splice(0, 0, item);
-                item = item.__parent;
+                item = (/** @type {?} */ (item._parent));
             } while (item);
             return ret;
         };

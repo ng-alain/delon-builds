@@ -29497,6 +29497,9 @@ body {
 .sidebar-nav__depth4 .sidebar-nav__item-link {
   padding-left: 62px;
 }
+.sidebar-nav__depth5 .sidebar-nav__item-link {
+  padding-left: 70px;
+}
 .sidebar-nav__floating {
   position: absolute;
   z-index: 16;

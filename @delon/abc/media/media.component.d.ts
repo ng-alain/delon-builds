@@ -9,8 +9,6 @@ export declare class MediaComponent implements OnChanges, AfterViewInit, OnDestr
     private ngZone;
     private _p;
     private videoEl;
-    private time;
-    private notify$;
     type: PlyrMediaType;
     source: string | PlyrMediaSource;
     options: NzSafeAny;
