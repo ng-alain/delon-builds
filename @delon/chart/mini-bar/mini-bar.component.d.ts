@@ -1,5 +1,5 @@
 import { ElementRef, NgZone, OnChanges, OnDestroy, OnInit } from '@angular/core';
-import { Types } from '@antv/g2';
+import { LooseObject } from '@antv/g2/lib/interface';
 import { AlainConfigService } from '@delon/util';
 export interface G2MiniBarData {
     x: any;
@@ -18,7 +18,7 @@ export declare class G2MiniBarComponent implements OnInit, OnChanges, OnDestroy 
     data: G2MiniBarData[];
     yTooltipSuffix: string;
     tooltipType: 'mini' | 'default';
-    theme: string | Types.LooseObject;
+    theme: string | LooseObject;
     constructor(el: ElementRef, ngZone: NgZone, configSrv: AlainConfigService);
     private install;
     private attachChart;

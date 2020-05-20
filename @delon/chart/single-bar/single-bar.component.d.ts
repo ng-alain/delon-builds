@@ -1,5 +1,5 @@
 import { ElementRef, NgZone, OnChanges, OnDestroy, OnInit } from '@angular/core';
-import { Types } from '@antv/g2';
+import { LooseObject } from '@antv/g2/lib/interface';
 import { AlainConfigService } from '@delon/util';
 export declare class G2SingleBarComponent implements OnInit, OnChanges, OnDestroy {
     private el;
@@ -17,7 +17,7 @@ export declare class G2SingleBarComponent implements OnInit, OnChanges, OnDestro
     format: (value: number, item: {}, index: number) => string;
     padding: number | number[] | 'auto';
     textStyle: any;
-    theme: string | Types.LooseObject;
+    theme: string | LooseObject;
     constructor(el: ElementRef, ngZone: NgZone, configSrv: AlainConfigService);
     private install;
     private attachChart;

@@ -1,5 +1,5 @@
 import { ElementRef, NgZone, OnChanges, OnDestroy, OnInit } from '@angular/core';
-import { Types } from '@antv/g2';
+import { LooseObject } from '@antv/g2/lib/interface';
 import { AlainConfigService } from '@delon/util';
 export interface G2TagCloudData {
     value?: number;
@@ -24,7 +24,7 @@ export declare class G2TagCloudComponent implements OnDestroy, OnChanges, OnInit
     height: number;
     padding: number | number[] | 'auto';
     data: G2TagCloudData[];
-    theme: string | Types.LooseObject;
+    theme: string | LooseObject;
     constructor(el: ElementRef<HTMLDivElement>, ngZone: NgZone, configSrv: AlainConfigService);
     private initTagCloud;
     private install;

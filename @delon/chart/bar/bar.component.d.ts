@@ -1,5 +1,5 @@
 import { NgZone, OnChanges, OnDestroy, OnInit, TemplateRef } from '@angular/core';
-import { Types } from '@antv/g2';
+import { LooseObject } from '@antv/g2/lib/interface';
 import { InteractionType } from '@delon/chart/core/types';
 import { AlainConfigService } from '@delon/util';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
@@ -22,7 +22,7 @@ export declare class G2BarComponent implements OnInit, OnChanges, OnDestroy {
     data: G2BarData[];
     autoLabel: boolean;
     interaction: InteractionType;
-    theme: string | Types.LooseObject;
+    theme: string | LooseObject;
     constructor(ngZone: NgZone, configSrv: AlainConfigService);
     private getHeight;
     private install;
