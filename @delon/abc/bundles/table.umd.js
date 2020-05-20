@@ -481,7 +481,7 @@
     function STColumn() { }
     if (false) {
         /**
-         * 用于定义数据源主键，例如：`STStatistical`
+         * 用于定义数据源主键，例如：`statistical`
          * @type {?|undefined}
          */
         STColumn.prototype.key;
@@ -650,7 +650,7 @@
          */
         STColumn.prototype.iif;
         /**
-         * 统计
+         * 统计，可以根据 `key` 来定义生成后需要的键名，如果未指定 `key` 则使用 `index` 来表示一个字段
          * @type {?|undefined}
          */
         STColumn.prototype.statistical;
@@ -3076,7 +3076,7 @@
              * @return {?}
              */
             function (col, index) {
-                res[col.key ? col.key : index] = col.statistical == null ? {} : _this.getStatistical(col, index, list, rawData);
+                res[col.key || col.indexKey] = col.statistical == null ? {} : _this.getStatistical(col, index, list, rawData);
             }));
             return res;
         };
