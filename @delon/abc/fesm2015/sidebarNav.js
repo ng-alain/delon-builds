@@ -4,7 +4,7 @@ import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Re
 import { DomSanitizer } from '@angular/platform-browser';
 import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { MenuService, SettingsService, WINDOW } from '@delon/theme';
-import { InputBoolean, InputNumber, DelonUtilModule } from '@delon/util';
+import { InputBoolean, DelonUtilModule } from '@delon/util';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { NzIconModule } from 'ng-zorro-antd/icon';
@@ -47,7 +47,6 @@ class SidebarNavComponent {
         this.autoCloseUnderPad = true;
         this.recursivePath = true;
         this.openStrictly = false;
-        this.maxLevelIcon = 3;
         // tslint:disable-next-line:no-output-native
         this.select = new EventEmitter();
     }
@@ -91,7 +90,7 @@ class SidebarNavComponent {
          * @return {?}
          */
         i => {
-            if (!item && i._id === id) {
+            if (!item && i.__id === id) {
                 item = i;
             }
         }));
@@ -135,7 +134,7 @@ class SidebarNavComponent {
      */
     genSubNode(linkNode, item) {
         /** @type {?} */
-        const id = `_sidebar-nav-${item._id}`;
+        const id = `_sidebar-nav-${item.__id}`;
         /** @type {?} */
         const childNode = item.badge ? (/** @type {?} */ ((/** @type {?} */ (linkNode.nextElementSibling)).nextElementSibling)) : (/** @type {?} */ (linkNode.nextElementSibling));
         /** @type {?} */
@@ -242,15 +241,15 @@ class SidebarNavComponent {
              * @param {?} i
              * @return {?}
              */
-            (i) => {
+            i => {
                 if (i !== item)
                     i._open = false;
             }));
             /** @type {?} */
-            let pItem = (/** @type {?} */ (item._parent));
+            let pItem = item.__parent;
             while (pItem) {
                 pItem._open = true;
-                pItem = (/** @type {?} */ (pItem._parent));
+                pItem = pItem.__parent;
             }
         }
         item._open = !item._open;
@@ -285,7 +284,7 @@ class SidebarNavComponent {
          * @param {?} i
          * @return {?}
          */
-        (i) => {
+        i => {
             i._selected = false;
             if (!openStrictly) {
                 i._open = false;
@@ -298,7 +297,7 @@ class SidebarNavComponent {
             if (!openStrictly) {
                 findItem._open = true;
             }
-            findItem = (/** @type {?} */ (findItem._parent));
+            findItem = findItem.__parent;
         } while (findItem);
     }
     /**
@@ -325,7 +324,7 @@ class SidebarNavComponent {
              */
             (i, _p, depth) => {
                 i._text = this.sanitizer.bypassSecurityTrustHtml((/** @type {?} */ (i.text)));
-                i._needIcon = (/** @type {?} */ (depth)) <= this.maxLevelIcon && !!i.icon;
+                i._needIcon = (/** @type {?} */ (depth)) <= 3 && !!i.icon;
                 if (!i._aclResult) {
                     if (this.disabledAcl) {
                         i.disabled = true;
@@ -338,11 +337,7 @@ class SidebarNavComponent {
                     i._open = i.open != null ? i.open : false;
                 }
             }));
-            this.list = menuSrv.menus.filter((/**
-             * @param {?} w
-             * @return {?}
-             */
-            w => w._hidden !== true));
+            this.list = menuSrv.menus;
             cdr.detectChanges();
         }));
         router.events.pipe(takeUntil(unsubscribe$)).subscribe((/**
@@ -400,7 +395,7 @@ SidebarNavComponent.decorators = [
     { type: Component, args: [{
                 selector: 'sidebar-nav',
                 exportAs: 'sidebarNav',
-                template: "<ng-template #icon let-i>\n  <ng-container *ngIf=\"i\" [ngSwitch]=\"i.type\">\n    <i\n      *ngSwitchCase=\"'icon'\"\n      class=\"sidebar-nav__item-icon\"\n      nz-icon\n      [nzType]=\"i.value\"\n      [nzTheme]=\"i.theme\"\n      [nzSpin]=\"i.spin\"\n      [nzTwotoneColor]=\"i.twoToneColor\"\n      [nzIconfont]=\"i.iconfont\"\n    ></i>\n    <i *ngSwitchCase=\"'iconfont'\" class=\"sidebar-nav__item-icon\" nz-icon [nzIconfont]=\"i.iconfont\"></i>\n    <img *ngSwitchCase=\"'img'\" [src]=\"i.value\" class=\"sidebar-nav__item-icon sidebar-nav__item-img\" />\n    <i *ngSwitchDefault class=\"sidebar-nav__item-icon {{ i.value }}\"></i>\n  </ng-container>\n</ng-template>\n<ng-template #tree let-ls>\n  <ng-container *ngFor=\"let i of ls\">\n    <li *ngIf=\"i._hidden !== true\" class=\"sidebar-nav__item\" [class.sidebar-nav__selected]=\"i._selected\" [class.sidebar-nav__open]=\"i._open\">\n      <!-- link -->\n      <a\n        *ngIf=\"i.children.length === 0\"\n        (click)=\"to(i)\"\n        [attr.data-id]=\"i._id\"\n        class=\"sidebar-nav__item-link\"\n        [ngClass]=\"{ 'sidebar-nav__item-disabled': i.disabled }\"\n      >\n        <ng-container *ngIf=\"i._needIcon\">\n          <ng-container *ngIf=\"!collapsed\">\n            <ng-template [ngTemplateOutlet]=\"icon\" [ngTemplateOutletContext]=\"{ $implicit: i.icon }\"></ng-template>\n          </ng-container>\n          <span *ngIf=\"collapsed\" nz-tooltip nzTooltipPlacement=\"right\" [nzTooltipTitle]=\"i.text\">\n            <ng-template [ngTemplateOutlet]=\"icon\" [ngTemplateOutletContext]=\"{ $implicit: i.icon }\"></ng-template>\n          </span>\n        </ng-container>\n        <span class=\"sidebar-nav__item-text\" [innerHTML]=\"i._text\"></span>\n      </a>\n      <!-- has children link -->\n      <a *ngIf=\"i.children.length > 0\" (click)=\"toggleOpen(i)\" (mouseenter)=\"showSubMenu($event, i)\" class=\"sidebar-nav__item-link\">\n        <ng-template [ngTemplateOutlet]=\"icon\" [ngTemplateOutletContext]=\"{ $implicit: i.icon }\"></ng-template>\n        <span class=\"sidebar-nav__item-text\" [innerHTML]=\"i._text\"></span>\n        <i class=\"sidebar-nav__sub-arrow\"></i>\n      </a>\n      <!-- badge -->\n      <div *ngIf=\"i.badge\" [attr.title]=\"i.badge\" class=\"badge badge-{{ i.badgeStatus }}\" [class.badge-dot]=\"i.badgeDot\">\n        <em>{{ i.badge }}</em>\n      </div>\n      <ul *ngIf=\"i.children.length > 0\" class=\"sidebar-nav sidebar-nav__sub sidebar-nav__depth{{ i._depth }}\">\n        <ng-template [ngTemplateOutlet]=\"tree\" [ngTemplateOutletContext]=\"{ $implicit: i.children }\"></ng-template>\n      </ul>\n    </li>\n  </ng-container>\n</ng-template>\n<ul class=\"sidebar-nav\">\n  <ng-container *ngFor=\"let group of list\">\n    <li class=\"sidebar-nav__item sidebar-nav__group-title\" *ngIf=\"group.group\">\n      <span [innerHTML]=\"group._text\"></span>\n    </li>\n    <ng-template [ngTemplateOutlet]=\"tree\" [ngTemplateOutletContext]=\"{ $implicit: group.children }\"></ng-template>\n  </ng-container>\n</ul>\n",
+                template: "<ng-template #icon let-i>\n  <ng-container *ngIf=\"i\" [ngSwitch]=\"i.type\">\n    <i\n      *ngSwitchCase=\"'icon'\"\n      class=\"sidebar-nav__item-icon\"\n      nz-icon\n      [nzType]=\"i.value\"\n      [nzTheme]=\"i.theme\"\n      [nzSpin]=\"i.spin\"\n      [nzTwotoneColor]=\"i.twoToneColor\"\n      [nzIconfont]=\"i.iconfont\"\n    ></i>\n    <i *ngSwitchCase=\"'iconfont'\" class=\"sidebar-nav__item-icon\" nz-icon [nzIconfont]=\"i.iconfont\"></i>\n    <img *ngSwitchCase=\"'img'\" [src]=\"i.value\" class=\"sidebar-nav__item-icon sidebar-nav__item-img\" />\n    <i *ngSwitchDefault class=\"sidebar-nav__item-icon {{ i.value }}\"></i>\n  </ng-container>\n</ng-template>\n<ng-template #item let-i>\n  <!-- link -->\n  <a *ngIf=\"i._type <= 2\" (click)=\"to(i)\" [attr.data-id]=\"i.__id\" class=\"sidebar-nav__item-link\" [ngClass]=\"{ 'sidebar-nav__item-disabled': i.disabled }\">\n    <ng-container *ngIf=\"i._needIcon\">\n      <ng-container *ngIf=\"!collapsed\">\n        <ng-template [ngTemplateOutlet]=\"icon\" [ngTemplateOutletContext]=\"{ $implicit: i.icon }\"></ng-template>\n      </ng-container>\n      <span *ngIf=\"collapsed\" nz-tooltip nzTooltipPlacement=\"right\" [nzTooltipTitle]=\"i.text\">\n        <ng-template [ngTemplateOutlet]=\"icon\" [ngTemplateOutletContext]=\"{ $implicit: i.icon }\"></ng-template>\n      </span>\n    </ng-container>\n    <span class=\"sidebar-nav__item-text\" [innerHTML]=\"i._text\"></span>\n  </a>\n  <!-- has children link -->\n  <a *ngIf=\"i._type === 3\" (click)=\"toggleOpen(i)\" (mouseenter)=\"showSubMenu($event, i)\" class=\"sidebar-nav__item-link\">\n    <ng-template [ngTemplateOutlet]=\"icon\" [ngTemplateOutletContext]=\"{ $implicit: i.icon }\"></ng-template>\n    <span class=\"sidebar-nav__item-text\" [innerHTML]=\"i._text\"></span>\n    <i class=\"sidebar-nav__sub-arrow\"></i>\n  </a>\n  <!-- badge -->\n  <div *ngIf=\"i.badge\" [attr.title]=\"i.badge\" class=\"badge badge-{{ i.badgeStatus }}\" [class.badge-dot]=\"i.badgeDot\">\n    <em>{{ i.badge }}</em>\n  </div>\n</ng-template>\n<ul class=\"sidebar-nav\">\n  <ng-container *ngFor=\"let group of list\">\n    <ng-container *ngIf=\"group._hidden !== true\">\n      <li class=\"sidebar-nav__item sidebar-nav__group-title\" *ngIf=\"group.group\">\n        <span [innerHTML]=\"group._text\"></span>\n      </li>\n      <ng-container *ngFor=\"let child1 of group.children\">\n        <li *ngIf=\"child1._hidden !== true\" class=\"sidebar-nav__item\" [class.sidebar-nav__selected]=\"child1._selected\" [class.sidebar-nav__open]=\"child1._open\">\n          <ng-template [ngTemplateOutlet]=\"item\" [ngTemplateOutletContext]=\"{ $implicit: child1 }\"></ng-template>\n          <!-- Level 2 -->\n          <ul *ngIf=\"child1._type === 3\" class=\"sidebar-nav sidebar-nav__sub sidebar-nav__depth{{ child1._depth }}\">\n            <ng-container *ngFor=\"let child2 of child1.children\">\n              <li\n                *ngIf=\"child2._hidden !== true\"\n                class=\"sidebar-nav__item\"\n                [class.sidebar-nav__selected]=\"child2._selected\"\n                [class.sidebar-nav__open]=\"child2._open\"\n              >\n                <ng-template [ngTemplateOutlet]=\"item\" [ngTemplateOutletContext]=\"{ $implicit: child2 }\"></ng-template>\n                <!-- Level 3 -->\n                <ul *ngIf=\"child2._type === 3\" class=\"sidebar-nav sidebar-nav__sub sidebar-nav__depth{{ child2._depth }}\">\n                  <ng-container *ngFor=\"let child3 of child2.children\">\n                    <li\n                      *ngIf=\"child3._hidden !== true\"\n                      class=\"sidebar-nav__item\"\n                      [class.sidebar-nav__selected]=\"child3._selected\"\n                      [class.sidebar-nav__open]=\"child3._open\"\n                    >\n                      <ng-template [ngTemplateOutlet]=\"item\" [ngTemplateOutletContext]=\"{ $implicit: child3 }\"> </ng-template>\n                    </li>\n                  </ng-container>\n                </ul>\n              </li>\n            </ng-container>\n          </ul>\n        </li>\n      </ng-container>\n    </ng-container>\n  </ng-container>\n</ul>\n",
                 host: {
                     '(click)': '_click()',
                     '(document:click)': '_docClick()',
@@ -427,7 +422,6 @@ SidebarNavComponent.propDecorators = {
     autoCloseUnderPad: [{ type: Input }],
     recursivePath: [{ type: Input }],
     openStrictly: [{ type: Input }],
-    maxLevelIcon: [{ type: Input }],
     select: [{ type: Output }]
 };
 __decorate([
@@ -446,10 +440,6 @@ __decorate([
     InputBoolean(),
     __metadata("design:type", Object)
 ], SidebarNavComponent.prototype, "openStrictly", void 0);
-__decorate([
-    InputNumber(),
-    __metadata("design:type", Object)
-], SidebarNavComponent.prototype, "maxLevelIcon", void 0);
 if (false) {
     /**
      * @type {?}
@@ -476,8 +466,6 @@ if (false) {
     SidebarNavComponent.prototype.recursivePath;
     /** @type {?} */
     SidebarNavComponent.prototype.openStrictly;
-    /** @type {?} */
-    SidebarNavComponent.prototype.maxLevelIcon;
     /** @type {?} */
     SidebarNavComponent.prototype.select;
     /**
