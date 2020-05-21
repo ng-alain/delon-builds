@@ -58,7 +58,7 @@ function addDependenciesToPackageJson(options) {
             `ng-zorro-antd@${lib_versions_1.ZORROVERSION}`,
             // ng-zorro-antd need
             'screenfull@^5.0.2',
-            'ajv@^6.12.0',
+            'ajv@^6.12.2',
         ]);
         // add ajv
         json_1.scriptsToAngularJson(host, ['node_modules/ajv/dist/ajv.bundle.js'], 'add', ['build', 'test']);
@@ -70,7 +70,7 @@ function addDependenciesToPackageJson(options) {
             `ng-alain-codelyzer@^0.0.1`,
             `@delon/testing@${lib_versions_1.VERSION}`,
             // color-less
-            `antd-theme-generator@^1.1.9`,
+            `antd-theme-generator@^1.2.3`,
         ], 'devDependencies');
         // i18n
         if (options.i18n) {
@@ -126,7 +126,7 @@ function addCodeStylesToPackageJson() {
         json_1.addPackageToPackageJson(host, [
             `tslint-config-prettier@^1.18.0`,
             `tslint-language-service@^0.9.9`,
-            `lint-staged@^10.1.2`,
+            `lint-staged@^10.2.4`,
             `husky@^4.2.3`,
             `prettier@^2.0.5`,
             `stylelint@^13.3.1`,
