@@ -103,7 +103,7 @@ function addDependenciesToPackageJson(options: ApplicationOptions) {
         `ng-alain-codelyzer@^0.0.1`,
         `@delon/testing@${VERSION}`,
         // color-less
-        `antd-theme-generator@^1.2.3`,
+        `antd-theme-generator@1.2.2`,
       ],
       'devDependencies',
     );
