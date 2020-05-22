@@ -29610,7 +29610,7 @@ app-root {
 }
 body {
   color: rgba(255, 255, 255, 0.65);
-  background-color: #f5f7fa;
+  background-color: #000;
 }
 .alain-default {
   position: relative;
