@@ -2089,6 +2089,15 @@ class AlainConfigService {
         this.config = defaultConfig || {};
     }
     /**
+     * @template R, T
+     * @param {?} componentName
+     * @param {?} newValues
+     * @return {?}
+     */
+    update(componentName, newValues) {
+        this.config[componentName] = Object.assign(Object.assign({}, this.config[componentName]), newValues);
+    }
+    /**
      * @template T
      * @param {?} componentName
      * @param {?=} key

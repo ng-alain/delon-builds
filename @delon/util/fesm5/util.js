@@ -2211,6 +2211,21 @@ var AlainConfigService = /** @class */ (function () {
         this.config = defaultConfig || {};
     }
     /**
+     * @template R, T
+     * @param {?} componentName
+     * @param {?} newValues
+     * @return {?}
+     */
+    AlainConfigService$1.prototype.update = /**
+     * @template R, T
+     * @param {?} componentName
+     * @param {?} newValues
+     * @return {?}
+     */
+    function (componentName, newValues) {
+        this.config[componentName] = __assign(__assign({}, this.config[componentName]), newValues);
+    };
+    /**
      * @template T
      * @param {?} componentName
      * @param {?=} key

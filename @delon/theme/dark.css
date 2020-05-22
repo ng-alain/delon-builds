@@ -25731,7 +25731,7 @@ a:focus {
     display: inline-block;
     width: 100px;
     padding-right: 8px;
-    color: rgba(0, 0, 0, 0.5);
+    color: rgba(179, 179, 179, 0.65);
     text-align: right;
   }
   .ant-table-rep__hide-header-footer .ant-table-title,
@@ -25746,7 +25746,7 @@ a:focus {
     background: #303030;
   }
   .ant-table-rep .ant-table-tbody > tr:nth-child(3n) {
-    background: #f9f9f9;
+    background: #0c0c0c;
   }
   .ant-table-rep .ant-table-tbody > tr > td {
     display: flex;
@@ -26214,7 +26214,7 @@ fieldset {
   }
 }
 .header-dropdown {
-  background-color: #fff;
+  background-color: #1f1f1f;
   border-radius: 4px;
   box-shadow: 0 6px 16px -8px rgba(0, 0, 0, 0.32), 0 9px 28px 0 rgba(0, 0, 0, 0.2), 0 12px 48px 16px rgba(0, 0, 0, 0.12);
 }
@@ -26261,7 +26261,7 @@ fieldset {
   font-size: 20px;
   line-height: 32px;
   text-align: center;
-  background: rgba(0, 0, 0, 0.26);
+  background: rgba(0, 0, 0, 0.66);
   border-radius: 50%;
   cursor: pointer;
 }
@@ -26288,7 +26288,7 @@ fieldset {
   height: 180px;
 }
 .sf .ant-transfer-list {
-  background: #fff;
+  background: inherit;
 }
 .sf .ant-transfer-list-header label {
   position: unset;
@@ -30025,7 +30025,7 @@ body {
   background: #fff;
   background-image: linear-gradient(to right, rgba(255, 255, 255, 0.65), rgba(255, 255, 255, 0.65));
   border-radius: 2px;
-  transition: background 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), top 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition: background-color 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), top 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
   content: '';
 }
 .sidebar-nav__sub-arrow::before {
@@ -30293,7 +30293,7 @@ body {
   color: inherit;
 }
 .st__btn-disabled .st__btn-text {
-  color: rgba(0, 0, 0, 0.25);
+  color: rgba(179, 179, 179, 0.65);
   pointer-events: none;
 }
 .st .ant-table ~ nz-pagination > .ant-pagination {
@@ -30309,7 +30309,7 @@ body {
 .st__head-optional,
 .st__head-tip {
   margin-left: 2px;
-  color: rgba(0, 0, 0, 0.35);
+  color: rgba(128, 128, 128, 0.65);
 }
 .st .ant-table-thead > tr > th .ant-table-filter-selected.ant-table-filter-icon {
   color: #177ddc;
@@ -30376,7 +30376,7 @@ body {
 .sv__label {
   display: table-cell;
   padding-bottom: 16px;
-  color: rgba(0, 0, 0, 0.5);
+  color: rgba(179, 179, 179, 0.65);
   line-height: 22px;
   white-space: nowrap;
 }
@@ -30388,7 +30388,7 @@ body {
 }
 .sv__label-optional {
   margin-left: 2px;
-  color: rgba(0, 0, 0, 0.35);
+  color: rgba(128, 128, 128, 0.65);
 }
 .sv__label-optional-no-text {
   margin-left: 0;
@@ -30478,13 +30478,12 @@ body {
   display: table-cell;
   flex: 0 0 auto;
   width: initial;
-  color: rgba(0, 0, 0, 0.5);
   white-space: nowrap;
   text-align: right;
 }
 .se__label-optional {
   margin-left: 2px;
-  color: rgba(0, 0, 0, 0.35);
+  color: rgba(128, 128, 128, 0.85);
 }
 .se__label-optional-no-text {
   margin-left: 0;
@@ -30504,7 +30503,7 @@ body {
   display: none;
 }
 .se__line {
-  border-bottom: 1px dashed #e8e8e8;
+  border-bottom: 1px dashed #303030;
 }
 .se__hide-label .se__nolabel,
 .se__inline .se__nolabel,
@@ -30721,9 +30720,9 @@ ellipsis {
   height: 56px;
   padding: 0 24px;
   line-height: 56px;
-  background: #fff;
+  background: #1f1f1f;
   border-top: 1px solid #303030;
-  box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.03);
+  box-shadow: 0 -6px 16px -8px rgba(0, 0, 0, 0.32), 0 -9px 28px 0 rgba(0, 0, 0, 0.2), 0 -12px 48px 16px rgba(0, 0, 0, 0.12);
   transition: all 0.3s;
 }
 .footer-toolbar__left {
@@ -30861,7 +30860,7 @@ ellipsis {
 .page-header {
   display: block;
   padding: 16px 32px 0 32px;
-  background-color: #fff;
+  background-color: transparent;
   border-bottom: 1px solid #303030;
 }
 .page-header__wide {
@@ -30983,9 +30982,14 @@ ellipsis {
   left: auto;
   z-index: 11;
   display: block;
-  border: 1px solid #fff;
   backface-visibility: hidden;
   transition: margin 0.3s cubic-bezier(1, 0, 0, 1);
+}
+.quick-menu,
+.quick-menu__ctrl {
+  background-color: #1f1f1f;
+  border: 1px solid #303030;
+  box-shadow: 0 6px 16px -8px rgba(0, 0, 0, 0.32), 0 9px 28px 0 rgba(0, 0, 0, 0.2), 0 12px 48px 16px rgba(0, 0, 0, 0.12);
 }
 .quick-menu__inner {
   position: relative;
@@ -30998,7 +31002,6 @@ ellipsis {
   width: 50px;
   height: 50px;
   text-align: center;
-  border: 1px solid #fff;
   border-right: 0;
   border-radius: 3px 0 0 3px;
   cursor: pointer;
@@ -31045,7 +31048,7 @@ ellipsis {
 .result__extra {
   padding: 24px 40px;
   text-align: left;
-  background: #fafafa;
+  background: rgba(255, 255, 255, 0.04);
   border-radius: 2px;
 }
 @media screen and (max-width: 480px) {
@@ -31061,7 +31064,7 @@ ellipsis {
 }
 .result .ant-steps .ant-steps-head,
 .result .ant-steps .ant-steps-title {
-  background: #fafafa;
+  background: rgba(255, 255, 255, 0.04);
 }
 .reuse-tab {
   display: block;

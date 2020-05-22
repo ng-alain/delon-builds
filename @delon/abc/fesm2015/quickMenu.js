@@ -26,8 +26,6 @@ class QuickMenuComponent {
         this.icon = 'question-circle';
         this.top = 120;
         this.width = 200;
-        this.bgColor = '#fff';
-        this.borderColor = '#ddd';
         this.show = false;
         this.initFlag = false;
     }
@@ -48,13 +46,13 @@ class QuickMenuComponent {
             'border-color': this.borderColor,
         };
         /** @type {?} */
-        const res = [
-            `top:${this.top}px`,
-            `width:${this.width}px`,
-            `background-color:${this.bgColor}`,
-            `border-color:${this.borderColor}`,
-            `margin-right:-${this.show ? 0 : this.width}px`,
-        ];
+        const res = [`top:${this.top}px`, `width:${this.width}px`, `margin-right:-${this.show ? 0 : this.width}px`];
+        if (this.bgColor) {
+            res.push(`background-color:${this.bgColor}`);
+        }
+        if (this.borderColor) {
+            res.push(`border-color:${this.borderColor}`);
+        }
         this.render.setAttribute(this.el.nativeElement, 'style', res.join(';'));
         this.cdr.detectChanges();
     }

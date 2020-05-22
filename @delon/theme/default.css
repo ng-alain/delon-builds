@@ -29462,7 +29462,7 @@ body {
   background: #fff;
   background-image: linear-gradient(to right, rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65));
   border-radius: 2px;
-  transition: background 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), top 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition: background-color 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), top 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
   content: '';
 }
 .sidebar-nav__sub-arrow::before {
@@ -29915,7 +29915,6 @@ body {
   display: table-cell;
   flex: 0 0 auto;
   width: initial;
-  color: rgba(0, 0, 0, 0.5);
   white-space: nowrap;
   text-align: right;
 }
@@ -29941,7 +29940,7 @@ body {
   display: none;
 }
 .se__line {
-  border-bottom: 1px dashed #e8e8e8;
+  border-bottom: 1px dashed #f0f0f0;
 }
 .se__hide-label .se__nolabel,
 .se__inline .se__nolabel,
@@ -30420,9 +30419,14 @@ ellipsis {
   left: auto;
   z-index: 11;
   display: block;
-  border: 1px solid #fff;
   backface-visibility: hidden;
   transition: margin 0.3s cubic-bezier(1, 0, 0, 1);
+}
+.quick-menu,
+.quick-menu__ctrl {
+  background-color: #fff;
+  border: 1px solid #fff;
+  box-shadow: 0 6px 16px -8px rgba(0, 0, 0, 0.08), 0 9px 28px 0 rgba(0, 0, 0, 0.05), 0 12px 48px 16px rgba(0, 0, 0, 0.03);
 }
 .quick-menu__inner {
   position: relative;
@@ -30435,7 +30439,6 @@ ellipsis {
   width: 50px;
   height: 50px;
   text-align: center;
-  border: 1px solid #fff;
   border-right: 0;
   border-radius: 3px 0 0 3px;
   cursor: pointer;
