@@ -16,6 +16,7 @@ var G2GaugeComponent = /** @class */ (function () {
         this.ngZone = ngZone;
         // #region fields
         this.delay = 0;
+        this.color = '#2f9cff';
         this.padding = [10, 10, 30, 10];
         configSrv.attachKey(this, 'chart', 'theme');
     }
