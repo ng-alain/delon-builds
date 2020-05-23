@@ -248,15 +248,15 @@
         }
         /**
          * @private
-         * @param {?} type
+         * @param {?} isUpdate
          * @return {?}
          */
         G2WaterWaveComponent.prototype.renderChart = /**
          * @private
-         * @param {?} type
+         * @param {?} isUpdate
          * @return {?}
          */
-        function (type) {
+        function (isUpdate) {
             if (!this.resize$)
                 return;
             this.updateRadio();
@@ -356,7 +356,7 @@
              */
             function render() {
                 ctx.clearRect(0, 0, canvasWidth, canvasHeight);
-                if (circleLock && type !== 'update') {
+                if (circleLock && !isUpdate) {
                     if ((/** @type {?} */ (arcStack)).length) {
                         /** @type {?} */
                         var temp = (/** @type {?} */ ((/** @type {?} */ (arcStack)).shift()));
@@ -468,7 +468,7 @@
             function () { return setTimeout((/**
              * @return {?}
              */
-            function () { return _this.renderChart(''); }), _this.delay); }));
+            function () { return _this.renderChart(false); }), _this.delay); }));
         };
         /**
          * @return {?}
@@ -481,7 +481,7 @@
             this.ngZone.runOutsideAngular((/**
              * @return {?}
              */
-            function () { return _this.renderChart('update'); }));
+            function () { return _this.renderChart(true); }));
             this.cdr.detectChanges();
         };
         /**

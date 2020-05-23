@@ -1,0 +1,1 @@
+{"__symbolic":"module","version":4,"metadata":{"G2InteractionType":{"__symbolic":"interface"},"G2Time":{"__symbolic":"interface"}},"origins":{"G2InteractionType":"./types/interaction","G2Time":"./types/time"},"importAs":"@delon/chart/core"}

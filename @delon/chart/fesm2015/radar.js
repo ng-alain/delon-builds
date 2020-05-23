@@ -72,9 +72,6 @@ class G2RadarComponent {
             line: null,
             label: {
                 offset: 8,
-                style: {
-                    fill: 'rgba(0, 0, 0, .65)',
-                },
             },
             grid: {
                 line: {
@@ -95,11 +92,6 @@ class G2RadarComponent {
                         lineWidth: 1,
                         lineDash: [0, 0],
                     },
-                },
-            },
-            label: {
-                style: {
-                    fill: 'rgba(0, 0, 0, .65)',
                 },
             },
         });

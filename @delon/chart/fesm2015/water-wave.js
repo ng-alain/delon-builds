@@ -32,10 +32,10 @@ class G2WaterWaveComponent {
     }
     /**
      * @private
-     * @param {?} type
+     * @param {?} isUpdate
      * @return {?}
      */
-    renderChart(type) {
+    renderChart(isUpdate) {
         if (!this.resize$)
             return;
         this.updateRadio();
@@ -135,7 +135,7 @@ class G2WaterWaveComponent {
          */
         function render() {
             ctx.clearRect(0, 0, canvasWidth, canvasHeight);
-            if (circleLock && type !== 'update') {
+            if (circleLock && !isUpdate) {
                 if ((/** @type {?} */ (arcStack)).length) {
                     /** @type {?} */
                     const temp = (/** @type {?} */ ((/** @type {?} */ (arcStack)).shift()));
@@ -234,7 +234,7 @@ class G2WaterWaveComponent {
         () => setTimeout((/**
          * @return {?}
          */
-        () => this.renderChart('')), this.delay)));
+        () => this.renderChart(false)), this.delay)));
     }
     /**
      * @return {?}
@@ -243,7 +243,7 @@ class G2WaterWaveComponent {
         this.ngZone.runOutsideAngular((/**
          * @return {?}
          */
-        () => this.renderChart('update')));
+        () => this.renderChart(true)));
         this.cdr.detectChanges();
     }
     /**

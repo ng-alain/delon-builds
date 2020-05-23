@@ -1,12 +1,12 @@
 /**
  * @fileoverview added by tsickle
- * Generated from: interaction.ts
+ * Generated from: types/interaction.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * Generated from: time.ts
+ * Generated from: types/time.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
@@ -18,7 +18,7 @@
 
 /**
  * @fileoverview added by tsickle
- * Generated from: delon-chart-core-types.ts
+ * Generated from: delon-chart-core.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-//# sourceMappingURL=delon-chart-core-types.js.map
+//# sourceMappingURL=delon-chart-core.js.map

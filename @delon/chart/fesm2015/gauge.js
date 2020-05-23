@@ -94,7 +94,7 @@ class G2GaugeComponent {
         chart.axis('value', {
             line: null,
             label: {
-                offset: -12,
+                offset: -14,
                 formatter: format,
             },
             tickLine: null,
@@ -139,7 +139,6 @@ class G2GaugeComponent {
                 lineDash: null,
             },
         });
-        // 绘制指标数字
         chart.annotation().text({
             position: ['50%', '85%'],
             content: title,
@@ -153,7 +152,7 @@ class G2GaugeComponent {
             position: ['50%', '90%'],
             content: `${val} %`,
             style: {
-                fontSize: 24,
+                fontSize: 20,
                 fill: 'rgba(0, 0, 0, 0.85)',
                 textAlign: 'center',
             },

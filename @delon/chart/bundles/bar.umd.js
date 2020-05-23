@@ -254,7 +254,7 @@
             this.ngZone = ngZone;
             // #region fields
             this.delay = 0;
-            // = 'rgba(24, 144, 255, 0.85)';
+            this.color = 'rgba(24, 144, 255, 0.85)';
             this.height = 0;
             this.padding = 'auto';
             this.data = [];

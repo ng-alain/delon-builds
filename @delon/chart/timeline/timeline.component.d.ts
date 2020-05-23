@@ -1,6 +1,6 @@
 import { NgZone, OnChanges, OnDestroy, OnInit, TemplateRef } from '@angular/core';
 import { Types } from '@antv/g2';
-import { G2Time } from '@delon/chart/core/types';
+import { G2Time } from '@delon/chart/core';
 import { AlainConfigService } from '@delon/util';
 export interface G2TimelineData {
     /**
