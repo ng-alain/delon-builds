@@ -119,7 +119,9 @@ var G2GaugeComponent = /** @class */ (function () {
         /** @type {?} */
         var val = data[0].value;
         chart.annotation().clear(true);
-        chart.geometries[0].color(color);
+        if (color) {
+            chart.geometries[0].color(color);
+        }
         // 绘制仪表盘背景
         chart.annotation().arc({
             top: false,
