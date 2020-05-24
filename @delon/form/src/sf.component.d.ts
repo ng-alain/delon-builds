@@ -60,6 +60,7 @@ export declare class SFComponent implements OnInit, OnChanges, OnDestroy {
     firstVisual: boolean;
     /** 是否只展示错误视觉不显示错误文本 */
     onlyVisual: boolean;
+    compact: boolean;
     /** 表单模式 */
     set mode(value: 'default' | 'search' | 'edit');
     get mode(): 'default' | 'search' | 'edit';
