@@ -278,7 +278,7 @@ PageG2 = /** @class */ (function () {
          */
         function () {
             // tslint:disable-next-line:no-string-literal
-            return this.context['comp'];
+            return ((/** @type {?} */ (this.context)))['comp'];
         },
         enumerable: true,
         configurable: true
@@ -430,7 +430,7 @@ PageG2 = /** @class */ (function () {
      */
     function (data) {
         // tslint:disable-next-line:no-string-literal
-        (/** @type {?} */ (this)).context['data'] = data;
+        ((/** @type {?} */ ((/** @type {?} */ (this)).context)))['data'] = data;
         (/** @type {?} */ (this)).dc();
         return (/** @type {?} */ (this));
     };

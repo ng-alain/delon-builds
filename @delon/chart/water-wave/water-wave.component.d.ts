@@ -7,6 +7,7 @@ export declare class G2WaterWaveComponent implements OnDestroy, OnChanges, OnIni
     private resize$;
     private node;
     private timer;
+    animate: boolean;
     delay: number;
     title: string | TemplateRef<void>;
     color: string;

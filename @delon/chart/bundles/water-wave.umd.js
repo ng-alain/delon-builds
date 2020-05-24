@@ -242,6 +242,7 @@
             this.cdr = cdr;
             this.resize$ = null;
             // #region fields
+            this.animate = true;
             this.delay = 0;
             this.color = '#1890FF';
             this.height = 160;
@@ -260,7 +261,7 @@
             if (!this.resize$)
                 return;
             this.updateRadio();
-            var _a = this, percent = _a.percent, color = _a.color, node = _a.node;
+            var _a = this, percent = _a.percent, color = _a.color, node = _a.node, animate = _a.animate;
             /** @type {?} */
             var data = Math.min(Math.max(percent / 100, 0), 100);
             /** @type {?} */
@@ -287,19 +288,19 @@
             /** @type {?} */
             var unit = axisLength / 8;
             /** @type {?} */
-            var range = 0.2;
-            // 振幅
-            /** @type {?} */
-            var currRange = range;
-            /** @type {?} */
             var xOffset = lineWidth;
             /** @type {?} */
             var sp = 0;
             // 周期偏移量
             /** @type {?} */
+            var range = 0.2;
+            // 振幅
+            /** @type {?} */
+            var currRange = range;
+            /** @type {?} */
             var currData = 0;
             /** @type {?} */
-            var waveupsp = 0.005;
+            var waveupsp = animate ? 0.005 : 0.015;
             // 水波上涨速度
             /** @type {?} */
             var arcStack = [];
@@ -355,13 +356,33 @@
              * @return {?}
              */
             function render() {
+                var e_1, _a;
                 ctx.clearRect(0, 0, canvasWidth, canvasHeight);
                 if (circleLock && !isUpdate) {
                     if ((/** @type {?} */ (arcStack)).length) {
-                        /** @type {?} */
-                        var temp = (/** @type {?} */ ((/** @type {?} */ (arcStack)).shift()));
-                        ctx.lineTo(temp[0], temp[1]);
-                        ctx.stroke();
+                        if (animate) {
+                            /** @type {?} */
+                            var temp = (/** @type {?} */ ((/** @type {?} */ (arcStack)).shift()));
+                            ctx.lineTo(temp[0], temp[1]);
+                            ctx.stroke();
+                        }
+                        else {
+                            try {
+                                for (var _b = __values((/** @type {?} */ (arcStack))), _c = _b.next(); !_c.done; _c = _b.next()) {
+                                    var temp = _c.value;
+                                    ctx.lineTo((/** @type {?} */ (temp))[0], (/** @type {?} */ (temp))[1]);
+                                    ctx.stroke();
+                                }
+                            }
+                            catch (e_1_1) { e_1 = { error: e_1_1 }; }
+                            finally {
+                                try {
+                                    if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
+                                }
+                                finally { if (e_1) throw e_1.error; }
+                            }
+                            arcStack = [];
+                        }
                     }
                     else {
                         circleLock = false;
@@ -421,6 +442,7 @@
                 self.timer = requestAnimationFrame(render);
             }
             render();
+            // drawSin();
         };
         /**
          * @private
@@ -516,12 +538,17 @@
         ]; };
         G2WaterWaveComponent.propDecorators = {
             node: [{ type: core.ViewChild, args: ['container', { static: true },] }],
+            animate: [{ type: core.Input }],
             delay: [{ type: core.Input }],
             title: [{ type: core.Input }],
             color: [{ type: core.Input }],
             height: [{ type: core.Input }],
             percent: [{ type: core.Input }]
         };
+        __decorate([
+            util.InputBoolean(),
+            __metadata("design:type", Object)
+        ], G2WaterWaveComponent.prototype, "animate", void 0);
         __decorate([
             util.InputNumber(),
             __metadata("design:type", Object)
@@ -552,6 +579,8 @@
          * @private
          */
         G2WaterWaveComponent.prototype.timer;
+        /** @type {?} */
+        G2WaterWaveComponent.prototype.animate;
         /** @type {?} */
         G2WaterWaveComponent.prototype.delay;
         /** @type {?} */

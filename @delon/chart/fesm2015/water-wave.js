@@ -1,6 +1,6 @@
 import { __decorate, __metadata } from 'tslib';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, Renderer2, NgZone, ChangeDetectorRef, ViewChild, Input, NgModule } from '@angular/core';
-import { InputNumber, DelonUtilModule } from '@delon/util';
+import { InputBoolean, InputNumber, DelonUtilModule } from '@delon/util';
 import { fromEvent } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
@@ -26,6 +26,7 @@ class G2WaterWaveComponent {
         this.cdr = cdr;
         this.resize$ = null;
         // #region fields
+        this.animate = true;
         this.delay = 0;
         this.color = '#1890FF';
         this.height = 160;
@@ -39,7 +40,7 @@ class G2WaterWaveComponent {
         if (!this.resize$)
             return;
         this.updateRadio();
-        const { percent, color, node } = this;
+        const { percent, color, node, animate } = this;
         /** @type {?} */
         const data = Math.min(Math.max(percent / 100, 0), 100);
         /** @type {?} */
@@ -66,19 +67,19 @@ class G2WaterWaveComponent {
         /** @type {?} */
         const unit = axisLength / 8;
         /** @type {?} */
-        const range = 0.2;
-        // 振幅
-        /** @type {?} */
-        let currRange = range;
-        /** @type {?} */
         const xOffset = lineWidth;
         /** @type {?} */
         let sp = 0;
         // 周期偏移量
         /** @type {?} */
+        const range = 0.2;
+        // 振幅
+        /** @type {?} */
+        let currRange = range;
+        /** @type {?} */
         let currData = 0;
         /** @type {?} */
-        const waveupsp = 0.005;
+        const waveupsp = animate ? 0.005 : 0.015;
         // 水波上涨速度
         /** @type {?} */
         let arcStack = [];
@@ -137,10 +138,19 @@ class G2WaterWaveComponent {
             ctx.clearRect(0, 0, canvasWidth, canvasHeight);
             if (circleLock && !isUpdate) {
                 if ((/** @type {?} */ (arcStack)).length) {
-                    /** @type {?} */
-                    const temp = (/** @type {?} */ ((/** @type {?} */ (arcStack)).shift()));
-                    ctx.lineTo(temp[0], temp[1]);
-                    ctx.stroke();
+                    if (animate) {
+                        /** @type {?} */
+                        const temp = (/** @type {?} */ ((/** @type {?} */ (arcStack)).shift()));
+                        ctx.lineTo(temp[0], temp[1]);
+                        ctx.stroke();
+                    }
+                    else {
+                        for (const temp of (/** @type {?} */ (arcStack))) {
+                            ctx.lineTo((/** @type {?} */ (temp))[0], (/** @type {?} */ (temp))[1]);
+                            ctx.stroke();
+                        }
+                        arcStack = [];
+                    }
                 }
                 else {
                     circleLock = false;
@@ -200,6 +210,7 @@ class G2WaterWaveComponent {
             self.timer = requestAnimationFrame(render);
         }
         render();
+        // drawSin();
     }
     /**
      * @private
@@ -276,12 +287,17 @@ G2WaterWaveComponent.ctorParameters = () => [
 ];
 G2WaterWaveComponent.propDecorators = {
     node: [{ type: ViewChild, args: ['container', { static: true },] }],
+    animate: [{ type: Input }],
     delay: [{ type: Input }],
     title: [{ type: Input }],
     color: [{ type: Input }],
     height: [{ type: Input }],
     percent: [{ type: Input }]
 };
+__decorate([
+    InputBoolean(),
+    __metadata("design:type", Object)
+], G2WaterWaveComponent.prototype, "animate", void 0);
 __decorate([
     InputNumber(),
     __metadata("design:type", Object)
@@ -310,6 +326,8 @@ if (false) {
      * @private
      */
     G2WaterWaveComponent.prototype.timer;
+    /** @type {?} */
+    G2WaterWaveComponent.prototype.animate;
     /** @type {?} */
     G2WaterWaveComponent.prototype.delay;
     /** @type {?} */
