@@ -1258,11 +1258,22 @@ var ReuseTabService = /** @class */ (function () {
             }
             return true;
         }
+        return !this.isExclude(url);
+    };
+    /**
+     * @param {?} url
+     * @return {?}
+     */
+    ReuseTabService.prototype.isExclude = /**
+     * @param {?} url
+     * @return {?}
+     */
+    function (url) {
         return this.excludes.findIndex((/**
          * @param {?} r
          * @return {?}
          */
-        function (r) { return r.test(url); })) === -1;
+        function (r) { return r.test(url); })) !== -1;
     };
     /**
      * 刷新，触发一个 refresh 类型事件
@@ -2097,18 +2108,22 @@ var ReuseTabComponent = /** @class */ (function () {
      */
     function () {
         var _this = this;
-        this.updatePos$.pipe(takeUntil(this.unsubscribe$), debounceTime(100)).subscribe((/**
+        this.updatePos$.pipe(takeUntil(this.unsubscribe$), debounceTime(50)).subscribe((/**
          * @return {?}
          */
         function () {
             /** @type {?} */
-            var ls = _this.list;
+            var url = _this.srv.getUrl(_this.route.snapshot);
+            /** @type {?} */
+            var ls = _this.list.filter((/**
+             * @param {?} w
+             * @return {?}
+             */
+            function (w) { return w.url === url || !_this.srv.isExclude(w.url); }));
             if (ls.length === 0)
                 return;
             /** @type {?} */
             var last = ls[ls.length - 1];
-            /** @type {?} */
-            var url = _this.srv.getUrl(_this.route.snapshot);
             /** @type {?} */
             var item = ls.find((/**
              * @param {?} w
@@ -2125,6 +2140,7 @@ var ReuseTabComponent = /** @class */ (function () {
              */
             function (i, idx) { return (i.active = pos === idx); }));
             _this.pos = pos;
+            _this.list = ls;
             _this.cdr.detectChanges();
         }));
         this.srv.change.pipe(takeUntil(this.unsubscribe$)).subscribe((/**
