@@ -131,7 +131,6 @@ export declare class ReuseTabService implements OnDestroy {
      * 检查快照是否允许被复用
      */
     can(route: ActivatedRouteSnapshot): boolean;
-    isExclude(url: string): boolean;
     /**
      * 刷新，触发一个 refresh 类型事件
      */

@@ -989,18 +989,11 @@ class ReuseTabService {
             }
             return true;
         }
-        return !this.isExclude(url);
-    }
-    /**
-     * @param {?} url
-     * @return {?}
-     */
-    isExclude(url) {
         return this.excludes.findIndex((/**
          * @param {?} r
          * @return {?}
          */
-        r => r.test(url))) !== -1;
+        r => r.test(url))) === -1;
     }
     /**
      * 刷新，触发一个 refresh 类型事件
@@ -1650,22 +1643,18 @@ class ReuseTabComponent {
      * @return {?}
      */
     ngOnInit() {
-        this.updatePos$.pipe(takeUntil(this.unsubscribe$), debounceTime(50)).subscribe((/**
+        this.updatePos$.pipe(takeUntil(this.unsubscribe$), debounceTime(100)).subscribe((/**
          * @return {?}
          */
         () => {
             /** @type {?} */
-            const url = this.srv.getUrl(this.route.snapshot);
-            /** @type {?} */
-            const ls = this.list.filter((/**
-             * @param {?} w
-             * @return {?}
-             */
-            w => w.url === url || !this.srv.isExclude(w.url)));
+            const ls = this.list;
             if (ls.length === 0)
                 return;
             /** @type {?} */
             const last = ls[ls.length - 1];
+            /** @type {?} */
+            const url = this.srv.getUrl(this.route.snapshot);
             /** @type {?} */
             const item = ls.find((/**
              * @param {?} w
@@ -1682,7 +1671,6 @@ class ReuseTabComponent {
              */
             (i, idx) => (i.active = pos === idx)));
             this.pos = pos;
-            this.list = ls;
             this.cdr.detectChanges();
         }));
         this.srv.change.pipe(takeUntil(this.unsubscribe$)).subscribe((/**
