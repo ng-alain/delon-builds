@@ -29704,16 +29704,16 @@ body {
 }
 .alain-fullscreen {
   display: block;
-  padding: 0 8px;
+  padding: 0 16px;
   background-color: #f5f7fa;
 }
 .alain-fullscreen .page-header {
-  margin-right: -8px;
+  margin-right: -16px;
   margin-bottom: 0;
-  margin-left: -8px;
-  padding: 8px;
-  padding-top: -4px;
-  padding-bottom: -4px;
+  margin-left: -16px;
+  padding: 16px;
+  padding-top: 4px;
+  padding-bottom: 4px;
 }
 .st {
   display: block;
