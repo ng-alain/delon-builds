@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util'), require('@angular/forms'), require('@delon/theme'), require('ng-zorro-antd/core/animation'), require('@angular/common'), require('ng-zorro-antd/core/outlet'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/tooltip')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/se', ['exports', '@angular/core', '@delon/util', '@angular/forms', '@delon/theme', 'ng-zorro-antd/core/animation', '@angular/common', 'ng-zorro-antd/core/outlet', 'ng-zorro-antd/icon', 'ng-zorro-antd/tooltip'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.se = {}), global.ng.core, global.delon.util, global.ng.forms, global.delon.theme, global.animation, global.ng.common, global['ng-zorro-antd/core/outlet'], global['ng-zorro-antd/icon'], global['ng-zorro-antd/tooltip']));
-}(this, (function (exports, core, util, forms, theme, animation, common, outlet, icon, tooltip) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('@angular/forms'), require('@delon/theme'), require('ng-zorro-antd/core/animation'), require('@angular/common'), require('ng-zorro-antd/core/outlet'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/tooltip')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/se', ['exports', '@angular/core', '@delon/util', 'rxjs', 'rxjs/operators', '@angular/forms', '@delon/theme', 'ng-zorro-antd/core/animation', '@angular/common', 'ng-zorro-antd/core/outlet', 'ng-zorro-antd/icon', 'ng-zorro-antd/tooltip'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.se = {}), global.ng.core, global.delon.util, global.rxjs, global.rxjs.operators, global.ng.forms, global.delon.theme, global.animation, global.ng.common, global['ng-zorro-antd/core/outlet'], global['ng-zorro-antd/icon'], global['ng-zorro-antd/tooltip']));
+}(this, (function (exports, core, util, rxjs, operators, forms, theme, animation, common, outlet, icon, tooltip) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -234,8 +234,8 @@
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var SEContainerComponent = /** @class */ (function () {
-        // #endregion
         function SEContainerComponent(configSrv) {
+            this.errorNotify$ = new rxjs.BehaviorSubject((/** @type {?} */ (null)));
             this.line = false;
             configSrv.attach(this, 'se', {
                 size: 'default',
@@ -283,6 +283,55 @@
             enumerable: true,
             configurable: true
         });
+        Object.defineProperty(SEContainerComponent.prototype, "errors", {
+            set: /**
+             * @param {?} val
+             * @return {?}
+             */
+            function (val) {
+                this.setErrors(val);
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(SEContainerComponent.prototype, "errorNotify", {
+            get: /**
+             * @return {?}
+             */
+            function () {
+                return this.errorNotify$.pipe(operators.filter((/**
+                 * @param {?} v
+                 * @return {?}
+                 */
+                function (v) { return v != null; })));
+            },
+            enumerable: true,
+            configurable: true
+        });
+        /**
+         * @param {?} errors
+         * @return {?}
+         */
+        SEContainerComponent.prototype.setErrors = /**
+         * @param {?} errors
+         * @return {?}
+         */
+        function (errors) {
+            var e_1, _a;
+            try {
+                for (var errors_1 = __values(errors), errors_1_1 = errors_1.next(); !errors_1_1.done; errors_1_1 = errors_1.next()) {
+                    var error = errors_1_1.value;
+                    this.errorNotify$.next(error);
+                }
+            }
+            catch (e_1_1) { e_1 = { error: e_1_1 }; }
+            finally {
+                try {
+                    if (errors_1_1 && !errors_1_1.done && (_a = errors_1.return)) _a.call(errors_1);
+                }
+                finally { if (e_1) throw e_1.error; }
+            }
+        };
         SEContainerComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'se-container, [se-container]',
@@ -316,7 +365,8 @@
             nzLayout: [{ type: core.Input }],
             size: [{ type: core.Input }],
             firstVisual: [{ type: core.Input }],
-            line: [{ type: core.Input }]
+            line: [{ type: core.Input }],
+            errors: [{ type: core.Input }]
         };
         __decorate([
             util.InputNumber(null),
@@ -341,6 +391,11 @@
         return SEContainerComponent;
     }());
     if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        SEContainerComponent.prototype.errorNotify$;
         /** @type {?} */
         SEContainerComponent.prototype.colInCon;
         /** @type {?} */
@@ -454,14 +509,17 @@
     var nextUniqueId = 0;
     var SEComponent = /** @class */ (function () {
         function SEComponent(el, parent, rep, ren, cdr) {
+            var _this = this;
             this.parent = parent;
             this.rep = rep;
             this.ren = ren;
             this.cdr = cdr;
+            this.unsubscribe$ = new rxjs.Subject();
             this.clsMap = [];
             this.inited = false;
             this.onceFlag = false;
             this.errorData = {};
+            this.isBindModel = false;
             this.invalid = false;
             this._labelWidth = null;
             this.required = false;
@@ -472,6 +530,20 @@
                 throw new Error("[se] must include 'se-container' component");
             }
             this.el = el.nativeElement;
+            parent.errorNotify
+                .pipe(operators.takeUntil(this.unsubscribe$), operators.filter((/**
+             * @param {?} w
+             * @return {?}
+             */
+            function (w) { return _this.inited && _this.ngControl != null && _this.ngControl.name === w.name; })))
+                .subscribe((/**
+             * @param {?} item
+             * @return {?}
+             */
+            function (item) {
+                _this.error = item.error;
+                _this.updateStatus((/** @type {?} */ (_this.ngControl.invalid)));
+            }));
         }
         Object.defineProperty(SEComponent.prototype, "error", {
             set: /**
@@ -586,9 +658,10 @@
         function () {
             var _this = this;
             var _a, _b, _c;
-            if (!this.ngControl || this.status$)
+            if (!this.ngControl || this.isBindModel)
                 return;
-            this.status$ = (/** @type {?} */ (this.ngControl.statusChanges)).subscribe((/**
+            this.isBindModel = true;
+            (/** @type {?} */ (this.ngControl.statusChanges)).pipe(operators.takeUntil(this.unsubscribe$)).subscribe((/**
              * @param {?} res
              * @return {?}
              */
@@ -673,8 +746,9 @@
          */
         function () {
             this.onceFlag = this.parent.firstVisual;
-            if (this.inited)
+            if (this.inited) {
                 this.setClass().bindModel();
+            }
         };
         /**
          * @return {?}
@@ -703,9 +777,9 @@
          * @return {?}
          */
         function () {
-            if (this.status$) {
-                this.status$.unsubscribe();
-            }
+            var unsubscribe$ = this.unsubscribe$;
+            unsubscribe$.next();
+            unsubscribe$.complete();
         };
         SEComponent.decorators = [
             { type: core.Component, args: [{
@@ -776,7 +850,7 @@
          * @type {?}
          * @private
          */
-        SEComponent.prototype.status$;
+        SEComponent.prototype.unsubscribe$;
         /**
          * @type {?}
          * @private
@@ -812,6 +886,11 @@
          * @private
          */
         SEComponent.prototype.errorData;
+        /**
+         * @type {?}
+         * @private
+         */
+        SEComponent.prototype.isBindModel;
         /** @type {?} */
         SEComponent.prototype.invalid;
         /** @type {?} */
@@ -881,6 +960,26 @@
         ];
         return SEModule;
     }());
+
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: se.types.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /**
+     * @record
+     */
+    function SEError() { }
+    /**
+     * @record
+     */
+    function SEErrorRefresh() { }
+    if (false) {
+        /** @type {?} */
+        SEErrorRefresh.prototype.name;
+        /** @type {?} */
+        SEErrorRefresh.prototype.error;
+    }
 
     exports.SEComponent = SEComponent;
     exports.SEContainerComponent = SEContainerComponent;
