@@ -1,8 +1,6 @@
-import { __values, __decorate, __metadata, __spread } from 'tslib';
+import { __decorate, __metadata, __spread } from 'tslib';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Host, Optional, ElementRef, Renderer2, TemplateRef, ChangeDetectorRef, ContentChild, ViewChild, NgModule } from '@angular/core';
 import { toNumber, AlainConfigService, InputNumber, InputBoolean, isEmpty, DelonUtilModule } from '@delon/util';
-import { BehaviorSubject, Subject } from 'rxjs';
-import { filter, takeUntil } from 'rxjs/operators';
 import { RequiredValidator, NgModel, FormControlName } from '@angular/forms';
 import { ResponsiveService } from '@delon/theme';
 import { helpMotion } from 'ng-zorro-antd/core/animation';
@@ -17,8 +15,8 @@ import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var SEContainerComponent = /** @class */ (function () {
+    // #endregion
     function SEContainerComponent(configSrv) {
-        this.errorNotify$ = new BehaviorSubject((/** @type {?} */ (null)));
         this.line = false;
         configSrv.attach(this, 'se', {
             size: 'default',
@@ -66,55 +64,6 @@ var SEContainerComponent = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(SEContainerComponent.prototype, "errors", {
-        set: /**
-         * @param {?} val
-         * @return {?}
-         */
-        function (val) {
-            this.setErrors(val);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(SEContainerComponent.prototype, "errorNotify", {
-        get: /**
-         * @return {?}
-         */
-        function () {
-            return this.errorNotify$.pipe(filter((/**
-             * @param {?} v
-             * @return {?}
-             */
-            function (v) { return v != null; })));
-        },
-        enumerable: true,
-        configurable: true
-    });
-    /**
-     * @param {?} errors
-     * @return {?}
-     */
-    SEContainerComponent.prototype.setErrors = /**
-     * @param {?} errors
-     * @return {?}
-     */
-    function (errors) {
-        var e_1, _a;
-        try {
-            for (var errors_1 = __values(errors), errors_1_1 = errors_1.next(); !errors_1_1.done; errors_1_1 = errors_1.next()) {
-                var error = errors_1_1.value;
-                this.errorNotify$.next(error);
-            }
-        }
-        catch (e_1_1) { e_1 = { error: e_1_1 }; }
-        finally {
-            try {
-                if (errors_1_1 && !errors_1_1.done && (_a = errors_1.return)) _a.call(errors_1);
-            }
-            finally { if (e_1) throw e_1.error; }
-        }
-    };
     SEContainerComponent.decorators = [
         { type: Component, args: [{
                     selector: 'se-container, [se-container]',
@@ -148,8 +97,7 @@ var SEContainerComponent = /** @class */ (function () {
         nzLayout: [{ type: Input }],
         size: [{ type: Input }],
         firstVisual: [{ type: Input }],
-        line: [{ type: Input }],
-        errors: [{ type: Input }]
+        line: [{ type: Input }]
     };
     __decorate([
         InputNumber(null),
@@ -174,11 +122,6 @@ var SEContainerComponent = /** @class */ (function () {
     return SEContainerComponent;
 }());
 if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    SEContainerComponent.prototype.errorNotify$;
     /** @type {?} */
     SEContainerComponent.prototype.colInCon;
     /** @type {?} */
@@ -292,17 +235,14 @@ var prefixCls = "se";
 var nextUniqueId = 0;
 var SEComponent = /** @class */ (function () {
     function SEComponent(el, parent, rep, ren, cdr) {
-        var _this = this;
         this.parent = parent;
         this.rep = rep;
         this.ren = ren;
         this.cdr = cdr;
-        this.unsubscribe$ = new Subject();
         this.clsMap = [];
         this.inited = false;
         this.onceFlag = false;
         this.errorData = {};
-        this.isBindModel = false;
         this.invalid = false;
         this._labelWidth = null;
         this.required = false;
@@ -313,20 +253,6 @@ var SEComponent = /** @class */ (function () {
             throw new Error("[se] must include 'se-container' component");
         }
         this.el = el.nativeElement;
-        parent.errorNotify
-            .pipe(takeUntil(this.unsubscribe$), filter((/**
-         * @param {?} w
-         * @return {?}
-         */
-        function (w) { return _this.inited && _this.ngControl != null && _this.ngControl.name === w.name; })))
-            .subscribe((/**
-         * @param {?} item
-         * @return {?}
-         */
-        function (item) {
-            _this.error = item.error;
-            _this.updateStatus((/** @type {?} */ (_this.ngControl.invalid)));
-        }));
     }
     Object.defineProperty(SEComponent.prototype, "error", {
         set: /**
@@ -441,10 +367,9 @@ var SEComponent = /** @class */ (function () {
     function () {
         var _this = this;
         var _a, _b, _c;
-        if (!this.ngControl || this.isBindModel)
+        if (!this.ngControl || this.status$)
             return;
-        this.isBindModel = true;
-        (/** @type {?} */ (this.ngControl.statusChanges)).pipe(takeUntil(this.unsubscribe$)).subscribe((/**
+        this.status$ = (/** @type {?} */ (this.ngControl.statusChanges)).subscribe((/**
          * @param {?} res
          * @return {?}
          */
@@ -529,9 +454,8 @@ var SEComponent = /** @class */ (function () {
      */
     function () {
         this.onceFlag = this.parent.firstVisual;
-        if (this.inited) {
+        if (this.inited)
             this.setClass().bindModel();
-        }
     };
     /**
      * @return {?}
@@ -560,9 +484,9 @@ var SEComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        var unsubscribe$ = this.unsubscribe$;
-        unsubscribe$.next();
-        unsubscribe$.complete();
+        if (this.status$) {
+            this.status$.unsubscribe();
+        }
     };
     SEComponent.decorators = [
         { type: Component, args: [{
@@ -633,7 +557,7 @@ if (false) {
      * @type {?}
      * @private
      */
-    SEComponent.prototype.unsubscribe$;
+    SEComponent.prototype.status$;
     /**
      * @type {?}
      * @private
@@ -669,11 +593,6 @@ if (false) {
      * @private
      */
     SEComponent.prototype.errorData;
-    /**
-     * @type {?}
-     * @private
-     */
-    SEComponent.prototype.isBindModel;
     /** @type {?} */
     SEComponent.prototype.invalid;
     /** @type {?} */
@@ -743,26 +662,6 @@ var SEModule = /** @class */ (function () {
     ];
     return SEModule;
 }());
-
-/**
- * @fileoverview added by tsickle
- * Generated from: se.types.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
- * @record
- */
-function SEError() { }
-/**
- * @record
- */
-function SEErrorRefresh() { }
-if (false) {
-    /** @type {?} */
-    SEErrorRefresh.prototype.name;
-    /** @type {?} */
-    SEErrorRefresh.prototype.error;
-}
 
 /**
  * @fileoverview added by tsickle

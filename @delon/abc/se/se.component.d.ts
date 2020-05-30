@@ -1,14 +1,13 @@
 import { AfterContentInit, AfterViewInit, ChangeDetectorRef, ElementRef, OnChanges, OnDestroy, Renderer2, TemplateRef } from '@angular/core';
 import { ResponsiveService } from '@delon/theme';
 import { SEContainerComponent } from './se-container.component';
-import { SEErrorType } from './se.types';
 export declare class SEComponent implements OnChanges, AfterContentInit, AfterViewInit, OnDestroy {
     private parent;
     private rep;
     private ren;
     private cdr;
     private el;
-    private unsubscribe$;
+    private status$;
     private readonly ngModel;
     private readonly formControlName;
     private readonly contentElement;
@@ -16,13 +15,14 @@ export declare class SEComponent implements OnChanges, AfterContentInit, AfterVi
     private inited;
     private onceFlag;
     private errorData;
-    private isBindModel;
     invalid: boolean;
     _labelWidth: number | null;
     _error: string | TemplateRef<void>;
     optional: string | TemplateRef<void>;
     optionalHelp: string | TemplateRef<void>;
-    set error(val: SEErrorType);
+    set error(val: string | TemplateRef<void> | {
+        [key: string]: string | TemplateRef<void>;
+    });
     extra: string | TemplateRef<void>;
     label: string | TemplateRef<void>;
     col: number;

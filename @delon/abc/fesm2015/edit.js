@@ -1,8 +1,6 @@
 import { __decorate, __metadata } from 'tslib';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Host, Optional, ElementRef, Renderer2, TemplateRef, ChangeDetectorRef, ContentChild, ViewChild, NgModule } from '@angular/core';
 import { toNumber, AlainConfigService, InputNumber, InputBoolean, isEmpty, DelonUtilModule } from '@delon/util';
-import { BehaviorSubject, Subject } from 'rxjs';
-import { filter, takeUntil } from 'rxjs/operators';
 import { RequiredValidator, NgModel, FormControlName } from '@angular/forms';
 import { ResponsiveService } from '@delon/theme';
 import { helpMotion } from 'ng-zorro-antd/core/animation';
@@ -17,11 +15,11 @@ import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class SEContainerComponent {
+    // #endregion
     /**
      * @param {?} configSrv
      */
     constructor(configSrv) {
-        this.errorNotify$ = new BehaviorSubject((/** @type {?} */ (null)));
         this.line = false;
         configSrv.attach(this, 'se', {
             size: 'default',
@@ -59,32 +57,6 @@ class SEContainerComponent {
         this._nzLayout = value;
         if (value === 'inline') {
             this.size = 'compact';
-        }
-    }
-    /**
-     * @param {?} val
-     * @return {?}
-     */
-    set errors(val) {
-        this.setErrors(val);
-    }
-    /**
-     * @return {?}
-     */
-    get errorNotify() {
-        return this.errorNotify$.pipe(filter((/**
-         * @param {?} v
-         * @return {?}
-         */
-        v => v != null)));
-    }
-    /**
-     * @param {?} errors
-     * @return {?}
-     */
-    setErrors(errors) {
-        for (const error of errors) {
-            this.errorNotify$.next(error);
         }
     }
 }
@@ -126,8 +98,7 @@ SEContainerComponent.propDecorators = {
     nzLayout: [{ type: Input }],
     size: [{ type: Input }],
     firstVisual: [{ type: Input }],
-    line: [{ type: Input }],
-    errors: [{ type: Input }]
+    line: [{ type: Input }]
 };
 __decorate([
     InputNumber(null),
@@ -150,11 +121,6 @@ __decorate([
     __metadata("design:type", Object)
 ], SEContainerComponent.prototype, "line", void 0);
 if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    SEContainerComponent.prototype.errorNotify$;
     /** @type {?} */
     SEContainerComponent.prototype.colInCon;
     /** @type {?} */
@@ -276,12 +242,10 @@ class SEComponent {
         this.rep = rep;
         this.ren = ren;
         this.cdr = cdr;
-        this.unsubscribe$ = new Subject();
         this.clsMap = [];
         this.inited = false;
         this.onceFlag = false;
         this.errorData = {};
-        this.isBindModel = false;
         this.invalid = false;
         this._labelWidth = null;
         this.required = false;
@@ -292,20 +256,6 @@ class SEComponent {
             throw new Error(`[se] must include 'se-container' component`);
         }
         this.el = el.nativeElement;
-        parent.errorNotify
-            .pipe(takeUntil(this.unsubscribe$), filter((/**
-         * @param {?} w
-         * @return {?}
-         */
-        w => this.inited && this.ngControl != null && this.ngControl.name === w.name)))
-            .subscribe((/**
-         * @param {?} item
-         * @return {?}
-         */
-        item => {
-            this.error = item.error;
-            this.updateStatus((/** @type {?} */ (this.ngControl.invalid)));
-        }));
     }
     /**
      * @param {?} val
@@ -383,10 +333,9 @@ class SEComponent {
      */
     bindModel() {
         var _a, _b, _c;
-        if (!this.ngControl || this.isBindModel)
+        if (!this.ngControl || this.status$)
             return;
-        this.isBindModel = true;
-        (/** @type {?} */ (this.ngControl.statusChanges)).pipe(takeUntil(this.unsubscribe$)).subscribe((/**
+        this.status$ = (/** @type {?} */ (this.ngControl.statusChanges)).subscribe((/**
          * @param {?} res
          * @return {?}
          */
@@ -457,9 +406,8 @@ class SEComponent {
      */
     ngOnChanges() {
         this.onceFlag = this.parent.firstVisual;
-        if (this.inited) {
+        if (this.inited)
             this.setClass().bindModel();
-        }
     }
     /**
      * @return {?}
@@ -481,9 +429,9 @@ class SEComponent {
      * @return {?}
      */
     ngOnDestroy() {
-        const { unsubscribe$ } = this;
-        unsubscribe$.next();
-        unsubscribe$.complete();
+        if (this.status$) {
+            this.status$.unsubscribe();
+        }
     }
 }
 SEComponent.decorators = [
@@ -553,7 +501,7 @@ if (false) {
      * @type {?}
      * @private
      */
-    SEComponent.prototype.unsubscribe$;
+    SEComponent.prototype.status$;
     /**
      * @type {?}
      * @private
@@ -589,11 +537,6 @@ if (false) {
      * @private
      */
     SEComponent.prototype.errorData;
-    /**
-     * @type {?}
-     * @private
-     */
-    SEComponent.prototype.isBindModel;
     /** @type {?} */
     SEComponent.prototype.invalid;
     /** @type {?} */
@@ -660,26 +603,6 @@ SEModule.decorators = [
                 exports: [...COMPONENTS],
             },] }
 ];
-
-/**
- * @fileoverview added by tsickle
- * Generated from: se.types.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
- * @record
- */
-function SEError() { }
-/**
- * @record
- */
-function SEErrorRefresh() { }
-if (false) {
-    /** @type {?} */
-    SEErrorRefresh.prototype.name;
-    /** @type {?} */
-    SEErrorRefresh.prototype.error;
-}
 
 /**
  * @fileoverview added by tsickle

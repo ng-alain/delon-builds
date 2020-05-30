@@ -1,6 +1,6 @@
 import { __decorate, __metadata } from 'tslib';
 import { TemplateRef, Component, ChangeDetectionStrategy, ViewEncapsulation, Renderer2, Optional, Inject, ChangeDetectorRef, ViewChild, Input, NgModule } from '@angular/core';
-import { NavigationEnd, Router, RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { ReuseTabService } from '@delon/abc/reuse-tab';
 import { SettingsService, MenuService, ALAIN_I18N_TOKEN, TitleService } from '@delon/theme';
 import { isEmpty, AlainConfigService, InputBoolean, InputNumber, DelonUtilModule } from '@delon/util';
@@ -77,11 +77,7 @@ class PageHeaderComponent {
         merge(menuSrv.change.pipe(filter((/**
          * @return {?}
          */
-        () => this.inited))), router.events.pipe(filter((/**
-         * @param {?} e
-         * @return {?}
-         */
-        e => e instanceof NavigationEnd))), i18nSrv.change)
+        () => this.inited))), i18nSrv.change)
             .pipe(takeUntil(this.unsubscribe$))
             .subscribe((/**
          * @return {?}
@@ -163,8 +159,9 @@ class PageHeaderComponent {
             const item = (/** @type {?} */ (this)).menus[(/** @type {?} */ (this)).menus.length - 1];
             /** @type {?} */
             let title = item.text;
-            if (item.i18n && (/** @type {?} */ (this)).i18nSrv)
+            if (item.i18n && (/** @type {?} */ (this)).i18nSrv) {
                 title = (/** @type {?} */ (this)).i18nSrv.fanyi(item.i18n);
+            }
             (/** @type {?} */ (this))._titleVal = (/** @type {?} */ (title));
         }
         if ((/** @type {?} */ (this))._titleVal && (/** @type {?} */ (this)).syncTitle) {
