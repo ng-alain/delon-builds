@@ -245,10 +245,10 @@
     }
     var PageHeaderComponent = /** @class */ (function () {
         // #endregion
-        function PageHeaderComponent(settings, renderer, router$1, menuSrv, i18nSrv, titleSrv, reuseSrv, cdr, configSrv) {
+        function PageHeaderComponent(settings, renderer, router, menuSrv, i18nSrv, titleSrv, reuseSrv, cdr, configSrv) {
             var _this = this;
             this.renderer = renderer;
-            this.router = router$1;
+            this.router = router;
             this.menuSrv = menuSrv;
             this.i18nSrv = i18nSrv;
             this.titleSrv = titleSrv;
@@ -283,11 +283,7 @@
             rxjs.merge(menuSrv.change.pipe(operators.filter((/**
              * @return {?}
              */
-            function () { return _this.inited; }))), router$1.events.pipe(operators.filter((/**
-             * @param {?} e
-             * @return {?}
-             */
-            function (e) { return e instanceof router.NavigationEnd; }))), i18nSrv.change)
+            function () { return _this.inited; }))), i18nSrv.change)
                 .pipe(operators.takeUntil(this.unsubscribe$))
                 .subscribe((/**
              * @return {?}
@@ -391,8 +387,9 @@
                 var item = (/** @type {?} */ (this)).menus[(/** @type {?} */ (this)).menus.length - 1];
                 /** @type {?} */
                 var title = item.text;
-                if (item.i18n && (/** @type {?} */ (this)).i18nSrv)
+                if (item.i18n && (/** @type {?} */ (this)).i18nSrv) {
                     title = (/** @type {?} */ (this)).i18nSrv.fanyi(item.i18n);
+                }
                 (/** @type {?} */ (this))._titleVal = (/** @type {?} */ (title));
             }
             if ((/** @type {?} */ (this))._titleVal && (/** @type {?} */ (this)).syncTitle) {
