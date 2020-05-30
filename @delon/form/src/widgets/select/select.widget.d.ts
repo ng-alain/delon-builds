@@ -1,12 +1,13 @@
 import { OnInit } from '@angular/core';
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { SFValue } from '../../interface';
 import { SFSchemaEnum } from '../../schema';
 import { ControlUIWidget } from '../../widget';
 import { SFSelectWidgetSchema } from './schema';
 export declare class SelectWidget extends ControlUIWidget<SFSelectWidgetSchema> implements OnInit {
-    i: any;
+    i: SFSelectWidgetSchema;
     data: SFSchemaEnum[];
-    _value: any;
+    _value: NzSafeAny;
     hasGroup: boolean;
     private checkGroup;
     ngOnInit(): void;

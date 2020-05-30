@@ -5052,21 +5052,20 @@ var SelectWidget = /** @class */ (function (_super) {
      * @return {?}
      */
     function () {
-        var _a = this.ui, autoClearSearchValue = _a.autoClearSearchValue, allowClear = _a.allowClear, borderless = _a.borderless, autoFocus = _a.autoFocus, dropdownClassName = _a.dropdownClassName, dropdownMatchSelectWidth = _a.dropdownMatchSelectWidth, serverSearch = _a.serverSearch, maxMultipleCount = _a.maxMultipleCount, mode = _a.mode, notFoundContent = _a.notFoundContent, showSearch = _a.showSearch, tokenSeparators = _a.tokenSeparators, maxTagCount = _a.maxTagCount, compareWith = _a.compareWith;
+        var _a = this.ui, autoClearSearchValue = _a.autoClearSearchValue, borderless = _a.borderless, autoFocus = _a.autoFocus, dropdownMatchSelectWidth = _a.dropdownMatchSelectWidth, serverSearch = _a.serverSearch, maxMultipleCount = _a.maxMultipleCount, mode = _a.mode, showSearch = _a.showSearch, tokenSeparators = _a.tokenSeparators, maxTagCount = _a.maxTagCount, compareWith = _a.compareWith, optionHeightPx = _a.optionHeightPx, optionOverflowSize = _a.optionOverflowSize;
         this.i = {
             autoClearSearchValue: toBool(autoClearSearchValue, true),
-            allowClear: allowClear,
             borderless: toBool(borderless, false),
             autoFocus: toBool(autoFocus, false),
-            dropdownClassName: dropdownClassName || null,
             dropdownMatchSelectWidth: toBool(dropdownMatchSelectWidth, true),
             serverSearch: toBool(serverSearch, false),
             maxMultipleCount: maxMultipleCount || Infinity,
             mode: mode || 'default',
-            notFoundContent: notFoundContent,
             showSearch: toBool(showSearch, true),
             tokenSeparators: tokenSeparators || [],
             maxTagCount: maxTagCount || undefined,
+            optionHeightPx: optionHeightPx || 32,
+            optionOverflowSize: optionOverflowSize || 8,
             compareWith: compareWith || ((/**
              * @param {?} o1
              * @param {?} o2
@@ -5161,7 +5160,7 @@ var SelectWidget = /** @class */ (function (_super) {
     SelectWidget.decorators = [
         { type: Component, args: [{
                     selector: 'sf-select',
-                    template: "<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n  <nz-select\n    [nzDisabled]=\"disabled\"\n    [nzSize]=\"ui.size\"\n    [(ngModel)]=\"_value\"\n    (ngModelChange)=\"change($event)\"\n    [nzPlaceHolder]=\"ui.placeholder\"\n    [nzAutoClearSearchValue]=\"i.autoClearSearchValue\"\n    [nzAllowClear]=\"i.allowClear\"\n    [nzBorderless]=\"i.borderless\"\n    [nzAutoFocus]=\"i.autoFocus\"\n    [nzDropdownClassName]=\"i.dropdownClassName\"\n    [nzDropdownMatchSelectWidth]=\"i.dropdownMatchSelectWidth\"\n    [nzServerSearch]=\"i.serverSearch\"\n    [nzMaxMultipleCount]=\"i.maxMultipleCount\"\n    [nzMode]=\"i.mode\"\n    [nzNotFoundContent]=\"i.notFoundContent\"\n    [nzShowSearch]=\"i.showSearch\"\n    [nzTokenSeparators]=\"i.tokenSeparators\"\n    [nzMaxTagCount]=\"i.maxTagCount\"\n    [compareWith]=\"i.compareWith\"\n    (nzOpenChange)=\"openChange($event)\"\n    (nzOnSearch)=\"searchChange($event)\"\n    (nzScrollToBottom)=\"scrollToBottom()\"\n  >\n    <ng-container *ngIf=\"!hasGroup\">\n      <nz-option *ngFor=\"let o of data\" [nzLabel]=\"o.label\" [nzValue]=\"o.value\" [nzDisabled]=\"o.disabled\"></nz-option>\n    </ng-container>\n    <ng-container *ngIf=\"hasGroup\">\n      <nz-option-group *ngFor=\"let i of data\" [nzLabel]=\"i.label\">\n        <nz-option *ngFor=\"let o of i.children\" [nzLabel]=\"o.label\" [nzValue]=\"o.value\" [nzDisabled]=\"o.disabled\"></nz-option>\n      </nz-option-group>\n    </ng-container>\n  </nz-select>\n</sf-item-wrap>\n",
+                    template: "<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n  <nz-select\n    [nzDisabled]=\"disabled\"\n    [(ngModel)]=\"_value\"\n    (ngModelChange)=\"change($event)\"\n    [nzSize]=\"ui.size\"\n    [nzPlaceHolder]=\"ui.placeholder\"\n    [nzNotFoundContent]=\"ui.notFoundContent\"\n    [nzDropdownClassName]=\"ui.dropdownClassName\"\n    [nzAllowClear]=\"ui.allowClear\"\n    [nzDropdownStyle]=\"ui.dropdownStyle\"\n    [nzCustomTemplate]=\"ui.customTemplate\"\n    [nzSuffixIcon]=\"ui.suffixIcon\"\n    [nzRemoveIcon]=\"ui.removeIcon\"\n    [nzClearIcon]=\"ui.clearIcon\"\n    [nzMenuItemSelectedIcon]=\"ui.menuItemSelectedIcon\"\n    [nzMaxTagPlaceholder]=\"ui.maxTagPlaceholder\"\n    [nzDropdownRender]=\"ui.dropdownRender\"\n    [nzAutoClearSearchValue]=\"i.autoClearSearchValue\"\n    [nzBorderless]=\"i.borderless\"\n    [nzAutoFocus]=\"i.autoFocus\"\n    [nzDropdownMatchSelectWidth]=\"i.dropdownMatchSelectWidth\"\n    [nzServerSearch]=\"i.serverSearch\"\n    [nzMaxMultipleCount]=\"i.maxMultipleCount\"\n    [nzMode]=\"i.mode\"\n    [nzShowSearch]=\"i.showSearch\"\n    [nzTokenSeparators]=\"i.tokenSeparators\"\n    [nzMaxTagCount]=\"i.maxTagCount\"\n    [compareWith]=\"i.compareWith\"\n    [nzOptionHeightPx]=\"i.optionHeightPx\"\n    [nzOptionOverflowSize]=\"i.optionOverflowSize\"\n    (nzOpenChange)=\"openChange($event)\"\n    (nzOnSearch)=\"searchChange($event)\"\n    (nzScrollToBottom)=\"scrollToBottom()\"\n  >\n    <ng-container *ngIf=\"!hasGroup\">\n      <nz-option *ngFor=\"let o of data\" [nzLabel]=\"o.label\" [nzValue]=\"o.value\" [nzDisabled]=\"o.disabled\"></nz-option>\n    </ng-container>\n    <ng-container *ngIf=\"hasGroup\">\n      <nz-option-group *ngFor=\"let i of data\" [nzLabel]=\"i.label\">\n        <nz-option *ngFor=\"let o of i.children\" [nzLabel]=\"o.label\" [nzValue]=\"o.value\" [nzDisabled]=\"o.disabled\"></nz-option>\n      </nz-option-group>\n    </ng-container>\n  </nz-select>\n</sf-item-wrap>\n",
                     preserveWhitespaces: false,
                     encapsulation: ViewEncapsulation.None
                 }] }
@@ -5790,6 +5789,7 @@ var TreeSelectWidget = /** @class */ (function (_super) {
     function TreeSelectWidget() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.data = [];
+        _this.asyncData = false;
         return _this;
     }
     /**
@@ -5806,9 +5806,11 @@ var TreeSelectWidget = /** @class */ (function (_super) {
             dropdownMatchSelectWidth: toBool(ui.dropdownMatchSelectWidth, true),
             multiple: toBool(ui.multiple, false),
             checkable: toBool(ui.checkable, false),
+            showIcon: toBool(ui.showIcon, false),
             showExpand: toBool(ui.showExpand, true),
             showLine: toBool(ui.showLine, false),
-            asyncData: typeof ui.expandChange === 'function',
+            checkStrictly: toBool(ui.checkStrictly, false),
+            hideUnMatched: toBool(ui.hideUnMatched, false),
             defaultExpandAll: toBool(ui.defaultExpandAll, false),
             displayWith: ui.displayWith || ((/**
              * @param {?} node
@@ -5816,6 +5818,7 @@ var TreeSelectWidget = /** @class */ (function (_super) {
              */
             function (node) { return node.title; })),
         };
+        this.asyncData = typeof ui.expandChange === 'function';
     };
     /**
      * @param {?} value
@@ -5875,7 +5878,7 @@ var TreeSelectWidget = /** @class */ (function (_super) {
     TreeSelectWidget.decorators = [
         { type: Component, args: [{
                     selector: 'sf-tree-select',
-                    template: "<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n  <nz-tree-select\n    [nzAllowClear]=\"i.allowClear\"\n    [nzPlaceHolder]=\"ui.placeholder\"\n    [nzDisabled]=\"disabled\"\n    [nzShowSearch]=\"i.showSearch\"\n    [nzDropdownMatchSelectWidth]=\"i.dropdownMatchSelectWidth\"\n    [nzDropdownStyle]=\"ui.dropdownStyle\"\n    [nzMultiple]=\"i.multiple\"\n    [nzSize]=\"ui.size\"\n    [nzCheckable]=\"i.checkable\"\n    [nzShowExpand]=\"i.showExpand\"\n    [nzShowLine]=\"i.showLine\"\n    [nzAsyncData]=\"i.asyncData\"\n    [nzNodes]=\"data\"\n    [nzDefaultExpandAll]=\"i.defaultExpandAll\"\n    [nzDisplayWith]=\"i.displayWith\"\n    [ngModel]=\"value\"\n    [nzNotFoundContent]=\"ui.notFoundContent\"\n    (ngModelChange)=\"change($event)\"\n    (nzExpandChange)=\"expandChange($event)\"\n  >\n  </nz-tree-select>\n</sf-item-wrap>\n",
+                    template: "<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n  <nz-tree-select\n    [nzAllowClear]=\"i.allowClear\"\n    [nzPlaceHolder]=\"ui.placeholder\"\n    [nzDropdownStyle]=\"ui.dropdownStyle\"\n    [nzDropdownClassName]=\"ui.dropdownClassName\"\n    [nzSize]=\"ui.size\"\n    [nzExpandedKeys]=\"ui.expandedKeys\"\n    [nzNotFoundContent]=\"ui.notFoundContent\"\n    [nzMaxTagCount]=\"ui.maxTagCount\"\n    [nzMaxTagPlaceholder]=\"ui.maxTagPlaceholder || null\"\n    [nzTreeTemplate]=\"ui.treeTemplate || null\"\n    [nzDisabled]=\"disabled\"\n    [nzShowSearch]=\"i.showSearch\"\n    [nzShowIcon]=\"i.showIcon\"\n    [nzDropdownMatchSelectWidth]=\"i.dropdownMatchSelectWidth\"\n    [nzMultiple]=\"i.multiple\"\n    [nzHideUnMatched]=\"i.hideUnMatched\"\n    [nzCheckable]=\"i.checkable\"\n    [nzShowExpand]=\"i.showExpand\"\n    [nzShowLine]=\"i.showLine\"\n    [nzCheckStrictly]=\"i.checkStrictly\"\n    [nzAsyncData]=\"asyncData\"\n    [nzNodes]=\"data\"\n    [nzDefaultExpandAll]=\"i.defaultExpandAll\"\n    [nzDisplayWith]=\"i.displayWith\"\n    [ngModel]=\"value\"\n    (ngModelChange)=\"change($event)\"\n    (nzExpandChange)=\"expandChange($event)\"\n  >\n  </nz-tree-select>\n</sf-item-wrap>\n",
                     preserveWhitespaces: false,
                     encapsulation: ViewEncapsulation.None
                 }] }
@@ -5887,6 +5890,8 @@ if (false) {
     TreeSelectWidget.prototype.i;
     /** @type {?} */
     TreeSelectWidget.prototype.data;
+    /** @type {?} */
+    TreeSelectWidget.prototype.asyncData;
 }
 
 /**
@@ -7694,6 +7699,51 @@ if (false) {
      */
     SFSelectWidgetSchema.prototype.maxTagCount;
     /**
+     * 自定义选择框的Template内容
+     * @type {?|undefined}
+     */
+    SFSelectWidgetSchema.prototype.customTemplate;
+    /**
+     * 自定义的选择框后缀图标
+     * @type {?|undefined}
+     */
+    SFSelectWidgetSchema.prototype.suffixIcon;
+    /**
+     * 自定义的多选框清除图标
+     * @type {?|undefined}
+     */
+    SFSelectWidgetSchema.prototype.removeIcon;
+    /**
+     * 自定义的多选框清空图标
+     * @type {?|undefined}
+     */
+    SFSelectWidgetSchema.prototype.clearIcon;
+    /**
+     * 自定义当前选中的条目图标
+     * @type {?|undefined}
+     */
+    SFSelectWidgetSchema.prototype.menuItemSelectedIcon;
+    /**
+     * 隐藏 tag 时显示的内容
+     * @type {?|undefined}
+     */
+    SFSelectWidgetSchema.prototype.maxTagPlaceholder;
+    /**
+     * 下拉菜单中每个 Option 的高度，默认：`32`
+     * @type {?|undefined}
+     */
+    SFSelectWidgetSchema.prototype.optionHeightPx;
+    /**
+     * 下拉菜单中最多展示的 Option 个数，超出部分滚动，默认：`8`
+     * @type {?|undefined}
+     */
+    SFSelectWidgetSchema.prototype.optionOverflowSize;
+    /**
+     * 自由扩展
+     * @type {?|undefined}
+     */
+    SFSelectWidgetSchema.prototype.dropdownRender;
+    /**
      * 选中的 `nz-option` 发生变化时，调用此函数
      * @type {?|undefined}
      */
@@ -7745,15 +7795,35 @@ if (false) {
      */
     SFTreeSelectWidgetSchema.prototype.dropdownStyle;
     /**
+     * 下拉菜单的 className 属性
+     * @type {?|undefined}
+     */
+    SFTreeSelectWidgetSchema.prototype.dropdownClassName;
+    /**
      * 支持多选（当设置 `checkable` 时自动变为true），默认：`false`
      * @type {?|undefined}
      */
     SFTreeSelectWidgetSchema.prototype.multiple;
     /**
+     * 搜索隐藏未匹配的节点，默认：`false`
+     * @type {?|undefined}
+     */
+    SFTreeSelectWidgetSchema.prototype.hideUnMatched;
+    /**
      * 节点前添加 Checkbox 复选框，默认：`false`
      * @type {?|undefined}
      */
     SFTreeSelectWidgetSchema.prototype.checkable;
+    /**
+     * checkable 状态下节点选择完全受控（父子节点选中状态不再关联），默认：`false`
+     * @type {?|undefined}
+     */
+    SFTreeSelectWidgetSchema.prototype.checkStrictly;
+    /**
+     * 是否展示 TreeNode title 前的图标，没有默认样式，默认：`false`
+     * @type {?|undefined}
+     */
+    SFTreeSelectWidgetSchema.prototype.showIcon;
     /**
      * 节点前添加展开图标，默认：`true`
      * @type {?|undefined}
@@ -7774,6 +7844,26 @@ if (false) {
      * @type {?|undefined}
      */
     SFTreeSelectWidgetSchema.prototype.notFoundContent;
+    /**
+     * 默认展开指定的树节点
+     * @type {?|undefined}
+     */
+    SFTreeSelectWidgetSchema.prototype.expandedKeys;
+    /**
+     * 最多显示多少个 tag
+     * @type {?|undefined}
+     */
+    SFTreeSelectWidgetSchema.prototype.maxTagCount;
+    /**
+     * 隐藏 tag 时显示的内容
+     * @type {?|undefined}
+     */
+    SFTreeSelectWidgetSchema.prototype.maxTagPlaceholder;
+    /**
+     * 自定义节点
+     * @type {?|undefined}
+     */
+    SFTreeSelectWidgetSchema.prototype.treeTemplate;
     /**
      * 如何在输入框显示所选的节点值的方法
      * @type {?|undefined}
