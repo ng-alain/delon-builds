@@ -1717,7 +1717,7 @@ var FormPropertyFactory = /** @class */ (function () {
         }
         else {
             // fix required
-            if ((propertyId && (/** @type {?} */ ((/** @type {?} */ (parent)).schema.required)).indexOf((/** @type {?} */ (propertyId.split(SF_SEQ).pop()))) !== -1) || ui.showRequired === true) {
+            if (propertyId && (/** @type {?} */ ((/** @type {?} */ (parent)).schema.required)).indexOf((/** @type {?} */ (propertyId.split(SF_SEQ).pop()))) !== -1) {
                 ui._required = true;
             }
             // fix title
@@ -6936,11 +6936,6 @@ if (false) {
      * @type {?|undefined}
      */
     ErrorSchema.prototype.ingoreKeywords;
-    /**
-     * 是否强制在标签上显示 `*` 来表示必填，一般在当使用自定义校验 `validator` 可能需要必填项处理
-     * @type {?|undefined}
-     */
-    ErrorSchema.prototype.showRequired;
     /**
      * 自定义校验
      * @type {?|undefined}
