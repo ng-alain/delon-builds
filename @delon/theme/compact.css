@@ -25660,7 +25660,8 @@ fieldset {
   display: block;
 }
 .sf__optional {
-  color: rgba(0, 0, 0, 0.45);
+  margin-left: 2px;
+  color: rgba(0, 0, 0, 0.35);
 }
 .sf__fixed {
   display: flex;
