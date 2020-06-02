@@ -25,10 +25,6 @@
       }
       return ret;
     }
-
-    this.genComment = function(value, ...comments) {
-      return value + '; /* AUTOGENERATE: ' + comments.join('|SPLIT|') + '*/';
-    }
   })()`;
 }
 .freakMixin();
