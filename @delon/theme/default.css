@@ -25013,6 +25013,10 @@ a:focus {
 .ant-card {
   margin-bottom: 16px;
 }
+/**
+ * 设置 `nz-card` 内容区域无间距
+ * Set `nz-card` content area without spacing
+ */
 .ant-card__body-nopadding .ant-card-body {
   padding: 0 !important;
 }
@@ -25069,6 +25073,10 @@ a:focus {
   }
 }
 .drawer-footer {
+  /**
+      * 抽屉底部区域，用于抽屉目标组件内使用
+      * Drawer bottom area for use in drawer target components
+      */
   position: absolute;
   bottom: 0;
   left: 0;
@@ -25110,6 +25118,10 @@ a:focus {
   }
 }
 .modal-header {
+  /**
+      * 对话框顶部区域，用于对话框目标组件内使用
+      * The header of the modal for for use in modal target components
+      */
   display: flex;
   justify-content: space-between;
   margin: -24px -24px 24px -24px;
@@ -25138,14 +25150,30 @@ a:focus {
   text-align: center;
 }
 .modal-footer {
+  /**
+      * 对话框底部区域，用于对话框目标组件内使用
+      * The footer of the modal for for use in modal target components
+      */
   margin: 24px -24px -24px -24px;
   padding: 10px 16px;
   text-align: right;
   border-top: 1px solid #f0f0f0;
   border-radius: 0 0 2px 2px;
 }
+.modal-include-tabs {
+  /**
+      * 对话框内容是否包裹 `nz-tabs`，清除带来的多余边距
+      * Whether the content of the modal is wrapped with `nz-tabs`, to clear the extra margin
+      */
+}
 .modal-include-tabs nz-tabset {
   margin-top: -16px;
+}
+.modal-body-nopadding {
+  /**
+      * 清除对话框内容内边距
+      * Clear inner margin of modal content
+      */
 }
 .modal-body-nopadding .ant-modal-body {
   padding: 0 !important;
@@ -25200,6 +25228,12 @@ a:focus {
     flex: 1;
     word-break: break-all;
   }
+}
+.ant-tag__plus {
+  /**
+      * 标签：【+】的样式
+      * Tag: [+] style
+      */
 }
 .ant-tag__plus .ant-tag {
   background: #fff;
@@ -25776,6 +25810,10 @@ fieldset {
 .sf__compact .sf__array-item .ant-card-body {
   padding: 8px;
 }
+/**
+ * [ACL](https://ng-alain.com/acl/control) 使用 `display: none` 隐藏未授权元素
+ * [ACL](https://ng-alain.com/acl/control) Hides the unauthorized element with `display: none`
+ */
 .acl__hide {
   display: none !important;
 }
@@ -25860,24 +25898,52 @@ fieldset {
 .yn__no {
   color: #8c8c8c;
 }
+/**
+ * 垂直对齐方式：元素放置在父元素的基线上
+ * Vertical align type: Aligns the baseline of the element with the baseline of its parent
+ */
 .align-baseline {
   vertical-align: baseline !important;
 }
+/**
+ * 垂直对齐方式：把元素的顶端与行中最高元素的顶端对齐
+ * Vertical align type: Aligns the top of the element and its descendants with the top of the entire line
+ */
 .align-top {
   vertical-align: top !important;
 }
+/**
+ * 垂直对齐方式：把此元素放置在父元素的中部
+ * Vertical align type: Aligns the middle of the element with the baseline plus half the x-height of the parent
+ */
 .align-middle {
   vertical-align: middle !important;
 }
+/**
+ * 垂直对齐方式：把元素的顶端与行中最低的元素的顶端对齐
+ * Vertical align type: Aligns the bottom of the element and its descendants with the bottom of the entire line
+ */
 .align-bottom {
   vertical-align: bottom !important;
 }
+/**
+ * 垂直对齐方式：把元素的底端与父元素字体的底端对齐
+ * Vertical align type: Aligns the bottom of the element with the bottom of the parent element's font
+ */
 .align-text-bottom {
   vertical-align: text-bottom !important;
 }
+/**
+ * 垂直对齐方式：把元素的顶端与父元素字体的顶端对齐
+ * Vertical align type: Aligns the top of the element with the top of the parent element's font
+ */
 .align-text-top {
   vertical-align: text-top !important;
 }
+/**
+ * `1px` 边框
+ * `1px` Border
+ */
 .border {
   border: 1px solid #f0f0f0 !important;
 }
@@ -26010,9 +26076,17 @@ fieldset {
 .rounded-bottom-right-lg {
   border-bottom-right-radius: 4px !important;
 }
+/**
+ * 圆框
+ * Rounded circle
+ */
 .rounded-circle {
   border-radius: 50%;
 }
+/**
+ * 无框
+ * Rounded empty
+ */
 .rounded-0 {
   border-radius: 0;
 }
@@ -26024,15 +26098,31 @@ code {
   border: 1px solid #eee;
   border-radius: 2px;
 }
+/**
+ * 白色背景
+ * White background
+ */
 .bg-white {
   background-color: #fff !important;
 }
+/**
+ * 透明背景
+ * Transparent background
+ */
 .bg-transparent {
   background-color: transparent !important;
 }
+/**
+ * 白色文本
+ * White text
+ */
 .text-white {
   color: #fff !important;
 }
+/**
+ * 鼠标悬停文本主颜色
+ * Mouse hover text primary color
+ */
 .text-hover {
   cursor: pointer;
 }
@@ -28229,18 +28319,38 @@ code {
 .text-grey-10 {
   color: #000000 !important;
 }
+/**
+ * 隐藏元素
+ * Turns off the display of an element
+ */
 .d-none {
   display: none !important;
 }
+/**
+ * 块级元素，此元素前后会带有换行符
+ * The element generates a block element box, generating line breaks both before and after the element when in the normal flow.
+ */
 .d-block {
   display: block !important;
 }
+/**
+ * 内联元素，元素前后没有换行符
+ * The element generates one or more inline element boxes that do not generate line breaks before or after themselves
+ */
 .d-inline-block {
   display: inline-block !important;
 }
+/**
+ * 设置弹性盒模型 `flex`
+ * The element behaves like a block element and lays out its content according to the flexbox model
+ */
 .d-flex {
   display: flex !important;
 }
+/**
+ * 设置弹性盒模型 `flex`，并使用内联元素
+ * The element behaves like an inline element and lays out its content according to the flexbox model
+ */
 .d-inline-flex {
   display: inline-flex !important;
 }
@@ -28337,32 +28447,78 @@ code {
 .flex-grow-1 {
   flex-grow: 1 !important;
 }
+/**
+ * 垂直并居中
+ * Vertical and centered
+ */
 .flex-center {
   display: flex !important;
   align-items: center !important;
 }
+/**
+ * 垂直并居中，且主轴元素之间留有空白（例如：两个元素分别在左右两边，中间留空）
+ * Vertical and centered, and there is a space between the main axis elements (for example: the two elements are on the left and right sides, and the middle is left blank)
+ */
 .flex-center-between {
   display: flex !important;
   align-items: center !important;
   justify-content: space-between !important;
 }
+/**
+ * 设置元素不浮动
+ * Set element not float
+ */
 .float-none {
   float: none !important;
 }
+/**
+ * 设置元素向左浮动
+ * Set the element to float to the left
+ */
 .float-left {
   float: left !important;
 }
+/**
+ * 设置元素向右浮动
+ * Set the element to float to the right
+ */
 .float-right {
   float: right !important;
 }
+/**
+ * 图标大小 `28px`
+ * Icon size `28px`
+ */
 .icon-sm {
   font-size: 28px !important;
 }
+/**
+ * 图标大小 `56px`
+ * Icon size `56px`
+ */
 .icon-md {
   font-size: 56px !important;
 }
+/**
+ * 图标大小 `84px`
+ * Icon size `84px`
+ */
 .icon-lg {
   font-size: 84px !important;
+}
+/**
+ * 图标大小 `112px`
+ * Icon size `112px`
+ */
+.icon-xl {
+  font-size: 112px !important;
+}
+/**
+ * 图标大小 `140px`
+ * Icon size `140px`
+ */
+.icon-xxl {
+  font-size: 140px !important;
 }
 .img-fluid {
   max-width: 100%;
@@ -28781,205 +28937,284 @@ code {
   padding-top: 24px !important;
   padding-bottom: 24px !important;
 }
+/**
+ * 文本对齐方式：左边
+ * The inline contents are aligned to the left edge of the line box
+ */
 .text-left {
   text-align: left !important;
 }
+/**
+ * 文本对齐方式：中间
+ * The inline contents are aligned to the center edge of the line box
+ */
 .text-center {
   text-align: center !important;
 }
+/**
+ * 文本对齐方式：左边
+ * The inline contents are aligned to the right edge of the line box
+ */
 .text-right {
   text-align: right !important;
 }
+/**
+ * 设置文本为小写
+ * Set text to lower case
+ */
 .text-lowercase {
   text-transform: lowercase !important;
 }
+/**
+ * 设置文本为大写
+ * Set text to upper case
+ */
 .text-uppercase {
   text-transform: uppercase !important;
 }
+/**
+ * 设置每个单词以大写字母开头
+ * Is a keyword that converts the first letter of each word to uppercase
+ */
 .text-capitalize {
   text-transform: capitalize !important;
 }
+/**
+ * 设置文本为删除线
+ * Set text to strikethrough
+ */
 .text-deleted {
   text-decoration: line-through;
 }
+/**
+ * 文本不会换行，文本会在在同一行上继续，直到遇到 `<br>` 标签为止
+ * Sequences of whitespace will collapse into a single whitespace. Text will never wrap to the next line. The text continues on the same line until a `<br>` tag is encountered
+ */
 .text-nowrap {
   white-space: nowrap !important;
 }
+/**
+ * 保留空白符序列，但是正常地进行换行
+ * Whitespace is preserved by the browser. Text will wrap when necessary, and on line breaks
+ */
 .text-wrap {
   white-space: pre-wrap !important;
 }
+/**
+ * 截短文本，并以 `...` 结尾
+ * Truncate text and end with `...`
+ */
 .text-truncate {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
+/**
+ * 普通字体粗细
+ * Normal font weight. Same as `400`
+ */
 .font-weight-normal {
   font-weight: normal;
 }
+/**
+ * 粗体
+ * Bold font weight. Same as `400`
+ */
 .font-weight-bold {
   font-weight: 700;
 }
+/**
+ * 斜体
+ * Italic font style
+ */
 .font-italic {
   font-style: italic;
 }
+/**
+ * `12px` 文本大小
+ * `12px` text size
+ */
 .text-xs {
   font-size: 12px !important;
 }
+/**
+ * `14px` 文本大小
+ * `14px` text size
+ */
 .text-sm {
   font-size: 14px !important;
 }
+/**
+ * `16px` 文本大小
+ * `16px` text size
+ */
 .text-md {
   font-size: 16px !important;
 }
+/**
+ * `18px` 文本大小
+ * `18px` text size
+ */
 .text-lg {
   font-size: 18px !important;
 }
+/**
+ * `22px` 文本大小
+ * `22px` text size
+ */
 .text-xl {
   font-size: 22px !important;
 }
+/**
+ * `28px` 文本大小
+ * `28px` text size
+ */
+.text-xxl {
+  font-size: 28px !important;
+}
 .width-xs {
-  width: 80px !important;
+  width: 80px !important; /* AUTOGENERATE: 指定宽度为 "80px"|SPLIT|Specify the width as "80px"*/;
 }
 .max-width-xs {
-  max-width: 80px !important;
+  max-width: 80px !important; /* AUTOGENERATE: 指定最大宽度为 "80px"|SPLIT|Specify the maximum width as "80px"*/;
 }
 .min-width-xs {
-  min-width: 80px !important;
+  min-width: 80px !important; /* AUTOGENERATE: 指定最小宽度为 "80px"|SPLIT|Specify the minimum width as "80px"*/;
 }
 .width-sm {
-  width: 160px !important;
+  width: 160px !important; /* AUTOGENERATE: 指定宽度为 "160px"|SPLIT|Specify the width as "160px"*/;
 }
 .max-width-sm {
-  max-width: 160px !important;
+  max-width: 160px !important; /* AUTOGENERATE: 指定最大宽度为 "160px"|SPLIT|Specify the maximum width as "160px"*/;
 }
 .min-width-sm {
-  min-width: 160px !important;
+  min-width: 160px !important; /* AUTOGENERATE: 指定最小宽度为 "160px"|SPLIT|Specify the minimum width as "160px"*/;
 }
 .width-md {
-  width: 240px !important;
+  width: 240px !important; /* AUTOGENERATE: 指定宽度为 "240px"|SPLIT|Specify the width as "240px"*/;
 }
 .max-width-md {
-  max-width: 240px !important;
+  max-width: 240px !important; /* AUTOGENERATE: 指定最大宽度为 "240px"|SPLIT|Specify the maximum width as "240px"*/;
 }
 .min-width-md {
-  min-width: 240px !important;
+  min-width: 240px !important; /* AUTOGENERATE: 指定最小宽度为 "240px"|SPLIT|Specify the minimum width as "240px"*/;
 }
 .width-lg {
-  width: 320px !important;
+  width: 320px !important; /* AUTOGENERATE: 指定宽度为 "320px"|SPLIT|Specify the width as "320px"*/;
 }
 .max-width-lg {
-  max-width: 320px !important;
+  max-width: 320px !important; /* AUTOGENERATE: 指定最大宽度为 "320px"|SPLIT|Specify the maximum width as "320px"*/;
 }
 .min-width-lg {
-  min-width: 320px !important;
+  min-width: 320px !important; /* AUTOGENERATE: 指定最小宽度为 "320px"|SPLIT|Specify the minimum width as "320px"*/;
 }
 .width-xl {
-  width: 400px !important;
+  width: 400px !important; /* AUTOGENERATE: 指定宽度为 "400px"|SPLIT|Specify the width as "400px"*/;
 }
 .max-width-xl {
-  max-width: 400px !important;
+  max-width: 400px !important; /* AUTOGENERATE: 指定最大宽度为 "400px"|SPLIT|Specify the maximum width as "400px"*/;
 }
 .min-width-xl {
-  min-width: 400px !important;
+  min-width: 400px !important; /* AUTOGENERATE: 指定最小宽度为 "400px"|SPLIT|Specify the minimum width as "400px"*/;
 }
 .width-xxl {
-  width: 480px !important;
+  width: 480px !important; /* AUTOGENERATE: 指定宽度为 "480px"|SPLIT|Specify the width as "480px"*/;
 }
 .max-width-xxl {
-  max-width: 480px !important;
+  max-width: 480px !important; /* AUTOGENERATE: 指定最大宽度为 "480px"|SPLIT|Specify the maximum width as "480px"*/;
 }
 .min-width-xxl {
-  min-width: 480px !important;
+  min-width: 480px !important; /* AUTOGENERATE: 指定最小宽度为 "480px"|SPLIT|Specify the minimum width as "480px"*/;
 }
 .width-10 {
-  width: 10% !important;
+  width: 10% !important; /* AUTOGENERATE: 指定宽度为 "10%"|SPLIT|Specify the width as "10%"*/;
 }
 .max-width-10 {
-  max-width: 10% !important;
+  max-width: 10% !important; /* AUTOGENERATE: 指定最大宽度为 "10%"|SPLIT|Specify the maximum width as "10%"*/;
 }
 .min-width-10 {
-  min-width: 10% !important;
+  min-width: 10% !important; /* AUTOGENERATE: 指定最小宽度为 "10%"|SPLIT|Specify the minimum width as "10%"*/;
 }
 .width-20 {
-  width: 20% !important;
+  width: 20% !important; /* AUTOGENERATE: 指定宽度为 "20%"|SPLIT|Specify the width as "20%"*/;
 }
 .max-width-20 {
-  max-width: 20% !important;
+  max-width: 20% !important; /* AUTOGENERATE: 指定最大宽度为 "20%"|SPLIT|Specify the maximum width as "20%"*/;
 }
 .min-width-20 {
-  min-width: 20% !important;
+  min-width: 20% !important; /* AUTOGENERATE: 指定最小宽度为 "20%"|SPLIT|Specify the minimum width as "20%"*/;
 }
 .width-30 {
-  width: 30% !important;
+  width: 30% !important; /* AUTOGENERATE: 指定宽度为 "30%"|SPLIT|Specify the width as "30%"*/;
 }
 .max-width-30 {
-  max-width: 30% !important;
+  max-width: 30% !important; /* AUTOGENERATE: 指定最大宽度为 "30%"|SPLIT|Specify the maximum width as "30%"*/;
 }
 .min-width-30 {
-  min-width: 30% !important;
+  min-width: 30% !important; /* AUTOGENERATE: 指定最小宽度为 "30%"|SPLIT|Specify the minimum width as "30%"*/;
 }
 .width-40 {
-  width: 40% !important;
+  width: 40% !important; /* AUTOGENERATE: 指定宽度为 "40%"|SPLIT|Specify the width as "40%"*/;
 }
 .max-width-40 {
-  max-width: 40% !important;
+  max-width: 40% !important; /* AUTOGENERATE: 指定最大宽度为 "40%"|SPLIT|Specify the maximum width as "40%"*/;
 }
 .min-width-40 {
-  min-width: 40% !important;
+  min-width: 40% !important; /* AUTOGENERATE: 指定最小宽度为 "40%"|SPLIT|Specify the minimum width as "40%"*/;
 }
 .width-50 {
-  width: 50% !important;
+  width: 50% !important; /* AUTOGENERATE: 指定宽度为 "50%"|SPLIT|Specify the width as "50%"*/;
 }
 .max-width-50 {
-  max-width: 50% !important;
+  max-width: 50% !important; /* AUTOGENERATE: 指定最大宽度为 "50%"|SPLIT|Specify the maximum width as "50%"*/;
 }
 .min-width-50 {
-  min-width: 50% !important;
+  min-width: 50% !important; /* AUTOGENERATE: 指定最小宽度为 "50%"|SPLIT|Specify the minimum width as "50%"*/;
 }
 .width-60 {
-  width: 60% !important;
+  width: 60% !important; /* AUTOGENERATE: 指定宽度为 "60%"|SPLIT|Specify the width as "60%"*/;
 }
 .max-width-60 {
-  max-width: 60% !important;
+  max-width: 60% !important; /* AUTOGENERATE: 指定最大宽度为 "60%"|SPLIT|Specify the maximum width as "60%"*/;
 }
 .min-width-60 {
-  min-width: 60% !important;
+  min-width: 60% !important; /* AUTOGENERATE: 指定最小宽度为 "60%"|SPLIT|Specify the minimum width as "60%"*/;
 }
 .width-70 {
-  width: 70% !important;
+  width: 70% !important; /* AUTOGENERATE: 指定宽度为 "70%"|SPLIT|Specify the width as "70%"*/;
 }
 .max-width-70 {
-  max-width: 70% !important;
+  max-width: 70% !important; /* AUTOGENERATE: 指定最大宽度为 "70%"|SPLIT|Specify the maximum width as "70%"*/;
 }
 .min-width-70 {
-  min-width: 70% !important;
+  min-width: 70% !important; /* AUTOGENERATE: 指定最小宽度为 "70%"|SPLIT|Specify the minimum width as "70%"*/;
 }
 .width-80 {
-  width: 80% !important;
+  width: 80% !important; /* AUTOGENERATE: 指定宽度为 "80%"|SPLIT|Specify the width as "80%"*/;
 }
 .max-width-80 {
-  max-width: 80% !important;
+  max-width: 80% !important; /* AUTOGENERATE: 指定最大宽度为 "80%"|SPLIT|Specify the maximum width as "80%"*/;
 }
 .min-width-80 {
-  min-width: 80% !important;
+  min-width: 80% !important; /* AUTOGENERATE: 指定最小宽度为 "80%"|SPLIT|Specify the minimum width as "80%"*/;
 }
 .width-90 {
-  width: 90% !important;
+  width: 90% !important; /* AUTOGENERATE: 指定宽度为 "90%"|SPLIT|Specify the width as "90%"*/;
 }
 .max-width-90 {
-  max-width: 90% !important;
+  max-width: 90% !important; /* AUTOGENERATE: 指定最大宽度为 "90%"|SPLIT|Specify the maximum width as "90%"*/;
 }
 .min-width-90 {
-  min-width: 90% !important;
+  min-width: 90% !important; /* AUTOGENERATE: 指定最小宽度为 "90%"|SPLIT|Specify the minimum width as "90%"*/;
 }
 .width-100 {
-  width: 100% !important;
+  width: 100% !important; /* AUTOGENERATE: 指定宽度为 "100%"|SPLIT|Specify the width as "100%"*/;
 }
 .max-width-100 {
-  max-width: 100% !important;
+  max-width: 100% !important; /* AUTOGENERATE: 指定最大宽度为 "100%"|SPLIT|Specify the maximum width as "100%"*/;
 }
 .min-width-100 {
-  min-width: 100% !important;
+  min-width: 100% !important; /* AUTOGENERATE: 指定最小宽度为 "100%"|SPLIT|Specify the minimum width as "100%"*/;
 }
 @media (max-width: 767px) {
   .width-sm,
