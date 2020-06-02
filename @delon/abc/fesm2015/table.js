@@ -3597,7 +3597,7 @@ class STComponent {
          * @param {?} idx
          * @return {?}
          */
-        (i, idx) => (i._values[c.__point] = { _text: (/** @type {?} */ (this)).dataSource.getNoIndex(i, c, idx), org: idx })))));
+        (i, idx) => (i._values[c.__point] = { text: (/** @type {?} */ (this)).dataSource.getNoIndex(i, c, idx), org: idx })))));
         return (/** @type {?} */ (this)).cd();
     }
     /**

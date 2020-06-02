@@ -4296,7 +4296,7 @@
              * @param {?} idx
              * @return {?}
              */
-            function (i, idx) { return (i._values[c.__point] = { _text: (/** @type {?} */ (_this)).dataSource.getNoIndex(i, c, idx), org: idx }); })); }));
+            function (i, idx) { return (i._values[c.__point] = { text: (/** @type {?} */ (_this)).dataSource.getNoIndex(i, c, idx), org: idx }); })); }));
             return (/** @type {?} */ (this)).cd();
         };
         /**
