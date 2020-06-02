@@ -29083,19 +29083,35 @@ code {
 .icon-xxl {
   font-size: 140px !important;
 }
+/**
+ * 响应式图像
+ * Responsive images
+ */
 .img-fluid {
   max-width: 100%;
   height: auto;
 }
+/**
+ * 悬浮于连接上时，通常为手
+ * The cursor is a pointer that indicates a link. Typically an image of a pointing hand
+ */
 .point {
   cursor: pointer;
 }
 .no-resize {
+  /**
+     * 元素不能被用户缩放
+     * The element offers no user-controllable method for resizing it.
+     */
   min-width: 100%;
   max-width: 100%;
   resize: none;
 }
 .no-data {
+  /**
+     * 无数据元素
+     * No data elements
+     */
   color: rgba(0, 0, 0, 0.25);
   font-size: 16px;
   line-height: 64px;
@@ -29107,13 +29123,25 @@ code {
   margin-right: 16px;
   font-size: 24px;
 }
+/**
+  * 块元素水平居中
+  * Block element horizontally centered
+  */
 .block-center {
   margin: 0 auto;
 }
+/**
+  * 背景垂直居中
+  * The background is centered vertically
+  */
 .bg-center {
   background-position: center center;
   background-size: cover;
 }
+/**
+  * 页面 loading
+  * Page loading
+  */
 .page-loading {
   position: absolute;
   top: 0;
@@ -29129,25 +29157,53 @@ code {
   display: block;
   filter: invert(80%);
 }
+/**
+  * 禁用样式，不可响应任何事件
+  * Disable style, Cannot respond to any events
+  */
 .disabled {
   color: rgba(255, 255, 255, 0.3);
   pointer-events: none;
 }
+/**
+ * 定位方式：无
+ * Positioning method: nothing
+ */
 .position-static {
   position: static !important;
 }
+/**
+ * 生成相对定位的元素，相对于其正常位置进行定位
+ * The element is positioned relative to its normal position, so "left:20px" adds 20 pixels to the element's LEFT position
+ */
 .position-relative {
   position: relative !important;
 }
+/**
+ * 定位方式：绝对，相对于 static 定位以外的第一个父元素进行定位
+ * The element is positioned relative to its first positioned (not static) ancestor element
+ */
 .position-absolute {
   position: absolute !important;
 }
+/**
+ * 定位方式：绝对，相对于浏览器窗口进行定位
+ * The element is positioned relative to the browser window
+ */
 .position-fixed {
   position: fixed !important;
 }
+/**
+ * 定位方式：粘性，基于用户的滚动位置来定位
+ * The element is positioned based on the user's scroll position
+ */
 .position-sticky {
   position: sticky !important;
 }
+/**
+ * 全屏固定顶部
+ * Full screen fixed top
+ */
 .fixed-top {
   position: fixed;
   top: 0;
@@ -29155,6 +29211,10 @@ code {
   left: 0;
   z-index: 9;
 }
+/**
+ * 全屏固定底部
+ * Full screen fixed bottom
+ */
 .fixed-bottom {
   position: fixed;
   right: 0;
@@ -29162,39 +29222,80 @@ code {
   left: 0;
   z-index: 9;
 }
+/**
+ * 如果溢出框，则应该提供滚动机制
+ * If overflow is clipped, a scroll-bar should be added to see the rest of the content
+ */
 .overflow-auto {
   overflow: auto !important;
 }
+/**
+ * 裁剪内容，不提供滚动机制
+ * The overflow is clipped, and the rest of the content will be invisible
+ */
 .overflow-hidden {
   overflow: hidden !important;
 }
 @media (max-width: 575px) {
   .hidden-xs {
+    /**
+     * `576px` 以下隐藏
+     * `576px` hidden below
+     */
     display: none !important;
   }
 }
 @media (max-width: 767px) {
   .hidden-sm {
+    /**
+     * `768px` 以下隐藏
+     * `768px` hidden below
+     */
     display: none !important;
   }
 }
 @media (max-width: 991px) {
   .hidden-md {
+    /**
+     * `992px` 以下隐藏
+     * `992px` hidden below
+     */
     display: none !important;
   }
 }
 @media (max-width: 1199px) {
   .hidden-lg {
+    /**
+     * `1200px` 以下隐藏
+     * `1200px` hidden below
+     */
+    display: none !important;
+  }
+}
+@media (max-width: 1599px) {
+  .hidden-xl {
+    /**
+     * `1600px` 以下隐藏
+     * `1600px` hidden below
+     */
     display: none !important;
   }
 }
 @media (min-width: 768px) {
   .hidden-pc {
+    /**
+     * PC端隐藏，默认：`768px` 以上
+     * Hidden on the PC, default: above `768px`
+     */
     display: none !important;
   }
 }
 @media (max-width: 767px) {
   .hidden-mobile {
+    /**
+     * 移动端隐藏，默认：`768px` 以下
+     * Hidden on the mobile, default: below `768px`
+     */
     display: none !important;
   }
 }
