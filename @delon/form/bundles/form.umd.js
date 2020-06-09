@@ -1542,7 +1542,6 @@
          * @return {?}
          */
         function () {
-            var _this = this;
             /** @type {?} */
             var value = [];
             this.forEachChild((/**
@@ -1550,9 +1549,8 @@
              * @return {?}
              */
             function (property) {
-                var _a;
                 if (property.visible && property._hasValue()) {
-                    value.push(__assign(__assign({}, (((_a = _this.widget) === null || _a === void 0 ? void 0 : _a.cleanValue) ? null : property.formData)), property.value));
+                    value.push(__assign(__assign({}, property.formData), property.value));
                 }
             }));
             this._value = value;
@@ -3690,17 +3688,6 @@
              */
             function () {
                 return this.injector.get(platformBrowser.DomSanitizer);
-            },
-            enumerable: true,
-            configurable: true
-        });
-        Object.defineProperty(Widget.prototype, "cleanValue", {
-            get: /**
-             * @return {?}
-             */
-            function () {
-                var _a;
-                return (/** @type {?} */ ((_a = this.sfComp) === null || _a === void 0 ? void 0 : _a.cleanValue));
             },
             enumerable: true,
             configurable: true
@@ -6215,7 +6202,8 @@
              */
             function (list) {
                 _this.fileList = (/** @type {?} */ (list));
-                _this._setValue(_this.fileList);
+                _this.formProperty._value = _this.pureValue(list);
+                _this.formProperty.updateValueAndValidity(false, false, false);
                 _this.detectChanges();
             }));
         };
@@ -6237,7 +6225,7 @@
          * @param {?} fileList
          * @return {?}
          */
-        UploadWidget.prototype._setValue = /**
+        UploadWidget.prototype.pureValue = /**
          * @private
          * @param {?} fileList
          * @return {?}
@@ -6267,7 +6255,20 @@
              * @return {?}
              */
             function (file) { return _this._getValue(file); }));
-            this.setValue(this.i.multiple === true ? res : res.pop());
+            return this.i.multiple === true ? res : res.pop();
+        };
+        /**
+         * @private
+         * @param {?} fileList
+         * @return {?}
+         */
+        UploadWidget.prototype._setValue = /**
+         * @private
+         * @param {?} fileList
+         * @return {?}
+         */
+        function (fileList) {
+            this.setValue(this.pureValue(fileList));
         };
         UploadWidget.decorators = [
             { type: core.Component, args: [{

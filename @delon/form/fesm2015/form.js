@@ -1152,9 +1152,8 @@ class ArrayProperty extends PropertyGroup {
          * @return {?}
          */
         (property) => {
-            var _a;
             if (property.visible && property._hasValue()) {
-                value.push(Object.assign(Object.assign({}, (((_a = this.widget) === null || _a === void 0 ? void 0 : _a.cleanValue) ? null : property.formData)), property.value));
+                value.push(Object.assign(Object.assign({}, property.formData), property.value));
             }
         }));
         this._value = value;
@@ -2968,13 +2967,6 @@ class Widget {
      */
     get dom() {
         return this.injector.get(DomSanitizer);
-    }
-    /**
-     * @return {?}
-     */
-    get cleanValue() {
-        var _a;
-        return (/** @type {?} */ ((_a = this.sfComp) === null || _a === void 0 ? void 0 : _a.cleanValue));
     }
     /**
      * @return {?}
@@ -5015,7 +5007,8 @@ class UploadWidget extends ControlUIWidget {
          */
         list => {
             this.fileList = (/** @type {?} */ (list));
-            this._setValue(this.fileList);
+            this.formProperty._value = this.pureValue(list);
+            this.formProperty.updateValueAndValidity(false, false, false);
             this.detectChanges();
         }));
     }
@@ -5032,7 +5025,7 @@ class UploadWidget extends ControlUIWidget {
      * @param {?} fileList
      * @return {?}
      */
-    _setValue(fileList) {
+    pureValue(fileList) {
         fileList
             .filter((/**
          * @param {?} file
@@ -5056,7 +5049,15 @@ class UploadWidget extends ControlUIWidget {
          * @return {?}
          */
         file => this._getValue(file)));
-        this.setValue(this.i.multiple === true ? res : res.pop());
+        return this.i.multiple === true ? res : res.pop();
+    }
+    /**
+     * @private
+     * @param {?} fileList
+     * @return {?}
+     */
+    _setValue(fileList) {
+        this.setValue(this.pureValue(fileList));
     }
 }
 UploadWidget.decorators = [

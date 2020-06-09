@@ -27,7 +27,6 @@ export declare abstract class Widget<T extends FormProperty, UIT extends SFUISch
     get l(): LocaleData;
     get oh(): SFOptionalHelp;
     get dom(): DomSanitizer;
-    get cleanValue(): boolean;
     constructor(cd: ChangeDetectorRef, injector: Injector, sfItemComp?: SFItemComponent | undefined, sfComp?: SFComponent | undefined);
     ngAfterViewInit(): void;
     setValue(value: SFValue): void;
