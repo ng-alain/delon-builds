@@ -11,7 +11,6 @@ export declare class UploadWidget extends ControlUIWidget<SFUploadWidgetSchema> 
     change(args: UploadChangeParam): void;
     reset(value: SFValue): void;
     private _getValue;
-    private pureValue;
     private _setValue;
     handleRemove: () => boolean;
     handlePreview: (file: UploadFile) => void;
