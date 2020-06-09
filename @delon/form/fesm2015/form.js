@@ -1152,8 +1152,9 @@ class ArrayProperty extends PropertyGroup {
          * @return {?}
          */
         (property) => {
+            var _a;
             if (property.visible && property._hasValue()) {
-                value.push(Object.assign(Object.assign({}, property.formData), property.value));
+                value.push(Object.assign(Object.assign({}, (((_a = this.widget) === null || _a === void 0 ? void 0 : _a.cleanValue) ? null : property.formData)), property.value));
             }
         }));
         this._value = value;
@@ -2967,6 +2968,13 @@ class Widget {
      */
     get dom() {
         return this.injector.get(DomSanitizer);
+    }
+    /**
+     * @return {?}
+     */
+    get cleanValue() {
+        var _a;
+        return (/** @type {?} */ ((_a = this.sfComp) === null || _a === void 0 ? void 0 : _a.cleanValue));
     }
     /**
      * @return {?}
