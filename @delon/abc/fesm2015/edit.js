@@ -30,6 +30,7 @@ class SEContainerComponent {
             col: 2,
             labelWidth: 150,
             firstVisual: false,
+            ingoreDirty: false,
         });
     }
     /**
@@ -126,6 +127,7 @@ SEContainerComponent.propDecorators = {
     nzLayout: [{ type: Input }],
     size: [{ type: Input }],
     firstVisual: [{ type: Input }],
+    ingoreDirty: [{ type: Input }],
     line: [{ type: Input }],
     errors: [{ type: Input }]
 };
@@ -145,6 +147,10 @@ __decorate([
     InputBoolean(),
     __metadata("design:type", Boolean)
 ], SEContainerComponent.prototype, "firstVisual", void 0);
+__decorate([
+    InputBoolean(),
+    __metadata("design:type", Boolean)
+], SEContainerComponent.prototype, "ingoreDirty", void 0);
 __decorate([
     InputBoolean(),
     __metadata("design:type", Object)
@@ -177,6 +183,8 @@ if (false) {
     SEContainerComponent.prototype.size;
     /** @type {?} */
     SEContainerComponent.prototype.firstVisual;
+    /** @type {?} */
+    SEContainerComponent.prototype.ingoreDirty;
     /** @type {?} */
     SEContainerComponent.prototype.line;
 }
@@ -419,7 +427,7 @@ class SEComponent {
         if (this.ngControl.disabled || this.ngControl.isDisabled) {
             return;
         }
-        this.invalid = (/** @type {?} */ (((invalid && this.onceFlag) || (this.ngControl.dirty && invalid))));
+        this.invalid = !this.onceFlag && invalid && this.parent.ingoreDirty === false && !this.ngControl.dirty ? false : invalid;
         /** @type {?} */
         const errors = this.ngControl.errors;
         if (errors != null && Object.keys(errors).length > 0) {
