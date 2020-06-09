@@ -6007,7 +6007,8 @@ var UploadWidget = /** @class */ (function (_super) {
          */
         function (list) {
             _this.fileList = (/** @type {?} */ (list));
-            _this._setValue(_this.fileList);
+            _this.formProperty._value = _this.pureValue(list);
+            _this.formProperty.updateValueAndValidity(false, false, false);
             _this.detectChanges();
         }));
     };
@@ -6029,7 +6030,7 @@ var UploadWidget = /** @class */ (function (_super) {
      * @param {?} fileList
      * @return {?}
      */
-    UploadWidget.prototype._setValue = /**
+    UploadWidget.prototype.pureValue = /**
      * @private
      * @param {?} fileList
      * @return {?}
@@ -6059,7 +6060,20 @@ var UploadWidget = /** @class */ (function (_super) {
          * @return {?}
          */
         function (file) { return _this._getValue(file); }));
-        this.setValue(this.i.multiple === true ? res : res.pop());
+        return this.i.multiple === true ? res : res.pop();
+    };
+    /**
+     * @private
+     * @param {?} fileList
+     * @return {?}
+     */
+    UploadWidget.prototype._setValue = /**
+     * @private
+     * @param {?} fileList
+     * @return {?}
+     */
+    function (fileList) {
+        this.setValue(this.pureValue(fileList));
     };
     UploadWidget.decorators = [
         { type: Component, args: [{

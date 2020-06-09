@@ -5007,7 +5007,8 @@ class UploadWidget extends ControlUIWidget {
          */
         list => {
             this.fileList = (/** @type {?} */ (list));
-            this._setValue(this.fileList);
+            this.formProperty._value = this.pureValue(list);
+            this.formProperty.updateValueAndValidity(false, false, false);
             this.detectChanges();
         }));
     }
@@ -5024,7 +5025,7 @@ class UploadWidget extends ControlUIWidget {
      * @param {?} fileList
      * @return {?}
      */
-    _setValue(fileList) {
+    pureValue(fileList) {
         fileList
             .filter((/**
          * @param {?} file
@@ -5048,7 +5049,15 @@ class UploadWidget extends ControlUIWidget {
          * @return {?}
          */
         file => this._getValue(file)));
-        this.setValue(this.i.multiple === true ? res : res.pop());
+        return this.i.multiple === true ? res : res.pop();
+    }
+    /**
+     * @private
+     * @param {?} fileList
+     * @return {?}
+     */
+    _setValue(fileList) {
+        this.setValue(this.pureValue(fileList));
     }
 }
 UploadWidget.decorators = [
