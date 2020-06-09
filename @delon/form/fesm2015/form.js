@@ -5007,6 +5007,7 @@ class UploadWidget extends ControlUIWidget {
          */
         list => {
             this.fileList = (/** @type {?} */ (list));
+            this._setValue(this.fileList);
             this.detectChanges();
         }));
     }

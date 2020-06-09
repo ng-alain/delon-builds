@@ -6007,6 +6007,7 @@ var UploadWidget = /** @class */ (function (_super) {
          */
         function (list) {
             _this.fileList = (/** @type {?} */ (list));
+            _this._setValue(_this.fileList);
             _this.detectChanges();
         }));
     };
