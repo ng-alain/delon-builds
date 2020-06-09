@@ -17,7 +17,6 @@ export declare class SEContainerComponent {
     private _nzLayout;
     size: 'default' | 'compact';
     firstVisual: boolean;
-    ingoreDirty: boolean;
     line: boolean;
     set errors(val: SEErrorRefresh[]);
     get errorNotify(): Observable<SEErrorRefresh>;

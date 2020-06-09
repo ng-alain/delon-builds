@@ -25,8 +25,4 @@ export interface AlainSEConfig {
      * 是否立即呈现错误视觉，默认：`false`
      */
     firstVisual?: boolean;
-    /**
-     * 是否忽略 `dirty` 校验，默认：`false`
-     */
-    ingoreDirty?: boolean;
 }

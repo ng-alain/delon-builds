@@ -27,7 +27,6 @@ var SEContainerComponent = /** @class */ (function () {
             col: 2,
             labelWidth: 150,
             firstVisual: false,
-            ingoreDirty: false,
         });
     }
     Object.defineProperty(SEContainerComponent.prototype, "gutter", {
@@ -149,7 +148,6 @@ var SEContainerComponent = /** @class */ (function () {
         nzLayout: [{ type: Input }],
         size: [{ type: Input }],
         firstVisual: [{ type: Input }],
-        ingoreDirty: [{ type: Input }],
         line: [{ type: Input }],
         errors: [{ type: Input }]
     };
@@ -169,10 +167,6 @@ var SEContainerComponent = /** @class */ (function () {
         InputBoolean(),
         __metadata("design:type", Boolean)
     ], SEContainerComponent.prototype, "firstVisual", void 0);
-    __decorate([
-        InputBoolean(),
-        __metadata("design:type", Boolean)
-    ], SEContainerComponent.prototype, "ingoreDirty", void 0);
     __decorate([
         InputBoolean(),
         __metadata("design:type", Object)
@@ -207,8 +201,6 @@ if (false) {
     SEContainerComponent.prototype.size;
     /** @type {?} */
     SEContainerComponent.prototype.firstVisual;
-    /** @type {?} */
-    SEContainerComponent.prototype.ingoreDirty;
     /** @type {?} */
     SEContainerComponent.prototype.line;
 }
@@ -490,7 +482,7 @@ var SEComponent = /** @class */ (function () {
         if (this.ngControl.disabled || this.ngControl.isDisabled) {
             return;
         }
-        this.invalid = !this.onceFlag && invalid && this.parent.ingoreDirty === false && !this.ngControl.dirty ? false : invalid;
+        this.invalid = (/** @type {?} */ (((invalid && this.onceFlag) || (this.ngControl.dirty && invalid))));
         /** @type {?} */
         var errors = this.ngControl.errors;
         if (errors != null && Object.keys(errors).length > 0) {
