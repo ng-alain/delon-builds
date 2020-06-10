@@ -9,4 +9,5 @@ export declare class TimeWidget extends ControlUIWidget<SFTimeWidgetSchema> impl
     ngOnInit(): void;
     reset(value: SFValue): void;
     _change(value: Date | null): void;
+    _openChange(status: boolean): void;
 }

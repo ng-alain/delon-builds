@@ -3729,14 +3729,18 @@ class DateWidget extends ControlUIWidget {
             setTimeout((/**
              * @return {?}
              */
-            () => this._change(this.displayValue)));
+            () => this._change(this.displayValue, false)));
         }
     }
     /**
      * @param {?} value
+     * @param {?=} emitModelChange
      * @return {?}
      */
-    _change(value) {
+    _change(value, emitModelChange = true) {
+        if (emitModelChange && this.ui.change) {
+            this.ui.change(value);
+        }
         if (value == null || (Array.isArray(value) && value.length < 2)) {
             this.setValue(null);
             this.setEnd(null);
@@ -4656,6 +4660,9 @@ class TimeWidget extends ControlUIWidget {
      * @return {?}
      */
     _change(value) {
+        if (this.ui.change) {
+            this.ui.change(value);
+        }
         if (value == null) {
             this.setValue(null);
             return;
@@ -4666,11 +4673,20 @@ class TimeWidget extends ControlUIWidget {
         }
         this.setValue(format(value, (/** @type {?} */ (this.valueFormat))));
     }
+    /**
+     * @param {?} status
+     * @return {?}
+     */
+    _openChange(status) {
+        if (this.ui.openChange) {
+            this.ui.openChange(status);
+        }
+    }
 }
 TimeWidget.decorators = [
     { type: Component, args: [{
                 selector: 'sf-time',
-                template: "<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n  <nz-time-picker\n    [(ngModel)]=\"displayValue\"\n    (ngModelChange)=\"_change($event)\"\n    [nzDisabled]=\"disabled\"\n    [nzSize]=\"ui.size\"\n    [nzFormat]=\"i.displayFormat\"\n    [nzAllowEmpty]=\"i.allowEmpty\"\n    [nzClearText]=\"i.clearText\"\n    [nzDefaultOpenValue]=\"i.defaultOpenValue\"\n    [nzDisabledHours]=\"ui.disabledHours\"\n    [nzDisabledMinutes]=\"ui.disabledMinutes\"\n    [nzDisabledSeconds]=\"ui.disabledSeconds\"\n    [nzHideDisabledOptions]=\"i.hideDisabledOptions\"\n    [nzUse12Hours]=\"i.use12Hours\"\n    [nzHourStep]=\"i.hourStep\"\n    [nzMinuteStep]=\"i.minuteStep\"\n    [nzSecondStep]=\"i.secondStep\"\n    [nzPopupClassName]=\"ui.popupClassName\"\n  >\n  </nz-time-picker>\n</sf-item-wrap>\n",
+                template: "<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n  <nz-time-picker\n    [(ngModel)]=\"displayValue\"\n    (ngModelChange)=\"_change($event)\"\n    [nzDisabled]=\"disabled\"\n    [nzSize]=\"ui.size\"\n    [nzFormat]=\"i.displayFormat\"\n    [nzAllowEmpty]=\"i.allowEmpty\"\n    [nzClearText]=\"i.clearText\"\n    [nzDefaultOpenValue]=\"i.defaultOpenValue\"\n    [nzDisabledHours]=\"ui.disabledHours\"\n    [nzDisabledMinutes]=\"ui.disabledMinutes\"\n    [nzDisabledSeconds]=\"ui.disabledSeconds\"\n    [nzHideDisabledOptions]=\"i.hideDisabledOptions\"\n    [nzUse12Hours]=\"i.use12Hours\"\n    [nzHourStep]=\"i.hourStep\"\n    [nzMinuteStep]=\"i.minuteStep\"\n    [nzSecondStep]=\"i.secondStep\"\n    [nzPopupClassName]=\"ui.popupClassName\"\n    (nzOpenChange)=\"_openChange($event)\"\n  >\n  </nz-time-picker>\n</sf-item-wrap>\n",
                 preserveWhitespaces: false,
                 encapsulation: ViewEncapsulation.None
             }] }
@@ -6276,6 +6292,11 @@ if (false) {
      * @type {?|undefined}
      */
     SFDateWidgetSchema.prototype.onOk;
+    /**
+     * Date change callback
+     * @type {?|undefined}
+     */
+    SFDateWidgetSchema.prototype.change;
 }
 
 /**
@@ -6374,6 +6395,16 @@ if (false) {
      * @type {?|undefined}
      */
     SFTimeWidgetSchema.prototype.popupClassName;
+    /**
+     * a callback function, can be executed when the selected time is changing
+     * @type {?|undefined}
+     */
+    SFTimeWidgetSchema.prototype.change;
+    /**
+     * a callback function which will be called while panel opening/closing
+     * @type {?|undefined}
+     */
+    SFTimeWidgetSchema.prototype.openChange;
 }
 
 /**

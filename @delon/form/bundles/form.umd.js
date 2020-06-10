@@ -4655,18 +4655,24 @@
                 setTimeout((/**
                  * @return {?}
                  */
-                function () { return _this._change(_this.displayValue); }));
+                function () { return _this._change(_this.displayValue, false); }));
             }
         };
         /**
          * @param {?} value
+         * @param {?=} emitModelChange
          * @return {?}
          */
         DateWidget.prototype._change = /**
          * @param {?} value
+         * @param {?=} emitModelChange
          * @return {?}
          */
-        function (value) {
+        function (value, emitModelChange) {
+            if (emitModelChange === void 0) { emitModelChange = true; }
+            if (emitModelChange && this.ui.change) {
+                this.ui.change(value);
+            }
             if (value == null || (Array.isArray(value) && value.length < 2)) {
                 this.setValue(null);
                 this.setEnd(null);
@@ -5793,6 +5799,9 @@
          * @return {?}
          */
         function (value) {
+            if (this.ui.change) {
+                this.ui.change(value);
+            }
             if (value == null) {
                 this.setValue(null);
                 return;
@@ -5803,10 +5812,23 @@
             }
             this.setValue(format(value, (/** @type {?} */ (this.valueFormat))));
         };
+        /**
+         * @param {?} status
+         * @return {?}
+         */
+        TimeWidget.prototype._openChange = /**
+         * @param {?} status
+         * @return {?}
+         */
+        function (status) {
+            if (this.ui.openChange) {
+                this.ui.openChange(status);
+            }
+        };
         TimeWidget.decorators = [
             { type: core.Component, args: [{
                         selector: 'sf-time',
-                        template: "<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n  <nz-time-picker\n    [(ngModel)]=\"displayValue\"\n    (ngModelChange)=\"_change($event)\"\n    [nzDisabled]=\"disabled\"\n    [nzSize]=\"ui.size\"\n    [nzFormat]=\"i.displayFormat\"\n    [nzAllowEmpty]=\"i.allowEmpty\"\n    [nzClearText]=\"i.clearText\"\n    [nzDefaultOpenValue]=\"i.defaultOpenValue\"\n    [nzDisabledHours]=\"ui.disabledHours\"\n    [nzDisabledMinutes]=\"ui.disabledMinutes\"\n    [nzDisabledSeconds]=\"ui.disabledSeconds\"\n    [nzHideDisabledOptions]=\"i.hideDisabledOptions\"\n    [nzUse12Hours]=\"i.use12Hours\"\n    [nzHourStep]=\"i.hourStep\"\n    [nzMinuteStep]=\"i.minuteStep\"\n    [nzSecondStep]=\"i.secondStep\"\n    [nzPopupClassName]=\"ui.popupClassName\"\n  >\n  </nz-time-picker>\n</sf-item-wrap>\n",
+                        template: "<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n  <nz-time-picker\n    [(ngModel)]=\"displayValue\"\n    (ngModelChange)=\"_change($event)\"\n    [nzDisabled]=\"disabled\"\n    [nzSize]=\"ui.size\"\n    [nzFormat]=\"i.displayFormat\"\n    [nzAllowEmpty]=\"i.allowEmpty\"\n    [nzClearText]=\"i.clearText\"\n    [nzDefaultOpenValue]=\"i.defaultOpenValue\"\n    [nzDisabledHours]=\"ui.disabledHours\"\n    [nzDisabledMinutes]=\"ui.disabledMinutes\"\n    [nzDisabledSeconds]=\"ui.disabledSeconds\"\n    [nzHideDisabledOptions]=\"i.hideDisabledOptions\"\n    [nzUse12Hours]=\"i.use12Hours\"\n    [nzHourStep]=\"i.hourStep\"\n    [nzMinuteStep]=\"i.minuteStep\"\n    [nzSecondStep]=\"i.secondStep\"\n    [nzPopupClassName]=\"ui.popupClassName\"\n    (nzOpenChange)=\"_openChange($event)\"\n  >\n  </nz-time-picker>\n</sf-item-wrap>\n",
                         preserveWhitespaces: false,
                         encapsulation: core.ViewEncapsulation.None
                     }] }
@@ -7502,6 +7524,11 @@
          * @type {?|undefined}
          */
         SFDateWidgetSchema.prototype.onOk;
+        /**
+         * Date change callback
+         * @type {?|undefined}
+         */
+        SFDateWidgetSchema.prototype.change;
     }
 
     /**
@@ -7600,6 +7627,16 @@
          * @type {?|undefined}
          */
         SFTimeWidgetSchema.prototype.popupClassName;
+        /**
+         * a callback function, can be executed when the selected time is changing
+         * @type {?|undefined}
+         */
+        SFTimeWidgetSchema.prototype.change;
+        /**
+         * a callback function which will be called while panel opening/closing
+         * @type {?|undefined}
+         */
+        SFTimeWidgetSchema.prototype.openChange;
     }
 
     /**

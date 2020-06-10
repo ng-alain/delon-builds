@@ -71,4 +71,8 @@ export interface SFDateWidgetSchema extends SFUISchemaItem {
      * Callback when click ok button
      */
     onOk?: (data: Date | Date[]) => void;
+    /**
+     * Date change callback
+     */
+    change?: (data: Date | Date[] | null) => void;
 }

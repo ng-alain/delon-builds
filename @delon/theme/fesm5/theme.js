@@ -4267,7 +4267,7 @@ var AlainThemeModule = /** @class */ (function () {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-var VERSION = new Version('9.3.2-34a2c636');
+var VERSION = new Version('9.3.2-bc94136a');
 
 /**
  * @fileoverview added by tsickle

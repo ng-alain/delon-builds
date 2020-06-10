@@ -12,7 +12,7 @@ export declare class DateWidget extends ControlUIWidget<SFDateWidgetSchema> impl
     i: any;
     ngOnInit(): void;
     reset(value: SFValue): void;
-    _change(value: Date | Date[] | null): void;
+    _change(value: Date | Date[] | null, emitModelChange?: boolean): void;
     _openChange(status: boolean): void;
     _ok(value: any): void;
     private get endProperty();
