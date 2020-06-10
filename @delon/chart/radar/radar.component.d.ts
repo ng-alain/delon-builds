@@ -1,11 +1,15 @@
-import { ChangeDetectorRef, NgZone, OnChanges, OnDestroy, OnInit, TemplateRef } from '@angular/core';
-import { Types } from '@antv/g2';
+import { ChangeDetectorRef, EventEmitter, NgZone, OnChanges, OnDestroy, OnInit, TemplateRef } from '@angular/core';
+import { Event, Types } from '@antv/g2';
 import { AlainConfigService } from '@delon/util';
 export interface G2RadarData {
     name: string;
     label: string;
     value: number;
     [key: string]: any;
+}
+export interface G2RadarClickItem {
+    item: G2RadarData;
+    ev: Event;
 }
 export declare class G2RadarComponent implements OnInit, OnDestroy, OnChanges {
     private cdr;
@@ -22,6 +26,7 @@ export declare class G2RadarComponent implements OnInit, OnDestroy, OnChanges {
     data: G2RadarData[];
     colors: string[];
     theme: string | Types.LooseObject;
+    clickItem: EventEmitter<G2RadarClickItem>;
     constructor(cdr: ChangeDetectorRef, ngZone: NgZone, configSrv: AlainConfigService);
     private getHeight;
     private install;
