@@ -26361,6 +26361,14 @@ fieldset {
     text-align: left;
   }
 }
+.sf__horizontal .ant-form-item-label > label {
+  display: flex;
+  justify-content: flex-end;
+}
+.sf__horizontal .sf__label-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 .sf__no-colon .ant-form-item-label label::after {
   content: ' ';
 }
