@@ -4057,6 +4057,8 @@ class ObjectWidget extends ObjectLayoutWidget {
         super(...arguments);
         this.type = 'default';
         this.list = [];
+        this.showExpand = true;
+        this.expand = true;
     }
     /**
      * @return {?}
@@ -4064,6 +4066,8 @@ class ObjectWidget extends ObjectLayoutWidget {
     ngOnInit() {
         const { formProperty, ui } = this;
         const { grid, showTitle, type } = ui;
+        this.showExpand = toBool(ui.showExpand, true);
+        this.expand = toBool(ui.expand, true);
         this.type = type !== null && type !== void 0 ? type : 'default';
         if (this.type === 'card' || (!formProperty.isRoot() && !(formProperty.parent instanceof ArrayProperty) && showTitle === true)) {
             this.title = (/** @type {?} */ (this.schema.title));
@@ -4085,11 +4089,21 @@ class ObjectWidget extends ObjectLayoutWidget {
         }
         this.list = list;
     }
+    /**
+     * @return {?}
+     */
+    changeExpand() {
+        if (!this.showExpand) {
+            return;
+        }
+        this.expand = !this.expand;
+        this.detectChanges(true);
+    }
 }
 ObjectWidget.decorators = [
     { type: Component, args: [{
                 selector: 'sf-object',
-                template: "<ng-template #default let-noTitle>\n  <div *ngIf=\"!noTitle && title\" class=\"sf__title\">{{ title }}</div>\n  <ng-container *ngIf=\"grid; else noGrid\">\n    <div nz-row [nzGutter]=\"grid.gutter\">\n      <ng-container *ngFor=\"let i of list\">\n        <ng-container *ngIf=\"i.property.visible && i.show\">\n          <div\n            nz-col\n            [nzSpan]=\"i.grid.span\"\n            [nzOffset]=\"i.grid.offset\"\n            [nzXs]=\"i.grid.xs\"\n            [nzSm]=\"i.grid.sm\"\n            [nzMd]=\"i.grid.md\"\n            [nzLg]=\"i.grid.lg\"\n            [nzXl]=\"i.grid.xl\"\n            [nzXXl]=\"i.grid.xxl\"\n          >\n            <sf-item [formProperty]=\"i.property\" [fixed-label]=\"i.spanLabelFixed\"></sf-item>\n          </div>\n        </ng-container>\n      </ng-container>\n    </div>\n  </ng-container>\n  <ng-template #noGrid>\n    <ng-container *ngFor=\"let i of list\">\n      <ng-container *ngIf=\"i.property.visible && i.show\">\n        <sf-item [formProperty]=\"i.property\" [fixed-label]=\"i.spanLabelFixed\"></sf-item>\n      </ng-container>\n    </ng-container>\n  </ng-template>\n</ng-template>\n<nz-card\n  *ngIf=\"type === 'card'; else default\"\n  [nzTitle]=\"title\"\n  [nzExtra]=\"ui.cardExtra\"\n  [nzSize]=\"ui.cardSize || 'small'\"\n  [nzActions]=\"ui.cardActions || []\"\n  [nzBodyStyle]=\"cardBodyStyle\"\n  [nzBordered]=\"cardBordered || true\"\n  class=\"sf__object-card\"\n>\n  <ng-template [ngTemplateOutlet]=\"default\" [ngTemplateOutletContext]=\"{ $implicit: true }\"></ng-template>\n</nz-card>\n",
+                template: "<ng-template #default let-noTitle>\n  <div *ngIf=\"!noTitle && title\" class=\"sf__title\">{{ title }}</div>\n  <ng-container *ngIf=\"grid; else noGrid\">\n    <div nz-row [nzGutter]=\"grid.gutter\">\n      <ng-container *ngFor=\"let i of list\">\n        <ng-container *ngIf=\"i.property.visible && i.show\">\n          <div\n            nz-col\n            [nzSpan]=\"i.grid.span\"\n            [nzOffset]=\"i.grid.offset\"\n            [nzXs]=\"i.grid.xs\"\n            [nzSm]=\"i.grid.sm\"\n            [nzMd]=\"i.grid.md\"\n            [nzLg]=\"i.grid.lg\"\n            [nzXl]=\"i.grid.xl\"\n            [nzXXl]=\"i.grid.xxl\"\n          >\n            <sf-item [formProperty]=\"i.property\" [fixed-label]=\"i.spanLabelFixed\"></sf-item>\n          </div>\n        </ng-container>\n      </ng-container>\n    </div>\n  </ng-container>\n  <ng-template #noGrid>\n    <ng-container *ngFor=\"let i of list\">\n      <ng-container *ngIf=\"i.property.visible && i.show\">\n        <sf-item [formProperty]=\"i.property\" [fixed-label]=\"i.spanLabelFixed\"></sf-item>\n      </ng-container>\n    </ng-container>\n  </ng-template>\n</ng-template>\n<nz-card\n  *ngIf=\"type === 'card'; else default\"\n  [nzTitle]=\"cardTitleTpl\"\n  [nzExtra]=\"ui.cardExtra\"\n  [nzSize]=\"ui.cardSize || 'small'\"\n  [nzActions]=\"ui.cardActions || []\"\n  [nzBodyStyle]=\"cardBodyStyle\"\n  [nzBordered]=\"cardBordered || true\"\n  class=\"sf__object-card\"\n  [class.sf__object-card-fold]=\"!expand\"\n>\n  <ng-template #cardTitleTpl>\n    <div [class.point]=\"showExpand\" (click)=\"changeExpand()\">\n      <i *ngIf=\"showExpand\" nz-icon [nzType]=\"expand ? 'down' : 'up'\" class=\"mr-xs text-xs\"></i>\n      {{title}}\n    </div>\n  </ng-template>\n  <ng-template [ngTemplateOutlet]=\"default\" [ngTemplateOutletContext]=\"{ $implicit: true }\"></ng-template>\n</nz-card>\n",
                 preserveWhitespaces: false,
                 encapsulation: ViewEncapsulation.None
             }] }
@@ -4103,6 +4117,10 @@ if (false) {
     ObjectWidget.prototype.list;
     /** @type {?} */
     ObjectWidget.prototype.title;
+    /** @type {?} */
+    ObjectWidget.prototype.showExpand;
+    /** @type {?} */
+    ObjectWidget.prototype.expand;
 }
 
 /**
@@ -5977,6 +5995,18 @@ if (false) {
  */
 function SFObjectWidgetSchema() { }
 if (false) {
+    /**
+     * 是否显示扩展，点击隐藏内容，默认：`true`
+     * - 限 `type === 'card'`
+     * @type {?|undefined}
+     */
+    SFObjectWidgetSchema.prototype.showExpand;
+    /**
+     * 展开状态，默认：`true`
+     * - 限 `type === 'card'`
+     * @type {?|undefined}
+     */
+    SFObjectWidgetSchema.prototype.expand;
     /**
      * 是否显示标题，默认：`false`
      * @type {?|undefined}

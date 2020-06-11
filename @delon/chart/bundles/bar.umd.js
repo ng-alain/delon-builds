@@ -248,16 +248,6 @@
         G2BarData.prototype.color;
         /* Skipping unhandled member: [key: string]: NzSafeAny;*/
     }
-    /**
-     * @record
-     */
-    function G2BarClickItem() { }
-    if (false) {
-        /** @type {?} */
-        G2BarClickItem.prototype.item;
-        /** @type {?} */
-        G2BarClickItem.prototype.ev;
-    }
     var G2BarComponent = /** @class */ (function () {
         // #endregion
         function G2BarComponent(ngZone, configSrv) {
@@ -270,7 +260,6 @@
             this.data = [];
             this.autoLabel = true;
             this.interaction = 'none';
-            this.clickItem = new core.EventEmitter();
             configSrv.attachKey(this, 'chart', 'theme');
         }
         /**
@@ -349,16 +338,6 @@
              * @return {?}
              */
             function (x, y) { return ({ name: x, value: y }); }));
-            chart.on("interval:click", (/**
-             * @param {?} ev
-             * @return {?}
-             */
-            function (ev) {
-                _this.ngZone.run((/**
-                 * @return {?}
-                 */
-                function () { var _a; return _this.clickItem.emit({ item: (_a = ev.data) === null || _a === void 0 ? void 0 : _a.data, ev: ev }); }));
-            }));
             this.attachChart();
         };
         /**
@@ -499,8 +478,7 @@
             data: [{ type: core.Input }],
             autoLabel: [{ type: core.Input }],
             interaction: [{ type: core.Input }],
-            theme: [{ type: core.Input }],
-            clickItem: [{ type: core.Output }]
+            theme: [{ type: core.Input }]
         };
         __decorate([
             util.InputNumber(),
@@ -550,8 +528,6 @@
         G2BarComponent.prototype.interaction;
         /** @type {?} */
         G2BarComponent.prototype.theme;
-        /** @type {?} */
-        G2BarComponent.prototype.clickItem;
         /**
          * @type {?}
          * @private

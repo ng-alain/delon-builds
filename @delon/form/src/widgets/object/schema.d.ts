@@ -3,6 +3,16 @@ import { SFUISchemaItem } from '../../schema/ui';
 export declare type SFObjectWidgetRenderType = 'card' | 'default';
 export interface SFObjectWidgetSchema extends SFUISchemaItem {
     /**
+     * 是否显示扩展，点击隐藏内容，默认：`true`
+     * - 限 `type === 'card'`
+     */
+    showExpand?: boolean;
+    /**
+     * 展开状态，默认：`true`
+     * - 限 `type === 'card'`
+     */
+    expand?: boolean;
+    /**
      * 是否显示标题，默认：`false`
      */
     showTitle?: boolean;

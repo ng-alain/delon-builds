@@ -1,5 +1,5 @@
-import { ElementRef, EventEmitter, NgZone, OnChanges, OnDestroy, OnInit } from '@angular/core';
-import { Event, Types } from '@antv/g2';
+import { ElementRef, NgZone, OnChanges, OnDestroy, OnInit } from '@angular/core';
+import { Types } from '@antv/g2';
 import { AlainConfigService } from '@delon/util';
 export interface G2TagCloudData {
     value?: number;
@@ -14,10 +14,6 @@ export interface G2TagCloudData {
     category?: any;
     [key: string]: any;
 }
-export interface G2TagCloudClickItem {
-    item: G2TagCloudData;
-    ev: Event;
-}
 export declare class G2TagCloudComponent implements OnDestroy, OnChanges, OnInit {
     private el;
     private ngZone;
@@ -29,7 +25,6 @@ export declare class G2TagCloudComponent implements OnDestroy, OnChanges, OnInit
     padding: number | number[] | 'auto';
     data: G2TagCloudData[];
     theme: string | Types.LooseObject;
-    clickItem: EventEmitter<G2TagCloudClickItem>;
     constructor(el: ElementRef<HTMLDivElement>, ngZone: NgZone, configSrv: AlainConfigService);
     private initTagCloud;
     private install;

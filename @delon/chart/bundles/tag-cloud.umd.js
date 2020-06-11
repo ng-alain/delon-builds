@@ -256,16 +256,6 @@
         G2TagCloudData.prototype.category;
         /* Skipping unhandled member: [key: string]: any;*/
     }
-    /**
-     * @record
-     */
-    function G2TagCloudClickItem() { }
-    if (false) {
-        /** @type {?} */
-        G2TagCloudClickItem.prototype.item;
-        /** @type {?} */
-        G2TagCloudClickItem.prototype.ev;
-    }
     var G2TagCloudComponent = /** @class */ (function () {
         // #endregion
         function G2TagCloudComponent(el, ngZone, configSrv) {
@@ -277,7 +267,6 @@
             this.height = 200;
             this.padding = 0;
             this.data = [];
-            this.clickItem = new core.EventEmitter();
             configSrv.attachKey(this, 'chart', 'theme');
         }
         /**
@@ -299,10 +288,8 @@
                     /** @type {?} */
                     var data = (/** @type {?} */ (cfg.data));
                     /** @type {?} */
-                    var textShape = container.addShape({
-                        type: 'text',
-                        name: 'tag-cloud-text',
-                        attrs: (/** @type {?} */ (__assign(__assign({}, cfg.style), { fontSize: data.size, text: data.text, textAlign: 'center', fontFamily: data.font, fill: cfg.color, textBaseline: 'Alphabetic', x: cfg.x, y: cfg.y }))),
+                    var textShape = container.addShape('text', {
+                        attrs: __assign(__assign({}, cfg.style), { fontSize: data.size, text: data.text, textAlign: 'center', fontFamily: data.font, fill: cfg.color, textBaseline: 'Alphabetic', x: cfg.x, y: cfg.y }),
                     });
                     if (data.rotate) {
                         g2.Util.rotate(textShape, (data.rotate * Math.PI) / 180);
@@ -320,7 +307,6 @@
          * @return {?}
          */
         function () {
-            var _this = this;
             var _a = this, el = _a.el, padding = _a.padding, theme = _a.theme;
             if (this.height === 0) {
                 this.height = this.el.nativeElement.clientHeight;
@@ -361,16 +347,6 @@
                 },
             });
             chart.interaction('element-active');
-            chart.on('tag-cloud-text:click', (/**
-             * @param {?} ev
-             * @return {?}
-             */
-            function (ev) {
-                _this.ngZone.run((/**
-                 * @return {?}
-                 */
-                function () { var _a; return _this.clickItem.emit({ item: (_a = ev.data) === null || _a === void 0 ? void 0 : _a.data, ev: ev }); }));
-            }));
             this.attachChart();
         };
         /**
@@ -551,8 +527,7 @@
             height: [{ type: core.Input }],
             padding: [{ type: core.Input }],
             data: [{ type: core.Input }],
-            theme: [{ type: core.Input }],
-            clickItem: [{ type: core.Output }]
+            theme: [{ type: core.Input }]
         };
         __decorate([
             util.InputNumber(),
@@ -591,8 +566,6 @@
         G2TagCloudComponent.prototype.data;
         /** @type {?} */
         G2TagCloudComponent.prototype.theme;
-        /** @type {?} */
-        G2TagCloudComponent.prototype.clickItem;
         /**
          * @type {?}
          * @private

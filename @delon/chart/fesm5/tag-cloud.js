@@ -1,5 +1,5 @@
 import { __assign, __decorate, __metadata, __spread } from 'tslib';
-import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, NgZone, Input, Output, NgModule } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, NgZone, Input, NgModule } from '@angular/core';
 import DataSet from '@antv/data-set';
 import { registerShape, Util, Chart } from '@antv/g2';
 import { deprecation10, AlainConfigService, InputNumber, DelonUtilModule } from '@delon/util';
@@ -33,16 +33,6 @@ if (false) {
     G2TagCloudData.prototype.category;
     /* Skipping unhandled member: [key: string]: any;*/
 }
-/**
- * @record
- */
-function G2TagCloudClickItem() { }
-if (false) {
-    /** @type {?} */
-    G2TagCloudClickItem.prototype.item;
-    /** @type {?} */
-    G2TagCloudClickItem.prototype.ev;
-}
 var G2TagCloudComponent = /** @class */ (function () {
     // #endregion
     function G2TagCloudComponent(el, ngZone, configSrv) {
@@ -54,7 +44,6 @@ var G2TagCloudComponent = /** @class */ (function () {
         this.height = 200;
         this.padding = 0;
         this.data = [];
-        this.clickItem = new EventEmitter();
         configSrv.attachKey(this, 'chart', 'theme');
     }
     /**
@@ -76,10 +65,8 @@ var G2TagCloudComponent = /** @class */ (function () {
                 /** @type {?} */
                 var data = (/** @type {?} */ (cfg.data));
                 /** @type {?} */
-                var textShape = container.addShape({
-                    type: 'text',
-                    name: 'tag-cloud-text',
-                    attrs: (/** @type {?} */ (__assign(__assign({}, cfg.style), { fontSize: data.size, text: data.text, textAlign: 'center', fontFamily: data.font, fill: cfg.color, textBaseline: 'Alphabetic', x: cfg.x, y: cfg.y }))),
+                var textShape = container.addShape('text', {
+                    attrs: __assign(__assign({}, cfg.style), { fontSize: data.size, text: data.text, textAlign: 'center', fontFamily: data.font, fill: cfg.color, textBaseline: 'Alphabetic', x: cfg.x, y: cfg.y }),
                 });
                 if (data.rotate) {
                     Util.rotate(textShape, (data.rotate * Math.PI) / 180);
@@ -97,7 +84,6 @@ var G2TagCloudComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        var _this = this;
         var _a = this, el = _a.el, padding = _a.padding, theme = _a.theme;
         if (this.height === 0) {
             this.height = this.el.nativeElement.clientHeight;
@@ -138,16 +124,6 @@ var G2TagCloudComponent = /** @class */ (function () {
             },
         });
         chart.interaction('element-active');
-        chart.on('tag-cloud-text:click', (/**
-         * @param {?} ev
-         * @return {?}
-         */
-        function (ev) {
-            _this.ngZone.run((/**
-             * @return {?}
-             */
-            function () { var _a; return _this.clickItem.emit({ item: (_a = ev.data) === null || _a === void 0 ? void 0 : _a.data, ev: ev }); }));
-        }));
         this.attachChart();
     };
     /**
@@ -328,8 +304,7 @@ var G2TagCloudComponent = /** @class */ (function () {
         height: [{ type: Input }],
         padding: [{ type: Input }],
         data: [{ type: Input }],
-        theme: [{ type: Input }],
-        clickItem: [{ type: Output }]
+        theme: [{ type: Input }]
     };
     __decorate([
         InputNumber(),
@@ -368,8 +343,6 @@ if (false) {
     G2TagCloudComponent.prototype.data;
     /** @type {?} */
     G2TagCloudComponent.prototype.theme;
-    /** @type {?} */
-    G2TagCloudComponent.prototype.clickItem;
     /**
      * @type {?}
      * @private

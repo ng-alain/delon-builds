@@ -26273,6 +26273,12 @@ fieldset {
 .sf__object-card .ant-card-body {
   padding-left: 0;
 }
+.sf__object-card .sf__fixed {
+  flex-wrap: wrap;
+}
+.sf__object-card-fold .ant-card-body {
+  display: none;
+}
 .sf__array-add {
   margin-right: 16px;
 }

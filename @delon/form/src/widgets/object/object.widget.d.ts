@@ -7,5 +7,8 @@ export declare class ObjectWidget extends ObjectLayoutWidget implements OnInit {
     type: SFObjectWidgetRenderType;
     list: Array<{}>;
     title: string;
+    showExpand: boolean;
+    expand: boolean;
     ngOnInit(): void;
+    changeExpand(): void;
 }
