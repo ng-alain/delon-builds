@@ -478,43 +478,33 @@ class PageG2 {
         return (/** @type {?} */ (this));
     }
     /**
-     * @return {?}
-     */
-    get firstDataPoint() {
-        // tslint:disable-next-line: no-string-literal
-        return this.chart.getXY(((/** @type {?} */ (this.context)))['data'][0]);
-    }
-    /**
      * @template THIS
      * @this {THIS}
-     * @param {?} _includeText
+     * @param {?} includeText
      * @param {?=} point
      * @return {THIS}
      */
-    checkTooltip(_includeText, point) {
+    checkTooltip(includeText, point) {
         if (!point) {
-            point = (/** @type {?} */ (this)).firstDataPoint;
+            /** @type {?} */
+            const g2El = (/** @type {?} */ ((/** @type {?} */ (this)).dl.nativeElement));
+            point = {
+                x: g2El.offsetWidth / 2,
+                y: g2El.offsetHeight / 2,
+            };
         }
         (/** @type {?} */ (this)).chart.showTooltip(point);
-        expect((/** @type {?} */ (this)).chart.getController('tooltip') != null).toBe(true);
-        return (/** @type {?} */ (this));
-    }
-    /**
-     * @template THIS
-     * @this {THIS}
-     * @return {THIS}
-     */
-    checkClickItem() {
         /** @type {?} */
-        const point = (/** @type {?} */ (this)).firstDataPoint;
-        /** @type {?} */
-        const clientPoint = (/** @type {?} */ (this)).chart.canvas.getClientByPoint(point.x, point.y);
-        /** @type {?} */
-        const event = new MouseEvent('click', {
-            clientX: clientPoint.x,
-            clientY: clientPoint.y,
-        });
-        ((/** @type {?} */ ((/** @type {?} */ (this)).chart.canvas.get('el')))).dispatchEvent(event);
+        const el = (/** @type {?} */ (this)).getEl('.g2-tooltip');
+        if (includeText === null) {
+            expect(el == null).toBe(true, `Shoule be not found g2-tooltip element`);
+        }
+        else {
+            expect(el != null).toBe(true, `Shoule be has g2-tooltip element`);
+            /** @type {?} */
+            const text = (/** @type {?} */ (el.textContent)).trim();
+            expect(text.includes(includeText)).toBe(true, `Shoule be include "${includeText}" text of tooltip text context "${text}"`);
+        }
         return (/** @type {?} */ (this));
     }
 }

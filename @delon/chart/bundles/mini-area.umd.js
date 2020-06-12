@@ -244,16 +244,6 @@
         G2MiniAreaData.prototype.y;
         /* Skipping unhandled member: [key: string]: any;*/
     }
-    /**
-     * @record
-     */
-    function G2MiniAreaClickItem() { }
-    if (false) {
-        /** @type {?} */
-        G2MiniAreaClickItem.prototype.item;
-        /** @type {?} */
-        G2MiniAreaClickItem.prototype.ev;
-    }
     var G2MiniAreaComponent = /** @class */ (function () {
         // #endregion
         function G2MiniAreaComponent(el, ngZone, configSrv) {
@@ -272,7 +262,6 @@
             this.data = [];
             this.yTooltipSuffix = '';
             this.tooltipType = 'default';
-            this.clickItem = new core.EventEmitter();
             configSrv.attachKey(this, 'chart', 'theme');
         }
         /**
@@ -284,7 +273,6 @@
          * @return {?}
          */
         function () {
-            var _this = this;
             var _a = this, el = _a.el, fit = _a.fit, height = _a.height, padding = _a.padding, xAxis = _a.xAxis, yAxis = _a.yAxis, yTooltipSuffix = _a.yTooltipSuffix, tooltipType = _a.tooltipType, line = _a.line, theme = _a.theme;
             /** @type {?} */
             var chart = (this.chart = new g2.Chart({
@@ -341,18 +329,6 @@
             if (line) {
                 chart.line().position('x*y').shape('smooth').tooltip(false);
             }
-            chart.on("plot:click", (/**
-             * @param {?} ev
-             * @return {?}
-             */
-            function (ev) {
-                /** @type {?} */
-                var records = _this.chart.getSnapRecords({ x: ev.x, y: ev.y });
-                _this.ngZone.run((/**
-                 * @return {?}
-                 */
-                function () { return _this.clickItem.emit({ item: records[0]._origin, ev: ev }); }));
-            }));
             chart.render();
             this.attachChart();
         };
@@ -463,8 +439,7 @@
             data: [{ type: core.Input }],
             yTooltipSuffix: [{ type: core.Input }],
             tooltipType: [{ type: core.Input }],
-            theme: [{ type: core.Input }],
-            clickItem: [{ type: core.Output }]
+            theme: [{ type: core.Input }]
         };
         __decorate([
             util.InputNumber(),
@@ -528,8 +503,6 @@
         G2MiniAreaComponent.prototype.tooltipType;
         /** @type {?} */
         G2MiniAreaComponent.prototype.theme;
-        /** @type {?} */
-        G2MiniAreaComponent.prototype.clickItem;
         /**
          * @type {?}
          * @private

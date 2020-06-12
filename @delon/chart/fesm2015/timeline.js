@@ -1,5 +1,5 @@
 import { __decorate, __metadata } from 'tslib';
-import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, NgZone, ViewChild, Input, Output, NgModule } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ViewEncapsulation, NgZone, ViewChild, Input, NgModule } from '@angular/core';
 import { Chart } from '@antv/g2';
 import { deprecation10, toDate, AlainConfigService, InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
 import format from 'date-fns/format';
@@ -86,16 +86,6 @@ if (false) {
     G2TimelineMap.prototype.y5;
     /* Skipping unhandled member: [key: string]: string | undefined;*/
 }
-/**
- * @record
- */
-function G2TimelineClickItem() { }
-if (false) {
-    /** @type {?} */
-    G2TimelineClickItem.prototype.item;
-    /** @type {?} */
-    G2TimelineClickItem.prototype.ev;
-}
 class G2TimelineComponent {
     // #endregion
     /**
@@ -115,7 +105,6 @@ class G2TimelineComponent {
         this.padding = [40, 8, 64, 40];
         this.borderWidth = 2;
         this.slider = true;
-        this.clickItem = new EventEmitter();
         configSrv.attachKey(this, 'chart', 'theme');
     }
     /**
@@ -176,18 +165,6 @@ class G2TimelineComponent {
                 (val) => format(val, mask)),
             });
         }
-        chart.on(`plot:click`, (/**
-         * @param {?} ev
-         * @return {?}
-         */
-        (ev) => {
-            /** @type {?} */
-            const records = this.chart.getSnapRecords({ x: ev.x, y: ev.y });
-            this.ngZone.run((/**
-             * @return {?}
-             */
-            () => this.clickItem.emit({ item: records[0]._origin, ev })));
-        }));
         this.attachChart();
     }
     /**
@@ -357,8 +334,7 @@ G2TimelineComponent.propDecorators = {
     padding: [{ type: Input }],
     borderWidth: [{ type: Input }],
     slider: [{ type: Input }],
-    theme: [{ type: Input }],
-    clickItem: [{ type: Output }]
+    theme: [{ type: Input }]
 };
 __decorate([
     InputNumber(),
@@ -417,8 +393,6 @@ if (false) {
     G2TimelineComponent.prototype.slider;
     /** @type {?} */
     G2TimelineComponent.prototype.theme;
-    /** @type {?} */
-    G2TimelineComponent.prototype.clickItem;
     /**
      * @type {?}
      * @private

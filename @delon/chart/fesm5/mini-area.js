@@ -1,5 +1,5 @@
 import { __decorate, __metadata, __spread } from 'tslib';
-import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, NgZone, Input, Output, NgModule } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, NgZone, Input, NgModule } from '@angular/core';
 import { Chart } from '@antv/g2';
 import { AlainConfigService, InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
 import { CommonModule } from '@angular/common';
@@ -20,16 +20,6 @@ if (false) {
     G2MiniAreaData.prototype.y;
     /* Skipping unhandled member: [key: string]: any;*/
 }
-/**
- * @record
- */
-function G2MiniAreaClickItem() { }
-if (false) {
-    /** @type {?} */
-    G2MiniAreaClickItem.prototype.item;
-    /** @type {?} */
-    G2MiniAreaClickItem.prototype.ev;
-}
 var G2MiniAreaComponent = /** @class */ (function () {
     // #endregion
     function G2MiniAreaComponent(el, ngZone, configSrv) {
@@ -48,7 +38,6 @@ var G2MiniAreaComponent = /** @class */ (function () {
         this.data = [];
         this.yTooltipSuffix = '';
         this.tooltipType = 'default';
-        this.clickItem = new EventEmitter();
         configSrv.attachKey(this, 'chart', 'theme');
     }
     /**
@@ -60,7 +49,6 @@ var G2MiniAreaComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        var _this = this;
         var _a = this, el = _a.el, fit = _a.fit, height = _a.height, padding = _a.padding, xAxis = _a.xAxis, yAxis = _a.yAxis, yTooltipSuffix = _a.yTooltipSuffix, tooltipType = _a.tooltipType, line = _a.line, theme = _a.theme;
         /** @type {?} */
         var chart = (this.chart = new Chart({
@@ -117,18 +105,6 @@ var G2MiniAreaComponent = /** @class */ (function () {
         if (line) {
             chart.line().position('x*y').shape('smooth').tooltip(false);
         }
-        chart.on("plot:click", (/**
-         * @param {?} ev
-         * @return {?}
-         */
-        function (ev) {
-            /** @type {?} */
-            var records = _this.chart.getSnapRecords({ x: ev.x, y: ev.y });
-            _this.ngZone.run((/**
-             * @return {?}
-             */
-            function () { return _this.clickItem.emit({ item: records[0]._origin, ev: ev }); }));
-        }));
         chart.render();
         this.attachChart();
     };
@@ -239,8 +215,7 @@ var G2MiniAreaComponent = /** @class */ (function () {
         data: [{ type: Input }],
         yTooltipSuffix: [{ type: Input }],
         tooltipType: [{ type: Input }],
-        theme: [{ type: Input }],
-        clickItem: [{ type: Output }]
+        theme: [{ type: Input }]
     };
     __decorate([
         InputNumber(),
@@ -304,8 +279,6 @@ if (false) {
     G2MiniAreaComponent.prototype.tooltipType;
     /** @type {?} */
     G2MiniAreaComponent.prototype.theme;
-    /** @type {?} */
-    G2MiniAreaComponent.prototype.clickItem;
     /**
      * @type {?}
      * @private
