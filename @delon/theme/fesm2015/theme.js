@@ -1050,7 +1050,7 @@ class ResponsiveService {
      * @param {?} cogSrv
      */
     constructor(cogSrv) {
-        this.cog = (/** @type {?} */ (cogSrv.merge('themeResponsive', {
+        this.cog = cogSrv.merge('themeResponsive', {
             rules: {
                 1: { xs: 24 },
                 2: { xs: 24, sm: 12 },
@@ -1059,7 +1059,7 @@ class ResponsiveService {
                 5: { xs: 24, sm: 12, md: 8, lg: 6, xl: 4 },
                 6: { xs: 24, sm: 12, md: 8, lg: 6, xl: 4, xxl: 2 },
             },
-        })));
+        });
         if (Object.keys(this.cog.rules)
             .map((/**
          * @param {?} i
@@ -2757,10 +2757,10 @@ class _HttpClient {
     constructor(http, cogSrv) {
         this.http = http;
         this._loading = false;
-        this.cog = (/** @type {?} */ (cogSrv.merge('themeHttp', {
+        this.cog = cogSrv.merge('themeHttp', {
             nullValueHandling: 'include',
             dateValueHandling: 'timestamp',
-        })));
+        });
     }
     /**
      * 是否正在加载中
@@ -3662,7 +3662,7 @@ AlainThemeModule.ctorParameters = () => [
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-const VERSION = new Version('9.3.2-a1271dfb');
+const VERSION = new Version('9.3.2-58776d66');
 
 /**
  * @fileoverview added by tsickle

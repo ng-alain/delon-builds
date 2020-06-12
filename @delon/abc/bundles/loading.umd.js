@@ -287,7 +287,7 @@
             this.compRef = null;
             this.opt = null;
             this.n$ = new rxjs.Subject();
-            this.cog = (/** @type {?} */ (configSrv.merge('loading', {
+            this.cog = configSrv.merge('loading', {
                 type: 'spin',
                 text: '加载中...',
                 icon: {
@@ -296,7 +296,7 @@
                     spin: true,
                 },
                 delay: 0,
-            })));
+            });
             this.loading$ = this.n$
                 .asObservable()
                 .pipe(operators.debounce((/**

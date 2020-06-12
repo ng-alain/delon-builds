@@ -247,7 +247,7 @@
             this.nzOnPanelChange = new core.EventEmitter();
             this.nzOnOk = new core.EventEmitter();
             /** @type {?} */
-            var cog = (/** @type {?} */ (configSrv.merge('dataRange', {
+            var cog = configSrv.merge('dataRange', {
                 nzFormat: 'yyyy-MM-dd',
                 nzAllowClear: true,
                 nzAutoFocus: false,
@@ -308,7 +308,7 @@
                         },
                     ],
                 },
-            })));
+            });
             this.defaultShortcuts = (/** @type {?} */ (__assign({}, cog.shortcuts)));
             Object.assign(this, cog);
         }

@@ -273,7 +273,7 @@
      * @return {?}
      */
     function mergeConfig(srv) {
-        return (/** @type {?} */ (srv.merge('sf', SF_DEFAULT_CONFIG)));
+        return srv.merge('sf', SF_DEFAULT_CONFIG);
     }
 
     /**

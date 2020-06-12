@@ -35,7 +35,7 @@ class ACLService {
         this.abilities = [];
         this.full = false;
         this.aclChange = new BehaviorSubject(null);
-        this.options = (/** @type {?} */ (configSrv.merge('acl', ACL_DEFAULT_CONFIG)));
+        this.options = configSrv.merge('acl', ACL_DEFAULT_CONFIG);
     }
     /**
      * ACL变更通知

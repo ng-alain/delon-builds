@@ -2094,6 +2094,15 @@ class AlainConfigService {
         this.config = defaultConfig || {};
     }
     /**
+     * @template R, T
+     * @param {?} componentName
+     * @param {?} newValues
+     * @return {?}
+     */
+    update(componentName, newValues) {
+        this.config[componentName] = Object.assign(Object.assign({}, this.config[componentName]), newValues);
+    }
+    /**
      * @template T
      * @param {?} componentName
      * @param {?=} key
@@ -2105,7 +2114,7 @@ class AlainConfigService {
         return key ? { [key]: res[key] } : res;
     }
     /**
-     * @template T
+     * @template R, T
      * @param {?} componentName
      * @param {...?} defaultValues
      * @return {?}
@@ -2114,7 +2123,7 @@ class AlainConfigService {
         return deepMergeKey({}, true, ...defaultValues, this.get(componentName));
     }
     /**
-     * @template T
+     * @template R, T
      * @param {?} componentThis
      * @param {?} componentName
      * @param {?} defaultValues
@@ -2304,7 +2313,7 @@ class ArrayService {
      * @param {?} cog
      */
     constructor(cog) {
-        this.c = (/** @type {?} */ (cog.merge('utilArray', {
+        this.c = cog.merge('utilArray', {
             deepMapName: 'deep',
             parentMapName: 'parent',
             idMapName: 'id',
@@ -2315,7 +2324,7 @@ class ArrayService {
             selectedMapname: 'selected',
             expandedMapname: 'expanded',
             disabledMapname: 'disabled',
-        })));
+        });
     }
     /**
      * 将树结构转换成数组结构

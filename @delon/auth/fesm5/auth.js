@@ -31,7 +31,7 @@ var AUTH_DEFAULT_CONFIG = {
  * @return {?}
  */
 function mergeConfig(srv) {
-    return (/** @type {?} */ (srv.merge('auth', AUTH_DEFAULT_CONFIG)));
+    return srv.merge('auth', AUTH_DEFAULT_CONFIG);
 }
 
 /**

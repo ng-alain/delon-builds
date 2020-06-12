@@ -284,10 +284,10 @@
         function XlsxService(http, lazy, configSrv) {
             this.http = http;
             this.lazy = lazy;
-            this.cog = (/** @type {?} */ (configSrv.merge('xlsx', {
+            this.cog = configSrv.merge('xlsx', {
                 url: '//cdn.bootcss.com/xlsx/0.15.6/xlsx.full.min.js',
                 modules: [],
-            })));
+            });
         }
         /**
          * @private
