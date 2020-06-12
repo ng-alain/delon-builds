@@ -119,7 +119,7 @@ var MOCK_DEFULAT_CONFIG = {
 var MockService = /** @class */ (function () {
     function MockService(cogSrv) {
         this.cached = [];
-        this.config = cogSrv.merge('mock', MOCK_DEFULAT_CONFIG);
+        this.config = (/** @type {?} */ (cogSrv.merge('mock', MOCK_DEFULAT_CONFIG)));
         this.applyMock();
         delete this.config.data;
     }

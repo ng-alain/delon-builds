@@ -75,10 +75,10 @@ class ZipService {
     constructor(http, lazy, configSrv) {
         this.http = http;
         this.lazy = lazy;
-        this.cog = configSrv.merge('zip', {
+        this.cog = (/** @type {?} */ (configSrv.merge('zip', {
             url: '//cdn.bootcss.com/jszip/3.3.0/jszip.min.js',
             utils: [],
-        });
+        })));
     }
     /**
      * @private

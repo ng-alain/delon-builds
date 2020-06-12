@@ -78,7 +78,7 @@ var SF_DEFAULT_CONFIG = {
  * @return {?}
  */
 function mergeConfig(srv) {
-    return srv.merge('sf', SF_DEFAULT_CONFIG);
+    return (/** @type {?} */ (srv.merge('sf', SF_DEFAULT_CONFIG)));
 }
 
 /**

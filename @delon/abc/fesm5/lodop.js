@@ -583,12 +583,12 @@ var LodopService = /** @class */ (function () {
         this._init = new Subject();
         this._events = new Subject();
         this.printBuffer = [];
-        this.defaultConfig = configSrv.merge('lodop', {
+        this.defaultConfig = (/** @type {?} */ (configSrv.merge('lodop', {
             url: '//localhost:8443/CLodopfuncs.js',
             name: 'CLODOP',
             companyName: '',
             checkMaxCount: 100,
-        });
+        })));
         this.cog = this.defaultConfig;
     }
     Object.defineProperty(LodopService.prototype, "cog", {

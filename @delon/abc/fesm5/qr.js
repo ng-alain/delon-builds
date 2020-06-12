@@ -37,7 +37,7 @@ var QRComponent = /** @class */ (function () {
         this.value = '';
         // tslint:disable-next-line:no-output-native
         this.change = new EventEmitter();
-        this.cog = configSrv.merge('qr', QR_DEFULAT_CONFIG);
+        this.cog = (/** @type {?} */ (configSrv.merge('qr', QR_DEFULAT_CONFIG)));
         Object.assign(this, this.cog);
     }
     /**

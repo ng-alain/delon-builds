@@ -125,7 +125,7 @@ class MockService {
      */
     constructor(cogSrv) {
         this.cached = [];
-        this.config = cogSrv.merge('mock', MOCK_DEFULAT_CONFIG);
+        this.config = (/** @type {?} */ (cogSrv.merge('mock', MOCK_DEFULAT_CONFIG)));
         this.applyMock();
         delete this.config.data;
     }
