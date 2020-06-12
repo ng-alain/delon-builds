@@ -808,12 +808,12 @@
             this._init = new rxjs.Subject();
             this._events = new rxjs.Subject();
             this.printBuffer = [];
-            this.defaultConfig = (/** @type {?} */ (configSrv.merge('lodop', {
+            this.defaultConfig = configSrv.merge('lodop', {
                 url: '//localhost:8443/CLodopfuncs.js',
                 name: 'CLODOP',
                 companyName: '',
                 checkMaxCount: 100,
-            })));
+            });
             this.cog = this.defaultConfig;
         }
         Object.defineProperty(LodopService.prototype, "cog", {

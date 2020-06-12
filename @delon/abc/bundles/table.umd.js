@@ -3517,7 +3517,7 @@
              * @return {?}
              */
             function (index) { return index; });
-            this.setCog((/** @type {?} */ (configSrv.merge('st', ST_DEFULAT_CONFIG))));
+            this.setCog(configSrv.merge('st', ST_DEFULAT_CONFIG));
             this.delonI18n.change.pipe(operators.takeUntil(this.unsubscribe$)).subscribe((/**
              * @return {?}
              */
@@ -4347,7 +4347,7 @@
         function (index, item, options) {
             options = __assign({ refreshSchema: false, emitReload: false }, options);
             (/** @type {?} */ (this))._data[index] = util.deepMergeKey((/** @type {?} */ (this))._data[index], false, item);
-            (/** @type {?} */ (this))._data = (/** @type {?} */ (this)).dataSource.optimizeData({ columns: (/** @type {?} */ (this))._columns, result: (/** @type {?} */ (this))._data, rowClassName: (/** @type {?} */ (this)).rowClassName });
+            (/** @type {?} */ (this)).optimizeData();
             if (options.refreshSchema) {
                 (/** @type {?} */ (this)).resetColumns({ emitReload: options.emitReload });
                 return (/** @type {?} */ (this));
@@ -4958,6 +4958,17 @@
             return (/** @type {?} */ (this));
         };
         /**
+         * @private
+         * @return {?}
+         */
+        STComponent.prototype.optimizeData = /**
+         * @private
+         * @return {?}
+         */
+        function () {
+            this._data = this.dataSource.optimizeData({ columns: this._columns, result: this._data, rowClassName: this.rowClassName });
+        };
+        /**
          * @return {?}
          */
         STComponent.prototype.ngAfterViewInit = /**
@@ -4976,7 +4987,7 @@
          */
         function (changes) {
             if (changes.columns) {
-                this.refreshColumns();
+                this.refreshColumns().optimizeData();
             }
             /** @type {?} */
             var changeData = changes.data;

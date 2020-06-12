@@ -1473,7 +1473,7 @@
     var REP_MAX = 6;
     var ResponsiveService = /** @class */ (function () {
         function ResponsiveService(cogSrv) {
-            this.cog = (/** @type {?} */ (cogSrv.merge('themeResponsive', {
+            this.cog = cogSrv.merge('themeResponsive', {
                 rules: {
                     1: { xs: 24 },
                     2: { xs: 24, sm: 12 },
@@ -1482,7 +1482,7 @@
                     5: { xs: 24, sm: 12, md: 8, lg: 6, xl: 4 },
                     6: { xs: 24, sm: 12, md: 8, lg: 6, xl: 4, xxl: 2 },
                 },
-            })));
+            });
             if (Object.keys(this.cog.rules)
                 .map((/**
              * @param {?} i
@@ -3402,10 +3402,10 @@
         function _HttpClient(http, cogSrv) {
             this.http = http;
             this._loading = false;
-            this.cog = (/** @type {?} */ (cogSrv.merge('themeHttp', {
+            this.cog = cogSrv.merge('themeHttp', {
                 nullValueHandling: 'include',
                 dateValueHandling: 'timestamp',
-            })));
+            });
         }
         Object.defineProperty(_HttpClient.prototype, "loading", {
             /** 是否正在加载中 */

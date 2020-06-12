@@ -254,7 +254,7 @@
             this.abilities = [];
             this.full = false;
             this.aclChange = new rxjs.BehaviorSubject(null);
-            this.options = (/** @type {?} */ (configSrv.merge('acl', ACL_DEFAULT_CONFIG)));
+            this.options = configSrv.merge('acl', ACL_DEFAULT_CONFIG);
         }
         Object.defineProperty(ACLService.prototype, "change", {
             /** ACL变更通知 */

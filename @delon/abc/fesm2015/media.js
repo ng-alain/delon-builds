@@ -31,9 +31,9 @@ class MediaService {
      * @return {?}
      */
     set cog(val) {
-        this._cog = (/** @type {?} */ (this.cogSrv.merge('media', {
+        this._cog = this.cogSrv.merge('media', {
             urls: ['https://cdn.bootcdn.net/ajax/libs/plyr/3.5.10/plyr.min.js', 'https://cdn.bootcdn.net/ajax/libs/plyr/3.5.10/plyr.css'],
-        }, val)));
+        }, val);
     }
     /**
      * @template THIS

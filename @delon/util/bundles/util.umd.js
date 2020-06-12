@@ -2439,6 +2439,21 @@
             this.config = defaultConfig || {};
         }
         /**
+         * @template R, T
+         * @param {?} componentName
+         * @param {?} newValues
+         * @return {?}
+         */
+        AlainConfigService$1.prototype.update = /**
+         * @template R, T
+         * @param {?} componentName
+         * @param {?} newValues
+         * @return {?}
+         */
+        function (componentName, newValues) {
+            this.config[componentName] = __assign(__assign({}, this.config[componentName]), newValues);
+        };
+        /**
          * @template T
          * @param {?} componentName
          * @param {?=} key
@@ -2457,13 +2472,13 @@
             return key ? (_a = {}, _a[key] = res[key], _a) : res;
         };
         /**
-         * @template T
+         * @template R, T
          * @param {?} componentName
          * @param {...?} defaultValues
          * @return {?}
          */
         AlainConfigService$1.prototype.merge = /**
-         * @template T
+         * @template R, T
          * @param {?} componentName
          * @param {...?} defaultValues
          * @return {?}
@@ -2476,14 +2491,14 @@
             return deepMergeKey.apply(void 0, __spread([{}, true], defaultValues, [this.get(componentName)]));
         };
         /**
-         * @template T
+         * @template R, T
          * @param {?} componentThis
          * @param {?} componentName
          * @param {?} defaultValues
          * @return {?}
          */
         AlainConfigService$1.prototype.attach = /**
-         * @template T
+         * @template R, T
          * @param {?} componentThis
          * @param {?} componentName
          * @param {?} defaultValues
@@ -2684,7 +2699,7 @@
     }
     var ArrayService = /** @class */ (function () {
         function ArrayService(cog) {
-            this.c = (/** @type {?} */ (cog.merge('utilArray', {
+            this.c = cog.merge('utilArray', {
                 deepMapName: 'deep',
                 parentMapName: 'parent',
                 idMapName: 'id',
@@ -2695,7 +2710,7 @@
                 selectedMapname: 'selected',
                 expandedMapname: 'expanded',
                 disabledMapname: 'disabled',
-            })));
+            });
         }
         /**
          * 将树结构转换成数组结构
