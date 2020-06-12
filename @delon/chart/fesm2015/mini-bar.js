@@ -1,5 +1,5 @@
 import { __decorate, __metadata } from 'tslib';
-import { Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, NgZone, Input, NgModule } from '@angular/core';
+import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, NgZone, Input, Output, NgModule } from '@angular/core';
 import { Chart } from '@antv/g2';
 import { AlainConfigService, InputNumber, DelonUtilModule } from '@delon/util';
 import { CommonModule } from '@angular/common';
@@ -20,6 +20,16 @@ if (false) {
     G2MiniBarData.prototype.y;
     /* Skipping unhandled member: [key: string]: any;*/
 }
+/**
+ * @record
+ */
+function G2MiniBarClickItem() { }
+if (false) {
+    /** @type {?} */
+    G2MiniBarClickItem.prototype.item;
+    /** @type {?} */
+    G2MiniBarClickItem.prototype.ev;
+}
 class G2MiniBarComponent {
     // #endregion
     /**
@@ -39,6 +49,7 @@ class G2MiniBarComponent {
         this.data = [];
         this.yTooltipSuffix = '';
         this.tooltipType = 'default';
+        this.clickItem = new EventEmitter();
         configSrv.attachKey(this, 'chart', 'theme');
     }
     /**
@@ -93,6 +104,16 @@ class G2MiniBarComponent {
          * @return {?}
          */
         (x, y) => ({ name: x, value: y + yTooltipSuffix })));
+        chart.on(`interval:click`, (/**
+         * @param {?} ev
+         * @return {?}
+         */
+        (ev) => {
+            this.ngZone.run((/**
+             * @return {?}
+             */
+            () => { var _a; return this.clickItem.emit({ item: (_a = ev.data) === null || _a === void 0 ? void 0 : _a.data, ev }); }));
+        }));
         chart.render();
         this.attachChart();
     }
@@ -170,7 +191,8 @@ G2MiniBarComponent.propDecorators = {
     data: [{ type: Input }],
     yTooltipSuffix: [{ type: Input }],
     tooltipType: [{ type: Input }],
-    theme: [{ type: Input }]
+    theme: [{ type: Input }],
+    clickItem: [{ type: Output }]
 };
 __decorate([
     InputNumber(),
@@ -208,6 +230,8 @@ if (false) {
     G2MiniBarComponent.prototype.tooltipType;
     /** @type {?} */
     G2MiniBarComponent.prototype.theme;
+    /** @type {?} */
+    G2MiniBarComponent.prototype.clickItem;
     /**
      * @type {?}
      * @private

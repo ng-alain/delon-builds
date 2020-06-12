@@ -628,41 +628,60 @@
             expect(results[0].data.length).toBe(num);
             return (/** @type {?} */ (this));
         };
+        Object.defineProperty(PageG2.prototype, "firstDataPoint", {
+            get: /**
+             * @return {?}
+             */
+            function () {
+                // tslint:disable-next-line: no-string-literal
+                return this.chart.getXY(((/** @type {?} */ (this.context)))['data'][0]);
+            },
+            enumerable: true,
+            configurable: true
+        });
         /**
          * @template THIS
          * @this {THIS}
-         * @param {?} includeText
+         * @param {?} _includeText
          * @param {?=} point
          * @return {THIS}
          */
         PageG2.prototype.checkTooltip = /**
          * @template THIS
          * @this {THIS}
-         * @param {?} includeText
+         * @param {?} _includeText
          * @param {?=} point
          * @return {THIS}
          */
-        function (includeText, point) {
+        function (_includeText, point) {
             if (!point) {
-                /** @type {?} */
-                var g2El = (/** @type {?} */ ((/** @type {?} */ (this)).dl.nativeElement));
-                point = {
-                    x: g2El.offsetWidth / 2,
-                    y: g2El.offsetHeight / 2,
-                };
+                point = (/** @type {?} */ (this)).firstDataPoint;
             }
             (/** @type {?} */ (this)).chart.showTooltip(point);
+            expect((/** @type {?} */ (this)).chart.getController('tooltip') != null).toBe(true);
+            return (/** @type {?} */ (this));
+        };
+        /**
+         * @template THIS
+         * @this {THIS}
+         * @return {THIS}
+         */
+        PageG2.prototype.checkClickItem = /**
+         * @template THIS
+         * @this {THIS}
+         * @return {THIS}
+         */
+        function () {
             /** @type {?} */
-            var el = (/** @type {?} */ (this)).getEl('.g2-tooltip');
-            if (includeText === null) {
-                expect(el == null).toBe(true, "Shoule be not found g2-tooltip element");
-            }
-            else {
-                expect(el != null).toBe(true, "Shoule be has g2-tooltip element");
-                /** @type {?} */
-                var text = (/** @type {?} */ (el.textContent)).trim();
-                expect(text.includes(includeText)).toBe(true, "Shoule be include \"" + includeText + "\" text of tooltip text context \"" + text + "\"");
-            }
+            var point = (/** @type {?} */ (this)).firstDataPoint;
+            /** @type {?} */
+            var clientPoint = (/** @type {?} */ (this)).chart.canvas.getClientByPoint(point.x, point.y);
+            /** @type {?} */
+            var event = new MouseEvent('click', {
+                clientX: clientPoint.x,
+                clientY: clientPoint.y,
+            });
+            ((/** @type {?} */ ((/** @type {?} */ (this)).chart.canvas.get('el')))).dispatchEvent(event);
             return (/** @type {?} */ (this));
         };
         return PageG2;

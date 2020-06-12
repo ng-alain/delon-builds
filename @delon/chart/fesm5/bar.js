@@ -1,5 +1,5 @@
 import { __decorate, __metadata, __spread } from 'tslib';
-import { Component, ChangeDetectionStrategy, ViewEncapsulation, NgZone, ViewChild, Input, NgModule } from '@angular/core';
+import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, NgZone, ViewChild, Input, Output, NgModule } from '@angular/core';
 import { Chart } from '@antv/g2';
 import { AlainConfigService, InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
 import { fromEvent } from 'rxjs';
@@ -27,6 +27,16 @@ if (false) {
     G2BarData.prototype.color;
     /* Skipping unhandled member: [key: string]: NzSafeAny;*/
 }
+/**
+ * @record
+ */
+function G2BarClickItem() { }
+if (false) {
+    /** @type {?} */
+    G2BarClickItem.prototype.item;
+    /** @type {?} */
+    G2BarClickItem.prototype.ev;
+}
 var G2BarComponent = /** @class */ (function () {
     // #endregion
     function G2BarComponent(ngZone, configSrv) {
@@ -39,6 +49,7 @@ var G2BarComponent = /** @class */ (function () {
         this.data = [];
         this.autoLabel = true;
         this.interaction = 'none';
+        this.clickItem = new EventEmitter();
         configSrv.attachKey(this, 'chart', 'theme');
     }
     /**
@@ -117,6 +128,16 @@ var G2BarComponent = /** @class */ (function () {
          * @return {?}
          */
         function (x, y) { return ({ name: x, value: y }); }));
+        chart.on("interval:click", (/**
+         * @param {?} ev
+         * @return {?}
+         */
+        function (ev) {
+            _this.ngZone.run((/**
+             * @return {?}
+             */
+            function () { var _a; return _this.clickItem.emit({ item: (_a = ev.data) === null || _a === void 0 ? void 0 : _a.data, ev: ev }); }));
+        }));
         this.attachChart();
     };
     /**
@@ -257,7 +278,8 @@ var G2BarComponent = /** @class */ (function () {
         data: [{ type: Input }],
         autoLabel: [{ type: Input }],
         interaction: [{ type: Input }],
-        theme: [{ type: Input }]
+        theme: [{ type: Input }],
+        clickItem: [{ type: Output }]
     };
     __decorate([
         InputNumber(),
@@ -307,6 +329,8 @@ if (false) {
     G2BarComponent.prototype.interaction;
     /** @type {?} */
     G2BarComponent.prototype.theme;
+    /** @type {?} */
+    G2BarComponent.prototype.clickItem;
     /**
      * @type {?}
      * @private
