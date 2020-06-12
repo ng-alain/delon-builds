@@ -244,6 +244,16 @@
         G2MiniBarData.prototype.y;
         /* Skipping unhandled member: [key: string]: any;*/
     }
+    /**
+     * @record
+     */
+    function G2MiniBarClickItem() { }
+    if (false) {
+        /** @type {?} */
+        G2MiniBarClickItem.prototype.item;
+        /** @type {?} */
+        G2MiniBarClickItem.prototype.ev;
+    }
     var G2MiniBarComponent = /** @class */ (function () {
         // #endregion
         function G2MiniBarComponent(el, ngZone, configSrv) {
@@ -258,6 +268,7 @@
             this.data = [];
             this.yTooltipSuffix = '';
             this.tooltipType = 'default';
+            this.clickItem = new core.EventEmitter();
             configSrv.attachKey(this, 'chart', 'theme');
         }
         /**
@@ -269,6 +280,7 @@
          * @return {?}
          */
         function () {
+            var _this = this;
             var _a = this, el = _a.el, height = _a.height, padding = _a.padding, yTooltipSuffix = _a.yTooltipSuffix, tooltipType = _a.tooltipType, theme = _a.theme;
             /** @type {?} */
             var chart = (this.chart = new g2.Chart({
@@ -316,6 +328,16 @@
              * @return {?}
              */
             function (x, y) { return ({ name: x, value: y + yTooltipSuffix }); }));
+            chart.on("interval:click", (/**
+             * @param {?} ev
+             * @return {?}
+             */
+            function (ev) {
+                _this.ngZone.run((/**
+                 * @return {?}
+                 */
+                function () { var _a; return _this.clickItem.emit({ item: (_a = ev.data) === null || _a === void 0 ? void 0 : _a.data, ev: ev }); }));
+            }));
             chart.render();
             this.attachChart();
         };
@@ -408,7 +430,8 @@
             data: [{ type: core.Input }],
             yTooltipSuffix: [{ type: core.Input }],
             tooltipType: [{ type: core.Input }],
-            theme: [{ type: core.Input }]
+            theme: [{ type: core.Input }],
+            clickItem: [{ type: core.Output }]
         };
         __decorate([
             util.InputNumber(),
@@ -448,6 +471,8 @@
         G2MiniBarComponent.prototype.tooltipType;
         /** @type {?} */
         G2MiniBarComponent.prototype.theme;
+        /** @type {?} */
+        G2MiniBarComponent.prototype.clickItem;
         /**
          * @type {?}
          * @private

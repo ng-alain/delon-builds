@@ -1,5 +1,5 @@
 import { __decorate, __metadata, __spread } from 'tslib';
-import { Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, NgZone, Input, NgModule } from '@angular/core';
+import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, NgZone, Input, Output, NgModule } from '@angular/core';
 import { Chart } from '@antv/g2';
 import { AlainConfigService, InputNumber, DelonUtilModule } from '@delon/util';
 import { CommonModule } from '@angular/common';
@@ -20,6 +20,16 @@ if (false) {
     G2MiniBarData.prototype.y;
     /* Skipping unhandled member: [key: string]: any;*/
 }
+/**
+ * @record
+ */
+function G2MiniBarClickItem() { }
+if (false) {
+    /** @type {?} */
+    G2MiniBarClickItem.prototype.item;
+    /** @type {?} */
+    G2MiniBarClickItem.prototype.ev;
+}
 var G2MiniBarComponent = /** @class */ (function () {
     // #endregion
     function G2MiniBarComponent(el, ngZone, configSrv) {
@@ -34,6 +44,7 @@ var G2MiniBarComponent = /** @class */ (function () {
         this.data = [];
         this.yTooltipSuffix = '';
         this.tooltipType = 'default';
+        this.clickItem = new EventEmitter();
         configSrv.attachKey(this, 'chart', 'theme');
     }
     /**
@@ -45,6 +56,7 @@ var G2MiniBarComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
+        var _this = this;
         var _a = this, el = _a.el, height = _a.height, padding = _a.padding, yTooltipSuffix = _a.yTooltipSuffix, tooltipType = _a.tooltipType, theme = _a.theme;
         /** @type {?} */
         var chart = (this.chart = new Chart({
@@ -92,6 +104,16 @@ var G2MiniBarComponent = /** @class */ (function () {
          * @return {?}
          */
         function (x, y) { return ({ name: x, value: y + yTooltipSuffix }); }));
+        chart.on("interval:click", (/**
+         * @param {?} ev
+         * @return {?}
+         */
+        function (ev) {
+            _this.ngZone.run((/**
+             * @return {?}
+             */
+            function () { var _a; return _this.clickItem.emit({ item: (_a = ev.data) === null || _a === void 0 ? void 0 : _a.data, ev: ev }); }));
+        }));
         chart.render();
         this.attachChart();
     };
@@ -184,7 +206,8 @@ var G2MiniBarComponent = /** @class */ (function () {
         data: [{ type: Input }],
         yTooltipSuffix: [{ type: Input }],
         tooltipType: [{ type: Input }],
-        theme: [{ type: Input }]
+        theme: [{ type: Input }],
+        clickItem: [{ type: Output }]
     };
     __decorate([
         InputNumber(),
@@ -224,6 +247,8 @@ if (false) {
     G2MiniBarComponent.prototype.tooltipType;
     /** @type {?} */
     G2MiniBarComponent.prototype.theme;
+    /** @type {?} */
+    G2MiniBarComponent.prototype.clickItem;
     /**
      * @type {?}
      * @private

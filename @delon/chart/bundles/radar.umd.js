@@ -246,6 +246,16 @@
         G2RadarData.prototype.value;
         /* Skipping unhandled member: [key: string]: any;*/
     }
+    /**
+     * @record
+     */
+    function G2RadarClickItem() { }
+    if (false) {
+        /** @type {?} */
+        G2RadarClickItem.prototype.item;
+        /** @type {?} */
+        G2RadarClickItem.prototype.ev;
+    }
     var G2RadarComponent = /** @class */ (function () {
         // #endregion
         function G2RadarComponent(cdr, ngZone, configSrv) {
@@ -260,6 +270,7 @@
             this.tickCount = 4;
             this.data = [];
             this.colors = ['#1890FF', '#FACC14', '#2FC25B', '#8543E0', '#F04864', '#13C2C2', '#fa8c16', '#a0d911'];
+            this.clickItem = new core.EventEmitter();
             configSrv.attachKey(this, 'chart', 'theme');
         }
         /**
@@ -337,6 +348,16 @@
             chart.line().position('label*value');
             chart.point().position('label*value').shape('circle').size(3);
             chart.render();
+            chart.on("point:click", (/**
+             * @param {?} ev
+             * @return {?}
+             */
+            function (ev) {
+                _this.ngZone.run((/**
+                 * @return {?}
+                 */
+                function () { var _a; return _this.clickItem.emit({ item: (_a = ev.data) === null || _a === void 0 ? void 0 : _a.data, ev: ev }); }));
+            }));
             this.attachChart();
         };
         /**
@@ -498,7 +519,8 @@
             tickCount: [{ type: core.Input }],
             data: [{ type: core.Input }],
             colors: [{ type: core.Input }],
-            theme: [{ type: core.Input }]
+            theme: [{ type: core.Input }],
+            clickItem: [{ type: core.Output }]
         };
         __decorate([
             util.InputNumber(),
@@ -549,6 +571,8 @@
         G2RadarComponent.prototype.colors;
         /** @type {?} */
         G2RadarComponent.prototype.theme;
+        /** @type {?} */
+        G2RadarComponent.prototype.clickItem;
         /**
          * @type {?}
          * @private

@@ -1,5 +1,5 @@
 import { __values, __decorate, __metadata, __spread } from 'tslib';
-import { Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, NgZone, ChangeDetectorRef, ViewChild, Input, NgModule } from '@angular/core';
+import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, NgZone, ChangeDetectorRef, ViewChild, Input, Output, NgModule } from '@angular/core';
 import { Chart } from '@antv/g2';
 import { AlainConfigService, InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
 import { CommonModule } from '@angular/common';
@@ -22,6 +22,16 @@ if (false) {
     G2PieData.prototype.y;
     /* Skipping unhandled member: [key: string]: any;*/
 }
+/**
+ * @record
+ */
+function G2PieClickItem() { }
+if (false) {
+    /** @type {?} */
+    G2PieClickItem.prototype.item;
+    /** @type {?} */
+    G2PieClickItem.prototype.ev;
+}
 var G2PieComponent = /** @class */ (function () {
     function G2PieComponent(el, ngZone, cdr, configSrv) {
         this.el = el;
@@ -42,6 +52,7 @@ var G2PieComponent = /** @class */ (function () {
         this.select = true;
         this.data = [];
         this.interaction = 'none';
+        this.clickItem = new EventEmitter();
         configSrv.attachKey(this, 'chart', 'theme');
     }
     Object.defineProperty(G2PieComponent.prototype, "block", {
@@ -97,6 +108,7 @@ var G2PieComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
+        var _this = this;
         var _a = this, node = _a.node, height = _a.height, padding = _a.padding, tooltip = _a.tooltip, inner = _a.inner, hasLegend = _a.hasLegend, interaction = _a.interaction, theme = _a.theme;
         /** @type {?} */
         var chart = (this.chart = new Chart({
@@ -139,6 +151,16 @@ var G2PieComponent = /** @class */ (function () {
             value: (hasLegend ? p : (p * 100).toFixed(2)) + " %",
         }); }))
             .state({});
+        chart.on("interval:click", (/**
+         * @param {?} ev
+         * @return {?}
+         */
+        function (ev) {
+            _this.ngZone.run((/**
+             * @return {?}
+             */
+            function () { var _a; return _this.clickItem.emit({ item: (_a = ev.data) === null || _a === void 0 ? void 0 : _a.data, ev: ev }); }));
+        }));
         this.attachChart();
     };
     /**
@@ -319,7 +341,8 @@ var G2PieComponent = /** @class */ (function () {
         data: [{ type: Input }],
         colors: [{ type: Input }],
         interaction: [{ type: Input }],
-        theme: [{ type: Input }]
+        theme: [{ type: Input }],
+        clickItem: [{ type: Output }]
     };
     __decorate([
         InputNumber(),
@@ -420,6 +443,8 @@ if (false) {
     G2PieComponent.prototype.interaction;
     /** @type {?} */
     G2PieComponent.prototype.theme;
+    /** @type {?} */
+    G2PieComponent.prototype.clickItem;
     /** @type {?} */
     G2PieComponent.prototype.el;
     /**
