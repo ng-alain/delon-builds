@@ -3312,7 +3312,7 @@ var STComponent = /** @class */ (function () {
          * @return {?}
          */
         function (index) { return index; });
-        this.setCog(configSrv.merge('st', ST_DEFULAT_CONFIG));
+        this.setCog((/** @type {?} */ (configSrv.merge('st', ST_DEFULAT_CONFIG))));
         this.delonI18n.change.pipe(takeUntil(this.unsubscribe$)).subscribe((/**
          * @return {?}
          */

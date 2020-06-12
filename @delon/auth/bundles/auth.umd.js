@@ -252,7 +252,7 @@
      * @return {?}
      */
     function mergeConfig(srv) {
-        return srv.merge('auth', AUTH_DEFAULT_CONFIG);
+        return (/** @type {?} */ (srv.merge('auth', AUTH_DEFAULT_CONFIG)));
     }
 
     /**

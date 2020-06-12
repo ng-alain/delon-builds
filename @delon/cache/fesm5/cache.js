@@ -128,12 +128,12 @@ var CacheService = /** @class */ (function () {
         this.notifyBuffer = new Map();
         this.meta = new Set();
         this.freqTick = 3000;
-        this.cog = cogSrv.merge('cache', {
+        this.cog = (/** @type {?} */ (cogSrv.merge('cache', {
             mode: 'promise',
             reName: '',
             prefix: '',
             meta_key: '__cache_meta',
-        });
+        })));
         this.loadMeta();
         this.startExpireNotify();
     }
