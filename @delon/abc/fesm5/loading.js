@@ -68,7 +68,7 @@ var LoadingService = /** @class */ (function () {
         this.compRef = null;
         this.opt = null;
         this.n$ = new Subject();
-        this.cog = configSrv.merge('loading', {
+        this.cog = (/** @type {?} */ (configSrv.merge('loading', {
             type: 'spin',
             text: '加载中...',
             icon: {
@@ -77,7 +77,7 @@ var LoadingService = /** @class */ (function () {
                 spin: true,
             },
             delay: 0,
-        });
+        })));
         this.loading$ = this.n$
             .asObservable()
             .pipe(debounce((/**

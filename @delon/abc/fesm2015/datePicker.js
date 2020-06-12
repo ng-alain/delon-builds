@@ -29,7 +29,7 @@ class RangePickerComponent {
         this.nzOnPanelChange = new EventEmitter();
         this.nzOnOk = new EventEmitter();
         /** @type {?} */
-        const cog = configSrv.merge('dataRange', {
+        const cog = (/** @type {?} */ (configSrv.merge('dataRange', {
             nzFormat: 'yyyy-MM-dd',
             nzAllowClear: true,
             nzAutoFocus: false,
@@ -90,7 +90,7 @@ class RangePickerComponent {
                     },
                 ],
             },
-        });
+        })));
         this.defaultShortcuts = (/** @type {?} */ (Object.assign({}, cog.shortcuts)));
         Object.assign(this, cog);
     }

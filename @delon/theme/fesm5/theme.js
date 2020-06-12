@@ -1259,7 +1259,7 @@ if (false) {
 var REP_MAX = 6;
 var ResponsiveService = /** @class */ (function () {
     function ResponsiveService(cogSrv) {
-        this.cog = cogSrv.merge('themeResponsive', {
+        this.cog = (/** @type {?} */ (cogSrv.merge('themeResponsive', {
             rules: {
                 1: { xs: 24 },
                 2: { xs: 24, sm: 12 },
@@ -1268,7 +1268,7 @@ var ResponsiveService = /** @class */ (function () {
                 5: { xs: 24, sm: 12, md: 8, lg: 6, xl: 4 },
                 6: { xs: 24, sm: 12, md: 8, lg: 6, xl: 4, xxl: 2 },
             },
-        });
+        })));
         if (Object.keys(this.cog.rules)
             .map((/**
          * @param {?} i
@@ -3188,10 +3188,10 @@ var _HttpClient = /** @class */ (function () {
     function _HttpClient(http, cogSrv) {
         this.http = http;
         this._loading = false;
-        this.cog = cogSrv.merge('themeHttp', {
+        this.cog = (/** @type {?} */ (cogSrv.merge('themeHttp', {
             nullValueHandling: 'include',
             dateValueHandling: 'timestamp',
-        });
+        })));
     }
     Object.defineProperty(_HttpClient.prototype, "loading", {
         /** 是否正在加载中 */
@@ -4267,7 +4267,7 @@ var AlainThemeModule = /** @class */ (function () {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-var VERSION = new Version('9.3.2-58776d66');
+var VERSION = new Version('9.3.2-2c2aceb8');
 
 /**
  * @fileoverview added by tsickle

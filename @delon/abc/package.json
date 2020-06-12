@@ -1,6 +1,6 @@
 {
   "name": "@delon/abc",
-  "version": "9.3.2-58776d66",
+  "version": "9.3.2-2c2aceb8",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -24,9 +24,9 @@
     "file-saver": "^2.0.2",
     "ngx-countdown": "^9.0.0",
     "qrious": "^4.0.2",
-    "@delon/theme": "^9.3.2-58776d66",
-    "@delon/util": "^9.3.2-58776d66",
-    "@delon/acl": "^9.3.2-58776d66",
+    "@delon/theme": "^9.3.2-2c2aceb8",
+    "@delon/util": "^9.3.2-2c2aceb8",
+    "@delon/acl": "^9.3.2-2c2aceb8",
     "tslib": "^1.10.0"
   },
   "sideEffects": false,
