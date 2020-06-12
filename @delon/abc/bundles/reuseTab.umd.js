@@ -2364,15 +2364,12 @@
              * @return {?}
              */
             function (res) {
-                var _a;
                 switch (res === null || res === void 0 ? void 0 : res.active) {
                     case 'title':
                         _this.updateTitle(res);
                         return;
                     case 'override':
-                        if (((_a = res === null || res === void 0 ? void 0 : res.list) === null || _a === void 0 ? void 0 : _a.length) === _this.list.length) {
-                            _this.updatePos$.next();
-                        }
+                        _this.updatePos$.next();
                         return;
                 }
                 _this.genList((/** @type {?} */ (res)));
