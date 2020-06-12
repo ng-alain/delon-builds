@@ -310,16 +310,6 @@
         G2TimelineMap.prototype.y5;
         /* Skipping unhandled member: [key: string]: string | undefined;*/
     }
-    /**
-     * @record
-     */
-    function G2TimelineClickItem() { }
-    if (false) {
-        /** @type {?} */
-        G2TimelineClickItem.prototype.item;
-        /** @type {?} */
-        G2TimelineClickItem.prototype.ev;
-    }
     var G2TimelineComponent = /** @class */ (function () {
         // #endregion
         function G2TimelineComponent(ngZone, configSrv) {
@@ -335,7 +325,6 @@
             this.padding = [40, 8, 64, 40];
             this.borderWidth = 2;
             this.slider = true;
-            this.clickItem = new core.EventEmitter();
             configSrv.attachKey(this, 'chart', 'theme');
         }
         /**
@@ -363,7 +352,6 @@
          * @return {?}
          */
         function () {
-            var _this = this;
             var _a = this, node = _a.node, height = _a.height, padding = _a.padding, slider = _a.slider, maxAxis = _a.maxAxis, theme = _a.theme, mask = _a.mask;
             /** @type {?} */
             var chart = (this.chart = new g2.Chart({
@@ -405,18 +393,6 @@
                     function (val) { return format(val, mask); }),
                 });
             }
-            chart.on("plot:click", (/**
-             * @param {?} ev
-             * @return {?}
-             */
-            function (ev) {
-                /** @type {?} */
-                var records = _this.chart.getSnapRecords({ x: ev.x, y: ev.y });
-                _this.ngZone.run((/**
-                 * @return {?}
-                 */
-                function () { return _this.clickItem.emit({ item: records[0]._origin, ev: ev }); }));
-            }));
             this.attachChart();
         };
         /**
@@ -597,8 +573,7 @@
             padding: [{ type: core.Input }],
             borderWidth: [{ type: core.Input }],
             slider: [{ type: core.Input }],
-            theme: [{ type: core.Input }],
-            clickItem: [{ type: core.Output }]
+            theme: [{ type: core.Input }]
         };
         __decorate([
             util.InputNumber(),
@@ -659,8 +634,6 @@
         G2TimelineComponent.prototype.slider;
         /** @type {?} */
         G2TimelineComponent.prototype.theme;
-        /** @type {?} */
-        G2TimelineComponent.prototype.clickItem;
         /**
          * @type {?}
          * @private

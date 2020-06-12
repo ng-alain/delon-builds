@@ -1,5 +1,5 @@
 import { __decorate, __metadata } from 'tslib';
-import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ChangeDetectorRef, NgZone, ViewChild, Input, Output, NgModule } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ViewEncapsulation, ChangeDetectorRef, NgZone, ViewChild, Input, NgModule } from '@angular/core';
 import { Chart } from '@antv/g2';
 import { AlainConfigService, InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
 import { CommonModule } from '@angular/common';
@@ -24,16 +24,6 @@ if (false) {
     G2RadarData.prototype.value;
     /* Skipping unhandled member: [key: string]: any;*/
 }
-/**
- * @record
- */
-function G2RadarClickItem() { }
-if (false) {
-    /** @type {?} */
-    G2RadarClickItem.prototype.item;
-    /** @type {?} */
-    G2RadarClickItem.prototype.ev;
-}
 class G2RadarComponent {
     // #endregion
     /**
@@ -53,7 +43,6 @@ class G2RadarComponent {
         this.tickCount = 4;
         this.data = [];
         this.colors = ['#1890FF', '#FACC14', '#2FC25B', '#8543E0', '#F04864', '#13C2C2', '#fa8c16', '#a0d911'];
-        this.clickItem = new EventEmitter();
         configSrv.attachKey(this, 'chart', 'theme');
     }
     /**
@@ -122,16 +111,6 @@ class G2RadarComponent {
         chart.line().position('label*value');
         chart.point().position('label*value').shape('circle').size(3);
         chart.render();
-        chart.on(`point:click`, (/**
-         * @param {?} ev
-         * @return {?}
-         */
-        (ev) => {
-            this.ngZone.run((/**
-             * @return {?}
-             */
-            () => { var _a; return this.clickItem.emit({ item: (_a = ev.data) === null || _a === void 0 ? void 0 : _a.data, ev }); }));
-        }));
         this.attachChart();
     }
     /**
@@ -269,8 +248,7 @@ G2RadarComponent.propDecorators = {
     tickCount: [{ type: Input }],
     data: [{ type: Input }],
     colors: [{ type: Input }],
-    theme: [{ type: Input }],
-    clickItem: [{ type: Output }]
+    theme: [{ type: Input }]
 };
 __decorate([
     InputNumber(),
@@ -319,8 +297,6 @@ if (false) {
     G2RadarComponent.prototype.colors;
     /** @type {?} */
     G2RadarComponent.prototype.theme;
-    /** @type {?} */
-    G2RadarComponent.prototype.clickItem;
     /**
      * @type {?}
      * @private

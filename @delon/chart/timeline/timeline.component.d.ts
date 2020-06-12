@@ -1,5 +1,5 @@
-import { EventEmitter, NgZone, OnChanges, OnDestroy, OnInit, TemplateRef } from '@angular/core';
-import { Event, Types } from '@antv/g2';
+import { NgZone, OnChanges, OnDestroy, OnInit, TemplateRef } from '@angular/core';
+import { Types } from '@antv/g2';
 import { G2Time } from '@delon/chart/core';
 import { AlainConfigService } from '@delon/util';
 export interface G2TimelineData {
@@ -37,10 +37,6 @@ export interface G2TimelineMap {
     y5?: string;
     [key: string]: string | undefined;
 }
-export interface G2TimelineClickItem {
-    item: G2TimelineData;
-    ev: Event;
-}
 export declare class G2TimelineComponent implements OnInit, OnDestroy, OnChanges {
     private ngZone;
     private node;
@@ -58,7 +54,6 @@ export declare class G2TimelineComponent implements OnInit, OnDestroy, OnChanges
     borderWidth: number;
     slider: boolean;
     theme: string | Types.LooseObject;
-    clickItem: EventEmitter<G2TimelineClickItem>;
     constructor(ngZone: NgZone, configSrv: AlainConfigService);
     ngOnInit(): void;
     private install;

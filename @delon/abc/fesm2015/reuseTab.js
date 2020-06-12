@@ -1690,13 +1690,16 @@ class ReuseTabComponent {
          * @return {?}
          */
         res => {
-            switch (res === null || res === void 0 ? void 0 : res.active) {
-                case 'title':
-                    this.updateTitle(res);
-                    return;
-                case 'override':
-                    this.updatePos$.next();
-                    return;
+            var _a;
+            if (((_a = res === null || res === void 0 ? void 0 : res.list) === null || _a === void 0 ? void 0 : _a.length) === this.list.length) {
+                switch (res === null || res === void 0 ? void 0 : res.active) {
+                    case 'title':
+                        this.updateTitle(res);
+                        return;
+                    case 'override':
+                        this.updatePos$.next();
+                        return;
+                }
             }
             this.genList((/** @type {?} */ (res)));
         }));

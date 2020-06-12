@@ -2364,13 +2364,16 @@
              * @return {?}
              */
             function (res) {
-                switch (res === null || res === void 0 ? void 0 : res.active) {
-                    case 'title':
-                        _this.updateTitle(res);
-                        return;
-                    case 'override':
-                        _this.updatePos$.next();
-                        return;
+                var _a;
+                if (((_a = res === null || res === void 0 ? void 0 : res.list) === null || _a === void 0 ? void 0 : _a.length) === _this.list.length) {
+                    switch (res === null || res === void 0 ? void 0 : res.active) {
+                        case 'title':
+                            _this.updateTitle(res);
+                            return;
+                        case 'override':
+                            _this.updatePos$.next();
+                            return;
+                    }
                 }
                 _this.genList((/** @type {?} */ (res)));
             }));

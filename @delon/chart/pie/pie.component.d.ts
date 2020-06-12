@@ -1,5 +1,5 @@
-import { ChangeDetectorRef, ElementRef, EventEmitter, NgZone, OnChanges, OnDestroy, OnInit, TemplateRef } from '@angular/core';
-import { Event, Types } from '@antv/g2';
+import { ChangeDetectorRef, ElementRef, NgZone, OnChanges, OnDestroy, OnInit, TemplateRef } from '@angular/core';
+import { Types } from '@antv/g2';
 import { G2InteractionType } from '@delon/chart/core';
 import { AlainConfigService } from '@delon/util';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
@@ -7,10 +7,6 @@ export interface G2PieData {
     x: any;
     y: number;
     [key: string]: any;
-}
-export interface G2PieClickItem {
-    item: G2PieData;
-    ev: Event;
 }
 export declare class G2PieComponent implements OnInit, OnDestroy, OnChanges {
     el: ElementRef<HTMLElement>;
@@ -40,7 +36,6 @@ export declare class G2PieComponent implements OnInit, OnDestroy, OnChanges {
     colors: any[];
     interaction: G2InteractionType;
     theme: string | Types.LooseObject;
-    clickItem: EventEmitter<G2PieClickItem>;
     get block(): boolean;
     constructor(el: ElementRef<HTMLElement>, ngZone: NgZone, cdr: ChangeDetectorRef, configSrv: AlainConfigService);
     private fixData;

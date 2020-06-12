@@ -1,5 +1,5 @@
 import { __decorate, __metadata } from 'tslib';
-import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, NgZone, Input, Output, NgModule } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, NgZone, Input, NgModule } from '@angular/core';
 import { Chart } from '@antv/g2';
 import { AlainConfigService, InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
 import { CommonModule } from '@angular/common';
@@ -19,16 +19,6 @@ if (false) {
     /** @type {?} */
     G2MiniAreaData.prototype.y;
     /* Skipping unhandled member: [key: string]: any;*/
-}
-/**
- * @record
- */
-function G2MiniAreaClickItem() { }
-if (false) {
-    /** @type {?} */
-    G2MiniAreaClickItem.prototype.item;
-    /** @type {?} */
-    G2MiniAreaClickItem.prototype.ev;
 }
 class G2MiniAreaComponent {
     // #endregion
@@ -53,7 +43,6 @@ class G2MiniAreaComponent {
         this.data = [];
         this.yTooltipSuffix = '';
         this.tooltipType = 'default';
-        this.clickItem = new EventEmitter();
         configSrv.attachKey(this, 'chart', 'theme');
     }
     /**
@@ -117,18 +106,6 @@ class G2MiniAreaComponent {
         if (line) {
             chart.line().position('x*y').shape('smooth').tooltip(false);
         }
-        chart.on(`plot:click`, (/**
-         * @param {?} ev
-         * @return {?}
-         */
-        (ev) => {
-            /** @type {?} */
-            const records = this.chart.getSnapRecords({ x: ev.x, y: ev.y });
-            this.ngZone.run((/**
-             * @return {?}
-             */
-            () => this.clickItem.emit({ item: records[0]._origin, ev })));
-        }));
         chart.render();
         this.attachChart();
     }
@@ -224,8 +201,7 @@ G2MiniAreaComponent.propDecorators = {
     data: [{ type: Input }],
     yTooltipSuffix: [{ type: Input }],
     tooltipType: [{ type: Input }],
-    theme: [{ type: Input }],
-    clickItem: [{ type: Output }]
+    theme: [{ type: Input }]
 };
 __decorate([
     InputNumber(),
@@ -287,8 +263,6 @@ if (false) {
     G2MiniAreaComponent.prototype.tooltipType;
     /** @type {?} */
     G2MiniAreaComponent.prototype.theme;
-    /** @type {?} */
-    G2MiniAreaComponent.prototype.clickItem;
     /**
      * @type {?}
      * @private
