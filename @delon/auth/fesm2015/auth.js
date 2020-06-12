@@ -688,8 +688,8 @@ class BaseInterceptor {
     intercept(req, next) {
         /** @type {?} */
         const options = mergeConfig(this.injector.get(AlainConfigService));
-        if (options.ignores) {
-            for (const item of (/** @type {?} */ (options.ignores))) {
+        if (Array.isArray(options.ignores)) {
+            for (const item of options.ignores) {
                 if (item.test(req.url))
                     return next.handle(req);
             }

@@ -204,6 +204,7 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     get cdkVirtualScrollViewport(): import("@angular/cdk/scrolling").CdkVirtualScrollViewport;
     resetColumns(options?: STResetColumnsOption): Promise<this>;
     private refreshColumns;
+    private optimizeData;
     ngAfterViewInit(): void;
     ngOnChanges(changes: {
         [P in keyof this]?: SimpleChange;

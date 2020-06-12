@@ -1091,9 +1091,9 @@
             var e_1, _a;
             /** @type {?} */
             var options = mergeConfig(this.injector.get(util.AlainConfigService));
-            if (options.ignores) {
+            if (Array.isArray(options.ignores)) {
                 try {
-                    for (var _b = __values((/** @type {?} */ (options.ignores))), _c = _b.next(); !_c.done; _c = _b.next()) {
+                    for (var _b = __values(options.ignores), _c = _b.next(); !_c.done; _c = _b.next()) {
                         var item = _c.value;
                         if (item.test(req.url))
                             return next.handle(req);

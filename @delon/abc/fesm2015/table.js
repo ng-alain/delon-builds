@@ -3620,7 +3620,7 @@ class STComponent {
     setRow(index, item, options) {
         options = Object.assign({ refreshSchema: false, emitReload: false }, options);
         (/** @type {?} */ (this))._data[index] = deepMergeKey((/** @type {?} */ (this))._data[index], false, item);
-        (/** @type {?} */ (this))._data = (/** @type {?} */ (this)).dataSource.optimizeData({ columns: (/** @type {?} */ (this))._columns, result: (/** @type {?} */ (this))._data, rowClassName: (/** @type {?} */ (this)).rowClassName });
+        (/** @type {?} */ (this)).optimizeData();
         if (options.refreshSchema) {
             (/** @type {?} */ (this)).resetColumns({ emitReload: options.emitReload });
             return (/** @type {?} */ (this));
@@ -4054,6 +4054,13 @@ class STComponent {
         return (/** @type {?} */ (this));
     }
     /**
+     * @private
+     * @return {?}
+     */
+    optimizeData() {
+        this._data = this.dataSource.optimizeData({ columns: this._columns, result: this._data, rowClassName: this.rowClassName });
+    }
+    /**
      * @return {?}
      */
     ngAfterViewInit() {
@@ -4065,7 +4072,7 @@ class STComponent {
      */
     ngOnChanges(changes) {
         if (changes.columns) {
-            this.refreshColumns();
+            this.refreshColumns().optimizeData();
         }
         /** @type {?} */
         const changeData = changes.data;
