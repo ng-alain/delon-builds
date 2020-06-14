@@ -30327,10 +30327,9 @@ body {
 }
 .se__inline .ant-form-item-label,
 .se__inline .se__control {
-  display: inline-block;
+  flex: none;
   width: initial !important;
   text-align: left;
-  vertical-align: top;
 }
 .se__inline > .se__item {
   margin-right: 16px;
