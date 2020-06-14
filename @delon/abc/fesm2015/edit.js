@@ -94,9 +94,9 @@ SEContainerComponent.decorators = [
                 selector: 'se-container, [se-container]',
                 exportAs: 'seContainer',
                 template: `
-    <se-title *ngIf="title">
+    <div se-title *ngIf="title">
       <ng-container *nzStringTemplateOutlet="title">{{ title }}</ng-container>
-    </se-title>
+    </div>
     <ng-content></ng-content>
   `,
                 host: {
@@ -294,7 +294,7 @@ class SEComponent {
         this._labelWidth = null;
         this.required = false;
         this.controlClass = '';
-        this._id = `_se-${nextUniqueId++}`;
+        this._id = `_se-${++nextUniqueId}`;
         this._autoId = true;
         if (parent == null) {
             throw new Error(`[se] must include 'se-container' component`);
@@ -402,7 +402,7 @@ class SEComponent {
         if (this._autoId) {
             /** @type {?} */
             const control = (/** @type {?} */ ((_b = (_a = ((/** @type {?} */ (this.ngControl.valueAccessor)))) === null || _a === void 0 ? void 0 : _a._elementRef) === null || _b === void 0 ? void 0 : _b.nativeElement));
-            if (control) {
+            if (control && !control.id) {
                 control.id = this._id;
             }
         }
