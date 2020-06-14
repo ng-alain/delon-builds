@@ -120,7 +120,7 @@ var SEContainerComponent = /** @class */ (function () {
         { type: Component, args: [{
                     selector: 'se-container, [se-container]',
                     exportAs: 'seContainer',
-                    template: "\n    <div se-title *ngIf=\"title\">\n      <ng-container *nzStringTemplateOutlet=\"title\">{{ title }}</ng-container>\n    </div>\n    <ng-content></ng-content>\n  ",
+                    template: "\n    <se-title *ngIf=\"title\">\n      <ng-container *nzStringTemplateOutlet=\"title\">{{ title }}</ng-container>\n    </se-title>\n    <ng-content></ng-content>\n  ",
                     host: {
                         '[class.ant-row]': "true",
                         '[class.se__container]': "true",
@@ -315,7 +315,7 @@ var SEComponent = /** @class */ (function () {
         this._labelWidth = null;
         this.required = false;
         this.controlClass = '';
-        this._id = "_se-" + ++nextUniqueId;
+        this._id = "_se-" + nextUniqueId++;
         this._autoId = true;
         if (parent == null) {
             throw new Error("[se] must include 'se-container' component");
@@ -460,7 +460,7 @@ var SEComponent = /** @class */ (function () {
         if (this._autoId) {
             /** @type {?} */
             var control = (/** @type {?} */ ((_b = (_a = ((/** @type {?} */ (this.ngControl.valueAccessor)))) === null || _a === void 0 ? void 0 : _a._elementRef) === null || _b === void 0 ? void 0 : _b.nativeElement));
-            if (control && !control.id) {
+            if (control) {
                 control.id = this._id;
             }
         }
