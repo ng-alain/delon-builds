@@ -113,7 +113,7 @@ function addDependenciesToPackageJson(options: ApplicationOptions) {
     );
     // i18n
     if (options.i18n) {
-      addPackageToPackageJson(host, [`@ngx-translate/core@^12.1.2`, `@ngx-translate/http-loader@^4.0.0`]);
+      addPackageToPackageJson(host, [`@ngx-translate/core@^12.1.2`, `@ngx-translate/http-loader@^5.0.0`]);
     }
     return host;
   };

@@ -14,5 +14,5 @@ export declare class UploadWidget extends ControlUIWidget<SFUploadWidgetSchema> 
     private pureValue;
     private _setValue;
     handleRemove: () => boolean;
-    handlePreview: (file: UploadFile) => void;
+    handlePreview: (file: import("ng-zorro-antd/upload/interface").NzUploadFile) => void;
 }

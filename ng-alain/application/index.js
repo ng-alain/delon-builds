@@ -78,7 +78,7 @@ function addDependenciesToPackageJson(options) {
         ], 'devDependencies');
         // i18n
         if (options.i18n) {
-            json_1.addPackageToPackageJson(host, [`@ngx-translate/core@^12.1.2`, `@ngx-translate/http-loader@^4.0.0`]);
+            json_1.addPackageToPackageJson(host, [`@ngx-translate/core@^12.1.2`, `@ngx-translate/http-loader@^5.0.0`]);
         }
         return host;
     };
