@@ -4,7 +4,7 @@ export interface ICache {
     e: number;
 }
 export interface ICacheStore {
-    get(key: string): ICache;
+    get(key: string): ICache | null;
     set(key: string, value: ICache): boolean;
     remove(key: string): void;
 }

@@ -1,3 +1,4 @@
+import { Platform } from '@angular/cdk/platform';
 import { EventEmitter, NgZone, OnChanges, OnDestroy, OnInit, TemplateRef } from '@angular/core';
 import { Event, Types } from '@antv/g2';
 import { G2Time } from '@delon/chart/core';
@@ -43,6 +44,7 @@ export interface G2TimelineClickItem {
 }
 export declare class G2TimelineComponent implements OnInit, OnDestroy, OnChanges {
     private ngZone;
+    private platform;
     private node;
     private chart;
     delay: number;
@@ -59,7 +61,7 @@ export declare class G2TimelineComponent implements OnInit, OnDestroy, OnChanges
     slider: boolean;
     theme: string | Types.LooseObject;
     clickItem: EventEmitter<G2TimelineClickItem>;
-    constructor(ngZone: NgZone, configSrv: AlainConfigService);
+    constructor(ngZone: NgZone, configSrv: AlainConfigService, platform: Platform);
     ngOnInit(): void;
     private install;
     private attachChart;

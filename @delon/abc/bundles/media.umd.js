@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util'), require('rxjs'), require('@angular/common')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/media', ['exports', '@angular/core', '@delon/util', 'rxjs', '@angular/common'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.media = {}), global.ng.core, global.delon.util, global.rxjs, global.ng.common));
-}(this, (function (exports, core, util, rxjs, common) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/platform'), require('@angular/core'), require('@delon/util'), require('rxjs'), require('@angular/common')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/media', ['exports', '@angular/cdk/platform', '@angular/core', '@delon/util', 'rxjs', '@angular/common'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.media = {}), global.ng.cdk.platform, global.ng.core, global.delon.util, global.rxjs, global.ng.common));
+}(this, (function (exports, platform, core, util, rxjs, common) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -336,12 +336,13 @@
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var MediaComponent = /** @class */ (function () {
-        function MediaComponent(el, renderer, srv, ngZone) {
+        function MediaComponent(el, renderer, srv, ngZone, platform) {
             var _this = this;
             this.el = el;
             this.renderer = renderer;
             this.srv = srv;
             this.ngZone = ngZone;
+            this.platform = platform;
             // #region fields
             this.type = 'video';
             this.delay = 0;
@@ -457,6 +458,9 @@
          * @return {?}
          */
         function () {
+            if (!this.platform.isBrowser) {
+                return;
+            }
             this.srv.load();
         };
         /**
@@ -503,7 +507,8 @@
             { type: core.ElementRef },
             { type: core.Renderer2 },
             { type: MediaService },
-            { type: core.NgZone }
+            { type: core.NgZone },
+            { type: platform.Platform }
         ]; };
         MediaComponent.propDecorators = {
             type: [{ type: core.Input }],
@@ -569,6 +574,11 @@
          * @private
          */
         MediaComponent.prototype.ngZone;
+        /**
+         * @type {?}
+         * @private
+         */
+        MediaComponent.prototype.platform;
     }
 
     /**

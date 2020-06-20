@@ -1,12 +1,15 @@
+import { Platform } from '@angular/cdk/platform';
 export declare class ScrollService {
-    private win;
-    private doc;
-    constructor(win: any, doc: any);
+    private _doc;
+    private platform;
+    private _getDocument;
+    private _getWindow;
+    constructor(_doc: any, platform: Platform);
     /**
      * 获取滚动条位置
      * @param element 指定元素，默认 `window`
      */
-    getScrollPosition(element?: Element): [number, number];
+    getScrollPosition(element?: Element | Window): [number, number];
     /**
      * 设置滚动条位置
      * @param element 指定元素

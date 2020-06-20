@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/acl'), require('rxjs'), require('rxjs/operators'), require('@angular/common'), require('@delon/util'), require('@angular/platform-browser'), require('@angular/router'), require('ng-zorro-antd/modal'), require('ng-zorro-antd/drawer'), require('@angular/common/http'), require('date-fns/format'), require('date-fns/formatDistanceToNow'), require('ng-zorro-antd/i18n'), require('@angular/cdk/overlay'), require('@ant-design/icons-angular/icons'), require('ng-zorro-antd/icon')) :
-    typeof define === 'function' && define.amd ? define('@delon/theme', ['exports', '@angular/core', '@delon/acl', 'rxjs', 'rxjs/operators', '@angular/common', '@delon/util', '@angular/platform-browser', '@angular/router', 'ng-zorro-antd/modal', 'ng-zorro-antd/drawer', '@angular/common/http', 'date-fns/format', 'date-fns/formatDistanceToNow', 'ng-zorro-antd/i18n', '@angular/cdk/overlay', '@ant-design/icons-angular/icons', 'ng-zorro-antd/icon'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.theme = {}), global.ng.core, global.delon.acl, global.rxjs, global.rxjs.operators, global.ng.common, global.delon.util, global.ng.platformBrowser, global.ng.router, global['ng-zorro-antd/modal'], global['ng-zorro-antd/drawer'], global.ng.common.http, global.format, global.formatDistanceToNow, global['ng-zorro-antd/i18n'], global.ng.cdk.overlay, global.icons, global['ng-zorro-antd/icon']));
-}(this, (function (exports, core, acl, rxjs, operators, common, util, platformBrowser, router, modal, drawer, http, format, formatDistanceToNow, i18n, overlay, icons, icon) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/acl'), require('rxjs'), require('rxjs/operators'), require('@angular/cdk/platform'), require('@angular/common'), require('@delon/util'), require('@angular/platform-browser'), require('@angular/router'), require('ng-zorro-antd/modal'), require('ng-zorro-antd/drawer'), require('@angular/common/http'), require('date-fns/format'), require('date-fns/formatDistanceToNow'), require('ng-zorro-antd/i18n'), require('@angular/cdk/overlay'), require('@ant-design/icons-angular/icons'), require('ng-zorro-antd/icon')) :
+    typeof define === 'function' && define.amd ? define('@delon/theme', ['exports', '@angular/core', '@delon/acl', 'rxjs', 'rxjs/operators', '@angular/cdk/platform', '@angular/common', '@delon/util', '@angular/platform-browser', '@angular/router', 'ng-zorro-antd/modal', 'ng-zorro-antd/drawer', '@angular/common/http', 'date-fns/format', 'date-fns/formatDistanceToNow', 'ng-zorro-antd/i18n', '@angular/cdk/overlay', '@ant-design/icons-angular/icons', 'ng-zorro-antd/icon'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.theme = {}), global.ng.core, global.delon.acl, global.rxjs, global.rxjs.operators, global.ng.cdk.platform, global.ng.common, global.delon.util, global.ng.platformBrowser, global.ng.router, global['ng-zorro-antd/modal'], global['ng-zorro-antd/drawer'], global.ng.common.http, global.format, global.formatDistanceToNow, global['ng-zorro-antd/i18n'], global.ng.cdk.overlay, global.icons, global['ng-zorro-antd/icon']));
+}(this, (function (exports, core, acl, rxjs, operators, platform, common, util, platformBrowser, router, modal, drawer, http, format, formatDistanceToNow, i18n, overlay, icons, icon) { 'use strict';
 
     format = format && Object.prototype.hasOwnProperty.call(format, 'default') ? format['default'] : format;
     formatDistanceToNow = formatDistanceToNow && Object.prototype.hasOwnProperty.call(formatDistanceToNow, 'default') ? formatDistanceToNow['default'] : formatDistanceToNow;
@@ -240,7 +240,7 @@
      * @return {?}
      */
     function WINDOW_FACTORY() {
-        return window;
+        return typeof window === 'object' && !!window ? window : null;
     }
     /** @type {?} */
     var WINDOW = new core.InjectionToken('Window', {
@@ -1088,10 +1088,34 @@
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var ScrollService = /** @class */ (function () {
-        function ScrollService(win, doc) {
-            this.win = win;
-            this.doc = doc;
+        function ScrollService(_doc, platform) {
+            this._doc = _doc;
+            this.platform = platform;
         }
+        /**
+         * @private
+         * @return {?}
+         */
+        ScrollService.prototype._getDocument = /**
+         * @private
+         * @return {?}
+         */
+        function () {
+            return this._doc || document;
+        };
+        /**
+         * @private
+         * @return {?}
+         */
+        ScrollService.prototype._getWindow = /**
+         * @private
+         * @return {?}
+         */
+        function () {
+            /** @type {?} */
+            var doc = this._getDocument();
+            return doc.defaultView || window;
+        };
         /**
          * 获取滚动条位置
          * @param element 指定元素，默认 `window`
@@ -1107,11 +1131,16 @@
          * @return {?}
          */
         function (element) {
-            if (element && element !== this.win) {
-                return [element.scrollLeft, element.scrollTop];
+            if (!this.platform.isBrowser) {
+                return [0, 0];
+            }
+            /** @type {?} */
+            var win = this._getWindow();
+            if (element && element !== win) {
+                return [((/** @type {?} */ (element))).scrollLeft, ((/** @type {?} */ (element))).scrollTop];
             }
             else {
-                return [this.win.pageXOffset, this.win.pageYOffset];
+                return [win.pageXOffset, win.pageYOffset];
             }
         };
         /**
@@ -1131,7 +1160,10 @@
          * @return {?}
          */
         function (element, position) {
-            (element || this.win).scrollTo(position[0], position[1]);
+            if (!this.platform.isBrowser) {
+                return;
+            }
+            (element || this._getWindow()).scrollTo(position[0], position[1]);
         };
         /**
          * 设置滚动条至指定元素
@@ -1152,11 +1184,14 @@
          */
         function (element, topOffset) {
             if (topOffset === void 0) { topOffset = 0; }
+            if (!this.platform.isBrowser) {
+                return;
+            }
             if (!element)
-                element = this.doc.body;
+                element = this._getDocument().body;
             (/** @type {?} */ (element)).scrollIntoView();
             /** @type {?} */
-            var w = this.win;
+            var w = this._getWindow();
             if (w && w.scrollBy) {
                 w.scrollBy(0, (/** @type {?} */ (element)).getBoundingClientRect().top - topOffset);
                 if (w.pageYOffset < 20) {
@@ -1180,17 +1215,20 @@
          */
         function (topOffset) {
             if (topOffset === void 0) { topOffset = 0; }
-            this.scrollToElement(this.doc.body, topOffset);
+            if (!this.platform.isBrowser) {
+                return;
+            }
+            this.scrollToElement(this._getDocument().body, topOffset);
         };
         ScrollService.decorators = [
             { type: core.Injectable, args: [{ providedIn: 'root' },] }
         ];
         /** @nocollapse */
         ScrollService.ctorParameters = function () { return [
-            { type: undefined, decorators: [{ type: core.Inject, args: [WINDOW,] }] },
-            { type: undefined, decorators: [{ type: core.Inject, args: [common.DOCUMENT,] }] }
+            { type: undefined, decorators: [{ type: core.Inject, args: [common.DOCUMENT,] }] },
+            { type: platform.Platform }
         ]; };
-        /** @nocollapse */ ScrollService.ɵprov = core.ɵɵdefineInjectable({ factory: function ScrollService_Factory() { return new ScrollService(core.ɵɵinject(WINDOW), core.ɵɵinject(common.DOCUMENT)); }, token: ScrollService, providedIn: "root" });
+        /** @nocollapse */ ScrollService.ɵprov = core.ɵɵdefineInjectable({ factory: function ScrollService_Factory() { return new ScrollService(core.ɵɵinject(common.DOCUMENT), core.ɵɵinject(platform.Platform)); }, token: ScrollService, providedIn: "root" });
         return ScrollService;
     }());
     if (false) {
@@ -1198,12 +1236,12 @@
          * @type {?}
          * @private
          */
-        ScrollService.prototype.win;
+        ScrollService.prototype._doc;
         /**
          * @type {?}
          * @private
          */
-        ScrollService.prototype.doc;
+        ScrollService.prototype.platform;
     }
 
     /**

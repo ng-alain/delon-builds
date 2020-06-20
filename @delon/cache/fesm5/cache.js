@@ -1,10 +1,11 @@
 import { __assign } from 'tslib';
 import { HttpClient } from '@angular/common/http';
-import { InjectionToken, Injectable, Inject, ɵɵdefineInjectable, ɵɵinject, NgModule } from '@angular/core';
+import { InjectionToken, inject, Injectable, Inject, ɵɵdefineInjectable, ɵɵinject, NgModule } from '@angular/core';
 import { AlainConfigService } from '@delon/util';
 import addSeconds from 'date-fns/addSeconds';
 import { Observable, of, BehaviorSubject } from 'rxjs';
 import { tap, map } from 'rxjs/operators';
+import { Platform } from '@angular/cdk/platform';
 
 /**
  * @fileoverview added by tsickle
@@ -65,16 +66,14 @@ if (false) {
 /** @type {?} */
 var DC_STORE_STORAGE_TOKEN = new InjectionToken('DC_STORE_STORAGE_TOKEN', {
     providedIn: 'root',
-    factory: DC_STORE_STORAGE_TOKEN_FACTORY,
+    factory: (/**
+     * @return {?}
+     */
+    function () { return new LocalStorageCacheService(inject(Platform)); }),
 });
-/**
- * @return {?}
- */
-function DC_STORE_STORAGE_TOKEN_FACTORY() {
-    return new LocalStorageCacheService();
-}
 var LocalStorageCacheService = /** @class */ (function () {
-    function LocalStorageCacheService() {
+    function LocalStorageCacheService(platform) {
+        this.platform = platform;
     }
     /**
      * @param {?} key
@@ -85,6 +84,9 @@ var LocalStorageCacheService = /** @class */ (function () {
      * @return {?}
      */
     function (key) {
+        if (!this.platform.isBrowser) {
+            return null;
+        }
         return JSON.parse(localStorage.getItem(key) || 'null') || null;
     };
     /**
@@ -98,6 +100,9 @@ var LocalStorageCacheService = /** @class */ (function () {
      * @return {?}
      */
     function (key, value) {
+        if (!this.platform.isBrowser) {
+            return true;
+        }
         localStorage.setItem(key, JSON.stringify(value));
         return true;
     };
@@ -110,10 +115,20 @@ var LocalStorageCacheService = /** @class */ (function () {
      * @return {?}
      */
     function (key) {
+        if (!this.platform.isBrowser) {
+            return;
+        }
         localStorage.removeItem(key);
     };
     return LocalStorageCacheService;
 }());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    LocalStorageCacheService.prototype.platform;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -764,5 +779,5 @@ var DelonCacheModule = /** @class */ (function () {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { CacheService, DelonCacheModule, DC_STORE_STORAGE_TOKEN as ɵa, DC_STORE_STORAGE_TOKEN_FACTORY as ɵb, LocalStorageCacheService as ɵc };
+export { CacheService, DelonCacheModule, DC_STORE_STORAGE_TOKEN as ɵa };
 //# sourceMappingURL=cache.js.map

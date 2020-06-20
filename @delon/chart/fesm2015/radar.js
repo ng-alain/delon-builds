@@ -1,4 +1,5 @@
 import { __decorate, __metadata } from 'tslib';
+import { Platform } from '@angular/cdk/platform';
 import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ChangeDetectorRef, NgZone, ViewChild, Input, Output, NgModule } from '@angular/core';
 import { Chart } from '@antv/g2';
 import { AlainConfigService, InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
@@ -40,10 +41,12 @@ class G2RadarComponent {
      * @param {?} cdr
      * @param {?} ngZone
      * @param {?} configSrv
+     * @param {?} platform
      */
-    constructor(cdr, ngZone, configSrv) {
+    constructor(cdr, ngZone, configSrv, platform) {
         this.cdr = cdr;
         this.ngZone = ngZone;
+        this.platform = platform;
         this.legendData = [];
         // #region fields
         this.delay = 0;
@@ -205,6 +208,9 @@ class G2RadarComponent {
      * @return {?}
      */
     ngOnInit() {
+        if (!this.platform.isBrowser) {
+            return;
+        }
         this.ngZone.runOutsideAngular((/**
          * @return {?}
          */
@@ -257,7 +263,8 @@ G2RadarComponent.decorators = [
 G2RadarComponent.ctorParameters = () => [
     { type: ChangeDetectorRef },
     { type: NgZone },
-    { type: AlainConfigService }
+    { type: AlainConfigService },
+    { type: Platform }
 ];
 G2RadarComponent.propDecorators = {
     node: [{ type: ViewChild, args: ['container', { static: true },] }],
@@ -331,6 +338,11 @@ if (false) {
      * @private
      */
     G2RadarComponent.prototype.ngZone;
+    /**
+     * @type {?}
+     * @private
+     */
+    G2RadarComponent.prototype.platform;
 }
 
 /**

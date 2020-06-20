@@ -1,4 +1,5 @@
 import { __rest, __decorate, __metadata } from 'tslib';
+import { Platform } from '@angular/cdk/platform';
 import { Injectable, Inject, ComponentFactoryResolver, EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ChangeDetectorRef, Optional, Input, Output, ViewChild, ViewContainerRef, Directive, ElementRef, Renderer2, TemplateRef, Injector, HostBinding, NgModule } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ACLService } from '@delon/acl';
@@ -1529,6 +1530,9 @@ class AjvSchemaValidatorFactory extends SchemaValidatorFactory {
      */
     constructor(cogSrv) {
         super();
+        if (!(typeof document === 'object' && !!document)) {
+            return;
+        }
         this.options = mergeConfig(cogSrv);
         this.ajv = new Ajv(Object.assign(Object.assign({}, this.options.ajv), { errorDataPath: 'property', allErrors: true, jsonPointers: true }));
         this.ajv.addFormat('data-url', /^data:([a-z]+\/[a-z0-9-+.]+)?;name=(.*);base64,(.*)$/);
@@ -1721,8 +1725,9 @@ class SFComponent {
      * @param {?} aclSrv
      * @param {?} i18nSrv
      * @param {?} cogSrv
+     * @param {?} platform
      */
-    constructor(formPropertyFactory, terminator, dom, cdr, localeSrv, aclSrv, i18nSrv, cogSrv) {
+    constructor(formPropertyFactory, terminator, dom, cdr, localeSrv, aclSrv, i18nSrv, cogSrv, platform) {
         this.formPropertyFactory = formPropertyFactory;
         this.terminator = terminator;
         this.dom = dom;
@@ -1730,6 +1735,7 @@ class SFComponent {
         this.localeSrv = localeSrv;
         this.aclSrv = aclSrv;
         this.i18nSrv = i18nSrv;
+        this.platform = platform;
         this.unsubscribe$ = new Subject();
         this._renders = new Map();
         this._valid = true;
@@ -2155,6 +2161,9 @@ class SFComponent {
      * @return {?}
      */
     ngOnInit() {
+        if (!this.platform.isBrowser) {
+            return;
+        }
         this._inited = true;
         this.validator();
     }
@@ -2209,6 +2218,9 @@ class SFComponent {
      * @return {THIS}
      */
     validator(options = { emitError: true, onlyRoot: true }) {
+        if (!(/** @type {?} */ (this)).platform.isBrowser) {
+            return (/** @type {?} */ (this));
+        }
         /** @type {?} */
         const fn = (/**
          * @param {?} property
@@ -2266,6 +2278,9 @@ class SFComponent {
      * @return {THIS}
      */
     refreshSchema(newSchema, newUI) {
+        if (!(/** @type {?} */ (this)).platform.isBrowser) {
+            return (/** @type {?} */ (this));
+        }
         if (newSchema)
             (/** @type {?} */ (this)).schema = newSchema;
         if (newUI)
@@ -2318,6 +2333,9 @@ class SFComponent {
      * @return {THIS}
      */
     reset(emit = false) {
+        if (!(/** @type {?} */ (this)).platform.isBrowser) {
+            return (/** @type {?} */ (this));
+        }
         (/** @type {?} */ ((/** @type {?} */ (this)).rootProperty)).resetValue((/** @type {?} */ (this)).formData, false);
         Promise.resolve().then((/**
          * @return {?}
@@ -2387,7 +2405,8 @@ SFComponent.ctorParameters = () => [
     { type: DelonLocaleService },
     { type: ACLService, decorators: [{ type: Optional }] },
     { type: undefined, decorators: [{ type: Optional }, { type: Inject, args: [ALAIN_I18N_TOKEN,] }] },
-    { type: AlainConfigService }
+    { type: AlainConfigService },
+    { type: Platform }
 ];
 SFComponent.propDecorators = {
     layout: [{ type: Input }],
@@ -2610,6 +2629,11 @@ if (false) {
      * @private
      */
     SFComponent.prototype.i18nSrv;
+    /**
+     * @type {?}
+     * @private
+     */
+    SFComponent.prototype.platform;
 }
 
 /**

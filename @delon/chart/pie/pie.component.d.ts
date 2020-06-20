@@ -1,3 +1,4 @@
+import { Platform } from '@angular/cdk/platform';
 import { ChangeDetectorRef, ElementRef, EventEmitter, NgZone, OnChanges, OnDestroy, OnInit, TemplateRef } from '@angular/core';
 import { Event, Types } from '@antv/g2';
 import { G2InteractionType } from '@delon/chart/core';
@@ -13,9 +14,10 @@ export interface G2PieClickItem {
     ev: Event;
 }
 export declare class G2PieComponent implements OnInit, OnDestroy, OnChanges {
-    el: ElementRef<HTMLElement>;
+    private el;
     private ngZone;
     private cdr;
+    private platform;
     private node;
     private chart;
     private isPercent;
@@ -42,7 +44,7 @@ export declare class G2PieComponent implements OnInit, OnDestroy, OnChanges {
     theme: string | Types.LooseObject;
     clickItem: EventEmitter<G2PieClickItem>;
     get block(): boolean;
-    constructor(el: ElementRef<HTMLElement>, ngZone: NgZone, cdr: ChangeDetectorRef, configSrv: AlainConfigService);
+    constructor(el: ElementRef<HTMLElement>, ngZone: NgZone, cdr: ChangeDetectorRef, configSrv: AlainConfigService, platform: Platform);
     private fixData;
     private install;
     private attachChart;
