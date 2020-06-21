@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util'), require('rxjs/operators'), require('@angular/common')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/qr', ['exports', '@angular/core', '@delon/util', 'rxjs/operators', '@angular/common'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.qr = {}), global.ng.core, global.delon.util, global.rxjs.operators, global.ng.common));
-}(this, (function (exports, core, util, operators, common) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/platform'), require('@angular/core'), require('@delon/util'), require('rxjs/operators'), require('@angular/common')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/qr', ['exports', '@angular/cdk/platform', '@angular/core', '@delon/util', 'rxjs/operators', '@angular/common'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.qr = {}), global.ng.cdk.platform, global.ng.core, global.delon.util, global.rxjs.operators, global.ng.common));
+}(this, (function (exports, platform, core, util, operators, common) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -254,9 +254,10 @@
      */
     var QRComponent = /** @class */ (function () {
         // #endregion
-        function QRComponent(cdr, configSrv, lazySrv) {
+        function QRComponent(cdr, configSrv, lazySrv, platform) {
             this.cdr = cdr;
             this.lazySrv = lazySrv;
+            this.platform = platform;
             this.inited = false;
             this.value = '';
             // tslint:disable-next-line:no-output-native
@@ -308,6 +309,9 @@
          */
         function () {
             var _this = this;
+            if (!this.platform.isBrowser) {
+                return;
+            }
             if (((/** @type {?} */ (window))).QRious) {
                 this.initDelay();
                 return;
@@ -407,7 +411,8 @@
         QRComponent.ctorParameters = function () { return [
             { type: core.ChangeDetectorRef },
             { type: util.AlainConfigService },
-            { type: util.LazyService }
+            { type: util.LazyService },
+            { type: platform.Platform }
         ]; };
         QRComponent.propDecorators = {
             background: [{ type: core.Input }],
@@ -496,6 +501,11 @@
          * @private
          */
         QRComponent.prototype.lazySrv;
+        /**
+         * @type {?}
+         * @private
+         */
+        QRComponent.prototype.platform;
     }
 
     /**

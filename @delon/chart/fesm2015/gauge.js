@@ -1,4 +1,5 @@
 import { __decorate, __metadata } from 'tslib';
+import { Platform } from '@angular/cdk/platform';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, NgZone, Input, NgModule } from '@angular/core';
 import { registerShape, Chart } from '@antv/g2';
 import { AlainConfigService, InputNumber, DelonUtilModule } from '@delon/util';
@@ -15,10 +16,12 @@ class G2GaugeComponent {
      * @param {?} el
      * @param {?} ngZone
      * @param {?} configSrv
+     * @param {?} platform
      */
-    constructor(el, ngZone, configSrv) {
+    constructor(el, ngZone, configSrv, platform) {
         this.el = el;
         this.ngZone = ngZone;
+        this.platform = platform;
         // #region fields
         this.delay = 0;
         this.color = '#2f9cff';
@@ -163,6 +166,9 @@ class G2GaugeComponent {
      * @return {?}
      */
     ngOnInit() {
+        if (!this.platform.isBrowser) {
+            return;
+        }
         this.ngZone.runOutsideAngular((/**
          * @return {?}
          */
@@ -209,7 +215,8 @@ G2GaugeComponent.decorators = [
 G2GaugeComponent.ctorParameters = () => [
     { type: ElementRef },
     { type: NgZone },
-    { type: AlainConfigService }
+    { type: AlainConfigService },
+    { type: Platform }
 ];
 G2GaugeComponent.propDecorators = {
     delay: [{ type: Input }],
@@ -268,6 +275,11 @@ if (false) {
      * @private
      */
     G2GaugeComponent.prototype.ngZone;
+    /**
+     * @type {?}
+     * @private
+     */
+    G2GaugeComponent.prototype.platform;
 }
 
 /**

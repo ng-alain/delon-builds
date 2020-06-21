@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('@angular/common'), require('ng-zorro-antd/core/outlet')) :
-    typeof define === 'function' && define.amd ? define('@delon/chart/water-wave', ['exports', '@angular/core', '@delon/util', 'rxjs', 'rxjs/operators', '@angular/common', 'ng-zorro-antd/core/outlet'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart['water-wave'] = {}), global.ng.core, global.delon.util, global.rxjs, global.rxjs.operators, global.ng.common, global['ng-zorro-antd/core/outlet']));
-}(this, (function (exports, core, util, rxjs, operators, common, outlet) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/platform'), require('@angular/core'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('@angular/common'), require('ng-zorro-antd/core/outlet')) :
+    typeof define === 'function' && define.amd ? define('@delon/chart/water-wave', ['exports', '@angular/cdk/platform', '@angular/core', '@delon/util', 'rxjs', 'rxjs/operators', '@angular/common', 'ng-zorro-antd/core/outlet'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart['water-wave'] = {}), global.ng.cdk.platform, global.ng.core, global.delon.util, global.rxjs, global.rxjs.operators, global.ng.common, global['ng-zorro-antd/core/outlet']));
+}(this, (function (exports, platform, core, util, rxjs, operators, common, outlet) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -235,11 +235,12 @@
      */
     var G2WaterWaveComponent = /** @class */ (function () {
         // #endregion
-        function G2WaterWaveComponent(el, renderer, ngZone, cdr) {
+        function G2WaterWaveComponent(el, renderer, ngZone, cdr, platform) {
             this.el = el;
             this.renderer = renderer;
             this.ngZone = ngZone;
             this.cdr = cdr;
+            this.platform = platform;
             this.resize$ = null;
             // #region fields
             this.animate = true;
@@ -483,6 +484,9 @@
          */
         function () {
             var _this = this;
+            if (!this.platform.isBrowser) {
+                return;
+            }
             this.installResizeEvent();
             this.ngZone.runOutsideAngular((/**
              * @return {?}
@@ -516,7 +520,9 @@
             if (this.timer) {
                 cancelAnimationFrame(this.timer);
             }
-            (/** @type {?} */ (this.resize$)).unsubscribe();
+            if (this.resize$) {
+                this.resize$.unsubscribe();
+            }
         };
         G2WaterWaveComponent.decorators = [
             { type: core.Component, args: [{
@@ -534,7 +540,8 @@
             { type: core.ElementRef },
             { type: core.Renderer2 },
             { type: core.NgZone },
-            { type: core.ChangeDetectorRef }
+            { type: core.ChangeDetectorRef },
+            { type: platform.Platform }
         ]; };
         G2WaterWaveComponent.propDecorators = {
             node: [{ type: core.ViewChild, args: ['container', { static: true },] }],
@@ -611,6 +618,11 @@
          * @private
          */
         G2WaterWaveComponent.prototype.cdr;
+        /**
+         * @type {?}
+         * @private
+         */
+        G2WaterWaveComponent.prototype.platform;
     }
 
     /**

@@ -1,4 +1,5 @@
 import { __decorate, __metadata } from 'tslib';
+import { Platform } from '@angular/cdk/platform';
 import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, Input, Output, NgModule } from '@angular/core';
 import { AlainConfigService, InputNumber, DelonUtilModule } from '@delon/util';
 import { fromEvent } from 'rxjs';
@@ -15,9 +16,11 @@ class G2CustomComponent {
     /**
      * @param {?} el
      * @param {?} configSrv
+     * @param {?} platform
      */
-    constructor(el, configSrv) {
+    constructor(el, configSrv, platform) {
         this.el = el;
+        this.platform = platform;
         this.resize$ = null;
         // #region fields
         this.delay = 0;
@@ -55,6 +58,9 @@ class G2CustomComponent {
      * @return {?}
      */
     ngAfterViewInit() {
+        if (!this.platform.isBrowser) {
+            return;
+        }
         setTimeout((/**
          * @return {?}
          */
@@ -85,7 +91,8 @@ G2CustomComponent.decorators = [
 /** @nocollapse */
 G2CustomComponent.ctorParameters = () => [
     { type: ElementRef },
-    { type: AlainConfigService }
+    { type: AlainConfigService },
+    { type: Platform }
 ];
 G2CustomComponent.propDecorators = {
     delay: [{ type: Input }],
@@ -133,6 +140,11 @@ if (false) {
      * @private
      */
     G2CustomComponent.prototype.el;
+    /**
+     * @type {?}
+     * @private
+     */
+    G2CustomComponent.prototype.platform;
 }
 
 /**

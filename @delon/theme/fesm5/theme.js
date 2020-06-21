@@ -3,6 +3,7 @@ import { __values, __assign, __spread, __extends } from 'tslib';
 import { ACLService } from '@delon/acl';
 import { BehaviorSubject, Subject, Observable, throwError, of } from 'rxjs';
 import { filter, share, tap, catchError, switchMap } from 'rxjs/operators';
+import { Platform } from '@angular/cdk/platform';
 import { DOCUMENT, CurrencyPipe, CommonModule } from '@angular/common';
 import { AlainConfigService, deepMerge, toDate } from '@delon/util';
 import { Title, DomSanitizer } from '@angular/platform-browser';
@@ -26,7 +27,7 @@ import { NzIconService } from 'ng-zorro-antd/icon';
  * @return {?}
  */
 function WINDOW_FACTORY() {
-    return window;
+    return typeof window === 'object' && !!window ? window : null;
 }
 /** @type {?} */
 var WINDOW = new InjectionToken('Window', {
@@ -874,10 +875,34 @@ if (false) {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var ScrollService = /** @class */ (function () {
-    function ScrollService(win, doc) {
-        this.win = win;
-        this.doc = doc;
+    function ScrollService(_doc, platform) {
+        this._doc = _doc;
+        this.platform = platform;
     }
+    /**
+     * @private
+     * @return {?}
+     */
+    ScrollService.prototype._getDoc = /**
+     * @private
+     * @return {?}
+     */
+    function () {
+        return this._doc || document;
+    };
+    /**
+     * @private
+     * @return {?}
+     */
+    ScrollService.prototype._getWin = /**
+     * @private
+     * @return {?}
+     */
+    function () {
+        /** @type {?} */
+        var doc = this._getDoc();
+        return doc.defaultView || window;
+    };
     /**
      * 获取滚动条位置
      * @param element 指定元素，默认 `window`
@@ -893,11 +918,16 @@ var ScrollService = /** @class */ (function () {
      * @return {?}
      */
     function (element) {
-        if (element && element !== this.win) {
-            return [element.scrollLeft, element.scrollTop];
+        if (!this.platform.isBrowser) {
+            return [0, 0];
+        }
+        /** @type {?} */
+        var win = this._getWin();
+        if (element && element !== win) {
+            return [((/** @type {?} */ (element))).scrollLeft, ((/** @type {?} */ (element))).scrollTop];
         }
         else {
-            return [this.win.pageXOffset, this.win.pageYOffset];
+            return [win.pageXOffset, win.pageYOffset];
         }
     };
     /**
@@ -917,7 +947,10 @@ var ScrollService = /** @class */ (function () {
      * @return {?}
      */
     function (element, position) {
-        (element || this.win).scrollTo(position[0], position[1]);
+        if (!this.platform.isBrowser) {
+            return;
+        }
+        (element || this._getWin()).scrollTo(position[0], position[1]);
     };
     /**
      * 设置滚动条至指定元素
@@ -938,15 +971,19 @@ var ScrollService = /** @class */ (function () {
      */
     function (element, topOffset) {
         if (topOffset === void 0) { topOffset = 0; }
-        if (!element)
-            element = this.doc.body;
-        (/** @type {?} */ (element)).scrollIntoView();
+        if (!this.platform.isBrowser) {
+            return;
+        }
+        if (!element) {
+            element = this._getDoc().body;
+        }
+        element.scrollIntoView();
         /** @type {?} */
-        var w = this.win;
-        if (w && w.scrollBy) {
-            w.scrollBy(0, (/** @type {?} */ (element)).getBoundingClientRect().top - topOffset);
-            if (w.pageYOffset < 20) {
-                w.scrollBy(0, -w.pageYOffset);
+        var win = this._getWin();
+        if (win && win.scrollBy) {
+            win.scrollBy(0, (/** @type {?} */ (element)).getBoundingClientRect().top - topOffset);
+            if (win.pageYOffset < 20) {
+                win.scrollBy(0, -win.pageYOffset);
             }
         }
     };
@@ -966,17 +1003,20 @@ var ScrollService = /** @class */ (function () {
      */
     function (topOffset) {
         if (topOffset === void 0) { topOffset = 0; }
-        this.scrollToElement(this.doc.body, topOffset);
+        if (!this.platform.isBrowser) {
+            return;
+        }
+        this.scrollToElement(this._getDoc().body, topOffset);
     };
     ScrollService.decorators = [
         { type: Injectable, args: [{ providedIn: 'root' },] }
     ];
     /** @nocollapse */
     ScrollService.ctorParameters = function () { return [
-        { type: undefined, decorators: [{ type: Inject, args: [WINDOW,] }] },
-        { type: undefined, decorators: [{ type: Inject, args: [DOCUMENT,] }] }
+        { type: undefined, decorators: [{ type: Inject, args: [DOCUMENT,] }] },
+        { type: Platform }
     ]; };
-    /** @nocollapse */ ScrollService.ɵprov = ɵɵdefineInjectable({ factory: function ScrollService_Factory() { return new ScrollService(ɵɵinject(WINDOW), ɵɵinject(DOCUMENT)); }, token: ScrollService, providedIn: "root" });
+    /** @nocollapse */ ScrollService.ɵprov = ɵɵdefineInjectable({ factory: function ScrollService_Factory() { return new ScrollService(ɵɵinject(DOCUMENT), ɵɵinject(Platform)); }, token: ScrollService, providedIn: "root" });
     return ScrollService;
 }());
 if (false) {
@@ -984,12 +1024,12 @@ if (false) {
      * @type {?}
      * @private
      */
-    ScrollService.prototype.win;
+    ScrollService.prototype._doc;
     /**
      * @type {?}
      * @private
      */
-    ScrollService.prototype.doc;
+    ScrollService.prototype.platform;
 }
 
 /**
@@ -4267,7 +4307,7 @@ var AlainThemeModule = /** @class */ (function () {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-var VERSION = new Version('9.4.0-bf0aa887');
+var VERSION = new Version('9.4.0-724c3f7a');
 
 /**
  * @fileoverview added by tsickle
