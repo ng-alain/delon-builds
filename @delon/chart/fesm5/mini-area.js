@@ -1,5 +1,4 @@
 import { __decorate, __metadata, __spread } from 'tslib';
-import { Platform } from '@angular/cdk/platform';
 import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, NgZone, Input, Output, NgModule } from '@angular/core';
 import { Chart } from '@antv/g2';
 import { AlainConfigService, InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
@@ -33,10 +32,9 @@ if (false) {
 }
 var G2MiniAreaComponent = /** @class */ (function () {
     // #endregion
-    function G2MiniAreaComponent(el, ngZone, configSrv, platform) {
+    function G2MiniAreaComponent(el, ngZone, configSrv) {
         this.el = el;
         this.ngZone = ngZone;
-        this.platform = platform;
         // #region fields
         this.delay = 0;
         this.color = 'rgba(24, 144, 255, 0.2)';
@@ -171,9 +169,6 @@ var G2MiniAreaComponent = /** @class */ (function () {
      */
     function () {
         var _this = this;
-        if (!this.platform.isBrowser) {
-            return;
-        }
         this.ngZone.runOutsideAngular((/**
          * @return {?}
          */
@@ -227,8 +222,7 @@ var G2MiniAreaComponent = /** @class */ (function () {
     G2MiniAreaComponent.ctorParameters = function () { return [
         { type: ElementRef },
         { type: NgZone },
-        { type: AlainConfigService },
-        { type: Platform }
+        { type: AlainConfigService }
     ]; };
     G2MiniAreaComponent.propDecorators = {
         delay: [{ type: Input }],
@@ -322,11 +316,6 @@ if (false) {
      * @private
      */
     G2MiniAreaComponent.prototype.ngZone;
-    /**
-     * @type {?}
-     * @private
-     */
-    G2MiniAreaComponent.prototype.platform;
 }
 
 /**

@@ -1,4 +1,3 @@
-import { Platform } from '@angular/cdk/platform';
 import { ChangeDetectorRef, EventEmitter, OnChanges, OnDestroy, OnInit, SimpleChange, SimpleChanges } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ACLService } from '@delon/acl';
@@ -21,7 +20,6 @@ export declare class SFComponent implements OnInit, OnChanges, OnDestroy {
     private localeSrv;
     private aclSrv;
     private i18nSrv;
-    private platform;
     private unsubscribe$;
     private _renders;
     private _item;
@@ -105,7 +103,7 @@ export declare class SFComponent implements OnInit, OnChanges, OnDestroy {
      */
     setValue(path: string, value: any): this;
     onSubmit(e: Event): void;
-    constructor(formPropertyFactory: FormPropertyFactory, terminator: TerminatorService, dom: DomSanitizer, cdr: ChangeDetectorRef, localeSrv: DelonLocaleService, aclSrv: ACLService, i18nSrv: AlainI18NService, cogSrv: AlainConfigService, platform: Platform);
+    constructor(formPropertyFactory: FormPropertyFactory, terminator: TerminatorService, dom: DomSanitizer, cdr: ChangeDetectorRef, localeSrv: DelonLocaleService, aclSrv: ACLService, i18nSrv: AlainI18NService, cogSrv: AlainConfigService);
     protected fanyi(key: string): string;
     private inheritUI;
     private coverProperty;

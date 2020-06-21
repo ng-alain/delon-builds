@@ -1,4 +1,3 @@
-import { Platform } from '@angular/cdk/platform';
 import { AfterViewInit, ChangeDetectorRef, OnChanges, OnDestroy, OnInit, Renderer2, TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { ReuseTabService } from '@delon/abc/reuse-tab';
@@ -20,7 +19,6 @@ export declare class PageHeaderComponent implements OnInit, OnChanges, AfterView
     private unsubscribe$;
     private conTpl;
     private affix;
-    isBrowser: boolean;
     private get menus();
     _titleVal: string;
     paths: PageHeaderPath[];
@@ -44,7 +42,7 @@ export declare class PageHeaderComponent implements OnInit, OnChanges, AfterView
     content: TemplateRef<void>;
     extra: TemplateRef<void>;
     tab: TemplateRef<void>;
-    constructor(settings: SettingsService, renderer: Renderer2, router: Router, menuSrv: MenuService, i18nSrv: AlainI18NService, titleSrv: TitleService, reuseSrv: ReuseTabService, cdr: ChangeDetectorRef, configSrv: AlainConfigService, platform: Platform);
+    constructor(settings: SettingsService, renderer: Renderer2, router: Router, menuSrv: MenuService, i18nSrv: AlainI18NService, titleSrv: TitleService, reuseSrv: ReuseTabService, cdr: ChangeDetectorRef, configSrv: AlainConfigService);
     refresh(): void;
     private genBreadcrumb;
     private setTitle;

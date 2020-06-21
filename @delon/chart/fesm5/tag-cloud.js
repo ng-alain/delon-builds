@@ -1,5 +1,4 @@
 import { __assign, __decorate, __metadata, __spread } from 'tslib';
-import { Platform } from '@angular/cdk/platform';
 import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, NgZone, Input, Output, NgModule } from '@angular/core';
 import DataSet from '@antv/data-set';
 import { registerShape, Util, Chart } from '@antv/g2';
@@ -46,10 +45,9 @@ if (false) {
 }
 var G2TagCloudComponent = /** @class */ (function () {
     // #endregion
-    function G2TagCloudComponent(el, ngZone, configSrv, platform) {
+    function G2TagCloudComponent(el, ngZone, configSrv) {
         this.el = el;
         this.ngZone = ngZone;
-        this.platform = platform;
         // #region fields
         this.delay = 100;
         this.width = 0;
@@ -273,9 +271,6 @@ var G2TagCloudComponent = /** @class */ (function () {
      */
     function () {
         var _this = this;
-        if (!this.platform.isBrowser) {
-            return;
-        }
         this.initTagCloud();
         this.installResizeEvent();
         this.ngZone.runOutsideAngular((/**
@@ -303,9 +298,7 @@ var G2TagCloudComponent = /** @class */ (function () {
      */
     function () {
         var _this = this;
-        if (this.resize$) {
-            this.resize$.unsubscribe();
-        }
+        this.resize$.unsubscribe();
         if (this.chart) {
             this.ngZone.runOutsideAngular((/**
              * @return {?}
@@ -327,8 +320,7 @@ var G2TagCloudComponent = /** @class */ (function () {
     G2TagCloudComponent.ctorParameters = function () { return [
         { type: ElementRef },
         { type: NgZone },
-        { type: AlainConfigService },
-        { type: Platform }
+        { type: AlainConfigService }
     ]; };
     G2TagCloudComponent.propDecorators = {
         delay: [{ type: Input }],
@@ -388,11 +380,6 @@ if (false) {
      * @private
      */
     G2TagCloudComponent.prototype.ngZone;
-    /**
-     * @type {?}
-     * @private
-     */
-    G2TagCloudComponent.prototype.platform;
 }
 
 /**

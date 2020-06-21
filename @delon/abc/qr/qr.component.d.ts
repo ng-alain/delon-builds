@@ -1,10 +1,8 @@
-import { Platform } from '@angular/cdk/platform';
 import { AfterViewInit, ChangeDetectorRef, EventEmitter, OnChanges, OnDestroy } from '@angular/core';
 import { AlainConfigService, LazyService } from '@delon/util';
 export declare class QRComponent implements OnChanges, AfterViewInit, OnDestroy {
     private cdr;
     private lazySrv;
-    private platform;
     private lazy$;
     private qr;
     private cog;
@@ -22,7 +20,7 @@ export declare class QRComponent implements OnChanges, AfterViewInit, OnDestroy 
     value: string;
     delay: number;
     readonly change: EventEmitter<string>;
-    constructor(cdr: ChangeDetectorRef, configSrv: AlainConfigService, lazySrv: LazyService, platform: Platform);
+    constructor(cdr: ChangeDetectorRef, configSrv: AlainConfigService, lazySrv: LazyService);
     private init;
     private initDelay;
     ngAfterViewInit(): void;

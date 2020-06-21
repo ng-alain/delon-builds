@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/platform'), require('@angular/core'), require('@antv/data-set'), require('@antv/g2'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('@angular/common')) :
-    typeof define === 'function' && define.amd ? define('@delon/chart/tag-cloud', ['exports', '@angular/cdk/platform', '@angular/core', '@antv/data-set', '@antv/g2', '@delon/util', 'rxjs', 'rxjs/operators', '@angular/common'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart['tag-cloud'] = {}), global.ng.cdk.platform, global.ng.core, global.DataSet, global.g2, global.delon.util, global.rxjs, global.rxjs.operators, global.ng.common));
-}(this, (function (exports, platform, core, DataSet, g2, util, rxjs, operators, common) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@antv/data-set'), require('@antv/g2'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('@angular/common')) :
+    typeof define === 'function' && define.amd ? define('@delon/chart/tag-cloud', ['exports', '@angular/core', '@antv/data-set', '@antv/g2', '@delon/util', 'rxjs', 'rxjs/operators', '@angular/common'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart['tag-cloud'] = {}), global.ng.core, global.DataSet, global.g2, global.delon.util, global.rxjs, global.rxjs.operators, global.ng.common));
+}(this, (function (exports, core, DataSet, g2, util, rxjs, operators, common) { 'use strict';
 
     DataSet = DataSet && Object.prototype.hasOwnProperty.call(DataSet, 'default') ? DataSet['default'] : DataSet;
 
@@ -268,10 +268,9 @@
     }
     var G2TagCloudComponent = /** @class */ (function () {
         // #endregion
-        function G2TagCloudComponent(el, ngZone, configSrv, platform) {
+        function G2TagCloudComponent(el, ngZone, configSrv) {
             this.el = el;
             this.ngZone = ngZone;
-            this.platform = platform;
             // #region fields
             this.delay = 100;
             this.width = 0;
@@ -495,9 +494,6 @@
          */
         function () {
             var _this = this;
-            if (!this.platform.isBrowser) {
-                return;
-            }
             this.initTagCloud();
             this.installResizeEvent();
             this.ngZone.runOutsideAngular((/**
@@ -525,9 +521,7 @@
          */
         function () {
             var _this = this;
-            if (this.resize$) {
-                this.resize$.unsubscribe();
-            }
+            this.resize$.unsubscribe();
             if (this.chart) {
                 this.ngZone.runOutsideAngular((/**
                  * @return {?}
@@ -549,8 +543,7 @@
         G2TagCloudComponent.ctorParameters = function () { return [
             { type: core.ElementRef },
             { type: core.NgZone },
-            { type: util.AlainConfigService },
-            { type: platform.Platform }
+            { type: util.AlainConfigService }
         ]; };
         G2TagCloudComponent.propDecorators = {
             delay: [{ type: core.Input }],
@@ -610,11 +603,6 @@
          * @private
          */
         G2TagCloudComponent.prototype.ngZone;
-        /**
-         * @type {?}
-         * @private
-         */
-        G2TagCloudComponent.prototype.platform;
     }
 
     /**

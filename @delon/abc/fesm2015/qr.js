@@ -1,5 +1,4 @@
 import { __decorate, __metadata } from 'tslib';
-import { Platform } from '@angular/cdk/platform';
 import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ChangeDetectorRef, Input, Output, NgModule } from '@angular/core';
 import { AlainConfigService, LazyService, InputNumber, DelonUtilModule } from '@delon/util';
 import { filter } from 'rxjs/operators';
@@ -35,12 +34,10 @@ class QRComponent {
      * @param {?} cdr
      * @param {?} configSrv
      * @param {?} lazySrv
-     * @param {?} platform
      */
-    constructor(cdr, configSrv, lazySrv, platform) {
+    constructor(cdr, configSrv, lazySrv) {
         this.cdr = cdr;
         this.lazySrv = lazySrv;
-        this.platform = platform;
         this.inited = false;
         this.value = '';
         // tslint:disable-next-line:no-output-native
@@ -79,9 +76,6 @@ class QRComponent {
      * @return {?}
      */
     ngAfterViewInit() {
-        if (!this.platform.isBrowser) {
-            return;
-        }
         if (((/** @type {?} */ (window))).QRious) {
             this.initDelay();
             return;
@@ -171,8 +165,7 @@ QRComponent.decorators = [
 QRComponent.ctorParameters = () => [
     { type: ChangeDetectorRef },
     { type: AlainConfigService },
-    { type: LazyService },
-    { type: Platform }
+    { type: LazyService }
 ];
 QRComponent.propDecorators = {
     background: [{ type: Input }],
@@ -259,11 +252,6 @@ if (false) {
      * @private
      */
     QRComponent.prototype.lazySrv;
-    /**
-     * @type {?}
-     * @private
-     */
-    QRComponent.prototype.platform;
 }
 
 /**

@@ -1,4 +1,3 @@
-import { Platform } from '@angular/cdk/platform';
 import { ElementRef, EventEmitter, NgZone, OnChanges, OnDestroy, OnInit } from '@angular/core';
 import { Event, Types } from '@antv/g2';
 import { AlainConfigService } from '@delon/util';
@@ -22,7 +21,6 @@ export interface G2TagCloudClickItem {
 export declare class G2TagCloudComponent implements OnDestroy, OnChanges, OnInit {
     private el;
     private ngZone;
-    private platform;
     private resize$;
     private chart;
     delay: number;
@@ -32,7 +30,7 @@ export declare class G2TagCloudComponent implements OnDestroy, OnChanges, OnInit
     data: G2TagCloudData[];
     theme: string | Types.LooseObject;
     clickItem: EventEmitter<G2TagCloudClickItem>;
-    constructor(el: ElementRef<HTMLDivElement>, ngZone: NgZone, configSrv: AlainConfigService, platform: Platform);
+    constructor(el: ElementRef<HTMLDivElement>, ngZone: NgZone, configSrv: AlainConfigService);
     private initTagCloud;
     private install;
     private attachChart;

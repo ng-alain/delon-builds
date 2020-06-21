@@ -1,5 +1,4 @@
 import { __decorate, __metadata } from 'tslib';
-import { Platform } from '@angular/cdk/platform';
 import { Injectable, ɵɵdefineInjectable, ɵɵinject, EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, Renderer2, NgZone, Input, Output, NgModule } from '@angular/core';
 import { AlainConfigService, LazyService, InputNumber, DelonUtilModule } from '@delon/util';
 import { Subject } from 'rxjs';
@@ -108,14 +107,12 @@ class MediaComponent {
      * @param {?} renderer
      * @param {?} srv
      * @param {?} ngZone
-     * @param {?} platform
      */
-    constructor(el, renderer, srv, ngZone, platform) {
+    constructor(el, renderer, srv, ngZone) {
         this.el = el;
         this.renderer = renderer;
         this.srv = srv;
         this.ngZone = ngZone;
-        this.platform = platform;
         // #region fields
         this.type = 'video';
         this.delay = 0;
@@ -200,9 +197,6 @@ class MediaComponent {
      * @return {?}
      */
     ngAfterViewInit() {
-        if (!this.platform.isBrowser) {
-            return;
-        }
         this.srv.load();
     }
     /**
@@ -243,8 +237,7 @@ MediaComponent.ctorParameters = () => [
     { type: ElementRef },
     { type: Renderer2 },
     { type: MediaService },
-    { type: NgZone },
-    { type: Platform }
+    { type: NgZone }
 ];
 MediaComponent.propDecorators = {
     type: [{ type: Input }],
@@ -308,11 +301,6 @@ if (false) {
      * @private
      */
     MediaComponent.prototype.ngZone;
-    /**
-     * @type {?}
-     * @private
-     */
-    MediaComponent.prototype.platform;
 }
 
 /**

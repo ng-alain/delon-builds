@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/platform'), require('@angular/core'), require('@antv/g2'), require('@delon/util'), require('@angular/common'), require('ng-zorro-antd/core/outlet'), require('ng-zorro-antd/divider')) :
-    typeof define === 'function' && define.amd ? define('@delon/chart/pie', ['exports', '@angular/cdk/platform', '@angular/core', '@antv/g2', '@delon/util', '@angular/common', 'ng-zorro-antd/core/outlet', 'ng-zorro-antd/divider'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.pie = {}), global.ng.cdk.platform, global.ng.core, global.g2, global.delon.util, global.ng.common, global['ng-zorro-antd/core/outlet'], global['ng-zorro-antd/divider']));
-}(this, (function (exports, platform, core, g2, util, common, outlet, divider) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@antv/g2'), require('@delon/util'), require('@angular/common'), require('ng-zorro-antd/core/outlet'), require('ng-zorro-antd/divider')) :
+    typeof define === 'function' && define.amd ? define('@delon/chart/pie', ['exports', '@angular/core', '@antv/g2', '@delon/util', '@angular/common', 'ng-zorro-antd/core/outlet', 'ng-zorro-antd/divider'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.pie = {}), global.ng.core, global.g2, global.delon.util, global.ng.common, global['ng-zorro-antd/core/outlet'], global['ng-zorro-antd/divider']));
+}(this, (function (exports, core, g2, util, common, outlet, divider) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -255,11 +255,10 @@
         G2PieClickItem.prototype.ev;
     }
     var G2PieComponent = /** @class */ (function () {
-        function G2PieComponent(el, ngZone, cdr, configSrv, platform) {
+        function G2PieComponent(el, ngZone, cdr, configSrv) {
             this.el = el;
             this.ngZone = ngZone;
             this.cdr = cdr;
-            this.platform = platform;
             this.legendData = [];
             // #region fields
             this.delay = 0;
@@ -484,9 +483,6 @@
          */
         function () {
             var _this = this;
-            if (!this.platform.isBrowser) {
-                return;
-            }
             this.ngZone.runOutsideAngular((/**
              * @return {?}
              */
@@ -545,8 +541,7 @@
             { type: core.ElementRef },
             { type: core.NgZone },
             { type: core.ChangeDetectorRef },
-            { type: util.AlainConfigService },
-            { type: platform.Platform }
+            { type: util.AlainConfigService }
         ]; };
         G2PieComponent.propDecorators = {
             node: [{ type: core.ViewChild, args: ['container', { static: true },] }],
@@ -672,10 +667,7 @@
         G2PieComponent.prototype.theme;
         /** @type {?} */
         G2PieComponent.prototype.clickItem;
-        /**
-         * @type {?}
-         * @private
-         */
+        /** @type {?} */
         G2PieComponent.prototype.el;
         /**
          * @type {?}
@@ -687,11 +679,6 @@
          * @private
          */
         G2PieComponent.prototype.cdr;
-        /**
-         * @type {?}
-         * @private
-         */
-        G2PieComponent.prototype.platform;
     }
 
     /**

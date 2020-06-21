@@ -2,7 +2,6 @@ import { InjectionToken, Injectable, ɵɵdefineInjectable, Optional, Inject, ɵ�
 import { ACLService } from '@delon/acl';
 import { BehaviorSubject, Subject, Observable, throwError, of } from 'rxjs';
 import { filter, share, tap, catchError, switchMap } from 'rxjs/operators';
-import { Platform } from '@angular/cdk/platform';
 import { DOCUMENT, CurrencyPipe, CommonModule } from '@angular/common';
 import { AlainConfigService, deepMerge, toDate } from '@delon/util';
 import { Title, DomSanitizer } from '@angular/platform-browser';
@@ -26,7 +25,7 @@ import { NzIconService } from 'ng-zorro-antd/icon';
  * @return {?}
  */
 function WINDOW_FACTORY() {
-    return typeof window === 'object' && !!window ? window : null;
+    return window;
 }
 /** @type {?} */
 const WINDOW = new InjectionToken('Window', {
@@ -743,28 +742,12 @@ if (false) {
  */
 class ScrollService {
     /**
-     * @param {?} _doc
-     * @param {?} platform
+     * @param {?} win
+     * @param {?} doc
      */
-    constructor(_doc, platform) {
-        this._doc = _doc;
-        this.platform = platform;
-    }
-    /**
-     * @private
-     * @return {?}
-     */
-    _getDoc() {
-        return this._doc || document;
-    }
-    /**
-     * @private
-     * @return {?}
-     */
-    _getWin() {
-        /** @type {?} */
-        const doc = this._getDoc();
-        return doc.defaultView || window;
+    constructor(win, doc) {
+        this.win = win;
+        this.doc = doc;
     }
     /**
      * 获取滚动条位置
@@ -772,16 +755,11 @@ class ScrollService {
      * @return {?}
      */
     getScrollPosition(element) {
-        if (!this.platform.isBrowser) {
-            return [0, 0];
-        }
-        /** @type {?} */
-        const win = this._getWin();
-        if (element && element !== win) {
-            return [((/** @type {?} */ (element))).scrollLeft, ((/** @type {?} */ (element))).scrollTop];
+        if (element && element !== this.win) {
+            return [element.scrollLeft, element.scrollTop];
         }
         else {
-            return [win.pageXOffset, win.pageYOffset];
+            return [this.win.pageXOffset, this.win.pageYOffset];
         }
     }
     /**
@@ -791,10 +769,7 @@ class ScrollService {
      * @return {?}
      */
     scrollToPosition(element, position) {
-        if (!this.platform.isBrowser) {
-            return;
-        }
-        (element || this._getWin()).scrollTo(position[0], position[1]);
+        (element || this.win).scrollTo(position[0], position[1]);
     }
     /**
      * 设置滚动条至指定元素
@@ -803,19 +778,15 @@ class ScrollService {
      * @return {?}
      */
     scrollToElement(element, topOffset = 0) {
-        if (!this.platform.isBrowser) {
-            return;
-        }
-        if (!element) {
-            element = this._getDoc().body;
-        }
-        element.scrollIntoView();
+        if (!element)
+            element = this.doc.body;
+        (/** @type {?} */ (element)).scrollIntoView();
         /** @type {?} */
-        const win = this._getWin();
-        if (win && win.scrollBy) {
-            win.scrollBy(0, (/** @type {?} */ (element)).getBoundingClientRect().top - topOffset);
-            if (win.pageYOffset < 20) {
-                win.scrollBy(0, -win.pageYOffset);
+        const w = this.win;
+        if (w && w.scrollBy) {
+            w.scrollBy(0, (/** @type {?} */ (element)).getBoundingClientRect().top - topOffset);
+            if (w.pageYOffset < 20) {
+                w.scrollBy(0, -w.pageYOffset);
             }
         }
     }
@@ -825,10 +796,7 @@ class ScrollService {
      * @return {?}
      */
     scrollToTop(topOffset = 0) {
-        if (!this.platform.isBrowser) {
-            return;
-        }
-        this.scrollToElement(this._getDoc().body, topOffset);
+        this.scrollToElement(this.doc.body, topOffset);
     }
 }
 ScrollService.decorators = [
@@ -836,21 +804,21 @@ ScrollService.decorators = [
 ];
 /** @nocollapse */
 ScrollService.ctorParameters = () => [
-    { type: undefined, decorators: [{ type: Inject, args: [DOCUMENT,] }] },
-    { type: Platform }
+    { type: undefined, decorators: [{ type: Inject, args: [WINDOW,] }] },
+    { type: undefined, decorators: [{ type: Inject, args: [DOCUMENT,] }] }
 ];
-/** @nocollapse */ ScrollService.ɵprov = ɵɵdefineInjectable({ factory: function ScrollService_Factory() { return new ScrollService(ɵɵinject(DOCUMENT), ɵɵinject(Platform)); }, token: ScrollService, providedIn: "root" });
+/** @nocollapse */ ScrollService.ɵprov = ɵɵdefineInjectable({ factory: function ScrollService_Factory() { return new ScrollService(ɵɵinject(WINDOW), ɵɵinject(DOCUMENT)); }, token: ScrollService, providedIn: "root" });
 if (false) {
     /**
      * @type {?}
      * @private
      */
-    ScrollService.prototype._doc;
+    ScrollService.prototype.win;
     /**
      * @type {?}
      * @private
      */
-    ScrollService.prototype.platform;
+    ScrollService.prototype.doc;
 }
 
 /**
@@ -3694,7 +3662,7 @@ AlainThemeModule.ctorParameters = () => [
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-const VERSION = new Version('9.4.0-2b13f357');
+const VERSION = new Version('9.4.0-2c2a0fe3');
 
 /**
  * @fileoverview added by tsickle

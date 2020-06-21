@@ -1,5 +1,4 @@
 import { __decorate, __metadata } from 'tslib';
-import { Platform } from '@angular/cdk/platform';
 import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, NgZone, ChangeDetectorRef, ViewChild, Input, Output, NgModule } from '@angular/core';
 import { Chart } from '@antv/g2';
 import { AlainConfigService, InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
@@ -39,13 +38,11 @@ class G2PieComponent {
      * @param {?} ngZone
      * @param {?} cdr
      * @param {?} configSrv
-     * @param {?} platform
      */
-    constructor(el, ngZone, cdr, configSrv, platform) {
+    constructor(el, ngZone, cdr, configSrv) {
         this.el = el;
         this.ngZone = ngZone;
         this.cdr = cdr;
-        this.platform = platform;
         this.legendData = [];
         // #region fields
         this.delay = 0;
@@ -227,9 +224,6 @@ class G2PieComponent {
      * @return {?}
      */
     ngOnInit() {
-        if (!this.platform.isBrowser) {
-            return;
-        }
         this.ngZone.runOutsideAngular((/**
          * @return {?}
          */
@@ -281,8 +275,7 @@ G2PieComponent.ctorParameters = () => [
     { type: ElementRef },
     { type: NgZone },
     { type: ChangeDetectorRef },
-    { type: AlainConfigService },
-    { type: Platform }
+    { type: AlainConfigService }
 ];
 G2PieComponent.propDecorators = {
     node: [{ type: ViewChild, args: ['container', { static: true },] }],
@@ -406,10 +399,7 @@ if (false) {
     G2PieComponent.prototype.theme;
     /** @type {?} */
     G2PieComponent.prototype.clickItem;
-    /**
-     * @type {?}
-     * @private
-     */
+    /** @type {?} */
     G2PieComponent.prototype.el;
     /**
      * @type {?}
@@ -421,11 +411,6 @@ if (false) {
      * @private
      */
     G2PieComponent.prototype.cdr;
-    /**
-     * @type {?}
-     * @private
-     */
-    G2PieComponent.prototype.platform;
 }
 
 /**
