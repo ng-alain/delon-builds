@@ -3033,6 +3033,7 @@ class STComponent {
         this.bordered = false;
         this.expandRowByClick = false;
         this.expandAccordion = false;
+        this.widthConfig = [];
         this.rowClickTime = 200;
         this.responsive = true;
         // tslint:disable-next-line:no-output-native
