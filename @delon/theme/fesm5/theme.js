@@ -883,7 +883,7 @@ var ScrollService = /** @class */ (function () {
      * @private
      * @return {?}
      */
-    ScrollService.prototype._getDocument = /**
+    ScrollService.prototype._getDoc = /**
      * @private
      * @return {?}
      */
@@ -894,13 +894,13 @@ var ScrollService = /** @class */ (function () {
      * @private
      * @return {?}
      */
-    ScrollService.prototype._getWindow = /**
+    ScrollService.prototype._getWin = /**
      * @private
      * @return {?}
      */
     function () {
         /** @type {?} */
-        var doc = this._getDocument();
+        var doc = this._getDoc();
         return doc.defaultView || window;
     };
     /**
@@ -922,7 +922,7 @@ var ScrollService = /** @class */ (function () {
             return [0, 0];
         }
         /** @type {?} */
-        var win = this._getWindow();
+        var win = this._getWin();
         if (element && element !== win) {
             return [((/** @type {?} */ (element))).scrollLeft, ((/** @type {?} */ (element))).scrollTop];
         }
@@ -950,7 +950,7 @@ var ScrollService = /** @class */ (function () {
         if (!this.platform.isBrowser) {
             return;
         }
-        (element || this._getWindow()).scrollTo(position[0], position[1]);
+        (element || this._getWin()).scrollTo(position[0], position[1]);
     };
     /**
      * 设置滚动条至指定元素
@@ -974,15 +974,16 @@ var ScrollService = /** @class */ (function () {
         if (!this.platform.isBrowser) {
             return;
         }
-        if (!element)
-            element = this._getDocument().body;
-        (/** @type {?} */ (element)).scrollIntoView();
+        if (!element) {
+            element = this._getDoc().body;
+        }
+        element.scrollIntoView();
         /** @type {?} */
-        var w = this._getWindow();
-        if (w && w.scrollBy) {
-            w.scrollBy(0, (/** @type {?} */ (element)).getBoundingClientRect().top - topOffset);
-            if (w.pageYOffset < 20) {
-                w.scrollBy(0, -w.pageYOffset);
+        var win = this._getWin();
+        if (win && win.scrollBy) {
+            win.scrollBy(0, (/** @type {?} */ (element)).getBoundingClientRect().top - topOffset);
+            if (win.pageYOffset < 20) {
+                win.scrollBy(0, -win.pageYOffset);
             }
         }
     };
@@ -1005,7 +1006,7 @@ var ScrollService = /** @class */ (function () {
         if (!this.platform.isBrowser) {
             return;
         }
-        this.scrollToElement(this._getDocument().body, topOffset);
+        this.scrollToElement(this._getDoc().body, topOffset);
     };
     ScrollService.decorators = [
         { type: Injectable, args: [{ providedIn: 'root' },] }
@@ -4306,7 +4307,7 @@ var AlainThemeModule = /** @class */ (function () {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-var VERSION = new Version('9.4.0-1e55e981');
+var VERSION = new Version('9.4.0-f52aa891');
 
 /**
  * @fileoverview added by tsickle

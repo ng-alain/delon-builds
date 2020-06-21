@@ -2,8 +2,8 @@ import { Platform } from '@angular/cdk/platform';
 export declare class ScrollService {
     private _doc;
     private platform;
-    private _getDocument;
-    private _getWindow;
+    private _getDoc;
+    private _getWin;
     constructor(_doc: any, platform: Platform);
     /**
      * 获取滚动条位置
