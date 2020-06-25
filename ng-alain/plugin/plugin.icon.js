@@ -7,7 +7,7 @@ const ts = require("typescript");
 const ast_1 = require("../utils/ast");
 // includes ng-zorro-antd & @delon/*
 const WHITE_ICONS = [
-    // - zorro: https://github.com/NG-ZORRO/ng-zorro-antd/blob/master/components/icon/nz-icon.service.ts
+    // - zorro: https://github.com/NG-ZORRO/ng-zorro-antd/blob/master/components/icon/icons.ts
     'BarsOutline',
     'CalendarOutline',
     'CaretUpFill',
@@ -200,11 +200,16 @@ function getIcons(options, host) {
         if (~path.indexOf(`/node_modules/`) || !path.startsWith(`/${options.sourceRoot}`))
             return;
         let res = [];
-        if (path.endsWith('.ts')) {
-            res = fixTs(host, path);
+        try {
+            if (path.endsWith('.ts')) {
+                res = fixTs(host, path);
+            }
+            if (path.endsWith('.html')) {
+                res = findIcons(host.read(path).toString());
+            }
         }
-        if (path.endsWith('.html')) {
-            res = findIcons(host.read(path).toString());
+        catch (ex) {
+            console.warn(`Skip file "${path}" because parsing error: ${ex}`);
         }
         if (res.length > 0) {
             console.log(`found ${JSON.stringify(res)} icons in ${path}`);
