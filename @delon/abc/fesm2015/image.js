@@ -77,6 +77,7 @@ class ImageDirective {
      */
     getByHttp() {
         if (!this.platform.isBrowser) {
+            console.log('isBrowser');
             return;
         }
         const { imgEl } = this;

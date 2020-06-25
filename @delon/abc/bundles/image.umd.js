@@ -310,6 +310,7 @@
         function () {
             var _this = this;
             if (!this.platform.isBrowser) {
+                console.log('isBrowser');
                 return;
             }
             var imgEl = this.imgEl;

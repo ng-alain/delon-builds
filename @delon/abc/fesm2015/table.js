@@ -3638,7 +3638,6 @@ class STComponent {
      * @return {?}
      */
     sort(col, idx, value) {
-        console.log(this.multiSort);
         if (this.multiSort) {
             (/** @type {?} */ (col._sort)).default = value;
             (/** @type {?} */ (col._sort)).tick = this.dataSource.nextSortTick;
