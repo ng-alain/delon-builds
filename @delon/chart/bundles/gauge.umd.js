@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/platform'), require('@angular/core'), require('@antv/g2'), require('@delon/util'), require('@angular/common')) :
-    typeof define === 'function' && define.amd ? define('@delon/chart/gauge', ['exports', '@angular/cdk/platform', '@angular/core', '@antv/g2', '@delon/util', '@angular/common'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.gauge = {}), global.ng.cdk.platform, global.ng.core, global.g2, global.delon.util, global.ng.common));
-}(this, (function (exports, platform, core, g2, util, common) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@antv/g2'), require('@delon/util'), require('@angular/common')) :
+    typeof define === 'function' && define.amd ? define('@delon/chart/gauge', ['exports', '@angular/core', '@antv/g2', '@delon/util', '@angular/common'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.gauge = {}), global.ng.core, global.g2, global.delon.util, global.ng.common));
+}(this, (function (exports, core, g2, util, common) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -235,10 +235,9 @@
      */
     var G2GaugeComponent = /** @class */ (function () {
         // #endregion
-        function G2GaugeComponent(el, ngZone, configSrv, platform) {
+        function G2GaugeComponent(el, ngZone, configSrv) {
             this.el = el;
             this.ngZone = ngZone;
-            this.platform = platform;
             // #region fields
             this.delay = 0;
             this.color = '#2f9cff';
@@ -395,9 +394,6 @@
          */
         function () {
             var _this = this;
-            if (!this.platform.isBrowser) {
-                return;
-            }
             this.ngZone.runOutsideAngular((/**
              * @return {?}
              */
@@ -451,8 +447,7 @@
         G2GaugeComponent.ctorParameters = function () { return [
             { type: core.ElementRef },
             { type: core.NgZone },
-            { type: util.AlainConfigService },
-            { type: platform.Platform }
+            { type: util.AlainConfigService }
         ]; };
         G2GaugeComponent.propDecorators = {
             delay: [{ type: core.Input }],
@@ -513,11 +508,6 @@
          * @private
          */
         G2GaugeComponent.prototype.ngZone;
-        /**
-         * @type {?}
-         * @private
-         */
-        G2GaugeComponent.prototype.platform;
     }
 
     /**

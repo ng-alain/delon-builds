@@ -1,5 +1,4 @@
 import { __assign, __decorate, __metadata, __spread } from 'tslib';
-import { Platform } from '@angular/cdk/platform';
 import { Injectable, ɵɵdefineInjectable, ɵɵinject, EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, Renderer2, NgZone, Input, Output, NgModule } from '@angular/core';
 import { AlainConfigService, LazyService, InputNumber, DelonUtilModule } from '@delon/util';
 import { Subject } from 'rxjs';
@@ -113,13 +112,12 @@ if (false) {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var MediaComponent = /** @class */ (function () {
-    function MediaComponent(el, renderer, srv, ngZone, platform) {
+    function MediaComponent(el, renderer, srv, ngZone) {
         var _this = this;
         this.el = el;
         this.renderer = renderer;
         this.srv = srv;
         this.ngZone = ngZone;
-        this.platform = platform;
         // #region fields
         this.type = 'video';
         this.delay = 0;
@@ -235,9 +233,6 @@ var MediaComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        if (!this.platform.isBrowser) {
-            return;
-        }
         this.srv.load();
     };
     /**
@@ -284,8 +279,7 @@ var MediaComponent = /** @class */ (function () {
         { type: ElementRef },
         { type: Renderer2 },
         { type: MediaService },
-        { type: NgZone },
-        { type: Platform }
+        { type: NgZone }
     ]; };
     MediaComponent.propDecorators = {
         type: [{ type: Input }],
@@ -351,11 +345,6 @@ if (false) {
      * @private
      */
     MediaComponent.prototype.ngZone;
-    /**
-     * @type {?}
-     * @private
-     */
-    MediaComponent.prototype.platform;
 }
 
 /**

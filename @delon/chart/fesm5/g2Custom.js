@@ -1,5 +1,4 @@
 import { __decorate, __metadata, __spread } from 'tslib';
-import { Platform } from '@angular/cdk/platform';
 import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, Input, Output, NgModule } from '@angular/core';
 import { AlainConfigService, InputNumber, DelonUtilModule } from '@delon/util';
 import { fromEvent } from 'rxjs';
@@ -13,9 +12,8 @@ import { CommonModule } from '@angular/common';
  */
 var G2CustomComponent = /** @class */ (function () {
     // #endregion
-    function G2CustomComponent(el, configSrv, platform) {
+    function G2CustomComponent(el, configSrv) {
         this.el = el;
-        this.platform = platform;
         this.resize$ = null;
         // #region fields
         this.delay = 0;
@@ -66,9 +64,6 @@ var G2CustomComponent = /** @class */ (function () {
      */
     function () {
         var _this = this;
-        if (!this.platform.isBrowser) {
-            return;
-        }
         setTimeout((/**
          * @return {?}
          */
@@ -101,8 +96,7 @@ var G2CustomComponent = /** @class */ (function () {
     /** @nocollapse */
     G2CustomComponent.ctorParameters = function () { return [
         { type: ElementRef },
-        { type: AlainConfigService },
-        { type: Platform }
+        { type: AlainConfigService }
     ]; };
     G2CustomComponent.propDecorators = {
         delay: [{ type: Input }],
@@ -152,11 +146,6 @@ if (false) {
      * @private
      */
     G2CustomComponent.prototype.el;
-    /**
-     * @type {?}
-     * @private
-     */
-    G2CustomComponent.prototype.platform;
 }
 
 /**

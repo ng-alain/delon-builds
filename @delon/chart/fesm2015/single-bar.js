@@ -1,5 +1,4 @@
 import { __decorate, __metadata } from 'tslib';
-import { Platform } from '@angular/cdk/platform';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, NgZone, Input, NgModule } from '@angular/core';
 import { Chart } from '@antv/g2';
 import { AlainConfigService, InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
@@ -16,12 +15,10 @@ class G2SingleBarComponent {
      * @param {?} el
      * @param {?} ngZone
      * @param {?} configSrv
-     * @param {?} platform
      */
-    constructor(el, ngZone, configSrv, platform) {
+    constructor(el, ngZone, configSrv) {
         this.el = el;
         this.ngZone = ngZone;
-        this.platform = platform;
         // #region fields
         this.delay = 0;
         this.plusColor = '#40a9ff';
@@ -99,9 +96,6 @@ class G2SingleBarComponent {
      * @return {?}
      */
     ngOnInit() {
-        if (!this.platform.isBrowser) {
-            return;
-        }
         this.ngZone.runOutsideAngular((/**
          * @return {?}
          */
@@ -148,8 +142,7 @@ G2SingleBarComponent.decorators = [
 G2SingleBarComponent.ctorParameters = () => [
     { type: ElementRef },
     { type: NgZone },
-    { type: AlainConfigService },
-    { type: Platform }
+    { type: AlainConfigService }
 ];
 G2SingleBarComponent.propDecorators = {
     delay: [{ type: Input }],
@@ -236,11 +229,6 @@ if (false) {
      * @private
      */
     G2SingleBarComponent.prototype.ngZone;
-    /**
-     * @type {?}
-     * @private
-     */
-    G2SingleBarComponent.prototype.platform;
 }
 
 /**

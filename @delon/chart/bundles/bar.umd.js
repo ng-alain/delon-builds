@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/platform'), require('@angular/core'), require('@antv/g2'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('@angular/common'), require('ng-zorro-antd/core/outlet')) :
-    typeof define === 'function' && define.amd ? define('@delon/chart/bar', ['exports', '@angular/cdk/platform', '@angular/core', '@antv/g2', '@delon/util', 'rxjs', 'rxjs/operators', '@angular/common', 'ng-zorro-antd/core/outlet'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.bar = {}), global.ng.cdk.platform, global.ng.core, global.g2, global.delon.util, global.rxjs, global.rxjs.operators, global.ng.common, global['ng-zorro-antd/core/outlet']));
-}(this, (function (exports, platform, core, g2, util, rxjs, operators, common, outlet) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@antv/g2'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('@angular/common'), require('ng-zorro-antd/core/outlet')) :
+    typeof define === 'function' && define.amd ? define('@delon/chart/bar', ['exports', '@angular/core', '@antv/g2', '@delon/util', 'rxjs', 'rxjs/operators', '@angular/common', 'ng-zorro-antd/core/outlet'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.bar = {}), global.ng.core, global.g2, global.delon.util, global.rxjs, global.rxjs.operators, global.ng.common, global['ng-zorro-antd/core/outlet']));
+}(this, (function (exports, core, g2, util, rxjs, operators, common, outlet) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -260,9 +260,8 @@
     }
     var G2BarComponent = /** @class */ (function () {
         // #endregion
-        function G2BarComponent(ngZone, configSrv, platform) {
+        function G2BarComponent(ngZone, configSrv) {
             this.ngZone = ngZone;
-            this.platform = platform;
             // #region fields
             this.delay = 0;
             this.color = 'rgba(24, 144, 255, 0.85)';
@@ -433,9 +432,6 @@
          */
         function () {
             var _this = this;
-            if (!this.platform.isBrowser) {
-                return;
-            }
             this.ngZone.runOutsideAngular((/**
              * @return {?}
              */
@@ -491,8 +487,7 @@
         /** @nocollapse */
         G2BarComponent.ctorParameters = function () { return [
             { type: core.NgZone },
-            { type: util.AlainConfigService },
-            { type: platform.Platform }
+            { type: util.AlainConfigService }
         ]; };
         G2BarComponent.propDecorators = {
             node: [{ type: core.ViewChild, args: ['container', { static: true },] }],
@@ -562,11 +557,6 @@
          * @private
          */
         G2BarComponent.prototype.ngZone;
-        /**
-         * @type {?}
-         * @private
-         */
-        G2BarComponent.prototype.platform;
     }
 
     /**

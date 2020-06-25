@@ -1,5 +1,4 @@
 import { __assign, __spread, __decorate, __metadata } from 'tslib';
-import { Platform } from '@angular/cdk/platform';
 import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, NgZone, ViewChild, Input, Output, NgModule } from '@angular/core';
 import { Chart } from '@antv/g2';
 import { deprecation10, toDate, AlainConfigService, InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
@@ -99,9 +98,8 @@ if (false) {
 }
 var G2TimelineComponent = /** @class */ (function () {
     // #endregion
-    function G2TimelineComponent(ngZone, configSrv, platform) {
+    function G2TimelineComponent(ngZone, configSrv) {
         this.ngZone = ngZone;
-        this.platform = platform;
         // #region fields
         this.delay = 0;
         this.maxAxis = 2;
@@ -124,9 +122,6 @@ var G2TimelineComponent = /** @class */ (function () {
      */
     function () {
         var _this = this;
-        if (!this.platform.isBrowser) {
-            return;
-        }
         this.ngZone.runOutsideAngular((/**
          * @return {?}
          */
@@ -362,8 +357,7 @@ var G2TimelineComponent = /** @class */ (function () {
     /** @nocollapse */
     G2TimelineComponent.ctorParameters = function () { return [
         { type: NgZone },
-        { type: AlainConfigService },
-        { type: Platform }
+        { type: AlainConfigService }
     ]; };
     G2TimelineComponent.propDecorators = {
         node: [{ type: ViewChild, args: ['container', { static: false },] }],
@@ -448,11 +442,6 @@ if (false) {
      * @private
      */
     G2TimelineComponent.prototype.ngZone;
-    /**
-     * @type {?}
-     * @private
-     */
-    G2TimelineComponent.prototype.platform;
 }
 
 /**

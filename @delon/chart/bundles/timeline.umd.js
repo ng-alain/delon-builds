@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/platform'), require('@angular/core'), require('@antv/g2'), require('@delon/util'), require('date-fns/format'), require('@angular/common'), require('ng-zorro-antd/core/outlet')) :
-    typeof define === 'function' && define.amd ? define('@delon/chart/timeline', ['exports', '@angular/cdk/platform', '@angular/core', '@antv/g2', '@delon/util', 'date-fns/format', '@angular/common', 'ng-zorro-antd/core/outlet'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.timeline = {}), global.ng.cdk.platform, global.ng.core, global.g2, global.delon.util, global.format, global.ng.common, global['ng-zorro-antd/core/outlet']));
-}(this, (function (exports, platform, core, g2, util, format, common, outlet) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@antv/g2'), require('@delon/util'), require('date-fns/format'), require('@angular/common'), require('ng-zorro-antd/core/outlet')) :
+    typeof define === 'function' && define.amd ? define('@delon/chart/timeline', ['exports', '@angular/core', '@antv/g2', '@delon/util', 'date-fns/format', '@angular/common', 'ng-zorro-antd/core/outlet'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.timeline = {}), global.ng.core, global.g2, global.delon.util, global.format, global.ng.common, global['ng-zorro-antd/core/outlet']));
+}(this, (function (exports, core, g2, util, format, common, outlet) { 'use strict';
 
     format = format && Object.prototype.hasOwnProperty.call(format, 'default') ? format['default'] : format;
 
@@ -322,9 +322,8 @@
     }
     var G2TimelineComponent = /** @class */ (function () {
         // #endregion
-        function G2TimelineComponent(ngZone, configSrv, platform) {
+        function G2TimelineComponent(ngZone, configSrv) {
             this.ngZone = ngZone;
-            this.platform = platform;
             // #region fields
             this.delay = 0;
             this.maxAxis = 2;
@@ -347,9 +346,6 @@
          */
         function () {
             var _this = this;
-            if (!this.platform.isBrowser) {
-                return;
-            }
             this.ngZone.runOutsideAngular((/**
              * @return {?}
              */
@@ -585,8 +581,7 @@
         /** @nocollapse */
         G2TimelineComponent.ctorParameters = function () { return [
             { type: core.NgZone },
-            { type: util.AlainConfigService },
-            { type: platform.Platform }
+            { type: util.AlainConfigService }
         ]; };
         G2TimelineComponent.propDecorators = {
             node: [{ type: core.ViewChild, args: ['container', { static: false },] }],
@@ -671,11 +666,6 @@
          * @private
          */
         G2TimelineComponent.prototype.ngZone;
-        /**
-         * @type {?}
-         * @private
-         */
-        G2TimelineComponent.prototype.platform;
     }
 
     /**

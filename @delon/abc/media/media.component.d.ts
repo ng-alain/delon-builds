@@ -1,4 +1,3 @@
-import { Platform } from '@angular/cdk/platform';
 import { AfterViewInit, ElementRef, EventEmitter, NgZone, OnChanges, OnDestroy, Renderer2, SimpleChange } from '@angular/core';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { MediaService } from './media.service';
@@ -8,7 +7,6 @@ export declare class MediaComponent implements OnChanges, AfterViewInit, OnDestr
     private renderer;
     private srv;
     private ngZone;
-    private platform;
     private _p;
     private videoEl;
     private time;
@@ -19,7 +17,7 @@ export declare class MediaComponent implements OnChanges, AfterViewInit, OnDestr
     delay: number;
     readonly ready: EventEmitter<any>;
     get player(): NzSafeAny;
-    constructor(el: ElementRef<HTMLElement>, renderer: Renderer2, srv: MediaService, ngZone: NgZone, platform: Platform);
+    constructor(el: ElementRef<HTMLElement>, renderer: Renderer2, srv: MediaService, ngZone: NgZone);
     private initDelay;
     private init;
     private ensureElement;

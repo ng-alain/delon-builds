@@ -1,5 +1,4 @@
 import { __values, __decorate, __metadata, __spread } from 'tslib';
-import { Platform } from '@angular/cdk/platform';
 import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, NgZone, ChangeDetectorRef, ViewChild, Input, Output, NgModule } from '@angular/core';
 import { Chart } from '@antv/g2';
 import { AlainConfigService, InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
@@ -34,11 +33,10 @@ if (false) {
     G2PieClickItem.prototype.ev;
 }
 var G2PieComponent = /** @class */ (function () {
-    function G2PieComponent(el, ngZone, cdr, configSrv, platform) {
+    function G2PieComponent(el, ngZone, cdr, configSrv) {
         this.el = el;
         this.ngZone = ngZone;
         this.cdr = cdr;
-        this.platform = platform;
         this.legendData = [];
         // #region fields
         this.delay = 0;
@@ -263,9 +261,6 @@ var G2PieComponent = /** @class */ (function () {
      */
     function () {
         var _this = this;
-        if (!this.platform.isBrowser) {
-            return;
-        }
         this.ngZone.runOutsideAngular((/**
          * @return {?}
          */
@@ -324,8 +319,7 @@ var G2PieComponent = /** @class */ (function () {
         { type: ElementRef },
         { type: NgZone },
         { type: ChangeDetectorRef },
-        { type: AlainConfigService },
-        { type: Platform }
+        { type: AlainConfigService }
     ]; };
     G2PieComponent.propDecorators = {
         node: [{ type: ViewChild, args: ['container', { static: true },] }],
@@ -403,14 +397,11 @@ if (false) {
      * @type {?}
      * @private
      */
-    G2PieComponent.prototype.isPercent;
-    /**
-     * @type {?}
-     * @private
-     */
     G2PieComponent.prototype.percentColor;
     /** @type {?} */
     G2PieComponent.prototype.legendData;
+    /** @type {?} */
+    G2PieComponent.prototype.isPercent;
     /** @type {?} */
     G2PieComponent.prototype.delay;
     /** @type {?} */
@@ -451,10 +442,7 @@ if (false) {
     G2PieComponent.prototype.theme;
     /** @type {?} */
     G2PieComponent.prototype.clickItem;
-    /**
-     * @type {?}
-     * @private
-     */
+    /** @type {?} */
     G2PieComponent.prototype.el;
     /**
      * @type {?}
@@ -466,11 +454,6 @@ if (false) {
      * @private
      */
     G2PieComponent.prototype.cdr;
-    /**
-     * @type {?}
-     * @private
-     */
-    G2PieComponent.prototype.platform;
 }
 
 /**

@@ -390,7 +390,7 @@ class SEComponent {
      * @return {?}
      */
     bindModel() {
-        var _a, _b;
+        var _a, _b, _c;
         if (!this.ngControl || this.isBindModel)
             return;
         this.isBindModel = true;
@@ -401,9 +401,7 @@ class SEComponent {
         res => this.updateStatus(res === 'INVALID')));
         if (this._autoId) {
             /** @type {?} */
-            const controlAccessor = (/** @type {?} */ (this.ngControl.valueAccessor));
-            /** @type {?} */
-            const control = (/** @type {?} */ ((_a = ((controlAccessor === null || controlAccessor === void 0 ? void 0 : controlAccessor.elementRef) || (controlAccessor === null || controlAccessor === void 0 ? void 0 : controlAccessor._elementRef))) === null || _a === void 0 ? void 0 : _a.nativeElement));
+            const control = (/** @type {?} */ ((_b = (_a = ((/** @type {?} */ (this.ngControl.valueAccessor)))) === null || _a === void 0 ? void 0 : _a._elementRef) === null || _b === void 0 ? void 0 : _b.nativeElement));
             if (control.id) {
                 this._id = control.id;
             }
@@ -414,7 +412,7 @@ class SEComponent {
         // auto required
         if (this.required !== true) {
             /** @type {?} */
-            const rawValidators = (/** @type {?} */ ((_b = ((/** @type {?} */ (this.ngControl)))) === null || _b === void 0 ? void 0 : _b._rawValidators));
+            const rawValidators = (/** @type {?} */ ((_c = ((/** @type {?} */ (this.ngControl)))) === null || _c === void 0 ? void 0 : _c._rawValidators));
             this.required = rawValidators.find((/**
              * @param {?} w
              * @return {?}
