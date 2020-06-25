@@ -1,7 +1,6 @@
 import { Type } from '@angular/core';
 import { ComponentFixture } from '@angular/core/testing';
 import { Chart } from '@antv/g2';
-import { Point } from '@antv/g2/lib/interface';
 export declare type PageG2Type = 'geometries' | 'views';
 export declare const PageG2DataCount = 2;
 export declare const PageG2Height = 100;
@@ -33,8 +32,14 @@ export declare class PageG2<T> {
     isXScalesCount(num: number): this;
     isYScalesCount(num: number): this;
     isDataCount(type: PageG2Type, num: number): this;
-    get firstDataPoint(): Point;
-    checkTooltip(_includeText: string | null, point?: Point): this;
+    get firstDataPoint(): {
+        x: number;
+        y: number;
+    };
+    checkTooltip(_includeText: string | null, point?: {
+        x: number;
+        y: number;
+    }): this;
     checkClickItem(): this;
 }
 export declare function checkDelay<M, T>(module: M, comp: Type<T>, page?: PageG2<T> | null): void;
