@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@antv/g2'), require('@delon/util'), require('@angular/common')) :
-    typeof define === 'function' && define.amd ? define('@delon/chart/mini-area', ['exports', '@angular/core', '@antv/g2', '@delon/util', '@angular/common'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart['mini-area'] = {}), global.ng.core, global.g2, global.delon.util, global.ng.common));
-}(this, (function (exports, core, g2, util, common) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/platform'), require('@angular/core'), require('@antv/g2'), require('@delon/util'), require('@angular/common')) :
+    typeof define === 'function' && define.amd ? define('@delon/chart/mini-area', ['exports', '@angular/cdk/platform', '@angular/core', '@antv/g2', '@delon/util', '@angular/common'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart['mini-area'] = {}), global.ng.cdk.platform, global.ng.core, global.g2, global.delon.util, global.ng.common));
+}(this, (function (exports, platform, core, g2, util, common) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -256,9 +256,10 @@
     }
     var G2MiniAreaComponent = /** @class */ (function () {
         // #endregion
-        function G2MiniAreaComponent(el, ngZone, configSrv) {
+        function G2MiniAreaComponent(el, ngZone, configSrv, platform) {
             this.el = el;
             this.ngZone = ngZone;
+            this.platform = platform;
             // #region fields
             this.delay = 0;
             this.color = 'rgba(24, 144, 255, 0.2)';
@@ -393,6 +394,9 @@
          */
         function () {
             var _this = this;
+            if (!this.platform.isBrowser) {
+                return;
+            }
             this.ngZone.runOutsideAngular((/**
              * @return {?}
              */
@@ -446,7 +450,8 @@
         G2MiniAreaComponent.ctorParameters = function () { return [
             { type: core.ElementRef },
             { type: core.NgZone },
-            { type: util.AlainConfigService }
+            { type: util.AlainConfigService },
+            { type: platform.Platform }
         ]; };
         G2MiniAreaComponent.propDecorators = {
             delay: [{ type: core.Input }],
@@ -540,6 +545,11 @@
          * @private
          */
         G2MiniAreaComponent.prototype.ngZone;
+        /**
+         * @type {?}
+         * @private
+         */
+        G2MiniAreaComponent.prototype.platform;
     }
 
     /**

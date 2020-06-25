@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common/http'), require('@angular/core'), require('@delon/util'), require('date-fns/addSeconds'), require('rxjs'), require('rxjs/operators')) :
-    typeof define === 'function' && define.amd ? define('@delon/cache', ['exports', '@angular/common/http', '@angular/core', '@delon/util', 'date-fns/addSeconds', 'rxjs', 'rxjs/operators'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.cache = {}), global.ng.common.http, global.ng.core, global.delon.util, global.addSeconds, global.rxjs, global.rxjs.operators));
-}(this, (function (exports, http, core, util, addSeconds, rxjs, operators) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common/http'), require('@angular/core'), require('@delon/util'), require('date-fns/addSeconds'), require('rxjs'), require('rxjs/operators'), require('@angular/cdk/platform')) :
+    typeof define === 'function' && define.amd ? define('@delon/cache', ['exports', '@angular/common/http', '@angular/core', '@delon/util', 'date-fns/addSeconds', 'rxjs', 'rxjs/operators', '@angular/cdk/platform'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.cache = {}), global.ng.common.http, global.ng.core, global.delon.util, global.addSeconds, global.rxjs, global.rxjs.operators, global.ng.cdk.platform));
+}(this, (function (exports, http, core, util, addSeconds, rxjs, operators, platform) { 'use strict';
 
     addSeconds = addSeconds && Object.prototype.hasOwnProperty.call(addSeconds, 'default') ? addSeconds['default'] : addSeconds;
 
@@ -289,16 +289,14 @@
     /** @type {?} */
     var DC_STORE_STORAGE_TOKEN = new core.InjectionToken('DC_STORE_STORAGE_TOKEN', {
         providedIn: 'root',
-        factory: DC_STORE_STORAGE_TOKEN_FACTORY,
+        factory: (/**
+         * @return {?}
+         */
+        function () { return new LocalStorageCacheService(core.inject(platform.Platform)); }),
     });
-    /**
-     * @return {?}
-     */
-    function DC_STORE_STORAGE_TOKEN_FACTORY() {
-        return new LocalStorageCacheService();
-    }
     var LocalStorageCacheService = /** @class */ (function () {
-        function LocalStorageCacheService() {
+        function LocalStorageCacheService(platform) {
+            this.platform = platform;
         }
         /**
          * @param {?} key
@@ -309,6 +307,9 @@
          * @return {?}
          */
         function (key) {
+            if (!this.platform.isBrowser) {
+                return null;
+            }
             return JSON.parse(localStorage.getItem(key) || 'null') || null;
         };
         /**
@@ -322,6 +323,9 @@
          * @return {?}
          */
         function (key, value) {
+            if (!this.platform.isBrowser) {
+                return true;
+            }
             localStorage.setItem(key, JSON.stringify(value));
             return true;
         };
@@ -334,10 +338,20 @@
          * @return {?}
          */
         function (key) {
+            if (!this.platform.isBrowser) {
+                return;
+            }
             localStorage.removeItem(key);
         };
         return LocalStorageCacheService;
     }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        LocalStorageCacheService.prototype.platform;
+    }
 
     /**
      * @fileoverview added by tsickle
@@ -979,8 +993,6 @@
     exports.CacheService = CacheService;
     exports.DelonCacheModule = DelonCacheModule;
     exports.ɵa = DC_STORE_STORAGE_TOKEN;
-    exports.ɵb = DC_STORE_STORAGE_TOKEN_FACTORY;
-    exports.ɵc = LocalStorageCacheService;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 

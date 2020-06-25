@@ -1,4 +1,5 @@
 import { __values, __decorate, __metadata, __spread } from 'tslib';
+import { Platform } from '@angular/cdk/platform';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, Renderer2, NgZone, ChangeDetectorRef, ViewChild, Input, NgModule } from '@angular/core';
 import { InputBoolean, InputNumber, DelonUtilModule } from '@delon/util';
 import { fromEvent } from 'rxjs';
@@ -13,11 +14,12 @@ import { NzOutletModule } from 'ng-zorro-antd/core/outlet';
  */
 var G2WaterWaveComponent = /** @class */ (function () {
     // #endregion
-    function G2WaterWaveComponent(el, renderer, ngZone, cdr) {
+    function G2WaterWaveComponent(el, renderer, ngZone, cdr, platform) {
         this.el = el;
         this.renderer = renderer;
         this.ngZone = ngZone;
         this.cdr = cdr;
+        this.platform = platform;
         this.resize$ = null;
         // #region fields
         this.animate = true;
@@ -261,6 +263,9 @@ var G2WaterWaveComponent = /** @class */ (function () {
      */
     function () {
         var _this = this;
+        if (!this.platform.isBrowser) {
+            return;
+        }
         this.installResizeEvent();
         this.ngZone.runOutsideAngular((/**
          * @return {?}
@@ -294,7 +299,9 @@ var G2WaterWaveComponent = /** @class */ (function () {
         if (this.timer) {
             cancelAnimationFrame(this.timer);
         }
-        (/** @type {?} */ (this.resize$)).unsubscribe();
+        if (this.resize$) {
+            this.resize$.unsubscribe();
+        }
     };
     G2WaterWaveComponent.decorators = [
         { type: Component, args: [{
@@ -312,7 +319,8 @@ var G2WaterWaveComponent = /** @class */ (function () {
         { type: ElementRef },
         { type: Renderer2 },
         { type: NgZone },
-        { type: ChangeDetectorRef }
+        { type: ChangeDetectorRef },
+        { type: Platform }
     ]; };
     G2WaterWaveComponent.propDecorators = {
         node: [{ type: ViewChild, args: ['container', { static: true },] }],
@@ -389,6 +397,11 @@ if (false) {
      * @private
      */
     G2WaterWaveComponent.prototype.cdr;
+    /**
+     * @type {?}
+     * @private
+     */
+    G2WaterWaveComponent.prototype.platform;
 }
 
 /**

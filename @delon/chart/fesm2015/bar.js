@@ -1,4 +1,5 @@
 import { __decorate, __metadata } from 'tslib';
+import { Platform } from '@angular/cdk/platform';
 import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, NgZone, ViewChild, Input, Output, NgModule } from '@angular/core';
 import { Chart } from '@antv/g2';
 import { AlainConfigService, InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
@@ -42,9 +43,11 @@ class G2BarComponent {
     /**
      * @param {?} ngZone
      * @param {?} configSrv
+     * @param {?} platform
      */
-    constructor(ngZone, configSrv) {
+    constructor(ngZone, configSrv, platform) {
         this.ngZone = ngZone;
+        this.platform = platform;
         // #region fields
         this.delay = 0;
         this.color = 'rgba(24, 144, 255, 0.85)';
@@ -189,6 +192,9 @@ class G2BarComponent {
      * @return {?}
      */
     ngOnInit() {
+        if (!this.platform.isBrowser) {
+            return;
+        }
         this.ngZone.runOutsideAngular((/**
          * @return {?}
          */
@@ -237,7 +243,8 @@ G2BarComponent.decorators = [
 /** @nocollapse */
 G2BarComponent.ctorParameters = () => [
     { type: NgZone },
-    { type: AlainConfigService }
+    { type: AlainConfigService },
+    { type: Platform }
 ];
 G2BarComponent.propDecorators = {
     node: [{ type: ViewChild, args: ['container', { static: true },] }],
@@ -305,6 +312,11 @@ if (false) {
      * @private
      */
     G2BarComponent.prototype.ngZone;
+    /**
+     * @type {?}
+     * @private
+     */
+    G2BarComponent.prototype.platform;
 }
 
 /**

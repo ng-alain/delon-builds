@@ -1,4 +1,5 @@
 import { __spread, __values, __rest, __assign, __extends, __decorate, __metadata } from 'tslib';
+import { Platform } from '@angular/cdk/platform';
 import { Injectable, Inject, ComponentFactoryResolver, EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ChangeDetectorRef, Optional, Input, Output, ViewChild, ViewContainerRef, Directive, ElementRef, Renderer2, TemplateRef, Injector, HostBinding, NgModule } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ACLService } from '@delon/acl';
@@ -1845,6 +1846,9 @@ var AjvSchemaValidatorFactory = /** @class */ (function (_super) {
     __extends(AjvSchemaValidatorFactory, _super);
     function AjvSchemaValidatorFactory(cogSrv) {
         var _this = _super.call(this) || this;
+        if (!(typeof document === 'object' && !!document)) {
+            return _this;
+        }
         _this.options = mergeConfig(cogSrv);
         _this.ajv = new Ajv(__assign(__assign({}, _this.options.ajv), { errorDataPath: 'property', allErrors: true, jsonPointers: true }));
         _this.ajv.addFormat('data-url', /^data:([a-z]+\/[a-z0-9-+.]+)?;name=(.*);base64,(.*)$/);
@@ -2060,7 +2064,7 @@ function useFactory(schemaValidatorFactory, cogSrv) {
     return new FormPropertyFactory(schemaValidatorFactory, cogSrv);
 }
 var SFComponent = /** @class */ (function () {
-    function SFComponent(formPropertyFactory, terminator, dom, cdr, localeSrv, aclSrv, i18nSrv, cogSrv) {
+    function SFComponent(formPropertyFactory, terminator, dom, cdr, localeSrv, aclSrv, i18nSrv, cogSrv, platform) {
         var _this = this;
         this.formPropertyFactory = formPropertyFactory;
         this.terminator = terminator;
@@ -2069,6 +2073,7 @@ var SFComponent = /** @class */ (function () {
         this.localeSrv = localeSrv;
         this.aclSrv = aclSrv;
         this.i18nSrv = i18nSrv;
+        this.platform = platform;
         this.unsubscribe$ = new Subject();
         this._renders = new Map();
         this._valid = true;
@@ -2568,6 +2573,9 @@ var SFComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
+        if (!this.platform.isBrowser) {
+            return;
+        }
         this._inited = true;
         this.validator();
     };
@@ -2645,6 +2653,9 @@ var SFComponent = /** @class */ (function () {
      */
     function (options) {
         if (options === void 0) { options = { emitError: true, onlyRoot: true }; }
+        if (!(/** @type {?} */ (this)).platform.isBrowser) {
+            return (/** @type {?} */ (this));
+        }
         /** @type {?} */
         var fn = (/**
          * @param {?} property
@@ -2734,6 +2745,9 @@ var SFComponent = /** @class */ (function () {
      */
     function (newSchema, newUI) {
         var _this = this;
+        if (!(/** @type {?} */ (this)).platform.isBrowser) {
+            return (/** @type {?} */ (this));
+        }
         if (newSchema)
             (/** @type {?} */ (this)).schema = newSchema;
         if (newUI)
@@ -2799,6 +2813,9 @@ var SFComponent = /** @class */ (function () {
     function (emit) {
         var _this = this;
         if (emit === void 0) { emit = false; }
+        if (!(/** @type {?} */ (this)).platform.isBrowser) {
+            return (/** @type {?} */ (this));
+        }
         (/** @type {?} */ ((/** @type {?} */ (this)).rootProperty)).resetValue((/** @type {?} */ (this)).formData, false);
         Promise.resolve().then((/**
          * @return {?}
@@ -2874,7 +2891,8 @@ var SFComponent = /** @class */ (function () {
         { type: DelonLocaleService },
         { type: ACLService, decorators: [{ type: Optional }] },
         { type: undefined, decorators: [{ type: Optional }, { type: Inject, args: [ALAIN_I18N_TOKEN,] }] },
-        { type: AlainConfigService }
+        { type: AlainConfigService },
+        { type: Platform }
     ]; };
     SFComponent.propDecorators = {
         layout: [{ type: Input }],
@@ -3099,6 +3117,11 @@ if (false) {
      * @private
      */
     SFComponent.prototype.i18nSrv;
+    /**
+     * @type {?}
+     * @private
+     */
+    SFComponent.prototype.platform;
 }
 
 /**

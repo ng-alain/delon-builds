@@ -1,3 +1,4 @@
+import { Platform } from '@angular/cdk/platform';
 import { ElementRef, EventEmitter, NgZone, OnChanges, OnDestroy, OnInit } from '@angular/core';
 import { Event, Types } from '@antv/g2';
 import { AlainConfigService } from '@delon/util';
@@ -13,6 +14,7 @@ export interface G2MiniBarClickItem {
 export declare class G2MiniBarComponent implements OnInit, OnChanges, OnDestroy {
     private el;
     private ngZone;
+    private platform;
     private chart;
     delay: number;
     color: string;
@@ -24,7 +26,7 @@ export declare class G2MiniBarComponent implements OnInit, OnChanges, OnDestroy 
     tooltipType: 'mini' | 'default';
     theme: string | Types.LooseObject;
     clickItem: EventEmitter<G2MiniBarClickItem>;
-    constructor(el: ElementRef, ngZone: NgZone, configSrv: AlainConfigService);
+    constructor(el: ElementRef, ngZone: NgZone, configSrv: AlainConfigService, platform: Platform);
     private install;
     private attachChart;
     ngOnInit(): void;

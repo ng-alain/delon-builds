@@ -2,6 +2,7 @@ import { InjectionToken, Injectable, ɵɵdefineInjectable, Optional, Inject, ɵ�
 import { ACLService } from '@delon/acl';
 import { BehaviorSubject, Subject, Observable, throwError, of } from 'rxjs';
 import { filter, share, tap, catchError, switchMap } from 'rxjs/operators';
+import { Platform } from '@angular/cdk/platform';
 import { DOCUMENT, CurrencyPipe, CommonModule } from '@angular/common';
 import { AlainConfigService, deepMerge, toDate } from '@delon/util';
 import { Title, DomSanitizer } from '@angular/platform-browser';
@@ -25,7 +26,7 @@ import { NzIconService } from 'ng-zorro-antd/icon';
  * @return {?}
  */
 function WINDOW_FACTORY() {
-    return window;
+    return typeof window === 'object' && !!window ? window : null;
 }
 /** @type {?} */
 const WINDOW = new InjectionToken('Window', {
@@ -742,12 +743,28 @@ if (false) {
  */
 class ScrollService {
     /**
-     * @param {?} win
-     * @param {?} doc
+     * @param {?} _doc
+     * @param {?} platform
      */
-    constructor(win, doc) {
-        this.win = win;
-        this.doc = doc;
+    constructor(_doc, platform) {
+        this._doc = _doc;
+        this.platform = platform;
+    }
+    /**
+     * @private
+     * @return {?}
+     */
+    _getDoc() {
+        return this._doc || document;
+    }
+    /**
+     * @private
+     * @return {?}
+     */
+    _getWin() {
+        /** @type {?} */
+        const doc = this._getDoc();
+        return doc.defaultView || window;
     }
     /**
      * 获取滚动条位置
@@ -755,11 +772,16 @@ class ScrollService {
      * @return {?}
      */
     getScrollPosition(element) {
-        if (element && element !== this.win) {
-            return [element.scrollLeft, element.scrollTop];
+        if (!this.platform.isBrowser) {
+            return [0, 0];
+        }
+        /** @type {?} */
+        const win = this._getWin();
+        if (element && element !== win) {
+            return [((/** @type {?} */ (element))).scrollLeft, ((/** @type {?} */ (element))).scrollTop];
         }
         else {
-            return [this.win.pageXOffset, this.win.pageYOffset];
+            return [win.pageXOffset, win.pageYOffset];
         }
     }
     /**
@@ -769,7 +791,10 @@ class ScrollService {
      * @return {?}
      */
     scrollToPosition(element, position) {
-        (element || this.win).scrollTo(position[0], position[1]);
+        if (!this.platform.isBrowser) {
+            return;
+        }
+        (element || this._getWin()).scrollTo(position[0], position[1]);
     }
     /**
      * 设置滚动条至指定元素
@@ -778,15 +803,19 @@ class ScrollService {
      * @return {?}
      */
     scrollToElement(element, topOffset = 0) {
-        if (!element)
-            element = this.doc.body;
-        (/** @type {?} */ (element)).scrollIntoView();
+        if (!this.platform.isBrowser) {
+            return;
+        }
+        if (!element) {
+            element = this._getDoc().body;
+        }
+        element.scrollIntoView();
         /** @type {?} */
-        const w = this.win;
-        if (w && w.scrollBy) {
-            w.scrollBy(0, (/** @type {?} */ (element)).getBoundingClientRect().top - topOffset);
-            if (w.pageYOffset < 20) {
-                w.scrollBy(0, -w.pageYOffset);
+        const win = this._getWin();
+        if (win && win.scrollBy) {
+            win.scrollBy(0, (/** @type {?} */ (element)).getBoundingClientRect().top - topOffset);
+            if (win.pageYOffset < 20) {
+                win.scrollBy(0, -win.pageYOffset);
             }
         }
     }
@@ -796,7 +825,10 @@ class ScrollService {
      * @return {?}
      */
     scrollToTop(topOffset = 0) {
-        this.scrollToElement(this.doc.body, topOffset);
+        if (!this.platform.isBrowser) {
+            return;
+        }
+        this.scrollToElement(this._getDoc().body, topOffset);
     }
 }
 ScrollService.decorators = [
@@ -804,21 +836,21 @@ ScrollService.decorators = [
 ];
 /** @nocollapse */
 ScrollService.ctorParameters = () => [
-    { type: undefined, decorators: [{ type: Inject, args: [WINDOW,] }] },
-    { type: undefined, decorators: [{ type: Inject, args: [DOCUMENT,] }] }
+    { type: undefined, decorators: [{ type: Inject, args: [DOCUMENT,] }] },
+    { type: Platform }
 ];
-/** @nocollapse */ ScrollService.ɵprov = ɵɵdefineInjectable({ factory: function ScrollService_Factory() { return new ScrollService(ɵɵinject(WINDOW), ɵɵinject(DOCUMENT)); }, token: ScrollService, providedIn: "root" });
+/** @nocollapse */ ScrollService.ɵprov = ɵɵdefineInjectable({ factory: function ScrollService_Factory() { return new ScrollService(ɵɵinject(DOCUMENT), ɵɵinject(Platform)); }, token: ScrollService, providedIn: "root" });
 if (false) {
     /**
      * @type {?}
      * @private
      */
-    ScrollService.prototype.win;
+    ScrollService.prototype._doc;
     /**
      * @type {?}
      * @private
      */
-    ScrollService.prototype.doc;
+    ScrollService.prototype.platform;
 }
 
 /**
@@ -3443,7 +3475,7 @@ KeysPipe.decorators = [
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-const ICON_YES = `<svg viewBox="64 64 896 896" fill="currentColor" width="1em" height="1em" aria-hidden="true"><path d="M912 190h-69.9c-9.8 0-19.1 4.5-25.1 12.2L404.7 724.5 207 474a32 32 0 0 0-25.1-12.2H112c-6.7 0-10.4 7.7-6.3 12.9l273.9 347c12.8 16.2 37.4 16.2 50.3 0l488.4-618.9c4.1-5.1.4-12.8-6.3-12.8z"></path></svg>`;
+const ICON_YES = `<svg viewBox="64 64 896 896" fill="currentColor" width="1em" height="1em" aria-hidden="true"><path d="M912 190h-69.9c-9.8 0-19.1 4.5-25.1 12.2L404.7 724.5 207 474a32 32 0 0 0-25.1-12.2H112c-6.7 0-10.4 7.7-6.3 12.9l273.9 347c12.8 16.2 37.4 16.2 50.3 0l488.4-618.9.4.1-c1a604e6-5.1.4-12.8-6.3-12.8z"></path></svg>`;
 /** @type {?} */
 const ICON_NO = `<svg viewBox="64 64 896 896" fill="currentColor" width="1em" height="1em" aria-hidden="true"><path d="M563.8 512l262.5-312.9c4.4-5.2.7-13.1-6.1-13.1h-79.8c-4.7 0-9.2 2.1-12.3 5.7L511.6 449.8 295.1 191.7c-3-3.6-7.5-5.7-12.3-5.7H203c-6.8 0-10.5 7.9-6.1 13.1L459.4 512 196.9 824.9A7.95 7.95 0 0 0 203 838h79.8c4.7 0 9.2-2.1 12.3-5.7l216.5-258.1 216.5 258.1c3 3.6 7.5 5.7 12.3 5.7h79.8c6.8 0 10.5-7.9 6.1-13.1L563.8 512z"></path></svg>`;
 /** @type {?} */
@@ -3662,7 +3694,7 @@ AlainThemeModule.ctorParameters = () => [
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-const VERSION = new Version('9.4.1');
+const VERSION = new Version('9.4.1-c1a604e6');
 
 /**
  * @fileoverview added by tsickle

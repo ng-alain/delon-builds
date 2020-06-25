@@ -1,4 +1,5 @@
 import { __decorate, __metadata } from 'tslib';
+import { Platform } from '@angular/cdk/platform';
 import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, NgZone, Input, Output, NgModule } from '@angular/core';
 import DataSet from '@antv/data-set';
 import { registerShape, Util, Chart } from '@antv/g2';
@@ -49,10 +50,12 @@ class G2TagCloudComponent {
      * @param {?} el
      * @param {?} ngZone
      * @param {?} configSrv
+     * @param {?} platform
      */
-    constructor(el, ngZone, configSrv) {
+    constructor(el, ngZone, configSrv, platform) {
         this.el = el;
         this.ngZone = ngZone;
+        this.platform = platform;
         // #region fields
         this.delay = 100;
         this.width = 0;
@@ -248,6 +251,9 @@ class G2TagCloudComponent {
      * @return {?}
      */
     ngOnInit() {
+        if (!this.platform.isBrowser) {
+            return;
+        }
         this.initTagCloud();
         this.installResizeEvent();
         this.ngZone.runOutsideAngular((/**
@@ -268,7 +274,9 @@ class G2TagCloudComponent {
      * @return {?}
      */
     ngOnDestroy() {
-        this.resize$.unsubscribe();
+        if (this.resize$) {
+            this.resize$.unsubscribe();
+        }
         if (this.chart) {
             this.ngZone.runOutsideAngular((/**
              * @return {?}
@@ -291,7 +299,8 @@ G2TagCloudComponent.decorators = [
 G2TagCloudComponent.ctorParameters = () => [
     { type: ElementRef },
     { type: NgZone },
-    { type: AlainConfigService }
+    { type: AlainConfigService },
+    { type: Platform }
 ];
 G2TagCloudComponent.propDecorators = {
     delay: [{ type: Input }],
@@ -349,6 +358,11 @@ if (false) {
      * @private
      */
     G2TagCloudComponent.prototype.ngZone;
+    /**
+     * @type {?}
+     * @private
+     */
+    G2TagCloudComponent.prototype.platform;
 }
 
 /**

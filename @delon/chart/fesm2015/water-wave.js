@@ -1,4 +1,5 @@
 import { __decorate, __metadata } from 'tslib';
+import { Platform } from '@angular/cdk/platform';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, Renderer2, NgZone, ChangeDetectorRef, ViewChild, Input, NgModule } from '@angular/core';
 import { InputBoolean, InputNumber, DelonUtilModule } from '@delon/util';
 import { fromEvent } from 'rxjs';
@@ -18,12 +19,14 @@ class G2WaterWaveComponent {
      * @param {?} renderer
      * @param {?} ngZone
      * @param {?} cdr
+     * @param {?} platform
      */
-    constructor(el, renderer, ngZone, cdr) {
+    constructor(el, renderer, ngZone, cdr, platform) {
         this.el = el;
         this.renderer = renderer;
         this.ngZone = ngZone;
         this.cdr = cdr;
+        this.platform = platform;
         this.resize$ = null;
         // #region fields
         this.animate = true;
@@ -238,6 +241,9 @@ class G2WaterWaveComponent {
      * @return {?}
      */
     ngOnInit() {
+        if (!this.platform.isBrowser) {
+            return;
+        }
         this.installResizeEvent();
         this.ngZone.runOutsideAngular((/**
          * @return {?}
@@ -264,7 +270,9 @@ class G2WaterWaveComponent {
         if (this.timer) {
             cancelAnimationFrame(this.timer);
         }
-        (/** @type {?} */ (this.resize$)).unsubscribe();
+        if (this.resize$) {
+            this.resize$.unsubscribe();
+        }
     }
 }
 G2WaterWaveComponent.decorators = [
@@ -283,7 +291,8 @@ G2WaterWaveComponent.ctorParameters = () => [
     { type: ElementRef },
     { type: Renderer2 },
     { type: NgZone },
-    { type: ChangeDetectorRef }
+    { type: ChangeDetectorRef },
+    { type: Platform }
 ];
 G2WaterWaveComponent.propDecorators = {
     node: [{ type: ViewChild, args: ['container', { static: true },] }],
@@ -358,6 +367,11 @@ if (false) {
      * @private
      */
     G2WaterWaveComponent.prototype.cdr;
+    /**
+     * @type {?}
+     * @private
+     */
+    G2WaterWaveComponent.prototype.platform;
 }
 
 /**
