@@ -1,6 +1,8 @@
 import { __decorate, __metadata, __spread } from 'tslib';
+import { Platform } from '@angular/cdk/platform';
 import { Directive, ElementRef, Input, NgModule } from '@angular/core';
-import { AlainConfigService, InputNumber, DelonUtilModule } from '@delon/util';
+import { _HttpClient } from '@delon/theme';
+import { AlainConfigService, InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
 import { CommonModule } from '@angular/common';
 
 /**
@@ -8,14 +10,11 @@ import { CommonModule } from '@angular/common';
  * Generated from: image.directive.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-/**
- * img标签
- * + 支持微信、qq头像规则缩略图规则
- * + 支持移除http&https协议http
- * + 支持增加onerror事件
- */
 var ImageDirective = /** @class */ (function () {
-    function ImageDirective(el, configSrv) {
+    function ImageDirective(el, configSrv, http, platform) {
+        this.http = http;
+        this.platform = platform;
+        this.useHttp = false;
         this.inited = false;
         configSrv.attach(this, 'image', { size: 64, error: "./assets/img/logo.svg" });
         this.imgEl = el.nativeElement;
@@ -40,12 +39,15 @@ var ImageDirective = /** @class */ (function () {
      * @return {?}
      */
     function (changes) {
-        if (!this.inited)
-            return;
-        if (changes.error) {
-            this.updateError();
+        var _a = this, size = _a.size, imgEl = _a.imgEl;
+        imgEl.height = size;
+        imgEl.width = size;
+        if (this.inited) {
+            if (changes.error) {
+                this.updateError();
+            }
+            this.update();
         }
-        this.update();
     };
     /**
      * @private
@@ -56,9 +58,13 @@ var ImageDirective = /** @class */ (function () {
      * @return {?}
      */
     function () {
+        var _a = this, size = _a.size, imgEl = _a.imgEl, useHttp = _a.useHttp;
+        if (useHttp) {
+            this.getByHttp();
+            return;
+        }
         /** @type {?} */
         var newSrc = this.src;
-        var _a = this, size = _a.size, imgEl = _a.imgEl;
         if (newSrc.includes('qlogo.cn')) {
             /** @type {?} */
             var arr = newSrc.split('/');
@@ -69,8 +75,41 @@ var ImageDirective = /** @class */ (function () {
         }
         newSrc = newSrc.replace(/^(?:https?:)/i, '');
         imgEl.src = newSrc;
-        imgEl.height = size;
-        imgEl.width = size;
+    };
+    /**
+     * @private
+     * @return {?}
+     */
+    ImageDirective.prototype.getByHttp = /**
+     * @private
+     * @return {?}
+     */
+    function () {
+        var _this = this;
+        if (!this.platform.isBrowser) {
+            return;
+        }
+        var imgEl = this.imgEl;
+        this.http.get(this.src, null, { responseType: 'blob' }).subscribe((/**
+         * @param {?} blob
+         * @return {?}
+         */
+        function (blob) {
+            /** @type {?} */
+            var reader = new FileReader();
+            reader.onloadend = (/**
+             * @return {?}
+             */
+            function () { return (imgEl.src = (/** @type {?} */ (reader.result))); });
+            reader.onerror = (/**
+             * @return {?}
+             */
+            function () { return _this.setError(); });
+            reader.readAsDataURL(blob);
+        }), (/**
+         * @return {?}
+         */
+        function () { return _this.setError(); }));
     };
     /**
      * @private
@@ -91,6 +130,18 @@ var ImageDirective = /** @class */ (function () {
             this.src = error;
         });
     };
+    /**
+     * @private
+     * @return {?}
+     */
+    ImageDirective.prototype.setError = /**
+     * @private
+     * @return {?}
+     */
+    function () {
+        var _a = this, imgEl = _a.imgEl, error = _a.error;
+        imgEl.src = error;
+    };
     ImageDirective.decorators = [
         { type: Directive, args: [{
                     selector: '[_src]',
@@ -100,17 +151,24 @@ var ImageDirective = /** @class */ (function () {
     /** @nocollapse */
     ImageDirective.ctorParameters = function () { return [
         { type: ElementRef },
-        { type: AlainConfigService }
+        { type: AlainConfigService },
+        { type: _HttpClient },
+        { type: Platform }
     ]; };
     ImageDirective.propDecorators = {
         src: [{ type: Input, args: ['_src',] }],
         size: [{ type: Input }],
-        error: [{ type: Input }]
+        error: [{ type: Input }],
+        useHttp: [{ type: Input }]
     };
     __decorate([
         InputNumber(),
         __metadata("design:type", Number)
     ], ImageDirective.prototype, "size", void 0);
+    __decorate([
+        InputBoolean(),
+        __metadata("design:type", Object)
+    ], ImageDirective.prototype, "useHttp", void 0);
     return ImageDirective;
 }());
 if (false) {
@@ -120,6 +178,8 @@ if (false) {
     ImageDirective.prototype.size;
     /** @type {?} */
     ImageDirective.prototype.error;
+    /** @type {?} */
+    ImageDirective.prototype.useHttp;
     /**
      * @type {?}
      * @private
@@ -130,6 +190,16 @@ if (false) {
      * @private
      */
     ImageDirective.prototype.imgEl;
+    /**
+     * @type {?}
+     * @private
+     */
+    ImageDirective.prototype.http;
+    /**
+     * @type {?}
+     * @private
+     */
+    ImageDirective.prototype.platform;
 }
 
 /**

@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util'), require('@angular/common')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/image', ['exports', '@angular/core', '@delon/util', '@angular/common'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.image = {}), global.ng.core, global.delon.util, global.ng.common));
-}(this, (function (exports, core, util, common) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/platform'), require('@angular/core'), require('@delon/theme'), require('@delon/util'), require('@angular/common')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/image', ['exports', '@angular/cdk/platform', '@angular/core', '@delon/theme', '@delon/util', '@angular/common'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.image = {}), global.ng.cdk.platform, global.ng.core, global.delon.theme, global.delon.util, global.ng.common));
+}(this, (function (exports, platform, core, theme, util, common) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -233,14 +233,11 @@
      * Generated from: image.directive.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    /**
-     * img标签
-     * + 支持微信、qq头像规则缩略图规则
-     * + 支持移除http&https协议http
-     * + 支持增加onerror事件
-     */
     var ImageDirective = /** @class */ (function () {
-        function ImageDirective(el, configSrv) {
+        function ImageDirective(el, configSrv, http, platform) {
+            this.http = http;
+            this.platform = platform;
+            this.useHttp = false;
             this.inited = false;
             configSrv.attach(this, 'image', { size: 64, error: "./assets/img/logo.svg" });
             this.imgEl = el.nativeElement;
@@ -265,12 +262,15 @@
          * @return {?}
          */
         function (changes) {
-            if (!this.inited)
-                return;
-            if (changes.error) {
-                this.updateError();
+            var _a = this, size = _a.size, imgEl = _a.imgEl;
+            imgEl.height = size;
+            imgEl.width = size;
+            if (this.inited) {
+                if (changes.error) {
+                    this.updateError();
+                }
+                this.update();
             }
-            this.update();
         };
         /**
          * @private
@@ -281,9 +281,13 @@
          * @return {?}
          */
         function () {
+            var _a = this, size = _a.size, imgEl = _a.imgEl, useHttp = _a.useHttp;
+            if (useHttp) {
+                this.getByHttp();
+                return;
+            }
             /** @type {?} */
             var newSrc = this.src;
-            var _a = this, size = _a.size, imgEl = _a.imgEl;
             if (newSrc.includes('qlogo.cn')) {
                 /** @type {?} */
                 var arr = newSrc.split('/');
@@ -294,8 +298,41 @@
             }
             newSrc = newSrc.replace(/^(?:https?:)/i, '');
             imgEl.src = newSrc;
-            imgEl.height = size;
-            imgEl.width = size;
+        };
+        /**
+         * @private
+         * @return {?}
+         */
+        ImageDirective.prototype.getByHttp = /**
+         * @private
+         * @return {?}
+         */
+        function () {
+            var _this = this;
+            if (!this.platform.isBrowser) {
+                return;
+            }
+            var imgEl = this.imgEl;
+            this.http.get(this.src, null, { responseType: 'blob' }).subscribe((/**
+             * @param {?} blob
+             * @return {?}
+             */
+            function (blob) {
+                /** @type {?} */
+                var reader = new FileReader();
+                reader.onloadend = (/**
+                 * @return {?}
+                 */
+                function () { return (imgEl.src = (/** @type {?} */ (reader.result))); });
+                reader.onerror = (/**
+                 * @return {?}
+                 */
+                function () { return _this.setError(); });
+                reader.readAsDataURL(blob);
+            }), (/**
+             * @return {?}
+             */
+            function () { return _this.setError(); }));
         };
         /**
          * @private
@@ -316,6 +353,18 @@
                 this.src = error;
             });
         };
+        /**
+         * @private
+         * @return {?}
+         */
+        ImageDirective.prototype.setError = /**
+         * @private
+         * @return {?}
+         */
+        function () {
+            var _a = this, imgEl = _a.imgEl, error = _a.error;
+            imgEl.src = error;
+        };
         ImageDirective.decorators = [
             { type: core.Directive, args: [{
                         selector: '[_src]',
@@ -325,17 +374,24 @@
         /** @nocollapse */
         ImageDirective.ctorParameters = function () { return [
             { type: core.ElementRef },
-            { type: util.AlainConfigService }
+            { type: util.AlainConfigService },
+            { type: theme._HttpClient },
+            { type: platform.Platform }
         ]; };
         ImageDirective.propDecorators = {
             src: [{ type: core.Input, args: ['_src',] }],
             size: [{ type: core.Input }],
-            error: [{ type: core.Input }]
+            error: [{ type: core.Input }],
+            useHttp: [{ type: core.Input }]
         };
         __decorate([
             util.InputNumber(),
             __metadata("design:type", Number)
         ], ImageDirective.prototype, "size", void 0);
+        __decorate([
+            util.InputBoolean(),
+            __metadata("design:type", Object)
+        ], ImageDirective.prototype, "useHttp", void 0);
         return ImageDirective;
     }());
     if (false) {
@@ -345,6 +401,8 @@
         ImageDirective.prototype.size;
         /** @type {?} */
         ImageDirective.prototype.error;
+        /** @type {?} */
+        ImageDirective.prototype.useHttp;
         /**
          * @type {?}
          * @private
@@ -355,6 +413,16 @@
          * @private
          */
         ImageDirective.prototype.imgEl;
+        /**
+         * @type {?}
+         * @private
+         */
+        ImageDirective.prototype.http;
+        /**
+         * @type {?}
+         * @private
+         */
+        ImageDirective.prototype.platform;
     }
 
     /**
