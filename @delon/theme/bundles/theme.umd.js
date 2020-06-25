@@ -1339,7 +1339,8 @@
     /** @type {?} */
     var APP = 'app';
     var SettingsService = /** @class */ (function () {
-        function SettingsService() {
+        function SettingsService(platform) {
+            this.platform = platform;
             this.notify$ = new rxjs.Subject();
             this._app = null;
             this._user = null;
@@ -1356,6 +1357,9 @@
          * @return {?}
          */
         function (key) {
+            if (!this.platform.isBrowser) {
+                return null;
+            }
             return JSON.parse(localStorage.getItem(key) || 'null') || null;
         };
         /**
@@ -1371,6 +1375,9 @@
          * @return {?}
          */
         function (key, value) {
+            if (!this.platform.isBrowser) {
+                return;
+            }
             localStorage.setItem(key, JSON.stringify(value));
         };
         Object.defineProperty(SettingsService.prototype, "layout", {
@@ -1477,7 +1484,11 @@
         SettingsService.decorators = [
             { type: core.Injectable, args: [{ providedIn: 'root' },] }
         ];
-        /** @nocollapse */ SettingsService.ɵprov = core.ɵɵdefineInjectable({ factory: function SettingsService_Factory() { return new SettingsService(); }, token: SettingsService, providedIn: "root" });
+        /** @nocollapse */
+        SettingsService.ctorParameters = function () { return [
+            { type: platform.Platform }
+        ]; };
+        /** @nocollapse */ SettingsService.ɵprov = core.ɵɵdefineInjectable({ factory: function SettingsService_Factory() { return new SettingsService(core.ɵɵinject(platform.Platform)); }, token: SettingsService, providedIn: "root" });
         return SettingsService;
     }());
     if (false) {
@@ -1501,6 +1512,11 @@
          * @private
          */
         SettingsService.prototype._layout;
+        /**
+         * @type {?}
+         * @private
+         */
+        SettingsService.prototype.platform;
     }
 
     /**
