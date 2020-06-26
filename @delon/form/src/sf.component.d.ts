@@ -5,7 +5,7 @@ import { ACLService } from '@delon/acl';
 import { AlainI18NService, DelonLocaleService, LocaleData } from '@delon/theme';
 import { AlainConfigService, AlainSFConfig } from '@delon/util';
 import { ErrorData } from './errors';
-import { SFButton, SFLayout } from './interface';
+import { SFButton, SFChange, SFLayout } from './interface';
 import { FormProperty } from './model/form.property';
 import { FormPropertyFactory } from './model/form.property.factory';
 import { SFSchema } from './schema/index';
@@ -27,8 +27,8 @@ export declare class SFComponent implements OnInit, OnChanges, OnDestroy {
     private _item;
     private _valid;
     private _defUi;
-    private _inited;
     readonly options: AlainSFConfig;
+    _inited: boolean;
     locale: LocaleData;
     rootProperty: FormProperty | null;
     _formData: {};
@@ -74,13 +74,14 @@ export declare class SFComponent implements OnInit, OnChanges, OnDestroy {
     disabled: boolean;
     noColon: boolean;
     cleanValue: boolean;
-    /** 数据变更时回调 */
+    readonly formChange2: EventEmitter<SFChange>;
+    /**
+     * 数据变更时回调
+     * @deprecated Will be removed in 11.0.0. Please use `formChange2` instead
+     */
     readonly formChange: EventEmitter<{}>;
-    /** 提交表单时回调 */
     readonly formSubmit: EventEmitter<{}>;
-    /** 重置表单时回调 */
     readonly formReset: EventEmitter<{}>;
-    /** 表单校验结果回调 */
     readonly formError: EventEmitter<ErrorData[]>;
     /** 表单校验状态 */
     get valid(): boolean;
