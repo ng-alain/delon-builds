@@ -607,7 +607,7 @@
         function FormProperty(schemaValidatorFactory, schema, ui, formData, parent, path, _options) {
             this._options = _options;
             this._errors = null;
-            this._valueChanges = new rxjs.BehaviorSubject({ path: null, pathValue: null, value: null });
+            this._valueChanges = new rxjs.BehaviorSubject(null);
             this._errorsChanges = new rxjs.BehaviorSubject(null);
             this._visible = true;
             this._visibilityChanges = new rxjs.BehaviorSubject(true);
@@ -731,31 +731,40 @@
         });
         /**
          * 更新值且校验数据
+         *
+         * @param [onlySelf=false] 是否包含上级字段
+         * @param [emitValueEvent=true] 是否触发值变更通知
          */
         /**
          * 更新值且校验数据
-         * @param {?=} options
+         *
+         * @param {?=} onlySelf
+         * @param {?=} emitValueEvent
+         * @param {?=} emitValidator
          * @return {?}
          */
         FormProperty.prototype.updateValueAndValidity = /**
          * 更新值且校验数据
-         * @param {?=} options
+         *
+         * @param {?=} onlySelf
+         * @param {?=} emitValueEvent
+         * @param {?=} emitValidator
          * @return {?}
          */
-        function (options) {
-            options = __assign({ onlySelf: false, emitValidator: true, emitValueEvent: true, updatePath: '', updateValue: null }, options);
+        function (onlySelf, emitValueEvent, emitValidator) {
+            if (onlySelf === void 0) { onlySelf = false; }
+            if (emitValueEvent === void 0) { emitValueEvent = true; }
+            if (emitValidator === void 0) { emitValidator = true; }
             this._updateValue();
-            if (options.emitValueEvent) {
-                options.updatePath = options.updatePath || this.path;
-                options.updateValue = options.updateValue || this.value;
-                this.valueChanges.next({ value: this.value, path: options.updatePath, pathValue: options.updateValue });
+            if (emitValueEvent) {
+                this.valueChanges.next(this.value);
             }
             // `emitValidator` 每一次数据变更已经包含完整错误链路，后续父节点数据变更无须再触发校验
-            if (options.emitValidator && this.ui.liveValidate === true) {
+            if (emitValidator && this.ui.liveValidate === true) {
                 this._runValidation();
             }
-            if (this.parent && !options.onlySelf) {
-                this.parent.updateValueAndValidity(__assign(__assign({}, options), { emitValidator: false }));
+            if (this.parent && !onlySelf) {
+                this.parent.updateValueAndValidity(onlySelf, emitValueEvent, false);
             }
         };
         /** 根据路径搜索表单属性 */
@@ -1030,13 +1039,10 @@
          * @return {?}
          */
         function (visible) {
-            var _a, _b;
             this._visible = visible;
             this._visibilityChanges.next(visible);
             // 部分数据源来自 reset
-            if (((_b = (_a = this.root.widget) === null || _a === void 0 ? void 0 : _a.sfComp) === null || _b === void 0 ? void 0 : _b._inited) === true) {
-                this.resetValue(this.value, true);
-            }
+            this.resetValue(this.value, true);
         };
         // A field is visible if AT LEAST ONE of the properties it depends on is visible AND has a value in the list
         // A field is visible if AT LEAST ONE of the properties it depends on is visible AND has a value in the list
@@ -1065,20 +1071,19 @@
                         if (property) {
                             /** @type {?} */
                             var valueCheck = property.valueChanges.pipe(operators.map((/**
-                             * @param {?} res
+                             * @param {?} value
                              * @return {?}
                              */
-                            function (res) {
+                            function (value) {
                                 /** @type {?} */
                                 var vi = visibleIf[dependencyPath];
-                                if (typeof vi === 'function') {
-                                    return vi(res.value);
-                                }
+                                if (typeof vi === 'function')
+                                    return vi(value);
                                 if (vi.indexOf('$ANY$') !== -1) {
-                                    return res.value.length > 0;
+                                    return value.length > 0;
                                 }
                                 else {
-                                    return vi.indexOf(res.value) !== -1;
+                                    return vi.indexOf(value) !== -1;
                                 }
                             })));
                             /** @type {?} */
@@ -1389,7 +1394,7 @@
                     ((/** @type {?} */ (properties[propertyId]))).setValue(value[propertyId], true);
                 }
             }
-            this.updateValueAndValidity({ onlySelf: onlySelf, emitValueEvent: true });
+            this.updateValueAndValidity(onlySelf, true);
         };
         /**
          * @param {?} value
@@ -1409,7 +1414,7 @@
             for (var propertyId in this.schema.properties) {
                 properties[propertyId].resetValue(value[propertyId], true);
             }
-            this.updateValueAndValidity({ onlySelf: onlySelf, emitValueEvent: true });
+            this.updateValueAndValidity(onlySelf, true);
         };
         /**
          * @return {?}
@@ -1505,7 +1510,7 @@
             this.properties = [];
             this.clearErrors();
             this.resetProperties(value);
-            this.updateValueAndValidity({ onlySelf: onlySelf, emitValueEvent: true });
+            this.updateValueAndValidity(onlySelf, true);
         };
         /**
          * @param {?} value
@@ -1702,7 +1707,7 @@
          */
         function (value, onlySelf) {
             this._value = value;
-            this.updateValueAndValidity({ onlySelf: onlySelf, emitValueEvent: true });
+            this.updateValueAndValidity(onlySelf, true);
         };
         /**
          * @param {?} value
@@ -1719,7 +1724,7 @@
                 value = this.schema.default !== undefined ? this.schema.default : this.fallbackValue();
             }
             this._value = value;
-            this.updateValueAndValidity({ onlySelf: onlySelf, emitValueEvent: true });
+            this.updateValueAndValidity(onlySelf, true);
             if (this.widget)
                 this.widget.reset(value);
         };
@@ -1810,7 +1815,7 @@
                 }
             }
             this._value = value;
-            this.updateValueAndValidity({ onlySelf: onlySelf, emitValueEvent: true });
+            this.updateValueAndValidity(onlySelf, true);
         };
         return NumberProperty;
     }(AtomicProperty));
@@ -1846,7 +1851,7 @@
          */
         function (value, onlySelf) {
             this._value = value == null ? '' : value;
-            this.updateValueAndValidity({ onlySelf: onlySelf, emitValueEvent: true });
+            this.updateValueAndValidity(onlySelf, true);
         };
         return StringProperty;
     }(AtomicProperty));
@@ -2303,14 +2308,21 @@
             this.disabled = false;
             this.noColon = false;
             this.cleanValue = false;
-            this.formChange2 = new core.EventEmitter();
             /**
              * 数据变更时回调
-             * @deprecated Will be removed in 11.0.0. Please use `formChange2` instead
              */
             this.formChange = new core.EventEmitter();
+            /**
+             * 提交表单时回调
+             */
             this.formSubmit = new core.EventEmitter();
+            /**
+             * 重置表单时回调
+             */
             this.formReset = new core.EventEmitter();
+            /**
+             * 表单校验结果回调
+             */
             this.formError = new core.EventEmitter();
             this.options = mergeConfig(cogSrv);
             this.liveValidate = (/** @type {?} */ (this.options.liveValidate));
@@ -2952,18 +2964,16 @@
             /** @type {?} */
             var isFirst = true;
             (/** @type {?} */ (this)).rootProperty.valueChanges.subscribe((/**
-             * @param {?} res
+             * @param {?} value
              * @return {?}
              */
-            function (res) {
-                (/** @type {?} */ (_this))._item = __assign(__assign({}, ((/** @type {?} */ (_this)).cleanValue ? null : (/** @type {?} */ (_this)).formData)), res.value);
+            function (value) {
+                (/** @type {?} */ (_this))._item = __assign(__assign({}, ((/** @type {?} */ (_this)).cleanValue ? null : (/** @type {?} */ (_this)).formData)), value);
                 if (isFirst) {
                     isFirst = false;
                     return;
                 }
-                // tslint:disable-next-line: deprecation
                 (/** @type {?} */ (_this)).formChange.emit((/** @type {?} */ (_this))._item);
-                (/** @type {?} */ (_this)).formChange2.emit({ value: (/** @type {?} */ (_this))._item, path: res.path, pathValue: res.pathValue });
             }));
             (/** @type {?} */ (this)).rootProperty.errorsChanges.subscribe((/**
              * @param {?} errors
@@ -3094,7 +3104,6 @@
             disabled: [{ type: core.Input }],
             noColon: [{ type: core.Input }],
             cleanValue: [{ type: core.Input }],
-            formChange2: [{ type: core.Output }],
             formChange: [{ type: core.Output }],
             formSubmit: [{ type: core.Output }],
             formReset: [{ type: core.Output }],
@@ -3160,10 +3169,13 @@
          * @private
          */
         SFComponent.prototype._defUi;
+        /**
+         * @type {?}
+         * @private
+         */
+        SFComponent.prototype._inited;
         /** @type {?} */
         SFComponent.prototype.options;
-        /** @type {?} */
-        SFComponent.prototype._inited;
         /** @type {?} */
         SFComponent.prototype.locale;
         /** @type {?} */
@@ -3244,19 +3256,25 @@
         SFComponent.prototype.noColon;
         /** @type {?} */
         SFComponent.prototype.cleanValue;
-        /** @type {?} */
-        SFComponent.prototype.formChange2;
         /**
          * 数据变更时回调
-         * @deprecated Will be removed in 11.0.0. Please use `formChange2` instead
          * @type {?}
          */
         SFComponent.prototype.formChange;
-        /** @type {?} */
+        /**
+         * 提交表单时回调
+         * @type {?}
+         */
         SFComponent.prototype.formSubmit;
-        /** @type {?} */
+        /**
+         * 重置表单时回调
+         * @type {?}
+         */
         SFComponent.prototype.formReset;
-        /** @type {?} */
+        /**
+         * 表单校验结果回调
+         * @type {?}
+         */
         SFComponent.prototype.formError;
         /**
          * @type {?}
@@ -3817,7 +3835,10 @@
          * @protected
          */
         Widget.prototype.sfItemComp;
-        /** @type {?} */
+        /**
+         * @type {?}
+         * @protected
+         */
         Widget.prototype.sfComp;
         /**
          * @abstract
@@ -6261,7 +6282,7 @@
             function (list) {
                 _this.fileList = (/** @type {?} */ (list));
                 _this.formProperty._value = _this.pureValue(list);
-                _this.formProperty.updateValueAndValidity({ onlySelf: false, emitValueEvent: false, emitValidator: false });
+                _this.formProperty.updateValueAndValidity(false, false, false);
                 _this.detectChanges();
             }));
         };
@@ -7028,70 +7049,6 @@
      * Generated from: src/interface.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    /**
-     * @record
-     */
-    function SFValueChange() { }
-    if (false) {
-        /** @type {?} */
-        SFValueChange.prototype.path;
-        /** @type {?} */
-        SFValueChange.prototype.pathValue;
-        /** @type {?} */
-        SFValueChange.prototype.value;
-    }
-    /**
-     * @record
-     */
-    function SFChange() { }
-    if (false) {
-        /**
-         * Always return complete data
-         * @type {?}
-         */
-        SFChange.prototype.value;
-        /**
-         * Current triggered path
-         * @type {?}
-         */
-        SFChange.prototype.path;
-        /**
-         * Current path value
-         * @type {?}
-         */
-        SFChange.prototype.pathValue;
-    }
-    /**
-     * @record
-     */
-    function SFUpdateValueAndValidity() { }
-    if (false) {
-        /**
-         * 是否包含上级字段，默认：`false`
-         * @type {?|undefined}
-         */
-        SFUpdateValueAndValidity.prototype.onlySelf;
-        /**
-         * 是否触发值变更通知，默认：`true`
-         * @type {?|undefined}
-         */
-        SFUpdateValueAndValidity.prototype.emitValueEvent;
-        /**
-         * 是否触发校验，默认：`true`
-         * @type {?|undefined}
-         */
-        SFUpdateValueAndValidity.prototype.emitValidator;
-        /**
-         * 当前更新路径
-         * @type {?|undefined}
-         */
-        SFUpdateValueAndValidity.prototype.updatePath;
-        /**
-         * 当前更新路径对应值
-         * @type {?|undefined}
-         */
-        SFUpdateValueAndValidity.prototype.updateValue;
-    }
     /**
      * @record
      */

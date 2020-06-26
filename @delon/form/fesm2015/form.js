@@ -401,7 +401,7 @@ class FormProperty {
     constructor(schemaValidatorFactory, schema, ui, formData, parent, path, _options) {
         this._options = _options;
         this._errors = null;
-        this._valueChanges = new BehaviorSubject({ path: null, pathValue: null, value: null });
+        this._valueChanges = new BehaviorSubject(null);
         this._errorsChanges = new BehaviorSubject(null);
         this._visible = true;
         this._visibilityChanges = new BehaviorSubject(true);
@@ -485,23 +485,23 @@ class FormProperty {
     }
     /**
      * 更新值且校验数据
-     * @param {?=} options
+     *
+     * @param {?=} onlySelf
+     * @param {?=} emitValueEvent
+     * @param {?=} emitValidator
      * @return {?}
      */
-    updateValueAndValidity(options) {
-        options = Object.assign({ onlySelf: false, emitValidator: true, emitValueEvent: true, updatePath: '', updateValue: null }, options);
+    updateValueAndValidity(onlySelf = false, emitValueEvent = true, emitValidator = true) {
         this._updateValue();
-        if (options.emitValueEvent) {
-            options.updatePath = options.updatePath || this.path;
-            options.updateValue = options.updateValue || this.value;
-            this.valueChanges.next({ value: this.value, path: options.updatePath, pathValue: options.updateValue });
+        if (emitValueEvent) {
+            this.valueChanges.next(this.value);
         }
         // `emitValidator` 每一次数据变更已经包含完整错误链路，后续父节点数据变更无须再触发校验
-        if (options.emitValidator && this.ui.liveValidate === true) {
+        if (emitValidator && this.ui.liveValidate === true) {
             this._runValidation();
         }
-        if (this.parent && !options.onlySelf) {
-            this.parent.updateValueAndValidity(Object.assign(Object.assign({}, options), { emitValidator: false }));
+        if (this.parent && !onlySelf) {
+            this.parent.updateValueAndValidity(onlySelf, emitValueEvent, false);
         }
     }
     /**
@@ -713,13 +713,10 @@ class FormProperty {
      * @return {?}
      */
     setVisible(visible) {
-        var _a, _b;
         this._visible = visible;
         this._visibilityChanges.next(visible);
         // 部分数据源来自 reset
-        if (((_b = (_a = this.root.widget) === null || _a === void 0 ? void 0 : _a.sfComp) === null || _b === void 0 ? void 0 : _b._inited) === true) {
-            this.resetValue(this.value, true);
-        }
+        this.resetValue(this.value, true);
     }
     // A field is visible if AT LEAST ONE of the properties it depends on is visible AND has a value in the list
     /**
@@ -741,20 +738,19 @@ class FormProperty {
                     if (property) {
                         /** @type {?} */
                         const valueCheck = property.valueChanges.pipe(map((/**
-                         * @param {?} res
+                         * @param {?} value
                          * @return {?}
                          */
-                        res => {
+                        (value) => {
                             /** @type {?} */
                             const vi = visibleIf[dependencyPath];
-                            if (typeof vi === 'function') {
-                                return vi(res.value);
-                            }
+                            if (typeof vi === 'function')
+                                return vi(value);
                             if (vi.indexOf('$ANY$') !== -1) {
-                                return res.value.length > 0;
+                                return value.length > 0;
                             }
                             else {
-                                return vi.indexOf(res.value) !== -1;
+                                return vi.indexOf(value) !== -1;
                             }
                         })));
                         /** @type {?} */
@@ -1026,7 +1022,7 @@ class ObjectProperty extends PropertyGroup {
                 ((/** @type {?} */ (properties[propertyId]))).setValue(value[propertyId], true);
             }
         }
-        this.updateValueAndValidity({ onlySelf, emitValueEvent: true });
+        this.updateValueAndValidity(onlySelf, true);
     }
     /**
      * @param {?} value
@@ -1041,7 +1037,7 @@ class ObjectProperty extends PropertyGroup {
         for (const propertyId in this.schema.properties) {
             properties[propertyId].resetValue(value[propertyId], true);
         }
-        this.updateValueAndValidity({ onlySelf, emitValueEvent: true });
+        this.updateValueAndValidity(onlySelf, true);
     }
     /**
      * @return {?}
@@ -1129,7 +1125,7 @@ class ArrayProperty extends PropertyGroup {
         this.properties = [];
         this.clearErrors();
         this.resetProperties(value);
-        this.updateValueAndValidity({ onlySelf, emitValueEvent: true });
+        this.updateValueAndValidity(onlySelf, true);
     }
     /**
      * @param {?} value
@@ -1263,7 +1259,7 @@ class AtomicProperty extends FormProperty {
      */
     setValue(value, onlySelf) {
         this._value = value;
-        this.updateValueAndValidity({ onlySelf, emitValueEvent: true });
+        this.updateValueAndValidity(onlySelf, true);
     }
     /**
      * @param {?} value
@@ -1275,7 +1271,7 @@ class AtomicProperty extends FormProperty {
             value = this.schema.default !== undefined ? this.schema.default : this.fallbackValue();
         }
         this._value = value;
-        this.updateValueAndValidity({ onlySelf, emitValueEvent: true });
+        this.updateValueAndValidity(onlySelf, true);
         if (this.widget)
             this.widget.reset(value);
     }
@@ -1339,7 +1335,7 @@ class NumberProperty extends AtomicProperty {
             }
         }
         this._value = value;
-        this.updateValueAndValidity({ onlySelf, emitValueEvent: true });
+        this.updateValueAndValidity(onlySelf, true);
     }
 }
 
@@ -1362,7 +1358,7 @@ class StringProperty extends AtomicProperty {
      */
     setValue(value, onlySelf) {
         this._value = value == null ? '' : value;
-        this.updateValueAndValidity({ onlySelf, emitValueEvent: true });
+        this.updateValueAndValidity(onlySelf, true);
     }
 }
 
@@ -1780,14 +1776,21 @@ class SFComponent {
         this.disabled = false;
         this.noColon = false;
         this.cleanValue = false;
-        this.formChange2 = new EventEmitter();
         /**
          * 数据变更时回调
-         * @deprecated Will be removed in 11.0.0. Please use `formChange2` instead
          */
         this.formChange = new EventEmitter();
+        /**
+         * 提交表单时回调
+         */
         this.formSubmit = new EventEmitter();
+        /**
+         * 重置表单时回调
+         */
         this.formReset = new EventEmitter();
+        /**
+         * 表单校验结果回调
+         */
         this.formError = new EventEmitter();
         this.options = mergeConfig(cogSrv);
         this.liveValidate = (/** @type {?} */ (this.options.liveValidate));
@@ -2300,18 +2303,16 @@ class SFComponent {
         /** @type {?} */
         let isFirst = true;
         (/** @type {?} */ (this)).rootProperty.valueChanges.subscribe((/**
-         * @param {?} res
+         * @param {?} value
          * @return {?}
          */
-        res => {
-            (/** @type {?} */ (this))._item = Object.assign(Object.assign({}, ((/** @type {?} */ (this)).cleanValue ? null : (/** @type {?} */ (this)).formData)), res.value);
+        value => {
+            (/** @type {?} */ (this))._item = Object.assign(Object.assign({}, ((/** @type {?} */ (this)).cleanValue ? null : (/** @type {?} */ (this)).formData)), value);
             if (isFirst) {
                 isFirst = false;
                 return;
             }
-            // tslint:disable-next-line: deprecation
             (/** @type {?} */ (this)).formChange.emit((/** @type {?} */ (this))._item);
-            (/** @type {?} */ (this)).formChange2.emit({ value: (/** @type {?} */ (this))._item, path: res.path, pathValue: res.pathValue });
         }));
         (/** @type {?} */ (this)).rootProperty.errorsChanges.subscribe((/**
          * @param {?} errors
@@ -2423,7 +2424,6 @@ SFComponent.propDecorators = {
     disabled: [{ type: Input }],
     noColon: [{ type: Input }],
     cleanValue: [{ type: Input }],
-    formChange2: [{ type: Output }],
     formChange: [{ type: Output }],
     formSubmit: [{ type: Output }],
     formReset: [{ type: Output }],
@@ -2487,10 +2487,13 @@ if (false) {
      * @private
      */
     SFComponent.prototype._defUi;
+    /**
+     * @type {?}
+     * @private
+     */
+    SFComponent.prototype._inited;
     /** @type {?} */
     SFComponent.prototype.options;
-    /** @type {?} */
-    SFComponent.prototype._inited;
     /** @type {?} */
     SFComponent.prototype.locale;
     /** @type {?} */
@@ -2571,19 +2574,25 @@ if (false) {
     SFComponent.prototype.noColon;
     /** @type {?} */
     SFComponent.prototype.cleanValue;
-    /** @type {?} */
-    SFComponent.prototype.formChange2;
     /**
      * 数据变更时回调
-     * @deprecated Will be removed in 11.0.0. Please use `formChange2` instead
      * @type {?}
      */
     SFComponent.prototype.formChange;
-    /** @type {?} */
+    /**
+     * 提交表单时回调
+     * @type {?}
+     */
     SFComponent.prototype.formSubmit;
-    /** @type {?} */
+    /**
+     * 重置表单时回调
+     * @type {?}
+     */
     SFComponent.prototype.formReset;
-    /** @type {?} */
+    /**
+     * 表单校验结果回调
+     * @type {?}
+     */
     SFComponent.prototype.formError;
     /**
      * @type {?}
@@ -3081,7 +3090,10 @@ if (false) {
      * @protected
      */
     Widget.prototype.sfItemComp;
-    /** @type {?} */
+    /**
+     * @type {?}
+     * @protected
+     */
     Widget.prototype.sfComp;
     /**
      * @abstract
@@ -5063,7 +5075,7 @@ class UploadWidget extends ControlUIWidget {
         list => {
             this.fileList = (/** @type {?} */ (list));
             this.formProperty._value = this.pureValue(list);
-            this.formProperty.updateValueAndValidity({ onlySelf: false, emitValueEvent: false, emitValidator: false });
+            this.formProperty.updateValueAndValidity(false, false, false);
             this.detectChanges();
         }));
     }
@@ -5804,70 +5816,6 @@ if (false) {
  * Generated from: src/interface.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-/**
- * @record
- */
-function SFValueChange() { }
-if (false) {
-    /** @type {?} */
-    SFValueChange.prototype.path;
-    /** @type {?} */
-    SFValueChange.prototype.pathValue;
-    /** @type {?} */
-    SFValueChange.prototype.value;
-}
-/**
- * @record
- */
-function SFChange() { }
-if (false) {
-    /**
-     * Always return complete data
-     * @type {?}
-     */
-    SFChange.prototype.value;
-    /**
-     * Current triggered path
-     * @type {?}
-     */
-    SFChange.prototype.path;
-    /**
-     * Current path value
-     * @type {?}
-     */
-    SFChange.prototype.pathValue;
-}
-/**
- * @record
- */
-function SFUpdateValueAndValidity() { }
-if (false) {
-    /**
-     * 是否包含上级字段，默认：`false`
-     * @type {?|undefined}
-     */
-    SFUpdateValueAndValidity.prototype.onlySelf;
-    /**
-     * 是否触发值变更通知，默认：`true`
-     * @type {?|undefined}
-     */
-    SFUpdateValueAndValidity.prototype.emitValueEvent;
-    /**
-     * 是否触发校验，默认：`true`
-     * @type {?|undefined}
-     */
-    SFUpdateValueAndValidity.prototype.emitValidator;
-    /**
-     * 当前更新路径
-     * @type {?|undefined}
-     */
-    SFUpdateValueAndValidity.prototype.updatePath;
-    /**
-     * 当前更新路径对应值
-     * @type {?|undefined}
-     */
-    SFUpdateValueAndValidity.prototype.updateValue;
-}
 /**
  * @record
  */

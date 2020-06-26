@@ -1,7 +1,7 @@
 import { AlainSFConfig } from '@delon/util';
 import { BehaviorSubject } from 'rxjs';
 import { ErrorData } from '../errors';
-import { SFUpdateValueAndValidity, SFValue, SFValueChange } from '../interface';
+import { SFValue } from '../interface';
 import { SFSchema, SFSchemaType } from '../schema';
 import { SFUISchema, SFUISchemaItem, SFUISchemaItemRun } from '../schema/ui';
 import { SchemaValidatorFactory } from '../validator.factory';
@@ -26,7 +26,7 @@ export declare abstract class FormProperty {
     widget: Widget<FormProperty, SFUISchemaItem>;
     path: string;
     constructor(schemaValidatorFactory: SchemaValidatorFactory, schema: SFSchema, ui: SFUISchema | SFUISchemaItem, formData: {}, parent: PropertyGroup | null, path: string, _options: AlainSFConfig);
-    get valueChanges(): BehaviorSubject<SFValueChange>;
+    get valueChanges(): BehaviorSubject<any>;
     get errorsChanges(): BehaviorSubject<ErrorData[] | null>;
     get type(): SFSchemaType;
     get parent(): PropertyGroup | null;
@@ -50,8 +50,11 @@ export declare abstract class FormProperty {
     abstract resetValue(value: SFValue, onlySelf: boolean): void;
     /**
      * 更新值且校验数据
+     *
+     * @param [onlySelf=false] 是否包含上级字段
+     * @param [emitValueEvent=true] 是否触发值变更通知
      */
-    updateValueAndValidity(options?: SFUpdateValueAndValidity): void;
+    updateValueAndValidity(onlySelf?: boolean, emitValueEvent?: boolean, emitValidator?: boolean): void;
     /** 根据路径搜索表单属性 */
     searchProperty(path: string): FormProperty | null;
     /** 查找根表单属性 */
