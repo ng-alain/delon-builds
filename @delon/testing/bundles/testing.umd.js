@@ -146,7 +146,7 @@
      * @return {?}
      */
     function dispatchFakeEvent(node, type, canBubble) {
-        return dispatchEvent(node, createFakeEvent(type, canBubble));
+        return dispatchEvent(node, typeof type === 'string' ? createFakeEvent(type, canBubble) : type);
     }
     /**
      * Shorthand to dispatch a keyboard event with a specified key code.

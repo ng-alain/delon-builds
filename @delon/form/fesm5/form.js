@@ -413,7 +413,7 @@ FormProperty = /** @class */ (function () {
     function FormProperty(schemaValidatorFactory, schema, ui, formData, parent, path, _options) {
         this._options = _options;
         this._errors = null;
-        this._valueChanges = new BehaviorSubject(null);
+        this._valueChanges = new BehaviorSubject({ path: null, pathValue: null, value: null });
         this._errorsChanges = new BehaviorSubject(null);
         this._visible = true;
         this._visibilityChanges = new BehaviorSubject(true);
@@ -537,40 +537,31 @@ FormProperty = /** @class */ (function () {
     });
     /**
      * 更新值且校验数据
-     *
-     * @param [onlySelf=false] 是否包含上级字段
-     * @param [emitValueEvent=true] 是否触发值变更通知
      */
     /**
      * 更新值且校验数据
-     *
-     * @param {?=} onlySelf
-     * @param {?=} emitValueEvent
-     * @param {?=} emitValidator
+     * @param {?=} options
      * @return {?}
      */
     FormProperty.prototype.updateValueAndValidity = /**
      * 更新值且校验数据
-     *
-     * @param {?=} onlySelf
-     * @param {?=} emitValueEvent
-     * @param {?=} emitValidator
+     * @param {?=} options
      * @return {?}
      */
-    function (onlySelf, emitValueEvent, emitValidator) {
-        if (onlySelf === void 0) { onlySelf = false; }
-        if (emitValueEvent === void 0) { emitValueEvent = true; }
-        if (emitValidator === void 0) { emitValidator = true; }
+    function (options) {
+        options = __assign({ onlySelf: false, emitValidator: true, emitValueEvent: true, updatePath: '', updateValue: null }, options);
         this._updateValue();
-        if (emitValueEvent) {
-            this.valueChanges.next(this.value);
+        if (options.emitValueEvent) {
+            options.updatePath = options.updatePath || this.path;
+            options.updateValue = options.updateValue || this.value;
+            this.valueChanges.next({ value: this.value, path: options.updatePath, pathValue: options.updateValue });
         }
         // `emitValidator` 每一次数据变更已经包含完整错误链路，后续父节点数据变更无须再触发校验
-        if (emitValidator && this.ui.liveValidate === true) {
+        if (options.emitValidator && this.ui.liveValidate === true) {
             this._runValidation();
         }
-        if (this.parent && !onlySelf) {
-            this.parent.updateValueAndValidity(onlySelf, emitValueEvent, false);
+        if (this.parent && !options.onlySelf) {
+            this.parent.updateValueAndValidity(__assign(__assign({}, options), { emitValidator: false }));
         }
     };
     /** 根据路径搜索表单属性 */
@@ -845,10 +836,13 @@ FormProperty = /** @class */ (function () {
      * @return {?}
      */
     function (visible) {
+        var _a, _b;
         this._visible = visible;
         this._visibilityChanges.next(visible);
         // 部分数据源来自 reset
-        this.resetValue(this.value, true);
+        if (((_b = (_a = this.root.widget) === null || _a === void 0 ? void 0 : _a.sfComp) === null || _b === void 0 ? void 0 : _b._inited) === true) {
+            this.resetValue(this.value, true);
+        }
     };
     // A field is visible if AT LEAST ONE of the properties it depends on is visible AND has a value in the list
     // A field is visible if AT LEAST ONE of the properties it depends on is visible AND has a value in the list
@@ -877,19 +871,20 @@ FormProperty = /** @class */ (function () {
                     if (property) {
                         /** @type {?} */
                         var valueCheck = property.valueChanges.pipe(map((/**
-                         * @param {?} value
+                         * @param {?} res
                          * @return {?}
                          */
-                        function (value) {
+                        function (res) {
                             /** @type {?} */
                             var vi = visibleIf[dependencyPath];
-                            if (typeof vi === 'function')
-                                return vi(value);
+                            if (typeof vi === 'function') {
+                                return vi(res.value);
+                            }
                             if (vi.indexOf('$ANY$') !== -1) {
-                                return value.length > 0;
+                                return res.value.length > 0;
                             }
                             else {
-                                return vi.indexOf(value) !== -1;
+                                return vi.indexOf(res.value) !== -1;
                             }
                         })));
                         /** @type {?} */
@@ -1200,7 +1195,7 @@ var ObjectProperty = /** @class */ (function (_super) {
                 ((/** @type {?} */ (properties[propertyId]))).setValue(value[propertyId], true);
             }
         }
-        this.updateValueAndValidity(onlySelf, true);
+        this.updateValueAndValidity({ onlySelf: onlySelf, emitValueEvent: true });
     };
     /**
      * @param {?} value
@@ -1220,7 +1215,7 @@ var ObjectProperty = /** @class */ (function (_super) {
         for (var propertyId in this.schema.properties) {
             properties[propertyId].resetValue(value[propertyId], true);
         }
-        this.updateValueAndValidity(onlySelf, true);
+        this.updateValueAndValidity({ onlySelf: onlySelf, emitValueEvent: true });
     };
     /**
      * @return {?}
@@ -1316,7 +1311,7 @@ var ArrayProperty = /** @class */ (function (_super) {
         this.properties = [];
         this.clearErrors();
         this.resetProperties(value);
-        this.updateValueAndValidity(onlySelf, true);
+        this.updateValueAndValidity({ onlySelf: onlySelf, emitValueEvent: true });
     };
     /**
      * @param {?} value
@@ -1513,7 +1508,7 @@ AtomicProperty = /** @class */ (function (_super) {
      */
     function (value, onlySelf) {
         this._value = value;
-        this.updateValueAndValidity(onlySelf, true);
+        this.updateValueAndValidity({ onlySelf: onlySelf, emitValueEvent: true });
     };
     /**
      * @param {?} value
@@ -1530,7 +1525,7 @@ AtomicProperty = /** @class */ (function (_super) {
             value = this.schema.default !== undefined ? this.schema.default : this.fallbackValue();
         }
         this._value = value;
-        this.updateValueAndValidity(onlySelf, true);
+        this.updateValueAndValidity({ onlySelf: onlySelf, emitValueEvent: true });
         if (this.widget)
             this.widget.reset(value);
     };
@@ -1621,7 +1616,7 @@ var NumberProperty = /** @class */ (function (_super) {
             }
         }
         this._value = value;
-        this.updateValueAndValidity(onlySelf, true);
+        this.updateValueAndValidity({ onlySelf: onlySelf, emitValueEvent: true });
     };
     return NumberProperty;
 }(AtomicProperty));
@@ -1657,7 +1652,7 @@ var StringProperty = /** @class */ (function (_super) {
      */
     function (value, onlySelf) {
         this._value = value == null ? '' : value;
-        this.updateValueAndValidity(onlySelf, true);
+        this.updateValueAndValidity({ onlySelf: onlySelf, emitValueEvent: true });
     };
     return StringProperty;
 }(AtomicProperty));
@@ -2114,21 +2109,14 @@ var SFComponent = /** @class */ (function () {
         this.disabled = false;
         this.noColon = false;
         this.cleanValue = false;
+        this.formChange2 = new EventEmitter();
         /**
          * 数据变更时回调
+         * @deprecated Will be removed in 11.0.0. Please use `formChange2` instead
          */
         this.formChange = new EventEmitter();
-        /**
-         * 提交表单时回调
-         */
         this.formSubmit = new EventEmitter();
-        /**
-         * 重置表单时回调
-         */
         this.formReset = new EventEmitter();
-        /**
-         * 表单校验结果回调
-         */
         this.formError = new EventEmitter();
         this.options = mergeConfig(cogSrv);
         this.liveValidate = (/** @type {?} */ (this.options.liveValidate));
@@ -2770,16 +2758,18 @@ var SFComponent = /** @class */ (function () {
         /** @type {?} */
         var isFirst = true;
         (/** @type {?} */ (this)).rootProperty.valueChanges.subscribe((/**
-         * @param {?} value
+         * @param {?} res
          * @return {?}
          */
-        function (value) {
-            (/** @type {?} */ (_this))._item = __assign(__assign({}, ((/** @type {?} */ (_this)).cleanValue ? null : (/** @type {?} */ (_this)).formData)), value);
+        function (res) {
+            (/** @type {?} */ (_this))._item = __assign(__assign({}, ((/** @type {?} */ (_this)).cleanValue ? null : (/** @type {?} */ (_this)).formData)), res.value);
             if (isFirst) {
                 isFirst = false;
                 return;
             }
+            // tslint:disable-next-line: deprecation
             (/** @type {?} */ (_this)).formChange.emit((/** @type {?} */ (_this))._item);
+            (/** @type {?} */ (_this)).formChange2.emit({ value: (/** @type {?} */ (_this))._item, path: res.path, pathValue: res.pathValue });
         }));
         (/** @type {?} */ (this)).rootProperty.errorsChanges.subscribe((/**
          * @param {?} errors
@@ -2910,6 +2900,7 @@ var SFComponent = /** @class */ (function () {
         disabled: [{ type: Input }],
         noColon: [{ type: Input }],
         cleanValue: [{ type: Input }],
+        formChange2: [{ type: Output }],
         formChange: [{ type: Output }],
         formSubmit: [{ type: Output }],
         formReset: [{ type: Output }],
@@ -2975,13 +2966,10 @@ if (false) {
      * @private
      */
     SFComponent.prototype._defUi;
-    /**
-     * @type {?}
-     * @private
-     */
-    SFComponent.prototype._inited;
     /** @type {?} */
     SFComponent.prototype.options;
+    /** @type {?} */
+    SFComponent.prototype._inited;
     /** @type {?} */
     SFComponent.prototype.locale;
     /** @type {?} */
@@ -3062,25 +3050,19 @@ if (false) {
     SFComponent.prototype.noColon;
     /** @type {?} */
     SFComponent.prototype.cleanValue;
+    /** @type {?} */
+    SFComponent.prototype.formChange2;
     /**
      * 数据变更时回调
+     * @deprecated Will be removed in 11.0.0. Please use `formChange2` instead
      * @type {?}
      */
     SFComponent.prototype.formChange;
-    /**
-     * 提交表单时回调
-     * @type {?}
-     */
+    /** @type {?} */
     SFComponent.prototype.formSubmit;
-    /**
-     * 重置表单时回调
-     * @type {?}
-     */
+    /** @type {?} */
     SFComponent.prototype.formReset;
-    /**
-     * 表单校验结果回调
-     * @type {?}
-     */
+    /** @type {?} */
     SFComponent.prototype.formError;
     /**
      * @type {?}
@@ -3641,10 +3623,7 @@ if (false) {
      * @protected
      */
     Widget.prototype.sfItemComp;
-    /**
-     * @type {?}
-     * @protected
-     */
+    /** @type {?} */
     Widget.prototype.sfComp;
     /**
      * @abstract
@@ -6088,7 +6067,7 @@ var UploadWidget = /** @class */ (function (_super) {
         function (list) {
             _this.fileList = (/** @type {?} */ (list));
             _this.formProperty._value = _this.pureValue(list);
-            _this.formProperty.updateValueAndValidity(false, false, false);
+            _this.formProperty.updateValueAndValidity({ onlySelf: false, emitValueEvent: false, emitValidator: false });
             _this.detectChanges();
         }));
     };
@@ -6855,6 +6834,70 @@ if (false) {
  * Generated from: src/interface.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function SFValueChange() { }
+if (false) {
+    /** @type {?} */
+    SFValueChange.prototype.path;
+    /** @type {?} */
+    SFValueChange.prototype.pathValue;
+    /** @type {?} */
+    SFValueChange.prototype.value;
+}
+/**
+ * @record
+ */
+function SFChange() { }
+if (false) {
+    /**
+     * Always return complete data
+     * @type {?}
+     */
+    SFChange.prototype.value;
+    /**
+     * Current triggered path
+     * @type {?}
+     */
+    SFChange.prototype.path;
+    /**
+     * Current path value
+     * @type {?}
+     */
+    SFChange.prototype.pathValue;
+}
+/**
+ * @record
+ */
+function SFUpdateValueAndValidity() { }
+if (false) {
+    /**
+     * 是否包含上级字段，默认：`false`
+     * @type {?|undefined}
+     */
+    SFUpdateValueAndValidity.prototype.onlySelf;
+    /**
+     * 是否触发值变更通知，默认：`true`
+     * @type {?|undefined}
+     */
+    SFUpdateValueAndValidity.prototype.emitValueEvent;
+    /**
+     * 是否触发校验，默认：`true`
+     * @type {?|undefined}
+     */
+    SFUpdateValueAndValidity.prototype.emitValidator;
+    /**
+     * 当前更新路径
+     * @type {?|undefined}
+     */
+    SFUpdateValueAndValidity.prototype.updatePath;
+    /**
+     * 当前更新路径对应值
+     * @type {?|undefined}
+     */
+    SFUpdateValueAndValidity.prototype.updateValue;
+}
 /**
  * @record
  */
