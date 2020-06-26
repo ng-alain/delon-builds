@@ -3369,7 +3369,7 @@
                 if (typeof size === 'number') {
                     defaultOptions[(/** @type {?} */ (drawerOptions)).nzPlacement === 'top' || (/** @type {?} */ (drawerOptions)).nzPlacement === 'bottom' ? 'nzHeight' : 'nzWidth'] = (/** @type {?} */ (options)).size;
                 }
-                else {
+                else if (!(/** @type {?} */ (drawerOptions)).nzWidth) {
                     defaultOptions.nzWrapClassName = ((/** @type {?} */ (drawerOptions)).nzWrapClassName + (" drawer-" + (/** @type {?} */ (options)).size)).trim();
                     delete (/** @type {?} */ (drawerOptions)).nzWrapClassName;
                 }
