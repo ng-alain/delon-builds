@@ -96,7 +96,7 @@ const MODULES = [
     MediaModule,
 ];
 /**
- * @deprecated Use secondary entry eg: `import { STModule } from 'ng-zorro-antd/st';`.
+ * @deprecated Use secondary entry eg: `import { STModule } from '\@delon/abc/st';`.
  */
 class DelonABCModule {
     constructor() {
