@@ -12,3 +12,4 @@ export * from './widget';
 export * from './widgets/index';
 export * from './widget.factory';
 export * from './validator.factory';
+export * from './utils';

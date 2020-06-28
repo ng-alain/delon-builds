@@ -8795,7 +8795,17 @@
     exports.Widget = Widget;
     exports.WidgetFactory = WidgetFactory;
     exports.WidgetRegistry = WidgetRegistry;
+    exports.di = di;
+    exports.getCopyEnum = getCopyEnum;
+    exports.getData = getData;
+    exports.getEnum = getEnum;
+    exports.isBlank = isBlank;
+    exports.isDateFns = isDateFns;
     exports.mergeConfig = mergeConfig;
+    exports.orderProperties = orderProperties;
+    exports.resolveIf = resolveIf;
+    exports.retrieveSchema = retrieveSchema;
+    exports.toBool = toBool;
     exports.useFactory = useFactory;
     exports.ɵa = TerminatorService;
     exports.ɵb = SFItemWrapComponent;
