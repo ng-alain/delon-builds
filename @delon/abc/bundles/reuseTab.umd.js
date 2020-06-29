@@ -2121,7 +2121,7 @@
              * @return {?}
              */
             function (w) { return w.url === url; })) === -1;
-            if (notify.active === 'close' && notify.url === url) {
+            if (notify && notify.active === 'close' && notify.url === url) {
                 addCurrent = false;
                 /** @type {?} */
                 var toPos = 0;
@@ -2375,7 +2375,7 @@
                         }
                         return;
                 }
-                _this.genList((/** @type {?} */ (res)));
+                _this.genList(res);
             }));
             this.i18nSrv.change
                 .pipe(operators.filter((/**

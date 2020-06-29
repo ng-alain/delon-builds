@@ -1488,7 +1488,7 @@ class ReuseTabComponent {
          * @return {?}
          */
         w => w.url === url)) === -1;
-        if (notify.active === 'close' && notify.url === url) {
+        if (notify && notify.active === 'close' && notify.url === url) {
             addCurrent = false;
             /** @type {?} */
             let toPos = 0;
@@ -1701,7 +1701,7 @@ class ReuseTabComponent {
                     }
                     return;
             }
-            this.genList((/** @type {?} */ (res)));
+            this.genList(res);
         }));
         this.i18nSrv.change
             .pipe(filter((/**
