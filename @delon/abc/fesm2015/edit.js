@@ -404,11 +404,13 @@ class SEComponent {
             const controlAccessor = (/** @type {?} */ (this.ngControl.valueAccessor));
             /** @type {?} */
             const control = (/** @type {?} */ ((_a = ((controlAccessor === null || controlAccessor === void 0 ? void 0 : controlAccessor.elementRef) || (controlAccessor === null || controlAccessor === void 0 ? void 0 : controlAccessor._elementRef))) === null || _a === void 0 ? void 0 : _a.nativeElement));
-            if (control.id) {
-                this._id = control.id;
-            }
-            else {
-                control.id = this._id;
+            if (!!control) {
+                if (control.id) {
+                    this._id = control.id;
+                }
+                else {
+                    control.id = this._id;
+                }
             }
         }
         // auto required

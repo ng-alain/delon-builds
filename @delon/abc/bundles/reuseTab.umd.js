@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/theme'), require('rxjs'), require('@angular/cdk/overlay'), require('@angular/cdk/portal'), require('@angular/common'), require('@angular/router'), require('@delon/util'), require('ng-zorro-antd/tabs'), require('rxjs/operators'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/menu')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/reuse-tab', ['exports', '@angular/core', '@delon/theme', 'rxjs', '@angular/cdk/overlay', '@angular/cdk/portal', '@angular/common', '@angular/router', '@delon/util', 'ng-zorro-antd/tabs', 'rxjs/operators', 'ng-zorro-antd/icon', 'ng-zorro-antd/menu'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['reuse-tab'] = {}), global.ng.core, global.delon.theme, global.rxjs, global.ng.cdk.overlay, global.ng.cdk.portal, global.ng.common, global.ng.router, global.delon.util, global['ng-zorro-antd/tabs'], global.rxjs.operators, global['ng-zorro-antd/icon'], global['ng-zorro-antd/menu']));
-}(this, (function (exports, core, theme, rxjs, overlay, portal, common, router, util, tabs, operators, icon, menu) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/theme'), require('rxjs'), require('@angular/cdk/overlay'), require('@angular/cdk/portal'), require('@angular/common'), require('@angular/router'), require('@delon/util'), require('rxjs/operators'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/menu'), require('ng-zorro-antd/tabs')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/reuse-tab', ['exports', '@angular/core', '@delon/theme', 'rxjs', '@angular/cdk/overlay', '@angular/cdk/portal', '@angular/common', '@angular/router', '@delon/util', 'rxjs/operators', 'ng-zorro-antd/icon', 'ng-zorro-antd/menu', 'ng-zorro-antd/tabs'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['reuse-tab'] = {}), global.ng.core, global.delon.theme, global.rxjs, global.ng.cdk.overlay, global.ng.cdk.portal, global.ng.common, global.ng.router, global.delon.util, global.rxjs.operators, global['ng-zorro-antd/icon'], global['ng-zorro-antd/menu'], global['ng-zorro-antd/tabs']));
+}(this, (function (exports, core, theme, rxjs, overlay, portal, common, router, util, operators, icon, menu, tabs) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -2336,9 +2336,8 @@
                  * @return {?}
                  */
                 function (w) { return w.url === url || !_this.srv.isExclude(w.url); }));
-                if (ls.length === 0) {
+                if (ls.length === 0)
                     return;
-                }
                 /** @type {?} */
                 var last = ls[ls.length - 1];
                 /** @type {?} */
@@ -2357,9 +2356,6 @@
                  */
                 function (i, idx) { return (i.active = pos === idx); }));
                 _this.pos = pos;
-                // TODO: 目前无法知道为什么 `pos` 无法通过 `nzSelectedIndex` 生效，因此强制使用组件实例的方式来修改，这种方式是安全的
-                // https://github.com/ng-alain/ng-alain/issues/1736
-                _this.tabset.nzSelectedIndex = pos;
                 _this.list = ls;
                 _this.cdr.detectChanges();
             }));
@@ -2429,7 +2425,7 @@
             { type: core.Component, args: [{
                         selector: 'reuse-tab, [reuse-tab]',
                         exportAs: 'reuseTab',
-                        template: "<nz-tabset\n  #tabset\n  [nzSelectedIndex]=\"pos\"\n  [nzAnimated]=\"false\"\n  [nzType]=\"tabType\"\n  [nzTabBarExtraContent]=\"tabBarExtraContent\"\n  [nzTabBarGutter]=\"tabBarGutter\"\n  [nzTabBarStyle]=\"tabBarStyle\"\n>\n  <nz-tab *ngFor=\"let i of list; let index = index\" [nzTitle]=\"titleTemplate\" (nzClick)=\"_to(index)\">\n    <ng-template #titleTemplate>\n      <div [reuse-tab-context-menu]=\"i\" [customContextMenu]=\"customContextMenu\" class=\"reuse-tab__name\" [attr.title]=\"i.title\">\n        <span [class.reuse-tab__name-width]=\"tabMaxWidth\" [style.max-width.px]=\"tabMaxWidth\">\n          {{ i.title }}\n        </span>\n      </div>\n      <i *ngIf=\"i.closable\" nz-icon nzType=\"close\" class=\"reuse-tab__op\" (click)=\"_close($event, index, false)\"></i>\n    </ng-template>\n  </nz-tab>\n</nz-tabset>\n<reuse-tab-context [i18n]=\"i18n\" (change)=\"contextMenuChange($event)\"></reuse-tab-context>\n",
+                        template: "<nz-tabset\n  [nzSelectedIndex]=\"pos\"\n  [nzAnimated]=\"false\"\n  [nzType]=\"tabType\"\n  [nzTabBarExtraContent]=\"tabBarExtraContent\"\n  [nzTabBarGutter]=\"tabBarGutter\"\n  [nzTabBarStyle]=\"tabBarStyle\"\n>\n  <nz-tab *ngFor=\"let i of list; let index = index\" [nzTitle]=\"titleTemplate\" (nzClick)=\"_to(index)\">\n    <ng-template #titleTemplate>\n      <div [reuse-tab-context-menu]=\"i\" [customContextMenu]=\"customContextMenu\" class=\"reuse-tab__name\" [attr.title]=\"i.title\">\n        <span [class.reuse-tab__name-width]=\"tabMaxWidth\" [style.max-width.px]=\"tabMaxWidth\">\n          {{ i.title }}\n        </span>\n      </div>\n      <i *ngIf=\"i.closable\" nz-icon nzType=\"close\" class=\"reuse-tab__op\" (click)=\"_close($event, index, false)\"></i>\n    </ng-template>\n  </nz-tab>\n</nz-tabset>\n<reuse-tab-context [i18n]=\"i18n\" (change)=\"contextMenuChange($event)\"></reuse-tab-context>\n",
                         host: {
                             '[class.reuse-tab]': 'true',
                             '[class.reuse-tab__line]': "tabType === 'line'",
@@ -2451,7 +2447,6 @@
             { type: undefined, decorators: [{ type: core.Inject, args: [common.DOCUMENT,] }] }
         ]; };
         ReuseTabComponent.propDecorators = {
-            tabset: [{ type: core.ViewChild, args: ['tabset',] }],
             mode: [{ type: core.Input }],
             i18n: [{ type: core.Input }],
             debug: [{ type: core.Input }],
@@ -2492,11 +2487,6 @@
         return ReuseTabComponent;
     }());
     if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        ReuseTabComponent.prototype.tabset;
         /**
          * @type {?}
          * @private
