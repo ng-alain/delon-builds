@@ -1905,7 +1905,7 @@ var ReuseTabComponent = /** @class */ (function () {
          * @return {?}
          */
         function (w) { return w.url === url; })) === -1;
-        if (notify.active === 'close' && notify.url === url) {
+        if (notify && notify.active === 'close' && notify.url === url) {
             addCurrent = false;
             /** @type {?} */
             var toPos = 0;
@@ -1938,6 +1938,7 @@ var ReuseTabComponent = /** @class */ (function () {
             ls[0].closable = false;
         }
         this.list = ls;
+        this.cdr.detectChanges();
         this.updatePos$.next();
     };
     /**
@@ -2120,7 +2121,6 @@ var ReuseTabComponent = /** @class */ (function () {
              */
             function (w) { return w.url === url || !_this.srv.isExclude(w.url); }));
             if (ls.length === 0) {
-                _this.cdr.detectChanges();
                 return;
             }
             /** @type {?} */
@@ -2140,7 +2140,7 @@ var ReuseTabComponent = /** @class */ (function () {
              * @return {?}
              */
             function (i, idx) { return (i.active = pos === idx); }));
-            // this.pos = pos;
+            _this.pos = pos;
             // TODO: 目前无法知道为什么 `pos` 无法通过 `nzSelectedIndex` 生效，因此强制使用组件实例的方式来修改，这种方式是安全的
             // https://github.com/ng-alain/ng-alain/issues/1736
             _this.tabset.nzSelectedIndex = pos;
@@ -2163,7 +2163,7 @@ var ReuseTabComponent = /** @class */ (function () {
                     }
                     return;
             }
-            _this.genList((/** @type {?} */ (res)));
+            _this.genList(res);
         }));
         this.i18nSrv.change
             .pipe(filter((/**
