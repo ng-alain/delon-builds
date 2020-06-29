@@ -10,6 +10,7 @@ export declare class ReuseTabComponent implements OnInit, OnChanges, OnDestroy {
     private route;
     private i18nSrv;
     private doc;
+    private tabset;
     private unsubscribe$;
     private updatePos$;
     private _keepingScrollContainer;
