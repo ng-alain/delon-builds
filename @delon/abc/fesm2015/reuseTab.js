@@ -1,4 +1,4 @@
-import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Output, ElementRef, Injectable, Directive, Injector, ɵɵdefineInjectable, ɵɵinject, INJECTOR, ChangeDetectorRef, Optional, Inject, NgModule } from '@angular/core';
+import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Output, ElementRef, Injectable, Directive, Injector, ɵɵdefineInjectable, ɵɵinject, INJECTOR, ChangeDetectorRef, Optional, Inject, ViewChild, NgModule } from '@angular/core';
 import { DelonLocaleService, ScrollService, MenuService, ALAIN_I18N_TOKEN, DelonLocaleModule } from '@delon/theme';
 import { Subject, Subscription, BehaviorSubject } from 'rxjs';
 import { ConnectionPositionPair, Overlay, OverlayModule } from '@angular/cdk/overlay';
@@ -7,10 +7,10 @@ import { __decorate, __metadata } from 'tslib';
 import { DOCUMENT, CommonModule } from '@angular/common';
 import { ActivatedRoute, Router, ROUTER_CONFIGURATION, NavigationStart, NavigationEnd, RouterModule } from '@angular/router';
 import { InputBoolean, InputNumber } from '@delon/util';
+import { NzTabsModule } from 'ng-zorro-antd/tabs';
 import { takeUntil, debounceTime, filter } from 'rxjs/operators';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
-import { NzTabsModule } from 'ng-zorro-antd/tabs';
 
 /**
  * @fileoverview added by tsickle
@@ -1488,7 +1488,7 @@ class ReuseTabComponent {
          * @return {?}
          */
         w => w.url === url)) === -1;
-        if (notify && notify.active === 'close' && notify.url === url) {
+        if (notify.active === 'close' && notify.url === url) {
             addCurrent = false;
             /** @type {?} */
             let toPos = 0;
@@ -1521,7 +1521,6 @@ class ReuseTabComponent {
             ls[0].closable = false;
         }
         this.list = ls;
-        this.cdr.detectChanges();
         this.updatePos$.next();
     }
     /**
@@ -1662,8 +1661,10 @@ class ReuseTabComponent {
              * @return {?}
              */
             w => w.url === url || !this.srv.isExclude(w.url)));
-            if (ls.length === 0)
+            if (ls.length === 0) {
+                this.cdr.detectChanges();
                 return;
+            }
             /** @type {?} */
             const last = ls[ls.length - 1];
             /** @type {?} */
@@ -1681,7 +1682,10 @@ class ReuseTabComponent {
              * @return {?}
              */
             (i, idx) => (i.active = pos === idx)));
-            this.pos = pos;
+            // this.pos = pos;
+            // TODO: 目前无法知道为什么 `pos` 无法通过 `nzSelectedIndex` 生效，因此强制使用组件实例的方式来修改，这种方式是安全的
+            // https://github.com/ng-alain/ng-alain/issues/1736
+            this.tabset.nzSelectedIndex = pos;
             this.list = ls;
             this.cdr.detectChanges();
         }));
@@ -1701,7 +1705,7 @@ class ReuseTabComponent {
                     }
                     return;
             }
-            this.genList(res);
+            this.genList((/** @type {?} */ (res)));
         }));
         this.i18nSrv.change
             .pipe(filter((/**
@@ -1745,7 +1749,7 @@ ReuseTabComponent.decorators = [
     { type: Component, args: [{
                 selector: 'reuse-tab, [reuse-tab]',
                 exportAs: 'reuseTab',
-                template: "<nz-tabset\n  [nzSelectedIndex]=\"pos\"\n  [nzAnimated]=\"false\"\n  [nzType]=\"tabType\"\n  [nzTabBarExtraContent]=\"tabBarExtraContent\"\n  [nzTabBarGutter]=\"tabBarGutter\"\n  [nzTabBarStyle]=\"tabBarStyle\"\n>\n  <nz-tab *ngFor=\"let i of list; let index = index\" [nzTitle]=\"titleTemplate\" (nzClick)=\"_to(index)\">\n    <ng-template #titleTemplate>\n      <div [reuse-tab-context-menu]=\"i\" [customContextMenu]=\"customContextMenu\" class=\"reuse-tab__name\" [attr.title]=\"i.title\">\n        <span [class.reuse-tab__name-width]=\"tabMaxWidth\" [style.max-width.px]=\"tabMaxWidth\">\n          {{ i.title }}\n        </span>\n      </div>\n      <i *ngIf=\"i.closable\" nz-icon nzType=\"close\" class=\"reuse-tab__op\" (click)=\"_close($event, index, false)\"></i>\n    </ng-template>\n  </nz-tab>\n</nz-tabset>\n<reuse-tab-context [i18n]=\"i18n\" (change)=\"contextMenuChange($event)\"></reuse-tab-context>\n",
+                template: "<nz-tabset\n  #tabset\n  [nzSelectedIndex]=\"pos\"\n  [nzAnimated]=\"false\"\n  [nzType]=\"tabType\"\n  [nzTabBarExtraContent]=\"tabBarExtraContent\"\n  [nzTabBarGutter]=\"tabBarGutter\"\n  [nzTabBarStyle]=\"tabBarStyle\"\n>\n  <nz-tab *ngFor=\"let i of list; let index = index\" [nzTitle]=\"titleTemplate\" (nzClick)=\"_to(index)\">\n    <ng-template #titleTemplate>\n      <div [reuse-tab-context-menu]=\"i\" [customContextMenu]=\"customContextMenu\" class=\"reuse-tab__name\" [attr.title]=\"i.title\">\n        <span [class.reuse-tab__name-width]=\"tabMaxWidth\" [style.max-width.px]=\"tabMaxWidth\">\n          {{ i.title }}\n        </span>\n      </div>\n      <i *ngIf=\"i.closable\" nz-icon nzType=\"close\" class=\"reuse-tab__op\" (click)=\"_close($event, index, false)\"></i>\n    </ng-template>\n  </nz-tab>\n</nz-tabset>\n<reuse-tab-context [i18n]=\"i18n\" (change)=\"contextMenuChange($event)\"></reuse-tab-context>\n",
                 host: {
                     '[class.reuse-tab]': 'true',
                     '[class.reuse-tab__line]': `tabType === 'line'`,
@@ -1767,6 +1771,7 @@ ReuseTabComponent.ctorParameters = () => [
     { type: undefined, decorators: [{ type: Inject, args: [DOCUMENT,] }] }
 ];
 ReuseTabComponent.propDecorators = {
+    tabset: [{ type: ViewChild, args: ['tabset',] }],
     mode: [{ type: Input }],
     i18n: [{ type: Input }],
     debug: [{ type: Input }],
@@ -1805,6 +1810,11 @@ __decorate([
     __metadata("design:type", Object)
 ], ReuseTabComponent.prototype, "keepingScroll", void 0);
 if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    ReuseTabComponent.prototype.tabset;
     /**
      * @type {?}
      * @private

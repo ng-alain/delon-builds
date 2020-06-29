@@ -1,6 +1,6 @@
 {
   "name": "@delon/form",
-  "version": "9.4.1-2bf13f96",
+  "version": "9.4.1-4ef51bd2",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -28,9 +28,9 @@
     "component"
   ],
   "dependencies": {
-    "@delon/theme": "^9.4.1-2bf13f96",
-    "@delon/acl": "^9.4.1-2bf13f96",
-    "@delon/util": "^9.4.1-2bf13f96",
+    "@delon/theme": "^9.4.1-4ef51bd2",
+    "@delon/acl": "^9.4.1-4ef51bd2",
+    "@delon/util": "^9.4.1-4ef51bd2",
     "tslib": "^1.10.0"
   },
   "sideEffects": false,
