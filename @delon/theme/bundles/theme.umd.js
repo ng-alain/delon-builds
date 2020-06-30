@@ -1347,12 +1347,10 @@
             this._layout = null;
         }
         /**
-         * @private
          * @param {?} key
          * @return {?}
          */
-        SettingsService.prototype.get = /**
-         * @private
+        SettingsService.prototype.getData = /**
          * @param {?} key
          * @return {?}
          */
@@ -1363,13 +1361,11 @@
             return JSON.parse(localStorage.getItem(key) || 'null') || null;
         };
         /**
-         * @private
          * @param {?} key
          * @param {?} value
          * @return {?}
          */
-        SettingsService.prototype.set = /**
-         * @private
+        SettingsService.prototype.setData = /**
          * @param {?} key
          * @param {?} value
          * @return {?}
@@ -1386,8 +1382,8 @@
              */
             function () {
                 if (!this._layout) {
-                    this._layout = __assign({ fixed: true, collapsed: false, boxed: false, lang: null }, this.get(LAYOUT));
-                    this.set(LAYOUT, this._layout);
+                    this._layout = __assign({ fixed: true, collapsed: false, boxed: false, lang: null }, this.getData(LAYOUT));
+                    this.setData(LAYOUT, this._layout);
                 }
                 return (/** @type {?} */ (this._layout));
             },
@@ -1400,8 +1396,8 @@
              */
             function () {
                 if (!this._app) {
-                    this._app = __assign({ year: new Date().getFullYear() }, this.get(APP));
-                    this.set(APP, this._app);
+                    this._app = __assign({ year: new Date().getFullYear() }, this.getData(APP));
+                    this.setData(APP, this._app);
                 }
                 return (/** @type {?} */ (this._app));
             },
@@ -1414,8 +1410,8 @@
              */
             function () {
                 if (!this._user) {
-                    this._user = __assign({}, this.get(USER));
-                    this.set(USER, this._user);
+                    this._user = __assign({}, this.getData(USER));
+                    this.setData(USER, this._user);
                 }
                 return (/** @type {?} */ (this._user));
             },
@@ -1449,7 +1445,7 @@
             else {
                 this._layout = name;
             }
-            this.set(LAYOUT, this._layout);
+            this.setData(LAYOUT, this._layout);
             this.notify$.next((/** @type {?} */ ({ type: 'layout', name: name, value: value })));
             return true;
         };
@@ -1463,7 +1459,7 @@
          */
         function (value) {
             this._app = value;
-            this.set(APP, value);
+            this.setData(APP, value);
             this.notify$.next({ type: 'app', value: value });
             return true;
         };
@@ -1477,7 +1473,7 @@
          */
         function (value) {
             this._user = value;
-            this.set(USER, value);
+            this.setData(USER, value);
             this.notify$.next({ type: 'user', value: value });
             return true;
         };

@@ -958,23 +958,21 @@ class SettingsService {
         this._layout = null;
     }
     /**
-     * @private
      * @param {?} key
      * @return {?}
      */
-    get(key) {
+    getData(key) {
         if (!this.platform.isBrowser) {
             return null;
         }
         return JSON.parse(localStorage.getItem(key) || 'null') || null;
     }
     /**
-     * @private
      * @param {?} key
      * @param {?} value
      * @return {?}
      */
-    set(key, value) {
+    setData(key, value) {
         if (!this.platform.isBrowser) {
             return;
         }
@@ -985,8 +983,8 @@ class SettingsService {
      */
     get layout() {
         if (!this._layout) {
-            this._layout = Object.assign({ fixed: true, collapsed: false, boxed: false, lang: null }, this.get(LAYOUT));
-            this.set(LAYOUT, this._layout);
+            this._layout = Object.assign({ fixed: true, collapsed: false, boxed: false, lang: null }, this.getData(LAYOUT));
+            this.setData(LAYOUT, this._layout);
         }
         return (/** @type {?} */ (this._layout));
     }
@@ -995,8 +993,8 @@ class SettingsService {
      */
     get app() {
         if (!this._app) {
-            this._app = Object.assign({ year: new Date().getFullYear() }, this.get(APP));
-            this.set(APP, this._app);
+            this._app = Object.assign({ year: new Date().getFullYear() }, this.getData(APP));
+            this.setData(APP, this._app);
         }
         return (/** @type {?} */ (this._app));
     }
@@ -1005,8 +1003,8 @@ class SettingsService {
      */
     get user() {
         if (!this._user) {
-            this._user = Object.assign({}, this.get(USER));
-            this.set(USER, this._user);
+            this._user = Object.assign({}, this.getData(USER));
+            this.setData(USER, this._user);
         }
         return (/** @type {?} */ (this._user));
     }
@@ -1028,7 +1026,7 @@ class SettingsService {
         else {
             this._layout = name;
         }
-        this.set(LAYOUT, this._layout);
+        this.setData(LAYOUT, this._layout);
         this.notify$.next((/** @type {?} */ ({ type: 'layout', name, value })));
         return true;
     }
@@ -1038,7 +1036,7 @@ class SettingsService {
      */
     setApp(value) {
         this._app = value;
-        this.set(APP, value);
+        this.setData(APP, value);
         this.notify$.next({ type: 'app', value });
         return true;
     }
@@ -1048,7 +1046,7 @@ class SettingsService {
      */
     setUser(value) {
         this._user = value;
-        this.set(USER, value);
+        this.setData(USER, value);
         this.notify$.next({ type: 'user', value });
         return true;
     }
@@ -3494,7 +3492,7 @@ KeysPipe.decorators = [
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-const ICON_YES = `<svg viewBox="64 64 896 896" fill="currentColor" width="1em" height="1em" aria-hidden="true"><path d="M912 190h-69.9c-9.8 0-19.1 4.5-25.1 12.2L404.7 724.5 207 474a32 32 0 0 0-25.1-12.2H112c-6.7 0-10.4 7.7-6.3 12.9l273.9 347c12.8 16.2 37.4 16.2 50.3 0l488.4-618.9.4.1-e205c4dc-5.1.4-12.8-6.3-12.8z"></path></svg>`;
+const ICON_YES = `<svg viewBox="64 64 896 896" fill="currentColor" width="1em" height="1em" aria-hidden="true"><path d="M912 190h-69.9c-9.8 0-19.1 4.5-25.1 12.2L404.7 724.5 207 474a32 32 0 0 0-25.1-12.2H112c-6.7 0-10.4 7.7-6.3 12.9l273.9 347c12.8 16.2 37.4 16.2 50.3 0l488.4-618.9.4.1-72e54b89-5.1.4-12.8-6.3-12.8z"></path></svg>`;
 /** @type {?} */
 const ICON_NO = `<svg viewBox="64 64 896 896" fill="currentColor" width="1em" height="1em" aria-hidden="true"><path d="M563.8 512l262.5-312.9c4.4-5.2.7-13.1-6.1-13.1h-79.8c-4.7 0-9.2 2.1-12.3 5.7L511.6 449.8 295.1 191.7c-3-3.6-7.5-5.7-12.3-5.7H203c-6.8 0-10.5 7.9-6.1 13.1L459.4 512 196.9 824.9A7.95 7.95 0 0 0 203 838h79.8c4.7 0 9.2-2.1 12.3-5.7l216.5-258.1 216.5 258.1c3 3.6 7.5 5.7 12.3 5.7h79.8c6.8 0 10.5-7.9 6.1-13.1L563.8 512z"></path></svg>`;
 /** @type {?} */
@@ -3713,7 +3711,7 @@ AlainThemeModule.ctorParameters = () => [
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-const VERSION = new Version('9.4.1-e205c4dc');
+const VERSION = new Version('9.4.1-72e54b89');
 
 /**
  * @fileoverview added by tsickle

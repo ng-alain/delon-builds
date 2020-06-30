@@ -11,8 +11,8 @@ export declare class SettingsService {
     private _user;
     private _layout;
     constructor(platform: Platform);
-    private get;
-    private set;
+    getData(key: string): any;
+    setData(key: string, value: any): void;
     get layout(): Layout;
     get app(): App;
     get user(): User;
