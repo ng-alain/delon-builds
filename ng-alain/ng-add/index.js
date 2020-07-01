@@ -1,7 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const schematics_1 = require("@angular-devkit/schematics");
-function default_1(options) {
+const json_1 = require("../utils/json");
+function genRules(options) {
     const rules = [];
     const applicationOptions = Object.assign({}, options);
     rules.push(schematics_1.schematic('application', applicationOptions));
@@ -33,6 +34,19 @@ function default_1(options) {
         rules.push(schematics_1.schematic('plugin', { name: 'hmr', type: 'add' }));
     }
     return schematics_1.chain(rules);
+}
+function default_1(options) {
+    return (host) => {
+        const pkg = json_1.getJSON(host, `package.json`);
+        let ngCoreVersion = pkg.dependencies['@angular/core'];
+        if (/^[\^|\~]/g.test(ngCoreVersion)) {
+            ngCoreVersion = ngCoreVersion.substr(1);
+        }
+        if (!ngCoreVersion.startsWith('9.')) {
+            throw new Error(`Sorry, the current version only supports angular 9.x, pls downgrade the global Anguar-cli version: [yarn global add @angular/cli@9.x] (or via npm: [npm install -g @angular/cli@9.x])`);
+        }
+        return genRules(options);
+    };
 }
 exports.default = default_1;
 //# sourceMappingURL=index.js.map
