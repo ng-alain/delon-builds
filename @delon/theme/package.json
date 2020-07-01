@@ -1,6 +1,6 @@
 {
   "name": "@delon/theme",
-  "version": "9.4.1-5de10158",
+  "version": "9.4.1-91e0726e",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -22,8 +22,8 @@
   ],
   "dependencies": {
     "ng-zorro-antd": "^9.2.2",
-    "@delon/acl": "^9.4.1-5de10158",
-    "@delon/util": "^9.4.1-5de10158",
+    "@delon/acl": "^9.4.1-91e0726e",
+    "@delon/util": "^9.4.1-91e0726e",
     "tslib": "^1.10.0"
   },
   "sideEffects": false,
