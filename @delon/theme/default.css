@@ -25774,9 +25774,6 @@ fieldset {
 .sf__inline .ant-form-inline > sf-item {
   margin-bottom: 0;
 }
-.sf__inline .ant-form-inline .ant-form-item {
-  display: inline;
-}
 .sf__inline .ant-form-inline .ant-select {
   min-width: 100px;
 }
