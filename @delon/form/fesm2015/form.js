@@ -1780,11 +1780,7 @@ class SFComponent {
         this.disabled = false;
         this.noColon = false;
         this.cleanValue = false;
-        this.formChange2 = new EventEmitter();
-        /**
-         * 数据变更时回调
-         * @deprecated Will be removed in 11.0.0. Please use `formChange2` instead
-         */
+        this.formValueChange = new EventEmitter();
         this.formChange = new EventEmitter();
         this.formSubmit = new EventEmitter();
         this.formReset = new EventEmitter();
@@ -2309,9 +2305,8 @@ class SFComponent {
                 isFirst = false;
                 return;
             }
-            // tslint:disable-next-line: deprecation
             (/** @type {?} */ (this)).formChange.emit((/** @type {?} */ (this))._item);
-            (/** @type {?} */ (this)).formChange2.emit({ value: (/** @type {?} */ (this))._item, path: res.path, pathValue: res.pathValue });
+            (/** @type {?} */ (this)).formValueChange.emit({ value: (/** @type {?} */ (this))._item, path: res.path, pathValue: res.pathValue });
         }));
         (/** @type {?} */ (this)).rootProperty.errorsChanges.subscribe((/**
          * @param {?} errors
@@ -2423,7 +2418,7 @@ SFComponent.propDecorators = {
     disabled: [{ type: Input }],
     noColon: [{ type: Input }],
     cleanValue: [{ type: Input }],
-    formChange2: [{ type: Output }],
+    formValueChange: [{ type: Output }],
     formChange: [{ type: Output }],
     formSubmit: [{ type: Output }],
     formReset: [{ type: Output }],
@@ -2572,12 +2567,8 @@ if (false) {
     /** @type {?} */
     SFComponent.prototype.cleanValue;
     /** @type {?} */
-    SFComponent.prototype.formChange2;
-    /**
-     * 数据变更时回调
-     * @deprecated Will be removed in 11.0.0. Please use `formChange2` instead
-     * @type {?}
-     */
+    SFComponent.prototype.formValueChange;
+    /** @type {?} */
     SFComponent.prototype.formChange;
     /** @type {?} */
     SFComponent.prototype.formSubmit;
@@ -5807,35 +5798,35 @@ if (false) {
 /**
  * @record
  */
-function SFValueChange() { }
+function SFFormValueChange() { }
 if (false) {
     /** @type {?} */
-    SFValueChange.prototype.path;
+    SFFormValueChange.prototype.path;
     /** @type {?} */
-    SFValueChange.prototype.pathValue;
+    SFFormValueChange.prototype.pathValue;
     /** @type {?} */
-    SFValueChange.prototype.value;
+    SFFormValueChange.prototype.value;
 }
 /**
  * @record
  */
-function SFChange() { }
+function SFValueChange() { }
 if (false) {
     /**
      * Always return complete data
      * @type {?}
      */
-    SFChange.prototype.value;
+    SFValueChange.prototype.value;
     /**
      * Current triggered path
      * @type {?}
      */
-    SFChange.prototype.path;
+    SFValueChange.prototype.path;
     /**
      * Current path value
      * @type {?}
      */
-    SFChange.prototype.pathValue;
+    SFValueChange.prototype.pathValue;
 }
 /**
  * @record

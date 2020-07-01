@@ -2984,9 +2984,7 @@
         function DelonUtilModule() {
         }
         DelonUtilModule.decorators = [
-            { type: core.NgModule, args: [{
-                        imports: [common.CommonModule],
-                    },] }
+            { type: core.NgModule, args: [{},] }
         ];
         return DelonUtilModule;
     }());

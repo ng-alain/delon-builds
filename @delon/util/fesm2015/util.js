@@ -13,7 +13,7 @@ import startOfYear from 'date-fns/startOfYear';
 import subMonths from 'date-fns/subMonths';
 import subWeeks from 'date-fns/subWeeks';
 import subYears from 'date-fns/subYears';
-import { DOCUMENT, CommonModule } from '@angular/common';
+import { DOCUMENT } from '@angular/common';
 import { Injectable, Inject, ɵɵdefineInjectable, ɵɵinject, isDevMode, InjectionToken, Optional, NgModule } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { share, filter } from 'rxjs/operators';
@@ -2522,9 +2522,7 @@ if (false) {
 class DelonUtilModule {
 }
 DelonUtilModule.decorators = [
-    { type: NgModule, args: [{
-                imports: [CommonModule],
-            },] }
+    { type: NgModule, args: [{},] }
 ];
 
 /**

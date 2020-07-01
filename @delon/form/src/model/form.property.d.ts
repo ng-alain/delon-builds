@@ -1,7 +1,7 @@
 import { AlainSFConfig } from '@delon/util';
 import { BehaviorSubject } from 'rxjs';
 import { ErrorData } from '../errors';
-import { SFUpdateValueAndValidity, SFValue, SFValueChange } from '../interface';
+import { SFFormValueChange, SFUpdateValueAndValidity, SFValue } from '../interface';
 import { SFSchema, SFSchemaType } from '../schema';
 import { SFUISchema, SFUISchemaItem, SFUISchemaItemRun } from '../schema/ui';
 import { SchemaValidatorFactory } from '../validator.factory';
@@ -26,7 +26,7 @@ export declare abstract class FormProperty {
     widget: Widget<FormProperty, SFUISchemaItem>;
     path: string;
     constructor(schemaValidatorFactory: SchemaValidatorFactory, schema: SFSchema, ui: SFUISchema | SFUISchemaItem, formData: {}, parent: PropertyGroup | null, path: string, _options: AlainSFConfig);
-    get valueChanges(): BehaviorSubject<SFValueChange>;
+    get valueChanges(): BehaviorSubject<SFFormValueChange>;
     get errorsChanges(): BehaviorSubject<ErrorData[] | null>;
     get type(): SFSchemaType;
     get parent(): PropertyGroup | null;

@@ -5,7 +5,7 @@ import { ACLService } from '@delon/acl';
 import { AlainI18NService, DelonLocaleService, LocaleData } from '@delon/theme';
 import { AlainConfigService, AlainSFConfig } from '@delon/util';
 import { ErrorData } from './errors';
-import { SFButton, SFChange, SFLayout } from './interface';
+import { SFButton, SFLayout, SFValueChange } from './interface';
 import { FormProperty } from './model/form.property';
 import { FormPropertyFactory } from './model/form.property.factory';
 import { SFSchema } from './schema/index';
@@ -74,11 +74,7 @@ export declare class SFComponent implements OnInit, OnChanges, OnDestroy {
     disabled: boolean;
     noColon: boolean;
     cleanValue: boolean;
-    readonly formChange2: EventEmitter<SFChange>;
-    /**
-     * 数据变更时回调
-     * @deprecated Will be removed in 11.0.0. Please use `formChange2` instead
-     */
+    readonly formValueChange: EventEmitter<SFValueChange>;
     readonly formChange: EventEmitter<{}>;
     readonly formSubmit: EventEmitter<{}>;
     readonly formReset: EventEmitter<{}>;
