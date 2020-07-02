@@ -4319,7 +4319,7 @@ var AlainThemeModule = /** @class */ (function () {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-var VERSION = new Version('9.5.0-f97712ee');
+var VERSION = new Version('9.5.0-d445935c');
 
 /**
  * @fileoverview added by tsickle
