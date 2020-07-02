@@ -54,6 +54,7 @@ export declare class G2TimelineComponent implements OnInit, OnDestroy, OnChanges
     titleMap: G2TimelineMap;
     colorMap: G2TimelineMap;
     mask: string;
+    maskSlider: string;
     position: 'top' | 'right' | 'bottom' | 'left';
     height: number;
     padding: number[];

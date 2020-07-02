@@ -331,6 +331,7 @@
             this.data = [];
             this.colorMap = { y1: '#5B8FF9', y2: '#5AD8A6', y3: '#5D7092', y4: '#F6BD16', y5: '#E86452' };
             this.mask = 'HH:mm';
+            this.maskSlider = 'HH:mm';
             this.position = 'top';
             this.height = 450;
             this.padding = [40, 8, 64, 40];
@@ -368,7 +369,7 @@
          */
         function () {
             var _this = this;
-            var _a = this, node = _a.node, height = _a.height, padding = _a.padding, slider = _a.slider, maxAxis = _a.maxAxis, theme = _a.theme, mask = _a.mask;
+            var _a = this, node = _a.node, height = _a.height, padding = _a.padding, slider = _a.slider, maxAxis = _a.maxAxis, theme = _a.theme, maskSlider = _a.maskSlider;
             /** @type {?} */
             var chart = (this.chart = new g2.Chart({
                 container: node.nativeElement,
@@ -406,7 +407,7 @@
                      * @param {?} val
                      * @return {?}
                      */
-                    function (val) { return format(val, mask); }),
+                    function (val) { return format(val, maskSlider); }),
                 });
             }
             chart.on("plot:click", (/**
@@ -542,6 +543,7 @@
              * @return {?}
              */
             function (val) { return val._time >= initialRange.start && val._time <= initialRange.end; }));
+            console.log(filterData);
             chart.changeData(filterData);
         };
         /**
@@ -597,6 +599,7 @@
             titleMap: [{ type: core.Input }],
             colorMap: [{ type: core.Input }],
             mask: [{ type: core.Input }],
+            maskSlider: [{ type: core.Input }],
             position: [{ type: core.Input }],
             height: [{ type: core.Input }],
             padding: [{ type: core.Input }],
@@ -652,6 +655,8 @@
         G2TimelineComponent.prototype.colorMap;
         /** @type {?} */
         G2TimelineComponent.prototype.mask;
+        /** @type {?} */
+        G2TimelineComponent.prototype.maskSlider;
         /** @type {?} */
         G2TimelineComponent.prototype.position;
         /** @type {?} */

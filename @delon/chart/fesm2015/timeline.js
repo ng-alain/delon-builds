@@ -113,6 +113,7 @@ class G2TimelineComponent {
         this.data = [];
         this.colorMap = { y1: '#5B8FF9', y2: '#5AD8A6', y3: '#5D7092', y4: '#F6BD16', y5: '#E86452' };
         this.mask = 'HH:mm';
+        this.maskSlider = 'HH:mm';
         this.position = 'top';
         this.height = 450;
         this.padding = [40, 8, 64, 40];
@@ -141,7 +142,7 @@ class G2TimelineComponent {
      * @return {?}
      */
     install() {
-        const { node, height, padding, slider, maxAxis, theme, mask } = this;
+        const { node, height, padding, slider, maxAxis, theme, maskSlider } = this;
         /** @type {?} */
         const chart = (this.chart = new Chart({
             container: node.nativeElement,
@@ -179,7 +180,7 @@ class G2TimelineComponent {
                  * @param {?} val
                  * @return {?}
                  */
-                (val) => format(val, mask)),
+                (val) => format(val, maskSlider)),
             });
         }
         chart.on(`plot:click`, (/**
@@ -311,6 +312,7 @@ class G2TimelineComponent {
          * @return {?}
          */
         val => val._time >= initialRange.start && val._time <= initialRange.end));
+        console.log(filterData);
         chart.changeData(filterData);
     }
     /**
@@ -359,6 +361,7 @@ G2TimelineComponent.propDecorators = {
     titleMap: [{ type: Input }],
     colorMap: [{ type: Input }],
     mask: [{ type: Input }],
+    maskSlider: [{ type: Input }],
     position: [{ type: Input }],
     height: [{ type: Input }],
     padding: [{ type: Input }],
@@ -412,6 +415,8 @@ if (false) {
     G2TimelineComponent.prototype.colorMap;
     /** @type {?} */
     G2TimelineComponent.prototype.mask;
+    /** @type {?} */
+    G2TimelineComponent.prototype.maskSlider;
     /** @type {?} */
     G2TimelineComponent.prototype.position;
     /** @type {?} */
