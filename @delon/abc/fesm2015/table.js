@@ -1749,6 +1749,8 @@ class STColumnSource {
         /** @type {?} */
         const rows = [];
         /** @type {?} */
+        const widths = [];
+        /** @type {?} */
         const fillRowCells = (/**
          * @param {?} columns
          * @param {?} colIndex
@@ -1784,6 +1786,9 @@ class STColumnSource {
                     (total, count) => total + count), 0);
                     cell.hasSubColumns = true;
                 }
+                else {
+                    widths.push(((/** @type {?} */ (cell.column.width))) || '');
+                }
                 if ('colSpan' in column) {
                     colSpan = (/** @type {?} */ (column.colSpan));
                 }
@@ -1813,7 +1818,7 @@ class STColumnSource {
                 }
             }));
         }
-        return rows;
+        return { headers: rows, headerWidths: rowCount > 1 ? widths : null };
     }
     /**
      * @private
@@ -1963,11 +1968,11 @@ class STColumnSource {
             throw new Error(`[st]: just only one column radio`);
         }
         this.fixedCoerce(columns);
-        return { columns: columns.filter((/**
+        return Object.assign({ columns: columns.filter((/**
              * @param {?} w
              * @return {?}
              */
-            w => !Array.isArray(w.children))), headers: this.genHeaders(copyList) };
+            w => !Array.isArray(w.children))) }, this.genHeaders(copyList));
     }
     /**
      * @param {?} columns
@@ -4051,6 +4056,9 @@ class STComponent {
         const res = (/** @type {?} */ (this)).columnSource.process((/** @type {?} */ (this)).columns);
         (/** @type {?} */ (this))._columns = res.columns;
         (/** @type {?} */ (this))._headers = res.headers;
+        if (res.headerWidths != null) {
+            (/** @type {?} */ (this)).widthConfig = res.headerWidths;
+        }
         return (/** @type {?} */ (this));
     }
     /**

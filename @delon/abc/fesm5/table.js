@@ -1853,6 +1853,8 @@ var STColumnSource = /** @class */ (function () {
         /** @type {?} */
         var rows = [];
         /** @type {?} */
+        var widths = [];
+        /** @type {?} */
         var fillRowCells = (/**
          * @param {?} columns
          * @param {?} colIndex
@@ -1889,6 +1891,9 @@ var STColumnSource = /** @class */ (function () {
                     function (total, count) { return total + count; }), 0);
                     cell.hasSubColumns = true;
                 }
+                else {
+                    widths.push(((/** @type {?} */ (cell.column.width))) || '');
+                }
                 if ('colSpan' in column) {
                     colSpan = (/** @type {?} */ (column.colSpan));
                 }
@@ -1921,7 +1926,7 @@ var STColumnSource = /** @class */ (function () {
         for (var rowIndex = 0; rowIndex < rowCount; rowIndex += 1) {
             _loop_1(rowIndex);
         }
-        return rows;
+        return { headers: rows, headerWidths: rowCount > 1 ? widths : null };
     };
     /**
      * @private
@@ -2103,11 +2108,11 @@ var STColumnSource = /** @class */ (function () {
             throw new Error("[st]: just only one column radio");
         }
         this.fixedCoerce(columns);
-        return { columns: columns.filter((/**
+        return __assign({ columns: columns.filter((/**
              * @param {?} w
              * @return {?}
              */
-            function (w) { return !Array.isArray(w.children); })), headers: this.genHeaders(copyList) };
+            function (w) { return !Array.isArray(w.children); })) }, this.genHeaders(copyList));
     };
     /**
      * @param {?} columns
@@ -4750,6 +4755,9 @@ var STComponent = /** @class */ (function () {
         var res = (/** @type {?} */ (this)).columnSource.process((/** @type {?} */ (this)).columns);
         (/** @type {?} */ (this))._columns = res.columns;
         (/** @type {?} */ (this))._headers = res.headers;
+        if (res.headerWidths != null) {
+            (/** @type {?} */ (this)).widthConfig = res.headerWidths;
+        }
         return (/** @type {?} */ (this));
     };
     /**

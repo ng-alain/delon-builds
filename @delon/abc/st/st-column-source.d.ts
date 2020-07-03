@@ -28,6 +28,7 @@ export declare class STColumnSource {
     process(list: STColumn[]): {
         columns: STColumn[];
         headers: STColumn[][];
+        headerWidths: string[] | null;
     };
     restoreAllRender(columns: STColumn[]): void;
     updateDefault(filter: STColumnFilter): this;
