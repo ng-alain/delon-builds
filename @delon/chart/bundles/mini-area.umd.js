@@ -276,6 +276,16 @@
             this.clickItem = new core.EventEmitter();
             configSrv.attachKey(this, 'chart', 'theme');
         }
+        Object.defineProperty(G2MiniAreaComponent.prototype, "chart", {
+            get: /**
+             * @return {?}
+             */
+            function () {
+                return this._chart;
+            },
+            enumerable: true,
+            configurable: true
+        });
         /**
          * @private
          * @return {?}
@@ -288,7 +298,7 @@
             var _this = this;
             var _a = this, el = _a.el, fit = _a.fit, height = _a.height, padding = _a.padding, xAxis = _a.xAxis, yAxis = _a.yAxis, yTooltipSuffix = _a.yTooltipSuffix, tooltipType = _a.tooltipType, line = _a.line, theme = _a.theme;
             /** @type {?} */
-            var chart = (this.chart = new g2.Chart({
+            var chart = (this._chart = new g2.Chart({
                 container: el.nativeElement,
                 autoFit: fit,
                 height: height,
@@ -348,7 +358,7 @@
              */
             function (ev) {
                 /** @type {?} */
-                var records = _this.chart.getSnapRecords({ x: ev.x, y: ev.y });
+                var records = _this._chart.getSnapRecords({ x: ev.x, y: ev.y });
                 _this.ngZone.run((/**
                  * @return {?}
                  */
@@ -366,12 +376,12 @@
          * @return {?}
          */
         function () {
-            var _a = this, chart = _a.chart, line = _a.line, fit = _a.fit, height = _a.height, animate = _a.animate, padding = _a.padding, data = _a.data, color = _a.color, borderColor = _a.borderColor, borderWidth = _a.borderWidth;
-            if (!chart || !data || data.length <= 0) {
+            var _a = this, _chart = _a._chart, line = _a.line, fit = _a.fit, height = _a.height, animate = _a.animate, padding = _a.padding, data = _a.data, color = _a.color, borderColor = _a.borderColor, borderWidth = _a.borderWidth;
+            if (!_chart || !data || data.length <= 0) {
                 return;
             }
             /** @type {?} */
-            var geoms = chart.geometries;
+            var geoms = _chart.geometries;
             geoms.forEach((/**
              * @param {?} g
              * @return {?}
@@ -380,11 +390,11 @@
             if (line) {
                 geoms[1].color(borderColor).size(borderWidth);
             }
-            chart.autoFit = fit;
-            chart.height = height;
-            chart.animate(animate);
-            chart.padding = padding;
-            chart.changeData(data);
+            _chart.autoFit = fit;
+            _chart.height = height;
+            _chart.animate(animate);
+            _chart.padding = padding;
+            _chart.changeData(data);
         };
         /**
          * @return {?}
@@ -426,11 +436,11 @@
          */
         function () {
             var _this = this;
-            if (this.chart) {
+            if (this._chart) {
                 this.ngZone.runOutsideAngular((/**
                  * @return {?}
                  */
-                function () { return _this.chart.destroy(); }));
+                function () { return _this._chart.destroy(); }));
             }
         };
         G2MiniAreaComponent.decorators = [
@@ -502,7 +512,7 @@
          * @type {?}
          * @private
          */
-        G2MiniAreaComponent.prototype.chart;
+        G2MiniAreaComponent.prototype._chart;
         /** @type {?} */
         G2MiniAreaComponent.prototype.delay;
         /** @type {?} */

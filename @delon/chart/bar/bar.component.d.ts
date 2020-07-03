@@ -1,6 +1,6 @@
 import { Platform } from '@angular/cdk/platform';
 import { EventEmitter, NgZone, OnChanges, OnDestroy, OnInit, TemplateRef } from '@angular/core';
-import { Event, Types } from '@antv/g2';
+import { Chart, Event, Types } from '@antv/g2';
 import { G2InteractionType } from '@delon/chart/core';
 import { AlainConfigService } from '@delon/util';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
@@ -18,8 +18,9 @@ export declare class G2BarComponent implements OnInit, OnChanges, OnDestroy {
     private ngZone;
     private platform;
     private resize$;
-    private chart;
+    private _chart;
     private node;
+    get chart(): Chart;
     delay: number;
     title: string | TemplateRef<void>;
     color: string;

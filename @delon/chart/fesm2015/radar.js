@@ -60,6 +60,12 @@ class G2RadarComponent {
         configSrv.attachKey(this, 'chart', 'theme');
     }
     /**
+     * @return {?}
+     */
+    get chart() {
+        return this._chart;
+    }
+    /**
      * @private
      * @return {?}
      */
@@ -73,7 +79,7 @@ class G2RadarComponent {
     install() {
         const { node, padding, theme } = this;
         /** @type {?} */
-        const chart = (this.chart = new Chart({
+        const chart = (this._chart = new Chart({
             container: node.nativeElement,
             autoFit: true,
             height: this.getHeight(),
@@ -142,23 +148,23 @@ class G2RadarComponent {
      * @return {?}
      */
     attachChart() {
-        const { chart, padding, data, colors, tickCount } = this;
-        if (!chart || !data || data.length <= 0)
+        const { _chart, padding, data, colors, tickCount } = this;
+        if (!_chart || !data || data.length <= 0)
             return;
-        chart.height = this.getHeight();
-        chart.padding = padding;
-        chart.scale({
+        _chart.height = this.getHeight();
+        _chart.padding = padding;
+        _chart.scale({
             value: {
                 min: 0,
                 tickCount,
             },
         });
-        chart.geometries.forEach((/**
+        _chart.geometries.forEach((/**
          * @param {?} g
          * @return {?}
          */
         g => g.color('name', colors)));
-        chart.changeData(data);
+        _chart.changeData(data);
         this.ngZone.run((/**
          * @return {?}
          */
@@ -169,10 +175,10 @@ class G2RadarComponent {
      * @return {?}
      */
     genLegend() {
-        const { hasLegend, cdr, chart } = this;
+        const { hasLegend, cdr, _chart } = this;
         if (!hasLegend)
             return;
-        this.legendData = chart.geometries[0].dataArray.map((/**
+        this.legendData = _chart.geometries[0].dataArray.map((/**
          * @param {?} item
          * @return {?}
          */
@@ -200,9 +206,9 @@ class G2RadarComponent {
      * @return {?}
      */
     _click(i) {
-        const { legendData, chart } = this;
+        const { legendData, _chart } = this;
         legendData[i].checked = !legendData[i].checked;
-        chart.render();
+        _chart.render();
     }
     /**
      * @return {?}
@@ -237,11 +243,11 @@ class G2RadarComponent {
      * @return {?}
      */
     ngOnDestroy() {
-        if (this.chart) {
+        if (this._chart) {
             this.ngZone.runOutsideAngular((/**
              * @return {?}
              */
-            () => this.chart.destroy()));
+            () => this._chart.destroy()));
         }
     }
 }
@@ -305,7 +311,7 @@ if (false) {
      * @type {?}
      * @private
      */
-    G2RadarComponent.prototype.chart;
+    G2RadarComponent.prototype._chart;
     /** @type {?} */
     G2RadarComponent.prototype.legendData;
     /** @type {?} */

@@ -245,6 +245,16 @@
             this.padding = [10, 10, 30, 10];
             configSrv.attachKey(this, 'chart', 'theme');
         }
+        Object.defineProperty(G2GaugeComponent.prototype, "chart", {
+            get: /**
+             * @return {?}
+             */
+            function () {
+                return this._chart;
+            },
+            enumerable: true,
+            configurable: true
+        });
         /**
          * @private
          * @return {?}
@@ -294,7 +304,7 @@
             });
             var _a = this, el = _a.el, height = _a.height, padding = _a.padding, format = _a.format, theme = _a.theme;
             /** @type {?} */
-            var chart = (this.chart = new g2.Chart({
+            var chart = (this._chart = new g2.Chart({
                 container: el.nativeElement,
                 autoFit: true,
                 height: height,
@@ -337,17 +347,17 @@
          * @return {?}
          */
         function () {
-            var _a = this, chart = _a.chart, percent = _a.percent, color = _a.color, bgColor = _a.bgColor, title = _a.title;
-            if (!chart)
+            var _a = this, _chart = _a._chart, percent = _a.percent, color = _a.color, bgColor = _a.bgColor, title = _a.title;
+            if (!_chart)
                 return;
             /** @type {?} */
             var data = [{ name: title, value: percent }];
             /** @type {?} */
             var val = data[0].value;
-            chart.annotation().clear(true);
-            chart.geometries[0].color(color);
+            _chart.annotation().clear(true);
+            _chart.geometries[0].color(color);
             // 绘制仪表盘背景
-            chart.annotation().arc({
+            _chart.annotation().arc({
                 top: false,
                 start: [0, 0.95],
                 end: [100, 0.95],
@@ -357,7 +367,7 @@
                     lineDash: null,
                 },
             });
-            chart.annotation().arc({
+            _chart.annotation().arc({
                 start: [0, 0.95],
                 end: [data[0].value, 0.95],
                 style: {
@@ -366,7 +376,7 @@
                     lineDash: null,
                 },
             });
-            chart.annotation().text({
+            _chart.annotation().text({
                 position: ['50%', '85%'],
                 content: title,
                 style: {
@@ -375,7 +385,7 @@
                     textAlign: 'center',
                 },
             });
-            chart.annotation().text({
+            _chart.annotation().text({
                 position: ['50%', '90%'],
                 content: val + " %",
                 style: {
@@ -385,7 +395,7 @@
                 },
                 offsetY: 15,
             });
-            chart.changeData(data);
+            _chart.changeData(data);
         };
         /**
          * @return {?}
@@ -427,11 +437,11 @@
          */
         function () {
             var _this = this;
-            if (this.chart) {
+            if (this._chart) {
                 this.ngZone.runOutsideAngular((/**
                  * @return {?}
                  */
-                function () { return _this.chart.destroy(); }));
+                function () { return _this._chart.destroy(); }));
             }
         };
         G2GaugeComponent.decorators = [
@@ -484,7 +494,7 @@
          * @type {?}
          * @private
          */
-        G2GaugeComponent.prototype.chart;
+        G2GaugeComponent.prototype._chart;
         /** @type {?} */
         G2GaugeComponent.prototype.delay;
         /** @type {?} */

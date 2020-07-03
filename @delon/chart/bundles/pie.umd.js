@@ -291,6 +291,16 @@
             enumerable: true,
             configurable: true
         });
+        Object.defineProperty(G2PieComponent.prototype, "chart", {
+            get: /**
+             * @return {?}
+             */
+            function () {
+                return this._chart;
+            },
+            enumerable: true,
+            configurable: true
+        });
         /**
          * @private
          * @return {?}
@@ -334,7 +344,7 @@
             var _this = this;
             var _a = this, node = _a.node, height = _a.height, padding = _a.padding, tooltip = _a.tooltip, inner = _a.inner, hasLegend = _a.hasLegend, interaction = _a.interaction, theme = _a.theme;
             /** @type {?} */
-            var chart = (this.chart = new g2.Chart({
+            var chart = (this._chart = new g2.Chart({
                 container: node.nativeElement,
                 autoFit: true,
                 height: height,
@@ -397,14 +407,14 @@
         function () {
             var e_1, _a;
             var _this = this;
-            var _b = this, chart = _b.chart, height = _b.height, padding = _b.padding, animate = _b.animate, data = _b.data, lineWidth = _b.lineWidth, isPercent = _b.isPercent, percentColor = _b.percentColor, colors = _b.colors;
-            if (!chart)
+            var _b = this, _chart = _b._chart, height = _b.height, padding = _b.padding, animate = _b.animate, data = _b.data, lineWidth = _b.lineWidth, isPercent = _b.isPercent, percentColor = _b.percentColor, colors = _b.colors;
+            if (!_chart)
                 return;
-            chart.height = height;
-            chart.padding = padding;
-            chart.animate(animate);
-            chart.geometries[0].style({ lineWidth: lineWidth, stroke: '#fff' }).color('x', isPercent ? percentColor : colors);
-            chart.scale({
+            _chart.height = height;
+            _chart.padding = padding;
+            _chart.animate(animate);
+            _chart.geometries[0].style({ lineWidth: lineWidth, stroke: '#fff' }).color('x', isPercent ? percentColor : colors);
+            _chart.scale({
                 x: {
                     type: 'cat',
                     range: [0, 1],
@@ -431,7 +441,7 @@
                 }
                 finally { if (e_1) throw e_1.error; }
             }
-            chart.changeData(data);
+            _chart.changeData(data);
             this.ngZone.run((/**
              * @return {?}
              */
@@ -446,10 +456,10 @@
          * @return {?}
          */
         function () {
-            var _a = this, hasLegend = _a.hasLegend, isPercent = _a.isPercent, cdr = _a.cdr, chart = _a.chart;
+            var _a = this, hasLegend = _a.hasLegend, isPercent = _a.isPercent, cdr = _a.cdr, _chart = _a._chart;
             if (!hasLegend || isPercent)
                 return;
-            this.legendData = chart.geometries[0].dataArray.map((/**
+            this.legendData = _chart.geometries[0].dataArray.map((/**
              * @param {?} item
              * @return {?}
              */
@@ -472,9 +482,9 @@
          * @return {?}
          */
         function (i) {
-            var _a = this, legendData = _a.legendData, chart = _a.chart;
+            var _a = this, legendData = _a.legendData, _chart = _a._chart;
             legendData[i].checked = !legendData[i].checked;
-            chart.render();
+            _chart.render();
         };
         /**
          * @return {?}
@@ -517,11 +527,11 @@
          */
         function () {
             var _this = this;
-            if (this.chart) {
+            if (this._chart) {
                 this.ngZone.runOutsideAngular((/**
                  * @return {?}
                  */
-                function () { return _this.chart.destroy(); }));
+                function () { return _this._chart.destroy(); }));
             }
         };
         G2PieComponent.decorators = [
@@ -619,7 +629,7 @@
          * @type {?}
          * @private
          */
-        G2PieComponent.prototype.chart;
+        G2PieComponent.prototype._chart;
         /**
          * @type {?}
          * @private

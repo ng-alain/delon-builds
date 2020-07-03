@@ -1,6 +1,6 @@
 import { Platform } from '@angular/cdk/platform';
 import { ElementRef, EventEmitter, NgZone, OnChanges, OnDestroy, OnInit } from '@angular/core';
-import { Event, Types } from '@antv/g2';
+import { Chart, Event, Types } from '@antv/g2';
 import { AlainConfigService } from '@delon/util';
 export interface G2TagCloudData {
     value?: number;
@@ -24,7 +24,8 @@ export declare class G2TagCloudComponent implements OnDestroy, OnChanges, OnInit
     private ngZone;
     private platform;
     private resize$;
-    private chart;
+    private _chart;
+    get chart(): Chart;
     delay: number;
     width: number;
     height: number;

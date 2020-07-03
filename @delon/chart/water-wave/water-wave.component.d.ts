@@ -17,7 +17,7 @@ export declare class G2WaterWaveComponent implements OnDestroy, OnChanges, OnIni
     percent: number;
     constructor(el: ElementRef, renderer: Renderer2, ngZone: NgZone, cdr: ChangeDetectorRef, platform: Platform);
     private renderChart;
-    private updateRadio;
+    updateRadio(): void;
     private installResizeEvent;
     ngOnInit(): void;
     ngOnChanges(): void;

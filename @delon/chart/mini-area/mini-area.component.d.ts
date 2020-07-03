@@ -1,6 +1,6 @@
 import { Platform } from '@angular/cdk/platform';
 import { ElementRef, EventEmitter, NgZone, OnChanges, OnDestroy, OnInit } from '@angular/core';
-import { Event, Types } from '@antv/g2';
+import { Chart, Event, Types } from '@antv/g2';
 import { AlainConfigService } from '@delon/util';
 export interface G2MiniAreaData {
     x: any;
@@ -15,7 +15,8 @@ export declare class G2MiniAreaComponent implements OnInit, OnChanges, OnDestroy
     private el;
     private ngZone;
     private platform;
-    private chart;
+    private _chart;
+    get chart(): Chart;
     delay: number;
     color: string;
     borderColor: string;

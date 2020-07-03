@@ -125,6 +125,12 @@ class G2TimelineComponent {
     /**
      * @return {?}
      */
+    get chart() {
+        return this._chart;
+    }
+    /**
+     * @return {?}
+     */
     ngOnInit() {
         if (!this.platform.isBrowser) {
             return;
@@ -144,7 +150,7 @@ class G2TimelineComponent {
     install() {
         const { node, height, padding, slider, maxAxis, theme, maskSlider } = this;
         /** @type {?} */
-        const chart = (this.chart = new Chart({
+        const chart = (this._chart = new Chart({
             container: node.nativeElement,
             autoFit: true,
             height,
@@ -189,7 +195,7 @@ class G2TimelineComponent {
          */
         (ev) => {
             /** @type {?} */
-            const records = this.chart.getSnapRecords({ x: ev.x, y: ev.y });
+            const records = this._chart.getSnapRecords({ x: ev.x, y: ev.y });
             this.ngZone.run((/**
              * @return {?}
              */
@@ -202,10 +208,10 @@ class G2TimelineComponent {
      * @return {?}
      */
     attachChart() {
-        const { chart, height, padding, mask, titleMap, position, colorMap, borderWidth, maxAxis } = this;
+        const { _chart, height, padding, mask, titleMap, position, colorMap, borderWidth, maxAxis } = this;
         /** @type {?} */
         let data = [...this.data];
-        if (!chart || !data || data.length <= 0)
+        if (!_chart || !data || data.length <= 0)
             return;
         /** @type {?} */
         const arrAxis = [...Array(maxAxis)].map((/**
@@ -214,7 +220,7 @@ class G2TimelineComponent {
          * @return {?}
          */
         (_, index) => index + 1));
-        chart.legend({
+        _chart.legend({
             position,
             custom: true,
             items: arrAxis.map((/**
@@ -228,7 +234,7 @@ class G2TimelineComponent {
             })),
         });
         // border
-        chart.geometries.forEach((/**
+        _chart.geometries.forEach((/**
          * @param {?} v
          * @param {?} idx
          * @return {?}
@@ -236,8 +242,8 @@ class G2TimelineComponent {
         (v, idx) => {
             v.color(((/** @type {?} */ (colorMap)))[`y${idx + 1}`]).size(borderWidth);
         }));
-        chart.height = height;
-        chart.padding = padding;
+        _chart.height = height;
+        _chart.padding = padding;
         // TODO: compatible
         if (data.find((/**
          * @param {?} w
@@ -296,7 +302,7 @@ class G2TimelineComponent {
                 min: 0,
             };
         }));
-        chart.scale(Object.assign({ time: {
+        _chart.scale(Object.assign({ time: {
                 type: 'time',
                 mask,
                 range: [0, 1],
@@ -313,7 +319,7 @@ class G2TimelineComponent {
          */
         val => val._time >= initialRange.start && val._time <= initialRange.end));
         console.log(filterData);
-        chart.changeData(filterData);
+        _chart.changeData(filterData);
     }
     /**
      * @return {?}
@@ -328,11 +334,11 @@ class G2TimelineComponent {
      * @return {?}
      */
     ngOnDestroy() {
-        if (this.chart) {
+        if (this._chart) {
             this.ngZone.runOutsideAngular((/**
              * @return {?}
              */
-            () => this.chart.destroy()));
+            () => this._chart.destroy()));
         }
     }
 }
@@ -400,7 +406,7 @@ if (false) {
      * @type {?}
      * @private
      */
-    G2TimelineComponent.prototype.chart;
+    G2TimelineComponent.prototype._chart;
     /** @type {?} */
     G2TimelineComponent.prototype.delay;
     /** @type {?} */

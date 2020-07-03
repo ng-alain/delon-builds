@@ -59,6 +59,16 @@ var G2TagCloudComponent = /** @class */ (function () {
         this.clickItem = new EventEmitter();
         configSrv.attachKey(this, 'chart', 'theme');
     }
+    Object.defineProperty(G2TagCloudComponent.prototype, "chart", {
+        get: /**
+         * @return {?}
+         */
+        function () {
+            return this._chart;
+        },
+        enumerable: true,
+        configurable: true
+    });
     /**
      * @private
      * @return {?}
@@ -108,7 +118,7 @@ var G2TagCloudComponent = /** @class */ (function () {
             this.width = this.el.nativeElement.clientWidth;
         }
         /** @type {?} */
-        var chart = (this.chart = new Chart({
+        var chart = (this._chart = new Chart({
             container: el.nativeElement,
             autoFit: false,
             padding: padding,
@@ -161,8 +171,8 @@ var G2TagCloudComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        var _a = this, chart = _a.chart, padding = _a.padding, data = _a.data;
-        if (!chart || !data || data.length <= 0)
+        var _a = this, _chart = _a._chart, padding = _a.padding, data = _a.data;
+        if (!_chart || !data || data.length <= 0)
             return;
         // TODO: compatible
         if (data.find((/**
@@ -186,9 +196,9 @@ var G2TagCloudComponent = /** @class */ (function () {
         function (w) { return !!w.category; })) != null) {
             deprecation10('g2-tag-cloud', 'category');
         }
-        chart.height = this.height;
-        chart.width = this.width;
-        chart.padding = padding;
+        _chart.height = this.height;
+        _chart.width = this.width;
+        _chart.padding = padding;
         /** @type {?} */
         var dv = new DataSet.View().source(data);
         /** @type {?} */
@@ -227,8 +237,8 @@ var G2TagCloudComponent = /** @class */ (function () {
                 return ((d.value - min) / (max - min)) * (32 - 8) + 8;
             },
         })));
-        chart.data(dv.rows);
-        chart.render();
+        _chart.data(dv.rows);
+        _chart.render();
     };
     /**
      * @private
@@ -259,7 +269,7 @@ var G2TagCloudComponent = /** @class */ (function () {
             .pipe(filter((/**
          * @return {?}
          */
-        function () { return !!_this.chart; })), debounceTime(200))
+        function () { return !!_this._chart; })), debounceTime(200))
             .subscribe((/**
          * @return {?}
          */
@@ -306,11 +316,11 @@ var G2TagCloudComponent = /** @class */ (function () {
         if (this.resize$) {
             this.resize$.unsubscribe();
         }
-        if (this.chart) {
+        if (this._chart) {
             this.ngZone.runOutsideAngular((/**
              * @return {?}
              */
-            function () { return _this.chart.destroy(); }));
+            function () { return _this._chart.destroy(); }));
         }
     };
     G2TagCloudComponent.decorators = [
@@ -363,7 +373,7 @@ if (false) {
      * @type {?}
      * @private
      */
-    G2TagCloudComponent.prototype.chart;
+    G2TagCloudComponent.prototype._chart;
     /** @type {?} */
     G2TagCloudComponent.prototype.delay;
     /** @type {?} */

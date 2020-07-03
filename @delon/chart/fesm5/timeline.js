@@ -117,6 +117,16 @@ var G2TimelineComponent = /** @class */ (function () {
         this.clickItem = new EventEmitter();
         configSrv.attachKey(this, 'chart', 'theme');
     }
+    Object.defineProperty(G2TimelineComponent.prototype, "chart", {
+        get: /**
+         * @return {?}
+         */
+        function () {
+            return this._chart;
+        },
+        enumerable: true,
+        configurable: true
+    });
     /**
      * @return {?}
      */
@@ -148,7 +158,7 @@ var G2TimelineComponent = /** @class */ (function () {
         var _this = this;
         var _a = this, node = _a.node, height = _a.height, padding = _a.padding, slider = _a.slider, maxAxis = _a.maxAxis, theme = _a.theme, maskSlider = _a.maskSlider;
         /** @type {?} */
-        var chart = (this.chart = new Chart({
+        var chart = (this._chart = new Chart({
             container: node.nativeElement,
             autoFit: true,
             height: height,
@@ -193,7 +203,7 @@ var G2TimelineComponent = /** @class */ (function () {
          */
         function (ev) {
             /** @type {?} */
-            var records = _this.chart.getSnapRecords({ x: ev.x, y: ev.y });
+            var records = _this._chart.getSnapRecords({ x: ev.x, y: ev.y });
             _this.ngZone.run((/**
              * @return {?}
              */
@@ -210,10 +220,10 @@ var G2TimelineComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        var _a = this, chart = _a.chart, height = _a.height, padding = _a.padding, mask = _a.mask, titleMap = _a.titleMap, position = _a.position, colorMap = _a.colorMap, borderWidth = _a.borderWidth, maxAxis = _a.maxAxis;
+        var _a = this, _chart = _a._chart, height = _a.height, padding = _a.padding, mask = _a.mask, titleMap = _a.titleMap, position = _a.position, colorMap = _a.colorMap, borderWidth = _a.borderWidth, maxAxis = _a.maxAxis;
         /** @type {?} */
         var data = __spread(this.data);
-        if (!chart || !data || data.length <= 0)
+        if (!_chart || !data || data.length <= 0)
             return;
         /** @type {?} */
         var arrAxis = __spread(Array(maxAxis)).map((/**
@@ -222,7 +232,7 @@ var G2TimelineComponent = /** @class */ (function () {
          * @return {?}
          */
         function (_, index) { return index + 1; }));
-        chart.legend({
+        _chart.legend({
             position: position,
             custom: true,
             items: arrAxis.map((/**
@@ -236,7 +246,7 @@ var G2TimelineComponent = /** @class */ (function () {
             })),
         });
         // border
-        chart.geometries.forEach((/**
+        _chart.geometries.forEach((/**
          * @param {?} v
          * @param {?} idx
          * @return {?}
@@ -244,8 +254,8 @@ var G2TimelineComponent = /** @class */ (function () {
         function (v, idx) {
             v.color(((/** @type {?} */ (colorMap)))["y" + (idx + 1)]).size(borderWidth);
         }));
-        chart.height = height;
-        chart.padding = padding;
+        _chart.height = height;
+        _chart.padding = padding;
         // TODO: compatible
         if (data.find((/**
          * @param {?} w
@@ -304,7 +314,7 @@ var G2TimelineComponent = /** @class */ (function () {
                 min: 0,
             };
         }));
-        chart.scale(__assign({ time: {
+        _chart.scale(__assign({ time: {
                 type: 'time',
                 mask: mask,
                 range: [0, 1],
@@ -321,7 +331,7 @@ var G2TimelineComponent = /** @class */ (function () {
          */
         function (val) { return val._time >= initialRange.start && val._time <= initialRange.end; }));
         console.log(filterData);
-        chart.changeData(filterData);
+        _chart.changeData(filterData);
     };
     /**
      * @return {?}
@@ -344,11 +354,11 @@ var G2TimelineComponent = /** @class */ (function () {
      */
     function () {
         var _this = this;
-        if (this.chart) {
+        if (this._chart) {
             this.ngZone.runOutsideAngular((/**
              * @return {?}
              */
-            function () { return _this.chart.destroy(); }));
+            function () { return _this._chart.destroy(); }));
         }
     };
     G2TimelineComponent.decorators = [
@@ -417,7 +427,7 @@ if (false) {
      * @type {?}
      * @private
      */
-    G2TimelineComponent.prototype.chart;
+    G2TimelineComponent.prototype._chart;
     /** @type {?} */
     G2TimelineComponent.prototype.delay;
     /** @type {?} */

@@ -60,6 +60,12 @@ class G2BarComponent {
         configSrv.attachKey(this, 'chart', 'theme');
     }
     /**
+     * @return {?}
+     */
+    get chart() {
+        return this._chart;
+    }
+    /**
      * @private
      * @return {?}
      */
@@ -75,7 +81,7 @@ class G2BarComponent {
         /** @type {?} */
         const container = (/** @type {?} */ (node.nativeElement));
         /** @type {?} */
-        const chart = (this.chart = new Chart({
+        const chart = (this._chart = new Chart({
             container,
             autoFit: true,
             height: this.getHeight(),
@@ -143,30 +149,30 @@ class G2BarComponent {
      * @return {?}
      */
     attachChart() {
-        const { chart, padding, data } = this;
-        if (!chart || !data || data.length <= 0)
+        const { _chart, padding, data } = this;
+        if (!_chart || !data || data.length <= 0)
             return;
         this.installResizeEvent();
         /** @type {?} */
         const height = this.getHeight();
-        if (chart.height !== height) {
-            chart.height = height;
+        if (_chart.height !== height) {
+            _chart.height = height;
         }
-        chart.padding = padding;
-        chart.data(data);
-        chart.render();
+        _chart.padding = padding;
+        _chart.data(data);
+        _chart.render();
     }
     /**
      * @private
      * @return {?}
      */
     updatelabel() {
-        const { node, data, chart } = this;
+        const { node, data, _chart } = this;
         /** @type {?} */
         const canvasWidth = node.nativeElement.clientWidth;
         /** @type {?} */
         const minWidth = data.length * 30;
-        chart.axis('x', canvasWidth > minWidth).render();
+        _chart.axis('x', canvasWidth > minWidth).render();
     }
     /**
      * @private
@@ -179,7 +185,7 @@ class G2BarComponent {
             .pipe(filter((/**
          * @return {?}
          */
-        () => !!this.chart)), debounceTime(200))
+        () => !!this._chart)), debounceTime(200))
             .subscribe((/**
          * @return {?}
          */
@@ -219,11 +225,11 @@ class G2BarComponent {
         if (this.resize$) {
             this.resize$.unsubscribe();
         }
-        if (this.chart) {
+        if (this._chart) {
             this.ngZone.runOutsideAngular((/**
              * @return {?}
              */
-            () => this.chart.destroy()));
+            () => this._chart.destroy()));
         }
     }
 }
@@ -281,7 +287,7 @@ if (false) {
      * @type {?}
      * @private
      */
-    G2BarComponent.prototype.chart;
+    G2BarComponent.prototype._chart;
     /**
      * @type {?}
      * @private

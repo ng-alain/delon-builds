@@ -1,6 +1,6 @@
 import { Platform } from '@angular/cdk/platform';
 import { EventEmitter, NgZone, OnChanges, OnDestroy, OnInit, TemplateRef } from '@angular/core';
-import { Event, Types } from '@antv/g2';
+import { Chart, Event, Types } from '@antv/g2';
 import { G2Time } from '@delon/chart/core';
 import { AlainConfigService } from '@delon/util';
 export interface G2TimelineData {
@@ -46,7 +46,8 @@ export declare class G2TimelineComponent implements OnInit, OnDestroy, OnChanges
     private ngZone;
     private platform;
     private node;
-    private chart;
+    private _chart;
+    get chart(): Chart;
     delay: number;
     title: string | TemplateRef<void>;
     maxAxis: number;

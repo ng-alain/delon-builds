@@ -272,6 +272,16 @@
             this.clickItem = new core.EventEmitter();
             configSrv.attachKey(this, 'chart', 'theme');
         }
+        Object.defineProperty(G2MiniBarComponent.prototype, "chart", {
+            get: /**
+             * @return {?}
+             */
+            function () {
+                return this._chart;
+            },
+            enumerable: true,
+            configurable: true
+        });
         /**
          * @private
          * @return {?}
@@ -284,7 +294,7 @@
             var _this = this;
             var _a = this, el = _a.el, height = _a.height, padding = _a.padding, yTooltipSuffix = _a.yTooltipSuffix, tooltipType = _a.tooltipType, theme = _a.theme;
             /** @type {?} */
-            var chart = (this.chart = new g2.Chart({
+            var chart = (this._chart = new g2.Chart({
                 container: el.nativeElement,
                 autoFit: true,
                 height: height,
@@ -351,13 +361,13 @@
          * @return {?}
          */
         function () {
-            var _a = this, chart = _a.chart, height = _a.height, padding = _a.padding, data = _a.data, color = _a.color, borderWidth = _a.borderWidth;
-            if (!chart || !data || data.length <= 0)
+            var _a = this, _chart = _a._chart, height = _a.height, padding = _a.padding, data = _a.data, color = _a.color, borderWidth = _a.borderWidth;
+            if (!_chart || !data || data.length <= 0)
                 return;
-            chart.geometries[0].size(borderWidth).color(color);
-            chart.height = height;
-            chart.padding = padding;
-            chart.changeData(data);
+            _chart.geometries[0].size(borderWidth).color(color);
+            _chart.height = height;
+            _chart.padding = padding;
+            _chart.changeData(data);
         };
         /**
          * @return {?}
@@ -399,11 +409,11 @@
          */
         function () {
             var _this = this;
-            if (this.chart) {
+            if (this._chart) {
                 this.ngZone.runOutsideAngular((/**
                  * @return {?}
                  */
-                function () { return _this.chart.destroy(); }));
+                function () { return _this._chart.destroy(); }));
             }
         };
         G2MiniBarComponent.decorators = [
@@ -457,7 +467,7 @@
          * @type {?}
          * @private
          */
-        G2MiniBarComponent.prototype.chart;
+        G2MiniBarComponent.prototype._chart;
         /** @type {?} */
         G2MiniBarComponent.prototype.delay;
         /** @type {?} */

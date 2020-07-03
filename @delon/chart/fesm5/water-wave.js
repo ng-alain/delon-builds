@@ -225,11 +225,9 @@ var G2WaterWaveComponent = /** @class */ (function () {
         // drawSin();
     };
     /**
-     * @private
      * @return {?}
      */
     G2WaterWaveComponent.prototype.updateRadio = /**
-     * @private
      * @return {?}
      */
     function () {

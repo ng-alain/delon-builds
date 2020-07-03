@@ -29,6 +29,12 @@ class G2GaugeComponent {
         configSrv.attachKey(this, 'chart', 'theme');
     }
     /**
+     * @return {?}
+     */
+    get chart() {
+        return this._chart;
+    }
+    /**
      * @private
      * @return {?}
      */
@@ -73,7 +79,7 @@ class G2GaugeComponent {
         });
         const { el, height, padding, format, theme } = this;
         /** @type {?} */
-        const chart = (this.chart = new Chart({
+        const chart = (this._chart = new Chart({
             container: el.nativeElement,
             autoFit: true,
             height,
@@ -112,17 +118,17 @@ class G2GaugeComponent {
      * @return {?}
      */
     attachChart() {
-        const { chart, percent, color, bgColor, title } = this;
-        if (!chart)
+        const { _chart, percent, color, bgColor, title } = this;
+        if (!_chart)
             return;
         /** @type {?} */
         const data = [{ name: title, value: percent }];
         /** @type {?} */
         const val = data[0].value;
-        chart.annotation().clear(true);
-        chart.geometries[0].color(color);
+        _chart.annotation().clear(true);
+        _chart.geometries[0].color(color);
         // 绘制仪表盘背景
-        chart.annotation().arc({
+        _chart.annotation().arc({
             top: false,
             start: [0, 0.95],
             end: [100, 0.95],
@@ -132,7 +138,7 @@ class G2GaugeComponent {
                 lineDash: null,
             },
         });
-        chart.annotation().arc({
+        _chart.annotation().arc({
             start: [0, 0.95],
             end: [data[0].value, 0.95],
             style: {
@@ -141,7 +147,7 @@ class G2GaugeComponent {
                 lineDash: null,
             },
         });
-        chart.annotation().text({
+        _chart.annotation().text({
             position: ['50%', '85%'],
             content: title,
             style: {
@@ -150,7 +156,7 @@ class G2GaugeComponent {
                 textAlign: 'center',
             },
         });
-        chart.annotation().text({
+        _chart.annotation().text({
             position: ['50%', '90%'],
             content: `${val} %`,
             style: {
@@ -160,7 +166,7 @@ class G2GaugeComponent {
             },
             offsetY: 15,
         });
-        chart.changeData(data);
+        _chart.changeData(data);
     }
     /**
      * @return {?}
@@ -190,11 +196,11 @@ class G2GaugeComponent {
      * @return {?}
      */
     ngOnDestroy() {
-        if (this.chart) {
+        if (this._chart) {
             this.ngZone.runOutsideAngular((/**
              * @return {?}
              */
-            () => this.chart.destroy()));
+            () => this._chart.destroy()));
         }
     }
 }
@@ -246,7 +252,7 @@ if (false) {
      * @type {?}
      * @private
      */
-    G2GaugeComponent.prototype.chart;
+    G2GaugeComponent.prototype._chart;
     /** @type {?} */
     G2GaugeComponent.prototype.delay;
     /** @type {?} */

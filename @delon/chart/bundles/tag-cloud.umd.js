@@ -281,6 +281,16 @@
             this.clickItem = new core.EventEmitter();
             configSrv.attachKey(this, 'chart', 'theme');
         }
+        Object.defineProperty(G2TagCloudComponent.prototype, "chart", {
+            get: /**
+             * @return {?}
+             */
+            function () {
+                return this._chart;
+            },
+            enumerable: true,
+            configurable: true
+        });
         /**
          * @private
          * @return {?}
@@ -330,7 +340,7 @@
                 this.width = this.el.nativeElement.clientWidth;
             }
             /** @type {?} */
-            var chart = (this.chart = new g2.Chart({
+            var chart = (this._chart = new g2.Chart({
                 container: el.nativeElement,
                 autoFit: false,
                 padding: padding,
@@ -383,8 +393,8 @@
          * @return {?}
          */
         function () {
-            var _a = this, chart = _a.chart, padding = _a.padding, data = _a.data;
-            if (!chart || !data || data.length <= 0)
+            var _a = this, _chart = _a._chart, padding = _a.padding, data = _a.data;
+            if (!_chart || !data || data.length <= 0)
                 return;
             // TODO: compatible
             if (data.find((/**
@@ -408,9 +418,9 @@
             function (w) { return !!w.category; })) != null) {
                 util.deprecation10('g2-tag-cloud', 'category');
             }
-            chart.height = this.height;
-            chart.width = this.width;
-            chart.padding = padding;
+            _chart.height = this.height;
+            _chart.width = this.width;
+            _chart.padding = padding;
             /** @type {?} */
             var dv = new DataSet.View().source(data);
             /** @type {?} */
@@ -449,8 +459,8 @@
                     return ((d.value - min) / (max - min)) * (32 - 8) + 8;
                 },
             })));
-            chart.data(dv.rows);
-            chart.render();
+            _chart.data(dv.rows);
+            _chart.render();
         };
         /**
          * @private
@@ -481,7 +491,7 @@
                 .pipe(operators.filter((/**
              * @return {?}
              */
-            function () { return !!_this.chart; })), operators.debounceTime(200))
+            function () { return !!_this._chart; })), operators.debounceTime(200))
                 .subscribe((/**
              * @return {?}
              */
@@ -528,11 +538,11 @@
             if (this.resize$) {
                 this.resize$.unsubscribe();
             }
-            if (this.chart) {
+            if (this._chart) {
                 this.ngZone.runOutsideAngular((/**
                  * @return {?}
                  */
-                function () { return _this.chart.destroy(); }));
+                function () { return _this._chart.destroy(); }));
             }
         };
         G2TagCloudComponent.decorators = [
@@ -585,7 +595,7 @@
          * @type {?}
          * @private
          */
-        G2TagCloudComponent.prototype.chart;
+        G2TagCloudComponent.prototype._chart;
         /** @type {?} */
         G2TagCloudComponent.prototype.delay;
         /** @type {?} */

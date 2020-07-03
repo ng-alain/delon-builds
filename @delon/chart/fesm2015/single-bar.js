@@ -37,13 +37,19 @@ class G2SingleBarComponent {
         configSrv.attachKey(this, 'chart', 'theme');
     }
     /**
+     * @return {?}
+     */
+    get chart() {
+        return this._chart;
+    }
+    /**
      * @private
      * @return {?}
      */
     install() {
         const { el, height, padding, textStyle, line, format, theme } = this;
         /** @type {?} */
-        const chart = (this.chart = new Chart({
+        const chart = (this._chart = new Chart({
             container: el.nativeElement,
             autoFit: true,
             height,
@@ -82,18 +88,18 @@ class G2SingleBarComponent {
      * @return {?}
      */
     attachChart() {
-        const { chart, height, padding, value, min, max, plusColor, minusColor, barSize } = this;
-        if (!chart)
+        const { _chart, height, padding, value, min, max, plusColor, minusColor, barSize } = this;
+        if (!_chart)
             return;
-        chart.scale({ value: { max, min } });
-        chart.height = height;
-        chart.padding = padding;
-        chart.geometries[0].color('value', (/**
+        _chart.scale({ value: { max, min } });
+        _chart.height = height;
+        _chart.padding = padding;
+        _chart.geometries[0].color('value', (/**
          * @param {?} val
          * @return {?}
          */
         (val) => (val > 0 ? plusColor : minusColor))).size(barSize);
-        chart.changeData([{ value }]);
+        _chart.changeData([{ value }]);
     }
     /**
      * @return {?}
@@ -123,11 +129,11 @@ class G2SingleBarComponent {
      * @return {?}
      */
     ngOnDestroy() {
-        if (this.chart) {
+        if (this._chart) {
             this.ngZone.runOutsideAngular((/**
              * @return {?}
              */
-            () => this.chart.destroy()));
+            () => this._chart.destroy()));
         }
     }
 }
@@ -199,7 +205,7 @@ if (false) {
      * @type {?}
      * @private
      */
-    G2SingleBarComponent.prototype.chart;
+    G2SingleBarComponent.prototype._chart;
     /** @type {?} */
     G2SingleBarComponent.prototype.delay;
     /** @type {?} */

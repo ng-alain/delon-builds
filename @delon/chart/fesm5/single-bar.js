@@ -30,6 +30,16 @@ var G2SingleBarComponent = /** @class */ (function () {
         this.textStyle = { fontSize: 12, color: '#595959' };
         configSrv.attachKey(this, 'chart', 'theme');
     }
+    Object.defineProperty(G2SingleBarComponent.prototype, "chart", {
+        get: /**
+         * @return {?}
+         */
+        function () {
+            return this._chart;
+        },
+        enumerable: true,
+        configurable: true
+    });
     /**
      * @private
      * @return {?}
@@ -41,7 +51,7 @@ var G2SingleBarComponent = /** @class */ (function () {
     function () {
         var _a = this, el = _a.el, height = _a.height, padding = _a.padding, textStyle = _a.textStyle, line = _a.line, format = _a.format, theme = _a.theme;
         /** @type {?} */
-        var chart = (this.chart = new Chart({
+        var chart = (this._chart = new Chart({
             container: el.nativeElement,
             autoFit: true,
             height: height,
@@ -84,18 +94,18 @@ var G2SingleBarComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        var _a = this, chart = _a.chart, height = _a.height, padding = _a.padding, value = _a.value, min = _a.min, max = _a.max, plusColor = _a.plusColor, minusColor = _a.minusColor, barSize = _a.barSize;
-        if (!chart)
+        var _a = this, _chart = _a._chart, height = _a.height, padding = _a.padding, value = _a.value, min = _a.min, max = _a.max, plusColor = _a.plusColor, minusColor = _a.minusColor, barSize = _a.barSize;
+        if (!_chart)
             return;
-        chart.scale({ value: { max: max, min: min } });
-        chart.height = height;
-        chart.padding = padding;
-        chart.geometries[0].color('value', (/**
+        _chart.scale({ value: { max: max, min: min } });
+        _chart.height = height;
+        _chart.padding = padding;
+        _chart.geometries[0].color('value', (/**
          * @param {?} val
          * @return {?}
          */
         function (val) { return (val > 0 ? plusColor : minusColor); })).size(barSize);
-        chart.changeData([{ value: value }]);
+        _chart.changeData([{ value: value }]);
     };
     /**
      * @return {?}
@@ -137,11 +147,11 @@ var G2SingleBarComponent = /** @class */ (function () {
      */
     function () {
         var _this = this;
-        if (this.chart) {
+        if (this._chart) {
             this.ngZone.runOutsideAngular((/**
              * @return {?}
              */
-            function () { return _this.chart.destroy(); }));
+            function () { return _this._chart.destroy(); }));
         }
     };
     G2SingleBarComponent.decorators = [
@@ -214,7 +224,7 @@ if (false) {
      * @type {?}
      * @private
      */
-    G2SingleBarComponent.prototype.chart;
+    G2SingleBarComponent.prototype._chart;
     /** @type {?} */
     G2SingleBarComponent.prototype.delay;
     /** @type {?} */

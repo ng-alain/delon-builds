@@ -60,13 +60,19 @@ class G2MiniAreaComponent {
         configSrv.attachKey(this, 'chart', 'theme');
     }
     /**
+     * @return {?}
+     */
+    get chart() {
+        return this._chart;
+    }
+    /**
      * @private
      * @return {?}
      */
     install() {
         const { el, fit, height, padding, xAxis, yAxis, yTooltipSuffix, tooltipType, line, theme } = this;
         /** @type {?} */
-        const chart = (this.chart = new Chart({
+        const chart = (this._chart = new Chart({
             container: el.nativeElement,
             autoFit: fit,
             height,
@@ -126,7 +132,7 @@ class G2MiniAreaComponent {
          */
         (ev) => {
             /** @type {?} */
-            const records = this.chart.getSnapRecords({ x: ev.x, y: ev.y });
+            const records = this._chart.getSnapRecords({ x: ev.x, y: ev.y });
             this.ngZone.run((/**
              * @return {?}
              */
@@ -140,12 +146,12 @@ class G2MiniAreaComponent {
      * @return {?}
      */
     attachChart() {
-        const { chart, line, fit, height, animate, padding, data, color, borderColor, borderWidth } = this;
-        if (!chart || !data || data.length <= 0) {
+        const { _chart, line, fit, height, animate, padding, data, color, borderColor, borderWidth } = this;
+        if (!_chart || !data || data.length <= 0) {
             return;
         }
         /** @type {?} */
-        const geoms = chart.geometries;
+        const geoms = _chart.geometries;
         geoms.forEach((/**
          * @param {?} g
          * @return {?}
@@ -154,11 +160,11 @@ class G2MiniAreaComponent {
         if (line) {
             geoms[1].color(borderColor).size(borderWidth);
         }
-        chart.autoFit = fit;
-        chart.height = height;
-        chart.animate(animate);
-        chart.padding = padding;
-        chart.changeData(data);
+        _chart.autoFit = fit;
+        _chart.height = height;
+        _chart.animate(animate);
+        _chart.padding = padding;
+        _chart.changeData(data);
     }
     /**
      * @return {?}
@@ -188,11 +194,11 @@ class G2MiniAreaComponent {
      * @return {?}
      */
     ngOnDestroy() {
-        if (this.chart) {
+        if (this._chart) {
             this.ngZone.runOutsideAngular((/**
              * @return {?}
              */
-            () => this.chart.destroy()));
+            () => this._chart.destroy()));
         }
     }
 }
@@ -263,7 +269,7 @@ if (false) {
      * @type {?}
      * @private
      */
-    G2MiniAreaComponent.prototype.chart;
+    G2MiniAreaComponent.prototype._chart;
     /** @type {?} */
     G2MiniAreaComponent.prototype.delay;
     /** @type {?} */

@@ -274,6 +274,16 @@
             this.clickItem = new core.EventEmitter();
             configSrv.attachKey(this, 'chart', 'theme');
         }
+        Object.defineProperty(G2BarComponent.prototype, "chart", {
+            get: /**
+             * @return {?}
+             */
+            function () {
+                return this._chart;
+            },
+            enumerable: true,
+            configurable: true
+        });
         /**
          * @private
          * @return {?}
@@ -299,7 +309,7 @@
             /** @type {?} */
             var container = (/** @type {?} */ (node.nativeElement));
             /** @type {?} */
-            var chart = (this.chart = new g2.Chart({
+            var chart = (this._chart = new g2.Chart({
                 container: container,
                 autoFit: true,
                 height: this.getHeight(),
@@ -371,18 +381,18 @@
          * @return {?}
          */
         function () {
-            var _a = this, chart = _a.chart, padding = _a.padding, data = _a.data;
-            if (!chart || !data || data.length <= 0)
+            var _a = this, _chart = _a._chart, padding = _a.padding, data = _a.data;
+            if (!_chart || !data || data.length <= 0)
                 return;
             this.installResizeEvent();
             /** @type {?} */
             var height = this.getHeight();
-            if (chart.height !== height) {
-                chart.height = height;
+            if (_chart.height !== height) {
+                _chart.height = height;
             }
-            chart.padding = padding;
-            chart.data(data);
-            chart.render();
+            _chart.padding = padding;
+            _chart.data(data);
+            _chart.render();
         };
         /**
          * @private
@@ -393,12 +403,12 @@
          * @return {?}
          */
         function () {
-            var _a = this, node = _a.node, data = _a.data, chart = _a.chart;
+            var _a = this, node = _a.node, data = _a.data, _chart = _a._chart;
             /** @type {?} */
             var canvasWidth = node.nativeElement.clientWidth;
             /** @type {?} */
             var minWidth = data.length * 30;
-            chart.axis('x', canvasWidth > minWidth).render();
+            _chart.axis('x', canvasWidth > minWidth).render();
         };
         /**
          * @private
@@ -416,7 +426,7 @@
                 .pipe(operators.filter((/**
              * @return {?}
              */
-            function () { return !!_this.chart; })), operators.debounceTime(200))
+            function () { return !!_this._chart; })), operators.debounceTime(200))
                 .subscribe((/**
              * @return {?}
              */
@@ -468,11 +478,11 @@
             if (this.resize$) {
                 this.resize$.unsubscribe();
             }
-            if (this.chart) {
+            if (this._chart) {
                 this.ngZone.runOutsideAngular((/**
                  * @return {?}
                  */
-                function () { return _this.chart.destroy(); }));
+                function () { return _this._chart.destroy(); }));
             }
         };
         G2BarComponent.decorators = [
@@ -531,7 +541,7 @@
          * @type {?}
          * @private
          */
-        G2BarComponent.prototype.chart;
+        G2BarComponent.prototype._chart;
         /**
          * @type {?}
          * @private

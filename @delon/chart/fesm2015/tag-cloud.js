@@ -66,6 +66,12 @@ class G2TagCloudComponent {
         configSrv.attachKey(this, 'chart', 'theme');
     }
     /**
+     * @return {?}
+     */
+    get chart() {
+        return this._chart;
+    }
+    /**
      * @private
      * @return {?}
      */
@@ -105,7 +111,7 @@ class G2TagCloudComponent {
             this.width = this.el.nativeElement.clientWidth;
         }
         /** @type {?} */
-        const chart = (this.chart = new Chart({
+        const chart = (this._chart = new Chart({
             container: el.nativeElement,
             autoFit: false,
             padding,
@@ -154,8 +160,8 @@ class G2TagCloudComponent {
      * @return {?}
      */
     attachChart() {
-        const { chart, padding, data } = this;
-        if (!chart || !data || data.length <= 0)
+        const { _chart, padding, data } = this;
+        if (!_chart || !data || data.length <= 0)
             return;
         // TODO: compatible
         if (data.find((/**
@@ -179,9 +185,9 @@ class G2TagCloudComponent {
         w => !!w.category)) != null) {
             deprecation10('g2-tag-cloud', 'category');
         }
-        chart.height = this.height;
-        chart.width = this.width;
-        chart.padding = padding;
+        _chart.height = this.height;
+        _chart.width = this.width;
+        _chart.padding = padding;
         /** @type {?} */
         const dv = new DataSet.View().source(data);
         /** @type {?} */
@@ -219,8 +225,8 @@ class G2TagCloudComponent {
                 return ((d.value - min) / (max - min)) * (32 - 8) + 8;
             },
         })));
-        chart.data(dv.rows);
-        chart.render();
+        _chart.data(dv.rows);
+        _chart.render();
     }
     /**
      * @private
@@ -241,7 +247,7 @@ class G2TagCloudComponent {
             .pipe(filter((/**
          * @return {?}
          */
-        () => !!this.chart)), debounceTime(200))
+        () => !!this._chart)), debounceTime(200))
             .subscribe((/**
          * @return {?}
          */
@@ -277,11 +283,11 @@ class G2TagCloudComponent {
         if (this.resize$) {
             this.resize$.unsubscribe();
         }
-        if (this.chart) {
+        if (this._chart) {
             this.ngZone.runOutsideAngular((/**
              * @return {?}
              */
-            () => this.chart.destroy()));
+            () => this._chart.destroy()));
         }
     }
 }
@@ -333,7 +339,7 @@ if (false) {
      * @type {?}
      * @private
      */
-    G2TagCloudComponent.prototype.chart;
+    G2TagCloudComponent.prototype._chart;
     /** @type {?} */
     G2TagCloudComponent.prototype.delay;
     /** @type {?} */

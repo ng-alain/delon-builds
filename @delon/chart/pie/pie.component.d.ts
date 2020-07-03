@@ -1,6 +1,6 @@
 import { Platform } from '@angular/cdk/platform';
 import { ChangeDetectorRef, ElementRef, EventEmitter, NgZone, OnChanges, OnDestroy, OnInit, TemplateRef } from '@angular/core';
-import { Event, Types } from '@antv/g2';
+import { Chart, Event, Types } from '@antv/g2';
 import { G2InteractionType } from '@delon/chart/core';
 import { AlainConfigService } from '@delon/util';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
@@ -19,7 +19,7 @@ export declare class G2PieComponent implements OnInit, OnDestroy, OnChanges {
     private cdr;
     private platform;
     private node;
-    private chart;
+    private _chart;
     private percentColor;
     legendData: NzSafeAny[];
     isPercent: boolean;
@@ -44,6 +44,7 @@ export declare class G2PieComponent implements OnInit, OnDestroy, OnChanges {
     theme: string | Types.LooseObject;
     clickItem: EventEmitter<G2PieClickItem>;
     get block(): boolean;
+    get chart(): Chart;
     constructor(el: ElementRef<HTMLElement>, ngZone: NgZone, cdr: ChangeDetectorRef, configSrv: AlainConfigService, platform: Platform);
     private fixData;
     private install;

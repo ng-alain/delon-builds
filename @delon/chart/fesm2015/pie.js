@@ -72,6 +72,12 @@ class G2PieComponent {
         return this.hasLegend && this.el.nativeElement.clientWidth <= this.blockMaxWidth;
     }
     /**
+     * @return {?}
+     */
+    get chart() {
+        return this._chart;
+    }
+    /**
      * @private
      * @return {?}
      */
@@ -105,7 +111,7 @@ class G2PieComponent {
     install() {
         const { node, height, padding, tooltip, inner, hasLegend, interaction, theme } = this;
         /** @type {?} */
-        const chart = (this.chart = new Chart({
+        const chart = (this._chart = new Chart({
             container: node.nativeElement,
             autoFit: true,
             height,
@@ -162,14 +168,14 @@ class G2PieComponent {
      * @return {?}
      */
     attachChart() {
-        const { chart, height, padding, animate, data, lineWidth, isPercent, percentColor, colors } = this;
-        if (!chart)
+        const { _chart, height, padding, animate, data, lineWidth, isPercent, percentColor, colors } = this;
+        if (!_chart)
             return;
-        chart.height = height;
-        chart.padding = padding;
-        chart.animate(animate);
-        chart.geometries[0].style({ lineWidth, stroke: '#fff' }).color('x', isPercent ? percentColor : colors);
-        chart.scale({
+        _chart.height = height;
+        _chart.padding = padding;
+        _chart.animate(animate);
+        _chart.geometries[0].style({ lineWidth, stroke: '#fff' }).color('x', isPercent ? percentColor : colors);
+        _chart.scale({
             x: {
                 type: 'cat',
                 range: [0, 1],
@@ -186,7 +192,7 @@ class G2PieComponent {
         for (const item of data) {
             item.percent = totalSum === 0 ? 0 : item.y / totalSum;
         }
-        chart.changeData(data);
+        _chart.changeData(data);
         this.ngZone.run((/**
          * @return {?}
          */
@@ -197,10 +203,10 @@ class G2PieComponent {
      * @return {?}
      */
     genLegend() {
-        const { hasLegend, isPercent, cdr, chart } = this;
+        const { hasLegend, isPercent, cdr, _chart } = this;
         if (!hasLegend || isPercent)
             return;
-        this.legendData = chart.geometries[0].dataArray.map((/**
+        this.legendData = _chart.geometries[0].dataArray.map((/**
          * @param {?} item
          * @return {?}
          */
@@ -219,9 +225,9 @@ class G2PieComponent {
      * @return {?}
      */
     _click(i) {
-        const { legendData, chart } = this;
+        const { legendData, _chart } = this;
         legendData[i].checked = !legendData[i].checked;
-        chart.render();
+        _chart.render();
     }
     /**
      * @return {?}
@@ -252,11 +258,11 @@ class G2PieComponent {
      * @return {?}
      */
     ngOnDestroy() {
-        if (this.chart) {
+        if (this._chart) {
             this.ngZone.runOutsideAngular((/**
              * @return {?}
              */
-            () => this.chart.destroy()));
+            () => this._chart.destroy()));
         }
     }
 }
@@ -353,7 +359,7 @@ if (false) {
      * @type {?}
      * @private
      */
-    G2PieComponent.prototype.chart;
+    G2PieComponent.prototype._chart;
     /**
      * @type {?}
      * @private

@@ -56,13 +56,19 @@ class G2MiniBarComponent {
         configSrv.attachKey(this, 'chart', 'theme');
     }
     /**
+     * @return {?}
+     */
+    get chart() {
+        return this._chart;
+    }
+    /**
      * @private
      * @return {?}
      */
     install() {
         const { el, height, padding, yTooltipSuffix, tooltipType, theme } = this;
         /** @type {?} */
-        const chart = (this.chart = new Chart({
+        const chart = (this._chart = new Chart({
             container: el.nativeElement,
             autoFit: true,
             height,
@@ -125,13 +131,13 @@ class G2MiniBarComponent {
      * @return {?}
      */
     attachChart() {
-        const { chart, height, padding, data, color, borderWidth } = this;
-        if (!chart || !data || data.length <= 0)
+        const { _chart, height, padding, data, color, borderWidth } = this;
+        if (!_chart || !data || data.length <= 0)
             return;
-        chart.geometries[0].size(borderWidth).color(color);
-        chart.height = height;
-        chart.padding = padding;
-        chart.changeData(data);
+        _chart.geometries[0].size(borderWidth).color(color);
+        _chart.height = height;
+        _chart.padding = padding;
+        _chart.changeData(data);
     }
     /**
      * @return {?}
@@ -161,11 +167,11 @@ class G2MiniBarComponent {
      * @return {?}
      */
     ngOnDestroy() {
-        if (this.chart) {
+        if (this._chart) {
             this.ngZone.runOutsideAngular((/**
              * @return {?}
              */
-            () => this.chart.destroy()));
+            () => this._chart.destroy()));
         }
     }
 }
@@ -218,7 +224,7 @@ if (false) {
      * @type {?}
      * @private
      */
-    G2MiniBarComponent.prototype.chart;
+    G2MiniBarComponent.prototype._chart;
     /** @type {?} */
     G2MiniBarComponent.prototype.delay;
     /** @type {?} */

@@ -446,11 +446,9 @@
             // drawSin();
         };
         /**
-         * @private
          * @return {?}
          */
         G2WaterWaveComponent.prototype.updateRadio = /**
-         * @private
          * @return {?}
          */
         function () {

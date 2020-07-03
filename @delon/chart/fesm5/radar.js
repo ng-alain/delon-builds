@@ -53,6 +53,16 @@ var G2RadarComponent = /** @class */ (function () {
         this.clickItem = new EventEmitter();
         configSrv.attachKey(this, 'chart', 'theme');
     }
+    Object.defineProperty(G2RadarComponent.prototype, "chart", {
+        get: /**
+         * @return {?}
+         */
+        function () {
+            return this._chart;
+        },
+        enumerable: true,
+        configurable: true
+    });
     /**
      * @private
      * @return {?}
@@ -76,7 +86,7 @@ var G2RadarComponent = /** @class */ (function () {
         var _this = this;
         var _a = this, node = _a.node, padding = _a.padding, theme = _a.theme;
         /** @type {?} */
-        var chart = (this.chart = new Chart({
+        var chart = (this._chart = new Chart({
             container: node.nativeElement,
             autoFit: true,
             height: this.getHeight(),
@@ -150,23 +160,23 @@ var G2RadarComponent = /** @class */ (function () {
      */
     function () {
         var _this = this;
-        var _a = this, chart = _a.chart, padding = _a.padding, data = _a.data, colors = _a.colors, tickCount = _a.tickCount;
-        if (!chart || !data || data.length <= 0)
+        var _a = this, _chart = _a._chart, padding = _a.padding, data = _a.data, colors = _a.colors, tickCount = _a.tickCount;
+        if (!_chart || !data || data.length <= 0)
             return;
-        chart.height = this.getHeight();
-        chart.padding = padding;
-        chart.scale({
+        _chart.height = this.getHeight();
+        _chart.padding = padding;
+        _chart.scale({
             value: {
                 min: 0,
                 tickCount: tickCount,
             },
         });
-        chart.geometries.forEach((/**
+        _chart.geometries.forEach((/**
          * @param {?} g
          * @return {?}
          */
         function (g) { return g.color('name', colors); }));
-        chart.changeData(data);
+        _chart.changeData(data);
         this.ngZone.run((/**
          * @return {?}
          */
@@ -181,10 +191,10 @@ var G2RadarComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        var _a = this, hasLegend = _a.hasLegend, cdr = _a.cdr, chart = _a.chart;
+        var _a = this, hasLegend = _a.hasLegend, cdr = _a.cdr, _chart = _a._chart;
         if (!hasLegend)
             return;
-        this.legendData = chart.geometries[0].dataArray.map((/**
+        this.legendData = _chart.geometries[0].dataArray.map((/**
          * @param {?} item
          * @return {?}
          */
@@ -216,9 +226,9 @@ var G2RadarComponent = /** @class */ (function () {
      * @return {?}
      */
     function (i) {
-        var _a = this, legendData = _a.legendData, chart = _a.chart;
+        var _a = this, legendData = _a.legendData, _chart = _a._chart;
         legendData[i].checked = !legendData[i].checked;
-        chart.render();
+        _chart.render();
     };
     /**
      * @return {?}
@@ -265,11 +275,11 @@ var G2RadarComponent = /** @class */ (function () {
      */
     function () {
         var _this = this;
-        if (this.chart) {
+        if (this._chart) {
             this.ngZone.runOutsideAngular((/**
              * @return {?}
              */
-            function () { return _this.chart.destroy(); }));
+            function () { return _this._chart.destroy(); }));
         }
     };
     G2RadarComponent.decorators = [
@@ -334,7 +344,7 @@ if (false) {
      * @type {?}
      * @private
      */
-    G2RadarComponent.prototype.chart;
+    G2RadarComponent.prototype._chart;
     /** @type {?} */
     G2RadarComponent.prototype.legendData;
     /** @type {?} */

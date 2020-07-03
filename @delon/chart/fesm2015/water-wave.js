@@ -216,7 +216,6 @@ class G2WaterWaveComponent {
         // drawSin();
     }
     /**
-     * @private
      * @return {?}
      */
     updateRadio() {
