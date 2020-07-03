@@ -4960,7 +4960,7 @@
             var res = (/** @type {?} */ (this)).columnSource.process((/** @type {?} */ (this)).columns);
             (/** @type {?} */ (this))._columns = res.columns;
             (/** @type {?} */ (this))._headers = res.headers;
-            if (res.headerWidths != null) {
+            if ((/** @type {?} */ (this)).widthConfig.length === 0 && res.headerWidths != null) {
                 (/** @type {?} */ (this)).widthConfig = res.headerWidths;
             }
             return (/** @type {?} */ (this));
