@@ -13,6 +13,7 @@ export declare class AutoCompleteWidget extends ControlUIWidget<SFAutoCompleteWi
     private isAsync;
     private fixData;
     updateValue(item: NzAutocompleteOptionComponent): void;
+    _setValue(item: SFSchemaEnum): void;
     afterViewInit(): void;
     reset(value: SFValue): void;
     private filterData;
