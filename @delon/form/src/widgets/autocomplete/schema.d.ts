@@ -39,5 +39,5 @@ export interface SFAutoCompleteWidgetSchema extends SFUISchemaItem {
     /**
      * 变更回调
      */
-    change?: (item: NzAutocompleteOptionComponent) => void;
+    change?: (item: NzAutocompleteOptionComponent, orgData: SFSchemaEnum) => void;
 }

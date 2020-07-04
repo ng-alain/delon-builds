@@ -13,6 +13,7 @@ export declare class SelectWidget extends ControlUIWidget<SFSelectWidgetSchema> 
     ngOnInit(): void;
     reset(value: SFValue): void;
     change(values: SFValue): void;
+    private getOrgData;
     openChange(status: boolean): void;
     searchChange(text: string): void;
     scrollToBottom(): void;
