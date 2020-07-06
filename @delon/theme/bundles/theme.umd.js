@@ -1,5 +1,5 @@
 /**
- * @license ng-alain(cipchk@qq.com) v9.5.1
+ * @license ng-alain(cipchk@qq.com) v9.5.2
  * (c) 2020 cipchk https://ng-alain.com/
  * License: MIT
  */
@@ -2080,20 +2080,6 @@
     /**
      * @record
      */
-    function OnboardingLocaleData() { }
-    if (false) {
-        /** @type {?} */
-        OnboardingLocaleData.prototype.skip;
-        /** @type {?} */
-        OnboardingLocaleData.prototype.prev;
-        /** @type {?} */
-        OnboardingLocaleData.prototype.next;
-        /** @type {?} */
-        OnboardingLocaleData.prototype.done;
-    }
-    /**
-     * @record
-     */
     function FullLocaleData() { }
     if (false) {
         /** @type {?} */
@@ -2106,8 +2092,6 @@
         FullLocaleData.prototype.reuseTab;
         /** @type {?} */
         FullLocaleData.prototype.tagSelect;
-        /** @type {?} */
-        FullLocaleData.prototype.onboarding;
         /** @type {?} */
         FullLocaleData.prototype.miniProgress;
         /** @type {?} */
@@ -2195,12 +2179,6 @@
                 formatExclusiveMinimum: "formatExclusiveMinimum \u5E94\u5F53\u662F\u5E03\u5C14\u503C",
                 if: "\u5E94\u5F53\u5339\u914D\u6A21\u5F0F \"{failingKeyword}\"",
             },
-        },
-        onboarding: {
-            skip: "\u8DF3\u8FC7",
-            prev: "\u4E0A\u4E00\u9879",
-            next: "\u4E0B\u4E00\u9879",
-            done: "\u5B8C\u6210",
         },
     }));
 
@@ -2393,12 +2371,6 @@
                 if: "Should match \"{failingKeyword}\" schema",
             },
         },
-        onboarding: {
-            skip: "Skip",
-            prev: "Prev",
-            next: "Next",
-            done: "Done",
-        },
     }));
 
     /**
@@ -2409,8 +2381,8 @@
     var zhTW = (/** @type {?} */ ({
         abbr: 'zh-TW',
         exception: {
-            403: '抱歉，你無權訪問該頁麵',
-            404: '抱歉，你訪問的頁麵不存在',
+            403: '抱歉，你無權訪問該頁面',
+            404: '抱歉，你訪問的頁面不存在',
             500: '抱歉，服務器出錯了',
             backToHome: '返回首頁',
         },
@@ -2445,7 +2417,7 @@
             removeText: '移除',
             checkAllText: '全選',
             error: {
-                'false schema': "\u4F48\u723E\u6A21\u5F0F\u51FA\u932F",
+                'false schema': "\u5E03\u723E\u6A21\u5F0F\u51FA\u932F",
                 $ref: "\u7121\u6CD5\u627E\u5230\u5F15\u7528{ref}",
                 additionalItems: "\u4E0D\u5141\u8A31\u8D85\u904E{ref}",
                 additionalProperties: "\u4E0D\u5141\u8A31\u6709\u984D\u5916\u7684\u5C6C\u6027",
@@ -2467,7 +2439,7 @@
                 minProperties: "\u4E0D\u61C9\u5C11\u65BC {limit} \u500B\u5C6C\u6027",
                 multipleOf: "\u61C9\u7576\u662F {multipleOf} \u7684\u6574\u6578\u500D",
                 not: "\u4E0D\u61C9\u7576\u5339\u914D \"not\" schema",
-                oneOf: "\u96BB\u80FD\u5339\u914D\u4E00\u500B \"oneOf\" \u4E2D\u7684 schema",
+                oneOf: "\u53EA\u80FD\u5339\u914D\u4E00\u500B \"oneOf\" \u4E2D\u7684 schema",
                 pattern: "\u6578\u64DA\u683C\u5F0F\u4E0D\u6B63\u78BA",
                 uniqueItems: "\u4E0D\u61C9\u7576\u542B\u6709\u91CD\u8907\u9805 (\u7B2C {j} \u9805\u8207\u7B2C {i} \u9805\u662F\u91CD\u8907\u7684)",
                 custom: "\u683C\u5F0F\u4E0D\u6B63\u78BA",
@@ -2476,16 +2448,10 @@
                 switch: "\u7531\u65BC {caseIndex} \u5931\u6557\uFF0C\u672A\u901A\u904E \"switch\" \u6821\u9A57",
                 const: "\u61C9\u7576\u7B49\u65BC\u5E38\u91CF",
                 contains: "\u61C9\u7576\u5305\u542B\u4E00\u500B\u6709\u6548\u9805",
-                formatExclusiveMaximum: "formatExclusiveMaximum \u61C9\u7576\u662F\u4F48\u723E\u503C",
-                formatExclusiveMinimum: "formatExclusiveMinimum \u61C9\u7576\u662F\u4F48\u723E\u503C",
+                formatExclusiveMaximum: "formatExclusiveMaximum \u61C9\u7576\u662F\u5E03\u723E\u503C",
+                formatExclusiveMinimum: "formatExclusiveMinimum \u61C9\u7576\u662F\u5E03\u723E\u503C",
                 if: "\u61C9\u7576\u5339\u914D\u6A21\u5F0F \"{failingKeyword}\"",
             },
-        },
-        onboarding: {
-            skip: "\u8DF3\u904E",
-            prev: "\u4E0A\u4E00\u9805",
-            next: "\u4E0B\u4E00\u9805",
-            done: "\u5B8C\u6210",
         },
     }));
 
@@ -2569,12 +2535,6 @@
                 if: "Should match \"{failingKeyword}\" schema",
             },
         },
-        onboarding: {
-            skip: "Skip",
-            prev: "Prev",
-            next: "Next",
-            done: "Done",
-        },
     }));
 
     /**
@@ -2656,12 +2616,6 @@
                 formatExclusiveMinimum: "formatExclusiveMinimum should be boolean",
                 if: "Should match \"{failingKeyword}\" schema",
             },
-        },
-        onboarding: {
-            skip: "Skip",
-            prev: "Prev",
-            next: "Next",
-            done: "Done",
         },
     }));
 
@@ -2745,12 +2699,6 @@
                 if: "\u03A0\u03C1\u03AD\u03C0\u03B5\u03B9 \u03BD\u03B1 \u03C4\u03B1\u03B9\u03C1\u03B9\u03AC\u03B6\u03B5\u03B9 \u03C3\u03C4\u03B7\u03BD \u03B4\u03BF\u03BC\u03AE \"{failingKeyword}\"",
             },
         },
-        onboarding: {
-            skip: "Skip",
-            prev: "Prev",
-            next: "Next",
-            done: "Done",
-        },
     }));
 
     /**
@@ -2833,12 +2781,6 @@
                 if: "Should match \"{failingKeyword}\" schema",
             },
         },
-        onboarding: {
-            skip: "Skip",
-            prev: "Prev",
-            next: "Next",
-            done: "Done",
-        },
     }));
 
     /**
@@ -2884,12 +2826,6 @@
             addText: 'Dodaj',
             removeText: 'Ukloni',
             checkAllText: 'Označi sve',
-        },
-        onboarding: {
-            skip: "Skip",
-            prev: "Prev",
-            next: "Next",
-            done: "Done",
         },
     }));
 
@@ -2972,12 +2908,6 @@
                 formatExclusiveMinimum: "formatExclusiveMaximum \u306F\u771F\u507D\u5024\u3067\u3042\u308B\u5FC5\u8981\u304C\u3042\u308A\u307E\u3059",
                 if: "\u30D1\u30BF\u30FC\u30F3\u3068\u4E00\u81F4\u3059\u308B\u5FC5\u8981\u304C\u3042\u308A\u307E\u3059: \"{failingKeyword}\" ",
             },
-        },
-        onboarding: {
-            skip: "Skip",
-            prev: "Prev",
-            next: "Next",
-            done: "Done",
         },
     }));
 
@@ -4602,7 +4532,7 @@
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
-    var VERSION = new core.Version('9.5.1');
+    var VERSION = new core.Version('9.5.2');
 
     exports.ALAIN_I18N_TOKEN = ALAIN_I18N_TOKEN;
     exports.APP = APP;
