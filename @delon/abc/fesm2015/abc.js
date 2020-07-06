@@ -54,6 +54,8 @@ import { DatePickerModule } from '@delon/abc/date-picker';
 export { DatePickerModule, RangePickerComponent } from '@delon/abc/date-picker';
 import { LoadingModule } from '@delon/abc/loading';
 export { LoadingDefaultComponent, LoadingModule, LoadingService } from '@delon/abc/loading';
+import { OnboardingModule } from '@delon/abc/onboarding';
+export { OnboardingModule, OnboardingService, ɵOnboardingComponent } from '@delon/abc/onboarding';
 import { NgModule } from '@angular/core';
 import { warnDeprecation } from '@delon/util';
 import { MediaModule } from '@delon/abc/media';
@@ -85,6 +87,7 @@ const MODULES = [
     XlsxModule,
     ZipModule,
     NumberToChineseModule,
+    OnboardingModule,
     LodopModule,
     QuickMenuModule,
     QRModule,

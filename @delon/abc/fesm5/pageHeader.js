@@ -1,7 +1,7 @@
 import { __decorate, __metadata, __spread } from 'tslib';
 import { Platform } from '@angular/cdk/platform';
 import { TemplateRef, Component, ChangeDetectionStrategy, ViewEncapsulation, Renderer2, Optional, Inject, ChangeDetectorRef, ViewChild, Input, NgModule } from '@angular/core';
-import { NavigationEnd, Router, RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { ReuseTabService } from '@delon/abc/reuse-tab';
 import { SettingsService, MenuService, ALAIN_I18N_TOKEN, TitleService } from '@delon/theme';
 import { isEmpty, AlainConfigService, InputBoolean, InputNumber, DelonUtilModule } from '@delon/util';
@@ -70,11 +70,7 @@ var PageHeaderComponent = /** @class */ (function () {
         merge(menuSrv.change.pipe(filter((/**
          * @return {?}
          */
-        function () { return _this.inited; }))), router.events.pipe(filter((/**
-         * @param {?} ev
-         * @return {?}
-         */
-        function (ev) { return ev instanceof NavigationEnd; }))), i18nSrv.change)
+        function () { return _this.inited; }))), i18nSrv.change)
             .pipe(takeUntil(this.unsubscribe$))
             .subscribe((/**
          * @return {?}
@@ -187,7 +183,7 @@ var PageHeaderComponent = /** @class */ (function () {
             if ((/** @type {?} */ (this)).titleSrv) {
                 (/** @type {?} */ (this)).titleSrv.setTitle((/** @type {?} */ (this))._titleVal);
             }
-            if (!(/** @type {?} */ (this)).inited && (/** @type {?} */ (this)).reuseSrv) {
+            if ((/** @type {?} */ (this)).reuseSrv) {
                 (/** @type {?} */ (this)).reuseSrv.title = (/** @type {?} */ (this))._titleVal;
             }
         }
@@ -233,9 +229,8 @@ var PageHeaderComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        if (this.inited) {
+        if (this.inited)
             this.refresh();
-        }
     };
     /**
      * @return {?}
@@ -328,7 +323,10 @@ var PageHeaderComponent = /** @class */ (function () {
     return PageHeaderComponent;
 }());
 if (false) {
-    /** @type {?} */
+    /**
+     * @type {?}
+     * @private
+     */
     PageHeaderComponent.prototype.inited;
     /**
      * @type {?}
