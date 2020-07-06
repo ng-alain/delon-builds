@@ -31531,52 +31531,6 @@ ellipsis {
   height: 64px;
   fill: #ffffff;
 }
-.onboarding + .cdk-overlay-container {
-  z-index: 99999;
-}
-.onboarding__mask {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 99998;
-  background-color: #000;
-  opacity: 0.5;
-}
-.onboarding__item {
-  position: absolute;
-}
-.onboarding__light {
-  position: absolute;
-  z-index: 99999;
-  background-color: #141414;
-  animation: 2500ms cubic-bezier(0.55, 0.05, 0.6, 0.2) 0s infinite normal none running onboardingAnt;
-  pointer-events: none;
-}
-.onboarding__light-el {
-  position: relative;
-  z-index: 100000 !important;
-}
-.onboarding__light-ant {
-  transition: all 0.3s ease-out;
-}
-.onboarding__footer {
-  margin-top: 8px;
-}
-.onboarding__total {
-  color: rgba(255, 255, 255, 0.65);
-}
-@keyframes onboardingAnt {
-  0%,
-  33% {
-    box-shadow: #141414 0 0 0 2px, #141414 0 0 0;
-  }
-  66%,
-  100% {
-    box-shadow: #141414 0 0 0 2px, rgba(20, 20, 20, 0.01) 0 0 0 10px;
-  }
-}
 g2-chart,
 g2-bar,
 g2-gauge,
