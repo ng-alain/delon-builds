@@ -60,7 +60,12 @@ if (false) {
     /** @type {?|undefined} */
     STResetColumnsOption.prototype.columns;
     /**
-     * Whether to trigger a data load, default: `true`
+     * Whether to pre-clear data, Default: `false`
+     * @type {?|undefined}
+     */
+    STResetColumnsOption.prototype.preClearData;
+    /**
+     * Whether to trigger a data load, Default: `true`
      * @type {?|undefined}
      */
     STResetColumnsOption.prototype.emitReload;
@@ -4024,7 +4029,7 @@ class STComponent {
      * @return {?}
      */
     resetColumns(options) {
-        options = Object.assign({ emitReload: true }, options);
+        options = Object.assign({ emitReload: true, preClearData: false }, options);
         if (typeof options.columns !== 'undefined') {
             this.columns = options.columns;
         }
@@ -4034,10 +4039,15 @@ class STComponent {
         if (typeof options.ps !== 'undefined') {
             this.ps = options.ps;
         }
-        this.refreshColumns();
-        if (options.emitReload === true) {
+        if (options.emitReload) {
             // Should clean data, Because of changing columns may cause inaccurate data
+            options.preClearData = true;
+        }
+        if (options.preClearData) {
             this._data = [];
+        }
+        this.refreshColumns();
+        if (options.emitReload) {
             return this.loadPageData();
         }
         else {
