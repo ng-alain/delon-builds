@@ -1,4 +1,6 @@
 import { TemplateRef } from '@angular/core';
+import { SafeHtml } from '@angular/platform-browser';
+import { Observable } from 'rxjs';
 export declare type OnboardingOpType = 'next' | 'prev' | 'skip' | 'done';
 export interface OnboardingConfig {
     /**
@@ -13,10 +15,6 @@ export interface OnboardingConfig {
      * Clicking on the mask (area outside the onboarding) to close the onboarding or not, Default: `true`
      */
     maskClosable?: boolean;
-    /**
-     * Whether to animate, Default: `false`
-     */
-    animation?: boolean;
     /**
      * Whether to show total, Default: `true`
      */
@@ -46,7 +44,7 @@ export interface OnboardingItem {
     /**
      * Content text of the panel
      */
-    content?: string | TemplateRef<void>;
+    content?: string | SafeHtml | TemplateRef<void>;
     /**
      * Skip button of the panel
      * - `null` Don't show
@@ -67,4 +65,18 @@ export interface OnboardingItem {
      * - `null` Don't show
      */
     done?: string | TemplateRef<void> | null;
+    /**
+     * Target router url
+     */
+    url?: string;
+    /**
+     * Callback before entering, triggered when call `next` operates
+     * - `number` indicate delay
+     */
+    before?: Observable<any> | number;
+    /**
+     * Callback after entering, triggered when call `prev` operates
+     * - `number` indicate delay
+     */
+    after?: Observable<any> | number;
 }

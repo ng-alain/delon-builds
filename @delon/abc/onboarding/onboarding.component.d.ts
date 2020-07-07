@@ -13,7 +13,7 @@ export declare class OnboardingComponent implements OnDestroy {
     active: number;
     max: number;
     readonly op: EventEmitter<OnboardingOpType>;
-    visible: boolean;
+    running: boolean;
     get first(): boolean;
     get last(): boolean;
     private _getDoc;
@@ -21,10 +21,8 @@ export declare class OnboardingComponent implements OnDestroy {
     constructor(el: ElementRef<HTMLElement>, doc: any, platform: Platform, cdr: ChangeDetectorRef);
     private getLightData;
     private scroll;
-    updatePosition(options?: {
-        time?: number;
-    }): void;
-    private setVisible;
+    updateRunning(status: boolean): void;
+    private updatePosition;
     private updatePrevElStatus;
     to(type: OnboardingOpType): void;
     handleMask(): void;

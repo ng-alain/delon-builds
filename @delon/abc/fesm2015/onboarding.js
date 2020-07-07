@@ -7,6 +7,9 @@ import { NzNoAnimationModule } from 'ng-zorro-antd/core/no-animation';
 import { NzOutletModule } from 'ng-zorro-antd/core/outlet';
 import { NzPopoverModule } from 'ng-zorro-antd/popover';
 import { Platform } from '@angular/cdk/platform';
+import { Router } from '@angular/router';
+import { of, pipe } from 'rxjs';
+import { switchMap, delay } from 'rxjs/operators';
 
 /**
  * @fileoverview added by tsickle
@@ -48,7 +51,7 @@ class OnboardingComponent {
         this.active = 0;
         this.max = 0;
         this.op = new EventEmitter();
-        this.visible = false;
+        this.running = false;
     }
     /**
      * @return {?}
@@ -129,20 +132,30 @@ class OnboardingComponent {
         const scrollY = pos.top - (pos.clientHeight - pos.height) / 2;
         this._getWin().scrollTo({ top: scrollY });
         this.updatePrevElStatus(true);
-        this.setVisible(true);
     }
     /**
-     * @param {?=} options
+     * @param {?} status
      * @return {?}
      */
-    updatePosition(options = { time: 300 }) {
+    updateRunning(status) {
+        this.running = status;
+        this.cdr.detectChanges();
+        if (!status) {
+            this.updatePosition();
+        }
+    }
+    /**
+     * @private
+     * @return {?}
+     */
+    updatePosition() {
         if (!this.platform.isBrowser) {
             return;
         }
         /** @type {?} */
         const pos = this.getLightData();
         if (pos == null) {
-            this.setVisible(false);
+            console.warn(`Did not matches selectors [${this.item.selectors}]`);
             return;
         }
         /** @type {?} */
@@ -152,24 +165,7 @@ class OnboardingComponent {
         lightStyle.width = `${pos.width}px`;
         lightStyle.height = `${pos.height}px`;
         this.updatePrevElStatus(false);
-        this.setVisible(false);
-        if (options.time === 0 || !this.config.animation) {
-            this.scroll(pos);
-            return;
-        }
-        this.time = setTimeout((/**
-         * @return {?}
-         */
-        () => this.scroll(pos)), options.time);
-    }
-    /**
-     * @private
-     * @param {?} status
-     * @return {?}
-     */
-    setVisible(status) {
-        this.visible = status;
-        this.cdr.detectChanges();
+        this.scroll(pos);
     }
     /**
      * @private
@@ -207,7 +203,7 @@ class OnboardingComponent {
 OnboardingComponent.decorators = [
     { type: Component, args: [{
                 selector: 'onboarding',
-                template: "<div *ngIf=\"visible && config.mask\" class=\"onboarding__mask\" (click)=\"handleMask()\"></div>\n<div\n  *ngIf=\"item\"\n  class=\"onboarding__light\"\n  [class.onboarding__light-ant]=\"config.animation\"\n  [class.onboarding__light-hide]=\"!visible\"\n  nz-popover\n  [nzPopoverTitle]=\"item.title\"\n  [nzPopoverContent]=\"content\"\n  [nzVisible]=\"visible\"\n  [nzPopoverTrigger]=\"null\"\n  [nzPopoverPlacement]=\"item.position\"\n  [nzNoAnimation]=\"true\"\n  [nzOverlayClassName]=\"item.className\"\n  [nzOverlayStyle]=\"{ 'max-width.px': item.width }\"\n></div>\n<ng-template #content>\n  <ng-container *nzStringTemplateOutlet=\"item.content\">{{ item.content }}</ng-container>\n  <div class=\"flex-center-between onboarding__footer\">\n    <span class=\"onboarding__total\">\n      <ng-container *ngIf=\"config.showTotal\">{{ active + 1 }}/{{ max }}</ng-container>\n    </span>\n    <div class=\"onboarding__btns\">\n      <a *ngIf=\"!last && item.skip !== null\" nz-button nzType=\"link\" (click)=\"to('skip')\" nzSize=\"small\" data-btnType=\"skip\">\n        <ng-container *nzStringTemplateOutlet=\"item.skip\">{{ item.skip }}</ng-container>\n      </a>\n      <a *ngIf=\"!first && item.prev !== null\" nz-button (click)=\"to('prev')\" nzSize=\"small\" data-btnType=\"prev\">\n        <ng-container *nzStringTemplateOutlet=\"item.prev\">{{ item.prev }}</ng-container>\n      </a>\n      <a *ngIf=\"!last && item.next !== null\" nz-button (click)=\"to('next')\" nzType=\"primary\" nzSize=\"small\" data-btnType=\"next\">\n        <ng-container *nzStringTemplateOutlet=\"item.next\">{{ item.next }}</ng-container>\n      </a>\n      <a *ngIf=\"last && item.done !== null\" nz-button (click)=\"to('done')\" nzType=\"primary\" nzSize=\"small\" data-btnType=\"done\">\n        <ng-container *nzStringTemplateOutlet=\"item.done\">{{ item.done }}</ng-container>\n      </a>\n    </div>\n  </div>\n</ng-template>\n",
+                template: "<div *ngIf=\"!running && config.mask\" class=\"onboarding__mask\" (click)=\"handleMask()\"></div>\n<div\n  *ngIf=\"item\"\n  class=\"onboarding__light\"\n  [class.onboarding__light-hide]=\"running\"\n  nz-popover\n  [nzPopoverTitle]=\"item.title\"\n  [nzPopoverContent]=\"content\"\n  [nzVisible]=\"!running\"\n  [nzPopoverTrigger]=\"null\"\n  [nzPopoverPlacement]=\"item.position\"\n  [nzNoAnimation]=\"true\"\n  [nzOverlayClassName]=\"item.className\"\n  [nzOverlayStyle]=\"{ 'max-width.px': item.width }\"\n></div>\n<ng-template #content>\n  <ng-container *nzStringTemplateOutlet=\"item.content\">\n    <div [innerHTML]=\"item.content\"></div>\n  </ng-container>\n  <div class=\"flex-center-between onboarding__footer\">\n    <span class=\"onboarding__total\">\n      <ng-container *ngIf=\"config.showTotal\">{{ active + 1 }}/{{ max }}</ng-container>\n    </span>\n    <div class=\"onboarding__btns\">\n      <a *ngIf=\"!last && item.skip !== null\" nz-button nzType=\"link\" (click)=\"to('skip')\" nzSize=\"small\" data-btnType=\"skip\">\n        <ng-container *nzStringTemplateOutlet=\"item.skip\">{{ item.skip }}</ng-container>\n      </a>\n      <a *ngIf=\"!first && item.prev !== null\" nz-button (click)=\"to('prev')\" nzSize=\"small\" data-btnType=\"prev\">\n        <ng-container *nzStringTemplateOutlet=\"item.prev\">{{ item.prev }}</ng-container>\n      </a>\n      <a *ngIf=\"!last && item.next !== null\" nz-button (click)=\"to('next')\" nzType=\"primary\" nzSize=\"small\" data-btnType=\"next\">\n        <ng-container *nzStringTemplateOutlet=\"item.next\">{{ item.next }}</ng-container>\n      </a>\n      <a *ngIf=\"last && item.done !== null\" nz-button (click)=\"to('done')\" nzType=\"primary\" nzSize=\"small\" data-btnType=\"done\">\n        <ng-container *nzStringTemplateOutlet=\"item.done\">{{ item.done }}</ng-container>\n      </a>\n    </div>\n  </div>\n</ng-template>\n",
                 host: {
                     '[class.onboarding]': `true`,
                     '[attr.data-onboarding-active]': `active`,
@@ -246,7 +242,7 @@ if (false) {
     /** @type {?} */
     OnboardingComponent.prototype.op;
     /** @type {?} */
-    OnboardingComponent.prototype.visible;
+    OnboardingComponent.prototype.running;
     /**
      * @type {?}
      * @private
@@ -294,16 +290,21 @@ class OnboardingService {
      * @param {?} i18n
      * @param {?} appRef
      * @param {?} resolver
+     * @param {?} router
      * @param {?} injector
      * @param {?} doc
      */
-    constructor(i18n, appRef, resolver, injector, doc) {
+    constructor(i18n, appRef, resolver, router, injector, doc) {
         this.i18n = i18n;
         this.appRef = appRef;
         this.resolver = resolver;
+        this.router = router;
         this.injector = injector;
         this.doc = doc;
         this.active = 0;
+        this.running$ = null;
+        this._running = false;
+        this.type = null;
     }
     /**
      * @private
@@ -311,6 +312,12 @@ class OnboardingService {
      */
     _getDoc() {
         return this.doc;
+    }
+    /**
+     * @return {?}
+     */
+    get running() {
+        return this._running;
     }
     /**
      * @private
@@ -352,36 +359,95 @@ class OnboardingService {
     }
     /**
      * @private
-     * @return {?}
+     * @template THIS
+     * @this {THIS}
+     * @return {THIS}
      */
-    destroy() {
-        this.appRef.detachView(this.compRef.hostView);
-        this.compRef.destroy();
-        this.op$.unsubscribe();
+    cancelRunning() {
+        if ((/** @type {?} */ (this)).running$) {
+            (/** @type {?} */ (this)).running$.unsubscribe();
+            (/** @type {?} */ (this)).running$ = null;
+        }
+        return (/** @type {?} */ (this));
     }
     /**
      * @private
-     * @param {?=} cleanTime
+     * @template THIS
+     * @this {THIS}
+     * @param {?} status
+     * @return {THIS}
+     */
+    updateRunning(status) {
+        (/** @type {?} */ (this))._running = status;
+        (/** @type {?} */ ((/** @type {?} */ (this)).compRef)).instance.updateRunning(status);
+        return (/** @type {?} */ (this));
+    }
+    /**
+     * @private
      * @return {?}
      */
-    showItem(cleanTime = false) {
+    destroy() {
+        this.cancelRunning();
+        if (this.compRef) {
+            this.appRef.detachView(this.compRef.hostView);
+            this.compRef.destroy();
+            this.op$.unsubscribe();
+        }
+    }
+    /**
+     * @private
+     * @param {?=} isStart
+     * @return {?}
+     */
+    showItem(isStart = false) {
         /** @type {?} */
         const items = (/** @type {?} */ (this.config.items));
         /** @type {?} */
-        const item = (/** @type {?} */ (Object.assign(Object.assign({ position: 'bottomLeft' }, this.i18n.getData('onboarding')), items[this.active])));
+        const item = (/** @type {?} */ (Object.assign(Object.assign({ position: 'bottomLeft', before: of(true), after: of(true) }, this.i18n.getData('onboarding')), items[this.active])));
         Object.assign(this.compRef.instance, { item, config: this.config, active: this.active, max: items.length });
-        setTimeout((/**
+        /** @type {?} */
+        const pipes = [
+            switchMap((/**
+             * @return {?}
+             */
+            () => (item.url ? this.router.navigateByUrl(item.url) : of(true)))),
+            switchMap((/**
+             * @return {?}
+             */
+            () => {
+                /** @type {?} */
+                const obs = this.type === 'prev' ? (/** @type {?} */ (item.after)) : (/** @type {?} */ (item.before));
+                return typeof obs === 'number' ? of(true).pipe(delay(obs)) : obs;
+            })),
+        ];
+        if (!isStart) {
+            pipes.push(delay(1));
+        }
+        this.updateRunning(true);
+        this.running$ = of(true)
+            .pipe(pipe.apply(this, pipes))
+            .subscribe((/**
+         * @template THIS
+         * @this {THIS}
+         * @return {THIS}
+         */
+        () => this.cancelRunning().updateRunning(false)), (/**
          * @return {?}
          */
-        () => this.compRef.instance.updatePosition({ time: cleanTime ? 0 : 300 })));
+        () => this.done()));
     }
     /**
      * @param {?} config
      * @return {?}
      */
     start(config) {
-        this.config = Object.assign({ items: [], mask: true, maskClosable: true, animation: false, showTotal: false }, config);
+        if (this.running) {
+            return;
+        }
+        this.destroy();
+        this.config = Object.assign({ items: [], mask: true, maskClosable: true, showTotal: false }, config);
         this.active = 0;
+        this.type = null;
         this.attach();
         this.showItem(true);
     }
@@ -389,10 +455,11 @@ class OnboardingService {
      * @return {?}
      */
     next() {
-        if (this.active + 1 >= (/** @type {?} */ (this.config.items)).length) {
+        if (this._running || this.active + 1 >= (/** @type {?} */ (this.config.items)).length) {
             this.done();
             return;
         }
+        this.type = 'next';
         ++this.active;
         this.showItem();
     }
@@ -400,9 +467,10 @@ class OnboardingService {
      * @return {?}
      */
     prev() {
-        if (this.active - 1 < 0) {
+        if (this._running || this.active - 1 < 0) {
             return;
         }
+        this.type = 'prev';
         --this.active;
         this.showItem();
     }
@@ -410,6 +478,7 @@ class OnboardingService {
      * @return {?}
      */
     done() {
+        this.type = 'done';
         this.destroy();
     }
     /**
@@ -427,10 +496,11 @@ OnboardingService.ctorParameters = () => [
     { type: DelonLocaleService },
     { type: ApplicationRef },
     { type: ComponentFactoryResolver },
+    { type: Router },
     { type: Injector },
     { type: undefined, decorators: [{ type: Inject, args: [DOCUMENT,] }] }
 ];
-/** @nocollapse */ OnboardingService.ɵprov = ɵɵdefineInjectable({ factory: function OnboardingService_Factory() { return new OnboardingService(ɵɵinject(DelonLocaleService), ɵɵinject(ApplicationRef), ɵɵinject(ComponentFactoryResolver), ɵɵinject(INJECTOR), ɵɵinject(DOCUMENT)); }, token: OnboardingService, providedIn: "root" });
+/** @nocollapse */ OnboardingService.ɵprov = ɵɵdefineInjectable({ factory: function OnboardingService_Factory() { return new OnboardingService(ɵɵinject(DelonLocaleService), ɵɵinject(ApplicationRef), ɵɵinject(ComponentFactoryResolver), ɵɵinject(Router), ɵɵinject(INJECTOR), ɵɵinject(DOCUMENT)); }, token: OnboardingService, providedIn: "root" });
 if (false) {
     /**
      * @type {?}
@@ -456,6 +526,21 @@ if (false) {
      * @type {?}
      * @private
      */
+    OnboardingService.prototype.running$;
+    /**
+     * @type {?}
+     * @private
+     */
+    OnboardingService.prototype._running;
+    /**
+     * @type {?}
+     * @private
+     */
+    OnboardingService.prototype.type;
+    /**
+     * @type {?}
+     * @private
+     */
     OnboardingService.prototype.i18n;
     /**
      * @type {?}
@@ -467,6 +552,11 @@ if (false) {
      * @private
      */
     OnboardingService.prototype.resolver;
+    /**
+     * @type {?}
+     * @private
+     */
+    OnboardingService.prototype.router;
     /**
      * @type {?}
      * @private
@@ -504,11 +594,6 @@ if (false) {
      * @type {?|undefined}
      */
     OnboardingConfig.prototype.maskClosable;
-    /**
-     * Whether to animate, Default: `false`
-     * @type {?|undefined}
-     */
-    OnboardingConfig.prototype.animation;
     /**
      * Whether to show total, Default: `true`
      * @type {?|undefined}
@@ -574,6 +659,23 @@ if (false) {
      * @type {?|undefined}
      */
     OnboardingItem.prototype.done;
+    /**
+     * Target router url
+     * @type {?|undefined}
+     */
+    OnboardingItem.prototype.url;
+    /**
+     * Callback before entering, triggered when call `next` operates
+     * - `number` indicate delay
+     * @type {?|undefined}
+     */
+    OnboardingItem.prototype.before;
+    /**
+     * Callback after entering, triggered when call `prev` operates
+     * - `number` indicate delay
+     * @type {?|undefined}
+     */
+    OnboardingItem.prototype.after;
 }
 
 /**

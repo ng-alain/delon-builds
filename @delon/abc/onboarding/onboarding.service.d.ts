@@ -1,19 +1,27 @@
 import { ApplicationRef, ComponentFactoryResolver, Injector, OnDestroy } from '@angular/core';
+import { Router } from '@angular/router';
 import { DelonLocaleService } from '@delon/theme';
 import { OnboardingConfig } from './onboarding.types';
 export declare class OnboardingService implements OnDestroy {
     private i18n;
     private appRef;
     private resolver;
+    private router;
     private injector;
     private doc;
     private compRef;
     private op$;
     private config;
     private active;
+    private running$;
+    private _running;
+    private type;
     private _getDoc;
-    constructor(i18n: DelonLocaleService, appRef: ApplicationRef, resolver: ComponentFactoryResolver, injector: Injector, doc: any);
+    get running(): boolean;
+    constructor(i18n: DelonLocaleService, appRef: ApplicationRef, resolver: ComponentFactoryResolver, router: Router, injector: Injector, doc: any);
     private attach;
+    private cancelRunning;
+    private updateRunning;
     private destroy;
     private showItem;
     start(config: OnboardingConfig): void;
