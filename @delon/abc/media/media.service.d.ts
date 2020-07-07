@@ -4,6 +4,7 @@ export declare class MediaService {
     private cogSrv;
     private lazySrv;
     private _cog;
+    private loading;
     private loaded;
     private notify$;
     get cog(): AlainMediaConfig;

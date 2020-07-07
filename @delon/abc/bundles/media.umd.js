@@ -237,6 +237,7 @@
         function MediaService(cogSrv, lazySrv) {
             this.cogSrv = cogSrv;
             this.lazySrv = lazySrv;
+            this.loading = false;
             this.loaded = false;
             this.notify$ = new rxjs.Subject();
         }
@@ -271,15 +272,20 @@
          */
         function () {
             var _this = this;
-            if ((/** @type {?} */ (this)).loaded) {
-                (/** @type {?} */ (this)).notify$.next();
+            if ((/** @type {?} */ (this)).loading) {
+                if ((/** @type {?} */ (this)).loaded) {
+                    (/** @type {?} */ (this)).notify$.next();
+                }
                 return (/** @type {?} */ (this));
             }
-            (/** @type {?} */ (this)).loaded = true;
+            (/** @type {?} */ (this)).loading = true;
             (/** @type {?} */ (this)).lazySrv.load((/** @type {?} */ ((/** @type {?} */ (this)).cog.urls))).then((/**
              * @return {?}
              */
-            function () { return (/** @type {?} */ (_this)).notify$.next(); }));
+            function () {
+                (/** @type {?} */ (_this)).loaded = true;
+                (/** @type {?} */ (_this)).notify$.next();
+            }));
             return (/** @type {?} */ (this));
         };
         /**
@@ -308,6 +314,11 @@
          * @private
          */
         MediaService.prototype._cog;
+        /**
+         * @type {?}
+         * @private
+         */
+        MediaService.prototype.loading;
         /**
          * @type {?}
          * @private

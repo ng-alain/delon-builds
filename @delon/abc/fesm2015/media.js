@@ -18,6 +18,7 @@ class MediaService {
     constructor(cogSrv, lazySrv) {
         this.cogSrv = cogSrv;
         this.lazySrv = lazySrv;
+        this.loading = false;
         this.loaded = false;
         this.notify$ = new Subject();
     }
@@ -42,15 +43,20 @@ class MediaService {
      * @return {THIS}
      */
     load() {
-        if ((/** @type {?} */ (this)).loaded) {
-            (/** @type {?} */ (this)).notify$.next();
+        if ((/** @type {?} */ (this)).loading) {
+            if ((/** @type {?} */ (this)).loaded) {
+                (/** @type {?} */ (this)).notify$.next();
+            }
             return (/** @type {?} */ (this));
         }
-        (/** @type {?} */ (this)).loaded = true;
+        (/** @type {?} */ (this)).loading = true;
         (/** @type {?} */ (this)).lazySrv.load((/** @type {?} */ ((/** @type {?} */ (this)).cog.urls))).then((/**
          * @return {?}
          */
-        () => (/** @type {?} */ (this)).notify$.next()));
+        () => {
+            (/** @type {?} */ (this)).loaded = true;
+            (/** @type {?} */ (this)).notify$.next();
+        }));
         return (/** @type {?} */ (this));
     }
     /**
@@ -75,6 +81,11 @@ if (false) {
      * @private
      */
     MediaService.prototype._cog;
+    /**
+     * @type {?}
+     * @private
+     */
+    MediaService.prototype.loading;
     /**
      * @type {?}
      * @private
