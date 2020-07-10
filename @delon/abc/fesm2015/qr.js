@@ -156,7 +156,7 @@ QRComponent.decorators = [
     { type: Component, args: [{
                 selector: 'qr',
                 exportAs: 'qr',
-                template: ` <img style="max-width: 100%; max-height: 100%;" [src]="dataURL" /> `,
+                template: ` <img *ngIf="dataURL" style="max-width: 100%; max-height: 100%;" [src]="dataURL" /> `,
                 host: {
                     '[style.display]': `'inline-block'`,
                     '[style.height.px]': 'size',

@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, ɵɵdefineInjectable, ɵɵinject, Directive, Input, NgModule } from '@angular/core';
+import { Injectable, NgZone, ɵɵdefineInjectable, ɵɵinject, Directive, Input, NgModule } from '@angular/core';
 import { LazyService, AlainConfigService, DelonUtilModule } from '@delon/util';
 import { saveAs } from 'file-saver';
 import { CommonModule } from '@angular/common';
@@ -61,10 +61,12 @@ class XlsxService {
      * @param {?} http
      * @param {?} lazy
      * @param {?} configSrv
+     * @param {?} ngZone
      */
-    constructor(http, lazy, configSrv) {
+    constructor(http, lazy, configSrv, ngZone) {
         this.http = http;
         this.lazy = lazy;
+        this.ngZone = ngZone;
         this.cog = (/** @type {?} */ (configSrv.merge('xlsx', {
             url: '//cdn.bootcss.com/xlsx/0.15.6/xlsx.full.min.js',
             modules: [],
@@ -79,20 +81,28 @@ class XlsxService {
     }
     /**
      * @private
-     * @param {?} wb
+     * @param {?} data
+     * @param {?} options
      * @return {?}
      */
-    read(wb) {
+    read(data, options) {
         /** @type {?} */
         const ret = {};
-        wb.SheetNames.forEach((/**
-         * @param {?} name
+        this.ngZone.runOutsideAngular((/**
          * @return {?}
          */
-        (name) => {
+        () => {
             /** @type {?} */
-            const sheet = wb.Sheets[name];
-            ret[name] = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+            const wb = XLSX.read(data, options);
+            wb.SheetNames.forEach((/**
+             * @param {?} name
+             * @return {?}
+             */
+            (name) => {
+                /** @type {?} */
+                const sheet = wb.Sheets[name];
+                ret[name] = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+            }));
         }));
         return ret;
     }
@@ -121,9 +131,10 @@ class XlsxService {
                      * @return {?}
                      */
                     (res) => {
-                        /** @type {?} */
-                        const wb = XLSX.read(new Uint8Array(res), { type: 'array' });
-                        resolve(this.read(wb));
+                        this.ngZone.run((/**
+                         * @return {?}
+                         */
+                        () => resolve(this.read(new Uint8Array(res), { type: 'array' }))));
                     }), (/**
                      * @param {?} err
                      * @return {?}
@@ -141,9 +152,10 @@ class XlsxService {
                  * @return {?}
                  */
                 (e) => {
-                    /** @type {?} */
-                    const wb = XLSX.read(e.target.result, { type: 'binary' });
-                    resolve(this.read(wb));
+                    this.ngZone.run((/**
+                     * @return {?}
+                     */
+                    () => resolve(this.read(e.target.result, { type: 'binary' }))));
                 });
                 reader[rABS](fileOrUrl);
             }))
@@ -163,29 +175,34 @@ class XlsxService {
          * @return {?}
          */
         () => {
-            /** @type {?} */
-            const wb = XLSX.utils.book_new();
-            if (Array.isArray(options.sheets)) {
-                ((/** @type {?} */ (options.sheets))).forEach((/**
-                 * @param {?} value
-                 * @param {?} index
-                 * @return {?}
-                 */
-                (value, index) => {
-                    /** @type {?} */
-                    const ws = XLSX.utils.aoa_to_sheet(value.data);
-                    XLSX.utils.book_append_sheet(wb, ws, value.name || `Sheet${index + 1}`);
-                }));
-            }
-            else {
-                wb.SheetNames = Object.keys(options.sheets);
-                wb.Sheets = options.sheets;
-            }
-            if (options.callback)
-                options.callback(wb);
-            /** @type {?} */
-            const wbout = XLSX.write(wb, Object.assign({ bookType: 'xlsx', bookSST: false, type: 'array' }, options.opts));
-            saveAs(new Blob([wbout], { type: 'application/octet-stream' }), options.filename || 'export.xlsx');
+            this.ngZone.runOutsideAngular((/**
+             * @return {?}
+             */
+            () => {
+                /** @type {?} */
+                const wb = XLSX.utils.book_new();
+                if (Array.isArray(options.sheets)) {
+                    ((/** @type {?} */ (options.sheets))).forEach((/**
+                     * @param {?} value
+                     * @param {?} index
+                     * @return {?}
+                     */
+                    (value, index) => {
+                        /** @type {?} */
+                        const ws = XLSX.utils.aoa_to_sheet(value.data);
+                        XLSX.utils.book_append_sheet(wb, ws, value.name || `Sheet${index + 1}`);
+                    }));
+                }
+                else {
+                    wb.SheetNames = Object.keys(options.sheets);
+                    wb.Sheets = options.sheets;
+                }
+                if (options.callback)
+                    options.callback(wb);
+                /** @type {?} */
+                const wbout = XLSX.write(wb, Object.assign({ bookType: 'xlsx', bookSST: false, type: 'array' }, options.opts));
+                saveAs(new Blob([wbout], { type: 'application/octet-stream' }), options.filename || 'export.xlsx');
+            }));
         }));
     }
 }
@@ -196,9 +213,10 @@ XlsxService.decorators = [
 XlsxService.ctorParameters = () => [
     { type: HttpClient },
     { type: LazyService },
-    { type: AlainConfigService }
+    { type: AlainConfigService },
+    { type: NgZone }
 ];
-/** @nocollapse */ XlsxService.ɵprov = ɵɵdefineInjectable({ factory: function XlsxService_Factory() { return new XlsxService(ɵɵinject(HttpClient), ɵɵinject(LazyService), ɵɵinject(AlainConfigService)); }, token: XlsxService, providedIn: "root" });
+/** @nocollapse */ XlsxService.ɵprov = ɵɵdefineInjectable({ factory: function XlsxService_Factory() { return new XlsxService(ɵɵinject(HttpClient), ɵɵinject(LazyService), ɵɵinject(AlainConfigService), ɵɵinject(NgZone)); }, token: XlsxService, providedIn: "root" });
 if (false) {
     /**
      * @type {?}
@@ -215,6 +233,11 @@ if (false) {
      * @private
      */
     XlsxService.prototype.lazy;
+    /**
+     * @type {?}
+     * @private
+     */
+    XlsxService.prototype.ngZone;
 }
 
 /**

@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, ɵɵdefineInjectable, ɵɵinject, NgModule } from '@angular/core';
+import { Injectable, NgZone, ɵɵdefineInjectable, ɵɵinject, NgModule } from '@angular/core';
 import { LazyService, AlainConfigService, DelonUtilModule } from '@delon/util';
 import { saveAs } from 'file-saver';
 import { CommonModule } from '@angular/common';
@@ -71,10 +71,12 @@ class ZipService {
      * @param {?} http
      * @param {?} lazy
      * @param {?} configSrv
+     * @param {?} ngZone
      */
-    constructor(http, lazy, configSrv) {
+    constructor(http, lazy, configSrv, ngZone) {
         this.http = http;
         this.lazy = lazy;
+        this.ngZone = ngZone;
         this.cog = (/** @type {?} */ (configSrv.merge('zip', {
             url: '//cdn.bootcss.com/jszip/3.3.0/jszip.min.js',
             utils: [],
@@ -109,46 +111,62 @@ class ZipService {
          * @return {?}
          */
         (resolve, reject) => {
+            /** @type {?} */
+            const resolveCallback = (/**
+             * @param {?} data
+             * @return {?}
+             */
+            (data) => {
+                this.ngZone.run((/**
+                 * @return {?}
+                 */
+                () => resolve(data)));
+            });
             this.init().then((/**
              * @return {?}
              */
             () => {
-                // from url
-                if (typeof fileOrUrl === 'string') {
-                    this.http.request('GET', fileOrUrl, { responseType: 'arraybuffer' }).subscribe((/**
-                     * @param {?} res
+                this.ngZone.runOutsideAngular((/**
+                 * @return {?}
+                 */
+                () => {
+                    // from url
+                    if (typeof fileOrUrl === 'string') {
+                        this.http.request('GET', fileOrUrl, { responseType: 'arraybuffer' }).subscribe((/**
+                         * @param {?} res
+                         * @return {?}
+                         */
+                        (res) => {
+                            JSZip.loadAsync(res, options).then((/**
+                             * @param {?} ret
+                             * @return {?}
+                             */
+                            (ret) => resolveCallback(ret)));
+                        }), (/**
+                         * @param {?} err
+                         * @return {?}
+                         */
+                        (err) => {
+                            reject(err);
+                        }));
+                        return;
+                    }
+                    // from file
+                    /** @type {?} */
+                    const reader = new FileReader();
+                    reader.onload = (/**
+                     * @param {?} e
                      * @return {?}
                      */
-                    (res) => {
-                        JSZip.loadAsync(res, options).then((/**
+                    (e) => {
+                        JSZip.loadAsync(e.target.result, options).then((/**
                          * @param {?} ret
                          * @return {?}
                          */
-                        (ret) => resolve(ret)));
-                    }), (/**
-                     * @param {?} err
-                     * @return {?}
-                     */
-                    (err) => {
-                        reject(err);
-                    }));
-                    return;
-                }
-                // from file
-                /** @type {?} */
-                const reader = new FileReader();
-                reader.onload = (/**
-                 * @param {?} e
-                 * @return {?}
-                 */
-                (e) => {
-                    JSZip.loadAsync(e.target.result, options).then((/**
-                     * @param {?} ret
-                     * @return {?}
-                     */
-                    (ret) => resolve(ret)));
-                });
-                reader.readAsBinaryString((/** @type {?} */ (fileOrUrl)));
+                        (ret) => resolveCallback(ret)));
+                    });
+                    reader.readAsBinaryString((/** @type {?} */ (fileOrUrl)));
+                }));
             }));
         }));
     }
@@ -246,9 +264,10 @@ ZipService.decorators = [
 ZipService.ctorParameters = () => [
     { type: HttpClient },
     { type: LazyService },
-    { type: AlainConfigService }
+    { type: AlainConfigService },
+    { type: NgZone }
 ];
-/** @nocollapse */ ZipService.ɵprov = ɵɵdefineInjectable({ factory: function ZipService_Factory() { return new ZipService(ɵɵinject(HttpClient), ɵɵinject(LazyService), ɵɵinject(AlainConfigService)); }, token: ZipService, providedIn: "root" });
+/** @nocollapse */ ZipService.ɵprov = ɵɵdefineInjectable({ factory: function ZipService_Factory() { return new ZipService(ɵɵinject(HttpClient), ɵɵinject(LazyService), ɵɵinject(AlainConfigService), ɵɵinject(NgZone)); }, token: ZipService, providedIn: "root" });
 if (false) {
     /**
      * @type {?}
@@ -265,6 +284,11 @@ if (false) {
      * @private
      */
     ZipService.prototype.lazy;
+    /**
+     * @type {?}
+     * @private
+     */
+    ZipService.prototype.ngZone;
 }
 
 /**

@@ -1,6 +1,6 @@
 import { __assign } from 'tslib';
 import { HttpClient } from '@angular/common/http';
-import { Injectable, ɵɵdefineInjectable, ɵɵinject, NgModule } from '@angular/core';
+import { Injectable, NgZone, ɵɵdefineInjectable, ɵɵinject, NgModule } from '@angular/core';
 import { LazyService, AlainConfigService, DelonUtilModule } from '@delon/util';
 import { saveAs } from 'file-saver';
 import { CommonModule } from '@angular/common';
@@ -68,9 +68,10 @@ if (false) {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var ZipService = /** @class */ (function () {
-    function ZipService(http, lazy, configSrv) {
+    function ZipService(http, lazy, configSrv, ngZone) {
         this.http = http;
         this.lazy = lazy;
+        this.ngZone = ngZone;
         this.cog = (/** @type {?} */ (configSrv.merge('zip', {
             url: '//cdn.bootcss.com/jszip/3.3.0/jszip.min.js',
             utils: [],
@@ -122,46 +123,62 @@ var ZipService = /** @class */ (function () {
          * @return {?}
          */
         function (resolve, reject) {
+            /** @type {?} */
+            var resolveCallback = (/**
+             * @param {?} data
+             * @return {?}
+             */
+            function (data) {
+                _this.ngZone.run((/**
+                 * @return {?}
+                 */
+                function () { return resolve(data); }));
+            });
             _this.init().then((/**
              * @return {?}
              */
             function () {
-                // from url
-                if (typeof fileOrUrl === 'string') {
-                    _this.http.request('GET', fileOrUrl, { responseType: 'arraybuffer' }).subscribe((/**
-                     * @param {?} res
+                _this.ngZone.runOutsideAngular((/**
+                 * @return {?}
+                 */
+                function () {
+                    // from url
+                    if (typeof fileOrUrl === 'string') {
+                        _this.http.request('GET', fileOrUrl, { responseType: 'arraybuffer' }).subscribe((/**
+                         * @param {?} res
+                         * @return {?}
+                         */
+                        function (res) {
+                            JSZip.loadAsync(res, options).then((/**
+                             * @param {?} ret
+                             * @return {?}
+                             */
+                            function (ret) { return resolveCallback(ret); }));
+                        }), (/**
+                         * @param {?} err
+                         * @return {?}
+                         */
+                        function (err) {
+                            reject(err);
+                        }));
+                        return;
+                    }
+                    // from file
+                    /** @type {?} */
+                    var reader = new FileReader();
+                    reader.onload = (/**
+                     * @param {?} e
                      * @return {?}
                      */
-                    function (res) {
-                        JSZip.loadAsync(res, options).then((/**
+                    function (e) {
+                        JSZip.loadAsync(e.target.result, options).then((/**
                          * @param {?} ret
                          * @return {?}
                          */
-                        function (ret) { return resolve(ret); }));
-                    }), (/**
-                     * @param {?} err
-                     * @return {?}
-                     */
-                    function (err) {
-                        reject(err);
-                    }));
-                    return;
-                }
-                // from file
-                /** @type {?} */
-                var reader = new FileReader();
-                reader.onload = (/**
-                 * @param {?} e
-                 * @return {?}
-                 */
-                function (e) {
-                    JSZip.loadAsync(e.target.result, options).then((/**
-                     * @param {?} ret
-                     * @return {?}
-                     */
-                    function (ret) { return resolve(ret); }));
-                });
-                reader.readAsBinaryString((/** @type {?} */ (fileOrUrl)));
+                        function (ret) { return resolveCallback(ret); }));
+                    });
+                    reader.readAsBinaryString((/** @type {?} */ (fileOrUrl)));
+                }));
             }));
         }));
     };
@@ -291,9 +308,10 @@ var ZipService = /** @class */ (function () {
     ZipService.ctorParameters = function () { return [
         { type: HttpClient },
         { type: LazyService },
-        { type: AlainConfigService }
+        { type: AlainConfigService },
+        { type: NgZone }
     ]; };
-    /** @nocollapse */ ZipService.ɵprov = ɵɵdefineInjectable({ factory: function ZipService_Factory() { return new ZipService(ɵɵinject(HttpClient), ɵɵinject(LazyService), ɵɵinject(AlainConfigService)); }, token: ZipService, providedIn: "root" });
+    /** @nocollapse */ ZipService.ɵprov = ɵɵdefineInjectable({ factory: function ZipService_Factory() { return new ZipService(ɵɵinject(HttpClient), ɵɵinject(LazyService), ɵɵinject(AlainConfigService), ɵɵinject(NgZone)); }, token: ZipService, providedIn: "root" });
     return ZipService;
 }());
 if (false) {
@@ -312,6 +330,11 @@ if (false) {
      * @private
      */
     ZipService.prototype.lazy;
+    /**
+     * @type {?}
+     * @private
+     */
+    ZipService.prototype.ngZone;
 }
 
 /**
