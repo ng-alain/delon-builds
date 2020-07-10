@@ -1,0 +1,13 @@
+{
+  "main": "../bundles/onboarding.umd.js",
+  "module": "../fesm5/onboarding.js",
+  "es2015": "../fesm2015/onboarding.js",
+  "esm5": "../esm5/onboarding/onboarding.js",
+  "esm2015": "../esm2015/onboarding/onboarding.js",
+  "fesm5": "../fesm5/onboarding.js",
+  "fesm2015": "../fesm2015/onboarding.js",
+  "typings": "onboarding.d.ts",
+  "metadata": "onboarding.metadata.json",
+  "sideEffects": false,
+  "name": "@delon/abc/onboarding"
+}
