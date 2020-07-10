@@ -35,7 +35,7 @@ Code style rules:
 - Verify typescript with [tslint](https://github.com/palantir/tslint)
 - Verify less with [stylelint](https://github.com/stylelint/stylelint)
 - Use [prettier](https://github.com/prettier/prettier) code formatting
-- Use [husky](https://github.com/typicode/husky) and [pretty-quick](https://github.com/azz/pretty-quick) to code verify and code format when git add
+- Use [husky](https://github.com/typicode/husky) and [lint-staged](https://github.com/okonet/lint-staged) to code verify and code format when git add
 
 ```bash
 # add
@@ -110,6 +110,7 @@ ng g ng-alain:plugin defaultLanguage --defaultLanguage=zh-tw
 | Greek    | el     | el        | el_GR            | el_GR       |
 | Korean    | ko     | ko        | ko_KR            | ko_KR       |
 | Croatian    | hr     | hr        | hr_HR            | hr_HR       |
+| Slovenian    | sl     | sl        | sl_SI            | sl_SI       |
 
 ### networkEnv
 

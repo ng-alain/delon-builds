@@ -2913,6 +2913,88 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: src/locale/languages/sl-SI.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var slSI = (/** @type {?} */ ({
+        abbr: 'sl-SI',
+        exception: {
+            403: "\u017Dal nimate dostopa do te strani",
+            404: "\u017Dal stran, ki ste jo obiskali, ne obstaja",
+            500: "\u017Dal stre\u017Enik poro\u010Da o napaki",
+            backToHome: 'Nazaj domov',
+        },
+        noticeIcon: {
+            emptyText: 'Ni podatkov',
+            clearText: 'Počisti',
+        },
+        reuseTab: {
+            close: 'Zapri zavihek',
+            closeOther: 'Zaprite druge zavihke',
+            closeRight: 'Zaprite zavihke na desni',
+            clear: 'Počisti zavihke',
+        },
+        tagSelect: {
+            expand: 'Razširi',
+            collapse: 'Strni',
+        },
+        miniProgress: {
+            target: 'Cilj: ',
+        },
+        st: {
+            total: '{{range[0]}} - {{range[1]}} of {{total}}',
+            filterConfirm: 'OK',
+            filterReset: 'Reset',
+        },
+        sf: {
+            submit: 'Pošlji',
+            reset: 'Reset',
+            search: 'Išči',
+            edit: 'Shrani',
+            addText: 'Dodaj',
+            removeText: 'Odstrani',
+            checkAllText: 'Preveri vse',
+            error: {
+                'false schema': "Boolova shema je napa\u010Dna",
+                $ref: "Referenc ni mogo\u010De razre\u0161iti {ref}",
+                additionalItems: "Ne sme imeti ve\u010D kot {limit} artiklov",
+                additionalProperties: "Ne bi smel imeti dodatnih lastnosti",
+                anyOf: "Se mora ujemati s shemo v \"anyOf\"",
+                dependencies: "mora imeti lastnosti {deps} ko je artikel {property} prisoten",
+                enum: "Mora biti enaka eni od vnaprej dolo\u010Denih vrednosti",
+                format: "Naj ustreza formatu \"{format}\"",
+                type: "Naj bo {type}",
+                required: "Zahtevano",
+                maxLength: "Ne sme biti dalj\u0161i od {limit} znakov",
+                minLength: "Ne sme biti kraj\u0161i od {limit} znakov",
+                minimum: "Naj bo {comparison} {limit}",
+                formatMinimum: "Naj bo {comparison} {limit}",
+                maximum: "Naj bo {comparison} {limit}",
+                formatMaximum: "Naj bo {comparison} {limit}",
+                maxItems: "Ne sme imeti ve\u010D kot {limit} artiklov",
+                minItems: "Ne sme imeti manj kot {limit} artiklov",
+                maxProperties: "Ne sme imeti ve\u010D kot {limit} lastnosti",
+                minProperties: "Ne sme imeti manj kot {limit} lastnosti",
+                multipleOf: "Mora biti ve\u010Dkratnik od {multipleOf}",
+                not: "Ne sme biti veljaven po shemi v \"not\"",
+                oneOf: "Naj ustreza natan\u010Dno eni shemi v \"oneOf\"",
+                pattern: "Naj se ujema z vzorcem \"{pattern}\"",
+                uniqueItems: "Ne bi smel imeti dvojnikov (items ## {j} in {i} so identi\u010Dni)",
+                custom: "Naj ustreza formatu",
+                propertyNames: "Ime artikla \"{propertyName}\" je neveljavno",
+                patternRequired: "Mora imeti vzorec ujemanja lastnosti \"{missingPattern}\"",
+                switch: "Mora prestati \"switch\" validacijo klju\u010Dne besede, primer {caseIndex} ne uspe",
+                const: "Naj bo enako konstanti",
+                contains: "Naj vsebuje veljaven artikel",
+                formatExclusiveMaximum: "formatExclusiveMaximum naj bo boolean",
+                formatExclusiveMinimum: "formatExclusiveMinimum naj bo boolean",
+                if: "Naj se ujema s shemo \"{failingKeyword}\"",
+            },
+        },
+    }));
+
+    /**
+     * @fileoverview added by tsickle
      * Generated from: src/locale/public_api.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
@@ -4586,6 +4668,7 @@
     exports.ko_KR = koKR;
     exports.pl_PL = plPL;
     exports.preloaderFinished = preloaderFinished;
+    exports.sl_SI = slSI;
     exports.tr_TR = trTR;
     exports.zh_CN = zhCN;
     exports.zh_TW = zhTW;

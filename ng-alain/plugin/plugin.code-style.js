@@ -9,7 +9,7 @@ function pluginCodeStyle(options) {
         if (options.type === 'add') {
             json.husky = {
                 hooks: {
-                    'pre-commit': 'pretty-quick --staged',
+                    'pre-commit': 'npm run lint-staged',
                 },
             };
         }
