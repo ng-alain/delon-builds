@@ -6,7 +6,7 @@ import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { MenuService, SettingsService, WINDOW } from '@delon/theme';
 import { InputBoolean, InputNumber, DelonUtilModule } from '@delon/util';
 import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { takeUntil, filter } from 'rxjs/operators';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 
@@ -71,7 +71,7 @@ class SidebarNavComponent {
      * @param {?} e
      * @return {?}
      */
-    floatingAreaClickHandle(e) {
+    floatingClickHandle(e) {
         e.stopPropagation();
         /** @type {?} */
         const linkNode = this.getLinkNode((/** @type {?} */ (e.target)));
@@ -104,10 +104,10 @@ class SidebarNavComponent {
      * @private
      * @return {?}
      */
-    clearFloatingContainer() {
+    clearFloating() {
         if (!this.floatingEl)
             return;
-        this.floatingEl.removeEventListener('click', this.floatingAreaClickHandle.bind(this));
+        this.floatingEl.removeEventListener('click', this.floatingClickHandle.bind(this));
         // fix ie: https://github.com/ng-alain/delon/issues/52
         if (this.floatingEl.hasOwnProperty('remove')) {
             this.floatingEl.remove();
@@ -120,11 +120,11 @@ class SidebarNavComponent {
      * @private
      * @return {?}
      */
-    genFloatingContainer() {
-        this.clearFloatingContainer();
+    genFloating() {
+        this.clearFloating();
         this.floatingEl = this.render.createElement('div');
         this.floatingEl.classList.add(FLOATINGCLS + '-container');
-        this.floatingEl.addEventListener('click', this.floatingAreaClickHandle.bind(this), false);
+        this.floatingEl.addEventListener('click', this.floatingClickHandle.bind(this), false);
         this.bodyEl.appendChild(this.floatingEl);
     }
     /**
@@ -202,7 +202,7 @@ class SidebarNavComponent {
             e.preventDefault();
             /** @type {?} */
             const linkNode = (/** @type {?} */ (e.target));
-            this.genFloatingContainer();
+            this.genFloating();
             /** @type {?} */
             const subNode = this.genSubNode((/** @type {?} */ (linkNode)), item);
             this.hideAll();
@@ -305,13 +305,13 @@ class SidebarNavComponent {
      * @return {?}
      */
     ngOnInit() {
-        const { doc, router, unsubscribe$, menuSrv, cdr } = this;
+        const { doc, router, unsubscribe$, menuSrv, settings, cdr } = this;
         this.bodyEl = doc.querySelector('body');
         this.openedByUrl(router.url);
         this.ngZone.runOutsideAngular((/**
          * @return {?}
          */
-        () => this.genFloatingContainer()));
+        () => this.genFloating()));
         menuSrv.change.pipe(takeUntil(unsubscribe$)).subscribe((/**
          * @param {?} data
          * @return {?}
@@ -356,6 +356,16 @@ class SidebarNavComponent {
                 this.cdr.detectChanges();
             }
         }));
+        settings.notify
+            .pipe(takeUntil(unsubscribe$), filter((/**
+         * @param {?} t
+         * @return {?}
+         */
+        t => t.type === 'layout' && t.name === 'collapsed')))
+            .subscribe((/**
+         * @return {?}
+         */
+        () => this.clearFloating()));
         this.underPad();
     }
     /**
@@ -365,7 +375,7 @@ class SidebarNavComponent {
         const { unsubscribe$ } = this;
         unsubscribe$.next();
         unsubscribe$.complete();
-        this.clearFloatingContainer();
+        this.clearFloating();
     }
     // #region Under pad
     /**
