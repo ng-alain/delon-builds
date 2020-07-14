@@ -101,9 +101,10 @@ class SidebarNavComponent {
         return false;
     }
     /**
+     * @private
      * @return {?}
      */
-    clearFloating() {
+    clearFloatingContainer() {
         if (!this.floatingEl)
             return;
         this.floatingEl.removeEventListener('click', this.floatingAreaClickHandle.bind(this));
@@ -119,8 +120,8 @@ class SidebarNavComponent {
      * @private
      * @return {?}
      */
-    genFloating() {
-        this.clearFloating();
+    genFloatingContainer() {
+        this.clearFloatingContainer();
         this.floatingEl = this.render.createElement('div');
         this.floatingEl.classList.add(FLOATINGCLS + '-container');
         this.floatingEl.addEventListener('click', this.floatingAreaClickHandle.bind(this), false);
@@ -201,7 +202,7 @@ class SidebarNavComponent {
             e.preventDefault();
             /** @type {?} */
             const linkNode = (/** @type {?} */ (e.target));
-            this.genFloating();
+            this.genFloatingContainer();
             /** @type {?} */
             const subNode = this.genSubNode((/** @type {?} */ (linkNode)), item);
             this.hideAll();
@@ -310,7 +311,7 @@ class SidebarNavComponent {
         this.ngZone.runOutsideAngular((/**
          * @return {?}
          */
-        () => this.genFloating()));
+        () => this.genFloatingContainer()));
         menuSrv.change.pipe(takeUntil(unsubscribe$)).subscribe((/**
          * @param {?} data
          * @return {?}
@@ -364,7 +365,7 @@ class SidebarNavComponent {
         const { unsubscribe$ } = this;
         unsubscribe$.next();
         unsubscribe$.complete();
-        this.clearFloating();
+        this.clearFloatingContainer();
     }
     // #region Under pad
     /**

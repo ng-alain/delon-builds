@@ -104,9 +104,11 @@ var SidebarNavComponent = /** @class */ (function () {
         return false;
     };
     /**
+     * @private
      * @return {?}
      */
-    SidebarNavComponent.prototype.clearFloating = /**
+    SidebarNavComponent.prototype.clearFloatingContainer = /**
+     * @private
      * @return {?}
      */
     function () {
@@ -125,12 +127,12 @@ var SidebarNavComponent = /** @class */ (function () {
      * @private
      * @return {?}
      */
-    SidebarNavComponent.prototype.genFloating = /**
+    SidebarNavComponent.prototype.genFloatingContainer = /**
      * @private
      * @return {?}
      */
     function () {
-        this.clearFloating();
+        this.clearFloatingContainer();
         this.floatingEl = this.render.createElement('div');
         this.floatingEl.classList.add(FLOATINGCLS + '-container');
         this.floatingEl.addEventListener('click', this.floatingAreaClickHandle.bind(this), false);
@@ -236,7 +238,7 @@ var SidebarNavComponent = /** @class */ (function () {
             e.preventDefault();
             /** @type {?} */
             var linkNode = (/** @type {?} */ (e.target));
-            _this.genFloating();
+            _this.genFloatingContainer();
             /** @type {?} */
             var subNode = _this.genSubNode((/** @type {?} */ (linkNode)), item);
             _this.hideAll();
@@ -369,7 +371,7 @@ var SidebarNavComponent = /** @class */ (function () {
         this.ngZone.runOutsideAngular((/**
          * @return {?}
          */
-        function () { return _this.genFloating(); }));
+        function () { return _this.genFloatingContainer(); }));
         menuSrv.change.pipe(takeUntil(unsubscribe$)).subscribe((/**
          * @param {?} data
          * @return {?}
@@ -426,7 +428,7 @@ var SidebarNavComponent = /** @class */ (function () {
         var unsubscribe$ = this.unsubscribe$;
         unsubscribe$.next();
         unsubscribe$.complete();
-        this.clearFloating();
+        this.clearFloatingContainer();
     };
     Object.defineProperty(SidebarNavComponent.prototype, "isPad", {
         // #region Under pad
