@@ -51,6 +51,16 @@ if (false) {
      */
     XlsxExportSheet.prototype.name;
 }
+/**
+ * @record
+ */
+function XlsxExportResult() { }
+if (false) {
+    /** @type {?} */
+    XlsxExportResult.prototype.filename;
+    /** @type {?} */
+    XlsxExportResult.prototype.wb;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -172,40 +182,54 @@ class XlsxService {
      */
     export(options) {
         return __awaiter(this, void 0, void 0, function* () {
-            return this.init().then((/**
+            return new Promise((/**
+             * @param {?} resolve
+             * @param {?} reject
              * @return {?}
              */
-            () => {
-                this.ngZone.runOutsideAngular((/**
+            (resolve, reject) => {
+                this.init()
+                    .then((/**
                  * @return {?}
                  */
                 () => {
-                    /** @type {?} */
-                    const wb = XLSX.utils.book_new();
-                    if (Array.isArray(options.sheets)) {
-                        ((/** @type {?} */ (options.sheets))).forEach((/**
-                         * @param {?} value
-                         * @param {?} index
-                         * @return {?}
-                         */
-                        (value, index) => {
-                            /** @type {?} */
-                            const ws = XLSX.utils.aoa_to_sheet(value.data);
-                            XLSX.utils.book_append_sheet(wb, ws, value.name || `Sheet${index + 1}`);
-                        }));
-                    }
-                    else {
-                        wb.SheetNames = Object.keys(options.sheets);
-                        wb.Sheets = options.sheets;
-                    }
-                    if (options.callback)
-                        options.callback(wb);
-                    /** @type {?} */
-                    const wbout = XLSX.write(wb, Object.assign({ bookType: 'xlsx', bookSST: false, type: 'array' }, options.opts));
-                    /** @type {?} */
-                    const filename = options.filename || 'export.xlsx';
-                    saveAs(new Blob([wbout], { type: 'application/octet-stream' }), filename);
-                }));
+                    this.ngZone.runOutsideAngular((/**
+                     * @return {?}
+                     */
+                    () => {
+                        /** @type {?} */
+                        const wb = XLSX.utils.book_new();
+                        if (Array.isArray(options.sheets)) {
+                            ((/** @type {?} */ (options.sheets))).forEach((/**
+                             * @param {?} value
+                             * @param {?} index
+                             * @return {?}
+                             */
+                            (value, index) => {
+                                /** @type {?} */
+                                const ws = XLSX.utils.aoa_to_sheet(value.data);
+                                XLSX.utils.book_append_sheet(wb, ws, value.name || `Sheet${index + 1}`);
+                            }));
+                        }
+                        else {
+                            wb.SheetNames = Object.keys(options.sheets);
+                            wb.Sheets = options.sheets;
+                        }
+                        if (options.callback)
+                            options.callback(wb);
+                        /** @type {?} */
+                        const wbout = XLSX.write(wb, Object.assign({ bookType: 'xlsx', bookSST: false, type: 'array' }, options.opts));
+                        /** @type {?} */
+                        const filename = options.filename || 'export.xlsx';
+                        saveAs(new Blob([wbout], { type: 'application/octet-stream' }), filename);
+                        resolve({ filename, wb });
+                    }));
+                }))
+                    .catch((/**
+                 * @param {?} err
+                 * @return {?}
+                 */
+                err => reject(err)));
             }));
         });
     }

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { NgZone } from '@angular/core';
 import { AlainConfigService, LazyService } from '@delon/util';
-import { XlsxExportOptions } from './xlsx.types';
+import { XlsxExportOptions, XlsxExportResult } from './xlsx.types';
 export declare class XlsxService {
     private http;
     private lazy;
@@ -17,7 +17,7 @@ export declare class XlsxService {
     import(fileOrUrl: File | string, rABS?: 'readAsBinaryString' | 'readAsArrayBuffer'): Promise<{
         [key: string]: any[][];
     }>;
-    export(options: XlsxExportOptions): Promise<void>;
+    export(options: XlsxExportOptions): Promise<XlsxExportResult>;
     /**
      * 数据转符号名
      * - `1` => `A`

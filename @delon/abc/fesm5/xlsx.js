@@ -51,6 +51,16 @@ if (false) {
      */
     XlsxExportSheet.prototype.name;
 }
+/**
+ * @record
+ */
+function XlsxExportResult() { }
+if (false) {
+    /** @type {?} */
+    XlsxExportResult.prototype.filename;
+    /** @type {?} */
+    XlsxExportResult.prototype.wb;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -194,40 +204,54 @@ var XlsxService = /** @class */ (function () {
         return __awaiter(this, void 0, void 0, function () {
             var _this = this;
             return __generator(this, function (_a) {
-                return [2 /*return*/, this.init().then((/**
+                return [2 /*return*/, new Promise((/**
+                     * @param {?} resolve
+                     * @param {?} reject
                      * @return {?}
                      */
-                    function () {
-                        _this.ngZone.runOutsideAngular((/**
+                    function (resolve, reject) {
+                        _this.init()
+                            .then((/**
                          * @return {?}
                          */
                         function () {
-                            /** @type {?} */
-                            var wb = XLSX.utils.book_new();
-                            if (Array.isArray(options.sheets)) {
-                                ((/** @type {?} */ (options.sheets))).forEach((/**
-                                 * @param {?} value
-                                 * @param {?} index
-                                 * @return {?}
-                                 */
-                                function (value, index) {
-                                    /** @type {?} */
-                                    var ws = XLSX.utils.aoa_to_sheet(value.data);
-                                    XLSX.utils.book_append_sheet(wb, ws, value.name || "Sheet" + (index + 1));
-                                }));
-                            }
-                            else {
-                                wb.SheetNames = Object.keys(options.sheets);
-                                wb.Sheets = options.sheets;
-                            }
-                            if (options.callback)
-                                options.callback(wb);
-                            /** @type {?} */
-                            var wbout = XLSX.write(wb, __assign({ bookType: 'xlsx', bookSST: false, type: 'array' }, options.opts));
-                            /** @type {?} */
-                            var filename = options.filename || 'export.xlsx';
-                            saveAs(new Blob([wbout], { type: 'application/octet-stream' }), filename);
-                        }));
+                            _this.ngZone.runOutsideAngular((/**
+                             * @return {?}
+                             */
+                            function () {
+                                /** @type {?} */
+                                var wb = XLSX.utils.book_new();
+                                if (Array.isArray(options.sheets)) {
+                                    ((/** @type {?} */ (options.sheets))).forEach((/**
+                                     * @param {?} value
+                                     * @param {?} index
+                                     * @return {?}
+                                     */
+                                    function (value, index) {
+                                        /** @type {?} */
+                                        var ws = XLSX.utils.aoa_to_sheet(value.data);
+                                        XLSX.utils.book_append_sheet(wb, ws, value.name || "Sheet" + (index + 1));
+                                    }));
+                                }
+                                else {
+                                    wb.SheetNames = Object.keys(options.sheets);
+                                    wb.Sheets = options.sheets;
+                                }
+                                if (options.callback)
+                                    options.callback(wb);
+                                /** @type {?} */
+                                var wbout = XLSX.write(wb, __assign({ bookType: 'xlsx', bookSST: false, type: 'array' }, options.opts));
+                                /** @type {?} */
+                                var filename = options.filename || 'export.xlsx';
+                                saveAs(new Blob([wbout], { type: 'application/octet-stream' }), filename);
+                                resolve({ filename: filename, wb: wb });
+                            }));
+                        }))
+                            .catch((/**
+                         * @param {?} err
+                         * @return {?}
+                         */
+                        function (err) { return reject(err); }));
                     }))];
             });
         });

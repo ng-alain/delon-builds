@@ -6,8 +6,8 @@ import { warn, deepCopy, deepGet, deepMergeKey, toBoolean, AlainConfigService, I
 import { DecimalPipe, DOCUMENT, CommonModule } from '@angular/common';
 import { of, Subject, from } from 'rxjs';
 import { map, takeUntil, filter } from 'rxjs/operators';
-import { XlsxService } from '@delon/abc/xlsx';
 import { __awaiter, __decorate, __metadata } from 'tslib';
+import { XlsxService } from '@delon/abc/xlsx';
 import { Router } from '@angular/router';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { FormsModule } from '@angular/forms';
@@ -2900,12 +2900,14 @@ class STExport {
      * @return {?}
      */
     export(opt) {
-        /** @type {?} */
-        const sheets = this.genSheet(opt);
-        return this.xlsxSrv.export({
-            sheets,
-            filename: opt.filename,
-            callback: opt.callback,
+        return __awaiter(this, void 0, void 0, function* () {
+            /** @type {?} */
+            const sheets = this.genSheet(opt);
+            return this.xlsxSrv.export({
+                sheets,
+                filename: opt.filename,
+                callback: opt.callback,
+            });
         });
     }
 }

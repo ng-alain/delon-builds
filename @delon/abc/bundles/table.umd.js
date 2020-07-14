@@ -3381,12 +3381,16 @@
          * @return {?}
          */
         function (opt) {
-            /** @type {?} */
-            var sheets = this.genSheet(opt);
-            return this.xlsxSrv.export({
-                sheets: sheets,
-                filename: opt.filename,
-                callback: opt.callback,
+            return __awaiter(this, void 0, void 0, function () {
+                var sheets;
+                return __generator(this, function (_a) {
+                    sheets = this.genSheet(opt);
+                    return [2 /*return*/, this.xlsxSrv.export({
+                            sheets: sheets,
+                            filename: opt.filename,
+                            callback: opt.callback,
+                        })];
+                });
             });
         };
         STExport.decorators = [

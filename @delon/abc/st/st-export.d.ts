@@ -1,9 +1,9 @@
-import { XlsxService } from '@delon/abc/xlsx';
+import { XlsxExportResult, XlsxService } from '@delon/abc/xlsx';
 import { STExportOptions } from './st.interfaces';
 export declare class STExport {
     private xlsxSrv;
     constructor(xlsxSrv: XlsxService);
     private _stGet;
     private genSheet;
-    export(opt: STExportOptions): Promise<void>;
+    export(opt: STExportOptions): Promise<XlsxExportResult>;
 }
