@@ -1,3 +1,4 @@
+import { __awaiter } from 'tslib';
 import { HttpClient } from '@angular/common/http';
 import { Injectable, NgZone, ɵɵdefineInjectable, ɵɵinject, Directive, Input, NgModule } from '@angular/core';
 import { LazyService, AlainConfigService, DelonUtilModule } from '@delon/util';
@@ -49,6 +50,16 @@ if (false) {
      * @type {?|undefined}
      */
     XlsxExportSheet.prototype.name;
+}
+/**
+ * @record
+ */
+function XlsxExportResult() { }
+if (false) {
+    /** @type {?} */
+    XlsxExportResult.prototype.filename;
+    /** @type {?} */
+    XlsxExportResult.prototype.wb;
 }
 
 /**
@@ -171,39 +182,77 @@ class XlsxService {
      * @return {?}
      */
     export(options) {
-        return this.init().then((/**
-         * @return {?}
-         */
-        () => {
-            this.ngZone.runOutsideAngular((/**
+        return __awaiter(this, void 0, void 0, function* () {
+            return new Promise((/**
+             * @param {?} resolve
+             * @param {?} reject
              * @return {?}
              */
-            () => {
-                /** @type {?} */
-                const wb = XLSX.utils.book_new();
-                if (Array.isArray(options.sheets)) {
-                    ((/** @type {?} */ (options.sheets))).forEach((/**
-                     * @param {?} value
-                     * @param {?} index
+            (resolve, reject) => {
+                this.init()
+                    .then((/**
+                 * @return {?}
+                 */
+                () => {
+                    this.ngZone.runOutsideAngular((/**
                      * @return {?}
                      */
-                    (value, index) => {
+                    () => {
                         /** @type {?} */
-                        const ws = XLSX.utils.aoa_to_sheet(value.data);
-                        XLSX.utils.book_append_sheet(wb, ws, value.name || `Sheet${index + 1}`);
+                        const wb = XLSX.utils.book_new();
+                        if (Array.isArray(options.sheets)) {
+                            ((/** @type {?} */ (options.sheets))).forEach((/**
+                             * @param {?} value
+                             * @param {?} index
+                             * @return {?}
+                             */
+                            (value, index) => {
+                                /** @type {?} */
+                                const ws = XLSX.utils.aoa_to_sheet(value.data);
+                                XLSX.utils.book_append_sheet(wb, ws, value.name || `Sheet${index + 1}`);
+                            }));
+                        }
+                        else {
+                            wb.SheetNames = Object.keys(options.sheets);
+                            wb.Sheets = options.sheets;
+                        }
+                        if (options.callback)
+                            options.callback(wb);
+                        /** @type {?} */
+                        const wbout = XLSX.write(wb, Object.assign({ bookType: 'xlsx', bookSST: false, type: 'array' }, options.opts));
+                        /** @type {?} */
+                        const filename = options.filename || 'export.xlsx';
+                        saveAs(new Blob([wbout], { type: 'application/octet-stream' }), filename);
+                        resolve({ filename, wb });
                     }));
-                }
-                else {
-                    wb.SheetNames = Object.keys(options.sheets);
-                    wb.Sheets = options.sheets;
-                }
-                if (options.callback)
-                    options.callback(wb);
-                /** @type {?} */
-                const wbout = XLSX.write(wb, Object.assign({ bookType: 'xlsx', bookSST: false, type: 'array' }, options.opts));
-                saveAs(new Blob([wbout], { type: 'application/octet-stream' }), options.filename || 'export.xlsx');
+                }))
+                    .catch((/**
+                 * @param {?} err
+                 * @return {?}
+                 */
+                err => reject(err)));
             }));
-        }));
+        });
+    }
+    /**
+     * 数据转符号名
+     * - `1` => `A`
+     * - `27` => `AA`
+     * - `703` => `AAA`
+     * @param {?} val
+     * @return {?}
+     */
+    numberToSchema(val) {
+        /** @type {?} */
+        const startCode = 'A'.charCodeAt(0);
+        /** @type {?} */
+        let res = '';
+        do {
+            --val;
+            res = String.fromCharCode(startCode + (val % 26)) + res;
+            val = (val / 26) >> 0;
+        } while (val > 0);
+        return res;
     }
 }
 XlsxService.decorators = [

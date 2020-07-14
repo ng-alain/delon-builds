@@ -6,7 +6,7 @@ import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { MenuService, SettingsService, WINDOW } from '@delon/theme';
 import { InputBoolean, InputNumber, DelonUtilModule } from '@delon/util';
 import { Subject } from 'rxjs';
-import { takeUntil, filter } from 'rxjs/operators';
+import { takeUntil } from 'rxjs/operators';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 
@@ -69,7 +69,7 @@ var SidebarNavComponent = /** @class */ (function () {
      * @param {?} e
      * @return {?}
      */
-    SidebarNavComponent.prototype.floatingClickHandle = /**
+    SidebarNavComponent.prototype.floatingAreaClickHandle = /**
      * @private
      * @param {?} e
      * @return {?}
@@ -107,14 +107,14 @@ var SidebarNavComponent = /** @class */ (function () {
      * @private
      * @return {?}
      */
-    SidebarNavComponent.prototype.clearFloating = /**
+    SidebarNavComponent.prototype.clearFloatingContainer = /**
      * @private
      * @return {?}
      */
     function () {
         if (!this.floatingEl)
             return;
-        this.floatingEl.removeEventListener('click', this.floatingClickHandle.bind(this));
+        this.floatingEl.removeEventListener('click', this.floatingAreaClickHandle.bind(this));
         // fix ie: https://github.com/ng-alain/delon/issues/52
         if (this.floatingEl.hasOwnProperty('remove')) {
             this.floatingEl.remove();
@@ -127,15 +127,15 @@ var SidebarNavComponent = /** @class */ (function () {
      * @private
      * @return {?}
      */
-    SidebarNavComponent.prototype.genFloating = /**
+    SidebarNavComponent.prototype.genFloatingContainer = /**
      * @private
      * @return {?}
      */
     function () {
-        this.clearFloating();
+        this.clearFloatingContainer();
         this.floatingEl = this.render.createElement('div');
         this.floatingEl.classList.add(FLOATINGCLS + '-container');
-        this.floatingEl.addEventListener('click', this.floatingClickHandle.bind(this), false);
+        this.floatingEl.addEventListener('click', this.floatingAreaClickHandle.bind(this), false);
         this.bodyEl.appendChild(this.floatingEl);
     };
     /**
@@ -238,7 +238,7 @@ var SidebarNavComponent = /** @class */ (function () {
             e.preventDefault();
             /** @type {?} */
             var linkNode = (/** @type {?} */ (e.target));
-            _this.genFloating();
+            _this.genFloatingContainer();
             /** @type {?} */
             var subNode = _this.genSubNode((/** @type {?} */ (linkNode)), item);
             _this.hideAll();
@@ -365,13 +365,13 @@ var SidebarNavComponent = /** @class */ (function () {
      */
     function () {
         var _this = this;
-        var _a = this, doc = _a.doc, router = _a.router, unsubscribe$ = _a.unsubscribe$, menuSrv = _a.menuSrv, settings = _a.settings, cdr = _a.cdr;
+        var _a = this, doc = _a.doc, router = _a.router, unsubscribe$ = _a.unsubscribe$, menuSrv = _a.menuSrv, cdr = _a.cdr;
         this.bodyEl = doc.querySelector('body');
         this.openedByUrl(router.url);
         this.ngZone.runOutsideAngular((/**
          * @return {?}
          */
-        function () { return _this.genFloating(); }));
+        function () { return _this.genFloatingContainer(); }));
         menuSrv.change.pipe(takeUntil(unsubscribe$)).subscribe((/**
          * @param {?} data
          * @return {?}
@@ -416,16 +416,6 @@ var SidebarNavComponent = /** @class */ (function () {
                 _this.cdr.detectChanges();
             }
         }));
-        settings.notify
-            .pipe(takeUntil(unsubscribe$), filter((/**
-         * @param {?} t
-         * @return {?}
-         */
-        function (t) { return t.type === 'layout' && t.name === 'collapsed'; })))
-            .subscribe((/**
-         * @return {?}
-         */
-        function () { return _this.clearFloating(); }));
         this.underPad();
     };
     /**
@@ -438,7 +428,7 @@ var SidebarNavComponent = /** @class */ (function () {
         var unsubscribe$ = this.unsubscribe$;
         unsubscribe$.next();
         unsubscribe$.complete();
-        this.clearFloating();
+        this.clearFloatingContainer();
     };
     Object.defineProperty(SidebarNavComponent.prototype, "isPad", {
         // #region Under pad

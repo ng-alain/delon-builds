@@ -287,7 +287,7 @@
          * @param {?} e
          * @return {?}
          */
-        SidebarNavComponent.prototype.floatingClickHandle = /**
+        SidebarNavComponent.prototype.floatingAreaClickHandle = /**
          * @private
          * @param {?} e
          * @return {?}
@@ -325,14 +325,14 @@
          * @private
          * @return {?}
          */
-        SidebarNavComponent.prototype.clearFloating = /**
+        SidebarNavComponent.prototype.clearFloatingContainer = /**
          * @private
          * @return {?}
          */
         function () {
             if (!this.floatingEl)
                 return;
-            this.floatingEl.removeEventListener('click', this.floatingClickHandle.bind(this));
+            this.floatingEl.removeEventListener('click', this.floatingAreaClickHandle.bind(this));
             // fix ie: https://github.com/ng-alain/delon/issues/52
             if (this.floatingEl.hasOwnProperty('remove')) {
                 this.floatingEl.remove();
@@ -345,15 +345,15 @@
          * @private
          * @return {?}
          */
-        SidebarNavComponent.prototype.genFloating = /**
+        SidebarNavComponent.prototype.genFloatingContainer = /**
          * @private
          * @return {?}
          */
         function () {
-            this.clearFloating();
+            this.clearFloatingContainer();
             this.floatingEl = this.render.createElement('div');
             this.floatingEl.classList.add(FLOATINGCLS + '-container');
-            this.floatingEl.addEventListener('click', this.floatingClickHandle.bind(this), false);
+            this.floatingEl.addEventListener('click', this.floatingAreaClickHandle.bind(this), false);
             this.bodyEl.appendChild(this.floatingEl);
         };
         /**
@@ -456,7 +456,7 @@
                 e.preventDefault();
                 /** @type {?} */
                 var linkNode = (/** @type {?} */ (e.target));
-                _this.genFloating();
+                _this.genFloatingContainer();
                 /** @type {?} */
                 var subNode = _this.genSubNode((/** @type {?} */ (linkNode)), item);
                 _this.hideAll();
@@ -583,13 +583,13 @@
          */
         function () {
             var _this = this;
-            var _a = this, doc = _a.doc, router$1 = _a.router, unsubscribe$ = _a.unsubscribe$, menuSrv = _a.menuSrv, settings = _a.settings, cdr = _a.cdr;
+            var _a = this, doc = _a.doc, router$1 = _a.router, unsubscribe$ = _a.unsubscribe$, menuSrv = _a.menuSrv, cdr = _a.cdr;
             this.bodyEl = doc.querySelector('body');
             this.openedByUrl(router$1.url);
             this.ngZone.runOutsideAngular((/**
              * @return {?}
              */
-            function () { return _this.genFloating(); }));
+            function () { return _this.genFloatingContainer(); }));
             menuSrv.change.pipe(operators.takeUntil(unsubscribe$)).subscribe((/**
              * @param {?} data
              * @return {?}
@@ -634,16 +634,6 @@
                     _this.cdr.detectChanges();
                 }
             }));
-            settings.notify
-                .pipe(operators.takeUntil(unsubscribe$), operators.filter((/**
-             * @param {?} t
-             * @return {?}
-             */
-            function (t) { return t.type === 'layout' && t.name === 'collapsed'; })))
-                .subscribe((/**
-             * @return {?}
-             */
-            function () { return _this.clearFloating(); }));
             this.underPad();
         };
         /**
@@ -656,7 +646,7 @@
             var unsubscribe$ = this.unsubscribe$;
             unsubscribe$.next();
             unsubscribe$.complete();
-            this.clearFloating();
+            this.clearFloatingContainer();
         };
         Object.defineProperty(SidebarNavComponent.prototype, "isPad", {
             // #region Under pad
