@@ -26,9 +26,9 @@ export declare class SidebarNavComponent implements OnInit, OnDestroy {
     get collapsed(): boolean;
     constructor(menuSrv: MenuService, settings: SettingsService, router: Router, render: Renderer2, cdr: ChangeDetectorRef, ngZone: NgZone, sanitizer: DomSanitizer, doc: any, win: Window);
     private getLinkNode;
-    private floatingAreaClickHandle;
-    private clearFloatingContainer;
-    private genFloatingContainer;
+    private floatingClickHandle;
+    private clearFloating;
+    private genFloating;
     private genSubNode;
     private hideAll;
     private calPos;

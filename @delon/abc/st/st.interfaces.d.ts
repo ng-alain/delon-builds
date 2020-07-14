@@ -739,14 +739,10 @@ export interface STResReNameType {
     list?: string | string[];
 }
 export interface STExportOptions {
-    /**
-     * Specify the currently exported data, default the current table data
-     */
-    data?: STData[];
-    /**
-     * Specify the currently exported column configuration, default the current table data
-     */
-    columens?: STColumn[];
+    /** @ignore internal property */
+    _d?: any[];
+    /** @ignore internal property */
+    _c?: STColumn[];
     /** 工作溥名 */
     sheetname?: string;
     /** 文件名 */
