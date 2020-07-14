@@ -274,6 +274,16 @@
          */
         XlsxExportSheet.prototype.name;
     }
+    /**
+     * @record
+     */
+    function XlsxExportResult() { }
+    if (false) {
+        /** @type {?} */
+        XlsxExportResult.prototype.filename;
+        /** @type {?} */
+        XlsxExportResult.prototype.wb;
+    }
 
     /**
      * @fileoverview added by tsickle
@@ -417,40 +427,94 @@
          * @return {?}
          */
         function (options) {
-            var _this = this;
-            return this.init().then((/**
-             * @return {?}
-             */
-            function () {
-                _this.ngZone.runOutsideAngular((/**
-                 * @return {?}
-                 */
-                function () {
-                    /** @type {?} */
-                    var wb = XLSX.utils.book_new();
-                    if (Array.isArray(options.sheets)) {
-                        ((/** @type {?} */ (options.sheets))).forEach((/**
-                         * @param {?} value
-                         * @param {?} index
+            return __awaiter(this, void 0, void 0, function () {
+                var _this = this;
+                return __generator(this, function (_a) {
+                    return [2 /*return*/, new Promise((/**
+                         * @param {?} resolve
+                         * @param {?} reject
                          * @return {?}
                          */
-                        function (value, index) {
-                            /** @type {?} */
-                            var ws = XLSX.utils.aoa_to_sheet(value.data);
-                            XLSX.utils.book_append_sheet(wb, ws, value.name || "Sheet" + (index + 1));
-                        }));
-                    }
-                    else {
-                        wb.SheetNames = Object.keys(options.sheets);
-                        wb.Sheets = options.sheets;
-                    }
-                    if (options.callback)
-                        options.callback(wb);
-                    /** @type {?} */
-                    var wbout = XLSX.write(wb, __assign({ bookType: 'xlsx', bookSST: false, type: 'array' }, options.opts));
-                    fileSaver.saveAs(new Blob([wbout], { type: 'application/octet-stream' }), options.filename || 'export.xlsx');
-                }));
-            }));
+                        function (resolve, reject) {
+                            _this.init()
+                                .then((/**
+                             * @return {?}
+                             */
+                            function () {
+                                _this.ngZone.runOutsideAngular((/**
+                                 * @return {?}
+                                 */
+                                function () {
+                                    /** @type {?} */
+                                    var wb = XLSX.utils.book_new();
+                                    if (Array.isArray(options.sheets)) {
+                                        ((/** @type {?} */ (options.sheets))).forEach((/**
+                                         * @param {?} value
+                                         * @param {?} index
+                                         * @return {?}
+                                         */
+                                        function (value, index) {
+                                            /** @type {?} */
+                                            var ws = XLSX.utils.aoa_to_sheet(value.data);
+                                            XLSX.utils.book_append_sheet(wb, ws, value.name || "Sheet" + (index + 1));
+                                        }));
+                                    }
+                                    else {
+                                        wb.SheetNames = Object.keys(options.sheets);
+                                        wb.Sheets = options.sheets;
+                                    }
+                                    if (options.callback)
+                                        options.callback(wb);
+                                    /** @type {?} */
+                                    var wbout = XLSX.write(wb, __assign({ bookType: 'xlsx', bookSST: false, type: 'array' }, options.opts));
+                                    /** @type {?} */
+                                    var filename = options.filename || 'export.xlsx';
+                                    fileSaver.saveAs(new Blob([wbout], { type: 'application/octet-stream' }), filename);
+                                    resolve({ filename: filename, wb: wb });
+                                }));
+                            }))
+                                .catch((/**
+                             * @param {?} err
+                             * @return {?}
+                             */
+                            function (err) { return reject(err); }));
+                        }))];
+                });
+            });
+        };
+        /**
+         * 数据转符号名
+         * - `1` => `A`
+         * - `27` => `AA`
+         * - `703` => `AAA`
+         */
+        /**
+         * 数据转符号名
+         * - `1` => `A`
+         * - `27` => `AA`
+         * - `703` => `AAA`
+         * @param {?} val
+         * @return {?}
+         */
+        XlsxService.prototype.numberToSchema = /**
+         * 数据转符号名
+         * - `1` => `A`
+         * - `27` => `AA`
+         * - `703` => `AAA`
+         * @param {?} val
+         * @return {?}
+         */
+        function (val) {
+            /** @type {?} */
+            var startCode = 'A'.charCodeAt(0);
+            /** @type {?} */
+            var res = '';
+            do {
+                --val;
+                res = String.fromCharCode(startCode + (val % 26)) + res;
+                val = (val / 26) >> 0;
+            } while (val > 0);
+            return res;
         };
         XlsxService.decorators = [
             { type: core.Injectable, args: [{ providedIn: 'root' },] }

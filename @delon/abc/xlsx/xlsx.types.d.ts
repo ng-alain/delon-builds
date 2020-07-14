@@ -19,3 +19,7 @@ export interface XlsxExportSheet {
     /** sheet name */
     name?: string;
 }
+export interface XlsxExportResult {
+    filename: string;
+    wb: any;
+}
