@@ -322,11 +322,9 @@
             return false;
         };
         /**
-         * @private
          * @return {?}
          */
-        SidebarNavComponent.prototype.clearFloatingContainer = /**
-         * @private
+        SidebarNavComponent.prototype.clearFloating = /**
          * @return {?}
          */
         function () {
@@ -345,12 +343,12 @@
          * @private
          * @return {?}
          */
-        SidebarNavComponent.prototype.genFloatingContainer = /**
+        SidebarNavComponent.prototype.genFloating = /**
          * @private
          * @return {?}
          */
         function () {
-            this.clearFloatingContainer();
+            this.clearFloating();
             this.floatingEl = this.render.createElement('div');
             this.floatingEl.classList.add(FLOATINGCLS + '-container');
             this.floatingEl.addEventListener('click', this.floatingAreaClickHandle.bind(this), false);
@@ -456,7 +454,7 @@
                 e.preventDefault();
                 /** @type {?} */
                 var linkNode = (/** @type {?} */ (e.target));
-                _this.genFloatingContainer();
+                _this.genFloating();
                 /** @type {?} */
                 var subNode = _this.genSubNode((/** @type {?} */ (linkNode)), item);
                 _this.hideAll();
@@ -589,7 +587,7 @@
             this.ngZone.runOutsideAngular((/**
              * @return {?}
              */
-            function () { return _this.genFloatingContainer(); }));
+            function () { return _this.genFloating(); }));
             menuSrv.change.pipe(operators.takeUntil(unsubscribe$)).subscribe((/**
              * @param {?} data
              * @return {?}
@@ -646,7 +644,7 @@
             var unsubscribe$ = this.unsubscribe$;
             unsubscribe$.next();
             unsubscribe$.complete();
-            this.clearFloatingContainer();
+            this.clearFloating();
         };
         Object.defineProperty(SidebarNavComponent.prototype, "isPad", {
             // #region Under pad

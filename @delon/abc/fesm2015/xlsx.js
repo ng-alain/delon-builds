@@ -205,26 +205,6 @@ class XlsxService {
             }));
         }));
     }
-    /**
-     * 数据转符号名
-     * - `1` => `A`
-     * - `27` => `AA`
-     * - `703` => `AAA`
-     * @param {?} val
-     * @return {?}
-     */
-    numberToSchema(val) {
-        /** @type {?} */
-        const startCode = 'A'.charCodeAt(0);
-        /** @type {?} */
-        let res = '';
-        do {
-            --val;
-            res = String.fromCharCode(startCode + (val % 26)) + res;
-            val = (val / 26) >> 0;
-        } while (val > 0);
-        return res;
-    }
 }
 XlsxService.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
