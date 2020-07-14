@@ -2845,7 +2845,9 @@ class STExport {
                         ret.t = 'd';
                         break;
                     case 'yn':
-                        ret.v = ret.v === col.ynTruth ? col.ynYes || '是' : col.ynNo || '否';
+                        /** @type {?} */
+                        const yn = (/** @type {?} */ (col.yn));
+                        ret.v = ret.v === yn.truth ? yn.yes || '是' : yn.no || '否';
                         break;
                 }
             }
