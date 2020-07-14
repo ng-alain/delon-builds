@@ -19,4 +19,11 @@ export declare class XlsxService {
     }>;
     /** 导出 */
     export(options: XlsxExportOptions): Promise<void>;
+    /**
+     * 数据转符号名
+     * - `1` => `A`
+     * - `27` => `AA`
+     * - `703` => `AAA`
+     */
+    numberToSchema(val: number): string;
 }

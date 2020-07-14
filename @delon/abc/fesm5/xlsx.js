@@ -229,6 +229,40 @@ var XlsxService = /** @class */ (function () {
             }));
         }));
     };
+    /**
+     * 数据转符号名
+     * - `1` => `A`
+     * - `27` => `AA`
+     * - `703` => `AAA`
+     */
+    /**
+     * 数据转符号名
+     * - `1` => `A`
+     * - `27` => `AA`
+     * - `703` => `AAA`
+     * @param {?} val
+     * @return {?}
+     */
+    XlsxService.prototype.numberToSchema = /**
+     * 数据转符号名
+     * - `1` => `A`
+     * - `27` => `AA`
+     * - `703` => `AAA`
+     * @param {?} val
+     * @return {?}
+     */
+    function (val) {
+        /** @type {?} */
+        var startCode = 'A'.charCodeAt(0);
+        /** @type {?} */
+        var res = '';
+        do {
+            --val;
+            res = String.fromCharCode(startCode + (val % 26)) + res;
+            val = (val / 26) >> 0;
+        } while (val > 0);
+        return res;
+    };
     XlsxService.decorators = [
         { type: Injectable, args: [{ providedIn: 'root' },] }
     ];

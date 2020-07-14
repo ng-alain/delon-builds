@@ -3308,16 +3308,18 @@
                 /** @type {?} */
                 var val = util.deepGet(item, (/** @type {?} */ (col.index)), '');
                 ret.v = val;
-                switch (col.type) {
-                    case 'currency':
-                        ret.t = 'n';
-                        break;
-                    case 'date':
-                        ret.t = 'd';
-                        break;
-                    case 'yn':
-                        ret.v = ret.v === col.ynTruth ? col.ynYes || '是' : col.ynNo || '否';
-                        break;
+                if (val) {
+                    switch (col.type) {
+                        case 'currency':
+                            ret.t = 'n';
+                            break;
+                        case 'date':
+                            ret.t = 'd';
+                            break;
+                        case 'yn':
+                            ret.v = ret.v === col.ynTruth ? col.ynYes || '是' : col.ynNo || '否';
+                            break;
+                    }
                 }
             }
             ret.v = ret.v || '';
@@ -3345,26 +3347,26 @@
              */
             function (w) { return w.exported !== false && w.index && (!w.buttons || w.buttons.length === 0); }));
             /** @type {?} */
-            var cc = colData.length;
+            var colLen = colData.length;
             /** @type {?} */
-            var dc = (/** @type {?} */ (opt._d)).length;
+            var dataLen = (/** @type {?} */ (opt._d)).length;
             // column
-            for (var i = 0; i < cc; i++) {
+            for (var i = 0; i < colLen; i++) {
                 /** @type {?} */
                 var tit = colData[i].title;
-                sheet[String.fromCharCode(i + 65) + "1"] = {
+                sheet[this.xlsxSrv.numberToSchema(i + 1) + "1"] = {
                     t: 's',
                     v: typeof tit === 'object' ? tit.text : tit,
                 };
             }
             // content
-            for (var i = 0; i < dc; i++) {
-                for (var j = 0; j < cc; j++) {
-                    sheet["" + String.fromCharCode(j + 65) + (i + 2)] = this._stGet((/** @type {?} */ (opt._d))[i], colData[j], i);
+            for (var i = 0; i < dataLen; i++) {
+                for (var j = 0; j < colLen; j++) {
+                    sheet["" + this.xlsxSrv.numberToSchema(j + 1) + (i + 2)] = this._stGet((/** @type {?} */ (opt._d))[i], colData[j], i);
                 }
             }
-            if (cc > 0 && dc > 0) {
-                sheet['!ref'] = "A1:" + String.fromCharCode(cc + 65 - 1) + (dc + 1);
+            if (colLen > 0 && dataLen > 0) {
+                sheet['!ref'] = "A1:" + this.xlsxSrv.numberToSchema(colLen) + (dataLen + 1);
             }
             return sheets;
         };
