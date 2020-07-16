@@ -1107,9 +1107,32 @@
                     finally { if (e_1) throw e_1.error; }
                 }
             }
-            if (options.allow_anonymous_key &&
-                (req.params.has(options.allow_anonymous_key) || new RegExp("[?|&]" + options.allow_anonymous_key + "=[^&]+").test(req.urlWithParams))) {
-                return next.handle(req);
+            /** @type {?} */
+            var ingoreKey = (/** @type {?} */ (options.allow_anonymous_key));
+            /** @type {?} */
+            var ingored = false;
+            /** @type {?} */
+            var params = req.params;
+            /** @type {?} */
+            var url = req.url;
+            if (req.params.has(ingoreKey)) {
+                params = req.params.delete(ingoreKey);
+                ingored = true;
+            }
+            /** @type {?} */
+            var urlArr = req.url.split('?');
+            if (urlArr.length > 1) {
+                /** @type {?} */
+                var queryStringParams = new http.HttpParams({ fromString: urlArr[1] });
+                if (queryStringParams.has(ingoreKey)) {
+                    /** @type {?} */
+                    var queryString = queryStringParams.delete(ingoreKey).toString();
+                    url = queryString.length > 0 ? urlArr[0] + "?" + queryString : urlArr[0];
+                    ingored = true;
+                }
+            }
+            if (ingored) {
+                return next.handle(req.clone({ params: params, url: url }));
             }
             if (this.isAuth(options)) {
                 req = this.setReq(req, options);

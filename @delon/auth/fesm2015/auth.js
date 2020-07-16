@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { AlainConfigService } from '@delon/util';
 import { share } from 'rxjs/operators';
-import { HttpErrorResponse, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpParams, HttpErrorResponse, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 /**
  * @fileoverview added by tsickle
@@ -694,9 +694,32 @@ class BaseInterceptor {
                     return next.handle(req);
             }
         }
-        if (options.allow_anonymous_key &&
-            (req.params.has(options.allow_anonymous_key) || new RegExp(`[\?|&]${options.allow_anonymous_key}=[^&]+`).test(req.urlWithParams))) {
-            return next.handle(req);
+        /** @type {?} */
+        const ingoreKey = (/** @type {?} */ (options.allow_anonymous_key));
+        /** @type {?} */
+        let ingored = false;
+        /** @type {?} */
+        let params = req.params;
+        /** @type {?} */
+        let url = req.url;
+        if (req.params.has(ingoreKey)) {
+            params = req.params.delete(ingoreKey);
+            ingored = true;
+        }
+        /** @type {?} */
+        const urlArr = req.url.split('?');
+        if (urlArr.length > 1) {
+            /** @type {?} */
+            const queryStringParams = new HttpParams({ fromString: urlArr[1] });
+            if (queryStringParams.has(ingoreKey)) {
+                /** @type {?} */
+                const queryString = queryStringParams.delete(ingoreKey).toString();
+                url = queryString.length > 0 ? `${urlArr[0]}?${queryString}` : urlArr[0];
+                ingored = true;
+            }
+        }
+        if (ingored) {
+            return next.handle(req.clone({ params, url }));
         }
         if (this.isAuth(options)) {
             req = this.setReq(req, options);
