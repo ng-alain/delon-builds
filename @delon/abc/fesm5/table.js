@@ -2117,7 +2117,7 @@ var STColumnSource = /** @class */ (function () {
              * @param {?} w
              * @return {?}
              */
-            function (w) { return !Array.isArray(w.children); })) }, this.genHeaders(copyList));
+            function (w) { return !Array.isArray(w.children) || w.children.length === 0; })) }, this.genHeaders(copyList));
     };
     /**
      * @param {?} columns
