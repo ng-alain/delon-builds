@@ -1977,7 +1977,7 @@ class STColumnSource {
              * @param {?} w
              * @return {?}
              */
-            w => !Array.isArray(w.children))) }, this.genHeaders(copyList));
+            w => !Array.isArray(w.children) || w.children.length === 0)) }, this.genHeaders(copyList));
     }
     /**
      * @param {?} columns
