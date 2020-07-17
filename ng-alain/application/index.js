@@ -123,14 +123,14 @@ function addCodeStylesToPackageJson() {
         json.scripts.lint = `npm run lint:ts && npm run lint:style`;
         json.scripts['lint:ts'] = `ng lint --fix`;
         json.scripts['lint:style'] = `stylelint \"src/**/*.less\" --syntax less --fix`;
-        json.scripts['lint-staged'] = `lint-staged`;
+        json.scripts['pretty-quick'] = `pretty-quick`;
         json.scripts['tslint-check'] = `tslint-config-prettier-check ./tslint.json`;
         json_1.overwritePackage(host, json);
         // dependencies
         json_1.addPackageToPackageJson(host, [
             `tslint-config-prettier@^1.18.0`,
             `tslint-language-service@^0.9.9`,
-            `lint-staged@^10.2.4`,
+            `pretty-quick@^2.0.1`,
             `husky@^4.2.3`,
             `prettier@^2.0.5`,
             `stylelint@^13.3.1`,
