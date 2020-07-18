@@ -1734,8 +1734,6 @@ if (false) {
     /** @type {?} */
     ReuseTabLocaleData.prototype.closeRight;
     /** @type {?} */
-    ReuseTabLocaleData.prototype.clear;
-    /** @type {?} */
     ReuseTabLocaleData.prototype.refresh;
 }
 /**
@@ -1867,6 +1865,20 @@ if (false) {
 /**
  * @record
  */
+function OnboardingLocaleData() { }
+if (false) {
+    /** @type {?} */
+    OnboardingLocaleData.prototype.skip;
+    /** @type {?} */
+    OnboardingLocaleData.prototype.prev;
+    /** @type {?} */
+    OnboardingLocaleData.prototype.next;
+    /** @type {?} */
+    OnboardingLocaleData.prototype.done;
+}
+/**
+ * @record
+ */
 function FullLocaleData() { }
 if (false) {
     /** @type {?} */
@@ -1879,6 +1891,8 @@ if (false) {
     FullLocaleData.prototype.reuseTab;
     /** @type {?} */
     FullLocaleData.prototype.tagSelect;
+    /** @type {?} */
+    FullLocaleData.prototype.onboarding;
     /** @type {?} */
     FullLocaleData.prototype.miniProgress;
     /** @type {?} */
@@ -1966,6 +1980,12 @@ var zhCN = (/** @type {?} */ ({
             formatExclusiveMinimum: "formatExclusiveMinimum \u5E94\u5F53\u662F\u5E03\u5C14\u503C",
             if: "\u5E94\u5F53\u5339\u914D\u6A21\u5F0F \"{failingKeyword}\"",
         },
+    },
+    onboarding: {
+        skip: "\u8DF3\u8FC7",
+        prev: "\u4E0A\u4E00\u9879",
+        next: "\u4E0B\u4E00\u9879",
+        done: "\u5B8C\u6210",
     },
 }));
 
@@ -2158,6 +2178,12 @@ var enUS = (/** @type {?} */ ({
             if: "Should match \"{failingKeyword}\" schema",
         },
     },
+    onboarding: {
+        skip: "Skip",
+        prev: "Prev",
+        next: "Next",
+        done: "Done",
+    },
 }));
 
 /**
@@ -2168,8 +2194,8 @@ var enUS = (/** @type {?} */ ({
 var zhTW = (/** @type {?} */ ({
     abbr: 'zh-TW',
     exception: {
-        403: '抱歉，你無權訪問該頁面',
-        404: '抱歉，你訪問的頁面不存在',
+        403: '抱歉，你無權訪問該頁麵',
+        404: '抱歉，你訪問的頁麵不存在',
         500: '抱歉，服務器出錯了',
         backToHome: '返回首頁',
     },
@@ -2204,7 +2230,7 @@ var zhTW = (/** @type {?} */ ({
         removeText: '移除',
         checkAllText: '全選',
         error: {
-            'false schema': "\u5E03\u723E\u6A21\u5F0F\u51FA\u932F",
+            'false schema': "\u4F48\u723E\u6A21\u5F0F\u51FA\u932F",
             $ref: "\u7121\u6CD5\u627E\u5230\u5F15\u7528{ref}",
             additionalItems: "\u4E0D\u5141\u8A31\u8D85\u904E{ref}",
             additionalProperties: "\u4E0D\u5141\u8A31\u6709\u984D\u5916\u7684\u5C6C\u6027",
@@ -2226,7 +2252,7 @@ var zhTW = (/** @type {?} */ ({
             minProperties: "\u4E0D\u61C9\u5C11\u65BC {limit} \u500B\u5C6C\u6027",
             multipleOf: "\u61C9\u7576\u662F {multipleOf} \u7684\u6574\u6578\u500D",
             not: "\u4E0D\u61C9\u7576\u5339\u914D \"not\" schema",
-            oneOf: "\u53EA\u80FD\u5339\u914D\u4E00\u500B \"oneOf\" \u4E2D\u7684 schema",
+            oneOf: "\u96BB\u80FD\u5339\u914D\u4E00\u500B \"oneOf\" \u4E2D\u7684 schema",
             pattern: "\u6578\u64DA\u683C\u5F0F\u4E0D\u6B63\u78BA",
             uniqueItems: "\u4E0D\u61C9\u7576\u542B\u6709\u91CD\u8907\u9805 (\u7B2C {j} \u9805\u8207\u7B2C {i} \u9805\u662F\u91CD\u8907\u7684)",
             custom: "\u683C\u5F0F\u4E0D\u6B63\u78BA",
@@ -2235,10 +2261,16 @@ var zhTW = (/** @type {?} */ ({
             switch: "\u7531\u65BC {caseIndex} \u5931\u6557\uFF0C\u672A\u901A\u904E \"switch\" \u6821\u9A57",
             const: "\u61C9\u7576\u7B49\u65BC\u5E38\u91CF",
             contains: "\u61C9\u7576\u5305\u542B\u4E00\u500B\u6709\u6548\u9805",
-            formatExclusiveMaximum: "formatExclusiveMaximum \u61C9\u7576\u662F\u5E03\u723E\u503C",
-            formatExclusiveMinimum: "formatExclusiveMinimum \u61C9\u7576\u662F\u5E03\u723E\u503C",
+            formatExclusiveMaximum: "formatExclusiveMaximum \u61C9\u7576\u662F\u4F48\u723E\u503C",
+            formatExclusiveMinimum: "formatExclusiveMinimum \u61C9\u7576\u662F\u4F48\u723E\u503C",
             if: "\u61C9\u7576\u5339\u914D\u6A21\u5F0F \"{failingKeyword}\"",
         },
+    },
+    onboarding: {
+        skip: "\u8DF3\u904E",
+        prev: "\u4E0A\u4E00\u9805",
+        next: "\u4E0B\u4E00\u9805",
+        done: "\u5B8C\u6210",
     },
 }));
 
@@ -2322,6 +2354,12 @@ var trTR = (/** @type {?} */ ({
             if: "Should match \"{failingKeyword}\" schema",
         },
     },
+    onboarding: {
+        skip: "Atla",
+        prev: "\u00D6nceki",
+        next: "Sonraki",
+        done: "Bitti",
+    },
 }));
 
 /**
@@ -2330,7 +2368,7 @@ var trTR = (/** @type {?} */ ({
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var plPL = (/** @type {?} */ ({
-    abbr: 'en-US',
+    abbr: 'pl-PL',
     exception: {
         403: "Niestety, nie masz uprawnie\u0144 do tej strony",
         404: "Niestety, ta strona nie istnieje",
@@ -2403,6 +2441,12 @@ var plPL = (/** @type {?} */ ({
             formatExclusiveMinimum: "formatExclusiveMinimum should be boolean",
             if: "Should match \"{failingKeyword}\" schema",
         },
+    },
+    onboarding: {
+        skip: "Pomin\u0105\u0107",
+        prev: "Poprzedni",
+        next: "Kolejny",
+        done: "Gotowe",
     },
 }));
 
@@ -2486,6 +2530,12 @@ var elGR = (/** @type {?} */ ({
             if: "\u03A0\u03C1\u03AD\u03C0\u03B5\u03B9 \u03BD\u03B1 \u03C4\u03B1\u03B9\u03C1\u03B9\u03AC\u03B6\u03B5\u03B9 \u03C3\u03C4\u03B7\u03BD \u03B4\u03BF\u03BC\u03AE \"{failingKeyword}\"",
         },
     },
+    onboarding: {
+        skip: "\u03A0\u03B1\u03C1\u03B1\u03BB\u03B5\u03AF\u03C0\u03C9",
+        prev: "\u03A0\u03C1\u03BF\u03B7\u03B3",
+        next: "\u0395\u03C0\u03CC\u03BC\u03B5\u03BD\u03BF",
+        done: "\u039F\u03BB\u03BF\u03BA\u03BB\u03B7\u03C1\u03CE\u03B8\u03B7\u03BA\u03B5",
+    },
 }));
 
 /**
@@ -2568,6 +2618,12 @@ var koKR = (/** @type {?} */ ({
             if: "Should match \"{failingKeyword}\" schema",
         },
     },
+    onboarding: {
+        skip: "\uAC74\uB108 \uB6F0\uAE30",
+        prev: "\uC774\uC804",
+        next: "\uB2E4\uC74C",
+        done: "\uB05D\uB09C",
+    },
 }));
 
 /**
@@ -2613,6 +2669,12 @@ var hrHR = (/** @type {?} */ ({
         addText: 'Dodaj',
         removeText: 'Ukloni',
         checkAllText: 'Označi sve',
+    },
+    onboarding: {
+        skip: "Presko\u010Diti",
+        prev: "Prethodna",
+        next: "Sljede\u0107i",
+        done: "Sastavljeno",
     },
 }));
 
@@ -2696,6 +2758,12 @@ var jaJP = (/** @type {?} */ ({
             if: "\u30D1\u30BF\u30FC\u30F3\u3068\u4E00\u81F4\u3059\u308B\u5FC5\u8981\u304C\u3042\u308A\u307E\u3059: \"{failingKeyword}\" ",
         },
     },
+    onboarding: {
+        skip: "\u30B9\u30AD\u30C3\u30D7",
+        prev: "\u524D\u3078",
+        next: "\u6B21",
+        done: "\u3067\u304D\u305F",
+    },
 }));
 
 /**
@@ -2719,7 +2787,6 @@ var slSI = (/** @type {?} */ ({
         close: 'Zapri zavihek',
         closeOther: 'Zaprite druge zavihke',
         closeRight: 'Zaprite zavihke na desni',
-        clear: 'Počisti zavihke',
     },
     tagSelect: {
         expand: 'Razširi',
@@ -2777,6 +2844,12 @@ var slSI = (/** @type {?} */ ({
             formatExclusiveMinimum: "formatExclusiveMinimum naj bo boolean",
             if: "Naj se ujema s shemo \"{failingKeyword}\"",
         },
+    },
+    onboarding: {
+        skip: "Presko\u010Di",
+        prev: "Prej\u0161nje",
+        next: "Naslednji",
+        done: "Kon\u010Dano",
     },
 }));
 
@@ -4401,7 +4474,7 @@ var AlainThemeModule = /** @class */ (function () {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-var VERSION = new Version('9.5.4');
+var VERSION = new Version('9.5.4-3ef5344f');
 
 /**
  * @fileoverview added by tsickle

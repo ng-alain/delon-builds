@@ -1464,8 +1464,6 @@ if (false) {
     /** @type {?} */
     ReuseTabLocaleData.prototype.closeRight;
     /** @type {?} */
-    ReuseTabLocaleData.prototype.clear;
-    /** @type {?} */
     ReuseTabLocaleData.prototype.refresh;
 }
 /**
@@ -1597,6 +1595,20 @@ if (false) {
 /**
  * @record
  */
+function OnboardingLocaleData() { }
+if (false) {
+    /** @type {?} */
+    OnboardingLocaleData.prototype.skip;
+    /** @type {?} */
+    OnboardingLocaleData.prototype.prev;
+    /** @type {?} */
+    OnboardingLocaleData.prototype.next;
+    /** @type {?} */
+    OnboardingLocaleData.prototype.done;
+}
+/**
+ * @record
+ */
 function FullLocaleData() { }
 if (false) {
     /** @type {?} */
@@ -1609,6 +1621,8 @@ if (false) {
     FullLocaleData.prototype.reuseTab;
     /** @type {?} */
     FullLocaleData.prototype.tagSelect;
+    /** @type {?} */
+    FullLocaleData.prototype.onboarding;
     /** @type {?} */
     FullLocaleData.prototype.miniProgress;
     /** @type {?} */
@@ -1696,6 +1710,12 @@ var zhCN = (/** @type {?} */ ({
             formatExclusiveMinimum: `formatExclusiveMinimum 应当是布尔值`,
             if: `应当匹配模式 "{failingKeyword}"`,
         },
+    },
+    onboarding: {
+        skip: `跳过`,
+        prev: `上一项`,
+        next: `下一项`,
+        done: `完成`,
     },
 }));
 
@@ -1871,6 +1891,12 @@ var enUS = (/** @type {?} */ ({
             if: `Should match "{failingKeyword}" schema`,
         },
     },
+    onboarding: {
+        skip: `Skip`,
+        prev: `Prev`,
+        next: `Next`,
+        done: `Done`,
+    },
 }));
 
 /**
@@ -1881,8 +1907,8 @@ var enUS = (/** @type {?} */ ({
 var zhTW = (/** @type {?} */ ({
     abbr: 'zh-TW',
     exception: {
-        403: '抱歉，你無權訪問該頁面',
-        404: '抱歉，你訪問的頁面不存在',
+        403: '抱歉，你無權訪問該頁麵',
+        404: '抱歉，你訪問的頁麵不存在',
         500: '抱歉，服務器出錯了',
         backToHome: '返回首頁',
     },
@@ -1917,7 +1943,7 @@ var zhTW = (/** @type {?} */ ({
         removeText: '移除',
         checkAllText: '全選',
         error: {
-            'false schema': `布爾模式出錯`,
+            'false schema': `佈爾模式出錯`,
             $ref: `無法找到引用{ref}`,
             additionalItems: `不允許超過{ref}`,
             additionalProperties: `不允許有額外的屬性`,
@@ -1939,7 +1965,7 @@ var zhTW = (/** @type {?} */ ({
             minProperties: `不應少於 {limit} 個屬性`,
             multipleOf: `應當是 {multipleOf} 的整數倍`,
             not: `不應當匹配 "not" schema`,
-            oneOf: `只能匹配一個 "oneOf" 中的 schema`,
+            oneOf: `隻能匹配一個 "oneOf" 中的 schema`,
             pattern: `數據格式不正確`,
             uniqueItems: `不應當含有重複項 (第 {j} 項與第 {i} 項是重複的)`,
             custom: `格式不正確`,
@@ -1948,10 +1974,16 @@ var zhTW = (/** @type {?} */ ({
             switch: `由於 {caseIndex} 失敗，未通過 "switch" 校驗`,
             const: `應當等於常量`,
             contains: `應當包含一個有效項`,
-            formatExclusiveMaximum: `formatExclusiveMaximum 應當是布爾值`,
-            formatExclusiveMinimum: `formatExclusiveMinimum 應當是布爾值`,
+            formatExclusiveMaximum: `formatExclusiveMaximum 應當是佈爾值`,
+            formatExclusiveMinimum: `formatExclusiveMinimum 應當是佈爾值`,
             if: `應當匹配模式 "{failingKeyword}"`,
         },
+    },
+    onboarding: {
+        skip: `跳過`,
+        prev: `上一項`,
+        next: `下一項`,
+        done: `完成`,
     },
 }));
 
@@ -2035,6 +2067,12 @@ var trTR = (/** @type {?} */ ({
             if: `Should match "{failingKeyword}" schema`,
         },
     },
+    onboarding: {
+        skip: `Atla`,
+        prev: `Önceki`,
+        next: `Sonraki`,
+        done: `Bitti`,
+    },
 }));
 
 /**
@@ -2043,7 +2081,7 @@ var trTR = (/** @type {?} */ ({
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var plPL = (/** @type {?} */ ({
-    abbr: 'en-US',
+    abbr: 'pl-PL',
     exception: {
         403: `Niestety, nie masz uprawnień do tej strony`,
         404: `Niestety, ta strona nie istnieje`,
@@ -2116,6 +2154,12 @@ var plPL = (/** @type {?} */ ({
             formatExclusiveMinimum: `formatExclusiveMinimum should be boolean`,
             if: `Should match "{failingKeyword}" schema`,
         },
+    },
+    onboarding: {
+        skip: `Pominąć`,
+        prev: `Poprzedni`,
+        next: `Kolejny`,
+        done: `Gotowe`,
     },
 }));
 
@@ -2199,6 +2243,12 @@ var elGR = (/** @type {?} */ ({
             if: `Πρέπει να ταιριάζει στην δομή "{failingKeyword}"`,
         },
     },
+    onboarding: {
+        skip: `Παραλείπω`,
+        prev: `Προηγ`,
+        next: `Επόμενο`,
+        done: `Ολοκληρώθηκε`,
+    },
 }));
 
 /**
@@ -2281,6 +2331,12 @@ var koKR = (/** @type {?} */ ({
             if: `Should match "{failingKeyword}" schema`,
         },
     },
+    onboarding: {
+        skip: `건너 뛰기`,
+        prev: `이전`,
+        next: `다음`,
+        done: `끝난`,
+    },
 }));
 
 /**
@@ -2326,6 +2382,12 @@ var hrHR = (/** @type {?} */ ({
         addText: 'Dodaj',
         removeText: 'Ukloni',
         checkAllText: 'Označi sve',
+    },
+    onboarding: {
+        skip: `Preskočiti`,
+        prev: `Prethodna`,
+        next: `Sljedeći`,
+        done: `Sastavljeno`,
     },
 }));
 
@@ -2409,6 +2471,12 @@ var jaJP = (/** @type {?} */ ({
             if: `パターンと一致する必要があります: "{failingKeyword}" `,
         },
     },
+    onboarding: {
+        skip: `スキップ`,
+        prev: `前へ`,
+        next: `次`,
+        done: `できた`,
+    },
 }));
 
 /**
@@ -2432,7 +2500,6 @@ var slSI = (/** @type {?} */ ({
         close: 'Zapri zavihek',
         closeOther: 'Zaprite druge zavihke',
         closeRight: 'Zaprite zavihke na desni',
-        clear: 'Počisti zavihke',
     },
     tagSelect: {
         expand: 'Razširi',
@@ -2490,6 +2557,12 @@ var slSI = (/** @type {?} */ ({
             formatExclusiveMinimum: `formatExclusiveMinimum naj bo boolean`,
             if: `Naj se ujema s shemo "{failingKeyword}"`,
         },
+    },
+    onboarding: {
+        skip: `Preskoči`,
+        prev: `Prejšnje`,
+        next: `Naslednji`,
+        done: `Končano`,
     },
 }));
 
@@ -3793,7 +3866,7 @@ AlainThemeModule.ctorParameters = () => [
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-const VERSION = new Version('9.5.4');
+const VERSION = new Version('9.5.4-3ef5344f');
 
 /**
  * @fileoverview added by tsickle
