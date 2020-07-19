@@ -1,6 +1,6 @@
 {
   "name": "@delon/auth",
-  "version": "9.5.4-d4f8694f",
+  "version": "9.5.4-05fd40a5",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -25,7 +25,7 @@
     "ng-zorro-antd"
   ],
   "dependencies": {
-    "@delon/util": "^9.5.4-d4f8694f",
+    "@delon/util": "^9.5.4-05fd40a5",
     "tslib": "^1.10.0"
   },
   "main": "bundles/auth.umd.js",
