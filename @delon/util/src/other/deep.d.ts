@@ -13,10 +13,6 @@ export declare function deepGet(obj: NzSafeAny | null, path: string | string[] |
  */
 export declare function deepCopy(obj: NzSafeAny): NzSafeAny;
 /**
- * 复制字符串文档至剪贴板
- */
-export declare function copy(value: string): Promise<string>;
-/**
  * 深度合并对象
  *
  * @param original 原始对象

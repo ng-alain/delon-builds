@@ -22,7 +22,7 @@ import { NzTreeNode } from 'ng-zorro-antd/core/tree';
 
 /**
  * @fileoverview added by tsickle
- * Generated from: src/other/other.ts
+ * Generated from: src/other/deep.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
@@ -63,37 +63,6 @@ function deepCopy(obj) {
     /** @type {?} */
     const result = extend(true, {}, { _: obj });
     return result._;
-}
-/**
- * 复制字符串文档至剪贴板
- * @param {?} value
- * @return {?}
- */
-function copy(value) {
-    return new Promise((/**
-     * @param {?} resolve
-     * @return {?}
-     */
-    (resolve) => {
-        /** @type {?} */
-        let copyTextArea = null;
-        try {
-            copyTextArea = document.createElement('textarea');
-            copyTextArea.style.height = '0px';
-            copyTextArea.style.opacity = '0';
-            copyTextArea.style.width = '0px';
-            document.body.appendChild(copyTextArea);
-            copyTextArea.value = value;
-            copyTextArea.select();
-            document.execCommand('copy');
-            resolve(value);
-        }
-        finally {
-            if (copyTextArea && copyTextArea.parentNode) {
-                copyTextArea.parentNode.removeChild(copyTextArea);
-            }
-        }
-    }));
 }
 /**
  * 深度合并对象
@@ -821,6 +790,43 @@ function toNumber(value, fallbackValue = 0) {
  */
 function InputNumber(defaultValue = 0) {
     return propDecoratorFactory('InputNumber', toNumber, defaultValue);
+}
+
+/**
+ * @fileoverview added by tsickle
+ * Generated from: src/other/copy.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * 复制字符串文档至剪贴板
+ * @param {?} value
+ * @return {?}
+ */
+function copy(value) {
+    return new Promise((/**
+     * @param {?} resolve
+     * @return {?}
+     */
+    (resolve) => {
+        /** @type {?} */
+        let copyTextArea = null;
+        try {
+            copyTextArea = document.createElement('textarea');
+            copyTextArea.style.height = '0px';
+            copyTextArea.style.opacity = '0';
+            copyTextArea.style.width = '0px';
+            document.body.appendChild(copyTextArea);
+            copyTextArea.value = value;
+            copyTextArea.select();
+            document.execCommand('copy');
+            resolve(value);
+        }
+        finally {
+            if (copyTextArea && copyTextArea.parentNode) {
+                copyTextArea.parentNode.removeChild(copyTextArea);
+            }
+        }
+    }));
 }
 
 /**
@@ -2079,7 +2085,16 @@ if (false) {
     AlainConfig.prototype.themeResponsive;
 }
 /** @type {?} */
-const ALAIN_CONFIG = new InjectionToken('alain-config');
+const ALAIN_CONFIG = new InjectionToken('alain-config', {
+    providedIn: 'root',
+    factory: ALAIN_CONFIG_FACTORY,
+});
+/**
+ * @return {?}
+ */
+function ALAIN_CONFIG_FACTORY() {
+    return {};
+}
 
 /**
  * @fileoverview added by tsickle
@@ -2091,7 +2106,7 @@ class AlainConfigService {
      * @param {?=} defaultConfig
      */
     constructor(defaultConfig) {
-        this.config = defaultConfig || {};
+        this.config = Object.assign({}, defaultConfig);
     }
     /**
      * @template T
@@ -2537,5 +2552,5 @@ DelonUtilModule.decorators = [
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { ALAIN_CONFIG, AlainConfigService, AlainSVConfig, ArrayService, DelonUtilModule, InputBoolean, InputNumber, LazyService, PREFIX, _Validators, copy, deepCopy, deepGet, deepMerge, deepMergeKey, deprecation10, fixEndTimeOfRange, format, getTimeDistance, isDecimal, isEmpty, isIdCard, isInt, isMobile, isNum, isUrl, log, toBoolean, toDate, toNumber, updateHostClass, warn, warnDeprecation, AlainConfigService as ɵa };
+export { ALAIN_CONFIG, ALAIN_CONFIG_FACTORY, AlainConfigService, AlainSVConfig, ArrayService, DelonUtilModule, InputBoolean, InputNumber, LazyService, PREFIX, _Validators, copy, deepCopy, deepGet, deepMerge, deepMergeKey, deprecation10, fixEndTimeOfRange, format, getTimeDistance, isDecimal, isEmpty, isIdCard, isInt, isMobile, isNum, isUrl, log, toBoolean, toDate, toNumber, updateHostClass, warn, warnDeprecation, AlainConfigService as ɵa };
 //# sourceMappingURL=util.js.map

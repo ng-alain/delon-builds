@@ -35,3 +35,4 @@ export interface AlainConfig {
 }
 export declare type AlainConfigKey = keyof AlainConfig;
 export declare const ALAIN_CONFIG: InjectionToken<AlainConfig>;
+export declare function ALAIN_CONFIG_FACTORY(): AlainConfig;

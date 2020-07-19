@@ -1,6 +1,6 @@
 {
   "name": "@delon/util",
-  "version": "9.5.4-3ef5344f",
+  "version": "9.5.4-a34ed334",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -23,7 +23,6 @@
     "extend": "^3.0.0",
     "tslib": "^1.10.0"
   },
-  "sideEffects": false,
   "main": "bundles/util.umd.js",
   "module": "fesm5/util.js",
   "es2015": "fesm2015/util.js",
@@ -32,5 +31,6 @@
   "fesm5": "fesm5/util.js",
   "fesm2015": "fesm2015/util.js",
   "typings": "util.d.ts",
-  "metadata": "util.metadata.json"
+  "metadata": "util.metadata.json",
+  "sideEffects": false
 }

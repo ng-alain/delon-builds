@@ -1,6 +1,6 @@
 {
   "name": "@delon/cache",
-  "version": "9.5.4-3ef5344f",
+  "version": "9.5.4-a34ed334",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -24,7 +24,10 @@
     "angular",
     "component"
   ],
-  "sideEffects": false,
+  "dependencies": {
+    "@delon/util": "^9.5.4-a34ed334",
+    "tslib": "^1.10.0"
+  },
   "main": "bundles/cache.umd.js",
   "module": "fesm5/cache.js",
   "es2015": "fesm2015/cache.js",
@@ -34,7 +37,5 @@
   "fesm2015": "fesm2015/cache.js",
   "typings": "cache.d.ts",
   "metadata": "cache.metadata.json",
-  "dependencies": {
-    "tslib": "^1.10.0"
-  }
+  "sideEffects": false
 }

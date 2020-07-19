@@ -1,6 +1,6 @@
 {
   "name": "@delon/mock",
-  "version": "9.5.4-3ef5344f",
+  "version": "9.5.4-a34ed334",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -25,7 +25,10 @@
     "angular",
     "component"
   ],
-  "sideEffects": false,
+  "dependencies": {
+    "@delon/util": "^9.5.4-a34ed334",
+    "tslib": "^1.10.0"
+  },
   "main": "bundles/mock.umd.js",
   "module": "fesm5/mock.js",
   "es2015": "fesm2015/mock.js",
@@ -35,7 +38,5 @@
   "fesm2015": "fesm2015/mock.js",
   "typings": "mock.d.ts",
   "metadata": "mock.metadata.json",
-  "dependencies": {
-    "tslib": "^1.10.0"
-  }
+  "sideEffects": false
 }
