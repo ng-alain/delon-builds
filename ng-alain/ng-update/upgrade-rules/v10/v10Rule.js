@@ -51,7 +51,7 @@ function v10Rule() {
         fixThirdVersion(tree, context);
         updateBrowserslistrc(tree, context);
         json_1.addAllowedCommonJsDependencies(tree);
-        context.logger.info(colors.green(`  ✓  Congratulations`));
+        context.logger.info(colors.green(`  ✓  Congratulations, Please refer to https://github.com/ng-alain/ng-alain/issues/1783 for upgrade guide`));
     };
 }
 exports.v10Rule = v10Rule;
