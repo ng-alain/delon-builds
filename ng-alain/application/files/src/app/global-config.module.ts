@@ -73,7 +73,7 @@ export class GlobalConfigModule {
     throwIfAlreadyLoaded(parentModule, 'GlobalConfigModule');
   }
 
-  static forRoot(): ModuleWithProviders<GlobalConfigModule> {
+  static forRoot(): ModuleWithProviders {
     return {
       ngModule: GlobalConfigModule,
       providers: [...alainProvides, ...zorroProvides],
