@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.scriptsToAngularJson = exports.overwriteAngular = exports.getAngular = exports.removePackageFromPackageJson = exports.addPackageToPackageJson = exports.overwritePackage = exports.getPackage = exports.overwriteJSON = exports.getJSON = void 0;
+exports.addAllowedCommonJsDependencies = exports.scriptsToAngularJson = exports.overwriteAngular = exports.getAngular = exports.removePackageFromPackageJson = exports.addPackageToPackageJson = exports.overwritePackage = exports.getPackage = exports.overwriteJSON = exports.getJSON = void 0;
 const json_1 = require("@angular-devkit/core/src/json");
 const project_1 = require("./project");
 function getJSON(host, jsonFile, type) {
@@ -108,4 +108,33 @@ function scriptsToAngularJson(host, resources, behavior, types = ['build', 'test
     return host;
 }
 exports.scriptsToAngularJson = scriptsToAngularJson;
+function addAllowedCommonJsDependencies(host) {
+    const json = getAngular(host);
+    const project = project_1.getProjectFromWorkspace(json);
+    let list = project.architect.build.options.allowedCommonJsDependencies;
+    if (!Array.isArray(list)) {
+        list = [];
+    }
+    const result = new Set(...list);
+    // in angular.json
+    [
+        // 'codesandbox/lib/api/define',
+        'hammerjs',
+        '@angularclass/hmr',
+        'file-saver',
+        '@ant-design/colors',
+        '@antv/path-util',
+        '@antv/g-canvas',
+        '@antv/g-base',
+        '@antv/g-svg',
+        '@antv/g-math',
+        '@antv/attr',
+        '@antv/adjust',
+        '@antv/component',
+        '@antv/util',
+    ].forEach(key => result.add(key));
+    project.architect.build.options.allowedCommonJsDependencies = Array.from(result).sort();
+    overwriteAngular(host, json);
+}
+exports.addAllowedCommonJsDependencies = addAllowedCommonJsDependencies;
 //# sourceMappingURL=json.js.map

@@ -21,6 +21,7 @@ import { HMR_CONTENT } from '../utils/contents';
 import { addFiles } from '../utils/file';
 import { addHeadStyle, addHtmlToBody } from '../utils/html';
 import {
+  addAllowedCommonJsDependencies,
   addPackageToPackageJson,
   getAngular,
   getJSON,
@@ -115,6 +116,9 @@ function addDependenciesToPackageJson(options: ApplicationOptions) {
     if (options.i18n) {
       addPackageToPackageJson(host, [`@ngx-translate/core@^13.0.0`, `@ngx-translate/http-loader@^6.0.0`]);
     }
+    // Configuring CommonJS dependencies
+    // https://angular.io/guide/build#configuring-commonjs-dependencies
+    addAllowedCommonJsDependencies(host);
     return host;
   };
 }

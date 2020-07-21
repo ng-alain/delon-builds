@@ -80,6 +80,9 @@ function addDependenciesToPackageJson(options) {
         if (options.i18n) {
             json_1.addPackageToPackageJson(host, [`@ngx-translate/core@^13.0.0`, `@ngx-translate/http-loader@^6.0.0`]);
         }
+        // Configuring CommonJS dependencies
+        // https://angular.io/guide/build#configuring-commonjs-dependencies
+        json_1.addAllowedCommonJsDependencies(host);
         return host;
     };
 }
