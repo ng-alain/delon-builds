@@ -7,7 +7,7 @@
       "factory": "./ng-update/index#updateToV2"
     },
     "migration-v9": {
-      "version": "9.5.4",
+      "version": "9.5.5",
       "description": "Updates ng-alain to v9 [https://github.com/ng-alain/ng-alain/issues/1569]",
       "factory": "./ng-update/index#updateToV9"
     },
