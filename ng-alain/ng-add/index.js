@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const schematics_1 = require("@angular-devkit/schematics");
 const json_1 = require("../utils/json");
+const V = 10;
 function genRules(options) {
     const rules = [];
     const applicationOptions = Object.assign({}, options);
@@ -42,8 +43,8 @@ function default_1(options) {
         if (/^[\^|\~]/g.test(ngCoreVersion)) {
             ngCoreVersion = ngCoreVersion.substr(1);
         }
-        if (!ngCoreVersion.startsWith('9.')) {
-            throw new Error(`Sorry, the current version only supports angular 9.x, pls downgrade the global Anguar-cli version: [yarn global add @angular/cli@9.x] (or via npm: [npm install -g @angular/cli@9.x])`);
+        if (!ngCoreVersion.startsWith(V + '.')) {
+            throw new Error(`Sorry, the current version only supports angular ${V}.x, pls downgrade the global Anguar-cli version: [yarn global add @angular/cli@${V}.x] (or via npm: [npm install -g @angular/cli@${V}.x])`);
         }
         return genRules(options);
     };
