@@ -1687,6 +1687,17 @@ if (false) {
      * @type {?|undefined}
      */
     AlainAuthConfig.prototype.executeOtherInterceptors;
+    /**
+     * 刷新时长（单位：ms），默认：`3000`
+     * @type {?|undefined}
+     */
+    AlainAuthConfig.prototype.refreshTime;
+    /**
+     * 偏移值（单位：ms），默认：`6000`
+     * - 建议根据 `refreshTime` 倍数来设置
+     * @type {?|undefined}
+     */
+    AlainAuthConfig.prototype.refreshOffset;
 }
 
 /**
